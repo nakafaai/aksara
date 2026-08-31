@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kemajuan bergantung pada penyelesaian tugas besar sebelum meminta orang lain meninjaunya.",
+            "Permainan menjadi adil karena semua peserta akhirnya melakukan peran yang sama melalui jalur berbeda.",
         },
         {
           isCorrect: true,
           label:
-            "Perubahan terjadi ketika Tari memecah hambatan menjadi tindakan yang dapat diperiksa.",
+            "Perbaikan muncul melalui siklus mendengar, mengubah, mencoba, dan mencatat lagi, sehingga satu keberhasilan tidak menutup evaluasi.",
         },
         {
           isCorrect: false,
           label:
-            "Benda atau latar membentuk hasil lebih kuat daripada pilihan khusus yang dibuat tokoh.",
+            "Catatan meja akhir menunjukkan perubahan pertama gagal dan permainan seharusnya dikembalikan ke rancangan awal.",
         },
         {
           isCorrect: false,
           label:
-            "Bukti yang belum pasti sebaiknya disimpan sampai tokoh dapat menawarkan hasil lengkap.",
+            "Pilihan tiga anak cukup untuk mewakili kebutuhan semua calon peserta taman bermain.",
         },
         {
           isCorrect: false,
           label:
-            "Tindakan kecil terutama berguna karena menunda bagian konflik yang belum selesai.",
+            "Menurunkan keranjang membuktikan seluruh hambatan fisik dapat diselesaikan dengan perubahan ketinggian.",
         },
       ],
     },

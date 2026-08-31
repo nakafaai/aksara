@@ -118,8 +118,8 @@ assessed:
 pnpm dev -- --document packages/corpus/question-bank/tryout/indonesia/snbt/english-language/set-1/question-1/question.en.mdx --app-locale de
 ```
 
-The selected prompt and choices remain in the assessed language. The shell and
-answer use the selected application locale.
+The selected prompt and response options remain in the assessed language. The
+shell and worked answer use the selected application locale.
 
 Run a focused workspace test through Turbo so dependency builds are current:
 
@@ -131,6 +131,12 @@ Do not run a package test directly when it consumes another workspace. Turbo
 owns that build order.
 
 ## Publication
+
+Every authored body and question projection records `datePublished`. Add
+`dateModified` only when reviewed authored meaning changes after publication;
+it must be later than `datePublished`. Repository and Git history remain the
+provenance record, while these fields provide consistent publication metadata
+to every consumer.
 
 Every production operation uses an explicit canonical scope. For example:
 

@@ -19,7 +19,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "A folded bus map in a station before sunrise",
+          label: "Turning an accurate map toward the passenger",
         },
         {
           isCorrect: false,

@@ -7,26 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Mengukur reflektor melalui satu perbandingan awal",
+          label: "Sudut 45 Derajat sebagai Aturan untuk Semua Oven Surya",
         },
         {
           isCorrect: true,
-          label:
-            "Pengaruh Sudut Reflektor terhadap Pemanasan Air dalam Oven Surya Model",
+          label: "Menguji Sudut Reflektor pada Oven Surya Model",
         },
         {
           isCorrect: false,
-          label:
-            "Menjadikan reflektor penjelasan tunggal atas hasil pengamatan",
+          label: "Mengabaikan Iradiansi dalam Perbandingan Suhu Air",
         },
         {
           isCorrect: false,
-          label: "Kaidah akhir dari perbandingan pertama tentang reflektor",
+          label: "Putaran Ketiga yang Menentukan Sudut Terbaik",
         },
         {
           isCorrect: false,
-          label:
-            "Keterbatasan yang membuat uji lanjutan reflektor tidak diperlukan",
+          label: "Mengapa Posisi Oven Tidak Perlu Diputar",
         },
       ],
     },

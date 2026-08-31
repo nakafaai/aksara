@@ -73,7 +73,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Dengan aturan pengukuran yang sama, tim merencanakan uji kartu pertanyaan untuk setiap meja demonstrasi yang lebih panjang.",
+            "Dengan aturan pengukuran yang sama, tim merencanakan uji yang lebih lama terhadap kartu pertanyaan di setiap meja demonstrasi.",
         },
         {
           isCorrect: false,

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Benda yang berulang terutama membangun latar dan hanya sedikit berhubungan dengan konflik.",
+            "Benang putih tetap berarti kerusakan dari awal sampai akhir, sedangkan perubahan Wulan hanya berkaitan dengan sistem katalog.",
         },
         {
           isCorrect: false,
           label:
-            "Keputusan akhir tokoh menghapus ketegangan makna yang sebelumnya dimiliki benda tersebut.",
+            "Benang putih membuktikan semua kostum lama harus dipertahankan karena usia benda selalu menentukan nilainya.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan memakai motif sebagai label deskriptif tanpa menghubungkannya dengan pilihan tokoh.",
+            "Benang putih hanya menandai perpindahan gedung dan tidak memengaruhi cara Wulan menilai label lama.",
         },
         {
           isCorrect: false,
           label:
-            "Latar menyelesaikan konflik sebelum tindakan akhir tokoh mengubah makna benda.",
+            "Benang putih memperoleh arti baru semata-mata karena Raka membaca nama Mira, tanpa kaitan dengan keputusan Wulan sebelumnya.",
         },
         {
           isCorrect: true,
           label:
-            "Pilihan kecil Wulan mengubah makna label kain dalam menghadapi konflik di gudang kostum teater.",
+            "Benang putih bergerak dari tanda benda yang hendak disingkirkan menjadi tanda hubungan yang dirawat tanpa menyembunyikan kerapuhannya.",
         },
       ],
     },

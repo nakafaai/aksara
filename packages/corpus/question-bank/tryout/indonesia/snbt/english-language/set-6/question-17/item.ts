@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Leaving the repaired seam visible transforms the recurring fabric from something to conceal into evidence of care, which the ending recognises.",
+            "Choosing the gold seam turns the repair from something to conceal into evidence of care, and the thin line of light confirms that change.",
         },
         {
           isCorrect: false,

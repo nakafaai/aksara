@@ -78,7 +78,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui label lokasi tanam.",
+            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui label lokasi tanam pada setiap baki bibit.",
         },
         {
           isCorrect: false,

@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Eli's small choice changes the meaning of a blank caption card while addressing a conflict in a quiet local museum.",
+            "Eli turns a blank caption card from a sign of hesitation into an invitation to observe, while keeping the detailed museum information available.",
         },
         {
           isCorrect: false,

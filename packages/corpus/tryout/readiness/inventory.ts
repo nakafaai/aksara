@@ -1,13 +1,13 @@
 import { Effect } from "effect";
 
 import type { QuestionSource } from "#corpus/question-bank/source";
+import type { AssessmentReadiness } from "#corpus/tryout/readiness/schema";
 import {
-  type AssessmentReadiness,
   requireReadinessSection,
   requireReadinessTrack,
   validateAssessmentSourceReadiness,
   validateReadinessField,
-} from "#corpus/tryout/readiness/schema";
+} from "#corpus/tryout/readiness/validation";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
 type ReadinessSection = AssessmentReadiness["sections"][number];
@@ -59,9 +59,9 @@ const validateCoverage = Effect.fn("AksaraCorpus.validateReadinessCoverage")(
   }
 );
 
-/** Validates that every topic remains inside its allowed content domains. */
-const validateTopicDomains = Effect.fn(
-  "AksaraCorpus.validateReadinessTopicDomains"
+/** Validates every topic against its source-owned domain and cognitive levels. */
+const validateTopicBlueprints = Effect.fn(
+  "AksaraCorpus.validateReadinessTopicBlueprints"
 )(function* (
   blueprints: readonly NonNullable<QuestionSource["item"]["blueprint"]>[],
   readiness: ReadinessBlueprint,
@@ -77,6 +77,14 @@ const validateTopicDomains = Effect.fn(
           : blueprint.contentDomain,
         "allowed",
         `topicDomain:${topic.key}`,
+        scope
+      );
+      yield* validateReadinessField(
+        topic.cognitiveLevels.includes(blueprint.cognitiveLevel)
+          ? "allowed"
+          : blueprint.cognitiveLevel,
+        "allowed",
+        `topicCognitiveLevel:${topic.key}`,
         scope
       );
     }
@@ -152,7 +160,7 @@ const validateSectionQuestionReadiness = Effect.fn(
     "responseKind",
     scope
   );
-  yield* validateTopicDomains(blueprints, readiness, scope);
+  yield* validateTopicBlueprints(blueprints, readiness, scope);
   const grouped = new Set(
     selected.flatMap(({ item }) =>
       item.stimulusKey === undefined ? [] : [item.stimulusKey]

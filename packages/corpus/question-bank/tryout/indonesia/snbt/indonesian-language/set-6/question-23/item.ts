@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Perubahan terjadi ketika Sari memecah hambatan menjadi tindakan yang dapat diperiksa.",
+            "Kemampuan Dimas menemukan kesalahan melalui substitusi setelah bantuan dikurangi menunjukkan kemajuan pemahaman yang tidak terlihat dari jumlah soal selesai saja.",
         },
       ],
     },

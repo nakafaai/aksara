@@ -5,6 +5,10 @@ export const metadata = {
   dateModified: "2026-08-31",
 };
 
-Es werden Fälle mit genau einem der Berichte A und B an einem Ende gezählt und anschließend benachbarte C und D ausgeschlossen. Vor der Reihenfolge von C und D bleiben 240 Anordnungen; genau die Hälfte hat C vor D. Daher <InlineMath math="120/720=1/6" />.
+Zuerst wird ausgewählt, welcher Bericht aus A und B an einem Ende liegt und ob es das linke oder rechte Ende ist. Dafür gibt es <InlineMath math="2\cdot2=4" /> Möglichkeiten. Der andere Bericht aus A und B muss eine der vier inneren Positionen belegen; die übrigen vier Berichte lassen sich auf <InlineMath math="4!" /> Arten anordnen. Vor dem Ausschluss benachbarter C und D gibt es somit <InlineMath math="4\cdot4\cdot4!=384" /> Anordnungen.
+
+Für jede Wahl von Bericht und Ende liefert der Block C-D mit zwei inneren Reihenfolgen auf den übrigen fünf Positionen <InlineMath math="2\cdot4!=48" /> Anordnungen. Davon legen <InlineMath math="2\cdot3!=12" /> den anderen Bericht aus A und B an das gegenüberliegende Ende und sind bereits unzulässig. Die Zahl der Anordnungen mit benachbarten C und D beträgt daher <InlineMath math="4(48-12)=144" />.
+
+Es bleiben <InlineMath math="384-144=240" /> Anordnungen, in denen C und D nicht benachbart sind. Durch den Tausch von C und D hat die Hälfte C vor D. Somit gibt es <InlineMath math="240/2=120" /> gültige Anordnungen.
 
 Damit ist der gesuchte Wert <InlineMath math="\\frac16" />.

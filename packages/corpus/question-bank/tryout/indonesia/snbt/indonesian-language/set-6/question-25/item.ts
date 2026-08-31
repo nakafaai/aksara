@@ -7,24 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Menunggu orang lain menyelesaikan langkah berikutnya",
+          label: "Dua Belas Jawaban sebagai Ukuran Tunggal Keberhasilan",
         },
         {
           isCorrect: false,
-          label: "Menyembunyikan bukti yang belum tuntas dalam proyek besar",
+          label: "Memberi Semua Langkah agar Dimas Tidak Pernah Salah",
         },
         {
           isCorrect: false,
           label:
-            "penyangga belajar sebagai definisi tanpa tindakan yang dapat diperiksa",
+            "Penyangga Belajar sebagai Bantuan yang Tidak Pernah Dikurangi",
         },
         {
           isCorrect: true,
-          label: "Langkah Kecil Sari di program teman belajar",
+          label: "Dari Contoh ke Pemeriksaan Mandiri",
         },
         {
           isCorrect: false,
-          label: "Rencana lengkap tanpa langkah kecil yang bertanggung jawab",
+          label: "Kesalahan Pembagian yang Langsung Dibetulkan Sari",
         },
       ],
     },

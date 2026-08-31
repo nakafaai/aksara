@@ -16,7 +16,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Evidence-informed change in a multilingual youth translation club",
+            "Testing a shared glossary without flattening language",
         },
         {
           isCorrect: false,

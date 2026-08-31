@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *erosi* menghubungkan proses pada model dengan proses yang diwakilinya sehingga kegunaan model dapat dibedakan dari batas penerapannya.",
+            "Definisi *erosi* menjelaskan mengapa massa tanah yang berpindah bersama aliran menjadi hasil ukur, sekaligus membatasi penafsiran pada pemindahan partikel.",
         },
         {
           isCorrect: false,

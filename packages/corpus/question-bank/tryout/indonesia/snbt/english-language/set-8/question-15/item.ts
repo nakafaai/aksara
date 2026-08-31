@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Jonas's next step in a youth translation club",
+          label: "When one welcome needs two translations",
         },
         {
           isCorrect: false,

@@ -5,6 +5,10 @@ export const metadata = {
   dateModified: "2026-08-31",
 };
 
-Zuerst wird festgelegt, welcher der Berichte A oder B welches Ende belegt; anschließend werden Anordnungen mit benachbarten E und F ausgeschlossen. Vor der Reihenfolge von C und D bleiben 12.480 Anordnungen. Genau die Hälfte hat C vor D, also 6.240 von <InlineMath math="8!=40320" />. Damit gilt <InlineMath math="6240/40320=13/84" />.
+Zuerst wird ausgewählt, welcher Bericht aus A und B an einem Ende liegt und ob es das linke oder rechte Ende ist. Dafür gibt es <InlineMath math="2\cdot2=4" /> Möglichkeiten. Zu jeder Wahl lassen sich die übrigen sieben Berichte auf <InlineMath math="7!" /> Arten anordnen. Die <InlineMath math="6!" /> Anordnungen, in denen der andere Bericht aus A und B das gegenüberliegende Ende belegt, sind jedoch unzulässig. Vor dem Ausschluss benachbarter E und F gibt es somit <InlineMath math="4(7!-6!)=17{.}280" /> Anordnungen.
+
+Für jede Wahl von Bericht und Ende entstehen mit E-F als Block <InlineMath math="2\cdot6!=1{.}440" /> Anordnungen. Davon legen <InlineMath math="2\cdot5!=240" /> zugleich den anderen Bericht aus A und B an das gegenüberliegende Ende. Auszuschließen sind deshalb <InlineMath math="4(1{.}440-240)=4{.}800" /> Anordnungen. Es bleiben <InlineMath math="17{.}280-4{.}800=12{.}480" /> Anordnungen, bevor die Reihenfolge von C und D berücksichtigt wird.
+
+Durch den Tausch von C und D wird jede Anordnung genau einer zweiten zugeordnet. Deshalb hat die Hälfte C vor D. Gültig sind <InlineMath math="12{.}480/2=6{.}240" /> von <InlineMath math="8!=40{.}320" /> Anordnungen.
 
 Damit ist der gesuchte Wert <InlineMath math="\\frac{13}{84}" />.

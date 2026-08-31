@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pembagian tugas menurut waktu luang serta catatan perubahan membuat keputusan Bima dapat diperiksa ketika keadaan anggota berubah.",
+            "Dengan membagi pemeriksaan dan menahan dua kotak yang meragukan, Bima beralih dari mengejar hasil lengkap menuju koordinasi yang dapat dipertanggungjawabkan.",
         },
         {
           isCorrect: false,

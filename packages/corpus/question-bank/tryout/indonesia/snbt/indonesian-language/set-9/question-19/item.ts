@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *artefak* memberi dasar untuk membandingkan posisi kedua sumber tanpa menganggap salah satunya sebagai catatan yang sepenuhnya netral.",
+            "Memberi kriteria untuk menilai kesinambungan identitas mantel dan menjelaskan mengapa celah riwayat membatasi hubungan antara M-17 dan foto 2019.",
         },
         {
           isCorrect: false,
           label:
-            "Istilah *artefak* membuktikan bahwa sumber yang lebih baru pasti lebih akurat daripada sumber lainnya.",
+            "Membuktikan bahwa mantel dengan bentuk sama selalu merupakan benda yang sama meskipun kode bagian dalam tidak terlihat.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi itu menyamakan *artefak* dengan kesalahan sehingga perbedaan antarsumber tidak perlu dianalisis.",
+            "Mengizinkan siswa mengisi halaman yang hilang selama dugaan tersebut selaras dengan foto publikasi.",
         },
         {
           isCorrect: false,
           label:
-            "Penyebutan *artefak* mengizinkan bagian sumber yang hilang diisi dengan dugaan pembaca.",
+            "Menjadikan buku perawatan lebih dapat dipercaya daripada foto hanya karena riwayatnya ditulis secara kronologis.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi tersebut hanya menamai bentuk dokumen dan tidak memengaruhi cara asal serta tujuan sumber dibandingkan.",
+            "Menetapkan bahwa riwayat penyimpanan lebih penting daripada bukti penggunaan sehingga foto panggung tidak diperlukan.",
         },
       ],
     },

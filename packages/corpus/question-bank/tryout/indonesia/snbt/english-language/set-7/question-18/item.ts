@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "a rain-spotted message card gains meaning through its connection to the conflict, choice, and ending.",
+            "The rain-spotted card gains meaning through its failed description, Asha's cuts, and the shorter message reaching the final house in time.",
         },
         {
           isCorrect: false,

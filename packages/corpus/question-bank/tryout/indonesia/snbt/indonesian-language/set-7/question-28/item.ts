@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Benda berulang memperoleh makna terutama dari bentuk fisiknya, bukan dari hubungannya dengan pilihan tokoh.",
+            "Aula menjadi tenang karena semua sumber bunyi yang disebutkan pada awal cerita menghilang pada penutup.",
         },
         {
           isCorrect: false,
           label:
-            "Akhir cerita menunjukkan bahwa latar, bukan tindakan tokoh, menyelesaikan konflik.",
+            "Suasana tetap sama karena bel dan tombol masih terdengar, sehingga tindakan tokoh tidak memberi perubahan apa pun.",
         },
         {
           isCorrect: false,
           label:
-            "Makna benda tetap sama meskipun tokoh menggunakannya dengan cara berbeda.",
+            "Perubahan suasana membuktikan bahwa keramaian selalu menghalangi munculnya rasa ingin tahu di pameran.",
         },
         {
           isCorrect: false,
           label:
-            "Tindakan akhir penting karena mengukuhkan penafsiran yang sudah terbentuk sejak awal.",
+            "Percakapan menjadi terarah karena Lila menyelesaikan perdebatan dengan memberi jawaban yang benar.",
         },
         {
           isCorrect: true,
           label:
-            "kartu pertanyaan memperoleh makna karena muncul bersama konflik, pilihan, dan perubahan pada akhir cerita.",
+            "Keramaian fisik tetap ada, tetapi pilihan bunyi dan tindakan pada penutup memperlihatkan terbentuknya ruang perhatian di tengah keramaian itu.",
         },
       ],
     },

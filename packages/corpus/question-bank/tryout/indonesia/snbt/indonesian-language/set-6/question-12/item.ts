@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Nilai 17 adalah kondisi pembanding untuk kartu tujuan; dua minggu pengamatan belum mengukur dampak terhadap nilai semester.",
+            "Kartu tujuan menghasilkan 10 catatan lengkap lebih banyak daripada catatan biasa dari jumlah pertemuan yang sama; hasil itu belum mengukur perubahan nilai semester.",
         },
         {
           isCorrect: false,

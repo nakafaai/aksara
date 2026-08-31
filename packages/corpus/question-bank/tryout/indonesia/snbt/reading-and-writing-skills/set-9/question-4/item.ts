@@ -88,7 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Perubahan berupa label lokasi tanam langsung menanggapi keraguan yang diamati.",
+            "Label lokasi tanam pada setiap baki bibit langsung menanggapi keraguan yang diamati.",
         },
       ],
     },

@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The organisers of a multilingual youth translation club evaluated a shared glossary with examples from each participant through a comparison and consultation with affected groups.",
+            "The translation club compared a participant-built glossary across measured conditions, consulted its community, and supported only a limited extension because usage varies by region and family.",
         },
         {
           isCorrect: false,

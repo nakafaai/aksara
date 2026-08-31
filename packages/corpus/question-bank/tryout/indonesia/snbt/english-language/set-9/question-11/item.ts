@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Hana faced an obstacle while trying to understand why waste was entering the wrong stream and learned through a small accountable action.",
+            "Hana traces one bag through the full waste route and discovers that mismatched permit symbols create an error before the bag reaches the bin.",
         },
         {
           isCorrect: false,

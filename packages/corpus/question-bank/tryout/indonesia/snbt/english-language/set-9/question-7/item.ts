@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The comparison condition produced 37, the reference for matching bin and permit symbols while visitor numbers and food types varied by evening.",
+            "The trial reached 54 correctly sorted bags, compared with 36 and 37; changing visitor numbers and food types mean the result supports a limited follow-up across more evenings.",
         },
       ],
     },

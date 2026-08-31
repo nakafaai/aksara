@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *perkembangan tokoh* mengenali perangkat penceritaan yang menghubungkan benda berulang, tindakan tokoh, dan respons yang belum tuntas pada penutup.",
+            "Definisi *perkembangan tokoh* memberi dasar untuk membandingkan tindakan Jati pada awal dan akhir, tanpa mensyaratkan bahwa ia harus memahami seluruh bacaan.",
         },
         {
           isCorrect: false,

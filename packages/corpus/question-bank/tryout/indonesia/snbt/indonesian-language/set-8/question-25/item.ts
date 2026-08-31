@@ -7,24 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Menunggu orang lain menyelesaikan langkah berikutnya",
+          label: "Merata-ratakan Semua Angka agar Laporan Cepat Selesai",
         },
         {
           isCorrect: true,
-          label: "Langkah Kecil Dito di balai warga",
+          label: "Angka Menyimpang yang Tidak Dihapus Dito",
         },
         {
           isCorrect: false,
-          label: "Menyembunyikan bukti yang belum tuntas dalam proyek besar",
+          label: "Membuktikan Kedalaman Sumur Tepat 4,81 Meter",
         },
         {
           isCorrect: false,
-          label:
-            "integritas ilmiah sebagai definisi tanpa tindakan yang dapat diperiksa",
+          label: "Integritas Ilmiah sebagai Alasan Memakai Semua Pengukuran",
         },
         {
           isCorrect: false,
-          label: "Rencana lengkap tanpa langkah kecil yang bertanggung jawab",
+          label: "Bekas Lumpur yang Membuat Pengukuran Tidak Berguna",
         },
       ],
     },

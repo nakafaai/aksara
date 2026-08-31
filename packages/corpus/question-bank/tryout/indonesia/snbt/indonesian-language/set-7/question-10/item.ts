@@ -16,7 +16,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Kegunaan dan Batas Simulasi populasi dengan keping warna",
+          label: "Daya Dukung dalam Simulasi Keping: Aturan dan Batas",
         },
         {
           isCorrect: false,

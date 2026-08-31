@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *akuntabilitas* menjadi lensa untuk membaca pilihan konkret tokoh sebagai perkembangan sikap, bukan sekadar label moral yang berdiri sendiri.",
+            "Definisi *akuntabilitas* menghubungkan catatan perubahan dan dua kotak yang ditahan dengan kesediaan Bima menjelaskan keputusan serta menerima akibatnya.",
         },
         {
           isCorrect: false,

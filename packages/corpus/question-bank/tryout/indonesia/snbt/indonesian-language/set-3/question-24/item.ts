@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *metakognisi* menjadi lensa untuk membaca pilihan konkret tokoh sebagai perkembangan sikap, bukan sekadar label moral yang berdiri sendiri.",
+            "Definisi *metakognisi* menjelaskan cara Raka menilai kebiasaan menundanya, memilih strategi baru, dan memeriksa apakah strategi itu membantu.",
         },
         {
           isCorrect: false,

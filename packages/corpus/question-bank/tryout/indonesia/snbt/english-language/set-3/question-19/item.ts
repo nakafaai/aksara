@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The definition of *irony* identifies the narrative device that connects the recurring object, the character's action, and the unresolved response at the end.",
+            "The definition of *irony* clarifies the contrast between an accurate board that misdirects passengers and the same information becoming useful after a simple rotation.",
         },
         {
           isCorrect: false,

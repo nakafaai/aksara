@@ -16,7 +16,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Evidence-informed change in a community repair café",
+          label: "Testing tool cards for cautious repair-café improvement",
         },
         {
           isCorrect: false,

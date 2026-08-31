@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Memusatkan pertemuan pada satu konsep membuat kemajuan Sari dapat diuji melalui pemahaman, bukan hanya jumlah bab yang terlewati.",
+            "Mengurangi bantuan pada tiap soal memberi Dimas ruang mengambil alih penalaran, sehingga Sari beralih dari pemberi langkah menjadi perancang dukungan sementara.",
         },
         {
           isCorrect: false,

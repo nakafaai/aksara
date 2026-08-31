@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pengelola taman bermain inklusif menilai peta alat berdasarkan kebutuhan akses melalui data pembanding dan masukan pihak terdampak.",
+            "Peta baru membantu sebagian kelompok menemukan alat, tetapi hasil yang tidak merata dan batas peserta menunjukkan bahwa akses informasi belum sama dengan desain alat yang inklusif.",
         },
         {
           isCorrect: false,
           label:
-            "Pengelola taman bermain inklusif menilai peta alat berdasarkan kebutuhan akses melalui masukan pihak terdampak saja, tanpa membandingkan hasil pengukuran.",
+            "Peta baru sudah membuat taman inklusif karena setiap kelompok memiliki setidaknya satu keluarga yang berhasil menemukan alat.",
         },
         {
           isCorrect: false,
           label:
-            "Pengelola taman bermain inklusif menilai peta alat berdasarkan kebutuhan akses melalui data pembanding saja, dengan pengalaman pihak terdampak ditempatkan di luar keputusan.",
+            "Perubahan kecil pada kelompok sensorik membuktikan keluarga dalam kelompok itu tidak membutuhkan informasi kebisingan.",
         },
         {
           isCorrect: false,
           label:
-            "Pengelola taman bermain inklusif menilai peta alat berdasarkan kebutuhan akses melalui data dan masukan pihak terdampak, lalu menjadikan uji singkat cukup untuk penerapan tetap.",
+            "Keberhasilan kelompok tanpa kebutuhan akses dapat dipakai untuk menyimpulkan bahwa semua alat mudah digunakan oleh semua anak.",
         },
         {
           isCorrect: false,
           label:
-            "Pengelola taman bermain inklusif menilai peta alat berdasarkan kebutuhan akses terutama melalui definisi istilah, sedangkan perubahan yang diusulkan hanya menjadi latar bacaan.",
+            "Karena peta lama dan baru diuji pada jam sebanding, peta baru tidak lagi memerlukan pengujian bersama kelompok lain.",
         },
       ],
     },

@@ -5,6 +5,10 @@ export const metadata = {
   dateModified: "2026-08-31",
 };
 
-D und E werden als Block mit zwei inneren Reihenfolgen behandelt, dazu kommt die Reihenfolge A vor B vor C. Fälle mit F an einem Ende werden ausgeschlossen. Die Fallunterscheidung ergibt 160 gültige Anordnungen von <InlineMath math="7!=5040" />, also <InlineMath math="160/5040=2/63" />.
+D-E wird als ein Block behandelt. Zusammen mit A, B, C, F und G sind damit sechs Einheiten anzuordnen. Der Block D-E hat zwei innere Reihenfolgen. Von den <InlineMath math="3!" /> relativen Reihenfolgen von A, B und C erfüllt nur eine die Bedingung A vor B vor C. Ohne die Einschränkung für F gibt es <InlineMath math="2\cdot6!/3!=240" /> Anordnungen.
+
+Liegt F am linken Ende, lassen sich die übrigen fünf Einheiten auf <InlineMath math="2\cdot5!/3!=40" /> Arten anordnen. Für das rechte Ende gilt derselbe Wert; beide Fälle überschneiden sich nicht. Daher sind <InlineMath math="2\cdot40=80" /> Anordnungen auszuschließen.
+
+Somit bleiben <InlineMath math="240-80=160" /> gültige Anordnungen von insgesamt <InlineMath math="7!=5{.}040" />.
 
 Damit ist der gesuchte Wert <InlineMath math="\\frac2{63}" />.

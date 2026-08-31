@@ -19,7 +19,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Theo's next step in a small public archive",
+          label: "Documenting uncertainty so evidence can follow",
         },
         {
           isCorrect: false,

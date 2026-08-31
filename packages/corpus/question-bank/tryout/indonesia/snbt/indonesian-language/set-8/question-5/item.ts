@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Mengukur transpirasi melalui satu perbandingan awal",
+          label: "Petroleum Jelly Menghentikan Seluruh Transpirasi Daun",
         },
         {
           isCorrect: false,
@@ -21,7 +21,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pengaruh Lapisan Petroleum Jelly terhadap Kehilangan Massa Daun",
+            "Permukaan Daun dan Kehilangan Air: Temuan Awal pada Daun Kacang",
         },
         {
           isCorrect: false,

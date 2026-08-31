@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "membandingkan kehilangan tanah pada lereng nyata yang terbuka dan berpenutup selama beberapa kejadian hujan.",
+            "Membandingkan tanah terbawa dari petak lereng terbuka dan berpenutup yang memiliki kemiringan serta jenis tanah sebanding selama beberapa kejadian hujan.",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Istilah *kesadaran penuh* membuktikan bahwa pilihan pertama tokoh sudah benar sebelum ia mengamati kebutuhan orang lain.",
+            "Pembaca mengetahui bahwa penyunting sengaja meremehkan Laras karena seluruh niat tokoh disampaikan oleh narator.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi itu membatasi *kesadaran penuh* pada perasaan tokoh sehingga tindakan dan akibat pilihannya tidak perlu diperiksa.",
+            "Pembaca dapat memastikan foto 2019 di arsip sekolah palsu karena Laras mempertimbangkan untuk menyalinnya.",
         },
         {
           isCorrect: false,
           label:
-            "Penyebutan *kesadaran penuh* menjadikan perubahan tokoh selesai seketika, padahal bacaan menunjukkan perkembangan bertahap.",
+            "Pembaca memperoleh gambaran objektif tentang semua peristiwa karena sudut pandang Laras tidak membatasi informasi.",
         },
         {
           isCorrect: true,
           label:
-            "Definisi *kesadaran penuh* menjadi lensa untuk membaca pilihan konkret tokoh sebagai perkembangan sikap, bukan sekadar label moral yang berdiri sendiri.",
+            "Pembaca dekat dengan kecemasan dan pertimbangan Laras, tetapi tidak boleh menganggap tafsir Laras atas pertanyaan penyunting sebagai fakta tentang niat penyunting.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi tersebut hanya menamai latar kegiatan dan tidak berkaitan dengan keputusan tokoh.",
+            "Pembaca hanya mengetahui tindakan luar Laras sehingga perubahan makna ikon waktu tidak dapat dipahami.",
         },
       ],
     },

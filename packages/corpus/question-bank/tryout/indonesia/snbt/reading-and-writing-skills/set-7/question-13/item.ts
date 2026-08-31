@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "kerjasama tim dalam uji kode pengembalian di peminjaman payung stasiun",
+            "kerjasama tim dalam uji kode pengembalian pada setiap gagang di layanan peminjaman payung stasiun",
         },
         {
           isCorrect: false,
           label:
-            "kerja-sama tim dalam uji kode pengembalian di peminjaman payung stasiun",
+            "kerja-sama tim dalam uji kode pengembalian pada setiap gagang di layanan peminjaman payung stasiun",
         },
         {
           isCorrect: true,
           label:
-            "kerja sama tim dalam uji kode pengembalian di peminjaman payung stasiun",
+            "kerja sama tim dalam uji kode pengembalian pada setiap gagang di layanan peminjaman payung stasiun",
         },
         {
           isCorrect: false,
           label:
-            "kerja  sama tim dalam uji kode pengembalian di peminjaman payung stasiun",
+            "kerja  sama tim dalam uji kode pengembalian pada setiap gagang di layanan peminjaman payung stasiun",
         },
         {
           isCorrect: false,
           label:
-            "kerja sama-sama tim dalam uji kode pengembalian di peminjaman payung stasiun",
+            "kerja sama-sama tim dalam uji kode pengembalian pada setiap gagang di layanan peminjaman payung stasiun",
         },
       ],
     },

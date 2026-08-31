@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "lampu baca kecil memperoleh makna karena muncul bersama konflik, pilihan, dan perubahan pada akhir cerita.",
+            "Lampu baca memperoleh makna sebagai undangan karena hadir saat panggung kosong, menyertai tindakan Mira, dan menerangi orang-orang yang akhirnya mendengarkan.",
         },
         {
           isCorrect: false,

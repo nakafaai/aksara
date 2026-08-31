@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The organisers of a community food pantry evaluated shelf labels showing the date each package entered through a comparison and consultation with affected groups.",
+            "The pantry team compared entry-date labels with baseline and comparison conditions, consulted affected groups, and supported only a limited extension because demand varied.",
         },
         {
           isCorrect: false,

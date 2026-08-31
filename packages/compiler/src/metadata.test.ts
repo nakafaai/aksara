@@ -66,15 +66,19 @@ describe("authored metadata", () => {
           title: "Test",
           "published": true,
           count: 1,
+          negative: -2,
           optional: null,
+          positive: +3,
           nested: [{ enabled: false }, ["value"]],
         }\n\n## Test`
       );
       const metadata = yield* validateMetadata(contentKey, collector);
       assert.deepStrictEqual(metadata, {
         count: 1,
+        negative: -2,
         nested: [{ enabled: false }, ["value"]],
         optional: null,
+        positive: 3,
         published: true,
         title: "Test",
       });
@@ -108,7 +112,7 @@ describe("authored metadata", () => {
 
   it.effect("returns the body tree without the metadata module", () =>
     Effect.gen(function* () {
-      const rawMdx = `export const note = "x"\n\n${VALID_METADATA}`;
+      const rawMdx = `export const note = "x"\n\n${VALID_METADATA}\n\n## Body`;
       const tree = yield* parseMdx(rawMdx);
       const document = yield* readMetadataDocument(contentKey, tree);
       const start = rawMdx.indexOf(VALID_METADATA);
@@ -118,8 +122,9 @@ describe("authored metadata", () => {
         source: VALID_METADATA,
         start,
       });
-      assert.strictEqual(document.bodyTree.children.length, 1);
+      assert.strictEqual(document.bodyTree.children.length, 2);
       assert.strictEqual(document.bodyTree.children[0]?.type, "mdxjsEsm");
+      assert.strictEqual(document.bodyTree.children[1]?.type, "heading");
     })
   );
 

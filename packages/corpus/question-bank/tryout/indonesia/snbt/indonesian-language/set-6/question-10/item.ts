@@ -19,7 +19,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Kegunaan dan Batas Model erosi menggunakan baki tanah",
+          label: "Penutup Permukaan dalam Model Erosi: Hasil dan Batas",
         },
         {
           isCorrect: false,

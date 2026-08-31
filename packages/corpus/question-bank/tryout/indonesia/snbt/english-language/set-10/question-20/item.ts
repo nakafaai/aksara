@@ -7,24 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A recurring object that remains part of the setting",
+          label: "A ledger passed between student treasurers",
         },
         {
           isCorrect: true,
-          label:
-            "A pencil-worn ledger in an empty hall after a planning meeting",
+          label: "The blank line after the balanced total",
         },
         {
           isCorrect: false,
-          label: "A conflict settled before the character's final choice",
+          label: "The supplier reply that settled the concert budget",
         },
         {
           isCorrect: false,
-          label: "open ending as a term without a role in the story",
+          label: "Why every budget needs one final number",
         },
         {
           isCorrect: false,
-          label: "An ending that removes the object's interpretive tension",
+          label: "A morning meeting with no unanswered questions",
         },
       ],
     },

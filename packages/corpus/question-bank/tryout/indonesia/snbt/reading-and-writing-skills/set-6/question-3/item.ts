@@ -68,7 +68,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui panah arah yang ditempatkan.",
+            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas dengan memasang panah arah di setiap persimpangan.",
         },
         {
           isCorrect: false,

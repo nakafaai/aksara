@@ -5,6 +5,10 @@ export const metadata = {
   dateModified: "2026-08-31",
 };
 
-Place A and B three positions apart, then exclude arrangements in which E and F are adjacent. The case count gives 720 arrangements before fixing the order of C and D; half have C before D. Thus <InlineMath math="360/5040=1/14" />.
+The position pairs for A-B with exactly two reports between them are <InlineMath math="(1,4),(2,5),(3,6),(4,7)" />. There are four position pairs, two orders for A-B, and <InlineMath math="5!" /> arrangements of the other reports. Before excluding adjacent E-F, this gives <InlineMath math="4\cdot2\cdot5!=960" /> arrangements.
+
+After removing the occupied A-B positions, the four cases leave <InlineMath math="3,2,2,3" /> available adjacent position pairs for E-F. For each such pair, E and F have two orders and the other three reports have <InlineMath math="3!" /> arrangements. Including the two orders for A-B, the adjacent E-F count is <InlineMath math="2(3+2+2+3)\cdot2\cdot3!=240" />.
+
+This leaves <InlineMath math="960-240=720" /> arrangements before ordering C and D. Swapping C and D shows that exactly half have C before D, giving <InlineMath math="720/2=360" /> valid arrangements.
 
 Therefore, the requested value is <InlineMath math="\\frac1{14}" />.

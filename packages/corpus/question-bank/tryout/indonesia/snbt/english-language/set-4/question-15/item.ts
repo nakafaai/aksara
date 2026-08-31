@@ -23,7 +23,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Omar's next step in a community sports centre",
+          label: "Testing an accessibility map with its intended users",
         },
       ],
     },

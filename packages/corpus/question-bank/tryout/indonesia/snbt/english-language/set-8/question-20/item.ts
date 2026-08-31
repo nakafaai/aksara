@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "A two-sided card in a multilingual welcome desk",
+          label: "Two sides of welcome",
         },
         {
           isCorrect: false,

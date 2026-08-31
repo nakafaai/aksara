@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Kegunaan dan Batas Rangkaian listrik dengan dua lampu",
+          label: "Kegunaan dan Batas Model Rangkaian Listrik Dua Lampu",
         },
         {
           isCorrect: false,

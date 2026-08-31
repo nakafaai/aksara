@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *dukungan sebaya* memberi kriteria untuk menilai apakah rancangan dan bukti akses benar-benar mencakup kebutuhan pengguna yang berbeda.",
+            "Definisi *dukungan sebaya* menempatkan kartu sebagai alat percakapan antarpeserta yang setara, sehingga kartu tidak boleh mengubah satu peserta menjadi pengawas tetap bagi yang lain.",
         },
         {
           isCorrect: false,

@@ -68,27 +68,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks ruang latihan musik memberikan komentar yang singkat dan ringkas.",
+            "Pengguna ruang latihan musik memberikan komentar yang singkat dan ringkas.",
         },
         {
           isCorrect: true,
-          label:
-            "Para pengguna di ruang latihan musik memberikan komentar singkat.",
+          label: "Pengguna ruang latihan musik memberikan komentar singkat.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks ruang latihan musik memberikan komentar singkat mereka sendiri secara pribadi.",
+            "Pengguna ruang latihan musik memberikan komentar singkat mereka sendiri secara pribadi.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks ruang latihan musik memberikan komentar singkat dalam bentuk pendek.",
+            "Pengguna ruang latihan musik memberikan komentar singkat dalam bentuk pendek.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks ruang latihan musik memberikan komentar singkat tentang pengalaman mereka dalam konteks tersebut.",
+            "Pengguna ruang latihan musik memberikan komentar singkat tentang pengalaman mereka di ruang tersebut.",
         },
       ],
     },

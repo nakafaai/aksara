@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Calling a cost *fixed cost* establishes that the proposed change is affordable without using the estimated prices.",
+            "Calling a cost fixed establishes that its quoted price is accurate and that the event is affordable.",
         },
         {
           isCorrect: false,
           label:
-            "The definition makes *fixed cost* apply to every cost in the table, regardless of how activity levels change.",
+            "The definition makes every event-level cost permanent, even when the activity range or contract changes.",
         },
         {
           isCorrect: false,
           label:
-            "The term *fixed cost* replaces the affected groups' evidence with a financial label that settles the decision by itself.",
+            "The term replaces the workshop data by proving that shared costs can never be counted more than once.",
         },
         {
           isCorrect: true,
           label:
-            "The definition of *fixed cost* supplies the classification rule needed to interpret the budget comparison and the consultation evidence.",
+            "The definition makes the classification depend on a stated activity range, so fixed does not mean that a cost is immune to every later change.",
         },
         {
           isCorrect: false,
           label:
-            "The definition explains why the trial used estimated invoices, rather than how the cost category should be read.",
+            "The definition explains why estimated prices and final supplier quotes can be treated as identical evidence.",
         },
       ],
     },

@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "fixed cost as the main measure in a service trial",
+          label: "Why fixed costs never change",
         },
         {
           isCorrect: true,
-          label: "Evidence-informed change in a youth event-planning group",
+          label: "Testing a clearer budget sheet before a real event",
         },
         {
           isCorrect: false,
-          label: "From a short comparison to a permanent service change",
+          label: "From one workshop to permanent adoption",
         },
         {
           isCorrect: false,
-          label: "Consultation without comparable outcome measures",
+          label: "Accurate supplier totals from estimated prices",
         },
         {
           isCorrect: false,
-          label: "A local service trial with no follow-up decision",
+          label: "Three rounds that settled every budgeting question",
         },
       ],
     },

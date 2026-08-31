@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The definition of *metadata* provides a lens for reading the character's specific choice as a response to uncertainty, not as an isolated moral label.",
+            "The definition explains why Theo's note about the uncertain date belongs to the photograph's record and supports later verification.",
         },
         {
           isCorrect: false,

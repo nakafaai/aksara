@@ -69,7 +69,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Berdasarkan itu",
+          label: "Berdasarkan hal itu",
         },
         {
           isCorrect: false,

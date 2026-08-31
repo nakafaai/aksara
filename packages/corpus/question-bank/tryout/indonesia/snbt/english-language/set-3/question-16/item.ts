@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Nora's small choice changes the meaning of a folded bus map while addressing a conflict in a station before sunrise.",
+            "Nora rotates an accurate map to match the passenger's viewpoint, making the route usable and changing what the folded map represents.",
         },
         {
           isCorrect: false,

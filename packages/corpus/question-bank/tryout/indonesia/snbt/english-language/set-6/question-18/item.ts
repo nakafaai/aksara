@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "a spool of gold thread gains meaning through its connection to the conflict, choice, and ending.",
+            "The gold thread gains meaning through the owner's wish to hide damage, Miles's visible seam, and the line of light at the ending.",
         },
         {
           isCorrect: false,

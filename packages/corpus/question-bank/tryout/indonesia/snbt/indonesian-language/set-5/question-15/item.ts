@@ -23,7 +23,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Keputusan Berbasis Bukti dalam pengiriman buku antarpulau",
+          label: "Uji Terbatas Label Tujuan untuk Pengiriman Buku Antarpulau",
         },
       ],
     },

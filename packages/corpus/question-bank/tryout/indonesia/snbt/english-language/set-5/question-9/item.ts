@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The definition of *stock rotation* supplies the classification rule needed to interpret the budget comparison and the consultation evidence.",
+            "The definition explains why entry-date labels matter: they help volunteers identify which suitable packages should be used first.",
         },
         {
           isCorrect: false,
           label:
-            "Calling a cost *stock rotation* establishes that the proposed change is affordable without using the estimated prices.",
+            "Defining *stock rotation* proves that the labels alone caused the trial value of 47.",
         },
         {
           isCorrect: false,
           label:
-            "The definition makes *stock rotation* apply to every cost in the table, regardless of how activity levels change.",
+            "The definition makes changes in package demand irrelevant to any later decision.",
         },
         {
           isCorrect: false,
           label:
-            "The term *stock rotation* replaces the affected groups' evidence with a financial label that settles the decision by itself.",
+            "The term *stock rotation* replaces the measured comparison and the affected groups' experience.",
         },
         {
           isCorrect: false,
           label:
-            "The definition explains why the trial used estimated invoices, rather than how the cost category should be read.",
+            "The definition shows that newer suitable stock should always be used before older stock.",
         },
       ],
     },

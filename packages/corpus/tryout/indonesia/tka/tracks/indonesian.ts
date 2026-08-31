@@ -34,7 +34,7 @@ export const tkaIndonesianTrack = {
             en: "indonesian",
             id: "bahasa-indonesia",
           },
-          timeLimitSeconds: 2700,
+          timeLimitSeconds: 4500,
           translations: {
             de: { title: "Indonesisch" },
             en: { title: "Indonesian" },

@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Simulasi membandingkan pengaruh air bersuhu 35 derajat Celsius terhadap produksi gas pada campuran ragi, sambil mengendalikan faktor lain dan mengakui keterbatasan pengukuran.",
+            "Percobaan membandingkan keliling balon pada tiga suhu dengan faktor lain terkontrol, lalu membatasi simpulan karena keliling hanya menjadi petunjuk kasar jumlah gas.",
         },
       ],
     },

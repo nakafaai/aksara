@@ -5,6 +5,10 @@ export const metadata = {
   dateModified: "2026-08-31",
 };
 
-Treat D and E as a block with two internal orders, enforce the relative order A before B before C, and then exclude cases with F at either end. This case count gives 160 valid arrangements out of <InlineMath math="7!=5040" />, so <InlineMath math="160/5040=2/63" />.
+Treat D-E as one block. Together with A, B, C, F, and G, there are six units to arrange. The D-E block has two internal orders, while only one of the <InlineMath math="3!" /> relative orders of A, B, and C satisfies A before B before C. Before restricting F, the count is <InlineMath math="2\cdot6!/3!=240" />.
+
+If F occupies the left end, the other five units contribute <InlineMath math="2\cdot5!/3!=40" /> arrangements. The same count applies at the right end, and the two cases cannot overlap. Thus <InlineMath math="2\cdot40=80" /> arrangements must be excluded.
+
+The number of valid arrangements is therefore <InlineMath math="240-80=160" /> out of <InlineMath math="7!=5{,}040" />.
 
 Therefore, the requested value is <InlineMath math="\\frac2{63}" />.

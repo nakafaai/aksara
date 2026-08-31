@@ -21,7 +21,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Schools should teach source checking as a normal part of every subject.",
+            "Treating source checking as a task only for language or computer classes is unrealistic.",
         },
         {
           isCorrect: false,

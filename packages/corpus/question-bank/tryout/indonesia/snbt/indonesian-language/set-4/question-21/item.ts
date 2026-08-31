@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Nisa menghadapi hambatan dalam mengikuti latihan mandiri di pasar dan belajar melalui tindakan kecil yang bertanggung jawab.",
+            "Nisa mengubah kesulitan melewati lorong pasar menjadi catatan rute dan usulan tanda akses, lalu ikut menilai tanda yang diuji pengelola.",
         },
         {
           isCorrect: false,

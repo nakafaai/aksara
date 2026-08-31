@@ -8,15 +8,15 @@ export const metadata = {
 
 <LineEquation
   title={<>Triangle <InlineMath math="ABC" /></>}
-  description={<>Illustration of triangle <InlineMath math="ABC" /> with lines <InlineMath math="AP" />, <InlineMath math="BQ" />, and <InlineMath math="CR" /> intersecting at point <InlineMath math="O" />.</>}
+  description={<>The points show one possible initial configuration. The additional properties in statements <InlineMath math="(1)" /> and <InlineMath math="(2)" /> still have to be tested.</>}
   data={[
-    // Triangle ABC (centroid at 0,0)
+    // Equilateral triangle ABC with side length 6.
     {
       points: [
-        { x: -5, y: -2.887, z: 0 }, // B
-        { x: 5, y: -2.887, z: 0 }, // C
-        { x: 0, y: 5.773, z: 0 }, // A
-        { x: -5, y: -2.887, z: 0 }, // Back to B
+        { x: -3, y: -Math.sqrt(3), z: 0 }, // B
+        { x: 3, y: -Math.sqrt(3), z: 0 }, // C
+        { x: 0, y: 2 * Math.sqrt(3), z: 0 }, // A
+        { x: -3, y: -Math.sqrt(3), z: 0 }, // Back to B
       ],
       color: "#2563eb",
       showPoints: false,
@@ -27,11 +27,11 @@ export const metadata = {
         { text: <InlineMath math="A" />, at: 2, offset: [0, 0.5, 0], color: "#4f46e5" },
       ],
     },
-    // Line AP (Median from A to BC)
+    // Line AP through P on BC.
     {
       points: [
-        { x: 0, y: 5.773, z: 0 }, // A
-        { x: 0, y: -2.887, z: 0 }, // P (midpoint BC, also centroid)
+        { x: 0, y: 2 * Math.sqrt(3), z: 0 }, // A
+        { x: -1, y: -Math.sqrt(3), z: 0 }, // P
       ],
       color: "#ea580c",
       showPoints: false,
@@ -40,11 +40,11 @@ export const metadata = {
         { text: <InlineMath math="P" />, at: 1, offset: [0, -0.5, 0], color: "#4f46e5" },
       ],
     },
-    // Line BQ (Median from B to AC)
+    // Line BQ through Q on CA.
     {
       points: [
-        { x: -5, y: -2.887, z: 0 }, // B
-        { x: 2.5, y: 1.443, z: 0 }, // Q (Midpoint AC)
+        { x: -3, y: -Math.sqrt(3), z: 0 }, // B
+        { x: 1.5, y: Math.sqrt(3) / 2, z: 0 }, // Q
       ],
       color: "#ea580c",
       showPoints: false,
@@ -53,11 +53,11 @@ export const metadata = {
         { text: <InlineMath math="Q" />, at: 1, offset: [0.5, 0, 0], color: "#4f46e5" },
       ],
     },
-    // Line CR (Median from C to AB)
+    // Line CR through R on AB.
     {
       points: [
-        { x: 5, y: -2.887, z: 0 }, // C
-        { x: -2.5, y: 1.443, z: 0 }, // R (Midpoint AB)
+        { x: 3, y: -Math.sqrt(3), z: 0 }, // C
+        { x: -2, y: 0, z: 0 }, // R
       ],
       color: "#ea580c",
       showPoints: false,
@@ -66,16 +66,28 @@ export const metadata = {
         { text: <InlineMath math="R" />, at: 1, offset: [-0.5, 0, 0], color: "#4f46e5" },
       ],
     },
+    {
+      points: [
+        { x: -3 / 4, y: -Math.sqrt(3) / 4, z: 0 },
+        { x: -3 / 4, y: -Math.sqrt(3) / 4, z: 0 },
+      ],
+      color: "#16a34a",
+      showPoints: true,
+      smooth: false,
+      labels: [
+        { text: <InlineMath math="O" />, at: 0, offset: [0.35, 0.35, 0], color: "#16a34a" },
+      ],
+    },
   ]}
   cameraPosition={[0, 0, 15]}
   showZAxis={false}
 />
 
-Triangle <InlineMath math="ABC" /> is an equilateral triangle. If lines <InlineMath math="AP" />, <InlineMath math="BQ" />, and <InlineMath math="CR" /> intersect at a single point, which is point <InlineMath math="O" />.
+Triangle <InlineMath math="ABC" /> is equilateral. Lines <InlineMath math="AP" />, <InlineMath math="BQ" />, and <InlineMath math="CR" /> intersect at point <InlineMath math="O" />.
 
-Determine the measure of angle <InlineMath math="\angle BOC" />?
+Determine the measure of <InlineMath math="\angle BOC" />.
 
-Decide whether statements <InlineMath math="(1)" /> and <InlineMath math="(2)" /> below are sufficient to answer the question!
+Decide whether statements <InlineMath math="(1)" /> and <InlineMath math="(2)" /> below are sufficient to answer the question.
 
 1.  <InlineMath math="BC = 10 \text{ cm}" />.
 2.  Lines <InlineMath math="AP" />, <InlineMath math="BQ" />, and <InlineMath math="CR" /> are angle bisectors of triangle <InlineMath math="ABC" />.

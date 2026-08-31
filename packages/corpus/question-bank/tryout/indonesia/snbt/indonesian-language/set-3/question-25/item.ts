@@ -11,7 +11,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Langkah Kecil Raka di ruang arsip sekolah",
+          label: "Langkah Kecil Raka di Ruang Arsip Sekolah",
         },
         {
           isCorrect: false,

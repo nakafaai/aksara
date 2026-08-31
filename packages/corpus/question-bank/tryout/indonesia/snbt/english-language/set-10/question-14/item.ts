@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The term *contingency* proves that the character's first estimate was correct before any accountable action was taken.",
+            "The term proves that Caleb's original balanced total was reliable before the quotes were checked.",
         },
         {
           isCorrect: true,
           label:
-            "The definition of *contingency* provides a lens for reading the character's specific choice as a response to uncertainty, not as an isolated moral label.",
+            "The definition explains why the added line is tied to identified security and lighting risks rather than being an arbitrary extra amount.",
         },
         {
           isCorrect: false,
           label:
-            "The definition reduces *contingency* to the recurring object, so the character's choice and development no longer matter.",
+            "The definition turns contingency into another name for every unconfirmed price in the spreadsheet.",
         },
         {
           isCorrect: false,
           label:
-            "The term *contingency* describes the final outcome as certain, even though the narrative presents a gradual change.",
+            "The term guarantees that no cost can threaten the deposit once a contingency line appears.",
         },
         {
           isCorrect: false,
           label:
-            "The definition is included only to name the setting and has no connection to the character's decision.",
+            "The definition describes the concert setting but does not help explain Caleb's scenarios or assigned follow-up.",
         },
       ],
     },

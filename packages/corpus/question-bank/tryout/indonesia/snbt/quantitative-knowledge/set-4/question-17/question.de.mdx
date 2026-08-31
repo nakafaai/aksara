@@ -8,15 +8,15 @@ export const metadata = {
 
 <LineEquation
   title={<>Dreieck <InlineMath math="ABC" /></>}
-  description={<>Dreieck <InlineMath math="ABC" /> mit den Strecken <InlineMath math="AP" />, <InlineMath math="BQ" /> und <InlineMath math="CR" />, die sich im Punkt <InlineMath math="O" /> schneiden.</>}
+  description={<>Die Punkte zeigen eine mögliche Ausgangskonfiguration. Die zusätzlichen Eigenschaften in den Aussagen <InlineMath math="(1)" /> und <InlineMath math="(2)" /> müssen weiterhin geprüft werden.</>}
   data={[
-    // Triangle ABC (centroid at 0,0)
+    // Gleichseitiges Dreieck ABC mit Seitenlänge 6.
     {
       points: [
-        { x: -5, y: -2.887, z: 0 }, // B
-        { x: 5, y: -2.887, z: 0 }, // C
-        { x: 0, y: 5.773, z: 0 }, // A
-        { x: -5, y: -2.887, z: 0 }, // Back to B
+        { x: -3, y: -Math.sqrt(3), z: 0 }, // B
+        { x: 3, y: -Math.sqrt(3), z: 0 }, // C
+        { x: 0, y: 2 * Math.sqrt(3), z: 0 }, // A
+        { x: -3, y: -Math.sqrt(3), z: 0 }, // Zurück zu B
       ],
       color: "#2563eb",
       showPoints: false,
@@ -27,11 +27,11 @@ export const metadata = {
         { text: <InlineMath math="A" />, at: 2, offset: [0, 0.5, 0], color: "#4f46e5" },
       ],
     },
-    // Strecke AP (Seitenhalbierende von A zu BC)
+    // Strecke AP durch P auf BC.
     {
       points: [
-        { x: 0, y: 5.773, z: 0 }, // A
-        { x: 0, y: -2.887, z: 0 }, // P (midpoint BC, also centroid)
+        { x: 0, y: 2 * Math.sqrt(3), z: 0 }, // A
+        { x: -1, y: -Math.sqrt(3), z: 0 }, // P
       ],
       color: "#ea580c",
       showPoints: false,
@@ -40,11 +40,11 @@ export const metadata = {
         { text: <InlineMath math="P" />, at: 1, offset: [0, -0.5, 0], color: "#4f46e5" },
       ],
     },
-    // Strecke BQ (Seitenhalbierende von B zu AC)
+    // Strecke BQ durch Q auf CA.
     {
       points: [
-        { x: -5, y: -2.887, z: 0 }, // B
-        { x: 2.5, y: 1.443, z: 0 }, // Q (Midpoint AC)
+        { x: -3, y: -Math.sqrt(3), z: 0 }, // B
+        { x: 1.5, y: Math.sqrt(3) / 2, z: 0 }, // Q
       ],
       color: "#ea580c",
       showPoints: false,
@@ -53,17 +53,29 @@ export const metadata = {
         { text: <InlineMath math="Q" />, at: 1, offset: [0.5, 0, 0], color: "#4f46e5" },
       ],
     },
-    // Strecke CR (Seitenhalbierende von C zu AB)
+    // Strecke CR durch R auf AB.
     {
       points: [
-        { x: 5, y: -2.887, z: 0 }, // C
-        { x: -2.5, y: 1.443, z: 0 }, // R (Midpoint AB)
+        { x: 3, y: -Math.sqrt(3), z: 0 }, // C
+        { x: -2, y: 0, z: 0 }, // R
       ],
       color: "#ea580c",
       showPoints: false,
       smooth: false,
       labels: [
         { text: <InlineMath math="R" />, at: 1, offset: [-0.5, 0, 0], color: "#4f46e5" },
+      ],
+    },
+    {
+      points: [
+        { x: -3 / 4, y: -Math.sqrt(3) / 4, z: 0 },
+        { x: -3 / 4, y: -Math.sqrt(3) / 4, z: 0 },
+      ],
+      color: "#16a34a",
+      showPoints: true,
+      smooth: false,
+      labels: [
+        { text: <InlineMath math="O" />, at: 0, offset: [0.35, 0.35, 0], color: "#16a34a" },
       ],
     },
   ]}

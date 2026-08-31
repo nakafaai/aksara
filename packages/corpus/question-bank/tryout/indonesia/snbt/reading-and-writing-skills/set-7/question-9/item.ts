@@ -6,7 +6,7 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
+          isCorrect: false,
           label: "(4)-(1)-(3)-(2)",
         },
         {
@@ -14,7 +14,7 @@ const item: QuestionItem = {
           label: "(1)-(4)-(3)-(2)",
         },
         {
-          isCorrect: false,
+          isCorrect: true,
           label: "(4)-(3)-(1)-(2)",
         },
         {
@@ -31,7 +31,7 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
+          isCorrect: false,
           label: "(4)-(1)-(3)-(2)",
         },
         {
@@ -39,7 +39,7 @@ const item: QuestionItem = {
           label: "(1)-(4)-(3)-(2)",
         },
         {
-          isCorrect: false,
+          isCorrect: true,
           label: "(4)-(3)-(1)-(2)",
         },
         {
@@ -56,7 +56,7 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
+          isCorrect: false,
           label: "(4)-(1)-(3)-(2)",
         },
         {
@@ -64,7 +64,7 @@ const item: QuestionItem = {
           label: "(1)-(4)-(3)-(2)",
         },
         {
-          isCorrect: false,
+          isCorrect: true,
           label: "(4)-(3)-(1)-(2)",
         },
         {

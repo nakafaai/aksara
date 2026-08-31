@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *penyangga belajar* menjadi lensa untuk membaca pilihan konkret tokoh sebagai perkembangan sikap, bukan sekadar label moral yang berdiri sendiri.",
+            "Definisi *penyangga belajar* menjelaskan pola contoh, pertanyaan pemandu, dan kerja mandiri sebagai bantuan yang sengaja dikurangi ketika kendali Dimas meningkat.",
         },
         {
           isCorrect: false,

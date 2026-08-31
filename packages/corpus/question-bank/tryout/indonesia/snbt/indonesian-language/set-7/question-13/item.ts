@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Nilai 56 membuktikan bahwa nomor tahap mengatasi seluruh masalah antrean, termasuk perubahan kebutuhan medis setiap hari.",
+            "Proporsi pasien yang tidak kembali meningkat 14 persen karena selisih jumlah pasiennya adalah 56 dikurangi 42.",
         },
         {
           isCorrect: false,
           label:
-            "Perbedaan antara nilai dasar 40 dan pembanding 42 terlalu kecil sehingga hasil uji 56 dapat dibaca tanpa kondisi pembanding.",
+            "Proporsi pasien yang tidak kembali meningkat dari sekitar 67 persen menjadi sekitar 70 persen, yaitu 3 poin persentase.",
         },
         {
           isCorrect: false,
           label:
-            "Masukan pasien dan perawat menjamin bahwa nomor tahap akan bekerja sama baiknya untuk semua jenis layanan kesehatan.",
+            "Penanda baru menghasilkan tingkat keberhasilan sekitar 133 persen dibandingkan penanda lama karena 56 dibagi 42 bernilai sekitar 1,33.",
         },
         {
           isCorrect: true,
           label:
-            "Nilai 56 dibandingkan 42 mendukung penerusan nomor tahap secara terbatas, sedangkan perubahan jumlah pasien dan kebutuhan medis menuntut pengujian pada hari lain.",
+            "Proporsi pasien yang tidak kembali meningkat dari 70 persen menjadi sekitar 93,3 persen, sehingga selisihnya sekitar 23,3 poin persentase.",
         },
         {
           isCorrect: false,
           label:
-            "Karena petugas tidak ditambah, kenaikan selama uji membuktikan hubungan sebab yang berlaku di setiap fasilitas.",
+            "Proporsi pasien yang tidak kembali meningkat 33,3 poin persentase karena hasil penanda baru sekitar sepertiga lebih besar daripada hasil penanda lama.",
         },
       ],
     },

@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Benda berulang yang tetap menjadi bagian latar",
+          label: "Pengecatan Putih pada Hari Terakhir",
         },
         {
           isCorrect: true,
-          label: "Serpihan cat biru di bangunan tua yang sedang dipugar",
+          label: "Jejak Biru di Balik Dinding Putih",
         },
         {
           isCorrect: false,
-          label: "Konflik yang selesai sebelum pilihan akhir tokoh",
+          label: "Foto Tahun 1978 di Ruang Arsip",
         },
         {
           isCorrect: false,
-          label: "foreshadowing sebagai istilah tanpa peran dalam cerita",
+          label: "Mengapa Semua Lapisan Lama Harus Ditutup",
         },
         {
           isCorrect: false,
-          label: "Akhir yang menghapus ketegangan makna benda",
+          label: "Retakan yang Tidak Berkaitan dengan Sejarah",
         },
       ],
     },

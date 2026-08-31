@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "By defining *confounding variable*, the report fixes the meaning of the measured concept before the numerical comparison and its limitation are interpreted.",
+            "The definition explains why reduced light intensity weakens a colour-only interpretation: intensity changed together with the filter and could affect growth.",
         },
       ],
     },

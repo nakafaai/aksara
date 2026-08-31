@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Tim mengubah satu faktor saja, yaitu contoh cara mencatat durasi suara.",
+            "Tim mengubah satu faktor saja, yaitu contoh pencatatan durasi suara.",
         },
         {
           isCorrect: false,
           label:
-            "Tim merubah satu faktor saja, yaitu contoh cara mencatat durasi suara.",
+            "Tim merubah satu faktor saja, yaitu contoh pencatatan durasi suara.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengubahkan satu faktor saja, yaitu contoh cara mencatat durasi suara.",
+            "Tim mengubahkan satu faktor saja, yaitu contoh pencatatan durasi suara.",
         },
         {
           isCorrect: false,
           label:
-            "Tim hanya mengubah satu faktor saja, yaitu contoh cara mencatat durasi suara.",
+            "Tim hanya mengubah satu faktor saja, yaitu contoh pencatatan durasi suara.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengubah terhadap satu faktor saja, yaitu contoh cara mencatat durasi suara.",
+            "Tim mengubah terhadap satu faktor saja, yaitu contoh pencatatan durasi suara.",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Simulasi membandingkan kemampuan lapisan gabus setebal dua sentimeter dalam meredam bunyi pada kotak model, sambil mengendalikan faktor lain dan mengakui keterbatasan pengukuran.",
+            "Pengujian awal menunjukkan panel gabus berkaitan dengan penurunan tingkat bunyi dan waktu dengung pada kondisi tertentu, tetapi bukti itu belum mewakili seluruh ruang atau frekuensi.",
         },
         {
           isCorrect: false,
           label:
-            "Simulasi membandingkan kemampuan lapisan gabus setebal dua sentimeter dalam meredam bunyi pada kotak model, sambil mengendalikan faktor yang disebutkan tetapi menjadikan satu uji singkat sebagai bukti yang berlaku umum.",
+            "Pengujian membuktikan bahwa panel gabus selalu menurunkan energi bunyi sebesar persentase yang sama dengan selisih angka desibel pada setiap frekuensi.",
         },
         {
           isCorrect: false,
           label:
-            "Simulasi membandingkan kemampuan lapisan gabus setebal dua sentimeter dalam meredam bunyi pada kotak model, sambil menyebut keterbatasan tetapi mengeluarkan kondisi pembanding dari penafsiran hasil.",
+            "Kembalinya angka setelah panel dilepas menunjukkan bahwa posisi mikrofon tidak lagi perlu dikendalikan pada pengujian berikutnya.",
         },
         {
           isCorrect: false,
           label:
-            "Simulasi membandingkan kemampuan lapisan gabus setebal dua sentimeter dalam meredam bunyi pada kotak model, sambil menjadikan definisi istilah ilmiah sebagai hasil ukur yang menutup penelitian.",
+            "Perubahan waktu dengung pada satu posisi menjadi bukti yang lebih kuat daripada seluruh data tingkat bunyi karena langsung mengukur mutu auditorium.",
         },
         {
           isCorrect: false,
           label:
-            "Simulasi membandingkan kemampuan lapisan gabus setebal dua sentimeter dalam meredam bunyi pada kotak model, sambil memakai pembanding hanya untuk mengukuhkan hipotesis awal dan menghapus ketidakpastian yang tersisa.",
+            "Tujuan utama laporan adalah memilih satu frekuensi terbaik agar pengukuran pada frekuensi dan ruang lain tidak perlu dilakukan.",
         },
       ],
     },

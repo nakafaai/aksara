@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Benda berulang yang tetap menjadi bagian latar",
+          label: "Mira Menjawab Seluruh Pertanyaan Jati",
         },
         {
           isCorrect: false,
-          label: "Konflik yang selesai sebelum pilihan akhir tokoh",
+          label: "Buku Tipis yang Membuat Jati Menjadi Pembaca Mahir",
         },
         {
           isCorrect: false,
-          label: "perkembangan tokoh sebagai istilah tanpa peran dalam cerita",
+          label: "Dua Tafsir yang Menentukan Satu Jawaban Pasti",
         },
         {
           isCorrect: true,
-          label: "Pembatas buku kosong di klub pembaca pemula",
+          label: "Dari Pembatas Kosong ke Pertanyaan yang Dibawa Pulang",
         },
         {
           isCorrect: false,
-          label: "Akhir yang menghapus ketegangan makna benda",
+          label: "Pertanyaan yang Membuktikan Jati Gagal Memahami Buku",
         },
       ],
     },

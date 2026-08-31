@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Istilah *foreshadowing* memastikan satu kelanjutan cerita sehingga pembaca tidak lagi perlu menafsirkan akhir.",
+            "Istilah *foreshadowing* memastikan sejak awal bahwa tim pasti membatalkan seluruh rencana pengecatan.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi itu menyamakan *foreshadowing* dengan benda yang berulang, bukan dengan sifat penutup cerita.",
+            "Definisi itu menjadikan setiap warna yang disebut dua kali sebagai foreshadowing meskipun tidak berkaitan dengan penemuan berikutnya.",
         },
         {
           isCorrect: true,
           label:
-            "Definisi *foreshadowing* mengenali perangkat penceritaan yang menghubungkan benda berulang, tindakan tokoh, dan respons yang belum tuntas pada penutup.",
+            "Definisi *foreshadowing* menjelaskan cara serpihan kecil pada awal cerita menyiapkan penemuan garis pintu biru dan bukti arsip pada bagian berikutnya.",
         },
         {
           isCorrect: false,
           label:
-            "Penyebutan *foreshadowing* membuat kesan pribadi pembaca cukup meskipun bertentangan dengan rincian cerita.",
+            "Penyebutan *foreshadowing* membuat setiap dugaan pembaca benar meskipun tidak didukung pengulangan warna atau foto arsip.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi tersebut hanya menerangkan latar sehingga tindakan tokoh dan perubahan makna benda tidak relevan.",
+            "Definisi tersebut hanya menerangkan usia bangunan sehingga keputusan Galih untuk menunda pengecatan tidak relevan.",
         },
       ],
     },

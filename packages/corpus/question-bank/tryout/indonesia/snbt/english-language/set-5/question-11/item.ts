@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Mina faced an obstacle while trying to lead a science-fair team without deciding everything alone and learned through a small accountable action.",
+            "Mina rebuilds participation in a science-fair team by asking each member to voice a concern, showing that leadership can make disagreement discussable instead of forcing speed.",
         },
         {
           isCorrect: false,

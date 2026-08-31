@@ -19,7 +19,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Membaca Dua Sumber tentang panggung baca di terminal",
+          label: "Membaca Dua Sumber tentang Panggung Baca di Terminal",
         },
         {
           isCorrect: false,

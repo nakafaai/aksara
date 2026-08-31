@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Calling a cost *wayfinding* establishes that the proposed change is affordable without using the estimated prices.",
+            "Defining *wayfinding* proves that the walking-time map should be adopted permanently without further testing.",
         },
         {
           isCorrect: false,
           label:
-            "The definition makes *wayfinding* apply to every cost in the table, regardless of how activity levels change.",
+            "Once the map is classified as *wayfinding*, differences in mobility needs no longer limit the conclusion.",
         },
         {
           isCorrect: false,
           label:
-            "The term *wayfinding* replaces the affected groups' evidence with a financial label that settles the decision by itself.",
+            "The definition limits *wayfinding* to measuring how quickly every passenger can walk between stops.",
         },
         {
           isCorrect: false,
           label:
-            "The definition explains why the trial used estimated invoices, rather than how the cost category should be read.",
+            "The term *wayfinding* replaces the trial figures and the affected groups' experience with a label that settles the decision by itself.",
         },
         {
           isCorrect: true,
           label:
-            "The definition of *wayfinding* supplies the classification rule needed to interpret the budget comparison and the consultation evidence.",
+            "The definition clarifies why the walking-time map counts as a wayfinding aid, while the measurements and consultation still determine how well it works.",
         },
       ],
     },

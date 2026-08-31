@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The mean result with the change was 2.9; because it differs from the other conditions, the tested change is the only plausible explanation.",
+            "The 2.78 V series mean proves that placing two cells in series will produce the same voltage in every circuit.",
         },
         {
           isCorrect: false,
           label:
-            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
+            "The similar one-cell and parallel means show that cell arrangement has no effect, so the series result should be ignored as an outlier.",
         },
         {
           isCorrect: false,
           label:
-            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
+            "The measurements provide no useful evidence until a later experiment reproduces every mean to the same decimal places.",
         },
         {
           isCorrect: true,
           label:
-            "The two-cell series condition produced a mean of 2.9 under the stated circuit controls; unmeasured cell age and internal resistance limit the conclusion.",
+            "Under one fixed load, the series mean was 2.78 V compared with 1.46 V and 1.44 V; unmeasured internal resistance and the single load limit broader claims.",
         },
         {
           isCorrect: false,
           label:
-            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
+            "Because the series mean was the largest, the one-cell and parallel conditions are unnecessary when interpreting the result.",
         },
       ],
     },

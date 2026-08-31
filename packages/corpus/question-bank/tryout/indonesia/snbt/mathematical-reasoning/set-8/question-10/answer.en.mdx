@@ -5,8 +5,19 @@ export const metadata = {
   dateModified: "2026-08-31",
 };
 
-The values <InlineMath math="a=3" /> and <InlineMath math="r=2" /> satisfy <InlineMath math="3(1+2+4)=21" /> and <InlineMath math="3\cdot2^3=24" />. Positivity selects this valid pair.
+Let <InlineMath math="a" /> be the first term and let <InlineMath math="r>0" /> be the ratio. The two conditions give
+
+<MathContainer>
+  <BlockMath math="a(1+r+r^2)=21" />
+  <BlockMath math="ar^3=24" />
+</MathContainer>
+
+Substituting <InlineMath math="a=24/r^3" /> into the first equation gives
+
+<BlockMath math="7r^3-8r^2-8r-8=0=(r-2)(7r^2+6r+4)" />
+
+The second quadratic has no real root because its discriminant is <InlineMath math="6^2-4(7)(4)=-76" />. Therefore <InlineMath math="r=2" /> is the only real ratio, and <InlineMath math="a=24/2^3=3" />.
 
 The first four terms are <InlineMath math="3,6,12,24" />. Their reciprocal sum is
 
-<BlockMath math="\frac13+\frac16+\frac1{12}+\frac1{24}=\frac58" />
+<BlockMath math="\frac{1}{3}+\frac{1}{6}+\frac{1}{12}+\frac{1}{24}=\frac{5}{8}" />

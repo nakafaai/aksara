@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "mencatat suhu, kelembapan, penguapan, dan kondensasi pada beberapa kondisi cuaca nyata.",
+            "Mencatat suhu, kelembapan, penguapan, dan kondensasi pada beberapa kondisi cuaca nyata.",
         },
       ],
     },

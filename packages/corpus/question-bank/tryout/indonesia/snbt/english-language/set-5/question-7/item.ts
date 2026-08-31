@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The comparison condition produced 33, the reference for the pantry shelf-label trial under demand that could change with holidays and local events.",
+            "The trial condition reached 47, compared with 32 and 33; because demand varied with holidays and local events, the result supports a limited follow-up rather than a permanent rule.",
         },
       ],
     },

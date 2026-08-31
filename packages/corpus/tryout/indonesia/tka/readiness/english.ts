@@ -8,6 +8,9 @@ const TEXT_TYPES = [
   "procedure",
   "analytical-exposition",
 ] as const;
+const TEXTUAL = ["textual"] as const;
+const INFERENTIAL = ["inferential"] as const;
+const EVALUATION = ["evaluation-appreciation"] as const;
 
 /** Official 2026 TKA English schedule and reading coverage gate. */
 export const tkaEnglishReadiness = defineAssessmentReadiness({
@@ -38,62 +41,103 @@ export const tkaEnglishReadiness = defineAssessmentReadiness({
         ],
         topics: [
           {
+            cognitiveLevels: TEXTUAL,
             contentDomains: TEXT_TYPES,
             editorialMinimum: 1,
             key: "explicit-information",
           },
           {
+            cognitiveLevels: TEXTUAL,
             contentDomains: TEXT_TYPES,
             editorialMinimum: 1,
             key: "classification",
           },
-          { contentDomains: TEXT_TYPES, editorialMinimum: 1, key: "outline" },
-          { contentDomains: TEXT_TYPES, editorialMinimum: 1, key: "summary" },
-          { contentDomains: TEXT_TYPES, editorialMinimum: 1, key: "synthesis" },
           {
+            cognitiveLevels: TEXTUAL,
+            contentDomains: TEXT_TYPES,
+            editorialMinimum: 1,
+            key: "outline",
+          },
+          {
+            cognitiveLevels: TEXTUAL,
+            contentDomains: TEXT_TYPES,
+            editorialMinimum: 1,
+            key: "summary",
+          },
+          {
+            cognitiveLevels: TEXTUAL,
+            contentDomains: TEXT_TYPES,
+            editorialMinimum: 1,
+            key: "synthesis",
+          },
+          {
+            cognitiveLevels: INFERENTIAL,
             contentDomains: TEXT_TYPES,
             editorialMinimum: 1,
             key: "supporting-detail",
           },
           {
+            cognitiveLevels: INFERENTIAL,
             contentDomains: TEXT_TYPES,
             editorialMinimum: 1,
             key: "main-idea-purpose",
           },
-          { contentDomains: TEXT_TYPES, editorialMinimum: 1, key: "sequence" },
           {
+            cognitiveLevels: INFERENTIAL,
+            contentDomains: TEXT_TYPES,
+            editorialMinimum: 1,
+            key: "sequence",
+          },
+          {
+            cognitiveLevels: INFERENTIAL,
             contentDomains: TEXT_TYPES,
             editorialMinimum: 1,
             key: "comparison",
           },
           {
+            cognitiveLevels: INFERENTIAL,
             contentDomains: TEXT_TYPES,
             editorialMinimum: 1,
             key: "cause-effect",
           },
-          { contentDomains: TEXT_TYPES, editorialMinimum: 1, key: "character" },
           {
+            cognitiveLevels: INFERENTIAL,
+            contentDomains: TEXT_TYPES,
+            editorialMinimum: 1,
+            key: "character",
+          },
+          {
+            cognitiveLevels: INFERENTIAL,
             contentDomains: TEXT_TYPES,
             editorialMinimum: 1,
             key: "prediction",
           },
           {
+            cognitiveLevels: EVALUATION,
             contentDomains: TEXT_TYPES,
             editorialMinimum: 1,
             key: "realism-fantasy",
           },
           {
+            cognitiveLevels: EVALUATION,
             contentDomains: TEXT_TYPES,
             editorialMinimum: 1,
             key: "fact-opinion",
           },
           {
+            cognitiveLevels: EVALUATION,
             contentDomains: TEXT_TYPES,
             editorialMinimum: 1,
             key: "information-validity",
           },
-          { contentDomains: TEXT_TYPES, editorialMinimum: 1, key: "text-fit" },
           {
+            cognitiveLevels: EVALUATION,
+            contentDomains: TEXT_TYPES,
+            editorialMinimum: 1,
+            key: "text-fit",
+          },
+          {
+            cognitiveLevels: EVALUATION,
             contentDomains: TEXT_TYPES,
             editorialMinimum: 1,
             key: "reader-response",
@@ -103,18 +147,21 @@ export const tkaEnglishReadiness = defineAssessmentReadiness({
       key: "english-language",
       order: 1,
       questionCount: {
-        provenance: { evidenceKey: "tka-results-2026", kind: "official" },
+        provenance: {
+          evidenceKey: "tka-sma-2026-update",
+          kind: "official",
+        },
         value: 25,
       },
       timeLimitSeconds: {
         provenance: {
-          evidenceKey: "tka-pedoman-2026",
+          evidenceKey: "tka-sma-2026-update",
           kind: "official",
         },
-        value: 2700,
+        value: 4500,
       },
     },
   ],
-  sourceRevision: "2026-08-30",
+  sourceRevision: "2026-08-31",
   trackKey: "english-language",
 });

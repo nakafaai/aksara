@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "keterbandingan sebagai ukuran utama dalam uji layanan",
+          label: "Mengubah Semua Catatan Sumur Menjadi Meter",
         },
         {
           isCorrect: false,
-          label: "Dari perbandingan singkat menuju perubahan layanan tetap",
+          label: "Formulir Baru yang Menyamakan Setiap Kedalaman Air",
         },
         {
           isCorrect: false,
-          label: "Konsultasi tanpa pengukuran hasil yang dapat dibandingkan",
+          label: "Pendapat Warga sebagai Pengganti Uji Keterbandingan",
         },
         {
           isCorrect: false,
-          label: "Uji layanan lokal tanpa keputusan tindak lanjut",
+          label: "Menghapus Nilai Asli setelah Konversi Satuan",
         },
         {
           isCorrect: true,
-          label: "Keputusan Berbasis Bukti dalam pendataan sumur warga",
+          label: "Perbandingan Catatan Sumur tanpa Menghapus Jejak Asli",
         },
       ],
     },

@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Benang berbeda warna membuat reparasi pada pakaian berulang menjadi bukti perawatan yang terlihat, bukan cacat yang disembunyikan.",
+            "Jahitan merah lama, pilihan pola merah, dan tanggapan pelanggan membuat bekas reparasi terbaca sebagai kesinambungan perawatan pada blus warisan.",
         },
         {
           isCorrect: false,

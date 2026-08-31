@@ -15,7 +15,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "A blue date stamp in a food pantry at closing time",
+          label: "A small record passed forward",
         },
         {
           isCorrect: false,

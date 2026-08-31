@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *daya generalisasi* menetapkan makna konsep yang diukur sebelum pembaca menafsirkan perbandingan angka dan keterbatasan percobaan.",
+            "Definisi *daya generalisasi* menjelaskan alasan hasil pada simulasi ini belum dapat langsung diterapkan pada hari berawan atau kondisi angin yang berbeda.",
         },
       ],
     },

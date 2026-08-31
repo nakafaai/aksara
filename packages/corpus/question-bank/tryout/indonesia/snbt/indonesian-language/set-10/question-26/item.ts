@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pilihan kecil Nara mengubah makna peta lampu jalan dalam menghadapi konflik di kampung pada malam hujan.",
+            "Peta berubah dari daftar lokasi lampu terpasang menjadi catatan bersama yang membedakan data resmi, kondisi teramati, waktu, sumber, dan bagian yang belum diketahui.",
         },
         {
           isCorrect: false,
           label:
-            "Benda yang berulang terutama membangun latar dan hanya sedikit berhubungan dengan konflik.",
+            "Peta berubah dari dokumen kantor menjadi kumpulan ingatan warga yang menggantikan seluruh data resmi.",
         },
         {
           isCorrect: false,
           label:
-            "Keputusan akhir tokoh menghapus ketegangan makna yang sebelumnya dimiliki benda tersebut.",
+            "Peta berubah menjadi bukti bahwa catatan warga tidak dapat dipercaya ketika keterangannya berbeda.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan memakai akhir terbuka sebagai label deskriptif tanpa menghubungkannya dengan pilihan tokoh.",
+            "Peta berubah menjadi karya pajangan yang terutama menunjukkan kemampuan Nara menggambar lingkaran cahaya.",
         },
         {
           isCorrect: false,
           label:
-            "Latar menyelesaikan konflik sebelum tindakan akhir tokoh mengubah makna benda.",
+            "Peta berubah menjadi penetapan akhir tentang jalan yang aman dilewati pada setiap waktu dan cuaca.",
         },
       ],
     },

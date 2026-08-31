@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Simulasi membandingkan pengaruh reflektor bersudut 45 derajat terhadap pemanasan air dalam oven surya model, sambil mengendalikan faktor yang disebutkan tetapi menjadikan satu uji singkat sebagai bukti yang berlaku umum.",
+            "Suhu putaran ketiga membuktikan reflektor 45 derajat menghasilkan suhu 66 derajat Celsius pada semua tingkat iradiansi.",
         },
         {
           isCorrect: false,
           label:
-            "Simulasi membandingkan pengaruh reflektor bersudut 45 derajat terhadap pemanasan air dalam oven surya model, sambil menyebut keterbatasan tetapi mengeluarkan kondisi pembanding dari penafsiran hasil.",
+            "Kenaikan suhu antarputaran terutama menunjukkan bahwa pemutaran posisi oven membuat reflektor semakin efektif.",
         },
         {
           isCorrect: true,
           label:
-            "Simulasi membandingkan pengaruh reflektor bersudut 45 derajat terhadap pemanasan air dalam oven surya model, sambil mengendalikan faktor lain dan mengakui keterbatasan pengukuran.",
+            "Reflektor 45 derajat menghasilkan suhu tertinggi pada setiap putaran uji, tetapi sudut, bentuk oven, dan kondisi cuaca yang terbatas belum menetapkan sudut terbaik secara umum.",
         },
         {
           isCorrect: false,
           label:
-            "Simulasi membandingkan pengaruh reflektor bersudut 45 derajat terhadap pemanasan air dalam oven surya model, sambil menjadikan definisi istilah ilmiah sebagai hasil ukur yang menutup penelitian.",
+            "Data menunjukkan iradiansi menentukan suhu akhir sepenuhnya sehingga perbedaan sudut reflektor tidak perlu ditafsirkan.",
         },
         {
           isCorrect: false,
           label:
-            "Simulasi membandingkan pengaruh reflektor bersudut 45 derajat terhadap pemanasan air dalam oven surya model, sambil memakai pembanding hanya untuk mengukuhkan hipotesis awal dan menghapus ketidakpastian yang tersisa.",
+            "Tujuan utama percobaan adalah membuktikan semua reflektor lebih baik daripada tanpa reflektor, bukan membandingkan sudutnya.",
         },
       ],
     },

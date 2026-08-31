@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Benda berulang memperoleh makna terutama dari bentuk fisiknya, bukan dari hubungannya dengan pilihan tokoh.",
+            "Nara menganggap semua keterangan warga lebih tepat daripada data kantor kampung.",
         },
         {
           isCorrect: false,
           label:
-            "Akhir cerita menunjukkan bahwa latar, bukan tindakan tokoh, menyelesaikan konflik.",
+            "Nara yakin gang menuju sungai gelap, tetapi menunda menuliskannya sampai mendapat izin petugas.",
         },
         {
           isCorrect: false,
           label:
-            "Makna benda tetap sama meskipun tokoh menggunakannya dengan cara berbeda.",
+            "Nara mempertahankan banyak lapisan karena keadaan lampu tidak mungkin pernah dipahami dengan baik.",
         },
         {
           isCorrect: true,
           label:
-            "peta lampu jalan memperoleh makna karena muncul bersama konflik, pilihan, dan perubahan pada akhir cerita.",
+            "Nara memperlakukan peta sebagai pengetahuan sementara: bagian yang belum diamati tidak boleh dianggap sudah diketahui, dan laporan yang berubah perlu tetap memiliki konteks.",
         },
         {
           isCorrect: false,
           label:
-            "Tindakan akhir penting karena mengukuhkan penafsiran yang sudah terbentuk sejak awal.",
+            "Nara menolak membuat simpulan apa pun selama seluruh warga belum memberikan catatan pada peta.",
         },
       ],
     },

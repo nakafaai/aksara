@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Definisi *reservoir* membuktikan bahwa hasil model selalu sama dengan keadaan tanah di lapangan.",
+            "Menetapkan bahwa angka lima unit merupakan taksiran lapangan yang sah selama seluruh operasi hitung dilakukan dengan benar.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi itu menjadikan *reservoir* nama untuk seluruh alat, bukan proses tertentu yang disimulasikan.",
+            "Menunjukkan bahwa setiap perpindahan karbon harus dianggap keluar agar tidak terjadi penghitungan ganda.",
         },
         {
           isCorrect: false,
           label:
-            "Istilah *reservoir* menghapus keterbatasan representasi karena prosesnya dapat diulang di kelas.",
+            "Menggantikan kebutuhan membaca arah panah karena nama komponen sudah menentukan hasil akhirnya.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi tersebut hanya menjelaskan bahan pembuat model dan tidak berhubungan dengan proses yang diamati.",
+            "Membatasi pembahasan pada cadangan tumbuhan sehingga data tanah dan perairan tidak memiliki fungsi apa pun.",
         },
         {
           isCorrect: true,
           label:
-            "Definisi *reservoir* menghubungkan proses pada model dengan proses yang diwakilinya sehingga kegunaan model dapat dibedakan dari batas penerapannya.",
+            "Menjelaskan mengapa arus yang sama dapat dihitung sebagai perpindahan keluar atau sebagai perpindahan internal, bergantung pada komponen yang dimasukkan ke dalam perhitungan.",
         },
       ],
     },

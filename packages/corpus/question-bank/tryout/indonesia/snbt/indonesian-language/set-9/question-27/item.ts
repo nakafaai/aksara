@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Wulan memilih untuk menjahit label tahun pementasan pada bagian dalam setiap kostum; bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
+            "Dengan memotong ujung benang, Wulan akhirnya kembali pada penilaian awal bahwa seluruh jejak lama merupakan kerusakan.",
         },
         {
           isCorrect: false,
           label:
-            "Wulan memilih untuk menjahit label tahun pementasan pada bagian dalam setiap kostum; akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
+            "Dengan mempertahankan jahitan, Wulan menolak setiap perubahan baru agar kostum tetap sama persis dengan keadaan tahun 1998.",
         },
         {
           isCorrect: false,
           label:
-            "Wulan memilih untuk menjahit label tahun pementasan pada bagian dalam setiap kostum; perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
+            "Dengan menaruh kartu 2026 di depan label lama, Wulan menyembunyikan sejarah kostum dari pemain baru.",
         },
         {
           isCorrect: true,
           label:
-            "Label tahun di bagian dalam kostum menghubungkan benda panggung berulang dengan riwayat pemakaiannya tanpa mengubah tampilan pertunjukan.",
+            "Wulan memperbaiki bagian yang mengganggu pemakaian, tetapi mempertahankan jahitan yang membawa riwayat, sehingga perawatan tidak disamakan dengan menghapus masa lalu.",
         },
         {
           isCorrect: false,
           label:
-            "Wulan memilih untuk menjahit label tahun pementasan pada bagian dalam setiap kostum; benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
+            "Wulan memotong benang agar label lama terlepas perlahan setelah kartu katalog baru dipasang.",
         },
       ],
     },

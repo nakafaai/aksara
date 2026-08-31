@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks peminjaman payung stasiun memberikan komentar yang singkat dan ringkas.",
+            "Pengguna layanan peminjaman payung di stasiun memberikan komentar yang singkat dan ringkas.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks peminjaman payung stasiun memberikan komentar singkat mereka sendiri secara pribadi.",
+            "Pengguna layanan peminjaman payung di stasiun memberikan komentar singkat mereka sendiri secara pribadi.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks peminjaman payung stasiun memberikan komentar singkat dalam bentuk pendek.",
+            "Pengguna layanan peminjaman payung di stasiun memberikan komentar singkat dalam bentuk pendek.",
         },
         {
           isCorrect: true,
           label:
-            "Para pengguna di peminjaman payung stasiun memberikan komentar singkat.",
+            "Pengguna layanan peminjaman payung di stasiun memberikan komentar singkat.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks peminjaman payung stasiun memberikan komentar singkat tentang pengalaman mereka dalam konteks tersebut.",
+            "Pengguna layanan peminjaman payung di stasiun memberikan komentar singkat tentang pengalaman mereka dalam layanan tersebut.",
         },
       ],
     },

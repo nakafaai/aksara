@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Definisi *rangkaian tertutup* membuktikan bahwa hasil model selalu sama dengan keadaan tanah di lapangan.",
+            "Definisi *rangkaian tertutup* membuktikan bahwa hasil model selalu sama dengan keadaan nyata.",
         },
         {
           isCorrect: true,

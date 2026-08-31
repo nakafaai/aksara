@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pengelola program teman belajar menilai kartu tujuan untuk setiap pertemuan melalui data pembanding dan masukan pihak terdampak.",
+            "Pengelola menilai kartu tujuan melalui kelompok pembanding, catatan pertemuan, dan masukan peserta, lalu melanjutkan uji dengan revisi tanpa mengklaim perubahan nilai semester.",
         },
         {
           isCorrect: false,

@@ -78,7 +78,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Dengan aturan pengukuran yang sama, tim merencanakan uji bahan yang dikelompokkan menurut tahap resep yang lebih panjang.",
+            "Dengan aturan pengukuran yang sama, tim merencanakan uji yang lebih lama terhadap bahan yang dikelompokkan menurut tahap resep.",
         },
         {
           isCorrect: false,

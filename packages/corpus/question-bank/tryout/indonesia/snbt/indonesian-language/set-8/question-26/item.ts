@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pilihan kecil Jati mengubah makna pembatas buku kosong dalam menghadapi konflik di klub pembaca pemula.",
+            "Jati berubah dari menyembunyikan kebingungan menjadi mengajukan dan menguji pertanyaan, meskipun ia belum memperoleh satu tafsir yang pasti.",
         },
         {
           isCorrect: false,
@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Keputusan akhir tokoh menghapus ketegangan makna yang sebelumnya dimiliki benda tersebut.",
+            "Pada akhir cerita, Jati sudah memahami seluruh buku sehingga pembatas pertanyaan tidak lagi diperlukan.",
         },
         {
           isCorrect: false,

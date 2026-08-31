@@ -2,15 +2,16 @@ export const metadata = {
   title: "Lösung zu Aufgabe 3",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-12-27",
+  dateModified: "2026-08-31",
 };
 
-Für eine bestimmte Person führen <InlineMath math="20" /> der <InlineMath math="3000" /> gleich wahrscheinlichen Plätze auf der Gewinnerliste zu einem Gewinn. Sei <InlineMath math="A" /> das Ereignis, dass diese Person gewinnt. Dann gilt:
+Bei einer direkten Rechnung für mindestens einen Gewinn könnte der Fall, dass beide Geschwister gewinnen, doppelt gezählt werden. Einfacher ist das Gegenereignis: Keines der Geschwister wird ausgewählt.
+
+Ohne die beiden Geschwister bleiben <InlineMath math="2998" /> andere Teilnehmende. Damit gilt:
 
 <MathContainer>
-  <BlockMath math="P(A) = \frac{\text{Anzahl der Preise}}{\text{Anzahl der Teilnehmer}}" />
-  <BlockMath math="P(A) = \frac{20}{3000}" />
-  <BlockMath math="P(A) = \frac{1}{150}" />
-  <BlockMath math="P(A) \approx 0{,}0067" />
+  <BlockMath math="\begin{aligned} P(\text{keines gewinnt}) &= \frac{\binom{2998}{20}}{\binom{3000}{20}} \\ &= \frac{2980}{3000}\cdot\frac{2979}{2999} \end{aligned}" />
+  <BlockMath math="\begin{aligned} P(\text{mindestens eines gewinnt}) &= 1-P(\text{keines gewinnt}) \\ &= 1-\frac{2980\cdot2979}{3000\cdot2999} \\ &= \frac{1993}{149950} \\ &\approx 0{,}0133 \end{aligned}" />
 </MathContainer>
 
-Die Dezimalzahl <InlineMath math="0{,}0067" /> entspricht ungefähr <InlineMath math="0{,}67\%" />. Eine bestimmte Person gewinnt also mit der Wahrscheinlichkeit <InlineMath math="0{,}0067" />.
+Die gesuchte Wahrscheinlichkeit beträgt ungefähr <InlineMath math="0{,}0133" />, also <InlineMath math="1{,}33\%" />.

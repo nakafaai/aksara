@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *perspektif* memberi dasar untuk membandingkan posisi kedua sumber tanpa menganggap salah satunya sebagai catatan yang sepenuhnya netral.",
+            "Menjelaskan mengapa tujuan administratif peta dan pengalaman terbatas para penulis harian menghasilkan bukti yang berbeda, bukan salah satunya otomatis keliru.",
         },
         {
           isCorrect: false,
           label:
-            "Istilah *perspektif* membuktikan bahwa sumber yang lebih baru pasti lebih akurat daripada sumber lainnya.",
+            "Membuktikan bahwa pengalaman pribadi selalu lebih berat daripada dokumen resmi dalam menyusun sejarah.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi itu menyamakan *perspektif* dengan kesalahan sehingga perbedaan antarsumber tidak perlu dianalisis.",
+            "Mengubah perbedaan rute menjadi kesalahan yang harus dihapus sebelum catatan dapat digunakan.",
         },
         {
           isCorrect: false,
           label:
-            "Penyebutan *perspektif* mengizinkan bagian sumber yang hilang diisi dengan dugaan pembaca.",
+            "Mengizinkan siswa menganggap rute yang tidak ditulis memiliki pengalaman yang sama dengan rute terdekat.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi tersebut hanya menamai bentuk dokumen dan tidak memengaruhi cara asal serta tujuan sumber dibandingkan.",
+            "Menetapkan bahwa semua buku harian memiliki perspektif yang sama karena ditulis warga kampung.",
         },
       ],
     },

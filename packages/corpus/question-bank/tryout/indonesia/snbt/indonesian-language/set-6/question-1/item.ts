@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Simulasi membandingkan pengaruh tali sepanjang 60 sentimeter terhadap periode ayunan bandul, sambil mengendalikan faktor lain dan mengakui keterbatasan pengukuran.",
+            "Percobaan membandingkan periode bandul bertali 60 dan 100 sentimeter dalam kondisi terkontrol, lalu membatasi simpulan karena baru dua panjang yang diuji dan waktu dicatat manual.",
         },
         {
           isCorrect: false,

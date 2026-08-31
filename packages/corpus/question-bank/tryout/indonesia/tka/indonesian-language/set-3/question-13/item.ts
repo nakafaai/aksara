@@ -2,9 +2,9 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "daily-relevance",
+    topic: "loanwords",
   },
   responses: {
     id: {
@@ -12,27 +12,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "agar suhu dicatat tetapi tidak dimasukkan dalam penafsiran perubahan jumlah botol",
+          label: "perangkat lunak pada kartu siswa untuk mencatat botol",
         },
         {
           isCorrect: false,
-          label: "agar penjualan kantin meningkat",
+          label: "urutan acara OSIS untuk mengumumkan hasil survei",
         },
         {
           isCorrect: false,
-          label:
-            "agar peserta survei dan pengguna stasiun dapat dianggap sebagai kelompok yang sama",
+          label: "jadwal pengisian tangki setelah kegiatan olahraga",
         },
         {
           isCorrect: true,
           label:
-            "agar jadwal pengangkutan sampah tidak menjadi sumber perbedaan",
+            "rangkaian kegiatan terencana yang menyediakan botol bagi siswa yang membutuhkan",
         },
         {
           isCorrect: false,
-          label:
-            "agar perubahan jumlah botol dapat dibandingkan tanpa mengukur volume isi ulang",
+          label: "daftar seluruh siswa yang wajib membawa botol sendiri",
         },
       ],
     },

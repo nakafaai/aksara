@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
+            "Rata-rata 0,28 gram membuktikan bahwa tidak ada air yang keluar dari permukaan bawah setelah diberi lapisan.",
         },
         {
           isCorrect: false,
           label:
-            "Pada kondisi dengan perubahan, hasil rata-rata tercatat 3; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+            "Selisih antara 0,82 dan 0,74 gram membuktikan bahwa permukaan atas tidak berperan sama sekali dalam kehilangan air.",
         },
         {
           isCorrect: true,
           label:
-            "Nilai 3 adalah rata-rata pada daun yang bagian bawahnya dilapisi petroleum jelly; daun petik belum mewakili tumbuhan utuh.",
+            "Nilai 0,28 gram mendukung dugaan bahwa pelapisan permukaan bawah mengurangi kehilangan air pada sampel ini, tetapi daun petik dari satu jenis belum mewakili tumbuhan utuh secara umum.",
         },
         {
           isCorrect: false,
           label:
-            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
+            "Pengacakan daun membuat hasil percobaan dapat diterapkan langsung pada semua spesies dalam setiap kondisi lingkungan.",
         },
         {
           isCorrect: false,
           label:
-            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
+            "Karena hanya ada delapan daun per kelompok, perbedaan rata-rata tidak boleh digunakan sebagai bukti awal apa pun.",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Calling a cost *plain language* establishes that the proposed change is affordable without using the estimated prices.",
+            "Defining *plain language* proves that every visitor understands the new captions without further testing.",
         },
         {
           isCorrect: false,
           label:
-            "The definition makes *plain language* apply to every cost in the table, regardless of how activity levels change.",
+            "The definition makes *plain language* identical to screen-reader compatibility, so the missing group no longer matters.",
         },
         {
           isCorrect: false,
           label:
-            "The term *plain language* replaces the affected groups' evidence with a financial label that settles the decision by itself.",
+            "The term *plain language* replaces the measured comparison and visitors' experience with a label that settles the decision.",
         },
         {
           isCorrect: false,
           label:
-            "The definition explains why the trial used estimated invoices, rather than how the cost category should be read.",
+            "The definition requires captions to remove every interpretation and contain observations only.",
         },
         {
           isCorrect: true,
           label:
-            "The definition of *plain language* supplies the classification rule needed to interpret the budget comparison and the consultation evidence.",
+            "The definition explains the accessibility goal of the short captions, while the comparison and later screen-reader testing still determine whether that goal is met.",
         },
       ],
     },

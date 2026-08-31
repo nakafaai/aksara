@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "By defining *gravitropism*, the report fixes the meaning of the measured concept before the numerical comparison and its limitation are interpreted.",
+            "By defining *gravitropism*, the report fixes the meaning of the measured concept before interpreting the numerical comparison and its limitation.",
         },
         {
           isCorrect: false,

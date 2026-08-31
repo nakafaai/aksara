@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kedua sumber memperlihatkan perkembangan kebiasaan membaca; perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
+            "Daftar peminjaman lebih tepat untuk mengetahui pemahaman peserta karena mencatat 18 bulan, jauh lebih banyak daripada tujuh pertemuan.",
         },
         {
           isCorrect: false,
           label:
-            "Karena membahas peristiwa yang sama, kedua sumber pasti mempunyai sudut pandang dan tujuan yang sama.",
+            "Catatan fasilitator mewakili seluruh peserta karena dibuat langsung saat percakapan klub berlangsung.",
         },
         {
           isCorrect: true,
           label:
-            "Daftar peminjaman dan catatan fasilitator sama-sama menelusuri kebiasaan membaca, tetapi pilihan buku dan kesulitan peserta berasal dari sudut pandang berbeda.",
+            "Daftar peminjaman menunjukkan buku yang tercatat keluar, sedangkan catatan fasilitator memberi sebagian pengalaman peserta yang berbicara; keduanya menjawab pertanyaan yang berbeda.",
         },
         {
           isCorrect: false,
           label:
-            "Menggabungkan dua sumber memberi izin untuk mengisi bagian yang hilang dengan dugaan yang masuk akal.",
+            "Menggabungkan kedua sumber membuktikan bahwa setiap peminjaman setelah jadwal berubah dilakukan oleh pekerja muda yang baru bergabung.",
         },
         {
           isCorrect: false,
           label:
-            "Perbedaan antarsumber hanya berkaitan dengan pilihan kata dan tidak memengaruhi simpulan.",
+            "Perbedaan tujuan pencatatan tidak memengaruhi simpulan selama kedua sumber berasal dari klub yang sama.",
         },
       ],
     },

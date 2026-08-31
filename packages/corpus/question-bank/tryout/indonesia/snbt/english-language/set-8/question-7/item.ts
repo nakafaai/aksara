@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The comparison condition produced 20, the reference for the shared-glossary trial; one glossary cannot cover every regional or family usage.",
+            "The trial reached 31 first-review acceptances, compared with 19 and 20; because one glossary cannot represent every regional or family use, the result supports a limited follow-up.",
         },
         {
           isCorrect: false,

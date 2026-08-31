@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "fragment collection reached 71%, compared with 38% and 40%; this supports an association between the smaller mesh and fragment collection under the tested conditions, while the model used clean fragments of only one material requires further testing before a broader claim.",
+            "Fragment collection reached 71%, compared with 38% and 40%. This supports an association in the model, but mixed debris must be tested before claiming the same selectivity in environmental conditions.",
         },
       ],
     },

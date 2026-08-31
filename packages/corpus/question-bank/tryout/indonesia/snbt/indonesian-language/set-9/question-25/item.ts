@@ -7,24 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Menunggu orang lain menyelesaikan langkah berikutnya",
+          label: "Lima Penanda yang Berhasil Difoto Laras",
         },
         {
           isCorrect: true,
-          label: "Langkah Kecil Laras di jalur wisata hutan kota",
+          label: "Bingkai Kosong dalam Esai Laras",
         },
         {
           isCorrect: false,
-          label: "Menyembunyikan bukti yang belum tuntas dalam proyek besar",
+          label: "Penyunting yang Menolak Karya Tidak Selesai",
         },
         {
           isCorrect: false,
-          label:
-            "kesadaran penuh sebagai definisi tanpa tindakan yang dapat diperiksa",
+          label: "Rekaman Suara sebagai Pengganti Semua Foto",
         },
         {
           isCorrect: false,
-          label: "Rencana lengkap tanpa langkah kecil yang bertanggung jawab",
+          label: "Cara Menghapus Batas Pengalaman dari Sebuah Esai",
         },
       ],
     },

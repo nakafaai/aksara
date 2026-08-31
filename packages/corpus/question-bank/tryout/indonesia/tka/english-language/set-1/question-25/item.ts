@@ -12,19 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The proposal mentions attendance and late arrivals.",
+          label:
+            "The passage says that the school should report different measures honestly.",
         },
         {
           isCorrect: false,
-          label: "The passage gives sibling care as one example.",
+          label:
+            "The passage says that the school should keep a clear route back if the costs outweigh the benefits.",
         },
         {
           isCorrect: false,
-          label: "The trial is described as reversible.",
+          label:
+            "The passage states that a later bus may prevent a student from collecting a younger sibling.",
         },
         {
           isCorrect: false,
-          label: "Several routines are named in the second paragraph.",
+          label:
+            "The passage states that the schedule affects several connected routines.",
         },
         {
           isCorrect: true,

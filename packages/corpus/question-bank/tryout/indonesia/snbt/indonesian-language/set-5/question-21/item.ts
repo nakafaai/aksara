@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bima menghadapi hambatan dalam mengirim kotak buku tepat sebelum kapal berangkat dan menunggu seluruh proyek selesai sebelum meminta satu pun peninjauan.",
+            "Bima mempertahankan target 18 kotak dengan mengirim semua muatan lebih dahulu, lalu merapikan ketidakcocokan label setelah kapal berangkat.",
         },
         {
           isCorrect: false,
           label:
-            "Bima menghadapi hambatan dalam mengirim kotak buku tepat sebelum kapal berangkat dan menyerahkan langkah berikutnya kepada tokoh lain agar masalah segera berakhir.",
+            "Bima menyerahkan keputusan tujuan kotak kepada relawan yang datang agar tanggung jawab kesalahan tidak lagi berada padanya.",
         },
         {
           isCorrect: false,
           label:
-            "Bima menghadapi hambatan dalam mengirim kotak buku tepat sebelum kapal berangkat dan memahami empati sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
+            "Bima menahan seluruh kiriman karena hasil yang tidak lengkap tidak dapat dipertanggungjawabkan dalam keadaan apa pun.",
         },
         {
           isCorrect: false,
           label:
-            "Bima menghadapi hambatan dalam mengirim kotak buku tepat sebelum kapal berangkat dan menempatkan pencatatan ketidakpastian di atas tindakan kecil yang dapat diperiksa.",
+            "Bima menyelesaikan masalah terutama dengan mendefinisikan akuntabilitas, sedangkan pembagian tugas hanya menjadi latar cerita.",
         },
         {
           isCorrect: true,
           label:
-            "Bima menghadapi hambatan dalam mengirim kotak buku tepat sebelum kapal berangkat dan belajar melalui tindakan kecil yang bertanggung jawab.",
+            "Bima memilih mengirim 16 kotak yang terverifikasi dan menahan dua kotak yang meragukan, lalu belajar bahwa kepemimpinan menuntut koordinasi dan tanggung jawab yang dapat diperiksa.",
         },
       ],
     },

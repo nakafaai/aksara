@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "a two-sided card gains meaning through its connection to the conflict, choice, and ending.",
+            "The two-sided card gains meaning through the contrast between home and public speech, Mei's decision to keep both, and her context-based use at the desk.",
         },
         {
           isCorrect: false,

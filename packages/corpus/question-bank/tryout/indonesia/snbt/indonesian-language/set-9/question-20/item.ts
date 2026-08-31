@@ -7,24 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kesamaan Isi sebagai Bukti bahwa Dua Sumber Identik",
+          label: "Mantel M-17 yang Pasti Bertahan Selama Dua Puluh Satu Tahun",
         },
         {
           isCorrect: true,
-          label: "Membaca Dua Sumber tentang pengelolaan kostum teater",
+          label: "Menelusuri Mantel Teater melalui Foto dan Catatan Perawatan",
         },
         {
           isCorrect: false,
-          label: "Mengutamakan Sumber Terbaru dalam Kajian artefak",
+          label: "Mengisi Celah Arsip dengan Kemiripan Visual",
         },
         {
           isCorrect: false,
-          label: "Menggabungkan Dua Sumber tanpa Memeriksa Konteks",
+          label: "Buku Perawatan sebagai Bukti Lengkap Penggunaan Panggung",
         },
         {
           isCorrect: false,
-          label:
-            "Perbedaan Format yang Membuat Dua Sumber Tidak Dapat Dibandingkan",
+          label: "Foto Publikasi yang Lebih Netral daripada Catatan Internal",
         },
       ],
     },

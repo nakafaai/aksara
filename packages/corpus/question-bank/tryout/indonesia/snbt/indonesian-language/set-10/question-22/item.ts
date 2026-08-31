@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tari memilih untuk mengamati kebutuhan tiga anak sebelum memilih permainan kelompok; tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
+            "Pertanyaan itu memindahkan seluruh tanggung jawab desain kepada anak sehingga Tari tidak perlu menilai hasil perubahan.",
         },
         {
           isCorrect: false,
           label:
-            "Tari memilih untuk mengamati kebutuhan tiga anak sebelum memilih permainan kelompok; perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
+            "Pertanyaan itu memastikan jawaban pertama setiap anak pasti berlaku pada seluruh situasi berikutnya.",
         },
         {
           isCorrect: true,
           label:
-            "Mengamati kebutuhan tiga anak sebelum memilih permainan membuat keputusan Tari berangkat dari peserta nyata, bukan gagasan umum tentang inklusi.",
+            "Pertanyaan itu mengganti tebakan Tari dengan pilihan yang dinyatakan peserta, lalu memberi dasar untuk menguji apakah perubahan benar-benar membantu.",
         },
         {
           isCorrect: false,
           label:
-            "Tari memilih untuk mengamati kebutuhan tiga anak sebelum memilih permainan kelompok; latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
+            "Pertanyaan itu hanya memperlambat permainan karena hambatan sudah dapat diketahui dari penampilan setiap anak.",
         },
         {
           isCorrect: false,
           label:
-            "Tari memilih untuk mengamati kebutuhan tiga anak sebelum memilih permainan kelompok; definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
+            "Pertanyaan itu membuktikan Tari telah memahami seluruh sudut pandang peserta sebelum permainan dimulai.",
         },
       ],
     },

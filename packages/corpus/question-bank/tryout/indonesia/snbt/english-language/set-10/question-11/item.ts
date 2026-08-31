@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The character treats completing the whole project as the necessary first step before seeking review.",
+            "Caleb waited for every supplier to provide a final figure before allowing the team to make any budget decision.",
         },
         {
           isCorrect: true,
           label:
-            "Caleb faced an obstacle while trying to build a budget for a youth concert and learned through a small accountable action.",
+            "Caleb exposed uncertainty in a concert budget, turned it into labelled scenarios and assigned questions, and helped the team protect a necessary deposit.",
         },
         {
           isCorrect: false,
           label:
-            "The account presents contingency as a general idea rather than something developed through the character's choice.",
+            "Caleb solved the budget mainly by adding an unexplained contingency amount large enough to absorb every possible change.",
         },
         {
           isCorrect: false,
           label:
-            "The main obstacle becomes manageable because another person assumes responsibility for the next step.",
+            "The budget became reliable when the venue and supplier assumed responsibility for choosing which optional cost to remove.",
         },
         {
           isCorrect: false,
           label:
-            "The passage presents documenting uncertainty as more important than taking a reviewable action.",
+            "The main improvement was that the revised spreadsheet looked less tidy, regardless of whether it clarified the team's next decision.",
         },
       ],
     },

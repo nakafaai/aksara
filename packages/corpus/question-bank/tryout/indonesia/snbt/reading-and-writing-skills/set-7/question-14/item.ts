@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Data di ukur di peminjaman payung stasiun dan kemudian dibandingkan.",
+            "Data di kumpulkan dalam layanan peminjaman payung di stasiun, lalu dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data diukur didepan peminjaman payung stasiun dan kemudian dibandingkan.",
+            "Data dikumpulkan didalam layanan peminjaman payung di stasiun, lalu dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data mengukur di peminjaman payung stasiun dan kemudian membandingkan.",
+            "Data mengumpulkan dalam layanan peminjaman payung di stasiun, lalu membandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data diukur pada di peminjaman payung stasiun lalu di bandingkan.",
+            "Data dikumpulkan pada dalam layanan peminjaman payung di stasiun, lalu di bandingkan.",
         },
         {
           isCorrect: true,
           label:
-            "Data diukur di peminjaman payung stasiun dan kemudian dibandingkan.",
+            "Data dikumpulkan dalam layanan peminjaman payung di stasiun, lalu dibandingkan.",
         },
       ],
     },

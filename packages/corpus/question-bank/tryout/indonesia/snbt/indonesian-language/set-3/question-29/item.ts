@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Istilah *simbol* memastikan satu kelanjutan cerita sehingga pembaca tidak lagi perlu menafsirkan akhir.",
+            "Definisi *simbol* memastikan bahwa lampu selalu berarti kegiatan membaca dalam cerita apa pun, terlepas dari konteksnya.",
         },
         {
           isCorrect: true,
           label:
-            "Definisi *simbol* mengenali perangkat penceritaan yang menghubungkan benda berulang, tindakan tokoh, dan respons yang belum tuntas pada penutup.",
+            "Definisi *simbol* menjelaskan cara lampu membawa makna undangan melalui perbedaan keadaan panggung sebelum dan sesudah tindakan Mira.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi itu menyamakan *simbol* dengan benda yang berulang, bukan dengan sifat penutup cerita.",
+            "Definisi itu menjadikan setiap benda yang disebut lebih dari sekali sebagai simbol, meskipun tidak berkaitan dengan konflik atau perubahan.",
         },
         {
           isCorrect: false,
           label:
-            "Penyebutan *simbol* membuat kesan pribadi pembaca cukup meskipun bertentangan dengan rincian cerita.",
+            "Penyebutan *simbol* membuat kesan pribadi pembaca cukup, meskipun bertentangan dengan keadaan panggung dalam cerita.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi tersebut hanya menerangkan latar sehingga tindakan tokoh dan perubahan makna benda tidak relevan.",
+            "Definisi tersebut hanya menerangkan fungsi lampu sebagai alat penerangan sehingga respons penumpang tidak relevan.",
         },
       ],
     },

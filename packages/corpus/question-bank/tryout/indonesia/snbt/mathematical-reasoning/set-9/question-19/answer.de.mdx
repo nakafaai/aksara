@@ -5,12 +5,14 @@ export const metadata = {
   dateModified: "2026-08-31",
 };
 
-Da P und Q auf diagonal gegenüberliegenden vertikalen Kanten jeweils in halber Höhe liegen, müssen die verschiedenen Abwicklungsrichtungen verglichen werden. Der Weg nur über Seitenflächen hat Länge <InlineMath math="4+8=12" />. Die drei wesentlich verschiedenen Abwicklungen über die Ober- oder Unterseite liefern
+In einer Oberflächenabwicklung wird der kürzeste Weg für eine feste Folge von Seiten zu einer geraden Strecke. Die Punkte <InlineMath math="P" /> und <InlineMath math="Q" /> liegen in der Mitte vertikaler Kanten der Höhe <InlineMath math="2" /> cm. Jeder Punkt hat daher Abstand <InlineMath math="1" /> cm zur Oberseite und zur Unterseite.
 
-<MathContainer>
-  <BlockMath math="\sqrt{4^2+(8+2)^2}=\sqrt{116}" />
-  <BlockMath math="\sqrt{8^2+(4+2)^2}=10" />
-  <BlockMath math="\sqrt{(4+1)^2+(8+1)^2}=\sqrt{106}" />
-</MathContainer>
+Die vier Seitenflächen bilden einen Streifen mit Umfang <InlineMath math="2(4+8)=24" /> cm. Die beiden Punkte liegen darin gegenüber und auf gleicher Höhe. Ein Weg nur über Seitenflächen hat somit Länge <InlineMath math="4+8=12" /> cm.
 
-Das Minimum aus <InlineMath math="12,\sqrt{116},10,\sqrt{106}" /> ist <InlineMath math="10" />. Der Vergleich aller Abwicklungen ist entscheidend; eine einzelne Skizze genügt nicht.
+Für eine Abwicklung über die Oberseite wird diese als Rechteck <InlineMath math="4\times8" /> gewählt. Über die Unterseite entstehen dieselben drei Längen.
+
+- Bei den zwei Seiten an den Längskanten liegen die Punkte in der Abwicklung bei <InlineMath math="(-1,0)" /> und <InlineMath math="(5,8)" />. Das ergibt <InlineMath math="\sqrt{6^2+8^2}=10" />.
+- Bei den zwei Seiten an den Breitenkanten liegen sie bei <InlineMath math="(0,-1)" /> und <InlineMath math="(4,9)" />. Das ergibt <InlineMath math="\sqrt{4^2+10^2}=\sqrt{116}" />.
+- Bei zwei benachbarten Seiten liegen sie bei <InlineMath math="(-1,0)" /> und <InlineMath math="(4,9)" />. Das ergibt <InlineMath math="\sqrt{5^2+9^2}=\sqrt{106}" />.
+
+Damit sind alle Kandidaten <InlineMath math="12,10,\sqrt{116},\sqrt{106}" /> verglichen. Das Minimum ist <InlineMath math="10" />, also ist der kürzeste Oberflächenweg von <InlineMath math="P" /> nach <InlineMath math="Q" /> genau <InlineMath math="10" /> cm lang.

@@ -13,15 +13,16 @@ not copy a list of locale suffixes into this skill, and do not add a local
 override file or language mapping.
 
 An ordinary section owns one localized prompt, one localized worked answer,
-and localized choices for every app locale in its authorized authoring scope.
+and one localized response item for every app locale in its authorized
+authoring scope.
 Every authored locale file must pass the same inventory, ownership, preview,
 and editorial checks, whether or not that locale is included in a publication.
 The presence of an authored source file alone never changes publication state.
 
-A language-assessment section owns one prompt and one choice set in the
+A language-assessment section owns one prompt and one response item in the
 assessed delivery language. It owns one worked answer explanation for every app
 locale in its authorized authoring scope. Never duplicate an assessed prompt or
-its choices merely because the application locale changes.
+its response options merely because the application locale changes.
 
 ## Prompt rules
 

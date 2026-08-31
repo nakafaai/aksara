@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "label kain memperoleh makna karena muncul bersama konflik, pilihan, dan perubahan pada akhir cerita.",
+            "Katalog baru dan label lama dapat hidup berdampingan karena pembaruan sistem tidak harus menghapus jejak penggunaan sebelumnya.",
         },
         {
           isCorrect: false,
           label:
-            "Benda berulang memperoleh makna terutama dari bentuk fisiknya, bukan dari hubungannya dengan pilihan tokoh.",
+            "Kartu katalog baru lebih bernilai daripada label lama karena dibuat saat kelompok teater memasuki gedung baru.",
         },
         {
           isCorrect: false,
           label:
-            "Akhir cerita menunjukkan bahwa latar, bukan tindakan tokoh, menyelesaikan konflik.",
+            "Label lama hanya boleh dipertahankan jika tidak memerlukan perbaikan atau perubahan pada kostum.",
         },
         {
           isCorrect: false,
           label:
-            "Makna benda tetap sama meskipun tokoh menggunakannya dengan cara berbeda.",
+            "Pencatatan modern selalu merusak makna benda lama karena menambahkan informasi yang sebelumnya tidak ada.",
         },
         {
           isCorrect: false,
           label:
-            "Tindakan akhir penting karena mengukuhkan penafsiran yang sudah terbentuk sejak awal.",
+            "Riwayat kostum menjadi lengkap dan pasti setelah kartu 2026 diletakkan di depan label tahun 1998.",
         },
       ],
     },

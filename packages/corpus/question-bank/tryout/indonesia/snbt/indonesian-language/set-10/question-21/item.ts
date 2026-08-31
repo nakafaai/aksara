@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tari menghadapi hambatan dalam menjadi relawan pada hari pembukaan taman bermain dan menunggu seluruh proyek selesai sebelum meminta satu pun peninjauan.",
+            "Tari beralih dari satu permainan untuk semua peserta menuju permainan terpisah bagi setiap kebutuhan agar tidak ada aturan bersama.",
         },
         {
           isCorrect: false,
           label:
-            "Tari menghadapi hambatan dalam menjadi relawan pada hari pembukaan taman bermain dan menyerahkan langkah berikutnya kepada tokoh lain agar masalah segera berakhir.",
+            "Tari menyimpulkan bahwa aturan yang sama selalu tidak adil dan semua keputusan harus diserahkan kepada peserta.",
         },
         {
           isCorrect: false,
           label:
-            "Tari menghadapi hambatan dalam menjadi relawan pada hari pembukaan taman bermain dan memahami empati sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
+            "Tari menganggap permainan telah sepenuhnya inklusif setelah peluit dan jalur rumput diganti.",
         },
         {
           isCorrect: false,
           label:
-            "Tari menghadapi hambatan dalam menjadi relawan pada hari pembukaan taman bermain dan menempatkan pencatatan ketidakpastian di atas tindakan kecil yang dapat diperiksa.",
+            "Tari berubah terutama karena ketiga anak menunjukkan masalah, bukan karena ia menguji kembali asumsi dan tindakannya.",
         },
         {
           isCorrect: true,
           label:
-            "Tari menghadapi hambatan dalam menjadi relawan pada hari pembukaan taman bermain dan belajar melalui tindakan kecil yang bertanggung jawab.",
+            "Tari beralih dari menyamakan keadilan dengan aturan seragam menuju keputusan yang diperiksa bersama peserta dan tetap terbuka terhadap hambatan baru.",
         },
       ],
     },

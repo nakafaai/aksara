@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "kartu kondisi memperoleh makna karena muncul bersama konflik, pilihan, dan perubahan pada akhir cerita.",
+            "Bacaan mendukung simpulan bahwa Reno menunda berdasarkan risiko yang tercatat, tetapi tidak membuktikan bahwa kelembapan menyebabkan garis atau supervisor menyetujui keputusan itu.",
         },
         {
           isCorrect: false,

@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *logistik* memberi kriteria untuk menilai apakah rancangan dan bukti akses benar-benar mencakup kebutuhan pengguna yang berbeda.",
+            "Definisi *logistik* menunjukkan bahwa ketepatan label hanya satu bagian dari perpindahan buku dari asal sampai penerima, sehingga keterlambatan akibat cuaca tetap relevan.",
         },
         {
           isCorrect: false,

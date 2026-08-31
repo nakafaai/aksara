@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The changed condition produced a mean of -4 after salt was added under the stated cooling controls; it is the trial result, not a claim about every freezer.",
+            "The salted samples produced a mean of -4°C under the stated test conditions; this is the trial result, not a claim about every freezer.",
         },
       ],
     },

@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks meja informasi taman kota memberikan komentar yang singkat dan ringkas.",
+            "Pengguna pusat informasi taman kota memberikan komentar yang singkat dan ringkas.",
         },
         {
           isCorrect: true,
           label:
-            "Para pengguna di pusat informasi taman kota memberikan komentar singkat.",
+            "Pengguna pusat informasi taman kota memberikan komentar singkat.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks meja informasi taman kota memberikan komentar singkat mereka sendiri secara pribadi.",
+            "Pengguna pusat informasi taman kota memberikan komentar singkat mereka sendiri secara pribadi.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks meja informasi taman kota memberikan komentar singkat dalam bentuk pendek.",
+            "Pengguna pusat informasi taman kota memberikan komentar singkat dalam bentuk pendek.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks meja informasi taman kota memberikan komentar singkat tentang pengalaman mereka dalam konteks tersebut.",
+            "Pengguna pusat informasi taman kota memberikan komentar singkat tentang pengalaman mereka di pusat tersebut.",
         },
       ],
     },

@@ -5,13 +5,29 @@ export const metadata = {
   dateModified: "2026-08-31",
 };
 
-Sebuah balok memiliki panjang <InlineMath math="4" /> cm, lebar <InlineMath math="8" /> cm, dan tinggi <InlineMath math="2" /> cm. Titik P adalah titik tengah salah satu rusuk tegak. Titik Q adalah titik tengah rusuk tegak yang berhadapan secara diagonal.
+Sebuah balok memiliki panjang <InlineMath math="4" /> cm, lebar <InlineMath math="8" /> cm, dan tinggi <InlineMath math="2" /> cm. Titik <InlineMath math="P" /> adalah titik tengah salah satu rusuk tegak. Titik <InlineMath math="Q" /> adalah titik tengah rusuk tegak yang berhadapan secara diagonal.
 
 <LineEquation
-  title="Balok"
-  description="Balok eksak dengan dua belas rusuk lurus, panjang 4, lebar 8, dan tinggi 2."
+  title={<>Balok dengan titik <InlineMath math="P" /> dan <InlineMath math="Q" /></>}
+  description={<>Balok eksak berdimensi <InlineMath math="4\text{ cm}\times8\text{ cm}\times2\text{ cm}" />. Titik <InlineMath math="P" /> dan <InlineMath math="Q" /> menandai titik tengah dua rusuk tegak yang berhadapan secara diagonal.</>}
   cameraPosition={[8, 7, 10]}
-  data={[{ kind: "cuboid", length: 4, width: 8, height: 2, color: "#7c3aed" }]}
+  data={[
+    { kind: "cuboid", length: 4, width: 8, height: 2, color: "#7c3aed" },
+    {
+      points: [{ x: -2, y: 0, z: -4 }],
+      color: "#f97316",
+      smooth: false,
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [-0.6, 0.45, -0.6] }],
+    },
+    {
+      points: [{ x: 2, y: 0, z: 4 }],
+      color: "#16a34a",
+      smooth: false,
+      showPoints: true,
+      labels: [{ text: <InlineMath math="Q" />, at: 0, offset: [0.6, 0.45, 0.6] }],
+    },
+  ]}
 />
 
-Berapa sentimeter panjang lintasan terpendek pada permukaan balok dari P ke Q?
+Berapa sentimeter panjang lintasan terpendek pada permukaan balok dari <InlineMath math="P" /> ke <InlineMath math="Q" />?

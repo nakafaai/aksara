@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *variabel kontrol* menetapkan makna konsep yang diukur sebelum pembaca menafsirkan perbandingan angka dan keterbatasan percobaan.",
+            "Definisi *variabel kontrol* menjelaskan alasan jenis benih, volume air, dan ukuran wadah dijaga sama agar perbandingan pencahayaan lebih wajar.",
         },
         {
           isCorrect: false,

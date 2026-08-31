@@ -34,7 +34,7 @@ export const tkaMathematicsTrack = {
             en: "mathematics",
             id: "matematika",
           },
-          timeLimitSeconds: 3000,
+          timeLimitSeconds: 4500,
           translations: {
             de: { title: "Mathematik" },
             en: { title: "Mathematics" },

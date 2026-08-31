@@ -19,7 +19,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Leah's next step in the school media room",
+          label: "Building confidence through one reviewable step",
         },
         {
           isCorrect: false,

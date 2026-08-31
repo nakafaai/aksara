@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *kontekstualisasi* memberi dasar untuk membandingkan posisi kedua sumber tanpa menganggap salah satunya sebagai catatan yang sepenuhnya netral.",
+            "Definisi *kontekstualisasi* mengarahkan siswa membaca perubahan jadwal, peserta, tujuan pencatatan, dan kekosongan arsip sebelum menafsirkan pola peminjaman.",
         },
       ],
     },

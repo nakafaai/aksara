@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Mei's small choice changes the meaning of a two-sided card while addressing a conflict in a multilingual welcome desk.",
+            "Mei places a home greeting and a public greeting on opposite sides of one card, then chooses the side that fits each arriving relationship.",
         },
         {
           isCorrect: false,

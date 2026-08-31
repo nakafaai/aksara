@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Karena kondisi perubahan menghasilkan 3, sedangkan nilai awal 7 dan pembanding 8, lapisan tipis petroleum jelly pada permukaan bawah daun telah terisolasi sebagai satu-satunya penyebab selama jenis daun, lama pengamatan, dan luas permukaan awal dibuat sama.",
+            "Dibandingkan kelompok tanpa lapisan, pelapisan permukaan bawah menurunkan rata-rata kehilangan massa sebesar 0,54 persen.",
         },
         {
           isCorrect: false,
           label:
-            "Pengulangan paling informatif sebaiknya mengubah jenis daun, lama pengamatan, dan luas permukaan awal bersamaan dengan lapisan tipis petroleum jelly pada permukaan bawah daun agar gabungan kondisi yang lebih realistis dapat diuji.",
+            "Dibandingkan kelompok tanpa lapisan, pelapisan permukaan bawah menurunkan rata-rata kehilangan massa sebesar sekitar 193 persen.",
         },
         {
           isCorrect: true,
           label:
-            "Pada kondisi yang diuji, lapisan tipis petroleum jelly pada permukaan bawah daun berkaitan dengan perubahan dari 7 dan 8 menjadi 3; karena daun yang dipetik tidak sepenuhnya mewakili kondisi tumbuhan utuh, pola itu perlu diuji lagi sebelum diperluas menjadi klaim umum.",
+            "Dibandingkan kelompok tanpa lapisan, rata-rata kehilangan massa pada pelapisan permukaan bawah lebih rendah sekitar 65,9 persen; angka itu menggambarkan sampel daun petik, bukan perkiraan pasti untuk semua tumbuhan.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bahwa daun yang dipetik tidak sepenuhnya mewakili kondisi tumbuhan utuh memengaruhi ketelitian angka, tetapi tidak memengaruhi luas penerapan temuan tentang kehilangan massa pada daun.",
+            "Dibandingkan kelompok tanpa lapisan, pelapisan permukaan bawah menurunkan kehilangan massa sebesar 65,9 poin persentase karena kedua nilai diukur dalam gram.",
         },
         {
           isCorrect: false,
           label:
-            "Pengulangan dengan lebih banyak unit dapat mempersempit ketidakpastian, tetapi tidak mungkin mengubah penafsiran awal tentang kehilangan massa pada daun.",
+            "Rata-rata 0,28 gram berarti 65,9 persen daun pada kelompok pelapisan permukaan bawah tidak mengalami transpirasi.",
         },
       ],
     },

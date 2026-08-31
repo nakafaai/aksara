@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Putting both greetings on the recurring card preserves their different contexts instead of declaring one wrong, which gives the ending its reconciliatory force.",
+            "Putting both greetings on the card preserves their different contexts, and turning the card for each visitor shows that suitability depends on relationship rather than one version being wrong.",
         },
       ],
     },

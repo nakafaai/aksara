@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menggunakan nilai rata-rata yang lebih tinggi untuk memperkirakan bahwa perubahan akan bekerja pada keadaan serupa.",
+            "Percobaan membuktikan bahwa konduksi merupakan satu-satunya mekanisme yang menurunkan suhu air di kedua wadah.",
         },
         {
           isCorrect: true,
           label:
-            "Kotak perbandingan perpindahan panas menyederhanakan proses agar dapat diperiksa sambil tetap memiliki batas representasi.",
+            "Air dalam aluminium mendingin lebih cepat daripada dalam polipropilena, tetapi perbedaan bahan belum terpisah dari ketebalan dinding dan mekanisme perpindahan panas lain.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menjelaskan konduksi sebagai hasil utama, bukan sebagai bagian dari penelitian.",
+            "Perbedaan suhu akhir membuktikan bahwa aluminium selalu menjadi wadah yang lebih buruk untuk setiap penggunaan.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membandingkan dua kondisi, tetapi menempatkan faktor kontrol sebagai rincian yang tidak memengaruhi penafsiran.",
+            "Kesamaan volume dan suhu awal sudah cukup mengisolasi bahan sebagai penyebab tunggal perbedaan laju pendinginan.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan lebih menekankan keterbatasan sampel daripada hubungan antara perubahan dan hasil.",
+            "Karena wadah berbeda ketebalan, tabel suhu tidak dapat digunakan untuk menyusun hipotesis apa pun tentang perpindahan panas.",
         },
       ],
     },

@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Benda berulang yang tetap menjadi bagian latar",
+          label: "Poster Baru di Panggung Baca Terminal",
         },
         {
           isCorrect: false,
-          label: "Konflik yang selesai sebelum pilihan akhir tokoh",
+          label: "Sopir yang Menunggu Jadwal Berikutnya",
         },
         {
           isCorrect: true,
-          label: "Lampu baca kecil di terminal saat hujan sore",
+          label: "Ketika Lampu Baca Menjadi Undangan",
         },
         {
           isCorrect: false,
-          label: "simbol sebagai istilah tanpa peran dalam cerita",
+          label: "Mengapa Panggung Baca Hanya untuk Anak-Anak",
         },
         {
           isCorrect: false,
-          label: "Akhir yang menghapus ketegangan makna benda",
+          label: "Hujan Sore yang Menghentikan Kegiatan Membaca",
         },
       ],
     },

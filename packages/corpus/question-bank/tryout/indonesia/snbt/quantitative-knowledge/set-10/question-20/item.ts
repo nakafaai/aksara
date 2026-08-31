@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$x < y$$",
+          label: "$$P < Q$$",
         },
         {
           isCorrect: false,
-          label: "$$x = y$$",
+          label: "$$P = Q$$",
         },
         {
           isCorrect: false,
-          label: "$$x = -y$$",
+          label: "$$P = 2Q$$",
         },
         {
           isCorrect: true,
-          label: "$$x > y$$",
+          label: "$$P > Q$$",
         },
         {
           isCorrect: false,
-          label: "$$x + y = 1$$",
+          label: "Die Beziehung kann nicht bestimmt werden.",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$x < y$$",
+          label: "$$P < Q$$",
         },
         {
           isCorrect: false,
-          label: "$$x = y$$",
+          label: "$$P = Q$$",
         },
         {
           isCorrect: false,
-          label: "$$x = -y$$",
+          label: "$$P = 2Q$$",
         },
         {
           isCorrect: true,
-          label: "$$x > y$$",
+          label: "$$P > Q$$",
         },
         {
           isCorrect: false,
-          label: "$$x + y = 1$$",
+          label: "The relationship cannot be determined.",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$x < y$$",
+          label: "$$P < Q$$",
         },
         {
           isCorrect: false,
-          label: "$$x = y$$",
+          label: "$$P = Q$$",
         },
         {
           isCorrect: false,
-          label: "$$x = -y$$",
+          label: "$$P = 2Q$$",
         },
         {
           isCorrect: true,
-          label: "$$x > y$$",
+          label: "$$P > Q$$",
         },
         {
           isCorrect: false,
-          label: "$$x + y = 1$$",
+          label: "Hubungan tidak dapat ditentukan.",
         },
       ],
     },

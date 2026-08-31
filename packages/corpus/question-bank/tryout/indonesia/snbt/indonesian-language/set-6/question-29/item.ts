@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *sudut pandang terbatas* mengenali perangkat penceritaan yang menghubungkan benda berulang, tindakan tokoh, dan respons yang belum tuntas pada penutup.",
+            "Sudut pandang terbatas membuat pembaca menilai keputusan dari bukti yang Reno lihat, sambil menahan kepastian tentang niat supervisor dan penyebab garis pada lukisan.",
         },
         {
           isCorrect: false,

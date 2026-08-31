@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Evidence-informed change in a community food pantry",
+          label: "Testing date labels for cautious pantry stock rotation",
         },
         {
           isCorrect: false,

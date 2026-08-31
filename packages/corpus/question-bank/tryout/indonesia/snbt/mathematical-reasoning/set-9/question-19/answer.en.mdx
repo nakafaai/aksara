@@ -5,12 +5,14 @@ export const metadata = {
   dateModified: "2026-08-31",
 };
 
-Because P and Q lie halfway up diagonally opposite vertical edges, the possible unfolding directions must be compared. A route using only side faces has length <InlineMath math="4+8=12" />. The three essentially different unfoldings through the top or bottom give
+On a surface net, the shortest route for a fixed sequence of faces becomes a straight segment. Points <InlineMath math="P" /> and <InlineMath math="Q" /> are midpoints of vertical edges of height <InlineMath math="2" /> cm, so each lies <InlineMath math="1" /> cm from either the top or the bottom face.
 
-<MathContainer>
-  <BlockMath math="\sqrt{4^2+(8+2)^2}=\sqrt{116}" />
-  <BlockMath math="\sqrt{8^2+(4+2)^2}=10" />
-  <BlockMath math="\sqrt{(4+1)^2+(8+1)^2}=\sqrt{106}" />
-</MathContainer>
+The four side faces form a band of perimeter <InlineMath math="2(4+8)=24" /> cm. The two points are opposite on that band at the same height, so a route using only side faces has length <InlineMath math="4+8=12" /> cm.
 
-The minimum of <InlineMath math="12,\sqrt{116},10,\sqrt{106}" /> is <InlineMath math="10" />. Comparing all unfoldings is essential; one sketch alone is not sufficient.
+For a net through the top face, take the top as a <InlineMath math="4\times8" /> rectangle. The bottom face gives the same three lengths.
+
+- The two faces attached to the length edges place the points at <InlineMath math="(-1,0)" /> and <InlineMath math="(5,8)" />, giving <InlineMath math="\sqrt{6^2+8^2}=10" />.
+- The two faces attached to the width edges place them at <InlineMath math="(0,-1)" /> and <InlineMath math="(4,9)" />, giving <InlineMath math="\sqrt{4^2+10^2}=\sqrt{116}" />.
+- Two adjacent side faces place them at <InlineMath math="(-1,0)" /> and <InlineMath math="(4,9)" />, giving <InlineMath math="\sqrt{5^2+9^2}=\sqrt{106}" />.
+
+The complete set of candidate lengths is <InlineMath math="12,10,\sqrt{116},\sqrt{106}" />. The minimum is <InlineMath math="10" />, so the shortest surface route from <InlineMath math="P" /> to <InlineMath math="Q" /> is <InlineMath math="10" /> cm.

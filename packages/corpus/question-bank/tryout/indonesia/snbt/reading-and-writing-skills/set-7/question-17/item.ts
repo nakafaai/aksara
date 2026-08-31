@@ -68,7 +68,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Tim mengulang uji kode pengembalian untuk memperoleh bukti yang lebih kuat.",
+            "Tim mengulang uji kode pengembalian pada setiap gagang untuk memperoleh bukti yang lebih kuat.",
         },
         {
           isCorrect: false,

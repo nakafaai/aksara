@@ -17,20 +17,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Past garden notes make the timing and effects of the next storm fully predictable.",
+            "A rain gauge reconstructs the previous week's records after the notebook gets wet.",
         },
         {
           isCorrect: false,
           label:
-            "The seedlings' condition directly tells volunteers the exact time the next storm will arrive.",
+            "A loose drainage pipe carries the notebook safely back to Mina's backpack.",
         },
         {
           isCorrect: false,
-          label: "A cloud returns the missing pages to Mina.",
+          label:
+            "A shared digital copy appears before anyone photographs the readable pages.",
         },
         {
           isCorrect: false,
-          label: "A drawing changes the direction of the wind.",
+          label:
+            "The seedlings change color to reveal the exact time of the next storm.",
         },
       ],
     },

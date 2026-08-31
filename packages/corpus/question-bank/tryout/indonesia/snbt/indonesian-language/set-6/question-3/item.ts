@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Karena kondisi perubahan menghasilkan 16, sedangkan nilai awal 20 dan pembanding 21, tali sepanjang 60 sentimeter telah terisolasi sebagai satu-satunya penyebab selama massa beban, sudut awal, dan cara melepas bandul dibuat sama.",
+            "Karena tali 60 sentimeter menghasilkan 15,6 detik dan kedua pengukuran tali 100 sentimeter sekitar 20 detik, data telah menentukan rumus periode untuk setiap panjang tali.",
         },
         {
           isCorrect: false,
           label:
-            "Pengulangan paling informatif sebaiknya mengubah massa beban, sudut awal, dan cara melepas bandul bersamaan dengan tali sepanjang 60 sentimeter agar gabungan kondisi yang lebih realistis dapat diuji.",
+            "Pengulangan paling informatif sebaiknya mengubah massa, sudut awal, cara pelepasan, dan panjang tali secara bersamaan agar keadaan yang lebih beragam langsung terwakili.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pada kondisi yang diuji, tali sepanjang 60 sentimeter berkaitan dengan perubahan dari 20 dan 21 menjadi 16; karena pengukuran manual masih dapat dipengaruhi waktu reaksi pencatat, pola itu perlu diuji lagi sebelum diperluas menjadi klaim umum.",
+            "Kemiripan dua hasil tali 100 sentimeter dan waktu yang lebih singkat pada tali 60 sentimeter mendukung hubungan panjang dengan periode, tetapi panjang tambahan dan pencatat otomatis diperlukan untuk menentukan bentuk hubungannya.",
         },
       ],
     },

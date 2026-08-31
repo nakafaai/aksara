@@ -93,7 +93,7 @@ addition, revision, review, or translation in this repository.
   paragraph as a complete explanation and reject any rewrite that preserves the
   same artificial contrast, unexplained term, or stiff sentence structure under
   different words.
-- Do not translate assessed passages, assessed choices, quotations, code,
+- Do not translate assessed passages, assessed response options, quotations, code,
   mathematical notation, or immutable official source bytes.
 - Lessons must work from a direct visit. Define required terms, abbreviations,
   symbols, and prerequisites on first use.

@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pengulangan langkah pada model membantu memeriksa bahwa susunan komponen menentukan jalur arus dan perilaku setiap lampu; karena model memakai tegangan rendah dan tidak mewakili instalasi rumah, pola itu menjadi hipotesis untuk pengamatan nyata, bukan bukti langsung tentang seluruh keadaan lapangan.",
+            "Pengulangan model dapat menguji hubungan susunan dan perilaku lampu, tetapi hasilnya menjadi hipotesis untuk pengamatan nyata karena model bertegangan rendah dan bukan instalasi rumah.",
         },
         {
           isCorrect: false,

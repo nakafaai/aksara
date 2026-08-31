@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pilihan kecil Reno mengubah makna kartu kondisi dalam menghadapi konflik di ruang penyimpanan karya seni pada malam hari.",
+            "Reno memakai catatan lama dan kelembapan saat ini untuk menunda pemindahan secara hati-hati, sementara sudut pandang terbatas menjaga penyebab garis dan respons supervisor tetap terbuka.",
         },
         {
           isCorrect: false,

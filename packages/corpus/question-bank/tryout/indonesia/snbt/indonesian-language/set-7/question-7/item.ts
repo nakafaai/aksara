@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Karena langkah "setiap putaran menambah keping individu, sedangkan keping makanan dibatasi" dapat diulang, model sudah mencakup faktor yang hilang ketika aturan sederhana tidak memuat migrasi, umur, atau variasi genetik dan dapat menggantikan pengamatan lapangan.',
+            "Karena langkah simulasi dapat diulang, batas 16 dan 24 dapat langsung dipakai untuk memperkirakan daya dukung semua populasi nyata.",
         },
         {
           isCorrect: true,
           label:
-            "Pengulangan langkah pada model membantu memeriksa bahwa pertumbuhan populasi melambat ketika sumber daya menjadi terbatas; karena aturan sederhana tidak memuat migrasi, umur, atau variasi genetik, pola itu menjadi hipotesis untuk pengamatan nyata, bukan bukti langsung tentang seluruh keadaan lapangan.",
+            "Perbedaan titik henti konsisten dengan gagasan daya dukung, tetapi karena batas itu dimasukkan melalui jumlah keping makanan, model tidak dapat menjadi bukti mandiri bahwa populasi nyata akan berhenti dengan pola yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bahwa aturan sederhana tidak memuat migrasi, umur, atau variasi genetik membuat hubungan bahwa pertumbuhan populasi melambat ketika sumber daya menjadi terbatas tidak dapat diperiksa, bahkan di dalam model.",
+            "Karena model menyederhanakan banyak proses biologis, perbedaan antara simulasi A dan B tidak dapat digunakan untuk menjelaskan hubungan sumber daya dan populasi.",
         },
         {
           isCorrect: false,
           label:
-            "Hubungan bahwa pertumbuhan populasi melambat ketika sumber daya menjadi terbatas dapat diterapkan langsung pada keadaan nyata selama urutan model diulang dengan cara yang sama.",
+            "Titik henti yang berbeda membuktikan bahwa jumlah makanan selalu menjadi satu-satunya faktor yang menentukan daya dukung lingkungan.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi istilah pada akhir bacaan sudah cukup membuktikan hubungan sebab dalam simulasi populasi dengan keping warna, meskipun bagian model tidak dibandingkan.",
+            "Ketepatan model ditentukan oleh kesamaan jumlah putaran, sehingga faktor yang tidak dimuat tidak memengaruhi penerapan hasilnya di lapangan.",
         },
       ],
     },

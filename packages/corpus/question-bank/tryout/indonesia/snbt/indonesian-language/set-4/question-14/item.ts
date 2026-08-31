@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *pemangku kepentingan* memberi kriteria untuk menilai apakah rancangan dan bukti akses benar-benar mencakup kebutuhan pengguna yang berbeda.",
+            "Definisi *pemangku kepentingan* menjelaskan alasan orang tua, pedagang, pengelola pasar, dan petugas kebersihan dilibatkan ketika data penunjuk arah dibahas.",
         },
         {
           isCorrect: false,

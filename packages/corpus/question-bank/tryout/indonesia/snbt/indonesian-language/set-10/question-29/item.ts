@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Istilah *akhir terbuka* memastikan satu kelanjutan cerita sehingga pembaca tidak lagi perlu menafsirkan akhir.",
+            "Menegaskan bahwa gang itu pasti akan diperiksa petugas pada malam berikutnya.",
         },
         {
           isCorrect: true,
           label:
-            "Definisi *akhir terbuka* mengenali perangkat penceritaan yang menghubungkan benda berulang, tindakan tokoh, dan respons yang belum tuntas pada penutup.",
+            "Mewujudkan batas pengetahuan yang dimiliki para tokoh sekaligus membuka kemungkinan peta dilanjutkan tanpa memastikan siapa yang akan melengkapinya.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi itu menyamakan *akhir terbuka* dengan benda yang berulang, bukan dengan sifat penutup cerita.",
+            "Membuktikan bahwa catatan warga tidak berguna karena masih menyisakan lokasi kosong.",
         },
         {
           isCorrect: false,
           label:
-            "Penyebutan *akhir terbuka* membuat kesan pribadi pembaca cukup meskipun bertentangan dengan rincian cerita.",
+            "Menunjukkan bahwa Nara sengaja mengabaikan gang agar peta buatannya terlihat lebih menarik.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi tersebut hanya menerangkan latar sehingga tindakan tokoh dan perubahan makna benda tidak relevan.",
+            "Menutup konflik dengan memastikan tidak ada sumber cahaya di sekitar gang tersebut.",
         },
       ],
     },

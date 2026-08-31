@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Keep the original instructions so a revision does not confuse household members.",
+            "Household members should memorise the existing wording more carefully.",
         },
         {
           isCorrect: true,
@@ -21,17 +21,17 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "The plan should keep the confusing wording unchanged.",
+          label:
+            "The household should wait for a real emergency before deciding whether to revise it.",
+        },
+        {
+          isCorrect: false,
+          label: "The plan should omit that step so no one needs to follow it.",
         },
         {
           isCorrect: false,
           label:
-            "The out-of-area contact is the primary person who should know both meeting places.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The out-of-area contact should receive the plan without names to reduce privacy risk.",
+            "The out-of-area contact should choose a new instruction alone.",
         },
       ],
     },

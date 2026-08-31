@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Retak yang semula tampak sebagai kerusakan menjadi jalur menuju warna lama, sehingga bangunan berulang dibaca sebagai lapisan sejarah.",
+            "Retakan dan serpihan yang semula tampak sebagai kerusakan berubah menjadi jalur menuju pintu lama, lalu bidang yang disisakan menegaskan nilainya sebagai bukti sejarah.",
         },
         {
           isCorrect: false,

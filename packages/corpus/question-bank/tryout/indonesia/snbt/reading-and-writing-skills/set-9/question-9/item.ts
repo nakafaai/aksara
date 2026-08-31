@@ -19,7 +19,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "(2)-(1)-(4)-(3)",
+          label: "(4)-(3)-(1)-(2)",
         },
         {
           isCorrect: false,
@@ -44,7 +44,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "(2)-(1)-(4)-(3)",
+          label: "(4)-(3)-(1)-(2)",
         },
         {
           isCorrect: false,
@@ -69,7 +69,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "(2)-(1)-(4)-(3)",
+          label: "(4)-(3)-(1)-(2)",
         },
         {
           isCorrect: false,

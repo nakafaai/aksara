@@ -5,6 +5,10 @@ export const metadata = {
   dateModified: "2026-08-31",
 };
 
-Hitung susunan dengan tepat satu di antara A dan B pada posisi ujung, lalu keluarkan kasus ketika C dan D bersebelahan. Tersisa 240 susunan sebelum urutan C dan D ditetapkan. Tepat setengahnya menempatkan C sebelum D, sehingga ada 120 susunan valid.
+Pilih laporan dari A dan B yang berada di ujung serta pilih ujung kiri atau kanan. Ada <InlineMath math="2\cdot2=4" /> pilihan. Laporan A atau B yang lain harus menempati salah satu dari empat posisi bukan ujung, lalu empat laporan sisanya dapat disusun dalam <InlineMath math="4!" /> cara. Jadi, sebelum larangan C-D diterapkan, terdapat <InlineMath math="4\cdot4\cdot4!=384" /> susunan.
+
+Untuk setiap pilihan laporan dan ujung, perlakukan C-D sebagai satu blok dengan dua urutan. Pada lima posisi yang tersisa terdapat <InlineMath math="2\cdot4!=48" /> susunan blok. Namun, sebanyak <InlineMath math="2\cdot3!=12" /> di antaranya menempatkan laporan A atau B yang lain di ujung seberang dan harus dikeluarkan. Jumlah susunan dengan C-D bersebelahan adalah <InlineMath math="4(48-12)=144" />.
+
+Karena itu, terdapat <InlineMath math="384-144=240" /> susunan dengan C dan D tidak bersebelahan. Pertukaran C dan D menunjukkan bahwa setengahnya menempatkan C sebelum D, sehingga ada <InlineMath math="240/2=120" /> susunan valid.
 
 Peluangnya adalah <InlineMath math="120/720=\frac16" />.

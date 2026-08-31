@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Nilai 27 dibandingkan 17 mendukung penggunaan kartu tujuan pada pertemuan berikutnya, tetapi hasil dua minggu belum cukup untuk menyimpulkan adanya peningkatan nilai semester.",
+            "Selisih 27 dibandingkan 17 mendukung uji lanjutan kartu tujuan dengan kolom revisi, tetapi hasil dua minggu tentang catatan pertemuan belum membuktikan kenaikan nilai semester.",
         },
         {
           isCorrect: false,

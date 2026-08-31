@@ -83,7 +83,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Dengan aturan pengukuran yang sama, tim merencanakan uji simbol titik kumpul yang lebih kontras yang lebih panjang.",
+            "Dengan aturan pengukuran yang sama, tim merencanakan uji yang lebih lama terhadap simbol titik kumpul yang lebih kontras.",
         },
         {
           isCorrect: false,

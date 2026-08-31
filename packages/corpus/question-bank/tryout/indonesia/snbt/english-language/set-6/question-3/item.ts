@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "the colour-change measure reached 31 units, compared with 18 and 19; this supports an association between 37°C and the classroom measure of enzyme activity under the tested conditions, while the colour scale was estimated by eye requires further testing before a broader claim.",
+            "The colour-change measure reached 31 units, compared with 18 and 19. This supports an association between 37°C and the classroom measure of enzyme activity, but eye-based estimation requires more precise testing before a broader claim.",
         },
         {
           isCorrect: false,

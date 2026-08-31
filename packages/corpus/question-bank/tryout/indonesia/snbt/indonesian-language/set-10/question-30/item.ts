@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Benda berulang yang tetap menjadi bagian latar",
+          label: "Tiga Puluh Dua Lampu yang Pasti Menyala",
         },
         {
           isCorrect: false,
-          label: "Konflik yang selesai sebelum pilihan akhir tokoh",
+          label: "Perdebatan Pak Udin dan Bu Sari di Dekat Jembatan",
         },
         {
           isCorrect: false,
-          label: "akhir terbuka sebagai istilah tanpa peran dalam cerita",
+          label: "Kepala Kantor dan Peta Bersih yang Selesai",
         },
         {
           isCorrect: true,
-          label: "Peta lampu jalan di kampung pada malam hujan",
+          label: "Peta Berlapis untuk Cahaya yang Berubah",
         },
         {
           isCorrect: false,
-          label: "Akhir yang menghapus ketegangan makna benda",
+          label: "Gang Gelap yang Tidak Pernah Diperiksa",
         },
       ],
     },

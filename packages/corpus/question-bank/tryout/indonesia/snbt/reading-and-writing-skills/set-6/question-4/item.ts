@@ -88,7 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Perubahan berupa panah arah yang ditempatkan langsung menanggapi keraguan yang diamati.",
+            "Pemasangan panah arah di setiap persimpangan langsung menanggapi keraguan yang diamati.",
         },
       ],
     },

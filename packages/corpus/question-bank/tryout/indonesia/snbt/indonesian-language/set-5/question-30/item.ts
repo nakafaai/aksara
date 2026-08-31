@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Benda berulang yang tetap menjadi bagian latar",
+          label: "Benang Merah sebagai Hiasan yang Tidak Mengubah Cerita",
         },
         {
           isCorrect: false,
-          label: "Konflik yang selesai sebelum pilihan akhir tokoh",
+          label: "Menghapus Seluruh Bekas pada Blus Warisan",
         },
         {
           isCorrect: false,
-          label: "konflik sebagai istilah tanpa peran dalam cerita",
+          label: "Konflik sebagai Istilah Tanpa Peran dalam Cerita",
         },
         {
           isCorrect: false,
-          label: "Akhir yang menghapus ketegangan makna benda",
+          label: "Pilihan Ayu yang Mengabaikan Keinginan Pelanggan",
         },
         {
           isCorrect: true,
-          label: "Benang merah di kelas reparasi pakaian",
+          label: "Jahitan Merah yang Tidak Disembunyikan",
         },
       ],
     },

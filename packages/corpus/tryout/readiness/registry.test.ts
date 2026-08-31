@@ -2,7 +2,10 @@ import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 
 import { indexQuestionBanks } from "#corpus/question-bank/path";
-import { discoverQuestionSources } from "#corpus/question-bank/source";
+import {
+  discoverQuestionSources,
+  type QuestionSource,
+} from "#corpus/question-bank/source";
 import {
   corpusRoot,
   physicalQuestionBankTestTimeout,
@@ -106,6 +109,67 @@ describe("assessment readiness registry", () => {
   );
 
   it.effect(
+    "rejects a topic assigned to the wrong official cognitive level",
+    () =>
+      Effect.gen(function* () {
+        const { questions, readiness, sources } =
+          yield* loadReadinessRegistry();
+        const englishSet =
+          "question-bank/tryout/indonesia/tka/english-language/set-1";
+        const textual = yield* Effect.fromNullishOr(
+          questions.find(
+            ({ item, setKey }) =>
+              setKey === englishSet &&
+              item.blueprint?.topic === "explicit-information"
+          )
+        );
+        const inferential = yield* Effect.fromNullishOr(
+          questions.find(
+            ({ item, setKey }) =>
+              setKey === englishSet &&
+              item.blueprint?.topic === "supporting-detail"
+          )
+        );
+        const swapped = questions.map<QuestionSource>((question) => {
+          const { blueprint } = question.item;
+          if (blueprint === undefined) {
+            return question;
+          }
+          if (question === textual) {
+            return {
+              ...question,
+              item: {
+                ...question.item,
+                blueprint: { ...blueprint, cognitiveLevel: "inferential" },
+              },
+            };
+          }
+          if (question === inferential) {
+            return {
+              ...question,
+              item: {
+                ...question.item,
+                blueprint: { ...blueprint, cognitiveLevel: "textual" },
+              },
+            };
+          }
+          return question;
+        });
+        const failure = yield* validateAssessmentReadinessEntries(
+          readiness,
+          sources,
+          swapped
+        ).pipe(Effect.flip);
+
+        expect(failure).toMatchObject({
+          _tag: "AssessmentReadinessMismatchError",
+          field: "topicCognitiveLevel:explicit-information",
+        });
+      }),
+    physicalQuestionBankTestTimeout
+  );
+
+  it.effect(
     "balances active single-choice answer positions in every set",
     () =>
       Effect.gen(function* () {
@@ -142,8 +206,10 @@ describe("assessment readiness registry", () => {
                   }
 
                   for (const positions of positionsByOptionCount.values()) {
+                    const distribution = positions.join(",");
                     expect(
-                      Math.max(...positions) - Math.min(...positions)
+                      Math.max(...positions) - Math.min(...positions),
+                      `${section.questionSourcePath}:${responseLocale}:${distribution}`
                     ).toBeLessThanOrEqual(1);
                   }
                 }

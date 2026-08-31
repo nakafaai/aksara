@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Nilai 31 membuktikan bahwa peta kebutuhan akses mencakup seluruh ragam kebutuhan sensorik dan motorik.",
+            "Menggabungkan semua peserta menjadi satu angka agar peningkatan peta baru terlihat lebih stabil.",
         },
         {
           isCorrect: false,
           label:
-            "Selisih antara nilai dasar 19 dan pembanding 20 membuat keterbatasan ragam peserta tidak lagi relevan.",
+            "Mempertahankan ikon yang ada dan hanya menambah jumlah petugas untuk menjelaskan arti setiap simbol.",
         },
         {
           isCorrect: false,
           label:
-            "Masukan keluarga dan perancang cukup untuk menggantikan keterlibatan langsung semua kelompok pengguna dalam uji.",
+            "Mengukur kecepatan menemukan alat tanpa memeriksa apakah anak dapat atau ingin menggunakan alat tersebut.",
         },
         {
           isCorrect: true,
           label:
-            "Nilai 31 dibandingkan 20 mendukung penerusan peta secara terbatas, tetapi ragam kebutuhan sensorik dan motorik yang belum terlibat harus diuji sebelum penerapan lebih luas.",
+            "Merancang ikon bersama kelompok yang belum terwakili, lalu mengukur keberhasilan menemukan alat dan pengalaman menggunakannya sebagai dua hasil terpisah.",
         },
         {
           isCorrect: false,
           label:
-            "Peta sebaiknya langsung diterapkan penuh karena perubahan jadwal dan jumlah petugas telah dikendalikan.",
+            "Menguji peta hanya pada kelompok mobilitas karena kelompok itu menunjukkan kenaikan paling besar.",
         },
       ],
     },

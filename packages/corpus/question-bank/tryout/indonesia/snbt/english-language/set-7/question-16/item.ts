@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Asha's small choice changes the meaning of a rain-spotted message card while addressing a conflict in a neighbourhood flood drill.",
+            "Asha removes words that do not change the next action, turning a detailed but unusable flood message into guidance that reaches the final house in time.",
         },
         {
           isCorrect: false,

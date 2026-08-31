@@ -5,13 +5,29 @@ export const metadata = {
   dateModified: "2026-08-31",
 };
 
-A cuboid has length <InlineMath math="4" /> cm, width <InlineMath math="8" /> cm, and height <InlineMath math="2" /> cm. Point P is the midpoint of one vertical edge. Point Q is the midpoint of the diagonally opposite vertical edge.
+A cuboid has length <InlineMath math="4" /> cm, width <InlineMath math="8" /> cm, and height <InlineMath math="2" /> cm. Point <InlineMath math="P" /> is the midpoint of one vertical edge. Point <InlineMath math="Q" /> is the midpoint of the diagonally opposite vertical edge.
 
 <LineEquation
-  title="Cuboid"
-  description="An exact cuboid with twelve straight edges, length 4, width 8, and height 2."
+  title={<>Cuboid with points <InlineMath math="P" /> and <InlineMath math="Q" /></>}
+  description={<>An exact cuboid with dimensions <InlineMath math="4\text{ cm}\times8\text{ cm}\times2\text{ cm}" />. Points <InlineMath math="P" /> and <InlineMath math="Q" /> mark the midpoints of diagonally opposite vertical edges.</>}
   cameraPosition={[8, 7, 10]}
-  data={[{ kind: "cuboid", length: 4, width: 8, height: 2, color: "#7c3aed" }]}
+  data={[
+    { kind: "cuboid", length: 4, width: 8, height: 2, color: "#7c3aed" },
+    {
+      points: [{ x: -2, y: 0, z: -4 }],
+      color: "#f97316",
+      smooth: false,
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [-0.6, 0.45, -0.6] }],
+    },
+    {
+      points: [{ x: 2, y: 0, z: 4 }],
+      color: "#16a34a",
+      smooth: false,
+      showPoints: true,
+      labels: [{ text: <InlineMath math="Q" />, at: 0, offset: [0.6, 0.45, 0.6] }],
+    },
+  ]}
 />
 
-What is the shortest surface distance from P to Q?
+What is the shortest surface distance from <InlineMath math="P" /> to <InlineMath math="Q" />?

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *empati* menjadi lensa untuk membaca pilihan konkret tokoh sebagai perkembangan sikap, bukan sekadar label moral yang berdiri sendiri.",
+            "Menunjukkan bahwa empati perlu tampak dalam pemeriksaan asumsi dan respons terhadap umpan balik, bukan berhenti pada niat merasa peduli.",
         },
         {
           isCorrect: false,
           label:
-            "Istilah *empati* membuktikan bahwa pilihan pertama tokoh sudah benar sebelum ia mengamati kebutuhan orang lain.",
+            "Membuktikan Tari dapat memahami kebutuhan anak hanya dengan membayangkan dirinya berada dalam situasi mereka.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi itu membatasi *empati* pada perasaan tokoh sehingga tindakan dan akibat pilihannya tidak perlu diperiksa.",
+            "Mengubah semua permintaan peserta menjadi aturan tetap yang tidak boleh diuji kembali.",
         },
         {
           isCorrect: false,
           label:
-            "Penyebutan *empati* menjadikan perubahan tokoh selesai seketika, padahal bacaan menunjukkan perkembangan bertahap.",
+            "Menetapkan bahwa pencatatan hambatan merupakan tanda kegagalan empati karena masalah masih tersisa.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi tersebut hanya menamai latar kegiatan dan tidak berkaitan dengan keputusan tokoh.",
+            "Menjelaskan perasaan tiga anak secara lengkap meskipun cerita hanya menunjukkan beberapa pilihan mereka.",
         },
       ],
     },

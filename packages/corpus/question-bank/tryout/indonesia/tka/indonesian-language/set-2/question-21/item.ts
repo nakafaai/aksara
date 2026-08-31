@@ -4,7 +4,7 @@ const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "loanwords",
+    topic: "outline",
   },
   responses: {
     id: {
@@ -21,8 +21,7 @@ const item: QuestionItem = {
         },
         {
           correctCategoryOrder: 2,
-          label:
-            "Peserta berasal dari kelompok yang tidak dipilih secara acak dari populasi sekolah",
+          label: "Peserta berasal dari satu kelas",
         },
       ],
     },

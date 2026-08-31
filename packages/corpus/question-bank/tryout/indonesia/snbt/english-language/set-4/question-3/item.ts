@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "visible ice first formed at -4°C, compared with -1°C at baseline and 0°C in the comparison condition; this supports an association between added salt and the temperature of ice formation under the tested conditions, while the freezer shelves did not cool at exactly the same rate requires further testing before a broader claim.",
+            "Visible ice first formed at a mean of -4°C in the salted samples, compared with -1°C at baseline and 0°C in the unsalted comparison. This supports an association under the tested conditions, but uneven shelf cooling and limited position rotation require further testing before a broader claim.",
         },
         {
           isCorrect: false,

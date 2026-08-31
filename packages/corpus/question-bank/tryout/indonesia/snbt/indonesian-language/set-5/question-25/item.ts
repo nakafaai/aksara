@@ -7,24 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Menunggu orang lain menyelesaikan langkah berikutnya",
+          label: "Mengirim Semua Kotak agar Target Terlihat Selesai",
         },
         {
           isCorrect: false,
-          label: "Menyembunyikan bukti yang belum tuntas dalam proyek besar",
+          label: "Menyembunyikan Ketidakcocokan Label Setelah Kapal Berangkat",
         },
         {
           isCorrect: true,
-          label: "Langkah Kecil Bima di gudang kecil dekat pelabuhan",
+          label: "Menahan Dua Kotak: Akuntabilitas Bima di Gudang Pelabuhan",
         },
         {
           isCorrect: false,
           label:
-            "akuntabilitas sebagai definisi tanpa tindakan yang dapat diperiksa",
+            "Akuntabilitas sebagai Definisi Tanpa Tindakan yang Dapat Diperiksa",
         },
         {
           isCorrect: false,
-          label: "Rencana lengkap tanpa langkah kecil yang bertanggung jawab",
+          label: "Delapan Belas Kotak sebagai Satu-satunya Ukuran Kepemimpinan",
         },
       ],
     },

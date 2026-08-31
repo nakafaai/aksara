@@ -7,25 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Die Anweisung $$(1)$$ ist ausreichend.",
+          label: "Aussage $$(1)$$ ist ausreichend.",
         },
         {
           isCorrect: false,
           label:
-            "Die Anweisungen $$(1)$$ und $$(2)$$ sind ausreichend, wenn sie zusammen verwendet werden.",
+            "Die Aussagen $$(1)$$ und $$(2)$$ sind ausreichend, wenn sie zusammen verwendet werden.",
         },
         {
           isCorrect: false,
           label:
-            "Anweisung $$(1)$$ ist ausreichend, Anweisung $$(2)$$ ist ausreichend.",
+            "Aussage $$(1)$$ ist ausreichend, Aussage $$(2)$$ ist ausreichend.",
         },
         {
           isCorrect: true,
-          label: "Die Anweisung $$(2)$$ ist ausreichend.",
+          label: "Aussage $$(2)$$ ist ausreichend.",
         },
         {
           isCorrect: false,
-          label: "Die Anweisungen $$(1)$$ und $$(2)$$ sind nicht ausreichend.",
+          label: "Die Aussagen $$(1)$$ und $$(2)$$ sind nicht ausreichend.",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Istilah *motif* memastikan satu kelanjutan cerita sehingga pembaca tidak lagi perlu menafsirkan akhir.",
+            "Menyatakan bahwa setiap benda yang disebut lebih dari sekali pasti memiliki satu arti yang tetap.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi itu menyamakan *motif* dengan benda yang berulang, bukan dengan sifat penutup cerita.",
+            "Menggantikan kebutuhan membaca tindakan Wulan karena makna benang sudah ditentukan oleh definisi istilah.",
         },
         {
           isCorrect: false,
           label:
-            "Penyebutan *motif* membuat kesan pribadi pembaca cukup meskipun bertentangan dengan rincian cerita.",
+            "Membuktikan bahwa penafsiran akhir benar hanya karena benang putih muncul pada awal dan akhir cerita.",
         },
         {
           isCorrect: true,
           label:
-            "Definisi *motif* mengenali perangkat penceritaan yang menghubungkan benda berulang, tindakan tokoh, dan respons yang belum tuntas pada penutup.",
+            "Mengarahkan pembaca menelusuri bagaimana pengulangan benang memperoleh arti berbeda melalui keputusan Wulan dan respons Raka.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi tersebut hanya menerangkan latar sehingga tindakan tokoh dan perubahan makna benda tidak relevan.",
+            "Menetapkan bahwa benang putih merupakan lambang sejarah yang berlaku sama dalam setiap cerita tentang kostum.",
         },
       ],
     },

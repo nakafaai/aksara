@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kedua sumber merekam hubungan pameran dengan masyarakat; perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
+            "Poster lebih kuat untuk mengetahui pengalaman pengunjung karena berasal dari lima kota, sedangkan buku tamu hanya berasal dari dua kota.",
         },
         {
           isCorrect: false,
           label:
-            "Karena membahas peristiwa yang sama, kedua sumber pasti mempunyai sudut pandang dan tujuan yang sama.",
+            "Buku tamu lebih kuat untuk mengetahui keberhasilan pameran secara keseluruhan karena memuat 240 catatan setelah kunjungan.",
         },
         {
           isCorrect: false,
           label:
-            "Menggabungkan dua sumber memberi izin untuk mengisi bagian yang hilang dengan dugaan yang masuk akal.",
+            "Kesamaan topik membuat poster dan buku tamu dapat digabungkan tanpa membedakan siapa pembuat dan kapan keduanya dibuat.",
         },
         {
           isCorrect: false,
           label:
-            "Perbedaan antarsumber hanya berkaitan dengan pilihan kata dan tidak memengaruhi simpulan.",
+            "Keluhan pada buku tamu membuktikan bahwa slogan pada poster dibuat untuk menutupi masalah akses yang sudah diketahui penyelenggara.",
         },
         {
           isCorrect: true,
           label:
-            "Poster dan buku tamu sama-sama menghubungkan pameran dengan masyarakat, tetapi pesan penyelenggara tidak sama dengan tanggapan sebagian pengunjung.",
+            "Poster mendukung simpulan tentang citra yang ingin dibangun di lima kota, sedangkan buku tamu mendukung simpulan tentang sebagian pengalaman sukarela di dua kota.",
         },
       ],
     },

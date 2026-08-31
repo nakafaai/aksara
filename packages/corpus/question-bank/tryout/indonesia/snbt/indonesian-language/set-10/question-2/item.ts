@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Nilai 63 adalah rata-rata ketika reflektor dipasang pada sudut 45°; satu rentang cuaca belum cukup untuk mewakili musim berbeda.",
+            "Dalam setiap putaran yang memiliki iradiansi sama untuk semua oven, sudut 45 derajat unggul 2 derajat Celsius atas sudut 60 derajat, tetapi sudut di antara keduanya belum diuji.",
         },
         {
           isCorrect: false,
           label:
-            "Pada kondisi dengan perubahan, hasil rata-rata tercatat 63; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+            "Sudut 45 derajat selalu menghasilkan kenaikan 13 derajat Celsius dibandingkan oven tanpa reflektor pada ketiga putaran.",
         },
         {
           isCorrect: false,
           label:
-            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
+            "Sudut 60 derajat lebih efektif pada iradiansi tinggi karena suhu akhirnya 64 derajat Celsius, lebih tinggi daripada hasil 45 derajat pada putaran pertama.",
         },
         {
           isCorrect: false,
           label:
-            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
+            "Tanpa reflektor merupakan pembanding yang tidak sah karena suhu akhirnya berubah ketika iradiansi berubah.",
         },
         {
           isCorrect: false,
           label:
-            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
+            "Karena posisi oven sudah diputar, cuaca tidak lagi dapat memengaruhi perbandingan antarputaran.",
         },
       ],
     },

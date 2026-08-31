@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "By defining *truss*, the report fixes the meaning of the measured concept before the numerical comparison and its limitation are interpreted.",
+            "The definition explains the structural idea being tested: connected triangles distribute forces, while the washer count measures how the paper model performs.",
         },
         {
           isCorrect: false,

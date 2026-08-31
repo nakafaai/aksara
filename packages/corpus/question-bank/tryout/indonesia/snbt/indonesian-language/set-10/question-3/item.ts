@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Karena kondisi perubahan menghasilkan 63, sedangkan nilai awal 48 dan pembanding 50, reflektor pada sudut 45 derajat telah terisolasi sebagai satu-satunya penyebab selama volume air, warna wadah, dan lama pemanasan dibuat sama.",
+            "Mengulang sudut 45 derajat saja pada hari paling cerah agar suhu maksimumnya dapat dipastikan.",
         },
         {
           isCorrect: true,
           label:
-            "Pada kondisi yang diuji, reflektor pada sudut 45 derajat berkaitan dengan perubahan dari 48 dan 50 menjadi 63; karena uji dilakukan pada satu rentang cuaca dan belum diulang pada musim berbeda, pola itu perlu diuji lagi sebelum diperluas menjadi klaim umum.",
+            "Menguji sudut di sekitar 45 derajat dengan interval lebih rapat, mengacak atau memutar posisi oven, dan mengulangnya pada berbagai kondisi iradiansi sambil mencatat angin serta awan.",
         },
         {
           isCorrect: false,
           label:
-            "Pengulangan paling informatif sebaiknya mengubah volume air, warna wadah, dan lama pemanasan bersamaan dengan reflektor pada sudut 45 derajat agar gabungan kondisi yang lebih realistis dapat diuji.",
+            "Mengubah volume air dan warna wadah pada setiap sudut supaya rancangan menyerupai penggunaan rumah tangga.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bahwa uji dilakukan pada satu rentang cuaca dan belum diulang pada musim berbeda memengaruhi ketelitian angka, tetapi tidak memengaruhi luas penerapan temuan tentang pemanasan air dengan oven surya model.",
+            "Menempatkan oven 45 derajat di lokasi tanpa bayangan dan oven lain di lokasi yang tersedia agar hasil terbaik lebih mudah dibedakan.",
         },
         {
           isCorrect: false,
           label:
-            "Pengulangan dengan lebih banyak unit dapat mempersempit ketidakpastian, tetapi tidak mungkin mengubah penafsiran awal tentang pemanasan air dengan oven surya model.",
+            "Membandingkan suhu akhir dari hari yang berbeda tanpa mencatat iradiansi karena semua percobaan berlangsung selama 40 menit.",
         },
       ],
     },

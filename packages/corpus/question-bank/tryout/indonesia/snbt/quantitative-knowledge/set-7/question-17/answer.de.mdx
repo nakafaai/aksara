@@ -2,44 +2,37 @@ export const metadata = {
   title: "Lösung zu Aufgabe 17",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-12-26",
+  dateModified: "2026-08-31",
 };
 
-Wir prüfen, ob jede Zahl beide Bedingungen erfüllt: Bei der Division durch <InlineMath math="5" /> muss der Rest <InlineMath math="3" /> sein, bei der Division durch <InlineMath math="4" /> der Rest <InlineMath math="2" />.
+Aus den beiden Verpackungsarten folgen die Kongruenzen
 
-#### Analyse der ersten Aussage
+<MathContainer>
+  <BlockMath math="N\equiv5\pmod{12}" />
+  <BlockMath math="N\equiv8\pmod{15}" />
+</MathContainer>
 
-Wir beginnen mit <InlineMath math="18" />.
+Setze <InlineMath math="N=5+12k" />. Die zweite Bedingung ergibt
 
-- Geteilt durch <InlineMath math="5" />: <InlineMath math="18 = 3 \times 5 + 3" />. Der Rest ist <InlineMath math="3" />. (erfüllt)
-- Geteilt durch <InlineMath math="4" />: <InlineMath math="18 = 4 \times 4 + 2" />. Der Rest ist <InlineMath math="2" />. (erfüllt)
+<MathContainer>
+  <BlockMath math="5+12k\equiv8\pmod{15}" />
+  <BlockMath math="12k\equiv3\pmod{15}" />
+  <BlockMath math="4k\equiv1\pmod5" />
+</MathContainer>
 
-Damit erfüllt <InlineMath math="18" /> beide Bedingungen.
+Das Inverse von <InlineMath math="4" /> modulo <InlineMath math="5" /> ist <InlineMath math="4" />. Somit gilt <InlineMath math="k\equiv4\pmod5" /> und damit
 
-#### Analyse der zweiten Aussage
+<BlockMath math="N=53+60t" />
 
-Nun prüfen wir <InlineMath math="38" />.
+Im Bereich <InlineMath math="200<N<300" /> kommen <InlineMath math="233" /> und <InlineMath math="293" /> infrage. Nach dem Aussortieren der zwei beschädigten Karten muss die verbleibende Zahl durch <InlineMath math="7" /> teilbar sein:
 
-- Geteilt durch <InlineMath math="5" />: <InlineMath math="38 = 7 \times 5 + 3" />. Der Rest ist <InlineMath math="3" />. (erfüllt)
-- Geteilt durch <InlineMath math="4" />: <InlineMath math="38 = 9 \times 4 + 2" />. Der Rest ist <InlineMath math="2" />. (erfüllt)
+<MathContainer>
+  <BlockMath math="233-2=231=7\times33" />
+  <BlockMath math="293-2=291\not\equiv0\pmod7" />
+</MathContainer>
 
-Damit erfüllt <InlineMath math="38" /> beide Bedingungen.
+Also ist <InlineMath math="N=233" />. Wegen <InlineMath math="233\equiv13\pmod{20}" /> beträgt die kleinste Ergänzung
 
-#### Analyse der dritten Aussage
+<BlockMath math="20-13=7" />
 
-Als Nächstes betrachten wir <InlineMath math="58" />.
-
-- Geteilt durch <InlineMath math="5" />: <InlineMath math="58 = 11 \times 5 + 3" />. Der Rest ist <InlineMath math="3" />. (erfüllt)
-- Geteilt durch <InlineMath math="4" />: <InlineMath math="58 = 14 \times 4 + 2" />. Der Rest ist <InlineMath math="2" />. (erfüllt)
-
-Damit erfüllt <InlineMath math="58" /> beide Bedingungen.
-
-#### Analyse der vierten Aussage
-
-Zum Schluss prüfen wir <InlineMath math="78" />.
-
-- Geteilt durch <InlineMath math="5" />: <InlineMath math="78 = 15 \times 5 + 3" />. Der Rest ist <InlineMath math="3" />. (erfüllt)
-- Geteilt durch <InlineMath math="4" />: <InlineMath math="78 = 19 \times 4 + 2" />. Der Rest ist <InlineMath math="2" />. (erfüllt)
-
-Damit erfüllt <InlineMath math="78" /> beide Bedingungen.
-
-Alle vier Zahlen erfüllen beide Bedingungen.
+Das Komitee muss <InlineMath math="7" /> Karten ergänzen.

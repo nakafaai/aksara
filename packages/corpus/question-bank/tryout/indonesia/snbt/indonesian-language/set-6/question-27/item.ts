@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Kartu kondisi mengubah perpindahan lukisan terakhir dari tindakan rutin menjadi keputusan yang mempertimbangkan riwayat benda.",
+            "Catatan 2019, pembacaan ulang, dan tanda tangan Reno mengubah kartu kondisi dari formulir rutin menjadi hubungan tanggung jawab antarpengelola karya.",
         },
         {
           isCorrect: false,

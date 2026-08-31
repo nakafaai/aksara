@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "a folded bus map gains meaning through its connection to the conflict, choice, and ending.",
+            "The folded map gains meaning through its connection to the misleading orientation, Nora's rotation, and the child's response.",
         },
         {
           isCorrect: false,

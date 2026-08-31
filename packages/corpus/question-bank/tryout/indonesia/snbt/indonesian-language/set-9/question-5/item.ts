@@ -7,24 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Mengukur atenuasi melalui satu perbandingan awal",
+          label: "Cara Mengubah Selisih Desibel Menjadi Persentase Energi",
         },
         {
           isCorrect: false,
-          label: "Menjadikan atenuasi penjelasan tunggal atas hasil pengamatan",
+          label: "Waktu Dengung sebagai Satu-satunya Ukuran Mutu Auditorium",
         },
         {
           isCorrect: false,
-          label: "Kaidah akhir dari perbandingan pertama tentang atenuasi",
+          label: "Panel Gabus yang Pasti Cocok untuk Setiap Ruang",
         },
         {
           isCorrect: false,
-          label:
-            "Keterbatasan yang membuat uji lanjutan atenuasi tidak diperlukan",
+          label: "Mengapa Pengukuran pada 250 Hz Tidak Lagi Diperlukan",
         },
         {
           isCorrect: true,
-          label: "Menguji Lapisan Gabus sebagai Peredam Bunyi pada Kotak Model",
+          label:
+            "Menguji Pengaruh Panel Gabus terhadap Bunyi dan Waktu Dengung",
         },
       ],
     },

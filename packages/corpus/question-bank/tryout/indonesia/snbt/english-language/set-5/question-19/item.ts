@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The definition of *motif* identifies the narrative device that connects the recurring object, the character's action, and the unresolved response at the end.",
+            "The definition of *motif* identifies how the recurring stamp links the missing record, Samira's action, and the next volunteer's response into one idea.",
         },
         {
           isCorrect: false,

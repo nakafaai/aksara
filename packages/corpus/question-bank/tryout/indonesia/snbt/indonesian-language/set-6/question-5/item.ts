@@ -11,7 +11,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Pengaruh Panjang Tali terhadap Periode Ayunan Bandul",
+          label: "Panjang Tali dan Periode Bandul dalam Pengukuran Manual",
         },
         {
           isCorrect: false,

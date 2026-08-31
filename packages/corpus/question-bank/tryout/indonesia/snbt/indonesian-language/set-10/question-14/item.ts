@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Penyebutan *desain inklusif* membuktikan rancangan sudah adil tanpa perlu memeriksa data pembanding atau masukan pengguna.",
+            "Menjadikan nama taman sebagai bukti bahwa alat dan informasinya sudah dapat digunakan semua anak.",
         },
         {
           isCorrect: true,
           label:
-            "Definisi *desain inklusif* memberi kriteria untuk menilai apakah rancangan dan bukti akses benar-benar mencakup kebutuhan pengguna yang berbeda.",
+            "Mendorong tim menilai keragaman sejak tahap perancangan dan membedakan perbaikan informasi dari akses nyata terhadap alat bermain.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi itu membatasi *desain inklusif* pada kebutuhan kelompok terbanyak sehingga variasi kebutuhan lain dapat diabaikan.",
+            "Membatasi evaluasi pada keluarga yang telah melaporkan kebutuhan karena kelompok lain tidak termasuk pengguna desain inklusif.",
         },
         {
           isCorrect: false,
           label:
-            "Istilah *desain inklusif* menggantikan konsultasi pihak terdampak dengan satu label yang langsung menentukan keputusan.",
+            "Membuktikan bahwa solusi tambahan selalu keliru meskipun hambatan baru ditemukan setelah taman digunakan.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi tersebut menjelaskan keterbatasan masa uji, bukan kriteria yang dipakai untuk membaca rancangan.",
+            "Mengubah keberhasilan menemukan alat menjadi bukti bahwa alat tersebut aman dan menyenangkan digunakan.",
         },
       ],
     },

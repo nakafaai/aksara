@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The definition of *systems thinking* provides a lens for reading the character's specific choice as a response to uncertainty, not as an isolated moral label.",
+            "The definition explains why Hana follows the bag across steps: the visible error at the bin may be produced by an earlier connection in the process.",
         },
         {
           isCorrect: false,

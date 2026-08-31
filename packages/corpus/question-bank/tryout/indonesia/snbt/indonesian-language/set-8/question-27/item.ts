@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Buku tipis dan satu kalimat kebingungan mengubah kebiasaan menghindar Jati menjadi langkah baca yang kecil tetapi dapat dilanjutkan.",
+            "Menuliskan pertanyaan pada pembatas mengubah benda yang semula disembunyikan menjadi jejak penalaran yang Jati bawa menuju pembahasan berikutnya.",
         },
         {
           isCorrect: false,
           label:
-            "Jati memilih untuk memilih buku paling tipis, lalu menulis satu kalimat tentang bagian yang tidak ia pahami; bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
+            "Pembatas bermakna keberhasilan karena bentuknya sama dengan pembatas penuh catatan milik Mira.",
         },
         {
           isCorrect: false,
           label:
-            "Jati memilih untuk memilih buku paling tipis, lalu menulis satu kalimat tentang bagian yang tidak ia pahami; akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
+            "Pembatas kehilangan perannya setelah kelompok gagal menyepakati satu tafsir terhadap kalimat di halaman 17.",
         },
         {
           isCorrect: false,
           label:
-            "Jati memilih untuk memilih buku paling tipis, lalu menulis satu kalimat tentang bagian yang tidak ia pahami; perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
+            "Perubahan Jati terjadi karena Mira memberi tafsir yang benar dan menyelesaikan kebingungannya.",
         },
         {
           isCorrect: false,
           label:
-            "Jati memilih untuk memilih buku paling tipis, lalu menulis satu kalimat tentang bagian yang tidak ia pahami; benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
+            "Pembatas tetap menandai rasa malu karena pada akhir cerita Jati masih memiliki dua pertanyaan yang belum terjawab.",
         },
       ],
     },

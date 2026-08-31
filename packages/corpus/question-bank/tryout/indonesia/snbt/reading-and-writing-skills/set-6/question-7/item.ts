@@ -88,7 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Tim menguji panah arah yang ditempatkan pada hari tertentu, sedangkan alur lama tetap digunakan pada hari pembanding.",
+            "Tim menguji pemasangan panah arah di setiap persimpangan pada hari tertentu, sedangkan alur lama tetap digunakan pada hari pembanding.",
         },
       ],
     },

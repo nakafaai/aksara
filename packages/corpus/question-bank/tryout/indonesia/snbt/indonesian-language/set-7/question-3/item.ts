@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pada kondisi yang diuji, air bersuhu 35 derajat Celsius berkaitan dengan perubahan dari 14 dan 15 menjadi 23; karena volume balon hanya menjadi perkiraan kasar jumlah gas, pola itu perlu diuji lagi sebelum diperluas menjadi klaim umum.",
+            "Dalam tiga suhu yang diuji, 35°C menghasilkan keliling terbesar, tetapi suhu tambahan dan pengukuran gas langsung diperlukan sebelum 35°C disebut suhu optimum produksi gas.",
         },
         {
           isCorrect: false,

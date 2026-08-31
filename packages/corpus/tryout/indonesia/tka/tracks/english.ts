@@ -34,7 +34,7 @@ export const tkaEnglishTrack = {
             en: "english",
             id: "bahasa-inggris",
           },
-          timeLimitSeconds: 2700,
+          timeLimitSeconds: 4500,
           translations: {
             de: { title: "Englisch" },
             en: { title: "English" },

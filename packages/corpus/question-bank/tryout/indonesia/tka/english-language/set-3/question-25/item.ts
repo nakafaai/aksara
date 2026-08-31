@@ -17,19 +17,23 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "The decision record includes an estimated repair cost.",
+          label:
+            "The passage says that a repair should not become an automatic rule.",
         },
         {
           isCorrect: false,
-          label: "The passage mentions damaged cables and worn wheels.",
+          label:
+            "The passage says that maintenance records can reveal repeated failures.",
         },
         {
           isCorrect: false,
-          label: "An unapproved battery is given as one risk example.",
+          label:
+            "The passage states that an unapproved battery may create greater risk.",
         },
         {
           isCorrect: false,
-          label: "The final paragraph uses the word transparent.",
+          label:
+            "The passage uses the word transparent to describe the repair-first check.",
         },
       ],
     },

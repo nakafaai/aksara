@@ -7,26 +7,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Measuring potential difference in one preliminary comparison",
+          label: "Potential difference in a classroom circuit",
         },
         {
           isCorrect: false,
           label:
-            "Treating potential difference as the sole explanation for the observed result",
+            "Why parallel cells always produce the greatest terminal voltage",
         },
         {
           isCorrect: true,
-          label: "Testing the voltage of two cells connected in series",
+          label: "How cell arrangement changed terminal voltage under one load",
         },
         {
           isCorrect: false,
           label:
-            "A final rule derived from the first comparison of potential difference",
+            "Proving that two cells in series double a circuit's power",
         },
         {
           isCorrect: false,
           label:
-            "A limitation that makes another test of potential difference unnecessary",
+            "A universal voltage law derived from one resistor value",
         },
       ],
     },

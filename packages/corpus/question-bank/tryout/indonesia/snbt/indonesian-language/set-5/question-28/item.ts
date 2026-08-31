@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "benang merah memperoleh makna karena muncul bersama konflik, pilihan, dan perubahan pada akhir cerita.",
+            "Pilihan pelanggan atas jahitan merah menunjukkan perubahan dari keinginan menghapus bekas kerusakan menuju penerimaan riwayat perawatan blus.",
         },
         {
           isCorrect: false,

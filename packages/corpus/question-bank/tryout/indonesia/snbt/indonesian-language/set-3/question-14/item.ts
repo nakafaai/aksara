@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *data dasar* memberi kriteria untuk menilai apakah rancangan dan bukti akses benar-benar mencakup kebutuhan pengguna yang berbeda.",
+            "Definisi *data dasar* menjelaskan alasan nilai 24 dipakai sebagai titik acuan ketika hasil uji 35 dan hasil pembanding 26 ditafsirkan.",
         },
         {
           isCorrect: false,

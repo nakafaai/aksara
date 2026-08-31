@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The organisers of a community repair café evaluated a card listing the tools needed for each repair through a comparison and consultation with affected groups.",
+            "The repair café compared tool-list cards across measured conditions, consulted the people involved, and supported only a limited extension because repair difficulty varied by object.",
         },
       ],
     },

@@ -2,15 +2,16 @@ export const metadata = {
   title: "Pembahasan Soal 3",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-12-27",
+  dateModified: "2026-08-31",
 };
 
-Untuk seorang peserta tertentu, terdapat <InlineMath math="20" /> posisi pemenang dari <InlineMath math="3000" /> posisi peserta yang sama-sama mungkin terpilih. Misalkan <InlineMath math="A" /> adalah kejadian peserta tersebut menang. Maka:
+Menghitung peluang salah satu kakak beradik menang secara langsung mudah membuat kasus keduanya menang terhitung dua kali. Lebih ringkas jika kita memakai kejadian komplemen, yaitu keduanya tidak terpilih.
+
+Setelah dua kakak beradik dikeluarkan, terdapat <InlineMath math="2998" /> peserta lain. Maka:
 
 <MathContainer>
-  <BlockMath math="P(A) = \frac{\text{banyak hadiah}}{\text{banyak peserta}}" />
-  <BlockMath math="P(A) = \frac{20}{3000}" />
-  <BlockMath math="P(A) = \frac{1}{150}" />
-  <BlockMath math="P(A) \approx 0{,}0067" />
+  <BlockMath math="\begin{aligned} P(\text{keduanya tidak menang}) &= \frac{\binom{2998}{20}}{\binom{3000}{20}} \\ &= \frac{2980}{3000}\cdot\frac{2979}{2999} \end{aligned}" />
+  <BlockMath math="\begin{aligned} P(\text{setidaknya satu menang}) &= 1-P(\text{keduanya tidak menang}) \\ &= 1-\frac{2980\cdot2979}{3000\cdot2999} \\ &= \frac{1993}{149950} \\ &\approx 0{,}0133 \end{aligned}" />
 </MathContainer>
 
-Desimal <InlineMath math="0{,}0067" /> setara dengan sekitar <InlineMath math="0{,}67\%" />. Jadi, peluang seorang peserta tertentu memperoleh hadiah adalah <InlineMath math="0{,}0067" />.
+Jadi, peluang setidaknya salah satu dari mereka memperoleh hadiah sekitar <InlineMath math="0{,}0133" />, atau <InlineMath math="1{,}33\%" />.

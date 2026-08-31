@@ -7,25 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Mengukur infiltrasi melalui satu perbandingan awal",
+          label: "Keluaran Air sebagai Satu-satunya Ukuran Infiltrasi",
         },
         {
           isCorrect: false,
-          label:
-            "Menjadikan infiltrasi penjelasan tunggal atas hasil pengamatan",
+          label: "Campuran Organik yang Selalu Menghambat Air Masuk",
         },
         {
           isCorrect: false,
-          label: "Kaidah akhir dari perbandingan pertama tentang infiltrasi",
+          label: "Kolom Pasir sebagai Salinan Semua Lahan Berpasir",
         },
         {
           isCorrect: false,
-          label:
-            "Keterbatasan yang membuat uji lanjutan infiltrasi tidak diperlukan",
+          label: "Mengabaikan Air yang Tersimpan di Dalam Tanah",
         },
         {
           isCorrect: true,
-          label: "Kegunaan dan Batas Kolom infiltrasi dari tiga jenis tanah",
+          label: "Membedakan Infiltrasi, Perkolasi, dan Penyimpanan Air",
         },
       ],
     },

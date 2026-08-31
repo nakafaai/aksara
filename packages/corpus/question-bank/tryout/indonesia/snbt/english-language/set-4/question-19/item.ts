@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The definition of *tone* identifies the narrative device that connects the recurring object, the character's action, and the unresolved response at the end.",
+            "The definition of *tone* explains how Eli's direct invitation shifts the display's attitude from distant expertise toward welcoming curiosity.",
         },
         {
           isCorrect: false,

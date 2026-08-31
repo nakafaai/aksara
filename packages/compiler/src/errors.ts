@@ -1,5 +1,6 @@
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { Schema } from "effect";
+import { StaticLiteralSyntaxReasonSchema } from "#compiler/ast/literal";
 
 /** The trusted MDX compiler rejected syntax or failed to emit JavaScript. */
 export class MdxCompilationError extends Schema.TaggedError<MdxCompilationError>()(
@@ -76,6 +77,79 @@ export class ExecutablePolicyError extends Schema.TaggedError<ExecutablePolicyEr
   }
 ) {}
 
+/** Stable source-level causes for rejecting one MathVisual component. */
+export const MathVisualSourceReasonSchema = Schema.Literals([
+  "attribute-duplicate",
+  "attribute-spread",
+  "attribute-unexpected",
+  "children-unexpected",
+  "placement-inline",
+  "scene-missing",
+  "scene-duplicate",
+  "scene-expression",
+  "scene-array-hole",
+  "scene-computed-property",
+  "scene-duplicate-property",
+  "scene-spread",
+  "scene-property",
+  "scene-dynamic-value",
+  "labels-duplicate",
+  "labels-expression",
+  "labels-object",
+  "labels-computed-property",
+  "labels-duplicate-property",
+  "labels-spread",
+  "labels-property",
+  "label-keys-mismatch",
+]);
+export type MathVisualSourceReason = typeof MathVisualSourceReasonSchema.Type;
+
+/** Every stable cause for rejecting one statically inspected MathVisual. */
+export const MathVisualPolicyReasonSchema = Schema.Union([
+  MathVisualSourceReasonSchema,
+  Schema.Literal("scene-schema"),
+]);
+export type MathVisualPolicyReason = typeof MathVisualPolicyReasonSchema.Type;
+
+const MathVisualSourceLocationFields = {
+  column: Schema.Int.check(Schema.isGreaterThan(0)),
+  line: Schema.Int.check(Schema.isGreaterThan(0)),
+};
+const MathVisualPathSegmentSchema = Schema.Union([Schema.String, Schema.Int]);
+
+/** Source-level MathVisual violation with one exact authored location. */
+const MathVisualSourceViolationSchema = Schema.Struct({
+  ...MathVisualSourceLocationFields,
+  reason: MathVisualSourceReasonSchema,
+});
+
+/** Contract-level MathVisual violation with its nested path and source. */
+const MathVisualSchemaViolationSchema = Schema.Struct({
+  ...MathVisualSourceLocationFields,
+  message: Schema.Trimmed.check(Schema.isNonEmpty()),
+  path: Schema.Array(MathVisualPathSegmentSchema),
+  reason: Schema.Literal("scene-schema"),
+});
+
+/** Typed source or schema finding produced by static MathVisual validation. */
+export const MathVisualPolicyViolationSchema = Schema.Union([
+  MathVisualSourceViolationSchema,
+  MathVisualSchemaViolationSchema,
+]);
+export type MathVisualPolicyViolation =
+  typeof MathVisualPolicyViolationSchema.Type;
+
+/** Authored MathVisual data exceeded its static scene contract. */
+export class MathVisualPolicyError extends Schema.TaggedError<MathVisualPolicyError>()(
+  "MathVisualPolicyError",
+  {
+    contentKey: ContentKeySchema,
+    violations: Schema.Array(MathVisualPolicyViolationSchema).pipe(
+      Schema.check(Schema.isMinLength(1))
+    ),
+  }
+) {}
+
 /** One UTF-8 content field exceeded its evidence-led byte ceiling. */
 export class ContentByteLimitExceededError extends Schema.TaggedError<ContentByteLimitExceededError>()(
   "ContentByteLimitExceededError",
@@ -99,16 +173,13 @@ export class ContentByteLimitExceededError extends Schema.TaggedError<ContentByt
 ) {}
 
 /** Static metadata syntax rejected without evaluating authored JavaScript. */
-export const AuthoredMetadataSyntaxReasonSchema = Schema.Literals([
-  "array-hole",
-  "computed-property",
-  "duplicate-property",
-  "dynamic-value",
-  "invalid-declaration",
-  "mixed-metadata-module",
-  "metadata-not-object",
-  "spread",
-  "unsupported-property",
+export const AuthoredMetadataSyntaxReasonSchema = Schema.Union([
+  StaticLiteralSyntaxReasonSchema,
+  Schema.Literals([
+    "invalid-declaration",
+    "mixed-metadata-module",
+    "metadata-not-object",
+  ]),
 ]);
 export type AuthoredMetadataSyntaxReason =
   typeof AuthoredMetadataSyntaxReasonSchema.Type;

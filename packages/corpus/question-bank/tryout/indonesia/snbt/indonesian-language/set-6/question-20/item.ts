@@ -7,7 +7,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Membaca Dua Sumber tentang ruang penyimpanan karya seni",
+          label:
+            "Menelusuri Provenans Lukisan melalui Label dan Kartu Kondisi",
         },
         {
           isCorrect: false,
@@ -15,11 +16,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Mengutamakan Sumber Terbaru dalam Kajian provenans",
+          label: "Mengutamakan Sumber Terbaru dalam Kajian Provenans",
         },
         {
           isCorrect: false,
-          label: "Menggabungkan Dua Sumber tanpa Memeriksa Konteks",
+          label: "Menggabungkan Dua Sumber Tanpa Memeriksa Konteks",
         },
         {
           isCorrect: false,

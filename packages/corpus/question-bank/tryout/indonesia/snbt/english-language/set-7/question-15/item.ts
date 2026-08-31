@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Priya's next step in a residents' workshop",
+          label: "From every detail to one clear action",
         },
         {
           isCorrect: false,

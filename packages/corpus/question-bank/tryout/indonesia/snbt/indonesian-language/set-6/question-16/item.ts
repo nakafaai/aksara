@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Siswa membandingkan dua jenis sumber tentang ruang penyimpanan karya seni untuk menyusun penjelasan yang terbatas dan dapat diperiksa.",
+            "Siswa menggabungkan label pameran dan kartu kondisi untuk menyusun provenans parsial lukisan, sambil membedakan lokasi, pemberi pinjaman, kepemilikan, dan celah dokumen.",
         },
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang ruang penyimpanan karya seni untuk menyusun penjelasan yang final dan dianggap berlaku untuk semua masa.",
+            "Siswa memakai label 1974 sebagai bukti bahwa Galeri Pesisir memiliki lukisan dan bahwa setiap perpindahan sebelumnya sudah tercatat.",
         },
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang ruang penyimpanan karya seni untuk menyusun penjelasan yang yang menghapus perbedaan tujuan kedua sumber.",
+            "Siswa menganggap kartu kondisi 1967 sebagai akta pemindahan hak milik karena kartu itu mencantumkan lokasi lukisan.",
         },
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang ruang penyimpanan karya seni untuk menyusun penjelasan yang dengan mengikuti sumber yang lebih baru secara otomatis.",
+            "Siswa memilih sumber tahun 1975 sebagai riwayat paling lengkap karena tanggal yang lebih baru selalu mencakup seluruh peristiwa sebelumnya.",
         },
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang ruang penyimpanan karya seni untuk menyusun penjelasan yang tanpa menilai asal serta tujuan tiap sumber.",
+            "Siswa mengisi rentang 1958 sampai 1967 dengan jalur perpindahan yang paling masuk akal karena lokasi awal dan akhirnya sudah diketahui.",
         },
       ],
     },

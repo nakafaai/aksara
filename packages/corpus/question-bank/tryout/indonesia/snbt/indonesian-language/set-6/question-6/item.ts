@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Model erosi menggunakan baki tanah menyederhanakan proses agar dapat diperiksa sambil tetap memiliki batas representasi.",
+            "Model baki menunjukkan bahwa penutup serat berkaitan dengan lebih sedikit tanah terbawa pada kondisi terkontrol, tetapi faktor penting pada lereng nyata belum terwakili.",
         },
         {
           isCorrect: false,

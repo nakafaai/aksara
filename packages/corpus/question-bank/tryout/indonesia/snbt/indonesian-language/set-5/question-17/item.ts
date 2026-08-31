@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Buku pesanan dan cerita penjahit sama-sama menunjukkan perubahan reparasi, tetapi jenis perbaikan dan alasan pelanggan merupakan bukti yang berbeda.",
+            "Buku pesanan menunjukkan pola jenis perbaikan lintas waktu, sedangkan wawancara memberi kemungkinan alasan; keduanya saling melengkapi tanpa menjadi bukti yang setara.",
         },
         {
           isCorrect: false,

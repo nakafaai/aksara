@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Ravi's small choice changes the meaning of a green permit card while addressing a conflict in a night market after closing.",
+            "Ravi traces a wrongly sorted bag backward from the final bin to a mismatched permit, revealing how one early symbol can spread an error through the market.",
         },
         {
           isCorrect: false,

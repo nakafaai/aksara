@@ -88,7 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Tim menguji label lokasi tanam pada hari tertentu, sedangkan alur lama tetap digunakan pada hari pembanding.",
+            "Tim menguji label lokasi tanam pada setiap baki bibit pada hari tertentu, sedangkan alur lama tetap digunakan pada hari pembanding.",
         },
       ],
     },

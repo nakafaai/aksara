@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Nara memilih untuk menggambar lingkaran cahaya terakhir sebelum lampu padam; bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
+            "Nara belum dapat menentukan warga yang paling dapat dipercaya, sehingga semua catatan harus ditampilkan tanpa penjelasan.",
         },
         {
           isCorrect: false,
           label:
-            "Nara memilih untuk menggambar lingkaran cahaya terakhir sebelum lampu padam; akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
+            "Nara ingin memenuhi permintaan kepala kantor dengan membuat peta yang lebih bersih dan sederhana.",
         },
         {
           isCorrect: false,
           label:
-            "Nara memilih untuk menggambar lingkaran cahaya terakhir sebelum lampu padam; perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
+            "Kedua warga sebenarnya mengamati lampu yang berbeda, meskipun cerita menyebut lokasi yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Nara memilih untuk menggambar lingkaran cahaya terakhir sebelum lampu padam; benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
+            "Perbedaan catatan membuktikan bahwa lampu rusak tepat di antara pukul 19.00 dan 22.00.",
         },
         {
           isCorrect: true,
           label:
-            "Lingkaran cahaya terakhir mengubah padamnya lampu berulang dari akhir yang hilang menjadi jejak pengalaman malam yang dapat diingat.",
+            "Kedua catatan berasal dari waktu yang berbeda dan sama-sama dapat memuat pengalaman yang benar; legenda menjaga konteks itu agar kondisi lampu tidak dianggap tetap.",
         },
       ],
     },

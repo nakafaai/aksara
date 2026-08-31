@@ -12,7 +12,7 @@ const item: QuestionItem = {
       kind: "category",
       statements: [
         {
-          correctCategoryOrder: 1,
+          correctCategoryOrder: 3,
           label: "Amplop benih yang dibawa pulang warga",
         },
         {

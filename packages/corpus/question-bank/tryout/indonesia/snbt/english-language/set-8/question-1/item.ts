@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The class tested how folding a paper bridge deck into a triangular truss affected load distribution, while controlling other factors and reporting a limitation.",
+            "The triangular-truss bridges held more washers under a controlled setup, while variation in paper fibres and folds kept the result provisional.",
         },
       ],
     },

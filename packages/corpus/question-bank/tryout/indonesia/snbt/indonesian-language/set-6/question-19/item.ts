@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *provenans* memberi dasar untuk membandingkan posisi kedua sumber tanpa menganggap salah satunya sebagai catatan yang sepenuhnya netral.",
+            "Definisi *provenans* menuntut riwayat kepemilikan, penguasaan, dan perpindahan dibedakan, sehingga satu catatan lokasi tidak langsung dianggap sebagai bukti hak milik.",
         },
         {
           isCorrect: false,

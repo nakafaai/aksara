@@ -28,12 +28,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "angka 28 menggambarkan keluaran kegiatan, tetapi tidak memberi persentase keberhasilan",
+            "angka 28 cukup untuk menilai peluang perbaikan benda yang tidak pernah dibawa peserta",
         },
         {
           isCorrect: false,
-          label:
-            "mendukung penerapan kegiatan yang sama pada sekolah dengan profil serupa",
+          label: "membuktikan hasil yang sama akan terjadi di sekolah lain",
         },
       ],
     },

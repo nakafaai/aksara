@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Keeping the uncertain date visible and explaining its status shows Theo choosing accountable documentation over a falsely complete record.",
+            "Marking the date as uncertain and explaining why shows Theo choosing accountable documentation over a falsely complete record.",
         },
         {
           isCorrect: false,

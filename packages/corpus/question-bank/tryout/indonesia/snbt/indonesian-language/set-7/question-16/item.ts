@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang pameran sains keliling untuk menyusun penjelasan yang final dan dianggap berlaku untuk semua masa.",
+            "Siswa memakai 240 catatan buku tamu untuk membuktikan bahwa seluruh pengunjung di lima kota mengalami pameran dengan cara yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang pameran sains keliling untuk menyusun penjelasan yang yang menghapus perbedaan tujuan kedua sumber.",
+            "Siswa menolak poster sebagai sumber sejarah karena bahan promosi tidak dapat memberi informasi tentang tujuan penyelenggara.",
         },
         {
           isCorrect: true,
           label:
-            "Siswa membandingkan dua jenis sumber tentang pameran sains keliling untuk menyusun penjelasan yang terbatas dan dapat diperiksa.",
+            "Siswa membandingkan citra inklusif pada lima poster dengan tanggapan sukarela dari dua kota, lalu membatasi simpulan karena tidak ada data seluruh pengunjung.",
         },
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang pameran sains keliling untuk menyusun penjelasan yang dengan mengikuti sumber yang lebih baru secara otomatis.",
+            "Siswa menganggap buku tamu lebih akurat daripada poster karena dibuat setelah pameran berlangsung dan memuat lebih banyak kata.",
         },
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang pameran sains keliling untuk menyusun penjelasan yang tanpa menilai asal serta tujuan tiap sumber.",
+            "Siswa menyimpulkan bahwa keluhan akses membatalkan seluruh komentar positif karena kedua jenis tanggapan tidak dapat muncul bersama.",
         },
       ],
     },

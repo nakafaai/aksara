@@ -1,6 +1,12 @@
 import { tkaEvidence } from "#corpus/tryout/indonesia/tka/evidence";
 import { defineAssessmentReadiness } from "#corpus/tryout/readiness/schema";
 
+const MATHEMATICS_COGNITIVE_LEVELS = [
+  "knowledge-understanding",
+  "application",
+  "reasoning",
+] as const;
+
 /** Official 2026 TKA Mathematics schedule and source-backed coverage gate. */
 export const tkaMathematicsReadiness = defineAssessmentReadiness({
   countryKey: "indonesia",
@@ -30,51 +36,61 @@ export const tkaMathematicsReadiness = defineAssessmentReadiness({
         ],
         topics: [
           {
+            cognitiveLevels: MATHEMATICS_COGNITIVE_LEVELS,
             contentDomains: ["numbers"],
             editorialMinimum: 3,
             key: "real-numbers",
           },
           {
+            cognitiveLevels: MATHEMATICS_COGNITIVE_LEVELS,
             contentDomains: ["algebra"],
             editorialMinimum: 3,
             key: "linear-equations-inequalities",
           },
           {
+            cognitiveLevels: MATHEMATICS_COGNITIVE_LEVELS,
             contentDomains: ["algebra"],
             editorialMinimum: 2,
             key: "functions",
           },
           {
+            cognitiveLevels: MATHEMATICS_COGNITIVE_LEVELS,
             contentDomains: ["algebra"],
             editorialMinimum: 1,
             key: "sequences-series",
           },
           {
+            cognitiveLevels: MATHEMATICS_COGNITIVE_LEVELS,
             contentDomains: ["geometry-measurement"],
             editorialMinimum: 3,
             key: "geometry-objects",
           },
           {
+            cognitiveLevels: MATHEMATICS_COGNITIVE_LEVELS,
             contentDomains: ["geometry-measurement"],
             editorialMinimum: 3,
             key: "geometry-transformations",
           },
           {
+            cognitiveLevels: MATHEMATICS_COGNITIVE_LEVELS,
             contentDomains: ["geometry-measurement"],
             editorialMinimum: 4,
             key: "measurement",
           },
           {
+            cognitiveLevels: MATHEMATICS_COGNITIVE_LEVELS,
             contentDomains: ["trigonometry"],
             editorialMinimum: 1,
             key: "trigonometric-ratios",
           },
           {
+            cognitiveLevels: MATHEMATICS_COGNITIVE_LEVELS,
             contentDomains: ["data-probability"],
             editorialMinimum: 3,
             key: "data",
           },
           {
+            cognitiveLevels: MATHEMATICS_COGNITIVE_LEVELS,
             contentDomains: ["data-probability"],
             editorialMinimum: 2,
             key: "probability",
@@ -84,18 +100,21 @@ export const tkaMathematicsReadiness = defineAssessmentReadiness({
       key: "mathematics",
       order: 1,
       questionCount: {
-        provenance: { evidenceKey: "tka-results-2026", kind: "official" },
+        provenance: {
+          evidenceKey: "tka-sma-2026-update",
+          kind: "official",
+        },
         value: 25,
       },
       timeLimitSeconds: {
         provenance: {
-          evidenceKey: "tka-pedoman-2026",
+          evidenceKey: "tka-sma-2026-update",
           kind: "official",
         },
-        value: 3000,
+        value: 4500,
       },
     },
   ],
-  sourceRevision: "2026-08-30",
+  sourceRevision: "2026-08-31",
   trackKey: "mathematics",
 });

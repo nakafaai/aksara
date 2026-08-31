@@ -17,22 +17,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Choose the second meeting place without checking whether the first remains reachable.",
+            "Because the first meeting place is meant to replace every evacuation route.",
         },
         {
           isCorrect: false,
           label:
-            "The second meeting place should be in another town even if children cannot reach it independently.",
+            "Because any place farther away is automatically safer for every household member.",
         },
         {
           isCorrect: false,
           label:
-            "Paper cards are mainly useful after family members have left the neighborhood.",
+            "Because paper cards can be used only after the household leaves its neighborhood.",
         },
         {
           isCorrect: false,
           label:
-            "The second location is needed because the out-of-area contact cannot send messages to local numbers.",
+            "Because an out-of-area contact cannot receive a message until the household travels farther away.",
         },
       ],
     },

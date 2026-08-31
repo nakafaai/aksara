@@ -5,13 +5,29 @@ export const metadata = {
   dateModified: "2026-08-31",
 };
 
-Ein Quader hat Länge <InlineMath math="4" /> cm, Breite <InlineMath math="8" /> cm und Höhe <InlineMath math="2" /> cm. Punkt P ist der Mittelpunkt einer vertikalen Kante. Punkt Q ist der Mittelpunkt der diagonal gegenüberliegenden vertikalen Kante.
+Ein Quader hat Länge <InlineMath math="4" /> cm, Breite <InlineMath math="8" /> cm und Höhe <InlineMath math="2" /> cm. Punkt <InlineMath math="P" /> ist der Mittelpunkt einer vertikalen Kante. Punkt <InlineMath math="Q" /> ist der Mittelpunkt der diagonal gegenüberliegenden vertikalen Kante.
 
 <LineEquation
-  title="Quader"
-  description="Exakter Quader mit zwölf geraden Kanten, Länge 4, Breite 8 und Höhe 2."
+  title={<>Quader mit den Punkten <InlineMath math="P" /> und <InlineMath math="Q" /></>}
+  description={<>Exakter Quader mit den Maßen <InlineMath math="4\text{ cm}\times8\text{ cm}\times2\text{ cm}" />. Die Punkte <InlineMath math="P" /> und <InlineMath math="Q" /> markieren die Mittelpunkte diagonal gegenüberliegender vertikaler Kanten.</>}
   cameraPosition={[8, 7, 10]}
-  data={[{ kind: "cuboid", length: 4, width: 8, height: 2, color: "#7c3aed" }]}
+  data={[
+    { kind: "cuboid", length: 4, width: 8, height: 2, color: "#7c3aed" },
+    {
+      points: [{ x: -2, y: 0, z: -4 }],
+      color: "#f97316",
+      smooth: false,
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [-0.6, 0.45, -0.6] }],
+    },
+    {
+      points: [{ x: 2, y: 0, z: 4 }],
+      color: "#16a34a",
+      smooth: false,
+      showPoints: true,
+      labels: [{ text: <InlineMath math="Q" />, at: 0, offset: [0.6, 0.45, 0.6] }],
+    },
+  ]}
 />
 
-Wie lang ist der kürzeste Weg auf der Oberfläche von P nach Q?
+Wie lang ist der kürzeste Weg auf der Oberfläche von <InlineMath math="P" /> nach <InlineMath math="Q" />?

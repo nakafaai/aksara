@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Nilai 25 membuktikan bahwa format satuan seragam menghasilkan catatan kedalaman yang benar pada semua musim.",
+            "Proporsi pasangan yang dapat dibandingkan meningkat 13 persen karena selisih jumlah pasangannya adalah 27 dikurangi 14.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan kedalaman air menurut musim tidak relevan karena tujuan format hanya menyeragamkan penulisan satuan.",
+            "Proporsi pasangan yang dapat dibandingkan meningkat dari sekitar 46,7 persen menjadi 90 persen, sehingga kenaikannya 90 poin persentase.",
         },
         {
           isCorrect: false,
           label:
-            "Nilai pembanding 14 dapat diabaikan sebab nilai uji sudah hampir dua kali nilai dasar 13.",
+            "Proporsi pasangan yang dapat dibandingkan meningkat sekitar 92,9 poin persentase karena 27 hampir dua kali 14.",
         },
         {
           isCorrect: false,
           label:
-            "Kesepakatan warga dan petugas desa cukup untuk menyatakan bahwa data dari waktu pengukuran berbeda langsung dapat dibandingkan.",
+            "Sebanyak 90 persen seluruh arsip 40 sumur sudah dapat dibandingkan karena formulir baru berhasil pada 27 pasangan.",
         },
         {
           isCorrect: true,
           label:
-            "Nilai 25 dibandingkan 14 mendukung pemakaian format satuan seragam, tetapi perbandingan kedalaman tetap harus mengendalikan musim dan waktu pengukuran.",
+            "Proporsi pasangan yang dapat dibandingkan meningkat dari sekitar 46,7 persen menjadi 90 persen, yaitu sekitar 43,3 poin persentase pada uji 30 pasangan.",
         },
       ],
     },
