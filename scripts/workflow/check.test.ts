@@ -58,8 +58,8 @@ describe("workflow policy", () => {
       verifyWorkflows({
         ...sources,
         ci: sources.ci.replace(
-          "release-command.ts describe",
-          "release-command.ts inspect"
+          "release/command.ts describe",
+          "release/command.ts inspect"
         ),
       })
     ).toThrow("CI must derive release necessity from the tested identity tool");

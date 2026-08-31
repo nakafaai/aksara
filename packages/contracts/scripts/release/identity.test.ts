@@ -7,7 +7,7 @@ import {
   packageIdentity,
   parseVersion,
   resolveIdentity,
-} from "#scripts/release-identity";
+} from "#scripts/release/identity";
 
 /** Encodes one immutable release row from its real tag and package version. */
 function release(tag: string, version: string) {

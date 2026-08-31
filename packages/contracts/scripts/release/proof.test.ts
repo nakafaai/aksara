@@ -13,7 +13,7 @@ import { ChildProcess, ChildProcessSpawner } from "effect/unstable/process";
 import {
   type ContractProofInput,
   proveContractRelease,
-} from "#scripts/release-proof";
+} from "#scripts/release/proof";
 
 const SOURCE_SHA = "b".repeat(40);
 const RELEASE_SHA = "a".repeat(40);

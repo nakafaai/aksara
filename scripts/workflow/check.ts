@@ -26,11 +26,11 @@ const CONTRACT_TRIGGER_PATTERN =
   /push:[\s\S]*branches: \[main\][\s\S]*workflow_dispatch:/u;
 const CONTRACT_PATH_TRIGGER_PATTERN = /\bpaths(?:-ignore)?:/u;
 const RELEASE_IDENTITY_PATTERN =
-  /Capture immutable contract releases[\s\S]*gh api --paginate[\s\S]*\.immutable == true[\s\S]*\.assets\[\][\s\S]*nakafa-aksara-contracts-[\s\S]*@tsv[\s\S]*release-command\.ts describe[\s\S]*--releases[\s\S]*Download latest immutable archive[\s\S]*\.isImmutable == true[\s\S]*release-command\.ts "\$\{arguments\[@\]\}"/u;
+  /Capture immutable contract releases[\s\S]*gh api --paginate[\s\S]*\.immutable == true[\s\S]*\.assets\[\][\s\S]*nakafa-aksara-contracts-[\s\S]*@tsv[\s\S]*release\/command\.ts describe[\s\S]*--releases[\s\S]*Download latest immutable archive[\s\S]*\.isImmutable == true[\s\S]*release\/command\.ts "\$\{arguments\[@\]\}"/u;
 const SHELL_VERSION_PATTERN =
   /IFS=|current_(?:major|minor|patch)|latest_(?:major|minor|patch)|latest_version=\$\{|release_tag="(?:contracts-v|@nakafa\/aksara-contracts@)\$|asset_name="nakafa-aksara-contracts-\$/u;
 const ARCHIVE_IDENTITY_PATTERN =
-  /release-command\.ts describe[\s\S]*pnpm verify:consumer -- --output[\s\S]*gh release download[\s\S]*arguments=\(decide[\s\S]*--previous "\$LATEST_ARCHIVE"[\s\S]*release-command\.ts "\$\{arguments\[@\]\}"/u;
+  /release\/command\.ts describe[\s\S]*pnpm verify:consumer -- --output[\s\S]*gh release download[\s\S]*arguments=\(decide[\s\S]*--previous "\$LATEST_ARCHIVE"[\s\S]*release\/command\.ts "\$\{arguments\[@\]\}"/u;
 const ATTESTATION_PATTERN =
   /actions\/attest@[0-9a-f]{40}[\s\S]*gh attestation verify "\$TARBALL"[\s\S]*--signer-workflow "\$GITHUB_REPOSITORY\/\.github\/workflows\/contracts\.yml"[\s\S]*--source-digest "\$GITHUB_SHA"[\s\S]*--source-ref "refs\/heads\/main"/u;
 const RELEASE_JOB_PATTERN =
@@ -50,7 +50,7 @@ const TERMINAL_GATE_PATTERN =
 const PUBLICATION_SCOPE_PATTERN =
   /scope:[\s\S]*PUBLICATION_SCOPE: \$\{\{ inputs\.scope \}\}[\s\S]*jq -e 'type == "array" and length > 0[\s\S]*mapfile -t SCOPE_SELECTORS[\s\S]*scope_args\+=\(--scope "\$selector"\)[\s\S]*"\$\{scope_args\[@\]\}"/u;
 const CONTENT_CONTRACT_PATTERN =
-  /contracts:[\s\S]*attestations: read[\s\S]*contents: read[\s\S]*fetch-depth: 0[\s\S]*pnpm --filter @nakafa\/aksara-contracts verify:consumer --output "\$TARBALL"[\s\S]*release-command\.ts prove[\s\S]*--archive "\$CURRENT_ARCHIVE"[\s\S]*--repository "\$GITHUB_REPOSITORY"[\s\S]*--source-sha "\$GITHUB_SHA"[\s\S]*operate:[\s\S]*needs: contracts[\s\S]*needs\.contracts\.result == 'success'/u;
+  /contracts:[\s\S]*attestations: read[\s\S]*contents: read[\s\S]*fetch-depth: 0[\s\S]*pnpm --filter @nakafa\/aksara-contracts verify:consumer --output "\$TARBALL"[\s\S]*release\/command\.ts prove[\s\S]*--archive "\$CURRENT_ARCHIVE"[\s\S]*--repository "\$GITHUB_REPOSITORY"[\s\S]*--source-sha "\$GITHUB_SHA"[\s\S]*operate:[\s\S]*needs: contracts[\s\S]*needs\.contracts\.result == 'success'/u;
 const OPERATION_HISTORY_PATTERN =
   /^ {2}operate:\n[\s\S]*?^ {6}- name: Checkout\n^ {8}uses: actions\/checkout@[^\n]+\n^ {8}with:\n(?:^ {10}[^\n]+\n)*^ {10}fetch-depth: 0\n(?:^ {10}[^\n]+\n)*(?:\n)?^ {6}- name: Setup toolchain$/mu;
 const PINNED_ACTION_PATTERN = /^[a-z0-9-]+\/[a-z0-9-]+@[0-9a-f]{40}$/u;

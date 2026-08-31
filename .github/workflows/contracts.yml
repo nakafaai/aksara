@@ -64,7 +64,7 @@ jobs:
         env:
           CONTRACT_RELEASES: ${{ runner.temp }}/contract-releases.tsv
         run: >-
-          node packages/contracts/scripts/release-command.ts describe
+          node packages/contracts/scripts/release/command.ts describe
           --releases "$CONTRACT_RELEASES" --output "$GITHUB_OUTPUT"
 
       - name: Build verified archive
@@ -109,7 +109,7 @@ jobs:
           if [[ "$HAS_LATEST" == "true" ]]; then
             arguments+=(--previous "$LATEST_ARCHIVE")
           fi
-          node packages/contracts/scripts/release-command.ts "${arguments[@]}"
+          node packages/contracts/scripts/release/command.ts "${arguments[@]}"
 
       - name: Verify repository
         if: steps.decision.outputs.mode == 'create'

@@ -2,7 +2,7 @@ import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import { Effect, FileSystem, Path } from "effect";
 import { ChildProcess } from "effect/unstable/process";
-import { makeReleaseCommand } from "#scripts/release-program";
+import { makeReleaseCommand } from "#scripts/release/program";
 
 /** Creates one archive carrying the exact package identity. */
 const createArchive = Effect.fn("ContractReleaseProgramTest.createArchive")(

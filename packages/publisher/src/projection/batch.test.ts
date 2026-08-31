@@ -13,7 +13,7 @@ import { Effect, Schema, Stream } from "effect";
 import {
   canonicalizeProjectionBatch,
   makeProjectionBatches,
-} from "#publisher/projection-batch";
+} from "#publisher/projection/batch";
 import { materialGraph } from "#test/graph";
 
 const releaseId = ReleaseIdSchema.make("test-release-projections");

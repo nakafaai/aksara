@@ -56,7 +56,7 @@ jobs:
         env:
           CONTRACT_RELEASES: ${{ runner.temp }}/contract-releases.tsv
         run: >-
-          node packages/contracts/scripts/release-command.ts describe
+          node packages/contracts/scripts/release/command.ts describe
           --releases "$CONTRACT_RELEASES" --output "$GITHUB_OUTPUT"
 
       - name: Lint
@@ -133,4 +133,4 @@ jobs:
           if [[ "$HAS_LATEST" == "true" ]]; then
             arguments+=(--previous "$LATEST_ARCHIVE")
           fi
-          node packages/contracts/scripts/release-command.ts "${arguments[@]}"
+          node packages/contracts/scripts/release/command.ts "${arguments[@]}"

@@ -1,12 +1,12 @@
 import { parseArgs } from "node:util";
 import { Effect, FileSystem } from "effect";
-import { verifyArchive, writeOutputs } from "#scripts/release-archive";
+import { verifyArchive, writeOutputs } from "#scripts/release/archive";
 import {
   decideArchive,
   releaseError,
   resolveIdentity,
-} from "#scripts/release-identity";
-import { proveContractRelease } from "#scripts/release-proof";
+} from "#scripts/release/identity";
+import { proveContractRelease } from "#scripts/release/proof";
 
 /** Release identity subcommands available only to protected workflows. */
 type ReleaseCommand = "decide" | "describe" | "prove";

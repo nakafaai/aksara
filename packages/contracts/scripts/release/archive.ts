@@ -5,7 +5,7 @@ import {
   type ContractReleaseError,
   packageIdentity,
   releaseError,
-} from "#scripts/release-identity";
+} from "#scripts/release/identity";
 
 const MULTILINE_PATTERN = /[\r\n]/u;
 
