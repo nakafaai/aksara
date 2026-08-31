@@ -12,7 +12,7 @@ import {
 
 /** Reviewed Nakafa implementation that must be live before developer publication. */
 export const NAKAFA_AGENT_IMPLEMENTATION_SHA = GitCommitShaSchema.make(
-  "2fae54fec31b7cd630a56933b613fa5b9504695a"
+  "927d7f681a43acb205d8abcbd63101a8ecd31b41"
 );
 
 /** Stable source-owned identity of Nakafa's public developer page. */

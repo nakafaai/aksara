@@ -2,20 +2,20 @@ export const metadata = {
   title: "Entwicklerressourcen",
   description: "Nutze Nakafas öffentliche REST API, den OpenAPI Vertrag, den MCP Server und das Kommandozeilenprogramm für verlässliche Bildungsabläufe.",
   datePublished: "2026-08-28",
-  dateModified: "2026-08-29",
+  dateModified: "2026-08-31",
 };
 
 # Entwicklerressourcen
 
-Zuletzt aktualisiert: 29. August 2026
+Zuletzt aktualisiert: 31. August 2026
 
 Nakafa bietet öffentlichen, maschinenlesbaren Zugriff auf mehrsprachige Lernmaterialien und klar begrenzte Quran-Referenzen. Die Schnittstellen eignen sich für Agents und Anwendungen, die typisierte Eingaben, vorhersehbare Fehler und kanonische Inhaltsreferenzen benötigen. Sie sind schreibgeschützt, benötigen kein Nakafa Konto und geben keine privaten Lerndaten, Käufe oder Kontofunktionen frei.
 
 ## Verifizierte Implementierung
 
-Diese öffentlichen Schnittstellen wurden live gegen den Nakafa Commit [`2fae54fec31b7cd630a56933b613fa5b9504695a`](https://github.com/nakafaai/nakafa.com/commit/2fae54fec31b7cd630a56933b613fa5b9504695a) verifiziert: REST Index und OpenAPI Vertrag liefern dieselbe Release Identität, die kanonische MCP Bridge schließt die Protokollerkennung ab und `nakafa-cli@0.1.0` ist über npm verfügbar.
+Diese öffentlichen Schnittstellen wurden live gegen den Nakafa-Commit [`927d7f681a43acb205d8abcbd63101a8ecd31b41`](https://github.com/nakafaai/nakafa.com/commit/927d7f681a43acb205d8abcbd63101a8ecd31b41) verifiziert: REST-Index, OpenAPI-Vertrag und MCP-Endpunkt liefern dieselbe Release-Identität, und `@nakafa/cli@0.1.1` ist über npm mit überprüfbarer Herkunft verfügbar.
 
-In dieser Revision besitzt [`api.ts`](https://github.com/nakafaai/nakafa.com/blob/2fae54fec31b7cd630a56933b613fa5b9504695a/packages/backend/convex/routes/agent/api.ts) REST, [`route.ts`](https://github.com/nakafaai/nakafa.com/blob/2fae54fec31b7cd630a56933b613fa5b9504695a/packages/backend/convex/routes/agent/mcp/route.ts) MCP, [`document.ts`](https://github.com/nakafaai/nakafa.com/blob/2fae54fec31b7cd630a56933b613fa5b9504695a/packages/backend/agent/openapi/document.ts) erzeugt OpenAPI und [`program.ts`](https://github.com/nakafaai/nakafa.com/blob/2fae54fec31b7cd630a56933b613fa5b9504695a/packages/cli/src/program.ts) besitzt die CLI Befehlsoberfläche.
+In dieser Revision besitzt [`api.ts`](https://github.com/nakafaai/nakafa.com/blob/927d7f681a43acb205d8abcbd63101a8ecd31b41/packages/backend/convex/routes/agent/api.ts) REST, [`route.ts`](https://github.com/nakafaai/nakafa.com/blob/927d7f681a43acb205d8abcbd63101a8ecd31b41/packages/backend/convex/routes/agent/mcp/route.ts) MCP, [`document.ts`](https://github.com/nakafaai/nakafa.com/blob/927d7f681a43acb205d8abcbd63101a8ecd31b41/packages/backend/agent/openapi/document.ts) erzeugt OpenAPI und [`program.ts`](https://github.com/nakafaai/nakafa.com/blob/927d7f681a43acb205d8abcbd63101a8ecd31b41/packages/cli/src/program.ts) besitzt die CLI-Befehlsoberfläche.
 
 ## Öffentliche REST API
 
@@ -63,7 +63,7 @@ Von Convex erzeugte API Fehler verwenden RFC 9457 Problem Details mit dem Medien
 
 ## Model Context Protocol
 
-Der kanonische MCP Endpunkt ist [https://nakafa.com/mcp](https://nakafa.com/mcp). Verwende MCP, wenn ein Agent bereits Tool-Erkennung und strukturierte Tool-Aufrufe unterstützt. Verwende REST für gewöhnliche HTTP-Integrationen oder aus OpenAPI erzeugte Clients. Beide Schnittstellen führen dieselbe Convex-eigene Fähigkeit aus und prüfen dieselbe signierte Aksara-Veröffentlichung.
+Der kanonische MCP-Endpunkt ist [https://mcp.nakafa.com/mcp](https://mcp.nakafa.com/mcp). Verwende MCP, wenn ein Agent bereits Tool-Erkennung und strukturierte Tool-Aufrufe unterstützt. Verwende REST für gewöhnliche HTTP-Integrationen oder aus OpenAPI erzeugte Clients. Beide Schnittstellen führen dieselbe Convex-eigene Fähigkeit aus und prüfen dieselbe signierte Aksara-Veröffentlichung.
 
 Der Server stellt vier schreibgeschützte Tools bereit:
 
@@ -79,7 +79,7 @@ Moderne Clients verwenden Streamable HTTP. Das Protokoll `2026-07-28` ersetzt de
     language: "http",
     filename: "mcp.http",
     code: `POST /mcp HTTP/1.1
-Host: nakafa.com
+Host: mcp.nakafa.com
 Content-Type: application/json
 Accept: application/json, text/event-stream
 MCP-Protocol-Version: 2026-07-28
@@ -90,7 +90,7 @@ Mcp-Method: server/discover
 ###
 
 POST /mcp HTTP/1.1
-Host: nakafa.com
+Host: mcp.nakafa.com
 Content-Type: application/json
 Accept: application/json, text/event-stream
 MCP-Protocol-Version: 2026-07-28
@@ -102,13 +102,13 @@ Mcp-Method: tools/list
 
 ## Kommandozeile
 
-Das offizielle Node 24 Paket heißt `nakafa-cli` und stellt den Befehl `nakafa` bereit. Es verwendet die öffentliche REST API und schreibt standardmäßig kompaktes JSON. Ergänze `--pretty` für lesbare Ausgabe oder `--api-base`, wenn du einen lokalen oder unabhängig betriebenen kompatiblen API Endpunkt prüfst.
+Das offizielle Node-24-Paket heißt `@nakafa/cli` und stellt den Befehl `nakafa` bereit. Es verwendet die öffentliche REST-API und schreibt standardmäßig kompaktes JSON. Ergänze `--pretty` für lesbare Ausgabe oder `--api-base`, wenn du einen lokalen oder unabhängig betriebenen kompatiblen API-Endpunkt prüfst.
 
 <CodeBlock
   data={[{
     language: "bash",
-    filename: "nakafa-cli.sh",
-    code: `npm install --global nakafa-cli
+    filename: "nakafa.sh",
+    code: `npm install --global @nakafa/cli
 nakafa search lineare gleichungen
 nakafa quran 1 --from-verse 1 --to-verse 7 --pretty
 nakafa mcp`
