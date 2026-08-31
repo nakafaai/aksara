@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\frac{4}{3}C + \\text{Rp}4{.}000{,}00$$",
+        },
+        {
           isCorrect: false,
           label: "$$C + \\text{Rp}4{.}000{,}00$$",
         },
         {
           isCorrect: false,
           label: "$$2C + \\text{Rp}4{.}000{,}00$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{4}{3}C + \\text{Rp}4{.}000{,}00$$",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\frac{4}{3}C + \\text{Rp}4{,}000.00$$",
+        },
+        {
           isCorrect: false,
           label: "$$C + \\text{Rp}4{,}000.00$$",
         },
         {
           isCorrect: false,
           label: "$$2C + \\text{Rp}4{,}000.00$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{4}{3}C + \\text{Rp}4{,}000.00$$",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\frac{4}{3}C + \\text{Rp}4{.}000{,}00$$",
+        },
+        {
           isCorrect: false,
           label: "$$C + \\text{Rp}4{.}000{,}00$$",
         },
         {
           isCorrect: false,
           label: "$$2C + \\text{Rp}4{.}000{,}00$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{4}{3}C + \\text{Rp}4{.}000{,}00$$",
         },
         {
           isCorrect: false,

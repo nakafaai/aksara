@@ -11,16 +11,16 @@ const item: QuestionItem = {
           label: "$$220$$",
         },
         {
-          isCorrect: true,
-          label: "$$240$$",
-        },
-        {
           isCorrect: false,
           label: "$$260$$",
         },
         {
           isCorrect: false,
           label: "$$280$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$240$$",
         },
         {
           isCorrect: false,
@@ -36,16 +36,16 @@ const item: QuestionItem = {
           label: "$$220$$",
         },
         {
-          isCorrect: true,
-          label: "$$240$$",
-        },
-        {
           isCorrect: false,
           label: "$$260$$",
         },
         {
           isCorrect: false,
           label: "$$280$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$240$$",
         },
         {
           isCorrect: false,
@@ -61,16 +61,16 @@ const item: QuestionItem = {
           label: "$$220$$",
         },
         {
-          isCorrect: true,
-          label: "$$240$$",
-        },
-        {
           isCorrect: false,
           label: "$$260$$",
         },
         {
           isCorrect: false,
           label: "$$280$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$240$$",
         },
         {
           isCorrect: false,

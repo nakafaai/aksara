@@ -10,10 +10,6 @@ const item: QuestionItem = {
           label: "$$3{,}6$$ Minuten",
         },
         {
-          isCorrect: true,
-          label: "$$4{,}8$$ Minuten",
-        },
-        {
           isCorrect: false,
           label: "$$7{,}2$$ Minuten",
         },
@@ -25,6 +21,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$8{,}0$$ Minuten",
         },
+        {
+          isCorrect: true,
+          label: "$$4{,}8$$ Minuten",
+        },
       ],
     },
     en: {
@@ -33,10 +33,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$3.6$$ minutes",
-        },
-        {
-          isCorrect: true,
-          label: "$$4.8$$ minutes",
         },
         {
           isCorrect: false,
@@ -50,6 +46,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$8.0$$ minutes",
         },
+        {
+          isCorrect: true,
+          label: "$$4.8$$ minutes",
+        },
       ],
     },
     id: {
@@ -58,10 +58,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$3{,}6$$ menit",
-        },
-        {
-          isCorrect: true,
-          label: "$$4{,}8$$ menit",
         },
         {
           isCorrect: false,
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$8{,}0$$ menit",
+        },
+        {
+          isCorrect: true,
+          label: "$$4{,}8$$ menit",
         },
       ],
     },

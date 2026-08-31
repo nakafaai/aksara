@@ -10,6 +10,11 @@ const item: QuestionItem = {
           label: "Sie ist zwingend wahr, weil die grünen Flächen abnahmen.",
         },
         {
+          isCorrect: true,
+          label:
+            "Sie wird von den Angaben nicht gestützt, weil sie eine weder gemessene noch durch eine Regel verknüpfte Folge einführt.",
+        },
+        {
           isCorrect: false,
           label:
             "Sie ist wahrscheinlich wahr, weil die Landoberflächentemperatur zunahm.",
@@ -18,11 +23,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Sie ist mit Sicherheit falsch, weil das Projekt keine Überschwemmungsdaten erfasste.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Sie wird von den Angaben nicht gestützt, weil sie eine weder gemessene noch durch eine Regel verknüpfte Folge einführt.",
         },
         {
           isCorrect: false,
@@ -39,6 +39,11 @@ const item: QuestionItem = {
           label: "It is necessarily true because green land cover decreased.",
         },
         {
+          isCorrect: true,
+          label:
+            "It is not supported by the information because it introduces an outcome that was neither measured nor linked by a stated rule.",
+        },
+        {
           isCorrect: false,
           label:
             "It is probably true because land surface temperature increased.",
@@ -47,11 +52,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "It is definitely false because the project recorded no flooding data.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "It is not supported by the information because it introduces an outcome that was neither measured nor linked by a stated rule.",
         },
         {
           isCorrect: false,
@@ -69,6 +69,11 @@ const item: QuestionItem = {
             "Simpulan itu pasti benar karena tutupan lahan hijau berkurang.",
         },
         {
+          isCorrect: true,
+          label:
+            "Simpulan itu tidak didukung oleh informasi karena memperkenalkan hasil yang tidak diukur dan tidak dihubungkan oleh aturan apa pun.",
+        },
+        {
           isCorrect: false,
           label:
             "Simpulan itu mungkin benar karena suhu permukaan lahan meningkat.",
@@ -77,11 +82,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Simpulan itu pasti salah karena proyek tidak mencatat data banjir.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Simpulan itu tidak didukung oleh informasi karena memperkenalkan hasil yang tidak diukur dan tidak dihubungkan oleh aturan apa pun.",
         },
         {
           isCorrect: false,

@@ -19,13 +19,13 @@ const item: QuestionItem = {
             "Der Bericht bewies, dass die überlebenden Setzlinge krankheitsfrei waren.",
         },
         {
-          isCorrect: true,
-          label: "$$72$$ der überlebenden Setzlinge bildeten neue Blätter.",
-        },
-        {
           isCorrect: false,
           label:
             "Die überlebenden Setzlinge trugen mehr Früchte als die übrigen.",
+        },
+        {
+          isCorrect: true,
+          label: "$$72$$ der überlebenden Setzlinge bildeten neue Blätter.",
         },
       ],
     },
@@ -46,12 +46,12 @@ const item: QuestionItem = {
             "The report proved that the surviving seedlings were disease-free.",
         },
         {
-          isCorrect: true,
-          label: "$$72$$ of the surviving seedlings produced new leaves.",
-        },
-        {
           isCorrect: false,
           label: "The surviving seedlings produced more fruit than the others.",
+        },
+        {
+          isCorrect: true,
+          label: "$$72$$ of the surviving seedlings produced new leaves.",
         },
       ],
     },
@@ -74,14 +74,14 @@ const item: QuestionItem = {
             "Laporan membuktikan bahwa bibit yang bertahan bebas dari penyakit.",
         },
         {
-          isCorrect: true,
-          label:
-            "Sebanyak $$72$$ bibit yang bertahan hidup menghasilkan daun baru.",
-        },
-        {
           isCorrect: false,
           label:
             "Bibit yang bertahan menghasilkan lebih banyak buah daripada bibit lainnya.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Sebanyak $$72$$ bibit yang bertahan hidup menghasilkan daun baru.",
         },
       ],
     },

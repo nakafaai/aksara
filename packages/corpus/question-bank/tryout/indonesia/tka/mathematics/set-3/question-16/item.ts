@@ -2,9 +2,9 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "application",
-    contentDomain: "algebra",
-    topic: "sequences-series",
+    cognitiveLevel: "knowledge-understanding",
+    contentDomain: "geometry-measurement",
+    topic: "measurement",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 208.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 224.000",
+          label: "$$40+20\\pi$$",
         },
         {
           isCorrect: true,
-          label: "Rp 240.000",
+          label: "$$80+20\\pi$$",
         },
         {
           isCorrect: false,
-          label: "Rp 256.000",
+          label: "$$80+16\\pi$$",
         },
         {
           isCorrect: false,
-          label: "Rp 272.000",
+          label: "$$80+18\\pi$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$120+20\\pi$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 208.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 224.000",
+          label: "$$40+20\\pi$$",
         },
         {
           isCorrect: true,
-          label: "Rp 240.000",
+          label: "$$80+20\\pi$$",
         },
         {
           isCorrect: false,
-          label: "Rp 256.000",
+          label: "$$80+16\\pi$$",
         },
         {
           isCorrect: false,
-          label: "Rp 272.000",
+          label: "$$80+18\\pi$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$120+20\\pi$$",
         },
       ],
     },
@@ -62,28 +62,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 208.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 224.000",
+          label: "$$40+20\\pi$$",
         },
         {
           isCorrect: true,
-          label: "Rp 240.000",
+          label: "$$80+20\\pi$$",
         },
         {
           isCorrect: false,
-          label: "Rp 256.000",
+          label: "$$80+16\\pi$$",
         },
         {
           isCorrect: false,
-          label: "Rp 272.000",
+          label: "$$80+18\\pi$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$120+20\\pi$$",
         },
       ],
     },
   },
-  stimulusKey: "monthly-savings",
 };
 
 export default item;

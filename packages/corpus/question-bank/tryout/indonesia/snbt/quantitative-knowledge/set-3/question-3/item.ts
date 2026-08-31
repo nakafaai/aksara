@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "$$1$$ Stunde $$15$$ Minuten",
         },
         {
-          isCorrect: true,
-          label: "$$1$$ Stunde $$20$$ Minuten",
-        },
-        {
           isCorrect: false,
           label: "$$1$$ Stunde $$30$$ Minuten",
+        },
+        {
+          isCorrect: true,
+          label: "$$1$$ Stunde $$20$$ Minuten",
         },
         {
           isCorrect: false,
@@ -35,12 +35,12 @@ const item: QuestionItem = {
           label: "$$1$$ hour $$15$$ minutes",
         },
         {
-          isCorrect: true,
-          label: "$$1$$ hour $$20$$ minutes",
-        },
-        {
           isCorrect: false,
           label: "$$1$$ hour $$30$$ minutes",
+        },
+        {
+          isCorrect: true,
+          label: "$$1$$ hour $$20$$ minutes",
         },
         {
           isCorrect: false,
@@ -60,12 +60,12 @@ const item: QuestionItem = {
           label: "$$1$$ jam $$15$$ menit",
         },
         {
-          isCorrect: true,
-          label: "$$1$$ jam $$20$$ menit",
-        },
-        {
           isCorrect: false,
           label: "$$1$$ jam $$30$$ menit",
+        },
+        {
+          isCorrect: true,
+          label: "$$1$$ jam $$20$$ menit",
         },
         {
           isCorrect: false,

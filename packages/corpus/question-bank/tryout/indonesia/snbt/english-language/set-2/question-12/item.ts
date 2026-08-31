@@ -15,6 +15,11 @@ const item: QuestionItem = {
           label: "Supplements always cure an infection after symptoms begin.",
         },
         {
+          isCorrect: true,
+          label:
+            "When nutrient intake is already adequate, taking more supplements usually does not prevent infection or speed recovery.",
+        },
+        {
           isCorrect: false,
           label:
             "A nutrient deficiency has no effect on normal immune function.",
@@ -22,11 +27,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Vitamin and mineral supplements prevent every common cold.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "When nutrient intake is already adequate, taking more supplements usually does not prevent infection or speed recovery.",
         },
       ],
     },

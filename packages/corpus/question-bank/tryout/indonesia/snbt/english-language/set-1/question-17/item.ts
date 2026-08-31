@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Paragraph $$4$$",
+        },
+        {
           isCorrect: false,
           label: "Paragraph $$1$$",
         },
@@ -16,10 +20,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Paragraph $$3$$",
-        },
-        {
-          isCorrect: true,
-          label: "Paragraph $$4$$",
         },
         {
           isCorrect: false,

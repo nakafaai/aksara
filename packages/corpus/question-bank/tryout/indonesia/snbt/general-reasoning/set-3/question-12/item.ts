@@ -6,14 +6,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "In jeder Woche werden weniger Pashmina-Tücher als quadratische Tücher verkauft.",
-        },
-        {
           isCorrect: true,
           label:
             "In jeder Woche werden mehr Bergo-Tücher als quadratische Tücher verkauft.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "In jeder Woche werden weniger Pashmina-Tücher als quadratische Tücher verkauft.",
         },
         {
           isCorrect: false,
@@ -36,14 +36,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Pashmina headscarf sales are lower than square headscarf sales in every week.",
-        },
-        {
           isCorrect: true,
           label:
             "Bergo headscarf sales are higher than square headscarf sales in every week.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pashmina headscarf sales are lower than square headscarf sales in every week.",
         },
         {
           isCorrect: false,
@@ -66,14 +66,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Penjualan kerudung jenis pasmina selalu lebih sedikit dibandingkan penjualan kerudung jenis segiempat.",
-        },
-        {
           isCorrect: true,
           label:
             "Penjualan kerudung jenis bergo selalu lebih tinggi dibandingkan penjualan kerudung jenis segiempat.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Penjualan kerudung jenis pasmina selalu lebih sedikit dibandingkan penjualan kerudung jenis segiempat.",
         },
         {
           isCorrect: false,

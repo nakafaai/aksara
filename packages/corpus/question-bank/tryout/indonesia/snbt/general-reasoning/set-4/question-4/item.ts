@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "$$52{,}3\\text{ g}$$ und $$10{,}58\\text{ g}$$",
         },
         {
-          isCorrect: false,
-          label: "$$53{,}2\\text{ g}$$ und $$10{,}58\\text{ g}$$",
-        },
-        {
           isCorrect: true,
           label: "$$53{,}2\\text{ g}$$ und $$10{,}85\\text{ g}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$53{,}2\\text{ g}$$ und $$10{,}58\\text{ g}$$",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "$$52.3\\text{ g}$$ and $$10.58\\text{ g}$$",
         },
         {
-          isCorrect: false,
-          label: "$$53.2\\text{ g}$$ and $$10.58\\text{ g}$$",
-        },
-        {
           isCorrect: true,
           label: "$$53.2\\text{ g}$$ and $$10.85\\text{ g}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$53.2\\text{ g}$$ and $$10.58\\text{ g}$$",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "$$52{,}3\\text{ g}$$ dan $$10{,}58\\text{ g}$$",
         },
         {
-          isCorrect: false,
-          label: "$$53{,}2\\text{ g}$$ dan $$10{,}58\\text{ g}$$",
-        },
-        {
           isCorrect: true,
           label: "$$53{,}2\\text{ g}$$ dan $$10{,}85\\text{ g}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$53{,}2\\text{ g}$$ dan $$10{,}58\\text{ g}$$",
         },
         {
           isCorrect: false,

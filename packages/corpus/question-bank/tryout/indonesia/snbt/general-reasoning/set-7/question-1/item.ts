@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "In dieser Studie erzeugte der ganze Apfel das stärkste Sättigungsgefühl und eine niedrigere gesamte Energieaufnahme als die Bedingung ohne Vorspeise.",
+        },
+        {
           isCorrect: false,
           label:
             "Ein ganzer Apfel vor dem Mittagessen verhindert immer Adipositas.",
@@ -21,11 +26,6 @@ const item: QuestionItem = {
             "Apfelsaft führte zu einer niedrigeren gesamten Energieaufnahme als der ganze Apfel.",
         },
         {
-          isCorrect: true,
-          label:
-            "In dieser Studie erzeugte der ganze Apfel das stärkste Sättigungsgefühl und eine niedrigere gesamte Energieaufnahme als die Bedingung ohne Vorspeise.",
-        },
-        {
           isCorrect: false,
           label:
             "Die Studie bewies, dass allein die Ballaststoffe alle Unterschiede zwischen den Apfelzubereitungen verursachten.",
@@ -35,6 +35,11 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "In this study, the whole apple produced the greatest fullness and a lower total energy intake than no preload.",
+        },
         {
           isCorrect: false,
           label: "Eating a whole apple before lunch always prevents obesity.",
@@ -50,11 +55,6 @@ const item: QuestionItem = {
             "Apple juice led to a lower total energy intake than the whole apple.",
         },
         {
-          isCorrect: true,
-          label:
-            "In this study, the whole apple produced the greatest fullness and a lower total energy intake than no preload.",
-        },
-        {
           isCorrect: false,
           label:
             "The study proved that fiber alone caused every difference between the apple preparations.",
@@ -64,6 +64,11 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Dalam penelitian ini, apel utuh menghasilkan rasa kenyang paling tinggi dan total asupan energi yang lebih rendah daripada kondisi tanpa sajian pendahuluan.",
+        },
         {
           isCorrect: false,
           label:
@@ -78,11 +83,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Jus apel menghasilkan total asupan energi yang lebih rendah daripada apel utuh.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Dalam penelitian ini, apel utuh menghasilkan rasa kenyang paling tinggi dan total asupan energi yang lebih rendah daripada kondisi tanpa sajian pendahuluan.",
         },
         {
           isCorrect: false,

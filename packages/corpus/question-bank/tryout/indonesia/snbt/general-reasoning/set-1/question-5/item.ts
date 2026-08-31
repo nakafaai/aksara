@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Es war der Anteil des Gesamtbudgets, der für landwirtschaftliche Produktionsmittel und Infrastruktur ausgegeben wurde.",
-        },
-        {
           isCorrect: false,
           label:
             "Es war der Anteil des Budgets, der für andere Aufgaben des Ministeriums übrig blieb.",
@@ -18,6 +13,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Es war der gemeldete Anstieg der Reisproduktion.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Es war der Anteil des Gesamtbudgets, der für landwirtschaftliche Produktionsmittel und Infrastruktur ausgegeben wurde.",
         },
         {
           isCorrect: false,
@@ -34,11 +34,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "It was the share of the ministry's total budget spent on agricultural production facilities and infrastructure.",
-        },
-        {
           isCorrect: false,
           label:
             "It was the share of the budget left for other ministry needs.",
@@ -46,6 +41,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "It was the reported increase in rice production.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "It was the share of the ministry's total budget spent on agricultural production facilities and infrastructure.",
         },
         {
           isCorrect: false,
@@ -62,11 +62,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Angka itu merupakan bagian dari total anggaran kementerian yang dibelanjakan untuk sarana dan prasarana produksi pertanian.",
-        },
-        {
           isCorrect: false,
           label:
             "Angka itu merupakan bagian anggaran yang tersisa untuk kebutuhan kementerian lainnya.",
@@ -74,6 +69,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Angka itu merupakan kenaikan produksi padi yang dilaporkan.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Angka itu merupakan bagian dari total anggaran kementerian yang dibelanjakan untuk sarana dan prasarana produksi pertanian.",
         },
         {
           isCorrect: false,

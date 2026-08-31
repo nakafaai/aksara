@@ -7,16 +7,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$94 \\text{ Gramm}$$",
+        },
+        {
           isCorrect: false,
           label: "$$90 \\text{ Gramm}$$",
         },
         {
           isCorrect: false,
           label: "$$92 \\text{ Gramm}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$94 \\text{ Gramm}$$",
         },
         {
           isCorrect: false,
@@ -32,16 +32,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$94 \\text{ grams}$$",
+        },
+        {
           isCorrect: false,
           label: "$$90 \\text{ grams}$$",
         },
         {
           isCorrect: false,
           label: "$$92 \\text{ grams}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$94 \\text{ grams}$$",
         },
         {
           isCorrect: false,
@@ -57,16 +57,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$94 \\text{ gram}$$",
+        },
+        {
           isCorrect: false,
           label: "$$90 \\text{ gram}$$",
         },
         {
           isCorrect: false,
           label: "$$92 \\text{ gram}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$94 \\text{ gram}$$",
         },
         {
           isCorrect: false,

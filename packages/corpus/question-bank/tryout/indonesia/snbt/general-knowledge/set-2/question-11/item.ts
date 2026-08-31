@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "ein durch Mikroorganismen fermentativ verändertes Milcherzeugnis.",
+        },
+        {
           isCorrect: false,
           label: "ein Milcherzeugnis, das garantiert keine Laktose enthält.",
         },
@@ -19,11 +24,6 @@ const item: QuestionItem = {
           label: "ein Arzneimittel zur Behandlung von Verdauungskrankheiten.",
         },
         {
-          isCorrect: true,
-          label:
-            "ein durch Mikroorganismen fermentativ verändertes Milcherzeugnis.",
-        },
-        {
           isCorrect: false,
           label:
             "ein vor dem Verzehr mit Sauerstoff vermischtes Milcherzeugnis.",
@@ -33,6 +33,10 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "dairy transformed by microorganisms through fermentation.",
+        },
         {
           isCorrect: false,
           label: "dairy that is guaranteed to contain no lactose.",
@@ -46,10 +50,6 @@ const item: QuestionItem = {
           label: "a medicine for treating digestive disease.",
         },
         {
-          isCorrect: true,
-          label: "dairy transformed by microorganisms through fermentation.",
-        },
-        {
           isCorrect: false,
           label: "dairy mixed with oxygen before consumption.",
         },
@@ -58,6 +58,11 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "produk susu yang diubah oleh mikroorganisme melalui fermentasi.",
+        },
         {
           isCorrect: false,
           label: "produk susu yang dijamin tidak mengandung laktosa.",
@@ -69,11 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "obat untuk menangani penyakit pencernaan.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "produk susu yang diubah oleh mikroorganisme melalui fermentasi.",
         },
         {
           isCorrect: false,

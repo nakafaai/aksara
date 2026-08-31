@@ -30,6 +30,7 @@ const ChildEnvironmentSchema = Schema.Struct({
   ),
   AKSARA_PREVIEW_RENDERER_SECRET: Schema.Trimmed.check(Schema.isNonEmpty()),
   AKSARA_PREVIEW_RENDERER_TOKEN: Schema.Trimmed.check(Schema.isNonEmpty()),
+  AKSARA_PUBLICATION_TOKEN: Schema.Trimmed.check(Schema.isNonEmpty()),
   CONTENT_RUNTIME_TOKEN: Schema.Trimmed.check(Schema.isNonEmpty()),
   HOME: Schema.Trimmed.check(Schema.isNonEmpty()),
   INTERNAL_CONTENT_API_KEY: Schema.Trimmed.check(Schema.isNonEmpty()),
@@ -105,6 +106,9 @@ const makeChildEnvironment = Effect.fn("AksaraCli.makeChildEnvironment")(
       ),
       AKSARA_PREVIEW_RENDERER_TOKEN: Redacted.value(
         input.credentials.renderer.token
+      ),
+      AKSARA_PUBLICATION_TOKEN: Redacted.value(
+        input.credentials.internalContentToken
       ),
       CONTENT_RUNTIME_TOKEN: Redacted.value(
         input.credentials.contentRuntimeToken

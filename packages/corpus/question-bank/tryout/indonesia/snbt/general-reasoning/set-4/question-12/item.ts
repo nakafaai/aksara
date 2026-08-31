@@ -14,13 +14,13 @@ const item: QuestionItem = {
           label: "Die Art ist überall außerhalb Neuguineas eingeführt",
         },
         {
-          isCorrect: false,
-          label: "Die Art wächst vor allem in einem trockenen gemäßigten Biom",
-        },
-        {
           isCorrect: true,
           label:
             "Das natürliche Verbreitungsgebiet der Art reicht weit über Neuguinea hinaus",
+        },
+        {
+          isCorrect: false,
+          label: "Die Art wächst vor allem in einem trockenen gemäßigten Biom",
         },
         {
           isCorrect: false,
@@ -40,12 +40,12 @@ const item: QuestionItem = {
           label: "The species is introduced everywhere outside New Guinea",
         },
         {
-          isCorrect: false,
-          label: "The species grows primarily in a dry temperate biome",
-        },
-        {
           isCorrect: true,
           label: "The species' native range extends well beyond New Guinea",
+        },
+        {
+          isCorrect: false,
+          label: "The species grows primarily in a dry temperate biome",
         },
         {
           isCorrect: false,
@@ -66,13 +66,13 @@ const item: QuestionItem = {
             "Spesies ini merupakan tumbuhan introduksi di semua wilayah di luar Pulau Papua",
         },
         {
-          isCorrect: false,
-          label: "Spesies ini terutama hidup di bioma kering beriklim sedang",
-        },
-        {
           isCorrect: true,
           label:
             "Daerah asal spesies ini membentang jauh melampaui Pulau Papua",
+        },
+        {
+          isCorrect: false,
+          label: "Spesies ini terutama hidup di bioma kering beriklim sedang",
         },
         {
           isCorrect: false,

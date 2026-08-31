@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$30\\text{ m}^2$$",
         },
         {
-          isCorrect: true,
-          label: "$$60\\text{ m}^2$$",
-        },
-        {
           isCorrect: false,
           label: "$$70\\text{ m}^2$$",
         },
         {
           isCorrect: false,
           label: "$$80\\text{ m}^2$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$60\\text{ m}^2$$",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "$$30\\text{ m}^2$$",
         },
         {
-          isCorrect: true,
-          label: "$$60\\text{ m}^2$$",
-        },
-        {
           isCorrect: false,
           label: "$$70\\text{ m}^2$$",
         },
         {
           isCorrect: false,
           label: "$$80\\text{ m}^2$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$60\\text{ m}^2$$",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "$$30\\text{ m}^2$$",
         },
         {
-          isCorrect: true,
-          label: "$$60\\text{ m}^2$$",
-        },
-        {
           isCorrect: false,
           label: "$$70\\text{ m}^2$$",
         },
         {
           isCorrect: false,
           label: "$$80\\text{ m}^2$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$60\\text{ m}^2$$",
         },
         {
           isCorrect: false,

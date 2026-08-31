@@ -10,17 +10,17 @@ const item: QuestionItem = {
           label: "To prove that private offices are perfect for every task",
         },
         {
-          isCorrect: true,
-          label:
-            "To challenge a one-size-fits-all assumption and support context-based decisions",
-        },
-        {
           isCorrect: false,
           label: "To advertise wearable sensors to office managers",
         },
         {
           isCorrect: false,
           label: "To show that electronic communication should be banned",
+        },
+        {
+          isCorrect: true,
+          label:
+            "To challenge a one-size-fits-all assumption and support context-based decisions",
         },
         {
           isCorrect: false,

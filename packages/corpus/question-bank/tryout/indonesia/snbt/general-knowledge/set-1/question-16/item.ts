@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Das Tor blieb nach Sonnenuntergang *geschlossen*.",
-        },
-        {
           isCorrect: false,
           label: "Der Hausmeister *schloss* das Tor bei Sonnenuntergang.",
         },
@@ -22,6 +18,10 @@ const item: QuestionItem = {
           label: "Die Besucher *warteten* vor dem Eingang.",
         },
         {
+          isCorrect: true,
+          label: "Das Tor blieb nach Sonnenuntergang *geschlossen*.",
+        },
+        {
           isCorrect: false,
           label: "Der Hinweis wurde von allen Besuchern *gelesen*.",
         },
@@ -30,10 +30,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "The gate remained *locked* after sunset.",
-        },
         {
           isCorrect: false,
           label: "The guard *locked* the gate at sunset.",
@@ -47,6 +43,10 @@ const item: QuestionItem = {
           label: "Visitors were *waiting* outside the gate.",
         },
         {
+          isCorrect: true,
+          label: "The gate remained *locked* after sunset.",
+        },
+        {
           isCorrect: false,
           label: "The notice was *read* by every visitor.",
         },
@@ -55,10 +55,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "Kayu-kayu balok itu *terikat* dengan kuat.",
-        },
         {
           isCorrect: false,
           label: "Kakinya *terinjak* saat menonton konser semalam.",
@@ -70,6 +66,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Dia *tertidur* di sofa semalam.",
+        },
+        {
+          isCorrect: true,
+          label: "Kayu-kayu balok itu *terikat* dengan kuat.",
         },
         {
           isCorrect: false,

@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$2\\text{ m}^2, 3\\text{ m}^2, 4\\text{ m}^2$$",
-        },
-        {
           isCorrect: false,
           label: "$$3\\text{ m}^2, 2\\text{ m}^2, 4\\text{ m}^2$$",
         },
@@ -20,6 +16,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$3\\text{ m}^2, 4\\text{ m}^2, 5\\text{ m}^2$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$2\\text{ m}^2, 3\\text{ m}^2, 4\\text{ m}^2$$",
         },
         {
           isCorrect: false,
@@ -31,10 +31,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$2\\text{ m}^2, 3\\text{ m}^2, 4\\text{ m}^2$$",
-        },
-        {
           isCorrect: false,
           label: "$$3\\text{ m}^2, 2\\text{ m}^2, 4\\text{ m}^2$$",
         },
@@ -45,6 +41,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$3\\text{ m}^2, 4\\text{ m}^2, 5\\text{ m}^2$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$2\\text{ m}^2, 3\\text{ m}^2, 4\\text{ m}^2$$",
         },
         {
           isCorrect: false,
@@ -56,10 +56,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$2\\text{ m}^2, 3\\text{ m}^2, 4\\text{ m}^2$$",
-        },
-        {
           isCorrect: false,
           label: "$$3\\text{ m}^2, 2\\text{ m}^2, 4\\text{ m}^2$$",
         },
@@ -70,6 +66,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$3\\text{ m}^2, 4\\text{ m}^2, 5\\text{ m}^2$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$2\\text{ m}^2, 3\\text{ m}^2, 4\\text{ m}^2$$",
         },
         {
           isCorrect: false,

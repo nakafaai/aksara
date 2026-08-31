@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$760\\text{ Personen}$$",
-        },
-        {
           isCorrect: true,
           label: "$$890\\text{ Personen}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$760\\text{ Personen}$$",
         },
         {
           isCorrect: false,
@@ -31,12 +31,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$760\\text{ people}$$",
-        },
-        {
           isCorrect: true,
           label: "$$890\\text{ people}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$760\\text{ people}$$",
         },
         {
           isCorrect: false,
@@ -56,12 +56,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$760\\text{ orang}$$",
-        },
-        {
           isCorrect: true,
           label: "$$890\\text{ orang}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$760\\text{ orang}$$",
         },
         {
           isCorrect: false,

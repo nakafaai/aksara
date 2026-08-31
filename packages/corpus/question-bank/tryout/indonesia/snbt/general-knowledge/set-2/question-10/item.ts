@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "vollständige Verdauung.",
         },
         {
-          isCorrect: false,
-          label: "schnelle Fermentation.",
-        },
-        {
           isCorrect: true,
           label: "unvollständige Aufnahme.",
+        },
+        {
+          isCorrect: false,
+          label: "schnelle Fermentation.",
         },
         {
           isCorrect: false,
@@ -35,12 +35,12 @@ const item: QuestionItem = {
           label: "complete digestion.",
         },
         {
-          isCorrect: false,
-          label: "rapid fermentation.",
-        },
-        {
           isCorrect: true,
           label: "incomplete absorption.",
+        },
+        {
+          isCorrect: false,
+          label: "rapid fermentation.",
         },
         {
           isCorrect: false,
@@ -60,12 +60,12 @@ const item: QuestionItem = {
           label: "pencernaan sempurna.",
         },
         {
-          isCorrect: false,
-          label: "fermentasi cepat.",
-        },
-        {
           isCorrect: true,
           label: "penyerapan yang tidak sempurna.",
+        },
+        {
+          isCorrect: false,
+          label: "fermentasi cepat.",
         },
         {
           isCorrect: false,

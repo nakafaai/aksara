@@ -21,14 +21,14 @@ const item: QuestionItem = {
             "Eine unabhängige Prüfung bestätigt die angegebene Verlängerungsquote.",
         },
         {
-          isCorrect: true,
-          label:
-            "Verträge verlängern sich automatisch, wenn Beschäftigte nicht aktiv widersprechen.",
-        },
-        {
           isCorrect: false,
           label:
             "Mehrere Abteilungen planen für das nächste Jahr zusätzliche Mentoringsitzungen.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Verträge verlängern sich automatisch, wenn Beschäftigte nicht aktiv widersprechen.",
         },
       ],
     },
@@ -51,14 +51,14 @@ const item: QuestionItem = {
             "An independent audit confirms the reported contract-renewal rate.",
         },
         {
-          isCorrect: true,
-          label:
-            "Contracts renew automatically unless employees submit an opt-out form.",
-        },
-        {
           isCorrect: false,
           label:
             "Several departments plan to offer more mentoring sessions next year.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Contracts renew automatically unless employees submit an opt-out form.",
         },
       ],
     },
@@ -81,14 +81,14 @@ const item: QuestionItem = {
             "Audit independen membenarkan angka perpanjangan kontrak yang dilaporkan.",
         },
         {
-          isCorrect: true,
-          label:
-            "Kontrak diperpanjang otomatis kecuali pekerja mengirim formulir penolakan.",
-        },
-        {
           isCorrect: false,
           label:
             "Beberapa departemen berencana menambah sesi pendampingan tahun depan.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Kontrak diperpanjang otomatis kecuali pekerja mengirim formulir penolakan.",
         },
       ],
     },

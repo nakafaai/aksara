@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Der Apfel enthält weniger Fett als Jicama.",
+        },
+        {
           isCorrect: false,
           label: "Jicama liefert $$14$$ Kilokalorien weniger als der Apfel.",
         },
         {
           isCorrect: false,
           label: "Jicama enthält $$0{,}46$$ g mehr Eiweiß als der Apfel.",
-        },
-        {
-          isCorrect: true,
-          label: "Der Apfel enthält weniger Fett als Jicama.",
         },
         {
           isCorrect: false,
@@ -33,16 +33,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Apple provides less fat than jicama.",
+        },
+        {
           isCorrect: false,
           label: "Jicama provides $$14$$ fewer kilocalories than apple.",
         },
         {
           isCorrect: false,
           label: "Jicama provides $$0.46$$ g more protein than apple.",
-        },
-        {
-          isCorrect: true,
-          label: "Apple provides less fat than jicama.",
         },
         {
           isCorrect: false,
@@ -59,6 +59,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Apel mengandung lemak lebih sedikit daripada bengkuang.",
+        },
+        {
           isCorrect: false,
           label:
             "Bengkuang memberikan energi $$14$$ kkal lebih sedikit daripada apel.",
@@ -67,10 +71,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Bengkuang mengandung protein $$0{,}46$$ g lebih banyak daripada apel.",
-        },
-        {
-          isCorrect: true,
-          label: "Apel mengandung lemak lebih sedikit daripada bengkuang.",
         },
         {
           isCorrect: false,

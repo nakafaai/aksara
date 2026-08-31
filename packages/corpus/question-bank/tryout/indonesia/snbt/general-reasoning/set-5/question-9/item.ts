@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Der Verbrauch überschreitet den Grenzwert und der Strom wird nicht unterbrochen",
+        },
+        {
           isCorrect: false,
           label:
             "Der Verbrauch überschreitet den Grenzwert und der Strom wird unterbrochen",
@@ -21,11 +26,6 @@ const item: QuestionItem = {
             "Der Verbrauch überschreitet den Grenzwert nicht oder der Strom wird unterbrochen",
         },
         {
-          isCorrect: true,
-          label:
-            "Der Verbrauch überschreitet den Grenzwert und der Strom wird nicht unterbrochen",
-        },
-        {
           isCorrect: false,
           label:
             "Es trifft nicht zu, dass der Verbrauch den Grenzwert überschreitet, während der Strom eingeschaltet bleibt",
@@ -35,6 +35,10 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "Use exceeds the limit and the power is not cut",
+        },
         {
           isCorrect: false,
           label: "Use exceeds the limit and the power is cut",
@@ -48,10 +52,6 @@ const item: QuestionItem = {
           label: "Use does not exceed the limit or the power is cut",
         },
         {
-          isCorrect: true,
-          label: "Use exceeds the limit and the power is not cut",
-        },
-        {
           isCorrect: false,
           label:
             "It is not the case that use exceeds the limit while power remains on",
@@ -61,6 +61,10 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "Pemakaian melebihi batas dan aliran listrik tidak terputus",
+        },
         {
           isCorrect: false,
           label: "Pemakaian melebihi batas dan aliran listrik terputus",
@@ -73,10 +77,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Pemakaian tidak melebihi batas atau aliran listrik terputus",
-        },
-        {
-          isCorrect: true,
-          label: "Pemakaian melebihi batas dan aliran listrik tidak terputus",
         },
         {
           isCorrect: false,

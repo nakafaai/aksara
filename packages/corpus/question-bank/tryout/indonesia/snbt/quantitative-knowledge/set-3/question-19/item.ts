@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$1{,}5$$ cm",
-        },
-        {
           isCorrect: false,
           label: "$$2$$ cm",
+        },
+        {
+          isCorrect: true,
+          label: "$$1{,}5$$ cm",
         },
         {
           isCorrect: false,
@@ -31,12 +31,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$1.5$$ cm",
-        },
-        {
           isCorrect: false,
           label: "$$2$$ cm",
+        },
+        {
+          isCorrect: true,
+          label: "$$1.5$$ cm",
         },
         {
           isCorrect: false,
@@ -56,12 +56,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$1{,}5$$ cm",
-        },
-        {
           isCorrect: false,
           label: "$$2$$ cm",
+        },
+        {
+          isCorrect: true,
+          label: "$$1{,}5$$ cm",
         },
         {
           isCorrect: false,

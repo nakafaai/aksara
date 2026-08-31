@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Klasse A",
+          label: "$$5$$",
         },
         {
           isCorrect: false,
-          label: "Klasse B",
+          label: "$$6$$",
         },
         {
           isCorrect: false,
-          label: "Klasse C",
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9$$",
         },
         {
           isCorrect: true,
-          label: "Klasse D",
-        },
-        {
-          isCorrect: false,
-          label: "Klasse E",
+          label: "$$7$$",
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Class A" },
-        { isCorrect: false, label: "Class B" },
-        { isCorrect: false, label: "Class C" },
-        { isCorrect: true, label: "Class D" },
-        { isCorrect: false, label: "Class E" },
+        {
+          isCorrect: false,
+          label: "$$5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$7$$",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Kelas A" },
-        { isCorrect: false, label: "Kelas B" },
-        { isCorrect: false, label: "Kelas C" },
-        { isCorrect: true, label: "Kelas D" },
-        { isCorrect: false, label: "Kelas E" },
+        {
+          isCorrect: false,
+          label: "$$5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$7$$",
+        },
       ],
     },
   },

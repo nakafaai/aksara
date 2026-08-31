@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "An individual bird immediately loses immune genes when it migrates.",
+        },
+        {
           isCorrect: false,
           label:
             "The analysis included 1,311 Afro-Palaearctic songbird species.",
@@ -18,11 +23,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "MHC-I genes are involved in pathogen recognition.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "An individual bird immediately loses immune genes when it migrates.",
         },
         {
           isCorrect: false,

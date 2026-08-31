@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$0{,}0067$$",
+        },
+        {
           isCorrect: false,
           label: "$$0{,}00033$$",
         },
@@ -18,10 +22,6 @@ const item: QuestionItem = {
           label: "$$0{,}0033$$",
         },
         {
-          isCorrect: true,
-          label: "$$0{,}0067$$",
-        },
-        {
           isCorrect: false,
           label: "$$0{,}033$$",
         },
@@ -30,6 +30,10 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$0.0067$$",
+        },
         {
           isCorrect: false,
           label: "$$0.00033$$",
@@ -43,10 +47,6 @@ const item: QuestionItem = {
           label: "$$0.0033$$",
         },
         {
-          isCorrect: true,
-          label: "$$0.0067$$",
-        },
-        {
           isCorrect: false,
           label: "$$0.033$$",
         },
@@ -55,6 +55,10 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$0{,}0067$$",
+        },
         {
           isCorrect: false,
           label: "$$0{,}00033$$",
@@ -66,10 +70,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$0{,}0033$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$0{,}0067$$",
         },
         {
           isCorrect: false,

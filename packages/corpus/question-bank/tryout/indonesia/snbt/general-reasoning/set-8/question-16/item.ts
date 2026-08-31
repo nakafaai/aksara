@@ -14,17 +14,17 @@ const item: QuestionItem = {
           label: "Die Schlussfolgerung ist wahrscheinlich wahr.",
         },
         {
+          isCorrect: true,
+          label:
+            "Die Schlussfolgerung ist relevant, lässt sich wegen unzureichender Angaben aber nicht beurteilen.",
+        },
+        {
           isCorrect: false,
           label: "Die Schlussfolgerung ist definitiv falsch.",
         },
         {
           isCorrect: false,
           label: "Die Schlussfolgerung ist für die Angaben irrelevant.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Die Schlussfolgerung ist relevant, lässt sich wegen unzureichender Angaben aber nicht beurteilen.",
         },
       ],
     },
@@ -40,17 +40,17 @@ const item: QuestionItem = {
           label: "The conclusion is probably true.",
         },
         {
+          isCorrect: true,
+          label:
+            "The conclusion is relevant but cannot be assessed because the information is insufficient.",
+        },
+        {
           isCorrect: false,
           label: "The conclusion is definitely false.",
         },
         {
           isCorrect: false,
           label: "The conclusion is irrelevant to the given information.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "The conclusion is relevant but cannot be assessed because the information is insufficient.",
         },
       ],
     },
@@ -66,17 +66,17 @@ const item: QuestionItem = {
           label: "Simpulan tersebut kemungkinan besar benar.",
         },
         {
+          isCorrect: true,
+          label:
+            "Simpulan relevan, tetapi tidak dapat dinilai karena informasi tidak cukup.",
+        },
+        {
           isCorrect: false,
           label: "Simpulan tersebut pasti salah.",
         },
         {
           isCorrect: false,
           label: "Simpulan tidak relevan dengan informasi yang diberikan.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Simpulan relevan, tetapi tidak dapat dinilai karena informasi tidak cukup.",
         },
       ],
     },

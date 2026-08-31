@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Inlandsbeschaffung und Reisimporte werden als gegenläufig beschrieben",
-        },
-        {
           isCorrect: false,
           label:
             "Inlandsbeschaffung und Reisimporte werden als gleichläufig beschrieben",
@@ -19,6 +14,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Der Text beschreibt keinen Zusammenhang zwischen Inlandsbeschaffung und Reisimporten",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Inlandsbeschaffung und Reisimporte werden als gegenläufig beschrieben",
         },
         {
           isCorrect: false,
@@ -36,11 +36,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Domestic procurement and rice imports are described as moving in opposite directions",
-        },
-        {
           isCorrect: false,
           label:
             "Domestic procurement and rice imports are described as moving in the same direction",
@@ -49,6 +44,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "The passage describes no relationship between domestic procurement and rice imports",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Domestic procurement and rice imports are described as moving in opposite directions",
         },
         {
           isCorrect: false,
@@ -66,11 +66,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Serapan dalam negeri dan impor beras digambarkan bergerak berlawanan arah",
-        },
-        {
           isCorrect: false,
           label:
             "Serapan dalam negeri dan impor beras digambarkan bergerak searah",
@@ -79,6 +74,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Bacaan tidak menggambarkan hubungan antara serapan dalam negeri dan impor beras",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Serapan dalam negeri dan impor beras digambarkan bergerak berlawanan arah",
         },
         {
           isCorrect: false,

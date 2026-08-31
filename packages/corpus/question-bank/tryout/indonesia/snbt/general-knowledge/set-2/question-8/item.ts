@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Menschen verdauen Laktose unterschiedlich, und ein niedriger Laktasespiegel kann eine Malabsorption verursachen.",
+        },
+        {
           isCorrect: false,
           label: "die Nährstoffe in Milch und Milcherzeugnissen.",
         },
@@ -19,11 +24,6 @@ const item: QuestionItem = {
           label: "Laktase wandelt Laktose im Dickdarm in Gas um.",
         },
         {
-          isCorrect: true,
-          label:
-            "Menschen verdauen Laktose unterschiedlich, und ein niedriger Laktasespiegel kann eine Malabsorption verursachen.",
-        },
-        {
           isCorrect: false,
           label: "Fermentierte Milcherzeugnisse sind immer laktosefrei.",
         },
@@ -32,6 +32,11 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "people digest lactose differently, and low lactase can cause malabsorption.",
+        },
         {
           isCorrect: false,
           label: "the nutrients supplied by milk and dairy foods.",
@@ -45,11 +50,6 @@ const item: QuestionItem = {
           label: "lactase turns lactose into gas in the colon.",
         },
         {
-          isCorrect: true,
-          label:
-            "people digest lactose differently, and low lactase can cause malabsorption.",
-        },
-        {
           isCorrect: false,
           label: "fermented dairy products are always lactose-free.",
         },
@@ -58,6 +58,11 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "kemampuan mencerna laktosa berbeda, dan kadar laktase rendah dapat menyebabkan malabsorpsi.",
+        },
         {
           isCorrect: false,
           label: "zat gizi yang disediakan susu dan produk olahannya.",
@@ -70,11 +75,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "laktase mengubah laktosa menjadi gas di usus besar.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "kemampuan mencerna laktosa berbeda, dan kadar laktase rendah dapat menyebabkan malabsorpsi.",
         },
         {
           isCorrect: false,

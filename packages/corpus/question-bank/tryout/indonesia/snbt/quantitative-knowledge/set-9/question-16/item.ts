@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$\\frac{1170}{37}$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\frac{3510}{1111}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\frac{1177}{111}$$",
         },
         {
           isCorrect: false,
           label: "$$\\frac{1170}{999}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{3510}{1111}$$",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "$$\\frac{1170}{37}$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\frac{3510}{1111}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\frac{1177}{111}$$",
         },
         {
           isCorrect: false,
           label: "$$\\frac{1170}{999}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{3510}{1111}$$",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "$$\\frac{1170}{37}$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\frac{3510}{1111}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\frac{1177}{111}$$",
         },
         {
           isCorrect: false,
           label: "$$\\frac{1170}{999}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{3510}{1111}$$",
         },
         {
           isCorrect: false,

@@ -10,10 +10,6 @@ const item: QuestionItem = {
           label: "Größe $$P$$ ist größer als $$Q$$",
         },
         {
-          isCorrect: true,
-          label: "Größe $$P$$ ist kleiner als $$Q$$",
-        },
-        {
           isCorrect: false,
           label: "Größe $$P$$ ist gleich $$Q$$",
         },
@@ -26,6 +22,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Beide Größen sind nicht definiert",
         },
+        {
+          isCorrect: true,
+          label: "Größe $$P$$ ist kleiner als $$Q$$",
+        },
       ],
     },
     en: {
@@ -34,10 +34,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Quantity $$P$$ is greater than $$Q$$",
-        },
-        {
-          isCorrect: true,
-          label: "Quantity $$P$$ is less than $$Q$$",
         },
         {
           isCorrect: false,
@@ -52,6 +48,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Neither quantity is defined",
         },
+        {
+          isCorrect: true,
+          label: "Quantity $$P$$ is less than $$Q$$",
+        },
       ],
     },
     id: {
@@ -60,10 +60,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Kuantitas $$P$$ lebih besar daripada $$Q$$",
-        },
-        {
-          isCorrect: true,
-          label: "Kuantitas $$P$$ lebih kecil daripada $$Q$$",
         },
         {
           isCorrect: false,
@@ -76,6 +72,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Kedua kuantitas tidak terdefinisi",
+        },
+        {
+          isCorrect: true,
+          label: "Kuantitas $$P$$ lebih kecil daripada $$Q$$",
         },
       ],
     },

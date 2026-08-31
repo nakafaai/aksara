@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "the conditions under which technology can support education.",
+        },
+        {
           isCorrect: false,
           label: "the rapid growth of internet access worldwide.",
         },
         {
           isCorrect: false,
           label: "the replacement of teachers by digital tools.",
-        },
-        {
-          isCorrect: true,
-          label: "the conditions under which technology can support education.",
         },
         {
           isCorrect: false,

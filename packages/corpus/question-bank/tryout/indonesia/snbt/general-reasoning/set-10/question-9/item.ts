@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$22$$ Schülerinnen und Schüler",
-        },
-        {
           isCorrect: false,
           label: "$$23$$ Schülerinnen und Schüler",
         },
@@ -22,6 +18,10 @@ const item: QuestionItem = {
           label: "$$25$$ Schülerinnen und Schüler",
         },
         {
+          isCorrect: true,
+          label: "$$22$$ Schülerinnen und Schüler",
+        },
+        {
           isCorrect: false,
           label: "$$26$$ Schülerinnen und Schüler",
         },
@@ -30,10 +30,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$22$$ students",
-        },
         {
           isCorrect: false,
           label: "$$23$$ students",
@@ -47,6 +43,10 @@ const item: QuestionItem = {
           label: "$$25$$ students",
         },
         {
+          isCorrect: true,
+          label: "$$22$$ students",
+        },
+        {
           isCorrect: false,
           label: "$$26$$ students",
         },
@@ -55,10 +55,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$22$$ siswa",
-        },
         {
           isCorrect: false,
           label: "$$23$$ siswa",
@@ -70,6 +66,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$25$$ siswa",
+        },
+        {
+          isCorrect: true,
+          label: "$$22$$ siswa",
         },
         {
           isCorrect: false,

@@ -7,12 +7,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$P > Q$$",
-        },
-        {
           isCorrect: true,
           label: "$$Q > P$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$P > Q$$",
         },
         {
           isCorrect: false,
@@ -33,12 +33,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$P > Q$$",
-        },
-        {
           isCorrect: true,
           label: "$$Q > P$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$P > Q$$",
         },
         {
           isCorrect: false,
@@ -59,12 +59,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$P > Q$$",
-        },
-        {
           isCorrect: true,
           label: "$$Q > P$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$P > Q$$",
         },
         {
           isCorrect: false,

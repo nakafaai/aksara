@@ -16,11 +16,6 @@ const item: QuestionItem = {
             "Die milderen Bestimmungen würden die Abschreckung schwächen und die Rückgewinnung staatlicher Verluste erschweren.",
         },
         {
-          isCorrect: true,
-          label:
-            "Einige Bestimmungen sind milder als das Korruptionsgesetz und die Korruption in Indonesien wird zurückgehen.",
-        },
-        {
           isCorrect: false,
           label: "Mehrere Bestimmungen sind milder als das Korruptionsgesetz.",
         },
@@ -28,6 +23,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Die milderen Bestimmungen sollten die Abschreckung schwächen und Korruption begünstigen.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Einige Bestimmungen sind milder als das Korruptionsgesetz und die Korruption in Indonesien wird zurückgehen.",
         },
       ],
     },
@@ -45,11 +45,6 @@ const item: QuestionItem = {
             "The lighter provisions would weaken deterrence and make the recovery of state losses more difficult.",
         },
         {
-          isCorrect: true,
-          label:
-            "Some provisions are more lenient than the Corruption Law, and corruption in Indonesia will decrease.",
-        },
-        {
           isCorrect: false,
           label: "Several provisions are more lenient than the Corruption Law.",
         },
@@ -57,6 +52,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "The lighter provisions were expected to reduce deterrence and make corruption more widespread.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Some provisions are more lenient than the Corruption Law, and corruption in Indonesia will decrease.",
         },
       ],
     },
@@ -74,11 +74,6 @@ const item: QuestionItem = {
             "Ketentuan yang lebih ringan akan mengurangi efek jera dan mempersulit pengembalian kerugian negara.",
         },
         {
-          isCorrect: true,
-          label:
-            "Sejumlah ketentuan lebih ringan daripada UU Tipikor dan korupsi di Indonesia akan berkurang.",
-        },
-        {
           isCorrect: false,
           label: "Sejumlah ketentuan lebih ringan daripada UU Tipikor.",
         },
@@ -86,6 +81,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Ketentuan yang lebih ringan diperkirakan akan mengurangi efek jera dan membuat korupsi semakin marak.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Sejumlah ketentuan lebih ringan daripada UU Tipikor dan korupsi di Indonesia akan berkurang.",
         },
       ],
     },

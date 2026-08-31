@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "Unternehmen B verzeichnete den größten prozentualen Rückgang",
         },
         {
-          isCorrect: true,
-          label: "Unternehmen C hat die niedrigste Dreimonatssumme",
-        },
-        {
           isCorrect: false,
           label: "Unternehmen B hat die höchste Dreimonatssumme",
+        },
+        {
+          isCorrect: true,
+          label: "Unternehmen C hat die niedrigste Dreimonatssumme",
         },
       ],
     },
@@ -44,12 +44,12 @@ const item: QuestionItem = {
           label: "The largest percentage decrease occurred in Company B",
         },
         {
-          isCorrect: true,
-          label: "Company C has the lowest three-month total",
-        },
-        {
           isCorrect: false,
           label: "Company B has the highest three-month total",
+        },
+        {
+          isCorrect: true,
+          label: "Company C has the lowest three-month total",
         },
       ],
     },
@@ -70,12 +70,12 @@ const item: QuestionItem = {
           label: "Persentase penurunan terbesar terjadi di Perusahaan B",
         },
         {
-          isCorrect: true,
-          label: "Perusahaan C memiliki total tiga bulan terendah",
-        },
-        {
           isCorrect: false,
           label: "Perusahaan B memiliki total tiga bulan tertinggi",
+        },
+        {
+          isCorrect: true,
+          label: "Perusahaan C memiliki total tiga bulan terendah",
         },
       ],
     },

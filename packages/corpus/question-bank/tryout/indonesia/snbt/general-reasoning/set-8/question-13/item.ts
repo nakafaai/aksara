@@ -21,13 +21,13 @@ const item: QuestionItem = {
             "Die Schule verwendete in beiden Zeiträumen dieselbe Definition von „pünktlich“.",
         },
         {
-          isCorrect: false,
-          label: "Die App erinnert einen Tag vor jeder Abgabefrist.",
-        },
-        {
           isCorrect: true,
           label:
             "In derselben Woche wurde die Abgabefrist von 17 Uhr bis Mitternacht verlängert.",
+        },
+        {
+          isCorrect: false,
+          label: "Die App erinnert einen Tag vor jeder Abgabefrist.",
         },
       ],
     },
@@ -50,13 +50,13 @@ const item: QuestionItem = {
             "The school used the same definition of “on time” in both periods.",
         },
         {
-          isCorrect: false,
-          label: "The app sends a reminder one day before each deadline.",
-        },
-        {
           isCorrect: true,
           label:
             "In the same week, the submission deadline was extended from 5 p.m. to midnight.",
+        },
+        {
+          isCorrect: false,
+          label: "The app sends a reminder one day before each deadline.",
         },
       ],
     },
@@ -79,13 +79,13 @@ const item: QuestionItem = {
             "Sekolah menggunakan definisi “tepat waktu” yang sama pada kedua periode.",
         },
         {
-          isCorrect: false,
-          label: "Aplikasi mengirim pengingat sehari sebelum setiap tenggat.",
-        },
-        {
           isCorrect: true,
           label:
             "Pada minggu yang sama, tenggat pengumpulan diperpanjang dari pukul 17.00 hingga tengah malam.",
+        },
+        {
+          isCorrect: false,
+          label: "Aplikasi mengirim pengingat sehari sebelum setiap tenggat.",
         },
       ],
     },

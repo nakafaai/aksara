@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "Dagegen",
         },
         {
-          isCorrect: true,
-          label: "Außerdem",
-        },
-        {
           isCorrect: false,
           label: "Deshalb",
+        },
+        {
+          isCorrect: true,
+          label: "Außerdem",
         },
         {
           isCorrect: false,
@@ -35,12 +35,12 @@ const item: QuestionItem = {
           label: "In contrast",
         },
         {
-          isCorrect: true,
-          label: "In addition",
-        },
-        {
           isCorrect: false,
           label: "Therefore",
+        },
+        {
+          isCorrect: true,
+          label: "In addition",
         },
         {
           isCorrect: false,
@@ -60,12 +60,12 @@ const item: QuestionItem = {
           label: "Sebaliknya",
         },
         {
-          isCorrect: true,
-          label: "Selain itu",
-        },
-        {
           isCorrect: false,
           label: "Oleh karena itu",
+        },
+        {
+          isCorrect: true,
+          label: "Selain itu",
         },
         {
           isCorrect: false,

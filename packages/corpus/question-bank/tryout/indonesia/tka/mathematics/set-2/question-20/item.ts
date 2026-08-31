@@ -3,8 +3,8 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "application",
-    contentDomain: "geometry-measurement",
-    topic: "geometry-objects",
+    contentDomain: "trigonometry",
+    topic: "trigonometric-ratios",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "6 m",
+          label: "$$2\\sqrt{13}$$",
         },
         {
           isCorrect: false,
-          label: "7 m",
+          label: "$$2\\sqrt{17}$$",
         },
         {
           isCorrect: true,
-          label: "8 m",
+          label: "$$2\\sqrt{21}$$",
         },
         {
           isCorrect: false,
-          label: "9 m",
+          label: "$$4\\sqrt6$$",
         },
         {
           isCorrect: false,
-          label: "10 m",
+          label: "$$6\\sqrt2$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "6 m",
+          label: "$$2\\sqrt{13}$$",
         },
         {
           isCorrect: false,
-          label: "7 m",
+          label: "$$2\\sqrt{17}$$",
         },
         {
           isCorrect: true,
-          label: "8 m",
+          label: "$$2\\sqrt{21}$$",
         },
         {
           isCorrect: false,
-          label: "9 m",
+          label: "$$4\\sqrt6$$",
         },
         {
           isCorrect: false,
-          label: "10 m",
+          label: "$$6\\sqrt2$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "6 m",
+          label: "$$2\\sqrt{13}$$",
         },
         {
           isCorrect: false,
-          label: "7 m",
+          label: "$$2\\sqrt{17}$$",
         },
         {
           isCorrect: true,
-          label: "8 m",
+          label: "$$2\\sqrt{21}$$",
         },
         {
           isCorrect: false,
-          label: "9 m",
+          label: "$$4\\sqrt6$$",
         },
         {
           isCorrect: false,
-          label: "10 m",
+          label: "$$6\\sqrt2$$",
         },
       ],
     },

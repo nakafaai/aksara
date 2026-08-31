@@ -4,72 +4,82 @@ const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "algebra",
-    topic: "linear-equations-inequalities",
+    topic: "functions",
   },
   responses: {
     de: {
-      categories: ["Richtig", "Falsch"],
-      kind: "category",
-      statements: [
+      kind: "multiple-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "Der Punkt $(0,0)$ erfüllt alle Nebenbedingungen.",
+          isCorrect: true,
+          label: "Der Mittelpunkt der Asymptoten ist $(1,2)$.",
         },
         {
-          correctCategoryOrder: 1,
-          label: "Der Punkt $(3,2)$ erfüllt alle Nebenbedingungen.",
+          isCorrect: true,
+          label:
+            "$f$ ist auf jedem Intervall ihres Definitionsbereichs streng fallend.",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Der Punkt $(11,0)$ erfüllt alle Nebenbedingungen.",
+          isCorrect: true,
+          label: "Aus $x>1$ folgt $f(x)>2$.",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Der Punkt $(0,13)$ erfüllt alle Nebenbedingungen.",
+          isCorrect: true,
+          label: "Die Gleichung $f(x)=x$ hat zwei reelle Lösungen.",
+        },
+        {
+          isCorrect: false,
+          label: "$f^{-1}=f$.",
         },
       ],
     },
     en: {
-      categories: ["True", "False"],
-      kind: "category",
-      statements: [
+      kind: "multiple-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "The point $(0,0)$ satisfies every constraint.",
+          isCorrect: true,
+          label: "The center of the asymptotes is $(1,2)$.",
         },
         {
-          correctCategoryOrder: 1,
-          label: "The point $(3,2)$ satisfies every constraint.",
+          isCorrect: true,
+          label: "$f$ is strictly decreasing on each interval of its domain.",
         },
         {
-          correctCategoryOrder: 2,
-          label: "The point $(11,0)$ satisfies every constraint.",
+          isCorrect: true,
+          label: "If $x>1$, then $f(x)>2$.",
         },
         {
-          correctCategoryOrder: 2,
-          label: "The point $(0,13)$ satisfies every constraint.",
+          isCorrect: true,
+          label: "The equation $f(x)=x$ has two real solutions.",
+        },
+        {
+          isCorrect: false,
+          label: "$f^{-1}=f$.",
         },
       ],
     },
     id: {
-      categories: ["Benar", "Salah"],
-      kind: "category",
-      statements: [
+      kind: "multiple-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "Titik $(0,0)$ memenuhi semua kendala.",
+          isCorrect: true,
+          label: "Pusat kedua asimtot adalah $(1,2)$.",
         },
         {
-          correctCategoryOrder: 1,
-          label: "Titik $(3,2)$ memenuhi semua kendala.",
+          isCorrect: true,
+          label: "$f$ menurun ketat pada setiap interval domainnya.",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Titik $(11,0)$ memenuhi semua kendala.",
+          isCorrect: true,
+          label: "Jika $x>1$, maka $f(x)>2$.",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Titik $(0,13)$ memenuhi semua kendala.",
+          isCorrect: true,
+          label: "Persamaan $f(x)=x$ memiliki dua solusi real.",
+        },
+        {
+          isCorrect: false,
+          label: "$f^{-1}=f$.",
         },
       ],
     },

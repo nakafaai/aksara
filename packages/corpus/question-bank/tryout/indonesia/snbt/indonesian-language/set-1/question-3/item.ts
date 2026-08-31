@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Banyak masyarakat Indonesia yang berusia produktif",
+        },
+        {
           isCorrect: false,
           label: "Letak geografis Indonesia yang strategis",
         },
@@ -17,10 +21,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Indonesia menjadi pengekspor nomor satu dunia dan menuju negara maju",
-        },
-        {
-          isCorrect: true,
-          label: "Banyak masyarakat Indonesia yang berusia produktif",
         },
         {
           isCorrect: false,

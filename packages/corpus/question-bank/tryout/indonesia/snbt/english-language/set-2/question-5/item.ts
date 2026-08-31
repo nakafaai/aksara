@@ -18,14 +18,14 @@ const item: QuestionItem = {
           label: "Average weight increased during Ramadan and fell afterward.",
         },
         {
-          isCorrect: false,
-          label:
-            "The review prescribed a fixed calorie target for all participants.",
-        },
-        {
           isCorrect: true,
           label:
             "Participants lost 1.24 kg on average during Ramadan, but most of it was regained within weeks.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The review prescribed a fixed calorie target for all participants.",
         },
       ],
     },

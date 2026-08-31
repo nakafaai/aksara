@@ -2,83 +2,83 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "numbers",
     topic: "real-numbers",
   },
   responses: {
     de: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 205.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 200.000",
+          isCorrect: true,
+          label: "$a+b=29$",
         },
         {
           isCorrect: true,
-          label: "Rp 220.000",
+          label: "$|a-b|=21$",
         },
         {
           isCorrect: false,
-          label: "Rp 230.000",
+          label: "$\\sqrt{a+b}=7$",
         },
         {
-          isCorrect: false,
-          label: "Rp 250.000",
+          isCorrect: true,
+          label: "$(a-b)^2=441$",
+        },
+        {
+          isCorrect: true,
+          label: "$\\frac1{\\sqrt a}+\\frac1{\\sqrt b}=\\frac7{10}$",
         },
       ],
     },
     en: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 205.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 200.000",
+          isCorrect: true,
+          label: "$a+b=29$",
         },
         {
           isCorrect: true,
-          label: "Rp 220.000",
+          label: "$|a-b|=21$",
         },
         {
           isCorrect: false,
-          label: "Rp 230.000",
+          label: "$\\sqrt{a+b}=7$",
         },
         {
-          isCorrect: false,
-          label: "Rp 250.000",
+          isCorrect: true,
+          label: "$(a-b)^2=441$",
+        },
+        {
+          isCorrect: true,
+          label: "$\\frac1{\\sqrt a}+\\frac1{\\sqrt b}=\\frac7{10}$",
         },
       ],
     },
     id: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 205.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 200.000",
+          isCorrect: true,
+          label: "$a+b=29$",
         },
         {
           isCorrect: true,
-          label: "Rp 220.000",
+          label: "$|a-b|=21$",
         },
         {
           isCorrect: false,
-          label: "Rp 230.000",
+          label: "$\\sqrt{a+b}=7$",
         },
         {
-          isCorrect: false,
-          label: "Rp 250.000",
+          isCorrect: true,
+          label: "$(a-b)^2=441$",
+        },
+        {
+          isCorrect: true,
+          label: "$\\frac1{\\sqrt a}+\\frac1{\\sqrt b}=\\frac7{10}$",
         },
       ],
     },

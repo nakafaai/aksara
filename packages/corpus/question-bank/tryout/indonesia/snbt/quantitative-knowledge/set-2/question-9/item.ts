@@ -15,16 +15,16 @@ const item: QuestionItem = {
           label: "Wahr, wahr, falsch",
         },
         {
-          isCorrect: true,
-          label: "Falsch, wahr, falsch",
-        },
-        {
           isCorrect: false,
           label: "Falsch, wahr, wahr",
         },
         {
           isCorrect: false,
           label: "Falsch, falsch, wahr",
+        },
+        {
+          isCorrect: true,
+          label: "Falsch, wahr, falsch",
         },
       ],
     },
@@ -40,16 +40,16 @@ const item: QuestionItem = {
           label: "True, True, False",
         },
         {
-          isCorrect: true,
-          label: "False, True, False",
-        },
-        {
           isCorrect: false,
           label: "False, True, True",
         },
         {
           isCorrect: false,
           label: "False, False, True",
+        },
+        {
+          isCorrect: true,
+          label: "False, True, False",
         },
       ],
     },
@@ -65,16 +65,16 @@ const item: QuestionItem = {
           label: "Benar, Benar, Salah",
         },
         {
-          isCorrect: true,
-          label: "Salah, Benar, Salah",
-        },
-        {
           isCorrect: false,
           label: "Salah, Benar, Benar",
         },
         {
           isCorrect: false,
           label: "Salah, Salah, Benar",
+        },
+        {
+          isCorrect: true,
+          label: "Salah, Benar, Salah",
         },
       ],
     },

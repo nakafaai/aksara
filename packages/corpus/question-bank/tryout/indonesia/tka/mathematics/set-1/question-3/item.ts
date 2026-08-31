@@ -2,83 +2,83 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "numbers",
     topic: "real-numbers",
   },
   responses: {
     de: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 117.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 120.000",
+          isCorrect: true,
+          label: "$x^2+\\frac1{x^2}=7$",
         },
         {
           isCorrect: true,
-          label: "Rp 132.000",
+          label: "$(x-\\frac1x)^2=5$",
+        },
+        {
+          isCorrect: true,
+          label: "$x$ ist eine Nullstelle von $t^2-3t+1=0$.",
         },
         {
           isCorrect: false,
-          label: "Rp 142.000",
+          label: "$x$ ist rational.",
         },
         {
-          isCorrect: false,
-          label: "Rp 150.000",
+          isCorrect: true,
+          label: "$x^3+\\frac1{x^3}=18$",
         },
       ],
     },
     en: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 117.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 120.000",
+          isCorrect: true,
+          label: "$x^2+\\frac1{x^2}=7$",
         },
         {
           isCorrect: true,
-          label: "Rp 132.000",
+          label: "$(x-\\frac1x)^2=5$",
+        },
+        {
+          isCorrect: true,
+          label: "$x$ is a root of $t^2-3t+1=0$.",
         },
         {
           isCorrect: false,
-          label: "Rp 142.000",
+          label: "$x$ is rational.",
         },
         {
-          isCorrect: false,
-          label: "Rp 150.000",
+          isCorrect: true,
+          label: "$x^3+\\frac1{x^3}=18$",
         },
       ],
     },
     id: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 117.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 120.000",
+          isCorrect: true,
+          label: "$x^2+\\frac1{x^2}=7$",
         },
         {
           isCorrect: true,
-          label: "Rp 132.000",
+          label: "$(x-\\frac1x)^2=5$",
+        },
+        {
+          isCorrect: true,
+          label: "$x$ merupakan akar $t^2-3t+1=0$.",
         },
         {
           isCorrect: false,
-          label: "Rp 142.000",
+          label: "$x$ merupakan bilangan rasional.",
         },
         {
-          isCorrect: false,
-          label: "Rp 150.000",
+          isCorrect: true,
+          label: "$x^3+\\frac1{x^3}=18$",
         },
       ],
     },

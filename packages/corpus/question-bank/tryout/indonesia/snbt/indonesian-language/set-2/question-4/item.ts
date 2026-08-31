@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Beras dapat dijadikan banyak hidangan ikonik dari seluruh dunia",
+        },
+        {
           isCorrect: false,
           label: "Beras merupakan bahan pangan pokok bagi masyarakat Indonesia",
         },
@@ -17,11 +22,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Beras menjadi makanan pokok bagi miliaran orang di Asia dan Afrika",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Beras dapat dijadikan banyak hidangan ikonik dari seluruh dunia",
         },
         {
           isCorrect: false,

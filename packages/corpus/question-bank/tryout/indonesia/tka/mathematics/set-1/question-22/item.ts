@@ -2,9 +2,9 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
-    contentDomain: "geometry-measurement",
-    topic: "geometry-transformations",
+    cognitiveLevel: "application",
+    contentDomain: "data-probability",
+    topic: "data",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(5,2)$$",
+          label: "$$12$$",
         },
         {
           isCorrect: false,
-          label: "$$(6,1)$$",
+          label: "$$13$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$16$$",
         },
         {
           isCorrect: true,
-          label: "$$(6,2)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(7,2)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(6,3)$$",
+          label: "$$15$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(5,2)$$",
+          label: "$$12$$",
         },
         {
           isCorrect: false,
-          label: "$$(6,1)$$",
+          label: "$$13$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$16$$",
         },
         {
           isCorrect: true,
-          label: "$$(6,2)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(7,2)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(6,3)$$",
+          label: "$$15$$",
         },
       ],
     },
@@ -62,27 +62,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(5,2)$$",
+          label: "$$12$$",
         },
         {
           isCorrect: false,
-          label: "$$(6,1)$$",
+          label: "$$13$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$16$$",
         },
         {
           isCorrect: true,
-          label: "$$(6,2)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(7,2)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(6,3)$$",
+          label: "$$15$$",
         },
       ],
     },
   },
+  stimulusKey: "grade-distribution",
 };
 
 export default item;

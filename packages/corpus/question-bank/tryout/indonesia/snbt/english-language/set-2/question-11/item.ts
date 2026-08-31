@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "Certain that one food can prevent every infection",
         },
         {
-          isCorrect: false,
-          label: "Alarmist about eating any sugar",
-        },
-        {
           isCorrect: true,
           label: "Practical and evidence-based",
+        },
+        {
+          isCorrect: false,
+          label: "Alarmist about eating any sugar",
         },
         {
           isCorrect: false,

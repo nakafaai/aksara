@@ -2,83 +2,88 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "geometry-measurement",
-    topic: "geometry-objects",
+    topic: "measurement",
   },
   responses: {
     de: {
-      kind: "single-choice",
-      options: [
+      categories: ["Richtig", "Falsch"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "6 cm",
+          correctCategoryOrder: 1,
+          label:
+            "Der Flächeninhalt einer $pl$-Seite wird mit $6$ multipliziert.",
         },
         {
-          isCorrect: false,
-          label: "8 cm",
+          correctCategoryOrder: 1,
+          label:
+            "Der Flächeninhalt einer $lt$-Seite wird mit $\\frac32$ multipliziert.",
         },
         {
-          isCorrect: true,
-          label: "10 cm",
+          correctCategoryOrder: 1,
+          label: "Das Volumen wird mit $3$ multipliziert.",
         },
         {
-          isCorrect: false,
-          label: "12 cm",
+          correctCategoryOrder: 2,
+          label: "Jede Raumdiagonale wird mit $2$ multipliziert.",
         },
         {
-          isCorrect: false,
-          label: "14 cm",
+          correctCategoryOrder: 2,
+          label: "Die gesamte Oberfläche wird immer mit $3$ multipliziert.",
         },
       ],
     },
     en: {
-      kind: "single-choice",
-      options: [
+      categories: ["True", "False"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "6 cm",
+          correctCategoryOrder: 1,
+          label: "The area of a $pl$ face is multiplied by $6$.",
         },
         {
-          isCorrect: false,
-          label: "8 cm",
+          correctCategoryOrder: 1,
+          label: "The area of an $lt$ face is multiplied by $\\frac32$.",
         },
         {
-          isCorrect: true,
-          label: "10 cm",
+          correctCategoryOrder: 1,
+          label: "The volume is multiplied by $3$.",
         },
         {
-          isCorrect: false,
-          label: "12 cm",
+          correctCategoryOrder: 2,
+          label: "Every space diagonal is multiplied by $2$.",
         },
         {
-          isCorrect: false,
-          label: "14 cm",
+          correctCategoryOrder: 2,
+          label: "Total surface area is always multiplied by $3$.",
         },
       ],
     },
     id: {
-      kind: "single-choice",
-      options: [
+      categories: ["Benar", "Salah"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "6 cm",
+          correctCategoryOrder: 1,
+          label: "Luas sisi $pl$ dikalikan $6$.",
         },
         {
-          isCorrect: false,
-          label: "8 cm",
+          correctCategoryOrder: 1,
+          label: "Luas sisi $lt$ dikalikan $\\frac32$.",
         },
         {
-          isCorrect: true,
-          label: "10 cm",
+          correctCategoryOrder: 1,
+          label: "Volume dikalikan $3$.",
         },
         {
-          isCorrect: false,
-          label: "12 cm",
+          correctCategoryOrder: 2,
+          label: "Setiap diagonal ruang dikalikan $2$.",
         },
         {
-          isCorrect: false,
-          label: "14 cm",
+          correctCategoryOrder: 2,
+          label: "Luas permukaan total selalu dikalikan $3$.",
         },
       ],
     },

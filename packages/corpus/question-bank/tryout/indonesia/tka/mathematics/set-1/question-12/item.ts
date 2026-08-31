@@ -2,9 +2,9 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "application",
-    contentDomain: "algebra",
-    topic: "functions",
+    cognitiveLevel: "reasoning",
+    contentDomain: "geometry-measurement",
+    topic: "geometry-objects",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "5",
+          label: "$$12$$",
         },
         {
           isCorrect: false,
-          label: "7",
+          label: "$$14$$",
         },
         {
           isCorrect: true,
-          label: "9",
+          label: "$$15$$",
         },
         {
           isCorrect: false,
-          label: "11",
+          label: "$$16$$",
         },
         {
           isCorrect: false,
-          label: "13",
+          label: "$$18$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "5",
+          label: "$$12$$",
         },
         {
           isCorrect: false,
-          label: "7",
+          label: "$$14$$",
         },
         {
           isCorrect: true,
-          label: "9",
+          label: "$$15$$",
         },
         {
           isCorrect: false,
-          label: "11",
+          label: "$$16$$",
         },
         {
           isCorrect: false,
-          label: "13",
+          label: "$$18$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "5",
+          label: "$$12$$",
         },
         {
           isCorrect: false,
-          label: "7",
+          label: "$$14$$",
         },
         {
           isCorrect: true,
-          label: "9",
+          label: "$$15$$",
         },
         {
           isCorrect: false,
-          label: "11",
+          label: "$$16$$",
         },
         {
           isCorrect: false,
-          label: "13",
+          label: "$$18$$",
         },
       ],
     },

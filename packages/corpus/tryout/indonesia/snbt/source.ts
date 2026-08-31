@@ -166,7 +166,7 @@ const snbtTryoutCatalog = defineTryoutExamSource({
       kind: "year",
       order: 1,
       routeSlugs: { de: "2027", en: "2027", id: "2027" },
-      sets: [1, 2].map((setNumber) => {
+      sets: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((setNumber) => {
         const setKey = `set-${setNumber}`;
         return {
           key: setKey,

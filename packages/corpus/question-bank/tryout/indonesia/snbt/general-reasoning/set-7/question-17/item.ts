@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Miras Bericht gelangt in die Warteschlange für die endgültige Entscheidung.",
-        },
-        {
           isCorrect: false,
           label:
             "Miras Bericht hat die Vollständigkeitsprüfung nicht bestanden.",
@@ -28,15 +23,16 @@ const item: QuestionItem = {
           label:
             "Jeder Bericht in der endgültigen Warteschlange wird automatisch genehmigt.",
         },
+        {
+          isCorrect: true,
+          label:
+            "Miras Bericht gelangt in die Warteschlange für die endgültige Entscheidung.",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "Mira's report enters the final decision queue.",
-        },
         {
           isCorrect: false,
           label: "Mira's report failed the completeness check.",
@@ -53,15 +49,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Every report in the final queue is automatically approved.",
         },
+        {
+          isCorrect: true,
+          label: "Mira's report enters the final decision queue.",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "Laporan Mira masuk ke antrean keputusan akhir.",
-        },
         {
           isCorrect: false,
           label: "Laporan Mira tidak lulus pemeriksaan kelengkapan.",
@@ -78,6 +74,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Setiap laporan dalam antrean akhir disetujui secara otomatis.",
+        },
+        {
+          isCorrect: true,
+          label: "Laporan Mira masuk ke antrean keputusan akhir.",
         },
       ],
     },

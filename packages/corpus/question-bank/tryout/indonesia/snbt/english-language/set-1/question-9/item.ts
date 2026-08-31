@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "a ranking of sports by the calories they burn.",
         },
         {
+          isCorrect: true,
+          label: "when and how to seek additional support for stress.",
+        },
+        {
           isCorrect: false,
           label: "replacing balanced meals with dietary supplements.",
         },
         {
           isCorrect: false,
           label: "ways to eliminate every source of stress.",
-        },
-        {
-          isCorrect: true,
-          label: "when and how to seek additional support for stress.",
         },
         {
           isCorrect: false,

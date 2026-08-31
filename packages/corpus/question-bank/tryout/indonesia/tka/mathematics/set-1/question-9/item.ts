@@ -4,81 +4,72 @@ const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "algebra",
-    topic: "linear-equations-inequalities",
+    topic: "sequences-series",
   },
   responses: {
     de: {
-      kind: "single-choice",
-      options: [
+      categories: ["Richtig", "Falsch"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "15",
+          correctCategoryOrder: 1,
+          label: "$u_4=54$",
         },
         {
-          isCorrect: false,
-          label: "18",
+          correctCategoryOrder: 1,
+          label: "$S_4=80$",
         },
         {
-          isCorrect: true,
-          label: "21",
+          correctCategoryOrder: 2,
+          label: "$u_6=243$",
         },
         {
-          isCorrect: false,
-          label: "24",
-        },
-        {
-          isCorrect: false,
-          label: "27",
+          correctCategoryOrder: 1,
+          label: "$\\frac{u_6}{u_3}=27$",
         },
       ],
     },
     en: {
-      kind: "single-choice",
-      options: [
+      categories: ["True", "False"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "15",
+          correctCategoryOrder: 1,
+          label: "$u_4=54$",
         },
         {
-          isCorrect: false,
-          label: "18",
+          correctCategoryOrder: 1,
+          label: "$S_4=80$",
         },
         {
-          isCorrect: true,
-          label: "21",
+          correctCategoryOrder: 2,
+          label: "$u_6=243$",
         },
         {
-          isCorrect: false,
-          label: "24",
-        },
-        {
-          isCorrect: false,
-          label: "27",
+          correctCategoryOrder: 1,
+          label: "$\\frac{u_6}{u_3}=27$",
         },
       ],
     },
     id: {
-      kind: "single-choice",
-      options: [
+      categories: ["Benar", "Salah"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "15",
+          correctCategoryOrder: 1,
+          label: "$u_4=54$",
         },
         {
-          isCorrect: false,
-          label: "18",
+          correctCategoryOrder: 1,
+          label: "$S_4=80$",
         },
         {
-          isCorrect: true,
-          label: "21",
+          correctCategoryOrder: 2,
+          label: "$u_6=243$",
         },
         {
-          isCorrect: false,
-          label: "24",
-        },
-        {
-          isCorrect: false,
-          label: "27",
+          correctCategoryOrder: 1,
+          label: "$\\frac{u_6}{u_3}=27$",
         },
       ],
     },

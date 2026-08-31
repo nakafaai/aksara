@@ -6,14 +6,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Alle Bewohner des Dorfes Nelayan stellen Bio- und anorganische Futtermittel her",
-        },
-        {
           isCorrect: true,
           label:
             "Alle Bewohner des Dorfes Nelayan stellen Bio-Fischfutter oder anorganisches Fischfutter her",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Alle Bewohner des Dorfes Nelayan stellen Bio- und anorganische Futtermittel her",
         },
         {
           isCorrect: false,
@@ -34,14 +34,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "All residents of Nelayan Village make organic feed and inorganic feed",
-        },
-        {
           isCorrect: true,
           label:
             "All residents of Nelayan Village make organic fish feed or inorganic fish feed",
+        },
+        {
+          isCorrect: false,
+          label:
+            "All residents of Nelayan Village make organic feed and inorganic feed",
         },
         {
           isCorrect: false,
@@ -63,14 +63,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Semua penduduk Desa Nelayan membuat pakan organik dan pakan anorganik",
-        },
-        {
           isCorrect: true,
           label:
             "Semua penduduk Desa Nelayan membuat pakan ikan organik atau pakan ikan anorganik",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Semua penduduk Desa Nelayan membuat pakan organik dan pakan anorganik",
         },
         {
           isCorrect: false,

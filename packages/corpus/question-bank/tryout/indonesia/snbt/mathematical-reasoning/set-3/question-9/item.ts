@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$70$$ Minuten oder $$30$$ Minuten",
-        },
-        {
           isCorrect: false,
           label: "$$21$$ Minuten oder $$10$$ Minuten",
         },
@@ -22,6 +18,10 @@ const item: QuestionItem = {
           label: "$$30$$ Minuten oder $$40$$ Minuten",
         },
         {
+          isCorrect: true,
+          label: "$$70$$ Minuten oder $$30$$ Minuten",
+        },
+        {
           isCorrect: false,
           label: "$$10$$ Minuten oder $$30$$ Minuten",
         },
@@ -30,10 +30,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$70$$ minutes or $$30$$ minutes",
-        },
         {
           isCorrect: false,
           label: "$$21$$ minutes or $$10$$ minutes",
@@ -47,6 +43,10 @@ const item: QuestionItem = {
           label: "$$30$$ minutes or $$40$$ minutes",
         },
         {
+          isCorrect: true,
+          label: "$$70$$ minutes or $$30$$ minutes",
+        },
+        {
           isCorrect: false,
           label: "$$10$$ minutes or $$30$$ minutes",
         },
@@ -55,10 +55,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$70$$ menit atau $$30$$ menit",
-        },
         {
           isCorrect: false,
           label: "$$21$$ menit atau $$10$$ menit",
@@ -70,6 +66,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$30$$ menit atau $$40$$ menit",
+        },
+        {
+          isCorrect: true,
+          label: "$$70$$ menit atau $$30$$ menit",
         },
         {
           isCorrect: false,

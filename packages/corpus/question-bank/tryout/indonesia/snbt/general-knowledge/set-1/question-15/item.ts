@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "hohes Plateau.",
+        },
+        {
           isCorrect: false,
           label: "das Frostphänomen.",
         },
         {
           isCorrect: false,
           label: "die Grasfläche.",
-        },
-        {
-          isCorrect: true,
-          label: "hohes Plateau.",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "high plateau.",
+        },
+        {
           isCorrect: false,
           label: "dew phenomenon.",
         },
         {
           isCorrect: false,
           label: "expanse of grass.",
-        },
-        {
-          isCorrect: true,
-          label: "high plateau.",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "dataran tinggi.",
+        },
+        {
           isCorrect: false,
           label: "fenomena embun.",
         },
         {
           isCorrect: false,
           label: "hamparan rumput.",
-        },
-        {
-          isCorrect: true,
-          label: "dataran tinggi.",
         },
         {
           isCorrect: false,

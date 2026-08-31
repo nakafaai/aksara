@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "Bekräftigt Aussage A",
         },
         {
-          isCorrect: false,
-          label: "Schwächt Aussage A",
-        },
-        {
           isCorrect: true,
           label: "Bekräftigt Aussage B",
+        },
+        {
+          isCorrect: false,
+          label: "Schwächt Aussage A",
         },
         {
           isCorrect: false,
@@ -35,12 +35,12 @@ const item: QuestionItem = {
           label: "Strengthens statement A",
         },
         {
-          isCorrect: false,
-          label: "Weakens statement A",
-        },
-        {
           isCorrect: true,
           label: "Strengthens statement B",
+        },
+        {
+          isCorrect: false,
+          label: "Weakens statement A",
         },
         {
           isCorrect: false,
@@ -60,12 +60,12 @@ const item: QuestionItem = {
           label: "Memperkuat pernyataan A",
         },
         {
-          isCorrect: false,
-          label: "Memperlemah pernyataan A",
-        },
-        {
           isCorrect: true,
           label: "Memperkuat pernyataan B",
+        },
+        {
+          isCorrect: false,
+          label: "Memperlemah pernyataan A",
         },
         {
           isCorrect: false,

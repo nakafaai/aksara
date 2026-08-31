@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "$$\\text{pit}$$",
         },
         {
-          isCorrect: false,
-          label: "$$\\text{sit}$$",
-        },
-        {
           isCorrect: true,
           label: "$$\\text{nit}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\text{sit}$$",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "$$\\text{pit}$$",
         },
         {
-          isCorrect: false,
-          label: "$$\\text{sit}$$",
-        },
-        {
           isCorrect: true,
           label: "$$\\text{nit}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\text{sit}$$",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "$$\\text{pit}$$",
         },
         {
-          isCorrect: false,
-          label: "$$\\text{sit}$$",
-        },
-        {
           isCorrect: true,
           label: "$$\\text{nit}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\text{sit}$$",
         },
         {
           isCorrect: false,

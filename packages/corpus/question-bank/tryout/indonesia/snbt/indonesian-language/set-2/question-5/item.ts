@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "Walaupun demikian, banyak orang yang beranggapan",
         },
         {
-          isCorrect: true,
-          label: "Meskipun memiliki daya tarik universal",
-        },
-        {
           isCorrect: false,
           label: "Dibalik semua itu, ada peran pemerintah secara agregat",
+        },
+        {
+          isCorrect: true,
+          label: "Meskipun memiliki daya tarik universal",
         },
       ],
     },

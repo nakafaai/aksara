@@ -2,9 +2,9 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "reasoning",
-    contentDomain: "geometry-measurement",
-    topic: "geometry-objects",
+    cognitiveLevel: "knowledge-understanding",
+    contentDomain: "data-probability",
+    topic: "data",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$4\\sqrt2$$",
+          label: "$$36$$",
         },
         {
           isCorrect: true,
-          label: "$$4\\sqrt{3}$$",
+          label: "$$144$$",
         },
         {
           isCorrect: false,
-          label: "$$8$$",
+          label: "$$72$$",
         },
         {
           isCorrect: false,
-          label: "$$4\\sqrt5$$",
+          label: "$$81$$",
         },
         {
           isCorrect: false,
-          label: "$$12$$",
+          label: "$$324$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$4\\sqrt2$$",
+          label: "$$36$$",
         },
         {
           isCorrect: true,
-          label: "$$4\\sqrt{3}$$",
+          label: "$$144$$",
         },
         {
           isCorrect: false,
-          label: "$$8$$",
+          label: "$$72$$",
         },
         {
           isCorrect: false,
-          label: "$$4\\sqrt5$$",
+          label: "$$81$$",
         },
         {
           isCorrect: false,
-          label: "$$12$$",
+          label: "$$324$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$4\\sqrt2$$",
+          label: "$$36$$",
         },
         {
           isCorrect: true,
-          label: "$$4\\sqrt{3}$$",
+          label: "$$144$$",
         },
         {
           isCorrect: false,
-          label: "$$8$$",
+          label: "$$72$$",
         },
         {
           isCorrect: false,
-          label: "$$4\\sqrt5$$",
+          label: "$$81$$",
         },
         {
           isCorrect: false,
-          label: "$$12$$",
+          label: "$$324$$",
         },
       ],
     },

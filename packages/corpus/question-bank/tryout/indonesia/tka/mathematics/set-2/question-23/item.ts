@@ -3,32 +3,32 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "application",
-    contentDomain: "geometry-measurement",
-    topic: "geometry-transformations",
+    contentDomain: "data-probability",
+    topic: "data",
   },
   responses: {
     de: {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$(-3,5)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(-2,4)$$",
-        },
-        {
           isCorrect: true,
-          label: "$$(-2,5)$$",
+          label: "$$75{,}3$$",
         },
         {
           isCorrect: false,
-          label: "$$(-1,5)$$",
+          label: "$$74{,}9$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,6)$$",
+          label: "$$75{,}1$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$75{,}5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$75{,}7$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$(-3,5)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(-2,4)$$",
-        },
-        {
           isCorrect: true,
-          label: "$$(-2,5)$$",
+          label: "$$75{,}3$$",
         },
         {
           isCorrect: false,
-          label: "$$(-1,5)$$",
+          label: "$$74{,}9$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,6)$$",
+          label: "$$75{,}1$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$75{,}5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$75{,}7$$",
         },
       ],
     },
@@ -61,28 +61,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$(-3,5)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(-2,4)$$",
-        },
-        {
           isCorrect: true,
-          label: "$$(-2,5)$$",
+          label: "$$75{,}3$$",
         },
         {
           isCorrect: false,
-          label: "$$(-1,5)$$",
+          label: "$$74{,}9$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,6)$$",
+          label: "$$75{,}1$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$75{,}5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$75{,}7$$",
         },
       ],
     },
   },
+  stimulusKey: "study-time-survey",
 };
 
 export default item;

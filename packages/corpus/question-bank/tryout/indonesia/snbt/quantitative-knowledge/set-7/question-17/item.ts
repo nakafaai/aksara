@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "$$(1)$$, $$(2)$$ und $$(3)$$",
         },
         {
+          isCorrect: true,
+          label: "Alle vier Zahlen",
+        },
+        {
           isCorrect: false,
           label: "$$(1)$$ und $$(3)$$",
         },
@@ -21,10 +25,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Nur $$(4)$$",
         },
-        {
-          isCorrect: true,
-          label: "Alle vier Zahlen",
-        },
       ],
     },
     en: {
@@ -33,6 +33,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$(1)$$, $$(2)$$, and $$(3)$$",
+        },
+        {
+          isCorrect: true,
+          label: "All four numbers",
         },
         {
           isCorrect: false,
@@ -46,10 +50,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Only $$(4)$$",
         },
-        {
-          isCorrect: true,
-          label: "All four numbers",
-        },
       ],
     },
     id: {
@@ -58,6 +58,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$(1)$$, $$(2)$$, dan $$(3)$$",
+        },
+        {
+          isCorrect: true,
+          label: "Keempat bilangan",
         },
         {
           isCorrect: false,
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Hanya $$(4)$$",
-        },
-        {
-          isCorrect: true,
-          label: "Keempat bilangan",
         },
       ],
     },

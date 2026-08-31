@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$49{,}5$$ Tage",
+        },
+        {
           isCorrect: false,
           label: "$$48$$ Tage",
         },
@@ -18,10 +22,6 @@ const item: QuestionItem = {
           label: "$$49$$ Tage",
         },
         {
-          isCorrect: true,
-          label: "$$49{,}5$$ Tage",
-        },
-        {
           isCorrect: false,
           label: "$$50$$ Tage",
         },
@@ -30,6 +30,10 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$49.5$$ days",
+        },
         {
           isCorrect: false,
           label: "$$48$$ days",
@@ -43,10 +47,6 @@ const item: QuestionItem = {
           label: "$$49$$ days",
         },
         {
-          isCorrect: true,
-          label: "$$49.5$$ days",
-        },
-        {
           isCorrect: false,
           label: "$$50$$ days",
         },
@@ -55,6 +55,10 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$49{,}5$$ hari",
+        },
         {
           isCorrect: false,
           label: "$$48$$ hari",
@@ -66,10 +70,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$49$$ hari",
-        },
-        {
-          isCorrect: true,
-          label: "$$49{,}5$$ hari",
         },
         {
           isCorrect: false,

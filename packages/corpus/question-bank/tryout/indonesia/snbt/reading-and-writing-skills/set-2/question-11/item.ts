@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Die Entwicklung der indonesischen Landwirtschaft",
-        },
-        {
           isCorrect: true,
           label: "Ein Profil aus Indonesiens Landwirtschaftszählung 2023",
+        },
+        {
+          isCorrect: false,
+          label: "Die Entwicklung der indonesischen Landwirtschaft",
         },
         {
           isCorrect: false,
@@ -33,12 +33,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "The Development of Indonesian Agriculture",
-        },
-        {
           isCorrect: true,
           label: "A Profile from Indonesia's 2023 Agricultural Census",
+        },
+        {
+          isCorrect: false,
+          label: "The Development of Indonesian Agriculture",
         },
         {
           isCorrect: false,
@@ -58,12 +58,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Perkembangan Pertanian Indonesia",
-        },
-        {
           isCorrect: true,
           label: "Potret dari Sensus Pertanian Indonesia 2023",
+        },
+        {
+          isCorrect: false,
+          label: "Perkembangan Pertanian Indonesia",
         },
         {
           isCorrect: false,

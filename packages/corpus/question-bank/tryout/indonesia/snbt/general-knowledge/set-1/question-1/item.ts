@@ -11,11 +11,6 @@ const item: QuestionItem = {
             "warum ungewöhnliche Verknüpfungen in einem Traum normal wirken können.",
         },
         {
-          isCorrect: true,
-          label:
-            "wissenschaftliche Fragen und Befunde zur Entstehung von Träumen und ihrem Zusammenhang mit Erlebnissen und Erinnerungen.",
-        },
-        {
           isCorrect: false,
           label:
             "die Schwierigkeit, die Erlebnisse schlafender Tiere genau zu kennen.",
@@ -30,6 +25,11 @@ const item: QuestionItem = {
           label:
             "die Empfehlung, dass Kinder nach jeder Unterrichtsstunde schlafen sollten.",
         },
+        {
+          isCorrect: true,
+          label:
+            "wissenschaftliche Fragen und Befunde zur Entstehung von Träumen und ihrem Zusammenhang mit Erlebnissen und Erinnerungen.",
+        },
       ],
     },
     en: {
@@ -38,11 +38,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "why unusual associations can feel normal inside a dream.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "scientific questions and evidence about how dreams arise and relate to waking experience and memory.",
         },
         {
           isCorrect: false,
@@ -57,6 +52,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "the recommendation that children sleep after every lesson.",
         },
+        {
+          isCorrect: true,
+          label:
+            "scientific questions and evidence about how dreams arise and relate to waking experience and memory.",
+        },
       ],
     },
     id: {
@@ -66,11 +66,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "alasan hubungan yang tidak biasa dapat terasa wajar di dalam mimpi.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "pertanyaan ilmiah dan bukti tentang kemunculan mimpi serta kaitannya dengan pengalaman terjaga dan ingatan.",
         },
         {
           isCorrect: false,
@@ -84,6 +79,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "anjuran agar anak-anak tidur setiap selesai belajar.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "pertanyaan ilmiah dan bukti tentang kemunculan mimpi serta kaitannya dengan pengalaman terjaga dan ingatan.",
         },
       ],
     },

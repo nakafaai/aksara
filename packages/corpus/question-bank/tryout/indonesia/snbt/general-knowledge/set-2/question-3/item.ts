@@ -21,14 +21,14 @@ const item: QuestionItem = {
             "Katastrophenrisiken müssen erst nach Abschluss einer Entwicklungsinvestition berücksichtigt werden.",
         },
         {
-          isCorrect: true,
-          label:
-            "Die Verringerung von Katastrophenrisiken sollte Entwicklungsinvestitionen leiten, weil sich viel kritische Infrastruktur in Gefahrenzonen befindet.",
-        },
-        {
           isCorrect: false,
           label:
             "Die Verstärkung von Gebäuden reicht auch ohne Vorschriften, Aufsicht oder Katastrophenschutzübungen aus.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Die Verringerung von Katastrophenrisiken sollte Entwicklungsinvestitionen leiten, weil sich viel kritische Infrastruktur in Gefahrenzonen befindet.",
         },
       ],
     },
@@ -51,14 +51,14 @@ const item: QuestionItem = {
             "Disaster risks need to be considered only after a development investment has been completed.",
         },
         {
-          isCorrect: true,
-          label:
-            "Disaster-risk reduction should guide development investment because much critical infrastructure lies in hazard zones.",
-        },
-        {
           isCorrect: false,
           label:
             "Reinforcing buildings is sufficient even without regulation, oversight, or preparedness drills.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Disaster-risk reduction should guide development investment because much critical infrastructure lies in hazard zones.",
         },
       ],
     },
@@ -81,14 +81,14 @@ const item: QuestionItem = {
             "Risiko bencana baru perlu diperhitungkan setelah investasi pembangunan selesai dijalankan.",
         },
         {
-          isCorrect: true,
-          label:
-            "Pengurangan risiko bencana harus menjadi acuan investasi pembangunan karena banyak infrastruktur penting berada di zona bahaya.",
-        },
-        {
           isCorrect: false,
           label:
             "Penguatan bangunan sudah cukup meskipun tanpa regulasi, pengawasan, atau latihan kesiapsiagaan.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Pengurangan risiko bencana harus menjadi acuan investasi pembangunan karena banyak infrastruktur penting berada di zona bahaya.",
         },
       ],
     },

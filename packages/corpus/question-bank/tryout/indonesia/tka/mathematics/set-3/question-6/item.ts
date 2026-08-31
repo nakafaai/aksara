@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 4.500",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 5.000",
+          label: "Rp 125.000",
         },
         {
           isCorrect: true,
-          label: "Rp 5.500",
+          label: "Rp 145.000",
         },
         {
           isCorrect: false,
-          label: "Rp 6.000",
+          label: "Rp 135.000",
         },
         {
           isCorrect: false,
-          label: "Rp 6.500",
+          label: "Rp 155.000",
+        },
+        {
+          isCorrect: false,
+          label: "Rp 165.000",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 4.500",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 5.000",
+          label: "Rp 125.000",
         },
         {
           isCorrect: true,
-          label: "Rp 5.500",
+          label: "Rp 145.000",
         },
         {
           isCorrect: false,
-          label: "Rp 6.000",
+          label: "Rp 135.000",
         },
         {
           isCorrect: false,
-          label: "Rp 6.500",
+          label: "Rp 155.000",
+        },
+        {
+          isCorrect: false,
+          label: "Rp 165.000",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 4.500",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 5.000",
+          label: "Rp 125.000",
         },
         {
           isCorrect: true,
-          label: "Rp 5.500",
+          label: "Rp 145.000",
         },
         {
           isCorrect: false,
-          label: "Rp 6.000",
+          label: "Rp 135.000",
         },
         {
           isCorrect: false,
-          label: "Rp 6.500",
+          label: "Rp 155.000",
+        },
+        {
+          isCorrect: false,
+          label: "Rp 165.000",
         },
       ],
     },

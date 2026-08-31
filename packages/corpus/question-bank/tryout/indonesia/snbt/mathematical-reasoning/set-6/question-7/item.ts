@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$2520$$ Einheiten",
+        },
+        {
           isCorrect: false,
           label: "$$1960$$ Einheiten",
         },
         {
           isCorrect: false,
           label: "$$2000$$ Einheiten",
-        },
-        {
-          isCorrect: true,
-          label: "$$2520$$ Einheiten",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$2520$$ units",
+        },
+        {
           isCorrect: false,
           label: "$$1960$$ units",
         },
         {
           isCorrect: false,
           label: "$$2000$$ units",
-        },
-        {
-          isCorrect: true,
-          label: "$$2520$$ units",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$2520$$ unit",
+        },
+        {
           isCorrect: false,
           label: "$$1960$$ unit",
         },
         {
           isCorrect: false,
           label: "$$2000$$ unit",
-        },
-        {
-          isCorrect: true,
-          label: "$$2520$$ unit",
         },
         {
           isCorrect: false,

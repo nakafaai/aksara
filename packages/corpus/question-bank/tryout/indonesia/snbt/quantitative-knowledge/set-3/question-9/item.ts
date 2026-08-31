@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$25^\\circ$$",
+        },
+        {
           isCorrect: false,
           label: "$$15^\\circ$$",
         },
         {
           isCorrect: false,
           label: "$$20^\\circ$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$25^\\circ$$",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$25^\\circ$$",
+        },
+        {
           isCorrect: false,
           label: "$$15^\\circ$$",
         },
         {
           isCorrect: false,
           label: "$$20^\\circ$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$25^\\circ$$",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$25^\\circ$$",
+        },
+        {
           isCorrect: false,
           label: "$$15^\\circ$$",
         },
         {
           isCorrect: false,
           label: "$$20^\\circ$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$25^\\circ$$",
         },
         {
           isCorrect: false,

@@ -2,71 +2,83 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "reasoning",
-    contentDomain: "numbers",
-    topic: "real-numbers",
+    cognitiveLevel: "knowledge-understanding",
+    contentDomain: "algebra",
+    topic: "linear-equations-inequalities",
   },
   responses: {
     de: {
-      kind: "multiple-choice",
+      kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$\\sqrt{3^2}=3$, da $3>0$",
+          isCorrect: false,
+          label: "$$-\\frac35$$",
         },
         {
           isCorrect: true,
-          label: "$(-3)^2=3^2$",
+          label: "$$2$$",
         },
         {
           isCorrect: false,
-          label: "$3^{-1}=-3$",
+          label: "$$0$$",
         },
         {
-          isCorrect: true,
-          label: "$3^{\\frac12}\\cdot 3^{\\frac12}=3$",
+          isCorrect: false,
+          label: "$$1$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac52$$",
         },
       ],
     },
     en: {
-      kind: "multiple-choice",
+      kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$\\sqrt{3^2}=3$ because $3>0$",
+          isCorrect: false,
+          label: "$$-\\frac35$$",
         },
         {
           isCorrect: true,
-          label: "$(-3)^2=3^2$",
+          label: "$$2$$",
         },
         {
           isCorrect: false,
-          label: "$3^{-1}=-3$",
+          label: "$$0$$",
         },
         {
-          isCorrect: true,
-          label: "$3^{\\frac12}\\cdot 3^{\\frac12}=3$",
+          isCorrect: false,
+          label: "$$1$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac52$$",
         },
       ],
     },
     id: {
-      kind: "multiple-choice",
+      kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$\\sqrt{3^2}=3$ untuk $3>0$",
+          isCorrect: false,
+          label: "$$-\\frac35$$",
         },
         {
           isCorrect: true,
-          label: "$(-3)^2=3^2$",
+          label: "$$2$$",
         },
         {
           isCorrect: false,
-          label: "$3^{-1}=-3$",
+          label: "$$0$$",
         },
         {
-          isCorrect: true,
-          label: "$3^{\\frac12}\\cdot 3^{\\frac12}=3$",
+          isCorrect: false,
+          label: "$$1$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac52$$",
         },
       ],
     },

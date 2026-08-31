@@ -10,13 +10,13 @@ const item: QuestionItem = {
           label: "wie Fledermäuse nachts Nahrung suchen.",
         },
         {
+          isCorrect: true,
+          label: "die Vorteile des kopfüber hängenden Ruhens für Fledermäuse.",
+        },
+        {
           isCorrect: false,
           label:
             "wie das Fallenlassen von einer Sitzfläche den Abflug erleichtert.",
-        },
-        {
-          isCorrect: true,
-          label: "die Vorteile des kopfüber hängenden Ruhens für Fledermäuse.",
         },
         {
           isCorrect: false,
@@ -37,12 +37,12 @@ const item: QuestionItem = {
           label: "how bats search for food at night.",
         },
         {
-          isCorrect: false,
-          label: "how dropping from a perch helps a bat take flight.",
-        },
-        {
           isCorrect: true,
           label: "the advantages of upside-down roosting for bats.",
+        },
+        {
+          isCorrect: false,
+          label: "how dropping from a perch helps a bat take flight.",
         },
         {
           isCorrect: false,
@@ -62,13 +62,13 @@ const item: QuestionItem = {
           label: "cara kelelawar mencari makan pada malam hari.",
         },
         {
+          isCorrect: true,
+          label: "keuntungan bertengger terbalik bagi kelelawar.",
+        },
+        {
           isCorrect: false,
           label:
             "cara menjatuhkan diri dari tempat bertengger membantu kelelawar terbang.",
-        },
-        {
-          isCorrect: true,
-          label: "keuntungan bertengger terbalik bagi kelelawar.",
         },
         {
           isCorrect: false,

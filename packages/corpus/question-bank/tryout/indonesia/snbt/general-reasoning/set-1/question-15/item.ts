@@ -11,6 +11,11 @@ const item: QuestionItem = {
             "Jedes zugelassene pflanzliche Arzneimittel heilt nachweislich Krankheiten.",
         },
         {
+          isCorrect: true,
+          label:
+            "Vertrieb und Anwendung pflanzlicher Arzneimittel hängen von behördlicher Prüfung und fortlaufender Überwachung ab.",
+        },
+        {
           isCorrect: false,
           label:
             "Eine Verkehrszulassung garantiert, dass ein pflanzliches Arzneimittel für jede Person und jede Erkrankung geeignet ist.",
@@ -25,11 +30,6 @@ const item: QuestionItem = {
           label:
             "Die staatliche Überwachung endet, sobald ein pflanzliches Arzneimittel zugelassen wurde.",
         },
-        {
-          isCorrect: true,
-          label:
-            "Vertrieb und Anwendung pflanzlicher Arzneimittel hängen von behördlicher Prüfung und fortlaufender Überwachung ab.",
-        },
       ],
     },
     en: {
@@ -38,6 +38,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Every authorized herbal product is proven to cure disease.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "The circulation and use of herbal products depend on regulatory evaluation and continuing supervision.",
         },
         {
           isCorrect: false,
@@ -54,11 +59,6 @@ const item: QuestionItem = {
           label:
             "Government supervision ends as soon as a herbal product receives a marketing authorization.",
         },
-        {
-          isCorrect: true,
-          label:
-            "The circulation and use of herbal products depend on regulatory evaluation and continuing supervision.",
-        },
       ],
     },
     id: {
@@ -68,6 +68,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Setiap produk herbal berizin edar terbukti dapat menyembuhkan penyakit.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Peredaran dan penggunaan produk herbal bergantung pada penilaian regulator serta pengawasan yang berkelanjutan.",
         },
         {
           isCorrect: false,
@@ -83,11 +88,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Pengawasan pemerintah berakhir begitu suatu produk herbal memperoleh izin edar.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Peredaran dan penggunaan produk herbal bergantung pada penilaian regulator serta pengawasan yang berkelanjutan.",
         },
       ],
     },

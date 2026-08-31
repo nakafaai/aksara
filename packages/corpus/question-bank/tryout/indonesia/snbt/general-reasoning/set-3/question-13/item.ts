@@ -10,13 +10,13 @@ const item: QuestionItem = {
           label: "Das Geschäft verkauft $$24$$ Bergo-Tücher.",
         },
         {
+          isCorrect: true,
+          label: "Das Geschäft verkauft $$42$$ quadratische Tücher.",
+        },
+        {
           isCorrect: false,
           label:
             "Pashmina ist mit $$35$$ verkauften Tüchern das meistverkaufte Modell.",
-        },
-        {
-          isCorrect: true,
-          label: "Das Geschäft verkauft $$42$$ quadratische Tücher.",
         },
         {
           isCorrect: false,
@@ -36,13 +36,13 @@ const item: QuestionItem = {
           label: "The shop sells $$24$$ bergo headscarves.",
         },
         {
+          isCorrect: true,
+          label: "The shop sells $$42$$ square headscarves.",
+        },
+        {
           isCorrect: false,
           label:
             "Pashmina is the best-selling style, with $$35$$ headscarves sold.",
-        },
-        {
-          isCorrect: true,
-          label: "The shop sells $$42$$ square headscarves.",
         },
         {
           isCorrect: false,
@@ -62,14 +62,14 @@ const item: QuestionItem = {
           label: "Banyak kerudung jenis bergo yang terjual adalah $$24$$ buah.",
         },
         {
-          isCorrect: false,
-          label:
-            "Kerudung jenis pasmina paling banyak terjual yaitu sebesar $$35$$ buah.",
-        },
-        {
           isCorrect: true,
           label:
             "Penjualan jenis kerudung segiempat adalah sebanyak $$42$$ buah.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Kerudung jenis pasmina paling banyak terjual yaitu sebesar $$35$$ buah.",
         },
         {
           isCorrect: false,

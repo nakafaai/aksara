@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\frac{323}{999}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\frac{1}{3}$$",
         },
@@ -20,10 +24,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{232}{999}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{323}{999}$$",
         },
       ],
     },
@@ -31,6 +31,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\frac{323}{999}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\frac{1}{3}$$",
         },
@@ -45,10 +49,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{232}{999}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{323}{999}$$",
         },
       ],
     },
@@ -56,6 +56,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\frac{323}{999}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\frac{1}{3}$$",
         },
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{232}{999}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{323}{999}$$",
         },
       ],
     },

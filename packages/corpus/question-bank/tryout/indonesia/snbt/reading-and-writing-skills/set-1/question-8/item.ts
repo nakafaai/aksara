@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "ahmt nach.",
         },
         {
-          isCorrect: true,
-          label: "gleicht.",
-        },
-        {
           isCorrect: false,
           label: "folgt.",
+        },
+        {
+          isCorrect: true,
+          label: "gleicht.",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "imitates.",
         },
         {
-          isCorrect: true,
-          label: "looks like.",
-        },
-        {
           isCorrect: false,
           label: "follows.",
+        },
+        {
+          isCorrect: true,
+          label: "looks like.",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "menirukan.",
         },
         {
-          isCorrect: true,
-          label: "mirip dengan.",
-        },
-        {
           isCorrect: false,
           label: "mengikuti.",
+        },
+        {
+          isCorrect: true,
+          label: "mirip dengan.",
         },
         {
           isCorrect: false,

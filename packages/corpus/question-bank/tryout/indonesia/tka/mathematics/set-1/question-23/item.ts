@@ -3,8 +3,8 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "application",
-    contentDomain: "geometry-measurement",
-    topic: "geometry-transformations",
+    contentDomain: "data-probability",
+    topic: "data",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(-3,4)$$",
+          label: "$$1130$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,3)$$",
+          label: "$$1150$$",
         },
         {
           isCorrect: true,
-          label: "$$(-2,4)$$",
+          label: "$$1170$$",
         },
         {
           isCorrect: false,
-          label: "$$(-1,4)$$",
+          label: "$$1190$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,5)$$",
+          label: "$$1210$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(-3,4)$$",
+          label: "$$1130$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,3)$$",
+          label: "$$1150$$",
         },
         {
           isCorrect: true,
-          label: "$$(-2,4)$$",
+          label: "$$1170$$",
         },
         {
           isCorrect: false,
-          label: "$$(-1,4)$$",
+          label: "$$1190$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,5)$$",
+          label: "$$1210$$",
         },
       ],
     },
@@ -62,27 +62,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(-3,4)$$",
+          label: "$$1130$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,3)$$",
+          label: "$$1150$$",
         },
         {
           isCorrect: true,
-          label: "$$(-2,4)$$",
+          label: "$$1170$$",
         },
         {
           isCorrect: false,
-          label: "$$(-1,4)$$",
+          label: "$$1190$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,5)$$",
+          label: "$$1210$$",
         },
       ],
     },
   },
+  stimulusKey: "grade-distribution",
 };
 
 export default item;

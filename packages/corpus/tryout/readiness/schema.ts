@@ -41,7 +41,7 @@ const ResponseMinimumSchema = Schema.Struct({
   kind: QuestionResponseKindSchema,
 });
 const TopicMinimumSchema = Schema.Struct({
-  contentDomain: TryoutKeySchema,
+  contentDomains: Schema.NonEmptyArray(TryoutKeySchema),
   editorialMinimum: PositiveCountSchema,
   key: TryoutKeySchema,
 });
@@ -102,8 +102,14 @@ function hasCanonicalReadiness(readiness: AssessmentReadinessFields) {
           uniqueBy(blueprint.cognitiveLevels, ({ key }) => key) &&
           uniqueBy(blueprint.responseMinimums, ({ kind }) => kind) &&
           uniqueBy(blueprint.topics, ({ key }) => key) &&
-          blueprint.topics.every(({ contentDomain }) =>
-            blueprint.contentDomains.some(({ key }) => key === contentDomain)
+          blueprint.topics.every(
+            ({ contentDomains }) =>
+              uniqueBy(contentDomains, (contentDomain) => contentDomain) &&
+              contentDomains.every((contentDomain) =>
+                blueprint.contentDomains.some(
+                  ({ key }) => key === contentDomain
+                )
+              )
           )))
     );
   });

@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Unabhängige Geflügelbetriebe haben Verluste erlitten.",
+        },
+        {
           isCorrect: false,
           label:
             "Handelspartner haben die Ausfuhren des Landes bereits beschränkt.",
@@ -25,15 +29,15 @@ const item: QuestionItem = {
           label:
             "Die vorgeschlagenen Hühnerimporte sind bereits auf den heimischen Markt gelangt.",
         },
-        {
-          isCorrect: true,
-          label: "Unabhängige Geflügelbetriebe haben Verluste erlitten.",
-        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "Independent chicken farmers suffered losses.",
+        },
         {
           isCorrect: false,
           label:
@@ -53,15 +57,15 @@ const item: QuestionItem = {
           label:
             "The proposed chicken imports have already entered the local market.",
         },
-        {
-          isCorrect: true,
-          label: "Independent chicken farmers suffered losses.",
-        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "Peternak ayam mandiri mengalami kerugian.",
+        },
         {
           isCorrect: false,
           label: "Mitra dagang telah membatasi ekspor negara tersebut.",
@@ -79,10 +83,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Impor ayam yang diusulkan telah masuk ke pasar lokal.",
-        },
-        {
-          isCorrect: true,
-          label: "Peternak ayam mandiri mengalami kerugian.",
         },
       ],
     },

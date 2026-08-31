@@ -21,13 +21,13 @@ describe("tryout catalog", () => {
           ])
         );
 
-        expect(rows).toHaveLength(81);
+        expect(rows).toHaveLength(315);
         expect(counts).toEqual({
           country: 3,
           exam: 6,
-          section: 51,
-          set: 15,
-          track: 6,
+          section: 237,
+          set: 57,
+          track: 12,
         });
         expect(
           rows.filter(
@@ -36,7 +36,7 @@ describe("tryout catalog", () => {
               row.examKey === "tka" &&
               row.publicPath === undefined
           )
-        ).toHaveLength(9);
+        ).toHaveLength(27);
       })
   );
 
@@ -115,7 +115,7 @@ describe("tryout catalog", () => {
         const rows = yield* projectTryoutCatalog(sources);
 
         expect(rows.filter(({ appLocale }) => appLocale === "de")).toHaveLength(
-          27
+          105
         );
         expect(
           rows.find(

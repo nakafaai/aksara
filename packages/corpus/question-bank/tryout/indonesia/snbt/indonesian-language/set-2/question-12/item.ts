@@ -10,13 +10,13 @@ const item: QuestionItem = {
           label: "Gajah betina selalu menjaga anaknya sendirian",
         },
         {
+          isCorrect: false,
+          label: "Gajah betina jumlahnya lebih banyak daripada jantan",
+        },
+        {
           isCorrect: true,
           label:
             "Pergerakannya dapat mewakili kelompok keluarga yang dipimpinnya",
-        },
-        {
-          isCorrect: false,
-          label: "Gajah betina jumlahnya lebih banyak daripada jantan",
         },
         {
           isCorrect: false,

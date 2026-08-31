@@ -5,7 +5,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "Guru" },
         { isCorrect: false, label: "Reporter" },
         { isCorrect: false, label: "Kepala Desa" },
         {
@@ -13,6 +12,7 @@ const item: QuestionItem = {
           label: "Ketua acara adat Festival Munara Beba Byak Karon",
         },
         { isCorrect: false, label: "Penyuluh" },
+        { isCorrect: true, label: "Guru" },
       ],
     },
   },

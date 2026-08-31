@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "$$0 \\leq x \\leq 30$$",
         },
         {
-          isCorrect: false,
-          label: "$$30 \\leq x \\leq 35$$",
-        },
-        {
           isCorrect: true,
           label: "$$30 \\leq x \\leq 40$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$30 \\leq x \\leq 35$$",
         },
         {
           isCorrect: false,
@@ -35,12 +35,12 @@ const item: QuestionItem = {
           label: "$$0 \\leq x \\leq 30$$",
         },
         {
-          isCorrect: false,
-          label: "$$30 \\leq x \\leq 35$$",
-        },
-        {
           isCorrect: true,
           label: "$$30 \\leq x \\leq 40$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$30 \\leq x \\leq 35$$",
         },
         {
           isCorrect: false,
@@ -60,12 +60,12 @@ const item: QuestionItem = {
           label: "$$0 \\leq x \\leq 30$$",
         },
         {
-          isCorrect: false,
-          label: "$$30 \\leq x \\leq 35$$",
-        },
-        {
           isCorrect: true,
           label: "$$30 \\leq x \\leq 40$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$30 \\leq x \\leq 35$$",
         },
         {
           isCorrect: false,

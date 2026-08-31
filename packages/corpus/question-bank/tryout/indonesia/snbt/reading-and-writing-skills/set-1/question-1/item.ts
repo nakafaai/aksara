@@ -6,17 +6,17 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Dürren und Überschwemmungen, die Nutzpflanzen schädigen können.",
+        },
+        {
           isCorrect: false,
           label: "Verschobene Jahreszeiten, die Aussaat und Ernte erschweren.",
         },
         {
           isCorrect: false,
           label: "Meeresspiegelanstieg und Küstenhochwasser.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Dürren und Überschwemmungen, die Nutzpflanzen schädigen können.",
         },
         {
           isCorrect: false,
@@ -34,16 +34,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Droughts and floods that can damage crops.",
+        },
+        {
           isCorrect: false,
           label: "Shifts in seasons that complicate planting and harvesting.",
         },
         {
           isCorrect: false,
           label: "Sea-level rise and coastal flooding.",
-        },
-        {
-          isCorrect: true,
-          label: "Droughts and floods that can damage crops.",
         },
         {
           isCorrect: false,
@@ -59,6 +59,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Kekeringan dan banjir yang dapat merusak tanaman.",
+        },
+        {
           isCorrect: false,
           label:
             "Pergeseran musim yang menyulitkan penentuan masa tanam dan panen.",
@@ -66,10 +70,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Kenaikan muka laut dan banjir pesisir.",
-        },
-        {
-          isCorrect: true,
-          label: "Kekeringan dan banjir yang dapat merusak tanaman.",
         },
         {
           isCorrect: false,

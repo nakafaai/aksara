@@ -4,72 +4,81 @@ const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "algebra",
-    topic: "linear-equations-inequalities",
+    topic: "functions",
   },
   responses: {
     de: {
-      categories: ["Richtig", "Falsch"],
-      kind: "category",
-      statements: [
+      kind: "multiple-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "Der Punkt $(0,0)$ erfüllt alle Nebenbedingungen.",
+          isCorrect: true,
+          label: "Der Scheitel ist $(2,-1)$.",
         },
         {
-          correctCategoryOrder: 1,
-          label: "Der Punkt $(2,2)$ erfüllt alle Nebenbedingungen.",
+          isCorrect: true,
+          label: "Der Wertebereich ist $[-1,\\infty)$.",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Der Punkt $(10,0)$ erfüllt alle Nebenbedingungen.",
+          isCorrect: true,
+          label: "Die Funktion ist auf $(-\\infty,2]$ fallend.",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Der Punkt $(0,12)$ erfüllt alle Nebenbedingungen.",
+          isCorrect: false,
+          label: "Die Funktion ist auf $\\mathbb R$ injektiv.",
+        },
+        {
+          isCorrect: true,
+          label: "Auf $[2,\\infty)$ gilt $f^{-1}(y)=2+\\sqrt{y+1}$.",
         },
       ],
     },
     en: {
-      categories: ["True", "False"],
-      kind: "category",
-      statements: [
+      kind: "multiple-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "The point $(0,0)$ satisfies every constraint.",
+          isCorrect: true,
+          label: "The vertex is $(2,-1)$.",
         },
         {
-          correctCategoryOrder: 1,
-          label: "The point $(2,2)$ satisfies every constraint.",
+          isCorrect: true,
+          label: "The range is $[-1,\\infty)$.",
         },
         {
-          correctCategoryOrder: 2,
-          label: "The point $(10,0)$ satisfies every constraint.",
+          isCorrect: true,
+          label: "The function decreases on $(-\\infty,2]$.",
         },
         {
-          correctCategoryOrder: 2,
-          label: "The point $(0,12)$ satisfies every constraint.",
+          isCorrect: false,
+          label: "The function is one-to-one on $\\mathbb R$.",
+        },
+        {
+          isCorrect: true,
+          label: "On $[2,\\infty)$, $f^{-1}(y)=2+\\sqrt{y+1}$.",
         },
       ],
     },
     id: {
-      categories: ["Benar", "Salah"],
-      kind: "category",
-      statements: [
+      kind: "multiple-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "Titik $(0,0)$ memenuhi semua kendala.",
+          isCorrect: true,
+          label: "Titik puncaknya adalah $(2,-1)$.",
         },
         {
-          correctCategoryOrder: 1,
-          label: "Titik $(2,2)$ memenuhi semua kendala.",
+          isCorrect: true,
+          label: "Range fungsi adalah $[-1,\\infty)$.",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Titik $(10,0)$ memenuhi semua kendala.",
+          isCorrect: true,
+          label: "Fungsi menurun pada $(-\\infty,2]$.",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Titik $(0,12)$ memenuhi semua kendala.",
+          isCorrect: false,
+          label: "Fungsi satu-satu pada $\\mathbb R$.",
+        },
+        {
+          isCorrect: true,
+          label: "Pada $[2,\\infty)$, $f^{-1}(y)=2+\\sqrt{y+1}$.",
         },
       ],
     },

@@ -33,21 +33,21 @@ describe("tryout projection", () => {
         expect(counts).toEqual({
           country: 3,
           exam: 6,
-          section: 51,
-          set: 15,
-          track: 6,
+          section: 237,
+          set: 57,
+          track: 12,
         });
-        expect(projection.catalog).toHaveLength(81);
-        expect(projection.routeCount).toBe(72);
-        expect(projection.placements).toHaveLength(1320);
+        expect(projection.catalog).toHaveLength(315);
+        expect(projection.routeCount).toBe(288);
+        expect(projection.placements).toHaveLength(5475);
         expect(
           new Set(
             projection.placements.map(
               ({ questionContentKey }) => questionContentKey
             )
           ).size
-        ).toBe(440);
-        expect(bodyHeads.size).toBe(2640);
+        ).toBe(1825);
+        expect(bodyHeads.size).toBe(10_950);
         expect(
           projection.placements.every(
             ({ response, scope }) =>
@@ -106,6 +106,7 @@ describe("tryout projection", () => {
             ({ row }) =>
               row.kind === "track" &&
               row.examKey === "tka" &&
+              row.trackKey === "mathematics" &&
               row.appLocale === "en"
           )?.row
         );
@@ -114,6 +115,7 @@ describe("tryout projection", () => {
             ({ row }) =>
               row.kind === "track" &&
               row.examKey === "tka" &&
+              row.trackKey === "mathematics" &&
               row.appLocale === "id"
           )?.row
         );
@@ -122,6 +124,7 @@ describe("tryout projection", () => {
             ({ row }) =>
               row.kind === "section" &&
               row.examKey === "tka" &&
+              row.sectionKey === "mathematics" &&
               row.setKey === "set-1" &&
               row.appLocale === "id"
           )?.row
@@ -151,7 +154,7 @@ describe("tryout projection", () => {
   );
 
   it.effect(
-    "excludes every physical set outside the active source registry",
+    "projects every complete active SNBT and TKA set",
     () =>
       Effect.gen(function* () {
         const { projection } = yield* loadTryoutProjectionContent();
@@ -162,13 +165,29 @@ describe("tryout projection", () => {
           ({ examKey }) => examKey === "tka"
         );
 
-        expect(snbt).toHaveLength(960);
-        expect(tka).toHaveLength(360);
+        expect(snbt).toHaveLength(4800);
+        expect(tka).toHaveLength(675);
         expect(
-          snbt.some(({ questionContentKey }) =>
-            questionContentKey.includes("/set-3/")
+          Array.from({ length: 10 }, (_, index) => `set-${index + 1}`).map(
+            (setKey) =>
+              snbt.filter(
+                ({ appLocale, setKey: placementSetKey }) =>
+                  appLocale === "en" && placementSetKey === setKey
+              ).length
           )
-        ).toBe(false);
+        ).toEqual(Array.from({ length: 10 }, () => 160));
+        expect(
+          ["mathematics", "indonesian-language", "english-language"].map(
+            (trackKey) =>
+              tka.filter(
+                ({ appLocale, trackKey: placementTrackKey }) =>
+                  appLocale === "en" && placementTrackKey === trackKey
+              ).length
+          )
+        ).toEqual([75, 75, 75]);
+        expect(new Set(snbt.map(({ setKey }) => setKey))).toEqual(
+          new Set(Array.from({ length: 10 }, (_, index) => `set-${index + 1}`))
+        );
         expect(new Set(tka.map(({ setKey }) => setKey))).toEqual(
           new Set(["set-1", "set-2", "set-3"])
         );
@@ -229,6 +248,11 @@ describe("tryout projection", () => {
       Effect.gen(function* () {
         const [sources, questions] = yield* loadTryoutProjectionSources();
         const groupPath = "/tka/mathematics/set-1/";
+        const fifth = yield* Effect.fromNullishOr(
+          questions.find(({ questionKey }) =>
+            questionKey.includes(`${groupPath}question-5`)
+          )
+        );
         const sixth = yield* Effect.fromNullishOr(
           questions.find(({ questionKey }) =>
             questionKey.includes(`${groupPath}question-6`)
@@ -239,26 +263,21 @@ describe("tryout projection", () => {
             questionKey.includes(`${groupPath}question-7`)
           )
         );
-        const eighth = yield* Effect.fromNullishOr(
-          questions.find(({ questionKey }) =>
-            questionKey.includes(`${groupPath}question-8`)
-          )
-        );
-        const stimulusKey = yield* Effect.fromNullishOr(sixth.item.stimulusKey);
-        const withoutSeventh = questions.map((question) => {
-          if (question !== seventh) {
+        const stimulusKey = yield* Effect.fromNullishOr(fifth.item.stimulusKey);
+        const withoutSixth = questions.map((question) => {
+          if (question !== sixth) {
             return question;
           }
           const { stimulusKey: _stimulusKey, ...item } = question.item;
           return { ...question, item };
         });
-        const noncontiguous = withoutSeventh.map((question) =>
-          question === eighth
+        const noncontiguous = withoutSixth.map((question) =>
+          question === seventh
             ? { ...question, item: { ...question.item, stimulusKey } }
             : question
         );
         const [isolated, separated] = yield* Effect.all([
-          projectTryoutSources(sources, withoutSeventh).pipe(Effect.flip),
+          projectTryoutSources(sources, withoutSixth).pipe(Effect.flip),
           projectTryoutSources(sources, noncontiguous).pipe(Effect.flip),
         ]);
 

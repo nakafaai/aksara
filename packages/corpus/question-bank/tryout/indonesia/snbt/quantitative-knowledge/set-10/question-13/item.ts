@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "$$1\\frac{1}{8}; 0{,}875; \\frac{3}{4}; \\frac{1}{\\sqrt{2}}; 12{,}5\\%$$",
-        },
-        {
           isCorrect: false,
           label:
             "$$1\\frac{1}{8}; \\frac{3}{4}; \\frac{1}{\\sqrt{2}}; 12{,}5\\%; 0{,}875$$",
@@ -30,16 +25,16 @@ const item: QuestionItem = {
           label:
             "$$\\frac{1}{\\sqrt{2}}; 1\\frac{1}{8}; 0{,}875; \\frac{3}{4}; 12{,}5\\%$$",
         },
+        {
+          isCorrect: true,
+          label:
+            "$$1\\frac{1}{8}; 0{,}875; \\frac{3}{4}; \\frac{1}{\\sqrt{2}}; 12{,}5\\%$$",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "$$1\\frac{1}{8}; 0.875; \\frac{3}{4}; \\frac{1}{\\sqrt{2}}; 12.5\\%$$",
-        },
         {
           isCorrect: false,
           label:
@@ -60,16 +55,16 @@ const item: QuestionItem = {
           label:
             "$$\\frac{1}{\\sqrt{2}}; 1\\frac{1}{8}; 0.875; \\frac{3}{4}; 12.5\\%$$",
         },
+        {
+          isCorrect: true,
+          label:
+            "$$1\\frac{1}{8}; 0.875; \\frac{3}{4}; \\frac{1}{\\sqrt{2}}; 12.5\\%$$",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "$$1\\frac{1}{8}; 0{,}875; \\frac{3}{4}; \\frac{1}{\\sqrt{2}}; 12{,}5\\%$$",
-        },
         {
           isCorrect: false,
           label:
@@ -89,6 +84,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "$$\\frac{1}{\\sqrt{2}}; 1\\frac{1}{8}; 0{,}875; \\frac{3}{4}; 12{,}5\\%$$",
+        },
+        {
+          isCorrect: true,
+          label:
+            "$$1\\frac{1}{8}; 0{,}875; \\frac{3}{4}; \\frac{1}{\\sqrt{2}}; 12{,}5\\%$$",
         },
       ],
     },

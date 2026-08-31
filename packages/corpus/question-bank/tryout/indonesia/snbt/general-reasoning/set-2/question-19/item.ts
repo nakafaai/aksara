@@ -6,14 +6,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Der gesamte gemeinsame Arbeitseinsatz am Sonntag wurde wegen des Regens abgesagt.",
-        },
-        {
           isCorrect: true,
           label:
             "Beim gemeinsamen Arbeitseinsatz am Sonntag wurden wiederverwendbare Gegenstände gesammelt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Der gesamte gemeinsame Arbeitseinsatz am Sonntag wurde wegen des Regens abgesagt.",
         },
         {
           isCorrect: false,
@@ -36,14 +36,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Sunday's entire neighborhood work day was cancelled because of the rain.",
-        },
-        {
           isCorrect: true,
           label:
             "Reusable items were collected during Sunday's neighborhood work day.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Sunday's entire neighborhood work day was cancelled because of the rain.",
         },
         {
           isCorrect: false,
@@ -66,14 +66,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Pada hari Minggu tidak jadi dilaksanakan kerja bakti karena turun hujan.",
-        },
-        {
           isCorrect: true,
           label:
             "Pada hari Minggu dilaksanakan kerja bakti mengumpulkan barang bekas.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pada hari Minggu tidak jadi dilaksanakan kerja bakti karena turun hujan.",
         },
         {
           isCorrect: false,

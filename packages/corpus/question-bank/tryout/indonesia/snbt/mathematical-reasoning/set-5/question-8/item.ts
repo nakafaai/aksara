@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$7{,}07$$",
+        },
+        {
           isCorrect: false,
           label: "$$7{,}16$$",
         },
         {
           isCorrect: false,
           label: "$$7{,}10$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$7{,}07$$",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$7.07$$",
+        },
+        {
           isCorrect: false,
           label: "$$7.16$$",
         },
         {
           isCorrect: false,
           label: "$$7.10$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$7.07$$",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$7{,}07$$",
+        },
+        {
           isCorrect: false,
           label: "$$7{,}16$$",
         },
         {
           isCorrect: false,
           label: "$$7{,}10$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$7{,}07$$",
         },
         {
           isCorrect: false,

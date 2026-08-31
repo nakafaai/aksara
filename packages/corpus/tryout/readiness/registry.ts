@@ -2,18 +2,25 @@ import { Effect, Schema } from "effect";
 
 import type { QuestionSource } from "#corpus/question-bank/source";
 import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
-import { tkaReadiness } from "#corpus/tryout/indonesia/tka/readiness";
+import { tkaEnglishReadiness } from "#corpus/tryout/indonesia/tka/readiness/english";
+import { tkaIndonesianReadiness } from "#corpus/tryout/indonesia/tka/readiness/indonesian";
+import { tkaMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/mathematics";
 import { validateAssessmentQuestionReadiness } from "#corpus/tryout/readiness/inventory";
 import type { AssessmentReadiness } from "#corpus/tryout/readiness/schema";
 import type { TryoutExamSource } from "#corpus/tryout/schema";
 
-const readinessPrograms = [snbtReadiness, tkaReadiness];
+const readinessPrograms = [
+  snbtReadiness,
+  tkaMathematicsReadiness,
+  tkaIndonesianReadiness,
+  tkaEnglishReadiness,
+];
 
 /** Returns the country and exam identity owned by one readiness gate. */
 function readinessIdentity(
-  readiness: Pick<AssessmentReadiness, "countryKey" | "examKey">
+  readiness: Pick<AssessmentReadiness, "countryKey" | "examKey" | "trackKey">
 ) {
-  return `${readiness.countryKey}\0${readiness.examKey}`;
+  return `${readiness.countryKey}\0${readiness.examKey}\0${readiness.trackKey}`;
 }
 
 /** An active exam lacks one unique source-backed readiness gate. */
@@ -53,16 +60,18 @@ export const validateAssessmentReadinessEntries = Effect.fn(
 ) {
   const available = yield* indexAssessmentReadiness(readiness);
   for (const source of sources) {
-    const identity = readinessIdentity(source);
-    const selected = available.get(identity);
-    if (selected === undefined) {
-      return yield* new AssessmentReadinessRegistryError({
-        count: 0,
-        identity,
-      });
+    for (const track of source.tracks) {
+      const identity = readinessIdentity({ ...source, trackKey: track.key });
+      const selected = available.get(identity);
+      if (selected === undefined) {
+        return yield* new AssessmentReadinessRegistryError({
+          count: 0,
+          identity,
+        });
+      }
+      yield* validateAssessmentQuestionReadiness(source, selected, questions);
+      available.delete(identity);
     }
-    yield* validateAssessmentQuestionReadiness(source, selected, questions);
-    available.delete(identity);
   }
   const orphan = available.values().next().value;
   if (orphan !== undefined) {

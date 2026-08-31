@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Die Verunreinigung von Wasserquellen hängt mit Sanitärversorgung und Abwasser zusammen.",
-        },
-        {
           isCorrect: false,
           label:
             "Die Verunreinigung von Wasserquellen in vielen indonesischen Gemeinden hängt eng mit Sanitärversorgung und Abwasser zusammen.",
@@ -28,16 +23,16 @@ const item: QuestionItem = {
           label:
             "Die Verunreinigung von Wasserquellen verursacht Sanitärversorgung und Abwasser.",
         },
+        {
+          isCorrect: true,
+          label:
+            "Die Verunreinigung von Wasserquellen hängt mit Sanitärversorgung und Abwasser zusammen.",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "Water-source contamination is linked to sanitation and wastewater.",
-        },
         {
           isCorrect: false,
           label:
@@ -55,16 +50,16 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Water-source contamination causes sanitation and wastewater.",
         },
+        {
+          isCorrect: true,
+          label:
+            "Water-source contamination is linked to sanitation and wastewater.",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "Pencemaran sumber air berkaitan dengan sanitasi dan air limbah.",
-        },
         {
           isCorrect: false,
           label:
@@ -81,6 +76,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Pencemaran sumber air menyebabkan sanitasi dan air limbah.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Pencemaran sumber air berkaitan dengan sanitasi dan air limbah.",
         },
       ],
     },

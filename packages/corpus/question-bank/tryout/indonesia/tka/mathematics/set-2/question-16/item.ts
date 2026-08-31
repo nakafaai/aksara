@@ -2,9 +2,9 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "application",
-    contentDomain: "algebra",
-    topic: "sequences-series",
+    cognitiveLevel: "knowledge-understanding",
+    contentDomain: "geometry-measurement",
+    topic: "measurement",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 168.000",
+          label: "$$48\\pi$$",
         },
         {
           isCorrect: false,
-          label: "Rp 182.000",
+          label: "$$36\\pi-48\\sqrt3$$",
         },
         {
           isCorrect: true,
-          label: "Rp 196.000",
+          label: "$$48\\pi-36\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "Rp 210.000",
+          label: "$$36\\pi-24\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "Rp 224.000",
+          label: "$$24\\pi-36\\sqrt3$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 168.000",
+          label: "$$48\\pi$$",
         },
         {
           isCorrect: false,
-          label: "Rp 182.000",
+          label: "$$36\\pi-48\\sqrt3$$",
         },
         {
           isCorrect: true,
-          label: "Rp 196.000",
+          label: "$$48\\pi-36\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "Rp 210.000",
+          label: "$$36\\pi-24\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "Rp 224.000",
+          label: "$$24\\pi-36\\sqrt3$$",
         },
       ],
     },
@@ -62,28 +62,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 168.000",
+          label: "$$48\\pi$$",
         },
         {
           isCorrect: false,
-          label: "Rp 182.000",
+          label: "$$36\\pi-48\\sqrt3$$",
         },
         {
           isCorrect: true,
-          label: "Rp 196.000",
+          label: "$$48\\pi-36\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "Rp 210.000",
+          label: "$$36\\pi-24\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "Rp 224.000",
+          label: "$$24\\pi-36\\sqrt3$$",
         },
       ],
     },
   },
-  stimulusKey: "monthly-savings",
 };
 
 export default item;

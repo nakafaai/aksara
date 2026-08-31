@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$2\\frac{1}{2} \\text{ Meter}$$",
-        },
-        {
           isCorrect: false,
           label: "$$3\\frac{1}{2} \\text{ Meter}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$2\\frac{1}{2} \\text{ Meter}$$",
         },
         {
           isCorrect: false,
@@ -31,12 +31,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$2\\frac{1}{2} \\text{ Meters}$$",
-        },
-        {
           isCorrect: false,
           label: "$$3\\frac{1}{2} \\text{ Meters}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$2\\frac{1}{2} \\text{ Meters}$$",
         },
         {
           isCorrect: false,
@@ -56,12 +56,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$2\\frac{1}{2} \\text{ Meter}$$",
-        },
-        {
           isCorrect: false,
           label: "$$3\\frac{1}{2} \\text{ Meter}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$2\\frac{1}{2} \\text{ Meter}$$",
         },
         {
           isCorrect: false,

@@ -99,6 +99,17 @@ addition, revision, review, or translation in this repository.
   symbols, and prerequisites on first use.
 - Every section must teach a real idea. Avoid thin headings, copied lesson
   skeletons, generic summaries, and decorative visuals.
+- Match assessment difficulty to the source-owned blueprint and current
+  official framework. For newly authored try-out sets, benchmark the reasoning
+  burden against official examples and any authorized reference corpus. Build
+  difficulty from linked decisions, constraints, interpretation, and plausible
+  distractors. Larger numbers do not make a routine one-formula exercise more
+  difficult. Preserve a deliberate cognitive-level distribution, while ensuring
+  an item classified as reasoning cannot be solved by direct substitution alone.
+- Audit every new question, answer, and distractor before publication. Solve the
+  item independently, verify that exactly the intended responses are correct,
+  compare sibling sets for substantive uniqueness, and flag any template whose
+  only variation is changed numbers or names.
 - Give every lesson and article a deliberate presentation plan. Use prose,
   lists, tables, quotations, diagrams, math, or a renderer-owned component
   according to the learning job each representation does. Break up a wall of
@@ -120,6 +131,11 @@ addition, revision, review, or translation in this repository.
   already valid content; compose prose and `<InlineMath />` in one fragment when
   a label includes notation. Never flatten mathematical meaning into a string or
   invent a separate plain-versus-rich authoring mode.
+- Preserve geometric primitives exactly. Straight graphs, polygon edges, and
+  polyhedron wireframes must disable spline smoothing. Use the declarative
+  `LineEquation` `cuboid` primitive for a balok instead of repeating corner
+  coordinates or closing one multi-point path that a curve interpolator can
+  round. Verify the required vertex and edge counts in the rendered scene.
 - Treat every question response label as one rich Markdown string. Plain text is
   already valid Markdown; combine prose, emphasis, inline math such as `$x=4$`,
   and display math such as `$$x=4$$` in the same source string when the learning

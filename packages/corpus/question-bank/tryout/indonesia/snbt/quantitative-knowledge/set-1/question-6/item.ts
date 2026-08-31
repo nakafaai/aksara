@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "$$3x + 4y = 24$$",
         },
         {
-          isCorrect: true,
-          label: "$$4x - 3y = 7$$",
-        },
-        {
           isCorrect: false,
           label: "$$3x - 4y = 0$$",
         },
         {
           isCorrect: false,
           label: "$$-3x + 4y = 25$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$4x - 3y = 7$$",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "$$3x + 4y = 24$$",
         },
         {
-          isCorrect: true,
-          label: "$$4x - 3y = 7$$",
-        },
-        {
           isCorrect: false,
           label: "$$3x - 4y = 0$$",
         },
         {
           isCorrect: false,
           label: "$$-3x + 4y = 25$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$4x - 3y = 7$$",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "$$3x + 4y = 24$$",
         },
         {
-          isCorrect: true,
-          label: "$$4x - 3y = 7$$",
-        },
-        {
           isCorrect: false,
           label: "$$3x - 4y = 0$$",
         },
         {
           isCorrect: false,
           label: "$$-3x + 4y = 25$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$4x - 3y = 7$$",
         },
       ],
     },

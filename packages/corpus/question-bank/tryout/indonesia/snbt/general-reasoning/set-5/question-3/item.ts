@@ -16,13 +16,13 @@ const item: QuestionItem = {
             "Stunting kann nur durch genetische Faktoren verursacht werden",
         },
         {
-          isCorrect: false,
-          label: "Stunting verursacht immer eine kognitive Behinderung",
-        },
-        {
           isCorrect: true,
           label:
             "Stunting ist eine zu geringe Körpergröße für das Alter und steht häufig mit chronischer oder wiederkehrender Unterernährung in Verbindung",
+        },
+        {
+          isCorrect: false,
+          label: "Stunting verursacht immer eine kognitive Behinderung",
         },
         {
           isCorrect: false,
@@ -42,13 +42,13 @@ const item: QuestionItem = {
           label: "Only genetic factors can cause stunting",
         },
         {
-          isCorrect: false,
-          label: "Stunting always causes cognitive disability",
-        },
-        {
           isCorrect: true,
           label:
             "Stunting is low height for age and is commonly linked to chronic or recurrent undernutrition",
+        },
+        {
+          isCorrect: false,
+          label: "Stunting always causes cognitive disability",
         },
         {
           isCorrect: false,
@@ -68,13 +68,13 @@ const item: QuestionItem = {
           label: "Stunting hanya dapat disebabkan oleh faktor genetik",
         },
         {
-          isCorrect: false,
-          label: "Stunting selalu menyebabkan disabilitas kognitif",
-        },
-        {
           isCorrect: true,
           label:
             "Stunting adalah tinggi badan rendah menurut usia dan umumnya berkaitan dengan kekurangan gizi kronis atau berulang",
+        },
+        {
+          isCorrect: false,
+          label: "Stunting selalu menyebabkan disabilitas kognitif",
         },
         {
           isCorrect: false,

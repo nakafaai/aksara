@@ -21,14 +21,14 @@ const item: QuestionItem = {
             "Neue Studierende entscheiden sich für private Universitäten mit geringen Kosten",
         },
         {
-          isCorrect: false,
-          label:
-            "Eine gute Universität verfügt über gute Dozenten und angemessene Einrichtungen",
-        },
-        {
           isCorrect: true,
           label:
             "Neue Studierende werden sich dennoch für eine gute Privatuniversität entscheiden, auch wenn diese teuer ist",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Eine gute Universität verfügt über gute Dozenten und angemessene Einrichtungen",
         },
       ],
     },
@@ -50,13 +50,13 @@ const item: QuestionItem = {
           label: "New students choose private universities with low costs",
         },
         {
-          isCorrect: false,
-          label: "A good university has good lecturers and adequate facilities",
-        },
-        {
           isCorrect: true,
           label:
             "New students will still choose a good private university even if it is expensive",
+        },
+        {
+          isCorrect: false,
+          label: "A good university has good lecturers and adequate facilities",
         },
       ],
     },
@@ -79,14 +79,14 @@ const item: QuestionItem = {
             "Mahasiswa baru memilih perguruan tinggi swasta yang biayanya murah",
         },
         {
-          isCorrect: false,
-          label:
-            "Perguruan tinggi yang baik memiliki dosen yang baik dan fasilitas yang memadai",
-        },
-        {
           isCorrect: true,
           label:
             "Mahasiswa baru akan tetap memilih perguruan tinggi swasta yang baik meskipun biayanya mahal",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perguruan tinggi yang baik memiliki dosen yang baik dan fasilitas yang memadai",
         },
       ],
     },

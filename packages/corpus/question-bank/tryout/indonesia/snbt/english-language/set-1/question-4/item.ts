@@ -11,11 +11,6 @@ const item: QuestionItem = {
             "the other sentences list devices without explaining the opening claim.",
         },
         {
-          isCorrect: true,
-          label:
-            "the other sentences explain what successful integration looks like and how it supports the opening claim.",
-        },
-        {
           isCorrect: false,
           label:
             "the other sentences give historical examples that are unrelated to the opening claim.",
@@ -29,6 +24,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "the other sentences repeat the first sentence without adding detail.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "the other sentences explain what successful integration looks like and how it supports the opening claim.",
         },
       ],
     },

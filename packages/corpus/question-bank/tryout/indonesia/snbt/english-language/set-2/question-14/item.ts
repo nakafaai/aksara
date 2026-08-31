@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Evidence and trade-offs in choosing an office layout",
-        },
-        {
           isCorrect: false,
           label: "How to calculate the construction cost of an office",
         },
@@ -24,6 +20,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "How to decorate a private office",
+        },
+        {
+          isCorrect: true,
+          label: "Evidence and trade-offs in choosing an office layout",
         },
       ],
     },

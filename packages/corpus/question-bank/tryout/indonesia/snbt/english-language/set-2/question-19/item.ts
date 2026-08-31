@@ -11,13 +11,13 @@ const item: QuestionItem = {
             "GenAI has already eliminated one quarter of all jobs worldwide.",
         },
         {
+          isCorrect: false,
+          label: "Only low-income countries have occupations exposed to GenAI.",
+        },
+        {
           isCorrect: true,
           label:
             "GenAI exposure is broad but uneven, transformation is more likely than total replacement, and implementation choices matter.",
-        },
-        {
-          isCorrect: false,
-          label: "Only low-income countries have occupations exposed to GenAI.",
         },
         {
           isCorrect: false,

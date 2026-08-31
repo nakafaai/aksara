@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "Die Karte zeigt kein Fett",
         },
         {
-          isCorrect: true,
-          label: "Die Karte zeigt, dass die Frucht Fett liefert",
-        },
-        {
           isCorrect: false,
           label: "Die Karte zeigt keinen hohen Kohlenhydratgehalt",
+        },
+        {
+          isCorrect: true,
+          label: "Die Karte zeigt, dass die Frucht Fett liefert",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "The card shows no fat",
         },
         {
-          isCorrect: true,
-          label: "The card shows that the fruit provides fat",
-        },
-        {
           isCorrect: false,
           label: "The card does not show high carbohydrates",
+        },
+        {
+          isCorrect: true,
+          label: "The card shows that the fruit provides fat",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "Kartu menunjukkan tidak ada lemak",
         },
         {
-          isCorrect: true,
-          label: "Kartu menunjukkan buah tersebut memberikan lemak",
-        },
-        {
           isCorrect: false,
           label: "Kartu tidak menunjukkan karbohidrat tinggi",
+        },
+        {
+          isCorrect: true,
+          label: "Kartu menunjukkan buah tersebut memberikan lemak",
         },
       ],
     },

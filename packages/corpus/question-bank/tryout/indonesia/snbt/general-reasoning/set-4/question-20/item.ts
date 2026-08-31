@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Sichere, ausgewogene Pausensnacks können zur Nährstoffaufnahme von Kindern beitragen",
+        },
+        {
           isCorrect: false,
           label: "Jeder Pausensnack ist unsicher",
         },
@@ -23,16 +28,16 @@ const item: QuestionItem = {
           label:
             "Energie ist das einzige Ernährungskriterium bei der Auswahl eines Snacks",
         },
-        {
-          isCorrect: true,
-          label:
-            "Sichere, ausgewogene Pausensnacks können zur Nährstoffaufnahme von Kindern beitragen",
-        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Safe, nutritionally balanced school snacks can contribute to children's nutrient intake",
+        },
         {
           isCorrect: false,
           label: "Every school snack is unsafe",
@@ -51,16 +56,16 @@ const item: QuestionItem = {
           label:
             "Energy is the only nutritional consideration when choosing a snack",
         },
-        {
-          isCorrect: true,
-          label:
-            "Safe, nutritionally balanced school snacks can contribute to children's nutrient intake",
-        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Makanan selingan sekolah yang aman dan bergizi seimbang dapat membantu memenuhi asupan zat gizi anak",
+        },
         {
           isCorrect: false,
           label: "Semua jajanan sekolah tidak aman",
@@ -78,11 +83,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Energi merupakan satu-satunya pertimbangan gizi saat memilih makanan selingan",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Makanan selingan sekolah yang aman dan bergizi seimbang dapat membantu memenuhi asupan zat gizi anak",
         },
       ],
     },

@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "Kinder haben mehr Gelegenheiten.",
         },
         {
-          isCorrect: true,
-          label: "Der Sommer bietet Kindern Gelegenheiten.",
-        },
-        {
           isCorrect: false,
           label: "Der Sommer spielt im Freien.",
         },
         {
           isCorrect: false,
           label: "Gelegenheiten finden im Freien statt.",
+        },
+        {
+          isCorrect: true,
+          label: "Der Sommer bietet Kindern Gelegenheiten.",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "Children have more opportunities.",
         },
         {
-          isCorrect: true,
-          label: "Summer gives children opportunities.",
-        },
-        {
           isCorrect: false,
           label: "Summer plays outdoors.",
         },
         {
           isCorrect: false,
           label: "Opportunities occur outdoors.",
+        },
+        {
+          isCorrect: true,
+          label: "Summer gives children opportunities.",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "Anak memiliki lebih banyak kesempatan.",
         },
         {
-          isCorrect: true,
-          label: "Musim panas memberi anak kesempatan.",
-        },
-        {
           isCorrect: false,
           label: "Musim panas bermain di luar ruangan.",
         },
         {
           isCorrect: false,
           label: "Kesempatan terjadi di luar ruangan.",
+        },
+        {
+          isCorrect: true,
+          label: "Musim panas memberi anak kesempatan.",
         },
       ],
     },

@@ -10,10 +10,6 @@ const item: QuestionItem = {
           label: "den Druck auf den indonesischen Automarkt im Jahr 2020.",
         },
         {
-          isCorrect: true,
-          label: "den Rückgang des Großhandelsabsatzes von 2019 auf 2020.",
-        },
-        {
           isCorrect: false,
           label: "die Zahl der im April ausgelieferten Fahrzeuge.",
         },
@@ -25,6 +21,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "die Erholung des Absatzes im Dezember.",
         },
+        {
+          isCorrect: true,
+          label: "den Rückgang des Großhandelsabsatzes von 2019 auf 2020.",
+        },
       ],
     },
     en: {
@@ -33,10 +33,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "the pressure on Indonesia's car market during 2020.",
-        },
-        {
-          isCorrect: true,
-          label: "the fall in wholesale sales from 2019 to 2020.",
         },
         {
           isCorrect: false,
@@ -50,6 +46,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "the recovery recorded in December.",
         },
+        {
+          isCorrect: true,
+          label: "the fall in wholesale sales from 2019 to 2020.",
+        },
       ],
     },
     id: {
@@ -58,10 +58,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "tekanan terhadap pasar mobil Indonesia selama 2020.",
-        },
-        {
-          isCorrect: true,
-          label: "turunnya penjualan wholesales dari 2019 ke 2020.",
         },
         {
           isCorrect: false,
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "pemulihan penjualan pada Desember.",
+        },
+        {
+          isCorrect: true,
+          label: "turunnya penjualan wholesales dari 2019 ke 2020.",
         },
       ],
     },

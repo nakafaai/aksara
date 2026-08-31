@@ -4,81 +4,72 @@ const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "algebra",
-    topic: "linear-equations-inequalities",
+    topic: "sequences-series",
   },
   responses: {
     de: {
-      kind: "single-choice",
-      options: [
+      categories: ["Richtig", "Falsch"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "21",
+          correctCategoryOrder: 1,
+          label: "$u_3=18$",
         },
         {
-          isCorrect: false,
-          label: "24",
+          correctCategoryOrder: 1,
+          label: "$u_4=-54$",
         },
         {
-          isCorrect: true,
-          label: "27",
+          correctCategoryOrder: 1,
+          label: "$S_5=122$",
         },
         {
-          isCorrect: false,
-          label: "30",
-        },
-        {
-          isCorrect: false,
-          label: "33",
+          correctCategoryOrder: 2,
+          label: "$u_6=486$",
         },
       ],
     },
     en: {
-      kind: "single-choice",
-      options: [
+      categories: ["True", "False"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "21",
+          correctCategoryOrder: 1,
+          label: "$u_3=18$",
         },
         {
-          isCorrect: false,
-          label: "24",
+          correctCategoryOrder: 1,
+          label: "$u_4=-54$",
         },
         {
-          isCorrect: true,
-          label: "27",
+          correctCategoryOrder: 1,
+          label: "$S_5=122$",
         },
         {
-          isCorrect: false,
-          label: "30",
-        },
-        {
-          isCorrect: false,
-          label: "33",
+          correctCategoryOrder: 2,
+          label: "$u_6=486$",
         },
       ],
     },
     id: {
-      kind: "single-choice",
-      options: [
+      categories: ["Benar", "Salah"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "21",
+          correctCategoryOrder: 1,
+          label: "$u_3=18$",
         },
         {
-          isCorrect: false,
-          label: "24",
+          correctCategoryOrder: 1,
+          label: "$u_4=-54$",
         },
         {
-          isCorrect: true,
-          label: "27",
+          correctCategoryOrder: 1,
+          label: "$S_5=122$",
         },
         {
-          isCorrect: false,
-          label: "30",
-        },
-        {
-          isCorrect: false,
-          label: "33",
+          correctCategoryOrder: 2,
+          label: "$u_6=486$",
         },
       ],
     },

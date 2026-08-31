@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "nach dem Satz $$(2)$$.",
-        },
-        {
           isCorrect: false,
           label: "vor Satz $$(5)$$.",
         },
@@ -22,6 +18,10 @@ const item: QuestionItem = {
           label: "vor Satz $$(6)$$.",
         },
         {
+          isCorrect: true,
+          label: "nach dem Satz $$(2)$$.",
+        },
+        {
           isCorrect: false,
           label: "nach dem Satz $$(7)$$.",
         },
@@ -30,10 +30,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "after sentence $$(2)$$.",
-        },
         {
           isCorrect: false,
           label: "before sentence $$(5)$$.",
@@ -47,6 +43,10 @@ const item: QuestionItem = {
           label: "before sentence $$(6)$$.",
         },
         {
+          isCorrect: true,
+          label: "after sentence $$(2)$$.",
+        },
+        {
           isCorrect: false,
           label: "after sentence $$(7)$$.",
         },
@@ -55,10 +55,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "setelah kalimat $$(2)$$.",
-        },
         {
           isCorrect: false,
           label: "sebelum kalimat $$(5)$$.",
@@ -70,6 +66,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "sebelum kalimat $$(6)$$.",
+        },
+        {
+          isCorrect: true,
+          label: "setelah kalimat $$(2)$$.",
         },
         {
           isCorrect: false,

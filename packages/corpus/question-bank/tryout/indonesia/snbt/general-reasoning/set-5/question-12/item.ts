@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "yum !meeongw ongybeeppz!",
         },
         {
-          isCorrect: true,
-          label: "yum y!meeongw ongbeeppzpz!",
-        },
-        {
           isCorrect: false,
           label: "ong beeppz! yum y!meeongw",
+        },
+        {
+          isCorrect: true,
+          label: "yum y!meeongw ongbeeppzpz!",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "yum !meeongw ongybeeppz!",
         },
         {
-          isCorrect: true,
-          label: "yum y!meeongw ongbeeppzpz!",
-        },
-        {
           isCorrect: false,
           label: "ong beeppz! yum y!meeongw",
+        },
+        {
+          isCorrect: true,
+          label: "yum y!meeongw ongbeeppzpz!",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "yum !meeongw ongybeeppz!",
         },
         {
-          isCorrect: true,
-          label: "yum y!meeongw ongbeeppzpz!",
-        },
-        {
           isCorrect: false,
           label: "ong beeppz! yum y!meeongw",
+        },
+        {
+          isCorrect: true,
+          label: "yum y!meeongw ongbeeppzpz!",
         },
       ],
     },

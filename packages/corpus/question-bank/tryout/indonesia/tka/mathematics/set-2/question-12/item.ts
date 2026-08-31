@@ -2,9 +2,9 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "application",
-    contentDomain: "algebra",
-    topic: "functions",
+    cognitiveLevel: "reasoning",
+    contentDomain: "geometry-measurement",
+    topic: "geometry-objects",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "9",
+          label: "$$64+6\\pi^2$$",
         },
         {
           isCorrect: false,
-          label: "11",
+          label: "$$64+18\\pi^2$$",
         },
         {
           isCorrect: true,
-          label: "13",
+          label: "$$64+9\\pi^2$$",
         },
         {
           isCorrect: false,
-          label: "15",
+          label: "$$8+3\\pi$$",
         },
         {
           isCorrect: false,
-          label: "17",
+          label: "$$8+9\\pi$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "9",
+          label: "$$64+6\\pi^2$$",
         },
         {
           isCorrect: false,
-          label: "11",
+          label: "$$64+18\\pi^2$$",
         },
         {
           isCorrect: true,
-          label: "13",
+          label: "$$64+9\\pi^2$$",
         },
         {
           isCorrect: false,
-          label: "15",
+          label: "$$8+3\\pi$$",
         },
         {
           isCorrect: false,
-          label: "17",
+          label: "$$8+9\\pi$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "9",
+          label: "$$64+6\\pi^2$$",
         },
         {
           isCorrect: false,
-          label: "11",
+          label: "$$64+18\\pi^2$$",
         },
         {
           isCorrect: true,
-          label: "13",
+          label: "$$64+9\\pi^2$$",
         },
         {
           isCorrect: false,
-          label: "15",
+          label: "$$8+3\\pi$$",
         },
         {
           isCorrect: false,
-          label: "17",
+          label: "$$8+9\\pi$$",
         },
       ],
     },

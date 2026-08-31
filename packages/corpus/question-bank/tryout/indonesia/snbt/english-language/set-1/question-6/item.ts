@@ -11,14 +11,14 @@ const item: QuestionItem = {
             "technology should replace established classroom practice whenever a digital option is available.",
         },
         {
-          isCorrect: true,
-          label:
-            "successful integration depends on educators making informed judgments about when and how to use a tool.",
-        },
-        {
           isCorrect: false,
           label:
             "reducing all technology use automatically improves every child's learning experience.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "successful integration depends on educators making informed judgments about when and how to use a tool.",
         },
         {
           isCorrect: false,

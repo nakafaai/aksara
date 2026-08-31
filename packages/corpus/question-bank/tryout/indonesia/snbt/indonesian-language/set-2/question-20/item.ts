@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "Kereta seremonial",
         },
         {
+          isCorrect: true,
+          label: "Perbudakan dan kerja paksa",
+        },
+        {
           isCorrect: false,
           label: "Kedai makanan siap saji Romawi",
         },
         {
           isCorrect: false,
           label: "Lukisan dinding erotis",
-        },
-        {
-          isCorrect: true,
-          label: "Perbudakan dan kerja paksa",
         },
         {
           isCorrect: false,

@@ -19,14 +19,14 @@ const item: QuestionItem = {
           label: "Die Beteiligung am Malen steigt in jeder Jahrgangsstufe",
         },
         {
-          isCorrect: false,
-          label:
-            "In jeder Klassenstufe ist Singen das am wenigsten beliebte Hobby",
-        },
-        {
           isCorrect: true,
           label:
             "Schauspiel hat in jeder Jahrgangsstufe die wenigsten Teilnehmenden",
+        },
+        {
+          isCorrect: false,
+          label:
+            "In jeder Klassenstufe ist Singen das am wenigsten beliebte Hobby",
         },
       ],
     },
@@ -46,13 +46,13 @@ const item: QuestionItem = {
           label: "Painting participation increases at every grade level",
         },
         {
-          isCorrect: false,
-          label: "In every grade level, singing is the least popular hobby",
-        },
-        {
           isCorrect: true,
           label:
             "Acting is the least popular among students because it always has the fewest participants at every level",
+        },
+        {
+          isCorrect: false,
+          label: "In every grade level, singing is the least popular hobby",
         },
       ],
     },
@@ -73,14 +73,14 @@ const item: QuestionItem = {
           label: "Jumlah peminat melukis meningkat pada setiap jenjang kelas",
         },
         {
-          isCorrect: false,
-          label:
-            "Di setiap jenjang kelas, menyanyi menjadi kegemaran yang paling sedikit peminatnya",
-        },
-        {
           isCorrect: true,
           label:
             "Seni peran paling tidak diminati siswa karena pesertanya selalu paling sedikit pada setiap jenjangnya",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Di setiap jenjang kelas, menyanyi menjadi kegemaran yang paling sedikit peminatnya",
         },
       ],
     },

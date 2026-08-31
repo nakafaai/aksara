@@ -15,6 +15,11 @@ const item: QuestionItem = {
             "Viele leistungsstarke Studierende können an führenden Universitäten in Indonesien studieren",
         },
         {
+          isCorrect: true,
+          label:
+            "Viele der leistungsstärksten Studierenden Indonesiens können an führenden Universitäten im Ausland studieren",
+        },
+        {
           isCorrect: false,
           label:
             "Einige der leistungsstärksten Studierenden Indonesiens können an führenden Universitäten im Ausland studieren",
@@ -23,11 +28,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Ein Teil der Bildungszuweisung wird nicht vollständig ausgegeben",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Viele der leistungsstärksten Studierenden Indonesiens können an führenden Universitäten im Ausland studieren",
         },
       ],
     },
@@ -44,6 +44,11 @@ const item: QuestionItem = {
             "Many high-achieving students can attend leading universities within Indonesia",
         },
         {
+          isCorrect: true,
+          label:
+            "Many of Indonesia's highest-achieving students can study at leading universities abroad",
+        },
+        {
           isCorrect: false,
           label:
             "Some of Indonesia's highest-achieving students can study at leading universities abroad",
@@ -51,11 +56,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Part of the education budget allocation is not fully spent",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Many of Indonesia's highest-achieving students can study at leading universities abroad",
         },
       ],
     },
@@ -72,6 +72,11 @@ const item: QuestionItem = {
             "Banyak mahasiswa berprestasi dapat berkuliah di universitas terkemuka dalam negeri",
         },
         {
+          isCorrect: true,
+          label:
+            "Banyak mahasiswa berprestasi terbaik Indonesia dapat berkuliah di universitas terkemuka di luar negeri",
+        },
+        {
           isCorrect: false,
           label:
             "Beberapa mahasiswa berprestasi terbaik Indonesia dapat berkuliah di universitas terkemuka di luar negeri",
@@ -80,11 +85,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Sebagian alokasi anggaran pendidikan tidak sepenuhnya terserap",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Banyak mahasiswa berprestasi terbaik Indonesia dapat berkuliah di universitas terkemuka di luar negeri",
         },
       ],
     },

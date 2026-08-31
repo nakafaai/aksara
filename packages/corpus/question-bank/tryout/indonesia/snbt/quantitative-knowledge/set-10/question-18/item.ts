@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "$$\\{x | -3 < x, x \\in \\text{ganze Zahlen}\\}$$",
         },
         {
-          isCorrect: false,
-          label: "$$\\{x | x \\leq 7, x \\in \\text{ganze Zahlen}\\}$$",
-        },
-        {
           isCorrect: true,
           label: "$$\\{x | -3 < x \\leq 7, x \\in \\text{ganze Zahlen}\\}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\{x | x \\leq 7, x \\in \\text{ganze Zahlen}\\}$$",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "$$\\{x | -3 < x, x \\in \\text{integers}\\}$$",
         },
         {
-          isCorrect: false,
-          label: "$$\\{x | x \\leq 7, x \\in \\text{integers}\\}$$",
-        },
-        {
           isCorrect: true,
           label: "$$\\{x | -3 < x \\leq 7, x \\in \\text{integers}\\}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\{x | x \\leq 7, x \\in \\text{integers}\\}$$",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "$$\\{x | -3 < x, x \\in \\text{bilangan bulat}\\}$$",
         },
         {
-          isCorrect: false,
-          label: "$$\\{x | x \\leq 7, x \\in \\text{bilangan bulat}\\}$$",
-        },
-        {
           isCorrect: true,
           label: "$$\\{x | -3 < x \\leq 7, x \\in \\text{bilangan bulat}\\}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\{x | x \\leq 7, x \\in \\text{bilangan bulat}\\}$$",
         },
         {
           isCorrect: false,

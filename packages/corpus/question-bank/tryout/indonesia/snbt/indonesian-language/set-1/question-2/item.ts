@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Lingkungan mendapat kesempatan untuk memulihkan diri",
+        },
+        {
           isCorrect: false,
           label: "Bumi akan kembali persis seperti pada masa lampau",
         },
         {
           isCorrect: false,
           label: "Seluruh bentuk polusi udara akan hilang",
-        },
-        {
-          isCorrect: true,
-          label: "Lingkungan mendapat kesempatan untuk memulihkan diri",
         },
         {
           isCorrect: false,

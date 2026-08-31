@@ -6,14 +6,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Regular activity, a varied diet, and practical stress management work together, while guidance should be adapted and additional help sought when needed.",
-        },
-        {
           isCorrect: false,
           label:
             "Eating one high-fiber food prevents disease and removes the need for exercise or stress management.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Regular activity, a varied diet, and practical stress management work together, while guidance should be adapted and additional help sought when needed.",
         },
         {
           isCorrect: false,

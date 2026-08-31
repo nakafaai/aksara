@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$4 \\text{ oder } -2$$",
-        },
-        {
           isCorrect: false,
           label: "$$-4 \\text{ oder } 2$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$4 \\text{ oder } -2$$",
         },
         {
           isCorrect: false,
@@ -31,12 +31,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$4 \\text{ or } -2$$",
-        },
-        {
           isCorrect: false,
           label: "$$-4 \\text{ or } 2$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$4 \\text{ or } -2$$",
         },
         {
           isCorrect: false,
@@ -56,12 +56,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$4 \\text{ atau } -2$$",
-        },
-        {
           isCorrect: false,
           label: "$$-4 \\text{ atau } 2$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$4 \\text{ atau } -2$$",
         },
         {
           isCorrect: false,

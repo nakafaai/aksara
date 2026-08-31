@@ -3,8 +3,8 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "application",
-    contentDomain: "geometry-measurement",
-    topic: "geometry-objects",
+    contentDomain: "trigonometry",
+    topic: "trigonometric-ratios",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "8 m",
+          label: "$$\\frac18$$",
         },
         {
           isCorrect: false,
-          label: "9 m",
+          label: "$$\\frac15$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac13$$",
         },
         {
           isCorrect: true,
-          label: "10 m",
-        },
-        {
-          isCorrect: false,
-          label: "11 m",
-        },
-        {
-          isCorrect: false,
-          label: "12 m",
+          label: "$$\\frac16$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "8 m",
+          label: "$$\\frac18$$",
         },
         {
           isCorrect: false,
-          label: "9 m",
+          label: "$$\\frac15$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac13$$",
         },
         {
           isCorrect: true,
-          label: "10 m",
-        },
-        {
-          isCorrect: false,
-          label: "11 m",
-        },
-        {
-          isCorrect: false,
-          label: "12 m",
+          label: "$$\\frac16$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "8 m",
+          label: "$$\\frac18$$",
         },
         {
           isCorrect: false,
-          label: "9 m",
+          label: "$$\\frac15$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac13$$",
         },
         {
           isCorrect: true,
-          label: "10 m",
-        },
-        {
-          isCorrect: false,
-          label: "11 m",
-        },
-        {
-          isCorrect: false,
-          label: "12 m",
+          label: "$$\\frac16$$",
         },
       ],
     },

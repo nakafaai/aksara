@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Die Schlussfolgerung ist mit Sicherheit falsch.",
+        },
+        {
           isCorrect: false,
           label: "Die Schlussfolgerung ist mit Sicherheit wahr.",
         },
         {
           isCorrect: false,
           label: "Die Schlussfolgerung ist wahrscheinlich wahr.",
-        },
-        {
-          isCorrect: true,
-          label: "Die Schlussfolgerung ist mit Sicherheit falsch.",
         },
         {
           isCorrect: false,
@@ -32,16 +32,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "The conclusion is definitely false.",
+        },
+        {
           isCorrect: false,
           label: "The conclusion is definitely true.",
         },
         {
           isCorrect: false,
           label: "The conclusion is probably true.",
-        },
-        {
-          isCorrect: true,
-          label: "The conclusion is definitely false.",
         },
         {
           isCorrect: false,
@@ -58,16 +58,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Simpulan tersebut pasti salah.",
+        },
+        {
           isCorrect: false,
           label: "Simpulan tersebut pasti benar.",
         },
         {
           isCorrect: false,
           label: "Simpulan tersebut mungkin benar.",
-        },
-        {
-          isCorrect: true,
-          label: "Simpulan tersebut pasti salah.",
         },
         {
           isCorrect: false,

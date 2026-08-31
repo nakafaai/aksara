@@ -2,71 +2,83 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "reasoning",
-    contentDomain: "numbers",
-    topic: "real-numbers",
+    cognitiveLevel: "knowledge-understanding",
+    contentDomain: "algebra",
+    topic: "linear-equations-inequalities",
   },
   responses: {
     de: {
-      kind: "multiple-choice",
+      kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$\\sqrt{4^2}=4$, da $4>0$",
-        },
-        {
-          isCorrect: true,
-          label: "$(-4)^2=4^2$",
+          isCorrect: false,
+          label: "$$-7$$",
         },
         {
           isCorrect: false,
-          label: "$4^{-1}=-4$",
+          label: "$$0$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac73$$",
         },
         {
           isCorrect: true,
-          label: "$4^{\\frac12}\\cdot 4^{\\frac12}=4$",
+          label: "$$-\\frac73$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7$$",
         },
       ],
     },
     en: {
-      kind: "multiple-choice",
+      kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$\\sqrt{4^2}=4$ because $4>0$",
-        },
-        {
-          isCorrect: true,
-          label: "$(-4)^2=4^2$",
+          isCorrect: false,
+          label: "$$-7$$",
         },
         {
           isCorrect: false,
-          label: "$4^{-1}=-4$",
+          label: "$$0$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac73$$",
         },
         {
           isCorrect: true,
-          label: "$4^{\\frac12}\\cdot 4^{\\frac12}=4$",
+          label: "$$-\\frac73$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7$$",
         },
       ],
     },
     id: {
-      kind: "multiple-choice",
+      kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$\\sqrt{4^2}=4$ untuk $4>0$",
-        },
-        {
-          isCorrect: true,
-          label: "$(-4)^2=4^2$",
+          isCorrect: false,
+          label: "$$-7$$",
         },
         {
           isCorrect: false,
-          label: "$4^{-1}=-4$",
+          label: "$$0$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac73$$",
         },
         {
           isCorrect: true,
-          label: "$4^{\\frac12}\\cdot 4^{\\frac12}=4$",
+          label: "$$-\\frac73$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7$$",
         },
       ],
     },

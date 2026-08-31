@@ -2,83 +2,83 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
-    contentDomain: "algebra",
-    topic: "sequences-series",
+    cognitiveLevel: "reasoning",
+    contentDomain: "geometry-measurement",
+    topic: "geometry-transformations",
   },
   responses: {
     de: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "46",
-        },
-        {
-          isCorrect: false,
-          label: "51",
+          isCorrect: true,
+          label: "$M(3,-2)=(0,2)$.",
         },
         {
           isCorrect: true,
-          label: "56",
+          label: "M erhält Abstände.",
+        },
+        {
+          isCorrect: true,
+          label: "M kehrt die Orientierung um.",
+        },
+        {
+          isCorrect: true,
+          label: "$M^2(x,y)=(x+1,y+1)$.",
         },
         {
           isCorrect: false,
-          label: "61",
-        },
-        {
-          isCorrect: false,
-          label: "66",
+          label: "M besitzt mindestens einen Fixpunkt.",
         },
       ],
     },
     en: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "46",
-        },
-        {
-          isCorrect: false,
-          label: "51",
+          isCorrect: true,
+          label: "$M(3,-2)=(0,2)$.",
         },
         {
           isCorrect: true,
-          label: "56",
+          label: "M preserves distance.",
+        },
+        {
+          isCorrect: true,
+          label: "M reverses orientation.",
+        },
+        {
+          isCorrect: true,
+          label: "$M^2(x,y)=(x+1,y+1)$.",
         },
         {
           isCorrect: false,
-          label: "61",
-        },
-        {
-          isCorrect: false,
-          label: "66",
+          label: "M has at least one fixed point.",
         },
       ],
     },
     id: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "46",
-        },
-        {
-          isCorrect: false,
-          label: "51",
+          isCorrect: true,
+          label: "$M(3,-2)=(0,2)$.",
         },
         {
           isCorrect: true,
-          label: "56",
+          label: "M mempertahankan jarak.",
+        },
+        {
+          isCorrect: true,
+          label: "M membalik orientasi.",
+        },
+        {
+          isCorrect: true,
+          label: "$M^2(x,y)=(x+1,y+1)$.",
         },
         {
           isCorrect: false,
-          label: "61",
-        },
-        {
-          isCorrect: false,
-          label: "66",
+          label: "M memiliki sedikitnya satu titik tetap.",
         },
       ],
     },

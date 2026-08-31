@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$1$$ großer Apfel und $$1$$ kleine Orange",
+        },
+        {
           isCorrect: false,
           label: "$$2$$ große Äpfel",
         },
@@ -21,15 +25,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$2$$ kleine Orangen",
         },
-        {
-          isCorrect: true,
-          label: "$$1$$ großer Apfel und $$1$$ kleine Orange",
-        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$1$$ large apple and $$1$$ small orange",
+        },
         {
           isCorrect: false,
           label: "$$2$$ large apples",
@@ -46,15 +50,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$2$$ small oranges",
         },
-        {
-          isCorrect: true,
-          label: "$$1$$ large apple and $$1$$ small orange",
-        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$1$$ apel besar dan $$1$$ jeruk kecil",
+        },
         {
           isCorrect: false,
           label: "$$2$$ apel besar",
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$2$$ jeruk kecil",
-        },
-        {
-          isCorrect: true,
-          label: "$$1$$ apel besar dan $$1$$ jeruk kecil",
         },
       ],
     },

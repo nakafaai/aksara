@@ -2,83 +2,87 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "geometry-measurement",
-    topic: "geometry-objects",
+    topic: "measurement",
   },
   responses: {
     de: {
-      kind: "single-choice",
-      options: [
+      categories: ["Richtig", "Falsch"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "12 cm",
+          correctCategoryOrder: 1,
+          label: "Der Umfang der Grundfläche wird mit $3$ multipliziert.",
         },
         {
-          isCorrect: false,
-          label: "16 cm",
+          correctCategoryOrder: 1,
+          label:
+            "Der Flächeninhalt der Grundfläche wird mit $9$ multipliziert.",
         },
         {
-          isCorrect: true,
-          label: "20 cm",
+          correctCategoryOrder: 1,
+          label: "Das Volumen wird mit $\\frac92$ multipliziert.",
         },
         {
-          isCorrect: false,
-          label: "24 cm",
+          correctCategoryOrder: 2,
+          label: "Die Mantellinie wird immer mit $\\frac32$ multipliziert.",
         },
         {
-          isCorrect: false,
-          label: "28 cm",
+          correctCategoryOrder: 2,
+          label: "Die Mantelfläche wird immer mit $\\frac92$ multipliziert.",
         },
       ],
     },
     en: {
-      kind: "single-choice",
-      options: [
+      categories: ["True", "False"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "12 cm",
+          correctCategoryOrder: 1,
+          label: "The base circumference is multiplied by $3$.",
         },
         {
-          isCorrect: false,
-          label: "16 cm",
+          correctCategoryOrder: 1,
+          label: "The base area is multiplied by $9$.",
         },
         {
-          isCorrect: true,
-          label: "20 cm",
+          correctCategoryOrder: 1,
+          label: "The volume is multiplied by $\\frac92$.",
         },
         {
-          isCorrect: false,
-          label: "24 cm",
+          correctCategoryOrder: 2,
+          label: "The slant height is always multiplied by $\\frac32$.",
         },
         {
-          isCorrect: false,
-          label: "28 cm",
+          correctCategoryOrder: 2,
+          label: "The lateral area is always multiplied by $\\frac92$.",
         },
       ],
     },
     id: {
-      kind: "single-choice",
-      options: [
+      categories: ["Benar", "Salah"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "12 cm",
+          correctCategoryOrder: 1,
+          label: "Keliling alas dikalikan $3$.",
         },
         {
-          isCorrect: false,
-          label: "16 cm",
+          correctCategoryOrder: 1,
+          label: "Luas alas dikalikan $9$.",
         },
         {
-          isCorrect: true,
-          label: "20 cm",
+          correctCategoryOrder: 1,
+          label: "Volume dikalikan $\\frac92$.",
         },
         {
-          isCorrect: false,
-          label: "24 cm",
+          correctCategoryOrder: 2,
+          label: "Garis pelukis selalu dikalikan $\\frac32$.",
         },
         {
-          isCorrect: false,
-          label: "28 cm",
+          correctCategoryOrder: 2,
+          label: "Luas selimut selalu dikalikan $\\frac92$.",
         },
       ],
     },

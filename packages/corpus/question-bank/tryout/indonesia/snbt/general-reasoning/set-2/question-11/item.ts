@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$1{,}1$$ Millionen Tonnen",
         },
         {
-          isCorrect: true,
-          label: "$$1{,}8$$ Millionen Tonnen",
-        },
-        {
           isCorrect: false,
           label: "$$2{,}5$$ Millionen Tonnen",
         },
         {
           isCorrect: false,
           label: "$$3{,}0$$ Millionen Tonnen",
+        },
+        {
+          isCorrect: true,
+          label: "$$1{,}8$$ Millionen Tonnen",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "$$1.1$$ million tons",
         },
         {
-          isCorrect: true,
-          label: "$$1.8$$ million tons",
-        },
-        {
           isCorrect: false,
           label: "$$2.5$$ million tons",
         },
         {
           isCorrect: false,
           label: "$$3.0$$ million tons",
+        },
+        {
+          isCorrect: true,
+          label: "$$1.8$$ million tons",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "$$1{,}1$$ juta ton",
         },
         {
-          isCorrect: true,
-          label: "$$1{,}8$$ juta ton",
-        },
-        {
           isCorrect: false,
           label: "$$2{,}5$$ juta ton",
         },
         {
           isCorrect: false,
           label: "$$3{,}0$$ juta ton",
+        },
+        {
+          isCorrect: true,
+          label: "$$1{,}8$$ juta ton",
         },
         {
           isCorrect: false,

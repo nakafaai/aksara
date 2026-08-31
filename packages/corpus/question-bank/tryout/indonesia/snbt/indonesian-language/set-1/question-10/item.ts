@@ -20,13 +20,13 @@ const item: QuestionItem = {
           label: "Semua sampah di Seychelles memiliki label produk Indonesia",
         },
         {
-          isCorrect: false,
-          label: "Peneliti menganggap jumlah penduduk sebagai bukti yang cukup",
-        },
-        {
           isCorrect: true,
           label:
             "Model memperkirakan Indonesia sebagai negara sumber tunggal terbesar untuk banyak sampah daratan yang lama mengapung",
+        },
+        {
+          isCorrect: false,
+          label: "Peneliti menganggap jumlah penduduk sebagai bukti yang cukup",
         },
       ],
     },

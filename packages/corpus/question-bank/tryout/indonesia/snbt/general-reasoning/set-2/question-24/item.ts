@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Nur $$4$$.",
-        },
-        {
-          isCorrect: false,
-          label: "$$1$$ und $$4$$",
+          label: "$$5$$",
         },
         {
           isCorrect: true,
-          label: "$$3$$ und $$4$$",
+          label: "$$\\frac{25}{4}$$",
         },
         {
           isCorrect: false,
-          label: "$$2$$, $$3$$ und $$4$$",
+          label: "$$\\frac{23}{4}$$",
         },
         {
           isCorrect: false,
-          label: "$$1$$, $$2$$, $$3$$ und $$4$$",
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$4$$ only",
-        },
-        {
-          isCorrect: false,
-          label: "$$1$$ and $$4$$",
+          label: "$$5$$",
         },
         {
           isCorrect: true,
-          label: "$$3$$ and $$4$$",
+          label: "$$\\frac{25}{4}$$",
         },
         {
           isCorrect: false,
-          label: "$$2$$, $$3$$, and $$4$$",
+          label: "$$\\frac{23}{4}$$",
         },
         {
           isCorrect: false,
-          label: "$$1$$, $$2$$, $$3$$, and $$4$$",
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$4$$ saja",
-        },
-        {
-          isCorrect: false,
-          label: "$$1$$ dan $$4$$",
+          label: "$$5$$",
         },
         {
           isCorrect: true,
-          label: "$$3$$ dan $$4$$",
+          label: "$$\\frac{25}{4}$$",
         },
         {
           isCorrect: false,
-          label: "$$2$$, $$3$$, dan $$4$$",
+          label: "$$\\frac{23}{4}$$",
         },
         {
           isCorrect: false,
-          label: "$$1$$, $$2$$, $$3$$, dan $$4$$",
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7$$",
         },
       ],
     },

@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Jede Gesellschaft verändert sich, und die Ursachen sozialen Wandels können innerhalb oder außerhalb der Gesellschaft liegen",
-        },
-        {
           isCorrect: false,
           label:
             "Sozialer Wandel wird ausschließlich durch Beziehungen zwischen Einzelpersonen verursacht",
@@ -18,6 +13,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Kontakt von außen ist die einzige Ursache sozialen Wandels",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Jede Gesellschaft verändert sich, und die Ursachen sozialen Wandels können innerhalb oder außerhalb der Gesellschaft liegen",
         },
         {
           isCorrect: false,
@@ -35,11 +35,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Every society changes, and the sources of social change can be internal or external",
-        },
-        {
           isCorrect: false,
           label:
             "Social change is caused only by relationships between individuals",
@@ -47,6 +42,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "External contact is the only source of social change",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Every society changes, and the sources of social change can be internal or external",
         },
         {
           isCorrect: false,
@@ -63,11 +63,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Setiap masyarakat berubah, dan sumber perubahan sosial dapat berasal dari dalam maupun luar masyarakat",
-        },
-        {
           isCorrect: false,
           label:
             "Perubahan sosial hanya disebabkan oleh hubungan antarindividu",
@@ -76,6 +71,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Kontak dari luar merupakan satu-satunya sumber perubahan sosial",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Setiap masyarakat berubah, dan sumber perubahan sosial dapat berasal dari dalam maupun luar masyarakat",
         },
         {
           isCorrect: false,

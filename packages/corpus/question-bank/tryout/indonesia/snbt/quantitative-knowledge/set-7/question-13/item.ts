@@ -11,14 +11,14 @@ const item: QuestionItem = {
             "Aussage $$(1)$$ allein reicht aus, Aussage $$(2)$$ allein jedoch nicht.",
         },
         {
-          isCorrect: true,
-          label:
-            "Aussage $$(2)$$ allein reicht aus, Aussage $$(1)$$ allein jedoch nicht.",
-        },
-        {
           isCorrect: false,
           label:
             "Beide Aussagen zusammen reichen aus, aber keine Aussage allein.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Aussage $$(2)$$ allein reicht aus, Aussage $$(1)$$ allein jedoch nicht.",
         },
         {
           isCorrect: false,
@@ -41,14 +41,14 @@ const item: QuestionItem = {
             "Statement $$(1)$$ alone is sufficient, but statement $$(2)$$ alone is not sufficient.",
         },
         {
-          isCorrect: true,
-          label:
-            "Statement $$(2)$$ alone is sufficient, but statement $$(1)$$ alone is not sufficient.",
-        },
-        {
           isCorrect: false,
           label:
             "Both statements together are sufficient, but neither statement alone is sufficient.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Statement $$(2)$$ alone is sufficient, but statement $$(1)$$ alone is not sufficient.",
         },
         {
           isCorrect: false,
@@ -70,14 +70,14 @@ const item: QuestionItem = {
             "Pernyataan $$(1)$$ saja cukup, tetapi pernyataan $$(2)$$ saja tidak cukup.",
         },
         {
-          isCorrect: true,
-          label:
-            "Pernyataan $$(2)$$ saja cukup, tetapi pernyataan $$(1)$$ saja tidak cukup.",
-        },
-        {
           isCorrect: false,
           label:
             "Kedua pernyataan bersama-sama cukup, tetapi masing-masing pernyataan saja tidak cukup.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Pernyataan $$(2)$$ saja cukup, tetapi pernyataan $$(1)$$ saja tidak cukup.",
         },
         {
           isCorrect: false,

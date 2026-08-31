@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "Mencuci beras akan mengurangi jumlah beras",
         },
         {
+          isCorrect: true,
+          label: "Pati bebas pada permukaan butiran beras berkurang",
+        },
+        {
           isCorrect: false,
           label: "Mencuci beras akan merusak bentuk beras",
         },
@@ -20,10 +24,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Kualitas beras yang dicuci tidak sebaik yang tidak dicuci",
-        },
-        {
-          isCorrect: true,
-          label: "Pati bebas pada permukaan butiran beras berkurang",
         },
       ],
     },

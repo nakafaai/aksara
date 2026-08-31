@@ -7,25 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Die Schlussfolgerung ist definitiv wahr",
+          label: "$$\\frac1{6}$$",
         },
         {
           isCorrect: false,
-          label: "Die Schlussfolgerung ist möglicherweise wahr",
+          label: "$$\\frac1{5}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac14$$",
         },
         {
           isCorrect: true,
-          label: "Die Schlussfolgerung ist definitiv falsch",
+          label: "$$\\frac7{30}$$",
         },
         {
           isCorrect: false,
-          label:
-            "Die Schlussfolgerung ist für die bereitgestellten Informationen irrelevant",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Schlussfolgerung kann aufgrund unzureichender Informationen nicht bewertet werden",
+          label: "$$\\frac3{10}$$",
         },
       ],
     },
@@ -34,24 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The conclusion is definitely true",
+          label: "$$\\frac1{6}$$",
         },
         {
           isCorrect: false,
-          label: "The conclusion is possibly true",
+          label: "$$\\frac1{5}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac14$$",
         },
         {
           isCorrect: true,
-          label: "The conclusion is definitely false",
+          label: "$$\\frac7{30}$$",
         },
         {
           isCorrect: false,
-          label: "The conclusion is irrelevant to the information provided",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The conclusion cannot be evaluated due to insufficient information",
+          label: "$$\\frac3{10}$$",
         },
       ],
     },
@@ -60,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Simpulan tersebut pasti benar",
+          label: "$$\\frac1{6}$$",
         },
         {
           isCorrect: false,
-          label: "Simpulan tersebut mungkin benar",
+          label: "$$\\frac1{5}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac14$$",
         },
         {
           isCorrect: true,
-          label: "Simpulan tersebut pasti salah",
+          label: "$$\\frac7{30}$$",
         },
         {
           isCorrect: false,
-          label: "Simpulan tidak relevan dengan informasi yang diberikan",
-        },
-        {
-          isCorrect: false,
-          label: "Simpulan tidak dapat dinilai karena informasi tidak cukup",
+          label: "$$\\frac3{10}$$",
         },
       ],
     },

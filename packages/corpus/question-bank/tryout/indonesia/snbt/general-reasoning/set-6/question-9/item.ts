@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "SEMANGAT",
         },
         {
-          isCorrect: false,
-          label: "BERSEDIH",
-        },
-        {
           isCorrect: true,
           label: "UTBKSERU",
+        },
+        {
+          isCorrect: false,
+          label: "BERSEDIH",
         },
       ],
     },
@@ -33,8 +33,8 @@ const item: QuestionItem = {
         { isCorrect: false, label: "SUSAHNYA" },
         { isCorrect: false, label: "MENANGIS" },
         { isCorrect: false, label: "SEMANGAT" },
-        { isCorrect: false, label: "BERSEDIH" },
         { isCorrect: true, label: "UTBKSERU" },
+        { isCorrect: false, label: "BERSEDIH" },
       ],
     },
     id: {
@@ -43,8 +43,8 @@ const item: QuestionItem = {
         { isCorrect: false, label: "SUSAHNYA" },
         { isCorrect: false, label: "MENANGIS" },
         { isCorrect: false, label: "SEMANGAT" },
-        { isCorrect: false, label: "BERSEDIH" },
         { isCorrect: true, label: "UTBKSERU" },
+        { isCorrect: false, label: "BERSEDIH" },
       ],
     },
   },

@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "$$1$$",
         },
         {
-          isCorrect: false,
-          label: "$$\\frac{1}{2}$$",
-        },
-        {
           isCorrect: true,
           label: "$$\\frac{1}{3}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{1}{2}$$",
         },
         {
           isCorrect: false,
@@ -35,12 +35,12 @@ const item: QuestionItem = {
           label: "$$1$$",
         },
         {
-          isCorrect: false,
-          label: "$$\\frac{1}{2}$$",
-        },
-        {
           isCorrect: true,
           label: "$$\\frac{1}{3}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{1}{2}$$",
         },
         {
           isCorrect: false,
@@ -60,12 +60,12 @@ const item: QuestionItem = {
           label: "$$1$$",
         },
         {
-          isCorrect: false,
-          label: "$$\\frac{1}{2}$$",
-        },
-        {
           isCorrect: true,
           label: "$$\\frac{1}{3}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{1}{2}$$",
         },
         {
           isCorrect: false,

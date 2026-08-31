@@ -10,10 +10,6 @@ const item: QuestionItem = {
           label: "Das eine sichere Alter für das erste eigene Gerät.",
         },
         {
-          isCorrect: true,
-          label: "Altersgerechte Mediennutzung in der Familie.",
-        },
-        {
           isCorrect: false,
           label: "Warum jede Bildschirmzeit schädlich ist.",
         },
@@ -25,6 +21,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Eine Ein-Stunden-Regel für alle Familienmitglieder.",
         },
+        {
+          isCorrect: true,
+          label: "Altersgerechte Mediennutzung in der Familie.",
+        },
       ],
     },
     en: {
@@ -33,10 +33,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "The One Safe Age for a Child's First Device.",
-        },
-        {
-          isCorrect: true,
-          label: "Age-Appropriate Family Media Use.",
         },
         {
           isCorrect: false,
@@ -50,6 +46,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "A One-Hour Rule for Every Family Member.",
         },
+        {
+          isCorrect: true,
+          label: "Age-Appropriate Family Media Use.",
+        },
       ],
     },
     id: {
@@ -58,10 +58,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Satu Usia Aman untuk Gawai Pertama Anak.",
-        },
-        {
-          isCorrect: true,
-          label: "Penggunaan Media Keluarga Sesuai Usia.",
         },
         {
           isCorrect: false,
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Aturan Satu Jam untuk Setiap Anggota Keluarga.",
+        },
+        {
+          isCorrect: true,
+          label: "Penggunaan Media Keluarga Sesuai Usia.",
         },
       ],
     },

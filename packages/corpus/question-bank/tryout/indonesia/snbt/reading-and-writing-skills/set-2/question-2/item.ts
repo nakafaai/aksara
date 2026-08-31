@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Satz $$(11)$$.",
-        },
-        {
           isCorrect: false,
           label: "Satz $$(12)$$.",
         },
@@ -22,6 +18,10 @@ const item: QuestionItem = {
           label: "Satz $$(14)$$.",
         },
         {
+          isCorrect: true,
+          label: "Satz $$(11)$$.",
+        },
+        {
           isCorrect: false,
           label: "Satz $$(15)$$.",
         },
@@ -30,10 +30,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "sentence $$(11)$$.",
-        },
         {
           isCorrect: false,
           label: "sentence $$(12)$$.",
@@ -47,6 +43,10 @@ const item: QuestionItem = {
           label: "sentence $$(14)$$.",
         },
         {
+          isCorrect: true,
+          label: "sentence $$(11)$$.",
+        },
+        {
           isCorrect: false,
           label: "sentence $$(15)$$.",
         },
@@ -55,10 +55,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "kalimat $$(11)$$.",
-        },
         {
           isCorrect: false,
           label: "kalimat $$(12)$$.",
@@ -70,6 +66,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "kalimat $$(14)$$.",
+        },
+        {
+          isCorrect: true,
+          label: "kalimat $$(11)$$.",
         },
         {
           isCorrect: false,

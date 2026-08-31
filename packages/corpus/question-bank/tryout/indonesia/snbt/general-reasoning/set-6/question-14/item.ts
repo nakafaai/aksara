@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "Der Direktor sagt beide Vorhaben für dieses Jahr ab.",
         },
         {
+          isCorrect: true,
+          label: "PT Batik verkauft das neue Produkt in diesem Jahr.",
+        },
+        {
           isCorrect: false,
           label:
             "Der Direktor verschiebt beide Vorhaben bis zur Erteilung der Genehmigung.",
@@ -22,10 +26,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "PT Batik setzt in diesem Jahr keines der beiden Vorhaben um.",
         },
-        {
-          isCorrect: true,
-          label: "PT Batik verkauft das neue Produkt in diesem Jahr.",
-        },
       ],
     },
     en: {
@@ -34,6 +34,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "The director cancels both programs this year.",
+        },
+        {
+          isCorrect: true,
+          label: "PT Batik sells the new product this year.",
         },
         {
           isCorrect: false,
@@ -48,10 +52,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "PT Batik carries out neither program this year.",
         },
-        {
-          isCorrect: true,
-          label: "PT Batik sells the new product this year.",
-        },
       ],
     },
     id: {
@@ -60,6 +60,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Direktur membatalkan kedua program pada tahun ini.",
+        },
+        {
+          isCorrect: true,
+          label: "PT Batik menjual produk baru pada tahun ini.",
         },
         {
           isCorrect: false,
@@ -72,10 +76,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "PT Batik tidak menjalankan satu pun program pada tahun ini.",
-        },
-        {
-          isCorrect: true,
-          label: "PT Batik menjual produk baru pada tahun ini.",
         },
       ],
     },

@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Ratusan sisa kerangka manusia tersebar di sekitar danau",
-        },
-        {
           isCorrect: false,
           label: "Danau tersebut dahulu menjadi lokasi peperangan",
+        },
+        {
+          isCorrect: true,
+          label: "Ratusan sisa kerangka manusia tersebar di sekitar danau",
         },
         {
           isCorrect: false,

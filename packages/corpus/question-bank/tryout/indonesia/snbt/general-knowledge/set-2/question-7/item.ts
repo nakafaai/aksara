@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "kleine Insekten.",
         },
         {
-          isCorrect: false,
-          label: "Insekten und andere Kleintiere.",
-        },
-        {
           isCorrect: true,
           label: "Tiere, die andere Tiere jagen.",
+        },
+        {
+          isCorrect: false,
+          label: "Insekten und andere Kleintiere.",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "small insects.",
         },
         {
-          isCorrect: false,
-          label: "insects and other small animals.",
-        },
-        {
           isCorrect: true,
           label: "animals that prey on other animals.",
+        },
+        {
+          isCorrect: false,
+          label: "insects and other small animals.",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "serangga kecil.",
         },
         {
-          isCorrect: false,
-          label: "serangga dan hewan kecil lainnya.",
-        },
-        {
           isCorrect: true,
           label: "hewan pemangsa hewan lainnya.",
+        },
+        {
+          isCorrect: false,
+          label: "serangga dan hewan kecil lainnya.",
         },
       ],
     },

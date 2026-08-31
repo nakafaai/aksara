@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\text{Rp }4{.}702{.}500{,}00$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\text{Rp }4{.}275{.}000{,}00$$",
         },
         {
           isCorrect: false,
           label: "$$\\text{Rp }427{.}500{,}00$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\text{Rp }4{.}702{.}500{,}00$$",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\text{Rp }4{,}702{,}500.00$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\text{Rp }4{,}275{,}000.00$$",
         },
         {
           isCorrect: false,
           label: "$$\\text{Rp }427{,}500.00$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\text{Rp }4{,}702{,}500.00$$",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\text{Rp }4{.}702{.}500{,}00$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\text{Rp }4{.}275{.}000{,}00$$",
         },
         {
           isCorrect: false,
           label: "$$\\text{Rp }427{.}500{,}00$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\text{Rp }4{.}702{.}500{,}00$$",
         },
         {
           isCorrect: false,

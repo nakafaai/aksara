@@ -11,14 +11,14 @@ const item: QuestionItem = {
             "Aussage $$(1)$$ allein ist ausreichend, Aussage $$(2)$$ allein jedoch nicht.",
         },
         {
-          isCorrect: false,
-          label:
-            "Aussage $$(2)$$ allein ist ausreichend, Aussage $$(1)$$ allein jedoch nicht.",
-        },
-        {
           isCorrect: true,
           label:
             "Beide Aussagen zusammen sind ausreichend, aber keine Aussage allein ist ausreichend.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Aussage $$(2)$$ allein ist ausreichend, Aussage $$(1)$$ allein jedoch nicht.",
         },
         {
           isCorrect: false,
@@ -41,14 +41,14 @@ const item: QuestionItem = {
             "Statement $$(1)$$ ALONE is sufficient, but statement $$(2)$$ alone is not sufficient.",
         },
         {
-          isCorrect: false,
-          label:
-            "Statement $$(2)$$ ALONE is sufficient, but statement $$(1)$$ alone is not sufficient.",
-        },
-        {
           isCorrect: true,
           label:
             "BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Statement $$(2)$$ ALONE is sufficient, but statement $$(1)$$ alone is not sufficient.",
         },
         {
           isCorrect: false,
@@ -70,14 +70,14 @@ const item: QuestionItem = {
             "Pernyataan $$(1)$$ saja cukup untuk menjawab pertanyaan tetapi pernyataan $$(2)$$ saja tidak cukup.",
         },
         {
-          isCorrect: false,
-          label:
-            "Pernyataan $$(2)$$ saja cukup untuk menjawab pertanyaan tetapi pernyataan $$(1)$$ saja tidak cukup.",
-        },
-        {
           isCorrect: true,
           label:
             "Dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pernyataan $$(2)$$ saja cukup untuk menjawab pertanyaan tetapi pernyataan $$(1)$$ saja tidak cukup.",
         },
         {
           isCorrect: false,

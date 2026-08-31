@@ -3,8 +3,8 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "application",
-    contentDomain: "algebra",
-    topic: "sequences-series",
+    contentDomain: "geometry-measurement",
+    topic: "measurement",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 1.280.000",
+          label: "$$1$$",
         },
         {
           isCorrect: false,
-          label: "Rp 1.520.000",
+          label: "$$2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4$$",
         },
         {
           isCorrect: true,
-          label: "Rp 1.760.000",
+          label: "$$3$$",
         },
         {
           isCorrect: false,
-          label: "Rp 2.000.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 2.240.000",
+          label: "$$5$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 1.280.000",
+          label: "$$1$$",
         },
         {
           isCorrect: false,
-          label: "Rp 1.520.000",
+          label: "$$2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4$$",
         },
         {
           isCorrect: true,
-          label: "Rp 1.760.000",
+          label: "$$3$$",
         },
         {
           isCorrect: false,
-          label: "Rp 2.000.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 2.240.000",
+          label: "$$5$$",
         },
       ],
     },
@@ -62,28 +62,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 1.280.000",
+          label: "$$1$$",
         },
         {
           isCorrect: false,
-          label: "Rp 1.520.000",
+          label: "$$2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4$$",
         },
         {
           isCorrect: true,
-          label: "Rp 1.760.000",
+          label: "$$3$$",
         },
         {
           isCorrect: false,
-          label: "Rp 2.000.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 2.240.000",
+          label: "$$5$$",
         },
       ],
     },
   },
-  stimulusKey: "monthly-savings",
+  stimulusKey: "courtyard-layout",
 };
 
 export default item;

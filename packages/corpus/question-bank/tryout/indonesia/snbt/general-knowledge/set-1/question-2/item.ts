@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "aufgewacht.",
         },
         {
-          isCorrect: true,
-          label: "tief und fest schlafend.",
-        },
-        {
           isCorrect: false,
           label: "instand gehalten.",
         },
         {
           isCorrect: false,
           label: "geschützt.",
+        },
+        {
+          isCorrect: true,
+          label: "tief und fest schlafend.",
         },
       ],
     },
@@ -32,9 +32,9 @@ const item: QuestionItem = {
       options: [
         { isCorrect: false, label: "cared for." },
         { isCorrect: false, label: "woken up." },
-        { isCorrect: true, label: "fast asleep." },
         { isCorrect: false, label: "maintained." },
         { isCorrect: false, label: "protected." },
+        { isCorrect: true, label: "fast asleep." },
       ],
     },
     id: {
@@ -42,9 +42,9 @@ const item: QuestionItem = {
       options: [
         { isCorrect: false, label: "terawat." },
         { isCorrect: false, label: "terbangun." },
-        { isCorrect: true, label: "terlelap." },
         { isCorrect: false, label: "terpelihara." },
         { isCorrect: false, label: "terlindungi." },
+        { isCorrect: true, label: "terlelap." },
       ],
     },
   },

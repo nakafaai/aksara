@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "$$72 \\text{ km/h}$$",
         },
         {
-          isCorrect: false,
-          label: "$$96 \\text{ km/h}$$",
-        },
-        {
           isCorrect: true,
           label: "$$120 \\text{ km/h}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$96 \\text{ km/h}$$",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "$$72 \\text{ km/h}$$",
         },
         {
-          isCorrect: false,
-          label: "$$96 \\text{ km/h}$$",
-        },
-        {
           isCorrect: true,
           label: "$$120 \\text{ km/h}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$96 \\text{ km/h}$$",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "$$72 \\text{ km/jam}$$",
         },
         {
-          isCorrect: false,
-          label: "$$96 \\text{ km/jam}$$",
-        },
-        {
           isCorrect: true,
           label: "$$120 \\text{ km/jam}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$96 \\text{ km/jam}$$",
         },
       ],
     },

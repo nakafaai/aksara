@@ -16,14 +16,14 @@ const item: QuestionItem = {
             "Japan ist der wichtigste Markt für Indonesiens Konfektionsbekleidung.",
         },
         {
-          isCorrect: true,
-          label:
-            "Der wichtigste Markt für Indonesiens Konfektionsbekleidung waren die Vereinigten Staaten.",
-        },
-        {
           isCorrect: false,
           label:
             "Die USA und Deutschland sind die beiden Länder mit den höchsten Exportwerten.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Der wichtigste Markt für Indonesiens Konfektionsbekleidung waren die Vereinigten Staaten.",
         },
         {
           isCorrect: false,
@@ -46,14 +46,14 @@ const item: QuestionItem = {
             "Japan is the main market for Indonesia's ready-made clothing products.",
         },
         {
-          isCorrect: true,
-          label:
-            "The main market for Indonesia's ready-made clothing products is the United States.",
-        },
-        {
           isCorrect: false,
           label:
             "The United States and Germany are the two countries with the highest export values.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "The main market for Indonesia's ready-made clothing products is the United States.",
         },
         {
           isCorrect: false,
@@ -75,14 +75,14 @@ const item: QuestionItem = {
           label: "Jepang merupakan pasar utama produk pakaian jadi Indonesia.",
         },
         {
-          isCorrect: true,
-          label:
-            "Pasar utama produk pakaian jadi Indonesia adalah Amerika Serikat.",
-        },
-        {
           isCorrect: false,
           label:
             "Amerika Serikat dan Jerman merupakan dua negara dengan nilai ekspor tertinggi.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Pasar utama produk pakaian jadi Indonesia adalah Amerika Serikat.",
         },
         {
           isCorrect: false,

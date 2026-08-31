@@ -11,14 +11,14 @@ const item: QuestionItem = {
             "Die Zählung beweist, dass die meisten indonesischen Landwirte jung sind.",
         },
         {
-          isCorrect: true,
-          label:
-            "Daher bietet die Landwirtschaftszählung 2023 eine breite, standardisierte Datengrundlage für die Gestaltung der indonesischen Agrarpolitik.",
-        },
-        {
           isCorrect: false,
           label:
             "Der Rückgang landwirtschaftlicher Einzelbetriebe beweist, dass Indonesiens Agrarsektor schrumpft.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Daher bietet die Landwirtschaftszählung 2023 eine breite, standardisierte Datengrundlage für die Gestaltung der indonesischen Agrarpolitik.",
         },
         {
           isCorrect: false,
@@ -40,14 +40,14 @@ const item: QuestionItem = {
           label: "The census proves that most Indonesian farmers are young.",
         },
         {
-          isCorrect: true,
-          label:
-            "Therefore, the 2023 Agricultural Census provides a broad, standardized evidence base for designing Indonesia's agricultural policies.",
-        },
-        {
           isCorrect: false,
           label:
             "The decline in individual agricultural holdings proves that Indonesia's agricultural sector is shrinking.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Therefore, the 2023 Agricultural Census provides a broad, standardized evidence base for designing Indonesia's agricultural policies.",
         },
         {
           isCorrect: false,
@@ -70,14 +70,14 @@ const item: QuestionItem = {
             "Sensus tersebut membuktikan bahwa sebagian besar petani Indonesia masih muda.",
         },
         {
-          isCorrect: true,
-          label:
-            "Oleh karena itu, Sensus Pertanian 2023 menyediakan landasan bukti yang luas dan terstandar untuk merancang kebijakan pertanian Indonesia.",
-        },
-        {
           isCorrect: false,
           label:
             "Penurunan usaha pertanian perorangan membuktikan bahwa sektor pertanian Indonesia sedang menyusut.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Oleh karena itu, Sensus Pertanian 2023 menyediakan landasan bukti yang luas dan terstandar untuk merancang kebijakan pertanian Indonesia.",
         },
         {
           isCorrect: false,

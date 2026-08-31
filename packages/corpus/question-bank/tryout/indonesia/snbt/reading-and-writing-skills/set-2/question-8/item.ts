@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Die PSBB-Regelung trat am 10. April 2020 in DKI Jakarta in Kraft.",
+        },
+        {
           isCorrect: false,
           label:
             "Die Regierung von Jakarta begann am 10. April 2020 mit der Umsetzung der PSBB-Regelung.",
@@ -14,11 +19,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Die PSBB-Regelung wurde am 10. April 2020 von der Regierung von Jakarta angekündigt.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Die PSBB-Regelung trat am 10. April 2020 in DKI Jakarta in Kraft.",
         },
         {
           isCorrect: false,
@@ -36,6 +36,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "PSBB began to be implemented in DKI Jakarta on 10 April 2020.",
+        },
+        {
           isCorrect: false,
           label:
             "The Jakarta government began to implement PSBB on 10 April 2020.",
@@ -44,11 +49,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "PSBB was announced by the Jakarta government on 10 April 2020.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "PSBB began to be implemented in DKI Jakarta on 10 April 2020.",
         },
         {
           isCorrect: false,
@@ -66,6 +66,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "PSBB mulai diberlakukan di DKI Jakarta pada 10 April 2020.",
+        },
+        {
           isCorrect: false,
           label:
             "Pemerintah DKI Jakarta mulai memberlakukan PSBB pada 10 April 2020.",
@@ -74,10 +78,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "PSBB diumumkan oleh Pemerintah DKI Jakarta pada 10 April 2020.",
-        },
-        {
-          isCorrect: true,
-          label: "PSBB mulai diberlakukan di DKI Jakarta pada 10 April 2020.",
         },
         {
           isCorrect: false,

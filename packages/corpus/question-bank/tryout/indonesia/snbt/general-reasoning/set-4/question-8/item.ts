@@ -15,14 +15,14 @@ const item: QuestionItem = {
             "Fettes Rindfleisch enthält $$3{,}3\\text{ g}$$ mehr Protein pro $$100\\text{ g}$$ als Tempeh",
         },
         {
-          isCorrect: false,
-          label:
-            "Tempeh enthält $$13{,}2\\text{ g}$$ mehr Fett pro $$100\\text{ g}$$ als fettes Rindfleisch",
-        },
-        {
           isCorrect: true,
           label:
             "Tempeh enthält $$3{,}3\\text{ g}$$ mehr Protein pro $$100\\text{ g}$$ als fettes Rindfleisch",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tempeh enthält $$13{,}2\\text{ g}$$ mehr Fett pro $$100\\text{ g}$$ als fettes Rindfleisch",
         },
         {
           isCorrect: false,
@@ -44,14 +44,14 @@ const item: QuestionItem = {
             "Fatty beef contains $$3.3\\text{ g}$$ more protein per $$100\\text{ g}$$ than tempeh",
         },
         {
-          isCorrect: false,
-          label:
-            "Tempeh contains $$13.2\\text{ g}$$ more fat per $$100\\text{ g}$$ than fatty beef",
-        },
-        {
           isCorrect: true,
           label:
             "Tempeh contains $$3.3\\text{ g}$$ more protein per $$100\\text{ g}$$ than fatty beef",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tempeh contains $$13.2\\text{ g}$$ more fat per $$100\\text{ g}$$ than fatty beef",
         },
         {
           isCorrect: false,
@@ -74,14 +74,14 @@ const item: QuestionItem = {
             "Daging sapi gemuk mengandung protein $$3{,}3\\text{ g}$$ lebih banyak per $$100\\text{ g}$$ daripada tempe",
         },
         {
-          isCorrect: false,
-          label:
-            "Tempe mengandung lemak $$13{,}2\\text{ g}$$ lebih banyak per $$100\\text{ g}$$ daripada daging sapi gemuk",
-        },
-        {
           isCorrect: true,
           label:
             "Tempe mengandung protein $$3{,}3\\text{ g}$$ lebih banyak per $$100\\text{ g}$$ daripada daging sapi gemuk",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tempe mengandung lemak $$13{,}2\\text{ g}$$ lebih banyak per $$100\\text{ g}$$ daripada daging sapi gemuk",
         },
         {
           isCorrect: false,

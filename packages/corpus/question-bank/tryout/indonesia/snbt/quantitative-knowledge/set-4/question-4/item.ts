@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "$$4x^2 - 2x + 1$$",
         },
         {
+          isCorrect: true,
+          label: "$$4x^2 - 6x + 2$$",
+        },
+        {
           isCorrect: false,
           label: "$$4x^2 - 3x + 1$$",
         },
@@ -20,10 +24,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$4x^2 - 5x + 2$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$4x^2 - 6x + 2$$",
         },
       ],
     },
@@ -35,6 +35,10 @@ const item: QuestionItem = {
           label: "$$4x^2 - 2x + 1$$",
         },
         {
+          isCorrect: true,
+          label: "$$4x^2 - 6x + 2$$",
+        },
+        {
           isCorrect: false,
           label: "$$4x^2 - 3x + 1$$",
         },
@@ -45,10 +49,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$4x^2 - 5x + 2$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$4x^2 - 6x + 2$$",
         },
       ],
     },
@@ -60,6 +60,10 @@ const item: QuestionItem = {
           label: "$$4x^2 - 2x + 1$$",
         },
         {
+          isCorrect: true,
+          label: "$$4x^2 - 6x + 2$$",
+        },
+        {
           isCorrect: false,
           label: "$$4x^2 - 3x + 1$$",
         },
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$4x^2 - 5x + 2$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$4x^2 - 6x + 2$$",
         },
       ],
     },

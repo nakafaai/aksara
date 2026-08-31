@@ -11,11 +11,6 @@ const item: QuestionItem = {
             "Der Schlaf von Tieren beweist, dass Katzen von ihren Aktivitäten im Wachzustand träumen.",
         },
         {
-          isCorrect: true,
-          label:
-            "Träume hängen mit der Aktivität des schlafenden Gehirns und Bruchstücken von Erlebnissen zusammen, ihre genaue Funktion wird aber weiter erforscht.",
-        },
-        {
           isCorrect: false,
           label:
             "Jeder Traum wiederholt ein neues Erlebnis genau und stärkt dadurch diese Erinnerung.",
@@ -24,6 +19,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Träume entstehen nur im REM-Schlaf, weil das Gehirn in allen anderen Phasen inaktiv ist.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Träume hängen mit der Aktivität des schlafenden Gehirns und Bruchstücken von Erlebnissen zusammen, ihre genaue Funktion wird aber weiter erforscht.",
         },
         {
           isCorrect: false,
@@ -41,11 +41,6 @@ const item: QuestionItem = {
             "Animal sleep proves that cats dream about activities they perform while awake.",
         },
         {
-          isCorrect: true,
-          label:
-            "Dreams draw on sleeping-brain activity and fragments of waking experience, but their precise function remains under study.",
-        },
-        {
           isCorrect: false,
           label:
             "Every dream directly replays a recent waking experience and strengthens that memory.",
@@ -54,6 +49,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Only REM sleep produces dreams because the brain is inactive in every other stage.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Dreams draw on sleeping-brain activity and fragments of waking experience, but their precise function remains under study.",
         },
         {
           isCorrect: false,
@@ -71,11 +71,6 @@ const item: QuestionItem = {
             "Tidur pada hewan membuktikan bahwa kucing bermimpi tentang kegiatan yang dilakukannya ketika terjaga.",
         },
         {
-          isCorrect: true,
-          label:
-            "Mimpi berkaitan dengan aktivitas otak saat tidur dan potongan pengalaman terjaga, tetapi fungsi tepatnya masih diteliti.",
-        },
-        {
           isCorrect: false,
           label:
             "Setiap mimpi menayangkan ulang pengalaman baru secara persis dan memperkuat ingatan tersebut.",
@@ -84,6 +79,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Mimpi hanya terjadi dalam tidur REM karena otak tidak aktif pada tahap lainnya.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Mimpi berkaitan dengan aktivitas otak saat tidur dan potongan pengalaman terjaga, tetapi fungsi tepatnya masih diteliti.",
         },
         {
           isCorrect: false,

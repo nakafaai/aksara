@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "$$2$$ Teddybären",
         },
         {
+          isCorrect: true,
+          label: "$$1$$ Teddybär und $$1$$ Ball",
+        },
+        {
           isCorrect: false,
           label: "$$2$$ Murmeln",
         },
@@ -21,10 +25,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$1$$ Barbie-Puppe und $$1$$ Murmel",
         },
-        {
-          isCorrect: true,
-          label: "$$1$$ Teddybär und $$1$$ Ball",
-        },
       ],
     },
     en: {
@@ -33,6 +33,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$2$$ teddy bears",
+        },
+        {
+          isCorrect: true,
+          label: "$$1$$ teddy bear and $$1$$ ball",
         },
         {
           isCorrect: false,
@@ -46,10 +50,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$1$$ Barbie doll and $$1$$ marble",
         },
-        {
-          isCorrect: true,
-          label: "$$1$$ teddy bear and $$1$$ ball",
-        },
       ],
     },
     id: {
@@ -58,6 +58,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$2$$ boneka beruang",
+        },
+        {
+          isCorrect: true,
+          label: "$$1$$ boneka beruang dan $$1$$ bola",
         },
         {
           isCorrect: false,
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$1$$ boneka Barbie dan $$1$$ kelereng",
-        },
-        {
-          isCorrect: true,
-          label: "$$1$$ boneka beruang dan $$1$$ bola",
         },
       ],
     },

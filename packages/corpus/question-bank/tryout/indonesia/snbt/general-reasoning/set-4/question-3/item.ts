@@ -19,13 +19,13 @@ const item: QuestionItem = {
           label: "Jedes Gericht enthält rohes Gemüse",
         },
         {
-          isCorrect: false,
-          label: "Kein Gericht enthält rohes Gemüse",
-        },
-        {
           isCorrect: true,
           label:
             "Mindestens ein Gericht enthält kein rohes Gemüse und schmeckt säuerlich und scharf",
+        },
+        {
+          isCorrect: false,
+          label: "Kein Gericht enthält rohes Gemüse",
         },
       ],
     },
@@ -45,13 +45,13 @@ const item: QuestionItem = {
           label: "Every dish contains raw vegetables",
         },
         {
-          isCorrect: false,
-          label: "No dish contains raw vegetables",
-        },
-        {
           isCorrect: true,
           label:
             "At least one dish contains no raw vegetables and tastes sour and spicy",
+        },
+        {
+          isCorrect: false,
+          label: "No dish contains raw vegetables",
         },
       ],
     },
@@ -71,13 +71,13 @@ const item: QuestionItem = {
           label: "Setiap hidangan mengandung sayuran mentah",
         },
         {
-          isCorrect: false,
-          label: "Tidak ada hidangan yang mengandung sayuran mentah",
-        },
-        {
           isCorrect: true,
           label:
             "Sedikitnya satu hidangan tidak mengandung sayuran mentah serta terasa asam dan pedas",
+        },
+        {
+          isCorrect: false,
+          label: "Tidak ada hidangan yang mengandung sayuran mentah",
         },
       ],
     },

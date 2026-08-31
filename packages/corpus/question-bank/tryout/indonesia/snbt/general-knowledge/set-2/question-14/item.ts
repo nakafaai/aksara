@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "schnelle Veränderungen.",
         },
         {
+          isCorrect: true,
+          label: "Vogelrufe.",
+        },
+        {
           isCorrect: false,
           label: "sorgfältige Behandlung.",
         },
         {
           isCorrect: false,
           label: "laut singen.",
-        },
-        {
-          isCorrect: true,
-          label: "Vogelrufe.",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "rapid changes.",
         },
         {
+          isCorrect: true,
+          label: "bird calls.",
+        },
+        {
           isCorrect: false,
           label: "careful treatment.",
         },
         {
           isCorrect: false,
           label: "singing loudly.",
-        },
-        {
-          isCorrect: true,
-          label: "bird calls.",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "perubahan cepat.",
         },
         {
+          isCorrect: true,
+          label: "kicauan burung.",
+        },
+        {
           isCorrect: false,
           label: "perawatan cermat.",
         },
         {
           isCorrect: false,
           label: "bernyanyi nyaring.",
-        },
-        {
-          isCorrect: true,
-          label: "kicauan burung.",
         },
         {
           isCorrect: false,

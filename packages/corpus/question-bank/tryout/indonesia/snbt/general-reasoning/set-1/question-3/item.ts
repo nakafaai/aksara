@@ -10,6 +10,11 @@ const item: QuestionItem = {
           label: "FOLU lag im Basisjahr 2010 unter dem Energiesektor.",
         },
         {
+          isCorrect: true,
+          label:
+            "Energie und FOLU waren an beiden Bezugspunkten die zwei größten Werte, obwohl sich ihre Reihenfolge änderte.",
+        },
+        {
           isCorrect: false,
           label:
             "Die Landwirtschaft hatte in der Projektion für 2030 den höchsten Wert.",
@@ -18,11 +23,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "An beiden Bezugspunkten hatte derselbe Sektor den höchsten Wert.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Energie und FOLU waren an beiden Bezugspunkten die zwei größten Werte, obwohl sich ihre Reihenfolge änderte.",
         },
         {
           isCorrect: false,
@@ -39,6 +39,11 @@ const item: QuestionItem = {
           label: "FOLU had a lower value than energy in the 2010 baseline.",
         },
         {
+          isCorrect: true,
+          label:
+            "Energy and FOLU were the two largest values at both reference points, although their order changed.",
+        },
+        {
           isCorrect: false,
           label: "Agriculture had the highest value in the 2030 projection.",
         },
@@ -46,11 +51,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "The same sector had the highest value at both reference points.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Energy and FOLU were the two largest values at both reference points, although their order changed.",
         },
         {
           isCorrect: false,
@@ -68,6 +68,11 @@ const item: QuestionItem = {
             "Nilai FOLU lebih rendah daripada energi pada tahun dasar 2010.",
         },
         {
+          isCorrect: true,
+          label:
+            "Energi dan FOLU merupakan dua nilai terbesar pada kedua acuan, meskipun urutannya berubah.",
+        },
+        {
           isCorrect: false,
           label:
             "Sektor pertanian memiliki nilai tertinggi pada proyeksi 2030.",
@@ -75,11 +80,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Sektor yang sama memiliki nilai tertinggi pada kedua acuan.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Energi dan FOLU merupakan dua nilai terbesar pada kedua acuan, meskipun urutannya berubah.",
         },
         {
           isCorrect: false,

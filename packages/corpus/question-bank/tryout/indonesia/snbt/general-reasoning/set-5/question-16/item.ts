@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Das Wachstum lag in jedem genannten Jahr über $$5%$$",
-        },
-        {
           isCorrect: false,
           label: "Ab $$2016$$ verbesserte sich das Wirtschaftswachstum wieder",
+        },
+        {
+          isCorrect: true,
+          label: "Das Wachstum lag in jedem genannten Jahr über $$5%$$",
         },
         {
           isCorrect: false,
@@ -33,12 +33,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Growth remained above $$5%$$ in every year mentioned",
-        },
-        {
           isCorrect: false,
           label: "Economic growth began improving again in $$2016$$",
+        },
+        {
+          isCorrect: true,
+          label: "Growth remained above $$5%$$ in every year mentioned",
         },
         {
           isCorrect: false,
@@ -59,13 +59,13 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Pertumbuhan ekonomi mulai membaik kembali pada $$2016$$",
+        },
+        {
           isCorrect: true,
           label:
             "Pertumbuhan tetap di atas $$5%$$ pada setiap tahun yang disebutkan",
-        },
-        {
-          isCorrect: false,
-          label: "Pertumbuhan ekonomi mulai membaik kembali pada $$2016$$",
         },
         {
           isCorrect: false,

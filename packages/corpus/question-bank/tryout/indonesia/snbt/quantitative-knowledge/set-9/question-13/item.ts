@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$14 \\text{ und } 2$$",
         },
         {
+          isCorrect: true,
+          label: "$$4 \\text{ und } 2$$",
+        },
+        {
           isCorrect: false,
           label: "$$12 \\text{ und } 2$$",
         },
         {
           isCorrect: false,
           label: "$$8 \\text{ und } 2$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$4 \\text{ und } 2$$",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "$$14 \\text{ and } 2$$",
         },
         {
+          isCorrect: true,
+          label: "$$4 \\text{ and } 2$$",
+        },
+        {
           isCorrect: false,
           label: "$$12 \\text{ and } 2$$",
         },
         {
           isCorrect: false,
           label: "$$8 \\text{ and } 2$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$4 \\text{ and } 2$$",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "$$14 \\text{ dan } 2$$",
         },
         {
+          isCorrect: true,
+          label: "$$4 \\text{ dan } 2$$",
+        },
+        {
           isCorrect: false,
           label: "$$12 \\text{ dan } 2$$",
         },
         {
           isCorrect: false,
           label: "$$8 \\text{ dan } 2$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$4 \\text{ dan } 2$$",
         },
         {
           isCorrect: false,

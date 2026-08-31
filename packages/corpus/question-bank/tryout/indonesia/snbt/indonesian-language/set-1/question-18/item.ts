@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "Tempat kelahirannya",
         },
         {
-          isCorrect: false,
-          label: "Tahun kelahirannya",
-        },
-        {
           isCorrect: true,
           label: "Identitas ayah biologisnya",
+        },
+        {
+          isCorrect: false,
+          label: "Tahun kelahirannya",
         },
         {
           isCorrect: false,

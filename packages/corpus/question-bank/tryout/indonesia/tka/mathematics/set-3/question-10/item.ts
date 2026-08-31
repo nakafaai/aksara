@@ -3,8 +3,8 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "knowledge-understanding",
-    contentDomain: "algebra",
-    topic: "functions",
+    contentDomain: "geometry-measurement",
+    topic: "geometry-objects",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "21",
+          label: "$$13$$",
         },
         {
           isCorrect: false,
-          label: "23",
+          label: "$$17$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$29$$",
         },
         {
           isCorrect: true,
-          label: "25",
+          label: "$$25$$",
         },
         {
           isCorrect: false,
-          label: "27",
-        },
-        {
-          isCorrect: false,
-          label: "29",
+          label: "$$37$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "21",
+          label: "$$13$$",
         },
         {
           isCorrect: false,
-          label: "23",
+          label: "$$17$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$29$$",
         },
         {
           isCorrect: true,
-          label: "25",
+          label: "$$25$$",
         },
         {
           isCorrect: false,
-          label: "27",
-        },
-        {
-          isCorrect: false,
-          label: "29",
+          label: "$$37$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "21",
+          label: "$$13$$",
         },
         {
           isCorrect: false,
-          label: "23",
+          label: "$$17$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$29$$",
         },
         {
           isCorrect: true,
-          label: "25",
+          label: "$$25$$",
         },
         {
           isCorrect: false,
-          label: "27",
-        },
-        {
-          isCorrect: false,
-          label: "29",
+          label: "$$37$$",
         },
       ],
     },

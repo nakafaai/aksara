@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "$$\\begin{pmatrix} 4 & 1 \\\\ 7 & 9 \\end{pmatrix}$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\begin{pmatrix} 8 & -1 \\\\ 15 & 10 \\end{pmatrix}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\begin{pmatrix} 9 & 4 \\\\ 14 & 10 \\end{pmatrix}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\begin{pmatrix} 8 & -1 \\\\ 15 & 10 \\end{pmatrix}$$",
         },
         {
           isCorrect: false,
@@ -35,12 +35,12 @@ const item: QuestionItem = {
           label: "$$\\begin{pmatrix} 4 & 1 \\\\ 7 & 9 \\end{pmatrix}$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\begin{pmatrix} 8 & -1 \\\\ 15 & 10 \\end{pmatrix}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\begin{pmatrix} 9 & 4 \\\\ 14 & 10 \\end{pmatrix}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\begin{pmatrix} 8 & -1 \\\\ 15 & 10 \\end{pmatrix}$$",
         },
         {
           isCorrect: false,
@@ -60,12 +60,12 @@ const item: QuestionItem = {
           label: "$$\\begin{pmatrix} 4 & 1 \\\\ 7 & 9 \\end{pmatrix}$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\begin{pmatrix} 8 & -1 \\\\ 15 & 10 \\end{pmatrix}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\begin{pmatrix} 9 & 4 \\\\ 14 & 10 \\end{pmatrix}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\begin{pmatrix} 8 & -1 \\\\ 15 & 10 \\end{pmatrix}$$",
         },
         {
           isCorrect: false,

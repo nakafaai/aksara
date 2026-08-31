@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 4.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 4.500",
+          label: "$$2{,}4$$",
         },
         {
           isCorrect: true,
-          label: "Rp 5.000",
+          label: "$$3{,}6$$",
         },
         {
           isCorrect: false,
-          label: "Rp 5.500",
+          label: "$$3{,}0$$",
         },
         {
           isCorrect: false,
-          label: "Rp 6.000",
+          label: "$$4{,}2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4{,}8$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 4.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 4.500",
+          label: "$$2{,}4$$",
         },
         {
           isCorrect: true,
-          label: "Rp 5.000",
+          label: "$$3{,}6$$",
         },
         {
           isCorrect: false,
-          label: "Rp 5.500",
+          label: "$$3{,}0$$",
         },
         {
           isCorrect: false,
-          label: "Rp 6.000",
+          label: "$$4{,}2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4{,}8$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 4.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 4.500",
+          label: "$$2{,}4$$",
         },
         {
           isCorrect: true,
-          label: "Rp 5.000",
+          label: "$$3{,}6$$",
         },
         {
           isCorrect: false,
-          label: "Rp 5.500",
+          label: "$$3{,}0$$",
         },
         {
           isCorrect: false,
-          label: "Rp 6.000",
+          label: "$$4{,}2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4{,}8$$",
         },
       ],
     },

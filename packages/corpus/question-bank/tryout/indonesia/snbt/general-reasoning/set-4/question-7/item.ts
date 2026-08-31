@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$A = B$$ oder $$E \\neq F$$",
+        },
+        {
           isCorrect: false,
           label: "$$A = B$$ dann $$E = F$$",
         },
@@ -21,15 +25,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$E \\neq F$$ oder $$A \\neq B$$",
         },
-        {
-          isCorrect: true,
-          label: "$$A = B$$ oder $$E \\neq F$$",
-        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$A = B$$ or $$E \\neq F$$",
+        },
         {
           isCorrect: false,
           label: "$$A = B$$ then $$E = F$$",
@@ -46,15 +50,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$E \\neq F$$ or $$A \\neq B$$",
         },
-        {
-          isCorrect: true,
-          label: "$$A = B$$ or $$E \\neq F$$",
-        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$A = B$$ atau $$E \\neq F$$",
+        },
         {
           isCorrect: false,
           label: "$$A = B$$ maka $$E = F$$",
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$E \\neq F$$ atau $$A \\neq B$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$A = B$$ atau $$E \\neq F$$",
         },
       ],
     },

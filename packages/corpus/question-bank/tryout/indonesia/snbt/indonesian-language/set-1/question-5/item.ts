@@ -14,6 +14,10 @@ const item: QuestionItem = {
           label: "Indonesia penyumbang sampah utama dunia",
         },
         {
+          isCorrect: true,
+          label: "Kesadaran akan sampah yang ia hasilkan sendiri",
+        },
+        {
           isCorrect: false,
           label:
             "Berita buruk Indonesia sebagai penyumbang sampah ke laut Afrika",
@@ -21,10 +25,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Isu lingkungan yang tidak pernah selesai",
-        },
-        {
-          isCorrect: true,
-          label: "Kesadaran akan sampah yang ia hasilkan sendiri",
         },
       ],
     },

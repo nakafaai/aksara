@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "Montag",
         },
         {
-          isCorrect: true,
-          label: "Dienstag",
-        },
-        {
           isCorrect: false,
           label: "Mittwoch",
         },
         {
           isCorrect: false,
           label: "Donnerstag",
+        },
+        {
+          isCorrect: true,
+          label: "Dienstag",
         },
         {
           isCorrect: false,
@@ -31,9 +31,9 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         { isCorrect: false, label: "Monday" },
-        { isCorrect: true, label: "Tuesday" },
         { isCorrect: false, label: "Wednesday" },
         { isCorrect: false, label: "Thursday" },
+        { isCorrect: true, label: "Tuesday" },
         { isCorrect: false, label: "Friday" },
       ],
     },
@@ -41,9 +41,9 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         { isCorrect: false, label: "Senin" },
-        { isCorrect: true, label: "Selasa" },
         { isCorrect: false, label: "Rabu" },
         { isCorrect: false, label: "Kamis" },
+        { isCorrect: true, label: "Selasa" },
         { isCorrect: false, label: "Jumat" },
       ],
     },

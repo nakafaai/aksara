@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "Berkumpul dalam satu kelompok",
         },
         {
-          isCorrect: false,
-          label: "Berlumuran oleh suatu benda",
-        },
-        {
           isCorrect: true,
           label: "Terjebak dalam keadaan yang tidak menyenangkan",
+        },
+        {
+          isCorrect: false,
+          label: "Berlumuran oleh suatu benda",
         },
       ],
     },

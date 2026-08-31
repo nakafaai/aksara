@@ -2,9 +2,9 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "knowledge-understanding",
     contentDomain: "algebra",
-    topic: "linear-equations-inequalities",
+    topic: "functions",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 23.500",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 25.500",
+          label: "$$1$$",
         },
         {
           isCorrect: true,
-          label: "Rp 27.500",
+          label: "$$4$$",
         },
         {
           isCorrect: false,
-          label: "Rp 29.500",
+          label: "$$2$$",
         },
         {
           isCorrect: false,
-          label: "Rp 31.500",
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 23.500",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 25.500",
+          label: "$$1$$",
         },
         {
           isCorrect: true,
-          label: "Rp 27.500",
+          label: "$$4$$",
         },
         {
           isCorrect: false,
-          label: "Rp 29.500",
+          label: "$$2$$",
         },
         {
           isCorrect: false,
-          label: "Rp 31.500",
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
         },
       ],
     },
@@ -62,28 +62,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 23.500",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 25.500",
+          label: "$$1$$",
         },
         {
           isCorrect: true,
-          label: "Rp 27.500",
+          label: "$$4$$",
         },
         {
           isCorrect: false,
-          label: "Rp 29.500",
+          label: "$$2$$",
         },
         {
           isCorrect: false,
-          label: "Rp 31.500",
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
         },
       ],
     },
   },
-  stimulusKey: "stationery-bundles",
 };
 
 export default item;

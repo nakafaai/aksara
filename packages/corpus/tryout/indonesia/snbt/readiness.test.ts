@@ -99,49 +99,32 @@ describe("SNBT readiness", () => {
         source.tracks.find(({ key }) => key === "2027")
       );
 
-      expect(track.sets).toHaveLength(2);
+      expect(track.sets).toHaveLength(10);
+      expect(track.sets.map(({ key }) => key)).toEqual(
+        Array.from({ length: 10 }, (_, index) => `set-${index + 1}`)
+      );
       expect(
-        track.sets.map((set) => ({
-          questionCount: set.sections.reduce(
-            (total, section) => total + section.questionCount,
-            0
-          ),
-          sectionKeys: set.sections.map(({ key }) => key),
-          setKey: set.key,
-          timeLimitSeconds: set.sections.reduce(
-            (total, section) => total + section.timeLimitSeconds,
-            0
-          ),
-        }))
-      ).toEqual([
-        {
-          questionCount: 160,
-          sectionKeys: [
-            "general-reasoning",
-            "general-knowledge",
-            "reading-and-writing-skills",
-            "quantitative-knowledge",
-            "indonesian-language",
-            "english-language",
-            "mathematical-reasoning",
-          ],
-          setKey: "set-1",
-          timeLimitSeconds: 195 * 60,
-        },
-        {
-          questionCount: 160,
-          sectionKeys: [
-            "general-reasoning",
-            "general-knowledge",
-            "reading-and-writing-skills",
-            "quantitative-knowledge",
-            "indonesian-language",
-            "english-language",
-            "mathematical-reasoning",
-          ],
-          setKey: "set-2",
-          timeLimitSeconds: 195 * 60,
-        },
+        track.sets.every(
+          (set) =>
+            set.sections.reduce(
+              (total, section) => total + section.questionCount,
+              0
+            ) === 160 &&
+            set.sections.reduce(
+              (total, section) => total + section.timeLimitSeconds,
+              0
+            ) ===
+              195 * 60
+        )
+      ).toBe(true);
+      expect(track.sets[0]?.sections.map(({ key }) => key)).toEqual([
+        "general-reasoning",
+        "general-knowledge",
+        "reading-and-writing-skills",
+        "quantitative-knowledge",
+        "indonesian-language",
+        "english-language",
+        "mathematical-reasoning",
       ]);
     })
   );

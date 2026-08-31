@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Mencuci beras sebelum dimasak",
-        },
-        {
           isCorrect: false,
           label: "Harga beras di Indonesia",
         },
@@ -24,6 +20,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Evangeline Mantzioris, ahli diet terakreditasi",
+        },
+        {
+          isCorrect: true,
+          label: "Mencuci beras sebelum dimasak",
         },
       ],
     },

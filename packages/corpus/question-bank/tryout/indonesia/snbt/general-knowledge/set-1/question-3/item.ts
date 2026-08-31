@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "aber.",
-        },
-        {
           isCorrect: false,
           label: "jedoch.",
         },
@@ -25,15 +21,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "weil.",
         },
+        {
+          isCorrect: true,
+          label: "aber.",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "but.",
-        },
         {
           isCorrect: false,
           label: "however.",
@@ -50,15 +46,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "because.",
         },
+        {
+          isCorrect: true,
+          label: "but.",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "tetapi.",
-        },
         {
           isCorrect: false,
           label: "akan tetapi.",
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "karena.",
+        },
+        {
+          isCorrect: true,
+          label: "tetapi.",
         },
       ],
     },

@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$1\\frac{1}{2}\\text{ kg}$$",
         },
         {
+          isCorrect: true,
+          label: "$$6\\text{ kg}$$",
+        },
+        {
           isCorrect: false,
           label: "$$2\\text{ kg}$$",
         },
         {
           isCorrect: false,
           label: "$$4\\text{ kg}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$6\\text{ kg}$$",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "$$1\\frac{1}{2}\\text{ kg}$$",
         },
         {
+          isCorrect: true,
+          label: "$$6\\text{ kg}$$",
+        },
+        {
           isCorrect: false,
           label: "$$2\\text{ kg}$$",
         },
         {
           isCorrect: false,
           label: "$$4\\text{ kg}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$6\\text{ kg}$$",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "$$1\\frac{1}{2}\\text{ kg}$$",
         },
         {
+          isCorrect: true,
+          label: "$$6\\text{ kg}$$",
+        },
+        {
           isCorrect: false,
           label: "$$2\\text{ kg}$$",
         },
         {
           isCorrect: false,
           label: "$$4\\text{ kg}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$6\\text{ kg}$$",
         },
         {
           isCorrect: false,

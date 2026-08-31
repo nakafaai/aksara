@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "$$50{,}0\\%$$",
         },
         {
-          isCorrect: false,
-          label: "$$62{,}5\\%$$",
-        },
-        {
           isCorrect: true,
           label: "$$66{,}7\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$62{,}5\\%$$",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "$$50.0\\%$$",
         },
         {
-          isCorrect: false,
-          label: "$$62.5\\%$$",
-        },
-        {
           isCorrect: true,
           label: "$$66.7\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$62.5\\%$$",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "$$50{,}0\\%$$",
         },
         {
-          isCorrect: false,
-          label: "$$62{,}5\\%$$",
-        },
-        {
           isCorrect: true,
           label: "$$66{,}7\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$62{,}5\\%$$",
         },
       ],
     },

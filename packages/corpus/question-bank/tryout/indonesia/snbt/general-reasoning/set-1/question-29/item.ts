@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Klasse A",
+          label: "$$12$$",
         },
         {
           isCorrect: false,
-          label: "Klasse B",
+          label: "$$13$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$15$$",
         },
         {
           isCorrect: true,
-          label: "Klasse C",
+          label: "$$\\frac{144}{11}$$",
         },
         {
           isCorrect: false,
-          label: "Klasse D",
-        },
-        {
-          isCorrect: false,
-          label: "Klasse E",
+          label: "$$16$$",
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Class A" },
-        { isCorrect: false, label: "Class B" },
-        { isCorrect: true, label: "Class C" },
-        { isCorrect: false, label: "Class D" },
-        { isCorrect: false, label: "Class E" },
+        {
+          isCorrect: false,
+          label: "$$12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$13$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$15$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{144}{11}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$16$$",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Kelas A" },
-        { isCorrect: false, label: "Kelas B" },
-        { isCorrect: true, label: "Kelas C" },
-        { isCorrect: false, label: "Kelas D" },
-        { isCorrect: false, label: "Kelas E" },
+        {
+          isCorrect: false,
+          label: "$$12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$13$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$15$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{144}{11}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$16$$",
+        },
       ],
     },
   },

@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "widerstandsfähig (Satz $$(1)$$).",
         },
         {
+          isCorrect: true,
+          label: "verringern (Satz $$(7)$$).",
+        },
+        {
           isCorrect: false,
           label: "Folge (Satz $$(2)$$).",
         },
@@ -21,10 +25,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "nennt (Satz $$(4)$$).",
         },
-        {
-          isCorrect: true,
-          label: "verringern (Satz $$(7)$$).",
-        },
       ],
     },
     en: {
@@ -33,6 +33,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "resilient (sentence $$(1)$$).",
+        },
+        {
+          isCorrect: true,
+          label: "reduce (sentence $$(7)$$).",
         },
         {
           isCorrect: false,
@@ -46,10 +50,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "recognizes (sentence $$(4)$$).",
         },
-        {
-          isCorrect: true,
-          label: "reduce (sentence $$(7)$$).",
-        },
       ],
     },
     id: {
@@ -58,6 +58,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "tangguh (kalimat $$(1)$$).",
+        },
+        {
+          isCorrect: true,
+          label: "memperkecil (kalimat $$(7)$$).",
         },
         {
           isCorrect: false,
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "mengakui (kalimat $$(4)$$).",
-        },
-        {
-          isCorrect: true,
-          label: "memperkecil (kalimat $$(7)$$).",
         },
       ],
     },

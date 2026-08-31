@@ -81,6 +81,7 @@ const TryoutTrackSourceSchema = Schema.Struct({
   sets: Schema.Array(TryoutSetSourceSchema),
   translations: TryoutTranslationMapSchema,
 });
+export type TryoutTrackSourceInput = typeof TryoutTrackSourceSchema.Encoded;
 
 const TryoutCountrySourceSchema = Schema.Struct({
   countryCode: CountryCodeSchema,

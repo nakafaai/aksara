@@ -2,7 +2,7 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
+    cognitiveLevel: "application",
     contentDomain: "numbers",
     topic: "real-numbers",
   },
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{7}{12}$$",
+          label: "$$35{,}40$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3}{4}$$",
+          label: "$$38{,}40$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$39{,}60$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$42{,}24$$",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{11}{12}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{13}{12}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{5}{4}$$",
+          label: "$$38{,}94$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{7}{12}$$",
+          label: "$$35{,}40$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3}{4}$$",
+          label: "$$38{,}40$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$39{,}60$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$42{,}24$$",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{11}{12}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{13}{12}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{5}{4}$$",
+          label: "$$38{,}94$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{7}{12}$$",
+          label: "$$35{,}40$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3}{4}$$",
+          label: "$$38{,}40$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$39{,}60$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$42{,}24$$",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{11}{12}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{13}{12}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{5}{4}$$",
+          label: "$$38{,}94$$",
         },
       ],
     },

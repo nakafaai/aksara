@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "$$175\\text{ Gramm}$$",
         },
         {
-          isCorrect: true,
-          label: "$$225\\text{ Gramm}$$",
-        },
-        {
           isCorrect: false,
           label: "$$250\\text{ Gramm}$$",
         },
         {
           isCorrect: false,
           label: "$$275\\text{ Gramm}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$225\\text{ Gramm}$$",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "$$175\\text{ grams}$$",
         },
         {
-          isCorrect: true,
-          label: "$$225\\text{ grams}$$",
-        },
-        {
           isCorrect: false,
           label: "$$250\\text{ grams}$$",
         },
         {
           isCorrect: false,
           label: "$$275\\text{ grams}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$225\\text{ grams}$$",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "$$175\\text{ gram}$$",
         },
         {
-          isCorrect: true,
-          label: "$$225\\text{ gram}$$",
-        },
-        {
           isCorrect: false,
           label: "$$250\\text{ gram}$$",
         },
         {
           isCorrect: false,
           label: "$$275\\text{ gram}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$225\\text{ gram}$$",
         },
       ],
     },

@@ -14,17 +14,17 @@ const item: QuestionItem = {
           label: "Which country has the cheapest office rent?",
         },
         {
+          isCorrect: true,
+          label:
+            "How could GenAI transform occupational tasks, and what factors shape the outcome?",
+        },
+        {
           isCorrect: false,
           label: "How can every human task be removed immediately?",
         },
         {
           isCorrect: false,
           label: "Why should all workers avoid digital tools?",
-        },
-        {
-          isCorrect: true,
-          label:
-            "How could GenAI transform occupational tasks, and what factors shape the outcome?",
         },
       ],
     },

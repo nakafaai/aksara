@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Satz $$(2)$$.",
-        },
-        {
           isCorrect: true,
           label: "Satz $$(4)$$.",
+        },
+        {
+          isCorrect: false,
+          label: "Satz $$(2)$$.",
         },
         {
           isCorrect: false,
@@ -31,12 +31,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "sentence $$(2)$$.",
-        },
-        {
           isCorrect: true,
           label: "sentence $$(4)$$.",
+        },
+        {
+          isCorrect: false,
+          label: "sentence $$(2)$$.",
         },
         {
           isCorrect: false,
@@ -56,12 +56,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "kalimat $$(2)$$.",
-        },
-        {
           isCorrect: true,
           label: "kalimat $$(4)$$.",
+        },
+        {
+          isCorrect: false,
+          label: "kalimat $$(2)$$.",
         },
         {
           isCorrect: false,

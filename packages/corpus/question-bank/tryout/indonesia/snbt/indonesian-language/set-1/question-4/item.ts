@@ -10,10 +10,6 @@ const item: QuestionItem = {
           label: "Setiap orang memiliki kisah yang berbeda",
         },
         {
-          isCorrect: true,
-          label: "Mungkin setiap orang akan mengalami fase ini juga",
-        },
-        {
           isCorrect: false,
           label: "Kita tidak pernah tahu kapan kita akan sadar dan peduli",
         },
@@ -25,6 +21,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Kehidupan itu berputar seperti roda kadang di bawah dan kadang di atas",
+        },
+        {
+          isCorrect: true,
+          label: "Mungkin setiap orang akan mengalami fase ini juga",
         },
       ],
     },

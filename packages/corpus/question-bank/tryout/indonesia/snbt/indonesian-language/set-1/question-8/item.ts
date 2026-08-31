@@ -18,13 +18,13 @@ const item: QuestionItem = {
           label: "Semua bentuk polusi laut di Seychelles akan hilang",
         },
         {
+          isCorrect: false,
+          label: "Seychelles tidak lagi mengalami musim penumpukan sampah",
+        },
+        {
           isCorrect: true,
           label:
             "Indonesia diperkirakan menjadi sumber tunggal terbesar sampah berbasis daratan di banyak lokasi Seychelles",
-        },
-        {
-          isCorrect: false,
-          label: "Seychelles tidak lagi mengalami musim penumpukan sampah",
         },
       ],
     },

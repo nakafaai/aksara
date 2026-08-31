@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "Wenn $$(2)$$ und $$(4)$$ korrekt sind.",
         },
         {
-          isCorrect: true,
-          label: "Wenn nur $$(4)$$ korrekt ist.",
-        },
-        {
           isCorrect: false,
           label: "Wenn alles richtig ist.",
+        },
+        {
+          isCorrect: true,
+          label: "Wenn nur $$(4)$$ korrekt ist.",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "If $$(2)$$ and $$(4)$$ are correct.",
         },
         {
-          isCorrect: true,
-          label: "If only $$(4)$$ is correct.",
-        },
-        {
           isCorrect: false,
           label: "If all are correct.",
+        },
+        {
+          isCorrect: true,
+          label: "If only $$(4)$$ is correct.",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "Jika $$(2)$$ dan $$(4)$$ yang betul.",
         },
         {
-          isCorrect: true,
-          label: "Jika $$(4)$$ saja yang betul.",
-        },
-        {
           isCorrect: false,
           label: "Jika semuanya betul.",
+        },
+        {
+          isCorrect: true,
+          label: "Jika $$(4)$$ saja yang betul.",
         },
       ],
     },

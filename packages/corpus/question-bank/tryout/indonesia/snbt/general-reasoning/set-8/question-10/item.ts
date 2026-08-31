@@ -19,13 +19,13 @@ const item: QuestionItem = {
             "Auf keinem Weg kann Wasser zu den westlichen Beeten gelangen.",
         },
         {
-          isCorrect: false,
-          label: "Die westlichen Beete können nicht grün werden.",
-        },
-        {
           isCorrect: true,
           label:
             "Ob die westlichen Beete Wasser erhalten, lässt sich nicht ableiten.",
+        },
+        {
+          isCorrect: false,
+          label: "Die westlichen Beete können nicht grün werden.",
         },
       ],
     },
@@ -45,13 +45,13 @@ const item: QuestionItem = {
           label: "No water can reach the western beds.",
         },
         {
-          isCorrect: false,
-          label: "The western beds cannot become green.",
-        },
-        {
           isCorrect: true,
           label:
             "It cannot be concluded whether the western beds receive water.",
+        },
+        {
+          isCorrect: false,
+          label: "The western beds cannot become green.",
         },
       ],
     },
@@ -72,13 +72,13 @@ const item: QuestionItem = {
             "Tidak ada air yang dapat mencapai petak tanaman bagian barat.",
         },
         {
-          isCorrect: false,
-          label: "Petak tanaman bagian barat tidak mungkin menghijau.",
-        },
-        {
           isCorrect: true,
           label:
             "Tidak dapat disimpulkan apakah petak tanaman bagian barat menerima air.",
+        },
+        {
+          isCorrect: false,
+          label: "Petak tanaman bagian barat tidak mungkin menghijau.",
         },
       ],
     },

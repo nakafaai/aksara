@@ -11,6 +11,11 @@ const item: QuestionItem = {
             "Successful integration is determined mainly by the price and speed of the device.",
         },
         {
+          isCorrect: true,
+          label:
+            "educators should choose technology intentionally so that it supports existing developmental and learning goals.",
+        },
+        {
           isCorrect: false,
           label:
             "Technology is fully integrated when children focus on the device rather than the activity.",
@@ -19,11 +24,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Every classroom activity should include a screen so that children become digitally fluent.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "educators should choose technology intentionally so that it supports existing developmental and learning goals.",
         },
         {
           isCorrect: false,

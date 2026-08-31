@@ -10,10 +10,6 @@ const item: QuestionItem = {
           label: "$$P > Q$$",
         },
         {
-          isCorrect: true,
-          label: "$$P < Q$$",
-        },
-        {
           isCorrect: false,
           label: "$$P = Q$$",
         },
@@ -26,6 +22,10 @@ const item: QuestionItem = {
           label:
             "Die bereitgestellten Informationen reichen nicht aus, um sich für eine der Optionen zu entscheiden.",
         },
+        {
+          isCorrect: true,
+          label: "$$P < Q$$",
+        },
       ],
     },
     en: {
@@ -34,10 +34,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$P > Q$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$P < Q$$",
         },
         {
           isCorrect: false,
@@ -52,6 +48,10 @@ const item: QuestionItem = {
           label:
             "The information provided is not sufficient to decide one of the options.",
         },
+        {
+          isCorrect: true,
+          label: "$$P < Q$$",
+        },
       ],
     },
     id: {
@@ -60,10 +60,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$P > Q$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$P < Q$$",
         },
         {
           isCorrect: false,
@@ -77,6 +73,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Informasi yang diberikan tidak cukup untuk memutuskan salah satu pilihan.",
+        },
+        {
+          isCorrect: true,
+          label: "$$P < Q$$",
         },
       ],
     },

@@ -14,14 +14,14 @@ const item: QuestionItem = {
           label: "oceans benefit people only by producing rainfall",
         },
         {
-          isCorrect: true,
-          label:
-            "coastal ecosystems provide communities with several forms of value",
-        },
-        {
           isCorrect: false,
           label:
             "ocean exploration should expand so people can extract more resources",
+        },
+        {
+          isCorrect: true,
+          label:
+            "coastal ecosystems provide communities with several forms of value",
         },
         {
           isCorrect: false,

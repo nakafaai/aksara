@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "In vielen Bürovierteln ist der Mietaufschlag in Arbeitsplatznähe höher als die zusätzlichen Fahrtkosten eines weiter entfernten Zimmers, sodass die entfernte Wahl insgesamt weniger kostet.",
+        },
+        {
           isCorrect: false,
           label:
             "Viele junge Berufstätige bevorzugen ein Zimmer nahe der Arbeit, selbst wenn die Miete etwas höher ist.",
@@ -14,11 +19,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Eine niedrige Miete und ein kurzer Arbeitsweg machen ein Mietzimmer für Interessierte attraktiver.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "In vielen Bürovierteln ist der Mietaufschlag in Arbeitsplatznähe höher als die zusätzlichen Fahrtkosten eines weiter entfernten Zimmers, sodass die entfernte Wahl insgesamt weniger kostet.",
         },
         {
           isCorrect: false,
@@ -36,6 +36,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "In many office districts, the rent premium near work is larger than the extra transport cost from a more distant room, so the distant option has a lower total monthly cost.",
+        },
+        {
           isCorrect: false,
           label:
             "Many young workers prefer a room near work even when its rent is slightly higher.",
@@ -44,11 +49,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Low rent and a short commute make a rented room more attractive to prospective tenants.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "In many office districts, the rent premium near work is larger than the extra transport cost from a more distant room, so the distant option has a lower total monthly cost.",
         },
         {
           isCorrect: false,
@@ -66,6 +66,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Di banyak kawasan perkantoran, selisih sewa kos dekat tempat kerja lebih besar daripada tambahan ongkos transportasi dari kos yang lebih jauh, sehingga biaya bulanan total kos jauh justru lebih rendah.",
+        },
+        {
           isCorrect: false,
           label:
             "Banyak pekerja muda memilih kos dekat tempat kerja meskipun sewanya sedikit lebih tinggi.",
@@ -74,11 +79,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Sewa murah dan perjalanan singkat membuat kamar kos lebih menarik bagi calon penghuni.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Di banyak kawasan perkantoran, selisih sewa kos dekat tempat kerja lebih besar daripada tambahan ongkos transportasi dari kos yang lebih jauh, sehingga biaya bulanan total kos jauh justru lebih rendah.",
         },
         {
           isCorrect: false,

@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "dramatische Veränderung.",
         },
         {
-          isCorrect: false,
-          label: "rasante Entwicklung.",
-        },
-        {
           isCorrect: true,
           label: "Veränderung von Viruslinien über Generationen hinweg.",
+        },
+        {
+          isCorrect: false,
+          label: "rasante Entwicklung.",
         },
         {
           isCorrect: false,
@@ -35,12 +35,12 @@ const item: QuestionItem = {
           label: "dramatic change.",
         },
         {
-          isCorrect: false,
-          label: "rapid development.",
-        },
-        {
           isCorrect: true,
           label: "change in viral lineages across generations.",
+        },
+        {
+          isCorrect: false,
+          label: "rapid development.",
         },
         {
           isCorrect: false,
@@ -60,12 +60,12 @@ const item: QuestionItem = {
           label: "perubahan secara dramatis.",
         },
         {
-          isCorrect: false,
-          label: "perkembangan yang pesat.",
-        },
-        {
           isCorrect: true,
           label: "perubahan garis keturunan virus dari generasi ke generasi.",
+        },
+        {
+          isCorrect: false,
+          label: "perkembangan yang pesat.",
         },
         {
           isCorrect: false,

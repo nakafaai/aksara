@@ -6,17 +6,17 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Persetujuan yang dicapai melalui penyesuaian atau jalan damai",
-        },
-        {
           isCorrect: false,
           label: "Percakapan tanpa tujuan di dalam suatu kelompok",
         },
         {
           isCorrect: false,
           label: "Kerja sama yang menghapus seluruh perbedaan",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Persetujuan yang dicapai melalui penyesuaian atau jalan damai",
         },
         {
           isCorrect: false,

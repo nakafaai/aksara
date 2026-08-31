@@ -15,16 +15,16 @@ const item: QuestionItem = {
           label: "$$\\text{Rp}96{.}000{,}00$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\text{Rp}97{.}000{,}00$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\text{Rp}98{.}000{,}00$$",
         },
         {
           isCorrect: false,
           label: "$$\\text{Rp}99{.}000{,}00$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\text{Rp}97{.}000{,}00$$",
         },
       ],
     },
@@ -40,16 +40,16 @@ const item: QuestionItem = {
           label: "$$\\text{Rp}96{,}000.00$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\text{Rp}97{,}000.00$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\text{Rp}98{,}000.00$$",
         },
         {
           isCorrect: false,
           label: "$$\\text{Rp}99{,}000.00$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\text{Rp}97{,}000.00$$",
         },
       ],
     },
@@ -65,16 +65,16 @@ const item: QuestionItem = {
           label: "$$\\text{Rp}96{.}000{,}00$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\text{Rp}97{.}000{,}00$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\text{Rp}98{.}000{,}00$$",
         },
         {
           isCorrect: false,
           label: "$$\\text{Rp}99{.}000{,}00$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\text{Rp}97{.}000{,}00$$",
         },
       ],
     },

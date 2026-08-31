@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Membantu memahami kehidupan masyarakat Pompeii pada masa itu",
+        },
+        {
           isCorrect: false,
           label: "Membuktikan bahwa semua catatan Romawi keliru",
         },
@@ -20,10 +24,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Menunjukkan bahwa kehidupan Romawi hanya berpusat pada seni",
-        },
-        {
-          isCorrect: true,
-          label: "Membantu memahami kehidupan masyarakat Pompeii pada masa itu",
         },
       ],
     },

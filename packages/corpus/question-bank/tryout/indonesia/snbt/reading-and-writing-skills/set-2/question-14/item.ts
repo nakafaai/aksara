@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "das Wort *Hinsichtlich* am Satzanfang entfernen.",
-        },
-        {
           isCorrect: false,
           label: "*dienen* durch *dient* ersetzen.",
         },
@@ -25,16 +21,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "das Wort *den* vor *aktuellen* einfügen.",
         },
+        {
+          isCorrect: true,
+          label: "das Wort *Hinsichtlich* am Satzanfang entfernen.",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "removing the word *Regarding* at the beginning of the sentence.",
-        },
         {
           isCorrect: false,
           label: "replacing *provide* with *provides*.",
@@ -51,15 +46,16 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "adding the word *the* before *current*.",
         },
+        {
+          isCorrect: true,
+          label:
+            "removing the word *Regarding* at the beginning of the sentence.",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "menghilangkan kata *mengenai* pada awal kalimat.",
-        },
         {
           isCorrect: false,
           label: "mengganti *menyediakan* dengan *disediakan*.",
@@ -75,6 +71,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "menambahkan kata *yang* sebelum *terkini*.",
+        },
+        {
+          isCorrect: true,
+          label: "menghilangkan kata *mengenai* pada awal kalimat.",
         },
       ],
     },

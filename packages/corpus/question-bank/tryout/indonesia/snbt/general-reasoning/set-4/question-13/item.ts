@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "bo bluwpz mwckeeck?",
+        },
+        {
           isCorrect: false,
           label: "bo ckeeck? bluwwppz",
         },
@@ -16,10 +20,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "bo mwbluwpz ckeeck?",
-        },
-        {
-          isCorrect: true,
-          label: "bo bluwpz mwckeeck?",
         },
         {
           isCorrect: false,
@@ -31,6 +31,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "bo bluwpz mwckeeck?",
+        },
+        {
           isCorrect: false,
           label: "bo ckeeck? bluwwppz",
         },
@@ -41,10 +45,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "bo mwbluwpz ckeeck?",
-        },
-        {
-          isCorrect: true,
-          label: "bo bluwpz mwckeeck?",
         },
         {
           isCorrect: false,
@@ -56,6 +56,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "bo bluwpz mwckeeck?",
+        },
+        {
           isCorrect: false,
           label: "bo ckeeck? bluwwppz",
         },
@@ -66,10 +70,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "bo mwbluwpz ckeeck?",
-        },
-        {
-          isCorrect: true,
-          label: "bo bluwpz mwckeeck?",
         },
         {
           isCorrect: false,

@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "gefallen.",
-        },
-        {
           isCorrect: false,
           label: "Onkel.",
         },
@@ -22,6 +18,10 @@ const item: QuestionItem = {
           label: "Held.",
         },
         {
+          isCorrect: true,
+          label: "gefallen.",
+        },
+        {
           isCorrect: false,
           label: "Feind.",
         },
@@ -30,10 +30,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "fell.",
-        },
         {
           isCorrect: false,
           label: "uncle.",
@@ -47,6 +43,10 @@ const item: QuestionItem = {
           label: "hero.",
         },
         {
+          isCorrect: true,
+          label: "fell.",
+        },
+        {
           isCorrect: false,
           label: "enemy.",
         },
@@ -55,10 +55,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "gugur.",
-        },
         {
           isCorrect: false,
           label: "paman.",
@@ -70,6 +66,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "pahlawan.",
+        },
+        {
+          isCorrect: true,
+          label: "gugur.",
         },
         {
           isCorrect: false,

@@ -6,17 +6,17 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Kesehatan mental dan keadaan ekonomi ibunya membuat pengasuhannya tidak stabil",
+        },
+        {
           isCorrect: false,
           label: "Norma Jeane menolak tinggal bersama ibunya",
         },
         {
           isCorrect: false,
           label: "Orang tuanya sengaja memutus seluruh hubungan dengannya",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Kesehatan mental dan keadaan ekonomi ibunya membuat pengasuhannya tidak stabil",
         },
         {
           isCorrect: false,

@@ -10,6 +10,11 @@ const item: QuestionItem = {
           label: "Ramadan fasting guarantees permanent weight loss.",
         },
         {
+          isCorrect: true,
+          label:
+            "The studies show modest, varied, short-term average changes rather than a universal long-term result.",
+        },
+        {
           isCorrect: false,
           label:
             "The 2025 review found large permanent losses of muscle and water.",
@@ -23,11 +28,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "The studies prove that no participant experiences any change.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "The studies show modest, varied, short-term average changes rather than a universal long-term result.",
         },
       ],
     },

@@ -59,7 +59,7 @@ const validateCoverage = Effect.fn("AksaraCorpus.validateReadinessCoverage")(
   }
 );
 
-/** Validates that every official topic retains its owning content domain. */
+/** Validates that every topic remains inside its allowed content domains. */
 const validateTopicDomains = Effect.fn(
   "AksaraCorpus.validateReadinessTopicDomains"
 )(function* (
@@ -72,8 +72,10 @@ const validateTopicDomains = Effect.fn(
       ({ topic: actual }) => actual === topic.key
     )) {
       yield* validateReadinessField(
-        blueprint.contentDomain,
-        topic.contentDomain,
+        topic.contentDomains.includes(blueprint.contentDomain)
+          ? "allowed"
+          : blueprint.contentDomain,
+        "allowed",
         `topicDomain:${topic.key}`,
         scope
       );
@@ -91,7 +93,9 @@ const validateSectionQuestionReadiness = Effect.fn(
   scope: string
 ) {
   const selected = questions.filter(
-    ({ setKey }) => setKey === section.questionSourcePath
+    ({ questionNumber, setKey }) =>
+      setKey === section.questionSourcePath &&
+      questionNumber <= section.questionCount
   );
   yield* validateReadinessField(
     selected.length,

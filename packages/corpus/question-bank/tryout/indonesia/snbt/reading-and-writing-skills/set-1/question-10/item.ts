@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Welche drei Risikotreiber nennt das Sendai-Rahmenwerk?",
-        },
-        {
           isCorrect: false,
           label: "Welches Land hat das Sendai-Rahmenwerk zuerst angenommen?",
         },
@@ -27,16 +23,15 @@ const item: QuestionItem = {
           label:
             "Welche Methode zur Wiederherstellung von Ökosystemen ist am wirksamsten?",
         },
+        {
+          isCorrect: true,
+          label: "Welche drei Risikotreiber nennt das Sendai-Rahmenwerk?",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "Which three drivers of risk does the Sendai Framework recognize?",
-        },
         {
           isCorrect: false,
           label: "Which country first adopted the Sendai Framework?",
@@ -53,15 +48,16 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Which ecosystem restoration method is the most effective?",
         },
+        {
+          isCorrect: true,
+          label:
+            "Which three drivers of risk does the Sendai Framework recognize?",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "Apa saja tiga pendorong risiko yang diakui Kerangka Sendai?",
-        },
         {
           isCorrect: false,
           label: "Negara mana yang pertama kali mengadopsi Kerangka Sendai?",
@@ -77,6 +73,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Metode pemulihan ekosistem mana yang paling efektif?",
+        },
+        {
+          isCorrect: true,
+          label: "Apa saja tiga pendorong risiko yang diakui Kerangka Sendai?",
         },
       ],
     },

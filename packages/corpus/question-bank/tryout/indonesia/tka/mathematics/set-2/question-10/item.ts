@@ -3,8 +3,8 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "knowledge-understanding",
-    contentDomain: "algebra",
-    topic: "functions",
+    contentDomain: "geometry-measurement",
+    topic: "geometry-objects",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "11",
+          label: "$$3$$",
         },
         {
           isCorrect: false,
-          label: "13",
+          label: "$$5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7$$",
         },
         {
           isCorrect: true,
-          label: "15",
-        },
-        {
-          isCorrect: false,
-          label: "17",
-        },
-        {
-          isCorrect: false,
-          label: "19",
+          label: "$$4$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "11",
+          label: "$$3$$",
         },
         {
           isCorrect: false,
-          label: "13",
+          label: "$$5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7$$",
         },
         {
           isCorrect: true,
-          label: "15",
-        },
-        {
-          isCorrect: false,
-          label: "17",
-        },
-        {
-          isCorrect: false,
-          label: "19",
+          label: "$$4$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "11",
+          label: "$$3$$",
         },
         {
           isCorrect: false,
-          label: "13",
+          label: "$$5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7$$",
         },
         {
           isCorrect: true,
-          label: "15",
-        },
-        {
-          isCorrect: false,
-          label: "17",
-        },
-        {
-          isCorrect: false,
-          label: "19",
+          label: "$$4$$",
         },
       ],
     },

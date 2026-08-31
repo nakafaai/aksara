@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "weil.",
-        },
-        {
           isCorrect: false,
           label: "obwohl.",
         },
@@ -22,6 +18,10 @@ const item: QuestionItem = {
           label: "sofern nicht.",
         },
         {
+          isCorrect: true,
+          label: "weil.",
+        },
+        {
           isCorrect: false,
           label: "nachdem.",
         },
@@ -30,10 +30,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "because.",
-        },
         {
           isCorrect: false,
           label: "although.",
@@ -47,6 +43,10 @@ const item: QuestionItem = {
           label: "unless.",
         },
         {
+          isCorrect: true,
+          label: "because.",
+        },
+        {
           isCorrect: false,
           label: "after.",
         },
@@ -55,10 +55,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "karena.",
-        },
         {
           isCorrect: false,
           label: "meskipun.",
@@ -70,6 +66,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "kecuali.",
+        },
+        {
+          isCorrect: true,
+          label: "karena.",
         },
         {
           isCorrect: false,

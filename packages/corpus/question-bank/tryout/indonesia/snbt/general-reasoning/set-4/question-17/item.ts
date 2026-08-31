@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$40\\text{ km}$$",
         },
         {
+          isCorrect: true,
+          label: "$$10\\text{ km}$$",
+        },
+        {
           isCorrect: false,
           label: "$$30\\text{ km}$$",
         },
         {
           isCorrect: false,
           label: "$$20\\text{ km}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$10\\text{ km}$$",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "$$40\\text{ km}$$",
         },
         {
+          isCorrect: true,
+          label: "$$10\\text{ km}$$",
+        },
+        {
           isCorrect: false,
           label: "$$30\\text{ km}$$",
         },
         {
           isCorrect: false,
           label: "$$20\\text{ km}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$10\\text{ km}$$",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "$$40\\text{ km}$$",
         },
         {
+          isCorrect: true,
+          label: "$$10\\text{ km}$$",
+        },
+        {
           isCorrect: false,
           label: "$$30\\text{ km}$$",
         },
         {
           isCorrect: false,
           label: "$$20\\text{ km}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$10\\text{ km}$$",
         },
         {
           isCorrect: false,

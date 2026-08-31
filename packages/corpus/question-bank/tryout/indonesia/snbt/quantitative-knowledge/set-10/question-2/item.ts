@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "$$180 - x$$",
         },
         {
-          isCorrect: true,
-          label: "$$180 - 2x$$",
-        },
-        {
           isCorrect: false,
           label: "Unbekannt",
+        },
+        {
+          isCorrect: true,
+          label: "$$180 - 2x$$",
         },
       ],
     },
@@ -42,11 +42,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$180 - x$$",
         },
+        { isCorrect: false, label: "Unknown" },
         {
           isCorrect: true,
           label: "$$180 - 2x$$",
         },
-        { isCorrect: false, label: "Unknown" },
       ],
     },
     id: {
@@ -65,12 +65,12 @@ const item: QuestionItem = {
           label: "$$180 - x$$",
         },
         {
-          isCorrect: true,
-          label: "$$180 - 2x$$",
-        },
-        {
           isCorrect: false,
           label: "Tidak diketahui",
+        },
+        {
+          isCorrect: true,
+          label: "$$180 - 2x$$",
         },
       ],
     },

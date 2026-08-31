@@ -21,13 +21,13 @@ const item: QuestionItem = {
             "Wenn der Manager einen Bericht verlangt, wird die Aktivität sofort ausgeführt",
         },
         {
+          isCorrect: false,
+          label: "Fehlt ein Honorar, kann die Tätigkeit nicht ausgeübt werden",
+        },
+        {
           isCorrect: true,
           label:
             "Wird das Honorar nicht ausgezahlt, wurde die Tätigkeit nicht durchgeführt",
-        },
-        {
-          isCorrect: false,
-          label: "Fehlt ein Honorar, kann die Tätigkeit nicht ausgeübt werden",
         },
       ],
     },
@@ -50,14 +50,14 @@ const item: QuestionItem = {
             "If the manager asks for a report, the activity is immediately carried out",
         },
         {
-          isCorrect: true,
-          label:
-            "If the employee's honorarium is not paid, it means the activity has not been carried out",
-        },
-        {
           isCorrect: false,
           label:
             "If there is no honorarium, the activity cannot be carried out",
+        },
+        {
+          isCorrect: true,
+          label:
+            "If the employee's honorarium is not paid, it means the activity has not been carried out",
         },
       ],
     },
@@ -79,13 +79,13 @@ const item: QuestionItem = {
           label: "Jika pimpinan meminta laporan, kegiatan segera dilaksanakan",
         },
         {
+          isCorrect: false,
+          label: "Jika honor tidak ada, kegiatan tidak dapat dilaksanakan",
+        },
+        {
           isCorrect: true,
           label:
             "Honor karyawan tidak dibayarkan berarti kegiatan belum dilaksanakan",
-        },
-        {
-          isCorrect: false,
-          label: "Jika honor tidak ada, kegiatan tidak dapat dilaksanakan",
         },
       ],
     },

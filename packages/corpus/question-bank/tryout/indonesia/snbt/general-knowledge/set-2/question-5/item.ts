@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Eine hängende Fledermaus kann ihren Griff lösen und sich für den Abflug in den freien Luftraum fallen lassen.",
+        },
+        {
           isCorrect: false,
           label: "Keine Fledermaus kann vom Boden starten.",
         },
@@ -13,11 +18,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Fledermäuse müssen ihre Krallen mit ständiger Muskelarbeit um eine Sitzfläche geschlossen halten.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Eine hängende Fledermaus kann ihren Griff lösen und sich für den Abflug in den freien Luftraum fallen lassen.",
         },
         {
           isCorrect: false,
@@ -35,6 +35,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "A bat hanging from a roost can release its grip and drop into open air to begin flying.",
+        },
+        {
           isCorrect: false,
           label: "No bat can take off from the ground.",
         },
@@ -42,11 +47,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Bats must use continuous muscular effort to keep their claws closed around a perch.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "A bat hanging from a roost can release its grip and drop into open air to begin flying.",
         },
         {
           isCorrect: false,
@@ -64,6 +64,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Kelelawar yang bergantung dapat melepaskan cengkeraman dan menjatuhkan diri ke ruang terbuka untuk mulai terbang.",
+        },
+        {
           isCorrect: false,
           label: "Tidak ada kelelawar yang dapat lepas landas dari tanah.",
         },
@@ -71,11 +76,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Kelelawar harus terus memakai tenaga otot agar cakarnya mencengkeram tempat bertengger.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Kelelawar yang bergantung dapat melepaskan cengkeraman dan menjatuhkan diri ke ruang terbuka untuk mulai terbang.",
         },
         {
           isCorrect: false,

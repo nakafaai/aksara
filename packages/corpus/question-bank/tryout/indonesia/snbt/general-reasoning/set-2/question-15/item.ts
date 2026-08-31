@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Der staatliche Ankaufspreis für GKP bleibt von Januar bis April unverändert",
+        },
+        {
           isCorrect: false,
           label:
             "Der staatliche Ankaufspreis für GKP sinkt von Januar bis April durchgehend",
@@ -21,11 +26,6 @@ const item: QuestionItem = {
             "Der Erzeugerpreis für Rohreis ist umgekehrt proportional zum staatlichen Ankaufspreis für GKP",
         },
         {
-          isCorrect: true,
-          label:
-            "Der staatliche Ankaufspreis für GKP bleibt von Januar bis April unverändert",
-        },
-        {
           isCorrect: false,
           label:
             "Im März und April ist die Differenz zwischen Erzeugerpreis und staatlichem Ankaufspreis gleich groß",
@@ -35,6 +35,11 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "The government purchase price for GKP remained unchanged from January to April",
+        },
         {
           isCorrect: false,
           label:
@@ -51,11 +56,6 @@ const item: QuestionItem = {
             "Grain prices at the farmer level are inversely proportional to the government purchase price for GKP",
         },
         {
-          isCorrect: true,
-          label:
-            "The government purchase price for GKP remained unchanged from January to April",
-        },
-        {
           isCorrect: false,
           label:
             "The lowest difference between grain prices and government purchase prices occurred in April as happened in March",
@@ -65,6 +65,11 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Harga pembelian pemerintah untuk GKP tetap dan tidak berubah dari Januari sampai April",
+        },
         {
           isCorrect: false,
           label:
@@ -79,11 +84,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Harga gabah di tingkat petani berbanding terbalik dengan harga pembelian pemerintah terhadap GKP",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Harga pembelian pemerintah untuk GKP tetap dan tidak berubah dari Januari sampai April",
         },
         {
           isCorrect: false,

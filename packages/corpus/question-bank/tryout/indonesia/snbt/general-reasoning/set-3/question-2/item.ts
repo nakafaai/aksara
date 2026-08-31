@@ -20,14 +20,14 @@ const item: QuestionItem = {
             "Die Gesamtzahl der Schülerinnen und Schüler in Klasse $$\\text{XII}$$ beträgt $$306$$",
         },
         {
-          isCorrect: false,
-          label:
-            "In Klasse $$\\text{X}$$ interessieren sich die wenigsten Schülerinnen und Schüler für Tanz",
-        },
-        {
           isCorrect: true,
           label:
             "Insgesamt interessieren sich $$160$$ Schülerinnen und Schüler für Malerei",
+        },
+        {
+          isCorrect: false,
+          label:
+            "In Klasse $$\\text{X}$$ interessieren sich die wenigsten Schülerinnen und Schüler für Tanz",
         },
       ],
     },
@@ -49,12 +49,12 @@ const item: QuestionItem = {
             "The number of class $$\\text{XII}$$ students according to interest is $$306$$",
         },
         {
-          isCorrect: false,
-          label: "The least interest in dance is in class $$\\text{X}$$",
-        },
-        {
           isCorrect: true,
           label: "The number of students interested in painting is $$160$$",
+        },
+        {
+          isCorrect: false,
+          label: "The least interest in dance is in class $$\\text{X}$$",
         },
       ],
     },
@@ -75,13 +75,13 @@ const item: QuestionItem = {
             "Jumlah siswa kelas $$\\text{XII}$$ sesuai kegemaran adalah $$306$$",
         },
         {
+          isCorrect: true,
+          label: "Jumlah siswa gemar melukis adalah $$160$$",
+        },
+        {
           isCorrect: false,
           label:
             "Kegemaran seni tari yang paling sedikit ada di kelas $$\\text{X}$$",
-        },
-        {
-          isCorrect: true,
-          label: "Jumlah siswa gemar melukis adalah $$160$$",
         },
       ],
     },

@@ -6,14 +6,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Instantnudeln liefern bei täglichem Verzehr alle Nährstoffe, die der Körper benötigt.",
-        },
-        {
           isCorrect: true,
           label:
             "Instantnudeln sollten nur gelegentlich gegessen und mit weniger Würzmischung sowie mit Gemüse und Protein ergänzt werden.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Instantnudeln liefern bei täglichem Verzehr alle Nährstoffe, die der Körper benötigt.",
         },
         {
           isCorrect: false,
@@ -35,14 +35,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Instant noodles provide every nutrient the body needs when eaten daily.",
-        },
-        {
           isCorrect: true,
           label:
             "Instant noodles are best treated as an occasional meal, with less seasoning and added vegetables and protein.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Instant noodles provide every nutrient the body needs when eaten daily.",
         },
         {
           isCorrect: false,
@@ -65,14 +65,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Mie instan menyediakan seluruh zat gizi yang dibutuhkan tubuh jika dimakan setiap hari.",
-        },
-        {
           isCorrect: true,
           label:
             "Mie instan sebaiknya dikonsumsi sesekali, dengan bumbu yang dikurangi serta tambahan sayuran dan protein.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Mie instan menyediakan seluruh zat gizi yang dibutuhkan tubuh jika dimakan setiap hari.",
         },
         {
           isCorrect: false,

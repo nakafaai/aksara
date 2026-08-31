@@ -10,10 +10,6 @@ const item: QuestionItem = {
           label: "eng.",
         },
         {
-          isCorrect: true,
-          label: "hoch.",
-        },
-        {
           isCorrect: false,
           label: "begrenzt.",
         },
@@ -25,6 +21,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "verringert.",
         },
+        {
+          isCorrect: true,
+          label: "hoch.",
+        },
       ],
     },
     en: {
@@ -33,10 +33,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "narrow.",
-        },
-        {
-          isCorrect: true,
-          label: "high.",
         },
         {
           isCorrect: false,
@@ -50,6 +46,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "reduced.",
         },
+        {
+          isCorrect: true,
+          label: "high.",
+        },
       ],
     },
     id: {
@@ -58,10 +58,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "sempit.",
-        },
-        {
-          isCorrect: true,
-          label: "tinggi.",
         },
         {
           isCorrect: false,
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "berkurang.",
+        },
+        {
+          isCorrect: true,
+          label: "tinggi.",
         },
       ],
     },

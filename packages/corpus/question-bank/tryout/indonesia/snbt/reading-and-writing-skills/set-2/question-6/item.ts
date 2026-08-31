@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "oft.",
-        },
-        {
           isCorrect: false,
           label: "selten.",
+        },
+        {
+          isCorrect: true,
+          label: "oft.",
         },
         {
           isCorrect: false,
@@ -31,12 +31,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "often.",
-        },
-        {
           isCorrect: false,
           label: "rarely.",
+        },
+        {
+          isCorrect: true,
+          label: "often.",
         },
         {
           isCorrect: false,
@@ -56,12 +56,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "sering.",
-        },
-        {
           isCorrect: false,
           label: "jarang.",
+        },
+        {
+          isCorrect: true,
+          label: "sering.",
         },
         {
           isCorrect: false,

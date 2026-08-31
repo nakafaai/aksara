@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "Dito nimmt nicht an einem Probetest teil",
         },
         {
-          isCorrect: false,
-          label: "Dito erhält keinen Auswertungsbericht",
-        },
-        {
           isCorrect: true,
           label: "Dito erhält einen Auswertungsbericht",
+        },
+        {
+          isCorrect: false,
+          label: "Dito erhält keinen Auswertungsbericht",
         },
         {
           isCorrect: false,
@@ -40,12 +40,12 @@ const item: QuestionItem = {
           label: "Dito did not take a mock test",
         },
         {
-          isCorrect: false,
-          label: "Dito receives no evaluation report",
-        },
-        {
           isCorrect: true,
           label: "Dito receives an evaluation report",
+        },
+        {
+          isCorrect: false,
+          label: "Dito receives no evaluation report",
         },
         {
           isCorrect: false,
@@ -66,12 +66,12 @@ const item: QuestionItem = {
           label: "Dito tidak mengikuti tes simulasi",
         },
         {
-          isCorrect: false,
-          label: "Dito tidak menerima laporan evaluasi",
-        },
-        {
           isCorrect: true,
           label: "Dito menerima laporan evaluasi",
+        },
+        {
+          isCorrect: false,
+          label: "Dito tidak menerima laporan evaluasi",
         },
         {
           isCorrect: false,

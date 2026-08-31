@@ -2,7 +2,7 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
+    cognitiveLevel: "application",
     contentDomain: "numbers",
     topic: "real-numbers",
   },
@@ -11,24 +11,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$\\frac{5}{6}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$1$$",
-        },
-        {
           isCorrect: true,
-          label: "$$\\frac{7}{6}$$",
+          label: "$$1035$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{4}{3}$$",
+          label: "$$900$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3}{2}$$",
+          label: "$$990$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$1065$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$1150$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$\\frac{5}{6}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$1$$",
-        },
-        {
           isCorrect: true,
-          label: "$$\\frac{7}{6}$$",
+          label: "$$1035$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{4}{3}$$",
+          label: "$$900$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3}{2}$$",
+          label: "$$990$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$1065$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$1150$$",
         },
       ],
     },
@@ -61,24 +61,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$\\frac{5}{6}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$1$$",
-        },
-        {
           isCorrect: true,
-          label: "$$\\frac{7}{6}$$",
+          label: "$$1035$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{4}{3}$$",
+          label: "$$900$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3}{2}$$",
+          label: "$$990$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$1065$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$1150$$",
         },
       ],
     },

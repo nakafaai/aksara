@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "verursachen.",
         },
         {
-          isCorrect: false,
-          label: "fördern.",
-        },
-        {
           isCorrect: true,
           label: "verringern.",
+        },
+        {
+          isCorrect: false,
+          label: "fördern.",
         },
         {
           isCorrect: false,
@@ -32,8 +32,8 @@ const item: QuestionItem = {
       options: [
         { isCorrect: false, label: "worsen." },
         { isCorrect: false, label: "cause." },
-        { isCorrect: false, label: "foster." },
         { isCorrect: true, label: "reduce." },
+        { isCorrect: false, label: "foster." },
         { isCorrect: false, label: "eliminate." },
       ],
     },
@@ -42,8 +42,8 @@ const item: QuestionItem = {
       options: [
         { isCorrect: false, label: "memperparah." },
         { isCorrect: false, label: "menyebabkan." },
-        { isCorrect: false, label: "menumbuhkan." },
         { isCorrect: true, label: "mengurangi." },
+        { isCorrect: false, label: "menumbuhkan." },
         { isCorrect: false, label: "menghilangkan." },
       ],
     },

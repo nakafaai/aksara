@@ -8,6 +8,16 @@
 - Do not add dynamic metadata, executable imports, or arbitrary module syntax.
 - Raw MDX remains trusted executable source. It is compiled ahead of time and
   rendered by Nakafa's native MDX renderer.
+- Keep provenance, originality, evidence URLs, and publication status in the
+  source, readiness, and publisher contracts. Do not insert learner-facing
+  notices such as "original practice text" into a question or answer.
+- Every locale sibling that shares a `stimulusKey` must present the exact same
+  stimulus to every question in that group. Question-specific instructions may
+  differ, but they must not silently change, shorten, or enrich the shared
+  evidence.
+- A scored question must contain all information needed to answer it. Do not
+  require a learner to remember or solve a preceding question merely to obtain
+  an unstated intermediate value.
 
 ## Headings
 
@@ -87,6 +97,18 @@
 
 Choose a representation for its instructional job, not for variety alone.
 
+For try-out content, visual polish does not compensate for a weak assessment
+task. A graph, chart, or 3D model must support a real inference. Review the
+complete cognitive path from stimulus to answer and reject items whose assessed
+step remains direct formula recall when the blueprint calls for application or
+reasoning. Difficulty should come from a small number of meaningful dependent
+steps, not obscure wording, oversized arithmetic, or gratuitous data.
+
+Across each active set, section, locale, and option-count cohort, balance the
+correct positions so their frequencies differ by at most one. Keep the pattern
+unpredictable in question order, preserve distractor meaning across locale
+siblings, and never move only the `isCorrect` marker to manufacture balance.
+
 - Use prose for explanation, interpretation, uncertainty, and causal reasoning.
 - Use a short list for parallel items that do not need cross-column comparison.
 - Use a Markdown table for exact mappings or repeated comparisons. Keep cells
@@ -123,6 +145,12 @@ Choose a representation for its instructional job, not for variety alone.
   objects, inspect and rotate the rendered scene when interaction is available
   so hidden intersections, incorrect depth, or misleading camera angles are
   not accepted from one static view.
+- Never let spline interpolation alter an exact straight segment, polygon, or
+  polyhedron. Set `smooth: false` for exact line data. Author a balok with the
+  declarative `LineEquation` item
+  `{ kind: "cuboid", length, width, height }`, then verify eight vertices,
+  twelve straight edges, four edges of each declared dimension, and a camera
+  view that still reads as a cuboid after rotation.
 - Render every locale sibling that changes learner-facing labels or prose around
   a visual. Longer localized text must not clip, overlap, obscure data, or
   detach from the representation it explains.

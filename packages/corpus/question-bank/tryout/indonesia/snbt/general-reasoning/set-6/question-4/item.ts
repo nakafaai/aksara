@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "erhöht den Blutdruck",
-        },
-        {
           isCorrect: false,
           label: "senkt den Blutdruck",
         },
         {
           isCorrect: false,
           label: "beugt Herz-Kreislauf-Erkrankungen vor",
+        },
+        {
+          isCorrect: true,
+          label: "erhöht den Blutdruck",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "raises blood pressure",
-        },
-        {
           isCorrect: false,
           label: "lowers blood pressure",
         },
         {
           isCorrect: false,
           label: "prevents cardiovascular disease",
+        },
+        {
+          isCorrect: true,
+          label: "raises blood pressure",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "meningkatkan tekanan darah",
-        },
-        {
           isCorrect: false,
           label: "menurunkan tekanan darah",
         },
         {
           isCorrect: false,
           label: "mencegah penyakit kardiovaskular",
+        },
+        {
+          isCorrect: true,
+          label: "meningkatkan tekanan darah",
         },
         {
           isCorrect: false,

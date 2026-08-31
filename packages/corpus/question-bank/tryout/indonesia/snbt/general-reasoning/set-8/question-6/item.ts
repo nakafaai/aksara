@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "$$2$$ und $$4$$",
         },
         {
+          isCorrect: true,
+          label: "$$1$$, $$2$$, $$3$$ und $$4$$",
+        },
+        {
           isCorrect: false,
           label: "$$2$$, $$3$$ und $$4$$",
         },
         {
           isCorrect: false,
           label: "$$1$$, $$3$$ und $$4$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$1$$, $$2$$, $$3$$ und $$4$$",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "$$2$$ and $$4$$",
         },
         {
+          isCorrect: true,
+          label: "$$1$$, $$2$$, $$3$$, and $$4$$",
+        },
+        {
           isCorrect: false,
           label: "$$2$$, $$3$$, and $$4$$",
         },
         {
           isCorrect: false,
           label: "$$1$$, $$3$$, and $$4$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$1$$, $$2$$, $$3$$, and $$4$$",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "$$2$$ dan $$4$$",
         },
         {
+          isCorrect: true,
+          label: "$$1$$, $$2$$, $$3$$, dan $$4$$",
+        },
+        {
           isCorrect: false,
           label: "$$2$$, $$3$$, dan $$4$$",
         },
         {
           isCorrect: false,
           label: "$$1$$, $$3$$, dan $$4$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$1$$, $$2$$, $$3$$, dan $$4$$",
         },
       ],
     },

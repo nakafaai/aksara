@@ -8,12 +8,12 @@ const item: QuestionItem = {
         { isCorrect: false, label: "expensive" },
         { isCorrect: false, label: "experimental" },
         {
-          isCorrect: true,
-          label: "not equal or consistent",
-        },
-        {
           isCorrect: false,
           label: "widely available",
+        },
+        {
+          isCorrect: true,
+          label: "not equal or consistent",
         },
         {
           isCorrect: false,

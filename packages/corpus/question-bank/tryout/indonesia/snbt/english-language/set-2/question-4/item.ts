@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Its short-term average effects do not by themselves establish lasting weight loss.",
+        },
+        {
           isCorrect: false,
           label:
             "It produces identical weight loss for every person who fasts.",
@@ -14,11 +19,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "It is designed primarily as a clinical treatment for obesity.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Its short-term average effects do not by themselves establish lasting weight loss.",
         },
         {
           isCorrect: false,

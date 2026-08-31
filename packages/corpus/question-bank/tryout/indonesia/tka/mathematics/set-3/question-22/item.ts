@@ -2,33 +2,33 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
-    contentDomain: "geometry-measurement",
-    topic: "geometry-transformations",
+    cognitiveLevel: "application",
+    contentDomain: "data-probability",
+    topic: "data",
   },
   responses: {
     de: {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$(9,4)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(10,3)$$",
-        },
-        {
           isCorrect: true,
-          label: "$$(10,4)$$",
+          label: "$$52$$",
         },
         {
           isCorrect: false,
-          label: "$$(11,4)$$",
+          label: "$$48$$",
         },
         {
           isCorrect: false,
-          label: "$$(10,5)$$",
+          label: "$$50$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$54$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$56$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$(9,4)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(10,3)$$",
-        },
-        {
           isCorrect: true,
-          label: "$$(10,4)$$",
+          label: "$$52$$",
         },
         {
           isCorrect: false,
-          label: "$$(11,4)$$",
+          label: "$$48$$",
         },
         {
           isCorrect: false,
-          label: "$$(10,5)$$",
+          label: "$$50$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$54$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$56$$",
         },
       ],
     },
@@ -61,28 +61,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$(9,4)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(10,3)$$",
-        },
-        {
           isCorrect: true,
-          label: "$$(10,4)$$",
+          label: "$$52$$",
         },
         {
           isCorrect: false,
-          label: "$$(11,4)$$",
+          label: "$$48$$",
         },
         {
           isCorrect: false,
-          label: "$$(10,5)$$",
+          label: "$$50$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$54$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$56$$",
         },
       ],
     },
   },
+  stimulusKey: "sensor-calibration",
 };
 
 export default item;

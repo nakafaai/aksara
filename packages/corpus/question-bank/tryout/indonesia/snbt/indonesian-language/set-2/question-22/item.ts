@@ -11,13 +11,13 @@ const item: QuestionItem = {
             "Semua individu hidup pada masa yang sama tetapi bekerja berbeda",
         },
         {
+          isCorrect: false,
+          label: "Seluruh individu merupakan anggota satu pasukan",
+        },
+        {
           isCorrect: true,
           label:
             "Jasad berasal dari beberapa masa dan kelompok leluhur genetik",
-        },
-        {
-          isCorrect: false,
-          label: "Seluruh individu merupakan anggota satu pasukan",
         },
         {
           isCorrect: false,

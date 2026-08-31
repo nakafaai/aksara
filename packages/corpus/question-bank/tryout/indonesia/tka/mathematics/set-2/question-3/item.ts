@@ -2,83 +2,83 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "numbers",
     topic: "real-numbers",
   },
   responses: {
     de: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 161.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 160.000",
+          isCorrect: true,
+          label: "$ab=1$",
         },
         {
           isCorrect: true,
-          label: "Rp 176.000",
+          label: "$a-b=4$",
+        },
+        {
+          isCorrect: true,
+          label: "$a^2+b^2=18$",
         },
         {
           isCorrect: false,
-          label: "Rp 186.000",
+          label: "$a+b=4$",
         },
         {
-          isCorrect: false,
-          label: "Rp 200.000",
+          isCorrect: true,
+          label: "$a^2-4a-1=0$",
         },
       ],
     },
     en: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 161.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 160.000",
+          isCorrect: true,
+          label: "$ab=1$",
         },
         {
           isCorrect: true,
-          label: "Rp 176.000",
+          label: "$a-b=4$",
+        },
+        {
+          isCorrect: true,
+          label: "$a^2+b^2=18$",
         },
         {
           isCorrect: false,
-          label: "Rp 186.000",
+          label: "$a+b=4$",
         },
         {
-          isCorrect: false,
-          label: "Rp 200.000",
+          isCorrect: true,
+          label: "$a^2-4a-1=0$",
         },
       ],
     },
     id: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 161.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 160.000",
+          isCorrect: true,
+          label: "$ab=1$",
         },
         {
           isCorrect: true,
-          label: "Rp 176.000",
+          label: "$a-b=4$",
+        },
+        {
+          isCorrect: true,
+          label: "$a^2+b^2=18$",
         },
         {
           isCorrect: false,
-          label: "Rp 186.000",
+          label: "$a+b=4$",
         },
         {
-          isCorrect: false,
-          label: "Rp 200.000",
+          isCorrect: true,
+          label: "$a^2-4a-1=0$",
         },
       ],
     },

@@ -2,7 +2,7 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
+    cognitiveLevel: "application",
     contentDomain: "algebra",
     topic: "linear-equations-inequalities",
   },
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "4",
+          label: "$$2:1$$",
         },
         {
           isCorrect: false,
-          label: "5",
+          label: "$$5:2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9:4$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$13:5$$",
         },
         {
           isCorrect: true,
-          label: "6",
-        },
-        {
-          isCorrect: false,
-          label: "7",
-        },
-        {
-          isCorrect: false,
-          label: "8",
+          label: "$$11:5$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "4",
+          label: "$$2:1$$",
         },
         {
           isCorrect: false,
-          label: "5",
+          label: "$$5:2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9:4$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$13:5$$",
         },
         {
           isCorrect: true,
-          label: "6",
-        },
-        {
-          isCorrect: false,
-          label: "7",
-        },
-        {
-          isCorrect: false,
-          label: "8",
+          label: "$$11:5$$",
         },
       ],
     },
@@ -62,27 +62,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "4",
+          label: "$$2:1$$",
         },
         {
           isCorrect: false,
-          label: "5",
+          label: "$$5:2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9:4$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$13:5$$",
         },
         {
           isCorrect: true,
-          label: "6",
-        },
-        {
-          isCorrect: false,
-          label: "7",
-        },
-        {
-          isCorrect: false,
-          label: "8",
+          label: "$$11:5$$",
         },
       ],
     },
   },
+  stimulusKey: "stationery-bundles",
 };
 
 export default item;

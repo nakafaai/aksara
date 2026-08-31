@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "$$29$$",
         },
         {
-          isCorrect: true,
-          label: "$$34$$",
-        },
-        {
           isCorrect: false,
           label: "$$24$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$34$$",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "$$29$$",
         },
         {
-          isCorrect: true,
-          label: "$$34$$",
-        },
-        {
           isCorrect: false,
           label: "$$24$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$34$$",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "$$29$$",
         },
         {
-          isCorrect: true,
-          label: "$$34$$",
-        },
-        {
           isCorrect: false,
           label: "$$24$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$34$$",
         },
         {
           isCorrect: false,

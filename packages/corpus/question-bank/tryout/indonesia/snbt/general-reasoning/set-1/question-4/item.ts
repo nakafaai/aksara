@@ -6,14 +6,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Einheimische Nahrungspflanzen durch importierte Waren ersetzen.",
-        },
-        {
           isCorrect: true,
           label:
             "Bewässerung, landwirtschaftliche Flächen, Maschinen, Dünger und hochwertiges Saatgut finanzieren.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Einheimische Nahrungspflanzen durch importierte Waren ersetzen.",
         },
         {
           isCorrect: false,
@@ -34,13 +34,13 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Replacing domestic food crops with imported commodities.",
-        },
-        {
           isCorrect: true,
           label:
             "Funding irrigation, agricultural land, machinery, fertilizer, and improved seed.",
+        },
+        {
+          isCorrect: false,
+          label: "Replacing domestic food crops with imported commodities.",
         },
         {
           isCorrect: false,
@@ -60,14 +60,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Mengganti tanaman pangan dalam negeri dengan komoditas impor.",
-        },
-        {
           isCorrect: true,
           label:
             "Mendanai irigasi, lahan pertanian, alat dan mesin, pupuk, serta benih unggul.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Mengganti tanaman pangan dalam negeri dengan komoditas impor.",
         },
         {
           isCorrect: false,

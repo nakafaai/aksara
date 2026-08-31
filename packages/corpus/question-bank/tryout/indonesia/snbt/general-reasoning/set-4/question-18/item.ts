@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "$$2$$ Belletristikbücher",
         },
         {
+          isCorrect: true,
+          label: "$$2$$ Wissenschaftsbücher",
+        },
+        {
           isCorrect: false,
           label: "$$1$$ Belletristikbuch und $$1$$ Wissenschaftsbuch",
         },
@@ -21,10 +25,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$2$$ Geschichtsbücher",
         },
-        {
-          isCorrect: true,
-          label: "$$2$$ Wissenschaftsbücher",
-        },
       ],
     },
     en: {
@@ -33,6 +33,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$2$$ fiction books",
+        },
+        {
+          isCorrect: true,
+          label: "$$2$$ science books",
         },
         {
           isCorrect: false,
@@ -46,10 +50,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$2$$ history books",
         },
-        {
-          isCorrect: true,
-          label: "$$2$$ science books",
-        },
       ],
     },
     id: {
@@ -58,6 +58,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$2$$ buku fiksi",
+        },
+        {
+          isCorrect: true,
+          label: "$$2$$ buku sains",
         },
         {
           isCorrect: false,
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$2$$ buku sejarah",
-        },
-        {
-          isCorrect: true,
-          label: "$$2$$ buku sains",
         },
       ],
     },

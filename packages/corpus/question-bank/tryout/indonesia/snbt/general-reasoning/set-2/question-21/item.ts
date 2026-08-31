@@ -7,25 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Die Schlussfolgerung ist definitiv wahr.",
+          label: "$$11$$",
         },
         {
           isCorrect: true,
-          label: "Die Schlussfolgerung ist möglicherweise wahr.",
+          label: "$$15$$",
         },
         {
           isCorrect: false,
-          label: "Die Schlussfolgerung ist definitiv falsch.",
+          label: "$$13$$",
         },
         {
           isCorrect: false,
-          label:
-            "Die Schlussfolgerung ist für die bereitgestellten Informationen irrelevant",
+          label: "$$17$$",
         },
         {
           isCorrect: false,
-          label:
-            "Die Schlussfolgerung kann aufgrund unzureichender Informationen nicht bewertet werden.",
+          label: "$$19$$",
         },
       ],
     },
@@ -34,24 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The conclusion is definitely true.",
+          label: "$$11$$",
         },
         {
           isCorrect: true,
-          label: "The conclusion is possibly true.",
+          label: "$$15$$",
         },
         {
           isCorrect: false,
-          label: "The conclusion is definitely false.",
+          label: "$$13$$",
         },
         {
           isCorrect: false,
-          label: "The conclusion is irrelevant to the information provided",
+          label: "$$17$$",
         },
         {
           isCorrect: false,
-          label:
-            "The conclusion cannot be evaluated because there is insufficient information.",
+          label: "$$19$$",
         },
       ],
     },
@@ -60,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Simpulan tersebut pasti benar.",
+          label: "$$11$$",
         },
         {
           isCorrect: true,
-          label: "Simpulan tersebut mungkin benar.",
+          label: "$$15$$",
         },
         {
           isCorrect: false,
-          label: "Simpulan tersebut pasti salah.",
+          label: "$$13$$",
         },
         {
           isCorrect: false,
-          label: "Simpulan tidak relevan dengan informasi yang diberikan",
+          label: "$$17$$",
         },
         {
           isCorrect: false,
-          label: "Simpulan tidak dapat dinilai karena informasi tidak cukup.",
+          label: "$$19$$",
         },
       ],
     },

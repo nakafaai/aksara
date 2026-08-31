@@ -11,14 +11,14 @@ const item: QuestionItem = {
             "In den vier Zeilen geht eine höhere Rohreisproduktion jeweils mit geringeren Reisimporten einher.",
         },
         {
-          isCorrect: false,
-          label:
-            "Sowohl die höchsten Reisimporte als auch die höchste Reisbeschaffung treten 1999 auf.",
-        },
-        {
           isCorrect: true,
           label:
             "Die höchste Reisproduktion und die höchste Reisbeschaffung treten im selben Jahr auf.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Sowohl die höchsten Reisimporte als auch die höchste Reisbeschaffung treten 1999 auf.",
         },
         {
           isCorrect: false,
@@ -41,14 +41,14 @@ const item: QuestionItem = {
             "Across these four rows, higher paddy production is paired with lower rice imports.",
         },
         {
-          isCorrect: false,
-          label:
-            "The highest rice imports and the highest rice procurement both occur in 1999.",
-        },
-        {
           isCorrect: true,
           label:
             "The highest rice production and the highest rice procurement occur in the same year.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The highest rice imports and the highest rice procurement both occur in 1999.",
         },
         {
           isCorrect: false,
@@ -71,14 +71,14 @@ const item: QuestionItem = {
             "Pada keempat baris tersebut, produksi padi yang lebih tinggi berpasangan dengan impor beras yang lebih rendah.",
         },
         {
-          isCorrect: false,
-          label:
-            "Impor beras tertinggi dan pengadaan beras tertinggi sama-sama terjadi pada 1999.",
-        },
-        {
           isCorrect: true,
           label:
             "Produksi beras tertinggi dan pengadaan beras tertinggi terjadi pada tahun yang sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Impor beras tertinggi dan pengadaan beras tertinggi sama-sama terjadi pada 1999.",
         },
         {
           isCorrect: false,

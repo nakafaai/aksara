@@ -2,9 +2,9 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "reasoning",
-    contentDomain: "geometry-measurement",
-    topic: "geometry-objects",
+    cognitiveLevel: "knowledge-understanding",
+    contentDomain: "data-probability",
+    topic: "data",
   },
   responses: {
     de: {
@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$5\\sqrt2$$",
+          label: "$$\\frac14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac25$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac12$$",
         },
         {
           isCorrect: true,
-          label: "$$5\\sqrt{3}$$",
+          label: "$$\\frac13$$",
         },
         {
           isCorrect: false,
-          label: "$$10$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5\\sqrt5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$15$$",
+          label: "$$\\frac23$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$5\\sqrt2$$",
+          label: "$$\\frac14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac25$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac12$$",
         },
         {
           isCorrect: true,
-          label: "$$5\\sqrt{3}$$",
+          label: "$$\\frac13$$",
         },
         {
           isCorrect: false,
-          label: "$$10$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5\\sqrt5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$15$$",
+          label: "$$\\frac23$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$5\\sqrt2$$",
+          label: "$$\\frac14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac25$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac12$$",
         },
         {
           isCorrect: true,
-          label: "$$5\\sqrt{3}$$",
+          label: "$$\\frac13$$",
         },
         {
           isCorrect: false,
-          label: "$$10$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5\\sqrt5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$15$$",
+          label: "$$\\frac23$$",
         },
       ],
     },

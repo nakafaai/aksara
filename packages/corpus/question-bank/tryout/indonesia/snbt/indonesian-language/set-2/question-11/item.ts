@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "$$(29)$$",
         },
         {
-          isCorrect: false,
-          label: "$$(32)$$",
-        },
-        {
           isCorrect: true,
           label: "$$(2)$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$(32)$$",
         },
       ],
     },

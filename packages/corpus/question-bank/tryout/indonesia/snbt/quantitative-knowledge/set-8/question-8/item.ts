@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "$$4$$ Jahre",
         },
         {
-          isCorrect: false,
-          label: "$$5$$ Jahre",
-        },
-        {
           isCorrect: true,
           label: "$$6$$ Jahre",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$ Jahre",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "$$4$$ years",
         },
         {
-          isCorrect: false,
-          label: "$$5$$ years",
-        },
-        {
           isCorrect: true,
           label: "$$6$$ years",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$ years",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "$$4$$ tahun",
         },
         {
-          isCorrect: false,
-          label: "$$5$$ tahun",
-        },
-        {
           isCorrect: true,
           label: "$$6$$ tahun",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$ tahun",
         },
       ],
     },

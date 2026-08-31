@@ -11,11 +11,6 @@ const item: QuestionItem = {
             "Das neue Büro liegt weiter von den Wohnungen der meisten Beschäftigten entfernt.",
         },
         {
-          isCorrect: true,
-          label:
-            "Die meisten Kündigungen waren bereits vor der Bekanntgabe des Umzugs eingereicht worden.",
-        },
-        {
           isCorrect: false,
           label:
             "Durch den Umzug verdoppelte sich die durchschnittliche Pendelzeit.",
@@ -30,6 +25,11 @@ const item: QuestionItem = {
           label:
             "Das Unternehmen zog nach Ablauf des Mietvertrags für das bisherige Gebäude um.",
         },
+        {
+          isCorrect: true,
+          label:
+            "Die meisten Kündigungen waren bereits vor der Bekanntgabe des Umzugs eingereicht worden.",
+        },
       ],
     },
     en: {
@@ -38,11 +38,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "The new office is farther from most employees' homes.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Most resignation letters had been submitted before the relocation was announced.",
         },
         {
           isCorrect: false,
@@ -57,6 +52,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "The company moved after the former building lease expired.",
         },
+        {
+          isCorrect: true,
+          label:
+            "Most resignation letters had been submitted before the relocation was announced.",
+        },
       ],
     },
     id: {
@@ -65,11 +65,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Kantor baru lebih jauh dari rumah sebagian besar karyawan.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Sebagian besar surat pengunduran diri telah diajukan sebelum rencana perpindahan diumumkan.",
         },
         {
           isCorrect: false,
@@ -83,6 +78,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Perusahaan pindah setelah masa sewa gedung lama berakhir.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Sebagian besar surat pengunduran diri telah diajukan sebelum rencana perpindahan diumumkan.",
         },
       ],
     },

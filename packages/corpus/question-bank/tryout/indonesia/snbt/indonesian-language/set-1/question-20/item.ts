@@ -18,13 +18,13 @@ const item: QuestionItem = {
           label: "Mengatur pernikahannya dengan James Dougherty",
         },
         {
-          isCorrect: false,
-          label: "Mengajarinya berakting di Actors Studio",
-        },
-        {
           isCorrect: true,
           label:
             "Memotretnya di pabrik dan menyarankan agar ia mencoba menjadi model",
+        },
+        {
+          isCorrect: false,
+          label: "Mengajarinya berakting di Actors Studio",
         },
       ],
     },

@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "Der **Abstellraum** wurde gestern gereinigt.",
         },
         {
-          isCorrect: true,
-          label: "Die **Zeichnung** wird morgen ausgestellt.",
-        },
-        {
           isCorrect: false,
           label: "Der **Tanz** beginnt mittags.",
+        },
+        {
+          isCorrect: true,
+          label: "Die **Zeichnung** wird morgen ausgestellt.",
         },
         {
           isCorrect: false,
@@ -35,12 +35,12 @@ const item: QuestionItem = {
           label: "The **storage room** was cleaned yesterday.",
         },
         {
-          isCorrect: true,
-          label: "The **drawing** will be displayed tomorrow.",
-        },
-        {
           isCorrect: false,
           label: "The **dance** begins at noon.",
+        },
+        {
+          isCorrect: true,
+          label: "The **drawing** will be displayed tomorrow.",
         },
         {
           isCorrect: false,
@@ -60,12 +60,12 @@ const item: QuestionItem = {
           label: "**Ruangan** itu dibersihkan kemarin.",
         },
         {
-          isCorrect: true,
-          label: "**Tulisan** itu akan segera diterbitkan.",
-        },
-        {
           isCorrect: false,
           label: "**Tarian** itu dimulai siang hari.",
+        },
+        {
+          isCorrect: true,
+          label: "**Tulisan** itu akan segera diterbitkan.",
         },
         {
           isCorrect: false,

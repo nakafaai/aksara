@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "$$300\\sqrt{3} \\text{ m/s}$$",
         },
         {
-          isCorrect: true,
-          label: "$$100(\\sqrt{3}-1) \\text{ m/s}$$",
-        },
-        {
           isCorrect: false,
           label: "$$450\\sqrt{3} \\text{ m/s}$$",
         },
         {
           isCorrect: false,
           label: "$$250\\sqrt{3} \\text{ m/s}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$100(\\sqrt{3}-1) \\text{ m/s}$$",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "$$300\\sqrt{3} \\text{ m/s}$$",
         },
         {
-          isCorrect: true,
-          label: "$$100(\\sqrt{3}-1) \\text{ m/s}$$",
-        },
-        {
           isCorrect: false,
           label: "$$450\\sqrt{3} \\text{ m/s}$$",
         },
         {
           isCorrect: false,
           label: "$$250\\sqrt{3} \\text{ m/s}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$100(\\sqrt{3}-1) \\text{ m/s}$$",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "$$300\\sqrt{3} \\text{ m/s}$$",
         },
         {
-          isCorrect: true,
-          label: "$$100(\\sqrt{3}-1) \\text{ m/s}$$",
-        },
-        {
           isCorrect: false,
           label: "$$450\\sqrt{3} \\text{ m/s}$$",
         },
         {
           isCorrect: false,
           label: "$$250\\sqrt{3} \\text{ m/s}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$100(\\sqrt{3}-1) \\text{ m/s}$$",
         },
       ],
     },

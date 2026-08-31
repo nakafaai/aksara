@@ -4,81 +4,84 @@ const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "algebra",
-    topic: "linear-equations-inequalities",
+    topic: "sequences-series",
   },
   responses: {
     de: {
-      kind: "single-choice",
-      options: [
+      categories: ["Richtig", "Falsch"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "18",
+          correctCategoryOrder: 1,
+          label: "$u_1=5$",
         },
         {
-          isCorrect: false,
-          label: "21",
+          correctCategoryOrder: 1,
+          label: "Die Differenz beträgt $6$.",
         },
         {
-          isCorrect: true,
-          label: "24",
+          correctCategoryOrder: 1,
+          label: "$u_{10}=59$",
         },
         {
-          isCorrect: false,
-          label: "27",
+          correctCategoryOrder: 1,
+          label: "$S_{10}=320$",
         },
         {
-          isCorrect: false,
-          label: "30",
+          correctCategoryOrder: 2,
+          label: "$u_5=31$",
         },
       ],
     },
     en: {
-      kind: "single-choice",
-      options: [
+      categories: ["True", "False"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "18",
+          correctCategoryOrder: 1,
+          label: "$u_1=5$",
         },
         {
-          isCorrect: false,
-          label: "21",
+          correctCategoryOrder: 1,
+          label: "The common difference is $6$.",
         },
         {
-          isCorrect: true,
-          label: "24",
+          correctCategoryOrder: 1,
+          label: "$u_{10}=59$",
         },
         {
-          isCorrect: false,
-          label: "27",
+          correctCategoryOrder: 1,
+          label: "$S_{10}=320$",
         },
         {
-          isCorrect: false,
-          label: "30",
+          correctCategoryOrder: 2,
+          label: "$u_5=31$",
         },
       ],
     },
     id: {
-      kind: "single-choice",
-      options: [
+      categories: ["Benar", "Salah"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "18",
+          correctCategoryOrder: 1,
+          label: "$u_1=5$",
         },
         {
-          isCorrect: false,
-          label: "21",
+          correctCategoryOrder: 1,
+          label: "Bedanya adalah $6$.",
         },
         {
-          isCorrect: true,
-          label: "24",
+          correctCategoryOrder: 1,
+          label: "$u_{10}=59$",
         },
         {
-          isCorrect: false,
-          label: "27",
+          correctCategoryOrder: 1,
+          label: "$S_{10}=320$",
         },
         {
-          isCorrect: false,
-          label: "30",
+          correctCategoryOrder: 2,
+          label: "$u_5=31$",
         },
       ],
     },

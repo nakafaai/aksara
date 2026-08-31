@@ -10,10 +10,6 @@ const item: QuestionItem = {
           label: "$$(1)$$, $$(2)$$ und $$(3)$$ sind richtig.",
         },
         {
-          isCorrect: true,
-          label: "$$(1)$$ und $$(3)$$ sind richtig.",
-        },
-        {
           isCorrect: false,
           label: "$$(2)$$ und $$(4)$$ sind richtig.",
         },
@@ -25,6 +21,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Alle Aussagen sind richtig.",
         },
+        {
+          isCorrect: true,
+          label: "$$(1)$$ und $$(3)$$ sind richtig.",
+        },
       ],
     },
     en: {
@@ -33,10 +33,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$(1)$$, $$(2)$$, and $$(3)$$ are correct.",
-        },
-        {
-          isCorrect: true,
-          label: "$$(1)$$ and $$(3)$$ are correct.",
         },
         {
           isCorrect: false,
@@ -50,6 +46,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "All statements are correct.",
         },
+        {
+          isCorrect: true,
+          label: "$$(1)$$ and $$(3)$$ are correct.",
+        },
       ],
     },
     id: {
@@ -58,10 +58,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$(1)$$, $$(2)$$, dan $$(3)$$ benar.",
-        },
-        {
-          isCorrect: true,
-          label: "$$(1)$$ dan $$(3)$$ benar.",
         },
         {
           isCorrect: false,
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Semua pernyataan benar.",
+        },
+        {
+          isCorrect: true,
+          label: "$$(1)$$ dan $$(3)$$ benar.",
         },
       ],
     },

@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$P > Q$$",
-        },
-        {
           isCorrect: false,
           label: "$$P < Q$$",
         },
@@ -25,15 +21,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Kann nicht bestimmt werden",
         },
+        {
+          isCorrect: true,
+          label: "$$P > Q$$",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$P > Q$$",
-        },
         {
           isCorrect: false,
           label: "$$P < Q$$",
@@ -50,15 +46,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Cannot be determined",
         },
+        {
+          isCorrect: true,
+          label: "$$P > Q$$",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$P > Q$$",
-        },
         {
           isCorrect: false,
           label: "$$P < Q$$",
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Tidak dapat ditentukan",
+        },
+        {
+          isCorrect: true,
+          label: "$$P > Q$$",
         },
       ],
     },

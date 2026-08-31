@@ -11,24 +11,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 3.500",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 4.000",
-        },
-        {
           isCorrect: true,
-          label: "Rp 4.500",
+          label: "Rp 27.000",
         },
         {
           isCorrect: false,
-          label: "Rp 5.000",
+          label: "Rp 22.500",
         },
         {
           isCorrect: false,
-          label: "Rp 5.500",
+          label: "Rp 24.750",
+        },
+        {
+          isCorrect: false,
+          label: "Rp 29.250",
+        },
+        {
+          isCorrect: false,
+          label: "Rp 31.500",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 3.500",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 4.000",
-        },
-        {
           isCorrect: true,
-          label: "Rp 4.500",
+          label: "Rp 27.000",
         },
         {
           isCorrect: false,
-          label: "Rp 5.000",
+          label: "Rp 22.500",
         },
         {
           isCorrect: false,
-          label: "Rp 5.500",
+          label: "Rp 24.750",
+        },
+        {
+          isCorrect: false,
+          label: "Rp 29.250",
+        },
+        {
+          isCorrect: false,
+          label: "Rp 31.500",
         },
       ],
     },
@@ -61,24 +61,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Rp 3.500",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 4.000",
-        },
-        {
           isCorrect: true,
-          label: "Rp 4.500",
+          label: "Rp 27.000",
         },
         {
           isCorrect: false,
-          label: "Rp 5.000",
+          label: "Rp 22.500",
         },
         {
           isCorrect: false,
-          label: "Rp 5.500",
+          label: "Rp 24.750",
+        },
+        {
+          isCorrect: false,
+          label: "Rp 29.250",
+        },
+        {
+          isCorrect: false,
+          label: "Rp 31.500",
         },
       ],
     },

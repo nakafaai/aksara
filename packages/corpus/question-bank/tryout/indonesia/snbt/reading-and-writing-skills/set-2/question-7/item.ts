@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "tritt auf, wenn.",
-        },
-        {
           isCorrect: false,
           label: "obwohl.",
+        },
+        {
+          isCorrect: true,
+          label: "tritt auf, wenn.",
         },
         {
           isCorrect: false,
@@ -31,12 +31,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "occurs when.",
-        },
-        {
           isCorrect: false,
           label: "even though.",
+        },
+        {
+          isCorrect: true,
+          label: "occurs when.",
         },
         {
           isCorrect: false,
@@ -56,12 +56,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "terjadi ketika.",
-        },
-        {
           isCorrect: false,
           label: "meskipun.",
+        },
+        {
+          isCorrect: true,
+          label: "terjadi ketika.",
         },
         {
           isCorrect: false,

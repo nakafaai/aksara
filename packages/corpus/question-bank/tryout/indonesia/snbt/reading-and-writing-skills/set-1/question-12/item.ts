@@ -6,14 +6,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Umweltdegradation ist eine Verschlechterung der Umweltqualität, sodass sie sich in geschädigten Böden, verschmutztem Wasser und verschmutzter Luft sowie im Verlust biologischer Vielfalt zeigt.",
-        },
-        {
           isCorrect: true,
           label:
             "Umweltdegradation ist eine Verschlechterung der Umweltqualität, die sich in geschädigten Böden, verschmutztem Wasser und verschmutzter Luft sowie im Verlust biologischer Vielfalt zeigt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Umweltdegradation ist eine Verschlechterung der Umweltqualität, sodass sie sich in geschädigten Böden, verschmutztem Wasser und verschmutzter Luft sowie im Verlust biologischer Vielfalt zeigt.",
         },
         {
           isCorrect: false,
@@ -36,14 +36,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Environmental degradation is a decline in environmental quality, so it is evident in damaged soil, polluted water and air, and biodiversity loss.",
-        },
-        {
           isCorrect: true,
           label:
             "Environmental degradation is a decline in environmental quality that is evident in damaged soil, polluted water and air, and biodiversity loss.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Environmental degradation is a decline in environmental quality, so it is evident in damaged soil, polluted water and air, and biodiversity loss.",
         },
         {
           isCorrect: false,
@@ -66,14 +66,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Degradasi lingkungan adalah penurunan mutu lingkungan sehingga tampak pada rusaknya tanah, tercemarnya air dan udara, serta hilangnya keanekaragaman hayati.",
-        },
-        {
           isCorrect: true,
           label:
             "Degradasi lingkungan adalah penurunan mutu lingkungan yang tampak pada rusaknya tanah, tercemarnya air dan udara, serta hilangnya keanekaragaman hayati.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Degradasi lingkungan adalah penurunan mutu lingkungan sehingga tampak pada rusaknya tanah, tercemarnya air dan udara, serta hilangnya keanekaragaman hayati.",
         },
         {
           isCorrect: false,

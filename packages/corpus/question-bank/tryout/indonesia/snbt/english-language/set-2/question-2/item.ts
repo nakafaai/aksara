@@ -15,12 +15,12 @@ const item: QuestionItem = {
           label: "Water exercise may improve older adults' quality of life.",
         },
         {
-          isCorrect: true,
-          label: "Swimming has health benefits and therefore carries no risks.",
-        },
-        {
           isCorrect: false,
           label: "Swimming may improve mood for some people.",
+        },
+        {
+          isCorrect: true,
+          label: "Swimming has health benefits and therefore carries no risks.",
         },
         {
           isCorrect: false,

@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Langkah konkret untuk menyimpan dan melindungi arsip asli",
-        },
-        {
           isCorrect: false,
           label: "Tahapan pembuatan motif batik Lasem",
+        },
+        {
+          isCorrect: true,
+          label: "Langkah konkret untuk menyimpan dan melindungi arsip asli",
         },
         {
           isCorrect: false,

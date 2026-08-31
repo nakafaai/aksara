@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Fabrik Z verkauft $$250{.}000$$ Stück",
+        },
+        {
           isCorrect: false,
           label: "Fabrik X verkauft $$500{.}000$$ Stück",
         },
         {
           isCorrect: false,
           label: "Fabrik Y verkauft $$5{.}200{.}000$$ Stück",
-        },
-        {
-          isCorrect: true,
-          label: "Fabrik Z verkauft $$250{.}000$$ Stück",
         },
         {
           isCorrect: false,
@@ -33,16 +33,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Factory Z sells $$250{,}000$$ units",
+        },
+        {
           isCorrect: false,
           label: "Factory X sells $$500{,}000$$ units",
         },
         {
           isCorrect: false,
           label: "Factory Y sells $$5{,}200{,}000$$ units",
-        },
-        {
-          isCorrect: true,
-          label: "Factory Z sells $$250{,}000$$ units",
         },
         {
           isCorrect: false,
@@ -59,16 +59,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Pabrik Z menjual $$250{.}000$$ unit",
+        },
+        {
           isCorrect: false,
           label: "Pabrik X menjual $$500{.}000$$ unit",
         },
         {
           isCorrect: false,
           label: "Pabrik Y menjual $$5{.}200{.}000$$ unit",
-        },
-        {
-          isCorrect: true,
-          label: "Pabrik Z menjual $$250{.}000$$ unit",
         },
         {
           isCorrect: false,

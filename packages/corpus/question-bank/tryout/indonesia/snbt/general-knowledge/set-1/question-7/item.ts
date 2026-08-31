@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "das Wort *datiert* im Satz $$(4)$$.",
         },
         {
-          isCorrect: false,
-          label: "das Wort *Proben* im Satz $$(5)$$.",
-        },
-        {
           isCorrect: true,
           label: "das Wort *Forschung* im Satz $$(6)$$.",
+        },
+        {
+          isCorrect: false,
+          label: "das Wort *Proben* im Satz $$(5)$$.",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "the word *date* in sentence $$(4)$$.",
         },
         {
-          isCorrect: false,
-          label: "the word *samples* in sentence $$(5)$$.",
-        },
-        {
           isCorrect: true,
           label: "the word *research* in sentence $$(6)$$.",
+        },
+        {
+          isCorrect: false,
+          label: "the word *samples* in sentence $$(5)$$.",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "kata *hidup* pada kalimat $$(4)$$.",
         },
         {
-          isCorrect: false,
-          label: "kata *sampel* pada kalimat $$(5)$$.",
-        },
-        {
           isCorrect: true,
           label: "kata *penelitian* pada kalimat $$(6)$$.",
+        },
+        {
+          isCorrect: false,
+          label: "kata *sampel* pada kalimat $$(5)$$.",
         },
         {
           isCorrect: false,
