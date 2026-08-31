@@ -6,27 +6,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Kepastian Mutlak tentang kotak perbandingan perpindahan panas",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Alasan Mengabaikan Semua Bukti dalam kotak perbandingan perpindahan panas",
-        },
-        {
           isCorrect: true,
           label: "Kegunaan dan Batas Kotak perbandingan perpindahan panas",
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap konduksi di Seluruh Dunia",
+          label: "Mengukur konduksi melalui satu perbandingan awal",
+        },
+        {
+          isCorrect: false,
+          label: "Menjadikan konduksi penjelasan tunggal atas hasil pengamatan",
+        },
+        {
+          isCorrect: false,
+          label: "Kaidah akhir dari perbandingan pertama tentang konduksi",
         },
         {
           isCorrect: false,
           label:
-            "Satu Aturan untuk Setiap kotak perbandingan perpindahan panas",
+            "Keterbatasan yang membuat uji lanjutan konduksi tidak diperlukan",
         },
       ],
     },

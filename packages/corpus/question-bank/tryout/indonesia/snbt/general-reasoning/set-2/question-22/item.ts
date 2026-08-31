@@ -7,44 +7,74 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Abteilung A",
+          label: "$$1$$",
         },
         {
           isCorrect: true,
-          label: "Abteilung C",
+          label: "$$7$$",
         },
         {
           isCorrect: false,
-          label: "Abteilung B",
+          label: "$$2$$",
         },
         {
           isCorrect: false,
-          label: "Abteilung D",
+          label: "$$5$$",
         },
         {
           isCorrect: false,
-          label: "Abteilung E",
+          label: "$$8$$",
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Division A" },
-        { isCorrect: true, label: "Division C" },
-        { isCorrect: false, label: "Division B" },
-        { isCorrect: false, label: "Division D" },
-        { isCorrect: false, label: "Division E" },
+        {
+          isCorrect: false,
+          label: "$$1$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$7$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$8$$",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        { isCorrect: false, label: "Divisi A" },
-        { isCorrect: true, label: "Divisi C" },
-        { isCorrect: false, label: "Divisi B" },
-        { isCorrect: false, label: "Divisi D" },
-        { isCorrect: false, label: "Divisi E" },
+        {
+          isCorrect: false,
+          label: "$$1$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$7$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$8$$",
+        },
       ],
     },
   },

@@ -12,24 +12,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The notebook was blue.",
+          label:
+            "Its blue cover allowed the gardeners to identify it among the other records.",
         },
         {
           isCorrect: false,
-          label: "Mina searched her backpack twice.",
+          label:
+            "Mina's repeated search showed that the notebook was the only source of weather information.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Arif's copied diagram replaced the need to consult the notebook's earlier observations.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The storage box near the stairs made every record immediately available to the gardeners.",
         },
         {
           isCorrect: true,
           label:
             "Gardeners used its records to decide when to cover young plants.",
-        },
-        {
-          isCorrect: false,
-          label: "Arif copied a diagram on Friday.",
-        },
-        {
-          isCorrect: false,
-          label: "A storage box stood near the stairs.",
         },
       ],
     },

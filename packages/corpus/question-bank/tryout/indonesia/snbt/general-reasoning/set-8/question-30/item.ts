@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$0$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
           isCorrect: true,
-          label: "Voltmeter : Spannung",
-        },
-        {
-          isCorrect: false,
-          label: "Kompass : Geschwindigkeit",
-        },
-        {
-          isCorrect: false,
-          label: "Lupe : Zeit",
-        },
-        {
-          isCorrect: false,
-          label: "Lineal : Temperatur",
-        },
-        {
-          isCorrect: false,
-          label: "Uhr : Länge",
+          label: "$$4$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$0$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
           isCorrect: true,
-          label: "voltmeter : voltage",
-        },
-        {
-          isCorrect: false,
-          label: "compass : speed",
-        },
-        {
-          isCorrect: false,
-          label: "magnifier : time",
-        },
-        {
-          isCorrect: false,
-          label: "ruler : temperature",
-        },
-        {
-          isCorrect: false,
-          label: "clock : length",
+          label: "$$4$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$0$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
           isCorrect: true,
-          label: "voltmeter : tegangan",
-        },
-        {
-          isCorrect: false,
-          label: "kompas : kecepatan",
-        },
-        {
-          isCorrect: false,
-          label: "kaca pembesar : waktu",
-        },
-        {
-          isCorrect: false,
-          label: "penggaris : suhu",
-        },
-        {
-          isCorrect: false,
-          label: "jam : panjang",
+          label: "$$4$$",
         },
       ],
     },

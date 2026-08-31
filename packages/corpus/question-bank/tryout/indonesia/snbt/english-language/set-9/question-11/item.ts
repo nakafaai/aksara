@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage only gives a complete history of a night market without examining evidence or choice.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage proves that one method must succeed in every a night market.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage rejects all observation and relies only on personal preference.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage mainly defines systems thinking without connecting it to a setting.",
+            "The character treats completing the whole project as the necessary first step before seeking review.",
         },
         {
           isCorrect: true,
           label:
             "Hana faced an obstacle while trying to understand why waste was entering the wrong stream and learned through a small accountable action.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The account presents systems thinking as a general idea rather than something developed through the character's choice.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The main obstacle becomes manageable because another person assumes responsibility for the next step.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The passage presents documenting uncertainty as more important than taking a reviewable action.",
         },
       ],
     },

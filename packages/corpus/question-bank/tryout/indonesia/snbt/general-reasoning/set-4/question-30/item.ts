@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Lupe : Zeit",
-        },
-        {
-          isCorrect: false,
-          label: "Lineal : Temperatur",
+          label: "$$0$$",
         },
         {
           isCorrect: true,
-          label: "Lineal : Länge",
+          label: "$$1$$",
         },
         {
           isCorrect: false,
-          label: "Uhr : Länge",
+          label: "$$2$$",
         },
         {
           isCorrect: false,
-          label: "Kompass : Geschwindigkeit",
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "magnifier : time",
-        },
-        {
-          isCorrect: false,
-          label: "ruler : temperature",
+          label: "$$0$$",
         },
         {
           isCorrect: true,
-          label: "ruler : length",
+          label: "$$1$$",
         },
         {
           isCorrect: false,
-          label: "clock : length",
+          label: "$$2$$",
         },
         {
           isCorrect: false,
-          label: "compass : speed",
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "kaca pembesar : waktu",
-        },
-        {
-          isCorrect: false,
-          label: "penggaris : suhu",
+          label: "$$0$$",
         },
         {
           isCorrect: true,
-          label: "penggaris : panjang",
+          label: "$$1$$",
         },
         {
           isCorrect: false,
-          label: "jam : panjang",
+          label: "$$2$$",
         },
         {
           isCorrect: false,
-          label: "kompas : kecepatan",
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4$$",
         },
       ],
     },

@@ -7,23 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "genau und frei von vermeidbarer Mehrdeutigkeit",
+          label:
+            "Annahmen, Datengrenzen und Entscheidungskriterien werden im Bericht unmittelbar genannt.",
         },
         {
           isCorrect: false,
-          label: "nach denselben Grundsätzen ohne Widerspruch",
+          label:
+            "Zwei Sensoren erfassen das Ereignis im selben Zeitraum und nicht nacheinander.",
         },
         {
           isCorrect: true,
-          label: "einen deutlichen Unterschied sichtbar machend",
+          label:
+            "Zwei gegenläufige Trends werden nebeneinandergestellt, damit ihr Unterschied deutlich erkennbar wird.",
         },
         {
           isCorrect: false,
-          label: "klar und unmittelbar ausgedrückt",
+          label:
+            "Die letzte zusätzliche Einheit bringt gegenüber der vorherigen nur einen geringen Mehrnutzen.",
         },
         {
           isCorrect: false,
-          label: "für mehr als eine Deutung offen",
+          label:
+            "Eine Anweisung verwendet das Wort 'bald' ohne Zeitgrenze, sodass zwei Personen sie unterschiedlich auslegen.",
         },
       ],
     },
@@ -32,23 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "exact and free from avoidable ambiguity",
+          label:
+            "The assumptions, data limits, and decision criteria are stated directly in the report.",
         },
         {
           isCorrect: false,
-          label: "following the same principles without contradiction",
+          label:
+            "Two sensors record the event during the same interval rather than in succession.",
         },
         {
           isCorrect: true,
-          label: "making a clear difference visible",
+          label:
+            "Two trends moving in opposite directions are placed side by side so their difference is clear.",
         },
         {
           isCorrect: false,
-          label: "stated clearly and directly",
+          label:
+            "The final additional unit provides only a small increase in benefit compared with the previous unit.",
         },
         {
           isCorrect: false,
-          label: "open to more than one interpretation",
+          label:
+            "An instruction uses 'soon' without a time limit, causing two operators to interpret it differently.",
         },
       ],
     },
@@ -57,23 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "tepat dan tidak menimbulkan ketaksaan yang dapat dihindari",
+          label:
+            "Asumsi, batas data, dan kriteria keputusan dinyatakan langsung dalam laporan.",
         },
         {
           isCorrect: false,
-          label: "mengikuti prinsip yang sama tanpa pertentangan",
+          label:
+            "Dua sensor merekam kejadian pada selang waktu yang sama, bukan secara bergantian.",
         },
         {
           isCorrect: true,
-          label: "menunjukkan perbedaan yang jelas",
+          label:
+            "Dua tren yang bergerak berlawanan ditempatkan berdampingan agar perbedaannya terlihat jelas.",
         },
         {
           isCorrect: false,
-          label: "dinyatakan secara jelas dan langsung",
+          label:
+            "Unit tambahan terakhir hanya memberi kenaikan manfaat yang kecil dibanding unit sebelumnya.",
         },
         {
           isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
+          label:
+            "Petunjuk memakai kata 'segera' tanpa batas waktu sehingga dua pelaksana menafsirkannya secara berbeda.",
         },
       ],
     },

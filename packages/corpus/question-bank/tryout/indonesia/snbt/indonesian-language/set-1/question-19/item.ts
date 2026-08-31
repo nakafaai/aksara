@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Mudah menerima citra yang ditentukan orang lain",
-        },
-        {
           isCorrect: true,
           label: "Tekun mengembangkan kemampuan aktingnya",
+        },
+        {
+          isCorrect: false,
+          label: "Mudah menerima citra yang ditentukan orang lain",
         },
         {
           isCorrect: false,

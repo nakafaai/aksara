@@ -11,24 +11,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "On the roof",
-        },
-        {
-          isCorrect: false,
-          label: "Under the engine",
-        },
-        {
           isCorrect: true,
-          label: "Near the entrance",
+          label:
+            "They share a shelf near the entrance, before the narrow central aisle.",
         },
         {
           isCorrect: false,
-          label: "At the temporary landing",
+          label:
+            "They are kept beside the inspection tray so staff can approve each reader before lending them.",
         },
         {
           isCorrect: false,
-          label: "Behind the inspection tray",
+          label:
+            "They are stored in sealed boxes at the rear and requested through the portable router.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "They face outward with the children's books at the far end of the central aisle.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "They remain at the temporary landing so the cabin has more room during the dry season.",
         },
       ],
     },

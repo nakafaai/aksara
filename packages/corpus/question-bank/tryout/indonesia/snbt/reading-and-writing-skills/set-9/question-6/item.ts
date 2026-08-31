@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Geordnete Prüfung einer Änderung: Verteilung von Mangrovensetzlingen",
+            "Im Kontext Verteilung von Mangrovensetzlingen verursachte die Änderung Pflanzortetiketten auf jedem Tablett den höheren Testwert.",
         },
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Pflanzortetiketten auf jedem Tablett.",
+            "Im Kontext Verteilung von Mangrovensetzlingen verbesserten sich sämtliche Teilnehmenden um denselben Wert.",
         },
         {
           isCorrect: false,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Pflanzortetiketten auf jedem Tablett.",
+            "Im Kontext Verteilung von Mangrovensetzlingen waren die beiden Vergleichswerte identisch.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Im Kontext Verteilung von Mangrovensetzlingen belegte der kurze Test das langfristige Ergebnis.",
         },
         {
           isCorrect: true,
           label:
             "Der Versuchswert lag im Kontext Verteilung von Mangrovensetzlingen über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Pflanzortetiketten auf jedem Tablett.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "A structured test of one change: mangrove seedling distribution",
+            "In this setting (mangrove seedling distribution), planting-site labels on every tray caused the higher trial value.",
         },
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of planting-site labels on every tray.",
+            "In this setting (mangrove seedling distribution), each participant improved by the same amount.",
         },
         {
           isCorrect: false,
           label:
-            "The change, planting-site labels on every tray, directly addressed the observed uncertainty.",
+            "In this setting (mangrove seedling distribution), the two comparison values were identical.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "In this setting (mangrove seedling distribution), the short trial established the long-term result.",
         },
         {
           isCorrect: true,
           label:
             "In this setting (mangrove seedling distribution), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The next test of planting-site labels on every tray will run for longer.",
         },
       ],
     },
@@ -67,27 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: pembagian bibit mangrove",
+          label:
+            "Dalam konteks distribusi bibit mangrove, label lokasi tanam pada setiap baki menyebabkan nilai uji menjadi lebih tinggi.",
         },
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui label lokasi tanam.",
+            "Dalam konteks distribusi bibit mangrove, setiap peserta mengalami peningkatan yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa label lokasi tanam langsung menanggapi keraguan yang diamati.",
+            "Dalam konteks distribusi bibit mangrove, kedua nilai pembanding sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Dalam konteks distribusi bibit mangrove, uji singkat menetapkan hasil jangka panjang.",
         },
         {
           isCorrect: true,
           label:
             "Di pembagian bibit mangrove, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji label lokasi tanam berikutnya akan berlangsung lebih lama.",
         },
       ],
     },

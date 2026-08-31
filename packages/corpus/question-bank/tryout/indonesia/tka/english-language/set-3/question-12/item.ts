@@ -12,11 +12,18 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Every old packet contains a magical message.",
+          label:
+            "Older packets contain instructions that later students should follow without checking context.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Check context before acting, and leave clear records for future participants.",
         },
         {
           isCorrect: false,
-          label: "All seeds should be planted at once without a backup.",
+          label:
+            "The project should test the entire seed reserve at the first checkpoint.",
         },
         {
           isCorrect: false,
@@ -24,12 +31,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Students from different years cannot share one project.",
-        },
-        {
-          isCorrect: true,
           label:
-            "Check context before acting, and leave clear records for future participants.",
+            "Each class should finish its seed experiment without relying on earlier records.",
         },
       ],
     },

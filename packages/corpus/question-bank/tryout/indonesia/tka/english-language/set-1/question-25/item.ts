@@ -11,11 +11,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "A secondary school should test a later start time for one term.",
-        },
-        {
           isCorrect: false,
           label: "The proposal mentions attendance and late arrivals.",
         },
@@ -30,6 +25,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Several routines are named in the second paragraph.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "A secondary school should test a later start time for one term.",
         },
       ],
     },

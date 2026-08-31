@@ -20,13 +20,13 @@ const item: QuestionItem = {
             "Ein Teil des proteinreichen Brotes enthält keine Kohlenhydrate",
         },
         {
-          isCorrect: false,
-          label: "Kein Brot aus Fabrik X verwendet proteinreiches Weizenmehl",
-        },
-        {
           isCorrect: true,
           label:
             "Ein Teil des Brotes aus Fabrik X verwendet proteinarmes Weizenmehl",
+        },
+        {
+          isCorrect: false,
+          label: "Kein Brot aus Fabrik X verwendet proteinreiches Weizenmehl",
         },
       ],
     },
@@ -47,12 +47,12 @@ const item: QuestionItem = {
           label: "Some high-protein bread contains no carbohydrates",
         },
         {
-          isCorrect: false,
-          label: "No bread from Factory X uses high-protein wheat flour",
-        },
-        {
           isCorrect: true,
           label: "Some bread from Factory X uses low-protein wheat flour",
+        },
+        {
+          isCorrect: false,
+          label: "No bread from Factory X uses high-protein wheat flour",
         },
       ],
     },
@@ -73,14 +73,14 @@ const item: QuestionItem = {
           label: "Sebagian roti berprotein tinggi tidak mengandung karbohidrat",
         },
         {
-          isCorrect: false,
-          label:
-            "Tidak ada roti Pabrik X yang menggunakan tepung protein tinggi",
-        },
-        {
           isCorrect: true,
           label:
             "Sebagian roti Pabrik X menggunakan tepung terigu protein rendah",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tidak ada roti Pabrik X yang menggunakan tepung protein tinggi",
         },
       ],
     },

@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "B, C, A, D",
+          label: "$$11$$",
         },
         {
           isCorrect: false,
-          label: "C, B, D, A",
-        },
-        {
-          isCorrect: false,
-          label: "D, B, A, C",
+          label: "$$12$$",
         },
         {
           isCorrect: true,
-          label: "B, A, D, C",
+          label: "$$13$$",
         },
         {
           isCorrect: false,
-          label: "A, B, C, D",
+          label: "$$14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$15$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "B, C, A, D",
+          label: "$$11$$",
         },
         {
           isCorrect: false,
-          label: "C, B, D, A",
-        },
-        {
-          isCorrect: false,
-          label: "D, B, A, C",
+          label: "$$12$$",
         },
         {
           isCorrect: true,
-          label: "B, A, D, C",
+          label: "$$13$$",
         },
         {
           isCorrect: false,
-          label: "A, B, C, D",
+          label: "$$14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$15$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "B, C, A, D",
+          label: "$$11$$",
         },
         {
           isCorrect: false,
-          label: "C, B, D, A",
-        },
-        {
-          isCorrect: false,
-          label: "D, B, A, C",
+          label: "$$12$$",
         },
         {
           isCorrect: true,
-          label: "B, A, D, C",
+          label: "$$13$$",
         },
         {
           isCorrect: false,
-          label: "A, B, C, D",
+          label: "$$14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$15$$",
         },
       ],
     },

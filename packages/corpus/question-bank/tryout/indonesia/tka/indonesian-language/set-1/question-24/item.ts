@@ -12,12 +12,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "semua sampah rumah tangga pasti hilang",
-        },
-        {
-          isCorrect: true,
           label:
-            "anggota keluarga lebih mudah memisahkan bahan yang dapat diolah",
+            "sebagian besar sampah rumah tangga akan berkurang setelah pemilahan organik diterapkan",
         },
         {
           isCorrect: false,
@@ -25,7 +21,13 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "wadah tidak perlu pernah dibersihkan",
+          label:
+            "pembersihan wadah dapat ditunda selama label bahan tetap terbaca",
+        },
+        {
+          isCorrect: true,
+          label:
+            "anggota keluarga lebih mudah memisahkan bahan yang dapat diolah",
         },
         {
           isCorrect: false,

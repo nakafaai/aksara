@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$(1)$$, $$(2)$$ und $$(3)$$ sind korrekt",
-        },
-        {
           isCorrect: true,
           label: "$$(2)$$ und $$(4)$$ sind korrekt",
+        },
+        {
+          isCorrect: false,
+          label: "$$(1)$$, $$(2)$$ und $$(3)$$ sind korrekt",
         },
         {
           isCorrect: false,
@@ -31,12 +31,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$(1)$$, $$(2)$$, and $$(3)$$ are correct",
-        },
-        {
           isCorrect: true,
           label: "$$(2)$$ and $$(4)$$ are correct",
+        },
+        {
+          isCorrect: false,
+          label: "$$(1)$$, $$(2)$$, and $$(3)$$ are correct",
         },
         {
           isCorrect: false,
@@ -56,12 +56,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$(1)$$, $$(2)$$, dan $$(3)$$ benar",
-        },
-        {
           isCorrect: true,
           label: "$$(2)$$ dan $$(4)$$ benar",
+        },
+        {
+          isCorrect: false,
+          label: "$$(1)$$, $$(2)$$, dan $$(3)$$ benar",
         },
         {
           isCorrect: false,

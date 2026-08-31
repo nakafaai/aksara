@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam pengiriman buku antarpulau.",
+            "Kondisi pembanding menghasilkan nilai rata-rata 32; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
         },
         {
           isCorrect: true,
-          label: "Kondisi pembanding menghasilkan nilai rata-rata 32.",
-        },
-        {
-          isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam pengiriman buku antarpulau memperoleh hasil yang sama tanpa perbedaan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan pengiriman buku antarpulau.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut logistik sebagai bukti bahwa uji tidak perlu diulang.",
+            "Nilai 32 adalah kondisi pembanding untuk label tujuan besar; uji tersebut mengukur ketepatan tujuan, bukan keterlambatan akibat cuaca laut.",
         },
       ],
     },

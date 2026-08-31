@@ -6,24 +6,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Menunggu orang lain menyelesaikan langkah berikutnya",
+        },
+        {
+          isCorrect: false,
+          label: "Menyembunyikan bukti yang belum tuntas dalam proyek besar",
+        },
+        {
+          isCorrect: false,
+          label:
+            "penyangga belajar sebagai definisi tanpa tindakan yang dapat diperiksa",
+        },
+        {
           isCorrect: true,
           label: "Langkah Kecil Sari di program teman belajar",
         },
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang program teman belajar",
-        },
-        {
-          isCorrect: false,
-          label: "Alasan Mengabaikan Semua Bukti dalam program teman belajar",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap penyangga belajar di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap program teman belajar",
+          label: "Rencana lengkap tanpa langkah kecil yang bertanggung jawab",
         },
       ],
     },

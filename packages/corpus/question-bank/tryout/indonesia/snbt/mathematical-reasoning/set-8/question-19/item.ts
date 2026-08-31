@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$24$$",
+          label: "$$\\frac{24}{\\sqrt{61}}$$",
         },
         {
           isCorrect: false,
-          label: "$$30$$",
+          label: "$$\\frac{12}{\\sqrt{61}}$$",
         },
         {
           isCorrect: false,
-          label: "$$36$$",
+          label: "$$\\frac{18}{\\sqrt{61}}$$",
         },
         {
           isCorrect: false,
-          label: "$$12$$",
+          label: "$$\\frac{30}{\\sqrt{61}}$$",
         },
         {
           isCorrect: false,
-          label: "$$18$$",
+          label: "$$\\frac{36}{\\sqrt{61}}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$24$$",
+          label: "$$\\frac{24}{\\sqrt{61}}$$",
         },
         {
           isCorrect: false,
-          label: "$$30$$",
+          label: "$$\\frac{12}{\\sqrt{61}}$$",
         },
         {
           isCorrect: false,
-          label: "$$36$$",
+          label: "$$\\frac{18}{\\sqrt{61}}$$",
         },
         {
           isCorrect: false,
-          label: "$$12$$",
+          label: "$$\\frac{30}{\\sqrt{61}}$$",
         },
         {
           isCorrect: false,
-          label: "$$18$$",
+          label: "$$\\frac{36}{\\sqrt{61}}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$24$$",
+          label: "$$\\frac{24}{\\sqrt{61}}$$",
         },
         {
           isCorrect: false,
-          label: "$$30$$",
+          label: "$$\\frac{12}{\\sqrt{61}}$$",
         },
         {
           isCorrect: false,
-          label: "$$36$$",
+          label: "$$\\frac{18}{\\sqrt{61}}$$",
         },
         {
           isCorrect: false,
-          label: "$$12$$",
+          label: "$$\\frac{30}{\\sqrt{61}}$$",
         },
         {
           isCorrect: false,
-          label: "$$18$$",
+          label: "$$\\frac{36}{\\sqrt{61}}$$",
         },
       ],
     },

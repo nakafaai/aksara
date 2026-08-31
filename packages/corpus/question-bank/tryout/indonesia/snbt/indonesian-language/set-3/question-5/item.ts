@@ -6,26 +6,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Kepastian Mutlak tentang perkecambahan kacang hijau",
-        },
-        {
           isCorrect: true,
           label:
-            "Menguji pencahayaan enam jam dengan jarak lampu yang tetap dalam perkecambahan kacang hijau",
+            "Pengaruh Pencahayaan Enam Jam terhadap Perkecambahan Kacang Hijau",
+        },
+        {
+          isCorrect: false,
+          label: "Mengukur variabel kontrol melalui satu perbandingan awal",
         },
         {
           isCorrect: false,
           label:
-            "Alasan Mengabaikan Semua Bukti dalam perkecambahan kacang hijau",
+            "Menjadikan variabel kontrol penjelasan tunggal atas hasil pengamatan",
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap variabel kontrol di Seluruh Dunia",
+          label:
+            "Kaidah akhir dari perbandingan pertama tentang variabel kontrol",
         },
         {
           isCorrect: false,
-          label: "Satu Aturan untuk Setiap perkecambahan kacang hijau",
+          label:
+            "Keterbatasan yang membuat uji lanjutan variabel kontrol tidak diperlukan",
         },
       ],
     },

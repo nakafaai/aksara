@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pada kondisi dengan perubahan, hasil rata-rata tercatat 3; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+        },
+        {
           isCorrect: true,
-          label: "Pada kondisi dengan perubahan, hasil rata-rata tercatat 3.",
+          label:
+            "Nilai 3 adalah rata-rata pada daun yang bagian bawahnya dilapisi petroleum jelly; daun petik belum mewakili tumbuhan utuh.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam kehilangan massa pada daun.",
+            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam kehilangan massa pada daun memperoleh hasil yang sama tanpa perbedaan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan kehilangan massa pada daun.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut transpirasi sebagai bukti bahwa uji tidak perlu diulang.",
+            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
         },
       ],
     },

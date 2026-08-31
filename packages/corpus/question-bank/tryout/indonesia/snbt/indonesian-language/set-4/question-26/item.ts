@@ -8,17 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap bangunan tua yang sedang dipugar tanpa membahas keputusan atau bukti.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap bangunan tua yang sedang dipugar.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
+            "Benda yang berulang terutama membangun latar dan hanya sedikit berhubungan dengan konflik.",
         },
         {
           isCorrect: true,
@@ -28,7 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan terutama menjelaskan definisi foreshadowing tanpa menghubungkannya dengan konteks.",
+            "Keputusan akhir tokoh menghapus ketegangan makna yang sebelumnya dimiliki benda tersebut.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bacaan memakai foreshadowing sebagai label deskriptif tanpa menghubungkannya dengan pilihan tokoh.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Latar menyelesaikan konflik sebelum tindakan akhir tokoh mengubah makna benda.",
         },
       ],
     },

@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "($$3$$)-($$5$$)-($$2$$)-($$4$$)-($$1$$).",
-        },
-        {
           isCorrect: false,
           label: "($$2$$)-($$4$$)-($$3$$)-($$5$$)-($$1$$).",
+        },
+        {
+          isCorrect: true,
+          label: "($$3$$)-($$5$$)-($$2$$)-($$4$$)-($$1$$).",
         },
         {
           isCorrect: false,
@@ -31,12 +31,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "($$3$$)-($$5$$)-($$2$$)-($$4$$)-($$1$$).",
-        },
-        {
           isCorrect: false,
           label: "($$2$$)-($$4$$)-($$3$$)-($$5$$)-($$1$$).",
+        },
+        {
+          isCorrect: true,
+          label: "($$3$$)-($$5$$)-($$2$$)-($$4$$)-($$1$$).",
         },
         {
           isCorrect: false,
@@ -56,12 +56,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "($$3$$)-($$5$$)-($$2$$)-($$4$$)-($$1$$).",
-        },
-        {
           isCorrect: false,
           label: "($$2$$)-($$4$$)-($$3$$)-($$5$$)-($$1$$).",
+        },
+        {
+          isCorrect: true,
+          label: "($$3$$)-($$5$$)-($$2$$)-($$4$$)-($$1$$).",
         },
         {
           isCorrect: false,

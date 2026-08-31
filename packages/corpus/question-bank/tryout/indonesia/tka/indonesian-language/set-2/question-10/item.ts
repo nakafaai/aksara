@@ -15,21 +15,23 @@ const item: QuestionItem = {
           label: "kecewa karena Dara menghancurkan arsip",
         },
         {
-          isCorrect: true,
-          label:
-            "optimistis karena sebuah media dapat berubah bentuk tanpa kehilangan ingatannya",
-        },
-        {
           isCorrect: false,
-          label: "takut karena sekolah kehilangan semua suara lama",
+          label:
+            "cemas karena pemindahan kaset dapat memutus konteks dari ruang siaran lama",
         },
         {
           isCorrect: false,
           label: "marah karena laboratorium bahasa dibatalkan",
         },
         {
+          isCorrect: true,
+          label:
+            "optimistis karena sebuah media dapat berubah bentuk tanpa kehilangan ingatannya",
+        },
+        {
           isCorrect: false,
-          label: "bosan karena tidak ada keputusan baru",
+          label:
+            "ragu karena arsip digital belum menjamin konteks suara lama terpelihara",
         },
       ],
     },

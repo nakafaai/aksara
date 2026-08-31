@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$5/8$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4/8$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$3/9$$",
-        },
-        {
           isCorrect: true,
-          label: "$$3/8$$",
+          label: "$$\\frac45$$",
         },
         {
           isCorrect: false,
-          label: "$$1/8$$",
+          label: "$$\\frac{16}{25}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac23$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac34$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac9{10}$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$5/8$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4/8$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$3/9$$",
-        },
-        {
           isCorrect: true,
-          label: "$$3/8$$",
+          label: "$$\\frac45$$",
         },
         {
           isCorrect: false,
-          label: "$$1/8$$",
+          label: "$$\\frac{16}{25}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac23$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac34$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac9{10}$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$5/8$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4/8$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$3/9$$",
-        },
-        {
           isCorrect: true,
-          label: "$$3/8$$",
+          label: "$$\\frac45$$",
         },
         {
           isCorrect: false,
-          label: "$$1/8$$",
+          label: "$$\\frac{16}{25}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac23$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac34$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac9{10}$$",
         },
       ],
     },

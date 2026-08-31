@@ -12,7 +12,18 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "marah karena Ayu mengambil partitur Rafi",
+          label:
+            "marah karena Ayu mengambil partitur Rafi tanpa memahami dukungan yang sedang ia perlukan",
+        },
+        {
+          isCorrect: false,
+          label:
+            "takut karena penghentian konser membuat hubungan kedua tokoh berakhir tanpa penyelesaian",
+        },
+        {
+          isCorrect: false,
+          label:
+            "kecewa karena kerusakan klarinet menghalangi kedua tokoh menyampaikan dukungan melalui musik",
         },
         {
           isCorrect: true,
@@ -21,15 +32,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "takut karena konser dihentikan",
-        },
-        {
-          isCorrect: false,
-          label: "kecewa karena klarinet rusak",
-        },
-        {
-          isCorrect: false,
-          label: "bingung karena orkes tidak membungkuk",
+          label:
+            "bingung karena orkes tidak membungkuk sehingga respons kedua tokoh pada akhir cerita tidak dapat ditafsirkan",
         },
       ],
     },

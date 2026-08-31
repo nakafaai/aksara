@@ -6,6 +6,21 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Da 33 über 23 und 25 lag, erklärte das Team kleine Karten mit Gehzeiten für wirksam und führte die Änderung dauerhaft ein.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team verglich 33, 23 und 25 und plante eine längere Wiederholung, ohne die Aussage auf Informationsschalter im Stadtpark zu begrenzen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team begrenzte die Aussage auf Informationsschalter im Stadtpark und plante eine längere Wiederholung, ohne den Vergleich zu nennen.",
+        },
+        {
           isCorrect: true,
           label:
             "Das Team verglich 33, 23 und 25, begrenzte die Aussage auf den untersuchten Kontext (Informationsstelle im Stadtpark) und plante eine längere Wiederholung.",
@@ -13,28 +28,28 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontext „Informationsstelle im Stadtpark“",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Am Montag prüfte das Team kleine Karten mit Gehzeiten im folgenden Kontext: Informationsstelle im Stadtpark.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "die Folgestudie des Teams im untersuchten Kontext (Informationsstelle im Stadtpark)",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Nutzenden im untersuchten Kontext (Informationsstelle im Stadtpark) gaben kurze Rückmeldungen.",
+            "Die Werte 33, 23 und 25 zeigten kein relevantes Muster, daher wollte das Team die Messregeln ändern.",
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: false,
+          label:
+            "Because 33 exceeded 23 and 25, the team concluded that the change was effective and adopted it permanently.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team compared 33, 23, and 25 and planned a longer repetition without limiting the claim to the context of city park information desk.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team limited its claim to the context of city park information desk and planned a longer repetition without reporting the comparison.",
+        },
         {
           isCorrect: true,
           label:
@@ -43,28 +58,28 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "an analysis of the effectiveness of small maps showing walking times in this setting (city park information desk)",
-        },
-        {
-          isCorrect: false,
-          label:
-            "On Monday, the team tested small maps showing walking times in this setting (city park information desk).",
-        },
-        {
-          isCorrect: false,
-          label:
-            "the team's follow-up study of small maps showing walking times in this setting (city park information desk)",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Users in this setting (city park information desk) provided brief comments.",
+            "The values 33, 23, and 25 showed no relevant pattern, so the team planned to change the measurement rules.",
         },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: false,
+          label:
+            "Karena 33 lebih tinggi daripada 23 dan 25, tim menyimpulkan bahwa peta kecil yang menampilkan waktu tempuh efektif lalu menerapkannya secara tetap.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim membandingkan 33, 23, dan 25 serta merencanakan pengulangan lebih panjang tanpa membatasi klaim pada meja informasi taman kota.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim membatasi klaim pada meja informasi taman kota dan merencanakan pengulangan lebih panjang tanpa melaporkan perbandingan.",
+        },
         {
           isCorrect: true,
           label:
@@ -73,22 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "analisis efektivitas peta kecil yang menampilkan waktu tempuh di pusat informasi taman kota",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Pada Senin, tim menguji peta kecil yang menampilkan waktu tempuh di pusat informasi taman kota.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "kerja sama tim dalam uji peta kecil yang menampilkan waktu tempuh di pusat informasi taman kota",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Para pengguna di pusat informasi taman kota memberikan komentar singkat.",
+            "Nilai 33, 23, dan 25 tidak menunjukkan pola yang relevan sehingga tim akan mengubah kaidah pengukuran.",
         },
       ],
     },

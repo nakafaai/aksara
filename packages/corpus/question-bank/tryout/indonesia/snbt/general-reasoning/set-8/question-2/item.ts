@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "$$15\\%$$",
         },
         {
+          isCorrect: true,
+          label: "$$10\\%$$",
+        },
+        {
           isCorrect: false,
           label: "$$20\\%$$",
         },
         {
           isCorrect: false,
           label: "$$25\\%$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$10\\%$$",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "$$15\\%$$",
         },
         {
+          isCorrect: true,
+          label: "$$10\\%$$",
+        },
+        {
           isCorrect: false,
           label: "$$20\\%$$",
         },
         {
           isCorrect: false,
           label: "$$25\\%$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$10\\%$$",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "$$15\\%$$",
         },
         {
+          isCorrect: true,
+          label: "$$10\\%$$",
+        },
+        {
           isCorrect: false,
           label: "$$20\\%$$",
         },
         {
           isCorrect: false,
           label: "$$25\\%$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$10\\%$$",
         },
       ],
     },

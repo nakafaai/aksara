@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam taman bermain inklusif.",
+            "Kondisi pembanding menghasilkan nilai rata-rata 20; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam taman bermain inklusif memperoleh hasil yang sama tanpa perbedaan.",
+            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan taman bermain inklusif.",
+            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
         },
         {
           isCorrect: true,
-          label: "Kondisi pembanding menghasilkan nilai rata-rata 20.",
+          label:
+            "Nilai 20 adalah kondisi pembanding untuk peta kebutuhan akses; ragam kebutuhan sensorik dan motorik yang belum terlibat membatasi penerapan.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyebut desain inklusif sebagai bukti bahwa uji tidak perlu diulang.",
+            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
         },
       ],
     },

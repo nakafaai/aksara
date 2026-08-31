@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Mei wrote both versions of the greeting on opposite sides of the same card; the recurring object's physical appearance fixes its complete meaning from the first mention.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Mei wrote both versions of the greeting on opposite sides of the same card; the ending states the object's meaning directly, making the earlier actions irrelevant.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Mei wrote both versions of the greeting on opposite sides of the same card; the setting alone changes the atmosphere, independently of the character's use of the recurring object.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Mei wrote both versions of the greeting on opposite sides of the same card; the object keeps one fixed meaning even as the character's action and the final response change.",
+        },
+        {
           isCorrect: true,
           label:
-            "Mei wrote both versions of the greeting on opposite sides of the same card.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage states that no action or observation occurred in a multilingual welcome desk.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Everyone in a multilingual welcome desk obtained exactly the same result without variation.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The writer removes every detail related to a multilingual welcome desk.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage presents metaphor as proof that no follow-up is needed.",
+            "Putting both greetings on the recurring card preserves their different contexts instead of declaring one wrong, which gives the ending its reconciliatory force.",
         },
       ],
     },

@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Anonyme Beobachter verwendeten vorab festgelegte Lautstärkekriterien.",
+        },
+        {
           isCorrect: true,
           label:
-            "Das Team prüfte zeitgesteuerte Erinnerungen zum Öffnen der Fenster (Kontrolle der Klassenraumbelüftung) und bewertete die Befunde vorsichtig.",
+            "Botschaften über deskriptive Normen können Verhalten ändern, doch ihr Effekt muss von anderen Faktoren getrennt und ihre Aussage korrekt sein.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Jede Botschaft mit einer Mehrheitsangabe verändert sicher das Verhalten aller Fahrgäste.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Weil Beschwerden sanken, muss die Gesamtzahl lauter Gespräche im selben Maß gesunken sein.",
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext Kontrolle der Klassenraumbelüftung: zeitgesteuerte Erinnerungen zum Öffnen der Fenster",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 25, lag über 18 und 20.",
+            "Der Betreiber wird Mehrheitszahlen aus aktuellen Beobachtungen verwenden.",
         },
       ],
     },
@@ -35,28 +36,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Anonymous observers used predefined volume criteria.",
+        },
+        {
           isCorrect: true,
           label:
-            "The team tested timed reminders to open the windows in the classroom ventilation check and interpreted the evidence cautiously.",
+            "Descriptive-norm messages can change behaviour, but their effect must be separated from other factors and their claims must be accurate.",
         },
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "Any message mentioning a majority will certainly change every passenger's behaviour.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Because complaints fell, the total number of loud conversations must have fallen by the same amount.",
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of timed reminders to open the windows: classroom ventilation check",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 25, exceeded both 18 and 20.",
+            "The operator will use majority figures drawn from recent observations.",
         },
       ],
     },
@@ -64,28 +65,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Pengamat anonim memakai kriteria volume yang telah ditetapkan.",
+        },
+        {
           isCorrect: true,
           label:
-            "Tim menguji pengingat waktu membuka jendela pada pemantauan ventilasi kelas dan menafsirkan buktinya secara hati-hati.",
+            "Pesan norma deskriptif dapat mengubah perilaku, tetapi efeknya harus dipisahkan dari faktor lain dan klaimnya harus akurat.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Setiap pesan yang menyebut mayoritas pasti mengubah perilaku semua penumpang.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Karena keluhan berkurang, jumlah seluruh percakapan keras pasti turun dengan ukuran yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Uji Hati-hati dalam pemantauan ventilasi kelas: pengingat waktu membuka jendela",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 25, melampaui 18 dan 20.",
+            "Pengelola akan menggunakan angka mayoritas yang berasal dari pengamatan terbaru.",
         },
       ],
     },

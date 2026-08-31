@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "Der **Tanz** beginnt mittags.",
         },
         {
+          isCorrect: true,
+          label: "Die **Zeichnung** wird morgen ausgestellt.",
+        },
+        {
           isCorrect: false,
           label: "Sie hörte einen **Ruf** von hinten.",
         },
         {
           isCorrect: false,
           label: "Die Künstlerin erhielt **Lob** für ihr neues Werk.",
-        },
-        {
-          isCorrect: true,
-          label: "Die **Zeichnung** wird morgen ausgestellt.",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "The **dance** begins at noon.",
         },
         {
+          isCorrect: true,
+          label: "The **drawing** will be displayed tomorrow.",
+        },
+        {
           isCorrect: false,
           label: "She heard a **call** from behind.",
         },
         {
           isCorrect: false,
           label: "The artist received **praise** for the new work.",
-        },
-        {
-          isCorrect: true,
-          label: "The **drawing** will be displayed tomorrow.",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "**Tarian** itu dimulai siang hari.",
         },
         {
+          isCorrect: true,
+          label: "**Tulisan** itu akan segera diterbitkan.",
+        },
+        {
           isCorrect: false,
           label: "Ia mendengar **panggilan** dari arah belakang.",
         },
         {
           isCorrect: false,
           label: "Seniman itu menerima **pujian** atas karya barunya.",
-        },
-        {
-          isCorrect: true,
-          label: "**Tulisan** itu akan segera diterbitkan.",
         },
       ],
     },

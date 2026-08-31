@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Authentische Restaurierung verbindet Sicherheit, materielle Belege und sichtbare Veränderungen, statt ein Gebäude nur neu oder alt erscheinen zu lassen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Einige Beteiligte glauben, ein sauberes neues Erscheinungsbild ziehe mehr Besucher an.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Jedes neue Teil wird dokumentiert, damit Veränderungen erkennbar bleiben.",
         },
         {
           isCorrect: true,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Kartierung und Proben zeigen, dass ein Teil des Holzes ersetzt werden muss, vieles aber verstärkt werden kann.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 30, lag über 20 und 22.",
+            "Jedes alte Material muss erhalten bleiben, selbst wenn es Besucher gefährdet.",
         },
       ],
     },
@@ -37,26 +38,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "Authentic restoration balances safety, material evidence, and visible change rather than merely making a building look new or old.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Some parties believe a clean new appearance would attract more visitors.",
+        },
+        {
+          isCorrect: false,
+          label: "Every new part will be recorded so changes remain legible.",
         },
         {
           isCorrect: true,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Mapping and samples show that some timber requires replacement while much can be strengthened.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 30, exceeded both 20 and 22.",
+            "Every old material must be retained even when it endangers visitors.",
         },
       ],
     },
@@ -66,26 +67,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Pemugaran yang autentik menyeimbangkan keselamatan, bukti material, dan keterbacaan perubahan, bukan sekadar membuat bangunan tampak baru atau tua.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Sebagian pihak menganggap tampilan baru yang bersih akan lebih menarik bagi pengunjung.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Setiap bagian baru akan dicatat agar perubahan tetap terbaca.",
         },
         {
           isCorrect: true,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Pemetaan dan sampel menunjukkan sebagian kayu perlu diganti, sedangkan banyak bagian lain dapat diperkuat.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 30, melampaui 20 dan 22.",
+            "Semua bahan lama harus dipertahankan meskipun membahayakan pengunjung.",
         },
       ],
     },

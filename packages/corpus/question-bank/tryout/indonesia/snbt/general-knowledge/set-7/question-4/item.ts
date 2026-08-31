@@ -7,24 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "für mehr als eine Deutung offen",
+          label:
+            "Quelle, Methode und Datenweg können unabhängig geprüft werden, bevor die Behauptung akzeptiert wird.",
         },
         {
           isCorrect: false,
-          label: "durch verlässliche Belege gestützt",
+          label:
+            "Die Behauptung stützt sich auf wiederholte Beobachtungen und Messungen statt nur auf Vermutungen.",
         },
         {
           isCorrect: false,
-          label: "fähig, sich an veränderte Bedingungen anzupassen",
+          label:
+            "Das Team legt Daten, Methoden, Ausschlussgründe und Grenzen offen, damit der Prozess geprüft werden kann.",
         },
         {
           isCorrect: true,
           label:
-            "nachweislich aus der angegebenen Quelle oder Erfahrung stammend",
+            "Das Team prüft die Originalaufzeichnung, ihre Herkunft und ihre Änderungshistorie, bevor es sie verwendet.",
         },
         {
           isCorrect: false,
-          label: "dem Umfang des Problems angemessen",
+          label:
+            "Annahmen, Datengrenzen und Entscheidungskriterien werden im Bericht unmittelbar genannt.",
         },
       ],
     },
@@ -33,23 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "open to more than one interpretation",
+          label:
+            "The source, method, and data trail can be checked independently before the claim is accepted.",
         },
         {
           isCorrect: false,
-          label: "supported by dependable evidence",
+          label:
+            "The claim is built from repeated observations and measurements rather than assumption alone.",
         },
         {
           isCorrect: false,
-          label: "able to adjust to changing conditions",
+          label:
+            "The team discloses data, methods, exclusion reasons, and limitations so the process can be examined.",
         },
         {
           isCorrect: true,
-          label: "genuinely originating from the stated source or experience",
+          label:
+            "The team checks the original record, its provenance, and its change history before using it.",
         },
         {
           isCorrect: false,
-          label: "appropriate to the scale of the problem",
+          label:
+            "The assumptions, data limits, and decision criteria are stated directly in the report.",
         },
       ],
     },
@@ -58,24 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
+          label:
+            "Sumber, metode, dan jejak data dapat diperiksa secara mandiri sebelum klaim diterima.",
         },
         {
           isCorrect: false,
-          label: "didukung oleh bukti yang dapat dipercaya",
+          label:
+            "Klaim disusun dari pengamatan berulang dan hasil pengukuran, bukan dari dugaan semata.",
         },
         {
           isCorrect: false,
-          label: "mampu menyesuaikan diri dengan kondisi yang berubah",
+          label:
+            "Tim membuka data, metode, alasan pengecualian, dan keterbatasan agar proses dapat diperiksa.",
         },
         {
           isCorrect: true,
           label:
-            "benar-benar berasal dari sumber atau pengalaman yang dinyatakan",
+            "Tim memeriksa rekaman asli beserta asal dan riwayat perubahannya sebelum menggunakannya.",
         },
         {
           isCorrect: false,
-          label: "sepadan dengan skala masalah",
+          label:
+            "Asumsi, batas data, dan kriteria keputusan dinyatakan langsung dalam laporan.",
         },
       ],
     },

@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$2$$ Teddybären",
         },
         {
+          isCorrect: true,
+          label: "$$1$$ Teddybär und $$1$$ Ball",
+        },
+        {
           isCorrect: false,
           label: "$$2$$ Murmeln",
         },
         {
           isCorrect: false,
           label: "$$1$$ Ball und $$1$$ Barbie-Puppe",
-        },
-        {
-          isCorrect: true,
-          label: "$$1$$ Teddybär und $$1$$ Ball",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "$$2$$ teddy bears",
         },
         {
+          isCorrect: true,
+          label: "$$1$$ teddy bear and $$1$$ ball",
+        },
+        {
           isCorrect: false,
           label: "$$2$$ marbles",
         },
         {
           isCorrect: false,
           label: "$$1$$ ball and $$1$$ Barbie doll",
-        },
-        {
-          isCorrect: true,
-          label: "$$1$$ teddy bear and $$1$$ ball",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "$$2$$ boneka beruang",
         },
         {
+          isCorrect: true,
+          label: "$$1$$ boneka beruang dan $$1$$ bola",
+        },
+        {
           isCorrect: false,
           label: "$$2$$ kelereng",
         },
         {
           isCorrect: false,
           label: "$$1$$ bola dan $$1$$ boneka Barbie",
-        },
-        {
-          isCorrect: true,
-          label: "$$1$$ boneka beruang dan $$1$$ bola",
         },
         {
           isCorrect: false,

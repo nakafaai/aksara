@@ -6,27 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "vollständig geprüfte Geräte und kurze Aussagen von Nutzenden",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
           isCorrect: true,
-          label: "Der Wert mit Änderung, 28, lag über 21 und 23.",
+          label:
+            "Das Protokoll zeigt Hindernisse; anschließend sollen Verfahrensänderungen sie verringern und die Repräsentation prüfen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            'Der erste Teil vertritt die Behauptung "Fast alle ersten Redebeiträge kamen aus den drei nächstgelegenen Vierteln"; der folgende nutzt "Eine Beratung ist nur gültig, wenn jeder Vorschlag angenommen wird" als Hauptbeleg.',
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext Reparaturwerkstatt für Elektronik: einen Prüftisch vor der Warteschlange für Techniker",
+            'Der erste Teil legt "Wegen der offenen Einladung müssen Herkunft und Abwesenheitsgründe nicht geprüft werden" als endgültigen Schluss fest; der folgende nennt nur den Plan "Die endgültige Entscheidung wird Auswahl, Einwände und Einfluss der Beiträge festhalten".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Eine Beratung ist nur gültig, wenn jeder Vorschlag angenommen wird" fest.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Der folgende Teil kehrt die Argumentation um und leitet "Wegen der offenen Einladung müssen Herkunft und Abwesenheitsgründe nicht geprüft werden" aus dem Beleg "Fast alle ersten Redebeiträge kamen aus den drei nächstgelegenen Vierteln" ab.',
         },
       ],
     },
@@ -34,27 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "devices fully inspected and short comments from users",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
           isCorrect: true,
-          label: "The intervention value, 28, exceeded both 21 and 23.",
+          label:
+            "The meeting record reveals barriers, and procedural changes are then designed to reduce them and test representation.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            'The first part advances the claim "Nearly every initial speaker came from the three nearest neighbourhoods", and the later part uses "A consultation is valid only if every resident proposal is ultimately accepted" as its main support.',
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of an initial inspection desk before the technician queue: electronics repair clinic",
+            'The first part establishes "Because the invitation was open, participant origins and reasons for absence need not be examined" as a final conclusion; the later part only states the plan "The final decision will record the choice, objections, and the influence of contributions".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Both parts maintain the claim "A consultation is valid only if every resident proposal is ultimately accepted" from the same perspective without adding a test.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'The later part reverses the argument by deriving "Because the invitation was open, participant origins and reasons for absence need not be examined" from the evidence "Nearly every initial speaker came from the three nearest neighbourhoods".',
         },
       ],
     },
@@ -62,28 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "perangkat yang selesai diperiksa dan komentar singkat pengguna",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
           isCorrect: true,
-          label: "Nilai pada hari dengan perubahan, 28, melampaui 21 dan 23.",
+          label:
+            "Catatan rapat mengungkap hambatan, lalu perubahan prosedur dirancang untuk mengurangi hambatan dan menguji keterwakilan.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            'Bagian awal mengajukan klaim "Hampir seluruh pembicara pertama berasal dari tiga rukun tetangga terdekat", lalu bagian kedua memakai "Musyawarah hanya sah jika setiap usulan warga akhirnya diterima" sebagai dukungan utama.',
         },
         {
           isCorrect: false,
           label:
-            "Uji Hati-hati dalam klinik perbaikan elektronik: meja pemeriksaan awal sebelum antrean teknisi",
+            'Bagian pertama menetapkan "Karena undangan terbuka, asal peserta dan alasan ketidakhadiran tidak perlu diperiksa" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Keputusan akhir akan mencatat pilihan, keberatan, dan pengaruh masukan".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Kedua bagian mempertahankan klaim "Musyawarah hanya sah jika setiap usulan warga akhirnya diterima" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Karena undangan terbuka, asal peserta dan alasan ketidakhadiran tidak perlu diperiksa" dari bukti "Hampir seluruh pembicara pertama berasal dari tiga rukun tetangga terdekat".',
         },
       ],
     },

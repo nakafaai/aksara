@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "ein durch Mikroorganismen fermentativ verändertes Milcherzeugnis.",
+        },
+        {
           isCorrect: false,
           label: "ein Milcherzeugnis, das garantiert keine Laktose enthält.",
         },
@@ -13,11 +18,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "ein Milcherzeugnis, das nur für ältere Menschen bestimmt ist.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "ein durch Mikroorganismen fermentativ verändertes Milcherzeugnis.",
         },
         {
           isCorrect: false,
@@ -34,16 +34,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "dairy transformed by microorganisms through fermentation.",
+        },
+        {
           isCorrect: false,
           label: "dairy that is guaranteed to contain no lactose.",
         },
         {
           isCorrect: false,
           label: "dairy intended only for older adults.",
-        },
-        {
-          isCorrect: true,
-          label: "dairy transformed by microorganisms through fermentation.",
         },
         {
           isCorrect: false,
@@ -59,17 +59,17 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "produk susu yang diubah oleh mikroorganisme melalui fermentasi.",
+        },
+        {
           isCorrect: false,
           label: "produk susu yang dijamin tidak mengandung laktosa.",
         },
         {
           isCorrect: false,
           label: "produk susu yang hanya ditujukan bagi lansia.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "produk susu yang diubah oleh mikroorganisme melalui fermentasi.",
         },
         {
           isCorrect: false,

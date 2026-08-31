@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage states that no action or observation occurred in a food pantry at closing time.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Everyone in a food pantry at closing time obtained exactly the same result without variation.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The writer removes every detail related to a food pantry at closing time.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage presents motif as proof that no follow-up is needed.",
+            "Samira wrote the entry date on the last unmarked package; the recurring object's physical appearance fixes its complete meaning from the first mention.",
         },
         {
           isCorrect: true,
-          label: "Samira wrote the entry date on the last unmarked package.",
+          label:
+            "Dating the final unmarked package completes the recurring record motif and turns storage from anonymous accumulation into traceable history.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Samira wrote the entry date on the last unmarked package; the ending states the object's meaning directly, making the earlier actions irrelevant.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Samira wrote the entry date on the last unmarked package; the setting alone changes the atmosphere, independently of the character's use of the recurring object.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Samira wrote the entry date on the last unmarked package; the object keeps one fixed meaning even as the character's action and the final response change.",
         },
       ],
     },

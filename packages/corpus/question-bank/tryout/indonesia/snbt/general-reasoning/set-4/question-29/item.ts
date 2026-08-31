@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$12$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$11$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$13$$",
-        },
-        {
-          isCorrect: false,
           label: "$$9$$",
         },
         {
+          isCorrect: true,
+          label: "$$\\frac{66}{5}$$",
+        },
+        {
           isCorrect: false,
-          label: "$$10$$",
+          label: "$$12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$15$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$12$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$11$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$13$$",
-        },
-        {
-          isCorrect: false,
           label: "$$9$$",
         },
         {
+          isCorrect: true,
+          label: "$$\\frac{66}{5}$$",
+        },
+        {
           isCorrect: false,
-          label: "$$10$$",
+          label: "$$12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$15$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$12$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$11$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$13$$",
-        },
-        {
-          isCorrect: false,
           label: "$$9$$",
         },
         {
+          isCorrect: true,
+          label: "$$\\frac{66}{5}$$",
+        },
+        {
           isCorrect: false,
-          label: "$$10$$",
+          label: "$$12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$15$$",
         },
       ],
     },

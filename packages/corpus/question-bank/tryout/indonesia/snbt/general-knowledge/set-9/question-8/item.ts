@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            'Der erste Teil vertritt die Behauptung "Anonyme Beobachter verwendeten vorab festgelegte Lautstärkekriterien"; der folgende nutzt "Jede Botschaft mit einer Mehrheitsangabe verändert sicher das Verhalten aller Fahrgäste" als Hauptbeleg.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Der erste Teil legt "Weil Beschwerden sanken, muss die Gesamtzahl lauter Gespräche im selben Maß gesunken sein" als endgültigen Schluss fest; der folgende nennt nur den Plan "Der Betreiber wird Mehrheitszahlen aus aktuellen Beobachtungen verwenden".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Jede Botschaft mit einer Mehrheitsangabe verändert sicher das Verhalten aller Fahrgäste" fest.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Der folgende Teil kehrt die Argumentation um und leitet "Weil Beschwerden sanken, muss die Gesamtzahl lauter Gespräche im selben Maß gesunken sein" aus dem Beleg "Anonyme Beobachter verwendeten vorab festgelegte Lautstärkekriterien" ab.',
+        },
+        {
           isCorrect: true,
-          label: "Der Wert mit Änderung, 25, lag über 18 und 20.",
-        },
-        {
-          isCorrect: false,
           label:
-            "Unterrichtsstunden mit vollständigem Lüftungsplan und kurze Aussagen von Nutzenden",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vorsichtige Prüfung im Kontext Kontrolle der Klassenraumbelüftung: zeitgesteuerte Erinnerungen zum Öffnen der Fenster",
+            "Erste Ergebnisse erzeugen eine Hypothese, die Kontrolle von Störfaktoren prüft sie, und spätere Befunde begrenzen ihre Anwendung.",
         },
       ],
     },
@@ -35,28 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            'The first part advances the claim "Anonymous observers used predefined volume criteria", and the later part uses "Any message mentioning a majority will certainly change every passenger\'s behaviour" as its main support.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'The first part establishes "Because complaints fell, the total number of loud conversations must have fallen by the same amount" as a final conclusion; the later part only states the plan "The operator will use majority figures drawn from recent observations".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Both parts maintain the claim "Any message mentioning a majority will certainly change every passenger\'s behaviour" from the same perspective without adding a test.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'The later part reverses the argument by deriving "Because complaints fell, the total number of loud conversations must have fallen by the same amount" from the evidence "Anonymous observers used predefined volume criteria".',
+        },
+        {
           isCorrect: true,
-          label: "The intervention value, 25, exceeded both 18 and 20.",
-        },
-        {
-          isCorrect: false,
           label:
-            "lessons with a complete ventilation schedule and short comments from users",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A cautious trial of timed reminders to open the windows: classroom ventilation check",
+            "Initial results generate a hypothesis, control of confounders tests it, and later findings limit its application.",
         },
       ],
     },
@@ -64,28 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            'Bagian awal mengajukan klaim "Pengamat anonim memakai kriteria volume yang telah ditetapkan", lalu bagian kedua memakai "Setiap pesan yang menyebut mayoritas pasti mengubah perilaku semua penumpang" sebagai dukungan utama.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Bagian pertama menetapkan "Karena keluhan berkurang, jumlah seluruh percakapan keras pasti turun dengan ukuran yang sama" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Pengelola akan menggunakan angka mayoritas yang berasal dari pengamatan terbaru".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Kedua bagian mempertahankan klaim "Setiap pesan yang menyebut mayoritas pasti mengubah perilaku semua penumpang" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Karena keluhan berkurang, jumlah seluruh percakapan keras pasti turun dengan ukuran yang sama" dari bukti "Pengamat anonim memakai kriteria volume yang telah ditetapkan".',
+        },
+        {
           isCorrect: true,
-          label: "Nilai pada hari dengan perubahan, 25, melampaui 18 dan 20.",
-        },
-        {
-          isCorrect: false,
           label:
-            "periode belajar dengan jadwal ventilasi lengkap dan komentar singkat pengguna",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji Hati-hati dalam pemantauan ventilasi kelas: pengingat waktu membuka jendela",
+            "Hasil awal memunculkan hipotesis, pengendalian faktor pengganggu mengujinya, dan temuan lanjutan membatasi penerapannya.",
         },
       ],
     },

@@ -12,11 +12,13 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "penantian selalu berakhir dengan kepulangan",
+          label:
+            "ketekunan menunggu pada akhirnya akan membuat orang yang dirindukan kembali",
         },
         {
           isCorrect: false,
-          label: "pertunjukan hanya berhasil jika semua pemain hadir",
+          label:
+            "kehadiran pemain yang lengkap merupakan syarat utama keberhasilan pertunjukan",
         },
         {
           isCorrect: true,
@@ -24,11 +26,13 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "kursi kosong tidak mempunyai makna apa pun",
+          label:
+            "kursi ketujuh akhirnya hanya berfungsi sebagai penanda tempat kosong",
         },
         {
           isCorrect: false,
-          label: "Mira memutuskan berhenti bermain biola",
+          label:
+            "Mira memilih melepaskan latihan agar dapat menunggu tanpa gangguan",
         },
       ],
     },

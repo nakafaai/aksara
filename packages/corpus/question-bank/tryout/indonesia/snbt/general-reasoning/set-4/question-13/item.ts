@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "bo ckeeck? bluwwppz",
-        },
-        {
           isCorrect: true,
           label: "bo bluwpz mwckeeck?",
+        },
+        {
+          isCorrect: false,
+          label: "bo ckeeck? bluwwppz",
         },
         {
           isCorrect: false,
@@ -31,12 +31,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "bo ckeeck? bluwwppz",
-        },
-        {
           isCorrect: true,
           label: "bo bluwpz mwckeeck?",
+        },
+        {
+          isCorrect: false,
+          label: "bo ckeeck? bluwwppz",
         },
         {
           isCorrect: false,
@@ -56,12 +56,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "bo ckeeck? bluwwppz",
-        },
-        {
           isCorrect: true,
           label: "bo bluwpz mwckeeck?",
+        },
+        {
+          isCorrect: false,
+          label: "bo ckeeck? bluwwppz",
         },
         {
           isCorrect: false,

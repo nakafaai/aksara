@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$25$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$17$$",
+          label: "$$17{,}8\\%$$",
         },
         {
           isCorrect: true,
-          label: "$$21$$",
+          label: "$$19{,}4\\%$$",
         },
         {
           isCorrect: false,
-          label: "$$19$$",
+          label: "$$18{,}6\\%$$",
         },
         {
           isCorrect: false,
-          label: "$$23$$",
+          label: "$$20{,}0\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$22{,}2\\%$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$25$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$17$$",
+          label: "$$17{,}8\\%$$",
         },
         {
           isCorrect: true,
-          label: "$$21$$",
+          label: "$$19{,}4\\%$$",
         },
         {
           isCorrect: false,
-          label: "$$19$$",
+          label: "$$18{,}6\\%$$",
         },
         {
           isCorrect: false,
-          label: "$$23$$",
+          label: "$$20{,}0\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$22{,}2\\%$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$25$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$17$$",
+          label: "$$17{,}8\\%$$",
         },
         {
           isCorrect: true,
-          label: "$$21$$",
+          label: "$$19{,}4\\%$$",
         },
         {
           isCorrect: false,
-          label: "$$19$$",
+          label: "$$18{,}6\\%$$",
         },
         {
           isCorrect: false,
-          label: "$$23$$",
+          label: "$$20{,}0\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$22{,}2\\%$$",
         },
       ],
     },

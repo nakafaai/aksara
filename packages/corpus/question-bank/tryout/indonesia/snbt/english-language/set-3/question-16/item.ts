@@ -13,22 +13,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage only gives a complete history of a station before sunrise without examining evidence or choice.",
+            "The recurring object mainly establishes the setting and changes little in relation to the conflict.",
         },
         {
           isCorrect: false,
           label:
-            "The passage proves that one method must succeed in every a station before sunrise.",
+            "The character's final decision removes the ambiguity that the recurring object previously carried.",
         },
         {
           isCorrect: false,
           label:
-            "The passage rejects all observation and relies only on personal preference.",
+            "The passage uses irony as a descriptive label without tying it to the character's choice.",
         },
         {
           isCorrect: false,
           label:
-            "The passage mainly defines irony without connecting it to a setting.",
+            "The conflict is settled by the setting before the character's final action changes the object's meaning.",
         },
       ],
     },

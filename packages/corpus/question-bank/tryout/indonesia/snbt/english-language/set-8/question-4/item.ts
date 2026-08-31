@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "in this passage, an assumption that never needs to be examined in load distribution in paper bridge models",
+            "The definition of *truss* proves that the tested change caused the recorded result, even without the comparison conditions.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, a final result that always applies to every situation",
+            "The definition makes *truss* a substitute for the controls, so the unmeasured factor no longer limits the conclusion.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, a detail removed because it challenges an opinion",
-        },
-        {
-          isCorrect: false,
-          label:
-            "in this passage, decorative language unrelated to the setting",
+            "The definition broadens *truss* from this short investigation to every similar system under any condition.",
         },
         {
           isCorrect: true,
-          label: "a framework of connected triangles that distributes forces",
+          label:
+            "By defining *truss*, the report fixes the meaning of the measured concept before the numerical comparison and its limitation are interpreted.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The term *truss* names the report's limitation rather than the concept represented by the measurements.",
         },
       ],
     },

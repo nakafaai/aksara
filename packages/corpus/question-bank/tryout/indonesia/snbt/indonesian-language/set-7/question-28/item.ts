@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Benda berulang memperoleh makna terutama dari bentuk fisiknya, bukan dari hubungannya dengan pilihan tokoh.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Akhir cerita menunjukkan bahwa latar, bukan tindakan tokoh, menyelesaikan konflik.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Makna benda tetap sama meskipun tokoh menggunakannya dengan cara berbeda.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tindakan akhir penting karena mengukuhkan penafsiran yang sudah terbentuk sejak awal.",
+        },
+        {
           isCorrect: true,
           label:
             "kartu pertanyaan memperoleh makna karena muncul bersama konflik, pilihan, dan perubahan pada akhir cerita.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Setiap hasil dalam pameran sains keliling pasti berlaku tanpa batas pada tempat lain.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang pameran sains keliling tidak berguna.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Satu rincian tentang atmosfer cukup untuk membuktikan semua hubungan sebab-akibat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
         },
       ],
     },

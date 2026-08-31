@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "$$2x^2 + 8x - 9$$",
         },
         {
+          isCorrect: true,
+          label: "$$2x^2 + 8x - 11$$",
+        },
+        {
           isCorrect: false,
           label: "$$2x^2 + 4x - 6$$",
         },
         {
           isCorrect: false,
           label: "$$2x^2 + 4x - 9$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$2x^2 + 8x - 11$$",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "$$2x^2 + 8x - 9$$",
         },
         {
+          isCorrect: true,
+          label: "$$2x^2 + 8x - 11$$",
+        },
+        {
           isCorrect: false,
           label: "$$2x^2 + 4x - 6$$",
         },
         {
           isCorrect: false,
           label: "$$2x^2 + 4x - 9$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$2x^2 + 8x - 11$$",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "$$2x^2 + 8x - 9$$",
         },
         {
+          isCorrect: true,
+          label: "$$2x^2 + 8x - 11$$",
+        },
+        {
           isCorrect: false,
           label: "$$2x^2 + 4x - 6$$",
         },
         {
           isCorrect: false,
           label: "$$2x^2 + 4x - 9$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$2x^2 + 8x - 11$$",
         },
       ],
     },

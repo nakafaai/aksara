@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontext „Fundbüroservice“",
+            "Da 29 über 19 und 21 lag, erklärte das Team ein Formular mit strukturierten Ortsangaben für wirksam und führte die Änderung dauerhaft ein.",
         },
         {
           isCorrect: true,
@@ -18,17 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Am Montag prüfte das Team ein Formular mit strukturierten Ortsangaben im folgenden Kontext: Fundbüroservice.",
+            "Das Team verglich 29, 19 und 21 und plante eine längere Wiederholung, ohne die Aussage auf Fundbüroservice zu begrenzen.",
         },
         {
           isCorrect: false,
           label:
-            "die Folgestudie des Teams im untersuchten Kontext (Fundbüroservice)",
+            "Das Team begrenzte die Aussage auf Fundbüroservice und plante eine längere Wiederholung, ohne den Vergleich zu nennen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im untersuchten Kontext (Fundbüroservice) gaben kurze Rückmeldungen.",
+            "Die Werte 29, 19 und 21 zeigten kein relevantes Muster, daher wollte das Team die Messregeln ändern.",
         },
       ],
     },
@@ -38,7 +38,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "an analysis of the effectiveness of a form with structured location choices in this setting (lost-property service)",
+            "Because 29 exceeded 19 and 21, the team concluded that the change was effective and adopted it permanently.",
         },
         {
           isCorrect: true,
@@ -48,17 +48,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "On Monday, the team tested a form with structured location choices in this setting (lost-property service).",
+            "The team compared 29, 19, and 21 and planned a longer repetition without limiting the claim to the context of lost-property service.",
         },
         {
           isCorrect: false,
           label:
-            "the team's follow-up study of a form with structured location choices in this setting (lost-property service)",
+            "The team limited its claim to the context of lost-property service and planned a longer repetition without reporting the comparison.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (lost-property service) provided brief comments.",
+            "The values 29, 19, and 21 showed no relevant pattern, so the team planned to change the measurement rules.",
         },
       ],
     },
@@ -68,7 +68,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "analisis efektivitas formulir dengan pilihan lokasi yang terstruktur di layanan pencarian barang hilang",
+            "Karena 29 lebih tinggi daripada 19 dan 21, tim menyimpulkan bahwa formulir dengan pilihan lokasi terstruktur efektif lalu menerapkannya secara tetap.",
         },
         {
           isCorrect: true,
@@ -78,17 +78,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pada Senin, tim menguji formulir dengan pilihan lokasi yang terstruktur di layanan pencarian barang hilang.",
+            "Tim membandingkan 29, 19, dan 21 serta merencanakan pengulangan lebih panjang tanpa membatasi klaim pada layanan barang hilang.",
         },
         {
           isCorrect: false,
           label:
-            "kerja sama tim dalam uji formulir dengan pilihan lokasi yang terstruktur di layanan pencarian barang hilang",
+            "Tim membatasi klaim pada layanan barang hilang dan merencanakan pengulangan lebih panjang tanpa melaporkan perbandingan.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna di layanan pencarian barang hilang memberikan komentar singkat.",
+            "Nilai 29, 19, dan 21 tidak menunjukkan pola yang relevan sehingga tim akan mengubah kaidah pengukuran.",
         },
       ],
     },

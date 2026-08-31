@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$14$$",
+          label: "$$0$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7$$",
         },
         {
           isCorrect: true,
-          label: "$$12$$",
+          label: "$$5$$",
         },
         {
           isCorrect: false,
           label: "$$10$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$11$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$13$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$14$$",
+          label: "$$0$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7$$",
         },
         {
           isCorrect: true,
-          label: "$$12$$",
+          label: "$$5$$",
         },
         {
           isCorrect: false,
           label: "$$10$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$11$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$13$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$14$$",
+          label: "$$0$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7$$",
         },
         {
           isCorrect: true,
-          label: "$$12$$",
+          label: "$$5$$",
         },
         {
           isCorrect: false,
           label: "$$10$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$11$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$13$$",
         },
       ],
     },

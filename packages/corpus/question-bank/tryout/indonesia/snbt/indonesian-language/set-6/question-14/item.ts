@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti dugaan yang tidak perlu diperiksa pada program teman belajar",
+            "Penyebutan *dukungan sebaya* membuktikan rancangan sudah adil tanpa perlu memeriksa data pembanding atau masukan pengguna.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti hasil akhir yang selalu berlaku untuk semua keadaan",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti rincian yang sengaja dihapus karena bertentangan dengan pendapat",
+            "Definisi itu membatasi *dukungan sebaya* pada kebutuhan kelompok terbanyak sehingga variasi kebutuhan lain dapat diabaikan.",
         },
         {
           isCorrect: true,
           label:
-            "dukungan antarorang dengan kedudukan atau pengalaman yang relatif setara",
+            "Definisi *dukungan sebaya* memberi kriteria untuk menilai apakah rancangan dan bukti akses benar-benar mencakup kebutuhan pengguna yang berbeda.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti hiasan bahasa yang tidak berhubungan dengan konteks",
+            "Istilah *dukungan sebaya* menggantikan konsultasi pihak terdampak dengan satu label yang langsung menentukan keputusan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi tersebut menjelaskan keterbatasan masa uji, bukan kriteria yang dipakai untuk membaca rancangan.",
         },
       ],
     },

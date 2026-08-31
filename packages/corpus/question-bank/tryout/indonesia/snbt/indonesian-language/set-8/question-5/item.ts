@@ -7,25 +7,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang kehilangan massa pada daun",
+          label: "Mengukur transpirasi melalui satu perbandingan awal",
         },
         {
           isCorrect: false,
           label:
-            "Alasan Mengabaikan Semua Bukti dalam kehilangan massa pada daun",
+            "Menjadikan transpirasi penjelasan tunggal atas hasil pengamatan",
+        },
+        {
+          isCorrect: false,
+          label: "Kaidah akhir dari perbandingan pertama tentang transpirasi",
         },
         {
           isCorrect: true,
           label:
-            "Menguji lapisan tipis petroleum jelly pada permukaan bawah daun dalam kehilangan massa pada daun",
+            "Pengaruh Lapisan Petroleum Jelly terhadap Kehilangan Massa Daun",
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap transpirasi di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap kehilangan massa pada daun",
+          label:
+            "Keterbatasan yang membuat uji lanjutan transpirasi tidak diperlukan",
         },
       ],
     },

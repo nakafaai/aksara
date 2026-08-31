@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Lupe : Zeit",
-        },
-        {
-          isCorrect: false,
-          label: "Lineal : Temperatur",
-        },
-        {
-          isCorrect: false,
-          label: "Uhr : Länge",
+          label: "$$0$$",
         },
         {
           isCorrect: true,
-          label: "Regenmesser : Niederschlag",
+          label: "$$2$$",
         },
         {
           isCorrect: false,
-          label: "Kompass : Geschwindigkeit",
+          label: "$$1$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "magnifier : time",
-        },
-        {
-          isCorrect: false,
-          label: "ruler : temperature",
-        },
-        {
-          isCorrect: false,
-          label: "clock : length",
+          label: "$$0$$",
         },
         {
           isCorrect: true,
-          label: "rain gauge : rainfall",
+          label: "$$2$$",
         },
         {
           isCorrect: false,
-          label: "compass : speed",
+          label: "$$1$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "kaca pembesar : waktu",
-        },
-        {
-          isCorrect: false,
-          label: "penggaris : suhu",
-        },
-        {
-          isCorrect: false,
-          label: "jam : panjang",
+          label: "$$0$$",
         },
         {
           isCorrect: true,
-          label: "penakar hujan : curah hujan",
+          label: "$$2$$",
         },
         {
           isCorrect: false,
-          label: "kompas : kecepatan",
+          label: "$$1$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4$$",
         },
       ],
     },

@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 4.000",
+          label: "$$3$$",
         },
         {
           isCorrect: true,
-          label: "Rp 5.000",
+          label: "$$5$$",
         },
         {
           isCorrect: false,
-          label: "Rp 4.500",
+          label: "$$4$$",
         },
         {
           isCorrect: false,
-          label: "Rp 5.500",
+          label: "$$6$$",
         },
         {
           isCorrect: false,
-          label: "Rp 6.000",
+          label: "$$7$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 4.000",
+          label: "$$3$$",
         },
         {
           isCorrect: true,
-          label: "Rp 5.000",
+          label: "$$5$$",
         },
         {
           isCorrect: false,
-          label: "Rp 4.500",
+          label: "$$4$$",
         },
         {
           isCorrect: false,
-          label: "Rp 5.500",
+          label: "$$6$$",
         },
         {
           isCorrect: false,
-          label: "Rp 6.000",
+          label: "$$7$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 4.000",
+          label: "$$3$$",
         },
         {
           isCorrect: true,
-          label: "Rp 5.000",
+          label: "$$5$$",
         },
         {
           isCorrect: false,
-          label: "Rp 4.500",
+          label: "$$4$$",
         },
         {
           isCorrect: false,
-          label: "Rp 5.500",
+          label: "$$6$$",
         },
         {
           isCorrect: false,
-          label: "Rp 6.000",
+          label: "$$7$$",
         },
       ],
     },

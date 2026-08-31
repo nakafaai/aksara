@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vorsichtige Prüfung im Kontext abendlicher Leseraum: ausleihbare Schreibtischlampen",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 31, lag über 24 und 26.",
-        },
-        {
           isCorrect: true,
           label:
-            "Das Team prüfte ausleihbare Schreibtischlampen (abendlicher Leseraum) und bewertete die Befunde vorsichtig.",
+            "Verantwortliche historische Rekonstruktion vergleicht Quellen, erklärt Perspektiven und bewahrt Originale zur erneuten Prüfung.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Eröffnungsfeier fand Monate nach dem Umzug einiger Klassen statt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Schriftliche Dokumente beweisen, dass mündliche Aussagen historisch wertlos sind.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Archiv sollte die sicherste Aussage wählen und abweichende Aufnahmen löschen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Originalaufnahmen bleiben erhalten, damit spätere Forscher die Deutung neu bewerten können.",
         },
       ],
     },
@@ -35,28 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A cautious trial of desk lamps that visitors could borrow: evening reading room",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 31, exceeded both 24 and 26.",
-        },
-        {
           isCorrect: true,
           label:
-            "The team tested desk lamps that visitors could borrow in the evening reading room and interpreted the evidence cautiously.",
+            "Responsible historical reconstruction compares sources, explains viewpoints, and preserves originals for reassessment.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The opening ceremony took place months after some classes moved.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Written documents prove that oral testimony has no historical value.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The archive should choose the most confident witness and delete inconsistent recordings.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Original recordings are preserved so later researchers can reassess the interpretation.",
         },
       ],
     },
@@ -64,28 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji Hati-hati dalam ruang baca malam: lampu meja yang dapat dipinjam",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 31, melampaui 24 dan 26.",
-        },
-        {
           isCorrect: true,
           label:
-            "Tim menguji lampu meja yang dapat dipinjam pada ruang baca malam dan menafsirkan buktinya secara hati-hati.",
+            "Rekonstruksi sejarah yang bertanggung jawab membandingkan sumber, menjelaskan sudut pandang, dan mempertahankan bahan asli untuk penilaian ulang.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Upacara peresmian berlangsung beberapa bulan setelah sebagian kelas pindah.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Dokumen tertulis membuktikan bahwa kesaksian lisan tidak memiliki nilai sejarah.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Arsip harus memilih narasumber yang paling yakin dan menghapus rekaman yang tidak sesuai.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Rekaman asli disimpan agar tafsir dapat dinilai ulang oleh peneliti berikutnya.",
         },
       ],
     },

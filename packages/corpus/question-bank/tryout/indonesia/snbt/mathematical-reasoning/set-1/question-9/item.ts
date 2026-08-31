@@ -15,16 +15,16 @@ const item: QuestionItem = {
           label: "$$\\{x \\mid x > \\frac{5}{4}, x \\in \\mathbb{R}\\}$$",
         },
         {
+          isCorrect: true,
+          label: "$$\\{x \\mid \\frac{5}{4} < x < 5, x \\in \\mathbb{R}\\}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\{x \\mid x < 15, x \\in \\mathbb{R}\\}$$",
         },
         {
           isCorrect: false,
           label: "$$\\{x \\mid 5 < x < 15, x \\in \\mathbb{R}\\}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\{x \\mid \\frac{5}{4} < x < 5, x \\in \\mathbb{R}\\}$$",
         },
       ],
     },
@@ -40,16 +40,16 @@ const item: QuestionItem = {
           label: "$$\\{x \\mid x > \\frac{5}{4}, x \\in \\mathbb{R}\\}$$",
         },
         {
+          isCorrect: true,
+          label: "$$\\{x \\mid \\frac{5}{4} < x < 5, x \\in \\mathbb{R}\\}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\{x \\mid x < 15, x \\in \\mathbb{R}\\}$$",
         },
         {
           isCorrect: false,
           label: "$$\\{x \\mid 5 < x < 15, x \\in \\mathbb{R}\\}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\{x \\mid \\frac{5}{4} < x < 5, x \\in \\mathbb{R}\\}$$",
         },
       ],
     },
@@ -65,16 +65,16 @@ const item: QuestionItem = {
           label: "$$\\{x \\mid x > \\frac{5}{4}, x \\in \\mathbb{R}\\}$$",
         },
         {
+          isCorrect: true,
+          label: "$$\\{x \\mid \\frac{5}{4} < x < 5, x \\in \\mathbb{R}\\}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\{x \\mid x < 15, x \\in \\mathbb{R}\\}$$",
         },
         {
           isCorrect: false,
           label: "$$\\{x \\mid 5 < x < 15, x \\in \\mathbb{R}\\}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\{x \\mid \\frac{5}{4} < x < 5, x \\in \\mathbb{R}\\}$$",
         },
       ],
     },

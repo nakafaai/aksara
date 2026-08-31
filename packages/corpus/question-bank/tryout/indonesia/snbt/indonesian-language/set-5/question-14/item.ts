@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti dugaan yang tidak perlu diperiksa pada pengiriman buku antarpulau",
+            "Penyebutan *logistik* membuktikan rancangan sudah adil tanpa perlu memeriksa data pembanding atau masukan pengguna.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti hasil akhir yang selalu berlaku untuk semua keadaan",
+            "Definisi itu membatasi *logistik* pada kebutuhan kelompok terbanyak sehingga variasi kebutuhan lain dapat diabaikan.",
         },
         {
           isCorrect: true,
           label:
-            "rangkaian kegiatan pemindahan barang dari asal menuju penerima",
+            "Definisi *logistik* memberi kriteria untuk menilai apakah rancangan dan bukti akses benar-benar mencakup kebutuhan pengguna yang berbeda.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti rincian yang sengaja dihapus karena bertentangan dengan pendapat",
+            "Istilah *logistik* menggantikan konsultasi pihak terdampak dengan satu label yang langsung menentukan keputusan.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti hiasan bahasa yang tidak berhubungan dengan konteks",
+            "Definisi tersebut menjelaskan keterbatasan masa uji, bukan kriteria yang dipakai untuk membaca rancangan.",
         },
       ],
     },

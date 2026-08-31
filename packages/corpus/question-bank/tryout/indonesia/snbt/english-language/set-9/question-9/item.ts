@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "in this passage, an assumption that never needs to be examined in a night-market waste station",
+            "Calling a cost *system alignment* establishes that the proposed change is affordable without using the estimated prices.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, a final result that always applies to every situation",
+            "The definition makes *system alignment* apply to every cost in the table, regardless of how activity levels change.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The term *system alignment* replaces the affected groups' evidence with a financial label that settles the decision by itself.",
         },
         {
           isCorrect: true,
           label:
-            "designing a system so that different parts work together consistently",
+            "The definition of *system alignment* supplies the classification rule needed to interpret the budget comparison and the consultation evidence.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, a detail removed because it challenges an opinion",
-        },
-        {
-          isCorrect: false,
-          label:
-            "in this passage, decorative language unrelated to the setting",
+            "The definition explains why the trial used estimated invoices, rather than how the cost category should be read.",
         },
       ],
     },

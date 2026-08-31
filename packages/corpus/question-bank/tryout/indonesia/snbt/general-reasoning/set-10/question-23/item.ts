@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$19$$",
+          label: "$$\\frac3{11}$$",
         },
         {
           isCorrect: false,
-          label: "$$20$$",
+          label: "$$\\frac13$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac4{11}$$",
         },
         {
           isCorrect: true,
-          label: "$$18$$",
+          label: "$$\\frac7{22}$$",
         },
         {
           isCorrect: false,
-          label: "$$16$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$17$$",
+          label: "$$\\frac5{11}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$19$$",
+          label: "$$\\frac3{11}$$",
         },
         {
           isCorrect: false,
-          label: "$$20$$",
+          label: "$$\\frac13$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac4{11}$$",
         },
         {
           isCorrect: true,
-          label: "$$18$$",
+          label: "$$\\frac7{22}$$",
         },
         {
           isCorrect: false,
-          label: "$$16$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$17$$",
+          label: "$$\\frac5{11}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$19$$",
+          label: "$$\\frac3{11}$$",
         },
         {
           isCorrect: false,
-          label: "$$20$$",
+          label: "$$\\frac13$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac4{11}$$",
         },
         {
           isCorrect: true,
-          label: "$$18$$",
+          label: "$$\\frac7{22}$$",
         },
         {
           isCorrect: false,
-          label: "$$16$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$17$$",
+          label: "$$\\frac5{11}$$",
         },
       ],
     },

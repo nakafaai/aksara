@@ -12,19 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$\\sqrt{5^2}=5$, da $5>0$",
+          label: "$a+b=29$",
         },
         {
           isCorrect: true,
-          label: "$(-5)^2=5^2$",
+          label: "$|a-b|=21$",
         },
         {
           isCorrect: false,
-          label: "$5^{-1}=-5$",
+          label: "$\\sqrt{a+b}=7$",
         },
         {
           isCorrect: true,
-          label: "$5^{\\frac12}\\cdot 5^{\\frac12}=5$",
+          label: "$(a-b)^2=441$",
+        },
+        {
+          isCorrect: true,
+          label: "$\\frac1{\\sqrt a}+\\frac1{\\sqrt b}=\\frac7{10}$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$\\sqrt{5^2}=5$ because $5>0$",
+          label: "$a+b=29$",
         },
         {
           isCorrect: true,
-          label: "$(-5)^2=5^2$",
+          label: "$|a-b|=21$",
         },
         {
           isCorrect: false,
-          label: "$5^{-1}=-5$",
+          label: "$\\sqrt{a+b}=7$",
         },
         {
           isCorrect: true,
-          label: "$5^{\\frac12}\\cdot 5^{\\frac12}=5$",
+          label: "$(a-b)^2=441$",
+        },
+        {
+          isCorrect: true,
+          label: "$\\frac1{\\sqrt a}+\\frac1{\\sqrt b}=\\frac7{10}$",
         },
       ],
     },
@@ -54,19 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$\\sqrt{5^2}=5$ untuk $5>0$",
+          label: "$a+b=29$",
         },
         {
           isCorrect: true,
-          label: "$(-5)^2=5^2$",
+          label: "$|a-b|=21$",
         },
         {
           isCorrect: false,
-          label: "$5^{-1}=-5$",
+          label: "$\\sqrt{a+b}=7$",
         },
         {
           isCorrect: true,
-          label: "$5^{\\frac12}\\cdot 5^{\\frac12}=5$",
+          label: "$(a-b)^2=441$",
+        },
+        {
+          isCorrect: true,
+          label: "$\\frac1{\\sqrt a}+\\frac1{\\sqrt b}=\\frac7{10}$",
         },
       ],
     },

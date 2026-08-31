@@ -11,24 +11,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Bibit kemungkinan besar hilang karena penandanya tidak ditemukan pada pemantauan itu",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bibit dianggap mati karena tidak ditemukan ketika penandanya hilang",
+        },
+        {
           isCorrect: true,
           label: "Bibit tidak ditemukan; status hidup belum dapat dipastikan",
         },
         {
           isCorrect: false,
-          label: "Bibit pasti hilang selamanya",
+          label:
+            "Pemantauan belum dapat digunakan sebelum setiap bibit ditemukan kembali",
         },
         {
           isCorrect: false,
-          label: "Semua bibit di lokasi telah mati",
-        },
-        {
-          isCorrect: false,
-          label: "Pemantauan tidak berguna",
-        },
-        {
-          isCorrect: false,
-          label: "Arus pasti merusak seluruh tanaman",
+          label:
+            "Arus dapat dianggap penyebab kematian karena beberapa penanda ikut terbawa",
         },
       ],
     },

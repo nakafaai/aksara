@@ -7,7 +7,15 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang kampung pada malam hujan",
+          label: "Benda berulang yang tetap menjadi bagian latar",
+        },
+        {
+          isCorrect: false,
+          label: "Konflik yang selesai sebelum pilihan akhir tokoh",
+        },
+        {
+          isCorrect: false,
+          label: "akhir terbuka sebagai istilah tanpa peran dalam cerita",
         },
         {
           isCorrect: true,
@@ -15,16 +23,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label:
-            "Alasan Mengabaikan Semua Bukti dalam kampung pada malam hujan",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap akhir terbuka di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap kampung pada malam hujan",
+          label: "Akhir yang menghapus ketegangan makna benda",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap tur bangunan bersejarah tanpa membahas keputusan atau bukti.",
+            "Siswa membandingkan dua jenis sumber tentang tur bangunan bersejarah untuk menyusun penjelasan yang final dan dianggap berlaku untuk semua masa.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap tur bangunan bersejarah.",
+            "Siswa membandingkan dua jenis sumber tentang tur bangunan bersejarah untuk menyusun penjelasan yang yang menghapus perbedaan tujuan kedua sumber.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Siswa membandingkan dua jenis sumber tentang tur bangunan bersejarah untuk menyusun penjelasan yang dengan mengikuti sumber yang lebih baru secara otomatis.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Siswa membandingkan dua jenis sumber tentang tur bangunan bersejarah untuk menyusun penjelasan yang tanpa menilai asal serta tujuan tiap sumber.",
         },
         {
           isCorrect: true,
           label:
             "Siswa membandingkan dua jenis sumber tentang tur bangunan bersejarah untuk menyusun penjelasan yang terbatas dan dapat diperiksa.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan terutama menjelaskan definisi triangulasi tanpa menghubungkannya dengan konteks.",
         },
       ],
     },

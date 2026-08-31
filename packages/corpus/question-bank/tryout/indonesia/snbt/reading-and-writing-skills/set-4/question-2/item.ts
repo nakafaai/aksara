@@ -6,28 +6,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Fotoetiketten an den Rückgaberegalen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Ausleihe von Sportgeräten über den beiden anderen Werten.",
-        },
-        {
           isCorrect: true,
-          label: "festgestellt, ohne bereits eine Ursache zu behaupten",
+          label:
+            "ein Tag, an dem der bisherige Ablauf als Bezug zum Versuch beibehalten wurde",
         },
         {
           isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Fotoetiketten an den Rückgaberegalen.",
+          label: "der Tag, an dem das Endergebnis bekannt gegeben wurde",
         },
         {
           isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Fotoetiketten an den Rückgaberegalen.",
+          label: "der erste Tag vor Beginn der Ausgangsmessung",
+        },
+        {
+          isCorrect: false,
+          label: "ein Tag, an dem zwei Änderungen gleichzeitig geprüft wurden",
+        },
+        {
+          isCorrect: false,
+          label: "ein Tag ohne Betrieb, damit das Personal pausieren konnte",
         },
       ],
     },
@@ -35,28 +32,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "The hypothesis therefore needed a limited test of photo labels on the return shelves.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (sports equipment lending), the trial value exceeded both other values.",
-        },
-        {
           isCorrect: true,
-          label: "noticed without already claiming a cause",
+          label:
+            "a day on which the earlier process was retained as a reference for the trial",
         },
         {
           isCorrect: false,
-          label:
-            "The change, photo labels on the return shelves, directly addressed the observed uncertainty.",
+          label: "the day when the final result was announced to users",
         },
         {
           isCorrect: false,
-          label:
-            "The next test of photo labels on the return shelves will run for longer.",
+          label: "the first day before baseline recording began",
+        },
+        {
+          isCorrect: false,
+          label: "a day on which two changes were tested together",
+        },
+        {
+          isCorrect: false,
+          label: "a day without activity so that staff could rest",
         },
       ],
     },
@@ -64,27 +58,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui label foto.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Di peminjaman alat olahraga, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
           isCorrect: true,
-          label: "mencatat gejala tanpa langsung memastikan penyebabnya",
-        },
-        {
-          isCorrect: false,
           label:
-            "Perubahan berupa label foto langsung menanggapi keraguan yang diamati.",
+            "hari ketika alur lama dipakai sebagai acuan terhadap hari uji",
         },
         {
           isCorrect: false,
-          label: "Uji label foto berikutnya akan berlangsung lebih lama.",
+          label: "hari ketika hasil akhir diumumkan kepada pengguna",
+        },
+        {
+          isCorrect: false,
+          label: "hari pertama sebelum pencatatan nilai awal dimulai",
+        },
+        {
+          isCorrect: false,
+          label: "hari ketika dua perubahan diuji sekaligus",
+        },
+        {
+          isCorrect: false,
+          label: "hari tanpa kegiatan agar petugas dapat beristirahat",
         },
       ],
     },

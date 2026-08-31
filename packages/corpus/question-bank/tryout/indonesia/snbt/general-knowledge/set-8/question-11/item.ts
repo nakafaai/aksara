@@ -8,26 +8,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Jedes Objekt muss ohne Haupttitel erscheinen, damit alle Namen wirklich gleichgestellt sind.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Der am häufigsten zitierte Name muss von der Herstellerin stammen.",
         },
         {
           isCorrect: false,
-          label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+          label: "Ein Name im alten Buch wurde von einem Kurator geschaffen.",
         },
         {
           isCorrect: false,
-          label: "Der Wert mit Änderung, 32, lag über 23 und 25.",
+          label: "Suchergebnisse werden die Quelle jedes Namens anzeigen.",
         },
         {
           isCorrect: true,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Ein Haupttitel kann der Navigation dienen, ohne zur einzigen Wahrheit über ein Objekt zu werden.",
         },
       ],
     },
@@ -37,26 +36,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "Every object must be displayed without a primary title for all names to be truly equal.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "The most frequently cited name must be the one given by the cloth's maker.",
         },
         {
           isCorrect: false,
-          label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+          label: "One name in an old book was created by a curator.",
         },
         {
           isCorrect: false,
-          label: "The intervention value, 32, exceeded both 23 and 25.",
+          label: "Search results will display the source of every name.",
         },
         {
           isCorrect: true,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "A primary title can support navigation without becoming the sole truth about an object.",
         },
       ],
     },
@@ -66,26 +64,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Setiap objek harus ditampilkan tanpa judul utama agar semua nama benar-benar setara.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Nama yang paling sering dikutip pasti merupakan nama yang diberikan pembuat kain.",
         },
         {
           isCorrect: false,
-          label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+          label: "Salah satu nama dalam buku lama dibuat oleh kurator.",
         },
         {
           isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 32, melampaui 23 dan 25.",
+          label: "Hasil pencarian akan menampilkan sumber setiap nama.",
         },
         {
           isCorrect: true,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Judul utama dapat dipakai untuk navigasi tanpa dijadikan satu-satunya kebenaran tentang objek.",
         },
       ],
     },

@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$4x - 3y = 7$$",
-        },
-        {
           isCorrect: false,
           label: "$$4x + 3y = 25$$",
         },
@@ -24,6 +20,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$-3x + 4y = 25$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$4x - 3y = 7$$",
         },
       ],
     },
@@ -31,10 +31,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$4x - 3y = 7$$",
-        },
-        {
           isCorrect: false,
           label: "$$4x + 3y = 25$$",
         },
@@ -49,6 +45,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$-3x + 4y = 25$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$4x - 3y = 7$$",
         },
       ],
     },
@@ -56,10 +56,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$4x - 3y = 7$$",
-        },
-        {
           isCorrect: false,
           label: "$$4x + 3y = 25$$",
         },
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$-3x + 4y = 25$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$4x - 3y = 7$$",
         },
       ],
     },

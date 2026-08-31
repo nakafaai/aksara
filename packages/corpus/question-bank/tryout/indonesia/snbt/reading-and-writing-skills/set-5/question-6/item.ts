@@ -8,22 +8,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Geordnete Prüfung einer Änderung: Erfassung von Straßenbäumen",
+            "Im Kontext Straßenbaumerhebung verursachte die Änderung Beispielfotos für jede Zustandskategorie den höheren Testwert.",
         },
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Beispielfotos für jede Zustandskategorie.",
+            "Im Kontext Straßenbaumerhebung verbesserten sich sämtliche Teilnehmenden um denselben Wert.",
         },
         {
           isCorrect: false,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Beispielfotos für jede Zustandskategorie.",
+            "Im Kontext Straßenbaumerhebung waren die beiden Vergleichswerte identisch.",
         },
         {
           isCorrect: false,
           label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Beispielfotos für jede Zustandskategorie.",
+            "Im Kontext Straßenbaumerhebung belegte der kurze Test das langfristige Ergebnis.",
         },
         {
           isCorrect: true,
@@ -37,22 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: street-tree survey",
+          label:
+            "In this setting (street-tree survey), sample photos for each condition category caused the higher trial value.",
         },
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of sample photos for each condition category.",
+            "In this setting (street-tree survey), each participant improved by the same amount.",
         },
         {
           isCorrect: false,
           label:
-            "The change, sample photos for each condition category, directly addressed the observed uncertainty.",
+            "In this setting (street-tree survey), the two comparison values were identical.",
         },
         {
           isCorrect: false,
           label:
-            "The next test of sample photos for each condition category will run for longer.",
+            "In this setting (street-tree survey), the short trial established the long-term result.",
         },
         {
           isCorrect: true,
@@ -66,22 +67,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: pendataan pohon jalan",
+          label:
+            "Dalam konteks survei pohon jalan, foto contoh untuk setiap kategori kondisi menyebabkan nilai uji menjadi lebih tinggi.",
         },
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui contoh foto untuk setiap kategori kondisi.",
+            "Dalam konteks survei pohon jalan, setiap peserta mengalami peningkatan yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa contoh foto untuk setiap kategori kondisi langsung menanggapi keraguan yang diamati.",
+            "Dalam konteks survei pohon jalan, kedua nilai pembanding sama.",
         },
         {
           isCorrect: false,
           label:
-            "Uji contoh foto untuk setiap kategori kondisi berikutnya akan berlangsung lebih lama.",
+            "Dalam konteks survei pohon jalan, uji singkat menetapkan hasil jangka panjang.",
         },
         {
           isCorrect: true,

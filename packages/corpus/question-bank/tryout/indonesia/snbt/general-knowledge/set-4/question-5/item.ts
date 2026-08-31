@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Vorteile digitaler Zahlungen müssen mit vergleichbaren Daten und unter Berücksichtigung des Zugangs bewertet werden; ihre Ergänzung rechtfertigt nicht automatisch die Abschaffung von Bargeld.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vorsichtige Prüfung im Kontext Dachgarten einer Schule: Farbetiketten für den Lichtbedarf",
+            "Die Transaktionsdauer kann von der Warenart und nicht nur von der Zahlungsweise abhängen.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team prüfte Farbetiketten für den Lichtbedarf (Dachgarten einer Schule) und bewertete die Befunde vorsichtig.",
+            "Nach der Aufteilung der Daten verschwand der Zeitvorteil bei großen Einkäufen fast vollständig.",
         },
         {
           isCorrect: false,
-          label: "Der Wert mit Änderung, 31, lag über 22 und 24.",
+          label:
+            "Im nächsten Test wird das Netz verbessert und werden Einkäufe mit ähnlicher Artikelzahl verglichen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Digitale Zahlung ist nachweislich immer schneller und sollte Bargeld auf jedem Markt ersetzen.",
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "Digital payment benefits must be judged with comparable data and user access, so adding it does not automatically justify removing cash.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A cautious trial of colour labels for light requirements: school rooftop garden",
+            "Transaction time may depend on the type of goods rather than only on payment method.",
         },
         {
           isCorrect: true,
           label:
-            "The team tested colour labels for light requirements in the school rooftop garden and interpreted the evidence cautiously.",
+            "After the data were separated, the time advantage nearly disappeared for transactions with many items.",
         },
         {
           isCorrect: false,
-          label: "The intervention value, 31, exceeded both 22 and 24.",
+          label:
+            "The next test will improve the network and compare purchases with similar item counts.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Digital payment is proven always faster and should replace cash in every market.",
         },
       ],
     },
@@ -66,26 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Manfaat pembayaran digital perlu dinilai dengan data yang sebanding dan akses pengguna, sehingga penambahannya tidak otomatis berarti penghapusan tunai.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji Hati-hati dalam kebun atap sekolah: label warna untuk kebutuhan cahaya",
+            "Perbedaan waktu transaksi dapat dipengaruhi jenis barang dan bukan hanya cara pembayaran.",
         },
         {
           isCorrect: true,
           label:
-            "Tim menguji label warna untuk kebutuhan cahaya pada kebun atap sekolah dan menafsirkan buktinya secara hati-hati.",
+            "Setelah data dipisahkan, keunggulan waktu hampir hilang pada transaksi dengan banyak barang.",
         },
         {
           isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 31, melampaui 22 dan 24.",
+          label:
+            "Uji berikutnya akan memperbaiki jaringan dan membandingkan jumlah barang yang sebanding.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pembayaran digital terbukti selalu lebih cepat dan harus menggantikan uang tunai di semua pasar.",
         },
       ],
     },

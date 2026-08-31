@@ -11,24 +11,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9$$",
+        },
+        {
           isCorrect: true,
-          label: "6 m",
+          label: "$$10$$",
         },
         {
           isCorrect: false,
-          label: "4 m",
+          label: "$$11$$",
         },
         {
           isCorrect: false,
-          label: "5 m",
-        },
-        {
-          isCorrect: false,
-          label: "7 m",
-        },
-        {
-          isCorrect: false,
-          label: "8 m",
+          label: "$$12$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9$$",
+        },
+        {
           isCorrect: true,
-          label: "6 m",
+          label: "$$10$$",
         },
         {
           isCorrect: false,
-          label: "4 m",
+          label: "$$11$$",
         },
         {
           isCorrect: false,
-          label: "5 m",
-        },
-        {
-          isCorrect: false,
-          label: "7 m",
-        },
-        {
-          isCorrect: false,
-          label: "8 m",
+          label: "$$12$$",
         },
       ],
     },
@@ -61,24 +61,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9$$",
+        },
+        {
           isCorrect: true,
-          label: "6 m",
+          label: "$$10$$",
         },
         {
           isCorrect: false,
-          label: "4 m",
+          label: "$$11$$",
         },
         {
           isCorrect: false,
-          label: "5 m",
-        },
-        {
-          isCorrect: false,
-          label: "7 m",
-        },
-        {
-          isCorrect: false,
-          label: "8 m",
+          label: "$$12$$",
         },
       ],
     },

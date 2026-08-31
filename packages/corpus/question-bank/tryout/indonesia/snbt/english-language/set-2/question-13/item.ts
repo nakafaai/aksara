@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "A varied, balanced diet supports adequate nutrient intake without guaranteeing immunity from illness.",
+        },
+        {
           isCorrect: false,
           label: "Vitamin C is the only nutrient involved in immune function.",
         },
@@ -21,11 +26,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Dietary change is useful only when completed in one day.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "A varied, balanced diet supports adequate nutrient intake without guaranteeing immunity from illness.",
         },
       ],
     },

@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Eine Beratung ist nur gültig, wenn jeder Vorschlag angenommen wird.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Wegen der offenen Einladung müssen Herkunft und Abwesenheitsgründe nicht geprüft werden.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Fast alle ersten Redebeiträge kamen aus den drei nächstgelegenen Vierteln.",
         },
         {
           isCorrect: true,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Inklusiv bedeutet praktikable Wege zur Berücksichtigung verschiedener Gruppen, nicht den Sieg jeder Forderung.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label: "vollständig geprüfte Geräte und kurze Aussagen von Nutzenden",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte einen Prüftisch vor der Warteschlange für Techniker (Reparaturwerkstatt für Elektronik) und bewertete die Befunde vorsichtig.",
+            "Inklusive Beteiligung verlangt den Abbau tatsächlicher Hindernisse und die Prüfung der Repräsentation, nicht nur eine offene Einladung.",
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "A consultation is valid only if every resident proposal is ultimately accepted.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Because the invitation was open, participant origins and reasons for absence need not be examined.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Nearly every initial speaker came from the three nearest neighbourhoods.",
         },
         {
           isCorrect: true,
           label:
-            "days when the earlier process continued without the tested change",
+            "Inclusive means providing workable ways for different groups to be considered, not guaranteeing that every demand wins.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label: "devices fully inspected and short comments from users",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested an initial inspection desk before the technician queue in the electronics repair clinic and interpreted the evidence cautiously.",
+            "Inclusive participation requires reducing practical barriers and examining representation, not merely issuing an open invitation.",
         },
       ],
     },
@@ -66,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Musyawarah hanya sah jika setiap usulan warga akhirnya diterima.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Karena undangan terbuka, asal peserta dan alasan ketidakhadiran tidak perlu diperiksa.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Hampir seluruh pembicara pertama berasal dari tiga rukun tetangga terdekat.",
         },
         {
           isCorrect: true,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Inklusif berarti menyediakan cara yang layak agar beragam kelompok dapat dipertimbangkan, bukan menjamin semua tuntutan menang.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "perangkat yang selesai diperiksa dan komentar singkat pengguna",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji meja pemeriksaan awal sebelum antrean teknisi pada klinik perbaikan elektronik dan menafsirkan buktinya secara hati-hati.",
+            "Partisipasi yang inklusif menuntut pengurangan hambatan nyata dan pemeriksaan keterwakilan, bukan sekadar undangan terbuka.",
         },
       ],
     },

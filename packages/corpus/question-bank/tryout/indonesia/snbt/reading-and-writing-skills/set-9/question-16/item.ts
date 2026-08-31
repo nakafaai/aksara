@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Die Nutzenden im Kontext Musikproberäume gaben kurze und knappe Rückmeldungen.",
+        },
+        {
           isCorrect: true,
           label:
             "Die Nutzenden im untersuchten Kontext (Musikproberäume) gaben kurze Rückmeldungen.",
@@ -13,28 +18,28 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Nutzenden Nutzenden im Kontext Musikproberäume gaben kurze Rückmeldungen.",
+            "Die Nutzenden im Kontext Musikproberäume gaben ihre eigenen kurzen Rückmeldungen persönlich ab.",
         },
         {
           isCorrect: false,
           label:
-            "Alle sämtlichen Nutzenden im Kontext Musikproberäume gaben Rückmeldungen.",
+            "Die Nutzenden im Kontext Musikproberäume gaben kurze Rückmeldungen in knapper Form.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Musikproberäume gaben kurze knappe Rückmeldungen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Nutzenden im Kontext Musikproberäume gaben erneut wieder Rückmeldungen.",
+            "Die Nutzenden im Kontext Musikproberäume gaben kurze Rückmeldungen über ihre Erfahrungen in diesem Kontext.",
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: false,
+          label:
+            "Users in this setting (music practice rooms) provided comments that were brief and concise.",
+        },
         {
           isCorrect: true,
           label:
@@ -43,28 +48,28 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Users users in this setting (music practice rooms) provided brief comments.",
+            "Users in this setting (music practice rooms) provided their own brief comments personally.",
         },
         {
           isCorrect: false,
           label:
-            "All of every user in this setting (music practice rooms) provided comments.",
+            "Users in this setting (music practice rooms) provided brief comments in a short form.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (music practice rooms) provided brief short comments.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Users in this setting (music practice rooms) provided comments again repeatedly.",
+            "Users in this setting (music practice rooms) provided brief comments about their experience in this setting.",
         },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: false,
+          label:
+            "Para pengguna dalam konteks ruang latihan musik memberikan komentar yang singkat dan ringkas.",
+        },
         {
           isCorrect: true,
           label:
@@ -73,22 +78,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Para pengguna-pengguna di ruang latihan musik memberikan komentar singkat.",
+            "Para pengguna dalam konteks ruang latihan musik memberikan komentar singkat mereka sendiri secara pribadi.",
         },
         {
           isCorrect: false,
           label:
-            "Sejumlah para pengguna di ruang latihan musik memberikan komentar.",
+            "Para pengguna dalam konteks ruang latihan musik memberikan komentar singkat dalam bentuk pendek.",
         },
         {
           isCorrect: false,
           label:
-            "Para semua pengguna di ruang latihan musik memberikan komentar singkat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Para pengguna di ruang latihan musik memberikan komentar singkat pendek.",
+            "Para pengguna dalam konteks ruang latihan musik memberikan komentar singkat tentang pengalaman mereka dalam konteks tersebut.",
         },
       ],
     },

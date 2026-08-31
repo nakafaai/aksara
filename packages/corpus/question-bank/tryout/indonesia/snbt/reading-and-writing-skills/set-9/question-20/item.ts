@@ -8,17 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontext „Musikproberäume“",
+            "Da 29 über 21 und 23 lag, erklärte das Team ein nach Ausfällen aktualisierter digitaler Zeitplan für wirksam und führte die Änderung dauerhaft ein.",
         },
         {
           isCorrect: false,
           label:
-            "Am Montag prüfte das Team einen nach Absagen aktualisierten digitalen Plan im folgenden Kontext: Musikproberäume.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "die Folgestudie des Teams im untersuchten Kontext (Musikproberäume)",
+            "Das Team verglich 29, 21 und 23 und plante eine längere Wiederholung, ohne die Aussage auf Musikproberäume zu begrenzen.",
         },
         {
           isCorrect: true,
@@ -28,7 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im untersuchten Kontext (Musikproberäume) gaben kurze Rückmeldungen.",
+            "Das Team begrenzte die Aussage auf Musikproberäume und plante eine längere Wiederholung, ohne den Vergleich zu nennen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Werte 29, 21 und 23 zeigten kein relevantes Muster, daher wollte das Team die Messregeln ändern.",
         },
       ],
     },
@@ -38,17 +38,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "an analysis of the effectiveness of a digital schedule updated after cancellations in this setting (music practice rooms)",
+            "Because 29 exceeded 21 and 23, the team concluded that the change was effective and adopted it permanently.",
         },
         {
           isCorrect: false,
           label:
-            "On Monday, the team tested a digital schedule updated after cancellations in this setting (music practice rooms).",
-        },
-        {
-          isCorrect: false,
-          label:
-            "the team's follow-up study of a digital schedule updated after cancellations in this setting (music practice rooms)",
+            "The team compared 29, 21, and 23 and planned a longer repetition without limiting the claim to the context of music practice rooms.",
         },
         {
           isCorrect: true,
@@ -58,7 +53,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Users in this setting (music practice rooms) provided brief comments.",
+            "The team limited its claim to the context of music practice rooms and planned a longer repetition without reporting the comparison.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The values 29, 21, and 23 showed no relevant pattern, so the team planned to change the measurement rules.",
         },
       ],
     },
@@ -68,17 +68,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "analisis efektivitas jadwal digital yang diperbarui setelah pembatalan di ruang latihan musik",
+            "Karena 29 lebih tinggi daripada 21 dan 23, tim menyimpulkan bahwa jadwal digital yang diperbarui setelah pembatalan efektif lalu menerapkannya secara tetap.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin, tim menguji jadwal digital yang diperbarui setelah pembatalan di ruang latihan musik.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "kerja sama tim dalam uji jadwal digital yang diperbarui setelah pembatalan di ruang latihan musik",
+            "Tim membandingkan 29, 21, dan 23 serta merencanakan pengulangan lebih panjang tanpa membatasi klaim pada ruang latihan musik.",
         },
         {
           isCorrect: true,
@@ -88,7 +83,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Para pengguna di ruang latihan musik memberikan komentar singkat.",
+            "Tim membatasi klaim pada ruang latihan musik dan merencanakan pengulangan lebih panjang tanpa melaporkan perbandingan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Nilai 29, 21, dan 23 tidak menunjukkan pola yang relevan sehingga tim akan mengubah kaidah pengukuran.",
         },
       ],
     },

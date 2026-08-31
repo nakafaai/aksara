@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "November",
         },
         {
-          isCorrect: false,
-          label: "Januar",
-        },
-        {
           isCorrect: true,
           label: "Dezember",
+        },
+        {
+          isCorrect: false,
+          label: "Januar",
         },
         {
           isCorrect: false,
@@ -32,8 +32,8 @@ const item: QuestionItem = {
       options: [
         { isCorrect: false, label: "October" },
         { isCorrect: false, label: "November" },
-        { isCorrect: false, label: "January" },
         { isCorrect: true, label: "December" },
+        { isCorrect: false, label: "January" },
         { isCorrect: false, label: "February" },
       ],
     },
@@ -42,8 +42,8 @@ const item: QuestionItem = {
       options: [
         { isCorrect: false, label: "Oktober" },
         { isCorrect: false, label: "November" },
-        { isCorrect: false, label: "Januari" },
         { isCorrect: true, label: "Desember" },
+        { isCorrect: false, label: "Januari" },
         { isCorrect: false, label: "Februari" },
       ],
     },

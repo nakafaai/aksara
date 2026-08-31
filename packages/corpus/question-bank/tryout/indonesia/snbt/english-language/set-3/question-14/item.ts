@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "in this passage, an assumption that never needs to be examined in the school media room",
+            "The term *self-efficacy* proves that the character's first estimate was correct before any accountable action was taken.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, a final result that always applies to every situation",
+            "The definition reduces *self-efficacy* to the recurring object, so the character's choice and development no longer matter.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, a detail removed because it challenges an opinion",
+            "The term *self-efficacy* describes the final outcome as certain, even though the narrative presents a gradual change.",
         },
         {
           isCorrect: true,
           label:
-            "confidence that grows from successfully managing specific tasks",
+            "The definition of *self-efficacy* provides a lens for reading the character's specific choice as a response to uncertainty, not as an isolated moral label.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, decorative language unrelated to the setting",
+            "The definition is included only to name the setting and has no connection to the character's decision.",
         },
       ],
     },

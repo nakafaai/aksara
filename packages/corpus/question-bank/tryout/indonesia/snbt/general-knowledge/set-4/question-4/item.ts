@@ -7,23 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "für mehr als eine Deutung offen",
+          label:
+            "Das Team erzielt bei gleicher Qualität ein gleichwertiges Ergebnis mit weniger Zeit und Energie.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Auswirkung ist groß genug, um das Hauptergebnis zu verändern, und nicht nur eine kleine Randabweichung.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die letzte zusätzliche Einheit bringt gegenüber der vorherigen nur einen geringen Mehrnutzen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Der Bericht bewertet Nutzen, Risiken, Kosten und Auswirkungen auf verschiedene Gruppen, bevor er eine Empfehlung abgibt.",
         },
         {
           isCorrect: true,
-          label: "dem Umfang des Problems angemessen",
-        },
-        {
-          isCorrect: false,
-          label: "durch verlässliche Belege gestützt",
-        },
-        {
-          isCorrect: false,
-          label: "fähig, sich an veränderte Bedingungen anzupassen",
-        },
-        {
-          isCorrect: false,
-          label: "deutlich genug, um beachtet zu werden",
+          label:
+            "Stichprobengröße und Ressourcen werden im Verhältnis zur Reichweite der beabsichtigten Aussage erhöht.",
         },
       ],
     },
@@ -32,23 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "open to more than one interpretation",
+          label:
+            "The team obtains an equivalent output with less time and energy without reducing quality.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The effect is large enough to change the main outcome rather than merely adding a small edge variation.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The final additional unit provides only a small increase in benefit compared with the previous unit.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The report assesses benefits, risks, costs, and effects on different groups before making a recommendation.",
         },
         {
           isCorrect: true,
-          label: "appropriate to the scale of the problem",
-        },
-        {
-          isCorrect: false,
-          label: "supported by dependable evidence",
-        },
-        {
-          isCorrect: false,
-          label: "able to adjust to changing conditions",
-        },
-        {
-          isCorrect: false,
-          label: "large or important enough to deserve attention",
+          label:
+            "Sample size and resources are increased in proportion to the scope of the intended claim.",
         },
       ],
     },
@@ -57,23 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
+          label:
+            "Tim memperoleh keluaran setara dengan waktu dan energi lebih sedikit tanpa menurunkan mutu.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Dampaknya cukup besar untuk mengubah hasil utama, bukan sekadar variasi kecil di tepi.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Unit tambahan terakhir hanya memberi kenaikan manfaat yang kecil dibanding unit sebelumnya.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Laporan menilai manfaat, risiko, biaya, dan dampak pada berbagai kelompok sebelum memberi rekomendasi.",
         },
         {
           isCorrect: true,
-          label: "sepadan dengan skala masalah",
-        },
-        {
-          isCorrect: false,
-          label: "didukung oleh bukti yang dapat dipercaya",
-        },
-        {
-          isCorrect: false,
-          label: "mampu menyesuaikan diri dengan kondisi yang berubah",
-        },
-        {
-          isCorrect: false,
-          label: "cukup besar atau penting untuk diperhatikan",
+          label:
+            "Ukuran sampel dan sumber daya ditambah sepadan dengan luas klaim yang hendak dibuat.",
         },
       ],
     },

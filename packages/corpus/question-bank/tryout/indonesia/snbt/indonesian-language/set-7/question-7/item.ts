@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam simulasi populasi dengan keping warna.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Semua tokoh atau pihak dalam simulasi populasi dengan keping warna memperoleh hasil yang sama tanpa perbedaan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan simulasi populasi dengan keping warna.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut daya dukung sebagai bukti bahwa uji tidak perlu diulang.",
+            'Karena langkah "setiap putaran menambah keping individu, sedangkan keping makanan dibatasi" dapat diulang, model sudah mencakup faktor yang hilang ketika aturan sederhana tidak memuat migrasi, umur, atau variasi genetik dan dapat menggantikan pengamatan lapangan.',
         },
         {
           isCorrect: true,
           label:
-            "Siswa menggunakan model untuk mengulang langkah dan memeriksa hubungan antarbagiannya.",
+            "Pengulangan langkah pada model membantu memeriksa bahwa pertumbuhan populasi melambat ketika sumber daya menjadi terbatas; karena aturan sederhana tidak memuat migrasi, umur, atau variasi genetik, pola itu menjadi hipotesis untuk pengamatan nyata, bukan bukti langsung tentang seluruh keadaan lapangan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Keterbatasan bahwa aturan sederhana tidak memuat migrasi, umur, atau variasi genetik membuat hubungan bahwa pertumbuhan populasi melambat ketika sumber daya menjadi terbatas tidak dapat diperiksa, bahkan di dalam model.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Hubungan bahwa pertumbuhan populasi melambat ketika sumber daya menjadi terbatas dapat diterapkan langsung pada keadaan nyata selama urutan model diulang dengan cara yang sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi istilah pada akhir bacaan sudah cukup membuktikan hubungan sebab dalam simulasi populasi dengan keping warna, meskipun bagian model tidak dibandingkan.",
         },
       ],
     },

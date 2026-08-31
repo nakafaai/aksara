@@ -12,11 +12,18 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "noda membuat Laras menolak semua peta",
+          label:
+            "noda membuat Laras menganggap peta awal tidak lagi berguna untuk pemeriksaan lapangan",
+        },
+        {
+          isCorrect: true,
+          label:
+            "noda memicu pemeriksaan yang mengubah rasa kesal menjadi kehati-hatian",
         },
         {
           isCorrect: false,
-          label: "noda membuktikan jalur lama sudah benar",
+          label:
+            "noda membuat Laras menganggap jalur lama masih dapat dipakai tanpa pemeriksaan tambahan",
         },
         {
           isCorrect: false,
@@ -24,12 +31,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "noda membuat Laras berhenti bertanya",
-        },
-        {
-          isCorrect: true,
           label:
-            "noda memicu pemeriksaan yang mengubah rasa kesal menjadi kehati-hatian",
+            "noda membuat Laras menganggap catatan lapangan tidak dapat dipercaya",
         },
       ],
     },

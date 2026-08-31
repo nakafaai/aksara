@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "Kereta seremonial",
         },
         {
+          isCorrect: true,
+          label: "Perbudakan dan kerja paksa",
+        },
+        {
           isCorrect: false,
           label: "Kedai makanan siap saji Romawi",
         },
@@ -20,10 +24,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Kampanye pemilihan umum",
-        },
-        {
-          isCorrect: true,
-          label: "Perbudakan dan kerja paksa",
         },
       ],
     },

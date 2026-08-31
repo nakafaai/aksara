@@ -6,28 +6,27 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Mengukur reflektor melalui satu perbandingan awal",
+        },
+        {
           isCorrect: true,
           label:
-            "Menguji reflektor pada sudut 45 derajat dalam pemanasan air dengan oven surya model",
+            "Pengaruh Sudut Reflektor terhadap Pemanasan Air dalam Oven Surya Model",
         },
         {
           isCorrect: false,
           label:
-            "Kepastian Mutlak tentang pemanasan air dengan oven surya model",
+            "Menjadikan reflektor penjelasan tunggal atas hasil pengamatan",
+        },
+        {
+          isCorrect: false,
+          label: "Kaidah akhir dari perbandingan pertama tentang reflektor",
         },
         {
           isCorrect: false,
           label:
-            "Alasan Mengabaikan Semua Bukti dalam pemanasan air dengan oven surya model",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap reflektor di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Satu Aturan untuk Setiap pemanasan air dengan oven surya model",
+            "Keterbatasan yang membuat uji lanjutan reflektor tidak diperlukan",
         },
       ],
     },

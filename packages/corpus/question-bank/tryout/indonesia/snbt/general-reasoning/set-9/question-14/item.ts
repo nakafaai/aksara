@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Q, P, R, N",
+          label: "A, C, B, D, E",
+        },
+        {
+          isCorrect: false,
+          label: "D, C, A, E, B",
+        },
+        {
+          isCorrect: false,
+          label: "E, D, A, C, B",
         },
         {
           isCorrect: true,
-          label: "P, N, R, Q",
+          label: "D, A, C, E, B",
         },
         {
           isCorrect: false,
-          label: "R, P, N, Q",
-        },
-        {
-          isCorrect: false,
-          label: "N, P, Q, R",
-        },
-        {
-          isCorrect: false,
-          label: "P, Q, N, R",
+          label: "A, D, C, B, E",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Q, P, R, N",
+          label: "A, C, B, D, E",
+        },
+        {
+          isCorrect: false,
+          label: "D, C, A, E, B",
+        },
+        {
+          isCorrect: false,
+          label: "E, D, A, C, B",
         },
         {
           isCorrect: true,
-          label: "P, N, R, Q",
+          label: "D, A, C, E, B",
         },
         {
           isCorrect: false,
-          label: "R, P, N, Q",
-        },
-        {
-          isCorrect: false,
-          label: "N, P, Q, R",
-        },
-        {
-          isCorrect: false,
-          label: "P, Q, N, R",
+          label: "A, D, C, B, E",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Q, P, R, N",
+          label: "A, C, B, D, E",
+        },
+        {
+          isCorrect: false,
+          label: "D, C, A, E, B",
+        },
+        {
+          isCorrect: false,
+          label: "E, D, A, C, B",
         },
         {
           isCorrect: true,
-          label: "P, N, R, Q",
+          label: "D, A, C, E, B",
         },
         {
           isCorrect: false,
-          label: "R, P, N, Q",
-        },
-        {
-          isCorrect: false,
-          label: "N, P, Q, R",
-        },
-        {
-          isCorrect: false,
-          label: "P, Q, N, R",
+          label: "A, D, C, B, E",
         },
       ],
     },

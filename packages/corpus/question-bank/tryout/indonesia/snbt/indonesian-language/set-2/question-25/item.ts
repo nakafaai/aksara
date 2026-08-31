@@ -10,17 +10,17 @@ const item: QuestionItem = {
           label: "Seluruh individu meninggal dalam badai yang sama",
         },
         {
-          isCorrect: true,
-          label:
-            "Jasad-jasad tersebut tidak berasal dari satu peristiwa kematian",
-        },
-        {
           isCorrect: false,
           label: "Kelompok Mediterania timur merupakan kelompok tertua",
         },
         {
           isCorrect: false,
           label: "Semua individu Asia Selatan meninggal pada hari yang sama",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Jasad-jasad tersebut tidak berasal dari satu peristiwa kematian",
         },
         {
           isCorrect: false,

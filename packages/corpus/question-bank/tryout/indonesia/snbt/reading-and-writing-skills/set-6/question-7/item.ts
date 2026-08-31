@@ -8,22 +8,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Geordnete Prüfung einer Änderung: Ausstellung von Schülerarbeiten",
+            "Das Team testete die Änderung Richtungspfeile an jeder Kreuzung an ausgewählten Tagen, weil das frühere Verfahren bereits als unwirksam galt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Richtungspfeile an jeder Abzweigung.",
+            "Das Team führte die Änderung Richtungspfeile an jeder Kreuzung dauerhaft ein, während das frühere Verfahren nur in den Rückmeldungen erhalten blieb.",
         },
         {
           isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Ausstellung von Schülerarbeiten über den beiden anderen Werten.",
+            "Das Team testete die Änderung Richtungspfeile an jeder Kreuzung und das frühere Verfahren an denselben Tagen ohne getrennte Vergleichsbedingungen.",
         },
         {
           isCorrect: false,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Richtungspfeile an jeder Abzweigung.",
+            "Das Team verglich Tage mit der Änderung Richtungspfeile an jeder Kreuzung mit Rückmeldungen zum früheren Verfahren.",
         },
         {
           isCorrect: true,
@@ -37,22 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: student work exhibition",
+          label:
+            "The team tested direction arrows placed at each junction on selected days because the earlier process had already been proved ineffective.",
         },
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of direction arrows placed at each junction.",
+            "The team tested direction arrows placed at each junction permanently, while the earlier process remained only in user records.",
         },
         {
           isCorrect: false,
           label:
-            "In this setting (student work exhibition), the trial value exceeded both other values.",
+            "The team tested direction arrows placed at each junction and the earlier process on the same days without separate comparison conditions.",
         },
         {
           isCorrect: false,
           label:
-            "The change, direction arrows placed at each junction, directly addressed the observed uncertainty.",
+            "The team compared selected days using direction arrows placed at each junction with comments about the earlier process.",
         },
         {
           isCorrect: true,
@@ -66,22 +67,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: pameran karya siswa",
+          label:
+            "Tim menguji panah arah di setiap persimpangan pada hari tertentu karena proses lama telah terbukti tidak efektif.",
         },
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui panah arah yang ditempatkan.",
+            "Tim menerapkan panah arah di setiap persimpangan secara tetap, sedangkan proses lama hanya tersisa dalam catatan pengguna.",
         },
         {
           isCorrect: false,
           label:
-            "Di pameran karya siswa, nilai hari uji melampaui dua nilai lainnya.",
+            "Tim menguji panah arah di setiap persimpangan dan proses lama pada hari yang sama tanpa kondisi pembanding terpisah.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa panah arah yang ditempatkan langsung menanggapi keraguan yang diamati.",
+            "Tim membandingkan hari penggunaan panah arah di setiap persimpangan dengan komentar tentang proses lama.",
         },
         {
           isCorrect: true,

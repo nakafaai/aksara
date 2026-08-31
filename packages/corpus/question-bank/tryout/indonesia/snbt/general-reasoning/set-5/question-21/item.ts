@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$68$$",
+          label: "$$30$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$32$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$36$$",
         },
         {
           isCorrect: true,
-          label: "$$71$$",
+          label: "$$34$$",
         },
         {
           isCorrect: false,
-          label: "$$74$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$77$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$65$$",
+          label: "$$40$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$68$$",
+          label: "$$30$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$32$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$36$$",
         },
         {
           isCorrect: true,
-          label: "$$71$$",
+          label: "$$34$$",
         },
         {
           isCorrect: false,
-          label: "$$74$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$77$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$65$$",
+          label: "$$40$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$68$$",
+          label: "$$30$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$32$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$36$$",
         },
         {
           isCorrect: true,
-          label: "$$71$$",
+          label: "$$34$$",
         },
         {
           isCorrect: false,
-          label: "$$74$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$77$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$65$$",
+          label: "$$40$$",
         },
       ],
     },

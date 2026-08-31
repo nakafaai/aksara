@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "M, L, N, K",
-        },
-        {
-          isCorrect: false,
-          label: "N, L, K, M",
-        },
-        {
-          isCorrect: false,
-          label: "K, L, M, N",
-        },
-        {
-          isCorrect: false,
-          label: "L, M, K, N",
-        },
-        {
           isCorrect: true,
-          label: "L, K, N, M",
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{15}{2}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{17}{2}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{19}{2}$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "M, L, N, K",
-        },
-        {
-          isCorrect: false,
-          label: "N, L, K, M",
-        },
-        {
-          isCorrect: false,
-          label: "K, L, M, N",
-        },
-        {
-          isCorrect: false,
-          label: "L, M, K, N",
-        },
-        {
           isCorrect: true,
-          label: "L, K, N, M",
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{15}{2}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{17}{2}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{19}{2}$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "M, L, N, K",
-        },
-        {
-          isCorrect: false,
-          label: "N, L, K, M",
-        },
-        {
-          isCorrect: false,
-          label: "K, L, M, N",
-        },
-        {
-          isCorrect: false,
-          label: "L, M, K, N",
-        },
-        {
           isCorrect: true,
-          label: "L, K, N, M",
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{15}{2}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{17}{2}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{19}{2}$$",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam ruang arsip sekolah.",
+            "Raka memilih untuk menyusun daftar tiga langkah kecil dan meminta satu teman mengecek kemajuannya; tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam ruang arsip sekolah memperoleh hasil yang sama tanpa perbedaan.",
+            "Raka memilih untuk menyusun daftar tiga langkah kecil dan meminta satu teman mengecek kemajuannya; perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan ruang arsip sekolah.",
+            "Raka memilih untuk menyusun daftar tiga langkah kecil dan meminta satu teman mengecek kemajuannya; latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Raka memilih untuk menyusun daftar tiga langkah kecil dan meminta satu teman mengecek kemajuannya; definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
         },
         {
           isCorrect: true,
           label:
-            "Raka memilih untuk menyusun daftar tiga langkah kecil dan meminta satu teman mengecek kemajuannya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut metakognisi sebagai bukti bahwa uji tidak perlu diulang.",
+            "Daftar tiga langkah dan pemeriksaan teman mengubah tumpukan tugas Raka menjadi urutan yang dapat diamati tanpa berpura-pura bahwa seluruh masalah sudah selesai.",
         },
       ],
     },

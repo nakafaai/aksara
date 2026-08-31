@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            'Der erste Teil vertritt die Behauptung "Bei Flutaufnahmen blieb die Übereinstimmung geringer"; der folgende nutzt "Klassifikationsfehler machen sämtliche Freiwilligendaten wissenschaftlich wertlos" als Hauptbeleg.',
         },
         {
           isCorrect: true,
           label:
-            "Das Team prüfte eine Anzeige freier Plätze an der Tür (ruhige Lernzone) und bewertete die Befunde vorsichtig.",
+            "Der Anstieg der Meldungen deutet Erholung an; Prüfungen von Zugang und Klassifikation begrenzen anschließend diese Deutung.",
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext ruhige Lernzone: eine Anzeige freier Plätze an der Tür",
+            'Der erste Teil legt "Ein Gebiet ohne Meldungen enthält mit Sicherheit keine Mangrovensetzlinge" als endgültigen Schluss fest; der folgende nennt nur den Plan "Die öffentliche Karte wird Meldungen, Beobachtungsintensität und Validierung trennen".',
         },
         {
           isCorrect: false,
-          label: "Der Wert mit Änderung, 34, lag über 24 und 26.",
+          label:
+            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Klassifikationsfehler machen sämtliche Freiwilligendaten wissenschaftlich wertlos" fest.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Der folgende Teil kehrt die Argumentation um und leitet "Ein Gebiet ohne Meldungen enthält mit Sicherheit keine Mangrovensetzlinge" aus dem Beleg "Bei Flutaufnahmen blieb die Übereinstimmung geringer" ab.',
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            'The first part advances the claim "Agreement remained lower for high-tide photographs", and the later part uses "Classification errors make all volunteer data scientifically worthless" as its main support.',
         },
         {
           isCorrect: true,
           label:
-            "The team tested a seat-availability board at the door in the quiet study zone and interpreted the evidence cautiously.",
+            "A rise in reports suggests recovery, and audits of access and classification then constrain that interpretation.",
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of a seat-availability board at the door: quiet study zone",
+            'The first part establishes "An area without reports certainly contains no mangrove seedlings" as a final conclusion; the later part only states the plan "The public map will separate reports, observation intensity, and validation".',
         },
         {
           isCorrect: false,
-          label: "The intervention value, 34, exceeded both 24 and 26.",
+          label:
+            'Both parts maintain the claim "Classification errors make all volunteer data scientifically worthless" from the same perspective without adding a test.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'The later part reverses the argument by deriving "An area without reports certainly contains no mangrove seedlings" from the evidence "Agreement remained lower for high-tide photographs".',
         },
       ],
     },
@@ -66,26 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            'Bagian awal mengajukan klaim "Kesepakatan pada foto saat air pasang tetap lebih rendah", lalu bagian kedua memakai "Kesalahan klasifikasi membuat seluruh data relawan tidak memiliki nilai ilmiah" sebagai dukungan utama.',
         },
         {
           isCorrect: true,
           label:
-            "Tim menguji papan ketersediaan kursi di pintu pada zona belajar tenang dan menafsirkan buktinya secara hati-hati.",
+            "Lonjakan laporan memunculkan dugaan pemulihan, lalu audit akses dan klasifikasi membatasi cara dugaan itu ditafsirkan.",
         },
         {
           isCorrect: false,
           label:
-            "Uji Hati-hati dalam zona belajar tenang: papan ketersediaan kursi di pintu",
+            'Bagian pertama menetapkan "Daerah tanpa laporan pasti tidak memiliki bibit mangrove" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Peta publik akan memisahkan laporan, intensitas pengamatan, dan validasi".',
         },
         {
           isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 34, melampaui 24 dan 26.",
+          label:
+            'Kedua bagian mempertahankan klaim "Kesalahan klasifikasi membuat seluruh data relawan tidak memiliki nilai ilmiah" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Daerah tanpa laporan pasti tidak memiliki bibit mangrove" dari bukti "Kesepakatan pada foto saat air pasang tetap lebih rendah".',
         },
       ],
     },

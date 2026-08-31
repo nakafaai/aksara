@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "eine Quelle wiederholt prüfen, bis ihre Darstellung konsistent erscheint",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "die anschaulichste Erzählung ohne Prüfung ihrer Herkunft auswählen",
+        },
+        {
+          isCorrect: false,
+          label:
+            "allen Quellen ohne Berücksichtigung ihres Kontexts gleiches Gewicht geben",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Wortunterschiede bearbeiten, bis alle Darstellungen einheitlich wirken",
         },
         {
           isCorrect: true,
-          label: "abgeschlossene Ausleihen und kurze Aussagen von Nutzenden",
-        },
-        {
-          isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte eine Erinnerung einen Tag vor jedem Besuch (mobiler Bibliotheksdienst) und bewertete die Befunde vorsichtig.",
+            "unabhängige Quellen zu vergleichen, bevor eine Schlussfolgerung festgelegt wird",
         },
       ],
     },
@@ -37,26 +38,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "checking one source repeatedly until its account appears consistent",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "choosing the most vivid account without examining its origin or production",
+        },
+        {
+          isCorrect: false,
+          label:
+            "giving every source equal weight without considering its context",
+        },
+        {
+          isCorrect: false,
+          label:
+            "editing differences in wording until all accounts appear uniform",
         },
         {
           isCorrect: true,
-          label: "completed loans and short comments from users",
-        },
-        {
-          isCorrect: false,
-          label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested a reminder sent one day before each visit in the mobile library service and interpreted the evidence cautiously.",
+          label: "comparing independent sources before settling a conclusion",
         },
       ],
     },
@@ -66,26 +67,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "memeriksa satu sumber berulang kali sampai keterangannya tampak konsisten",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "memilih kisah yang paling hidup tanpa menilai asal dan proses pembentukannya",
+        },
+        {
+          isCorrect: false,
+          label:
+            "memberi bobot yang sama kepada semua sumber tanpa melihat konteksnya",
+        },
+        {
+          isCorrect: false,
+          label:
+            "menyunting perbedaan kata sampai seluruh keterangan tampak seragam",
         },
         {
           isCorrect: true,
-          label: "peminjaman yang selesai dan komentar singkat pengguna",
-        },
-        {
-          isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji pesan pengingat sehari sebelum kunjungan pada layanan perpustakaan keliling dan menafsirkan buktinya secara hati-hati.",
+            "membandingkan beberapa sumber yang berdiri sendiri sebelum menetapkan kesimpulan",
         },
       ],
     },

@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "$$(1)$$, $$(2)$$ und $$(3)$$",
         },
         {
-          isCorrect: false,
-          label: "$$(1)$$ und $$(3)$$",
-        },
-        {
           isCorrect: true,
           label: "Alle vier Zahlen",
+        },
+        {
+          isCorrect: false,
+          label: "$$(1)$$ und $$(3)$$",
         },
         {
           isCorrect: false,
@@ -35,12 +35,12 @@ const item: QuestionItem = {
           label: "$$(1)$$, $$(2)$$, and $$(3)$$",
         },
         {
-          isCorrect: false,
-          label: "$$(1)$$ and $$(3)$$",
-        },
-        {
           isCorrect: true,
           label: "All four numbers",
+        },
+        {
+          isCorrect: false,
+          label: "$$(1)$$ and $$(3)$$",
         },
         {
           isCorrect: false,
@@ -60,12 +60,12 @@ const item: QuestionItem = {
           label: "$$(1)$$, $$(2)$$, dan $$(3)$$",
         },
         {
-          isCorrect: false,
-          label: "$$(1)$$ dan $$(3)$$",
-        },
-        {
           isCorrect: true,
           label: "Keempat bilangan",
+        },
+        {
+          isCorrect: false,
+          label: "$$(1)$$ dan $$(3)$$",
         },
         {
           isCorrect: false,

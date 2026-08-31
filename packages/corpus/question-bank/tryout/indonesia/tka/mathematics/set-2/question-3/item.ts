@@ -12,19 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$\\sqrt{4^2}=4$, da $4>0$",
+          label: "$ab=1$",
         },
         {
           isCorrect: true,
-          label: "$(-4)^2=4^2$",
+          label: "$a-b=4$",
+        },
+        {
+          isCorrect: true,
+          label: "$a^2+b^2=18$",
         },
         {
           isCorrect: false,
-          label: "$4^{-1}=-4$",
+          label: "$a+b=4$",
         },
         {
           isCorrect: true,
-          label: "$4^{\\frac12}\\cdot 4^{\\frac12}=4$",
+          label: "$a^2-4a-1=0$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$\\sqrt{4^2}=4$ because $4>0$",
+          label: "$ab=1$",
         },
         {
           isCorrect: true,
-          label: "$(-4)^2=4^2$",
+          label: "$a-b=4$",
+        },
+        {
+          isCorrect: true,
+          label: "$a^2+b^2=18$",
         },
         {
           isCorrect: false,
-          label: "$4^{-1}=-4$",
+          label: "$a+b=4$",
         },
         {
           isCorrect: true,
-          label: "$4^{\\frac12}\\cdot 4^{\\frac12}=4$",
+          label: "$a^2-4a-1=0$",
         },
       ],
     },
@@ -54,19 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$\\sqrt{4^2}=4$ untuk $4>0$",
+          label: "$ab=1$",
         },
         {
           isCorrect: true,
-          label: "$(-4)^2=4^2$",
+          label: "$a-b=4$",
+        },
+        {
+          isCorrect: true,
+          label: "$a^2+b^2=18$",
         },
         {
           isCorrect: false,
-          label: "$4^{-1}=-4$",
+          label: "$a+b=4$",
         },
         {
           isCorrect: true,
-          label: "$4^{\\frac12}\\cdot 4^{\\frac12}=4$",
+          label: "$a^2-4a-1=0$",
         },
       ],
     },

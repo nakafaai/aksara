@@ -7,23 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "klar und unmittelbar ausgedrückt",
-        },
-        {
-          isCorrect: false,
-          label: "für mehr als eine Deutung offen",
-        },
-        {
-          isCorrect: false,
-          label: "durch verlässliche Belege gestützt",
+          label:
+            "Die Bewertung bezieht betroffene Gruppen mit unterschiedlichen Mobilitäts-, Sprach- und Zugangsbedürfnissen ein.",
         },
         {
           isCorrect: true,
-          label: "alle für das Ziel wichtigen Teile berücksichtigend",
+          label:
+            "Der Bericht bewertet Nutzen, Risiken, Kosten und Auswirkungen auf verschiedene Gruppen, bevor er eine Empfehlung abgibt.",
         },
         {
           isCorrect: false,
-          label: "fähig, sich an veränderte Bedingungen anzupassen",
+          label:
+            "Das Modell berücksichtigt Wechselwirkungen zwischen Wetter, Nutzerverhalten und Fahrplan, statt nur eine Ursache zu suchen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team legt Daten, Methoden, Ausschlussgründe und Grenzen offen, damit der Prozess geprüft werden kann.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Daten werden nach einer geplanten Schrittfolge erhoben, die mit denselben Regeln wiederholt wird.",
         },
       ],
     },
@@ -32,23 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "stated clearly and directly",
-        },
-        {
-          isCorrect: false,
-          label: "open to more than one interpretation",
-        },
-        {
-          isCorrect: false,
-          label: "supported by dependable evidence",
+          label:
+            "The evaluation involves affected groups with different mobility, language, and access needs.",
         },
         {
           isCorrect: true,
-          label: "covering all parts important to the purpose",
+          label:
+            "The report assesses benefits, risks, costs, and effects on different groups before making a recommendation.",
         },
         {
           isCorrect: false,
-          label: "able to adjust to changing conditions",
+          label:
+            "The model considers interactions among weather, user behaviour, and service schedules instead of seeking one cause.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team discloses data, methods, exclusion reasons, and limitations so the process can be examined.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Data are collected through a planned sequence of steps repeated under the same rules.",
         },
       ],
     },
@@ -57,23 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "dinyatakan secara jelas dan langsung",
-        },
-        {
-          isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
-        },
-        {
-          isCorrect: false,
-          label: "didukung oleh bukti yang dapat dipercaya",
+          label:
+            "Evaluasi melibatkan kelompok terdampak dengan kebutuhan mobilitas, bahasa, dan akses yang berbeda.",
         },
         {
           isCorrect: true,
-          label: "mencakup seluruh bagian yang penting bagi tujuan",
+          label:
+            "Laporan menilai manfaat, risiko, biaya, dan dampak pada berbagai kelompok sebelum memberi rekomendasi.",
         },
         {
           isCorrect: false,
-          label: "mampu menyesuaikan diri dengan kondisi yang berubah",
+          label:
+            "Model mempertimbangkan interaksi cuaca, perilaku pengguna, dan jadwal layanan alih-alih mencari satu penyebab tunggal.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim membuka data, metode, alasan pengecualian, dan keterbatasan agar proses dapat diperiksa.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
         },
       ],
     },

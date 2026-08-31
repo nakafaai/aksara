@@ -7,24 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Absolute certainty about a community sports centre",
+          label: "Waiting for someone else to complete the next step",
         },
         {
           isCorrect: false,
-          label:
-            "Why all evidence in a community sports centre should be ignored",
+          label: "Hiding unresolved evidence in a larger project",
         },
         {
           isCorrect: false,
-          label: "The complete world history of co-design",
+          label: "co-design as a definition without a reviewable action",
+        },
+        {
+          isCorrect: false,
+          label: "A complete plan without a small accountable step",
         },
         {
           isCorrect: true,
           label: "Omar's next step in a community sports centre",
-        },
-        {
-          isCorrect: false,
-          label: "One rule for every a community sports centre",
         },
       ],
     },

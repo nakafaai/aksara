@@ -11,24 +11,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$\\frac{42}{17}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{43}{17}$$",
-        },
-        {
           isCorrect: true,
-          label: "$$\\frac{44}{17}$$",
+          label: "$$69{,}7$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{45}{17}$$",
+          label: "$$69{,}1$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{46}{17}$$",
+          label: "$$69{,}4$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$70{,}0$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$70{,}3$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$\\frac{42}{17}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{43}{17}$$",
-        },
-        {
           isCorrect: true,
-          label: "$$\\frac{44}{17}$$",
+          label: "$$69{,}7$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{45}{17}$$",
+          label: "$$69{,}1$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{46}{17}$$",
+          label: "$$69{,}4$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$70{,}0$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$70{,}3$$",
         },
       ],
     },
@@ -61,29 +61,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$\\frac{42}{17}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{43}{17}$$",
-        },
-        {
           isCorrect: true,
-          label: "$$\\frac{44}{17}$$",
+          label: "$$69{,}7$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{45}{17}$$",
+          label: "$$69{,}1$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{46}{17}$$",
+          label: "$$69{,}4$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$70{,}0$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$70{,}3$$",
         },
       ],
     },
   },
-  stimulusKey: "study-time-survey",
+  stimulusKey: "sensor-calibration",
 };
 
 export default item;

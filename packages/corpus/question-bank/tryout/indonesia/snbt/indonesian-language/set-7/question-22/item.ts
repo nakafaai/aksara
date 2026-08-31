@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam klinik kelurahan.",
+            "Arum memilih untuk bertanya kepada petugas, lalu menggambar ulang alur dengan bahasa yang sederhana; tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
         },
         {
           isCorrect: true,
           label:
-            "Arum memilih untuk bertanya kepada petugas, lalu menggambar ulang alur dengan bahasa yang sederhana.",
+            "Bertanya kepada petugas sebelum menggambar ulang alur membuat penyederhanaan Arum tetap terikat pada proses layanan yang sebenarnya.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam klinik kelurahan memperoleh hasil yang sama tanpa perbedaan.",
+            "Arum memilih untuk bertanya kepada petugas, lalu menggambar ulang alur dengan bahasa yang sederhana; perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan klinik kelurahan.",
+            "Arum memilih untuk bertanya kepada petugas, lalu menggambar ulang alur dengan bahasa yang sederhana; latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyebut literasi kesehatan sebagai bukti bahwa uji tidak perlu diulang.",
+            "Arum memilih untuk bertanya kepada petugas, lalu menggambar ulang alur dengan bahasa yang sederhana; definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
         },
       ],
     },

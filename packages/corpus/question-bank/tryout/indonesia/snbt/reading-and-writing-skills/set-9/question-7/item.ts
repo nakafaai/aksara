@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Geordnete Prüfung einer Änderung: Verteilung von Mangrovensetzlingen",
+            "Das Team testete die Änderung Pflanzortetiketten auf jedem Tablett an ausgewählten Tagen, weil das frühere Verfahren bereits als unwirksam galt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Pflanzortetiketten auf jedem Tablett.",
+            "Das Team führte die Änderung Pflanzortetiketten auf jedem Tablett dauerhaft ein, während das frühere Verfahren nur in den Rückmeldungen erhalten blieb.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team testete die Änderung Pflanzortetiketten auf jedem Tablett und das frühere Verfahren an denselben Tagen ohne getrennte Vergleichsbedingungen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team verglich Tage mit der Änderung Pflanzortetiketten auf jedem Tablett mit Rückmeldungen zum früheren Verfahren.",
         },
         {
           isCorrect: true,
           label:
             "Das Team prüfte Pflanzortetiketten auf jedem Tablett an ausgewählten Tagen, während an Vergleichstagen der bisherige Ablauf bestehen blieb.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Verteilung von Mangrovensetzlingen über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Pflanzortetiketten auf jedem Tablett.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "A structured test of one change: mangrove seedling distribution",
+            "The team tested planting-site labels on every tray on selected days because the earlier process had already been proved ineffective.",
         },
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of planting-site labels on every tray.",
+            "The team tested planting-site labels on every tray permanently, while the earlier process remained only in user records.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team tested planting-site labels on every tray and the earlier process on the same days without separate comparison conditions.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team compared selected days using planting-site labels on every tray with comments about the earlier process.",
         },
         {
           isCorrect: true,
           label:
             "The team tested planting-site labels on every tray on selected days, while the earlier process remained on comparison days.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (mangrove seedling distribution), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, planting-site labels on every tray, directly addressed the observed uncertainty.",
         },
       ],
     },
@@ -67,27 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: pembagian bibit mangrove",
+          label:
+            "Tim menguji label lokasi tanam pada setiap baki pada hari tertentu karena proses lama telah terbukti tidak efektif.",
         },
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui label lokasi tanam.",
+            "Tim menerapkan label lokasi tanam pada setiap baki secara tetap, sedangkan proses lama hanya tersisa dalam catatan pengguna.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim menguji label lokasi tanam pada setiap baki dan proses lama pada hari yang sama tanpa kondisi pembanding terpisah.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim membandingkan hari penggunaan label lokasi tanam pada setiap baki dengan komentar tentang proses lama.",
         },
         {
           isCorrect: true,
           label:
             "Tim menguji label lokasi tanam pada hari tertentu, sedangkan alur lama tetap digunakan pada hari pembanding.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Di pembagian bibit mangrove, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa label lokasi tanam langsung menanggapi keraguan yang diamati.",
         },
       ],
     },

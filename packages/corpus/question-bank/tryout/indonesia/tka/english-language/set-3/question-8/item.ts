@@ -12,23 +12,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The visual description was deleted.",
+          label:
+            "To preserve the photograph and the visitor's memory as separate claims, while treating the visitor's approximate year as final.",
         },
         {
           isCorrect: false,
-          label: "Every remaining person was identified.",
+          label:
+            "To merge the photograph and the visitor's memory into one confident claim before either source could be checked.",
         },
         {
           isCorrect: true,
-          label: "Her statement was added as a contributor note.",
+          label:
+            "To preserve which claim came from the photograph and which came from a person's memory, while leaving both open to later review.",
         },
         {
           isCorrect: false,
-          label: "The photograph received no stable number.",
+          label:
+            "To postpone recording both sources until every person and date in the photograph had been identified with certainty.",
         },
         {
           isCorrect: false,
-          label: "Mr. Vale closed the archive.",
+          label:
+            "To preserve both claims for review, while giving the approximate memory greater weight than the dated photograph.",
         },
       ],
     },

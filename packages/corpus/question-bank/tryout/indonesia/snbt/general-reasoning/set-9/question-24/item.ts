@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$18$$",
+        },
+        {
           isCorrect: true,
-          label: "T, S, V, U",
-        },
-        {
-          isCorrect: false,
-          label: "U, T, V, S",
-        },
-        {
-          isCorrect: false,
-          label: "V, T, S, U",
-        },
-        {
-          isCorrect: false,
-          label: "S, T, U, V",
-        },
-        {
-          isCorrect: false,
-          label: "T, U, S, V",
+          label: "$$16$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$18$$",
+        },
+        {
           isCorrect: true,
-          label: "T, S, V, U",
-        },
-        {
-          isCorrect: false,
-          label: "U, T, V, S",
-        },
-        {
-          isCorrect: false,
-          label: "V, T, S, U",
-        },
-        {
-          isCorrect: false,
-          label: "S, T, U, V",
-        },
-        {
-          isCorrect: false,
-          label: "T, U, S, V",
+          label: "$$16$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$18$$",
+        },
+        {
           isCorrect: true,
-          label: "T, S, V, U",
-        },
-        {
-          isCorrect: false,
-          label: "U, T, V, S",
-        },
-        {
-          isCorrect: false,
-          label: "V, T, S, U",
-        },
-        {
-          isCorrect: false,
-          label: "S, T, U, V",
-        },
-        {
-          isCorrect: false,
-          label: "T, U, S, V",
+          label: "$$16$$",
         },
       ],
     },

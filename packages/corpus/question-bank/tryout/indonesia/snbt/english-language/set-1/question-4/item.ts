@@ -16,11 +16,6 @@ const item: QuestionItem = {
             "the other sentences give historical examples that are unrelated to the opening claim.",
         },
         {
-          isCorrect: true,
-          label:
-            "the other sentences explain what successful integration looks like and how it supports the opening claim.",
-        },
-        {
           isCorrect: false,
           label:
             "the first sentence contradicts the warnings in the other sentences.",
@@ -29,6 +24,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "the other sentences repeat the first sentence without adding detail.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "the other sentences explain what successful integration looks like and how it supports the opening claim.",
         },
       ],
     },

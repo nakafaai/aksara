@@ -6,16 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Pflanzortetiketten auf jedem Tablett.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Verteilung von Mangrovensetzlingen über den beiden anderen Werten.",
-        },
-        {
           isCorrect: true,
           label:
             "Geordnete Prüfung einer Änderung: Verteilung von Mangrovensetzlingen",
@@ -23,28 +13,28 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Pflanzortetiketten auf jedem Tablett.",
+            "Erste Belege zu Pflanzortetiketten auf jedem Tablett im Kontext „Verteilung von Mangrovensetzlingen“",
         },
         {
           isCorrect: false,
           label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Pflanzortetiketten auf jedem Tablett.",
+            "Prüfung mehrerer gleichzeitiger Änderungen im Kontext „Verteilung von Mangrovensetzlingen“",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Rückmeldungen zur dauerhaften Neugestaltung des Kontexts „Verteilung von Mangrovensetzlingen“",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Vollständige Bewertung des Kontexts „Verteilung von Mangrovensetzlingen“",
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: false,
-          label:
-            "The hypothesis therefore needed a limited test of planting-site labels on every tray.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (mangrove seedling distribution), the trial value exceeded both other values.",
-        },
         {
           isCorrect: true,
           label:
@@ -53,12 +43,21 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change, planting-site labels on every tray, directly addressed the observed uncertainty.",
+            "Early evidence about planting-site labels on every tray in the context of mangrove seedling distribution",
         },
         {
           isCorrect: false,
           label:
-            "The next test of planting-site labels on every tray will run for longer.",
+            "Testing several simultaneous changes in the context of mangrove seedling distribution",
+        },
+        {
+          isCorrect: false,
+          label:
+            "User reactions to a permanent redesign of mangrove seedling distribution",
+        },
+        {
+          isCorrect: false,
+          label: "A complete evaluation of mangrove seedling distribution",
         },
       ],
     },
@@ -66,28 +65,27 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui label lokasi tanam.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Di pembagian bibit mangrove, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
           isCorrect: true,
           label: "Uji Teratur atas Satu Perubahan: pembagian bibit mangrove",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa label lokasi tanam langsung menanggapi keraguan yang diamati.",
+            "Bukti awal tentang label lokasi tanam pada setiap baki dalam konteks distribusi bibit mangrove",
         },
         {
           isCorrect: false,
           label:
-            "Uji label lokasi tanam berikutnya akan berlangsung lebih lama.",
+            "Pengujian beberapa perubahan serentak dalam konteks distribusi bibit mangrove",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tanggapan pengguna terhadap perancangan ulang tetap pada distribusi bibit mangrove",
+        },
+        {
+          isCorrect: false,
+          label: "Evaluasi menyeluruh terhadap distribusi bibit mangrove",
         },
       ],
     },

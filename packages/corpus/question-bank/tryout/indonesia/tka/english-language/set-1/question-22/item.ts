@@ -20,7 +20,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Assume later is always better.",
+          label:
+            "Treat a higher overall mean as enough to justify permanent adoption.",
         },
         {
           isCorrect: true,

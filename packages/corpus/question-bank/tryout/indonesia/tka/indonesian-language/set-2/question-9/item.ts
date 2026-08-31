@@ -12,15 +12,13 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "jumlah pendengar radio terus menurun",
+          label:
+            "ia menganggap turunnya jumlah pendengar sebagai alasan untuk meninggalkan studio sebelum siaran terakhir",
         },
         {
           isCorrect: false,
-          label: "beberapa kaset berjamur",
-        },
-        {
-          isCorrect: false,
-          label: "telepon studio biasanya diam",
+          label:
+            "ia membersihkan kaset yang berjamur agar keputusan penutupan dapat dibatalkan oleh pengelola",
         },
         {
           isCorrect: true,
@@ -29,7 +27,13 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "lampu mengudara padam pukul lima",
+          label:
+            "ia menunggu telepon studio berdering sebagai syarat untuk menerima keputusan pengelola",
+        },
+        {
+          isCorrect: false,
+          label:
+            "ia memadamkan lampu mengudara lebih awal untuk menunjukkan penolakannya terhadap acara perpisahan",
         },
       ],
     },

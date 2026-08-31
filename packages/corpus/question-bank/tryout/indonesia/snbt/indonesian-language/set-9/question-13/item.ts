@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam jalur wisata hutan kota pasti berlaku tanpa batas pada tempat lain.",
+            "Nilai 34 membuktikan bahwa tanda jarak memenuhi kebutuhan semua pengunjung, termasuk mereka yang belum terwakili dalam uji.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang jalur wisata hutan kota tidak berguna.",
+            "Keterlibatan pemandu dan petugas taman membuat pengamatan langsung terhadap pengguna dengan hambatan penglihatan tidak diperlukan.",
         },
         {
           isCorrect: true,
           label:
-            "Keputusan lanjutan sebaiknya mempertimbangkan data, pengalaman pihak terdampak, dan keterbatasan uji.",
+            "Nilai 34 dibandingkan 23 mendukung penerusan tanda jarak secara terbatas, tetapi hasil belum dapat digeneralisasi kepada pengunjung dengan hambatan penglihatan.",
         },
         {
           isCorrect: false,
           label:
-            "Satu rincian tentang aksesibilitas cukup untuk membuktikan semua hubungan sebab-akibat.",
+            "Karena jadwal dan jumlah petugas tetap, kenaikan nilai pasti sepenuhnya disebabkan tanda jarak pada setiap jalur wisata.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Nilai dasar 22 dan pembanding 23 menunjukkan bahwa aksesibilitas sudah memadai sebelum perubahan.",
         },
       ],
     },

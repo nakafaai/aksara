@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "die Folgestudie des Teams im untersuchten Kontext (Musikproberäume)",
-        },
-        {
           isCorrect: false,
           label:
             "die Folge Studie des Teams im untersuchten Kontext (Musikproberäume)",
@@ -30,16 +25,16 @@ const item: QuestionItem = {
           label:
             "die Folge  Studie des Teams im untersuchten Kontext (Musikproberäume)",
         },
+        {
+          isCorrect: true,
+          label:
+            "die Folgestudie des Teams im untersuchten Kontext (Musikproberäume)",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "the team's follow-up study of a digital schedule updated after cancellations in this setting (music practice rooms)",
-        },
         {
           isCorrect: false,
           label:
@@ -60,16 +55,16 @@ const item: QuestionItem = {
           label:
             "the team follow-up-study of a digital schedule updated after cancellations in this setting (music practice rooms)",
         },
+        {
+          isCorrect: true,
+          label:
+            "the team's follow-up study of a digital schedule updated after cancellations in this setting (music practice rooms)",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "kerja sama tim dalam uji jadwal digital yang diperbarui setelah pembatalan di ruang latihan musik",
-        },
         {
           isCorrect: false,
           label:
@@ -89,6 +84,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "kerja sama-sama tim dalam uji jadwal digital yang diperbarui setelah pembatalan di ruang latihan musik",
+        },
+        {
+          isCorrect: true,
+          label:
+            "kerja sama tim dalam uji jadwal digital yang diperbarui setelah pembatalan di ruang latihan musik",
         },
       ],
     },

@@ -12,24 +12,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Laras membeli tinta merah baru",
+          label:
+            "Laras membeli tinta merah agar peta lebih jelas tanpa memeriksa hambatan pada jalur",
         },
         {
           isCorrect: false,
-          label: "ibu Laras mencetak banyak peta",
+          label:
+            "ibu Laras mencetak lebih banyak peta dan menganggap jumlah salinan cukup menyelesaikan masalah akses",
         },
         {
           isCorrect: false,
-          label: "warga menolak menjawab pertanyaan Laras",
-        },
-        {
-          isCorrect: false,
-          label: "lapangan dipindahkan ke selatan",
+          label:
+            "Laras menerima jawaban umum warga dan mencatat jalur lama tanpa mengujinya bersama pengguna",
         },
         {
           isCorrect: true,
           label:
             "Laras memeriksa hambatan dan menemukan jalur alternatif yang lebih dapat diakses",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Laras memindahkan letak lapangan pada peta tanpa menelusuri jalur alternatif menuju tempat itu",
         },
       ],
     },

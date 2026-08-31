@@ -19,13 +19,13 @@ const item: QuestionItem = {
             "To compare the religious traditions behind different yoga styles.",
         },
         {
-          isCorrect: false,
-          label: "To teach a complete sequence of advanced yoga poses.",
-        },
-        {
           isCorrect: true,
           label:
             "To explain yoga's possible physical and mental benefits, evidence limits, and safe practice.",
+        },
+        {
+          isCorrect: false,
+          label: "To teach a complete sequence of advanced yoga poses.",
         },
       ],
     },

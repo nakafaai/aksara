@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac16$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac12$$",
+          label: "$$\\frac5{18}$$",
         },
         {
           isCorrect: false,
           label: "$$\\frac13$$",
         },
         {
-          isCorrect: false,
-          label: "$$\\frac23$$",
+          isCorrect: true,
+          label: "$$\\frac7{18}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac56$$",
+          label: "$$\\frac49$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac12$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac16$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac12$$",
+          label: "$$\\frac5{18}$$",
         },
         {
           isCorrect: false,
           label: "$$\\frac13$$",
         },
         {
-          isCorrect: false,
-          label: "$$\\frac23$$",
+          isCorrect: true,
+          label: "$$\\frac7{18}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac56$$",
+          label: "$$\\frac49$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac12$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac16$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac12$$",
+          label: "$$\\frac5{18}$$",
         },
         {
           isCorrect: false,
           label: "$$\\frac13$$",
         },
         {
-          isCorrect: false,
-          label: "$$\\frac23$$",
+          isCorrect: true,
+          label: "$$\\frac7{18}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac56$$",
+          label: "$$\\frac49$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac12$$",
         },
       ],
     },

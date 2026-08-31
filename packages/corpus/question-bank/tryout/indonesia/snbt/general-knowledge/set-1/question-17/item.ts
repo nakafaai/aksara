@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "Onkel.",
         },
         {
-          isCorrect: true,
-          label: "gefallen.",
-        },
-        {
           isCorrect: false,
           label: "Nation.",
         },
         {
           isCorrect: false,
           label: "Held.",
+        },
+        {
+          isCorrect: true,
+          label: "gefallen.",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "uncle.",
         },
         {
-          isCorrect: true,
-          label: "fell.",
-        },
-        {
           isCorrect: false,
           label: "nation.",
         },
         {
           isCorrect: false,
           label: "hero.",
+        },
+        {
+          isCorrect: true,
+          label: "fell.",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "paman.",
         },
         {
-          isCorrect: true,
-          label: "gugur.",
-        },
-        {
           isCorrect: false,
           label: "bangsa.",
         },
         {
           isCorrect: false,
           label: "pahlawan.",
+        },
+        {
+          isCorrect: true,
+          label: "gugur.",
         },
         {
           isCorrect: false,

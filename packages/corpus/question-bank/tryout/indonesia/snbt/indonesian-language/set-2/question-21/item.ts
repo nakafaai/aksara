@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "Danau tersebut dahulu menjadi lokasi peperangan",
         },
         {
-          isCorrect: false,
-          label: "Semua jasad terbukti meninggal akibat badai es",
-        },
-        {
           isCorrect: true,
           label: "Ratusan sisa kerangka manusia tersebar di sekitar danau",
+        },
+        {
+          isCorrect: false,
+          label: "Semua jasad terbukti meninggal akibat badai es",
         },
         {
           isCorrect: false,

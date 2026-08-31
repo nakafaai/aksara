@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Karena kondisi perubahan menghasilkan 3, sedangkan nilai awal 7 dan pembanding 8, lapisan tipis petroleum jelly pada permukaan bawah daun telah terisolasi sebagai satu-satunya penyebab selama jenis daun, lama pengamatan, dan luas permukaan awal dibuat sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengulangan paling informatif sebaiknya mengubah jenis daun, lama pengamatan, dan luas permukaan awal bersamaan dengan lapisan tipis petroleum jelly pada permukaan bawah daun agar gabungan kondisi yang lebih realistis dapat diuji.",
+        },
+        {
           isCorrect: true,
           label:
-            "Pola awal mendukung pengulangan yang lebih kuat, bukan klaim bahwa hasil itu selalu berlaku.",
+            "Pada kondisi yang diuji, lapisan tipis petroleum jelly pada permukaan bawah daun berkaitan dengan perubahan dari 7 dan 8 menjadi 3; karena daun yang dipetik tidak sepenuhnya mewakili kondisi tumbuhan utuh, pola itu perlu diuji lagi sebelum diperluas menjadi klaim umum.",
         },
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam kehilangan massa pada daun pasti berlaku tanpa batas pada tempat lain.",
+            "Keterbatasan bahwa daun yang dipetik tidak sepenuhnya mewakili kondisi tumbuhan utuh memengaruhi ketelitian angka, tetapi tidak memengaruhi luas penerapan temuan tentang kehilangan massa pada daun.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang kehilangan massa pada daun tidak berguna.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Satu rincian tentang transpirasi cukup untuk membuktikan semua hubungan sebab-akibat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Pengulangan dengan lebih banyak unit dapat mempersempit ketidakpastian, tetapi tidak mungkin mengubah penafsiran awal tentang kehilangan massa pada daun.",
         },
       ],
     },

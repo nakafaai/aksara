@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$1$$",
-        },
-        {
           isCorrect: true,
           label: "$$2$$ and $$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$1$$",
         },
         {
           isCorrect: false,

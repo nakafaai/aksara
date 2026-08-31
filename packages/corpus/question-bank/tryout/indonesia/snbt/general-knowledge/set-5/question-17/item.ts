@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team prüfte die Wahl zwischen kleinen und normalen Portionen (Kantine zur Verringerung von Speiseresten) und bewertete die Befunde vorsichtig.",
+            "Rückgaberegeln sollten an der Buchverfügbarkeit gemessen werden und Verspätungsdauer sowie Nutzerzugang unterscheiden.",
         },
         {
           isCorrect: false,
-          label: "Der Wert mit Änderung, 26, lag über 18 und 20.",
+          label:
+            "Einige Mitarbeiter halten hohe Gebühren für den einfachsten Weg zur Durchsetzung der Regel.",
         },
         {
           isCorrect: true,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Der begrenzte Test zeigte weniger kurze Verzögerungen durch Erinnerungen und schnellere Rückgaben einiger lange fehlender Bücher durch Sperren.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Der Test wird um zwei Erinnerungswege und ein Einspruchsverfahren erweitert.",
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext Kantine zur Verringerung von Speiseresten: die Wahl zwischen kleinen und normalen Portionen",
+            "Der begrenzte Test beweist, dass Gebühren in jedem Fall abgeschafft werden müssen.",
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested a choice between small and regular portions in the food-waste reduction canteen and interpreted the evidence cautiously.",
+            "A late-return policy should be judged by book availability and should distinguish levels of delay and user access.",
         },
         {
           isCorrect: false,
-          label: "The intervention value, 26, exceeded both 18 and 20.",
+          label:
+            "Some staff consider high fines the simplest way to enforce the rule.",
         },
         {
           isCorrect: true,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "The limited trial showed that reminders reduced brief delays and restrictions accelerated some long-overdue returns.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "The trial will expand with two reminder channels and an appeal process.",
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of a choice between small and regular portions: food-waste reduction canteen",
+            "The limited trial proves that fines must be removed in every circumstance.",
         },
       ],
     },
@@ -66,26 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji pilihan porsi kecil dan porsi biasa pada kantin bebas sisa makanan dan menafsirkan buktinya secara hati-hati.",
+            "Aturan keterlambatan dinilai dari dampaknya pada ketersediaan buku dan perlu membedakan tingkat pelanggaran serta akses pengguna.",
         },
         {
           isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 26, melampaui 18 dan 20.",
+          label:
+            "Denda tinggi dianggap sebagian staf sebagai cara paling sederhana untuk menegakkan aturan.",
         },
         {
           isCorrect: true,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Uji terbatas menunjukkan pengingat mengurangi keterlambatan singkat dan pembatasan mempercepat beberapa pengembalian lama.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Uji akan diperluas dengan dua saluran pengingat dan proses banding.",
         },
         {
           isCorrect: false,
           label:
-            "Uji Hati-hati dalam kantin bebas sisa makanan: pilihan porsi kecil dan porsi biasa",
+            "Uji terbatas membuktikan bahwa denda harus dihapus untuk semua keadaan.",
         },
       ],
     },

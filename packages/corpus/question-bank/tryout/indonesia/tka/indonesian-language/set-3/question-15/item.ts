@@ -12,24 +12,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "program pasti menghapus semua kemasan",
+          label:
+            "program dapat dinilai mengurangi kemasan terutama dari jumlah botol yang terlihat",
         },
         {
           isCorrect: false,
-          label: "tidak ada lagi faktor yang perlu diperiksa",
+          label:
+            "pola tiga minggu sudah cukup untuk menutup kemungkinan penjelasan lain",
         },
         {
           isCorrect: false,
-          label: "setiap siswa selalu memakai stasiun",
+          label:
+            "kenaikan volume isi ulang menunjukkan sebagian besar siswa menggunakan stasiun secara rutin",
+        },
+        {
+          isCorrect: false,
+          label:
+            "hasil tiga minggu cukup untuk memprediksi dampak program pada sekolah dengan kondisi serupa",
         },
         {
           isCorrect: true,
           label:
             "data awal menunjukkan penggunaan meningkat dan botol terlihat menurun",
-        },
-        {
-          isCorrect: false,
-          label: "hasil tiga minggu berlaku untuk semua sekolah",
         },
       ],
     },

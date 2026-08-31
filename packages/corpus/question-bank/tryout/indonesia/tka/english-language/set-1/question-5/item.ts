@@ -11,24 +11,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "The center plans to remove all labels next week.",
-        },
-        {
           isCorrect: true,
           label: "New volunteers read the notebook before changing a zone.",
         },
         {
           isCorrect: false,
-          label: "Nothing in the garden is ever adjusted.",
+          label:
+            "The center replaces the zone labels with one roof map because the notebook already records details.",
         },
         {
           isCorrect: false,
-          label: "Failed experiments are kept secret from visitors.",
+          label:
+            "The garden's arrangement becomes fixed after the four zones are first labeled.",
         },
         {
           isCorrect: false,
-          label: "The roof railing supports every heavy planter.",
+          label:
+            "Failed experiments are moved to a separate notebook before new volunteers use the zone.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Volunteers tie the tomato frames to the roof railing so the planters remain stable.",
         },
       ],
     },

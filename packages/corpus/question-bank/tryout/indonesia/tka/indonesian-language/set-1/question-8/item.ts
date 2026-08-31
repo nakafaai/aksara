@@ -11,16 +11,18 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Raka berhenti memperhatikan keadaan laut",
-        },
-        {
           isCorrect: true,
           label: "remaja kampung merawat tanda darurat secara bergiliran",
         },
         {
           isCorrect: false,
-          label: "penjaga pantai menutup seluruh dermaga",
+          label:
+            "Raka menyerahkan pemantauan laut kepada remaja setelah sistem darurat dipasang",
+        },
+        {
+          isCorrect: false,
+          label:
+            "penjaga pantai membatasi penggunaan dermaga sampai tanda darurat diperiksa",
         },
         {
           isCorrect: false,
@@ -28,7 +30,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Raka menjual semua barang peninggalan ayahnya",
+          label:
+            "Raka menyimpan lampu lama tanpa melanjutkan sistem darurat bersama remaja kampung",
         },
       ],
     },

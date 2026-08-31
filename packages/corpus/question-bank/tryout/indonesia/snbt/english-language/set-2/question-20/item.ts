@@ -10,17 +10,17 @@ const item: QuestionItem = {
           label: "A biography of the first clerical worker",
         },
         {
+          isCorrect: true,
+          label:
+            "Examples of how workers and organizations can adapt tasks through training and social dialogue",
+        },
+        {
           isCorrect: false,
           label: "A list of jobs that will certainly disappear next year",
         },
         {
           isCorrect: false,
           label: "The history of electricity generation",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Examples of how workers and organizations can adapt tasks through training and social dialogue",
         },
         {
           isCorrect: false,

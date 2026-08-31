@@ -16,15 +16,16 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "semua layangan lain telah robek",
-        },
-        {
-          isCorrect: false,
-          label: "Nara harus membeli rangka baru",
+          label:
+            "layangan lain menggunakan rangka yang belum pernah diperbaiki",
         },
         {
           isCorrect: true,
           label: "rangka telah pulih dan pelajaran Kakek dipahami Nara",
+        },
+        {
+          isCorrect: false,
+          label: "Nara harus membeli rangka baru",
         },
         {
           isCorrect: false,

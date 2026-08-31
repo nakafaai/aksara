@@ -16,19 +16,19 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$\\frac12$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac23$$",
+          label: "$$\\frac5{24}$$",
         },
         {
           isCorrect: true,
+          label: "$$\\frac14$$",
+        },
+        {
+          isCorrect: false,
           label: "$$\\frac13$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac56$$",
+          label: "$$\\frac5{12}$$",
         },
       ],
     },
@@ -41,19 +41,19 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$\\frac12$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac23$$",
+          label: "$$\\frac5{24}$$",
         },
         {
           isCorrect: true,
+          label: "$$\\frac14$$",
+        },
+        {
+          isCorrect: false,
           label: "$$\\frac13$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac56$$",
+          label: "$$\\frac5{12}$$",
         },
       ],
     },
@@ -66,19 +66,19 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$\\frac12$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac23$$",
+          label: "$$\\frac5{24}$$",
         },
         {
           isCorrect: true,
+          label: "$$\\frac14$$",
+        },
+        {
+          isCorrect: false,
           label: "$$\\frac13$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac56$$",
+          label: "$$\\frac5{12}$$",
         },
       ],
     },

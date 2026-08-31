@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam peredaman bunyi dalam kotak model.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Semua tokoh atau pihak dalam peredaman bunyi dalam kotak model memperoleh hasil yang sama tanpa perbedaan.",
+            "Pada kondisi dengan perubahan, hasil rata-rata tercatat 61; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
         {
           isCorrect: true,
-          label: "Pada kondisi dengan perubahan, hasil rata-rata tercatat 61.",
+          label:
+            "Nilai 61 adalah rata-rata ketika gabus setebal dua sentimeter digunakan; akustik ruang kelas membatasi penerapannya pada bangunan nyata.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan peredaman bunyi dalam kotak model.",
+            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyebut atenuasi sebagai bukti bahwa uji tidak perlu diulang.",
+            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
         },
       ],
     },

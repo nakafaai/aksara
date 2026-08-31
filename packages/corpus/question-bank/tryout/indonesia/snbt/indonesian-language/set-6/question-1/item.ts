@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap periode ayunan bandul tanpa membahas keputusan atau bukti.",
+            "Simulasi membandingkan pengaruh tali sepanjang 60 sentimeter terhadap periode ayunan bandul, sambil mengendalikan faktor yang disebutkan tetapi menjadikan satu uji singkat sebagai bukti yang berlaku umum.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap periode ayunan bandul.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
+            "Simulasi membandingkan pengaruh tali sepanjang 60 sentimeter terhadap periode ayunan bandul, sambil menyebut keterbatasan tetapi mengeluarkan kondisi pembanding dari penafsiran hasil.",
         },
         {
           isCorrect: true,
           label:
-            "Simulasi membandingkan tali sepanjang 60 sentimeter dalam periode ayunan bandul sambil menjaga faktor lain dan mengakui batasan pengukuran.",
+            "Simulasi membandingkan pengaruh tali sepanjang 60 sentimeter terhadap periode ayunan bandul, sambil mengendalikan faktor lain dan mengakui keterbatasan pengukuran.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan terutama menjelaskan definisi periode tanpa menghubungkannya dengan konteks.",
+            "Simulasi membandingkan pengaruh tali sepanjang 60 sentimeter terhadap periode ayunan bandul, sambil menjadikan definisi istilah ilmiah sebagai hasil ukur yang menutup penelitian.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Simulasi membandingkan pengaruh tali sepanjang 60 sentimeter terhadap periode ayunan bandul, sambil memakai pembanding hanya untuk mengukuhkan hipotesis awal dan menghapus ketidakpastian yang tersisa.",
         },
       ],
     },

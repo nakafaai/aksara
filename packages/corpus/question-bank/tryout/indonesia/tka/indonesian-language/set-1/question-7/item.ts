@@ -15,6 +15,10 @@ const item: QuestionItem = {
           label: "ceroboh",
         },
         {
+          isCorrect: true,
+          label: "tanggap",
+        },
+        {
           isCorrect: false,
           label: "pemalu",
         },
@@ -25,10 +29,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "pendendam",
-        },
-        {
-          isCorrect: true,
-          label: "tanggap",
         },
       ],
     },

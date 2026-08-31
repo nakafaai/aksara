@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Eine im zweiten Test erfolgreiche Übersetzung kann sicher überall unverändert eingesetzt werden.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Eine Übersetzung muss jedem Ausgangswort folgen, auch wenn Bewohner die Handlung missverstehen.",
+        },
+        {
           isCorrect: true,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Eine kommunikative Übersetzung kann genauer als eine wörtliche sein, wenn Gefahrenstufe und Handlung erhalten bleiben.",
         },
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Das Team stellte in der neuen Nachricht die Handlung vor die Begründung.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label: "nachgefüllte Flaschen und kurze Aussagen von Nutzenden",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte bebilderte Hinweise neben dem Wasserhahn (Wasser-Nachfüllstation) und bewertete die Befunde vorsichtig.",
+            "Jede Fassung wird vor dem Einsatz erneut mit Bewohnern getestet.",
         },
       ],
     },
@@ -35,28 +36,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "A translation that passes the second test can certainly be used unchanged in every region.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "A translation must follow every source word even when residents misunderstand the required action.",
+        },
+        {
           isCorrect: true,
           label:
-            "days when the earlier process continued without the tested change",
+            "A communicative translation can be more accurate than a literal one when it preserves the danger level and required action.",
         },
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "The team placed the action before the reason in the revised message.",
         },
         {
           isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label: "bottles refilled and short comments from users",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested illustrated instructions beside the tap in the water refill station and interpreted the evidence cautiously.",
+          label: "Each version will be tested again with residents before use.",
         },
       ],
     },
@@ -64,28 +65,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Satu terjemahan yang lulus uji kedua pasti dapat digunakan tanpa perubahan di seluruh daerah.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Terjemahan harus mengikuti setiap kata sumber meskipun warga salah memahami tindakan yang diminta.",
+        },
+        {
           isCorrect: true,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Terjemahan yang komunikatif dapat lebih tepat daripada terjemahan harfiah jika tetap menjaga tingkat bahaya dan tindakan yang diwajibkan.",
         },
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Tim menempatkan tindakan sebelum alasan dalam susunan pesan baru.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label: "botol yang diisi ulang dan komentar singkat pengguna",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji petunjuk bergambar di dekat keran pada stasiun isi ulang air dan menafsirkan buktinya secara hati-hati.",
+            "Setiap versi akan diuji lagi bersama warga sebelum digunakan.",
         },
       ],
     },

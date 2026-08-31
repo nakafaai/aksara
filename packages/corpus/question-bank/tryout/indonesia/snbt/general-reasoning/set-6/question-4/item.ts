@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "beugt Herz-Kreislauf-Erkrankungen vor",
         },
         {
-          isCorrect: false,
-          label: "beschleunigt die Verdauung",
-        },
-        {
           isCorrect: true,
           label: "erhöht den Blutdruck",
+        },
+        {
+          isCorrect: false,
+          label: "beschleunigt die Verdauung",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "prevents cardiovascular disease",
         },
         {
-          isCorrect: false,
-          label: "accelerates digestion",
-        },
-        {
           isCorrect: true,
           label: "raises blood pressure",
+        },
+        {
+          isCorrect: false,
+          label: "accelerates digestion",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "mencegah penyakit kardiovaskular",
         },
         {
-          isCorrect: false,
-          label: "mempercepat pencernaan",
-        },
-        {
           isCorrect: true,
           label: "meningkatkan tekanan darah",
+        },
+        {
+          isCorrect: false,
+          label: "mempercepat pencernaan",
         },
         {
           isCorrect: false,

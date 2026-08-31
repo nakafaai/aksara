@@ -11,6 +11,11 @@ const item: QuestionItem = {
             "Aussage $$(1)$$ allein reicht aus, Aussage $$(2)$$ allein jedoch nicht",
         },
         {
+          isCorrect: true,
+          label:
+            "Aussage $$(2)$$ allein reicht aus, Aussage $$(1)$$ allein jedoch nicht",
+        },
+        {
           isCorrect: false,
           label:
             "Beide Aussagen zusammen reichen aus, aber keine Aussage allein",
@@ -19,11 +24,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Aussage $$(1)$$ allein reicht aus, und Aussage $$(2)$$ allein reicht aus",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Aussage $$(2)$$ allein reicht aus, Aussage $$(1)$$ allein jedoch nicht",
         },
         {
           isCorrect: false,
@@ -41,6 +41,11 @@ const item: QuestionItem = {
             "Statement $$(1)$$ ALONE is sufficient, but statement $$(2)$$ ALONE is not sufficient",
         },
         {
+          isCorrect: true,
+          label:
+            "Statement $$(2)$$ ALONE is sufficient, but statement $$(1)$$ ALONE is not sufficient",
+        },
+        {
           isCorrect: false,
           label:
             "BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient",
@@ -49,11 +54,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Statement $$(1)$$ ALONE is sufficient, and statement $$(2)$$ ALONE is sufficient",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Statement $$(2)$$ ALONE is sufficient, but statement $$(1)$$ ALONE is not sufficient",
         },
         {
           isCorrect: false,
@@ -70,6 +70,11 @@ const item: QuestionItem = {
             "Pernyataan $$(1)$$ SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan $$(2)$$ SAJA tidak cukup",
         },
         {
+          isCorrect: true,
+          label:
+            "Pernyataan $$(2)$$ SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan $$(1)$$ SAJA tidak cukup",
+        },
+        {
           isCorrect: false,
           label:
             "DUA pernyataan BERSAMA-SAMA cukup untuk menjawab pertanyaan, tetapi SATU pernyataan SAJA tidak cukup",
@@ -78,11 +83,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Pernyataan $$(1)$$ SAJA cukup untuk menjawab pertanyaan dan pernyataan $$(2)$$ SAJA cukup untuk menjawab pertanyaan",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Pernyataan $$(2)$$ SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan $$(1)$$ SAJA tidak cukup",
         },
         {
           isCorrect: false,

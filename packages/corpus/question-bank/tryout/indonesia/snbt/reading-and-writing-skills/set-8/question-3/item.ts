@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Die Beobachtung bewies daher, dass die Änderung Fragekarten an jedem Demonstrationstisch den Unterschied verursachte.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team musste daher mehrere Merkmale im Kontext öffentliche Laborführung ändern, bevor es erneut maß.",
+        },
+        {
           isCorrect: true,
           label:
             "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Fragekarten an jedem Demonstrationstisch.",
         },
         {
           isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Tag der offenen Labortür",
+          label:
+            "Das erste Muster rechtfertigte daher die dauerhafte Einführung von Fragekarten an jedem Demonstrationstisch.",
         },
         {
           isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Tag der offenen Labortür über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Fragekarten an jedem Demonstrationstisch.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Fragekarten an jedem Demonstrationstisch.",
+            "Die verbleibende Unsicherheit machte einen weiteren Vergleich daher überflüssig.",
         },
       ],
     },
@@ -35,28 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "The observation therefore established that question cards at each demonstration table caused the difference.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team therefore needed to alter several features of open laboratory tour before measuring again.",
+        },
+        {
           isCorrect: true,
           label:
             "The hypothesis therefore needed a limited test of question cards at each demonstration table.",
         },
         {
           isCorrect: false,
-          label: "A structured test of one change: open laboratory tour",
+          label:
+            "The initial pattern therefore justified permanent adoption of question cards at each demonstration table.",
         },
         {
           isCorrect: false,
           label:
-            "In this setting (open laboratory tour), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, question cards at each demonstration table, directly addressed the observed uncertainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The next test of question cards at each demonstration table will run for longer.",
+            "The remaining uncertainty therefore made another comparison unnecessary.",
         },
       ],
     },
@@ -64,28 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Pengamatan itu membuktikan bahwa kartu pertanyaan di setiap meja demonstrasi menyebabkan perbedaan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim perlu mengubah beberapa unsur tur laboratorium terbuka sebelum melakukan pengukuran ulang.",
+        },
+        {
           isCorrect: true,
           label:
             "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui kartu pertanyaan untuk setiap meja demonstrasi.",
         },
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: tur laboratorium terbuka",
+          label:
+            "Pola awal itu membenarkan penerapan tetap kartu pertanyaan di setiap meja demonstrasi.",
         },
         {
           isCorrect: false,
           label:
-            "Di tur laboratorium terbuka, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa kartu pertanyaan untuk setiap meja demonstrasi langsung menanggapi keraguan yang diamati.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji kartu pertanyaan untuk setiap meja demonstrasi berikutnya akan berlangsung lebih lama.",
+            "Ketidakpastian yang tersisa membuat perbandingan lanjutan tidak diperlukan.",
         },
       ],
     },

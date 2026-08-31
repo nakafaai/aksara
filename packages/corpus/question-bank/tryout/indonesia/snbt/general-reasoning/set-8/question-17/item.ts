@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "Jahr $$3$$",
         },
         {
-          isCorrect: true,
-          label: "Jahr $$1$$",
-        },
-        {
           isCorrect: false,
           label: "Jahr $$4$$",
+        },
+        {
+          isCorrect: true,
+          label: "Jahr $$1$$",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "Year $$3$$",
         },
         {
-          isCorrect: true,
-          label: "Year $$1$$",
-        },
-        {
           isCorrect: false,
           label: "Year $$4$$",
+        },
+        {
+          isCorrect: true,
+          label: "Year $$1$$",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "Tahun ke-$$3$$",
         },
         {
-          isCorrect: true,
-          label: "Tahun ke-$$1$$",
-        },
-        {
           isCorrect: false,
           label: "Tahun ke-$$4$$",
+        },
+        {
+          isCorrect: true,
+          label: "Tahun ke-$$1$$",
         },
         {
           isCorrect: false,

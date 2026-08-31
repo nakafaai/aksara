@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Membantu memahami kehidupan masyarakat Pompeii pada masa itu",
+        },
+        {
           isCorrect: false,
           label: "Membuktikan bahwa semua catatan Romawi keliru",
         },
         {
           isCorrect: false,
           label: "Menentukan secara pasti identitas setiap penduduk Pompeii",
-        },
-        {
-          isCorrect: true,
-          label: "Membantu memahami kehidupan masyarakat Pompeii pada masa itu",
         },
         {
           isCorrect: false,

@@ -21,14 +21,14 @@ const item: QuestionItem = {
             "Die USA und Deutschland sind die beiden Länder mit den höchsten Exportwerten.",
         },
         {
-          isCorrect: false,
-          label:
-            "Der Wert der Bekleidungsexporte in die Vereinigten Staaten war niedriger als im Vorjahr.",
-        },
-        {
           isCorrect: true,
           label:
             "Der wichtigste Markt für Indonesiens Konfektionsbekleidung waren die Vereinigten Staaten.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Der Wert der Bekleidungsexporte in die Vereinigten Staaten war niedriger als im Vorjahr.",
         },
       ],
     },
@@ -51,14 +51,14 @@ const item: QuestionItem = {
             "The United States and Germany are the two countries with the highest export values.",
         },
         {
-          isCorrect: false,
-          label:
-            "The export value of Indonesia's ready-made clothing to the United States is less than last year.",
-        },
-        {
           isCorrect: true,
           label:
             "The main market for Indonesia's ready-made clothing products is the United States.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The export value of Indonesia's ready-made clothing to the United States is less than last year.",
         },
       ],
     },
@@ -80,14 +80,14 @@ const item: QuestionItem = {
             "Amerika Serikat dan Jerman merupakan dua negara dengan nilai ekspor tertinggi.",
         },
         {
-          isCorrect: false,
-          label:
-            "Nilai ekspor pakaian jadi Indonesia ke Amerika Serikat lebih sedikit daripada tahun lalu.",
-        },
-        {
           isCorrect: true,
           label:
             "Pasar utama produk pakaian jadi Indonesia adalah Amerika Serikat.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Nilai ekspor pakaian jadi Indonesia ke Amerika Serikat lebih sedikit daripada tahun lalu.",
         },
       ],
     },

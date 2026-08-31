@@ -8,12 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Geordnete Prüfung einer Änderung: Erfassung von Straßenbäumen",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Beispielfotos für jede Zustandskategorie.",
+            "Mit geänderten Messregeln plant das Team einen längeren Test von Beispielfotos für jede Zustandskategorie.",
         },
         {
           isCorrect: true,
@@ -23,12 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Erfassung von Straßenbäumen über den beiden anderen Werten.",
+            "Das Team will nur die Tage wiederholen, an denen die Änderung Beispielfotos für jede Zustandskategorie den höchsten Wert ergab.",
         },
         {
           isCorrect: false,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Beispielfotos für jede Zustandskategorie.",
+            "Das Team will Beispielfotos für jede Zustandskategorie dauerhaft einführen statt einen längeren Vergleich durchzuführen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team plant einen längeren Test von Beispielfotos für jede Zustandskategorie ohne Vergleichsbedingung.",
         },
       ],
     },
@@ -37,12 +37,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: street-tree survey",
-        },
-        {
-          isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of sample photos for each condition category.",
+            "Using revised measurement rules, the team plans a longer test of sample photos for each condition category.",
         },
         {
           isCorrect: true,
@@ -52,12 +48,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "In this setting (street-tree survey), the trial value exceeded both other values.",
+            "The team plans to repeat only the days on which sample photos for each condition category produced the highest value.",
         },
         {
           isCorrect: false,
           label:
-            "The change, sample photos for each condition category, directly addressed the observed uncertainty.",
+            "The team plans to adopt sample photos for each condition category permanently instead of running a longer comparison.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team plans a longer test of sample photos for each condition category without retaining a comparison condition.",
         },
       ],
     },
@@ -66,12 +67,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: pendataan pohon jalan",
-        },
-        {
-          isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui contoh foto untuk setiap kategori kondisi.",
+            "Dengan kaidah pengukuran yang diubah, tim merencanakan uji foto contoh untuk setiap kategori kondisi yang lebih panjang.",
         },
         {
           isCorrect: true,
@@ -81,12 +78,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Di pendataan pohon jalan, nilai hari uji melampaui dua nilai lainnya.",
+            "Tim akan mengulang hari ketika foto contoh untuk setiap kategori kondisi menghasilkan nilai tertinggi.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa contoh foto untuk setiap kategori kondisi langsung menanggapi keraguan yang diamati.",
+            "Tim akan menerapkan foto contoh untuk setiap kategori kondisi secara tetap sebagai pengganti perbandingan yang lebih panjang.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim merencanakan uji foto contoh untuk setiap kategori kondisi yang lebih panjang tanpa mempertahankan kondisi pembanding.",
         },
       ],
     },

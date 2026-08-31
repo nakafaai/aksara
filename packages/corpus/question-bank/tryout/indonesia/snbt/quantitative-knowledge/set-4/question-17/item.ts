@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Die Anweisung $$(2)$$ ist ausreichend.",
-        },
-        {
           isCorrect: false,
           label: "Die Anweisung $$(1)$$ ist ausreichend.",
         },
@@ -24,6 +20,10 @@ const item: QuestionItem = {
             "Anweisung $$(1)$$ ist ausreichend, Anweisung $$(2)$$ ist ausreichend.",
         },
         {
+          isCorrect: true,
+          label: "Die Anweisung $$(2)$$ ist ausreichend.",
+        },
+        {
           isCorrect: false,
           label: "Die Anweisungen $$(1)$$ und $$(2)$$ sind nicht ausreichend.",
         },
@@ -32,10 +32,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "Statement $$(2)$$ is sufficient.",
-        },
         {
           isCorrect: false,
           label: "Statement $$(1)$$ is sufficient.",
@@ -51,6 +47,10 @@ const item: QuestionItem = {
             "Statement $$(1)$$ is sufficient, statement $$(2)$$ is sufficient.",
         },
         {
+          isCorrect: true,
+          label: "Statement $$(2)$$ is sufficient.",
+        },
+        {
           isCorrect: false,
           label: "Statements $$(1)$$ and $$(2)$$ are not sufficient.",
         },
@@ -59,10 +59,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "Pernyataan $$(2)$$ cukup.",
-        },
         {
           isCorrect: false,
           label: "Pernyataan $$(1)$$ cukup.",
@@ -75,6 +71,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Pernyataan $$(1)$$ cukup, pernyataan $$(2)$$ cukup.",
+        },
+        {
+          isCorrect: true,
+          label: "Pernyataan $$(2)$$ cukup.",
         },
         {
           isCorrect: false,

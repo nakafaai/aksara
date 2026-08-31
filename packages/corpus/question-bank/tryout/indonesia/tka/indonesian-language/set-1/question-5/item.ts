@@ -11,25 +11,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "cukup akurat untuk memilih benih karena berasal dari pengalaman penanam",
+        },
+        {
+          isCorrect: false,
+          label:
+            "baru layak dijadikan petunjuk setelah catatan warga dikonfirmasi dengan satu uji sampel",
+        },
+        {
+          isCorrect: false,
+          label:
+            "paling tepat digunakan petugas untuk mengelompokkan benih, bukan oleh peminjam",
+        },
+        {
           isCorrect: true,
           label:
             "berguna sebagai petunjuk, tetapi tidak menjamin hasil yang sama",
         },
         {
           isCorrect: false,
-          label: "selalu akurat karena ditulis oleh penanam",
-        },
-        {
-          isCorrect: false,
-          label: "tidak berguna karena bukan hasil laboratorium",
-        },
-        {
-          isCorrect: false,
-          label: "hanya boleh dibaca oleh petugas perpustakaan",
-        },
-        {
-          isCorrect: false,
-          label: "cukup untuk membuktikan daya tumbuh semua benih",
+          label:
+            "cukup untuk memperkirakan daya tumbuh tanpa melakukan uji sampel tambahan",
         },
       ],
     },

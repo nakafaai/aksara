@@ -11,24 +11,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "92 m",
-        },
-        {
-          isCorrect: false,
-          label: "96 m",
-        },
-        {
-          isCorrect: false,
-          label: "104 m",
-        },
-        {
           isCorrect: true,
-          label: "100 m",
+          label: "$$70$$",
         },
         {
           isCorrect: false,
-          label: "108 m",
+          label: "$$60$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$64$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$68$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$72$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "92 m",
-        },
-        {
-          isCorrect: false,
-          label: "96 m",
-        },
-        {
-          isCorrect: false,
-          label: "104 m",
-        },
-        {
           isCorrect: true,
-          label: "100 m",
+          label: "$$70$$",
         },
         {
           isCorrect: false,
-          label: "108 m",
+          label: "$$60$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$64$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$68$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$72$$",
         },
       ],
     },
@@ -61,24 +61,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "92 m",
-        },
-        {
-          isCorrect: false,
-          label: "96 m",
-        },
-        {
-          isCorrect: false,
-          label: "104 m",
-        },
-        {
           isCorrect: true,
-          label: "100 m",
+          label: "$$70$$",
         },
         {
           isCorrect: false,
-          label: "108 m",
+          label: "$$60$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$64$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$68$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$72$$",
         },
       ],
     },

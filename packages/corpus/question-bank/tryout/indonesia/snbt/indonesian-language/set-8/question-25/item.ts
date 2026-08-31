@@ -7,15 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang balai warga",
-        },
-        {
-          isCorrect: false,
-          label: "Alasan Mengabaikan Semua Bukti dalam balai warga",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap integritas ilmiah di Seluruh Dunia",
+          label: "Menunggu orang lain menyelesaikan langkah berikutnya",
         },
         {
           isCorrect: true,
@@ -23,7 +15,16 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Satu Aturan untuk Setiap balai warga",
+          label: "Menyembunyikan bukti yang belum tuntas dalam proyek besar",
+        },
+        {
+          isCorrect: false,
+          label:
+            "integritas ilmiah sebagai definisi tanpa tindakan yang dapat diperiksa",
+        },
+        {
+          isCorrect: false,
+          label: "Rencana lengkap tanpa langkah kecil yang bertanggung jawab",
         },
       ],
     },

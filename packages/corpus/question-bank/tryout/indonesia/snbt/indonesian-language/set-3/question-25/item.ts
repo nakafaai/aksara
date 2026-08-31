@@ -7,11 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang ruang arsip sekolah",
-        },
-        {
-          isCorrect: false,
-          label: "Alasan Mengabaikan Semua Bukti dalam ruang arsip sekolah",
+          label: "Menunggu orang lain menyelesaikan langkah berikutnya",
         },
         {
           isCorrect: true,
@@ -19,11 +15,16 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap metakognisi di Seluruh Dunia",
+          label: "Menyembunyikan bukti yang belum tuntas dalam proyek besar",
         },
         {
           isCorrect: false,
-          label: "Satu Aturan untuk Setiap ruang arsip sekolah",
+          label:
+            "metakognisi sebagai definisi tanpa tindakan yang dapat diperiksa",
+        },
+        {
+          isCorrect: false,
+          label: "Rencana lengkap tanpa langkah kecil yang bertanggung jawab",
         },
       ],
     },

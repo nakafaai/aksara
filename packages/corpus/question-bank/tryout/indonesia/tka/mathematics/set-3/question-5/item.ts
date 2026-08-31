@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 4.500",
+          label: "$$2:1$$",
         },
         {
           isCorrect: false,
-          label: "Rp 5.000",
+          label: "$$5:2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9:4$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$13:5$$",
         },
         {
           isCorrect: true,
-          label: "Rp 5.500",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 6.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 6.500",
+          label: "$$11:5$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 4.500",
+          label: "$$2:1$$",
         },
         {
           isCorrect: false,
-          label: "Rp 5.000",
+          label: "$$5:2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9:4$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$13:5$$",
         },
         {
           isCorrect: true,
-          label: "Rp 5.500",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 6.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 6.500",
+          label: "$$11:5$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 4.500",
+          label: "$$2:1$$",
         },
         {
           isCorrect: false,
-          label: "Rp 5.000",
+          label: "$$5:2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9:4$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$13:5$$",
         },
         {
           isCorrect: true,
-          label: "Rp 5.500",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 6.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 6.500",
+          label: "$$11:5$$",
         },
       ],
     },

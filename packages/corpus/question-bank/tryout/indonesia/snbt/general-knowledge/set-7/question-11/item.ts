@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Nach dem Abbau der Zugangshindernisse erscheinen Vorschläge zuvor nicht vertretener Weiler im Ergebnis.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Eine überarbeitete Einladung macht Zeitpunkt und Ort der Versammlung leichter auffindbar, ohne die verfügbaren Teilnahmewege zu verändern.",
         },
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Die endgültige Entscheidung wird Auswahl, Einwände und Einfluss der Beiträge festhalten.",
         },
         {
           isCorrect: false,
-          label: "Der Wert mit Änderung, 28, lag über 21 und 23.",
+          label:
+            "Fast alle ersten Redebeiträge kamen aus den drei nächstgelegenen Vierteln.",
         },
         {
           isCorrect: true,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Neue Daten zeigen, dass Bewohner der Hügel trotz von Anfang an gleichwertiger Termine, Fahrten, Informationen und Kommunikationshilfen fernblieben.",
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "After access barriers are reduced, proposals from previously unrepresented hamlets appear in the consultation results.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "A revised invitation makes the meeting time and location easier to find without changing the available ways to participate.",
         },
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "The final decision will record the choice, objections, and the influence of contributions.",
         },
         {
           isCorrect: false,
-          label: "The intervention value, 28, exceeded both 21 and 23.",
+          label:
+            "Nearly every initial speaker came from the three nearest neighbourhoods.",
         },
         {
           isCorrect: true,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "New data show that hill residents chose not to attend even though equivalent schedules, transport, information, and communication support had existed from the start.",
         },
       ],
     },
@@ -66,26 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Setelah hambatan akses dikurangi, usulan dari dusun yang sebelumnya tidak terwakili mulai muncul dalam hasil musyawarah.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Undangan yang direvisi membuat waktu dan lokasi musyawarah lebih mudah ditemukan tanpa mengubah jalur partisipasi yang tersedia.",
         },
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Keputusan akhir akan mencatat pilihan, keberatan, dan pengaruh masukan.",
         },
         {
           isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 28, melampaui 21 dan 23.",
+          label:
+            "Hampir seluruh pembicara pertama berasal dari tiga rukun tetangga terdekat.",
         },
         {
           isCorrect: true,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Data baru menunjukkan warga perbukitan sebenarnya memilih tidak hadir meskipun tersedia jadwal, transportasi, informasi, dan sarana komunikasi yang setara sejak awal.",
         },
       ],
     },

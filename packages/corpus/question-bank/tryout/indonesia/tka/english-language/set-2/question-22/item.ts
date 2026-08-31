@@ -20,7 +20,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Assume professional design proves accuracy.",
+          label:
+            "Treat professional design as evidence that the source has already been verified.",
         },
         {
           isCorrect: true,

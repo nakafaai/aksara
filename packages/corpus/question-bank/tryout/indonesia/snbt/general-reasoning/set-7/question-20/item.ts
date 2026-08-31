@@ -14,6 +14,10 @@ const item: QuestionItem = {
           label: "Die Schlussfolgerung ist mit Sicherheit falsch.",
         },
         {
+          isCorrect: true,
+          label: "Die Schlussfolgerung ist mit Sicherheit wahr.",
+        },
+        {
           isCorrect: false,
           label: "Die Schlussfolgerung ist für die Angaben irrelevant.",
         },
@@ -21,10 +25,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Die Schlussfolgerung lässt sich wegen unzureichender Angaben nicht bewerten.",
-        },
-        {
-          isCorrect: true,
-          label: "Die Schlussfolgerung ist mit Sicherheit wahr.",
         },
       ],
     },
@@ -40,6 +40,10 @@ const item: QuestionItem = {
           label: "The conclusion is definitely false.",
         },
         {
+          isCorrect: true,
+          label: "The conclusion is definitely true.",
+        },
+        {
           isCorrect: false,
           label: "The conclusion is irrelevant to the information provided.",
         },
@@ -47,10 +51,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "The conclusion cannot be assessed because there is insufficient information.",
-        },
-        {
-          isCorrect: true,
-          label: "The conclusion is definitely true.",
         },
       ],
     },
@@ -66,6 +66,10 @@ const item: QuestionItem = {
           label: "Simpulan tersebut pasti salah.",
         },
         {
+          isCorrect: true,
+          label: "Simpulan tersebut pasti benar.",
+        },
+        {
           isCorrect: false,
           label:
             "Simpulan tersebut tidak relevan dengan informasi yang diberikan.",
@@ -74,10 +78,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Simpulan tersebut tidak dapat dinilai karena informasi tidak cukup.",
-        },
-        {
-          isCorrect: true,
-          label: "Simpulan tersebut pasti benar.",
         },
       ],
     },

@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "A historical sequence",
         },
         {
-          isCorrect: true,
-          label: "A compromise between competing benefits and costs",
-        },
-        {
           isCorrect: false,
           label: "A guaranteed advantage",
+        },
+        {
+          isCorrect: true,
+          label: "A compromise between competing benefits and costs",
         },
       ],
     },

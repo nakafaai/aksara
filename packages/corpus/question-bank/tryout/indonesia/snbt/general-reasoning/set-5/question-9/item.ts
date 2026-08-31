@@ -6,14 +6,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Der Verbrauch überschreitet den Grenzwert und der Strom wird unterbrochen",
-        },
-        {
           isCorrect: true,
           label:
             "Der Verbrauch überschreitet den Grenzwert und der Strom wird nicht unterbrochen",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Der Verbrauch überschreitet den Grenzwert und der Strom wird unterbrochen",
         },
         {
           isCorrect: false,
@@ -36,12 +36,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Use exceeds the limit and the power is cut",
-        },
-        {
           isCorrect: true,
           label: "Use exceeds the limit and the power is not cut",
+        },
+        {
+          isCorrect: false,
+          label: "Use exceeds the limit and the power is cut",
         },
         {
           isCorrect: false,
@@ -62,12 +62,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Pemakaian melebihi batas dan aliran listrik terputus",
-        },
-        {
           isCorrect: true,
           label: "Pemakaian melebihi batas dan aliran listrik tidak terputus",
+        },
+        {
+          isCorrect: false,
+          label: "Pemakaian melebihi batas dan aliran listrik terputus",
         },
         {
           isCorrect: false,

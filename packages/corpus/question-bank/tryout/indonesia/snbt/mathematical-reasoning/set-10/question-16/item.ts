@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$21$$",
+          label: "$$73{,}6$$",
         },
         {
           isCorrect: false,
-          label: "$$25$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$27$$",
+          label: "$$73{,}7$$",
         },
         {
           isCorrect: true,
-          label: "$$23$$",
+          label: "$$73{,}9$$",
         },
         {
           isCorrect: false,
-          label: "$$19$$",
+          label: "$$73{,}8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$74{,}0$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$21$$",
+          label: "$$73{,}6$$",
         },
         {
           isCorrect: false,
-          label: "$$25$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$27$$",
+          label: "$$73{,}7$$",
         },
         {
           isCorrect: true,
-          label: "$$23$$",
+          label: "$$73{,}9$$",
         },
         {
           isCorrect: false,
-          label: "$$19$$",
+          label: "$$73{,}8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$74{,}0$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$21$$",
+          label: "$$73{,}6$$",
         },
         {
           isCorrect: false,
-          label: "$$25$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$27$$",
+          label: "$$73{,}7$$",
         },
         {
           isCorrect: true,
-          label: "$$23$$",
+          label: "$$73{,}9$$",
         },
         {
           isCorrect: false,
-          label: "$$19$$",
+          label: "$$73{,}8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$74{,}0$$",
         },
       ],
     },

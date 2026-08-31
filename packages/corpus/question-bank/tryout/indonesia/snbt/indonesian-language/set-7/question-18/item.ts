@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam pameran sains keliling pasti berlaku tanpa batas pada tempat lain.",
+            "Karena poster dan buku tamu sama-sama menyebut pameran, pesan resmi pasti sama dengan pengalaman seluruh pengunjung.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Buku tamu harus menggantikan poster karena tanggapan pengunjung selalu lebih netral daripada promosi penyelenggara.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perbedaan antara pesan poster dan komentar pengunjung membuktikan bahwa promosi pameran tidak jujur.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Asal kota dan tujuan pembuatan sumber tidak perlu diperiksa setelah lima poster dan satu buku tamu dikumpulkan.",
         },
         {
           isCorrect: true,
           label:
-            "Perbedaan antarsumber dapat memperkaya penafsiran jika asal dan tujuan setiap sumber diperiksa.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang pameran sains keliling tidak berguna.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Satu rincian tentang representasi cukup untuk membuktikan semua hubungan sebab-akibat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Poster menunjukkan pesan resmi pameran, sedangkan buku tamu merekam sebagian tanggapan pengunjung; keduanya dapat dibandingkan untuk menilai hubungan pameran dengan masyarakat tanpa menganggap komentar itu mewakili semua pengunjung.",
         },
       ],
     },

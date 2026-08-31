@@ -6,28 +6,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Das Team prüfte vom Eingang sichtbare Stellplatznummern (Fahrradparkplatz auf dem Campus) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 33, lag über 23 und 25.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
           isCorrect: true,
           label:
-            "Vorsichtige Prüfung im Kontext Fahrradparkplatz auf dem Campus: vom Eingang sichtbare Stellplatznummern",
+            "Koordinaten zeigen, dass einer der Namen tatsächlich eine andere, mehrere Kilometer entfernte Quelle bezeichnet.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Nutzer finden mit allen drei Namen dieselben Koordinaten, ohne zusätzliche Verwirrung.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Einige Nutzer benötigen eine Legende, um die Quellensymbole zu unterscheiden, obwohl alle drei Namen weiterhin auf dieselben Koordinaten verweisen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Neue Belege können den Eintrag ändern, ohne die frühere Namensgeschichte zu löschen.",
+        },
+        {
+          isCorrect: false,
+          label: "Der Verwaltungsname wurde als Hauptindex festgelegt.",
         },
       ],
     },
@@ -35,28 +35,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "The team tested rack numbers visible from the entrance in the campus bicycle parking and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 33, exceeded both 23 and 25.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
           isCorrect: true,
           label:
-            "A cautious trial of rack numbers visible from the entrance: campus bicycle parking",
+            "Coordinates show that one name actually refers to a different spring several kilometres away.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Users searching with all three names find the same coordinates without additional confusion.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Some users need a legend to distinguish the spring symbols, although all three names still point to the same coordinates.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "New evidence may revise the record without erasing earlier naming history.",
+        },
+        {
+          isCorrect: false,
+          label: "The administrative name was selected as the primary index.",
         },
       ],
     },
@@ -64,28 +64,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Tim menguji nomor rak yang terlihat dari pintu masuk pada parkir sepeda kampus dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 33, melampaui 23 dan 25.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
           isCorrect: true,
           label:
-            "Uji Hati-hati dalam parkir sepeda kampus: nomor rak yang terlihat dari pintu masuk",
+            "Koordinat menunjukkan bahwa salah satu nama ternyata merujuk pada mata air berbeda beberapa kilometer jauhnya.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengguna yang mencari dengan ketiga nama berhasil menemukan koordinat yang sama tanpa kebingungan tambahan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Sebagian pengguna memerlukan legenda untuk membedakan simbol mata air, walaupun ketiga nama tetap menunjuk koordinat yang sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bukti baru dapat mengubah catatan tanpa menghapus riwayat nama sebelumnya.",
+        },
+        {
+          isCorrect: false,
+          label: "Nama administrasi ditetapkan sebagai indeks utama.",
         },
       ],
     },

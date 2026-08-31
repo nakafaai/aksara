@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Satz $$6$$.",
+        },
+        {
           isCorrect: false,
           label: "Satz $$2$$.",
         },
@@ -21,15 +25,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Satz $$10$$.",
         },
-        {
-          isCorrect: true,
-          label: "Satz $$6$$.",
-        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "sentence $$6$$.",
+        },
         {
           isCorrect: false,
           label: "sentence $$2$$.",
@@ -46,15 +50,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "sentence $$10$$.",
         },
-        {
-          isCorrect: true,
-          label: "sentence $$6$$.",
-        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "kalimat $$6$$.",
+        },
         {
           isCorrect: false,
           label: "kalimat $$2$$.",
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "kalimat $$10$$.",
-        },
-        {
-          isCorrect: true,
-          label: "kalimat $$6$$.",
         },
       ],
     },

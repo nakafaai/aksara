@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage only gives a complete history of a youth translation club without examining evidence or choice.",
+            "The character treats completing the whole project as the necessary first step before seeking review.",
         },
         {
           isCorrect: true,
@@ -18,17 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage proves that one method must succeed in every a youth translation club.",
+            "The account presents connotation as a general idea rather than something developed through the character's choice.",
         },
         {
           isCorrect: false,
           label:
-            "The passage rejects all observation and relies only on personal preference.",
+            "The main obstacle becomes manageable because another person assumes responsibility for the next step.",
         },
         {
           isCorrect: false,
           label:
-            "The passage mainly defines connotation without connecting it to a setting.",
+            "The passage presents documenting uncertainty as more important than taking a reviewable action.",
         },
       ],
     },

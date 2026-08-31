@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "$$2{,}40$$ Km",
         },
         {
-          isCorrect: true,
-          label: "$$1{,}44$$ Km",
-        },
-        {
           isCorrect: false,
           label: "$$2{,}50$$ Km",
+        },
+        {
+          isCorrect: true,
+          label: "$$1{,}44$$ Km",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "$$2.40$$ Km",
         },
         {
-          isCorrect: true,
-          label: "$$1.44$$ Km",
-        },
-        {
           isCorrect: false,
           label: "$$2.50$$ Km",
+        },
+        {
+          isCorrect: true,
+          label: "$$1.44$$ Km",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "$$2{,}40$$ Km",
         },
         {
-          isCorrect: true,
-          label: "$$1{,}44$$ Km",
-        },
-        {
           isCorrect: false,
           label: "$$2{,}50$$ Km",
+        },
+        {
+          isCorrect: true,
+          label: "$$1{,}44$$ Km",
         },
       ],
     },

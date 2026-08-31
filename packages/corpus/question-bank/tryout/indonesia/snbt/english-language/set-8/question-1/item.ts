@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage only gives a complete history of load distribution in paper bridge models without examining evidence or choice.",
+            "The class tested how folding a paper bridge deck into a triangular truss affected load distribution, while controlling the listed factors but treating one short trial as proof of a universal effect.",
         },
         {
           isCorrect: false,
           label:
-            "The passage proves that one method must succeed in every load distribution in paper bridge models.",
+            "The class tested how folding a paper bridge deck into a triangular truss affected load distribution, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The class tested how folding a paper bridge deck into a triangular truss affected load distribution, while treating the scientific term as the measured outcome that settles the investigation.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The class tested how folding a paper bridge deck into a triangular truss affected load distribution, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
         },
         {
           isCorrect: true,
           label:
-            "The class tested folding the deck into a triangular truss in load distribution in paper bridge models while controlling other factors and reporting a limitation.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage rejects all observation and relies only on personal preference.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage mainly defines truss without connecting it to a setting.",
+            "The class tested how folding a paper bridge deck into a triangular truss affected load distribution, while controlling other factors and reporting a limitation.",
         },
       ],
     },

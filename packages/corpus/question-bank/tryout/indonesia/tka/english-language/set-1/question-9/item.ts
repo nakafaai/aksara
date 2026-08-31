@@ -11,16 +11,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "The writer asked questions before suggesting a change.",
+          isCorrect: false,
+          label:
+            "The writer relied on symptoms from each bicycle instead of asking owners for details.",
         },
         {
           isCorrect: false,
-          label: "The writer refused to speak with bicycle owners.",
-        },
-        {
-          isCorrect: false,
-          label: "The writer replaced every noisy part immediately.",
+          label:
+            "The writer began by replacing the noisy brake before asking what the rider had noticed.",
         },
         {
           isCorrect: false,
@@ -28,7 +26,12 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "The writer expected Sari to do every repair.",
+          label:
+            "The writer still depended on Sari to identify each fault before taking action.",
+        },
+        {
+          isCorrect: true,
+          label: "The writer asked questions before suggesting a change.",
         },
       ],
     },

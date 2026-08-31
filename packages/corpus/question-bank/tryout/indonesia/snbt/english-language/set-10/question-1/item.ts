@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage only gives a complete history of voltage in simple cell arrangements without examining evidence or choice.",
+            "The class tested how connecting two cells in series affected voltage in a simple circuit, while controlling the listed factors but treating one short trial as proof of a universal effect.",
         },
         {
           isCorrect: false,
           label:
-            "The passage proves that one method must succeed in every voltage in simple cell arrangements.",
+            "The class tested how connecting two cells in series affected voltage in a simple circuit, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
         },
         {
           isCorrect: false,
           label:
-            "The passage rejects all observation and relies only on personal preference.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage mainly defines potential difference without connecting it to a setting.",
+            "The class tested how connecting two cells in series affected voltage in a simple circuit, while treating the scientific term as the measured outcome that settles the investigation.",
         },
         {
           isCorrect: true,
           label:
-            "The class tested connecting two cells in series in voltage in simple cell arrangements while controlling other factors and reporting a limitation.",
+            "The class tested how connecting two cells in series affected voltage in a simple circuit, while controlling other factors and reporting a limitation.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The class tested how connecting two cells in series affected voltage in a simple circuit, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
         },
       ],
     },

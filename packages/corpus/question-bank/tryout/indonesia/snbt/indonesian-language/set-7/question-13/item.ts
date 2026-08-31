@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam antrean pemeriksaan kesehatan pasti berlaku tanpa batas pada tempat lain.",
+            "Nilai 56 membuktikan bahwa nomor tahap mengatasi seluruh masalah antrean, termasuk perubahan kebutuhan medis setiap hari.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang antrean pemeriksaan kesehatan tidak berguna.",
+            "Perbedaan antara nilai dasar 40 dan pembanding 42 terlalu kecil sehingga hasil uji 56 dapat dibaca tanpa kondisi pembanding.",
         },
         {
           isCorrect: false,
           label:
-            "Satu rincian tentang alur layanan cukup untuk membuktikan semua hubungan sebab-akibat.",
+            "Masukan pasien dan perawat menjamin bahwa nomor tahap akan bekerja sama baiknya untuk semua jenis layanan kesehatan.",
         },
         {
           isCorrect: true,
           label:
-            "Keputusan lanjutan sebaiknya mempertimbangkan data, pengalaman pihak terdampak, dan keterbatasan uji.",
+            "Nilai 56 dibandingkan 42 mendukung penerusan nomor tahap secara terbatas, sedangkan perubahan jumlah pasien dan kebutuhan medis menuntut pengujian pada hari lain.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Karena petugas tidak ditambah, kenaikan selama uji membuktikan hubungan sebab yang berlaku di setiap fasilitas.",
         },
       ],
     },

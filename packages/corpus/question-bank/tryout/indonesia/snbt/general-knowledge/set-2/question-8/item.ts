@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Menschen verdauen Laktose unterschiedlich, und ein niedriger Laktasespiegel kann eine Malabsorption verursachen.",
+        },
+        {
           isCorrect: false,
           label: "die Nährstoffe in Milch und Milcherzeugnissen.",
         },
@@ -22,16 +27,16 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Fermentierte Milcherzeugnisse sind immer laktosefrei.",
         },
-        {
-          isCorrect: true,
-          label:
-            "Menschen verdauen Laktose unterschiedlich, und ein niedriger Laktasespiegel kann eine Malabsorption verursachen.",
-        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "people digest lactose differently, and low lactase can cause malabsorption.",
+        },
         {
           isCorrect: false,
           label: "the nutrients supplied by milk and dairy foods.",
@@ -48,16 +53,16 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "fermented dairy products are always lactose-free.",
         },
-        {
-          isCorrect: true,
-          label:
-            "people digest lactose differently, and low lactase can cause malabsorption.",
-        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "kemampuan mencerna laktosa berbeda, dan kadar laktase rendah dapat menyebabkan malabsorpsi.",
+        },
         {
           isCorrect: false,
           label: "zat gizi yang disediakan susu dan produk olahannya.",
@@ -74,11 +79,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "produk susu fermentasi selalu bebas laktosa.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "kemampuan mencerna laktosa berbeda, dan kadar laktase rendah dapat menyebabkan malabsorpsi.",
         },
       ],
     },

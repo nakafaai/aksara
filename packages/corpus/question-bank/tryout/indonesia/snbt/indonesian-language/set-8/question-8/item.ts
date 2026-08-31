@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam kotak perbandingan perpindahan panas pasti berlaku tanpa batas pada tempat lain.",
+            "Mengulang model perpindahan panas dengan lebih banyak unit, tetapi tetap memakai penyederhanaan yang sama tanpa pengamatan lapangan.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang kotak perbandingan perpindahan panas tidak berguna.",
+            "Mengubah seluruh faktor lapangan sekaligus, lalu membandingkan satu hasil akhir tanpa kondisi acuan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Mengambil satu kejadian nyata yang sesuai dengan model sebagai konfirmasi bahwa pola selalu berlaku.",
         },
         {
           isCorrect: true,
           label:
-            "Model berguna untuk menjelaskan prinsip, tetapi temuannya tetap perlu dihubungkan dengan keadaan nyata.",
+            "membandingkan perubahan suhu wadah logam dan plastik yang ketebalan serta celah udaranya disamakan.",
         },
         {
           isCorrect: false,
           label:
-            "Satu rincian tentang konduksi cukup untuk membuktikan semua hubungan sebab-akibat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Mengganti pengukuran dengan survei tentang apakah peserta memahami definisi istilah pada model.",
         },
       ],
     },

@@ -13,11 +13,16 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The writer decided that every blank must be filled by guessing.",
+            "The writer treated a plausible memory as enough to complete an uncertain label.",
         },
         {
           isCorrect: false,
           label: "The writer stopped linking supporting evidence.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "The writer learned that honest uncertainty can make records more useful.",
         },
         {
           isCorrect: false,
@@ -27,11 +32,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "The writer refused to describe photographs without names.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "The writer learned that honest uncertainty can make records more useful.",
         },
       ],
     },

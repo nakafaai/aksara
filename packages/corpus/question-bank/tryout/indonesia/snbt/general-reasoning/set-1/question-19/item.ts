@@ -16,11 +16,6 @@ const item: QuestionItem = {
             "Das Stillen kann nach der Einführung von Beikost fortgesetzt werden.",
         },
         {
-          isCorrect: true,
-          label:
-            "Gemüse allein deckt nach dem Alter von $$6$$ Monaten alle benötigten Lebensmittelgruppen ab.",
-        },
-        {
           isCorrect: false,
           label: "Beikost soll ausreichend, sicher und nährstoffreich sein.",
         },
@@ -28,6 +23,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Obst und Gemüse sind Bestandteil einer abwechslungsreichen Beikost.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Gemüse allein deckt nach dem Alter von $$6$$ Monaten alle benötigten Lebensmittelgruppen ab.",
         },
       ],
     },
@@ -45,11 +45,6 @@ const item: QuestionItem = {
             "Breastfeeding can continue after complementary foods are introduced.",
         },
         {
-          isCorrect: true,
-          label:
-            "Vegetables alone provide every food group an infant needs after $$6$$ months.",
-        },
-        {
           isCorrect: false,
           label:
             "Complementary foods should be adequate, safe, and nutrient-dense.",
@@ -58,6 +53,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Fruits and vegetables are part of a diverse complementary diet.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Vegetables alone provide every food group an infant needs after $$6$$ months.",
         },
       ],
     },
@@ -75,11 +75,6 @@ const item: QuestionItem = {
             "Pemberian ASI dapat dilanjutkan setelah makanan pendamping mulai diberikan.",
         },
         {
-          isCorrect: true,
-          label:
-            "Sayuran saja menyediakan seluruh kelompok makanan yang dibutuhkan bayi setelah usia $$6$$ bulan.",
-        },
-        {
           isCorrect: false,
           label: "Makanan pendamping harus cukup, aman, dan padat gizi.",
         },
@@ -87,6 +82,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Buah dan sayuran merupakan bagian dari makanan pendamping yang beragam.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Sayuran saja menyediakan seluruh kelompok makanan yang dibutuhkan bayi setelah usia $$6$$ bulan.",
         },
       ],
     },

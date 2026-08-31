@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "The passage states that no action or observation occurred in a night market after closing.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Everyone in a night market after closing obtained exactly the same result without variation.",
-        },
-        {
           isCorrect: true,
           label:
-            "Ravi followed the wrong-coloured bag backward through the crowded stalls.",
+            "Tracing the recurring bag backward turns a visible mistake into a route of causes, and the ending response shows why that reversal matters.",
         },
         {
           isCorrect: false,
           label:
-            "The writer removes every detail related to a night market after closing.",
+            "Ravi followed the wrong-coloured bag backward through the crowded stalls; the recurring object's physical appearance fixes its complete meaning from the first mention.",
         },
         {
           isCorrect: false,
           label:
-            "The passage presents plot structure as proof that no follow-up is needed.",
+            "Ravi followed the wrong-coloured bag backward through the crowded stalls; the ending states the object's meaning directly, making the earlier actions irrelevant.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Ravi followed the wrong-coloured bag backward through the crowded stalls; the setting alone changes the atmosphere, independently of the character's use of the recurring object.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Ravi followed the wrong-coloured bag backward through the crowded stalls; the object keeps one fixed meaning even as the character's action and the final response change.",
         },
       ],
     },

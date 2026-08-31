@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "in this passage, an assumption that never needs to be examined in a small public archive",
-        },
-        {
-          isCorrect: false,
-          label:
-            "in this passage, a final result that always applies to every situation",
+            "The term *metadata* proves that the character's first estimate was correct before any accountable action was taken.",
         },
         {
           isCorrect: true,
           label:
-            "information describing the origin, condition, and handling of another record",
+            "The definition of *metadata* provides a lens for reading the character's specific choice as a response to uncertainty, not as an isolated moral label.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, a detail removed because it challenges an opinion",
+            "The definition reduces *metadata* to the recurring object, so the character's choice and development no longer matter.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, decorative language unrelated to the setting",
+            "The term *metadata* describes the final outcome as certain, even though the narrative presents a gradual change.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The definition is included only to name the setting and has no connection to the character's decision.",
         },
       ],
     },

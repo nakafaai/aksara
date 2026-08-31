@@ -7,23 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "klar und unmittelbar ausgedrückt",
+          label:
+            "Stichprobengröße und Ressourcen werden im Verhältnis zur Reichweite der beabsichtigten Aussage erhöht.",
         },
         {
           isCorrect: false,
-          label: "für mehr als eine Deutung offen",
-        },
-        {
-          isCorrect: false,
-          label: "durch verlässliche Belege gestützt",
-        },
-        {
-          isCorrect: false,
-          label: "fähig, sich an veränderte Bedingungen anzupassen",
+          label:
+            "Die Daten werden nach einer geplanten Schrittfolge erhoben, die mit denselben Regeln wiederholt wird.",
         },
         {
           isCorrect: true,
-          label: "mit möglichst wenig unnötigem Aufwand wirksam",
+          label:
+            "Das Team erzielt bei gleicher Qualität ein gleichwertiges Ergebnis mit weniger Zeit und Energie.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Feldverfahren wird bei verändertem Wetter angepasst, ohne das Hauptziel oder die zentralen Messregeln zu ändern.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Auswirkung ist groß genug, um das Hauptergebnis zu verändern, und nicht nur eine kleine Randabweichung.",
         },
       ],
     },
@@ -32,23 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "stated clearly and directly",
+          label:
+            "Sample size and resources are increased in proportion to the scope of the intended claim.",
         },
         {
           isCorrect: false,
-          label: "open to more than one interpretation",
-        },
-        {
-          isCorrect: false,
-          label: "supported by dependable evidence",
-        },
-        {
-          isCorrect: false,
-          label: "able to adjust to changing conditions",
+          label:
+            "Data are collected through a planned sequence of steps repeated under the same rules.",
         },
         {
           isCorrect: true,
-          label: "effective with little unnecessary effort",
+          label:
+            "The team obtains an equivalent output with less time and energy without reducing quality.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The field procedure is adjusted when the weather changes without altering the main objective or measurement rules.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The effect is large enough to change the main outcome rather than merely adding a small edge variation.",
         },
       ],
     },
@@ -57,23 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "dinyatakan secara jelas dan langsung",
+          label:
+            "Ukuran sampel dan sumber daya ditambah sepadan dengan luas klaim yang hendak dibuat.",
         },
         {
           isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
-        },
-        {
-          isCorrect: false,
-          label: "didukung oleh bukti yang dapat dipercaya",
-        },
-        {
-          isCorrect: false,
-          label: "mampu menyesuaikan diri dengan kondisi yang berubah",
+          label:
+            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
         },
         {
           isCorrect: true,
-          label: "berhasil dengan sedikit upaya yang tidak perlu",
+          label:
+            "Tim memperoleh keluaran setara dengan waktu dan energi lebih sedikit tanpa menurunkan mutu.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Prosedur lapangan disesuaikan saat cuaca berubah tanpa mengubah tujuan dan aturan ukur utama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Dampaknya cukup besar untuk mengubah hasil utama, bukan sekadar variasi kecil di tepi.",
         },
       ],
     },

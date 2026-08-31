@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Nicht: die Daten geprüft werden.",
+          label: "Die Prüfung ist abgeschlossen.",
         },
         {
           isCorrect: false,
-          label: "Nicht: der Bericht veröffentlicht wird.",
+          label: "Die Prüfung wurde abgebrochen.",
         },
         {
           isCorrect: false,
-          label: "die Daten geprüft werden",
+          label: "Über den Prüfungsstatus ist nichts ableitbar.",
         },
         {
           isCorrect: true,
-          label: "der Bericht veröffentlicht wird",
+          label: "Die Prüfung ist nicht abgeschlossen.",
         },
         {
           isCorrect: false,
-          label: "Nicht: die Datei hochgeladen wird.",
+          label: "Die Prüfung ist abgeschlossen, aber die Quote fehlt.",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "It is not true that the data are validated.",
+          label: "The audit is complete.",
         },
         {
           isCorrect: false,
-          label: "It is not true that the report is published.",
+          label: "The audit was cancelled.",
         },
         {
           isCorrect: false,
-          label: "the data are validated",
+          label: "Nothing can be inferred about the audit status.",
         },
         {
           isCorrect: true,
-          label: "the report is published",
+          label: "The audit is not complete.",
         },
         {
           isCorrect: false,
-          label: "It is not true that the file is uploaded.",
+          label: "The audit is complete, but quota is unavailable.",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Tidak benar bahwa data divalidasi.",
+          label: "Audit telah selesai.",
         },
         {
           isCorrect: false,
-          label: "Tidak benar bahwa laporan diterbitkan.",
+          label: "Audit dibatalkan.",
         },
         {
           isCorrect: false,
-          label: "data divalidasi",
+          label: "Status audit tidak dapat disimpulkan.",
         },
         {
           isCorrect: true,
-          label: "laporan diterbitkan",
+          label: "Audit belum selesai.",
         },
         {
           isCorrect: false,
-          label: "Tidak benar bahwa berkas diunggah.",
+          label: "Audit selesai, tetapi kuota tidak tersedia.",
         },
       ],
     },

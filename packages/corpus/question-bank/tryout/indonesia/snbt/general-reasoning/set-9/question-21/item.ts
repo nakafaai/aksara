@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$90$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$92$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$96$$",
+          label: "$$170$$",
         },
         {
           isCorrect: true,
-          label: "$$94$$",
+          label: "$$191$$",
         },
         {
           isCorrect: false,
-          label: "$$98$$",
+          label: "$$181$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$201$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$212$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$90$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$92$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$96$$",
+          label: "$$170$$",
         },
         {
           isCorrect: true,
-          label: "$$94$$",
+          label: "$$191$$",
         },
         {
           isCorrect: false,
-          label: "$$98$$",
+          label: "$$181$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$201$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$212$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$90$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$92$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$96$$",
+          label: "$$170$$",
         },
         {
           isCorrect: true,
-          label: "$$94$$",
+          label: "$$191$$",
         },
         {
           isCorrect: false,
-          label: "$$98$$",
+          label: "$$181$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$201$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$212$$",
         },
       ],
     },

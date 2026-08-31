@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Laras memilih untuk memilih jalur pendek, menyimpan ponsel, dan mencatat tiga suara yang ia dengar; tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Laras memilih untuk memilih jalur pendek, menyimpan ponsel, dan mencatat tiga suara yang ia dengar; perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
+        },
+        {
           isCorrect: true,
           label:
-            "Laras memilih untuk memilih jalur pendek, menyimpan ponsel, dan mencatat tiga suara yang ia dengar.",
+            "Jalur pendek, ponsel yang disimpan, dan tiga suara tercatat memberi Laras tugas pengamatan yang terbatas serta dapat dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam jalur wisata hutan kota.",
+            "Laras memilih untuk memilih jalur pendek, menyimpan ponsel, dan mencatat tiga suara yang ia dengar; latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam jalur wisata hutan kota memperoleh hasil yang sama tanpa perbedaan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan jalur wisata hutan kota.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut kesadaran penuh sebagai bukti bahwa uji tidak perlu diulang.",
+            "Laras memilih untuk memilih jalur pendek, menyimpan ponsel, dan mencatat tiga suara yang ia dengar; definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
         },
       ],
     },

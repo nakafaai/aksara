@@ -7,27 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Karte der Evakuierungswege",
+          label:
+            "Mit geänderten Messregeln plant das Team einen längeren Test von kontrastreichere Sammelplatzsymbole.",
         },
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: kontrastreichere Symbole für Sammelpunkte.",
+            "Das Team will nur die Tage wiederholen, an denen die Änderung kontrastreichere Sammelplatzsymbole den höchsten Wert ergab.",
         },
         {
           isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Karte der Evakuierungswege über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: kontrastreichere Symbole für Sammelpunkte.",
+            "Das Team will kontrastreichere Sammelplatzsymbole dauerhaft einführen statt einen längeren Vergleich durchzuführen.",
         },
         {
           isCorrect: true,
           label:
             "Unter unveränderten Messregeln plant das Team einen längeren Versuch mit folgender Änderung: kontrastreichere Symbole für Sammelpunkte.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team plant einen längeren Test von kontrastreichere Sammelplatzsymbole ohne Vergleichsbedingung.",
         },
       ],
     },
@@ -36,27 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: evacuation route map",
+          label:
+            "Using revised measurement rules, the team plans a longer test of higher-contrast assembly-point symbols.",
         },
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of higher-contrast assembly-point symbols.",
+            "The team plans to repeat only the days on which higher-contrast assembly-point symbols produced the highest value.",
         },
         {
           isCorrect: false,
           label:
-            "In this setting (evacuation route map), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, higher-contrast assembly-point symbols, directly addressed the observed uncertainty.",
+            "The team plans to adopt higher-contrast assembly-point symbols permanently instead of running a longer comparison.",
         },
         {
           isCorrect: true,
           label:
             "Using the same measurement rules, the team plans a longer test of higher-contrast assembly-point symbols.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team plans a longer test of higher-contrast assembly-point symbols without retaining a comparison condition.",
         },
       ],
     },
@@ -65,27 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: peta jalur evakuasi",
+          label:
+            "Dengan kaidah pengukuran yang diubah, tim merencanakan uji simbol titik kumpul dengan kontras lebih tinggi yang lebih panjang.",
         },
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui simbol titik kumpul yang lebih kontras.",
+            "Tim akan mengulang hari ketika simbol titik kumpul dengan kontras lebih tinggi menghasilkan nilai tertinggi.",
         },
         {
           isCorrect: false,
           label:
-            "Di peta jalur evakuasi, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa simbol titik kumpul yang lebih kontras langsung menanggapi keraguan yang diamati.",
+            "Tim akan menerapkan simbol titik kumpul dengan kontras lebih tinggi secara tetap sebagai pengganti perbandingan yang lebih panjang.",
         },
         {
           isCorrect: true,
           label:
             "Dengan aturan pengukuran yang sama, tim merencanakan uji simbol titik kumpul yang lebih kontras yang lebih panjang.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim merencanakan uji simbol titik kumpul dengan kontras lebih tinggi yang lebih panjang tanpa mempertahankan kondisi pembanding.",
         },
       ],
     },

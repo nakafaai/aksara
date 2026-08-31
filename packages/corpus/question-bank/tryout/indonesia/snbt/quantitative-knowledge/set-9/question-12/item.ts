@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$25{,}0\\%$$",
         },
         {
-          isCorrect: true,
-          label: "$$66{,}7\\%$$",
-        },
-        {
           isCorrect: false,
           label: "$$37{,}5\\%$$",
         },
         {
           isCorrect: false,
           label: "$$50{,}0\\%$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$66{,}7\\%$$",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "$$25.0\\%$$",
         },
         {
-          isCorrect: true,
-          label: "$$66.7\\%$$",
-        },
-        {
           isCorrect: false,
           label: "$$37.5\\%$$",
         },
         {
           isCorrect: false,
           label: "$$50.0\\%$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$66.7\\%$$",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "$$25{,}0\\%$$",
         },
         {
-          isCorrect: true,
-          label: "$$66{,}7\\%$$",
-        },
-        {
           isCorrect: false,
           label: "$$37{,}5\\%$$",
         },
         {
           isCorrect: false,
           label: "$$50{,}0\\%$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$66{,}7\\%$$",
         },
         {
           isCorrect: false,

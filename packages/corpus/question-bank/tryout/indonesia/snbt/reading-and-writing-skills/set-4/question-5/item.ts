@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Außerdem",
+          label: "Daher",
         },
         {
           isCorrect: false,
-          label: "Inzwischen",
-        },
-        {
-          isCorrect: false,
-          label: "Dagegen",
-        },
-        {
-          isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Ausleihe von Sportgeräten",
+          label: "Ebenso",
         },
         {
           isCorrect: true,
-          label: "Deshalb",
+          label: "Allerdings",
+        },
+        {
+          isCorrect: false,
+          label: "Danach",
+        },
+        {
+          isCorrect: false,
+          label: "Sogar",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Moreover",
+          label: "Therefore",
         },
         {
           isCorrect: false,
-          label: "Meanwhile",
+          label: "Likewise",
         },
         {
-          isCorrect: false,
+          isCorrect: true,
           label: "However",
         },
         {
           isCorrect: false,
-          label: "A structured test of one change: sports equipment lending",
+          label: "After that",
         },
         {
-          isCorrect: true,
-          label: "Therefore",
+          isCorrect: false,
+          label: "Indeed",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Selain itu",
+          label: "Oleh karena itu",
         },
         {
           isCorrect: false,
-          label: "Sementara itu",
+          label: "Demikian pula",
         },
         {
-          isCorrect: false,
+          isCorrect: true,
           label: "Namun",
         },
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: peminjaman alat olahraga",
+          label: "Setelah itu",
         },
         {
-          isCorrect: true,
-          label: "Oleh karena itu",
+          isCorrect: false,
+          label: "Bahkan",
         },
       ],
     },

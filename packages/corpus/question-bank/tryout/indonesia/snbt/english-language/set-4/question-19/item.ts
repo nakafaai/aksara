@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "The term *tone* confirms one final outcome and therefore removes the need to interpret the ending.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The definition treats *tone* as the physical object itself rather than as a feature of the narrative ending.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The term *tone* makes the reader's personal impression sufficient even when it conflicts with story details.",
+        },
+        {
           isCorrect: true,
           label:
-            "the attitude a narrator or speaker conveys toward the subject",
+            "The definition of *tone* identifies the narrative device that connects the recurring object, the character's action, and the unresolved response at the end.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, an assumption that never needs to be examined in a quiet local museum",
-        },
-        {
-          isCorrect: false,
-          label:
-            "in this passage, a final result that always applies to every situation",
-        },
-        {
-          isCorrect: false,
-          label:
-            "in this passage, a detail removed because it challenges an opinion",
-        },
-        {
-          isCorrect: false,
-          label:
-            "in this passage, decorative language unrelated to the setting",
+            "The definition explains only the setting, so the recurring object and the character's action are irrelevant.",
         },
       ],
     },

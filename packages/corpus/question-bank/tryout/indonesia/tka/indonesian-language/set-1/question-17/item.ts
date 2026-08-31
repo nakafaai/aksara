@@ -12,7 +12,13 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "membuktikan Mira bekerja sebagai masinis",
+          label:
+            "menunjukkan Mira mulai memandang stasiun sebagai tempat bekerja, bukan menunggu",
+        },
+        {
+          isCorrect: true,
+          label:
+            "menjadi tempat pertemuan antara menunggu dan melanjutkan perjalanan",
         },
         {
           isCorrect: false,
@@ -21,11 +27,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "menunjukkan festival diadakan di dalam kereta",
-        },
-        {
-          isCorrect: true,
-          label:
-            "menjadi tempat pertemuan antara menunggu dan melanjutkan perjalanan",
         },
         {
           isCorrect: false,

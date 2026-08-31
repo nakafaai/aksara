@@ -11,10 +11,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "She can reflect on a mistake and revise her judgment.",
-        },
-        {
           isCorrect: false,
           label: "She refuses to work with Arif again.",
         },
@@ -24,11 +20,17 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "She believes every first explanation is correct.",
+          label:
+            "She remains confident that her first explanation was reasonable despite the later evidence.",
+        },
+        {
+          isCorrect: true,
+          label: "She can reflect on a mistake and revise her judgment.",
         },
         {
           isCorrect: false,
-          label: "She no longer cares about the garden.",
+          label:
+            "She values preserving the recovered notebook more than revising her first judgment.",
         },
       ],
     },

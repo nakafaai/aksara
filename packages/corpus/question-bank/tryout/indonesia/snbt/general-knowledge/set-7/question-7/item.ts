@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Inklusive Beteiligung verlangt den Abbau tatsächlicher Hindernisse und die Prüfung der Repräsentation, nicht nur eine offene Einladung.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Einige Organisatoren schlagen vor, dass alle Einwohner ihre Meinung nur über ein Onlineformular einreichen.",
         },
         {
           isCorrect: true,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Bewohner der Hügel mussten vor der Entscheidung gehen, und für die gehörlose Person gab es keine Gebärdensprachdolmetscherin.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Die endgültige Entscheidung wird Auswahl, Einwände und Einfluss der Beiträge festhalten.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte einen Prüftisch vor der Warteschlange für Techniker (Reparaturwerkstatt für Elektronik) und bewertete die Befunde vorsichtig.",
+            "Eine Beratung ist nur gültig, wenn jeder Vorschlag angenommen wird.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "Inclusive participation requires reducing practical barriers and examining representation, not merely issuing an open invitation.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Some organisers propose that every resident simply submit opinions through an online form.",
         },
         {
           isCorrect: true,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "Hill residents had to leave before the decision and the Deaf participant had no sign-language interpreter.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "The final decision will record the choice, objections, and the influence of contributions.",
         },
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested an initial inspection desk before the technician queue in the electronics repair clinic and interpreted the evidence cautiously.",
+            "A consultation is valid only if every resident proposal is ultimately accepted.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Partisipasi yang inklusif menuntut pengurangan hambatan nyata dan pemeriksaan keterwakilan, bukan sekadar undangan terbuka.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Sebagian panitia mengusulkan agar semua warga cukup menyampaikan pendapat melalui formulir daring.",
         },
         {
           isCorrect: true,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Warga perbukitan harus pergi sebelum keputusan dan peserta Tuli tidak mendapat juru bahasa isyarat.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Keputusan akhir akan mencatat pilihan, keberatan, dan pengaruh masukan.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji meja pemeriksaan awal sebelum antrean teknisi pada klinik perbaikan elektronik dan menafsirkan buktinya secara hati-hati.",
+            "Musyawarah hanya sah jika setiap usulan warga akhirnya diterima.",
         },
       ],
     },

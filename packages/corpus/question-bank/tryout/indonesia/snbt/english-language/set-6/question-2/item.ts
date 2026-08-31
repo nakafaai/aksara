@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage states that no action or observation occurred in enzyme activity in a classroom model.",
+            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
         },
         {
           isCorrect: false,
           label:
-            "Everyone in enzyme activity in a classroom model obtained exactly the same result without variation.",
+            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The mean result with the change was 31; because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
           isCorrect: true,
-          label: "The mean result with the change was 31.",
-        },
-        {
-          isCorrect: false,
           label:
-            "The writer removes every detail related to enzyme activity in a classroom model.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage presents enzyme as proof that no follow-up is needed.",
+            "The mixture held at 37°C produced a mean of 31 under the stated sample controls; an eye-estimated colour scale keeps the result provisional.",
         },
       ],
     },

@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Die Daten wurden in diesem Kontext erhoben: Musikproberäume. Anschließend wurden sie verglichen.",
+        },
+        {
           isCorrect: false,
           label:
             "Die Daten worden im Kontext Musikproberäume erhebt und danach vergleichen.",
@@ -25,16 +30,16 @@ const item: QuestionItem = {
           label:
             "Die Daten wurden von Musikproberäume erheben und anschließend vergleicht.",
         },
-        {
-          isCorrect: true,
-          label:
-            "Die Daten wurden in diesem Kontext erhoben: Musikproberäume. Anschließend wurden sie verglichen.",
-        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Data were collected in this setting (music practice rooms) and compared afterward.",
+        },
         {
           isCorrect: false,
           label:
@@ -55,16 +60,16 @@ const item: QuestionItem = {
           label:
             "Data collected this setting (music practice rooms) and were comparison afterward.",
         },
-        {
-          isCorrect: true,
-          label:
-            "Data were collected in this setting (music practice rooms) and compared afterward.",
-        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Data diukur di ruang latihan musik dan kemudian dibandingkan.",
+        },
         {
           isCorrect: false,
           label:
@@ -83,11 +88,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Data diukur pada di ruang latihan musik lalu di bandingkan.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Data diukur di ruang latihan musik dan kemudian dibandingkan.",
         },
       ],
     },

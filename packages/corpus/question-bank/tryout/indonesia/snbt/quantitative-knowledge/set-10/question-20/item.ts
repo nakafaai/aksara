@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$x < y$$",
         },
         {
-          isCorrect: true,
-          label: "$$x > y$$",
-        },
-        {
           isCorrect: false,
           label: "$$x = y$$",
         },
         {
           isCorrect: false,
           label: "$$x = -y$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$x > y$$",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "$$x < y$$",
         },
         {
-          isCorrect: true,
-          label: "$$x > y$$",
-        },
-        {
           isCorrect: false,
           label: "$$x = y$$",
         },
         {
           isCorrect: false,
           label: "$$x = -y$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$x > y$$",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "$$x < y$$",
         },
         {
-          isCorrect: true,
-          label: "$$x > y$$",
-        },
-        {
           isCorrect: false,
           label: "$$x = y$$",
         },
         {
           isCorrect: false,
           label: "$$x = -y$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$x > y$$",
         },
         {
           isCorrect: false,

@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Eine hängende Fledermaus kann ihren Griff lösen und sich für den Abflug in den freien Luftraum fallen lassen.",
+        },
+        {
           isCorrect: false,
           label: "Keine Fledermaus kann vom Boden starten.",
         },
@@ -20,11 +25,6 @@ const item: QuestionItem = {
             "Jede Fledermausart zeigt genau dasselbe Ruhe- und Startverhalten.",
         },
         {
-          isCorrect: true,
-          label:
-            "Eine hängende Fledermaus kann ihren Griff lösen und sich für den Abflug in den freien Luftraum fallen lassen.",
-        },
-        {
           isCorrect: false,
           label:
             "Ein kopfüber hängendes Quartier garantiert, dass kein Raubtier eine Fledermaus erreichen kann.",
@@ -34,6 +34,11 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "A bat hanging from a roost can release its grip and drop into open air to begin flying.",
+        },
         {
           isCorrect: false,
           label: "No bat can take off from the ground.",
@@ -49,11 +54,6 @@ const item: QuestionItem = {
             "Every bat species uses exactly the same roosting and takeoff behavior.",
         },
         {
-          isCorrect: true,
-          label:
-            "A bat hanging from a roost can release its grip and drop into open air to begin flying.",
-        },
-        {
           isCorrect: false,
           label:
             "An upside-down roost guarantees that no predator can reach a bat.",
@@ -63,6 +63,11 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Kelelawar yang bergantung dapat melepaskan cengkeraman dan menjatuhkan diri ke ruang terbuka untuk mulai terbang.",
+        },
         {
           isCorrect: false,
           label: "Tidak ada kelelawar yang dapat lepas landas dari tanah.",
@@ -76,11 +81,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Setiap spesies kelelawar memiliki cara bertengger dan lepas landas yang sama persis.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Kelelawar yang bergantung dapat melepaskan cengkeraman dan menjatuhkan diri ke ruang terbuka untuk mulai terbang.",
         },
         {
           isCorrect: false,

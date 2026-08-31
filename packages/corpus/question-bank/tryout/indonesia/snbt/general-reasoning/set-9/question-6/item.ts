@@ -14,6 +14,10 @@ const item: QuestionItem = {
           label: "Auen können Material nur abgeben und niemals zurückhalten",
         },
         {
+          isCorrect: true,
+          label: "Auen können Sedimente und Nährstoffe zurückhalten",
+        },
+        {
           isCorrect: false,
           label:
             "In Auen sammelt sich Material nur an und geht durch Erosion nie verloren",
@@ -21,10 +25,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Jede Überschwemmung macht jeden Auenboden fruchtbarer",
-        },
-        {
-          isCorrect: true,
-          label: "Auen können Sedimente und Nährstoffe zurückhalten",
         },
       ],
     },
@@ -40,6 +40,10 @@ const item: QuestionItem = {
           label: "Floodplains can only export material and never retain it",
         },
         {
+          isCorrect: true,
+          label: "Floodplains can retain sediment and nutrients",
+        },
+        {
           isCorrect: false,
           label:
             "Floodplains only accumulate material and never lose it through erosion",
@@ -47,10 +51,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Every flood makes every floodplain soil more fertile",
-        },
-        {
-          isCorrect: true,
-          label: "Floodplains can retain sediment and nutrients",
         },
       ],
     },
@@ -67,6 +67,10 @@ const item: QuestionItem = {
             "Dataran banjir hanya dapat melepas bahan dan tidak pernah menahannya",
         },
         {
+          isCorrect: true,
+          label: "Dataran banjir dapat menahan sedimen dan unsur hara",
+        },
+        {
           isCorrect: false,
           label:
             "Dataran banjir hanya menumpuk bahan dan tidak pernah kehilangannya akibat erosi",
@@ -74,10 +78,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Setiap banjir membuat semua tanah dataran banjir lebih subur",
-        },
-        {
-          isCorrect: true,
-          label: "Dataran banjir dapat menahan sedimen dan unsur hara",
         },
       ],
     },

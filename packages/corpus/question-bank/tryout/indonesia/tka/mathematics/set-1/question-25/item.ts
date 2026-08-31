@@ -13,20 +13,22 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Die Wahrscheinlichkeit für Rot ist $\\frac{4}{7}$.",
-        },
-        {
-          correctCategoryOrder: 1,
-          label: "Die Wahrscheinlichkeit für Blau ist $\\frac{3}{7}$.",
+          label:
+            "Die Wahrscheinlichkeit für zwei gleichfarbige Kugeln beträgt $\\frac{5}{18}$.",
         },
         {
           correctCategoryOrder: 1,
           label:
-            "Bei einer Ziehung schließen sich die Ereignisse Rot und Blau gegenseitig aus.",
+            "Die Wahrscheinlichkeit für genau eine rote Kugel beträgt $\\frac{5}{9}$.",
         },
         {
           correctCategoryOrder: 2,
-          label: "Die Wahrscheinlichkeit für Rot oder Blau ist $\\frac12$.",
+          label: "Die Farben der ersten und zweiten Ziehung sind unabhängig.",
+        },
+        {
+          correctCategoryOrder: 1,
+          label:
+            "Ist die erste Kugel grün, beträgt die Wahrscheinlichkeit für eine blaue zweite Kugel $\\frac{3}{8}$.",
         },
       ],
     },
@@ -36,19 +38,21 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "The probability of red is $\\frac{4}{7}$.",
+          label:
+            "The probability that both balls have the same colour is $\\frac{5}{18}$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "The probability of blue is $\\frac{3}{7}$.",
-        },
-        {
-          correctCategoryOrder: 1,
-          label: "On one draw, the red and blue events are mutually exclusive.",
+          label: "The probability of exactly one red ball is $\\frac{5}{9}$.",
         },
         {
           correctCategoryOrder: 2,
-          label: "The probability of red or blue is $\\frac12$.",
+          label: "The colours on the first and second draws are independent.",
+        },
+        {
+          correctCategoryOrder: 1,
+          label:
+            "Given that the first ball is green, the probability that the second is blue is $\\frac{3}{8}$.",
         },
       ],
     },
@@ -58,20 +62,20 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Peluang mengambil bola merah adalah $\\frac{4}{7}$.",
+          label: "Peluang kedua bola berwarna sama adalah $\\frac{5}{18}$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "Peluang mengambil bola biru adalah $\\frac{3}{7}$.",
+          label: "Peluang tepat satu bola merah adalah $\\frac{5}{9}$.",
+        },
+        {
+          correctCategoryOrder: 2,
+          label: "Warna bola pada pengambilan pertama dan kedua saling bebas.",
         },
         {
           correctCategoryOrder: 1,
           label:
-            "Dalam satu pengambilan, kejadian merah dan biru saling lepas.",
-        },
-        {
-          correctCategoryOrder: 2,
-          label: "Peluang memperoleh bola merah atau biru adalah $\\frac12$.",
+            "Jika bola pertama hijau, peluang bola kedua biru adalah $\\frac{3}{8}$.",
         },
       ],
     },

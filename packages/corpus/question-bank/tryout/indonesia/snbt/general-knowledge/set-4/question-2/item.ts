@@ -6,24 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Das Team prüft die Originalaufzeichnung, ihre Herkunft und ihre Änderungshistorie, bevor es sie verwendet.",
+        },
+        {
           isCorrect: true,
-          label: "durch verlässliche Belege gestützt",
+          label:
+            "Quelle, Methode und Datenweg können unabhängig geprüft werden, bevor die Behauptung akzeptiert wird.",
         },
         {
           isCorrect: false,
-          label: "nach denselben Grundsätzen ohne Widerspruch",
+          label:
+            "Die Behauptung stützt sich auf wiederholte Beobachtungen und Messungen statt nur auf Vermutungen.",
         },
         {
           isCorrect: false,
-          label: "klar und unmittelbar ausgedrückt",
+          label:
+            "Die Bewertenden verwenden ein Raster, das vor Kenntnis der Identitäten oder Endergebnisse festgelegt wurde.",
         },
         {
           isCorrect: false,
-          label: "für mehr als eine Deutung offen",
-        },
-        {
-          isCorrect: false,
-          label: "fähig, sich an veränderte Bedingungen anzupassen",
+          label:
+            "Das Instrument wird geprüft, damit sein Wert tatsächlich das beabsichtigte Konstrukt abbildet.",
         },
       ],
     },
@@ -31,24 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "The team checks the original record, its provenance, and its change history before using it.",
+        },
+        {
           isCorrect: true,
-          label: "supported by dependable evidence",
+          label:
+            "The source, method, and data trail can be checked independently before the claim is accepted.",
         },
         {
           isCorrect: false,
-          label: "following the same principles without contradiction",
+          label:
+            "The claim is built from repeated observations and measurements rather than assumption alone.",
         },
         {
           isCorrect: false,
-          label: "stated clearly and directly",
+          label:
+            "Reviewers use a rubric set before they know participant identities or final outcomes.",
         },
         {
           isCorrect: false,
-          label: "open to more than one interpretation",
-        },
-        {
-          isCorrect: false,
-          label: "able to adjust to changing conditions",
+          label:
+            "The instrument is tested to ensure that its score represents the construct it is meant to measure.",
         },
       ],
     },
@@ -56,24 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Tim memeriksa rekaman asli beserta asal dan riwayat perubahannya sebelum menggunakannya.",
+        },
+        {
           isCorrect: true,
-          label: "didukung oleh bukti yang dapat dipercaya",
+          label:
+            "Sumber, metode, dan jejak data dapat diperiksa secara mandiri sebelum klaim diterima.",
         },
         {
           isCorrect: false,
-          label: "mengikuti prinsip yang sama tanpa pertentangan",
+          label:
+            "Klaim disusun dari pengamatan berulang dan hasil pengukuran, bukan dari dugaan semata.",
         },
         {
           isCorrect: false,
-          label: "dinyatakan secara jelas dan langsung",
+          label:
+            "Penilai memakai rubrik yang ditetapkan sebelum mengetahui identitas peserta atau hasil akhirnya.",
         },
         {
           isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
-        },
-        {
-          isCorrect: false,
-          label: "mampu menyesuaikan diri dengan kondisi yang berubah",
+          label:
+            "Instrumen diuji untuk memastikan bahwa skor benar-benar mewakili konsep yang hendak diukur.",
         },
       ],
     },

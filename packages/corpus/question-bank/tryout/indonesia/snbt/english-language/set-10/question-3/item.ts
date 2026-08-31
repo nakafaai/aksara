@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Every result in voltage in simple cell arrangements must apply without limitation elsewhere.",
+            "Because measured voltage reached 2.9 V, compared with 1.4 V and 1.5 V, holding cell type, wire length, meter, and connection time constant isolates connecting two cells in series as the only possible cause.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The strongest follow-up would change both connecting two cells in series and at least one controlled condition, preventing the effect of either change from being isolated.",
         },
         {
           isCorrect: true,
           label:
-            "The initial pattern justifies a stronger repetition, not a universal claim.",
+            "measured voltage reached 2.9 V, compared with 1.4 V and 1.5 V; this supports an association between the series connection and measured voltage under the tested conditions, while cell age and internal resistance were not measured separately requires further testing before a broader claim.",
         },
         {
           isCorrect: false,
           label:
-            "The limitation makes all information about voltage in simple cell arrangements useless.",
+            "The limitation that cell age and internal resistance were not measured separately affects numerical precision, but it does not restrict how widely the finding can be applied.",
         },
         {
           isCorrect: false,
           label:
-            "One detail about potential difference proves every possible causal relationship.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage recommends ignoring evidence that conflicts with an early expectation.",
+            "A larger repetition under the same rules could narrow uncertainty but could not change the first interpretation of the series connection and measured voltage.",
         },
       ],
     },

@@ -7,27 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+          label: "eine wortgetreue Abschrift ohne Medienwechsel",
         },
         {
           isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+          label: "ein neues Werk, das nur den Titel der Vorlage übernimmt",
         },
         {
           isCorrect: true,
           label:
-            "Das Team prüfte Beispielfragen mit offenen Antworten (Archiv für mündliche Geschichte) und bewertete die Befunde vorsichtig.",
+            "die Umgestaltung eines Werks in eine neue, dem Zweck und Medium entsprechende Form",
+        },
+        {
+          isCorrect: false,
+          label: "alle Fassungen ohne Herkunftsangabe der Teile vermischen",
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext Archiv für mündliche Geschichte: Beispielfragen mit offenen Antworten",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 30, lag über 22 und 24.",
+            "eine Geschichte ohne Rücksicht auf den Aufführungszweck kürzen",
         },
       ],
     },
@@ -36,27 +34,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+          label: "word-for-word transcription without a change of medium",
         },
         {
           isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+          label: "a new work that borrows only the source's title",
         },
         {
           isCorrect: true,
           label:
-            "The team tested sample open questions for interviewers in the oral history archive and interpreted the evidence cautiously.",
+            "the reshaping of a work into a new form with changes suited to its purpose and medium",
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of sample open questions for interviewers: oral history archive",
+            "merging every version without recording each section's origin",
         },
         {
           isCorrect: false,
-          label: "The intervention value, 30, exceeded both 22 and 24.",
+          label:
+            "shortening a story without considering the performance purpose",
         },
       ],
     },
@@ -65,27 +62,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+          label: "penyalinan kata demi kata tanpa perubahan medium",
         },
         {
           isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+          label: "karya baru yang hanya meminjam judul sumber",
         },
         {
           isCorrect: true,
           label:
-            "Tim menguji contoh pertanyaan terbuka bagi pewawancara pada arsip sejarah lisan dan menafsirkan buktinya secara hati-hati.",
+            "pengolahan karya ke bentuk baru dengan perubahan yang sesuai tujuan dan mediumnya",
         },
         {
           isCorrect: false,
-          label:
-            "Uji Hati-hati dalam arsip sejarah lisan: contoh pertanyaan terbuka bagi pewawancara",
+          label: "penggabungan semua versi tanpa mencatat asal setiap bagian",
         },
         {
           isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 30, melampaui 22 dan 24.",
+          label: "pemendekan cerita tanpa mempertimbangkan tujuan pertunjukan",
         },
       ],
     },

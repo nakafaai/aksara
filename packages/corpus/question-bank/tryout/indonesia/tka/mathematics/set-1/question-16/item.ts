@@ -11,24 +11,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$4\\pi+9$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$80-4\\pi$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$71+4\\pi$$",
+        },
+        {
           isCorrect: true,
-          label: "$$35-4\\pi$$",
+          label: "$$71-4\\pi$$",
         },
         {
           isCorrect: false,
-          label: "$$35-2\\pi$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$35-8\\pi$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$24-4\\pi$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$35+4\\pi$$",
+          label: "$$80-9\\pi$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$4\\pi+9$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$80-4\\pi$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$71+4\\pi$$",
+        },
+        {
           isCorrect: true,
-          label: "$$35-4\\pi$$",
+          label: "$$71-4\\pi$$",
         },
         {
           isCorrect: false,
-          label: "$$35-2\\pi$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$35-8\\pi$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$24-4\\pi$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$35+4\\pi$$",
+          label: "$$80-9\\pi$$",
         },
       ],
     },
@@ -61,24 +61,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$4\\pi+9$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$80-4\\pi$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$71+4\\pi$$",
+        },
+        {
           isCorrect: true,
-          label: "$$35-4\\pi$$",
+          label: "$$71-4\\pi$$",
         },
         {
           isCorrect: false,
-          label: "$$35-2\\pi$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$35-8\\pi$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$24-4\\pi$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$35+4\\pi$$",
+          label: "$$80-9\\pi$$",
         },
       ],
     },

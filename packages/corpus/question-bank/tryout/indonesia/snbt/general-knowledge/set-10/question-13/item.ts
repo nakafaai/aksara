@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            'Der erste Teil vertritt die Behauptung "Nutzerkorrekturen betrafen häufiger beliebte Sammlungen"; der folgende nutzt "Wegen auftretender Fehler muss jede automatische Suche beendet werden" als Hauptbeleg.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Der erste Teil legt "Ein in der automatischen Suche fehlendes Dokument ist sicher nicht im Archiv vorhanden" als endgültigen Schluss fest; der folgende nennt nur den Plan "Das Team wird Leistungsunterschiede nach Schriftart und Zeitraum prüfen".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Wegen auftretender Fehler muss jede automatische Suche beendet werden" fest.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Der folgende Teil kehrt die Argumentation um und leitet "Ein in der automatischen Suche fehlendes Dokument ist sicher nicht im Archiv vorhanden" aus dem Beleg "Nutzerkorrekturen betrafen häufiger beliebte Sammlungen" ab.',
+        },
+        {
           isCorrect: true,
           label:
-            "Das Team prüfte kurze Codes auf Augenhöhe (Audioführung im Museum) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vorsichtige Prüfung im Kontext Audioführung im Museum: kurze Codes auf Augenhöhe",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 31, lag über 21 und 23.",
+            "Ungleiche Suchergebnisse zeigen eine Fehlerkette; Oberfläche und Prüfungen machen diese Grenzen anschließend kontrollierbar.",
         },
       ],
     },
@@ -35,28 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            'The first part advances the claim "User corrections were more frequent for popular collections", and the later part uses "Because the system makes errors, all automated search must be stopped" as its main support.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'The first part establishes "A document absent from automated search is certainly not stored in the archive" as a final conclusion; the later part only states the plan "The team will audit performance differences by writing type and period".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Both parts maintain the claim "Because the system makes errors, all automated search must be stopped" from the same perspective without adding a test.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'The later part reverses the argument by deriving "A document absent from automated search is certainly not stored in the archive" from the evidence "User corrections were more frequent for popular collections".',
+        },
+        {
           isCorrect: true,
           label:
-            "The team tested short codes printed at eye level in the museum audio guide and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A cautious trial of short codes printed at eye level: museum audio guide",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 31, exceeded both 21 and 23.",
+            "Unequal search results reveal an error chain, and interface changes plus audits are designed to make those limits inspectable.",
         },
       ],
     },
@@ -64,28 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            'Bagian awal mengajukan klaim "Koreksi pengguna lebih sering diberikan pada koleksi populer", lalu bagian kedua memakai "Karena sistem membuat kesalahan, semua pencarian otomatis harus dihentikan" sebagai dukungan utama.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Bagian pertama menetapkan "Dokumen yang tidak muncul dalam pencarian otomatis pasti tidak tersimpan di arsip" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Tim akan mengaudit perbedaan kinerja menurut jenis tulisan dan periode".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Kedua bagian mempertahankan klaim "Karena sistem membuat kesalahan, semua pencarian otomatis harus dihentikan" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Dokumen yang tidak muncul dalam pencarian otomatis pasti tidak tersimpan di arsip" dari bukti "Koreksi pengguna lebih sering diberikan pada koleksi populer".',
+        },
+        {
           isCorrect: true,
           label:
-            "Tim menguji kode singkat yang dicetak setinggi mata pada panduan audio museum dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji Hati-hati dalam panduan audio museum: kode singkat yang dicetak setinggi mata",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 31, melampaui 21 dan 23.",
+            "Perbedaan hasil pencarian mengungkap rantai kesalahan, lalu antarmuka dan audit dirancang untuk membuat batas itu dapat diperiksa.",
         },
       ],
     },

@@ -2,22 +2,35 @@ export const metadata = {
   title: "Aufgabe 19",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
+  dateModified: "2026-08-31",
 };
 
-Ein Quader hat die Maße <InlineMath math="6\times 5\times 4" /> cm.
+Ein Quader hat Länge <InlineMath math="6" /> cm, Breite <InlineMath math="4" /> cm und Höhe <InlineMath math="4" /> cm. Die Punkte A, B und C sind die in der Abbildung markierten Eckpunkte.
 
 <LineEquation
-  title="Quader"
-  description="Dreidimensionale Darstellung der Kanten."
-  cameraPosition={[8, 7, 10]}
+  title="Dreieck in einem Quader"
+  description="Exakter Quader mit zwölf geraden Kanten und dem Dreieck ABC."
+  cameraPosition={[10, 8, 11]}
   data={[
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 0, z: 0 }, { x: 6, y: 5, z: 0 }, { x: 0, y: 5, z: 0 }, { x: 0, y: 0, z: 0 }], color: "#7c3aed", showPoints: false },
-    { points: [{ x: 0, y: 0, z: 4 }, { x: 6, y: 0, z: 4 }, { x: 6, y: 5, z: 4 }, { x: 0, y: 5, z: 4 }, { x: 0, y: 0, z: 4 }], color: "#ea580c", showPoints: false },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }], color: "#64748b", showPoints: false },
-    { points: [{ x: 6, y: 0, z: 0 }, { x: 6, y: 0, z: 4 }], color: "#64748b", showPoints: false },
-    { points: [{ x: 6, y: 5, z: 0 }, { x: 6, y: 5, z: 4 }], color: "#64748b", showPoints: false },
-    { points: [{ x: 0, y: 5, z: 0 }, { x: 0, y: 5, z: 4 }], color: "#64748b", showPoints: false }
+    { kind: "cuboid", length: 6, width: 4, height: 4, color: "#64748b", lineWidth: 2 },
+    {
+      points: [
+        { x: -3, y: -2, z: -2 },
+        { x: 3, y: -2, z: 2 },
+        { x: -3, y: 2, z: 2 },
+        { x: -3, y: -2, z: -2 },
+      ],
+      color: "#7c3aed",
+      lineWidth: 3,
+      showPoints: true,
+      smooth: false,
+      labels: [
+        { at: 0, text: "A", offset: [-0.35, -0.35, -0.35] },
+        { at: 1, text: "B", offset: [0.35, -0.35, 0.35] },
+        { at: 2, text: "C", offset: [-0.35, 0.35, 0.35] },
+      ],
+    },
   ]}
 />
 
-Wie groß ist sein Volumen?
+Wie groß ist die Fläche des Dreiecks ABC?

@@ -14,6 +14,10 @@ const item: QuestionItem = {
           label: "Dito nimmt nicht an einem Probetest teil",
         },
         {
+          isCorrect: true,
+          label: "Dito erhält einen Auswertungsbericht",
+        },
+        {
           isCorrect: false,
           label: "Dito erhält keinen Auswertungsbericht",
         },
@@ -21,10 +25,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Dito hat die vorausgesetzten Übungen abgeschlossen und erhält einen Auswertungsbericht",
-        },
-        {
-          isCorrect: true,
-          label: "Dito erhält einen Auswertungsbericht",
         },
       ],
     },
@@ -40,6 +40,10 @@ const item: QuestionItem = {
           label: "Dito did not take a mock test",
         },
         {
+          isCorrect: true,
+          label: "Dito receives an evaluation report",
+        },
+        {
           isCorrect: false,
           label: "Dito receives no evaluation report",
         },
@@ -47,10 +51,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Dito completed the prerequisite exercises and receives an evaluation report",
-        },
-        {
-          isCorrect: true,
-          label: "Dito receives an evaluation report",
         },
       ],
     },
@@ -66,6 +66,10 @@ const item: QuestionItem = {
           label: "Dito tidak mengikuti tes simulasi",
         },
         {
+          isCorrect: true,
+          label: "Dito menerima laporan evaluasi",
+        },
+        {
           isCorrect: false,
           label: "Dito tidak menerima laporan evaluasi",
         },
@@ -73,10 +77,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Dito telah menyelesaikan latihan prasyarat dan menerima laporan evaluasi",
-        },
-        {
-          isCorrect: true,
-          label: "Dito menerima laporan evaluasi",
         },
       ],
     },

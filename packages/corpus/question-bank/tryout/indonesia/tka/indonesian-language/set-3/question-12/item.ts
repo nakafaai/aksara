@@ -11,17 +11,18 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "program peminjaman dilakukan sebelum hambatan diketahui",
-        },
-        {
           isCorrect: true,
           label:
             "survei mengidentifikasi hambatan yang kemudian ditanggapi dengan layanan",
         },
         {
           isCorrect: false,
-          label: "survei membuktikan semua siswa sudah membawa botol",
+          label: "program peminjaman dilakukan sebelum hambatan diketahui",
+        },
+        {
+          isCorrect: false,
+          label:
+            "survei menunjukkan siswa yang belum memakai stasiun terutama tidak membawa botol",
         },
         {
           isCorrect: false,

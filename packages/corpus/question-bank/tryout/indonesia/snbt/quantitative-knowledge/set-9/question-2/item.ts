@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$144\\pi\\text{ cm}^2$$",
         },
         {
+          isCorrect: true,
+          label: "$$225\\pi\\text{ cm}^2$$",
+        },
+        {
           isCorrect: false,
           label: "$$256\\pi\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
           label: "$$336\\pi\\text{ cm}^2$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$225\\pi\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "$$144\\pi\\text{ cm}^2$$",
         },
         {
+          isCorrect: true,
+          label: "$$225\\pi\\text{ cm}^2$$",
+        },
+        {
           isCorrect: false,
           label: "$$256\\pi\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
           label: "$$336\\pi\\text{ cm}^2$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$225\\pi\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "$$144\\pi\\text{ cm}^2$$",
         },
         {
+          isCorrect: true,
+          label: "$$225\\pi\\text{ cm}^2$$",
+        },
+        {
           isCorrect: false,
           label: "$$256\\pi\\text{ cm}^2$$",
         },
         {
           isCorrect: false,
           label: "$$336\\pi\\text{ cm}^2$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$225\\pi\\text{ cm}^2$$",
         },
         {
           isCorrect: false,

@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Die Beobachtung bewies daher, dass die Änderung kontrastreichere Sammelplatzsymbole den Unterschied verursachte.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team musste daher mehrere Merkmale im Kontext Evakuierungsplan ändern, bevor es erneut maß.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das erste Muster rechtfertigte daher die dauerhafte Einführung von kontrastreichere Sammelplatzsymbole.",
+        },
+        {
           isCorrect: true,
           label:
             "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: kontrastreichere Symbole für Sammelpunkte.",
         },
         {
           isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Karte der Evakuierungswege",
-        },
-        {
-          isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Karte der Evakuierungswege über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: kontrastreichere Symbole für Sammelpunkte.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: kontrastreichere Symbole für Sammelpunkte.",
+            "Die verbleibende Unsicherheit machte einen weiteren Vergleich daher überflüssig.",
         },
       ],
     },
@@ -35,28 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "The observation therefore established that higher-contrast assembly-point symbols caused the difference.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team therefore needed to alter several features of evacuation route map before measuring again.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The initial pattern therefore justified permanent adoption of higher-contrast assembly-point symbols.",
+        },
+        {
           isCorrect: true,
           label:
             "The hypothesis therefore needed a limited test of higher-contrast assembly-point symbols.",
         },
         {
           isCorrect: false,
-          label: "A structured test of one change: evacuation route map",
-        },
-        {
-          isCorrect: false,
           label:
-            "In this setting (evacuation route map), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, higher-contrast assembly-point symbols, directly addressed the observed uncertainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The next test of higher-contrast assembly-point symbols will run for longer.",
+            "The remaining uncertainty therefore made another comparison unnecessary.",
         },
       ],
     },
@@ -64,28 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Pengamatan itu membuktikan bahwa simbol titik kumpul dengan kontras lebih tinggi menyebabkan perbedaan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim perlu mengubah beberapa unsur peta jalur evakuasi sebelum melakukan pengukuran ulang.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pola awal itu membenarkan penerapan tetap simbol titik kumpul dengan kontras lebih tinggi.",
+        },
+        {
           isCorrect: true,
           label:
             "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui simbol titik kumpul yang lebih kontras.",
         },
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: peta jalur evakuasi",
-        },
-        {
-          isCorrect: false,
           label:
-            "Di peta jalur evakuasi, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa simbol titik kumpul yang lebih kontras langsung menanggapi keraguan yang diamati.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji simbol titik kumpul yang lebih kontras berikutnya akan berlangsung lebih lama.",
+            "Ketidakpastian yang tersisa membuat perbandingan lanjutan tidak diperlukan.",
         },
       ],
     },

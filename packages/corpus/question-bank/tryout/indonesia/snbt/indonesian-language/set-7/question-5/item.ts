@@ -6,26 +6,26 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Kepastian Mutlak tentang produksi gas pada campuran ragi",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Alasan Mengabaikan Semua Bukti dalam produksi gas pada campuran ragi",
-        },
-        {
           isCorrect: true,
+          label: "Pengaruh Suhu Air terhadap Produksi Gas pada Campuran Ragi",
+        },
+        {
+          isCorrect: false,
+          label: "Mengukur hipotesis melalui satu perbandingan awal",
+        },
+        {
+          isCorrect: false,
           label:
-            "Menguji air bersuhu 35 derajat Celsius dalam produksi gas pada campuran ragi",
+            "Menjadikan hipotesis penjelasan tunggal atas hasil pengamatan",
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap hipotesis di Seluruh Dunia",
+          label: "Kaidah akhir dari perbandingan pertama tentang hipotesis",
         },
         {
           isCorrect: false,
-          label: "Satu Aturan untuk Setiap produksi gas pada campuran ragi",
+          label:
+            "Keterbatasan yang membuat uji lanjutan hipotesis tidak diperlukan",
         },
       ],
     },

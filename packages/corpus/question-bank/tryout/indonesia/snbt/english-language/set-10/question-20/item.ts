@@ -6,27 +6,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "A recurring object that remains part of the setting",
+        },
+        {
           isCorrect: true,
           label:
             "A pencil-worn ledger in an empty hall after a planning meeting",
         },
         {
           isCorrect: false,
-          label:
-            "Absolute certainty about an empty hall after a planning meeting",
+          label: "A conflict settled before the character's final choice",
         },
         {
           isCorrect: false,
-          label:
-            "Why all evidence in an empty hall after a planning meeting should be ignored",
+          label: "open ending as a term without a role in the story",
         },
         {
           isCorrect: false,
-          label: "The complete world history of open ending",
-        },
-        {
-          isCorrect: false,
-          label: "One rule for every an empty hall after a planning meeting",
+          label: "An ending that removes the object's interpretive tension",
         },
       ],
     },

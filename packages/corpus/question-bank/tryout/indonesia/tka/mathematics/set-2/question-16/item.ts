@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$48-2\\pi$$",
+          label: "$$48\\pi$$",
         },
         {
           isCorrect: false,
-          label: "$$48-8\\pi$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$28-4\\pi$$",
+          label: "$$36\\pi-48\\sqrt3$$",
         },
         {
           isCorrect: true,
-          label: "$$48-4\\pi$$",
+          label: "$$48\\pi-36\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "$$48+4\\pi$$",
+          label: "$$36\\pi-24\\sqrt3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$24\\pi-36\\sqrt3$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$48-2\\pi$$",
+          label: "$$48\\pi$$",
         },
         {
           isCorrect: false,
-          label: "$$48-8\\pi$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$28-4\\pi$$",
+          label: "$$36\\pi-48\\sqrt3$$",
         },
         {
           isCorrect: true,
-          label: "$$48-4\\pi$$",
+          label: "$$48\\pi-36\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "$$48+4\\pi$$",
+          label: "$$36\\pi-24\\sqrt3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$24\\pi-36\\sqrt3$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$48-2\\pi$$",
+          label: "$$48\\pi$$",
         },
         {
           isCorrect: false,
-          label: "$$48-8\\pi$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$28-4\\pi$$",
+          label: "$$36\\pi-48\\sqrt3$$",
         },
         {
           isCorrect: true,
-          label: "$$48-4\\pi$$",
+          label: "$$48\\pi-36\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "$$48+4\\pi$$",
+          label: "$$36\\pi-24\\sqrt3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$24\\pi-36\\sqrt3$$",
         },
       ],
     },

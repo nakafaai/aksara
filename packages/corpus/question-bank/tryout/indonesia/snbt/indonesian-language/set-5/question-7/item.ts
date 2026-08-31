@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam rangkaian listrik dengan dua lampu.",
+            'Karena langkah "siswa membandingkan susunan seri dan paralel sambil menjaga jenis baterai tetap sama" dapat diulang, model sudah mencakup faktor yang hilang ketika model memakai tegangan rendah dan tidak mewakili instalasi rumah dan dapat menggantikan pengamatan lapangan.',
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam rangkaian listrik dengan dua lampu memperoleh hasil yang sama tanpa perbedaan.",
+            "Keterbatasan bahwa model memakai tegangan rendah dan tidak mewakili instalasi rumah membuat hubungan bahwa susunan komponen menentukan jalur arus dan perilaku setiap lampu tidak dapat diperiksa, bahkan di dalam model.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan rangkaian listrik dengan dua lampu.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut rangkaian tertutup sebagai bukti bahwa uji tidak perlu diulang.",
+            "Hubungan bahwa susunan komponen menentukan jalur arus dan perilaku setiap lampu dapat diterapkan langsung pada keadaan nyata selama urutan model diulang dengan cara yang sama.",
         },
         {
           isCorrect: true,
           label:
-            "Siswa menggunakan model untuk mengulang langkah dan memeriksa hubungan antarbagiannya.",
+            "Pengulangan langkah pada model membantu memeriksa bahwa susunan komponen menentukan jalur arus dan perilaku setiap lampu; karena model memakai tegangan rendah dan tidak mewakili instalasi rumah, pola itu menjadi hipotesis untuk pengamatan nyata, bukan bukti langsung tentang seluruh keadaan lapangan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi istilah pada akhir bacaan sudah cukup membuktikan hubungan sebab dalam rangkaian listrik dengan dua lampu, meskipun bagian model tidak dibandingkan.",
         },
       ],
     },

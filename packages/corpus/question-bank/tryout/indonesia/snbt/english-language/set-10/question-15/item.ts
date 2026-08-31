@@ -6,25 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Absolute certainty about an event-planning meeting",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Why all evidence in an event-planning meeting should be ignored",
-        },
-        {
-          isCorrect: false,
-          label: "The complete world history of contingency",
-        },
-        {
           isCorrect: true,
           label: "Caleb's next step in an event-planning meeting",
         },
         {
           isCorrect: false,
-          label: "One rule for every an event-planning meeting",
+          label: "Waiting for someone else to complete the next step",
+        },
+        {
+          isCorrect: false,
+          label: "Hiding unresolved evidence in a larger project",
+        },
+        {
+          isCorrect: false,
+          label: "contingency as a definition without a reviewable action",
+        },
+        {
+          isCorrect: false,
+          label: "A complete plan without a small accountable step",
         },
       ],
     },

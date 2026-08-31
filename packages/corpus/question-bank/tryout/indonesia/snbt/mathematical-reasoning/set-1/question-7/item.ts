@@ -7,6 +7,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\frac{13}{21}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\frac{11}{21}$$",
         },
@@ -21,10 +25,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{5}{7}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{13}{21}$$",
         },
       ],
     },
@@ -32,6 +32,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\frac{13}{21}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\frac{11}{21}$$",
         },
@@ -46,10 +50,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{5}{7}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{13}{21}$$",
         },
       ],
     },
@@ -57,6 +57,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\frac{13}{21}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\frac{11}{21}$$",
         },
@@ -71,10 +75,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{5}{7}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{13}{21}$$",
         },
       ],
     },

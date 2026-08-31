@@ -14,11 +14,6 @@ const item: QuestionItem = {
           label: "das Verfahren zur Gewinnung von Stärke aus Sagostämmen.",
         },
         {
-          isCorrect: true,
-          label:
-            "die Entwicklung von Sago durch die Diversifizierung des Lebensmittelangebots und Produktinnovationen.",
-        },
-        {
           isCorrect: false,
           label:
             "die sieben Teilsektoren der indonesischen Landwirtschaftszählung.",
@@ -26,6 +21,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "der Exportpreis indonesischer Sagostärke.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "die Entwicklung von Sago durch die Diversifizierung des Lebensmittelangebots und Produktinnovationen.",
         },
       ],
     },
@@ -41,17 +41,17 @@ const item: QuestionItem = {
           label: "the procedure for extracting starch from sago trunks.",
         },
         {
-          isCorrect: true,
-          label:
-            "developing sago through food diversification and product innovation.",
-        },
-        {
           isCorrect: false,
           label: "the seven subsectors of Indonesia's Agricultural Census.",
         },
         {
           isCorrect: false,
           label: "the export price of Indonesian sago starch.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "developing sago through food diversification and product innovation.",
         },
       ],
     },
@@ -67,17 +67,17 @@ const item: QuestionItem = {
           label: "tata cara mengekstraksi pati dari batang sagu.",
         },
         {
-          isCorrect: true,
-          label:
-            "pengembangan sagu melalui penganekaragaman pangan dan inovasi produk.",
-        },
-        {
           isCorrect: false,
           label: "tujuh subsektor dalam Sensus Pertanian Indonesia.",
         },
         {
           isCorrect: false,
           label: "harga ekspor pati sagu Indonesia.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "pengembangan sagu melalui penganekaragaman pangan dan inovasi produk.",
         },
       ],
     },

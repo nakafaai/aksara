@@ -7,12 +7,18 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Kochkurs für Jugendliche",
+          label:
+            "Die Änderung, nach Rezeptschritten gruppierte Zutaten, ersetzte die Notwendigkeit, die ursprüngliche Unsicherheit zu messen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: nach Rezeptschritten geordnete Zutaten.",
+            "Die Änderung, nach Rezeptschritten gruppierte Zutaten, führte mehrere nicht trennbare Unterschiede ein.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Änderung, nach Rezeptschritten gruppierte Zutaten, erklärte, warum die Vergleichswerte identisch waren.",
         },
         {
           isCorrect: true,
@@ -22,12 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Kochkurs für Jugendliche über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: nach Rezeptschritten geordnete Zutaten.",
+            "Die Änderung, nach Rezeptschritten gruppierte Zutaten, betraf das Endergebnis statt die Quelle der Unsicherheit.",
         },
       ],
     },
@@ -36,12 +37,18 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: teen cooking class",
+          label:
+            "The change, ingredients grouped by recipe stage, replaced the need to measure the original uncertainty.",
         },
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of ingredients grouped by recipe stage.",
+            "The change, ingredients grouped by recipe stage, introduced several differences that could not be separated.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The change, ingredients grouped by recipe stage, explained why the comparison values were identical.",
         },
         {
           isCorrect: true,
@@ -51,12 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "In this setting (teen cooking class), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The next test of ingredients grouped by recipe stage will run for longer.",
+            "The change, ingredients grouped by recipe stage, addressed the final outcome rather than the source of uncertainty.",
         },
       ],
     },
@@ -65,12 +67,18 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: kelas memasak remaja",
+          label:
+            "Perubahan berupa bahan yang dikelompokkan menurut tahap resep menggantikan kebutuhan untuk mengukur ketidakpastian awal.",
         },
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui bahan yang dikelompokkan menurut tahap resep.",
+            "Perubahan berupa bahan yang dikelompokkan menurut tahap resep menimbulkan beberapa perbedaan yang tidak dapat dipisahkan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perubahan berupa bahan yang dikelompokkan menurut tahap resep menjelaskan mengapa nilai pembanding sama.",
         },
         {
           isCorrect: true,
@@ -80,12 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Di kelas memasak remaja, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji bahan yang dikelompokkan menurut tahap resep berikutnya akan berlangsung lebih lama.",
+            "Perubahan berupa bahan yang dikelompokkan menurut tahap resep menanggapi hasil akhir, bukan sumber ketidakpastian.",
         },
       ],
     },

@@ -13,11 +13,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The writer decided that signs should only suit their designer.",
+            "The writer learned that signs are adequate when their designer can explain them nearby.",
         },
         {
           isCorrect: false,
-          label: "The writer concluded that delays always mean failure.",
+          label:
+            "The writer treated the rainy-day delays as proof that the project had failed.",
         },
         {
           isCorrect: false,

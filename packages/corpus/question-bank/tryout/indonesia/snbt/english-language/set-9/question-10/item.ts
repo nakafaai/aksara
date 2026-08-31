@@ -7,16 +7,15 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Absolute certainty about a night-market waste station",
+          label: "system alignment as the main measure in a service trial",
         },
         {
           isCorrect: false,
-          label:
-            "Why all evidence in a night-market waste station should be ignored",
+          label: "From a short comparison to a permanent service change",
         },
         {
           isCorrect: false,
-          label: "The complete world history of system alignment",
+          label: "Consultation without comparable outcome measures",
         },
         {
           isCorrect: true,
@@ -24,7 +23,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "One rule for every a night-market waste station",
+          label: "A local service trial with no follow-up decision",
         },
       ],
     },

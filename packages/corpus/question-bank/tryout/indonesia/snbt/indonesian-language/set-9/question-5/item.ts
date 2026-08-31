@@ -7,25 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang peredaman bunyi dalam kotak model",
+          label: "Mengukur atenuasi melalui satu perbandingan awal",
+        },
+        {
+          isCorrect: false,
+          label: "Menjadikan atenuasi penjelasan tunggal atas hasil pengamatan",
+        },
+        {
+          isCorrect: false,
+          label: "Kaidah akhir dari perbandingan pertama tentang atenuasi",
         },
         {
           isCorrect: false,
           label:
-            "Alasan Mengabaikan Semua Bukti dalam peredaman bunyi dalam kotak model",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap atenuasi di Seluruh Dunia",
+            "Keterbatasan yang membuat uji lanjutan atenuasi tidak diperlukan",
         },
         {
           isCorrect: true,
-          label:
-            "Menguji lapisan gabus setebal dua sentimeter dalam peredaman bunyi dalam kotak model",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap peredaman bunyi dalam kotak model",
+          label: "Menguji Lapisan Gabus sebagai Peredam Bunyi pada Kotak Model",
         },
       ],
     },

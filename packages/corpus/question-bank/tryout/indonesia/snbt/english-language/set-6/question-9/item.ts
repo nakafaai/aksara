@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "keeping a product useful for longer through maintenance or repair",
+            "The definition of *product-life extension* supplies the classification rule needed to interpret the budget comparison and the consultation evidence.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, an assumption that never needs to be examined in a community repair café",
+            "Calling a cost *product-life extension* establishes that the proposed change is affordable without using the estimated prices.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, a final result that always applies to every situation",
+            "The definition makes *product-life extension* apply to every cost in the table, regardless of how activity levels change.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, a detail removed because it challenges an opinion",
+            "The term *product-life extension* replaces the affected groups' evidence with a financial label that settles the decision by itself.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, decorative language unrelated to the setting",
+            "The definition explains why the trial used estimated invoices, rather than how the cost category should be read.",
         },
       ],
     },

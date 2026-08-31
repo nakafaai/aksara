@@ -11,12 +11,18 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "The notebook predicts every future storm by itself.",
+          isCorrect: true,
+          label: "Rain damages a paper notebook left near a leaking pipe.",
         },
         {
           isCorrect: false,
-          label: "The seedlings speak and request a cover.",
+          label:
+            "Past garden notes make the timing and effects of the next storm fully predictable.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The seedlings' condition directly tells volunteers the exact time the next storm will arrive.",
         },
         {
           isCorrect: false,
@@ -25,10 +31,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "A drawing changes the direction of the wind.",
-        },
-        {
-          isCorrect: true,
-          label: "Rain damages a paper notebook left near a leaking pipe.",
         },
       ],
     },

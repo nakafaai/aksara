@@ -7,23 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "klar und unmittelbar ausgedrückt",
+          label:
+            "Das Feldverfahren wird bei verändertem Wetter angepasst, ohne das Hauptziel oder die zentralen Messregeln zu ändern.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Verfahren wird überarbeitet, nachdem bestätigte Beschwerden eine im ersten Test übersehene Hürde zeigen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Bewertung bezieht betroffene Gruppen mit unterschiedlichen Mobilitäts-, Sprach- und Zugangsbedürfnissen ein.",
         },
         {
           isCorrect: true,
-          label: "an veränderte Anforderungen anpassbar",
+          label:
+            "Die Methode erlaubt mehrere Durchführungswege, die denselben Ergebniskriterien unterliegen.",
         },
         {
           isCorrect: false,
-          label: "für mehr als eine Deutung offen",
-        },
-        {
-          isCorrect: false,
-          label: "durch verlässliche Belege gestützt",
-        },
-        {
-          isCorrect: false,
-          label: "fähig, sich an veränderte Bedingungen anzupassen",
+          label:
+            "Dieselbe Kodierregel wird auf jede Gruppe und jeden Messzeitraum angewendet.",
         },
       ],
     },
@@ -32,23 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "stated clearly and directly",
+          label:
+            "The field procedure is adjusted when the weather changes without altering the main objective or measurement rules.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The procedure is revised after verified complaints reveal a barrier missed in the initial trial.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The evaluation involves affected groups with different mobility, language, and access needs.",
         },
         {
           isCorrect: true,
-          label: "able to adjust to changed requirements",
+          label:
+            "The method allows several implementation paths that remain subject to the same outcome criteria.",
         },
         {
           isCorrect: false,
-          label: "open to more than one interpretation",
-        },
-        {
-          isCorrect: false,
-          label: "supported by dependable evidence",
-        },
-        {
-          isCorrect: false,
-          label: "able to adjust to changing conditions",
+          label:
+            "The same coding rule is applied to every group and every measurement period.",
         },
       ],
     },
@@ -57,23 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "dinyatakan secara jelas dan langsung",
+          label:
+            "Prosedur lapangan disesuaikan saat cuaca berubah tanpa mengubah tujuan dan aturan ukur utama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Prosedur direvisi setelah keluhan terverifikasi menunjukkan hambatan yang tidak terdeteksi pada uji awal.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Evaluasi melibatkan kelompok terdampak dengan kebutuhan mobilitas, bahasa, dan akses yang berbeda.",
         },
         {
           isCorrect: true,
-          label: "dapat disesuaikan dengan kebutuhan yang berubah",
+          label:
+            "Metode menyediakan beberapa jalur pelaksanaan yang tetap tunduk pada kriteria hasil yang sama.",
         },
         {
           isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
-        },
-        {
-          isCorrect: false,
-          label: "didukung oleh bukti yang dapat dipercaya",
-        },
-        {
-          isCorrect: false,
-          label: "mampu menyesuaikan diri dengan kondisi yang berubah",
+          label:
+            "Aturan pengodean yang sama diterapkan pada setiap kelompok dan setiap waktu pengukuran.",
         },
       ],
     },

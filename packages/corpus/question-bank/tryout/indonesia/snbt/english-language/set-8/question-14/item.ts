@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "in this passage, an assumption that never needs to be examined in a youth translation club",
+            "The term *connotation* proves that the character's first estimate was correct before any accountable action was taken.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The definition reduces *connotation* to the recurring object, so the character's choice and development no longer matter.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The term *connotation* describes the final outcome as certain, even though the narrative presents a gradual change.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The definition is included only to name the setting and has no connection to the character's decision.",
         },
         {
           isCorrect: true,
           label:
-            "the social meaning and level of formality carried by a word or phrase",
-        },
-        {
-          isCorrect: false,
-          label:
-            "in this passage, a final result that always applies to every situation",
-        },
-        {
-          isCorrect: false,
-          label:
-            "in this passage, a detail removed because it challenges an opinion",
-        },
-        {
-          isCorrect: false,
-          label:
-            "in this passage, decorative language unrelated to the setting",
+            "The definition of *connotation* provides a lens for reading the character's specific choice as a response to uncertainty, not as an isolated moral label.",
         },
       ],
     },

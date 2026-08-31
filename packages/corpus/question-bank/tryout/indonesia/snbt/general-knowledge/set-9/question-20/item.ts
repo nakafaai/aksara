@@ -8,26 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team prüfte Themenkarten für Gesprächsanfänge (Sprachaustausch für Lernende) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 27, lag über 19 und 21.",
+            "Wegen mehrerer Daten lässt sich kein Fakt zur Brückengeschichte feststellen.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Das älteste Datum ist für jede Art von Geschichte immer das passendste.",
+        },
+        {
+          isCorrect: false,
+          label: "Der Mittelteil der Brücke wurde 1958 weitgehend ersetzt.",
         },
         {
           isCorrect: true,
           label:
-            "Vorsichtige Prüfung im Kontext Sprachaustausch für Lernende: Themenkarten für Gesprächsanfänge",
+            "Sinnvolle Periodengrenzen können je nach historischer Fragestellung verschieden sein.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Die neue Tafel wird eine Zeitleiste mit der Bedeutung jedes Datums zeigen.",
         },
       ],
     },
@@ -37,26 +37,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested topic cards for starting a conversation in the student language exchange and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 27, exceeded both 19 and 21.",
+            "Because several dates exist, no fact about the bridge's history can be established.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "The oldest date is always the most appropriate for every kind of history.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The bridge's central span was substantially replaced in 1958.",
         },
         {
           isCorrect: true,
           label:
-            "A cautious trial of topic cards for starting a conversation: student language exchange",
+            "Reasonable period boundaries can differ according to the historical question being asked.",
         },
         {
           isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+          label: "The new plaque will display a timeline explaining each date.",
         },
       ],
     },
@@ -66,26 +66,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji kartu topik untuk memulai percakapan pada pertukaran bahasa pelajar dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 27, melampaui 19 dan 21.",
+            "Karena ada beberapa tanggal, tidak ada satu pun fakta tentang riwayat jembatan yang dapat dipastikan.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Satu tanggal paling tua selalu paling tepat untuk semua jenis sejarah.",
+        },
+        {
+          isCorrect: false,
+          label: "Bagian tengah jembatan diganti besar-besaran pada 1958.",
         },
         {
           isCorrect: true,
           label:
-            "Uji Hati-hati dalam pertukaran bahasa pelajar: kartu topik untuk memulai percakapan",
+            "Pilihan batas periode yang wajar dapat berbeda menurut pertanyaan sejarah yang diajukan.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Plakat baru akan menampilkan garis waktu dengan arti setiap tanggal.",
         },
       ],
     },

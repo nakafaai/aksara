@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "in this passage, an assumption that never needs to be examined in a community food pantry",
-        },
-        {
-          isCorrect: false,
-          label:
-            "in this passage, a final result that always applies to every situation",
-        },
-        {
-          isCorrect: false,
-          label:
-            "in this passage, a detail removed because it challenges an opinion",
-        },
-        {
           isCorrect: true,
           label:
-            "using older stock before newer stock when both remain suitable",
+            "The definition of *stock rotation* supplies the classification rule needed to interpret the budget comparison and the consultation evidence.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, decorative language unrelated to the setting",
+            "Calling a cost *stock rotation* establishes that the proposed change is affordable without using the estimated prices.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The definition makes *stock rotation* apply to every cost in the table, regardless of how activity levels change.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The term *stock rotation* replaces the affected groups' evidence with a financial label that settles the decision by itself.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The definition explains why the trial used estimated invoices, rather than how the cost category should be read.",
         },
       ],
     },

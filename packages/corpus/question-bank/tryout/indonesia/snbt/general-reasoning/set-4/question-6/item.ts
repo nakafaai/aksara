@@ -15,14 +15,14 @@ const item: QuestionItem = {
             "Viele leistungsstarke Studierende können an führenden Universitäten in Indonesien studieren",
         },
         {
-          isCorrect: false,
-          label:
-            "Einige der leistungsstärksten Studierenden Indonesiens können an führenden Universitäten im Ausland studieren",
-        },
-        {
           isCorrect: true,
           label:
             "Viele der leistungsstärksten Studierenden Indonesiens können an führenden Universitäten im Ausland studieren",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Einige der leistungsstärksten Studierenden Indonesiens können an führenden Universitäten im Ausland studieren",
         },
         {
           isCorrect: false,
@@ -44,14 +44,14 @@ const item: QuestionItem = {
             "Many high-achieving students can attend leading universities within Indonesia",
         },
         {
-          isCorrect: false,
-          label:
-            "Some of Indonesia's highest-achieving students can study at leading universities abroad",
-        },
-        {
           isCorrect: true,
           label:
             "Many of Indonesia's highest-achieving students can study at leading universities abroad",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Some of Indonesia's highest-achieving students can study at leading universities abroad",
         },
         {
           isCorrect: false,
@@ -72,14 +72,14 @@ const item: QuestionItem = {
             "Banyak mahasiswa berprestasi dapat berkuliah di universitas terkemuka dalam negeri",
         },
         {
-          isCorrect: false,
-          label:
-            "Beberapa mahasiswa berprestasi terbaik Indonesia dapat berkuliah di universitas terkemuka di luar negeri",
-        },
-        {
           isCorrect: true,
           label:
             "Banyak mahasiswa berprestasi terbaik Indonesia dapat berkuliah di universitas terkemuka di luar negeri",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Beberapa mahasiswa berprestasi terbaik Indonesia dapat berkuliah di universitas terkemuka di luar negeri",
         },
         {
           isCorrect: false,

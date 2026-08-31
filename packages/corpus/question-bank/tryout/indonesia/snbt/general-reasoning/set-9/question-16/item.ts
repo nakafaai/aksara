@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Tim A",
+        },
+        {
           isCorrect: true,
-          label: "Woche 1 zu Woche 2",
+          label: "Tim C",
         },
         {
           isCorrect: false,
-          label: "Woche 2 zu Woche 3",
+          label: "Tim B",
         },
         {
           isCorrect: false,
-          label: "Woche 3 zu Woche 4",
+          label: "Tim A dan B",
         },
         {
           isCorrect: false,
-          label: "Woche 1 zu Woche 3",
-        },
-        {
-          isCorrect: false,
-          label: "Woche 2 zu Woche 4",
+          label: "Ketiganya sama",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Tim A",
+        },
+        {
           isCorrect: true,
-          label: "Week 1 to Week 2",
+          label: "Tim C",
         },
         {
           isCorrect: false,
-          label: "Week 2 to Week 3",
+          label: "Tim B",
         },
         {
           isCorrect: false,
-          label: "Week 3 to Week 4",
+          label: "Tim A dan B",
         },
         {
           isCorrect: false,
-          label: "Week 1 to Week 3",
-        },
-        {
-          isCorrect: false,
-          label: "Week 2 to Week 4",
+          label: "Ketiganya sama",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Tim A",
+        },
+        {
           isCorrect: true,
-          label: "Minggu 1 ke Minggu 2",
+          label: "Tim C",
         },
         {
           isCorrect: false,
-          label: "Minggu 2 ke Minggu 3",
+          label: "Tim B",
         },
         {
           isCorrect: false,
-          label: "Minggu 3 ke Minggu 4",
+          label: "Tim A dan B",
         },
         {
           isCorrect: false,
-          label: "Minggu 1 ke Minggu 3",
-        },
-        {
-          isCorrect: false,
-          label: "Minggu 2 ke Minggu 4",
+          label: "Ketiganya sama",
         },
       ],
     },

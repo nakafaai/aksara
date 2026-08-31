@@ -20,14 +20,14 @@ const item: QuestionItem = {
             "Die zuständigen Stellen müssen die Präsidialverordnung Nr. $$63$$ von $$2017$$ zur bargeldlosen Sozialhilfe überarbeiten",
         },
         {
-          isCorrect: true,
-          label:
-            "Eine schwächere Preisstabilisierung auf Erzeugerebene verringert Kaufkraft und Lebensstandard der Landwirte",
-        },
-        {
           isCorrect: false,
           label:
             "Die Zahl der Rohreisverkäufe in $$30$$ Provinzen sank im April $$2019$$ um $$5{,}37\\%$$, während Grundnahrungsmittel teurer wurden",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Eine schwächere Preisstabilisierung auf Erzeugerebene verringert Kaufkraft und Lebensstandard der Landwirte",
         },
       ],
     },
@@ -50,14 +50,14 @@ const item: QuestionItem = {
             "Related parties must revise Presidential Regulation Number $$63$$ of $$2017$$ regarding Non-Cash Social Assistance Distribution",
         },
         {
-          isCorrect: true,
-          label:
-            "Weaker price stabilization at the farmer level erodes farmers' purchasing power and welfare",
-        },
-        {
           isCorrect: false,
           label:
             "Grain sales transactions in $$30$$ provinces during April $$2019$$ fell $$5.37\\%$$, in stark contrast to the increase in prices of basic needs",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Weaker price stabilization at the farmer level erodes farmers' purchasing power and welfare",
         },
       ],
     },
@@ -80,14 +80,14 @@ const item: QuestionItem = {
             "Pihak terkait harus merevisi Peraturan Presiden Nomor $$63$$ Tahun $$2017$$ tentang Penyaluran Bantuan Sosial secara Nontunai",
         },
         {
-          isCorrect: true,
-          label:
-            "Melemahnya stabilisasi harga di tingkat petani menggerus daya beli dan kesejahteraan petani",
-        },
-        {
           isCorrect: false,
           label:
             "Transaksi penjualan gabah di $$30$$ provinsi selama April $$2019$$ turun $$5{,}37\\%$$ sangat kontras dengan kenaikan harga kebutuhan",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Melemahnya stabilisasi harga di tingkat petani menggerus daya beli dan kesejahteraan petani",
         },
       ],
     },

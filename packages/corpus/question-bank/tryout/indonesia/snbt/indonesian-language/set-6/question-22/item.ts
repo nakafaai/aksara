@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam program teman belajar.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Semua tokoh atau pihak dalam program teman belajar memperoleh hasil yang sama tanpa perbedaan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan program teman belajar.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut penyangga belajar sebagai bukti bahwa uji tidak perlu diulang.",
+            "Sari memilih untuk mengubah tujuan pertemuan dari mengejar bab menjadi memahami satu konsep; tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
         },
         {
           isCorrect: true,
           label:
-            "Sari memilih untuk mengubah tujuan pertemuan dari mengejar bab menjadi memahami satu konsep.",
+            "Memusatkan pertemuan pada satu konsep membuat kemajuan Sari dapat diuji melalui pemahaman, bukan hanya jumlah bab yang terlewati.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Sari memilih untuk mengubah tujuan pertemuan dari mengejar bab menjadi memahami satu konsep; perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Sari memilih untuk mengubah tujuan pertemuan dari mengejar bab menjadi memahami satu konsep; latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Sari memilih untuk mengubah tujuan pertemuan dari mengejar bab menjadi memahami satu konsep; definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
         },
       ],
     },

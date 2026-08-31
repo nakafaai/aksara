@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "der Raum vorbereitet wird",
-        },
-        {
-          isCorrect: false,
-          label: "Nicht: die Reservierung bestätigt wird.",
+          label: "$$\\frac1{21}$$",
         },
         {
           isCorrect: true,
-          label: "die Veranstaltung beginnen kann",
+          label: "$$\\frac1{14}$$",
         },
         {
           isCorrect: false,
-          label: "Nicht: der Raum vorbereitet wird.",
+          label: "$$\\frac1{18}$$",
         },
         {
           isCorrect: false,
-          label: "Nicht: die Veranstaltung beginnen kann.",
+          label: "$$\\frac1{12}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac1{10}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "the room is prepared",
-        },
-        {
-          isCorrect: false,
-          label: "It is not true that the reservation is confirmed.",
+          label: "$$\\frac1{21}$$",
         },
         {
           isCorrect: true,
-          label: "the event can begin",
+          label: "$$\\frac1{14}$$",
         },
         {
           isCorrect: false,
-          label: "It is not true that the room is prepared.",
+          label: "$$\\frac1{18}$$",
         },
         {
           isCorrect: false,
-          label: "It is not true that the event can begin.",
+          label: "$$\\frac1{12}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac1{10}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "ruangan disiapkan",
-        },
-        {
-          isCorrect: false,
-          label: "Tidak benar bahwa reservasi dikonfirmasi.",
+          label: "$$\\frac1{21}$$",
         },
         {
           isCorrect: true,
-          label: "acara dapat dimulai",
+          label: "$$\\frac1{14}$$",
         },
         {
           isCorrect: false,
-          label: "Tidak benar bahwa ruangan disiapkan.",
+          label: "$$\\frac1{18}$$",
         },
         {
           isCorrect: false,
-          label: "Tidak benar bahwa acara dapat dimulai.",
+          label: "$$\\frac1{12}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac1{10}$$",
         },
       ],
     },

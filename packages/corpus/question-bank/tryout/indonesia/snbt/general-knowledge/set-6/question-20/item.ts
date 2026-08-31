@@ -8,26 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team prüfte Karten zur Erfassung jeder Bewässerungszeit (Saatgutversuch im Unterricht) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 30, lag über 20 und 22.",
+            "Weitere Analysen bestätigen, dass Spuren mehrerer Zeiten wesentlich zur Nutzungsgeschichte gehören.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Nutzer sind sich uneinig, ob moderne Ergänzungen farblich abgesetzt werden sollen, erkennen aber weiterhin die älteren Bauteile.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Jedes neue Teil wird dokumentiert, damit Veränderungen erkennbar bleiben.",
+        },
+        {
+          isCorrect: false,
+          label: "Die älteste Farbe wurde nur in wenigen Räumen gefunden.",
         },
         {
           isCorrect: true,
           label:
-            "Vorsichtige Prüfung im Kontext Saatgutversuch im Unterricht: Karten zur Erfassung jeder Bewässerungszeit",
+            "Neue Prüfungen zeigen, dass sämtliches vermeintlich altes Material aus einer undokumentierten modernen Renovierung stammt.",
         },
       ],
     },
@@ -37,26 +37,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested cards recording each watering time in the classroom seed trial and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 30, exceeded both 20 and 22.",
+            "Additional analysis confirms that traces from several periods are central to the hall's history of use.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "Users disagree about whether modern additions should be marked in a contrasting colour, but they still identify the older building elements.",
         },
         {
           isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+          label: "Every new part will be recorded so changes remain legible.",
+        },
+        {
+          isCorrect: false,
+          label: "The oldest paint was found in only a few rooms.",
         },
         {
           isCorrect: true,
           label:
-            "A cautious trial of cards recording each watering time: classroom seed trial",
+            "New testing shows that all supposedly old material came from an undocumented modern renovation.",
         },
       ],
     },
@@ -66,26 +65,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji kartu pencatatan waktu penyiraman pada percobaan benih kelas dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 30, melampaui 20 dan 22.",
+            "Analisis tambahan memastikan jejak dari beberapa masa memang menjadi bagian penting riwayat penggunaan balai.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Pengguna berbeda pendapat tentang perlunya penanda warna pada tambahan modern, tetapi tetap dapat mengenali unsur bangunan yang lebih tua.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Setiap bagian baru akan dicatat agar perubahan tetap terbaca.",
+        },
+        {
+          isCorrect: false,
+          label: "Cat tertua hanya ditemukan di beberapa ruang.",
         },
         {
           isCorrect: true,
           label:
-            "Uji Hati-hati dalam percobaan benih kelas: kartu pencatatan waktu penyiraman",
+            "Pemeriksaan baru menunjukkan semua bahan yang dianggap lama ternyata dipasang pada renovasi modern yang tidak terdokumentasi.",
         },
       ],
     },

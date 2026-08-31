@@ -6,26 +6,27 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Mengukur daya generalisasi melalui satu perbandingan awal",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Menjadikan daya generalisasi penjelasan tunggal atas hasil pengamatan",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Kaidah akhir dari perbandingan pertama tentang daya generalisasi",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Keterbatasan yang membuat uji lanjutan daya generalisasi tidak diperlukan",
+        },
+        {
           isCorrect: true,
-          label:
-            "Menguji panel peneduh yang dipasang selama empat jam siang dalam suhu air pada kolam mini",
-        },
-        {
-          isCorrect: false,
-          label: "Kepastian Mutlak tentang suhu air pada kolam mini",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Alasan Mengabaikan Semua Bukti dalam suhu air pada kolam mini",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap daya generalisasi di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap suhu air pada kolam mini",
+          label: "Pengaruh Panel Peneduh terhadap Suhu Air Kolam Mini",
         },
       ],
     },

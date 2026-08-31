@@ -11,14 +11,14 @@ const item: QuestionItem = {
             "Die Daten worden im Kontext Aufnahmestudio der Schule erhebt und danach vergleichen.",
         },
         {
-          isCorrect: true,
-          label:
-            "Die Daten wurden in diesem Kontext erhoben: Aufnahmestudio der Schule. Anschließend wurden sie verglichen.",
-        },
-        {
           isCorrect: false,
           label:
             "Die Daten wurden an den Kontext Aufnahmestudio der Schule erhoben und danach verglichen.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Die Daten wurden in diesem Kontext erhoben: Aufnahmestudio der Schule. Anschließend wurden sie verglichen.",
         },
         {
           isCorrect: false,
@@ -41,14 +41,14 @@ const item: QuestionItem = {
             "Data were collected at this setting (school recording studio) and compared afterward in.",
         },
         {
-          isCorrect: true,
-          label:
-            "Data were collected in this setting (school recording studio) and compared afterward.",
-        },
-        {
           isCorrect: false,
           label:
             "Data was collect in this setting (school recording studio) and comparing afterward.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Data were collected in this setting (school recording studio) and compared afterward.",
         },
         {
           isCorrect: false,
@@ -71,14 +71,14 @@ const item: QuestionItem = {
             "Data di ukur di studio rekaman sekolah dan kemudian dibandingkan.",
         },
         {
-          isCorrect: true,
-          label:
-            "Data diukur di studio rekaman sekolah dan kemudian dibandingkan.",
-        },
-        {
           isCorrect: false,
           label:
             "Data diukur didepan studio rekaman sekolah dan kemudian dibandingkan.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Data diukur di studio rekaman sekolah dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,

@@ -100,7 +100,7 @@ layer(NodeServices.layer)("question registry", (it) => {
           .map(({ sourcePath }) => sourcePath)
           .sort();
 
-        expect(entries).toHaveLength(9920);
+        expect(entries).toHaveLength(9650);
         expect(
           new Set(
             entries.map(
@@ -108,20 +108,20 @@ layer(NodeServices.layer)("question registry", (it) => {
                 `${contentKey}\0${artifactLocale}`
             )
           ).size
-        ).toBe(9920);
+        ).toBe(9650);
         expect(projectedPaths).toEqual(authoredPaths);
         expect(
           ["authenticated", "entitled"].map(
             (delivery) =>
               entries.filter((entry) => entry.delivery === delivery).length
           )
-        ).toEqual([4310, 5610]);
+        ).toEqual([4175, 5475]);
         expect(
           ["en", "id", "de"].map(
             (locale) =>
               entries.filter((entry) => entry.artifactLocale === locale).length
           )
-        ).toEqual([3365, 3465, 3090]);
+        ).toEqual([3275, 3375, 3000]);
         expect(
           [
             "snbt-general",
@@ -133,7 +133,7 @@ layer(NodeServices.layer)("question registry", (it) => {
             (domain) =>
               entries.filter((entry) => entry.rendererDomain === domain).length
           )
-        ).toEqual([1800, 1200, 5000, 1200, 720]);
+        ).toEqual([1800, 1200, 5000, 1200, 450]);
         expect(
           entries.some(({ contentKey }) =>
             contentKey.includes("snbt/general-reasoning/set-10/")

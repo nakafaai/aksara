@@ -14,13 +14,13 @@ const item: QuestionItem = {
           label: "Gajah betina jumlahnya lebih banyak daripada jantan",
         },
         {
-          isCorrect: false,
-          label: "Gajah betina selalu menempuh perjalanan paling jauh",
-        },
-        {
           isCorrect: true,
           label:
             "Pergerakannya dapat mewakili kelompok keluarga yang dipimpinnya",
+        },
+        {
+          isCorrect: false,
+          label: "Gajah betina selalu menempuh perjalanan paling jauh",
         },
         {
           isCorrect: false,

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Every result in enzyme activity in a classroom model must apply without limitation elsewhere.",
+            "Because the colour-change measure reached 31 units, compared with 18 and 19, holding sample volume, pH, and reaction time constant isolates holding the mixture at 37°C as the only possible cause.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The strongest follow-up would change both holding the mixture at 37°C and at least one controlled condition, preventing the effect of either change from being isolated.",
         },
         {
           isCorrect: true,
           label:
-            "The initial pattern justifies a stronger repetition, not a universal claim.",
+            "the colour-change measure reached 31 units, compared with 18 and 19; this supports an association between 37°C and the classroom measure of enzyme activity under the tested conditions, while the colour scale was estimated by eye requires further testing before a broader claim.",
         },
         {
           isCorrect: false,
           label:
-            "The limitation makes all information about enzyme activity in a classroom model useless.",
+            "The limitation that the colour scale was estimated by eye affects numerical precision, but it does not restrict how widely the finding can be applied.",
         },
         {
           isCorrect: false,
           label:
-            "One detail about enzyme proves every possible causal relationship.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage recommends ignoring evidence that conflicts with an early expectation.",
+            "A larger repetition under the same rules could narrow uncertainty but could not change the first interpretation of 37°C and the classroom measure of enzyme activity.",
         },
       ],
     },

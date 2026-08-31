@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Nur $$(1)$$, $$(2)$$ und $$(3)$$ sind richtig.",
-        },
-        {
           isCorrect: true,
           label: "Nur $$(2)$$ und $$(4)$$ sind richtig.",
+        },
+        {
+          isCorrect: false,
+          label: "Nur $$(1)$$, $$(2)$$ und $$(3)$$ sind richtig.",
         },
         {
           isCorrect: false,
@@ -31,12 +31,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Only $$(1)$$, $$(2)$$, and $$(3)$$ are correct.",
-        },
-        {
           isCorrect: true,
           label: "Only $$(2)$$ and $$(4)$$ are correct.",
+        },
+        {
+          isCorrect: false,
+          label: "Only $$(1)$$, $$(2)$$, and $$(3)$$ are correct.",
         },
         {
           isCorrect: false,
@@ -56,12 +56,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Hanya $$(1)$$, $$(2)$$, dan $$(3)$$ yang benar.",
-        },
-        {
           isCorrect: true,
           label: "Hanya $$(2)$$ dan $$(4)$$ yang benar.",
+        },
+        {
+          isCorrect: false,
+          label: "Hanya $$(1)$$, $$(2)$$, dan $$(3)$$ yang benar.",
         },
         {
           isCorrect: false,

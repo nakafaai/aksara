@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam model daur air dalam kotak transparan pasti berlaku tanpa batas pada tempat lain.",
+            "Mengulang model daur air dalam kotak dengan lebih banyak unit, tetapi tetap memakai penyederhanaan yang sama tanpa pengamatan lapangan.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang model daur air dalam kotak transparan tidak berguna.",
+            "Mengubah seluruh faktor lapangan sekaligus, lalu membandingkan satu hasil akhir tanpa kondisi acuan.",
         },
         {
           isCorrect: false,
           label:
-            "Satu rincian tentang kondensasi cukup untuk membuktikan semua hubungan sebab-akibat.",
+            "Mengambil satu kejadian nyata yang sesuai dengan model sebagai konfirmasi bahwa pola selalu berlaku.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Mengganti pengukuran dengan survei tentang apakah peserta memahami definisi istilah pada model.",
         },
         {
           isCorrect: true,
           label:
-            "Model berguna untuk menjelaskan prinsip, tetapi temuannya tetap perlu dihubungkan dengan keadaan nyata.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "mencatat suhu, kelembapan, penguapan, dan kondensasi pada beberapa kondisi cuaca nyata.",
         },
       ],
     },

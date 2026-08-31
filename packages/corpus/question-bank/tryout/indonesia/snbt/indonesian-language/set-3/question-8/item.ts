@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Mengulang model jaring-jaring makanan dengan lebih banyak unit, tetapi tetap memakai penyederhanaan yang sama tanpa pengamatan lapangan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Mengubah seluruh faktor lapangan sekaligus, lalu membandingkan satu hasil akhir tanpa kondisi acuan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Mengambil satu kejadian nyata yang sesuai dengan model sebagai konfirmasi bahwa pola selalu berlaku.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Mengganti pengukuran dengan survei tentang apakah peserta memahami definisi istilah pada model.",
+        },
+        {
           isCorrect: true,
           label:
-            "Model berguna untuk menjelaskan prinsip, tetapi temuannya tetap perlu dihubungkan dengan keadaan nyata.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Setiap hasil dalam model jaring-jaring makanan di kebun sekolah pasti berlaku tanpa batas pada tempat lain.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang model jaring-jaring makanan di kebun sekolah tidak berguna.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Satu rincian tentang jaring-jaring makanan cukup untuk membuktikan semua hubungan sebab-akibat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "memantau perubahan populasi serta beberapa hubungan makan di kebun pada musim yang berbeda.",
         },
       ],
     },

@@ -7,27 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "richtig abgestellte Fahrräder und kurze Aussagen von Nutzenden",
+          label: "Gebietsgrenzen zeichnen, ohne örtliche Namen zu untersuchen",
         },
         {
           isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vorsichtige Prüfung im Kontext Fahrradparkplatz auf dem Campus: vom Eingang sichtbare Stellplatznummern",
+          label: "Reiseentfernungen zwischen zwei Orten messen",
         },
         {
           isCorrect: true,
-          label: "Der Wert mit Änderung, 33, lag über 23 und 25.",
+          label:
+            "die Untersuchung und Erfassung von Ortsnamen samt Herkunft und Verwendungskontext",
+        },
+        {
+          isCorrect: false,
+          label: "alle Ortsnamen auf eine amtliche Form vereinheitlichen",
+        },
+        {
+          isCorrect: false,
+          label: "neue Namen ohne Herkunft und Verwendungskontext auflisten",
         },
       ],
     },
@@ -37,26 +34,24 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "bicycles parked in the correct rack and short comments from users",
+            "drawing territorial boundaries without examining community place names",
         },
         {
           isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A cautious trial of rack numbers visible from the entrance: campus bicycle parking",
+          label: "measuring travel distance between two locations",
         },
         {
           isCorrect: true,
-          label: "The intervention value, 33, exceeded both 23 and 25.",
+          label:
+            "the study and recording of place names, including their origins and contexts of use",
+        },
+        {
+          isCorrect: false,
+          label: "standardising every place name into one official form",
+        },
+        {
+          isCorrect: false,
+          label: "a list of new names without their origin or context of use",
         },
       ],
     },
@@ -66,26 +61,24 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "sepeda yang diparkir pada rak yang benar dan komentar singkat pengguna",
+            "penggambaran batas wilayah tanpa memeriksa nama yang dipakai masyarakat",
         },
         {
           isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji Hati-hati dalam parkir sepeda kampus: nomor rak yang terlihat dari pintu masuk",
+          label: "pengukuran jarak perjalanan antara dua lokasi",
         },
         {
           isCorrect: true,
-          label: "Nilai pada hari dengan perubahan, 33, melampaui 23 dan 25.",
+          label:
+            "kajian dan pencatatan nama tempat beserta asal serta konteks pemakaiannya",
+        },
+        {
+          isCorrect: false,
+          label: "penyeragaman seluruh nama tempat menjadi satu bentuk resmi",
+        },
+        {
+          isCorrect: false,
+          label: "daftar nama baru tanpa riwayat asal dan konteks pemakaiannya",
         },
       ],
     },

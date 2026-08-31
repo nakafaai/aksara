@@ -21,7 +21,8 @@ const item: QuestionItem = {
         },
         {
           correctCategoryOrder: 2,
-          label: "Peserta hanya berasal dari satu kelas",
+          label:
+            "Peserta berasal dari kelompok yang tidak dipilih secara acak dari populasi sekolah",
         },
       ],
     },

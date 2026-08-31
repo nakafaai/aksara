@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "$$0$$ und $$2$$",
         },
         {
+          isCorrect: true,
+          label: "$$-1$$ und $$0$$",
+        },
+        {
           isCorrect: false,
           label: "$$1$$ und $$2$$",
         },
@@ -21,10 +25,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$-2$$ und $$1$$",
         },
-        {
-          isCorrect: true,
-          label: "$$-1$$ und $$0$$",
-        },
       ],
     },
     en: {
@@ -33,6 +33,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$0$$ and $$2$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$-1$$ and $$0$$",
         },
         {
           isCorrect: false,
@@ -46,10 +50,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$-2$$ and $$1$$",
         },
-        {
-          isCorrect: true,
-          label: "$$-1$$ and $$0$$",
-        },
       ],
     },
     id: {
@@ -58,6 +58,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$0$$ dan $$2$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$-1$$ dan $$0$$",
         },
         {
           isCorrect: false,
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$-2$$ dan $$1$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$-1$$ dan $$0$$",
         },
       ],
     },

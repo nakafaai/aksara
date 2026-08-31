@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
+          label: "Daher",
+        },
+        {
+          isCorrect: false,
           label: "Außerdem",
         },
         {
           isCorrect: false,
-          label: "Inzwischen",
+          label: "Mit anderen Worten",
         },
         {
           isCorrect: false,
-          label: "Dagegen",
+          label: "Zuvor",
         },
         {
           isCorrect: true,
-          label: "Deshalb",
-        },
-        {
-          isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Kochkurs für Jugendliche",
+          label: "Dennoch",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Moreover",
-        },
-        {
-          isCorrect: false,
-          label: "Meanwhile",
-        },
-        {
-          isCorrect: false,
-          label: "However",
-        },
-        {
-          isCorrect: true,
           label: "Therefore",
         },
         {
           isCorrect: false,
-          label: "A structured test of one change: teen cooking class",
+          label: "In addition",
+        },
+        {
+          isCorrect: false,
+          label: "In other words",
+        },
+        {
+          isCorrect: false,
+          label: "Previously",
+        },
+        {
+          isCorrect: true,
+          label: "Nevertheless",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Selain itu",
-        },
-        {
-          isCorrect: false,
-          label: "Sementara itu",
-        },
-        {
-          isCorrect: false,
-          label: "Namun",
-        },
-        {
-          isCorrect: true,
           label: "Oleh karena itu",
         },
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: kelas memasak remaja",
+          label: "Selain itu",
+        },
+        {
+          isCorrect: false,
+          label: "Dengan kata lain",
+        },
+        {
+          isCorrect: false,
+          label: "Sebelumnya",
+        },
+        {
+          isCorrect: true,
+          label: "Meskipun demikian",
         },
       ],
     },

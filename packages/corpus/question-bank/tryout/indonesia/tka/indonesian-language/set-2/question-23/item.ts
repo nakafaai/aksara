@@ -11,17 +11,13 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
+          isCorrect: false,
           label:
-            "terdapat beberapa penjelasan alternatif yang membatasi simpulan sebab-akibat",
+            "kenaikan rata-rata cukup untuk menyimpulkan jeda cenderung bermanfaat bagi peserta",
         },
         {
           isCorrect: false,
-          label: "jeda terbukti bermanfaat bagi semua orang",
-        },
-        {
-          isCorrect: false,
-          label: "dua paket soal pasti sama sulit",
+          label: "dua paket dapat dianggap setara karena jumlah soalnya sama",
         },
         {
           isCorrect: false,
@@ -29,7 +25,13 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "jumlah peserta sudah mewakili seluruh siswa",
+          label:
+            "jumlah peserta cukup untuk mewakili siswa pada kelas lain di sekolah yang sama",
+        },
+        {
+          isCorrect: true,
+          label:
+            "terdapat beberapa penjelasan alternatif yang membatasi simpulan sebab-akibat",
         },
       ],
     },

@@ -8,12 +8,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team wiederholte erneut noch einmal den Versuch zu eine Checkliste vor der Aufnahme, um belastbarere Belege zu erhalten.",
+            "Das Team wiederholte den Test von eine Checkliste vor der Aufnahme erneut, um stärkere Belege als zuvor zu erhalten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team führte eine Wiederholung des Versuchs zu eine Checkliste vor der Aufnahme mit dem Ziel durch, damit belastbarere Belege erhalten werden können.",
+            "Um stärkere Belege zu erhalten, wurde der Test von eine Checkliste vor der Aufnahme vom Team erneut wiederholt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team führte eine weitere Wiederholung des Tests von eine Checkliste vor der Aufnahme für stärkere Belege durch.",
         },
         {
           isCorrect: true,
@@ -23,12 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team wiederholte den Versuch zu eine Checkliste vor der Aufnahme, um sehr viel belastbarere stärkere Belege zu erhalten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Eine Wiederholung wurde vom Team erneut für eine Checkliste vor der Aufnahme durchgeführt, und zwar für Belege.",
+            "Das Team wiederholte den Test, um stärkere Belege zu eine Checkliste vor der Aufnahme zu erhalten, die es bereits getestet hatte.",
         },
       ],
     },
@@ -38,12 +38,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team repeated the test of a checklist used before recording again once more to obtain stronger evidence.",
+            "The team repeated the test of a checklist used before recording again to obtain evidence that was stronger than before.",
         },
         {
           isCorrect: false,
           label:
-            "The team carried out a repetition of the test of a checklist used before recording for the purpose of being able to obtain evidence that was stronger.",
+            "To obtain stronger evidence, the test of a checklist used before recording was repeated again by the team.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team carried out another repetition of the test of a checklist used before recording for stronger evidence.",
         },
         {
           isCorrect: true,
@@ -53,12 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team repeated the test of a checklist used before recording to obtain very much stronger and more strong evidence.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A repetition was repeated by the team for a checklist used before recording in order for evidence.",
+            "The team repeated the test to obtain stronger evidence about a checklist used before recording, which it had already tested.",
         },
       ],
     },
@@ -68,12 +68,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim mengulang kembali lagi uji daftar pemeriksaan sebelum merekam untuk memperoleh bukti yang lebih kuat.",
+            "Tim mengulang kembali uji daftar periksa sebelum perekaman untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
         },
         {
           isCorrect: false,
           label:
-            "Tim melakukan pengulangan atas uji daftar pemeriksaan sebelum merekam dengan tujuan agar supaya dapat memperoleh bukti yang lebih kuat.",
+            "Untuk memperoleh bukti lebih kuat, uji daftar periksa sebelum perekaman diulang kembali oleh tim.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim melakukan pengulangan lain atas uji daftar periksa sebelum perekaman demi bukti yang lebih kuat.",
         },
         {
           isCorrect: true,
@@ -83,12 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim mengulang uji daftar pemeriksaan sebelum merekam untuk memperoleh bukti yang lebih sangat kuat sekali.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Pengulangan kembali dilakukan lagi oleh tim atas daftar pemeriksaan sebelum merekam untuk bukti.",
+            "Tim mengulang uji untuk memperoleh bukti lebih kuat tentang daftar periksa sebelum perekaman yang telah diuji sebelumnya.",
         },
       ],
     },

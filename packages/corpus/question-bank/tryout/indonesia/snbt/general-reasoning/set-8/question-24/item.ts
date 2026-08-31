@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "K, L, J, M",
+          label: "$$\\frac{20}{3}$$",
         },
         {
           isCorrect: false,
-          label: "L, K, M, J",
+          label: "$$7$$",
         },
         {
           isCorrect: true,
-          label: "K, J, M, L",
+          label: "$$\\frac{23}{3}$$",
         },
         {
           isCorrect: false,
-          label: "M, K, J, L",
+          label: "$$8$$",
         },
         {
           isCorrect: false,
-          label: "J, K, L, M",
+          label: "$$\\frac{25}{3}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "K, L, J, M",
+          label: "$$\\frac{20}{3}$$",
         },
         {
           isCorrect: false,
-          label: "L, K, M, J",
+          label: "$$7$$",
         },
         {
           isCorrect: true,
-          label: "K, J, M, L",
+          label: "$$\\frac{23}{3}$$",
         },
         {
           isCorrect: false,
-          label: "M, K, J, L",
+          label: "$$8$$",
         },
         {
           isCorrect: false,
-          label: "J, K, L, M",
+          label: "$$\\frac{25}{3}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "K, L, J, M",
+          label: "$$\\frac{20}{3}$$",
         },
         {
           isCorrect: false,
-          label: "L, K, M, J",
+          label: "$$7$$",
         },
         {
           isCorrect: true,
-          label: "K, J, M, L",
+          label: "$$\\frac{23}{3}$$",
         },
         {
           isCorrect: false,
-          label: "M, K, J, L",
+          label: "$$8$$",
         },
         {
           isCorrect: false,
-          label: "J, K, L, M",
+          label: "$$\\frac{25}{3}$$",
         },
       ],
     },

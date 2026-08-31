@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Die Daten wurden in diesem Kontext erhoben: Kompostierworkshop. Anschließend wurden sie verglichen.",
+        },
+        {
           isCorrect: false,
           label:
             "Die Daten worden im Kontext Kompostierworkshop erhebt und danach vergleichen.",
@@ -14,11 +19,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Die Daten wurden an den Kontext Kompostierworkshop erhoben und danach verglichen.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Die Daten wurden in diesem Kontext erhoben: Kompostierworkshop. Anschließend wurden sie verglichen.",
         },
         {
           isCorrect: false,
@@ -36,6 +36,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Data were collected in this setting (composting workshop) and compared afterward.",
+        },
+        {
           isCorrect: false,
           label:
             "Data were collected at this setting (composting workshop) and compared afterward in.",
@@ -44,11 +49,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Data was collect in this setting (composting workshop) and comparing afterward.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Data were collected in this setting (composting workshop) and compared afterward.",
         },
         {
           isCorrect: false,
@@ -66,6 +66,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Data diukur di lokakarya pembuatan kompos dan kemudian dibandingkan.",
+        },
+        {
           isCorrect: false,
           label:
             "Data di ukur di lokakarya pembuatan kompos dan kemudian dibandingkan.",
@@ -74,11 +79,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Data diukur didepan lokakarya pembuatan kompos dan kemudian dibandingkan.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Data diukur di lokakarya pembuatan kompos dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,

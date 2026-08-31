@@ -13,7 +13,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Disappointment because the archive invented every missing name",
+            "Disappointment because the archive left several names unresolved",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Concern that stable identification numbers may separate photographs from personal memory",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Anger because the visitor's memory was treated as an object label",
         },
         {
           isCorrect: true,
@@ -22,16 +32,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Fear that stable numbers destroy photographs",
-        },
-        {
-          isCorrect: false,
           label:
-            "Anger because the visitor's memory was treated as an object label",
-        },
-        {
-          isCorrect: false,
-          label: "Boredom because no record changed during the week",
+            "Boredom because the week's work refined metadata instead of adding photographs",
         },
       ],
     },

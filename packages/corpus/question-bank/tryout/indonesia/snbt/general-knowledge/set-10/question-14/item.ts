@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Wegen auftretender Fehler muss jede automatische Suche beendet werden.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Ein in der automatischen Suche fehlendes Dokument ist sicher nicht im Archiv vorhanden.",
         },
         {
           isCorrect: true,
           label:
-            "vollständig abgespielte Aufnahmen und kurze Aussagen von Nutzenden",
+            "Automatisierung erweitert den Zugang, doch Ausgaben brauchen sichtbare Grenzen, Originalbelege und einen Revisionsweg.",
+        },
+        {
+          isCorrect: false,
+          label: "Nutzerkorrekturen betrafen häufiger beliebte Sammlungen.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte kurze Codes auf Augenhöhe (Audioführung im Museum) und bewertete die Befunde vorsichtig.",
+            "Automatische Archivsuche ist nützlich, wenn ihre Ausgabe als begrenzter, prüf- und korrigierbarer Index gilt.",
         },
       ],
     },
@@ -38,27 +37,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Because the system makes errors, all automated search must be stopped.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "A document absent from automated search is certainly not stored in the archive.",
         },
         {
           isCorrect: true,
           label:
-            "recordings played to completion and short comments from users",
+            "Automation broadens access, but output needs visible limits, original evidence, and a revision mechanism.",
+        },
+        {
+          isCorrect: false,
+          label: "User corrections were more frequent for popular collections.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested short codes printed at eye level in the museum audio guide and interpreted the evidence cautiously.",
+            "Automated archive search is useful when its output is treated as a limited index that can be inspected and corrected.",
         },
       ],
     },
@@ -68,27 +66,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Karena sistem membuat kesalahan, semua pencarian otomatis harus dihentikan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Dokumen yang tidak muncul dalam pencarian otomatis pasti tidak tersimpan di arsip.",
         },
         {
           isCorrect: true,
           label:
-            "rekaman yang dibuka sampai selesai dan komentar singkat pengguna",
+            "Otomatisasi memperluas akses, tetapi keluaran perlu disertai batas, bukti asli, dan mekanisme revisi.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Koreksi pengguna lebih sering diberikan pada koleksi populer.",
         },
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji kode singkat yang dicetak setinggi mata pada panduan audio museum dan menafsirkan buktinya secara hati-hati.",
+            "Pencarian arsip otomatis bermanfaat jika hasil diperlakukan sebagai indeks terbatas yang dapat diperiksa dan dikoreksi.",
         },
       ],
     },

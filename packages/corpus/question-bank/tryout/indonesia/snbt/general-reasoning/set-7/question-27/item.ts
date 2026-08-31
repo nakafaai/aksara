@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$45$$",
+          label: "$$1$$",
         },
         {
           isCorrect: false,
-          label: "$$9$$",
+          label: "$$\\frac{21}{20}$$",
         },
         {
           isCorrect: false,
-          label: "$$18$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$36$$",
+          label: "$$\\frac{23}{20}$$",
         },
         {
           isCorrect: true,
-          label: "$$27$$",
+          label: "$$\\frac{11}{10}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac65$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$45$$",
+          label: "$$1$$",
         },
         {
           isCorrect: false,
-          label: "$$9$$",
+          label: "$$\\frac{21}{20}$$",
         },
         {
           isCorrect: false,
-          label: "$$18$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$36$$",
+          label: "$$\\frac{23}{20}$$",
         },
         {
           isCorrect: true,
-          label: "$$27$$",
+          label: "$$\\frac{11}{10}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac65$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$45$$",
+          label: "$$1$$",
         },
         {
           isCorrect: false,
-          label: "$$9$$",
+          label: "$$\\frac{21}{20}$$",
         },
         {
           isCorrect: false,
-          label: "$$18$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$36$$",
+          label: "$$\\frac{23}{20}$$",
         },
         {
           isCorrect: true,
-          label: "$$27$$",
+          label: "$$\\frac{11}{10}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac65$$",
         },
       ],
     },

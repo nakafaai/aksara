@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "seine Gestalt war schlanker geworden.",
-        },
-        {
           isCorrect: false,
           label: "lang und zerzaust.",
         },
@@ -22,6 +18,10 @@ const item: QuestionItem = {
           label: "dunkle Ringe.",
         },
         {
+          isCorrect: true,
+          label: "seine Gestalt war schlanker geworden.",
+        },
+        {
           isCorrect: false,
           label: "sich rasieren.",
         },
@@ -30,10 +30,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "his frame had grown leaner.",
-        },
         {
           isCorrect: false,
           label: "long and messy.",
@@ -47,6 +43,10 @@ const item: QuestionItem = {
           label: "dark circles.",
         },
         {
+          isCorrect: true,
+          label: "his frame had grown leaner.",
+        },
+        {
           isCorrect: false,
           label: "shaving.",
         },
@@ -55,10 +55,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "tubuhnya tampak makin ramping.",
-        },
         {
           isCorrect: false,
           label: "gondrong berantakan.",
@@ -70,6 +66,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "lingkaran hitam.",
+        },
+        {
+          isCorrect: true,
+          label: "tubuhnya tampak makin ramping.",
         },
         {
           isCorrect: false,

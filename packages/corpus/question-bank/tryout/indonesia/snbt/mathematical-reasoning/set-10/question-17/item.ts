@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$6/12$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5/13$$",
+          label: "$$\\frac9{10}$$",
         },
         {
           isCorrect: true,
-          label: "$$5/12$$",
+          label: "$$\\frac{36}{37}$$",
         },
         {
           isCorrect: false,
-          label: "$$1/12$$",
+          label: "$$\\frac{18}{19}$$",
         },
         {
           isCorrect: false,
-          label: "$$7/12$$",
+          label: "$$\\frac{81}{83}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{40}{41}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$6/12$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5/13$$",
+          label: "$$\\frac9{10}$$",
         },
         {
           isCorrect: true,
-          label: "$$5/12$$",
+          label: "$$\\frac{36}{37}$$",
         },
         {
           isCorrect: false,
-          label: "$$1/12$$",
+          label: "$$\\frac{18}{19}$$",
         },
         {
           isCorrect: false,
-          label: "$$7/12$$",
+          label: "$$\\frac{81}{83}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{40}{41}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$6/12$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5/13$$",
+          label: "$$\\frac9{10}$$",
         },
         {
           isCorrect: true,
-          label: "$$5/12$$",
+          label: "$$\\frac{36}{37}$$",
         },
         {
           isCorrect: false,
-          label: "$$1/12$$",
+          label: "$$\\frac{18}{19}$$",
         },
         {
           isCorrect: false,
-          label: "$$7/12$$",
+          label: "$$\\frac{81}{83}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{40}{41}$$",
         },
       ],
     },

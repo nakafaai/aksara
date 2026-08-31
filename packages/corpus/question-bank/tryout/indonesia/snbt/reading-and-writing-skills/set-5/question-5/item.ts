@@ -7,24 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Außerdem",
-        },
-        {
-          isCorrect: false,
-          label: "Inzwischen",
-        },
-        {
-          isCorrect: false,
-          label: "Dagegen",
+          label: "Währenddessen",
         },
         {
           isCorrect: true,
-          label: "Deshalb",
+          label: "Daher",
         },
         {
           isCorrect: false,
-          label:
-            "Geordnete Prüfung einer Änderung: Erfassung von Straßenbäumen",
+          label: "Dennoch",
+        },
+        {
+          isCorrect: false,
+          label: "Zum Beispiel",
+        },
+        {
+          isCorrect: false,
+          label: "Zuvor",
         },
       ],
     },
@@ -33,15 +32,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Moreover",
-        },
-        {
-          isCorrect: false,
           label: "Meanwhile",
-        },
-        {
-          isCorrect: false,
-          label: "However",
         },
         {
           isCorrect: true,
@@ -49,7 +40,15 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "A structured test of one change: street-tree survey",
+          label: "Nevertheless",
+        },
+        {
+          isCorrect: false,
+          label: "For example",
+        },
+        {
+          isCorrect: false,
+          label: "Previously",
         },
       ],
     },
@@ -58,15 +57,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Selain itu",
-        },
-        {
-          isCorrect: false,
           label: "Sementara itu",
-        },
-        {
-          isCorrect: false,
-          label: "Namun",
         },
         {
           isCorrect: true,
@@ -74,7 +65,15 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: pendataan pohon jalan",
+          label: "Meskipun demikian",
+        },
+        {
+          isCorrect: false,
+          label: "Sebagai contoh",
+        },
+        {
+          isCorrect: false,
+          label: "Sebelumnya",
         },
       ],
     },

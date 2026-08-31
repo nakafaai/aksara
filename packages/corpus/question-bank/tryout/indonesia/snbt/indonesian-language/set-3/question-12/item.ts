@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam layanan perpustakaan keliling.",
+            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam layanan perpustakaan keliling memperoleh hasil yang sama tanpa perbedaan.",
+            "Kondisi pembanding menghasilkan nilai rata-rata 26; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan layanan perpustakaan keliling.",
+            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyebut data dasar sebagai bukti bahwa uji tidak perlu diulang.",
+            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
         },
         {
           isCorrect: true,
-          label: "Kondisi pembanding menghasilkan nilai rata-rata 26.",
+          label:
+            "Nilai 26 adalah kondisi pembanding untuk jadwal singkat; selisihnya terhadap nilai uji 35 tetap harus dibaca bersama pengaruh cuaca dan kegiatan sekolah.",
         },
       ],
     },

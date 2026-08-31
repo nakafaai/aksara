@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam layanan perpustakaan keliling pasti berlaku tanpa batas pada tempat lain.",
+            "Kenaikan dari 24 menjadi 35 membuktikan bahwa jadwal singkat menyebabkan seluruh tambahan peminjaman, termasuk saat cuaca dan kegiatan sekolah berubah.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang layanan perpustakaan keliling tidak berguna.",
+            "Pembahasan bersama pelajar dan pengelola membuat selisih antara nilai uji dan pembanding tidak lagi diperlukan untuk mengambil keputusan.",
         },
         {
           isCorrect: true,
           label:
-            "Keputusan lanjutan sebaiknya mempertimbangkan data, pengalaman pihak terdampak, dan keterbatasan uji.",
+            "Nilai 35 pada uji, dibandingkan dengan 26 pada kondisi pembanding, mendukung penerusan jadwal singkat dalam skala terbatas; pengaruh cuaca dan kegiatan sekolah tetap perlu diuji.",
         },
         {
           isCorrect: false,
           label:
-            "Satu rincian tentang data dasar cukup untuk membuktikan semua hubungan sebab-akibat.",
+            "Karena jadwal serta jumlah petugas dijaga, cuaca dan kegiatan sekolah hanya memengaruhi redaksi laporan, bukan jangkauan penerapan hasil.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Pengulangan pada minggu lain hanya akan mengukuhkan simpulan awal dan tidak mungkin mengubah penafsiran tentang manfaat jadwal.",
         },
       ],
     },

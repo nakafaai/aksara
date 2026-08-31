@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Auf Grundlage der Daten zeigte eine begrenzte Schlussfolgerung über Aufnahmestudio der Schule.",
+            "Auf Grundlage der Daten eine begrenzte Schlussfolgerung für den Kontext schulisches Tonstudio.",
         },
         {
           isCorrect: false,
           label:
-            "Auf Grundlage von den Daten kam das Team zu begrenzte Schlussfolgerung über Aufnahmestudio der Schule.",
+            "Auf Grundlage der Daten kam das Team zu einer Schlussfolgerung, die begrenzt war, im Kontext schulisches Tonstudio.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten zugrunde legend, wurde über Aufnahmestudio der Schule geschlossen das Team.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Auf Grundlage der Daten, weil das Team eine begrenzte Schlussfolgerung über Aufnahmestudio der Schule.",
+            "Die Daten führten zu einer begrenzten Schlussfolgerung, weil Kontext schulisches Tonstudio.",
         },
         {
           isCorrect: true,
           label:
             "Auf Grundlage der Daten formulierte das Team eine begrenzte Schlussfolgerung zu folgendem Kontext: Aufnahmestudio der Schule.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Auf Grundlage der Daten zog es eine begrenzte Schlussfolgerung für den Kontext schulisches Tonstudio.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Based on the data showed a limited conclusion about the school recording studio.",
+            "Based on the data, a limited conclusion for this setting (school recording studio).",
         },
         {
           isCorrect: false,
           label:
-            "Based from the data, the team reach a limited conclusion about the school recording studio.",
+            "Based on the data, the team reached a conclusion, which was limited, in this setting (school recording studio).",
         },
         {
           isCorrect: false,
           label:
-            "Basing on the data, a limited conclusion was the team about the school recording studio.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Based on the data, because the team a limited conclusion about the school recording studio.",
+            "The data led to a limited conclusion because this setting (school recording studio).",
         },
         {
           isCorrect: true,
           label:
             "Based on the data, the team reached a limited conclusion for this setting (school recording studio).",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Based on the data, it reached a limited conclusion for this setting (school recording studio).",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Berdasarkan data menunjukkan simpulan terbatas tentang studio rekaman sekolah.",
+            "Berdasarkan data, sebuah simpulan terbatas untuk konteks studio rekaman sekolah.",
         },
         {
           isCorrect: false,
           label:
-            "Berdasarkan dari data, tim menarik simpulan terbatas tentang studio rekaman sekolah.",
+            "Berdasarkan data, tim sampai pada simpulan, yang terbatas, dalam konteks studio rekaman sekolah.",
         },
         {
           isCorrect: false,
           label:
-            "Data berdasarkan, simpulan terbatas ditarik tim tentang studio rekaman sekolah.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Berdasarkan data, karena tim simpulan terbatas tentang studio rekaman sekolah.",
+            "Data menghasilkan simpulan terbatas karena konteks studio rekaman sekolah.",
         },
         {
           isCorrect: true,
           label:
             "Berdasarkan data, tim menarik simpulan terbatas tentang studio rekaman sekolah.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Berdasarkan data, hal itu menarik simpulan terbatas untuk konteks studio rekaman sekolah.",
         },
       ],
     },

@@ -7,27 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Schulfrühstücksprogramm",
+          label:
+            "Im Kontext Schulfrühstücksprogramm verursachte die Änderung Menüvorbestellung am Vortag den höheren Testwert.",
         },
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Menübestellung am Vortag.",
+            "Im Kontext Schulfrühstücksprogramm verbesserten sich sämtliche Teilnehmenden um denselben Wert.",
         },
         {
           isCorrect: false,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Menübestellung am Vortag.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Menübestellung am Vortag.",
+            "Im Kontext Schulfrühstücksprogramm waren die beiden Vergleichswerte identisch.",
         },
         {
           isCorrect: true,
           label:
             "Der Versuchswert lag im Kontext Schulfrühstücksprogramm über den beiden anderen Werten.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Im Kontext Schulfrühstücksprogramm belegte der kurze Test das langfristige Ergebnis.",
         },
       ],
     },
@@ -36,27 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: school breakfast programme",
+          label:
+            "In this setting (school breakfast programme), menu booking one day in advance caused the higher trial value.",
         },
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of menu booking one day in advance.",
+            "In this setting (school breakfast programme), each participant improved by the same amount.",
         },
         {
           isCorrect: false,
           label:
-            "The change, menu booking one day in advance, directly addressed the observed uncertainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The next test of menu booking one day in advance will run for longer.",
+            "In this setting (school breakfast programme), the two comparison values were identical.",
         },
         {
           isCorrect: true,
           label:
             "In this setting (school breakfast programme), the trial value exceeded both other values.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "In this setting (school breakfast programme), the short trial established the long-term result.",
         },
       ],
     },
@@ -65,27 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: program sarapan sekolah",
+          label:
+            "Dalam konteks program sarapan sekolah, pemesanan menu sehari sebelumnya menyebabkan nilai uji menjadi lebih tinggi.",
         },
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui pemesanan menu sehari sebelumnya.",
+            "Dalam konteks program sarapan sekolah, setiap peserta mengalami peningkatan yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa pemesanan menu sehari sebelumnya langsung menanggapi keraguan yang diamati.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji pemesanan menu sehari sebelumnya berikutnya akan berlangsung lebih lama.",
+            "Dalam konteks program sarapan sekolah, kedua nilai pembanding sama.",
         },
         {
           isCorrect: true,
           label:
             "Di program sarapan sekolah, nilai hari uji melampaui dua nilai lainnya.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Dalam konteks program sarapan sekolah, uji singkat menetapkan hasil jangka panjang.",
         },
       ],
     },

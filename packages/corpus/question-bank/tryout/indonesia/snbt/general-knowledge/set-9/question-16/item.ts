@@ -8,26 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Gespräche von mindestens zehn Minuten und kurze Aussagen von Nutzenden",
+            "Lesertests zeigen, dass die Zeitleiste die Annahme gleichzeitiger Bau-, Nutzungs- und Einweihungsdaten verringert.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Führungen verwenden nun dieselbe Zeitleiste wie die Tafel, ohne dass neue Belege zu den vier Ereignissen hinzugekommen sind.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die neue Tafel wird eine Zeitleiste mit der Bedeutung jedes Datums zeigen.",
+        },
+        {
+          isCorrect: false,
+          label: "Der Mittelteil der Brücke wurde 1958 weitgehend ersetzt.",
         },
         {
           isCorrect: true,
-          label: "Der Wert mit Änderung, 27, lag über 19 und 21.",
-        },
-        {
-          isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vorsichtige Prüfung im Kontext Sprachaustausch für Lernende: Themenkarten für Gesprächsanfänge",
+            "Neue technische Unterlagen belegen, dass Bau, Öffnung, Einweihung und Strukturersatz sämtlich 1912 stattfanden.",
         },
       ],
     },
@@ -37,26 +37,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "conversations lasting at least ten minutes and short comments from users",
+            "Reader testing shows that the timeline reduces the belief that construction, use, and inauguration occurred simultaneously.",
         },
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "Guided tours now use the same timeline as the plaque, although no new evidence about the four events has been added.",
+        },
+        {
+          isCorrect: false,
+          label: "The new plaque will display a timeline explaining each date.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The bridge's central span was substantially replaced in 1958.",
         },
         {
           isCorrect: true,
-          label: "The intervention value, 27, exceeded both 19 and 21.",
-        },
-        {
-          isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A cautious trial of topic cards for starting a conversation: student language exchange",
+            "New technical records prove that construction, opening, inauguration, and structural replacement all actually occurred in 1912.",
         },
       ],
     },
@@ -66,26 +66,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "percakapan yang berlangsung sedikitnya sepuluh menit dan komentar singkat pengguna",
+            "Uji pembaca menunjukkan garis waktu mengurangi anggapan bahwa konstruksi, penggunaan, dan peresmian terjadi pada saat yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Pemandu kini menggunakan garis waktu yang sama dengan plakat, walaupun tidak ada bukti baru mengenai keempat peristiwa.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Plakat baru akan menampilkan garis waktu dengan arti setiap tanggal.",
+        },
+        {
+          isCorrect: false,
+          label: "Bagian tengah jembatan diganti besar-besaran pada 1958.",
         },
         {
           isCorrect: true,
-          label: "Nilai pada hari dengan perubahan, 27, melampaui 19 dan 21.",
-        },
-        {
-          isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji Hati-hati dalam pertukaran bahasa pelajar: kartu topik untuk memulai percakapan",
+            "Dokumen teknis baru membuktikan bahwa konstruksi, pembukaan, peresmian, dan penggantian struktur semuanya sebenarnya terjadi pada 1912.",
         },
       ],
     },

@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$240{.}000$$ Rupiah",
+        },
+        {
           isCorrect: false,
           label: "$$120{.}000$$ Rupiah",
         },
         {
           isCorrect: false,
           label: "$$160{.}000$$ Rupiah",
-        },
-        {
-          isCorrect: true,
-          label: "$$240{.}000$$ Rupiah",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$240{,}000$$ rupiah",
+        },
+        {
           isCorrect: false,
           label: "$$120{,}000$$ rupiah",
         },
         {
           isCorrect: false,
           label: "$$160{,}000$$ rupiah",
-        },
-        {
-          isCorrect: true,
-          label: "$$240{,}000$$ rupiah",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$240{.}000$$ rupiah",
+        },
+        {
           isCorrect: false,
           label: "$$120{.}000$$ rupiah",
         },
         {
           isCorrect: false,
           label: "$$160{.}000$$ rupiah",
-        },
-        {
-          isCorrect: true,
-          label: "$$240{.}000$$ rupiah",
         },
         {
           isCorrect: false,

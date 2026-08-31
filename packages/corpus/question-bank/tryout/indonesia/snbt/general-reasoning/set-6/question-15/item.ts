@@ -5,9 +5,9 @@ const item: QuestionItem = {
     de: {
       kind: "single-choice",
       options: [
+        { isCorrect: true, label: "Sus" },
         { isCorrect: false, label: "Biskuit" },
         { isCorrect: false, label: "Molen" },
-        { isCorrect: true, label: "Sus" },
         { isCorrect: false, label: "Pia" },
         { isCorrect: false, label: "Tart" },
       ],
@@ -15,9 +15,9 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        { isCorrect: true, label: "sus" },
         { isCorrect: false, label: "biscuit" },
         { isCorrect: false, label: "molen" },
-        { isCorrect: true, label: "sus" },
         { isCorrect: false, label: "pia" },
         { isCorrect: false, label: "tart" },
       ],
@@ -25,9 +25,9 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        { isCorrect: true, label: "sus" },
         { isCorrect: false, label: "biskuit" },
         { isCorrect: false, label: "molen" },
-        { isCorrect: true, label: "sus" },
         { isCorrect: false, label: "pia" },
         { isCorrect: false, label: "tart" },
       ],

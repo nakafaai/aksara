@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "benda yang dibuat atau digunakan manusia dan dapat menjadi bukti masa lalu",
+            "Definisi *artefak* memberi dasar untuk membandingkan posisi kedua sumber tanpa menganggap salah satunya sebagai catatan yang sepenuhnya netral.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti dugaan yang tidak perlu diperiksa pada pengelolaan kostum teater",
+            "Istilah *artefak* membuktikan bahwa sumber yang lebih baru pasti lebih akurat daripada sumber lainnya.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti hasil akhir yang selalu berlaku untuk semua keadaan",
+            "Definisi itu menyamakan *artefak* dengan kesalahan sehingga perbedaan antarsumber tidak perlu dianalisis.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti rincian yang sengaja dihapus karena bertentangan dengan pendapat",
+            "Penyebutan *artefak* mengizinkan bagian sumber yang hilang diisi dengan dugaan pembaca.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti hiasan bahasa yang tidak berhubungan dengan konteks",
+            "Definisi tersebut hanya menamai bentuk dokumen dan tidak memengaruhi cara asal serta tujuan sumber dibandingkan.",
         },
       ],
     },

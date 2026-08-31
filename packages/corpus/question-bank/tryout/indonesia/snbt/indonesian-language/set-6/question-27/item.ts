@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam ruang penyimpanan karya seni pada malam hari.",
+            "Reno memilih untuk membaca kartu kondisi satu per satu sebelum memindahkan lukisan terakhir; bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
         },
         {
           isCorrect: true,
           label:
-            "Reno memilih untuk membaca kartu kondisi satu per satu sebelum memindahkan lukisan terakhir.",
+            "Kartu kondisi mengubah perpindahan lukisan terakhir dari tindakan rutin menjadi keputusan yang mempertimbangkan riwayat benda.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam ruang penyimpanan karya seni pada malam hari memperoleh hasil yang sama tanpa perbedaan.",
+            "Reno memilih untuk membaca kartu kondisi satu per satu sebelum memindahkan lukisan terakhir; akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan ruang penyimpanan karya seni pada malam hari.",
+            "Reno memilih untuk membaca kartu kondisi satu per satu sebelum memindahkan lukisan terakhir; perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyebut sudut pandang terbatas sebagai bukti bahwa uji tidak perlu diulang.",
+            "Reno memilih untuk membaca kartu kondisi satu per satu sebelum memindahkan lukisan terakhir; benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
         },
       ],
     },

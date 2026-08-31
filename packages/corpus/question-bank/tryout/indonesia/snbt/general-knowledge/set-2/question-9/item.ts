@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "klein.",
         },
         {
-          isCorrect: true,
-          label: "hoch.",
-        },
-        {
           isCorrect: false,
           label: "verringert.",
+        },
+        {
+          isCorrect: true,
+          label: "hoch.",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "small.",
         },
         {
-          isCorrect: true,
-          label: "high.",
-        },
-        {
           isCorrect: false,
           label: "reduced.",
+        },
+        {
+          isCorrect: true,
+          label: "high.",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "kecil.",
         },
         {
-          isCorrect: true,
-          label: "tinggi.",
-        },
-        {
           isCorrect: false,
           label: "berkurang.",
+        },
+        {
+          isCorrect: true,
+          label: "tinggi.",
         },
       ],
     },

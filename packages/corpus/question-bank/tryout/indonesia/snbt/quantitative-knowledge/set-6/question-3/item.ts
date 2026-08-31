@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$\\frac{1}{2}$$",
         },
         {
+          isCorrect: true,
+          label: "$$\\frac{3}{7}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\frac{1}{7}$$",
         },
         {
           isCorrect: false,
           label: "$$\\frac{1}{4}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{3}{7}$$",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "$$\\frac{1}{2}$$",
         },
         {
+          isCorrect: true,
+          label: "$$\\frac{3}{7}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\frac{1}{7}$$",
         },
         {
           isCorrect: false,
           label: "$$\\frac{1}{4}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{3}{7}$$",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "$$\\frac{1}{2}$$",
         },
         {
+          isCorrect: true,
+          label: "$$\\frac{3}{7}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\frac{1}{7}$$",
         },
         {
           isCorrect: false,
           label: "$$\\frac{1}{4}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{3}{7}$$",
         },
         {
           isCorrect: false,

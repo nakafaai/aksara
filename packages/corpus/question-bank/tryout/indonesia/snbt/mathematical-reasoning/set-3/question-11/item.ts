@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "$$\\frac{5!}{2}$$",
         },
         {
+          isCorrect: true,
+          label: "$$2(5!)$$",
+        },
+        {
           isCorrect: false,
           label: "$$5!$$",
         },
@@ -20,10 +24,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{7!}{2}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$2(5!)$$",
         },
       ],
     },
@@ -35,6 +35,10 @@ const item: QuestionItem = {
           label: "$$\\frac{5!}{2}$$",
         },
         {
+          isCorrect: true,
+          label: "$$2(5!)$$",
+        },
+        {
           isCorrect: false,
           label: "$$5!$$",
         },
@@ -45,10 +49,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{7!}{2}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$2(5!)$$",
         },
       ],
     },
@@ -60,6 +60,10 @@ const item: QuestionItem = {
           label: "$$\\frac{5!}{2}$$",
         },
         {
+          isCorrect: true,
+          label: "$$2(5!)$$",
+        },
+        {
           isCorrect: false,
           label: "$$5!$$",
         },
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{7!}{2}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$2(5!)$$",
         },
       ],
     },

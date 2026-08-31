@@ -7,23 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "klar und unmittelbar ausgedrückt",
+          label:
+            "Dieselbe Kodierregel wird auf jede Gruppe und jeden Messzeitraum angewendet.",
         },
         {
           isCorrect: false,
-          label: "für mehr als eine Deutung offen",
-        },
-        {
-          isCorrect: false,
-          label: "durch verlässliche Belege gestützt",
-        },
-        {
-          isCorrect: false,
-          label: "fähig, sich an veränderte Bedingungen anzupassen",
+          label:
+            "Die Aufzeichnungen werden vom frühesten bis zum spätesten Ereignis geordnet, damit die Abfolge nachvollziehbar ist.",
         },
         {
           isCorrect: true,
-          label: "nach einer geordneten und wiederholbaren Methode",
+          label:
+            "Die Daten werden nach einer geplanten Schrittfolge erhoben, die mit denselben Regeln wiederholt wird.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Behauptung stützt sich auf wiederholte Beobachtungen und Messungen statt nur auf Vermutungen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Der Bericht bewertet Nutzen, Risiken, Kosten und Auswirkungen auf verschiedene Gruppen, bevor er eine Empfehlung abgibt.",
         },
       ],
     },
@@ -32,23 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "stated clearly and directly",
+          label:
+            "The same coding rule is applied to every group and every measurement period.",
         },
         {
           isCorrect: false,
-          label: "open to more than one interpretation",
-        },
-        {
-          isCorrect: false,
-          label: "supported by dependable evidence",
-        },
-        {
-          isCorrect: false,
-          label: "able to adjust to changing conditions",
+          label:
+            "Records are arranged from the earliest event to the latest so the sequence of change can be traced.",
         },
         {
           isCorrect: true,
-          label: "following an organised and repeatable method",
+          label:
+            "Data are collected through a planned sequence of steps repeated under the same rules.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The claim is built from repeated observations and measurements rather than assumption alone.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The report assesses benefits, risks, costs, and effects on different groups before making a recommendation.",
         },
       ],
     },
@@ -57,23 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "dinyatakan secara jelas dan langsung",
+          label:
+            "Aturan pengodean yang sama diterapkan pada setiap kelompok dan setiap waktu pengukuran.",
         },
         {
           isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
-        },
-        {
-          isCorrect: false,
-          label: "didukung oleh bukti yang dapat dipercaya",
-        },
-        {
-          isCorrect: false,
-          label: "mampu menyesuaikan diri dengan kondisi yang berubah",
+          label:
+            "Catatan disusun dari kejadian paling awal hingga paling akhir agar urutan perubahan dapat ditelusuri.",
         },
         {
           isCorrect: true,
-          label: "mengikuti metode yang teratur dan dapat diulang",
+          label:
+            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Klaim disusun dari pengamatan berulang dan hasil pengukuran, bukan dari dugaan semata.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Laporan menilai manfaat, risiko, biaya, dan dampak pada berbagai kelompok sebelum memberi rekomendasi.",
         },
       ],
     },

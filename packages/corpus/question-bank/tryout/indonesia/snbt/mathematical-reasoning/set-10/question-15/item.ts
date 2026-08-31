@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$12/9$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$3/5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4/5$$",
+          label: "$$30$$",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{3}{4}$$",
+          label: "$$60$$",
         },
         {
           isCorrect: false,
-          label: "$$5/3$$",
+          label: "$$30\\sqrt2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$30\\sqrt3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$60\\sqrt3$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$12/9$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$3/5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4/5$$",
+          label: "$$30$$",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{3}{4}$$",
+          label: "$$60$$",
         },
         {
           isCorrect: false,
-          label: "$$5/3$$",
+          label: "$$30\\sqrt2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$30\\sqrt3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$60\\sqrt3$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$12/9$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$3/5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4/5$$",
+          label: "$$30$$",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{3}{4}$$",
+          label: "$$60$$",
         },
         {
           isCorrect: false,
-          label: "$$5/3$$",
+          label: "$$30\\sqrt2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$30\\sqrt3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$60\\sqrt3$$",
         },
       ],
     },

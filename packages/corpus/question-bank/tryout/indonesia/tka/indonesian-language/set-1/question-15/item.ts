@@ -12,11 +12,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kebun belakang adalah tempat terbaik di dunia.",
-        },
-        {
-          isCorrect: false,
-          label: "Semua siswa pasti menyukai bangku yang baru.",
+          label:
+            "Kebun belakang paling layak menjadi lokasi belajar karena suhu rata-ratanya terendah.",
         },
         {
           isCorrect: true,
@@ -25,11 +22,18 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Pohon selalu bekerja lebih baik daripada kipas.",
+          label:
+            "Bangku baru meningkatkan kenyamanan siswa berdasarkan pengamatan singkat tim.",
         },
         {
           isCorrect: false,
-          label: "Angka pada tabel tidak perlu diperiksa lagi.",
+          label:
+            "Pohon dapat dianggap penyebab utama karena lokasi di bawahnya lebih sejuk.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Angka pada tabel cukup kuat untuk menentukan lokasi bangku tanpa pengukuran lanjutan.",
         },
       ],
     },

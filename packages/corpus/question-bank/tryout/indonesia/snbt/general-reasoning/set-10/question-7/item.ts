@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "$$\\text{PPP}$$",
         },
         {
-          isCorrect: false,
-          label: "$$\\text{QQQ}$$",
-        },
-        {
           isCorrect: true,
           label: "$$\\text{NNN}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\text{QQQ}$$",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "$$\\text{PPP}$$",
         },
         {
-          isCorrect: false,
-          label: "$$\\text{QQQ}$$",
-        },
-        {
           isCorrect: true,
           label: "$$\\text{NNN}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\text{QQQ}$$",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "$$\\text{PPP}$$",
         },
         {
-          isCorrect: false,
-          label: "$$\\text{QQQ}$$",
-        },
-        {
           isCorrect: true,
           label: "$$\\text{NNN}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\text{QQQ}$$",
         },
         {
           isCorrect: false,

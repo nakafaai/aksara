@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Töpfe mit vollständigen Aufzeichnungen und kurze Aussagen von Nutzenden",
+            "Authentizität kann Veränderungsspuren mehrerer Zeiten umfassen statt die perfekte Nachahmung einer Phase.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Jedes alte Material muss erhalten bleiben, selbst wenn es Besucher gefährdet.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Das Gebäude kann nur authentisch sein, wenn jede Fläche eine einzige alte Farbe erhält.",
+        },
+        {
+          isCorrect: false,
+          label: "Die älteste Farbe wurde nur in wenigen Räumen gefunden.",
         },
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte Karten zur Erfassung jeder Bewässerungszeit (Saatgutversuch im Unterricht) und bewertete die Befunde vorsichtig.",
+            "Authentische Restaurierung verbindet Sicherheit, materielle Belege und sichtbare Veränderungen, statt ein Gebäude nur neu oder alt erscheinen zu lassen.",
         },
       ],
     },
@@ -37,27 +36,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "pots with complete records and short comments from users",
+          label:
+            "Authenticity can include traces of change across periods rather than a perfect imitation of one historical stage.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Every old material must be retained even when it endangers visitors.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "The building can be authentic only if every surface is returned to one old colour.",
+        },
+        {
+          isCorrect: false,
+          label: "The oldest paint was found in only a few rooms.",
         },
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested cards recording each watering time in the classroom seed trial and interpreted the evidence cautiously.",
+            "Authentic restoration balances safety, material evidence, and visible change rather than merely making a building look new or old.",
         },
       ],
     },
@@ -66,27 +65,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "pot dengan catatan lengkap dan komentar singkat pengguna",
+          label:
+            "Keaslian dapat mencakup jejak perubahan lintas masa, bukan tiruan sempurna atas satu tahap sejarah.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Semua bahan lama harus dipertahankan meskipun membahayakan pengunjung.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Bangunan hanya dapat disebut autentik jika seluruh permukaannya dikembalikan ke satu warna lama.",
+        },
+        {
+          isCorrect: false,
+          label: "Cat tertua hanya ditemukan di beberapa ruang.",
         },
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji kartu pencatatan waktu penyiraman pada percobaan benih kelas dan menafsirkan buktinya secara hati-hati.",
+            "Pemugaran yang autentik menyeimbangkan keselamatan, bukti material, dan keterbacaan perubahan, bukan sekadar membuat bangunan tampak baru atau tua.",
         },
       ],
     },

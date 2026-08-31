@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti dugaan yang tidak perlu diperiksa pada model daur air dalam kotak transparan",
+            "Definisi *kondensasi* membuktikan bahwa hasil model selalu sama dengan keadaan tanah di lapangan.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti hasil akhir yang selalu berlaku untuk semua keadaan",
+            "Definisi itu menjadikan *kondensasi* nama untuk seluruh alat, bukan proses tertentu yang disimulasikan.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti rincian yang sengaja dihapus karena bertentangan dengan pendapat",
+            "Istilah *kondensasi* menghapus keterbatasan representasi karena prosesnya dapat diulang di kelas.",
         },
         {
           isCorrect: true,
-          label: "perubahan uap air menjadi titik-titik air cair",
+          label:
+            "Definisi *kondensasi* menghubungkan proses pada model dengan proses yang diwakilinya sehingga kegunaan model dapat dibedakan dari batas penerapannya.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti hiasan bahasa yang tidak berhubungan dengan konteks",
+            "Definisi tersebut hanya menjelaskan bahan pembuat model dan tidak berhubungan dengan proses yang diamati.",
         },
       ],
     },

@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
           isCorrect: true,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Die Genauigkeit der Nachricht hängt von erhaltener Absicht und Handlung ab, nicht von Wortgleichheit.",
         },
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Eine im zweiten Test erfolgreiche Übersetzung kann sicher überall unverändert eingesetzt werden.",
         },
         {
           isCorrect: false,
-          label: "Der Wert mit Änderung, 29, lag über 21 und 23.",
+          label:
+            "Eine Übersetzung muss jedem Ausgangswort folgen, auch wenn Bewohner die Handlung missverstehen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team stellte in der neuen Nachricht die Handlung vor die Begründung.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Eine Notfallnachricht muss Bedeutung und Handlung in verständlicher Sprache bewahren, statt nur die amtliche Wortfolge zu kopieren.",
         },
       ],
     },
@@ -35,28 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
           isCorrect: true,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Message accuracy depends on preserving intent and action, not on word-for-word sameness.",
         },
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "A translation that passes the second test can certainly be used unchanged in every region.",
         },
         {
           isCorrect: false,
-          label: "The intervention value, 29, exceeded both 21 and 23.",
+          label:
+            "A translation must follow every source word even when residents misunderstand the required action.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team placed the action before the reason in the revised message.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "An emergency message must preserve meaning and action in language residents understand, not merely copy official word order.",
         },
       ],
     },
@@ -64,28 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
           isCorrect: true,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Ketepatan pesan dinilai dari terjaganya maksud dan tindakan, bukan dari kesamaan kata demi kata.",
         },
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Satu terjemahan yang lulus uji kedua pasti dapat digunakan tanpa perubahan di seluruh daerah.",
         },
         {
           isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 29, melampaui 21 dan 23.",
+          label:
+            "Terjemahan harus mengikuti setiap kata sumber meskipun warga salah memahami tindakan yang diminta.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim menempatkan tindakan sebelum alasan dalam susunan pesan baru.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pesan darurat perlu mempertahankan makna dan tindakan melalui bahasa yang dipahami warga, bukan sekadar menyalin urutan kata resmi.",
         },
       ],
     },

@@ -6,24 +6,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Kepastian Mutlak tentang pameran sains keliling",
-        },
-        {
-          isCorrect: false,
-          label: "Alasan Mengabaikan Semua Bukti dalam pameran sains keliling",
-        },
-        {
           isCorrect: true,
           label: "Membaca Dua Sumber tentang pameran sains keliling",
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap representasi di Seluruh Dunia",
+          label: "Kesamaan Isi sebagai Bukti bahwa Dua Sumber Identik",
         },
         {
           isCorrect: false,
-          label: "Satu Aturan untuk Setiap pameran sains keliling",
+          label: "Mengutamakan Sumber Terbaru dalam Kajian representasi",
+        },
+        {
+          isCorrect: false,
+          label: "Menggabungkan Dua Sumber tanpa Memeriksa Konteks",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perbedaan Format yang Membuat Dua Sumber Tidak Dapat Dibandingkan",
         },
       ],
     },

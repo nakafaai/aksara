@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Ein geringerer Verzehr industrieller Transfette verringert die Belastung durch einen vermeidbaren ernährungsbedingten Risikofaktor für koronare Herzkrankheiten.",
-        },
-        {
           isCorrect: false,
           label:
             "Industrielle Transfette behandeln die Symptome eines Schlaganfalls.",
@@ -25,6 +20,11 @@ const item: QuestionItem = {
           label: "Industrielle Transfette steigern zuverlässig den Appetit.",
         },
         {
+          isCorrect: true,
+          label:
+            "Ein geringerer Verzehr industrieller Transfette verringert die Belastung durch einen vermeidbaren ernährungsbedingten Risikofaktor für koronare Herzkrankheiten.",
+        },
+        {
           isCorrect: false,
           label:
             "Industrielle Transfette verhindern, dass der Körper sämtliche Nahrung verdaut.",
@@ -34,11 +34,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "Reducing industrial trans-fat intake reduces exposure to a preventable dietary risk for coronary heart disease.",
-        },
         {
           isCorrect: false,
           label: "Industrial trans fat treats the symptoms of a stroke.",
@@ -53,6 +48,11 @@ const item: QuestionItem = {
           label: "Industrial trans fat reliably increases appetite.",
         },
         {
+          isCorrect: true,
+          label:
+            "Reducing industrial trans-fat intake reduces exposure to a preventable dietary risk for coronary heart disease.",
+        },
+        {
           isCorrect: false,
           label:
             "Industrial trans fat prevents the body from digesting all food.",
@@ -62,11 +62,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "Mengurangi konsumsi lemak trans industri mengurangi paparan terhadap faktor risiko pola makan yang dapat dicegah untuk penyakit jantung koroner.",
-        },
         {
           isCorrect: false,
           label: "Lemak trans industri mengobati gejala stroke.",
@@ -79,6 +74,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Lemak trans industri selalu meningkatkan nafsu makan.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Mengurangi konsumsi lemak trans industri mengurangi paparan terhadap faktor risiko pola makan yang dapat dicegah untuk penyakit jantung koroner.",
         },
         {
           isCorrect: false,

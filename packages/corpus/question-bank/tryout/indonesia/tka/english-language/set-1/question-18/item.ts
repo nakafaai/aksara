@@ -12,15 +12,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "To make the meter move faster",
-        },
-        {
-          isCorrect: false,
-          label: "To locate the exact pipe behind a wall",
-        },
-        {
-          isCorrect: false,
-          label: "To reset the irrigation timer permanently",
+          label:
+            "To make the meter move faster so that a hidden leak would become easier to locate",
         },
         {
           isCorrect: true,
@@ -29,7 +22,18 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "To avoid recording the first reading",
+          label:
+            "To identify the exact pipe behind the wall from a single change in the meter reading",
+        },
+        {
+          isCorrect: false,
+          label:
+            "To reset the irrigation timer so that scheduled use would no longer affect later readings",
+        },
+        {
+          isCorrect: false,
+          label:
+            "To prevent the first meter reading from influencing the value recorded after the waiting period",
         },
       ],
     },

@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "In jeder Woche werden mehr Bergo-Tücher als quadratische Tücher verkauft.",
+        },
+        {
           isCorrect: false,
           label:
             "In jeder Woche werden weniger Pashmina-Tücher als quadratische Tücher verkauft.",
@@ -21,11 +26,6 @@ const item: QuestionItem = {
             "Von jedem Kopftuchmodell werden in jeder Woche mehr Stück als in der Vorwoche verkauft.",
         },
         {
-          isCorrect: true,
-          label:
-            "In jeder Woche werden mehr Bergo-Tücher als quadratische Tücher verkauft.",
-        },
-        {
           isCorrect: false,
           label:
             "Die Verkaufszahl der Bergo-Tücher steigt von Woche 1 bis Woche 4 am wenigsten.",
@@ -35,6 +35,11 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Bergo headscarf sales are higher than square headscarf sales in every week.",
+        },
         {
           isCorrect: false,
           label:
@@ -51,11 +56,6 @@ const item: QuestionItem = {
             "Sales of each headscarf style are higher than in the preceding week.",
         },
         {
-          isCorrect: true,
-          label:
-            "Bergo headscarf sales are higher than square headscarf sales in every week.",
-        },
-        {
           isCorrect: false,
           label:
             "Bergo headscarf sales have the smallest increase from week 1 to week 4.",
@@ -65,6 +65,11 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Penjualan kerudung jenis bergo selalu lebih tinggi dibandingkan penjualan kerudung jenis segiempat.",
+        },
         {
           isCorrect: false,
           label:
@@ -79,11 +84,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Tingkat penjualan jenis kerudung tiap minggu selalu lebih tinggi dibandingkan minggu sebelumnya.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Penjualan kerudung jenis bergo selalu lebih tinggi dibandingkan penjualan kerudung jenis segiempat.",
         },
         {
           isCorrect: false,

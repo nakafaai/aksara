@@ -7,12 +7,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Tag der offenen Labortür",
-        },
-        {
-          isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Fragekarten an jedem Demonstrationstisch.",
+            "Mit geänderten Messregeln plant das Team einen längeren Test von Fragekarten an jedem Demonstrationstisch.",
         },
         {
           isCorrect: true,
@@ -22,12 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Tag der offenen Labortür über den beiden anderen Werten.",
+            "Das Team will nur die Tage wiederholen, an denen die Änderung Fragekarten an jedem Demonstrationstisch den höchsten Wert ergab.",
         },
         {
           isCorrect: false,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Fragekarten an jedem Demonstrationstisch.",
+            "Das Team will Fragekarten an jedem Demonstrationstisch dauerhaft einführen statt einen längeren Vergleich durchzuführen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team plant einen längeren Test von Fragekarten an jedem Demonstrationstisch ohne Vergleichsbedingung.",
         },
       ],
     },
@@ -36,12 +37,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: open laboratory tour",
-        },
-        {
-          isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of question cards at each demonstration table.",
+            "Using revised measurement rules, the team plans a longer test of question cards at each demonstration table.",
         },
         {
           isCorrect: true,
@@ -51,12 +48,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "In this setting (open laboratory tour), the trial value exceeded both other values.",
+            "The team plans to repeat only the days on which question cards at each demonstration table produced the highest value.",
         },
         {
           isCorrect: false,
           label:
-            "The change, question cards at each demonstration table, directly addressed the observed uncertainty.",
+            "The team plans to adopt question cards at each demonstration table permanently instead of running a longer comparison.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team plans a longer test of question cards at each demonstration table without retaining a comparison condition.",
         },
       ],
     },
@@ -65,12 +67,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: tur laboratorium terbuka",
-        },
-        {
-          isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui kartu pertanyaan untuk setiap meja demonstrasi.",
+            "Dengan kaidah pengukuran yang diubah, tim merencanakan uji kartu pertanyaan di setiap meja demonstrasi yang lebih panjang.",
         },
         {
           isCorrect: true,
@@ -80,12 +78,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Di tur laboratorium terbuka, nilai hari uji melampaui dua nilai lainnya.",
+            "Tim akan mengulang hari ketika kartu pertanyaan di setiap meja demonstrasi menghasilkan nilai tertinggi.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa kartu pertanyaan untuk setiap meja demonstrasi langsung menanggapi keraguan yang diamati.",
+            "Tim akan menerapkan kartu pertanyaan di setiap meja demonstrasi secara tetap sebagai pengganti perbandingan yang lebih panjang.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim merencanakan uji kartu pertanyaan di setiap meja demonstrasi yang lebih panjang tanpa mempertahankan kondisi pembanding.",
         },
       ],
     },

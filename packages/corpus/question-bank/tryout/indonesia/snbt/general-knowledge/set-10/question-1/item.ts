@@ -6,24 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Die Veränderung ist groß genug, um die Entscheidung auch unter Berücksichtigung der Messunsicherheit zu ändern.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die letzte zusätzliche Einheit bringt gegenüber der vorherigen nur einen geringen Mehrnutzen.",
+        },
+        {
           isCorrect: true,
-          label: "den Kern der Sache betreffend und nicht bloß oberflächlich",
+          label:
+            "Die Auswirkung ist groß genug, um das Hauptergebnis zu verändern, und nicht nur eine kleine Randabweichung.",
         },
         {
           isCorrect: false,
-          label: "genau und frei von vermeidbarer Mehrdeutigkeit",
+          label:
+            "Stichprobengröße und Ressourcen werden im Verhältnis zur Reichweite der beabsichtigten Aussage erhöht.",
         },
         {
           isCorrect: false,
-          label: "nach denselben Grundsätzen ohne Widerspruch",
-        },
-        {
-          isCorrect: false,
-          label: "klar und unmittelbar ausgedrückt",
-        },
-        {
-          isCorrect: false,
-          label: "für mehr als eine Deutung offen",
+          label:
+            "Eine grundlegende Annahme wird zuerst geprüft, weil alle späteren Schlussfolgerungen von ihr abhängen.",
         },
       ],
     },
@@ -31,24 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "The change is large enough to alter the decision after measurement uncertainty is considered.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The final additional unit provides only a small increase in benefit compared with the previous unit.",
+        },
+        {
           isCorrect: true,
-          label: "concerning the core issue rather than surface form",
+          label:
+            "The effect is large enough to change the main outcome rather than merely adding a small edge variation.",
         },
         {
           isCorrect: false,
-          label: "exact and free from avoidable ambiguity",
+          label:
+            "Sample size and resources are increased in proportion to the scope of the intended claim.",
         },
         {
           isCorrect: false,
-          label: "following the same principles without contradiction",
-        },
-        {
-          isCorrect: false,
-          label: "stated clearly and directly",
-        },
-        {
-          isCorrect: false,
-          label: "open to more than one interpretation",
+          label:
+            "A basic assumption is examined first because every later conclusion depends on it.",
         },
       ],
     },
@@ -56,24 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Perubahan cukup besar untuk mengubah keputusan setelah ketidakpastian pengukuran turut dipertimbangkan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Unit tambahan terakhir hanya memberi kenaikan manfaat yang kecil dibanding unit sebelumnya.",
+        },
+        {
           isCorrect: true,
-          label: "berkaitan dengan pokok masalah, bukan hanya bentuk luarnya",
+          label:
+            "Dampaknya cukup besar untuk mengubah hasil utama, bukan sekadar variasi kecil di tepi.",
         },
         {
           isCorrect: false,
-          label: "tepat dan tidak menimbulkan ketaksaan yang dapat dihindari",
+          label:
+            "Ukuran sampel dan sumber daya ditambah sepadan dengan luas klaim yang hendak dibuat.",
         },
         {
           isCorrect: false,
-          label: "mengikuti prinsip yang sama tanpa pertentangan",
-        },
-        {
-          isCorrect: false,
-          label: "dinyatakan secara jelas dan langsung",
-        },
-        {
-          isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
+          label:
+            "Satu asumsi dasar diperiksa lebih dahulu karena seluruh simpulan berikutnya bergantung padanya.",
         },
       ],
     },

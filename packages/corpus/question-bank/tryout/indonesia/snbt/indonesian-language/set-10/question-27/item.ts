@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Nara memilih untuk menggambar lingkaran cahaya terakhir sebelum lampu padam; bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Nara memilih untuk menggambar lingkaran cahaya terakhir sebelum lampu padam; akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Nara memilih untuk menggambar lingkaran cahaya terakhir sebelum lampu padam; perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Nara memilih untuk menggambar lingkaran cahaya terakhir sebelum lampu padam; benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
+        },
+        {
           isCorrect: true,
           label:
-            "Nara memilih untuk menggambar lingkaran cahaya terakhir sebelum lampu padam.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam kampung pada malam hujan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Semua tokoh atau pihak dalam kampung pada malam hujan memperoleh hasil yang sama tanpa perbedaan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan kampung pada malam hujan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut akhir terbuka sebagai bukti bahwa uji tidak perlu diulang.",
+            "Lingkaran cahaya terakhir mengubah padamnya lampu berulang dari akhir yang hilang menjadi jejak pengalaman malam yang dapat diingat.",
         },
       ],
     },

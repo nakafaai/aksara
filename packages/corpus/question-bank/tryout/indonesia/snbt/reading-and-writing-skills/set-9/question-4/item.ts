@@ -8,22 +8,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Geordnete Prüfung einer Änderung: Verteilung von Mangrovensetzlingen",
+            "Die Änderung, Pflanzortetiketten auf jedem Tablett, ersetzte die Notwendigkeit, die ursprüngliche Unsicherheit zu messen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Pflanzortetiketten auf jedem Tablett.",
+            "Die Änderung, Pflanzortetiketten auf jedem Tablett, führte mehrere nicht trennbare Unterschiede ein.",
         },
         {
           isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Verteilung von Mangrovensetzlingen über den beiden anderen Werten.",
+            "Die Änderung, Pflanzortetiketten auf jedem Tablett, erklärte, warum die Vergleichswerte identisch waren.",
         },
         {
           isCorrect: false,
           label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Pflanzortetiketten auf jedem Tablett.",
+            "Die Änderung, Pflanzortetiketten auf jedem Tablett, betraf das Endergebnis statt die Quelle der Unsicherheit.",
         },
         {
           isCorrect: true,
@@ -38,22 +38,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "A structured test of one change: mangrove seedling distribution",
+            "The change, planting-site labels on every tray, replaced the need to measure the original uncertainty.",
         },
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of planting-site labels on every tray.",
+            "The change, planting-site labels on every tray, introduced several differences that could not be separated.",
         },
         {
           isCorrect: false,
           label:
-            "In this setting (mangrove seedling distribution), the trial value exceeded both other values.",
+            "The change, planting-site labels on every tray, explained why the comparison values were identical.",
         },
         {
           isCorrect: false,
           label:
-            "The next test of planting-site labels on every tray will run for longer.",
+            "The change, planting-site labels on every tray, addressed the final outcome rather than the source of uncertainty.",
         },
         {
           isCorrect: true,
@@ -67,22 +67,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: pembagian bibit mangrove",
+          label:
+            "Perubahan berupa label lokasi tanam pada setiap baki menggantikan kebutuhan untuk mengukur ketidakpastian awal.",
         },
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui label lokasi tanam.",
+            "Perubahan berupa label lokasi tanam pada setiap baki menimbulkan beberapa perbedaan yang tidak dapat dipisahkan.",
         },
         {
           isCorrect: false,
           label:
-            "Di pembagian bibit mangrove, nilai hari uji melampaui dua nilai lainnya.",
+            "Perubahan berupa label lokasi tanam pada setiap baki menjelaskan mengapa nilai pembanding sama.",
         },
         {
           isCorrect: false,
           label:
-            "Uji label lokasi tanam berikutnya akan berlangsung lebih lama.",
+            "Perubahan berupa label lokasi tanam pada setiap baki menanggapi hasil akhir, bukan sumber ketidakpastian.",
         },
         {
           isCorrect: true,

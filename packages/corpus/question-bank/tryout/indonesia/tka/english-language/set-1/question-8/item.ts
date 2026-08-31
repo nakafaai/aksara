@@ -12,23 +12,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The child returned with a broken chain.",
+          label:
+            "The mistake showed that every repair should use new parts, so the writer later replaced the noisy brake immediately.",
         },
         {
           isCorrect: false,
-          label: "The workshop bought two new bicycles.",
+          label:
+            "The mistake convinced the writer that service notes slow repairs, so the writer stopped recording observations.",
         },
         {
           isCorrect: true,
-          label: "Sari asked the writer to use notes and measurements.",
+          label:
+            "The mistake showed that similar-looking parts still require records and measurements, a method the writer later applied before advising another volunteer.",
         },
         {
           isCorrect: false,
-          label: "The writer guided a new volunteer.",
+          label:
+            "The mistake mattered only because it took an hour, whereas the final-day decision was based on speed alone.",
         },
         {
           isCorrect: false,
-          label: "Sari threw every bolt away.",
+          label:
+            "The mistake taught the writer to let Sari make uncertain decisions, which is why the writer avoided guiding the new volunteer.",
         },
       ],
     },

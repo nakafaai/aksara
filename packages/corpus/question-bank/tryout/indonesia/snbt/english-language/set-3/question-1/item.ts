@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage only gives a complete history of root growth in germinating beans without examining evidence or choice.",
+            "The class tested whether turning the seed opening toward the side of a clear container affected early root direction, while controlling the listed factors but treating one short trial as proof of a universal effect.",
         },
         {
           isCorrect: false,
           label:
-            "The passage proves that one method must succeed in every root growth in germinating beans.",
+            "The class tested whether turning the seed opening toward the side of a clear container affected early root direction, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
         },
         {
           isCorrect: false,
           label:
-            "The passage rejects all observation and relies only on personal preference.",
+            "The class tested whether turning the seed opening toward the side of a clear container affected early root direction, while treating the scientific term as the measured outcome that settles the investigation.",
         },
         {
           isCorrect: false,
           label:
-            "The passage mainly defines gravitropism without connecting it to a setting.",
+            "The class tested whether turning the seed opening toward the side of a clear container affected early root direction, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
         },
         {
           isCorrect: true,
           label:
-            "The class tested placing the seed opening toward the side of a clear container in root growth in germinating beans while controlling other factors and reporting a limitation.",
+            "The class tested whether turning the seed opening toward the side of a clear container affected early root direction, while controlling other factors and reporting a limitation.",
         },
       ],
     },

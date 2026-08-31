@@ -12,11 +12,17 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A workshop closes because it has no spare bicycle chains.",
+          label:
+            "A workshop focuses on stocking spare chains before asking owners about recurring faults.",
         },
         {
           isCorrect: false,
           label: "A child teaches Sari how to repair a rear wheel.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "A volunteer learns that careful diagnosis matters more than replacing parts quickly.",
         },
         {
           isCorrect: false,
@@ -24,12 +30,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Every repair in the workshop requires new components.",
-        },
-        {
-          isCorrect: true,
           label:
-            "A volunteer learns that careful diagnosis matters more than replacing parts quickly.",
+            "The workshop measures successful learning by the number of new components installed.",
         },
       ],
     },

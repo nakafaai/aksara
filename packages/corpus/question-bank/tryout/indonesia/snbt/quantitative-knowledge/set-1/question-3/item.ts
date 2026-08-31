@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "$$(1)$$, $$(2)$$ und $$(3)$$",
         },
         {
+          isCorrect: true,
+          label: "$$(1)$$ und $$(3)$$",
+        },
+        {
           isCorrect: false,
           label: "$$(2)$$ und $$(4)$$",
         },
@@ -21,10 +25,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$(1)$$, $$(2)$$, $$(3)$$ und $$(4)$$",
         },
-        {
-          isCorrect: true,
-          label: "$$(1)$$ und $$(3)$$",
-        },
       ],
     },
     en: {
@@ -33,6 +33,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$(1)$$, $$(2)$$, and $$(3)$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$(1)$$ and $$(3)$$",
         },
         {
           isCorrect: false,
@@ -46,10 +50,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$(1)$$, $$(2)$$, $$(3)$$, and $$(4)$$",
         },
-        {
-          isCorrect: true,
-          label: "$$(1)$$ and $$(3)$$",
-        },
       ],
     },
     id: {
@@ -58,6 +58,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$(1)$$, $$(2)$$, dan $$(3)$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$(1)$$ dan $$(3)$$",
         },
         {
           isCorrect: false,
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$(1)$$, $$(2)$$, $$(3)$$, dan $$(4)$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$(1)$$ dan $$(3)$$",
         },
       ],
     },

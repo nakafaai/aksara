@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Its short-term average effects do not by themselves establish lasting weight loss.",
+        },
+        {
           isCorrect: false,
           label:
             "It produces identical weight loss for every person who fasts.",
@@ -22,11 +27,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "It always reduces calorie intake by a fixed amount.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Its short-term average effects do not by themselves establish lasting weight loss.",
         },
       ],
     },

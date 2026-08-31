@@ -7,24 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang layanan perpustakaan keliling",
+          label: "data dasar sebagai ukuran utama dalam uji layanan",
+        },
+        {
+          isCorrect: false,
+          label: "Dari perbandingan singkat menuju perubahan layanan tetap",
+        },
+        {
+          isCorrect: false,
+          label: "Konsultasi tanpa pengukuran hasil yang dapat dibandingkan",
+        },
+        {
+          isCorrect: false,
+          label: "Uji layanan lokal tanpa keputusan tindak lanjut",
         },
         {
           isCorrect: true,
           label: "Keputusan Berbasis Bukti dalam layanan perpustakaan keliling",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Alasan Mengabaikan Semua Bukti dalam layanan perpustakaan keliling",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap data dasar di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap layanan perpustakaan keliling",
         },
       ],
     },

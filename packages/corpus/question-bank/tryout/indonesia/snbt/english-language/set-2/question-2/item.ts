@@ -11,16 +11,16 @@ const item: QuestionItem = {
             "Water exercise can be helpful for some people with arthritis.",
         },
         {
-          isCorrect: true,
-          label: "Swimming has health benefits and therefore carries no risks.",
-        },
-        {
           isCorrect: false,
           label: "Water exercise may improve older adults' quality of life.",
         },
         {
           isCorrect: false,
           label: "Swimming may improve mood for some people.",
+        },
+        {
+          isCorrect: true,
+          label: "Swimming has health benefits and therefore carries no risks.",
         },
         {
           isCorrect: false,

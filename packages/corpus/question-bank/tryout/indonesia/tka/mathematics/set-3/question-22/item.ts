@@ -11,24 +11,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$\\frac{37}{16}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{19}{8}$$",
-        },
-        {
           isCorrect: true,
-          label: "$$\\frac{39}{16}$$",
+          label: "$$52$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{5}{2}$$",
+          label: "$$48$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{41}{16}$$",
+          label: "$$50$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$54$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$56$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$\\frac{37}{16}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{19}{8}$$",
-        },
-        {
           isCorrect: true,
-          label: "$$\\frac{39}{16}$$",
+          label: "$$52$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{5}{2}$$",
+          label: "$$48$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{41}{16}$$",
+          label: "$$50$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$54$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$56$$",
         },
       ],
     },
@@ -61,29 +61,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$\\frac{37}{16}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{19}{8}$$",
-        },
-        {
           isCorrect: true,
-          label: "$$\\frac{39}{16}$$",
+          label: "$$52$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{5}{2}$$",
+          label: "$$48$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{41}{16}$$",
+          label: "$$50$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$54$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$56$$",
         },
       ],
     },
   },
-  stimulusKey: "study-time-survey",
+  stimulusKey: "sensor-calibration",
 };
 
 export default item;

@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Setiap hasil dalam peta penerangan jalan kampung pasti berlaku tanpa batas pada tempat lain.",
-        },
-        {
           isCorrect: true,
           label:
-            "Perbedaan antarsumber dapat memperkaya penafsiran jika asal dan tujuan setiap sumber diperiksa.",
+            "Peta resmi menunjukkan lokasi pemasangan, sedangkan catatan harian memberi pengalaman tiga warga; keduanya dapat menghubungkan perubahan ruang dan pengalaman malam, tetapi tidak mewakili seluruh warga atau semua jalur.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang peta penerangan jalan kampung tidak berguna.",
+            "Peta lokasi lampu membuktikan pengalaman berjalan malam semua warga karena penerangan ditentukan sepenuhnya oleh jumlah lampu.",
         },
         {
           isCorrect: false,
           label:
-            "Satu rincian tentang perspektif cukup untuk membuktikan semua hubungan sebab-akibat.",
+            "Catatan harian harus menggantikan peta karena pengalaman pribadi lebih nyata daripada dokumen resmi.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Jika catatan warga tidak sama, peta resmi menjadi satu-satunya sumber yang dapat digunakan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Setelah lokasi dan pengalaman digabungkan, posisi warga serta tujuan kantor desa membuat peta tidak lagi perlu dicatat.",
         },
       ],
     },

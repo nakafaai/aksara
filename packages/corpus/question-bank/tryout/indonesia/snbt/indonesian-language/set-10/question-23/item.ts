@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Kemajuan bergantung pada penyelesaian tugas besar sebelum meminta orang lain meninjaunya.",
+        },
+        {
           isCorrect: true,
           label:
             "Perubahan terjadi ketika Tari memecah hambatan menjadi tindakan yang dapat diperiksa.",
@@ -13,22 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam taman bermain inklusif pasti berlaku tanpa batas pada tempat lain.",
+            "Benda atau latar membentuk hasil lebih kuat daripada pilihan khusus yang dibuat tokoh.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang taman bermain inklusif tidak berguna.",
+            "Bukti yang belum pasti sebaiknya disimpan sampai tokoh dapat menawarkan hasil lengkap.",
         },
         {
           isCorrect: false,
           label:
-            "Satu rincian tentang empati cukup untuk membuktikan semua hubungan sebab-akibat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Tindakan kecil terutama berguna karena menunda bagian konflik yang belum selesai.",
         },
       ],
     },

@@ -7,25 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Absolute certainty about friction on model ramps",
+          label: "Measuring friction in one preliminary comparison",
         },
         {
           isCorrect: false,
           label:
-            "Why all evidence in friction on model ramps should be ignored",
+            "Treating friction as the sole explanation for the observed result",
+        },
+        {
+          isCorrect: false,
+          label: "A final rule derived from the first comparison of friction",
+        },
+        {
+          isCorrect: false,
+          label: "A limitation that makes another test of friction unnecessary",
         },
         {
           isCorrect: true,
-          label:
-            "Testing covering the ramp with coarse fabric in friction on model ramps",
-        },
-        {
-          isCorrect: false,
-          label: "The complete world history of friction",
-        },
-        {
-          isCorrect: false,
-          label: "One rule for every friction on model ramps",
+          label: "Testing how surface texture changes friction on a model ramp",
         },
       ],
     },

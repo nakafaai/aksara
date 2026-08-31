@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$175$$ cm",
         },
         {
-          isCorrect: true,
-          label: "$$189$$ cm",
-        },
-        {
           isCorrect: false,
           label: "$$192$$ cm",
         },
         {
           isCorrect: false,
           label: "$$221$$ cm",
+        },
+        {
+          isCorrect: true,
+          label: "$$189$$ cm",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "$$175$$ cm",
         },
         {
-          isCorrect: true,
-          label: "$$189$$ cm",
-        },
-        {
           isCorrect: false,
           label: "$$192$$ cm",
         },
         {
           isCorrect: false,
           label: "$$221$$ cm",
+        },
+        {
+          isCorrect: true,
+          label: "$$189$$ cm",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "$$175$$ cm",
         },
         {
-          isCorrect: true,
-          label: "$$189$$ cm",
-        },
-        {
           isCorrect: false,
           label: "$$192$$ cm",
         },
         {
           isCorrect: false,
           label: "$$221$$ cm",
+        },
+        {
+          isCorrect: true,
+          label: "$$189$$ cm",
         },
         {
           isCorrect: false,

@@ -12,11 +12,13 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "warga menolak memakai kartu riwayat",
+          label:
+            "warga lebih memilih meja konsultasi daripada menggunakan kartu riwayat saat memilih benih",
         },
         {
           isCorrect: false,
-          label: "semua benih harus ditanam di kebun sekolah",
+          label:
+            "kebun sekolah menjadi tujuan utama karena jadwal panennya paling mudah dicatat",
         },
         {
           isCorrect: true,
@@ -24,7 +26,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "petugas hanya menerima benih yang sudah diuji",
+          label:
+            "petugas memisahkan benih belum teruji sampai hasil satu sampel dianggap cukup mewakili varietasnya",
         },
         {
           isCorrect: false,

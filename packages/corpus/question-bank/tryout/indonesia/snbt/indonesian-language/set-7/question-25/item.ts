@@ -7,11 +7,11 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang klinik kelurahan",
+          label: "Menunggu orang lain menyelesaikan langkah berikutnya",
         },
         {
           isCorrect: false,
-          label: "Alasan Mengabaikan Semua Bukti dalam klinik kelurahan",
+          label: "Menyembunyikan bukti yang belum tuntas dalam proyek besar",
         },
         {
           isCorrect: true,
@@ -19,11 +19,12 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap literasi kesehatan di Seluruh Dunia",
+          label:
+            "literasi kesehatan sebagai definisi tanpa tindakan yang dapat diperiksa",
         },
         {
           isCorrect: false,
-          label: "Satu Aturan untuk Setiap klinik kelurahan",
+          label: "Rencana lengkap tanpa langkah kecil yang bertanggung jawab",
         },
       ],
     },

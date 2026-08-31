@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam pasar kecamatan.",
+            "Nisa memilih untuk mencatat rute yang sulit dan mengusulkan tanda yang bisa dibaca dari kursi roda; tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam pasar kecamatan memperoleh hasil yang sama tanpa perbedaan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan pasar kecamatan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut advokasi diri sebagai bukti bahwa uji tidak perlu diulang.",
+            "Nisa memilih untuk mencatat rute yang sulit dan mengusulkan tanda yang bisa dibaca dari kursi roda; perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
         },
         {
           isCorrect: true,
           label:
-            "Nisa memilih untuk mencatat rute yang sulit dan mengusulkan tanda yang bisa dibaca dari kursi roda.",
+            "Mencatat rute sulit dari posisi kursi roda membuat usulan Nisa bertumpu pada hambatan yang dapat ditunjukkan, bukan asumsi tentang akses.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Nisa memilih untuk mencatat rute yang sulit dan mengusulkan tanda yang bisa dibaca dari kursi roda; latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Nisa memilih untuk mencatat rute yang sulit dan mengusulkan tanda yang bisa dibaca dari kursi roda; definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
         },
       ],
     },

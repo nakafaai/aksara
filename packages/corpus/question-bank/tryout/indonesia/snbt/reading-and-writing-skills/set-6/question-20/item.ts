@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontext „Lärmprotokoll im Wohngebiet“",
-        },
-        {
           isCorrect: true,
           label:
             "Das Team verglich 32, 22 und 24, begrenzte die Aussage auf den untersuchten Kontext (Lärmprotokoll im Wohngebiet) und plante eine längere Wiederholung.",
@@ -18,28 +13,28 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Am Montag prüfte das Team ein Beispiel zur Erfassung der Geräuschdauer im folgenden Kontext: Lärmprotokoll im Wohngebiet.",
+            "Da 32 über 22 und 24 lag, erklärte das Team ein Beispiel zur Erfassung der Geräuschdauer für wirksam und führte die Änderung dauerhaft ein.",
         },
         {
           isCorrect: false,
           label:
-            "die Folgestudie des Teams im untersuchten Kontext (Lärmprotokoll im Wohngebiet)",
+            "Das Team verglich 32, 22 und 24 und plante eine längere Wiederholung, ohne die Aussage auf Lärmprotokoll der Nachbarschaft zu begrenzen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im untersuchten Kontext (Lärmprotokoll im Wohngebiet) gaben kurze Rückmeldungen.",
+            "Das Team begrenzte die Aussage auf Lärmprotokoll der Nachbarschaft und plante eine längere Wiederholung, ohne den Vergleich zu nennen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Werte 32, 22 und 24 zeigten kein relevantes Muster, daher wollte das Team die Messregeln ändern.",
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: false,
-          label:
-            "an analysis of the effectiveness of an example showing how to record sound duration in this setting (neighbourhood noise log)",
-        },
         {
           isCorrect: true,
           label:
@@ -48,28 +43,28 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "On Monday, the team tested an example showing how to record sound duration in this setting (neighbourhood noise log).",
+            "Because 32 exceeded 22 and 24, the team concluded that the change was effective and adopted it permanently.",
         },
         {
           isCorrect: false,
           label:
-            "the team's follow-up study of an example showing how to record sound duration in this setting (neighbourhood noise log)",
+            "The team compared 32, 22, and 24 and planned a longer repetition without limiting the claim to the context of neighbourhood noise log.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (neighbourhood noise log) provided brief comments.",
+            "The team limited its claim to the context of neighbourhood noise log and planned a longer repetition without reporting the comparison.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The values 32, 22, and 24 showed no relevant pattern, so the team planned to change the measurement rules.",
         },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: false,
-          label:
-            "analisis efektivitas contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
-        },
         {
           isCorrect: true,
           label:
@@ -78,17 +73,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pada Senin, tim menguji contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan.",
+            "Karena 32 lebih tinggi daripada 22 dan 24, tim menyimpulkan bahwa contoh cara mencatat durasi suara efektif lalu menerapkannya secara tetap.",
         },
         {
           isCorrect: false,
           label:
-            "kerja sama tim dalam uji contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
+            "Tim membandingkan 32, 22, dan 24 serta merencanakan pengulangan lebih panjang tanpa membatasi klaim pada catatan kebisingan lingkungan.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna di pencatatan kebisingan lingkungan memberikan komentar singkat.",
+            "Tim membatasi klaim pada catatan kebisingan lingkungan dan merencanakan pengulangan lebih panjang tanpa melaporkan perbandingan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Nilai 32, 22, dan 24 tidak menunjukkan pola yang relevan sehingga tim akan mengubah kaidah pengukuran.",
         },
       ],
     },

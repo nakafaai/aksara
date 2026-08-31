@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Every result in the freezing point of salt solutions must apply without limitation elsewhere.",
+            "Because visible ice first formed at -4°C, compared with -1°C at baseline and 0°C in the comparison condition, holding water volume, container material, and thermometer position constant isolates adding a measured mass of table salt as the only possible cause.",
         },
         {
           isCorrect: false,
           label:
-            "The limitation makes all information about the freezing point of salt solutions useless.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "One detail about solute proves every possible causal relationship.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage recommends ignoring evidence that conflicts with an early expectation.",
+            "The strongest follow-up would change both adding a measured mass of table salt and at least one controlled condition, preventing the effect of either change from being isolated.",
         },
         {
           isCorrect: true,
           label:
-            "The initial pattern justifies a stronger repetition, not a universal claim.",
+            "visible ice first formed at -4°C, compared with -1°C at baseline and 0°C in the comparison condition; this supports an association between added salt and the temperature of ice formation under the tested conditions, while the freezer shelves did not cool at exactly the same rate requires further testing before a broader claim.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The limitation that the freezer shelves did not cool at exactly the same rate affects numerical precision, but it does not restrict how widely the finding can be applied.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "A larger repetition under the same rules could narrow uncertainty but could not change the first interpretation of added salt and the temperature of ice formation.",
         },
       ],
     },

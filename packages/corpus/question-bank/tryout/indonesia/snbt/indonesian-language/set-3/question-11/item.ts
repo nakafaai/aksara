@@ -6,6 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Pengelola layanan perpustakaan keliling menilai jadwal singkat yang ditempel pada setiap titik pemberhentian melalui masukan pihak terdampak saja, tanpa membandingkan hasil pengukuran.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengelola layanan perpustakaan keliling menilai jadwal singkat yang ditempel pada setiap titik pemberhentian melalui data pembanding saja, dengan pengalaman pihak terdampak ditempatkan di luar keputusan.",
+        },
+        {
           isCorrect: true,
           label:
             "Pengelola layanan perpustakaan keliling menilai jadwal singkat yang ditempel pada setiap titik pemberhentian melalui data pembanding dan masukan pihak terdampak.",
@@ -13,22 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap layanan perpustakaan keliling tanpa membahas keputusan atau bukti.",
+            "Pengelola layanan perpustakaan keliling menilai jadwal singkat yang ditempel pada setiap titik pemberhentian melalui data dan masukan pihak terdampak, lalu menjadikan uji singkat cukup untuk penerapan tetap.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap layanan perpustakaan keliling.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan terutama menjelaskan definisi data dasar tanpa menghubungkannya dengan konteks.",
+            "Pengelola layanan perpustakaan keliling menilai jadwal singkat yang ditempel pada setiap titik pemberhentian terutama melalui definisi istilah, sedangkan perubahan yang diusulkan hanya menjadi latar bacaan.",
         },
       ],
     },

@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$72$$",
+          label: "$$\\frac38$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac7{12}$$",
         },
         {
           isCorrect: true,
-          label: "$$64$$",
+          label: "$$\\frac58$$",
         },
         {
           isCorrect: false,
-          label: "$$80$$",
+          label: "$$\\frac23$$",
         },
         {
           isCorrect: false,
-          label: "$$48$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$56$$",
+          label: "$$\\frac{15}{8}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$72$$",
+          label: "$$\\frac38$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac7{12}$$",
         },
         {
           isCorrect: true,
-          label: "$$64$$",
+          label: "$$\\frac58$$",
         },
         {
           isCorrect: false,
-          label: "$$80$$",
+          label: "$$\\frac23$$",
         },
         {
           isCorrect: false,
-          label: "$$48$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$56$$",
+          label: "$$\\frac{15}{8}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$72$$",
+          label: "$$\\frac38$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac7{12}$$",
         },
         {
           isCorrect: true,
-          label: "$$64$$",
+          label: "$$\\frac58$$",
         },
         {
           isCorrect: false,
-          label: "$$80$$",
+          label: "$$\\frac23$$",
         },
         {
           isCorrect: false,
-          label: "$$48$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$56$$",
+          label: "$$\\frac{15}{8}$$",
         },
       ],
     },

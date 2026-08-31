@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap produksi gas pada campuran ragi tanpa membahas keputusan atau bukti.",
+            "Simulasi membandingkan pengaruh air bersuhu 35 derajat Celsius terhadap produksi gas pada campuran ragi, sambil mengendalikan faktor yang disebutkan tetapi menjadikan satu uji singkat sebagai bukti yang berlaku umum.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap produksi gas pada campuran ragi.",
+            "Simulasi membandingkan pengaruh air bersuhu 35 derajat Celsius terhadap produksi gas pada campuran ragi, sambil menyebut keterbatasan tetapi mengeluarkan kondisi pembanding dari penafsiran hasil.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
+            "Simulasi membandingkan pengaruh air bersuhu 35 derajat Celsius terhadap produksi gas pada campuran ragi, sambil menjadikan definisi istilah ilmiah sebagai hasil ukur yang menutup penelitian.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Simulasi membandingkan pengaruh air bersuhu 35 derajat Celsius terhadap produksi gas pada campuran ragi, sambil memakai pembanding hanya untuk mengukuhkan hipotesis awal dan menghapus ketidakpastian yang tersisa.",
         },
         {
           isCorrect: true,
           label:
-            "Simulasi membandingkan air bersuhu 35 derajat Celsius dalam produksi gas pada campuran ragi sambil menjaga faktor lain dan mengakui batasan pengukuran.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan terutama menjelaskan definisi hipotesis tanpa menghubungkannya dengan konteks.",
+            "Simulasi membandingkan pengaruh air bersuhu 35 derajat Celsius terhadap produksi gas pada campuran ragi, sambil mengendalikan faktor lain dan mengakui keterbatasan pengukuran.",
         },
       ],
     },

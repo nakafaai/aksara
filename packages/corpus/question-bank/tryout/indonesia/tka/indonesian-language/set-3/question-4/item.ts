@@ -12,23 +12,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "untuk memaksa semua peserta memakai earphone",
+          label:
+            "untuk memastikan kedua kelompok menerima audio melalui perangkat yang sama",
         },
         {
           isCorrect: false,
-          label: "untuk menghapus transkrip dari museum",
+          label:
+            "untuk mengganti transkrip dengan label audio yang lebih rinci",
         },
         {
           isCorrect: false,
           label: "untuk memperpanjang setiap audio",
         },
         {
-          isCorrect: true,
-          label: "untuk membandingkan hasil belajar dengan ukuran yang sama",
+          isCorrect: false,
+          label:
+            "untuk menunjukkan bahwa format audio dan transkrip menghasilkan tingkat pemahaman yang sama",
         },
         {
-          isCorrect: false,
-          label: "untuk membuktikan semua benda mudah dipahami",
+          isCorrect: true,
+          label: "untuk membandingkan hasil belajar dengan ukuran yang sama",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam ruang penyimpanan karya seni pasti berlaku tanpa batas pada tempat lain.",
+            "Label pemilik membuktikan seluruh perpindahan karya karena kepemilikan selalu sama dengan lokasi penyimpanan.",
         },
         {
           isCorrect: true,
           label:
-            "Perbedaan antarsumber dapat memperkaya penafsiran jika asal dan tujuan setiap sumber diperiksa.",
+            "Label pameran membantu menelusuri kepemilikan, sedangkan kartu kondisi mencatat perpindahan dan kerusakan; keduanya memperluas riwayat karya, tetapi celah waktu tanpa catatan tetap tidak boleh diisi dengan dugaan.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang ruang penyimpanan karya seni tidak berguna.",
+            "Kartu kondisi lebih penting daripada label pameran karena kerusakan fisik merupakan satu-satunya bagian riwayat karya yang dapat diperiksa.",
         },
         {
           isCorrect: false,
           label:
-            "Satu rincian tentang provenans cukup untuk membuktikan semua hubungan sebab-akibat.",
+            "Perbedaan informasi kepemilikan dan kerusakan berarti kedua sumber membahas karya yang berbeda.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Gabungan label dan kartu kondisi menjamin bahwa setiap perpindahan karya telah tercatat lengkap.",
         },
       ],
     },

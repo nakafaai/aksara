@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(-3,5)$$",
+          label: "$$-12$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,4)$$",
+          label: "$$-10$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$-8$$",
         },
         {
           isCorrect: true,
-          label: "$$(-2,5)$$",
+          label: "$$-9$$",
         },
         {
           isCorrect: false,
-          label: "$$(-1,5)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(-2,6)$$",
+          label: "$$-7$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(-3,5)$$",
+          label: "$$-12$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,4)$$",
+          label: "$$-10$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$-8$$",
         },
         {
           isCorrect: true,
-          label: "$$(-2,5)$$",
+          label: "$$-9$$",
         },
         {
           isCorrect: false,
-          label: "$$(-1,5)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(-2,6)$$",
+          label: "$$-7$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(-3,5)$$",
+          label: "$$-12$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,4)$$",
+          label: "$$-10$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$-8$$",
         },
         {
           isCorrect: true,
-          label: "$$(-2,5)$$",
+          label: "$$-9$$",
         },
         {
           isCorrect: false,
-          label: "$$(-1,5)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(-2,6)$$",
+          label: "$$-7$$",
         },
       ],
     },

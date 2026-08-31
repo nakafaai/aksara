@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "J, E, C, G",
-        },
-        {
-          isCorrect: false,
-          label: "C, E, G, J",
-        },
-        {
-          isCorrect: false,
-          label: "E, G, C, J",
-        },
-        {
           isCorrect: true,
-          label: "E, C, J, G",
+          label: "$$\\frac{20}{3}$$",
         },
         {
           isCorrect: false,
-          label: "G, E, J, C",
+          label: "$$5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{15}{2}$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "J, E, C, G",
-        },
-        {
-          isCorrect: false,
-          label: "C, E, G, J",
-        },
-        {
-          isCorrect: false,
-          label: "E, G, C, J",
-        },
-        {
           isCorrect: true,
-          label: "E, C, J, G",
+          label: "$$\\frac{20}{3}$$",
         },
         {
           isCorrect: false,
-          label: "G, E, J, C",
+          label: "$$5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{15}{2}$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "J, E, C, G",
-        },
-        {
-          isCorrect: false,
-          label: "C, E, G, J",
-        },
-        {
-          isCorrect: false,
-          label: "E, G, C, J",
-        },
-        {
           isCorrect: true,
-          label: "E, C, J, G",
+          label: "$$\\frac{20}{3}$$",
         },
         {
           isCorrect: false,
-          label: "G, E, J, C",
+          label: "$$5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{15}{2}$$",
         },
       ],
     },

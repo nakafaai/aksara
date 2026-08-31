@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Das Geschäft verkauft $$42$$ quadratische Tücher.",
-        },
-        {
           isCorrect: false,
           label: "Das Geschäft verkauft $$24$$ Bergo-Tücher.",
+        },
+        {
+          isCorrect: true,
+          label: "Das Geschäft verkauft $$42$$ quadratische Tücher.",
         },
         {
           isCorrect: false,
@@ -32,12 +32,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "The shop sells $$42$$ square headscarves.",
-        },
-        {
           isCorrect: false,
           label: "The shop sells $$24$$ bergo headscarves.",
+        },
+        {
+          isCorrect: true,
+          label: "The shop sells $$42$$ square headscarves.",
         },
         {
           isCorrect: false,
@@ -58,13 +58,13 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Banyak kerudung jenis bergo yang terjual adalah $$24$$ buah.",
+        },
+        {
           isCorrect: true,
           label:
             "Penjualan jenis kerudung segiempat adalah sebanyak $$42$$ buah.",
-        },
-        {
-          isCorrect: false,
-          label: "Banyak kerudung jenis bergo yang terjual adalah $$24$$ buah.",
         },
         {
           isCorrect: false,

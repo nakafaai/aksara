@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage only gives a complete history of friction on model ramps without examining evidence or choice.",
+            "The class tested how coarse fabric on a model ramp affected friction, while controlling the listed factors but treating one short trial as proof of a universal effect.",
         },
         {
           isCorrect: false,
           label:
-            "The passage proves that one method must succeed in every friction on model ramps.",
+            "The class tested how coarse fabric on a model ramp affected friction, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
         },
         {
           isCorrect: false,
           label:
-            "The passage rejects all observation and relies only on personal preference.",
+            "The class tested how coarse fabric on a model ramp affected friction, while treating the scientific term as the measured outcome that settles the investigation.",
         },
         {
           isCorrect: false,
           label:
-            "The passage mainly defines friction without connecting it to a setting.",
+            "The class tested how coarse fabric on a model ramp affected friction, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
         },
         {
           isCorrect: true,
           label:
-            "The class tested covering the ramp with coarse fabric in friction on model ramps while controlling other factors and reporting a limitation.",
+            "The class tested how coarse fabric on a model ramp affected friction, while controlling other factors and reporting a limitation.",
         },
       ],
     },

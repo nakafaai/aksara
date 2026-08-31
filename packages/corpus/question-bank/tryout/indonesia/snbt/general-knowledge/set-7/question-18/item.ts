@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Jede Änderung einer Bearbeitung schadet zwangsläufig der Tradition.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Weil die Fassungen verschieden sind, muss die Gruppe weder Quellen noch Änderungen erklären.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das gefundene schriftliche Stück wurde in den 1970er-Jahren veröffentlicht.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Gruppe wird Quellen und dramaturgische Änderungen im Programm nennen.",
         },
         {
           isCorrect: true,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Interviews mit vollständigem Kontext und kurze Aussagen von Nutzenden",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte Beispielfragen mit offenen Antworten (Archiv für mündliche Geschichte) und bewertete die Befunde vorsichtig.",
+            "Treue zur Tradition kann durch einen transparenten Prozess entstehen, nicht nur durch gleiche Wörter.",
         },
       ],
     },
@@ -37,28 +37,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
+          label: "Every change in an adaptation necessarily damages tradition.",
+        },
+        {
+          isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "Because versions differ, the group need not explain any source or change.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The written script that was found was published in the 1970s.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The group will identify sources and dramatic changes in the programme notes.",
         },
         {
           isCorrect: true,
           label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "interviews with complete context and short comments from users",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested sample open questions for interviewers in the oral history archive and interpreted the evidence cautiously.",
+            "Faithfulness to tradition can be expressed through transparency of process, not only verbal sameness.",
         },
       ],
     },
@@ -67,28 +66,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
+          label: "Setiap perubahan dalam adaptasi pasti merusak tradisi.",
+        },
+        {
+          isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Karena versi berbeda, kelompok tidak perlu menjelaskan sumber atau perubahan apa pun.",
+        },
+        {
+          isCorrect: false,
+          label: "Naskah tertulis yang ditemukan diterbitkan pada 1970-an.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Kelompok akan mencantumkan sumber dan perubahan dramatik dalam catatan program.",
         },
         {
           isCorrect: true,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "wawancara dengan konteks yang lengkap dan komentar singkat pengguna",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji contoh pertanyaan terbuka bagi pewawancara pada arsip sejarah lisan dan menafsirkan buktinya secara hati-hati.",
+            "Kesetiaan terhadap tradisi dapat diwujudkan melalui keterbukaan proses, bukan hanya kesamaan kata.",
         },
       ],
     },

@@ -7,26 +7,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Absolute certainty about leaf growth under different light colours",
+          label: "Measuring confounding variable in one preliminary comparison",
         },
         {
           isCorrect: false,
           label:
-            "Why all evidence in leaf growth under different light colours should be ignored",
+            "Treating confounding variable as the sole explanation for the observed result",
         },
         {
           isCorrect: true,
+          label: "Testing how filtered blue light affects leaf growth",
+        },
+        {
+          isCorrect: false,
           label:
-            "Testing using a blue light filter in leaf growth under different light colours",
+            "A final rule derived from the first comparison of confounding variable",
         },
         {
           isCorrect: false,
-          label: "The complete world history of confounding variable",
-        },
-        {
-          isCorrect: false,
-          label: "One rule for every leaf growth under different light colours",
+          label:
+            "A limitation that makes another test of confounding variable unnecessary",
         },
       ],
     },

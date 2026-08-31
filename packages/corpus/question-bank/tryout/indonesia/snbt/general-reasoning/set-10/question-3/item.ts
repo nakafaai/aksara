@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Bekräftigt Aussage B",
-        },
-        {
           isCorrect: false,
           label: "Bekräftigt Aussage A",
+        },
+        {
+          isCorrect: true,
+          label: "Bekräftigt Aussage B",
         },
         {
           isCorrect: false,
@@ -31,12 +31,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Strengthens statement B",
-        },
-        {
           isCorrect: false,
           label: "Strengthens statement A",
+        },
+        {
+          isCorrect: true,
+          label: "Strengthens statement B",
         },
         {
           isCorrect: false,
@@ -56,12 +56,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Memperkuat pernyataan B",
-        },
-        {
           isCorrect: false,
           label: "Memperkuat pernyataan A",
+        },
+        {
+          isCorrect: true,
+          label: "Memperkuat pernyataan B",
         },
         {
           isCorrect: false,

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team veränderte alle Faktoren zugleich, nämlich eine Checkliste vor der Aufnahme.",
+            "Das Team änderte nur ein Faktor: eine Checkliste vor der Aufnahme.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team wechselte einen Faktor-faktoren: eine Checkliste vor der Aufnahme.",
+            "Das Team änderte nur einem Faktor: eine Checkliste vor der Aufnahme.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team änderte lediglich nur einen Faktor: eine Checkliste vor der Aufnahme.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team änderte nur einen Faktor, und zwar: eine Checkliste vor der Aufnahme.",
         },
         {
           isCorrect: true,
           label:
             "Das Team änderte nur einen Faktor: eine Checkliste vor der Aufnahme.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team tat nur einen Faktor anders: eine Checkliste vor der Aufnahme.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team änderte einzig alle Faktoren: eine Checkliste vor der Aufnahme.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team alterated only one factor: a checklist used before recording.",
+            "The team changed only one factors: a checklist used before recording.",
         },
         {
           isCorrect: false,
           label:
-            "The team changed every factors at once: a checklist used before recording.",
+            "The team changed merely only one factor: a checklist used before recording.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team changed only one factor, namely: a checklist used before recording.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team changed only one factor; namely a checklist used before recording.",
         },
         {
           isCorrect: true,
           label:
             "The team changed only one factor: a checklist used before recording.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team did one factor differently thing: a checklist used before recording.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team changed only all factors: a checklist used before recording.",
         },
       ],
     },
@@ -73,22 +73,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim mengubahkan satu faktor-faktor, yaitu daftar pemeriksaan sebelum merekam.",
+            "Tim mengubahkan satu faktor saja, yaitu daftar pemeriksaan sebelum merekam.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim hanya mengubah satu faktor saja, yaitu daftar pemeriksaan sebelum merekam.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim mengubah terhadap satu faktor saja, yaitu daftar pemeriksaan sebelum merekam.",
         },
         {
           isCorrect: true,
           label:
             "Tim mengubah satu faktor saja, yaitu daftar pemeriksaan sebelum merekam.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim berubah satu faktor saja, yaitu daftar pemeriksaan sebelum merekam.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim mengubah semua faktor saja, yaitu daftar pemeriksaan sebelum merekam.",
         },
       ],
     },

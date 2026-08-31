@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$A = B$$ oder $$E \\neq F$$",
+        },
+        {
           isCorrect: false,
           label: "$$A = B$$ dann $$E = F$$",
         },
@@ -18,10 +22,6 @@ const item: QuestionItem = {
           label: "$$A \\neq B$$ und $$E = F$$",
         },
         {
-          isCorrect: true,
-          label: "$$A = B$$ oder $$E \\neq F$$",
-        },
-        {
           isCorrect: false,
           label: "$$E \\neq F$$ oder $$A \\neq B$$",
         },
@@ -30,6 +30,10 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$A = B$$ or $$E \\neq F$$",
+        },
         {
           isCorrect: false,
           label: "$$A = B$$ then $$E = F$$",
@@ -43,10 +47,6 @@ const item: QuestionItem = {
           label: "$$A \\neq B$$ and $$E = F$$",
         },
         {
-          isCorrect: true,
-          label: "$$A = B$$ or $$E \\neq F$$",
-        },
-        {
           isCorrect: false,
           label: "$$E \\neq F$$ or $$A \\neq B$$",
         },
@@ -55,6 +55,10 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$A = B$$ atau $$E \\neq F$$",
+        },
         {
           isCorrect: false,
           label: "$$A = B$$ maka $$E = F$$",
@@ -66,10 +70,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$A \\neq B$$ dan $$E = F$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$A = B$$ atau $$E \\neq F$$",
         },
         {
           isCorrect: false,

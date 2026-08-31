@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Benda berulang yang tetap menjadi bagian latar",
+        },
+        {
+          isCorrect: false,
+          label: "Konflik yang selesai sebelum pilihan akhir tokoh",
+        },
+        {
           isCorrect: true,
           label: "Label kain di gudang kostum teater",
         },
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang gudang kostum teater",
+          label: "motif sebagai istilah tanpa peran dalam cerita",
         },
         {
           isCorrect: false,
-          label: "Alasan Mengabaikan Semua Bukti dalam gudang kostum teater",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap motif di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap gudang kostum teater",
+          label: "Akhir yang menghapus ketegangan makna benda",
         },
       ],
     },

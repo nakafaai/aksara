@@ -11,25 +11,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Paper notes are useless and gardens need no weather data.",
-        },
-        {
-          isCorrect: false,
-          label: "Storms only arrive when a notebook is missing.",
-        },
-        {
-          isCorrect: false,
-          label: "Digital copies should replace every field observation.",
-        },
-        {
           isCorrect: true,
           label:
             "Protect useful records and avoid blaming someone without evidence.",
         },
         {
           isCorrect: false,
-          label: "Friends should never borrow diagrams from one another.",
+          label:
+            "Weather records matter primarily when they are transferred from paper to a digital archive.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The storm matters mainly because it reveals how the notebook had been stored.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "A digital copy is sufficient, so later volunteers do not need to add field observations.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Sharing a diagram weakens the reliability of the record because its original owner changes.",
         },
       ],
     },

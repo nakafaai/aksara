@@ -12,7 +12,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "He believes printed schedules show every live delay.",
+          label:
+            "He expects a printed schedule to remain the most precise source during a disruption.",
         },
         {
           isCorrect: false,
@@ -20,7 +21,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "He plans to remove all phone numbers.",
+          label:
+            "He decides that service pages make direct phone contact unnecessary.",
         },
         {
           isCorrect: true,

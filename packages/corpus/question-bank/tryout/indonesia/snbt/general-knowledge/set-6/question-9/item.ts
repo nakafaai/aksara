@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Erste Ergebnisse zeigen Potenzial, Zugangsprobleme machen Ungleichheit sichtbar, und Änderungen prüfen diese Erklärung.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team prüfte eine markierte Spur für jedes Ziel (Schulbuswarteschlange) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 28, lag über 19 und 21.",
+            'Der erste Teil vertritt die Behauptung "Eine Rückgabestelle wurde verlegt und länger geöffnet"; der folgende nutzt "Die Rückgabequote des ersten Abends beweist, dass das System unverändert dauerhaft eingeführt werden sollte" als Hauptbeleg.',
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            'Der erste Teil legt "Weil Beschwerden auftraten, kann ein Pfand das Verhalten nicht beeinflussen" als endgültigen Schluss fest; der folgende nennt nur den Plan "Die Abschlussbewertung wird Reinigungskosten und verlorene Behälter berücksichtigen".',
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext Schulbuswarteschlange: eine markierte Spur für jedes Ziel",
+            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Die Rückgabequote des ersten Abends beweist, dass das System unverändert dauerhaft eingeführt werden sollte" fest.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Der folgende Teil kehrt die Argumentation um und leitet "Weil Beschwerden auftraten, kann ein Pfand das Verhalten nicht beeinflussen" aus dem Beleg "Eine Rückgabestelle wurde verlegt und länger geöffnet" ab.',
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "Initial results show potential, access problems reveal inequality, and service changes test that explanation.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested a marked lane for each destination in the school bus queue and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 28, exceeded both 19 and 21.",
+            'The first part advances the claim "One return desk was moved and its hours were extended", and the later part uses "The first-night return rate proves the system should become permanent without revision" as its main support.',
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            'The first part establishes "Because complaints occurred, a deposit cannot influence visitor behaviour" as a final conclusion; the later part only states the plan "The final evaluation will include washing costs and lost containers".',
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of a marked lane for each destination: school bus queue",
+            'Both parts maintain the claim "The first-night return rate proves the system should become permanent without revision" from the same perspective without adding a test.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'The later part reverses the argument by deriving "Because complaints occurred, a deposit cannot influence visitor behaviour" from the evidence "One return desk was moved and its hours were extended".',
         },
       ],
     },
@@ -66,26 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Hasil awal menunjukkan potensi, masalah akses mengungkap ketimpangan, dan perbaikan layanan menguji penjelasan tersebut.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji penanda jalur untuk setiap tujuan pada antrean bus sekolah dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 28, melampaui 19 dan 21.",
+            'Bagian awal mengajukan klaim "Satu loket dipindahkan dan jam layanannya diperpanjang", lalu bagian kedua memakai "Tingkat pengembalian malam pertama membuktikan sistem harus diterapkan permanen tanpa perubahan" sebagai dukungan utama.',
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            'Bagian pertama menetapkan "Karena ada keluhan, uang jaminan tidak mungkin memengaruhi perilaku pengunjung" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Evaluasi akhir akan memasukkan biaya pencucian dan kehilangan wadah".',
         },
         {
           isCorrect: false,
           label:
-            "Uji Hati-hati dalam antrean bus sekolah: penanda jalur untuk setiap tujuan",
+            'Kedua bagian mempertahankan klaim "Tingkat pengembalian malam pertama membuktikan sistem harus diterapkan permanen tanpa perubahan" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Karena ada keluhan, uang jaminan tidak mungkin memengaruhi perilaku pengunjung" dari bukti "Satu loket dipindahkan dan jam layanannya diperpanjang".',
         },
       ],
     },

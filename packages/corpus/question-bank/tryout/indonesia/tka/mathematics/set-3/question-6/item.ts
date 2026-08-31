@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 23.500",
+          label: "Rp 125.000",
         },
         {
           isCorrect: true,
-          label: "Rp 27.500",
+          label: "Rp 145.000",
         },
         {
           isCorrect: false,
-          label: "Rp 25.500",
+          label: "Rp 135.000",
         },
         {
           isCorrect: false,
-          label: "Rp 29.500",
+          label: "Rp 155.000",
         },
         {
           isCorrect: false,
-          label: "Rp 31.500",
+          label: "Rp 165.000",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 23.500",
+          label: "Rp 125.000",
         },
         {
           isCorrect: true,
-          label: "Rp 27.500",
+          label: "Rp 145.000",
         },
         {
           isCorrect: false,
-          label: "Rp 25.500",
+          label: "Rp 135.000",
         },
         {
           isCorrect: false,
-          label: "Rp 29.500",
+          label: "Rp 155.000",
         },
         {
           isCorrect: false,
-          label: "Rp 31.500",
+          label: "Rp 165.000",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 23.500",
+          label: "Rp 125.000",
         },
         {
           isCorrect: true,
-          label: "Rp 27.500",
+          label: "Rp 145.000",
         },
         {
           isCorrect: false,
-          label: "Rp 25.500",
+          label: "Rp 135.000",
         },
         {
           isCorrect: false,
-          label: "Rp 29.500",
+          label: "Rp 155.000",
         },
         {
           isCorrect: false,
-          label: "Rp 31.500",
+          label: "Rp 165.000",
         },
       ],
     },

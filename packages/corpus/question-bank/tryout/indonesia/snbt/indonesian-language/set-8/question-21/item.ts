@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap balai warga tanpa membahas keputusan atau bukti.",
+            "Dito menghadapi hambatan dalam membantu pendataan sumur warga dan menunggu seluruh proyek selesai sebelum meminta satu pun peninjauan.",
         },
         {
           isCorrect: true,
@@ -18,17 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap balai warga.",
+            "Dito menghadapi hambatan dalam membantu pendataan sumur warga dan menyerahkan langkah berikutnya kepada tokoh lain agar masalah segera berakhir.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
+            "Dito menghadapi hambatan dalam membantu pendataan sumur warga dan memahami empati sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan terutama menjelaskan definisi integritas ilmiah tanpa menghubungkannya dengan konteks.",
+            "Dito menghadapi hambatan dalam membantu pendataan sumur warga dan menempatkan pencatatan ketidakpastian di atas tindakan kecil yang dapat diperiksa.",
         },
       ],
     },

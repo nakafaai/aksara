@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Waiting for someone else to complete the next step",
+        },
+        {
+          isCorrect: false,
+          label: "Hiding unresolved evidence in a larger project",
+        },
+        {
+          isCorrect: false,
+          label: "metadata as a definition without a reviewable action",
+        },
+        {
           isCorrect: true,
           label: "Theo's next step in a small public archive",
         },
         {
           isCorrect: false,
-          label: "Absolute certainty about a small public archive",
-        },
-        {
-          isCorrect: false,
-          label: "Why all evidence in a small public archive should be ignored",
-        },
-        {
-          isCorrect: false,
-          label: "The complete world history of metadata",
-        },
-        {
-          isCorrect: false,
-          label: "One rule for every a small public archive",
+          label: "A complete plan without a small accountable step",
         },
       ],
     },

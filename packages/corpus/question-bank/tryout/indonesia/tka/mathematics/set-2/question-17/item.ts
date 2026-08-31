@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "304 m²",
+          label: "$$0{,}88$$",
         },
         {
           isCorrect: true,
-          label: "316 m²",
+          label: "$$0{,}96$$",
         },
         {
           isCorrect: false,
-          label: "310 m²",
+          label: "$$0{,}92$$",
         },
         {
           isCorrect: false,
-          label: "322 m²",
+          label: "$$1{,}00$$",
         },
         {
           isCorrect: false,
-          label: "328 m²",
+          label: "$$1{,}04$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "304 m²",
+          label: "$$0{,}88$$",
         },
         {
           isCorrect: true,
-          label: "316 m²",
+          label: "$$0{,}96$$",
         },
         {
           isCorrect: false,
-          label: "310 m²",
+          label: "$$0{,}92$$",
         },
         {
           isCorrect: false,
-          label: "322 m²",
+          label: "$$1{,}00$$",
         },
         {
           isCorrect: false,
-          label: "328 m²",
+          label: "$$1{,}04$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "304 m²",
+          label: "$$0{,}88$$",
         },
         {
           isCorrect: true,
-          label: "316 m²",
+          label: "$$0{,}96$$",
         },
         {
           isCorrect: false,
-          label: "310 m²",
+          label: "$$0{,}92$$",
         },
         {
           isCorrect: false,
-          label: "322 m²",
+          label: "$$1{,}00$$",
         },
         {
           isCorrect: false,
-          label: "328 m²",
+          label: "$$1{,}04$$",
         },
       ],
     },

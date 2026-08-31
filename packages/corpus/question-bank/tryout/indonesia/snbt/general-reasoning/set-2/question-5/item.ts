@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Anzüge in $$2014\\text{-}2015$$",
-        },
-        {
           isCorrect: false,
           label: "Hemden in $$2011\\text{-}2012$$",
         },
         {
           isCorrect: false,
           label: "Hemden in $$2012\\text{-}2013$$",
+        },
+        {
+          isCorrect: true,
+          label: "Anzüge in $$2014\\text{-}2015$$",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Suits in $$2014\\text{-}2015$$",
-        },
-        {
           isCorrect: false,
           label: "Shirts in $$2011\\text{-}2012$$",
         },
         {
           isCorrect: false,
           label: "Shirts in $$2012\\text{-}2013$$",
+        },
+        {
+          isCorrect: true,
+          label: "Suits in $$2014\\text{-}2015$$",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Jas pada tahun $$2014\\text{-}2015$$",
-        },
-        {
           isCorrect: false,
           label: "Baju pada tahun $$2011\\text{-}2012$$",
         },
         {
           isCorrect: false,
           label: "Baju pada tahun $$2012\\text{-}2013$$",
+        },
+        {
+          isCorrect: true,
+          label: "Jas pada tahun $$2014\\text{-}2015$$",
         },
         {
           isCorrect: false,

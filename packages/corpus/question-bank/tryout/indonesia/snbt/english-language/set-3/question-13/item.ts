@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Every result in the school media room must apply without limitation elsewhere.",
+            "Progress depends on completing the larger task before asking another person to review it.",
         },
         {
           isCorrect: false,
           label:
-            "The limitation makes all information about the school media room useless.",
+            "The object or setting shapes the outcome more strongly than the character's specific choice.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The unresolved evidence should remain private until the character can offer a complete result.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The small action matters mainly because it postpones the unresolved part of the conflict.",
         },
         {
           isCorrect: true,
           label:
             "Leah's progress began when the difficulty was turned into a specific, reviewable action.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "One detail about self-efficacy proves every possible causal relationship.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage recommends ignoring evidence that conflicts with an early expectation.",
         },
       ],
     },

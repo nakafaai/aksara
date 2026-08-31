@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam tur bangunan bersejarah.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Semua tokoh atau pihak dalam tur bangunan bersejarah memperoleh hasil yang sama tanpa perbedaan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan tur bangunan bersejarah.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut triangulasi sebagai bukti bahwa uji tidak perlu diulang.",
+            "Kedua sumber membantu menjelaskan fungsi bangunan pada masa yang berbeda; perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
         },
         {
           isCorrect: true,
           label:
-            "Kedua sumber sama-sama menunjukkan bahwa keduanya membantu menjelaskan fungsi bangunan pada masa berbeda.",
+            "Denah dan wawancara sama-sama membantu melacak fungsi bangunan, tetapi perubahan ruang tidak identik dengan pengalaman dua mantan penghuni.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Karena membahas peristiwa yang sama, kedua sumber pasti mempunyai sudut pandang dan tujuan yang sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Menggabungkan dua sumber memberi izin untuk mengisi bagian yang hilang dengan dugaan yang masuk akal.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perbedaan antarsumber hanya berkaitan dengan pilihan kata dan tidak memengaruhi simpulan.",
         },
       ],
     },

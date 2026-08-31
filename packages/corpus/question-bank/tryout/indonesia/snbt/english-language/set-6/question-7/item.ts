@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage states that no action or observation occurred in a community repair café.",
+            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
         },
         {
           isCorrect: false,
           label:
-            "Everyone in a community repair café obtained exactly the same result without variation.",
+            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The comparison condition produced a mean value of 15; because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
           isCorrect: true,
-          label: "The comparison condition produced a mean value of 15.",
-        },
-        {
-          isCorrect: false,
           label:
-            "The writer removes every detail related to a community repair café.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage presents product-life extension as proof that no follow-up is needed.",
+            "The comparison condition produced 15, the reference for the repair-tool card trial; different objects still involved very different repair difficulty.",
         },
       ],
     },

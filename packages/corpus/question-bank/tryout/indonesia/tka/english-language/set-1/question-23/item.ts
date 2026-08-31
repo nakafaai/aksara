@@ -12,7 +12,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Every family follows the same morning routine.",
+          label:
+            "A single average can represent families because school schedules shape their mornings similarly.",
         },
         {
           isCorrect: true,
@@ -25,11 +26,13 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Sports practice is unrelated to school time.",
+          label:
+            "Sports practice can be excluded from the trial because it occurs after lessons.",
         },
         {
           isCorrect: false,
-          label: "Averages always reveal smaller-group problems.",
+          label:
+            "The overall average is sufficient to show how each subgroup experienced the change.",
         },
       ],
     },

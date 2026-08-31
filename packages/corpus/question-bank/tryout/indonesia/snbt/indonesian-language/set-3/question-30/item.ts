@@ -7,16 +7,11 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang terminal saat hujan sore",
+          label: "Benda berulang yang tetap menjadi bagian latar",
         },
         {
           isCorrect: false,
-          label:
-            "Alasan Mengabaikan Semua Bukti dalam terminal saat hujan sore",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap simbol di Seluruh Dunia",
+          label: "Konflik yang selesai sebelum pilihan akhir tokoh",
         },
         {
           isCorrect: true,
@@ -24,7 +19,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Satu Aturan untuk Setiap terminal saat hujan sore",
+          label: "simbol sebagai istilah tanpa peran dalam cerita",
+        },
+        {
+          isCorrect: false,
+          label: "Akhir yang menghapus ketegangan makna benda",
         },
       ],
     },

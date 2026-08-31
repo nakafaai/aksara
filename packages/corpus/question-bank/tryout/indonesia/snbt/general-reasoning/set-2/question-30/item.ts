@@ -7,27 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Kaliumreiche Lebensmittel können eine verordnete Blutdruckbehandlung ersetzen",
+          label: "$$0$$",
         },
         {
           isCorrect: false,
-          label: "Kalium entfernt das gesamte Natrium aus dem Körper",
+          label: "$$1$$",
         },
         {
           isCorrect: false,
-          label:
-            "Je mehr Kalium jemand zu sich nimmt, desto niedriger ist sein Blutdruck in jedem Fall",
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4$$",
         },
         {
           isCorrect: true,
-          label:
-            "Kaliumreiche Lebensmittel können die Behandlung von Bluthochdruck unterstützen, doch mehr Kalium ist nicht automatisch für alle Menschen unbedenklich",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Jeder Mensch sollte ohne fachlichen Rat Kaliumpräparate einnehmen",
+          label: "$$2$$",
         },
       ],
     },
@@ -36,27 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Potassium-rich foods can replace prescribed blood-pressure treatment",
+          label: "$$0$$",
         },
         {
           isCorrect: false,
-          label: "Potassium removes all sodium from the body",
+          label: "$$1$$",
         },
         {
           isCorrect: false,
-          label:
-            "The more potassium someone consumes, the lower their blood pressure will always be",
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4$$",
         },
         {
           isCorrect: true,
-          label:
-            "Potassium-rich foods may support blood-pressure management, but increasing potassium is not automatically safe for everyone",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Everyone should take potassium supplements without professional advice",
+          label: "$$2$$",
         },
       ],
     },
@@ -65,27 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Makanan kaya kalium dapat menggantikan pengobatan tekanan darah yang diresepkan",
+          label: "$$0$$",
         },
         {
           isCorrect: false,
-          label: "Kalium menghilangkan seluruh natrium dari tubuh",
+          label: "$$1$$",
         },
         {
           isCorrect: false,
-          label:
-            "Semakin banyak kalium dikonsumsi, tekanan darah akan selalu semakin rendah",
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4$$",
         },
         {
           isCorrect: true,
-          label:
-            "Makanan kaya kalium dapat membantu pengelolaan tekanan darah, tetapi menambah kalium tidak otomatis aman bagi semua orang",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Semua orang sebaiknya mengonsumsi suplemen kalium tanpa saran tenaga kesehatan",
+          label: "$$2$$",
         },
       ],
     },

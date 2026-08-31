@@ -13,20 +13,27 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Die Wahrscheinlichkeit für Rot ist $\\frac{6}{11}$.",
-        },
-        {
-          correctCategoryOrder: 1,
-          label: "Die Wahrscheinlichkeit für Blau ist $\\frac{5}{11}$.",
+          label: "Die Wahrscheinlichkeit für die Summe $9$ beträgt $\\frac19$.",
         },
         {
           correctCategoryOrder: 1,
           label:
-            "Bei einer Ziehung schließen sich die Ereignisse Rot und Blau gegenseitig aus.",
+            "Die Wahrscheinlichkeit, dass der rote Würfel größer ist, beträgt $\\frac5{12}$.",
+        },
+        {
+          correctCategoryOrder: 1,
+          label:
+            "Unter der Bedingung einer geraden Summe beträgt die Wahrscheinlichkeit für zwei ungerade Augenzahlen $\\frac12$.",
+        },
+        {
+          correctCategoryOrder: 1,
+          label:
+            "Die Ereignisse roter Würfel gerade und Summe gerade sind unabhängig.",
         },
         {
           correctCategoryOrder: 2,
-          label: "Die Wahrscheinlichkeit für Rot oder Blau ist $\\frac12$.",
+          label:
+            "Die Wahrscheinlichkeit für mindestens eine Sechs beträgt $\\frac13$.",
         },
       ],
     },
@@ -36,19 +43,24 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "The probability of red is $\\frac{6}{11}$.",
+          label: "The probability of a sum of $9$ is $\\frac19$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "The probability of blue is $\\frac{5}{11}$.",
+          label: "The probability that the red die is larger is $\\frac5{12}$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "On one draw, the red and blue events are mutually exclusive.",
+          label:
+            "Given an even sum, the probability that both dice are odd is $\\frac12$.",
+        },
+        {
+          correctCategoryOrder: 1,
+          label: "The events red die even and sum even are independent.",
         },
         {
           correctCategoryOrder: 2,
-          label: "The probability of red or blue is $\\frac12$.",
+          label: "The probability of at least one six is $\\frac13$.",
         },
       ],
     },
@@ -58,20 +70,26 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Peluang mengambil bola merah adalah $\\frac{6}{11}$.",
+          label: "Peluang jumlah kedua dadu $9$ adalah $\\frac19$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "Peluang mengambil bola biru adalah $\\frac{5}{11}$.",
+          label: "Peluang dadu merah lebih besar adalah $\\frac5{12}$.",
         },
         {
           correctCategoryOrder: 1,
           label:
-            "Dalam satu pengambilan, kejadian merah dan biru saling lepas.",
+            "Jika jumlahnya genap, peluang kedua dadu menunjukkan angka ganjil adalah $\\frac12$.",
+        },
+        {
+          correctCategoryOrder: 1,
+          label:
+            "Kejadian dadu merah genap dan jumlah kedua dadu genap saling bebas.",
         },
         {
           correctCategoryOrder: 2,
-          label: "Peluang memperoleh bola merah atau biru adalah $\\frac12$.",
+          label:
+            "Peluang sedikitnya satu dadu menunjukkan angka enam adalah $\\frac13$.",
         },
       ],
     },

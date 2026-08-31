@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage states that no action or observation occurred in a youth translation club.",
+            "Jonas kept two translations and added a note describing where each was appropriate; the choice resolves the whole conflict at once and makes any later review unnecessary.",
         },
         {
           isCorrect: false,
           label:
-            "Everyone in a youth translation club obtained exactly the same result without variation.",
+            "Jonas kept two translations and added a note describing where each was appropriate; the action transfers responsibility for the unresolved task to another character.",
         },
         {
           isCorrect: false,
           label:
-            "The writer removes every detail related to a youth translation club.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage presents connotation as proof that no follow-up is needed.",
+            "Jonas kept two translations and added a note describing where each was appropriate; the decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
         },
         {
           isCorrect: true,
           label:
-            "Jonas kept two translations and added a note describing where each was appropriate.",
+            "Keeping both translations with a scope note shows Jonas treating meaning as context-dependent rather than hiding the ambiguity behind one choice.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Jonas kept two translations and added a note describing where each was appropriate; the setting alone produces the change, so the character's decision has no role in the development.",
         },
       ],
     },

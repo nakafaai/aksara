@@ -11,14 +11,14 @@ const item: QuestionItem = {
             "Eating one high-fiber food prevents disease and removes the need for exercise or stress management.",
         },
         {
-          isCorrect: false,
-          label:
-            "Vigorous exercise is the only reliable way to protect health, regardless of a person's circumstances.",
-        },
-        {
           isCorrect: true,
           label:
             "Regular activity, a varied diet, and practical stress management work together, while guidance should be adapted and additional help sought when needed.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Vigorous exercise is the only reliable way to protect health, regardless of a person's circumstances.",
         },
         {
           isCorrect: false,

@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Aussage $$(2)$$ allein reicht aus, Aussage $$(1)$$ allein jedoch nicht",
-        },
-        {
           isCorrect: false,
           label:
             "Aussage $$(1)$$ allein reicht aus, Aussage $$(2)$$ allein jedoch nicht",
@@ -26,6 +21,11 @@ const item: QuestionItem = {
             "Aussage $$(1)$$ allein reicht aus, und Aussage $$(2)$$ allein reicht aus",
         },
         {
+          isCorrect: true,
+          label:
+            "Aussage $$(2)$$ allein reicht aus, Aussage $$(1)$$ allein jedoch nicht",
+        },
+        {
           isCorrect: false,
           label:
             "Die Aussagen $$(1)$$ und $$(2)$$ reichen auch zusammen nicht aus",
@@ -35,11 +35,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "Statement $$(2)$$ ALONE is sufficient, but statement $$(1)$$ ALONE is not sufficient",
-        },
         {
           isCorrect: false,
           label:
@@ -56,6 +51,11 @@ const item: QuestionItem = {
             "Statement $$(1)$$ ALONE is sufficient, and statement $$(2)$$ ALONE is sufficient",
         },
         {
+          isCorrect: true,
+          label:
+            "Statement $$(2)$$ ALONE is sufficient, but statement $$(1)$$ ALONE is not sufficient",
+        },
+        {
           isCorrect: false,
           label: "Statements $$(1)$$ and $$(2)$$ TOGETHER are NOT sufficient",
         },
@@ -64,11 +64,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "Pernyataan $$(2)$$ SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan $$(1)$$ SAJA tidak cukup",
-        },
         {
           isCorrect: false,
           label:
@@ -83,6 +78,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Pernyataan $$(1)$$ SAJA cukup untuk menjawab pertanyaan dan pernyataan $$(2)$$ SAJA cukup untuk menjawab pertanyaan",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Pernyataan $$(2)$$ SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan $$(1)$$ SAJA tidak cukup",
         },
         {
           isCorrect: false,

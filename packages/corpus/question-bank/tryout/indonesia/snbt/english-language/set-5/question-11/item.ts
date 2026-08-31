@@ -13,22 +13,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage only gives a complete history of an after-school laboratory without examining evidence or choice.",
+            "The character treats completing the whole project as the necessary first step before seeking review.",
         },
         {
           isCorrect: false,
           label:
-            "The passage proves that one method must succeed in every an after-school laboratory.",
+            "The account presents psychological safety as a general idea rather than something developed through the character's choice.",
         },
         {
           isCorrect: false,
           label:
-            "The passage rejects all observation and relies only on personal preference.",
+            "The main obstacle becomes manageable because another person assumes responsibility for the next step.",
         },
         {
           isCorrect: false,
           label:
-            "The passage mainly defines psychological safety without connecting it to a setting.",
+            "The passage presents documenting uncertainty as more important than taking a reviewable action.",
         },
       ],
     },

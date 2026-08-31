@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap simulasi populasi dengan keping warna tanpa membahas keputusan atau bukti.",
+            "Bacaan menggunakan nilai rata-rata yang lebih tinggi untuk memperkirakan bahwa perubahan akan bekerja pada keadaan serupa.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap simulasi populasi dengan keping warna.",
+            "Bacaan menjelaskan daya dukung sebagai hasil utama, bukan sebagai bagian dari penelitian.",
         },
         {
           isCorrect: true,
@@ -23,12 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
+            "Bacaan membandingkan dua kondisi, tetapi menempatkan faktor kontrol sebagai rincian yang tidak memengaruhi penafsiran.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan terutama menjelaskan definisi daya dukung tanpa menghubungkannya dengan konteks.",
+            "Bacaan lebih menekankan keterbatasan sampel daripada hubungan antara perubahan dan hasil.",
         },
       ],
     },

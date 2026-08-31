@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam kolom infiltrasi dari tiga jenis tanah.",
+            'Karena langkah "volume air yang sama dituangkan ke kolom pasir, lempung, dan campuran organik" dapat diulang, model sudah mencakup faktor yang hilang ketika tanah dalam botol telah terganggu sehingga berbeda dari lapisan tanah alami dan dapat menggantikan pengamatan lapangan.',
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam kolom infiltrasi dari tiga jenis tanah memperoleh hasil yang sama tanpa perbedaan.",
+            "Keterbatasan bahwa tanah dalam botol telah terganggu sehingga berbeda dari lapisan tanah alami membuat hubungan bahwa ukuran pori dan susunan partikel dapat memengaruhi laju masuknya air tidak dapat diperiksa, bahkan di dalam model.",
         },
         {
           isCorrect: true,
           label:
-            "Siswa menggunakan model untuk mengulang langkah dan memeriksa hubungan antarbagiannya.",
+            "Pengulangan langkah pada model membantu memeriksa bahwa ukuran pori dan susunan partikel dapat memengaruhi laju masuknya air; karena tanah dalam botol telah terganggu sehingga berbeda dari lapisan tanah alami, pola itu menjadi hipotesis untuk pengamatan nyata, bukan bukti langsung tentang seluruh keadaan lapangan.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan kolom infiltrasi dari tiga jenis tanah.",
+            "Hubungan bahwa ukuran pori dan susunan partikel dapat memengaruhi laju masuknya air dapat diterapkan langsung pada keadaan nyata selama urutan model diulang dengan cara yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyebut infiltrasi sebagai bukti bahwa uji tidak perlu diulang.",
+            "Definisi istilah pada akhir bacaan sudah cukup membuktikan hubungan sebab dalam kolom infiltrasi dari tiga jenis tanah, meskipun bagian model tidak dibandingkan.",
         },
       ],
     },

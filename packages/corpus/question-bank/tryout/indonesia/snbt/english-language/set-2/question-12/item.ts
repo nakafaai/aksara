@@ -11,13 +11,13 @@ const item: QuestionItem = {
             "Everyone should take the largest possible dose of every vitamin.",
         },
         {
+          isCorrect: false,
+          label: "Supplements always cure an infection after symptoms begin.",
+        },
+        {
           isCorrect: true,
           label:
             "When nutrient intake is already adequate, taking more supplements usually does not prevent infection or speed recovery.",
-        },
-        {
-          isCorrect: false,
-          label: "Supplements always cure an infection after symptoms begin.",
         },
         {
           isCorrect: false,

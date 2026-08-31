@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$21$$",
+          label: "$$24$$",
         },
         {
           isCorrect: true,
-          label: "$$19$$",
+          label: "$$28$$",
         },
         {
           isCorrect: false,
-          label: "$$17$$",
+          label: "$$26$$",
         },
         {
           isCorrect: false,
-          label: "$$18$$",
+          label: "$$30$$",
         },
         {
           isCorrect: false,
-          label: "$$20$$",
+          label: "$$35$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$21$$",
+          label: "$$24$$",
         },
         {
           isCorrect: true,
-          label: "$$19$$",
+          label: "$$28$$",
         },
         {
           isCorrect: false,
-          label: "$$17$$",
+          label: "$$26$$",
         },
         {
           isCorrect: false,
-          label: "$$18$$",
+          label: "$$30$$",
         },
         {
           isCorrect: false,
-          label: "$$20$$",
+          label: "$$35$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$21$$",
+          label: "$$24$$",
         },
         {
           isCorrect: true,
-          label: "$$19$$",
+          label: "$$28$$",
         },
         {
           isCorrect: false,
-          label: "$$17$$",
+          label: "$$26$$",
         },
         {
           isCorrect: false,
-          label: "$$18$$",
+          label: "$$30$$",
         },
         {
           isCorrect: false,
-          label: "$$20$$",
+          label: "$$35$$",
         },
       ],
     },

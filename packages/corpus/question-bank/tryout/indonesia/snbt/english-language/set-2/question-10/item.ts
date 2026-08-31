@@ -6,13 +6,13 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Migration immediately strengthens every bird's immunity.",
+        },
+        {
           isCorrect: true,
           label:
             "Different pathogen environments can alter selection on immune-gene diversity over evolutionary time.",
-        },
-        {
-          isCorrect: false,
-          label: "Migration immediately strengthens every bird's immunity.",
         },
         {
           isCorrect: false,

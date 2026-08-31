@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team wiederholte erneut noch einmal den Versuch zu ein Beispiel zur Erfassung der Geräuschdauer, um belastbarere Belege zu erhalten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team führte eine Wiederholung des Versuchs zu ein Beispiel zur Erfassung der Geräuschdauer mit dem Ziel durch, damit belastbarere Belege erhalten werden können.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team wiederholte den Versuch zu ein Beispiel zur Erfassung der Geräuschdauer, um sehr viel belastbarere stärkere Belege zu erhalten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Eine Wiederholung wurde vom Team erneut für ein Beispiel zur Erfassung der Geräuschdauer durchgeführt, und zwar für Belege.",
+            "Das Team wiederholte den Test von ein Beispiel zur Erfassung der Geräuschdauer erneut, um stärkere Belege als zuvor zu erhalten.",
         },
         {
           isCorrect: true,
           label:
             "Das Team wiederholte den Versuch mit folgender Änderung, um belastbarere Belege zu erhalten: ein Beispiel zur Erfassung der Geräuschdauer.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Um stärkere Belege zu erhalten, wurde der Test von ein Beispiel zur Erfassung der Geräuschdauer vom Team erneut wiederholt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team führte eine weitere Wiederholung des Tests von ein Beispiel zur Erfassung der Geräuschdauer für stärkere Belege durch.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team wiederholte den Test, um stärkere Belege zu ein Beispiel zur Erfassung der Geräuschdauer zu erhalten, die es bereits getestet hatte.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team repeated the test of an example showing how to record sound duration again once more to obtain stronger evidence.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team carried out a repetition of the test of an example showing how to record sound duration for the purpose of being able to obtain evidence that was stronger.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team repeated the test of an example showing how to record sound duration to obtain very much stronger and more strong evidence.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A repetition was repeated by the team for an example showing how to record sound duration in order for evidence.",
+            "The team repeated the test of an example showing how to record sound duration again to obtain evidence that was stronger than before.",
         },
         {
           isCorrect: true,
           label:
             "The team repeated the test of an example showing how to record sound duration to obtain stronger evidence.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "To obtain stronger evidence, the test of an example showing how to record sound duration was repeated again by the team.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team carried out another repetition of the test of an example showing how to record sound duration for stronger evidence.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team repeated the test to obtain stronger evidence about an example showing how to record sound duration, which it had already tested.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim mengulang kembali lagi uji contoh cara mencatat durasi suara untuk memperoleh bukti yang lebih kuat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim melakukan pengulangan atas uji contoh cara mencatat durasi suara dengan tujuan agar supaya dapat memperoleh bukti yang lebih kuat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim mengulang uji contoh cara mencatat durasi suara untuk memperoleh bukti yang lebih sangat kuat sekali.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Pengulangan kembali dilakukan lagi oleh tim atas contoh cara mencatat durasi suara untuk bukti.",
+            "Tim mengulang kembali uji contoh cara mencatat durasi suara untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
         },
         {
           isCorrect: true,
           label:
             "Tim mengulang uji contoh cara mencatat durasi suara untuk memperoleh bukti yang lebih kuat.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Untuk memperoleh bukti lebih kuat, uji contoh cara mencatat durasi suara diulang kembali oleh tim.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim melakukan pengulangan lain atas uji contoh cara mencatat durasi suara demi bukti yang lebih kuat.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim mengulang uji untuk memperoleh bukti lebih kuat tentang contoh cara mencatat durasi suara yang telah diuji sebelumnya.",
         },
       ],
     },

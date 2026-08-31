@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage only gives a complete history of a small public archive without examining evidence or choice.",
+            "The character treats completing the whole project as the necessary first step before seeking review.",
         },
         {
           isCorrect: false,
           label:
-            "The passage proves that one method must succeed in every a small public archive.",
+            "The account presents metadata as a general idea rather than something developed through the character's choice.",
         },
         {
           isCorrect: false,
           label:
-            "The passage rejects all observation and relies only on personal preference.",
+            "The main obstacle becomes manageable because another person assumes responsibility for the next step.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The passage presents documenting uncertainty as more important than taking a reviewable action.",
         },
         {
           isCorrect: true,
           label:
             "Theo faced an obstacle while trying to catalogue a box of community photographs and learned through a small accountable action.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage mainly defines metadata without connecting it to a setting.",
         },
       ],
     },

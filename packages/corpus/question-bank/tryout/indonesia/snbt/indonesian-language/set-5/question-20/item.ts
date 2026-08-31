@@ -6,24 +6,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Kesamaan Isi sebagai Bukti bahwa Dua Sumber Identik",
+        },
+        {
+          isCorrect: false,
+          label: "Mengutamakan Sumber Terbaru dalam Kajian sejarah lisan",
+        },
+        {
+          isCorrect: false,
+          label: "Menggabungkan Dua Sumber tanpa Memeriksa Konteks",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perbedaan Format yang Membuat Dua Sumber Tidak Dapat Dibandingkan",
+        },
+        {
           isCorrect: true,
           label: "Membaca Dua Sumber tentang kelas reparasi pakaian",
-        },
-        {
-          isCorrect: false,
-          label: "Kepastian Mutlak tentang kelas reparasi pakaian",
-        },
-        {
-          isCorrect: false,
-          label: "Alasan Mengabaikan Semua Bukti dalam kelas reparasi pakaian",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap sejarah lisan di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap kelas reparasi pakaian",
         },
       ],
     },

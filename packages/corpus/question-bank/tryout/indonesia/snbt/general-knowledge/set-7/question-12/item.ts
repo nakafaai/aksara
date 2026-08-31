@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team prüfte einen Prüftisch vor der Warteschlange für Techniker (Reparaturwerkstatt für Elektronik) und bewertete die Befunde vorsichtig.",
+            "Eine Beratung ist nur gültig, wenn jeder Vorschlag angenommen wird.",
         },
         {
           isCorrect: false,
-          label: "Der Wert mit Änderung, 28, lag über 21 und 23.",
+          label:
+            "Wegen der offenen Einladung müssen Herkunft und Abwesenheitsgründe nicht geprüft werden.",
         },
         {
           isCorrect: true,
           label:
-            "Vorsichtige Prüfung im Kontext Reparaturwerkstatt für Elektronik: einen Prüftisch vor der Warteschlange für Techniker",
+            "Eine hohe Teilnehmerzahl belegt keine Repräsentation, wenn Gruppen ungleichen Zugang haben.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Fast alle ersten Redebeiträge kamen aus den drei nächstgelegenen Vierteln.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Die endgültige Entscheidung wird Auswahl, Einwände und Einfluss der Beiträge festhalten.",
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested an initial inspection desk before the technician queue in the electronics repair clinic and interpreted the evidence cautiously.",
+            "A consultation is valid only if every resident proposal is ultimately accepted.",
         },
         {
           isCorrect: false,
-          label: "The intervention value, 28, exceeded both 21 and 23.",
+          label:
+            "Because the invitation was open, participant origins and reasons for absence need not be examined.",
         },
         {
           isCorrect: true,
           label:
-            "A cautious trial of an initial inspection desk before the technician queue: electronics repair clinic",
+            "A high attendance count is insufficient to prove representation when groups have unequal access.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "Nearly every initial speaker came from the three nearest neighbourhoods.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "The final decision will record the choice, objections, and the influence of contributions.",
         },
       ],
     },
@@ -66,26 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji meja pemeriksaan awal sebelum antrean teknisi pada klinik perbaikan elektronik dan menafsirkan buktinya secara hati-hati.",
+            "Musyawarah hanya sah jika setiap usulan warga akhirnya diterima.",
         },
         {
           isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 28, melampaui 21 dan 23.",
+          label:
+            "Karena undangan terbuka, asal peserta dan alasan ketidakhadiran tidak perlu diperiksa.",
         },
         {
           isCorrect: true,
           label:
-            "Uji Hati-hati dalam klinik perbaikan elektronik: meja pemeriksaan awal sebelum antrean teknisi",
+            "Banyaknya peserta tidak cukup untuk membuktikan keterwakilan jika akses antar kelompok berbeda.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Hampir seluruh pembicara pertama berasal dari tiga rukun tetangga terdekat.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Keputusan akhir akan mencatat pilihan, keberatan, dan pengaruh masukan.",
         },
       ],
     },

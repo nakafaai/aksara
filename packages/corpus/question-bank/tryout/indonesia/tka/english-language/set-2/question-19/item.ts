@@ -11,12 +11,13 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "The household should revise that part of the plan.",
+          isCorrect: false,
+          label:
+            "Keep the original instructions so a revision does not confuse household members.",
         },
         {
-          isCorrect: false,
-          label: "The household should stop practicing forever.",
+          isCorrect: true,
+          label: "The household should revise that part of the plan.",
         },
         {
           isCorrect: false,
@@ -24,11 +25,13 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "All meeting places should be kept secret.",
+          label:
+            "The out-of-area contact is the primary person who should know both meeting places.",
         },
         {
           isCorrect: false,
-          label: "The out-of-area contact should receive no names.",
+          label:
+            "The out-of-area contact should receive the plan without names to reduce privacy risk.",
         },
       ],
     },

@@ -11,24 +11,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$288$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$312$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$360$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$384$$",
+        },
+        {
           isCorrect: true,
-          label: "$$5\\sqrt{3}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5\\sqrt2$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$10$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5\\sqrt5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$15$$",
+          label: "$$336$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$288$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$312$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$360$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$384$$",
+        },
+        {
           isCorrect: true,
-          label: "$$5\\sqrt{3}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5\\sqrt2$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$10$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5\\sqrt5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$15$$",
+          label: "$$336$$",
         },
       ],
     },
@@ -61,24 +61,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$288$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$312$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$360$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$384$$",
+        },
+        {
           isCorrect: true,
-          label: "$$5\\sqrt{3}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5\\sqrt2$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$10$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5\\sqrt5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$15$$",
+          label: "$$336$$",
         },
       ],
     },

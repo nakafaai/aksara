@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Das Team testete die Änderung nach Rezeptschritten gruppierte Zutaten an ausgewählten Tagen, weil das frühere Verfahren bereits als unwirksam galt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team führte die Änderung nach Rezeptschritten gruppierte Zutaten dauerhaft ein, während das frühere Verfahren nur in den Rückmeldungen erhalten blieb.",
+        },
+        {
           isCorrect: true,
           label:
             "Das Team prüfte nach Rezeptschritten geordnete Zutaten an ausgewählten Tagen, während an Vergleichstagen der bisherige Ablauf bestehen blieb.",
         },
         {
           isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Kochkurs für Jugendliche",
+          label:
+            "Das Team testete die Änderung nach Rezeptschritten gruppierte Zutaten und das frühere Verfahren an denselben Tagen ohne getrennte Vergleichsbedingungen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: nach Rezeptschritten geordnete Zutaten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Kochkurs für Jugendliche über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: nach Rezeptschritten geordnete Zutaten.",
+            "Das Team verglich Tage mit der Änderung nach Rezeptschritten gruppierte Zutaten mit Rückmeldungen zum früheren Verfahren.",
         },
       ],
     },
@@ -35,28 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "The team tested ingredients grouped by recipe stage on selected days because the earlier process had already been proved ineffective.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team tested ingredients grouped by recipe stage permanently, while the earlier process remained only in user records.",
+        },
+        {
           isCorrect: true,
           label:
             "The team tested ingredients grouped by recipe stage on selected days, while the earlier process remained on comparison days.",
         },
         {
           isCorrect: false,
-          label: "A structured test of one change: teen cooking class",
+          label:
+            "The team tested ingredients grouped by recipe stage and the earlier process on the same days without separate comparison conditions.",
         },
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of ingredients grouped by recipe stage.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (teen cooking class), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, ingredients grouped by recipe stage, directly addressed the observed uncertainty.",
+            "The team compared selected days using ingredients grouped by recipe stage with comments about the earlier process.",
         },
       ],
     },
@@ -64,28 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Tim menguji bahan yang dikelompokkan menurut tahap resep pada hari tertentu karena proses lama telah terbukti tidak efektif.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim menerapkan bahan yang dikelompokkan menurut tahap resep secara tetap, sedangkan proses lama hanya tersisa dalam catatan pengguna.",
+        },
+        {
           isCorrect: true,
           label:
             "Tim menguji bahan yang dikelompokkan menurut tahap resep pada hari tertentu, sedangkan alur lama tetap digunakan pada hari pembanding.",
         },
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: kelas memasak remaja",
+          label:
+            "Tim menguji bahan yang dikelompokkan menurut tahap resep dan proses lama pada hari yang sama tanpa kondisi pembanding terpisah.",
         },
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui bahan yang dikelompokkan menurut tahap resep.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Di kelas memasak remaja, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa bahan yang dikelompokkan menurut tahap resep langsung menanggapi keraguan yang diamati.",
+            "Tim membandingkan hari penggunaan bahan yang dikelompokkan menurut tahap resep dengan komentar tentang proses lama.",
         },
       ],
     },

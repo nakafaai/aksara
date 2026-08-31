@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Klassifikationsfehler machen sämtliche Freiwilligendaten wissenschaftlich wertlos.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Ein Gebiet ohne Meldungen enthält mit Sicherheit keine Mangrovensetzlinge.",
         },
         {
           isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+          label: "Bei Flutaufnahmen blieb die Übereinstimmung geringer.",
         },
         {
           isCorrect: true,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Ein Teil des ersten Kartenmusters kann das Verhalten der Beobachter statt nur Mangrovenveränderungen abbilden.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team prüfte eine Anzeige freier Plätze an der Tür (ruhige Lernzone) und bewertete die Befunde vorsichtig.",
+            "Die öffentliche Karte wird Meldungen, Beobachtungsintensität und Validierung trennen.",
         },
       ],
     },
@@ -38,27 +37,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "Classification errors make all volunteer data scientifically worthless.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "An area without reports certainly contains no mangrove seedlings.",
         },
         {
           isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+          label: "Agreement remained lower for high-tide photographs.",
         },
         {
           isCorrect: true,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "Part of the initial map pattern may reflect observer behaviour rather than mangrove change alone.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested a seat-availability board at the door in the quiet study zone and interpreted the evidence cautiously.",
+            "The public map will separate reports, observation intensity, and validation.",
         },
       ],
     },
@@ -68,27 +66,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Kesalahan klasifikasi membuat seluruh data relawan tidak memiliki nilai ilmiah.",
         },
         {
           isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+          label: "Daerah tanpa laporan pasti tidak memiliki bibit mangrove.",
         },
         {
           isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+          label: "Kesepakatan pada foto saat air pasang tetap lebih rendah.",
         },
         {
           isCorrect: true,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Sebagian pola pada peta awal mungkin mencerminkan perilaku pengamat, bukan hanya perubahan mangrove.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji papan ketersediaan kursi di pintu pada zona belajar tenang dan menafsirkan buktinya secara hati-hati.",
+            "Peta publik akan memisahkan laporan, intensitas pengamatan, dan validasi.",
         },
       ],
     },

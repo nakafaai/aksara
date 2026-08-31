@@ -11,21 +11,23 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Household members can reach the meeting point and state the contact during practice.",
-        },
-        {
           isCorrect: false,
           label: "The document uses the longest possible wording.",
         },
         {
           isCorrect: false,
-          label: "Only one person knows where the cards are kept.",
+          label:
+            "The plan is usable when its organizer can quickly find the cards during practice.",
         },
         {
           isCorrect: false,
-          label: "No one has tested whether alerts are accessible.",
+          label:
+            "The practice checks the route but leaves the accessibility of alerts untested.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Household members can reach the meeting point and state the contact during practice.",
         },
         {
           isCorrect: false,

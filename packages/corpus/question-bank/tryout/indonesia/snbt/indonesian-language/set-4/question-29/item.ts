@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti dugaan yang tidak perlu diperiksa pada bangunan tua yang sedang dipugar",
+            "Istilah *foreshadowing* memastikan satu kelanjutan cerita sehingga pembaca tidak lagi perlu menafsirkan akhir.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi itu menyamakan *foreshadowing* dengan benda yang berulang, bukan dengan sifat penutup cerita.",
         },
         {
           isCorrect: true,
           label:
-            "petunjuk awal dalam cerita yang menyiapkan peristiwa atau penemuan berikutnya",
+            "Definisi *foreshadowing* mengenali perangkat penceritaan yang menghubungkan benda berulang, tindakan tokoh, dan respons yang belum tuntas pada penutup.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti hasil akhir yang selalu berlaku untuk semua keadaan",
+            "Penyebutan *foreshadowing* membuat kesan pribadi pembaca cukup meskipun bertentangan dengan rincian cerita.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti rincian yang sengaja dihapus karena bertentangan dengan pendapat",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti hiasan bahasa yang tidak berhubungan dengan konteks",
+            "Definisi tersebut hanya menerangkan latar sehingga tindakan tokoh dan perubahan makna benda tidak relevan.",
         },
       ],
     },

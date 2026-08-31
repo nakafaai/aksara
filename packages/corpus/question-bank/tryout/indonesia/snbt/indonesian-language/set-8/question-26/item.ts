@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Bacaan hanya mencatat sejarah lengkap klub pembaca pemula tanpa membahas keputusan atau bukti.",
-        },
-        {
           isCorrect: true,
           label:
             "Pilihan kecil Jati mengubah makna pembatas buku kosong dalam menghadapi konflik di klub pembaca pemula.",
@@ -18,17 +13,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap klub pembaca pemula.",
+            "Benda yang berulang terutama membangun latar dan hanya sedikit berhubungan dengan konflik.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
+            "Keputusan akhir tokoh menghapus ketegangan makna yang sebelumnya dimiliki benda tersebut.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan terutama menjelaskan definisi perkembangan tokoh tanpa menghubungkannya dengan konteks.",
+            "Bacaan memakai perkembangan tokoh sebagai label deskriptif tanpa menghubungkannya dengan pilihan tokoh.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Latar menyelesaikan konflik sebelum tindakan akhir tokoh mengubah makna benda.",
         },
       ],
     },

@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "$$\\frac{149}{30}$$",
         },
         {
+          isCorrect: true,
+          label: "$$\\frac{139}{28}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\frac{154}{31}$$",
         },
@@ -20,10 +24,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{164}{33}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{139}{28}$$",
         },
       ],
     },
@@ -35,6 +35,10 @@ const item: QuestionItem = {
           label: "$$\\frac{149}{30}$$",
         },
         {
+          isCorrect: true,
+          label: "$$\\frac{139}{28}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\frac{154}{31}$$",
         },
@@ -45,10 +49,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{164}{33}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{139}{28}$$",
         },
       ],
     },
@@ -60,6 +60,10 @@ const item: QuestionItem = {
           label: "$$\\frac{149}{30}$$",
         },
         {
+          isCorrect: true,
+          label: "$$\\frac{139}{28}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\frac{154}{31}$$",
         },
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{164}{33}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{139}{28}$$",
         },
       ],
     },

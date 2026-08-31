@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Interviews mit vollständigem Kontext und kurze Aussagen von Nutzenden",
+            "Nach Einführung und Quellenangaben können Zuschauer künstlerische Entscheidungen von überlieferten Varianten unterscheiden.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Eine neue Anzeige im Foyer nennt die drei Aufnahmen, ohne zu erklären, welche Bühnenszenen aus welcher Fassung stammen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Die Gruppe wird Quellen und dramaturgische Änderungen im Programm nennen.",
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext Archiv für mündliche Geschichte: Beispielfragen mit offenen Antworten",
+            "Das gefundene schriftliche Stück wurde in den 1970er-Jahren veröffentlicht.",
         },
         {
           isCorrect: true,
-          label: "Der Wert mit Änderung, 30, lag über 22 und 24.",
+          label:
+            "Ein älteres datiertes Dokument zeigt, dass alle drei Aufnahmen dasselbe Stück ohne lokale Varianten kopierten.",
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "interviews with complete context and short comments from users",
+            "After the introduction and sources are shown, viewers can distinguish artistic choices from variations present in the recordings.",
         },
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "A new lobby display lists the three recordings without explaining which staged scenes came from each version.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "The group will identify sources and dramatic changes in the programme notes.",
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of sample open questions for interviewers: oral history archive",
+            "The written script that was found was published in the 1970s.",
         },
         {
           isCorrect: true,
-          label: "The intervention value, 30, exceeded both 22 and 24.",
+          label:
+            "An older dated document is found showing that all three recordings copied one identical script without community variation.",
         },
       ],
     },
@@ -66,26 +68,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "wawancara dengan konteks yang lengkap dan komentar singkat pengguna",
+            "Setelah pengantar dan sumber ditampilkan, penonton dapat membedakan pilihan artistik dari variasi yang memang terdapat dalam rekaman.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Panel baru di lobi mencantumkan ketiga rekaman tanpa menjelaskan adegan panggung mana yang berasal dari setiap versi.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Kelompok akan mencantumkan sumber dan perubahan dramatik dalam catatan program.",
         },
         {
           isCorrect: false,
-          label:
-            "Uji Hati-hati dalam arsip sejarah lisan: contoh pertanyaan terbuka bagi pewawancara",
+          label: "Naskah tertulis yang ditemukan diterbitkan pada 1970-an.",
         },
         {
           isCorrect: true,
-          label: "Nilai pada hari dengan perubahan, 30, melampaui 22 dan 24.",
+          label:
+            "Dokumen bertanggal lebih tua ditemukan dan menunjukkan bahwa ketiga rekaman sebenarnya menyalin satu naskah yang sama tanpa variasi komunitas.",
         },
       ],
     },

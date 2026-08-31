@@ -13,19 +13,23 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Das dritte Glied ist $12$.",
+          label: "$u_1=5$",
         },
         {
           correctCategoryOrder: 1,
-          label: "Die Summe der ersten drei Glieder ist $21$.",
+          label: "Die Differenz beträgt $6$.",
+        },
+        {
+          correctCategoryOrder: 1,
+          label: "$u_{10}=59$",
+        },
+        {
+          correctCategoryOrder: 1,
+          label: "$S_{10}=320$",
         },
         {
           correctCategoryOrder: 2,
-          label: "Das fünfte Glied ist $24$.",
-        },
-        {
-          correctCategoryOrder: 1,
-          label: "Für jedes $n\\geq1$ gilt $\\frac{u_{n+1}}{u_n}=2$.",
+          label: "$u_5=31$",
         },
       ],
     },
@@ -35,19 +39,23 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "The third term is $12$.",
+          label: "$u_1=5$",
         },
         {
           correctCategoryOrder: 1,
-          label: "The sum of the first three terms is $21$.",
+          label: "The common difference is $6$.",
+        },
+        {
+          correctCategoryOrder: 1,
+          label: "$u_{10}=59$",
+        },
+        {
+          correctCategoryOrder: 1,
+          label: "$S_{10}=320$",
         },
         {
           correctCategoryOrder: 2,
-          label: "The fifth term is $24$.",
-        },
-        {
-          correctCategoryOrder: 1,
-          label: "For every $n\\geq1$, $\\frac{u_{n+1}}{u_n}=2$.",
+          label: "$u_5=31$",
         },
       ],
     },
@@ -57,19 +65,23 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Suku ketiga adalah $12$.",
+          label: "$u_1=5$",
         },
         {
           correctCategoryOrder: 1,
-          label: "Jumlah tiga suku pertama adalah $21$.",
+          label: "Bedanya adalah $6$.",
+        },
+        {
+          correctCategoryOrder: 1,
+          label: "$u_{10}=59$",
+        },
+        {
+          correctCategoryOrder: 1,
+          label: "$S_{10}=320$",
         },
         {
           correctCategoryOrder: 2,
-          label: "Suku kelima adalah $24$.",
-        },
-        {
-          correctCategoryOrder: 1,
-          label: "Untuk setiap $n\\geq1$, berlaku $\\frac{u_{n+1}}{u_n}=2$.",
+          label: "$u_5=31$",
         },
       ],
     },

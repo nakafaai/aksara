@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team prüfte Farbetiketten für den Lichtbedarf (Dachgarten einer Schule) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 31, lag über 22 und 24.",
+            'Der erste Teil vertritt die Behauptung "Die Beschwerden über das Signal konzentrierten sich auf einen Marktgang"; der folgende nutzt "Digitale Zahlung ist nachweislich immer schneller und sollte Bargeld auf jedem Markt ersetzen" als Hauptbeleg.',
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            'Der erste Teil legt "Weil einige Nutzer Hindernisse erleben, sollte die digitale Spur trotz ihres Nutzens für andere abgeschafft werden" als endgültigen Schluss fest; der folgende nennt nur den Plan "Im nächsten Test wird das Netz verbessert und werden Einkäufe mit ähnlicher Artikelzahl verglichen".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Digitale Zahlung ist nachweislich immer schneller und sollte Bargeld auf jedem Markt ersetzen" fest.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Der folgende Teil kehrt die Argumentation um und leitet "Weil einige Nutzer Hindernisse erleben, sollte die digitale Spur trotz ihres Nutzens für andere abgeschafft werden" aus dem Beleg "Die Beschwerden über das Signal konzentrierten sich auf einen Marktgang" ab.',
         },
         {
           isCorrect: true,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vorsichtige Prüfung im Kontext Dachgarten einer Schule: Farbetiketten für den Lichtbedarf",
+            "Erste Daten führen zu einem Vorschlag; aufgeteilte Daten zeigen seine Grenzen und führen zu einer gemischten Lösung.",
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested colour labels for light requirements in the school rooftop garden and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 31, exceeded both 22 and 24.",
+            'The first part advances the claim "Signal complaints were concentrated in one market aisle", and the later part uses "Digital payment is proven always faster and should replace cash in every market" as its main support.',
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            'The first part establishes "Because some users face barriers, the digital lane should be removed despite benefiting other groups" as a final conclusion; the later part only states the plan "The next test will improve the network and compare purchases with similar item counts".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Both parts maintain the claim "Digital payment is proven always faster and should replace cash in every market" from the same perspective without adding a test.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'The later part reverses the argument by deriving "Because some users face barriers, the digital lane should be removed despite benefiting other groups" from the evidence "Signal complaints were concentrated in one market aisle".',
         },
         {
           isCorrect: true,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A cautious trial of colour labels for light requirements: school rooftop garden",
+            "Initial data prompt a policy proposal, then disaggregated data reveal its limits and lead to a mixed decision.",
         },
       ],
     },
@@ -66,26 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji label warna untuk kebutuhan cahaya pada kebun atap sekolah dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 31, melampaui 22 dan 24.",
+            'Bagian awal mengajukan klaim "Keluhan sinyal terkonsentrasi pada satu lorong di sisi pasar", lalu bagian kedua memakai "Pembayaran digital terbukti selalu lebih cepat dan harus menggantikan uang tunai di semua pasar" sebagai dukungan utama.',
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            'Bagian pertama menetapkan "Karena sebagian pengguna mengalami kendala, jalur digital sebaiknya dihapus meskipun bermanfaat bagi kelompok lain" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Uji berikutnya akan memperbaiki jaringan dan membandingkan jumlah barang yang sebanding".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Kedua bagian mempertahankan klaim "Pembayaran digital terbukti selalu lebih cepat dan harus menggantikan uang tunai di semua pasar" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Karena sebagian pengguna mengalami kendala, jalur digital sebaiknya dihapus meskipun bermanfaat bagi kelompok lain" dari bukti "Keluhan sinyal terkonsentrasi pada satu lorong di sisi pasar".',
         },
         {
           isCorrect: true,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji Hati-hati dalam kebun atap sekolah: label warna untuk kebutuhan cahaya",
+            "Data awal memunculkan usulan kebijakan, lalu pemisahan data mengungkap batas usulan dan mengarahkan keputusan campuran.",
         },
       ],
     },

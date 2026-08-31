@@ -6,24 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "klar und unmittelbar ausgedrückt",
-        },
-        {
           isCorrect: true,
-          label: "fähig, sich an veränderte Bedingungen anzupassen",
+          label:
+            "Das Feldverfahren wird bei verändertem Wetter angepasst, ohne das Hauptziel oder die zentralen Messregeln zu ändern.",
         },
         {
           isCorrect: false,
-          label: "für mehr als eine Deutung offen",
+          label:
+            "Die Methode erlaubt mehrere Durchführungswege, die denselben Ergebniskriterien unterliegen.",
         },
         {
           isCorrect: false,
-          label: "durch verlässliche Belege gestützt",
+          label:
+            "Das Verfahren wird überarbeitet, nachdem bestätigte Beschwerden eine im ersten Test übersehene Hürde zeigen.",
         },
         {
           isCorrect: false,
-          label: "dem Umfang des Problems angemessen",
+          label:
+            "Die Ausrüstung wird geprüft und verschlissene Teile werden ersetzt, bevor ein Ausfall eintritt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Daten werden nach einer geplanten Schrittfolge erhoben, die mit denselben Regeln wiederholt wird.",
         },
       ],
     },
@@ -31,24 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "stated clearly and directly",
-        },
-        {
           isCorrect: true,
-          label: "able to adjust to changing conditions",
+          label:
+            "The field procedure is adjusted when the weather changes without altering the main objective or measurement rules.",
         },
         {
           isCorrect: false,
-          label: "open to more than one interpretation",
+          label:
+            "The method allows several implementation paths that remain subject to the same outcome criteria.",
         },
         {
           isCorrect: false,
-          label: "supported by dependable evidence",
+          label:
+            "The procedure is revised after verified complaints reveal a barrier missed in the initial trial.",
         },
         {
           isCorrect: false,
-          label: "appropriate to the scale of the problem",
+          label:
+            "Equipment is inspected and worn parts are replaced before a failure occurs.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Data are collected through a planned sequence of steps repeated under the same rules.",
         },
       ],
     },
@@ -56,24 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "dinyatakan secara jelas dan langsung",
-        },
-        {
           isCorrect: true,
-          label: "mampu menyesuaikan diri dengan kondisi yang berubah",
+          label:
+            "Prosedur lapangan disesuaikan saat cuaca berubah tanpa mengubah tujuan dan aturan ukur utama.",
         },
         {
           isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
+          label:
+            "Metode menyediakan beberapa jalur pelaksanaan yang tetap tunduk pada kriteria hasil yang sama.",
         },
         {
           isCorrect: false,
-          label: "didukung oleh bukti yang dapat dipercaya",
+          label:
+            "Prosedur direvisi setelah keluhan terverifikasi menunjukkan hambatan yang tidak terdeteksi pada uji awal.",
         },
         {
           isCorrect: false,
-          label: "sepadan dengan skala masalah",
+          label:
+            "Peralatan diperiksa dan komponen aus diganti sebelum kegagalan terjadi.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
         },
       ],
     },

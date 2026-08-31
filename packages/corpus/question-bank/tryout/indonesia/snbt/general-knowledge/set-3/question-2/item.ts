@@ -6,24 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Wiederholte Messungen bleiben trotz unterschiedlicher Erfassungszeiten in einem engen Bereich.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Instrument wird geprüft, damit sein Wert tatsächlich das beabsichtigte Konstrukt abbildet.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Daten werden nach einer geplanten Schrittfolge erhoben, die mit denselben Regeln wiederholt wird.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Bewertenden verwenden ein Raster, das vor Kenntnis der Identitäten oder Endergebnisse festgelegt wurde.",
+        },
+        {
           isCorrect: true,
-          label: "genau und frei von vermeidbarer Mehrdeutigkeit",
-        },
-        {
-          isCorrect: false,
-          label: "klar und unmittelbar ausgedrückt",
-        },
-        {
-          isCorrect: false,
-          label: "für mehr als eine Deutung offen",
-        },
-        {
-          isCorrect: false,
-          label: "durch verlässliche Belege gestützt",
-        },
-        {
-          isCorrect: false,
-          label: "fähig, sich an veränderte Bedingungen anzupassen",
+          label:
+            "Einheiten, Rundungsregeln und Kategoriengrenzen werden vor Beginn der Erfassung festgelegt.",
         },
       ],
     },
@@ -31,24 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Repeated measurements remain within a narrow range even when taken at different times.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The instrument is tested to ensure that its score represents the construct it is meant to measure.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Data are collected through a planned sequence of steps repeated under the same rules.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Reviewers use a rubric set before they know participant identities or final outcomes.",
+        },
+        {
           isCorrect: true,
-          label: "exact and free from avoidable ambiguity",
-        },
-        {
-          isCorrect: false,
-          label: "stated clearly and directly",
-        },
-        {
-          isCorrect: false,
-          label: "open to more than one interpretation",
-        },
-        {
-          isCorrect: false,
-          label: "supported by dependable evidence",
-        },
-        {
-          isCorrect: false,
-          label: "able to adjust to changing conditions",
+          label:
+            "Units, rounding rules, and category boundaries are defined before recording begins.",
         },
       ],
     },
@@ -56,24 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Nilai pengukuran berulang tetap berada dalam rentang sempit meskipun waktu pengambilan berbeda.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Instrumen diuji untuk memastikan bahwa skor benar-benar mewakili konsep yang hendak diukur.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Penilai memakai rubrik yang ditetapkan sebelum mengetahui identitas peserta atau hasil akhirnya.",
+        },
+        {
           isCorrect: true,
-          label: "tepat dan tidak menimbulkan ketaksaan yang dapat dihindari",
-        },
-        {
-          isCorrect: false,
-          label: "dinyatakan secara jelas dan langsung",
-        },
-        {
-          isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
-        },
-        {
-          isCorrect: false,
-          label: "didukung oleh bukti yang dapat dipercaya",
-        },
-        {
-          isCorrect: false,
-          label: "mampu menyesuaikan diri dengan kondisi yang berubah",
+          label:
+            "Satuan, aturan pembulatan, dan batas setiap kategori ditetapkan sebelum pencatatan dimulai.",
         },
       ],
     },

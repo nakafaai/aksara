@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Istilah *representasi* membuktikan bahwa sumber yang lebih baru pasti lebih akurat daripada sumber lainnya.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi itu menyamakan *representasi* dengan kesalahan sehingga perbedaan antarsumber tidak perlu dianalisis.",
+        },
+        {
           isCorrect: true,
-          label: "cara suatu kegiatan menggambarkan dirinya kepada publik",
+          label:
+            "Definisi *representasi* memberi dasar untuk membandingkan posisi kedua sumber tanpa menganggap salah satunya sebagai catatan yang sepenuhnya netral.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti dugaan yang tidak perlu diperiksa pada pameran sains keliling",
+            "Penyebutan *representasi* mengizinkan bagian sumber yang hilang diisi dengan dugaan pembaca.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti hasil akhir yang selalu berlaku untuk semua keadaan",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti rincian yang sengaja dihapus karena bertentangan dengan pendapat",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti hiasan bahasa yang tidak berhubungan dengan konteks",
+            "Definisi tersebut hanya menamai bentuk dokumen dan tidak memengaruhi cara asal serta tujuan sumber dibandingkan.",
         },
       ],
     },

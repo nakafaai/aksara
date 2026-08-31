@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "$$-9x^2 - 30x - 20$$",
         },
         {
-          isCorrect: true,
-          label: "$$-9x^2 + 30x - 20$$",
-        },
-        {
           isCorrect: false,
           label: "$$-9x^2 + 30$$",
         },
         {
           isCorrect: false,
           label: "$$-9x^2 - 20$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$-9x^2 + 30x - 20$$",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "$$-9x^2 - 30x - 20$$",
         },
         {
-          isCorrect: true,
-          label: "$$-9x^2 + 30x - 20$$",
-        },
-        {
           isCorrect: false,
           label: "$$-9x^2 + 30$$",
         },
         {
           isCorrect: false,
           label: "$$-9x^2 - 20$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$-9x^2 + 30x - 20$$",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "$$-9x^2 - 30x - 20$$",
         },
         {
-          isCorrect: true,
-          label: "$$-9x^2 + 30x - 20$$",
-        },
-        {
           isCorrect: false,
           label: "$$-9x^2 + 30$$",
         },
         {
           isCorrect: false,
           label: "$$-9x^2 - 20$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$-9x^2 + 30x - 20$$",
         },
       ],
     },

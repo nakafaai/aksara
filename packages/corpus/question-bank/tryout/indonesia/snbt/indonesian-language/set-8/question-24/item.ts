@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti dugaan yang tidak perlu diperiksa pada balai warga",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti hasil akhir yang selalu berlaku untuk semua keadaan",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti rincian yang sengaja dihapus karena bertentangan dengan pendapat",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti hiasan bahasa yang tidak berhubungan dengan konteks",
-        },
-        {
           isCorrect: true,
           label:
-            "kebiasaan menyatakan batas pengetahuan dan tidak menutupi ketidakpastian",
+            "Definisi *integritas ilmiah* menjadi lensa untuk membaca pilihan konkret tokoh sebagai perkembangan sikap, bukan sekadar label moral yang berdiri sendiri.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Istilah *integritas ilmiah* membuktikan bahwa pilihan pertama tokoh sudah benar sebelum ia mengamati kebutuhan orang lain.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi itu membatasi *integritas ilmiah* pada perasaan tokoh sehingga tindakan dan akibat pilihannya tidak perlu diperiksa.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Penyebutan *integritas ilmiah* menjadikan perubahan tokoh selesai seketika, padahal bacaan menunjukkan perkembangan bertahap.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi tersebut hanya menamai latar kegiatan dan tidak berkaitan dengan keputusan tokoh.",
         },
       ],
     },

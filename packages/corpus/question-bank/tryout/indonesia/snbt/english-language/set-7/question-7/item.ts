@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage states that no action or observation occurred in a neighbourhood flood-warning exercise.",
+            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The comparison condition produced a mean value of 43; because it differs from the other conditions, the tested change is the only plausible explanation.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
         },
         {
           isCorrect: true,
-          label: "The comparison condition produced a mean value of 43.",
-        },
-        {
-          isCorrect: false,
           label:
-            "Everyone in a neighbourhood flood-warning exercise obtained exactly the same result without variation.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The writer removes every detail related to a neighbourhood flood-warning exercise.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage presents actionable information as proof that no follow-up is needed.",
+            "The comparison condition produced 43, the reference for the flood-alert trial, which did not reproduce the pressure of an actual emergency.",
         },
       ],
     },

@@ -7,28 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+          label: "Namen nach der Häufigkeit ihrer Suche ordnen",
+        },
+        {
+          isCorrect: false,
+          label: "alle Bezeichnungen zu einem Standardnamen zusammenführen",
+        },
+        {
+          isCorrect: false,
+          label: "das Alter eines Objekts aus der Motivform schätzen",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "anonym klassifizieren, ohne die auskunftgebende Person zu nennen",
         },
         {
           isCorrect: true,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte Volumenmarkierungen an jeder Tonne (gemeinschaftliche Regentonnen) und bewertete die Befunde vorsichtig.",
+            "die Angabe der Person oder Quelle, von der ein Name, Werk oder eine Beschreibung stammt",
         },
       ],
     },
@@ -37,28 +34,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
+          label: "ranking names by how often users search for them",
+        },
+        {
+          isCorrect: false,
+          label: "merging every term into one standard name",
+        },
+        {
+          isCorrect: false,
+          label: "estimating an object's age from the form of its motif",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "anonymous classification without recording who supplied a description",
         },
         {
           isCorrect: true,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested volume markings on each barrel in the community rainwater barrels and interpreted the evidence cautiously.",
+            "the identification of the person or source responsible for a name, work, or description",
         },
       ],
     },
@@ -67,28 +61,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+          label: "peringkat nama berdasarkan seberapa sering dicari pengguna",
         },
         {
           isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+          label: "penyatuan semua sebutan menjadi satu nama baku",
+        },
+        {
+          isCorrect: false,
+          label: "perkiraan umur objek dari bentuk motifnya",
+        },
+        {
+          isCorrect: false,
+          label: "pengelompokan anonim tanpa mencatat pemberi keterangan",
         },
         {
           isCorrect: true,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji garis ukur volume pada dinding penampung pada penampung air hujan warga dan menafsirkan buktinya secara hati-hati.",
+            "pencantuman pihak atau sumber yang bertanggung jawab atas suatu nama, karya, atau keterangan",
         },
       ],
     },

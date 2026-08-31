@@ -11,11 +11,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "kalimat ketiga memberi contoh alasan simpulan awal belum kuat",
-        },
-        {
           isCorrect: false,
           label: "kalimat ketiga menyangkal adanya perbedaan suhu",
         },
@@ -25,7 +20,13 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "keduanya menyatakan semua lokasi memiliki kondisi sama",
+          label:
+            "kedua kalimat menyimpulkan bahwa perbedaan lokasi tidak lagi memengaruhi suhu",
+        },
+        {
+          isCorrect: true,
+          label:
+            "kalimat ketiga memberi contoh alasan simpulan awal belum kuat",
         },
         {
           isCorrect: false,

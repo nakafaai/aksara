@@ -14,13 +14,13 @@ const item: QuestionItem = {
           label: "Kerja sama yang menghapus seluruh perbedaan",
         },
         {
-          isCorrect: false,
-          label: "Pemungutan suara untuk menentukan pihak yang menang",
-        },
-        {
           isCorrect: true,
           label:
             "Persetujuan yang dicapai melalui penyesuaian atau jalan damai",
+        },
+        {
+          isCorrect: false,
+          label: "Pemungutan suara untuk menentukan pihak yang menang",
         },
         {
           isCorrect: false,

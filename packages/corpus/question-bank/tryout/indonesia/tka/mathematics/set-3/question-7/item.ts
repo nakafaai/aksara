@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "21",
-        },
-        {
-          isCorrect: false,
-          label: "23",
-        },
-        {
-          isCorrect: false,
-          label: "27",
+          label: "$$1$$",
         },
         {
           isCorrect: true,
-          label: "25",
+          label: "$$4$$",
         },
         {
           isCorrect: false,
-          label: "29",
+          label: "$$2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "21",
-        },
-        {
-          isCorrect: false,
-          label: "23",
-        },
-        {
-          isCorrect: false,
-          label: "27",
+          label: "$$1$$",
         },
         {
           isCorrect: true,
-          label: "25",
+          label: "$$4$$",
         },
         {
           isCorrect: false,
-          label: "29",
+          label: "$$2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "21",
-        },
-        {
-          isCorrect: false,
-          label: "23",
-        },
-        {
-          isCorrect: false,
-          label: "27",
+          label: "$$1$$",
         },
         {
           isCorrect: true,
-          label: "25",
+          label: "$$4$$",
         },
         {
           isCorrect: false,
-          label: "29",
+          label: "$$2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
         },
       ],
     },

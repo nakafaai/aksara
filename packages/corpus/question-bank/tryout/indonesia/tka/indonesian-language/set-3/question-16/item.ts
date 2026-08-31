@@ -20,7 +20,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Ia tetap ingin menutupi semua bagian cello.",
+          label:
+            "Ia masih mengisi ruang melodi Ayu ketika merasa bagian klarinet terlalu singkat.",
         },
         {
           isCorrect: true,

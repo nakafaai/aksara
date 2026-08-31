@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Instantnudeln sollten nur gelegentlich gegessen und mit weniger Würzmischung sowie mit Gemüse und Protein ergänzt werden.",
+        },
+        {
           isCorrect: false,
           label:
             "Instantnudeln liefern bei täglichem Verzehr alle Nährstoffe, die der Körper benötigt.",
@@ -24,16 +29,16 @@ const item: QuestionItem = {
           label:
             "Gemüse hebt den Natriumgehalt der Würzmischung vollständig auf.",
         },
-        {
-          isCorrect: true,
-          label:
-            "Instantnudeln sollten nur gelegentlich gegessen und mit weniger Würzmischung sowie mit Gemüse und Protein ergänzt werden.",
-        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Instant noodles are best treated as an occasional meal, with less seasoning and added vegetables and protein.",
+        },
         {
           isCorrect: false,
           label:
@@ -54,16 +59,16 @@ const item: QuestionItem = {
           label:
             "Adding vegetables completely cancels the sodium in the seasoning.",
         },
-        {
-          isCorrect: true,
-          label:
-            "Instant noodles are best treated as an occasional meal, with less seasoning and added vegetables and protein.",
-        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Mie instan sebaiknya dikonsumsi sesekali, dengan bumbu yang dikurangi serta tambahan sayuran dan protein.",
+        },
         {
           isCorrect: false,
           label:
@@ -83,11 +88,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Menambahkan sayuran sepenuhnya meniadakan natrium dalam bumbu.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Mie instan sebaiknya dikonsumsi sesekali, dengan bumbu yang dikurangi serta tambahan sayuran dan protein.",
         },
       ],
     },

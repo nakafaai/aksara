@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "$$15$$ Minuten oder $$16$$ Minuten",
         },
         {
-          isCorrect: true,
-          label: "$$70$$ Minuten oder $$30$$ Minuten",
-        },
-        {
           isCorrect: false,
           label: "$$30$$ Minuten oder $$40$$ Minuten",
+        },
+        {
+          isCorrect: true,
+          label: "$$70$$ Minuten oder $$30$$ Minuten",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "$$15$$ minutes or $$16$$ minutes",
         },
         {
-          isCorrect: true,
-          label: "$$70$$ minutes or $$30$$ minutes",
-        },
-        {
           isCorrect: false,
           label: "$$30$$ minutes or $$40$$ minutes",
+        },
+        {
+          isCorrect: true,
+          label: "$$70$$ minutes or $$30$$ minutes",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "$$15$$ menit atau $$16$$ menit",
         },
         {
-          isCorrect: true,
-          label: "$$70$$ menit atau $$30$$ menit",
-        },
-        {
           isCorrect: false,
           label: "$$30$$ menit atau $$40$$ menit",
+        },
+        {
+          isCorrect: true,
+          label: "$$70$$ menit atau $$30$$ menit",
         },
         {
           isCorrect: false,

@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Setiap hasil dalam peredaman bunyi dalam kotak model pasti berlaku tanpa batas pada tempat lain.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang peredaman bunyi dalam kotak model tidak berguna.",
-        },
-        {
           isCorrect: true,
           label:
-            "Pola awal mendukung pengulangan yang lebih kuat, bukan klaim bahwa hasil itu selalu berlaku.",
+            "Pada kondisi yang diuji, lapisan gabus setebal dua sentimeter berkaitan dengan perubahan dari 74 dan 72 menjadi 61; karena ruang kelas tidak memiliki kondisi akustik yang sama dengan bangunan nyata, pola itu perlu diuji lagi sebelum diperluas menjadi klaim umum.",
         },
         {
           isCorrect: false,
           label:
-            "Satu rincian tentang atenuasi cukup untuk membuktikan semua hubungan sebab-akibat.",
+            "Karena kondisi perubahan menghasilkan 61, sedangkan nilai awal 74 dan pembanding 72, lapisan gabus setebal dua sentimeter telah terisolasi sebagai satu-satunya penyebab selama jarak sumber suara, volume awal, dan posisi alat ukur dibuat sama.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Pengulangan paling informatif sebaiknya mengubah jarak sumber suara, volume awal, dan posisi alat ukur bersamaan dengan lapisan gabus setebal dua sentimeter agar gabungan kondisi yang lebih realistis dapat diuji.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Keterbatasan bahwa ruang kelas tidak memiliki kondisi akustik yang sama dengan bangunan nyata memengaruhi ketelitian angka, tetapi tidak memengaruhi luas penerapan temuan tentang peredaman bunyi dalam kotak model.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengulangan dengan lebih banyak unit dapat mempersempit ketidakpastian, tetapi tidak mungkin mengubah penafsiran awal tentang peredaman bunyi dalam kotak model.",
         },
       ],
     },

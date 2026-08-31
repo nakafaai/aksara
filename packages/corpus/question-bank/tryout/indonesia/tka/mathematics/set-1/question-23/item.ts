@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{32}{13}$$",
+          label: "$$1130$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$1150$$",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{34}{13}$$",
+          label: "$$1170$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{33}{13}$$",
+          label: "$$1190$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{35}{13}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{36}{13}$$",
+          label: "$$1210$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{32}{13}$$",
+          label: "$$1130$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$1150$$",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{34}{13}$$",
+          label: "$$1170$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{33}{13}$$",
+          label: "$$1190$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{35}{13}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{36}{13}$$",
+          label: "$$1210$$",
         },
       ],
     },
@@ -62,28 +62,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\frac{32}{13}$$",
+          label: "$$1130$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$1150$$",
         },
         {
           isCorrect: true,
-          label: "$$\\frac{34}{13}$$",
+          label: "$$1170$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{33}{13}$$",
+          label: "$$1190$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{35}{13}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{36}{13}$$",
+          label: "$$1210$$",
         },
       ],
     },
   },
-  stimulusKey: "study-time-survey",
+  stimulusKey: "grade-distribution",
 };
 
 export default item;

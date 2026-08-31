@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Einige Bestimmungen sind milder als das Korruptionsgesetz und die Korruption in Indonesien wird zurückgehen.",
-        },
-        {
           isCorrect: false,
           label:
             "Niedrigere Mindestgeldstrafen würden die Rückgewinnung staatlicher Verluste erschweren.",
@@ -29,16 +24,16 @@ const item: QuestionItem = {
           label:
             "Die milderen Bestimmungen sollten die Abschreckung schwächen und Korruption begünstigen.",
         },
+        {
+          isCorrect: true,
+          label:
+            "Einige Bestimmungen sind milder als das Korruptionsgesetz und die Korruption in Indonesien wird zurückgehen.",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "Some provisions are more lenient than the Corruption Law, and corruption in Indonesia will decrease.",
-        },
         {
           isCorrect: false,
           label:
@@ -58,16 +53,16 @@ const item: QuestionItem = {
           label:
             "The lighter provisions were expected to reduce deterrence and make corruption more widespread.",
         },
+        {
+          isCorrect: true,
+          label:
+            "Some provisions are more lenient than the Corruption Law, and corruption in Indonesia will decrease.",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "Sejumlah ketentuan lebih ringan daripada UU Tipikor dan korupsi di Indonesia akan berkurang.",
-        },
         {
           isCorrect: false,
           label:
@@ -86,6 +81,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Ketentuan yang lebih ringan diperkirakan akan mengurangi efek jera dan membuat korupsi semakin marak.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Sejumlah ketentuan lebih ringan daripada UU Tipikor dan korupsi di Indonesia akan berkurang.",
         },
       ],
     },

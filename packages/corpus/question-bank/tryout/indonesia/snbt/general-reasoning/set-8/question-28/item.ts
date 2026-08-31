@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "die Bestellung versendet wird",
+          label: "$$\\frac1{56}$$",
         },
         {
           isCorrect: false,
-          label: "Nicht: die Zahlung geprüft wird.",
+          label: "$$\\frac1{72}$$",
         },
         {
           isCorrect: false,
-          label: "Nicht: eine Quittung erstellt wird.",
+          label: "$$\\frac1{63}$$",
         },
         {
           isCorrect: false,
-          label: "Nicht: die Bestellung versendet wird.",
+          label: "$$\\frac1{48}$$",
         },
         {
           isCorrect: false,
-          label: "eine Quittung erstellt wird",
+          label: "$$\\frac1{42}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "the order is dispatched",
+          label: "$$\\frac1{56}$$",
         },
         {
           isCorrect: false,
-          label: "It is not true that the payment is verified.",
+          label: "$$\\frac1{72}$$",
         },
         {
           isCorrect: false,
-          label: "It is not true that a receipt is created.",
+          label: "$$\\frac1{63}$$",
         },
         {
           isCorrect: false,
-          label: "It is not true that the order is dispatched.",
+          label: "$$\\frac1{48}$$",
         },
         {
           isCorrect: false,
-          label: "a receipt is created",
+          label: "$$\\frac1{42}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "pesanan dikirim",
+          label: "$$\\frac1{56}$$",
         },
         {
           isCorrect: false,
-          label: "Tidak benar bahwa pembayaran diverifikasi.",
+          label: "$$\\frac1{72}$$",
         },
         {
           isCorrect: false,
-          label: "Tidak benar bahwa bukti pembayaran dibuat.",
+          label: "$$\\frac1{63}$$",
         },
         {
           isCorrect: false,
-          label: "Tidak benar bahwa pesanan dikirim.",
+          label: "$$\\frac1{48}$$",
         },
         {
           isCorrect: false,
-          label: "bukti pembayaran dibuat",
+          label: "$$\\frac1{42}$$",
         },
       ],
     },

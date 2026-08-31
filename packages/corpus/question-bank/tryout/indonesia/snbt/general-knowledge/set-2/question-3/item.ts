@@ -11,11 +11,6 @@ const item: QuestionItem = {
             "Nur Schulgebäude benötigen eine Verringerung des Katastrophenrisikos, weil andere Infrastruktur bereits sicher ist.",
         },
         {
-          isCorrect: true,
-          label:
-            "Die Verringerung von Katastrophenrisiken sollte Entwicklungsinvestitionen leiten, weil sich viel kritische Infrastruktur in Gefahrenzonen befindet.",
-        },
-        {
           isCorrect: false,
           label:
             "Frühwarnsysteme können risikobewusste Planung und die Durchsetzung von Vorschriften bei Bauvorhaben ersetzen.",
@@ -30,6 +25,11 @@ const item: QuestionItem = {
           label:
             "Die Verstärkung von Gebäuden reicht auch ohne Vorschriften, Aufsicht oder Katastrophenschutzübungen aus.",
         },
+        {
+          isCorrect: true,
+          label:
+            "Die Verringerung von Katastrophenrisiken sollte Entwicklungsinvestitionen leiten, weil sich viel kritische Infrastruktur in Gefahrenzonen befindet.",
+        },
       ],
     },
     en: {
@@ -39,11 +39,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Only school buildings need disaster-risk reduction because other infrastructure is already safe.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Disaster-risk reduction should guide development investment because much critical infrastructure lies in hazard zones.",
         },
         {
           isCorrect: false,
@@ -60,6 +55,11 @@ const item: QuestionItem = {
           label:
             "Reinforcing buildings is sufficient even without regulation, oversight, or preparedness drills.",
         },
+        {
+          isCorrect: true,
+          label:
+            "Disaster-risk reduction should guide development investment because much critical infrastructure lies in hazard zones.",
+        },
       ],
     },
     id: {
@@ -69,11 +69,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Hanya bangunan sekolah yang memerlukan pengurangan risiko bencana karena infrastruktur lain sudah aman.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Pengurangan risiko bencana harus menjadi acuan investasi pembangunan karena banyak infrastruktur penting berada di zona bahaya.",
         },
         {
           isCorrect: false,
@@ -89,6 +84,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Penguatan bangunan sudah cukup meskipun tanpa regulasi, pengawasan, atau latihan kesiapsiagaan.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Pengurangan risiko bencana harus menjadi acuan investasi pembangunan karena banyak infrastruktur penting berada di zona bahaya.",
         },
       ],
     },

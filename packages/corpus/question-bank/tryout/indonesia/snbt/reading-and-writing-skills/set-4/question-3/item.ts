@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Die Beobachtung bewies daher, dass die Änderung Fotobeschriftungen an den Rückgaberegalen den Unterschied verursachte.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team musste daher mehrere Merkmale im Kontext Sportgeräteausleihe ändern, bevor es erneut maß.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das erste Muster rechtfertigte daher die dauerhafte Einführung von Fotobeschriftungen an den Rückgaberegalen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die verbleibende Unsicherheit machte einen weiteren Vergleich daher überflüssig.",
+        },
+        {
           isCorrect: true,
           label:
             "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Fotoetiketten an den Rückgaberegalen.",
-        },
-        {
-          isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Ausleihe von Sportgeräten",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Ausleihe von Sportgeräten über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Fotoetiketten an den Rückgaberegalen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Fotoetiketten an den Rückgaberegalen.",
         },
       ],
     },
@@ -35,28 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "The observation therefore established that photo labels on the return shelves caused the difference.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team therefore needed to alter several features of sports equipment lending before measuring again.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The initial pattern therefore justified permanent adoption of photo labels on the return shelves.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The remaining uncertainty therefore made another comparison unnecessary.",
+        },
+        {
           isCorrect: true,
           label:
             "The hypothesis therefore needed a limited test of photo labels on the return shelves.",
-        },
-        {
-          isCorrect: false,
-          label: "A structured test of one change: sports equipment lending",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (sports equipment lending), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, photo labels on the return shelves, directly addressed the observed uncertainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The next test of photo labels on the return shelves will run for longer.",
         },
       ],
     },
@@ -64,27 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Pengamatan itu membuktikan bahwa label foto pada rak pengembalian menyebabkan perbedaan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim perlu mengubah beberapa unsur peminjaman alat olahraga sebelum melakukan pengukuran ulang.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pola awal itu membenarkan penerapan tetap label foto pada rak pengembalian.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Ketidakpastian yang tersisa membuat perbandingan lanjutan tidak diperlukan.",
+        },
+        {
           isCorrect: true,
           label:
             "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui label foto.",
-        },
-        {
-          isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: peminjaman alat olahraga",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Di peminjaman alat olahraga, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa label foto langsung menanggapi keraguan yang diamati.",
-        },
-        {
-          isCorrect: false,
-          label: "Uji label foto berikutnya akan berlangsung lebih lama.",
         },
       ],
     },

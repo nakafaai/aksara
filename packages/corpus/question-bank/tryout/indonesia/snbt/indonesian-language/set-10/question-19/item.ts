@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti dugaan yang tidak perlu diperiksa pada peta penerangan jalan kampung",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti hasil akhir yang selalu berlaku untuk semua keadaan",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti rincian yang sengaja dihapus karena bertentangan dengan pendapat",
-        },
-        {
           isCorrect: true,
           label:
-            "pandangan yang dipengaruhi posisi dan pengalaman pembuat sumber",
+            "Definisi *perspektif* memberi dasar untuk membandingkan posisi kedua sumber tanpa menganggap salah satunya sebagai catatan yang sepenuhnya netral.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti hiasan bahasa yang tidak berhubungan dengan konteks",
+            "Istilah *perspektif* membuktikan bahwa sumber yang lebih baru pasti lebih akurat daripada sumber lainnya.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi itu menyamakan *perspektif* dengan kesalahan sehingga perbedaan antarsumber tidak perlu dianalisis.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Penyebutan *perspektif* mengizinkan bagian sumber yang hilang diisi dengan dugaan pembaca.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi tersebut hanya menamai bentuk dokumen dan tidak memengaruhi cara asal serta tujuan sumber dibandingkan.",
         },
       ],
     },

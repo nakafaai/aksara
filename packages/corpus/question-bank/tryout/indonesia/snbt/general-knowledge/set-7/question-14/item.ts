@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            'Der erste Teil vertritt die Behauptung "Das gefundene schriftliche Stück wurde in den 1970er-Jahren veröffentlicht"; der folgende nutzt "Jede Änderung einer Bearbeitung schadet zwangsläufig der Tradition" als Hauptbeleg.',
         },
         {
           isCorrect: true,
           label:
-            "Interviews mit vollständigem Kontext und kurze Aussagen von Nutzenden",
+            "Die Quellenvielfalt erzeugt ein Authentizitätsproblem; Inszenierung und Programmheft bilden eine am Publikum prüfbare Antwort.",
         },
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            'Der erste Teil legt "Weil die Fassungen verschieden sind, muss die Gruppe weder Quellen noch Änderungen erklären" als endgültigen Schluss fest; der folgende nennt nur den Plan "Die Gruppe wird Quellen und dramaturgische Änderungen im Programm nennen".',
         },
         {
           isCorrect: false,
           label:
-            "Das Team prüfte Beispielfragen mit offenen Antworten (Archiv für mündliche Geschichte) und bewertete die Befunde vorsichtig.",
+            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Jede Änderung einer Bearbeitung schadet zwangsläufig der Tradition" fest.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Der folgende Teil kehrt die Argumentation um und leitet "Weil die Fassungen verschieden sind, muss die Gruppe weder Quellen noch Änderungen erklären" aus dem Beleg "Das gefundene schriftliche Stück wurde in den 1970er-Jahren veröffentlicht" ab.',
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
+            'The first part advances the claim "The written script that was found was published in the 1970s", and the later part uses "Every change in an adaptation necessarily damages tradition" as its main support.',
         },
         {
           isCorrect: true,
           label:
-            "interviews with complete context and short comments from users",
+            "Source diversity creates a problem of authenticity, and staging plus programme notes provide a response that can be tested with audiences.",
         },
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            'The first part establishes "Because versions differ, the group need not explain any source or change" as a final conclusion; the later part only states the plan "The group will identify sources and dramatic changes in the programme notes".',
         },
         {
           isCorrect: false,
           label:
-            "The team tested sample open questions for interviewers in the oral history archive and interpreted the evidence cautiously.",
+            'Both parts maintain the claim "Every change in an adaptation necessarily damages tradition" from the same perspective without adding a test.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'The later part reverses the argument by deriving "Because versions differ, the group need not explain any source or change" from the evidence "The written script that was found was published in the 1970s".',
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            'Bagian awal mengajukan klaim "Naskah tertulis yang ditemukan diterbitkan pada 1970-an", lalu bagian kedua memakai "Setiap perubahan dalam adaptasi pasti merusak tradisi" sebagai dukungan utama.',
         },
         {
           isCorrect: true,
           label:
-            "wawancara dengan konteks yang lengkap dan komentar singkat pengguna",
+            "Keragaman sumber menimbulkan masalah keaslian, lalu rancangan panggung dan catatan program menjadi jawaban yang dapat diuji penonton.",
         },
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            'Bagian pertama menetapkan "Karena versi berbeda, kelompok tidak perlu menjelaskan sumber atau perubahan apa pun" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Kelompok akan mencantumkan sumber dan perubahan dramatik dalam catatan program".',
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji contoh pertanyaan terbuka bagi pewawancara pada arsip sejarah lisan dan menafsirkan buktinya secara hati-hati.",
+            'Kedua bagian mempertahankan klaim "Setiap perubahan dalam adaptasi pasti merusak tradisi" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Karena versi berbeda, kelompok tidak perlu menjelaskan sumber atau perubahan apa pun" dari bukti "Naskah tertulis yang ditemukan diterbitkan pada 1970-an".',
         },
       ],
     },

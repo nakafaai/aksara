@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "$$3{,}0$$ Millionen Tonnen",
         },
         {
-          isCorrect: false,
-          label: "Kann nicht bestimmt werden",
-        },
-        {
           isCorrect: true,
           label: "$$1{,}8$$ Millionen Tonnen",
+        },
+        {
+          isCorrect: false,
+          label: "Kann nicht bestimmt werden",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "$$3.0$$ million tons",
         },
         {
-          isCorrect: false,
-          label: "Cannot be determined",
-        },
-        {
           isCorrect: true,
           label: "$$1.8$$ million tons",
+        },
+        {
+          isCorrect: false,
+          label: "Cannot be determined",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "$$3{,}0$$ juta ton",
         },
         {
-          isCorrect: false,
-          label: "Tidak dapat ditentukan",
-        },
-        {
           isCorrect: true,
           label: "$$1{,}8$$ juta ton",
+        },
+        {
+          isCorrect: false,
+          label: "Tidak dapat ditentukan",
         },
       ],
     },

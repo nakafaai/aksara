@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Woche 2 zu Woche 3",
-        },
-        {
-          isCorrect: false,
-          label: "Woche 3 zu Woche 4",
-        },
-        {
-          isCorrect: false,
-          label: "Woche 1 zu Woche 3",
+          label: "$$A$$",
         },
         {
           isCorrect: true,
-          label: "Woche 1 zu Woche 2",
+          label: "$$B$$",
         },
         {
           isCorrect: false,
-          label: "Woche 2 zu Woche 4",
+          label: "$$C$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$A\\mathbin{/}C$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$B\\mathbin{/}C$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Week 2 to Week 3",
-        },
-        {
-          isCorrect: false,
-          label: "Week 3 to Week 4",
-        },
-        {
-          isCorrect: false,
-          label: "Week 1 to Week 3",
+          label: "$$A$$",
         },
         {
           isCorrect: true,
-          label: "Week 1 to Week 2",
+          label: "$$B$$",
         },
         {
           isCorrect: false,
-          label: "Week 2 to Week 4",
+          label: "$$C$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$A\\mathbin{/}C$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$B\\mathbin{/}C$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Minggu 2 ke Minggu 3",
-        },
-        {
-          isCorrect: false,
-          label: "Minggu 3 ke Minggu 4",
-        },
-        {
-          isCorrect: false,
-          label: "Minggu 1 ke Minggu 3",
+          label: "$$A$$",
         },
         {
           isCorrect: true,
-          label: "Minggu 1 ke Minggu 2",
+          label: "$$B$$",
         },
         {
           isCorrect: false,
-          label: "Minggu 2 ke Minggu 4",
+          label: "$$C$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$A\\mathbin{/}C$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$B\\mathbin{/}C$$",
         },
       ],
     },

@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Tari menghadapi hambatan dalam menjadi relawan pada hari pembukaan taman bermain dan menunggu seluruh proyek selesai sebelum meminta satu pun peninjauan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tari menghadapi hambatan dalam menjadi relawan pada hari pembukaan taman bermain dan menyerahkan langkah berikutnya kepada tokoh lain agar masalah segera berakhir.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tari menghadapi hambatan dalam menjadi relawan pada hari pembukaan taman bermain dan memahami empati sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tari menghadapi hambatan dalam menjadi relawan pada hari pembukaan taman bermain dan menempatkan pencatatan ketidakpastian di atas tindakan kecil yang dapat diperiksa.",
+        },
+        {
           isCorrect: true,
           label:
             "Tari menghadapi hambatan dalam menjadi relawan pada hari pembukaan taman bermain dan belajar melalui tindakan kecil yang bertanggung jawab.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan hanya mencatat sejarah lengkap taman bermain inklusif tanpa membahas keputusan atau bukti.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap taman bermain inklusif.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan terutama menjelaskan definisi empati tanpa menghubungkannya dengan konteks.",
         },
       ],
     },

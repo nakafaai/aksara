@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$3\\frac{1}{2} \\text{ Meter}$$",
         },
         {
+          isCorrect: true,
+          label: "$$2\\frac{1}{2} \\text{ Meter}$$",
+        },
+        {
           isCorrect: false,
           label: "$$4\\frac{1}{2} \\text{ Meter}$$",
         },
         {
           isCorrect: false,
           label: "$$2\\frac{1}{3} \\text{ Meter}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$2\\frac{1}{2} \\text{ Meter}$$",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "$$3\\frac{1}{2} \\text{ Meters}$$",
         },
         {
+          isCorrect: true,
+          label: "$$2\\frac{1}{2} \\text{ Meters}$$",
+        },
+        {
           isCorrect: false,
           label: "$$4\\frac{1}{2} \\text{ Meters}$$",
         },
         {
           isCorrect: false,
           label: "$$2\\frac{1}{3} \\text{ Meters}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$2\\frac{1}{2} \\text{ Meters}$$",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "$$3\\frac{1}{2} \\text{ Meter}$$",
         },
         {
+          isCorrect: true,
+          label: "$$2\\frac{1}{2} \\text{ Meter}$$",
+        },
+        {
           isCorrect: false,
           label: "$$4\\frac{1}{2} \\text{ Meter}$$",
         },
         {
           isCorrect: false,
           label: "$$2\\frac{1}{3} \\text{ Meter}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$2\\frac{1}{2} \\text{ Meter}$$",
         },
         {
           isCorrect: false,

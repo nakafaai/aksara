@@ -6,25 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Aus diesem Grund",
+        },
+        {
+          isCorrect: false,
+          label: "Sogar",
+        },
+        {
           isCorrect: true,
-          label: "Deshalb",
+          label: "Währenddessen",
         },
         {
           isCorrect: false,
-          label: "Außerdem",
+          label: "Umgekehrt",
         },
         {
           isCorrect: false,
-          label: "Inzwischen",
-        },
-        {
-          isCorrect: false,
-          label: "Dagegen",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Geordnete Prüfung einer Änderung: Ausstellung von Schülerarbeiten",
+          label: "Anschließend",
         },
       ],
     },
@@ -32,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "For that reason",
+        },
+        {
+          isCorrect: false,
+          label: "Indeed",
+        },
+        {
           isCorrect: true,
-          label: "Therefore",
-        },
-        {
-          isCorrect: false,
-          label: "Moreover",
-        },
-        {
-          isCorrect: false,
           label: "Meanwhile",
         },
         {
           isCorrect: false,
-          label: "However",
+          label: "Conversely",
         },
         {
           isCorrect: false,
-          label: "A structured test of one change: student work exhibition",
+          label: "Afterwards",
         },
       ],
     },
@@ -57,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Oleh sebab itu",
+        },
+        {
+          isCorrect: false,
+          label: "Bahkan",
+        },
+        {
           isCorrect: true,
-          label: "Oleh karena itu",
-        },
-        {
-          isCorrect: false,
-          label: "Selain itu",
-        },
-        {
-          isCorrect: false,
           label: "Sementara itu",
         },
         {
           isCorrect: false,
-          label: "Namun",
+          label: "Sebaliknya",
         },
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: pameran karya siswa",
+          label: "Sesudahnya",
         },
       ],
     },

@@ -12,7 +12,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Every vendor removes all covers while rain is falling.",
+          label:
+            "Vendors uncover displays after rain so damp air can move across them.",
         },
         {
           isCorrect: true,
@@ -25,7 +26,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "No one records when the floor was checked.",
+          label:
+            "Staff replace bridges by visual judgment without recording the time of inspection.",
         },
         {
           isCorrect: false,

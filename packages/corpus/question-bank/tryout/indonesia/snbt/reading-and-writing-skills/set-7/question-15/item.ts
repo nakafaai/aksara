@@ -11,11 +11,6 @@ const item: QuestionItem = {
             "Die Zahlen stiegen. Deshalb blieb die Schlussfolgerung zu Schirmverleih am Bahnhof begrenzt.",
         },
         {
-          isCorrect: true,
-          label:
-            "Die Zahlen stiegen. Dennoch blieb die Schlussfolgerung für diesen Kontext begrenzt: Schirmverleih am Bahnhof.",
-        },
-        {
           isCorrect: false,
           label:
             "Die Zahlen stiegen. Außerdem blieb die Schlussfolgerung zu Schirmverleih am Bahnhof begrenzt.",
@@ -24,6 +19,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Die Zahlen stiegen. Zuvor blieb die Schlussfolgerung zu Schirmverleih am Bahnhof begrenzt.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Die Zahlen stiegen. Dennoch blieb die Schlussfolgerung für diesen Kontext begrenzt: Schirmverleih am Bahnhof.",
         },
         {
           isCorrect: false,
@@ -41,11 +41,6 @@ const item: QuestionItem = {
             "The figures increased. Therefore, the conclusion about the station umbrella lending remained limited.",
         },
         {
-          isCorrect: true,
-          label:
-            "The figures increased. Nevertheless, the conclusion for this setting (station umbrella lending) remained limited.",
-        },
-        {
           isCorrect: false,
           label:
             "The figures increased. Moreover, the conclusion about the station umbrella lending remained limited.",
@@ -54,6 +49,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "The figures increased. Previously, the conclusion about the station umbrella lending remained limited.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "The figures increased. Nevertheless, the conclusion for this setting (station umbrella lending) remained limited.",
         },
         {
           isCorrect: false,
@@ -71,11 +71,6 @@ const item: QuestionItem = {
             "Angka meningkat. Oleh karena itu, simpulan tentang peminjaman payung stasiun tetap dibatasi.",
         },
         {
-          isCorrect: true,
-          label:
-            "Angka meningkat. Namun, simpulan tentang peminjaman payung stasiun tetap dibatasi.",
-        },
-        {
           isCorrect: false,
           label:
             "Angka meningkat. Selain itu, simpulan tentang peminjaman payung stasiun tetap dibatasi.",
@@ -84,6 +79,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Angka meningkat. Sebelumnya, simpulan tentang peminjaman payung stasiun tetap dibatasi.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Angka meningkat. Namun, simpulan tentang peminjaman payung stasiun tetap dibatasi.",
         },
         {
           isCorrect: false,

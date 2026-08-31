@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Ein einheitliches Aussehen kann historisch unehrlich sein, wenn das Gebäude nachweislich stets verändert wurde.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Jedes alte Material muss erhalten bleiben, selbst wenn es Besucher gefährdet.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Das Gebäude kann nur authentisch sein, wenn jede Fläche eine einzige alte Farbe erhält.",
+        },
+        {
+          isCorrect: false,
+          label: "Die älteste Farbe wurde nur in wenigen Räumen gefunden.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte Karten zur Erfassung jeder Bewässerungszeit (Saatgutversuch im Unterricht) und bewertete die Befunde vorsichtig.",
+            "Jedes neue Teil wird dokumentiert, damit Veränderungen erkennbar bleiben.",
         },
       ],
     },
@@ -38,27 +37,25 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "A uniform appearance can reduce historical honesty when evidence shows that the building has always changed.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "Every old material must be retained even when it endangers visitors.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "The building can be authentic only if every surface is returned to one old colour.",
         },
         {
           isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+          label: "The oldest paint was found in only a few rooms.",
         },
         {
           isCorrect: false,
-          label:
-            "The team tested cards recording each watering time in the classroom seed trial and interpreted the evidence cautiously.",
+          label: "Every new part will be recorded so changes remain legible.",
         },
       ],
     },
@@ -68,27 +65,26 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Tampilan seragam dapat mengurangi kejujuran sejarah jika bukti menunjukkan bangunan selalu berubah.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Semua bahan lama harus dipertahankan meskipun membahayakan pengunjung.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Bangunan hanya dapat disebut autentik jika seluruh permukaannya dikembalikan ke satu warna lama.",
+        },
+        {
+          isCorrect: false,
+          label: "Cat tertua hanya ditemukan di beberapa ruang.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji kartu pencatatan waktu penyiraman pada percobaan benih kelas dan menafsirkan buktinya secara hati-hati.",
+            "Setiap bagian baru akan dicatat agar perubahan tetap terbaca.",
         },
       ],
     },

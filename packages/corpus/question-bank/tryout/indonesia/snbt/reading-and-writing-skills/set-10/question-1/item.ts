@@ -6,28 +6,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: nach Rezeptschritten geordnete Zutaten.",
-        },
-        {
           isCorrect: true,
           label: "Geordnete Prüfung einer Änderung: Kochkurs für Jugendliche",
         },
         {
           isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Kochkurs für Jugendliche über den beiden anderen Werten.",
+            "Erste Belege zu nach Rezeptschritten gruppierte Zutaten im Kontext „Kochkurs für Jugendliche“",
         },
         {
           isCorrect: false,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: nach Rezeptschritten geordnete Zutaten.",
+            "Prüfung mehrerer gleichzeitiger Änderungen im Kontext „Kochkurs für Jugendliche“",
         },
         {
           isCorrect: false,
           label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: nach Rezeptschritten geordnete Zutaten.",
+            "Rückmeldungen zur dauerhaften Neugestaltung des Kontexts „Kochkurs für Jugendliche“",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Vollständige Bewertung des Kontexts „Kochkurs für Jugendliche“",
         },
       ],
     },
@@ -35,28 +35,26 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "The hypothesis therefore needed a limited test of ingredients grouped by recipe stage.",
-        },
-        {
           isCorrect: true,
           label: "A structured test of one change: teen cooking class",
         },
         {
           isCorrect: false,
           label:
-            "In this setting (teen cooking class), the trial value exceeded both other values.",
+            "Early evidence about ingredients grouped by recipe stage in the context of teen cooking class",
         },
         {
           isCorrect: false,
           label:
-            "The change, ingredients grouped by recipe stage, directly addressed the observed uncertainty.",
+            "Testing several simultaneous changes in the context of teen cooking class",
         },
         {
           isCorrect: false,
-          label:
-            "The next test of ingredients grouped by recipe stage will run for longer.",
+          label: "User reactions to a permanent redesign of teen cooking class",
+        },
+        {
+          isCorrect: false,
+          label: "A complete evaluation of teen cooking class",
         },
       ],
     },
@@ -64,28 +62,27 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui bahan yang dikelompokkan menurut tahap resep.",
-        },
-        {
           isCorrect: true,
           label: "Uji Teratur atas Satu Perubahan: kelas memasak remaja",
         },
         {
           isCorrect: false,
           label:
-            "Di kelas memasak remaja, nilai hari uji melampaui dua nilai lainnya.",
+            "Bukti awal tentang bahan yang dikelompokkan menurut tahap resep dalam konteks kelas memasak remaja",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa bahan yang dikelompokkan menurut tahap resep langsung menanggapi keraguan yang diamati.",
+            "Pengujian beberapa perubahan serentak dalam konteks kelas memasak remaja",
         },
         {
           isCorrect: false,
           label:
-            "Uji bahan yang dikelompokkan menurut tahap resep berikutnya akan berlangsung lebih lama.",
+            "Tanggapan pengguna terhadap perancangan ulang tetap pada kelas memasak remaja",
+        },
+        {
+          isCorrect: false,
+          label: "Evaluasi menyeluruh terhadap kelas memasak remaja",
         },
       ],
     },

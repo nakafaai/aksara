@@ -2,22 +2,35 @@ export const metadata = {
   title: "Question 19",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
+  dateModified: "2026-08-31",
 };
 
-A rectangular prism measures <InlineMath math="6\times 5\times 4" /> cm.
+A cuboid has length <InlineMath math="6" /> cm, width <InlineMath math="4" /> cm, and height <InlineMath math="4" /> cm. Points A, B, and C are the vertices marked in the diagram.
 
 <LineEquation
-  title="Rectangular prism"
-  description="Three-dimensional view of the edges."
-  cameraPosition={[8, 7, 10]}
+  title="Triangle in a cuboid"
+  description="An exact cuboid with twelve straight edges and triangle ABC."
+  cameraPosition={[10, 8, 11]}
   data={[
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 0, z: 0 }, { x: 6, y: 5, z: 0 }, { x: 0, y: 5, z: 0 }, { x: 0, y: 0, z: 0 }], color: "#7c3aed", showPoints: false },
-    { points: [{ x: 0, y: 0, z: 4 }, { x: 6, y: 0, z: 4 }, { x: 6, y: 5, z: 4 }, { x: 0, y: 5, z: 4 }, { x: 0, y: 0, z: 4 }], color: "#ea580c", showPoints: false },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }], color: "#64748b", showPoints: false },
-    { points: [{ x: 6, y: 0, z: 0 }, { x: 6, y: 0, z: 4 }], color: "#64748b", showPoints: false },
-    { points: [{ x: 6, y: 5, z: 0 }, { x: 6, y: 5, z: 4 }], color: "#64748b", showPoints: false },
-    { points: [{ x: 0, y: 5, z: 0 }, { x: 0, y: 5, z: 4 }], color: "#64748b", showPoints: false }
+    { kind: "cuboid", length: 6, width: 4, height: 4, color: "#64748b", lineWidth: 2 },
+    {
+      points: [
+        { x: -3, y: -2, z: -2 },
+        { x: 3, y: -2, z: 2 },
+        { x: -3, y: 2, z: 2 },
+        { x: -3, y: -2, z: -2 },
+      ],
+      color: "#7c3aed",
+      lineWidth: 3,
+      showPoints: true,
+      smooth: false,
+      labels: [
+        { at: 0, text: "A", offset: [-0.35, -0.35, -0.35] },
+        { at: 1, text: "B", offset: [0.35, -0.35, 0.35] },
+        { at: 2, text: "C", offset: [-0.35, 0.35, 0.35] },
+      ],
+    },
   ]}
 />
 
-What is its volume?
+What is the area of triangle ABC?

@@ -7,16 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Absolute certainty about a youth event-planning group",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Why all evidence in a youth event-planning group should be ignored",
-        },
-        {
-          isCorrect: false,
-          label: "The complete world history of fixed cost",
+          label: "fixed cost as the main measure in a service trial",
         },
         {
           isCorrect: true,
@@ -24,7 +15,15 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "One rule for every a youth event-planning group",
+          label: "From a short comparison to a permanent service change",
+        },
+        {
+          isCorrect: false,
+          label: "Consultation without comparable outcome measures",
+        },
+        {
+          isCorrect: false,
+          label: "A local service trial with no follow-up decision",
         },
       ],
     },

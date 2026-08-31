@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage states that no action or observation occurred in the school media room.",
+            "Leah reduced the plan to one interview and wrote down what evidence was still missing; the choice resolves the whole conflict at once and makes any later review unnecessary.",
         },
         {
           isCorrect: true,
           label:
-            "Leah reduced the plan to one interview and wrote down what evidence was still missing.",
+            "By narrowing the plan to one interview and recording the missing evidence, Leah replaces avoidance with a bounded action whose result can be reviewed.",
         },
         {
           isCorrect: false,
           label:
-            "Everyone in the school media room obtained exactly the same result without variation.",
+            "Leah reduced the plan to one interview and wrote down what evidence was still missing; the action transfers responsibility for the unresolved task to another character.",
         },
         {
           isCorrect: false,
           label:
-            "The writer removes every detail related to the school media room.",
+            "Leah reduced the plan to one interview and wrote down what evidence was still missing; the decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
         },
         {
           isCorrect: false,
           label:
-            "The passage presents self-efficacy as proof that no follow-up is needed.",
+            "Leah reduced the plan to one interview and wrote down what evidence was still missing; the setting alone produces the change, so the character's decision has no role in the development.",
         },
       ],
     },

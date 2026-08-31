@@ -8,26 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team prüfte kurze Codes auf Augenhöhe (Audioführung im Museum) und bewertete die Befunde vorsichtig.",
+            "Stichproben finden bei vielen leeren Suchen relevante Dokumente, besonders in Handschriften mit alter Schreibweise.",
         },
         {
           isCorrect: false,
-          label: "Der Wert mit Änderung, 31, lag über 21 und 23.",
+          label:
+            "Eine Stichprobe mit manuell erweiterten Suchbegriffen findet mehr relevante Handschriften, lässt aber weiterhin Einträge mit alter Schreibweise aus.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team wird Leistungsunterschiede nach Schriftart und Zeitraum prüfen.",
         },
         {
           isCorrect: true,
           label:
-            "Vorsichtige Prüfung im Kontext Audioführung im Museum: kurze Codes auf Augenhöhe",
+            "Eine Vollprüfung zeigt identische Genauigkeit und Auffindbarkeit für alle Schriftarten, Schreibweisen, Zeiträume und Popularitätsstufen.",
         },
         {
           isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+          label: "Nutzerkorrekturen betrafen häufiger beliebte Sammlungen.",
         },
       ],
     },
@@ -37,26 +37,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested short codes printed at eye level in the museum audio guide and interpreted the evidence cautiously.",
+            "Sample review finds relevant documents in many zero-result cases, especially handwritten notes with historical spelling.",
         },
         {
           isCorrect: false,
-          label: "The intervention value, 31, exceeded both 21 and 23.",
+          label:
+            "A sample using manually expanded search terms finds more relevant manuscripts but still misses records written with older spelling.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team will audit performance differences by writing type and period.",
         },
         {
           isCorrect: true,
           label:
-            "A cautious trial of short codes printed at eye level: museum audio guide",
+            "A complete audit shows identical accuracy and retrieval rates across every writing type, spelling, period, and level of collection popularity.",
         },
         {
           isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+          label: "User corrections were more frequent for popular collections.",
         },
       ],
     },
@@ -66,26 +66,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji kode singkat yang dicetak setinggi mata pada panduan audio museum dan menafsirkan buktinya secara hati-hati.",
+            "Pemeriksaan sampel menemukan dokumen relevan pada banyak hasil nol, terutama dalam catatan tangan dengan ejaan lama.",
         },
         {
           isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 31, melampaui 21 dan 23.",
+          label:
+            "Sampel dengan kata pencarian yang diperluas secara manual menemukan lebih banyak naskah relevan, tetapi masih melewatkan catatan dengan ejaan lama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim akan mengaudit perbedaan kinerja menurut jenis tulisan dan periode.",
         },
         {
           isCorrect: true,
           label:
-            "Uji Hati-hati dalam panduan audio museum: kode singkat yang dicetak setinggi mata",
+            "Audit menyeluruh menunjukkan akurasi dan peluang ditemukan identik untuk semua jenis tulisan, ejaan, periode, dan tingkat popularitas koleksi.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Koreksi pengguna lebih sering diberikan pada koleksi populer.",
         },
       ],
     },

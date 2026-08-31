@@ -6,28 +6,27 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "vollständig abgespielte Aufnahmen und kurze Aussagen von Nutzenden",
-        },
-        {
           isCorrect: true,
-          label: "Der Wert mit Änderung, 31, lag über 21 und 23.",
+          label:
+            "ein Findmittel zum Auffinden von Quellen und kein Ersatz für die Quellen selbst",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "eine endgültige Abschrift als Ersatz für das Originaldokument",
+        },
+        {
+          isCorrect: false,
+          label: "eine Rangfolge mit garantiert relevantestem erstem Treffer",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "ein Ersatz für das Originalbild bei maschinell unlesbarem Text",
         },
         {
           isCorrect: false,
-          label:
-            "Vorsichtige Prüfung im Kontext Audioführung im Museum: kurze Codes auf Augenhöhe",
+          label: "ein Beweis, dass eine nicht gefundene Quelle nicht existiert",
         },
       ],
     },
@@ -35,28 +34,27 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "recordings played to completion and short comments from users",
-        },
-        {
           isCorrect: true,
-          label: "The intervention value, 31, exceeded both 21 and 23.",
+          label:
+            "a finding aid used to locate sources rather than a substitute for the sources themselves",
+        },
+        {
+          isCorrect: false,
+          label: "a final transcript that replaces the original document",
         },
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "a ranking that guarantees the first result is always most relevant",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "a substitute for the original image when text is machine-unreadable",
         },
         {
           isCorrect: false,
-          label:
-            "A cautious trial of short codes printed at eye level: museum audio guide",
+          label: "proof that a source absent from results does not exist",
         },
       ],
     },
@@ -64,28 +62,26 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "rekaman yang dibuka sampai selesai dan komentar singkat pengguna",
-        },
-        {
           isCorrect: true,
-          label: "Nilai pada hari dengan perubahan, 31, melampaui 21 dan 23.",
+          label:
+            "sarana penunjuk untuk menemukan sumber, bukan pengganti sumber itu sendiri",
+        },
+        {
+          isCorrect: false,
+          label: "salinan final yang menggantikan dokumen asli",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "peringkat hasil yang menjamin dokumen pertama selalu paling relevan",
         },
         {
           isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+          label: "pengganti gambar asli ketika teks tidak dapat dibaca mesin",
         },
         {
           isCorrect: false,
-          label:
-            "Uji Hati-hati dalam panduan audio museum: kode singkat yang dicetak setinggi mata",
+          label: "bukti bahwa sumber yang tidak muncul benar-benar tidak ada",
         },
       ],
     },

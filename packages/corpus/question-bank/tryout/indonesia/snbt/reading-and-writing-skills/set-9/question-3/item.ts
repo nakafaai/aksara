@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Geordnete Prüfung einer Änderung: Verteilung von Mangrovensetzlingen",
+            "Die Beobachtung bewies daher, dass die Änderung Pflanzortetiketten auf jedem Tablett den Unterschied verursachte.",
         },
         {
           isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Verteilung von Mangrovensetzlingen über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Pflanzortetiketten auf jedem Tablett.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Pflanzortetiketten auf jedem Tablett.",
+            "Das Team musste daher mehrere Merkmale im Kontext Verteilung von Mangrovensetzlingen ändern, bevor es erneut maß.",
         },
         {
           isCorrect: true,
           label:
             "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Pflanzortetiketten auf jedem Tablett.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das erste Muster rechtfertigte daher die dauerhafte Einführung von Pflanzortetiketten auf jedem Tablett.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die verbleibende Unsicherheit machte einen weiteren Vergleich daher überflüssig.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "A structured test of one change: mangrove seedling distribution",
+            "The observation therefore established that planting-site labels on every tray caused the difference.",
         },
         {
           isCorrect: false,
           label:
-            "In this setting (mangrove seedling distribution), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, planting-site labels on every tray, directly addressed the observed uncertainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The next test of planting-site labels on every tray will run for longer.",
+            "The team therefore needed to alter several features of mangrove seedling distribution before measuring again.",
         },
         {
           isCorrect: true,
           label:
             "The hypothesis therefore needed a limited test of planting-site labels on every tray.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The initial pattern therefore justified permanent adoption of planting-site labels on every tray.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The remaining uncertainty therefore made another comparison unnecessary.",
         },
       ],
     },
@@ -67,27 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: pembagian bibit mangrove",
+          label:
+            "Pengamatan itu membuktikan bahwa label lokasi tanam pada setiap baki menyebabkan perbedaan.",
         },
         {
           isCorrect: false,
           label:
-            "Di pembagian bibit mangrove, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa label lokasi tanam langsung menanggapi keraguan yang diamati.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji label lokasi tanam berikutnya akan berlangsung lebih lama.",
+            "Tim perlu mengubah beberapa unsur distribusi bibit mangrove sebelum melakukan pengukuran ulang.",
         },
         {
           isCorrect: true,
           label:
             "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui label lokasi tanam.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pola awal itu membenarkan penerapan tetap label lokasi tanam pada setiap baki.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Ketidakpastian yang tersisa membuat perbandingan lanjutan tidak diperlukan.",
         },
       ],
     },

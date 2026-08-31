@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Nudel A in $$2017\\text{-}2018$$",
+        },
+        {
           isCorrect: false,
           label: "Nudel A in $$2019\\text{-}2020$$",
         },
         {
           isCorrect: false,
           label: "Nudel B in $$2017\\text{-}2018$$",
-        },
-        {
-          isCorrect: true,
-          label: "Nudel A in $$2017\\text{-}2018$$",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Noodle A in $$2017\\text{-}2018$$",
+        },
+        {
           isCorrect: false,
           label: "Noodle A in $$2019\\text{-}2020$$",
         },
         {
           isCorrect: false,
           label: "Noodle B in $$2017\\text{-}2018$$",
-        },
-        {
-          isCorrect: true,
-          label: "Noodle A in $$2017\\text{-}2018$$",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Mie A pada tahun $$2017\\text{-}2018$$",
+        },
+        {
           isCorrect: false,
           label: "Mie A pada tahun $$2019\\text{-}2020$$",
         },
         {
           isCorrect: false,
           label: "Mie B pada tahun $$2017\\text{-}2018$$",
-        },
-        {
-          isCorrect: true,
-          label: "Mie A pada tahun $$2017\\text{-}2018$$",
         },
         {
           isCorrect: false,

@@ -7,26 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Absolute certainty about enzyme activity in a classroom model",
+          label: "Measuring enzyme in one preliminary comparison",
         },
         {
           isCorrect: false,
           label:
-            "Why all evidence in enzyme activity in a classroom model should be ignored",
+            "Treating enzyme as the sole explanation for the observed result",
         },
         {
           isCorrect: false,
-          label: "The complete world history of enzyme",
+          label: "A final rule derived from the first comparison of enzyme",
         },
         {
           isCorrect: true,
-          label:
-            "Testing holding the mixture at 37 degrees Celsius in enzyme activity in a classroom model",
+          label: "Testing temperature and enzyme activity in a classroom model",
         },
         {
           isCorrect: false,
-          label: "One rule for every enzyme activity in a classroom model",
+          label: "A limitation that makes another test of enzyme unnecessary",
         },
       ],
     },

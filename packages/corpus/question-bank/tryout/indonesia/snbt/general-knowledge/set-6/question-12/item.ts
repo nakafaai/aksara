@@ -6,28 +6,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Die Rückgabequote des ersten Abends beweist, dass das System unverändert dauerhaft eingeführt werden sollte.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Weil Beschwerden auftraten, kann ein Pfand das Verhalten nicht beeinflussen.",
+        },
+        {
+          isCorrect: false,
+          label: "Eine Rückgabestelle wurde verlegt und länger geöffnet.",
+        },
+        {
           isCorrect: true,
           label:
-            "Vorsichtige Prüfung im Kontext Schulbuswarteschlange: eine markierte Spur für jedes Ziel",
+            "Ein Anreiz wirkt über einen konkreten Dienst; die einfache Pfanderstattung beeinflusst daher das Ergebnis.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team prüfte eine markierte Spur für jedes Ziel (Schulbuswarteschlange) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 28, lag über 19 und 21.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Ein Pfand kann Abfall senken, muss aber zusammen mit Zugang und Kosten für verschiedene Gruppen bewertet werden.",
         },
       ],
     },
@@ -35,28 +35,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "The first-night return rate proves the system should become permanent without revision.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Because complaints occurred, a deposit cannot influence visitor behaviour.",
+        },
+        {
+          isCorrect: false,
+          label: "One return desk was moved and its hours were extended.",
+        },
+        {
           isCorrect: true,
           label:
-            "A cautious trial of a marked lane for each destination: school bus queue",
+            "An incentive operates through a concrete service, so ease of receiving the refund helps determine the outcome.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested a marked lane for each destination in the school bus queue and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 28, exceeded both 19 and 21.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "A deposit can reduce waste, but success must be judged alongside service access and costs for different groups.",
         },
       ],
     },
@@ -64,28 +64,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Tingkat pengembalian malam pertama membuktikan sistem harus diterapkan permanen tanpa perubahan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Karena ada keluhan, uang jaminan tidak mungkin memengaruhi perilaku pengunjung.",
+        },
+        {
+          isCorrect: false,
+          label: "Satu loket dipindahkan dan jam layanannya diperpanjang.",
+        },
+        {
           isCorrect: true,
           label:
-            "Uji Hati-hati dalam antrean bus sekolah: penanda jalur untuk setiap tujuan",
+            "Insentif bekerja melalui layanan yang konkret, sehingga kemudahan memperoleh pengembalian dana ikut menentukan hasil.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji penanda jalur untuk setiap tujuan pada antrean bus sekolah dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 28, melampaui 19 dan 21.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Uang jaminan dapat mengurangi sampah, tetapi keberhasilannya harus dinilai bersama akses layanan dan biaya bagi berbagai pihak.",
         },
       ],
     },

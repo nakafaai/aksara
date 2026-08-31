@@ -13,24 +13,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Taman resapan terbukti sempurna tanpa kemungkinan penjelasan lain.",
+            "Taman resapan dapat ditetapkan sebagai penyebab utama karena dua pengamatan berikutnya lebih baik.",
         },
         {
           isCorrect: false,
-          label: "Semua sekolah akan memperoleh hasil yang sama.",
+          label:
+            "Hasil dapat diterapkan pada sekolah lain yang membangun taman dengan ukuran serupa.",
         },
         {
           isCorrect: false,
-          label: "Taman selalu mengurangi intensitas hujan.",
+          label:
+            "Taman mengurangi genangan karena intensitas hujan sesudah pembangunan lebih rendah.",
+        },
+        {
+          isCorrect: false,
+          label: "Data tambahan tidak lagi diperlukan.",
         },
         {
           isCorrect: true,
           label:
             "Pada dua hujan yang diamati sesudah pembangunan, genangan surut lebih cepat daripada dua pengamatan sebelumnya.",
-        },
-        {
-          isCorrect: false,
-          label: "Data tambahan tidak lagi diperlukan.",
         },
       ],
     },

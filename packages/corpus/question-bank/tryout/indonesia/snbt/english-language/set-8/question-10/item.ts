@@ -7,26 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Absolute certainty about a multilingual youth translation club",
+          label: "register as the main measure in a service trial",
         },
         {
           isCorrect: false,
-          label:
-            "Why all evidence in a multilingual youth translation club should be ignored",
-        },
-        {
-          isCorrect: false,
-          label: "The complete world history of register",
-        },
-        {
-          isCorrect: false,
-          label: "One rule for every a multilingual youth translation club",
+          label: "From a short comparison to a permanent service change",
         },
         {
           isCorrect: true,
           label:
             "Evidence-informed change in a multilingual youth translation club",
+        },
+        {
+          isCorrect: false,
+          label: "Consultation without comparable outcome measures",
+        },
+        {
+          isCorrect: false,
+          label: "A local service trial with no follow-up decision",
         },
       ],
     },

@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Nicht: die Karte ausgestellt wird.",
+          label: "$$\\frac1{30}$$",
         },
         {
           isCorrect: false,
-          label: "Nicht: der Zugang freigeschaltet wird.",
+          label: "$$\\frac1{24}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac1{18}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac1{15}$$",
         },
         {
           isCorrect: true,
-          label: "der Zugang freigeschaltet wird",
-        },
-        {
-          isCorrect: false,
-          label: "die Karte ausgestellt wird",
-        },
-        {
-          isCorrect: false,
-          label: "Nicht: die Anmeldung abgeschlossen ist.",
+          label: "$$\\frac1{20}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "It is not true that the card is issued.",
+          label: "$$\\frac1{30}$$",
         },
         {
           isCorrect: false,
-          label: "It is not true that access is granted.",
+          label: "$$\\frac1{24}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac1{18}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac1{15}$$",
         },
         {
           isCorrect: true,
-          label: "access is granted",
-        },
-        {
-          isCorrect: false,
-          label: "the card is issued",
-        },
-        {
-          isCorrect: false,
-          label: "It is not true that registration is completed.",
+          label: "$$\\frac1{20}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Tidak benar bahwa kartu diterbitkan.",
+          label: "$$\\frac1{30}$$",
         },
         {
           isCorrect: false,
-          label: "Tidak benar bahwa akses dibuka.",
+          label: "$$\\frac1{24}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac1{18}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac1{15}$$",
         },
         {
           isCorrect: true,
-          label: "akses dibuka",
-        },
-        {
-          isCorrect: false,
-          label: "kartu diterbitkan",
-        },
-        {
-          isCorrect: false,
-          label: "Tidak benar bahwa pendaftaran selesai.",
+          label: "$$\\frac1{20}$$",
         },
       ],
     },

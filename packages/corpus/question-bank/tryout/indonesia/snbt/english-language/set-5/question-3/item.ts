@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Every result in friction on model ramps must apply without limitation elsewhere.",
+            "Because mean travel time reached 67 tenths of a second, compared with 42 and 41, holding block mass, ramp angle, and release point constant isolates covering the ramp with coarse fabric as the only possible cause.",
         },
         {
           isCorrect: true,
           label:
-            "The initial pattern justifies a stronger repetition, not a universal claim.",
+            "mean travel time reached 67 tenths of a second, compared with 42 and 41; this supports an association between coarse fabric and model-ramp travel time under the tested conditions, while wear could change the fabric surface during repeated trials requires further testing before a broader claim.",
         },
         {
           isCorrect: false,
           label:
-            "The limitation makes all information about friction on model ramps useless.",
+            "The strongest follow-up would change both covering the ramp with coarse fabric and at least one controlled condition, preventing the effect of either change from being isolated.",
         },
         {
           isCorrect: false,
           label:
-            "One detail about friction proves every possible causal relationship.",
+            "The limitation that wear could change the fabric surface during repeated trials affects numerical precision, but it does not restrict how widely the finding can be applied.",
         },
         {
           isCorrect: false,
           label:
-            "The passage recommends ignoring evidence that conflicts with an early expectation.",
+            "A larger repetition under the same rules could narrow uncertainty but could not change the first interpretation of coarse fabric and model-ramp travel time.",
         },
       ],
     },

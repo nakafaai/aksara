@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Das Team prüfte Volumenmarkierungen an jeder Tonne (gemeinschaftliche Regentonnen) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 32, lag über 23 und 25.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
           isCorrect: true,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Die Beschränkung auf ein Feld zeigt Kontextverlust; anschließend werden Metadaten für Suche und Zuschreibung getrennt.",
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext gemeinschaftliche Regentonnen: Volumenmarkierungen an jeder Tonne",
+            'Der erste Teil vertritt die Behauptung "Ein Name im alten Buch wurde von einem Kurator geschaffen"; der folgende nutzt "Jedes Objekt muss ohne Haupttitel erscheinen, damit alle Namen wirklich gleichgestellt sind" als Hauptbeleg.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Der erste Teil legt "Der am häufigsten zitierte Name muss von der Herstellerin stammen" als endgültigen Schluss fest; der folgende nennt nur den Plan "Suchergebnisse werden die Quelle jedes Namens anzeigen".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Jedes Objekt muss ohne Haupttitel erscheinen, damit alle Namen wirklich gleichgestellt sind" fest.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Der folgende Teil kehrt die Argumentation um und leitet "Der am häufigsten zitierte Name muss von der Herstellerin stammen" aus dem Beleg "Ein Name im alten Buch wurde von einem Kurator geschaffen" ab.',
         },
       ],
     },
@@ -35,28 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "The team tested volume markings on each barrel in the community rainwater barrels and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 32, exceeded both 23 and 25.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
           isCorrect: true,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "The one-field limitation exposes lost context, and metadata are then separated to improve search and attribution.",
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of volume markings on each barrel: community rainwater barrels",
+            'The first part advances the claim "One name in an old book was created by a curator", and the later part uses "Every object must be displayed without a primary title for all names to be truly equal" as its main support.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'The first part establishes "The most frequently cited name must be the one given by the cloth\'s maker" as a final conclusion; the later part only states the plan "Search results will display the source of every name".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Both parts maintain the claim "Every object must be displayed without a primary title for all names to be truly equal" from the same perspective without adding a test.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'The later part reverses the argument by deriving "The most frequently cited name must be the one given by the cloth\'s maker" from the evidence "One name in an old book was created by a curator".',
         },
       ],
     },
@@ -64,28 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Tim menguji garis ukur volume pada dinding penampung pada penampung air hujan warga dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 32, melampaui 23 dan 25.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
           isCorrect: true,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Keterbatasan satu kolom menyingkap hilangnya konteks, lalu metadata dipisahkan untuk memperbaiki pencarian dan atribusi.",
         },
         {
           isCorrect: false,
           label:
-            "Uji Hati-hati dalam dinding penampung pada penampung air hujan warga: garis ukur volume",
+            'Bagian awal mengajukan klaim "Salah satu nama dalam buku lama dibuat oleh kurator", lalu bagian kedua memakai "Setiap objek harus ditampilkan tanpa judul utama agar semua nama benar-benar setara" sebagai dukungan utama.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Bagian pertama menetapkan "Nama yang paling sering dikutip pasti merupakan nama yang diberikan pembuat kain" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Hasil pencarian akan menampilkan sumber setiap nama".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Kedua bagian mempertahankan klaim "Setiap objek harus ditampilkan tanpa judul utama agar semua nama benar-benar setara" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Nama yang paling sering dikutip pasti merupakan nama yang diberikan pembuat kain" dari bukti "Salah satu nama dalam buku lama dibuat oleh kurator".',
         },
       ],
     },

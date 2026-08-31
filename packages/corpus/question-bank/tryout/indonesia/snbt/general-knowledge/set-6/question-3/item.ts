@@ -7,23 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "klar und unmittelbar ausgedrückt",
-        },
-        {
-          isCorrect: false,
-          label: "für mehr als eine Deutung offen",
+          label:
+            "Zwei Sensoren erfassen das Ereignis im selben Zeitraum und nicht nacheinander.",
         },
         {
           isCorrect: true,
-          label: "nach der zeitlichen Reihenfolge geordnet",
+          label:
+            "Die Aufzeichnungen werden vom frühesten bis zum spätesten Ereignis geordnet, damit die Abfolge nachvollziehbar ist.",
         },
         {
           isCorrect: false,
-          label: "durch verlässliche Belege gestützt",
+          label:
+            "Die Daten werden nach einer geplanten Schrittfolge erhoben, die mit denselben Regeln wiederholt wird.",
         },
         {
           isCorrect: false,
-          label: "fähig, sich an veränderte Bedingungen anzupassen",
+          label:
+            "Ausschläge treten zu unregelmäßigen Zeiten ohne festes Intervallmuster auf.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Wiederholte Messungen bleiben trotz unterschiedlicher Erfassungszeiten in einem engen Bereich.",
         },
       ],
     },
@@ -32,23 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "stated clearly and directly",
-        },
-        {
-          isCorrect: false,
-          label: "open to more than one interpretation",
+          label:
+            "Two sensors record the event during the same interval rather than in succession.",
         },
         {
           isCorrect: true,
-          label: "arranged in time order",
+          label:
+            "Records are arranged from the earliest event to the latest so the sequence of change can be traced.",
         },
         {
           isCorrect: false,
-          label: "supported by dependable evidence",
+          label:
+            "Data are collected through a planned sequence of steps repeated under the same rules.",
         },
         {
           isCorrect: false,
-          label: "able to adjust to changing conditions",
+          label:
+            "Spikes appear at irregular times without a fixed interval pattern.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Repeated measurements remain within a narrow range even when taken at different times.",
         },
       ],
     },
@@ -57,23 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "dinyatakan secara jelas dan langsung",
-        },
-        {
-          isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
+          label:
+            "Dua sensor merekam kejadian pada selang waktu yang sama, bukan secara bergantian.",
         },
         {
           isCorrect: true,
-          label: "disusun menurut urutan waktu",
+          label:
+            "Catatan disusun dari kejadian paling awal hingga paling akhir agar urutan perubahan dapat ditelusuri.",
         },
         {
           isCorrect: false,
-          label: "didukung oleh bukti yang dapat dipercaya",
+          label:
+            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
         },
         {
           isCorrect: false,
-          label: "mampu menyesuaikan diri dengan kondisi yang berubah",
+          label:
+            "Lonjakan muncul pada waktu yang tidak teratur tanpa pola selang yang tetap.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Nilai pengukuran berulang tetap berada dalam rentang sempit meskipun waktu pengambilan berbeda.",
         },
       ],
     },

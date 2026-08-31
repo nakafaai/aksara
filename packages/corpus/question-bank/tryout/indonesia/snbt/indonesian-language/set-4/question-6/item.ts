@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Bacaan hanya mencatat sejarah lengkap model daur air dalam kotak transparan tanpa membahas keputusan atau bukti.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap model daur air dalam kotak transparan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan terutama menjelaskan definisi kondensasi tanpa menghubungkannya dengan konteks.",
-        },
-        {
           isCorrect: true,
           label:
             "Model daur air dalam kotak transparan menyederhanakan proses agar dapat diperiksa sambil tetap memiliki batas representasi.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bacaan menggunakan nilai rata-rata yang lebih tinggi untuk memperkirakan bahwa perubahan akan bekerja pada keadaan serupa.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bacaan menjelaskan kondensasi sebagai hasil utama, bukan sebagai bagian dari penelitian.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bacaan membandingkan dua kondisi, tetapi menempatkan faktor kontrol sebagai rincian yang tidak memengaruhi penafsiran.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bacaan lebih menekankan keterbatasan sampel daripada hubungan antara perubahan dan hasil.",
         },
       ],
     },

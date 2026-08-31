@@ -6,16 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Geordnete Prüfung einer Änderung: Ausstellung von Schülerarbeiten",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Ausstellung von Schülerarbeiten über den beiden anderen Werten.",
-        },
-        {
           isCorrect: true,
           label:
             "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Richtungspfeile an jeder Abzweigung.",
@@ -23,27 +13,28 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Richtungspfeile an jeder Abzweigung.",
+            "Die Beobachtung bewies daher, dass die Änderung Richtungspfeile an jeder Kreuzung den Unterschied verursachte.",
         },
         {
           isCorrect: false,
           label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Richtungspfeile an jeder Abzweigung.",
+            "Das Team musste daher mehrere Merkmale im Kontext Ausstellung von Schülerarbeiten ändern, bevor es erneut maß.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das erste Muster rechtfertigte daher die dauerhafte Einführung von Richtungspfeile an jeder Kreuzung.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die verbleibende Unsicherheit machte einen weiteren Vergleich daher überflüssig.",
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: false,
-          label: "A structured test of one change: student work exhibition",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (student work exhibition), the trial value exceeded both other values.",
-        },
         {
           isCorrect: true,
           label:
@@ -52,27 +43,28 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change, direction arrows placed at each junction, directly addressed the observed uncertainty.",
+            "The observation therefore established that direction arrows placed at each junction caused the difference.",
         },
         {
           isCorrect: false,
           label:
-            "The next test of direction arrows placed at each junction will run for longer.",
+            "The team therefore needed to alter several features of student work exhibition before measuring again.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The initial pattern therefore justified permanent adoption of direction arrows placed at each junction.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The remaining uncertainty therefore made another comparison unnecessary.",
         },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: pameran karya siswa",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Di pameran karya siswa, nilai hari uji melampaui dua nilai lainnya.",
-        },
         {
           isCorrect: true,
           label:
@@ -81,12 +73,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan berupa panah arah yang ditempatkan langsung menanggapi keraguan yang diamati.",
+            "Pengamatan itu membuktikan bahwa panah arah di setiap persimpangan menyebabkan perbedaan.",
         },
         {
           isCorrect: false,
           label:
-            "Uji panah arah yang ditempatkan berikutnya akan berlangsung lebih lama.",
+            "Tim perlu mengubah beberapa unsur pameran karya siswa sebelum melakukan pengukuran ulang.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pola awal itu membenarkan penerapan tetap panah arah di setiap persimpangan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Ketidakpastian yang tersisa membuat perbandingan lanjutan tidak diperlukan.",
         },
       ],
     },

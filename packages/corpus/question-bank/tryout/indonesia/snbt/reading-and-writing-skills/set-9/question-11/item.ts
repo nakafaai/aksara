@@ -11,11 +11,6 @@ const item: QuestionItem = {
             "eine Wirksamkeitsanalise zur geprüften Änderung im Kontext „Musikproberäume“",
         },
         {
-          isCorrect: true,
-          label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontext „Musikproberäume“",
-        },
-        {
           isCorrect: false,
           label:
             "eine Wirksamkaitsanalyse zur geprüften Änderung im Kontext „Musikproberäume“",
@@ -24,6 +19,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "eine Wirksamkeitsanalyse zur geprüften Änderung im Konteks „Musikproberäume“",
+        },
+        {
+          isCorrect: true,
+          label:
+            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontext „Musikproberäume“",
         },
         {
           isCorrect: false,
@@ -41,11 +41,6 @@ const item: QuestionItem = {
             "an analyse of the effectiveness of a digital schedule updated after cancellations in this setting (music practice rooms)",
         },
         {
-          isCorrect: true,
-          label:
-            "an analysis of the effectiveness of a digital schedule updated after cancellations in this setting (music practice rooms)",
-        },
-        {
           isCorrect: false,
           label:
             "an analysis of the effectivness of a digital schedule updated after cancellations in this setting (music practice rooms)",
@@ -54,6 +49,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "an analisis of the effectiveness of a digital schedule updated after cancellations in this setting (music practice rooms)",
+        },
+        {
+          isCorrect: true,
+          label:
+            "an analysis of the effectiveness of a digital schedule updated after cancellations in this setting (music practice rooms)",
         },
         {
           isCorrect: false,
@@ -71,11 +71,6 @@ const item: QuestionItem = {
             "analisa efektivitas jadwal digital yang diperbarui setelah pembatalan di ruang latihan musik",
         },
         {
-          isCorrect: true,
-          label:
-            "analisis efektivitas jadwal digital yang diperbarui setelah pembatalan di ruang latihan musik",
-        },
-        {
           isCorrect: false,
           label:
             "analisis efektifitas jadwal digital yang diperbarui setelah pembatalan di ruang latihan musik",
@@ -84,6 +79,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "analisa efektifitas jadwal digital yang diperbarui setelah pembatalan di ruang latihan musik",
+        },
+        {
+          isCorrect: true,
+          label:
+            "analisis efektivitas jadwal digital yang diperbarui setelah pembatalan di ruang latihan musik",
         },
         {
           isCorrect: false,

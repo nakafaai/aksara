@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam ruang laktasi di pasar pasti berlaku tanpa batas pada tempat lain.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang ruang laktasi di pasar tidak berguna.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Satu rincian tentang pemangku kepentingan cukup untuk membuktikan semua hubungan sebab-akibat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Nilai 29 dibandingkan 19 membuktikan bahwa penunjuk arah akan sama efektifnya pada pasar malam yang lebih ramai.",
         },
         {
           isCorrect: true,
           label:
-            "Keputusan lanjutan sebaiknya mempertimbangkan data, pengalaman pihak terdampak, dan keterbatasan uji.",
+            "Kenaikan menjadi 29 dibandingkan 19 mendukung penerusan penunjuk arah secara terbatas, tetapi ketiadaan pengamatan pada pasar malam membatasi penerapannya pada kondisi ramai.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Nilai dasar 18 menunjukkan bahwa sebagian besar pengunjung sudah menemukan ruang, sehingga penunjuk arah tidak perlu diuji lagi.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Keterlibatan orang tua, pedagang, dan petugas cukup menjamin bahwa hasil berlaku untuk semua keadaan pasar.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Karena jadwal dan jumlah petugas tidak berubah, penunjuk arah pasti menjadi satu-satunya penyebab kenaikan pada setiap pasar.",
         },
       ],
     },

@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "in this passage, an assumption that never needs to be examined in a neighbourhood flood-warning exercise",
+            "Calling a cost *actionable information* establishes that the proposed change is affordable without using the estimated prices.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, a final result that always applies to every situation",
+            "The definition makes *actionable information* apply to every cost in the table, regardless of how activity levels change.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The term *actionable information* replaces the affected groups' evidence with a financial label that settles the decision by itself.",
         },
         {
           isCorrect: true,
-          label: "a message that states what action to take and why it matters",
+          label:
+            "The definition of *actionable information* supplies the classification rule needed to interpret the budget comparison and the consultation evidence.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, a detail removed because it challenges an opinion",
-        },
-        {
-          isCorrect: false,
-          label:
-            "in this passage, decorative language unrelated to the setting",
+            "The definition explains why the trial used estimated invoices, rather than how the cost category should be read.",
         },
       ],
     },

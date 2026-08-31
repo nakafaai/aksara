@@ -7,16 +7,15 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang model erosi menggunakan baki tanah",
+          label: "Mengukur erosi melalui satu perbandingan awal",
         },
         {
           isCorrect: false,
-          label:
-            "Alasan Mengabaikan Semua Bukti dalam model erosi menggunakan baki tanah",
+          label: "Menjadikan erosi penjelasan tunggal atas hasil pengamatan",
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap erosi di Seluruh Dunia",
+          label: "Kaidah akhir dari perbandingan pertama tentang erosi",
         },
         {
           isCorrect: true,
@@ -24,7 +23,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Satu Aturan untuk Setiap model erosi menggunakan baki tanah",
+          label:
+            "Keterbatasan yang membuat uji lanjutan erosi tidak diperlukan",
         },
       ],
     },

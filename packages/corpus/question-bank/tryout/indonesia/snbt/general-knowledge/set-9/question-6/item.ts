@@ -7,28 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte zeitgesteuerte Erinnerungen zum Öffnen der Fenster (Kontrolle der Klassenraumbelüftung) und bewertete die Befunde vorsichtig.",
+          label: "eine moralische Regel über erwünschtes Verhalten",
         },
         {
           isCorrect: true,
-          label:
-            "Unterrichtsstunden mit vollständigem Lüftungsplan und kurze Aussagen von Nutzenden",
+          label: "eine Beschreibung des in einer Gruppe üblichen Verhaltens",
+        },
+        {
+          isCorrect: false,
+          label: "eine rechtliche Sanktion für verbotenes Verhalten",
+        },
+        {
+          isCorrect: false,
+          label: "die persönliche Vorliebe eines Fahrgasts",
+        },
+        {
+          isCorrect: false,
+          label: "die Handlung einer Person auf einer einzelnen Fahrt",
         },
       ],
     },
@@ -37,28 +32,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested timed reminders to open the windows in the classroom ventilation check and interpreted the evidence cautiously.",
+          label: "a moral rule about behaviour people ought to perform",
         },
         {
           isCorrect: true,
           label:
-            "lessons with a complete ventilation schedule and short comments from users",
+            "a description of behaviour commonly performed by people in a group",
+        },
+        {
+          isCorrect: false,
+          label: "a legal sanction for prohibited behaviour",
+        },
+        {
+          isCorrect: false,
+          label: "one passenger's personal preference",
+        },
+        {
+          isCorrect: false,
+          label: "a record of one person's action on one journey",
         },
       ],
     },
@@ -67,28 +58,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji pengingat waktu membuka jendela pada pemantauan ventilasi kelas dan menafsirkan buktinya secara hati-hati.",
+          label: "aturan moral tentang perilaku yang seharusnya dilakukan",
         },
         {
           isCorrect: true,
           label:
-            "periode belajar dengan jadwal ventilasi lengkap dan komentar singkat pengguna",
+            "gambaran mengenai perilaku yang lazim dilakukan orang dalam suatu kelompok",
+        },
+        {
+          isCorrect: false,
+          label: "sanksi hukum bagi perilaku yang dilarang",
+        },
+        {
+          isCorrect: false,
+          label: "kesukaan pribadi seorang penumpang",
+        },
+        {
+          isCorrect: false,
+          label: "catatan tentang tindakan satu orang pada satu perjalanan",
         },
       ],
     },

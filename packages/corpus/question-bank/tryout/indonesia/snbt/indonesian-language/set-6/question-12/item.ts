@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
+        },
+        {
           isCorrect: true,
-          label: "Kondisi pembanding menghasilkan nilai rata-rata 17.",
+          label:
+            "Nilai 17 adalah kondisi pembanding untuk kartu tujuan; dua minggu pengamatan belum mengukur dampak terhadap nilai semester.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam program teman belajar.",
+            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam program teman belajar memperoleh hasil yang sama tanpa perbedaan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan program teman belajar.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut dukungan sebaya sebagai bukti bahwa uji tidak perlu diulang.",
+            "Kondisi pembanding menghasilkan nilai rata-rata 17; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
       ],
     },

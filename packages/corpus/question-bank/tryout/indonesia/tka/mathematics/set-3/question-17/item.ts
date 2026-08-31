@@ -11,24 +11,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$1$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4$$",
+        },
+        {
           isCorrect: true,
-          label: "383 m²",
+          label: "$$3$$",
         },
         {
           isCorrect: false,
-          label: "369 m²",
-        },
-        {
-          isCorrect: false,
-          label: "376 m²",
-        },
-        {
-          isCorrect: false,
-          label: "390 m²",
-        },
-        {
-          isCorrect: false,
-          label: "397 m²",
+          label: "$$5$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$1$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4$$",
+        },
+        {
           isCorrect: true,
-          label: "383 m²",
+          label: "$$3$$",
         },
         {
           isCorrect: false,
-          label: "369 m²",
-        },
-        {
-          isCorrect: false,
-          label: "376 m²",
-        },
-        {
-          isCorrect: false,
-          label: "390 m²",
-        },
-        {
-          isCorrect: false,
-          label: "397 m²",
+          label: "$$5$$",
         },
       ],
     },
@@ -61,29 +61,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$1$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4$$",
+        },
+        {
           isCorrect: true,
-          label: "383 m²",
+          label: "$$3$$",
         },
         {
           isCorrect: false,
-          label: "369 m²",
-        },
-        {
-          isCorrect: false,
-          label: "376 m²",
-        },
-        {
-          isCorrect: false,
-          label: "390 m²",
-        },
-        {
-          isCorrect: false,
-          label: "397 m²",
+          label: "$$5$$",
         },
       ],
     },
   },
-  stimulusKey: "park-and-pond",
+  stimulusKey: "courtyard-layout",
 };
 
 export default item;

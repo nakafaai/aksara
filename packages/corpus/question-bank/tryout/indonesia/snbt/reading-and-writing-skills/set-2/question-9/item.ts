@@ -15,6 +15,10 @@ const item: QuestionItem = {
           label: "Das Komma vor dem Wort „nämlich“ entfernen.",
         },
         {
+          isCorrect: true,
+          label: "Den Doppelpunkt nach dem Wort „nämlich“ entfernen.",
+        },
+        {
           isCorrect: false,
           label:
             "Direkt nach den Wörtern „Die Behörde“ einen Doppelpunkt ergänzen.",
@@ -22,10 +26,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Jedes Komma in der Aufzählung durch einen Punkt ersetzen.",
-        },
-        {
-          isCorrect: true,
-          label: "Den Doppelpunkt nach dem Wort „nämlich“ entfernen.",
         },
       ],
     },
@@ -41,16 +41,16 @@ const item: QuestionItem = {
           label: 'Remove the comma before the word "namely".',
         },
         {
+          isCorrect: true,
+          label: 'Remove the colon after the word "namely".',
+        },
+        {
           isCorrect: false,
           label: 'Add a colon immediately after the words "The agency".',
         },
         {
           isCorrect: false,
           label: "Replace every comma in the enumeration with a full stop.",
-        },
-        {
-          isCorrect: true,
-          label: 'Remove the colon after the word "namely".',
         },
       ],
     },
@@ -67,16 +67,16 @@ const item: QuestionItem = {
           label: 'Hapus tanda koma sebelum kata "yaitu".',
         },
         {
+          isCorrect: true,
+          label: 'Hapus tanda titik dua setelah kata "yaitu".',
+        },
+        {
           isCorrect: false,
           label: 'Tambahkan tanda titik dua tepat setelah kata "lembaga".',
         },
         {
           isCorrect: false,
           label: "Ganti setiap tanda koma dalam perincian dengan tanda titik.",
-        },
-        {
-          isCorrect: true,
-          label: 'Hapus tanda titik dua setelah kata "yaitu".',
         },
       ],
     },

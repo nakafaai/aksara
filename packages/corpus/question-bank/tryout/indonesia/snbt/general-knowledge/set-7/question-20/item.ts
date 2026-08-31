@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team prüfte Beispielfragen mit offenen Antworten (Archiv für mündliche Geschichte) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 30, lag über 22 und 24.",
+            "Jede Änderung einer Bearbeitung schadet zwangsläufig der Tradition.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Weil die Fassungen verschieden sind, muss die Gruppe weder Quellen noch Änderungen erklären.",
         },
         {
           isCorrect: true,
           label:
-            "Vorsichtige Prüfung im Kontext Archiv für mündliche Geschichte: Beispielfragen mit offenen Antworten",
+            "Eine Fassung als Original zu bezeichnen kann Informationen über das Leben der Erzählung in verschiedenen Gemeinschaften ausblenden.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das gefundene schriftliche Stück wurde in den 1970er-Jahren veröffentlicht.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Gruppe wird Quellen und dramaturgische Änderungen im Programm nennen.",
         },
       ],
     },
@@ -36,27 +37,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "The team tested sample open questions for interviewers in the oral history archive and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 30, exceeded both 22 and 24.",
+          label: "Every change in an adaptation necessarily damages tradition.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Because versions differ, the group need not explain any source or change.",
         },
         {
           isCorrect: true,
           label:
-            "A cautious trial of sample open questions for interviewers: oral history archive",
+            "Calling one version original may erase information about how the story lives in different communities.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The written script that was found was published in the 1970s.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The group will identify sources and dramatic changes in the programme notes.",
         },
       ],
     },
@@ -65,27 +66,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Tim menguji contoh pertanyaan terbuka bagi pewawancara pada arsip sejarah lisan dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 30, melampaui 22 dan 24.",
+          label: "Setiap perubahan dalam adaptasi pasti merusak tradisi.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Karena versi berbeda, kelompok tidak perlu menjelaskan sumber atau perubahan apa pun.",
         },
         {
           isCorrect: true,
           label:
-            "Uji Hati-hati dalam arsip sejarah lisan: contoh pertanyaan terbuka bagi pewawancara",
+            "Menyebut satu versi sebagai asli dapat menghapus informasi tentang cara cerita hidup di komunitas berbeda.",
+        },
+        {
+          isCorrect: false,
+          label: "Naskah tertulis yang ditemukan diterbitkan pada 1970-an.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Kelompok akan mencantumkan sumber dan perubahan dramatik dalam catatan program.",
         },
       ],
     },

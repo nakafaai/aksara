@@ -16,16 +16,18 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Only the cooking row changes during wet weather.",
-        },
-        {
-          isCorrect: false,
-          label: "Rain removes all signs and price cards.",
+          label:
+            "The passage mainly describes how the cooking row changes after rain.",
         },
         {
           isCorrect: true,
           label:
             "The market adapts its layout and equipment to continue safely after rain.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The market's main challenge is replacing information signs damaged by rain.",
         },
         {
           isCorrect: false,

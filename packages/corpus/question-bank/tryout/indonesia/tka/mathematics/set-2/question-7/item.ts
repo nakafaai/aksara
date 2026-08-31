@@ -11,24 +11,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{20}{3}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
           isCorrect: true,
-          label: "15",
+          label: "$$\\frac{22}{3}$$",
         },
         {
           isCorrect: false,
-          label: "11",
-        },
-        {
-          isCorrect: false,
-          label: "13",
-        },
-        {
-          isCorrect: false,
-          label: "17",
-        },
-        {
-          isCorrect: false,
-          label: "19",
+          label: "$$\\frac{26}{3}$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{20}{3}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
           isCorrect: true,
-          label: "15",
+          label: "$$\\frac{22}{3}$$",
         },
         {
           isCorrect: false,
-          label: "11",
-        },
-        {
-          isCorrect: false,
-          label: "13",
-        },
-        {
-          isCorrect: false,
-          label: "17",
-        },
-        {
-          isCorrect: false,
-          label: "19",
+          label: "$$\\frac{26}{3}$$",
         },
       ],
     },
@@ -61,24 +61,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{20}{3}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
           isCorrect: true,
-          label: "15",
+          label: "$$\\frac{22}{3}$$",
         },
         {
           isCorrect: false,
-          label: "11",
-        },
-        {
-          isCorrect: false,
-          label: "13",
-        },
-        {
-          isCorrect: false,
-          label: "17",
-        },
-        {
-          isCorrect: false,
-          label: "19",
+          label: "$$\\frac{26}{3}$$",
         },
       ],
     },

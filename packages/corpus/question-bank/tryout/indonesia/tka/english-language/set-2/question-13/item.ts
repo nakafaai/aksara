@@ -15,10 +15,6 @@ const item: QuestionItem = {
           label: "The timetable above Niko's desk",
         },
         {
-          isCorrect: true,
-          label: "Heavy rain and a route without streetlights",
-        },
-        {
           isCorrect: false,
           label: "The bus normally arriving at 9:20",
         },
@@ -29,6 +25,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "The notes added the next day",
+        },
+        {
+          isCorrect: true,
+          label: "Heavy rain and a route without streetlights",
         },
       ],
     },

@@ -11,11 +11,6 @@ const item: QuestionItem = {
             "Die Daten worden im Kontext Fundbüroservice erhebt und danach vergleichen.",
         },
         {
-          isCorrect: true,
-          label:
-            "Die Daten wurden in diesem Kontext erhoben: Fundbüroservice. Anschließend wurden sie verglichen.",
-        },
-        {
           isCorrect: false,
           label:
             "Die Daten wurden an den Kontext Fundbüroservice erhoben und danach verglichen.",
@@ -30,6 +25,11 @@ const item: QuestionItem = {
           label:
             "Die Daten wurden von Fundbüroservice erheben und anschließend vergleicht.",
         },
+        {
+          isCorrect: true,
+          label:
+            "Die Daten wurden in diesem Kontext erhoben: Fundbüroservice. Anschließend wurden sie verglichen.",
+        },
       ],
     },
     en: {
@@ -39,11 +39,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Data were collected at this setting (lost-property service) and compared afterward in.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Data were collected in this setting (lost-property service) and compared afterward.",
         },
         {
           isCorrect: false,
@@ -60,6 +55,11 @@ const item: QuestionItem = {
           label:
             "Data collected this setting (lost-property service) and were comparison afterward.",
         },
+        {
+          isCorrect: true,
+          label:
+            "Data were collected in this setting (lost-property service) and compared afterward.",
+        },
       ],
     },
     id: {
@@ -69,11 +69,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Data di ukur di layanan pencarian barang hilang dan kemudian dibandingkan.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Data diukur di layanan pencarian barang hilang dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,
@@ -89,6 +84,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Data diukur pada di layanan pencarian barang hilang lalu di bandingkan.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Data diukur di layanan pencarian barang hilang dan kemudian dibandingkan.",
         },
       ],
     },

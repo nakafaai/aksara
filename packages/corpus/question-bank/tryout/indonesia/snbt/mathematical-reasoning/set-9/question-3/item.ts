@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$210$$",
+          label: "$$1:1$$",
         },
         {
           isCorrect: false,
-          label: "$$220$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$180$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$190$$",
+          label: "$$2:1$$",
         },
         {
           isCorrect: true,
-          label: "$$200$$",
+          label: "$$3:2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5:3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$2:3$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$210$$",
+          label: "$$1:1$$",
         },
         {
           isCorrect: false,
-          label: "$$220$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$180$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$190$$",
+          label: "$$2:1$$",
         },
         {
           isCorrect: true,
-          label: "$$200$$",
+          label: "$$3:2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5:3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$2:3$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$210$$",
+          label: "$$1:1$$",
         },
         {
           isCorrect: false,
-          label: "$$220$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$180$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$190$$",
+          label: "$$2:1$$",
         },
         {
           isCorrect: true,
-          label: "$$200$$",
+          label: "$$3:2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5:3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$2:3$$",
         },
       ],
     },

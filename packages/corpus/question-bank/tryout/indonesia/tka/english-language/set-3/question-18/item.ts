@@ -11,12 +11,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "To prevent any new evidence from being shared",
-        },
-        {
           isCorrect: true,
           label: "To check understanding before adding a response",
+        },
+        {
+          isCorrect: false,
+          label: "To prevent any new evidence from being shared",
         },
         {
           isCorrect: false,
@@ -24,7 +24,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "To make every speaker use the same opinion",
+          label:
+            "To ask each speaker to restate the dominant view before offering a response",
         },
         {
           isCorrect: false,

@@ -7,26 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Absolute certainty about the freezing point of salt solutions",
+          label: "Measuring solute in one preliminary comparison",
         },
         {
           isCorrect: false,
           label:
-            "Why all evidence in the freezing point of salt solutions should be ignored",
+            "Treating solute as the sole explanation for the observed result",
         },
         {
           isCorrect: false,
-          label: "The complete world history of solute",
+          label: "A final rule derived from the first comparison of solute",
+        },
+        {
+          isCorrect: false,
+          label: "A limitation that makes another test of solute unnecessary",
         },
         {
           isCorrect: true,
-          label:
-            "Testing adding a measured mass of table salt in the freezing point of salt solutions",
-        },
-        {
-          isCorrect: false,
-          label: "One rule for every the freezing point of salt solutions",
+          label: "Testing how dissolved salt changes freezing point",
         },
       ],
     },

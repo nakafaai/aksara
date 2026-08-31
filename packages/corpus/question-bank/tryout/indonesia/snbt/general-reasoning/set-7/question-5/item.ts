@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Budi hat in diesem Monat nicht jede planmäßige Trainingseinheit absolviert.",
+        },
+        {
           isCorrect: false,
           label: "Budi mag keine Radrennen.",
         },
@@ -18,11 +23,6 @@ const item: QuestionItem = {
           label: "Budi hat in diesem Monat überhaupt nicht trainiert.",
         },
         {
-          isCorrect: true,
-          label:
-            "Budi hat in diesem Monat nicht jede planmäßige Trainingseinheit absolviert.",
-        },
-        {
           isCorrect: false,
           label: "Budi ist von allen Langstreckenradrennen ausgeschlossen.",
         },
@@ -31,6 +31,11 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Budi did not complete every scheduled practice session this month.",
+        },
         {
           isCorrect: false,
           label: "Budi does not like bicycle racing.",
@@ -44,11 +49,6 @@ const item: QuestionItem = {
           label: "Budi did not practice cycling at all this month.",
         },
         {
-          isCorrect: true,
-          label:
-            "Budi did not complete every scheduled practice session this month.",
-        },
-        {
           isCorrect: false,
           label: "Budi is barred from every long-distance bicycle race.",
         },
@@ -57,6 +57,11 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Budi tidak menyelesaikan setiap sesi latihan yang dijadwalkan bulan ini.",
+        },
         {
           isCorrect: false,
           label: "Budi tidak menyukai balap sepeda.",
@@ -68,11 +73,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Budi sama sekali tidak berlatih sepeda bulan ini.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Budi tidak menyelesaikan setiap sesi latihan yang dijadwalkan bulan ini.",
         },
         {
           isCorrect: false,

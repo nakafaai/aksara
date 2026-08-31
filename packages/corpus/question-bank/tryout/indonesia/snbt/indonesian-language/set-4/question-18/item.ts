@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Setiap hasil dalam tur bangunan bersejarah pasti berlaku tanpa batas pada tempat lain.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang tur bangunan bersejarah tidak berguna.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Satu rincian tentang triangulasi cukup untuk membuktikan semua hubungan sebab-akibat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
-        },
-        {
           isCorrect: true,
           label:
-            "Perbedaan antarsumber dapat memperkaya penafsiran jika asal dan tujuan setiap sumber diperiksa.",
+            "Denah membantu melacak perubahan ruang antarmasa, sedangkan wawancara menjelaskan pengalaman penghuni; keduanya dapat menguji perubahan fungsi, tetapi ingatan dua narasumber tidak mewakili semua penghuni.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Denah tiga periode sudah cukup menjelaskan pengalaman seluruh penghuni karena perubahan ruang menentukan fungsi bangunan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Wawancara harus diutamakan karena mantan penghuni mengalami bangunan secara langsung, sedangkan denah hanya bersifat teknis.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Kesamaan fungsi pada beberapa periode membuktikan bahwa pengalaman penghuni tidak berubah ketika denah direnovasi.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perbedaan antara denah dan wawancara menunjukkan bahwa salah satu sumber keliru dan harus dikeluarkan.",
         },
       ],
     },

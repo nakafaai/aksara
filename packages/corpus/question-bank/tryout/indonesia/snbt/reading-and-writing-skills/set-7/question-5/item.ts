@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Deshalb",
+          label: "Anschließend",
         },
         {
           isCorrect: false,
-          label: "Außerdem",
+          label: "Allerdings",
         },
         {
           isCorrect: false,
-          label: "Inzwischen",
+          label: "Daher",
         },
         {
           isCorrect: false,
-          label: "Dagegen",
+          label: "Umgekehrt",
         },
         {
           isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Schulfrühstücksprogramm",
+          label: "Falls dies zutrifft",
         },
       ],
     },
@@ -32,15 +32,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Therefore",
-        },
-        {
-          isCorrect: false,
-          label: "Moreover",
-        },
-        {
-          isCorrect: false,
-          label: "Meanwhile",
+          label: "Next",
         },
         {
           isCorrect: false,
@@ -48,7 +40,15 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "A structured test of one change: school breakfast programme",
+          label: "Therefore",
+        },
+        {
+          isCorrect: false,
+          label: "Conversely",
+        },
+        {
+          isCorrect: false,
+          label: "If so",
         },
       ],
     },
@@ -57,15 +57,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Oleh karena itu",
-        },
-        {
-          isCorrect: false,
-          label: "Selain itu",
-        },
-        {
-          isCorrect: false,
-          label: "Sementara itu",
+          label: "Selanjutnya",
         },
         {
           isCorrect: false,
@@ -73,7 +65,15 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: program sarapan sekolah",
+          label: "Oleh karena itu",
+        },
+        {
+          isCorrect: false,
+          label: "Sebaliknya",
+        },
+        {
+          isCorrect: false,
+          label: "Seandainya",
         },
       ],
     },

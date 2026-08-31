@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam model penyaringan air keruh.",
+            "Pada kondisi dengan perubahan, hasil rata-rata tercatat 68; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam model penyaringan air keruh memperoleh hasil yang sama tanpa perbedaan.",
+            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
         },
         {
           isCorrect: true,
-          label: "Pada kondisi dengan perubahan, hasil rata-rata tercatat 68.",
+          label:
+            "Nilai 68 adalah rata-rata kejernihan pada susunan kerikil, pasir, dan arang; angka visual itu tidak membuktikan bahwa air aman diminum.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan model penyaringan air keruh.",
+            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyebut indikator sebagai bukti bahwa uji tidak perlu diulang.",
+            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
         },
       ],
     },

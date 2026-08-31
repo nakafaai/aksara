@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "In Bussen ohne Freiwillige und mit gleichen Fahrerhinweisen senkt eine aktuelle Normbotschaft weiterhin die beobachteten lauten Gespräche.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Zusätzliche Plakate am Ausgang erhöhen die Erinnerung an die Botschaft, während die Beobachtungskriterien für laute Gespräche unverändert bleiben.",
         },
         {
           isCorrect: true,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Vollständige Aufnahmen zeigen keine Veränderung; Beschwerden sanken nur wegen ausgefallener Meldewege in Bussen mit neuem Plakat.",
         },
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Der Betreiber wird Mehrheitszahlen aus aktuellen Beobachtungen verwenden.",
         },
         {
           isCorrect: false,
-          label: "Der Wert mit Änderung, 25, lag über 18 und 20.",
+          label:
+            "Anonyme Beobachter verwendeten vorab festgelegte Lautstärkekriterien.",
         },
       ],
     },
@@ -37,26 +38,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "On buses without volunteers and with identical driver guidance, an up-to-date norm message still reduces observed loud conversations.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "Additional posters near the exit increase recall of the message while the observation criteria for loud conversations remain unchanged.",
         },
         {
           isCorrect: true,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Complete recordings show no change in loud conversations; complaints fell only because reporting channels failed on buses with the new poster.",
         },
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "The operator will use majority figures drawn from recent observations.",
         },
         {
           isCorrect: false,
-          label: "The intervention value, 25, exceeded both 18 and 20.",
+          label: "Anonymous observers used predefined volume criteria.",
         },
       ],
     },
@@ -66,26 +67,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Pada bus tanpa relawan dengan pengarahan pengemudi yang sama, pesan norma terbaru tetap menurunkan hitungan percakapan keras.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Poster tambahan di dekat pintu keluar meningkatkan ingatan terhadap pesan, sedangkan kriteria pengamatan percakapan keras tetap sama.",
         },
         {
           isCorrect: true,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Rekaman lengkap menunjukkan percakapan keras tidak berubah; keluhan turun hanya karena saluran pelaporan tidak berfungsi pada bus berposter baru.",
         },
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Pengelola akan menggunakan angka mayoritas yang berasal dari pengamatan terbaru.",
         },
         {
           isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 25, melampaui 18 dan 20.",
+          label:
+            "Pengamat anonim memakai kriteria volume yang telah ditetapkan.",
         },
       ],
     },

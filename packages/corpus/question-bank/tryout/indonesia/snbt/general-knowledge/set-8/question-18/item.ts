@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Klassifikationsfehler machen sämtliche Freiwilligendaten wissenschaftlich wertlos.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Ein Gebiet ohne Meldungen enthält mit Sicherheit keine Mangrovensetzlinge.",
+        },
+        {
+          isCorrect: false,
+          label: "Bei Flutaufnahmen blieb die Übereinstimmung geringer.",
         },
         {
           isCorrect: true,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Mehr Meldungen belegen für sich allein keinen gleich großen Populationsanstieg.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Besucher, die ohne Suche einen Platz fanden und kurze Aussagen von Nutzenden",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte eine Anzeige freier Plätze an der Tür (ruhige Lernzone) und bewertete die Befunde vorsichtig.",
+            "Die öffentliche Karte wird Meldungen, Beobachtungsintensität und Validierung trennen.",
         },
       ],
     },
@@ -38,27 +37,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "Classification errors make all volunteer data scientifically worthless.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "An area without reports certainly contains no mangrove seedlings.",
+        },
+        {
+          isCorrect: false,
+          label: "Agreement remained lower for high-tide photographs.",
         },
         {
           isCorrect: true,
           label:
-            "days when the earlier process continued without the tested change",
+            "An increase in reports does not by itself prove an equally large population increase.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "visitors finding a seat without circling the room and short comments from users",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested a seat-availability board at the door in the quiet study zone and interpreted the evidence cautiously.",
+            "The public map will separate reports, observation intensity, and validation.",
         },
       ],
     },
@@ -68,27 +66,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Kesalahan klasifikasi membuat seluruh data relawan tidak memiliki nilai ilmiah.",
+        },
+        {
+          isCorrect: false,
+          label: "Daerah tanpa laporan pasti tidak memiliki bibit mangrove.",
+        },
+        {
+          isCorrect: false,
+          label: "Kesepakatan pada foto saat air pasang tetap lebih rendah.",
         },
         {
           isCorrect: true,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Peningkatan laporan tidak dengan sendirinya membuktikan peningkatan populasi yang sama besar.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "pengunjung yang menemukan kursi tanpa berkeliling dan komentar singkat pengguna",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji papan ketersediaan kursi di pintu pada zona belajar tenang dan menafsirkan buktinya secara hati-hati.",
+            "Peta publik akan memisahkan laporan, intensitas pengamatan, dan validasi.",
         },
       ],
     },

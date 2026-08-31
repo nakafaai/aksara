@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Ein Pfand kann Abfall senken, muss aber zusammen mit Zugang und Kosten für verschiedene Gruppen bewertet werden.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Einige Händler meinen, Sauberkeit solle aus dem Veranstaltungsbudget finanziert werden, ohne Behälterpreise zu ändern.",
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext Schulbuswarteschlange: eine markierte Spur für jedes Ziel",
+            "Die Abschlussbewertung wird Reinigungskosten und verlorene Behälter berücksichtigen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Rückgabequote des ersten Abends beweist, dass das System unverändert dauerhaft eingeführt werden sollte.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team prüfte eine markierte Spur für jedes Ziel (Schulbuswarteschlange) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 28, lag über 19 und 21.",
+            "Nach verbessertem Zugang wurde der Unterschied der Rückgabequoten kleiner.",
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "A deposit can reduce waste, but success must be judged alongside service access and costs for different groups.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Some vendors argue that cleanliness should be funded from the event budget without changing container prices.",
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of a marked lane for each destination: school bus queue",
+            "The final evaluation will include washing costs and lost containers.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The first-night return rate proves the system should become permanent without revision.",
         },
         {
           isCorrect: true,
           label:
-            "The team tested a marked lane for each destination in the school bus queue and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 28, exceeded both 19 and 21.",
+            "After desk access improved, the return-rate gap across the site narrowed.",
         },
       ],
     },
@@ -66,26 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Uang jaminan dapat mengurangi sampah, tetapi keberhasilannya harus dinilai bersama akses layanan dan biaya bagi berbagai pihak.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Sebagian pedagang menilai kebersihan seharusnya dibiayai dari anggaran acara tanpa mengubah harga wadah.",
         },
         {
           isCorrect: false,
           label:
-            "Uji Hati-hati dalam antrean bus sekolah: penanda jalur untuk setiap tujuan",
+            "Evaluasi akhir akan memasukkan biaya pencucian dan kehilangan wadah.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tingkat pengembalian malam pertama membuktikan sistem harus diterapkan permanen tanpa perubahan.",
         },
         {
           isCorrect: true,
           label:
-            "Tim menguji penanda jalur untuk setiap tujuan pada antrean bus sekolah dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 28, melampaui 19 dan 21.",
+            "Setelah akses loket diperbaiki, selisih tingkat pengembalian antarbagian area mengecil.",
         },
       ],
     },

@@ -12,15 +12,13 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "To prove that every school must start at the same hour",
+          label:
+            "To argue that the reported outcomes already justify a permanent later start",
         },
         {
           isCorrect: false,
-          label: "To reject all changes to school transport",
-        },
-        {
-          isCorrect: false,
-          label: "To replace attendance records with one survey",
+          label:
+            "To focus on transport objections instead of testing attendance and learning effects",
         },
         {
           isCorrect: true,
@@ -29,7 +27,12 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "To remove after-school activities from the timetable",
+          label: "To replace attendance records with one survey",
+        },
+        {
+          isCorrect: false,
+          label:
+            "To make extracurricular scheduling the main measure of the trial's success",
         },
       ],
     },

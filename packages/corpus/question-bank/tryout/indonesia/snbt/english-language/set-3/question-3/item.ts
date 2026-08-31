@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Every result in root growth in germinating beans must apply without limitation elsewhere.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The limitation makes all information about root growth in germinating beans useless.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "One detail about gravitropism proves every possible causal relationship.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage recommends ignoring evidence that conflicts with an early expectation.",
-        },
-        {
           isCorrect: true,
           label:
-            "The initial pattern justifies a stronger repetition, not a universal claim.",
+            "the mean rose to 16, compared with 9 at baseline and 10 in the comparison condition; this supports an association between side-facing seed openings and root growth under the tested conditions, while the containers were small and the trial lasted only six days requires further testing before a broader claim.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Because the mean rose to 16, compared with 9 at baseline and 10 in the comparison condition, holding seed type, moisture, container size, and observation time constant isolates placing the seed opening toward the side of a clear container as the only possible cause.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The strongest follow-up would change both placing the seed opening toward the side of a clear container and at least one controlled condition, preventing the effect of either change from being isolated.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The limitation that the containers were small and the trial lasted only six days affects numerical precision, but it does not restrict how widely the finding can be applied.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "A larger repetition under the same rules could narrow uncertainty but could not change the first interpretation of side-facing seed openings and root growth.",
         },
       ],
     },

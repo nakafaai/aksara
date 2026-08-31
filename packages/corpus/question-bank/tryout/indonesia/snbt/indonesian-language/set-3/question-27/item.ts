@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam terminal saat hujan sore.",
+            "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama; bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama; akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama; perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama; benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
         },
         {
           isCorrect: true,
           label:
-            "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Semua tokoh atau pihak dalam terminal saat hujan sore memperoleh hasil yang sama tanpa perbedaan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan terminal saat hujan sore.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut simbol sebagai bukti bahwa uji tidak perlu diulang.",
+            "Buku pada kursi kosong mengubah ruang tunggu yang berulang dari tanda ketiadaan menjadi undangan membaca, lalu respons akhir menegaskan perubahan itu.",
         },
       ],
     },

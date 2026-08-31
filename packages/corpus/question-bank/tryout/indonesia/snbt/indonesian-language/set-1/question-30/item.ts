@@ -7,12 +7,12 @@ const item: QuestionItem = {
       options: [
         { isCorrect: false, label: "Guru" },
         { isCorrect: false, label: "Kepala Desa" },
-        { isCorrect: true, label: "Reporter" },
         {
           isCorrect: false,
           label: "Ketua acara adat Festival Munara Beba Byak Karon",
         },
         { isCorrect: false, label: "Penyuluh" },
+        { isCorrect: true, label: "Reporter" },
       ],
     },
   },

@@ -14,17 +14,17 @@ const item: QuestionItem = {
           label: "Informasi negara selain Indonesia yang mengonsumsi beras",
         },
         {
-          isCorrect: true,
-          label:
-            "Hasil penelitian tentang pengaruh pencucian terhadap tekstur nasi",
-        },
-        {
           isCorrect: false,
           label: "Informasi terkait olahan beras",
         },
         {
           isCorrect: false,
           label: "Cara memasak nasi tanpa menyisakan pati di dalam butirannya",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Hasil penelitian tentang pengaruh pencucian terhadap tekstur nasi",
         },
       ],
     },

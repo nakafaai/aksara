@@ -11,24 +11,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7$$",
+        },
+        {
           isCorrect: true,
-          label: "15 cm",
-        },
-        {
-          isCorrect: false,
-          label: "9 cm",
-        },
-        {
-          isCorrect: false,
-          label: "12 cm",
-        },
-        {
-          isCorrect: false,
-          label: "18 cm",
-        },
-        {
-          isCorrect: false,
-          label: "21 cm",
+          label: "$$4$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7$$",
+        },
+        {
           isCorrect: true,
-          label: "15 cm",
-        },
-        {
-          isCorrect: false,
-          label: "9 cm",
-        },
-        {
-          isCorrect: false,
-          label: "12 cm",
-        },
-        {
-          isCorrect: false,
-          label: "18 cm",
-        },
-        {
-          isCorrect: false,
-          label: "21 cm",
+          label: "$$4$$",
         },
       ],
     },
@@ -61,24 +61,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7$$",
+        },
+        {
           isCorrect: true,
-          label: "15 cm",
-        },
-        {
-          isCorrect: false,
-          label: "9 cm",
-        },
-        {
-          isCorrect: false,
-          label: "12 cm",
-        },
-        {
-          isCorrect: false,
-          label: "18 cm",
-        },
-        {
-          isCorrect: false,
-          label: "21 cm",
+          label: "$$4$$",
         },
       ],
     },

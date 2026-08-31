@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Die Zahlen stiegen. Dennoch blieb die Schlussfolgerung für diesen Kontext begrenzt: Büchertauschmarkt.",
-        },
-        {
           isCorrect: false,
           label:
             "Die Zahlen stiegen. Deshalb blieb die Schlussfolgerung zu Büchertauschmarkt begrenzt.",
@@ -30,16 +25,16 @@ const item: QuestionItem = {
           label:
             "Die Zahlen stiegen. Folglich blieb die Schlussfolgerung zu Büchertauschmarkt begrenzt.",
         },
+        {
+          isCorrect: true,
+          label:
+            "Die Zahlen stiegen. Dennoch blieb die Schlussfolgerung für diesen Kontext begrenzt: Büchertauschmarkt.",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "The figures increased. Nevertheless, the conclusion for this setting (book exchange market) remained limited.",
-        },
         {
           isCorrect: false,
           label:
@@ -60,16 +55,16 @@ const item: QuestionItem = {
           label:
             "The figures increased. Consequently, the conclusion about the book exchange market remained limited.",
         },
+        {
+          isCorrect: true,
+          label:
+            "The figures increased. Nevertheless, the conclusion for this setting (book exchange market) remained limited.",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "Angka meningkat. Namun, simpulan tentang pasar tukar buku tetap dibatasi.",
-        },
         {
           isCorrect: false,
           label:
@@ -89,6 +84,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Angka meningkat. Akibatnya, simpulan tentang pasar tukar buku tetap dibatasi.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Angka meningkat. Namun, simpulan tentang pasar tukar buku tetap dibatasi.",
         },
       ],
     },

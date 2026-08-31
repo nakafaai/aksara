@@ -7,27 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Fragekarten an jedem Demonstrationstisch.",
+          label: "frühere Ergebnisse ohne neue Messung verwenden",
         },
         {
           isCorrect: true,
-          label: "festgestellt, ohne bereits eine Ursache zu behaupten",
+          label:
+            "einheitliche Kriterien und Verfahren anwenden, damit Ergebnisse vergleichbar sind",
         },
         {
           isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Tag der offenen Labortür über den beiden anderen Werten.",
+            "das Messgerät wechseln, sobald ein Wert nicht zur Erwartung passt",
         },
         {
           isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Fragekarten an jedem Demonstrationstisch.",
+          label: "alle Werte vor der Mittelwertbildung angleichen",
         },
         {
           isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Fragekarten an jedem Demonstrationstisch.",
+          label: "Teilnehmende zu einheitlichen Antworten verpflichten",
         },
       ],
     },
@@ -36,27 +34,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "The hypothesis therefore needed a limited test of question cards at each demonstration table.",
+          label: "using earlier results without making new measurements",
         },
         {
           isCorrect: true,
-          label: "noticed without already claiming a cause",
+          label:
+            "applying consistent criteria and procedures so that results can be compared",
         },
         {
           isCorrect: false,
           label:
-            "In this setting (open laboratory tour), the trial value exceeded both other values.",
+            "changing the instrument whenever a value does not fit expectations",
+        },
+        {
+          isCorrect: false,
+          label: "making all values equal before calculating a mean",
         },
         {
           isCorrect: false,
           label:
-            "The change, question cards at each demonstration table, directly addressed the observed uncertainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The next test of question cards at each demonstration table will run for longer.",
+            "restricting participants so that they produce uniform answers",
         },
       ],
     },
@@ -65,27 +62,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui kartu pertanyaan untuk setiap meja demonstrasi.",
+          label: "menggunakan hasil lama tanpa melakukan pengukuran baru",
         },
         {
           isCorrect: true,
-          label: "mencatat gejala tanpa langsung memastikan penyebabnya",
+          label:
+            "memakai kriteria dan prosedur yang konsisten agar hasil dapat dibandingkan",
         },
         {
           isCorrect: false,
-          label:
-            "Di tur laboratorium terbuka, nilai hari uji melampaui dua nilai lainnya.",
+          label: "mengubah alat ukur setiap kali nilai tidak sesuai harapan",
         },
         {
           isCorrect: false,
-          label:
-            "Perubahan berupa kartu pertanyaan untuk setiap meja demonstrasi langsung menanggapi keraguan yang diamati.",
+          label: "menyamakan semua nilai sebelum menghitung rata-rata",
         },
         {
           isCorrect: false,
-          label:
-            "Uji kartu pertanyaan untuk setiap meja demonstrasi berikutnya akan berlangsung lebih lama.",
+          label: "membatasi peserta agar menghasilkan jawaban seragam",
         },
       ],
     },

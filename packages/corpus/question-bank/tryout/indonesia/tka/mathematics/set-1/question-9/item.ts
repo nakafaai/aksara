@@ -13,19 +13,19 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Das dritte Glied ist $8$.",
+          label: "$u_4=54$",
         },
         {
           correctCategoryOrder: 1,
-          label: "Die Summe der ersten drei Glieder ist $14$.",
+          label: "$S_4=80$",
         },
         {
           correctCategoryOrder: 2,
-          label: "Das fünfte Glied ist $16$.",
+          label: "$u_6=243$",
         },
         {
           correctCategoryOrder: 1,
-          label: "Für jedes $n\\geq1$ gilt $\\frac{u_{n+1}}{u_n}=2$.",
+          label: "$\\frac{u_6}{u_3}=27$",
         },
       ],
     },
@@ -35,19 +35,19 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "The third term is $8$.",
+          label: "$u_4=54$",
         },
         {
           correctCategoryOrder: 1,
-          label: "The sum of the first three terms is $14$.",
+          label: "$S_4=80$",
         },
         {
           correctCategoryOrder: 2,
-          label: "The fifth term is $16$.",
+          label: "$u_6=243$",
         },
         {
           correctCategoryOrder: 1,
-          label: "For every $n\\geq1$, $\\frac{u_{n+1}}{u_n}=2$.",
+          label: "$\\frac{u_6}{u_3}=27$",
         },
       ],
     },
@@ -57,19 +57,19 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Suku ketiga adalah $8$.",
+          label: "$u_4=54$",
         },
         {
           correctCategoryOrder: 1,
-          label: "Jumlah tiga suku pertama adalah $14$.",
+          label: "$S_4=80$",
         },
         {
           correctCategoryOrder: 2,
-          label: "Suku kelima adalah $16$.",
+          label: "$u_6=243$",
         },
         {
           correctCategoryOrder: 1,
-          label: "Untuk setiap $n\\geq1$, berlaku $\\frac{u_{n+1}}{u_n}=2$.",
+          label: "$\\frac{u_6}{u_3}=27$",
         },
       ],
     },

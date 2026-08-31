@@ -11,17 +11,18 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "hasil minggu kedua membaik, tetapi penyebab perubahannya belum dapat dipisahkan",
+        },
+        {
           isCorrect: false,
-          label: "semua pengunjung menolak audio",
+          label:
+            "pengunjung cenderung menghindari audio karena labelnya tidak berbentuk pertanyaan",
         },
         {
           isCorrect: false,
           label: "nama berkas lama harus dipertahankan",
-        },
-        {
-          isCorrect: true,
-          label:
-            "hasil minggu kedua membaik, tetapi penyebab perubahannya belum dapat dipisahkan",
         },
         {
           isCorrect: false,

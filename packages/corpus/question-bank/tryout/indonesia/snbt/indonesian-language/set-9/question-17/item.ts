@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam pengelolaan kostum teater.",
+            "Kedua sumber membantu menjelaskan perubahan produksi pertunjukan; perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
         },
         {
           isCorrect: true,
           label:
-            "Kedua sumber sama-sama menunjukkan bahwa keduanya membantu menjelaskan perubahan produksi pertunjukan.",
+            "Foto panggung dan inventaris sama-sama menunjukkan perubahan produksi, tetapi penggunaan kostum dan riwayat bahannya tidak dapat disamakan.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam pengelolaan kostum teater memperoleh hasil yang sama tanpa perbedaan.",
+            "Karena membahas peristiwa yang sama, kedua sumber pasti mempunyai sudut pandang dan tujuan yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan pengelolaan kostum teater.",
+            "Menggabungkan dua sumber memberi izin untuk mengisi bagian yang hilang dengan dugaan yang masuk akal.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyebut artefak sebagai bukti bahwa uji tidak perlu diulang.",
+            "Perbedaan antarsumber hanya berkaitan dengan pilihan kata dan tidak memengaruhi simpulan.",
         },
       ],
     },

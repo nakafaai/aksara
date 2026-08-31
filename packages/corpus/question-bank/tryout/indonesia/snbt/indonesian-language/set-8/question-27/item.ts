@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam klub pembaca pemula.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Semua tokoh atau pihak dalam klub pembaca pemula memperoleh hasil yang sama tanpa perbedaan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan klub pembaca pemula.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut perkembangan tokoh sebagai bukti bahwa uji tidak perlu diulang.",
-        },
-        {
           isCorrect: true,
           label:
-            "Jati memilih untuk memilih buku paling tipis, lalu menulis satu kalimat tentang bagian yang tidak ia pahami.",
+            "Buku tipis dan satu kalimat kebingungan mengubah kebiasaan menghindar Jati menjadi langkah baca yang kecil tetapi dapat dilanjutkan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Jati memilih untuk memilih buku paling tipis, lalu menulis satu kalimat tentang bagian yang tidak ia pahami; bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Jati memilih untuk memilih buku paling tipis, lalu menulis satu kalimat tentang bagian yang tidak ia pahami; akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Jati memilih untuk memilih buku paling tipis, lalu menulis satu kalimat tentang bagian yang tidak ia pahami; perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Jati memilih untuk memilih buku paling tipis, lalu menulis satu kalimat tentang bagian yang tidak ia pahami; benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
         },
       ],
     },

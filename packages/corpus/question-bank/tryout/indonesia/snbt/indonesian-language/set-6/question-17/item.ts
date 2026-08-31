@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam ruang penyimpanan karya seni.",
+            "Kedua sumber membantu menelusuri perjalanan sebuah karya; perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam ruang penyimpanan karya seni memperoleh hasil yang sama tanpa perbedaan.",
+            "Karena membahas peristiwa yang sama, kedua sumber pasti mempunyai sudut pandang dan tujuan yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan ruang penyimpanan karya seni.",
+            "Menggabungkan dua sumber memberi izin untuk mengisi bagian yang hilang dengan dugaan yang masuk akal.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyebut provenans sebagai bukti bahwa uji tidak perlu diulang.",
+            "Perbedaan antarsumber hanya berkaitan dengan pilihan kata dan tidak memengaruhi simpulan.",
         },
         {
           isCorrect: true,
           label:
-            "Kedua sumber sama-sama menunjukkan bahwa keduanya membantu menelusuri perjalanan sebuah karya.",
+            "Label pameran dan kartu kondisi sama-sama menelusuri perjalanan karya, tetapi kepemilikan, perpindahan, dan kerusakan tidak direkam untuk tujuan yang sama.",
         },
       ],
     },

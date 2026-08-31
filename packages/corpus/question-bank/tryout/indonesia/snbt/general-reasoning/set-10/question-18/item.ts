@@ -7,23 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Nicht: ein Sitzplatz reserviert wird.",
+          label: "Der Sensor war aktiv und ein Alarm wurde protokolliert.",
         },
         {
           isCorrect: false,
-          label: "Nicht: ein Zugangscode gesendet wird.",
+          label: "Der Sensor war aktiv, aber kein Alarm wurde protokolliert.",
         },
         {
           isCorrect: false,
-          label: "ein Sitzplatz reserviert wird",
-        },
-        {
-          isCorrect: false,
-          label: "Nicht: die Einladung angenommen wird.",
+          label:
+            "Ein Alarm wurde protokolliert, aber der Techniker wurde nicht benachrichtigt.",
         },
         {
           isCorrect: true,
-          label: "ein Zugangscode gesendet wird",
+          label:
+            "Der Sensor war nicht aktiv und kein Alarm wurde protokolliert.",
+        },
+        {
+          isCorrect: false,
+          label: "Nur der Status des Technikers ist bekannt.",
         },
       ],
     },
@@ -32,23 +34,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "It is not true that a seat is reserved.",
+          label: "The sensor was active and an alarm was logged.",
         },
         {
           isCorrect: false,
-          label: "It is not true that an access code is sent.",
+          label: "The sensor was active, but no alarm was logged.",
         },
         {
           isCorrect: false,
-          label: "a seat is reserved",
-        },
-        {
-          isCorrect: false,
-          label: "It is not true that the invitation is accepted.",
+          label: "An alarm was logged, but the technician was not notified.",
         },
         {
           isCorrect: true,
-          label: "an access code is sent",
+          label: "The sensor was not active and no alarm was logged.",
+        },
+        {
+          isCorrect: false,
+          label: "Only the technician's status is known.",
         },
       ],
     },
@@ -57,23 +59,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Tidak benar bahwa kursi dipesan.",
+          label: "Sensor aktif dan alarm tercatat.",
         },
         {
           isCorrect: false,
-          label: "Tidak benar bahwa kode akses dikirim.",
+          label: "Sensor aktif, tetapi alarm tidak tercatat.",
         },
         {
           isCorrect: false,
-          label: "kursi dipesan",
-        },
-        {
-          isCorrect: false,
-          label: "Tidak benar bahwa undangan diterima.",
+          label: "Alarm tercatat, tetapi teknisi tidak diberi tahu.",
         },
         {
           isCorrect: true,
-          label: "kode akses dikirim",
+          label: "Sensor tidak aktif dan alarm tidak tercatat.",
+        },
+        {
+          isCorrect: false,
+          label: "Hanya status teknisi yang dapat diketahui.",
         },
       ],
     },

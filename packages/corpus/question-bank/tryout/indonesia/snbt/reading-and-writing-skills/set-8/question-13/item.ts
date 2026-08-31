@@ -21,14 +21,14 @@ const item: QuestionItem = {
             "die Folgestudie des Team im untersuchten Kontext (Fundbüroservice)",
         },
         {
-          isCorrect: true,
-          label:
-            "die Folgestudie des Teams im untersuchten Kontext (Fundbüroservice)",
-        },
-        {
           isCorrect: false,
           label:
             "die Folge  Studie des Teams im untersuchten Kontext (Fundbüroservice)",
+        },
+        {
+          isCorrect: true,
+          label:
+            "die Folgestudie des Teams im untersuchten Kontext (Fundbüroservice)",
         },
       ],
     },
@@ -51,14 +51,14 @@ const item: QuestionItem = {
             "the teams' follow--up study of a form with structured location choices in this setting (lost-property service)",
         },
         {
-          isCorrect: true,
-          label:
-            "the team's follow-up study of a form with structured location choices in this setting (lost-property service)",
-        },
-        {
           isCorrect: false,
           label:
             "the team follow-up-study of a form with structured location choices in this setting (lost-property service)",
+        },
+        {
+          isCorrect: true,
+          label:
+            "the team's follow-up study of a form with structured location choices in this setting (lost-property service)",
         },
       ],
     },
@@ -81,14 +81,14 @@ const item: QuestionItem = {
             "kerja  sama tim dalam uji formulir dengan pilihan lokasi yang terstruktur di layanan pencarian barang hilang",
         },
         {
-          isCorrect: true,
-          label:
-            "kerja sama tim dalam uji formulir dengan pilihan lokasi yang terstruktur di layanan pencarian barang hilang",
-        },
-        {
           isCorrect: false,
           label:
             "kerja sama-sama tim dalam uji formulir dengan pilihan lokasi yang terstruktur di layanan pencarian barang hilang",
+        },
+        {
+          isCorrect: true,
+          label:
+            "kerja sama tim dalam uji formulir dengan pilihan lokasi yang terstruktur di layanan pencarian barang hilang",
         },
       ],
     },

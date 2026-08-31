@@ -24,7 +24,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Semua jalan sudah cukup lebar untuk kursi roda.",
+          label:
+            "Lebar jalur pada peta dianggap cukup untuk memperkirakan akses kursi roda.",
         },
       ],
     },

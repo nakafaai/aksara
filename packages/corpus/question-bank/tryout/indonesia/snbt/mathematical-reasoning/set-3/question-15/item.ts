@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "$$0{,}3$$ Teil",
         },
         {
+          isCorrect: true,
+          label: "$$0{,}75$$ Teil",
+        },
+        {
           isCorrect: false,
           label: "$$0{,}45$$ Teil",
         },
         {
           isCorrect: false,
           label: "$$0{,}6$$ Teil",
-        },
-        {
-          isCorrect: true,
-          label: "$$0{,}75$$ Teil",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "$$0.3$$ part",
         },
         {
+          isCorrect: true,
+          label: "$$0.75$$ part",
+        },
+        {
           isCorrect: false,
           label: "$$0.45$$ part",
         },
         {
           isCorrect: false,
           label: "$$0.6$$ part",
-        },
-        {
-          isCorrect: true,
-          label: "$$0.75$$ part",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "$$0{,}3$$ bagian",
         },
         {
+          isCorrect: true,
+          label: "$$0{,}75$$ bagian",
+        },
+        {
           isCorrect: false,
           label: "$$0{,}45$$ bagian",
         },
         {
           isCorrect: false,
           label: "$$0{,}6$$ bagian",
-        },
-        {
-          isCorrect: true,
-          label: "$$0{,}75$$ bagian",
         },
       ],
     },

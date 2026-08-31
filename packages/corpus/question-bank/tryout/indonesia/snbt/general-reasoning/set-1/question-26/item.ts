@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Bekräftigt Aussage A",
+          label: "$$B$$",
         },
         {
           isCorrect: false,
-          label: "Schwächt Aussage A",
+          label: "$$C$$",
         },
         {
           isCorrect: true,
-          label: "Für die Aussagen A und B irrelevant",
+          label: "$$A$$",
         },
         {
           isCorrect: false,
-          label: "Bekräftigt Aussage B",
+          label: "$$A\\mathbin{/}B$$",
         },
         {
           isCorrect: false,
-          label: "Schwächt Aussage B",
+          label: "$$B\\mathbin{/}C$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Strengthens statement A",
+          label: "$$B$$",
         },
         {
           isCorrect: false,
-          label: "Weakens statement A",
+          label: "$$C$$",
         },
         {
           isCorrect: true,
-          label: "Irrelevant to statements A and B",
+          label: "$$A$$",
         },
         {
           isCorrect: false,
-          label: "Strengthens statement B",
+          label: "$$A\\mathbin{/}B$$",
         },
         {
           isCorrect: false,
-          label: "Weakens statement B",
+          label: "$$B\\mathbin{/}C$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Memperkuat pernyataan A",
+          label: "$$B$$",
         },
         {
           isCorrect: false,
-          label: "Memperlemah pernyataan A",
+          label: "$$C$$",
         },
         {
           isCorrect: true,
-          label: "Tidak relevan dengan pernyataan A dan B",
+          label: "$$A$$",
         },
         {
           isCorrect: false,
-          label: "Memperkuat pernyataan B",
+          label: "$$A\\mathbin{/}B$$",
         },
         {
           isCorrect: false,
-          label: "Memperlemah pernyataan B",
+          label: "$$B\\mathbin{/}C$$",
         },
       ],
     },

@@ -12,20 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Eine Verschiebung erhält die Abstände zwischen Punkten.",
+          label: "$T(1,-2)=(4,2)$.",
         },
         {
           isCorrect: true,
-          label: "Eine Spiegelung erhält Winkelgrößen.",
+          label: "T verdoppelt jede Länge.",
         },
         {
           isCorrect: true,
-          label:
-            "Eine Streckung mit dem Faktor $2$ vervierfacht den Flächeninhalt.",
+          label: "T vervierfacht jeden Flächeninhalt.",
         },
         {
           isCorrect: false,
-          label: "Eine Drehung verändert die Länge jeder Strecke.",
+          label: "T kehrt die Orientierung um.",
+        },
+        {
+          isCorrect: true,
+          label: "$T^2(x,y)=(-4x,-4y)$.",
         },
       ],
     },
@@ -34,19 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "A translation preserves distances between points.",
+          label: "$T(1,-2)=(4,2)$.",
         },
         {
           isCorrect: true,
-          label: "A reflection preserves angle measures.",
+          label: "T doubles every length.",
         },
         {
           isCorrect: true,
-          label: "A dilation with scale factor $2$ multiplies area by $4$.",
+          label: "T multiplies every area by $4$.",
         },
         {
           isCorrect: false,
-          label: "A rotation changes the length of every line segment.",
+          label: "T reverses orientation.",
+        },
+        {
+          isCorrect: true,
+          label: "$T^2(x,y)=(-4x,-4y)$.",
         },
       ],
     },
@@ -55,19 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Translasi mempertahankan jarak antartitik.",
+          label: "$T(1,-2)=(4,2)$.",
         },
         {
           isCorrect: true,
-          label: "Refleksi mempertahankan besar sudut.",
+          label: "T menggandakan setiap panjang.",
         },
         {
           isCorrect: true,
-          label: "Dilatasi dengan faktor $2$ mengalikan luas dengan $4$.",
+          label: "T mengalikan setiap luas dengan $4$.",
         },
         {
           isCorrect: false,
-          label: "Rotasi mengubah panjang setiap ruas garis.",
+          label: "T membalik orientasi.",
+        },
+        {
+          isCorrect: true,
+          label: "$T^2(x,y)=(-4x,-4y)$.",
         },
       ],
     },

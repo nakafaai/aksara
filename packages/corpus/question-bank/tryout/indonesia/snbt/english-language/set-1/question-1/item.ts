@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "the conditions under which technology can support education.",
+        },
+        {
           isCorrect: false,
           label: "the rapid growth of internet access worldwide.",
         },
@@ -20,10 +24,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "the features of one educational device.",
-        },
-        {
-          isCorrect: true,
-          label: "the conditions under which technology can support education.",
         },
       ],
     },

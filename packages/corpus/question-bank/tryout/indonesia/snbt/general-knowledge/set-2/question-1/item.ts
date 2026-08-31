@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "verschlechtern.",
         },
         {
-          isCorrect: true,
-          label: "verringern.",
-        },
-        {
           isCorrect: false,
           label: "verursachen.",
+        },
+        {
+          isCorrect: true,
+          label: "verringern.",
         },
         {
           isCorrect: false,
@@ -31,8 +31,8 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         { isCorrect: false, label: "worsen." },
-        { isCorrect: true, label: "reduce." },
         { isCorrect: false, label: "cause." },
+        { isCorrect: true, label: "reduce." },
         { isCorrect: false, label: "foster." },
         { isCorrect: false, label: "eliminate." },
       ],
@@ -41,8 +41,8 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         { isCorrect: false, label: "memperparah." },
-        { isCorrect: true, label: "mengurangi." },
         { isCorrect: false, label: "menyebabkan." },
+        { isCorrect: true, label: "mengurangi." },
         { isCorrect: false, label: "menumbuhkan." },
         { isCorrect: false, label: "menghilangkan." },
       ],

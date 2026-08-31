@@ -12,12 +12,18 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Open every pipe, replace the meter, and remove the wall.",
+          label:
+            "Inspect visible pipes, replace the meter, wait, and compare the new reading.",
         },
         {
           isCorrect: false,
           label:
             "Take one photograph and immediately declare the leak's location.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Prepare the period, record, wait, compare, repeat if needed, and report safely.",
         },
         {
           isCorrect: false,
@@ -26,11 +32,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Disconnect essential equipment before checking the display.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Prepare the period, record, wait, compare, repeat if needed, and report safely.",
         },
       ],
     },

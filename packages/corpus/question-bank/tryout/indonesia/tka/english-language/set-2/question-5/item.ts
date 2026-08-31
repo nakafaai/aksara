@@ -11,25 +11,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "All river libraries are better than every building library.",
-        },
-        {
-          isCorrect: false,
-          label: "The crew should remove the inspection tray immediately.",
-        },
-        {
           isCorrect: true,
           label:
             "A handrail beside the bench gives standing visitors a steady grip when the boat moves.",
         },
         {
           isCorrect: false,
-          label: "Internet access will certainly be perfect next year.",
+          label:
+            "A river library is more accessible than a building library because it reaches several villages.",
         },
         {
           isCorrect: false,
-          label: "No visitor has ever found the aisle narrow.",
+          label:
+            "The crew should move the inspection tray away from the entrance during busy stops.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "A stronger internet connection would make the boat's physical adaptations less important to users.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The cabin aisle is wide enough that an additional handrail would add little value.",
         },
       ],
     },

@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Bacaan hanya mencatat sejarah lengkap kampung pada malam hujan tanpa membahas keputusan atau bukti.",
-        },
-        {
           isCorrect: true,
           label:
             "Pilihan kecil Nara mengubah makna peta lampu jalan dalam menghadapi konflik di kampung pada malam hujan.",
@@ -18,17 +13,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap kampung pada malam hujan.",
+            "Benda yang berulang terutama membangun latar dan hanya sedikit berhubungan dengan konflik.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
+            "Keputusan akhir tokoh menghapus ketegangan makna yang sebelumnya dimiliki benda tersebut.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan terutama menjelaskan definisi akhir terbuka tanpa menghubungkannya dengan konteks.",
+            "Bacaan memakai akhir terbuka sebagai label deskriptif tanpa menghubungkannya dengan pilihan tokoh.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Latar menyelesaikan konflik sebelum tindakan akhir tokoh mengubah makna benda.",
         },
       ],
     },

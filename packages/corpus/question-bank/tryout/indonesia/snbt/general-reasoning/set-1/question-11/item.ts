@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$30 \\leq x \\leq 40$$",
-        },
-        {
           isCorrect: false,
           label: "$$0 \\leq x \\leq 30$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$30 \\leq x \\leq 40$$",
         },
         {
           isCorrect: false,
@@ -31,12 +31,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$30 \\leq x \\leq 40$$",
-        },
-        {
           isCorrect: false,
           label: "$$0 \\leq x \\leq 30$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$30 \\leq x \\leq 40$$",
         },
         {
           isCorrect: false,
@@ -56,12 +56,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$30 \\leq x \\leq 40$$",
-        },
-        {
           isCorrect: false,
           label: "$$0 \\leq x \\leq 30$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$30 \\leq x \\leq 40$$",
         },
         {
           isCorrect: false,

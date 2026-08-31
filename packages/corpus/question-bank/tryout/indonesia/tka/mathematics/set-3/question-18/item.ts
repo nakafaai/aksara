@@ -11,24 +11,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "104 m",
-        },
-        {
-          isCorrect: false,
-          label: "108 m",
-        },
-        {
-          isCorrect: false,
-          label: "116 m",
-        },
-        {
-          isCorrect: false,
-          label: "120 m",
-        },
-        {
           isCorrect: true,
-          label: "112 m",
+          label: "$$288$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$252$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$276$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$292$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$304$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "104 m",
-        },
-        {
-          isCorrect: false,
-          label: "108 m",
-        },
-        {
-          isCorrect: false,
-          label: "116 m",
-        },
-        {
-          isCorrect: false,
-          label: "120 m",
-        },
-        {
           isCorrect: true,
-          label: "112 m",
+          label: "$$288$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$252$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$276$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$292$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$304$$",
         },
       ],
     },
@@ -61,29 +61,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "104 m",
-        },
-        {
-          isCorrect: false,
-          label: "108 m",
-        },
-        {
-          isCorrect: false,
-          label: "116 m",
-        },
-        {
-          isCorrect: false,
-          label: "120 m",
-        },
-        {
           isCorrect: true,
-          label: "112 m",
+          label: "$$288$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$252$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$276$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$292$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$304$$",
         },
       ],
     },
   },
-  stimulusKey: "park-and-pond",
+  stimulusKey: "courtyard-layout",
 };
 
 export default item;

@@ -6,6 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Erste Belege zu Beispielfotos für jede Zustandskategorie im Kontext „Straßenbaumerhebung“",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Prüfung mehrerer gleichzeitiger Änderungen im Kontext „Straßenbaumerhebung“",
+        },
+        {
           isCorrect: true,
           label:
             "Geordnete Prüfung einer Änderung: Erfassung von Straßenbäumen",
@@ -13,22 +23,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Beispielfotos für jede Zustandskategorie.",
+            "Rückmeldungen zur dauerhaften Neugestaltung des Kontexts „Straßenbaumerhebung“",
         },
         {
           isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Erfassung von Straßenbäumen über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Beispielfotos für jede Zustandskategorie.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Beispielfotos für jede Zustandskategorie.",
+          label: "Vollständige Bewertung des Kontexts „Straßenbaumerhebung“",
         },
       ],
     },
@@ -36,28 +35,26 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Early evidence about sample photos for each condition category in the context of street-tree survey",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Testing several simultaneous changes in the context of street-tree survey",
+        },
+        {
           isCorrect: true,
           label: "A structured test of one change: street-tree survey",
         },
         {
           isCorrect: false,
-          label:
-            "The hypothesis therefore needed a limited test of sample photos for each condition category.",
+          label: "User reactions to a permanent redesign of street-tree survey",
         },
         {
           isCorrect: false,
-          label:
-            "In this setting (street-tree survey), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, sample photos for each condition category, directly addressed the observed uncertainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The next test of sample photos for each condition category will run for longer.",
+          label: "A complete evaluation of street-tree survey",
         },
       ],
     },
@@ -65,28 +62,27 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Bukti awal tentang foto contoh untuk setiap kategori kondisi dalam konteks survei pohon jalan",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengujian beberapa perubahan serentak dalam konteks survei pohon jalan",
+        },
+        {
           isCorrect: true,
           label: "Uji Teratur atas Satu Perubahan: pendataan pohon jalan",
         },
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui contoh foto untuk setiap kategori kondisi.",
+            "Tanggapan pengguna terhadap perancangan ulang tetap pada survei pohon jalan",
         },
         {
           isCorrect: false,
-          label:
-            "Di pendataan pohon jalan, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa contoh foto untuk setiap kategori kondisi langsung menanggapi keraguan yang diamati.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji contoh foto untuk setiap kategori kondisi berikutnya akan berlangsung lebih lama.",
+          label: "Evaluasi menyeluruh terhadap survei pohon jalan",
         },
       ],
     },

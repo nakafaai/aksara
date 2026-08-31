@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Open layouts may reduce visual and acoustic privacy.",
-        },
-        {
           isCorrect: true,
           label: "Removing walls always increases face-to-face collaboration.",
+        },
+        {
+          isCorrect: false,
+          label: "Open layouts may reduce visual and acoustic privacy.",
         },
         {
           isCorrect: false,

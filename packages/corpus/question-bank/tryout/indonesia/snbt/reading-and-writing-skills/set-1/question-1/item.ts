@@ -6,13 +6,13 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Verschobene Jahreszeiten, die Aussaat und Ernte erschweren.",
-        },
-        {
           isCorrect: true,
           label:
             "Dürren und Überschwemmungen, die Nutzpflanzen schädigen können.",
+        },
+        {
+          isCorrect: false,
+          label: "Verschobene Jahreszeiten, die Aussaat und Ernte erschweren.",
         },
         {
           isCorrect: false,
@@ -34,12 +34,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Shifts in seasons that complicate planting and harvesting.",
-        },
-        {
           isCorrect: true,
           label: "Droughts and floods that can damage crops.",
+        },
+        {
+          isCorrect: false,
+          label: "Shifts in seasons that complicate planting and harvesting.",
         },
         {
           isCorrect: false,
@@ -59,13 +59,13 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Kekeringan dan banjir yang dapat merusak tanaman.",
+        },
+        {
           isCorrect: false,
           label:
             "Pergeseran musim yang menyulitkan penentuan masa tanam dan panen.",
-        },
-        {
-          isCorrect: true,
-          label: "Kekeringan dan banjir yang dapat merusak tanaman.",
         },
         {
           isCorrect: false,

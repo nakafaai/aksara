@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Fabrik Z verkauft $$250{.}000$$ Stück",
+        },
+        {
           isCorrect: false,
           label: "Fabrik X verkauft $$500{.}000$$ Stück",
         },
@@ -19,10 +23,6 @@ const item: QuestionItem = {
             "Die prognostizierten Verkäufe von Fabrik Y sind viermal so hoch wie die Verkäufe von Fabrik X im Jahr $$2016$$",
         },
         {
-          isCorrect: true,
-          label: "Fabrik Z verkauft $$250{.}000$$ Stück",
-        },
-        {
           isCorrect: false,
           label:
             "Fabrik X verkauft $$800{.}000$$ Stück weniger als im Jahr $$2016$$",
@@ -32,6 +32,10 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "Factory Z sells $$250{,}000$$ units",
+        },
         {
           isCorrect: false,
           label: "Factory X sells $$500{,}000$$ units",
@@ -46,10 +50,6 @@ const item: QuestionItem = {
             "Factory Y's predicted sales are four times Factory X's $$2016$$ sales",
         },
         {
-          isCorrect: true,
-          label: "Factory Z sells $$250{,}000$$ units",
-        },
-        {
           isCorrect: false,
           label: "Factory X sells $$800{,}000$$ fewer units than in $$2016$$",
         },
@@ -58,6 +58,10 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "Pabrik Z menjual $$250{.}000$$ unit",
+        },
         {
           isCorrect: false,
           label: "Pabrik X menjual $$500{.}000$$ unit",
@@ -70,10 +74,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Prediksi penjualan Pabrik Y empat kali penjualan Pabrik X pada $$2016$$",
-        },
-        {
-          isCorrect: true,
-          label: "Pabrik Z menjual $$250{.}000$$ unit",
         },
         {
           isCorrect: false,

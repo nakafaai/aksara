@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam model daur air dalam kotak transparan.",
+            'Karena langkah "air dipanaskan perlahan, uap menyentuh penutup dingin, lalu tetes air jatuh kembali" dapat diulang, model sudah mencakup faktor yang hilang ketika lampu dan es hanya meniru sebagian kecil kondisi atmosfer dan dapat menggantikan pengamatan lapangan.',
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam model daur air dalam kotak transparan memperoleh hasil yang sama tanpa perbedaan.",
+            "Keterbatasan bahwa lampu dan es hanya meniru sebagian kecil kondisi atmosfer membuat hubungan bahwa air dapat berpindah tempat dan berubah wujud tanpa hilang dari sistem tertutup tidak dapat diperiksa, bahkan di dalam model.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Hubungan bahwa air dapat berpindah tempat dan berubah wujud tanpa hilang dari sistem tertutup dapat diterapkan langsung pada keadaan nyata selama urutan model diulang dengan cara yang sama.",
         },
         {
           isCorrect: true,
           label:
-            "Siswa menggunakan model untuk mengulang langkah dan memeriksa hubungan antarbagiannya.",
+            "Pengulangan langkah pada model membantu memeriksa bahwa air dapat berpindah tempat dan berubah wujud tanpa hilang dari sistem tertutup; karena lampu dan es hanya meniru sebagian kecil kondisi atmosfer, pola itu menjadi hipotesis untuk pengamatan nyata, bukan bukti langsung tentang seluruh keadaan lapangan.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan model daur air dalam kotak transparan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut kondensasi sebagai bukti bahwa uji tidak perlu diulang.",
+            "Definisi istilah pada akhir bacaan sudah cukup membuktikan hubungan sebab dalam model daur air dalam kotak transparan, meskipun bagian model tidak dibandingkan.",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam gudang kostum teater.",
+            "Wulan memilih untuk menjahit label tahun pementasan pada bagian dalam setiap kostum; bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam gudang kostum teater memperoleh hasil yang sama tanpa perbedaan.",
+            "Wulan memilih untuk menjahit label tahun pementasan pada bagian dalam setiap kostum; akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Wulan memilih untuk menjahit label tahun pementasan pada bagian dalam setiap kostum; perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
         },
         {
           isCorrect: true,
           label:
-            "Wulan memilih untuk menjahit label tahun pementasan pada bagian dalam setiap kostum.",
+            "Label tahun di bagian dalam kostum menghubungkan benda panggung berulang dengan riwayat pemakaiannya tanpa mengubah tampilan pertunjukan.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan gudang kostum teater.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut motif sebagai bukti bahwa uji tidak perlu diulang.",
+            "Wulan memilih untuk menjahit label tahun pementasan pada bagian dalam setiap kostum; benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
         },
       ],
     },

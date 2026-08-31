@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$\\frac1{42}$$",
+        },
+        {
           isCorrect: true,
-          label: "das Ventil geschlossen wird",
+          label: "$$\\frac2{63}$$",
         },
         {
           isCorrect: false,
-          label: "Nicht: eine Warnung gesendet wird.",
+          label: "$$\\frac1{28}$$",
         },
         {
           isCorrect: false,
-          label: "Nicht: das Ventil geschlossen wird.",
+          label: "$$\\frac1{21}$$",
         },
         {
           isCorrect: false,
-          label: "eine Warnung gesendet wird",
-        },
-        {
-          isCorrect: false,
-          label: "Nicht: der Sensor aktiviert wird.",
+          label: "$$\\frac1{18}$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$\\frac1{42}$$",
+        },
+        {
           isCorrect: true,
-          label: "the valve closes",
+          label: "$$\\frac2{63}$$",
         },
         {
           isCorrect: false,
-          label: "It is not true that a warning is sent.",
+          label: "$$\\frac1{28}$$",
         },
         {
           isCorrect: false,
-          label: "It is not true that the valve closes.",
+          label: "$$\\frac1{21}$$",
         },
         {
           isCorrect: false,
-          label: "a warning is sent",
-        },
-        {
-          isCorrect: false,
-          label: "It is not true that the sensor activates.",
+          label: "$$\\frac1{18}$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$\\frac1{42}$$",
+        },
+        {
           isCorrect: true,
-          label: "katup ditutup",
+          label: "$$\\frac2{63}$$",
         },
         {
           isCorrect: false,
-          label: "Tidak benar bahwa peringatan dikirim.",
+          label: "$$\\frac1{28}$$",
         },
         {
           isCorrect: false,
-          label: "Tidak benar bahwa katup ditutup.",
+          label: "$$\\frac1{21}$$",
         },
         {
           isCorrect: false,
-          label: "peringatan dikirim",
-        },
-        {
-          isCorrect: false,
-          label: "Tidak benar bahwa sensor aktif.",
+          label: "$$\\frac1{18}$$",
         },
       ],
     },

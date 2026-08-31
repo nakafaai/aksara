@@ -7,24 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Absolute certainty about a community repair café",
-        },
-        {
-          isCorrect: false,
           label:
-            "Why all evidence in a community repair café should be ignored",
+            "product-life extension as the main measure in a service trial",
         },
         {
           isCorrect: false,
-          label: "The complete world history of product-life extension",
-        },
-        {
-          isCorrect: false,
-          label: "One rule for every a community repair café",
+          label: "From a short comparison to a permanent service change",
         },
         {
           isCorrect: true,
           label: "Evidence-informed change in a community repair café",
+        },
+        {
+          isCorrect: false,
+          label: "Consultation without comparable outcome measures",
+        },
+        {
+          isCorrect: false,
+          label: "A local service trial with no follow-up decision",
         },
       ],
     },

@@ -6,25 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Absolute certainty about a community food pantry",
-        },
-        {
           isCorrect: true,
           label: "Evidence-informed change in a community food pantry",
         },
         {
           isCorrect: false,
-          label:
-            "Why all evidence in a community food pantry should be ignored",
+          label: "stock rotation as the main measure in a service trial",
         },
         {
           isCorrect: false,
-          label: "The complete world history of stock rotation",
+          label: "From a short comparison to a permanent service change",
         },
         {
           isCorrect: false,
-          label: "One rule for every a community food pantry",
+          label: "Consultation without comparable outcome measures",
+        },
+        {
+          isCorrect: false,
+          label: "A local service trial with no follow-up decision",
         },
       ],
     },

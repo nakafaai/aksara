@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Jeder lokale Name muss denselben Rechtsstatus wie der Verwaltungsname erhalten.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Aus Gründen der Einheitlichkeit sollten alle nichtamtlichen Namen aus Suche und Archiv entfernt werden.",
+        },
+        {
+          isCorrect: false,
+          label: "Der Verwaltungsname wurde als Hauptindex festgelegt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Eine geordnete Kartierung kann einen amtlichen Hauptindex nutzen und weitere Namen samt Belegen und Kontext bewahren.",
         },
         {
           isCorrect: true,
           label:
-            "richtig abgestellte Fahrräder und kurze Aussagen von Nutzenden",
-        },
-        {
-          isCorrect: false,
-          label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte vom Eingang sichtbare Stellplatznummern (Fahrradparkplatz auf dem Campus) und bewertete die Befunde vorsichtig.",
+            "Die Wahl eines Hauptnamens verlangt nicht, andere belegte Namen zu löschen.",
         },
       ],
     },
@@ -38,27 +37,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Every local name must have the same legal status as the administrative name.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "For consistency, every non-official name should be removed from search and archives.",
+        },
+        {
+          isCorrect: false,
+          label: "The administrative name was selected as the primary index.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Orderly mapping can use one official index while retaining other names with their evidence and context.",
         },
         {
           isCorrect: true,
           label:
-            "bicycles parked in the correct rack and short comments from users",
-        },
-        {
-          isCorrect: false,
-          label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested rack numbers visible from the entrance in the campus bicycle parking and interpreted the evidence cautiously.",
+            "Choosing a primary name does not require deleting other names with a record of use.",
         },
       ],
     },
@@ -68,27 +66,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Semua nama lokal harus memiliki kedudukan hukum yang sama dengan nama administrasi.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Agar peta konsisten, semua nama selain nama resmi harus dihapus dari pencarian dan arsip.",
+        },
+        {
+          isCorrect: false,
+          label: "Nama administrasi ditetapkan sebagai indeks utama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pemetaan yang tertib dapat memakai satu indeks resmi sambil mempertahankan nama lain beserta bukti dan konteksnya.",
         },
         {
           isCorrect: true,
           label:
-            "sepeda yang diparkir pada rak yang benar dan komentar singkat pengguna",
-        },
-        {
-          isCorrect: false,
-          label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji nomor rak yang terlihat dari pintu masuk pada parkir sepeda kampus dan menafsirkan buktinya secara hati-hati.",
+            "Menetapkan nama utama tidak mengharuskan penghapusan nama lain yang memiliki jejak penggunaan.",
         },
       ],
     },

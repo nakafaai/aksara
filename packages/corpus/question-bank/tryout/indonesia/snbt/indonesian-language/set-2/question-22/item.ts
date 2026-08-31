@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Jasad berasal dari beberapa masa dan kelompok leluhur genetik",
-        },
-        {
           isCorrect: false,
           label:
             "Semua individu hidup pada masa yang sama tetapi bekerja berbeda",
@@ -18,6 +13,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Seluruh individu merupakan anggota satu pasukan",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Jasad berasal dari beberapa masa dan kelompok leluhur genetik",
         },
         {
           isCorrect: false,

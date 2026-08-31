@@ -15,16 +15,17 @@ const item: QuestionItem = {
           label: "To block the entrance lane",
         },
         {
+          isCorrect: true,
+          label: "To let damp air move behind them",
+        },
+        {
           isCorrect: false,
-          label: "To hide the lower clips",
+          label:
+            "To keep the lower clips dry after water drains from the aisle",
         },
         {
           isCorrect: false,
           label: "To warm the soup pots",
-        },
-        {
-          isCorrect: true,
-          label: "To let damp air move behind them",
         },
         {
           isCorrect: false,

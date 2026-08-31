@@ -10,10 +10,6 @@ const item: QuestionItem = {
           label: "$$\\frac{3}{70}$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\frac{12}{70}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\frac{7}{20}$$",
         },
@@ -24,6 +20,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{61}{70}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{12}{70}$$",
         },
       ],
     },
@@ -35,10 +35,6 @@ const item: QuestionItem = {
           label: "$$\\frac{3}{70}$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\frac{12}{70}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\frac{7}{20}$$",
         },
@@ -49,6 +45,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{61}{70}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{12}{70}$$",
         },
       ],
     },
@@ -60,10 +60,6 @@ const item: QuestionItem = {
           label: "$$\\frac{3}{70}$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\frac{12}{70}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\frac{7}{20}$$",
         },
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{61}{70}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{12}{70}$$",
         },
       ],
     },

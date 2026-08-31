@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam peta penerangan jalan kampung.",
+            "Kedua sumber membahas perubahan penerangan pada ruang yang sama; perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam peta penerangan jalan kampung memperoleh hasil yang sama tanpa perbedaan.",
+            "Karena membahas peristiwa yang sama, kedua sumber pasti mempunyai sudut pandang dan tujuan yang sama.",
         },
         {
           isCorrect: true,
           label:
-            "Kedua sumber sama-sama menunjukkan bahwa keduanya membahas perubahan penerangan di ruang yang sama.",
+            "Peta lampu dan catatan harian sama-sama membahas ruang yang diterangi, tetapi lokasi resmi dan pengalaman tiga warga memberi cakupan yang berbeda.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan peta penerangan jalan kampung.",
+            "Menggabungkan dua sumber memberi izin untuk mengisi bagian yang hilang dengan dugaan yang masuk akal.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyebut perspektif sebagai bukti bahwa uji tidak perlu diulang.",
+            "Perbedaan antarsumber hanya berkaitan dengan pilihan kata dan tidak memengaruhi simpulan.",
         },
       ],
     },

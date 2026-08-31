@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Because the trial reached 54, compared with a baseline of 36 and a comparison value of 37, matching symbols on bins and stall permits should become permanent before the stated limitation is examined.",
+        },
+        {
           isCorrect: true,
           label:
-            "A follow-up decision should combine measured results, affected people's experience, and the trial's limitation.",
+            "The rise to 54, compared with a baseline of 36 and a comparison value of 37 supports a limited extension of matching symbols on bins and stall permits, while the fact that visitor numbers and food types changed across evenings must shape the follow-up.",
         },
         {
           isCorrect: false,
           label:
-            "Every result in a night-market waste station must apply without limitation elsewhere.",
+            "The consultation with affected groups makes the baseline and comparison figures unnecessary for the decision.",
         },
         {
           isCorrect: false,
           label:
-            "The limitation makes all information about a night-market waste station useless.",
+            "The limitation that visitor numbers and food types changed across evenings affects delivery details, but it does not restrict who can be covered by the conclusion.",
         },
         {
           isCorrect: false,
           label:
-            "One detail about system alignment proves every possible causal relationship.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage recommends ignoring evidence that conflicts with an early expectation.",
+            "Because staffing and schedules were stable, the difference between the trial and comparison is best attributed to those unchanged conditions.",
         },
       ],
     },

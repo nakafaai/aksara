@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti dugaan yang tidak perlu diperiksa pada kampung pada malam hujan",
+            "Istilah *akhir terbuka* memastikan satu kelanjutan cerita sehingga pembaca tidak lagi perlu menafsirkan akhir.",
         },
         {
           isCorrect: true,
           label:
-            "akhir yang tidak menutup seluruh kemungkinan dan mengundang pembaca menafsirkan kelanjutannya",
+            "Definisi *akhir terbuka* mengenali perangkat penceritaan yang menghubungkan benda berulang, tindakan tokoh, dan respons yang belum tuntas pada penutup.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti hasil akhir yang selalu berlaku untuk semua keadaan",
+            "Definisi itu menyamakan *akhir terbuka* dengan benda yang berulang, bukan dengan sifat penutup cerita.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti rincian yang sengaja dihapus karena bertentangan dengan pendapat",
+            "Penyebutan *akhir terbuka* membuat kesan pribadi pembaca cukup meskipun bertentangan dengan rincian cerita.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti hiasan bahasa yang tidak berhubungan dengan konteks",
+            "Definisi tersebut hanya menerangkan latar sehingga tindakan tokoh dan perubahan makna benda tidak relevan.",
         },
       ],
     },

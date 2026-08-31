@@ -8,7 +8,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap terminal saat hujan sore tanpa membahas keputusan atau bukti.",
+            "Benda yang berulang terutama membangun latar dan hanya sedikit berhubungan dengan konflik.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Keputusan akhir tokoh menghapus ketegangan makna yang sebelumnya dimiliki benda tersebut.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bacaan memakai simbol sebagai label deskriptif tanpa menghubungkannya dengan pilihan tokoh.",
         },
         {
           isCorrect: true,
@@ -18,17 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap terminal saat hujan sore.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan terutama menjelaskan definisi simbol tanpa menghubungkannya dengan konteks.",
+            "Latar menyelesaikan konflik sebelum tindakan akhir tokoh mengubah makna benda.",
         },
       ],
     },

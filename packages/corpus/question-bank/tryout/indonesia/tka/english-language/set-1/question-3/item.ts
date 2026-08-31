@@ -12,7 +12,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Every rooftop should grow only tomatoes and lettuce.",
+          label:
+            "The roof is mainly organized to maximize the number of edible plants it produces.",
         },
         {
           isCorrect: true,
@@ -29,7 +30,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "The western corner is the only useful part of the roof.",
+          label:
+            "The hottest western zone is the central focus because it contains the water supply.",
         },
       ],
     },

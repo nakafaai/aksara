@@ -11,6 +11,11 @@ const item: QuestionItem = {
             "Dennoch, begrenzte das Team seine Schlussfolgerung zum Kontext Schulfrühstücksprogramm auf den kurzen Versuch.",
         },
         {
+          isCorrect: true,
+          label:
+            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Schulfrühstücksprogramm auf den kurzen Versuch.",
+        },
+        {
           isCorrect: false,
           label:
             "Dennoch: begrenzte das Team seine Schlussfolgerung zum Kontext Schulfrühstücksprogramm auf den kurzen Versuch.",
@@ -19,11 +24,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Dennoch; begrenzte das Team seine Schlussfolgerung zum Kontext Schulfrühstücksprogramm auf den kurzen Versuch.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Schulfrühstücksprogramm auf den kurzen Versuch.",
         },
         {
           isCorrect: false,
@@ -41,6 +41,11 @@ const item: QuestionItem = {
             "Nevertheless the team limited its conclusion for this setting (school breakfast programme) to the short trial.",
         },
         {
+          isCorrect: true,
+          label:
+            "Nevertheless, the team limited its conclusion for this setting (school breakfast programme) to the short trial.",
+        },
+        {
           isCorrect: false,
           label:
             "Nevertheless: the team limited its conclusion for this setting (school breakfast programme) to the short trial.",
@@ -49,11 +54,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Nevertheless; the team limited its conclusion for this setting (school breakfast programme) to the short trial.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Nevertheless, the team limited its conclusion for this setting (school breakfast programme) to the short trial.",
         },
         {
           isCorrect: false,
@@ -71,6 +71,11 @@ const item: QuestionItem = {
             "Meskipun demikian tim membatasi simpulan tentang program sarapan sekolah pada uji singkat tersebut.",
         },
         {
+          isCorrect: true,
+          label:
+            "Meskipun demikian, tim membatasi simpulan tentang program sarapan sekolah pada uji singkat tersebut.",
+        },
+        {
           isCorrect: false,
           label:
             "Meskipun demikian: tim membatasi simpulan tentang program sarapan sekolah pada uji singkat tersebut.",
@@ -79,11 +84,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Meskipun demikian; tim membatasi simpulan tentang program sarapan sekolah pada uji singkat tersebut.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Meskipun demikian, tim membatasi simpulan tentang program sarapan sekolah pada uji singkat tersebut.",
         },
         {
           isCorrect: false,

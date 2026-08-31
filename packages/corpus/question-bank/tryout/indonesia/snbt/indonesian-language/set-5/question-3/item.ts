@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam model penyaringan air keruh pasti berlaku tanpa batas pada tempat lain.",
+            "Karena kondisi perubahan menghasilkan 68, sedangkan nilai awal 46 dan pembanding 44, susunan kerikil, pasir, dan arang dengan ketebalan sama telah terisolasi sebagai satu-satunya penyebab selama volume awal, jenis wadah, dan lama pengendapan dibuat sama.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang model penyaringan air keruh tidak berguna.",
+            "Pengulangan paling informatif sebaiknya mengubah volume awal, jenis wadah, dan lama pengendapan bersamaan dengan susunan kerikil, pasir, dan arang dengan ketebalan sama agar gabungan kondisi yang lebih realistis dapat diuji.",
         },
         {
           isCorrect: false,
           label:
-            "Satu rincian tentang indikator cukup untuk membuktikan semua hubungan sebab-akibat.",
+            "Keterbatasan bahwa kejernihan visual tidak membuktikan bahwa air aman diminum memengaruhi ketelitian angka, tetapi tidak memengaruhi luas penerapan temuan tentang model penyaringan air keruh.",
         },
         {
           isCorrect: true,
           label:
-            "Pola awal mendukung pengulangan yang lebih kuat, bukan klaim bahwa hasil itu selalu berlaku.",
+            "Pada kondisi yang diuji, susunan kerikil, pasir, dan arang dengan ketebalan sama berkaitan dengan perubahan dari 46 dan 44 menjadi 68; karena kejernihan visual tidak membuktikan bahwa air aman diminum, pola itu perlu diuji lagi sebelum diperluas menjadi klaim umum.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Pengulangan dengan lebih banyak unit dapat mempersempit ketidakpastian, tetapi tidak mungkin mengubah penafsiran awal tentang model penyaringan air keruh.",
         },
       ],
     },

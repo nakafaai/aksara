@@ -8,16 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kepastian Mutlak tentang model jaring-jaring makanan di kebun sekolah",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Alasan Mengabaikan Semua Bukti dalam model jaring-jaring makanan di kebun sekolah",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap jaring-jaring makanan di Seluruh Dunia",
+            "Mengukur jaring-jaring makanan melalui satu perbandingan awal",
         },
         {
           isCorrect: true,
@@ -27,7 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Satu Aturan untuk Setiap model jaring-jaring makanan di kebun sekolah",
+            "Menjadikan jaring-jaring makanan penjelasan tunggal atas hasil pengamatan",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Kaidah akhir dari perbandingan pertama tentang jaring-jaring makanan",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Keterbatasan yang membuat uji lanjutan jaring-jaring makanan tidak diperlukan",
         },
       ],
     },

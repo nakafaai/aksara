@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Bürgerdaten können das Mangrovenmonitoring unterstützen, wenn Beobachtungsmöglichkeit und Klassifikationsgenauigkeit kalibriert werden.",
         },
         {
           isCorrect: true,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Standorte nahe der Straße hatten viele Meldungen und waren zugleich am leichtesten erreichbar.",
         },
         {
           isCorrect: false,
-          label: "Der Wert mit Änderung, 34, lag über 24 und 26.",
+          label:
+            "Einige Freiwillige wollen alle Beobachtungen ungeprüft aufnehmen, weil dadurch mehr Daten entstehen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die öffentliche Karte wird Meldungen, Beobachtungsintensität und Validierung trennen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Klassifikationsfehler machen sämtliche Freiwilligendaten wissenschaftlich wertlos.",
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "Community data can support mangrove monitoring when observation opportunity and classification accuracy are calibrated.",
         },
         {
           isCorrect: true,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Sites near the road had many reports and were also the easiest to visit.",
         },
         {
           isCorrect: false,
-          label: "The intervention value, 34, exceeded both 24 and 26.",
+          label:
+            "Some volunteers propose including every observation without review because the data set would be larger.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The public map will separate reports, observation intensity, and validation.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Classification errors make all volunteer data scientifically worthless.",
         },
       ],
     },
@@ -66,26 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Data warga dapat mendukung pemantauan mangrove jika peluang pengamatan dan ketepatan klasifikasi dikalibrasi.",
         },
         {
           isCorrect: true,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Lokasi dekat jalan memiliki banyak laporan sekaligus paling mudah dikunjungi.",
         },
         {
           isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 34, melampaui 24 dan 26.",
+          label:
+            "Sebagian relawan mengusulkan agar seluruh pengamatan langsung dimasukkan tanpa pemeriksaan karena jumlah data akan lebih besar.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Peta publik akan memisahkan laporan, intensitas pengamatan, dan validasi.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Kesalahan klasifikasi membuat seluruh data relawan tidak memiliki nilai ilmiah.",
         },
       ],
     },

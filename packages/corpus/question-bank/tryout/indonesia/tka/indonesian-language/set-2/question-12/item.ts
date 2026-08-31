@@ -12,11 +12,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "tabel membuktikan semua faktor sudah dikendalikan",
-        },
-        {
-          isCorrect: false,
-          label: "paragraf menolak seluruh angka pada tabel",
+          label:
+            "tabel sudah cukup untuk mengisolasi pengaruh taman dari perubahan intensitas hujan",
         },
         {
           isCorrect: true,
@@ -25,7 +22,13 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "keduanya hanya menjelaskan jenis tanaman",
+          label:
+            "paragraf menilai pola pada tabel kurang berguna karena intensitas hujan berbeda",
+        },
+        {
+          isCorrect: false,
+          label:
+            "tabel merangkum jenis tanaman, sedangkan paragraf menilai kondisi tanahnya",
         },
         {
           isCorrect: false,

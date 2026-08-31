@@ -6,29 +6,27 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Ein Name im alten Buch wurde von einem Kurator geschaffen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Jedes Objekt muss ohne Haupttitel erscheinen, damit alle Namen wirklich gleichgestellt sind.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Der am häufigsten zitierte Name muss von der Herstellerin stammen.",
+        },
+        {
           isCorrect: true,
           label:
-            "vergleichbare Volumenaufzeichnungen und kurze Aussagen von Nutzenden",
+            "Ein nachvollziehbarer Katalog muss mehrere Namen samt Quellen bewahren, damit Suchkomfort keine Zuschreibung löscht.",
         },
         {
           isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte Volumenmarkierungen an jeder Tonne (gemeinschaftliche Regentonnen) und bewertete die Befunde vorsichtig.",
+          label: "Suchergebnisse werden die Quelle jedes Namens anzeigen.",
         },
       ],
     },
@@ -36,29 +34,27 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "One name in an old book was created by a curator.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Every object must be displayed without a primary title for all names to be truly equal.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The most frequently cited name must be the one given by the cloth's maker.",
+        },
+        {
           isCorrect: true,
           label:
-            "volume records that could be compared and short comments from users",
+            "A traceable catalogue must preserve multiple names and their sources so search convenience does not erase attribution.",
         },
         {
           isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested volume markings on each barrel in the community rainwater barrels and interpreted the evidence cautiously.",
+          label: "Search results will display the source of every name.",
         },
       ],
     },
@@ -66,29 +62,27 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Salah satu nama dalam buku lama dibuat oleh kurator.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Setiap objek harus ditampilkan tanpa judul utama agar semua nama benar-benar setara.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Nama yang paling sering dikutip pasti merupakan nama yang diberikan pembuat kain.",
+        },
+        {
           isCorrect: true,
           label:
-            "catatan volume yang dapat dibandingkan dan komentar singkat pengguna",
+            "Katalog yang dapat ditelusuri perlu menjaga berbagai nama beserta sumbernya agar kemudahan pencarian tidak menghapus atribusi.",
         },
         {
           isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji garis ukur volume pada dinding penampung pada penampung air hujan warga dan menafsirkan buktinya secara hati-hati.",
+          label: "Hasil pencarian akan menampilkan sumber setiap nama.",
         },
       ],
     },

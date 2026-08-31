@@ -11,13 +11,9 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Repeated failures across identical items reveal a design problem.",
-        },
-        {
           isCorrect: false,
-          label: "Every broken object must be kept forever.",
+          label:
+            "Keep equipment in service whenever any repair remains technically possible.",
         },
         {
           isCorrect: false,
@@ -25,11 +21,18 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Replacement options should never be compared.",
+          label:
+            "Assess repair cost without comparing the safety of available replacements.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Repeated failures across identical items reveal a design problem.",
         },
         {
           isCorrect: false,
-          label: "Old equipment always uses less energy.",
+          label:
+            "Treat avoiding a new purchase as sufficient evidence of a lower environmental cost.",
         },
       ],
     },

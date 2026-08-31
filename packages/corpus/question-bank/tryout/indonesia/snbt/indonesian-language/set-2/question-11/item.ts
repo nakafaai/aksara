@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$(7)$$",
         },
         {
-          isCorrect: true,
-          label: "$$(2)$$",
-        },
-        {
           isCorrect: false,
           label: "$$(12)$$",
         },
         {
           isCorrect: false,
           label: "$$(29)$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$(2)$$",
         },
         {
           isCorrect: false,

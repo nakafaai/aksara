@@ -12,11 +12,17 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "menganggap jeda lima menit wajib bagi semua tugas",
+          label:
+            "menerapkan jeda lima menit sebagai aturan tetap sebelum memeriksa perbedaan individu",
         },
         {
           isCorrect: false,
-          label: "menghapus seluruh latihan tanpa jeda",
+          label:
+            "mengganti latihan tanpa jeda dengan urutan sesi yang sama bagi setiap peserta",
+        },
+        {
+          isCorrect: true,
+          label: "mencoba jeda terencana sambil memantau hasil pribadi",
         },
         {
           isCorrect: false,
@@ -25,10 +31,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "mengabaikan perbedaan kebutuhan peserta",
-        },
-        {
-          isCorrect: true,
-          label: "mencoba jeda terencana sambil memantau hasil pribadi",
         },
       ],
     },

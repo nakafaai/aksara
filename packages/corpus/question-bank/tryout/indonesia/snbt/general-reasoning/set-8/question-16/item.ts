@@ -6,17 +6,17 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Die Schlussfolgerung ist relevant, lässt sich wegen unzureichender Angaben aber nicht beurteilen.",
-        },
-        {
           isCorrect: false,
           label: "Die Schlussfolgerung ist definitiv wahr.",
         },
         {
           isCorrect: false,
           label: "Die Schlussfolgerung ist wahrscheinlich wahr.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Die Schlussfolgerung ist relevant, lässt sich wegen unzureichender Angaben aber nicht beurteilen.",
         },
         {
           isCorrect: false,
@@ -32,17 +32,17 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "The conclusion is relevant but cannot be assessed because the information is insufficient.",
-        },
-        {
           isCorrect: false,
           label: "The conclusion is definitely true.",
         },
         {
           isCorrect: false,
           label: "The conclusion is probably true.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "The conclusion is relevant but cannot be assessed because the information is insufficient.",
         },
         {
           isCorrect: false,
@@ -58,17 +58,17 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Simpulan relevan, tetapi tidak dapat dinilai karena informasi tidak cukup.",
-        },
-        {
           isCorrect: false,
           label: "Simpulan tersebut pasti benar.",
         },
         {
           isCorrect: false,
           label: "Simpulan tersebut kemungkinan besar benar.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Simpulan relevan, tetapi tidak dapat dinilai karena informasi tidak cukup.",
         },
         {
           isCorrect: false,

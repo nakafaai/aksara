@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "The Best Exercise for People with Arthritis",
         },
         {
-          isCorrect: true,
-          label: "Swimming: Possible Benefits and Safety Considerations",
-        },
-        {
           isCorrect: false,
           label: "Why Water Exercise Prevents Every Illness",
+        },
+        {
+          isCorrect: true,
+          label: "Swimming: Possible Benefits and Safety Considerations",
         },
       ],
     },

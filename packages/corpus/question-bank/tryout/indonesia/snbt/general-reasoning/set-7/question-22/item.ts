@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$338$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$314$$",
+          label: "$$32\\%$$",
         },
         {
           isCorrect: true,
-          label: "$$326$$",
+          label: "$$36\\%$$",
         },
         {
           isCorrect: false,
-          label: "$$320$$",
+          label: "$$34\\%$$",
         },
         {
           isCorrect: false,
-          label: "$$332$$",
+          label: "$$38\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$40\\%$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$338$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$314$$",
+          label: "$$32\\%$$",
         },
         {
           isCorrect: true,
-          label: "$$326$$",
+          label: "$$36\\%$$",
         },
         {
           isCorrect: false,
-          label: "$$320$$",
+          label: "$$34\\%$$",
         },
         {
           isCorrect: false,
-          label: "$$332$$",
+          label: "$$38\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$40\\%$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$338$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$314$$",
+          label: "$$32\\%$$",
         },
         {
           isCorrect: true,
-          label: "$$326$$",
+          label: "$$36\\%$$",
         },
         {
           isCorrect: false,
-          label: "$$320$$",
+          label: "$$34\\%$$",
         },
         {
           isCorrect: false,
-          label: "$$332$$",
+          label: "$$38\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$40\\%$$",
         },
       ],
     },

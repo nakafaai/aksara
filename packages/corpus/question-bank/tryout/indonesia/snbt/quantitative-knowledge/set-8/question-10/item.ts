@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$0 < m < \\frac{1}{2}$$",
+        },
+        {
           isCorrect: false,
           label: "$$m < 0 \\lor m > \\frac{1}{2}$$",
         },
         {
           isCorrect: false,
           label: "$$-\\frac{1}{2} < m < \\frac{1}{2}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$0 < m < \\frac{1}{2}$$",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$0 < m < \\frac{1}{2}$$",
+        },
+        {
           isCorrect: false,
           label: "$$m < 0 \\lor m > \\frac{1}{2}$$",
         },
         {
           isCorrect: false,
           label: "$$-\\frac{1}{2} < m < \\frac{1}{2}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$0 < m < \\frac{1}{2}$$",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$0 < m < \\frac{1}{2}$$",
+        },
+        {
           isCorrect: false,
           label: "$$m < 0 \\lor m > \\frac{1}{2}$$",
         },
         {
           isCorrect: false,
           label: "$$-\\frac{1}{2} < m < \\frac{1}{2}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$0 < m < \\frac{1}{2}$$",
         },
         {
           isCorrect: false,

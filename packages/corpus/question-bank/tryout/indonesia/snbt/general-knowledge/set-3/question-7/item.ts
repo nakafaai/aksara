@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Das Museum erhöht die Verlässlichkeit der Darstellung, indem es Dokumente, Erinnerungen und Unsicherheit trennt, statt eine Version zu erzwingen.",
         },
         {
           isCorrect: true,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Das Inventarbuch nennt einen Abendmarkt, während vier ehemalige Händler den Hauptbetrieb am Morgen erinnern.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team prüfte eine Erinnerung einen Tag vor jedem Besuch (mobiler Bibliotheksdienst) und bewertete die Befunde vorsichtig.",
+            "Der Unterschied könnte entstanden sein, weil Abendmarkt den Ort und nicht die Handelszeit bezeichnete.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Museum wird Korrekturen mit einer überprüfbaren Quellenangabe annehmen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Schriftliche Unterlagen sind immer richtig, während jede mündliche Aussage verworfen werden muss.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "The museum improves the reliability of the account by distinguishing records, memories, and uncertainty rather than forcing one version to win.",
         },
         {
           isCorrect: true,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "The inventory book says evening market, while four former traders remember the main activity starting in the morning.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested a reminder sent one day before each visit in the mobile library service and interpreted the evidence cautiously.",
+            "The discrepancy may exist because evening market named the area rather than the trading hours.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The museum will accept corrections that include a verifiable source trail.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Written records are always correct, whereas all oral testimony must be rejected.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Museum meningkatkan keandalan keterangan dengan membedakan dokumen, ingatan, dan ketidakpastian, bukan dengan memaksa satu versi menang.",
         },
         {
           isCorrect: true,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Buku inventaris menyebut pasar sore, sedangkan empat mantan pedagang mengingat kegiatan utama sejak pagi.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji pesan pengingat sehari sebelum kunjungan pada layanan perpustakaan keliling dan menafsirkan buktinya secara hati-hati.",
+            "Perbedaan keterangan mungkin muncul karena istilah pasar sore dipakai untuk kawasan, bukan jam transaksi.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Museum akan menerima koreksi yang dilengkapi asal sumber yang dapat diperiksa.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Catatan tertulis selalu benar, sedangkan semua kesaksian lisan harus ditolak.",
         },
       ],
     },

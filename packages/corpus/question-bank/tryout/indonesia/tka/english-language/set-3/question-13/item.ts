@@ -11,6 +11,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "The project listed checkpoints from 2024 to 2040.",
+        },
+        {
           isCorrect: false,
           label: "The greenhouse had a loose board.",
         },
@@ -25,10 +29,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Twelve days passed before seedlings appeared.",
-        },
-        {
-          isCorrect: true,
-          label: "The project listed checkpoints from 2024 to 2040.",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage states that no action or observation occurred in a community sports centre.",
+            "Omar tested the route at wheelchair height and marked every place where a sign disappeared from view; the choice resolves the whole conflict at once and makes any later review unnecessary.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Omar tested the route at wheelchair height and marked every place where a sign disappeared from view; the action transfers responsibility for the unresolved task to another character.",
         },
         {
           isCorrect: true,
           label:
-            "Omar tested the route at wheelchair height and marked every place where a sign disappeared from view.",
+            "Testing the route at wheelchair height turns Omar's assumption about access into visible failures he can document and correct.",
         },
         {
           isCorrect: false,
           label:
-            "Everyone in a community sports centre obtained exactly the same result without variation.",
+            "Omar tested the route at wheelchair height and marked every place where a sign disappeared from view; the decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
         },
         {
           isCorrect: false,
           label:
-            "The writer removes every detail related to a community sports centre.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage presents co-design as proof that no follow-up is needed.",
+            "Omar tested the route at wheelchair height and marked every place where a sign disappeared from view; the setting alone produces the change, so the character's decision has no role in the development.",
         },
       ],
     },

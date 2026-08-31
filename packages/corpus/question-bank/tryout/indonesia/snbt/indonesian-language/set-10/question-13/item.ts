@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam taman bermain inklusif pasti berlaku tanpa batas pada tempat lain.",
+            "Nilai 31 membuktikan bahwa peta kebutuhan akses mencakup seluruh ragam kebutuhan sensorik dan motorik.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang taman bermain inklusif tidak berguna.",
+            "Selisih antara nilai dasar 19 dan pembanding 20 membuat keterbatasan ragam peserta tidak lagi relevan.",
         },
         {
           isCorrect: false,
           label:
-            "Satu rincian tentang desain inklusif cukup untuk membuktikan semua hubungan sebab-akibat.",
+            "Masukan keluarga dan perancang cukup untuk menggantikan keterlibatan langsung semua kelompok pengguna dalam uji.",
         },
         {
           isCorrect: true,
           label:
-            "Keputusan lanjutan sebaiknya mempertimbangkan data, pengalaman pihak terdampak, dan keterbatasan uji.",
+            "Nilai 31 dibandingkan 20 mendukung penerusan peta secara terbatas, tetapi ragam kebutuhan sensorik dan motorik yang belum terlibat harus diuji sebelum penerapan lebih luas.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Peta sebaiknya langsung diterapkan penuh karena perubahan jadwal dan jumlah petugas telah dikendalikan.",
         },
       ],
     },

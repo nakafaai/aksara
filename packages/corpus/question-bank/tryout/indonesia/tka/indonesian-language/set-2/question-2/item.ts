@@ -12,23 +12,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "memperkirakan sumber kerusakan berdasarkan pemeriksaan",
+          label:
+            "menandai tahap mencari penyebab berdasarkan gejala dan pengujian sebelum tindakan perbaikan dipilih",
         },
         {
           isCorrect: false,
-          label: "menjual benda rusak dengan harga rendah",
+          label:
+            "menyamakan pemeriksaan awal dengan keputusan untuk mengganti seluruh komponen",
         },
         {
           isCorrect: false,
-          label: "membongkar semua alat tanpa aturan",
+          label:
+            "menunjukkan bahwa keberhasilan perbaikan dapat dipastikan sebelum benda diuji",
         },
         {
           isCorrect: false,
-          label: "mengganti setiap komponen lama",
+          label:
+            "menjelaskan proses menjual benda yang biaya perbaikannya belum dihitung",
         },
         {
           isCorrect: false,
-          label: "menjamin benda akan kembali seperti baru",
+          label:
+            "menegaskan bahwa catatan gejala tidak diperlukan jika kerusakan tampak dari luar",
         },
       ],
     },

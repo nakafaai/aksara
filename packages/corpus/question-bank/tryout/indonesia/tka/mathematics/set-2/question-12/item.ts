@@ -11,24 +11,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$64+6\\pi^2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$64+18\\pi^2$$",
+        },
+        {
           isCorrect: true,
-          label: "$$4\\sqrt{3}$$",
+          label: "$$64+9\\pi^2$$",
         },
         {
           isCorrect: false,
-          label: "$$4\\sqrt2$$",
+          label: "$$8+3\\pi$$",
         },
         {
           isCorrect: false,
-          label: "$$8$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4\\sqrt5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$12$$",
+          label: "$$8+9\\pi$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$64+6\\pi^2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$64+18\\pi^2$$",
+        },
+        {
           isCorrect: true,
-          label: "$$4\\sqrt{3}$$",
+          label: "$$64+9\\pi^2$$",
         },
         {
           isCorrect: false,
-          label: "$$4\\sqrt2$$",
+          label: "$$8+3\\pi$$",
         },
         {
           isCorrect: false,
-          label: "$$8$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4\\sqrt5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$12$$",
+          label: "$$8+9\\pi$$",
         },
       ],
     },
@@ -61,24 +61,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$64+6\\pi^2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$64+18\\pi^2$$",
+        },
+        {
           isCorrect: true,
-          label: "$$4\\sqrt{3}$$",
+          label: "$$64+9\\pi^2$$",
         },
         {
           isCorrect: false,
-          label: "$$4\\sqrt2$$",
+          label: "$$8+3\\pi$$",
         },
         {
           isCorrect: false,
-          label: "$$8$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4\\sqrt5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$12$$",
+          label: "$$8+9\\pi$$",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam klub pembaca pemula.",
+            "Kedua sumber memperlihatkan perkembangan kebiasaan membaca; perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam klub pembaca pemula memperoleh hasil yang sama tanpa perbedaan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan klub pembaca pemula.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut kontekstualisasi sebagai bukti bahwa uji tidak perlu diulang.",
+            "Karena membahas peristiwa yang sama, kedua sumber pasti mempunyai sudut pandang dan tujuan yang sama.",
         },
         {
           isCorrect: true,
           label:
-            "Kedua sumber sama-sama menunjukkan bahwa keduanya membantu melihat perkembangan kebiasaan membaca.",
+            "Daftar peminjaman dan catatan fasilitator sama-sama menelusuri kebiasaan membaca, tetapi pilihan buku dan kesulitan peserta berasal dari sudut pandang berbeda.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Menggabungkan dua sumber memberi izin untuk mengisi bagian yang hilang dengan dugaan yang masuk akal.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perbedaan antarsumber hanya berkaitan dengan pilihan kata dan tidak memengaruhi simpulan.",
         },
       ],
     },

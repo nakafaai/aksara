@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "245 m²",
+          label: "$$\\frac35$$",
         },
         {
           isCorrect: false,
-          label: "250 m²",
+          label: "$$\\frac23$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{109}{165}$$",
         },
         {
           isCorrect: true,
-          label: "255 m²",
+          label: "$$\\frac{107}{165}$$",
         },
         {
           isCorrect: false,
-          label: "260 m²",
-        },
-        {
-          isCorrect: false,
-          label: "265 m²",
+          label: "$$\\frac7{10}$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "245 m²",
+          label: "$$\\frac35$$",
         },
         {
           isCorrect: false,
-          label: "250 m²",
+          label: "$$\\frac23$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{109}{165}$$",
         },
         {
           isCorrect: true,
-          label: "255 m²",
+          label: "$$\\frac{107}{165}$$",
         },
         {
           isCorrect: false,
-          label: "260 m²",
-        },
-        {
-          isCorrect: false,
-          label: "265 m²",
+          label: "$$\\frac7{10}$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "245 m²",
+          label: "$$\\frac35$$",
         },
         {
           isCorrect: false,
-          label: "250 m²",
+          label: "$$\\frac23$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{109}{165}$$",
         },
         {
           isCorrect: true,
-          label: "255 m²",
+          label: "$$\\frac{107}{165}$$",
         },
         {
           isCorrect: false,
-          label: "260 m²",
-        },
-        {
-          isCorrect: false,
-          label: "265 m²",
+          label: "$$\\frac7{10}$$",
         },
       ],
     },

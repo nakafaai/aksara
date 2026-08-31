@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
           isCorrect: true,
-          label: "Tabletts ohne Speisereste und kurze Aussagen von Nutzenden",
+          label:
+            "Verspätungsmuster begründen zwei Vorschläge; Testergebnisse und Kommunikationsprobleme bestimmen die nächste Fassung.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            'Der erste Teil vertritt die Behauptung "Einige Nutzer erhielten wegen geänderter Telefonnummern keine Nachricht"; der folgende nutzt "Der begrenzte Test beweist, dass Gebühren in jedem Fall abgeschafft werden müssen" als Hauptbeleg.',
         },
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            'Der erste Teil legt "Der Erfolg der Regel wird vor allem durch die Höhe der Gebühreneinnahmen bestimmt" als endgültigen Schluss fest; der folgende nennt nur den Plan "Der Test wird um zwei Erinnerungswege und ein Einspruchsverfahren erweitert".',
         },
         {
           isCorrect: false,
           label:
-            "Das Team prüfte die Wahl zwischen kleinen und normalen Portionen (Kantine zur Verringerung von Speiseresten) und bewertete die Befunde vorsichtig.",
+            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Der begrenzte Test beweist, dass Gebühren in jedem Fall abgeschafft werden müssen" fest.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Der folgende Teil kehrt die Argumentation um und leitet "Der Erfolg der Regel wird vor allem durch die Höhe der Gebühreneinnahmen bestimmt" aus dem Beleg "Einige Nutzer erhielten wegen geänderter Telefonnummern keine Nachricht" ab.',
         },
       ],
     },
@@ -35,29 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
           isCorrect: true,
           label:
-            "trays returned without leftovers and short comments from users",
+            "Delay patterns motivate two proposals, and trial results plus communication problems shape the next design.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            'The first part advances the claim "Some users did not receive messages because their phone numbers had changed", and the later part uses "The limited trial proves that fines must be removed in every circumstance" as its main support.',
         },
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            'The first part establishes "Policy success is determined mainly by how much fine revenue is collected" as a final conclusion; the later part only states the plan "The trial will expand with two reminder channels and an appeal process".',
         },
         {
           isCorrect: false,
           label:
-            "The team tested a choice between small and regular portions in the food-waste reduction canteen and interpreted the evidence cautiously.",
+            'Both parts maintain the claim "The limited trial proves that fines must be removed in every circumstance" from the same perspective without adding a test.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'The later part reverses the argument by deriving "Policy success is determined mainly by how much fine revenue is collected" from the evidence "Some users did not receive messages because their phone numbers had changed".',
         },
       ],
     },
@@ -65,28 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
           isCorrect: true,
-          label: "nampan yang kembali tanpa sisa dan komentar singkat pengguna",
+          label:
+            "Pola keterlambatan menjadi dasar dua usulan, lalu hasil uji dan masalah komunikasi membentuk rancangan lanjutan.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            'Bagian awal mengajukan klaim "Sebagian pengguna tidak menerima pesan karena nomor telepon berubah", lalu bagian kedua memakai "Uji terbatas membuktikan bahwa denda harus dihapus untuk semua keadaan" sebagai dukungan utama.',
         },
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            'Bagian pertama menetapkan "Keberhasilan kebijakan terutama ditentukan oleh banyaknya uang denda yang berhasil dikumpulkan" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Uji akan diperluas dengan dua saluran pengingat dan proses banding".',
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji pilihan porsi kecil dan porsi biasa pada kantin bebas sisa makanan dan menafsirkan buktinya secara hati-hati.",
+            'Kedua bagian mempertahankan klaim "Uji terbatas membuktikan bahwa denda harus dihapus untuk semua keadaan" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Keberhasilan kebijakan terutama ditentukan oleh banyaknya uang denda yang berhasil dikumpulkan" dari bukti "Sebagian pengguna tidak menerima pesan karena nomor telepon berubah".',
         },
       ],
     },

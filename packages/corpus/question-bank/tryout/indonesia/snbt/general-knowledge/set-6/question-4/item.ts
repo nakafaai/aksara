@@ -7,23 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "für mehr als eine Deutung offen",
+          label:
+            "Die Bewertenden verwenden ein Raster, das vor Kenntnis der Identitäten oder Endergebnisse festgelegt wurde.",
         },
         {
           isCorrect: false,
-          label: "durch verlässliche Belege gestützt",
+          label:
+            "Quelle, Methode und Datenweg können unabhängig geprüft werden, bevor die Behauptung akzeptiert wird.",
         },
         {
           isCorrect: false,
-          label: "fähig, sich an veränderte Bedingungen anzupassen",
+          label:
+            "Das Instrument wird geprüft, damit sein Wert tatsächlich das beabsichtigte Konstrukt abbildet.",
         },
         {
           isCorrect: false,
-          label: "dem Umfang des Problems angemessen",
+          label:
+            "Das Team prüft die Originalaufzeichnung, ihre Herkunft und ihre Änderungshistorie, bevor es sie verwendet.",
         },
         {
           isCorrect: true,
-          label: "auf Beobachtung oder Messung beruhend",
+          label:
+            "Die Behauptung stützt sich auf wiederholte Beobachtungen und Messungen statt nur auf Vermutungen.",
         },
       ],
     },
@@ -32,23 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "open to more than one interpretation",
+          label:
+            "Reviewers use a rubric set before they know participant identities or final outcomes.",
         },
         {
           isCorrect: false,
-          label: "supported by dependable evidence",
+          label:
+            "The source, method, and data trail can be checked independently before the claim is accepted.",
         },
         {
           isCorrect: false,
-          label: "able to adjust to changing conditions",
+          label:
+            "The instrument is tested to ensure that its score represents the construct it is meant to measure.",
         },
         {
           isCorrect: false,
-          label: "appropriate to the scale of the problem",
+          label:
+            "The team checks the original record, its provenance, and its change history before using it.",
         },
         {
           isCorrect: true,
-          label: "based on observation or measurement",
+          label:
+            "The claim is built from repeated observations and measurements rather than assumption alone.",
         },
       ],
     },
@@ -57,23 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
+          label:
+            "Penilai memakai rubrik yang ditetapkan sebelum mengetahui identitas peserta atau hasil akhirnya.",
         },
         {
           isCorrect: false,
-          label: "didukung oleh bukti yang dapat dipercaya",
+          label:
+            "Sumber, metode, dan jejak data dapat diperiksa secara mandiri sebelum klaim diterima.",
         },
         {
           isCorrect: false,
-          label: "mampu menyesuaikan diri dengan kondisi yang berubah",
+          label:
+            "Instrumen diuji untuk memastikan bahwa skor benar-benar mewakili konsep yang hendak diukur.",
         },
         {
           isCorrect: false,
-          label: "sepadan dengan skala masalah",
+          label:
+            "Tim memeriksa rekaman asli beserta asal dan riwayat perubahannya sebelum menggunakannya.",
         },
         {
           isCorrect: true,
-          label: "berdasarkan pengamatan atau pengukuran",
+          label:
+            "Klaim disusun dari pengamatan berulang dan hasil pengukuran, bukan dari dugaan semata.",
         },
       ],
     },

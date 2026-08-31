@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team prüfte die Wahl zwischen kleinen und normalen Portionen (Kantine zur Verringerung von Speiseresten) und bewertete die Befunde vorsichtig.",
+            "Der begrenzte Test beweist, dass Gebühren in jedem Fall abgeschafft werden müssen.",
         },
         {
           isCorrect: true,
           label:
-            "Vorsichtige Prüfung im Kontext Kantine zur Verringerung von Speiseresten: die Wahl zwischen kleinen und normalen Portionen",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 26, lag über 18 und 20.",
+            "Hohe Gebühreneinnahmen bedeuten nicht zwangsläufig, dass die Bibliothek besser funktioniert.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Der Erfolg der Regel wird vor allem durch die Höhe der Gebühreneinnahmen bestimmt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Einige Nutzer erhielten wegen geänderter Telefonnummern keine Nachricht.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Der Test wird um zwei Erinnerungswege und ein Einspruchsverfahren erweitert.",
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested a choice between small and regular portions in the food-waste reduction canteen and interpreted the evidence cautiously.",
+            "The limited trial proves that fines must be removed in every circumstance.",
         },
         {
           isCorrect: true,
           label:
-            "A cautious trial of a choice between small and regular portions: food-waste reduction canteen",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 26, exceeded both 18 and 20.",
+            "A large amount of fine revenue does not necessarily mean the library service works better.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "Policy success is determined mainly by how much fine revenue is collected.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Some users did not receive messages because their phone numbers had changed.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The trial will expand with two reminder channels and an appeal process.",
         },
       ],
     },
@@ -66,26 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji pilihan porsi kecil dan porsi biasa pada kantin bebas sisa makanan dan menafsirkan buktinya secara hati-hati.",
+            "Uji terbatas membuktikan bahwa denda harus dihapus untuk semua keadaan.",
         },
         {
           isCorrect: true,
           label:
-            "Uji Hati-hati dalam kantin bebas sisa makanan: pilihan porsi kecil dan porsi biasa",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 26, melampaui 18 dan 20.",
+            "Jumlah denda yang besar tidak selalu menunjukkan bahwa layanan perpustakaan bekerja lebih baik.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Keberhasilan kebijakan terutama ditentukan oleh banyaknya uang denda yang berhasil dikumpulkan.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Sebagian pengguna tidak menerima pesan karena nomor telepon berubah.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Uji akan diperluas dengan dua saluran pengingat dan proses banding.",
         },
       ],
     },

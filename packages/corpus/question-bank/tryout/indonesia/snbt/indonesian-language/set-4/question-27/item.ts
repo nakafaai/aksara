@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam bangunan tua yang sedang dipugar.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Semua tokoh atau pihak dalam bangunan tua yang sedang dipugar memperoleh hasil yang sama tanpa perbedaan.",
+            "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama; bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
         },
         {
           isCorrect: true,
           label:
-            "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama.",
+            "Retak yang semula tampak sebagai kerusakan menjadi jalur menuju warna lama, sehingga bangunan berulang dibaca sebagai lapisan sejarah.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan bangunan tua yang sedang dipugar.",
+            "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama; akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyebut foreshadowing sebagai bukti bahwa uji tidak perlu diulang.",
+            "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama; perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama; benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
         },
       ],
     },

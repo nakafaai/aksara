@@ -20,7 +20,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "To hide the containers from gardeners",
+          label:
+            "To make debris beneath the mesh easier for gardeners to notice",
         },
         {
           isCorrect: true,

@@ -7,23 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "genau und frei von vermeidbarer Mehrdeutigkeit",
+          label:
+            "Annahmen, Datengrenzen und Entscheidungskriterien werden im Bericht unmittelbar genannt.",
         },
         {
           isCorrect: false,
-          label: "nach denselben Grundsätzen ohne Widerspruch",
-        },
-        {
-          isCorrect: false,
-          label: "klar und unmittelbar ausgedrückt",
-        },
-        {
-          isCorrect: false,
-          label: "für mehr als eine Deutung offen",
+          label:
+            "Quelle, Methode und Datenweg können unabhängig geprüft werden, bevor die Behauptung akzeptiert wird.",
         },
         {
           isCorrect: true,
-          label: "so offen erklärt, dass es nachvollziehbar ist",
+          label:
+            "Das Team legt Daten, Methoden, Ausschlussgründe und Grenzen offen, damit der Prozess geprüft werden kann.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team prüft die Originalaufzeichnung, ihre Herkunft und ihre Änderungshistorie, bevor es sie verwendet.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Bewertenden verwenden ein Raster, das vor Kenntnis der Identitäten oder Endergebnisse festgelegt wurde.",
         },
       ],
     },
@@ -32,23 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "exact and free from avoidable ambiguity",
+          label:
+            "The assumptions, data limits, and decision criteria are stated directly in the report.",
         },
         {
           isCorrect: false,
-          label: "following the same principles without contradiction",
-        },
-        {
-          isCorrect: false,
-          label: "stated clearly and directly",
-        },
-        {
-          isCorrect: false,
-          label: "open to more than one interpretation",
+          label:
+            "The source, method, and data trail can be checked independently before the claim is accepted.",
         },
         {
           isCorrect: true,
-          label: "explained openly enough to be examined",
+          label:
+            "The team discloses data, methods, exclusion reasons, and limitations so the process can be examined.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team checks the original record, its provenance, and its change history before using it.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Reviewers use a rubric set before they know participant identities or final outcomes.",
         },
       ],
     },
@@ -57,23 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "tepat dan tidak menimbulkan ketaksaan yang dapat dihindari",
+          label:
+            "Asumsi, batas data, dan kriteria keputusan dinyatakan langsung dalam laporan.",
         },
         {
           isCorrect: false,
-          label: "mengikuti prinsip yang sama tanpa pertentangan",
-        },
-        {
-          isCorrect: false,
-          label: "dinyatakan secara jelas dan langsung",
-        },
-        {
-          isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
+          label:
+            "Sumber, metode, dan jejak data dapat diperiksa secara mandiri sebelum klaim diterima.",
         },
         {
           isCorrect: true,
-          label: "dijelaskan secara terbuka sehingga dapat diperiksa",
+          label:
+            "Tim membuka data, metode, alasan pengecualian, dan keterbatasan agar proses dapat diperiksa.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim memeriksa rekaman asli beserta asal dan riwayat perubahannya sebelum menggunakannya.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Penilai memakai rubrik yang ditetapkan sebelum mengetahui identitas peserta atau hasil akhirnya.",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Geordnete Prüfung einer Änderung: Ausstellung von Schülerarbeiten",
+            "Mit geänderten Messregeln plant das Team einen längeren Test von Richtungspfeile an jeder Kreuzung.",
         },
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Richtungspfeile an jeder Abzweigung.",
+            "Das Team will nur die Tage wiederholen, an denen die Änderung Richtungspfeile an jeder Kreuzung den höchsten Wert ergab.",
         },
         {
           isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Ausstellung von Schülerarbeiten über den beiden anderen Werten.",
+            "Das Team will Richtungspfeile an jeder Kreuzung dauerhaft einführen statt einen längeren Vergleich durchzuführen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team plant einen längeren Test von Richtungspfeile an jeder Kreuzung ohne Vergleichsbedingung.",
         },
         {
           isCorrect: true,
           label:
             "Unter unveränderten Messregeln plant das Team einen längeren Versuch mit folgender Änderung: Richtungspfeile an jeder Abzweigung.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Richtungspfeile an jeder Abzweigung.",
         },
       ],
     },
@@ -37,27 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: student work exhibition",
+          label:
+            "Using revised measurement rules, the team plans a longer test of direction arrows placed at each junction.",
         },
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of direction arrows placed at each junction.",
+            "The team plans to repeat only the days on which direction arrows placed at each junction produced the highest value.",
         },
         {
           isCorrect: false,
           label:
-            "In this setting (student work exhibition), the trial value exceeded both other values.",
+            "The team plans to adopt direction arrows placed at each junction permanently instead of running a longer comparison.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team plans a longer test of direction arrows placed at each junction without retaining a comparison condition.",
         },
         {
           isCorrect: true,
           label:
             "Using the same measurement rules, the team plans a longer test of direction arrows placed at each junction.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, direction arrows placed at each junction, directly addressed the observed uncertainty.",
         },
       ],
     },
@@ -66,27 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: pameran karya siswa",
+          label:
+            "Dengan kaidah pengukuran yang diubah, tim merencanakan uji panah arah di setiap persimpangan yang lebih panjang.",
         },
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui panah arah yang ditempatkan.",
+            "Tim akan mengulang hari ketika panah arah di setiap persimpangan menghasilkan nilai tertinggi.",
         },
         {
           isCorrect: false,
           label:
-            "Di pameran karya siswa, nilai hari uji melampaui dua nilai lainnya.",
+            "Tim akan menerapkan panah arah di setiap persimpangan secara tetap sebagai pengganti perbandingan yang lebih panjang.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim merencanakan uji panah arah di setiap persimpangan yang lebih panjang tanpa mempertahankan kondisi pembanding.",
         },
         {
           isCorrect: true,
           label:
             "Dengan aturan pengukuran yang sama, tim merencanakan uji panah arah yang ditempatkan yang lebih panjang.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa panah arah yang ditempatkan langsung menanggapi keraguan yang diamati.",
         },
       ],
     },

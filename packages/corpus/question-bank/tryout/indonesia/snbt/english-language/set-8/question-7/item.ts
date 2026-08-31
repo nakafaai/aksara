@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage states that no action or observation occurred in a multilingual youth translation club.",
+            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
         },
         {
           isCorrect: false,
           label:
-            "Everyone in a multilingual youth translation club obtained exactly the same result without variation.",
+            "The comparison condition produced a mean value of 20; because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
           isCorrect: false,
           label:
-            "The writer removes every detail related to a multilingual youth translation club.",
+            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
         },
         {
           isCorrect: true,
-          label: "The comparison condition produced a mean value of 20.",
+          label:
+            "The comparison condition produced 20, the reference for the shared-glossary trial; one glossary cannot cover every regional or family usage.",
         },
         {
           isCorrect: false,
           label:
-            "The passage presents register as proof that no follow-up is needed.",
+            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
         },
       ],
     },

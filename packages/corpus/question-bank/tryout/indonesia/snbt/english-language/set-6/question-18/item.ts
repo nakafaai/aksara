@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Every result in a repair café during a storm must apply without limitation elsewhere.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The limitation makes all information about a repair café during a storm useless.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "One detail about sensory imagery proves every possible causal relationship.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage recommends ignoring evidence that conflicts with an early expectation.",
-        },
-        {
           isCorrect: true,
           label:
             "a spool of gold thread gains meaning through its connection to the conflict, choice, and ending.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The recurring object gains meaning mainly from its physical description rather than its relation to the choice.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The ending shows that the setting, rather than the character's action, resolves the conflict.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The object's meaning remains fixed even though the character uses it differently.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The final action matters because it confirms the interpretation established at the start.",
         },
       ],
     },

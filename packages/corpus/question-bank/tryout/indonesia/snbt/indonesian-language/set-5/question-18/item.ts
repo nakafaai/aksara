@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Perbedaan antarsumber dapat memperkaya penafsiran jika asal dan tujuan setiap sumber diperiksa.",
+            "Buku pesanan menunjukkan perubahan jenis perbaikan, sedangkan cerita penjahit memberi kemungkinan alasan pelanggan; gabungan keduanya mendukung penafsiran perubahan kebutuhan, tetapi tidak menetapkan motif semua pelanggan.",
         },
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam kelas reparasi pakaian pasti berlaku tanpa batas pada tempat lain.",
+            "Buku pesanan membuktikan alasan setiap pelanggan memilih reparasi karena jenis perbaikan selalu menunjukkan motifnya.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang kelas reparasi pakaian tidak berguna.",
+            "Cerita tiga penjahit lebih dapat dipercaya daripada catatan dua puluh tahun karena kesaksian lisan selalu menjelaskan konteks secara lengkap.",
         },
         {
           isCorrect: false,
           label:
-            "Satu rincian tentang sejarah lisan cukup untuk membuktikan semua hubungan sebab-akibat.",
+            "Jika jenis perbaikan dan alasan pelanggan berbeda, salah satu sumber tidak dapat dipakai untuk menulis sejarah reparasi.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Setelah kedua sumber dibandingkan, siapa yang membuat catatan dan kapan cerita direkam tidak lagi memengaruhi penafsiran.",
         },
       ],
     },

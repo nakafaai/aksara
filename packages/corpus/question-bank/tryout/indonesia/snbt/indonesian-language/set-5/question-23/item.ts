@@ -8,17 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam gudang kecil dekat pelabuhan pasti berlaku tanpa batas pada tempat lain.",
+            "Kemajuan bergantung pada penyelesaian tugas besar sebelum meminta orang lain meninjaunya.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang gudang kecil dekat pelabuhan tidak berguna.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Satu rincian tentang akuntabilitas cukup untuk membuktikan semua hubungan sebab-akibat.",
+            "Benda atau latar membentuk hasil lebih kuat daripada pilihan khusus yang dibuat tokoh.",
         },
         {
           isCorrect: true,
@@ -28,7 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Bukti yang belum pasti sebaiknya disimpan sampai tokoh dapat menawarkan hasil lengkap.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tindakan kecil terutama berguna karena menunda bagian konflik yang belum selesai.",
         },
       ],
     },

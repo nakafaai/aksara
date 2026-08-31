@@ -6,24 +6,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Alle Mitglieder von T9 sind Mitglieder von R9.",
-        },
-        {
           isCorrect: true,
-          label: "Kein Mitglied von R9 ist Mitglied von T9.",
+          label:
+            "Einige Forschungssammlungen sind keine öffentlichen Datensätze.",
         },
         {
           isCorrect: false,
-          label: "Einige Mitglieder von R9 sind Mitglieder von T9.",
+          label: "Alle Forschungssammlungen sind verschlüsselt.",
         },
         {
           isCorrect: false,
-          label: "Kein Mitglied von S9 ist Mitglied von R9.",
+          label: "Einige öffentliche Datensätze sind verschlüsselte Archive.",
         },
         {
           isCorrect: false,
-          label: "Einige Mitglieder von T9 sind keine Mitglieder von S9.",
+          label: "Jeder Datensatz mit Schlüssel ist ein Forschungsbestand.",
+        },
+        {
+          isCorrect: false,
+          label: "Kein Forschungsbestand ist öffentlich.",
         },
       ],
     },
@@ -31,24 +32,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Every member of T9 is a member of R9.",
-        },
-        {
           isCorrect: true,
-          label: "No member of R9 is a member of T9.",
+          label: "Some research collections are not public datasets.",
         },
         {
           isCorrect: false,
-          label: "Some members of R9 are members of T9.",
+          label: "Every research collection is encrypted.",
         },
         {
           isCorrect: false,
-          label: "No member of S9 is a member of R9.",
+          label: "Some public datasets are encrypted archives.",
         },
         {
           isCorrect: false,
-          label: "Some members of T9 are not members of S9.",
+          label: "Every dataset requiring a key is a research collection.",
+        },
+        {
+          isCorrect: false,
+          label: "No research collection is public.",
         },
       ],
     },
@@ -56,24 +57,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Semua anggota T9 merupakan anggota R9.",
-        },
-        {
           isCorrect: true,
-          label: "Tidak ada anggota R9 yang merupakan anggota T9.",
+          label: "Sebagian koleksi riset bukan dataset publik.",
         },
         {
           isCorrect: false,
-          label: "Sebagian anggota R9 merupakan anggota T9.",
+          label: "Semua koleksi riset terenkripsi.",
         },
         {
           isCorrect: false,
-          label: "Tidak ada anggota S9 yang merupakan anggota R9.",
+          label: "Sebagian dataset publik merupakan arsip terenkripsi.",
         },
         {
           isCorrect: false,
-          label: "Sebagian anggota T9 bukan anggota S9.",
+          label: "Setiap dataset yang memerlukan kunci adalah koleksi riset.",
+        },
+        {
+          isCorrect: false,
+          label: "Tidak ada koleksi riset yang bersifat publik.",
         },
       ],
     },

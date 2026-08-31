@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Das Team änderte nur ein Faktor: einen Rückgabecode an jedem Griff.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team änderte nur einem Faktor: einen Rückgabecode an jedem Griff.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team änderte lediglich nur einen Faktor: einen Rückgabecode an jedem Griff.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team änderte nur einen Faktor, und zwar: einen Rückgabecode an jedem Griff.",
+        },
+        {
           isCorrect: true,
           label:
             "Das Team änderte nur einen Faktor: einen Rückgabecode an jedem Griff.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team veränderte alle Faktoren zugleich, nämlich einen Rückgabecode an jedem Griff.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team wechselte einen Faktor-faktoren: einen Rückgabecode an jedem Griff.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team tat nur einen Faktor anders: einen Rückgabecode an jedem Griff.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team änderte einzig alle Faktoren: einen Rückgabecode an jedem Griff.",
         },
       ],
     },
@@ -36,29 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "The team changed only one factors: a return code on each handle.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team changed merely only one factor: a return code on each handle.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team changed only one factor, namely: a return code on each handle.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team changed only one factor; namely a return code on each handle.",
+        },
+        {
           isCorrect: true,
           label:
             "The team changed only one factor: a return code on each handle.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team alterated only one factor: a return code on each handle.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team changed every factors at once: a return code on each handle.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team did one factor differently thing: a return code on each handle.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team changed only all factors: a return code on each handle.",
         },
       ],
     },
@@ -66,24 +66,26 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Tim mengubah satu faktor saja, yaitu kode pengembalian.",
-        },
-        {
           isCorrect: false,
           label: "Tim merubah satu faktor saja, yaitu kode pengembalian.",
         },
         {
           isCorrect: false,
-          label: "Tim mengubahkan satu faktor-faktor, yaitu kode pengembalian.",
+          label: "Tim mengubahkan satu faktor saja, yaitu kode pengembalian.",
         },
         {
           isCorrect: false,
-          label: "Tim berubah satu faktor saja, yaitu kode pengembalian.",
+          label:
+            "Tim hanya mengubah satu faktor saja, yaitu kode pengembalian.",
         },
         {
           isCorrect: false,
-          label: "Tim mengubah semua faktor saja, yaitu kode pengembalian.",
+          label:
+            "Tim mengubah terhadap satu faktor saja, yaitu kode pengembalian.",
+        },
+        {
+          isCorrect: true,
+          label: "Tim mengubah satu faktor saja, yaitu kode pengembalian.",
         },
       ],
     },

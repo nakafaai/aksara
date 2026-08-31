@@ -12,24 +12,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The class canceled the fair because every sign was missing.",
-        },
-        {
-          isCorrect: false,
-          label: "Only the robotics display was open to visitors.",
-        },
-        {
-          isCorrect: false,
-          label: "The rain made all accessibility planning unnecessary.",
-        },
-        {
-          isCorrect: false,
-          label: "The writer designed a perfect route without feedback.",
+          label:
+            "The class postponed the fair until the originally planned route could be restored.",
         },
         {
           isCorrect: true,
           label:
             "Repeated route testing revealed barriers and improved the fair, while exposing remaining problems.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The class focused its revisions on the robotics display because it received the most visitors.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The rain showed that accessibility planning was mainly useful in dry weather.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The writer considered the first route adequate because it followed the shortest path.",
         },
       ],
     },

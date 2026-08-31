@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "SUSAHNYA",
         },
         {
-          isCorrect: true,
-          label: "UTBKSERU",
-        },
-        {
           isCorrect: false,
           label: "MENANGIS",
         },
         {
           isCorrect: false,
           label: "SEMANGAT",
+        },
+        {
+          isCorrect: true,
+          label: "UTBKSERU",
         },
         {
           isCorrect: false,
@@ -31,9 +31,9 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         { isCorrect: false, label: "SUSAHNYA" },
-        { isCorrect: true, label: "UTBKSERU" },
         { isCorrect: false, label: "MENANGIS" },
         { isCorrect: false, label: "SEMANGAT" },
+        { isCorrect: true, label: "UTBKSERU" },
         { isCorrect: false, label: "BERSEDIH" },
       ],
     },
@@ -41,9 +41,9 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         { isCorrect: false, label: "SUSAHNYA" },
-        { isCorrect: true, label: "UTBKSERU" },
         { isCorrect: false, label: "MENANGIS" },
         { isCorrect: false, label: "SEMANGAT" },
+        { isCorrect: true, label: "UTBKSERU" },
         { isCorrect: false, label: "BERSEDIH" },
       ],
     },

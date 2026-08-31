@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Karte der Evakuierungswege",
-        },
-        {
           isCorrect: true,
           label:
             "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: kontrastreichere Symbole für Sammelpunkte.",
@@ -17,27 +13,28 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: kontrastreichere Symbole für Sammelpunkte.",
+            "Die Änderung, kontrastreichere Sammelplatzsymbole, ersetzte die Notwendigkeit, die ursprüngliche Unsicherheit zu messen.",
         },
         {
           isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Karte der Evakuierungswege über den beiden anderen Werten.",
+            "Die Änderung, kontrastreichere Sammelplatzsymbole, führte mehrere nicht trennbare Unterschiede ein.",
         },
         {
           isCorrect: false,
           label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: kontrastreichere Symbole für Sammelpunkte.",
+            "Die Änderung, kontrastreichere Sammelplatzsymbole, erklärte, warum die Vergleichswerte identisch waren.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Änderung, kontrastreichere Sammelplatzsymbole, betraf das Endergebnis statt die Quelle der Unsicherheit.",
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: false,
-          label: "A structured test of one change: evacuation route map",
-        },
         {
           isCorrect: true,
           label:
@@ -46,27 +43,28 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of higher-contrast assembly-point symbols.",
+            "The change, higher-contrast assembly-point symbols, replaced the need to measure the original uncertainty.",
         },
         {
           isCorrect: false,
           label:
-            "In this setting (evacuation route map), the trial value exceeded both other values.",
+            "The change, higher-contrast assembly-point symbols, introduced several differences that could not be separated.",
         },
         {
           isCorrect: false,
           label:
-            "The next test of higher-contrast assembly-point symbols will run for longer.",
+            "The change, higher-contrast assembly-point symbols, explained why the comparison values were identical.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The change, higher-contrast assembly-point symbols, addressed the final outcome rather than the source of uncertainty.",
         },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: peta jalur evakuasi",
-        },
         {
           isCorrect: true,
           label:
@@ -75,17 +73,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui simbol titik kumpul yang lebih kontras.",
+            "Perubahan berupa simbol titik kumpul dengan kontras lebih tinggi menggantikan kebutuhan untuk mengukur ketidakpastian awal.",
         },
         {
           isCorrect: false,
           label:
-            "Di peta jalur evakuasi, nilai hari uji melampaui dua nilai lainnya.",
+            "Perubahan berupa simbol titik kumpul dengan kontras lebih tinggi menimbulkan beberapa perbedaan yang tidak dapat dipisahkan.",
         },
         {
           isCorrect: false,
           label:
-            "Uji simbol titik kumpul yang lebih kontras berikutnya akan berlangsung lebih lama.",
+            "Perubahan berupa simbol titik kumpul dengan kontras lebih tinggi menjelaskan mengapa nilai pembanding sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perubahan berupa simbol titik kumpul dengan kontras lebih tinggi menanggapi hasil akhir, bukan sumber ketidakpastian.",
         },
       ],
     },

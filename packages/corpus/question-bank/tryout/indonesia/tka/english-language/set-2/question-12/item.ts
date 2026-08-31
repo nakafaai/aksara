@@ -11,13 +11,9 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Use current information and choose a safe action during a disruption.",
-        },
-        {
           isCorrect: false,
-          label: "Printed timetables should always be thrown away.",
+          label:
+            "Printed timetables should be replaced whenever a live service page is available.",
         },
         {
           isCorrect: false,
@@ -25,7 +21,13 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "A phone battery never affects communication.",
+          label:
+            "Phone battery level is unrelated to the usefulness of the service information.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Use current information and choose a safe action during a disruption.",
         },
         {
           isCorrect: false,

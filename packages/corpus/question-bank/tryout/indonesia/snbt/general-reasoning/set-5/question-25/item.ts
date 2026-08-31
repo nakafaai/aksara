@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$10$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$16$$",
+        },
+        {
           isCorrect: true,
-          label: "Kein Mitglied von R3 ist Mitglied von T3.",
-        },
-        {
-          isCorrect: false,
-          label: "Alle Mitglieder von T3 sind Mitglieder von R3.",
-        },
-        {
-          isCorrect: false,
-          label: "Einige Mitglieder von R3 sind Mitglieder von T3.",
-        },
-        {
-          isCorrect: false,
-          label: "Kein Mitglied von S3 ist Mitglied von R3.",
-        },
-        {
-          isCorrect: false,
-          label: "Einige Mitglieder von T3 sind keine Mitglieder von S3.",
+          label: "$$12$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$10$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$16$$",
+        },
+        {
           isCorrect: true,
-          label: "No member of R3 is a member of T3.",
-        },
-        {
-          isCorrect: false,
-          label: "Every member of T3 is a member of R3.",
-        },
-        {
-          isCorrect: false,
-          label: "Some members of R3 are members of T3.",
-        },
-        {
-          isCorrect: false,
-          label: "No member of S3 is a member of R3.",
-        },
-        {
-          isCorrect: false,
-          label: "Some members of T3 are not members of S3.",
+          label: "$$12$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$10$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$16$$",
+        },
+        {
           isCorrect: true,
-          label: "Tidak ada anggota R3 yang merupakan anggota T3.",
-        },
-        {
-          isCorrect: false,
-          label: "Semua anggota T3 merupakan anggota R3.",
-        },
-        {
-          isCorrect: false,
-          label: "Sebagian anggota R3 merupakan anggota T3.",
-        },
-        {
-          isCorrect: false,
-          label: "Tidak ada anggota S3 yang merupakan anggota R3.",
-        },
-        {
-          isCorrect: false,
-          label: "Sebagian anggota T3 bukan anggota S3.",
+          label: "$$12$$",
         },
       ],
     },

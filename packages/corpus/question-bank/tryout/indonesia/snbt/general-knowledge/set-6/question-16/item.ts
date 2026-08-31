@@ -7,27 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Töpfe mit vollständigen Aufzeichnungen und kurze Aussagen von Nutzenden",
+          label: "ein Gebäude für Besucher möglichst alt aussehen lassen",
+        },
+        {
+          isCorrect: false,
+          label: "jedes alte Material trotz Sicherheitsrisiko erhalten",
         },
         {
           isCorrect: true,
-          label: "Der Wert mit Änderung, 30, lag über 20 und 22.",
+          label:
+            "den Belegen zu Herkunft, Material und tatsächlich erfolgten Veränderungen entsprechend",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "das ganze Gebäude einheitlich auf ein ausgewähltes Jahr zurückführen",
         },
         {
           isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vorsichtige Prüfung im Kontext Saatgutversuch im Unterricht: Karten zur Erfassung jeder Bewässerungszeit",
+          label: "das bekannteste alte Bild exakt kopieren",
         },
       ],
     },
@@ -36,26 +34,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "pots with complete records and short comments from users",
+          label: "making a building look as old as possible to visitors",
+        },
+        {
+          isCorrect: false,
+          label: "retaining every old material even when unsafe",
         },
         {
           isCorrect: true,
-          label: "The intervention value, 30, exceeded both 20 and 22.",
+          label:
+            "faithful to evidence of origin, material, and changes that actually occurred",
         },
         {
           isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+          label: "returning the whole building uniformly to one selected year",
         },
         {
           isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A cautious trial of cards recording each watering time: classroom seed trial",
+          label: "copying the most popular old image exactly",
         },
       ],
     },
@@ -64,26 +60,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "pot dengan catatan lengkap dan komentar singkat pengguna",
+          label: "membuat bangunan terlihat setua mungkin bagi pengunjung",
+        },
+        {
+          isCorrect: false,
+          label: "mempertahankan setiap bahan lama meskipun tidak aman",
         },
         {
           isCorrect: true,
-          label: "Nilai pada hari dengan perubahan, 30, melampaui 20 dan 22.",
+          label:
+            "setia pada bukti asal, bahan, dan perubahan yang benar-benar terjadi",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "mengembalikan seluruh bangunan secara seragam ke satu tahun pilihan",
         },
         {
           isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji Hati-hati dalam percobaan benih kelas: kartu pencatatan waktu penyiraman",
+          label: "menyalin persis gambar lama yang paling populer",
         },
       ],
     },

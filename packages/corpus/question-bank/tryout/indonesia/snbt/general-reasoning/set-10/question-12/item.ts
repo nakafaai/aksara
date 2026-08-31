@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$360$$",
+          label: "$$4$$",
         },
         {
           isCorrect: false,
-          label: "$$364$$",
+          label: "$$5$$",
         },
         {
           isCorrect: false,
-          label: "$$348$$",
+          label: "$$7$$",
         },
         {
           isCorrect: true,
-          label: "$$356$$",
+          label: "$$6$$",
         },
         {
           isCorrect: false,
-          label: "$$352$$",
+          label: "$$8$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$360$$",
+          label: "$$4$$",
         },
         {
           isCorrect: false,
-          label: "$$364$$",
+          label: "$$5$$",
         },
         {
           isCorrect: false,
-          label: "$$348$$",
+          label: "$$7$$",
         },
         {
           isCorrect: true,
-          label: "$$356$$",
+          label: "$$6$$",
         },
         {
           isCorrect: false,
-          label: "$$352$$",
+          label: "$$8$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$360$$",
+          label: "$$4$$",
         },
         {
           isCorrect: false,
-          label: "$$364$$",
+          label: "$$5$$",
         },
         {
           isCorrect: false,
-          label: "$$348$$",
+          label: "$$7$$",
         },
         {
           isCorrect: true,
-          label: "$$356$$",
+          label: "$$6$$",
         },
         {
           isCorrect: false,
-          label: "$$352$$",
+          label: "$$8$$",
         },
       ],
     },

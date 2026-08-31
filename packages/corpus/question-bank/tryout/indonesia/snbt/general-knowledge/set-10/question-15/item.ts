@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Wegen auftretender Fehler muss jede automatische Suche beendet werden.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Ein in der automatischen Suche fehlendes Dokument ist sicher nicht im Archiv vorhanden.",
+        },
+        {
+          isCorrect: false,
+          label: "Nutzerkorrekturen betrafen häufiger beliebte Sammlungen.",
         },
         {
           isCorrect: true,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Beliebte Sammlungen können durch häufigere Korrekturen zunehmend leichter auffindbar werden als andere.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte kurze Codes auf Augenhöhe (Audioführung im Museum) und bewertete die Befunde vorsichtig.",
+            "Das Team wird Leistungsunterschiede nach Schriftart und Zeitraum prüfen.",
         },
       ],
     },
@@ -38,27 +37,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "Because the system makes errors, all automated search must be stopped.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "A document absent from automated search is certainly not stored in the archive.",
+        },
+        {
+          isCorrect: false,
+          label: "User corrections were more frequent for popular collections.",
         },
         {
           isCorrect: true,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "Popular collections may become progressively easier to search than others because they receive more corrections.",
         },
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested short codes printed at eye level in the museum audio guide and interpreted the evidence cautiously.",
+            "The team will audit performance differences by writing type and period.",
         },
       ],
     },
@@ -68,27 +66,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Karena sistem membuat kesalahan, semua pencarian otomatis harus dihentikan.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Dokumen yang tidak muncul dalam pencarian otomatis pasti tidak tersimpan di arsip.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Koreksi pengguna lebih sering diberikan pada koleksi populer.",
         },
         {
           isCorrect: true,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Koleksi populer dapat menjadi makin mudah dicari daripada koleksi lain karena menerima lebih banyak koreksi.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji kode singkat yang dicetak setinggi mata pada panduan audio museum dan menafsirkan buktinya secara hati-hati.",
+            "Tim akan mengaudit perbedaan kinerja menurut jenis tulisan dan periode.",
         },
       ],
     },

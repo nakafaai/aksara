@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "$$Df = \\{x | x < -3 \\text{ oder } 2 < x < 5\\}$$",
         },
         {
-          isCorrect: true,
-          label: "$$Df = \\{x | x < -3 \\text{ oder } 2 < x \\leq 5\\}$$",
-        },
-        {
           isCorrect: false,
           label: "$$Df = \\{x | x < -3 \\text{ oder } 2 \\leq x \\leq 5\\}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$Df = \\{x | x < -3 \\text{ oder } 2 < x \\leq 5\\}$$",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "$$Df = \\{x | x < -3 \\text{ or } 2 < x < 5\\}$$",
         },
         {
-          isCorrect: true,
-          label: "$$Df = \\{x | x < -3 \\text{ or } 2 < x \\leq 5\\}$$",
-        },
-        {
           isCorrect: false,
           label: "$$Df = \\{x | x < -3 \\text{ or } 2 \\leq x \\leq 5\\}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$Df = \\{x | x < -3 \\text{ or } 2 < x \\leq 5\\}$$",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "$$Df = \\{x | x < -3 \\text{ atau } 2 < x < 5\\}$$",
         },
         {
-          isCorrect: true,
-          label: "$$Df = \\{x | x < -3 \\text{ atau } 2 < x \\leq 5\\}$$",
-        },
-        {
           isCorrect: false,
           label: "$$Df = \\{x | x < -3 \\text{ atau } 2 \\leq x \\leq 5\\}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$Df = \\{x | x < -3 \\text{ atau } 2 < x \\leq 5\\}$$",
         },
       ],
     },

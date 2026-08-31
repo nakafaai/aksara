@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            'Der erste Teil vertritt die Behauptung "Das Team stellte in der neuen Nachricht die Handlung vor die Begründung"; der folgende nutzt "Eine im zweiten Test erfolgreiche Übersetzung kann sicher überall unverändert eingesetzt werden" als Hauptbeleg.',
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            'Der erste Teil legt "Eine Übersetzung muss jedem Ausgangswort folgen, auch wenn Bewohner die Handlung missverstehen" als endgültigen Schluss fest; der folgende nennt nur den Plan "Jede Fassung wird vor dem Einsatz erneut mit Bewohnern getestet".',
         },
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Eine im zweiten Test erfolgreiche Übersetzung kann sicher überall unverändert eingesetzt werden" fest.',
         },
         {
           isCorrect: false,
           label:
-            "Das Team prüfte bebilderte Hinweise neben dem Wasserhahn (Wasser-Nachfüllstation) und bewertete die Befunde vorsichtig.",
+            'Der folgende Teil kehrt die Argumentation um und leitet "Eine Übersetzung muss jedem Ausgangswort folgen, auch wenn Bewohner die Handlung missverstehen" aus dem Beleg "Das Team stellte in der neuen Nachricht die Handlung vor die Begründung" ab.',
         },
         {
           isCorrect: true,
-          label: "nachgefüllte Flaschen und kurze Aussagen von Nutzenden",
+          label:
+            "Das Scheitern der wörtlichen Fassung führt zur gemeinsamen Überarbeitung; der zweite Test liefert Belege für deren Bewertung.",
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            'The first part advances the claim "The team placed the action before the reason in the revised message", and the later part uses "A translation that passes the second test can certainly be used unchanged in every region" as its main support.',
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            'The first part establishes "A translation must follow every source word even when residents misunderstand the required action" as a final conclusion; the later part only states the plan "Each version will be tested again with residents before use".',
         },
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            'Both parts maintain the claim "A translation that passes the second test can certainly be used unchanged in every region" from the same perspective without adding a test.',
         },
         {
           isCorrect: false,
           label:
-            "The team tested illustrated instructions beside the tap in the water refill station and interpreted the evidence cautiously.",
+            'The later part reverses the argument by deriving "A translation must follow every source word even when residents misunderstand the required action" from the evidence "The team placed the action before the reason in the revised message".',
         },
         {
           isCorrect: true,
-          label: "bottles refilled and short comments from users",
+          label:
+            "The literal version's failure motivates co-design, and the second test provides evidence for evaluating the revision.",
         },
       ],
     },
@@ -66,26 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            'Bagian awal mengajukan klaim "Tim menempatkan tindakan sebelum alasan dalam susunan pesan baru", lalu bagian kedua memakai "Satu terjemahan yang lulus uji kedua pasti dapat digunakan tanpa perubahan di seluruh daerah" sebagai dukungan utama.',
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            'Bagian pertama menetapkan "Terjemahan harus mengikuti setiap kata sumber meskipun warga salah memahami tindakan yang diminta" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Setiap versi akan diuji lagi bersama warga sebelum digunakan".',
         },
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            'Kedua bagian mempertahankan klaim "Satu terjemahan yang lulus uji kedua pasti dapat digunakan tanpa perubahan di seluruh daerah" dari sudut yang sama tanpa menambahkan pemeriksaan.',
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji petunjuk bergambar di dekat keran pada stasiun isi ulang air dan menafsirkan buktinya secara hati-hati.",
+            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Terjemahan harus mengikuti setiap kata sumber meskipun warga salah memahami tindakan yang diminta" dari bukti "Tim menempatkan tindakan sebelum alasan dalam susunan pesan baru".',
         },
         {
           isCorrect: true,
-          label: "botol yang diisi ulang dan komentar singkat pengguna",
+          label:
+            "Kegagalan versi harfiah menjadi dasar perancangan bersama, lalu uji kedua menyediakan bukti untuk menilai hasil revisi.",
         },
       ],
     },

@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "produktiv.",
         },
         {
-          isCorrect: false,
-          label: "Produktion.",
-        },
-        {
           isCorrect: true,
           label: "Produktivität.",
+        },
+        {
+          isCorrect: false,
+          label: "Produktion.",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "productive.",
         },
         {
-          isCorrect: false,
-          label: "production.",
-        },
-        {
           isCorrect: true,
           label: "productivity.",
+        },
+        {
+          isCorrect: false,
+          label: "production.",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "produktif.",
         },
         {
-          isCorrect: false,
-          label: "produksi.",
-        },
-        {
           isCorrect: true,
           label: "produktivitas.",
+        },
+        {
+          isCorrect: false,
+          label: "produksi.",
         },
         {
           isCorrect: false,

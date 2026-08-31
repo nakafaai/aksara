@@ -21,14 +21,14 @@ const item: QuestionItem = {
             "$$0{,}875; 1\\frac{1}{8}; \\frac{3}{4}; \\frac{1}{\\sqrt{2}}; 12{,}5\\%$$",
         },
         {
-          isCorrect: true,
-          label:
-            "$$1\\frac{1}{8}; 0{,}875; \\frac{3}{4}; \\frac{1}{\\sqrt{2}}; 12{,}5\\%$$",
-        },
-        {
           isCorrect: false,
           label:
             "$$\\frac{1}{\\sqrt{2}}; 1\\frac{1}{8}; 0{,}875; \\frac{3}{4}; 12{,}5\\%$$",
+        },
+        {
+          isCorrect: true,
+          label:
+            "$$1\\frac{1}{8}; 0{,}875; \\frac{3}{4}; \\frac{1}{\\sqrt{2}}; 12{,}5\\%$$",
         },
       ],
     },
@@ -51,14 +51,14 @@ const item: QuestionItem = {
             "$$0.875; 1\\frac{1}{8}; \\frac{3}{4}; \\frac{1}{\\sqrt{2}}; 12.5\\%$$",
         },
         {
-          isCorrect: true,
-          label:
-            "$$1\\frac{1}{8}; 0.875; \\frac{3}{4}; \\frac{1}{\\sqrt{2}}; 12.5\\%$$",
-        },
-        {
           isCorrect: false,
           label:
             "$$\\frac{1}{\\sqrt{2}}; 1\\frac{1}{8}; 0.875; \\frac{3}{4}; 12.5\\%$$",
+        },
+        {
+          isCorrect: true,
+          label:
+            "$$1\\frac{1}{8}; 0.875; \\frac{3}{4}; \\frac{1}{\\sqrt{2}}; 12.5\\%$$",
         },
       ],
     },
@@ -81,14 +81,14 @@ const item: QuestionItem = {
             "$$0{,}875; 1\\frac{1}{8}; \\frac{3}{4}; \\frac{1}{\\sqrt{2}}; 12{,}5\\%$$",
         },
         {
-          isCorrect: true,
-          label:
-            "$$1\\frac{1}{8}; 0{,}875; \\frac{3}{4}; \\frac{1}{\\sqrt{2}}; 12{,}5\\%$$",
-        },
-        {
           isCorrect: false,
           label:
             "$$\\frac{1}{\\sqrt{2}}; 1\\frac{1}{8}; 0{,}875; \\frac{3}{4}; 12{,}5\\%$$",
+        },
+        {
+          isCorrect: true,
+          label:
+            "$$1\\frac{1}{8}; 0{,}875; \\frac{3}{4}; \\frac{1}{\\sqrt{2}}; 12{,}5\\%$$",
         },
       ],
     },

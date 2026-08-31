@@ -11,24 +11,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$75{,}6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$76{,}8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$77{,}2$$",
+        },
+        {
           isCorrect: true,
-          label: "$$\\frac{17}{7}$$",
+          label: "$$78$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{16}{7}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{33}{14}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{5}{2}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{18}{7}$$",
+          label: "$$79{,}2$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$75.6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$76.8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$77.2$$",
+        },
+        {
           isCorrect: true,
-          label: "$$\\frac{17}{7}$$",
+          label: "$$78$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{16}{7}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{33}{14}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{5}{2}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{18}{7}$$",
+          label: "$$79.2$$",
         },
       ],
     },
@@ -61,24 +61,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$75{,}6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$76{,}8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$77{,}2$$",
+        },
+        {
           isCorrect: true,
-          label: "$$\\frac{17}{7}$$",
+          label: "$$78$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{16}{7}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{33}{14}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{5}{2}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{18}{7}$$",
+          label: "$$79{,}2$$",
         },
       ],
     },

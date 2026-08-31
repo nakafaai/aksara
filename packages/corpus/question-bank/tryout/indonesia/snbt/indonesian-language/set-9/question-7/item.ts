@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam peta kartu daur karbon.",
+            'Karena langkah "siswa memindahkan penanda karbon mengikuti proses fotosintesis, respirasi, dan penguraian" dapat diulang, model sudah mencakup faktor yang hilang ketika panah pada kartu tidak menunjukkan besarnya aliran atau lamanya penyimpanan dan dapat menggantikan pengamatan lapangan.',
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam peta kartu daur karbon memperoleh hasil yang sama tanpa perbedaan.",
+            "Keterbatasan bahwa panah pada kartu tidak menunjukkan besarnya aliran atau lamanya penyimpanan membuat hubungan bahwa karbon berpindah di antara atmosfer, makhluk hidup, tanah, dan perairan tidak dapat diperiksa, bahkan di dalam model.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan peta kartu daur karbon.",
+            "Hubungan bahwa karbon berpindah di antara atmosfer, makhluk hidup, tanah, dan perairan dapat diterapkan langsung pada keadaan nyata selama urutan model diulang dengan cara yang sama.",
         },
         {
           isCorrect: true,
           label:
-            "Siswa menggunakan model untuk mengulang langkah dan memeriksa hubungan antarbagiannya.",
+            "Pengulangan langkah pada model membantu memeriksa bahwa karbon berpindah di antara atmosfer, makhluk hidup, tanah, dan perairan; karena panah pada kartu tidak menunjukkan besarnya aliran atau lamanya penyimpanan, pola itu menjadi hipotesis untuk pengamatan nyata, bukan bukti langsung tentang seluruh keadaan lapangan.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyebut reservoir sebagai bukti bahwa uji tidak perlu diulang.",
+            "Definisi istilah pada akhir bacaan sudah cukup membuktikan hubungan sebab dalam peta kartu daur karbon, meskipun bagian model tidak dibandingkan.",
         },
       ],
     },

@@ -7,9 +7,9 @@ const item: QuestionItem = {
       options: [
         { isCorrect: false, label: "appropriate" },
         { isCorrect: false, label: "sustainable" },
-        { isCorrect: true, label: "equitable" },
         { isCorrect: false, label: "digital" },
         { isCorrect: false, label: "limited" },
+        { isCorrect: true, label: "equitable" },
       ],
     },
   },

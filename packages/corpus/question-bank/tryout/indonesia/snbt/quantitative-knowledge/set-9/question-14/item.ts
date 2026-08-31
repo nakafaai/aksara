@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\frac{17}{14}; 123\\%; 1{,}45; \\frac{5}{3}; \\sqrt{12}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\frac{17}{14}; 123\\%; 1{,}45; \\sqrt{12}; \\frac{5}{3}$$",
         },
@@ -21,15 +25,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$123\\%; \\frac{5}{3}; 1{,}45; \\sqrt{12}; \\frac{17}{14}$$",
         },
-        {
-          isCorrect: true,
-          label: "$$\\frac{17}{14}; 123\\%; 1{,}45; \\frac{5}{3}; \\sqrt{12}$$",
-        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$\\frac{17}{14}; 123\\%; 1.45; \\frac{5}{3}; \\sqrt{12}$$",
+        },
         {
           isCorrect: false,
           label: "$$\\frac{17}{14}; 123\\%; 1.45; \\sqrt{12}; \\frac{5}{3}$$",
@@ -46,15 +50,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$123\\%; \\frac{5}{3}; 1.45; \\sqrt{12}; \\frac{17}{14}$$",
         },
-        {
-          isCorrect: true,
-          label: "$$\\frac{17}{14}; 123\\%; 1.45; \\frac{5}{3}; \\sqrt{12}$$",
-        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$\\frac{17}{14}; 123\\%; 1{,}45; \\frac{5}{3}; \\sqrt{12}$$",
+        },
         {
           isCorrect: false,
           label: "$$\\frac{17}{14}; 123\\%; 1{,}45; \\sqrt{12}; \\frac{5}{3}$$",
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$123\\%; \\frac{5}{3}; 1{,}45; \\sqrt{12}; \\frac{17}{14}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{17}{14}; 123\\%; 1{,}45; \\frac{5}{3}; \\sqrt{12}$$",
         },
       ],
     },

@@ -6,28 +6,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "während des Versuchstags schrittweise erhöht",
+        },
+        {
+          isCorrect: false,
+          label: "erst nach Bekanntwerden des Versuchsergebnisses erfasst",
+        },
+        {
+          isCorrect: false,
+          label: "nur in der Vergleichsbedingung verändert",
+        },
+        {
+          isCorrect: false,
+          label: "ignoriert, weil sie das Ergebnis nicht beeinflussen konnten",
+        },
+        {
           isCorrect: true,
-          label: "festgestellt, ohne bereits eine Ursache zu behaupten",
-        },
-        {
-          isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Beispielfotos für jede Zustandskategorie.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Erfassung von Straßenbäumen über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Beispielfotos für jede Zustandskategorie.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Beispielfotos für jede Zustandskategorie.",
+            "gleich gehalten, damit sich die geprüfte Änderung klarer deuten ließ",
         },
       ],
     },
@@ -35,28 +32,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "increased gradually during the trial day",
+        },
+        {
+          isCorrect: false,
+          label: "recorded only after the trial result was known",
+        },
+        {
+          isCorrect: false,
+          label: "changed only in the comparison condition",
+        },
+        {
+          isCorrect: false,
+          label: "ignored because they could not affect the result",
+        },
+        {
           isCorrect: true,
-          label: "noticed without already claiming a cause",
-        },
-        {
-          isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of sample photos for each condition category.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (street-tree survey), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, sample photos for each condition category, directly addressed the observed uncertainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The next test of sample photos for each condition category will run for longer.",
+            "kept the same so that the tested change could be interpreted more clearly",
         },
       ],
     },
@@ -64,28 +58,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "ditambah secara bertahap selama hari uji",
+        },
+        {
+          isCorrect: false,
+          label: "dicatat setelah hasil uji diketahui",
+        },
+        {
+          isCorrect: false,
+          label: "diganti hanya pada kondisi pembanding",
+        },
+        {
+          isCorrect: false,
+          label: "diabaikan karena tidak berkaitan dengan hasil",
+        },
+        {
           isCorrect: true,
-          label: "mencatat gejala tanpa langsung memastikan penyebabnya",
-        },
-        {
-          isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui contoh foto untuk setiap kategori kondisi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Di pendataan pohon jalan, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa contoh foto untuk setiap kategori kondisi langsung menanggapi keraguan yang diamati.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji contoh foto untuk setiap kategori kondisi berikutnya akan berlangsung lebih lama.",
+            "dijaga tetap sama agar pengaruh perubahan lebih mudah ditafsirkan",
         },
       ],
     },

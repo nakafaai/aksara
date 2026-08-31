@@ -7,7 +7,15 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Absolute certainty about a night market",
+          label: "Waiting for someone else to complete the next step",
+        },
+        {
+          isCorrect: false,
+          label: "Hiding unresolved evidence in a larger project",
+        },
+        {
+          isCorrect: false,
+          label: "systems thinking as a definition without a reviewable action",
         },
         {
           isCorrect: true,
@@ -15,15 +23,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Why all evidence in a night market should be ignored",
-        },
-        {
-          isCorrect: false,
-          label: "The complete world history of systems thinking",
-        },
-        {
-          isCorrect: false,
-          label: "One rule for every a night market",
+          label: "A complete plan without a small accountable step",
         },
       ],
     },

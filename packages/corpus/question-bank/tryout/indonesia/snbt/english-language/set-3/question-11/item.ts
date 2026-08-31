@@ -6,6 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "The character treats completing the whole project as the necessary first step before seeking review.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The account presents self-efficacy as a general idea rather than something developed through the character's choice.",
+        },
+        {
           isCorrect: true,
           label:
             "Leah faced an obstacle while trying to finish a family-history audio project and learned through a small accountable action.",
@@ -13,22 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage only gives a complete history of the school media room without examining evidence or choice.",
+            "The main obstacle becomes manageable because another person assumes responsibility for the next step.",
         },
         {
           isCorrect: false,
           label:
-            "The passage proves that one method must succeed in every the school media room.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage rejects all observation and relies only on personal preference.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage mainly defines self-efficacy without connecting it to a setting.",
+            "The passage presents documenting uncertainty as more important than taking a reviewable action.",
         },
       ],
     },

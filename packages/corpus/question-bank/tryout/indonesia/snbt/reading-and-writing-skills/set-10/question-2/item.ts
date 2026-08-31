@@ -7,27 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: nach Rezeptschritten geordnete Zutaten.",
+          label: "der Mindestwert, ab dem der Versuch als erfolgreich gilt",
         },
         {
           isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Kochkurs für Jugendliche über den beiden anderen Werten.",
+          label: "der gemeinsame Mittelwert von Versuchs- und Vergleichstag",
         },
         {
           isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: nach Rezeptschritten geordnete Zutaten.",
+          label: "eine Schätzung vor Beginn der Erfassung",
         },
         {
           isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: nach Rezeptschritten geordnete Zutaten.",
+          label: "ein nach Rückmeldungen der Teilnehmenden korrigierter Wert",
         },
         {
           isCorrect: true,
-          label: "festgestellt, ohne bereits eine Ursache zu behaupten",
+          label:
+            "ein vor der geprüften Änderung erfasster Wert, der als Bezug dient",
         },
       ],
     },
@@ -37,26 +34,24 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of ingredients grouped by recipe stage.",
+            "the minimum value required for the trial to count as successful",
         },
         {
           isCorrect: false,
-          label:
-            "In this setting (teen cooking class), the trial value exceeded both other values.",
+          label: "the combined mean of the trial and comparison days",
         },
         {
           isCorrect: false,
-          label:
-            "The change, ingredients grouped by recipe stage, directly addressed the observed uncertainty.",
+          label: "an estimate made before recording began",
         },
         {
           isCorrect: false,
-          label:
-            "The next test of ingredients grouped by recipe stage will run for longer.",
+          label: "a value corrected after participants gave feedback",
         },
         {
           isCorrect: true,
-          label: "noticed without already claiming a cause",
+          label:
+            "a value recorded before the tested change and used as one reference",
         },
       ],
     },
@@ -66,26 +61,24 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui bahan yang dikelompokkan menurut tahap resep.",
+            "nilai terendah yang wajib dicapai agar uji dinyatakan berhasil",
         },
         {
           isCorrect: false,
-          label:
-            "Di kelas memasak remaja, nilai hari uji melampaui dua nilai lainnya.",
+          label: "rata-rata gabungan dari hari uji dan hari pembanding",
         },
         {
           isCorrect: false,
-          label:
-            "Perubahan berupa bahan yang dikelompokkan menurut tahap resep langsung menanggapi keraguan yang diamati.",
+          label: "perkiraan yang dibuat sebelum pencatatan dimulai",
         },
         {
           isCorrect: false,
-          label:
-            "Uji bahan yang dikelompokkan menurut tahap resep berikutnya akan berlangsung lebih lama.",
+          label: "nilai yang telah dikoreksi setelah peserta memberi tanggapan",
         },
         {
           isCorrect: true,
-          label: "mencatat gejala tanpa langsung memastikan penyebabnya",
+          label:
+            "nilai yang dicatat sebelum perubahan uji dan dipakai sebagai salah satu acuan",
         },
       ],
     },

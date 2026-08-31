@@ -12,11 +12,18 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "membuktikan cello tidak diperlukan",
+          label:
+            "menunjukkan bahwa bagian cello dapat digantikan oleh jeda dalam susunan musik",
+        },
+        {
+          isCorrect: true,
+          label:
+            "membuat Rafi merasakan fungsi diam melalui ketiadaan melodi cello",
         },
         {
           isCorrect: false,
-          label: "membuat pelatih menghapus bagian ketiga",
+          label:
+            "membuat pelatih memindahkan bagian cello ke sesi latihan berikutnya",
         },
         {
           isCorrect: false,
@@ -25,11 +32,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "menunjukkan konser telah selesai",
-        },
-        {
-          isCorrect: true,
-          label:
-            "membuat Rafi merasakan fungsi diam melalui ketiadaan melodi cello",
         },
       ],
     },

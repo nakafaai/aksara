@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$24$$",
         },
         {
+          isCorrect: true,
+          label: "$$23$$",
+        },
+        {
           isCorrect: false,
           label: "$$25$$",
         },
         {
           isCorrect: false,
           label: "$$26$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$23$$",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "$$24$$",
         },
         {
+          isCorrect: true,
+          label: "$$23$$",
+        },
+        {
           isCorrect: false,
           label: "$$25$$",
         },
         {
           isCorrect: false,
           label: "$$26$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$23$$",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "$$24$$",
         },
         {
+          isCorrect: true,
+          label: "$$23$$",
+        },
+        {
           isCorrect: false,
           label: "$$25$$",
         },
         {
           isCorrect: false,
           label: "$$26$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$23$$",
         },
         {
           isCorrect: false,

@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "Das war der *kälteste* Morgen des Monats.",
         },
         {
-          isCorrect: true,
-          label: "Das Tor blieb nach Sonnenuntergang *geschlossen*.",
-        },
-        {
           isCorrect: false,
           label: "Die Besucher *warteten* vor dem Eingang.",
+        },
+        {
+          isCorrect: true,
+          label: "Das Tor blieb nach Sonnenuntergang *geschlossen*.",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "It was the *coldest* morning of the month.",
         },
         {
-          isCorrect: true,
-          label: "The gate remained *locked* after sunset.",
-        },
-        {
           isCorrect: false,
           label: "Visitors were *waiting* outside the gate.",
+        },
+        {
+          isCorrect: true,
+          label: "The gate remained *locked* after sunset.",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "Arman menjadi siswa *terbaik* di kelas.",
         },
         {
-          isCorrect: true,
-          label: "Kayu-kayu balok itu *terikat* dengan kuat.",
-        },
-        {
           isCorrect: false,
           label: "Dia *tertidur* di sofa semalam.",
+        },
+        {
+          isCorrect: true,
+          label: "Kayu-kayu balok itu *terikat* dengan kuat.",
         },
         {
           isCorrect: false,

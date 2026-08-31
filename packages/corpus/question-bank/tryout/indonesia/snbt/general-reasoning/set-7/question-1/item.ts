@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "In dieser Studie erzeugte der ganze Apfel das stärkste Sättigungsgefühl und eine niedrigere gesamte Energieaufnahme als die Bedingung ohne Vorspeise.",
+        },
+        {
           isCorrect: false,
           label:
             "Ein ganzer Apfel vor dem Mittagessen verhindert immer Adipositas.",
@@ -14,11 +19,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Alle vier Apfelzubereitungen führten zum gleichen Sättigungsgefühl.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "In dieser Studie erzeugte der ganze Apfel das stärkste Sättigungsgefühl und eine niedrigere gesamte Energieaufnahme als die Bedingung ohne Vorspeise.",
         },
         {
           isCorrect: false,
@@ -36,6 +36,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "In this study, the whole apple produced the greatest fullness and a lower total energy intake than no preload.",
+        },
+        {
           isCorrect: false,
           label: "Eating a whole apple before lunch always prevents obesity.",
         },
@@ -43,11 +48,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "All four apple preparations produced the same level of fullness.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "In this study, the whole apple produced the greatest fullness and a lower total energy intake than no preload.",
         },
         {
           isCorrect: false,
@@ -65,6 +65,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Dalam penelitian ini, apel utuh menghasilkan rasa kenyang paling tinggi dan total asupan energi yang lebih rendah daripada kondisi tanpa sajian pendahuluan.",
+        },
+        {
           isCorrect: false,
           label:
             "Makan apel utuh sebelum makan siang selalu mencegah obesitas.",
@@ -73,11 +78,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Keempat olahan apel menghasilkan tingkat rasa kenyang yang sama.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Dalam penelitian ini, apel utuh menghasilkan rasa kenyang paling tinggi dan total asupan energi yang lebih rendah daripada kondisi tanpa sajian pendahuluan.",
         },
         {
           isCorrect: false,

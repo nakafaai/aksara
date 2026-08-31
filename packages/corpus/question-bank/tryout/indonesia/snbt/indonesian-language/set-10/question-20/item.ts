@@ -7,16 +7,11 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang peta penerangan jalan kampung",
+          label: "Kesamaan Isi sebagai Bukti bahwa Dua Sumber Identik",
         },
         {
           isCorrect: false,
-          label:
-            "Alasan Mengabaikan Semua Bukti dalam peta penerangan jalan kampung",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap perspektif di Seluruh Dunia",
+          label: "Mengutamakan Sumber Terbaru dalam Kajian perspektif",
         },
         {
           isCorrect: true,
@@ -24,7 +19,12 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Satu Aturan untuk Setiap peta penerangan jalan kampung",
+          label: "Menggabungkan Dua Sumber tanpa Memeriksa Konteks",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perbedaan Format yang Membuat Dua Sumber Tidak Dapat Dibandingkan",
         },
       ],
     },

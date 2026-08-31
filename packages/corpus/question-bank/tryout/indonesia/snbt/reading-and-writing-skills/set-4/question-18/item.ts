@@ -8,17 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Auf Grundlage der Daten zeigte eine begrenzte Schlussfolgerung über Büchertauschmarkt.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Auf Grundlage von den Daten kam das Team zu begrenzte Schlussfolgerung über Büchertauschmarkt.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Daten zugrunde legend, wurde über Büchertauschmarkt geschlossen das Team.",
+            "Auf Grundlage der Daten eine begrenzte Schlussfolgerung für den Kontext Büchertauschmarkt.",
         },
         {
           isCorrect: true,
@@ -28,7 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Auf Grundlage der Daten, weil das Team eine begrenzte Schlussfolgerung über Büchertauschmarkt.",
+            "Auf Grundlage der Daten kam das Team zu einer Schlussfolgerung, die begrenzt war, im Kontext Büchertauschmarkt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Daten führten zu einer begrenzten Schlussfolgerung, weil Kontext Büchertauschmarkt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Auf Grundlage der Daten zog es eine begrenzte Schlussfolgerung für den Kontext Büchertauschmarkt.",
         },
       ],
     },
@@ -38,17 +38,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Based on the data showed a limited conclusion about the book exchange market.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Based from the data, the team reach a limited conclusion about the book exchange market.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Basing on the data, a limited conclusion was the team about the book exchange market.",
+            "Based on the data, a limited conclusion for this setting (book exchange market).",
         },
         {
           isCorrect: true,
@@ -58,7 +48,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Based on the data, because the team a limited conclusion about the book exchange market.",
+            "Based on the data, the team reached a conclusion, which was limited, in this setting (book exchange market).",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The data led to a limited conclusion because this setting (book exchange market).",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Based on the data, it reached a limited conclusion for this setting (book exchange market).",
         },
       ],
     },
@@ -68,17 +68,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Berdasarkan data menunjukkan simpulan terbatas tentang pasar tukar buku.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Berdasarkan dari data, tim menarik simpulan terbatas tentang pasar tukar buku.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Data berdasarkan, simpulan terbatas ditarik tim tentang pasar tukar buku.",
+            "Berdasarkan data, sebuah simpulan terbatas untuk konteks pasar tukar buku.",
         },
         {
           isCorrect: true,
@@ -88,7 +78,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Berdasarkan data, karena tim simpulan terbatas tentang pasar tukar buku.",
+            "Berdasarkan data, tim sampai pada simpulan, yang terbatas, dalam konteks pasar tukar buku.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Data menghasilkan simpulan terbatas karena konteks pasar tukar buku.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Berdasarkan data, hal itu menarik simpulan terbatas untuk konteks pasar tukar buku.",
         },
       ],
     },

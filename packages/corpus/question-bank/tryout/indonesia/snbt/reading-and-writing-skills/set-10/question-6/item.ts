@@ -7,17 +7,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Kochkurs für Jugendliche",
-        },
-        {
-          isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: nach Rezeptschritten geordnete Zutaten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: nach Rezeptschritten geordnete Zutaten.",
+            "Im Kontext Kochkurs für Jugendliche verursachte die Änderung nach Rezeptschritten gruppierte Zutaten den höheren Testwert.",
         },
         {
           isCorrect: true,
@@ -27,7 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: nach Rezeptschritten geordnete Zutaten.",
+            "Im Kontext Kochkurs für Jugendliche verbesserten sich sämtliche Teilnehmenden um denselben Wert.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Im Kontext Kochkurs für Jugendliche waren die beiden Vergleichswerte identisch.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Im Kontext Kochkurs für Jugendliche belegte der kurze Test das langfristige Ergebnis.",
         },
       ],
     },
@@ -36,17 +37,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: teen cooking class",
-        },
-        {
-          isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of ingredients grouped by recipe stage.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, ingredients grouped by recipe stage, directly addressed the observed uncertainty.",
+            "In this setting (teen cooking class), ingredients grouped by recipe stage caused the higher trial value.",
         },
         {
           isCorrect: true,
@@ -56,7 +48,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The next test of ingredients grouped by recipe stage will run for longer.",
+            "In this setting (teen cooking class), each participant improved by the same amount.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "In this setting (teen cooking class), the two comparison values were identical.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "In this setting (teen cooking class), the short trial established the long-term result.",
         },
       ],
     },
@@ -65,17 +67,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: kelas memasak remaja",
-        },
-        {
-          isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui bahan yang dikelompokkan menurut tahap resep.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa bahan yang dikelompokkan menurut tahap resep langsung menanggapi keraguan yang diamati.",
+            "Dalam konteks kelas memasak remaja, bahan yang dikelompokkan menurut tahap resep menyebabkan nilai uji menjadi lebih tinggi.",
         },
         {
           isCorrect: true,
@@ -85,7 +78,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Uji bahan yang dikelompokkan menurut tahap resep berikutnya akan berlangsung lebih lama.",
+            "Dalam konteks kelas memasak remaja, setiap peserta mengalami peningkatan yang sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Dalam konteks kelas memasak remaja, kedua nilai pembanding sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Dalam konteks kelas memasak remaja, uji singkat menetapkan hasil jangka panjang.",
         },
       ],
     },

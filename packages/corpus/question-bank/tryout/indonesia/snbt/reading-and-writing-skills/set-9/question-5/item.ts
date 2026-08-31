@@ -7,24 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Außerdem",
+          label: "Allerdings",
+        },
+        {
+          isCorrect: false,
+          label: "Vor der Messung",
+        },
+        {
+          isCorrect: false,
+          label: "Umgekehrt",
         },
         {
           isCorrect: true,
-          label: "Deshalb",
+          label: "Unter diesen Bedingungen",
         },
         {
           isCorrect: false,
-          label: "Inzwischen",
-        },
-        {
-          isCorrect: false,
-          label: "Dagegen",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Geordnete Prüfung einer Änderung: Verteilung von Mangrovensetzlingen",
+          label: "Zum Beispiel",
         },
       ],
     },
@@ -33,24 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Moreover",
-        },
-        {
-          isCorrect: true,
-          label: "Therefore",
-        },
-        {
-          isCorrect: false,
-          label: "Meanwhile",
-        },
-        {
-          isCorrect: false,
           label: "However",
         },
         {
           isCorrect: false,
-          label:
-            "A structured test of one change: mangrove seedling distribution",
+          label: "Before measurement",
+        },
+        {
+          isCorrect: false,
+          label: "Conversely",
+        },
+        {
+          isCorrect: true,
+          label: "Under those conditions",
+        },
+        {
+          isCorrect: false,
+          label: "For example",
         },
       ],
     },
@@ -59,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Selain itu",
-        },
-        {
-          isCorrect: true,
-          label: "Oleh karena itu",
-        },
-        {
-          isCorrect: false,
-          label: "Sementara itu",
-        },
-        {
-          isCorrect: false,
           label: "Namun",
         },
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: pembagian bibit mangrove",
+          label: "Sebelum pengukuran",
+        },
+        {
+          isCorrect: false,
+          label: "Sebaliknya",
+        },
+        {
+          isCorrect: true,
+          label: "Dalam kondisi tersebut",
+        },
+        {
+          isCorrect: false,
+          label: "Misalnya",
         },
       ],
     },

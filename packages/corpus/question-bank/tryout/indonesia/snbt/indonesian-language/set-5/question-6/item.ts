@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap rangkaian listrik dengan dua lampu tanpa membahas keputusan atau bukti.",
+            "Bacaan menggunakan nilai rata-rata yang lebih tinggi untuk memperkirakan bahwa perubahan akan bekerja pada keadaan serupa.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bacaan menjelaskan rangkaian tertutup sebagai hasil utama, bukan sebagai bagian dari penelitian.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bacaan membandingkan dua kondisi, tetapi menempatkan faktor kontrol sebagai rincian yang tidak memengaruhi penafsiran.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bacaan lebih menekankan keterbatasan sampel daripada hubungan antara perubahan dan hasil.",
         },
         {
           isCorrect: true,
           label:
             "Rangkaian listrik dengan dua lampu menyederhanakan proses agar dapat diperiksa sambil tetap memiliki batas representasi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap rangkaian listrik dengan dua lampu.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan terutama menjelaskan definisi rangkaian tertutup tanpa menghubungkannya dengan konteks.",
         },
       ],
     },

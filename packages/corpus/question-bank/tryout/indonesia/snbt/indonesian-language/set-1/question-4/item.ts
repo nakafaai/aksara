@@ -14,10 +14,6 @@ const item: QuestionItem = {
           label: "Kita tidak pernah tahu kapan kita akan sadar dan peduli",
         },
         {
-          isCorrect: true,
-          label: "Mungkin setiap orang akan mengalami fase ini juga",
-        },
-        {
           isCorrect: false,
           label: "Saya mendapatkan fase itu lebih cepat dibanding yang lain",
         },
@@ -25,6 +21,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Kehidupan itu berputar seperti roda kadang di bawah dan kadang di atas",
+        },
+        {
+          isCorrect: true,
+          label: "Mungkin setiap orang akan mengalami fase ini juga",
         },
       ],
     },

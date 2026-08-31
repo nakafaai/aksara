@@ -6,25 +6,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Mina's next step in an after-school laboratory",
+        },
+        {
           isCorrect: false,
-          label: "Absolute certainty about an after-school laboratory",
+          label: "Waiting for someone else to complete the next step",
+        },
+        {
+          isCorrect: false,
+          label: "Hiding unresolved evidence in a larger project",
         },
         {
           isCorrect: false,
           label:
-            "Why all evidence in an after-school laboratory should be ignored",
+            "psychological safety as a definition without a reviewable action",
         },
         {
           isCorrect: false,
-          label: "The complete world history of psychological safety",
-        },
-        {
-          isCorrect: false,
-          label: "One rule for every an after-school laboratory",
-        },
-        {
-          isCorrect: true,
-          label: "Mina's next step in an after-school laboratory",
+          label: "A complete plan without a small accountable step",
         },
       ],
     },

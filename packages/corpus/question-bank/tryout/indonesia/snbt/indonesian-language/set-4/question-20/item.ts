@@ -6,24 +6,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Kepastian Mutlak tentang tur bangunan bersejarah",
-        },
-        {
-          isCorrect: false,
-          label: "Alasan Mengabaikan Semua Bukti dalam tur bangunan bersejarah",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap triangulasi di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap tur bangunan bersejarah",
-        },
-        {
           isCorrect: true,
           label: "Membaca Dua Sumber tentang tur bangunan bersejarah",
+        },
+        {
+          isCorrect: false,
+          label: "Kesamaan Isi sebagai Bukti bahwa Dua Sumber Identik",
+        },
+        {
+          isCorrect: false,
+          label: "Mengutamakan Sumber Terbaru dalam Kajian triangulasi",
+        },
+        {
+          isCorrect: false,
+          label: "Menggabungkan Dua Sumber tanpa Memeriksa Konteks",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perbedaan Format yang Membuat Dua Sumber Tidak Dapat Dibandingkan",
         },
       ],
     },

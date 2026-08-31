@@ -12,20 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "untuk memastikan kanopi selalu lebih panas daripada lapangan",
-        },
-        {
-          isCorrect: false,
-          label: "untuk mengganti semua data dari kebun belakang",
-        },
-        {
-          isCorrect: false,
-          label: "untuk membuktikan kipas tidak bekerja",
+          label:
+            "untuk menguji apakah suhu kanopi dapat mewakili suhu kebun belakang",
         },
         {
           isCorrect: true,
           label:
             "untuk membandingkan efek peneduh tanpa langsung melibatkan pohon",
+        },
+        {
+          isCorrect: false,
+          label:
+            "untuk menjadikan data kanopi sebagai pengganti pengukuran kebun belakang",
+        },
+        {
+          isCorrect: false,
+          label:
+            "untuk menunjukkan bahwa perbedaan suhu tetap muncul ketika kipas digunakan",
         },
         {
           isCorrect: false,

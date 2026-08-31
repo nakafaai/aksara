@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti dugaan yang tidak perlu diperiksa pada pendataan sumur warga",
+            "Penyebutan *keterbandingan* membuktikan rancangan sudah adil tanpa perlu memeriksa data pembanding atau masukan pengguna.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti hasil akhir yang selalu berlaku untuk semua keadaan",
+            "Definisi itu membatasi *keterbandingan* pada kebutuhan kelompok terbanyak sehingga variasi kebutuhan lain dapat diabaikan.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti rincian yang sengaja dihapus karena bertentangan dengan pendapat",
+            "Istilah *keterbandingan* menggantikan konsultasi pihak terdampak dengan satu label yang langsung menentukan keputusan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi tersebut menjelaskan keterbatasan masa uji, bukan kriteria yang dipakai untuk membaca rancangan.",
         },
         {
           isCorrect: true,
           label:
-            "kemampuan dua atau lebih catatan untuk dibandingkan secara bermakna",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti hiasan bahasa yang tidak berhubungan dengan konteks",
+            "Definisi *keterbandingan* memberi kriteria untuk menilai apakah rancangan dan bukti akses benar-benar mencakup kebutuhan pengguna yang berbeda.",
         },
       ],
     },

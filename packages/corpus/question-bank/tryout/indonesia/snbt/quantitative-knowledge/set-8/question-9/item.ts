@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$m < -2 \\lor m > 6$$",
+        },
+        {
           isCorrect: false,
           label: "$$m > 6$$",
         },
@@ -16,10 +20,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$-6 < m < 2$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$m < -2 \\lor m > 6$$",
         },
         {
           isCorrect: false,
@@ -31,6 +31,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$m < -2 \\lor m > 6$$",
+        },
+        {
           isCorrect: false,
           label: "$$m > 6$$",
         },
@@ -41,10 +45,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$-6 < m < 2$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$m < -2 \\lor m > 6$$",
         },
         {
           isCorrect: false,
@@ -56,6 +56,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$m < -2 \\lor m > 6$$",
+        },
+        {
           isCorrect: false,
           label: "$$m > 6$$",
         },
@@ -66,10 +70,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$-6 < m < 2$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$m < -2 \\lor m > 6$$",
         },
         {
           isCorrect: false,

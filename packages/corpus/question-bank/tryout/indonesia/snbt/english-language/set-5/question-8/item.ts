@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Because the trial reached 47, compared with a baseline of 32 and a comparison value of 33, shelf labels showing when each package entered the pantry should become permanent before the stated limitation is examined.",
+        },
+        {
           isCorrect: true,
           label:
-            "A follow-up decision should combine measured results, affected people's experience, and the trial's limitation.",
+            "The rise to 47, compared with a baseline of 32 and a comparison value of 33 supports a limited extension of shelf labels showing when each package entered the pantry, while the fact that package demand changed with school holidays and local events must shape the follow-up.",
         },
         {
           isCorrect: false,
           label:
-            "Every result in a community food pantry must apply without limitation elsewhere.",
+            "The consultation with affected groups makes the baseline and comparison figures unnecessary for the decision.",
         },
         {
           isCorrect: false,
           label:
-            "The limitation makes all information about a community food pantry useless.",
+            "The limitation that package demand changed with school holidays and local events affects delivery details, but it does not restrict who can be covered by the conclusion.",
         },
         {
           isCorrect: false,
           label:
-            "One detail about stock rotation proves every possible causal relationship.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage recommends ignoring evidence that conflicts with an early expectation.",
+            "Because staffing and schedules were stable, the difference between the trial and comparison is best attributed to those unchanged conditions.",
         },
       ],
     },

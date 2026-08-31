@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$6$$",
-        },
-        {
-          isCorrect: false,
           label: "$$2$$",
         },
         {
           isCorrect: false,
-          label: "$$3$$",
+          label: "$$4$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
         },
         {
           isCorrect: true,
-          label: "$$4$$",
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$6$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$6$$",
-        },
-        {
-          isCorrect: false,
           label: "$$2$$",
         },
         {
           isCorrect: false,
-          label: "$$3$$",
+          label: "$$4$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
         },
         {
           isCorrect: true,
-          label: "$$4$$",
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$6$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$6$$",
-        },
-        {
-          isCorrect: false,
           label: "$$2$$",
         },
         {
           isCorrect: false,
-          label: "$$3$$",
+          label: "$$4$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
         },
         {
           isCorrect: true,
-          label: "$$4$$",
+          label: "$$3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$6$$",
         },
       ],
     },

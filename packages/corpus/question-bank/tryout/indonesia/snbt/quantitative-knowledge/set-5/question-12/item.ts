@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Wenn alles richtig ist.",
+        },
+        {
           isCorrect: false,
           label: "Wenn $$(1)$$, $$(2)$$ und $$(3)$$ korrekt sind.",
         },
         {
           isCorrect: false,
           label: "Wenn $$(1)$$ und $$(3)$$ korrekt sind.",
-        },
-        {
-          isCorrect: true,
-          label: "Wenn alles richtig ist.",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "If all are correct.",
+        },
+        {
           isCorrect: false,
           label: "If $$(1)$$, $$(2)$$, and $$(3)$$ are correct.",
         },
         {
           isCorrect: false,
           label: "If $$(1)$$ and $$(3)$$ are correct.",
-        },
-        {
-          isCorrect: true,
-          label: "If all are correct.",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Jika semua betul.",
+        },
+        {
           isCorrect: false,
           label: "Jika $$(1)$$, $$(2)$$, dan $$(3)$$ yang betul.",
         },
         {
           isCorrect: false,
           label: "Jika $$(1)$$ dan $$(3)$$ yang betul.",
-        },
-        {
-          isCorrect: true,
-          label: "Jika semua betul.",
         },
         {
           isCorrect: false,

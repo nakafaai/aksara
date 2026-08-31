@@ -8,17 +8,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage only gives a complete history of a community food pantry without examining evidence or choice.",
+            "The organisers of a community food pantry evaluated shelf labels showing the date each package entered through consultation alone, without comparing the measured outcome across conditions.",
         },
         {
           isCorrect: false,
           label:
-            "The passage proves that one method must succeed in every a community food pantry.",
+            "The organisers of a community food pantry evaluated shelf labels showing the date each package entered through the measured comparison alone, while excluding the affected groups' experience from the decision.",
         },
         {
           isCorrect: false,
           label:
-            "The passage rejects all observation and relies only on personal preference.",
+            "The organisers of a community food pantry evaluated shelf labels showing the date each package entered through a comparison and consultation, then treated the short trial as sufficient for permanent adoption.",
         },
         {
           isCorrect: true,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage mainly defines stock rotation without connecting it to a setting.",
+            "The organisers of a community food pantry evaluated shelf labels showing the date each package entered mainly by defining a technical term, with the proposed change serving only as background information.",
         },
       ],
     },

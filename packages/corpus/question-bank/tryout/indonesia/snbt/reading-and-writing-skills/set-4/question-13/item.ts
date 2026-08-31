@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "die Folgestudie des Teams im untersuchten Kontext (Büchertauschmarkt)",
+        },
+        {
           isCorrect: false,
           label:
             "die Folge Studie des Teams im untersuchten Kontext (Büchertauschmarkt)",
@@ -14,11 +19,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "die Folge-studie des Teams im untersuchten Kontext (Büchertauschmarkt)",
-        },
-        {
-          isCorrect: true,
-          label:
-            "die Folgestudie des Teams im untersuchten Kontext (Büchertauschmarkt)",
         },
         {
           isCorrect: false,
@@ -36,6 +36,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "the team's follow-up study of genre signs on each table in this setting (book exchange market)",
+        },
+        {
           isCorrect: false,
           label:
             "the team's follow up study of genre signs on each table in this setting (book exchange market)",
@@ -44,11 +49,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "the team's followup study of genre signs on each table in this setting (book exchange market)",
-        },
-        {
-          isCorrect: true,
-          label:
-            "the team's follow-up study of genre signs on each table in this setting (book exchange market)",
         },
         {
           isCorrect: false,
@@ -66,6 +66,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "kerja sama tim dalam uji tanda genre di setiap meja di pasar tukar buku",
+        },
+        {
           isCorrect: false,
           label:
             "kerjasama tim dalam uji tanda genre di setiap meja di pasar tukar buku",
@@ -74,11 +79,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "kerja-sama tim dalam uji tanda genre di setiap meja di pasar tukar buku",
-        },
-        {
-          isCorrect: true,
-          label:
-            "kerja sama tim dalam uji tanda genre di setiap meja di pasar tukar buku",
         },
         {
           isCorrect: false,

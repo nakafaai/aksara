@@ -14,10 +14,6 @@ const item: QuestionItem = {
           label: "Größe $$P$$ ist gleich $$Q$$",
         },
         {
-          isCorrect: true,
-          label: "Größe $$P$$ ist größer als $$Q$$",
-        },
-        {
           isCorrect: false,
           label:
             "Die Informationen reichen nicht aus, um den Zusammenhang festzustellen",
@@ -25,6 +21,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Beide Größen sind nicht definiert",
+        },
+        {
+          isCorrect: true,
+          label: "Größe $$P$$ ist größer als $$Q$$",
         },
       ],
     },
@@ -40,10 +40,6 @@ const item: QuestionItem = {
           label: "Quantity $$P$$ is equal to $$Q$$",
         },
         {
-          isCorrect: true,
-          label: "Quantity $$P$$ is greater than $$Q$$",
-        },
-        {
           isCorrect: false,
           label:
             "The information is insufficient to determine the relationship",
@@ -51,6 +47,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Neither quantity is defined",
+        },
+        {
+          isCorrect: true,
+          label: "Quantity $$P$$ is greater than $$Q$$",
         },
       ],
     },
@@ -66,16 +66,16 @@ const item: QuestionItem = {
           label: "Kuantitas $$P$$ sama dengan $$Q$$",
         },
         {
-          isCorrect: true,
-          label: "Kuantitas $$P$$ lebih besar daripada $$Q$$",
-        },
-        {
           isCorrect: false,
           label: "Informasi tidak cukup untuk menentukan hubungan",
         },
         {
           isCorrect: false,
           label: "Kedua kuantitas tidak terdefinisi",
+        },
+        {
+          isCorrect: true,
+          label: "Kuantitas $$P$$ lebih besar daripada $$Q$$",
         },
       ],
     },

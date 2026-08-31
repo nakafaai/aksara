@@ -12,7 +12,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "agar suhu harian selalu sama",
+          label:
+            "agar suhu dicatat tetapi tidak dimasukkan dalam penafsiran perubahan jumlah botol",
         },
         {
           isCorrect: false,
@@ -20,7 +21,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "agar semua siswa mengikuti survei",
+          label:
+            "agar peserta survei dan pengguna stasiun dapat dianggap sebagai kelompok yang sama",
         },
         {
           isCorrect: true,
@@ -29,7 +31,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "agar volume air tidak perlu dicatat",
+          label:
+            "agar perubahan jumlah botol dapat dibandingkan tanpa mengukur volume isi ulang",
         },
       ],
     },

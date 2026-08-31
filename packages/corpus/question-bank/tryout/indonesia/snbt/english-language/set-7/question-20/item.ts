@@ -6,25 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "A recurring object that remains part of the setting",
+        },
+        {
           isCorrect: true,
           label: "A rain-spotted message card in a neighbourhood flood drill",
         },
         {
           isCorrect: false,
-          label: "Absolute certainty about a neighbourhood flood drill",
+          label: "A conflict settled before the character's final choice",
         },
         {
           isCorrect: false,
-          label:
-            "Why all evidence in a neighbourhood flood drill should be ignored",
+          label: "narrative conflict as a term without a role in the story",
         },
         {
           isCorrect: false,
-          label: "The complete world history of narrative conflict",
-        },
-        {
-          isCorrect: false,
-          label: "One rule for every a neighbourhood flood drill",
+          label: "An ending that removes the object's interpretive tension",
         },
       ],
     },

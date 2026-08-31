@@ -6,27 +6,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Measuring truss in one preliminary comparison",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Treating truss as the sole explanation for the observed result",
+        },
+        {
           isCorrect: true,
-          label:
-            "Testing folding the deck into a triangular truss in load distribution in paper bridge models",
+          label: "Testing a triangular truss in a paper bridge model",
         },
         {
           isCorrect: false,
-          label:
-            "Absolute certainty about load distribution in paper bridge models",
+          label: "A final rule derived from the first comparison of truss",
         },
         {
           isCorrect: false,
-          label:
-            "Why all evidence in load distribution in paper bridge models should be ignored",
-        },
-        {
-          isCorrect: false,
-          label: "The complete world history of truss",
-        },
-        {
-          isCorrect: false,
-          label: "One rule for every load distribution in paper bridge models",
+          label: "A limitation that makes another test of truss unnecessary",
         },
       ],
     },

@@ -11,21 +11,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Buy emergency equipment first, then add contacts after the first practice.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Choose meeting places and rely on one shared phone for directions.",
+        },
+        {
           isCorrect: true,
           label:
             "Identify needs, choose places and a contact, record essentials, then practice and revise.",
         },
         {
           isCorrect: false,
-          label: "Buy equipment, hide all cards, and avoid practice.",
-        },
-        {
-          isCorrect: false,
-          label: "Use one phone map and remove every paper copy.",
-        },
-        {
-          isCorrect: false,
-          label: "Share all private medical details with any contact.",
+          label:
+            "Add detailed medical instructions to the out-of-area contact card.",
         },
         {
           isCorrect: false,

@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti dugaan yang tidak perlu diperiksa pada pameran sains keliling",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti hasil akhir yang selalu berlaku untuk semua keadaan",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti rincian yang sengaja dihapus karena bertentangan dengan pendapat",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti hiasan bahasa yang tidak berhubungan dengan konteks",
-        },
-        {
           isCorrect: true,
           label:
-            "suasana emosional yang dibangun oleh latar, pilihan kata, dan peristiwa",
+            "Definisi *atmosfer* mengenali perangkat penceritaan yang menghubungkan benda berulang, tindakan tokoh, dan respons yang belum tuntas pada penutup.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Istilah *atmosfer* memastikan satu kelanjutan cerita sehingga pembaca tidak lagi perlu menafsirkan akhir.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi itu menyamakan *atmosfer* dengan benda yang berulang, bukan dengan sifat penutup cerita.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Penyebutan *atmosfer* membuat kesan pribadi pembaca cukup meskipun bertentangan dengan rincian cerita.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi tersebut hanya menerangkan latar sehingga tindakan tokoh dan perubahan makna benda tidak relevan.",
         },
       ],
     },

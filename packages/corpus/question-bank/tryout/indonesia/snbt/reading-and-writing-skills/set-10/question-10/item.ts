@@ -7,17 +7,13 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Kochkurs für Jugendliche",
+          label:
+            "Mit geänderten Messregeln plant das Team einen längeren Test von nach Rezeptschritten gruppierte Zutaten.",
         },
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: nach Rezeptschritten geordnete Zutaten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Kochkurs für Jugendliche über den beiden anderen Werten.",
+            "Das Team will nur die Tage wiederholen, an denen die Änderung nach Rezeptschritten gruppierte Zutaten den höchsten Wert ergab.",
         },
         {
           isCorrect: true,
@@ -27,7 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: nach Rezeptschritten geordnete Zutaten.",
+            "Das Team will nach Rezeptschritten gruppierte Zutaten dauerhaft einführen statt einen längeren Vergleich durchzuführen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team plant einen längeren Test von nach Rezeptschritten gruppierte Zutaten ohne Vergleichsbedingung.",
         },
       ],
     },
@@ -36,17 +37,13 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: teen cooking class",
+          label:
+            "Using revised measurement rules, the team plans a longer test of ingredients grouped by recipe stage.",
         },
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of ingredients grouped by recipe stage.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (teen cooking class), the trial value exceeded both other values.",
+            "The team plans to repeat only the days on which ingredients grouped by recipe stage produced the highest value.",
         },
         {
           isCorrect: true,
@@ -56,7 +53,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change, ingredients grouped by recipe stage, directly addressed the observed uncertainty.",
+            "The team plans to adopt ingredients grouped by recipe stage permanently instead of running a longer comparison.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team plans a longer test of ingredients grouped by recipe stage without retaining a comparison condition.",
         },
       ],
     },
@@ -65,17 +67,13 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: kelas memasak remaja",
+          label:
+            "Dengan kaidah pengukuran yang diubah, tim merencanakan uji bahan yang dikelompokkan menurut tahap resep yang lebih panjang.",
         },
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui bahan yang dikelompokkan menurut tahap resep.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Di kelas memasak remaja, nilai hari uji melampaui dua nilai lainnya.",
+            "Tim akan mengulang hari ketika bahan yang dikelompokkan menurut tahap resep menghasilkan nilai tertinggi.",
         },
         {
           isCorrect: true,
@@ -85,7 +83,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan berupa bahan yang dikelompokkan menurut tahap resep langsung menanggapi keraguan yang diamati.",
+            "Tim akan menerapkan bahan yang dikelompokkan menurut tahap resep secara tetap sebagai pengganti perbandingan yang lebih panjang.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim merencanakan uji bahan yang dikelompokkan menurut tahap resep yang lebih panjang tanpa mempertahankan kondisi pembanding.",
         },
       ],
     },

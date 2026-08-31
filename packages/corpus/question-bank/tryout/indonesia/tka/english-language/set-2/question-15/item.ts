@@ -12,24 +12,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "It was useless because it did not name every passenger.",
+          label:
+            "It was unreliable because it described the route rather than Niko's individual trip.",
         },
         {
           isCorrect: false,
-          label: "It proved the printed timetable was always false.",
-        },
-        {
-          isCorrect: false,
-          label: "It guaranteed the hospital shuttle's arrival time.",
-        },
-        {
-          isCorrect: false,
-          label: "It made calling the clinic unsafe.",
+          label:
+            "It showed that the printed timetable was no longer useful for that journey.",
         },
         {
           isCorrect: true,
           label:
             "It was useful for the road closure, but incomplete about Niko's mother's exact situation.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "It was precise enough to determine when the hospital shuttle would arrive.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "It made contacting the clinic unnecessary once the road closure was known.",
         },
       ],
     },

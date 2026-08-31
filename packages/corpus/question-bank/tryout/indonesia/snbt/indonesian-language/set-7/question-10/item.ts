@@ -6,27 +6,26 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Mengukur daya dukung melalui satu perbandingan awal",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Menjadikan daya dukung penjelasan tunggal atas hasil pengamatan",
+        },
+        {
           isCorrect: true,
           label: "Kegunaan dan Batas Simulasi populasi dengan keping warna",
         },
         {
           isCorrect: false,
-          label:
-            "Kepastian Mutlak tentang simulasi populasi dengan keping warna",
+          label: "Kaidah akhir dari perbandingan pertama tentang daya dukung",
         },
         {
           isCorrect: false,
           label:
-            "Alasan Mengabaikan Semua Bukti dalam simulasi populasi dengan keping warna",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap daya dukung di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Satu Aturan untuk Setiap simulasi populasi dengan keping warna",
+            "Keterbatasan yang membuat uji lanjutan daya dukung tidak diperlukan",
         },
       ],
     },

@@ -15,6 +15,10 @@ const item: QuestionItem = {
           label: "menjual layangan kepada juri",
         },
         {
+          isCorrect: true,
+          label: "menguji apakah perbaikan bekerja dalam angin nyata",
+        },
+        {
           isCorrect: false,
           label: "menyembunyikan bilah bambu",
         },
@@ -24,11 +28,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "membuktikan kertas baru selalu lebih kuat",
-        },
-        {
-          isCorrect: true,
-          label: "menguji apakah perbaikan bekerja dalam angin nyata",
+          label:
+            "menunjukkan bahwa kertas baru merupakan faktor utama keberhasilan perbaikan",
         },
       ],
     },

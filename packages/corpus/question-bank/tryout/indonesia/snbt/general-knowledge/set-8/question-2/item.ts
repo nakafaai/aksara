@@ -7,23 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "nach denselben Grundsätzen ohne Widerspruch",
+          label:
+            "Annahmen, Datengrenzen und Entscheidungskriterien werden im Bericht unmittelbar genannt.",
         },
         {
           isCorrect: false,
-          label: "klar und unmittelbar ausgedrückt",
+          label:
+            "Eine Anweisung verwendet das Wort 'bald' ohne Zeitgrenze, sodass zwei Personen sie unterschiedlich auslegen.",
         },
         {
           isCorrect: false,
-          label: "für mehr als eine Deutung offen",
-        },
-        {
-          isCorrect: false,
-          label: "durch verlässliche Belege gestützt",
+          label:
+            "Die Schlussfolgerung gilt als vorläufig, bis eine Wiederholung mit breiterer Stichprobe abgeschlossen ist.",
         },
         {
           isCorrect: true,
-          label: "indirekt ausgedrückt und aus dem Zusammenhang erschließbar",
+          label:
+            "Die Lesenden erschließen die Haltung aus ausgewählten Einzelheiten, obwohl sie nicht direkt genannt wird.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team verwirft eine ansprechende Grafik, weil sie die Forschungsfrage nicht beantwortet.",
         },
       ],
     },
@@ -32,23 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "following the same principles without contradiction",
+          label:
+            "The assumptions, data limits, and decision criteria are stated directly in the report.",
         },
         {
           isCorrect: false,
-          label: "stated clearly and directly",
+          label:
+            "An instruction uses 'soon' without a time limit, causing two operators to interpret it differently.",
         },
         {
           isCorrect: false,
-          label: "open to more than one interpretation",
-        },
-        {
-          isCorrect: false,
-          label: "supported by dependable evidence",
+          label:
+            "The conclusion is treated as provisional until replication with a broader sample is complete.",
         },
         {
           isCorrect: true,
-          label: "expressed indirectly and recoverable from context",
+          label:
+            "Readers infer the author's position from selected details even though it is not stated directly.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team rejects an attractive chart because it does not answer the research question.",
         },
       ],
     },
@@ -57,23 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "mengikuti prinsip yang sama tanpa pertentangan",
+          label:
+            "Asumsi, batas data, dan kriteria keputusan dinyatakan langsung dalam laporan.",
         },
         {
           isCorrect: false,
-          label: "dinyatakan secara jelas dan langsung",
+          label:
+            "Petunjuk memakai kata 'segera' tanpa batas waktu sehingga dua pelaksana menafsirkannya secara berbeda.",
         },
         {
           isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
-        },
-        {
-          isCorrect: false,
-          label: "didukung oleh bukti yang dapat dipercaya",
+          label:
+            "Simpulan diberi status sementara sampai pengulangan dengan sampel lebih luas selesai.",
         },
         {
           isCorrect: true,
-          label: "dinyatakan tidak langsung dan dapat disimpulkan dari konteks",
+          label:
+            "Pembaca menyimpulkan sikap penulis dari pilihan rincian meskipun sikap itu tidak dinyatakan langsung.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim menolak grafik yang menarik karena grafik itu tidak menjawab pertanyaan penelitian.",
         },
       ],
     },

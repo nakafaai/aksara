@@ -7,23 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "für mehr als eine Deutung offen",
+          label:
+            "Die Auswirkung ist groß genug, um das Hauptergebnis zu verändern, und nicht nur eine kleine Randabweichung.",
         },
         {
           isCorrect: false,
-          label: "durch verlässliche Belege gestützt",
-        },
-        {
-          isCorrect: false,
-          label: "fähig, sich an veränderte Bedingungen anzupassen",
+          label:
+            "Der Bericht bewertet Nutzen, Risiken, Kosten und Auswirkungen auf verschiedene Gruppen, bevor er eine Empfehlung abgibt.",
         },
         {
           isCorrect: true,
-          label: "als notwendige Grundlage für weitere Schritte dienend",
+          label:
+            "Eine grundlegende Annahme wird zuerst geprüft, weil alle späteren Schlussfolgerungen von ihr abhängen.",
         },
         {
           isCorrect: false,
-          label: "dem Umfang des Problems angemessen",
+          label:
+            "Das Team verwirft eine ansprechende Grafik, weil sie die Forschungsfrage nicht beantwortet.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Veränderung ist groß genug, um die Entscheidung auch unter Berücksichtigung der Messunsicherheit zu ändern.",
         },
       ],
     },
@@ -32,23 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "open to more than one interpretation",
+          label:
+            "The effect is large enough to change the main outcome rather than merely adding a small edge variation.",
         },
         {
           isCorrect: false,
-          label: "supported by dependable evidence",
-        },
-        {
-          isCorrect: false,
-          label: "able to adjust to changing conditions",
+          label:
+            "The report assesses benefits, risks, costs, and effects on different groups before making a recommendation.",
         },
         {
           isCorrect: true,
-          label: "forming a necessary basis for later steps",
+          label:
+            "A basic assumption is examined first because every later conclusion depends on it.",
         },
         {
           isCorrect: false,
-          label: "appropriate to the scale of the problem",
+          label:
+            "The team rejects an attractive chart because it does not answer the research question.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The change is large enough to alter the decision after measurement uncertainty is considered.",
         },
       ],
     },
@@ -57,23 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
+          label:
+            "Dampaknya cukup besar untuk mengubah hasil utama, bukan sekadar variasi kecil di tepi.",
         },
         {
           isCorrect: false,
-          label: "didukung oleh bukti yang dapat dipercaya",
-        },
-        {
-          isCorrect: false,
-          label: "mampu menyesuaikan diri dengan kondisi yang berubah",
+          label:
+            "Laporan menilai manfaat, risiko, biaya, dan dampak pada berbagai kelompok sebelum memberi rekomendasi.",
         },
         {
           isCorrect: true,
-          label: "menjadi dasar yang diperlukan bagi langkah berikutnya",
+          label:
+            "Satu asumsi dasar diperiksa lebih dahulu karena seluruh simpulan berikutnya bergantung padanya.",
         },
         {
           isCorrect: false,
-          label: "sepadan dengan skala masalah",
+          label:
+            "Tim menolak grafik yang menarik karena grafik itu tidak menjawab pertanyaan penelitian.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perubahan cukup besar untuk mengubah keputusan setelah ketidakpastian pengukuran turut dipertimbangkan.",
         },
       ],
     },

@@ -13,22 +13,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap model jaring-jaring makanan di kebun sekolah tanpa membahas keputusan atau bukti.",
+            "Bacaan menggunakan nilai rata-rata yang lebih tinggi untuk memperkirakan bahwa perubahan akan bekerja pada keadaan serupa.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap model jaring-jaring makanan di kebun sekolah.",
+            "Bacaan menjelaskan jaring-jaring makanan sebagai hasil utama, bukan sebagai bagian dari penelitian.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
+            "Bacaan membandingkan dua kondisi, tetapi menempatkan faktor kontrol sebagai rincian yang tidak memengaruhi penafsiran.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan terutama menjelaskan definisi jaring-jaring makanan tanpa menghubungkannya dengan konteks.",
+            "Bacaan lebih menekankan keterbatasan sampel daripada hubungan antara perubahan dan hasil.",
         },
       ],
     },

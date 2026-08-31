@@ -24,7 +24,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Memastikan semua peserta selalu mulai tanpa jeda.",
+          label:
+            "Memastikan setiap peserta memulai dari kondisi tanpa jeda sebelum kondisi lain.",
         },
       ],
     },

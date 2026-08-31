@@ -6,28 +6,26 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Besucher, die ohne Suche einen Platz fanden und kurze Aussagen von Nutzenden",
-        },
-        {
           isCorrect: true,
-          label: "Der Wert mit Änderung, 34, lag über 24 und 26.",
+          label:
+            "Prüfung oder Anpassung an einer Referenz, damit Ergebnisse richtig gedeutet werden können",
+        },
+        {
+          isCorrect: false,
+          label: "die Zahl der Meldungen ohne Genauigkeitsprüfung erhöhen",
+        },
+        {
+          isCorrect: false,
+          label: "alle vom Anfangsverdacht abweichenden Ergebnisse entfernen",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "alle Beobachtungen ohne Berücksichtigung der Besuchschance mitteln",
         },
         {
           isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vorsichtige Prüfung im Kontext ruhige Lernzone: eine Anzeige freier Plätze an der Tür",
+          label: "Expertenurteile als unfehlbar und prüfungsfrei behandeln",
         },
       ],
     },
@@ -35,28 +33,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "visitors finding a seat without circling the room and short comments from users",
-        },
-        {
           isCorrect: true,
-          label: "The intervention value, 34, exceeded both 24 and 26.",
+          label:
+            "checking or adjusting against a reference so results can be interpreted accurately",
+        },
+        {
+          isCorrect: false,
+          label: "increasing the number of reports without checking accuracy",
         },
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "removing every result that differs from the initial expectation",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "averaging all observations without accounting for visit opportunity",
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of a seat-availability board at the door: quiet study zone",
+            "treating expert judgement as infallible and exempt from testing",
         },
       ],
     },
@@ -64,28 +62,26 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "pengunjung yang menemukan kursi tanpa berkeliling dan komentar singkat pengguna",
-        },
-        {
           isCorrect: true,
-          label: "Nilai pada hari dengan perubahan, 34, melampaui 24 dan 26.",
+          label:
+            "penyesuaian atau pemeriksaan terhadap acuan agar hasil dapat ditafsirkan secara tepat",
+        },
+        {
+          isCorrect: false,
+          label: "menambah jumlah laporan tanpa memeriksa ketepatannya",
+        },
+        {
+          isCorrect: false,
+          label: "menghapus semua hasil yang berbeda dari dugaan awal",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "merata-ratakan seluruh pengamatan tanpa memperhitungkan peluang kunjungan",
         },
         {
           isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji Hati-hati dalam zona belajar tenang: papan ketersediaan kursi di pintu",
+          label: "menganggap penilaian ahli selalu benar dan tidak perlu diuji",
         },
       ],
     },

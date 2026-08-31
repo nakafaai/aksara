@@ -7,24 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang pengelolaan kostum teater",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Alasan Mengabaikan Semua Bukti dalam pengelolaan kostum teater",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap artefak di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap pengelolaan kostum teater",
+          label: "Kesamaan Isi sebagai Bukti bahwa Dua Sumber Identik",
         },
         {
           isCorrect: true,
           label: "Membaca Dua Sumber tentang pengelolaan kostum teater",
+        },
+        {
+          isCorrect: false,
+          label: "Mengutamakan Sumber Terbaru dalam Kajian artefak",
+        },
+        {
+          isCorrect: false,
+          label: "Menggabungkan Dua Sumber tanpa Memeriksa Konteks",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perbedaan Format yang Membuat Dua Sumber Tidak Dapat Dibandingkan",
         },
       ],
     },

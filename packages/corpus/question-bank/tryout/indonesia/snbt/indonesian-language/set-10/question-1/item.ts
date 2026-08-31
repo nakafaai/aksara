@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap pemanasan air dengan oven surya model tanpa membahas keputusan atau bukti.",
+            "Simulasi membandingkan pengaruh reflektor bersudut 45 derajat terhadap pemanasan air dalam oven surya model, sambil mengendalikan faktor yang disebutkan tetapi menjadikan satu uji singkat sebagai bukti yang berlaku umum.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap pemanasan air dengan oven surya model.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan terutama menjelaskan definisi reflektor tanpa menghubungkannya dengan konteks.",
+            "Simulasi membandingkan pengaruh reflektor bersudut 45 derajat terhadap pemanasan air dalam oven surya model, sambil menyebut keterbatasan tetapi mengeluarkan kondisi pembanding dari penafsiran hasil.",
         },
         {
           isCorrect: true,
           label:
-            "Simulasi membandingkan reflektor pada sudut 45 derajat dalam pemanasan air dengan oven surya model sambil menjaga faktor lain dan mengakui batasan pengukuran.",
+            "Simulasi membandingkan pengaruh reflektor bersudut 45 derajat terhadap pemanasan air dalam oven surya model, sambil mengendalikan faktor lain dan mengakui keterbatasan pengukuran.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Simulasi membandingkan pengaruh reflektor bersudut 45 derajat terhadap pemanasan air dalam oven surya model, sambil menjadikan definisi istilah ilmiah sebagai hasil ukur yang menutup penelitian.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Simulasi membandingkan pengaruh reflektor bersudut 45 derajat terhadap pemanasan air dalam oven surya model, sambil memakai pembanding hanya untuk mengukuhkan hipotesis awal dan menghapus ketidakpastian yang tersisa.",
         },
       ],
     },

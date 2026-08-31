@@ -11,24 +11,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "3",
-        },
-        {
           isCorrect: true,
-          label: "5",
+          label: "$$2$$",
         },
         {
           isCorrect: false,
-          label: "4",
+          label: "$$1$$",
         },
         {
           isCorrect: false,
-          label: "6",
+          label: "$$3$$",
         },
         {
           isCorrect: false,
-          label: "7",
+          label: "$$4$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "3",
-        },
-        {
           isCorrect: true,
-          label: "5",
+          label: "$$2$$",
         },
         {
           isCorrect: false,
-          label: "4",
+          label: "$$1$$",
         },
         {
           isCorrect: false,
-          label: "6",
+          label: "$$3$$",
         },
         {
           isCorrect: false,
-          label: "7",
+          label: "$$4$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
         },
       ],
     },
@@ -61,24 +61,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "3",
-        },
-        {
           isCorrect: true,
-          label: "5",
+          label: "$$2$$",
         },
         {
           isCorrect: false,
-          label: "4",
+          label: "$$1$$",
         },
         {
           isCorrect: false,
-          label: "6",
+          label: "$$3$$",
         },
         {
           isCorrect: false,
-          label: "7",
+          label: "$$4$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
         },
       ],
     },

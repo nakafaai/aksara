@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap ruang arsip sekolah tanpa membahas keputusan atau bukti.",
+            "Raka menghadapi hambatan dalam menyelesaikan proyek dokumentasi kampung dan menunggu seluruh proyek selesai sebelum meminta satu pun peninjauan.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap ruang arsip sekolah.",
+            "Raka menghadapi hambatan dalam menyelesaikan proyek dokumentasi kampung dan menyerahkan langkah berikutnya kepada tokoh lain agar masalah segera berakhir.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan terutama menjelaskan definisi metakognisi tanpa menghubungkannya dengan konteks.",
+            "Raka menghadapi hambatan dalam menyelesaikan proyek dokumentasi kampung dan memahami empati sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
         },
         {
           isCorrect: true,
           label:
             "Raka menghadapi hambatan dalam menyelesaikan proyek dokumentasi kampung dan belajar melalui tindakan kecil yang bertanggung jawab.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Raka menghadapi hambatan dalam menyelesaikan proyek dokumentasi kampung dan menempatkan pencatatan ketidakpastian di atas tindakan kecil yang dapat diperiksa.",
         },
       ],
     },

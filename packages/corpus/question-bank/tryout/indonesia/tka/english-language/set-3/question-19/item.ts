@@ -11,17 +11,18 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Return to the focused question and invite another perspective.",
+        },
+        {
           isCorrect: false,
           label: "End the discussion and declare them winners.",
         },
         {
           isCorrect: false,
-          label: "Remove the right to pass from everyone else.",
-        },
-        {
-          isCorrect: true,
           label:
-            "Return to the focused question and invite another perspective.",
+            "Require invited speakers to respond so the participation count increases.",
         },
         {
           isCorrect: false,
@@ -29,7 +30,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Allow only those two people to review the process.",
+          label:
+            "Ask the two dominant speakers to judge whether the process was fair.",
         },
       ],
     },

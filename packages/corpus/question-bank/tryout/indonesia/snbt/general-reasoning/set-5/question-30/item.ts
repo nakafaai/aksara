@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Lineal : Temperatur",
+          label: "$$68$$",
         },
         {
           isCorrect: false,
-          label: "Uhr : Länge",
+          label: "$$70$$",
         },
         {
           isCorrect: false,
-          label: "Kompass : Geschwindigkeit",
+          label: "$$74$$",
         },
         {
           isCorrect: true,
-          label: "Stoppuhr : Dauer",
+          label: "$$72$$",
         },
         {
           isCorrect: false,
-          label: "Lupe : Zeit",
+          label: "$$82$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "ruler : temperature",
+          label: "$$68$$",
         },
         {
           isCorrect: false,
-          label: "clock : length",
+          label: "$$70$$",
         },
         {
           isCorrect: false,
-          label: "compass : speed",
+          label: "$$74$$",
         },
         {
           isCorrect: true,
-          label: "stopwatch : duration",
+          label: "$$72$$",
         },
         {
           isCorrect: false,
-          label: "magnifier : time",
+          label: "$$82$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "penggaris : suhu",
+          label: "$$68$$",
         },
         {
           isCorrect: false,
-          label: "jam : panjang",
+          label: "$$70$$",
         },
         {
           isCorrect: false,
-          label: "kompas : kecepatan",
+          label: "$$74$$",
         },
         {
           isCorrect: true,
-          label: "stopwatch : durasi",
+          label: "$$72$$",
         },
         {
           isCorrect: false,
-          label: "kaca pembesar : waktu",
+          label: "$$82$$",
         },
       ],
     },

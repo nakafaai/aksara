@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team prüfte ausleihbare Schreibtischlampen (abendlicher Leseraum) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 31, lag über 24 und 26.",
+            "Schriftliche Dokumente beweisen, dass mündliche Aussagen historisch wertlos sind.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Das Archiv sollte die sicherste Aussage wählen und abweichende Aufnahmen löschen.",
         },
         {
           isCorrect: true,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Die Sicherheit einer Aussage ist nicht mit Vollständigkeit der Perspektive gleichzusetzen.",
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext abendlicher Leseraum: ausleihbare Schreibtischlampen",
+            "Die Eröffnungsfeier fand Monate nach dem Umzug einiger Klassen statt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Originalaufnahmen bleiben erhalten, damit spätere Forscher die Deutung neu bewerten können.",
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested desk lamps that visitors could borrow in the evening reading room and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 31, exceeded both 24 and 26.",
+            "Written documents prove that oral testimony has no historical value.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "The archive should choose the most confident witness and delete inconsistent recordings.",
         },
         {
           isCorrect: true,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "A witness's confidence is not the same as completeness of viewpoint.",
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of desk lamps that visitors could borrow: evening reading room",
+            "The opening ceremony took place months after some classes moved.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Original recordings are preserved so later researchers can reassess the interpretation.",
         },
       ],
     },
@@ -66,26 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji lampu meja yang dapat dipinjam pada ruang baca malam dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 31, melampaui 24 dan 26.",
+            "Dokumen tertulis membuktikan bahwa kesaksian lisan tidak memiliki nilai sejarah.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Arsip harus memilih narasumber yang paling yakin dan menghapus rekaman yang tidak sesuai.",
         },
         {
           isCorrect: true,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Keyakinan seorang saksi tidak sama dengan kelengkapan sudut pandangnya.",
         },
         {
           isCorrect: false,
           label:
-            "Uji Hati-hati dalam ruang baca malam: lampu meja yang dapat dipinjam",
+            "Upacara peresmian berlangsung beberapa bulan setelah sebagian kelas pindah.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Rekaman asli disimpan agar tafsir dapat dinilai ulang oleh peneliti berikutnya.",
         },
       ],
     },

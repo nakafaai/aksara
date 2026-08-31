@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap gudang kecil dekat pelabuhan tanpa membahas keputusan atau bukti.",
+            "Bima menghadapi hambatan dalam mengirim kotak buku tepat sebelum kapal berangkat dan menunggu seluruh proyek selesai sebelum meminta satu pun peninjauan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bima menghadapi hambatan dalam mengirim kotak buku tepat sebelum kapal berangkat dan menyerahkan langkah berikutnya kepada tokoh lain agar masalah segera berakhir.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bima menghadapi hambatan dalam mengirim kotak buku tepat sebelum kapal berangkat dan memahami empati sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bima menghadapi hambatan dalam mengirim kotak buku tepat sebelum kapal berangkat dan menempatkan pencatatan ketidakpastian di atas tindakan kecil yang dapat diperiksa.",
         },
         {
           isCorrect: true,
           label:
             "Bima menghadapi hambatan dalam mengirim kotak buku tepat sebelum kapal berangkat dan belajar melalui tindakan kecil yang bertanggung jawab.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap gudang kecil dekat pelabuhan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan terutama menjelaskan definisi akuntabilitas tanpa menghubungkannya dengan konteks.",
         },
       ],
     },

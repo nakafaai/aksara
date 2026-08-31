@@ -7,25 +7,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Absolute certainty about voltage in simple cell arrangements",
+          label: "Measuring potential difference in one preliminary comparison",
         },
         {
           isCorrect: false,
           label:
-            "Why all evidence in voltage in simple cell arrangements should be ignored",
+            "Treating potential difference as the sole explanation for the observed result",
         },
         {
           isCorrect: true,
+          label: "Testing the voltage of two cells connected in series",
+        },
+        {
+          isCorrect: false,
           label:
-            "Testing connecting two cells in series in voltage in simple cell arrangements",
+            "A final rule derived from the first comparison of potential difference",
         },
         {
           isCorrect: false,
-          label: "The complete world history of potential difference",
-        },
-        {
-          isCorrect: false,
-          label: "One rule for every voltage in simple cell arrangements",
+          label:
+            "A limitation that makes another test of potential difference unnecessary",
         },
       ],
     },

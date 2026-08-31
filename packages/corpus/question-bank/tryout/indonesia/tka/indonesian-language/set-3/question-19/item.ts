@@ -11,12 +11,13 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "ia selalu menghitung empat ketukan",
-        },
-        {
           isCorrect: true,
           label: "ia tidak kecewa ketika klarinetnya tidak disebut",
+        },
+        {
+          isCorrect: false,
+          label:
+            "ia mempertahankan jumlah ketukan yang sama agar bagian klarinet tetap menonjol",
         },
         {
           isCorrect: false,

@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\text{Rp}250{.}000{,}00$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\text{Rp}275{.}000{,}00$$",
         },
         {
           isCorrect: false,
           label: "$$\\text{Rp}425{.}000{,}00$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\text{Rp}250{.}000{,}00$$",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\text{Rp}250{,}000.00$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\text{Rp}275{,}000.00$$",
         },
         {
           isCorrect: false,
           label: "$$\\text{Rp}425{,}000.00$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\text{Rp}250{,}000.00$$",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$\\text{Rp}250{.}000{,}00$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\text{Rp}275{.}000{,}00$$",
         },
         {
           isCorrect: false,
           label: "$$\\text{Rp}425{.}000{,}00$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\text{Rp}250{.}000{,}00$$",
         },
         {
           isCorrect: false,

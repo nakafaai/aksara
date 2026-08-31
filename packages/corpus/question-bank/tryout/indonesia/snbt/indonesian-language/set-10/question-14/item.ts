@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti dugaan yang tidak perlu diperiksa pada taman bermain inklusif",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti hasil akhir yang selalu berlaku untuk semua keadaan",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti rincian yang sengaja dihapus karena bertentangan dengan pendapat",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti hiasan bahasa yang tidak berhubungan dengan konteks",
+            "Penyebutan *desain inklusif* membuktikan rancangan sudah adil tanpa perlu memeriksa data pembanding atau masukan pengguna.",
         },
         {
           isCorrect: true,
           label:
-            "rancangan yang sejak awal mempertimbangkan pengguna dengan kebutuhan berbeda",
+            "Definisi *desain inklusif* memberi kriteria untuk menilai apakah rancangan dan bukti akses benar-benar mencakup kebutuhan pengguna yang berbeda.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi itu membatasi *desain inklusif* pada kebutuhan kelompok terbanyak sehingga variasi kebutuhan lain dapat diabaikan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Istilah *desain inklusif* menggantikan konsultasi pihak terdampak dengan satu label yang langsung menentukan keputusan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi tersebut menjelaskan keterbatasan masa uji, bukan kriteria yang dipakai untuk membaca rancangan.",
         },
       ],
     },

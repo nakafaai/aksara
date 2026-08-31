@@ -6,14 +6,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontext „Kompostierworkshop“",
-        },
-        {
           isCorrect: false,
           label:
             "eine Wirksamkeitsanalise zur geprüften Änderung im Kontext „Kompostierworkshop“",
+        },
+        {
+          isCorrect: true,
+          label:
+            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontext „Kompostierworkshop“",
         },
         {
           isCorrect: false,
@@ -36,14 +36,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "an analysis of the effectiveness of cards showing the order of brown and green materials in this setting (composting workshop)",
-        },
-        {
           isCorrect: false,
           label:
             "an analyse of the effectiveness of cards showing the order of brown and green materials in this setting (composting workshop)",
+        },
+        {
+          isCorrect: true,
+          label:
+            "an analysis of the effectiveness of cards showing the order of brown and green materials in this setting (composting workshop)",
         },
         {
           isCorrect: false,
@@ -66,14 +66,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "analisis efektivitas kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos",
-        },
-        {
           isCorrect: false,
           label:
             "analisa efektivitas kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos",
+        },
+        {
+          isCorrect: true,
+          label:
+            "analisis efektivitas kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos",
         },
         {
           isCorrect: false,

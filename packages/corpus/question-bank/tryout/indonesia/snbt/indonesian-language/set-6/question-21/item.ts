@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap program teman belajar tanpa membahas keputusan atau bukti.",
+            "Sari menghadapi hambatan dalam membantu teman belajar tanpa mengambil alih tugasnya dan menunggu seluruh proyek selesai sebelum meminta satu pun peninjauan.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap program teman belajar.",
+            "Sari menghadapi hambatan dalam membantu teman belajar tanpa mengambil alih tugasnya dan menyerahkan langkah berikutnya kepada tokoh lain agar masalah segera berakhir.",
         },
         {
           isCorrect: true,
@@ -23,12 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
+            "Sari menghadapi hambatan dalam membantu teman belajar tanpa mengambil alih tugasnya dan memahami empati sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan terutama menjelaskan definisi penyangga belajar tanpa menghubungkannya dengan konteks.",
+            "Sari menghadapi hambatan dalam membantu teman belajar tanpa mengambil alih tugasnya dan menempatkan pencatatan ketidakpastian di atas tindakan kecil yang dapat diperiksa.",
         },
       ],
     },

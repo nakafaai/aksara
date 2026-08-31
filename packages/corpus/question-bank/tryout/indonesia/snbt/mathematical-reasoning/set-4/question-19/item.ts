@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "$$500\\sqrt{2}\\text{ Meter}$$",
         },
         {
-          isCorrect: true,
-          label: "$$250\\sqrt{3}\\text{ Meter}$$",
-        },
-        {
           isCorrect: false,
           label: "$$250\\text{ Meter}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$250\\sqrt{3}\\text{ Meter}$$",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "$$500\\sqrt{2}\\text{ meter}$$",
         },
         {
-          isCorrect: true,
-          label: "$$250\\sqrt{3}\\text{ meter}$$",
-        },
-        {
           isCorrect: false,
           label: "$$250\\text{ meter}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$250\\sqrt{3}\\text{ meter}$$",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "$$500\\sqrt{2}\\text{ meter}$$",
         },
         {
-          isCorrect: true,
-          label: "$$250\\sqrt{3}\\text{ meter}$$",
-        },
-        {
           isCorrect: false,
           label: "$$250\\text{ meter}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$250\\sqrt{3}\\text{ meter}$$",
         },
       ],
     },

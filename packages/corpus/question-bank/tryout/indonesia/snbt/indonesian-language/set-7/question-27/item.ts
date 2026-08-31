@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam pameran sains keliling.",
+            "Lila memilih untuk menuliskan satu pertanyaan pada kartu kosong dan menempelkannya di alat yang paling sunyi; bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
         },
         {
           isCorrect: true,
           label:
-            "Lila memilih untuk menuliskan satu pertanyaan pada kartu kosong dan menempelkannya di alat yang paling sunyi.",
+            "Kartu kosong pada alat yang sunyi mengubah ketiadaan tanggapan menjadi undangan bagi pengunjung untuk memulai percakapan.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam pameran sains keliling memperoleh hasil yang sama tanpa perbedaan.",
+            "Lila memilih untuk menuliskan satu pertanyaan pada kartu kosong dan menempelkannya di alat yang paling sunyi; akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan pameran sains keliling.",
+            "Lila memilih untuk menuliskan satu pertanyaan pada kartu kosong dan menempelkannya di alat yang paling sunyi; perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyebut atmosfer sebagai bukti bahwa uji tidak perlu diulang.",
+            "Lila memilih untuk menuliskan satu pertanyaan pada kartu kosong dan menempelkannya di alat yang paling sunyi; benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
         },
       ],
     },

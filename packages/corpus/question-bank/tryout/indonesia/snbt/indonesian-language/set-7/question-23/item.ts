@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam klinik kelurahan pasti berlaku tanpa batas pada tempat lain.",
+            "Kemajuan bergantung pada penyelesaian tugas besar sebelum meminta orang lain meninjaunya.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang klinik kelurahan tidak berguna.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Satu rincian tentang literasi kesehatan cukup untuk membuktikan semua hubungan sebab-akibat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Benda atau latar membentuk hasil lebih kuat daripada pilihan khusus yang dibuat tokoh.",
         },
         {
           isCorrect: true,
           label:
             "Perubahan terjadi ketika Arum memecah hambatan menjadi tindakan yang dapat diperiksa.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bukti yang belum pasti sebaiknya disimpan sampai tokoh dapat menawarkan hasil lengkap.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tindakan kecil terutama berguna karena menunda bagian konflik yang belum selesai.",
         },
       ],
     },

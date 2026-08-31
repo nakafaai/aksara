@@ -6,29 +6,27 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Nach Anzeige der Namensquellen können Familien und Handwerker falsche Label erkennen, ohne die Suche zu erschweren.",
+        },
+        {
           isCorrect: true,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Archivforschung belegt, dass alle lokalen Namen erst nach dem Kuratorenlabel entstanden und es absichtlich kopierten.",
         },
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Ein neuer Scanner macht verblasste Beschriftungen lesbarer, verändert jedoch weder die Herkunft noch die zeitliche Reihenfolge der Namen.",
         },
         {
           isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+          label: "Suchergebnisse werden die Quelle jedes Namens anzeigen.",
         },
         {
           isCorrect: false,
-          label:
-            "vergleichbare Volumenaufzeichnungen und kurze Aussagen von Nutzenden",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte Volumenmarkierungen an jeder Tonne (gemeinschaftliche Regentonnen) und bewertete die Befunde vorsichtig.",
+          label: "Ein Name im alten Buch wurde von einem Kurator geschaffen.",
         },
       ],
     },
@@ -36,29 +34,27 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "After name sources are displayed, families and artisans can identify incorrect labels without reducing search success.",
+        },
+        {
           isCorrect: true,
           label:
-            "days when the earlier process continued without the tested change",
+            "Archive research proves that every local name appeared after the curator's label and deliberately copied it.",
         },
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "A new scanner makes faded labels easier to read but changes neither the origin nor the chronological order of the names.",
         },
         {
           isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+          label: "Search results will display the source of every name.",
         },
         {
           isCorrect: false,
-          label:
-            "volume records that could be compared and short comments from users",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested volume markings on each barrel in the community rainwater barrels and interpreted the evidence cautiously.",
+          label: "One name in an old book was created by a curator.",
         },
       ],
     },
@@ -66,29 +62,27 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Sesudah sumber nama ditampilkan, keluarga dan perajin dapat menunjukkan label yang salah tanpa mengurangi keberhasilan pencarian.",
+        },
+        {
           isCorrect: true,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Penelitian arsip membuktikan bahwa semua nama lokal muncul setelah label kurator dan sengaja menyalinnya.",
         },
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Pemindai baru membuat label yang pudar lebih mudah dibaca, tetapi tidak mengubah asal maupun urutan waktu kemunculan nama.",
         },
         {
           isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+          label: "Hasil pencarian akan menampilkan sumber setiap nama.",
         },
         {
           isCorrect: false,
-          label:
-            "catatan volume yang dapat dibandingkan dan komentar singkat pengguna",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji garis ukur volume pada dinding penampung pada penampung air hujan warga dan menafsirkan buktinya secara hati-hati.",
+          label: "Salah satu nama dalam buku lama dibuat oleh kurator.",
         },
       ],
     },

@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti dugaan yang tidak perlu diperiksa pada suhu air pada kolam mini",
+            "Definisi *daya generalisasi* membuktikan bahwa perubahan uji menyebabkan hasil yang tercatat meskipun kondisi pembanding diabaikan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi itu menjadikan *daya generalisasi* pengganti variabel kontrol sehingga faktor yang belum diukur tidak lagi membatasi simpulan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi tersebut memperluas *daya generalisasi* dari percobaan singkat ini ke semua keadaan yang menyerupainya.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Istilah *daya generalisasi* dipakai untuk menamai keterbatasan laporan, bukan konsep yang diwakili hasil pengukuran.",
         },
         {
           isCorrect: true,
-          label: "kemampuan hasil untuk berlaku pada keadaan di luar percobaan",
-        },
-        {
-          isCorrect: false,
           label:
-            "dalam bacaan, berarti hasil akhir yang selalu berlaku untuk semua keadaan",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti rincian yang sengaja dihapus karena bertentangan dengan pendapat",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti hiasan bahasa yang tidak berhubungan dengan konteks",
+            "Definisi *daya generalisasi* menetapkan makna konsep yang diukur sebelum pembaca menafsirkan perbandingan angka dan keterbatasan percobaan.",
         },
       ],
     },

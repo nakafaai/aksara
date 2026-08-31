@@ -16,15 +16,16 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Seno tidak perlu lagi pulang.",
-        },
-        {
-          isCorrect: false,
-          label: "Kursi kosong lebih penting daripada festival.",
+          label:
+            "Mira sebaiknya berhenti mengharapkan kepulangan Seno agar dapat melanjutkan hidup.",
         },
         {
           isCorrect: true,
           label: "Mira boleh berharap sambil tetap menjalani kegiatannya.",
+        },
+        {
+          isCorrect: false,
+          label: "Kursi kosong lebih penting daripada festival.",
         },
         {
           isCorrect: false,

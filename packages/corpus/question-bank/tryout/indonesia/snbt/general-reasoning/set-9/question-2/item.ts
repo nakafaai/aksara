@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$60{.}000$$ Stimmen",
+        },
+        {
           isCorrect: false,
           label: "$$10{.}000$$ Stimmen",
         },
@@ -18,10 +22,6 @@ const item: QuestionItem = {
           label: "$$50{.}000$$ Stimmen",
         },
         {
-          isCorrect: true,
-          label: "$$60{.}000$$ Stimmen",
-        },
-        {
           isCorrect: false,
           label: "$$80{.}000$$ Stimmen",
         },
@@ -30,6 +30,10 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$60{,}000$$ votes",
+        },
         {
           isCorrect: false,
           label: "$$10{,}000$$ votes",
@@ -43,10 +47,6 @@ const item: QuestionItem = {
           label: "$$50{,}000$$ votes",
         },
         {
-          isCorrect: true,
-          label: "$$60{,}000$$ votes",
-        },
-        {
           isCorrect: false,
           label: "$$80{,}000$$ votes",
         },
@@ -55,6 +55,10 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$60{.}000$$ suara",
+        },
         {
           isCorrect: false,
           label: "$$10{.}000$$ suara",
@@ -66,10 +70,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$50{.}000$$ suara",
-        },
-        {
-          isCorrect: true,
-          label: "$$60{.}000$$ suara",
         },
         {
           isCorrect: false,

@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Lupe : Zeit",
-        },
-        {
           isCorrect: true,
-          label: "Thermometer : Temperatur",
+          label: "Hygrometer : Luftfeuchtigkeit",
         },
         {
           isCorrect: false,
-          label: "Lineal : Temperatur",
+          label: "Temperatur : Thermometer",
         },
         {
           isCorrect: false,
-          label: "Uhr : Länge",
+          label: "Entfernung : Kilometerzähler",
         },
         {
           isCorrect: false,
-          label: "Kompass : Geschwindigkeit",
+          label: "Waage : Geschwindigkeit",
+        },
+        {
+          isCorrect: false,
+          label: "Mikroskop : Lautstärke",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "magnifier : time",
-        },
-        {
           isCorrect: true,
-          label: "thermometer : temperature",
+          label: "hygrometer : humidity",
         },
         {
           isCorrect: false,
-          label: "ruler : temperature",
+          label: "temperature : thermometer",
         },
         {
           isCorrect: false,
-          label: "clock : length",
+          label: "distance : odometer",
         },
         {
           isCorrect: false,
-          label: "compass : speed",
+          label: "scale : speed",
+        },
+        {
+          isCorrect: false,
+          label: "microscope : loudness",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "kaca pembesar : waktu",
-        },
-        {
           isCorrect: true,
-          label: "termometer : suhu",
+          label: "higrometer : kelembapan",
         },
         {
           isCorrect: false,
-          label: "penggaris : suhu",
+          label: "suhu : termometer",
         },
         {
           isCorrect: false,
-          label: "jam : panjang",
+          label: "jarak : odometer",
         },
         {
           isCorrect: false,
-          label: "kompas : kecepatan",
+          label: "timbangan : kecepatan",
+        },
+        {
+          isCorrect: false,
+          label: "mikroskop : intensitas bunyi",
         },
       ],
     },

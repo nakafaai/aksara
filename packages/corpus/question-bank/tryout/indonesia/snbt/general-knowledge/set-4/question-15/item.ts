@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Jeder lokale Name muss denselben Rechtsstatus wie der Verwaltungsname erhalten.",
         },
         {
           isCorrect: true,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Ein Suchsystem kann für die Verwaltung einfach bleiben, ohne öffentliche Informationen zu verarmen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Aus Gründen der Einheitlichkeit sollten alle nichtamtlichen Namen aus Suche und Archiv entfernt werden.",
+        },
+        {
+          isCorrect: false,
+          label: "Der Verwaltungsname wurde als Hauptindex festgelegt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte vom Eingang sichtbare Stellplatznummern (Fahrradparkplatz auf dem Campus) und bewertete die Befunde vorsichtig.",
+            "Neue Belege können den Eintrag ändern, ohne die frühere Namensgeschichte zu löschen.",
         },
       ],
     },
@@ -38,27 +37,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "Every local name must have the same legal status as the administrative name.",
         },
         {
           isCorrect: true,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "A search system can remain simple for administration without impoverishing public information.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "For consistency, every non-official name should be removed from search and archives.",
+        },
+        {
+          isCorrect: false,
+          label: "The administrative name was selected as the primary index.",
         },
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested rack numbers visible from the entrance in the campus bicycle parking and interpreted the evidence cautiously.",
+            "New evidence may revise the record without erasing earlier naming history.",
         },
       ],
     },
@@ -68,27 +66,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Semua nama lokal harus memiliki kedudukan hukum yang sama dengan nama administrasi.",
         },
         {
           isCorrect: true,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Sistem pencarian dapat dibuat sederhana bagi administrasi tanpa memiskinkan informasi bagi publik.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Agar peta konsisten, semua nama selain nama resmi harus dihapus dari pencarian dan arsip.",
+        },
+        {
+          isCorrect: false,
+          label: "Nama administrasi ditetapkan sebagai indeks utama.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji nomor rak yang terlihat dari pintu masuk pada parkir sepeda kampus dan menafsirkan buktinya secara hati-hati.",
+            "Bukti baru dapat mengubah catatan tanpa menghapus riwayat nama sebelumnya.",
         },
       ],
     },

@@ -6,6 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Pengelola pendataan sumur warga menilai format satuan yang seragam pada lembar pencatatan melalui masukan pihak terdampak saja, tanpa membandingkan hasil pengukuran.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengelola pendataan sumur warga menilai format satuan yang seragam pada lembar pencatatan melalui data pembanding saja, dengan pengalaman pihak terdampak ditempatkan di luar keputusan.",
+        },
+        {
           isCorrect: true,
           label:
             "Pengelola pendataan sumur warga menilai format satuan yang seragam pada lembar pencatatan melalui data pembanding dan masukan pihak terdampak.",
@@ -13,22 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap pendataan sumur warga tanpa membahas keputusan atau bukti.",
+            "Pengelola pendataan sumur warga menilai format satuan yang seragam pada lembar pencatatan melalui data dan masukan pihak terdampak, lalu menjadikan uji singkat cukup untuk penerapan tetap.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap pendataan sumur warga.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan terutama menjelaskan definisi keterbandingan tanpa menghubungkannya dengan konteks.",
+            "Pengelola pendataan sumur warga menilai format satuan yang seragam pada lembar pencatatan terutama melalui definisi istilah, sedangkan perubahan yang diusulkan hanya menjadi latar bacaan.",
         },
       ],
     },

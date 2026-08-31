@@ -18,13 +18,13 @@ const item: QuestionItem = {
           label: "To show that electronic communication should be banned",
         },
         {
-          isCorrect: false,
-          label: "To argue that workplace evidence is unnecessary",
-        },
-        {
           isCorrect: true,
           label:
             "To challenge a one-size-fits-all assumption and support context-based decisions",
+        },
+        {
+          isCorrect: false,
+          label: "To argue that workplace evidence is unnecessary",
         },
       ],
     },

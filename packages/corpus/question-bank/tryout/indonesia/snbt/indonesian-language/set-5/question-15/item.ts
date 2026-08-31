@@ -7,24 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang pengiriman buku antarpulau",
+          label: "logistik sebagai ukuran utama dalam uji layanan",
         },
         {
           isCorrect: false,
-          label:
-            "Alasan Mengabaikan Semua Bukti dalam pengiriman buku antarpulau",
+          label: "Dari perbandingan singkat menuju perubahan layanan tetap",
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap logistik di Seluruh Dunia",
+          label: "Konsultasi tanpa pengukuran hasil yang dapat dibandingkan",
+        },
+        {
+          isCorrect: false,
+          label: "Uji layanan lokal tanpa keputusan tindak lanjut",
         },
         {
           isCorrect: true,
           label: "Keputusan Berbasis Bukti dalam pengiriman buku antarpulau",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap pengiriman buku antarpulau",
         },
       ],
     },

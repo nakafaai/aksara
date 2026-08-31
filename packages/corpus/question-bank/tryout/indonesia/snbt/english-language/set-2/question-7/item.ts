@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "The relationship between movement across pathogen regions and the evolution of MHC-I diversity",
-        },
-        {
           isCorrect: false,
           label: "The anatomy of songbird wings",
         },
@@ -25,6 +20,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Human medical advice based on bird migration",
+        },
+        {
+          isCorrect: true,
+          label:
+            "The relationship between movement across pathogen regions and the evolution of MHC-I diversity",
         },
       ],
     },

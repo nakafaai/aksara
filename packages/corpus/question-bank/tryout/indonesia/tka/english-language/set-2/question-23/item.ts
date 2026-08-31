@@ -12,7 +12,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Entertainment details always require professional advice.",
+          label:
+            "Use the same high-effort verification process for low-risk entertainment claims.",
         },
         {
           isCorrect: true,
@@ -25,11 +26,13 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Students have unlimited time for every claim.",
+          label:
+            "Check each minor claim in full before continuing the assignment.",
         },
         {
           isCorrect: false,
-          label: "Website appearance is the only useful test.",
+          label:
+            "Prefer a polished website when the original source is difficult to locate.",
         },
       ],
     },

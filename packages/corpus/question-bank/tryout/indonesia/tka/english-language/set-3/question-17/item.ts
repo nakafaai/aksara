@@ -11,13 +11,9 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Focus and prepare, exchange and restate, widen participation, revise, then review the process.",
-        },
-        {
           isCorrect: false,
-          label: "Choose a winner, remove the question, and count every word.",
+          label:
+            "Rank the first responses, narrow the question, and let the highest-ranked speaker conclude.",
         },
         {
           isCorrect: false,
@@ -26,7 +22,13 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Let two speakers respond only to each other until time ends.",
+          label:
+            "Let the two most active speakers test each other's claims before inviting others.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Focus and prepare, exchange and restate, widen participation, revise, then review the process.",
         },
         {
           isCorrect: false,

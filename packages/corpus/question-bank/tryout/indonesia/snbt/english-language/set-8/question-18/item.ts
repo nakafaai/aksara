@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Every result in a multilingual welcome desk must apply without limitation elsewhere.",
+            "The recurring object gains meaning mainly from its physical description rather than its relation to the choice.",
         },
         {
           isCorrect: false,
           label:
-            "The limitation makes all information about a multilingual welcome desk useless.",
+            "The ending shows that the setting, rather than the character's action, resolves the conflict.",
         },
         {
           isCorrect: true,
@@ -23,12 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "One detail about metaphor proves every possible causal relationship.",
+            "The object's meaning remains fixed even though the character uses it differently.",
         },
         {
           isCorrect: false,
           label:
-            "The passage recommends ignoring evidence that conflicts with an early expectation.",
+            "The final action matters because it confirms the interpretation established at the start.",
         },
       ],
     },

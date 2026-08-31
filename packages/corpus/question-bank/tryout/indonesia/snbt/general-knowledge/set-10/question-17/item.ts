@@ -7,27 +7,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Das Team prüfte kurze Codes auf Augenhöhe (Audioführung im Museum) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 31, lag über 21 und 23.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+          label: "Nutzerkorrekturen betrafen häufiger beliebte Sammlungen.",
         },
         {
           isCorrect: true,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Automatische Archivsuche ist nützlich, wenn ihre Ausgabe als begrenzter, prüf- und korrigierbarer Index gilt.",
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext Audioführung im Museum: kurze Codes auf Augenhöhe",
+            "Wegen auftretender Fehler muss jede automatische Suche beendet werden.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Ein in der automatischen Suche fehlendes Dokument ist sicher nicht im Archiv vorhanden.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team wird Leistungsunterschiede nach Schriftart und Zeitraum prüfen.",
         },
       ],
     },
@@ -36,27 +36,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "The team tested short codes printed at eye level in the museum audio guide and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 31, exceeded both 21 and 23.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
+          label: "User corrections were more frequent for popular collections.",
         },
         {
           isCorrect: true,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "Automated archive search is useful when its output is treated as a limited index that can be inspected and corrected.",
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of short codes printed at eye level: museum audio guide",
+            "Because the system makes errors, all automated search must be stopped.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "A document absent from automated search is certainly not stored in the archive.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team will audit performance differences by writing type and period.",
         },
       ],
     },
@@ -66,26 +66,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji kode singkat yang dicetak setinggi mata pada panduan audio museum dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 31, melampaui 21 dan 23.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Koreksi pengguna lebih sering diberikan pada koleksi populer.",
         },
         {
           isCorrect: true,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Pencarian arsip otomatis bermanfaat jika hasil diperlakukan sebagai indeks terbatas yang dapat diperiksa dan dikoreksi.",
         },
         {
           isCorrect: false,
           label:
-            "Uji Hati-hati dalam panduan audio museum: kode singkat yang dicetak setinggi mata",
+            "Karena sistem membuat kesalahan, semua pencarian otomatis harus dihentikan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Dokumen yang tidak muncul dalam pencarian otomatis pasti tidak tersimpan di arsip.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim akan mengaudit perbedaan kinerja menurut jenis tulisan dan periode.",
         },
       ],
     },

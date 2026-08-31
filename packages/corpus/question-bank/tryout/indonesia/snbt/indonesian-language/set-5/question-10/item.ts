@@ -6,25 +6,27 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Kegunaan dan Batas Rangkaian listrik dengan dua lampu",
+        },
+        {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang rangkaian listrik dengan dua lampu",
+          label: "Mengukur rangkaian tertutup melalui satu perbandingan awal",
         },
         {
           isCorrect: false,
           label:
-            "Alasan Mengabaikan Semua Bukti dalam rangkaian listrik dengan dua lampu",
+            "Menjadikan rangkaian tertutup penjelasan tunggal atas hasil pengamatan",
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap rangkaian tertutup di Seluruh Dunia",
+          label:
+            "Kaidah akhir dari perbandingan pertama tentang rangkaian tertutup",
         },
         {
           isCorrect: false,
-          label: "Satu Aturan untuk Setiap rangkaian listrik dengan dua lampu",
-        },
-        {
-          isCorrect: true,
-          label: "Kegunaan dan Batas Rangkaian listrik dengan dua lampu",
+          label:
+            "Keterbatasan yang membuat uji lanjutan rangkaian tertutup tidak diperlukan",
         },
       ],
     },

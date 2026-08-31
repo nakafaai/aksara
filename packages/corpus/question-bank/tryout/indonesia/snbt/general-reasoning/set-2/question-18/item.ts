@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "Rindfleisch",
         },
         {
+          isCorrect: true,
+          label: "Lamm",
+        },
+        {
           isCorrect: false,
           label: "Kaninchen",
         },
         {
           isCorrect: false,
           label: "Ente",
-        },
-        {
-          isCorrect: true,
-          label: "Lamm",
         },
       ],
     },
@@ -32,9 +32,9 @@ const item: QuestionItem = {
       options: [
         { isCorrect: false, label: "Chicken" },
         { isCorrect: false, label: "Beef" },
+        { isCorrect: true, label: "Lamb" },
         { isCorrect: false, label: "Rabbit" },
         { isCorrect: false, label: "Duck" },
-        { isCorrect: true, label: "Lamb" },
       ],
     },
     id: {
@@ -42,9 +42,9 @@ const item: QuestionItem = {
       options: [
         { isCorrect: false, label: "Ayam" },
         { isCorrect: false, label: "Sapi" },
+        { isCorrect: true, label: "Domba" },
         { isCorrect: false, label: "Kelinci" },
         { isCorrect: false, label: "Bebek" },
-        { isCorrect: true, label: "Domba" },
       ],
     },
   },

@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "The mean result with the change was 2.9; because it differs from the other conditions, the tested change is the only plausible explanation.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
+        },
+        {
           isCorrect: true,
-          label: "The mean result with the change was 2.9.",
+          label:
+            "The two-cell series condition produced a mean of 2.9 under the stated circuit controls; unmeasured cell age and internal resistance limit the conclusion.",
         },
         {
           isCorrect: false,
           label:
-            "The passage states that no action or observation occurred in voltage in simple cell arrangements.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Everyone in voltage in simple cell arrangements obtained exactly the same result without variation.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The writer removes every detail related to voltage in simple cell arrangements.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage presents potential difference as proof that no follow-up is needed.",
+            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
         },
       ],
     },

@@ -10,14 +10,14 @@ const item: QuestionItem = {
           label: "Dugaan berdasarkan jumlah penduduk Indonesia semata",
         },
         {
-          isCorrect: false,
-          label:
-            "Jarak Indonesia yang paling dekat dengan seluruh pantai Seychelles",
-        },
-        {
           isCorrect: true,
           label:
             "Hasil simulasi dalam studi ilmiah yang memperhitungkan arus, ombak, angin, dan sifat sampah",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Jarak Indonesia yang paling dekat dengan seluruh pantai Seychelles",
         },
         {
           isCorrect: false,

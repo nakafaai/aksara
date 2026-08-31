@@ -6,16 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Bacaan hanya mencatat sejarah lengkap taman bermain inklusif tanpa membahas keputusan atau bukti.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap taman bermain inklusif.",
-        },
-        {
           isCorrect: true,
           label:
             "Pengelola taman bermain inklusif menilai peta alat berdasarkan kebutuhan akses melalui data pembanding dan masukan pihak terdampak.",
@@ -23,12 +13,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
+            "Pengelola taman bermain inklusif menilai peta alat berdasarkan kebutuhan akses melalui masukan pihak terdampak saja, tanpa membandingkan hasil pengukuran.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan terutama menjelaskan definisi desain inklusif tanpa menghubungkannya dengan konteks.",
+            "Pengelola taman bermain inklusif menilai peta alat berdasarkan kebutuhan akses melalui data pembanding saja, dengan pengalaman pihak terdampak ditempatkan di luar keputusan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengelola taman bermain inklusif menilai peta alat berdasarkan kebutuhan akses melalui data dan masukan pihak terdampak, lalu menjadikan uji singkat cukup untuk penerapan tetap.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengelola taman bermain inklusif menilai peta alat berdasarkan kebutuhan akses terutama melalui definisi istilah, sedangkan perubahan yang diusulkan hanya menjadi latar bacaan.",
         },
       ],
     },

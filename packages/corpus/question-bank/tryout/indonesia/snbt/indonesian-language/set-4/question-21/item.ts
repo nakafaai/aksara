@@ -8,17 +8,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap pasar kecamatan tanpa membahas keputusan atau bukti.",
+            "Nisa menghadapi hambatan dalam mengikuti latihan mandiri di pasar dan menunggu seluruh proyek selesai sebelum meminta satu pun peninjauan.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap pasar kecamatan.",
+            "Nisa menghadapi hambatan dalam mengikuti latihan mandiri di pasar dan menyerahkan langkah berikutnya kepada tokoh lain agar masalah segera berakhir.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
+            "Nisa menghadapi hambatan dalam mengikuti latihan mandiri di pasar dan memahami empati sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
         },
         {
           isCorrect: true,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan terutama menjelaskan definisi advokasi diri tanpa menghubungkannya dengan konteks.",
+            "Nisa menghadapi hambatan dalam mengikuti latihan mandiri di pasar dan menempatkan pencatatan ketidakpastian di atas tindakan kecil yang dapat diperiksa.",
         },
       ],
     },

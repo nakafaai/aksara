@@ -10,10 +10,6 @@ const item: QuestionItem = {
           label: "Wenn $$(1)$$, $$(2)$$ und $$(3)$$ korrekt sind.",
         },
         {
-          isCorrect: true,
-          label: "Wenn nur $$(4)$$ korrekt ist.",
-        },
-        {
           isCorrect: false,
           label: "Wenn $$(1)$$ und $$(3)$$ korrekt sind.",
         },
@@ -25,6 +21,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Wenn alles richtig ist.",
         },
+        {
+          isCorrect: true,
+          label: "Wenn nur $$(4)$$ korrekt ist.",
+        },
       ],
     },
     en: {
@@ -33,10 +33,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "If $$(1)$$, $$(2)$$, and $$(3)$$ are correct.",
-        },
-        {
-          isCorrect: true,
-          label: "If only $$(4)$$ is correct.",
         },
         {
           isCorrect: false,
@@ -50,6 +46,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "If all are correct.",
         },
+        {
+          isCorrect: true,
+          label: "If only $$(4)$$ is correct.",
+        },
       ],
     },
     id: {
@@ -58,10 +58,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Jika $$(1)$$, $$(2)$$, dan $$(3)$$ yang betul.",
-        },
-        {
-          isCorrect: true,
-          label: "Jika $$(4)$$ saja yang betul.",
         },
         {
           isCorrect: false,
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Jika semuanya betul.",
+        },
+        {
+          isCorrect: true,
+          label: "Jika $$(4)$$ saja yang betul.",
         },
       ],
     },

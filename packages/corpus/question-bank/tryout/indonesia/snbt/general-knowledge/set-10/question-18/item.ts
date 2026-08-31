@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Wegen auftretender Fehler muss jede automatische Suche beendet werden.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Ein in der automatischen Suche fehlendes Dokument ist sicher nicht im Archiv vorhanden.",
         },
         {
           isCorrect: false,
-          label:
-            "vollständig abgespielte Aufnahmen und kurze Aussagen von Nutzenden",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte kurze Codes auf Augenhöhe (Audioführung im Museum) und bewertete die Befunde vorsichtig.",
+          label: "Nutzerkorrekturen betrafen häufiger beliebte Sammlungen.",
         },
         {
           isCorrect: true,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Ein leeres Suchergebnis belegt keine fehlende Quelle, wenn die Erkennung systematische Ausfälle hat.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team wird Leistungsunterschiede nach Schriftart und Zeitraum prüfen.",
         },
       ],
     },
@@ -38,27 +37,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "Because the system makes errors, all automated search must be stopped.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "A document absent from automated search is certainly not stored in the archive.",
         },
         {
           isCorrect: false,
-          label:
-            "recordings played to completion and short comments from users",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested short codes printed at eye level in the museum audio guide and interpreted the evidence cautiously.",
+          label: "User corrections were more frequent for popular collections.",
         },
         {
           isCorrect: true,
           label:
-            "days when the earlier process continued without the tested change",
+            "A zero search result is insufficient to conclude that a source is absent when recognition has patterned failures.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team will audit performance differences by writing type and period.",
         },
       ],
     },
@@ -68,27 +66,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Karena sistem membuat kesalahan, semua pencarian otomatis harus dihentikan.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Dokumen yang tidak muncul dalam pencarian otomatis pasti tidak tersimpan di arsip.",
         },
         {
           isCorrect: false,
           label:
-            "rekaman yang dibuka sampai selesai dan komentar singkat pengguna",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji kode singkat yang dicetak setinggi mata pada panduan audio museum dan menafsirkan buktinya secara hati-hati.",
+            "Koreksi pengguna lebih sering diberikan pada koleksi populer.",
         },
         {
           isCorrect: true,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Hasil pencarian nol tidak cukup untuk menyimpulkan ketiadaan sumber ketika proses pengenalan memiliki pola kegagalan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim akan mengaudit perbedaan kinerja menurut jenis tulisan dan periode.",
         },
       ],
     },

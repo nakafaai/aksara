@@ -11,21 +11,23 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "agar air tidak pernah masuk ke taman",
-        },
-        {
-          isCorrect: false,
-          label: "agar selokan tidak perlu dibersihkan",
-        },
-        {
           isCorrect: true,
           label:
             "agar tingkat keparahan genangan dapat dibandingkan selain durasinya",
         },
         {
           isCorrect: false,
-          label: "agar semua hujan memiliki intensitas sama",
+          label: "agar air tidak pernah masuk ke taman",
+        },
+        {
+          isCorrect: false,
+          label:
+            "agar perubahan durasi genangan dapat dikaitkan dengan taman tanpa memeriksa kondisi selokan",
+        },
+        {
+          isCorrect: false,
+          label:
+            "agar pengukuran genangan dapat dibandingkan tanpa menyesuaikan perbedaan intensitas hujan",
         },
         {
           isCorrect: false,

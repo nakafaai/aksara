@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "The class tested how a blue-light filter affected leaf growth under different light colours, while controlling the listed factors but treating one short trial as proof of a universal effect.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The class tested how a blue-light filter affected leaf growth under different light colours, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The class tested how a blue-light filter affected leaf growth under different light colours, while treating the scientific term as the measured outcome that settles the investigation.",
+        },
+        {
           isCorrect: true,
           label:
-            "The class tested using a blue light filter in leaf growth under different light colours while controlling other factors and reporting a limitation.",
+            "The class tested how a blue-light filter affected leaf growth under different light colours, while controlling other factors and reporting a limitation.",
         },
         {
           isCorrect: false,
           label:
-            "The passage only gives a complete history of leaf growth under different light colours without examining evidence or choice.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage proves that one method must succeed in every leaf growth under different light colours.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage rejects all observation and relies only on personal preference.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage mainly defines confounding variable without connecting it to a setting.",
+            "The class tested how a blue-light filter affected leaf growth under different light colours, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage states that no action or observation occurred in a repair café during a storm.",
+            "Miles left one repaired seam visible instead of colouring it to match; the recurring object's physical appearance fixes its complete meaning from the first mention.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Miles left one repaired seam visible instead of colouring it to match; the ending states the object's meaning directly, making the earlier actions irrelevant.",
         },
         {
           isCorrect: true,
           label:
-            "Miles left one repaired seam visible instead of colouring it to match.",
+            "Leaving the repaired seam visible transforms the recurring fabric from something to conceal into evidence of care, which the ending recognises.",
         },
         {
           isCorrect: false,
           label:
-            "Everyone in a repair café during a storm obtained exactly the same result without variation.",
+            "Miles left one repaired seam visible instead of colouring it to match; the setting alone changes the atmosphere, independently of the character's use of the recurring object.",
         },
         {
           isCorrect: false,
           label:
-            "The writer removes every detail related to a repair café during a storm.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage presents sensory imagery as proof that no follow-up is needed.",
+            "Miles left one repaired seam visible instead of colouring it to match; the object keeps one fixed meaning even as the character's action and the final response change.",
         },
       ],
     },

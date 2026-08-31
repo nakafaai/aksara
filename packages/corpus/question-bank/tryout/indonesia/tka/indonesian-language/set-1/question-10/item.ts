@@ -15,20 +15,21 @@ const item: QuestionItem = {
           label: "marah karena Raka menerima lampu baru",
         },
         {
-          isCorrect: true,
-          label: "lega karena kenangan Raka memperoleh makna baru",
+          isCorrect: false,
+          label: "datar karena perubahan fungsi lampu hanya bersifat praktis",
         },
         {
           isCorrect: false,
-          label: "bosan karena tidak ada perubahan dalam diri Raka",
-        },
-        {
-          isCorrect: false,
-          label: "takut karena seluruh warga meninggalkan kampung",
+          label:
+            "cemas karena keterlibatan warga dapat menggeser makna pribadi kenangan Raka",
         },
         {
           isCorrect: false,
           label: "kecewa karena perahu ayah Raka kembali",
+        },
+        {
+          isCorrect: true,
+          label: "lega karena kenangan Raka memperoleh makna baru",
         },
       ],
     },

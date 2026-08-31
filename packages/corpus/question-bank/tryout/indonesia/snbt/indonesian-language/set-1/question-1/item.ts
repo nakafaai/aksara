@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "Sangat teliti dan ulet",
         },
         {
-          isCorrect: false,
-          label: "Sosok yang rapi",
-        },
-        {
           isCorrect: true,
           label: "Berani mengambil risiko",
+        },
+        {
+          isCorrect: false,
+          label: "Sosok yang rapi",
         },
         {
           isCorrect: false,

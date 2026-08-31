@@ -12,19 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$\\sqrt{3^2}=3$, da $3>0$",
+          label: "$x^2+\\frac1{x^2}=7$",
         },
         {
           isCorrect: true,
-          label: "$(-3)^2=3^2$",
+          label: "$(x-\\frac1x)^2=5$",
+        },
+        {
+          isCorrect: true,
+          label: "$x$ ist eine Nullstelle von $t^2-3t+1=0$.",
         },
         {
           isCorrect: false,
-          label: "$3^{-1}=-3$",
+          label: "$x$ ist rational.",
         },
         {
           isCorrect: true,
-          label: "$3^{\\frac12}\\cdot 3^{\\frac12}=3$",
+          label: "$x^3+\\frac1{x^3}=18$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$\\sqrt{3^2}=3$ because $3>0$",
+          label: "$x^2+\\frac1{x^2}=7$",
         },
         {
           isCorrect: true,
-          label: "$(-3)^2=3^2$",
+          label: "$(x-\\frac1x)^2=5$",
+        },
+        {
+          isCorrect: true,
+          label: "$x$ is a root of $t^2-3t+1=0$.",
         },
         {
           isCorrect: false,
-          label: "$3^{-1}=-3$",
+          label: "$x$ is rational.",
         },
         {
           isCorrect: true,
-          label: "$3^{\\frac12}\\cdot 3^{\\frac12}=3$",
+          label: "$x^3+\\frac1{x^3}=18$",
         },
       ],
     },
@@ -54,19 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$\\sqrt{3^2}=3$ untuk $3>0$",
+          label: "$x^2+\\frac1{x^2}=7$",
         },
         {
           isCorrect: true,
-          label: "$(-3)^2=3^2$",
+          label: "$(x-\\frac1x)^2=5$",
+        },
+        {
+          isCorrect: true,
+          label: "$x$ merupakan akar $t^2-3t+1=0$.",
         },
         {
           isCorrect: false,
-          label: "$3^{-1}=-3$",
+          label: "$x$ merupakan bilangan rasional.",
         },
         {
           isCorrect: true,
-          label: "$3^{\\frac12}\\cdot 3^{\\frac12}=3$",
+          label: "$x^3+\\frac1{x^3}=18$",
         },
       ],
     },

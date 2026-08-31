@@ -10,11 +10,6 @@ const item: QuestionItem = {
           label: "Paket M wird ins Kühllager geschickt.",
         },
         {
-          isCorrect: true,
-          label:
-            "Paket M wird wegen seines blauen Etiketts in die manuelle Prüfung geschickt.",
-        },
-        {
           isCorrect: false,
           label:
             "Ein Paket mit rotem Etikett wird in die manuelle Prüfung geschickt.",
@@ -27,6 +22,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Kein Paket wird beiden Wegen zugewiesen.",
         },
+        {
+          isCorrect: true,
+          label:
+            "Paket M wird wegen seines blauen Etiketts in die manuelle Prüfung geschickt.",
+        },
       ],
     },
     en: {
@@ -35,11 +35,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Parcel M is sent to refrigerated storage.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Parcel M is sent to manual inspection because it has a blue label.",
         },
         {
           isCorrect: false,
@@ -53,6 +48,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "No parcel is sent to both routes.",
         },
+        {
+          isCorrect: true,
+          label:
+            "Parcel M is sent to manual inspection because it has a blue label.",
+        },
       ],
     },
     id: {
@@ -61,11 +61,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Paket M dikirim ke penyimpanan berpendingin.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Paket M dikirim ke pemeriksaan manual karena memiliki label biru.",
         },
         {
           isCorrect: false,
@@ -78,6 +73,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Tidak ada paket yang dikirim ke kedua jalur.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Paket M dikirim ke pemeriksaan manual karena memiliki label biru.",
         },
       ],
     },

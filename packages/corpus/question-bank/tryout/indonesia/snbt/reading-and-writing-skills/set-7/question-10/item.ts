@@ -7,17 +7,13 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Schulfrühstücksprogramm",
+          label:
+            "Mit geänderten Messregeln plant das Team einen längeren Test von Menüvorbestellung am Vortag.",
         },
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Menübestellung am Vortag.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Schulfrühstücksprogramm über den beiden anderen Werten.",
+            "Das Team will nur die Tage wiederholen, an denen die Änderung Menüvorbestellung am Vortag den höchsten Wert ergab.",
         },
         {
           isCorrect: true,
@@ -27,7 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Menübestellung am Vortag.",
+            "Das Team will Menüvorbestellung am Vortag dauerhaft einführen statt einen längeren Vergleich durchzuführen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team plant einen längeren Test von Menüvorbestellung am Vortag ohne Vergleichsbedingung.",
         },
       ],
     },
@@ -36,17 +37,13 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: school breakfast programme",
+          label:
+            "Using revised measurement rules, the team plans a longer test of menu booking one day in advance.",
         },
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of menu booking one day in advance.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (school breakfast programme), the trial value exceeded both other values.",
+            "The team plans to repeat only the days on which menu booking one day in advance produced the highest value.",
         },
         {
           isCorrect: true,
@@ -56,7 +53,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change, menu booking one day in advance, directly addressed the observed uncertainty.",
+            "The team plans to adopt menu booking one day in advance permanently instead of running a longer comparison.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team plans a longer test of menu booking one day in advance without retaining a comparison condition.",
         },
       ],
     },
@@ -65,17 +67,13 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: program sarapan sekolah",
+          label:
+            "Dengan kaidah pengukuran yang diubah, tim merencanakan uji pemesanan menu sehari sebelumnya yang lebih panjang.",
         },
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui pemesanan menu sehari sebelumnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Di program sarapan sekolah, nilai hari uji melampaui dua nilai lainnya.",
+            "Tim akan mengulang hari ketika pemesanan menu sehari sebelumnya menghasilkan nilai tertinggi.",
         },
         {
           isCorrect: true,
@@ -85,7 +83,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan berupa pemesanan menu sehari sebelumnya langsung menanggapi keraguan yang diamati.",
+            "Tim akan menerapkan pemesanan menu sehari sebelumnya secara tetap sebagai pengganti perbandingan yang lebih panjang.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim merencanakan uji pemesanan menu sehari sebelumnya yang lebih panjang tanpa mempertahankan kondisi pembanding.",
         },
       ],
     },

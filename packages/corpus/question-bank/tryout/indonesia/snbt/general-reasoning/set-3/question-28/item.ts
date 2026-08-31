@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Nicht: die Prüfung stattfindet.",
+          label: "$$\\frac18$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac5{42}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac16$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac5{28}$$",
         },
         {
           isCorrect: true,
-          label: "die Besprechung stattfindet",
-        },
-        {
-          isCorrect: false,
-          label: "Nicht: der Bericht eingereicht wird.",
-        },
-        {
-          isCorrect: false,
-          label: "Nicht: die Besprechung stattfindet.",
-        },
-        {
-          isCorrect: false,
-          label: "der Bericht eingereicht wird",
+          label: "$$\\frac{13}{84}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "It is not true that the inspection occurs.",
+          label: "$$\\frac18$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac5{42}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac16$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac5{28}$$",
         },
         {
           isCorrect: true,
-          label: "the meeting takes place",
-        },
-        {
-          isCorrect: false,
-          label: "It is not true that the report is submitted.",
-        },
-        {
-          isCorrect: false,
-          label: "It is not true that the meeting takes place.",
-        },
-        {
-          isCorrect: false,
-          label: "the report is submitted",
+          label: "$$\\frac{13}{84}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Tidak benar bahwa pemeriksaan berlangsung.",
+          label: "$$\\frac18$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac5{42}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac16$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac5{28}$$",
         },
         {
           isCorrect: true,
-          label: "rapat berlangsung",
-        },
-        {
-          isCorrect: false,
-          label: "Tidak benar bahwa laporan diserahkan.",
-        },
-        {
-          isCorrect: false,
-          label: "Tidak benar bahwa rapat berlangsung.",
-        },
-        {
-          isCorrect: false,
-          label: "laporan diserahkan",
+          label: "$$\\frac{13}{84}$$",
         },
       ],
     },

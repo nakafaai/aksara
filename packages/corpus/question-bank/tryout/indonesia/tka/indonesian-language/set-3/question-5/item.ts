@@ -16,21 +16,23 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "transkrip pasti tidak digunakan siapa pun",
-        },
-        {
-          isCorrect: true,
           label:
-            "kenaikan terjadi setelah paket perubahan, tetapi belum menunjukkan penyebab tertentu",
+            "transkrip mungkin tidak memengaruhi hasil karena peserta tidak diminta melaporkan penggunaannya",
         },
         {
           isCorrect: false,
-          label: "semua peserta minggu pertama kembali pada minggu kedua",
+          label:
+            "jumlah peserta yang sama menunjukkan kelompok minggu pertama dan kedua identik",
         },
         {
           isCorrect: false,
           label:
             "angka tersebut membuktikan museum lain akan mendapat hasil sama",
+        },
+        {
+          isCorrect: true,
+          label:
+            "kenaikan terjadi setelah paket perubahan, tetapi belum menunjukkan penyebab tertentu",
         },
       ],
     },

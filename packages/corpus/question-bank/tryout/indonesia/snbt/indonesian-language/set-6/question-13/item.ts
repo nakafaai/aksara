@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam program teman belajar pasti berlaku tanpa batas pada tempat lain.",
+            "Kenaikan dari 16 menjadi 27 membuktikan bahwa kartu tujuan menaikkan nilai semester setiap peserta.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang program teman belajar tidak berguna.",
+            "Karena guru pendamping ikut membahas hasil, kondisi pembanding 17 tidak lagi diperlukan untuk menilai program.",
         },
         {
           isCorrect: false,
           label:
-            "Satu rincian tentang dukungan sebaya cukup untuk membuktikan semua hubungan sebab-akibat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Jangka uji dua minggu hanya membatasi ketelitian angka dan tidak membatasi jenis hasil belajar yang dapat disimpulkan.",
         },
         {
           isCorrect: true,
           label:
-            "Keputusan lanjutan sebaiknya mempertimbangkan data, pengalaman pihak terdampak, dan keterbatasan uji.",
+            "Nilai 27 dibandingkan 17 mendukung penggunaan kartu tujuan pada pertemuan berikutnya, tetapi hasil dua minggu belum cukup untuk menyimpulkan adanya peningkatan nilai semester.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Program sebaiknya langsung diterapkan penuh karena perubahan jadwal dan jumlah petugas telah dihindari.",
         },
       ],
     },

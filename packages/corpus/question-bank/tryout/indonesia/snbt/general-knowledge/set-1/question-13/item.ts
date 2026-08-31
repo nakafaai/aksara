@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "Die Fläche war mit Eiskristallen bedeckt.",
         },
         {
-          isCorrect: true,
-          label: "Die Besucher waren fasziniert.",
-        },
-        {
           isCorrect: false,
           label: "Sie waren mit Eiskristallen bedeckt.",
+        },
+        {
+          isCorrect: true,
+          label: "Die Besucher waren fasziniert.",
         },
         {
           isCorrect: false,
@@ -35,12 +35,12 @@ const item: QuestionItem = {
           label: "The expanse was covered in ice crystals.",
         },
         {
-          isCorrect: true,
-          label: "Visitors were fascinated.",
-        },
-        {
           isCorrect: false,
           label: "They were covered in ice crystals.",
+        },
+        {
+          isCorrect: true,
+          label: "Visitors were fascinated.",
         },
         {
           isCorrect: false,
@@ -60,12 +60,12 @@ const item: QuestionItem = {
           label: "Hamparan diselimuti kristal es.",
         },
         {
-          isCorrect: true,
-          label: "Para pengunjung terpesona.",
-        },
-        {
           isCorrect: false,
           label: "Mereka diselimuti kristal es.",
+        },
+        {
+          isCorrect: true,
+          label: "Para pengunjung terpesona.",
         },
         {
           isCorrect: false,

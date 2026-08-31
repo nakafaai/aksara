@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$110$$",
+          label: "$$154$$",
         },
         {
           isCorrect: false,
-          label: "$$120$$",
+          label: "$$160$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$168$$",
         },
         {
           isCorrect: true,
-          label: "$$100$$",
+          label: "$$165$$",
         },
         {
           isCorrect: false,
-          label: "$$80$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$90$$",
+          label: "$$169$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$110$$",
+          label: "$$154$$",
         },
         {
           isCorrect: false,
-          label: "$$120$$",
+          label: "$$160$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$168$$",
         },
         {
           isCorrect: true,
-          label: "$$100$$",
+          label: "$$165$$",
         },
         {
           isCorrect: false,
-          label: "$$80$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$90$$",
+          label: "$$169$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$110$$",
+          label: "$$154$$",
         },
         {
           isCorrect: false,
-          label: "$$120$$",
+          label: "$$160$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$168$$",
         },
         {
           isCorrect: true,
-          label: "$$100$$",
+          label: "$$165$$",
         },
         {
           isCorrect: false,
-          label: "$$80$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$90$$",
+          label: "$$169$$",
         },
       ],
     },

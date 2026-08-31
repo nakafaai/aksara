@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Every result in leaf growth under different light colours must apply without limitation elsewhere.",
+            "Because new leaf area reached 19 cm², compared with 12 and 13, holding plant variety, water, light duration, and lamp distance constant isolates using a blue light filter as the only possible cause.",
         },
         {
           isCorrect: false,
           label:
-            "The limitation makes all information about leaf growth under different light colours useless.",
+            "The strongest follow-up would change both using a blue light filter and at least one controlled condition, preventing the effect of either change from being isolated.",
         },
         {
           isCorrect: false,
           label:
-            "One detail about confounding variable proves every possible causal relationship.",
+            "The limitation that the filter also reduced total light intensity affects numerical precision, but it does not restrict how widely the finding can be applied.",
         },
         {
           isCorrect: false,
           label:
-            "The passage recommends ignoring evidence that conflicts with an early expectation.",
+            "A larger repetition under the same rules could narrow uncertainty but could not change the first interpretation of the blue filter and new leaf area.",
         },
         {
           isCorrect: true,
           label:
-            "The initial pattern justifies a stronger repetition, not a universal claim.",
+            "new leaf area reached 19 cm², compared with 12 and 13; this supports an association between the blue filter and new leaf area under the tested conditions, while the filter also reduced total light intensity requires further testing before a broader claim.",
         },
       ],
     },

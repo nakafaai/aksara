@@ -7,27 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Ausleihe von Sportgeräten",
+          label:
+            "Das Team testete die Änderung Fotobeschriftungen an den Rückgaberegalen an ausgewählten Tagen, weil das frühere Verfahren bereits als unwirksam galt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team führte die Änderung Fotobeschriftungen an den Rückgaberegalen dauerhaft ein, während das frühere Verfahren nur in den Rückmeldungen erhalten blieb.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team testete die Änderung Fotobeschriftungen an den Rückgaberegalen und das frühere Verfahren an denselben Tagen ohne getrennte Vergleichsbedingungen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team verglich Tage mit der Änderung Fotobeschriftungen an den Rückgaberegalen mit Rückmeldungen zum früheren Verfahren.",
         },
         {
           isCorrect: true,
           label:
             "Das Team prüfte Fotoetiketten an den Rückgaberegalen an ausgewählten Tagen, während an Vergleichstagen der bisherige Ablauf bestehen blieb.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Fotoetiketten an den Rückgaberegalen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Ausleihe von Sportgeräten über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Fotoetiketten an den Rückgaberegalen.",
         },
       ],
     },
@@ -36,27 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: sports equipment lending",
+          label:
+            "The team tested photo labels on the return shelves on selected days because the earlier process had already been proved ineffective.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team tested photo labels on the return shelves permanently, while the earlier process remained only in user records.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team tested photo labels on the return shelves and the earlier process on the same days without separate comparison conditions.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team compared selected days using photo labels on the return shelves with comments about the earlier process.",
         },
         {
           isCorrect: true,
           label:
             "The team tested photo labels on the return shelves on selected days, while the earlier process remained on comparison days.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The hypothesis therefore needed a limited test of photo labels on the return shelves.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (sports equipment lending), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, photo labels on the return shelves, directly addressed the observed uncertainty.",
         },
       ],
     },
@@ -65,27 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: peminjaman alat olahraga",
+          label:
+            "Tim menguji label foto pada rak pengembalian pada hari tertentu karena proses lama telah terbukti tidak efektif.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim menerapkan label foto pada rak pengembalian secara tetap, sedangkan proses lama hanya tersisa dalam catatan pengguna.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim menguji label foto pada rak pengembalian dan proses lama pada hari yang sama tanpa kondisi pembanding terpisah.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim membandingkan hari penggunaan label foto pada rak pengembalian dengan komentar tentang proses lama.",
         },
         {
           isCorrect: true,
           label:
             "Tim menguji label foto pada hari tertentu, sedangkan alur lama tetap digunakan pada hari pembanding.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui label foto.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Di peminjaman alat olahraga, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa label foto langsung menanggapi keraguan yang diamati.",
         },
       ],
     },

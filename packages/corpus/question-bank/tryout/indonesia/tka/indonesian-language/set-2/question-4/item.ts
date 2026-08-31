@@ -20,7 +20,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "agar semua benda dinyatakan berhasil",
+          label:
+            "agar benda yang berhasil diuji dapat langsung dinyatakan layak tanpa catatan tambahan",
         },
         {
           isCorrect: false,

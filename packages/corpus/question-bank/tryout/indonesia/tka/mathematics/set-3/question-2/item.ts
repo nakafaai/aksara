@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 205.000",
+          label: "$$5{,}5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9{,}9$$",
         },
         {
           isCorrect: true,
-          label: "Rp 220.000",
+          label: "$$11{,}1$$",
         },
         {
           isCorrect: false,
-          label: "Rp 200.000",
+          label: "$$10$$",
         },
         {
           isCorrect: false,
-          label: "Rp 230.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 250.000",
+          label: "$$16{,}6$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 205.000",
+          label: "$$5{,}5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9{,}9$$",
         },
         {
           isCorrect: true,
-          label: "Rp 220.000",
+          label: "$$11{,}1$$",
         },
         {
           isCorrect: false,
-          label: "Rp 200.000",
+          label: "$$10$$",
         },
         {
           isCorrect: false,
-          label: "Rp 230.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 250.000",
+          label: "$$16{,}6$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 205.000",
+          label: "$$5{,}5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9{,}9$$",
         },
         {
           isCorrect: true,
-          label: "Rp 220.000",
+          label: "$$11{,}1$$",
         },
         {
           isCorrect: false,
-          label: "Rp 200.000",
+          label: "$$10$$",
         },
         {
           isCorrect: false,
-          label: "Rp 230.000",
-        },
-        {
-          isCorrect: false,
-          label: "Rp 250.000",
+          label: "$$16{,}6$$",
         },
       ],
     },

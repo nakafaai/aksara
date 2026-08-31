@@ -7,28 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+          label: "die wortgetreue Kopie einer ausgewählten Erinnerung",
         },
         {
           isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+          label: "das Füllen von Lücken mit nicht gekennzeichneten Erfindungen",
         },
         {
           isCorrect: false,
-          label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte ausleihbare Schreibtischlampen (abendlicher Leseraum) und bewertete die Befunde vorsichtig.",
+          label: "eine chronologische Ereignisliste ohne Quellenvergleich",
         },
         {
           isCorrect: true,
           label:
-            "Lesesitzungen von mehr als dreißig Minuten und kurze Aussagen von Nutzenden",
+            "die erneute Zusammensetzung einer Darstellung der Vergangenheit aus vorhandenen Spuren",
+        },
+        {
+          isCorrect: false,
+          label:
+            "die körperliche Reparatur eines alten Gegenstands auf Neuzustand",
         },
       ],
     },
@@ -37,28 +34,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+          label: "a word-for-word copy of one selected memory",
         },
         {
           isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
+          label: "filling gaps with unmarked fictional material",
         },
         {
           isCorrect: false,
-          label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested desk lamps that visitors could borrow in the evening reading room and interpreted the evidence cautiously.",
+          label: "a date-ordered event list without source comparison",
         },
         {
           isCorrect: true,
-          label:
-            "reading sessions lasting more than thirty minutes and short comments from users",
+          label: "rebuilding an account of the past from available traces",
+        },
+        {
+          isCorrect: false,
+          label: "physical repair that makes an old object look new again",
         },
       ],
     },
@@ -67,28 +59,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+          label: "salinan kata demi kata dari satu ingatan yang dipilih",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "pengisian bagian yang hilang dengan cerita rekaan tanpa penanda",
         },
         {
           isCorrect: false,
-          label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji lampu meja yang dapat dipinjam pada ruang baca malam dan menafsirkan buktinya secara hati-hati.",
+          label: "daftar peristiwa menurut tanggal tanpa membandingkan sumber",
         },
         {
           isCorrect: true,
           label:
-            "sesi membaca yang bertahan lebih dari tiga puluh menit dan komentar singkat pengguna",
+            "penyusunan kembali penjelasan masa lalu dari jejak yang tersedia",
+        },
+        {
+          isCorrect: false,
+          label: "perbaikan fisik benda lama agar kembali tampak baru",
         },
       ],
     },

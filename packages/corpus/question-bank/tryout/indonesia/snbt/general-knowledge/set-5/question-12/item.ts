@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team prüfte ausleihbare Schreibtischlampen (abendlicher Leseraum) und bewertete die Befunde vorsichtig.",
+            "Schriftliche Dokumente beweisen, dass mündliche Aussagen historisch wertlos sind.",
         },
         {
           isCorrect: false,
-          label: "Der Wert mit Änderung, 31, lag über 24 und 26.",
+          label:
+            "Das Archiv sollte die sicherste Aussage wählen und abweichende Aufnahmen löschen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Eröffnungsfeier fand Monate nach dem Umzug einiger Klassen statt.",
         },
         {
           isCorrect: true,
           label:
-            "Vorsichtige Prüfung im Kontext abendlicher Leseraum: ausleihbare Schreibtischlampen",
+            "Widersprüchliche Aussagen können zeigen, wie Erinnerung funktioniert, statt eine Quelle automatisch auszuschließen.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Originalaufnahmen bleiben erhalten, damit spätere Forscher die Deutung neu bewerten können.",
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested desk lamps that visitors could borrow in the evening reading room and interpreted the evidence cautiously.",
+            "Written documents prove that oral testimony has no historical value.",
         },
         {
           isCorrect: false,
-          label: "The intervention value, 31, exceeded both 24 and 26.",
+          label:
+            "The archive should choose the most confident witness and delete inconsistent recordings.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The opening ceremony took place months after some classes moved.",
         },
         {
           isCorrect: true,
           label:
-            "A cautious trial of desk lamps that visitors could borrow: evening reading room",
+            "Conflicting testimony can reveal how memory works rather than automatically disqualifying one source.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Original recordings are preserved so later researchers can reassess the interpretation.",
         },
       ],
     },
@@ -66,26 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji lampu meja yang dapat dipinjam pada ruang baca malam dan menafsirkan buktinya secara hati-hati.",
+            "Dokumen tertulis membuktikan bahwa kesaksian lisan tidak memiliki nilai sejarah.",
         },
         {
           isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 31, melampaui 24 dan 26.",
+          label:
+            "Arsip harus memilih narasumber yang paling yakin dan menghapus rekaman yang tidak sesuai.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Upacara peresmian berlangsung beberapa bulan setelah sebagian kelas pindah.",
         },
         {
           isCorrect: true,
           label:
-            "Uji Hati-hati dalam ruang baca malam: lampu meja yang dapat dipinjam",
+            "Perbedaan kesaksian dapat menjadi informasi tentang cara ingatan bekerja, bukan alasan otomatis untuk membuang salah satu sumber.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Rekaman asli disimpan agar tafsir dapat dinilai ulang oleh peneliti berikutnya.",
         },
       ],
     },

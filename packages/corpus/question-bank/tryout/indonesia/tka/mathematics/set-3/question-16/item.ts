@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$63-2\\pi$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$63-8\\pi$$",
+          label: "$$40+20\\pi$$",
         },
         {
           isCorrect: true,
-          label: "$$63-4\\pi$$",
+          label: "$$80+20\\pi$$",
         },
         {
           isCorrect: false,
-          label: "$$32-4\\pi$$",
+          label: "$$80+16\\pi$$",
         },
         {
           isCorrect: false,
-          label: "$$63+4\\pi$$",
+          label: "$$80+18\\pi$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$120+20\\pi$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$63-2\\pi$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$63-8\\pi$$",
+          label: "$$40+20\\pi$$",
         },
         {
           isCorrect: true,
-          label: "$$63-4\\pi$$",
+          label: "$$80+20\\pi$$",
         },
         {
           isCorrect: false,
-          label: "$$32-4\\pi$$",
+          label: "$$80+16\\pi$$",
         },
         {
           isCorrect: false,
-          label: "$$63+4\\pi$$",
+          label: "$$80+18\\pi$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$120+20\\pi$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$63-2\\pi$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$63-8\\pi$$",
+          label: "$$40+20\\pi$$",
         },
         {
           isCorrect: true,
-          label: "$$63-4\\pi$$",
+          label: "$$80+20\\pi$$",
         },
         {
           isCorrect: false,
-          label: "$$32-4\\pi$$",
+          label: "$$80+16\\pi$$",
         },
         {
           isCorrect: false,
-          label: "$$63+4\\pi$$",
+          label: "$$80+18\\pi$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$120+20\\pi$$",
         },
       ],
     },

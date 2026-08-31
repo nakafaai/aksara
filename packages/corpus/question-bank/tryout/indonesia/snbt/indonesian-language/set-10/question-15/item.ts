@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang taman bermain inklusif",
-        },
-        {
-          isCorrect: false,
-          label: "Alasan Mengabaikan Semua Bukti dalam taman bermain inklusif",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap desain inklusif di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap taman bermain inklusif",
+          label: "desain inklusif sebagai ukuran utama dalam uji layanan",
         },
         {
           isCorrect: true,
           label: "Keputusan Berbasis Bukti dalam taman bermain inklusif",
+        },
+        {
+          isCorrect: false,
+          label: "Dari perbandingan singkat menuju perubahan layanan tetap",
+        },
+        {
+          isCorrect: false,
+          label: "Konsultasi tanpa pengukuran hasil yang dapat dibandingkan",
+        },
+        {
+          isCorrect: false,
+          label: "Uji layanan lokal tanpa keputusan tindak lanjut",
         },
       ],
     },

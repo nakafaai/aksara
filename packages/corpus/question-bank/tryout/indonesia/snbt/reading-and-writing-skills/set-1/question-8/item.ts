@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "gleicht.",
-        },
-        {
           isCorrect: false,
           label: "konkurriert mit.",
         },
@@ -22,6 +18,10 @@ const item: QuestionItem = {
           label: "folgt.",
         },
         {
+          isCorrect: true,
+          label: "gleicht.",
+        },
+        {
           isCorrect: false,
           label: "ersetzt.",
         },
@@ -30,10 +30,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "looks like.",
-        },
         {
           isCorrect: false,
           label: "competes with.",
@@ -47,6 +43,10 @@ const item: QuestionItem = {
           label: "follows.",
         },
         {
+          isCorrect: true,
+          label: "looks like.",
+        },
+        {
           isCorrect: false,
           label: "replaces.",
         },
@@ -55,10 +55,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "mirip dengan.",
-        },
         {
           isCorrect: false,
           label: "menyaingi.",
@@ -70,6 +66,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "mengikuti.",
+        },
+        {
+          isCorrect: true,
+          label: "mirip dengan.",
         },
         {
           isCorrect: false,

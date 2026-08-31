@@ -15,6 +15,10 @@ const item: QuestionItem = {
           label: "Rafi diam-diam menulis banyak not baru",
         },
         {
+          isCorrect: true,
+          label: "diam diisi oleh perhatian dan kesediaan menunggu",
+        },
+        {
           isCorrect: false,
           label: "penonton sudah memenuhi ruang konser",
         },
@@ -23,12 +27,9 @@ const item: QuestionItem = {
           label: "Ayu tidak lagi memainkan cello",
         },
         {
-          isCorrect: true,
-          label: "diam diisi oleh perhatian dan kesediaan menunggu",
-        },
-        {
           isCorrect: false,
-          label: "pelatih mengganti seluruh partitur",
+          label:
+            "pelatih mengubah susunan partitur agar jeda tidak lagi muncul pada bagian cello",
         },
       ],
     },

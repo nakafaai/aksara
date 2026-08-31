@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam periode ayunan bandul pasti berlaku tanpa batas pada tempat lain.",
+            "Karena kondisi perubahan menghasilkan 16, sedangkan nilai awal 20 dan pembanding 21, tali sepanjang 60 sentimeter telah terisolasi sebagai satu-satunya penyebab selama massa beban, sudut awal, dan cara melepas bandul dibuat sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengulangan paling informatif sebaiknya mengubah massa beban, sudut awal, dan cara melepas bandul bersamaan dengan tali sepanjang 60 sentimeter agar gabungan kondisi yang lebih realistis dapat diuji.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Keterbatasan bahwa pengukuran manual masih dapat dipengaruhi waktu reaksi pencatat memengaruhi ketelitian angka, tetapi tidak memengaruhi luas penerapan temuan tentang periode ayunan bandul.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengulangan dengan lebih banyak unit dapat mempersempit ketidakpastian, tetapi tidak mungkin mengubah penafsiran awal tentang periode ayunan bandul.",
         },
         {
           isCorrect: true,
           label:
-            "Pola awal mendukung pengulangan yang lebih kuat, bukan klaim bahwa hasil itu selalu berlaku.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang periode ayunan bandul tidak berguna.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Satu rincian tentang periode cukup untuk membuktikan semua hubungan sebab-akibat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Pada kondisi yang diuji, tali sepanjang 60 sentimeter berkaitan dengan perubahan dari 20 dan 21 menjadi 16; karena pengukuran manual masih dapat dipengaruhi waktu reaksi pencatat, pola itu perlu diuji lagi sebelum diperluas menjadi klaim umum.",
         },
       ],
     },

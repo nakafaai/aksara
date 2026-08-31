@@ -6,16 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Auf Grundlage der Daten zeigte eine begrenzte Schlussfolgerung über Fundbüroservice.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Auf Grundlage von den Daten kam das Team zu begrenzte Schlussfolgerung über Fundbüroservice.",
-        },
-        {
           isCorrect: true,
           label:
             "Auf Grundlage der Daten formulierte das Team eine begrenzte Schlussfolgerung zu folgendem Kontext: Fundbüroservice.",
@@ -23,28 +13,28 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Daten zugrunde legend, wurde über Fundbüroservice geschlossen das Team.",
+            "Auf Grundlage der Daten eine begrenzte Schlussfolgerung für den Kontext Fundbüroservice.",
         },
         {
           isCorrect: false,
           label:
-            "Auf Grundlage der Daten, weil das Team eine begrenzte Schlussfolgerung über Fundbüroservice.",
+            "Auf Grundlage der Daten kam das Team zu einer Schlussfolgerung, die begrenzt war, im Kontext Fundbüroservice.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Daten führten zu einer begrenzten Schlussfolgerung, weil Kontext Fundbüroservice.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Auf Grundlage der Daten zog es eine begrenzte Schlussfolgerung für den Kontext Fundbüroservice.",
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: false,
-          label:
-            "Based on the data showed a limited conclusion about the lost-property service.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Based from the data, the team reach a limited conclusion about the lost-property service.",
-        },
         {
           isCorrect: true,
           label:
@@ -53,28 +43,28 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Basing on the data, a limited conclusion was the team about the lost-property service.",
+            "Based on the data, a limited conclusion for this setting (lost-property service).",
         },
         {
           isCorrect: false,
           label:
-            "Based on the data, because the team a limited conclusion about the lost-property service.",
+            "Based on the data, the team reached a conclusion, which was limited, in this setting (lost-property service).",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The data led to a limited conclusion because this setting (lost-property service).",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Based on the data, it reached a limited conclusion for this setting (lost-property service).",
         },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: false,
-          label:
-            "Berdasarkan data menunjukkan simpulan terbatas tentang layanan pencarian barang hilang.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Berdasarkan dari data, tim menarik simpulan terbatas tentang layanan pencarian barang hilang.",
-        },
         {
           isCorrect: true,
           label:
@@ -83,12 +73,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Data berdasarkan, simpulan terbatas ditarik tim tentang layanan pencarian barang hilang.",
+            "Berdasarkan data, sebuah simpulan terbatas untuk konteks layanan barang hilang.",
         },
         {
           isCorrect: false,
           label:
-            "Berdasarkan data, karena tim simpulan terbatas tentang layanan pencarian barang hilang.",
+            "Berdasarkan data, tim sampai pada simpulan, yang terbatas, dalam konteks layanan barang hilang.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Data menghasilkan simpulan terbatas karena konteks layanan barang hilang.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Berdasarkan data, hal itu menarik simpulan terbatas untuk konteks layanan barang hilang.",
         },
       ],
     },

@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Practical and evidence-based",
-        },
-        {
           isCorrect: false,
           label: "Dismissive of all nutritional advice",
         },
         {
           isCorrect: false,
           label: "Certain that one food can prevent every infection",
+        },
+        {
+          isCorrect: true,
+          label: "Practical and evidence-based",
         },
         {
           isCorrect: false,

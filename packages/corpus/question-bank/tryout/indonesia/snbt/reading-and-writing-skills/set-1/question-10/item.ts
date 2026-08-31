@@ -19,13 +19,13 @@ const item: QuestionItem = {
           label: "Wann begann die Umweltdegradation in Indonesien?",
         },
         {
-          isCorrect: true,
-          label: "Welche drei Risikotreiber nennt das Sendai-Rahmenwerk?",
-        },
-        {
           isCorrect: false,
           label:
             "Welche Methode zur Wiederherstellung von Ökosystemen ist am wirksamsten?",
+        },
+        {
+          isCorrect: true,
+          label: "Welche drei Risikotreiber nennt das Sendai-Rahmenwerk?",
         },
       ],
     },
@@ -45,13 +45,13 @@ const item: QuestionItem = {
           label: "When did environmental degradation begin in Indonesia?",
         },
         {
+          isCorrect: false,
+          label: "Which ecosystem restoration method is the most effective?",
+        },
+        {
           isCorrect: true,
           label:
             "Which three drivers of risk does the Sendai Framework recognize?",
-        },
-        {
-          isCorrect: false,
-          label: "Which ecosystem restoration method is the most effective?",
         },
       ],
     },
@@ -71,12 +71,12 @@ const item: QuestionItem = {
           label: "Kapan degradasi lingkungan mulai terjadi di Indonesia?",
         },
         {
-          isCorrect: true,
-          label: "Apa saja tiga pendorong risiko yang diakui Kerangka Sendai?",
-        },
-        {
           isCorrect: false,
           label: "Metode pemulihan ekosistem mana yang paling efektif?",
+        },
+        {
+          isCorrect: true,
+          label: "Apa saja tiga pendorong risiko yang diakui Kerangka Sendai?",
         },
       ],
     },

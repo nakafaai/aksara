@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "in this passage, an assumption that never needs to be examined in a neighbourhood bus information board",
+            "Calling a cost *wayfinding* establishes that the proposed change is affordable without using the estimated prices.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The definition makes *wayfinding* apply to every cost in the table, regardless of how activity levels change.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The term *wayfinding* replaces the affected groups' evidence with a financial label that settles the decision by itself.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The definition explains why the trial used estimated invoices, rather than how the cost category should be read.",
         },
         {
           isCorrect: true,
           label:
-            "information that helps a person understand where they are and how to continue",
-        },
-        {
-          isCorrect: false,
-          label:
-            "in this passage, a final result that always applies to every situation",
-        },
-        {
-          isCorrect: false,
-          label:
-            "in this passage, a detail removed because it challenges an opinion",
-        },
-        {
-          isCorrect: false,
-          label:
-            "in this passage, decorative language unrelated to the setting",
+            "The definition of *wayfinding* supplies the classification rule needed to interpret the budget comparison and the consultation evidence.",
         },
       ],
     },

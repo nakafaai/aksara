@@ -10,17 +10,17 @@ const item: QuestionItem = {
           label: "Semua benda plastik yang diproduksi di daratan",
         },
         {
+          isCorrect: true,
+          label:
+            "Sampah yang masuk ke laut melalui sungai atau langsung dari pesisir",
+        },
+        {
           isCorrect: false,
           label: "Sampah yang terdampar kembali di daratan suatu negara",
         },
         {
           isCorrect: false,
           label: "Semua sampah nonorganik yang ditemukan di laut",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Sampah yang masuk ke laut melalui sungai atau langsung dari pesisir",
         },
         {
           isCorrect: false,

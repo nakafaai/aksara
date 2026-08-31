@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "verringern (Satz $$(7)$$).",
-        },
-        {
           isCorrect: false,
           label: "widerstandsfähig (Satz $$(1)$$).",
+        },
+        {
+          isCorrect: true,
+          label: "verringern (Satz $$(7)$$).",
         },
         {
           isCorrect: false,
@@ -31,12 +31,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "reduce (sentence $$(7)$$).",
-        },
-        {
           isCorrect: false,
           label: "resilient (sentence $$(1)$$).",
+        },
+        {
+          isCorrect: true,
+          label: "reduce (sentence $$(7)$$).",
         },
         {
           isCorrect: false,
@@ -56,12 +56,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "memperkecil (kalimat $$(7)$$).",
-        },
-        {
           isCorrect: false,
           label: "tangguh (kalimat $$(1)$$).",
+        },
+        {
+          isCorrect: true,
+          label: "memperkecil (kalimat $$(7)$$).",
         },
         {
           isCorrect: false,

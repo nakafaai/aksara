@@ -13,20 +13,28 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Die Wahrscheinlichkeit für Rot ist $\\frac{5}{9}$.",
-        },
-        {
-          correctCategoryOrder: 1,
-          label: "Die Wahrscheinlichkeit für Blau ist $\\frac{4}{9}$.",
+          label:
+            "Die Wahrscheinlichkeit für eine ungerade Summe beträgt $\\frac47$.",
         },
         {
           correctCategoryOrder: 1,
           label:
-            "Bei einer Ziehung schließen sich die Ereignisse Rot und Blau gegenseitig aus.",
+            "Die Wahrscheinlichkeit für zwei Primzahlen beträgt $\\frac3{14}$.",
+        },
+        {
+          correctCategoryOrder: 1,
+          label:
+            "Ist die erste Karte gerade, beträgt die Wahrscheinlichkeit für eine ungerade zweite Karte $\\frac47$.",
         },
         {
           correctCategoryOrder: 2,
-          label: "Die Wahrscheinlichkeit für Rot oder Blau ist $\\frac12$.",
+          label:
+            "Die Ereignisse erste Karte gerade und zweite Karte ungerade sind unabhängig.",
+        },
+        {
+          correctCategoryOrder: 1,
+          label:
+            "Die Wahrscheinlichkeit, dass die größere Zahl $8$ ist, beträgt $\\frac14$.",
         },
       ],
     },
@@ -36,19 +44,25 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "The probability of red is $\\frac{5}{9}$.",
+          label: "The probability of an odd sum is $\\frac47$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "The probability of blue is $\\frac{4}{9}$.",
+          label: "The probability that both cards are prime is $\\frac3{14}$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "On one draw, the red and blue events are mutually exclusive.",
+          label:
+            "Given an even first card, the probability that the second card is odd is $\\frac47$.",
         },
         {
           correctCategoryOrder: 2,
-          label: "The probability of red or blue is $\\frac12$.",
+          label:
+            "The events first card even and second card odd are independent.",
+        },
+        {
+          correctCategoryOrder: 1,
+          label: "The probability that the larger number is $8$ is $\\frac14$.",
         },
       ],
     },
@@ -58,20 +72,26 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Peluang mengambil bola merah adalah $\\frac{5}{9}$.",
+          label: "Peluang jumlah kedua angka ganjil adalah $\\frac47$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "Peluang mengambil bola biru adalah $\\frac{4}{9}$.",
+          label: "Peluang kedua kartu bernomor prima adalah $\\frac3{14}$.",
         },
         {
           correctCategoryOrder: 1,
           label:
-            "Dalam satu pengambilan, kejadian merah dan biru saling lepas.",
+            "Jika kartu pertama genap, peluang kartu kedua ganjil adalah $\\frac47$.",
         },
         {
           correctCategoryOrder: 2,
-          label: "Peluang memperoleh bola merah atau biru adalah $\\frac12$.",
+          label:
+            "Kejadian kartu pertama genap dan kartu kedua ganjil saling bebas.",
+        },
+        {
+          correctCategoryOrder: 1,
+          label:
+            "Peluang angka yang lebih besar adalah $8$ sebesar $\\frac14$.",
         },
       ],
     },

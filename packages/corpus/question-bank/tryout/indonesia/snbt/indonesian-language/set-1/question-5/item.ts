@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Kesadaran akan sampah yang ia hasilkan sendiri",
-        },
-        {
           isCorrect: false,
           label: "Pengelolaan sampah yang tidak baik di Indonesia",
         },
         {
           isCorrect: false,
           label: "Indonesia penyumbang sampah utama dunia",
+        },
+        {
+          isCorrect: true,
+          label: "Kesadaran akan sampah yang ia hasilkan sendiri",
         },
         {
           isCorrect: false,

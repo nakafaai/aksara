@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The class tested adding a measured mass of table salt in the freezing point of salt solutions while controlling other factors and reporting a limitation.",
+            "The class tested how adding a measured mass of table salt affected a solution's freezing point, while controlling other factors and reporting a limitation.",
         },
         {
           isCorrect: false,
           label:
-            "The passage only gives a complete history of the freezing point of salt solutions without examining evidence or choice.",
+            "The class tested how adding a measured mass of table salt affected a solution's freezing point, while controlling the listed factors but treating one short trial as proof of a universal effect.",
         },
         {
           isCorrect: false,
           label:
-            "The passage proves that one method must succeed in every the freezing point of salt solutions.",
+            "The class tested how adding a measured mass of table salt affected a solution's freezing point, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
         },
         {
           isCorrect: false,
           label:
-            "The passage rejects all observation and relies only on personal preference.",
+            "The class tested how adding a measured mass of table salt affected a solution's freezing point, while treating the scientific term as the measured outcome that settles the investigation.",
         },
         {
           isCorrect: false,
           label:
-            "The passage mainly defines solute without connecting it to a setting.",
+            "The class tested how adding a measured mass of table salt affected a solution's freezing point, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
         },
       ],
     },

@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$\\frac{42}{5}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{180}{23}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{195}{23}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{216}{23}$$",
+        },
+        {
           isCorrect: true,
-          label: "$$2$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$1$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$3$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$0$$",
+          label: "$$\\frac{204}{23}$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$\\frac{42}{5}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{180}{23}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{195}{23}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{216}{23}$$",
+        },
+        {
           isCorrect: true,
-          label: "$$2$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$1$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$3$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$0$$",
+          label: "$$\\frac{204}{23}$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$\\frac{42}{5}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{180}{23}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{195}{23}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{216}{23}$$",
+        },
+        {
           isCorrect: true,
-          label: "$$2$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$1$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$3$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$0$$",
+          label: "$$\\frac{204}{23}$$",
         },
       ],
     },

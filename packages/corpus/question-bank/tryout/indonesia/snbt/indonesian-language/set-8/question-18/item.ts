@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam klub pembaca pemula pasti berlaku tanpa batas pada tempat lain.",
+            "Daftar peminjaman menunjukkan alasan setiap peserta memilih buku sehingga catatan fasilitator tidak menambah informasi.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Catatan fasilitator harus menjadi dasar utama karena kesulitan peserta lebih penting daripada pilihan bacaan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Jika pilihan buku meningkat, kedua sumber membuktikan bahwa semua kesulitan membaca telah teratasi.",
         },
         {
           isCorrect: true,
           label:
-            "Perbedaan antarsumber dapat memperkaya penafsiran jika asal dan tujuan setiap sumber diperiksa.",
+            "Daftar peminjaman menunjukkan pilihan buku, sedangkan catatan fasilitator memberi konteks tentang kesulitan peserta; keduanya membantu membaca perkembangan kebiasaan, tetapi catatan fasilitator tetap merupakan sudut pandang pengamat.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang klub pembaca pemula tidak berguna.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Satu rincian tentang kontekstualisasi cukup untuk membuktikan semua hubungan sebab-akibat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Perbedaan bentuk sumber membuat data peminjaman dan catatan percakapan tidak dapat dibandingkan sama sekali.",
         },
       ],
     },

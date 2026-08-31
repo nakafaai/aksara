@@ -11,20 +11,22 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "The exact location of the leak is already known.",
-        },
-        {
           isCorrect: true,
           label: "Further inspection by a responsible person is needed.",
         },
         {
           isCorrect: false,
-          label: "The meter must be destroyed.",
+          label: "The exact location of the leak is already known.",
         },
         {
           isCorrect: false,
-          label: "Every wall should be opened immediately.",
+          label:
+            "The meter should be replaced before a second reading is attempted.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Visible wall sections should be opened as soon as the indicator first moves.",
         },
         {
           isCorrect: false,

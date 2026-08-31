@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Geordnete Prüfung einer Änderung: Ausstellung von Schülerarbeiten",
+            "Die Änderung, Richtungspfeile an jeder Kreuzung, ersetzte die Notwendigkeit, die ursprüngliche Unsicherheit zu messen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Richtungspfeile an jeder Abzweigung.",
+            "Die Änderung, Richtungspfeile an jeder Kreuzung, führte mehrere nicht trennbare Unterschiede ein.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Änderung, Richtungspfeile an jeder Kreuzung, erklärte, warum die Vergleichswerte identisch waren.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Änderung, Richtungspfeile an jeder Kreuzung, betraf das Endergebnis statt die Quelle der Unsicherheit.",
         },
         {
           isCorrect: true,
           label:
             "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Richtungspfeile an jeder Abzweigung.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Ausstellung von Schülerarbeiten über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Richtungspfeile an jeder Abzweigung.",
         },
       ],
     },
@@ -37,27 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: student work exhibition",
+          label:
+            "The change, direction arrows placed at each junction, replaced the need to measure the original uncertainty.",
         },
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of direction arrows placed at each junction.",
+            "The change, direction arrows placed at each junction, introduced several differences that could not be separated.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The change, direction arrows placed at each junction, explained why the comparison values were identical.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The change, direction arrows placed at each junction, addressed the final outcome rather than the source of uncertainty.",
         },
         {
           isCorrect: true,
           label:
             "The change, direction arrows placed at each junction, directly addressed the observed uncertainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (student work exhibition), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The next test of direction arrows placed at each junction will run for longer.",
         },
       ],
     },
@@ -66,27 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: pameran karya siswa",
+          label:
+            "Perubahan berupa panah arah di setiap persimpangan menggantikan kebutuhan untuk mengukur ketidakpastian awal.",
         },
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui panah arah yang ditempatkan.",
+            "Perubahan berupa panah arah di setiap persimpangan menimbulkan beberapa perbedaan yang tidak dapat dipisahkan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perubahan berupa panah arah di setiap persimpangan menjelaskan mengapa nilai pembanding sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perubahan berupa panah arah di setiap persimpangan menanggapi hasil akhir, bukan sumber ketidakpastian.",
         },
         {
           isCorrect: true,
           label:
             "Perubahan berupa panah arah yang ditempatkan langsung menanggapi keraguan yang diamati.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Di pameran karya siswa, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji panah arah yang ditempatkan berikutnya akan berlangsung lebih lama.",
         },
       ],
     },

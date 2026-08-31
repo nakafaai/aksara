@@ -7,23 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "für mehr als eine Deutung offen",
+          label:
+            "Quelle, Methode und Datenweg können unabhängig geprüft werden, bevor die Behauptung akzeptiert wird.",
         },
         {
           isCorrect: false,
-          label: "durch verlässliche Belege gestützt",
-        },
-        {
-          isCorrect: false,
-          label: "fähig, sich an veränderte Bedingungen anzupassen",
+          label:
+            "Dieselbe Kodierregel wird auf jede Gruppe und jeden Messzeitraum angewendet.",
         },
         {
           isCorrect: true,
-          label: "für den beabsichtigten Zweck sachlich begründet",
+          label:
+            "Das Instrument wird geprüft, damit sein Wert tatsächlich das beabsichtigte Konstrukt abbildet.",
         },
         {
           isCorrect: false,
-          label: "dem Umfang des Problems angemessen",
+          label:
+            "Einheiten, Rundungsregeln und Kategoriengrenzen werden vor Beginn der Erfassung festgelegt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Bewertenden verwenden ein Raster, das vor Kenntnis der Identitäten oder Endergebnisse festgelegt wurde.",
         },
       ],
     },
@@ -32,23 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "open to more than one interpretation",
+          label:
+            "The source, method, and data trail can be checked independently before the claim is accepted.",
         },
         {
           isCorrect: false,
-          label: "supported by dependable evidence",
-        },
-        {
-          isCorrect: false,
-          label: "able to adjust to changing conditions",
+          label:
+            "The same coding rule is applied to every group and every measurement period.",
         },
         {
           isCorrect: true,
-          label: "well-founded for the intended purpose",
+          label:
+            "The instrument is tested to ensure that its score represents the construct it is meant to measure.",
         },
         {
           isCorrect: false,
-          label: "appropriate to the scale of the problem",
+          label:
+            "Units, rounding rules, and category boundaries are defined before recording begins.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Reviewers use a rubric set before they know participant identities or final outcomes.",
         },
       ],
     },
@@ -57,23 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
+          label:
+            "Sumber, metode, dan jejak data dapat diperiksa secara mandiri sebelum klaim diterima.",
         },
         {
           isCorrect: false,
-          label: "didukung oleh bukti yang dapat dipercaya",
-        },
-        {
-          isCorrect: false,
-          label: "mampu menyesuaikan diri dengan kondisi yang berubah",
+          label:
+            "Aturan pengodean yang sama diterapkan pada setiap kelompok dan setiap waktu pengukuran.",
         },
         {
           isCorrect: true,
-          label: "berdasar dan sesuai untuk tujuan yang dimaksud",
+          label:
+            "Instrumen diuji untuk memastikan bahwa skor benar-benar mewakili konsep yang hendak diukur.",
         },
         {
           isCorrect: false,
-          label: "sepadan dengan skala masalah",
+          label:
+            "Satuan, aturan pembulatan, dan batas setiap kategori ditetapkan sebelum pencatatan dimulai.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Penilai memakai rubrik yang ditetapkan sebelum mengetahui identitas peserta atau hasil akhirnya.",
         },
       ],
     },

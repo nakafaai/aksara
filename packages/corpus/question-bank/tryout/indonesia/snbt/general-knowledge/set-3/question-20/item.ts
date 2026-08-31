@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team prüfte bebilderte Hinweise neben dem Wasserhahn (Wasser-Nachfüllstation) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 29, lag über 21 und 23.",
+            "Eine im zweiten Test erfolgreiche Übersetzung kann sicher überall unverändert eingesetzt werden.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Eine Übersetzung muss jedem Ausgangswort folgen, auch wenn Bewohner die Handlung missverstehen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Das Team stellte in der neuen Nachricht die Handlung vor die Begründung.",
         },
         {
           isCorrect: true,
           label:
-            "Vorsichtige Prüfung im Kontext Wasser-Nachfüllstation: bebilderte Hinweise neben dem Wasserhahn",
+            "Eine andere Wortwahl und Reihenfolge kann die Sicherheit erhöhen, obwohl der sachliche Inhalt gleich bleibt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Jede Fassung wird vor dem Einsatz erneut mit Bewohnern getestet.",
         },
       ],
     },
@@ -37,26 +38,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested illustrated instructions beside the tap in the water refill station and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 29, exceeded both 21 and 23.",
+            "A translation that passes the second test can certainly be used unchanged in every region.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "A translation must follow every source word even when residents misunderstand the required action.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "The team placed the action before the reason in the revised message.",
         },
         {
           isCorrect: true,
           label:
-            "A cautious trial of illustrated instructions beside the tap: water refill station",
+            "Changing word choice and information order can improve safety even when the factual content is unchanged.",
+        },
+        {
+          isCorrect: false,
+          label: "Each version will be tested again with residents before use.",
         },
       ],
     },
@@ -66,26 +67,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji petunjuk bergambar di dekat keran pada stasiun isi ulang air dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 29, melampaui 21 dan 23.",
+            "Satu terjemahan yang lulus uji kedua pasti dapat digunakan tanpa perubahan di seluruh daerah.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Terjemahan harus mengikuti setiap kata sumber meskipun warga salah memahami tindakan yang diminta.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Tim menempatkan tindakan sebelum alasan dalam susunan pesan baru.",
         },
         {
           isCorrect: true,
           label:
-            "Uji Hati-hati dalam stasiun isi ulang air: petunjuk bergambar di dekat keran",
+            "Perubahan urutan dan pilihan kata dapat meningkatkan keselamatan meskipun isi faktual pesannya tidak berubah.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Setiap versi akan diuji lagi bersama warga sebelum digunakan.",
         },
       ],
     },

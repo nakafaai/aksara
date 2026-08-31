@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team prüfte Beispielgegenstände an jedem Behälter (Sortierung von Küstenabfällen) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 29, lag über 20 und 22.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Jede Produktionsstufe muss vollständig auf die Vorderseite jeder Packung gedruckt werden.",
         },
         {
           isCorrect: true,
           label:
-            "Vorsichtige Prüfung im Kontext Sortierung von Küstenabfällen: Beispielgegenstände an jedem Behälter",
+            "Rückverfolgbarkeit verbindet ein Produkt mit einem aktuellen Wegdatensatz und nicht nur mit einem Ort.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Mit einem Code müssen Lieferantendaten nicht mehr aktualisiert werden.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Der Maniok wurde im Dorf Rawa geschnitten und in der Stadt frittiert.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Produktangaben müssen Lieferstufen unterscheiden, damit sie für Käufer knapp und bei Prüfungen rückverfolgbar bleiben.",
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested sample objects displayed on each container in the coastal litter sorting and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 29, exceeded both 20 and 22.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Every production stage must be printed in full on the front of every package.",
         },
         {
           isCorrect: true,
           label:
-            "A cautious trial of sample objects displayed on each container: coastal litter sorting",
+            "Traceability links a product to an updated record of its journey, not merely to a location.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Once a code exists, supplier records no longer need updating.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The cassava was sliced in Rawa Village and fried in the city.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Product-origin information must distinguish supply-chain stages so it remains concise for buyers and traceable during inspection.",
         },
       ],
     },
@@ -66,26 +68,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji contoh benda pada setiap wadah pada pemilahan sampah pesisir dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 29, melampaui 20 dan 22.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Semua tahap produksi harus dicetak lengkap di bagian depan setiap kemasan.",
         },
         {
           isCorrect: true,
           label:
-            "Uji Hati-hati dalam setiap wadah pada pemilahan sampah pesisir: contoh benda",
+            "Ketertelusuran menghubungkan produk dengan catatan perjalanan yang terus diperbarui, bukan hanya sebuah lokasi.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Jika kode tersedia, catatan pemasok tidak perlu lagi diperbarui.",
+        },
+        {
+          isCorrect: false,
+          label: "Singkong diiris di Desa Rawa dan digoreng di kota.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Informasi asal produk perlu memisahkan tahap rantai pasok agar ringkas bagi pembeli sekaligus dapat ditelusuri saat pemeriksaan.",
         },
       ],
     },

@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Bacaan hanya mencatat sejarah lengkap klub pembaca pemula tanpa membahas keputusan atau bukti.",
-        },
-        {
           isCorrect: true,
           label:
             "Siswa membandingkan dua jenis sumber tentang klub pembaca pemula untuk menyusun penjelasan yang terbatas dan dapat diperiksa.",
@@ -18,17 +13,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap klub pembaca pemula.",
+            "Siswa membandingkan dua jenis sumber tentang klub pembaca pemula untuk menyusun penjelasan yang final dan dianggap berlaku untuk semua masa.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
+            "Siswa membandingkan dua jenis sumber tentang klub pembaca pemula untuk menyusun penjelasan yang yang menghapus perbedaan tujuan kedua sumber.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan terutama menjelaskan definisi kontekstualisasi tanpa menghubungkannya dengan konteks.",
+            "Siswa membandingkan dua jenis sumber tentang klub pembaca pemula untuk menyusun penjelasan yang dengan mengikuti sumber yang lebih baru secara otomatis.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Siswa membandingkan dua jenis sumber tentang klub pembaca pemula untuk menyusun penjelasan yang tanpa menilai asal serta tujuan tiap sumber.",
         },
       ],
     },

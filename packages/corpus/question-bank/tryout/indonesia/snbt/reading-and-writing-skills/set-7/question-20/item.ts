@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontext „Schirmverleih am Bahnhof“",
+            "Da 32 über 24 und 26 lag, erklärte das Team ein Rückgabecode an jedem Griff für wirksam und führte die Änderung dauerhaft ein.",
         },
         {
           isCorrect: true,
@@ -18,17 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Am Montag prüfte das Team einen Rückgabecode an jedem Griff im folgenden Kontext: Schirmverleih am Bahnhof.",
+            "Das Team verglich 32, 24 und 26 und plante eine längere Wiederholung, ohne die Aussage auf Regenschirmverleih am Bahnhof zu begrenzen.",
         },
         {
           isCorrect: false,
           label:
-            "die Folgestudie des Teams im untersuchten Kontext (Schirmverleih am Bahnhof)",
+            "Das Team begrenzte die Aussage auf Regenschirmverleih am Bahnhof und plante eine längere Wiederholung, ohne den Vergleich zu nennen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im untersuchten Kontext (Schirmverleih am Bahnhof) gaben kurze Rückmeldungen.",
+            "Die Werte 32, 24 und 26 zeigten kein relevantes Muster, daher wollte das Team die Messregeln ändern.",
         },
       ],
     },
@@ -38,7 +38,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "an analysis of the effectiveness of a return code on each handle in this setting (station umbrella lending)",
+            "Because 32 exceeded 24 and 26, the team concluded that the change was effective and adopted it permanently.",
         },
         {
           isCorrect: true,
@@ -48,17 +48,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "On Monday, the team tested a return code on each handle in this setting (station umbrella lending).",
+            "The team compared 32, 24, and 26 and planned a longer repetition without limiting the claim to the context of station umbrella lending.",
         },
         {
           isCorrect: false,
           label:
-            "the team's follow-up study of a return code on each handle in this setting (station umbrella lending)",
+            "The team limited its claim to the context of station umbrella lending and planned a longer repetition without reporting the comparison.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (station umbrella lending) provided brief comments.",
+            "The values 32, 24, and 26 showed no relevant pattern, so the team planned to change the measurement rules.",
         },
       ],
     },
@@ -68,7 +68,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "analisis efektivitas kode pengembalian di peminjaman payung stasiun",
+            "Karena 32 lebih tinggi daripada 24 dan 26, tim menyimpulkan bahwa kode pengembalian pada setiap gagang efektif lalu menerapkannya secara tetap.",
         },
         {
           isCorrect: true,
@@ -78,17 +78,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pada Senin, tim menguji kode pengembalian di peminjaman payung stasiun.",
+            "Tim membandingkan 32, 24, dan 26 serta merencanakan pengulangan lebih panjang tanpa membatasi klaim pada peminjaman payung stasiun.",
         },
         {
           isCorrect: false,
           label:
-            "kerja sama tim dalam uji kode pengembalian di peminjaman payung stasiun",
+            "Tim membatasi klaim pada peminjaman payung stasiun dan merencanakan pengulangan lebih panjang tanpa melaporkan perbandingan.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna di peminjaman payung stasiun memberikan komentar singkat.",
+            "Nilai 32, 24, dan 26 tidak menunjukkan pola yang relevan sehingga tim akan mengubah kaidah pengukuran.",
         },
       ],
     },

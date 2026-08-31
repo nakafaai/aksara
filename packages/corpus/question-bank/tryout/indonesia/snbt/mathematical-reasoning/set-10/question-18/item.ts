@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$6$$",
+          label: "$$35\\,280$$",
         },
         {
           isCorrect: true,
-          label: "$$4$$",
+          label: "$$80\\,640$$",
         },
         {
           isCorrect: false,
-          label: "$$2$$",
+          label: "$$58\\,800$$",
         },
         {
           isCorrect: false,
-          label: "$$3$$",
+          label: "$$70\\,560$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$161\\,280$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$6$$",
+          label: "$$35\\,280$$",
         },
         {
           isCorrect: true,
-          label: "$$4$$",
+          label: "$$80\\,640$$",
         },
         {
           isCorrect: false,
-          label: "$$2$$",
+          label: "$$58\\,800$$",
         },
         {
           isCorrect: false,
-          label: "$$3$$",
+          label: "$$70\\,560$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$161\\,280$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$6$$",
+          label: "$$35\\,280$$",
         },
         {
           isCorrect: true,
-          label: "$$4$$",
+          label: "$$80\\,640$$",
         },
         {
           isCorrect: false,
-          label: "$$2$$",
+          label: "$$58\\,800$$",
         },
         {
           isCorrect: false,
-          label: "$$3$$",
+          label: "$$70\\,560$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$161\\,280$$",
         },
       ],
     },

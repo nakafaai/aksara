@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label: "abgeschlossene Ausleihen und kurze Aussagen von Nutzenden",
+            "Schriftliche Unterlagen sind immer richtig, während jede mündliche Aussage verworfen werden muss.",
         },
         {
           isCorrect: true,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Ein Quellenkonflikt muss nicht beseitigt werden; das Museum sollte erklären, was belegt, erinnert und noch offen ist.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team prüfte eine Erinnerung einen Tag vor jedem Besuch (mobiler Bibliotheksdienst) und bewertete die Befunde vorsichtig.",
+            "Das Museum sollte die spannendste Geschichte wählen und störende Angaben entfernen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Museum wird die Überarbeitungsgeschichte des Ausstellungsschildes anzeigen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Museum erhöht die Verlässlichkeit der Darstellung, indem es Dokumente, Erinnerungen und Unsicherheit trennt, statt eine Version zu erzwingen.",
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label: "completed loans and short comments from users",
+            "Written records are always correct, whereas all oral testimony must be rejected.",
         },
         {
           isCorrect: true,
           label:
-            "days when the earlier process continued without the tested change",
+            "A source conflict need not be erased; the museum should explain what is documented, remembered, and still open.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested a reminder sent one day before each visit in the mobile library service and interpreted the evidence cautiously.",
+            "The museum should choose the most engaging story and remove details that disrupt the narrative.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The museum will display the exhibition label's revision history.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The museum improves the reliability of the account by distinguishing records, memories, and uncertainty rather than forcing one version to win.",
         },
       ],
     },
@@ -66,26 +68,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label: "peminjaman yang selesai dan komentar singkat pengguna",
+            "Catatan tertulis selalu benar, sedangkan semua kesaksian lisan harus ditolak.",
         },
         {
           isCorrect: true,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Perbedaan sumber tidak harus dihapus; museum perlu menjelaskan mana yang terbukti, diingat, dan masih terbuka.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji pesan pengingat sehari sebelum kunjungan pada layanan perpustakaan keliling dan menafsirkan buktinya secara hati-hati.",
+            "Museum sebaiknya memilih kisah paling menarik dan menghapus keterangan yang mengganggu kelancaran cerita.",
+        },
+        {
+          isCorrect: false,
+          label: "Museum akan menampilkan riwayat revisi label pameran.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Museum meningkatkan keandalan keterangan dengan membedakan dokumen, ingatan, dan ketidakpastian, bukan dengan memaksa satu versi menang.",
         },
       ],
     },

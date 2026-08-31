@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(3,-4)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(4,-3)$$",
+          label: "$$-\\frac13$$",
         },
         {
           isCorrect: true,
-          label: "$$(-4,3)$$",
+          label: "$$\\frac13$$",
         },
         {
           isCorrect: false,
-          label: "$$(4,3)$$",
+          label: "$$0$$",
         },
         {
           isCorrect: false,
-          label: "$$(-3,4)$$",
+          label: "$$\\frac12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac23$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(3,-4)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(4,-3)$$",
+          label: "$$-\\frac13$$",
         },
         {
           isCorrect: true,
-          label: "$$(-4,3)$$",
+          label: "$$\\frac13$$",
         },
         {
           isCorrect: false,
-          label: "$$(4,3)$$",
+          label: "$$0$$",
         },
         {
           isCorrect: false,
-          label: "$$(-3,4)$$",
+          label: "$$\\frac12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac23$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(3,-4)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(4,-3)$$",
+          label: "$$-\\frac13$$",
         },
         {
           isCorrect: true,
-          label: "$$(-4,3)$$",
+          label: "$$\\frac13$$",
         },
         {
           isCorrect: false,
-          label: "$$(4,3)$$",
+          label: "$$0$$",
         },
         {
           isCorrect: false,
-          label: "$$(-3,4)$$",
+          label: "$$\\frac12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac23$$",
         },
       ],
     },

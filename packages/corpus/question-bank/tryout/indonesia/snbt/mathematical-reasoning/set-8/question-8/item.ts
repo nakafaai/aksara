@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$6$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$12$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$15$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$3$$",
-        },
-        {
           isCorrect: true,
-          label: "$$9$$",
+          label: "$$19:12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$12:19$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$19:11$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$38:25$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7:4$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$6$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$12$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$15$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$3$$",
-        },
-        {
           isCorrect: true,
-          label: "$$9$$",
+          label: "$$19:12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$12:19$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$19:11$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$38:25$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7:4$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$6$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$12$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$15$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$3$$",
-        },
-        {
           isCorrect: true,
-          label: "$$9$$",
+          label: "$$19:12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$12:19$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$19:11$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$38:25$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7:4$$",
         },
       ],
     },

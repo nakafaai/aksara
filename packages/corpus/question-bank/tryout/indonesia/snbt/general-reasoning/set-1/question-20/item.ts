@@ -16,11 +16,6 @@ const item: QuestionItem = {
             "Traditionelle Trachten werden nur bei öffentlichen Feiern getragen",
         },
         {
-          isCorrect: true,
-          label:
-            "Die Tradition verbindet Kleidung, gemeinsames Wissen und soziale Praktiken, die Identität mit gemeinschaftlicher Zugehörigkeit verknüpfen",
-        },
-        {
           isCorrect: false,
           label:
             "Lokale Fachleute spielen keine Rolle, weil Wissen ausschließlich in Familien weitergegeben wird",
@@ -29,6 +24,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Unterschiedliche traditionelle Trachten verhindern ein Gefühl der Wiedererkennung",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Die Tradition verbindet Kleidung, gemeinsames Wissen und soziale Praktiken, die Identität mit gemeinschaftlicher Zugehörigkeit verknüpfen",
         },
       ],
     },
@@ -44,11 +44,6 @@ const item: QuestionItem = {
           label: "Traditional costumes are worn only at public celebrations",
         },
         {
-          isCorrect: true,
-          label:
-            "The tradition combines garments, shared knowledge, and social practices that connect identity with community belonging",
-        },
-        {
           isCorrect: false,
           label:
             "Local craftspeople have no role because knowledge is transmitted only within families",
@@ -57,6 +52,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Wearing different traditional costumes prevents people from feeling a sense of recognition",
+        },
+        {
+          isCorrect: true,
+          label:
+            "The tradition combines garments, shared knowledge, and social practices that connect identity with community belonging",
         },
       ],
     },
@@ -72,11 +72,6 @@ const item: QuestionItem = {
           label: "Busana tradisional hanya dikenakan dalam perayaan publik",
         },
         {
-          isCorrect: true,
-          label:
-            "Tradisi tersebut memadukan busana, pengetahuan bersama, dan praktik sosial yang menghubungkan identitas dengan kebersamaan dalam masyarakat",
-        },
-        {
           isCorrect: false,
           label:
             "Perajin lokal tidak berperan karena pengetahuan hanya diwariskan dalam keluarga",
@@ -85,6 +80,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Penggunaan beragam busana tradisional menghalangi orang untuk merasa saling mengenali",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Tradisi tersebut memadukan busana, pengetahuan bersama, dan praktik sosial yang menghubungkan identitas dengan kebersamaan dalam masyarakat",
         },
       ],
     },

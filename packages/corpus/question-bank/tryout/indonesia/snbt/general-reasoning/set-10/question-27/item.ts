@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$56$$",
+          label: "$$\\frac18$$",
         },
         {
           isCorrect: false,
-          label: "$$70$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$14$$",
+          label: "$$\\frac16$$",
         },
         {
           isCorrect: true,
-          label: "$$42$$",
+          label: "$$\\frac17$$",
         },
         {
           isCorrect: false,
-          label: "$$28$$",
+          label: "$$\\frac15$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac14$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$56$$",
+          label: "$$\\frac18$$",
         },
         {
           isCorrect: false,
-          label: "$$70$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$14$$",
+          label: "$$\\frac16$$",
         },
         {
           isCorrect: true,
-          label: "$$42$$",
+          label: "$$\\frac17$$",
         },
         {
           isCorrect: false,
-          label: "$$28$$",
+          label: "$$\\frac15$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac14$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$56$$",
+          label: "$$\\frac18$$",
         },
         {
           isCorrect: false,
-          label: "$$70$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$14$$",
+          label: "$$\\frac16$$",
         },
         {
           isCorrect: true,
-          label: "$$42$$",
+          label: "$$\\frac17$$",
         },
         {
           isCorrect: false,
-          label: "$$28$$",
+          label: "$$\\frac15$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac14$$",
         },
       ],
     },

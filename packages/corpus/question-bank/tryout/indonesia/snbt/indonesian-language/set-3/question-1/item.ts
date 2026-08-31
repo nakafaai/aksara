@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap perkecambahan kacang hijau tanpa membahas keputusan atau bukti.",
+            "Simulasi membandingkan pengaruh pencahayaan enam jam terhadap perkecambahan kacang hijau dengan jarak lampu dijaga tetap, sambil mengendalikan faktor yang disebutkan tetapi menjadikan satu uji singkat sebagai bukti yang berlaku umum.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap perkecambahan kacang hijau.",
+            "Simulasi membandingkan pengaruh pencahayaan enam jam terhadap perkecambahan kacang hijau dengan jarak lampu dijaga tetap, sambil menyebut keterbatasan tetapi mengeluarkan kondisi pembanding dari penafsiran hasil.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
+            "Simulasi membandingkan pengaruh pencahayaan enam jam terhadap perkecambahan kacang hijau dengan jarak lampu dijaga tetap, sambil menjadikan definisi istilah ilmiah sebagai hasil ukur yang menutup penelitian.",
         },
         {
           isCorrect: true,
           label:
-            "Simulasi membandingkan pencahayaan enam jam dengan jarak lampu yang tetap dalam perkecambahan kacang hijau sambil menjaga faktor lain dan mengakui batasan pengukuran.",
+            "Simulasi membandingkan pengaruh pencahayaan enam jam terhadap perkecambahan kacang hijau dengan jarak lampu dijaga tetap, sambil mengendalikan faktor lain dan mengakui keterbatasan pengukuran.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan terutama menjelaskan definisi variabel kontrol tanpa menghubungkannya dengan konteks.",
+            "Simulasi membandingkan pengaruh pencahayaan enam jam terhadap perkecambahan kacang hijau dengan jarak lampu dijaga tetap, sambil memakai pembanding hanya untuk mengukuhkan hipotesis awal dan menghapus ketidakpastian yang tersisa.",
         },
       ],
     },

@@ -7,11 +7,15 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang program teman belajar",
+          label: "dukungan sebaya sebagai ukuran utama dalam uji layanan",
         },
         {
           isCorrect: false,
-          label: "Alasan Mengabaikan Semua Bukti dalam program teman belajar",
+          label: "Dari perbandingan singkat menuju perubahan layanan tetap",
+        },
+        {
+          isCorrect: false,
+          label: "Konsultasi tanpa pengukuran hasil yang dapat dibandingkan",
         },
         {
           isCorrect: true,
@@ -19,11 +23,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap dukungan sebaya di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap program teman belajar",
+          label: "Uji layanan lokal tanpa keputusan tindak lanjut",
         },
       ],
     },

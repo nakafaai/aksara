@@ -6,26 +6,26 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Kepastian Mutlak tentang model penyaringan air keruh",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Alasan Mengabaikan Semua Bukti dalam model penyaringan air keruh",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap indikator di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap model penyaringan air keruh",
-        },
-        {
           isCorrect: true,
+          label: "Menguji Susunan Bahan pada Model Penyaringan Air Keruh",
+        },
+        {
+          isCorrect: false,
+          label: "Mengukur indikator melalui satu perbandingan awal",
+        },
+        {
+          isCorrect: false,
           label:
-            "Menguji susunan kerikil, pasir, dan arang dengan ketebalan sama dalam model penyaringan air keruh",
+            "Menjadikan indikator penjelasan tunggal atas hasil pengamatan",
+        },
+        {
+          isCorrect: false,
+          label: "Kaidah akhir dari perbandingan pertama tentang indikator",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Keterbatasan yang membuat uji lanjutan indikator tidak diperlukan",
         },
       ],
     },

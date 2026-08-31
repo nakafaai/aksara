@@ -12,7 +12,12 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "pohon pasti menjadi satu-satunya penyebab lokasi sejuk",
+          label:
+            "pohon kemungkinan merupakan penyebab utama karena lokasi di bawahnya paling sejuk",
+        },
+        {
+          isCorrect: false,
+          label: "pengukuran suhu sekolah tidak dapat digunakan sama sekali",
         },
         {
           isCorrect: true,
@@ -21,15 +26,13 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "pengukuran suhu sekolah tidak dapat digunakan sama sekali",
+          label:
+            "ruang baca sebaiknya ditutup pada jam terpanas sampai pengukuran lebih lengkap",
         },
         {
           isCorrect: false,
-          label: "ruang baca harus selalu ditutup pada siang hari",
-        },
-        {
-          isCorrect: false,
-          label: "semua bangku sekolah sebaiknya dipindahkan ke lapangan",
+          label:
+            "bangku sebaiknya dipindahkan ke lokasi dengan suhu rata-rata terendah pada lima hari itu",
         },
       ],
     },

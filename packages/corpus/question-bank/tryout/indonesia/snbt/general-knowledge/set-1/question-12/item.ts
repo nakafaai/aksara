@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "eine Stellungnahme oder Erklärung abgeben.",
+        },
+        {
           isCorrect: false,
           label: "etwas bestreiten.",
         },
@@ -21,15 +25,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "etwas besprechen.",
         },
-        {
-          isCorrect: true,
-          label: "eine Stellungnahme oder Erklärung abgeben.",
-        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "providing an explanation or response.",
+        },
         {
           isCorrect: false,
           label: "denying something.",
@@ -46,15 +50,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "discussing something.",
         },
-        {
-          isCorrect: true,
-          label: "providing an explanation or response.",
-        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "memberikan penjelasan atau tanggapan.",
+        },
         {
           isCorrect: false,
           label: "menyangkal sesuatu hal.",
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "berdiskusi tentang sesuatu.",
-        },
-        {
-          isCorrect: true,
-          label: "memberikan penjelasan atau tanggapan.",
         },
       ],
     },

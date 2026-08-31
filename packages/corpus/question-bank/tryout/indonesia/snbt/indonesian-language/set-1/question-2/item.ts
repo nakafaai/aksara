@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Lingkungan mendapat kesempatan untuk memulihkan diri",
+        },
+        {
           isCorrect: false,
           label: "Bumi akan kembali persis seperti pada masa lampau",
         },
@@ -20,10 +24,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Keadaan Bumi akan menjadi tidak terkendali",
-        },
-        {
-          isCorrect: true,
-          label: "Lingkungan mendapat kesempatan untuk memulihkan diri",
         },
       ],
     },

@@ -11,16 +11,8 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$\\frac38$$",
-        },
-        {
           isCorrect: false,
-          label: "$$\\frac18$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac14$$",
+          label: "$$\\frac37$$",
         },
         {
           isCorrect: false,
@@ -28,7 +20,15 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$\\frac58$$",
+          label: "$$\\frac{15}{28}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{13}{28}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac47$$",
         },
       ],
     },
@@ -36,16 +36,8 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$\\frac38$$",
-        },
-        {
           isCorrect: false,
-          label: "$$\\frac18$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac14$$",
+          label: "$$\\frac37$$",
         },
         {
           isCorrect: false,
@@ -53,7 +45,15 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$\\frac58$$",
+          label: "$$\\frac{15}{28}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{13}{28}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac47$$",
         },
       ],
     },
@@ -61,16 +61,8 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$\\frac38$$",
-        },
-        {
           isCorrect: false,
-          label: "$$\\frac18$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac14$$",
+          label: "$$\\frac37$$",
         },
         {
           isCorrect: false,
@@ -78,7 +70,15 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$\\frac58$$",
+          label: "$$\\frac{15}{28}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{13}{28}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac47$$",
         },
       ],
     },

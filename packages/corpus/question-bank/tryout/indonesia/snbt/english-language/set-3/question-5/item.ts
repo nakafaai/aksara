@@ -6,26 +6,27 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Absolute certainty about root growth in germinating beans",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Why all evidence in root growth in germinating beans should be ignored",
-        },
-        {
-          isCorrect: false,
-          label: "The complete world history of gravitropism",
-        },
-        {
           isCorrect: true,
-          label:
-            "Testing placing the seed opening toward the side of a clear container in root growth in germinating beans",
+          label: "How seed orientation may influence early root growth",
         },
         {
           isCorrect: false,
-          label: "One rule for every root growth in germinating beans",
+          label: "Measuring gravitropism in one preliminary comparison",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Treating gravitropism as the sole explanation for the observed result",
+        },
+        {
+          isCorrect: false,
+          label:
+            "A final rule derived from the first comparison of gravitropism",
+        },
+        {
+          isCorrect: false,
+          label:
+            "A limitation that makes another test of gravitropism unnecessary",
         },
       ],
     },

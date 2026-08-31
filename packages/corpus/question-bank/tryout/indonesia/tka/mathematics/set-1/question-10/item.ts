@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "6 cm",
-        },
-        {
-          isCorrect: false,
-          label: "8 cm",
-        },
-        {
-          isCorrect: false,
-          label: "12 cm",
+          label: "$$5$$",
         },
         {
           isCorrect: true,
-          label: "10 cm",
+          label: "$$7$$",
         },
         {
           isCorrect: false,
-          label: "14 cm",
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "6 cm",
-        },
-        {
-          isCorrect: false,
-          label: "8 cm",
-        },
-        {
-          isCorrect: false,
-          label: "12 cm",
+          label: "$$5$$",
         },
         {
           isCorrect: true,
-          label: "10 cm",
+          label: "$$7$$",
         },
         {
           isCorrect: false,
-          label: "14 cm",
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "6 cm",
-        },
-        {
-          isCorrect: false,
-          label: "8 cm",
-        },
-        {
-          isCorrect: false,
-          label: "12 cm",
+          label: "$$5$$",
         },
         {
           isCorrect: true,
-          label: "10 cm",
+          label: "$$7$$",
         },
         {
           isCorrect: false,
-          label: "14 cm",
+          label: "$$6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9$$",
         },
       ],
     },

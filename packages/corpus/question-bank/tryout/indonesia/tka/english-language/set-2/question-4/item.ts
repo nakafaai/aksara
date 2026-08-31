@@ -11,8 +11,13 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "The usual river access changes when the water level falls.",
+        },
+        {
           isCorrect: false,
-          label: "The village no longer reads books.",
+          label:
+            "To attract readers back after a fixed village library reduced its opening hours",
         },
         {
           isCorrect: false,
@@ -25,10 +30,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "The boat's blue roof becomes too hot.",
-        },
-        {
-          isCorrect: true,
-          label: "The usual river access changes when the water level falls.",
         },
       ],
     },

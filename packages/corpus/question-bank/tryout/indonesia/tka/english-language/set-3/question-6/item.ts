@@ -20,7 +20,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Marking uncertain identification as certain",
+          label:
+            "Recording a visitor's identification as the main label before finding another source",
         },
         {
           isCorrect: true,

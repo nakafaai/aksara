@@ -10,6 +10,11 @@ const item: QuestionItem = {
           label: "Entwaldung kann Böden anfälliger für Erosion machen",
         },
         {
+          isCorrect: true,
+          label:
+            "Entwaldung allein verursachte 2019 fast alle vom Menschen verursachten Treibhausgasemissionen",
+        },
+        {
           isCorrect: false,
           label:
             "Von der Abholzung betroffen sind auch Gemeinden, die Brennholz nutzen",
@@ -22,11 +27,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Der Landnutzungssektor umfasst mehr als nur Entwaldung",
         },
-        {
-          isCorrect: true,
-          label:
-            "Entwaldung allein verursachte 2019 fast alle vom Menschen verursachten Treibhausgasemissionen",
-        },
       ],
     },
     en: {
@@ -35,6 +35,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Deforestation can make soil more vulnerable to erosion",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Deforestation alone produced almost all human-caused greenhouse gas emissions in 2019",
         },
         {
           isCorrect: false,
@@ -49,11 +54,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "The land-use sector includes more than deforestation alone",
         },
-        {
-          isCorrect: true,
-          label:
-            "Deforestation alone produced almost all human-caused greenhouse gas emissions in 2019",
-        },
       ],
     },
     id: {
@@ -62,6 +62,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Deforestasi dapat membuat tanah lebih rentan terhadap erosi",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Deforestasi saja menghasilkan hampir seluruh emisi gas rumah kaca akibat aktivitas manusia pada 2019",
         },
         {
           isCorrect: false,
@@ -75,11 +80,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Sektor penggunaan lahan mencakup lebih dari deforestasi saja",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Deforestasi saja menghasilkan hampir seluruh emisi gas rumah kaca akibat aktivitas manusia pada 2019",
         },
       ],
     },

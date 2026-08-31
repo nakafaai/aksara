@@ -6,28 +6,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Das Team prüfte vom Eingang sichtbare Stellplatznummern (Fahrradparkplatz auf dem Campus) und bewertete die Befunde vorsichtig.",
-        },
-        {
           isCorrect: true,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Eine geordnete Kartierung kann einen amtlichen Hauptindex nutzen und weitere Namen samt Belegen und Kontext bewahren.",
         },
         {
           isCorrect: false,
-          label: "Der Wert mit Änderung, 33, lag über 23 und 25.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+          label: "Der Verwaltungsname wurde als Hauptindex festgelegt.",
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext Fahrradparkplatz auf dem Campus: vom Eingang sichtbare Stellplatznummern",
+            "Jeder lokale Name muss denselben Rechtsstatus wie der Verwaltungsname erhalten.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Aus Gründen der Einheitlichkeit sollten alle nichtamtlichen Namen aus Suche und Archiv entfernt werden.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Neue Belege können den Eintrag ändern, ohne die frühere Namensgeschichte zu löschen.",
         },
       ],
     },
@@ -35,28 +35,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "The team tested rack numbers visible from the entrance in the campus bicycle parking and interpreted the evidence cautiously.",
-        },
-        {
           isCorrect: true,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "Orderly mapping can use one official index while retaining other names with their evidence and context.",
         },
         {
           isCorrect: false,
-          label: "The intervention value, 33, exceeded both 23 and 25.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
+          label: "The administrative name was selected as the primary index.",
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of rack numbers visible from the entrance: campus bicycle parking",
+            "Every local name must have the same legal status as the administrative name.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "For consistency, every non-official name should be removed from search and archives.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "New evidence may revise the record without erasing earlier naming history.",
         },
       ],
     },
@@ -64,28 +64,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Tim menguji nomor rak yang terlihat dari pintu masuk pada parkir sepeda kampus dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
           isCorrect: true,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Pemetaan yang tertib dapat memakai satu indeks resmi sambil mempertahankan nama lain beserta bukti dan konteksnya.",
         },
         {
           isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 33, melampaui 23 dan 25.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+          label: "Nama administrasi ditetapkan sebagai indeks utama.",
         },
         {
           isCorrect: false,
           label:
-            "Uji Hati-hati dalam parkir sepeda kampus: nomor rak yang terlihat dari pintu masuk",
+            "Semua nama lokal harus memiliki kedudukan hukum yang sama dengan nama administrasi.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Agar peta konsisten, semua nama selain nama resmi harus dihapus dari pencarian dan arsip.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bukti baru dapat mengubah catatan tanpa menghapus riwayat nama sebelumnya.",
         },
       ],
     },

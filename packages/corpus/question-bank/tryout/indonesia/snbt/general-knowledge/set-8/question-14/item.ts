@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Klassifikationsfehler machen sämtliche Freiwilligendaten wissenschaftlich wertlos.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Ein Gebiet ohne Meldungen enthält mit Sicherheit keine Mangrovensetzlinge.",
+        },
+        {
+          isCorrect: false,
+          label: "Bei Flutaufnahmen blieb die Übereinstimmung geringer.",
         },
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte eine Anzeige freier Plätze an der Tür (ruhige Lernzone) und bewertete die Befunde vorsichtig.",
+            "Bürgerdaten können das Mangrovenmonitoring unterstützen, wenn Beobachtungsmöglichkeit und Klassifikationsgenauigkeit kalibriert werden.",
         },
         {
           isCorrect: true,
           label:
-            "Besucher, die ohne Suche einen Platz fanden und kurze Aussagen von Nutzenden",
+            "Kalibrierung ordnet Bürgerbeiträge einer überprüfbaren Unsicherheit zu.",
         },
       ],
     },
@@ -38,27 +37,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Classification errors make all volunteer data scientifically worthless.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "An area without reports certainly contains no mangrove seedlings.",
+        },
+        {
+          isCorrect: false,
+          label: "Agreement remained lower for high-tide photographs.",
         },
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested a seat-availability board at the door in the quiet study zone and interpreted the evidence cautiously.",
+            "Community data can support mangrove monitoring when observation opportunity and classification accuracy are calibrated.",
         },
         {
           isCorrect: true,
           label:
-            "visitors finding a seat without circling the room and short comments from users",
+            "Calibration places community contributions within measurable uncertainty.",
         },
       ],
     },
@@ -68,27 +66,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Kesalahan klasifikasi membuat seluruh data relawan tidak memiliki nilai ilmiah.",
+        },
+        {
+          isCorrect: false,
+          label: "Daerah tanpa laporan pasti tidak memiliki bibit mangrove.",
+        },
+        {
+          isCorrect: false,
+          label: "Kesepakatan pada foto saat air pasang tetap lebih rendah.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji papan ketersediaan kursi di pintu pada zona belajar tenang dan menafsirkan buktinya secara hati-hati.",
+            "Data warga dapat mendukung pemantauan mangrove jika peluang pengamatan dan ketepatan klasifikasi dikalibrasi.",
         },
         {
           isCorrect: true,
           label:
-            "pengunjung yang menemukan kursi tanpa berkeliling dan komentar singkat pengguna",
+            "Kalibrasi menempatkan kontribusi warga dalam ukuran ketidakpastian yang dapat diperiksa.",
         },
       ],
     },

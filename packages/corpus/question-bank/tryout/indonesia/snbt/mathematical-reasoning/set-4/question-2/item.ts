@@ -10,10 +10,6 @@ const item: QuestionItem = {
           label: "$$1$$ Snackstrauß und $$2$$ Geldsträuße",
         },
         {
-          isCorrect: true,
-          label: "$$2$$ Snacksträuße und $$2$$ Geldsträuße",
-        },
-        {
           isCorrect: false,
           label: "$$1$$ großer Blumenstrauß und $$2$$ Geldsträuße",
         },
@@ -25,6 +21,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$1$$ kleiner Blumenstrauß und $$2$$ Snacksträuße",
         },
+        {
+          isCorrect: true,
+          label: "$$2$$ Snacksträuße und $$2$$ Geldsträuße",
+        },
       ],
     },
     en: {
@@ -33,10 +33,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$1$$ snack bouquet and $$2$$ money bouquets",
-        },
-        {
-          isCorrect: true,
-          label: "$$2$$ snack bouquets and $$2$$ money bouquets",
         },
         {
           isCorrect: false,
@@ -50,6 +46,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$1$$ small flower and $$2$$ snack bouquets",
         },
+        {
+          isCorrect: true,
+          label: "$$2$$ snack bouquets and $$2$$ money bouquets",
+        },
       ],
     },
     id: {
@@ -58,10 +58,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$1$$ snack bouquet dan $$2$$ money bouquet",
-        },
-        {
-          isCorrect: true,
-          label: "$$2$$ snack bouquet dan $$2$$ money bouquet",
         },
         {
           isCorrect: false,
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$1$$ bunga kecil dan $$2$$ snack bouquet",
+        },
+        {
+          isCorrect: true,
+          label: "$$2$$ snack bouquet dan $$2$$ money bouquet",
         },
       ],
     },

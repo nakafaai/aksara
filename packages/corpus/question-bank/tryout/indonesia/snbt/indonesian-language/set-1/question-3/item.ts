@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Letak geografis Indonesia yang strategis",
-        },
-        {
           isCorrect: true,
           label: "Banyak masyarakat Indonesia yang berusia produktif",
+        },
+        {
+          isCorrect: false,
+          label: "Letak geografis Indonesia yang strategis",
         },
         {
           isCorrect: false,

@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam panggung baca di terminal.",
-        },
-        {
           isCorrect: true,
           label:
-            "Kedua sumber sama-sama menunjukkan bahwa keduanya menunjukkan bahwa kegiatan baca hadir di ruang tunggu.",
+            "Surat panitia dan foto sama-sama menempatkan kegiatan baca di ruang tunggu, tetapi yang satu merekam tujuan pendirian dan yang lain merekam pemakaian.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam panggung baca di terminal memperoleh hasil yang sama tanpa perbedaan.",
+            "Kedua sumber menunjukkan bahwa kegiatan baca pernah hadir di ruang tunggu; perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan panggung baca di terminal.",
+            "Karena membahas peristiwa yang sama, kedua sumber pasti mempunyai sudut pandang dan tujuan yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyebut sumber sezaman sebagai bukti bahwa uji tidak perlu diulang.",
+            "Menggabungkan dua sumber memberi izin untuk mengisi bagian yang hilang dengan dugaan yang masuk akal.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perbedaan antarsumber hanya berkaitan dengan pilihan kata dan tidak memengaruhi simpulan.",
         },
       ],
     },

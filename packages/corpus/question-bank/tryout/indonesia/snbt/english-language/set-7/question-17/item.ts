@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage states that no action or observation occurred in a neighbourhood flood drill.",
+            "Asha read the alert aloud once, then removed every word that did not change the next action; the recurring object's physical appearance fixes its complete meaning from the first mention.",
         },
         {
           isCorrect: false,
           label:
-            "Everyone in a neighbourhood flood drill obtained exactly the same result without variation.",
+            "Asha read the alert aloud once, then removed every word that did not change the next action; the ending states the object's meaning directly, making the earlier actions irrelevant.",
         },
         {
           isCorrect: false,
           label:
-            "The writer removes every detail related to a neighbourhood flood drill.",
+            "Asha read the alert aloud once, then removed every word that did not change the next action; the setting alone changes the atmosphere, independently of the character's use of the recurring object.",
         },
         {
           isCorrect: true,
           label:
-            "Asha read the alert aloud once, then removed every word that did not change the next action.",
+            "Reading and cutting the recurring alert shifts it from formal wording to actionable guidance, and the final listener response tests that change.",
         },
         {
           isCorrect: false,
           label:
-            "The passage presents narrative conflict as proof that no follow-up is needed.",
+            "Asha read the alert aloud once, then removed every word that did not change the next action; the object keeps one fixed meaning even as the character's action and the final response change.",
         },
       ],
     },

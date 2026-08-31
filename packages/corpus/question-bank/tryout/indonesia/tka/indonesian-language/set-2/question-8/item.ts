@@ -11,20 +11,22 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "membantu mendata rekaman sebelum proses digitalisasi",
+          isCorrect: false,
+          label:
+            "mengganti label tanggal dengan urutan digital agar arsip lebih mudah dipindahkan",
         },
         {
           isCorrect: false,
-          label: "menghapus label tanggal pada semua kaset",
-        },
-        {
-          isCorrect: false,
-          label: "menolak bantuan guru sejarah",
+          label:
+            "mempertahankan kaset di ruang siaran agar konteks aslinya tidak hilang",
         },
         {
           isCorrect: false,
           label: "memutar paksa kaset yang rapuh",
+        },
+        {
+          isCorrect: true,
+          label: "membantu mendata rekaman sebelum proses digitalisasi",
         },
         {
           isCorrect: false,

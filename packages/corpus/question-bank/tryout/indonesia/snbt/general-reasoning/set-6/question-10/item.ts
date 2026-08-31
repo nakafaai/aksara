@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "nit",
+        },
+        {
           isCorrect: false,
           label: "it",
         },
@@ -18,10 +22,6 @@ const item: QuestionItem = {
           label: "sit",
         },
         {
-          isCorrect: true,
-          label: "nit",
-        },
-        {
           isCorrect: false,
           label: "nichts davon",
         },
@@ -30,10 +30,10 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        { isCorrect: true, label: "nit" },
         { isCorrect: false, label: "it" },
         { isCorrect: false, label: "pit" },
         { isCorrect: false, label: "sit" },
-        { isCorrect: true, label: "nit" },
         {
           isCorrect: false,
           label: "none of the above",
@@ -43,10 +43,10 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        { isCorrect: true, label: "nit" },
         { isCorrect: false, label: "it" },
         { isCorrect: false, label: "pit" },
         { isCorrect: false, label: "sit" },
-        { isCorrect: true, label: "nit" },
         {
           isCorrect: false,
           label: "tidak ada satupun",

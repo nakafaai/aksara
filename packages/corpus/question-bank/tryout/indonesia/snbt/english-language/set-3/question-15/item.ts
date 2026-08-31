@@ -7,15 +7,15 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Absolute certainty about the school media room",
+          label: "Waiting for someone else to complete the next step",
         },
         {
           isCorrect: false,
-          label: "Why all evidence in the school media room should be ignored",
+          label: "Hiding unresolved evidence in a larger project",
         },
         {
           isCorrect: false,
-          label: "The complete world history of self-efficacy",
+          label: "self-efficacy as a definition without a reviewable action",
         },
         {
           isCorrect: true,
@@ -23,7 +23,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "One rule for every the school media room",
+          label: "A complete plan without a small accountable step",
         },
       ],
     },

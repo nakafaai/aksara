@@ -16,14 +16,14 @@ const item: QuestionItem = {
             "sich ausschließlich auf die Wasserqualität dicht besiedelter Küstengebiete konzentrieren.",
         },
         {
-          isCorrect: false,
-          label:
-            "Fanggeräte und Subventionen ausweiten, damit die Fangmenge kurzfristig steigt.",
-        },
-        {
           isCorrect: true,
           label:
             "menschliche Fähigkeiten, wissenschaftlich begründetes Management, Lebensraumschutz und passende Aquakulturtechnik gemeinsam stärken.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Fanggeräte und Subventionen ausweiten, damit die Fangmenge kurzfristig steigt.",
         },
         {
           isCorrect: false,
@@ -46,14 +46,14 @@ const item: QuestionItem = {
             "focus only on water quality in densely populated coastal areas.",
         },
         {
-          isCorrect: false,
-          label:
-            "add fishing gear and subsidies so that short-term catch volume rises.",
-        },
-        {
           isCorrect: true,
           label:
             "strengthen human capacity, science-based management, habitat protection, and suitable aquaculture technology.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "add fishing gear and subsidies so that short-term catch volume rises.",
         },
         {
           isCorrect: false,
@@ -76,14 +76,14 @@ const item: QuestionItem = {
             "hanya memperbaiki kualitas air di kawasan pesisir yang padat penduduk.",
         },
         {
-          isCorrect: false,
-          label:
-            "menambah alat tangkap dan subsidi agar volume tangkapan jangka pendek meningkat.",
-        },
-        {
           isCorrect: true,
           label:
             "memperkuat kapasitas manusia, pengelolaan berbasis sains, perlindungan habitat, dan teknologi akuakultur yang sesuai.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "menambah alat tangkap dan subsidi agar volume tangkapan jangka pendek meningkat.",
         },
         {
           isCorrect: false,

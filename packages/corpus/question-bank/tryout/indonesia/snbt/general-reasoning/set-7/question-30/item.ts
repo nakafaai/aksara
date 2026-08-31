@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uhr : Länge",
+          label: "$$\\frac13$$",
         },
         {
           isCorrect: false,
-          label: "Kompass : Geschwindigkeit",
-        },
-        {
-          isCorrect: false,
-          label: "Lupe : Zeit",
+          label: "$$\\frac25$$",
         },
         {
           isCorrect: true,
-          label: "Messbecher : Volumen",
+          label: "$$\\frac12$$",
         },
         {
           isCorrect: false,
-          label: "Lineal : Temperatur",
+          label: "$$\\frac35$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac23$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "clock : length",
+          label: "$$\\frac13$$",
         },
         {
           isCorrect: false,
-          label: "compass : speed",
-        },
-        {
-          isCorrect: false,
-          label: "magnifier : time",
+          label: "$$\\frac25$$",
         },
         {
           isCorrect: true,
-          label: "measuring cup : volume",
+          label: "$$\\frac12$$",
         },
         {
           isCorrect: false,
-          label: "ruler : temperature",
+          label: "$$\\frac35$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac23$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "jam : panjang",
+          label: "$$\\frac13$$",
         },
         {
           isCorrect: false,
-          label: "kompas : kecepatan",
-        },
-        {
-          isCorrect: false,
-          label: "kaca pembesar : waktu",
+          label: "$$\\frac25$$",
         },
         {
           isCorrect: true,
-          label: "gelas ukur : volume",
+          label: "$$\\frac12$$",
         },
         {
           isCorrect: false,
-          label: "penggaris : suhu",
+          label: "$$\\frac35$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac23$$",
         },
       ],
     },

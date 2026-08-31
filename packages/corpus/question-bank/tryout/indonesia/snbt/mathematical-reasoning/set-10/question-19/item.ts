@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$132$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$108$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$114$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$126$$",
-        },
-        {
           isCorrect: true,
-          label: "$$120$$",
+          label: "$$4\\sqrt{22}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4\\sqrt{13}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4\\sqrt{18}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$8\\sqrt6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$8\\sqrt{11}$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$132$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$108$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$114$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$126$$",
-        },
-        {
           isCorrect: true,
-          label: "$$120$$",
+          label: "$$4\\sqrt{22}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4\\sqrt{13}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4\\sqrt{18}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$8\\sqrt6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$8\\sqrt{11}$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$132$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$108$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$114$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$126$$",
-        },
-        {
           isCorrect: true,
-          label: "$$120$$",
+          label: "$$4\\sqrt{22}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4\\sqrt{13}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$4\\sqrt{18}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$8\\sqrt6$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$8\\sqrt{11}$$",
         },
       ],
     },

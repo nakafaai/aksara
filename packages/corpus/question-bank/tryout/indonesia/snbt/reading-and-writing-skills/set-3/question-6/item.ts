@@ -7,17 +7,13 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Karte der Evakuierungswege",
+          label:
+            "Im Kontext Evakuierungsplan verursachte die Änderung kontrastreichere Sammelplatzsymbole den höheren Testwert.",
         },
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: kontrastreichere Symbole für Sammelpunkte.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: kontrastreichere Symbole für Sammelpunkte.",
+            "Im Kontext Evakuierungsplan verbesserten sich sämtliche Teilnehmenden um denselben Wert.",
         },
         {
           isCorrect: true,
@@ -27,7 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: kontrastreichere Symbole für Sammelpunkte.",
+            "Im Kontext Evakuierungsplan waren die beiden Vergleichswerte identisch.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Im Kontext Evakuierungsplan belegte der kurze Test das langfristige Ergebnis.",
         },
       ],
     },
@@ -36,17 +37,13 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: evacuation route map",
+          label:
+            "In this setting (evacuation route map), higher-contrast assembly-point symbols caused the higher trial value.",
         },
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of higher-contrast assembly-point symbols.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, higher-contrast assembly-point symbols, directly addressed the observed uncertainty.",
+            "In this setting (evacuation route map), each participant improved by the same amount.",
         },
         {
           isCorrect: true,
@@ -56,7 +53,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The next test of higher-contrast assembly-point symbols will run for longer.",
+            "In this setting (evacuation route map), the two comparison values were identical.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "In this setting (evacuation route map), the short trial established the long-term result.",
         },
       ],
     },
@@ -65,17 +67,13 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: peta jalur evakuasi",
+          label:
+            "Dalam konteks peta jalur evakuasi, simbol titik kumpul dengan kontras lebih tinggi menyebabkan nilai uji menjadi lebih tinggi.",
         },
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui simbol titik kumpul yang lebih kontras.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa simbol titik kumpul yang lebih kontras langsung menanggapi keraguan yang diamati.",
+            "Dalam konteks peta jalur evakuasi, setiap peserta mengalami peningkatan yang sama.",
         },
         {
           isCorrect: true,
@@ -85,7 +83,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Uji simbol titik kumpul yang lebih kontras berikutnya akan berlangsung lebih lama.",
+            "Dalam konteks peta jalur evakuasi, kedua nilai pembanding sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Dalam konteks peta jalur evakuasi, uji singkat menetapkan hasil jangka panjang.",
         },
       ],
     },

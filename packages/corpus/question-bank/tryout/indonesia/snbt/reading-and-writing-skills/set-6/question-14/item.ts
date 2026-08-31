@@ -16,14 +16,14 @@ const item: QuestionItem = {
             "Die Daten wurden an den Kontext Lärmprotokoll im Wohngebiet erhoben und danach verglichen.",
         },
         {
-          isCorrect: true,
-          label:
-            "Die Daten wurden in diesem Kontext erhoben: Lärmprotokoll im Wohngebiet. Anschließend wurden sie verglichen.",
-        },
-        {
           isCorrect: false,
           label:
             "Die Daten wurden in diesem Kontext erhoben Lärmprotokoll im Wohngebiet anschließend sie verglichen wurden.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Die Daten wurden in diesem Kontext erhoben: Lärmprotokoll im Wohngebiet. Anschließend wurden sie verglichen.",
         },
         {
           isCorrect: false,
@@ -46,14 +46,14 @@ const item: QuestionItem = {
             "Data was collect in this setting (neighbourhood noise log) and comparing afterward.",
         },
         {
-          isCorrect: true,
-          label:
-            "Data were collected in this setting (neighbourhood noise log) and compared afterward.",
-        },
-        {
           isCorrect: false,
           label:
             "Data were collected on this setting (neighbourhood noise log) and afterward compared it.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Data were collected in this setting (neighbourhood noise log) and compared afterward.",
         },
         {
           isCorrect: false,
@@ -76,14 +76,14 @@ const item: QuestionItem = {
             "Data diukur didepan pencatatan kebisingan lingkungan dan kemudian dibandingkan.",
         },
         {
-          isCorrect: true,
-          label:
-            "Data diukur di pencatatan kebisingan lingkungan dan kemudian dibandingkan.",
-        },
-        {
           isCorrect: false,
           label:
             "Data mengukur di pencatatan kebisingan lingkungan dan kemudian membandingkan.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Data diukur di pencatatan kebisingan lingkungan dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,

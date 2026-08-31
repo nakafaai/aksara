@@ -6,25 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Benda berulang yang tetap menjadi bagian latar",
+        },
+        {
           isCorrect: true,
           label: "Serpihan cat biru di bangunan tua yang sedang dipugar",
         },
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang bangunan tua yang sedang dipugar",
+          label: "Konflik yang selesai sebelum pilihan akhir tokoh",
         },
         {
           isCorrect: false,
-          label:
-            "Alasan Mengabaikan Semua Bukti dalam bangunan tua yang sedang dipugar",
+          label: "foreshadowing sebagai istilah tanpa peran dalam cerita",
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap foreshadowing di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap bangunan tua yang sedang dipugar",
+          label: "Akhir yang menghapus ketegangan makna benda",
         },
       ],
     },

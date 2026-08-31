@@ -8,26 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team prüfte eine Anzeige freier Plätze an der Tür (ruhige Lernzone) und bewertete die Befunde vorsichtig.",
+            "Zufällige Feldprüfungen zeigen, dass die nach Besuchsintensität bereinigte Karte die Setzlingsdichte gut vorhersagt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Kennzeichnungen für Freiwillige erhöhen die Zahl der Meldungen entlang beliebter Wege, ohne die selten besuchten Flächen zusätzlich abzudecken.",
         },
         {
           isCorrect: true,
           label:
-            "Vorsichtige Prüfung im Kontext ruhige Lernzone: eine Anzeige freier Plätze an der Tür",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 34, lag über 24 und 26.",
+            "Zufallsprüfungen zeigen, dass Besuchsmöglichkeiten und Klassifikationsgenauigkeit von Anfang an überall identisch waren.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Die öffentliche Karte wird Meldungen, Beobachtungsintensität und Validierung trennen.",
         },
         {
           isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+          label: "Bei Flutaufnahmen blieb die Übereinstimmung geringer.",
         },
       ],
     },
@@ -37,26 +37,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested a seat-availability board at the door in the quiet study zone and interpreted the evidence cautiously.",
+            "Random field surveys find that the visit-adjusted map predicts seedling density well.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Volunteer badges increase the number of reports along popular paths without adding coverage in rarely visited areas.",
         },
         {
           isCorrect: true,
           label:
-            "A cautious trial of a seat-availability board at the door: quiet study zone",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 34, exceeded both 24 and 26.",
+            "Random surveys show that visit opportunity and classification accuracy were identical at every site from the beginning.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "The public map will separate reports, observation intensity, and validation.",
         },
         {
           isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+          label: "Agreement remained lower for high-tide photographs.",
         },
       ],
     },
@@ -66,26 +66,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji papan ketersediaan kursi di pintu pada zona belajar tenang dan menafsirkan buktinya secara hati-hati.",
+            "Survei lapangan acak menemukan bahwa peta yang telah disesuaikan dengan intensitas kunjungan memprediksi kepadatan bibit dengan baik.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tanda pengenal relawan meningkatkan jumlah laporan di jalur populer tanpa menambah cakupan pada area yang jarang dikunjungi.",
         },
         {
           isCorrect: true,
           label:
-            "Uji Hati-hati dalam zona belajar tenang: papan ketersediaan kursi di pintu",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 34, melampaui 24 dan 26.",
+            "Survei acak menunjukkan peluang kunjungan dan ketepatan klasifikasi sama di semua lokasi sejak pencatatan dimulai.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Peta publik akan memisahkan laporan, intensitas pengamatan, dan validasi.",
         },
         {
           isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+          label: "Kesepakatan pada foto saat air pasang tetap lebih rendah.",
         },
       ],
     },

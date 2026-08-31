@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$4/5$$",
+          label: "$$10(\\sqrt3+1)$$",
         },
         {
           isCorrect: false,
-          label: "$$5/3$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4/3$$",
+          label: "$$10(\\sqrt6-\\sqrt2)$$",
         },
         {
           isCorrect: true,
-          label: "$$3/4$$",
+          label: "$$10(\\sqrt6+\\sqrt2)$$",
         },
         {
           isCorrect: false,
-          label: "$$3/5$$",
+          label: "$$20\\sqrt2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$20\\sqrt3$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$4/5$$",
+          label: "$$10(\\sqrt3+1)$$",
         },
         {
           isCorrect: false,
-          label: "$$5/3$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4/3$$",
+          label: "$$10(\\sqrt6-\\sqrt2)$$",
         },
         {
           isCorrect: true,
-          label: "$$3/4$$",
+          label: "$$10(\\sqrt6+\\sqrt2)$$",
         },
         {
           isCorrect: false,
-          label: "$$3/5$$",
+          label: "$$20\\sqrt2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$20\\sqrt3$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$4/5$$",
+          label: "$$10(\\sqrt3+1)$$",
         },
         {
           isCorrect: false,
-          label: "$$5/3$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4/3$$",
+          label: "$$10(\\sqrt6-\\sqrt2)$$",
         },
         {
           isCorrect: true,
-          label: "$$3/4$$",
+          label: "$$10(\\sqrt6+\\sqrt2)$$",
         },
         {
           isCorrect: false,
-          label: "$$3/5$$",
+          label: "$$20\\sqrt2$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$20\\sqrt3$$",
         },
       ],
     },

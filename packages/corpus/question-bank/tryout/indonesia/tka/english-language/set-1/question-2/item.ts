@@ -12,23 +12,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Near the stairs",
-        },
-        {
-          isCorrect: false,
-          label: "In the western corner",
+          label:
+            "The western corner uses mesh to cool seedlings kept inside dark containers.",
         },
         {
           isCorrect: true,
-          label: "On the eastern side",
+          label:
+            "The eastern side uses shade cloth to protect seedlings during the brightest hours.",
         },
         {
           isCorrect: false,
-          label: "Beside the street",
+          label:
+            "The stair area uses heavy planters to shade the herbs from afternoon light.",
         },
         {
           isCorrect: false,
-          label: "Under the work table",
+          label:
+            "The work area uses the sealed notebook to reduce heat around seedlings.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The western corner moves flowering plants beneath bamboo frames whenever sunlight is strongest.",
         },
       ],
     },

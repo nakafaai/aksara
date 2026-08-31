@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$260$$",
+          label: "$$16{,}5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$20$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$25$$",
         },
         {
           isCorrect: true,
-          label: "$$256$$",
+          label: "$$22$$",
         },
         {
           isCorrect: false,
-          label: "$$264$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$248$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$252$$",
+          label: "$$27{,}5$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$260$$",
+          label: "$$16{,}5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$20$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$25$$",
         },
         {
           isCorrect: true,
-          label: "$$256$$",
+          label: "$$22$$",
         },
         {
           isCorrect: false,
-          label: "$$264$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$248$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$252$$",
+          label: "$$27{,}5$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$260$$",
+          label: "$$16{,}5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$20$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$25$$",
         },
         {
           isCorrect: true,
-          label: "$$256$$",
+          label: "$$22$$",
         },
         {
           isCorrect: false,
-          label: "$$264$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$248$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$252$$",
+          label: "$$27{,}5$$",
         },
       ],
     },

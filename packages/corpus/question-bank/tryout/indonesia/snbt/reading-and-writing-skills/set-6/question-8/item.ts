@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Ausstellung von Schülerarbeiten auf den kurzen Versuch.",
-        },
-        {
           isCorrect: false,
           label:
             "Dennoch, begrenzte das Team seine Schlussfolgerung zum Kontext Ausstellung von Schülerarbeiten auf den kurzen Versuch.",
@@ -30,16 +25,16 @@ const item: QuestionItem = {
           label:
             "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Ausstellung von Schülerarbeiten auf den kurzen Versuch?",
         },
+        {
+          isCorrect: true,
+          label:
+            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Ausstellung von Schülerarbeiten auf den kurzen Versuch.",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "Nevertheless, the team limited its conclusion for this setting (student work exhibition) to the short trial.",
-        },
         {
           isCorrect: false,
           label:
@@ -60,16 +55,16 @@ const item: QuestionItem = {
           label:
             "Nevertheless, the team limited its conclusion for this setting (student work exhibition) to the short trial?",
         },
+        {
+          isCorrect: true,
+          label:
+            "Nevertheless, the team limited its conclusion for this setting (student work exhibition) to the short trial.",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "Meskipun demikian, tim membatasi simpulan tentang pameran karya siswa pada uji singkat tersebut.",
-        },
         {
           isCorrect: false,
           label:
@@ -89,6 +84,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Meskipun demikian, tim membatasi simpulan tentang pameran karya siswa pada uji singkat tersebut?",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Meskipun demikian, tim membatasi simpulan tentang pameran karya siswa pada uji singkat tersebut.",
         },
       ],
     },

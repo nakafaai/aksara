@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vorsichtige Prüfung im Kontext Sortierung von Küstenabfällen: Beispielgegenstände an jedem Behälter",
+            "Produktangaben müssen Lieferstufen unterscheiden, damit sie für Käufer knapp und bei Prüfungen rückverfolgbar bleiben.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team prüfte Beispielgegenstände an jedem Behälter (Sortierung von Küstenabfällen) und bewertete die Befunde vorsichtig.",
+            "In der Simulation begrenzten geschichtete Aufzeichnungen den Rückruf besser als ein einzelner Ortsname.",
         },
         {
           isCorrect: false,
-          label: "Der Wert mit Änderung, 29, lag über 20 und 22.",
+          label:
+            "Die Marktleitung schlägt ein Herkunftslabel nach dem letzten Verpackungsort vor.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Ein Verpackungscode wird zu einem vollständigen Lieferkettendatensatz führen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Jede Produktionsstufe muss vollständig auf die Vorderseite jeder Packung gedruckt werden.",
         },
       ],
     },
@@ -37,26 +38,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A cautious trial of sample objects displayed on each container: coastal litter sorting",
+            "Product-origin information must distinguish supply-chain stages so it remains concise for buyers and traceable during inspection.",
         },
         {
           isCorrect: true,
           label:
-            "The team tested sample objects displayed on each container in the coastal litter sorting and interpreted the evidence cautiously.",
+            "In the simulation, layered records narrowed the products requiring withdrawal compared with a single-location label.",
         },
         {
           isCorrect: false,
-          label: "The intervention value, 29, exceeded both 20 and 22.",
+          label:
+            "Market managers propose one origin label based on the place where the product was last packed.",
+        },
+        {
+          isCorrect: false,
+          label: "A package code will link to a fuller supply-chain record.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Every production stage must be printed in full on the front of every package.",
         },
       ],
     },
@@ -66,26 +67,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji Hati-hati dalam setiap wadah pada pemilahan sampah pesisir: contoh benda",
+            "Informasi asal produk perlu memisahkan tahap rantai pasok agar ringkas bagi pembeli sekaligus dapat ditelusuri saat pemeriksaan.",
         },
         {
           isCorrect: true,
           label:
-            "Tim menguji contoh benda pada setiap wadah pada pemilahan sampah pesisir dan menafsirkan buktinya secara hati-hati.",
+            "Dalam simulasi, catatan berlapis mempersempit produk yang harus ditarik dibanding label satu lokasi.",
         },
         {
           isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 29, melampaui 20 dan 22.",
+          label:
+            "Pengelola pasar mengusulkan satu label asal berdasarkan tempat produk terakhir dikemas.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Kode kemasan akan mengarah ke catatan rantai pasok yang lebih lengkap.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Semua tahap produksi harus dicetak lengkap di bagian depan setiap kemasan.",
         },
       ],
     },

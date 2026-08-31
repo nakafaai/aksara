@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "die Folgestudie des Teams im untersuchten Kontext (Kompostierworkshop)",
+        },
+        {
           isCorrect: false,
           label:
             "die Folge Studie des Teams im untersuchten Kontext (Kompostierworkshop)",
@@ -21,11 +26,6 @@ const item: QuestionItem = {
             "die Folgestudie des Team im untersuchten Kontext (Kompostierworkshop)",
         },
         {
-          isCorrect: true,
-          label:
-            "die Folgestudie des Teams im untersuchten Kontext (Kompostierworkshop)",
-        },
-        {
           isCorrect: false,
           label:
             "die Folge  Studie des Teams im untersuchten Kontext (Kompostierworkshop)",
@@ -35,6 +35,11 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "the team's follow-up study of cards showing the order of brown and green materials in this setting (composting workshop)",
+        },
         {
           isCorrect: false,
           label:
@@ -51,11 +56,6 @@ const item: QuestionItem = {
             "the teams' follow--up study of cards showing the order of brown and green materials in this setting (composting workshop)",
         },
         {
-          isCorrect: true,
-          label:
-            "the team's follow-up study of cards showing the order of brown and green materials in this setting (composting workshop)",
-        },
-        {
           isCorrect: false,
           label:
             "the team follow-up-study of cards showing the order of brown and green materials in this setting (composting workshop)",
@@ -65,6 +65,11 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "kerja sama tim dalam uji kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos",
+        },
         {
           isCorrect: false,
           label:
@@ -79,11 +84,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "kerja  sama tim dalam uji kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos",
-        },
-        {
-          isCorrect: true,
-          label:
-            "kerja sama tim dalam uji kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos",
         },
         {
           isCorrect: false,

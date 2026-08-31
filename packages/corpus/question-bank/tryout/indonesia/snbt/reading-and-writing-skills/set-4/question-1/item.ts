@@ -8,17 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Fotoetiketten an den Rückgaberegalen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Ausleihe von Sportgeräten über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Fotoetiketten an den Rückgaberegalen.",
+            "Erste Belege zu Fotobeschriftungen an den Rückgaberegalen im Kontext „Sportgeräteausleihe“",
         },
         {
           isCorrect: true,
@@ -27,7 +17,16 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Fotoetiketten an den Rückgaberegalen.",
+            "Prüfung mehrerer gleichzeitiger Änderungen im Kontext „Sportgeräteausleihe“",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Rückmeldungen zur dauerhaften Neugestaltung des Kontexts „Sportgeräteausleihe“",
+        },
+        {
+          isCorrect: false,
+          label: "Vollständige Bewertung des Kontexts „Sportgeräteausleihe“",
         },
       ],
     },
@@ -37,17 +36,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of photo labels on the return shelves.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (sports equipment lending), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, photo labels on the return shelves, directly addressed the observed uncertainty.",
+            "Early evidence about photo labels on the return shelves in the context of sports equipment lending",
         },
         {
           isCorrect: true,
@@ -56,7 +45,16 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The next test of photo labels on the return shelves will run for longer.",
+            "Testing several simultaneous changes in the context of sports equipment lending",
+        },
+        {
+          isCorrect: false,
+          label:
+            "User reactions to a permanent redesign of sports equipment lending",
+        },
+        {
+          isCorrect: false,
+          label: "A complete evaluation of sports equipment lending",
         },
       ],
     },
@@ -66,17 +64,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui label foto.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Di peminjaman alat olahraga, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa label foto langsung menanggapi keraguan yang diamati.",
+            "Bukti awal tentang label foto pada rak pengembalian dalam konteks peminjaman alat olahraga",
         },
         {
           isCorrect: true,
@@ -84,7 +72,17 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Uji label foto berikutnya akan berlangsung lebih lama.",
+          label:
+            "Pengujian beberapa perubahan serentak dalam konteks peminjaman alat olahraga",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tanggapan pengguna terhadap perancangan ulang tetap pada peminjaman alat olahraga",
+        },
+        {
+          isCorrect: false,
+          label: "Evaluasi menyeluruh terhadap peminjaman alat olahraga",
         },
       ],
     },

@@ -7,26 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "abgeschlossene Ausleihen und kurze Aussagen von Nutzenden",
-        },
-        {
-          isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            'Der erste Teil vertritt die Behauptung "Das Museum wird die Überarbeitungsgeschichte des Ausstellungsschildes anzeigen"; der folgende nutzt "Schriftliche Unterlagen sind immer richtig, während jede mündliche Aussage verworfen werden muss" als Hauptbeleg.',
         },
         {
           isCorrect: true,
-          label: "Der Wert mit Änderung, 27, lag über 20 und 22.",
+          label:
+            "Der anfängliche Widerspruch führt zur Quellenprüfung, deren Ergebnis die transparente Beschriftung bestimmt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            'Der erste Teil legt "Das Museum sollte die spannendste Geschichte wählen und störende Angaben entfernen" als endgültigen Schluss fest; der folgende nennt nur den Plan "Das Museum wird Korrekturen mit einer überprüfbaren Quellenangabe annehmen".',
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext mobiler Bibliotheksdienst: eine Erinnerung einen Tag vor jedem Besuch",
+            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Schriftliche Unterlagen sind immer richtig, während jede mündliche Aussage verworfen werden muss" fest.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Der folgende Teil kehrt die Argumentation um und leitet "Das Museum sollte die spannendste Geschichte wählen und störende Angaben entfernen" aus dem Beleg "Das Museum wird die Überarbeitungsgeschichte des Ausstellungsschildes anzeigen" ab.',
         },
       ],
     },
@@ -35,26 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "completed loans and short comments from users",
-        },
-        {
-          isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            'The first part advances the claim "The museum will display the exhibition label\'s revision history", and the later part uses "Written records are always correct, whereas all oral testimony must be rejected" as its main support.',
         },
         {
           isCorrect: true,
-          label: "The intervention value, 27, exceeded both 20 and 22.",
+          label:
+            "The initial conflict prompts source checking, and the result of that checking shapes the museum's transparent label.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            'The first part establishes "The museum should choose the most engaging story and remove details that disrupt the narrative" as a final conclusion; the later part only states the plan "The museum will accept corrections that include a verifiable source trail".',
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of a reminder sent one day before each visit: mobile library service",
+            'Both parts maintain the claim "Written records are always correct, whereas all oral testimony must be rejected" from the same perspective without adding a test.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'The later part reverses the argument by deriving "The museum should choose the most engaging story and remove details that disrupt the narrative" from the evidence "The museum will display the exhibition label\'s revision history".',
         },
       ],
     },
@@ -63,26 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "peminjaman yang selesai dan komentar singkat pengguna",
-        },
-        {
-          isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            'Bagian awal mengajukan klaim "Museum akan menampilkan riwayat revisi label pameran", lalu bagian kedua memakai "Catatan tertulis selalu benar, sedangkan semua kesaksian lisan harus ditolak" sebagai dukungan utama.',
         },
         {
           isCorrect: true,
-          label: "Nilai pada hari dengan perubahan, 27, melampaui 20 dan 22.",
+          label:
+            "Perbedaan awal mendorong pemeriksaan sumber, lalu hasil pemeriksaan menentukan cara museum menulis label secara transparan.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            'Bagian pertama menetapkan "Museum sebaiknya memilih kisah paling menarik dan menghapus keterangan yang mengganggu kelancaran cerita" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Museum akan menerima koreksi yang dilengkapi asal sumber yang dapat diperiksa".',
         },
         {
           isCorrect: false,
           label:
-            "Uji Hati-hati dalam layanan perpustakaan keliling: pesan pengingat sehari sebelum kunjungan",
+            'Kedua bagian mempertahankan klaim "Catatan tertulis selalu benar, sedangkan semua kesaksian lisan harus ditolak" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Museum sebaiknya memilih kisah paling menarik dan menghapus keterangan yang mengganggu kelancaran cerita" dari bukti "Museum akan menampilkan riwayat revisi label pameran".',
         },
       ],
     },

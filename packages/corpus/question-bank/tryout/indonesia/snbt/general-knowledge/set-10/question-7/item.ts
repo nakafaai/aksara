@@ -6,29 +6,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
           isCorrect: true,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "die Fähigkeit, Herkunft, Weg und Behandlung einer Sache anhand von Aufzeichnungen zu verfolgen",
         },
         {
           isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+          label: "einen Ortsnamen auf die Vorderseite einer Packung drucken",
         },
         {
           isCorrect: false,
-          label:
-            "Das Team prüfte Beispielgegenstände an jedem Behälter (Sortierung von Küstenabfällen) und bewertete die Befunde vorsichtig.",
+          label: "den Verkaufspreis aus allen Produktionskosten berechnen",
+        },
+        {
+          isCorrect: false,
+          label: "die Qualität jedes Produkts in der Lieferkette garantieren",
+        },
+        {
+          isCorrect: false,
+          label: "Produkte alphabetisch nach Namen sortieren",
         },
       ],
     },
@@ -36,29 +32,26 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
           isCorrect: true,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "the ability to follow the origin, movement, and handling of something through records",
+        },
+        {
+          isCorrect: false,
+          label: "printing one place name on the front of a package",
+        },
+        {
+          isCorrect: false,
+          label: "calculating a selling price from all production costs",
         },
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "guaranteeing that every product in a supply chain is high quality",
         },
         {
           isCorrect: false,
-          label:
-            "The team tested sample objects displayed on each container in the coastal litter sorting and interpreted the evidence cautiously.",
+          label: "sorting products alphabetically by name",
         },
       ],
     },
@@ -66,29 +59,26 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
           isCorrect: true,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "kemampuan mengikuti asal, perpindahan, dan penanganan sesuatu melalui catatan",
+        },
+        {
+          isCorrect: false,
+          label: "pencetakan satu nama tempat pada bagian depan kemasan",
+        },
+        {
+          isCorrect: false,
+          label: "perhitungan harga jual dari seluruh biaya produksi",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "jaminan bahwa setiap produk di rantai pasok selalu bermutu baik",
         },
         {
           isCorrect: false,
-          label:
-            "Tim menguji contoh benda pada setiap wadah pada pemilahan sampah pesisir dan menafsirkan buktinya secara hati-hati.",
+          label: "pengurutan produk menurut nama secara alfabetis",
         },
       ],
     },

@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam kelas reparasi pakaian.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Semua tokoh atau pihak dalam kelas reparasi pakaian memperoleh hasil yang sama tanpa perbedaan.",
-        },
-        {
           isCorrect: true,
           label:
-            "Ayu memilih untuk memperbaiki jahitan dengan benang yang warnanya sengaja berbeda.",
+            "Benang berbeda warna membuat reparasi pada pakaian berulang menjadi bukti perawatan yang terlihat, bukan cacat yang disembunyikan.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan kelas reparasi pakaian.",
+            "Ayu memilih untuk memperbaiki jahitan dengan benang yang warnanya sengaja berbeda; bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyebut konflik sebagai bukti bahwa uji tidak perlu diulang.",
+            "Ayu memilih untuk memperbaiki jahitan dengan benang yang warnanya sengaja berbeda; akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Ayu memilih untuk memperbaiki jahitan dengan benang yang warnanya sengaja berbeda; perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Ayu memilih untuk memperbaiki jahitan dengan benang yang warnanya sengaja berbeda; benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
         },
       ],
     },

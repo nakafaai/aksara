@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam peta kartu daur karbon pasti berlaku tanpa batas pada tempat lain.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang peta kartu daur karbon tidak berguna.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Satu rincian tentang reservoir cukup untuk membuktikan semua hubungan sebab-akibat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Mengulang peta kartu daur karbon dengan lebih banyak unit, tetapi tetap memakai penyederhanaan yang sama tanpa pengamatan lapangan.",
         },
         {
           isCorrect: true,
           label:
-            "Model berguna untuk menjelaskan prinsip, tetapi temuannya tetap perlu dihubungkan dengan keadaan nyata.",
+            "mengukur laju perpindahan dan lama penyimpanan karbon pada beberapa bagian ekosistem.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Mengubah seluruh faktor lapangan sekaligus, lalu membandingkan satu hasil akhir tanpa kondisi acuan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Mengambil satu kejadian nyata yang sesuai dengan model sebagai konfirmasi bahwa pola selalu berlaku.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Mengganti pengukuran dengan survei tentang apakah peserta memahami definisi istilah pada model.",
         },
       ],
     },

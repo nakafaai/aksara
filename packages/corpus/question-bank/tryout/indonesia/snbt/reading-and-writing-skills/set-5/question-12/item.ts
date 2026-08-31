@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Am Montag prüfte das Team eine Checkliste vor der Aufnahme im folgenden Kontext: Aufnahmestudio der Schule.",
+        },
+        {
           isCorrect: false,
           label:
             "am Montag prüfte das Team eine Checkliste vor der Aufnahme im Kontext Aufnahmestudio der Schule.",
@@ -25,16 +30,16 @@ const item: QuestionItem = {
           label:
             "Am Montag, prüfte das Team eine Checkliste vor der Aufnahme im Kontext Aufnahmestudio der Schule",
         },
-        {
-          isCorrect: true,
-          label:
-            "Am Montag prüfte das Team eine Checkliste vor der Aufnahme im folgenden Kontext: Aufnahmestudio der Schule.",
-        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "On Monday, the team tested a checklist used before recording in this setting (school recording studio).",
+        },
         {
           isCorrect: false,
           label:
@@ -55,16 +60,16 @@ const item: QuestionItem = {
           label:
             "On Monday the team tested a checklist used before recording in this setting (school recording studio)",
         },
-        {
-          isCorrect: true,
-          label:
-            "On Monday, the team tested a checklist used before recording in this setting (school recording studio).",
-        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Pada Senin, tim menguji daftar pemeriksaan sebelum merekam di studio rekaman sekolah.",
+        },
         {
           isCorrect: false,
           label:
@@ -84,11 +89,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Pada Senin tim menguji daftar pemeriksaan sebelum merekam di studio rekaman sekolah",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Pada Senin, tim menguji daftar pemeriksaan sebelum merekam di studio rekaman sekolah.",
         },
       ],
     },

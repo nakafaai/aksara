@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$9$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$10$$",
+        },
+        {
           isCorrect: true,
-          label: "X, W, Z, Y",
+          label: "$$11$$",
         },
         {
           isCorrect: false,
-          label: "W, X, Y, Z",
+          label: "$$12$$",
         },
         {
           isCorrect: false,
-          label: "X, Y, W, Z",
-        },
-        {
-          isCorrect: false,
-          label: "Y, X, Z, W",
-        },
-        {
-          isCorrect: false,
-          label: "Z, X, W, Y",
+          label: "$$14$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$9$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$10$$",
+        },
+        {
           isCorrect: true,
-          label: "X, W, Z, Y",
+          label: "$$11$$",
         },
         {
           isCorrect: false,
-          label: "W, X, Y, Z",
+          label: "$$12$$",
         },
         {
           isCorrect: false,
-          label: "X, Y, W, Z",
-        },
-        {
-          isCorrect: false,
-          label: "Y, X, Z, W",
-        },
-        {
-          isCorrect: false,
-          label: "Z, X, W, Y",
+          label: "$$14$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$9$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$10$$",
+        },
+        {
           isCorrect: true,
-          label: "X, W, Z, Y",
+          label: "$$11$$",
         },
         {
           isCorrect: false,
-          label: "W, X, Y, Z",
+          label: "$$12$$",
         },
         {
           isCorrect: false,
-          label: "X, Y, W, Z",
-        },
-        {
-          isCorrect: false,
-          label: "Y, X, Z, W",
-        },
-        {
-          isCorrect: false,
-          label: "Z, X, W, Y",
+          label: "$$14$$",
         },
       ],
     },

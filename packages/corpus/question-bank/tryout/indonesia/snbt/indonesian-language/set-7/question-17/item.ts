@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam pameran sains keliling.",
+            "Kedua sumber merekam hubungan pameran dengan masyarakat; perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam pameran sains keliling memperoleh hasil yang sama tanpa perbedaan.",
+            "Karena membahas peristiwa yang sama, kedua sumber pasti mempunyai sudut pandang dan tujuan yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan pameran sains keliling.",
+            "Menggabungkan dua sumber memberi izin untuk mengisi bagian yang hilang dengan dugaan yang masuk akal.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perbedaan antarsumber hanya berkaitan dengan pilihan kata dan tidak memengaruhi simpulan.",
         },
         {
           isCorrect: true,
           label:
-            "Kedua sumber sama-sama menunjukkan bahwa keduanya merekam hubungan pameran dengan masyarakat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut representasi sebagai bukti bahwa uji tidak perlu diulang.",
+            "Poster dan buku tamu sama-sama menghubungkan pameran dengan masyarakat, tetapi pesan penyelenggara tidak sama dengan tanggapan sebagian pengunjung.",
         },
       ],
     },

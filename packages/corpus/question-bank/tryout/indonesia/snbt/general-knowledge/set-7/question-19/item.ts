@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Änderungen können vertretbar sein, wenn Herkunft und Gründe offenliegen und Quellenvielfalt nicht verborgen wird.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Jede Änderung einer Bearbeitung schadet zwangsläufig der Tradition.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Weil die Fassungen verschieden sind, muss die Gruppe weder Quellen noch Änderungen erklären.",
         },
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Das gefundene schriftliche Stück wurde in den 1970er-Jahren veröffentlicht.",
         },
         {
           isCorrect: false,
-          label: "Der Wert mit Änderung, 30, lag über 22 und 24.",
+          label:
+            "Eine verantwortliche Bearbeitung darf die Form ändern, wenn Quellen, Änderungen und Vielfalt nachvollziehbar bleiben.",
         },
       ],
     },
@@ -37,26 +38,26 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Changes can be acceptable when their origins and reasons are open and source diversity is not concealed.",
+        },
+        {
+          isCorrect: false,
+          label: "Every change in an adaptation necessarily damages tradition.",
         },
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "Because versions differ, the group need not explain any source or change.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "The written script that was found was published in the 1970s.",
         },
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 30, exceeded both 22 and 24.",
+            "A responsible adaptation may change a story's form while keeping its sources, changes, and diversity traceable.",
         },
       ],
     },
@@ -66,26 +67,25 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Perubahan dapat diterima jika asal dan alasannya terbuka serta keragaman sumber tidak disembunyikan.",
+        },
+        {
+          isCorrect: false,
+          label: "Setiap perubahan dalam adaptasi pasti merusak tradisi.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Karena versi berbeda, kelompok tidak perlu menjelaskan sumber atau perubahan apa pun.",
+        },
+        {
+          isCorrect: false,
+          label: "Naskah tertulis yang ditemukan diterbitkan pada 1970-an.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 30, melampaui 22 dan 24.",
+            "Adaptasi yang bertanggung jawab dapat mengubah bentuk cerita selama sumber, perubahan, dan keragamannya tetap dapat ditelusuri.",
         },
       ],
     },

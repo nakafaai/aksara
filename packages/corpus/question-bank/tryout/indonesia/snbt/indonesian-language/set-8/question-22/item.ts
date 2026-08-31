@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam balai warga.",
+            "Dito memilih untuk mengulang pengukuran pada jam yang sama dan menandai catatan yang meragukan; tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
         },
         {
           isCorrect: true,
           label:
-            "Dito memilih untuk mengulang pengukuran pada jam yang sama dan menandai catatan yang meragukan.",
+            "Pengukuran ulang pada jam yang sama dan penandaan data meragukan membuat Dito memisahkan pola dari ketidakpastian catatan.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam balai warga memperoleh hasil yang sama tanpa perbedaan.",
+            "Dito memilih untuk mengulang pengukuran pada jam yang sama dan menandai catatan yang meragukan; perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan balai warga.",
+            "Dito memilih untuk mengulang pengukuran pada jam yang sama dan menandai catatan yang meragukan; latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyebut integritas ilmiah sebagai bukti bahwa uji tidak perlu diulang.",
+            "Dito memilih untuk mengulang pengukuran pada jam yang sama dan menandai catatan yang meragukan; definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
         },
       ],
     },

@@ -12,23 +12,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Der Definitionsbereich von $f$ enthält $x=1$ nicht.",
+          label: "Der Mittelpunkt der Asymptoten ist $(1,2)$.",
         },
         {
           isCorrect: true,
-          label: "$f(0)=-5$.",
+          label:
+            "$f$ ist auf jedem Intervall ihres Definitionsbereichs streng fallend.",
         },
         {
           isCorrect: true,
-          label: "Der Wertebereich von $f$ enthält $y=2$ nicht.",
+          label: "Aus $x>1$ folgt $f(x)>2$.",
         },
         {
           isCorrect: true,
-          label: "Die Umkehrfunktion lautet $f^{-1}(x)=\\frac{x+5}{x-2}$.",
+          label: "Die Gleichung $f(x)=x$ hat zwei reelle Lösungen.",
         },
         {
           isCorrect: false,
-          label: "$f(1)=0$.",
+          label: "$f^{-1}=f$.",
         },
       ],
     },
@@ -37,23 +38,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "The domain of $f$ excludes $x=1$.",
+          label: "The center of the asymptotes is $(1,2)$.",
         },
         {
           isCorrect: true,
-          label: "$f(0)=-5$.",
+          label: "$f$ is strictly decreasing on each interval of its domain.",
         },
         {
           isCorrect: true,
-          label: "The range of $f$ excludes $y=2$.",
+          label: "If $x>1$, then $f(x)>2$.",
         },
         {
           isCorrect: true,
-          label: "Its inverse is $f^{-1}(x)=\\frac{x+5}{x-2}$.",
+          label: "The equation $f(x)=x$ has two real solutions.",
         },
         {
           isCorrect: false,
-          label: "$f(1)=0$.",
+          label: "$f^{-1}=f$.",
         },
       ],
     },
@@ -62,23 +63,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Domain $f$ mengecualikan $x=1$.",
+          label: "Pusat kedua asimtot adalah $(1,2)$.",
         },
         {
           isCorrect: true,
-          label: "$f(0)=-5$.",
+          label: "$f$ menurun ketat pada setiap interval domainnya.",
         },
         {
           isCorrect: true,
-          label: "Range $f$ mengecualikan $y=2$.",
+          label: "Jika $x>1$, maka $f(x)>2$.",
         },
         {
           isCorrect: true,
-          label: "Inversnya adalah $f^{-1}(x)=\\frac{x+5}{x-2}$.",
+          label: "Persamaan $f(x)=x$ memiliki dua solusi real.",
         },
         {
           isCorrect: false,
-          label: "$f(1)=0$.",
+          label: "$f^{-1}=f$.",
         },
       ],
     },

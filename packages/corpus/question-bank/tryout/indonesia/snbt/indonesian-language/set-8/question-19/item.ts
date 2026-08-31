@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Istilah *kontekstualisasi* membuktikan bahwa sumber yang lebih baru pasti lebih akurat daripada sumber lainnya.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi itu menyamakan *kontekstualisasi* dengan kesalahan sehingga perbedaan antarsumber tidak perlu dianalisis.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Penyebutan *kontekstualisasi* mengizinkan bagian sumber yang hilang diisi dengan dugaan pembaca.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi tersebut hanya menamai bentuk dokumen dan tidak memengaruhi cara asal serta tujuan sumber dibandingkan.",
+        },
+        {
           isCorrect: true,
           label:
-            "penempatan suatu bukti ke dalam keadaan sosial dan waktu yang melingkupinya",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti dugaan yang tidak perlu diperiksa pada klub pembaca pemula",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti hasil akhir yang selalu berlaku untuk semua keadaan",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti rincian yang sengaja dihapus karena bertentangan dengan pendapat",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti hiasan bahasa yang tidak berhubungan dengan konteks",
+            "Definisi *kontekstualisasi* memberi dasar untuk membandingkan posisi kedua sumber tanpa menganggap salah satunya sebagai catatan yang sepenuhnya netral.",
         },
       ],
     },

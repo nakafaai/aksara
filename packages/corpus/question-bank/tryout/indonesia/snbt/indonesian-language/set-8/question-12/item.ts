@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam pendataan sumur warga.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Semua tokoh atau pihak dalam pendataan sumur warga memperoleh hasil yang sama tanpa perbedaan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan pendataan sumur warga.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut keterbandingan sebagai bukti bahwa uji tidak perlu diulang.",
+            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
         },
         {
           isCorrect: true,
-          label: "Kondisi pembanding menghasilkan nilai rata-rata 14.",
+          label:
+            "Nilai 14 adalah kondisi pembanding untuk format satuan seragam; musim dan waktu pengukuran tetap menentukan keterbandingan kedalaman.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Kondisi pembanding menghasilkan nilai rata-rata 14; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
         },
       ],
     },

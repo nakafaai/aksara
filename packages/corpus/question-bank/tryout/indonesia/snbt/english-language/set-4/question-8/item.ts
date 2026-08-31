@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Every result in a local history display must apply without limitation elsewhere.",
+            "Because the trial reached 29, compared with a baseline of 17 and a comparison value of 18, short captions separating observation from interpretation should become permanent before the stated limitation is examined.",
         },
         {
           isCorrect: false,
           label:
-            "The limitation makes all information about a local history display useless.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "One detail about plain language proves every possible causal relationship.",
+            "The consultation with affected groups makes the baseline and comparison figures unnecessary for the decision.",
         },
         {
           isCorrect: true,
           label:
-            "A follow-up decision should combine measured results, affected people's experience, and the trial's limitation.",
+            "The rise to 29, compared with a baseline of 17 and a comparison value of 18 supports a limited extension of short captions separating observation from interpretation, while the fact that the trial did not include visitors using screen readers must shape the follow-up.",
         },
         {
           isCorrect: false,
           label:
-            "The passage recommends ignoring evidence that conflicts with an early expectation.",
+            "The limitation that the trial did not include visitors using screen readers affects delivery details, but it does not restrict who can be covered by the conclusion.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Because staffing and schedules were stable, the difference between the trial and comparison is best attributed to those unchanged conditions.",
         },
       ],
     },

@@ -8,22 +8,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap panggung baca di terminal tanpa membahas keputusan atau bukti.",
+            "Siswa membandingkan dua jenis sumber tentang panggung baca di terminal untuk menyusun penjelasan yang final dan dianggap berlaku untuk semua masa.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap panggung baca di terminal.",
+            "Siswa membandingkan dua jenis sumber tentang panggung baca di terminal untuk menyusun penjelasan yang yang menghapus perbedaan tujuan kedua sumber.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
+            "Siswa membandingkan dua jenis sumber tentang panggung baca di terminal untuk menyusun penjelasan yang dengan mengikuti sumber yang lebih baru secara otomatis.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan terutama menjelaskan definisi sumber sezaman tanpa menghubungkannya dengan konteks.",
+            "Siswa membandingkan dua jenis sumber tentang panggung baca di terminal untuk menyusun penjelasan yang tanpa menilai asal serta tujuan tiap sumber.",
         },
         {
           isCorrect: true,

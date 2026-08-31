@@ -11,16 +11,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Dara menyajikan rekaman lama beserta konteksnya",
+          isCorrect: false,
+          label:
+            "Dara memilih rekaman lama sebagai pengganti siaran suara alumni",
         },
         {
           isCorrect: false,
-          label: "Dara menolak menyiarkan suara alumni",
-        },
-        {
-          isCorrect: false,
-          label: "Bimo memperbaiki semua kaset berjamur",
+          label:
+            "Bimo memindahkan kaset berjamur ke ruang siaran sebelum proses digitalisasi",
         },
         {
           isCorrect: false,
@@ -29,6 +27,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "penjaga sekolah menanam pohon baru saat siaran",
+        },
+        {
+          isCorrect: true,
+          label: "Dara menyajikan rekaman lama beserta konteksnya",
         },
       ],
     },

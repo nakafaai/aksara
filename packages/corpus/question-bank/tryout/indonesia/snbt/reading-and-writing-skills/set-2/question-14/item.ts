@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "*Bezugsgrundlage* durch *Schätzung* ersetzen.",
         },
         {
-          isCorrect: true,
-          label: "das Wort *Hinsichtlich* am Satzanfang entfernen.",
-        },
-        {
           isCorrect: false,
           label: "das Wort *den* vor *aktuellen* einfügen.",
+        },
+        {
+          isCorrect: true,
+          label: "das Wort *Hinsichtlich* am Satzanfang entfernen.",
         },
       ],
     },
@@ -43,13 +43,13 @@ const item: QuestionItem = {
           label: "replacing *benchmark* with *estimate*.",
         },
         {
+          isCorrect: false,
+          label: "adding the word *the* before *current*.",
+        },
+        {
           isCorrect: true,
           label:
             "removing the word *Regarding* at the beginning of the sentence.",
-        },
-        {
-          isCorrect: false,
-          label: "adding the word *the* before *current*.",
         },
       ],
     },
@@ -69,12 +69,12 @@ const item: QuestionItem = {
           label: "mengganti *tolok ukur* dengan *perkiraan*.",
         },
         {
-          isCorrect: true,
-          label: "menghilangkan kata *mengenai* pada awal kalimat.",
-        },
-        {
           isCorrect: false,
           label: "menambahkan kata *yang* sebelum *terkini*.",
+        },
+        {
+          isCorrect: true,
+          label: "menghilangkan kata *mengenai* pada awal kalimat.",
         },
       ],
     },

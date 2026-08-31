@@ -7,24 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "genau und frei von vermeidbarer Mehrdeutigkeit",
+          label:
+            "Das Verfahren wird überarbeitet, nachdem bestätigte Beschwerden eine im ersten Test übersehene Hürde zeigen.",
         },
         {
           isCorrect: false,
-          label: "nach denselben Grundsätzen ohne Widerspruch",
+          label:
+            "Das Feldverfahren wird bei verändertem Wetter angepasst, ohne das Hauptziel oder die zentralen Messregeln zu ändern.",
         },
         {
           isCorrect: false,
-          label: "klar und unmittelbar ausgedrückt",
+          label:
+            "Die Daten werden nach einer geplanten Schrittfolge erhoben, die mit denselben Regeln wiederholt wird.",
         },
         {
           isCorrect: true,
           label:
-            "darauf gerichtet, ein Problem vor seinem Auftreten zu verhindern",
+            "Die Ausrüstung wird geprüft und verschlissene Teile werden ersetzt, bevor ein Ausfall eintritt.",
         },
         {
           isCorrect: false,
-          label: "für mehr als eine Deutung offen",
+          label:
+            "Wiederholte Messungen bleiben trotz unterschiedlicher Erfassungszeiten in einem engen Bereich.",
         },
       ],
     },
@@ -33,23 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "exact and free from avoidable ambiguity",
+          label:
+            "The procedure is revised after verified complaints reveal a barrier missed in the initial trial.",
         },
         {
           isCorrect: false,
-          label: "following the same principles without contradiction",
+          label:
+            "The field procedure is adjusted when the weather changes without altering the main objective or measurement rules.",
         },
         {
           isCorrect: false,
-          label: "stated clearly and directly",
+          label:
+            "Data are collected through a planned sequence of steps repeated under the same rules.",
         },
         {
           isCorrect: true,
-          label: "intended to stop a problem before it occurs",
+          label:
+            "Equipment is inspected and worn parts are replaced before a failure occurs.",
         },
         {
           isCorrect: false,
-          label: "open to more than one interpretation",
+          label:
+            "Repeated measurements remain within a narrow range even when taken at different times.",
         },
       ],
     },
@@ -58,23 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "tepat dan tidak menimbulkan ketaksaan yang dapat dihindari",
+          label:
+            "Prosedur direvisi setelah keluhan terverifikasi menunjukkan hambatan yang tidak terdeteksi pada uji awal.",
         },
         {
           isCorrect: false,
-          label: "mengikuti prinsip yang sama tanpa pertentangan",
+          label:
+            "Prosedur lapangan disesuaikan saat cuaca berubah tanpa mengubah tujuan dan aturan ukur utama.",
         },
         {
           isCorrect: false,
-          label: "dinyatakan secara jelas dan langsung",
+          label:
+            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
         },
         {
           isCorrect: true,
-          label: "ditujukan untuk mencegah masalah sebelum terjadi",
+          label:
+            "Peralatan diperiksa dan komponen aus diganti sebelum kegagalan terjadi.",
         },
         {
           isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
+          label:
+            "Nilai pengukuran berulang tetap berada dalam rentang sempit meskipun waktu pengambilan berbeda.",
         },
       ],
     },

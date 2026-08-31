@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Bacaan hanya mencatat sejarah lengkap jalur wisata hutan kota tanpa membahas keputusan atau bukti.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap jalur wisata hutan kota.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan terutama menjelaskan definisi aksesibilitas tanpa menghubungkannya dengan konteks.",
-        },
-        {
           isCorrect: true,
           label:
             "Pengelola jalur wisata hutan kota menilai tanda jarak menuju titik keluar melalui data pembanding dan masukan pihak terdampak.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengelola jalur wisata hutan kota menilai tanda jarak menuju titik keluar melalui masukan pihak terdampak saja, tanpa membandingkan hasil pengukuran.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengelola jalur wisata hutan kota menilai tanda jarak menuju titik keluar melalui data pembanding saja, dengan pengalaman pihak terdampak ditempatkan di luar keputusan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengelola jalur wisata hutan kota menilai tanda jarak menuju titik keluar melalui data dan masukan pihak terdampak, lalu menjadikan uji singkat cukup untuk penerapan tetap.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengelola jalur wisata hutan kota menilai tanda jarak menuju titik keluar terutama melalui definisi istilah, sedangkan perubahan yang diusulkan hanya menjadi latar bacaan.",
         },
       ],
     },

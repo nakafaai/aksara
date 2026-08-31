@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "Ab $$2016$$ verbesserte sich das Wirtschaftswachstum wieder",
         },
         {
+          isCorrect: true,
+          label: "Das Wachstum lag in jedem genannten Jahr über $$5%$$",
+        },
+        {
           isCorrect: false,
           label:
             "Das BIP betrug $$2018$$ $$\\text{Rp }14{.}837{,}4\\text{ Billionen}$$ und das BIP pro Kopf rund $$\\text{Rp }56\\text{ Millionen}$$",
@@ -23,10 +27,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Das Wirtschaftswachstum betrug $$2018$$ $$5{,}17%$$",
         },
-        {
-          isCorrect: true,
-          label: "Das Wachstum lag in jedem genannten Jahr über $$5%$$",
-        },
       ],
     },
     en: {
@@ -35,6 +35,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Economic growth began improving again in $$2016$$",
+        },
+        {
+          isCorrect: true,
+          label: "Growth remained above $$5%$$ in every year mentioned",
         },
         {
           isCorrect: false,
@@ -49,10 +53,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Economic growth in $$2018$$ was $$5.17%$$",
         },
-        {
-          isCorrect: true,
-          label: "Growth remained above $$5%$$ in every year mentioned",
-        },
       ],
     },
     id: {
@@ -61,6 +61,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Pertumbuhan ekonomi mulai membaik kembali pada $$2016$$",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Pertumbuhan tetap di atas $$5%$$ pada setiap tahun yang disebutkan",
         },
         {
           isCorrect: false,
@@ -75,11 +80,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Pertumbuhan ekonomi pada $$2018$$ sebesar $$5{,}17%$$",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Pertumbuhan tetap di atas $$5%$$ pada setiap tahun yang disebutkan",
         },
       ],
     },

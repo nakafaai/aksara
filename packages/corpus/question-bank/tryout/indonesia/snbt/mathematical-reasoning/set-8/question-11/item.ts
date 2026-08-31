@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$42$$",
+          label: "$$\\frac{35}{6}$$",
         },
         {
           isCorrect: false,
-          label: "$$30$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$33$$",
+          label: "$$\\frac{19}{3}$$",
         },
         {
           isCorrect: true,
-          label: "$$36$$",
+          label: "$$\\frac{37}{6}$$",
         },
         {
           isCorrect: false,
-          label: "$$39$$",
+          label: "$$\\frac{20}{3}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{41}{6}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$42$$",
+          label: "$$\\frac{35}{6}$$",
         },
         {
           isCorrect: false,
-          label: "$$30$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$33$$",
+          label: "$$\\frac{19}{3}$$",
         },
         {
           isCorrect: true,
-          label: "$$36$$",
+          label: "$$\\frac{37}{6}$$",
         },
         {
           isCorrect: false,
-          label: "$$39$$",
+          label: "$$\\frac{20}{3}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{41}{6}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$42$$",
+          label: "$$\\frac{35}{6}$$",
         },
         {
           isCorrect: false,
-          label: "$$30$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$33$$",
+          label: "$$\\frac{19}{3}$$",
         },
         {
           isCorrect: true,
-          label: "$$36$$",
+          label: "$$\\frac{37}{6}$$",
         },
         {
           isCorrect: false,
-          label: "$$39$$",
+          label: "$$\\frac{20}{3}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{41}{6}$$",
         },
       ],
     },

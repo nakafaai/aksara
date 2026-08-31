@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$176$$",
+          label: "$$5\\sqrt5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5\\sqrt8$$",
         },
         {
           isCorrect: true,
-          label: "$$196$$",
+          label: "$$5\\sqrt{10}$$",
         },
         {
           isCorrect: false,
-          label: "$$186$$",
+          label: "$$10\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "$$206$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$216$$",
+          label: "$$5\\sqrt{13}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$176$$",
+          label: "$$5\\sqrt5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5\\sqrt8$$",
         },
         {
           isCorrect: true,
-          label: "$$196$$",
+          label: "$$5\\sqrt{10}$$",
         },
         {
           isCorrect: false,
-          label: "$$186$$",
+          label: "$$10\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "$$206$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$216$$",
+          label: "$$5\\sqrt{13}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$176$$",
+          label: "$$5\\sqrt5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5\\sqrt8$$",
         },
         {
           isCorrect: true,
-          label: "$$196$$",
+          label: "$$5\\sqrt{10}$$",
         },
         {
           isCorrect: false,
-          label: "$$186$$",
+          label: "$$10\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "$$206$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$216$$",
+          label: "$$5\\sqrt{13}$$",
         },
       ],
     },

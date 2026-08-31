@@ -7,23 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "nach denselben Grundsätzen ohne Widerspruch",
+          label:
+            "Die Behauptung stützt sich auf wiederholte Beobachtungen und Messungen statt nur auf Vermutungen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Quelle, Methode und Datenweg können unabhängig geprüft werden, bevor die Behauptung akzeptiert wird.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Instrument wird geprüft, damit sein Wert tatsächlich das beabsichtigte Konstrukt abbildet.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team legt Daten, Methoden, Ausschlussgründe und Grenzen offen, damit der Prozess geprüft werden kann.",
         },
         {
           isCorrect: true,
-          label: "auf prüfbaren Tatsachen statt Vorlieben beruhend",
-        },
-        {
-          isCorrect: false,
-          label: "klar und unmittelbar ausgedrückt",
-        },
-        {
-          isCorrect: false,
-          label: "für mehr als eine Deutung offen",
-        },
-        {
-          isCorrect: false,
-          label: "durch verlässliche Belege gestützt",
+          label:
+            "Die Bewertenden verwenden ein Raster, das vor Kenntnis der Identitäten oder Endergebnisse festgelegt wurde.",
         },
       ],
     },
@@ -32,23 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "following the same principles without contradiction",
+          label:
+            "The claim is built from repeated observations and measurements rather than assumption alone.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The source, method, and data trail can be checked independently before the claim is accepted.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The instrument is tested to ensure that its score represents the construct it is meant to measure.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team discloses data, methods, exclusion reasons, and limitations so the process can be examined.",
         },
         {
           isCorrect: true,
-          label: "based on verifiable facts rather than preferences",
-        },
-        {
-          isCorrect: false,
-          label: "stated clearly and directly",
-        },
-        {
-          isCorrect: false,
-          label: "open to more than one interpretation",
-        },
-        {
-          isCorrect: false,
-          label: "supported by dependable evidence",
+          label:
+            "Reviewers use a rubric set before they know participant identities or final outcomes.",
         },
       ],
     },
@@ -57,23 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "mengikuti prinsip yang sama tanpa pertentangan",
+          label:
+            "Klaim disusun dari pengamatan berulang dan hasil pengukuran, bukan dari dugaan semata.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Sumber, metode, dan jejak data dapat diperiksa secara mandiri sebelum klaim diterima.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Instrumen diuji untuk memastikan bahwa skor benar-benar mewakili konsep yang hendak diukur.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim membuka data, metode, alasan pengecualian, dan keterbatasan agar proses dapat diperiksa.",
         },
         {
           isCorrect: true,
-          label: "berdasarkan fakta yang dapat diperiksa, bukan selera",
-        },
-        {
-          isCorrect: false,
-          label: "dinyatakan secara jelas dan langsung",
-        },
-        {
-          isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
-        },
-        {
-          isCorrect: false,
-          label: "didukung oleh bukti yang dapat dipercaya",
+          label:
+            "Penilai memakai rubrik yang ditetapkan sebelum mengetahui identitas peserta atau hasil akhirnya.",
         },
       ],
     },

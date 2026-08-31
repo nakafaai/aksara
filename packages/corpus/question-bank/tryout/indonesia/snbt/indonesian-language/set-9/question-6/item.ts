@@ -8,7 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap peta kartu daur karbon tanpa membahas keputusan atau bukti.",
+            "Bacaan menggunakan nilai rata-rata yang lebih tinggi untuk memperkirakan bahwa perubahan akan bekerja pada keadaan serupa.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bacaan menjelaskan reservoir sebagai hasil utama, bukan sebagai bagian dari penelitian.",
         },
         {
           isCorrect: true,
@@ -18,17 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap peta kartu daur karbon.",
+            "Bacaan membandingkan dua kondisi, tetapi menempatkan faktor kontrol sebagai rincian yang tidak memengaruhi penafsiran.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan terutama menjelaskan definisi reservoir tanpa menghubungkannya dengan konteks.",
+            "Bacaan lebih menekankan keterbatasan sampel daripada hubungan antara perubahan dan hasil.",
         },
       ],
     },

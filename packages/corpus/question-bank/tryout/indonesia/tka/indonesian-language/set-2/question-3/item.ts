@@ -12,11 +12,13 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "semua benda harus dibongkar oleh siswa",
+          label:
+            "setiap benda sebaiknya dibongkar agar sumber kerusakan dapat dipastikan",
         },
         {
           isCorrect: false,
-          label: "teknisi dilarang menerima rujukan dari sekolah",
+          label:
+            "rujukan sekolah menentukan meja pemeriksaan tanpa memerlukan inspeksi awal",
         },
         {
           isCorrect: true,
@@ -24,11 +26,13 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "baterai menggembung dapat diperbaiki tanpa alat",
+          label:
+            "baterai menggembung tetap dapat diuji di meja awal selama tidak dibongkar",
         },
         {
           isCorrect: false,
-          label: "pemilik tidak perlu menjelaskan gejala",
+          label:
+            "gejala dari pemilik cukup dicatat setelah pengujian benda selesai",
         },
       ],
     },

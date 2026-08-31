@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team prüfte Beispielgegenstände an jedem Behälter (Sortierung von Küstenabfällen) und bewertete die Befunde vorsichtig.",
+            'Der erste Teil vertritt die Behauptung "Der Maniok wurde im Dorf Rawa geschnitten und in der Stadt frittiert"; der folgende nutzt "Jede Produktionsstufe muss vollständig auf die Vorderseite jeder Packung gedruckt werden" als Hauptbeleg.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Der erste Teil legt "Mit einem Code müssen Lieferantendaten nicht mehr aktualisiert werden" als endgültigen Schluss fest; der folgende nennt nur den Plan "Ein Verpackungscode wird zu einem vollständigen Lieferkettendatensatz führen".',
         },
         {
           isCorrect: true,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 29, lag über 20 und 22.",
+            "Die Mehrdeutigkeit der Herkunftsangabe verlangt getrennte Stufen; eine Rückrufsimulation prüft anschließend den Entwurf.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Jede Produktionsstufe muss vollständig auf die Vorderseite jeder Packung gedruckt werden" fest.',
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext Sortierung von Küstenabfällen: Beispielgegenstände an jedem Behälter",
+            'Der folgende Teil kehrt die Argumentation um und leitet "Mit einem Code müssen Lieferantendaten nicht mehr aktualisiert werden" aus dem Beleg "Der Maniok wurde im Dorf Rawa geschnitten und in der Stadt frittiert" ab.',
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested sample objects displayed on each container in the coastal litter sorting and interpreted the evidence cautiously.",
+            'The first part advances the claim "The cassava was sliced in Rawa Village and fried in the city", and the later part uses "Every production stage must be printed in full on the front of every package" as its main support.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'The first part establishes "Once a code exists, supplier records no longer need updating" as a final conclusion; the later part only states the plan "A package code will link to a fuller supply-chain record".',
         },
         {
           isCorrect: true,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 29, exceeded both 20 and 22.",
+            "Ambiguity in origin labels creates a need to separate stages, and a recall simulation then tests the new design.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            'Both parts maintain the claim "Every production stage must be printed in full on the front of every package" from the same perspective without adding a test.',
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of sample objects displayed on each container: coastal litter sorting",
+            'The later part reverses the argument by deriving "Once a code exists, supplier records no longer need updating" from the evidence "The cassava was sliced in Rawa Village and fried in the city".',
         },
       ],
     },
@@ -66,26 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji contoh benda pada setiap wadah pada pemilahan sampah pesisir dan menafsirkan buktinya secara hati-hati.",
+            'Bagian awal mengajukan klaim "Singkong diiris di Desa Rawa dan digoreng di kota", lalu bagian kedua memakai "Semua tahap produksi harus dicetak lengkap di bagian depan setiap kemasan" sebagai dukungan utama.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Bagian pertama menetapkan "Jika kode tersedia, catatan pemasok tidak perlu lagi diperbarui" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Kode kemasan akan mengarah ke catatan rantai pasok yang lebih lengkap".',
         },
         {
           isCorrect: true,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 29, melampaui 20 dan 22.",
+            "Ambiguitas label asal memunculkan kebutuhan pemisahan tahap, lalu simulasi penarikan menguji kegunaan rancangan baru.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            'Kedua bagian mempertahankan klaim "Semua tahap produksi harus dicetak lengkap di bagian depan setiap kemasan" dari sudut yang sama tanpa menambahkan pemeriksaan.',
         },
         {
           isCorrect: false,
           label:
-            "Uji Hati-hati dalam setiap wadah pada pemilahan sampah pesisir: contoh benda",
+            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Jika kode tersedia, catatan pemasok tidak perlu lagi diperbarui" dari bukti "Singkong diiris di Desa Rawa dan digoreng di kota".',
         },
       ],
     },

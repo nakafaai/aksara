@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Bacaan hanya mencatat sejarah lengkap pameran sains keliling tanpa membahas keputusan atau bukti.",
-        },
-        {
           isCorrect: true,
           label:
             "Pilihan kecil Lila mengubah makna kartu pertanyaan dalam menghadapi konflik di pameran sains keliling.",
@@ -18,17 +13,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap pameran sains keliling.",
+            "Benda yang berulang terutama membangun latar dan hanya sedikit berhubungan dengan konflik.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
+            "Keputusan akhir tokoh menghapus ketegangan makna yang sebelumnya dimiliki benda tersebut.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan terutama menjelaskan definisi atmosfer tanpa menghubungkannya dengan konteks.",
+            "Bacaan memakai atmosfer sebagai label deskriptif tanpa menghubungkannya dengan pilihan tokoh.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Latar menyelesaikan konflik sebelum tindakan akhir tokoh mengubah makna benda.",
         },
       ],
     },

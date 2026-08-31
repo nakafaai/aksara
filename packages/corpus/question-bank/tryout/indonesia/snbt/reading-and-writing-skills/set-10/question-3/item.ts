@@ -7,12 +7,18 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Kochkurs für Jugendliche",
+          label:
+            "Die Beobachtung bewies daher, dass die Änderung nach Rezeptschritten gruppierte Zutaten den Unterschied verursachte.",
         },
         {
           isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Kochkurs für Jugendliche über den beiden anderen Werten.",
+            "Das Team musste daher mehrere Merkmale im Kontext Kochkurs für Jugendliche ändern, bevor es erneut maß.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das erste Muster rechtfertigte daher die dauerhafte Einführung von nach Rezeptschritten gruppierte Zutaten.",
         },
         {
           isCorrect: true,
@@ -22,12 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: nach Rezeptschritten geordnete Zutaten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: nach Rezeptschritten geordnete Zutaten.",
+            "Die verbleibende Unsicherheit machte einen weiteren Vergleich daher überflüssig.",
         },
       ],
     },
@@ -36,12 +37,18 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: teen cooking class",
+          label:
+            "The observation therefore established that ingredients grouped by recipe stage caused the difference.",
         },
         {
           isCorrect: false,
           label:
-            "In this setting (teen cooking class), the trial value exceeded both other values.",
+            "The team therefore needed to alter several features of teen cooking class before measuring again.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The initial pattern therefore justified permanent adoption of ingredients grouped by recipe stage.",
         },
         {
           isCorrect: true,
@@ -51,12 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change, ingredients grouped by recipe stage, directly addressed the observed uncertainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The next test of ingredients grouped by recipe stage will run for longer.",
+            "The remaining uncertainty therefore made another comparison unnecessary.",
         },
       ],
     },
@@ -65,12 +67,18 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: kelas memasak remaja",
+          label:
+            "Pengamatan itu membuktikan bahwa bahan yang dikelompokkan menurut tahap resep menyebabkan perbedaan.",
         },
         {
           isCorrect: false,
           label:
-            "Di kelas memasak remaja, nilai hari uji melampaui dua nilai lainnya.",
+            "Tim perlu mengubah beberapa unsur kelas memasak remaja sebelum melakukan pengukuran ulang.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pola awal itu membenarkan penerapan tetap bahan yang dikelompokkan menurut tahap resep.",
         },
         {
           isCorrect: true,
@@ -80,12 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan berupa bahan yang dikelompokkan menurut tahap resep langsung menanggapi keraguan yang diamati.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji bahan yang dikelompokkan menurut tahap resep berikutnya akan berlangsung lebih lama.",
+            "Ketidakpastian yang tersisa membuat perbandingan lanjutan tidak diperlukan.",
         },
       ],
     },

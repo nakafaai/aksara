@@ -11,25 +11,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "membuktikan 28 persen semua benda dapat diperbaiki",
-        },
-        {
           isCorrect: true,
           label:
             "menggambarkan kegiatan peserta, tetapi tidak dapat digeneralisasi",
         },
         {
           isCorrect: false,
-          label: "membuktikan perbaikan selalu lebih murah",
+          label:
+            "menunjukkan bahwa sekitar 28 persen benda sejenis dapat diperbaiki pada kegiatan berikutnya",
         },
         {
           isCorrect: false,
-          label: "tidak memiliki arti karena bukan angka bulat",
+          label:
+            "menunjukkan perbaikan lebih hemat untuk benda yang berhasil dikembalikan ke penggunaan",
         },
         {
           isCorrect: false,
-          label: "menjamin hasil yang sama pada sekolah lain",
+          label:
+            "angka 28 menggambarkan keluaran kegiatan, tetapi tidak memberi persentase keberhasilan",
+        },
+        {
+          isCorrect: false,
+          label:
+            "mendukung penerapan kegiatan yang sama pada sekolah dengan profil serupa",
         },
       ],
     },

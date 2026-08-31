@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam gudang kecil dekat pelabuhan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Semua tokoh atau pihak dalam gudang kecil dekat pelabuhan memperoleh hasil yang sama tanpa perbedaan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan gudang kecil dekat pelabuhan.",
-        },
-        {
           isCorrect: true,
           label:
-            "Bima memilih untuk membagi tugas berdasarkan waktu luang dan mencatat alasan setiap perubahan.",
+            "Pembagian tugas menurut waktu luang serta catatan perubahan membuat keputusan Bima dapat diperiksa ketika keadaan anggota berubah.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyebut akuntabilitas sebagai bukti bahwa uji tidak perlu diulang.",
+            "Bima memilih untuk membagi tugas berdasarkan waktu luang dan mencatat alasan setiap perubahan; tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bima memilih untuk membagi tugas berdasarkan waktu luang dan mencatat alasan setiap perubahan; perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bima memilih untuk membagi tugas berdasarkan waktu luang dan mencatat alasan setiap perubahan; latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bima memilih untuk membagi tugas berdasarkan waktu luang dan mencatat alasan setiap perubahan; definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
         },
       ],
     },

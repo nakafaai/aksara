@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Every result in a neighbourhood flood-warning exercise must apply without limitation elsewhere.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The limitation makes all information about a neighbourhood flood-warning exercise useless.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "One detail about actionable information proves every possible causal relationship.",
+            "Because the trial reached 62, compared with a baseline of 41 and a comparison value of 43, an alert naming the street, expected depth, and safe route should become permanent before the stated limitation is examined.",
         },
         {
           isCorrect: true,
           label:
-            "A follow-up decision should combine measured results, affected people's experience, and the trial's limitation.",
+            "The rise to 62, compared with a baseline of 41 and a comparison value of 43 supports a limited extension of an alert naming the street, expected depth, and safe route, while the fact that the exercise could not reproduce the stress of an actual flood must shape the follow-up.",
         },
         {
           isCorrect: false,
           label:
-            "The passage recommends ignoring evidence that conflicts with an early expectation.",
+            "The consultation with affected groups makes the baseline and comparison figures unnecessary for the decision.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The limitation that the exercise could not reproduce the stress of an actual flood affects delivery details, but it does not restrict who can be covered by the conclusion.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Because staffing and schedules were stable, the difference between the trial and comparison is best attributed to those unchanged conditions.",
         },
       ],
     },

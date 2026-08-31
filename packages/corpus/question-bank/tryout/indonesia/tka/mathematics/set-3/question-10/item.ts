@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "12 cm",
+          label: "$$13$$",
         },
         {
           isCorrect: false,
-          label: "16 cm",
+          label: "$$17$$",
         },
         {
           isCorrect: false,
-          label: "24 cm",
+          label: "$$29$$",
         },
         {
           isCorrect: true,
-          label: "20 cm",
+          label: "$$25$$",
         },
         {
           isCorrect: false,
-          label: "28 cm",
+          label: "$$37$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "12 cm",
+          label: "$$13$$",
         },
         {
           isCorrect: false,
-          label: "16 cm",
+          label: "$$17$$",
         },
         {
           isCorrect: false,
-          label: "24 cm",
+          label: "$$29$$",
         },
         {
           isCorrect: true,
-          label: "20 cm",
+          label: "$$25$$",
         },
         {
           isCorrect: false,
-          label: "28 cm",
+          label: "$$37$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "12 cm",
+          label: "$$13$$",
         },
         {
           isCorrect: false,
-          label: "16 cm",
+          label: "$$17$$",
         },
         {
           isCorrect: false,
-          label: "24 cm",
+          label: "$$29$$",
         },
         {
           isCorrect: true,
-          label: "20 cm",
+          label: "$$25$$",
         },
         {
           isCorrect: false,
-          label: "28 cm",
+          label: "$$37$$",
         },
       ],
     },

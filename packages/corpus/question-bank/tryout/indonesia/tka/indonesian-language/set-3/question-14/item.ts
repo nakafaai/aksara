@@ -17,11 +17,13 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "setiap liter air pasti menggantikan satu botol",
+          label:
+            "kenaikan volume air isi ulang dapat langsung diterjemahkan menjadi jumlah botol yang dihindari",
         },
         {
           isCorrect: false,
-          label: "semua sampah botol sekolah sudah terhitung",
+          label:
+            "penghitungan pada satu jam yang sama dipakai sebagai perkiraan harian tanpa sampel waktu lain",
         },
         {
           isCorrect: false,

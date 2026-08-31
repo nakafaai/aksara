@@ -7,28 +7,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+          label: "ein Verbot, das jede Handlungsauswahl beseitigt",
         },
         {
           isCorrect: true,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "ein Impuls, der eine Handlung attraktiver oder lohnender macht",
         },
         {
           isCorrect: false,
           label:
-            "Das Team prüfte eine markierte Spur für jedes Ziel (Schulbuswarteschlange) und bewertete die Befunde vorsichtig.",
+            "eine Information ohne Einfluss auf Kosten oder Nutzen einer Handlung",
+        },
+        {
+          isCorrect: false,
+          label: "eine Strafe nach einer anderen, sachfremden Handlung",
+        },
+        {
+          isCorrect: false,
+          label:
+            "ein Maßstab für Ergebnisse ohne Einfluss auf die Entscheidung",
         },
       ],
     },
@@ -37,28 +35,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+          label: "a prohibition that removes every choice of action",
         },
         {
           isCorrect: true,
-          label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+          label: "a stimulus that makes an action more attractive or rewarding",
         },
         {
           isCorrect: false,
           label:
-            "The team tested a marked lane for each destination in the school bus queue and interpreted the evidence cautiously.",
+            "information that changes neither the cost nor benefit of an action",
+        },
+        {
+          isCorrect: false,
+          label: "a penalty following a different, unrelated action",
+        },
+        {
+          isCorrect: false,
+          label:
+            "a standard for measuring outcomes without influencing a decision",
         },
       ],
     },
@@ -67,28 +62,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+          label: "larangan yang menghapus seluruh pilihan tindakan",
         },
         {
           isCorrect: true,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "rangsangan yang membuat suatu tindakan lebih menarik atau menguntungkan",
         },
         {
           isCorrect: false,
-          label:
-            "Tim menguji penanda jalur untuk setiap tujuan pada antrean bus sekolah dan menafsirkan buktinya secara hati-hati.",
+          label: "informasi yang tidak mengubah biaya atau manfaat tindakan",
+        },
+        {
+          isCorrect: false,
+          label: "hukuman setelah tindakan lain yang tidak berkaitan",
+        },
+        {
+          isCorrect: false,
+          label: "standar untuk mengukur hasil tanpa memengaruhi keputusan",
         },
       ],
     },

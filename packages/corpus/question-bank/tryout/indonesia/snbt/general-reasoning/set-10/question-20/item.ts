@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Lineal : Länge",
+          label: "digitale Signatur : Dokumentechtheit",
         },
         {
           isCorrect: false,
-          label: "Lineal : Temperatur",
+          label: "Komprimierung : Dateigröße",
         },
         {
           isCorrect: false,
-          label: "Uhr : Länge",
+          label: "Passwort : Bildschirmhelligkeit",
         },
         {
           isCorrect: false,
-          label: "Kompass : Geschwindigkeit",
+          label: "Backup : Netzwerkgeschwindigkeit",
         },
         {
           isCorrect: false,
-          label: "Lupe : Zeit",
+          label: "Verschlüsselung : Druckauflösung",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "ruler : length",
+          label: "digital signature : document authenticity",
         },
         {
           isCorrect: false,
-          label: "ruler : temperature",
+          label: "compression : file size",
         },
         {
           isCorrect: false,
-          label: "clock : length",
+          label: "password : screen brightness",
         },
         {
           isCorrect: false,
-          label: "compass : speed",
+          label: "backup : network speed",
         },
         {
           isCorrect: false,
-          label: "magnifier : time",
+          label: "encryption : print resolution",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "penggaris : panjang",
+          label: "tanda tangan digital : keaslian dokumen",
         },
         {
           isCorrect: false,
-          label: "penggaris : suhu",
+          label: "kompresi : ukuran berkas",
         },
         {
           isCorrect: false,
-          label: "jam : panjang",
+          label: "kata sandi : kecerahan layar",
         },
         {
           isCorrect: false,
-          label: "kompas : kecepatan",
+          label: "cadangan data : kecepatan jaringan",
         },
         {
           isCorrect: false,
-          label: "kaca pembesar : waktu",
+          label: "enkripsi : resolusi cetak",
         },
       ],
     },

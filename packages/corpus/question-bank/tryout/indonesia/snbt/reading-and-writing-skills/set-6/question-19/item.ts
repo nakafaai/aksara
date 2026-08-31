@@ -13,22 +13,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team veränderte alle Faktoren zugleich, nämlich ein Beispiel zur Erfassung der Geräuschdauer.",
+            "Das Team änderte nur ein Faktor: ein Beispiel zur Erfassung der Geräuschdauer.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team wechselte einen Faktor-faktoren: ein Beispiel zur Erfassung der Geräuschdauer.",
+            "Das Team änderte nur einem Faktor: ein Beispiel zur Erfassung der Geräuschdauer.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team tat nur einen Faktor anders: ein Beispiel zur Erfassung der Geräuschdauer.",
+            "Das Team änderte lediglich nur einen Faktor: ein Beispiel zur Erfassung der Geräuschdauer.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team änderte einzig alle Faktoren: ein Beispiel zur Erfassung der Geräuschdauer.",
+            "Das Team änderte nur einen Faktor, und zwar: ein Beispiel zur Erfassung der Geräuschdauer.",
         },
       ],
     },
@@ -43,22 +43,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team alterated only one factor: an example showing how to record sound duration.",
+            "The team changed only one factors: an example showing how to record sound duration.",
         },
         {
           isCorrect: false,
           label:
-            "The team changed every factors at once: an example showing how to record sound duration.",
+            "The team changed merely only one factor: an example showing how to record sound duration.",
         },
         {
           isCorrect: false,
           label:
-            "The team did one factor differently thing: an example showing how to record sound duration.",
+            "The team changed only one factor, namely: an example showing how to record sound duration.",
         },
         {
           isCorrect: false,
           label:
-            "The team changed only all factors: an example showing how to record sound duration.",
+            "The team changed only one factor; namely an example showing how to record sound duration.",
         },
       ],
     },
@@ -78,17 +78,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim mengubahkan satu faktor-faktor, yaitu contoh cara mencatat durasi suara.",
+            "Tim mengubahkan satu faktor saja, yaitu contoh cara mencatat durasi suara.",
         },
         {
           isCorrect: false,
           label:
-            "Tim berubah satu faktor saja, yaitu contoh cara mencatat durasi suara.",
+            "Tim hanya mengubah satu faktor saja, yaitu contoh cara mencatat durasi suara.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengubah semua faktor saja, yaitu contoh cara mencatat durasi suara.",
+            "Tim mengubah terhadap satu faktor saja, yaitu contoh cara mencatat durasi suara.",
         },
       ],
     },

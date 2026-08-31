@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "$$6$$ Monate",
         },
         {
+          isCorrect: true,
+          label: "$$4$$ Monate",
+        },
+        {
           isCorrect: false,
           label: "$$8$$ Monate",
         },
         {
           isCorrect: false,
           label: "$$9$$ Monate",
-        },
-        {
-          isCorrect: true,
-          label: "$$4$$ Monate",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "$$6$$ months",
         },
         {
+          isCorrect: true,
+          label: "$$4$$ months",
+        },
+        {
           isCorrect: false,
           label: "$$8$$ months",
         },
         {
           isCorrect: false,
           label: "$$9$$ months",
-        },
-        {
-          isCorrect: true,
-          label: "$$4$$ months",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "$$6$$ bulan",
         },
         {
+          isCorrect: true,
+          label: "$$4$$ bulan",
+        },
+        {
           isCorrect: false,
           label: "$$8$$ bulan",
         },
         {
           isCorrect: false,
           label: "$$9$$ bulan",
-        },
-        {
-          isCorrect: true,
-          label: "$$4$$ bulan",
         },
       ],
     },

@@ -11,6 +11,11 @@ const item: QuestionItem = {
             "Jedes zugelassene pflanzliche Arzneimittel heilt nachweislich Krankheiten.",
         },
         {
+          isCorrect: true,
+          label:
+            "Vertrieb und Anwendung pflanzlicher Arzneimittel hängen von behördlicher Prüfung und fortlaufender Überwachung ab.",
+        },
+        {
           isCorrect: false,
           label:
             "Eine Verkehrszulassung garantiert, dass ein pflanzliches Arzneimittel für jede Person und jede Erkrankung geeignet ist.",
@@ -19,11 +24,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Nach der Zulassung eines pflanzlichen Arzneimittels müssen Verbraucher die Kennzeichnung nicht mehr prüfen.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Vertrieb und Anwendung pflanzlicher Arzneimittel hängen von behördlicher Prüfung und fortlaufender Überwachung ab.",
         },
         {
           isCorrect: false,
@@ -40,6 +40,11 @@ const item: QuestionItem = {
           label: "Every authorized herbal product is proven to cure disease.",
         },
         {
+          isCorrect: true,
+          label:
+            "The circulation and use of herbal products depend on regulatory evaluation and continuing supervision.",
+        },
+        {
           isCorrect: false,
           label:
             "A marketing authorization guarantees that a herbal product is suitable for every person and condition.",
@@ -48,11 +53,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Consumers no longer need to check the label once a herbal product has a marketing authorization.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "The circulation and use of herbal products depend on regulatory evaluation and continuing supervision.",
         },
         {
           isCorrect: false,
@@ -70,6 +70,11 @@ const item: QuestionItem = {
             "Setiap produk herbal berizin edar terbukti dapat menyembuhkan penyakit.",
         },
         {
+          isCorrect: true,
+          label:
+            "Peredaran dan penggunaan produk herbal bergantung pada penilaian regulator serta pengawasan yang berkelanjutan.",
+        },
+        {
           isCorrect: false,
           label:
             "Izin edar menjamin bahwa suatu produk herbal cocok untuk setiap orang dan setiap kondisi.",
@@ -78,11 +83,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Konsumen tidak perlu lagi memeriksa label setelah suatu produk herbal memperoleh izin edar.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Peredaran dan penggunaan produk herbal bergantung pada penilaian regulator serta pengawasan yang berkelanjutan.",
         },
         {
           isCorrect: false,

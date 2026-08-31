@@ -11,6 +11,8 @@ import { decodeTryoutRegistry } from "#corpus/tryout/registry";
 export const corpusRoot = resolve(import.meta.dirname, "..", "..", "..");
 
 export const questionTestSourceRoot = "packages/corpus/question-bank/tryout";
+/** Headroom for integrity tests that decode the complete physical question bank. */
+export const physicalQuestionBankTestTimeout = 30_000;
 export const absoluteQuestionTestSourceRoot = resolve(
   corpusRoot,
   questionTestSourceRoot
@@ -96,7 +98,7 @@ export const questionRendererCounts = [
   { count: 200, rendererDomain: "snbt-math" },
   { count: 1050, rendererDomain: "snbt-plain" },
   { count: 200, rendererDomain: "snbt-quant" },
-  { count: 120, rendererDomain: "tka-math" },
+  { count: 75, rendererDomain: "tka-math" },
 ];
 
 /** Creates recursive directory output for one synthetic question directory. */

@@ -6,14 +6,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Am Montag prüfte das Team einen nach Absagen aktualisierten digitalen Plan im folgenden Kontext: Musikproberäume.",
-        },
-        {
           isCorrect: false,
           label:
             "am Montag prüfte das Team einen nach Absagen aktualisierten digitalen Plan im Kontext Musikproberäume.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Am Montag prüfte das Team einen nach Absagen aktualisierten digitalen Plan im folgenden Kontext: Musikproberäume.",
         },
         {
           isCorrect: false,
@@ -36,14 +36,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "On Monday, the team tested a digital schedule updated after cancellations in this setting (music practice rooms).",
-        },
-        {
           isCorrect: false,
           label:
             "on Monday, the team tested a digital schedule updated after cancellations in this setting (music practice rooms).",
+        },
+        {
+          isCorrect: true,
+          label:
+            "On Monday, the team tested a digital schedule updated after cancellations in this setting (music practice rooms).",
         },
         {
           isCorrect: false,
@@ -66,14 +66,14 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Pada Senin, tim menguji jadwal digital yang diperbarui setelah pembatalan di ruang latihan musik.",
-        },
-        {
           isCorrect: false,
           label:
             "pada Senin, tim menguji jadwal digital yang diperbarui setelah pembatalan di ruang latihan musik.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Pada Senin, tim menguji jadwal digital yang diperbarui setelah pembatalan di ruang latihan musik.",
         },
         {
           isCorrect: false,

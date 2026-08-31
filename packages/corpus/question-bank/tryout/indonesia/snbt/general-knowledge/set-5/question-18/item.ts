@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Der begrenzte Test beweist, dass Gebühren in jedem Fall abgeschafft werden müssen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Der Erfolg der Regel wird vor allem durch die Höhe der Gebühreneinnahmen bestimmt.",
         },
         {
           isCorrect: false,
-          label: "Tabletts ohne Speisereste und kurze Aussagen von Nutzenden",
+          label:
+            "Einige Nutzer erhielten wegen geänderter Telefonnummern keine Nachricht.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Der Test wird um zwei Erinnerungswege und ein Einspruchsverfahren erweitert.",
         },
         {
           isCorrect: true,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte die Wahl zwischen kleinen und normalen Portionen (Kantine zur Verringerung von Speiseresten) und bewertete die Befunde vorsichtig.",
+            "Abgestufte Sperren und Erinnerungen können gerechter sein, doch Kommunikationswege und Ausnahmen müssen weiter geprüft werden.",
         },
       ],
     },
@@ -37,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "The limited trial proves that fines must be removed in every circumstance.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Policy success is determined mainly by how much fine revenue is collected.",
         },
         {
           isCorrect: false,
           label:
-            "trays returned without leftovers and short comments from users",
+            "Some users did not receive messages because their phone numbers had changed.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The trial will expand with two reminder channels and an appeal process.",
         },
         {
           isCorrect: true,
           label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested a choice between small and regular portions in the food-waste reduction canteen and interpreted the evidence cautiously.",
+            "Graduated restrictions and reminders may be fairer, but communication channels and exceptions still require testing.",
         },
       ],
     },
@@ -67,26 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Uji terbatas membuktikan bahwa denda harus dihapus untuk semua keadaan.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Keberhasilan kebijakan terutama ditentukan oleh banyaknya uang denda yang berhasil dikumpulkan.",
         },
         {
           isCorrect: false,
-          label: "nampan yang kembali tanpa sisa dan komentar singkat pengguna",
+          label:
+            "Sebagian pengguna tidak menerima pesan karena nomor telepon berubah.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Uji akan diperluas dengan dua saluran pengingat dan proses banding.",
         },
         {
           isCorrect: true,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji pilihan porsi kecil dan porsi biasa pada kantin bebas sisa makanan dan menafsirkan buktinya secara hati-hati.",
+            "Sanksi bertahap dan pengingat berpotensi lebih adil, tetapi jalur komunikasi dan pengecualian masih perlu diuji.",
         },
       ],
     },

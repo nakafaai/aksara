@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
           isCorrect: true,
           label:
-            "Das Team prüfte vom Eingang sichtbare Stellplatznummern (Fahrradparkplatz auf dem Campus) und bewertete die Befunde vorsichtig.",
+            "Der Konflikt zwischen Einfachheit und lokaler Erinnerung wird durch Quellenprüfung und unterschiedliche Namensfunktionen gelöst.",
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext Fahrradparkplatz auf dem Campus: vom Eingang sichtbare Stellplatznummern",
+            'Der erste Teil vertritt die Behauptung "Der Verwaltungsname wurde als Hauptindex festgelegt"; der folgende nutzt "Jeder lokale Name muss denselben Rechtsstatus wie der Verwaltungsname erhalten" als Hauptbeleg.',
         },
         {
           isCorrect: false,
-          label: "Der Wert mit Änderung, 33, lag über 23 und 25.",
+          label:
+            'Der erste Teil legt "Aus Gründen der Einheitlichkeit sollten alle nichtamtlichen Namen aus Suche und Archiv entfernt werden" als endgültigen Schluss fest; der folgende nennt nur den Plan "Neue Belege können den Eintrag ändern, ohne die frühere Namensgeschichte zu löschen".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Jeder lokale Name muss denselben Rechtsstatus wie der Verwaltungsname erhalten" fest.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Der folgende Teil kehrt die Argumentation um und leitet "Aus Gründen der Einheitlichkeit sollten alle nichtamtlichen Namen aus Suche und Archiv entfernt werden" aus dem Beleg "Der Verwaltungsname wurde als Hauptindex festgelegt" ab.',
         },
       ],
     },
@@ -35,28 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
           isCorrect: true,
           label:
-            "The team tested rack numbers visible from the entrance in the campus bicycle parking and interpreted the evidence cautiously.",
+            "The conflict between simplicity and local memory is answered through evidence checking and differentiated name functions.",
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of rack numbers visible from the entrance: campus bicycle parking",
+            'The first part advances the claim "The administrative name was selected as the primary index", and the later part uses "Every local name must have the same legal status as the administrative name" as its main support.',
         },
         {
           isCorrect: false,
-          label: "The intervention value, 33, exceeded both 23 and 25.",
+          label:
+            'The first part establishes "For consistency, every non-official name should be removed from search and archives" as a final conclusion; the later part only states the plan "New evidence may revise the record without erasing earlier naming history".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Both parts maintain the claim "Every local name must have the same legal status as the administrative name" from the same perspective without adding a test.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'The later part reverses the argument by deriving "For consistency, every non-official name should be removed from search and archives" from the evidence "The administrative name was selected as the primary index".',
         },
       ],
     },
@@ -64,28 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
           isCorrect: true,
           label:
-            "Tim menguji nomor rak yang terlihat dari pintu masuk pada parkir sepeda kampus dan menafsirkan buktinya secara hati-hati.",
+            "Konflik antara kesederhanaan dan ingatan lokal dijawab dengan pemeriksaan bukti serta pembagian fungsi nama.",
         },
         {
           isCorrect: false,
           label:
-            "Uji Hati-hati dalam parkir sepeda kampus: nomor rak yang terlihat dari pintu masuk",
+            'Bagian awal mengajukan klaim "Nama administrasi ditetapkan sebagai indeks utama", lalu bagian kedua memakai "Semua nama lokal harus memiliki kedudukan hukum yang sama dengan nama administrasi" sebagai dukungan utama.',
         },
         {
           isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 33, melampaui 23 dan 25.",
+          label:
+            'Bagian pertama menetapkan "Agar peta konsisten, semua nama selain nama resmi harus dihapus dari pencarian dan arsip" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Bukti baru dapat mengubah catatan tanpa menghapus riwayat nama sebelumnya".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Kedua bagian mempertahankan klaim "Semua nama lokal harus memiliki kedudukan hukum yang sama dengan nama administrasi" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Agar peta konsisten, semua nama selain nama resmi harus dihapus dari pencarian dan arsip" dari bukti "Nama administrasi ditetapkan sebagai indeks utama".',
         },
       ],
     },

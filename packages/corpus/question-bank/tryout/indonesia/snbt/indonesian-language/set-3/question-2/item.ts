@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam perkecambahan kacang hijau.",
+            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam perkecambahan kacang hijau memperoleh hasil yang sama tanpa perbedaan.",
+            "Pada kondisi dengan perubahan, hasil rata-rata tercatat 18; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan perkecambahan kacang hijau.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut variabel kontrol sebagai bukti bahwa uji tidak perlu diulang.",
+            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
         },
         {
           isCorrect: true,
-          label: "Pada kondisi dengan perubahan, hasil rata-rata tercatat 18.",
+          label:
+            "Nilai 18 adalah rata-rata pada pencahayaan enam jam dengan jarak lampu tetap; jumlah wadah dan delapan hari pengamatan membatasi penafsiran di luar uji.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
         },
       ],
     },

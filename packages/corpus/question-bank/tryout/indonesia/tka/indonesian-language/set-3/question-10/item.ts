@@ -15,17 +15,18 @@ const item: QuestionItem = {
           label: "menunjukkan Laras tidak peduli pada keselamatan",
         },
         {
-          isCorrect: true,
-          label:
-            "menjadi pengingat bahwa peta diperbaiki melalui pemeriksaan nyata",
-        },
-        {
           isCorrect: false,
-          label: "membuktikan tinta merah tidak dapat kering",
+          label:
+            "menunjukkan bahwa peta kertas tidak cocok digunakan untuk pemeriksaan lapangan",
         },
         {
           isCorrect: false,
           label: "menandai lokasi tempat berkumpul yang baru",
+        },
+        {
+          isCorrect: true,
+          label:
+            "menjadi pengingat bahwa peta diperbaiki melalui pemeriksaan nyata",
         },
         {
           isCorrect: false,

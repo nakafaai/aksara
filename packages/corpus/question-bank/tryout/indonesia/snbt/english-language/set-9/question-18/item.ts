@@ -8,12 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Every result in a night market after closing must apply without limitation elsewhere.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The limitation makes all information about a night market after closing useless.",
+            "The recurring object gains meaning mainly from its physical description rather than its relation to the choice.",
         },
         {
           isCorrect: true,
@@ -23,12 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "One detail about plot structure proves every possible causal relationship.",
+            "The ending shows that the setting, rather than the character's action, resolves the conflict.",
         },
         {
           isCorrect: false,
           label:
-            "The passage recommends ignoring evidence that conflicts with an early expectation.",
+            "The object's meaning remains fixed even though the character uses it differently.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The final action matters because it confirms the interpretation established at the start.",
         },
       ],
     },

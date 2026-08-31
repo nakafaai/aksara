@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Die Schlussfolgerung ist möglicherweise wahr.",
-        },
-        {
           isCorrect: false,
           label: "Die Schlussfolgerung ist definitiv wahr.",
         },
@@ -23,6 +19,10 @@ const item: QuestionItem = {
             "Die Schlussfolgerung ist für die bereitgestellten Informationen irrelevant.",
         },
         {
+          isCorrect: true,
+          label: "Die Schlussfolgerung ist möglicherweise wahr.",
+        },
+        {
           isCorrect: false,
           label:
             "Die Schlussfolgerung kann aufgrund unzureichender Informationen nicht beurteilt werden.",
@@ -32,10 +32,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "The conclusion is possibly true.",
-        },
         {
           isCorrect: false,
           label: "The conclusion is definitely true.",
@@ -49,6 +45,10 @@ const item: QuestionItem = {
           label: "The conclusion is irrelevant to the information provided.",
         },
         {
+          isCorrect: true,
+          label: "The conclusion is possibly true.",
+        },
+        {
           isCorrect: false,
           label:
             "The conclusion cannot be assessed because the information is insufficient.",
@@ -58,10 +58,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "Simpulan tersebut mungkin benar.",
-        },
         {
           isCorrect: false,
           label: "Simpulan tersebut pasti benar.",
@@ -73,6 +69,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Simpulan tidak relevan dengan informasi yang diberikan.",
+        },
+        {
+          isCorrect: true,
+          label: "Simpulan tersebut mungkin benar.",
         },
         {
           isCorrect: false,

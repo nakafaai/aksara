@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$4$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{60}{11}$$",
+        },
+        {
           isCorrect: true,
-          label: "$$17$$",
+          label: "$$\\frac{50}{11}$$",
         },
         {
           isCorrect: false,
-          label: "$$18$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$19$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$15$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$16$$",
+          label: "$$6$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$4$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{60}{11}$$",
+        },
+        {
           isCorrect: true,
-          label: "$$17$$",
+          label: "$$\\frac{50}{11}$$",
         },
         {
           isCorrect: false,
-          label: "$$18$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$19$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$15$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$16$$",
+          label: "$$6$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$4$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{60}{11}$$",
+        },
+        {
           isCorrect: true,
-          label: "$$17$$",
+          label: "$$\\frac{50}{11}$$",
         },
         {
           isCorrect: false,
-          label: "$$18$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$19$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$15$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$16$$",
+          label: "$$6$$",
         },
       ],
     },

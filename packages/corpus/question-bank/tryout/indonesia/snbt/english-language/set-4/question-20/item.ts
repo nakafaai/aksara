@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Absolute certainty about a quiet local museum",
-        },
-        {
-          isCorrect: false,
-          label: "Why all evidence in a quiet local museum should be ignored",
-        },
-        {
           isCorrect: true,
           label: "A blank caption card in a quiet local museum",
         },
         {
           isCorrect: false,
-          label: "The complete world history of tone",
+          label: "A recurring object that remains part of the setting",
         },
         {
           isCorrect: false,
-          label: "One rule for every a quiet local museum",
+          label: "A conflict settled before the character's final choice",
+        },
+        {
+          isCorrect: false,
+          label: "tone as a term without a role in the story",
+        },
+        {
+          isCorrect: false,
+          label: "An ending that removes the object's interpretive tension",
         },
       ],
     },

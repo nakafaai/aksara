@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap ruang penyimpanan karya seni pada malam hari tanpa membahas keputusan atau bukti.",
+            "Benda yang berulang terutama membangun latar dan hanya sedikit berhubungan dengan konflik.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap ruang penyimpanan karya seni pada malam hari.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan terutama menjelaskan definisi sudut pandang terbatas tanpa menghubungkannya dengan konteks.",
+            "Keputusan akhir tokoh menghapus ketegangan makna yang sebelumnya dimiliki benda tersebut.",
         },
         {
           isCorrect: true,
           label:
             "Pilihan kecil Reno mengubah makna kartu kondisi dalam menghadapi konflik di ruang penyimpanan karya seni pada malam hari.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bacaan memakai sudut pandang terbatas sebagai label deskriptif tanpa menghubungkannya dengan pilihan tokoh.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Latar menyelesaikan konflik sebelum tindakan akhir tokoh mengubah makna benda.",
         },
       ],
     },

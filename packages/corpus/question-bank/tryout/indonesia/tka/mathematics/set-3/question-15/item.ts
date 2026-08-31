@@ -12,22 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Eine Drehung um $90^\\circ$ gegen den Uhrzeigersinn bildet $(x,y)$ auf $(-y,x)$ ab.",
+          label: "$M(3,-2)=(0,2)$.",
         },
         {
           isCorrect: true,
-          label: "Eine Spiegelung an $y=x$ vertauscht die Koordinaten.",
+          label: "M erhält Abstände.",
         },
         {
           isCorrect: true,
-          label:
-            "Eine Streckung mit dem Faktor $\\frac12$ vervierfacht den Flächeninhalt nicht, sondern multipliziert ihn mit $\\frac14$.",
+          label: "M kehrt die Orientierung um.",
+        },
+        {
+          isCorrect: true,
+          label: "$M^2(x,y)=(x+1,y+1)$.",
         },
         {
           isCorrect: false,
-          label:
-            "Eine Verschiebung kann den Flächeninhalt einer Figur verändern.",
+          label: "M besitzt mindestens einen Fixpunkt.",
         },
       ],
     },
@@ -36,21 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "A $90^\\circ$ counterclockwise rotation maps $(x,y)$ to $(-y,x)$.",
+          label: "$M(3,-2)=(0,2)$.",
         },
         {
           isCorrect: true,
-          label: "Reflection across $y=x$ swaps the coordinates.",
+          label: "M preserves distance.",
         },
         {
           isCorrect: true,
-          label:
-            "A dilation with scale factor $\\frac12$ multiplies area by $\\frac14$.",
+          label: "M reverses orientation.",
+        },
+        {
+          isCorrect: true,
+          label: "$M^2(x,y)=(x+1,y+1)$.",
         },
         {
           isCorrect: false,
-          label: "A translation can change a figure's area.",
+          label: "M has at least one fixed point.",
         },
       ],
     },
@@ -59,21 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Rotasi $90^\\circ$ berlawanan arah jarum jam memetakan $(x,y)$ ke $(-y,x)$.",
+          label: "$M(3,-2)=(0,2)$.",
         },
         {
           isCorrect: true,
-          label: "Refleksi terhadap $y=x$ menukar kedua koordinat.",
+          label: "M mempertahankan jarak.",
         },
         {
           isCorrect: true,
-          label:
-            "Dilatasi dengan faktor $\\frac12$ mengalikan luas dengan $\\frac14$.",
+          label: "M membalik orientasi.",
+        },
+        {
+          isCorrect: true,
+          label: "$M^2(x,y)=(x+1,y+1)$.",
         },
         {
           isCorrect: false,
-          label: "Translasi dapat mengubah luas suatu bangun.",
+          label: "M memiliki sedikitnya satu titik tetap.",
         },
       ],
     },

@@ -7,23 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang peta kartu daur karbon",
+          label: "Mengukur reservoir melalui satu perbandingan awal",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Menjadikan reservoir penjelasan tunggal atas hasil pengamatan",
+        },
+        {
+          isCorrect: false,
+          label: "Kaidah akhir dari perbandingan pertama tentang reservoir",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Keterbatasan yang membuat uji lanjutan reservoir tidak diperlukan",
         },
         {
           isCorrect: true,
           label: "Kegunaan dan Batas Peta kartu daur karbon",
-        },
-        {
-          isCorrect: false,
-          label: "Alasan Mengabaikan Semua Bukti dalam peta kartu daur karbon",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap reservoir di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap peta kartu daur karbon",
         },
       ],
     },

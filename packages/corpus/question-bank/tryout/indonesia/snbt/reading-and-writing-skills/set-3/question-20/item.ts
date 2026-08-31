@@ -8,17 +8,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontext „Kompostierworkshop“",
+            "Da 31 über 23 und 25 lag, erklärte das Team Karten zur Reihenfolge brauner und grüner Materialien für wirksam und führte die Änderung dauerhaft ein.",
         },
         {
           isCorrect: false,
           label:
-            "Am Montag prüfte das Team Karten zur Reihenfolge brauner und grüner Materialien im folgenden Kontext: Kompostierworkshop.",
+            "Das Team verglich 31, 23 und 25 und plante eine längere Wiederholung, ohne die Aussage auf Kompostierworkshop zu begrenzen.",
         },
         {
           isCorrect: false,
           label:
-            "die Folgestudie des Teams im untersuchten Kontext (Kompostierworkshop)",
+            "Das Team begrenzte die Aussage auf Kompostierworkshop und plante eine längere Wiederholung, ohne den Vergleich zu nennen.",
         },
         {
           isCorrect: true,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im untersuchten Kontext (Kompostierworkshop) gaben kurze Rückmeldungen.",
+            "Die Werte 31, 23 und 25 zeigten kein relevantes Muster, daher wollte das Team die Messregeln ändern.",
         },
       ],
     },
@@ -38,17 +38,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "an analysis of the effectiveness of cards showing the order of brown and green materials in this setting (composting workshop)",
+            "Because 31 exceeded 23 and 25, the team concluded that the change was effective and adopted it permanently.",
         },
         {
           isCorrect: false,
           label:
-            "On Monday, the team tested cards showing the order of brown and green materials in this setting (composting workshop).",
+            "The team compared 31, 23, and 25 and planned a longer repetition without limiting the claim to the context of composting workshop.",
         },
         {
           isCorrect: false,
           label:
-            "the team's follow-up study of cards showing the order of brown and green materials in this setting (composting workshop)",
+            "The team limited its claim to the context of composting workshop and planned a longer repetition without reporting the comparison.",
         },
         {
           isCorrect: true,
@@ -58,7 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Users in this setting (composting workshop) provided brief comments.",
+            "The values 31, 23, and 25 showed no relevant pattern, so the team planned to change the measurement rules.",
         },
       ],
     },
@@ -68,17 +68,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "analisis efektivitas kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos",
+            "Karena 31 lebih tinggi daripada 23 dan 25, tim menyimpulkan bahwa kartu urutan bahan cokelat dan hijau efektif lalu menerapkannya secara tetap.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin, tim menguji kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos.",
+            "Tim membandingkan 31, 23, dan 25 serta merencanakan pengulangan lebih panjang tanpa membatasi klaim pada lokakarya pembuatan kompos.",
         },
         {
           isCorrect: false,
           label:
-            "kerja sama tim dalam uji kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos",
+            "Tim membatasi klaim pada lokakarya pembuatan kompos dan merencanakan pengulangan lebih panjang tanpa melaporkan perbandingan.",
         },
         {
           isCorrect: true,
@@ -88,7 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Para pengguna di lokakarya pembuatan kompos memberikan komentar singkat.",
+            "Nilai 31, 23, dan 25 tidak menunjukkan pola yang relevan sehingga tim akan mengubah kaidah pengukuran.",
         },
       ],
     },

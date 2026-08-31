@@ -11,24 +11,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Jeda Lima Menit Pasti Menghapus Semua Kesalahan",
-        },
-        {
-          isCorrect: false,
-          label: "Rahasia Medis agar Selalu Mendapat Nilai Sempurna",
-        },
-        {
           isCorrect: true,
           label: "Pola Ketelitian pada Dua Sesi Latihan dengan Urutan Berbeda",
         },
         {
           isCorrect: false,
-          label: "Bukti bahwa Belajar Empat Puluh Menit Berbahaya",
+          label: "Pengaruh Jeda Lima Menit terhadap Ketelitian Dua Belas Siswa",
         },
         {
           isCorrect: false,
-          label: "Dua Belas Siswa Menentukan Cara Belajar Nasional",
+          label: "Perbandingan Hasil Dua Paket Latihan dengan dan tanpa Jeda",
+        },
+        {
+          isCorrect: false,
+          label: "Ketelitian Belajar setelah Empat Puluh Menit Latihan",
+        },
+        {
+          isCorrect: false,
+          label: "Uji Efektivitas Jeda pada Siswa Sekolah Menengah",
         },
       ],
     },

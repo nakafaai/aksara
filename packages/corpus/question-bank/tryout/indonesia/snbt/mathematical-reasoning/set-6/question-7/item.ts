@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$2520$$ Einheiten",
+        },
+        {
           isCorrect: false,
           label: "$$1960$$ Einheiten",
         },
@@ -21,15 +25,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$3000$$ Einheiten",
         },
-        {
-          isCorrect: true,
-          label: "$$2520$$ Einheiten",
-        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$2520$$ units",
+        },
         {
           isCorrect: false,
           label: "$$1960$$ units",
@@ -46,15 +50,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$3000$$ units",
         },
-        {
-          isCorrect: true,
-          label: "$$2520$$ units",
-        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "$$2520$$ unit",
+        },
         {
           isCorrect: false,
           label: "$$1960$$ unit",
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$3000$$ unit",
-        },
-        {
-          isCorrect: true,
-          label: "$$2520$$ unit",
         },
       ],
     },

@@ -11,24 +11,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$\\frac{37}{15}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{38}{15}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{8}{3}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{41}{15}$$",
-        },
-        {
           isCorrect: true,
-          label: "$$\\frac{13}{5}$$",
+          label: "$$75{,}3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$74{,}9$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$75{,}1$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$75{,}5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$75{,}7$$",
         },
       ],
     },
@@ -36,24 +36,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$\\frac{37}{15}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{38}{15}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{8}{3}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{41}{15}$$",
-        },
-        {
           isCorrect: true,
-          label: "$$\\frac{13}{5}$$",
+          label: "$$75{,}3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$74{,}9$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$75{,}1$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$75{,}5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$75{,}7$$",
         },
       ],
     },
@@ -61,24 +61,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$\\frac{37}{15}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{38}{15}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{8}{3}$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$\\frac{41}{15}$$",
-        },
-        {
           isCorrect: true,
-          label: "$$\\frac{13}{5}$$",
+          label: "$$75{,}3$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$74{,}9$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$75{,}1$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$75{,}5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$75{,}7$$",
         },
       ],
     },

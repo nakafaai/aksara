@@ -11,20 +11,19 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Absolute certainty about a youth translation club",
+          label: "Waiting for someone else to complete the next step",
         },
         {
           isCorrect: false,
-          label:
-            "Why all evidence in a youth translation club should be ignored",
+          label: "Hiding unresolved evidence in a larger project",
         },
         {
           isCorrect: false,
-          label: "The complete world history of connotation",
+          label: "connotation as a definition without a reviewable action",
         },
         {
           isCorrect: false,
-          label: "One rule for every a youth translation club",
+          label: "A complete plan without a small accountable step",
         },
       ],
     },

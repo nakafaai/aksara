@@ -11,20 +11,23 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "gunakan perkiraan numerik agar lokasi yang datanya hilang tetap dapat dibandingkan",
+        },
+        {
           isCorrect: true,
           label: "bedakan antara tidak terlihat dan terbukti gagal",
         },
         {
           isCorrect: false,
-          label: "ubah data yang tidak lengkap menjadi angka pasti",
+          label:
+            "utamakan jumlah bibit yang ditemukan tanpa membedakan kondisi tiap lokasi",
         },
         {
           isCorrect: false,
-          label: "abaikan semua catatan lokasi",
-        },
-        {
-          isCorrect: false,
-          label: "gunakan satu ukuran untuk semua kondisi",
+          label:
+            "gunakan indikator pertumbuhan yang sama tanpa mencatat perbedaan arus dan genangan",
         },
         {
           isCorrect: false,

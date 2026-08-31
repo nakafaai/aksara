@@ -6,24 +6,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Menunggu orang lain menyelesaikan langkah berikutnya",
+        },
+        {
           isCorrect: true,
           label: "Langkah Kecil Laras di jalur wisata hutan kota",
         },
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang jalur wisata hutan kota",
+          label: "Menyembunyikan bukti yang belum tuntas dalam proyek besar",
         },
         {
           isCorrect: false,
-          label: "Alasan Mengabaikan Semua Bukti dalam jalur wisata hutan kota",
+          label:
+            "kesadaran penuh sebagai definisi tanpa tindakan yang dapat diperiksa",
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap kesadaran penuh di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap jalur wisata hutan kota",
+          label: "Rencana lengkap tanpa langkah kecil yang bertanggung jawab",
         },
       ],
     },

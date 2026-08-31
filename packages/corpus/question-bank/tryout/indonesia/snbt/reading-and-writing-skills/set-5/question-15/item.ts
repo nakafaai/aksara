@@ -16,14 +16,14 @@ const item: QuestionItem = {
             "Die Zahlen stiegen. Außerdem blieb die Schlussfolgerung zu Aufnahmestudio der Schule begrenzt.",
         },
         {
-          isCorrect: false,
-          label:
-            "Die Zahlen stiegen. Zuvor blieb die Schlussfolgerung zu Aufnahmestudio der Schule begrenzt.",
-        },
-        {
           isCorrect: true,
           label:
             "Die Zahlen stiegen. Dennoch blieb die Schlussfolgerung für diesen Kontext begrenzt: Aufnahmestudio der Schule.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Zahlen stiegen. Zuvor blieb die Schlussfolgerung zu Aufnahmestudio der Schule begrenzt.",
         },
         {
           isCorrect: false,
@@ -46,14 +46,14 @@ const item: QuestionItem = {
             "The figures increased. Moreover, the conclusion about the school recording studio remained limited.",
         },
         {
-          isCorrect: false,
-          label:
-            "The figures increased. Previously, the conclusion about the school recording studio remained limited.",
-        },
-        {
           isCorrect: true,
           label:
             "The figures increased. Nevertheless, the conclusion for this setting (school recording studio) remained limited.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The figures increased. Previously, the conclusion about the school recording studio remained limited.",
         },
         {
           isCorrect: false,
@@ -76,14 +76,14 @@ const item: QuestionItem = {
             "Angka meningkat. Selain itu, simpulan tentang studio rekaman sekolah tetap dibatasi.",
         },
         {
-          isCorrect: false,
-          label:
-            "Angka meningkat. Sebelumnya, simpulan tentang studio rekaman sekolah tetap dibatasi.",
-        },
-        {
           isCorrect: true,
           label:
             "Angka meningkat. Namun, simpulan tentang studio rekaman sekolah tetap dibatasi.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Angka meningkat. Sebelumnya, simpulan tentang studio rekaman sekolah tetap dibatasi.",
         },
         {
           isCorrect: false,

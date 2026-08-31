@@ -7,7 +7,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Schulfrühstücksprogramm",
+          label:
+            "Die Beobachtung bewies daher, dass die Änderung Menüvorbestellung am Vortag den Unterschied verursachte.",
         },
         {
           isCorrect: true,
@@ -17,17 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Schulfrühstücksprogramm über den beiden anderen Werten.",
+            "Das Team musste daher mehrere Merkmale im Kontext Schulfrühstücksprogramm ändern, bevor es erneut maß.",
         },
         {
           isCorrect: false,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Menübestellung am Vortag.",
+            "Das erste Muster rechtfertigte daher die dauerhafte Einführung von Menüvorbestellung am Vortag.",
         },
         {
           isCorrect: false,
           label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Menübestellung am Vortag.",
+            "Die verbleibende Unsicherheit machte einen weiteren Vergleich daher überflüssig.",
         },
       ],
     },
@@ -36,7 +37,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: school breakfast programme",
+          label:
+            "The observation therefore established that menu booking one day in advance caused the difference.",
         },
         {
           isCorrect: true,
@@ -46,17 +48,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "In this setting (school breakfast programme), the trial value exceeded both other values.",
+            "The team therefore needed to alter several features of school breakfast programme before measuring again.",
         },
         {
           isCorrect: false,
           label:
-            "The change, menu booking one day in advance, directly addressed the observed uncertainty.",
+            "The initial pattern therefore justified permanent adoption of menu booking one day in advance.",
         },
         {
           isCorrect: false,
           label:
-            "The next test of menu booking one day in advance will run for longer.",
+            "The remaining uncertainty therefore made another comparison unnecessary.",
         },
       ],
     },
@@ -65,7 +67,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: program sarapan sekolah",
+          label:
+            "Pengamatan itu membuktikan bahwa pemesanan menu sehari sebelumnya menyebabkan perbedaan.",
         },
         {
           isCorrect: true,
@@ -75,17 +78,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Di program sarapan sekolah, nilai hari uji melampaui dua nilai lainnya.",
+            "Tim perlu mengubah beberapa unsur program sarapan sekolah sebelum melakukan pengukuran ulang.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa pemesanan menu sehari sebelumnya langsung menanggapi keraguan yang diamati.",
+            "Pola awal itu membenarkan penerapan tetap pemesanan menu sehari sebelumnya.",
         },
         {
           isCorrect: false,
           label:
-            "Uji pemesanan menu sehari sebelumnya berikutnya akan berlangsung lebih lama.",
+            "Ketidakpastian yang tersisa membuat perbandingan lanjutan tidak diperlukan.",
         },
       ],
     },

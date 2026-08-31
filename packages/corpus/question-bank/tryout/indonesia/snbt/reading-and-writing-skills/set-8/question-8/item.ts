@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Tag der offenen Labortür auf den kurzen Versuch.",
-        },
-        {
           isCorrect: false,
           label:
             "Dennoch, begrenzte das Team seine Schlussfolgerung zum Kontext Tag der offenen Labortür auf den kurzen Versuch.",
@@ -26,6 +21,11 @@ const item: QuestionItem = {
             "Dennoch; begrenzte das Team seine Schlussfolgerung zum Kontext Tag der offenen Labortür auf den kurzen Versuch.",
         },
         {
+          isCorrect: true,
+          label:
+            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Tag der offenen Labortür auf den kurzen Versuch.",
+        },
+        {
           isCorrect: false,
           label:
             "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Tag der offenen Labortür auf den kurzen Versuch?",
@@ -35,11 +35,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "Nevertheless, the team limited its conclusion for this setting (open laboratory tour) to the short trial.",
-        },
         {
           isCorrect: false,
           label:
@@ -56,6 +51,11 @@ const item: QuestionItem = {
             "Nevertheless; the team limited its conclusion for this setting (open laboratory tour) to the short trial.",
         },
         {
+          isCorrect: true,
+          label:
+            "Nevertheless, the team limited its conclusion for this setting (open laboratory tour) to the short trial.",
+        },
+        {
           isCorrect: false,
           label:
             "Nevertheless, the team limited its conclusion for this setting (open laboratory tour) to the short trial?",
@@ -65,11 +65,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "Meskipun demikian, tim membatasi simpulan tentang tur laboratorium terbuka pada uji singkat tersebut.",
-        },
         {
           isCorrect: false,
           label:
@@ -84,6 +79,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Meskipun demikian; tim membatasi simpulan tentang tur laboratorium terbuka pada uji singkat tersebut.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Meskipun demikian, tim membatasi simpulan tentang tur laboratorium terbuka pada uji singkat tersebut.",
         },
         {
           isCorrect: false,

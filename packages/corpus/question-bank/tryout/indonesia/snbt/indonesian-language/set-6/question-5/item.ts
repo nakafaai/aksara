@@ -7,24 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang periode ayunan bandul",
-        },
-        {
-          isCorrect: false,
-          label: "Alasan Mengabaikan Semua Bukti dalam periode ayunan bandul",
+          label: "Mengukur periode melalui satu perbandingan awal",
         },
         {
           isCorrect: true,
+          label: "Pengaruh Panjang Tali terhadap Periode Ayunan Bandul",
+        },
+        {
+          isCorrect: false,
+          label: "Menjadikan periode penjelasan tunggal atas hasil pengamatan",
+        },
+        {
+          isCorrect: false,
+          label: "Kaidah akhir dari perbandingan pertama tentang periode",
+        },
+        {
+          isCorrect: false,
           label:
-            "Menguji tali sepanjang 60 sentimeter dalam periode ayunan bandul",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap periode di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap periode ayunan bandul",
+            "Keterbatasan yang membuat uji lanjutan periode tidak diperlukan",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "in this passage, an assumption that never needs to be examined in enzyme activity in a classroom model",
+            "The definition of *enzyme* proves that the tested change caused the recorded result, even without the comparison conditions.",
         },
         {
           isCorrect: true,
           label:
-            "a biological catalyst that speeds a reaction without being consumed",
+            "By defining *enzyme*, the report fixes the meaning of the measured concept before the numerical comparison and its limitation are interpreted.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, a final result that always applies to every situation",
+            "The definition makes *enzyme* a substitute for the controls, so the unmeasured factor no longer limits the conclusion.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, a detail removed because it challenges an opinion",
+            "The definition broadens *enzyme* from this short investigation to every similar system under any condition.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, decorative language unrelated to the setting",
+            "The term *enzyme* names the report's limitation rather than the concept represented by the measurements.",
         },
       ],
     },

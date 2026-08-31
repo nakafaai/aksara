@@ -6,29 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$20$$",
+        },
+        {
           isCorrect: true,
-          label:
-            "Wenn es keine Erhöhung der Fahrpreise für öffentliche Verkehrsmittel gibt, dann gibt es auch keine Erhöhung der Treibstoffpreise (BBM).",
+          label: "$$40$$",
         },
         {
           isCorrect: false,
-          label:
-            "Wenn die Fahrpreise für öffentliche Verkehrsmittel steigen, steigen auch die Treibstoffpreise (BBM).",
+          label: "$$30$$",
         },
         {
           isCorrect: false,
-          label:
-            "Wenn die Preise für Grundbedürfnisse steigen, dann sind auch die Treibstoffpreise (BBM) gestiegen",
+          label: "$$35$$",
         },
         {
           isCorrect: false,
-          label:
-            "Jede Erhöhung der Treibstoffpreise (BBM) führt nicht zu einer Erhöhung der Preise für Grundbedürfnisse",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Wenn es keine Erhöhung der Treibstoffpreise (BBM) gibt, dann gibt es auch keine Erhöhung der Preise für Grundbedürfnisse",
+          label: "$$45$$",
         },
       ],
     },
@@ -36,29 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$20$$",
+        },
+        {
           isCorrect: true,
-          label:
-            "If there is no increase in public transportation fares, then there is no increase in fuel (BBM) prices",
+          label: "$$40$$",
         },
         {
           isCorrect: false,
-          label:
-            "If there is an increase in public transportation fares, then there is an increase in fuel (BBM) prices",
+          label: "$$30$$",
         },
         {
           isCorrect: false,
-          label:
-            "If there is an increase in the prices of basic needs, then there has been an increase in fuel (BBM) prices",
+          label: "$$35$$",
         },
         {
           isCorrect: false,
-          label:
-            "Every increase in fuel (BBM) prices results in no increase in the prices of basic needs",
-        },
-        {
-          isCorrect: false,
-          label:
-            "If there is no increase in fuel (BBM) prices, then there is no increase in the prices of basic needs",
+          label: "$$45$$",
         },
       ],
     },
@@ -66,29 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$20$$",
+        },
+        {
           isCorrect: true,
-          label:
-            "Jika tidak ada kenaikan tarif angkutan umum maka tidak terjadi kenaikan harga bahan bakar minyak (BBM)",
+          label: "$$40$$",
         },
         {
           isCorrect: false,
-          label:
-            "Jika terjadi kenaikan tarif angkutan umum maka terjadi kenaikan harga bahan bakar minyak (BBM)",
+          label: "$$30$$",
         },
         {
           isCorrect: false,
-          label:
-            "Jika terjadi kenaikan harga kebutuhan pokok maka telah terjadi kenaikan harga bahan bakar minyak (BBM)",
+          label: "$$35$$",
         },
         {
           isCorrect: false,
-          label:
-            "Setiap kenaikan harga bahan bakar minyak (BBM) maka tidak terjadi kenaikan harga kebutuhan pokok",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Jika tidak terjadi kenaikan harga bahan bakar minyak (BBM) maka tidak terjadi kenaikan harga kebutuhan pokok",
+          label: "$$45$$",
         },
       ],
     },

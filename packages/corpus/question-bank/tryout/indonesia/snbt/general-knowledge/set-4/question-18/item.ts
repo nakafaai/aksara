@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Jeder lokale Name muss denselben Rechtsstatus wie der Verwaltungsname erhalten.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Aus Gründen der Einheitlichkeit sollten alle nichtamtlichen Namen aus Suche und Archiv entfernt werden.",
         },
         {
           isCorrect: false,
-          label:
-            "richtig abgestellte Fahrräder und kurze Aussagen von Nutzenden",
+          label: "Der Verwaltungsname wurde als Hauptindex festgelegt.",
         },
         {
           isCorrect: true,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Standardisierung und Bewahrung lokalen Wissens können zusammengehen, wenn die Funktion jedes Namens unterschieden wird.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team prüfte vom Eingang sichtbare Stellplatznummern (Fahrradparkplatz auf dem Campus) und bewertete die Befunde vorsichtig.",
+            "Neue Belege können den Eintrag ändern, ohne die frühere Namensgeschichte zu löschen.",
         },
       ],
     },
@@ -38,27 +37,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "Every local name must have the same legal status as the administrative name.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "For consistency, every non-official name should be removed from search and archives.",
         },
         {
           isCorrect: false,
-          label:
-            "bicycles parked in the correct rack and short comments from users",
+          label: "The administrative name was selected as the primary index.",
         },
         {
           isCorrect: true,
           label:
-            "days when the earlier process continued without the tested change",
+            "Standardisation and preservation of local knowledge can coexist when each name's function is distinguished.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested rack numbers visible from the entrance in the campus bicycle parking and interpreted the evidence cautiously.",
+            "New evidence may revise the record without erasing earlier naming history.",
         },
       ],
     },
@@ -68,27 +66,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Semua nama lokal harus memiliki kedudukan hukum yang sama dengan nama administrasi.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Agar peta konsisten, semua nama selain nama resmi harus dihapus dari pencarian dan arsip.",
         },
         {
           isCorrect: false,
-          label:
-            "sepeda yang diparkir pada rak yang benar dan komentar singkat pengguna",
+          label: "Nama administrasi ditetapkan sebagai indeks utama.",
         },
         {
           isCorrect: true,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Standarisasi dan pelestarian pengetahuan lokal dapat berjalan bersama jika fungsi setiap nama dibedakan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji nomor rak yang terlihat dari pintu masuk pada parkir sepeda kampus dan menafsirkan buktinya secara hati-hati.",
+            "Bukti baru dapat mengubah catatan tanpa menghapus riwayat nama sebelumnya.",
         },
       ],
     },

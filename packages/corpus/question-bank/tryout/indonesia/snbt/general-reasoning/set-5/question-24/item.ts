@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "S, Q, P, R",
+          label: "$$9$$",
         },
         {
           isCorrect: false,
-          label: "P, Q, R, S",
-        },
-        {
-          isCorrect: false,
-          label: "Q, R, P, S",
+          label: "$$10$$",
         },
         {
           isCorrect: true,
-          label: "Q, P, S, R",
+          label: "$$11$$",
         },
         {
           isCorrect: false,
-          label: "R, Q, S, P",
+          label: "$$12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$13$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "S, Q, P, R",
+          label: "$$9$$",
         },
         {
           isCorrect: false,
-          label: "P, Q, R, S",
-        },
-        {
-          isCorrect: false,
-          label: "Q, R, P, S",
+          label: "$$10$$",
         },
         {
           isCorrect: true,
-          label: "Q, P, S, R",
+          label: "$$11$$",
         },
         {
           isCorrect: false,
-          label: "R, Q, S, P",
+          label: "$$12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$13$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "S, Q, P, R",
+          label: "$$9$$",
         },
         {
           isCorrect: false,
-          label: "P, Q, R, S",
-        },
-        {
-          isCorrect: false,
-          label: "Q, R, P, S",
+          label: "$$10$$",
         },
         {
           isCorrect: true,
-          label: "Q, P, S, R",
+          label: "$$11$$",
         },
         {
           isCorrect: false,
-          label: "R, Q, S, P",
+          label: "$$12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$13$$",
         },
       ],
     },

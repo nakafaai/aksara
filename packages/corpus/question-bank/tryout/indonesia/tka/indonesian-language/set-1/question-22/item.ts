@@ -20,7 +20,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Menggabungkan kembali semua jenis sisa.",
+          label:
+            "Menggabungkan sisa yang belum teridentifikasi agar petugas dapat memilahnya kemudian.",
         },
         {
           isCorrect: false,

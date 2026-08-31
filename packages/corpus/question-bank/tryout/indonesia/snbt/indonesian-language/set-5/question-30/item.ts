@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Benda berulang yang tetap menjadi bagian latar",
+        },
+        {
+          isCorrect: false,
+          label: "Konflik yang selesai sebelum pilihan akhir tokoh",
+        },
+        {
+          isCorrect: false,
+          label: "konflik sebagai istilah tanpa peran dalam cerita",
+        },
+        {
+          isCorrect: false,
+          label: "Akhir yang menghapus ketegangan makna benda",
+        },
+        {
           isCorrect: true,
           label: "Benang merah di kelas reparasi pakaian",
-        },
-        {
-          isCorrect: false,
-          label: "Kepastian Mutlak tentang kelas reparasi pakaian",
-        },
-        {
-          isCorrect: false,
-          label: "Alasan Mengabaikan Semua Bukti dalam kelas reparasi pakaian",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap konflik di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap kelas reparasi pakaian",
         },
       ],
     },

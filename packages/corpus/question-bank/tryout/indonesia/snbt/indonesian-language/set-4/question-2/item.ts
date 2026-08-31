@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam suhu air pada kolam mini.",
-        },
-        {
           isCorrect: true,
-          label: "Pada kondisi dengan perubahan, hasil rata-rata tercatat 25.",
+          label:
+            "Nilai 25 adalah rata-rata ketika panel peneduh dipasang empat jam; hari berawan dan perubahan angin belum tercakup dalam simulasi.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam suhu air pada kolam mini memperoleh hasil yang sama tanpa perbedaan.",
+            "Pada kondisi dengan perubahan, hasil rata-rata tercatat 25; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan suhu air pada kolam mini.",
+            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyebut daya generalisasi sebagai bukti bahwa uji tidak perlu diulang.",
+            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
         },
       ],
     },

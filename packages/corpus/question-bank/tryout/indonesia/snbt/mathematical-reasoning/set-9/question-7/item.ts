@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$14$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$18$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$20$$",
-        },
-        {
           isCorrect: true,
-          label: "$$16$$",
+          label: "$$\\frac{21}{2}$$",
         },
         {
           isCorrect: false,
-          label: "$$12$$",
+          label: "$$9$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$10$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$11$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{23}{2}$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$14$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$18$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$20$$",
-        },
-        {
           isCorrect: true,
-          label: "$$16$$",
+          label: "$$\\frac{21}{2}$$",
         },
         {
           isCorrect: false,
-          label: "$$12$$",
+          label: "$$9$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$10$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$11$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{23}{2}$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$14$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$18$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$20$$",
-        },
-        {
           isCorrect: true,
-          label: "$$16$$",
+          label: "$$\\frac{21}{2}$$",
         },
         {
           isCorrect: false,
-          label: "$$12$$",
+          label: "$$9$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$10$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$11$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{23}{2}$$",
         },
       ],
     },

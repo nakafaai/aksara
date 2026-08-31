@@ -2,24 +2,20 @@ export const metadata = {
   title: "Aufgabe 9",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
+  dateModified: "2026-08-31",
 };
 
-Die Gerade <InlineMath math="y=3x+4" /> ist unten dargestellt.
+Der Kreis <InlineMath math="x^2+y^2=25" /> wird von der Geraden <InlineMath math="x+2y=5" /> in einer Sehne geschnitten.
 
 <LineEquation
-  title="Gerade"
-  description="Graph von y=3x+4."
-  cameraPosition={[0, 0, 12]}
+  title="Kreis und Sehne"
+  description="Exakter Kreis mit Radius 5 und die gerade Sehne von (5, 0) bis (-3, 4)."
+  cameraPosition={[0, 0, 18]}
   showZAxis={false}
-  data={[{
-    points: [
-      { x: -2, y: -2, z: 0 },
-      { x: 0, y: 4, z: 0 },
-      { x: 3, y: 13, z: 0 }
-    ],
-    color: "#7c3aed",
-    showPoints: true
-  }]}
+  data={[
+    { kind: "circle-outline", radius: 5, color: "#64748b", showPoints: false },
+    { points: [{ x: 5, y: 0, z: 0 }, { x: -3, y: 4, z: 0 }], color: "#7c3aed", smooth: false, showPoints: true },
+  ]}
 />
 
-Welchen Wert hat <InlineMath math="y" /> für <InlineMath math="x=3" />?
+Wie lang ist die Sehne?

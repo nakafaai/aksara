@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$54$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$65$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$81$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$91$$",
+        },
+        {
           isCorrect: true,
-          label: "$$123$$ Besucher",
-        },
-        {
-          isCorrect: false,
-          label: "$$127$$ Besucher",
-        },
-        {
-          isCorrect: false,
-          label: "$$126$$ Besucher",
-        },
-        {
-          isCorrect: false,
-          label: "$$125$$ Besucher",
-        },
-        {
-          isCorrect: false,
-          label: "$$124$$ Besucher",
+          label: "$$73$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$54$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$65$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$81$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$91$$",
+        },
+        {
           isCorrect: true,
-          label: "$$123$$ visitors",
-        },
-        {
-          isCorrect: false,
-          label: "$$127$$ visitors",
-        },
-        {
-          isCorrect: false,
-          label: "$$126$$ visitors",
-        },
-        {
-          isCorrect: false,
-          label: "$$125$$ visitors",
-        },
-        {
-          isCorrect: false,
-          label: "$$124$$ visitors",
+          label: "$$73$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$54$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$65$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$81$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$91$$",
+        },
+        {
           isCorrect: true,
-          label: "$$123$$ pengunjung",
-        },
-        {
-          isCorrect: false,
-          label: "$$127$$ pengunjung",
-        },
-        {
-          isCorrect: false,
-          label: "$$126$$ pengunjung",
-        },
-        {
-          isCorrect: false,
-          label: "$$125$$ pengunjung",
-        },
-        {
-          isCorrect: false,
-          label: "$$124$$ pengunjung",
+          label: "$$73$$",
         },
       ],
     },

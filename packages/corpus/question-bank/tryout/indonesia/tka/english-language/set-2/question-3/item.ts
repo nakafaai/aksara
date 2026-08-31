@@ -17,20 +17,22 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Every village uses exactly the same dock in every season.",
+          label:
+            "The service follows one standard docking arrangement in each village throughout the year.",
         },
         {
           isCorrect: false,
-          label: "The crew stores all returned books outside the cabin.",
+          label:
+            "The crew prioritizes outdoor storage so returned books do not narrow the cabin aisle.",
+        },
+        {
+          isCorrect: false,
+          label: "A library building was copied without any changes.",
         },
         {
           isCorrect: true,
           label:
             "The boat adapts library services to river conditions and different users.",
-        },
-        {
-          isCorrect: false,
-          label: "A library building was copied without any changes.",
         },
       ],
     },

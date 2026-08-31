@@ -18,13 +18,13 @@ const item: QuestionItem = {
           label: "Vor Sonnenaufgang singen die Vögel laut.",
         },
         {
-          isCorrect: false,
-          label: "Wenn die Glocke läutet, wird der Schulflur laut.",
-        },
-        {
           isCorrect: true,
           label:
             "Nachdem der Unterricht endet, sollte jeder Schüler die Aufgabe umgehend abgeben.",
+        },
+        {
+          isCorrect: false,
+          label: "Wenn die Glocke läutet, wird der Schulflur laut.",
         },
       ],
     },
@@ -44,13 +44,13 @@ const item: QuestionItem = {
           label: "Before sunrise, birds sing loudly.",
         },
         {
-          isCorrect: false,
-          label: "When the bell rings, the school corridor becomes noisy.",
-        },
-        {
           isCorrect: true,
           label:
             "After the lesson ends, each student should submit the assignment promptly.",
+        },
+        {
+          isCorrect: false,
+          label: "When the bell rings, the school corridor becomes noisy.",
         },
       ],
     },
@@ -70,13 +70,13 @@ const item: QuestionItem = {
           label: "Sebelum matahari terbit, burung berkicau nyaring.",
         },
         {
-          isCorrect: false,
-          label: "Ketika bel berbunyi, lorong sekolah menjadi ramai.",
-        },
-        {
           isCorrect: true,
           label:
             "Setelah pelajaran berakhir, setiap siswa harus segera menyerahkan tugas.",
+        },
+        {
+          isCorrect: false,
+          label: "Ketika bel berbunyi, lorong sekolah menjadi ramai.",
         },
       ],
     },

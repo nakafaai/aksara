@@ -8,7 +8,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Geordnete Prüfung einer Änderung: Erfassung von Straßenbäumen",
+            "Die Beobachtung bewies daher, dass die Änderung Beispielfotos für jede Zustandskategorie den Unterschied verursachte.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team musste daher mehrere Merkmale im Kontext Straßenbaumerhebung ändern, bevor es erneut maß.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das erste Muster rechtfertigte daher die dauerhafte Einführung von Beispielfotos für jede Zustandskategorie.",
         },
         {
           isCorrect: true,
@@ -18,17 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Erfassung von Straßenbäumen über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Beispielfotos für jede Zustandskategorie.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Beispielfotos für jede Zustandskategorie.",
+            "Die verbleibende Unsicherheit machte einen weiteren Vergleich daher überflüssig.",
         },
       ],
     },
@@ -37,7 +37,18 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: street-tree survey",
+          label:
+            "The observation therefore established that sample photos for each condition category caused the difference.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team therefore needed to alter several features of street-tree survey before measuring again.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The initial pattern therefore justified permanent adoption of sample photos for each condition category.",
         },
         {
           isCorrect: true,
@@ -47,17 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "In this setting (street-tree survey), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, sample photos for each condition category, directly addressed the observed uncertainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The next test of sample photos for each condition category will run for longer.",
+            "The remaining uncertainty therefore made another comparison unnecessary.",
         },
       ],
     },
@@ -66,7 +67,18 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: pendataan pohon jalan",
+          label:
+            "Pengamatan itu membuktikan bahwa foto contoh untuk setiap kategori kondisi menyebabkan perbedaan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim perlu mengubah beberapa unsur survei pohon jalan sebelum melakukan pengukuran ulang.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pola awal itu membenarkan penerapan tetap foto contoh untuk setiap kategori kondisi.",
         },
         {
           isCorrect: true,
@@ -76,17 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Di pendataan pohon jalan, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa contoh foto untuk setiap kategori kondisi langsung menanggapi keraguan yang diamati.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji contoh foto untuk setiap kategori kondisi berikutnya akan berlangsung lebih lama.",
+            "Ketidakpastian yang tersisa membuat perbandingan lanjutan tidak diperlukan.",
         },
       ],
     },

@@ -11,14 +11,14 @@ const item: QuestionItem = {
             "Eine Unterkühlung bedroht nur Menschen im Freien in den Bergen.",
         },
         {
-          isCorrect: true,
-          label:
-            "Eine Unterkühlung ist ein medizinischer Notfall, der schnelles und sicheres Handeln erfordert.",
-        },
-        {
           isCorrect: false,
           label:
             "Zittern ist das einzige verlässliche Warnzeichen einer Unterkühlung.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Eine Unterkühlung ist ein medizinischer Notfall, der schnelles und sicheres Handeln erfordert.",
         },
         {
           isCorrect: false,
@@ -38,13 +38,13 @@ const item: QuestionItem = {
           label: "Hypothermia only threatens people outdoors in mountains.",
         },
         {
+          isCorrect: false,
+          label: "Shivering is the only reliable sign of hypothermia.",
+        },
+        {
           isCorrect: true,
           label:
             "Hypothermia is a medical emergency that requires prompt and safe action.",
-        },
-        {
-          isCorrect: false,
-          label: "Shivering is the only reliable sign of hypothermia.",
         },
         {
           isCorrect: false,
@@ -64,14 +64,14 @@ const item: QuestionItem = {
           label: "Hipotermia hanya mengancam orang yang berada di pegunungan.",
         },
         {
-          isCorrect: true,
-          label:
-            "Hipotermia merupakan keadaan darurat medis yang memerlukan tindakan cepat dan aman.",
-        },
-        {
           isCorrect: false,
           label:
             "Menggigil merupakan satu-satunya tanda hipotermia yang dapat dipercaya.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Hipotermia merupakan keadaan darurat medis yang memerlukan tindakan cepat dan aman.",
         },
         {
           isCorrect: false,

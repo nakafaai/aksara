@@ -8,7 +8,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam ruang penyimpanan karya seni pada malam hari pasti berlaku tanpa batas pada tempat lain.",
+            "Benda berulang memperoleh makna terutama dari bentuk fisiknya, bukan dari hubungannya dengan pilihan tokoh.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Akhir cerita menunjukkan bahwa latar, bukan tindakan tokoh, menyelesaikan konflik.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Makna benda tetap sama meskipun tokoh menggunakannya dengan cara berbeda.",
         },
         {
           isCorrect: true,
@@ -18,17 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang ruang penyimpanan karya seni pada malam hari tidak berguna.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Satu rincian tentang sudut pandang terbatas cukup untuk membuktikan semua hubungan sebab-akibat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Tindakan akhir penting karena mengukuhkan penafsiran yang sudah terbentuk sejak awal.",
         },
       ],
     },

@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$45\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$50\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$52{,}5\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$55\\%$$",
+        },
+        {
           isCorrect: true,
-          label: "$$396$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$400$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$404$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$388$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$392$$",
+          label: "$$47{,}5\\%$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$45\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$50\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$52{,}5\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$55\\%$$",
+        },
+        {
           isCorrect: true,
-          label: "$$396$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$400$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$404$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$388$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$392$$",
+          label: "$$47{,}5\\%$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$45\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$50\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$52{,}5\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$55\\%$$",
+        },
+        {
           isCorrect: true,
-          label: "$$396$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$400$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$404$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$388$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$392$$",
+          label: "$$47{,}5\\%$$",
         },
       ],
     },

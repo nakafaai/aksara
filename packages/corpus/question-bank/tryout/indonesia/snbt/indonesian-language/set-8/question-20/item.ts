@@ -6,24 +6,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Kepastian Mutlak tentang klub pembaca pemula",
-        },
-        {
-          isCorrect: false,
-          label: "Alasan Mengabaikan Semua Bukti dalam klub pembaca pemula",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap kontekstualisasi di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap klub pembaca pemula",
-        },
-        {
           isCorrect: true,
           label: "Membaca Dua Sumber tentang klub pembaca pemula",
+        },
+        {
+          isCorrect: false,
+          label: "Kesamaan Isi sebagai Bukti bahwa Dua Sumber Identik",
+        },
+        {
+          isCorrect: false,
+          label: "Mengutamakan Sumber Terbaru dalam Kajian kontekstualisasi",
+        },
+        {
+          isCorrect: false,
+          label: "Menggabungkan Dua Sumber tanpa Memeriksa Konteks",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perbedaan Format yang Membuat Dua Sumber Tidak Dapat Dibandingkan",
         },
       ],
     },

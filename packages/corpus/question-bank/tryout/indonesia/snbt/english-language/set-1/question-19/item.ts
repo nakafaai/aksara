@@ -10,11 +10,6 @@ const item: QuestionItem = {
           label: "marine businesses earn profits in every country",
         },
         {
-          isCorrect: true,
-          label:
-            "coastal ecosystems provide communities with several forms of value",
-        },
-        {
           isCorrect: false,
           label: "oceans benefit people only by producing rainfall",
         },
@@ -22,6 +17,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "ocean exploration should expand so people can extract more resources",
+        },
+        {
+          isCorrect: true,
+          label:
+            "coastal ecosystems provide communities with several forms of value",
         },
         {
           isCorrect: false,

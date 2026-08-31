@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "The mean result with the change was 71; because it differs from the other conditions, the tested change is the only plausible explanation.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
+        },
+        {
           isCorrect: true,
-          label: "The mean result with the change was 71.",
-        },
-        {
-          isCorrect: false,
           label:
-            "The passage states that no action or observation occurred in a model filter for floating plastic fragments.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Everyone in a model filter for floating plastic fragments obtained exactly the same result without variation.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The writer removes every detail related to a model filter for floating plastic fragments.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage presents selectivity as proof that no follow-up is needed.",
+            "The smaller-mesh condition produced a mean of 71 at the tested flow rate; clean fragments of one material do not represent every waste stream.",
         },
       ],
     },

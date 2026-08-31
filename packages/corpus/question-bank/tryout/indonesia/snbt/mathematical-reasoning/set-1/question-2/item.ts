@@ -7,10 +7,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$\\text{Rp}97{.}000{,}00$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\text{Rp}95{.}000{,}00$$",
         },
@@ -26,15 +22,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$\\text{Rp}99{.}000{,}00$$",
         },
+        {
+          isCorrect: true,
+          label: "$$\\text{Rp}97{.}000{,}00$$",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$\\text{Rp}97{,}000.00$$",
-        },
         {
           isCorrect: false,
           label: "$$\\text{Rp}95{,}000.00$$",
@@ -51,15 +47,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$\\text{Rp}99{,}000.00$$",
         },
+        {
+          isCorrect: true,
+          label: "$$\\text{Rp}97{,}000.00$$",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$\\text{Rp}97{.}000{,}00$$",
-        },
         {
           isCorrect: false,
           label: "$$\\text{Rp}95{.}000{,}00$$",
@@ -75,6 +71,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\text{Rp}99{.}000{,}00$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\text{Rp}97{.}000{,}00$$",
         },
       ],
     },

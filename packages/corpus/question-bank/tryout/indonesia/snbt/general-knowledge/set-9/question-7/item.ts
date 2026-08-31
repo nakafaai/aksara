@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Botschaften über deskriptive Normen können Verhalten ändern, doch ihr Effekt muss von anderen Faktoren getrennt und ihre Aussage korrekt sein.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Der Betreiber könnte mehr Verbotsschilder aufstellen, ohne Botschaft oder Messung zu ändern.",
         },
         {
           isCorrect: true,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Im ersten Test hatten Busse mit neuer Botschaft zugleich häufiger Freiwillige und zusätzlich informierte Fahrer.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Der Betreiber wird Mehrheitszahlen aus aktuellen Beobachtungen verwenden.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte zeitgesteuerte Erinnerungen zum Öffnen der Fenster (Kontrolle der Klassenraumbelüftung) und bewertete die Befunde vorsichtig.",
+            "Jede Botschaft mit einer Mehrheitsangabe verändert sicher das Verhalten aller Fahrgäste.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "Descriptive-norm messages can change behaviour, but their effect must be separated from other factors and their claims must be accurate.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The operator could post more prohibitions without changing the message or measurement design.",
         },
         {
           isCorrect: true,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "In the first trial, buses with the new message also had more volunteer presence and drivers with extra guidance.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "The operator will use majority figures drawn from recent observations.",
         },
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested timed reminders to open the windows in the classroom ventilation check and interpreted the evidence cautiously.",
+            "Any message mentioning a majority will certainly change every passenger's behaviour.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Pesan norma deskriptif dapat mengubah perilaku, tetapi efeknya harus dipisahkan dari faktor lain dan klaimnya harus akurat.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengelola dapat memasang lebih banyak larangan tanpa mengubah pesan atau cara pengukuran.",
         },
         {
           isCorrect: true,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Bus dengan pesan baru pada uji awal juga lebih sering didampingi relawan dan memiliki pengemudi yang mendapat pengarahan tambahan.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Pengelola akan menggunakan angka mayoritas yang berasal dari pengamatan terbaru.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji pengingat waktu membuka jendela pada pemantauan ventilasi kelas dan menafsirkan buktinya secara hati-hati.",
+            "Setiap pesan yang menyebut mayoritas pasti mengubah perilaku semua penumpang.",
         },
       ],
     },

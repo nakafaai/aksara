@@ -7,16 +7,15 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang panggung baca di terminal",
+          label: "Kesamaan Isi sebagai Bukti bahwa Dua Sumber Identik",
         },
         {
           isCorrect: false,
-          label:
-            "Alasan Mengabaikan Semua Bukti dalam panggung baca di terminal",
+          label: "Mengutamakan Sumber Terbaru dalam Kajian sumber sezaman",
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap sumber sezaman di Seluruh Dunia",
+          label: "Menggabungkan Dua Sumber tanpa Memeriksa Konteks",
         },
         {
           isCorrect: true,
@@ -24,7 +23,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Satu Aturan untuk Setiap panggung baca di terminal",
+          label:
+            "Perbedaan Format yang Membuat Dua Sumber Tidak Dapat Dibandingkan",
         },
       ],
     },

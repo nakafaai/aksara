@@ -16,14 +16,14 @@ describe("tryout content", () => {
           Effect.provide(questionLayer)
         );
 
-        expect(content.entries).toHaveLength(9920);
+        expect(content.entries).toHaveLength(9650);
         expect(content.projection.placements).toHaveLength(5475);
         expect(
           content.entries.filter(({ bodyKind }) => bodyKind === "question")
-        ).toHaveLength(4310);
+        ).toHaveLength(4175);
         expect(
           content.entries.filter(({ bodyKind }) => bodyKind === "answer")
-        ).toHaveLength(5610);
+        ).toHaveLength(5475);
       }),
     { timeout: 30_000 }
   );

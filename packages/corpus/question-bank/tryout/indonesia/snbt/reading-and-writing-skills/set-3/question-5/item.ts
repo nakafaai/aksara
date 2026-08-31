@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
+          label: "Im Gegensatz dazu",
+        },
+        {
+          isCorrect: false,
+          label: "Daher",
+        },
+        {
+          isCorrect: false,
+          label: "Dennoch",
+        },
+        {
+          isCorrect: true,
           label: "Außerdem",
         },
         {
           isCorrect: false,
-          label: "Inzwischen",
-        },
-        {
-          isCorrect: false,
-          label: "Dagegen",
-        },
-        {
-          isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Karte der Evakuierungswege",
-        },
-        {
-          isCorrect: true,
-          label: "Deshalb",
+          label: "Zuvor",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Moreover",
+          label: "By contrast",
         },
         {
           isCorrect: false,
-          label: "Meanwhile",
+          label: "As a result",
         },
         {
           isCorrect: false,
-          label: "However",
-        },
-        {
-          isCorrect: false,
-          label: "A structured test of one change: evacuation route map",
+          label: "Nevertheless",
         },
         {
           isCorrect: true,
-          label: "Therefore",
+          label: "In addition",
+        },
+        {
+          isCorrect: false,
+          label: "Before that",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
+          label: "Sebaliknya",
+        },
+        {
+          isCorrect: false,
+          label: "Akibatnya",
+        },
+        {
+          isCorrect: false,
+          label: "Meskipun demikian",
+        },
+        {
+          isCorrect: true,
           label: "Selain itu",
         },
         {
           isCorrect: false,
-          label: "Sementara itu",
-        },
-        {
-          isCorrect: false,
-          label: "Namun",
-        },
-        {
-          isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: peta jalur evakuasi",
-        },
-        {
-          isCorrect: true,
-          label: "Oleh karena itu",
+          label: "Sebelum itu",
         },
       ],
     },

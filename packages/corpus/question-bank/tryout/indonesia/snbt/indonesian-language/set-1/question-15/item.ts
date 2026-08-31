@@ -10,6 +10,10 @@ const item: QuestionItem = {
           label: "Warna jingga yang tampak di langit",
         },
         {
+          isCorrect: true,
+          label: "Waktu setengah gelap setelah matahari terbenam",
+        },
+        {
           isCorrect: false,
           label: "Saat matahari tepat menyentuh cakrawala",
         },
@@ -20,10 +24,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Suasana yang selalu tenang dan damai",
-        },
-        {
-          isCorrect: true,
-          label: "Waktu setengah gelap setelah matahari terbenam",
         },
       ],
     },

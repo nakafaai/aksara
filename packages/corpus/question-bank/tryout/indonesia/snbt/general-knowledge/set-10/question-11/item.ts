@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
           isCorrect: true,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Ein Ortsname kann wahr und dennoch irreführend sein, wenn er als gesamte Produktreise verstanden wird.",
         },
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Jede Produktionsstufe muss vollständig auf die Vorderseite jeder Packung gedruckt werden.",
         },
         {
           isCorrect: false,
-          label: "Der Wert mit Änderung, 29, lag über 20 und 22.",
+          label:
+            "Mit einem Code müssen Lieferantendaten nicht mehr aktualisiert werden.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Der Maniok wurde im Dorf Rawa geschnitten und in der Stadt frittiert.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Ein Verpackungscode wird zu einem vollständigen Lieferkettendatensatz führen.",
         },
       ],
     },
@@ -35,28 +36,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
           isCorrect: true,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "A single place name can be true yet misleading if readers take it to represent the product's entire journey.",
         },
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "Every production stage must be printed in full on the front of every package.",
         },
         {
           isCorrect: false,
-          label: "The intervention value, 29, exceeded both 20 and 22.",
+          label:
+            "Once a code exists, supplier records no longer need updating.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The cassava was sliced in Rawa Village and fried in the city.",
+        },
+        {
+          isCorrect: false,
+          label: "A package code will link to a fuller supply-chain record.",
         },
       ],
     },
@@ -64,28 +65,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
           isCorrect: true,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Satu nama tempat dapat benar tetapi tetap menyesatkan jika pembaca menganggapnya mewakili seluruh perjalanan produk.",
         },
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Semua tahap produksi harus dicetak lengkap di bagian depan setiap kemasan.",
         },
         {
           isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 29, melampaui 20 dan 22.",
+          label:
+            "Jika kode tersedia, catatan pemasok tidak perlu lagi diperbarui.",
+        },
+        {
+          isCorrect: false,
+          label: "Singkong diiris di Desa Rawa dan digoreng di kota.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Kode kemasan akan mengarah ke catatan rantai pasok yang lebih lengkap.",
         },
       ],
     },

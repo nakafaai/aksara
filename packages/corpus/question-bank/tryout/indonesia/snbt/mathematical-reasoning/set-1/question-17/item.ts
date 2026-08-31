@@ -11,12 +11,12 @@ const item: QuestionItem = {
           label: "WWF",
         },
         {
-          isCorrect: false,
-          label: "WFF",
-        },
-        {
           isCorrect: true,
           label: "WFW",
+        },
+        {
+          isCorrect: false,
+          label: "WFF",
         },
         {
           isCorrect: false,
@@ -36,12 +36,12 @@ const item: QuestionItem = {
           label: "TTF",
         },
         {
-          isCorrect: false,
-          label: "TFF",
-        },
-        {
           isCorrect: true,
           label: "TFT",
+        },
+        {
+          isCorrect: false,
+          label: "TFF",
         },
         {
           isCorrect: false,
@@ -61,12 +61,12 @@ const item: QuestionItem = {
           label: "BBS",
         },
         {
-          isCorrect: false,
-          label: "BSS",
-        },
-        {
           isCorrect: true,
           label: "BSB",
+        },
+        {
+          isCorrect: false,
+          label: "BSS",
         },
         {
           isCorrect: false,

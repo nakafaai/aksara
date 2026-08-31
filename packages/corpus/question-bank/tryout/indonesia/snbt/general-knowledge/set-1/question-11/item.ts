@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "mangelnde Klarheit.",
+        },
+        {
           isCorrect: false,
           label: "Gewissheit.",
         },
         {
           isCorrect: false,
           label: "Aktualität.",
-        },
-        {
-          isCorrect: true,
-          label: "mangelnde Klarheit.",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "lack of clarity.",
+        },
+        {
           isCorrect: false,
           label: "certainty.",
         },
         {
           isCorrect: false,
           label: "timeliness.",
-        },
-        {
-          isCorrect: true,
-          label: "lack of clarity.",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "ketidakjelasan.",
+        },
+        {
           isCorrect: false,
           label: "kepastian.",
         },
         {
           isCorrect: false,
           label: "ketepatwaktuan.",
-        },
-        {
-          isCorrect: true,
-          label: "ketidakjelasan.",
         },
         {
           isCorrect: false,

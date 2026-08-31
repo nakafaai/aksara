@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam ruang laktasi di pasar.",
+            "Kondisi pembanding menghasilkan nilai rata-rata 19; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
         },
         {
           isCorrect: true,
-          label: "Kondisi pembanding menghasilkan nilai rata-rata 19.",
+          label:
+            "Nilai 19 adalah kondisi pembanding untuk penunjuk arah; pasar malam yang lebih ramai belum termasuk dalam cakupan pengamatan.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam ruang laktasi di pasar memperoleh hasil yang sama tanpa perbedaan.",
+            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan ruang laktasi di pasar.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut pemangku kepentingan sebagai bukti bahwa uji tidak perlu diulang.",
+            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
         },
       ],
     },

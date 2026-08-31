@@ -12,7 +12,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Laras menghapus semua catatan lapangan",
+          label:
+            "Laras mengganti catatan lapangan dengan salinan peta yang sudah diperbarui",
         },
         {
           isCorrect: false,
@@ -29,7 +30,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "desa berhenti membuat jalur evakuasi",
+          label:
+            "warga menunda perubahan jalur sampai peta baru selesai dicetak",
         },
       ],
     },

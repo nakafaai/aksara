@@ -7,19 +7,19 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "(2)-(1)-(4)-(3)",
+          label: "(2)-(3)-(4)-(1)",
         },
         {
           isCorrect: true,
-          label: "(1)-(2)-(3)-(4)",
+          label: "(3)-(2)-(4)-(1)",
         },
         {
           isCorrect: false,
-          label: "(3)-(1)-(2)-(4)",
+          label: "(3)-(4)-(2)-(1)",
         },
         {
           isCorrect: false,
-          label: "(4)-(2)-(3)-(1)",
+          label: "(3)-(2)-(1)-(4)",
         },
         {
           isCorrect: false,
@@ -32,19 +32,19 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "(2)-(1)-(4)-(3)",
+          label: "(2)-(3)-(4)-(1)",
         },
         {
           isCorrect: true,
-          label: "(1)-(2)-(3)-(4)",
+          label: "(3)-(2)-(4)-(1)",
         },
         {
           isCorrect: false,
-          label: "(3)-(1)-(2)-(4)",
+          label: "(3)-(4)-(2)-(1)",
         },
         {
           isCorrect: false,
-          label: "(4)-(2)-(3)-(1)",
+          label: "(3)-(2)-(1)-(4)",
         },
         {
           isCorrect: false,
@@ -57,19 +57,19 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "(2)-(1)-(4)-(3)",
+          label: "(2)-(3)-(4)-(1)",
         },
         {
           isCorrect: true,
-          label: "(1)-(2)-(3)-(4)",
+          label: "(3)-(2)-(4)-(1)",
         },
         {
           isCorrect: false,
-          label: "(3)-(1)-(2)-(4)",
+          label: "(3)-(4)-(2)-(1)",
         },
         {
           isCorrect: false,
-          label: "(4)-(2)-(3)-(1)",
+          label: "(3)-(2)-(1)-(4)",
         },
         {
           isCorrect: false,

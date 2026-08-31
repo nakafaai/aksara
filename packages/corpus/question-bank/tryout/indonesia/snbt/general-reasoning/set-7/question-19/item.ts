@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Sinta erhält eine Gehaltsüberprüfung und nimmt am Beförderungsverfahren teil.",
+        },
+        {
           isCorrect: false,
           label:
             "Sinta erhält eine Gehaltsüberprüfung, nimmt aber nicht am Beförderungsverfahren teil.",
@@ -21,11 +26,6 @@ const item: QuestionItem = {
             "Sinta nimmt ohne Gehaltsüberprüfung am Beförderungsverfahren teil.",
         },
         {
-          isCorrect: true,
-          label:
-            "Sinta erhält eine Gehaltsüberprüfung und nimmt am Beförderungsverfahren teil.",
-        },
-        {
           isCorrect: false,
           label: "Sinta hat die berufliche Zertifizierung nicht abgeschlossen.",
         },
@@ -34,6 +34,11 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Sinta receives a salary review and enters the promotion assessment.",
+        },
         {
           isCorrect: false,
           label:
@@ -50,11 +55,6 @@ const item: QuestionItem = {
             "Sinta enters the promotion assessment without receiving a salary review.",
         },
         {
-          isCorrect: true,
-          label:
-            "Sinta receives a salary review and enters the promotion assessment.",
-        },
-        {
           isCorrect: false,
           label: "Sinta has not completed the professional certification.",
         },
@@ -63,6 +63,11 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label:
+            "Sinta menerima peninjauan gaji dan mengikuti penilaian promosi.",
+        },
         {
           isCorrect: false,
           label:
@@ -77,11 +82,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Sinta mengikuti penilaian promosi tanpa menerima peninjauan gaji.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Sinta menerima peninjauan gaji dan mengikuti penilaian promosi.",
         },
         {
           isCorrect: false,

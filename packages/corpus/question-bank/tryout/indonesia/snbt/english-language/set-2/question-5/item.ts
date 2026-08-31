@@ -14,13 +14,13 @@ const item: QuestionItem = {
           label: "Only one of the 35 studies reported any weight change.",
         },
         {
+          isCorrect: false,
+          label: "Average weight increased during Ramadan and fell afterward.",
+        },
+        {
           isCorrect: true,
           label:
             "Participants lost 1.24 kg on average during Ramadan, but most of it was regained within weeks.",
-        },
-        {
-          isCorrect: false,
-          label: "Average weight increased during Ramadan and fell afterward.",
         },
         {
           isCorrect: false,

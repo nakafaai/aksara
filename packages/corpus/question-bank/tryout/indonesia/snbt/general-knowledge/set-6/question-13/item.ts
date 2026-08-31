@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
           isCorrect: true,
           label:
-            "Das Team prüfte Karten zur Erfassung jeder Bewässerungszeit (Saatgutversuch im Unterricht) und bewertete die Befunde vorsichtig.",
+            "Zwei Vorschläge lösen eine Debatte über Authentizität aus; die Materialprüfung führt zum minimalen Eingriff.",
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext Saatgutversuch im Unterricht: Karten zur Erfassung jeder Bewässerungszeit",
+            'Der erste Teil vertritt die Behauptung "Die älteste Farbe wurde nur in wenigen Räumen gefunden"; der folgende nutzt "Jedes alte Material muss erhalten bleiben, selbst wenn es Besucher gefährdet" als Hauptbeleg.',
         },
         {
           isCorrect: false,
-          label: "Der Wert mit Änderung, 30, lag über 20 und 22.",
+          label:
+            'Der erste Teil legt "Das Gebäude kann nur authentisch sein, wenn jede Fläche eine einzige alte Farbe erhält" als endgültigen Schluss fest; der folgende nennt nur den Plan "Jedes neue Teil wird dokumentiert, damit Veränderungen erkennbar bleiben".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Jedes alte Material muss erhalten bleiben, selbst wenn es Besucher gefährdet" fest.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Der folgende Teil kehrt die Argumentation um und leitet "Das Gebäude kann nur authentisch sein, wenn jede Fläche eine einzige alte Farbe erhält" aus dem Beleg "Die älteste Farbe wurde nur in wenigen Räumen gefunden" ab.',
         },
       ],
     },
@@ -35,28 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
           isCorrect: true,
           label:
-            "The team tested cards recording each watering time in the classroom seed trial and interpreted the evidence cautiously.",
+            "Two proposals raise a debate about authenticity, and material investigation guides the minimum-intervention choice.",
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of cards recording each watering time: classroom seed trial",
+            'The first part advances the claim "The oldest paint was found in only a few rooms", and the later part uses "Every old material must be retained even when it endangers visitors" as its main support.',
         },
         {
           isCorrect: false,
-          label: "The intervention value, 30, exceeded both 20 and 22.",
+          label:
+            'The first part establishes "The building can be authentic only if every surface is returned to one old colour" as a final conclusion; the later part only states the plan "Every new part will be recorded so changes remain legible".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Both parts maintain the claim "Every old material must be retained even when it endangers visitors" from the same perspective without adding a test.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'The later part reverses the argument by deriving "The building can be authentic only if every surface is returned to one old colour" from the evidence "The oldest paint was found in only a few rooms".',
         },
       ],
     },
@@ -64,28 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
           isCorrect: true,
           label:
-            "Tim menguji kartu pencatatan waktu penyiraman pada percobaan benih kelas dan menafsirkan buktinya secara hati-hati.",
+            "Dua usulan memunculkan perdebatan tentang keaslian, lalu pemeriksaan material mengarahkan pilihan intervensi minimum.",
         },
         {
           isCorrect: false,
           label:
-            "Uji Hati-hati dalam percobaan benih kelas: kartu pencatatan waktu penyiraman",
+            'Bagian awal mengajukan klaim "Cat tertua hanya ditemukan di beberapa ruang", lalu bagian kedua memakai "Semua bahan lama harus dipertahankan meskipun membahayakan pengunjung" sebagai dukungan utama.',
         },
         {
           isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 30, melampaui 20 dan 22.",
+          label:
+            'Bagian pertama menetapkan "Bangunan hanya dapat disebut autentik jika seluruh permukaannya dikembalikan ke satu warna lama" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Setiap bagian baru akan dicatat agar perubahan tetap terbaca".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Kedua bagian mempertahankan klaim "Semua bahan lama harus dipertahankan meskipun membahayakan pengunjung" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Bangunan hanya dapat disebut autentik jika seluruh permukaannya dikembalikan ke satu warna lama" dari bukti "Cat tertua hanya ditemukan di beberapa ruang".',
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti dugaan yang tidak perlu diperiksa pada tur bangunan bersejarah",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti hasil akhir yang selalu berlaku untuk semua keadaan",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti rincian yang sengaja dihapus karena bertentangan dengan pendapat",
+            "Istilah *triangulasi* membuktikan bahwa sumber yang lebih baru pasti lebih akurat daripada sumber lainnya.",
         },
         {
           isCorrect: true,
           label:
-            "penafsiran yang dibangun dengan membandingkan lebih dari satu jenis bukti",
+            "Definisi *triangulasi* memberi dasar untuk membandingkan posisi kedua sumber tanpa menganggap salah satunya sebagai catatan yang sepenuhnya netral.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti hiasan bahasa yang tidak berhubungan dengan konteks",
+            "Definisi itu menyamakan *triangulasi* dengan kesalahan sehingga perbedaan antarsumber tidak perlu dianalisis.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Penyebutan *triangulasi* mengizinkan bagian sumber yang hilang diisi dengan dugaan pembaca.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi tersebut hanya menamai bentuk dokumen dan tidak memengaruhi cara asal serta tujuan sumber dibandingkan.",
         },
       ],
     },

@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$\\frac{2x + 12}{x^2 - 4}$$",
         },
         {
+          isCorrect: true,
+          label: "$$\\frac{x - 4}{x^2 - 4}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\frac{x - 12}{x^2 - 4}$$",
         },
         {
           isCorrect: false,
           label: "$$\\frac{-x + 12}{x^2 - 4}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{x - 4}{x^2 - 4}$$",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "$$\\frac{2x + 12}{x^2 - 4}$$",
         },
         {
+          isCorrect: true,
+          label: "$$\\frac{x - 4}{x^2 - 4}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\frac{x - 12}{x^2 - 4}$$",
         },
         {
           isCorrect: false,
           label: "$$\\frac{-x + 12}{x^2 - 4}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{x - 4}{x^2 - 4}$$",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "$$\\frac{2x + 12}{x^2 - 4}$$",
         },
         {
+          isCorrect: true,
+          label: "$$\\frac{x - 4}{x^2 - 4}$$",
+        },
+        {
           isCorrect: false,
           label: "$$\\frac{x - 12}{x^2 - 4}$$",
         },
         {
           isCorrect: false,
           label: "$$\\frac{-x + 12}{x^2 - 4}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$\\frac{x - 4}{x^2 - 4}$$",
         },
         {
           isCorrect: false,

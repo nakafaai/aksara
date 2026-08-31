@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Die ursprüngliche Brückentrasse darf während des Baus unverändert bleiben.",
-        },
-        {
           isCorrect: false,
           label: "Geschützte Lebensräume müssen vor Baubeginn kartiert werden.",
         },
@@ -18,6 +13,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Ein Planungsabschnitt durch einen geschützten Lebensraum muss verlegt werden.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Die ursprüngliche Brückentrasse darf während des Baus unverändert bleiben.",
         },
         {
           isCorrect: false,
@@ -34,11 +34,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "The original bridge alignment may remain unchanged through construction.",
-        },
-        {
           isCorrect: false,
           label:
             "Protected habitats must be mapped before construction begins.",
@@ -47,6 +42,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "A design segment crossing a protected habitat must be relocated.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "The original bridge alignment may remain unchanged through construction.",
         },
         {
           isCorrect: false,
@@ -63,11 +63,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Jalur jembatan semula boleh tetap digunakan tanpa perubahan selama konstruksi.",
-        },
-        {
           isCorrect: false,
           label:
             "Habitat yang dilindungi harus dipetakan sebelum konstruksi dimulai.",
@@ -76,6 +71,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Bagian rancangan yang melintasi habitat yang dilindungi harus dipindahkan.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Jalur jembatan semula boleh tetap digunakan tanpa perubahan selama konstruksi.",
         },
         {
           isCorrect: false,

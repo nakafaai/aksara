@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Nach gleichen Stellenzahlen und Öffnungszeiten bleiben die Rückgabequoten im gesamten Gelände hoch.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "An einem Eingang warten Besucher länger, weil die Pfandrückgabe dort einzeln geprüft wird, während die Abfallmenge unverändert erfasst wird.",
         },
         {
           isCorrect: false,
           label:
-            "Fahrgäste ohne Wechsel der Warteschlange und kurze Aussagen von Nutzenden",
+            "Die Abschlussbewertung wird Reinigungskosten und verlorene Behälter berücksichtigen.",
         },
         {
           isCorrect: true,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Die Abfallreduktion entstand durch ein gleichzeitig geltendes Verbot von Einwegbehältern.",
         },
         {
           isCorrect: false,
-          label:
-            "Das Team prüfte eine markierte Spur für jedes Ziel (Schulbuswarteschlange) und bewertete die Befunde vorsichtig.",
+          label: "Eine Rückgabestelle wurde verlegt und länger geöffnet.",
         },
       ],
     },
@@ -38,27 +37,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "After desk numbers and hours are equalised, return rates remain high across the site.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Visitors at one entrance wait longer because deposits are verified individually there, while the amount of waste is recorded in the same way.",
         },
         {
           isCorrect: false,
           label:
-            "passengers boarding without changing queues and short comments from users",
+            "The final evaluation will include washing costs and lost containers.",
         },
         {
           isCorrect: true,
           label:
-            "days when the earlier process continued without the tested change",
+            "The waste reduction resulted from a simultaneous ban on single-use containers.",
         },
         {
           isCorrect: false,
-          label:
-            "The team tested a marked lane for each destination in the school bus queue and interpreted the evidence cautiously.",
+          label: "One return desk was moved and its hours were extended.",
         },
       ],
     },
@@ -68,27 +66,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Setelah jumlah dan jam loket disamakan, tingkat pengembalian tetap tinggi di seluruh area.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Pengunjung di satu pintu menunggu lebih lama karena pengembalian deposit diperiksa satu per satu, sedangkan jumlah sampah dicatat dengan cara yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "penumpang yang naik tanpa berpindah antrean dan komentar singkat pengguna",
+            "Evaluasi akhir akan memasukkan biaya pencucian dan kehilangan wadah.",
         },
         {
           isCorrect: true,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Pengurangan sampah ternyata berasal dari larangan membawa wadah sekali pakai yang berlaku bersamaan.",
         },
         {
           isCorrect: false,
-          label:
-            "Tim menguji penanda jalur untuk setiap tujuan pada antrean bus sekolah dan menafsirkan buktinya secara hati-hati.",
+          label: "Satu loket dipindahkan dan jam layanannya diperpanjang.",
         },
       ],
     },

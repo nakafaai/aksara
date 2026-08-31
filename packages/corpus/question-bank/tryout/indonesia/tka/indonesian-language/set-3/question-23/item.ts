@@ -11,21 +11,23 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "status bibit dicatat sesuai kekuatan bukti agar hasil tidak terlalu pasti",
-        },
-        {
           isCorrect: false,
-          label: "semua bibit yang hilang pasti mati",
+          label:
+            "bibit yang tidak ditemukan dapat dicatat mati agar jumlah akhir tetap lengkap",
         },
         {
           isCorrect: false,
           label: "pemantauan cukup dilakukan sekali",
         },
         {
+          isCorrect: true,
+          label:
+            "status bibit dicatat sesuai kekuatan bukti agar hasil tidak terlalu pasti",
+        },
+        {
           isCorrect: false,
-          label: "penanda tidak perlu dicari setelah hilang",
+          label:
+            "status bibit dapat ditentukan dari catatan lama tanpa menemukan kembali penandanya",
         },
         {
           isCorrect: false,

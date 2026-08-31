@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Unterrichtsstunden mit vollständigem Lüftungsplan und kurze Aussagen von Nutzenden",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte zeitgesteuerte Erinnerungen zum Öffnen der Fenster (Kontrolle der Klassenraumbelüftung) und bewertete die Befunde vorsichtig.",
-        },
-        {
           isCorrect: true,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Die Wirkung einer Normbotschaft beruht auf einem glaubwürdigen Bild üblichen Verhaltens, nicht nur auf einer beeindruckenden Zahl.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Jede Botschaft mit einer Mehrheitsangabe verändert sicher das Verhalten aller Fahrgäste.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Weil Beschwerden sanken, muss die Gesamtzahl lauter Gespräche im selben Maß gesunken sein.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Anonyme Beobachter verwendeten vorab festgelegte Lautstärkekriterien.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Botschaften über deskriptive Normen können Verhalten ändern, doch ihr Effekt muss von anderen Faktoren getrennt und ihre Aussage korrekt sein.",
         },
       ],
     },
@@ -36,29 +36,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "lessons with a complete ventilation schedule and short comments from users",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested timed reminders to open the windows in the classroom ventilation check and interpreted the evidence cautiously.",
-        },
-        {
           isCorrect: true,
           label:
-            "days when the earlier process continued without the tested change",
+            "The force of a norm message depends on a credible picture of common behaviour, not merely an impressive-sounding number.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Any message mentioning a majority will certainly change every passenger's behaviour.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Because complaints fell, the total number of loud conversations must have fallen by the same amount.",
+        },
+        {
+          isCorrect: false,
+          label: "Anonymous observers used predefined volume criteria.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Descriptive-norm messages can change behaviour, but their effect must be separated from other factors and their claims must be accurate.",
         },
       ],
     },
@@ -66,29 +65,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "periode belajar dengan jadwal ventilasi lengkap dan komentar singkat pengguna",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji pengingat waktu membuka jendela pada pemantauan ventilasi kelas dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
           isCorrect: true,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Daya pesan norma bergantung pada gambaran perilaku umum yang dapat dipercaya, bukan sekadar angka yang terdengar meyakinkan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Setiap pesan yang menyebut mayoritas pasti mengubah perilaku semua penumpang.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Karena keluhan berkurang, jumlah seluruh percakapan keras pasti turun dengan ukuran yang sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengamat anonim memakai kriteria volume yang telah ditetapkan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pesan norma deskriptif dapat mengubah perilaku, tetapi efeknya harus dipisahkan dari faktor lain dan klaimnya harus akurat.",
         },
       ],
     },

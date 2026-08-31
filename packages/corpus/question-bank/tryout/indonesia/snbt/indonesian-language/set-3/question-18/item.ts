@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam panggung baca di terminal pasti berlaku tanpa batas pada tempat lain.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang panggung baca di terminal tidak berguna.",
+            "Karena surat dan foto sama-sama berkaitan dengan kegiatan baca, keduanya pasti dibuat untuk tujuan yang sama.",
         },
         {
           isCorrect: true,
           label:
-            "Perbedaan antarsumber dapat memperkaya penafsiran jika asal dan tujuan setiap sumber diperiksa.",
+            "Surat menjelaskan tujuan pendirian panggung, sedangkan foto menunjukkan penggunaannya di ruang tunggu; keduanya mendukung keberadaan kegiatan baca, tetapi tidak menjelaskan alasan setiap penumpang membaca.",
         },
         {
           isCorrect: false,
           label:
-            "Satu rincian tentang sumber sezaman cukup untuk membuktikan semua hubungan sebab-akibat.",
+            "Foto penumpang membuktikan bahwa alasan panitia mendirikan panggung diterima oleh seluruh penumpang.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Foto harus menjadi sumber utama karena merekam tindakan langsung, sedangkan surat hanya berisi rencana panitia.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Setelah informasi surat dan foto digabungkan, asal serta waktu pembuatan masing-masing sumber tidak lagi penting.",
         },
       ],
     },

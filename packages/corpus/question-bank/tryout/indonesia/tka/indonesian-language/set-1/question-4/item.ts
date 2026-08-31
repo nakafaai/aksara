@@ -20,17 +20,18 @@ const item: QuestionItem = {
             "paragraf kedua berisi simpulan, paragraf ketiga berisi definisi",
         },
         {
-          isCorrect: true,
-          label:
-            "paragraf kedua menyatakan masalah, paragraf ketiga menunjukkan dampak perbaikannya",
-        },
-        {
           isCorrect: false,
           label: "keduanya menjelaskan alasan program dihentikan",
         },
         {
           isCorrect: false,
-          label: "paragraf kedua menolak gagasan pada paragraf ketiga",
+          label:
+            "paragraf kedua memaparkan masalah yang membuat solusi pada paragraf ketiga kurang relevan",
+        },
+        {
+          isCorrect: true,
+          label:
+            "paragraf kedua menyatakan masalah, paragraf ketiga menunjukkan dampak perbaikannya",
         },
       ],
     },

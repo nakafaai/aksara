@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Eine verantwortliche Bearbeitung darf die Form ändern, wenn Quellen, Änderungen und Vielfalt nachvollziehbar bleiben.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Einige Darsteller wollen jeden alten Satz beibehalten, damit die Aufführung als treu gilt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Gruppe wird Quellen und dramaturgische Änderungen im Programm nennen.",
+        },
+        {
           isCorrect: true,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Drei mündliche Aufnahmen unterscheiden sich bei Figuren, Ablauf und Ende.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team prüfte Beispielfragen mit offenen Antworten (Archiv für mündliche Geschichte) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 30, lag über 22 und 24.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vorsichtige Prüfung im Kontext Archiv für mündliche Geschichte: Beispielfragen mit offenen Antworten",
+            "Jede Änderung einer Bearbeitung schadet zwangsläufig der Tradition.",
         },
       ],
     },
@@ -35,28 +36,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "A responsible adaptation may change a story's form while keeping its sources, changes, and diversity traceable.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Some performers want to retain every old line so the production will be considered faithful.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The group will identify sources and dramatic changes in the programme notes.",
+        },
+        {
           isCorrect: true,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "Three oral recordings differ in characters, sequence, and ending.",
         },
         {
           isCorrect: false,
-          label:
-            "The team tested sample open questions for interviewers in the oral history archive and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 30, exceeded both 22 and 24.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A cautious trial of sample open questions for interviewers: oral history archive",
+          label: "Every change in an adaptation necessarily damages tradition.",
         },
       ],
     },
@@ -64,28 +65,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Adaptasi yang bertanggung jawab dapat mengubah bentuk cerita selama sumber, perubahan, dan keragamannya tetap dapat ditelusuri.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Sebagian pemain ingin mempertahankan seluruh dialog lama agar pertunjukan dianggap setia.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Kelompok akan mencantumkan sumber dan perubahan dramatik dalam catatan program.",
+        },
+        {
           isCorrect: true,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Tiga rekaman lisan berbeda dalam tokoh, urutan peristiwa, dan akhir.",
         },
         {
           isCorrect: false,
-          label:
-            "Tim menguji contoh pertanyaan terbuka bagi pewawancara pada arsip sejarah lisan dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 30, melampaui 22 dan 24.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji Hati-hati dalam arsip sejarah lisan: contoh pertanyaan terbuka bagi pewawancara",
+          label: "Setiap perubahan dalam adaptasi pasti merusak tradisi.",
         },
       ],
     },

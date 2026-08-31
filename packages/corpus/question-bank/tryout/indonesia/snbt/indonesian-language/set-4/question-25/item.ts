@@ -6,24 +6,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Menunggu orang lain menyelesaikan langkah berikutnya",
+        },
+        {
+          isCorrect: false,
+          label: "Menyembunyikan bukti yang belum tuntas dalam proyek besar",
+        },
+        {
           isCorrect: true,
           label: "Langkah Kecil Nisa di pasar kecamatan",
         },
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang pasar kecamatan",
+          label:
+            "advokasi diri sebagai definisi tanpa tindakan yang dapat diperiksa",
         },
         {
           isCorrect: false,
-          label: "Alasan Mengabaikan Semua Bukti dalam pasar kecamatan",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap advokasi diri di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap pasar kecamatan",
+          label: "Rencana lengkap tanpa langkah kecil yang bertanggung jawab",
         },
       ],
     },

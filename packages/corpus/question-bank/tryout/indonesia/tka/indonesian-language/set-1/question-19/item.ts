@@ -12,7 +12,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "ia selalu membawa kotak biola",
+          label:
+            "ia tetap menyiapkan kursi ketujuh sebelum setiap latihan dan pertunjukan",
         },
         {
           isCorrect: false,
@@ -23,12 +24,12 @@ const item: QuestionItem = {
           label: "telepon Seno sempat tidak aktif",
         },
         {
-          isCorrect: false,
-          label: "Pak Damar berdiri di pintu",
-        },
-        {
           isCorrect: true,
           label: "ia mampu menyelesaikan pertunjukan meski Seno belum pulang",
+        },
+        {
+          isCorrect: false,
+          label: "Pak Damar berdiri di pintu",
         },
       ],
     },

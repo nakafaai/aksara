@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Geordnete Prüfung einer Änderung: Erfassung von Straßenbäumen",
+            "Die Änderung, Beispielfotos für jede Zustandskategorie, ersetzte die Notwendigkeit, die ursprüngliche Unsicherheit zu messen.",
         },
         {
           isCorrect: true,
@@ -18,17 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Beispielfotos für jede Zustandskategorie.",
+            "Die Änderung, Beispielfotos für jede Zustandskategorie, führte mehrere nicht trennbare Unterschiede ein.",
         },
         {
           isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Erfassung von Straßenbäumen über den beiden anderen Werten.",
+            "Die Änderung, Beispielfotos für jede Zustandskategorie, erklärte, warum die Vergleichswerte identisch waren.",
         },
         {
           isCorrect: false,
           label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Beispielfotos für jede Zustandskategorie.",
+            "Die Änderung, Beispielfotos für jede Zustandskategorie, betraf das Endergebnis statt die Quelle der Unsicherheit.",
         },
       ],
     },
@@ -37,7 +37,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: street-tree survey",
+          label:
+            "The change, sample photos for each condition category, replaced the need to measure the original uncertainty.",
         },
         {
           isCorrect: true,
@@ -47,17 +48,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of sample photos for each condition category.",
+            "The change, sample photos for each condition category, introduced several differences that could not be separated.",
         },
         {
           isCorrect: false,
           label:
-            "In this setting (street-tree survey), the trial value exceeded both other values.",
+            "The change, sample photos for each condition category, explained why the comparison values were identical.",
         },
         {
           isCorrect: false,
           label:
-            "The next test of sample photos for each condition category will run for longer.",
+            "The change, sample photos for each condition category, addressed the final outcome rather than the source of uncertainty.",
         },
       ],
     },
@@ -66,7 +67,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: pendataan pohon jalan",
+          label:
+            "Perubahan berupa foto contoh untuk setiap kategori kondisi menggantikan kebutuhan untuk mengukur ketidakpastian awal.",
         },
         {
           isCorrect: true,
@@ -76,17 +78,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui contoh foto untuk setiap kategori kondisi.",
+            "Perubahan berupa foto contoh untuk setiap kategori kondisi menimbulkan beberapa perbedaan yang tidak dapat dipisahkan.",
         },
         {
           isCorrect: false,
           label:
-            "Di pendataan pohon jalan, nilai hari uji melampaui dua nilai lainnya.",
+            "Perubahan berupa foto contoh untuk setiap kategori kondisi menjelaskan mengapa nilai pembanding sama.",
         },
         {
           isCorrect: false,
           label:
-            "Uji contoh foto untuk setiap kategori kondisi berikutnya akan berlangsung lebih lama.",
+            "Perubahan berupa foto contoh untuk setiap kategori kondisi menanggapi hasil akhir, bukan sumber ketidakpastian.",
         },
       ],
     },

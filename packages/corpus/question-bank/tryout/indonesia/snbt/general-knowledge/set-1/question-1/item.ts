@@ -21,14 +21,14 @@ const item: QuestionItem = {
             "ausschließlich die geringere bewusste Kontrolle im REM-Schlaf.",
         },
         {
-          isCorrect: true,
-          label:
-            "wissenschaftliche Fragen und Befunde zur Entstehung von Träumen und ihrem Zusammenhang mit Erlebnissen und Erinnerungen.",
-        },
-        {
           isCorrect: false,
           label:
             "die Empfehlung, dass Kinder nach jeder Unterrichtsstunde schlafen sollten.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "wissenschaftliche Fragen und Befunde zur Entstehung von Träumen und ihrem Zusammenhang mit Erlebnissen und Erinnerungen.",
         },
       ],
     },
@@ -49,13 +49,13 @@ const item: QuestionItem = {
           label: "the role of REM sleep in reducing deliberate control alone.",
         },
         {
+          isCorrect: false,
+          label: "the recommendation that children sleep after every lesson.",
+        },
+        {
           isCorrect: true,
           label:
             "scientific questions and evidence about how dreams arise and relate to waking experience and memory.",
-        },
-        {
-          isCorrect: false,
-          label: "the recommendation that children sleep after every lesson.",
         },
       ],
     },
@@ -77,13 +77,13 @@ const item: QuestionItem = {
           label: "peran tidur REM dalam mengurangi pengendalian sadar saja.",
         },
         {
+          isCorrect: false,
+          label: "anjuran agar anak-anak tidur setiap selesai belajar.",
+        },
+        {
           isCorrect: true,
           label:
             "pertanyaan ilmiah dan bukti tentang kemunculan mimpi serta kaitannya dengan pengalaman terjaga dan ingatan.",
-        },
-        {
-          isCorrect: false,
-          label: "anjuran agar anak-anak tidur setiap selesai belajar.",
         },
       ],
     },

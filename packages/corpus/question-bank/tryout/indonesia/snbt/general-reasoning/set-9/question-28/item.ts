@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Nicht: der Raum geprüft wird.",
+          label: "$$\\frac18$$",
         },
         {
           isCorrect: false,
-          label: "Nicht: die Kaution freigegeben wird.",
+          label: "$$\\frac17$$",
         },
         {
           isCorrect: true,
-          label: "die Kaution freigegeben wird",
+          label: "$$\\frac16$$",
         },
         {
           isCorrect: false,
-          label: "der Raum geprüft wird",
+          label: "$$\\frac15$$",
         },
         {
           isCorrect: false,
-          label: "Nicht: der Schlüssel zurückgegeben wird.",
+          label: "$$\\frac14$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "It is not true that the room is inspected.",
+          label: "$$\\frac18$$",
         },
         {
           isCorrect: false,
-          label: "It is not true that the deposit is released.",
+          label: "$$\\frac17$$",
         },
         {
           isCorrect: true,
-          label: "the deposit is released",
+          label: "$$\\frac16$$",
         },
         {
           isCorrect: false,
-          label: "the room is inspected",
+          label: "$$\\frac15$$",
         },
         {
           isCorrect: false,
-          label: "It is not true that the key is returned.",
+          label: "$$\\frac14$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Tidak benar bahwa ruangan diperiksa.",
+          label: "$$\\frac18$$",
         },
         {
           isCorrect: false,
-          label: "Tidak benar bahwa deposit dikembalikan.",
+          label: "$$\\frac17$$",
         },
         {
           isCorrect: true,
-          label: "deposit dikembalikan",
+          label: "$$\\frac16$$",
         },
         {
           isCorrect: false,
-          label: "ruangan diperiksa",
+          label: "$$\\frac15$$",
         },
         {
           isCorrect: false,
-          label: "Tidak benar bahwa kunci dikembalikan.",
+          label: "$$\\frac14$$",
         },
       ],
     },

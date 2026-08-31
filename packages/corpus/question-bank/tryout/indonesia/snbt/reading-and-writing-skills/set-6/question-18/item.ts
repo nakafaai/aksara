@@ -6,6 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Auf Grundlage der Daten eine begrenzte Schlussfolgerung für den Kontext Lärmprotokoll der Nachbarschaft.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Auf Grundlage der Daten kam das Team zu einer Schlussfolgerung, die begrenzt war, im Kontext Lärmprotokoll der Nachbarschaft.",
+        },
+        {
           isCorrect: true,
           label:
             "Auf Grundlage der Daten formulierte das Team eine begrenzte Schlussfolgerung zu folgendem Kontext: Lärmprotokoll im Wohngebiet.",
@@ -13,28 +23,28 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Auf Grundlage der Daten zeigte eine begrenzte Schlussfolgerung über Lärmprotokoll im Wohngebiet.",
+            "Die Daten führten zu einer begrenzten Schlussfolgerung, weil Kontext Lärmprotokoll der Nachbarschaft.",
         },
         {
           isCorrect: false,
           label:
-            "Auf Grundlage von den Daten kam das Team zu begrenzte Schlussfolgerung über Lärmprotokoll im Wohngebiet.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Daten zugrunde legend, wurde über Lärmprotokoll im Wohngebiet geschlossen das Team.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Auf Grundlage der Daten, weil das Team eine begrenzte Schlussfolgerung über Lärmprotokoll im Wohngebiet.",
+            "Auf Grundlage der Daten zog es eine begrenzte Schlussfolgerung für den Kontext Lärmprotokoll der Nachbarschaft.",
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: false,
+          label:
+            "Based on the data, a limited conclusion for this setting (neighbourhood noise log).",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Based on the data, the team reached a conclusion, which was limited, in this setting (neighbourhood noise log).",
+        },
         {
           isCorrect: true,
           label:
@@ -43,28 +53,28 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Based on the data showed a limited conclusion about the neighbourhood noise log.",
+            "The data led to a limited conclusion because this setting (neighbourhood noise log).",
         },
         {
           isCorrect: false,
           label:
-            "Based from the data, the team reach a limited conclusion about the neighbourhood noise log.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Basing on the data, a limited conclusion was the team about the neighbourhood noise log.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Based on the data, because the team a limited conclusion about the neighbourhood noise log.",
+            "Based on the data, it reached a limited conclusion for this setting (neighbourhood noise log).",
         },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: false,
+          label:
+            "Berdasarkan data, sebuah simpulan terbatas untuk konteks catatan kebisingan lingkungan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Berdasarkan data, tim sampai pada simpulan, yang terbatas, dalam konteks catatan kebisingan lingkungan.",
+        },
         {
           isCorrect: true,
           label:
@@ -73,22 +83,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Berdasarkan data menunjukkan simpulan terbatas tentang pencatatan kebisingan lingkungan.",
+            "Data menghasilkan simpulan terbatas karena konteks catatan kebisingan lingkungan.",
         },
         {
           isCorrect: false,
           label:
-            "Berdasarkan dari data, tim menarik simpulan terbatas tentang pencatatan kebisingan lingkungan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Data berdasarkan, simpulan terbatas ditarik tim tentang pencatatan kebisingan lingkungan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Berdasarkan data, karena tim simpulan terbatas tentang pencatatan kebisingan lingkungan.",
+            "Berdasarkan data, hal itu menarik simpulan terbatas untuk konteks catatan kebisingan lingkungan.",
         },
       ],
     },

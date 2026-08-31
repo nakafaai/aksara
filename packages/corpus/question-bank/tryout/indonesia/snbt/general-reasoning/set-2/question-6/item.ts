@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Der Verkauf von Hosen ist $$10$$ geringer als der von Hemden",
-        },
-        {
           isCorrect: true,
           label: "Zusammen werden weniger als $$70$$ Hemden und Hosen verkauft",
+        },
+        {
+          isCorrect: false,
+          label: "Der Verkauf von Hosen ist $$10$$ geringer als der von Hemden",
         },
         {
           isCorrect: false,
@@ -32,13 +32,13 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Pants sales are $$10$$ fewer than shirts",
-        },
-        {
           isCorrect: true,
           label:
             "The combined number of shirts and pants sold is less than $$70$$",
+        },
+        {
+          isCorrect: false,
+          label: "Pants sales are $$10$$ fewer than shirts",
         },
         {
           isCorrect: false,
@@ -58,12 +58,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Penjualan celana $$10$$ lebih sedikit dari baju",
-        },
-        {
           isCorrect: true,
           label: "Jumlah penjualan baju dan celana kurang dari $$70$$",
+        },
+        {
+          isCorrect: false,
+          label: "Penjualan celana $$10$$ lebih sedikit dari baju",
         },
         {
           isCorrect: false,

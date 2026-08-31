@@ -15,13 +15,13 @@ const item: QuestionItem = {
           label: "She wants the 2036 class to guess what happened.",
         },
         {
-          isCorrect: false,
-          label: "She regrets checking the archive.",
-        },
-        {
           isCorrect: true,
           label:
             "She accepts responsibility for making her work usable by others.",
+        },
+        {
+          isCorrect: false,
+          label: "She regrets checking the archive.",
         },
         {
           isCorrect: false,
@@ -29,7 +29,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "She no longer values the seedlings.",
+          label:
+            "She values completing the 2024 test more than preserving continuity for later classes.",
         },
       ],
     },

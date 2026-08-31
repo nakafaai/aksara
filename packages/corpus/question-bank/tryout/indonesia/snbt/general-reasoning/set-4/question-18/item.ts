@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "$$2$$ Belletristikbücher",
         },
         {
-          isCorrect: false,
-          label: "$$1$$ Belletristikbuch und $$1$$ Wissenschaftsbuch",
-        },
-        {
           isCorrect: true,
           label: "$$2$$ Wissenschaftsbücher",
+        },
+        {
+          isCorrect: false,
+          label: "$$1$$ Belletristikbuch und $$1$$ Wissenschaftsbuch",
         },
         {
           isCorrect: false,
@@ -35,12 +35,12 @@ const item: QuestionItem = {
           label: "$$2$$ fiction books",
         },
         {
-          isCorrect: false,
-          label: "$$1$$ fiction book and $$1$$ science book",
-        },
-        {
           isCorrect: true,
           label: "$$2$$ science books",
+        },
+        {
+          isCorrect: false,
+          label: "$$1$$ fiction book and $$1$$ science book",
         },
         {
           isCorrect: false,
@@ -60,12 +60,12 @@ const item: QuestionItem = {
           label: "$$2$$ buku fiksi",
         },
         {
-          isCorrect: false,
-          label: "$$1$$ buku fiksi dan $$1$$ buku sains",
-        },
-        {
           isCorrect: true,
           label: "$$2$$ buku sains",
+        },
+        {
+          isCorrect: false,
+          label: "$$1$$ buku fiksi dan $$1$$ buku sains",
         },
         {
           isCorrect: false,

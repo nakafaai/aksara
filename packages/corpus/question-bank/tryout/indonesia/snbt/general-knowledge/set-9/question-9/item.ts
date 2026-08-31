@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Ein Teil des ersten Rückgangs kann auf Freiwillige oder Hinweise an Fahrer zurückgehen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team prüfte zeitgesteuerte Erinnerungen zum Öffnen der Fenster (Kontrolle der Klassenraumbelüftung) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 25, lag über 18 und 20.",
+            "Jede Botschaft mit einer Mehrheitsangabe verändert sicher das Verhalten aller Fahrgäste.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Weil Beschwerden sanken, muss die Gesamtzahl lauter Gespräche im selben Maß gesunken sein.",
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext Kontrolle der Klassenraumbelüftung: zeitgesteuerte Erinnerungen zum Öffnen der Fenster",
+            "Anonyme Beobachter verwendeten vorab festgelegte Lautstärkekriterien.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Der Betreiber wird Mehrheitszahlen aus aktuellen Beobachtungen verwenden.",
         },
       ],
     },
@@ -37,26 +38,26 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "Part of the initial complaint reduction may have resulted from volunteer presence or driver guidance.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested timed reminders to open the windows in the classroom ventilation check and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 25, exceeded both 18 and 20.",
+            "Any message mentioning a majority will certainly change every passenger's behaviour.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "Because complaints fell, the total number of loud conversations must have fallen by the same amount.",
+        },
+        {
+          isCorrect: false,
+          label: "Anonymous observers used predefined volume criteria.",
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of timed reminders to open the windows: classroom ventilation check",
+            "The operator will use majority figures drawn from recent observations.",
         },
       ],
     },
@@ -66,26 +67,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Sebagian penurunan keluhan awal mungkin berasal dari kehadiran relawan atau pengarahan pengemudi.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji pengingat waktu membuka jendela pada pemantauan ventilasi kelas dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 25, melampaui 18 dan 20.",
+            "Setiap pesan yang menyebut mayoritas pasti mengubah perilaku semua penumpang.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Karena keluhan berkurang, jumlah seluruh percakapan keras pasti turun dengan ukuran yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Uji Hati-hati dalam pemantauan ventilasi kelas: pengingat waktu membuka jendela",
+            "Pengamat anonim memakai kriteria volume yang telah ditetapkan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengelola akan menggunakan angka mayoritas yang berasal dari pengamatan terbaru.",
         },
       ],
     },

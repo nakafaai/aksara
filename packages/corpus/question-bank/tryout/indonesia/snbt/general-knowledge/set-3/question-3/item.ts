@@ -6,24 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Wiederholte Messungen bleiben trotz unterschiedlicher Erfassungszeiten in einem engen Bereich.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Daten werden nach einer geplanten Schrittfolge erhoben, die mit denselben Regeln wiederholt wird.",
+        },
+        {
           isCorrect: true,
-          label: "nach denselben Grundsätzen ohne Widerspruch",
+          label:
+            "Dieselbe Kodierregel wird auf jede Gruppe und jeden Messzeitraum angewendet.",
         },
         {
           isCorrect: false,
-          label: "für mehr als eine Deutung offen",
+          label:
+            "Die Behauptung stützt sich auf wiederholte Beobachtungen und Messungen statt nur auf Vermutungen.",
         },
         {
           isCorrect: false,
-          label: "durch verlässliche Belege gestützt",
-        },
-        {
-          isCorrect: false,
-          label: "fähig, sich an veränderte Bedingungen anzupassen",
-        },
-        {
-          isCorrect: false,
-          label: "dem Umfang des Problems angemessen",
+          label:
+            "Die Aufzeichnungen werden vom frühesten bis zum spätesten Ereignis geordnet, damit die Abfolge nachvollziehbar ist.",
         },
       ],
     },
@@ -31,24 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Repeated measurements remain within a narrow range even when taken at different times.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Data are collected through a planned sequence of steps repeated under the same rules.",
+        },
+        {
           isCorrect: true,
-          label: "following the same principles without contradiction",
+          label:
+            "The same coding rule is applied to every group and every measurement period.",
         },
         {
           isCorrect: false,
-          label: "open to more than one interpretation",
+          label:
+            "The claim is built from repeated observations and measurements rather than assumption alone.",
         },
         {
           isCorrect: false,
-          label: "supported by dependable evidence",
-        },
-        {
-          isCorrect: false,
-          label: "able to adjust to changing conditions",
-        },
-        {
-          isCorrect: false,
-          label: "appropriate to the scale of the problem",
+          label:
+            "Records are arranged from the earliest event to the latest so the sequence of change can be traced.",
         },
       ],
     },
@@ -56,24 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Nilai pengukuran berulang tetap berada dalam rentang sempit meskipun waktu pengambilan berbeda.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
+        },
+        {
           isCorrect: true,
-          label: "mengikuti prinsip yang sama tanpa pertentangan",
+          label:
+            "Aturan pengodean yang sama diterapkan pada setiap kelompok dan setiap waktu pengukuran.",
         },
         {
           isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
+          label:
+            "Klaim disusun dari pengamatan berulang dan hasil pengukuran, bukan dari dugaan semata.",
         },
         {
           isCorrect: false,
-          label: "didukung oleh bukti yang dapat dipercaya",
-        },
-        {
-          isCorrect: false,
-          label: "mampu menyesuaikan diri dengan kondisi yang berubah",
-        },
-        {
-          isCorrect: false,
-          label: "sepadan dengan skala masalah",
+          label:
+            "Catatan disusun dari kejadian paling awal hingga paling akhir agar urutan perubahan dapat ditelusuri.",
         },
       ],
     },

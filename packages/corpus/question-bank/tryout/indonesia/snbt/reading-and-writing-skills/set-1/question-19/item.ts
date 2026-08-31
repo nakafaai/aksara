@@ -10,13 +10,13 @@ const item: QuestionItem = {
           label: "Käufer zum Kauf von Pkw anzuregen.",
         },
         {
-          isCorrect: false,
-          label: "die Rentabilität von Pkw und Nutzfahrzeugen zu vergleichen.",
-        },
-        {
           isCorrect: true,
           label:
             "Umfang und Verlauf des Rückgangs und der Erholung des indonesischen Großhandelsabsatzes im Jahr 2020 darzustellen.",
+        },
+        {
+          isCorrect: false,
+          label: "die Rentabilität von Pkw und Nutzfahrzeugen zu vergleichen.",
         },
         {
           isCorrect: false,
@@ -38,14 +38,14 @@ const item: QuestionItem = {
           label: "encourage buyers to purchase passenger cars.",
         },
         {
-          isCorrect: false,
-          label:
-            "compare the profitability of passenger and commercial vehicles.",
-        },
-        {
           isCorrect: true,
           label:
             "report the scale and course of Indonesia's wholesale car-sales decline and recovery in 2020.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "compare the profitability of passenger and commercial vehicles.",
         },
         {
           isCorrect: false,
@@ -66,14 +66,14 @@ const item: QuestionItem = {
           label: "mendorong pembeli untuk membeli mobil penumpang.",
         },
         {
-          isCorrect: false,
-          label:
-            "membandingkan keuntungan mobil penumpang dan kendaraan niaga.",
-        },
-        {
           isCorrect: true,
           label:
             "memaparkan skala dan perjalanan penurunan serta pemulihan penjualan wholesales mobil Indonesia pada 2020.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "membandingkan keuntungan mobil penumpang dan kendaraan niaga.",
         },
         {
           isCorrect: false,

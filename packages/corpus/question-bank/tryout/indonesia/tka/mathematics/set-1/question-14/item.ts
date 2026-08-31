@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(-3,4)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(-2,3)$$",
+          label: "$$(4,-1)$$",
         },
         {
           isCorrect: true,
-          label: "$$(-2,4)$$",
-        },
-        {
-          isCorrect: false,
           label: "$$(-1,4)$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,5)$$",
+          label: "$$(1,4)$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$(-1,-4)$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$(1,-4)$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(-3,4)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(-2,3)$$",
+          label: "$$(4,-1)$$",
         },
         {
           isCorrect: true,
-          label: "$$(-2,4)$$",
-        },
-        {
-          isCorrect: false,
           label: "$$(-1,4)$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,5)$$",
+          label: "$$(1,4)$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$(-1,-4)$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$(1,-4)$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(-3,4)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(-2,3)$$",
+          label: "$$(4,-1)$$",
         },
         {
           isCorrect: true,
-          label: "$$(-2,4)$$",
-        },
-        {
-          isCorrect: false,
           label: "$$(-1,4)$$",
         },
         {
           isCorrect: false,
-          label: "$$(-2,5)$$",
+          label: "$$(1,4)$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$(-1,-4)$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$(1,-4)$$",
         },
       ],
     },

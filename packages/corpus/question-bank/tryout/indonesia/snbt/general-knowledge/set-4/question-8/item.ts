@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "planmäßig gepflegte Pflanzen und kurze Aussagen von Nutzenden",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Digitale Zahlung ist nachweislich immer schneller und sollte Bargeld auf jedem Markt ersetzen.",
         },
         {
           isCorrect: true,
-          label: "Der Wert mit Änderung, 31, lag über 22 und 24.",
+          label:
+            "Ein Gesamtdurchschnitt kann täuschen, wenn Nutzergruppen und Einkaufsgrößen systematisch verschieden sind.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Weil einige Nutzer Hindernisse erleben, sollte die digitale Spur trotz ihres Nutzens für andere abgeschafft werden.",
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext Dachgarten einer Schule: Farbetiketten für den Lichtbedarf",
+            "Die Beschwerden über das Signal konzentrierten sich auf einen Marktgang.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Im nächsten Test wird das Netz verbessert und werden Einkäufe mit ähnlicher Artikelzahl verglichen.",
         },
       ],
     },
@@ -36,26 +37,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "plants cared for on schedule and short comments from users",
-        },
-        {
-          isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "Digital payment is proven always faster and should replace cash in every market.",
         },
         {
           isCorrect: true,
-          label: "The intervention value, 31, exceeded both 22 and 24.",
+          label:
+            "An overall average can mislead when user groups and transaction sizes differ systematically.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Because some users face barriers, the digital lane should be removed despite benefiting other groups.",
+        },
+        {
+          isCorrect: false,
+          label: "Signal complaints were concentrated in one market aisle.",
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of colour labels for light requirements: school rooftop garden",
+            "The next test will improve the network and compare purchases with similar item counts.",
         },
       ],
     },
@@ -65,26 +67,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "tanaman yang dirawat sesuai jadwal dan komentar singkat pengguna",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Pembayaran digital terbukti selalu lebih cepat dan harus menggantikan uang tunai di semua pasar.",
         },
         {
           isCorrect: true,
-          label: "Nilai pada hari dengan perubahan, 31, melampaui 22 dan 24.",
+          label:
+            "Rata-rata keseluruhan dapat menyesatkan ketika kelompok pengguna dan ukuran transaksi berbeda secara sistematis.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Karena sebagian pengguna mengalami kendala, jalur digital sebaiknya dihapus meskipun bermanfaat bagi kelompok lain.",
         },
         {
           isCorrect: false,
           label:
-            "Uji Hati-hati dalam kebun atap sekolah: label warna untuk kebutuhan cahaya",
+            "Keluhan sinyal terkonsentrasi pada satu lorong di sisi pasar.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Uji berikutnya akan memperbaiki jaringan dan membandingkan jumlah barang yang sebanding.",
         },
       ],
     },

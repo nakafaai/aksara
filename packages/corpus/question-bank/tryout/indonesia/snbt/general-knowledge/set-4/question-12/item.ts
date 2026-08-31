@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team prüfte Farbetiketten für den Lichtbedarf (Dachgarten einer Schule) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 31, lag über 22 und 24.",
+            "Digitale Zahlung ist nachweislich immer schneller und sollte Bargeld auf jedem Markt ersetzen.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Weil einige Nutzer Hindernisse erleben, sollte die digitale Spur trotz ihres Nutzens für andere abgeschafft werden.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Die Beschwerden über das Signal konzentrierten sich auf einen Marktgang.",
         },
         {
           isCorrect: true,
           label:
-            "Vorsichtige Prüfung im Kontext Dachgarten einer Schule: Farbetiketten für den Lichtbedarf",
+            "Der im Durchschnitt sichtbare Zeitvorteil muss bei wirklich vergleichbaren Vorgängen erneut geprüft werden.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Vorteile digitaler Zahlungen müssen mit vergleichbaren Daten und unter Berücksichtigung des Zugangs bewertet werden; ihre Ergänzung rechtfertigt nicht automatisch die Abschaffung von Bargeld.",
         },
       ],
     },
@@ -37,26 +38,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested colour labels for light requirements in the school rooftop garden and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 31, exceeded both 22 and 24.",
+            "Digital payment is proven always faster and should replace cash in every market.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "Because some users face barriers, the digital lane should be removed despite benefiting other groups.",
         },
         {
           isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+          label: "Signal complaints were concentrated in one market aisle.",
         },
         {
           isCorrect: true,
           label:
-            "A cautious trial of colour labels for light requirements: school rooftop garden",
+            "The speed shown by the average should be retested among genuinely comparable transactions.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Digital payment benefits must be judged with comparable data and user access, so adding it does not automatically justify removing cash.",
         },
       ],
     },
@@ -66,26 +67,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji label warna untuk kebutuhan cahaya pada kebun atap sekolah dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 31, melampaui 22 dan 24.",
+            "Pembayaran digital terbukti selalu lebih cepat dan harus menggantikan uang tunai di semua pasar.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Karena sebagian pengguna mengalami kendala, jalur digital sebaiknya dihapus meskipun bermanfaat bagi kelompok lain.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Keluhan sinyal terkonsentrasi pada satu lorong di sisi pasar.",
         },
         {
           isCorrect: true,
           label:
-            "Uji Hati-hati dalam kebun atap sekolah: label warna untuk kebutuhan cahaya",
+            "Kecepatan yang tampak pada rata-rata perlu diuji lagi pada kelompok transaksi yang benar-benar sebanding.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Manfaat pembayaran digital perlu dinilai dengan data yang sebanding dan akses pengguna, sehingga penambahannya tidak otomatis berarti penghapusan tunai.",
         },
       ],
     },

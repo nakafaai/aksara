@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The class tested adding a removable mesh with smaller openings in a model filter for floating plastic fragments while controlling other factors and reporting a limitation.",
+            "The class tested how a removable mesh with smaller openings affected the capture of floating plastic fragments, while controlling other factors and reporting a limitation.",
         },
         {
           isCorrect: false,
           label:
-            "The passage only gives a complete history of a model filter for floating plastic fragments without examining evidence or choice.",
+            "The class tested how a removable mesh with smaller openings affected the capture of floating plastic fragments, while controlling the listed factors but treating one short trial as proof of a universal effect.",
         },
         {
           isCorrect: false,
           label:
-            "The passage proves that one method must succeed in every a model filter for floating plastic fragments.",
+            "The class tested how a removable mesh with smaller openings affected the capture of floating plastic fragments, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
         },
         {
           isCorrect: false,
           label:
-            "The passage rejects all observation and relies only on personal preference.",
+            "The class tested how a removable mesh with smaller openings affected the capture of floating plastic fragments, while treating the scientific term as the measured outcome that settles the investigation.",
         },
         {
           isCorrect: false,
           label:
-            "The passage mainly defines selectivity without connecting it to a setting.",
+            "The class tested how a removable mesh with smaller openings affected the capture of floating plastic fragments, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
         },
       ],
     },

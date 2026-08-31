@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$(-2,3)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(2,-3)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(3,-2)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(3,2)$$",
-        },
-        {
           isCorrect: true,
-          label: "$$(-3,2)$$",
+          label: "$$\\frac{9\\sqrt5}{5}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{7\\sqrt5}{5}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{8\\sqrt5}{5}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$2\\sqrt5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{11\\sqrt5}{5}$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$(-2,3)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(2,-3)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(3,-2)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(3,2)$$",
-        },
-        {
           isCorrect: true,
-          label: "$$(-3,2)$$",
+          label: "$$\\frac{9\\sqrt5}{5}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{7\\sqrt5}{5}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{8\\sqrt5}{5}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$2\\sqrt5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{11\\sqrt5}{5}$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$(-2,3)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(2,-3)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(3,-2)$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$(3,2)$$",
-        },
-        {
           isCorrect: true,
-          label: "$$(-3,2)$$",
+          label: "$$\\frac{9\\sqrt5}{5}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{7\\sqrt5}{5}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{8\\sqrt5}{5}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$2\\sqrt5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{11\\sqrt5}{5}$$",
         },
       ],
     },

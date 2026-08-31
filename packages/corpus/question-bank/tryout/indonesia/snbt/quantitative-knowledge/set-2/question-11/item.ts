@@ -7,6 +7,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$x \\in [2, 10)$$",
+        },
+        {
           isCorrect: false,
           label: "$$x \\in [2, 5) \\cup [5, 8)$$",
         },
@@ -21,10 +25,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$x \\in [5, 10)$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$x \\in [2, 10)$$",
         },
       ],
     },
@@ -32,6 +32,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$x \\in [2, 10)$$",
+        },
+        {
           isCorrect: false,
           label: "$$x \\in [2, 5) \\cup [5, 8)$$",
         },
@@ -46,10 +50,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$x \\in [5, 10)$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$x \\in [2, 10)$$",
         },
       ],
     },
@@ -57,6 +57,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$x \\in [2, 10)$$",
+        },
+        {
           isCorrect: false,
           label: "$$x \\in [2, 5) \\cup [5, 8)$$",
         },
@@ -71,10 +75,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$x \\in [5, 10)$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$x \\in [2, 10)$$",
         },
       ],
     },

@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Außerdem",
+          label: "Dennoch",
         },
         {
           isCorrect: false,
-          label: "Inzwischen",
+          label: "Währenddessen",
         },
         {
           isCorrect: false,
-          label: "Dagegen",
+          label: "Umgekehrt",
         },
         {
           isCorrect: true,
-          label: "Deshalb",
+          label: "Auf dieser Grundlage",
         },
         {
           isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Tag der offenen Labortür",
+          label: "Außerdem",
         },
       ],
     },
@@ -32,7 +32,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Moreover",
+          label: "Nevertheless",
         },
         {
           isCorrect: false,
@@ -40,15 +40,15 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "However",
+          label: "Conversely",
         },
         {
           isCorrect: true,
-          label: "Therefore",
+          label: "On that basis",
         },
         {
           isCorrect: false,
-          label: "A structured test of one change: open laboratory tour",
+          label: "In addition",
         },
       ],
     },
@@ -57,7 +57,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Selain itu",
+          label: "Meskipun demikian",
         },
         {
           isCorrect: false,
@@ -65,15 +65,15 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Namun",
+          label: "Sebaliknya",
         },
         {
           isCorrect: true,
-          label: "Oleh karena itu",
+          label: "Berdasarkan itu",
         },
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: tur laboratorium terbuka",
+          label: "Di samping itu",
         },
       ],
     },

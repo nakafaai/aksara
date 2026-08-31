@@ -8,16 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Absolute certainty about a neighbourhood flood-warning exercise",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Why all evidence in a neighbourhood flood-warning exercise should be ignored",
-        },
-        {
-          isCorrect: false,
-          label: "The complete world history of actionable information",
+            "actionable information as the main measure in a service trial",
         },
         {
           isCorrect: true,
@@ -26,7 +17,15 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "One rule for every a neighbourhood flood-warning exercise",
+          label: "From a short comparison to a permanent service change",
+        },
+        {
+          isCorrect: false,
+          label: "Consultation without comparable outcome measures",
+        },
+        {
+          isCorrect: false,
+          label: "A local service trial with no follow-up decision",
         },
       ],
     },

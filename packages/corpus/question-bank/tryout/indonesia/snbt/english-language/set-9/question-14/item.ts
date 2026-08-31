@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "in this passage, an assumption that never needs to be examined in a night market",
+            "The term *systems thinking* proves that the character's first estimate was correct before any accountable action was taken.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The definition reduces *systems thinking* to the recurring object, so the character's choice and development no longer matter.",
         },
         {
           isCorrect: true,
           label:
-            "examining how separate steps connect across an entire process",
+            "The definition of *systems thinking* provides a lens for reading the character's specific choice as a response to uncertainty, not as an isolated moral label.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, a final result that always applies to every situation",
+            "The term *systems thinking* describes the final outcome as certain, even though the narrative presents a gradual change.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, a detail removed because it challenges an opinion",
-        },
-        {
-          isCorrect: false,
-          label:
-            "in this passage, decorative language unrelated to the setting",
+            "The definition is included only to name the setting and has no connection to the character's decision.",
         },
       ],
     },

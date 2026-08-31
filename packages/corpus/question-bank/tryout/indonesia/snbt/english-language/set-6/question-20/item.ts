@@ -6,25 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Absolute certainty about a repair café during a storm",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Why all evidence in a repair café during a storm should be ignored",
-        },
-        {
-          isCorrect: false,
-          label: "The complete world history of sensory imagery",
-        },
-        {
-          isCorrect: false,
-          label: "One rule for every a repair café during a storm",
-        },
-        {
           isCorrect: true,
           label: "A spool of gold thread in a repair café during a storm",
+        },
+        {
+          isCorrect: false,
+          label: "A recurring object that remains part of the setting",
+        },
+        {
+          isCorrect: false,
+          label: "A conflict settled before the character's final choice",
+        },
+        {
+          isCorrect: false,
+          label: "sensory imagery as a term without a role in the story",
+        },
+        {
+          isCorrect: false,
+          label: "An ending that removes the object's interpretive tension",
         },
       ],
     },

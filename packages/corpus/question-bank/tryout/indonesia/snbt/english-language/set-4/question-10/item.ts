@@ -7,24 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Absolute certainty about a local history display",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Why all evidence in a local history display should be ignored",
-        },
-        {
-          isCorrect: false,
-          label: "The complete world history of plain language",
-        },
-        {
-          isCorrect: false,
-          label: "One rule for every a local history display",
+          label: "plain language as the main measure in a service trial",
         },
         {
           isCorrect: true,
           label: "Evidence-informed change in a local history display",
+        },
+        {
+          isCorrect: false,
+          label: "From a short comparison to a permanent service change",
+        },
+        {
+          isCorrect: false,
+          label: "Consultation without comparable outcome measures",
+        },
+        {
+          isCorrect: false,
+          label: "A local service trial with no follow-up decision",
         },
       ],
     },

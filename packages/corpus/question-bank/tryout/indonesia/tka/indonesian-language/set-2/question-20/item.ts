@@ -12,7 +12,18 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "memaksa Nara membuang seluruh layangan",
+          label:
+            "mendorong Nara mengganti layangan lama dengan yang tampilannya lebih rapi",
+        },
+        {
+          isCorrect: false,
+          label:
+            "lebih menghargai penampilan layangan daripada proses pengujian rangkanya",
+        },
+        {
+          isCorrect: false,
+          label:
+            "mengutamakan cerita proses perbaikan dibanding hasil uji terbang",
         },
         {
           isCorrect: true,
@@ -21,15 +32,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "hanya peduli pada hadiah hiasan",
-        },
-        {
-          isCorrect: false,
-          label: "menolak menguji hasil perbaikan",
-        },
-        {
-          isCorrect: false,
-          label: "menyembunyikan semua kesalahan dari Nara",
+          label:
+            "memperbaiki rangka untuk Nara tanpa menjelaskan alasan setiap langkah",
         },
       ],
     },

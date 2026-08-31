@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$13{,}75\\%$$",
-        },
-        {
           isCorrect: false,
           label: "$$12{,}25\\%$$",
         },
@@ -25,15 +21,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$15{,}75\\%$$",
         },
+        {
+          isCorrect: true,
+          label: "$$13{,}75\\%$$",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$13.75\\%$$",
-        },
         {
           isCorrect: false,
           label: "$$12.25\\%$$",
@@ -50,15 +46,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$15.75\\%$$",
         },
+        {
+          isCorrect: true,
+          label: "$$13.75\\%$$",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$13{,}75\\%$$",
-        },
         {
           isCorrect: false,
           label: "$$12{,}25\\%$$",
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$15{,}75\\%$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$13{,}75\\%$$",
         },
       ],
     },

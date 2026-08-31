@@ -10,12 +10,12 @@ const item: QuestionItem = {
           label: "wuchs.",
         },
         {
-          isCorrect: false,
-          label: "entwickelte sich.",
-        },
-        {
           isCorrect: true,
           label: "nahm ab.",
+        },
+        {
+          isCorrect: false,
+          label: "entwickelte sich.",
         },
         {
           isCorrect: false,
@@ -35,12 +35,12 @@ const item: QuestionItem = {
           label: "growth.",
         },
         {
-          isCorrect: false,
-          label: "progressive.",
-        },
-        {
           isCorrect: true,
           label: "decreased.",
+        },
+        {
+          isCorrect: false,
+          label: "progressive.",
         },
         {
           isCorrect: false,
@@ -60,12 +60,12 @@ const item: QuestionItem = {
           label: "pertumbuhan.",
         },
         {
-          isCorrect: false,
-          label: "progresif.",
-        },
-        {
           isCorrect: true,
           label: "menurun.",
+        },
+        {
+          isCorrect: false,
+          label: "progresif.",
         },
         {
           isCorrect: false,

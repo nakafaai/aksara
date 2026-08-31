@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti dugaan yang tidak perlu diperiksa pada ruang arsip sekolah",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti hasil akhir yang selalu berlaku untuk semua keadaan",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti rincian yang sengaja dihapus karena bertentangan dengan pendapat",
-        },
-        {
           isCorrect: true,
           label:
-            "kemampuan memikirkan proses belajar dan menilai strategi diri sendiri",
+            "Definisi *metakognisi* menjadi lensa untuk membaca pilihan konkret tokoh sebagai perkembangan sikap, bukan sekadar label moral yang berdiri sendiri.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti hiasan bahasa yang tidak berhubungan dengan konteks",
+            "Istilah *metakognisi* membuktikan bahwa pilihan pertama tokoh sudah benar sebelum ia mengamati kebutuhan orang lain.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi itu membatasi *metakognisi* pada perasaan tokoh sehingga tindakan dan akibat pilihannya tidak perlu diperiksa.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Penyebutan *metakognisi* menjadikan perubahan tokoh selesai seketika, padahal bacaan menunjukkan perkembangan bertahap.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi tersebut hanya menamai latar kegiatan dan tidak berkaitan dengan keputusan tokoh.",
         },
       ],
     },

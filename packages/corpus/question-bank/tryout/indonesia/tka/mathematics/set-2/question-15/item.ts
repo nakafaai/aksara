@@ -12,19 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Eine Verschiebung erhält die Parallelität von Geraden.",
+          label: "$T(x,y)=(y,x)$",
         },
         {
           isCorrect: true,
-          label: "Eine Drehung erhält Abstände zwischen Punkten.",
+          label: "$T(2,-3)=(-3,2)$",
         },
         {
           isCorrect: true,
-          label: "Eine Streckung mit dem Faktor $3$ verdreifacht den Umfang.",
+          label: "$T^2$ ist die Identität.",
+        },
+        {
+          isCorrect: true,
+          label: "Alle Fixpunkte von T liegen auf $y=x$.",
         },
         {
           isCorrect: false,
-          label: "Eine Spiegelung erhält immer die Orientierung einer Figur.",
+          label: "T erhält die Orientierung.",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "A translation preserves parallel lines.",
+          label: "$T(x,y)=(y,x)$",
         },
         {
           isCorrect: true,
-          label: "A rotation preserves distances between points.",
+          label: "$T(2,-3)=(-3,2)$",
         },
         {
           isCorrect: true,
-          label: "A dilation with scale factor $3$ triples the perimeter.",
+          label: "$T^2$ is the identity.",
+        },
+        {
+          isCorrect: true,
+          label: "Every fixed point of T lies on $y=x$.",
         },
         {
           isCorrect: false,
-          label: "A reflection always preserves a figure's orientation.",
+          label: "T preserves orientation.",
         },
       ],
     },
@@ -54,19 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Translasi mempertahankan kesejajaran garis.",
+          label: "$T(x,y)=(y,x)$",
         },
         {
           isCorrect: true,
-          label: "Rotasi mempertahankan jarak antartitik.",
+          label: "$T(2,-3)=(-3,2)$",
         },
         {
           isCorrect: true,
-          label: "Dilatasi dengan faktor $3$ mengalikan keliling dengan $3$.",
+          label: "$T^2$ adalah identitas.",
+        },
+        {
+          isCorrect: true,
+          label: "Semua titik tetap T terletak pada $y=x$.",
         },
         {
           isCorrect: false,
-          label: "Refleksi selalu mempertahankan orientasi suatu bangun.",
+          label: "T mempertahankan orientasi.",
         },
       ],
     },

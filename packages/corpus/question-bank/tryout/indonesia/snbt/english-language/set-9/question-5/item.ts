@@ -7,27 +7,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Testing adding a removable mesh with smaller openings in a model filter for floating plastic fragments",
+          label: "Testing mesh size in a filter for floating plastic",
+        },
+        {
+          isCorrect: false,
+          label: "Measuring selectivity in one preliminary comparison",
         },
         {
           isCorrect: false,
           label:
-            "Absolute certainty about a model filter for floating plastic fragments",
+            "Treating selectivity as the sole explanation for the observed result",
         },
         {
           isCorrect: false,
           label:
-            "Why all evidence in a model filter for floating plastic fragments should be ignored",
-        },
-        {
-          isCorrect: false,
-          label: "The complete world history of selectivity",
+            "A final rule derived from the first comparison of selectivity",
         },
         {
           isCorrect: false,
           label:
-            "One rule for every a model filter for floating plastic fragments",
+            "A limitation that makes another test of selectivity unnecessary",
         },
       ],
     },

@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team prüfte eine Erinnerung einen Tag vor jedem Besuch (mobiler Bibliotheksdienst) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 27, lag über 20 und 22.",
+            "Schriftliche Unterlagen sind immer richtig, während jede mündliche Aussage verworfen werden muss.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Das Museum sollte die spannendste Geschichte wählen und störende Angaben entfernen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Museum wird die Überarbeitungsgeschichte des Ausstellungsschildes anzeigen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Museum wird Korrekturen mit einer überprüfbaren Quellenangabe annehmen.",
         },
         {
           isCorrect: true,
           label:
-            "Vorsichtige Prüfung im Kontext mobiler Bibliotheksdienst: eine Erinnerung einen Tag vor jedem Besuch",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Offenheit über widersprüchliche Quellen kann ein Archiv glaubwürdiger machen, wenn der Status jeder Aussage erklärt wird.",
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested a reminder sent one day before each visit in the mobile library service and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 27, exceeded both 20 and 22.",
+            "Written records are always correct, whereas all oral testimony must be rejected.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "The museum should choose the most engaging story and remove details that disrupt the narrative.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The museum will display the exhibition label's revision history.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The museum will accept corrections that include a verifiable source trail.",
         },
         {
           isCorrect: true,
           label:
-            "A cautious trial of a reminder sent one day before each visit: mobile library service",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Openness about conflicting sources can make an archive more trustworthy when the status of each claim is explained.",
         },
       ],
     },
@@ -66,26 +68,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji pesan pengingat sehari sebelum kunjungan pada layanan perpustakaan keliling dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 27, melampaui 20 dan 22.",
+            "Catatan tertulis selalu benar, sedangkan semua kesaksian lisan harus ditolak.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Museum sebaiknya memilih kisah paling menarik dan menghapus keterangan yang mengganggu kelancaran cerita.",
+        },
+        {
+          isCorrect: false,
+          label: "Museum akan menampilkan riwayat revisi label pameran.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Museum akan menerima koreksi yang dilengkapi asal sumber yang dapat diperiksa.",
         },
         {
           isCorrect: true,
           label:
-            "Uji Hati-hati dalam layanan perpustakaan keliling: pesan pengingat sehari sebelum kunjungan",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Keterbukaan terhadap perbedaan sumber dapat membuat arsip lebih dapat dipercaya selama status setiap klaim dijelaskan.",
         },
       ],
     },

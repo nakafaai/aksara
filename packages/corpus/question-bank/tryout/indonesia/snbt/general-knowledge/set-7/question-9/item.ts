@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Das Team prüfte einen Prüftisch vor der Warteschlange für Techniker (Reparaturwerkstatt für Elektronik) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 28, lag über 21 und 23.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vorsichtige Prüfung im Kontext Reparaturwerkstatt für Elektronik: einen Prüftisch vor der Warteschlange für Techniker",
-        },
-        {
           isCorrect: true,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Dieselbe Einladung kann bei unterschiedlichen Bedingungen zu ungleichen Möglichkeiten führen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Eine Beratung ist nur gültig, wenn jeder Vorschlag angenommen wird.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Wegen der offenen Einladung müssen Herkunft und Abwesenheitsgründe nicht geprüft werden.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Fast alle ersten Redebeiträge kamen aus den drei nächstgelegenen Vierteln.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die endgültige Entscheidung wird Auswahl, Einwände und Einfluss der Beiträge festhalten.",
         },
       ],
     },
@@ -35,28 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "The team tested an initial inspection desk before the technician queue in the electronics repair clinic and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 28, exceeded both 21 and 23.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A cautious trial of an initial inspection desk before the technician queue: electronics repair clinic",
-        },
-        {
           isCorrect: true,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "The same invitation can produce unequal opportunities when participants face different conditions.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "A consultation is valid only if every resident proposal is ultimately accepted.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Because the invitation was open, participant origins and reasons for absence need not be examined.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Nearly every initial speaker came from the three nearest neighbourhoods.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The final decision will record the choice, objections, and the influence of contributions.",
         },
       ],
     },
@@ -64,28 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Tim menguji meja pemeriksaan awal sebelum antrean teknisi pada klinik perbaikan elektronik dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 28, melampaui 21 dan 23.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji Hati-hati dalam klinik perbaikan elektronik: meja pemeriksaan awal sebelum antrean teknisi",
-        },
-        {
           isCorrect: true,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Undangan yang sama dapat menghasilkan kesempatan yang tidak sama ketika kondisi peserta berbeda.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Musyawarah hanya sah jika setiap usulan warga akhirnya diterima.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Karena undangan terbuka, asal peserta dan alasan ketidakhadiran tidak perlu diperiksa.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Hampir seluruh pembicara pertama berasal dari tiga rukun tetangga terdekat.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Keputusan akhir akan mencatat pilihan, keberatan, dan pengaruh masukan.",
         },
       ],
     },

@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Kepastian Mutlak tentang jalur wisata hutan kota",
-        },
-        {
-          isCorrect: false,
-          label: "Alasan Mengabaikan Semua Bukti dalam jalur wisata hutan kota",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap aksesibilitas di Seluruh Dunia",
-        },
-        {
           isCorrect: true,
           label: "Keputusan Berbasis Bukti dalam jalur wisata hutan kota",
         },
         {
           isCorrect: false,
-          label: "Satu Aturan untuk Setiap jalur wisata hutan kota",
+          label: "aksesibilitas sebagai ukuran utama dalam uji layanan",
+        },
+        {
+          isCorrect: false,
+          label: "Dari perbandingan singkat menuju perubahan layanan tetap",
+        },
+        {
+          isCorrect: false,
+          label: "Konsultasi tanpa pengukuran hasil yang dapat dibandingkan",
+        },
+        {
+          isCorrect: false,
+          label: "Uji layanan lokal tanpa keputusan tindak lanjut",
         },
       ],
     },

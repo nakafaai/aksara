@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$20\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$25\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$30\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$40\\%$$",
+        },
+        {
           isCorrect: true,
-          label: "$$33$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$22$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$44$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$55$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$11$$",
+          label: "$$33\\frac13\\%$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$20\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$25\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$30\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$40\\%$$",
+        },
+        {
           isCorrect: true,
-          label: "$$33$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$22$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$44$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$55$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$11$$",
+          label: "$$33\\frac13\\%$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$20\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$25\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$30\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$40\\%$$",
+        },
+        {
           isCorrect: true,
-          label: "$$33$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$22$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$44$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$55$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$11$$",
+          label: "$$33\\frac13\\%$$",
         },
       ],
     },

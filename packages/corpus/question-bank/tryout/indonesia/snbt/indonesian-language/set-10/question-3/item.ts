@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam pemanasan air dengan oven surya model pasti berlaku tanpa batas pada tempat lain.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang pemanasan air dengan oven surya model tidak berguna.",
+            "Karena kondisi perubahan menghasilkan 63, sedangkan nilai awal 48 dan pembanding 50, reflektor pada sudut 45 derajat telah terisolasi sebagai satu-satunya penyebab selama volume air, warna wadah, dan lama pemanasan dibuat sama.",
         },
         {
           isCorrect: true,
           label:
-            "Pola awal mendukung pengulangan yang lebih kuat, bukan klaim bahwa hasil itu selalu berlaku.",
+            "Pada kondisi yang diuji, reflektor pada sudut 45 derajat berkaitan dengan perubahan dari 48 dan 50 menjadi 63; karena uji dilakukan pada satu rentang cuaca dan belum diulang pada musim berbeda, pola itu perlu diuji lagi sebelum diperluas menjadi klaim umum.",
         },
         {
           isCorrect: false,
           label:
-            "Satu rincian tentang reflektor cukup untuk membuktikan semua hubungan sebab-akibat.",
+            "Pengulangan paling informatif sebaiknya mengubah volume air, warna wadah, dan lama pemanasan bersamaan dengan reflektor pada sudut 45 derajat agar gabungan kondisi yang lebih realistis dapat diuji.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Keterbatasan bahwa uji dilakukan pada satu rentang cuaca dan belum diulang pada musim berbeda memengaruhi ketelitian angka, tetapi tidak memengaruhi luas penerapan temuan tentang pemanasan air dengan oven surya model.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengulangan dengan lebih banyak unit dapat mempersempit ketidakpastian, tetapi tidak mungkin mengubah penafsiran awal tentang pemanasan air dengan oven surya model.",
         },
       ],
     },

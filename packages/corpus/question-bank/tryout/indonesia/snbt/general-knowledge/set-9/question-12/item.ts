@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Das Team prüfte zeitgesteuerte Erinnerungen zum Öffnen der Fenster (Kontrolle der Klassenraumbelüftung) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 25, lag über 18 und 20.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
           isCorrect: true,
           label:
-            "Vorsichtige Prüfung im Kontext Kontrolle der Klassenraumbelüftung: zeitgesteuerte Erinnerungen zum Öffnen der Fenster",
+            "Der erste Beschwerderückgang belegte den Wirkmechanismus nicht, weil sich auch andere Bedingungen unterschieden.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Jede Botschaft mit einer Mehrheitsangabe verändert sicher das Verhalten aller Fahrgäste.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Weil Beschwerden sanken, muss die Gesamtzahl lauter Gespräche im selben Maß gesunken sein.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Anonyme Beobachter verwendeten vorab festgelegte Lautstärkekriterien.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Der Betreiber wird Mehrheitszahlen aus aktuellen Beobachtungen verwenden.",
         },
       ],
     },
@@ -35,28 +36,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "The team tested timed reminders to open the windows in the classroom ventilation check and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 25, exceeded both 18 and 20.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
           isCorrect: true,
           label:
-            "A cautious trial of timed reminders to open the windows: classroom ventilation check",
+            "The initial fall in complaints was insufficient to prove the message mechanism because other treatments also differed.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Any message mentioning a majority will certainly change every passenger's behaviour.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Because complaints fell, the total number of loud conversations must have fallen by the same amount.",
+        },
+        {
+          isCorrect: false,
+          label: "Anonymous observers used predefined volume criteria.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The operator will use majority figures drawn from recent observations.",
         },
       ],
     },
@@ -64,28 +65,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Tim menguji pengingat waktu membuka jendela pada pemantauan ventilasi kelas dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 25, melampaui 18 dan 20.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
           isCorrect: true,
           label:
-            "Uji Hati-hati dalam pemantauan ventilasi kelas: pengingat waktu membuka jendela",
+            "Penurunan keluhan awal belum cukup membuktikan mekanisme pesan karena perlakuan lain juga berbeda.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Setiap pesan yang menyebut mayoritas pasti mengubah perilaku semua penumpang.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Karena keluhan berkurang, jumlah seluruh percakapan keras pasti turun dengan ukuran yang sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengamat anonim memakai kriteria volume yang telah ditetapkan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengelola akan menggunakan angka mayoritas yang berasal dari pengamatan terbaru.",
         },
       ],
     },

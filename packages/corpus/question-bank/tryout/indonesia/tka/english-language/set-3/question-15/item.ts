@@ -12,7 +12,12 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The packet speaks directly to Lea.",
+          label:
+            "The packet's written instructions answer Lea's questions without later interpretation.",
+        },
+        {
+          isCorrect: false,
+          label: "A seed travels backward from 2040.",
         },
         {
           isCorrect: true,
@@ -21,15 +26,13 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "A seed travels backward from 2040.",
+          label:
+            "The storage date alone makes the result of each later seed test predictable.",
         },
         {
           isCorrect: false,
-          label: "The greenhouse predicts all future harvests.",
-        },
-        {
-          isCorrect: false,
-          label: "The archive changes the date by magic.",
+          label:
+            "The archive record determines when stored seeds will become viable.",
         },
       ],
     },

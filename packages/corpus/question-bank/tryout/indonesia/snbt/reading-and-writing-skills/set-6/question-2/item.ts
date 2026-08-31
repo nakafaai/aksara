@@ -7,27 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Richtungspfeile an jeder Abzweigung.",
+          label: "bewirkte, dass der Ausgangswert sank",
         },
         {
           isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Ausstellung von Schülerarbeiten über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Richtungspfeile an jeder Abzweigung.",
+          label: "ersetzte den Vergleichswert in der Berechnung",
         },
         {
           isCorrect: true,
-          label: "festgestellt, ohne bereits eine Ursache zu behaupten",
+          label: "hatte einen höheren Zahlenwert als",
         },
         {
           isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Richtungspfeile an jeder Abzweigung.",
+          label: "lag außerhalb des messbaren Bereichs",
+        },
+        {
+          isCorrect: false,
+          label: "bewies die Änderung als einzige Ursache",
         },
       ],
     },
@@ -36,27 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "The hypothesis therefore needed a limited test of direction arrows placed at each junction.",
+          label: "caused the baseline to become lower",
         },
         {
           isCorrect: false,
-          label:
-            "In this setting (student work exhibition), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, direction arrows placed at each junction, directly addressed the observed uncertainty.",
+          label: "replaced the comparison value in the calculation",
         },
         {
           isCorrect: true,
-          label: "noticed without already claiming a cause",
+          label: "had a numerically higher value than",
         },
         {
           isCorrect: false,
-          label:
-            "The next test of direction arrows placed at each junction will run for longer.",
+          label: "lay outside the range that could be measured",
+        },
+        {
+          isCorrect: false,
+          label: "proved that the change was the only cause",
         },
       ],
     },
@@ -65,27 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui panah arah yang ditempatkan.",
+          label: "menyebabkan nilai awal menjadi lebih rendah",
         },
         {
           isCorrect: false,
-          label:
-            "Di pameran karya siswa, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa panah arah yang ditempatkan langsung menanggapi keraguan yang diamati.",
+          label: "menggantikan nilai pembanding dalam perhitungan",
         },
         {
           isCorrect: true,
-          label: "mencatat gejala tanpa langsung memastikan penyebabnya",
+          label: "memiliki nilai numerik yang lebih tinggi daripada",
         },
         {
           isCorrect: false,
-          label:
-            "Uji panah arah yang ditempatkan berikutnya akan berlangsung lebih lama.",
+          label: "berada di luar rentang yang boleh diukur",
+        },
+        {
+          isCorrect: false,
+          label: "membuktikan perubahan sebagai satu-satunya penyebab",
         },
       ],
     },

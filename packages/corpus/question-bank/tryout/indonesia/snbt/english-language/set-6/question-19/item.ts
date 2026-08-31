@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "in this passage, an assumption that never needs to be examined in a repair café during a storm",
-        },
-        {
-          isCorrect: false,
-          label:
-            "in this passage, a final result that always applies to every situation",
-        },
-        {
           isCorrect: true,
           label:
-            "language that appeals to sight, sound, touch, taste, or smell",
+            "The definition of *sensory imagery* identifies the narrative device that connects the recurring object, the character's action, and the unresolved response at the end.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, a detail removed because it challenges an opinion",
+            "The term *sensory imagery* confirms one final outcome and therefore removes the need to interpret the ending.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, decorative language unrelated to the setting",
+            "The definition treats *sensory imagery* as the physical object itself rather than as a feature of the narrative ending.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The term *sensory imagery* makes the reader's personal impression sufficient even when it conflicts with story details.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The definition explains only the setting, so the recurring object and the character's action are irrelevant.",
         },
       ],
     },

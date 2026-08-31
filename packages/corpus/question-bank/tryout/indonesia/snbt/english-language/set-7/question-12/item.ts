@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage states that no action or observation occurred in a residents' workshop.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Everyone in a residents' workshop obtained exactly the same result without variation.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The writer removes every detail related to a residents' workshop.",
+            "Priya wrote the warning in two sentences and tested it with a neighbour unfamiliar with the route; the choice resolves the whole conflict at once and makes any later review unnecessary.",
         },
         {
           isCorrect: true,
           label:
-            "Priya wrote the warning in two sentences and tested it with a neighbour unfamiliar with the route.",
+            "Testing the two-sentence warning with someone unfamiliar with the route lets Priya verify clarity instead of assuming that the message works.",
         },
         {
           isCorrect: false,
           label:
-            "The passage presents cognitive load as proof that no follow-up is needed.",
+            "Priya wrote the warning in two sentences and tested it with a neighbour unfamiliar with the route; the action transfers responsibility for the unresolved task to another character.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Priya wrote the warning in two sentences and tested it with a neighbour unfamiliar with the route; the decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Priya wrote the warning in two sentences and tested it with a neighbour unfamiliar with the route; the setting alone produces the change, so the character's decision has no role in the development.",
         },
       ],
     },

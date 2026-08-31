@@ -12,23 +12,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "nama lain untuk benda koleksi",
+          label:
+            "karena transkrip hanya diberikan kepada kelompok yang memperoleh hasil pemahaman terendah",
         },
         {
           isCorrect: false,
-          label: "hasil yang selalu tetap",
+          label:
+            "karena penghilangan transkrip diperlukan agar pengaruh earphone terlihat lebih besar",
         },
         {
           isCorrect: true,
-          label: "unsur yang sengaja dibedakan atau diamati dalam pengujian",
+          label:
+            "karena transkrip dipertahankan sebagai akses dasar bagi semua kelompok, sedangkan earphone dan penamaanlah yang dibedakan untuk diuji",
         },
         {
           isCorrect: false,
-          label: "daftar semua pengunjung museum",
+          label:
+            "karena transkrip dianggap hasil pengujian, bukan bagian dari kondisi yang dialami peserta",
         },
         {
           isCorrect: false,
-          label: "perangkat yang harus dibuang",
+          label:
+            "karena semua unsur audio harus diubah sekaligus agar kedua kelompok benar-benar berbeda",
         },
       ],
     },

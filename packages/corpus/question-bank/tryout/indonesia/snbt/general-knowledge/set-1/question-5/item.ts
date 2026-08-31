@@ -15,17 +15,17 @@ const item: QuestionItem = {
             "Pocken sind im Vergleich zum Coronavirus eine gefährlichere Krankheit.",
         },
         {
+          isCorrect: true,
+          label:
+            "Forschung mit alter DNA zur Geschichte und Evolution des Variola-Virus.",
+        },
+        {
           isCorrect: false,
           label: "die Ursache für das Verschwinden der Wikinger.",
         },
         {
           isCorrect: false,
           label: "die Ursache für das Aussterben der alten Pocken.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Forschung mit alter DNA zur Geschichte und Evolution des Variola-Virus.",
         },
       ],
     },
@@ -42,17 +42,17 @@ const item: QuestionItem = {
             "smallpox is a more dangerous disease compared to the coronavirus.",
         },
         {
+          isCorrect: true,
+          label:
+            "ancient-DNA research on the history and evolution of the variola virus.",
+        },
+        {
           isCorrect: false,
           label: "the cause of the disappearance of the Vikings.",
         },
         {
           isCorrect: false,
           label: "the cause of the extinction of ancient smallpox.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "ancient-DNA research on the history and evolution of the variola virus.",
         },
       ],
     },
@@ -69,17 +69,17 @@ const item: QuestionItem = {
             "cacar merupakan penyakit yang berbahaya dibandingkan virus corona.",
         },
         {
+          isCorrect: true,
+          label:
+            "penelitian DNA purba tentang sejarah dan evolusi virus variola.",
+        },
+        {
           isCorrect: false,
           label: "penyebab hilangnya orang Viking.",
         },
         {
           isCorrect: false,
           label: "penyebab punahnya cacar purba.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "penelitian DNA purba tentang sejarah dan evolusi virus variola.",
         },
       ],
     },

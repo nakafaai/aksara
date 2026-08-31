@@ -7,24 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Absolute certainty about a food pantry at closing time",
+          label: "A recurring object that remains part of the setting",
         },
         {
           isCorrect: false,
-          label:
-            "Why all evidence in a food pantry at closing time should be ignored",
-        },
-        {
-          isCorrect: false,
-          label: "The complete world history of motif",
-        },
-        {
-          isCorrect: false,
-          label: "One rule for every a food pantry at closing time",
+          label: "A conflict settled before the character's final choice",
         },
         {
           isCorrect: true,
           label: "A blue date stamp in a food pantry at closing time",
+        },
+        {
+          isCorrect: false,
+          label: "motif as a term without a role in the story",
+        },
+        {
+          isCorrect: false,
+          label: "An ending that removes the object's interpretive tension",
         },
       ],
     },

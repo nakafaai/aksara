@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Der Apfel enthält weniger Fett als Jicama.",
+        },
+        {
           isCorrect: false,
           label: "Jicama liefert $$14$$ Kilokalorien weniger als der Apfel.",
         },
@@ -19,10 +23,6 @@ const item: QuestionItem = {
             "Beide Lebensmittel enthalten weniger als $$1$$ g Eiweiß pro $$100$$ g.",
         },
         {
-          isCorrect: true,
-          label: "Der Apfel enthält weniger Fett als Jicama.",
-        },
-        {
           isCorrect: false,
           label:
             "Beide Lebensmittel enthalten weniger als $$1$$ g Fett pro $$100$$ g.",
@@ -32,6 +32,10 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "Apple provides less fat than jicama.",
+        },
         {
           isCorrect: false,
           label: "Jicama provides $$14$$ fewer kilocalories than apple.",
@@ -46,10 +50,6 @@ const item: QuestionItem = {
             "Both foods provide less than $$1$$ g of protein per $$100$$ g.",
         },
         {
-          isCorrect: true,
-          label: "Apple provides less fat than jicama.",
-        },
-        {
           isCorrect: false,
           label: "Both foods provide less than $$1$$ g of fat per $$100$$ g.",
         },
@@ -58,6 +58,10 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "Apel mengandung lemak lebih sedikit daripada bengkuang.",
+        },
         {
           isCorrect: false,
           label:
@@ -72,10 +76,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Kedua pangan mengandung protein kurang dari $$1$$ g per $$100$$ g.",
-        },
-        {
-          isCorrect: true,
-          label: "Apel mengandung lemak lebih sedikit daripada bengkuang.",
         },
         {
           isCorrect: false,

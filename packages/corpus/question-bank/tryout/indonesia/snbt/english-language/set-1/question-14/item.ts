@@ -5,9 +5,9 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        { isCorrect: true, label: "Necessity" },
         { isCorrect: false, label: "Prohibition" },
         { isCorrect: false, label: "Possibility" },
+        { isCorrect: true, label: "Necessity" },
         { isCorrect: false, label: "Permission" },
         { isCorrect: false, label: "Uncertainty" },
       ],

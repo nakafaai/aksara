@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage states that no action or observation occurred in root growth in germinating beans.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Everyone in root growth in germinating beans obtained exactly the same result without variation.",
+            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
         },
         {
           isCorrect: true,
-          label: "The mean result with the change was 16.",
+          label:
+            "The changed condition produced a mean of 16 in the six-day seed-orientation trial; the number belongs to those controlled conditions and does not establish a universal effect.",
         },
         {
           isCorrect: false,
           label:
-            "The writer removes every detail related to root growth in germinating beans.",
+            "The mean result with the change was 16; because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
           isCorrect: false,
           label:
-            "The passage presents gravitropism as proof that no follow-up is needed.",
+            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
         },
       ],
     },

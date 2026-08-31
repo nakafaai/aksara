@@ -11,24 +11,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "penyimpanan benih dalam waktu lama",
-        },
-        {
-          isCorrect: false,
-          label: "pengujian benih di laboratorium",
-        },
-        {
-          isCorrect: false,
-          label: "penjualan benih kepada warga",
-        },
-        {
           isCorrect: true,
-          label: "pergerakan benih dalam suatu putaran",
+          label:
+            "karena benih bergerak dari lemari ke kebun lalu sebagian hasilnya kembali, sehingga terjadi putaran pertukaran",
         },
         {
           isCorrect: false,
-          label: "penggantian semua varietas lama",
+          label:
+            "karena semua benih harus tetap berada di lemari sampai masa simpannya berakhir",
+        },
+        {
+          isCorrect: false,
+          label:
+            "karena setiap benih diuji di laboratorium sebelum boleh berpindah tangan",
+        },
+        {
+          isCorrect: false,
+          label:
+            "karena pengelola mengganti semua varietas lama dengan varietas yang lebih cepat tumbuh",
+        },
+        {
+          isCorrect: false,
+          label:
+            "karena kartu riwayat menjamin hasil panen yang sama di setiap kebun",
         },
       ],
     },

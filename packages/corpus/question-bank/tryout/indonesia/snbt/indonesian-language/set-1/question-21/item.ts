@@ -14,13 +14,13 @@ const item: QuestionItem = {
           label: "Perang tidak pernah menghasilkan perubahan politik",
         },
         {
+          isCorrect: false,
+          label: "Kelompok yang bertikai selalu memiliki informasi lengkap",
+        },
+        {
           isCorrect: true,
           label:
             "Biaya perang memberi kedua pihak dorongan kuat untuk mencari kesepakatan",
-        },
-        {
-          isCorrect: false,
-          label: "Kelompok yang bertikai selalu memiliki informasi lengkap",
         },
         {
           isCorrect: false,

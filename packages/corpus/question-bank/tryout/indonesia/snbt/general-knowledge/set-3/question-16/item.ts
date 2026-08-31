@@ -6,27 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "nachgefüllte Flaschen und kurze Aussagen von Nutzenden",
-        },
-        {
           isCorrect: true,
-          label: "Der Wert mit Änderung, 29, lag über 21 und 23.",
+          label:
+            "Die Teilnehmer des zweiten Tests hatten die richtige Evakuierungsroute schon vor der neuen Nachricht auswendig gelernt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Eine neue Gruppe aus einem weiteren Dorf versteht nach der Überarbeitung Route und Zeit ebenfalls richtig.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Eine zweite Ausstrahlung derselben überarbeiteten Fassung wird langsamer vorgelesen und führt zu einer etwas genaueren Wiedergabe der Route.",
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext Wasser-Nachfüllstation: bebilderte Hinweise neben dem Wasserhahn",
+            "Jede Fassung wird vor dem Einsatz erneut mit Bewohnern getestet.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team stellte in der neuen Nachricht die Handlung vor die Begründung.",
         },
       ],
     },
@@ -34,27 +36,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "bottles refilled and short comments from users",
-        },
-        {
           isCorrect: true,
-          label: "The intervention value, 29, exceeded both 21 and 23.",
+          label:
+            "The second-test participants had memorised the correct evacuation route before hearing the revised message.",
         },
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "A new group from another village also understands the route and timing accurately after hearing the revision.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "A second broadcast of the same revised version is delivered more slowly and produces slightly more accurate recall of the route.",
+        },
+        {
+          isCorrect: false,
+          label: "Each version will be tested again with residents before use.",
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of illustrated instructions beside the tap: water refill station",
+            "The team placed the action before the reason in the revised message.",
         },
       ],
     },
@@ -62,27 +65,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "botol yang diisi ulang dan komentar singkat pengguna",
-        },
-        {
           isCorrect: true,
-          label: "Nilai pada hari dengan perubahan, 29, melampaui 21 dan 23.",
+          label:
+            "Peserta uji kedua ternyata telah menghafal rute evakuasi yang benar sebelum mendengar pesan revisi.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Kelompok baru dari kampung lain juga memahami rute dan waktu secara tepat setelah mendengar versi revisi.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Siaran kedua dengan versi revisi yang sama dibacakan lebih lambat dan menghasilkan ingatan rute yang sedikit lebih akurat.",
         },
         {
           isCorrect: false,
           label:
-            "Uji Hati-hati dalam stasiun isi ulang air: petunjuk bergambar di dekat keran",
+            "Setiap versi akan diuji lagi bersama warga sebelum digunakan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim menempatkan tindakan sebelum alasan dalam susunan pesan baru.",
         },
       ],
     },

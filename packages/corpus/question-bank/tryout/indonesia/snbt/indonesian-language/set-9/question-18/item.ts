@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam pengelolaan kostum teater pasti berlaku tanpa batas pada tempat lain.",
+            "Foto panggung membuktikan bahan kostum yang digunakan karena penampilan visual selalu menunjukkan komposisi material secara tepat.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang pengelolaan kostum teater tidak berguna.",
+            "Daftar inventaris lebih lengkap daripada foto sehingga perubahan cara kostum digunakan tidak perlu diteliti.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Kesamaan kostum pada satu dekade membuktikan bahwa produksi pertunjukan tidak berubah pada dekade lain.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perbedaan antara penggunaan di panggung dan catatan bahan menunjukkan bahwa salah satu sumber salah.",
         },
         {
           isCorrect: true,
           label:
-            "Perbedaan antarsumber dapat memperkaya penafsiran jika asal dan tujuan setiap sumber diperiksa.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Satu rincian tentang artefak cukup untuk membuktikan semua hubungan sebab-akibat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Foto memperlihatkan bagaimana kostum digunakan dalam pementasan, sedangkan inventaris mencatat bahan dan perbaikan; gabungan keduanya mendukung penafsiran perubahan produksi tanpa memastikan sebab setiap perubahan.",
         },
       ],
     },

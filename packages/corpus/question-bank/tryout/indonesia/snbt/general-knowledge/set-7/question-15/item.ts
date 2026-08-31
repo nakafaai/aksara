@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Das gefundene schriftliche Stück wurde in den 1970er-Jahren veröffentlicht.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Jede Änderung einer Bearbeitung schadet zwangsläufig der Tradition.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Weil die Fassungen verschieden sind, muss die Gruppe weder Quellen noch Änderungen erklären.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Gruppe wird Quellen und dramaturgische Änderungen im Programm nennen.",
         },
         {
           isCorrect: true,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team prüfte Beispielfragen mit offenen Antworten (Archiv für mündliche Geschichte) und bewertete die Befunde vorsichtig.",
+            "Eine verantwortliche Bearbeitung darf die Form ändern, wenn Quellen, Änderungen und Vielfalt nachvollziehbar bleiben.",
         },
       ],
     },
@@ -38,27 +38,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "The written script that was found was published in the 1970s.",
+        },
+        {
+          isCorrect: false,
+          label: "Every change in an adaptation necessarily damages tradition.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Because versions differ, the group need not explain any source or change.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The group will identify sources and dramatic changes in the programme notes.",
         },
         {
           isCorrect: true,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team tested sample open questions for interviewers in the oral history archive and interpreted the evidence cautiously.",
+            "A responsible adaptation may change a story's form while keeping its sources, changes, and diversity traceable.",
         },
       ],
     },
@@ -67,28 +66,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
+          label: "Naskah tertulis yang ditemukan diterbitkan pada 1970-an.",
+        },
+        {
+          isCorrect: false,
+          label: "Setiap perubahan dalam adaptasi pasti merusak tradisi.",
+        },
+        {
+          isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Karena versi berbeda, kelompok tidak perlu menjelaskan sumber atau perubahan apa pun.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Kelompok akan mencantumkan sumber dan perubahan dramatik dalam catatan program.",
         },
         {
           isCorrect: true,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim menguji contoh pertanyaan terbuka bagi pewawancara pada arsip sejarah lisan dan menafsirkan buktinya secara hati-hati.",
+            "Adaptasi yang bertanggung jawab dapat mengubah bentuk cerita selama sumber, perubahan, dan keragamannya tetap dapat ditelusuri.",
         },
       ],
     },

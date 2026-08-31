@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "vor Satz $$(6)$$.",
         },
         {
-          isCorrect: false,
-          label: "nach dem Satz $$(7)$$.",
-        },
-        {
           isCorrect: true,
           label: "nach dem Satz $$(2)$$.",
+        },
+        {
+          isCorrect: false,
+          label: "nach dem Satz $$(7)$$.",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "before sentence $$(6)$$.",
         },
         {
-          isCorrect: false,
-          label: "after sentence $$(7)$$.",
-        },
-        {
           isCorrect: true,
           label: "after sentence $$(2)$$.",
+        },
+        {
+          isCorrect: false,
+          label: "after sentence $$(7)$$.",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "sebelum kalimat $$(6)$$.",
         },
         {
-          isCorrect: false,
-          label: "setelah kalimat $$(7)$$.",
-        },
-        {
           isCorrect: true,
           label: "setelah kalimat $$(2)$$.",
+        },
+        {
+          isCorrect: false,
+          label: "setelah kalimat $$(7)$$.",
         },
       ],
     },

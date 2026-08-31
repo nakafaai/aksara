@@ -6,12 +6,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Nach Sonnenaufgang erreichte die Lufttemperatur fünf Grad.",
-        },
-        {
           isCorrect: false,
           label: "Sri Utami erklärte, dass der Frost jedes Jahr auftritt.",
+        },
+        {
+          isCorrect: true,
+          label: "Nach Sonnenaufgang erreichte die Lufttemperatur fünf Grad.",
         },
         {
           isCorrect: false,
@@ -31,12 +31,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "After sunrise, the air temperature reached five degrees.",
-        },
-        {
           isCorrect: false,
           label: "Sri Utami explained that frost occurs every year.",
+        },
+        {
+          isCorrect: true,
+          label: "After sunrise, the air temperature reached five degrees.",
         },
         {
           isCorrect: false,
@@ -56,12 +56,12 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Setelah matahari terbit, suhu udara mencapai lima derajat.",
-        },
-        {
           isCorrect: false,
           label: "Sri Utami menjelaskan bahwa embun es terjadi setiap tahun.",
+        },
+        {
+          isCorrect: true,
+          label: "Setelah matahari terbit, suhu udara mencapai lima derajat.",
         },
         {
           isCorrect: false,

@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "$$\\frac{1}{3}\\sqrt{3}$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\frac{1}{3}\\sqrt{6}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\frac{1}{2}\\sqrt{2}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{1}{3}\\sqrt{6}$$",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "$$\\frac{1}{3}\\sqrt{3}$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\frac{1}{3}\\sqrt{6}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\frac{1}{2}\\sqrt{2}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{1}{3}\\sqrt{6}$$",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "$$\\frac{1}{3}\\sqrt{3}$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\frac{1}{3}\\sqrt{6}$$",
-        },
-        {
           isCorrect: false,
           label: "$$\\frac{1}{2}\\sqrt{2}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{1}{3}\\sqrt{6}$$",
         },
         {
           isCorrect: false,

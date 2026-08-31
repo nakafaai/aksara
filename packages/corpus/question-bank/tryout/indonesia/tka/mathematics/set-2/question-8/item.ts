@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Der Definitionsbereich von $f$ enthält $x=1$ nicht.",
+          label: "Der Scheitel ist $(2,-1)$.",
         },
         {
           isCorrect: true,
-          label: "$f(0)=-4$.",
+          label: "Der Wertebereich ist $[-1,\\infty)$.",
         },
         {
           isCorrect: true,
-          label: "Der Wertebereich von $f$ enthält $y=2$ nicht.",
-        },
-        {
-          isCorrect: true,
-          label: "Die Umkehrfunktion lautet $f^{-1}(x)=\\frac{x+4}{x-2}$.",
+          label: "Die Funktion ist auf $(-\\infty,2]$ fallend.",
         },
         {
           isCorrect: false,
-          label: "$f(1)=0$.",
+          label: "Die Funktion ist auf $\\mathbb R$ injektiv.",
+        },
+        {
+          isCorrect: true,
+          label: "Auf $[2,\\infty)$ gilt $f^{-1}(y)=2+\\sqrt{y+1}$.",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "The domain of $f$ excludes $x=1$.",
+          label: "The vertex is $(2,-1)$.",
         },
         {
           isCorrect: true,
-          label: "$f(0)=-4$.",
+          label: "The range is $[-1,\\infty)$.",
         },
         {
           isCorrect: true,
-          label: "The range of $f$ excludes $y=2$.",
-        },
-        {
-          isCorrect: true,
-          label: "Its inverse is $f^{-1}(x)=\\frac{x+4}{x-2}$.",
+          label: "The function decreases on $(-\\infty,2]$.",
         },
         {
           isCorrect: false,
-          label: "$f(1)=0$.",
+          label: "The function is one-to-one on $\\mathbb R$.",
+        },
+        {
+          isCorrect: true,
+          label: "On $[2,\\infty)$, $f^{-1}(y)=2+\\sqrt{y+1}$.",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Domain $f$ mengecualikan $x=1$.",
+          label: "Titik puncaknya adalah $(2,-1)$.",
         },
         {
           isCorrect: true,
-          label: "$f(0)=-4$.",
+          label: "Range fungsi adalah $[-1,\\infty)$.",
         },
         {
           isCorrect: true,
-          label: "Range $f$ mengecualikan $y=2$.",
-        },
-        {
-          isCorrect: true,
-          label: "Inversnya adalah $f^{-1}(x)=\\frac{x+4}{x-2}$.",
+          label: "Fungsi menurun pada $(-\\infty,2]$.",
         },
         {
           isCorrect: false,
-          label: "$f(1)=0$.",
+          label: "Fungsi satu-satu pada $\\mathbb R$.",
+        },
+        {
+          isCorrect: true,
+          label: "Pada $[2,\\infty)$, $f^{-1}(y)=2+\\sqrt{y+1}$.",
         },
       ],
     },

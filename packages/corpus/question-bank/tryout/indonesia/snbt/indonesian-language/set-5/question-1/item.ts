@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Simulasi membandingkan kemampuan susunan kerikil, pasir, dan arang dengan ketebalan sama dalam menyaring air keruh, sambil mengendalikan faktor yang disebutkan tetapi menjadikan satu uji singkat sebagai bukti yang berlaku umum.",
+        },
+        {
           isCorrect: true,
           label:
-            "Simulasi membandingkan susunan kerikil, pasir, dan arang dengan ketebalan sama dalam model penyaringan air keruh sambil menjaga faktor lain dan mengakui batasan pengukuran.",
+            "Simulasi membandingkan kemampuan susunan kerikil, pasir, dan arang dengan ketebalan sama dalam menyaring air keruh, sambil mengendalikan faktor lain dan mengakui keterbatasan pengukuran.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap model penyaringan air keruh tanpa membahas keputusan atau bukti.",
+            "Simulasi membandingkan kemampuan susunan kerikil, pasir, dan arang dengan ketebalan sama dalam menyaring air keruh, sambil menyebut keterbatasan tetapi mengeluarkan kondisi pembanding dari penafsiran hasil.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap model penyaringan air keruh.",
+            "Simulasi membandingkan kemampuan susunan kerikil, pasir, dan arang dengan ketebalan sama dalam menyaring air keruh, sambil menjadikan definisi istilah ilmiah sebagai hasil ukur yang menutup penelitian.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan terutama menjelaskan definisi indikator tanpa menghubungkannya dengan konteks.",
+            "Simulasi membandingkan kemampuan susunan kerikil, pasir, dan arang dengan ketebalan sama dalam menyaring air keruh, sambil memakai pembanding hanya untuk mengukuhkan hipotesis awal dan menghapus ketidakpastian yang tersisa.",
         },
       ],
     },

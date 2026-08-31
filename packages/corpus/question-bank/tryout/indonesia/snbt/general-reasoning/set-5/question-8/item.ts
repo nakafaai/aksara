@@ -6,6 +6,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Einige Einwohner von Jakarta verfügen über eine Geburtsurkunde und einen Personalausweis (KTP).",
+        },
+        {
           isCorrect: false,
           label:
             "Alle Einwohner von Jakarta haben eine Geburtsurkunde und einen Personalausweis (KTP).",
@@ -14,11 +19,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Alle Einwohner von Jakarta haben eine Geburtsurkunde oder einen Personalausweis (KTP).",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Einige Einwohner von Jakarta verfügen über eine Geburtsurkunde und einen Personalausweis (KTP).",
         },
         {
           isCorrect: false,
@@ -36,6 +36,11 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label:
+            "Some Jakarta residents have a birth certificate and ID card (KTP)",
+        },
+        {
           isCorrect: false,
           label:
             "All Jakarta residents have a birth certificate and ID card (KTP)",
@@ -44,11 +49,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "All Jakarta residents have a birth certificate or ID card (KTP)",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Some Jakarta residents have a birth certificate and ID card (KTP)",
         },
         {
           isCorrect: false,
@@ -66,16 +66,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Sebagian warga Jakarta memiliki AKTA kelahiran dan KTP",
+        },
+        {
           isCorrect: false,
           label: "Semua warga Jakarta memiliki AKTA kelahiran dan KTP",
         },
         {
           isCorrect: false,
           label: "Semua warga Jakarta memiliki AKTA kelahiran atau KTP",
-        },
-        {
-          isCorrect: true,
-          label: "Sebagian warga Jakarta memiliki AKTA kelahiran dan KTP",
         },
         {
           isCorrect: false,

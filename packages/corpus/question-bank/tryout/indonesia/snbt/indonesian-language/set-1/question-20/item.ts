@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Memotretnya di pabrik dan menyarankan agar ia mencoba menjadi model",
-        },
-        {
           isCorrect: false,
           label: "Merekrutnya langsung sebagai pemeran utama film",
         },
@@ -21,6 +16,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Mengatur pernikahannya dengan James Dougherty",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Memotretnya di pabrik dan menyarankan agar ia mencoba menjadi model",
         },
         {
           isCorrect: false,

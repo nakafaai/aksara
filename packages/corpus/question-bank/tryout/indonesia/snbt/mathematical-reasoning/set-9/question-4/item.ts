@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$46$$",
+          label: "$$15$$",
         },
         {
           isCorrect: true,
-          label: "$$42$$",
+          label: "$$\\frac{216}{13}$$",
         },
         {
           isCorrect: false,
-          label: "$$50$$",
+          label: "$$16$$",
         },
         {
           isCorrect: false,
-          label: "$$34$$",
+          label: "$$\\frac{225}{13}$$",
         },
         {
           isCorrect: false,
-          label: "$$38$$",
+          label: "$$18$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$46$$",
+          label: "$$15$$",
         },
         {
           isCorrect: true,
-          label: "$$42$$",
+          label: "$$\\frac{216}{13}$$",
         },
         {
           isCorrect: false,
-          label: "$$50$$",
+          label: "$$16$$",
         },
         {
           isCorrect: false,
-          label: "$$34$$",
+          label: "$$\\frac{225}{13}$$",
         },
         {
           isCorrect: false,
-          label: "$$38$$",
+          label: "$$18$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$46$$",
+          label: "$$15$$",
         },
         {
           isCorrect: true,
-          label: "$$42$$",
+          label: "$$\\frac{216}{13}$$",
         },
         {
           isCorrect: false,
-          label: "$$50$$",
+          label: "$$16$$",
         },
         {
           isCorrect: false,
-          label: "$$34$$",
+          label: "$$\\frac{225}{13}$$",
         },
         {
           isCorrect: false,
-          label: "$$38$$",
+          label: "$$18$$",
         },
       ],
     },

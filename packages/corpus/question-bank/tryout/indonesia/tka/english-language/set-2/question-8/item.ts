@@ -12,23 +12,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The fair opened fifteen minutes early.",
+          label:
+            "The pale lettering on the original signs would have become darker by itself during rain.",
         },
         {
           isCorrect: false,
-          label: "Every display was moved outdoors.",
+          label:
+            "The robotics symbols could be understood before a parent finished reading.",
         },
         {
           isCorrect: true,
-          label: "The class arranged access to the stored ramp.",
+          label:
+            "The alternative entrance had a step, while its portable ramp was stored in a locked room.",
         },
         {
           isCorrect: false,
-          label: "The caretaker locked all other doors.",
+          label:
+            "The moved displays made the original doorway wider than the alternative entrance.",
         },
         {
           isCorrect: false,
-          label: "The class removed the route symbols.",
+          label:
+            "The fair would necessarily start early because fewer visitors would use the nearest entrance.",
         },
       ],
     },

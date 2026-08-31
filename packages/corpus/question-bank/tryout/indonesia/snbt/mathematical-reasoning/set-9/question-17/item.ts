@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$6/10$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5/10$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4/11$$",
-        },
-        {
           isCorrect: true,
-          label: "$$\\frac{2}{5}$$",
+          label: "$$\\frac{29}{53}$$",
         },
         {
           isCorrect: false,
-          label: "$$1/10$$",
+          label: "$$\\frac12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac35$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{31}{53}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac23$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$6/10$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5/10$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4/11$$",
-        },
-        {
           isCorrect: true,
-          label: "$$\\frac{2}{5}$$",
+          label: "$$\\frac{29}{53}$$",
         },
         {
           isCorrect: false,
-          label: "$$1/10$$",
+          label: "$$\\frac12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac35$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{31}{53}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac23$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "$$6/10$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5/10$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$4/11$$",
-        },
-        {
           isCorrect: true,
-          label: "$$\\frac{2}{5}$$",
+          label: "$$\\frac{29}{53}$$",
         },
         {
           isCorrect: false,
-          label: "$$1/10$$",
+          label: "$$\\frac12$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac35$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac{31}{53}$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$\\frac23$$",
         },
       ],
     },

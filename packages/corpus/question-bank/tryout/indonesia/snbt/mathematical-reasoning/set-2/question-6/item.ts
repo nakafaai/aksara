@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$3\\sqrt{2}$$",
+        },
+        {
           isCorrect: false,
           label: "$$2\\sqrt{2}$$",
         },
         {
           isCorrect: false,
           label: "$$\\sqrt{2}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$3\\sqrt{2}$$",
         },
         {
           isCorrect: false,
@@ -31,16 +31,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$3\\sqrt{2}$$",
+        },
+        {
           isCorrect: false,
           label: "$$2\\sqrt{2}$$",
         },
         {
           isCorrect: false,
           label: "$$\\sqrt{2}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$3\\sqrt{2}$$",
         },
         {
           isCorrect: false,
@@ -56,16 +56,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "$$3\\sqrt{2}$$",
+        },
+        {
           isCorrect: false,
           label: "$$2\\sqrt{2}$$",
         },
         {
           isCorrect: false,
           label: "$$\\sqrt{2}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$3\\sqrt{2}$$",
         },
         {
           isCorrect: false,

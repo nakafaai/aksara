@@ -7,27 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "festgestellt, ohne bereits eine Ursache zu behaupten",
+          label: "eine vorläufige, überprüfbare Annahme entwickeln",
         },
         {
           isCorrect: false,
-          label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: kontrastreichere Symbole für Sammelpunkte.",
+          label: "eine Ursache als endgültige Schlussfolgerung festlegen",
         },
         {
           isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Karte der Evakuierungswege über den beiden anderen Werten.",
+          label: "Daten entfernen, die nicht zur Erwartung passen",
         },
         {
           isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: kontrastreichere Symbole für Sammelpunkte.",
+          label: "Ergebnisse erst nach Abschluss aller Versuche zusammenfassen",
         },
         {
           isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: kontrastreichere Symbole für Sammelpunkte.",
+          label: "Messungen durch Einschätzungen der Teilnehmenden ersetzen",
         },
       ],
     },
@@ -36,27 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "noticed without already claiming a cause",
+          label: "developing a provisional claim that can be tested",
         },
         {
           isCorrect: false,
-          label:
-            "The hypothesis therefore needed a limited test of higher-contrast assembly-point symbols.",
+          label: "establishing a cause as the final conclusion",
         },
         {
           isCorrect: false,
-          label:
-            "In this setting (evacuation route map), the trial value exceeded both other values.",
+          label: "removing data that do not fit an expectation",
         },
         {
           isCorrect: false,
-          label:
-            "The change, higher-contrast assembly-point symbols, directly addressed the observed uncertainty.",
+          label: "summarising results after every trial is complete",
         },
         {
           isCorrect: false,
-          label:
-            "The next test of higher-contrast assembly-point symbols will run for longer.",
+          label: "replacing measurement with participants' opinions",
         },
       ],
     },
@@ -65,27 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "mencatat gejala tanpa langsung memastikan penyebabnya",
+          label: "menyusun dugaan sementara yang dapat diuji",
         },
         {
           isCorrect: false,
-          label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui simbol titik kumpul yang lebih kontras.",
+          label: "menetapkan penyebab sebagai simpulan akhir",
         },
         {
           isCorrect: false,
-          label:
-            "Di peta jalur evakuasi, nilai hari uji melampaui dua nilai lainnya.",
+          label: "menghapus data yang tidak sesuai dengan dugaan",
         },
         {
           isCorrect: false,
-          label:
-            "Perubahan berupa simbol titik kumpul yang lebih kontras langsung menanggapi keraguan yang diamati.",
+          label: "merangkum hasil setelah seluruh uji selesai",
         },
         {
           isCorrect: false,
-          label:
-            "Uji simbol titik kumpul yang lebih kontras berikutnya akan berlangsung lebih lama.",
+          label: "mengganti pengukuran dengan penilaian peserta",
         },
       ],
     },

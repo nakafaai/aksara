@@ -10,10 +10,6 @@ const item: QuestionItem = {
           label: "$$x_0 + 11$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\frac{1}{2}x_0 + 12$$",
-        },
-        {
           isCorrect: false,
           label: "$$x_0 + 12$$",
         },
@@ -24,6 +20,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{1}{2}x_0 + 21$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{1}{2}x_0 + 12$$",
         },
       ],
     },
@@ -35,10 +35,6 @@ const item: QuestionItem = {
           label: "$$x_0 + 11$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\frac{1}{2}x_0 + 12$$",
-        },
-        {
           isCorrect: false,
           label: "$$x_0 + 12$$",
         },
@@ -49,6 +45,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{1}{2}x_0 + 21$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{1}{2}x_0 + 12$$",
         },
       ],
     },
@@ -60,10 +60,6 @@ const item: QuestionItem = {
           label: "$$x_0 + 11$$",
         },
         {
-          isCorrect: true,
-          label: "$$\\frac{1}{2}x_0 + 12$$",
-        },
-        {
           isCorrect: false,
           label: "$$x_0 + 12$$",
         },
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$\\frac{1}{2}x_0 + 21$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$\\frac{1}{2}x_0 + 12$$",
         },
       ],
     },

@@ -16,7 +16,13 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "The color of every room in the building",
+          label:
+            "A list of room colors and furniture placed near visible pipes",
+        },
+        {
+          isCorrect: false,
+          label:
+            "A list of electricity use recorded during the same test period",
         },
         {
           isCorrect: true,
@@ -25,11 +31,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "A list of unrelated electricity use",
-        },
-        {
-          isCorrect: false,
-          label: "A promise that the meter never changes",
+          label:
+            "An assurance that the observer did not notice other water use",
         },
       ],
     },

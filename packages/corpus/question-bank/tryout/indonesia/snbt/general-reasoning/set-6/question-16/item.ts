@@ -6,16 +6,16 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Yogyakarta",
+        },
+        {
           isCorrect: false,
           label: "Lombok",
         },
         {
           isCorrect: false,
           label: "Manado",
-        },
-        {
-          isCorrect: true,
-          label: "Yogyakarta",
         },
         {
           isCorrect: false,
@@ -30,9 +30,9 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        { isCorrect: true, label: "Yogyakarta" },
         { isCorrect: false, label: "Lombok" },
         { isCorrect: false, label: "Manado" },
-        { isCorrect: true, label: "Yogyakarta" },
         { isCorrect: false, label: "Padang" },
         { isCorrect: false, label: "Bali" },
       ],
@@ -40,9 +40,9 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        { isCorrect: true, label: "Yogyakarta" },
         { isCorrect: false, label: "Lombok" },
         { isCorrect: false, label: "Manado" },
-        { isCorrect: true, label: "Yogyakarta" },
         { isCorrect: false, label: "Padang" },
         { isCorrect: false, label: "Bali" },
       ],

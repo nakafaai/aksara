@@ -7,28 +7,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+          label: "Der Mittelteil der Brücke wurde 1958 weitgehend ersetzt.",
         },
         {
           isCorrect: true,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
+            "Historische Daten müssen mit den bezeichneten Ereignissen verbunden werden, weil ein Objekt mehrere Anfänge und wichtige Veränderungen haben kann.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team prüfte Themenkarten für Gesprächsanfänge (Sprachaustausch für Lernende) und bewertete die Befunde vorsichtig.",
+            "Wegen mehrerer Daten lässt sich kein Fakt zur Brückengeschichte feststellen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das älteste Datum ist für jede Art von Geschichte immer das passendste.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die neue Tafel wird eine Zeitleiste mit der Bedeutung jedes Datums zeigen.",
         },
       ],
     },
@@ -38,27 +37,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "The bridge's central span was substantially replaced in 1958.",
         },
         {
           isCorrect: true,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
+            "Historical dates must be tied to the events they denote because one object can have several beginnings and major changes.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested topic cards for starting a conversation in the student language exchange and interpreted the evidence cautiously.",
+            "Because several dates exist, no fact about the bridge's history can be established.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The oldest date is always the most appropriate for every kind of history.",
+        },
+        {
+          isCorrect: false,
+          label: "The new plaque will display a timeline explaining each date.",
         },
       ],
     },
@@ -67,28 +65,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+          label: "Bagian tengah jembatan diganti besar-besaran pada 1958.",
         },
         {
           isCorrect: true,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
+            "Tanggal sejarah harus disertai peristiwa yang dirujuk karena satu objek dapat memiliki beberapa awal dan perubahan penting.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji kartu topik untuk memulai percakapan pada pertukaran bahasa pelajar dan menafsirkan buktinya secara hati-hati.",
+            "Karena ada beberapa tanggal, tidak ada satu pun fakta tentang riwayat jembatan yang dapat dipastikan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Satu tanggal paling tua selalu paling tepat untuk semua jenis sejarah.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Plakat baru akan menampilkan garis waktu dengan arti setiap tanggal.",
         },
       ],
     },

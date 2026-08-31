@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "Menghias bagian hunian dengan lukisan dinding",
         },
         {
-          isCorrect: true,
-          label: "Menggiling biji-bijian yang diperlukan untuk membuat roti",
-        },
-        {
           isCorrect: false,
           label: "Menjual roti langsung kepada pembeli di jalan",
+        },
+        {
+          isCorrect: true,
+          label: "Menggiling biji-bijian yang diperlukan untuk membuat roti",
         },
       ],
     },

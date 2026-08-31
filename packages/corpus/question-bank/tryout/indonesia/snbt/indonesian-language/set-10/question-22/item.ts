@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam taman bermain inklusif.",
+            "Tari memilih untuk mengamati kebutuhan tiga anak sebelum memilih permainan kelompok; tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tari memilih untuk mengamati kebutuhan tiga anak sebelum memilih permainan kelompok; perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
         },
         {
           isCorrect: true,
           label:
-            "Tari memilih untuk mengamati kebutuhan tiga anak sebelum memilih permainan kelompok.",
+            "Mengamati kebutuhan tiga anak sebelum memilih permainan membuat keputusan Tari berangkat dari peserta nyata, bukan gagasan umum tentang inklusi.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam taman bermain inklusif memperoleh hasil yang sama tanpa perbedaan.",
+            "Tari memilih untuk mengamati kebutuhan tiga anak sebelum memilih permainan kelompok; latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan taman bermain inklusif.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut empati sebagai bukti bahwa uji tidak perlu diulang.",
+            "Tari memilih untuk mengamati kebutuhan tiga anak sebelum memilih permainan kelompok; definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
         },
       ],
     },

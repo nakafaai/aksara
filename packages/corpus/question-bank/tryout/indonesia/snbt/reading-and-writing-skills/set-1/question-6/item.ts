@@ -14,12 +14,12 @@ const item: QuestionItem = {
           label: "Deshalb",
         },
         {
-          isCorrect: false,
-          label: "Dennoch",
-        },
-        {
           isCorrect: true,
           label: "Außerdem",
+        },
+        {
+          isCorrect: false,
+          label: "Dennoch",
         },
         {
           isCorrect: false,
@@ -39,12 +39,12 @@ const item: QuestionItem = {
           label: "Therefore",
         },
         {
-          isCorrect: false,
-          label: "Nevertheless",
-        },
-        {
           isCorrect: true,
           label: "In addition",
+        },
+        {
+          isCorrect: false,
+          label: "Nevertheless",
         },
         {
           isCorrect: false,
@@ -64,12 +64,12 @@ const item: QuestionItem = {
           label: "Oleh karena itu",
         },
         {
-          isCorrect: false,
-          label: "Namun",
-        },
-        {
           isCorrect: true,
           label: "Selain itu",
+        },
+        {
+          isCorrect: false,
+          label: "Namun",
         },
         {
           isCorrect: false,

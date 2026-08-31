@@ -8,17 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Richtungspfeile an jeder Abzweigung.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Ausstellung von Schülerarbeiten über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Richtungspfeile an jeder Abzweigung.",
+            "Erste Belege zu Richtungspfeile an jeder Kreuzung im Kontext „Ausstellung von Schülerarbeiten“",
         },
         {
           isCorrect: true,
@@ -28,7 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Richtungspfeile an jeder Abzweigung.",
+            "Prüfung mehrerer gleichzeitiger Änderungen im Kontext „Ausstellung von Schülerarbeiten“",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Rückmeldungen zur dauerhaften Neugestaltung des Kontexts „Ausstellung von Schülerarbeiten“",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Vollständige Bewertung des Kontexts „Ausstellung von Schülerarbeiten“",
         },
       ],
     },
@@ -38,17 +38,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of direction arrows placed at each junction.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (student work exhibition), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, direction arrows placed at each junction, directly addressed the observed uncertainty.",
+            "Early evidence about direction arrows placed at each junction in the context of student work exhibition",
         },
         {
           isCorrect: true,
@@ -57,7 +47,16 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The next test of direction arrows placed at each junction will run for longer.",
+            "Testing several simultaneous changes in the context of student work exhibition",
+        },
+        {
+          isCorrect: false,
+          label:
+            "User reactions to a permanent redesign of student work exhibition",
+        },
+        {
+          isCorrect: false,
+          label: "A complete evaluation of student work exhibition",
         },
       ],
     },
@@ -67,17 +66,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui panah arah yang ditempatkan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Di pameran karya siswa, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa panah arah yang ditempatkan langsung menanggapi keraguan yang diamati.",
+            "Bukti awal tentang panah arah di setiap persimpangan dalam konteks pameran karya siswa",
         },
         {
           isCorrect: true,
@@ -86,7 +75,16 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Uji panah arah yang ditempatkan berikutnya akan berlangsung lebih lama.",
+            "Pengujian beberapa perubahan serentak dalam konteks pameran karya siswa",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tanggapan pengguna terhadap perancangan ulang tetap pada pameran karya siswa",
+        },
+        {
+          isCorrect: false,
+          label: "Evaluasi menyeluruh terhadap pameran karya siswa",
         },
       ],
     },

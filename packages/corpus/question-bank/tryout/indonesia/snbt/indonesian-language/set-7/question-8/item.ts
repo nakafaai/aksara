@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam simulasi populasi dengan keping warna pasti berlaku tanpa batas pada tempat lain.",
+            "Mengulang simulasi populasi dengan keping dengan lebih banyak unit, tetapi tetap memakai penyederhanaan yang sama tanpa pengamatan lapangan.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang simulasi populasi dengan keping warna tidak berguna.",
+            "Mengubah seluruh faktor lapangan sekaligus, lalu membandingkan satu hasil akhir tanpa kondisi acuan.",
         },
         {
           isCorrect: false,
           label:
-            "Satu rincian tentang daya dukung cukup untuk membuktikan semua hubungan sebab-akibat.",
+            "Mengambil satu kejadian nyata yang sesuai dengan model sebagai konfirmasi bahwa pola selalu berlaku.",
         },
         {
           isCorrect: true,
           label:
-            "Model berguna untuk menjelaskan prinsip, tetapi temuannya tetap perlu dihubungkan dengan keadaan nyata.",
+            "mengikuti perubahan populasi dan sumber daya dari waktu ke waktu sambil mencatat migrasi serta struktur umur.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Mengganti pengukuran dengan survei tentang apakah peserta memahami definisi istilah pada model.",
         },
       ],
     },

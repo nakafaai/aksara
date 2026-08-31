@@ -10,10 +10,6 @@ const item: QuestionItem = {
           label: "$$150\\text{ Gramm}$$",
         },
         {
-          isCorrect: true,
-          label: "$$225\\text{ Gramm}$$",
-        },
-        {
           isCorrect: false,
           label: "$$175\\text{ Gramm}$$",
         },
@@ -25,6 +21,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$275\\text{ Gramm}$$",
         },
+        {
+          isCorrect: true,
+          label: "$$225\\text{ Gramm}$$",
+        },
       ],
     },
     en: {
@@ -33,10 +33,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$150\\text{ grams}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$225\\text{ grams}$$",
         },
         {
           isCorrect: false,
@@ -50,6 +46,10 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "$$275\\text{ grams}$$",
         },
+        {
+          isCorrect: true,
+          label: "$$225\\text{ grams}$$",
+        },
       ],
     },
     id: {
@@ -58,10 +58,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$150\\text{ gram}$$",
-        },
-        {
-          isCorrect: true,
-          label: "$$225\\text{ gram}$$",
         },
         {
           isCorrect: false,
@@ -74,6 +70,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "$$275\\text{ gram}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$225\\text{ gram}$$",
         },
       ],
     },

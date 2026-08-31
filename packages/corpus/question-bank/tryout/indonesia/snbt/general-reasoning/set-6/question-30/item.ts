@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Lineal : Temperatur",
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$10$$",
         },
         {
           isCorrect: true,
-          label: "Barometer : Druck",
+          label: "$$\\frac{100}{11}$$",
         },
         {
           isCorrect: false,
-          label: "Uhr : Länge",
-        },
-        {
-          isCorrect: false,
-          label: "Kompass : Geschwindigkeit",
-        },
-        {
-          isCorrect: false,
-          label: "Lupe : Zeit",
+          label: "$$11$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "ruler : temperature",
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$10$$",
         },
         {
           isCorrect: true,
-          label: "barometer : pressure",
+          label: "$$\\frac{100}{11}$$",
         },
         {
           isCorrect: false,
-          label: "clock : length",
-        },
-        {
-          isCorrect: false,
-          label: "compass : speed",
-        },
-        {
-          isCorrect: false,
-          label: "magnifier : time",
+          label: "$$11$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "penggaris : suhu",
+          label: "$$8$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$9$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$10$$",
         },
         {
           isCorrect: true,
-          label: "barometer : tekanan",
+          label: "$$\\frac{100}{11}$$",
         },
         {
           isCorrect: false,
-          label: "jam : panjang",
-        },
-        {
-          isCorrect: false,
-          label: "kompas : kecepatan",
-        },
-        {
-          isCorrect: false,
-          label: "kaca pembesar : waktu",
+          label: "$$11$$",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "in this passage, an assumption that never needs to be examined in a residents' workshop",
+            "The term *cognitive load* proves that the character's first estimate was correct before any accountable action was taken.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, a final result that always applies to every situation",
+            "The definition reduces *cognitive load* to the recurring object, so the character's choice and development no longer matter.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The term *cognitive load* describes the final outcome as certain, even though the narrative presents a gradual change.",
         },
         {
           isCorrect: true,
           label:
-            "the mental effort required to hold and process information at one time",
+            "The definition of *cognitive load* provides a lens for reading the character's specific choice as a response to uncertainty, not as an isolated moral label.",
         },
         {
           isCorrect: false,
           label:
-            "in this passage, a detail removed because it challenges an opinion",
-        },
-        {
-          isCorrect: false,
-          label:
-            "in this passage, decorative language unrelated to the setting",
+            "The definition is included only to name the setting and has no connection to the character's decision.",
         },
       ],
     },

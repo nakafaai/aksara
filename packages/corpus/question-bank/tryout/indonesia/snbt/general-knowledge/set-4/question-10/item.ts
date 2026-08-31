@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "planmäßig gepflegte Pflanzen und kurze Aussagen von Nutzenden",
+            "Bei einem neuen Vergleich mit gleicher Artikelzahl bleibt die digitale Spur in allen Altersgruppen schneller.",
         },
         {
           isCorrect: true,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Bei digitalen Zahlungen begann die Zeitmessung erst nach dem Scannen, bei Barzahlungen schon mit dem ersten Artikel.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team prüfte Farbetiketten für den Lichtbedarf (Dachgarten einer Schule) und bewertete die Befunde vorsichtig.",
+            "Nach einer besser sichtbaren Beschilderung wählen mehr ältere Käufer die digitale Spur, doch die gemessene Abfertigungszeit pro Einkauf bleibt gleich.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Im nächsten Test wird das Netz verbessert und werden Einkäufe mit ähnlicher Artikelzahl verglichen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Beschwerden über das Signal konzentrierten sich auf einen Marktgang.",
         },
       ],
     },
@@ -38,26 +38,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label: "plants cared for on schedule and short comments from users",
+            "In a new comparison with equal item counts, the digital lane remains faster across all age groups.",
         },
         {
           isCorrect: true,
           label:
-            "days when the earlier process continued without the tested change",
+            "Digital timing began after scanning, while cash timing began when the first item was placed down.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested colour labels for light requirements in the school rooftop garden and interpreted the evidence cautiously.",
+            "After the signs are made more visible, more older shoppers choose the digital lane, but the measured service time per purchase remains unchanged.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The next test will improve the network and compare purchases with similar item counts.",
+        },
+        {
+          isCorrect: false,
+          label: "Signal complaints were concentrated in one market aisle.",
         },
       ],
     },
@@ -67,27 +67,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "tanaman yang dirawat sesuai jadwal dan komentar singkat pengguna",
+            "Dalam perbandingan baru dengan jumlah barang yang sama, jalur digital tetap lebih cepat pada semua kelompok usia.",
         },
         {
           isCorrect: true,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Pencatatan waktu digital dimulai setelah barang dipindai, sedangkan waktu tunai dihitung sejak barang pertama diletakkan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji label warna untuk kebutuhan cahaya pada kebun atap sekolah dan menafsirkan buktinya secara hati-hati.",
+            "Setelah papan petunjuk dibuat lebih terlihat, lebih banyak pembeli lansia memilih jalur digital, tetapi waktu layanan terukur per transaksi tetap sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Uji berikutnya akan memperbaiki jaringan dan membandingkan jumlah barang yang sebanding.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Keluhan sinyal terkonsentrasi pada satu lorong di sisi pasar.",
         },
       ],
     },

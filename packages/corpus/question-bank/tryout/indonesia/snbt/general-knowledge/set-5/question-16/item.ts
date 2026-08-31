@@ -6,27 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Tabletts ohne Speisereste und kurze Aussagen von Nutzenden",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vorsichtige Prüfung im Kontext Kantine zur Verringerung von Speiseresten: die Wahl zwischen kleinen und normalen Portionen",
-        },
-        {
           isCorrect: true,
-          label: "Der Wert mit Änderung, 26, lag über 18 und 20.",
+          label:
+            "Der Rückgang entstand, weil die Bibliothek während des Tests den Großteil der Ausleihe schloss.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Nach aktualisierten Kontaktdaten sinken die Verspätungen auch bei zuvor nicht erreichten Nutzern.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das neue Kartendesign macht die Erinnerung besser lesbar, verändert aber nicht den Anteil der Nutzer mit gültiger Telefonnummer.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Der Test wird um zwei Erinnerungswege und ein Einspruchsverfahren erweitert.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Einige Nutzer erhielten wegen geänderter Telefonnummern keine Nachricht.",
         },
       ],
     },
@@ -34,28 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "trays returned without leftovers and short comments from users",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A cautious trial of a choice between small and regular portions: food-waste reduction canteen",
-        },
-        {
           isCorrect: true,
-          label: "The intervention value, 26, exceeded both 18 and 20.",
+          label:
+            "The decline in delays occurred because the library closed most lending services during the trial.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "After contact details are updated, delays also fall among users who previously missed messages.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The new card design makes the reminder easier to read but does not change the proportion of users with a valid telephone number.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The trial will expand with two reminder channels and an appeal process.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Some users did not receive messages because their phone numbers had changed.",
         },
       ],
     },
@@ -63,27 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "nampan yang kembali tanpa sisa dan komentar singkat pengguna",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji Hati-hati dalam kantin bebas sisa makanan: pilihan porsi kecil dan porsi biasa",
-        },
-        {
           isCorrect: true,
-          label: "Nilai pada hari dengan perubahan, 26, melampaui 18 dan 20.",
+          label:
+            "Penurunan keterlambatan ternyata terjadi karena perpustakaan menutup sebagian besar layanan peminjaman selama masa uji.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Setelah nomor kontak diperbarui, penurunan keterlambatan juga terjadi pada kelompok yang sebelumnya tidak menerima pesan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Desain kartu baru membuat pengingat lebih mudah dibaca, tetapi tidak mengubah proporsi pengguna dengan nomor telepon yang masih aktif.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Uji akan diperluas dengan dua saluran pengingat dan proses banding.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Sebagian pengguna tidak menerima pesan karena nomor telepon berubah.",
         },
       ],
     },

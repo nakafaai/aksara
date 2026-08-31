@@ -6,27 +6,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "wayfinding as the main measure in a service trial",
+        },
+        {
+          isCorrect: false,
+          label: "From a short comparison to a permanent service change",
+        },
+        {
+          isCorrect: false,
+          label: "Consultation without comparable outcome measures",
+        },
+        {
+          isCorrect: false,
+          label: "A local service trial with no follow-up decision",
+        },
+        {
           isCorrect: true,
           label:
             "Evidence-informed change in a neighbourhood bus information board",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Absolute certainty about a neighbourhood bus information board",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Why all evidence in a neighbourhood bus information board should be ignored",
-        },
-        {
-          isCorrect: false,
-          label: "The complete world history of wayfinding",
-        },
-        {
-          isCorrect: false,
-          label: "One rule for every a neighbourhood bus information board",
         },
       ],
     },

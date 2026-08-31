@@ -7,7 +7,11 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang gudang kecil dekat pelabuhan",
+          label: "Menunggu orang lain menyelesaikan langkah berikutnya",
+        },
+        {
+          isCorrect: false,
+          label: "Menyembunyikan bukti yang belum tuntas dalam proyek besar",
         },
         {
           isCorrect: true,
@@ -16,15 +20,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Alasan Mengabaikan Semua Bukti dalam gudang kecil dekat pelabuhan",
+            "akuntabilitas sebagai definisi tanpa tindakan yang dapat diperiksa",
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap akuntabilitas di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap gudang kecil dekat pelabuhan",
+          label: "Rencana lengkap tanpa langkah kecil yang bertanggung jawab",
         },
       ],
     },

@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Ein Profil aus Indonesiens Landwirtschaftszählung 2023",
+        },
+        {
           isCorrect: false,
           label: "Die Entwicklung der indonesischen Landwirtschaft",
         },
@@ -19,10 +23,6 @@ const item: QuestionItem = {
             "Warum braucht Indonesien eine Modernisierung der Landwirtschaft?",
         },
         {
-          isCorrect: true,
-          label: "Ein Profil aus Indonesiens Landwirtschaftszählung 2023",
-        },
-        {
           isCorrect: false,
           label:
             "Die Landwirtschaftszählung 2023 wurde in ganz Indonesien durchgeführt",
@@ -32,6 +32,10 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "A Profile from Indonesia's 2023 Agricultural Census",
+        },
         {
           isCorrect: false,
           label: "The Development of Indonesian Agriculture",
@@ -45,10 +49,6 @@ const item: QuestionItem = {
           label: "Why Does Indonesia Need Agricultural Modernization?",
         },
         {
-          isCorrect: true,
-          label: "A Profile from Indonesia's 2023 Agricultural Census",
-        },
-        {
           isCorrect: false,
           label: "The 2023 Agricultural Census Was Conducted Across Indonesia",
         },
@@ -57,6 +57,10 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "Potret dari Sensus Pertanian Indonesia 2023",
+        },
         {
           isCorrect: false,
           label: "Perkembangan Pertanian Indonesia",
@@ -68,10 +72,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Mengapa Indonesia Memerlukan Modernisasi Pertanian?",
-        },
-        {
-          isCorrect: true,
-          label: "Potret dari Sensus Pertanian Indonesia 2023",
         },
         {
           isCorrect: false,

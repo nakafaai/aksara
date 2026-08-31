@@ -8,26 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Wegen mehrerer Daten lässt sich kein Fakt zur Brückengeschichte feststellen.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Das älteste Datum ist für jede Art von Geschichte immer das passendste.",
+        },
+        {
+          isCorrect: false,
+          label: "Der Mittelteil der Brücke wurde 1958 weitgehend ersetzt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Historische Daten müssen mit den bezeichneten Ereignissen verbunden werden, weil ein Objekt mehrere Anfänge und wichtige Veränderungen haben kann.",
         },
         {
           isCorrect: true,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 27, lag über 19 und 21.",
+            "Periodisierung wählt erklärende Grenzen für einen Analysezweck, während Chronologie Ereignisse zeitlich ordnet.",
         },
       ],
     },
@@ -37,26 +37,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "Because several dates exist, no fact about the bridge's history can be established.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "The oldest date is always the most appropriate for every kind of history.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The bridge's central span was substantially replaced in 1958.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Historical dates must be tied to the events they denote because one object can have several beginnings and major changes.",
         },
         {
           isCorrect: true,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 27, exceeded both 19 and 21.",
+            "Periodisation selects explanatory boundaries for an analytical purpose, whereas chronology places events in time order.",
         },
       ],
     },
@@ -66,26 +67,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Karena ada beberapa tanggal, tidak ada satu pun fakta tentang riwayat jembatan yang dapat dipastikan.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Satu tanggal paling tua selalu paling tepat untuk semua jenis sejarah.",
+        },
+        {
+          isCorrect: false,
+          label: "Bagian tengah jembatan diganti besar-besaran pada 1958.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tanggal sejarah harus disertai peristiwa yang dirujuk karena satu objek dapat memiliki beberapa awal dan perubahan penting.",
         },
         {
           isCorrect: true,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 27, melampaui 19 dan 21.",
+            "Periodisasi memilih batas penjelas sesuai tujuan analisis, sedangkan kronologi menempatkan peristiwa dalam urutan waktu.",
         },
       ],
     },

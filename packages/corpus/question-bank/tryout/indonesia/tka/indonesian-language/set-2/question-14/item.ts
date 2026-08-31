@@ -12,7 +12,13 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "taman pasti menghilangkan semua genangan pada setiap musim",
+          label:
+            "taman dapat dianggap menghilangkan genangan karena dua hujan berikutnya surut lebih cepat",
+        },
+        {
+          isCorrect: true,
+          label:
+            "dua pengamatan awal mendukung manfaat praktis, tetapi belum membuktikan penyebab tunggal",
         },
         {
           isCorrect: false,
@@ -20,16 +26,12 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "empat kejadian hujan sudah mewakili semua cuaca",
+          label:
+            "empat kejadian hujan cukup untuk mewakili pola satu musim di sekolah tersebut",
         },
         {
           isCorrect: false,
           label: "taman harus dibongkar karena datanya terbatas",
-        },
-        {
-          isCorrect: true,
-          label:
-            "dua pengamatan awal mendukung manfaat praktis, tetapi belum membuktikan penyebab tunggal",
         },
       ],
     },

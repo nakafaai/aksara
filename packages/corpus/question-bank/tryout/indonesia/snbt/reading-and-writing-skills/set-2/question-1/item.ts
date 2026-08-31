@@ -14,16 +14,16 @@ const item: QuestionItem = {
           label: "Satz $$(4)$$.",
         },
         {
-          isCorrect: true,
-          label: "Satz $$(12)$$.",
-        },
-        {
           isCorrect: false,
           label: "Satz $$(13)$$.",
         },
         {
           isCorrect: false,
           label: "Satz $$(15)$$.",
+        },
+        {
+          isCorrect: true,
+          label: "Satz $$(12)$$.",
         },
       ],
     },
@@ -39,16 +39,16 @@ const item: QuestionItem = {
           label: "sentence $$(4)$$.",
         },
         {
-          isCorrect: true,
-          label: "sentence $$(12)$$.",
-        },
-        {
           isCorrect: false,
           label: "sentence $$(13)$$.",
         },
         {
           isCorrect: false,
           label: "sentence $$(15)$$.",
+        },
+        {
+          isCorrect: true,
+          label: "sentence $$(12)$$.",
         },
       ],
     },
@@ -64,16 +64,16 @@ const item: QuestionItem = {
           label: "kalimat $$(4)$$.",
         },
         {
-          isCorrect: true,
-          label: "kalimat $$(12)$$.",
-        },
-        {
           isCorrect: false,
           label: "kalimat $$(13)$$.",
         },
         {
           isCorrect: false,
           label: "kalimat $$(15)$$.",
+        },
+        {
+          isCorrect: true,
+          label: "kalimat $$(12)$$.",
         },
       ],
     },

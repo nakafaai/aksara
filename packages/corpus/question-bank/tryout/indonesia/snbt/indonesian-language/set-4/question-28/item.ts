@@ -13,22 +13,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam bangunan tua yang sedang dipugar pasti berlaku tanpa batas pada tempat lain.",
+            "Benda berulang memperoleh makna terutama dari bentuk fisiknya, bukan dari hubungannya dengan pilihan tokoh.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang bangunan tua yang sedang dipugar tidak berguna.",
+            "Akhir cerita menunjukkan bahwa latar, bukan tindakan tokoh, menyelesaikan konflik.",
         },
         {
           isCorrect: false,
           label:
-            "Satu rincian tentang foreshadowing cukup untuk membuktikan semua hubungan sebab-akibat.",
+            "Makna benda tetap sama meskipun tokoh menggunakannya dengan cara berbeda.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Tindakan akhir penting karena mengukuhkan penafsiran yang sudah terbentuk sejak awal.",
         },
       ],
     },

@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Because the trial reached 35, compared with a baseline of 21 and a comparison value of 22, a budget sheet separating fixed, flexible, and shared costs should become permanent before the stated limitation is examined.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The consultation with affected groups makes the baseline and comparison figures unnecessary for the decision.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The limitation that the exercise used estimated prices rather than final invoices affects delivery details, but it does not restrict who can be covered by the conclusion.",
+        },
+        {
           isCorrect: true,
           label:
-            "A follow-up decision should combine measured results, affected people's experience, and the trial's limitation.",
+            "The rise to 35, compared with a baseline of 21 and a comparison value of 22 supports a limited extension of a budget sheet separating fixed, flexible, and shared costs, while the fact that the exercise used estimated prices rather than final invoices must shape the follow-up.",
         },
         {
           isCorrect: false,
           label:
-            "Every result in a youth event-planning group must apply without limitation elsewhere.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The limitation makes all information about a youth event-planning group useless.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "One detail about fixed cost proves every possible causal relationship.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage recommends ignoring evidence that conflicts with an early expectation.",
+            "Because staffing and schedules were stable, the difference between the trial and comparison is best attributed to those unchanged conditions.",
         },
       ],
     },

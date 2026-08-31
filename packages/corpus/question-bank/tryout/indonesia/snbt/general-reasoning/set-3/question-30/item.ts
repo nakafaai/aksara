@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kompass : Geschwindigkeit",
+          label: "$$12$$",
         },
         {
           isCorrect: false,
-          label: "Lupe : Zeit",
+          label: "$$16$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$24$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$25$$",
         },
         {
           isCorrect: true,
-          label: "Waage : Masse",
-        },
-        {
-          isCorrect: false,
-          label: "Lineal : Temperatur",
-        },
-        {
-          isCorrect: false,
-          label: "Uhr : Länge",
+          label: "$$20$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "compass : speed",
+          label: "$$12$$",
         },
         {
           isCorrect: false,
-          label: "magnifier : time",
+          label: "$$16$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$24$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$25$$",
         },
         {
           isCorrect: true,
-          label: "scale : mass",
-        },
-        {
-          isCorrect: false,
-          label: "ruler : temperature",
-        },
-        {
-          isCorrect: false,
-          label: "clock : length",
+          label: "$$20$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "kompas : kecepatan",
+          label: "$$12$$",
         },
         {
           isCorrect: false,
-          label: "kaca pembesar : waktu",
+          label: "$$16$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$24$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$25$$",
         },
         {
           isCorrect: true,
-          label: "timbangan : massa",
-        },
-        {
-          isCorrect: false,
-          label: "penggaris : suhu",
-        },
-        {
-          isCorrect: false,
-          label: "jam : panjang",
+          label: "$$20$$",
         },
       ],
     },

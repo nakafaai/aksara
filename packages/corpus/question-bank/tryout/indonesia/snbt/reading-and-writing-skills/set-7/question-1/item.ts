@@ -6,28 +6,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Erste Belege zu Menüvorbestellung am Vortag im Kontext „Schulfrühstücksprogramm“",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Prüfung mehrerer gleichzeitiger Änderungen im Kontext „Schulfrühstücksprogramm“",
+        },
+        {
           isCorrect: true,
           label: "Geordnete Prüfung einer Änderung: Schulfrühstücksprogramm",
         },
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Menübestellung am Vortag.",
+            "Rückmeldungen zur dauerhaften Neugestaltung des Kontexts „Schulfrühstücksprogramm“",
         },
         {
           isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Schulfrühstücksprogramm über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Menübestellung am Vortag.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Menübestellung am Vortag.",
+            "Vollständige Bewertung des Kontexts „Schulfrühstücksprogramm“",
         },
       ],
     },
@@ -35,28 +35,27 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Early evidence about menu booking one day in advance in the context of school breakfast programme",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Testing several simultaneous changes in the context of school breakfast programme",
+        },
+        {
           isCorrect: true,
           label: "A structured test of one change: school breakfast programme",
         },
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of menu booking one day in advance.",
+            "User reactions to a permanent redesign of school breakfast programme",
         },
         {
           isCorrect: false,
-          label:
-            "In this setting (school breakfast programme), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, menu booking one day in advance, directly addressed the observed uncertainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The next test of menu booking one day in advance will run for longer.",
+          label: "A complete evaluation of school breakfast programme",
         },
       ],
     },
@@ -64,28 +63,27 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Bukti awal tentang pemesanan menu sehari sebelumnya dalam konteks program sarapan sekolah",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengujian beberapa perubahan serentak dalam konteks program sarapan sekolah",
+        },
+        {
           isCorrect: true,
           label: "Uji Teratur atas Satu Perubahan: program sarapan sekolah",
         },
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui pemesanan menu sehari sebelumnya.",
+            "Tanggapan pengguna terhadap perancangan ulang tetap pada program sarapan sekolah",
         },
         {
           isCorrect: false,
-          label:
-            "Di program sarapan sekolah, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa pemesanan menu sehari sebelumnya langsung menanggapi keraguan yang diamati.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji pemesanan menu sehari sebelumnya berikutnya akan berlangsung lebih lama.",
+          label: "Evaluasi menyeluruh terhadap program sarapan sekolah",
         },
       ],
     },

@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang pendataan sumur warga",
+          label: "keterbandingan sebagai ukuran utama dalam uji layanan",
         },
         {
           isCorrect: false,
-          label: "Alasan Mengabaikan Semua Bukti dalam pendataan sumur warga",
+          label: "Dari perbandingan singkat menuju perubahan layanan tetap",
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap keterbandingan di Seluruh Dunia",
+          label: "Konsultasi tanpa pengukuran hasil yang dapat dibandingkan",
+        },
+        {
+          isCorrect: false,
+          label: "Uji layanan lokal tanpa keputusan tindak lanjut",
         },
         {
           isCorrect: true,
           label: "Keputusan Berbasis Bukti dalam pendataan sumur warga",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap pendataan sumur warga",
         },
       ],
     },

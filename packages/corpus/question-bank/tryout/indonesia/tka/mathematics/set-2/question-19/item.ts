@@ -13,20 +13,24 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Der Umfang einer ebenen Figur wird mit $3$ multipliziert.",
+          label: "Die kleinste mögliche Fläche ist $78{,}21$ cm².",
+        },
+        {
+          correctCategoryOrder: 1,
+          label: "Die größte mögliche Fläche ist $81{,}81$ cm².",
+        },
+        {
+          correctCategoryOrder: 1,
+          label: "Der Umfang liegt zwischen $35{,}6$ cm und $36{,}4$ cm.",
+        },
+        {
+          correctCategoryOrder: 2,
+          label: "Der maximale absolute Flächenfehler beträgt $1{,}8$ cm².",
         },
         {
           correctCategoryOrder: 1,
           label:
-            "Der Flächeninhalt einer ebenen Figur wird mit $3^2$ multipliziert.",
-        },
-        {
-          correctCategoryOrder: 1,
-          label: "Das Volumen eines Körpers wird mit $3^3$ multipliziert.",
-        },
-        {
-          correctCategoryOrder: 2,
-          label: "Die Oberfläche eines Körpers wird mit $3^3$ multipliziert.",
+            "Der maximale relative Flächenfehler ist größer als $2{,}2\\%$.",
         },
       ],
     },
@@ -36,19 +40,23 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "A plane figure's perimeter is multiplied by $3$.",
+          label: "The least possible area is $78.21$ cm².",
         },
         {
           correctCategoryOrder: 1,
-          label: "A plane figure's area is multiplied by $3^2$.",
+          label: "The greatest possible area is $81.81$ cm².",
         },
         {
           correctCategoryOrder: 1,
-          label: "A solid's volume is multiplied by $3^3$.",
+          label: "The perimeter lies between $35.6$ cm and $36.4$ cm.",
         },
         {
           correctCategoryOrder: 2,
-          label: "A solid's surface area is multiplied by $3^3$.",
+          label: "The greatest absolute area error is $1.8$ cm².",
+        },
+        {
+          correctCategoryOrder: 1,
+          label: "The greatest relative area error exceeds $2.2\\%$.",
         },
       ],
     },
@@ -58,19 +66,23 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Keliling bangun datar dikalikan $3$.",
+          label: "Luas minimum yang mungkin adalah $78{,}21$ cm².",
         },
         {
           correctCategoryOrder: 1,
-          label: "Luas bangun datar dikalikan $3^2$.",
+          label: "Luas maksimum yang mungkin adalah $81{,}81$ cm².",
         },
         {
           correctCategoryOrder: 1,
-          label: "Volume bangun ruang dikalikan $3^3$.",
+          label: "Keliling berada di antara $35{,}6$ cm dan $36{,}4$ cm.",
         },
         {
           correctCategoryOrder: 2,
-          label: "Luas permukaan bangun ruang dikalikan $3^3$.",
+          label: "Galat luas absolut terbesar adalah $1{,}8$ cm².",
+        },
+        {
+          correctCategoryOrder: 1,
+          label: "Galat luas relatif terbesar melebihi $2{,}2\\%$.",
         },
       ],
     },

@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti dugaan yang tidak perlu diperiksa pada rangkaian listrik dengan dua lampu",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti hasil akhir yang selalu berlaku untuk semua keadaan",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti rincian yang sengaja dihapus karena bertentangan dengan pendapat",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti hiasan bahasa yang tidak berhubungan dengan konteks",
+            "Definisi *rangkaian tertutup* membuktikan bahwa hasil model selalu sama dengan keadaan tanah di lapangan.",
         },
         {
           isCorrect: true,
-          label: "jalur tertutup yang memungkinkan muatan listrik bergerak",
+          label:
+            "Definisi *rangkaian tertutup* menghubungkan proses pada model dengan proses yang diwakilinya sehingga kegunaan model dapat dibedakan dari batas penerapannya.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi itu menjadikan *rangkaian tertutup* nama untuk seluruh alat, bukan proses tertentu yang disimulasikan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Istilah *rangkaian tertutup* menghapus keterbatasan representasi karena prosesnya dapat diulang di kelas.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi tersebut hanya menjelaskan bahan pembuat model dan tidak berhubungan dengan proses yang diamati.",
         },
       ],
     },

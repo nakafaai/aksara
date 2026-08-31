@@ -7,27 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Menübestellung am Vortag.",
+          label: "Ergebnisse entfernt, die nicht zur Erwartung passten",
         },
         {
           isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Schulfrühstücksprogramm über den beiden anderen Werten.",
+          label: "alle Daten wegen der kurzen Versuchsdauer verworfen",
         },
         {
           isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Menübestellung am Vortag.",
+          label: "den Bericht gekürzt, damit er weniger Wörter enthielt",
         },
         {
           isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Menübestellung am Vortag.",
+          label: "die Messung bis zur dauerhaften Einführung verschoben",
         },
         {
           isCorrect: true,
-          label: "festgestellt, ohne bereits eine Ursache zu behaupten",
+          label:
+            "den Geltungsbereich der Aussage auf die vorhandenen Versuchsbedingungen beschränkt",
         },
       ],
     },
@@ -36,27 +33,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "The hypothesis therefore needed a limited test of menu booking one day in advance.",
+          label: "removed results that did not fit expectations",
         },
         {
           isCorrect: false,
-          label:
-            "In this setting (school breakfast programme), the trial value exceeded both other values.",
+          label: "rejected all data because the trial was brief",
         },
         {
           isCorrect: false,
-          label:
-            "The change, menu booking one day in advance, directly addressed the observed uncertainty.",
+          label: "shortened the report so that it used fewer words",
         },
         {
           isCorrect: false,
-          label:
-            "The next test of menu booking one day in advance will run for longer.",
+          label: "postponed measurement until the change became permanent",
         },
         {
           isCorrect: true,
-          label: "noticed without already claiming a cause",
+          label:
+            "restricted the scope of the claim to the available trial conditions",
         },
       ],
     },
@@ -65,27 +59,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui pemesanan menu sehari sebelumnya.",
+          label: "menghapus hasil yang tidak sesuai dengan harapan",
         },
         {
           isCorrect: false,
-          label:
-            "Di program sarapan sekolah, nilai hari uji melampaui dua nilai lainnya.",
+          label: "menolak seluruh data karena masa uji singkat",
         },
         {
           isCorrect: false,
-          label:
-            "Perubahan berupa pemesanan menu sehari sebelumnya langsung menanggapi keraguan yang diamati.",
+          label: "meringkas laporan agar jumlah katanya lebih sedikit",
         },
         {
           isCorrect: false,
-          label:
-            "Uji pemesanan menu sehari sebelumnya berikutnya akan berlangsung lebih lama.",
+          label: "menunda pengukuran sampai perubahan diterapkan tetap",
         },
         {
           isCorrect: true,
-          label: "mencatat gejala tanpa langsung memastikan penyebabnya",
+          label: "menahan jangkauan klaim pada kondisi uji yang tersedia",
         },
       ],
     },

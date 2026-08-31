@@ -6,6 +6,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: true,
+          label: "hohes Plateau.",
+        },
+        {
           isCorrect: false,
           label: "das Frostphänomen.",
         },
@@ -21,15 +25,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "noch vorhanden.",
         },
-        {
-          isCorrect: true,
-          label: "hohes Plateau.",
-        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "high plateau.",
+        },
         {
           isCorrect: false,
           label: "dew phenomenon.",
@@ -46,15 +50,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "still located.",
         },
-        {
-          isCorrect: true,
-          label: "high plateau.",
-        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
+        {
+          isCorrect: true,
+          label: "dataran tinggi.",
+        },
         {
           isCorrect: false,
           label: "fenomena embun.",
@@ -70,10 +74,6 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "masih berada.",
-        },
-        {
-          isCorrect: true,
-          label: "dataran tinggi.",
         },
       ],
     },

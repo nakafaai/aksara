@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Every result in a model filter for floating plastic fragments must apply without limitation elsewhere.",
+            "Because fragment collection reached 71%, compared with 38% and 40%, holding water volume, fragment size, flow rate, and collection time constant isolates adding a removable mesh with smaller openings as the only possible cause.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The strongest follow-up would change both adding a removable mesh with smaller openings and at least one controlled condition, preventing the effect of either change from being isolated.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The limitation that the model used clean fragments of only one material affects numerical precision, but it does not restrict how widely the finding can be applied.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "A larger repetition under the same rules could narrow uncertainty but could not change the first interpretation of the smaller mesh and fragment collection.",
         },
         {
           isCorrect: true,
           label:
-            "The initial pattern justifies a stronger repetition, not a universal claim.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The limitation makes all information about a model filter for floating plastic fragments useless.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "One detail about selectivity proves every possible causal relationship.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage recommends ignoring evidence that conflicts with an early expectation.",
+            "fragment collection reached 71%, compared with 38% and 40%; this supports an association between the smaller mesh and fragment collection under the tested conditions, while the model used clean fragments of only one material requires further testing before a broader claim.",
         },
       ],
     },

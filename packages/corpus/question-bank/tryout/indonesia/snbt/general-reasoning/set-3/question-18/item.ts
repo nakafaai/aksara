@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "Niemand trank Tee ohne Zuckerzusatz.",
         },
         {
-          isCorrect: false,
-          label: "Alle Teilnehmenden, die ein Getränk wählten, wählten Tee.",
-        },
-        {
           isCorrect: true,
           label: "Mindestens eine Person trank Tee ohne Zuckerzusatz.",
+        },
+        {
+          isCorrect: false,
+          label: "Alle Teilnehmenden, die ein Getränk wählten, wählten Tee.",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "No participant drank tea without added sugar.",
         },
         {
-          isCorrect: false,
-          label: "Every participant who chose a drink chose tea.",
-        },
-        {
           isCorrect: true,
           label: "At least one participant drank tea without added sugar.",
+        },
+        {
+          isCorrect: false,
+          label: "Every participant who chose a drink chose tea.",
         },
       ],
     },
@@ -68,13 +68,13 @@ const item: QuestionItem = {
           label: "Tidak ada peserta yang meminum teh tanpa tambahan gula.",
         },
         {
-          isCorrect: false,
-          label: "Setiap peserta yang memilih minuman memilih teh.",
-        },
-        {
           isCorrect: true,
           label:
             "Sekurang-kurangnya satu peserta meminum teh tanpa tambahan gula.",
+        },
+        {
+          isCorrect: false,
+          label: "Setiap peserta yang memilih minuman memilih teh.",
         },
       ],
     },

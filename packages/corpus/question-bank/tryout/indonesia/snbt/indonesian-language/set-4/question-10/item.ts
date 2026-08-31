@@ -7,13 +7,12 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Kepastian Mutlak tentang model daur air dalam kotak transparan",
+          label: "Mengukur kondensasi melalui satu perbandingan awal",
         },
         {
           isCorrect: false,
           label:
-            "Alasan Mengabaikan Semua Bukti dalam model daur air dalam kotak transparan",
+            "Menjadikan kondensasi penjelasan tunggal atas hasil pengamatan",
         },
         {
           isCorrect: true,
@@ -21,12 +20,12 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap kondensasi di Seluruh Dunia",
+          label: "Kaidah akhir dari perbandingan pertama tentang kondensasi",
         },
         {
           isCorrect: false,
           label:
-            "Satu Aturan untuk Setiap model daur air dalam kotak transparan",
+            "Keterbatasan yang membuat uji lanjutan kondensasi tidak diperlukan",
         },
       ],
     },

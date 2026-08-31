@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Wegen mehrerer Daten lässt sich kein Fakt zur Brückengeschichte feststellen.",
         },
         {
           isCorrect: true,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Zahlengenauigkeit garantiert keine richtige Darstellung, wenn die Ereigniskategorie ungeklärt bleibt.",
         },
         {
           isCorrect: false,
           label:
-            "Gespräche von mindestens zehn Minuten und kurze Aussagen von Nutzenden",
+            "Das älteste Datum ist für jede Art von Geschichte immer das passendste.",
+        },
+        {
+          isCorrect: false,
+          label: "Der Mittelteil der Brücke wurde 1958 weitgehend ersetzt.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team prüfte Themenkarten für Gesprächsanfänge (Sprachaustausch für Lernende) und bewertete die Befunde vorsichtig.",
+            "Die neue Tafel wird eine Zeitleiste mit der Bedeutung jedes Datums zeigen.",
         },
       ],
     },
@@ -38,27 +37,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "Because several dates exist, no fact about the bridge's history can be established.",
         },
         {
           isCorrect: true,
           label:
-            "days when the earlier process continued without the tested change",
+            "Numerical precision does not ensure an accurate account when the event category is unexplained.",
         },
         {
           isCorrect: false,
           label:
-            "conversations lasting at least ten minutes and short comments from users",
+            "The oldest date is always the most appropriate for every kind of history.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested topic cards for starting a conversation in the student language exchange and interpreted the evidence cautiously.",
+            "The bridge's central span was substantially replaced in 1958.",
+        },
+        {
+          isCorrect: false,
+          label: "The new plaque will display a timeline explaining each date.",
         },
       ],
     },
@@ -68,27 +66,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Karena ada beberapa tanggal, tidak ada satu pun fakta tentang riwayat jembatan yang dapat dipastikan.",
         },
         {
           isCorrect: true,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Ketepatan angka tidak menjamin ketepatan cerita jika kategori peristiwanya tidak dijelaskan.",
         },
         {
           isCorrect: false,
           label:
-            "percakapan yang berlangsung sedikitnya sepuluh menit dan komentar singkat pengguna",
+            "Satu tanggal paling tua selalu paling tepat untuk semua jenis sejarah.",
+        },
+        {
+          isCorrect: false,
+          label: "Bagian tengah jembatan diganti besar-besaran pada 1958.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji kartu topik untuk memulai percakapan pada pertukaran bahasa pelajar dan menafsirkan buktinya secara hati-hati.",
+            "Plakat baru akan menampilkan garis waktu dengan arti setiap tanggal.",
         },
       ],
     },

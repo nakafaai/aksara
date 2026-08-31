@@ -10,6 +10,11 @@ const item: QuestionItem = {
           label: "FOLU lag im Basisjahr 2010 unter dem Energiesektor.",
         },
         {
+          isCorrect: true,
+          label:
+            "Energie und FOLU waren an beiden Bezugspunkten die zwei größten Werte, obwohl sich ihre Reihenfolge änderte.",
+        },
+        {
           isCorrect: false,
           label:
             "Die Landwirtschaft hatte in der Projektion für 2030 den höchsten Wert.",
@@ -24,11 +29,6 @@ const item: QuestionItem = {
           label:
             "Abfall und Industrieprozesse übertrafen zusammen den Energiesektor im Basisjahr 2010.",
         },
-        {
-          isCorrect: true,
-          label:
-            "Energie und FOLU waren an beiden Bezugspunkten die zwei größten Werte, obwohl sich ihre Reihenfolge änderte.",
-        },
       ],
     },
     en: {
@@ -37,6 +37,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "FOLU had a lower value than energy in the 2010 baseline.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Energy and FOLU were the two largest values at both reference points, although their order changed.",
         },
         {
           isCorrect: false,
@@ -52,11 +57,6 @@ const item: QuestionItem = {
           label:
             "Waste and industrial processes together exceeded energy in the 2010 baseline.",
         },
-        {
-          isCorrect: true,
-          label:
-            "Energy and FOLU were the two largest values at both reference points, although their order changed.",
-        },
       ],
     },
     id: {
@@ -66,6 +66,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Nilai FOLU lebih rendah daripada energi pada tahun dasar 2010.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Energi dan FOLU merupakan dua nilai terbesar pada kedua acuan, meskipun urutannya berubah.",
         },
         {
           isCorrect: false,
@@ -80,11 +85,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Gabungan sektor limbah dan proses industri melampaui energi pada tahun dasar 2010.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Energi dan FOLU merupakan dua nilai terbesar pada kedua acuan, meskipun urutannya berubah.",
         },
       ],
     },

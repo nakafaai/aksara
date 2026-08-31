@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$38{,}5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$40$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$44$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$45{,}5$$",
+        },
+        {
           isCorrect: true,
-          label: "$$9$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$11$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$13$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$7$$",
+          label: "$$42{,}5$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$38{,}5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$40$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$44$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$45{,}5$$",
+        },
+        {
           isCorrect: true,
-          label: "$$9$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$11$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$13$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$7$$",
+          label: "$$42{,}5$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$38{,}5$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$40$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$44$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$45{,}5$$",
+        },
+        {
           isCorrect: true,
-          label: "$$9$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$11$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$13$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$7$$",
+          label: "$$42{,}5$$",
         },
       ],
     },

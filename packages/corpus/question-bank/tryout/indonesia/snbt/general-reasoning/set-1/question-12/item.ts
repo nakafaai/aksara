@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "$$240\\text{ Stunden}$$",
         },
         {
-          isCorrect: true,
-          label: "$$144\\text{ Stunden}$$",
-        },
-        {
           isCorrect: false,
           label: "$$360\\text{ Stunden}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$144\\text{ Stunden}$$",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "$$240\\text{ hours}$$",
         },
         {
-          isCorrect: true,
-          label: "$$144\\text{ hours}$$",
-        },
-        {
           isCorrect: false,
           label: "$$360\\text{ hours}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$144\\text{ hours}$$",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "$$240\\text{ jam}$$",
         },
         {
-          isCorrect: true,
-          label: "$$144\\text{ jam}$$",
-        },
-        {
           isCorrect: false,
           label: "$$360\\text{ jam}$$",
+        },
+        {
+          isCorrect: true,
+          label: "$$144\\text{ jam}$$",
         },
       ],
     },

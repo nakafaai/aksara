@@ -10,16 +10,16 @@ const item: QuestionItem = {
           label: "$$2{,}5$$ Liter",
         },
         {
-          isCorrect: true,
-          label: "$$12{,}5$$ Liter",
-        },
-        {
           isCorrect: false,
           label: "$$5$$ Liter",
         },
         {
           isCorrect: false,
           label: "$$7{,}5$$ Liter",
+        },
+        {
+          isCorrect: true,
+          label: "$$12{,}5$$ Liter",
         },
         {
           isCorrect: false,
@@ -35,16 +35,16 @@ const item: QuestionItem = {
           label: "$$2.5$$ liters",
         },
         {
-          isCorrect: true,
-          label: "$$12.5$$ liters",
-        },
-        {
           isCorrect: false,
           label: "$$5$$ liters",
         },
         {
           isCorrect: false,
           label: "$$7.5$$ liters",
+        },
+        {
+          isCorrect: true,
+          label: "$$12.5$$ liters",
         },
         {
           isCorrect: false,
@@ -60,16 +60,16 @@ const item: QuestionItem = {
           label: "$$2{,}5$$ liter",
         },
         {
-          isCorrect: true,
-          label: "$$12{,}5$$ liter",
-        },
-        {
           isCorrect: false,
           label: "$$5$$ liter",
         },
         {
           isCorrect: false,
           label: "$$7{,}5$$ liter",
+        },
+        {
+          isCorrect: true,
+          label: "$$12{,}5$$ liter",
         },
         {
           isCorrect: false,

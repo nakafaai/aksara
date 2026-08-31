@@ -7,27 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Ausleihe von Sportgeräten",
+          label:
+            "Im Kontext Sportgeräteausleihe verursachte die Änderung Fotobeschriftungen an den Rückgaberegalen den höheren Testwert.",
         },
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Fotoetiketten an den Rückgaberegalen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Fotoetiketten an den Rückgaberegalen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Fotoetiketten an den Rückgaberegalen.",
+            "Im Kontext Sportgeräteausleihe verbesserten sich sämtliche Teilnehmenden um denselben Wert.",
         },
         {
           isCorrect: true,
           label:
             "Der Versuchswert lag im Kontext Ausleihe von Sportgeräten über den beiden anderen Werten.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Im Kontext Sportgeräteausleihe waren die beiden Vergleichswerte identisch.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Im Kontext Sportgeräteausleihe belegte der kurze Test das langfristige Ergebnis.",
         },
       ],
     },
@@ -36,27 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: sports equipment lending",
+          label:
+            "In this setting (sports equipment lending), photo labels on the return shelves caused the higher trial value.",
         },
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of photo labels on the return shelves.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, photo labels on the return shelves, directly addressed the observed uncertainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The next test of photo labels on the return shelves will run for longer.",
+            "In this setting (sports equipment lending), each participant improved by the same amount.",
         },
         {
           isCorrect: true,
           label:
             "In this setting (sports equipment lending), the trial value exceeded both other values.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "In this setting (sports equipment lending), the two comparison values were identical.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "In this setting (sports equipment lending), the short trial established the long-term result.",
         },
       ],
     },
@@ -65,26 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: peminjaman alat olahraga",
+          label:
+            "Dalam konteks peminjaman alat olahraga, label foto pada rak pengembalian menyebabkan nilai uji menjadi lebih tinggi.",
         },
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui label foto.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa label foto langsung menanggapi keraguan yang diamati.",
-        },
-        {
-          isCorrect: false,
-          label: "Uji label foto berikutnya akan berlangsung lebih lama.",
+            "Dalam konteks peminjaman alat olahraga, setiap peserta mengalami peningkatan yang sama.",
         },
         {
           isCorrect: true,
           label:
             "Di peminjaman alat olahraga, nilai hari uji melampaui dua nilai lainnya.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Dalam konteks peminjaman alat olahraga, kedua nilai pembanding sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Dalam konteks peminjaman alat olahraga, uji singkat menetapkan hasil jangka panjang.",
         },
       ],
     },

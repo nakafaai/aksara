@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Absolute certainty about a residents' workshop",
-        },
-        {
-          isCorrect: false,
-          label: "Why all evidence in a residents' workshop should be ignored",
-        },
-        {
           isCorrect: true,
           label: "Priya's next step in a residents' workshop",
         },
         {
           isCorrect: false,
-          label: "The complete world history of cognitive load",
+          label: "Waiting for someone else to complete the next step",
         },
         {
           isCorrect: false,
-          label: "One rule for every a residents' workshop",
+          label: "Hiding unresolved evidence in a larger project",
+        },
+        {
+          isCorrect: false,
+          label: "cognitive load as a definition without a reviewable action",
+        },
+        {
+          isCorrect: false,
+          label: "A complete plan without a small accountable step",
         },
       ],
     },

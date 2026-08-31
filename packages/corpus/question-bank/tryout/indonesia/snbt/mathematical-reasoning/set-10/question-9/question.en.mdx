@@ -2,24 +2,20 @@ export const metadata = {
   title: "Question 9",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
+  dateModified: "2026-08-31",
 };
 
-The line <InlineMath math="y=3x+4" /> is shown below.
+The line <InlineMath math="x+2y=5" /> cuts a chord from the circle <InlineMath math="x^2+y^2=25" />.
 
 <LineEquation
-  title="Line"
-  description="Graph of y=3x+4."
-  cameraPosition={[0, 0, 12]}
+  title="Circle and chord"
+  description="An exact circle of radius 5 and the straight chord from (5, 0) to (-3, 4)."
+  cameraPosition={[0, 0, 18]}
   showZAxis={false}
-  data={[{
-    points: [
-      { x: -2, y: -2, z: 0 },
-      { x: 0, y: 4, z: 0 },
-      { x: 3, y: 13, z: 0 }
-    ],
-    color: "#7c3aed",
-    showPoints: true
-  }]}
+  data={[
+    { kind: "circle-outline", radius: 5, color: "#64748b", showPoints: false },
+    { points: [{ x: 5, y: 0, z: 0 }, { x: -3, y: 4, z: 0 }], color: "#7c3aed", smooth: false, showPoints: true },
+  ]}
 />
 
-What is the value of <InlineMath math="y" /> when <InlineMath math="x=3" />?
+What is the length of the chord?

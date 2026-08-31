@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Definisi *variabel kontrol* membuktikan bahwa perubahan uji menyebabkan hasil yang tercatat meskipun kondisi pembanding diabaikan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi itu menjadikan *variabel kontrol* pengganti variabel kontrol sehingga faktor yang belum diukur tidak lagi membatasi simpulan.",
+        },
+        {
           isCorrect: true,
           label:
-            "faktor yang sengaja dijaga tetap agar perbandingan lebih wajar",
+            "Definisi *variabel kontrol* menetapkan makna konsep yang diukur sebelum pembaca menafsirkan perbandingan angka dan keterbatasan percobaan.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti dugaan yang tidak perlu diperiksa pada perkecambahan kacang hijau",
+            "Definisi tersebut memperluas *variabel kontrol* dari percobaan singkat ini ke semua keadaan yang menyerupainya.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti hasil akhir yang selalu berlaku untuk semua keadaan",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti rincian yang sengaja dihapus karena bertentangan dengan pendapat",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti hiasan bahasa yang tidak berhubungan dengan konteks",
+            "Istilah *variabel kontrol* dipakai untuk menamai keterbatasan laporan, bukan konsep yang diwakili hasil pengukuran.",
         },
       ],
     },

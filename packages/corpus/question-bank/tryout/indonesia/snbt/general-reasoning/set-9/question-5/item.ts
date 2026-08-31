@@ -19,14 +19,14 @@ const item: QuestionItem = {
             "Eine Überschwemmung allein beweist nicht, dass ein Ausbruch stattfinden wird",
         },
         {
-          isCorrect: false,
-          label:
-            "Örtliche Bedingungen und Bekämpfungsmaßnahmen können das Ausbruchsrisiko beeinflussen",
-        },
-        {
           isCorrect: true,
           label:
             "Mehr stehendes Wasser verringert die Brutmöglichkeiten für Mücken immer",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Örtliche Bedingungen und Bekämpfungsmaßnahmen können das Ausbruchsrisiko beeinflussen",
         },
       ],
     },
@@ -46,14 +46,14 @@ const item: QuestionItem = {
           label: "A flood by itself does not prove that an outbreak will occur",
         },
         {
-          isCorrect: false,
-          label:
-            "Local conditions and control measures can affect outbreak risk",
-        },
-        {
           isCorrect: true,
           label:
             "More standing water always lowers the potential for mosquito breeding",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Local conditions and control measures can affect outbreak risk",
         },
       ],
     },
@@ -73,14 +73,14 @@ const item: QuestionItem = {
           label: "Banjir saja tidak membuktikan bahwa wabah pasti terjadi",
         },
         {
-          isCorrect: false,
-          label:
-            "Kondisi setempat dan tindakan pengendalian dapat memengaruhi risiko wabah",
-        },
-        {
           isCorrect: true,
           label:
             "Semakin banyak genangan, potensi perkembangbiakan nyamuk selalu semakin rendah",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Kondisi setempat dan tindakan pengendalian dapat memengaruhi risiko wabah",
         },
       ],
     },

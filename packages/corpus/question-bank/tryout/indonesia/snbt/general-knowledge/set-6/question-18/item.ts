@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "prüfen, ob klarere Orientierung mit dem gemessenen Ergebnis zusammenhing, während Zeitplan und Personal stabil blieben",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Töpfe mit vollständigen Aufzeichnungen und kurze Aussagen von Nutzenden",
+            "Jedes alte Material muss erhalten bleiben, selbst wenn es Besucher gefährdet.",
         },
         {
           isCorrect: true,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Ein minimaler Eingriff kann mehr historische Informationen bewahren und dennoch Gefahren beseitigen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team prüfte Karten zur Erfassung jeder Bewässerungszeit (Saatgutversuch im Unterricht) und bewertete die Befunde vorsichtig.",
+            "Das Gebäude kann nur authentisch sein, wenn jede Fläche eine einzige alte Farbe erhält.",
+        },
+        {
+          isCorrect: false,
+          label: "Die älteste Farbe wurde nur in wenigen Räumen gefunden.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Jedes neue Teil wird dokumentiert, damit Veränderungen erkennbar bleiben.",
         },
       ],
     },
@@ -38,26 +37,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "to test whether clearer guidance was associated with the measured result while schedules and staffing stayed stable",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label: "pots with complete records and short comments from users",
+            "Every old material must be retained even when it endangers visitors.",
         },
         {
           isCorrect: true,
           label:
-            "days when the earlier process continued without the tested change",
+            "Minimum intervention can preserve more historical information while still addressing dangerous elements.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested cards recording each watering time in the classroom seed trial and interpreted the evidence cautiously.",
+            "The building can be authentic only if every surface is returned to one old colour.",
+        },
+        {
+          isCorrect: false,
+          label: "The oldest paint was found in only a few rooms.",
+        },
+        {
+          isCorrect: false,
+          label: "Every new part will be recorded so changes remain legible.",
         },
       ],
     },
@@ -67,26 +65,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "menguji kaitan petunjuk yang lebih jelas dengan hasil terukur sambil mempertahankan jadwal dan jumlah petugas",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label: "pot dengan catatan lengkap dan komentar singkat pengguna",
+            "Semua bahan lama harus dipertahankan meskipun membahayakan pengunjung.",
         },
         {
           isCorrect: true,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Intervensi minimum dapat mempertahankan lebih banyak informasi sejarah selama bagian berbahaya tetap ditangani.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji kartu pencatatan waktu penyiraman pada percobaan benih kelas dan menafsirkan buktinya secara hati-hati.",
+            "Bangunan hanya dapat disebut autentik jika seluruh permukaannya dikembalikan ke satu warna lama.",
+        },
+        {
+          isCorrect: false,
+          label: "Cat tertua hanya ditemukan di beberapa ruang.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Setiap bagian baru akan dicatat agar perubahan tetap terbaca.",
         },
       ],
     },

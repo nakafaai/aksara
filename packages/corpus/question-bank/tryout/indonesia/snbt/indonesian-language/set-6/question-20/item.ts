@@ -6,25 +6,25 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Kepastian Mutlak tentang ruang penyimpanan karya seni",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Alasan Mengabaikan Semua Bukti dalam ruang penyimpanan karya seni",
-        },
-        {
-          isCorrect: false,
-          label: "Sejarah Lengkap provenans di Seluruh Dunia",
-        },
-        {
           isCorrect: true,
           label: "Membaca Dua Sumber tentang ruang penyimpanan karya seni",
         },
         {
           isCorrect: false,
-          label: "Satu Aturan untuk Setiap ruang penyimpanan karya seni",
+          label: "Kesamaan Isi sebagai Bukti bahwa Dua Sumber Identik",
+        },
+        {
+          isCorrect: false,
+          label: "Mengutamakan Sumber Terbaru dalam Kajian provenans",
+        },
+        {
+          isCorrect: false,
+          label: "Menggabungkan Dua Sumber tanpa Memeriksa Konteks",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perbedaan Format yang Membuat Dua Sumber Tidak Dapat Dibandingkan",
         },
       ],
     },

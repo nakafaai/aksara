@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam jalur wisata hutan kota.",
+            "Kondisi pembanding menghasilkan nilai rata-rata 23; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam jalur wisata hutan kota memperoleh hasil yang sama tanpa perbedaan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan jalur wisata hutan kota.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyebut aksesibilitas sebagai bukti bahwa uji tidak perlu diulang.",
+            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
         },
         {
           isCorrect: true,
-          label: "Kondisi pembanding menghasilkan nilai rata-rata 23.",
+          label:
+            "Nilai 23 adalah kondisi pembanding untuk tanda jarak; pengunjung dengan hambatan penglihatan belum terwakili dalam uji.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
         },
       ],
     },

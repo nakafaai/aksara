@@ -8,17 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam kelas reparasi pakaian pasti berlaku tanpa batas pada tempat lain.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang kelas reparasi pakaian tidak berguna.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Satu rincian tentang konflik cukup untuk membuktikan semua hubungan sebab-akibat.",
+            "Benda berulang memperoleh makna terutama dari bentuk fisiknya, bukan dari hubungannya dengan pilihan tokoh.",
         },
         {
           isCorrect: true,
@@ -28,7 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Akhir cerita menunjukkan bahwa latar, bukan tindakan tokoh, menyelesaikan konflik.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Makna benda tetap sama meskipun tokoh menggunakannya dengan cara berbeda.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tindakan akhir penting karena mengukuhkan penafsiran yang sudah terbentuk sejak awal.",
         },
       ],
     },

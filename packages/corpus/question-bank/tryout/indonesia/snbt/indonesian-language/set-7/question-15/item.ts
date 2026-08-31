@@ -7,24 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang antrean pemeriksaan kesehatan",
+          label: "alur layanan sebagai ukuran utama dalam uji layanan",
         },
         {
           isCorrect: false,
-          label:
-            "Alasan Mengabaikan Semua Bukti dalam antrean pemeriksaan kesehatan",
+          label: "Dari perbandingan singkat menuju perubahan layanan tetap",
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap alur layanan di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap antrean pemeriksaan kesehatan",
+          label: "Konsultasi tanpa pengukuran hasil yang dapat dibandingkan",
         },
         {
           isCorrect: true,
           label: "Keputusan Berbasis Bukti dalam antrean pemeriksaan kesehatan",
+        },
+        {
+          isCorrect: false,
+          label: "Uji layanan lokal tanpa keputusan tindak lanjut",
         },
       ],
     },

@@ -8,7 +8,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Geordnete Prüfung einer Änderung: Erfassung von Straßenbäumen",
+            "Das Team testete die Änderung Beispielfotos für jede Zustandskategorie an ausgewählten Tagen, weil das frühere Verfahren bereits als unwirksam galt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team führte die Änderung Beispielfotos für jede Zustandskategorie dauerhaft ein, während das frühere Verfahren nur in den Rückmeldungen erhalten blieb.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team testete die Änderung Beispielfotos für jede Zustandskategorie und das frühere Verfahren an denselben Tagen ohne getrennte Vergleichsbedingungen.",
         },
         {
           isCorrect: true,
@@ -18,17 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Beispielfotos für jede Zustandskategorie.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Erfassung von Straßenbäumen über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Beispielfotos für jede Zustandskategorie.",
+            "Das Team verglich Tage mit der Änderung Beispielfotos für jede Zustandskategorie mit Rückmeldungen zum früheren Verfahren.",
         },
       ],
     },
@@ -37,7 +37,18 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: street-tree survey",
+          label:
+            "The team tested sample photos for each condition category on selected days because the earlier process had already been proved ineffective.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team tested sample photos for each condition category permanently, while the earlier process remained only in user records.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team tested sample photos for each condition category and the earlier process on the same days without separate comparison conditions.",
         },
         {
           isCorrect: true,
@@ -47,17 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of sample photos for each condition category.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (street-tree survey), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, sample photos for each condition category, directly addressed the observed uncertainty.",
+            "The team compared selected days using sample photos for each condition category with comments about the earlier process.",
         },
       ],
     },
@@ -66,7 +67,18 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: pendataan pohon jalan",
+          label:
+            "Tim menguji foto contoh untuk setiap kategori kondisi pada hari tertentu karena proses lama telah terbukti tidak efektif.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim menerapkan foto contoh untuk setiap kategori kondisi secara tetap, sedangkan proses lama hanya tersisa dalam catatan pengguna.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim menguji foto contoh untuk setiap kategori kondisi dan proses lama pada hari yang sama tanpa kondisi pembanding terpisah.",
         },
         {
           isCorrect: true,
@@ -76,17 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui contoh foto untuk setiap kategori kondisi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Di pendataan pohon jalan, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa contoh foto untuk setiap kategori kondisi langsung menanggapi keraguan yang diamati.",
+            "Tim membandingkan hari penggunaan foto contoh untuk setiap kategori kondisi dengan komentar tentang proses lama.",
         },
       ],
     },

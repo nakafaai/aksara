@@ -8,17 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team veränderte alle Faktoren zugleich, nämlich einen nach Absagen aktualisierten digitalen Plan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team wechselte einen Faktor-faktoren: einen nach Absagen aktualisierten digitalen Plan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Das Team tat nur einen Faktor anders: einen nach Absagen aktualisierten digitalen Plan.",
+            "Das Team änderte nur ein Faktor: einen nach Absagen aktualisierten digitalen Plan.",
         },
         {
           isCorrect: true,
@@ -28,7 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team änderte einzig alle Faktoren: einen nach Absagen aktualisierten digitalen Plan.",
+            "Das Team änderte nur einem Faktor: einen nach Absagen aktualisierten digitalen Plan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team änderte lediglich nur einen Faktor: einen nach Absagen aktualisierten digitalen Plan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Team änderte nur einen Faktor, und zwar: einen nach Absagen aktualisierten digitalen Plan.",
         },
       ],
     },
@@ -38,17 +38,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team alterated only one factor: a digital schedule updated after cancellations.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team changed every factors at once: a digital schedule updated after cancellations.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The team did one factor differently thing: a digital schedule updated after cancellations.",
+            "The team changed only one factors: a digital schedule updated after cancellations.",
         },
         {
           isCorrect: true,
@@ -58,7 +48,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team changed only all factors: a digital schedule updated after cancellations.",
+            "The team changed merely only one factor: a digital schedule updated after cancellations.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team changed only one factor, namely: a digital schedule updated after cancellations.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The team changed only one factor; namely a digital schedule updated after cancellations.",
         },
       ],
     },
@@ -71,16 +71,6 @@ const item: QuestionItem = {
             "Tim merubah satu faktor saja, yaitu jadwal digital yang diperbarui setelah pembatalan.",
         },
         {
-          isCorrect: false,
-          label:
-            "Tim mengubahkan satu faktor-faktor, yaitu jadwal digital yang diperbarui setelah pembatalan.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tim berubah satu faktor saja, yaitu jadwal digital yang diperbarui setelah pembatalan.",
-        },
-        {
           isCorrect: true,
           label:
             "Tim mengubah satu faktor saja, yaitu jadwal digital yang diperbarui setelah pembatalan.",
@@ -88,7 +78,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim mengubah semua faktor saja, yaitu jadwal digital yang diperbarui setelah pembatalan.",
+            "Tim mengubahkan satu faktor saja, yaitu jadwal digital yang diperbarui setelah pembatalan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim hanya mengubah satu faktor saja, yaitu jadwal digital yang diperbarui setelah pembatalan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim mengubah terhadap satu faktor saja, yaitu jadwal digital yang diperbarui setelah pembatalan.",
         },
       ],
     },

@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage states that no action or observation occurred in leaf growth under different light colours.",
+            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
         },
         {
           isCorrect: false,
           label:
-            "Everyone in leaf growth under different light colours obtained exactly the same result without variation.",
+            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
         },
         {
           isCorrect: false,
           label:
-            "The writer removes every detail related to leaf growth under different light colours.",
+            "The mean result with the change was 19; because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
           isCorrect: false,
           label:
-            "The passage presents confounding variable as proof that no follow-up is needed.",
+            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
         },
         {
           isCorrect: true,
-          label: "The mean result with the change was 19.",
+          label:
+            "The blue-filter condition produced a mean of 19 at the tested lamp distance; reduced light intensity prevents treating colour as the only explanation.",
         },
       ],
     },

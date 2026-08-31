@@ -21,14 +21,14 @@ const item: QuestionItem = {
             "die Folgestudie des Team im untersuchten Kontext (Lärmprotokoll im Wohngebiet)",
         },
         {
-          isCorrect: false,
-          label:
-            "die Folge  Studie des Teams im untersuchten Kontext (Lärmprotokoll im Wohngebiet)",
-        },
-        {
           isCorrect: true,
           label:
             "die Folgestudie des Teams im untersuchten Kontext (Lärmprotokoll im Wohngebiet)",
+        },
+        {
+          isCorrect: false,
+          label:
+            "die Folge  Studie des Teams im untersuchten Kontext (Lärmprotokoll im Wohngebiet)",
         },
       ],
     },
@@ -51,14 +51,14 @@ const item: QuestionItem = {
             "the teams' follow--up study of an example showing how to record sound duration in this setting (neighbourhood noise log)",
         },
         {
-          isCorrect: false,
-          label:
-            "the team follow-up-study of an example showing how to record sound duration in this setting (neighbourhood noise log)",
-        },
-        {
           isCorrect: true,
           label:
             "the team's follow-up study of an example showing how to record sound duration in this setting (neighbourhood noise log)",
+        },
+        {
+          isCorrect: false,
+          label:
+            "the team follow-up-study of an example showing how to record sound duration in this setting (neighbourhood noise log)",
         },
       ],
     },
@@ -81,14 +81,14 @@ const item: QuestionItem = {
             "kerja  sama tim dalam uji contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
         },
         {
-          isCorrect: false,
-          label:
-            "kerja sama-sama tim dalam uji contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
-        },
-        {
           isCorrect: true,
           label:
             "kerja sama tim dalam uji contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
+        },
+        {
+          isCorrect: false,
+          label:
+            "kerja sama-sama tim dalam uji contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
         },
       ],
     },

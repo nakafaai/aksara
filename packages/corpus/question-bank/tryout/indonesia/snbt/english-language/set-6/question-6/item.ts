@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "The organisers of a community repair café evaluated a card listing the tools needed for each repair through consultation alone, without comparing the measured outcome across conditions.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The organisers of a community repair café evaluated a card listing the tools needed for each repair through the measured comparison alone, while excluding the affected groups' experience from the decision.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The organisers of a community repair café evaluated a card listing the tools needed for each repair through a comparison and consultation, then treated the short trial as sufficient for permanent adoption.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The organisers of a community repair café evaluated a card listing the tools needed for each repair mainly by defining a technical term, with the proposed change serving only as background information.",
+        },
+        {
           isCorrect: true,
           label:
             "The organisers of a community repair café evaluated a card listing the tools needed for each repair through a comparison and consultation with affected groups.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage only gives a complete history of a community repair café without examining evidence or choice.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage proves that one method must succeed in every a community repair café.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage rejects all observation and relies only on personal preference.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage mainly defines product-life extension without connecting it to a setting.",
         },
       ],
     },

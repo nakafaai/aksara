@@ -24,7 +24,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Give every turn to the fastest speaker.",
+          label:
+            "Prioritize speakers who can respond immediately so the discussion keeps moving.",
         },
       ],
     },

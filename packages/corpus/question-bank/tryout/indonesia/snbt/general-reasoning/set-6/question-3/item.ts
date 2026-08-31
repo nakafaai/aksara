@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Am Sonntag werden Wertstoffe gesammelt",
-        },
-        {
           isCorrect: false,
           label: "Wegen des Regens fallen beide Tätigkeiten aus",
         },
@@ -22,6 +18,10 @@ const item: QuestionItem = {
           label: "Am Sonntag werden nur die Abflussrinnen gereinigt",
         },
         {
+          isCorrect: true,
+          label: "Am Sonntag werden Wertstoffe gesammelt",
+        },
+        {
           isCorrect: false,
           label: "Die Gemeinschaftsaktion wird ohne Alternative verschoben",
         },
@@ -30,10 +30,6 @@ const item: QuestionItem = {
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "Recyclable materials are collected on Sunday",
-        },
         {
           isCorrect: false,
           label: "Both activities are canceled because of the rain",
@@ -47,6 +43,10 @@ const item: QuestionItem = {
           label: "Only the drains are cleaned on Sunday",
         },
         {
+          isCorrect: true,
+          label: "Recyclable materials are collected on Sunday",
+        },
+        {
           isCorrect: false,
           label: "The activity is postponed without choosing an alternative",
         },
@@ -55,10 +55,6 @@ const item: QuestionItem = {
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "Barang daur ulang dikumpulkan pada hari Minggu",
-        },
         {
           isCorrect: false,
           label: "Kedua kegiatan dibatalkan karena hujan",
@@ -70,6 +66,10 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "Hanya kegiatan membersihkan selokan yang dilaksanakan",
+        },
+        {
+          isCorrect: true,
+          label: "Barang daur ulang dikumpulkan pada hari Minggu",
         },
         {
           isCorrect: false,

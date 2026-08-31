@@ -7,11 +7,15 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kepastian Mutlak tentang klub pembaca pemula",
+          label: "Benda berulang yang tetap menjadi bagian latar",
         },
         {
           isCorrect: false,
-          label: "Alasan Mengabaikan Semua Bukti dalam klub pembaca pemula",
+          label: "Konflik yang selesai sebelum pilihan akhir tokoh",
+        },
+        {
+          isCorrect: false,
+          label: "perkembangan tokoh sebagai istilah tanpa peran dalam cerita",
         },
         {
           isCorrect: true,
@@ -19,11 +23,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap perkembangan tokoh di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label: "Satu Aturan untuk Setiap klub pembaca pemula",
+          label: "Akhir yang menghapus ketegangan makna benda",
         },
       ],
     },

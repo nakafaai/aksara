@@ -11,14 +11,14 @@ const item: QuestionItem = {
             "am Montag prüfte das Team Genre-Schilder auf jedem Tisch im Kontext Büchertauschmarkt.",
         },
         {
-          isCorrect: true,
-          label:
-            "Am Montag prüfte das Team Genre-Schilder auf jedem Tisch im folgenden Kontext: Büchertauschmarkt.",
-        },
-        {
           isCorrect: false,
           label:
             "Am montag prüfte das Team Genre-Schilder auf jedem Tisch im Kontext Büchertauschmarkt.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Am Montag prüfte das Team Genre-Schilder auf jedem Tisch im folgenden Kontext: Büchertauschmarkt.",
         },
         {
           isCorrect: false,
@@ -41,14 +41,14 @@ const item: QuestionItem = {
             "on Monday, the team tested genre signs on each table in this setting (book exchange market).",
         },
         {
-          isCorrect: true,
-          label:
-            "On Monday, the team tested genre signs on each table in this setting (book exchange market).",
-        },
-        {
           isCorrect: false,
           label:
             "On monday, the team tested genre signs on each table in this setting (book exchange market).",
+        },
+        {
+          isCorrect: true,
+          label:
+            "On Monday, the team tested genre signs on each table in this setting (book exchange market).",
         },
         {
           isCorrect: false,
@@ -71,14 +71,14 @@ const item: QuestionItem = {
             "pada Senin, tim menguji tanda genre di setiap meja di pasar tukar buku.",
         },
         {
-          isCorrect: true,
-          label:
-            "Pada Senin, tim menguji tanda genre di setiap meja di pasar tukar buku.",
-        },
-        {
           isCorrect: false,
           label:
             "Pada senin, tim menguji tanda genre di setiap meja di pasar tukar buku.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Pada Senin, tim menguji tanda genre di setiap meja di pasar tukar buku.",
         },
         {
           isCorrect: false,

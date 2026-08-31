@@ -13,21 +13,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "A volunteer confirms every person in a photograph during one week.",
+            "A volunteer completes the identifications before attaching source notes.",
         },
         {
           isCorrect: false,
-          label: "An archivist asks visitors to remove all original notes.",
-        },
-        {
-          isCorrect: true,
           label:
-            "A volunteer learns to separate observation, memory, and uncertainty in archive records.",
+            "The archivist stores contributor notes separately to keep the main database consistent.",
         },
         {
           isCorrect: false,
           label:
             "A box of photographs is discarded because most names are unknown.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "A volunteer learns to separate observation, memory, and uncertainty in archive records.",
         },
         {
           isCorrect: false,

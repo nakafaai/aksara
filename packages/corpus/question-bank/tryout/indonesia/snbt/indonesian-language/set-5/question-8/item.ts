@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Setiap hasil dalam rangkaian listrik dengan dua lampu pasti berlaku tanpa batas pada tempat lain.",
+            "Mengulang model rangkaian seri dan paralel dengan lebih banyak unit, tetapi tetap memakai penyederhanaan yang sama tanpa pengamatan lapangan.",
         },
         {
           isCorrect: true,
           label:
-            "Model berguna untuk menjelaskan prinsip, tetapi temuannya tetap perlu dihubungkan dengan keadaan nyata.",
+            "mengukur arus dan tegangan pada rangkaian seri serta paralel dengan komponen dan alat ukur yang terkalibrasi.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang rangkaian listrik dengan dua lampu tidak berguna.",
+            "Mengubah seluruh faktor lapangan sekaligus, lalu membandingkan satu hasil akhir tanpa kondisi acuan.",
         },
         {
           isCorrect: false,
           label:
-            "Satu rincian tentang rangkaian tertutup cukup untuk membuktikan semua hubungan sebab-akibat.",
+            "Mengambil satu kejadian nyata yang sesuai dengan model sebagai konfirmasi bahwa pola selalu berlaku.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Mengganti pengukuran dengan survei tentang apakah peserta memahami definisi istilah pada model.",
         },
       ],
     },

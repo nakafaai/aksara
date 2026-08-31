@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Nutzenden Nutzenden im Kontext Informationsstelle im Stadtpark gaben kurze Rückmeldungen.",
+            "Die Nutzenden im Kontext Informationsschalter im Stadtpark gaben kurze und knappe Rückmeldungen.",
         },
         {
           isCorrect: true,
@@ -18,17 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Alle sämtlichen Nutzenden im Kontext Informationsstelle im Stadtpark gaben Rückmeldungen.",
+            "Die Nutzenden im Kontext Informationsschalter im Stadtpark gaben ihre eigenen kurzen Rückmeldungen persönlich ab.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Informationsstelle im Stadtpark gaben kurze knappe Rückmeldungen.",
+            "Die Nutzenden im Kontext Informationsschalter im Stadtpark gaben kurze Rückmeldungen in knapper Form.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Informationsstelle im Stadtpark gaben erneut wieder Rückmeldungen.",
+            "Die Nutzenden im Kontext Informationsschalter im Stadtpark gaben kurze Rückmeldungen über ihre Erfahrungen in diesem Kontext.",
         },
       ],
     },
@@ -38,7 +38,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Users users in this setting (city park information desk) provided brief comments.",
+            "Users in this setting (city park information desk) provided comments that were brief and concise.",
         },
         {
           isCorrect: true,
@@ -48,17 +48,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "All of every user in this setting (city park information desk) provided comments.",
+            "Users in this setting (city park information desk) provided their own brief comments personally.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (city park information desk) provided brief short comments.",
+            "Users in this setting (city park information desk) provided brief comments in a short form.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (city park information desk) provided comments again repeatedly.",
+            "Users in this setting (city park information desk) provided brief comments about their experience in this setting.",
         },
       ],
     },
@@ -68,7 +68,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Para pengguna-pengguna di pusat informasi taman kota memberikan komentar singkat.",
+            "Para pengguna dalam konteks meja informasi taman kota memberikan komentar yang singkat dan ringkas.",
         },
         {
           isCorrect: true,
@@ -78,17 +78,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Sejumlah para pengguna di pusat informasi taman kota memberikan komentar.",
+            "Para pengguna dalam konteks meja informasi taman kota memberikan komentar singkat mereka sendiri secara pribadi.",
         },
         {
           isCorrect: false,
           label:
-            "Para semua pengguna di pusat informasi taman kota memberikan komentar singkat.",
+            "Para pengguna dalam konteks meja informasi taman kota memberikan komentar singkat dalam bentuk pendek.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna di pusat informasi taman kota memberikan komentar singkat pendek.",
+            "Para pengguna dalam konteks meja informasi taman kota memberikan komentar singkat tentang pengalaman mereka dalam konteks tersebut.",
         },
       ],
     },

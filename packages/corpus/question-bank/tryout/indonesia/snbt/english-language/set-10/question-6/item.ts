@@ -6,16 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "The passage only gives a complete history of a youth event-planning group without examining evidence or choice.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage proves that one method must succeed in every a youth event-planning group.",
-        },
-        {
           isCorrect: true,
           label:
             "The organisers of a youth event-planning group evaluated a budget sheet that separated fixed, flexible, and shared costs through a comparison and consultation with affected groups.",
@@ -23,12 +13,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage rejects all observation and relies only on personal preference.",
+            "The organisers of a youth event-planning group evaluated a budget sheet that separated fixed, flexible, and shared costs through consultation alone, without comparing the measured outcome across conditions.",
         },
         {
           isCorrect: false,
           label:
-            "The passage mainly defines fixed cost without connecting it to a setting.",
+            "The organisers of a youth event-planning group evaluated a budget sheet that separated fixed, flexible, and shared costs through the measured comparison alone, while excluding the affected groups' experience from the decision.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The organisers of a youth event-planning group evaluated a budget sheet that separated fixed, flexible, and shared costs through a comparison and consultation, then treated the short trial as sufficient for permanent adoption.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The organisers of a youth event-planning group evaluated a budget sheet that separated fixed, flexible, and shared costs mainly by defining a technical term, with the proposed change serving only as background information.",
         },
       ],
     },

@@ -8,12 +8,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap pengiriman buku antarpulau tanpa membahas keputusan atau bukti.",
+            "Pengelola pengiriman buku antarpulau menilai label tujuan berukuran besar pada setiap kotak melalui masukan pihak terdampak saja, tanpa membandingkan hasil pengukuran.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap pengiriman buku antarpulau.",
+            "Pengelola pengiriman buku antarpulau menilai label tujuan berukuran besar pada setiap kotak melalui data pembanding saja, dengan pengalaman pihak terdampak ditempatkan di luar keputusan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengelola pengiriman buku antarpulau menilai label tujuan berukuran besar pada setiap kotak melalui data dan masukan pihak terdampak, lalu menjadikan uji singkat cukup untuk penerapan tetap.",
         },
         {
           isCorrect: true,
@@ -23,12 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan terutama menjelaskan definisi logistik tanpa menghubungkannya dengan konteks.",
+            "Pengelola pengiriman buku antarpulau menilai label tujuan berukuran besar pada setiap kotak terutama melalui definisi istilah, sedangkan perubahan yang diusulkan hanya menjadi latar bacaan.",
         },
       ],
     },

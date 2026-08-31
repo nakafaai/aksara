@@ -11,13 +11,9 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "Patience can prevent unnecessary repairs and repeated mistakes.",
-        },
-        {
           isCorrect: false,
-          label: "Fast work is always more valuable than accurate work.",
+          label:
+            "Speed should take priority when a repair initially appears routine.",
         },
         {
           isCorrect: false,
@@ -25,11 +21,18 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "A mentor should never allow a learner to solve a problem.",
+          label:
+            "A mentor best protects safety by giving the solution before the learner tests an idea.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Patience can prevent unnecessary repairs and repeated mistakes.",
         },
         {
           isCorrect: false,
-          label: "Similar-looking parts can always be exchanged safely.",
+          label:
+            "Measurements are unnecessary when replacement parts look identical.",
         },
       ],
     },

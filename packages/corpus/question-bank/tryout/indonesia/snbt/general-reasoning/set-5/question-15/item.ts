@@ -6,13 +6,13 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Das Treffen fand im Staatspalast statt",
+        },
+        {
           isCorrect: true,
           label:
             "Die Regierung bat Wirtschaftsvertreter um konkrete und schnell umsetzbare Vorschläge",
-        },
-        {
-          isCorrect: false,
-          label: "Das Treffen fand im Staatspalast statt",
         },
         {
           isCorrect: false,
@@ -35,13 +35,13 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "The meeting took place at the State Palace",
+        },
+        {
           isCorrect: true,
           label:
             "The government requested concrete, quickly implementable input from business representatives",
-        },
-        {
-          isCorrect: false,
-          label: "The meeting took place at the State Palace",
         },
         {
           isCorrect: false,
@@ -64,13 +64,13 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "Pertemuan berlangsung di Istana Negara",
+        },
+        {
           isCorrect: true,
           label:
             "Pemerintah meminta masukan yang konkret dan dapat segera dilaksanakan dari perwakilan dunia usaha",
-        },
-        {
-          isCorrect: false,
-          label: "Pertemuan berlangsung di Istana Negara",
         },
         {
           isCorrect: false,

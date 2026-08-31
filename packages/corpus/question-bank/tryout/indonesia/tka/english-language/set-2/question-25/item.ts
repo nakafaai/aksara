@@ -19,13 +19,13 @@ const item: QuestionItem = {
           label: "Medical advice is named as a higher-risk example.",
         },
         {
-          isCorrect: false,
-          label: "Geography is mentioned in the fourth paragraph.",
-        },
-        {
           isCorrect: true,
           label:
             "Schools should teach source checking as a normal part of every subject.",
+        },
+        {
+          isCorrect: false,
+          label: "Geography is mentioned in the fourth paragraph.",
         },
         {
           isCorrect: false,

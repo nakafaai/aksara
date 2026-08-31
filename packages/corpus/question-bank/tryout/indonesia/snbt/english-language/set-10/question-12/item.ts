@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage states that no action or observation occurred in an event-planning meeting.",
+            "Caleb labelled each estimate and created a separate line for costs that could change; the choice resolves the whole conflict at once and makes any later review unnecessary.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Caleb labelled each estimate and created a separate line for costs that could change; the action transfers responsibility for the unresolved task to another character.",
         },
         {
           isCorrect: true,
           label:
-            "Caleb labelled each estimate and created a separate line for costs that could change.",
+            "Separating changeable costs from labelled estimates lets Caleb keep the budget revisable without pretending that uncertain figures are final.",
         },
         {
           isCorrect: false,
           label:
-            "Everyone in an event-planning meeting obtained exactly the same result without variation.",
+            "Caleb labelled each estimate and created a separate line for costs that could change; the decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
         },
         {
           isCorrect: false,
           label:
-            "The writer removes every detail related to an event-planning meeting.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage presents contingency as proof that no follow-up is needed.",
+            "Caleb labelled each estimate and created a separate line for costs that could change; the setting alone produces the change, so the character's decision has no role in the development.",
         },
       ],
     },

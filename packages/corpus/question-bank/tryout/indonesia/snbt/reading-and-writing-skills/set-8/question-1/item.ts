@@ -6,28 +6,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Fragekarten an jedem Demonstrationstisch.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Tag der offenen Labortür über den beiden anderen Werten.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Fragekarten an jedem Demonstrationstisch.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Fragekarten an jedem Demonstrationstisch.",
-        },
-        {
           isCorrect: true,
           label: "Geordnete Prüfung einer Änderung: Tag der offenen Labortür",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Erste Belege zu Fragekarten an jedem Demonstrationstisch im Kontext „öffentliche Laborführung“",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Prüfung mehrerer gleichzeitiger Änderungen im Kontext „öffentliche Laborführung“",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Rückmeldungen zur dauerhaften Neugestaltung des Kontexts „öffentliche Laborführung“",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Vollständige Bewertung des Kontexts „öffentliche Laborführung“",
         },
       ],
     },
@@ -35,28 +35,27 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "The hypothesis therefore needed a limited test of question cards at each demonstration table.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (open laboratory tour), the trial value exceeded both other values.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change, question cards at each demonstration table, directly addressed the observed uncertainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The next test of question cards at each demonstration table will run for longer.",
-        },
-        {
           isCorrect: true,
           label: "A structured test of one change: open laboratory tour",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Early evidence about question cards at each demonstration table in the context of open laboratory tour",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Testing several simultaneous changes in the context of open laboratory tour",
+        },
+        {
+          isCorrect: false,
+          label:
+            "User reactions to a permanent redesign of open laboratory tour",
+        },
+        {
+          isCorrect: false,
+          label: "A complete evaluation of open laboratory tour",
         },
       ],
     },
@@ -64,28 +63,27 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui kartu pertanyaan untuk setiap meja demonstrasi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Di tur laboratorium terbuka, nilai hari uji melampaui dua nilai lainnya.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan berupa kartu pertanyaan untuk setiap meja demonstrasi langsung menanggapi keraguan yang diamati.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji kartu pertanyaan untuk setiap meja demonstrasi berikutnya akan berlangsung lebih lama.",
-        },
-        {
           isCorrect: true,
           label: "Uji Teratur atas Satu Perubahan: tur laboratorium terbuka",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bukti awal tentang kartu pertanyaan di setiap meja demonstrasi dalam konteks tur laboratorium terbuka",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengujian beberapa perubahan serentak dalam konteks tur laboratorium terbuka",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tanggapan pengguna terhadap perancangan ulang tetap pada tur laboratorium terbuka",
+        },
+        {
+          isCorrect: false,
+          label: "Evaluasi menyeluruh terhadap tur laboratorium terbuka",
         },
       ],
     },

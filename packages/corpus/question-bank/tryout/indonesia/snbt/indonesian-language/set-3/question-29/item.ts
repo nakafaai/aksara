@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti dugaan yang tidak perlu diperiksa pada terminal saat hujan sore",
-        },
-        {
-          isCorrect: false,
-          label:
-            "dalam bacaan, berarti hasil akhir yang selalu berlaku untuk semua keadaan",
+            "Istilah *simbol* memastikan satu kelanjutan cerita sehingga pembaca tidak lagi perlu menafsirkan akhir.",
         },
         {
           isCorrect: true,
           label:
-            "tanda atau benda yang membawa makna lebih luas daripada bentuk harfiahnya",
+            "Definisi *simbol* mengenali perangkat penceritaan yang menghubungkan benda berulang, tindakan tokoh, dan respons yang belum tuntas pada penutup.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti rincian yang sengaja dihapus karena bertentangan dengan pendapat",
+            "Definisi itu menyamakan *simbol* dengan benda yang berulang, bukan dengan sifat penutup cerita.",
         },
         {
           isCorrect: false,
           label:
-            "dalam bacaan, berarti hiasan bahasa yang tidak berhubungan dengan konteks",
+            "Penyebutan *simbol* membuat kesan pribadi pembaca cukup meskipun bertentangan dengan rincian cerita.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Definisi tersebut hanya menerangkan latar sehingga tindakan tokoh dan perubahan makna benda tidak relevan.",
         },
       ],
     },

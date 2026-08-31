@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Karena kondisi perubahan menghasilkan 25, sedangkan nilai awal 29 dan pembanding 28, panel peneduh yang dipasang selama empat jam siang telah terisolasi sebagai satu-satunya penyebab selama volume air, letak termometer, dan waktu pencatatan dibuat sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengulangan paling informatif sebaiknya mengubah volume air, letak termometer, dan waktu pencatatan bersamaan dengan panel peneduh yang dipasang selama empat jam siang agar gabungan kondisi yang lebih realistis dapat diuji.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Keterbatasan bahwa simulasi belum menguji hari berawan atau perubahan kecepatan angin memengaruhi ketelitian angka, tetapi tidak memengaruhi luas penerapan temuan tentang suhu air pada kolam mini.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengulangan dengan lebih banyak unit dapat mempersempit ketidakpastian, tetapi tidak mungkin mengubah penafsiran awal tentang suhu air pada kolam mini.",
+        },
+        {
           isCorrect: true,
           label:
-            "Pola awal mendukung pengulangan yang lebih kuat, bukan klaim bahwa hasil itu selalu berlaku.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Setiap hasil dalam suhu air pada kolam mini pasti berlaku tanpa batas pada tempat lain.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Keterbatasan bacaan membuat seluruh informasi tentang suhu air pada kolam mini tidak berguna.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Satu rincian tentang daya generalisasi cukup untuk membuktikan semua hubungan sebab-akibat.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menyarankan agar pembaca mengabaikan bukti yang tidak sesuai dengan dugaan awal.",
+            "Pada kondisi yang diuji, panel peneduh yang dipasang selama empat jam siang berkaitan dengan perubahan dari 29 dan 28 menjadi 25; karena simulasi belum menguji hari berawan atau perubahan kecepatan angin, pola itu perlu diuji lagi sebelum diperluas menjadi klaim umum.",
         },
       ],
     },

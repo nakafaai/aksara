@@ -6,28 +6,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Ein nachvollziehbarer Katalog muss mehrere Namen samt Quellen bewahren, damit Suchkomfort keine Zuschreibung löscht.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Verantwortlichen könnten den am leichtesten auffindbaren Namen wählen und alle anderen löschen.",
+        },
+        {
           isCorrect: true,
           label:
-            "Das Team prüfte Volumenmarkierungen an jeder Tonne (gemeinschaftliche Regentonnen) und bewertete die Befunde vorsichtig.",
+            "Ein Foto ohne Herstellername verbreitete sich, während das Kuratorenlabel häufiger zitiert wurde als die Familienangabe.",
+        },
+        {
+          isCorrect: false,
+          label: "Suchergebnisse werden die Quelle jedes Namens anzeigen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vorsichtige Prüfung im Kontext gemeinschaftliche Regentonnen: Volumenmarkierungen an jeder Tonne",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 32, lag über 23 und 25.",
+            "Jedes Objekt muss ohne Haupttitel erscheinen, damit alle Namen wirklich gleichgestellt sind.",
         },
       ],
     },
@@ -35,28 +35,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "A traceable catalogue must preserve multiple names and their sources so search convenience does not erase attribution.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The managers could choose the easiest name to search and remove the others.",
+        },
+        {
           isCorrect: true,
           label:
-            "The team tested volume markings on each barrel in the community rainwater barrels and interpreted the evidence cautiously.",
+            "A photograph without the maker's name circulated widely, while the curator's label was cited more often than the family's account.",
+        },
+        {
+          isCorrect: false,
+          label: "Search results will display the source of every name.",
         },
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A cautious trial of volume markings on each barrel: community rainwater barrels",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 32, exceeded both 23 and 25.",
+            "Every object must be displayed without a primary title for all names to be truly equal.",
         },
       ],
     },
@@ -64,28 +64,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Katalog yang dapat ditelusuri perlu menjaga berbagai nama beserta sumbernya agar kemudahan pencarian tidak menghapus atribusi.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Pengelola dapat memilih satu nama yang paling mudah dicari dan menghapus sebutan lainnya.",
+        },
+        {
           isCorrect: true,
           label:
-            "Tim menguji garis ukur volume pada dinding penampung pada penampung air hujan warga dan menafsirkan buktinya secara hati-hati.",
+            "Foto tanpa nama pembuat beredar luas, sedangkan label kurator lebih sering dikutip daripada keterangan keluarga.",
+        },
+        {
+          isCorrect: false,
+          label: "Hasil pencarian akan menampilkan sumber setiap nama.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji Hati-hati dalam dinding penampung pada penampung air hujan warga: garis ukur volume",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 32, melampaui 23 dan 25.",
+            "Setiap objek harus ditampilkan tanpa judul utama agar semua nama benar-benar setara.",
         },
       ],
     },

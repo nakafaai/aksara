@@ -6,29 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Benda yang berulang terutama membangun latar dan hanya sedikit berhubungan dengan konflik.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Keputusan akhir tokoh menghapus ketegangan makna yang sebelumnya dimiliki benda tersebut.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Bacaan memakai motif sebagai label deskriptif tanpa menghubungkannya dengan pilihan tokoh.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Latar menyelesaikan konflik sebelum tindakan akhir tokoh mengubah makna benda.",
+        },
+        {
           isCorrect: true,
           label:
             "Pilihan kecil Wulan mengubah makna label kain dalam menghadapi konflik di gudang kostum teater.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan hanya mencatat sejarah lengkap gudang kostum teater tanpa membahas keputusan atau bukti.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap gudang kostum teater.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan terutama menjelaskan definisi motif tanpa menghubungkannya dengan konteks.",
         },
       ],
     },

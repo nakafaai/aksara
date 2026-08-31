@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Das Team prüfte Themenkarten für Gesprächsanfänge (Sprachaustausch für Lernende) und bewertete die Befunde vorsichtig.",
-        },
-        {
           isCorrect: true,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 27, lag über 19 und 21.",
+            "Verschiedene Quellen verbinden 1912 mit Bau, 1914 mit Nutzung und 1916 mit Einweihung.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
+            "Historische Daten müssen mit den bezeichneten Ereignissen verbunden werden, weil ein Objekt mehrere Anfänge und wichtige Veränderungen haben kann.",
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext Sprachaustausch für Lernende: Themenkarten für Gesprächsanfänge",
+            "Die Stadt könnte das älteste Datum wählen, damit das Denkmal historischer wirkt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die neue Tafel wird eine Zeitleiste mit der Bedeutung jedes Datums zeigen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Wegen mehrerer Daten lässt sich kein Fakt zur Brückengeschichte feststellen.",
         },
       ],
     },
@@ -35,28 +36,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "The team tested topic cards for starting a conversation in the student language exchange and interpreted the evidence cautiously.",
-        },
-        {
           isCorrect: true,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 27, exceeded both 19 and 21.",
+            "Different records connect 1912 with construction, 1914 with use, and 1916 with inauguration.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
+            "Historical dates must be tied to the events they denote because one object can have several beginnings and major changes.",
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of topic cards for starting a conversation: student language exchange",
+            "The city could choose the oldest date to make the monument appear more historic.",
+        },
+        {
+          isCorrect: false,
+          label: "The new plaque will display a timeline explaining each date.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Because several dates exist, no fact about the bridge's history can be established.",
         },
       ],
     },
@@ -64,28 +65,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Tim menguji kartu topik untuk memulai percakapan pada pertukaran bahasa pelajar dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
           isCorrect: true,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 27, melampaui 19 dan 21.",
+            "Dokumen berbeda mengaitkan 1912 dengan konstruksi, 1914 dengan penggunaan, dan 1916 dengan peresmian.",
         },
         {
           isCorrect: false,
           label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
+            "Tanggal sejarah harus disertai peristiwa yang dirujuk karena satu objek dapat memiliki beberapa awal dan perubahan penting.",
         },
         {
           isCorrect: false,
           label:
-            "Uji Hati-hati dalam pertukaran bahasa pelajar: kartu topik untuk memulai percakapan",
+            "Pemerintah kota dapat memilih tanggal yang paling tua agar monumen tampak lebih bersejarah.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Plakat baru akan menampilkan garis waktu dengan arti setiap tanggal.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Karena ada beberapa tanggal, tidak ada satu pun fakta tentang riwayat jembatan yang dapat dipastikan.",
         },
       ],
     },

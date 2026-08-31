@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "(1)-(2)-(3)-(4)",
+          isCorrect: false,
+          label: "(1)-(2)-(4)-(3)",
         },
         {
           isCorrect: false,
+          label: "(2)-(4)-(1)-(3)",
+        },
+        {
+          isCorrect: false,
+          label: "(2)-(1)-(3)-(4)",
+        },
+        {
+          isCorrect: true,
           label: "(2)-(1)-(4)-(3)",
         },
         {
           isCorrect: false,
-          label: "(3)-(1)-(2)-(4)",
-        },
-        {
-          isCorrect: false,
-          label: "(4)-(2)-(3)-(1)",
-        },
-        {
-          isCorrect: false,
-          label: "(1)-(3)-(2)-(4)",
+          label: "(3)-(2)-(1)-(4)",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "(1)-(2)-(3)-(4)",
+          isCorrect: false,
+          label: "(1)-(2)-(4)-(3)",
         },
         {
           isCorrect: false,
+          label: "(2)-(4)-(1)-(3)",
+        },
+        {
+          isCorrect: false,
+          label: "(2)-(1)-(3)-(4)",
+        },
+        {
+          isCorrect: true,
           label: "(2)-(1)-(4)-(3)",
         },
         {
           isCorrect: false,
-          label: "(3)-(1)-(2)-(4)",
-        },
-        {
-          isCorrect: false,
-          label: "(4)-(2)-(3)-(1)",
-        },
-        {
-          isCorrect: false,
-          label: "(1)-(3)-(2)-(4)",
+          label: "(3)-(2)-(1)-(4)",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "(1)-(2)-(3)-(4)",
+          isCorrect: false,
+          label: "(1)-(2)-(4)-(3)",
         },
         {
           isCorrect: false,
+          label: "(2)-(4)-(1)-(3)",
+        },
+        {
+          isCorrect: false,
+          label: "(2)-(1)-(3)-(4)",
+        },
+        {
+          isCorrect: true,
           label: "(2)-(1)-(4)-(3)",
         },
         {
           isCorrect: false,
-          label: "(3)-(1)-(2)-(4)",
-        },
-        {
-          isCorrect: false,
-          label: "(4)-(2)-(3)-(1)",
-        },
-        {
-          isCorrect: false,
-          label: "(1)-(3)-(2)-(4)",
+          label: "(3)-(2)-(1)-(4)",
         },
       ],
     },

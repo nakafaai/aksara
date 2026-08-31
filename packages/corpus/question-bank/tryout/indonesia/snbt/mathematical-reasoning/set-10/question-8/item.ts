@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$20$$",
+          label: "$$12:13$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$13:14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7:6$$",
         },
         {
           isCorrect: true,
-          label: "$$15$$",
+          label: "$$14:13$$",
         },
         {
           isCorrect: false,
-          label: "$$25$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$10$$",
+          label: "$$15:13$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$20$$",
+          label: "$$12:13$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$13:14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7:6$$",
         },
         {
           isCorrect: true,
-          label: "$$15$$",
+          label: "$$14:13$$",
         },
         {
           isCorrect: false,
-          label: "$$25$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$10$$",
+          label: "$$15:13$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$20$$",
+          label: "$$12:13$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$13:14$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$7:6$$",
         },
         {
           isCorrect: true,
-          label: "$$15$$",
+          label: "$$14:13$$",
         },
         {
           isCorrect: false,
-          label: "$$25$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$5$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$10$$",
+          label: "$$15:13$$",
         },
       ],
     },

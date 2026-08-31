@@ -7,22 +7,20 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Kepastian Mutlak tentang ruang penyimpanan karya seni pada malam hari",
+          label: "Benda berulang yang tetap menjadi bagian latar",
+        },
+        {
+          isCorrect: false,
+          label: "Konflik yang selesai sebelum pilihan akhir tokoh",
         },
         {
           isCorrect: false,
           label:
-            "Alasan Mengabaikan Semua Bukti dalam ruang penyimpanan karya seni pada malam hari",
+            "sudut pandang terbatas sebagai istilah tanpa peran dalam cerita",
         },
         {
           isCorrect: false,
-          label: "Sejarah Lengkap sudut pandang terbatas di Seluruh Dunia",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Satu Aturan untuk Setiap ruang penyimpanan karya seni pada malam hari",
+          label: "Akhir yang menghapus ketegangan makna benda",
         },
         {
           isCorrect: true,

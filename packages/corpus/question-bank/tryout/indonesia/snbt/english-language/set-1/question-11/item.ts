@@ -6,11 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label:
-            "a current UNESCO initiative that puts its mission into practice.",
-        },
-        {
           isCorrect: false,
           label: "the architectural history of UNESCO's offices.",
         },
@@ -25,6 +20,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label: "a personal biography of one UNESCO employee.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "a current UNESCO initiative that puts its mission into practice.",
         },
       ],
     },

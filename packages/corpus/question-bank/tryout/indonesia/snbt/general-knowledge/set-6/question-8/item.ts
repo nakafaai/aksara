@@ -8,26 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Fahrgäste ohne Wechsel der Warteschlange und kurze Aussagen von Nutzenden",
+            "Die Rückgabequote des ersten Abends beweist, dass das System unverändert dauerhaft eingeführt werden sollte.",
         },
         {
           isCorrect: true,
-          label: "Der Wert mit Änderung, 28, lag über 19 und 21.",
+          label:
+            "Die erste Rückgabequote kann sowohl den Pfandanreiz als auch die Nähe zur Rückgabestelle widerspiegeln.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Weil Beschwerden auftraten, kann ein Pfand das Verhalten nicht beeinflussen.",
+        },
+        {
+          isCorrect: false,
+          label: "Eine Rückgabestelle wurde verlegt und länger geöffnet.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vorsichtige Prüfung im Kontext Schulbuswarteschlange: eine markierte Spur für jedes Ziel",
+            "Die Abschlussbewertung wird Reinigungskosten und verlorene Behälter berücksichtigen.",
         },
       ],
     },
@@ -37,26 +37,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "passengers boarding without changing queues and short comments from users",
+            "The first-night return rate proves the system should become permanent without revision.",
         },
         {
           isCorrect: true,
-          label: "The intervention value, 28, exceeded both 19 and 21.",
+          label:
+            "The initial return rate may combine the effect of the incentive with the effect of desk proximity.",
         },
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "Because complaints occurred, a deposit cannot influence visitor behaviour.",
+        },
+        {
+          isCorrect: false,
+          label: "One return desk was moved and its hours were extended.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A cautious trial of a marked lane for each destination: school bus queue",
+            "The final evaluation will include washing costs and lost containers.",
         },
       ],
     },
@@ -66,26 +66,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "penumpang yang naik tanpa berpindah antrean dan komentar singkat pengguna",
+            "Tingkat pengembalian malam pertama membuktikan sistem harus diterapkan permanen tanpa perubahan.",
         },
         {
           isCorrect: true,
-          label: "Nilai pada hari dengan perubahan, 28, melampaui 19 dan 21.",
+          label:
+            "Tingkat pengembalian awal mungkin mencampurkan pengaruh insentif dan kedekatan loket.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Karena ada keluhan, uang jaminan tidak mungkin memengaruhi perilaku pengunjung.",
+        },
+        {
+          isCorrect: false,
+          label: "Satu loket dipindahkan dan jam layanannya diperpanjang.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji Hati-hati dalam antrean bus sekolah: penanda jalur untuk setiap tujuan",
+            "Evaluasi akhir akan memasukkan biaya pencucian dan kehilangan wadah.",
         },
       ],
     },

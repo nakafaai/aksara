@@ -18,13 +18,13 @@ const item: QuestionItem = {
           label: "Prasasti pemilihan umum pada dinding bangunan",
         },
         {
-          isCorrect: false,
-          label: "Oven besar dan wadah untuk mengaduk adonan",
-        },
-        {
           isCorrect: true,
           label:
             "Jendela berjeruji dan satu-satunya jalan keluar menuju atrium",
+        },
+        {
+          isCorrect: false,
+          label: "Oven besar dan wadah untuk mengaduk adonan",
         },
       ],
     },

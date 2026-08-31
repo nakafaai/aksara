@@ -11,6 +11,11 @@ const item: QuestionItem = {
             "Jeder für die Jackfrucht angegebene Nährstoffwert ist höher als der entsprechende Wert der Pomelo.",
         },
         {
+          isCorrect: true,
+          label:
+            "Der Gesamtkalziumgehalt von Pampelmuse und Avocado ist niedriger als der Gesamtkalziumgehalt von Ambarella und Jackfrucht.",
+        },
+        {
           isCorrect: false,
           label:
             "Jeder für die Avocado angegebene Nährstoffwert ist höher als der entsprechende Wert der Pomelo.",
@@ -25,11 +30,6 @@ const item: QuestionItem = {
           label:
             "Die Jackfrucht hat bei jedem aufgeführten Nährstoff den höchsten Wert.",
         },
-        {
-          isCorrect: true,
-          label:
-            "Der Gesamtkalziumgehalt von Pampelmuse und Avocado ist niedriger als der Gesamtkalziumgehalt von Ambarella und Jackfrucht.",
-        },
       ],
     },
     en: {
@@ -39,6 +39,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Every nutrient listed for jackfruit is higher than the corresponding value for pomelo.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "The total calcium content of pomelo and avocado is lower than the total calcium content of ambarella and jackfruit.",
         },
         {
           isCorrect: false,
@@ -54,11 +59,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "Jackfruit has the highest value for every nutrient listed.",
         },
-        {
-          isCorrect: true,
-          label:
-            "The total calcium content of pomelo and avocado is lower than the total calcium content of ambarella and jackfruit.",
-        },
       ],
     },
     id: {
@@ -68,6 +68,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Setiap zat gizi yang tercantum pada nangka lebih tinggi daripada nilai yang sama pada jeruk bali.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Jumlah kandungan kalsium jeruk bali dan alpukat lebih rendah dibandingkan jumlah kandungan kalsium kedondong dan nangka.",
         },
         {
           isCorrect: false,
@@ -83,11 +88,6 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Nangka memiliki nilai tertinggi untuk setiap zat gizi yang tercantum.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Jumlah kandungan kalsium jeruk bali dan alpukat lebih rendah dibandingkan jumlah kandungan kalsium kedondong dan nangka.",
         },
       ],
     },

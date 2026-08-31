@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Schriftliche Unterlagen sind immer richtig, während jede mündliche Aussage verworfen werden muss.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Das Museum sollte die spannendste Geschichte wählen und störende Angaben entfernen.",
+        },
+        {
           isCorrect: true,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Offenheit über verbleibende Unsicherheit gehört zur Sorgfalt eines Archivs und bedeutet nicht, dass die Recherche gescheitert ist.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team prüfte eine Erinnerung einen Tag vor jedem Besuch (mobiler Bibliotheksdienst) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 27, lag über 20 und 22.",
+            "Das Museum wird die Überarbeitungsgeschichte des Ausstellungsschildes anzeigen.",
         },
         {
           isCorrect: false,
           label:
-            "Tage, an denen der bisherige Ablauf ohne die geprüfte Änderung beibehalten wurde",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vorsichtige Prüfung im Kontext mobiler Bibliotheksdienst: eine Erinnerung einen Tag vor jedem Besuch",
+            "Das Museum wird Korrekturen mit einer überprüfbaren Quellenangabe annehmen.",
         },
       ],
     },
@@ -35,28 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Written records are always correct, whereas all oral testimony must be rejected.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The museum should choose the most engaging story and remove details that disrupt the narrative.",
+        },
+        {
           isCorrect: true,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "Honesty about what remains uncertain is part of archival rigour, not evidence that the research failed.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested a reminder sent one day before each visit in the mobile library service and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 27, exceeded both 20 and 22.",
+            "The museum will display the exhibition label's revision history.",
         },
         {
           isCorrect: false,
           label:
-            "days when the earlier process continued without the tested change",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A cautious trial of a reminder sent one day before each visit: mobile library service",
+            "The museum will accept corrections that include a verifiable source trail.",
         },
       ],
     },
@@ -64,28 +66,28 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "Catatan tertulis selalu benar, sedangkan semua kesaksian lisan harus ditolak.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Museum sebaiknya memilih kisah paling menarik dan menghapus keterangan yang mengganggu kelancaran cerita.",
+        },
+        {
           isCorrect: true,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Kejujuran tentang bagian yang belum pasti merupakan bagian dari ketelitian arsip, bukan tanda bahwa penelitian gagal.",
+        },
+        {
+          isCorrect: false,
+          label: "Museum akan menampilkan riwayat revisi label pameran.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji pesan pengingat sehari sebelum kunjungan pada layanan perpustakaan keliling dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 27, melampaui 20 dan 22.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "hari ketika alur lama tetap digunakan tanpa perubahan yang diuji",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji Hati-hati dalam layanan perpustakaan keliling: pesan pengingat sehari sebelum kunjungan",
+            "Museum akan menerima koreksi yang dilengkapi asal sumber yang dapat diperiksa.",
         },
       ],
     },

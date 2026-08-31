@@ -20,7 +20,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Semua rekaman langsung dibuang.",
+          label:
+            "Rekaman yang konteksnya belum jelas dipindahkan tanpa pencatatan awal.",
         },
         {
           isCorrect: true,

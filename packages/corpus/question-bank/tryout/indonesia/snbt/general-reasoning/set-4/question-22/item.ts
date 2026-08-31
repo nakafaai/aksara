@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$218$$",
+          label: "$$20\\%$$",
         },
         {
           isCorrect: false,
-          label: "$$224$$",
+          label: "$$22{,}5\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$27{,}5\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$30\\%$$",
         },
         {
           isCorrect: true,
-          label: "$$221$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$227$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$215$$",
+          label: "$$25\\%$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$218$$",
+          label: "$$20\\%$$",
         },
         {
           isCorrect: false,
-          label: "$$224$$",
+          label: "$$22{,}5\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$27{,}5\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$30\\%$$",
         },
         {
           isCorrect: true,
-          label: "$$221$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$227$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$215$$",
+          label: "$$25\\%$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$218$$",
+          label: "$$20\\%$$",
         },
         {
           isCorrect: false,
-          label: "$$224$$",
+          label: "$$22{,}5\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$27{,}5\\%$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$30\\%$$",
         },
         {
           isCorrect: true,
-          label: "$$221$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$227$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$215$$",
+          label: "$$25\\%$$",
         },
       ],
     },

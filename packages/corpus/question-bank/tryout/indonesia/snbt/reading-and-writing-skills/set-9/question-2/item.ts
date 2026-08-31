@@ -7,27 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Pflanzortetiketten auf jedem Tablett.",
+          label: "das gesamte Programm vor dem Ausprobieren ablehnten",
         },
         {
           isCorrect: false,
-          label:
-            "Der Versuchswert lag im Kontext Verteilung von Mangrovensetzlingen über den beiden anderen Werten.",
+          label: "darauf warteten, dass das Team das Programmziel änderte",
         },
         {
           isCorrect: false,
-          label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Pflanzortetiketten auf jedem Tablett.",
+          label: "das gewünschte Endergebnis der Organisation nicht kannten",
         },
         {
           isCorrect: true,
-          label: "festgestellt, ohne bereits eine Ursache zu behaupten",
+          label:
+            "nicht sicher waren, welche Handlung auf den aktuellen Schritt folgen sollte",
         },
         {
           isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Pflanzortetiketten auf jedem Tablett.",
+          label: "einen anderen Schritt zur Prüfung einer Hypothese auswählten",
         },
       ],
     },
@@ -36,27 +33,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "The hypothesis therefore needed a limited test of planting-site labels on every tray.",
+          label: "rejected the entire programme before trying it",
         },
         {
           isCorrect: false,
-          label:
-            "In this setting (mangrove seedling distribution), the trial value exceeded both other values.",
+          label: "waited for staff to change the programme's goal",
         },
         {
           isCorrect: false,
-          label:
-            "The change, planting-site labels on every tray, directly addressed the observed uncertainty.",
+          label: "did not know the final outcome desired by the organisers",
         },
         {
           isCorrect: true,
-          label: "noticed without already claiming a cause",
+          label: "was unsure which action should follow the current stage",
         },
         {
           isCorrect: false,
-          label:
-            "The next test of planting-site labels on every tray will run for longer.",
+          label: "chose a different step in order to test a hypothesis",
         },
       ],
     },
@@ -65,27 +58,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui label lokasi tanam.",
+          label: "menolak seluruh program sebelum mencobanya",
         },
         {
           isCorrect: false,
-          label:
-            "Di pembagian bibit mangrove, nilai hari uji melampaui dua nilai lainnya.",
+          label: "menunggu petugas mengubah tujuan program",
         },
         {
           isCorrect: false,
-          label:
-            "Perubahan berupa label lokasi tanam langsung menanggapi keraguan yang diamati.",
+          label: "tidak mengetahui hasil akhir yang diinginkan pengelola",
         },
         {
           isCorrect: true,
-          label: "mencatat gejala tanpa langsung memastikan penyebabnya",
+          label:
+            "belum yakin tindakan yang harus dilakukan setelah tahap saat ini",
         },
         {
           isCorrect: false,
-          label:
-            "Uji label lokasi tanam berikutnya akan berlangsung lebih lama.",
+          label: "memilih langkah berbeda untuk menguji hipotesis",
         },
       ],
     },

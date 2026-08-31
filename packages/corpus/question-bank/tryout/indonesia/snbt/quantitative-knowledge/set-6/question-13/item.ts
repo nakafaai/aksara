@@ -18,12 +18,12 @@ const item: QuestionItem = {
           label: "$$P + Q = 3$$",
         },
         {
-          isCorrect: false,
-          label: "Kann nicht ermittelt werden.",
-        },
-        {
           isCorrect: true,
           label: "$$P < Q$$",
+        },
+        {
+          isCorrect: false,
+          label: "Kann nicht ermittelt werden.",
         },
       ],
     },
@@ -43,12 +43,12 @@ const item: QuestionItem = {
           label: "$$P + Q = 3$$",
         },
         {
-          isCorrect: false,
-          label: "Cannot be determined.",
-        },
-        {
           isCorrect: true,
           label: "$$P < Q$$",
+        },
+        {
+          isCorrect: false,
+          label: "Cannot be determined.",
         },
       ],
     },
@@ -68,12 +68,12 @@ const item: QuestionItem = {
           label: "$$P + Q = 3$$",
         },
         {
-          isCorrect: false,
-          label: "Tidak dapat ditentukan.",
-        },
-        {
           isCorrect: true,
           label: "$$P < Q$$",
+        },
+        {
+          isCorrect: false,
+          label: "Tidak dapat ditentukan.",
         },
       ],
     },

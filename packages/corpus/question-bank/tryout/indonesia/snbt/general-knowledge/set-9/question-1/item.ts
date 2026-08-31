@@ -7,23 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "genau und frei von vermeidbarer Mehrdeutigkeit",
+          label:
+            "Die Veränderung ist groß genug, um die Entscheidung auch unter Berücksichtigung der Messunsicherheit zu ändern.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Auswirkung ist groß genug, um das Hauptergebnis zu verändern, und nicht nur eine kleine Randabweichung.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Stichprobengröße und Ressourcen werden im Verhältnis zur Reichweite der beabsichtigten Aussage erhöht.",
         },
         {
           isCorrect: true,
-          label: "so klein, dass es das Hauptergebnis nur wenig verändert",
+          label:
+            "Die letzte zusätzliche Einheit bringt gegenüber der vorherigen nur einen geringen Mehrnutzen.",
         },
         {
           isCorrect: false,
-          label: "nach denselben Grundsätzen ohne Widerspruch",
-        },
-        {
-          isCorrect: false,
-          label: "klar und unmittelbar ausgedrückt",
-        },
-        {
-          isCorrect: false,
-          label: "für mehr als eine Deutung offen",
+          label:
+            "Das Team erzielt bei gleicher Qualität ein gleichwertiges Ergebnis mit weniger Zeit und Energie.",
         },
       ],
     },
@@ -32,23 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "exact and free from avoidable ambiguity",
+          label:
+            "The change is large enough to alter the decision after measurement uncertainty is considered.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The effect is large enough to change the main outcome rather than merely adding a small edge variation.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Sample size and resources are increased in proportion to the scope of the intended claim.",
         },
         {
           isCorrect: true,
-          label: "small enough to change the main result only slightly",
+          label:
+            "The final additional unit provides only a small increase in benefit compared with the previous unit.",
         },
         {
           isCorrect: false,
-          label: "following the same principles without contradiction",
-        },
-        {
-          isCorrect: false,
-          label: "stated clearly and directly",
-        },
-        {
-          isCorrect: false,
-          label: "open to more than one interpretation",
+          label:
+            "The team obtains an equivalent output with less time and energy without reducing quality.",
         },
       ],
     },
@@ -57,23 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "tepat dan tidak menimbulkan ketaksaan yang dapat dihindari",
+          label:
+            "Perubahan cukup besar untuk mengubah keputusan setelah ketidakpastian pengukuran turut dipertimbangkan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Dampaknya cukup besar untuk mengubah hasil utama, bukan sekadar variasi kecil di tepi.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Ukuran sampel dan sumber daya ditambah sepadan dengan luas klaim yang hendak dibuat.",
         },
         {
           isCorrect: true,
-          label: "cukup kecil sehingga hanya sedikit mengubah hasil utama",
+          label:
+            "Unit tambahan terakhir hanya memberi kenaikan manfaat yang kecil dibanding unit sebelumnya.",
         },
         {
           isCorrect: false,
-          label: "mengikuti prinsip yang sama tanpa pertentangan",
-        },
-        {
-          isCorrect: false,
-          label: "dinyatakan secara jelas dan langsung",
-        },
-        {
-          isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
+          label:
+            "Tim memperoleh keluaran setara dengan waktu dan energi lebih sedikit tanpa menurunkan mutu.",
         },
       ],
     },

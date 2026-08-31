@@ -7,27 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Geordnete Prüfung einer Änderung: Ausleihe von Sportgeräten",
+          label:
+            "Die Änderung, Fotobeschriftungen an den Rückgaberegalen, ersetzte die Notwendigkeit, die ursprüngliche Unsicherheit zu messen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Fotoetiketten an den Rückgaberegalen.",
+            "Die Änderung, Fotobeschriftungen an den Rückgaberegalen, führte mehrere nicht trennbare Unterschiede ein.",
         },
         {
           isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Ausleihe von Sportgeräten über den beiden anderen Werten.",
+            "Die Änderung, Fotobeschriftungen an den Rückgaberegalen, erklärte, warum die Vergleichswerte identisch waren.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Änderung, Fotobeschriftungen an den Rückgaberegalen, betraf das Endergebnis statt die Quelle der Unsicherheit.",
         },
         {
           isCorrect: true,
           label:
             "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Fotoetiketten an den Rückgaberegalen.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Fotoetiketten an den Rückgaberegalen.",
         },
       ],
     },
@@ -36,27 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A structured test of one change: sports equipment lending",
+          label:
+            "The change, photo labels on the return shelves, replaced the need to measure the original uncertainty.",
         },
         {
           isCorrect: false,
           label:
-            "The hypothesis therefore needed a limited test of photo labels on the return shelves.",
+            "The change, photo labels on the return shelves, introduced several differences that could not be separated.",
         },
         {
           isCorrect: false,
           label:
-            "In this setting (sports equipment lending), the trial value exceeded both other values.",
+            "The change, photo labels on the return shelves, explained why the comparison values were identical.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The change, photo labels on the return shelves, addressed the final outcome rather than the source of uncertainty.",
         },
         {
           isCorrect: true,
           label:
             "The change, photo labels on the return shelves, directly addressed the observed uncertainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The next test of photo labels on the return shelves will run for longer.",
         },
       ],
     },
@@ -65,26 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: peminjaman alat olahraga",
+          label:
+            "Perubahan berupa label foto pada rak pengembalian menggantikan kebutuhan untuk mengukur ketidakpastian awal.",
         },
         {
           isCorrect: false,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui label foto.",
+            "Perubahan berupa label foto pada rak pengembalian menimbulkan beberapa perbedaan yang tidak dapat dipisahkan.",
         },
         {
           isCorrect: false,
           label:
-            "Di peminjaman alat olahraga, nilai hari uji melampaui dua nilai lainnya.",
+            "Perubahan berupa label foto pada rak pengembalian menjelaskan mengapa nilai pembanding sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Perubahan berupa label foto pada rak pengembalian menanggapi hasil akhir, bukan sumber ketidakpastian.",
         },
         {
           isCorrect: true,
           label:
             "Perubahan berupa label foto langsung menanggapi keraguan yang diamati.",
-        },
-        {
-          isCorrect: false,
-          label: "Uji label foto berikutnya akan berlangsung lebih lama.",
         },
       ],
     },

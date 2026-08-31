@@ -6,16 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Geordnete Prüfung einer Änderung: Ausstellung von Schülerarbeiten",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Richtungspfeile an jeder Abzweigung.",
-        },
-        {
           isCorrect: true,
           label:
             "Der Versuchswert lag im Kontext Ausstellung von Schülerarbeiten über den beiden anderen Werten.",
@@ -23,27 +13,28 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Richtungspfeile an jeder Abzweigung.",
+            "Im Kontext Ausstellung von Schülerarbeiten verursachte die Änderung Richtungspfeile an jeder Kreuzung den höheren Testwert.",
         },
         {
           isCorrect: false,
           label:
-            "Der nächste Versuch mit dieser Änderung soll länger dauern: Richtungspfeile an jeder Abzweigung.",
+            "Im Kontext Ausstellung von Schülerarbeiten verbesserten sich sämtliche Teilnehmenden um denselben Wert.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Im Kontext Ausstellung von Schülerarbeiten waren die beiden Vergleichswerte identisch.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Im Kontext Ausstellung von Schülerarbeiten belegte der kurze Test das langfristige Ergebnis.",
         },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: false,
-          label: "A structured test of one change: student work exhibition",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The hypothesis therefore needed a limited test of direction arrows placed at each junction.",
-        },
         {
           isCorrect: true,
           label:
@@ -52,27 +43,28 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change, direction arrows placed at each junction, directly addressed the observed uncertainty.",
+            "In this setting (student work exhibition), direction arrows placed at each junction caused the higher trial value.",
         },
         {
           isCorrect: false,
           label:
-            "The next test of direction arrows placed at each junction will run for longer.",
+            "In this setting (student work exhibition), each participant improved by the same amount.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "In this setting (student work exhibition), the two comparison values were identical.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "In this setting (student work exhibition), the short trial established the long-term result.",
         },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: false,
-          label: "Uji Teratur atas Satu Perubahan: pameran karya siswa",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui panah arah yang ditempatkan.",
-        },
         {
           isCorrect: true,
           label:
@@ -81,12 +73,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan berupa panah arah yang ditempatkan langsung menanggapi keraguan yang diamati.",
+            "Dalam konteks pameran karya siswa, panah arah di setiap persimpangan menyebabkan nilai uji menjadi lebih tinggi.",
         },
         {
           isCorrect: false,
           label:
-            "Uji panah arah yang ditempatkan berikutnya akan berlangsung lebih lama.",
+            "Dalam konteks pameran karya siswa, setiap peserta mengalami peningkatan yang sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Dalam konteks pameran karya siswa, kedua nilai pembanding sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Dalam konteks pameran karya siswa, uji singkat menetapkan hasil jangka panjang.",
         },
       ],
     },

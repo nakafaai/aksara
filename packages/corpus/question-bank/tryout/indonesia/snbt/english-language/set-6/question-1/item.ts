@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage only gives a complete history of enzyme activity in a classroom model without examining evidence or choice.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage proves that one method must succeed in every enzyme activity in a classroom model.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage rejects all observation and relies only on personal preference.",
+            "The class tested how holding the mixture at 37 degrees Celsius affected enzyme activity in a classroom model, while controlling the listed factors but treating one short trial as proof of a universal effect.",
         },
         {
           isCorrect: true,
           label:
-            "The class tested holding the mixture at 37 degrees Celsius in enzyme activity in a classroom model while controlling other factors and reporting a limitation.",
+            "The class tested how holding the mixture at 37 degrees Celsius affected enzyme activity in a classroom model, while controlling other factors and reporting a limitation.",
         },
         {
           isCorrect: false,
           label:
-            "The passage mainly defines enzyme without connecting it to a setting.",
+            "The class tested how holding the mixture at 37 degrees Celsius affected enzyme activity in a classroom model, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The class tested how holding the mixture at 37 degrees Celsius affected enzyme activity in a classroom model, while treating the scientific term as the measured outcome that settles the investigation.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The class tested how holding the mixture at 37 degrees Celsius affected enzyme activity in a classroom model, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
         },
       ],
     },

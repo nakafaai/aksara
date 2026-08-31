@@ -8,26 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Das Team prüfte einen Prüftisch vor der Warteschlange für Techniker (Reparaturwerkstatt für Elektronik) und bewertete die Befunde vorsichtig.",
+            "Inklusive Beteiligung verlangt den Abbau tatsächlicher Hindernisse und die Prüfung der Repräsentation, nicht nur eine offene Einladung.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+            "Fast alle ersten Redebeiträge kamen aus den drei nächstgelegenen Vierteln.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+            "Eine Beratung ist nur gültig, wenn jeder Vorschlag angenommen wird.",
         },
         {
           isCorrect: false,
           label:
-            "Vorsichtige Prüfung im Kontext Reparaturwerkstatt für Elektronik: einen Prüftisch vor der Warteschlange für Techniker",
+            "Wegen der offenen Einladung müssen Herkunft und Abwesenheitsgründe nicht geprüft werden.",
         },
         {
           isCorrect: false,
-          label: "Der Wert mit Änderung, 28, lag über 21 und 23.",
+          label:
+            "Die endgültige Entscheidung wird Auswahl, Einwände und Einfluss der Beiträge festhalten.",
         },
       ],
     },
@@ -37,26 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The team tested an initial inspection desk before the technician queue in the electronics repair clinic and interpreted the evidence cautiously.",
+            "Inclusive participation requires reducing practical barriers and examining representation, not merely issuing an open invitation.",
         },
         {
           isCorrect: false,
           label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+            "Nearly every initial speaker came from the three nearest neighbourhoods.",
         },
         {
           isCorrect: false,
           label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+            "A consultation is valid only if every resident proposal is ultimately accepted.",
         },
         {
           isCorrect: false,
           label:
-            "A cautious trial of an initial inspection desk before the technician queue: electronics repair clinic",
+            "Because the invitation was open, participant origins and reasons for absence need not be examined.",
         },
         {
           isCorrect: false,
-          label: "The intervention value, 28, exceeded both 21 and 23.",
+          label:
+            "The final decision will record the choice, objections, and the influence of contributions.",
         },
       ],
     },
@@ -66,26 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Tim menguji meja pemeriksaan awal sebelum antrean teknisi pada klinik perbaikan elektronik dan menafsirkan buktinya secara hati-hati.",
+            "Partisipasi yang inklusif menuntut pengurangan hambatan nyata dan pemeriksaan keterwakilan, bukan sekadar undangan terbuka.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+            "Hampir seluruh pembicara pertama berasal dari tiga rukun tetangga terdekat.",
         },
         {
           isCorrect: false,
           label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+            "Musyawarah hanya sah jika setiap usulan warga akhirnya diterima.",
         },
         {
           isCorrect: false,
           label:
-            "Uji Hati-hati dalam klinik perbaikan elektronik: meja pemeriksaan awal sebelum antrean teknisi",
+            "Karena undangan terbuka, asal peserta dan alasan ketidakhadiran tidak perlu diperiksa.",
         },
         {
           isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 28, melampaui 21 dan 23.",
+          label:
+            "Keputusan akhir akan mencatat pilihan, keberatan, dan pengaruh masukan.",
         },
       ],
     },

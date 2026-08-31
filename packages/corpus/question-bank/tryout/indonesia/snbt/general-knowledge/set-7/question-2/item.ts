@@ -7,23 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "nach denselben Grundsätzen ohne Widerspruch",
-        },
-        {
-          isCorrect: false,
-          label: "klar und unmittelbar ausgedrückt",
-        },
-        {
-          isCorrect: false,
-          label: "für mehr als eine Deutung offen",
+          label:
+            "Das Feldverfahren wird bei verändertem Wetter angepasst, ohne das Hauptziel oder die zentralen Messregeln zu ändern.",
         },
         {
           isCorrect: true,
-          label: "schnell und angemessen auf neue Informationen reagierend",
+          label:
+            "Das Verfahren wird überarbeitet, nachdem bestätigte Beschwerden eine im ersten Test übersehene Hürde zeigen.",
         },
         {
           isCorrect: false,
-          label: "durch verlässliche Belege gestützt",
+          label:
+            "Die Ausrüstung wird geprüft und verschlissene Teile werden ersetzt, bevor ein Ausfall eintritt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Methode erlaubt mehrere Durchführungswege, die denselben Ergebniskriterien unterliegen.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Bewertung bezieht betroffene Gruppen mit unterschiedlichen Mobilitäts-, Sprach- und Zugangsbedürfnissen ein.",
         },
       ],
     },
@@ -32,23 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "following the same principles without contradiction",
-        },
-        {
-          isCorrect: false,
-          label: "stated clearly and directly",
-        },
-        {
-          isCorrect: false,
-          label: "open to more than one interpretation",
+          label:
+            "The field procedure is adjusted when the weather changes without altering the main objective or measurement rules.",
         },
         {
           isCorrect: true,
-          label: "reacting quickly and appropriately to new information",
+          label:
+            "The procedure is revised after verified complaints reveal a barrier missed in the initial trial.",
         },
         {
           isCorrect: false,
-          label: "supported by dependable evidence",
+          label:
+            "Equipment is inspected and worn parts are replaced before a failure occurs.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The method allows several implementation paths that remain subject to the same outcome criteria.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The evaluation involves affected groups with different mobility, language, and access needs.",
         },
       ],
     },
@@ -57,23 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "mengikuti prinsip yang sama tanpa pertentangan",
-        },
-        {
-          isCorrect: false,
-          label: "dinyatakan secara jelas dan langsung",
-        },
-        {
-          isCorrect: false,
-          label: "terbuka terhadap lebih dari satu penafsiran",
+          label:
+            "Prosedur lapangan disesuaikan saat cuaca berubah tanpa mengubah tujuan dan aturan ukur utama.",
         },
         {
           isCorrect: true,
-          label: "menanggapi informasi baru secara cepat dan tepat",
+          label:
+            "Prosedur direvisi setelah keluhan terverifikasi menunjukkan hambatan yang tidak terdeteksi pada uji awal.",
         },
         {
           isCorrect: false,
-          label: "didukung oleh bukti yang dapat dipercaya",
+          label:
+            "Peralatan diperiksa dan komponen aus diganti sebelum kegagalan terjadi.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Metode menyediakan beberapa jalur pelaksanaan yang tetap tunduk pada kriteria hasil yang sama.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Evaluasi melibatkan kelompok terdampak dengan kebutuhan mobilitas, bahasa, dan akses yang berbeda.",
         },
       ],
     },

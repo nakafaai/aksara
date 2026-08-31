@@ -16,14 +16,14 @@ const item: QuestionItem = {
             "eine Wirksamkaitsanalyse zur geprüften Änderung im Kontext „Lärmprotokoll im Wohngebiet“",
         },
         {
-          isCorrect: false,
-          label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Konteks „Lärmprotokoll im Wohngebiet“",
-        },
-        {
           isCorrect: true,
           label:
             "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontext „Lärmprotokoll im Wohngebiet“",
+        },
+        {
+          isCorrect: false,
+          label:
+            "eine Wirksamkeitsanalyse zur geprüften Änderung im Konteks „Lärmprotokoll im Wohngebiet“",
         },
         {
           isCorrect: false,
@@ -46,14 +46,14 @@ const item: QuestionItem = {
             "an analysis of the effectivness of an example showing how to record sound duration in this setting (neighbourhood noise log)",
         },
         {
-          isCorrect: false,
-          label:
-            "an analisis of the effectiveness of an example showing how to record sound duration in this setting (neighbourhood noise log)",
-        },
-        {
           isCorrect: true,
           label:
             "an analysis of the effectiveness of an example showing how to record sound duration in this setting (neighbourhood noise log)",
+        },
+        {
+          isCorrect: false,
+          label:
+            "an analisis of the effectiveness of an example showing how to record sound duration in this setting (neighbourhood noise log)",
         },
         {
           isCorrect: false,
@@ -76,14 +76,14 @@ const item: QuestionItem = {
             "analisis efektifitas contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
         },
         {
-          isCorrect: false,
-          label:
-            "analisa efektifitas contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
-        },
-        {
           isCorrect: true,
           label:
             "analisis efektivitas contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
+        },
+        {
+          isCorrect: false,
+          label:
+            "analisa efektifitas contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
         },
         {
           isCorrect: false,

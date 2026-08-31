@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Bacaan menyatakan bahwa tidak ada tindakan atau pengamatan dalam produksi gas pada campuran ragi.",
-        },
-        {
           isCorrect: true,
-          label: "Pada kondisi dengan perubahan, hasil rata-rata tercatat 23.",
+          label:
+            "Nilai 23 adalah rata-rata pada air bersuhu 35°C; volume balon hanya memberi perkiraan kasar tentang jumlah gas.",
         },
         {
           isCorrect: false,
           label:
-            "Semua tokoh atau pihak dalam produksi gas pada campuran ragi memperoleh hasil yang sama tanpa perbedaan.",
+            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
         },
         {
           isCorrect: false,
           label:
-            "Penulis menyembunyikan seluruh rincian yang berkaitan dengan produksi gas pada campuran ragi.",
+            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menyebut hipotesis sebagai bukti bahwa uji tidak perlu diulang.",
+            "Pada kondisi dengan perubahan, hasil rata-rata tercatat 23; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
         },
       ],
     },

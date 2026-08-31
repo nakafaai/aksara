@@ -11,14 +11,14 @@ const item: QuestionItem = {
             "eine Wirksamkeitsanalise zur geprüften Änderung im Kontext „Büchertauschmarkt“",
         },
         {
-          isCorrect: false,
-          label:
-            "eine Wirksamkaitsanalyse zur geprüften Änderung im Kontext „Büchertauschmarkt“",
-        },
-        {
           isCorrect: true,
           label:
             "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontext „Büchertauschmarkt“",
+        },
+        {
+          isCorrect: false,
+          label:
+            "eine Wirksamkaitsanalyse zur geprüften Änderung im Kontext „Büchertauschmarkt“",
         },
         {
           isCorrect: false,
@@ -41,14 +41,14 @@ const item: QuestionItem = {
             "an analyse of the effectiveness of genre signs on each table in this setting (book exchange market)",
         },
         {
-          isCorrect: false,
-          label:
-            "an analysis of the effectivness of genre signs on each table in this setting (book exchange market)",
-        },
-        {
           isCorrect: true,
           label:
             "an analysis of the effectiveness of genre signs on each table in this setting (book exchange market)",
+        },
+        {
+          isCorrect: false,
+          label:
+            "an analysis of the effectivness of genre signs on each table in this setting (book exchange market)",
         },
         {
           isCorrect: false,
@@ -71,14 +71,14 @@ const item: QuestionItem = {
             "analisa efektivitas tanda genre di setiap meja di pasar tukar buku",
         },
         {
-          isCorrect: false,
-          label:
-            "analisis efektifitas tanda genre di setiap meja di pasar tukar buku",
-        },
-        {
           isCorrect: true,
           label:
             "analisis efektivitas tanda genre di setiap meja di pasar tukar buku",
+        },
+        {
+          isCorrect: false,
+          label:
+            "analisis efektifitas tanda genre di setiap meja di pasar tukar buku",
         },
         {
           isCorrect: false,

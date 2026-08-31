@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The passage states that no action or observation occurred in a quiet local museum.",
+            "Eli placed one plain sentence beside the longest museum label; the recurring object's physical appearance fixes its complete meaning from the first mention.",
         },
         {
           isCorrect: true,
           label:
-            "Eli placed one plain sentence beside the longest museum label.",
+            "Placing a plain sentence beside the recurring long label makes the contrast between display and access visible, and the ending response confirms its effect.",
         },
         {
           isCorrect: false,
           label:
-            "Everyone in a quiet local museum obtained exactly the same result without variation.",
+            "Eli placed one plain sentence beside the longest museum label; the ending states the object's meaning directly, making the earlier actions irrelevant.",
         },
         {
           isCorrect: false,
           label:
-            "The writer removes every detail related to a quiet local museum.",
+            "Eli placed one plain sentence beside the longest museum label; the setting alone changes the atmosphere, independently of the character's use of the recurring object.",
         },
         {
           isCorrect: false,
           label:
-            "The passage presents tone as proof that no follow-up is needed.",
+            "Eli placed one plain sentence beside the longest museum label; the object keeps one fixed meaning even as the character's action and the final response change.",
         },
       ],
     },

@@ -7,27 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Allein die Temperatur entscheidet darüber, ob der Schädlingsdruck zunimmt",
+          label: "$$47$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$55$$",
         },
         {
           isCorrect: true,
-          label:
-            "Der Klimawandel kann beeinflussen, wo sich Schädlinge ausbreiten und wie große Schäden sie anrichten",
+          label: "$$63$$",
         },
         {
           isCorrect: false,
-          label:
-            "Pflanzenschädlinge und Pflanzenkrankheiten vernichten jedes Jahr bei jeder Nutzpflanze genau denselben Anteil",
+          label: "$$67$$",
         },
         {
           isCorrect: false,
-          label:
-            "Niederschlag und Landnutzung haben keinen Einfluss auf den Schädlingsdruck",
-        },
-        {
-          isCorrect: false,
-          label: "Der Klimawandel macht jeden Schädling überall schädlicher",
+          label: "$$75$$",
         },
       ],
     },
@@ -36,25 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Temperature alone determines whether pest pressure increases",
+          label: "$$47$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$55$$",
         },
         {
           isCorrect: true,
-          label:
-            "Climate change can alter where pests spread and how damaging they become",
+          label: "$$63$$",
         },
         {
           isCorrect: false,
-          label:
-            "Plant pests and diseases destroy exactly the same share of every crop each year",
+          label: "$$67$$",
         },
         {
           isCorrect: false,
-          label: "Rainfall and land use have no effect on pest pressure",
-        },
-        {
-          isCorrect: false,
-          label: "Climate change makes every pest more destructive everywhere",
+          label: "$$75$$",
         },
       ],
     },
@@ -63,27 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Suhu saja menentukan apakah tekanan hama meningkat",
+          label: "$$47$$",
+        },
+        {
+          isCorrect: false,
+          label: "$$55$$",
         },
         {
           isCorrect: true,
-          label:
-            "Perubahan iklim dapat mengubah persebaran hama dan tingkat kerusakan yang ditimbulkannya",
+          label: "$$63$$",
         },
         {
           isCorrect: false,
-          label:
-            "Hama dan penyakit tanaman merusak bagian yang sama persis dari setiap jenis tanaman setiap tahun",
+          label: "$$67$$",
         },
         {
           isCorrect: false,
-          label:
-            "Curah hujan dan penggunaan lahan tidak memengaruhi tekanan hama",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan iklim membuat setiap hama lebih merusak di semua tempat",
+          label: "$$75$$",
         },
       ],
     },

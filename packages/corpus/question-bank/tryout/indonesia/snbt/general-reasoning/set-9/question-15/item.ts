@@ -7,23 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Einige Mitglieder von T7 sind keine Mitglieder von S7.",
+          label: "Alle nicht anonymen Berichte sind verifiziert.",
         },
         {
           isCorrect: false,
-          label: "Alle Mitglieder von T7 sind Mitglieder von R7.",
+          label: "Einige anonymen Berichte sind verifiziert.",
+        },
+        {
+          isCorrect: false,
+          label: "Kein Bezirksbericht ist anonym.",
+        },
+        {
+          isCorrect: false,
+          label: "Jeder archivierte Bericht ist verifiziert.",
         },
         {
           isCorrect: true,
-          label: "Kein Mitglied von R7 ist Mitglied von T7.",
-        },
-        {
-          isCorrect: false,
-          label: "Einige Mitglieder von R7 sind Mitglieder von T7.",
-        },
-        {
-          isCorrect: false,
-          label: "Kein Mitglied von S7 ist Mitglied von R7.",
+          label:
+            "Einige Bezirksberichte werden archiviert und sind nicht anonym.",
         },
       ],
     },
@@ -32,23 +33,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Some members of T7 are not members of S7.",
+          label: "Every non-anonymous report is verified.",
         },
         {
           isCorrect: false,
-          label: "Every member of T7 is a member of R7.",
+          label: "Some anonymous reports are verified.",
+        },
+        {
+          isCorrect: false,
+          label: "No district report is anonymous.",
+        },
+        {
+          isCorrect: false,
+          label: "Every archived report is verified.",
         },
         {
           isCorrect: true,
-          label: "No member of R7 is a member of T7.",
-        },
-        {
-          isCorrect: false,
-          label: "Some members of R7 are members of T7.",
-        },
-        {
-          isCorrect: false,
-          label: "No member of S7 is a member of R7.",
+          label: "Some district reports are archived and are not anonymous.",
         },
       ],
     },
@@ -57,23 +58,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Sebagian anggota T7 bukan anggota S7.",
+          label: "Semua laporan yang tidak anonim telah diverifikasi.",
         },
         {
           isCorrect: false,
-          label: "Semua anggota T7 merupakan anggota R7.",
+          label: "Sebagian laporan anonim telah diverifikasi.",
+        },
+        {
+          isCorrect: false,
+          label: "Tidak ada laporan distrik yang anonim.",
+        },
+        {
+          isCorrect: false,
+          label: "Setiap laporan yang diarsipkan telah diverifikasi.",
         },
         {
           isCorrect: true,
-          label: "Tidak ada anggota R7 yang merupakan anggota T7.",
-        },
-        {
-          isCorrect: false,
-          label: "Sebagian anggota R7 merupakan anggota T7.",
-        },
-        {
-          isCorrect: false,
-          label: "Tidak ada anggota S7 yang merupakan anggota R7.",
+          label:
+            "Sebagian laporan distrik diarsipkan dan bukan laporan anonim.",
         },
       ],
     },

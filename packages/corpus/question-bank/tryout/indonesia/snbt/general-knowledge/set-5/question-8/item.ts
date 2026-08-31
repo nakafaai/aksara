@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            'Der erste Teil vertritt die Behauptung "Die Eröffnungsfeier fand Monate nach dem Umzug einiger Klassen statt"; der folgende nutzt "Schriftliche Dokumente beweisen, dass mündliche Aussagen historisch wertlos sind" als Hauptbeleg.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Der erste Teil legt "Das Archiv sollte die sicherste Aussage wählen und abweichende Aufnahmen löschen" als endgültigen Schluss fest; der folgende nennt nur den Plan "Originalaufnahmen bleiben erhalten, damit spätere Forscher die Deutung neu bewerten können".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Beide Teile halten ohne zusätzliche Prüfung aus derselben Sicht an "Schriftliche Dokumente beweisen, dass mündliche Aussagen historisch wertlos sind" fest.',
+        },
+        {
           isCorrect: true,
-          label: "Der Wert mit Änderung, 31, lag über 24 und 26.",
+          label:
+            "Der Widerspruch führt zur Dokumentenprüfung; deren Ergebnis ermöglicht eine Deutung, die beide Stimmen bewahrt.",
         },
         {
           isCorrect: false,
           label:
-            "Lesesitzungen von mehr als dreißig Minuten und kurze Aussagen von Nutzenden",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vorsichtige Prüfung im Kontext abendlicher Leseraum: ausleihbare Schreibtischlampen",
+            'Der folgende Teil kehrt die Argumentation um und leitet "Das Archiv sollte die sicherste Aussage wählen und abweichende Aufnahmen löschen" aus dem Beleg "Die Eröffnungsfeier fand Monate nach dem Umzug einiger Klassen statt" ab.',
         },
       ],
     },
@@ -35,28 +36,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            'The first part advances the claim "The opening ceremony took place months after some classes moved", and the later part uses "Written documents prove that oral testimony has no historical value" as its main support.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'The first part establishes "The archive should choose the most confident witness and delete inconsistent recordings" as a final conclusion; the later part only states the plan "Original recordings are preserved so later researchers can reassess the interpretation".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Both parts maintain the claim "Written documents prove that oral testimony has no historical value" from the same perspective without adding a test.',
+        },
+        {
           isCorrect: true,
-          label: "The intervention value, 31, exceeded both 24 and 26.",
+          label:
+            "Conflicting testimony prompts document checking, whose results support an interpretation that retains both voices.",
         },
         {
           isCorrect: false,
           label:
-            "reading sessions lasting more than thirty minutes and short comments from users",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "A cautious trial of desk lamps that visitors could borrow: evening reading room",
+            'The later part reverses the argument by deriving "The archive should choose the most confident witness and delete inconsistent recordings" from the evidence "The opening ceremony took place months after some classes moved".',
         },
       ],
     },
@@ -64,28 +66,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            'Bagian awal mengajukan klaim "Upacara peresmian berlangsung beberapa bulan setelah sebagian kelas pindah", lalu bagian kedua memakai "Dokumen tertulis membuktikan bahwa kesaksian lisan tidak memiliki nilai sejarah" sebagai dukungan utama.',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Bagian pertama menetapkan "Arsip harus memilih narasumber yang paling yakin dan menghapus rekaman yang tidak sesuai" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Rekaman asli disimpan agar tafsir dapat dinilai ulang oleh peneliti berikutnya".',
+        },
+        {
+          isCorrect: false,
+          label:
+            'Kedua bagian mempertahankan klaim "Dokumen tertulis membuktikan bahwa kesaksian lisan tidak memiliki nilai sejarah" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+        },
+        {
           isCorrect: true,
-          label: "Nilai pada hari dengan perubahan, 31, melampaui 24 dan 26.",
+          label:
+            "Pertentangan kesaksian memicu pemeriksaan dokumen, lalu hasilnya dipakai untuk menyusun tafsir yang tetap menampilkan kedua suara.",
         },
         {
           isCorrect: false,
           label:
-            "sesi membaca yang bertahan lebih dari tiga puluh menit dan komentar singkat pengguna",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Uji Hati-hati dalam ruang baca malam: lampu meja yang dapat dipinjam",
+            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Arsip harus memilih narasumber yang paling yakin dan menghapus rekaman yang tidak sesuai" dari bukti "Upacara peresmian berlangsung beberapa bulan setelah sebagian kelas pindah".',
         },
       ],
     },

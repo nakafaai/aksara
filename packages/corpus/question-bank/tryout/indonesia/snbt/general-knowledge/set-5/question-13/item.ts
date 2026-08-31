@@ -7,27 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Die Änderung verdient eine längere Prüfung, doch der kurze Versuch erlaubt keine allgemeine Gewissheit.",
+          label: "für jede Verspätung dieselbe Folge festlegen",
         },
         {
           isCorrect: false,
-          label:
-            "Die Aussagen der Nutzenden stützten das Zahlenmuster, bewiesen aber keine einzelne Ursache.",
+          label: "die nach Regeln härteste mögliche Folge wählen",
         },
         {
           isCorrect: false,
-          label:
-            "Vorsichtige Prüfung im Kontext Kantine zur Verringerung von Speiseresten: die Wahl zwischen kleinen und normalen Portionen",
+          label: "Folgen allein nach erwarteten Gebühreneinnahmen bestimmen",
+        },
+        {
+          isCorrect: false,
+          label: "Folgen für jede Person zufällig verändern",
         },
         {
           isCorrect: true,
-          label:
-            "Das Team prüfte die Wahl zwischen kleinen und normalen Portionen (Kantine zur Verringerung von Speiseresten) und bewertete die Befunde vorsichtig.",
-        },
-        {
-          isCorrect: false,
-          label: "Der Wert mit Änderung, 26, lag über 18 und 20.",
+          label: "an Schwere des Fehlers und verursachter Wirkung ausgerichtet",
         },
       ],
     },
@@ -36,27 +32,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "The change deserves a longer test, but the short trial does not support universal certainty.",
+          label: "giving the same consequence for every delay",
         },
         {
           isCorrect: false,
-          label:
-            "User comments supported the numerical pattern but did not prove a single cause.",
+          label: "choosing the harshest consequence permitted by the rules",
         },
         {
           isCorrect: false,
-          label:
-            "A cautious trial of a choice between small and regular portions: food-waste reduction canteen",
+          label: "setting a consequence solely from expected fine revenue",
+        },
+        {
+          isCorrect: false,
+          label: "changing consequences randomly for each user",
         },
         {
           isCorrect: true,
           label:
-            "The team tested a choice between small and regular portions in the food-waste reduction canteen and interpreted the evidence cautiously.",
-        },
-        {
-          isCorrect: false,
-          label: "The intervention value, 26, exceeded both 18 and 20.",
+            "matched to the severity of the mistake and the harm it causes",
         },
       ],
     },
@@ -65,27 +58,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Perubahan layak diuji lebih lama, tetapi uji singkat itu belum mendukung kepastian universal.",
+          label: "memberi konsekuensi yang sama untuk setiap keterlambatan",
         },
         {
           isCorrect: false,
-          label:
-            "Komentar pengguna mendukung pola angka, tetapi tidak membuktikan satu penyebab tunggal.",
+          label: "memilih konsekuensi terberat yang diizinkan aturan",
         },
         {
           isCorrect: false,
-          label:
-            "Uji Hati-hati dalam kantin bebas sisa makanan: pilihan porsi kecil dan porsi biasa",
+          label: "menentukan konsekuensi hanya dari besarnya pendapatan denda",
+        },
+        {
+          isCorrect: false,
+          label: "mengubah konsekuensi secara acak untuk setiap pengguna",
         },
         {
           isCorrect: true,
           label:
-            "Tim menguji pilihan porsi kecil dan porsi biasa pada kantin bebas sisa makanan dan menafsirkan buktinya secara hati-hati.",
-        },
-        {
-          isCorrect: false,
-          label: "Nilai pada hari dengan perubahan, 26, melampaui 18 dan 20.",
+            "sebanding dengan tingkat kesalahan dan dampak yang ditimbulkan",
         },
       ],
     },

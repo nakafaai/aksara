@@ -6,10 +6,6 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "$$72$$ der überlebenden Setzlinge bildeten neue Blätter.",
-        },
-        {
           isCorrect: false,
           label: "Alle $$120$$ Tomatensetzlinge überlebten den ersten Monat.",
         },
@@ -27,15 +23,15 @@ const item: QuestionItem = {
           label:
             "Die überlebenden Setzlinge trugen mehr Früchte als die übrigen.",
         },
+        {
+          isCorrect: true,
+          label: "$$72$$ der überlebenden Setzlinge bildeten neue Blätter.",
+        },
       ],
     },
     en: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label: "$$72$$ of the surviving seedlings produced new leaves.",
-        },
         {
           isCorrect: false,
           label: "All $$120$$ tomato seedlings survived the first month.",
@@ -53,16 +49,15 @@ const item: QuestionItem = {
           isCorrect: false,
           label: "The surviving seedlings produced more fruit than the others.",
         },
+        {
+          isCorrect: true,
+          label: "$$72$$ of the surviving seedlings produced new leaves.",
+        },
       ],
     },
     id: {
       kind: "single-choice",
       options: [
-        {
-          isCorrect: true,
-          label:
-            "Sebanyak $$72$$ bibit yang bertahan hidup menghasilkan daun baru.",
-        },
         {
           isCorrect: false,
           label:
@@ -82,6 +77,11 @@ const item: QuestionItem = {
           isCorrect: false,
           label:
             "Bibit yang bertahan menghasilkan lebih banyak buah daripada bibit lainnya.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "Sebanyak $$72$$ bibit yang bertahan hidup menghasilkan daun baru.",
         },
       ],
     },

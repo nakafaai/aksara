@@ -6,28 +6,29 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label:
+            "The mean result with the change was -4; because it differs from the other conditions, the tested change is the only plausible explanation.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
+        },
+        {
           isCorrect: true,
-          label: "The mean result with the change was -4.",
-        },
-        {
-          isCorrect: false,
           label:
-            "The passage states that no action or observation occurred in the freezing point of salt solutions.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Everyone in the freezing point of salt solutions obtained exactly the same result without variation.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The writer removes every detail related to the freezing point of salt solutions.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage presents solute as proof that no follow-up is needed.",
+            "The changed condition produced a mean of -4 after salt was added under the stated cooling controls; it is the trial result, not a claim about every freezer.",
         },
       ],
     },

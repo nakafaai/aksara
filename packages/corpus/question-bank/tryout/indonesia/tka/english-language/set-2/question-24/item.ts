@@ -12,11 +12,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "To require the same long investigation for every claim",
-        },
-        {
-          isCorrect: false,
-          label: "To remove graphs and quotations from schoolwork",
+          label:
+            "To require a full investigation even when a claim has little consequence",
         },
         {
           isCorrect: true,
@@ -25,11 +22,18 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "To make students distrust every statement",
+          label:
+            "To limit source checking to web pages rather than graphs and quotations",
         },
         {
           isCorrect: false,
-          label: "To place all checking work in one annual lesson",
+          label:
+            "To teach students to suspend acceptance until several experts agree",
+        },
+        {
+          isCorrect: false,
+          label:
+            "To concentrate source-checking instruction in a separate annual workshop",
         },
       ],
     },

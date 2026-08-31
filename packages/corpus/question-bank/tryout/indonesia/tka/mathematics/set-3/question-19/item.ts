@@ -13,20 +13,24 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Der Umfang einer ebenen Figur wird mit $4$ multipliziert.",
+          label: "Der Umfang der Grundfläche wird mit $3$ multipliziert.",
         },
         {
           correctCategoryOrder: 1,
           label:
-            "Der Flächeninhalt einer ebenen Figur wird mit $4^2$ multipliziert.",
+            "Der Flächeninhalt der Grundfläche wird mit $9$ multipliziert.",
         },
         {
           correctCategoryOrder: 1,
-          label: "Das Volumen eines Körpers wird mit $4^3$ multipliziert.",
+          label: "Das Volumen wird mit $\\frac92$ multipliziert.",
         },
         {
           correctCategoryOrder: 2,
-          label: "Die Oberfläche eines Körpers wird mit $4^3$ multipliziert.",
+          label: "Die Mantellinie wird immer mit $\\frac32$ multipliziert.",
+        },
+        {
+          correctCategoryOrder: 2,
+          label: "Die Mantelfläche wird immer mit $\\frac92$ multipliziert.",
         },
       ],
     },
@@ -36,19 +40,23 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "A plane figure's perimeter is multiplied by $4$.",
+          label: "The base circumference is multiplied by $3$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "A plane figure's area is multiplied by $4^2$.",
+          label: "The base area is multiplied by $9$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "A solid's volume is multiplied by $4^3$.",
+          label: "The volume is multiplied by $\\frac92$.",
         },
         {
           correctCategoryOrder: 2,
-          label: "A solid's surface area is multiplied by $4^3$.",
+          label: "The slant height is always multiplied by $\\frac32$.",
+        },
+        {
+          correctCategoryOrder: 2,
+          label: "The lateral area is always multiplied by $\\frac92$.",
         },
       ],
     },
@@ -58,19 +66,23 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Keliling bangun datar dikalikan $4$.",
+          label: "Keliling alas dikalikan $3$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "Luas bangun datar dikalikan $4^2$.",
+          label: "Luas alas dikalikan $9$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "Volume bangun ruang dikalikan $4^3$.",
+          label: "Volume dikalikan $\\frac92$.",
         },
         {
           correctCategoryOrder: 2,
-          label: "Luas permukaan bangun ruang dikalikan $4^3$.",
+          label: "Garis pelukis selalu dikalikan $\\frac32$.",
+        },
+        {
+          correctCategoryOrder: 2,
+          label: "Luas selimut selalu dikalikan $\\frac92$.",
         },
       ],
     },

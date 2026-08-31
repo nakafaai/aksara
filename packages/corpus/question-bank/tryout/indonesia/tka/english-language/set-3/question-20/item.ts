@@ -12,24 +12,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "One speaker used more words than everyone else.",
+          label:
+            "One speaker contributed most of the evidence and invited others only near the end.",
         },
         {
           isCorrect: false,
-          label: "No participant was allowed to revise an opinion.",
+          label:
+            "Participants retained their original positions after restating another view.",
         },
         {
           isCorrect: false,
           label: "The fastest response was accepted without evidence.",
         },
         {
+          isCorrect: false,
+          label:
+            "The focused question was first given to participants who volunteered quickly.",
+        },
+        {
           isCorrect: true,
           label:
             "Restatements were accurate, evidence supported claims, and invitations respected choice.",
-        },
-        {
-          isCorrect: false,
-          label: "Only confident speakers received the question in advance.",
         },
       ],
     },

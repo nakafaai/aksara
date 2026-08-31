@@ -8,17 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan hanya mencatat sejarah lengkap pameran sains keliling tanpa membahas keputusan atau bukti.",
+            "Siswa membandingkan dua jenis sumber tentang pameran sains keliling untuk menyusun penjelasan yang final dan dianggap berlaku untuk semua masa.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membuktikan bahwa satu cara pasti berhasil dalam setiap pameran sains keliling.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Bacaan menolak seluruh pengukuran dan hanya mengandalkan kesan pribadi.",
+            "Siswa membandingkan dua jenis sumber tentang pameran sains keliling untuk menyusun penjelasan yang yang menghapus perbedaan tujuan kedua sumber.",
         },
         {
           isCorrect: true,
@@ -28,7 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan terutama menjelaskan definisi representasi tanpa menghubungkannya dengan konteks.",
+            "Siswa membandingkan dua jenis sumber tentang pameran sains keliling untuk menyusun penjelasan yang dengan mengikuti sumber yang lebih baru secara otomatis.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Siswa membandingkan dua jenis sumber tentang pameran sains keliling untuk menyusun penjelasan yang tanpa menilai asal serta tujuan tiap sumber.",
         },
       ],
     },

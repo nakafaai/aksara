@@ -6,24 +6,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$10$$",
+        },
+        {
           isCorrect: true,
-          label: "F, E, H, G",
+          label: "$$\\frac{40}{3}$$",
         },
         {
           isCorrect: false,
-          label: "E, F, G, H",
+          label: "$$12$$",
         },
         {
           isCorrect: false,
-          label: "F, G, E, H",
+          label: "$$14$$",
         },
         {
           isCorrect: false,
-          label: "G, F, H, E",
-        },
-        {
-          isCorrect: false,
-          label: "H, F, E, G",
+          label: "$$16$$",
         },
       ],
     },
@@ -31,24 +31,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$10$$",
+        },
+        {
           isCorrect: true,
-          label: "F, E, H, G",
+          label: "$$\\frac{40}{3}$$",
         },
         {
           isCorrect: false,
-          label: "E, F, G, H",
+          label: "$$12$$",
         },
         {
           isCorrect: false,
-          label: "F, G, E, H",
+          label: "$$14$$",
         },
         {
           isCorrect: false,
-          label: "G, F, H, E",
-        },
-        {
-          isCorrect: false,
-          label: "H, F, E, G",
+          label: "$$16$$",
         },
       ],
     },
@@ -56,24 +56,24 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
+          isCorrect: false,
+          label: "$$10$$",
+        },
+        {
           isCorrect: true,
-          label: "F, E, H, G",
+          label: "$$\\frac{40}{3}$$",
         },
         {
           isCorrect: false,
-          label: "E, F, G, H",
+          label: "$$12$$",
         },
         {
           isCorrect: false,
-          label: "F, G, E, H",
+          label: "$$14$$",
         },
         {
           isCorrect: false,
-          label: "G, F, H, E",
-        },
-        {
-          isCorrect: false,
-          label: "H, F, E, G",
+          label: "$$16$$",
         },
       ],
     },
