@@ -162,9 +162,10 @@ development or production deployment. Local HTTPS renderer verification may
 use `NODE_EXTRA_CA_CERTS` for its temporary certificate. Never disable TLS
 verification.
 
-The immutable contracts package is released as a GitHub Release archive. It has
-no registry or Git-source fallback. Consumers pin the exact archive and pnpm
-integrity in their lockfile.
+The contracts package is published as `@nakafa/aksara-contracts` through npm
+trusted publishing with provenance. Consumers pin the exact npm version and
+pnpm integrity in their lockfile. An immutable GitHub Release retains the same
+attested archive for independent byte and source verification.
 
 ## Toolchain notes
 

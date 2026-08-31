@@ -1,17 +1,19 @@
 # @nakafa/aksara-contracts
 
 This package defines exact runtime contracts for the Aksara compiler and
-publisher. Nakafa runtime adoption is a separate cutover gated by a proven
-immutable release archive and compatible renderer support.
+publisher. Nakafa runtime adoption is a separate cutover gated by a proven npm
+package, its immutable release archive, and compatible renderer support.
 
 This package contains schemas, branded identifiers, canonical wire encodings,
 and Web Crypto signature verification. It contains no corpus, renderer
 implementation, signing key, deployment credential, or browser-side MDX
 runtime.
 
-Consumers install the exact attested GitHub Release archive recorded in their
-pnpm lockfile. Content requiring a newer contract may be activated only after a
-compatible Nakafa renderer is live.
+Consumers install the exact `@nakafa/aksara-contracts` version from npm and
+commit its pnpm lockfile integrity. npm provenance and the matching immutable
+GitHub Release bind those package bytes to the reviewed Aksara source. Content
+requiring a newer contract may be activated only after a compatible Nakafa
+renderer is live.
 
 Node-only writer and incremental digest exports remain isolated behind package
 conditions. Default-runtime exports used by Convex are audited to reject

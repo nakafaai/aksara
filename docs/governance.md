@@ -1,7 +1,7 @@
 # Repository governance
 
-This file records the external repository controls that were verified on
-2026-08-05. These settings are part of the release boundary but do not replace
+This file records the external repository controls that were verified through
+2026-08-31. These settings are part of the release boundary but do not replace
 artifact signatures, application authorization, or content entitlement checks.
 
 ## Current GitHub state
@@ -47,6 +47,10 @@ artifact signatures, application authorization, or content entitlement checks.
   reviewer is available. Administrator bypass is disabled. The gate remains a
   single-owner control rather than a two-person control while there is only one
   maintainer.
+- The `npm-production` environment has the same protected-branch restriction,
+  owner approval, self-review posture, and disabled administrator bypass. It
+  has no wait timer. Contract publication uses this gate with npm OIDC and no
+  npm access token.
 
 The GitHub controls follow the official documentation for
 [repository rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets),
@@ -82,12 +86,20 @@ there.
 ## Contracts release
 
 The contracts package has one release path: `contracts.yml` builds the exact
-source-owned archive in a source-readable job, then attests and transfers only
-that archive to a minimal `contents: write` and `attestations: read` job. The
-privileged job never checks out source or executes pnpm, Node.js, or repository
-code. Final verification requires the asset bytes, digest, size, immutable
-state, tag, workflow, branch, source SHA, release attestation, and build
-attestation to match.
+source-owned archive, verifies it in an isolated consumer, and attests the
+package plus its standalone provenance verifier. The protected
+`npm-production` job receives only those artifacts, verifies the transported
+bytes, publishes `@nakafa/aksara-contracts` through npm OIDC with provenance,
+and creates a same-SHA draft GitHub Release. It does not check out repository
+source or use an npm access token.
+
+An independent job with no permissions or OIDC identity verifies public npm
+metadata, archive integrity, installed package signatures, and provenance for
+the exact repository, workflow, branch, commit, and environment. Only then does
+the final job publish and verify the immutable GitHub Release. Final proof
+requires npm bytes and provenance plus GitHub asset bytes, digest, size,
+immutable state, scoped package tag, workflow, branch, source SHA, release
+signature, and build attestation to match.
 
 Every protected `main` revision builds only the small verified archive required
 for comparison. One tested TypeScript module compares its exact bytes with the
@@ -95,6 +107,7 @@ latest immutable release, so unchanged contract artifacts stop before the full
 release gate and changed bytes require a greater package version. This
 byte-level decision replaces brittle workflow path lists. Manual dispatch
 remains available for same-SHA mutable recovery because only final immutable
-releases participate in previous-archive comparison. No npm registry token,
-package namespace, Changesets bot, or package bootstrap state participates in
-this boundary.
+releases participate in previous-archive comparison. Historical
+`contracts-v*` releases remain immutable history, while new tags use
+`@nakafa/aksara-contracts@<version>`. No npm registry token, Changesets bot, or
+fixed waiting window participates in this boundary.

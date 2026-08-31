@@ -156,7 +156,7 @@ export const latestIdentity = Effect.fn("AksaraContracts.latestIdentity")(
   }
 );
 
-/** Validates the source version against the complete fetched contract tag set. */
+/** Validates the source version against every immutable contract release asset. */
 export const resolveIdentity = Effect.fn("AksaraContracts.resolveIdentity")(
   function* (packageSource: string, releasesSource: string) {
     const current = yield* packageIdentity(packageSource);
