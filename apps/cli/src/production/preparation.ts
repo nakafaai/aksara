@@ -38,6 +38,7 @@ import { validateRecoveryRevision } from "#cli/recovery";
 interface GitPreparationBase {
   readonly baseTryoutRuntimeBundle: SignedTryoutRuntimeBundle | null;
   readonly checkoutRoot: string;
+  readonly rebuild?: boolean | undefined;
   readonly releaseId: ReleaseId;
   readonly scope: PublicationScope;
 }
@@ -144,6 +145,7 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
             },
       checkoutRoot: input.checkoutRoot,
       published: publishedContentHeads(base),
+      rebuild: input.rebuild,
       rendererManifest,
       scope: input.scope,
     });

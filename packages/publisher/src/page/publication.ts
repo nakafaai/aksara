@@ -88,6 +88,7 @@ export interface PagePublication {
 export interface PagePublicationInput<E, R> {
   readonly checkoutRoot: string;
   readonly published: Stream.Stream<PageHead, E, R>;
+  readonly rebuild?: boolean | undefined;
   readonly rendererManifest: unknown;
   readonly scope?: PublicationScope | undefined;
 }
@@ -206,6 +207,7 @@ export const preparePagePublication: <E, R>(
     checkoutRoot: input.checkoutRoot,
     entries,
     published: validatePublishedHeads(input.published),
+    rebuild: input.rebuild,
     rendererManifest,
     scope: input.scope,
   });

@@ -75,6 +75,7 @@ export interface ContentCatalogPublicationInput<E, R> {
     readonly page: Stream.Stream<PageHead, E, R>;
     readonly question: Stream.Stream<QuestionHead, E, R>;
   };
+  readonly rebuild?: boolean | undefined;
   readonly rendererManifest: unknown;
   readonly scope?: PublicationScope | undefined;
 }
@@ -163,24 +164,28 @@ export const prepareContentCatalog: <E, R>(
   const article = yield* prepareArticlePublication({
     checkoutRoot: input.checkoutRoot,
     published: articleHeads.replay,
+    rebuild: input.rebuild,
     rendererManifest: input.rendererManifest,
     scope: input.scope,
   });
   const material = yield* prepareMaterialPublication({
     checkoutRoot: input.checkoutRoot,
     published: materialHeads.replay,
+    rebuild: input.rebuild,
     rendererManifest: input.rendererManifest,
     scope: input.scope,
   });
   const page = yield* preparePagePublication({
     checkoutRoot: input.checkoutRoot,
     published: pageHeads.replay,
+    rebuild: input.rebuild,
     rendererManifest: input.rendererManifest,
     scope: input.scope,
   });
   const question = yield* prepareQuestionPublication({
     checkoutRoot: input.checkoutRoot,
     published: questionHeads.replay,
+    rebuild: input.rebuild,
     rendererManifest: input.rendererManifest,
     scope: input.scope,
   });

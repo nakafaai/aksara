@@ -16,7 +16,7 @@ Usage:
   aksara --document <path> [--app-locale <id|en|de>]
   aksara check
   aksara status
-  aksara release --release-id <id> --recovery-id <id> --scope <selector>
+  aksara release --release-id <id> --recovery-id <id> --scope <selector> [--rebuild]
   aksara accept --release-id <id> --recovery-id <id>
   aksara recover --release-id <id> --recovery-id <id>
   aksara abort --release-id <id>

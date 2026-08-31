@@ -96,6 +96,22 @@ describe("production preparation", () => {
     })
   );
 
+  it.effect(
+    "passes an explicit full-family rebuild into catalog planning",
+    () =>
+      Effect.gen(function* () {
+        const receipt = yield* productionProgram({
+          command: "release",
+          rebuild: true,
+          recoveryId: releaseId("recovery-rebuild"),
+          releaseId: releaseId("release-rebuild"),
+          scope: FUNCTION_SCOPE,
+        });
+        expect(receipt.releaseId).toBe("release-rebuild");
+        expect(calls.catalogRebuild).toBe(true);
+      })
+  );
+
   it.effect("prepares genesis without requesting nonexistent heads", () =>
     Effect.gen(function* () {
       calls.current = currentState({

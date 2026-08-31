@@ -78,6 +78,7 @@ export function planPagePublication<E, R>(input: {
   readonly checkoutRoot: string;
   readonly entries: readonly PageEntry[];
   readonly published: Stream.Stream<PageHead, E, R>;
+  readonly rebuild?: boolean | undefined;
   readonly rendererManifest: RendererManifestEnvelope;
   readonly scope?: PublicationScope | undefined;
 }): Stream.Stream<

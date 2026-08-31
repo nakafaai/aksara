@@ -105,6 +105,7 @@ export interface ArticlePublication {
 export interface ArticlePublicationInput<E, R> {
   readonly checkoutRoot: string;
   readonly published: Stream.Stream<ArticleHead, E, R>;
+  readonly rebuild?: boolean | undefined;
   readonly rendererManifest: unknown;
   readonly scope?: PublicationScope | undefined;
 }
@@ -283,6 +284,7 @@ export const prepareArticlePublication: <E, R>(
       ownerByHead,
       rendererByCategory
     ),
+    rebuild: input.rebuild,
     rendererManifest,
     scope: input.scope,
   });

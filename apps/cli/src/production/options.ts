@@ -5,13 +5,19 @@ import { productionArgumentsError } from "#cli/production/error";
 
 /** Raw named options collected before domain decoding. */
 export interface RawProductionOptions {
+  rebuild: boolean;
   recoveryId?: string;
   releaseId?: string;
   scope: string[];
 }
 
-type ProductionOption = "--recovery-id" | "--release-id" | "--scope";
-type UniqueProductionOption = Exclude<ProductionOption, "--scope">;
+type ProductionOption =
+  | "--rebuild"
+  | "--recovery-id"
+  | "--release-id"
+  | "--scope";
+type ValueProductionOption = Exclude<ProductionOption, "--rebuild">;
+type UniqueProductionOption = Exclude<ValueProductionOption, "--scope">;
 
 const OPTION_KEYS = {
   "--recovery-id": "recoveryId",
@@ -23,7 +29,10 @@ function isProductionOption(
   value: string | undefined
 ): value is ProductionOption {
   return (
-    value === "--recovery-id" || value === "--release-id" || value === "--scope"
+    value === "--rebuild" ||
+    value === "--recovery-id" ||
+    value === "--release-id" ||
+    value === "--scope"
   );
 }
 
@@ -31,6 +40,9 @@ function isProductionOption(
 function acceptsOption(command: ProductionCommand, option: ProductionOption) {
   if (command === "status") {
     return false;
+  }
+  if (option === "--rebuild") {
+    return command === "release";
   }
   if (option === "--scope") {
     return command === "release";
@@ -45,7 +57,7 @@ function acceptsOption(command: ProductionCommand, option: ProductionOption) {
 export const parseProductionOptions = Effect.fn(
   "AksaraCli.parseProductionOptions"
 )(function* (command: ProductionCommand, args: readonly string[]) {
-  const options: RawProductionOptions = { scope: [] };
+  const options: RawProductionOptions = { rebuild: false, scope: [] };
 
   for (let index = 0; index < args.length; index += 1) {
     const option = args[index];
@@ -54,6 +66,13 @@ export const parseProductionOptions = Effect.fn(
     }
     if (!acceptsOption(command, option)) {
       return yield* productionArgumentsError(command, option, "unknown");
+    }
+    if (option === "--rebuild") {
+      if (options.rebuild) {
+        return yield* productionArgumentsError(command, option, "duplicate");
+      }
+      options.rebuild = true;
+      continue;
     }
     const value = args[index + 1];
     if (!(value && value.trim().length > 0 && !value.startsWith("--"))) {

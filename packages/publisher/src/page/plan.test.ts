@@ -127,15 +127,19 @@ beforeEach(() => {
 });
 
 layer(publishedPageTestLayer)("page plan", (it) => {
-  it.effect(
-    "emits no records and performs no compilation for matching heads",
-    () =>
+  it.effect.each([false, true])(
+    "selects explicit rebuild=%s for matching heads",
+    (rebuild) =>
       Effect.gen(function* () {
         const { publishedHeads } = yield* PublishedPageTestFixtures;
         expect(
-          yield* collectPagePublication({ heads: publishedHeads })
-        ).toEqual([]);
-        expect(compilerState.calls).toBe(0);
+          yield* collectPagePublication({
+            heads: publishedHeads,
+            rebuild,
+            scope: pageFamilyScope,
+          })
+        ).toHaveLength(rebuild ? 15 : 0);
+        expect(compilerState.calls).toBe(rebuild ? 15 : 0);
       })
   );
 
