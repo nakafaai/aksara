@@ -48,10 +48,11 @@ format for untrusted users.
 
 Before Nakafa executes an artifact, the runtime verifies its signed release,
 artifact signature, hashes, delivery policy, projection, and renderer support.
-Every new release must match the complete deployed renderer manifest exactly.
-An additive renderer deployment may continue to read an older signed release
-only after the selected artifact is also proven executable by the live
-renderer. That directional read rule does not authorize publication.
+A release that adopts a renderer change must prove the complete corpus and bind
+the exact deployed manifest. A scoped content-only release may retain the
+active frozen manifest only while pre-activation proves the live renderer is a
+compatible superset. Runtime reads independently prove the selected artifact
+against the live renderer when its hash differs from the frozen manifest.
 
 The release protocol keeps an invisible candidate and a verified signed
 recovery before one atomic activation. Acceptance deliberately removes a
@@ -60,9 +61,9 @@ and workflow status are never authoritative release state.
 
 See:
 
-- [`docs/adr/0001-content-boundary.md`](docs/adr/0001-content-boundary.md) for
+- [`docs/adr/content.md`](docs/adr/content.md) for
   trusted MDX and renderer boundaries.
-- [`docs/adr/0002-release-state.md`](docs/adr/0002-release-state.md) for release,
+- [`docs/adr/release.md`](docs/adr/release.md) for release,
   compatibility, recovery, and cleanup rules.
 - [`docs/publication-scope.md`](docs/publication-scope.md) for canonical release
   scopes.

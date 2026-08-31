@@ -17,7 +17,7 @@ import {
 } from "@nakafa/aksara-contracts/limits";
 import type { RendererComponentRequirement } from "@nakafa/aksara-contracts/renderer/component";
 import { selectRendererDomainCapability } from "@nakafa/aksara-contracts/renderer/contract";
-import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
 import type { Program } from "estree-jsx";
 import { visit } from "estree-util-visit";
@@ -45,7 +45,7 @@ import { createSourcePolicy } from "#compiler/source-policy";
 
 type CompileRequestError =
   | Effect.Error<ReturnType<typeof decodeCompileDocumentRequest>>
-  | Effect.Error<ReturnType<typeof validateLiveRendererManifestHash>>;
+  | Effect.Error<ReturnType<typeof validateRendererManifestHash>>;
 
 /** Captures the searchable plain-text projection from the parsed MDX tree. */
 function capturePlainText(
@@ -125,7 +125,7 @@ export const validateCompileRequest: (
 )((input: unknown) =>
   decodeCompileDocumentRequest(input).pipe(
     Effect.tap((request) =>
-      validateLiveRendererManifestHash(request.rendererManifest)
+      validateRendererManifestHash(request.rendererManifest)
     )
   )
 );

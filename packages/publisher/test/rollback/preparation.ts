@@ -175,6 +175,7 @@ const sourcePrepared = await Effect.runPromise(
     },
     tryoutRuntime: null,
     ...snapshotPolicyBase("test-rollback-source-base"),
+    baseRendererManifestHash: sourceRendererManifest.hash,
     ...emptySnapshotSources,
   }).pipe(Effect.provide(NodeServices.layer))
 );

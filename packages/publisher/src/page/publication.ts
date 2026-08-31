@@ -6,8 +6,8 @@ import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { PageKeySchema } from "@nakafa/aksara-contracts/projection/page";
 import type { PageHead } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import type { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import { validateLiveRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
+import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { isLowerKebab } from "@nakafa/aksara-contracts/text/syntax";
 import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
 import type { FileSystem, Path } from "effect";
@@ -94,7 +94,7 @@ export interface PagePublicationInput<E, R> {
 }
 
 type RendererManifestError = Effect.Error<
-  ReturnType<typeof validateLiveRendererManifestHash>
+  ReturnType<typeof validateRendererManifestHash>
 >;
 
 /** Every failure possible before the replayable page plan is constructed. */

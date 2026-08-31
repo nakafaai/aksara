@@ -76,7 +76,7 @@ export const recoverContentRelease: RecoverContentRelease = Effect.fn(
     release: retained.release,
     rendererManifest: retained.rendererManifest,
   });
-  yield* activation.verify(bundle.release);
+  yield* activation.verify(bundle, "compatible");
   const receipt = yield* target.activateRecovery(bundle.release);
   const verified = yield* validateManifestReceipt(bundle.release, receipt);
   yield* activation.invalidate({

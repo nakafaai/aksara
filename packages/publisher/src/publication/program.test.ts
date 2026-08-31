@@ -93,6 +93,7 @@ const publishMaterialRelease = Effect.fn("MaterialProgramTest.publishRelease")(
             scope: materialFamilyScope,
             tryoutRuntime: null,
             ...snapshotPolicyBase("test-material-base"),
+            baseRendererManifestHash: fixture.rendererManifest.hash,
             ...emptySnapshotSources,
           });
           const state = makeTarget(prepared);
@@ -195,6 +196,7 @@ it.effect(
         manifest: release.manifest,
         projections: Stream.make(projection),
         rendererManifest,
+        rendererPreflight: "exact",
         routes: release.prepared.routes,
         tryoutRuntime: null,
         ...emptySnapshotSources,

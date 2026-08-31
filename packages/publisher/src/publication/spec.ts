@@ -28,6 +28,7 @@ import type {
   ReleaseCleanupRequest,
   RollbackContentReleaseBundle,
 } from "@nakafa/aksara-contracts/release/lifecycle";
+import type { RendererPreflight } from "@nakafa/aksara-contracts/release/policy";
 import type { RollbackPageRequest } from "@nakafa/aksara-contracts/release/rollback/spec";
 import type { RoutePageRequest } from "@nakafa/aksara-contracts/release/route/page";
 import type {
@@ -162,9 +163,10 @@ export class PublicationActivation extends Context.Service<
       readonly cacheChanges: Stream.Stream<ContentCacheChange, E, R>;
       readonly release: SignedContentRelease;
     }) => Effect.Effect<void, E | PublicationActivationError, R>;
-    /** Fails closed when the live renderer differs from the signed release. */
+    /** Fails closed unless live execution covers the frozen release contract. */
     readonly verify: (
-      release: SignedContentRelease
+      bundle: ContentReleaseBundle,
+      preflight: RendererPreflight
     ) => Effect.Effect<void, PublicationActivationError>;
   }
 >()("AksaraPublicationActivation") {}

@@ -14,6 +14,10 @@ const ClosureFieldSchema = Schema.Literals([
   "scope",
 ]);
 
+/** Renderer proof required immediately before one candidate activation. */
+export const RendererPreflightSchema = Schema.Literals(["compatible", "exact"]);
+export type RendererPreflight = typeof RendererPreflightSchema.Type;
+
 /** Locale policy shared by one release and its structured snapshots. */
 export const ReleasePolicySchema = Schema.Struct({
   activeAppLocales: ActiveAppLocaleListSchema,

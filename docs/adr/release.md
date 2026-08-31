@@ -99,8 +99,9 @@ signature or release state.
 3. Recompute and verify every signed candidate count and digest.
 4. Derive, sign, stage, and verify the candidate's exact inverse under the
    operator-selected recovery ID.
-5. Re-fetch the deployed Nakafa renderer manifest and require its exact hash
-   to match the candidate.
+5. Re-fetch the deployed Nakafa renderer manifest. Require an exact hash for a
+   renderer-changing candidate, or prove directional compatibility with the
+   retained frozen manifest for a scoped content-only candidate.
 6. In one Convex mutation, compare the expected base, set `active` to the
    candidate, clear `candidate`, and retain the verified inverse in
    `recovery`.
@@ -171,9 +172,16 @@ Frozen renderer manifests may contain a canonical subset of domains known to
 the current contract so an additive domain deployment can continue reading an
 older active release. Newly created live manifests still require every current
 domain, and every published domain must have a capability in its own envelope.
-Candidate activation and recovery preflight continue to require the exact
-deployed renderer hash. The compatibility seam changes read-time execution,
-not publication authority.
+Compilation, family planning, signing, and staging authenticate the exact
+selected persisted manifest, including a historical subset. Only the live
+renderer fetch and execution preflight require the complete current domain set.
+A release that adopts the new renderer hash requires complete family closure
+and an exact live match. A scoped content-only release retains the active
+frozen manifest and may activate only when the live renderer has the same
+intrinsic contract version, still publishes every frozen published domain, and
+supports every frozen base and published-domain component version. Recovery
+applies the same directional preflight. Runtime execution still checks each
+selected artifact independently.
 
 The signed result catalog digest authenticates the complete canonical result
 set. It is not a per-row inclusion proof. The current design therefore detects
@@ -194,6 +202,8 @@ source repository is public.
 - Content publication does not pretend to transact with a renderer deploy.
 - Additive renderer domains can deploy before publication without breaking the
   older active release.
+- Scoped content publication remains independent of an additive renderer
+  deployment while preserving the active frozen renderer contract.
 - A deployment that understands a newly published domain remains the rollback
   target until that content has been rolled back or superseded.
 - Lost responses and runner crashes resume from durable state.

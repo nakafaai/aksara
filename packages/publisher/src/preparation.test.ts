@@ -21,10 +21,10 @@ import {
 import {
   record as baseTransition,
   contentRecord,
-  historicalRendererManifest,
   rendererManifest,
   head as resultHead,
 } from "#test/publication";
+import { historicalRendererManifest } from "#test/renderer";
 import { makeProgramSnapshotFixture } from "#test/snapshot";
 
 layer(NodeServices.layer)("prepareContentRelease", (it) => {
@@ -118,6 +118,7 @@ layer(NodeServices.layer)("prepareContentRelease", (it) => {
         baseActiveAppLocales: null,
         baseManifestHash: null,
         baseReleaseId: null,
+        baseRendererManifestHash: null,
         ...emptySnapshots,
         records: Stream.suspend(() => {
           invoked = true;
@@ -133,24 +134,19 @@ layer(NodeServices.layer)("prepareContentRelease", (it) => {
     })
   );
 
-  it.effect(
-    "rejects a hash-valid historical renderer before reading source",
-    () =>
-      Effect.gen(function* () {
-        let invoked = false;
-        const error = yield* prepare({
-          records: Stream.suspend(() => {
-            invoked = true;
-            return Stream.make(baseTransition);
-          }),
-          rendererManifest: historicalRendererManifest(),
-        }).pipe(Effect.flip);
-        expect(error).toMatchObject({
-          _tag: "ContractDecodeError",
-          contract: "LiveRendererManifestDomains",
-        });
-        expect(invoked).toBe(false);
-      })
+  it.effect("prepares against an authenticated historical renderer", () =>
+    Effect.gen(function* () {
+      const historical = historicalRendererManifest(rendererManifest);
+      const prepared = yield* prepare({ rendererManifest: historical });
+      expect(prepared.rendererManifest).toEqual(historical);
+      expect(prepared.manifest.rendererManifestHash).toBe(historical.hash);
+      expect(prepared.rendererPreflight).toBe("exact");
+      const retained = yield* prepare({
+        baseRendererManifestHash: historical.hash,
+        rendererManifest: historical,
+      });
+      expect(retained.rendererPreflight).toBe("compatible");
+    })
   );
 
   it.effect("rejects a replacement manifest outside the signed scope", () =>
@@ -247,16 +243,19 @@ layer(NodeServices.layer)("prepareContentRelease", (it) => {
       baseActiveAppLocales: null,
       baseManifestHash: Sha256HashSchema.make(`sha256:${"7".repeat(64)}`),
       baseReleaseId: null,
+      baseRendererManifestHash: null,
     },
     {
       baseActiveAppLocales: ACTIVE_APP_LOCALES,
       baseManifestHash: null,
       baseReleaseId: ReleaseIdSchema.make("test-unpaired-base"),
+      baseRendererManifestHash: rendererManifest.hash,
     },
     {
       baseActiveAppLocales: ACTIVE_APP_LOCALES,
       baseManifestHash: Sha256HashSchema.make(`sha256:${"6".repeat(64)}`),
       baseReleaseId: ReleaseIdSchema.make("test-missing-snapshot-base"),
+      baseRendererManifestHash: rendererManifest.hash,
     },
   ])("rejects an unpaired exact base identity", (base) =>
     Effect.gen(function* () {

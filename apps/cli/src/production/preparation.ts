@@ -7,6 +7,7 @@ import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/life
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
+import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { prepareContentCatalog } from "@nakafa/aksara-publisher/catalog/publication";
@@ -30,7 +31,7 @@ import {
   validateRecoveryBase,
 } from "#cli/production/base";
 import { verifyBaseTryoutRuntimeBundle } from "#cli/production/bundle";
-import { validateRendererTransition } from "#cli/production/renderer";
+import { selectRendererManifest } from "#cli/production/renderer";
 import { selectTryoutRuntimeRefresh } from "#cli/production/runtime";
 import { selectTryoutRuntimeTransition } from "#cli/production/transition";
 import { validateRecoveryRevision } from "#cli/recovery";
@@ -119,15 +120,14 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
     if (input.kind === "rebuild") {
       yield* validateRecoveryRevision(input.sha, aksaraSha);
     }
-    const rendererManifest = yield* validateRendererTransition({
-      base,
-      baseBundle: verifiedBaseBundle,
-      rendererManifest:
-        input.kind === "new"
-          ? input.rendererManifest
-          : input.bundle.rendererManifest,
-      scope: input.scope,
-    });
+    const rendererManifest =
+      input.kind === "new"
+        ? yield* selectRendererManifest({
+            baseBundle: verifiedBaseBundle,
+            rendererManifest: input.rendererManifest,
+            scope: input.scope,
+          })
+        : yield* validateRendererManifestHash(input.bundle.rendererManifest);
     const runtime = yield* selectTryoutRuntimeRefresh({
       base,
       bundle: verifiedBaseTryoutRuntimeBundle,
@@ -177,6 +177,8 @@ export const prepareProductionGit: PrepareProductionGit = Effect.fn(
       baseActiveAppLocales: base?.activeAppLocales ?? null,
       baseManifestHash: base === null ? null : base.manifestHash,
       baseReleaseId: base === null ? null : base.releaseId,
+      baseRendererManifestHash:
+        verifiedBaseBundle?.rendererManifest.hash ?? null,
       baseResultCount: base === null ? 0 : base.resultCount,
       baseResultDigest:
         base === null ? EMPTY_RESULT_CATALOG_DIGEST : base.resultDigest,

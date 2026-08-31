@@ -91,6 +91,7 @@ export function makeVerificationPlan(
     bundle: selectedBundle,
     cacheChanges: Stream.empty,
     projectionSummary: { count: selectedManifest.projectionCount },
+    rendererPreflight: "exact",
     routeSummary: { count: selectedManifest.routeCount },
     runtimes: Effect.sync(runtimes),
     snapshotSummary: {

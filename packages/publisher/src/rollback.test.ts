@@ -4,6 +4,7 @@ import {
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { Effect, Stream } from "effect";
+import { historicalRendererManifest } from "#test/renderer";
 import {
   prepareRollbackFixture,
   proofBundle,
@@ -48,6 +49,23 @@ describe("prepareRollback", () => {
           expect(loadPage).toHaveBeenCalledTimes(1);
         })
       )
+  );
+
+  it.effect("prepares the inverse with a persisted historical renderer", () =>
+    Effect.scoped(
+      Effect.gen(function* () {
+        const loadPage = vi.fn(() => Effect.succeed(rollbackPage));
+        const historical = historicalRendererManifest(rendererManifest);
+        const prepared = yield* prepareRollbackFixture(
+          rollbackTarget(loadPage),
+          historical
+        );
+
+        expect(prepared.rendererManifest).toEqual(historical);
+        expect(prepared.manifest.rendererManifestHash).toBe(historical.hash);
+        expect(loadPage).toHaveBeenCalledTimes(1);
+      })
+    )
   );
 
   it.effect(
