@@ -2,20 +2,20 @@ export const metadata = {
   title: "Panduan Developer",
   description: "Gunakan REST API publik, kontrak OpenAPI, server MCP, dan klien baris perintah Nakafa untuk alur pendidikan yang andal.",
   datePublished: "2026-08-28",
-  dateModified: "2026-08-29",
+  dateModified: "2026-08-31",
 };
 
 # Panduan Developer
 
-Terakhir diperbarui: 29 Agustus 2026
+Terakhir diperbarui: 31 Agustus 2026
 
 Nakafa menyediakan akses publik yang dapat dibaca mesin ke materi belajar multibahasa dan referensi Quran dengan rentang terbatas. Antarmuka ini cocok untuk agen dan aplikasi yang memerlukan input bertipe, kegagalan yang dapat diprediksi, dan referensi konten kanonis. Semua akses bersifat baca-saja, tidak memerlukan akun Nakafa, serta tidak membuka data pelajar privat, pembelian, atau tindakan akun.
 
 ## Implementasi terverifikasi
 
-Antarmuka publik ini telah diverifikasi langsung terhadap commit Nakafa [`2fae54fec31b7cd630a56933b613fa5b9504695a`](https://github.com/nakafaai/nakafa.com/commit/2fae54fec31b7cd630a56933b613fa5b9504695a): indeks REST dan kontrak OpenAPI mengembalikan identitas rilis yang sama, bridge MCP kanonis menyelesaikan penemuan protokol, dan `nakafa-cli@0.1.0` tersedia dari npm.
+Antarmuka publik ini telah diverifikasi langsung terhadap commit Nakafa [`927d7f681a43acb205d8abcbd63101a8ecd31b41`](https://github.com/nakafaai/nakafa.com/commit/927d7f681a43acb205d8abcbd63101a8ecd31b41): indeks REST, kontrak OpenAPI, dan endpoint MCP mengembalikan identitas rilis yang sama, sedangkan `@nakafa/cli@0.1.1` tersedia dari npm dengan bukti asal rilis yang dapat diverifikasi.
 
-Pada revisi tersebut, [`api.ts`](https://github.com/nakafaai/nakafa.com/blob/2fae54fec31b7cd630a56933b613fa5b9504695a/packages/backend/convex/routes/agent/api.ts) memiliki REST, [`route.ts`](https://github.com/nakafaai/nakafa.com/blob/2fae54fec31b7cd630a56933b613fa5b9504695a/packages/backend/convex/routes/agent/mcp/route.ts) memiliki MCP, [`document.ts`](https://github.com/nakafaai/nakafa.com/blob/2fae54fec31b7cd630a56933b613fa5b9504695a/packages/backend/agent/openapi/document.ts) menghasilkan OpenAPI, dan [`program.ts`](https://github.com/nakafaai/nakafa.com/blob/2fae54fec31b7cd630a56933b613fa5b9504695a/packages/cli/src/program.ts) memiliki permukaan perintah CLI.
+Pada revisi tersebut, [`api.ts`](https://github.com/nakafaai/nakafa.com/blob/927d7f681a43acb205d8abcbd63101a8ecd31b41/packages/backend/convex/routes/agent/api.ts) memiliki REST, [`route.ts`](https://github.com/nakafaai/nakafa.com/blob/927d7f681a43acb205d8abcbd63101a8ecd31b41/packages/backend/convex/routes/agent/mcp/route.ts) memiliki MCP, [`document.ts`](https://github.com/nakafaai/nakafa.com/blob/927d7f681a43acb205d8abcbd63101a8ecd31b41/packages/backend/agent/openapi/document.ts) menghasilkan OpenAPI, dan [`program.ts`](https://github.com/nakafaai/nakafa.com/blob/927d7f681a43acb205d8abcbd63101a8ecd31b41/packages/cli/src/program.ts) memiliki permukaan perintah CLI.
 
 ## REST API publik
 
@@ -63,7 +63,7 @@ Kegagalan API yang berasal dari Convex menggunakan RFC 9457 Problem Details deng
 
 ## Model Context Protocol
 
-Endpoint MCP kanonis berada di [https://nakafa.com/mcp](https://nakafa.com/mcp). Gunakan MCP ketika agen sudah mendukung penemuan tool dan pemanggilan tool terstruktur. Gunakan REST untuk integrasi HTTP biasa atau klien yang dibuat dari OpenAPI. Kedua antarmuka menjalankan kapabilitas yang sama di Convex dan memverifikasi publikasi Aksara bertanda tangan yang sama.
+Endpoint MCP kanonis berada di [https://mcp.nakafa.com/mcp](https://mcp.nakafa.com/mcp). Gunakan MCP ketika agen sudah mendukung penemuan tool dan pemanggilan tool terstruktur. Gunakan REST untuk integrasi HTTP biasa atau klien yang dibuat dari OpenAPI. Kedua antarmuka menjalankan kapabilitas yang sama di Convex dan memverifikasi publikasi Aksara bertanda tangan yang sama.
 
 Server menyediakan empat tool baca-saja:
 
@@ -102,13 +102,13 @@ Mcp-Method: tools/list
 
 ## Baris perintah
 
-Paket resmi untuk Node 24 bernama `nakafa-cli`, dengan executable `nakafa`. CLI memanggil REST API publik dan mencetak JSON ringkas secara bawaan. Tambahkan `--pretty` untuk keluaran yang mudah dibaca atau `--api-base` saat memverifikasi endpoint API kompatibel yang berjalan secara lokal atau dihosting secara mandiri.
+Paket resmi untuk Node 24 bernama `@nakafa/cli`, dengan executable `nakafa`. CLI memanggil REST API publik dan mencetak JSON ringkas secara bawaan. Tambahkan `--pretty` untuk keluaran yang mudah dibaca atau `--api-base` saat memverifikasi endpoint API kompatibel yang berjalan secara lokal atau dihosting secara mandiri.
 
 <CodeBlock
   data={[{
     language: "bash",
-    filename: "nakafa-cli.sh",
-    code: `npm install --global nakafa-cli
+    filename: "nakafa.sh",
+    code: `npm install --global @nakafa/cli
 nakafa search persamaan linear
 nakafa quran 1 --from-verse 1 --to-verse 7 --pretty
 nakafa mcp`
