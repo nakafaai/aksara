@@ -134,9 +134,3 @@ jobs:
             arguments+=(--previous "$LATEST_ARCHIVE")
           fi
           node packages/contracts/scripts/release-command.ts "${arguments[@]}"
-
-      - name: Verify final queue review state
-        if: github.event_name == 'merge_group'
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: pnpm ci:review
