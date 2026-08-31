@@ -3,7 +3,7 @@ import type {
   decodeCompileDocumentRequest,
 } from "@nakafa/aksara-contracts/content";
 import type { selectRendererDomainCapability } from "@nakafa/aksara-contracts/renderer/contract";
-import type { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
 import {
   compileValidatedContent,
@@ -30,7 +30,7 @@ export interface CompiledContentResult {
 export type CompileContentError =
   | Effect.Error<ReturnType<typeof decodeCompileDocumentRequest>>
   | Effect.Error<ReturnType<typeof selectRendererDomainCapability>>
-  | Effect.Error<ReturnType<typeof validateLiveRendererManifestHash>>
+  | Effect.Error<ReturnType<typeof validateRendererManifestHash>>
   | AuthoredMetadataDuplicateError
   | AuthoredMetadataMissingError
   | AuthoredMetadataSyntaxError

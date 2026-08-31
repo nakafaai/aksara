@@ -8,6 +8,7 @@ import type {
   ContentReleaseManifest,
   SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
+import type { RendererPreflight } from "@nakafa/aksara-contracts/release/policy";
 import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { TryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
@@ -45,6 +46,7 @@ export interface PreparedTryoutRuntimeTransition {
 export interface PreparedGitRelease<E, R>
   extends PreparedContentReleaseBase<E, R, CurrentContentProjection> {
   readonly kind: "git";
+  readonly rendererPreflight: RendererPreflight;
   readonly tryoutRuntime: PreparedTryoutRuntimeTransition | null;
 }
 

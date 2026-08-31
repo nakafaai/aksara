@@ -58,6 +58,7 @@ export const prepareTestRelease: PrepareTestRelease = Effect.fn(
     baseActiveAppLocales: ACTIVE_APP_LOCALES,
     baseManifestHash: Sha256HashSchema.make(`sha256:${"7".repeat(64)}`),
     baseReleaseId: ReleaseIdSchema.make("test-prepare-base"),
+    baseRendererManifestHash: rendererManifest.hash,
     baseResultCount: 0,
     baseResultDigest: EMPTY_RESULT_CATALOG_DIGEST,
     ...inheritedSnapshots,

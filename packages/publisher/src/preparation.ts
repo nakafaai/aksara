@@ -12,6 +12,7 @@ import {
   updateReleaseItemsDigest,
 } from "@nakafa/aksara-contracts/release/digest";
 import { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release/items";
+import type { RendererPreflight } from "@nakafa/aksara-contracts/release/policy";
 import { verifyReleasePolicyTransition } from "@nakafa/aksara-contracts/release/policy";
 import {
   createResultCatalogDigest,
@@ -37,7 +38,7 @@ import {
   decodeContentSnapshotRows,
   verifyContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot/verify";
-import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { prepareReleaseBase } from "#publisher/preparation/base";
 import { PreparedSnapshotScopeError } from "#publisher/preparation/errors";
@@ -80,9 +81,14 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
 )(function* <E, R>(input: PrepareContentReleaseInput<E, R>) {
   const scope = yield* verifyGitPublicationScope(input.scope);
   const basePolicy = yield* prepareReleaseBase(input);
-  const rendererManifest = yield* validateLiveRendererManifestHash(
+  const rendererManifest = yield* validateRendererManifestHash(
     input.rendererManifest
   );
+  const rendererPreflight: RendererPreflight =
+    input.baseRendererManifestHash === null ||
+    input.baseRendererManifestHash !== rendererManifest.hash
+      ? "exact"
+      : "compatible";
   /** Replays strict replacement-manifest decoding and canonical order checks. */
   const snapshotManifests = decodeContentSnapshotManifests(
     input.snapshotManifests
@@ -228,6 +234,7 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     manifest,
     projections,
     rendererManifest,
+    rendererPreflight,
     routes,
     snapshotManifests,
     snapshotRows,

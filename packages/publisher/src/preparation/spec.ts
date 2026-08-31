@@ -35,7 +35,7 @@ import type {
 import type { ContentSnapshotSet } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import type { verifyContentRendererCompatibility } from "@nakafa/aksara-contracts/renderer/compatibility";
-import type { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { type Effect, Schema, type Stream } from "effect";
 import type {
   PreparedContentCoherenceError,
@@ -115,6 +115,7 @@ export interface PrepareContentReleaseInput<E, R>
   readonly baseActiveAppLocales: ActiveAppLocaleList | null;
   readonly baseManifestHash: Sha256Hash | null;
   readonly baseReleaseId: ReleaseId | null;
+  readonly baseRendererManifestHash: Sha256Hash | null;
   readonly baseResultCount: number;
   readonly baseResultDigest: Sha256Hash;
   readonly previousSnapshots: ContentSnapshotSet | null;
@@ -155,7 +156,7 @@ type ProjectionVerificationError<E, R> = Effect.Error<
 >;
 
 type RendererManifestError = Effect.Error<
-  ReturnType<typeof validateLiveRendererManifestHash>
+  ReturnType<typeof validateRendererManifestHash>
 >;
 
 type RendererCompatibilityError = Effect.Error<

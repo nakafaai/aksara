@@ -15,6 +15,7 @@ import {
   type VerifiedContentReleaseItems,
   verifyContentReleaseItems,
 } from "@nakafa/aksara-contracts/release/items";
+import type { RendererPreflight } from "@nakafa/aksara-contracts/release/policy";
 import {
   decodeContentRoutes,
   type VerifiedContentRoutes,
@@ -23,7 +24,7 @@ import {
 import type { VerifiedContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import { verifySignedContentRelease } from "@nakafa/aksara-contracts/release/verify";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import type { FileSystem, Path } from "effect";
@@ -98,6 +99,7 @@ export interface PublicationPlan<E, R> {
     R
   >;
   readonly projectionSummary: VerifiedContentProjections;
+  readonly rendererPreflight: RendererPreflight;
   readonly routeSummary: VerifiedContentRoutes;
   /** Idempotently restores permanent runtime pairs before any verification. */
   readonly runtimes: Effect.Effect<
@@ -185,7 +187,7 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
   "AksaraPublisher.preparePublicationPlan"
 )(function* <E, R>(invocation: PublicationInvocation<E, R>) {
   const { input } = invocation;
-  const rendererManifest = yield* validateLiveRendererManifestHash(
+  const rendererManifest = yield* validateRendererManifestHash(
     input.rendererManifest
   );
   /** Replays strictly decoded release items for bounded target staging. */
@@ -296,6 +298,10 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
     bundle: { release, rendererManifest },
     cacheChanges,
     projectionSummary,
+    rendererPreflight:
+      invocation.kind === "git"
+        ? invocation.input.rendererPreflight
+        : "compatible",
     routeSummary,
     runtimes,
     snapshotSummary,

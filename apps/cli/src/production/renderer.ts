@@ -3,10 +3,9 @@ import { verifyRendererPolicyTransition } from "@nakafa/aksara-contracts/release
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, type Redacted, Schedule } from "effect";
+import { Effect, type Redacted, Result, Schedule } from "effect";
 import type { HttpClient } from "effect/unstable/http";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
-import type { ProductionBaseIdentity } from "#cli/production/base";
 import { fetchRendererEndpoint } from "#cli/renderer/http";
 
 const RETRY_DELAY = "5 seconds";
@@ -49,23 +48,32 @@ export const fetchProductionRenderer: (
   );
 });
 
-/** Validates one renderer and closes its release scope over retained content. */
-export const validateRendererTransition = Effect.fn(
-  "AksaraCli.validateRendererTransition"
+/** Selects the live renderer only when this release proves its full closure. */
+export const selectRendererManifest = Effect.fn(
+  "AksaraCli.selectRendererManifest"
 )(function* (input: {
-  readonly base: ProductionBaseIdentity | null;
   readonly baseBundle: ContentReleaseBundle | null;
   readonly rendererManifest: unknown;
   readonly scope: PublicationScope;
 }) {
-  const rendererManifest = yield* validateLiveRendererManifestHash(
+  const liveRenderer = yield* validateLiveRendererManifestHash(
     input.rendererManifest
   );
-  yield* verifyRendererPolicyTransition({
-    baseRendererManifestHash: input.baseBundle?.rendererManifest.hash ?? null,
-    baseTryoutSnapshotId: input.base?.snapshots.tryout.resultSnapshotId ?? null,
-    rendererManifestHash: rendererManifest.hash,
+  const activeBundle = input.baseBundle;
+  if (
+    activeBundle === null ||
+    activeBundle.rendererManifest.hash === liveRenderer.hash
+  ) {
+    return liveRenderer;
+  }
+  const transition = yield* verifyRendererPolicyTransition({
+    baseRendererManifestHash: activeBundle.rendererManifest.hash,
+    baseTryoutSnapshotId:
+      activeBundle.release.manifest.snapshots.tryout.resultSnapshotId,
+    rendererManifestHash: liveRenderer.hash,
     scope: input.scope,
-  });
-  return rendererManifest;
+  }).pipe(Effect.result);
+  return Result.isSuccess(transition)
+    ? liveRenderer
+    : activeBundle.rendererManifest;
 });

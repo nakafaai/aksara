@@ -1,4 +1,4 @@
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import {
   ArtifactRendererComponentMissingError,
   ArtifactRendererDomainUnpublishedError,
@@ -8,10 +8,89 @@ import {
 } from "#contracts/artifact/spec";
 import type { CompiledContentPayload } from "#contracts/content";
 import {
+  type RendererCapability,
+  RendererComponentRequirementSchema,
+} from "#contracts/renderer/component";
+import {
   type RendererManifestEnvelope,
   selectRendererDomainCapability,
 } from "#contracts/renderer/contract";
+import { RendererDomainSchema } from "#contracts/renderer/domain";
 import { validateRendererManifestHash } from "#contracts/renderer/manifest";
+
+const RendererCapabilityScopeSchema = Schema.Union([
+  Schema.Literal("base"),
+  RendererDomainSchema,
+]);
+
+/** A live renderer no longer publishes one domain frozen by a signed release. */
+export class RendererManifestDomainUnpublishedError extends Schema.TaggedError<RendererManifestDomainUnpublishedError>()(
+  "RendererManifestDomainUnpublishedError",
+  { rendererDomain: RendererDomainSchema }
+) {}
+
+/** A live renderer no longer supports one exact frozen component version. */
+export class RendererManifestComponentUnsupportedError extends Schema.TaggedError<RendererManifestComponentUnsupportedError>()(
+  "RendererManifestComponentUnsupportedError",
+  {
+    componentName: RendererComponentRequirementSchema.fields.name,
+    componentVersion: RendererComponentRequirementSchema.fields.version,
+    rendererScope: RendererCapabilityScopeSchema,
+  }
+) {}
+
+/** Requires every frozen runtime component pair from one physical registry. */
+const verifyCapabilitySuperset = Effect.fn(
+  "AksaraContracts.verifyRendererCapabilitySuperset"
+)(function* (
+  frozen: RendererCapability,
+  live: RendererCapability,
+  rendererScope: typeof RendererCapabilityScopeSchema.Type
+) {
+  const supported = new Set(
+    live.supportedComponents.map(({ name, version }) => `${name}:${version}`)
+  );
+  for (const requirement of frozen.supportedComponents) {
+    if (supported.has(`${requirement.name}:${requirement.version}`)) {
+      continue;
+    }
+    return yield* new RendererManifestComponentUnsupportedError({
+      componentName: requirement.name,
+      componentVersion: requirement.version,
+      rendererScope,
+    });
+  }
+});
+
+/** Proves a current live renderer can execute every frozen release capability. */
+export const verifyRendererManifestCompatibility = Effect.fn(
+  "AksaraContracts.verifyRendererManifestCompatibility"
+)(function* (input: {
+  readonly frozen: RendererManifestEnvelope;
+  readonly live: RendererManifestEnvelope;
+}) {
+  if (input.frozen.hash === input.live.hash) {
+    return input.live;
+  }
+  yield* verifyCapabilitySuperset(input.frozen.base, input.live.base, "base");
+  for (const rendererDomain of input.frozen.publishedDomains) {
+    if (!input.live.publishedDomains.includes(rendererDomain)) {
+      return yield* new RendererManifestDomainUnpublishedError({
+        rendererDomain,
+      });
+    }
+    const frozen = yield* selectRendererDomainCapability(
+      input.frozen,
+      rendererDomain
+    );
+    const live = yield* selectRendererDomainCapability(
+      input.live,
+      rendererDomain
+    );
+    yield* verifyCapabilitySuperset(frozen, live, rendererDomain);
+  }
+  return input.live;
+});
 
 /** Confirms that base plus the selected domain implement every requirement. */
 function validateRendererRequirements(

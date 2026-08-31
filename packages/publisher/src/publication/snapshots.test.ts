@@ -62,6 +62,7 @@ const prepareProgramRelease = Effect.fn(
     snapshotRows: snapshot.snapshotRows,
     tryoutRuntime: null,
     ...snapshotPolicyBase("test-program-snapshot-base"),
+    baseRendererManifestHash: rendererManifest.hash,
   });
   return { prepared, snapshot };
 });

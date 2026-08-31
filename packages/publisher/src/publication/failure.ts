@@ -4,7 +4,7 @@ import type { verifyContentReleaseItems } from "@nakafa/aksara-contracts/release
 import type { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";
 import type { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import type { verifySignedContentRelease } from "@nakafa/aksara-contracts/release/verify";
-import type { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { verifyTryoutRuntimeBundleSource } from "@nakafa/aksara-contracts/tryout/runtime/source";
 import type { verifySignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/verify";
 import type { Effect } from "effect";
@@ -33,7 +33,7 @@ export type SnapshotVerificationError<E, R> = Effect.Error<
 
 /** Failure inferred from renderer-manifest hash validation. */
 export type RendererManifestValidationError = Effect.Error<
-  ReturnType<typeof validateLiveRendererManifestHash>
+  ReturnType<typeof validateRendererManifestHash>
 >;
 
 /** Failure inferred from signed artifact verification. */

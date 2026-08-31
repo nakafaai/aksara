@@ -25,6 +25,7 @@ import {
   rendererManifest,
   sourceByPath,
 } from "#test/question/spec";
+import { historicalRendererManifest } from "#test/renderer";
 import { selectTryoutSlice } from "#test/tryout-slice";
 
 interface TestProjection {
@@ -123,14 +124,15 @@ const snapshotTestLayer = Layer.effect(
 const prepare = Effect.fn("TryoutSnapshotTest.prepare")(
   (
     tryoutHeads: readonly QuestionHead[],
-    inputHeads: readonly QuestionHead[] = tryoutHeads
+    inputHeads: readonly QuestionHead[] = tryoutHeads,
+    renderer = rendererManifest
   ) =>
     Effect.scoped(
       Effect.gen(function* () {
         const prepared = yield* prepareTryoutSnapshot({
           checkoutRoot,
           questionHeads: Stream.fromIterable(inputHeads),
-          rendererManifest,
+          rendererManifest: renderer,
         });
         const [first, second] = yield* Effect.all([
           prepared.rows.pipe(Stream.runCollect),
@@ -213,6 +215,21 @@ layer(snapshotTestLayer, { timeout: "30 seconds" })(
             })
           ).toBe(true);
         })
+    );
+
+    it.effect("prepares against an authenticated historical renderer", () =>
+      Effect.gen(function* () {
+        const fixture = yield* TryoutSnapshotTestFixtures;
+        const historical = historicalRendererManifest(rendererManifest);
+        const prepared = yield* prepare(
+          fixture.tryoutHeads,
+          fixture.tryoutHeads,
+          historical
+        );
+
+        expect(prepared.first.length).toBeGreaterThan(0);
+        expect(prepared.second).toEqual(prepared.first);
+      })
     );
 
     it.effect("preserves renderer and desired-head source failures", () =>

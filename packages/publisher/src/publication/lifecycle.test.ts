@@ -11,6 +11,7 @@ import { PublicationStaleBaseError } from "#publisher/target/errors";
 import {
   makeVerificationPlan,
   provideVerificationKey,
+  verificationBundle,
   verificationManifest,
   verificationReceipt,
   verificationRelease,
@@ -32,7 +33,7 @@ describe("publication lifecycle", () => {
           )
         )
       );
-      expect(verify).toHaveBeenCalledWith(verificationRelease);
+      expect(verify).toHaveBeenCalledWith(verificationBundle, "exact");
     })
   );
 

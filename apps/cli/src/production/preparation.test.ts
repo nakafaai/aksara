@@ -197,7 +197,7 @@ describe("production preparation", () => {
   );
 
   it.effect(
-    "requires complete retained-artifact proof for a new renderer",
+    "adopts a new renderer only with complete retained-artifact proof",
     () =>
       Effect.gen(function* () {
         const active = gitBundle("release-renderer-base", {
@@ -219,14 +219,18 @@ describe("production preparation", () => {
         activate();
         calls.rendererManifestOverride = yield* refreshedRendererManifest;
 
-        const failure = yield* productionProgram({
+        const partial = yield* productionProgram({
           command: "release",
           recoveryId: releaseId("recovery-renderer-partial"),
           releaseId: releaseId("release-renderer-partial"),
           scope: FUNCTION_SCOPE,
-        }).pipe(Effect.flip);
-        expect(failure.failure).toBe("ReleasePolicyClosureError");
-        expect(calls.catalogCalls).toBe(0);
+        });
+        expect(partial.releaseId).toBe("release-renderer-partial");
+        expect(calls).toMatchObject({
+          catalogCalls: 1,
+          runtimeBundleRefreshes: 0,
+          snapshotCalls: 0,
+        });
 
         calls.reset();
         activate();

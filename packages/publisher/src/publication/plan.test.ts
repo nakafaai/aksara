@@ -72,6 +72,7 @@ function prepareDeletion<E>(
       baseActiveAppLocales: ACTIVE_APP_LOCALES,
       baseManifestHash: Sha256HashSchema.make(`sha256:${"b".repeat(64)}`),
       baseReleaseId,
+      baseRendererManifestHash: rendererManifest.hash,
       baseResultCount: base.count,
       baseResultDigest: base.digest,
       previousSnapshots: inheritContentSnapshots(null),
@@ -128,6 +129,7 @@ const prepareProgramOnly = Effect.fn("AksaraPublisherTest.prepareProgramOnly")(
       snapshotRows: snapshot.snapshotRows,
       tryoutRuntime: null,
       ...snapshotPolicyBase("test-plan-program-base"),
+      baseRendererManifestHash: rendererManifest.hash,
     });
   }
 );

@@ -80,7 +80,13 @@ layer(Layer.succeed(ContentVerificationKeyResolver, testVerificationResolver))(
           );
 
           expect(receipt.releaseId).toBe(published.input.recoveryId);
-          expect(verify).toHaveBeenCalledWith(published.recovery.release);
+          expect(verify).toHaveBeenCalledWith(
+            {
+              release: published.recovery.release,
+              rendererManifest: published.recovery.rendererManifest,
+            },
+            "compatible"
+          );
           expect(invalidate).toHaveBeenCalledWith(
             expect.objectContaining({ release: published.recovery.release })
           );

@@ -19,12 +19,14 @@ export const prepareReleaseBase = Effect.fn(
   if (
     hasBaseRelease !== (input.baseManifestHash !== null) ||
     hasBaseRelease !== (basePolicy !== null) ||
+    hasBaseRelease !== (input.baseRendererManifestHash !== null) ||
     hasBaseRelease !== (input.previousSnapshots !== null)
   ) {
     return yield* new PreparedReleaseBaseIdentityError({
       baseManifestHash: input.baseManifestHash,
       baseReleaseId: input.baseReleaseId,
       hasBaseActiveAppLocales: input.baseActiveAppLocales !== null,
+      hasRendererBase: input.baseRendererManifestHash !== null,
       hasSnapshotBase: input.previousSnapshots !== null,
     });
   }

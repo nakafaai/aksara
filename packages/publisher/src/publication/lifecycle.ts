@@ -23,7 +23,7 @@ export const verifyCandidateActivation: VerifyCandidateActivation = Effect.fn(
   "AksaraPublisher.verifyCandidateActivation"
 )(function* <E, R>(plan: PublicationPlan<E, R>) {
   const activation = yield* PublicationActivation;
-  yield* activation.verify(plan.bundle.release);
+  yield* activation.verify(plan.bundle, plan.rendererPreflight);
 });
 
 /** Atomically activates one candidate whose inverse is already verified. */

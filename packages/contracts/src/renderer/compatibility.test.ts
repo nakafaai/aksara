@@ -1,7 +1,12 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 import { CompiledContentPayloadSchema } from "#contracts/content";
-import { verifyContentRendererCompatibility } from "#contracts/renderer/compatibility";
+import {
+  verifyContentRendererCompatibility,
+  verifyRendererManifestCompatibility,
+} from "#contracts/renderer/compatibility";
+import { createRendererManifest } from "#contracts/renderer/manifest";
+import { testRendererDomains } from "#contracts/test/renderer";
 import { artifact, rendererManifest } from "#contracts/test/request";
 
 /** Returns one live-renderer verification program for a payload override. */
@@ -56,5 +61,110 @@ describe("renderer compatibility", () => {
           "RendererContractVersionMismatchError",
         ]);
       })
+  );
+
+  it.effect("accepts an additive live superset of one frozen manifest", () =>
+    Effect.gen(function* () {
+      const added = [
+        { name: "BlockMath", version: 1 },
+        { name: "InlineMath", version: 1 },
+      ] as const;
+      const live = yield* createRendererManifest({
+        base: {
+          authoringComponents: added,
+          supportedComponents: added,
+        },
+        domains: testRendererDomains({
+          site: [{ name: "Callout", version: 1 }],
+        }),
+        publishedDomains: ["mathematics", "site"],
+      });
+
+      expect(
+        yield* verifyRendererManifestCompatibility({
+          frozen: rendererManifest,
+          live: rendererManifest,
+        })
+      ).toEqual(rendererManifest);
+      expect(
+        yield* verifyRendererManifestCompatibility({
+          frozen: rendererManifest,
+          live,
+        })
+      ).toEqual(live);
+    })
+  );
+
+  it.effect(
+    "rejects removed frozen components and unpublished frozen domains",
+    () =>
+      Effect.gen(function* () {
+        const missingComponent = yield* createRendererManifest({
+          base: {
+            authoringComponents: [{ name: "InlineMath", version: 1 }],
+            supportedComponents: [{ name: "InlineMath", version: 1 }],
+          },
+          domains: testRendererDomains({}),
+          publishedDomains: ["mathematics"],
+        });
+        const unpublished = yield* createRendererManifest({
+          base: rendererManifest.base,
+          domains: testRendererDomains({}),
+          publishedDomains: ["site"],
+        });
+        const errors = yield* Effect.all([
+          verifyRendererManifestCompatibility({
+            frozen: rendererManifest,
+            live: missingComponent,
+          }).pipe(Effect.flip),
+          verifyRendererManifestCompatibility({
+            frozen: rendererManifest,
+            live: unpublished,
+          }).pipe(Effect.flip),
+        ]);
+
+        expect(errors).toEqual([
+          expect.objectContaining({
+            _tag: "RendererManifestComponentUnsupportedError",
+            componentName: "BlockMath",
+            componentVersion: 1,
+            rendererScope: "base",
+          }),
+          expect.objectContaining({
+            _tag: "RendererManifestDomainUnpublishedError",
+            rendererDomain: "mathematics",
+          }),
+        ]);
+      })
+  );
+
+  it.effect("checks frozen published-domain component versions", () =>
+    Effect.gen(function* () {
+      const frozen = yield* createRendererManifest({
+        base: rendererManifest.base,
+        domains: testRendererDomains({
+          mathematics: [{ name: "NumberLine", version: 1 }],
+        }),
+        publishedDomains: ["mathematics"],
+      });
+      const live = yield* createRendererManifest({
+        base: rendererManifest.base,
+        domains: testRendererDomains({
+          mathematics: [{ name: "NumberLine", version: 2 }],
+        }),
+        publishedDomains: ["mathematics"],
+      });
+
+      expect(
+        yield* verifyRendererManifestCompatibility({ frozen, live }).pipe(
+          Effect.flip
+        )
+      ).toMatchObject({
+        _tag: "RendererManifestComponentUnsupportedError",
+        componentName: "NumberLine",
+        componentVersion: 1,
+        rendererScope: "mathematics",
+      });
+    })
   );
 });

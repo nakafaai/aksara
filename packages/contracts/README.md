@@ -59,13 +59,15 @@ verification authenticates the same frozen release and artifact without
 claiming that its consumer can execute the artifact. This directional
 execution check lets an additive live renderer serve an older release only when
 it still publishes the selected domain and supports every required component
-version. It never authorizes publication: new releases, activation, and
-recovery preflight remain bound to the exact complete live renderer. The
-renderer is not a third signed value. Current production trusts authenticated
+version. A renderer-changing release remains bound to the exact complete live
+manifest. A scoped content-only release may retain the active frozen manifest
+only when activation proves the live renderer still publishes every frozen
+domain and supports every frozen component version. The renderer is not a
+third signed value. Current production trusts authenticated
 Convex state for route/head membership, delivery class, and the active pointer;
 a release result digest is not a per-row inclusion proof. This boundary is
 recorded explicitly in
-[ADR 0002](https://github.com/nakafaai/aksara/blob/main/docs/adr/0002-release-state.md).
+[ADR 0002](https://github.com/nakafaai/aksara/blob/main/docs/adr/release.md).
 
 The package source is publicly readable for supply-chain review. All use and
 redistribution remain subject to the included Nakafa Source Available License
