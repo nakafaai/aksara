@@ -3,21 +3,21 @@ export const metadata = {
   description: "Perkirakan varian dan simpangan baku populasi dari frekuensi dan nilai tengah kelas data kelompok.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Statistika",
 };
 
 ## Menghitung Sebaran Data Kelompok
 
-Tabel frekuensi kelompok dapat menunjukkan berapa banyak durasi baterai ponsel yang masuk ke interval seperti <InlineMath math="6\text{-}10 \text{ jam}" /> dan <InlineMath math="11\text{-}15 \text{ jam}" />. Kita tetap ingin mengetahui seberapa lebar durasi tersebut tersebar.
+Tabel frekuensi kelompok menunjukkan berapa banyak durasi baterai ponsel yang masuk ke interval seperti <InlineMath math="6\text{-}10 \text{ jam}" /> dan <InlineMath math="11\text{-}15 \text{ jam}" />. Dari tabel tersebut, kita ingin mengukur seberapa besar perbedaan durasi baterai antarponsel.
 
-Tabel itu tidak lagi menyimpan setiap pengamatan secara tepat. Dalam kelas <InlineMath math="11\text{-}15 \text{ jam}" />, misalnya, kita tidak tahu apakah suatu baterai bertahan <InlineMath math="11 \text{ jam}" />, <InlineMath math="12 \text{ jam}" />, atau selama waktu lainnya.
+Tabel itu tidak lagi menyimpan setiap pengamatan secara tepat. Dalam kelas <InlineMath math="11\text{-}15 \text{ jam}" />, misalnya, kita tidak tahu apakah suatu baterai bertahan <InlineMath math="11 \text{ jam}" />, <InlineMath math="12 \text{ jam}" />, atau nilai lain dalam interval tersebut.
 
 Untuk memperkirakan sebarannya, setiap pengamatan dalam satu kelas **diwakili** oleh **nilai tengah kelas** <InlineMath math="x_i" />. Ini merupakan pendekatan pemodelan, sehingga hasilnya memperkirakan varian dan simpangan baku yang akan diperoleh dari data tunggal.
 
 ## Rumus Varian dan Simpangan Baku Data Kelompok
 
-Setiap nilai tengah <InlineMath math="x_i" /> diberi bobot sesuai frekuensi kelasnya <InlineMath math="f" />. Rumus berikut menganggap tabel sebagai populasi lengkap; data sampel memerlukan rumus varian sampel yang sesuai.
+Setiap nilai tengah <InlineMath math="x_i" /> diberi bobot sesuai frekuensi kelasnya <InlineMath math="f" />. Rumus berikut menganggap tabel sebagai populasi lengkap. Data sampel memerlukan rumus varian sampel yang sesuai.
 
 1.  **Varian (<InlineMath math="\sigma^2" />)**
 
@@ -33,7 +33,7 @@ Setiap nilai tengah <InlineMath math="x_i" /> diberi bobot sesuai frekuensi kela
 
     <BlockMath math="\sigma = \sqrt{\sigma^2}" />
 
-## Menghitung Varian dan Simpangan Baku Durasi Baterai HP
+## Menghitung Varian dan Simpangan Baku Durasi Baterai Ponsel
 
 Misalkan sebuah penelitian mencatat durasi baterai ponsel dalam interval berikut:
 
@@ -80,6 +80,6 @@ Ambil akar kuadrat dari varian:
 
 <BlockMath math="\sigma = \sqrt{19{,}37} \approx 4{,}4" />
 
-Perkiraan simpangan bakunya adalah <InlineMath math="4{,}4 \text{ jam}" />. Di sekitar perkiraan mean <InlineMath math="\frac{1645}{80} \approx 20{,}56 \text{ jam}" />, durasi berbeda sekitar <InlineMath math="4{,}4 \text{ jam}" /> dalam pengertian akar rata-rata kuadrat.
+Perkiraan simpangan bakunya adalah <InlineMath math="4{,}4 \text{ jam}" />. Nilai tersebut adalah akar rata-rata kuadrat jarak setiap nilai tengah kelas dari perkiraan mean <InlineMath math="\frac{1645}{80} \approx 20{,}56 \text{ jam}" />.
 
 Untuk data dengan satuan dan skala yang sebanding, simpangan baku yang lebih kecil menunjukkan bahwa nilainya mengelompok lebih rapat di sekitar mean.

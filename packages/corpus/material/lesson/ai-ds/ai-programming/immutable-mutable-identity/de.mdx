@@ -1,8 +1,9 @@
 export const metadata = {
-  title: "Unveränderlich, veränderlich und Identität",
+  title: "Veränderlichkeit und Objektidentität",
   description: "Veränderbarkeit von Python-Objekten, Identität, Listenreferenzen und Speicherverwaltung anhand praktischer Beispiele und Code.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "KI-Programmierung",
 };
 
@@ -30,7 +31,7 @@ print(list2)  # ['a', [0, [3, 4, 5], 2], True]`
   ]}
 />
 
-Beachten Sie, dass sich Änderungen an `list1` auch auf `list2` auswirken. Dies liegt daran, dass `list2` keine Kopie von `list1` speichert, sondern einen Verweis auf dasselbe Listenobjekt im Speicher.
+Änderungen an `list1` sind auch über `list2` sichtbar. `list2` speichert keine Kopie von `list1`, sondern verweist auf dasselbe Listenobjekt.
 
 ### Ein vollständiger Slice erzeugt eine flache Kopie
 
@@ -62,9 +63,9 @@ print(nested1)  # [[1, 3], [2]]`
   ]}
 />
 
-## Objektidentität, -typ und -wert
+## Identität Typ und Wert eines Objekts
 
-Jedes Objekt in Python weist drei wichtige Merkmale auf, die es von anderen Objekten unterscheiden.
+Jedes Python-Objekt besitzt drei Merkmale: Identität, Typ und Wert.
 
 <Mermaid
   title="Identität zeigt an, welches Objekt verwendet wird"
@@ -201,9 +202,9 @@ Zu den häufigen veränderlichen Typen in Python gehören:
 - `dict` (Dictionary)
 - `set` (Menge)
 
-### Zuweisung vs. Änderungsverhalten
+### Zuweisung und Änderungsverhalten
 
-Es ist wichtig, zwischen Zuweisung (Gewährung eines neuen Werts) und direkter Änderung zu unterscheiden.
+Zuweisung (Gewährung eines neuen Werts) und direkte Änderung sind zwei verschiedene Vorgänge.
 
 <CodeBlock
   data={[

@@ -2,18 +2,18 @@
 
 export const metadata = {
   title: "Inverse of Complex Numbers",
-  description: "Calculate reciprocals of complex numbers using conjugates and moduli, then apply the method to division through worked examples.",
+  description: "Calculate reciprocals of complex numbers using conjugates and moduli, then use those reciprocals to divide complex numbers in worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Complex Number",
 };
 
-## What is the Inverse of a Complex Number?
+## Inverse of a Complex Number
 
 Every **nonzero** complex number <InlineMath math="z = x + iy" /> has a **multiplicative inverse**, written as <InlineMath math="z^{-1}" /> or <InlineMath math="1/z" />.
 
-The defining characteristic of the multiplicative inverse is that if we multiply the complex number <InlineMath math="z" /> by its inverse <InlineMath math="z^{-1}" />, the result is <InlineMath math="1" /> (the multiplicative identity element).
+Multiplying the complex number <InlineMath math="z" /> by its inverse <InlineMath math="z^{-1}" /> gives <InlineMath math="1" />, the multiplicative identity.
 
 <BlockMath math="z \times z^{-1} = 1" />
 
@@ -31,7 +31,7 @@ Remember also the other often useful form, using the conjugate (<InlineMath math
 
 <BlockMath math="z^{-1} = \frac{\bar{z}}{|z|^2}" />
 
-## Example Inverse Calculation
+## Finding the Inverse of a Complex Number
 
 Find the inverse of <InlineMath math="z = 1 - i" />.
 
@@ -56,13 +56,13 @@ Using the conjugate and modulus formula:
   <BlockMath math="z^{-1} = \frac{\bar{z}}{|z|^2} = \frac{1+i}{2} = \frac{1}{2} + \frac{1}{2}i" />
 </MathContainer>
 
-The result is the same, namely:
+Both formulas give the same reciprocal:
 
 <ContentStack>
 
   <BlockMath math="z^{-1} = \frac{1}{2} + \frac{1}{2}i \text{ or} \left( \frac{1}{2}, \frac{1}{2} \right)" />
 
-  Verify the result by multiplying it by the original number:
+  Verify <InlineMath math="z^{-1}" /> by multiplying it by the original number:
 
   <BlockMath math="(1-i)\left(\frac{1}{2}+\frac{1}{2}i\right)=\frac{1}{2}+\frac{1}{2}+\left(\frac{1}{2}-\frac{1}{2}\right)i=1" />
 
@@ -77,7 +77,8 @@ The result is the same, namely:
       <>
         The number <InlineMath math="z = 1-i" /> and its inverse{" "}
         <InlineMath math="z^{-1} = \frac{1}{2} + \frac{1}{2}i" /> lie on
-        opposite sides of the real axis; their moduli are reciprocals.
+        opposite sides of the real axis. The moduli of the two numbers are
+        reciprocals.
       </>
     }
     cameraPosition={[0, 0, 8]}
@@ -88,6 +89,7 @@ The result is the same, namely:
           { x: 0, y: 0, z: 0 },
           { x: 1, y: -1, z: 0 },
         ],
+        smooth: false,
         color: "#0284c7",
         labels: [{ text: <InlineMath math="z=1-i" />, at: 1, offset: [0.5, -0.3, 0] }],
         cone: { position: "end" },
@@ -97,6 +99,7 @@ The result is the same, namely:
           { x: 0, y: 0, z: 0 },
           { x: 0.5, y: 0.5, z: 0 },
         ],
+        smooth: false,
         color: "#65a30d",
         labels: [
           {

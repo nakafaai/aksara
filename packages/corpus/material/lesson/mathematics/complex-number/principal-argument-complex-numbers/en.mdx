@@ -5,11 +5,11 @@ export const metadata = {
   description: "Find the unique principal argument of a nonzero complex number in the interval from negative pi to pi and reduce coterminal angles to that representative.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Complex Number",
 };
 
-## Understanding the Principal Argument
+## Principal Argument
 
 The argument <InlineMath math="\theta" /> of a nonzero complex number <InlineMath math="z = x + iy" /> is the angle formed by the vector <InlineMath math="z" /> with the positive real axis. The zero vector has no direction, so <InlineMath math="\text{Arg}(0)" /> is undefined.
 
@@ -83,6 +83,7 @@ Find any argument first, then add or subtract full turns until the result lies i
           { x: 0, y: 0, z: 0 },
           { x: 1, y: 1, z: 0 },
         ],
+        smooth: false,
         color: "#0284c7",
         labels: [{ text: <InlineMath math="z_1=1+i" />, at: 1, offset: [-1, 0.5, 0] }],
         cone: { position: "end" },
@@ -92,6 +93,7 @@ Find any argument first, then add or subtract full turns until the result lies i
           { x: 0, y: 0, z: 0 },
           { x: Math.sqrt(3), y: 1, z: 0 },
         ],
+        smooth: false,
         color: "#65a30d",
         labels: [{ text: <InlineMath math="z_2=\sqrt{3}+i" />, at: 1, offset: [1.5, 0.5, 0] }],
         cone: { position: "end" },
@@ -102,6 +104,7 @@ Find any argument first, then add or subtract full turns until the result lies i
           { x: 0, y: 0, z: 0 },
           { x: 2, y: 0, z: 0 },
         ],
+        smooth: false,
         color: "#d97706",
       },
     ]}
@@ -147,7 +150,7 @@ Determine if the following pairs of complex numbers are equal or different?
 
     Since the difference of the arguments is a multiple of <InlineMath math="360^\circ" /> (<InlineMath math="-360^\circ = -1 \times 360^\circ" />), then <InlineMath math="z_1 = z_2" />.
 
-    Alternatively, we can see that the Principal Argument of <InlineMath math="z_2" /> is <InlineMath math="390^\circ - 360^\circ = 30^\circ" />, which is the same as the Principal Argument of <InlineMath math="z_1" />.
+    Alternatively, subtract one full turn: <InlineMath math="390^\circ - 360^\circ = 30^\circ" />. Thus <InlineMath math="z_2" /> and <InlineMath math="z_1" /> have the same principal argument.
 
 ## Exercise
 

@@ -1,17 +1,17 @@
 export const metadata = {
-    title: "Immutable, Mutable, dan Identity",
-    description: "Mutabilitas, identitas, referensi list, dan manajemen memori objek Python lewat contoh praktis.",
+    title: "Objek Mutable dan Immutable",
+    description: "Bedakan identitas objek dari kesamaan nilai, lalu pelajari referensi, shallow copy, mutation, dan reassignment pada objek Python.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Pemrograman AI",
 };
 
-## List dan Mutabilitas
+## List dan Perubahan Objek
 
-Dalam Python, list merupakan struktur data yang dapat diubah setelah dibuat. Pahami bagaimana perilaku list ketika kita melakukan operasi tertentu.
+Dalam Python, `list` bersifat mutable, sehingga isinya dapat diubah setelah dibuat. Dampak suatu operasi bergantung pada apakah operasi itu mengubah objek yang sama, membuat objek baru, atau hanya mengikat nama lain ke objek lama.
 
-Ketika sebuah list di-assign ke variabel, variabel itu merujuk ke objek list tersebut. Assignment tidak menyalin list. Karena itu, variabel atau container lain dapat merujuk ke objek yang sama persis.
+Ketika sebuah `list` di-assign ke variabel, variabel tersebut hanya menyimpan referensi ke objek `list`. Assignment tidak menyalin isi `list`, sehingga beberapa nama atau container dapat merujuk ke objek yang sama.
 
 <CodeBlock
   data={[
@@ -35,7 +35,7 @@ Perhatikan bagaimana perubahan pada `list1` juga memengaruhi `list2`. Kedua nama
 
 ### Full Slice Membuat Shallow Copy
 
-Full slice membuat list luar baru yang berisi referensi ke elemen-elemen yang sama. Hasilnya adalah shallow copy. Mengganti elemen luar tidak memengaruhi list asal, tetapi elemen mutable yang bertingkat tetap dipakai bersama.
+Full slice seperti `data[:]` membuat `list` luar baru, tetapi elemen di dalamnya tetap merujuk ke objek yang sama. Hasil ini disebut shallow copy. Mengganti elemen pada bagian luar tidak memengaruhi `list` asal, tetapi objek mutable yang tersimpan di dalamnya masih dipakai bersama.
 
 <CodeBlock
   data={[
@@ -49,7 +49,7 @@ list2 = list1[:]  # Mengambil semua elemen dengan slice
 print(id(list1))  # Contoh: 3104
 print(id(list2))  # Contoh: 8864 (berbeda dari list1)
 
-# Mengubah elemen di list2 tidak mempengaruhi list1
+# Mengubah elemen di list2 tidak memengaruhi list1
 list2[0] = 'x'
 print(list1)  # [0, 1, 2] (tidak berubah)
 print(list2)  # ['x', 1, 2]
@@ -63,13 +63,13 @@ print(nested1)  # [[1, 3], [2]]`
   ]}
 />
 
-## Identitas, Tipe, dan Nilai Objek
+## Identitas Tipe dan Nilai Objek
 
-Setiap objek dalam Python memiliki tiga karakteristik penting yang membedakannya dari objek lain.
+Setiap objek Python memiliki tiga karakteristik: identitas, tipe, dan nilai.
 
 <Mermaid
   title="Identitas Menunjukkan Objek yang Dipakai"
-  description="Pisahkan identity, type, dan value agar satu objek tidak tertukar dengan nama variabelnya."
+  description="Pisahkan identitas, tipe, dan nilai agar satu objek tidak tertukar dengan nama variabelnya."
   chart={`
     flowchart LR
         A[Objek Python] --> B[Identitas]
@@ -107,7 +107,7 @@ print(id(a))      # 10492 (berbeda dari sebelumnya)`
 
 ### Membandingkan Identitas dan Nilai
 
-Gunakan `is` ketika yang ditanyakan adalah identitas objek, terutama pada pemeriksaan seperti `value is None`. Gunakan `==` ketika kamu membandingkan nilai. Cache interpreter dan constant folding dapat membuat nilai immutable yang sama berbagi identitas, tetapi logika aplikasi tidak boleh bergantung pada detail implementasi tersebut.
+Gunakan `is` untuk memeriksa apakah dua nama merujuk pada objek yang sama, terutama pada kondisi seperti `value is None`. Gunakan `==` untuk membandingkan nilai objek. Interpreter dapat memakai kembali objek tertentu atau menghitung ekspresi konstanta lebih awal. Akibatnya, dua nilai immutable kadang memiliki identitas yang sama. Jangan jadikan perilaku internal tersebut sebagai dasar logika program.
 
 <CodeBlock
   data={[
@@ -128,25 +128,25 @@ print(a == c)  # True: nilainya setara`
 
 ## Objek Mutable dan Immutable
 
-Python mengklasifikasikan objek berdasarkan kemampuannya untuk diubah setelah dibuat.
+Objek mutable dapat diubah setelah dibuat. Objek immutable tidak dapat diubah, sehingga operasi yang menghasilkan nilai berbeda akan membuat objek baru.
 
 ### Objek Immutable
 
-Objek immutable tidak dapat diubah setelah dibuat. Setiap operasi yang tampak mengubah objek sebenarnya menciptakan objek baru.
+Objek immutable tidak dapat diubah setelah dibuat. Operasi yang tampak mengubah nilai objek sebenarnya membuat objek baru dan mengikat nama variabel ke objek tersebut.
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "immutable_objects.py",
-      code: `# Integer adalah immutable
+      code: `# Integer bersifat immutable
 a = 300
 print(id(a))  # 10120
 
 a = a + 1     # Membuat objek baru
 print(id(a))  # 10492 (berbeda)
 
-# String juga immutable
+# String juga bersifat immutable
 str_var = 'hello'
 print(id(str_var))  # 75568
 
@@ -156,27 +156,27 @@ print(id(str_var))  # 75568
   ]}
 />
 
-Tipe immutable yang umum dalam Python meliputi:
+Tipe immutable dalam Python meliputi:
 
 - `bool` (boolean)
 - `int` (integer)
-- `float` (floating point)
+- `float`
 - `complex` (bilangan kompleks)
 - `str` (string)
 - `tuple` (tuple)
 
-Urutan referensi milik tuple tidak dapat diubah, tetapi objek yang dirujuk tuple masih dapat bersifat mutable.
+Urutan referensi dalam `tuple` tidak dapat diubah, tetapi sebuah referensi tetap dapat menunjuk ke objek mutable seperti `list`.
 
 ### Objek Mutable
 
-Objek mutable dapat diubah setelah dibuat tanpa menciptakan objek baru. Identitas objek tetap sama meskipun nilainya berubah.
+Objek mutable dapat diubah tanpa membuat objek baru. Identitas objek tetap sama meskipun isinya berubah.
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "mutable_objects.py",
-      code: `# List adalah mutable
+      code: `# List bersifat mutable
 list_var = [0, 1, 2]
 original_id = id(list_var)
 
@@ -184,11 +184,11 @@ original_id = id(list_var)
 list_var[0] = 9
 print(id(list_var) == original_id)  # True
 
-# Assignment mengikat variabel ke objek baru
+# Reassignment menunjuk variabel ke objek baru
 list_var = [0, 0, 0]
 print(id(list_var) == original_id)  # False
 
-# Slice assignment memodifikasi list saat ini secara in-place
+# Slice assignment mengubah list yang sama
 current_id = id(list_var)
 list_var[:] = ['a', 'b', 'c']
 print(id(list_var) == current_id)  # True`
@@ -196,15 +196,15 @@ print(id(list_var) == current_id)  # True`
   ]}
 />
 
-Tipe mutable yang umum dalam Python meliputi:
+Tipe mutable dalam Python meliputi:
 
 - `list` (list)
 - `dict` (dictionary)
 - `set` (set)
 
-### Perilaku Assignment vs Modifikasi
+### Reassignment dan Mutation
 
-Penting untuk membedakan antara assignment (pemberian nilai baru) dan modifikasi in-place.
+Reassignment mengikat sebuah nama ke objek lain. Mutation mengubah isi objek yang sama, sehingga perubahannya dapat diakses melalui semua nama yang masih merujuk ke objek tersebut.
 
 <CodeBlock
   data={[
@@ -217,12 +217,12 @@ list2 = list1  # Kedua variabel mereferensi objek yang sama
 print(id(list1))     # 700
 print(id(list2))     # 700 (sama)
 
-# Modifikasi in-place mempengaruhi kedua variabel
+# Perubahan isi memengaruhi kedua variabel
 list1[1] = 'x'
 print(list1)         # [0, 'x', 2]
 print(list2)         # [0, 'x', 2] (ikut berubah)
 
-# Assignment membuat referensi baru
+# Reassignment membuat referensi baru
 list1 = [1, 2, 3]
 print(list1)         # [1, 2, 3]
 print(list2)         # [0, 'x', 2] (tidak berubah)`
@@ -231,8 +231,8 @@ print(list2)         # [0, 'x', 2] (tidak berubah)`
 />
 
 <Mermaid
-  title="Assignment Mengganti Ikatan, Modifikasi Mengubah Isi"
-  description="Bandingkan assignment yang mengganti rujukan dengan modifikasi yang mengubah objek yang sama."
+  title="Reassignment dan Mutation"
+  description="Bandingkan reassignment yang menunjuk ke objek baru dengan mutation yang mengubah objek yang sama."
   chart={`
     flowchart TD
         subgraph Sebelum ["Sebelum Modifikasi"]
@@ -249,4 +249,4 @@ print(list2)         # [0, 'x', 2] (tidak berubah)`
   `}
 />
 
-Mutabilitas menentukan apakah suatu operasi mengubah objek yang sudah ada atau mengikat ulang nama ke objek lain. Immutability menghilangkan satu sumber bug pada shared state, tetapi tidak otomatis membuat program thread-safe. Objek mutable yang dirujuk, operasi majemuk, dan resource eksternal tetap memerlukan sinkronisasi yang disengaja.
+Mutability menentukan apakah suatu operasi dapat mengubah objek yang sudah ada. Objek immutable mengurangi risiko perubahan pada state yang dipakai bersama, tetapi tidak otomatis membuat program thread-safe. Objek mutable, operasi majemuk, dan resource eksternal tetap memerlukan sinkronisasi yang dirancang dengan jelas.

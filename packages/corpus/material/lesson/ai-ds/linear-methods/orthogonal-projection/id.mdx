@@ -3,7 +3,7 @@ export const metadata = {
   description: "Turunkan proyeksi ortogonal dari teorema aproksimasi terbaik, hitung dengan basis ortonormal dan sembarang, lalu verifikasi geometrinya secara numerik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-15",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Metode Linear AI",
 };
 
@@ -36,11 +36,11 @@ Misalkan <InlineMath math="g=P_Sf" /> dan pilih sembarang <InlineMath math="\var
 <BlockMath math="\|f-\varphi\|^2\ge\|f-g\|^2" />
 </MathContainer>
 
-Kesamaan hanya terjadi ketika <InlineMath math="\varphi=g" />. Hal ini membuktikan optimalitas sekaligus keunikannya.
+Kesamaan hanya terjadi ketika <InlineMath math="\varphi=g" />. Karena itu, <InlineMath math="g=P_Sf" /> adalah satu-satunya elemen di <InlineMath math="S" /> yang meminimalkan jarak ke <InlineMath math="f" />.
 
 ## Rumus untuk Basis Ortonormal
 
-Jika <InlineMath math="\varphi_1,ldots,arphi_n" /> adalah basis ortonormal dari <InlineMath math="S" />, maka
+Jika <InlineMath math="\varphi_1,\ldots,\varphi_n" /> adalah basis ortonormal dari <InlineMath math="S" />, maka
 
 <MathContainer>
 <BlockMath math="P_Sf=\sum_{i=1}^n\langle f,\varphi_i\rangle\varphi_i" />
@@ -53,9 +53,9 @@ Untuk matriks real <InlineMath math="Q\in\mathbb{R}^{m\times n}" /> dengan kolom
 
 <BlockMath math="P=QQ^T" />
 
-memproyeksikan vektor di <InlineMath math="\mathbb{R}^m" /> pada <InlineMath math="\operatorname{col}(Q)" />.
+Matriks <InlineMath math="P" /> memproyeksikan vektor di <InlineMath math="\mathbb{R}^m" /> pada <InlineMath math="\operatorname{col}(Q)" />.
 
-## Contoh Vektor
+## Memproyeksikan Vektor pada Subruang Satu Dimensi
 
 Proyeksikan
 
@@ -64,7 +64,7 @@ Proyeksikan
 <BlockMath math="u=\begin{pmatrix}2\\1\end{pmatrix}" />
 </MathContainer>
 
-pada <InlineMath math="S=\operatorname{span}\{u\}" />. Koefisien proyeksinya adalah
+Proyeksikan vektor <InlineMath math="f" /> pada <InlineMath math="S=\operatorname{span}\{u\}" />. Koefisien proyeksinya adalah
 
 <BlockMath math="\frac{\langle f,u\rangle}{\langle u,u\rangle}=\frac{1\cdot2+3\cdot1}{2^2+1^2}=1" />
 
@@ -112,21 +112,21 @@ Misalkan <InlineMath math="\psi_1,ldots,psi_n" /> adalah sembarang basis dari <I
 Syarat ortogonalitas memberikan sistem Gram
 
 <MathContainer>
-<BlockMath math="\sum_{i=1}^n\langle\psi_i,\psi_k\rangle\alpha_i=\langle f,\psi_k\rangle,\qquad k=1,ldots,n" />
+<BlockMath math="\sum_{i=1}^n\langle\psi_i,\psi_k\rangle\alpha_i=\langle f,\psi_k\rangle,\qquad k=1,\ldots,n" />
 <BlockMath math="G\alpha=c" />
 </MathContainer>
 
-dengan <InlineMath math="G_{ki}=\langle\psi_i,psi_k\rangle" /> dan <InlineMath math="c_k=\langle f,psi_k\rangle" />. Karena vektor basis saling bebas linear,
+Dalam sistem ini, <InlineMath math="G_{ki}=\langle\psi_i,psi_k\rangle" /> dan <InlineMath math="c_k=\langle f,psi_k\rangle" />. Karena vektor basis saling bebas linear,
 
 <BlockMath math="z^TGz=\left\|\sum_{i=1}^nz_i\psi_i\right\|^2>0\qquad\text{untuk }z\ne0" />
 
-sehingga <InlineMath math="G" /> simetris positif definit dan koefisiennya unik.
+Ketaksamaan di atas menunjukkan bahwa <InlineMath math="G" /> simetris positif definit, sehingga koefisien proyeksi bersifat unik.
 
 Jika kolom matriks ber-rank kolom penuh <InlineMath math="A" /> adalah vektor basis tersebut, maka
 
 <BlockMath math="P=A(A^TA)^{-1}A^T" />
 
-adalah proyektor ortogonal yang sama. Identitas ini berguna untuk analisis, tetapi QR atau SVD biasanya lebih baik dalam perangkat lunak numerik karena pembentukan <InlineMath math="A^TA" /> menguadratkan bilangan kondisi.
+Matriks <InlineMath math="P" /> adalah proyektor ortogonal yang sama. Rumus ini memberikan bentuk aljabar proyektor. Dalam komputasi numerik, hitung proyeksi dengan <InlineMath math="\mathrm{QR}" /> atau <InlineMath math="\mathrm{SVD}" /> karena pembentukan <InlineMath math="A^TA" /> menguadratkan bilangan kondisi.
 
 ## Contoh Ruang Fungsi
 

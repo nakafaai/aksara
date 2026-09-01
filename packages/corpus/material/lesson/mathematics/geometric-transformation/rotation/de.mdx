@@ -1,13 +1,14 @@
 
 export const metadata = {
   title: "Drehung",
-  description: "Verstehe Drehzentrum, Drehrichtung und Drehwinkel und berechne die Bildkoordinaten von Punkten und Geraden.",
+    description: "Bestimme Drehzentrum, Drehrichtung und Drehwinkel und berechne die Bildkoordinaten von Punkten und Geraden.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometrische Transformation",
 };
 
-## Drehungen verstehen
+## Drehungen
 
 Eine Drehung bewegt jeden Punkt einer Figur um denselben Winkel um ein festes Drehzentrum. Die Figur wird versetzt und gedreht, während Abstände, Winkel, Form, Größe und die Reihenfolge ihrer Eckpunkte erhalten bleiben.
 
@@ -89,6 +90,7 @@ Somit ist das Bild des Punktes <InlineMath math="B(0,4)" /> <InlineMath math="B'
         { x: 0, y: 0, z: 0 },
         { x: 0, y: 4, z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
     }, // Strecke OB
     {
@@ -96,6 +98,7 @@ Somit ist das Bild des Punktes <InlineMath math="B(0,4)" /> <InlineMath math="B'
         { x: 0, y: 0, z: 0 },
         { x: -4, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
     }, // Strecke OB'
   ]}
@@ -152,6 +155,7 @@ Wenn man <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch <Inl
         const xVal = (i - 5) * 0.5; // range from -2.5 to 2.5
         return { x: xVal, y: 2 * xVal, z: 0 };
       }),
+      smooth: false,
       color: "#9333ea",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=2x" />, at: 6, offset: [1, 0.5, 0] }],
@@ -162,6 +166,7 @@ Wenn man <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch <Inl
         const xVal = (i - 5) * 0.5;
         return { x: xVal, y: (-1 / 2) * xVal, z: 0 };
       }),
+      smooth: false,
       color: "#db2777",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=(-\frac{1}{2})x" />, at: 1, offset: [0.3, 0.5, 0] }],

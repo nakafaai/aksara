@@ -4,11 +4,11 @@ export const metadata = {
   description: "Cerminkan titik, segitiga, dan garis terhadap sumbu vertikal serta terapkan aturan koordinat pada persamaan dan grafik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Transformasi Geometri",
 };
 
-## Memahami Pencerminan terhadap Sumbu Vertikal
+## Pencerminan terhadap Sumbu Vertikal
 
 Pencerminan terhadap sumbu <InlineMath math="y" /> adalah salah satu jenis transformasi geometri yang memindahkan setiap titik pada suatu objek ke posisi baru. Bayangkan sumbu <InlineMath math="y" /> sebagai cermin. Setiap titik akan memiliki bayangan di sisi berlawanan dari sumbu <InlineMath math="y" /> dengan jarak yang sama dari sumbu <InlineMath math="y" />.
 
@@ -21,7 +21,7 @@ Jika sebuah titik <InlineMath math="P(x, y)" /> dicerminkan terhadap sumbu <Inli
   <BlockMath math="y' = y" />
 </MathContainer>
 
-Sehingga, peta dari titik <InlineMath math="P(x, y)" /> adalah <InlineMath math="P'(-x, y)" />.
+Jadi, bayangan titik <InlineMath math="P(x, y)" /> adalah <InlineMath math="P'(-x, y)" />.
 
 Perhatikan bahwa nilai koordinat <InlineMath math="y" /> tidak berubah, sedangkan nilai koordinat <InlineMath math="x" /> menjadi lawannya (negatifnya jika positif, positifnya jika negatif).
 
@@ -109,6 +109,7 @@ Dengan menghubungkan titik-titik bayangan <InlineMath math="P'Q'R'" />, kita men
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#d97706",
       showPoints: true,
       labels: [
@@ -131,6 +132,7 @@ Dengan menghubungkan titik-titik bayangan <InlineMath math="P'Q'R'" />, kita men
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [
@@ -177,7 +179,7 @@ Grafik berikut membandingkan garis asli dan bayangannya:
         return { x, y: x + 2, z: 0 };
       }),
       color: "#9333ea",
-      smooth: true,
+      smooth: false,
       labels: [{ text: <InlineMath math="y=x+2" />, at: 9, offset: [0.7, -0.5, 0] }],
     },
     {
@@ -187,7 +189,7 @@ Grafik berikut membandingkan garis asli dan bayangannya:
         return { x, y: -x + 2, z: 0 };
       }),
       color: "#db2777",
-      smooth: true,
+      smooth: false,
       labels: [{ text: <InlineMath math="y=-x+2" />, at: 1, offset: [-0.7, -0.5, 0] }],
     },
   ]}

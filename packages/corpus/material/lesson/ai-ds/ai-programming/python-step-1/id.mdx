@@ -1,23 +1,23 @@
 export const metadata = {
   title: "Langkah Pertama di Python",
-  description: "Mulai belajar Python melalui mode interaktif, skrip, dan Jupyter. Buat program pertama dengan variabel, masukan, keluaran, dan latihan praktis.",
+  description: "Mulai belajar Python melalui mode interaktif, script, dan Jupyter. Buat program pertama dengan variabel, input, output, dan latihan praktis.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-26",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Pemrograman AI",
 };
 
 ## Pengenalan Python
 
-Python adalah bahasa pemrograman populer yang mengutamakan keterbacaan kode. Sintaksnya yang jelas membuat Python cocok sebagai bahasa pertama bagi orang yang baru belajar pemrograman.
+Python memakai indentasi untuk menandai blok kode dan keyword pendek untuk operasi umum. Pada contoh pertama, kamu sudah dapat mengenali assignment, function call, dan condition sebelum mempelajari setiap bagian sintaks.
 
-Banyak pernyataan Python menyerupai instruksi singkat dalam bahasa Inggris. Karena itu, kamu sering bisa mengikuti tujuan sebuah program sebelum memahami setiap detail sintaksnya. Python juga digunakan untuk pengembangan web, analisis data, pembelajaran mesin, dan kecerdasan buatan.
+Bahasa yang sama dipakai untuk pengembangan web, analisis data, pembelajaran mesin, dan kecerdasan buatan. Pelajaran ini dimulai dari program kecil yang mencetak teks.
 
-Untuk mempelajari bahasa dan pustaka standarnya secara lebih rinci, gunakan [dokumentasi resmi Python](https://docs.python.org). Dokumentasi itu adalah rujukan utama untuk versi Python yang kamu pakai.
+Untuk mempelajari bahasa dan standard library Python lebih lanjut, buka [Python](https://docs.python.org). Dokumentasi resmi Python menjadi referensi utama untuk versi yang kamu pakai.
 
 ## Program Hello World
 
-Program pertama yang umum dibuat menampilkan teks "Hello World!". Menjalankannya memastikan Python dapat mengeksekusi sebuah berkas sekaligus memberi kamu satu program kecil yang lengkap untuk dipelajari.
+Program pertama yang umum dibuat menampilkan teks "Hello World!". Menjalankannya memastikan Python dapat mengeksekusi sebuah file sekaligus memberi kamu satu program kecil yang lengkap untuk dipelajari.
 
 <CodeBlock
   data={[{
@@ -27,7 +27,7 @@ Program pertama yang umum dibuat menampilkan teks "Hello World!". Menjalankannya
   }]}
 />
 
-Perintah `print()` adalah fungsi bawaan Python yang digunakan untuk menampilkan teks atau data ke layar. Apapun yang kamu tulis di dalam tanda kurung akan ditampilkan sebagai output.
+Built-in `print()` menuliskan nilai di dalam tanda kurung ke output program.
 
 ## Tiga Cara Menjalankan Program Python
 
@@ -35,7 +35,7 @@ Pelajaran ini memakai tiga cara umum untuk menjalankan kode Python. Masing-masin
 
 ### Mode Interaktif
 
-Mode interaktif memungkinkan kamu menulis dan menjalankan kode Python langsung di terminal. Mode ini berguna untuk menguji potongan kode sederhana atau melakukan eksperimen cepat.
+Mode interaktif menjalankan kode Python yang ditulis langsung di terminal. Mode ini cocok untuk menguji potongan kode sederhana atau melakukan eksperimen singkat.
 
 Cara menggunakan mode interaktif seperti ini. Pertama buka terminal atau command prompt, kemudian ketik `python` atau `python3` dan tekan Enter. Kamu akan melihat prompt `>>>` yang menandakan Python siap menerima perintah. Selanjutnya tulis kode Python dan tekan Enter untuk menjalankannya.
 
@@ -60,9 +60,9 @@ Hello, Alice!
 
 ### Mode Script
 
-Mode skrip menjalankan berkas Python yang sudah disimpan. Mode ini cocok untuk program yang lebih panjang atau yang ingin kamu gunakan kembali.
+Mode script menjalankan file Python yang sudah disimpan. Mode ini cocok untuk program yang lebih panjang atau yang ingin kamu gunakan kembali.
 
-Untuk menjalankan skrip, buat berkas berekstensi `.py` dengan editor teks, tulis kode Python di dalamnya, lalu simpan. Setelah itu, buka terminal, masuk ke folder tempat berkas disimpan, dan jalankan `python nama_file.py`.
+Untuk menjalankan script, buat file berekstensi `.py` dengan editor teks, tulis kode Python di dalamnya, lalu simpan. Setelah itu, buka terminal, masuk ke folder tempat file disimpan, dan jalankan `python nama_file.py`.
 
 <CodeBlock
   data={[{
@@ -97,7 +97,7 @@ Selamat belajar Python!`
 
 Jupyter adalah lingkungan interaktif yang sering digunakan untuk sains data dan pembelajaran. Sebuah notebook menggabungkan kode yang dapat dijalankan, hasilnya, dan penjelasan tertulis dalam satu dokumen.
 
-Setiap sel dapat dijalankan secara terpisah, lalu hasilnya muncul tepat di bawah sel tersebut. Kamu juga bisa menambahkan penjelasan, gambar, dan grafik, sehingga notebook cocok untuk eksperimen dan analisis data.
+Setiap sel dapat dijalankan secara terpisah, lalu output sel muncul tepat di bawah kode. Kode, output, penjelasan, gambar, dan grafik tetap berada dalam satu dokumen. Susunan ini dapat merekam setiap langkah eksperimen atau analisis data.
 
 Instal JupyterLab di environment Python khusus agar paketnya tidak mengganggu proyek lain:
 
@@ -156,11 +156,11 @@ print(f"Luas lingkaran dengan radius {test_radius} adalah {result:.2f}")`
 
 ## Sintaks Dasar Python
 
-Mari belajar beberapa konsep dasar Python yang akan sering kamu gunakan.
+Bagian ini mengenalkan variabel, tipe data, operator, dan alur kontrol yang digunakan dalam program berikutnya.
 
 ### Variabel dan Tipe Data
 
-Python memiliki beberapa tipe data dasar. Nama variabel merujuk pada sebuah nilai. Assignment berikutnya membuat nama tersebut merujuk pada nilai baru.
+Python memiliki beberapa tipe data dasar. Nama variabel merujuk pada sebuah nilai. Penetapan nilai berikutnya membuat nama tersebut merujuk pada nilai baru.
 
 <CodeBlock
   data={[{
@@ -207,7 +207,7 @@ print(type(person))      # <class 'dict'>`
 
 ### Input dan Output
 
-Interaksi dengan pengguna adalah bagian penting dari programming. Seperti percakapan, program kamu bisa bertanya kepada pengguna dan memberikan jawaban atau informasi.
+Program menerima data pengguna sebagai input dan menampilkan teks atau hasil perhitungan sebagai output. Python memakai `input()` untuk membaca teks dan `print()` untuk menampilkan hasil.
 
 <CodeBlock
   data={[{
@@ -274,7 +274,7 @@ print(f"Nilai x sekarang: {x}")`
 
 ## Latihan Praktis
 
-Mari coba beberapa latihan sederhana untuk mempraktikkan variabel, input, dan operasi dasar:
+Kerjakan latihan berikut untuk mempraktikkan variabel, input, output, dan operasi dasar:
 
 ### Kalkulator Sederhana
 

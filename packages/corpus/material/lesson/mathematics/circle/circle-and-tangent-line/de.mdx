@@ -4,6 +4,7 @@ export const metadata = {
   description: "Tangentengleichungen aus dem senkrechten Radius herleiten und Aufgaben zu äußeren Punkten sowie gemeinsamen Tangenten Schritt für Schritt lösen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Kreis",
 };
 
@@ -32,6 +33,7 @@ Eine Kreistangente ist eine Gerade, die den Kreis in genau einem Punkt berührt.
         { x: 0, y: 0, z: 0 },
         { x: 3, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       showPoints: true,
       labels: [
@@ -44,6 +46,7 @@ Eine Kreistangente ist eine Gerade, die den Kreis in genau einem Punkt berührt.
         { x: 3, y: -3, z: 0 },
         { x: 3, y: 3, z: 0 },
       ],
+      smooth: false,
       color: "#0891b2",
       showPoints: false,
       labels: [{ text: "Tangente", at: 1, offset: [1.5, 0, 0] }],
@@ -53,7 +56,7 @@ Eine Kreistangente ist eine Gerade, die den Kreis in genau einem Punkt berührt.
   showZAxis={false}
 />
 
-**Wichtige Eigenschaft:** Eine Tangente verläuft im Tangentenpunkt immer senkrecht zum Radius des Kreises.
+Eine Tangente verläuft im Tangentenpunkt immer senkrecht zum Radius des Kreises.
 
 ## Gleichung der Kreistangente
 
@@ -136,6 +139,7 @@ Von einem Punkt außerhalb des Kreises können zwei Tangenten an den Kreis gezog
           { x: T1x, y: T1y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [{ text: <InlineMath math="T_1" />, at: 1, offset: [0.3, 0.5, 0] }],
@@ -162,6 +166,7 @@ Von einem Punkt außerhalb des Kreises können zwei Tangenten an den Kreis gezog
           { x: T2x, y: T2y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#d97706",
       showPoints: true,
       labels: [{ text: <InlineMath math="T_2" />, at: 1, offset: [0.3, -0.5, 0] }],
@@ -217,6 +222,7 @@ Wenn <InlineMath math="P(x_1, y_1)" /> ein Punkt außerhalb des Kreises mit Mitt
         { x: -3, y: 0, z: 0 },
         { x: 3, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       showPoints: true,
       labels: [
@@ -258,6 +264,7 @@ Wenn <InlineMath math="P(x_1, y_1)" /> ein Punkt außerhalb des Kreises mit Mitt
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: false,
       labels: [{ text: <InlineMath math="\mathrm{ECT}" />, at: 1, offset: [0, 0.5, 0] }],
@@ -296,6 +303,7 @@ Wenn <InlineMath math="P(x_1, y_1)" /> ein Punkt außerhalb des Kreises mit Mitt
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0d9488",
       showPoints: false,
       labels: [{ text: <InlineMath math="\mathrm{ECT}" />, at: 1, offset: [0, -0.5, 0] }],
@@ -310,7 +318,7 @@ Länge der äußeren gemeinsamen Tangente:
 
 <BlockMath math="l = \sqrt{d^2 - (r_1 - r_2)^2}" />
 
-wobei <InlineMath math="d" /> der Abstand zwischen den beiden Kreismittelpunkten ist.
+In dieser Formel ist <InlineMath math="d" /> der Abstand zwischen den beiden Kreismittelpunkten.
 
 Das äußere Tangentenstück hat nur für <InlineMath math="d>|r_1-r_2|" /> eine positive Länge. Bei Gleichheit berühren sich die Kreise von innen und das Stück zwischen den beiden Berührpunkten schrumpft auf die Länge null.
 
@@ -351,6 +359,7 @@ Innere gemeinsame Tangenten sind Geraden, die beide Kreise berühren und die Ver
         { x: -3, y: 0, z: 0 },
         { x: 3, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       showPoints: true,
       labels: [
@@ -393,6 +402,7 @@ Innere gemeinsame Tangenten sind Geraden, die beide Kreise berühren und die Ver
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#db2777",
       showPoints: false,
       labels: [{ text: <InlineMath math="\mathrm{IKT}" />, at: 0, offset: [-1, 0.5, 0] }],
@@ -432,6 +442,7 @@ Innere gemeinsame Tangenten sind Geraden, die beide Kreise berühren und die Ver
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#d97706",
       showPoints: false,
       labels: [{ text: <InlineMath math="\mathrm{IKT}" />, at: 0, offset: [-1, -0.5, 0] }],
@@ -452,7 +463,7 @@ Das innere Tangentenstück hat nur für <InlineMath math="d>r_1+r_2" /> eine pos
 
 ### Bestimmen der Tangente durch einen Punkt auf dem Kreis
 
-Bestimmen Sie die Gleichung der Tangente an den Kreis <InlineMath math="x^2 + y^2 = 25" /> am Punkt <InlineMath math="(3, 4)" />.
+Bestimme die Gleichung der Tangente an den Kreis <InlineMath math="x^2 + y^2 = 25" /> am Punkt <InlineMath math="(3, 4)" />.
 
 **Lösung:**
 
@@ -465,7 +476,7 @@ Da der Punkt <InlineMath math="(3, 4)" /> auf dem Kreis liegt (nachweisbar: <Inl
 
 ### Tangente mit vorgegebener Steigung bestimmen
 
-Bestimmen Sie die Gleichung der Tangente an den Kreis <InlineMath math="x^2 + y^2 = 16" />, die parallel zur Geraden <InlineMath math="3x - 4y + 5 = 0" /> verläuft.
+Bestimme die Gleichung der Tangente an den Kreis <InlineMath math="x^2 + y^2 = 16" />, die parallel zur Geraden <InlineMath math="3x - 4y + 5 = 0" /> verläuft.
 
 **Lösung:**
 
@@ -489,7 +500,7 @@ Daher lauten die Gleichungen der Tangenten:
 
 ### Tangentenlänge von einem äußeren Punkt berechnen
 
-Bestimmen Sie die Länge der Tangente vom Punkt <InlineMath math="P(7, 1)" /> zum Kreis <InlineMath math="x^2 + y^2 = 25" />.
+Bestimme die Länge der Tangente vom Punkt <InlineMath math="P(7, 1)" /> zum Kreis <InlineMath math="x^2 + y^2 = 25" />.
 
 **Lösung:**
 
@@ -505,18 +516,18 @@ Kreismittelpunkt <InlineMath math="O(0, 0)" /> und Radius <InlineMath math="r = 
 
 ## Übungsaufgaben
 
-1. Bestimmen Sie die Gleichung der Tangente an den Kreis <InlineMath math="x^2 + y^2 = 36" /> im Punkt <InlineMath math="(-3, 3\sqrt{3})" />!
+1. Bestimme die Gleichung der Tangente an den Kreis <InlineMath math="x^2 + y^2 = 36" /> im Punkt <InlineMath math="(-3, 3\sqrt{3})" />!
 
-2. Bestimmen Sie die Gleichung der Tangente an den Kreis <InlineMath math="(x - 2)^2 + (y + 3)^2 = 25" />, die senkrecht zur Geraden <InlineMath math="2x + y - 5 = 0" /> steht!
+2. Bestimme die Gleichung der Tangente an den Kreis <InlineMath math="(x - 2)^2 + (y + 3)^2 = 25" />, die senkrecht zur Geraden <InlineMath math="2x + y - 5 = 0" /> steht!
 
-3. Vom Punkt <InlineMath math="A(10, 0)" /> werden Tangenten zum Kreis <InlineMath math="x^2 + y^2 = 36" /> gezogen. Bestimmen Sie:
+3. Vom Punkt <InlineMath math="A(10, 0)" /> werden Tangenten zum Kreis <InlineMath math="x^2 + y^2 = 36" /> gezogen. Bestimme:
 
    - Länge der Tangente
    - Koordinaten von Tangentenpunkten
 
-4. Zwei Kreise haben die Mittelpunkte <InlineMath math="O_1(-4, 0)" /> und <InlineMath math="O_2(4, 0)" /> sowie die Radien <InlineMath math="2" /> und <InlineMath math="3" />. Bestimmen Sie die Länge der äußeren gemeinsamen Tangente!
+4. Zwei Kreise haben die Mittelpunkte <InlineMath math="O_1(-4, 0)" /> und <InlineMath math="O_2(4, 0)" /> sowie die Radien <InlineMath math="2" /> und <InlineMath math="3" />. Bestimme die Länge der äußeren gemeinsamen Tangente!
 
-5. Bestimmen Sie die Gleichung der Tangente an den Kreis <InlineMath math="x^2 + y^2 - 6x + 4y - 12 = 0" />, die durch den Punkt <InlineMath math="(8, -2)" /> verläuft!
+5. Bestimme die Gleichung der Tangente an den Kreis <InlineMath math="x^2 + y^2 - 6x + 4y - 12 = 0" />, die durch den Punkt <InlineMath math="(8, -2)" /> verläuft!
 
 ### Ausführliche Lösungen
 
@@ -600,6 +611,6 @@ Kreismittelpunkt <InlineMath math="O(0, 0)" /> und Radius <InlineMath math="r = 
 
 ## Quellen
 
-- [OpenStax Intermediate Algebra 2e: Distance and Midpoint Formulas; Circles](https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles)
-- [Wolfram MathWorld: Circle-Circle Tangents](https://mathworld.wolfram.com/Circle-CircleTangents.html)
-- [GeoGebra: Theorems about Tangents and Chords](https://www.geogebra.org/m/bvtxyfaj)
+- [OpenStax Intermediate Algebra 2e](https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles) erklärt Kreisgleichungen im Koordinatensystem.
+- [Wolfram MathWorld](https://mathworld.wolfram.com/Circle-CircleTangents.html) erklärt gemeinsame Tangenten zweier Kreise.
+- [GeoGebra](https://www.geogebra.org/m/bvtxyfaj) bietet interaktive Konstruktionen zu Tangenten und Sehnen.

@@ -3,12 +3,13 @@ export const metadata = {
   description: "Leite die PCA aus zentrierten Daten, Kovarianzeigenvektoren und der Singulärwertzerlegung her. Deute erklärte Varianz und niedrig-rangige Rekonstruktion geometrisch.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Lineare Methoden der KI",
 };
 
 ## Mit zentrierten Daten beginnen
 
-Sei <InlineMath math="X\in\mathbb{R}^{m\times n}" /> eine Matrix mit <InlineMath math="m" /> Beobachtungen und <InlineMath math="n" /> Merkmalen. Die PCA beginnt damit, von jedem Merkmal seinen Mittelwert abzuziehen:
+Sei <InlineMath math="X\in\mathbb{R}^{m\times n}" /> eine Matrix mit <InlineMath math="m" /> Beobachtungen und <InlineMath math="n" /> Merkmalen. Die <InlineMath math="\mathrm{PCA}" /> beginnt damit, von jedem Merkmal seinen Mittelwert abzuziehen:
 
 <MathContainer>
 <BlockMath math="\mu_j=\frac1m\sum_{i=1}^m X_{ij}" />
@@ -42,7 +43,7 @@ Jede weitere Richtung maximiert dieselbe Varianz unter der Bedingung, zu allen v
 
 <BlockMath math="Z=X_cV" />
 
-und ihre Stichprobenkovarianz ist diagonal:
+Die Stichprobenkovarianz der Scores <InlineMath math="Z" /> ist diagonal:
 
 <BlockMath math="\frac{1}{m-1}Z^TZ=V^TCV=\Lambda" />
 
@@ -76,7 +77,7 @@ Dann sind die rechten Singulärvektoren die Hauptkomponentenrichtungen und
 
 <BlockMath math="\lambda_j=\frac{\sigma_j^2}{m-1}" />
 
-Die SVD vermeidet die explizite Bildung von <InlineMath math="X_c^TX_c" />, die die Konditionszahl quadriert. Sie ist außerdem der natürliche Weg, wenn <InlineMath math="X_c" /> rechteckig ist oder keinen vollen Rang besitzt.
+Die Verwendung der <InlineMath math="\mathrm{SVD}" /> vermeidet die Bildung von <InlineMath math="X_c^TX_c" />, durch die sich die Konditionszahl quadrieren würde. Die <InlineMath math="\mathrm{SVD}" /> eignet sich auch, wenn <InlineMath math="X_c" /> rechteckig oder rangdefizient ist.
 
 ## Beispiel einer zweidimensionalen Kovarianz
 
@@ -84,7 +85,7 @@ Betrachte eine Kovarianzellipse, die um
 
 <BlockMath math="\theta=\frac{\pi}{6}" />
 
-gedreht ist und entlang ihrer Hauptachsen die Varianzen <InlineMath math="9" /> und <InlineMath math="2{,}25" /> besitzt. Sei
+Die Kovarianzellipse ist um <InlineMath math="\theta" /> gedreht und besitzt entlang ihrer Hauptachsen die Varianzen <InlineMath math="9" /> und <InlineMath math="2{,}25" />. Sei
 
 <MathContainer>
 <BlockMath math="R=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}" />
@@ -103,7 +104,7 @@ Die erste Komponente erklärt
 
 <BlockMath math="\frac{9}{9+2{,}25}=0{,}8=80\%" />
 
-der Gesamtvarianz.
+Dieses Ergebnis bedeutet, dass die erste Komponente <InlineMath math="80\%" /> der Gesamtvarianz erklärt.
 
 <LineEquation
   title={<>Kovarianzellipse und Hauptkomponentenrichtungen <InlineMath math="v_1,v_2" /></>}
@@ -174,12 +175,12 @@ der Gesamtvarianz.
 
 ## Grenzen der Interpretation
 
-| Prüfung | Warum sie wichtig ist |
+| Prüfung | Begründung |
 | --- | --- |
 | Nur mit Mittelwerten der Trainingsdaten zentrieren | verhindert Datenleckage und erhält das gelernte Koordinatensystem |
 | Einheiten und Skalierung der Merkmale prüfen | große numerische Varianz kann sonst aus dem falschen Grund dominieren |
 | <InlineMath math="k" /> nach dem Validierungsziel statt nach einer festen Schwelle wählen | erklärte Varianz misst keine prädiktive Relevanz |
 | Beliebiges Vorzeichen der Eigenvektoren beachten | <InlineMath math="v_j" /> und <InlineMath math="-v_j" /> definieren dieselbe Komponente |
-| Nichtlineare Struktur und Ausreißer untersuchen | PCA ist eine lineare, varianzbasierte Zusammenfassung und gegenüber beiden empfindlich |
+| Nichtlineare Struktur und Ausreißer untersuchen | Die <InlineMath math="\mathrm{PCA}" /> ist eine lineare, varianzbasierte Zusammenfassung und gegenüber beiden empfindlich |
 
-PCA findet Varianzrichtungen und keine kausalen Faktoren. Eine Hauptkomponente kann viele ursprüngliche Merkmale mischen. Eine Richtung mit kleiner Varianz kann für eine nachgelagerte Aufgabe trotzdem wichtig sein.
+Die <InlineMath math="\mathrm{PCA}" /> bestimmt Richtungen mit großer Varianz. Aus der Varianz allein lässt sich keine Ursache ableiten. Eine Hauptkomponente kann viele ursprüngliche Merkmale mischen. Eine Richtung mit kleiner Varianz kann trotzdem ein Signal enthalten, das eine spätere Vorhersage oder Klassifikation benötigt.

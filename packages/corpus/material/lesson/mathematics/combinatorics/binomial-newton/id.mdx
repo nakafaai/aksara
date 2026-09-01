@@ -1,17 +1,17 @@
 export const metadata = {
     title: "Binomial Newton",
-  description: "Pelajari cara teorema binomial mengembangkan perpangkatan suatu jumlah, lalu gunakan koefisiennya untuk mencari suku tertentu dan suku konstanta.",
+  description: "Teorema binomial mengembangkan perpangkatan suatu jumlah, lalu gunakan koefisiennya untuk mencari suku tertentu dan suku konstanta.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Kombinatorik",
 };
 
-## Apa itu Binomial Newton?
+## Binomial Newton
 
-Mengembangkan <InlineMath math="(x + y)^{10}" /> dengan perkalian berulang akan memakan waktu. **Teorema binomial Newton** memberi kita cara langsung untuk menulis <InlineMath math="(x + y)^n" /> sebagai penjumlahan suku-suku yang lebih sederhana.
+Mengembangkan <InlineMath math="(x + y)^{10}" /> dengan perkalian berulang memerlukan banyak langkah. **Teorema binomial Newton** menulis <InlineMath math="(x + y)^n" /> secara langsung sebagai penjumlahan dengan koefisien binomial.
 
-Koefisiennya mengikuti pola yang dapat diprediksi. Setelah memahami pola tersebut, kita dapat memakai rumus yang sama untuk setiap pangkat bilangan bulat nonnegatif.
+Koefisiennya mengikuti pola yang sama untuk setiap pangkat bilangan bulat nonnegatif.
 
 Lihat pola dasar untuk beberapa pangkat pertama:
 
@@ -31,7 +31,7 @@ Rumus umum binomial Newton dapat ditulis sebagai:
 
 <BlockMath math="(x + y)^n = \sum_{k=0}^{n} \binom{n}{k} x^{n-k} y^k" />
 
-Di mana <InlineMath math="\binom{n}{k}" /> adalah **koefisien binomial** yang dihitung dengan rumus:
+Koefisien binomial <InlineMath math="\binom{n}{k}" /> dihitung dengan rumus:
 
 <BlockMath math="\binom{n}{k} = \frac{n!}{k!(n-k)!}" />
 
@@ -41,11 +41,11 @@ Bentuk ekspansi lengkap dapat ditulis sebagai:
 
 <BlockMath math="(x + y)^n = \binom{n}{0}x^n + \binom{n}{1}x^{n-1}y + \binom{n}{2}x^{n-2}y^2 + \cdots + \binom{n}{n}y^n" />
 
-Setiap suku dalam ekspansi memiliki struktur <InlineMath math="\binom{n}{k}x^{n-k}y^k" /> di mana pangkat <InlineMath math="x" /> dan <InlineMath math="y" /> selalu berjumlah <InlineMath math="n" />.
+Setiap suku dalam ekspansi memiliki bentuk <InlineMath math="\binom{n}{k}x^{n-k}y^k" />. Jumlah pangkat <InlineMath math="x" /> dan <InlineMath math="y" /> selalu <InlineMath math="n" />.
 
 ## Mencari Koefisien Tertentu
 
-Salah satu aplikasi penting binomial Newton adalah mencari koefisien suku tertentu tanpa harus mengembangkan seluruh ekspansi.
+Teorema binomial Newton dapat mencari koefisien suku tertentu tanpa mengembangkan seluruh ekspresi.
 
 Misalkan kita ingin mencari koefisien dari <InlineMath math="x^2" /> dalam ekspansi <InlineMath math="(1 - x)^{2014}" />.
 
@@ -68,7 +68,7 @@ Jadi, koefisien dari <InlineMath math="x^2" /> adalah <InlineMath math="2{.}027{
 
 ## Mencari Suku Konstanta
 
-Suku konstanta adalah suku yang tidak mengandung variabel apapun. Untuk menemukannya, kita perlu mengidentifikasi suku di mana pangkat semua variabel sama dengan nol.
+Suku konstanta tidak mengandung variabel. Untuk menemukannya, cari suku dengan pangkat nol pada semua variabel.
 
 **Contoh:** Tentukan suku konstanta dari <InlineMath math="\left(3x^3 - \frac{2}{x}\right)^8" />.
 

@@ -1,19 +1,19 @@
 export const metadata = {
     title: "Spectral Theorem",
-    description: "Learn when matrices can be diagonalized with orthonormal eigenvectors. Learn normal, Hermitian, and unitary matrices with real-world applications.",
+    description: "Determine when normal, Hermitian, and unitary matrices have an orthonormal eigenbasis and apply the resulting diagonalization.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-16",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Linear Methods of AI",
 };
 
-## Basic Concepts of Normal Matrices
+## Normal Matrices
 
 The complex spectral theorem states that a matrix can be diagonalized using an orthonormal basis of eigenvectors exactly when it is normal. In matrix form,
 
 <BlockMath math="A\text{ is normal}\qquad\Longleftrightarrow\qquad A=U\Lambda U^H" />
 
-where <InlineMath math="U" /> is unitary and <InlineMath math="\Lambda" /> is diagonal. Such a basis separates the transformation into independent eigenvector directions while preserving lengths and angles. In the real symmetric case, <InlineMath math="U" /> can be chosen real and orthogonal, so <InlineMath math="U^{-1}=U^T" />.
+In this form, <InlineMath math="U" /> is unitary and <InlineMath math="\Lambda" /> is diagonal. The columns of <InlineMath math="U" /> decompose the transformation into independent eigenvector directions while preserving lengths and angles. In the real symmetric case, <InlineMath math="U" /> can be chosen real and orthogonal, so <InlineMath math="U^{-1}=U^T" />.
 
 A complex matrix <InlineMath math="A \in \mathbb{C}^{n \times n}" /> is called normal if it satisfies the commutativity condition with its conjugate transpose:
 
@@ -23,7 +23,7 @@ This algebraic condition has a strong geometric consequence: eigenspaces belongi
 
 ## Special Properties of Eigenspaces of Normal Matrices
 
-Normal matrices have interesting properties that arbitrary matrices do not possess. For normal matrices, the null space of the matrix and the null space of its conjugate transpose turn out to be identical.
+For a normal matrix, the null space of the matrix equals the null space of its conjugate transpose.
 
 The null space (kernel) is the set of all vectors <InlineMath math="x" /> satisfying <InlineMath math="Ax=0" />. Normality gives the following norm identity for every <InlineMath math="x" />:
 
@@ -32,7 +32,7 @@ The null space (kernel) is the set of all vectors <InlineMath math="x" /> satisf
 <BlockMath math="=x^HAA^Hx=\lVert A^Hx\rVert_2^2" />
 </MathContainer>
 
-Therefore <InlineMath math="Ax=0" /> if and only if <InlineMath math="A^Hx=0" />, so
+<InlineMath math="Ax=0" /> if and only if <InlineMath math="A^Hx=0" />, so
 
 <BlockMath math="\ker A=\ker A^H" />
 
@@ -40,7 +40,7 @@ Apply the same null-space identity to the normal matrix <InlineMath math="A-\lam
 
 <BlockMath math="E_A(\lambda)=E_{A^H}(\overline{\lambda})" />
 
-Thus, if <InlineMath math="Av=\lambda v" />, then <InlineMath math="A^H v=\overline{\lambda}v" />. The eigenvector is shared, while the eigenvalue is complex-conjugated.
+If <InlineMath math="Av=\lambda v" />, then <InlineMath math="A^H v=\overline{\lambda}v" />. The eigenvector is shared, while the eigenvalue is complex-conjugated.
 
 This identity also proves orthogonality. If <InlineMath math="Av=\lambda v" /> and <InlineMath math="Aw=\mu w" /> with <InlineMath math="\lambda\neq\mu" />, then
 
@@ -51,7 +51,7 @@ This identity also proves orthogonality. If <InlineMath math="Av=\lambda v" /> a
 
 ## Hermitian and Unitary Matrices as Examples of Normal Matrices
 
-Two important types of matrices that are always normal are Hermitian matrices and unitary matrices. Understand why both are special.
+Hermitian and unitary matrices are always normal. Their defining equations show why:
 
 ### Hermitian Matrices and Real Eigenvalues
 
@@ -89,4 +89,4 @@ Eigenvalues of unitary matrices have magnitude <InlineMath math="1" />, so they 
 <BlockMath math="v\neq0 \Rightarrow \lVert v\rVert^2>0 \Rightarrow |\lambda|^2=1 \Rightarrow |\lambda|=1" />
 </MathContainer>
 
-Therefore every eigenvalue of a unitary matrix has modulus <InlineMath math="1" />. Geometrically, unitary transformations preserve vector lengths, and their eigenvalues lie on the unit circle.
+Every eigenvalue of a unitary matrix has modulus <InlineMath math="1" />. Geometrically, unitary transformations preserve vector lengths, and their eigenvalues lie on the unit circle.

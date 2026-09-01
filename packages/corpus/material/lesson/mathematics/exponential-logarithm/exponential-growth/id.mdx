@@ -1,10 +1,10 @@
 export const metadata = {
   title: "Pertumbuhan Eksponensial",
   description:
-    "Bangun pertumbuhan eksponensial dari faktor berulang, hubungkan tabel dan grafik dengan model, lalu selesaikan contoh bakteri dan populasi secara lengkap.",
+    "Faktor yang berulang menghasilkan pertumbuhan eksponensial. Materi ini menghubungkan rumus, tabel, dan grafik melalui model bakteri dan populasi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-03",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Eksponen dan Logaritma",
 };
 
@@ -14,13 +14,13 @@ Pertumbuhan eksponensial terjadi ketika suatu besaran positif dikalikan dengan f
 
 <BlockMath math="f(x)=P_0a^x" />
 
-dengan:
+Pada model ini:
 
 - <InlineMath math="P_0>0" /> adalah nilai awal
 - <InlineMath math="a>1" /> adalah faktor pertumbuhan per interval
 - <InlineMath math="x" /> adalah jumlah interval
 
-Untuk peristiwa diskret seperti pembelahan sel yang telah selesai, <InlineMath math="x" /> adalah bilangan bulat tak negatif. Grafik kontinu memperluas rumus yang sama ke nilai real <InlineMath math="x" /> dan perlu dipahami sebagai interpolasi model.
+Untuk peristiwa diskret seperti pembelahan sel yang telah selesai, <InlineMath math="x" /> adalah bilangan bulat tak negatif. Grafik kontinu memperluas rumus yang sama ke nilai real <InlineMath math="x" /> sebagai interpolasi model.
 
 ## Membangun Model dari Tabel
 
@@ -48,7 +48,7 @@ Jadi, modelnya adalah:
 
 ### Menghubungkan Tabel dan Grafik
 
-Tabel memuat pengamatan diskret. Kurva <InlineMath math="f(x)=30\cdot2^x" /> menunjukkan perilaku aturan yang sama di antara masukan bilangan bulat tersebut:
+Tabel mencatat pembelahan yang telah selesai pada nilai bulat <InlineMath math="x" />. Kurva yang digambar memperluas <InlineMath math="f(x)=30\cdot2^x" /> ke nilai real <InlineMath math="x" />. Dalam model diskret ini, titik di antara dua bilangan bulat hanya menginterpolasi rumus dan tidak menunjukkan pembelahan tambahan yang telah selesai.
 
 <FunctionChart
   p={30}
@@ -61,7 +61,7 @@ Tabel memuat pengamatan diskret. Kurva <InlineMath math="f(x)=30\cdot2^x" /> men
   }
 />
 
-Kurva semakin curam karena setiap penggandaan bekerja pada jumlah yang lebih besar. Hal ini tidak berarti kultur nyata dapat tumbuh tanpa batas.
+Setiap penggandaan menambah lebih banyak bakteri daripada penggandaan sebelumnya sehingga kemiringan kurva terus bertambah. Kultur nyata akhirnya tidak lagi mengikuti model dengan faktor tetap ini karena ruang dan nutrisinya terbatas.
 
 ### Mengubah Waktu menjadi Interval
 

@@ -1,9 +1,9 @@
 export const metadata = {
   title: "Position of Two Circles",
-  description: "Learn circle relationships such as intersecting, tangent, separate, and concentric circles using center distances and radii.",
+  description: "Classify two circles as intersecting, tangent, separate, or concentric from their center distance and radii.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Analytic Geometry",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 ## Relationship Between Circles
 
-Two soap bubbles provide a useful picture of the possible relationships between circles. Their boundaries may cross, touch at one point, or remain separate.
+The circumferences of two circles may cross at two points, touch at one point, or remain separate. Their disks may therefore overlap, meet at one boundary point, or leave a gap.
 
 In analytic geometry, the centers and radii are enough to determine the relationship precisely. The decisive quantity is the distance between the two centers.
 
@@ -94,6 +94,7 @@ Two circles are **intersecting** when they have exactly two common points. Their
           { x: px, y: py2, z: 0 }
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -521,7 +522,7 @@ Assuming both radii are positive, the following conditions are exhaustive and do
 - **Externally tangent**: <InlineMath math="d = r_1+r_2" /> (one external point of contact)
 - **Externally separate**: <InlineMath math="d > r_1+r_2" /> (the two disks do not meet)
 
-### Application Example
+### Classifying Two Circles from Their Equations
 
 Classify the circles with equations <InlineMath math="x^2 + y^2 = 9" /> and <InlineMath math="x^2 + y^2 - 6x - 8y = 0" />.
 

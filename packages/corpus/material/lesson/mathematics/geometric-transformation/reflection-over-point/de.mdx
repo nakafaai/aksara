@@ -1,13 +1,14 @@
 
 export const metadata = {
   title: "Spiegelung an einem Punkt",
-  description: "Verstehe die Punktspiegelung als halbe Drehung und berechne Bildpunkte und Bildgeraden mit Koordinatenformeln.",
+    description: "Deute die Punktspiegelung als halbe Drehung und berechne Bildpunkte sowie Bildgeraden mit Koordinatenformeln.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometrische Transformation",
 };
 
-## Spiegelung an einem Punkt verstehen
+## Spiegelung an einem Punkt
 
 Die Spiegelung an einem Punkt entspricht einer halben Drehung um <InlineMath math="180^\circ" />. Dabei ist das Spiegelzentrum der Mittelpunkt zwischen jedem Ausgangspunkt und seinem Bildpunkt.
 
@@ -83,6 +84,7 @@ Somit ist das Bild des Punktes <InlineMath math="(5,4)" /> <InlineMath math="(-1
         { x: 5, y: 4, z: 0 },
         { x: -1, y: 2, z: 0 },
       ],
+      smooth: false,
       color: "#db2777",
     }, // Verbindungsstrecke QQ'
   ]}
@@ -141,6 +143,7 @@ Ersetzen wir <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch 
         const xVal = i - 5;
         return { x: xVal, y: 2 * xVal + 3, z: 0 };
       }),
+      smooth: false,
       color: "#0284c7",
       labels: [{ text: <InlineMath math="2x-y+3=0" />, at: 5, offset: [-2, 0.5, 0] }],
     },
@@ -150,6 +153,7 @@ Ersetzen wir <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch 
         const xVal = i - 5;
         return { x: xVal, y: 2 * xVal - 1, z: 0 };
       }),
+      smooth: false,
       color: "#059669",
       labels: [{ text: <InlineMath math="2x-y-1=0" />, at: 5, offset: [2, -0.5, 0] }],
     },

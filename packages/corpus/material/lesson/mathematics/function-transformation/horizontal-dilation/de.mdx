@@ -1,8 +1,9 @@
 export const metadata = {
   title: "Horizontale Streckung und Stauchung",
-  description: "Verstehe, wie der Multiplikator im Funktionsargument die horizontale Skalierung bestimmt, und wende die Regel auf Graphen, Definitionsbereiche und Beispiele an.",
+  description: "Bestimme die horizontale Skalierung aus dem Multiplikator im Funktionsargument und wende die Regel auf Graphen, Definitionsbereiche und Beispiele an.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Funktionstransformation",
 };
 
@@ -80,7 +81,7 @@ Der Graph zeigt:
 
 ## Skalierung einer linearen Funktion
 
-Nun wenden wir dieselbe Regel auf die lineare Funktion <InlineMath math="f(x) = x + 2" /> an.
+Dieselbe Skalierungsregel gilt für die lineare Funktion <InlineMath math="f(x) = x + 2" />.
 
 <LineEquation
   title={<>Horizontale Skalierung der linearen Funktion <InlineMath math="f(x) = x + 2" /></>}
@@ -92,6 +93,7 @@ Nun wenden wir dieselbe Regel auf die lineare Funktion <InlineMath math="f(x) = 
         const x = (i - 10) * 0.5;
         return { x, y: x + 2, z: 0 };
       }),
+      smooth: false,
       color: "#d97706",
       labels: [{ text: <InlineMath math="f(x)=x+2" />, offset: [2, 0.5, 0] }],
       showPoints: false,
@@ -101,6 +103,7 @@ Nun wenden wir dieselbe Regel auf die lineare Funktion <InlineMath math="f(x) = 
         const x = (i - 10) * 0.5;
         return { x, y: (2 * x) + 2, z: 0 };
       }),
+      smooth: false,
       color: "#0d9488",
       labels: [{ text: <InlineMath math="g(x)=2x+2" />, offset: [1, 1.5, 0] }],
       showPoints: false,
@@ -110,6 +113,7 @@ Nun wenden wir dieselbe Regel auf die lineare Funktion <InlineMath math="f(x) = 
         const x = (i - 10) * 0.5;
         return { x, y: (0.5 * x) + 2, z: 0 };
       }),
+      smooth: false,
       color: "#e11d48",
       labels: [{ text: <InlineMath math="h(x)=0{,}5x+2" />, offset: [3, -0.5, 0] }],
       showPoints: false,
@@ -123,7 +127,7 @@ Der Vergleich zeigt:
 - Funktion <InlineMath math="h(x) = f(0{,}5x) = 0{,}5x + 2" /> hat Steigung <InlineMath math="0{,}5" /> (horizontal gestreckt)
 - Alle Geraden schneiden die <InlineMath math="y" />-Achse im gleichen Punkt <InlineMath math="(0, 2)" />
 
-## Wichtige Eigenschaften
+## Eigenschaften der horizontalen Streckung
 
 ### Wirkung auf Koordinatenpunkte
 
@@ -141,9 +145,7 @@ Ist der ursprüngliche Definitionsbereich <InlineMath math="[c, d]" />, dann wir
 - **<InlineMath math="x" />-Achsenabschnitt**: Seine Koordinate wird durch den Multiplikator geteilt
 - **<InlineMath math="y" />-Achsenabschnitt**: Bleibt unverändert
 
-## Weitere Beispiele
-
-### Exponentialfunktion
+## Die Wachstumsrate einer Exponentialfunktion verändern
 
 Bei der Exponentialfunktion <InlineMath math="f(x) = 2^x" /> verändert die horizontale Skalierung, wie schnell der Graph steigt.
 
@@ -213,7 +215,7 @@ Ein negatives Vorzeichen im Argument spiegelt den Graphen zusätzlich an der sen
 Für einen negativen Multiplikator gilt:
 - Der Graph erfährt eine Spiegelung an der <InlineMath math="y" />-Achse
 - Der Betrag der horizontalen Skalierung ist <InlineMath math="\frac{1}{|k|}" />
-- Bei dieser quadratischen Funktion ist die Spiegelung nicht sichtbar, weil ihr Graph bereits symmetrisch ist
+- Für diese gerade quadratische Funktion gilt <InlineMath math="f(-x)=f(x)" />, daher fällt der gespiegelte Graph mit dem ursprünglichen Graphen zusammen
 
 ## Übungen
 

@@ -5,11 +5,11 @@ export const metadata = {
   description: "Reflect points, triangles, and lines across the horizontal axis and derive the coordinate rule from equal distances.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometric Transformation",
 };
 
-## Understanding Reflection across the Horizontal Axis
+## Reflection across the Horizontal Axis
 
 In a reflection across the <InlineMath math="x" />-axis, every image point lies on the opposite side of the <InlineMath math="x" />-axis at the same distance. The <InlineMath math="x" />-axis acts like a horizontal mirror.
 
@@ -19,7 +19,7 @@ Mathematically, if the initial point is <InlineMath math="P(x,y)" />, then after
 
 ### Visualizing Points and Their Reflections
 
-The points below make that mirror relationship across the <InlineMath math="x" />-axis visible.
+In the point pairs below, the <InlineMath math="x" />-coordinate stays fixed while the <InlineMath math="y" />-coordinate changes sign.
 
 Track the coordinates: the <InlineMath math="y" />-coordinate changes sign, while the <InlineMath math="x" />-coordinate remains the same.
 
@@ -77,7 +77,7 @@ The plotted pairs show the relationship between each original point (pre-image) 
 - Point <InlineMath math="C(1,2)" /> becomes <InlineMath math="C'(1,-2)" />
 - Point <InlineMath math="D(4,-2)" /> becomes <InlineMath math="D'(4,2)" />
 
-The visible pattern is that the <InlineMath math="x" /> value remains constant, and the <InlineMath math="y" /> value changes sign (becomes its opposite).
+Every pair keeps the same <InlineMath math="x" /> value and changes the sign of its <InlineMath math="y" /> value.
 
 ## Property of Reflection across the Horizontal Axis
 
@@ -87,7 +87,7 @@ These point pairs give the coordinate rule for reflection across the <InlineMath
 
 This means the reflection of point <InlineMath math="P(x,y)" /> across the <InlineMath math="x" />-axis is <InlineMath math="P'(x,-y)" />. The <InlineMath math="x" />-axis is the line <InlineMath math="y=0" />.
 
-## Application Examples
+## Reflecting Triangles and Lines
 
 ### Reflecting a Triangle
 
@@ -136,6 +136,7 @@ Consequently, the image of triangle <InlineMath math="ABC" /> is triangle <Inlin
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#ea580c",
       showPoints: true,
       labels: [
@@ -163,6 +164,7 @@ Consequently, the image of triangle <InlineMath math="ABC" /> is triangle <Inlin
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#9333ea",
       showPoints: true,
       labels: [
@@ -202,7 +204,7 @@ Substitute <InlineMath math="a = x'" /> and <InlineMath math="b = -y'" /> into t
 
 Since <InlineMath math="x'" /> and <InlineMath math="y'" /> are arbitrary variables representing the coordinates on the reflected line, we can rewrite them as <InlineMath math="x" /> and <InlineMath math="y" />.
 
-Thus, the equation of the reflected line is:
+The equation of the reflected line is:
 
 <ContentStack>
 
@@ -230,6 +232,7 @@ Thus, the equation of the reflected line is:
           { x: -6, y: (2 / 3) * -6, z: 0 },
           { x: 6, y: (2 / 3) * 6, z: 0 },
         ],
+        smooth: false,
         color: "#65a30d",
         labels: [{ text: <InlineMath math="2x-3y=0" />, at: 1, offset: [0.5, 0.5, 0] }],
       },
@@ -239,6 +242,7 @@ Thus, the equation of the reflected line is:
           { x: -6, y: -(2 / 3) * -6, z: 0 },
           { x: 6, y: -(2 / 3) * 6, z: 0 },
         ],
+        smooth: false,
         color: "#c026d3",
         labels: [{ text: <InlineMath math="2x+3y=0" />, at: 1, offset: [0.5, -0.5, 0] }],
       },
@@ -246,4 +250,4 @@ Thus, the equation of the reflected line is:
   />
 </ContentStack>
 
-This shows how the equation of a line changes after being reflected across the <InlineMath math="x" />-axis.
+Reflection across the <InlineMath math="x" />-axis changes <InlineMath math="2x-3y=0" /> into <InlineMath math="2x+3y=0" /> by replacing <InlineMath math="y" /> with <InlineMath math="-y" />.

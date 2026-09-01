@@ -1,9 +1,9 @@
 export const metadata = {
     title: "Number Attributes and Methods",
-    description: "Explore Python numeric objects through their types, attributes, methods, and complex-number operations.",
+    description: "Inspect Python numeric objects through their types, attributes, methods, and complex-number operations.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-16",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "AI Programming",
 };
 
@@ -15,7 +15,7 @@ For example, <InlineMath math="5" /> creates an `int` and <InlineMath math="3.14
 
 ## Accessing Attributes and Methods
 
-Read an attribute with `object.attribute`. Call a method with `object.method()`, including the parentheses that perform the call.
+Read an attribute with `object.attribute`. Call a method with `object.method()`. The parentheses in the second form tell Python to run the method.
 
 Look at a practical example with complex numbers:
 
@@ -43,7 +43,7 @@ print(c.conjugate())  # Output: (2-3j)`
 
 Before using a type-specific operation, you can inspect which numeric type a value has.
 
-### Using the type() Function
+### Using the Type Function
 
 The `type()` function returns the value's class:
 
@@ -118,7 +118,7 @@ print(f"Imaginary part of {z3} is {z3.imag}")
 
 ## Complex Number Methods
 
-### The conjugate() Method
+### The Conjugate Method
 
 For <InlineMath math="z=a+bi" />, `conjugate()` returns <InlineMath math="\overline{z}=a-bi" />. The real part stays fixed while the sign of the imaginary part changes.
 
@@ -146,7 +146,7 @@ print(f"Conjugate of {z3} is {z3.conjugate()}")
 
 ### Practical Use of Conjugate
 
-The identity <InlineMath math="z\overline{z}=|z|^2" /> connects a complex number to its modulus. The example shows that relationship explicitly; in ordinary Python code, `abs(z)` is the direct way to compute the modulus.
+The identity <InlineMath math="z\overline{z}=|z|^2" /> connects a complex number to its modulus. The example shows that relationship explicitly. In ordinary Python code, `abs(z)` is the direct way to compute the modulus.
 
 <CodeBlock
   data={[
@@ -234,7 +234,7 @@ print(f"Ratio of {f}: {ratio}")
 
 `is_integer()` checks whether a finite float has no fractional part. `as_integer_ratio()` returns the exact fraction represented by the stored binary float, which may differ from the decimal fraction a reader expects.
 
-## Practical Applications in Programming
+## Validating and Calculating with Numeric Objects
 
 ### Data Validation
 
@@ -298,4 +298,4 @@ complex_operations(z1, z2)`
   ]}
 />
 
-The useful pattern is to identify the numeric type, choose the operation owned by that type, and remember whether it returns a component, a representation, or a new value. That distinction becomes increasingly important when numerical code grows beyond a single expression.
+First identify the numeric type and the operations it provides. Then check whether an operation returns a component, a representation, or a new value. That return type determines how the next expression can use the result.

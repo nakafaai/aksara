@@ -3,7 +3,7 @@ export const metadata = {
   description: "Compute eigenvalues with power iteration, shifted inverse iteration, and the QR algorithm. Learn convergence assumptions, residual checks, and method selection.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-17",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Linear Methods of AI",
 };
 
@@ -13,13 +13,13 @@ An eigenpair of a square matrix <InlineMath math="A" /> satisfies
 
 <BlockMath math="Av=\lambda v,\qquad v\ne0" />
 
-For a small symbolic matrix, one can solve <InlineMath math="\det(A-\lambda I)=0" />. Numerical software usually avoids forming and rooting the characteristic polynomial. Its coefficients can be sensitive to rounding, and large or sparse matrices offer more efficient routes that use matrix-vector products and factorizations directly.
+For a small symbolic matrix, one can solve <InlineMath math="\det(A-\lambda I)=0" />. Numerical software usually avoids forming and rooting the characteristic polynomial because its coefficients can be sensitive to rounding. When only part of the spectrum of a large sparse matrix is needed, Krylov methods use matrix-vector products without forming that polynomial. Dense algorithms for the complete spectrum instead work with matrix factorizations.
 
 Different algorithms answer different questions:
 
 - Power iteration estimates one eigenvalue of largest magnitude.
 - Shifted inverse iteration targets an eigenvalue near a chosen shift.
-- The QR algorithm computes the complete spectrum of a dense matrix.
+- The <InlineMath math="\mathrm{QR}" /> algorithm computes the complete spectrum of a dense matrix.
 - Lanczos and Arnoldi methods target a small part of the spectrum of a large sparse matrix.
 
 ## Power Iteration
@@ -36,7 +36,7 @@ The scalar <InlineMath math="\mu_k" /> is the Rayleigh quotient. For a diagonali
 
 <BlockMath math="|\lambda_1|>|\lambda_2|\ge\cdots\ge|\lambda_n|" />
 
-and a starting vector that has a nonzero component in the dominant eigendirection, <InlineMath math="q_k" /> approaches that eigendirection. The asymptotic error commonly shrinks in proportion to
+If the displayed inequality holds and the starting vector has a nonzero component in the dominant eigendirection, <InlineMath math="q_k" /> approaches that eigendirection. The asymptotic error commonly shrinks in proportion to
 
 <BlockMath math="\left|\frac{\lambda_2}{\lambda_1}\right|^k" />
 
@@ -52,9 +52,9 @@ A scale-aware condition is
 
 <BlockMath math="\|r_k\|_2\le \tau\bigl(\|A\|_2+|\mu_k|\bigr)" />
 
-where <InlineMath math="\tau" /> is the requested tolerance. A small residual certifies that the computed pair nearly satisfies the eigenvalue equation, although it does not by itself identify which nearby eigenvalue was found.
+Here, <InlineMath math="\tau" /> is the requested tolerance. A small residual certifies that the computed pair nearly satisfies the eigenvalue equation, although it does not by itself identify which nearby eigenvalue was found.
 
-## Worked Power-Iteration Example
+## Worked Power Iteration Example
 
 Consider
 
@@ -107,7 +107,7 @@ Start with <InlineMath math="A_0=A" />. At iteration <InlineMath math="k" />, co
 <BlockMath math="A_{k+1}=R_kQ_k=Q_k^TA_kQ_k" />
 </MathContainer>
 
-Every step is an orthogonal similarity transformation, so it preserves the eigenvalues. Practical QR algorithms first reduce a dense matrix to Hessenberg form, use shifts, and deflate converged blocks. For a real nonsymmetric matrix, the limit is generally a real Schur form with <InlineMath math="1\times1" /> and <InlineMath math="2\times2" /> diagonal blocks. A symmetric matrix reduces to tridiagonal form and converges to a diagonal matrix.
+Every step is an orthogonal similarity transformation, so it preserves the eigenvalues. Practical <InlineMath math="\mathrm{QR}" /> algorithms first reduce a dense matrix to Hessenberg form, use shifts, and deflate converged blocks. For a real nonsymmetric matrix, the limit is generally a real Schur form with <InlineMath math="1\times1" /> and <InlineMath math="2\times2" /> diagonal blocks. A symmetric matrix reduces to tridiagonal form and converges to a diagonal matrix.
 
 ## Choosing the Right Method
 
@@ -117,6 +117,6 @@ Every step is an orthogonal similarity transformation, so it preserves the eigen
 | Eigenpair near <InlineMath math="\sigma" /> | Shifted inverse iteration | stable solves with <InlineMath math="A-\sigma I" /> |
 | Several extreme eigenpairs of a large symmetric sparse matrix | Lanczos | loss of orthogonality and residuals |
 | Several eigenpairs of a large nonsymmetric sparse matrix | Arnoldi | subspace size, restarts, and residuals |
-| Complete spectrum of a dense matrix | Shifted QR to Schur form | converged diagonal or quasi-diagonal blocks |
+| Complete spectrum of a dense matrix | Shifted <InlineMath math="\mathrm{QR}" /> to Schur form | converged diagonal or quasi-diagonal blocks |
 
 The final acceptance test is always tied to the requested eigenpairs: verify residuals, preserve complex conjugate pairs for real matrices, and avoid claiming an eigenvector is accurate merely because an eigenvalue estimate has stabilized.

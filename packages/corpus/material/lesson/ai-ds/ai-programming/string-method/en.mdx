@@ -3,7 +3,7 @@ export const metadata = {
     description: "Python string methods for text transformation, search, character validation, and advanced string operations.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-17",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "AI Programming",
 };
 
@@ -264,7 +264,7 @@ Methods such as `isdigit()` and `isalnum()` are Unicode-aware, and the empty str
 
 ## Prefix and Suffix Search Methods
 
-The `startswith()` and `endswith()` methods allow you to check if a string starts or ends with a specific substring.
+The `startswith()` and `endswith()` methods return whether a string begins or ends with a specific substring.
 
 <CodeBlock
   data={[
@@ -317,7 +317,7 @@ print(f"\\nStarts with greeting: {text.startswith(('Hi', 'Hello', 'Hey'))}")`
   ]}
 />
 
-Both methods support tuples as parameters, allowing checking of multiple prefixes or suffixes simultaneously.
+Both methods accept a tuple, so one call can test several prefixes or suffixes.
 
 ## Replace and Split Methods
 
@@ -419,7 +419,7 @@ Use `split()` only when the delimiter rules are genuinely simple. It does not un
 
 ## String Method Chaining
 
-Because string methods return new strings, several transformations can be chained in one expression. Keep a chain short enough that each step remains obvious; name intermediate values when validation or explanation belongs between steps.
+Because string methods return new strings, several transformations can be chained in one expression. Keep a chain short enough that each step remains obvious. Use an intermediate variable when one step needs validation or explanation before the next transformation.
 
 <CodeBlock
   data={[
@@ -485,7 +485,7 @@ Method chaining works well for a short linear cleanup. It is not automatically c
 
 ## Practical String Method Applications
 
-The following small examples combine string methods with stated assumptions. They teach how the methods work. Production validators and parsers need rules written for their real data.
+Each small example isolates the behavior of a string method under stated assumptions. Production validators and parsers need rules written for their real data.
 
 <CodeBlock
   data={[

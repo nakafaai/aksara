@@ -2,18 +2,18 @@
 
 export const metadata = {
   title: "Invers Bilangan Kompleks",
-  description: "Hitung kebalikan bilangan kompleks dengan konjugat dan modulus, lalu terapkan caranya pada pembagian melalui contoh bertahap.",
+  description: "Hitung invers bilangan kompleks dengan konjugat dan modulus, lalu gunakan invers tersebut untuk membagi dua bilangan kompleks melalui contoh bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Bilangan Kompleks",
 };
 
-## Apa itu Invers Bilangan Kompleks?
+## Invers Bilangan Kompleks
 
 Setiap bilangan kompleks **tak nol** <InlineMath math="z = x + iy" /> memiliki **invers perkalian**, yang ditulis sebagai <InlineMath math="z^{-1}" /> atau <InlineMath math="1/z" />.
 
-Ciri khas dari invers perkalian adalah jika kita kalikan bilangan kompleks <InlineMath math="z" /> dengan inversnya <InlineMath math="z^{-1}" />, hasilnya adalah <InlineMath math="1" /> (elemen identitas perkalian).
+Jika bilangan kompleks <InlineMath math="z" /> dikalikan dengan inversnya <InlineMath math="z^{-1}" />, hasilnya adalah <InlineMath math="1" />, yaitu elemen identitas perkalian.
 
 <BlockMath math="z \times z^{-1} = 1" />
 
@@ -31,7 +31,7 @@ Ingat juga bentuk lain yang sering berguna, menggunakan konjugat (<InlineMath ma
 
 <BlockMath math="z^{-1} = \frac{\bar{z}}{|z|^2}" />
 
-## Contoh Perhitungan Invers
+## Menentukan Invers Bilangan Kompleks
 
 Tentukan invers dari <InlineMath math="z = 1 - i" />.
 
@@ -56,13 +56,13 @@ Menggunakan rumus konjugat dan modulus:
   <BlockMath math="z^{-1} = \frac{\bar{z}}{|z|^2} = \frac{1+i}{2} = \frac{1}{2} + \frac{1}{2}i" />
 </MathContainer>
 
-Hasilnya sama, yaitu:
+Kedua rumus memberikan invers yang sama:
 
 <ContentStack>
 
   <BlockMath math="z^{-1} = \frac{1}{2} + \frac{1}{2}i \text{ atau} \left( \frac{1}{2}, \frac{1}{2} \right)" />
 
-  Periksa hasilnya dengan mengalikannya dengan bilangan semula:
+  Pastikan nilai <InlineMath math="z^{-1}" /> benar dengan mengalikan <InlineMath math="z^{-1}" /> dengan bilangan semula:
 
   <BlockMath math="(1-i)\left(\frac{1}{2}+\frac{1}{2}i\right)=\frac{1}{2}+\frac{1}{2}+\left(\frac{1}{2}-\frac{1}{2}\right)i=1" />
 
@@ -76,7 +76,8 @@ Hasilnya sama, yaitu:
       <>
         Bilangan <InlineMath math="z = 1-i" /> dan inversnya{" "}
         <InlineMath math="z^{-1} = \frac{1}{2} + \frac{1}{2}i" /> berada pada
-        sisi yang berlawanan dari sumbu real; nilai mutlaknya saling berkebalikan.
+        sisi yang berlawanan dari sumbu real. Nilai mutlak kedua bilangan saling
+        berkebalikan.
       </>
     }
     cameraPosition={[0, 0, 8]}
@@ -87,6 +88,7 @@ Hasilnya sama, yaitu:
           { x: 0, y: 0, z: 0 },
           { x: 1, y: -1, z: 0 },
         ],
+        smooth: false,
         color: "#0284c7",
         labels: [{ text: <InlineMath math="z=1-i" />, at: 1, offset: [0.5, -0.3, 0] }],
         cone: { position: "end" },
@@ -96,6 +98,7 @@ Hasilnya sama, yaitu:
           { x: 0, y: 0, z: 0 },
           { x: 0.5, y: 0.5, z: 0 },
         ],
+        smooth: false,
         color: "#65a30d",
         labels: [
           {

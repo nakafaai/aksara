@@ -3,13 +3,13 @@ export const metadata = {
     description: "Gunakan iterasi pangkat, iterasi invers bergeser, hasil bagi Rayleigh, dan pemeriksaan residu untuk menghitung pasangan eigen terpilih.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-17",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Metode Linear AI",
 };
 
 ## Iterasi Invers Bergeser
 
-Iterasi invers bergeser menargetkan nilai eigen yang paling dekat dengan pergeseran <InlineMath math="\mu" />. Kita mulai dengan matriks simetris real <InlineMath math="A \in \mathbb{R}^{n \times n}" />, yang memiliki nilai eigen real dan gambaran konvergensi yang lebih jelas.
+Iterasi invers bergeser menargetkan nilai eigen yang paling dekat dengan pergeseran <InlineMath math="\mu" />. Kita mulai dengan matriks simetris real <InlineMath math="A \in \mathbb{R}^{n \times n}" />. Semua nilai eigennya real dan vektor eigennya dapat dipilih sebagai basis ortonormal.
 
 Pilih <InlineMath math="\mu" /> yang bukan nilai eigen dan vektor awal satuan <InlineMath math="q_0" /> yang memiliki komponen tak nol pada arah vektor eigen tujuan. Faktorkan <InlineMath math="A-\mu I" /> sekali, lalu gunakan kembali faktorisasi tersebut.
 
@@ -28,11 +28,11 @@ Hasil bagi Rayleigh <InlineMath math="\rho_{k+1}" /> memperkirakan nilai eigen. 
 
 <BlockMath math="\|r_{k+1}\|_2 \leq \tau\bigl(\|A\|_2+|\rho_{k+1}|\bigr)" />
 
-Jika <InlineMath math="Av_i=\lambda_i v_i" />, maka
+Untuk pasangan eigen yang memenuhi <InlineMath math="Av_i=\lambda_i v_i" />, invers bergeser bekerja sebagai berikut.
 
 <BlockMath math="(A-\mu I)^{-1}v_i=\frac{1}{\lambda_i-\mu}v_i" />
 
-sehingga nilai eigen yang paling dekat dengan <InlineMath math="\mu" /> menghasilkan magnitudo transformasi terbesar. Dalam implementasi, kita menyelesaikan sistem linear. Kita tidak membentuk <InlineMath math="(A-\mu I)^{-1}" /> secara eksplisit.
+Hubungan ini menunjukkan bahwa nilai eigen yang paling dekat dengan <InlineMath math="\mu" /> menghasilkan magnitudo transformasi terbesar. Dalam implementasi, kita menyelesaikan sistem linear tanpa membentuk <InlineMath math="(A-\mu I)^{-1}" /> secara eksplisit.
 
 ## Iterasi Pangkat
 
@@ -45,13 +45,13 @@ Iterasi pangkat menargetkan nilai eigen dengan nilai absolut terbesar. Mulai dar
 <BlockMath math="r_{k+1}=Aq_{k+1}-\rho_{k+1}q_{k+1}" />
 </MathContainer>
 
-Untuk matriks simetris, konvergensi menuju vektor eigen dominan dapat diharapkan ketika
+Untuk matriks simetris, konvergensi menuju vektor eigen dominan memerlukan celah spektral berikut.
 
 <BlockMath math="|\lambda_1|>|\lambda_2|" />
 
-dan vektor awal memiliki komponen tak nol pada arah vektor eigen untuk <InlineMath math="\lambda_1" />. Faktor konvergensi asimtotiknya sekitar <InlineMath math="|\lambda_2/\lambda_1|" />. Magnitudo dominan yang sama atau sangat berdekatan dapat memperlambat atau menggagalkan konvergensi satu vektor.
+Vektor awal juga harus memiliki komponen tak nol pada arah vektor eigen untuk <InlineMath math="\lambda_1" />. Faktor konvergensi asimtotik sekitar <InlineMath math="|\lambda_2/\lambda_1|" />. Magnitudo dominan yang sama atau sangat berdekatan dapat memperlambat atau menggagalkan konvergensi satu vektor.
 
-## Nilai Eigen Mana yang Ditemukan?
+## Nilai Eigen Mana yang Ditemukan
 
 Kata “terkecil” bersifat ambigu, sehingga target harus selalu dinyatakan secara tepat.
 
@@ -62,7 +62,7 @@ Kata “terkecil” bersifat ambigu, sehingga target harus selalu dinyatakan sec
 | Iterasi invers bergeser | Nilai eigen yang paling dekat dengan <InlineMath math="\mu" /> |
 | Iterasi invers pada matriks definit positif | Nilai eigen aljabar terkecil, yang juga terkecil secara absolut |
 
-Pada matriks tak definit, nilai eigen dengan nilai absolut terkecil belum tentu merupakan nilai eigen paling negatif. Pembedaan ini mencegah kesalahan tafsir yang umum.
+Pada matriks tak definit, nilai eigen dengan nilai absolut terkecil belum tentu merupakan nilai eigen paling negatif. Bedakan kedua nilai ini agar tidak memilih nilai eigen yang keliru.
 
 ## Contoh Iterasi Invers Bergeser
 
@@ -88,4 +88,4 @@ Karena <InlineMath math="2" /> lebih dekat ke pergeseran <InlineMath math="1" />
 1. Faktorkan matriks bergeser dengan metode yang stabil dan pivoting jika diperlukan. Jika pergeseran tepat mengenai nilai eigen, matriks bergeser menjadi singular sehingga penyelesaian harus ditangani atau pergeserannya disesuaikan.
 2. Hentikan berdasarkan norma residu. Perubahan kecil antara dua estimasi nilai eigen belum membuktikan bahwa pasangan eigennya akurat.
 3. Tanda vektor eigen bebas dipilih: <InlineMath math="q" /> dan <InlineMath math="-q" /> mewakili arah eigen yang sama.
-4. Untuk nilai eigen berkelompok atau matriks nonnormal umum, gunakan algoritma multivektor atau bentuk Schur, seperti penyelesai eigen berbasis Lanczos, Arnoldi, atau QR.
+4. Untuk nilai eigen berkelompok atau matriks nonnormal umum, gunakan algoritma multivektor atau bentuk Schur, seperti penyelesai eigen berbasis Lanczos, Arnoldi, atau <InlineMath math="\mathrm{QR}" />.

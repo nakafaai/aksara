@@ -1,12 +1,13 @@
 export const metadata = {
   title: "Horners Methode",
-  description: "Verstehe das Horner-Schema als kompakte Polynomdivision und wende es mit vollständigen Koeffizientenfolgen sicher an.",
+  description: "Dividiere Polynome mit dem Horner-Schema und vergleiche die Rechenschritte mit der schriftlichen Polynomdivision.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Polynom",
 };
 
-## Horners Methode verstehen
+## Horners Methode
 
 Das Horner-Schema verkürzt die Polynomdivision, wenn der Divisor linear ist, etwa <InlineMath math="(x-c)" />. Statt alle Variablen und Potenzen auszuschreiben, arbeiten wir nur mit der geordneten Koeffizientenfolge sowie wiederholten Multiplikationen und Additionen.
 
@@ -46,11 +47,11 @@ x-2\overline{\big)x^3 + 0x^2 - 7x + 8} \\
 
 Im Horner-Schema brauchen wir nur die Koeffizienten <InlineMath math="(1, 0, -7, 8)" /> und den Wert <InlineMath math="c=2" />. Die ersten drei Zahlen der unteren Zeile, <InlineMath math="(1, 2, -3)" />, sind die Koeffizienten des Quotienten <InlineMath math="1x^2 + 2x - 3" />. Die letzte Zahl <InlineMath math="\boxed{2}" /> ist der Rest.
 
-Damit ist die Rechnung deutlich kompakter als bei der ausgeschriebenen Polynomdivision.
+Das Schema wiederholt weder Variablen noch Potenzen. Die untere Zeile enthält direkt die Koeffizienten des Quotienten und anschließend den Rest.
 
 Direkt anwendbar ist das Schema bei einem linearen Divisor der Form <InlineMath math="(x-c)" />. Ein Divisor wie <InlineMath math="(ax-b)" /> muss zuerst passend umgeformt werden.
 
-## Vorbereitung auf die Anwendung der Horner-Methode
+## Vorbereitung auf die Anwendung der Hornerverfahren
 
 Vor der Division mit der Horner-Methode sind mehrere Vorbereitungsschritte erforderlich:
 
@@ -74,7 +75,7 @@ Vor der Division mit der Horner-Methode sind mehrere Vorbereitungsschritte erfor
 
     Setze <InlineMath math="c" /> links vor das Schema und schreibe die Koeffizienten von <InlineMath math="P(x)" /> in die obere Zeile.
 
-## Divisionsprozess mit der Horner-Methode
+## Divisionsprozess mit der Hornerverfahren
 
 Hier sind die Schritte zur Durchführung einer Division nach dem Horner-Schema:
 
@@ -84,7 +85,7 @@ Hier sind die Schritte zur Durchführung einer Division nach dem Horner-Schema:
 4.  **Wiederholen:** Wiederhole Schritt <InlineMath math="2" />, also die Multiplikation mit <InlineMath math="c" />, und Schritt <InlineMath math="3" />, also die anschließende Addition, bis alle Koeffizienten verarbeitet sind.
 5.  **Ergebnis lesen:** Die letzte Zahl der unteren Zeile ist der **Rest <InlineMath math="S" />**. Die übrigen Zahlen sind von links nach rechts die **Koeffizienten des Quotienten <InlineMath math="H(x)" />**, beginnend bei der Potenz <InlineMath math="n-1" />.
 
-## Verwendung der Horner-Methode
+## Horner Verfahren anwenden
 
 Teilen wir <InlineMath math="P(x) = 2x^3 + 5x^2 + 6" /> durch <InlineMath math="x+3" /> mit beiden Methoden.
 

@@ -3,7 +3,7 @@ export const metadata = {
     description: "Gunakan matriks kompleks, hitung transpose konjugat, dan pakai produk skalar Hermitian untuk mengukur vektor kompleks dengan benar.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Metode Linear AI",
 };
 
@@ -11,17 +11,17 @@ export const metadata = {
 
 Matriks kompleks mengikuti aturan baris, kolom, penjumlahan, dan perkalian yang sama seperti matriks real. Perbedaannya adalah setiap entri dapat memiliki bagian real sekaligus bagian imajiner.
 
-Sebuah skema persegi panjang bilangan kompleks dengan <InlineMath math="m \in \mathbb{N}" /> baris dan <InlineMath math="n \in \mathbb{N}" /> kolom disebut matriks kompleks <InlineMath math="m \times n" />:
+Matriks kompleks dengan <InlineMath math="m \in \mathbb{N}" /> baris dan <InlineMath math="n \in \mathbb{N}" /> kolom dapat ditulis sebagai
 
 <BlockMath math="A = \begin{pmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & & \vdots \\ a_{m1} & \cdots & a_{mn} \end{pmatrix} = (a_{ij})_{\substack{i=1,\ldots,m \\ j=1,\ldots,n}}" />
 
-dengan **koefisien** <InlineMath math="a_{ij} \in \mathbb{C}" /> untuk <InlineMath math="i = 1, \ldots, m" /> dan <InlineMath math="j = 1, \ldots, n" />. Himpunan semua matriks kompleks <InlineMath math="m \times n" /> ditulis sebagai <InlineMath math="\mathbb{C}^{m \times n}" />.
+Setiap **koefisien** <InlineMath math="a_{ij} \in \mathbb{C}" /> memiliki indeks <InlineMath math="i = 1, \ldots, m" /> dan <InlineMath math="j = 1, \ldots, n" />. Himpunan semua matriks kompleks <InlineMath math="m \times n" /> ditulis sebagai <InlineMath math="\mathbb{C}^{m \times n}" />.
 
-Sebagai contoh, entri seperti <InlineMath math="2+3i" /> dan <InlineMath math="-1-4i" /> merupakan anggota <InlineMath math="\mathbb C" />. Karena konjugasi berperan dalam panjang dan sudut, transpose biasa tidak lagi menjadi operasi yang tepat untuk setiap perhitungan geometris.
+Sebagai contoh, entri seperti <InlineMath math="2+3i" /> dan <InlineMath math="-1-4i" /> merupakan anggota <InlineMath math="\mathbb C" />. Panjang dan sudut pada ruang kompleks dihitung dengan konjugasi. Karena itu, transpose biasa tidak cukup untuk perhitungan geometris pada ruang tersebut.
 
 ## Matriks Adjoint
 
-Untuk matriks kompleks, padanan geometris transpose adalah **adjoint**, yang juga disebut transpose konjugat. Operasi ini mentranspose matriks sekaligus mengonjugasi setiap entrinya.
+Untuk matriks kompleks, padanan geometris transpose adalah **adjoint**, yang juga disebut transpose konjugat. Operasi ini menukar baris dengan kolom, lalu mengambil konjugat kompleks setiap entri.
 
 Misalkan <InlineMath math="A \in \mathbb{C}^{m \times n}" /> adalah matriks kompleks <InlineMath math="m \times n" />. **Matriks adjoint** (matriks konjugat transpose) <InlineMath math="A^H" /> dari <InlineMath math="A" /> adalah matriks kompleks <InlineMath math="n \times m" /> yang diperoleh dengan menukar baris dan kolom dari <InlineMath math="A" /> dan mengambil konjugat kompleks dari setiap entri:
 
@@ -36,15 +36,15 @@ Sebagai contoh,
 
 Jadi, entri pada baris <InlineMath math="j" /> dan kolom <InlineMath math="i" /> dari <InlineMath math="A^H" /> adalah <InlineMath math="\overline{a_{ij}}" />.
 
-## Sifat-sifat Matriks Adjoint
+## Sifat Matriks Adjoint
 
-Matriks adjoint memiliki beberapa sifat penting yang berguna dalam perhitungan. Berikut adalah sifat-sifat fundamental yang selalu berlaku:
+Matriks adjoint memenuhi sifat berikut:
 
 ### Sifat Dasar
 
 1. **Hubungan dengan transpose real**: Untuk <InlineMath math="A \in \mathbb{R}^{m \times n} \subset \mathbb{C}^{m \times n}" />, berlaku <InlineMath math="A^H = A^T" />
 
-Ini masuk akal karena jika matriks hanya berisi entri real, maka konjugat kompleks tidak mengubah nilainya.
+Konjugasi kompleks tidak mengubah entri real. Karena itu, adjoint matriks tersebut sama dengan transpos biasa.
 
 2. **Involusi**: <InlineMath math="(A^H)^H = A" />
 
@@ -80,7 +80,7 @@ Untuk <InlineMath math="v \in \mathbb{C}^n" />, kita definisikan:
 
 <BlockMath math="\|v\|_2 = \sqrt{v^H v}" />
 
-Untuk <InlineMath math="v=(1+i,2-i)^T" />, perhitungannya dapat dilihat langsung:
+Untuk <InlineMath math="v=(1+i,2-i)^T" />, hitung norma Hermitian sebagai berikut:
 
 <MathContainer>
 <BlockMath math="v^Hv=|1+i|^2+|2-i|^2=2+5=7" />
@@ -89,7 +89,7 @@ Untuk <InlineMath math="v=(1+i,2-i)^T" />, perhitungannya dapat dilihat langsung
 
 Inilah alasan <InlineMath math="v^Tv" /> keliru jika dipakai dalam ruang kompleks: tanpa konjugasi, hasilnya tidak harus real atau positif.
 
-### Sifat-sifat Norma Euclidean
+### Sifat Norma Euclidean
 
 Norma Euclidean memenuhi sifat-sifat berikut:
 
@@ -99,4 +99,4 @@ Norma Euclidean memenuhi sifat-sifat berikut:
 
 **Ketidaksamaan segitiga**: <InlineMath math="\|v + w\|_2 \leq \|v\|_2 + \|w\|_2" />
 
-Sifat-sifat ini membuat <InlineMath math="\|\cdot\|_2" /> benar-benar sebuah norma. Operasi adjoint menjaga agar panjang, ortogonalitas, dan proyeksi kompleks tetap konsisten dengan padanannya pada ruang real.
+Sifat-sifat ini menunjukkan bahwa <InlineMath math="\|\cdot\|_2" /> memenuhi definisi norma. Penggunaan adjoint pada produk skalar Hermitian menjaga panjang, ortogonalitas, dan proyeksi kompleks tetap konsisten dengan padanannya pada ruang real.

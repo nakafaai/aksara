@@ -3,13 +3,13 @@ export const metadata = {
   description: "Derive PCA from centered data, covariance eigenvectors, and the singular value decomposition. Interpret explained variance and low-rank reconstruction geometrically.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-17",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Linear Methods of AI",
 };
 
 ## Start with Centered Data
 
-Let <InlineMath math="X\in\mathbb{R}^{m\times n}" /> contain <InlineMath math="m" /> observations of <InlineMath math="n" /> features. PCA begins by subtracting each feature mean:
+Let <InlineMath math="X\in\mathbb{R}^{m\times n}" /> contain <InlineMath math="m" /> observations of <InlineMath math="n" /> features. <InlineMath math="\mathrm{PCA}" /> begins by subtracting each feature mean:
 
 <MathContainer>
 <BlockMath math="\mu_j=\frac1m\sum_{i=1}^m X_{ij}" />
@@ -43,7 +43,7 @@ Each later direction maximizes the same variance subject to being orthogonal to 
 
 <BlockMath math="Z=X_cV" />
 
-and their sample covariance is diagonal:
+The sample covariance of the scores <InlineMath math="Z" /> is diagonal:
 
 <BlockMath math="\frac{1}{m-1}Z^TZ=V^TCV=\Lambda" />
 
@@ -77,15 +77,15 @@ Then the right singular vectors are the principal directions and
 
 <BlockMath math="\lambda_j=\frac{\sigma_j^2}{m-1}" />
 
-Using the SVD avoids explicitly forming <InlineMath math="X_c^TX_c" />, whose condition number is squared. It is also the natural route when <InlineMath math="X_c" /> is rectangular or rank deficient.
+Using <InlineMath math="\mathrm{SVD}" /> avoids forming <InlineMath math="X_c^TX_c" />, which would square the condition number. <InlineMath math="\mathrm{SVD}" /> also works well when <InlineMath math="X_c" /> is rectangular or rank deficient.
 
-## Worked Two-Dimensional Covariance
+## Worked Two Dimensional Covariance
 
 Consider a covariance ellipse rotated by
 
 <BlockMath math="\theta=\frac{\pi}{6}" />
 
-with variances <InlineMath math="9" /> and <InlineMath math="2.25" /> along its principal axes. Let
+The covariance ellipse is rotated by <InlineMath math="\theta" /> and has variances <InlineMath math="9" /> and <InlineMath math="2.25" /> along its principal axes. Let
 
 <MathContainer>
 <BlockMath math="R=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}" />
@@ -104,7 +104,7 @@ The first component explains
 
 <BlockMath math="\frac{9}{9+2.25}=0.8=80\%" />
 
-of the total variance.
+This result means that the first component explains <InlineMath math="80\%" /> of the total variance.
 
 <LineEquation
   title={<>Covariance ellipse and principal directions <InlineMath math="v_1,v_2" /></>}
@@ -175,12 +175,12 @@ of the total variance.
 
 ## Interpretation Boundaries
 
-| Check | Why it matters |
+| Check | Reason |
 | --- | --- |
 | Center with training-set means only | prevents data leakage and preserves the learned coordinate system |
 | Review feature units and scaling | high numerical variance can otherwise dominate for the wrong reason |
 | Choose <InlineMath math="k" /> from validation needs | explained variance does not measure predictive relevance |
 | Remember eigenvector signs are arbitrary | <InlineMath math="v_j" /> and <InlineMath math="-v_j" /> define the same component |
-| Inspect nonlinear structure and outliers | PCA is a linear, variance-based summary and can be sensitive to both |
+| Inspect nonlinear structure and outliers | <InlineMath math="\mathrm{PCA}" /> is a linear, variance-based summary and can be sensitive to both |
 
-PCA finds directions of variance. It cannot identify causes from variance alone. A principal component may combine many original features, and a low-variance direction can still matter for a downstream task.
+<InlineMath math="\mathrm{PCA}" /> identifies directions with large variance. Variance alone does not establish a cause. One principal component may combine many original features. A direction with low variance may still carry a signal needed by a later prediction or classification task.

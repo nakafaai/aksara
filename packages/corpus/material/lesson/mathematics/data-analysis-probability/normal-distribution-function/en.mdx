@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Normal Distribution Density Function",
-  description: "Understand the normal density through a bell-curve visualization, then standardize values with z-scores and calculate an interval probability.",
+  description: "Read a normal density curve, standardize values with z-scores, and calculate an interval probability.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Data Analysis and Probability",
 };
 
 
 
-## Understanding Normal Distribution
+## Normal Distribution
 
 Measurements such as human height or repeated laboratory results often cluster around a central value. In some populations and under suitable conditions, a **normal distribution** can approximate that pattern. Check the model against the observed data before using it.
 
@@ -99,11 +99,11 @@ The formula below gives the probability density at each value of <InlineMath mat
 
 If <InlineMath math="X" /> is normally distributed with mean <InlineMath math="\mu" />, variance <InlineMath math="\sigma^2" />, and <InlineMath math="\sigma>0" />, its density function is:
 
-<BlockMath math="f(x; \mu, \sigma) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}" />
+<BlockMath math="f_{\mu,\sigma}(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}" />
 
-for <InlineMath math="-\infty < x < \infty" />.
+This formula applies to every <InlineMath math="x" /> satisfying <InlineMath math="-\infty < x < \infty" />.
 
-Where:
+The constants and parameters are:
 
 - <InlineMath math="\pi \approx 3.1416" /> is the circle constant
 - <InlineMath math="e \approx 2.7183" /> is Euler's number
@@ -118,13 +118,13 @@ In practice, we often use the **standard normal distribution** with mean <Inline
 
 <BlockMath math="Z = \frac{x - \mu}{\sigma}" />
 
-The variable <InlineMath math="Z" /> is the **standard score**, or **z-score**. It measures how many standard deviations <InlineMath math="x" /> lies above or below the mean and lets us use one standard normal table for any normal distribution.
+The variable <InlineMath math="Z" /> is the **standard score**, or **z-score**. It measures how many standard deviations <InlineMath math="x" /> lies above or below the mean. Standardization maps every normal distribution to the same <InlineMath math="Z" /> scale, so one standard normal table works for all of them.
 
 **Why use z-score?**
 
 With this transformation, we can compare data from different distributions. For example, you can compare math scores with physics scores, even though their means and standard deviations are different.
 
-## Calculation Example
+## Finding a Normal Probability Between Two Bounds
 
 Suppose <InlineMath math="X" /> is normally distributed with <InlineMath math="\mu = 50" /> and <InlineMath math="\sigma = 10" />. Find the probability that <InlineMath math="X" /> lies between <InlineMath math="45" /> and <InlineMath math="62" />.
 

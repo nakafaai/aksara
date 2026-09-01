@@ -3,6 +3,7 @@ export const metadata = {
   description: "Den Zusammenhang zwischen Mittelpunktswinkel und Sektorfläche verstehen und für Berechnungen nutzen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Kreisbögen und Sektoren",
 };
 
@@ -18,8 +19,9 @@ Der Mittelpunktswinkel bestimmt, welchen Anteil des Kreises der Sektor einnimmt.
   title={<>Mittelpunktswinkel eines Sektors</>}
   description={
     <>
-    Der Scheitel liegt im Kreismittelpunkt <InlineMath math="O" />; die beiden Winkelschenkel sind Radien.
-  </>
+      Der Scheitel liegt im Kreismittelpunkt <InlineMath math="O" />. Die beiden
+      Winkelschenkel sind Radien.
+    </>
   }
   data={[
     {
@@ -40,6 +42,7 @@ Der Mittelpunktswinkel bestimmt, welchen Anteil des Kreises der Sektor einnimmt.
         { x: 0, y: 0, z: 0 },
         { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6), z: 0 }
       ],
+      smooth: false,
       color: "#9333ea",
       showPoints: false,
       lineWidth: 3,
@@ -53,6 +56,7 @@ Der Mittelpunktswinkel bestimmt, welchen Anteil des Kreises der Sektor einnimmt.
         { x: 0, y: 0, z: 0 },
         { x: 4 * Math.cos(5 * Math.PI / 6), y: 4 * Math.sin(5 * Math.PI / 6), z: 0 }
       ],
+      smooth: false,
       color: "#9333ea",
       showPoints: false,
       lineWidth: 3,
@@ -122,12 +126,12 @@ Ein Vollwinkel gehört zur gesamten Kreisfläche. Für einen Sektor ergeben sich
 
 <BlockMath math="A = \frac{1}{2} \theta r^2" />
 
-Dabei bezeichnet:
+In beiden Formeln bedeuten die Variablen:
 - <InlineMath math="A" /> die Sektorfläche
 - <InlineMath math="\theta" /> den Mittelpunktswinkel, in der ersten Formel in Grad und in der zweiten im Bogenmaß
 - <InlineMath math="r" /> den Kreisradius
 
-Bei festem Radius ist die Sektorfläche proportional zum Winkel. Verdoppelt sich der Winkel, verdoppelt sich die Fläche; halbiert sich der Winkel, halbiert sich auch die Fläche.
+Bei festem Radius ist die Sektorfläche proportional zum Winkel. Verdoppelt sich der Winkel, verdoppelt sich die Fläche. Halbiert sich der Winkel, halbiert sich auch die Fläche.
 
 <LineEquation
   title={<>Sektoren mit verschiedenen Mittelpunktswinkeln</>}
@@ -151,6 +155,7 @@ Bei festem Radius ist die Sektorfläche proportional zum Winkel. Verdoppelt sich
         { x: 0, y: 0, z: 0 },
         { x: 3.5, y: 0, z: 0 }
       ],
+      smooth: false,
       color: "#7c3aed",
       showPoints: false,
       lineWidth: 2,
@@ -163,6 +168,7 @@ Bei festem Radius ist die Sektorfläche proportional zum Winkel. Verdoppelt sich
         { x: 0, y: 0, z: 0 },
         { x: 3.5 * Math.cos(Math.PI / 4), y: 3.5 * Math.sin(Math.PI / 4), z: 0 }
       ],
+      smooth: false,
       color: "#7c3aed",
       showPoints: false,
       lineWidth: 2
@@ -189,6 +195,7 @@ Bei festem Radius ist die Sektorfläche proportional zum Winkel. Verdoppelt sich
         { x: 0, y: 0, z: 2 },
         { x: 3.5, y: 0, z: 2 }
       ],
+      smooth: false,
       color: "#4f46e5",
       showPoints: false,
       lineWidth: 2
@@ -198,6 +205,7 @@ Bei festem Radius ist die Sektorfläche proportional zum Winkel. Verdoppelt sich
         { x: 0, y: 0, z: 2 },
         { x: 3.5 * Math.cos(Math.PI / 2), y: 3.5 * Math.sin(Math.PI / 2), z: 2 }
       ],
+      smooth: false,
       color: "#4f46e5",
       showPoints: false,
       lineWidth: 2
@@ -224,6 +232,7 @@ Bei festem Radius ist die Sektorfläche proportional zum Winkel. Verdoppelt sich
         { x: 0, y: 0, z: 4 },
         { x: 3.5, y: 0, z: 4 }
       ],
+      smooth: false,
       color: "#e11d48",
       showPoints: false,
       lineWidth: 2
@@ -233,6 +242,7 @@ Bei festem Radius ist die Sektorfläche proportional zum Winkel. Verdoppelt sich
         { x: 0, y: 0, z: 4 },
         { x: 3.5 * Math.cos(3 * Math.PI / 4), y: 3.5 * Math.sin(3 * Math.PI / 4), z: 4 }
       ],
+      smooth: false,
       color: "#e11d48",
       showPoints: false,
       lineWidth: 2
@@ -293,6 +303,7 @@ Ist der Winkel bekannt, lassen sich daraus die zugehörige Sektorfläche und die
         { x: 0, y: 0, z: 0 },
         { x: 3, y: 0, z: 0 }
       ],
+      smooth: false,
       color: "#9333ea",
       showPoints: false,
       lineWidth: 3,
@@ -305,6 +316,7 @@ Ist der Winkel bekannt, lassen sich daraus die zugehörige Sektorfläche und die
         { x: 0, y: 0, z: 0 },
         { x: 3 * Math.cos(Math.PI / 3), y: 3 * Math.sin(Math.PI / 3), z: 0 }
       ],
+      smooth: false,
       color: "#9333ea",
       showPoints: false,
       lineWidth: 3
@@ -351,13 +363,13 @@ Ist der Winkel bekannt, lassen sich daraus die zugehörige Sektorfläche und die
 
 ## Satz über Mittelpunktswinkel und Bogen
 
-Der grundlegende Satz beschreibt die direkte Beziehung zwischen Winkel und Bogen:
+Für einen Mittelpunktswinkel und den zugehörigen Bogen gilt:
 
 **Hauptsatz:**
 - Das Gradmaß eines Mittelpunktswinkels entspricht dem Gradmaß des zugehörigen Bogens
 - Misst der Mittelpunktswinkel <InlineMath math="\alpha" /> Grad, dann misst auch der erfasste Bogen <InlineMath math="\alpha" /> Grad
 
-**Wichtige Eigenschaften:**
+**Eigenschaften:**
 
 - Im gleichen Kreis erzeugen kongruente Mittelpunktswinkel kongruente Bögen und Sektoren
 - Haben zwei Sektoren desselben Kreises dieselbe Fläche, sind ihre Mittelpunktswinkel gleich groß
@@ -412,6 +424,7 @@ Welche Formel passt, entscheidet also die Aufgabenangabe: Fläche, Bogenlänge o
         { x: 0, y: 0, z: 0 },
         { x: 4, y: 0, z: 0 }
       ],
+      smooth: false,
       color: "#7c3aed",
       showPoints: false,
       lineWidth: 3,
@@ -424,6 +437,7 @@ Welche Formel passt, entscheidet also die Aufgabenangabe: Fläche, Bogenlänge o
         { x: 0, y: 0, z: 0 },
         { x: 4 * Math.cos(2 * Math.PI / 5), y: 4 * Math.sin(2 * Math.PI / 5), z: 0 }
       ],
+      smooth: false,
       color: "#7c3aed",
       showPoints: false,
       lineWidth: 3

@@ -1,9 +1,9 @@
 export const metadata = {
-    title: "Cramer's Rule",
+    title: "Cramer Method for Linear Systems",
     description: "Solve linear systems with Cramer's rule. Connect determinants, the adjugate matrix, inverse formulas, and a complete worked example.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Linear Methods of AI",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 Cramer's rule solves a linear system directly from determinants when its coefficient matrix is invertible.
 
-The rule makes the relationship between determinants and the solution transparent. For large systems, however, Gaussian elimination is far more efficient.
+It expresses each solution component as a ratio of two determinants. For large systems, Gaussian elimination requires much less computation.
 
 ## Adjugate Matrix
 
@@ -23,11 +23,11 @@ For matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" />, the adjugate mat
 <BlockMath math="\tilde{A} = (\tilde{a}_{ij})_{i=1,\ldots,n \atop j=1,\ldots,n} \in \mathbb{R}^{n \times n}" />
 </MathContainer>
 
-with elements:
+Each entry of the adjugate matrix is given by
 
 <BlockMath math="\tilde{a}_{ij} = (-1)^{i+j} \cdot \det A_{ji}" />
 
-Note that the indices in <InlineMath math="A_{ji}" /> are swapped (not <InlineMath math="A_{ij}" />).
+Here, <InlineMath math="A_{ji}" /> is the submatrix formed by deleting row <InlineMath math="j" /> and column <InlineMath math="i" /> from <InlineMath math="A" />. The indices are swapped because the cofactors occupy transposed positions in the adjugate.
 
 The adjugate matrix <InlineMath math="\tilde{A}" /> contains the **cofactors** of <InlineMath math="A" /> in transposed positions.
 
@@ -41,7 +41,7 @@ The adjugate matrix has the following structure:
 
 Each element is calculated by taking the determinant of the corresponding submatrix, then given a sign based on the checkerboard pattern <InlineMath math="(-1)^{i+j}" />.
 
-## Fundamental Property of the Adjugate Matrix
+## Adjugate Matrix Identity
 
 The adjugate satisfies the following identity with the original matrix:
 
@@ -65,9 +65,9 @@ If matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" /> is invertible, the
 <BlockMath math="A^{-1} = \frac{1}{\det A} \cdot \tilde{A}" />
 </MathContainer>
 
-However, calculating matrix inverse using this formula is much less efficient compared to Gaussian elimination for large matrices.
+However, calculating the matrix inverse with this formula is much less efficient than Gaussian elimination for large matrices.
 
-### Example for a Two-by-Two Matrix
+### Example for a Two by Two Matrix
 
 For a <InlineMath math="2\times2" /> matrix:
 
@@ -104,7 +104,7 @@ Let <InlineMath math="A \in \mathbb{R}^{n \times n}" /> be an invertible matrix 
 <BlockMath math="x_j = \frac{\det(a^1 \; \ldots \; a^{j-1} \; b \; a^{j+1} \; \ldots \; a^n)}{\det A}" />
 </MathContainer>
 
-for <InlineMath math="j = 1, 2, \ldots, n" />.
+Cramer's formula applies for <InlineMath math="j = 1, 2, \ldots, n" />.
 
 To calculate the <InlineMath math="j" />-th component of solution <InlineMath math="x" />, we replace the <InlineMath math="j" />-th column of matrix <InlineMath math="A" /> with vector <InlineMath math="b" />, then calculate the determinant of this modified matrix and divide it by the determinant of the original matrix <InlineMath math="A" />.
 
@@ -123,24 +123,24 @@ For <InlineMath math="j = 1, \ldots, n" />:
 <BlockMath math="= \frac{1}{\det A} \cdot \det(a^1 \; \ldots \; a^{j-1} \; b \; a^{j+1} \; \ldots \; a^n)" />
 </MathContainer>
 
-based on Laplace expansion with respect to the <InlineMath math="j" />-th column.
+The final equality follows from Laplace expansion along the <InlineMath math="j" />-th column.
 
-## Application Example
+## Solving a Three Variable System by Determinants
 
-Look at a concrete example of applying Cramer's rule:
+Solve the following system by replacing one column of <InlineMath math="A" /> at a time:
 
 <MathContainer>
 <BlockMath math="A = \begin{pmatrix} 1 & 1 & -1 \\ 1 & -1 & 1 \\ -1 & 1 & 1 \end{pmatrix}, \quad b = \begin{pmatrix} 20 \\ 40 \\ 30 \end{pmatrix}" />
 </MathContainer>
 
-Since:
+Calculate the determinant of <InlineMath math="A" />.
 
 <MathContainer>
 <BlockMath math="\det A = 1 \cdot ((-1) \cdot 1 - 1 \cdot 1) - 1 \cdot (1 \cdot 1 - (-1) \cdot 1)" />
 <BlockMath math="+ (-1) \cdot (1 \cdot 1 - (-1) \cdot (-1)) = -4 \neq 0" />
 </MathContainer>
 
-matrix <InlineMath math="A" /> is invertible and the system has a unique solution.
+Because <InlineMath math="\det A=-4\neq0" />, matrix <InlineMath math="A" /> is invertible and the system has a unique solution.
 
 According to Cramer's rule:
 
@@ -160,6 +160,6 @@ Verification shows that <InlineMath math="A \cdot x - b = 0" />.
 
 ## Solution Properties for Integer Matrices
 
-If <InlineMath math="A \in \mathbb{Z}^{n \times n}" /> is invertible and <InlineMath math="b \in \mathbb{Z}^n" />, then the entries of <InlineMath math="A^{-1}" /> and the solution <InlineMath math="x" /> of <InlineMath math="A \cdot x = b" /> are rational. Before reduction, they can all be written over the common denominator <InlineMath math="|\det A|" />; each reduced denominator therefore divides <InlineMath math="|\det A|" />.
+If <InlineMath math="A \in \mathbb{Z}^{n \times n}" /> is invertible and <InlineMath math="b \in \mathbb{Z}^n" />, then the entries of <InlineMath math="A^{-1}" /> and the solution <InlineMath math="x" /> of <InlineMath math="A \cdot x = b" /> are rational. Before reduction, they can all be written over the common denominator <InlineMath math="|\det A|" />. Each reduced denominator therefore divides <InlineMath math="|\det A|" />.
 
 This occurs because determinant calculation only involves addition, subtraction, and multiplication operations, so the determinant of an integer matrix is always an integer. In the inverse formula and Cramer's rule, the only division operation is division by <InlineMath math="\det A" />.

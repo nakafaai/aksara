@@ -1,10 +1,10 @@
 export const metadata = {
   title: "Notasi Ilmiah",
   description:
-    "Pelajari cara menulis nilai sangat besar atau sangat kecil dengan notasi ilmiah, menjaga angka penting, dan mengonversi satuan tanpa kehilangan makna.",
+    "Menulis nilai sangat besar atau sangat kecil dengan notasi ilmiah, menjaga angka penting, dan mengonversi satuan tanpa kehilangan makna.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-04-25",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Pengukuran dalam Kerja Ilmiah",
 };
 
@@ -22,9 +22,9 @@ Untuk nilai positif, bentuk bakunya adalah:
 
 Koefisien <InlineMath math="a" /> menyimpan angka penting. Pangkat <InlineMath math="n" /> menyimpan skala.
 
-## Koma Bergerak, Nilai Tetap
+## Menggeser Koma Tanpa Mengubah Nilai
 
-Cara paling aman membaca notasi ilmiah adalah membayangkan tanda koma bergerak sampai koefisien berada di antara <InlineMath math="1" /> dan <InlineMath math="10" />.
+Geser tanda koma sampai koefisien berada di antara <InlineMath math="1" /> dan <InlineMath math="10" />. Jumlah dan arah pergeseran menentukan nilai pangkat.
 
 | Nilai biasa | Gerak koma | Notasi ilmiah |
 | :---------- | :--------- | :------------ |
@@ -50,7 +50,7 @@ Dalam notasi ilmiah, baca jumlah angka penting dari koefisiennya. Pangkat <Inlin
 | <InlineMath math="1 \times 10^3 \text{ m}" /> | <InlineMath math="1" /> | Koefisiennya hanya <InlineMath math="1" />. |
 | <InlineMath math="1{,}000 \times 10^3 \text{ m}" /> | <InlineMath math="4" /> | Nol pada <InlineMath math="1{,}000" /> menyatakan ketelitian. |
 
-Itulah alasan notasi ilmiah berguna untuk pengukuran. Bentuk <InlineMath math="1000 \text{ m}" /> bisa ambigu, tetapi <InlineMath math="1{,}000 \times 10^3 \text{ m}" /> jelas memiliki <InlineMath math="4" /> angka penting.
+Notasi ilmiah mencatat ketelitian yang dimaksud dalam suatu pengukuran. Bentuk <InlineMath math="1000 \text{ m}" /> tidak menjelaskan apakah nol di belakangnya termasuk angka penting, sedangkan <InlineMath math="1{,}000 \times 10^3 \text{ m}" /> secara tegas memiliki <InlineMath math="4" /> angka penting.
 
 ## Simpan Digit Pengaman sampai Laporan Akhir
 
@@ -76,7 +76,7 @@ Diameter ukur mendukung <InlineMath math="3" /> angka penting, sehingga hasil ak
 
 ## Menghitung Tanpa Deretan Nol
 
-Notasi ilmiah juga membuat operasi lebih rapi karena pangkat <InlineMath math="10" /> bisa dikelompokkan.
+Dalam notasi ilmiah, kalikan koefisien dan jumlahkan pangkat <InlineMath math="10" /> secara terpisah.
 
 Misalnya sebuah benda sangat kecil memiliki panjang <InlineMath math="2{,}5 \times 10^{-6} \text{ m}" /> dan lebarnya <InlineMath math="4{,}0 \times 10^{-7} \text{ m}" />.
 
@@ -89,4 +89,4 @@ A &= (2{,}5 \times 10^{-6})(4{,}0 \times 10^{-7}) \text{ m}^2 \\
 
 Langkah terakhir melakukan dua hal. Koefisien <InlineMath math="10{,}0" /> belum berbentuk baku karena tidak kurang dari <InlineMath math="10" />, sedangkan kedua panjang ukur hanya memiliki <InlineMath math="2" /> angka penting. Karena itu, hasilnya dilaporkan sebagai <InlineMath math="1{,}0 \times 10^{-12}" />.
 
-Rujukan penulisan nilai pengukuran dari NIST Guide to the SI dan OpenStax dapat dibuka melalui [aturan penulisan NIST](https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values), [prosedur konversi NIST](https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors), dan [pelajaran OpenStax](https://openstax.org/books/university-physics-volume-1/pages/1-6-significant-figures).
+[NIST](https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values) menjelaskan aturan penulisan nilai pengukuran, sedangkan [NIST](https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors) menjelaskan prosedur konversi satuan. [OpenStax University Physics](https://openstax.org/books/university-physics-volume-1/pages/1-6-significant-figures) membahas penerapan aturan angka penting.

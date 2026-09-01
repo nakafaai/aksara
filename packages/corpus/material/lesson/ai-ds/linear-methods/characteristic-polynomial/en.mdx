@@ -1,9 +1,9 @@
 export const metadata = {
     title: "Characteristic Polynomial",
-    description: "Explore characteristic polynomials to find eigenvalues, understand algebraic multiplicity, and analyze matrix trace relationships in linear algebra.",
+   description: "Use characteristic polynomials to find eigenvalues, determine algebraic multiplicity, and relate their coefficients to a matrix's trace.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Linear Methods of AI",
 };
 
@@ -45,17 +45,15 @@ This means:
 
 ## Eigenvalues as Polynomial Roots
 
-The most important concept of the characteristic polynomial is its relationship with eigenvalues.
+The value <InlineMath math="\lambda \in \mathbb{K}" /> is an eigenvalue of <InlineMath math="A" /> if and only if <InlineMath math="\det(A - \lambda \cdot I) = 0" />.
 
-Now, look at a very important relationship: <InlineMath math="\lambda \in \mathbb{K}" /> is an eigenvalue of <InlineMath math="A" /> if and only if <InlineMath math="\det(A - \lambda \cdot I) = 0" />.
+**The eigenvalues are the roots of the characteristic polynomial**.
 
-In other words, **eigenvalues are the roots of the characteristic polynomial**.
-
-The equation for <InlineMath math="t \in \mathbb{K}" />:
+For <InlineMath math="t \in \mathbb{K}" />, consider the following equation.
 
 <BlockMath math="\det(A - t \cdot I) = 0" />
 
-is what we call the **characteristic equation** of <InlineMath math="A" />.
+This equation is the **characteristic equation** of <InlineMath math="A" />.
 
 ## Algebraic Multiplicity
 
@@ -69,7 +67,7 @@ For every eigenvalue <InlineMath math="\lambda" />, its algebraic multiplicity s
 
 ## Relationship between Geometric and Algebraic Multiplicity
 
-One important result in eigenvalue theory is the relationship between geometric and algebraic multiplicity.
+Geometric and algebraic multiplicity satisfy the following bound.
 
 For an eigenvalue <InlineMath math="\lambda" /> of <InlineMath math="A \in \mathbb{K}^{n \times n}" />, its geometric and algebraic multiplicities satisfy
 
@@ -79,11 +77,11 @@ For an eigenvalue <InlineMath math="\lambda" /> of <InlineMath math="A \in \math
 
 The geometric multiplicity counts independent eigenvectors in the eigenspace, whereas the algebraic multiplicity counts how many times the root occurs in the characteristic polynomial. Jordan form shows that every independent eigenvector requires at least one Jordan block, so the geometric count cannot exceed the algebraic count.
 
-## Examples of Characteristic Polynomial Calculation
+## Computing Characteristic Polynomials
 
 We now apply the definition and use the coefficient identities as checks on the calculation.
 
-### Third-Order Matrix Example
+### Third Order Matrix
 
 Let <InlineMath math="A = \begin{pmatrix} 3 & 2 & -1 \\ 1 & 0 & -4 \\ 3 & 0 & 1 \end{pmatrix} \in \mathbb{K}^{3 \times 3}" />. The characteristic polynomial of <InlineMath math="A" /> is:
 
@@ -105,7 +103,7 @@ The roots pass two useful checks: their sum is the trace, and their product is t
 <BlockMath math="\lambda_1\lambda_2\lambda_3=-26=\det(A)" />
 </MathContainer>
 
-### Simple Example
+### Repeated Eigenvalue in an Upper Triangular Matrix
 
 The characteristic polynomial of matrix <InlineMath math="A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" /> is:
 
@@ -117,7 +115,7 @@ The characteristic polynomial of matrix <InlineMath math="A = \begin{pmatrix} 1 
 
 This matrix has the root <InlineMath math="\lambda = 1" /> with algebraic multiplicity <InlineMath math="\mu_A(1) = 2" />. <InlineMath math="\lambda = 1" /> is the only eigenvalue of <InlineMath math="A" />. We have calculated that <InlineMath math="\dim \text{Eig}_A(1) = 1" />.
 
-## Geometric Transformation Examples
+## Characteristic Polynomials of Geometric Transformations
 
 The following familiar maps on <InlineMath math="\mathbb{R}^2" /> connect the algebraic calculation to geometry.
 
@@ -176,4 +174,4 @@ Indeed, using <InlineMath math="Av=\lambda v" /> and <InlineMath math="w=S^{-1}v
 <BlockMath math="= S^{-1} \cdot \lambda \cdot v = \lambda \cdot S^{-1} \cdot v = \lambda \cdot w" />
 </MathContainer>
 
-Thus similarity preserves eigenvalues while the inverse basis change converts the corresponding eigenvectors.
+Similarity preserves eigenvalues while the inverse basis change converts the corresponding eigenvectors.

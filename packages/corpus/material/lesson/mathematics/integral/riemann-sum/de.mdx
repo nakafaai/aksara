@@ -1,20 +1,21 @@
 
 
 export const metadata = {
-    title: "Riemann-Summe",
+    title: "Riemannsumme",
     description: "Nähere Integrale mit Riemann-Summen an und verstehe Partitionen, Stützstellen und die zugehörigen Rechteckbeiträge anhand vollständiger Beispiele.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Integrale",
 };
 
-## Die Grundidee der Riemannschen Summen
+## Akkumulation mit Rechtecken annähern
 
-Stell dir ein Grundstück vor, das auf einer Seite von einer unregelmäßigen Kurve begrenzt wird. Wie lässt sich seine Fläche bestimmen? Eine praktische Näherung besteht darin, das Gebiet in gleich breite rechteckige Streifen zu zerlegen, die Flächen der Streifen zu berechnen und anschließend zu addieren.
+Angenommen, eine Seite eines Grundstücks folgt einer unregelmäßigen Kurve. Nähere die Fläche an, indem du das Gebiet in gleich breite rechteckige Streifen zerlegst, ihre Flächen berechnest und die Ergebnisse addierst.
 
-Das ist die Grundidee einer **Riemann-Summe**. Sie nähert eine **vorzeichenbehaftete Akkumulation** an, indem das Intervall in Teilintervalle zerlegt und die zugehörigen Rechteckbeiträge addiert werden. Ist die Funktion nicht negativ, entspricht diese Akkumulation der Fläche unter dem Graphen. Für eine Riemann-integrierbare Funktion konvergieren die Summen gegen das bestimmte Integral, wenn die Breite des größten Teilintervalls gegen null geht. Bei gleich breiten Teilintervallen verkleinert eine größere Rechteckzahl diese Breite, auch wenn nicht jeder einzelne Schritt zwingend eine bessere Näherung liefert.
+Eine **Riemann-Summe** formuliert diese Näherung mathematisch. Sie nähert eine **vorzeichenbehaftete Akkumulation** an, indem das Intervall in Teilintervalle zerlegt und die zugehörigen Rechteckbeiträge addiert werden. Ist die Funktion nicht negativ, entspricht diese Akkumulation der Fläche unter dem Graphen. Für eine Riemann-integrierbare Funktion konvergieren die Summen gegen das bestimmte Integral, wenn die Breite des größten Teilintervalls gegen null geht. Bei gleich breiten Teilintervallen verkleinert eine größere Rechteckzahl diese Breite, auch wenn nicht jeder einzelne Schritt zwingend eine bessere Näherung liefert.
 
-## Zentrale Bestandteile
+## Intervallzerlegung und Breite
 
 Um eine Riemann-Summe aufzustellen, müssen wir ihre Hauptkomponenten verstehen:
 
@@ -34,9 +35,7 @@ Wenn wir alle diese Komponenten kombinieren, erhalten wir die allgemeine Formel 
 
 Die Sigma-Notation (<InlineMath math="\sum" />) bedeutet einfach „alle Flächen der Rechtecke zusammenfassen“, wobei die Fläche jedes Rechtecks seiner **Höhe** (<InlineMath math="f(x_i^*)" />) mal seiner **Breite** (<InlineMath math="\Delta x" />) entspricht.
 
-## Visuelles Berechnungsbeispiel
-
-Wenden wir dieses Konzept auf ein Beispiel an.
+## Linke Riemannsumme einer linearen Funktion
 
 **Aufgabe:** Bestimme die Riemann-Summe für die Funktion <InlineMath math="f(x) = x" /> im Intervall <InlineMath math="[0, 7]" />. Zerlege das Intervall dazu in <InlineMath math="7" /> gleich lange Teilintervalle und verwende jeweils den **linken Randpunkt** als Stützstelle.
 
@@ -47,6 +46,7 @@ Wenden wir dieses Konzept auf ein Beispiel an.
   data={[
     {
       points: Array.from({ length: 8 }).map((_, i) => ({ x: i, y: i, z: 0 })),
+      smooth: false,
       color: "#9333ea",
       showPoints: false,
       labels: [{ text: <InlineMath math="f(x)=x" />, at: 4, offset: [-1, 0.5, 0] }],

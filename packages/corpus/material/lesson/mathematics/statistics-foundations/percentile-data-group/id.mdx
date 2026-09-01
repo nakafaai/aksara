@@ -1,17 +1,17 @@
 export const metadata = {
   title: "Persentil Data Kelompok",
-  description: "Perkirakan persentil data kelompok dan tafsirkan nilainya dari tabel frekuensi kumulatif.",
+  description: "Perkirakan persentil data kelompok dari tabel frekuensi kumulatif, lalu jelaskan posisi persentil tersebut dalam distribusi data.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Statistika",
 };
 
-## Apa Itu Persentil?
+## Persentil
 
 Kamu sudah mengenal [kuartil](/id/materi/matematika/statistika-dasar/kuartil-data-kelompok) yang membagi data terurut menjadi <InlineMath math="4" /> bagian dengan banyak data yang sama. **Persentil** melanjutkan gagasan tersebut.
 
-Alih-alih <InlineMath math="4" /> bagian, persentil membagi posisi data terurut menjadi <InlineMath math="100" /> bagian dengan banyak data yang sama. Setiap bagian memuat proporsi data yang sama, tetapi rentang nilainya belum tentu sama lebar.
+Persentil membagi posisi data terurut menjadi <InlineMath math="100" /> bagian dengan banyak data yang sama. Setiap bagian memuat proporsi data yang sama, tetapi rentang nilai setiap bagian belum tentu sama lebar.
 
 Sebanyak <InlineMath math="99" /> titik batas bagian dalam biasanya ditulis sebagai <InlineMath math="P_1" />, <InlineMath math="P_2" />, <InlineMath math="P_3" />, ..., hingga <InlineMath math="P_{99}" />. Nilai angkanya dapat berbeda menurut konvensi persentil, terutama pada sampel kecil.
 
@@ -19,7 +19,7 @@ Sebanyak <InlineMath math="99" /> titik batas bagian dalam biasanya ditulis seba
   <InlineMath math="10\%" /> data pada atau di bawahnya dan <InlineMath math="90\%" /> data di atasnya.
 - <InlineMath math="P_{50}" /> (persentil ke-<InlineMath math="50" />) sama dengan **median**
   atau **kuartil kedua (<InlineMath math="Q_2" />
-  )**. Nilai ini menandai peringkat tengah distribusi; jika ada nilai yang sama, belum tentu tepat setengah pengamatan berada secara ketat pada setiap sisinya.
+  )**. Nilai ini menandai peringkat tengah distribusi. Jika ada nilai yang sama, belum tentu tepat setengah pengamatan berada secara ketat pada setiap sisinya.
 - <InlineMath math="P_{85}" /> (persentil ke-<InlineMath math="85" />) menandai nilai yang membatasi sekitar
   <InlineMath math="85\%" /> data pada atau di bawahnya dan <InlineMath math="15\%" /> data di atasnya.
 
@@ -48,7 +48,7 @@ Setelah kelas persentil diketahui, lakukan interpolasi di dalamnya:
 
 <BlockMath math="P_i = T_b + \left( \frac{\frac{i}{100}n - F_{\text{kum}}}{f_i} \right) p" />
 
-dengan:
+Pada rumus ini:
 
 - <InlineMath math="P_i" /> = perkiraan nilai persentil yang dicari
 - <InlineMath math="T_b" /> = tepi bawah kelas persentil
@@ -60,7 +60,7 @@ dengan:
 
 Rumus ini sama dengan rumus interpolasi kuartil, tetapi menggunakan <InlineMath math="\frac{i}{100}n" /> sebagai pengganti <InlineMath math="\frac{i}{4}n" />.
 
-Interpolasi ini menganggap data tersebar merata di dalam kelas terpilih. Hasilnya adalah perkiraan persentil dari interval kelompok. Nilai asli setiap data sudah tidak terlihat setelah data dikelompokkan.
+Interpolasi ini menganggap data tersebar merata di dalam kelas terpilih. Hasilnya adalah perkiraan persentil dari interval kelompok. Tabel data kelompok tidak menyimpan nilai asli setiap pengamatan, sehingga interpolasi tidak dapat mengembalikan nilai-nilai tersebut.
 
 ## Mencari Nilai Ujian Matematika
 

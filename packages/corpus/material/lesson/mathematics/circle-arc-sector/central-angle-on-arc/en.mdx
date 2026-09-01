@@ -1,9 +1,9 @@
 export const metadata = {
   title: "Central Angle on Arc",
-  description: "Learn central angles formed by radii, their relationship with arcs, and how to classify and calculate angle-arc measures.",
+  description: "Relate a central angle's measure to its arc and calculate either measure from the other.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Circle Arcs and Sectors",
 };
 
@@ -31,6 +31,7 @@ In a circle with center <InlineMath math="O" />, let <InlineMath math="A" /> and
         { x: 1.5 * Math.cos(Math.PI / 6), y: 1.5 * Math.sin(Math.PI / 6), z: 0 },
         { x: 3 * Math.cos(Math.PI / 6), y: 3 * Math.sin(Math.PI / 6), z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       labels: [{ text: <InlineMath math="OA" />, at: 1, offset: [0.3, 0.3, 0] }],
       showPoints: true,
@@ -41,6 +42,7 @@ In a circle with center <InlineMath math="O" />, let <InlineMath math="A" /> and
         { x: 1.5 * Math.cos(5 * Math.PI / 6), y: 1.5 * Math.sin(5 * Math.PI / 6), z: 0 },
         { x: 3 * Math.cos(5 * Math.PI / 6), y: 3 * Math.sin(5 * Math.PI / 6), z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       labels: [{ text: <InlineMath math="OB" />, at: 1, offset: [-0.3, 0.3, 0] }],
       showPoints: true,
@@ -157,6 +159,7 @@ A major arc is subtended by a reflex central angle greater than <InlineMath math
         { x: 0, y: 0, z: 0 },
         { x: 4 * Math.cos(Math.PI / 3), y: 4 * Math.sin(Math.PI / 3), z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       lineWidth: 2,
       showPoints: false,
@@ -166,6 +169,7 @@ A major arc is subtended by a reflex central angle greater than <InlineMath math
         { x: 0, y: 0, z: 0 },
         { x: 4, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       lineWidth: 2,
       showPoints: false,
@@ -175,6 +179,7 @@ A major arc is subtended by a reflex central angle greater than <InlineMath math
         { x: 0, y: 0, z: 0 },
         { x: -4, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       lineWidth: 2,
       showPoints: false,
@@ -233,22 +238,22 @@ Arc length can be calculated using the ratio between the central angle and the f
 
 <BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
 
-with:
+The variables in this formula are:
 - <InlineMath math="s" /> = arc length
 - <InlineMath math="\theta" /> = central angle measure in degrees
 - <InlineMath math="r" /> = radius of the circle
 
-If the central angle is expressed in radians, the formula becomes simpler:
+A radian measures arc length divided by radius, so an angle in radians gives the formula directly:
 
 <BlockMath math="s = \theta \times r" />
 
 Here <InlineMath math="\theta" /> must be measured in radians.
 
-## Example Application
+## Calculating Arc Length from a Central Angle
 
 Consider a circle with radius <InlineMath math="r = 6 \text{ cm}" /> and central angle <InlineMath math="\theta = 120^\circ" />.
 
-First step, we calculate the arc length:
+Substitute the radius and central angle into the arc-length formula:
 
 <MathContainer>
 <BlockMath math="s = \frac{120^\circ}{360^\circ} \times 2\pi \times 6" />
@@ -256,7 +261,7 @@ First step, we calculate the arc length:
 <BlockMath math="s = 4\pi \text{ cm}" />
 </MathContainer>
 
-So the arc length faced by the central angle <InlineMath math="120^\circ" /> is <InlineMath math="4\pi \text{ cm}" /> or approximately <InlineMath math="12.57 \text{ cm}" />.
+The arc corresponding to the central angle <InlineMath math="120^\circ" /> is therefore <InlineMath math="4\pi \text{ cm}" /> long, or approximately <InlineMath math="12.57 \text{ cm}" />.
 
 <LineEquation
   title={<>Central Angle Example <InlineMath math="120^\circ" /></>}
@@ -268,6 +273,7 @@ So the arc length faced by the central angle <InlineMath math="120^\circ" /> is 
         { x: 3, y: 0, z: 0 },
         { x: 6, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       labels: [{ text: <InlineMath math="r=6\,\mathrm{cm}" />, at: 1, offset: [0, -0.5, 0] }],
       showPoints: true,
@@ -278,6 +284,7 @@ So the arc length faced by the central angle <InlineMath math="120^\circ" /> is 
         { x: 3 * Math.cos(2 * Math.PI / 3), y: 3 * Math.sin(2 * Math.PI / 3), z: 0 },
         { x: 6 * Math.cos(2 * Math.PI / 3), y: 6 * Math.sin(2 * Math.PI / 3), z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       labels: [{ text: <InlineMath math="r=6\,\mathrm{cm}" />, at: 1, offset: [-0.5, 0.3, 0] }],
       showPoints: true,
@@ -329,11 +336,11 @@ So the arc length faced by the central angle <InlineMath math="120^\circ" /> is 
   showZAxis={false}
 />
 
-## Models and Applications
+## Examples of Central Angles
 
-Equal angular pitches place repeated features evenly around a circular gear or dial; converting that angle into an arc length also requires the radius. On an analog clock, the hands sweep central angles as time passes. Circular-arc geometry can likewise specify the idealized outline of an arch or dome, although structural design requires additional information.
+On a gear or disk, parts separated by equal central angles are spaced evenly. To calculate the distance between those parts along the edge, we also need the radius. On an analog clock, the hands sweep central angles as time passes. Arc geometry can also model the shape of an arch or dome, but structural design requires additional information.
 
-If Earth is approximated as a sphere, a route along a great circle has length <InlineMath math="s=r\theta" /> for central angle <InlineMath math="\theta" /> in radians. This is a mathematical model; precise navigation uses an Earth model and route data appropriate to the required accuracy.
+If Earth is modeled as a sphere, a route along a great circle has length <InlineMath math="s=r\theta" /> for a central angle <InlineMath math="\theta" /> in radians. This spherical model is sufficient for a mathematical example, but precise navigation requires an Earth model and route data with suitable accuracy.
 
 ## Exercises
 
@@ -421,7 +428,7 @@ If Earth is approximated as a sphere, a route along a great circle has length <I
 
    <BlockMath math="s = 2\pi \text{ cm}" />
 
-   Therefore, the length of arc <InlineMath math="AB" /> is <InlineMath math="2\pi \text{ cm}" />.
+   The length of arc <InlineMath math="AB" /> is <InlineMath math="2\pi \text{ cm}" />.
 
 4. **Solution:**
 
@@ -445,4 +452,4 @@ If Earth is approximated as a sphere, a route along a great circle has length <I
 
    <BlockMath math="s = 25\pi \text{ cm}" />
 
-   Therefore, the point moves <InlineMath math="25\pi \text{ cm}" /> along its circular path, or approximately <InlineMath math="78.54 \text{ cm}" />.
+   The point moves <InlineMath math="25\pi \text{ cm}" /> along its circular path, or approximately <InlineMath math="78.54 \text{ cm}" />.

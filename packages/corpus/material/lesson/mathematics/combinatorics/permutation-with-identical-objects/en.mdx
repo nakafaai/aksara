@@ -3,7 +3,7 @@ export const metadata = {
    description: "Count distinct arrangements when some objects are indistinguishable. Worked examples derive the multinomial formula and apply it to letters, colors, and digits.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-08-29",
+   dateModified: "2026-09-01",
    subject: "Combinatorics",
 };
 
@@ -13,7 +13,7 @@ A **permutation with identical objects** counts arrangements when some objects c
 
 Consider the letters in "MAMA". There are <InlineMath math="4" /> letters, but the two copies of <InlineMath math="M" /> are indistinguishable, as are the two copies of <InlineMath math="A" />. If we temporarily label the copies, swapping those labels would be counted as a different permutation even though the visible word stays the same.
 
-## Formula for Identical Object Permutation
+## Formula for Permutations with Identical Objects
 
 For <InlineMath math="n" /> objects divided into groups of identical objects, **the number of distinct arrangements** is:
 
@@ -21,14 +21,14 @@ For <InlineMath math="n" /> objects divided into groups of identical objects, **
 <BlockMath math="P = \frac{n!}{r_1! \times r_2! \times r_3! \times \cdots \times r_k!}" />
 </MathContainer>
 
-**Explanation:**
+Here, each symbol has a specific meaning:
 
 - <InlineMath math="n" /> = total number of objects
 - <InlineMath math="r_1, r_2, r_3, \ldots, r_k" /> = number of identical objects in each group
 - <InlineMath math="k" /> = number of groups of identical objects
 - The frequencies include every object, so <InlineMath math="r_1 + r_2 + \cdots + r_k = n" />
 
-**How to identify the groups:** Count how often each distinct object appears. Dividing by each <InlineMath math="r_i!" /> removes the duplicate labelings within that group.
+Count how often each distinct object appears. Dividing by each <InlineMath math="r_i!" /> removes the repeated counts caused by exchanging identical copies within that group.
 
 ## Application to Words and Letters
 
@@ -36,12 +36,11 @@ For <InlineMath math="n" /> objects divided into groups of identical objects, **
 
 Calculate how many letter arrangements can be made from the word "KALIMANTAN".
 
-**Systematic identification steps:**
-Write letters one by one: K-A-L-I-M-A-N-T-A-N
+Write the letters in order: K-A-L-I-M-A-N-T-A-N
 
 Total letters: <InlineMath math="10" />
 
-Letter identification: <InlineMath math="K" /> appears <InlineMath math="1 \text{ time}" />, <InlineMath math="A" /> appears <InlineMath math="3 \text{ times}" /> (positions <InlineMath math="2, 6, 9" />), <InlineMath math="L" /> appears <InlineMath math="1 \text{ time}" />, <InlineMath math="I" /> appears <InlineMath math="1 \text{ time}" />, <InlineMath math="M" /> appears <InlineMath math="1 \text{ time}" />, <InlineMath math="N" /> appears <InlineMath math="2 \text{ times}" /> (positions <InlineMath math="7, 10" />), and <InlineMath math="T" /> appears <InlineMath math="1 \text{ time}" />
+The repeated letters are <InlineMath math="A" />, which appears <InlineMath math="3 \text{ times}" />, and <InlineMath math="N" />, which appears <InlineMath math="2 \text{ times}" />. Every other letter appears once.
 
 **Calculation:**
 
@@ -58,15 +57,14 @@ Simplify the fraction by canceling common factors:
 <BlockMath math="= \frac{10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4}{2}" />
 </MathContainer>
 
-Calculate step by step:
+Finish the calculation:
 - Divide <InlineMath math="10" /> by <InlineMath math="2" />: <InlineMath math="\frac{10}{2} = 5" />
-- So: <InlineMath math="5 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4" />
-- <InlineMath math="= 5 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 = 302\,400" />
+- The remaining product is <InlineMath math="5 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 = 302\,400" />
 
 ### Example Word PALAPA
 
 For the word "PALAPA" with <InlineMath math="6" /> letters:
-Write letters one by one: P-A-L-A-P-A
+Write the letters in order: P-A-L-A-P-A
 
 **Letter identification:** <InlineMath math="P" /> appears <InlineMath math="2 \text{ times}" /> (positions <InlineMath math="1, 5" />), <InlineMath math="A" /> appears <InlineMath math="3 \text{ times}" /> (positions <InlineMath math="2, 4, 6" />), and <InlineMath math="L" /> appears <InlineMath math="1 \text{ time}" />
 
@@ -88,9 +86,9 @@ Simplify by dividing <InlineMath math="6" /> by <InlineMath math="2" />:
 - <InlineMath math="\frac{6}{2} = 3" />
 - So: <InlineMath math="3 \times 5 \times 4 = 60 \text{ arrangements}" />
 
-## Systematic Calculation Steps
+## Counting Arrangements with Repeated Objects
 
-To solve permutation problems with identical objects, follow these steps:
+Use the same procedure for any collection that contains repeated objects:
 
 1. **Count total objects**: Determine the value of <InlineMath math="n" />
 2. **Identify identical objects**: Group objects that are identical
@@ -98,9 +96,9 @@ To solve permutation problems with identical objects, follow these steps:
 4. **Apply formula**: Insert into the permutation formula
 5. **Calculate factorial**: Complete the calculation carefully
 
-### Word BANANA
+### Arrangements of BANANA
 
-Apply these steps to find arrangements of the word "BANANA":
+Apply the procedure to the word "BANANA":
 
 1. **Count total objects**
 
@@ -146,7 +144,7 @@ Apply these steps to find arrangements of the word "BANANA":
    - Divide <InlineMath math="6" /> by <InlineMath math="2" />: <InlineMath math="\frac{6}{2} = 3" />
    - So: <InlineMath math="3 \times 5 \times 4 = 60" />
 
-Therefore, the word "BANANA" can be arranged in **<InlineMath math="60" /> different ways**.
+The word "BANANA" can be arranged in **<InlineMath math="60" /> different ways**.
 
 ## Difference from Regular Permutation
 

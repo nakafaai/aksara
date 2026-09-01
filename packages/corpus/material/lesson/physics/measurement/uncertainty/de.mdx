@@ -4,10 +4,11 @@ export const metadata = {
     "Lies wiederholte Messdaten, berechne ihren Mittelwert, schätze die Unsicherheit ab und gib das Ergebnis ohne vorgetäuschte Genauigkeit an.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Messen in der Naturwissenschaft",
 };
 
-## Unterschiedliche Daten bedeuten keinen Fehler
+## Streuung bei wiederholten Messungen
 
 Wird derselbe Gegenstand mehrmals gemessen, weichen die Ergebnisse oft leicht voneinander ab. Das ist normal. Der Druck auf das Gerät kann sich ändern, die Skala wird aus einem etwas anderen Winkel abgelesen oder der Gegenstand verrutscht geringfügig.
 
@@ -15,9 +16,9 @@ Wird derselbe Gegenstand mehrmals gemessen, weichen die Ergebnisse oft leicht vo
 
 Diese Lektion verwendet zunächst die Stichprobenstandardabweichung <InlineMath math="s" />, um die Streuung einzelner Ablesungen zu beschreiben. Die Standardunsicherheit des Mittelwerts ist eine andere Größe und folgt später.
 
-> Wiederholte Messungen machen zufällige Abweichungen sichtbar, die von einer Ablesung zur nächsten in beide Richtungen schwanken. Systematische Abweichungen verschwinden dadurch nicht. Ein Gerät mit verschobenem Nullpunkt oder beschädigter Skala muss geprüft und gegebenenfalls kalibriert werden.
+> Wiederholte Messungen zeigen zufällige Abweichungen, die von einer Ablesung zur nächsten in beide Richtungen schwanken. Systematische Abweichungen verschwinden dadurch nicht. Ein Gerät mit verschobenem Nullpunkt oder beschädigter Skala muss geprüft und gegebenenfalls kalibriert werden.
 
-## Der Mittelwert stellt die Daten dar
+## Mittelwert der wiederholten Messungen
 
 Angenommen, <InlineMath math="5" /> Lernende messen den Durchmesser eines Flaschendeckels mit einem Messschieber. Alle Ablesungen verwenden dieselbe Einheit: <InlineMath math="\text{cm}" />.
 
@@ -29,7 +30,7 @@ Angenommen, <InlineMath math="5" /> Lernende messen den Durchmesser eines Flasch
 | <InlineMath math="d_4" /> | <InlineMath math="3{,}11 \text{cm}" /> |
 | <InlineMath math="d_5" /> | <InlineMath math="3{,}14 \text{cm}" /> |
 
-Ein sinnvoller Einzelwert zur Beschreibung dieser Messreihe ist der Mittelwert.
+Bei annähernd symmetrisch streuenden Messwerten ohne deutlichen Ausreißer ist der Mittelwert ein geeigneter Wert zur Beschreibung der Messreihe.
 
 <BlockMath math="\bar d=\frac{\sum_{i=1}^{N} d_i}{N}" />
 
@@ -49,7 +50,7 @@ Die Stichprobenstandardabweichung erfasst die Abstände der einzelnen Messwerte 
 
 <BlockMath math="s_d=\sqrt{\frac{\sum_{i=1}^{N}(d_i-\bar d)^2}{N-1}}" />
 
-Im Nenner steht <InlineMath math="N-1" />, weil die Messreihe nur eine Stichprobe aller möglichen Wiederholungen darstellt.
+Im Nenner steht <InlineMath math="N-1" />, weil der Stichprobenmittelwert <InlineMath math="\bar d" /> aus denselben Daten berechnet wird. Die Abweichungen vom Mittelwert müssen sich zu null summieren, sodass nur <InlineMath math="N-1" /> Abweichungen unabhängig voneinander variieren können.
 
 <BlockMath math="\begin{aligned}
 s_d
@@ -61,11 +62,11 @@ Mit der gerundeten Streuung lässt sich der Durchmesser so angeben:
 
 <BlockMath math="d=(3{,}13 \pm 0{,}02)\text{cm}" />
 
-Der Wert <InlineMath math="3{,}13 \text{cm}" /> beschreibt die Lage der Daten. <InlineMath math="0{,}02 \text{cm}" /> macht sichtbar, dass die einzelnen Ablesungen nicht genau übereinstimmten.
+Der Wert <InlineMath math="3{,}13 \text{cm}" /> beschreibt die Lage der Daten. Die Abweichung von <InlineMath math="0{,}02 \text{cm}" /> zeigt, dass die einzelnen Ablesungen nicht genau übereinstimmten.
 
-## Zwei ähnlich aussehende Formeln unterscheiden
+## Datenstreuung und Unsicherheit des Mittelwerts
 
-Manche Schulbücher schreiben die Streuung wiederholter Messwerte in der folgenden kompakten Form.
+In manchen Aufgaben zu wiederholten Messungen wird die folgende kompakte algebraische Form verwendet.
 
 <BlockMath math="\Delta x=\frac{1}{\sqrt{N}}\sqrt{\frac{N\sum_{i=1}^{N}x_i^2-\left(\sum_{i=1}^{N}x_i\right)^2}{N-1}}" />
 
@@ -81,7 +82,7 @@ In der Metrologie beschreiben NIST und JCGM GUM die Standardunsicherheit des Mit
 
 Bei einfachen Schulaufgaben gilt die im Aufgabentext festgelegte Konvention. Verwendet eine Aufgabe <InlineMath math="\Delta x" /> für die kompakte Formel, kann <InlineMath math="\Delta x" /> in diesem Modell als Unsicherheit der wiederholten Messung bezeichnet werden. Entscheidend ist, beide Bedeutungen ausdrücklich auseinanderzuhalten.
 
-## Wenn das Ziel nicht der Durchmesser ist
+## Fläche aus Durchmesserdaten berechnen
 
 Manchmal wird der Durchmesser gemessen, während die Aufgabe nach der Fläche des Flaschendeckels fragt. Für einen Kreis gilt:
 
@@ -105,7 +106,7 @@ Die Streuung der Flächenwerte beträgt:
 
 <BlockMath math="s_A=0{,}0808 \text{cm}^2" />
 
-Das Ergebnis lässt sich so angeben:
+Wenn die Stichprobenstreuung in dieser Aufgabe als Unsicherheitskonvention dient, lässt sich die Fläche des Flaschendeckels so angeben.
 
 <BlockMath math="A=(7{,}70 \pm 0{,}08)\text{cm}^2" />
 
@@ -121,6 +122,6 @@ Für die Fläche des Flaschendeckels ergibt sich:
 
 <BlockMath math="\varepsilon_r=\frac{0{,}0808}{7{,}7045}\times 100\,\%\approx 1{,}05\,\%" />
 
-Die Stichprobenstreuung beträgt damit ungefähr <InlineMath math="1{,}05\,\%" /> der mittleren Fläche. Ob das ausreicht, hängt vom Verwendungszweck und von der Zielunsicherheit ab. Ohne eine solche Anforderung darf der Prozentsatz nicht als "klein genug" bezeichnet werden.
+Die Stichprobenstreuung beträgt damit ungefähr <InlineMath math="1{,}05\,\%" /> der mittleren Fläche. Ob das ausreicht, hängt vom Verwendungszweck und von der Zielunsicherheit ab. Ohne eine solche Anforderung darf der Prozentsatz nicht als „klein genug“ bezeichnet werden.
 
-Die fachliche Grundlage bilden die NIST Technical Note <InlineMath math="1297" /> zur [Typ-A-Auswertung](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-3-type-evaluation-standard-uncertainty) und der [JCGM Guide to the Expression of Uncertainty in Measurement](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf) des BIPM.
+Die fachliche Grundlage bilden die NIST Technical Note <InlineMath math="1297" /> zur Typ-A-Auswertung und der JCGM GUM des BIPM. Die Dokumente sind bei [NIST](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-3-type-evaluation-standard-uncertainty) und [BIPM](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf) verfügbar.

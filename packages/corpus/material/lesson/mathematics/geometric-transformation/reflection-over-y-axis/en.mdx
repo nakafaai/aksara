@@ -4,11 +4,11 @@ export const metadata = {
   description: "Reflect points, triangles, and lines across the vertical axis and apply the coordinate rule to equations and graphs.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometric Transformation",
 };
 
-## Understanding Reflection over the Vertical Axis
+## Reflection over the Vertical Axis
 
 Reflection over the <InlineMath math="y" />-axis is a type of geometric transformation that moves every point on an object to a new position. Imagine the <InlineMath math="y" />-axis as a mirror. Every point will have an image on the opposite side of the <InlineMath math="y" />-axis at the same distance from the <InlineMath math="y" />-axis.
 
@@ -21,9 +21,9 @@ If a point <InlineMath math="P(x, y)" /> is reflected over the <InlineMath math=
   <BlockMath math="y' = y" />
 </MathContainer>
 
-Thus, the image of point <InlineMath math="P(x, y)" /> is <InlineMath math="P'(-x, y)" />.
+The image of point <InlineMath math="P(x, y)" /> is <InlineMath math="P'(-x, y)" />.
 
-Note that the value of the <InlineMath math="y" />-coordinate does not change, while the value of the <InlineMath math="x" />-coordinate becomes its opposite (negative if positive, positive if negative).
+The <InlineMath math="y" />-coordinate stays the same, while the <InlineMath math="x" />-coordinate changes sign.
 
 ## Reflecting a Point
 
@@ -33,9 +33,9 @@ The original <InlineMath math="x" />-coordinate is <InlineMath math="3" />, so <
 
 The original <InlineMath math="y" />-coordinate is <InlineMath math="4" />, so <InlineMath math="y' = 4" />.
 
-Thus, the image of point <InlineMath math="A" /> is <InlineMath math="A'(-3, 4)" />.
+The image of point <InlineMath math="A" /> is <InlineMath math="A'(-3, 4)" />.
 
-The diagram makes this symmetry visible:
+The diagram shows this symmetry:
 
 <LineEquation
   title={
@@ -109,6 +109,7 @@ By connecting the image points <InlineMath math="P'Q'R'" />, we obtain the refle
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#d97706",
       showPoints: true,
       labels: [
@@ -131,6 +132,7 @@ By connecting the image points <InlineMath math="P'Q'R'" />, we obtain the refle
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [
@@ -177,7 +179,7 @@ The graph compares the original line and its reflection:
         return { x, y: x + 2, z: 0 };
       }),
       color: "#9333ea",
-      smooth: true,
+      smooth: false,
       labels: [{ text: <InlineMath math="y=x+2" />, at: 9, offset: [0.7, -0.5, 0] }],
     },
     {
@@ -187,7 +189,7 @@ The graph compares the original line and its reflection:
         return { x, y: -x + 2, z: 0 };
       }),
       color: "#db2777",
-      smooth: true,
+      smooth: false,
       labels: [{ text: <InlineMath math="y=-x+2" />, at: 1, offset: [-0.7, -0.5, 0] }],
     },
   ]}

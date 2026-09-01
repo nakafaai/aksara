@@ -1,21 +1,21 @@
 export const metadata = {
-    title: "Atribut dan Metode Bilangan",
-    description: "Jelajahi objek bilangan Python melalui tipe, atribut, metode, dan operasi bilangan kompleksnya.",
+    title: "Atribut dan Method Bilangan",
+    description: "Periksa objek bilangan Python melalui tipe, atribut, method, dan operasi bilangan kompleks.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-16",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Pemrograman AI",
 };
 
-## Konsep Dasar Bilangan sebagai Objek
+## Bilangan sebagai Objek
 
-Setiap bilangan Python adalah objek dengan tipe numerik. Tipe tersebut menentukan atribut dan metode yang tersedia selain operator aritmetika.
+Setiap bilangan Python adalah objek dengan tipe numerik. Tipe tersebut menentukan atribut dan method yang tersedia selain operator aritmetika.
 
 Sebagai contoh, <InlineMath math="5" /> membuat `int` dan <InlineMath math="3.14" /> membuat `float`. Objek numerik tidak dapat diubah, sehingga metodenya mengembalikan informasi atau nilai baru tanpa mengubah bilangan asal.
 
-## Mengakses Atribut dan Metode
+## Mengakses Atribut dan Method
 
-Baca atribut dengan `objek.atribut`. Panggil metode dengan `objek.metode()`, termasuk tanda kurung yang menjalankan pemanggilan.
+Baca atribut dengan `object.attribute`. Panggil method dengan `object.method()`. Tanda kurung pada bentuk kedua membuat Python menjalankan method tersebut.
 
 Lihat contoh praktis dengan bilangan kompleks:
 
@@ -33,7 +33,7 @@ print(c.real)  # Output: 2.0
 # Mengakses atribut imag (bagian imajiner)
 print(c.imag)  # Output: 3.0
 
-# Memanggil metode conjugate() untuk mendapatkan konjugat
+# Memanggil method conjugate() untuk mendapatkan konjugat
 print(c.conjugate())  # Output: (2-3j)`
     }
   ]}
@@ -43,9 +43,9 @@ print(c.conjugate())  # Output: (2-3j)`
 
 Sebelum memakai operasi khusus suatu tipe, kamu dapat memeriksa tipe numerik sebuah nilai.
 
-### Menggunakan Fungsi type()
+### Menggunakan Fungsi Type
 
-Fungsi `type()` mengembalikan kelas nilai tersebut:
+Fungsi `type()` mengembalikan class dari nilai tersebut:
 
 <CodeBlock
   data={[
@@ -62,7 +62,7 @@ print(type(2+3j))      # Output: <class 'complex'>`
 
 ## Atribut Bilangan Kompleks
 
-Bilangan kompleks menampilkan kedua komponennya melalui atribut `real` dan `imag`. Keduanya dikembalikan sebagai nilai floating-point.
+Bilangan kompleks menyimpan kedua komponennya dalam atribut `real` dan `imag`. Nilai kedua atribut tersebut bertipe `float`.
 
 ### Atribut real
 
@@ -116,9 +116,9 @@ print(f"Bagian imajiner dari {z3} adalah {z3.imag}")
   ]}
 />
 
-## Metode Bilangan Kompleks
+## Method Bilangan Kompleks
 
-### Metode conjugate()
+### Method Conjugate
 
 Untuk <InlineMath math="z=a+bi" />, `conjugate()` mengembalikan <InlineMath math="\overline{z}=a-bi" />. Bagian riilnya tetap, sedangkan tanda bagian imajinernya berubah.
 
@@ -127,7 +127,7 @@ Untuk <InlineMath math="z=a+bi" />, `conjugate()` mengembalikan <InlineMath math
     {
       language: "python",
       filename: "conjugate_method.py",
-      code: `# Contoh penggunaan metode conjugate()
+      code: `# Contoh penggunaan method conjugate()
 z1 = 3 + 4j
 z2 = -2 - 5j
 z3 = 7 + 0j
@@ -176,9 +176,9 @@ print(f"abs(z) bawaan: {abs(z)}")
   ]}
 />
 
-## Atribut dan Metode pada Bilangan Lain
+## Atribut dan Method pada Bilangan Lain
 
-Bilangan bulat dan floating-point juga menyediakan metode yang sesuai dengan representasinya.
+Objek `int` dan `float` juga memiliki method yang sesuai dengan representasinya.
 
 ### Bilangan Integer
 
@@ -187,13 +187,13 @@ Bilangan bulat dan floating-point juga menyediakan metode yang sesuai dengan rep
     {
       language: "python",
       filename: "integer_methods.py",
-      code: `# Beberapa metode pada bilangan integer
+      code: `# Beberapa method pada bilangan integer
 n = 42
 
-# Metode bit_length() - menghitung jumlah bit yang diperlukan
+# Method bit_length() menghitung jumlah bit yang diperlukan
 print(f"Jumlah bit untuk {n}: {n.bit_length()}")
 
-# Metode to_bytes() - mengkonversi ke bytes
+# Method to_bytes() mengonversi nilai ke bytes
 byte_representation = n.to_bytes(2, byteorder='big')
 print(f"Representasi byte dari {n}: {byte_representation}")
 
@@ -204,7 +204,7 @@ print(f"Representasi byte dari {n}: {byte_representation}")
   ]}
 />
 
-`bit_length()` menghitung jumlah bit untuk nilai absolut bilangan bulat, tanpa tanda dan nol di depan. `to_bytes()` juga memerlukan panjang keluaran serta urutan byte, sehingga hasil dua byte di atas diawali byte nol.
+`bit_length()` menghitung jumlah bit untuk nilai absolut bilangan bulat, tanpa tanda dan nol di depan. `to_bytes()` juga memerlukan panjang output serta urutan byte, sehingga hasil dua byte di atas diawali byte nol.
 
 ### Bilangan Float
 
@@ -213,14 +213,14 @@ print(f"Representasi byte dari {n}: {byte_representation}")
     {
       language: "python",
       filename: "float_methods.py",
-      code: `# Beberapa metode pada bilangan float
+      code: `# Beberapa method pada bilangan float
 f = 3.14159
 
-# Metode is_integer() - mengecek apakah float adalah bilangan bulat
+# Method is_integer() memeriksa apakah float adalah bilangan bulat
 print(f"{f} adalah bilangan bulat: {f.is_integer()}")
 print(f"{4.0} adalah bilangan bulat: {(4.0).is_integer()}")
 
-# Metode as_integer_ratio() - mengembalikan rasio sebagai pecahan
+# Method as_integer_ratio() mengembalikan rasio sebagai pecahan
 ratio = f.as_integer_ratio()
 print(f"Rasio dari {f}: {ratio}")
 
@@ -234,11 +234,11 @@ print(f"Rasio dari {f}: {ratio}")
 
 `is_integer()` memeriksa apakah float terbatas tidak memiliki bagian pecahan. `as_integer_ratio()` mengembalikan pecahan persis dari float biner yang tersimpan, yang dapat berbeda dari pecahan desimal yang dibayangkan pembaca.
 
-## Aplikasi Praktis dalam Pemrograman
+## Memvalidasi dan Menghitung dengan Objek Numerik
 
 ### Validasi Data
 
-Atribut dapat mendukung aturan validasi yang eksplisit. Fungsi berikut mengharuskan masukan berupa objek `complex`, lalu menerapkan dua contoh aturan domain pada komponennya.
+Atribut menyediakan nilai yang dapat diperiksa oleh aturan validasi. Fungsi berikut mengharuskan input berupa objek `complex`, lalu memeriksa dua aturan domain pada komponen real dan imajiner input tersebut.
 
 <CodeBlock
   data={[
@@ -298,4 +298,4 @@ complex_operations(z1, z2)`
   ]}
 />
 
-Pola pentingnya adalah mengenali tipe numerik, memilih operasi yang dimiliki tipe tersebut, dan memahami apakah hasilnya berupa komponen, representasi, atau nilai baru. Perbedaan ini makin penting saat kode numerik berkembang melampaui satu ekspresi.
+Kenali dahulu tipe numerik dan operasi yang tersedia. Setelah itu, periksa apakah operasi tersebut menghasilkan komponen, representasi, atau nilai baru. Bentuk hasil menentukan operasi yang dapat dilakukan selanjutnya.

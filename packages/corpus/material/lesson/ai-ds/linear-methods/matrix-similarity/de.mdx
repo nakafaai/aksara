@@ -3,6 +3,7 @@ export const metadata = {
     description: "Matrixähnlichkeit als Basiswechsel verstehen. Determinante, charakteristisches Polynom, Eigenwerte und Spur bleiben dabei erhalten.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Lineare Methoden der KI",
 };
 
@@ -14,11 +15,11 @@ Zwei Matrizen <InlineMath math="A, B \in \mathbb{K}^{n \times n}" /> heißen **�
 
 <BlockMath math="B = S^{-1} \cdot A \cdot S" />
 
-Die Matrix <InlineMath math="S" /> wird in diesem Fall Ähnlichkeitstransformationsmatrix genannt.
+Die Matrix <InlineMath math="S" /> ist die Basiswechselmatrix zwischen den beiden Darstellungen.
 
 ## Basistransformation und Koordinatendarstellung
 
-Der Zusammenhang wird durch einen Basiswechsel sichtbar. Sei <InlineMath math="e_1, \ldots, e_n \in \mathbb{K}^n" /> die kanonische Basis und <InlineMath math="v_1, \ldots, v_n \in \mathbb{K}^n" /> eine weitere Basis von <InlineMath math="\mathbb{K}^n" />.
+Ähnliche Matrizen stellen dieselbe lineare Abbildung in zwei verschiedenen Basen dar. Sei <InlineMath math="e_1, \ldots, e_n \in \mathbb{K}^n" /> die kanonische Basis und <InlineMath math="v_1, \ldots, v_n \in \mathbb{K}^n" /> eine weitere Basis von <InlineMath math="\mathbb{K}^n" />.
 
 Wenn <InlineMath math="S" /> eine invertierbare Matrix mit den Spalten <InlineMath math="v_k" /> ist:
 
@@ -38,7 +39,7 @@ Die Matrix <InlineMath math="S^{-1}" /> repräsentiert die **Koordinatentransfor
 
 ## Lineare Transformation in verschiedenen Basen
 
-Betrachten Sie nun die lineare Transformation <InlineMath math="y = A \cdot x" />. In der kanonischen Basis wird <InlineMath math="y" /> durch die Koordinaten <InlineMath math="y_k" /> ausgedrückt, während in der Basis <InlineMath math="v_1, \ldots, v_n" /> durch die Koordinaten <InlineMath math="\eta_k" /> ausgedrückt wird:
+Betrachte nun die lineare Transformation <InlineMath math="y = A \cdot x" />. In der kanonischen Basis wird <InlineMath math="y" /> durch die Koordinaten <InlineMath math="y_k" /> ausgedrückt, während in der Basis <InlineMath math="v_1, \ldots, v_n" /> durch die Koordinaten <InlineMath math="\eta_k" /> ausgedrückt wird:
 
 <MathContainer>
 <BlockMath math="y = \sum_{k=1}^n y_k \cdot e_k" />
@@ -53,7 +54,7 @@ Deshalb:
 <BlockMath math="= A \cdot S \cdot \xi" />
 </MathContainer>
 
-oder mit anderen Worten:
+Dieselbe Koordinatenbeziehung lässt sich auch wie folgt schreiben.
 
 <BlockMath math="\eta = S^{-1} \cdot A \cdot S \cdot \xi" />
 
@@ -118,4 +119,4 @@ Wenn <InlineMath math="v \in \mathbb{K}^n" /> ein Eigenvektor von <InlineMath ma
 <BlockMath math="= \lambda \cdot w" />
 </MathContainer>
 
-Damit bleibt das Spektrum unter einem Basiswechsel unverändert. Der Koordinatenvektor eines Eigenvektors ändert sich von <InlineMath math="v" /> zu <InlineMath math="S^{-1}v" />, während die dargestellte geometrische Richtung zur selben zugrunde liegenden Transformation gehört.
+Matrixähnlichkeit erhält das Spektrum. Bei einem Basiswechsel ändern sich die Eigenvektorkoordinaten von <InlineMath math="v" /> zu <InlineMath math="S^{-1}v" />, aber beide Koordinatenvektoren stellen dieselbe geometrische Richtung dar.

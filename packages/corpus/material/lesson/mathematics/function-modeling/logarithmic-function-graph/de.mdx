@@ -4,16 +4,17 @@ export const metadata = {
   description: "Logarithmische Funktionen zeichnen und anhand von Definitionsbereich, Wertebereich, Asymptote, Monotonie und Verschiebungen untersuchen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Funktionen und ihre Modellierung",
 };
 
-## Die Form logarithmischer Graphen verstehen
+## Form logarithmischer Graphen
 
-Ein logarithmischer Graph verändert sich nahe seiner senkrechten Asymptote stark und bei wachsender Eingabe immer langsamer. Diese Form entsteht, wenn eine Ausgabe den Logarithmus eines positiven Verhältnisses beschreibt, etwa bei Schallpegel- und pH-Skalen. Im Mittelpunkt stehen hier der Einfluss der Basis und die Verschiebung des Graphen durch Transformationen.
+Ein logarithmischer Graph verändert sich nahe seiner senkrechten Asymptote stark und bei wachsender Eingabe immer langsamer. Diese Form entsteht, wenn eine Ausgabe den Logarithmus eines positiven Verhältnisses beschreibt, etwa bei Schallpegel- und pH-Skalen. Die Basis bestimmt, ob der Graph steigt oder fällt, während Transformationen den Graphen und seine Asymptote verschieben.
 
 ## Eigenschaften von Graphen logarithmischer Funktionen
 
-Vergleichen wir den Grundgraphen <InlineMath math="y = \log_b x" /> für mehrere Basen. Alle gezeigten Graphen steigen, aber unterschiedlich schnell.
+Der folgende Graph vergleicht <InlineMath math="y = \log_b x" /> für mehrere Basen größer als <InlineMath math="1" />. Alle Graphen verlaufen durch <InlineMath math="(1,0)" /> und steigen unterschiedlich schnell.
 
 <LineEquation
   title="Vergleich logarithmischer Graphen mit unterschiedlichen Basen"
@@ -55,7 +56,7 @@ Vergleichen wir den Grundgraphen <InlineMath math="y = \log_b x" /> für mehrere
   showZAxis={false}
 />
 
-### Wichtige Eigenschaften
+### Eigenschaften des Graphen
 
 Für Funktion <InlineMath math="f(x) = \log_b x" /> mit <InlineMath math="b > 1" />:
 
@@ -169,7 +170,7 @@ Im selben Koordinatensystem wird der Einfluss der Basis besonders deutlich:
       <InlineMath math="0 < b < 1" />.
     </>
   }
-  description="Der eine Graph steigt, der andere fällt; beide nähern sich der senkrechten Asymptote."
+  description="Der eine Graph steigt, der andere fällt. Beide nähern sich der senkrechten Asymptote."
   data={[
     {
       points: Array.from({ length: 100 }, (_, i) => {
@@ -198,6 +199,7 @@ Im selben Koordinatensystem wird der Einfluss der Basis besonders deutlich:
         { x: 0, y: -4, z: 0 },
         { x: 0, y: 4, z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       labels: [{ text: <><InlineMath math="x=0" /> (Asymptote)</>, at: 1, offset: [0.5, 0, 0] }],
       showPoints: false,
@@ -417,6 +419,7 @@ Eine im Argument eingetragene Konstante <InlineMath math="h" /> verschiebt den G
              { x: 0, y: -2, z: 0 },
              { x: 0, y: 5, z: 0 },
            ],
+           smooth: false,
            color: "#9333ea",
            labels: [{ text: <><InlineMath math="x=0" /> (Asymptote)</>, at: 1, offset: [0.5, 0, 0] }],
            showPoints: false,

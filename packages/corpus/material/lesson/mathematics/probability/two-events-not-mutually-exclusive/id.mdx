@@ -1,33 +1,33 @@
 export const metadata = {
-  title: "Dua Kejadian A dan B Tidak Saling Lepas",
+  title: "Kejadian Beririsan A dan B",
   description: "Hitung peluang kejadian beririsan dan hindari penghitungan ganda melalui contoh irisan serta penyelesaian bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-21",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Peluang",
 };
 
-## Apa Artinya Kejadian Tidak Saling Lepas?
+## Kejadian Beririsan
 
-Kita sudah belajar [kejadian saling lepas](/id/materi/matematika/peluang/dua-kejadian-a-dan-b-saling-lepas) yang nggak bisa terjadi barengan (kayak belok kiri dan kanan sekaligus), sekarang kita bahas **Kejadian Tidak Saling Lepas**. Ini adalah dua kejadian (atau lebih) yang **BISA terjadi secara bersamaan** dalam satu kali percobaan.
+Kejadian saling lepas tidak dapat terjadi bersamaan dalam satu percobaan. Sebaliknya, dua kejadian **tidak saling lepas** jika keduanya dapat terjadi pada hasil yang sama.
 
-Artinya, ada kemungkinan kamu mendapatkan hasil yang termasuk dalam kejadian <InlineMath math="A" />, sekaligus termasuk dalam kejadian <InlineMath math="B" />.
+Dalam bahasa himpunan, setidaknya ada satu hasil yang menjadi anggota kejadian <InlineMath math="A" /> dan kejadian <InlineMath math="B" />.
 
-**Contoh Gampang:**
+**Dua contoh:**
 
 1.  **Ambil Kartu:** Kamu ambil satu kartu dari tumpukan kartu bridge.
 
     - Kejadian <InlineMath math="A" />: Dapat kartu **Hati** (<InlineMath math="\heartsuit" />).
     - Kejadian <InlineMath math="B" />: Dapat kartu **King**.
-      Apakah kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> bisa terjadi barengan? Tentu bisa! Ada kartu yang merupakan Hati sekaligus King, yaitu kartu **King Hati** (<InlineMath math="K\heartsuit" />). Karena bisa terjadi barengan, kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> ini **tidak saling lepas**.
+      Kartu **King Hati** (<InlineMath math="K\heartsuit" />) menjadi anggota kedua kejadian. Karena itu, kejadian <InlineMath math="A" /> dan kejadian <InlineMath math="B" /> tidak saling lepas.
 
 2.  **Lempar Dadu (satu kali):**
 
     - Kejadian <InlineMath math="A" />: Dapat angka **genap** (<InlineMath math="\{2, 4, 6\}" />).
     - Kejadian <InlineMath math="B" />: Dapat angka **lebih dari <InlineMath math="3" />** (<InlineMath math="\{4, 5, 6\}" />).
-      Apakah bisa terjadi barengan? Bisa! Angka <InlineMath math="4" /> dan <InlineMath math="6" /> itu genap sekaligus lebih dari <InlineMath math="3" />. Jadi, kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> ini **tidak saling lepas**.
+      Hasil <InlineMath math="4" /> dan <InlineMath math="6" /> menjadi anggota kedua kejadian. Karena itu, kejadian <InlineMath math="A" /> dan kejadian <InlineMath math="B" /> tidak saling lepas.
 
-## Mengapa Irisan Penting
+## Irisan Kejadian yang Bertumpang Tindih
 
 Pada kejadian tidak saling lepas, sebagian hasil dapat menjadi anggota <InlineMath math="A" /> sekaligus <InlineMath math="B" />. Hasil yang sama ini membentuk **irisan** <InlineMath math="A \cap B" />.
 
@@ -39,9 +39,9 @@ Pada ruang sampel berhingga dengan setiap hasil dasar berpeluang positif, irisan
 
 <BlockMath math="P(A \cap B) > 0" />
 
-Ini beda banget sama kejadian saling lepas yang <InlineMath math="P(A \cap B) = 0" />.
+Pada kejadian saling lepas, peluang irisannya adalah <InlineMath math="P(A \cap B) = 0" />.
 
-## Menghitung Peluang Gabungan untuk Kejadian Tidak Saling Lepas
+## Menghitung Peluang Gabungan
 
 Karena <InlineMath math="A" /> dan <InlineMath math="B" /> dapat terjadi bersamaan, kita tidak boleh langsung menjumlahkan <InlineMath math="P(A) + P(B)" /> untuk mencari <InlineMath math="P(A \text{ atau} B)" />.
 
@@ -55,17 +55,17 @@ Dengan simbol gabungan dan irisan:
 
 <BlockMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
 
-Rumus ini berlaku umum, bisa untuk kejadian saling lepas maupun tidak saling lepas. (Kalau saling lepas, <InlineMath math="P(A \cap B)" /> kan nol, jadi rumusnya kembali jadi <InlineMath math="P(A \cup B) = P(A) + P(B)" />).
+Rumus ini berlaku pada kedua keadaan. Untuk kejadian saling lepas, <InlineMath math="P(A \cap B)=0" />, sehingga rumus penjumlahan peluang menjadi <InlineMath math="P(A \cup B) = P(A) + P(B)" />.
 
-## Contoh Hitung
+## Peluang Mendapat Kartu Hati atau Raja
 
-Pakai contoh kartu:
+Gunakan kembali contoh kartu:
 
 - Kejadian <InlineMath math="A" />: Dapat kartu Hati (<InlineMath math="\heartsuit" />). Ada <InlineMath math="13" /> kartu Hati dari <InlineMath math="52" /> kartu. <InlineMath math="P(A) = 13/52" />.
 - Kejadian <InlineMath math="B" />: Dapat kartu King. Ada <InlineMath math="4" /> kartu King dari <InlineMath math="52" /> kartu. <InlineMath math="P(B) = 4/52" />.
-- Kejadian <InlineMath math="A" /> **dan** B: Dapat kartu King Hati (<InlineMath math="K\heartsuit" />). Cuma ada <InlineMath math="1" /> kartu King Hati. <InlineMath math="P(A \cap B) = 1/52" />.
+- Kejadian <InlineMath math="A" /> **dan** B: Dapat kartu King Hati (<InlineMath math="K\heartsuit" />). Hanya ada <InlineMath math="1" /> kartu King Hati. <InlineMath math="P(A \cap B) = 1/52" />.
 
-Maka, peluang dapat kartu Hati ATAU kartu King adalah:
+Maka, peluang mendapat kartu Hati atau kartu King adalah:
 
 <MathContainer>
   <BlockMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
@@ -73,7 +73,7 @@ Maka, peluang dapat kartu Hati ATAU kartu King adalah:
   <BlockMath math="= \frac{16}{52} = \frac{4}{13}" />
 </MathContainer>
 
-Lihat kan, kita kurangi <InlineMath math="1/52" /> supaya kartu King Hati nggak kehitung dua kali.
+Pengurangan <InlineMath math="1/52" /> mencegah kartu King Hati dihitung dua kali.
 
 ## Latihan
 
@@ -81,7 +81,7 @@ Sebuah dadu adil bersisi enam dilempar satu kali. Misalkan <InlineMath math="A=\
 
 1.  Jelaskan mengapa <InlineMath math="A" /> dan <InlineMath math="B" /> tidak saling lepas.
 2.  Tentukan <InlineMath math="P(A \cup B)" /> dengan aturan penjumlahan umum.
-3.  Periksa hasilnya dengan menuliskan anggota gabungan kedua kejadian.
+3.  Pastikan nilai <InlineMath math="P(A \cup B)" /> benar dengan menuliskan anggota gabungan kedua kejadian.
 
 ### Pembahasan
 

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bangun basis polinomial Chebyshev dan Legendre dari hasil kali dalam berbobot, proyeksikan fungsi, ubah interval, dan hubungkan akar-akarnya dengan kuadratur Gauss.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-16",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Metode Linear AI",
 };
 
@@ -33,7 +33,7 @@ Misalkan <InlineMath math="p_0,ldots,p_n" /> saling ortogonal. Proyeksi berderaj
 
 Karena suku silang bernilai nol, setiap koefisien dapat dihitung secara terpisah. Ini merupakan padanan fungsional dari penguraian vektor sepanjang sumbu koordinat yang saling tegak lurus.
 
-## Relasi Rekurensi Tiga Suku dari Gram-Schmidt
+## Relasi Rekurensi Tiga Suku dari Gram Schmidt
 
 Penerapan Gram-Schmidt pada <InlineMath math="1,x,x^2,ldots" /> menghasilkan barisan polinomial ortogonal monik <InlineMath math="\pi_k" />. Di bawah hasil kali dalam positif, barisan tersebut memenuhi
 
@@ -43,7 +43,7 @@ Penerapan Gram-Schmidt pada <InlineMath math="1,x,x^2,ldots" /> menghasilkan bar
 <BlockMath math="\pi_{k+1}(x)=(x-\alpha_k)\pi_k(x)-\beta_k\pi_{k-1}(x)" />
 </MathContainer>
 
-dengan
+Koefisien rekurensi ditentukan oleh
 
 <MathContainer>
 <BlockMath math="\alpha_k=\frac{\langle x\pi_k,\pi_k\rangle_w}{\|\pi_k\|_w^2}" />
@@ -79,16 +79,16 @@ Karena <InlineMath math="|T_k(x)|\le1" /> pada <InlineMath math="[-1,1]" /> dan 
   data={(() => {
     const samples = Array.from({ length: 81 }, (_, index) => -1 + index / 40);
     const polynomials = [
-      { color: "#0891b2", evaluate: (x) => 1 },
-      { color: "#ea580c", evaluate: (x) => x },
-      { color: "#7c3aed", evaluate: (x) => 2 * x * x - 1 },
-      { color: "#16a34a", evaluate: (x) => 4 * x * x * x - 3 * x }
+      { color: "#0891b2", evaluate: (x) => 1, smooth: false },
+      { color: "#ea580c", evaluate: (x) => x, smooth: false },
+      { color: "#7c3aed", evaluate: (x) => 2 * x * x - 1, smooth: true },
+      { color: "#16a34a", evaluate: (x) => 4 * x * x * x - 3 * x, smooth: true }
     ];
 
-    return polynomials.map(({ color, evaluate }) => ({
+    return polynomials.map(({ color, evaluate, smooth }) => ({
       points: samples.map((x) => ({ x, y: evaluate(x), z: 0 })),
       color,
-      smooth: true,
+      smooth,
       showPoints: false
     }));
   })()}
@@ -100,7 +100,7 @@ Untuk hasil kali dalam tanpa bobot pada <InlineMath math="[-1,1]" />,
 
 <BlockMath math="\langle f,g\rangle=\int_{-1}^{1}f(x)g(x)\,dx" />
 
-polinomial Legendre standar memenuhi
+Untuk hasil kali dalam ini, polinomial Legendre standar memenuhi
 
 <MathContainer>
 <BlockMath math="P_0(x)=1,\qquad P_1(x)=x" />
@@ -124,7 +124,7 @@ Sebagai contoh,
 
 Identitas kedua memberikan ekspansi ortogonal yang eksak.
 
-## Berpindah dari <InlineMath math="[-1,1]" /> ke <InlineMath math="[a,b]" />
+## Mengubah Interval Polinomial Ortogonal
 
 Gunakan perubahan variabel afin
 
@@ -138,7 +138,7 @@ Jika <InlineMath math="\varphi_k" /> ortonormal pada <InlineMath math="[-1,1]" /
 
 <BlockMath math="\widetilde{\varphi}_k(x)=\sqrt{\frac{2}{b-a}}\,\varphi_k\left(\frac{2x-a-b}{b-a}\right)" />
 
-ortonormal pada <InlineMath math="[a,b]" /> karena
+Fungsi <InlineMath math="\widetilde{\varphi}_k" /> ortonormal pada <InlineMath math="[a,b]" /> karena
 
 <BlockMath math="\int_a^b\widetilde{\varphi}_j(x)\widetilde{\varphi}_k(x)\,dx=\int_{-1}^{1}\varphi_j(t)\varphi_k(t)\,dt=\delta_{jk}" />
 

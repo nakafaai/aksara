@@ -3,13 +3,13 @@ export const metadata = {
     description: "Use power iteration, shifted inverse iteration, Rayleigh quotients, and residual checks to compute selected eigenpairs reliably.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-17",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Linear Methods of AI",
 };
 
 ## Shifted Inverse Iteration
 
-Shifted inverse iteration targets the eigenvalue nearest a chosen shift <InlineMath math="\mu" />. We first study a real symmetric matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" />, where the eigenvalues are real and the convergence picture is especially clear.
+Shifted inverse iteration targets the eigenvalue nearest a chosen shift <InlineMath math="\mu" />. We first study a real symmetric matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" />. All its eigenvalues are real, and its eigenvectors can be chosen as an orthonormal basis.
 
 Choose <InlineMath math="\mu" /> that is not itself an eigenvalue and a unit starting vector <InlineMath math="q_0" /> with a nonzero component in the desired eigenvector direction. Factor <InlineMath math="A-\mu I" /> once, then reuse that factorization.
 
@@ -28,11 +28,11 @@ The Rayleigh quotient <InlineMath math="\rho_{k+1}" /> estimates the eigenvalue.
 
 <BlockMath math="\|r_{k+1}\|_2 \leq \tau\bigl(\|A\|_2+|\rho_{k+1}|\bigr)" />
 
-If <InlineMath math="Av_i=\lambda_i v_i" />, then
+For an eigenpair satisfying <InlineMath math="Av_i=\lambda_i v_i" />, the shifted inverse acts as follows.
 
 <BlockMath math="(A-\mu I)^{-1}v_i=\frac{1}{\lambda_i-\mu}v_i" />
 
-so the eigenvalue closest to <InlineMath math="\mu" /> produces the largest transformed magnitude. In implementation, we solve the linear system. We do not form <InlineMath math="(A-\mu I)^{-1}" /> explicitly.
+This relation shows that the eigenvalue closest to <InlineMath math="\mu" /> produces the largest transformed magnitude. In implementation, we solve the linear system without forming <InlineMath math="(A-\mu I)^{-1}" /> explicitly.
 
 ## Power Iteration
 
@@ -45,13 +45,13 @@ Power iteration targets the eigenvalue of largest magnitude. Starting from a uni
 <BlockMath math="r_{k+1}=Aq_{k+1}-\rho_{k+1}q_{k+1}" />
 </MathContainer>
 
-For a symmetric matrix, convergence to the dominant eigenvector is expected when
+For a symmetric matrix, convergence to the dominant eigenvector requires the following spectral gap.
 
 <BlockMath math="|\lambda_1|>|\lambda_2|" />
 
-and the starting vector has a nonzero component in the direction of the eigenvector for <InlineMath math="\lambda_1" />. The asymptotic convergence factor is approximately <InlineMath math="|\lambda_2/\lambda_1|" />. Equal or tightly clustered dominant magnitudes can slow or prevent single-vector convergence.
+The starting vector must also have a nonzero component in the direction of the eigenvector for <InlineMath math="\lambda_1" />. The asymptotic convergence factor is approximately <InlineMath math="|\lambda_2/\lambda_1|" />. Equal or tightly clustered dominant magnitudes can slow or prevent single-vector convergence.
 
-## Which Eigenvalue Does Each Method Find?
+## Which Eigenvalue Does Each Method Find
 
 The word “smallest” is ambiguous, so the target should always be stated precisely.
 
@@ -64,7 +64,7 @@ The word “smallest” is ambiguous, so the target should always be stated prec
 
 For an indefinite matrix, the eigenvalue with smallest absolute value need not be the most negative eigenvalue. This distinction prevents a common interpretation error.
 
-## Worked Shifted-Inverse Example
+## Worked Shifted Inverse Example
 
 Consider
 
@@ -88,4 +88,4 @@ Because <InlineMath math="2" /> is closer to the shift <InlineMath math="1" /> t
 1. Factor the shifted matrix with a stable method and pivoting where appropriate. If the shift lands exactly on an eigenvalue, the shifted matrix is singular and the solve must be handled or the shift adjusted.
 2. Stop using a residual norm. A small change in consecutive eigenvalue estimates alone does not prove that the eigenpair is accurate.
 3. Eigenvector sign is arbitrary: <InlineMath math="q" /> and <InlineMath math="-q" /> represent the same eigendirection.
-4. For clustered eigenvalues or general nonnormal matrices, use algorithms designed for multiple vectors or Schur form, such as Lanczos, Arnoldi, or QR-based eigensolvers.
+4. For clustered eigenvalues or general nonnormal matrices, use algorithms designed for multiple vectors or Schur form, such as Lanczos, Arnoldi, or <InlineMath math="\mathrm{QR}" />-based eigensolvers.

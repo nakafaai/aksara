@@ -1,16 +1,16 @@
 
 export const metadata = {
   title: "Fungsi Invers",
-  description: "Pelajari fungsi invers secara bertahap, mulai dari syarat bijektif dan penentuan rumus hingga pencerminan grafiknya.",
+    description: "Cari rumus fungsi invers, periksa syarat fungsi bijektif, lalu hubungkan grafik fungsi dan invers melalui pencerminan terhadap garis y sama dengan x.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Fungsi Komposisi dan Fungsi Invers",
 };
 
-## Memahami Fungsi Invers
+## Fungsi Invers
 
-Kalian pasti sering menerjemahkan kata atau kalimat dari Bahasa Inggris ke Bahasa Indonesia, misalnya saat menonton film atau membaca berita. Proses menerjemahkan ini mirip dengan cara kerja sebuah fungsi: ada masukan (kata Bahasa Inggris) dan keluaran (kata Bahasa Indonesia).
+Penerjemahan dari bahasa Inggris ke bahasa Indonesia menerima kata atau kalimat sebagai masukan dan menghasilkan terjemahan sebagai keluaran. Hubungan masukan dan keluaran ini dapat dimodelkan sebagai fungsi.
 
 Perhatikan ilustrasi berikut:
 
@@ -18,16 +18,14 @@ Penerjemahan bahasa sebenarnya dapat memiliki lebih dari satu makna. Di sini kit
 
 <InverseFunctionIllustration
   title="Mesin Penerjemah"
-  description="Mesin penerjemah mengubah kata atau kalimat dari Bahasa Inggris ke Bahasa Indonesia."
+  description="Mesin penerjemah mengubah kata atau kalimat dari bahasa Inggris ke bahasa Indonesia."
   machineLabel="Mesin Penerjemah"
   content={{ input: "Mathematics", output: "Matematika" }}
 />
 
 Di sini, "Mesin Penerjemah" bertindak seperti fungsi yang mengubah "Mathematics" (masukan) menjadi "Matematika" (keluaran).
 
-Sekarang, bagaimana jika kita ingin melakukan kebalikannya? Menerjemahkan "Matematika" kembali menjadi "Mathematics"?
-
-Proses kebalikan inilah yang menjadi dasar konsep **fungsi invers**.
+Pemetaan sebaliknya mengubah "Matematika" kembali menjadi "Mathematics". Pemetaan ini disebut **fungsi invers**.
 
 ## Definisi Fungsi Invers
 
@@ -39,7 +37,7 @@ Secara matematis:
 
 Dengan kata lain, jika <InlineMath math="f" /> mengubah <InlineMath math="x" /> menjadi <InlineMath math="y" />, maka <InlineMath math="f^{-1}" /> mengubah <InlineMath math="y" /> kembali menjadi <InlineMath math="x" />. Fungsi invers "membatalkan" efek dari fungsi aslinya.
 
-**Penting:** Notasi <InlineMath math="f^{-1}(x)" /> **bukan** berarti <InlineMath math="\frac{1}{f(x)}" /> (kebalikan perkalian atau resiprokal). Ini adalah notasi khusus untuk fungsi invers.
+Notasi <InlineMath math="f^{-1}(x)" /> menyatakan fungsi invers. Kebalikan perkalian atau resiprokal ditulis sebagai <InlineMath math="\frac{1}{f(x)}" />.
 
 ## Syarat Fungsi Memiliki Invers
 
@@ -54,7 +52,7 @@ Sebagai contoh, <InlineMath math="q(x)=x^2" /> tidak injektif pada <InlineMath m
 
 <BlockMath math="q:[0,\infty)\to[0,\infty),\qquad q(x)=x^2" />
 
-yang memiliki invers <InlineMath math="q^{-1}(x)=\sqrt{x}" />.
+Fungsi tersebut memiliki invers <InlineMath math="q^{-1}(x)=\sqrt{x}" />.
 
 ## Menentukan Rumus Fungsi Invers
 
@@ -116,6 +114,7 @@ Sebagai contoh, lihat grafik dari <InlineMath math="f(x) = 2x + 3" />, inversnya
         const x = i - 5;
         return { x, y: 2 * x + 3, z: 0 };
       }),
+      smooth: false,
       color: "#ea580c",
       labels: [
         {
@@ -131,6 +130,7 @@ Sebagai contoh, lihat grafik dari <InlineMath math="f(x) = 2x + 3" />, inversnya
         const x = i - 5;
         return { x, y: (x - 3) / 2, z: 0 };
       }),
+      smooth: false,
       color: "#059669",
       labels: [
         {
@@ -146,6 +146,7 @@ Sebagai contoh, lihat grafik dari <InlineMath math="f(x) = 2x + 3" />, inversnya
         const x = i - 5;
         return { x, y: x, z: 0 };
       }),
+      smooth: false,
       color: "#db2777",
       labels: [
         {

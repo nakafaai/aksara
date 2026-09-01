@@ -5,17 +5,17 @@ export const metadata = {
     description: "Perkirakan luas di bawah kurva menggunakan persegi panjang dengan jumlahan Riemann. Pelajari partisi, titik sampel, dan perhitungan visual dengan contoh terarah.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Integral",
 };
 
-## Ide Dasar Jumlahan Riemann
+## Mendekati Akumulasi dengan Persegi Panjang
 
-Bayangkan kamu memiliki sebidang tanah dengan satu sisi yang bentuknya melengkung tidak beraturan. Bagaimana cara menghitung luasnya? Salah satu cara paling praktis adalah dengan membagi tanah itu menjadi beberapa potong persegi panjang dengan lebar yang sama, menghitung luas setiap potongan, lalu menjumlahkan semuanya.
+Misalkan salah satu sisi sebidang tanah mengikuti kurva yang tidak beraturan. Perkirakan luas tanah dengan membagi bidang tersebut menjadi beberapa persegi panjang yang sama lebar, menghitung luas setiap bagian, lalu menjumlahkan luas semua bagian.
 
-Itulah ide dasar **jumlahan Riemann**. Metode ini memperkirakan **akumulasi bertanda** dengan membagi interval menjadi beberapa subinterval, lalu menjumlahkan kontribusi setiap persegi panjang. Jika fungsinya tidak negatif, akumulasi tersebut sama dengan luas daerah di bawah kurva. Untuk fungsi yang terintegralkan secara Riemann, jumlahan ini konvergen ke integral tentu ketika lebar subinterval terbesarnya mendekati nol. Pada partisi sama lebar, menambah jumlah persegi panjang akan memperkecil lebarnya, meskipun setiap penambahan belum tentu langsung menghasilkan taksiran yang lebih dekat.
+**Jumlahan Riemann** merumuskan pendekatan tersebut. Metode ini memperkirakan **akumulasi bertanda** dengan membagi interval menjadi beberapa subinterval, lalu menjumlahkan kontribusi setiap persegi panjang. Jika fungsi tidak negatif, akumulasi tersebut sama dengan luas daerah di bawah kurva. Untuk fungsi yang terintegralkan secara Riemann, jumlahan ini konvergen ke integral tentu ketika lebar subinterval terbesar mendekati nol. Pada partisi sama lebar, menambah jumlah persegi panjang akan memperkecil lebar setiap persegi panjang, meskipun setiap penambahan belum tentu langsung menghasilkan taksiran yang lebih dekat.
 
-## Komponen Utama
+## Interval dengan Partisi dan Lebarnya
 
 Untuk melakukan Jumlahan Riemann, kita perlu memahami beberapa komponen utamanya:
 
@@ -33,11 +33,9 @@ Jika kita menggabungkan semua komponen tersebut, kita mendapatkan formula umum u
 
 <BlockMath math="R_n = \sum_{i=1}^{n} f(x_i^*) \Delta x" />
 
-Notasi sigma (<InlineMath math="\sum" />) ini secara sederhana berarti "jumlahkan semua luas persegi panjang", di mana luas setiap persegi panjang adalah **tinggi** (<InlineMath math="f(x_i^*)" />) dikali **lebar** (<InlineMath math="\Delta x" />).
+Notasi sigma (<InlineMath math="\sum" />) berarti "jumlahkan semua luas persegi panjang". Luas setiap persegi panjang adalah **tinggi** (<InlineMath math="f(x_i^*)" />) dikali **lebar** (<InlineMath math="\Delta x" />).
 
-## Contoh Perhitungan Visual
-
-Terapkan konsep ini pada sebuah contoh.
+## Jumlahan Titik Ujung Kiri pada Fungsi Linear
 
 **Soal:** Tentukan Jumlahan Riemann dari fungsi <InlineMath math="f(x) = x" /> pada interval <InlineMath math="[0, 7]" /> dengan membaginya menjadi <InlineMath math="7" /> subinterval sama panjang dan menggunakan **titik ujung kiri** sebagai titik sampel.
 
@@ -48,6 +46,7 @@ Terapkan konsep ini pada sebuah contoh.
   data={[
     {
       points: Array.from({ length: 8 }).map((_, i) => ({ x: i, y: i, z: 0 })),
+      smooth: false,
       color: "#9333ea",
       showPoints: false,
       labels: [{ text: <InlineMath math="f(x)=x" />, at: 4, offset: [-1, 0.5, 0] }],
@@ -111,7 +110,7 @@ Terapkan konsep ini pada sebuah contoh.
 
 5.  **Hitung Jumlahan Riemann:**
 
-    Sekarang kita dapat menghitung total luas dengan menjumlahkan luas semua persegi panjang. Ingat bahwa luas setiap persegi panjang adalah tinggi dikali lebar:
+    Sekarang kita dapat menghitung total luas dengan menjumlahkan luas semua persegi panjang. Luas setiap persegi panjang adalah tinggi dikali lebar:
 
     <MathContainer>
     <BlockMath math="R_7 = \sum_{i=1}^{7} f(x_i^*) \Delta x" />

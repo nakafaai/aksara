@@ -3,14 +3,13 @@ export const metadata = {
     description: "Determinanten mit Kofaktorentwicklung, Gauß-Elimination und Dreiecksmatrizen berechnen. Dazu kommen effiziente Verfahren für die lineare Algebra in der KI.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Lineare Methoden der KI",
 };
 
 ## Determinantenberechnungsmethoden
 
-Nach den [Grundlagen der Determinante](/de/faecher/ki-und-data-science/lineare-methoden-der-ki/determinante) geht es nun um die praktische Berechnung. Welche Methode geeignet ist, hängt von der Form der Matrix ab.
-
-Für kleine Matrizen können wir direkte Formeln verwenden. Für größere Matrizen benötigen wir jedoch effizientere Strategien.
+Aus der [Definition der Determinante](/de/faecher/ki-und-data-science/lineare-methoden-der-ki/determinante) folgen mehrere Rechenverfahren. Direkte Formeln genügen für kleine Matrizen. Bei großen dichten Matrizen führen die Elimination oder eine <InlineMath math="\mathrm{LU}" />-Zerlegung zur Dreiecksform und vermeiden das faktorielle Wachstum einer rekursiven Kofaktorentwicklung.
 
 ## Grundlegender Fall einer Matrix erster Ordnung
 
@@ -18,9 +17,9 @@ Für Matrizen der Größe <InlineMath math="1 \times 1" /> ist die Determinante 
 
 <BlockMath math="\det A = a_{11}" />
 
-Dies ist der grundlegendste Fall, der als Grundlage für die Berechnung von Determinanten größerer Matrizen dient.
+Bei einer <InlineMath math="1\times1" />-Matrix ist die Determinante gleich ihrem einzigen Eintrag. Größere Matrizen werden durch Entwicklung oder Elimination auf kleinere Fälle zurückgeführt.
 
-## Submatrix-Konzept
+## Konzept der Submatrix
 
 Vor der Kofaktorentwicklung benötigen wir den Begriff der **Untermatrix**. Für <InlineMath math="A \in \mathbb{R}^{n \times n}" /> und <InlineMath math="i, j \in \{1, 2, \ldots, n\}" /> entsteht die Untermatrix <InlineMath math="A_{ij}" /> der Größe <InlineMath math="(n-1) \times (n-1)" />, indem Zeile <InlineMath math="i" /> und Spalte <InlineMath math="j" /> aus <InlineMath math="A" /> entfernt werden.
 
@@ -46,7 +45,7 @@ Dieser Vorgang gilt für alle Kombinationen von Zeilen und Spalten, die entfernt
 
 ## Kofaktorentwicklung
 
-Die gebräuchlichste direkte Methode zur Berechnung von Determinanten ist die Kofaktorentwicklung. Wir können nach einer beliebigen festen Zeile <InlineMath math="i" /> entwickeln:
+Die Kofaktorentwicklung berechnet die Determinante aus kleineren Minoren. Wir können nach einer beliebigen festen Zeile <InlineMath math="i" /> entwickeln:
 
 <BlockMath math="\det A = \sum_{j=1}^{n} (-1)^{i+j} a_{ij}\det A_{ij}" />
 
@@ -56,7 +55,7 @@ Alternativ können wir nach einer beliebigen festen Spalte <InlineMath math="j" 
 
 Der Term <InlineMath math="(-1)^{i+j}\det A_{ij}" /> ist der **Kofaktor** von <InlineMath math="a_{ij}" />. Der Faktor <InlineMath math="(-1)^{i+j}" /> erzeugt das abwechselnde Schachbrettmuster der Vorzeichen. Eine Zeile oder Spalte mit vielen Nullen verringert die Anzahl der zu berechnenden Minoren.
 
-### Beispiel für die Kofaktorentwicklung dritter Ordnung
+### Kofaktorentwicklung für eine Matrix dritter Ordnung
 
 Für eine <InlineMath math="3 \times 3" />-Matrix sieht die Kofaktorentwicklung beispielsweise so aus:
 
@@ -71,7 +70,7 @@ Wir wählen die erste Zeile zur Erweiterung:
 <BlockMath math="= 2 \cdot (-2) - 1 \cdot (-1) + 3 \cdot (-4) = -4 + 1 - 12 = -15" />
 </MathContainer>
 
-Wir können nach jeder Zeile oder Spalte entwickeln. Meist wählen wir eine Zeile oder Spalte mit vielen Nullen, weil dadurch weniger Terme berechnet werden müssen.
+Die Entwicklung kann nach jeder Zeile oder Spalte erfolgen. Jeder Nulleintrag setzt einen Kofaktorterm auf null, sodass bei einer Zeile oder Spalte mit vielen Nullen weniger Terme berechnet werden müssen.
 
 ## Dreieckige und diagonale Matrizen
 
@@ -141,7 +140,7 @@ Eine einzelne Zeilenvertauschung wechselt das Vorzeichen der Determinante. Das A
 
 ## Gaußsche Eliminierung zur Determinantenberechnung
 
-Bei einer dichten Matrix ist die Gauß-Elimination, beziehungsweise eine LU-Zerlegung, eine der effizientesten Methoden. Sie überführt die Matrix in obere Dreiecksform; anschließend werden die Diagonalelemente multipliziert.
+Die Gauß-Elimination, beziehungsweise eine äquivalente <InlineMath math="\mathrm{LU}" />-Zerlegung, überführt eine dichte Matrix in obere Dreiecksform. Die Determinante folgt dann aus den Diagonaleinträgen und den erfassten Zeilenoperationen.
 
 Angenommen, wir verwenden nur Zeilenadditionen und Zeilenvertauschungen, um <InlineMath math="A" /> in eine obere Dreiecksmatrix <InlineMath math="R" /> zu überführen. Bei <InlineMath math="p" /> Zeilenvertauschungen gilt:
 
@@ -159,13 +158,13 @@ Deshalb:
 
 Falls ein Algorithmus während der Elimination eine Zeile skaliert, muss dieser Skalierungsfaktor ebenfalls erfasst und aus dem Endergebnis herausgerechnet werden. In numerischen Berechnungen verwendet man üblicherweise partielle Pivotisierung, um einen Nullpivot zu vermeiden und den Einfluss von Rundungsfehlern zu verringern.
 
-### Methodeneffizienz
+### Anzahl der Operationen
 
-Für eine dichte <InlineMath math="n \times n" />-Matrix benötigt die Elimination oder LU-Zerlegung ungefähr <InlineMath math="\frac{2}{3}n^3 + O(n^2)" /> Gleitkommaoperationen. Das anschließende Multiplizieren der Diagonaleinträge erfordert nur <InlineMath math="O(n)" /> zusätzliche Arbeit. Eine naive rekursive Kofaktorentwicklung kann dagegen wie <InlineMath math="O(n!)" /> wachsen.
+Für eine dichte <InlineMath math="n \times n" />-Matrix benötigt die Elimination oder <InlineMath math="\mathrm{LU}" />-Zerlegung ungefähr <InlineMath math="\frac{2}{3}n^3 + O(n^2)" /> Gleitkommaoperationen. Das anschließende Multiplizieren der Diagonaleinträge erfordert nur <InlineMath math="O(n)" /> zusätzliche Arbeit. Eine naive rekursive Kofaktorentwicklung kann dagegen wie <InlineMath math="O(n!)" /> wachsen.
 
-Für große unstrukturierte Matrizen ist die Elimination mit Pivotisierung daher deutlich praktischer als die rekursive Kofaktorentwicklung.
+Bei großen unstrukturierten Matrizen wächst die Operationszahl der Elimination kubisch und damit langsamer als die faktorielle Operationszahl der rekursiven Kofaktorentwicklung.
 
-## Vollständiges Berechnungsbeispiel
+## Eine Determinante dritter Ordnung durch Elimination berechnen
 
 Das folgende Beispiel zeigt die Determinantenberechnung mit Gauß-Elimination:
 

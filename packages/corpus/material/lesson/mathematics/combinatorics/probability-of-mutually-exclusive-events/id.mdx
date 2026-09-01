@@ -3,13 +3,13 @@ export const metadata = {
    description: "Kenali kejadian saling lepas, bedakan dari kejadian saling bebas, dan gunakan aturan penjumlahan tanpa menghitung irisan dua kali.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-08-29",
+   dateModified: "2026-09-01",
    subject: "Kombinatorik",
 };
 
-## Memahami Kejadian Saling Lepas
+## Kejadian Saling Lepas
 
-Dalam kehidupan sehari-hari, kita sering menghadapi situasi dimana **dua kejadian tidak dapat terjadi bersamaan**. Misalnya, saat melempar satu koin, kita tidak mungkin mendapatkan angka dan gambar secara bersamaan dalam satu lemparan. Kejadian seperti ini disebut kejadian saling lepas atau mutually exclusive events.
+Dalam kehidupan sehari-hari, ada situasi ketika **dua kejadian tidak dapat terjadi bersamaan**. Misalnya, saat melempar satu koin, kita tidak mungkin mendapatkan angka dan gambar dalam lemparan yang sama. Kejadian seperti ini disebut kejadian saling lepas atau mutually exclusive events.
 
 **Kejadian saling lepas** adalah dua atau lebih kejadian yang tidak dapat terjadi secara bersamaan dalam satu percobaan. Jika salah satu kejadian terjadi, maka kejadian lainnya pasti tidak akan terjadi.
 
@@ -25,9 +25,9 @@ Ciri utama kejadian saling lepas adalah **tidak memiliki irisan atau elemen yang
 
 Simbol <InlineMath math="\emptyset" /> menunjukkan himpunan kosong, artinya tidak ada elemen yang sama antara kedua kejadian.
 
-### Contoh dalam Kehidupan Nyata
+### Hasil yang Tidak Dapat Terjadi Bersamaan
 
-Beberapa contoh kejadian saling lepas yang mudah dipahami:
+Pasangan kejadian berikut tidak dapat terjadi dalam percobaan yang sama:
 
 - Dalam pelemparan dadu: munculnya angka genap dan munculnya angka ganjil
 - Dalam pengambilan kartu: mengambil kartu As dan mengambil kartu King dalam satu pengambilan
@@ -39,7 +39,7 @@ Untuk mengidentifikasi apakah dua kejadian saling lepas, tanyakan pada diri send
 
 ## Rumus Peluang Kejadian Saling Lepas
 
-Karena kejadian saling lepas tidak memiliki irisan, perhitungan peluangnya menjadi lebih sederhana. **Rumus dasar** untuk peluang kejadian saling lepas adalah:
+Rumus penjumlahan umum mengurangi irisan <InlineMath math="P(A \cap B)" />. Pada kejadian saling lepas, <InlineMath math="P(A \cap B)=0" />, sehingga suku tersebut hilang:
 
 <BlockMath math="P(A \cup B) = P(A) + P(B)" />
 
@@ -47,7 +47,7 @@ Rumus ini menunjukkan bahwa peluang terjadinya kejadian <InlineMath math="A" /> 
 
 Saling lepas **bukan** berarti saling bebas. Jika <InlineMath math="P(A) > 0" /> dan <InlineMath math="P(B) > 0" />, informasi bahwa <InlineMath math="A" /> terjadi membuat <InlineMath math="B" /> mustahil terjadi. Jadi <InlineMath math="P(A \cap B) = 0" />, sedangkan kejadian saling bebas mensyaratkan <InlineMath math="P(A \cap B) = P(A)P(B) > 0" />.
 
-### Mengapa Rumus Ini Berlaku
+### Irisan Nol pada Rumus Penjumlahan
 
 Berbeda dengan kejadian yang tidak saling lepas, pada kejadian saling lepas tidak perlu mengurangi irisan karena <InlineMath math="P(A \cap B) = 0" />. Oleh karena itu, rumus umum:
 
@@ -57,7 +57,7 @@ Menjadi:
 
 <BlockMath math="P(A \cup B) = P(A) + P(B) - 0 = P(A) + P(B)" />
 
-## Penerapan dalam Perhitungan
+## Perhitungan dengan Aturan Penjumlahan
 
 ### Pelemparan Dadu
 
@@ -96,7 +96,7 @@ Karena tidak ada irisan, kedua kejadian **saling lepas**.
 <BlockMath math="P(A \cup C) = P(A) + P(C) = \frac{1}{2} + \frac{1}{2} = 1" />
 </MathContainer>
 
-Hasil ini masuk akal karena dalam pelemparan dadu, pasti akan muncul angka ganjil atau genap (semua kemungkinan tercakup).
+Hasil ganjil dan genap bersama-sama mencakup keenam sisi dadu, sehingga peluang gabungannya adalah <InlineMath math="1" />.
 
 ### Pelemparan Dua Dadu
 
@@ -104,7 +104,7 @@ Dua dadu dilempar bersamaan. Tentukan peluang mendapatkan jumlah mata dadu <Inli
 
 **Penyelesaian:**
 
-Untuk memahami lebih jelas, lihat semua kemungkinan hasil pelemparan dua dadu dalam tabel berikut:
+Tabel berikut memuat seluruh <InlineMath math="36" /> pasangan hasil dari kedua dadu:
 
 | Dadu <InlineMath math="1" /> \\ Dadu <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
 |------------------|---|---|---|---|---|---|
@@ -165,7 +165,7 @@ Untuk menjumlahkan <InlineMath math="\frac{1}{9} + \frac{1}{6}" />, kita memerlu
 
 ## Strategi Pemecahan Masalah
 
-### Langkah Sistematis
+### Periksa Irisan Sebelum Menjumlahkan
 
 Untuk menyelesaikan soal peluang kejadian saling lepas, ikuti langkah berikut:
 
@@ -175,17 +175,17 @@ Untuk menyelesaikan soal peluang kejadian saling lepas, ikuti langkah berikut:
 4. **Hitung peluang masing-masing** kejadian secara terpisah
 5. **Terapkan rumus** <InlineMath math="P(A \cup B) = P(A) + P(B)" />
 
-### Tips Praktis
+### Pemeriksaan Hasil Akhir
 
-Beberapa tips untuk memudahkan pemahaman:
+Periksa tiga hal sebelum menerima hasil:
 
-- **Visualisasikan** kejadian menggunakan diagram atau tabel jika memungkinkan
-- **Periksa ulang** apakah hasil akhir masuk akal (peluang harus antara <InlineMath math="0" /> dan <InlineMath math="1" />)
-- **Pastikan interpretasi** kata "atau" dalam soal sesuai dengan operasi gabungan
+- Gambarkan himpunan kejadian dengan diagram atau tabel jika irisannya belum jelas.
+- Pastikan peluang akhir berada di antara <InlineMath math="0" /> dan <InlineMath math="1" />.
+- Baca kata "atau" sebagai gabungan, kecuali soal menyatakan hal lain.
 
-### Waspada Kejadian yang Tampak Saling Lepas
+### Kejadian dengan Irisan Tidak Kosong
 
-Banyak siswa keliru mengidentifikasi kejadian saling lepas. Berikut adalah contoh kejadian yang **tampak** saling lepas namun **sebenarnya tidak**:
+Dua kejadian tidak saling lepas jika irisannya memuat setidaknya satu hasil. Contoh berikut memiliki irisan yang tidak kosong:
 
 **Contoh <InlineMath math="1" />: Pelemparan Dadu**
 - Kejadian <InlineMath math="A" />: Munculnya angka prima adalah <InlineMath math="\{2, 3, 5\}" />

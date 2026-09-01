@@ -1,27 +1,25 @@
 export const metadata = {
-    title: "Eigenvalues, Eigenvectors, and Eigenspaces",
-    description: "Learn fundamental eigenvalue concepts: understand how matrices transform vectors, calculate eigenvectors, and explore eigenspace properties.",
+    title: "Eigenvalues Eigenvectors and Eigenspaces",
+   description: "Describe how a matrix transforms its eigenvectors, calculate those vectors, and determine their eigenspaces.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Linear Methods of AI",
 };
 
-## Definition of Fundamental Concepts
+## Eigenvalues and Eigenvectors
 
-Most vectors change both length and direction under a matrix transformation. An eigenvector is special: the transformation keeps it on the same line. A positive eigenvalue preserves its orientation, a negative one reverses it, and a zero eigenvalue sends it to the zero vector.
+Most vectors change both length and direction under a matrix transformation. For an eigenvector, the result stays on the same line. A positive eigenvalue preserves its orientation, a negative eigenvalue reverses it, and a zero eigenvalue sends it to the zero vector.
 
 Let <InlineMath math="A \in \mathbb{K}^{n \times n}" /> be a square matrix. An **eigenvector** <InlineMath math="v \in \mathbb{K}^n" /> for an **eigenvalue** <InlineMath math="\lambda \in \mathbb{K}" /> is a non-zero vector <InlineMath math="v \neq 0" /> that satisfies:
 
 <BlockMath math="A \cdot v = \lambda \cdot v" />
 
-This equation shows that when matrix <InlineMath math="A" /> operates on vector <InlineMath math="v" />, the result is a scalar multiple of the same vector.
+Multiplying <InlineMath math="v" /> by <InlineMath math="A" /> therefore changes only its scale or orientation, not its line of action.
 
 > By definition, eigenvalues can equal <InlineMath math="0" />, but eigenvectors are always non-zero.
 
 ## Basic Properties of Eigenvectors
-
-Eigenvectors have fundamental properties that are very useful in various mathematical applications.
 
 **Scalar Multiplication**: Let <InlineMath math="A \in \mathbb{K}^{n \times n}" /> and <InlineMath math="v \in \mathbb{K}^n" /> with <InlineMath math="v \neq 0" /> be an eigenvector of <InlineMath math="A" /> for eigenvalue <InlineMath math="\lambda \in \mathbb{K}" />. Then all multiples <InlineMath math="t \cdot v" /> with <InlineMath math="t \neq 0" /> are also eigenvectors of <InlineMath math="A" /> for the same eigenvalue <InlineMath math="\lambda" />.
 
@@ -29,11 +27,11 @@ This follows directly from linearity:
 
 <BlockMath math="A \cdot (t \cdot v) = t \cdot (A \cdot v) = t \cdot (\lambda \cdot v) = \lambda \cdot (t \cdot v)" />
 
-This property shows that if we find one eigenvector, then all its non-zero multiples are also eigenvectors for the same eigenvalue.
+Because <InlineMath math="t\neq0" />, the vector <InlineMath math="tv" /> is nonzero and satisfies the eigenvector definition for the same eigenvalue.
 
 ## Examples of Eigenvector Calculations
 
-Look at some concrete examples to better understand this concept:
+The following examples verify the equation <InlineMath math="Av=\lambda v" /> directly.
 
 ### Diagonal Matrix
 
@@ -55,25 +53,25 @@ For matrix <InlineMath math="A = \begin{pmatrix} 3 & 1 \\ 1 & 3 \end{pmatrix}" /
 
 Let <InlineMath math="A \in \mathbb{K}^{n \times n}" /> and <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> be pairwise distinct eigenvalues of <InlineMath math="A" />, so <InlineMath math="\lambda_i \neq \lambda_j" /> whenever <InlineMath math="i \neq j" />. Then corresponding eigenvectors <InlineMath math="v_1, \ldots, v_k \in \mathbb{K}^n" /> are linearly independent.
 
-This theorem can be proven using mathematical induction and has the important consequence that an <InlineMath math="n \times n" /> matrix has at most <InlineMath math="n" /> distinct eigenvalues.
+By mathematical induction, this theorem implies that an <InlineMath math="n \times n" /> matrix has at most <InlineMath math="n" /> distinct eigenvalues.
 
 ## Eigenspaces and Geometric Multiplicity
 
-For each eigenvalue, we can define a vector space consisting of all eigenvectors corresponding to that eigenvalue.
+For each eigenvalue, we define a vector space containing every solution of <InlineMath math="Av=\lambda v" />, including the zero vector.
 
-Let <InlineMath math="A \in \mathbb{K}^{n \times n}" /> and <InlineMath math="\lambda \in \mathbb{K}" />. The set:
+Let <InlineMath math="A \in \mathbb{K}^{n \times n}" /> and <InlineMath math="\lambda \in \mathbb{K}" />. We call the following set the **eigenspace** of matrix <InlineMath math="A" /> for eigenvalue <InlineMath math="\lambda" />.
 
 <BlockMath math="E_A(\lambda) = \{v \in \mathbb{K}^n : A \cdot v = \lambda \cdot v\}" />
 
-is called the **eigenspace** of <InlineMath math="A" /> for <InlineMath math="\lambda" />. Its dimension:
+The dimension of an eigenspace is called its **geometric multiplicity**. We write it as
 
 <BlockMath math="\dim E_A(\lambda)" />
 
-is called the **geometric multiplicity** of eigenvalue <InlineMath math="\lambda" /> of <InlineMath math="A" />.
+The value <InlineMath math="\dim E_A(\lambda)" /> therefore gives the geometric multiplicity of eigenvalue <InlineMath math="\lambda" /> for matrix <InlineMath math="A" />.
 
 ### Properties of Eigenspaces
 
-Eigenspaces have several important properties:
+Each eigenspace satisfies the following properties:
 
 1. **Zero vector is not an eigenvector**: The eigenspace <InlineMath math="E_A(\lambda)" /> contains the zero vector along with all eigenvectors for <InlineMath math="\lambda" />.
 
@@ -91,8 +89,6 @@ Eigenspaces have several important properties:
 
 ## Relationship with Invertibility
 
-Eigenvalues have a close relationship with the invertibility property of matrices.
-
 Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> is invertible if and only if zero is not one of its eigenvalues.
 
 Indeed, <InlineMath math="A" /> is invertible if and only if <InlineMath math="\operatorname{rank} A = n" />, equivalently <InlineMath math="E_A(0) = \ker A = \{0\}" />.
@@ -107,7 +103,7 @@ Applying <InlineMath math="A^{-1}" /> to <InlineMath math="A \cdot v = \lambda \
 
 ## Invertibility Criteria
 
-Look at various ways to determine whether a matrix is invertible. For a square matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" />, the following statements are equivalent:
+For a square matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" />, the following statements are equivalent:
 
 1. <InlineMath math="A" /> is invertible
 2. There exists a matrix <InlineMath math="A^{-1} \in \mathbb{K}^{n \times n}" /> with <InlineMath math="A \cdot A^{-1} = I = A^{-1} \cdot A" />
@@ -117,4 +113,4 @@ Look at various ways to determine whether a matrix is invertible. For a square m
 6. <InlineMath math="\det A \neq 0" />
 7. <InlineMath math="0" /> is not an eigenvalue of <InlineMath math="A" />
 
-This theorem provides various equivalent ways to check whether a matrix is invertible, with eigenvalues being one of the very useful criteria.
+Any one of these conditions is enough to prove that the matrix is invertible.

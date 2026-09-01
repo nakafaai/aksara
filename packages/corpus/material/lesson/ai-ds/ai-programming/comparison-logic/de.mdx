@@ -3,6 +3,7 @@ export const metadata = {
     description: "Python-Vergleich und boolesche Operatoren, Vorrang, falsche/wahre Werte und sichere Float-Vergleiche.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "KI-Programmierung",
 };
 
@@ -58,7 +59,7 @@ True`
 
 ## Boolesche Operatoren
 
-Mit booleschen Operatoren können Sie mehrere Bedingungen kombinieren oder boolesche Werte ändern. Python bietet drei wichtige boolesche Operatoren:
+Mit booleschen Operatoren lassen sich mehrere Bedingungen kombinieren oder boolesche Werte negieren. Python besitzt drei boolesche Operatoren:
 
 <Mermaid
   title="Boolesche Operatoren verknüpfen Bedingungen"
@@ -123,7 +124,7 @@ Python verfügt über spezielle Regeln, um zu bestimmen, welche Werte im boolesc
 
 <Mermaid
   title="Werte, die Python als Bedingungsergebnisse behandelt"
-  description="Gruppieren Sie die Werte, die Python als „False“ oder „True“ behandelt, bevor sie in Bedingungen verwendet werden."
+  description="Gruppiere die Werte, die Python als „False“ oder „True“ behandelt, bevor sie in Bedingungen verwendet werden."
   chart={`
     flowchart TD
         A[Python-Werte] --> B{Boolesche Auswertung}
@@ -180,7 +181,7 @@ False
 
 ## Operatoren kombinieren
 
-Sie können Vergleichsoperatoren mit booleschen Operatoren kombinieren, um komplexere Bedingungen zu erstellen. Python ermöglicht auch eine natürlichere Vergleichsverkettung wie `1 < 2 < 3`.
+Vergleichsoperatoren lassen sich mit booleschen Operatoren zu mehrteiligen Bedingungen verbinden. Python unterstützt außerdem verkettete Vergleiche wie `1 < 2 < 3`.
 
 <CodeBlock
   data={[
@@ -211,7 +212,7 @@ True`
 
 Viele Dezimalbrüche besitzen keine exakte endliche binäre Gleitkommadarstellung. Arithmetische Operationen runden Zwischenergebnisse. Zwei mathematisch gleichwertige Rechnungen können deshalb nahe beieinanderliegende, aber ungleiche Floats liefern.
 
-### Float-Präzisionsprobleme
+### Genauigkeitsprobleme bei Float Werten
 
 <Mermaid
   title="Gleich aussehende Dezimalwerte können sich unterscheiden"
@@ -258,7 +259,7 @@ True`
   ]}
 />
 
-### Lösung mit math.isclose()
+### Lösung mit der Funktion Isclose
 
 Python bietet die Funktion `math.isclose(a, b, rel_tol=1e-09, abs_tol=0.0)` zum Testen der ungefähren Gleichheit. Diese Funktion verwendet relative Toleranz (rel_tol) und absolute Toleranz (abs_tol), um zu bestimmen, ob zwei Werte nahe genug beieinander liegen.
 

@@ -4,17 +4,17 @@ export const metadata = {
   description: "Relate chord length to radius, central angle, and distance from the center, then apply the chord theorems in fully worked problems.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Circle",
 };
 
 ## Definition of Chord
 
-A chord is a line segment that connects two points on a circle. Unlike a diameter that passes through the center of the circle, a chord can be positioned anywhere as long as both endpoints lie on the circle.
+A chord is a line segment whose two endpoints lie on a circle. A diameter is the special chord that passes through the center. Other chords do not need to pass through it.
 
 <LineEquation
   title="Chords on a Circle"
-  description="Various chords with different lengths on a circle."
+  description="Two equal chords subtend thirty degree angles and a longer chord subtends a sixty degree angle."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -43,6 +43,7 @@ A chord is a line segment that connects two points on a circle. Unlike a diamete
           { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -59,6 +60,7 @@ A chord is a line segment that connects two points on a circle. Unlike a diamete
           { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [
@@ -75,6 +77,7 @@ A chord is a line segment that connects two points on a circle. Unlike a diamete
           { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#db2777",
       showPoints: true,
       labels: [
@@ -87,7 +90,7 @@ A chord is a line segment that connects two points on a circle. Unlike a diamete
   showZAxis={false}
 />
 
-In the figure above, <InlineMath math="AB" />, <InlineMath math="CD" />, and <InlineMath math="EF" /> are chords with different lengths.
+Chords <InlineMath math="AB" /> and <InlineMath math="CD" /> subtend equal central angles, so they have equal length. Chord <InlineMath math="EF" /> subtends a larger central angle and is longer.
 
 ## Properties of Chords
 
@@ -126,6 +129,7 @@ Two chords of equal length have the same distance from the center of the circle.
           { x: x, y: y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -142,6 +146,7 @@ Two chords of equal length have the same distance from the center of the circle.
           { x: x, y: y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [
@@ -211,6 +216,7 @@ A line drawn from the center of a circle perpendicular to a chord divides the ch
           { x: 5 * Math.cos(angle2), y: 5 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -265,16 +271,16 @@ To calculate the length of a chord, we can use the formula:
 
 <BlockMath math="AB = 2r \sin\left(\frac{\theta}{2}\right)" />
 
-Where:
+Here:
 
 - <InlineMath math="r" /> = radius of the circle
-- <InlineMath math="\theta" /> = the smaller central angle subtending the chord; use the calculator mode that matches the angle unit
+- <InlineMath math="\theta" /> = the smaller central angle subtending the chord. Use the calculator mode that matches the angle unit
 
-The relationship between central angle and chord length can be visualized as follows:
+As the smaller central angle <InlineMath math="\theta" /> increases from <InlineMath math="0" /> to <InlineMath math="180^\circ" />, the factor <InlineMath math="\sin(\theta/2)" /> increases from <InlineMath math="0" /> to <InlineMath math="1" />. The chord length therefore increases from <InlineMath math="0" /> to the diameter <InlineMath math="2r" />.
 
 <LineEquation
   title="Central Angle and Chord"
-  description="Relationship between central angle and chord length."
+  description="The chord becomes longer as the smaller central angle increases toward one hundred eighty degrees."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -303,6 +309,7 @@ The relationship between central angle and chord length can be visualized as fol
           { x: 4 * Math.cos(angle2), y: 4 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -400,6 +407,7 @@ If two chords intersect inside a circle, then the product of the segments of one
           { x: 5 * Math.cos(angle2), y: 5 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -416,6 +424,7 @@ If two chords intersect inside a circle, then the product of the segments of one
           { x: 5 * Math.cos(angle2), y: 5 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [
@@ -504,6 +513,7 @@ Inscribed angles that subtend the same chord have equal measures when their vert
           { x: 4 * Math.cos(angleB), y: 4 * Math.sin(angleB), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -587,6 +597,7 @@ The apothem of a chord is the perpendicular segment from the center of the circl
           { x: x, y: y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -626,7 +637,7 @@ The length of the apothem can be calculated using the formula:
 
 <BlockMath math="a = r \cos\left(\frac{\theta}{2}\right) = \sqrt{r^2 - \left(\frac{l}{2}\right)^2}" />
 
-Where:
+Here:
 
 - <InlineMath math="a" /> = length of apothem
 - <InlineMath math="r" /> = radius of the circle
@@ -662,6 +673,7 @@ Two parallel chords in a circle have special properties.
           { x: x, y: y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -678,6 +690,7 @@ Two parallel chords in a circle have special properties.
           { x: x, y: y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [
@@ -820,6 +833,6 @@ If <InlineMath math="AB \parallel CD" />, then arc <InlineMath math="AC" /> equa
 
 ## Sources
 
-- [GeoGebra: Theorems about Tangents and Chords](https://www.geogebra.org/m/bvtxyfaj)
-- [GeoGebra: Intersecting Chords Theorem](https://www.geogebra.org/m/JWQjwAgw)
-- [Lehrerfortbildung Baden-Württemberg: Kreiswinkelsätze](https://lehrerfortbildung-bw.de/u_matnatech/imp/gym/bp2016/fb2/m03_geo/1_hintergrund/2_gang/m9geo01_unterrichtsverlauf.pdf)
+- [GeoGebra](https://www.geogebra.org/m/bvtxyfaj) provides interactive constructions for tangents and chords.
+- [GeoGebra](https://www.geogebra.org/m/JWQjwAgw) provides an interactive construction of the intersecting chords theorem.
+- [Lehrerfortbildung BW](https://lehrerfortbildung-bw.de/u_matnatech/imp/gym/bp2016/fb2/m03_geo/1_hintergrund/2_gang/m9geo01_unterrichtsverlauf.pdf) presents classroom derivations of circle-angle theorems.

@@ -1,12 +1,13 @@
 export const metadata = {
-    title: "Escape-Sequenzen",
+    title: "Escapesequenzen",
     description: "Python-Escape-Sequenzen mit Backslash-Notation für Anführungszeichen, Zeilenumbrüche, Tabulatoren und Sonderzeichen in Zeichenfolgen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "KI-Programmierung",
 };
 
-## Einführung in Escape-Sequenzen
+## Einführung in Escapesequenzen
 
 Eine Escape-Sequenz beginnt mit einem Backslash (`\`), auf den ein oder mehrere Zeichen folgen. Python wertet diese Folge besonders aus. Dadurch kann ein Stringliteral etwa einen Zeilenumbruch oder ein Anführungszeichen enthalten, das das Literal sonst beenden würde.
 
@@ -27,7 +28,7 @@ Wird dasselbe Anführungszeichen als Begrenzung und innerhalb des Strings verwen
 >>> 'I'm Bob.'
 SyntaxError: invalid syntax
 
-# Lösung: Verwenden Sie doppelte Anführungszeichen für die Zeichenfolge
+# Lösung: Verwende doppelte Anführungszeichen für die Zeichenfolge
 >>> "I'm Bob."
 "I'm Bob."
 
@@ -62,7 +63,7 @@ He said: "I'm Bob."`
 
 In diesem Beispiel teilt `\'` Python mit, dass das einfache Anführungszeichen im Text bleiben soll. Die Zeichenfolge läuft danach weiter.
 
-### Anzeigen von Backslash-Zeichen
+### Anzeigen von Backslashzeichen
 
 Da der Backslash selbst die Escape-Sequenz einleitet, wird ein Backslash im fertigen String als `\\` geschrieben.
 
@@ -87,7 +88,7 @@ Die Escape-Sequenz für einen Zeilenumbruch ist \\n.`
 
 Ein Raw-String mit einem Präfix wie `r` bewahrt die meisten Backslashes, statt sie als Escape-Sequenzen auszuwerten. Anführungszeichen müssen trotzdem zu den Begrenzern des Literals passen. Außerdem kann ein Raw-String nicht mit einer ungeraden Anzahl von Backslashes enden.
 
-## Escape-Sequenz-Referenz
+## Übersicht der Escapesequenzen
 
 Hier sind Escape-Sequenzen, die häufig in der Programmierung verwendet werden:
 
@@ -107,7 +108,7 @@ Hier sind Escape-Sequenzen, die häufig in der Programmierung verwendet werden:
 
 Jede Escape-Sequenz hat eine bestimmte Funktion zur Steuerung der Anzeige oder des Formats von Text in Programmen.
 
-### Geschweifte Klammern in Format-Strings maskieren
+### Geschweifte Klammern in Strings zur Formatierung maskieren
 
 In `str.format()` und f-Strings begrenzen geschweifte Klammern die Ersetzungsfelder. Doppelte Klammern maskieren sie für die Formatierungssyntax. Dieser Mechanismus ist von den Backslash-Escape-Sequenzen in Stringliteralen zu unterscheiden.
 
@@ -131,7 +132,7 @@ In `str.format()` und f-Strings begrenzen geschweifte Klammern die Ersetzungsfel
 
 ## Praktische Umsetzung
 
-Im folgenden Beispiel steuern Escape-Sequenzen Abstände, Zeilenumbrüche und wörtliche Backslashes.
+Im folgenden Beispiel steuern Escape-Sequenzen Tabulatoren, Zeilenumbrüche, Anführungszeichen und wörtliche Backslashes in einer Ausgabe.
 
 <CodeBlock
   data={[

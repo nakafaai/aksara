@@ -1,9 +1,9 @@
 export const metadata = {
     title: "Matriks Simetris dan Hermitian",
-    description: "Temukan matriks simetris dan Hermitian dengan nilai eigen real dan vektor eigen ortogonal. Penting untuk bentuk kuadrat dan diagonalisasi matriks.",
+    description: "Hubungkan matriks simetris dan Hermitian dengan nilai eigen real, vektor eigen ortogonal, bentuk kuadrat, dan diagonalisasi.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-13",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Metode Linear AI",
 };
 
@@ -13,17 +13,17 @@ Matriks persegi real <InlineMath math="A\in\mathbb{R}^{n\times n}" /> disebut **
 
 <BlockMath math="A^T=A" />
 
-atau, untuk tiap elemen, <InlineMath math="a_{ji}=a_{ij}" />. Sebagai contoh,
+Untuk setiap elemen, syarat yang sama dapat ditulis sebagai <InlineMath math="a_{ji}=a_{ij}" />. Sebagai contoh,
 
 <BlockMath math="A=\begin{pmatrix}1&2&3\\2&4&5\\3&5&6\end{pmatrix}" />
 
-bersifat simetris karena elemen-elemennya sama pada kedua sisi diagonal utama.
+Matriks <InlineMath math="A" /> bersifat simetris karena elemen-elemennya sama pada kedua sisi diagonal utama.
 
 Matriks persegi kompleks <InlineMath math="H\in\mathbb{C}^{n\times n}" /> disebut **Hermitian** jika
 
 <BlockMath math="H^H=H" />
 
-yang berarti <InlineMath math="h_{ji}=\overline{h_{ij}}" />. Contoh yang benar-benar memiliki elemen kompleks adalah
+Untuk setiap elemen, syarat Hermitian berarti <InlineMath math="h_{ji}=\overline{h_{ij}}" />. Contoh dengan elemen kompleks adalah
 
 <BlockMath math="H=\begin{pmatrix}2&1+i\\1-i&3\end{pmatrix}" />
 
@@ -37,7 +37,7 @@ Transpos dan konjugat transpos tidak boleh tertukar. Untuk <InlineMath math="x\i
 
 <BlockMath math="x^Tx=\sum_{k=1}^n x_k^2\geq0" />
 
-sedangkan untuk <InlineMath math="x\in\mathbb{C}^n" />,
+Untuk <InlineMath math="x\in\mathbb{C}^n" />, gunakan konjugat transpos:
 
 <BlockMath math="x^Hx=\sum_{k=1}^n\overline{x_k}x_k=\sum_{k=1}^n|x_k|^2\geq0" />
 
@@ -70,7 +70,7 @@ Suatu skalar sama dengan konjugat kompleksnya tepat ketika skalar itu real. Pada
 
 <BlockMath math="x^TBx=x^T\left(\frac{B+B^T}{2}\right)x" />
 
-karena <InlineMath math="x^T(B-B^T)x=0" />. Jadi bentuk kuadrat hanya bergantung pada bagian simetris.
+Bagian antisimetris tidak berkontribusi karena <InlineMath math="x^T(B-B^T)x=0" />. Jadi, bentuk kuadrat hanya bergantung pada bagian simetris.
 
 ## Mengapa Nilai Eigen Hermitian Selalu Real
 
@@ -115,7 +115,7 @@ Untuk matriks sebelumnya,
 
 <BlockMath math="H=\begin{pmatrix}2&1+i\\1-i&3\end{pmatrix}" />
 
-polinomial karakteristiknya adalah
+Untuk matriks <InlineMath math="H" />, polinomial karakteristiknya adalah
 
 <BlockMath math="\det(H-\lambda I)=(2-\lambda)(3-\lambda)-2=(\lambda-1)(\lambda-4)" />
 
@@ -130,4 +130,4 @@ Keduanya memenuhi <InlineMath math="u_1^Hu_2=0" />. Dengan <InlineMath math="U=(
 
 <BlockMath math="U^HHU=\operatorname{diag}(1,4)" />
 
-sehingga teorema abstrak tadi menghasilkan diagonalisasi uniter yang dapat diperiksa langsung.
+Persamaan ini memberikan diagonalisasi uniter yang dapat diperiksa langsung.

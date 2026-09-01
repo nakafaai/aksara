@@ -1,14 +1,14 @@
 
 export const metadata = {
   title: "Pencerminan terhadap Garis",
-  description: "Pahami pencerminan terhadap garis sembarang melalui sumbu tegak lurus, jarak yang sama, dan visualisasi yang tepat.",
+    description: "Bangun pencerminan terhadap garis sembarang dengan garis bagi tegak lurus dan jarak yang sama.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Transformasi Geometri",
 };
 
-## Apa itu Pencerminan terhadap Garis?
+## Pencerminan terhadap Garis
 
 Pencerminan, atau refleksi, terhadap suatu garis adalah salah satu jenis transformasi geometri yang memindahkan setiap titik pada bidang ke posisi bayangannya.
 
@@ -26,7 +26,7 @@ Secara matematis, jika kita punya titik <InlineMath math="P(x,y)" /> dan sebuah 
 
 2.  **Jika titik <InlineMath math="P" /> tidak terletak pada garis cermin <InlineMath math="m" />**:
 
-    Garis <InlineMath math="m" /> akan menjadi sumbu simetri dari ruas garis <InlineMath math="PP'" />. Ini berarti dua hal penting:
+    Garis <InlineMath math="m" /> memotong ruas <InlineMath math="PP'" /> tepat di titik tengah dan tegak lurus terhadap ruas tersebut. Hubungan ini dapat ditulis sebagai:
 
     <MathContainer>
       <BlockMath math="\overline{PP'} \perp m" />
@@ -55,6 +55,7 @@ Contoh berikut memperlihatkan kedua sifat pencerminan tersebut secara langsung:
         { x: 0, y: 1, z: 0 },
         { x: 5, y: 3.5, z: 0 },
       ],
+      smooth: false,
       color: "#0891b2",
       lineWidth: 2,
       labels: [
@@ -107,10 +108,11 @@ Contoh berikut memperlihatkan kedua sifat pencerminan tersebut secara langsung:
         { x: 2.8, y: 2.4, z: 0 },
         { x: 3.6, y: 0.8, z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       labels: [{ text: <InlineMath math="PP'" />, at: 1, offset: [-0.3, 0.3, 0] }],
     },
   ]}
 />
 
-Konsep ini merupakan dasar untuk memahami bagaimana koordinat sebuah titik berubah setelah dicerminkan terhadap berbagai jenis garis. Yang terpenting untuk kamu ingat adalah hubungan geometris antara titik asli, titik bayangan, dan garis cermin.
+Pada setiap pencerminan terhadap garis, ruas dari titik asli ke titik bayangan tegak lurus terhadap garis cermin. Kedua titik juga berjarak sama dari garis tersebut. Dua syarat ini menentukan koordinat titik bayangan.

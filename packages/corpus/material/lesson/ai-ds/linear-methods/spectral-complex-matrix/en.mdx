@@ -1,9 +1,9 @@
 export const metadata = {
    title: "Spectral Theorem for Complex Matrices",
-   description: "Learn unitary diagonalization of normal matrices: prove equivalence between normality and eigenvector bases using mathematical induction.",
+   description: "Prove that a normal matrix has an orthonormal eigenvector basis and use that basis for unitary diagonalization.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-07-16",
-   dateModified: "2026-08-22",
+   dateModified: "2026-09-01",
    subject: "Linear Methods of AI",
 };
 
@@ -94,14 +94,14 @@ In other words, <InlineMath math="W" /> is invariant under <InlineMath math="A" 
 
 Let <InlineMath math="T \in \mathbb{C}^{n \times n}" /> be a unitary matrix with columns <InlineMath math="v_1, \ldots, v_n" />. Then <InlineMath math="T \cdot T^H = T \cdot T^{-1} = I" />.
 
-This transformation gives an elegant block form:
+In this unitary basis, <InlineMath math="A" /> has the following block form:
 
 <MathContainer>
 <BlockMath math="T^H \cdot A \cdot T = T^{-1} \cdot A \cdot T" />
 <BlockMath math="= \begin{pmatrix} \lambda_1 & 0^T \\ 0 & A' \end{pmatrix}" />
 </MathContainer>
 
-with:
+The lower-right block <InlineMath math="A'" /> has size
 
 <BlockMath math="A' \in \mathbb{C}^{(n-1) \times (n-1)}" />
 
@@ -115,7 +115,7 @@ Since unitary similarity transformations preserve normality, we can show that:
 <BlockMath math="= (T^H \cdot A \cdot T)^H \cdot (T^H \cdot A \cdot T)" />
 </MathContainer>
 
-Therefore the block diagonal matrix is also normal, which means <InlineMath math="A'" /> is also normal.
+The block diagonal matrix is also normal, which means <InlineMath math="A'" /> is also normal.
 
 ## Construction of Complete Orthonormal Basis
 
@@ -123,11 +123,11 @@ By the induction hypothesis, there exists an orthonormal basis <InlineMath math=
 
 <BlockMath math="S' \in \mathbb{C}^{(n-1) \times (n-1)}" />
 
-so that:
+In the basis <InlineMath math="S'" />, the matrix <InlineMath math="A'" /> becomes diagonal:
 
 <BlockMath math="S'^H \cdot A' \cdot S' = \begin{pmatrix} \lambda_2 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix}" />
 
-with eigenvalues <InlineMath math="\lambda_2, \ldots, \lambda_n" /> of <InlineMath math="A'" />.
+The diagonal entries <InlineMath math="\lambda_2, \ldots, \lambda_n" /> are the eigenvalues of <InlineMath math="A'" />.
 
 Now we define:
 
@@ -137,7 +137,7 @@ Then <InlineMath math="S" /> is a unitary matrix with:
 
 <BlockMath math="S \in \mathbb{C}^{n \times n}" />
 
-and:
+Substituting the matrix <InlineMath math="S" /> into the similarity transformation gives
 
 <MathContainer>
 <BlockMath math="S^H \cdot A \cdot S = \begin{pmatrix} 1 & 0^T \\ 0 & S'^H \end{pmatrix} \cdot T^H \cdot A \cdot T" />
@@ -154,7 +154,7 @@ For real matrices, the distinction is whether the required eigenvalues and eigen
 
 <BlockMath math="A \in \mathbb{R}^{n \times n}" />
 
-is called normal if:
+The real matrix <InlineMath math="A" /> is called normal if
 
 <BlockMath math="A \cdot A^T = A^T \cdot A" />
 
@@ -162,9 +162,9 @@ Real normal matrices are still unitarily diagonalizable over <InlineMath math="\
 
 <BlockMath math="\begin{pmatrix}a&-b\\b&a\end{pmatrix}" />
 
-for conjugate eigenvalue pairs <InlineMath math="a\pm bi" />. A real normal matrix is orthogonally diagonalizable over <InlineMath math="\mathbb{R}" /> exactly when all its eigenvalues are real.
+Each <InlineMath math="2\times2" /> block represents a conjugate eigenvalue pair <InlineMath math="a\pm bi" />. A real normal matrix is orthogonally diagonalizable over <InlineMath math="\mathbb{R}" /> exactly when all its eigenvalues are real.
 
-Symmetric matrices and orthogonal matrices are always normal. For a symmetric matrix <InlineMath math="A^T = A" />, it is clear that:
+Symmetric matrices and orthogonal matrices are always normal. For a symmetric matrix <InlineMath math="A^T = A" />:
 
 <BlockMath math="A \cdot A^T = A \cdot A = A^T \cdot A" />
 
@@ -181,11 +181,11 @@ The quarter-turn matrix
 
 <BlockMath math="R=\begin{pmatrix}0&-1\\1&0\end{pmatrix}" />
 
-is real and orthogonal, hence normal. Its eigenvalues are <InlineMath math="i" /> and <InlineMath math="-i" />, with normalized eigenvectors
+The matrix <InlineMath math="R" /> is real and orthogonal, hence normal. Its eigenvalues are <InlineMath math="i" /> and <InlineMath math="-i" />, with normalized eigenvectors
 
 <MathContainer>
 <BlockMath math="u_+=\frac1{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix},\qquad u_-=\frac1{\sqrt2}\begin{pmatrix}1\\i\end{pmatrix}" />
 <BlockMath math="U=(u_+\quad u_-),\qquad U^HRU=\operatorname{diag}(i,-i)" />
 </MathContainer>
 
-Thus <InlineMath math="R" /> is unitarily diagonalizable over <InlineMath math="\mathbb{C}" /> but cannot be diagonalized by a real orthogonal matrix. Over <InlineMath math="\mathbb{R}" />, the rotation itself is the required <InlineMath math="2\times2" /> block.
+<InlineMath math="R" /> is unitarily diagonalizable over <InlineMath math="\mathbb{C}" /> but cannot be diagonalized by a real orthogonal matrix. Over <InlineMath math="\mathbb{R}" />, the rotation itself is the required <InlineMath math="2\times2" /> block.

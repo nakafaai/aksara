@@ -1,13 +1,14 @@
 export const metadata = {
   title: "Kehrwert komplexer Zahlen",
   description:
-    "Bestimme den Kehrwert einer komplexen Zahl mithilfe ihres Konjugierten und ihres Betrags und überprüfe das Ergebnis durch Multiplikation.",
+    "Bestimme den Kehrwert einer komplexen Zahl mit dem Konjugierten und dem Betrag und nutze ihn anschließend zur Division komplexer Zahlen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Komplexe Zahl",
 };
 
-## Was ist der Kehrwert einer komplexen Zahl?
+## Kehrwert einer komplexen Zahl
 
 Jede **komplexe Zahl ungleich null** <InlineMath math="z = x + iy" /> besitzt eine **multiplikative Umkehrung**, auch Kehrwert genannt. Sie wird als <InlineMath math="z^{-1}" /> oder <InlineMath math="1/z" /> geschrieben.
 
@@ -29,7 +30,7 @@ Besonders nützlich ist die Darstellung mit dem Konjugierten <InlineMath math="\
 
 <BlockMath math="z^{-1} = \frac{\bar{z}}{|z|^2}" />
 
-## Beispielrechnung
+## Den Kehrwert einer komplexen Zahl bestimmen
 
 Bestimme den Kehrwert von <InlineMath math="z = 1 - i" />.
 
@@ -60,7 +61,7 @@ Beide Wege liefern:
 
   <BlockMath math="z^{-1} = \frac{1}{2} + \frac{1}{2}i \text{oder} \left( \frac{1}{2}, \frac{1}{2} \right)" />
 
-  Prüfe das Ergebnis durch Multiplikation mit der ursprünglichen Zahl:
+  Prüfe <InlineMath math="z^{-1}" /> durch Multiplikation mit der ursprünglichen Zahl:
 
   <BlockMath math="(1-i)\left(\frac{1}{2}+\frac{1}{2}i\right)=\frac{1}{2}+\frac{1}{2}+\left(\frac{1}{2}-\frac{1}{2}\right)i=1" />
 
@@ -75,7 +76,8 @@ Beide Wege liefern:
       <>
         Die Zahl <InlineMath math="z=1-i" /> und ihr Kehrwert{" "}
         <InlineMath math="z^{-1}=\frac{1}{2}+\frac{1}{2}i" /> liegen auf
-        entgegengesetzten Seiten der reellen Achse; ihre Beträge sind reziprok.
+        entgegengesetzten Seiten der reellen Achse. Die Beträge der beiden
+        Zahlen sind reziprok.
       </>
     }
     cameraPosition={[0, 0, 8]}
@@ -86,6 +88,7 @@ Beide Wege liefern:
           { x: 0, y: 0, z: 0 },
           { x: 1, y: -1, z: 0 },
         ],
+        smooth: false,
         color: "#0284c7",
         labels: [{ text: <InlineMath math="z=1-i" />, at: 1, offset: [0.5, -0.3, 0] }],
         cone: { position: "end" },
@@ -95,6 +98,7 @@ Beide Wege liefern:
           { x: 0, y: 0, z: 0 },
           { x: 0.5, y: 0.5, z: 0 },
         ],
+        smooth: false,
         color: "#65a30d",
         labels: [
           {

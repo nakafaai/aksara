@@ -3,7 +3,7 @@ export const metadata = {
     description: "Connect parameter identifiability with matrix rank, singular values, conditioning, and stable rank-revealing factorizations.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Linear Methods of AI",
 };
 
@@ -13,7 +13,7 @@ Identifiability asks whether the available data determine a model parameter uniq
 
 <BlockMath math="\min_{x \in \mathbb{R}^n} \|Ax-b\|_2^2" />
 
-and its normal equations are
+The corresponding normal equations are
 
 <BlockMath math="A^T A x = A^T b" />
 
@@ -28,7 +28,7 @@ These statements are equivalent. If <InlineMath math="z \in \ker(A)" /> is nonze
 
 <BlockMath math="A(x+z)=Ax" />
 
-so the data cannot distinguish <InlineMath math="x" /> from <InlineMath math="x+z" />. If the kernel is trivial, <InlineMath math="A^TA" /> is positive definite and the least-squares minimizer is unique.
+This equality shows that the data cannot distinguish <InlineMath math="x" /> from <InlineMath math="x+z" />. If <InlineMath math="\ker(A)=\{0\}" />, then <InlineMath math="A^TA" /> is positive definite and the least-squares problem has one minimizer.
 
 ## Uniqueness Is Not the Same as Stability
 
@@ -40,18 +40,18 @@ Full column rank guarantees a unique exact solution, but not a numerically relia
 | Is the estimate numerically well determined? | <InlineMath math="\sigma_n" /> is not tiny relative to <InlineMath math="\sigma_1" /> | Small perturbations do not cause large parameter changes. |
 | How sensitive is the problem? | <InlineMath math="\kappa_2(A)=\sigma_1/\sigma_n" /> | A large condition number signals strong sensitivity. |
 
-This distinction matters in applied models: structural identifiability is an exact algebraic property, while practical identifiability depends on scale, noise, and the numerical tolerance used.
+Structural identifiability is an exact algebraic property. Practical identifiability also depends on scale, noise, and the numerical tolerance used.
 
-## Rank-Revealing Factorizations
+## Factorizations for Determining Rank
 
-Two common tools expose rank without relying on fragile determinant calculations:
+Two common factorizations can determine rank without relying on determinant calculations that are sensitive to numerical error:
 
 | Method | Strength | Typical use |
 | --- | --- | --- |
-| QR factorization with column pivoting | Usually cheaper than a full SVD | Fast least-squares solving and practical rank detection |
-| Singular value decomposition | Most direct view of all independent directions and their scales | Robust diagnostics near rank deficiency |
+| <InlineMath math="\mathrm{QR}" /> factorization with column pivoting | Usually cheaper than a full <InlineMath math="\mathrm{SVD}" /> | Fast least-squares solving and practical rank detection |
+| Singular value decomposition | Separates the independent directions and the scale of each direction | Detects small singular values that indicate a matrix is nearly rank deficient |
 
-Plain LU factorization is primarily a square-system tool. For a rectangular design matrix, pivoted QR or SVD is the more natural rank-revealing choice.
+Plain <InlineMath math="\mathrm{LU}" /> factorization is primarily a square-system tool. For a rectangular design matrix, rank is usually determined with pivoted <InlineMath math="\mathrm{QR}" /> or <InlineMath math="\mathrm{SVD}" />.
 
 ## Singular Value Decomposition
 
@@ -59,7 +59,7 @@ Let <InlineMath math="q=\min(m,n)" />. Every matrix <InlineMath math="A \in \mat
 
 <BlockMath math="A=U\Sigma V^T" />
 
-where <InlineMath math="U \in \mathbb{R}^{m \times m}" /> and <InlineMath math="V \in \mathbb{R}^{n \times n}" /> are orthogonal, and <InlineMath math="\Sigma \in \mathbb{R}^{m \times n}" /> has nonnegative diagonal entries
+In this decomposition, <InlineMath math="U \in \mathbb{R}^{m \times m}" /> and <InlineMath math="V \in \mathbb{R}^{n \times n}" /> are orthogonal. The matrix <InlineMath math="\Sigma \in \mathbb{R}^{m \times n}" /> has nonnegative diagonal entries satisfying
 
 <BlockMath math="\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_q \geq 0" />
 
@@ -67,7 +67,7 @@ The exact rank is the number of positive singular values:
 
 <BlockMath math="\operatorname{rank}(A)=\#\{i:\sigma_i>0\}" />
 
-For <InlineMath math="m \geq n" />, full column rank is therefore equivalent to <InlineMath math="\sigma_n>0" />. Right singular vectors associated with zero singular values span <InlineMath math="\ker(A)" /> and reveal parameter directions that the data cannot identify.
+For <InlineMath math="m \geq n" />, full column rank is therefore equivalent to <InlineMath math="\sigma_n>0" />. Parameter directions that the data cannot identify are spanned by the right singular vectors associated with zero singular values, which form a basis for <InlineMath math="\ker(A)" />.
 
 ## Exact Rank and Numerical Rank
 
@@ -92,8 +92,8 @@ The identity
 
 <BlockMath math="A^TA=V\Sigma^2V^T" />
 
-explains why squared singular values are eigenvalues of <InlineMath math="A^TA" />. It is useful for theory, but explicitly forming <InlineMath math="A^TA" /> squares the condition number:
+This identity shows why squared singular values are eigenvalues of <InlineMath math="A^TA" />. For numerical computation, explicitly forming <InlineMath math="A^TA" /> squares the condition number:
 
 <BlockMath math="\kappa_2(A^TA)=\kappa_2(A)^2" />
 
-Numerical software therefore estimates rank with dedicated SVD or rank-revealing QR algorithms. These methods preserve more information in directions that are already close to unidentifiable.
+Numerical software therefore usually uses <InlineMath math="\mathrm{SVD}" /> or rank-revealing <InlineMath math="\mathrm{QR}" /> to estimate matrix rank. Both algorithms work directly on <InlineMath math="A" />, so they do not square the condition number as forming <InlineMath math="A^TA" /> does.

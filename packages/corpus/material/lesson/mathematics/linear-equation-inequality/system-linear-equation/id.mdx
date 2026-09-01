@@ -2,18 +2,18 @@
 
 export const metadata = {
   title: "Sistem Persamaan Linear",
-  description: "Pelajari cara menyelesaikan sistem persamaan linear dengan metode substitusi dan eliminasi melalui contoh aplikasi dan panduan visual.",
+  description: "Selesaikan sistem persamaan linear dengan metode substitusi dan eliminasi, lalu jelaskan arti solusi pada contoh dan grafik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-18",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Sistem Persamaan dan Pertidaksamaan Linear",
 };
 
 ## Mengenal Sistem Persamaan Linear
 
-Satu nilai total harga dapat berasal dari berbagai kombinasi barang. Hubungan kedua, misalnya jumlah seluruh barang, mempersempit kemungkinan tersebut. Sistem persamaan linear menyatukan semua hubungan itu, sehingga solusinya harus memenuhi setiap persamaan sekaligus.
+Satu nilai total harga dapat berasal dari berbagai kombinasi barang. Informasi lain, seperti jumlah seluruh barang, mempersempit kemungkinan tersebut. Sistem persamaan linear menuliskan setiap informasi sebagai persamaan. Solusinya harus memenuhi semua persamaan sekaligus.
 
-### Apa Itu Sistem Persamaan Linear?
+### Sistem Persamaan Linear
 
 Sistem persamaan linear adalah kumpulan dua atau lebih persamaan linear yang harus dipenuhi secara bersamaan. Setiap persamaan linear berbentuk:
 
@@ -47,7 +47,7 @@ Sebuah sistem dapat memuat berapa pun jumlah persamaan. Namun, untuk menentukan 
 
 ### Metode Substitusi
 
-Metode substitusi bekerja dengan cara mengganti satu variabel dengan variabel lain. Selesaikan contoh berikut:
+Pada metode substitusi, nyatakan satu variabel dalam bentuk variabel lain, lalu substitusikan bentuk tersebut ke persamaan yang lain. Contoh berikut menunjukkan setiap langkah metode substitusi.
 
 <BlockMath math="\begin{cases} 2x + 3y = 21 & \ldots (1) \\ x + y = 10 & \ldots (2) \end{cases}" />
 
@@ -71,7 +71,7 @@ Masukkan persamaan (<InlineMath math="3" />) ke persamaan (<InlineMath math="1" 
   <BlockMath math="y = 1 \ldots (4)" />
 </MathContainer>
 
-**Langkah** <InlineMath math="4" />: Substitusi balik untuk mendapatkan nilai variabel lainnya.
+**Langkah** <InlineMath math="4" />: Substitusikan nilai yang diperoleh untuk mencari variabel lainnya.
 
 Substitusi nilai <InlineMath math="y = 1" /> dari persamaan (<InlineMath math="4" />) ke persamaan (<InlineMath math="3" />):
 
@@ -81,7 +81,7 @@ Jadi solusinya adalah <InlineMath math="x = 9" /> dan <InlineMath math="y = 1" /
 
 ### Metode Eliminasi
 
-Metode eliminasi bekerja dengan cara menghilangkan salah satu variabel. Selesaikan contoh yang sama:
+Pada metode eliminasi, jumlahkan atau kurangkan dua persamaan untuk menghilangkan satu variabel. Berikut penyelesaian contoh yang sama.
 
 <BlockMath math="\begin{cases} 2x + 3y = 21 & \ldots (1) \\ x + y = 10 & \ldots (2) \end{cases}" />
 
@@ -109,7 +109,7 @@ Substitusi nilai <InlineMath math="y = 1" /> dari persamaan (<InlineMath math="4
 
 Jadi solusinya adalah <InlineMath math="x = 9" /> dan <InlineMath math="y = 1" />.
 
-Periksa:
+Kita dapat memeriksa hasilnya dengan memasukkan nilai <InlineMath math="x" /> dan <InlineMath math="y" /> ke kedua persamaan.
 
 - Persamaan (<InlineMath math="1" />): <InlineMath math="2(9) + 3(1) = 18 + 3 = 21" /> ✓
 - Persamaan (<InlineMath math="2" />): <InlineMath math="9 + 1 = 10" /> ✓
@@ -144,17 +144,17 @@ Kedua persamaan awal mengonfirmasi hasilnya:
 
 Jadi, solusinya adalah <InlineMath math="(x,y)=(4,2)" />.
 
-## Aplikasi dalam Kehidupan Sehari-hari
+## Sistem Persamaan Linear dalam Konteks
 
 ### Pemodelan Matematika
 
-Pemodelan matematika adalah proses mengubah masalah nyata menjadi bentuk matematika. Untuk sistem persamaan linear, kita:
+Untuk mengubah besaran dan hubungan dalam soal cerita menjadi sistem persamaan linear:
 
 1. Tentukan variabel yang digunakan
 2. Buat model matematika berdasarkan informasi yang ada
 3. Periksa apakah model tersebut merupakan sistem persamaan linear
 4. Selesaikan model dengan metode yang sesuai
-5. Interpretasikan solusi dalam konteks masalah asli
+5. Hubungkan nilai setiap variabel dengan masalah awal
 
 ### Skor dalam Basket
 
@@ -177,7 +177,7 @@ Dengan substitusi <InlineMath math="a = 6" /> ke persamaan kedua:
   <BlockMath math="b + c = 10" />
 </MathContainer>
 
-Substitusi ke persamaan pertama:
+Substitusikan <InlineMath math="a = 6" /> ke persamaan pertama:
 
 <MathContainer>
   <BlockMath math="6 + 2b + 3c = 27" />
@@ -192,7 +192,7 @@ Dengan metode eliminasi atau substitusi, diperoleh <InlineMath math="b = 9" /> d
 
 Jadi, Wijaya melakukan <InlineMath math="6" /> lemparan bebas, <InlineMath math="9" /> lemparan <InlineMath math="2" /> poin, dan <InlineMath math="1" /> lemparan <InlineMath math="3" /> poin.
 
-## Interpretasi Solusi
+## Arti Solusi
 
 Sistem persamaan linear memiliki tiga kemungkinan solusi:
 
@@ -215,6 +215,7 @@ Dalam tiga dimensi, satu persamaan linear merepresentasikan sebuah bidang. Dua b
           { x: 3, y: 5, z: 0 },
           { x: 9, y: 1, z: 0 },
         ],
+        smooth: false,
         labels: [{ text: <InlineMath math="2x+3y=21" />, offset: [-1, -1, 0] }],
         color: "#ea580c",
       },
@@ -224,6 +225,7 @@ Dalam tiga dimensi, satu persamaan linear merepresentasikan sebuah bidang. Dua b
           { x: 5, y: 5, z: 0 },
           { x: 15, y: -5, z: 0 },
         ],
+        smooth: false,
         labels: [{ text: <InlineMath math="x+y=10" />, offset: [1, 1, 0] }],
         color: "#9333ea",
       },
@@ -239,6 +241,7 @@ Dalam tiga dimensi, satu persamaan linear merepresentasikan sebuah bidang. Dua b
           { x: 1, y: 2, z: 0 },
           { x: 5, y: 8, z: 0 },
         ],
+        smooth: false,
         labels: [{ text: <InlineMath math="3x-2y=-1" />, offset: [-2, 0, 0] }],
         color: "#db2777",
       },
@@ -248,6 +251,7 @@ Dalam tiga dimensi, satu persamaan linear merepresentasikan sebuah bidang. Dua b
           { x: 1, y: 1, z: 0 },
           { x: 5, y: 7, z: 0 },
         ],
+        smooth: false,
         labels: [{ text: <InlineMath math="6x-4y=2" />, offset: [2, 0, 0] }],
         color: "#ca8a04",
       },
@@ -270,6 +274,7 @@ Dalam tiga dimensi, satu persamaan linear merepresentasikan sebuah bidang. Dua b
           { x: 2, y: -1, z: 0 },
           { x: 5, y: -3, z: 0 },
         ],
+        smooth: false,
         labels: [{ text: <InlineMath math="2x+3y=1" />, offset: [-2, -1, 0] }],
         color: "#7c3aed",
         lineWidth: 6,
@@ -280,6 +285,7 @@ Dalam tiga dimensi, satu persamaan linear merepresentasikan sebuah bidang. Dua b
           { x: 2, y: -1, z: 0 },
           { x: 5, y: -3, z: 0 },
         ],
+        smooth: false,
         labels: [
           {
             text: <InlineMath math="4x+6y=2" />,

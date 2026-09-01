@@ -1,18 +1,19 @@
 export const metadata = {
-  title: "LU-Zerlegung mit partieller Pivotisierung",
+  title: "Matrizen mit dem LU Verfahren und partieller Pivotisierung zerlegen",
   description: "Faktorisiere eine quadratische Matrix als PA = LU, verfolge ein vollständiges Eliminationsbeispiel, löse wiederholte lineare Systeme und implementiere einen abgesicherten NumPy-Algorithmus.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Lineare Methoden der KI",
 };
 
 ## Die Faktorisierung
 
-Die LU-Zerlegung speichert die Gauß-Elimination in zwei Dreiecksmatrizen. Mit partieller Pivotisierung wird eine invertierbare quadratische Matrix <InlineMath math="A \in \mathbb{R}^{n\times n}" /> faktorisiert als
+Die <InlineMath math="\mathrm{LU}" />-Zerlegung speichert die Gauß-Elimination in zwei Dreiecksmatrizen. Mit partieller Pivotisierung wird eine invertierbare quadratische Matrix <InlineMath math="A \in \mathbb{R}^{n\times n}" /> faktorisiert als
 
 <BlockMath math="PA=LU" />
 
-wobei:
+Die drei Faktoren haben folgende Aufgaben:
 
 - <InlineMath math="P" /> eine Permutationsmatrix ist, welche die Zeilenvertauschungen erfasst
 - <InlineMath math="L" /> eine untere Dreiecksmatrix mit Einsen auf der Diagonalen ist
@@ -28,13 +29,13 @@ Nach der Pivotwahl in Spalte <InlineMath math="k" /> wird jeder Eintrag darunter
 
 <BlockMath math="\ell_{ik}=\frac{u_{ik}}{u_{kk}},\qquad i=k+1,\ldots,n" />
 
-und der Zeilenaktualisierung
+Anschließend wenden wir die folgende Zeilenaktualisierung an.
 
 <BlockMath math="u_{ij}\leftarrow u_{ij}-\ell_{ik}u_{kj},\qquad j=k,\ldots,n" />
 
-eliminiert. Die Multiplikatoren werden unterhalb der Diagonalen von <InlineMath math="L" /> gespeichert. Werden nach früheren Eliminationsschritten zwei Zeilen vertauscht, müssen auch die bereits gefüllten Spalten von <InlineMath math="L" /> vertauscht werden. Andernfalls gilt <InlineMath math="PA=LU" /> nicht mehr.
+Diese Aktualisierung eliminiert den Eintrag unterhalb des Pivots. Die Multiplikatoren werden unterhalb der Diagonalen von <InlineMath math="L" /> gespeichert. Werden nach früheren Eliminationsschritten zwei Zeilen vertauscht, müssen auch die bereits gefüllten Spalten von <InlineMath math="L" /> vertauscht werden. Andernfalls gilt <InlineMath math="PA=LU" /> nicht mehr.
 
-## Vollständig durchgerechnetes Beispiel
+## Eine Matrix mit partieller Pivotisierung faktorisieren
 
 Betrachten wir
 
@@ -45,7 +46,7 @@ Betrachten wir
 
 ### Erster Pivot
 
-In der ersten Spalte liegt der größte Betrag <InlineMath math="2" /> in der dritten Zeile. Wir vertauschen die erste und dritte Zeile. Der erste Eliminationsmultiplikator ist <InlineMath math="\ell_{31}=1/2" />; der andere Eintrag unterhalb des Pivots ist bereits null.
+In der ersten Spalte liegt der größte Betrag <InlineMath math="2" /> in der dritten Zeile. Wir vertauschen die erste und dritte Zeile. Der erste Eliminationsmultiplikator ist <InlineMath math="\ell_{31}=1/2" />. Der andere Eintrag unterhalb des Pivots ist bereits null.
 
 ### Zweiter Pivot
 
@@ -96,21 +97,21 @@ Für das Beispiel erhalten wir
 
 <BlockMath math="x=\begin{pmatrix}1\\2\\3\end{pmatrix}" />
 
-und direktes Einsetzen bestätigt <InlineMath math="Ax=b" />.
+Direktes Einsetzen bestätigt <InlineMath math="Ax=b" />.
 
 ## Aufwand und Wiederverwendung
 
-Eine dichte LU-Faktorisierung benötigt ungefähr
+Eine dichte <InlineMath math="\mathrm{LU}" />-Faktorisierung benötigt ungefähr
 
 <BlockMath math="\frac{2}{3}n^3+O(n^2)" />
 
-Gleitkommaoperationen, wenn Multiplikationen und Subtraktionen getrennt gezählt werden. Sobald die Faktoren vorliegen, benötigt jede neue rechte Seite nur <InlineMath math="O(n^2)" /> Arbeit für die beiden Substitutionen. Deshalb ist LU besonders nützlich, wenn viele Systeme dieselbe Matrix verwenden.
+Gleitkommaoperationen, wenn Multiplikationen und Subtraktionen getrennt gezählt werden. Sobald die Faktoren vorliegen, benötigt jede neue rechte Seite nur <InlineMath math="O(n^2)" /> Arbeit für die beiden Substitutionen. Die Wiederverwendung derselben <InlineMath math="\mathrm{LU}" />-Faktoren vermeidet daher eine erneute Faktorisierung mit <InlineMath math="O(n^3)" /> Aufwand für jede rechte Seite.
 
 Auch die Determinante folgt aus den Faktoren:
 
 <BlockMath math="\det(A)=\det(P)\prod_{i=1}^{n}u_{ii}" />
 
-## Abgesicherte NumPy-Implementierung
+## Abgesicherte Implementierung mit NumPy
 
 <CodeBlock data={[{
   language: "python",
@@ -187,4 +188,4 @@ Die Prüfungen gehören zum Beispiel, weil eine falsche Faktorordnung und fehler
 
 ## Gültigkeitsbereich der Methode
 
-Diese Implementierung akzeptiert bewusst nur invertierbare quadratische Matrizen. Ein numerischer Nullpivot führt zu einer Fehlermeldung. Für rechteckige Ausgleichsprobleme oder rangdefiziente Matrizen verwendet man eine rangenthüllende QR-Zerlegung oder eine SVD. Diese Probleme besitzen andere Ausgabeverträge und sollten nicht in einem quadratischen PLU-Löser verborgen werden.
+Diese Implementierung akzeptiert nur invertierbare quadratische Matrizen und meldet einen numerischen Nullpivot als Fehler. Für rechteckige Ausgleichsprobleme oder rangdefiziente Matrizen verwendet man eine <InlineMath math="\mathrm{QR}" />-Zerlegung mit Spaltenpivotisierung oder eine <InlineMath math="\mathrm{SVD}" />. Ein quadratischer <InlineMath math="\mathrm{PLU}" />-Löser kann für solche Eingaben unter seinen Voraussetzungen keine gültige Faktorisierung liefern.

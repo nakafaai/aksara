@@ -3,7 +3,7 @@ export const metadata = {
     description: "Bangun sistem linear berlebih dari data dan pahami mengapa kuadrat terkecil menghasilkan polinom terbaik ketika solusi tepat tidak ada.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Metode Linear AI",
 };
 
@@ -11,9 +11,9 @@ export const metadata = {
 
 Misalkan kita ingin mencocokkan kurva dengan data hasil pengukuran. Sering kali jumlah pengamatan lebih banyak daripada parameter model. Jika setiap pengamatan ditulis sebagai satu persamaan, terbentuklah **sistem linear berlebih**.
 
-Sebuah sistem disebut berlebih ketika jumlah persamaan <InlineMath math="m" /> lebih besar daripada jumlah variabel <InlineMath math="n" />, sehingga <InlineMath math="m > n" />. Kondisi ini tidak otomatis meniadakan solusi tepat, tetapi data pengukuran biasanya tidak persis mengikuti model yang dipilih.
+Sebuah sistem disebut berlebih ketika jumlah persamaan <InlineMath math="m" /> lebih besar daripada jumlah variabel <InlineMath math="n" />, sehingga <InlineMath math="m > n" />. Sistem seperti ini masih dapat memiliki solusi tepat. Pada data pengukuran, titik-titiknya biasanya tidak persis mengikuti model yang dipilih.
 
-## Contoh Nyata dengan Model Polinomial Kuadrat
+## Pencocokan Kuadrat untuk Tujuh Pengamatan
 
 Perhatikan <InlineMath math="7" /> titik data yang akan dicocokkan dengan sebuah polinom kuadrat.
 
@@ -78,7 +78,7 @@ Setelah vektor <InlineMath math="b" /> ditambahkan, terbentuk matriks diperluas 
 
 <BlockMath math="\det\begin{pmatrix}9&-3&1&-2{,}2\\4&-2&1&-4{,}2\\1&-1&1&-4{,}2\\0&0&1&-1{,}8\end{pmatrix}=-\frac45" />
 
-sehingga <InlineMath math="\operatorname{rank}(A\mid b)=4" />.
+Minor tak nol ini menunjukkan bahwa <InlineMath math="\operatorname{rank}(A\mid b)=4" />.
 
 Karena <InlineMath math="\operatorname{rank}(A) \ne \operatorname{rank}(A\mid b)" />, sistem ini **tidak memiliki solusi tepat**. Tidak ada satu polinom kuadrat yang melewati seluruh <InlineMath math="7" /> pengamatan.
 
@@ -108,7 +108,7 @@ Nilai hasil pencocokan tidak sama dengan setiap observasi, dan memang itulah yan
 
 <BlockMath math="r=b-A\hat x=\begin{pmatrix}\frac1{15}\\-\frac2{35}\\-\frac17\\\frac{22}{105}\\-\frac15\\\frac8{35}\\-\frac{11}{105}\end{pmatrix}" />
 
-serta memenuhi
+Vektor residual <InlineMath math="r" /> memenuhi
 
 <MathContainer>
 <BlockMath math="A^Tr=0" />

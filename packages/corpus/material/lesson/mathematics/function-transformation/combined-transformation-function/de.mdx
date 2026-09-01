@@ -1,8 +1,9 @@
 export const metadata = {
   title: "Kombinierte Funktionstransformationen",
-  description: "Verstehe mit Graphen und vollständig gelösten Beispielen, wie mehrere Funktionstransformationen zusammenwirken und warum ihre Reihenfolge entscheidend ist.",
+  description: "Kombiniere mehrere Funktionstransformationen und vergleiche ihre Graphen bei unterschiedlicher Reihenfolge.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Funktionstransformation",
 };
 
@@ -10,7 +11,7 @@ export const metadata = {
 
 ## Mehrere Transformationen nacheinander
 
-Bei einer kombinierten Transformation werden zwei oder mehr Veränderungen nacheinander auf dieselbe Funktion angewendet. Das ähnelt einem Kochrezept: Schneiden, anbraten und würzen verändern dieselben Zutaten Schritt für Schritt, und eine andere Reihenfolge kann zu einem anderen Ergebnis führen.
+Bei einer kombinierten Transformation werden zwei oder mehr Veränderungen nacheinander auf dieselbe Funktion angewendet. Jede Operation erhält das Ergebnis der vorherigen Operation, sodass eine andere Reihenfolge die Endfunktion verändern kann.
 
 In der Mathematik lassen sich Verschiebung, Spiegelung, Drehung und Skalierung miteinander verbinden. Dabei muss jeder Zwischenschritt erhalten bleiben, denn die Reihenfolge bestimmt häufig das Endergebnis.
 
@@ -32,7 +33,7 @@ Wird <InlineMath math="f(x)" /> an der <InlineMath math="y" />-Achse gespiegelt 
 
 <BlockMath math="g(x) = f(-(x - a))" />
 
-## Beispiel: erst verschieben, dann skalieren
+## Verschieben und anschließendes Skalieren
 
 Wir wenden zwei Transformationen nacheinander auf <InlineMath math="f(x) = x^2" /> an:
 
@@ -146,7 +147,7 @@ Die Ergebnisse sind verschieden: <InlineMath math="h_A(1) = 3" /> und <InlineMat
 
 <LineEquation
   title={<>Vergleich zweier Transformationsreihenfolgen</>}
-  description="Der Graph macht sichtbar, warum Skalieren und Verschieben nicht beliebig vertauscht werden können."
+  description="Der Graph zeigt, warum Skalieren und Verschieben nicht beliebig vertauscht werden können."
   cameraPosition={[10, 6, 10]}
   data={[
     {
@@ -284,7 +285,7 @@ Der Graph zeigt wieder beide Zwischenschritte:
 Für kombinierte Transformationen gilt:
 
 - **Reihenfolgeabhängig**: Manche Transformationen sind nicht kommutativ, sodass eine andere Reihenfolge das Ergebnis verändert. Unabhängige horizontale und vertikale Transformationen können dagegen in beliebiger Reihenfolge ausgeführt werden
-- **Algebraisch vereinfachbar**: Mehrere Schritte lassen sich oft zu einer Formel zusammenfassen
+- **Operationen lassen sich verbinden**: Aufeinanderfolgende Verschiebungen in dieselbe Richtung addieren ihre Abstände, aufeinanderfolgende Streckungen multiplizieren ihre Faktoren
 - **Stetigkeit bleibt erhalten**: Ist die Ausgangsfunktion stetig, bleibt auch das transformierte Ergebnis stetig
 
 ## Übungen

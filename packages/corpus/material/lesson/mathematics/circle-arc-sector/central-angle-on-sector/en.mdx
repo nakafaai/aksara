@@ -1,9 +1,9 @@
 export const metadata = {
   title: "Central Angle on Sector",
-  description: "Learn central angles that form sectors and calculate sector areas. Learn measurement techniques, proportional relationships, and real-world applications.",
+  description: "Relate a sector area to its central angle and calculate the area as a fraction of the full circle.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Circle Arcs and Sectors",
 };
 
@@ -42,6 +42,7 @@ The central angle determines what fraction of the circle the sector occupies. Fo
         { x: 0, y: 0, z: 0 },
         { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6), z: 0 }
       ],
+      smooth: false,
       color: "#9333ea",
       showPoints: false,
       lineWidth: 3,
@@ -55,6 +56,7 @@ The central angle determines what fraction of the circle the sector occupies. Fo
         { x: 0, y: 0, z: 0 },
         { x: 4 * Math.cos(5 * Math.PI / 6), y: 4 * Math.sin(5 * Math.PI / 6), z: 0 }
       ],
+      smooth: false,
       color: "#9333ea",
       showPoints: false,
       lineWidth: 3,
@@ -124,7 +126,7 @@ The relationship between central angle and sector area can be expressed as a mat
 
 <BlockMath math="A = \frac{1}{2} \theta r^2" />
 
-where:
+The variables in both formulas are:
 - <InlineMath math="A" /> = sector area
 - <InlineMath math="\theta" /> = central angle, measured in degrees in the first formula and radians in the second
 - <InlineMath math="r" /> = radius
@@ -153,6 +155,7 @@ This ratio shows that sector area is proportional to the central angle size. Whe
         { x: 0, y: 0, z: 0 },
         { x: 3.5, y: 0, z: 0 }
       ],
+      smooth: false,
       color: "#7c3aed",
       showPoints: false,
       lineWidth: 2,
@@ -165,6 +168,7 @@ This ratio shows that sector area is proportional to the central angle size. Whe
         { x: 0, y: 0, z: 0 },
         { x: 3.5 * Math.cos(Math.PI / 4), y: 3.5 * Math.sin(Math.PI / 4), z: 0 }
       ],
+      smooth: false,
       color: "#7c3aed",
       showPoints: false,
       lineWidth: 2
@@ -191,6 +195,7 @@ This ratio shows that sector area is proportional to the central angle size. Whe
         { x: 0, y: 0, z: 2 },
         { x: 3.5, y: 0, z: 2 }
       ],
+      smooth: false,
       color: "#4f46e5",
       showPoints: false,
       lineWidth: 2
@@ -200,6 +205,7 @@ This ratio shows that sector area is proportional to the central angle size. Whe
         { x: 0, y: 0, z: 2 },
         { x: 3.5 * Math.cos(Math.PI / 2), y: 3.5 * Math.sin(Math.PI / 2), z: 2 }
       ],
+      smooth: false,
       color: "#4f46e5",
       showPoints: false,
       lineWidth: 2
@@ -226,6 +232,7 @@ This ratio shows that sector area is proportional to the central angle size. Whe
         { x: 0, y: 0, z: 4 },
         { x: 3.5, y: 0, z: 4 }
       ],
+      smooth: false,
       color: "#e11d48",
       showPoints: false,
       lineWidth: 2
@@ -235,6 +242,7 @@ This ratio shows that sector area is proportional to the central angle size. Whe
         { x: 0, y: 0, z: 4 },
         { x: 3.5 * Math.cos(3 * Math.PI / 4), y: 3.5 * Math.sin(3 * Math.PI / 4), z: 4 }
       ],
+      smooth: false,
       color: "#e11d48",
       showPoints: false,
       lineWidth: 2
@@ -271,7 +279,7 @@ To identify a central angle, check that its vertex lies at the center of the cir
 - **Mathematical calculation**: Using relationships among central angle, radius, arc length, and sector area
 - **Circle division**: dividing <InlineMath math="360^\circ" /> by the number of equal parts
 
-These measurement methods enable us to accurately identify the central angle size, which can then be used to calculate the corresponding sector area or arc length.
+Once the central angle is known, its value can be used to calculate the corresponding sector area or arc length.
 
 <LineEquation
   title={<>Central Angle Measurement Technique</>}
@@ -295,6 +303,7 @@ These measurement methods enable us to accurately identify the central angle siz
         { x: 0, y: 0, z: 0 },
         { x: 3, y: 0, z: 0 }
       ],
+      smooth: false,
       color: "#9333ea",
       showPoints: false,
       lineWidth: 3,
@@ -307,6 +316,7 @@ These measurement methods enable us to accurately identify the central angle siz
         { x: 0, y: 0, z: 0 },
         { x: 3 * Math.cos(Math.PI / 3), y: 3 * Math.sin(Math.PI / 3), z: 0 }
       ],
+      smooth: false,
       color: "#9333ea",
       showPoints: false,
       lineWidth: 3
@@ -353,13 +363,13 @@ These measurement methods enable us to accurately identify the central angle siz
 
 ## Central Angle and Arc Theorem
 
-The fundamental central angle theorem states the direct relationship between central angles and arcs:
+For a central angle and its intercepted arc, the following relationship holds:
 
 **Main theorem:**
 - The central angle measure equals the arc measure it subtends
 - If a central angle measures <InlineMath math="\alpha" /> degrees, then the arc it forms also measures <InlineMath math="\alpha" /> degrees
 
-**Important properties:**
+**Properties:**
 
 - In the same circle, congruent central angles produce congruent arcs and sectors
 - If two sectors of the same circle have the same area, then their central angles have the same measure
@@ -390,7 +400,7 @@ where:
 - <InlineMath math="r" /> = radius
 - <InlineMath math="n" /> = number of divisions
 
-These three formulas provide flexibility in solving various types of circle geometry problems, depending on the available information.
+Choose the formula that matches the given information: sector area, arc length, or the number of equal parts.
 
 <LineEquation
   title={<>Parameter Illustration in Central Angle Calculation</>}
@@ -414,6 +424,7 @@ These three formulas provide flexibility in solving various types of circle geom
         { x: 0, y: 0, z: 0 },
         { x: 4, y: 0, z: 0 }
       ],
+      smooth: false,
       color: "#7c3aed",
       showPoints: false,
       lineWidth: 3,
@@ -426,6 +437,7 @@ These three formulas provide flexibility in solving various types of circle geom
         { x: 0, y: 0, z: 0 },
         { x: 4 * Math.cos(2 * Math.PI / 5), y: 4 * Math.sin(2 * Math.PI / 5), z: 0 }
       ],
+      smooth: false,
       color: "#7c3aed",
       showPoints: false,
       lineWidth: 3

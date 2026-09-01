@@ -1,8 +1,9 @@
 export const metadata = {
-  title: "Tikhonov-Regularisierung",
+  title: "Regularisierung nach Tikhonov",
   description: "Schlecht konditionierte Ausgleichsprobleme mit Tikhonov-Regularisierung, Spektralfiltern, begründeter Parameterwahl und stabilen numerischen Verfahren lösen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Lineare Methoden der KI",
 };
 
@@ -12,11 +13,11 @@ Für <InlineMath math="A\in\mathbb{R}^{m\times n}" /> und <InlineMath math="b\in
 
 <BlockMath math="\min_x\|Ax-b\|_2^2" />
 
-Ein Minimierer existiert immer, auch wenn die Gleichungen <InlineMath math="Ax=b" /> nicht konsistent sind. Das eigentliche Problem ist ein anderes: Bei einer rangdefizienten Matrix <InlineMath math="A" /> muss der Minimierer nicht eindeutig sein. Ist <InlineMath math="A" /> nahezu rangdefizient, können kleine Störungen in <InlineMath math="b" /> große Änderungen der angepassten Parameter verursachen.
+Ein Minimierer existiert immer, auch wenn die Gleichungen <InlineMath math="Ax=b" /> nicht konsistent sind. Bei einer rangdefizienten Matrix <InlineMath math="A" /> muss dieser Minimierer nicht eindeutig sein. Ist <InlineMath math="A" /> nahezu rangdefizient, können kleine Störungen in <InlineMath math="b" /> große Änderungen der angepassten Parameter verursachen.
 
 Die Singulärwertzerlegung erklärt diese Verstärkung. Für <InlineMath math="A=U\Sigma V^T" /> enthält die Ausgleichslösung Faktoren <InlineMath math="1/\sigma_i" />. Eine Datenkomponente in Richtung eines sehr kleinen Singulärwerts <InlineMath math="\sigma_i" /> wird daher stark vergrößert.
 
-## Tikhonov-Problem
+## Problem nach Tikhonov
 
 Die Tikhonov-Regularisierung wägt Datentreue gegen eine gewählte Vorstellung plausibler Parameter ab:
 
@@ -28,7 +29,7 @@ Dabei ist <InlineMath math="x_0" /> ein Referenzwert, <InlineMath math="L" /> le
 - Eine Matrix erster Differenzen bestraft schnelle Änderungen benachbarter Parameter.
 - Eine Matrix zweiter Differenzen bestraft Krümmung und begünstigt glattere Profile.
 
-Die Strafe erzeugt keine neuen Informationen in den Beobachtungen. Sie macht die gewählte Vorstruktur ausdrücklich sichtbar und führt zu einem stabilen Optimierungsproblem.
+Die Strafe erzeugt keine neuen Informationen in den Beobachtungen. Sie gibt die gewählte Vorstruktur ausdrücklich an und kann die numerische Kondition des Optimierungsproblems verbessern.
 
 ## Erweitertes Ausgleichsproblem
 
@@ -102,4 +103,4 @@ Eine Gleichung wie <InlineMath math="x_i=c" /> sollte als ausdrückliche Gleichu
 
 ## Zuverlässige numerische Lösung
 
-Die Normalgleichung ist für die Analyse nützlich, doch das ausdrückliche Bilden von <InlineMath math="A^TA" /> quadriert die Konditionszahl. In numerischem Code sollte das erweiterte Ausgleichssystem mit QR oder SVD gelöst werden, wenn Stabilität wichtig ist. Dokumentiert werden sollten <InlineMath math="\alpha" />, <InlineMath math="L" />, die Parameterskalierung, die Residualnorm und die Strafnorm. So bleibt die Abwägung nachvollziehbar, statt den regularisierten Schätzwert als reine Aussage der Daten zu behandeln.
+Verwende die Normalgleichung, um den regularisierten Schätzer herzuleiten und den Einfluss von <InlineMath math="\alpha" /> und <InlineMath math="L" /> zu untersuchen. Bilde <InlineMath math="A^TA" /> für die numerische Berechnung nicht ausdrücklich, weil dieser Schritt die Konditionszahl quadriert. Löse stattdessen das erweiterte Ausgleichssystem mit <InlineMath math="\mathrm{QR}" /> oder <InlineMath math="\mathrm{SVD}" />. Dokumentiere <InlineMath math="\alpha" />, <InlineMath math="L" />, die Parameterskalierung, die Residualnorm und die Strafnorm, damit andere die Rechnung wiederholen und die Abwägung zwischen Datentreue und Strafe prüfen können.

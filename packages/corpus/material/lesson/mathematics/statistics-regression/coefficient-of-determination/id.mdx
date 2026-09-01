@@ -1,14 +1,14 @@
 
 export const metadata = {
   title: "Koefisien Determinasi",
-  description: "Pelajari cara koefisien determinasi mengukur variasi yang dijelaskan oleh model regresi melalui contoh visual dan perhitungan.",
+  description: "Koefisien determinasi mengukur variasi yang dijelaskan oleh model regresi melalui contoh visual dan perhitungan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-30",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Statistika",
 };
 
-## Apa Itu Koefisien Determinasi?
+## Koefisien Determinasi
 
 Setelah memasang garis regresi linear, pertanyaan berikutnya adalah: **berapa banyak variasi yang teramati dapat diterangkan oleh model?**
 
@@ -90,7 +90,7 @@ Nilai <InlineMath math="r^2" /> sangat berkaitan dengan seberapa dekat titik-tit
 
 ## Menghitung Koefisien Determinasi
 
-Cara paling mudah menghitung <InlineMath math="r^2" /> adalah dengan **mengkuadratkan Koefisien Korelasi (<InlineMath math="r" />)** yang sudah kita pelajari sebelumnya.
+Pada regresi linear sederhana dengan satu prediktor dan intersep, <InlineMath math="R^2" /> sama dengan kuadrat koefisien korelasi <InlineMath math="r" />.
 
 <BlockMath math="r^2 = (r)^2" />
 
@@ -108,9 +108,9 @@ Nilai <InlineMath math="r^2" /> juga bisa dihitung langsung menggunakan nilai-ni
 
 Rasio ini memerlukan variasi pada kedua variabel, sehingga <InlineMath math="SS_{xx}>0" /> dan <InlineMath math="SS_{yy}>0" />. Jika semua nilai <InlineMath math="y" /> identik, variasi totalnya nol dan rasio koefisien determinasi yang biasa digunakan tidak terdefinisi.
 
-## Interpretasi sebagai Persentase
+## Koefisien Determinasi dalam Persen
 
-Nilai <InlineMath math="r^2" /> sering diubah menjadi persentase (dengan dikalikan <InlineMath math="100" />) untuk interpretasi yang lebih mudah.
+Kalikan <InlineMath math="r^2" /> dengan <InlineMath math="100" /> untuk menyatakan proporsi variasi <InlineMath math="Y" /> yang dijelaskan model sebagai persentase.
 
 - Jika <InlineMath math="r^2 = 0{,}81" />, model linear yang dipasang dengan <InlineMath math="X" /> menjelaskan **<InlineMath math="81\%" />** dari variasi <InlineMath math="Y" /> yang teramati.
 - Sisa variasinya (<InlineMath math="1 - r^2" /> atau <InlineMath math="19\%" /> dalam contoh ini) **tidak dijelaskan oleh model linear tersebut**. Penyebabnya mungkin berupa variabel yang tidak dimasukkan, pola nonlinier, kesalahan pengukuran, atau variasi acak, tetapi <InlineMath math="r^2" /> saja tidak dapat menentukan penyebabnya.

@@ -1,32 +1,32 @@
 export const metadata = {
    title: "QR Decomposition",
-   description: "Learn QR decomposition using Gram-Schmidt and Householder methods for matrix factorization, orthogonal transformations, and linear systems.",
+    description: "Factor matrices with QR decomposition using the Gram Schmidt process or Householder transformations, then solve linear systems.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-07-14",
-   dateModified: "2026-08-22",
+   dateModified: "2026-09-01",
    subject: "Linear Methods of AI",
 };
 
-## QR Decomposition Existence Theorem
+## Existence of QR Decomposition
 
-We want to transform a matrix into upper triangular form, but not through elementary row operations, rather through orthogonal transformations that have better conditioning. Imagine rotating and reflecting geometric space to simplify the matrix, without changing its fundamental properties.
+The <InlineMath math="\mathrm{QR}" /> decomposition factors a matrix into an orthogonal factor and an upper-triangular factor. Orthogonal multiplication preserves lengths and angles, so it is well suited to stable numerical calculations.
 
-Let <InlineMath math="A \in \mathbb{R}^{m \times n}" /> be a rectangular matrix with <InlineMath math="m \geq n" /> and <InlineMath math="\text{Rank}A = n" />. Then there exists an orthogonal matrix <InlineMath math="Q \in \mathbb{R}^{m \times m}" /> with <InlineMath math="Q^T Q = I" /> and an upper triangular matrix <InlineMath math="R \in \mathbb{R}^{m \times n}" /> with diagonal elements <InlineMath math="r_{ii} > 0" /> for <InlineMath math="i = 1, \ldots, n" />, such that:
+Let <InlineMath math="A \in \mathbb{R}^{m \times n}" /> satisfy <InlineMath math="m \geq n" /> and <InlineMath math="\operatorname{rank}(A)=n" />. Then there is an orthogonal matrix <InlineMath math="Q \in \mathbb{R}^{m \times m}" /> with <InlineMath math="Q^TQ=I" /> and an upper-triangular matrix <InlineMath math="R \in \mathbb{R}^{m \times n}" /> whose first <InlineMath math="n" /> diagonal entries are positive, such that
 
 <BlockMath math="A = Q \cdot R" />
 
-This representation is called the QR decomposition of <InlineMath math="A" />.
+This factorization is the <InlineMath math="\mathrm{QR}" /> decomposition of <InlineMath math="A" />.
 
-### Proof using Gram-Schmidt
+### Proof with Gram Schmidt Orthogonalization
 
-The columns <InlineMath math="a_j" /> for <InlineMath math="j = 1, \ldots, n" /> of matrix <InlineMath math="A" /> can be orthonormalized using the Gram-Schmidt process:
+Let <InlineMath math="a_j" /> denote column <InlineMath math="j" /> of <InlineMath math="A" />. Gram-Schmidt removes the components in the directions already found, then normalizes what remains:
 
 <MathContainer>
 <BlockMath math="\tilde{q}_j := a_j - \sum_{k=1}^{j-1} \langle a_j, q_k \rangle \cdot q_k" />
 <BlockMath math="q_j := \frac{\tilde{q}_j}{\|\tilde{q}_j\|_2}" />
 </MathContainer>
 
-We obtain orthonormal vectors <InlineMath math="q_j" /> for <InlineMath math="j = 1, \ldots, n" /> as columns of the orthogonal matrix <InlineMath math="Q_1 \in \mathbb{R}^{m \times n}" />. Conversely:
+Full column rank guarantees <InlineMath math="\widetilde q_j\neq0" /> at every step. The normalized vectors form the columns of <InlineMath math="Q_1 \in \mathbb{R}^{m \times n}" /> and satisfy <InlineMath math="Q_1^TQ_1=I_n" />. Each original column can be reconstructed as
 
 <MathContainer>
 <BlockMath math="a_j = \sum_{k=1}^{j-1} \langle a_j, q_k \rangle \cdot q_k + \tilde{q}_j" />
@@ -34,50 +34,39 @@ We obtain orthonormal vectors <InlineMath math="q_j" /> for <InlineMath math="j 
 <BlockMath math="= \sum_{k=1}^{j-1} q_k \cdot r_{kj} + q_j \cdot r_{jj}" />
 </MathContainer>
 
-Thus <InlineMath math="A = Q_1 R_1" /> with upper triangular matrix <InlineMath math="R_1 \in \mathbb{R}^{n \times n}" /> whose diagonal elements are <InlineMath math="r_{ii} = \|\tilde{q}_i\|_2 > 0" />.
+<InlineMath math="A=Q_1R_1" />, where <InlineMath math="R_1 \in \mathbb{R}^{n \times n}" /> is upper triangular and <InlineMath math="r_{ii}=\|\widetilde q_i\|_2>0" />.
 
-If <InlineMath math="Q_1" /> is completed with <InlineMath math="m - n" /> additional columns to become orthogonal matrix <InlineMath math="Q = (Q_1 \quad Q_2) \in \mathbb{R}^{m \times m}" /> and <InlineMath math="R_1" /> becomes <InlineMath math="R = \begin{pmatrix} R_1 \\ 0 \end{pmatrix} \in \mathbb{R}^{m \times n}" />, then <InlineMath math="A = Q_1 R_1 = QR" />.
+Complete <InlineMath math="Q_1" /> with <InlineMath math="m-n" /> orthonormal columns to form <InlineMath math="Q=(Q_1\quad Q_2)\in\mathbb{R}^{m\times m}" />. Appending <InlineMath math="m-n" /> zero rows to <InlineMath math="R_1" /> gives <InlineMath math="R=\begin{pmatrix}R_1\\0\end{pmatrix}\in\mathbb{R}^{m\times n}" />, so <InlineMath math="A=Q_1R_1=QR" />.
 
-## Full and Economical QR Decomposition
+## Full and Reduced QR Decomposition
 
-When we have a matrix <InlineMath math="A \in \mathbb{R}^{m \times n}" /> with <InlineMath math="m \geq n" />,
-there are two ways to represent the QR decomposition. The difference lies in the size of the matrices used.
+For <InlineMath math="A\in\mathbb{R}^{m\times n}" /> with <InlineMath math="m\geq n" />, the full and reduced forms describe the same factorization with different matrix sizes.
 
 ### Full QR Decomposition
 
-Full QR decomposition uses full-sized matrices:
+The full form keeps all <InlineMath math="m" /> columns of <InlineMath math="Q" />:
 
 <BlockMath math="A = Q \cdot R" />
 
-with <InlineMath math="Q \in \mathbb{R}^{m \times m}" /> being a full-sized orthogonal matrix and
-<InlineMath math="R \in \mathbb{R}^{m \times n}" /> being an upper triangular matrix.
+Here <InlineMath math="Q\in\mathbb{R}^{m\times m}" /> is orthogonal and <InlineMath math="R\in\mathbb{R}^{m\times n}" /> contains an upper-triangular <InlineMath math="n\times n" /> block above <InlineMath math="m-n" /> zero rows.
 
-### Economical QR Decomposition
+### Reduced QR Decomposition
 
-Since the lower part of matrix <InlineMath math="R" /> only contains zeros, we can save storage and computation.
-Economical QR decomposition only uses the parts that are actually needed:
+The reduced form removes those zero rows and the matching unused columns of <InlineMath math="Q" />:
 
 <BlockMath math="A = Q \cdot R = (Q_1 \quad Q_2) \cdot \begin{pmatrix} R_1 \\ 0 \end{pmatrix} = Q_1 \cdot R_1" />
 
-Here <InlineMath math="Q_1 \in \mathbb{R}^{m \times n}" /> only takes the first through <InlineMath math="n" />-th columns
-from <InlineMath math="Q" />, and <InlineMath math="R_1 \in \mathbb{R}^{n \times n}" /> is a square upper triangular matrix.
+Here <InlineMath math="Q_1\in\mathbb{R}^{m\times n}" /> contains the first <InlineMath math="n" /> columns of <InlineMath math="Q" />, and <InlineMath math="R_1\in\mathbb{R}^{n\times n}" /> is upper triangular. Storing <InlineMath math="Q_1" /> instead of the full <InlineMath math="m\times m" /> matrix <InlineMath math="Q" /> saves memory and avoids operations on blocks that are known to be zero.
 
-Why is it called economical? It saves storage space and computational time.
-We keep <InlineMath math="Q_1" /> of size <InlineMath math="m \times n" />. The full matrix <InlineMath math="Q" />
-would have size <InlineMath math="m \times m" /> and can be very large.
-
-The columns of matrix <InlineMath math="Q_2 \in \mathbb{R}^{m \times (m-n)}" /> that we don't use form
-an orthonormal basis of <InlineMath math="\text{Kernel}A^T" />:
+The unused columns <InlineMath math="Q_2\in\mathbb{R}^{m\times(m-n)}" /> form an orthonormal basis for the null space of <InlineMath math="A^T" />:
 
 <BlockMath math="A^T Q_2 = R_1^T Q_1^T Q_2 = 0" />
 
-Here, the kernel of <InlineMath math="A^T" /> is the set of all vectors <InlineMath math="x" /> that satisfy <InlineMath math="A^T x = 0" />.
+The null space of <InlineMath math="A^T" /> is the set of vectors <InlineMath math="x" /> that satisfy <InlineMath math="A^Tx=0" />.
 
 ### Uniqueness Property
 
-The economical QR decomposition <InlineMath math="A = Q_1 \cdot R_1" /> with condition <InlineMath math="r_{ii} > 0" />
-for all <InlineMath math="i = 1, \ldots, n" /> is unique for matrix <InlineMath math="A" />
-that has full rank.
+For a full-column-rank matrix, the reduced factorization <InlineMath math="A=Q_1R_1" /> is unique when every diagonal entry of <InlineMath math="R_1" /> is positive.
 
 ## Worked Thin QR Example
 
@@ -95,7 +84,7 @@ Gram-Schmidt first gives
 <BlockMath math="q_2=\frac1{\sqrt6}\begin{pmatrix}1\\-1\\2\end{pmatrix}" />
 </MathContainer>
 
-Therefore,
+The calculation gives:
 
 <MathContainer>
 <BlockMath math="Q_1=\begin{pmatrix}1/\sqrt2&1/\sqrt6\\1/\sqrt2&-1/\sqrt6\\0&2/\sqrt6\end{pmatrix}" />
@@ -105,66 +94,51 @@ Therefore,
 
 ## Householder Method for QR Decomposition
 
-Classical Gram-Schmidt gives a clear derivation but can lose orthogonality in floating-point arithmetic when the columns are nearly dependent. Modified Gram-Schmidt improves that behavior. Householder QR is the usual dense, numerically stable implementation because it applies orthogonal reflectors directly.
-
-To overcome this problem, we need a method that is more numerically stable.
-One of the most successful approaches is the Householder procedure,
-which uses orthogonal reflection transformations. Another alternative is the Givens procedure with rotation transformations.
+Classical Gram-Schmidt gives a direct derivation, but nearly dependent columns can lose orthogonality in floating-point arithmetic. Modified Gram-Schmidt reduces that error. Dense numerical software commonly uses Householder reflectors, while Givens rotations are useful when only selected entries need to be eliminated.
 
 ### Householder Transformation
 
-For a vector <InlineMath math="v \in \mathbb{R}^m" /> with <InlineMath math="\|v\|_2 = 1" />,
-we can define the Householder transformation matrix:
+For a unit vector <InlineMath math="v\in\mathbb{R}^m" />, define the Householder matrix
 
 <BlockMath math="S = I - 2vv^T \in \mathbb{R}^{m \times m}" />
 
-Note that <InlineMath math="vv^T" /> is a dyadic product, which is the multiplication of column vector
-<InlineMath math="v \in \mathbb{R}^{m \times 1}" /> with row vector <InlineMath math="v^T \in \mathbb{R}^{1 \times m}" />.
-The result of this multiplication is an <InlineMath math="m \times m" /> matrix with rank <InlineMath math="1" /> for <InlineMath math="v \neq 0" />.
-Don't confuse this with scalar multiplication <InlineMath math="v^T v \in \mathbb{R}" />.
+The outer product <InlineMath math="vv^T" /> multiplies an <InlineMath math="m\times1" /> column by a <InlineMath math="1\times m" /> row, so it produces an <InlineMath math="m\times m" /> rank-one matrix. The reversed product <InlineMath math="v^Tv" /> is the scalar <InlineMath math="1" />.
 
 ## Properties of Householder Transformation
 
-Let <InlineMath math="S = I - 2vv^T \in \mathbb{R}^{m \times m}" /> be a Householder transformation matrix
-for vector <InlineMath math="v \in \mathbb{R}^m" /> with <InlineMath math="\|v\|_2 = 1" />. Then it holds:
+For <InlineMath math="S=I-2vv^T" /> and <InlineMath math="\|v\|_2=1" />, the following properties hold:
 
 1. <InlineMath math="S" /> is symmetric: <InlineMath math="S^T = S" />
 
 2. <InlineMath math="S" /> is an orthogonal matrix: <InlineMath math="S^T S = I" />
 
-3. Multiplication <InlineMath math="S \cdot x" /> of <InlineMath math="S" /> from the left with vector <InlineMath math="x \in \mathbb{R}^m" />
-   causes reflection of <InlineMath math="x" /> in the subspace <InlineMath math="\text{Span}(v)^{\perp}" />,
-   that is, in the hyperplane with normal vector <InlineMath math="v" />
+3. <InlineMath math="Sx" /> reflects <InlineMath math="x\in\mathbb{R}^m" /> across the hyperplane perpendicular to <InlineMath math="v" />
 
 4. <InlineMath math="\text{cond}_2(S) = 1" />
 
 ## Householder Procedure
 
-Given matrix <InlineMath math="A \in \mathbb{R}^{m \times n}" /> with <InlineMath math="m \geq n" />
-and <InlineMath math="\text{Rank}A = n" />. For QR decomposition computation,
-matrix <InlineMath math="A" /> is transformed column by column through Householder reflections
-into upper triangular form.
+Let <InlineMath math="A\in\mathbb{R}^{m\times n}" /> satisfy <InlineMath math="m\geq n" /> and <InlineMath math="\operatorname{rank}(A)=n" />. Each Householder step zeros the entries below one diagonal position while leaving the zeros created by earlier steps unchanged.
 
-Start with <InlineMath math="A_1 = A" /> and reflect the first column of <InlineMath math="A_1" />
-with respect to a vector using reflection plane with:
+Start with <InlineMath math="A_1=A" />. Reflect its first column onto a multiple of the first coordinate vector:
 
 <MathContainer>
 <BlockMath math="\tilde{a}_1 \text{ first column of } A_1" />
 <BlockMath math="\pm\|\tilde{a}_1\|_2 \cdot e_1 \in \mathbb{R}^m \text{ target vector}" />
-<BlockMath math="v_1 = u_1/\|u_1\|_2 \text{ with } \text{Span}(v_1)^{\perp}" />
+<BlockMath math="v_1 = u_1/\|u_1\|_2" />
 </MathContainer>
 
 <BlockMath math="u_1 = \tilde{a}_1 \mp \|\tilde{a}_1\|_2 \cdot e_1" />
 
 ### Iterative Transformation Process
 
-Householder transformation matrix <InlineMath math="S_1 = I_m - 2v_1v_1^T \in \mathbb{R}^{m \times m}" />. We obtain:
+With <InlineMath math="S_1=I_m-2v_1v_1^T" />, the first column below the diagonal becomes zero:
 
 <BlockMath math="A_2 = S_1 \cdot A_1 = \begin{pmatrix} r_{11} & * \\ 0 & \tilde{A}_2 \end{pmatrix}" />
 
-with <InlineMath math="r_{11} = \pm\|\tilde{a}_1\|_2" /> and <InlineMath math="\tilde{A}_2 \in \mathbb{R}^{m-1 \times n-1}" />.
+In the matrix <InlineMath math="A_2" />, <InlineMath math="r_{11} = \pm\|\tilde{a}_1\|_2" /> and <InlineMath math="\tilde{A}_2 \in \mathbb{R}^{m-1 \times n-1}" />.
 
-Continue with reflection of the first column of the submatrix with reflection plane:
+Apply the next reflector only to the remaining lower-right submatrix:
 
 <MathContainer>
 <BlockMath math="\tilde{a}_2 \text{ first column of } \tilde{A}_2" />
@@ -174,50 +148,48 @@ Continue with reflection of the first column of the submatrix with reflection pl
 
 <BlockMath math="u_2 = \tilde{a}_2 \mp \|\tilde{a}_2\|_2 \cdot \tilde{e}_1" />
 
-With transformation matrix:
+Embed the second reflector in the lower-right block of the identity matrix:
 
 <MathContainer>
 <BlockMath math="\tilde{S}_2 = I_{m-1} - 2v_2v_2^T \in \mathbb{R}^{m-1 \times m-1}" />
 <BlockMath math="S_2 = \begin{pmatrix} I_1 & 0 \\ 0 & \tilde{S}_2 \end{pmatrix} \in \mathbb{R}^{m \times m}" />
 </MathContainer>
 
-We obtain:
+The second column below the diagonal then becomes zero:
 
 <BlockMath math="A_3 = S_2 \cdot A_2 = \begin{pmatrix} r_{11} & * & * \\ 0 & r_{22} & * \\ 0 & 0 & \tilde{A}_3 \end{pmatrix}" />
 
-with <InlineMath math="r_{22} = \pm\|\tilde{a}_2\|_2" /> and <InlineMath math="\tilde{A}_3 \in \mathbb{R}^{m-2 \times n-2}" />, and so on until:
+Here <InlineMath math="r_{22}=\pm\|\widetilde a_2\|_2" /> and <InlineMath math="\widetilde A_3\in\mathbb{R}^{(m-2)\times(n-2)}" />. Repeating the same operation leaves the final active column
 
 <BlockMath math="\tilde{A}_n = \begin{pmatrix} \tilde{a}_{nn} \\ \vdots \\ \tilde{a}_{mn} \end{pmatrix} \in \mathbb{R}^{m-(n-1) \times 1}" />
 
-Finally we obtain the upper triangular matrix:
+After the last reflection, the transformed matrix is upper triangular:
 
 <BlockMath math="A_{n+1} = R = \begin{pmatrix} r_{11} & & * \\ & \ddots & \\ 0 & & r_{nn} \\ 0 & \cdots & 0 \\ \vdots & & \vdots \\ 0 & \cdots & 0 \end{pmatrix} = S_n \cdot \ldots \cdot S_1 \cdot A = Q^T \cdot A" />
 
-Thus we obtain the factorization:
+Because each reflector is orthogonal and symmetric, their product gives
 
 <MathContainer>
 <BlockMath math="A = Q \cdot R" />
 <BlockMath math="Q = (S_n \cdot \ldots \cdot S_1)^T = S_1 \cdot \ldots \cdot S_n" />
 </MathContainer>
 
-with <InlineMath math="Q" /> being an orthogonal matrix.
+The matrix <InlineMath math="Q" /> is orthogonal because it is a product of orthogonal reflectors.
 
-## Householder Implementation Algorithm
+## Householder Algorithm
 
-Implementation of the Householder procedure:
-
-Start with:
+Initialize the active matrix and accumulated orthogonal factor:
 
 <MathContainer>
 <BlockMath math="A_1 := A" />
 <BlockMath math="Q_1 := I" />
 </MathContainer>
 
-For <InlineMath math="i = 1, \ldots, n" />:
+At step <InlineMath math="i" />, take the active part of column <InlineMath math="i" />:
 
 <BlockMath math="\tilde{a}_i = \begin{pmatrix} a_{ii} \\ \vdots \\ a_{mi} \end{pmatrix} := \begin{pmatrix} (A_i)_{ii} \\ \vdots \\ (A_i)_{mi} \end{pmatrix} \in \mathbb{R}^{m-i+1}" />
 
-Compute:
+Compute its norm, choose a sign that avoids cancellation, and form the Householder vector:
 
 <MathContainer>
 <BlockMath math="\sigma := \|\tilde{a}_i\|_2" />
@@ -226,11 +198,11 @@ Compute:
 <BlockMath math="\hat{u}_i := \begin{pmatrix} 0 \\ \vdots \\ 0 \\ u_i \end{pmatrix} \in \mathbb{R}^m" />
 </MathContainer>
 
-and:
+The corresponding scale factor is
 
 <BlockMath math="\beta := \frac{2}{u_i^Tu_i}=\frac{1}{\sigma(\sigma+|\tilde a_{ii}|)}" />
 
-Then:
+The normalized vector and the full reflector are
 
 <MathContainer>
 <BlockMath math="v_i=\frac{u_i}{\|u_i\|_2}" />
@@ -238,14 +210,14 @@ Then:
 <BlockMath math="S_i = I_m - \beta \hat{u}_i \hat{u}_i^T" />
 </MathContainer>
 
-So we obtain:
+Update the active matrix and the accumulated factor without forming an extra dense product:
 
 <MathContainer>
 <BlockMath math="A_{i+1} := S_i A_i = (I_m - \beta \hat{u}_i \hat{u}_i^T) A_i = A_i - \hat{u}_i (\beta \hat{u}_i^T A_i)" />
 <BlockMath math="Q_{i+1} := Q_i S_i = Q_i (I_m - \beta \hat{u}_i \hat{u}_i^T) = Q_i - (Q_i \hat{u}_i) \beta \hat{u}_i^T" />
 </MathContainer>
 
-Finally we obtain:
+After <InlineMath math="n" /> steps,
 
 <MathContainer>
 <BlockMath math="R := A_{n+1}" />
@@ -256,7 +228,7 @@ Finally we obtain:
 
 ### Computational Complexity
 
-For <InlineMath math="m\ge n" />, Householder QR requires approximately
+For <InlineMath math="m\ge n" />, a <InlineMath math="\mathrm{QR}" /> decomposition with Householder reflectors requires approximately
 
 <MathContainer>
 <BlockMath math="2mn^2-\frac{2}{3}n^3\text{ floating-point operations}" />
@@ -265,25 +237,17 @@ For <InlineMath math="m\ge n" />, Householder QR requires approximately
 
 ### Numerical Properties
 
-1. Due to orthogonal transformation, it holds that <InlineMath math="\text{cond}_2(R) = \text{cond}_2(A)" />
+1. Orthogonal multiplication preserves singular values, so <InlineMath math="\operatorname{cond}_2(R)=\operatorname{cond}_2(A)" /> for a full-column-rank matrix.
 
-2. The diagonal elements of <InlineMath math="R" /> are the numbers <InlineMath math="\pm\|\tilde{a}_i\|_2" />
-   from the <InlineMath math="i" />-th step. Choosing the transformation so that all are positive gives the QR decomposition.
-   If <InlineMath math="\|\tilde{a}_i\|_2 = 0" />, <InlineMath math="A" /> does not have full rank
-   and the full-rank uniqueness statement no longer applies. QR still exists, but rank-revealing QR with column pivoting is preferable when numerical rank matters.
-
-   For numerical reasons choose the sign so that cancellation is avoided:
+2. At step <InlineMath math="i" />, the new diagonal entry is <InlineMath math="\pm\|\widetilde a_i\|_2" />. Choose the sign below while computing the reflector to avoid subtracting nearly equal numbers:
 
    <MathContainer>
    <BlockMath math="u_i = \tilde{a}_i + s_i\|\tilde{a}_i\|_2e_1" />
    <BlockMath math="s_i=1\text{ when }\tilde a_{ii}\ge0,\qquad s_i=-1\text{ otherwise}" />
    </MathContainer>
 
-3. Compact storage keeps only the information needed for the transformation,
-   so constructing <InlineMath math="Q" /> is unnecessary:
+   After the factorization, matching signs in one column of <InlineMath math="Q" /> and one row of <InlineMath math="R" /> can be flipped to make the diagonal of <InlineMath math="R" /> positive. If <InlineMath math="\|\widetilde a_i\|_2=0" />, the matrix lacks full column rank and this uniqueness condition no longer applies. A column-pivoted, rank-revealing <InlineMath math="\mathrm{QR}" /> decomposition is more informative when numerical rank matters.
 
-   <BlockMath math="\text{Store the Householder vector }u_i" />
+3. A compact implementation stores each Householder vector <InlineMath math="u_i" /> below the diagonal of the working copy of <InlineMath math="A" /> and stores the diagonal entries separately. The reflectors can then be applied without constructing <InlineMath math="Q" /> explicitly.
 
-   in the free space of <InlineMath math="A" /> below the diagonal and diagonal elements in an additional vector.
-
-4. If you only want to compute economical QR decomposition, remove the corresponding columns of <InlineMath math="Q" /> and rows of <InlineMath math="R" />.
+4. The reduced factorization keeps the first <InlineMath math="n" /> columns of <InlineMath math="Q" /> and the first <InlineMath math="n" /> rows of <InlineMath math="R" />.

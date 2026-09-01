@@ -1,14 +1,15 @@
 export const metadata = {
-    title: "Array-Operationen mit NumPy",
-    description: "Lerne Broadcasting, elementweise Arithmetik, Reduktionen, Achsen, Formoperationen und Z-Standardisierung mit NumPy kennen.",
+    title: "Arrayoperationen mit NumPy",
+  description: "Nutze Broadcasting, vektorisierte Arithmetik, Reduktionen, Achsen, Formänderungen und Z-Standardisierung in NumPy-Beispielen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "KI-Programmierung",
 };
 
 ## Broadcasting in NumPy
 
-Broadcasting ist NumPys Regelsystem zum Verknüpfen von Arrays mit unterschiedlichen, aber kompatiblen Shapes. Dimensionen der Größe eins werden dabei nur gedanklich erweitert, ohne Werte in ein größeres Array zu kopieren. Der [NumPy-Leitfaden zum Broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html) zeigt weitere Beispiele.
+Broadcasting ist NumPys Regel zum Verknüpfen von Arrays mit unterschiedlichen, aber kompatiblen Shapes. NumPy behandelt eine Dimension der Größe eins so, als hätte sie die Größe der zugehörigen Dimension, ohne die Daten in ein größeres Array zu kopieren. [NumPy](https://numpy.org/doc/stable/user/basics.broadcasting.html) zeigt weitere Beispiele.
 
 Bei der Vektorisierung wirkt ein Ausdruck auf ein ganzes Array. NumPy führt die Schleife im Hintergrund als optimierten, kompilierten Code aus. Das ist oft schneller als eine ausdrücklich geschriebene Python-Schleife.
 
@@ -33,14 +34,14 @@ print(result)
 
 Im Beispiel addiert NumPy die Elemente an den jeweils entsprechenden Positionen. Wir formulieren die Operation einmal, statt jedes Element in einer Python-Schleife einzeln zu indizieren.
 
-### Broadcasting-Regeln
+### Regeln für Broadcasting
 
 Um zu entscheiden, ob zwei Shapes kompatibel sind, vergleicht NumPy ihre Dimensionen von rechts nach links.
 
 Beim Broadcasting gelten drei Hauptregeln:
 
 1. **Regel** <InlineMath math="1" />: Unterscheidet sich die Anzahl der Dimensionen, wird der Shape mit weniger Dimensionen so behandelt, als stünden links zusätzliche Dimensionen der Größe <InlineMath math="1" />
-2. **Regel** <InlineMath math="2" />: Zwei ausgerichtete Dimensionen sind kompatibel, wenn ihre Größen gleich sind oder eine von ihnen die Größe <InlineMath math="1" /> hat. Eine Dimension der Größe eins wird virtuell auf die Größe ihres Gegenstücks erweitert
+2. **Regel** <InlineMath math="2" />: Zwei ausgerichtete Dimensionen sind kompatibel, wenn ihre Größen gleich sind oder eine von ihnen die Größe <InlineMath math="1" /> hat. NumPy behandelt die Dimension der Größe eins so, als hätte sie die Größe der zugehörigen Dimension
 3. **Regel** <InlineMath math="3" />: Ist auch nur ein ausgerichtetes Dimensionspaar inkompatibel, löst NumPy einen `ValueError` aus
 
 ### Array mit Skalar
@@ -126,7 +127,7 @@ except ValueError as e:
   ]}
 />
 
-## Arithmetische Array-Operationen
+## Arithmetische Operationen mit Arrays
 
 Arithmetische NumPy-Operatoren arbeiten elementweise, sofern eine Operation nicht ausdrücklich eine andere Bedeutung besitzt, etwa die Matrixmultiplikation.
 
@@ -266,7 +267,7 @@ print(f"Standardabweichung: {np.std(data):.2f}")
 
 Bei einem zweidimensionalen Array reduziert `axis=0` die Zeilendimension und liefert einen Wert pro Spalte. `axis=1` reduziert die Spaltendimension und liefert einen Wert pro Zeile.
 
-Wenn Sie Achsen verstehen, können Sie steuern, wie statistische Funktionen auf mehrdimensionale Daten wirken. Wenn Sie beispielsweise monatliche Verkaufsdaten für verschiedene Produkte haben, können Sie den Gesamtumsatz pro Produkt oder pro Monat berechnen.
+Die Achse legt fest, über welche Richtung eine statistische Funktion rechnet. Bei monatlichen Verkaufsdaten für mehrere Produkte kannst du damit zum Beispiel den Gesamtumsatz pro Produkt oder pro Monat berechnen.
 
 <CodeBlock
   data={[
@@ -300,7 +301,7 @@ print(f"argmax(axis=1): {np.argmax(data, axis=1)}")
   ]}
 />
 
-## Array-Form-Manipulation
+## Bearbeitung der Form von Arrays
 
 Shape-Operationen verändern, wie dieselben Elemente indiziert werden. Ein Reshape behält die Anzahl der Elemente bei, ordnet sie aber anderen Dimensionen zu.
 
@@ -319,7 +320,7 @@ print("2D-Array:")
 print(a)
 print(f"Form: {a.shape}")
 
-# Sehen Sie, wie es im Speicher gespeichert wird
+# Sieh, wie es im Speicher gespeichert wird
 print(f"Im Speicher gespeichert als: {a.ravel()}")
 # Ausgabe: [0 1 2 3] (row-major order)`
     }
@@ -354,7 +355,7 @@ print(a)
 
 print()
 
-# ravel - versucht eine View zu erstellen und ist dadurch effizienter
+# ravel - versucht eine View zu erstellen statt Daten immer zu kopieren
 b_ravel = a.ravel()
 print(f"Ravel-Ergebnis: {b_ravel}")
 
@@ -434,7 +435,7 @@ print("Ist die Transponierung eine Ansicht?", np.shares_memory(a, b))`
   ]}
 />
 
-## Datenstandardisierung mit Z-Transformation
+## Datenstandardisierung mit Z Transformation
 
 Die Z-Standardisierung zentriert jedes Merkmal auf den Mittelwert <InlineMath math="0" /> und skaliert es auf die Standardabweichung <InlineMath math="1" />. Sie ist nur für Merkmale mit einer von null verschiedenen Standardabweichung definiert und bringt Merkmale auf vergleichbare numerische Skalen.
 
@@ -485,4 +486,4 @@ print(f"Neue Standardabweichung: {np.std(Z, axis=0)}")  # Sollte in der Nähe vo
 
 Die Standardisierung verhindert, dass allein unterschiedliche Einheiten große Skalenunterschiede verursachen. Sie garantiert weder gleiche Bedeutung noch gleichen Einfluss, denn beides hängt weiterhin vom Modell und von den Daten ab. Körpergröße in Zentimetern und Gewicht in Kilogramm werden nach der Standardisierung beispielsweise numerisch vergleichbar.
 
-Weitere Erklärungen und Beispiele findest du in der [offiziellen NumPy-Dokumentation](https://numpy.org/doc/stable/user/basics.html).
+[NumPy](https://numpy.org/doc/stable/user/basics.html) bietet weitere Erklärungen und praktische Beispiele zu Array-Operationen.

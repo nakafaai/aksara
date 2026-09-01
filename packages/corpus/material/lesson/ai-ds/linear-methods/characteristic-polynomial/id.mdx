@@ -1,9 +1,9 @@
 export const metadata = {
     title: "Karakteristik Polinomial",
-    description: "Pelajari polinomial karakteristik untuk mencari nilai eigen, memahami multiplisitas aljabar, dan melihat hubungan dengan jejak matriks.",
+   description: "Gunakan polinomial karakteristik untuk mencari nilai eigen, menentukan multiplisitas aljabar, dan menghubungkan koefisiennya dengan jejak matriks.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Metode Linear AI",
 };
 
@@ -45,17 +45,15 @@ Ini berarti:
 
 ## Nilai Eigen sebagai Akar Polinomial
 
-Konsep paling penting dari polinomial karakteristik adalah hubungannya dengan nilai eigen.
+Nilai <InlineMath math="\lambda \in \mathbb{K}" /> merupakan nilai eigen dari <InlineMath math="A" /> jika dan hanya jika <InlineMath math="\det(A - \lambda \cdot I) = 0" />.
 
-Sekarang, lihat hubungan yang sangat penting: <InlineMath math="\lambda \in \mathbb{K}" /> adalah nilai eigen dari <InlineMath math="A" /> jika dan hanya jika <InlineMath math="\det(A - \lambda \cdot I) = 0" />.
+Jadi, **nilai eigen merupakan akar dari polinomial karakteristik**.
 
-Dengan kata lain, **nilai eigen adalah akar-akar dari polinomial karakteristik**.
-
-Persamaan untuk <InlineMath math="t \in \mathbb{K}" />:
+Untuk <InlineMath math="t \in \mathbb{K}" />, perhatikan persamaan berikut.
 
 <BlockMath math="\det(A - t \cdot I) = 0" />
 
-kita sebut **persamaan karakteristik** dari <InlineMath math="A" />.
+Persamaan ini disebut **persamaan karakteristik** dari <InlineMath math="A" />.
 
 ## Multiplisitas Aljabar
 
@@ -69,7 +67,7 @@ Untuk setiap nilai eigen <InlineMath math="\lambda" />, multiplisitas aljabarnya
 
 ## Hubungan Multiplisitas Geometrik dan Aljabar
 
-Salah satu hasil penting dalam teori nilai eigen adalah hubungan antara multiplisitas geometrik dan aljabar.
+Multiplisitas geometrik dan aljabar memenuhi batas berikut.
 
 Untuk nilai eigen <InlineMath math="\lambda" /> dari <InlineMath math="A \in \mathbb{K}^{n \times n}" />, multiplisitas geometrik dan aljabarnya memenuhi
 
@@ -79,11 +77,11 @@ Untuk nilai eigen <InlineMath math="\lambda" /> dari <InlineMath math="A \in \ma
 
 Multiplisitas geometrik menghitung banyaknya vektor eigen bebas dalam ruang eigen, sedangkan multiplisitas aljabar menghitung berapa kali akar tersebut muncul dalam polinom karakteristik. Bentuk Jordan menunjukkan bahwa setiap vektor eigen bebas memerlukan setidaknya satu blok Jordan, sehingga jumlah geometrik tidak dapat melebihi jumlah aljabar.
 
-## Contoh Perhitungan Polinomial Karakteristik
+## Menghitung Polinomial Karakteristik
 
 Sekarang kita terapkan definisinya dan menggunakan hubungan koefisien sebagai pemeriksa hasil perhitungan.
 
-### Contoh Matriks Orde Tiga
+### Matriks Orde Tiga
 
 Misalkan <InlineMath math="A = \begin{pmatrix} 3 & 2 & -1 \\ 1 & 0 & -4 \\ 3 & 0 & 1 \end{pmatrix} \in \mathbb{K}^{3 \times 3}" />. Polinomial karakteristik dari <InlineMath math="A" /> adalah:
 
@@ -105,7 +103,7 @@ Akar tersebut lolos dua pemeriksaan berguna: jumlahnya sama dengan jejak matriks
 <BlockMath math="\lambda_1\lambda_2\lambda_3=-26=\det(A)" />
 </MathContainer>
 
-### Contoh Sederhana
+### Nilai Eigen Berulang pada Matriks Segitiga Atas
 
 Polinomial karakteristik dari matriks <InlineMath math="A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" /> adalah:
 
@@ -117,7 +115,7 @@ Polinomial karakteristik dari matriks <InlineMath math="A = \begin{pmatrix} 1 & 
 
 Matriks ini memiliki akar <InlineMath math="\lambda = 1" /> dengan multiplisitas aljabar <InlineMath math="\mu_A(1) = 2" />. <InlineMath math="\lambda = 1" /> adalah satu-satunya nilai eigen dari <InlineMath math="A" />. Kita telah menghitung bahwa <InlineMath math="\dim \text{Eig}_A(1) = 1" />.
 
-## Contoh Transformasi Geometrik
+## Polinomial Karakteristik Transformasi Geometrik
 
 Pemetaan yang umum pada <InlineMath math="\mathbb{R}^2" /> berikut menghubungkan perhitungan aljabar dengan makna geometrisnya.
 

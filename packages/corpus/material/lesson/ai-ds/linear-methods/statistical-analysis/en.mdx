@@ -1,9 +1,9 @@
 export const metadata = {
     title: "Statistical Analysis",
-    description: "Learn Fisher information matrix, parameter covariance, weighted least squares, and confidence intervals for statistical models.",
+    description: "Estimate parameter covariance and confidence intervals with Fisher information and weighted least squares.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Linear Methods of AI",
 };
 
@@ -13,11 +13,11 @@ Least squares becomes a statistical estimator only after we state how the observ
 
 <BlockMath math="y=X\beta+\varepsilon" />
 
-where <InlineMath math="X\in\mathbb{R}^{m\times p}" /> is a fixed design matrix, <InlineMath math="\beta\in\mathbb{R}^p" /> is the unknown parameter vector, and <InlineMath math="y\in\mathbb{R}^m" /> contains the observations. For ordinary Gaussian least squares, assume
+In this model, <InlineMath math="X\in\mathbb{R}^{m\times p}" /> is a fixed design matrix, <InlineMath math="\beta\in\mathbb{R}^p" /> is the unknown parameter vector, and <InlineMath math="y\in\mathbb{R}^m" /> contains the observations. For ordinary Gaussian least squares, assume
 
 <BlockMath math="\varepsilon\sim\mathcal N(0,\sigma^2I_m)" />
 
-and that <InlineMath math="X" /> has full column rank. The observations are not standard normal; the random error vector is centered Gaussian with variance <InlineMath math="\sigma^2" />.
+The second assumption is that <InlineMath math="X" /> has full column rank. Under these two assumptions, the observation vector <InlineMath math="y" /> follows <InlineMath math="\mathcal N(X\beta,\sigma^2I_m)" />. Its mean is <InlineMath math="X\beta" />, and its covariance matrix is <InlineMath math="\sigma^2I_m" />.
 
 ## Fisher Information and Estimator Covariance
 
@@ -33,7 +33,7 @@ Its score, Hessian, and Fisher information are
 <BlockMath math="\mathcal I(\beta)=-\mathbb E[\nabla^2\ell(\beta)]=\frac1{\sigma^2}X^TX" />
 </MathContainer>
 
-Thus <InlineMath math="X^TX" /> is the Fisher information only in the standardized case <InlineMath math="\sigma^2=1" />. Solving the score equation gives
+<InlineMath math="X^TX" /> is the Fisher information only in the standardized case <InlineMath math="\sigma^2=1" />. Solving the score equation gives
 
 <MathContainer>
 <BlockMath math="\hat\beta=(X^TX)^{-1}X^Ty" />
@@ -66,14 +66,14 @@ The interval is a repeated-sampling statement about the procedure. It is not the
 
 ## Stable Computation with QR
 
-Let <InlineMath math="X=QR" /> be the reduced QR decomposition, with <InlineMath math="Q^TQ=I_p" /> and nonsingular upper-triangular <InlineMath math="R" />. Then
+Let <InlineMath math="X=QR" /> be the reduced <InlineMath math="\mathrm{QR}" /> decomposition, with <InlineMath math="Q^TQ=I_p" /> and nonsingular upper-triangular <InlineMath math="R" />. Then
 
 <MathContainer>
 <BlockMath math="\hat\beta=R^{-1}Q^Ty" />
 <BlockMath math="\operatorname{Cov}(\hat\beta)=\sigma^2R^{-1}R^{-T}" />
 </MathContainer>
 
-In numerical code, solve the triangular system <InlineMath math="R\hat\beta=Q^Ty" /> directly. This avoids forming <InlineMath math="R^{-1}" />. QR also avoids squaring the condition number through <InlineMath math="X^TX" />.
+In numerical code, solve the triangular system <InlineMath math="R\hat\beta=Q^Ty" /> directly. This avoids forming <InlineMath math="R^{-1}" />. <InlineMath math="\mathrm{QR}" /> also avoids squaring the condition number through <InlineMath math="X^TX" />.
 
 ## Weighted and Generalized Least Squares
 
@@ -85,7 +85,7 @@ Generalized least squares minimizes
 
 <BlockMath math="(y-X\beta)^T\Omega^{-1}(y-X\beta)" />
 
-and gives
+The generalized least-squares solution, Fisher information, and estimator covariance are
 
 <MathContainer>
 <BlockMath math="\hat\beta_{\mathrm{GLS}}=(X^T\Omega^{-1}X)^{-1}X^T\Omega^{-1}y" />
@@ -97,9 +97,9 @@ For independent errors with variances <InlineMath math="\sigma_i^2" />, use <Inl
 
 <BlockMath math="\sum_{i=1}^m\frac{(y_i-x_i^T\beta)^2}{\sigma_i^2}" />
 
-so observation <InlineMath math="i" /> receives weight <InlineMath math="1/\sigma_i^2" />. Whitening with <InlineMath math="W=\Omega^{-1/2}" /> converts the problem to ordinary least squares for <InlineMath math="\widetilde X=WX" /> and <InlineMath math="\widetilde y=Wy" />.
+Each observation <InlineMath math="i" /> receives weight <InlineMath math="1/\sigma_i^2" />. Whitening with <InlineMath math="W=\Omega^{-1/2}" /> converts the problem to ordinary least squares for <InlineMath math="\widetilde X=WX" /> and <InlineMath math="\widetilde y=Wy" />.
 
-## Worked Weighted Example
+## Fitting a Weighted Linear Model
 
 Consider three observations for an intercept and slope:
 
@@ -115,7 +115,7 @@ The third observation has standard deviation <InlineMath math="2" />, so it rece
 <BlockMath math="X^T\Omega^{-1}y=\begin{pmatrix}\frac{17}4\\\frac92\end{pmatrix}" />
 </MathContainer>
 
-and therefore
+Solving the weighted normal equations gives
 
 <MathContainer>
 <BlockMath math="\hat\beta_{\mathrm{GLS}}=\begin{pmatrix}\frac79\\\frac53\end{pmatrix}" />

@@ -1,8 +1,9 @@
 export const metadata = {
-    title: "String-Methoden",
-  description: "Lerne Python-String-Methoden für Umwandlung, Suche, Zeichenklassifikation und klar begrenzte Textverarbeitung kennen.",
+    title: "Methoden für Strings",
+  description: "Verarbeite Text mit Python-String-Methoden für Umwandlung, Suche und Zeichenklassifikation.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "KI-Programmierung",
 };
 
@@ -74,9 +75,9 @@ print(f"Raw-Schreibweise \\n: {len(raw_newline)} Codepoints")`
 
 In einem normalen Stringliteral werden die Quellschreibweisen `\n` und `\t` jeweils zu einem Newline- oder Tab-Codepoint. In einem Raw String wie `r"\n"` bleiben Backslash und `n` zwei getrennte Codepoints.
 
-## String-Transformationsmethoden
+## Methoden zur Transformation von Strings
 
-### Ändern der Groß-/Kleinschreibung
+### Ändern der Großschreibung und Kleinschreibung
 
 Python bietet mehrere Methoden zur Umwandlung der Groß- und Kleinschreibung. Jede liefert einen neuen String und folgt den Unicode-Regeln für die Schreibweise.
 
@@ -158,9 +159,9 @@ print(f"Ergebnis ohne Suffix: '{filename.removesuffix('.txt')}'")`
 
 Möchtest du genau ein Token entfernen, verwendest du `removeprefix()` oder `removesuffix()`. So kann eine Zeichenmenge nicht versehentlich mehr entfernen als beabsichtigt.
 
-## Such- und Validierungsmethoden
+## Such und Validierungsmethoden
 
-### Teilstring-Position ermitteln
+### Position eines Teilstrings ermitteln
 
 `index()` und `find()` suchen die Position eines Teilstrings. Sie unterscheiden sich darin, wie sie einen fehlenden Treffer melden.
 
@@ -261,7 +262,7 @@ for username in usernames:
 
 Methoden wie `isdigit()` und `isalnum()` berücksichtigen Unicode, und für den leeren String liefern sie `False`. Telefonnummern, Postleitzahlen und Benutzernamen brauchen trotzdem eindeutige Regeln für Alphabet, Länge, Trennzeichen, Präfixe und weitere fachliche Grenzen.
 
-## Präfix- und Suffix-Suchmethoden
+## Suchmethoden für Präfixe und Suffixe
 
 Mit `startswith()` und `endswith()` prüfst du, ob ein String mit einem bestimmten Teilstring beginnt oder endet.
 
@@ -316,9 +317,9 @@ print(f"\\nBeginnt mit einer Begrüßung: {text.startswith(('Hi', 'Hello', 'Hey'
   ]}
 />
 
-Beide Methoden unterstützen Tupel als Parameter und ermöglichen die gleichzeitige Prüfung mehrerer Präfixe oder Suffixe.
+Beide Methoden akzeptieren ein Tupel, sodass ein Aufruf mehrere Präfixe oder Suffixe prüfen kann.
 
-## Replace- und Split-Methoden
+## Methoden Replace und Split
 
 ### Teilstrings ersetzen
 
@@ -416,7 +417,7 @@ print(f"Mit senkrechtem Strich verbunden: {joined}")`
 
 Verwende `split()` nur bei wirklich einfachen Trennregeln. Die Methode versteht weder zitierte CSV-Felder noch Escaping oder plattformabhängige Dateipfade. Für CSV gibt es das Modul `csv`, für Dateipfade `pathlib`.
 
-## String-Methodenverkettung
+## Verkettung von Stringmethoden
 
 Da String-Methoden neue Strings zurückgeben, kannst du mehrere Umwandlungen in einem Ausdruck verketten. Halte die Kette so kurz, dass jeder Schritt klar bleibt. Wenn dazwischen eine Prüfung oder Erklärung nötig ist, gib dem Zwischenergebnis einen Namen.
 
@@ -482,9 +483,9 @@ for email in emails:
 
 Methodenverkettung passt zu einer kurzen, linearen Bereinigung. Sie ist nicht automatisch klarer als benannte Schritte.
 
-## Praktische Anwendungen von String-Methoden
+## Praktische Anwendungen von Methoden für Strings
 
-Die folgenden kleinen Beispiele verbinden String-Methoden mit klar genannten Annahmen. Sie zeigen, wie die Methoden funktionieren. Validatoren und Parser für den Produktionseinsatz brauchen Regeln für ihre echten Daten.
+Jedes kleine Beispiel zeigt das Verhalten einer Stringmethode unter klar genannten Annahmen. Validatoren und Parser für den Produktionseinsatz brauchen Regeln für ihre echten Daten.
 
 <CodeBlock
   data={[

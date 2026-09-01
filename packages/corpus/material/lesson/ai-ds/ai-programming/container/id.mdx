@@ -1,45 +1,45 @@
 export const metadata = {
-  title: "Container",
-  description: "Pelajari tipe data container Python seperti list, tuple, dictionary, dan set, lalu gunakan indexing, slicing, dan manipulasi data.",
+  title: "Container Python",
+  description: "Bandingkan list, tuple, dictionary, set, dan string berdasarkan urutan, perubahan isi, serta cara mengakses elemennya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-09-18",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Pemrograman AI",
 };
 
-## Konsep Container dalam Python
+## Container dalam Python
 
-Container mengelompokkan nilai dan menentukan cara kode mengaksesnya. Sequence mempertahankan posisi, mapping menghubungkan kunci dengan nilai, sedangkan set merepresentasikan anggota unik. Pilih container berdasarkan perilaku yang dibutuhkan oleh kode.
+Container menyimpan beberapa nilai dalam satu objek. Ada container yang mempertahankan posisi setiap elemen, ada yang menghubungkan kunci dengan nilai, dan ada yang hanya menyimpan anggota unik. Pilih jenis container berdasarkan cara program akan membaca dan mengubah data.
 
-Sebagian container dapat mencampur tipe objek, tetapi masing-masing memiliki batasan. Kunci dictionary dan anggota set harus hashable, string berisi teks, dan sifat mutability berbeda antar-container.
-
-
-Pelajaran ini membandingkan lima bentuk collection bawaan:
-
-- **String** - urutan karakter yang tidak dapat diubah
-- **List** - urutan item yang dapat diubah dan diindeks
-- **Tuple** - urutan item yang tidak dapat diubah
-- **Dictionary** - pasangan kunci-nilai
-- **Set** - kumpulan item unik tanpa urutan
-
-## Pengenalan List
-
-List adalah sequence yang terurut dan mutable. List dapat memuat nilai dari tipe berbeda, walaupun collection dengan bentuk elemen yang jelas biasanya lebih mudah dipahami.
-
-Berbeda dengan array tingkat rendah yang ukurannya tetap, list Python dapat bertambah dan berkurang. List menyimpan rujukan ke objek Python, sehingga mutasi objek bersarang dapat terlihat melalui setiap rujukan ke objek tersebut.
+Beberapa container dapat memuat objek dari tipe yang berbeda. Namun, setiap jenis memiliki aturan sendiri. Kunci pada `dict` dan anggota `set`, misalnya, harus memiliki nilai hash yang tetap selama digunakan. Jenis container juga menentukan apakah isinya mutable atau immutable.
 
 
-### Karakteristik List
+Pelajaran ini membandingkan lima container bawaan:
+
+- **String** menyimpan urutan karakter dan bersifat immutable
+- **List** menyimpan urutan elemen dan bersifat mutable
+- **Tuple** menyimpan urutan elemen dan bersifat immutable
+- **Dictionary** menyimpan pasangan kunci dan nilai
+- **Set** menyimpan anggota unik tanpa indeks
+
+## List dalam Python
+
+Tipe `list` menyimpan elemen secara berurutan dan bersifat mutable, sehingga isinya dapat diubah setelah dibuat. Satu `list` boleh memuat nilai dari tipe yang berbeda, meskipun bentuk elemen yang konsisten biasanya lebih mudah diproses.
+
+Berbeda dari array tingkat rendah yang ukurannya tetap, `list` Python dapat bertambah dan berkurang. Setiap elemennya menyimpan referensi ke objek Python. Jika objek bersarang diubah, perubahan itu dapat diakses melalui setiap referensi yang menunjuk objek yang sama.
+
+
+### Sifat List
 
 | Karakteristik | Penjelasan | Contoh |
 |---------------|------------|---------|
-| Ordered | Elemen memiliki urutan tetap | `[1, 2, 3]` berbeda dengan `[3, 2, 1]` |
-| Heterogeneous | Dapat menampung berbagai tipe data | `[1, 'text', 3.14, True]` |
-| Mutable | Isi dapat diubah setelah dibuat | Dapat menambah, menghapus, atau mengubah elemen |
+| Terurut | Setiap elemen memiliki posisi | `[1, 2, 3]` berbeda dengan `[3, 2, 1]` |
+| Dapat memuat tipe campuran | Elemen tidak harus bertipe sama | `[1, 'teks', 3.14, True]` |
+| Mutable | Isi dapat diubah setelah dibuat | Elemen dapat ditambah, dihapus, atau diganti |
 
-### Sintaks Pembuatan List
+### Membuat List
 
-List dibuat menggunakan tanda kurung siku dengan elemen dipisahkan koma. List dapat berisi item dengan tipe data berbeda atau bahkan list lain.
+Literal `list` memakai kurung siku dan koma sebagai pemisah elemen. Sebuah `list` dapat memuat tipe data yang berbeda atau bahkan `list` lain.
 
 <CodeBlock
   data={[
@@ -47,34 +47,34 @@ List dibuat menggunakan tanda kurung siku dengan elemen dipisahkan koma. List da
       language: "python",
       filename: "list_creation.py",
       code: `# Berbagai jenis list berdasarkan tipe data
-a = [True, False, True]              # Output: [True, False, True] # list of bools
-b = [1, 2, 3]                        # Output: [1, 2, 3] # list of ints
-c = [1.5, 2.5, 3.5]                  # Output: [1.5, 2.5, 3.5] # list of floats
-d = ['red', 'green', 'blue']         # Output: ['red', 'green', 'blue'] # list of strings
+a = [True, False, True]              # list berisi bool
+b = [1, 2, 3]                        # list berisi int
+c = [1.5, 2.5, 3.5]                  # list berisi float
+d = ['red', 'green', 'blue']         # list berisi string
 
 # List kosong
-empty1 = []                          # Output: []
-empty2 = list()                      # Output: []
+empty1 = []                          # Hasil: []
+empty2 = list()                      # Hasil: []
 
 # List heterogen (campuran tipe data)
-mixed = [False, 2, 3.5, 'blue']      # Output: [False, 2, 3.5, 'blue']
+mixed = [False, 2, 3.5, 'blue']      # Hasil: [False, 2, 3.5, 'blue']
 
-# List bersarang (nested list)
-nested = [1, [2.5, False, 'red'], 3.5, 'blue']  # Output: [1, [2.5, False, 'red'], 3.5, 'blue']`
+# List bersarang
+nested = [1, [2.5, False, 'red'], 3.5, 'blue']  # Hasil: [1, [2.5, False, 'red'], 3.5, 'blue']`
     }
   ]}
 />
 
 ## Indexing pada List
 
-Indexing adalah cara mengakses elemen individual dalam list menggunakan nomor posisi. Python menggunakan zero-based indexing, artinya elemen pertama memiliki indeks <InlineMath math="0" />.
+Indexing mengambil satu elemen dari `list` berdasarkan posisinya. Indeks Python dimulai dari <InlineMath math="0" />, sehingga elemen pertama berada pada indeks <InlineMath math="0" />.
 
 
-Indexing dalam Python memiliki aturan khusus yang perlu dipahami:
+Indexing dalam Python mengikuti aturan berikut:
 
 - **Indeks positif** dimulai dari <InlineMath math="0" /> untuk elemen pertama
 - **Indeks negatif** dimulai dari <InlineMath math="-1" /> untuk elemen terakhir
-- **Indeks di luar range** akan menghasilkan IndexError
+- **Indeks di luar rentang** menghasilkan `IndexError`
 
 <CodeBlock
   data={[
@@ -84,31 +84,32 @@ Indexing dalam Python memiliki aturan khusus yang perlu dipahami:
       code: `# Contoh indexing pada list bersarang
 nested = [1, [2.5, False, 'red'], 3.5, 'blue']
 
-print('nested =', nested)                    # Output: nested = [1, [2.5, False, 'red'], 3.5, 'blue']
+print('nested =', nested)                    # Hasil: nested = [1, [2.5, False, 'red'], 3.5, 'blue']
 
-# Indexing elemen utama
-print('nested[0] =', nested[0])              # Output: nested[0] = 1
-print('nested[-1] =', nested[-1])            # Output: nested[-1] = blue
-print('nested[1] =', nested[1])              # Output: nested[1] = [2.5, False, 'red']
+# Mengakses elemen utama
+print('nested[0] =', nested[0])              # Hasil: nested[0] = 1
+print('nested[-1] =', nested[-1])            # Hasil: nested[-1] = blue
+print('nested[1] =', nested[1])              # Hasil: nested[1] = [2.5, False, 'red']
 
-# Indexing elemen dalam list bersarang
-print('nested[1][2] =', nested[1][2])        # Output: nested[1][2] = red
+# Mengakses elemen dalam list bersarang
+print('nested[1][2] =', nested[1][2])        # Hasil: nested[1][2] = red
 
-# Indexing karakter dalam string (double indexing)
-print('nested[1][2][1] =', nested[1][2][1])  # Output: nested[1][2][1] = e`
+# Mengakses karakter melalui dua tingkat indeks
+print('nested[1][2][1] =', nested[1][2][1])  # Hasil: nested[1][2][1] = e`
     }
   ]}
 />
 
-## Slicing dengan Stride
+## Slicing dengan Step
 
-Slicing adalah teknik untuk mengambil sebagian elemen dari list. Stride menentukan jarak antar elemen yang diambil.
+Slicing mengambil sebagian elemen dari `list`. Nilai `step` menentukan jarak antarelemen yang dipilih.
 
 
-Sintaks lengkap slicing adalah `list[start:stop:step]` dimana:
-- `start` adalah indeks awal (inclusive)
-- `stop` adalah indeks akhir (exclusive)
-- `step` adalah interval pengambilan elemen
+Sintaks lengkap slicing adalah `list[start:stop:step]`, dengan:
+
+- `start` sebagai indeks awal yang ikut diambil
+- `stop` sebagai indeks akhir yang tidak ikut diambil
+- `step` sebagai jarak antarindeks
 
 <CodeBlock
   data={[
@@ -117,28 +118,28 @@ Sintaks lengkap slicing adalah `list[start:stop:step]` dimana:
       filename: "list_slicing.py",
       code: `# List untuk contoh slicing
 x = [0, 1, 2, 3, 4, 5]
-print('x =', x)                              # Output: x = [0, 1, 2, 3, 4, 5]
+print('x =', x)                              # Hasil: x = [0, 1, 2, 3, 4, 5]
 
 # Slicing dasar
-print('x[1:4] =', x[1:4])                    # Output: x[1:4] = [1, 2, 3]
+print('x[1:4] =', x[1:4])                    # Hasil: x[1:4] = [1, 2, 3]
 
 # Slicing dari indeks negatif sampai akhir
-print('x[-3:] =', x[-3:])                    # Output: x[-3:] = [3, 4, 5]
+print('x[-3:] =', x[-3:])                    # Hasil: x[-3:] = [3, 4, 5]
 
-# Slicing dengan step (stride)
-print('x[1:4:2] =', x[1:4:2])                # Output: x[1:4:2] = [1, 3]
+# Slicing dengan step
+print('x[1:4:2] =', x[1:4:2])                # Hasil: x[1:4:2] = [1, 3]
 
 # Membalik list dengan step negatif
-print('x[::-1] =', x[::-1])                  # Output: x[::-1] = [5, 4, 3, 2, 1, 0]`
+print('x[::-1] =', x[::-1])                  # Hasil: x[::-1] = [5, 4, 3, 2, 1, 0]`
     }
   ]}
 />
 
-Slicing memilih bagian list yang berurutan atau berjarak tetap. Untuk `x = [0, 1, 2, 3, 4, 5]`, `x[1:4]` mengambil elemen pada indeks <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="3" />. Indeks akhir <InlineMath math="4" /> tidak ikut diambil. Jika langkah ditambahkan melalui `x[1:4:2]`, Python mengambil setiap indeks kedua, yaitu indeks <InlineMath math="1" /> dan <InlineMath math="3" />.
+Slicing dapat memilih elemen berurutan atau elemen dengan jarak tetap. Untuk `x = [0, 1, 2, 3, 4, 5]`, `x[1:4]` mengambil elemen pada indeks <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="3" />. Indeks akhir <InlineMath math="4" /> tidak ikut diambil. Bentuk `x[1:4:2]` memakai `step` <InlineMath math="2" />, sehingga Python mengambil indeks <InlineMath math="1" /> dan <InlineMath math="3" />.
 
 ## Operasi dan Kesamaan dengan String
 
-List mendukung berbagai operasi untuk menampilkan dan memanipulasi data. List juga memiliki kesamaan dengan string dalam hal pengaksesan elemen.
+Tipe `list` menyediakan operasi untuk membaca dan mengubah data. Cara mengakses elemennya mirip dengan string.
 
 <CodeBlock
   data={[
@@ -148,39 +149,39 @@ List mendukung berbagai operasi untuk menampilkan dan memanipulasi data. List ju
       code: `# Berbagai cara menampilkan list
 nested = [1, [2.5, False, 'red'], 3.5, 'blue']
 
-# Menampilkan dengan assignment
+# Menampilkan nama dan nilai
 print('nested =', nested)
-# Output: nested = [1, [2.5, False, 'red'], 3.5, 'blue']
+# Hasil: nested = [1, [2.5, False, 'red'], 3.5, 'blue']
 
-# Menampilkan tanpa assignment
+# Menampilkan nilai saja
 print(nested)
-# Output: [1, [2.5, False, 'red'], 3.5, 'blue']
+# Hasil: [1, [2.5, False, 'red'], 3.5, 'blue']
 
 # Menampilkan dengan fungsi print
-print('List content:', nested)
-# Output: List content: [1, [2.5, False, 'red'], 3.5, 'blue']`
+print('Isi list:', nested)
+# Hasil: Isi list: [1, [2.5, False, 'red'], 3.5, 'blue']`
     }
   ]}
 />
 
 
-List dan string memiliki kesamaan dalam hal pengaksesan elemen. Keduanya mendukung indexing dan slicing dengan pola yang sama.
+`list` dan string sama-sama mendukung indexing dan slicing.
 
 | Operasi | String | List |
 |---------|--------|------|
-| **Indexing** | Mengambil karakter individual | Mengambil elemen individual |
-| **Slicing with stride** | Mengambil substring | Mengambil sub-list |
+| **Indexing** | Mengambil satu karakter | Mengambil satu elemen |
+| **Slicing dengan step** | Mengambil bagian string | Mengambil bagian `list` |
 
-Perbedaan utama adalah string bersifat immutable (tidak dapat diubah) sedangkan list bersifat mutable (dapat diubah). Karena sifat mutable ini, list memiliki berbagai method untuk manipulasi data.
+Perbedaan utamanya, string bersifat immutable, sedangkan `list` bersifat mutable. Artinya, isi string tidak dapat diubah setelah dibuat, tetapi elemen `list` dapat ditambah, dihapus, atau diganti. Python menyediakan sejumlah method untuk melakukan operasi tersebut pada `list`.
 
 <Mermaid
-  title="String, List, dan Tuple Berbagi Beberapa Gerakan"
-  description="Bandingkan operasi container yang mirip dengan string agar list, tuple, dan string tidak tercampur."
+  title="Method pada List"
+  description="Diagram ini mengelompokkan method list untuk menambah, menghapus, mencari, dan mengurutkan elemen."
   chart={`
     flowchart LR
-        A[List Methods] --> B[Adding]
-        A --> C[Removing]
-        A --> D[Organizing]
+        A[Method List] --> B[Menambah]
+        A --> C[Menghapus]
+        A --> D[Menyusun]
 
         B --> E[append]
         B --> F[extend]
@@ -195,15 +196,15 @@ Perbedaan utama adalah string bersifat immutable (tidak dapat diubah) sedangkan 
 
 | Method | Deskripsi | Contoh Penggunaan |
 |--------|-----------|-------------------|
-| `append(element)` | Menambah elemen di akhir list | Menambah item baru |
-| `extend(list2)` | Menggabung dengan elemen dari list lain | Menggabung dua list |
-| `insert(index, element)` | Menyisipkan elemen di posisi tertentu | Menambah di tengah list |
+| `append(element)` | Menambah elemen di akhir `list` | Menambah elemen baru |
+| `extend(list2)` | Menambahkan semua elemen dari `list` lain | Menggabungkan dua `list` |
+| `insert(index, element)` | Menyisipkan elemen pada posisi tertentu | Menambah elemen di tengah `list` |
 | `index(element)` | Mencari indeks pertama dari elemen | Mencari posisi item |
 | `pop()` | Menghapus dan mengembalikan elemen terakhir | Mengambil item terakhir |
 | `reverse()` | Membalik urutan list secara langsung | Membalik urutan |
 | `remove(element)` | Menghapus kemunculan pertama elemen | Menghapus item tertentu |
-| `sort()` | Mengurutkan list secara langsung | Mengurutkan data |
-| `copy()` | Membuat salinan list | Menduplikasi list |
+| `sort()` | Mengurutkan `list` yang sama | Mengurutkan data |
+| `copy()` | Membuat shallow copy | Menyalin `list` tanpa menyalin objek bersarang |
 | `count(element)` | Menghitung jumlah kemunculan elemen | Menghitung frekuensi |
 
 <CodeBlock
@@ -213,62 +214,62 @@ Perbedaan utama adalah string bersifat immutable (tidak dapat diubah) sedangkan 
       filename: "list_methods.py",
       code: `# Demonstrasi berbagai method list
 my_list = [1, 2, 3]
-print('Original list:', my_list)            # Output: Original list: [1, 2, 3]
+print('List awal:', my_list)                # Hasil: List awal: [1, 2, 3]
 
-# Adding elements
+# Menambah elemen
 my_list.append(4)
-print('After append(4):', my_list)          # Output: After append(4): [1, 2, 3, 4]
+print('Setelah append(4):', my_list)        # Hasil: Setelah append(4): [1, 2, 3, 4]
 
 my_list.extend([5, 6])
-print('After extend([5, 6]):', my_list)     # Output: After extend([5, 6]): [1, 2, 3, 4, 5, 6]
+print('Setelah extend([5, 6]):', my_list)   # Hasil: Setelah extend([5, 6]): [1, 2, 3, 4, 5, 6]
 
 my_list.insert(0, 0)
-print('After insert(0, 0):', my_list)       # Output: After insert(0, 0): [0, 1, 2, 3, 4, 5, 6]
+print('Setelah insert(0, 0):', my_list)     # Hasil: Setelah insert(0, 0): [0, 1, 2, 3, 4, 5, 6]
 
 # Searching elements
 idx = my_list.index(3)
-print('Index of 3:', idx)                   # Output: Index of 3: 3
+print('Indeks nilai 3:', idx)               # Hasil: Indeks nilai 3: 3
 
 my_list.append(3)
 count = my_list.count(3)
-print('Count of 3:', count)                 # Output: Count of 3: 2
+print('Jumlah nilai 3:', count)             # Hasil: Jumlah nilai 3: 2
 
-# Removing elements
+# Menghapus elemen
 my_list.remove(3)
-print('After remove(3):', my_list)          # Output: After remove(3): [0, 1, 2, 4, 5, 6, 3]
+print('Setelah remove(3):', my_list)        # Hasil: Setelah remove(3): [0, 1, 2, 4, 5, 6, 3]
 
 popped = my_list.pop()
-print('Popped element:', popped)            # Output: Popped element: 3
-print('After pop():', my_list)              # Output: After pop(): [0, 1, 2, 4, 5, 6]
+print('Elemen yang diambil:', popped)       # Hasil: Elemen yang diambil: 3
+print('Setelah pop():', my_list)            # Hasil: Setelah pop(): [0, 1, 2, 4, 5, 6]
 
-# Organizing elements
+# Menyusun elemen
 my_list.reverse()
-print('After reverse():', my_list)          # Output: After reverse(): [6, 5, 4, 2, 1, 0]
+print('Setelah reverse():', my_list)        # Hasil: Setelah reverse(): [6, 5, 4, 2, 1, 0]
 
 my_list.sort()
-print('After sort():', my_list)             # Output: After sort(): [0, 1, 2, 4, 5, 6]
+print('Setelah sort():', my_list)           # Hasil: Setelah sort(): [0, 1, 2, 4, 5, 6]
 
 copied = my_list.copy()
-print('Copied list:', copied)               # Output: Copied list: [0, 1, 2, 4, 5, 6]`
+print('Salinan list:', copied)              # Hasil: Salinan list: [0, 1, 2, 4, 5, 6]`
     }
   ]}
 />
 
-## Jenis List Khusus
+## Bentuk List yang Umum
 
-Python mendukung beberapa jenis list khusus yang memiliki karakteristik dan kegunaan berbeda:
+Sebuah `list` dapat kosong, memuat tipe campuran, atau bersarang:
 
-1. **List Kosong**
+1. **List kosong**
 
-   List kosong berguna sebagai wadah awal yang akan diisi data kemudian. Ada dua cara membuat list kosong dengan hasil yang sama.
+   `[]` dan `list()` sama-sama membuat `list` kosong yang dapat diisi kemudian.
 
-2. **List Heterogen**
+2. **List dengan tipe campuran**
 
-   List heterogen dapat menampung elemen dengan tipe data berbeda dalam satu container. Ini memberikan fleksibilitas tinggi dalam penyimpanan data.
+   Satu `list` dapat berisi nama, umur, dan nilai `bool`. Gunakan bentuk campuran hanya jika setiap posisi memang memiliki arti yang jelas.
 
-3. **List Bersarang**
+3. **List bersarang**
 
-   List bersarang adalah list yang mengandung list lain sebagai elemennya. Konsep ini memungkinkan pembuatan struktur data multidimensi seperti matriks atau tabel.
+   `list` bersarang memuat `list` lain sebagai elemen. Jika setiap bagian dalam memiliki panjang yang sama, susunan ini dapat mewakili baris pada tabel atau matriks.
 
 <CodeBlock
   data={[
@@ -276,40 +277,40 @@ Python mendukung beberapa jenis list khusus yang memiliki karakteristik dan kegu
       language: "python",
       filename: "special_lists.py",
       code: `# List kosong - dua cara pembuatan
-a = []                                       # Output: []
-b = list()                                   # Output: []
+a = []                                       # Hasil: []
+b = list()                                   # Hasil: []
 
 # List heterogen - berbagai tipe data
-mixed = [False, 2, 3.5, 'blue']             # Output: [False, 2, 3.5, 'blue']
+mixed = [False, 2, 3.5, 'blue']             # Hasil: [False, 2, 3.5, 'blue']
 
 # List bersarang - list dalam list
-nested = [1, [2.5, False, 'red'], 3.5, 'blue']  # Output: [1, [2.5, False, 'red'], 3.5, 'blue']
+nested = [1, [2.5, False, 'red'], 3.5, 'blue']  # Hasil: [1, [2.5, False, 'red'], 3.5, 'blue']
 
-print('Empty list 1:', a)
-print('Empty list 2:', b)
-print('Mixed types:', mixed)
-print('Nested structure:', nested)`
+print('List kosong 1:', a)
+print('List kosong 2:', b)
+print('Tipe campuran:', mixed)
+print('Struktur bersarang:', nested)`
     }
   ]}
 />
 
-List bersarang dapat merepresentasikan baris, tree, atau struktur kecil yang menyerupai tabel. Bentuknya tidak otomatis menjadi matriks persegi panjang, dan rujukan berulang dapat menunjuk inner list yang sama. Multiple indexing seperti `nested[1][2]` mengikuti satu container pada setiap langkah.
+`list` bersarang dapat mewakili baris, pohon, atau struktur kecil yang menyerupai tabel. Susunan `list` bersarang tidak otomatis menjadi matriks persegi panjang. Beberapa elemen juga dapat merujuk ke `list` bagian dalam yang sama. Indexing bertingkat seperti `nested[1][2]` memilih satu elemen pada setiap tingkat.
 
-## Container Lainnya
+## Container Lain
 
-Selain list, Python menyediakan tiga jenis container lainnya yang memiliki karakteristik dan kegunaan berbeda.
+Selain `list`, Python menyediakan `tuple`, `dict`, dan `set` dengan aturan yang berbeda.
 
-### Tuple
+### Tuple Python
 
-Tuple adalah struktur data yang mirip dengan list namun bersifat immutable. Tuple mendukung operasi packing dan unpacking yang berguna untuk pertukaran data. Meskipun tuple immutable, tuple dapat berisi referensi ke objek mutable seperti list.
+Tipe `tuple` menyerupai `list`, tetapi urutan posisinya bersifat immutable. Beberapa nilai dapat dikemas ke dalam satu `tuple`, lalu di-unpack ke beberapa variabel.
 
-Konsep penting dalam tuple adalah perbedaan antara immutable tuple itu sendiri dengan objek mutable yang dikandungnya. Tuple tidak bisa diubah strukturnya, tapi isi objek mutable di dalamnya masih bisa dimodifikasi.
+Posisi dalam `tuple` tidak dapat diubah. Namun, sebuah posisi dapat merujuk ke objek seperti `list` yang isinya masih dapat berubah.
 
 | Aspek | Tuple | List |
 |-------|-------|------|
-| **Mutability** | Immutable | Mutable |
+| **Perubahan isi** | Posisi tidak dapat diubah | Posisi dan isi dapat diubah |
 | **Sintaks** | `()` atau tanpa kurung | `[]` |
-| **Kegunaan** | Data tetap, koordinat | Data yang berubah |
+| **Kegunaan** | Data dengan posisi tetap, seperti koordinat | Data yang perlu ditambah atau diubah |
 
 <CodeBlock
   data={[
@@ -317,42 +318,42 @@ Konsep penting dalam tuple adalah perbedaan antara immutable tuple itu sendiri d
       language: "python",
       filename: "tuple_operations.py",
       code: `# Tuple syntax - dua cara pembuatan
-t1 = (0, 1, 2)                               # Output: t1 = (0, 1, 2)
-t2 = 3, 4, 5                                 # Output: t2 = (3, 4, 5)
+t1 = (0, 1, 2)                               # Hasil: t1 = (0, 1, 2)
+t2 = 3, 4, 5                                 # Hasil: t2 = (3, 4, 5)
 print('t1 =', t1)
 print('t2 =', t2)
 
-# Tuple unpacking - memisahkan nilai
+# Unpacking tuple ke beberapa variabel
 a, b, c = t2
-print('a, b, c =', a, b, c)                  # Output: a, b, c = 3 4 5
+print('a, b, c =', a, b, c)                  # Hasil: a, b, c = 3 4 5
 
-# Error handling untuk unpacking
+# Menangani error saat jumlah variabel tidak sesuai
 try:
     a, b = (0, 1, 2)                         # Terlalu banyak nilai
 except ValueError as e:
-    print('ValueError:', e)                  # Output: ValueError: too many values to unpack (expected 2)
+    print('ValueError:', e)                  # Hasil: ValueError: too many values to unpack (expected 2)
 
 try:
     a, b, c, d = 0, 1, 2                     # Nilai tidak cukup
 except ValueError as e:
-    print('ValueError:', e)                  # Output: ValueError: not enough values to unpack (expected 4, got 3)
+    print('ValueError:', e)                  # Hasil: ValueError: not enough values to unpack (expected 4, got 3)
 
-# Tuple dengan objek mutable
+# Tuple dengan objek yang dapat diubah
 t = (0, [1, 2, 3], 4)
-print('Original t =', t)                    # Output: Original t = (0, [1, 2, 3], 4)
+print('Nilai awal t =', t)                 # Hasil: Nilai awal t = (0, [1, 2, 3], 4)
 t[1][0] = 'x'                               # Mengubah isi list dalam tuple
-print('After modifying inner list:', t)     # Output: After modifying inner list: (0, ['x', 2, 3], 4)
+print('Setelah list di dalamnya diubah:', t)  # Hasil: Setelah list di dalamnya diubah: (0, ['x', 2, 3], 4)
 
-# Tuple immutable tapi objek di dalamnya bisa mutable
+# Posisi tuple tetap, tetapi objek di dalamnya masih dapat berubah
 # t[1] = [9, 8, 7]  # Error: tidak bisa ganti referensi
-# t[1][0] = 'y'     # OK: bisa ubah isi objek mutable`
+# t[1][0] = 'y'     # Bisa mengubah isi objek tersebut`
     }
   ]}
 />
 
-### Dictionary
+### Dictionary Python
 
-Dictionary menyimpan pasangan kunci-nilai. Setiap kunci harus unik dan hashable, sedangkan nilainya boleh berulang dan mutable. Literal dictionary memakai `{}` dengan titik dua di antara setiap kunci dan nilai.
+Tipe `dict` menyimpan pasangan kunci dan nilai. Setiap kunci harus unik dan memiliki nilai hash yang tetap selama digunakan. Nilai dalam pasangan boleh berulang dan dapat merujuk ke objek mutable. Literal `dict` memakai `{}` dengan titik dua di antara kunci dan nilai.
 
 <CodeBlock
   data={[
@@ -362,22 +363,22 @@ Dictionary menyimpan pasangan kunci-nilai. Setiap kunci harus unik dan hashable,
       code: `# Membuat dictionary
 kontak = {'Alice': 'alice@example.com', 'Bob': 'bob@example.com'}
 print('kontak =', kontak)
-# Output: kontak = {'Alice': 'alice@example.com', 'Bob': 'bob@example.com'}
+# Hasil: kontak = {'Alice': 'alice@example.com', 'Bob': 'bob@example.com'}
 
 # Mengakses nilai berdasarkan kunci
-print("kontak['Alice'] =", kontak['Alice'])  # Output: kontak['Alice'] = alice@example.com
+print("kontak['Alice'] =", kontak['Alice'])  # Hasil: kontak['Alice'] = alice@example.com
 
 # Menambahkan pasangan kunci-nilai baru
 kontak['David'] = 'david@example.com'
-print('After adding David:', kontak)
-# Output: After adding David: {'Alice': 'alice@example.com', 'Bob': 'bob@example.com', 'David': 'david@example.com'}`
+print('Setelah menambah David:', kontak)
+# Hasil: Setelah menambah David: {'Alice': 'alice@example.com', 'Bob': 'bob@example.com', 'David': 'david@example.com'}`
     }
   ]}
 />
 
-### Set
+### Set Python
 
-Set menyimpan elemen unik yang hashable dan mendukung operasi himpunan matematika. Set tidak memiliki posisi semantik atau jaminan urutan insertion. Literal set yang tidak kosong memakai `{}`, sedangkan set kosong harus dibuat dengan `set()` karena `{}` menghasilkan dictionary kosong.
+Tipe `set` menyimpan anggota unik yang memiliki nilai hash tetap dan mendukung operasi himpunan matematika. `set` tidak menyediakan indeks dan tidak menjamin urutan iterasi. Literal `set` yang tidak kosong memakai `{}`, sedangkan himpunan kosong harus dibuat dengan `set()` karena `{}` menghasilkan `dict` kosong.
 
 <CodeBlock
   data={[
@@ -386,33 +387,33 @@ Set menyimpan elemen unik yang hashable dan mendukung operasi himpunan matematik
       filename: "set_examples.py",
       code: `# Membuat set
 angka = {1, 2, 3, 4, 5}
-print('angka =', sorted(angka))              # Output: angka = [1, 2, 3, 4, 5]
+print('angka =', sorted(angka))              # Hasil: angka = [1, 2, 3, 4, 5]
 
 # Menambahkan elemen ke set
 angka.add(6)
-print('Setelah menambah 6:', sorted(angka))  # Output: Setelah menambah 6: [1, 2, 3, 4, 5, 6]
+print('Setelah menambah 6:', sorted(angka))  # Hasil: Setelah menambah 6: [1, 2, 3, 4, 5, 6]
 
 # Operasi himpunan
 genap = {2, 4, 6, 8}
 ganjil = {1, 3, 5, 7}
 
-# Union (gabungan)
+# Gabungan
 print('genap | ganjil =', sorted(genap | ganjil))
-# Output: genap | ganjil = [1, 2, 3, 4, 5, 6, 7, 8]
+# Hasil: genap | ganjil = [1, 2, 3, 4, 5, 6, 7, 8]
 
-# Intersection (irisan)
-print('genap & ganjil =', genap & ganjil)    # Output: genap & ganjil = set()`
+# Irisan
+print('genap & ganjil =', genap & ganjil)    # Hasil: genap & ganjil = set()`
     }
   ]}
 />
 
-### Perbandingan Container Types
+### Perbandingan Container
 
-| Container | Sintaks | Ordered | Mutable | Duplikasi | Kegunaan Utama |
+| Container | Sintaks | Terurut | Mutable | Duplikasi | Kegunaan Utama |
 |-----------|---------|---------|---------|-----------|----------------|
 | **List** | `[1, 2, 3]` | Ya | Ya | Ya | Data yang perlu diubah |
-| **Tuple** | `(1, 2, 3)` | Ya | Tidak | Ya | Data tetap, koordinat |
-| **Dictionary** | `{'a': 1}` | Ya* | Ya | Tidak (kunci) | Mapping kunci-nilai |
-| **Set** | `{1, 2, 3}` | Tidak | Ya | Tidak | Elemen unik, operasi himpunan |
+| **Tuple** | `(1, 2, 3)` | Ya | Tidak pada tiap posisi | Ya | Data dengan posisi tetap |
+| **Dictionary** | `{'a': 1}` | Ya | Ya | Kunci harus unik | Pasangan kunci dan nilai |
+| **Set** | `{1, 2, 3}` | Tidak | Ya | Tidak | Anggota unik dan operasi himpunan |
 
-> Iterasi dictionary mempertahankan urutan insertion sebagai jaminan bahasa sejak Python `3.7`. Memperbarui kunci yang ada mempertahankan posisinya; menghapus lalu memasukkannya kembali menempatkan kunci itu di akhir.
+> Sejak Python `3.7`, iterasi `dict` mengikuti urutan penyisipan kunci. Memperbarui kunci tidak mengubah posisinya. Jika kunci dihapus lalu dimasukkan kembali, posisinya berpindah ke akhir.

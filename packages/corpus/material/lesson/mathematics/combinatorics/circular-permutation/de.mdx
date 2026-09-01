@@ -3,14 +3,15 @@ export const metadata = {
    description: "Kreispermutationen zählen relative Reihenfolgen. Beispiele erklären gleiche Rotationen, unterschiedliche Spiegelbilder und Anordnungen mit Zusatzbedingungen.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
+   dateModified: "2026-09-01",
    subject: "Kombinatorik",
 };
 
-## Was ist eine Kreispermutation?
+## Kreispermutation
 
 Wenn an einem runden Tisch jede Person einen Platz im Uhrzeigersinn weiterrückt, bleiben die Sitznachbarn gleich. Eine **Kreispermutation** zählt daher jede relative Sitzreihenfolge einmal. Drehungen derselben Reihenfolge gehören zur gleichen Anordnung.
 
-Das unterscheidet sie von einer linearen Permutation. In einer Reihe sind der erste und der letzte Platz eindeutig; im Kreis gibt es keinen ausgezeichneten Startpunkt.
+Das unterscheidet sie von einer linearen Permutation. In einer Reihe sind der erste und der letzte Platz eindeutig. Im Kreis gibt es keinen ausgezeichneten Startpunkt.
 
 Jedes Objekt kann daher als Bezugspunkt dienen. Lineare Reihenfolgen, die sich nur durch eine Drehung unterscheiden, beschreiben **dieselbe Anordnung im Kreis**.
 
@@ -41,9 +42,9 @@ Für <InlineMath math="3" /> Kinder ergibt sich <InlineMath math="P_3 = (3-1)! =
 
 Die Formel <InlineMath math="(n-1)!" /> fasst gedrehte Anordnungen zusammen, zählt Spiegelbilder aber weiterhin getrennt. Das passt zu Personen, die zur Tischmitte schauen, denn eine gespiegelte Reihenfolge vertauscht die linken und rechten Nachbarn. Ein Armband lässt sich dagegen umdrehen. Bei <InlineMath math="n\geq3" /> verschiedenen Perlen bildet jede Kreisreihenfolge mit einem anderen Spiegelbild ein Paar. Daher bleiben <InlineMath math="\frac{(n-1)!}{2}" /> Anordnungen.
 
-## Anwendungen
+## Kreisförmige Anordnungen zählen
 
-Kreispermutationen treten in unterschiedlichen Situationen auf:
+Dieselbe Formel zählt kreisförmige Sitzordnungen und andere Formationen um einen Mittelpunkt.
 
 **Sitzordnung am runden Tisch:**
 
@@ -104,7 +105,7 @@ Beispiel: <InlineMath math="4" /> Ehepaare sitzen im Kreis, wobei die beiden Per
 3. **Antwort: <InlineMath math="768 \text{Wege}" />**
 
    Rechenweg:
-   - Gegeben: <InlineMath math="5" /> Ehepaare, also <InlineMath math="10 \text{ Personen}" />; jedes Paar soll zusammensitzen.
+   - Gegeben: <InlineMath math="5" /> Ehepaare, also <InlineMath math="10 \text{ Personen}" />. Jedes Paar soll zusammensitzen.
    - **Blockmethode:** Jedes Paar bildet einen Block: <InlineMath math="5 \text{ Blöcke}" />.
    - Kreispermutation der <InlineMath math="5 \text{ Blöcke}" />: <InlineMath math="(5-1)! = 4! = 4 \times 3 \times 2 \times 1 = 24" />.
    - Innerhalb jedes Paares sind <InlineMath math="2! = 2 \text{ Anordnungen}" /> möglich.

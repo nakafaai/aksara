@@ -1,14 +1,14 @@
 
 export const metadata = {
   title: "Step Function Modeling",
-  description: "Learn step function modeling with real-world applications like bookstore discounts, elevator capacity, and floor/ceiling functions. Learn piecewise graphing.",
+  description: "Model bookstore discounts, elevator capacity, and floor and ceiling rules with piecewise step functions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Functions and Their Modeling",
 };
 
-## Understanding Step Functions
+## Step Functions
 
 A step function has a constant value on each interval and may jump when one interval ends and the next begins. Its graph resembles a staircase: horizontal segments represent the constant values, while separate endpoints mark any jump discontinuities.
 
@@ -18,7 +18,7 @@ A step function can be defined as a piecewise function of the form:
 
 <BlockMath math="f(x) = \begin{cases} c_1, & \text{if } a_1 \leq x < b_1 \\ c_2, & \text{if } a_2 \leq x < b_2 \\ c_3, & \text{if } a_3 \leq x < b_3 \\ \vdots \\ c_n, & \text{if } a_n \leq x < b_n \end{cases}" />
 
-where <InlineMath math="c_1, c_2, c_3, \ldots, c_n" /> are constants and <InlineMath math="[a_i, b_i)" /> are non-overlapping intervals.
+In this definition, <InlineMath math="c_1, c_2, c_3, \ldots, c_n" /> are constants and <InlineMath math="[a_i, b_i)" /> are non-overlapping intervals.
 
 **Characteristics of step functions:**
 
@@ -35,7 +35,7 @@ The floor function, denoted by <InlineMath math="\lfloor x \rfloor" />, gives th
 
 <BlockMath math="\lfloor x \rfloor = \max\{n \in \mathbb{Z} : n \leq x\}" />
 
-To make it easier to understand, look at the following example:
+The graph marks each included left endpoint with a filled point and each excluded right endpoint with an open point.
 
 <LineEquation
   title={
@@ -83,7 +83,7 @@ The ceiling function, denoted by <InlineMath math="\lceil x \rceil" />, gives th
 
 <BlockMath math="\lceil x \rceil = \min\{n \in \mathbb{Z} : n \geq x\}" />
 
-The following example makes the definition concrete:
+The graph marks each excluded left endpoint with an open point and each included right endpoint with a filled point.
 
 <LineEquation
   title={
@@ -119,7 +119,7 @@ The following example makes the definition concrete:
   showZAxis={false}
 />
 
-### Unit Step Function (Heaviside)
+### Heaviside Unit Step Function
 
 This lesson uses the following common convention for the unit step function or Heaviside function, denoted by <InlineMath math="H(x)" /> or <InlineMath math="u(x)" />:
 
@@ -311,7 +311,7 @@ The function <InlineMath math="f(x) = \lfloor x - h \rfloor" /> shifts the graph
    - <InlineMath math="2 \leq x < 3: f(x) = 2(2) - 1 = 3" />
    - At the endpoint, <InlineMath math="f(3)=2\lfloor3\rfloor-1=5" />
 
-   If we create the graph, it would look approximately like the following:
+   The following graph shows the function value on each interval and at the endpoints:
 
    <LineEquation
      title={

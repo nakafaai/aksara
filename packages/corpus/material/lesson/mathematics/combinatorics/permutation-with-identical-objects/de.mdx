@@ -3,6 +3,7 @@ export const metadata = {
    description: "Sind einige Objekte nicht unterscheidbar, zählt die Multinomialformel nur die sichtbaren Anordnungen. Beispiele mit Buchstaben, Farben und Ziffern zeigen den vollständigen Rechenweg.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
+   dateModified: "2026-09-01",
    subject: "Kombinatorik",
 };
 
@@ -20,14 +21,14 @@ Sind <InlineMath math="n" /> Objekte in Gruppen identischer Objekte aufgeteilt, 
 <BlockMath math="P = \frac{n!}{r_1! \times r_2! \times r_3! \times \cdots \times r_k!}" />
 </MathContainer>
 
-**Erklärung:**
+Die Symbole in der Formel bedeuten:
 
 - <InlineMath math="n" /> = Gesamtzahl der Objekte
 - <InlineMath math="r_1, r_2, r_3, \ldots, r_k" /> = Anzahl identischer Objekte in jeder Gruppe
 - <InlineMath math="k" /> = Anzahl der Gruppen identischer Objekte
 - Die Häufigkeiten umfassen jedes Objekt, also <InlineMath math="r_1 + r_2 + \cdots + r_k = n" />
 
-**So bestimmen wir die Gruppen:** Wir zählen, wie oft jedes unterschiedliche Objekt vorkommt. Die Division durch <InlineMath math="r_i!" /> entfernt dann die mehrfach gezählten Beschriftungen innerhalb der jeweiligen Gruppe.
+Wir zählen, wie oft jedes unterschiedliche Objekt vorkommt. Die Division durch <InlineMath math="r_i!" /> entfernt die Mehrfachzählungen, die durch den Tausch identischer Kopien innerhalb einer Gruppe entstehen.
 
 ## Anwendung auf Wörter und Buchstaben
 
@@ -35,12 +36,11 @@ Sind <InlineMath math="n" /> Objekte in Gruppen identischer Objekte aufgeteilt, 
 
 Am Wort „KALIMANTAN“ lässt sich der Rechenweg vollständig verfolgen.
 
-**Buchstaben erfassen:**
-Zuerst schreiben wir alle Buchstaben auf: K-A-L-I-M-A-N-T-A-N
+Wir schreiben die Buchstaben der Reihe nach auf: K-A-L-I-M-A-N-T-A-N
 
 Gesamtzahl der Buchstaben: <InlineMath math="10" />
 
-Häufigkeiten: <InlineMath math="K" /> kommt <InlineMath math="1 \text{ Mal}" /> vor, <InlineMath math="A" /> kommt <InlineMath math="3 \text{ Mal}" /> vor (Positionen <InlineMath math="2, 6, 9" />), <InlineMath math="L" /> kommt <InlineMath math="1 \text{ Mal}" /> vor, <InlineMath math="I" /> kommt <InlineMath math="1 \text{ Mal}" /> vor, <InlineMath math="M" /> kommt <InlineMath math="1 \text{ Mal}" /> vor, <InlineMath math="N" /> kommt <InlineMath math="2 \text{ Mal}" /> vor (Positionen <InlineMath math="7, 10" />) und <InlineMath math="T" /> kommt <InlineMath math="1 \text{ Mal}" /> vor.
+Die wiederholten Buchstaben sind <InlineMath math="A" /> mit <InlineMath math="3" /> Vorkommen und <InlineMath math="N" /> mit <InlineMath math="2" /> Vorkommen. Alle übrigen Buchstaben kommen jeweils einmal vor.
 
 **Berechnung:**
 
@@ -59,8 +59,7 @@ Zuerst kürzen wir die gemeinsamen Faktoren:
 
 Nun rechnen wir schrittweise:
 - Zuerst teilen wir <InlineMath math="10" /> durch <InlineMath math="2" />: <InlineMath math="\frac{10}{2} = 5" />
-- Es bleibt: <InlineMath math="5 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4" />
-- <InlineMath math="= 5 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 = 302\,400" />
+- Das verbleibende Produkt ist <InlineMath math="5 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 = 302\,400" />
 
 ### Beispielwort PALAPA
 
@@ -87,9 +86,9 @@ Wir vereinfachen, indem wir <InlineMath math="6" /> durch <InlineMath math="2" /
 - <InlineMath math="\frac{6}{2} = 3" />
 - Damit erhalten wir <InlineMath math="3 \times 5 \times 4 = 60 \text{ Anordnungen}" />.
 
-## Systematische Berechnungsschritte
+## Anordnungen mit identischen Objekten zählen
 
-Für Aufgaben mit identischen Objekten hilft dieses feste Vorgehen:
+Für jede Anordnung mit wiederholten Objekten gelten dieselben Schritte:
 
 1. **Gesamtzahl bestimmen**: Lies den Wert von <InlineMath math="n" /> ab.
 2. **Identische Objekte gruppieren**: Fasse gleiche Objekte zusammen.
@@ -97,9 +96,9 @@ Für Aufgaben mit identischen Objekten hilft dieses feste Vorgehen:
 4. **Formel einsetzen**: Übertrage die Häufigkeiten in die Permutationsformel.
 5. **Fakultäten berechnen**: Kürze zuerst und rechne dann sorgfältig aus.
 
-### Wort BANANA
+### Anordnungen von BANANA
 
-Nun wenden wir die Schritte auf das Wort „BANANA“ an:
+Wir wenden die Schritte auf das Wort „BANANA“ an:
 
 1. **Gesamtzahl der Objekte**
 
@@ -149,9 +148,9 @@ Das Wort „BANANA“ besitzt also **<InlineMath math="60" /> verschiedene Anord
 
 ## Unterschied zur gewöhnlichen Permutation
 
-**Gewöhnliche Permutation**: Alle Objekte sind verschieden; die Formel lautet <InlineMath math="n!" />.
+**Gewöhnliche Permutation**: Alle Objekte sind verschieden. Die Formel lautet <InlineMath math="n!" />.
 
-**Permutation mit identischen Objekten**: Gleiche Objekte erzeugen keine neue sichtbare Anordnung; die Formel lautet:
+**Permutation mit identischen Objekten**: Gleiche Objekte erzeugen keine neue sichtbare Anordnung. Die Formel lautet:
 
 <MathContainer>
 <BlockMath math="\frac{n!}{r_1! \times r_2! \times \cdots \times r_k!}" />

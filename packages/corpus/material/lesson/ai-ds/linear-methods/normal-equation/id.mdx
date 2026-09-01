@@ -1,53 +1,49 @@
 export const metadata = {
     title: "Sistem Persamaan Normal",
-    description: "Pelajari persamaan normal untuk optimasi kuadrat terkecil. Pelajari solusi closed-form, prinsip ortogonalitas, dan kondisi sistem terpecahkan.",
+   description: "Turunkan persamaan normal untuk kuadrat terkecil, cari solusi bentuk tertutup, dan periksa syarat keberadaan serta keunikan solusi.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Metode Linear AI",
 };
 
-## Apa itu Sistem Persamaan Normal?
+## Sistem Persamaan Normal
 
 Persamaan normal mengubah syarat optimalitas orde pertama dari masalah kuadrat terkecil linear menjadi sistem persamaan linear.
 
-Ketika kita ingin meminimumkan
+Perhatikan masalah kuadrat terkecil berikut:
 
 <BlockMath math="\min_x \|A \cdot x - b\|_2^2" />
 
-ternyata solusinya dapat ditemukan dengan menyelesaikan sistem persamaan berikut
+Peminimumnya memenuhi sistem linear berikut:
 
 <BlockMath math="A^T A \cdot x = A^T b" />
 
 Persamaan ini disebut **persamaan normal** karena residual pada titik minimum bersifat normal, atau tegak lurus, terhadap ruang kolom <InlineMath math="A" />.
 
-## Hubungan Fundamental
+## Kuadrat Terkecil dan Persamaan Normal
 
-Ada hubungan yang sangat menarik antara masalah minimisasi dan sistem persamaan normal ini. Vektor <InlineMath math="\hat{x} \in \mathbb{R}^n" /> merupakan solusi dari masalah kuadrat terkecil jika dan hanya jika vektor tersebut memenuhi sistem persamaan normal.
+Vektor <InlineMath math="\hat{x} \in \mathbb{R}^n" /> meminimumkan <InlineMath math="\|A \cdot x - b\|_2^2" /> jika dan hanya jika memenuhi <InlineMath math="A^T A \cdot \hat{x} = A^T b" />. Jadi, masalah optimasi dan persamaan normal memiliki himpunan solusi yang sama.
 
-Dengan kata lain, mencari <InlineMath math="\hat{x}" /> yang membuat <InlineMath math="\|A \cdot x - b\|_2^2" /> minimal sama persis dengan mencari <InlineMath math="\hat{x}" /> yang memenuhi <InlineMath math="A^T A \cdot \hat{x} = A^T b" />.
+## Residual Tegak Lurus terhadap Ruang Kolom
 
-## Mengapa Sistem Ini Bekerja
-
-Untuk memahami mengapa hubungan ini berlaku, kita perlu melihat dari sudut pandang geometris.
-
-Ketika <InlineMath math="\hat{x}" /> memberikan nilai minimum untuk <InlineMath math="\|A\hat{x} - b\|_2^2" />, maka vektor kesalahan <InlineMath math="A\hat{x} - b" /> harus ortogonal terhadap semua vektor dalam ruang kolom matriks <InlineMath math="A" />.
+Ketika <InlineMath math="\hat{x}" /> meminimumkan <InlineMath math="\|A\hat{x} - b\|_2^2" />, vektor residual <InlineMath math="A\hat{x} - b" /> tegak lurus terhadap setiap vektor dalam ruang kolom <InlineMath math="A" />.
 
 Ruang kolom ini terdiri dari semua vektor yang dapat ditulis sebagai <InlineMath math="Ax" /> untuk <InlineMath math="x \in \mathbb{R}^n" />. Kondisi ortogonalitas berarti
 
 <BlockMath math="0 = \langle Ax, A\hat{x} - b \rangle" />
 
-untuk setiap vektor <InlineMath math="x \in \mathbb{R}^n" />. Dengan menggunakan sifat perkalian dalam, kita dapat menuliskan
+Kondisi ortogonalitas ini berlaku untuk setiap vektor <InlineMath math="x \in \mathbb{R}^n" />. Sifat perkalian dalam memberikan
 
 <MathContainer>
 <BlockMath math="0 = (Ax)^T (A\hat{x} - b) = x^T (A^T A\hat{x} - A^T b)" />
 </MathContainer>
 
-Karena hubungan ini harus berlaku untuk semua vektor <InlineMath math="x" />, maka
+Karena kesamaan ini berlaku untuk setiap vektor <InlineMath math="x" />, vektor di dalam tanda kurung harus sama dengan nol:
 
 <BlockMath math="A^T A\hat{x} - A^T b = 0" />
 
-Inilah yang memberikan sistem persamaan normal.
+Dengan memindahkan suku, kita memperoleh <InlineMath math="A^TA\hat{x}=A^Tb" />, yaitu persamaan normal.
 
 ## Pembuktian Menggunakan Teorema Pythagoras
 
@@ -61,13 +57,13 @@ Menggunakan teorema Pythagoras, kita dapat menuliskan
 <BlockMath math="= \|A\hat{x} - b\|_2^2 + \underbrace{\|A(\hat{x} - x)\|_2^2}_{\geq 0} - 2 \underbrace{(\hat{x} - x)^T (A^T A\hat{x} - A^T b)}_{=0}" />
 </MathContainer>
 
-Karena <InlineMath math="\hat{x}" /> memenuhi sistem persamaan normal, maka <InlineMath math="A^T A\hat{x} - A^T b = 0" /> dan norm kuadrat selalu non-negatif. Oleh karena itu
+Karena <InlineMath math="\hat{x}" /> memenuhi persamaan normal, suku silang bernilai nol. Norm kuadrat yang tersisa tidak negatif, sehingga
 
 <BlockMath math="\|Ax - b\|_2^2 = \|A\hat{x} - b\|_2^2 + \|A(\hat{x} - x)\|_2^2 \geq \|A\hat{x} - b\|_2^2" />
 
 Ketidaksamaan ini membuktikan bahwa <InlineMath math="\hat{x}" /> memang memberikan nilai minimum.
 
-## Eksistensi dan keunikan
+## Eksistensi dan Keunikan
 
 Persamaan normal konsisten untuk setiap matriks <InlineMath math="A \in \mathbb{R}^{m\times n}" /> dan setiap vektor <InlineMath math="b \in \mathbb{R}^m" /> karena peminimum kuadrat terkecil selalu ada dalam dimensi hingga. Peminimumnya unik tepat ketika <InlineMath math="A" /> memiliki peringkat kolom penuh:
 
@@ -89,7 +85,7 @@ Untuk setiap <InlineMath math="z\in\mathbb{R}^n" />,
 
 <BlockMath math="z^{\mathsf T}A^{\mathsf T}Az=\|Az\|_2^2\ge0" />
 
-sehingga <InlineMath math="A^{\mathsf T}A" /> selalu simetris positif semidefinit. Selain itu,
+Persamaan ini menunjukkan bahwa <InlineMath math="A^{\mathsf T}A" /> selalu simetris positif semidefinit. Selain itu,
 
 <BlockMath math="A^{\mathsf T}Az=0\quad\Longleftrightarrow\quad z^{\mathsf T}A^{\mathsf T}Az=0\quad\Longleftrightarrow\quad Az=0" />
 
@@ -97,7 +93,7 @@ Jadi,
 
 <BlockMath math="\ker(A^{\mathsf T}A)=\ker(A)" />
 
-dan <InlineMath math="A^{\mathsf T}A" /> positif definit tepat ketika <InlineMath math="A" /> memiliki peringkat kolom penuh.
+Kesamaan ruang nul ini menunjukkan bahwa <InlineMath math="A^{\mathsf T}A" /> positif definit tepat ketika <InlineMath math="A" /> memiliki peringkat kolom penuh.
 
 ## Peringatan numerik
 
@@ -105,4 +101,4 @@ Sifat positif definit memberikan keunikan dan memungkinkan penyelesaian Cholesky
 
 <BlockMath math="\kappa_2(A^{\mathsf T}A)=\kappa_2(A)^2" />
 
-Pembentukan <InlineMath math="A^{\mathsf T}A" /> secara langsung dapat memperbesar kepekaan dan efek pembulatan. Rumus invers membuktikan sebuah identitas aljabar. Dalam perangkat lunak, gunakan QR untuk kuadrat terkecil berperingkat penuh dan SVD ketika matriks kekurangan peringkat atau memiliki kondisi yang sangat buruk.
+Pembentukan <InlineMath math="A^{\mathsf T}A" /> secara langsung dapat memperbesar kepekaan dan efek pembulatan. Rumus invers membuktikan sebuah identitas aljabar. Dalam perangkat lunak, gunakan <InlineMath math="\mathrm{QR}" /> untuk kuadrat terkecil berperingkat penuh dan <InlineMath math="\mathrm{SVD}" /> ketika matriks kekurangan peringkat atau memiliki kondisi yang sangat buruk.

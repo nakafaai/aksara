@@ -1,33 +1,33 @@
 export const metadata = {
     title: "Variabel",
-    description: "Pelajari konsep variabel Python, aturan penamaan, keyword yang tidak boleh digunakan, dan cara kerja memori dengan contoh.",
+    description: "Ikuti cara nama Python terikat pada objek, lalu terapkan aturan penamaan, kata kunci terlarang, dan konvensi yang mudah dibaca.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-16",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Pemrograman AI",
 };
 
-## Konsep Dasar Variabel dalam Python
+## Variabel dalam Python
 
-Dalam Python, variabel adalah nama yang terikat pada sebuah objek. Nama itu bukan kotak penyimpanan bertipe tetap: assignment dapat mengikatnya ke objek lain, sedangkan nama lain mungkin tetap merujuk pada objek semula.
+Dalam Python, variabel adalah nama yang menunjuk ke sebuah objek. Reassignment dapat membuat nama itu menunjuk ke objek lain. Nama lain yang masih merujuk ke objek lama tidak ikut berubah.
 
 Ketika Python mengeksekusi `x = 2`, Python mengevaluasi ekspresi <InlineMath math="2" /> lalu mengikat nama `x` pada objek integer yang dihasilkan. Alokasi, penggunaan ulang objek, dan lokasi memori fisiknya adalah detail implementasi yang tidak boleh diasumsikan oleh program.
 
 ## Cara Kerja Variabel dan Memori
 
-Built-in `id()` mengembalikan integer yang mengidentifikasi sebuah objek secara unik selama masa hidup objek itu. CPython lazimnya menurunkannya dari alamat memori, tetapi Python tidak menjanjikan interpretasi tersebut pada setiap implementasi.
+Built-in `id()` mengembalikan bilangan bulat yang mengidentifikasi sebuah objek secara unik selama masa hidup objek tersebut. CPython biasanya memakai alamat memori objek sebagai dasar nilai itu, tetapi Python tidak menjamin cara yang sama pada setiap implementasi.
 
 <Mermaid
   title="Nama Variabel Menunjuk ke Objek"
-  description="Telusuri nama variabel ke objek di memori agar assignment tidak keliru dibaca sebagai kotak penyimpanan tetap."
+  description="Telusuri hubungan nama dan objek agar variabel tidak keliru dianggap sebagai kotak penyimpanan bertipe tetap."
   chart={`graph TB
-    subgraph "Memory"
+    subgraph "Memori"
         M1["Objek A: int 2"]
         M2["Objek B: str 'Hello'"]
         M3["Objek C: list [1, 2, 3]"]
     end
 
-    subgraph "Variables"
+    subgraph "Variabel"
         V1["x"]
         V2["y"]
         V3["z"]
@@ -66,7 +66,7 @@ print(z == x)   # Output: True (nilainya sama)
   ]}
 />
 
-Assignment `y = x` menjamin kedua nama merujuk pada objek yang sama pada saat itu. Membuat nilai lain yang setara menjamin bahwa kedua nilai lolos pemeriksaan equality. Python tetap dapat membuat objek yang terpisah. Beberapa implementasi Python menggunakan ulang objek immutable, tetapi kode yang benar tidak bergantung pada optimasi tersebut.
+Assignment `y = x` membuat kedua nama merujuk pada objek yang sama pada saat itu. Jika kamu membuat nilai lain yang setara, perbandingan dengan `==` akan bernilai benar, tetapi Python tetap dapat menyimpannya sebagai objek terpisah. Beberapa implementasi Python memakai kembali objek immutable tertentu. Kode yang benar tidak boleh bergantung pada optimasi tersebut.
 
 ## Karakteristik Variabel Python
 
@@ -74,7 +74,7 @@ Python memiliki beberapa karakteristik unik dalam penanganan variabel yang membe
 
 ### Tidak Ada Deklarasi Variabel
 
-Berbeda dengan bahasa yang memerlukan deklarasi variabel terpisah, Python mengikat nama saat sebuah assignment berjalan. Objek memiliki tipe, dan `type(value)` melaporkan tipe objek yang sedang terikat pada sebuah nama.
+Python mengikat nama ketika assignment dijalankan, tanpa deklarasi variabel terpisah. Objek memiliki tipe, dan `type(value)` menampilkan tipe objek yang sedang ditunjuk oleh sebuah nama.
 
 <CodeBlock
   data={[
@@ -121,13 +121,13 @@ print(f"Nilai: {data}, Tipe: {type(data)}")`
   ]}
 />
 
-## Aturan Penamaan Variabel
+## Aturan Nama Variabel
 
-Python memiliki aturan ketat untuk penamaan variabel yang harus kamu ikuti agar kode dapat berjalan dengan benar.
+Nama variabel harus memenuhi aturan berikut agar dapat diterima oleh Python.
 
 ### Komponen Nama Variabel
 
-Identifier dimulai dengan underscore atau huruf Unicode, lalu dapat diteruskan dengan huruf identifier, underscore, dan digit seperti <InlineMath math="0,1,2,\dots,9" />. Python menerima banyak identifier non-ASCII, tetapi nama `snake_case` ASCII yang deskriptif biasanya lebih mudah diketik, dicari, dan dibagikan lintas tools.
+Identifier dimulai dengan underscore atau huruf Unicode. Karakter berikutnya boleh berupa huruf, underscore, atau digit seperti <InlineMath math="0,1,2,\dots,9" />. Python menerima banyak identifier non-ASCII, tetapi nama `snake_case` ASCII yang deskriptif biasanya lebih mudah diketik, dicari, dan dipakai lintas tools.
 
 <CodeBlock
   data={[
@@ -251,9 +251,9 @@ print(f"Apakah 'class' kata kunci? {keyword.iskeyword('class')}")`
   ]}
 />
 
-## Praktik Terbaik Penamaan Variabel
+## Nama Variabel yang Mudah Dibaca
 
-Meskipun Python memberikan fleksibilitas dalam penamaan variabel, ada beberapa praktik terbaik yang sebaiknya kamu ikuti untuk membuat kode lebih mudah dibaca dan dipelihara.
+Setelah aturan sintaks terpenuhi, pilih nama yang menyatakan arti setiap nilai.
 
 ### Nama yang Bermakna
 
@@ -278,7 +278,7 @@ umur = 25
 bmi = berat_badan / ((tinggi_badan / 100) ** 2)
 print(f"BMI: {bmi:.2f}")
 
-# Lebih mudah dipahami maksud dari setiap variabel
+# Nama variabel menjelaskan nilai yang disimpan
 print(f"Tinggi: {tinggi_badan} cm")
 print(f"Berat: {berat_badan} kg")
 print(f"Umur: {umur} tahun")`
@@ -318,7 +318,7 @@ rata_rata_nilai = 85.5`
 
 ### Gaya Penulisan yang Konsisten
 
-Python menggunakan gaya snake_case untuk nama variabel, dimana kata-kata dipisahkan dengan underscore dan semua huruf menggunakan huruf kecil.
+Python menggunakan gaya snake_case untuk nama variabel. Kata-katanya dipisahkan dengan underscore dan ditulis dengan huruf kecil.
 
 <CodeBlock
   data={[
@@ -333,7 +333,7 @@ alamat_rumah = "Jl. Merdeka No. 123"
 # Gaya camelCase (lebih umum di JavaScript/Java)
 namaLengkap = "Ahmad Budi"  # Tidak salah, tapi kurang Python-like
 
-# Gaya PascalCase (biasanya untuk nama kelas)
+# Gaya PascalCase (biasanya untuk nama class)
 NamaLengkap = "Ahmad Budi"  # Tidak disarankan untuk variabel
 
 # Konsistensi dalam satu program
@@ -381,7 +381,7 @@ can_edit = True`
 
 ## Contoh Penggunaan Variabel dalam Program
 
-Mari lihat bagaimana variabel digunakan dalam program sederhana yang menghitung luas dan keliling persegi panjang.
+Program berikut menggunakan variabel untuk menghitung luas dan keliling persegi panjang.
 
 <CodeBlock
   data={[
@@ -415,6 +415,6 @@ else:
   ]}
 />
 
-Contoh program di atas menunjukkan penggunaan variabel dengan nama yang bermakna, perhitungan matematis, dan validasi data. Setiap variabel memiliki tujuan yang jelas dan nama yang menjelaskan isinya.
+Dalam program ini, `panjang` dan `lebar` menamai dua input, sedangkan `luas` dan `keliling` menamai hasil perhitungan. Kondisi terakhir menolak ukuran yang tidak positif sebelum nilai luas dan keliling dinyatakan valid.
 
-Memahami konsep variabel, aturan penamaan, dan praktik terbaik akan membantu kamu menulis kode Python yang lebih bersih, mudah dibaca, dan mudah dipelihara. Variabel adalah fondasi dasar dalam pemrograman, dan penguasaan yang baik terhadap konsep ini akan mempermudah pembelajaran konsep pemrograman yang lebih lanjut.
+Nama variabel yang konsisten membuat kode Python lebih mudah dibaca. Saat mempelajari perubahan objek dan argumen fungsi, bedakan equality, identity, dan reassignment karena ketiganya menjawab pertanyaan yang berbeda.

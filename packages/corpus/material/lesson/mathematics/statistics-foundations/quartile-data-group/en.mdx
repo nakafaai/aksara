@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Quartiles for Grouped Data",
-  description: "Learn quartile calculations for grouped data with interpolation methods. Learn Q1, Q2, Q3 positions using cumulative frequency and class boundaries.",
+  description: "Calculate grouped data quartiles by locating their cumulative frequencies and interpolating within the class boundaries.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Statistics",
 };
 
 ## How to Find Quartiles in Grouped Data
 
-For ungrouped data, we can sort every observation and read its position directly. In a grouped frequency table, however, we know only the intervals, such as <InlineMath math="70\text{-}79" /> and <InlineMath math="80\text{-}89" />, and the number of observations in each interval. The individual values are no longer visible.
+For ungrouped data, we can sort every observation and identify its position directly. A grouped frequency table provides only the intervals, such as <InlineMath math="70\text{-}79" /> and <InlineMath math="80\text{-}89" />, and the number of observations in each interval. It does not contain the individual values.
 
 As with the [median for grouped data](/en/subjects/mathematics/statistics-foundations/median-mode-group-data), we therefore estimate <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, and <InlineMath math="Q_3" /> by **interpolation**. The calculation places each quartile within the class interval that contains its target position.
 
@@ -70,7 +70,7 @@ Once the quartile class is known, estimate the value within that interval with:
 
 <BlockMath math="Q_i = T_b + \left( \frac{\frac{i}{4}n - F_{\text{cum}}}{f_i} \right) p" />
 
-Where:
+The quantities in this formula are:
 
 - <InlineMath math="Q_i" /> = Value of the i-th Quartile (what we're looking for)
 - <InlineMath math="T_b" /> = Lower boundary of the i-th quartile class
@@ -80,7 +80,7 @@ Where:
 - <InlineMath math="f_i" /> = Frequency of the i-th quartile class
 - <InlineMath math="p" /> = Class width
 
-This interpolation assumes that observations are distributed uniformly within the selected class. It is a model-based estimate and cannot recover the original values hidden by grouping.
+This interpolation assumes that observations are distributed uniformly within the selected class. It is a model-based estimate and cannot recover the original values that were omitted when the data were grouped.
 
 ## Finding the Shoe Sales Quartile
 
@@ -111,7 +111,7 @@ So, the value of <InlineMath math="Q_1" /> is <InlineMath math="41" />. This mea
 
 Calculate <InlineMath math="Q_3" /> from the shoe sales data in the table above.
 
-Then compare the method with quartile calculation for ungrouped data. Why does the grouped table provide only an estimate?
+Then compare grouped-data interpolation with the calculation of quartiles from ungrouped data. Why does the grouped table provide only an estimate?
 
 ### Answer Key
 
@@ -137,10 +137,10 @@ Then compare the method with quartile calculation for ungrouped data. Why does t
       <BlockMath math="Q_3 = 45.35" />
     </MathContainer>
 
-So, the value of <InlineMath math="Q_3" /> is <InlineMath math="45.35" />. This means about <InlineMath math="75\%" /> of the shoes sold are size <InlineMath math="45.35" /> or smaller (or <InlineMath math="25\%" /> are sold in sizes larger than <InlineMath math="45.35" />).
+The estimated value of <InlineMath math="Q_3" /> is <InlineMath math="45.35" />. In this grouped model, about <InlineMath math="75\%" /> of the shoes sold have size <InlineMath math="45.35" /> or below. The remaining <InlineMath math="25\%" /> have a shoe size above <InlineMath math="45.35" />.
 
 **Comparison with Single Data:**
 
-Finding quartiles for grouped data uses **interpolation** because we know the intervals while the individual observations are hidden. The result is an estimated quartile value.
+Finding quartiles for grouped data uses **interpolation** because the table provides intervals and frequencies without the individual observations. The result is an estimated quartile value.
 
 For ungrouped data, the ordered observations are known, so the declared quartile convention can select one value or interpolate directly between two known values. Grouped interpolation is less precise because the observations inside each class are no longer available.

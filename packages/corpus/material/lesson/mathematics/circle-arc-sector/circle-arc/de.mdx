@@ -1,8 +1,9 @@
 export const metadata = {
   title: "Kreisbogen",
-  description: "Beziehungen zwischen Kreisbogen und Sehne, Sagitta-Berechnungen und parametrische Gleichungen an technischen Anwendungen verstehen.",
+  description: "Radius und Mittelpunktswinkel bestimmen Sehnenlänge und Sagitta eines Kreisbogens sowie seine parametrische Darstellung.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Kreisbögen und Sektoren",
 };
 
@@ -38,6 +39,7 @@ Bei kleinen Bögen desselben Kreises erzeugt ein größerer Mittelpunktswinkel s
         { x: (5 + 5 * Math.cos(Math.PI / 3)) / 2, y: (5 * Math.sin(Math.PI / 3)) / 2, z: 0 },
         { x: 5 * Math.cos(Math.PI / 3), y: 5 * Math.sin(Math.PI / 3), z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       lineWidth: 3,
       showPoints: false,
@@ -79,6 +81,7 @@ Bei kleinen Bögen desselben Kreises erzeugt ein größerer Mittelpunktswinkel s
         { x: (-5 + 5 * Math.cos(5 * Math.PI / 3)) / 2, y: (5 * Math.sin(5 * Math.PI / 3)) / 2, z: 0 },
         { x: 5 * Math.cos(5 * Math.PI / 3), y: 5 * Math.sin(5 * Math.PI / 3), z: 0 },
       ],
+      smooth: false,
       color: "#d97706",
       lineWidth: 3,
       showPoints: false,
@@ -129,32 +132,32 @@ Bei kleinen Bögen desselben Kreises erzeugt ein größerer Mittelpunktswinkel s
 
 ## Formel für die Sehnenlänge
 
-Die Sehnenlänge kann mithilfe einer trigonometrischen Formel unter Einbeziehung des Mittelpunktswinkels und des Kreisradius berechnet werden:
+Radius und Mittelpunktswinkel bestimmen die Sehnenlänge:
 
 <BlockMath math="c = 2r \sin\left(\frac{\theta}{2}\right)" />
 
-Dabei gilt:
+Die Variablen in dieser Formel bedeuten:
 - <InlineMath math="c" /> = Sehnenlänge
 - <InlineMath math="r" /> = Kreisradius
-- <InlineMath math="\theta" /> = Mittelpunktswinkel; verwende für Grad das Gradmaß und für Radiant das Bogenmaß
+- <InlineMath math="\theta" /> = Mittelpunktswinkel. Verwende am Taschenrechner den Gradmodus für Grad und den Radiantmodus für das Bogenmaß
 
 Die Formel bestimmt die Sehnenlänge aus Radius und Mittelpunktswinkel eines Kreisbogens. Damit lässt sich die Geometrie eines idealisierten Rundfensters, Bogens oder einer anderen kreisförmigen Kontur festlegen. Bei einem realen Bauwerk müssen Lasten, Werkstoffe und Auflager getrennt untersucht werden.
 
 ## Bogenhöhe und Sagitta
 
-Die Bogenhöhe, auch Sagitta genannt, ist der senkrechte Abstand vom Mittelpunkt der Sehne zum Mittelpunkt des zugehörigen kleinen Kreisbogens. Zusammen mit der Sehne legt sie die Form eines idealisierten Kreisbogens fest.
+Die Bogenhöhe, auch Sagitta genannt, ist der Abstand vom Mittelpunkt der Sehne zum zugehörigen kleinen Kreisbogen, gemessen senkrecht zur Sehne. Zusammen mit der Sehne legt sie die Form eines idealisierten Kreisbogens fest.
 
 <BlockMath math="h = r - r\cos\left(\frac{\theta}{2}\right) = r\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
 
-Dabei gilt:
+Die Variablen in dieser Formel bedeuten:
 - <InlineMath math="h" /> = Bogenhöhe (Sagitta)
 - <InlineMath math="r" /> = Kreisradius
-- <InlineMath math="\theta" /> = Mittelpunktswinkel; berechne den Kosinus in derselben Winkeleinheit wie <InlineMath math="\theta" />
+- <InlineMath math="\theta" /> = Mittelpunktswinkel. Berechne den Kosinus in derselben Winkeleinheit wie <InlineMath math="\theta" />
 
-Betrachte die folgende Darstellung:
+Die Abbildung markiert die Sehne, ihren Mittelpunkt und die senkrechte Strecke, deren Länge der Sagitta entspricht.
 
 <LineEquation
-  title="Visualisierung der Bogenhöhe"
+  title="Bogenhöhe bei verschiedenen Mittelpunktswinkeln"
   description="Bogenhöhe (Sagitta) bei verschiedenen Mittelpunktswinkeln."
   data={[
     {
@@ -177,6 +180,7 @@ Betrachte die folgende Darstellung:
         { x: (4 * Math.cos(-Math.PI / 6) + 4 * Math.cos(Math.PI / 6)) / 2, y: (4 * Math.sin(-Math.PI / 6) + 4 * Math.sin(Math.PI / 6)) / 2, z: 0 },
         { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6), z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       lineWidth: 3,
       showPoints: false,
@@ -195,6 +199,7 @@ Betrachte die folgende Darstellung:
         { x: (4 * Math.cos(-Math.PI / 6) + 4 * Math.cos(Math.PI / 6)) / 2, y: (4 * Math.sin(-Math.PI / 6) + 4 * Math.sin(Math.PI / 6)) / 2, z: 0 },
         { x: 4 * Math.cos(0), y: 4 * Math.sin(0), z: 0 },
       ],
+      smooth: false,
       color: "#e11d48",
       lineWidth: 4,
       showPoints: false,
@@ -205,6 +210,7 @@ Betrachte die folgende Darstellung:
         { x: 0, y: 0, z: 0 },
         { x: 4 * Math.cos(-Math.PI / 6), y: 4 * Math.sin(-Math.PI / 6), z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
@@ -215,6 +221,7 @@ Betrachte die folgende Darstellung:
         { x: 0, y: 0, z: 0 },
         { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6), z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
@@ -314,6 +321,7 @@ Dabei ist <InlineMath math="t" /> ein Parameter, der vom Anfangswinkel bis zum E
         { x: 1.5 * Math.cos(Math.PI / 4), y: 1.5 * Math.sin(Math.PI / 4), z: 0 },
         { x: 3 * Math.cos(Math.PI / 4), y: 3 * Math.sin(Math.PI / 4), z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
@@ -325,6 +333,7 @@ Dabei ist <InlineMath math="t" /> ein Parameter, der vom Anfangswinkel bis zum E
         { x: 1.5 * Math.cos(3 * Math.PI / 4), y: 1.5 * Math.sin(3 * Math.PI / 4), z: 0 },
         { x: 3 * Math.cos(3 * Math.PI / 4), y: 3 * Math.sin(3 * Math.PI / 4), z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
@@ -359,7 +368,7 @@ Dabei ist <InlineMath math="t" /> ein Parameter, der vom Anfangswinkel bis zum E
 
 ## Beispiel eines idealisierten Kreisbogens
 
-Betrachte den idealisierten kreisförmigen Querschnitt eines Bogens. Sein Radius beträgt <InlineMath math="25 \text{ Meter}" />, sein Mittelpunktswinkel <InlineMath math="120^\circ" />. Wir können die von der Sehne dargestellte Spannweite und die von der Sagitta dargestellte Höhe bestimmen.
+Ein idealisierter Kreisbogen hat den Radius <InlineMath math="25 \text{ Meter}" /> und den Mittelpunktswinkel <InlineMath math="120^\circ" />. Die Sehne gibt seine Spannweite an, die Sagitta seine Höhe.
 
 **Berechnung der Sehnenlänge:**
 

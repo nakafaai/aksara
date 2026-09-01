@@ -2,26 +2,26 @@
 
 export const metadata = {
   title: "Vektor Satuan dari Suatu Vektor",
-  description: "Normalkan vektor tak nol untuk memperoleh vektor satuan, lalu hubungkan besar 1 dengan arah dan vektor basis Kartesius standar.",
+  description: "Normalkan vektor tak nol hingga panjangnya 1, pastikan vektor satuan tetap searah dengan vektor semula, lalu kenali vektor basis Kartesius standar.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Vektor dan Operasinya",
 };
 
 ## Definisi Vektor Satuan
 
-Vektor satuan memiliki panjang atau besar <InlineMath math="1 \text{ satuan}" />. Vektor ini menyatakan arah tanpa membawa besar vektor asal. Dari setiap vektor tak nol, kita dapat memperoleh vektor satuan yang searah dengan membagi vektor tersebut dengan panjangnya.
+Vektor satuan memiliki panjang <InlineMath math="1 \text{ satuan}" />. Karena panjangnya sudah ditetapkan, vektor ini hanya menunjukkan arah. Vektor satuan yang searah dengan suatu vektor tak nol diperoleh dengan membagi vektor tersebut dengan panjangnya.
 
-## Konsep Dasar
+## Rumus dan Arah Vektor Satuan
 
 Perhatikan vektor <InlineMath math="\overrightarrow{PQ}" /> yang berada pada sistem koordinat Kartesius. Vektor satuan dari <InlineMath math="\overrightarrow{PQ}" /> didefinisikan sebagai vektor <InlineMath math="\overrightarrow{PQ}" /> dibagi dengan panjangnya.
 
 <BlockMath math="\mathbf{u}_{PQ} = \frac{\overrightarrow{PQ}}{|\overrightarrow{PQ}|}" />
 
-Di mana <InlineMath math="|\overrightarrow{PQ}|" /> adalah panjang atau besar dari vektor <InlineMath math="\overrightarrow{PQ}" />.
+Pada rumus ini, <InlineMath math="|\overrightarrow{PQ}|" /> adalah panjang vektor <InlineMath math="\overrightarrow{PQ}" />.
 
-Vektor satuan selalu menunjukkan arah dari vektor aslinya, tetapi memiliki panjang yang dinormalisasi menjadi <InlineMath math="1 \text{ satuan}" />.
+Vektor satuan searah dengan vektor asal, tetapi panjangnya selalu <InlineMath math="1 \text{ satuan}" />.
 
 <Vector3d
   title="Vektor dan Vektor Satuan"
@@ -47,27 +47,25 @@ Vektor satuan selalu menunjukkan arah dari vektor aslinya, tetapi memiliki panja
 
 ## Menghitung Vektor Satuan
 
-### Langkah-langkah Perhitungan
-
-Untuk menentukan vektor satuan dari suatu vektor, ikuti langkah-langkah berikut:
+Untuk menentukan vektor satuan:
 
 1. Tentukan vektor asal
 2. Hitung panjang vektor tersebut
 3. Bagi vektor dengan panjangnya
 
-### Contoh Penerapan
+### Menormalkan Vektor Tiga Dimensi
 
-Misalkan kita memiliki vektor <InlineMath math="\vec{v} = (3, 6, 4)" />
+Gunakan vektor <InlineMath math="\vec{v} = (3, 6, 4)" />.
 
-Langkah pertama, kita hitung panjang vektor:
+Pertama, hitung panjangnya:
 
 <BlockMath math="|\vec{v}| = \sqrt{3^2 + 6^2 + 4^2} = \sqrt{9 + 36 + 16} = \sqrt{61}" />
 
-Langkah kedua, kita bagi vektor dengan panjangnya:
+Kemudian, bagi vektor dengan panjang tersebut:
 
 <BlockMath math="\hat{v} = \frac{\vec{v}}{|\vec{v}|} = \frac{(3, 6, 4)}{\sqrt{61}}" />
 
-Sehingga diperoleh:
+Vektor satuannya adalah:
 
 <BlockMath math="\hat{v} = \left(\frac{3}{\sqrt{61}}, \frac{6}{\sqrt{61}}, \frac{4}{\sqrt{61}}\right)" />
 
@@ -100,7 +98,7 @@ Sehingga diperoleh:
   />
 </ContentBlock>
 
-## Sifat-sifat Vektor Satuan
+## Sifat Vektor Satuan
 
 ### Panjang Vektor Satuan
 
@@ -151,8 +149,8 @@ Setiap vektor di <InlineMath math="\mathbb{R}^3" /> dapat dinyatakan sebagai kom
 
 ### Menunjukkan Arah
 
-Vektor satuan sangat berguna untuk menunjukkan arah tanpa memperhatikan besar atau panjang. Dalam fisika, misalnya, vektor satuan sering digunakan untuk menunjukkan arah gaya, kecepatan, atau percepatan.
+Vektor satuan menyatakan arah dengan besar <InlineMath math="1" />. Dalam fisika, vektor ini dapat menyatakan arah gaya, kecepatan, atau percepatan secara terpisah dari besarnya.
 
 ### Perhitungan Fisika
 
-Dalam fisika, ketika kita ingin mendekomposisi suatu vektor menjadi komponen-komponennya, vektor satuan sangat membantu. Misalnya, suatu gaya dapat didekomposisi menjadi komponen-komponen pada arah sumbu <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" /> menggunakan vektor satuan.
+Vektor satuan menyatakan gaya sebagai komponen pada sumbu <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" />. Setiap koefisien menyatakan besar bertanda pada satu sumbu.

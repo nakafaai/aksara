@@ -4,6 +4,7 @@ export const metadata = {
   description: "Leite die Drehmatrix her und wende sie auf Drehungen um den Ursprung und um beliebige Drehzentren an.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometrische Transformation",
 };
 
@@ -11,13 +12,13 @@ export const metadata = {
 
 Wird ein Punkt <InlineMath math="(x,y)" /> um den Winkel <InlineMath math="\theta" /> um den Ursprung <InlineMath math="(0,0)" /> gedreht, so ist sein Bild <InlineMath math="(x \cos \theta - y \sin \theta, x \sin \theta + y \cos \theta)" />.
 
-Wir möchten eine <InlineMath math="2 \times 2" />-Matrix finden, beispielsweise <InlineMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix}" />, die diese Drehung darstellt.
+Eine allgemeine <InlineMath math="2 \times 2" />-Matrix <InlineMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix}" /> stellt diese Drehung nur dar, wenn sie für alle <InlineMath math="x" /> und <InlineMath math="y" /> dieselben Koordinaten erzeugt.
 
 Diese Matrix muss Folgendes erfüllen:
 
 <BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x \cos \theta - y \sin \theta \\ x \sin \theta + y \cos \theta \end{pmatrix}" />
 
-Aus der Matrixmultiplikation auf der linken Seite erhalten wir:
+Ausmultiplizieren auf der linken Seite ergibt:
 
 <BlockMath math="\begin{pmatrix} rx + sy \\ tx + uy \end{pmatrix} = \begin{pmatrix} x \cos \theta - y \sin \theta \\ x \sin \theta + y \cos \theta \end{pmatrix}" />
 
@@ -33,11 +34,11 @@ Wir vergleichen die Koeffizienten in den entsprechenden Komponenten:
 
 ### Drehmatrix für den Ursprung
 
-Die einer Drehung um einen Winkel <InlineMath math="\theta" /> im Bogenmaß (oder Grad) um den Ursprung <InlineMath math="O(0,0)" /> zugeordnete Matrix lautet:
+Bei einheitlicher Winkeleinheit lautet die Drehmatrix um den Ursprung <InlineMath math="O(0,0)" />:
 
 <BlockMath math="R_\theta = \begin{pmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{pmatrix}" />
 
-## Matrixoperation zur Drehung um einen beliebigen Punkt
+## Drehung um ein beliebiges Zentrum
 
 Um einen Punkt <InlineMath math="(x,y)" /> um einen beliebigen Punkt <InlineMath math="P(a,b)" /> um einen Winkel <InlineMath math="\theta" /> zu drehen, führen wir drei Schritte aus:
 
@@ -45,7 +46,7 @@ Um einen Punkt <InlineMath math="(x,y)" /> um einen beliebigen Punkt <InlineMath
 2. Drehe den verschobenen Punkt mit der Matrix <InlineMath math="R_\theta" /> um <InlineMath math="\theta" /> um den Ursprung.
 3. Verschiebe den gedrehten Punkt zurück, indem du <InlineMath math="(a,b)" /> addierst.
 
-### Matrixoperation zur Drehung um einen beliebigen Punkt
+### Zentrierte Matrixformel
 
 Die mit der Drehung um einen Winkel <InlineMath math="\theta" /> im Bogenmaß um den Punkt <InlineMath math="(a,b)" /> verbundene Operation ist:
 
@@ -53,9 +54,7 @@ Die mit der Drehung um einen Winkel <InlineMath math="\theta" /> im Bogenmaß um
 
 ## Drehmatrix für einen bestimmten Winkel bestimmen
 
-Die einer Drehung um <InlineMath math="\theta = \frac{1}{4}\pi" /> Bogenmaß (<InlineMath math="45^\circ" />) um den Ursprung zugeordnete Matrix lautet:
-
-Wir kennen <InlineMath math="\cos(\frac{\pi}{4}) = \frac{1}{\sqrt{2}}" /> und <InlineMath math="\sin(\frac{\pi}{4}) = \frac{1}{\sqrt{2}}" />.
+Für <InlineMath math="\theta = \frac{1}{4}\pi" /> im Bogenmaß, also <InlineMath math="45^\circ" />, sind Sinus und Kosinus gleich <InlineMath math="\frac{1}{\sqrt{2}}" />:
 
 <BlockMath math="R_{\frac{\pi}{4}} = \begin{pmatrix} \cos(\frac{\pi}{4}) & -\sin(\frac{\pi}{4}) \\ \sin(\frac{\pi}{4}) & \cos(\frac{\pi}{4}) \end{pmatrix} = \begin{pmatrix} \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \end{pmatrix}" />
 
@@ -100,6 +99,7 @@ Diese Matrix dreht jeden Ortsvektor um <InlineMath math="45^\circ" /> gegen den 
         { x: 0, y: 0, z: 0 },
         { x: 2, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#4f46e5",
     },
     {
@@ -107,6 +107,7 @@ Diese Matrix dreht jeden Ortsvektor um <InlineMath math="45^\circ" /> gegen den 
         { x: 0, y: 0, z: 0 },
         { x: Math.sqrt(2), y: Math.sqrt(2), z: 0 },
       ],
+      smooth: false,
       color: "#4f46e5",
     },
   ]}
@@ -122,18 +123,18 @@ Diese Matrix dreht jeden Ortsvektor um <InlineMath math="45^\circ" /> gegen den 
 
 ### Lösungen
 
-1.  Gegeben <InlineMath math="\theta = \frac{\pi}{6}" /> oder <InlineMath math="30^\circ" />:
+1.  Für <InlineMath math="\theta = \frac{\pi}{6}" />, also <InlineMath math="30^\circ" />, sind Sinus und Kosinus:
 
     <MathContainer>
       <BlockMath math="\cos(\frac{\pi}{6}) = \frac{\sqrt{3}}{2}" />
       <BlockMath math="\sin(\frac{\pi}{6}) = \frac{1}{2}" />
     </MathContainer>
 
-    Drehmatrix:
+    Einsetzen dieser Werte ergibt:
 
     <BlockMath math="\begin{pmatrix} \frac{\sqrt{3}}{2} & -\frac{1}{2} \\ \frac{1}{2} & \frac{\sqrt{3}}{2} \end{pmatrix}" />
 
-2.  Punkt <InlineMath math="P(4,2)" />, <InlineMath math="\theta = 60^\circ" />. <InlineMath math="\cos 60^\circ = \frac{1}{2}" />, <InlineMath math="\sin 60^\circ = \frac{\sqrt{3}}{2}" />.
+2.  Für den Punkt <InlineMath math="P(4,2)" /> und <InlineMath math="\theta = 60^\circ" /> gelten <InlineMath math="\cos 60^\circ = \frac{1}{2}" /> und <InlineMath math="\sin 60^\circ = \frac{\sqrt{3}}{2}" />.
 
     <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} \frac{1}{2} & -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} & \frac{1}{2} \end{pmatrix} \begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} (4)(\frac{1}{2}) - (2)(\frac{\sqrt{3}}{2}) \\ (4)(\frac{\sqrt{3}}{2}) + (2)(\frac{1}{2}) \end{pmatrix} = \begin{pmatrix} 2 - \sqrt{3} \\ 2\sqrt{3} + 1 \end{pmatrix}" />
 

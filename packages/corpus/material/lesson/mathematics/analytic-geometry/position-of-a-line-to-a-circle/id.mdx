@@ -1,21 +1,21 @@
 export const metadata = {
   title: "Kedudukan Garis terhadap Lingkaran",
-  description: "Pelajari cara garis memotong, menyinggung, atau tidak bersentuhan dengan lingkaran menggunakan analisis diskriminan. Pelajari titik potong dan kondisi singgung.",
+  description: "Tentukan apakah garis memotong, menyinggung, atau tidak bertemu lingkaran melalui diskriminan, lalu hitung titik potongnya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometri Analitik",
 };
 
 
 
-## Memahami Hubungan Garis dan Lingkaran
+## Hubungan Garis dan Lingkaran
 
 Gambarlah sebuah lingkaran dan garis lurus pada bidang yang sama. Tepat ada tiga kemungkinan kedudukan.
 
-Garis itu dapat **memotong lingkaran di dua titik**, **menyinggung di satu titik**, atau **tidak bertemu lingkaran sama sekali**. Pensil yang diletakkan di atas sebuah cincin memberi gambaran sederhana: pensil dapat melintasi cincin, hanya menyentuh tepinya, atau berada sepenuhnya di luar.
+Garis itu dapat **memotong lingkaran di dua titik**, **menyinggung di satu titik**, atau **tidak bertemu lingkaran sama sekali**. Letakkan pensil di atas sebuah cincin. Bergantung pada posisinya, pensil dapat melintasi cincin, hanya menyentuh tepinya, atau berada sepenuhnya di luar.
 
-Geometri analitik mengubah gambaran tersebut menjadi perhitungan yang pasti. Metode yang sama dapat dipakai untuk memeriksa apakah jalan yang direncanakan melintasi kawasan lindung berbentuk lingkaran atau apakah suatu lintasan mencapai zona tertentu.
+Substitusi persamaan garis ke persamaan lingkaran menghasilkan persamaan kuadrat. Dua solusi real berarti ada dua titik potong, satu solusi kembar berarti garis menyinggung lingkaran, dan tidak ada solusi real berarti garis tidak bertemu lingkaran. Pemeriksaan yang sama dapat memodelkan apakah jalan yang direncanakan melintasi kawasan lindung berbentuk lingkaran atau apakah suatu lintasan mencapai zona tertentu.
 
 ## Tiga Kemungkinan Posisi
 
@@ -142,7 +142,7 @@ Garis paling atas tidak memiliki titik persekutuan dengan lingkaran. Garis tenga
 
 ## Metode Diskriminan
 
-Untuk menentukan kasusnya secara aljabar, substitusikan persamaan garis ke persamaan lingkaran. Hasilnya berupa persamaan kuadrat, dan **diskriminan** persamaan itu menunjukkan jumlah titik potong real.
+Untuk menentukan jumlah titik potong secara aljabar, substitusikan persamaan garis ke persamaan lingkaran. Substitusi tersebut menghasilkan persamaan kuadrat. Tanda **diskriminan** menentukan apakah garis dan lingkaran memiliki dua, satu, atau tidak ada titik potong real.
 
 Misalkan kita punya garis dengan persamaan <InlineMath math="y = mx + c" /> dan lingkaran dengan persamaan <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />.
 
@@ -166,7 +166,7 @@ Sekarang hitung **diskriminan**. Tandanya menentukan jumlah akar real:
 
 <BlockMath math="\Delta = B^2 - 4AC" />
 
-## Interpretasi Nilai Diskriminan
+## Arti Nilai Diskriminan
 
 Setiap solusi real untuk <InlineMath math="x" /> mewakili satu titik potong. Karena itu, diskriminan menghasilkan tiga kemungkinan:
 
@@ -176,7 +176,7 @@ Setiap solusi real untuk <InlineMath math="x" /> mewakili satu titik potong. Kar
 
 3. **Diskriminan negatif** (<InlineMath math="\Delta < 0" />) artinya persamaan kuadrat tidak memiliki akar real. Secara geometri, garis **tidak berpotongan dengan lingkaran**.
 
-## Contoh dengan Pembahasan
+## Menentukan Garis Potong dengan Diskriminan
 
 Tentukan kedudukan garis <InlineMath math="y=2x-1" /> terhadap lingkaran <InlineMath math="x^2+y^2-4x+2y-4=0" />.
 
@@ -203,7 +203,7 @@ Karena <InlineMath math="\Delta = 116 > 0" />, maka garis <InlineMath math="y = 
 
 ## Kasus Lingkaran Standar
 
-Untuk lingkaran dengan pusat di titik asal seperti <InlineMath math="x^2 + y^2 = r^2" /> dan garis <InlineMath math="y = mx + c" />, prosesnya jadi lebih ringkas.
+Pada lingkaran yang berpusat di titik asal, <InlineMath math="x^2 + y^2 = r^2" />, kedua koordinat pusat bernilai nol. Substitusi <InlineMath math="y=mx+c" /> tidak menghasilkan suku pergeseran horizontal atau vertikal.
 
 Substitusikan garis ke lingkaran:
 
@@ -221,7 +221,7 @@ Setelah disederhanakan:
 
 <BlockMath math="\Delta = 4[r^2(1 + m^2) - c^2]" />
 
-Interpretasinya tetap sama berdasarkan tanda diskriminan.
+Kesimpulannya tetap ditentukan oleh tanda diskriminan.
 
 ## Latihan dengan Pembahasan Lengkap
 

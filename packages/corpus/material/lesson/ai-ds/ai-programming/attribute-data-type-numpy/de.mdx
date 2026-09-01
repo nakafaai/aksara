@@ -1,16 +1,17 @@
 export const metadata = {
   title: "Attribute und Datentypen mit NumPy",
-  description: "Lerne NumPy-Array-Attribute wie shape, dtype, size und ndim kennen und lies sie anschließend in konkreten Codebeispielen aus.",
+  description: "Lies die NumPy-Array-Attribute shape, dtype, size und ndim in konkreten Codebeispielen aus.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "KI-Programmierung",
 };
 
-## NumPy-Datentypsystem
+## Datentypsystem von NumPy
 
 Jedes Element in einem NumPy-Array hat einen bestimmten Typ. Er legt fest, wie NumPy den Wert darstellt und verarbeitet. Datentypen sind also Speicherformate für unterschiedliche Arten von Informationen. Ein NumPy-Boolean belegt ein Byte, während eine komplexe Zahl Real- und Imaginärteil getrennt speichert.
 
-Das Typsystem von NumPy sorgt dafür, dass alle Elemente eines gewöhnlichen Arrays denselben Datentyp haben. Dadurch kann der zugrunde liegende C-Code die Daten effizient verarbeiten. Technische Details und Speichergrößen findest du in der [NumPy-Dokumentation zu Datentypen](https://numpy.org/doc/stable/user/basics.types.html).
+Alle Elemente eines gewöhnlichen NumPy-Arrays verwenden denselben Datentyp. Dadurch können die von NumPy in C ausgeführten Schleifen die Elemente verarbeiten, ohne den Typ jedes Werts einzeln zu prüfen. [NumPy](https://numpy.org/doc/stable/user/basics.types.html) nennt die technischen Details und Speichergrößen der einzelnen Datentypen.
 
 ### Grundlegende Datentypen
 
@@ -124,11 +125,11 @@ print("Array result:", a)  # Ausgabe: Array result: [0. 1. 2.]`
   ]}
 />
 
-## NumPy-Array-Attribute
+## Attribute von NumPy Arrays
 
 Jedes NumPy-Array besitzt Attribute für Form, Elementzahl, Datentyp und Speicherbedarf.
 
-### Dimensions- und Formattribute
+### Dimensions und Formattribute
 
 Das folgende Beispiel liest die wichtigsten Strukturattribute eines zweidimensionalen Arrays aus.
 
@@ -156,7 +157,7 @@ print("Von den Elementen belegte Bytes:", a.nbytes)  # Ausgabe: Von den Elemente
   ]}
 />
 
-### Wichtige Attributerklärungen
+### Attribute eines Arrays
 
 | Attribut | Funktion | Beispielergebnis |
 |-----------|----------|----------------|
@@ -193,11 +194,11 @@ print("Mixed result:", a)  # Ausgabe: Mixed result: [0. 1. 2.]`
   ]}
 />
 
-## Datentypkonvertierung und -manipulation
+## Konvertierung und Bearbeitung von Datentypen
 
 NumPy bietet verschiedene Möglichkeiten zum Konvertieren und Bearbeiten von Array-Datentypen entsprechend den Anforderungen der Datenanalyse.
 
-### Datentyp-Konvertierungsmethoden
+### Methoden zur Konvertierung von Datentypen
 
 Mit einer Datentypkonvertierung wählst du eine andere Darstellung für die weitere Analyse. `astype()` gibt ein konvertiertes Array zurück und verändert das ursprüngliche Array nicht direkt. Beim Umwandeln einer Gleitkommazahl in eine Ganzzahl schneidet NumPy den Nachkommaanteil in Richtung null ab.
 
@@ -297,7 +298,7 @@ for name, arr in arrays.items():
   ]}
 />
 
-## Praktische Verwendung von Array-Attributen
+## Praktische Verwendung von Attributen von Arrays
 
 Array-Attribute helfen dir beim Debuggen, Optimieren und Bearbeiten wissenschaftlicher Daten.
 

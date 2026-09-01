@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Analisis Komponen Utama",
-  description: "Turunkan PCA dari data terpusat, vektor eigen kovarians, dan dekomposisi nilai singular. Tafsirkan varians terjelaskan dan rekonstruksi rank rendah secara geometris.",
+  description: "Turunkan PCA dari data terpusat, vektor eigen kovarians, dan dekomposisi nilai singular. Jelaskan arti varians terjelaskan dan rekonstruksi rank rendah secara geometris.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-17",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Metode Linear AI",
 };
 
 ## Mulai dengan Data Terpusat
 
-Misalkan <InlineMath math="X\in\mathbb{R}^{m\times n}" /> memuat <InlineMath math="m" /> pengamatan dari <InlineMath math="n" /> fitur. PCA dimulai dengan mengurangi setiap fitur dengan nilai rata-ratanya:
+Misalkan <InlineMath math="X\in\mathbb{R}^{m\times n}" /> memuat <InlineMath math="m" /> pengamatan dari <InlineMath math="n" /> fitur. <InlineMath math="\mathrm{PCA}" /> dimulai dengan mengurangi setiap fitur dengan nilai rata-ratanya:
 
 <MathContainer>
 <BlockMath math="\mu_j=\frac1m\sum_{i=1}^m X_{ij}" />
@@ -43,7 +43,7 @@ Setiap arah berikutnya memaksimumkan varians yang sama dengan syarat tegak lurus
 
 <BlockMath math="Z=X_cV" />
 
-dan kovarians sampelnya berbentuk diagonal:
+Kovarians sampel dari skor <InlineMath math="Z" /> berbentuk diagonal:
 
 <BlockMath math="\frac{1}{m-1}Z^TZ=V^TCV=\Lambda" />
 
@@ -77,7 +77,7 @@ Vektor singular kanan menjadi arah komponen utama dan
 
 <BlockMath math="\lambda_j=\frac{\sigma_j^2}{m-1}" />
 
-Penggunaan SVD menghindari pembentukan eksplisit <InlineMath math="X_c^TX_c" /> yang menguadratkan bilangan kondisi. SVD juga merupakan jalur alami ketika <InlineMath math="X_c" /> berbentuk persegi panjang atau kekurangan rank.
+Menggunakan <InlineMath math="\mathrm{SVD}" /> menghindari pembentukan <InlineMath math="X_c^TX_c" />, yang akan menguadratkan bilangan kondisi. <InlineMath math="\mathrm{SVD}" /> juga cocok ketika <InlineMath math="X_c" /> berbentuk persegi panjang atau kekurangan rank.
 
 ## Contoh Kovarians Dua Dimensi
 
@@ -85,7 +85,7 @@ Perhatikan elips kovarians yang diputar sebesar
 
 <BlockMath math="\theta=\frac{\pi}{6}" />
 
-dengan varians <InlineMath math="9" /> dan <InlineMath math="2{,}25" /> sepanjang sumbu utamanya. Misalkan
+Elips kovarians diputar sebesar <InlineMath math="\theta" /> dan memiliki varians <InlineMath math="9" /> serta <InlineMath math="2{,}25" /> pada kedua sumbu utamanya. Misalkan
 
 <MathContainer>
 <BlockMath math="R=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}" />
@@ -104,7 +104,7 @@ Komponen pertama menjelaskan
 
 <BlockMath math="\frac{9}{9+2{,}25}=0{,}8=80\%" />
 
-dari varians total.
+Hasil ini berarti komponen pertama menjelaskan <InlineMath math="80\%" /> dari varians total.
 
 <LineEquation
   title={<>Elips kovarians dan arah komponen utama <InlineMath math="v_1,v_2" /></>}
@@ -173,14 +173,14 @@ dari varians total.
   showZAxis={false}
 />
 
-## Batas Interpretasi
+## Batas Penggunaan PCA
 
-| Pemeriksaan | Mengapa penting |
+| Pemeriksaan | Alasan |
 | --- | --- |
 | Pusatkan hanya dengan rata-rata data latih | mencegah kebocoran data dan mempertahankan sistem koordinat yang dipelajari |
 | Tinjau satuan dan skala fitur | varians numerik besar dapat mendominasi karena alasan yang keliru |
 | Pilih <InlineMath math="k" /> berdasarkan kebutuhan validasi | varians terjelaskan tidak mengukur relevansi prediktif |
-| Ingat bahwa tanda vektor eigen bersifat sembarang | <InlineMath math="v_j" /> dan <InlineMath math="-v_j" /> mendefinisikan komponen yang sama |
-| Periksa struktur nonlinear dan pencilan | PCA merupakan ringkasan linear berbasis varians dan peka terhadap keduanya |
+| Tanda vektor eigen bersifat sembarang | <InlineMath math="v_j" /> dan <InlineMath math="-v_j" /> mendefinisikan komponen yang sama |
+| Periksa struktur nonlinear dan pencilan | <InlineMath math="\mathrm{PCA}" /> merupakan ringkasan linear berbasis varians dan peka terhadap keduanya |
 
-PCA menemukan arah varians. Varians saja tidak dapat menunjukkan penyebab. Satu komponen utama dapat mencampurkan banyak fitur asli, dan arah dengan varians rendah tetap dapat penting untuk tugas lanjutan.
+<InlineMath math="\mathrm{PCA}" /> menemukan arah dengan variasi data terbesar. Nilai varians saja tidak menjelaskan penyebab. Satu komponen utama dapat mencampurkan banyak fitur asli. Arah dengan varians rendah tetap dapat membawa sinyal yang dibutuhkan oleh tugas prediksi atau klasifikasi berikutnya.

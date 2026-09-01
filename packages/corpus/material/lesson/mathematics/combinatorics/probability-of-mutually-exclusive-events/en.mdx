@@ -3,11 +3,11 @@ export const metadata = {
    description: "Recognize disjoint events, distinguish them from independent events, and apply the addition rule without double counting.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-08-29",
+   dateModified: "2026-09-01",
    subject: "Combinatorics",
 };
 
-## Understanding Mutually Exclusive Events
+## Mutually Exclusive Events
 
 In everyday life, we often face situations where **two events cannot occur simultaneously**. For example, when flipping a coin, we cannot get both heads and tails at the same time in a single flip. Events like these are called mutually exclusive events.
 
@@ -25,9 +25,9 @@ The main characteristic of mutually exclusive events is **having no intersection
 
 The symbol <InlineMath math="\emptyset" /> indicates an empty set, meaning there are no common elements between the two events.
 
-### Examples in Real Life
+### Outcomes That Cannot Occur Together
 
-Several examples of mutually exclusive events that are easy to understand:
+The following pairs cannot occur in the same trial:
 
 - In dice rolling: getting an even number and getting an odd number
 - In card drawing: drawing an Ace and drawing a King in a single draw
@@ -39,7 +39,7 @@ To identify whether two events are mutually exclusive, ask yourself: "Can these 
 
 ## Formula for Probability of Mutually Exclusive Events
 
-Since mutually exclusive events have no intersection, calculating their probability becomes simpler. The **basic formula** for the probability of mutually exclusive events is:
+The general addition rule subtracts the overlap <InlineMath math="P(A \cap B)" />. Mutually exclusive events have <InlineMath math="P(A \cap B)=0" />, so that term disappears:
 
 <BlockMath math="P(A \cup B) = P(A) + P(B)" />
 
@@ -47,7 +47,7 @@ This formula shows that the probability of event <InlineMath math="A" /> or even
 
 Mutually exclusive does **not** mean independent. If <InlineMath math="P(A) > 0" /> and <InlineMath math="P(B) > 0" />, learning that <InlineMath math="A" /> occurred makes <InlineMath math="B" /> impossible. Thus <InlineMath math="P(A \cap B) = 0" />, while independent events would require <InlineMath math="P(A \cap B) = P(A)P(B) > 0" />.
 
-### Why This Formula Works
+### Zero Intersection in the Addition Rule
 
 Unlike events that are not mutually exclusive, in mutually exclusive events we don't need to subtract the intersection because <InlineMath math="P(A \cap B) = 0" />. Therefore, the general formula:
 
@@ -57,7 +57,7 @@ Becomes:
 
 <BlockMath math="P(A \cup B) = P(A) + P(B) - 0 = P(A) + P(B)" />
 
-## Application in Calculations
+## Calculations with the Addition Rule
 
 ### Dice Rolling
 
@@ -96,7 +96,7 @@ Since there is no intersection, the two events are **mutually exclusive**.
 <BlockMath math="P(A \cup C) = P(A) + P(C) = \frac{1}{2} + \frac{1}{2} = 1" />
 </MathContainer>
 
-This result makes sense because in dice rolling, either an odd or even number will definitely appear (all possibilities are covered).
+The odd and even outcomes together cover all six faces of the die, so their union has probability <InlineMath math="1" />.
 
 ### Rolling Two Dice
 
@@ -104,7 +104,7 @@ Two dice are rolled simultaneously. Determine the probability of getting a sum o
 
 **Solution:**
 
-To understand more clearly, look at all possible outcomes of rolling two dice in the following table:
+The table lists all <InlineMath math="36" /> ordered outcomes of the two dice:
 
 | Die <InlineMath math="1" /> \\ Die <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
 |------------------|---|---|---|---|---|---|
@@ -165,7 +165,7 @@ To add <InlineMath math="\frac{1}{9} + \frac{1}{6}" />, we need the least common
 
 ## Problem Solving Strategy
 
-### Systematic Steps
+### Check the Intersection Before Adding
 
 To solve probability problems for mutually exclusive events, follow these steps:
 
@@ -175,17 +175,17 @@ To solve probability problems for mutually exclusive events, follow these steps:
 4. **Calculate the probability of each** event separately
 5. **Apply the formula** <InlineMath math="P(A \cup B) = P(A) + P(B)" />
 
-### Practical Tips
+### Checks for the Final Answer
 
-Several useful tips:
+Check three points before accepting the answer:
 
-- **Visualize** events using diagrams or tables when possible
-- **Double-check** whether the final result makes sense (probability must be between <InlineMath math="0" /> and <InlineMath math="1" />)
-- **Ensure interpretation** of the word "or" in the problem corresponds to the union operation
+- Draw the event sets in a diagram or table when their intersection is not yet clear.
+- Verify that the final probability lies between <InlineMath math="0" /> and <InlineMath math="1" />.
+- Read "or" as union unless the problem explicitly states otherwise.
 
-### Beware of Events That Appear Mutually Exclusive
+### Events with a Nonempty Intersection
 
-Many students incorrectly identify mutually exclusive events. Here are examples of events that **appear** mutually exclusive but **actually are not**:
+Two events are not mutually exclusive when their intersection contains at least one outcome. The following examples have a nonempty intersection:
 
 **Example <InlineMath math="1" />: Dice Rolling**
 - Event <InlineMath math="A" />: Getting a prime number is <InlineMath math="\{2, 3, 5\}" />

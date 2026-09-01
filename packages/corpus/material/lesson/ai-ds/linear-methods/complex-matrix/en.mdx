@@ -3,7 +3,7 @@ export const metadata = {
     description: "Work with complex matrices, compute conjugate transposes, and use the Hermitian inner product to measure complex vectors correctly.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Linear Methods of AI",
 };
 
@@ -11,11 +11,11 @@ export const metadata = {
 
 Complex matrices use the same row, column, addition, and multiplication rules as real matrices. The difference is that every entry may have both a real and an imaginary part.
 
-A rectangular scheme of complex numbers with <InlineMath math="m \in \mathbb{N}" /> rows and <InlineMath math="n \in \mathbb{N}" /> columns is called a complex <InlineMath math="m \times n" /> matrix:
+A complex matrix with <InlineMath math="m \in \mathbb{N}" /> rows and <InlineMath math="n \in \mathbb{N}" /> columns can be written as
 
 <BlockMath math="A = \begin{pmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & & \vdots \\ a_{m1} & \cdots & a_{mn} \end{pmatrix} = (a_{ij})_{\substack{i=1,\ldots,m \\ j=1,\ldots,n}}" />
 
-with **coefficients** <InlineMath math="a_{ij} \in \mathbb{C}" /> for <InlineMath math="i = 1, \ldots, m" /> and <InlineMath math="j = 1, \ldots, n" />. The set of all complex <InlineMath math="m \times n" /> matrices is written as <InlineMath math="\mathbb{C}^{m \times n}" />.
+Each **coefficient** <InlineMath math="a_{ij} \in \mathbb{C}" /> has indices <InlineMath math="i = 1, \ldots, m" /> and <InlineMath math="j = 1, \ldots, n" />. The set of all complex <InlineMath math="m \times n" /> matrices is written as <InlineMath math="\mathbb{C}^{m \times n}" />.
 
 For example, entries such as <InlineMath math="2+3i" /> and <InlineMath math="-1-4i" /> belong to <InlineMath math="\mathbb C" />. Because conjugation matters for lengths and angles, a plain transpose is no longer the right operation for every geometric calculation.
 
@@ -38,13 +38,13 @@ The entry in row <InlineMath math="j" /> and column <InlineMath math="i" /> of <
 
 ## Properties of Adjoint Matrix
 
-The adjoint matrix has several important properties that are useful in calculations. Here are the fundamental properties that always hold:
+The following identities describe how the adjoint interacts with addition, multiplication, inversion, and inner products:
 
 ### Basic Properties
 
 1. **Relationship with real transpose**: For <InlineMath math="A \in \mathbb{R}^{m \times n} \subset \mathbb{C}^{m \times n}" />, we have <InlineMath math="A^H = A^T" />
 
-This makes sense because if the matrix only contains real entries, then the complex conjugate does not change its value.
+For real entries, complex conjugation changes nothing. Therefore, the adjoint equals the ordinary transpose.
 
 2. **Involution**: <InlineMath math="(A^H)^H = A" />
 
@@ -56,7 +56,7 @@ If we take the adjoint of an adjoint, we return to the original matrix.
 
 4. **Conjugate linearity in a scalar**: <InlineMath math="(\lambda \cdot A)^H = \overline{\lambda} \cdot A^H" />
 
-Note that for scalar multiplication, we need to take the conjugate of the scalar <InlineMath math="\lambda" />.
+Scalar multiplication requires the conjugate of the scalar <InlineMath math="\lambda" />.
 
 ### Multiplication Properties
 
@@ -99,4 +99,4 @@ The Euclidean norm satisfies the following properties:
 
 **Triangle inequality**: <InlineMath math="\|v + w\|_2 \leq \|v\|_2 + \|w\|_2" />
 
-These properties make <InlineMath math="\|\cdot\|_2" /> a genuine norm. The adjoint is therefore not decorative notation: it is the operation that keeps complex lengths, orthogonality, and projections consistent with their real counterparts.
+These properties show that <InlineMath math="\|\cdot\|_2" /> satisfies the definition of a norm. Using the adjoint in the Hermitian inner product keeps complex lengths, orthogonality, and projections consistent with their real counterparts.

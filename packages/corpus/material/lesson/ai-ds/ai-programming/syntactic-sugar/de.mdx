@@ -3,10 +3,11 @@ export const metadata = {
     description: "Python mit Listenkomprehensionen, Lambda-Funktionen und verkürzten Zuweisungen klar und kompakt schreiben.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "KI-Programmierung",
 };
 
-## Was ist syntaktischer Zucker?
+## Syntaktischer Zucker
 
 Syntaktischer Zucker ist eine knappe Schreibweise für Verhalten, das sich auch ausführlicher ausdrücken ließe. Sie kann wiederkehrenden Ballast entfernen. Kürzerer Code ist aber nur dann hilfreich, wenn sein Zweck weiterhin klar bleibt.
 
@@ -39,7 +40,7 @@ In der dritten Form steht der bedingte Ausdruck vor `for`. In der zweiten Form f
 
 ### Listenkomprehensionen in der Praxis
 
-Die folgenden Beispiele trennen zwei wichtige Fälle: einen bedingten Ausdruck und einen Filter.
+Die folgenden Beispiele unterscheiden einen bedingten Ausdruck von einem Filter.
 
 <CodeBlock
   data={[
@@ -95,7 +96,7 @@ Listenkomprehensionen können eine einfache Transformation oder einen Filter kom
 
 Beispielsweise kann `[i**2 for i in x]` als „Quadrat von i für jedes i in x“ gelesen werden, was der mathematischen Notation <InlineMath math="\{i^2 : i \in X\}" /> sehr ähnlich ist.
 
-## Lambda-Funktionen
+## Lambdafunktionen
 
 Ein Lambda-Ausdruck erzeugt ein Funktionsobjekt ohne `def`-Anweisung. Er eignet sich besonders für eine kleine Funktion, die direkt als Argument übergeben wird.
 
@@ -251,4 +252,4 @@ Um die Vorteile von syntaktischem Zucker zu verstehen, vergleichen wir verschied
 | Zuweisung | `a = a + 5` | `a += 5` |
 | Auf das letzte Element zugreifen | `data[len(data) - 1]` | `data[-1]` |
 
-Wähle die kompakte Form, wenn die Operation dadurch leichter erkennbar wird. Verbirgt sie Kontrollfluss oder Nebenwirkungen, ist die ausführliche Form die bessere Erklärung und oft auch das bessere Programm.
+Verwende die kompakte Form nur, wenn die Operation ohne verborgenen Kontrollfluss oder verborgene Nebenwirkungen erkennbar ist. Andernfalls ist die ausführliche Form geeigneter.

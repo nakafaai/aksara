@@ -1,22 +1,22 @@
 
 export const metadata = {
-  title: "Reflection Matrix over Arbitrary Point",
+  title: "Reflection about an Arbitrary Point",
   description: "Reflect points about an arbitrary center by combining translations with matrix operations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometric Transformation",
 };
 
-## Finding the Reflection Matrix over an Arbitrary Point
+## Reflecting about an Arbitrary Point with Matrices
 
-The image of a point <InlineMath math="(x,y)" /> reflected over the point <InlineMath math="(a,b)" /> is <InlineMath math="(-x+2a, -y+2b)" /> or <InlineMath math="(2a-x, 2b-y)" />.
+The image of a point <InlineMath math="(x,y)" /> reflected about the point <InlineMath math="(a,b)" /> is <InlineMath math="(-x+2a, -y+2b)" /> or <InlineMath math="(2a-x, 2b-y)" />.
 
-The matrix operation associated with this transformation cannot be represented solely by a single <InlineMath math="2 \times 2" /> multiplication matrix, as it involves addition (translation) due to the center point <InlineMath math="(a,b)" /> not being the origin.
+Multiplication by a <InlineMath math="2 \times 2" /> matrix alone cannot express this transformation because reflection about a center outside the origin includes a translation.
 
-However, we can represent this transformation as a combination of matrix operations:
+Use three operations:
 
-1. Translate the point <InlineMath math="(x,y)" /> so that the center of reflection <InlineMath math="(a,b)" /> effectively becomes the origin. This means we work with <InlineMath math="(x-a, y-b)" />.
+1. Subtract the center coordinates from <InlineMath math="(x,y)" /> to obtain <InlineMath math="(x-a, y-b)" />.
 2. Reflect this translated point over the origin using the matrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
 3. Translate the result back by adding the coordinates of the center of reflection <InlineMath math="(a,b)" />.
 
@@ -27,15 +27,15 @@ Mathematically, if <InlineMath math="(x', y')" /> is the image of <InlineMath ma
   <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -(x-a) \\ -(y-b) \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} -x+a \\ -y+b \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} -x+2a \\ -y+2b \end{pmatrix}" />
 </MathContainer>
 
-This corresponds to the formula we are familiar with.
+The final vector gives the coordinate rule <InlineMath math="(x,y)\mapsto(2a-x,2b-y)" />.
 
 ### Matrix Operation for Reflection over a Point
 
-The matrix operation associated with reflection over the point <InlineMath math="P(a,b)" /> for any point <InlineMath math="(x,y)" /> is:
+For reflection about the point <InlineMath math="P(a,b)" />, the image of any point <InlineMath math="(x,y)" /> is:
 
 <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} + 2 \begin{pmatrix} a \\ b \end{pmatrix}" />
 
-Or, more precisely, it can be written as a combination:
+The equivalent centered form shows the three operations directly:
 
 <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \left( \begin{pmatrix} x \\ y \end{pmatrix} - \begin{pmatrix} a \\ b \end{pmatrix} \right) + \begin{pmatrix} a \\ b \end{pmatrix}" />
 
@@ -43,11 +43,9 @@ Expanding the matrix expression gives <InlineMath math="\begin{pmatrix} -x+2a \\
 
 ## Finding the Image of a Point
 
-Determine the image of point <InlineMath math="(2,3)" /> by reflection over point <InlineMath math="(1,1)" />.
+Determine the image of point <InlineMath math="(2,3)" /> after reflection about point <InlineMath math="(1,1)" />.
 
-**Solution:**
-
-Point <InlineMath math="(x,y) = (2,3)" />. Center <InlineMath math="(a,b) = (1,1)" />.
+The point being reflected is <InlineMath math="(x,y) = (2,3)" /> and the center of reflection is <InlineMath math="(a,b) = (1,1)" />.
 
 <MathContainer>
   <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 2 \\ 3 \end{pmatrix} + 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix}" />
@@ -55,7 +53,7 @@ Point <InlineMath math="(x,y) = (2,3)" />. Center <InlineMath math="(a,b) = (1,1
   <BlockMath math="= \begin{pmatrix} -2 \\ -3 \end{pmatrix} + \begin{pmatrix} 2 \\ 2 \end{pmatrix} = \begin{pmatrix} -2+2 \\ -3+2 \end{pmatrix} = \begin{pmatrix} 0 \\ -1 \end{pmatrix}" />
 </MathContainer>
 
-Visualization:
+The diagram places the center midway between the original point and its image.
 
 <LineEquation
   title={
@@ -94,6 +92,7 @@ Visualization:
         { x: 2, y: 3, z: 0 },
         { x: 0, y: -1, z: 0 },
       ],
+      smooth: false,
       color: "#4f46e5",
     }, // Line QQ'
   ]}
@@ -103,8 +102,8 @@ Visualization:
 
 ## Exercises
 
-1.  Determine the image of point <InlineMath math="(3,1)" /> by reflection over point <InlineMath math="(-2,-1)" />.
-2.  A line passes through points <InlineMath math="A(1,2)" /> and <InlineMath math="B(3,4)" />. Determine the equation of the image line after reflection over point <InlineMath math="C(0,1)" />.
+1.  Determine the image of point <InlineMath math="(3,1)" /> after reflection about point <InlineMath math="(-2,-1)" />.
+2.  A line passes through points <InlineMath math="A(1,2)" /> and <InlineMath math="B(3,4)" />. Determine the equation of the image line after reflection about point <InlineMath math="C(0,1)" />.
 
 ### Solutions
 

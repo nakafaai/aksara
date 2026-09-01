@@ -3,17 +3,17 @@ export const metadata = {
   description: "Geser grafik fungsi ke atas atau bawah sambil menelusuri koordinat, asimtot, dan range.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Transformasi Fungsi",
 };
 
 
 
-## Konsep Dasar Translasi Vertikal
+## Translasi Vertikal
 
 Translasi vertikal menggeser grafik fungsi ke atas atau ke bawah sepanjang sumbu <InlineMath math="y" /> tanpa mengubah bentuknya. Setiap titik berpindah sejauh jarak vertikal yang sama, seolah seluruh grafik diangkat atau diturunkan.
 
-Jika kita memiliki fungsi <InlineMath math="f(x)" />, maka translasi vertikal menghasilkan fungsi baru <InlineMath math="g(x) = f(x) + k" /> dimana <InlineMath math="k" /> adalah konstanta translasi.
+Jika kita memiliki fungsi <InlineMath math="f(x)" />, translasi vertikal menghasilkan fungsi baru <InlineMath math="g(x) = f(x) + k" />. Konstanta <InlineMath math="k" /> menentukan arah dan jarak pergeserannya.
 
 ### Aturan Translasi Vertikal
 
@@ -21,7 +21,7 @@ Untuk setiap fungsi <InlineMath math="f(x)" />, translasi vertikal didefinisikan
 
 <BlockMath math="g(x) = f(x) + k" />
 
-Dimana:
+Aturan pergeserannya adalah:
 - Jika <InlineMath math="k > 0" />, grafik bergeser ke **atas** sebesar <InlineMath math="k \text{ satuan}" />
 - Jika <InlineMath math="k < 0" />, grafik bergeser ke **bawah** sebesar <InlineMath math="|k| \text{ satuan}" />
 - Jika <InlineMath math="k = 0" />, tidak ada translasi (grafik tetap sama)
@@ -40,6 +40,7 @@ Fungsi linear <InlineMath math="f(x) = 2x" /> menunjukkan bahwa translasi vertik
         const x = (i - 10) * 0.5;
         return { x, y: 2 * x, z: 0 };
       }),
+      smooth: false,
       color: "#9333ea",
       labels: [{ text: <InlineMath math="f(x)=2x" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -49,6 +50,7 @@ Fungsi linear <InlineMath math="f(x) = 2x" /> menunjukkan bahwa translasi vertik
         const x = (i - 10) * 0.5;
         return { x, y: 2 * x + 3, z: 0 };
       }),
+      smooth: false,
       color: "#ea580c",
       labels: [{ text: <InlineMath math="g(x)=2x+3" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -58,6 +60,7 @@ Fungsi linear <InlineMath math="f(x) = 2x" /> menunjukkan bahwa translasi vertik
         const x = (i - 10) * 0.5;
         return { x, y: 2 * x - 2, z: 0 };
       }),
+      smooth: false,
       color: "#0d9488",
       labels: [{ text: <InlineMath math="h(x)=2x-2" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -114,7 +117,7 @@ Titik-titik puncaknya memperjelas perpindahan:
 - Setelah translasi vertikal <InlineMath math="+4" />, titik puncak <InlineMath math="g(x) = x^2 + 4" /> berada di <InlineMath math="(0, 4)" />
 - Setelah translasi vertikal <InlineMath math="-3" />, titik puncak <InlineMath math="h(x) = x^2 - 3" /> berada di <InlineMath math="(0, -3)" />
 
-## Sifat Penting Translasi Vertikal
+## Sifat Translasi Vertikal
 
 ### Bentuk Grafik Tidak Berubah
 
@@ -131,9 +134,7 @@ Jika titik <InlineMath math="(a, b)" /> berada pada grafik <InlineMath math="f(x
 
 Jika range fungsi asli adalah <InlineMath math="[c, d]" />, maka range setelah translasi vertikal <InlineMath math="k" /> menjadi <InlineMath math="[c + k, d + k]" />.
 
-## Contoh Penerapan
-
-### Contoh Fungsi Eksponensial
+## Menggeser Grafik Eksponensial secara Vertikal
 
 Pada fungsi eksponensial <InlineMath math="f(x) = 2^x" />, translasi vertikal juga memindahkan asimtot horizontal.
 
@@ -233,6 +234,7 @@ Pada fungsi eksponensial:
            const x = (i - 10) * 0.5;
            return { x, y: 3 * x + 2, z: 0 };
          }),
+         smooth: false,
          color: "#7c3aed",
          labels: [{ text: <InlineMath math="g(x)=3x+2" />, offset: [1, 0.5, 0] }],
          showPoints: false,
@@ -242,6 +244,7 @@ Pada fungsi eksponensial:
            const x = (i - 10) * 0.5;
            return { x, y: 3 * x + 2 - 7, z: 0 };
          }),
+         smooth: false,
          color: "#0d9488",
          labels: [{ text: <InlineMath math="g'(x)=3x-5" />, offset: [1, 0.5, 0] }],
          showPoints: false,

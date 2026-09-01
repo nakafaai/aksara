@@ -1,9 +1,9 @@
 export const metadata = {
     title: "Analisis Statistik",
-    description: "Pelajari matriks informasi Fisher, kovarian parameter, dan kuadrat terkecil berbobot. Bangun model statistik dengan interval kepercayaan.",
+    description: "Perkirakan kovarian parameter dan interval kepercayaan dengan informasi Fisher serta kuadrat terkecil berbobot.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Metode Linear AI",
 };
 
@@ -13,11 +13,11 @@ Kuadrat terkecil baru menjadi penduga statistik setelah kita menyatakan bagaiman
 
 <BlockMath math="y=X\beta+\varepsilon" />
 
-dengan <InlineMath math="X\in\mathbb{R}^{m\times p}" /> sebagai matriks desain tetap, <InlineMath math="\beta\in\mathbb{R}^p" /> sebagai vektor parameter yang belum diketahui, dan <InlineMath math="y\in\mathbb{R}^m" /> sebagai vektor observasi. Untuk kuadrat terkecil Gaussian biasa, anggap
+Dalam model ini, <InlineMath math="X\in\mathbb{R}^{m\times p}" /> adalah matriks desain tetap, <InlineMath math="\beta\in\mathbb{R}^p" /> adalah vektor parameter yang belum diketahui, dan <InlineMath math="y\in\mathbb{R}^m" /> adalah vektor observasi. Untuk kuadrat terkecil Gaussian biasa, anggap
 
 <BlockMath math="\varepsilon\sim\mathcal N(0,\sigma^2I_m)" />
 
-serta <InlineMath math="X" /> memiliki rank kolom penuh. Observasinya bukan variabel normal standar; vektor galat acaknya berdistribusi Gaussian terpusat dengan varians <InlineMath math="\sigma^2" />.
+Asumsi kedua adalah <InlineMath math="X" /> memiliki rank kolom penuh. Dengan kedua asumsi tersebut, vektor observasi <InlineMath math="y" /> mengikuti <InlineMath math="\mathcal N(X\beta,\sigma^2I_m)" />. Rataan vektor <InlineMath math="y" /> adalah <InlineMath math="X\beta" />, sedangkan matriks kovariansnya adalah <InlineMath math="\sigma^2I_m" />.
 
 ## Informasi Fisher dan Kovarians Penduga
 
@@ -66,14 +66,14 @@ Interval ini merupakan pernyataan tentang prosedur dalam pengambilan sampel beru
 
 ## Komputasi Stabil dengan QR
 
-Misalkan <InlineMath math="X=QR" /> merupakan dekomposisi QR tereduksi, dengan <InlineMath math="Q^TQ=I_p" /> dan <InlineMath math="R" /> segitiga atas yang tidak singular. Maka
+Misalkan <InlineMath math="X=QR" /> merupakan dekomposisi <InlineMath math="\mathrm{QR}" /> tereduksi, dengan <InlineMath math="Q^TQ=I_p" /> dan <InlineMath math="R" /> segitiga atas yang tidak singular. Maka
 
 <MathContainer>
 <BlockMath math="\hat\beta=R^{-1}Q^Ty" />
 <BlockMath math="\operatorname{Cov}(\hat\beta)=\sigma^2R^{-1}R^{-T}" />
 </MathContainer>
 
-Dalam kode numerik, selesaikan sistem segitiga <InlineMath math="R\hat\beta=Q^Ty" /> tanpa membentuk <InlineMath math="R^{-1}" /> secara eksplisit. QR juga menghindari penguadratan bilangan kondisi akibat membentuk <InlineMath math="X^TX" /> hanya untuk menyelesaikan masalah kuadrat terkecil.
+Dalam kode numerik, selesaikan sistem segitiga <InlineMath math="R\hat\beta=Q^Ty" /> tanpa membentuk <InlineMath math="R^{-1}" /> secara eksplisit. <InlineMath math="\mathrm{QR}" /> juga menghindari penguadratan bilangan kondisi akibat membentuk <InlineMath math="X^TX" /> hanya untuk menyelesaikan masalah kuadrat terkecil.
 
 ## Kuadrat Terkecil Berbobot dan Tergeneralisasi
 
@@ -85,7 +85,7 @@ Kuadrat terkecil tergeneralisasi meminimalkan
 
 <BlockMath math="(y-X\beta)^T\Omega^{-1}(y-X\beta)" />
 
-dan menghasilkan
+Solusi kuadrat terkecil tergeneralisasi, informasi Fisher, dan kovarians penduga kuadrat terkecil tergeneralisasi adalah
 
 <MathContainer>
 <BlockMath math="\hat\beta_{\mathrm{GLS}}=(X^T\Omega^{-1}X)^{-1}X^T\Omega^{-1}y" />
@@ -97,9 +97,9 @@ Untuk galat independen dengan varians <InlineMath math="\sigma_i^2" />, gunakan 
 
 <BlockMath math="\sum_{i=1}^m\frac{(y_i-x_i^T\beta)^2}{\sigma_i^2}" />
 
-sehingga observasi <InlineMath math="i" /> memperoleh bobot <InlineMath math="1/\sigma_i^2" />. Whitening dengan <InlineMath math="W=\Omega^{-1/2}" /> mengubah masalah ini menjadi kuadrat terkecil biasa untuk <InlineMath math="\widetilde X=WX" /> dan <InlineMath math="\widetilde y=Wy" />.
+Setiap observasi <InlineMath math="i" /> memperoleh bobot <InlineMath math="1/\sigma_i^2" />. Whitening dengan <InlineMath math="W=\Omega^{-1/2}" /> mengubah masalah ini menjadi kuadrat terkecil biasa untuk <InlineMath math="\widetilde X=WX" /> dan <InlineMath math="\widetilde y=Wy" />.
 
-## Contoh Berbobot yang Dihitung Lengkap
+## Mencocokkan Model Linear Berbobot
 
 Perhatikan tiga observasi untuk intersep dan kemiringan:
 
@@ -115,7 +115,7 @@ Observasi ketiga memiliki simpangan baku <InlineMath math="2" />, sehingga bobot
 <BlockMath math="X^T\Omega^{-1}y=\begin{pmatrix}\frac{17}4\\\frac92\end{pmatrix}" />
 </MathContainer>
 
-dan karena itu
+Penyelesaian sistem persamaan normal berbobot memberikan
 
 <MathContainer>
 <BlockMath math="\hat\beta_{\mathrm{GLS}}=\begin{pmatrix}\frac79\\\frac53\end{pmatrix}" />

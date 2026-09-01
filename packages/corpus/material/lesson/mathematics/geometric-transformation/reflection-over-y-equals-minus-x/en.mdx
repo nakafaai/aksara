@@ -4,11 +4,11 @@ export const metadata = {
   description: "Reflect points, triangles, and lines across the falling diagonal using coordinate rules and worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometric Transformation",
 };
 
-## Understanding Reflection over the Negative Diagonal Line
+## Reflection over the Negative Diagonal Line
 
 Reflection over the line <InlineMath math="y = -x" /> is a geometric transformation where each point of an object is mapped to a new position, with the line <InlineMath math="y = -x" /> acting as a mirror.
 
@@ -23,7 +23,7 @@ If a point <InlineMath math="P(x, y)" /> is reflected over the line <InlineMath 
   <BlockMath math="y' = -x" />
 </MathContainer>
 
-Thus, the image of point <InlineMath math="P(x, y)" /> is <InlineMath math="P'(-y, -x)" />. Notice that the <InlineMath math="x" /> and <InlineMath math="y" /> coordinates swap places and change signs (become their negatives).
+The image of point <InlineMath math="P(x, y)" /> is <InlineMath math="P'(-y, -x)" />. The <InlineMath math="x" /> and <InlineMath math="y" /> coordinates swap places, and both signs change.
 
 ## Reflecting a Point
 
@@ -34,7 +34,7 @@ Suppose we have point <InlineMath math="D(2, 1)" />. If point <InlineMath math="
   <BlockMath math="y' = -(2) = -2" />
 </MathContainer>
 
-Thus, the image of point <InlineMath math="D" /> is <InlineMath math="D'(-1, -2)" />.
+The image of point <InlineMath math="D" /> is <InlineMath math="D'(-1, -2)" />.
 
 The following point pairs show both steps of reflection across <InlineMath math="y = -x" />:
 
@@ -56,6 +56,7 @@ The following point pairs show both steps of reflection across <InlineMath math=
         { x: -6, y: 6, z: 0 },
         { x: 6, y: -6, z: 0 },
       ],
+      smooth: false,
       color: "#4f46e5",
       labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [0.5, 0.5, 0] }],
       }, // Reflection line
@@ -122,6 +123,7 @@ The image triangle <InlineMath math="A'B'C'" /> is formed by connecting the poin
         { x: -7, y: 7, z: 0 },
         { x: 7, y: -7, z: 0 },
       ],
+      smooth: false,
       color: "#4f46e5",
       labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [0.5, 0.5, 0] }],
       }, // Reflection line
@@ -141,6 +143,7 @@ The image triangle <InlineMath math="A'B'C'" /> is formed by connecting the poin
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#d97706",
       showPoints: true,
       labels: [{ text: segment.from.label, at: 0, offset: [0.4, 0.4, 0] }],
@@ -161,6 +164,7 @@ The image triangle <InlineMath math="A'B'C'" /> is formed by connecting the poin
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [{ text: segment.from.label, at: 0, offset: [0.4, 0.4, 0] }],
@@ -214,6 +218,7 @@ So, the equation of the image of the line <InlineMath math="y = -4x - 2" /> afte
         { x: -7, y: 7, z: 0 },
         { x: 7, y: -7, z: 0 },
       ],
+      smooth: false,
       color: "#4f46e5",
       labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [0.5, 0.5, 0] }],
       }, // Reflection line
@@ -224,7 +229,7 @@ So, the equation of the image of the line <InlineMath math="y = -4x - 2" /> afte
         return { x: xVal, y: -4 * xVal - 2, z: 0 };
       }),
       color: "#9333ea",
-      smooth: true,
+      smooth: false,
       labels: [{ text: <InlineMath math="y=-4x-2" />, at: 6, offset: [1, 0.5, 0] }],
     },
     {
@@ -234,7 +239,7 @@ So, the equation of the image of the line <InlineMath math="y = -4x - 2" /> afte
         return { x: xVal, y: (-1 / 4) * xVal + 1 / 2, z: 0 };
       }),
       color: "#db2777",
-      smooth: true,
+      smooth: false,
       labels: [{ text: <InlineMath math="y=(-\frac{1}{4})x+\frac{1}{2}" />, at: 8, offset: [0.5, -1, 0] }],
     },
   ]}

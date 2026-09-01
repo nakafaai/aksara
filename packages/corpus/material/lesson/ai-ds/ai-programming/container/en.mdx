@@ -1,45 +1,45 @@
 export const metadata = {
-  title: "Containers",
-  description: "Learn Python container data types like list, tuple, dictionary, and set, then use indexing, slicing, and data manipulation examples.",
+  title: "Python Collections",
+  description: "Compare Python collections by order, mutability, member uniqueness, and the operations used to access their elements.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-09-18",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "AI Programming",
 };
 
-## Container Concepts in Python
+## Collections in Python
 
-Containers group values and define how code can access them. A sequence preserves positions, a mapping associates keys with values, and a set represents unique members. Choose a container from the behavior the code needs.
+Collections store several values in one object. Some preserve the position of each element, some associate keys with values, and some keep only unique members. Choose a collection according to how the program will access and change its data.
 
-Some containers can mix object types, but each has its own constraints. Dictionary keys and set members must be hashable, strings contain text, and mutability differs by container.
+Some collections can contain objects of different types, but each type has its own rules. Dictionary keys and set members, for example, must remain hashable while they are in the collection. The collection type also determines whether its contents can change after creation.
 
 
-This lesson compares five built-in collection forms:
+Python provides five common built-in collections:
 
-- **String** - sequence of characters that cannot be changed
-- **List** - sequence of items that can be changed and indexed
-- **Tuple** - sequence of items that cannot be changed
-- **Dictionary** - key-value pairs
-- **Set** - collection of unique items without order
+- A **string** stores an immutable sequence of characters
+- A **list** stores an ordered sequence whose elements can change
+- A **tuple** stores an ordered sequence whose positions cannot change
+- A **dictionary** stores key-value pairs
+- A **set** stores unique members without indices
 
-## Introduction to Lists
+## Python Lists
 
-A list is an ordered, mutable sequence. It can hold values of different types, although collections with one clear element shape are usually easier to reason about.
+A list preserves element order and allows its contents to change. One list may contain values of different types, although a consistent element shape is usually easier to process.
 
 Unlike a fixed-size low-level array, a Python list can grow and shrink. It stores references to Python objects, so mutating a nested object can be visible through every reference to that object.
 
 
-### List Characteristics
+### List Properties
 
 | Characteristic | Explanation | Example |
 |---------------|-------------|---------|
-| Ordered | Elements have fixed order | `[1, 2, 3]` different from `[3, 2, 1]` |
+| Ordered | Each element has a position | `[1, 2, 3]` is different from `[3, 2, 1]` |
 | Heterogeneous | Can hold various data types | `[1, 'text', 3.14, True]` |
 | Mutable | Contents can be changed after creation | Can add, remove, or modify elements |
 
-### List Creation Syntax
+### Writing a List
 
-Lists are created using square brackets with elements separated by commas. Lists can contain items of different data types or even other lists.
+A list literal uses square brackets and separates its elements with commas. A list can contain values of different types or other lists.
 
 <CodeBlock
   data={[
@@ -67,14 +67,14 @@ nested = [1, [2.5, False, 'red'], 3.5, 'blue']  # Output: [1, [2.5, False, 'red'
 
 ## List Indexing
 
-Indexing is a way to access individual elements in a list using position numbers. Python uses zero-based indexing, meaning the first element has index <InlineMath math="0" />.
+Indexing accesses one list element by its position. Python uses zero-based indexing, so the first element has index <InlineMath math="0" />.
 
 
-Indexing in Python has special rules that need to be understood:
+Python list indices follow these rules:
 
 - **Positive indices** start from <InlineMath math="0" /> for the first element
 - **Negative indices** start from <InlineMath math="-1" /> for the last element
-- **Indices out of range** will result in IndexError
+- **An index outside the valid range** raises `IndexError`
 
 <CodeBlock
   data={[
@@ -102,13 +102,14 @@ print('nested[1][2][1] =', nested[1][2][1])  # Output: nested[1][2][1] = e`
 
 ## Slicing with Stride
 
-Slicing takes part of a list. The stride sets the distance between selected elements.
+Slicing takes part of a list. The step sets the distance between selected elements.
 
 
-Complete slicing syntax is `list[start:stop:step]` where:
-- `start` is the starting index (inclusive)
-- `stop` is the ending index (exclusive)
-- `step` is the interval for taking elements
+The complete syntax is `list[start:stop:step]`, where:
+
+- `start` is the first included index
+- `stop` is the first excluded index
+- `step` is the distance between selected indices
 
 <CodeBlock
   data={[
@@ -134,11 +135,11 @@ print('x[::-1] =', x[::-1])                  # Output: x[::-1] = [5, 4, 3, 2, 1,
   ]}
 />
 
-Slicing selects a contiguous or regularly spaced part of a list. For `x = [0, 1, 2, 3, 4, 5]`, `x[1:4]` returns the elements at indices <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="3" />. The end index <InlineMath math="4" /> is excluded. Adding a step with `x[1:4:2]` selects every second index, so the result comes from indices <InlineMath math="1" /> and <InlineMath math="3" />.
+Slicing selects a contiguous or regularly spaced part of a list. For `x = [0, 1, 2, 3, 4, 5]`, `x[1:4]` returns the elements at indices <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="3" />. The end index <InlineMath math="4" /> is excluded. The expression `x[1:4:2]` uses a step of <InlineMath math="2" />, so it selects indices <InlineMath math="1" /> and <InlineMath math="3" />.
 
-## Operations and Similarities with Strings
+## Lists and Strings
 
-Lists support various operations for displaying and manipulating data. Lists also have similarities with strings in terms of element access.
+Lists provide operations for reading and changing data. Their indexing and slicing syntax matches the syntax used for strings.
 
 <CodeBlock
   data={[
@@ -164,18 +165,18 @@ print('List content:', nested)
 />
 
 
-Lists and strings have similarities in terms of element access. Both support indexing and slicing with the same patterns.
+Lists and strings both support indexing and slicing.
 
 | Operation | String | List |
 |---------|--------|------|
 | **Indexing** | Get individual characters | Get individual elements |
-| **Slicing with stride** | Get substring | Get sub-list |
+| **Slicing with a step** | Get part of a string | Get part of a list |
 
-The main difference is that strings are immutable (cannot be changed) while lists are mutable (can be changed). Because of this mutable nature, lists have various methods for data manipulation.
+The main difference is mutability. A string cannot change after creation, while a list can. List methods can therefore add, remove, replace, or reorder elements.
 
 <Mermaid
-  title="Strings, Lists, and Tuples Share Some Moves"
-  description="Compare container operations that resemble strings so lists, tuples, and strings stay distinct."
+  title="Common List Methods"
+  description="These list methods add, remove, search, copy, or reorder elements."
   chart={`
     flowchart LR
         A[List Methods] --> B[Adding]
@@ -203,7 +204,7 @@ The main difference is that strings are immutable (cannot be changed) while list
 | `reverse()` | Reverse list order directly | Reversing order |
 | `remove(element)` | Remove first occurrence of element | Removing specific item |
 | `sort()` | Sort list directly | Sorting data |
-| `copy()` | Create list copy | Duplicating list |
+| `copy()` | Create a shallow copy | Copy the list without copying nested objects |
 | `count(element)` | Count occurrences of element | Counting frequency |
 
 <CodeBlock
@@ -254,21 +255,21 @@ print('Copied list:', copied)               # Output: Copied list: [0, 1, 2, 4, 
   ]}
 />
 
-## Special List Types
+## Common List Forms
 
-Python supports several special list types with different characteristics and uses:
+A list can be empty, contain mixed types, or contain other lists:
 
 1. **Empty Lists**
 
-   Empty lists are useful as initial containers to be filled with data later. There are two ways to create empty lists with the same result.
+   Both `[]` and `list()` create an empty list that can be filled later.
 
 2. **Heterogeneous Lists**
 
-   Heterogeneous lists can hold elements of different data types in one container. This provides high flexibility in data storage.
+   One list can contain a name, an age, and a Boolean value. Use mixed types only when each position has a clear meaning.
 
 3. **Nested Lists**
 
-   Nested lists are lists that contain other lists as elements. This concept enables creation of multidimensional data structures like matrices or tables.
+   A nested list contains other lists as its elements. Equal-length inner lists can represent rows of a matrix or table.
 
 <CodeBlock
   data={[
@@ -293,23 +294,23 @@ print('Nested structure:', nested)`
   ]}
 />
 
-Nested lists can represent rows, trees, or small table-like structures. They do not automatically guarantee a rectangular matrix, and repeated references can alias the same inner list. Multiple indexing such as `nested[1][2]` follows one container at a time.
+Nested lists can represent rows, trees, or small table-like structures. They do not automatically form a rectangular matrix. Multiple elements can also refer to the same inner list. Chained indexing such as `nested[1][2]` selects one element at each level.
 
 ## Other Containers
 
-Besides lists, Python provides three other container types with different characteristics and uses.
+Besides lists, Python provides tuples, dictionaries, and sets with different rules.
 
 ### Tuple
 
-Tuple is a data structure similar to list but immutable. Tuple supports packing and unpacking operations useful for data exchange. Although tuples are immutable, tuples can contain references to mutable objects like lists.
+A tuple resembles a list, but its positions cannot be replaced after creation. Several values can be packed into one tuple and later unpacked into separate variables.
 
-An important concept in tuples is the difference between the immutable tuple itself and the mutable objects it contains. Tuples cannot change their structure, but the contents of mutable objects within them can still be modified.
+A tuple cannot replace its own elements, but an element may refer to a mutable object whose contents can still change.
 
 | Aspect | Tuple | List |
 |-------|-------|------|
 | **Mutability** | Immutable | Mutable |
 | **Syntax** | `()` or without parentheses | `[]` |
-| **Usage** | Fixed data, coordinates | Changing data |
+| **Usage** | Data with fixed positions, such as coordinates | Data that needs additions or changes |
 
 <CodeBlock
   data={[
@@ -352,7 +353,7 @@ print('After modifying inner list:', t)     # Output: After modifying inner list
 
 ### Dictionary
 
-A dictionary stores key-value pairs. Each key is unique and hashable, while values may repeat and may be mutable. A literal uses curly braces `{}` with a colon between each key and value.
+A dictionary stores key-value pairs. Each key must be unique and remain hashable while it is in the dictionary. Values may repeat and may refer to mutable objects. A dictionary literal uses `{}` with a colon between each key and value.
 
 <CodeBlock
   data={[
@@ -377,7 +378,7 @@ print('After adding David:', kontak)
 
 ### Set
 
-A set stores unique, hashable elements and supports mathematical set operations. It has no semantic position or insertion-order contract. Nonempty set literals use `{}`, while an empty set must be created with `set()` because `{}` creates an empty dictionary.
+A set stores unique, hashable elements and supports mathematical set operations. It provides no element indices and makes no iteration-order guarantee. Nonempty set literals use `{}`, while an empty set must be created with `set()` because `{}` creates an empty dictionary.
 
 <CodeBlock
   data={[
@@ -406,7 +407,7 @@ print('genap & ganjil =', genap & ganjil)    # Output: genap & ganjil = set()`
   ]}
 />
 
-### Container Types Comparison
+### Collection Type Comparison
 
 | Container | Syntax | Ordered | Mutable | Duplicates | Main Usage |
 |-----------|---------|---------|---------|------------|------------|
@@ -415,4 +416,4 @@ print('genap & ganjil =', genap & ganjil)    # Output: genap & ganjil = set()`
 | **Dictionary** | `{'a': 1}` | Yes* | Yes | No (keys) | Key-value mapping |
 | **Set** | `{1, 2, 3}` | No | Yes | No | Unique elements, set operations |
 
-> Dictionary iteration preserves insertion order as a language guarantee since Python `3.7`. Updating an existing key keeps its position; deleting and reinserting it places it at the end.
+> Dictionary iteration preserves insertion order as a language guarantee since Python `3.7`. Updating an existing key keeps its position. Deleting and reinserting it places it at the end.

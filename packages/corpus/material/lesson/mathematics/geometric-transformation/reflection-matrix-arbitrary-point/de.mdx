@@ -4,6 +4,7 @@ export const metadata = {
   description: "Spiegle Punkte an einem beliebigen Spiegelzentrum, indem du Verschiebungen und Matrixoperationen miteinander verknüpfst.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometrische Transformation",
 };
 
@@ -13,9 +14,9 @@ Das Bild eines Punktes <InlineMath math="(x,y)" />, der am Punkt <InlineMath mat
 
 Diese Transformation braucht eine <InlineMath math="2 \times 2" />-Matrix und eine Verschiebung, weil das Spiegelzentrum <InlineMath math="(a,b)" /> nicht im Ursprung liegt.
 
-Wir können diese Transformation jedoch als eine Kombination von Matrixoperationen darstellen:
+Verwende dazu drei Operationen:
 
-1. Verschiebe den Punkt <InlineMath math="(x,y)" /> so, dass das Spiegelzentrum <InlineMath math="(a,b)" /> im Ursprung liegt. Dadurch entsteht <InlineMath math="(x-a, y-b)" />.
+1. Subtrahiere die Koordinaten des Spiegelzentrums von <InlineMath math="(x,y)" />. Dadurch entsteht <InlineMath math="(x-a, y-b)" />.
 2. Spiegle den verschobenen Punkt mit der Matrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> am Ursprung.
 3. Verschiebe das Ergebnis zurück, indem du die Koordinaten des Spiegelzentrums <InlineMath math="(a,b)" /> addierst.
 
@@ -26,7 +27,7 @@ Mathematisch gilt, wenn <InlineMath math="(x', y')" /> das Bild von <InlineMath 
   <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -(x-a) \\ -(y-b) \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} -x+a \\ -y+b \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} -x+2a \\ -y+2b \end{pmatrix}" />
 </MathContainer>
 
-Damit erhalten wir wieder die bekannte Koordinatenregel.
+Der letzte Vektor ergibt die Koordinatenregel <InlineMath math="(x,y)\mapsto(2a-x,2b-y)" />.
 
 ### Spiegelung an einem Punkt mit Matrizen
 
@@ -44,9 +45,7 @@ Beim Ausmultiplizieren entsteht <InlineMath math="\begin{pmatrix} -x+2a \\ -y+2b
 
 Bestimme das Bild des Punktes <InlineMath math="(2,3)" /> bei der Spiegelung am Punkt <InlineMath math="(1,1)" />.
 
-**Lösung:**
-
-Ausgangspunkt ist <InlineMath math="(x,y) = (2,3)" />, das Spiegelzentrum ist <InlineMath math="(a,b) = (1,1)" />.
+Der Ausgangspunkt ist <InlineMath math="(x,y) = (2,3)" /> und das Spiegelzentrum ist <InlineMath math="(a,b) = (1,1)" />.
 
 <MathContainer>
   <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 2 \\ 3 \end{pmatrix} + 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix}" />
@@ -54,7 +53,7 @@ Ausgangspunkt ist <InlineMath math="(x,y) = (2,3)" />, das Spiegelzentrum ist <I
   <BlockMath math="= \begin{pmatrix} -2 \\ -3 \end{pmatrix} + \begin{pmatrix} 2 \\ 2 \end{pmatrix} = \begin{pmatrix} -2+2 \\ -3+2 \end{pmatrix} = \begin{pmatrix} 0 \\ -1 \end{pmatrix}" />
 </MathContainer>
 
-Visualisierung:
+Das Diagramm zeigt das Spiegelzentrum genau in der Mitte zwischen Ausgangspunkt und Bildpunkt.
 
 <LineEquation
   title={
@@ -93,6 +92,7 @@ Visualisierung:
         { x: 2, y: 3, z: 0 },
         { x: 0, y: -1, z: 0 },
       ],
+      smooth: false,
       color: "#4f46e5",
     }, // Verbindungslinie QQ'
   ]}

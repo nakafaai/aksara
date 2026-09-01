@@ -1,18 +1,19 @@
 export const metadata = {
   title: "Kreisgleichung",
-  description: "Lerne den Zusammenhang zwischen Standardform und allgemeiner Form einer Kreisgleichung kennen, bestimme Mittelpunkt und Radius und wandle beide Formen ineinander um.",
+  description: "Wandle Kreisgleichungen zwischen Standardform und allgemeiner Form um und bestimme Mittelpunkt sowie Radius.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Analytische Geometrie",
 };
 
 
 
-## Kreisgleichungen verstehen
+## Kreisgleichungen
 
 Eine Kreisgleichung beschreibt jeden Punkt eines Kreises in der Koordinatenebene. Beim Zeichnen mit einem Zirkel legt die Nadel den Mittelpunkt fest, die Öffnung bestimmt den Radius und der Stift zeichnet genau die Punkte nach, welche die Gleichung erfüllen.
 
-Warum ist das nützlich? Denn wenn wir die Kreisgleichung kennen, können wir sofort erkennen, wo sich der **Mittelpunkt des Kreises** befindet und wie groß sein **Radius** ist, ohne den Kreis zuerst zeichnen zu müssen.
+Die Kreisgleichung enthält die Koordinaten des **Mittelpunkts** und den **Radius**. Beide lassen sich daher bestimmen, ohne den Kreis zuerst zu zeichnen.
 
 ## Kreis mit Mittelpunkt im Ursprung
 
@@ -28,7 +29,7 @@ Wenn wir beide Seiten quadrieren, erhalten wir die Kreisgleichung mit Mittelpunk
 
 <BlockMath math="x^2 + y^2 = r^2" />
 
-Die Grafik macht den festen Radius sichtbar.
+Die Grafik zeigt, dass jeder Punkt denselben Abstand vom Mittelpunkt hat.
 
 <LineEquation
   title="Kreis mit Mittelpunkt im Ursprung"
@@ -57,6 +58,7 @@ Die Grafik macht den festen Radius sichtbar.
           z: 0,
         };
       }),
+      smooth: false,
       color: "#ea580c",
       showPoints: true,
       labels: [
@@ -103,7 +105,7 @@ Für den obigen Kreis lautet die Gleichung <InlineMath math="x^2 + y^2 = 9" />, 
 
 ## Kreis mit beliebigem Mittelpunkt
 
-Was ist nun, wenn das Zentrum nicht im Ursprung liegt? Angenommen, der Mittelpunkt des Kreises liegt im Punkt <InlineMath math="P(a,b)" /> mit dem Radius <InlineMath math="r" />.
+Für einen Kreis mit Mittelpunkt <InlineMath math="P(a,b)" /> außerhalb des Ursprungs sei der Radius <InlineMath math="r" />.
 
 Jeder Punkt <InlineMath math="(x,y)" /> auf diesem Kreis muss den gleichen Abstand <InlineMath math="r" /> vom Mittelpunkt <InlineMath math="P(a,b)" /> haben. Mit der Abstandsformel:
 
@@ -142,6 +144,7 @@ Die Verschiebung des Mittelpunkts ist in der folgenden Grafik zu sehen.
           z: 0,
         };
       }),
+      smooth: false,
       color: "#ea580c",
       showPoints: true,
       labels: [

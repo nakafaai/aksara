@@ -3,17 +3,17 @@ export const metadata = {
   description: "Gunakan integral tentu untuk menghitung luas daerah yang dibatasi kurva, dengan contoh lengkap pada fungsi kuadrat dan fungsi akar.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Integral",
 };
 
 
 
-## Konsep Dasar Luas di Bawah Kurva
+## Luas di Bawah Kurva
 
-Dalam kehidupan sehari-hari, kita sering perlu menghitung luas berbagai bentuk bidang. Untuk bidang dengan bentuk sederhana seperti persegi atau segitiga, kita dapat menggunakan rumus yang sudah familiar. Namun, bagaimana jika kita ingin menghitung luas daerah yang dibatasi oleh kurva yang tidak beraturan?
+Rumus luas persegi panjang dan segitiga tidak langsung berlaku pada daerah yang batasnya melengkung.
 
-**Integral tentu** menangani daerah seperti ini dengan mengakumulasi luas strip yang makin sempit. Inilah gagasan di balik jumlahan Riemann: bagi interval, hampiri setiap strip dengan persegi panjang, lalu tinjau limit jumlahnya.
+**Integral tentu** menangani daerah tersebut dengan menjumlahkan luas strip yang makin sempit. Pada jumlahan Riemann, interval dibagi menjadi beberapa bagian, setiap strip dihampiri dengan persegi panjang, lalu limit jumlah luasnya dihitung.
 
 Misalkan fungsi <InlineMath math="f(x)" /> membatasi daerah dari <InlineMath math="x = a" /> sampai <InlineMath math="x = b" />. Kita membagi <InlineMath math="[a, b]" /> menjadi <InlineMath math="n" /> subinterval dengan lebar <InlineMath math="\Delta x" />.
 
@@ -24,7 +24,7 @@ Misalkan fungsi <InlineMath math="f(x)" /> membatasi daerah dari <InlineMath mat
 
 ## Menentukan Luas dengan Integral Tentu
 
-Untuk menghitung luas bidang datar menggunakan integral tentu, kita perlu memahami beberapa langkah sistematis:
+Gunakan tiga langkah berikut untuk menghitung luas:
 
 ### Identifikasi Batas Integrasi
 
@@ -40,11 +40,11 @@ Setelah menentukan batas dan fungsi, kita dapat mengevaluasi integral menggunaka
 
 <BlockMath math="\int_{a}^{b} f(x) \, dx = F(b) - F(a)" />
 
-di mana <InlineMath math="F(x)" /> adalah antiturunan dari <InlineMath math="f(x)" />.
+Pada rumus ini, <InlineMath math="F(x)" /> adalah antiturunan dari <InlineMath math="f(x)" />.
 
 ## Penerapan pada Fungsi Kuadrat
 
-Terapkan konsep ini pada contoh konkret. Misalkan kita ingin menghitung luas daerah yang dibatasi oleh kurva <InlineMath math="f(x) = x^2 - 4x" /> dan sumbu <InlineMath math="x" /> antara <InlineMath math="x = 1" /> dan <InlineMath math="x = 3" />.
+Perhatikan daerah yang dibatasi oleh <InlineMath math="f(x) = x^2 - 4x" />, sumbu <InlineMath math="x" />, <InlineMath math="x = 1" />, dan <InlineMath math="x = 3" />.
 
 <LineEquation
   title={<>Grafik Fungsi <InlineMath math="f(x) = x^2 - 4x" /></>}
@@ -70,6 +70,7 @@ Terapkan konsep ini pada contoh konkret. Misalkan kita ingin menghitung luas dae
         { x: 1, y: 0, z: 0 },
         { x: 1, y: -3, z: 0 }
       ],
+      smooth: false,
       color: "#ea580c",
       showPoints: false,
       labels: [
@@ -81,6 +82,7 @@ Terapkan konsep ini pada contoh konkret. Misalkan kita ingin menghitung luas dae
         { x: 3, y: 0, z: 0 },
         { x: 3, y: -3, z: 0 }
       ],
+      smooth: false,
       color: "#ea580c",
       showPoints: false,
       labels: [
@@ -92,6 +94,7 @@ Terapkan konsep ini pada contoh konkret. Misalkan kita ingin menghitung luas dae
         { x: 1, y: 0, z: 0 },
         { x: 3, y: 0, z: 0 }
       ],
+      smooth: false,
       color: "#d97706",
       showPoints: false,
       lineWidth: 1,
@@ -160,6 +163,7 @@ Pada contoh kedua, hitung luas di bawah kurva <InlineMath math="f(x) = x\sqrt{x^
         { x: 2, y: 0, z: 0 },
         { x: 2, y: 6, z: 0 }
       ],
+      smooth: false,
       color: "#7c3aed",
       showPoints: false,
       labels: [
@@ -228,7 +232,7 @@ Perhatikan bahwa <InlineMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" /> dan <Inl
 
 2. **Soal kedua dengan fungsi rasional**
 
-   Untuk integral ini, kita perlu mengingat bahwa antiturunan dari <InlineMath math="\frac{1}{x^2 + 1}" /> adalah <InlineMath math="\arctan(x)" />.
+   Antiturunan yang digunakan adalah <InlineMath math="\arctan(x)" /> karena turunannya sama dengan <InlineMath math="\frac{1}{x^2 + 1}" />.
 
    <MathContainer>
    <BlockMath math="A = \int_{0}^{1} \frac{1}{x^2 + 1} \, dx" />

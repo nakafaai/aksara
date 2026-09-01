@@ -4,7 +4,7 @@ export const metadata = {
   description: "Build tangent equations from the perpendicular radius, then solve external-point and common-tangent problems step by step.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Circle",
 };
 
@@ -33,6 +33,7 @@ A circle tangent line is a line that intersects the circle at exactly one point.
         { x: 0, y: 0, z: 0 },
         { x: 3, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       showPoints: true,
       labels: [
@@ -45,6 +46,7 @@ A circle tangent line is a line that intersects the circle at exactly one point.
         { x: 3, y: -3, z: 0 },
         { x: 3, y: 3, z: 0 },
       ],
+      smooth: false,
       color: "#0891b2",
       showPoints: false,
       labels: [{ text: "Tangent line", at: 1, offset: [1.5, 0, 0] }],
@@ -54,7 +56,7 @@ A circle tangent line is a line that intersects the circle at exactly one point.
   showZAxis={false}
 />
 
-**Important property:** A tangent line is always perpendicular to the radius of the circle at the point of tangency.
+A tangent line is always perpendicular to the radius at the point of tangency.
 
 ## Equation of Circle Tangent Line
 
@@ -137,6 +139,7 @@ From a point outside the circle, two tangent lines can be drawn to the circle.
           { x: T1x, y: T1y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [{ text: <InlineMath math="T_1" />, at: 1, offset: [0.3, 0.5, 0] }],
@@ -163,6 +166,7 @@ From a point outside the circle, two tangent lines can be drawn to the circle.
           { x: T2x, y: T2y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#d97706",
       showPoints: true,
       labels: [{ text: <InlineMath math="T_2" />, at: 1, offset: [0.3, -0.5, 0] }],
@@ -218,6 +222,7 @@ External common tangent lines are lines that touch both circles and do not inter
         { x: -3, y: 0, z: 0 },
         { x: 3, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       showPoints: true,
       labels: [
@@ -259,6 +264,7 @@ External common tangent lines are lines that touch both circles and do not inter
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: false,
       labels: [{ text: <InlineMath math="\mathrm{ECT}" />, at: 1, offset: [0, 0.5, 0] }],
@@ -297,6 +303,7 @@ External common tangent lines are lines that touch both circles and do not inter
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0d9488",
       showPoints: false,
       labels: [{ text: <InlineMath math="\mathrm{ECT}" />, at: 1, offset: [0, -0.5, 0] }],
@@ -311,7 +318,7 @@ Length of external common tangent line:
 
 <BlockMath math="l = \sqrt{d^2 - (r_1 - r_2)^2}" />
 
-where <InlineMath math="d" /> is the distance between the two circle centers.
+In this formula, <InlineMath math="d" /> is the distance between the two circle centers.
 
 This positive-length external tangent segment exists only when <InlineMath math="d>|r_1-r_2|" />. Equality describes internal tangency, where the segment between the two contact points collapses to length zero.
 
@@ -352,6 +359,7 @@ Internal common tangent lines are lines that touch both circles and intersect th
         { x: -3, y: 0, z: 0 },
         { x: 3, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       showPoints: true,
       labels: [
@@ -394,6 +402,7 @@ Internal common tangent lines are lines that touch both circles and intersect th
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#db2777",
       showPoints: false,
       labels: [{ text: <InlineMath math="\mathrm{ICT}" />, at: 0, offset: [-1, 0.5, 0] }],
@@ -433,6 +442,7 @@ Internal common tangent lines are lines that touch both circles and intersect th
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#d97706",
       showPoints: false,
       labels: [{ text: <InlineMath math="\mathrm{ICT}" />, at: 0, offset: [-1, -0.5, 0] }],
@@ -483,7 +493,7 @@ Equation of tangent line with gradient <InlineMath math="m = \frac{3}{4}" />:
   <BlockMath math="y = \frac{3}{4}x \pm 5" />
 </MathContainer>
 
-Therefore, the equations of the tangent lines are:
+The equations of the tangent lines are:
 
 - <InlineMath math="y = \frac{3}{4}x + 5" /> or <InlineMath math="3x - 4y + 20 = 0" />
 - <InlineMath math="y = \frac{3}{4}x - 5" /> or <InlineMath math="3x - 4y - 20 = 0" />
@@ -601,6 +611,6 @@ Circle center <InlineMath math="O(0, 0)" /> and radius <InlineMath math="r = 5" 
 
 ## Sources
 
-- [OpenStax Intermediate Algebra 2e: Distance and Midpoint Formulas; Circles](https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles)
-- [Wolfram MathWorld: Circle-Circle Tangents](https://mathworld.wolfram.com/Circle-CircleTangents.html)
-- [GeoGebra: Theorems about Tangents and Chords](https://www.geogebra.org/m/bvtxyfaj)
+- [OpenStax Intermediate Algebra 2e](https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles) explains circle equations in the coordinate plane.
+- [Wolfram MathWorld](https://mathworld.wolfram.com/Circle-CircleTangents.html) explains common tangents of two circles.
+- [GeoGebra](https://www.geogebra.org/m/bvtxyfaj) provides interactive constructions for tangents and chords.

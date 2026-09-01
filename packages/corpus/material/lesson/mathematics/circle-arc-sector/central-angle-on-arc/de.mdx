@@ -3,6 +3,7 @@ export const metadata = {
   description: "Mittelpunktswinkel erkennen, zugehörige Bögen einordnen und Bogenlängen sicher berechnen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Kreisbögen und Sektoren",
 };
 
@@ -28,6 +29,7 @@ In einem Kreis mit Mittelpunkt <InlineMath math="O" /> liegen <InlineMath math="
         { x: 1.5 * Math.cos(Math.PI / 6), y: 1.5 * Math.sin(Math.PI / 6), z: 0 },
         { x: 3 * Math.cos(Math.PI / 6), y: 3 * Math.sin(Math.PI / 6), z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       labels: [{ text: <InlineMath math="OA" />, at: 1, offset: [0.3, 0.3, 0] }],
       showPoints: true,
@@ -38,6 +40,7 @@ In einem Kreis mit Mittelpunkt <InlineMath math="O" /> liegen <InlineMath math="
         { x: 1.5 * Math.cos(5 * Math.PI / 6), y: 1.5 * Math.sin(5 * Math.PI / 6), z: 0 },
         { x: 3 * Math.cos(5 * Math.PI / 6), y: 3 * Math.sin(5 * Math.PI / 6), z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       labels: [{ text: <InlineMath math="OB" />, at: 1, offset: [-0.3, 0.3, 0] }],
       showPoints: true,
@@ -154,6 +157,7 @@ Ein großer Bogen wird von einem Reflexwinkel über <InlineMath math="180^\circ"
         { x: 0, y: 0, z: 0 },
         { x: 4 * Math.cos(Math.PI / 3), y: 4 * Math.sin(Math.PI / 3), z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       lineWidth: 2,
       showPoints: false,
@@ -163,6 +167,7 @@ Ein großer Bogen wird von einem Reflexwinkel über <InlineMath math="180^\circ"
         { x: 0, y: 0, z: 0 },
         { x: 4, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       lineWidth: 2,
       showPoints: false,
@@ -172,6 +177,7 @@ Ein großer Bogen wird von einem Reflexwinkel über <InlineMath math="180^\circ"
         { x: 0, y: 0, z: 0 },
         { x: -4, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       lineWidth: 2,
       showPoints: false,
@@ -230,18 +236,18 @@ Der Bogen nimmt denselben Anteil am Kreisumfang ein wie der Mittelpunktswinkel a
 
 <BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
 
-Dabei bezeichnet:
+Die Variablen in dieser Formel bedeuten:
 - <InlineMath math="s" /> die Bogenlänge
 - <InlineMath math="\theta" /> den Mittelpunktswinkel in Grad
 - <InlineMath math="r" /> den Kreisradius
 
-Ist der Mittelpunktswinkel im Bogenmaß angegeben, vereinfacht sich die Formel zu:
+Das Bogenmaß ist als Bogenlänge geteilt durch Radius definiert. Für einen Winkel im Bogenmaß folgt daher direkt:
 
 <BlockMath math="s = \theta \times r" />
 
 Dabei muss <InlineMath math="\theta" /> im Bogenmaß eingesetzt werden.
 
-## Beispielanwendung
+## Bogenlänge aus einem Mittelpunktswinkel berechnen
 
 Betrachten wir einen Kreis mit <InlineMath math="r = 6 \text{ cm}" /> und <InlineMath math="\theta = 120^\circ" />.
 
@@ -265,6 +271,7 @@ Der zum Mittelpunktswinkel <InlineMath math="120^\circ" /> gehörende Bogen ist 
         { x: 3, y: 0, z: 0 },
         { x: 6, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       labels: [{ text: <InlineMath math="r=6\,\mathrm{cm}" />, at: 1, offset: [0, -0.5, 0] }],
       showPoints: true,
@@ -275,6 +282,7 @@ Der zum Mittelpunktswinkel <InlineMath math="120^\circ" /> gehörende Bogen ist 
         { x: 3 * Math.cos(2 * Math.PI / 3), y: 3 * Math.sin(2 * Math.PI / 3), z: 0 },
         { x: 6 * Math.cos(2 * Math.PI / 3), y: 6 * Math.sin(2 * Math.PI / 3), z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       labels: [{ text: <InlineMath math="r=6\,\mathrm{cm}" />, at: 1, offset: [-0.5, 0.3, 0] }],
       showPoints: true,
@@ -326,11 +334,11 @@ Der zum Mittelpunktswinkel <InlineMath math="120^\circ" /> gehörende Bogen ist 
   showZAxis={false}
 />
 
-## Modelle und Anwendungen
+## Beispiele für Mittelpunktswinkel
 
-Gleiche Winkelabstände verteilen wiederholte Elemente gleichmäßig auf einem Zahnrad oder einer Kreisscheibe. Um den Winkel in eine Bogenlänge umzuwandeln, wird zusätzlich der Radius benötigt. Die Zeiger einer analogen Uhr überstreichen Mittelpunktswinkel. Kreisbogengeometrie kann außerdem die idealisierte Kontur eines Bogens oder einer Kuppel festlegen, während der Tragwerksentwurf weitere Angaben benötigt.
+Bei einem Zahnrad oder einer Kreisscheibe sind Teile mit gleichen Mittelpunktswinkeln gleichmäßig angeordnet. Um den Abstand dieser Teile am Rand zu berechnen, benötigen wir zusätzlich den Radius. Die Zeiger einer analogen Uhr überstreichen mit der Zeit Mittelpunktswinkel. Mit der Geometrie von Kreisbögen lässt sich auch die Form eines Bogens oder einer Kuppel modellieren. Für die Tragwerksplanung sind jedoch weitere Angaben nötig.
 
-Wird die Erde näherungsweise als Kugel modelliert, hat eine Route auf einem Großkreis die Länge <InlineMath math="s=r\theta" />, wenn der Mittelpunktswinkel <InlineMath math="\theta" /> im Bogenmaß angegeben ist. Das ist ein mathematisches Modell; genaue Navigation verwendet ein Erdmodell und Routendaten, die zur geforderten Genauigkeit passen.
+Wird die Erde als Kugel modelliert, hat eine Route auf einem Großkreis die Länge <InlineMath math="s=r\theta" />, wenn der Mittelpunktswinkel <InlineMath math="\theta" /> im Bogenmaß angegeben ist. Für ein mathematisches Beispiel reicht dieses Kugelmodell aus. Eine genaue Navigation benötigt jedoch ein passendes Erdmodell und ausreichend genaue Routendaten.
 
 ## Übungen
 

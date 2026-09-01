@@ -4,6 +4,7 @@ export const metadata = {
   description: "Modelliere stückweise Funktionen anhand von Intervallgrenzen, gestaffelten Tarifen, wechselnden Geschwindigkeiten und Verbindungsstellen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Funktionen und ihre Modellierung",
 };
 
@@ -21,7 +22,7 @@ Eine stückweise Funktion kann in der Form geschrieben werden:
 
 Dabei sind <InlineMath math="D_1, D_2, D_3, \ldots, D_n" /> Intervalle, die den Definitionsbereich der Funktion in disjunkte Teile zerlegen.
 
-Achten Sie beim Lesen oder Erstellen einer stückweisen Funktion auf drei Dinge:
+Prüfe beim Lesen oder Aufstellen einer stückweisen Funktion drei Dinge:
 
 - Die Formel in jeder Zeile.
 - Die Intervallbedingung, die entscheidet, wann diese Formel verwendet wird.
@@ -42,6 +43,7 @@ Eine lineare stückweise Funktion verwendet in jedem Intervall eine lineare Funk
         const x = -2 + i * 0.1;
         return { x, y: 2 * x + 3, z: 0 };
       }),
+      smooth: false,
       color: "#9333ea",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=2x+3" />, at: 10, offset: [-1.5, 1, 0] }],
@@ -51,6 +53,7 @@ Eine lineare stückweise Funktion verwendet in jedem Intervall eine lineare Funk
         const x = 0 + i * 0.1;
         return { x, y: -x + 3, z: 0 };
       }),
+      smooth: false,
       color: "#ea580c",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=-x+3" />, at: 10, offset: [1, 1, 0] }],
@@ -60,6 +63,7 @@ Eine lineare stückweise Funktion verwendet in jedem Intervall eine lineare Funk
         const x = 2 + i * 0.1;
         return { x, y: 0.5 * x, z: 0 };
       }),
+      smooth: false,
       color: "#0891b2",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=0{,}5x" />, at: 10, offset: [1, -0.5, 0] }],
@@ -77,7 +81,7 @@ Die drei Reihen sind keine drei separaten Funktionen. Sie arbeiten als eine Funk
 
 ### Quadratische Stücke
 
-Stückweise Funktionen können auch quadratische Teile verwenden. Dies ist hilfreich, wenn ein Teil des Modells einer Kurve folgt, anstatt einer geraden Linie zu folgen.
+Stückweise Funktionen können auch quadratische Teile verwenden. Ein quadratisches Teilstück kann einen gekrümmten Abschnitt des Modells beschreiben.
 
 <LineEquation
   title="Kombinierte stückweise Funktion"
@@ -97,6 +101,7 @@ Stückweise Funktionen können auch quadratische Teile verwenden. Dies ist hilfr
         const x = 0 + i * 0.1;
         return { x, y: 2 * x, z: 0 };
       }),
+      smooth: false,
       color: "#0d9488",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=2x" />, at: 15, offset: [1, -1, 0] }],
@@ -148,6 +153,7 @@ Beispielsweise treffen die beiden folgenden Regeln bei <InlineMath math="x=1" />
         const x = -1 + i * 0.1;
         return { x, y: x + 2, z: 0 };
       }),
+      smooth: false,
       color: "#e11d48",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=x+2" />, at: 10, offset: [-1, 1, 0] }],
@@ -157,6 +163,7 @@ Beispielsweise treffen die beiden folgenden Regeln bei <InlineMath math="x=1" />
         const x = 1 + i * 0.1;
         return { x, y: 2 * x - 3, z: 0 };
       }),
+      smooth: false,
       color: "#d97706",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=2x-3" />, at: 10, offset: [1, 1, 0] }],
@@ -170,7 +177,7 @@ Beispielsweise treffen die beiden folgenden Regeln bei <InlineMath math="x=1" />
 
 ### Progressive Tarife
 
-Viele reale Situationen können mit stückweisen Funktionen modelliert werden, da sich ihre Regeln nach bestimmten Grenzen ändern. Gängige Beispiele sind progressive Steuern, gestaffelte Parkgebühren und gestaffelte Stromtarife.
+Stückweise Funktionen modellieren Regeln, die sich an festgelegten Schwellen ändern. Progressive Steuern, gestaffelte Parkgebühren und gestaffelte Stromtarife wenden nach dem Überschreiten einer Grenze jeweils eine andere Regel an.
 
 **Beispiel: Stromtarife**
 
@@ -210,12 +217,12 @@ Die Konstanten <InlineMath math="2{,}5" /> und <InlineMath math="17{,}5" /> übe
 
 ## Stückweise Funktionsgleichungen bestimmen
 
-So ermitteln Sie stückweise Funktionsgleichungen aus Graphen oder Situationen:
+So bestimmst du stückweise Funktionsgleichungen aus Graphen oder Situationen:
 
-- Teilen Sie den Definitionsbereich an jeder Grenze auf, an der sich die Regel ändert.
-- Bestimmen Sie die Formel für jedes Intervall.
-- Überprüfen Sie die Verbindungspunkte, damit die Intervallzeichen und Funktionswerte nicht in Konflikt geraten.
-- Schreiben Sie alle Stücke in stückweiser Notation.
+- Teile den Definitionsbereich an jeder Grenze auf, an der sich die Regel ändert.
+- Bestimme die Formel für jedes Intervall.
+- Prüfe die Verbindungsstellen, damit Intervallgrenzen und Funktionswerte zusammenpassen.
+- Schreibe alle Stücke in stückweiser Notation.
 
 **Beispiel:**
 
@@ -239,7 +246,7 @@ Stückweise Funktion:
 
 ## Übungsaufgaben
 
-1. Bestimmen Sie die Werte von <InlineMath math="f(1)" />, <InlineMath math="f(3)" /> und <InlineMath math="f(5)" /> für die Funktion:
+1. Bestimme die Werte von <InlineMath math="f(1)" />, <InlineMath math="f(3)" /> und <InlineMath math="f(5)" /> für die Funktion:
 
    <BlockMath math="f(x) = \begin{cases} x^2, &amp; \text{wenn} x &lt; 2 \\ 2x + 1, &amp; \text{wenn} 2 \leq x &lt; 4 \\ 9, &amp; \text{wenn} x \geq 4 \end{cases}" />
 
@@ -247,13 +254,13 @@ Stückweise Funktion:
 
    Der Grundpreis beträgt <InlineMath math="\text{Rp}10{.}000" /> für die ersten <InlineMath math="2 \text{ km}" />. Die Strecke über <InlineMath math="2 \text{ km}" /> bis <InlineMath math="10 \text{ km}" /> kostet <InlineMath math="\text{Rp}4{.}000/\text{km}" />. Oberhalb von <InlineMath math="10 \text{ km}" /> beträgt der zusätzliche Tarif <InlineMath math="\text{Rp}3{.}000/\text{km}" />.
 
-   Erstellen Sie ein stückweises Funktionsmodell für die Gesamtkosten!
+   Erstelle ein stückweises Funktionsmodell für die Gesamtkosten!
 
-3. Bestimmen Sie, ob die folgende Funktion bei <InlineMath math="x = 1" /> stetig ist:
+3. Bestimme, ob die folgende Funktion bei <InlineMath math="x = 1" /> stetig ist:
 
    <BlockMath math="g(x) = \begin{cases} 3x - 1, &amp; \text{wenn} x &lt; 1 \\ 2, &amp; \text{wenn} x = 1 \\ x + 1, &amp; \text{wenn} x &gt; 1 \end{cases}" />
 
-4. Skizzieren Sie den Graphen der Funktion:
+4. Skizziere den Graphen der Funktion:
 
    <BlockMath math="h(x) = \begin{cases} -x + 2, &amp; \text{wenn} x &lt; 0 \\ x^2, &amp; \text{wenn} 0 \leq x &lt; 2 \\ 4, &amp; \text{wenn} x \geq 2 \end{cases}" />
 
@@ -261,7 +268,7 @@ Stückweise Funktion:
 
    Die ersten <InlineMath math="8 \text{Stunden}" /> werden mit <InlineMath math="\text{Rp}50{.}000/\text{Stunde}" /> bezahlt. Jede weitere Stunde wird mit <InlineMath math="\text{Rp}75{.}000/\text{Stunde}" /> vergütet.
 
-   Der Arbeitnehmer darf höchstens <InlineMath math="12 \text{Stunden/Tag}" /> arbeiten. Erstellen Sie eine Funktion für seinen Tageslohn.
+   Der Arbeitnehmer darf höchstens <InlineMath math="12 \text{Stunden/Tag}" /> arbeiten. Erstelle eine Funktion für seinen Tageslohn.
 
 ### Lösungen
 
@@ -325,6 +332,7 @@ Stückweise Funktion:
            const x = -2 + i * 0.1;
            return { x, y: -x + 2, z: 0 };
          }),
+         smooth: false,
          color: "#9333ea",
          showPoints: false,
          labels: [{ text: <InlineMath math="y=-x+2" />, at: 10, offset: [0, 0.5, 0] }],
@@ -343,6 +351,7 @@ Stückweise Funktion:
            const x = 2 + i * 0.1;
            return { x, y: 4, z: 0 };
          }),
+         smooth: false,
          color: "#0891b2",
          showPoints: false,
          labels: [{ text: <InlineMath math="y=4" />, at: 10, offset: [0, 0.5, 0] }],

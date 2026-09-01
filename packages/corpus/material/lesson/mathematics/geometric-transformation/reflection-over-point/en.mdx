@@ -4,11 +4,11 @@ export const metadata = {
   description: "Treat point reflection as a half-turn and calculate image points and lines with coordinate formulas.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometric Transformation",
 };
 
-## Understanding Reflection over a Point
+## Reflection over a Point
 
 Reflection over a point, often called a half-turn rotation (<InlineMath math="180^\circ" />), is a geometric transformation where each point on an object is mapped to a new position such that the center of reflection becomes the midpoint between the original point and its image.
 
@@ -44,7 +44,7 @@ Using the formula:
   <BlockMath math="y' = 2b - y = 2(3) - 4 = 6 - 4 = 2" />
 </MathContainer>
 
-Thus, the image of point <InlineMath math="(5,4)" /> is <InlineMath math="(-1,2)" />.
+The image of point <InlineMath math="(5,4)" /> is <InlineMath math="(-1,2)" />.
 
 <LineEquation
   title={
@@ -84,6 +84,7 @@ Thus, the image of point <InlineMath math="(5,4)" /> is <InlineMath math="(-1,2)
         { x: 5, y: 4, z: 0 },
         { x: -1, y: 2, z: 0 },
       ],
+      smooth: false,
       color: "#db2777",
     }, // Line connecting Q to Q'
   ]}
@@ -142,6 +143,7 @@ Alternatively, it can be written as <InlineMath math="2x - y - 1 = 0" />.
         const xVal = i - 5;
         return { x: xVal, y: 2 * xVal + 3, z: 0 };
       }),
+      smooth: false,
       color: "#0284c7",
       labels: [{ text: <InlineMath math="2x-y+3=0" />, at: 5, offset: [-2, 0.5, 0] }],
     },
@@ -151,6 +153,7 @@ Alternatively, it can be written as <InlineMath math="2x - y - 1 = 0" />.
         const xVal = i - 5;
         return { x: xVal, y: 2 * xVal - 1, z: 0 };
       }),
+      smooth: false,
       color: "#059669",
       labels: [{ text: <InlineMath math="2x-y-1=0" />, at: 5, offset: [2, -0.5, 0] }],
     },

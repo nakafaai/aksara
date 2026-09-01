@@ -1,17 +1,17 @@
 export const metadata = {
    title: "Basic Procedure for Diagonalization",
-   description: "Learn the 3-step matrix diagonalization procedure: compute eigenvalues, find eigenspaces, and check conditions with practical examples.",
+   description: "Diagonalize a matrix in three steps by computing its eigenvalues, finding its eigenspaces, and checking whether they provide enough eigenvectors.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-07-16",
-   dateModified: "2026-08-29",
+   dateModified: "2026-09-01",
    subject: "Linear Methods of AI",
 };
 
 ## General Matrix Diagonalization Procedure
 
-Diagonalization does not change the linear transformation itself. It changes the coordinate basis so that the transformation acts independently along eigenvector directions. The resulting diagonal representation is easier to inspect and compute with.
+Diagonalization does not change the linear transformation itself. It changes the coordinate basis so that the transformation acts independently along eigenvector directions. In the diagonal representation, matrix multiplication reduces to scaling each eigenvector coordinate.
 
-To diagonalize a matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" />, we use a systematic procedure that will determine whether the matrix can be simplified and how to do it.
+To diagonalize a matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" />, compute its eigenvalues and eigenspaces. If there are <InlineMath math="n" /> linearly independent eigenvectors, place those vectors in a change-of-basis matrix.
 
 ## Diagonalization Steps
 
@@ -32,7 +32,7 @@ The diagonalization procedure consists of three main steps that must be performe
 
    <BlockMath math="(A - \lambda_i \cdot I) \cdot v = 0" />
 
-   Here we find every vector that matrix <InlineMath math="A" /> maps to a scalar multiple of itself. The factor is the eigenvalue <InlineMath math="\lambda_i" />; a negative factor reverses the vector's direction but keeps it on the same line.
+   Here we find every vector that matrix <InlineMath math="A" /> maps to a scalar multiple of itself. The factor is the eigenvalue <InlineMath math="\lambda_i" />. A negative factor reverses the vector's direction but keeps it on the same line.
 
 3. **Check the diagonalization conditions** by verifying whether the algebraic multiplicity equals the geometric multiplicity for all eigenvalues. Mathematically, for all <InlineMath math="i = 1, \ldots, k" /> we must have <InlineMath math="\mu_A(\lambda_i) = \dim E_A(\lambda_i)" />.
 
@@ -56,7 +56,7 @@ Apply the diagonalization procedure to this example:
 
    <BlockMath math="\chi_A(t) = (1 - t)^2 \cdot (-1 - t)" />
 
-   From this we see that the eigenvalues are <InlineMath math="\lambda_1 = 1" /> with algebraic multiplicity <InlineMath math="\mu_A(1) = 2" /> and <InlineMath math="\lambda_2 = -1" /> with algebraic multiplicity <InlineMath math="\mu_A(-1) = 1" />. Since <InlineMath math="2 + 1 = 3" /> equals the matrix dimension, the initial requirement is satisfied.
+   The factors give the eigenvalues <InlineMath math="\lambda_1 = 1" /> with algebraic multiplicity <InlineMath math="\mu_A(1) = 2" /> and <InlineMath math="\lambda_2 = -1" /> with algebraic multiplicity <InlineMath math="\mu_A(-1) = 1" />. Their multiplicities sum to <InlineMath math="2 + 1 = 3" />, which equals the matrix dimension.
 
 2. We determine the eigenspace for each eigenvalue:
 
@@ -82,6 +82,6 @@ The columns of <InlineMath math="S" /> and the corresponding diagonal entries of
 
 <BlockMath math="\det S = -2 \neq 0, \qquad S^{-1}AS = \Lambda" />
 
-Thus, the matrix <InlineMath math="A" /> is successfully diagonalized to <InlineMath math="\Lambda" /> through the transformation <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" />.
+The matrix <InlineMath math="A" /> is successfully diagonalized to <InlineMath math="\Lambda" /> through the transformation <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" />.
 
 The procedure therefore proves both requirements: the eigenvectors form a basis, and the matrix representation in that basis is diagonal.

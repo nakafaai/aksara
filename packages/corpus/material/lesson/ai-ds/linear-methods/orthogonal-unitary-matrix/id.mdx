@@ -1,9 +1,9 @@
 export const metadata = {
   title: "Matriks Ortogonal dan Uniter",
-  description: "Pahami matriks ortogonal dan uniter melalui pelestarian hasil kali dalam, struktur determinan dan nilai eigen, rotasi, refleksi, serta penggunaan numeriknya.",
+    description: "Bandingkan matriks ortogonal dan uniter melalui pelestarian hasil kali dalam, struktur determinan dan nilai eigen, rotasi, serta refleksi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-12",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Metode Linear AI",
 };
 
@@ -43,7 +43,7 @@ Semua nilai singularnya sama dengan <InlineMath math="1" />, sehingga
 
 <BlockMath math="\|Q\|_2=1,\qquad\kappa_2(Q)=1" />
 
-Perkalian dengan matriks tersebut tidak memperbesar galat relatif dalam norma Euklides. Inilah alasan faktorisasi QR menggunakan reflektor Householder dan rotasi Givens.
+Perkalian dengan matriks tersebut tidak memperbesar galat relatif dalam norma Euklides. Inilah alasan faktorisasi <InlineMath math="\mathrm{QR}" /> menggunakan reflektor Householder dan rotasi Givens.
 
 ## Determinan dan Orientasi
 
@@ -73,7 +73,7 @@ Jadi, setiap nilai eigen berada pada lingkaran satuan kompleks. Nilai eigen tak 
 
 <BlockMath math="U=V\operatorname{diag}(e^{i\theta_1},ldots,e^{i\theta_n})V^H" />
 
-dengan <InlineMath math="V" /> uniter. Di atas bilangan real, matriks ortogonal dapat direduksi menjadi blok-blok yang terdiri atas <InlineMath math="1" />, <InlineMath math="-1" />, dan rotasi bidang.
+Dalam dekomposisi ini, <InlineMath math="V" /> adalah matriks uniter. Di atas bilangan real, matriks ortogonal dapat direduksi menjadi blok-blok yang terdiri atas <InlineMath math="1" />, <InlineMath math="-1" />, dan rotasi bidang.
 
 ## Contoh Rotasi
 
@@ -92,7 +92,7 @@ Polinomial karakteristiknya adalah
 <BlockMath math="\lambda_{1,2}=\cos\alpha\pm i\sin\alpha=e^{\pm i\alpha}" />
 </MathContainer>
 
-Kecuali <InlineMath math="\alpha" /> merupakan kelipatan <InlineMath math="\pi" />, rotasi ini tidak memiliki vektor eigen real. Hal ini wajar karena tidak ada arah real tak nol yang tetap atau hanya berubah tanda di bawah rotasi bidang sejati.
+Kecuali <InlineMath math="\alpha" /> merupakan kelipatan <InlineMath math="\pi" />, rotasi ini tidak memiliki vektor eigen real. Pada rotasi bidang sejati, tidak ada arah real tak nol yang tetap atau hanya berubah tanda.
 
 ## Contoh Refleksi
 
@@ -100,14 +100,14 @@ Untuk vektor satuan <InlineMath math="u\in\mathbb{R}^n" />, matriks Householder
 
 <BlockMath math="H=I-2uu^T" />
 
-merefleksikan vektor terhadap hiperbidang yang tegak lurus pada <InlineMath math="u" />. Karena
+Matriks <InlineMath math="H" /> merefleksikan vektor terhadap hiperbidang yang tegak lurus pada <InlineMath math="u" />. Sifat ortogonalnya dapat diperiksa melalui
 
 <MathContainer>
 <BlockMath math="H^T=H" />
 <BlockMath math="H^2=(I-2uu^T)^2=I" />
 </MathContainer>
 
-kita memperoleh <InlineMath math="H^TH=I" />. Nilai eigennya pada arah <InlineMath math="u" /> adalah <InlineMath math="-1" />, sedangkan setiap vektor yang tegak lurus pada <InlineMath math="u" /> memiliki nilai eigen <InlineMath math="1" />. Karena itu, <InlineMath math="\det H=-1" />.
+Dari kedua identitas di atas, kita memperoleh <InlineMath math="H^TH=I" />. Nilai eigennya pada arah <InlineMath math="u" /> adalah <InlineMath math="-1" />, sedangkan setiap vektor yang tegak lurus pada <InlineMath math="u" /> memiliki nilai eigen <InlineMath math="1" />. Karena itu, <InlineMath math="\det H=-1" />.
 
 ## Pemeriksaan Ekuivalen dan Konsekuensi
 
@@ -127,4 +127,4 @@ Hasil kali dan invers tetap berada dalam kelas yang sama:
 <BlockMath math="Q^{-1}=Q^T" />
 </MathContainer>
 
-Sifat ketertutupan dan kestabilan ini menjadikan matriks ortogonal dan uniter penting dalam algoritma QR, penyelesaian kuadrat terkecil, transformasi Fourier, mekanika kuantum, dan pemrosesan geometri.
+Inversnya tetap berada dalam kelas yang sama, dan bilangan kondisi norma duanya bernilai <InlineMath math="1" />. Algoritma berbasis <InlineMath math="\mathrm{QR}" /> dan penyelesaian kuadrat terkecil memakai sifat ini agar panjang pada norma Euklides tidak diperbesar. Transformasi Fourier, mekanika kuantum, dan pemrosesan geometri memakai transformasi ortogonal atau uniter untuk mempertahankan hasil kali dalam dan norma.

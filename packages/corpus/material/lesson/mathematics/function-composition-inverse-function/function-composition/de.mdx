@@ -1,19 +1,20 @@
 export const metadata = {
   title: "Funktionskomposition",
-  description: "Verstehe Funktionskomposition anhand eines Einkaufsbeispiels und erkenne, warum die Reihenfolge der Funktionen wichtig ist.",
+  description: "Verknüpfe Funktionen nacheinander und vergleiche das Ergebnis, wenn ihre Reihenfolge vertauscht wird.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Funktionskomposition und Umkehrfunktion",
 };
 
-## Funktionskomposition verstehen
+## Funktionskomposition
 
-Stellen Sie sich vor, Sie kaufen in einem Geschäft ein, das zwei attraktive Sonderangebote anbietet:
+Ein Geschäft wendet denselben Rabatt und denselben festen Preisnachlass in zwei verschiedenen Reihenfolgen an:
 
 1.  **Aktion A:** <InlineMath math="20\%" /> Rabatt, dann ein weiterer Abzug von <InlineMath math="\text{Rp}25{.}000{,}00" />.
 2.  **Aktion B:** Preisnachlass von <InlineMath math="\text{Rp}25{.}000{,}00" />, dann ein Rabatt von <InlineMath math="20\%" />.
 
-Führen beide Aktionen zum gleichen Endpreis? Welche Aktion ist vorteilhafter? Um dies zu beantworten, müssen wir das Konzept der **Funktionskomposition** verstehen.
+Führen beide Aktionen zum gleichen Endpreis? Dazu schreiben wir beide Rechenschritte als Funktionen und verknüpfen sie in der jeweils angegebenen Reihenfolge.
 
 ### Definition der Funktionszusammensetzung
 
@@ -31,7 +32,7 @@ Die Zusammensetzung ist nur für Eingaben <InlineMath math="x" /> aus der Defini
 
 <BlockMath math="D_{f\circ g}=\{x\in D_g\mid g(x)\in D_f\}" />
 
-### Promo-Berechnung
+### Berechnung eines Rabatts
 
 Wir berechnen den Endpreis für einen Artikel im Wert von <InlineMath math="\text{Rp}200{.}000{,}00" />. Das vereinfachte Beispiel lässt Steuern, Mindestkaufbedingungen und Preisuntergrenzen unberücksichtigt, sodass nur die Reihenfolge der beiden Operationen variiert.
 
@@ -62,9 +63,9 @@ Nun verknüpfen wir die beiden Funktionen in der jeweiligen Reihenfolge der Akti
 
     Der Endpreis mit Aktion B beträgt also <InlineMath math="\text{Rp}140{.}000{,}00" />.
 
-Es stellt sich heraus, dass die Reihenfolge der Anwendung der Funktionen (Rabatt und Preisnachlass) das Endergebnis beeinflusst. Aktion A (<InlineMath math="p \circ d" />) ist für den Käufer vorteilhafter als Aktion B (<InlineMath math="d \circ p" />) für einen Artikel mit einem Preis von <InlineMath math="\text{Rp}200{.}000{,}00" />. Dies zeigt, dass im Allgemeinen <InlineMath math="(f \circ g)(x) \neq (g \circ f)(x)" />.
+Bei diesem Artikel ergibt Aktion A (<InlineMath math="p \circ d" />) den Endpreis <InlineMath math="\text{Rp}135{.}000{,}00" />, Aktion B (<InlineMath math="d \circ p" />) dagegen <InlineMath math="\text{Rp}140{.}000{,}00" />. Die umgekehrte Reihenfolge verändert also das Ergebnis. Im Allgemeinen gilt <InlineMath math="(f \circ g)(x) \neq (g \circ f)(x)" />.
 
-## Ein weiteres Beispiel
+## Beide Reihenfolgen der Funktionskomposition vergleichen
 
 Angenommen, wir haben zwei Funktionen:
 
@@ -73,7 +74,7 @@ Angenommen, wir haben zwei Funktionen:
   <BlockMath math="g(x) = x^2 - 3" />
 </MathContainer>
 
-Bestimmen Sie <InlineMath math="(f \circ g)(x)" /> und <InlineMath math="(g \circ f)(x)" />.
+Bestimme <InlineMath math="(f \circ g)(x)" /> und <InlineMath math="(g \circ f)(x)" />.
 
 **Lösung:**
 
@@ -81,7 +82,7 @@ Bestimmen Sie <InlineMath math="(f \circ g)(x)" /> und <InlineMath math="(g \cir
 
     <BlockMath math="(f \circ g)(x) = f(g(x)) = f(x^2 - 3)" />
 
-    Ersetzen Sie <InlineMath math="x" /> in <InlineMath math="f(x)" /> durch <InlineMath math="g(x)" />:
+    Ersetze <InlineMath math="x" /> in <InlineMath math="f(x)" /> durch <InlineMath math="g(x)" />:
 
     <BlockMath math="f(x^2 - 3) = 2(x^2 - 3) + 1 = 2x^2 - 6 + 1 = 2x^2 - 5" />
 
@@ -91,13 +92,13 @@ Bestimmen Sie <InlineMath math="(f \circ g)(x)" /> und <InlineMath math="(g \cir
 
     <BlockMath math="(g \circ f)(x) = g(f(x)) = g(2x + 1)" />
 
-    Ersetzen Sie <InlineMath math="x" /> in <InlineMath math="g(x)" /> durch <InlineMath math="f(x)" />:
+    Ersetze <InlineMath math="x" /> in <InlineMath math="g(x)" /> durch <InlineMath math="f(x)" />:
 
     <BlockMath math="g(2x + 1) = (2x + 1)^2 - 3 = (4x^2 + 4x + 1) - 3 = 4x^2 + 4x - 2" />
 
     Also <InlineMath math="(g \circ f)(x) = 4x^2 + 4x - 2" />.
 
-Beachten Sie, dass <InlineMath math="(f \circ g)(x) \neq (g \circ f)(x)" /> die nichtkommutative Eigenschaft veranschaulicht.
+Die beiden Ergebnisse sind im Allgemeinen verschieden. Damit ist die Funktionskomposition nicht kommutativ.
 
 ## Die Definitionsmenge hängt von der Reihenfolge ab
 

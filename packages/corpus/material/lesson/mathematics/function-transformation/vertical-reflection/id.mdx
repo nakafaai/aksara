@@ -3,13 +3,13 @@ export const metadata = {
   description: "Gunakan grafik dan contoh untuk memahami bagaimana pencerminan terhadap sumbu x mengubah koordinat y suatu fungsi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Transformasi Fungsi",
 };
 
 
 
-## Konsep Dasar Refleksi Vertikal
+## Refleksi Vertikal
 
 Refleksi vertikal mencerminkan grafik fungsi terhadap sumbu <InlineMath math="x" />. Seperti bayangan pada permukaan air yang tenang, setiap titik mempertahankan posisi horizontalnya dan berpindah sejauh jarak yang sama ke sisi berlawanan.
 
@@ -73,6 +73,7 @@ Aturan refleksi yang sama berlaku pada fungsi linear <InlineMath math="f(x) = 2x
         const x = (i - 10) * 0.5;
         return { x, y: 2 * x + 3, z: 0 };
       }),
+      smooth: false,
       color: "#7c3aed",
       labels: [{ text: <InlineMath math="f(x)=2x+3" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -82,6 +83,7 @@ Aturan refleksi yang sama berlaku pada fungsi linear <InlineMath math="f(x) = 2x
         const x = (i - 10) * 0.5;
         return { x, y: -(2 * x + 3), z: 0 };
       }),
+      smooth: false,
       color: "#d97706",
       labels: [{ text: <InlineMath math="g(x)=-(2x+3)=-2x-3" />, offset: [1, -0.5, 0] }],
       showPoints: false,
@@ -94,7 +96,7 @@ Kedua garis menunjukkan:
 - Fungsi hasil refleksi <InlineMath math="g(x) = -2x - 3" /> memiliki kemiringan negatif dan memotong sumbu <InlineMath math="y" /> di <InlineMath math="(0, -3)" />
 - Kedua garis berpotongan di sumbu <InlineMath math="x" />
 
-## Sifat Penting Refleksi Vertikal
+## Sifat Refleksi Vertikal
 
 ### Sumbu Horizontal sebagai Sumbu Simetri
 
@@ -111,9 +113,7 @@ Jika titik <InlineMath math="(a, b)" /> berada pada grafik <InlineMath math="f(x
 
 Jika range fungsi asli adalah <InlineMath math="[c, d]" />, maka range setelah refleksi vertikal menjadi <InlineMath math="[-d, -c]" />.
 
-## Contoh Penerapan
-
-### Contoh Fungsi Eksponensial
+## Mencerminkan Grafik Eksponensial terhadap Sumbu Horizontal
 
 Pada fungsi eksponensial <InlineMath math="f(x) = 2^x" />, setiap keluaran positif berpindah ke keluaran negatif yang bersesuaian.
 

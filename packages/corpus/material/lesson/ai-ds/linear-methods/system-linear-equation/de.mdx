@@ -3,6 +3,7 @@ export const metadata = {
     description: "Stelle aus Daten ein überbestimmtes lineares System auf und verstehe, warum die kleinsten Quadrate bei fehlender exakter Lösung das bestangepasste Polynom liefern.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Lineare Methoden der KI",
 };
 
@@ -10,9 +11,9 @@ export const metadata = {
 
 Angenommen, wir möchten eine Kurve an Messdaten anpassen. Häufig gibt es mehr Beobachtungen als Modellparameter. Schreiben wir für jede Beobachtung eine Gleichung auf, entsteht ein **überbestimmtes lineares System**.
 
-Ein System heißt überbestimmt, wenn die Anzahl <InlineMath math="m" /> der Gleichungen größer als die Anzahl <InlineMath math="n" /> der Unbekannten ist, also <InlineMath math="m > n" /> gilt. Dadurch ist eine exakte Lösung nicht automatisch ausgeschlossen. Messdaten liegen jedoch meist nicht genau auf dem gewählten Modell.
+Ein System heißt überbestimmt, wenn die Anzahl <InlineMath math="m" /> der Gleichungen größer als die Anzahl <InlineMath math="n" /> der Unbekannten ist, also <InlineMath math="m > n" /> gilt. Ein solches System kann eine exakte Lösung besitzen. Messdaten liegen meist nicht genau auf dem gewählten Modell.
 
-## Reales Beispiel mit quadratischem Polynommodell
+## Quadratische Anpassung an sieben Messwerte
 
 Betrachten wir <InlineMath math="7" /> Datenpunkte, an die ein quadratisches Polynom angepasst werden soll.
 
@@ -77,7 +78,7 @@ Durch das Anfügen von <InlineMath math="b" /> entsteht die erweiterte Matrix <I
 
 <BlockMath math="\det\begin{pmatrix}9&-3&1&-2{,}2\\4&-2&1&-4{,}2\\1&-1&1&-4{,}2\\0&0&1&-1{,}8\end{pmatrix}=-\frac45" />
 
-und somit <InlineMath math="\operatorname{rank}(A\mid b)=4" />.
+Dieser von null verschiedene Minor zeigt, dass <InlineMath math="\operatorname{rank}(A\mid b)=4" /> gilt.
 
 Da <InlineMath math="\operatorname{rank}(A) \ne \operatorname{rank}(A\mid b)" /> gilt, **hat das System keine exakte Lösung**. Kein einziges quadratisches Polynom verläuft durch alle <InlineMath math="7" /> Beobachtungen.
 
@@ -107,7 +108,7 @@ Die angepassten Werte stimmen erwartungsgemäß nicht mit jeder Beobachtung übe
 
 <BlockMath math="r=b-A\hat x=\begin{pmatrix}\frac1{15}\\-\frac2{35}\\-\frac17\\\frac{22}{105}\\-\frac15\\\frac8{35}\\-\frac{11}{105}\end{pmatrix}" />
 
-und erfüllt
+Der Residuenvektor <InlineMath math="r" /> erfüllt
 
 <MathContainer>
 <BlockMath math="A^Tr=0" />

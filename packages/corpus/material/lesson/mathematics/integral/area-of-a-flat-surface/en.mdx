@@ -3,17 +3,17 @@ export const metadata = {
   description: "Use definite integrals to calculate areas bounded by curves, with complete examples for quadratic and radical functions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Integrals",
 };
 
 
 
-## Basic Concepts of Area Under a Curve
+## Area Under a Curve
 
-In everyday life, we often need to calculate the area of various flat shapes. For shapes with simple forms like squares or triangles, we can use familiar formulas. But what if we want to calculate the area of a region bounded by irregular curves?
+The familiar formulas for rectangles and triangles do not apply directly to a region with a curved boundary.
 
-**Definite integrals** handle such regions by accumulating the areas of increasingly narrow strips. This is the idea behind Riemann sums: partition the interval, approximate each strip with a rectangle, and examine the limiting sum.
+**Definite integrals** handle such regions by accumulating the areas of increasingly narrow strips. A Riemann sum partitions the interval, approximates each strip with a rectangle, and takes the limit of their total area.
 
 Suppose a function <InlineMath math="f(x)" /> bounds a region from <InlineMath math="x = a" /> to <InlineMath math="x = b" />. We divide <InlineMath math="[a, b]" /> into <InlineMath math="n" /> subintervals of width <InlineMath math="\Delta x" />.
 
@@ -24,7 +24,7 @@ Suppose a function <InlineMath math="f(x)" /> bounds a region from <InlineMath m
 
 ## Determining Area Using Definite Integrals
 
-To calculate the area of a flat surface using definite integrals, we need to understand several systematic steps:
+Use these three steps to calculate the area:
 
 ### Identify Integration Limits
 
@@ -40,11 +40,11 @@ After determining the limits and function, we can evaluate the integral using th
 
 <BlockMath math="\int_{a}^{b} f(x) \, dx = F(b) - F(a)" />
 
-where <InlineMath math="F(x)" /> is the antiderivative of <InlineMath math="f(x)" />.
+In this formula, <InlineMath math="F(x)" /> is an antiderivative of <InlineMath math="f(x)" />.
 
 ## Application to Quadratic Functions
 
-Apply this concept to a concrete example. Suppose we want to calculate the area of the region bounded by the curve <InlineMath math="f(x) = x^2 - 4x" /> and the <InlineMath math="x" />-axis between <InlineMath math="x = 1" /> and <InlineMath math="x = 3" />.
+Consider the region bounded by <InlineMath math="f(x) = x^2 - 4x" />, the <InlineMath math="x" />-axis, <InlineMath math="x = 1" />, and <InlineMath math="x = 3" />.
 
 <LineEquation
   title={<>Graph of Function <InlineMath math="f(x) = x^2 - 4x" /></>}
@@ -70,6 +70,7 @@ Apply this concept to a concrete example. Suppose we want to calculate the area 
         { x: 1, y: 0, z: 0 },
         { x: 1, y: -3, z: 0 }
       ],
+      smooth: false,
       color: "#ea580c",
       showPoints: false,
       labels: [
@@ -81,6 +82,7 @@ Apply this concept to a concrete example. Suppose we want to calculate the area 
         { x: 3, y: 0, z: 0 },
         { x: 3, y: -3, z: 0 }
       ],
+      smooth: false,
       color: "#ea580c",
       showPoints: false,
       labels: [
@@ -92,6 +94,7 @@ Apply this concept to a concrete example. Suppose we want to calculate the area 
         { x: 1, y: 0, z: 0 },
         { x: 3, y: 0, z: 0 }
       ],
+      smooth: false,
       color: "#d97706",
       showPoints: false,
       lineWidth: 1,
@@ -120,7 +123,7 @@ Now evaluate the definite integral:
 <BlockMath math="A = 9 - \frac{5}{3} = \frac{22}{3}" />
 </MathContainer>
 
-Therefore, the area of that region is <InlineMath math="\frac{22}{3}" /> square units.
+The area of that region is <InlineMath math="\frac{22}{3}" /> square units.
 
 ## Application to a Radical Function
 
@@ -160,6 +163,7 @@ For a second example, calculate the area under <InlineMath math="f(x) = x\sqrt{x
         { x: 2, y: 0, z: 0 },
         { x: 2, y: 6, z: 0 }
       ],
+      smooth: false,
       color: "#7c3aed",
       showPoints: false,
       labels: [
@@ -197,7 +201,7 @@ Now our integral becomes:
 <BlockMath math="A = \frac{1}{3}\left(27 - 5\sqrt{5}\right)" />
 </MathContainer>
 
-Note that <InlineMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" /> and <InlineMath math="5^{3/2} = 5 \cdot \sqrt{5}" />.
+Here, <InlineMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" /> and <InlineMath math="5^{3/2} = 5 \cdot \sqrt{5}" />.
 
 > When using substitution in definite integrals, don't forget to change the integration limits according to the new substitution variable.
 
@@ -228,7 +232,7 @@ Note that <InlineMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" /> and <InlineMath
 
 2. **Second problem with rational function**
 
-   For this integral, we need to remember that the antiderivative of <InlineMath math="\frac{1}{x^2 + 1}" /> is <InlineMath math="\arctan(x)" />.
+   The antiderivative used in this integral is <InlineMath math="\arctan(x)" /> because its derivative is <InlineMath math="\frac{1}{x^2 + 1}" />.
 
    <MathContainer>
    <BlockMath math="A = \int_{0}^{1} \frac{1}{x^2 + 1} \, dx" />

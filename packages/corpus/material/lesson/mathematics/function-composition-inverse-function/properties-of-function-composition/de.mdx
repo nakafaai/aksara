@@ -1,14 +1,15 @@
 export const metadata = {
   title: "Eigenschaften der Funktionszusammensetzung",
-  description: "Erkunden Sie die Eigenschaften der Funktionszusammensetzung: nichtkommutative Ordnung, assoziative Gruppierung und Identitätselemente. Lernen Sie (f∘g)-Regeln mit Beweisen.",
+  description: "Zeige, dass die Reihenfolge bei der Funktionskomposition im Allgemeinen nicht vertauscht werden kann, und beweise ihre Assoziativ- und Identitätseigenschaften.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Funktionszusammensetzung und Umkehrfunktion",
 };
 
 ## Eigenschaften der Funktionszusammensetzung
 
-Die Funktionszusammensetzung, bei der Funktionen nacheinander kombiniert werden, weist mehrere wichtige Eigenschaften auf, die wir kennen müssen. Untersuchen wir diese Eigenschaften anhand der folgenden Beispielfunktionen:
+Bei der Funktionszusammensetzung werden Funktionen nacheinander angewendet. Die folgenden Beispiele zeigen, warum eine andere Reihenfolge das Ergebnis ändern kann, während eine andere Klammerung allein nichts ändert:
 
 <MathContainer>
   <BlockMath math="f(x) = 2x + 1" />
@@ -22,7 +23,7 @@ Die Definitionsmengen sind:
 
 ### Nichtkommutative Eigenschaft
 
-Die erste und häufigste Eigenschaft ist, dass die Reihenfolge, in der Funktionen zusammengesetzt sind, **wichtig** ist. Eine Änderung der Reihenfolge der Funktionen führt normalerweise zu einer anderen zusammengesetzten Funktion.
+Die Reihenfolge legt fest, welche Funktion die Ausgabe der anderen erhält. Vertauscht man die Reihenfolge, entsteht daher meist eine andere zusammengesetzte Funktion.
 
 Im Allgemeinen ist <InlineMath math="(f \circ g)(x)" /> **ungleich** <InlineMath math="(g \circ f)(x)" />.
 
@@ -48,7 +49,7 @@ Die beiden Polynomterme haben unterschiedliche Koeffizienten und beschreiben dah
 
 <BlockMath math="(g\circ f)(0)=5\neq9=(f\circ g)(0)" />
 
-Damit gilt <InlineMath math="g\circ f\neq f\circ g" /> als Aussage über die Funktionen. Andere Paare müssen auf dieselbe Weise geprüft werden; im Allgemeinen ist die Funktionskomposition nicht kommutativ.
+Damit gilt <InlineMath math="g\circ f\neq f\circ g" /> als Aussage über die Funktionen. Andere Paare müssen auf dieselbe Weise geprüft werden. Im Allgemeinen ist die Funktionskomposition nicht kommutativ.
 
 ### Assoziative Eigenschaft
 
@@ -58,7 +59,7 @@ Mathematisch gesehen gilt für die Funktionen <InlineMath math="f" />, <InlineMa
 
 <BlockMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)" />
 
-Das bedeutet, dass wir zuerst <InlineMath math="f" /> mit <InlineMath math="g" /> und dann das Ergebnis mit <InlineMath math="h" /> zusammensetzen können. Alternativ können wir zuerst <InlineMath math="g" /> mit <InlineMath math="h" /> und dann <InlineMath math="f" /> mit dem Ergebnis zusammensetzen. Das Ergebnis wird das gleiche sein.
+Man kann zuerst <InlineMath math="f\circ g" /> bilden und diese Funktion dann mit <InlineMath math="h" /> zusammensetzen oder zuerst <InlineMath math="g\circ h" /> bilden und anschließend <InlineMath math="f" /> mit dem Ergebnis zusammensetzen. Für jede Eingabe, auf der beide Seiten definiert sind, wird zuerst <InlineMath math="h" />, dann <InlineMath math="g" /> und zuletzt <InlineMath math="f" /> angewendet.
 
 **Beispiel:**
 
@@ -75,14 +76,14 @@ Wir wollen prüfen, ob <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g 
 
 2.  **Berechnung von <InlineMath math="(f \circ (g \circ h))(x)" />:**
 
-    Finden Sie zunächst <InlineMath math="(g \circ h)(x)" />:
+    Finde zunächst <InlineMath math="(g \circ h)(x)" />:
 
     <MathContainer>
       <BlockMath math="(g \circ h)(x) = g(h(x)) = g(\frac{1}{x+1})" />
       <BlockMath math="g(\frac{1}{x+1}) = \left(\frac{1}{x+1}\right)^2 + 4 = \frac{1}{(x+1)^2} + 4" />
     </MathContainer>
 
-    Setzen Sie nun <InlineMath math="f" /> mit diesem Ergebnis zusammen:
+    Setze nun <InlineMath math="f" /> mit diesem Ergebnis zusammen:
 
     <MathContainer>
       <BlockMath math="(f \circ (g \circ h))(x) = f((g \circ h)(x)) = f\left(\frac{1}{(x+1)^2} + 4\right)" />

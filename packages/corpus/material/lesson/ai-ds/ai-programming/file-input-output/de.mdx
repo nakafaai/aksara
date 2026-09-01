@@ -1,8 +1,9 @@
 export const metadata = {
-    title: "Dateieingabe und -ausgabe",
-    description: "Lerne, wie Python Text- und Binärdateien sicher liest und schreibt, Öffnungsmodi auswählt und Streampositionen verwaltet.",
+    title: "Dateieingabe und Dateiausgabe",
+    description: "Lies und schreibe Text- und Binärdateien sicher in Python, wähle passende Öffnungsmodi und verwalte Streampositionen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "KI-Programmierung",
 };
 
@@ -12,7 +13,7 @@ Python liest und schreibt Dateien über Dateiobjekte. Im Textmodus dekodiert das
 
 ### Gesamten Dateiinhalt lesen
 
-Der einfachste Weg, eine Datei zu lesen, besteht darin, ihren gesamten Inhalt auf einmal in den Speicher zu übernehmen.
+Die Methode `read()` lädt den gesamten Dateiinhalt auf einmal in den Speicher:
 
 <CodeBlock
   data={[
@@ -158,7 +159,7 @@ Der Modus bestimmt, ob die Datei bereits existieren muss, ob ihr alter Inhalt be
 
 Python bietet verschiedene Methoden, um Dateien je nach Bedarf auf unterschiedliche Weise zu lesen.
 
-### read()-Methode mit Parametern
+### Methode Read mit Parametern
 
 <CodeBlock
   data={[
@@ -184,9 +185,9 @@ with open('file.txt', 'r', encoding='utf-8') as f:
   ]}
 />
 
-### Dateiposition und -lesung
+### Dateiposition und Lesen
 
-Eine neu geöffnete Datei beginnt an ihrer ersten Streamposition. Durch das Lesen bewegt sich diese Position weiter. Im Textmodus kann `tell()` ein undurchsichtiges Positions-Cookie statt eines einfachen Zeichenindex liefern. Speichere und verwende solche Positionen erneut, anstatt Byte-Offsets selbst zu berechnen.
+Eine neu geöffnete Datei beginnt an ihrer ersten Streamposition. Durch das Lesen bewegt sich diese Position weiter. Im Textmodus kann `tell()` eine besondere Positionsmarke zurückgeben. Speichere diese Marke und übergib sie wieder an Python, wenn du dieselbe Position benötigst.
 
 <CodeBlock
   data={[
@@ -213,7 +214,7 @@ Im Textmodus geben `read()` und `readline()` Strings zurück. Ist kein Text mehr
 
 ## Sicherer Umgang mit Dateien
 
-Python bietet die `with`-Anweisung für eine sicherere und automatische Dateiverarbeitung.
+Die `with`-Anweisung schließt eine Datei automatisch am Ende ihres Blocks, auch wenn eine Operation im Block eine Ausnahme auslöst.
 
 <CodeBlock
   data={[

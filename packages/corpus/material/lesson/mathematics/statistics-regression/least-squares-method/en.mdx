@@ -1,14 +1,14 @@
 
 export const metadata = {
   title: "Least Squares Method",
-  description: "Learn the least squares method to find the best-fit line by minimizing squared residuals. Learn formulas, calculations, and real-world applications.",
+  description: "Find a best fit line by minimizing the sum of squared residuals, then calculate and interpret its coefficients.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Statistics",
 };
 
-## What Is the Least Squares Method?
+## Least Squares Method
 
 Suppose a set of observations or experimental results consists of value pairs <InlineMath math="(x, y)" />. When their scatter diagram follows an approximately straight trend, many different lines could be drawn through the point cloud.
 
@@ -32,7 +32,7 @@ The fitted line is determined from the vertical **residual** at each observed po
 - Squaring prevents positive and negative residuals from canceling one another.
 - A residual with twice the magnitude contributes four times as much to the sum, so large departures receive more weight.
 
-## Visualization Example
+## Fitting Advertising and Sales Data
 
 For example, a company wants to see the relationship between the advertising costs they incur (in millions of rupiah) and the number of products sold (in thousands of units). The data they collected is as follows:
 
@@ -76,11 +76,9 @@ Mathematically, we are looking for the line with the equation:
 
 <BlockMath math="\hat{y} = a + bx" />
 
-Where the values of <InlineMath math="a" /> (intercept) and <InlineMath math="b" /> (slope) are chosen such that the value of:
+The intercept <InlineMath math="a" /> and slope <InlineMath math="b" /> are chosen to minimize the following sum of squared residuals:
 
 <BlockMath math="\sum e_i^2 = \sum (y_i - \hat{y}_i)^2 = \sum (y_i - (a + bx_i))^2" />
-
-is minimized.
 
 Through calculus (which we don't need to derive here), formulas are found to obtain the values of <InlineMath math="a" /> and <InlineMath math="b" /> that satisfy this condition:
 
@@ -101,6 +99,6 @@ Formula key:
 - <InlineMath math="\bar{y}" /> = Mean of <InlineMath math="y" /> (<InlineMath math="\frac{\sum y}{n}" />
   ).
 
-Thus, the least-squares method provides a systematic criterion for the line that represents the linear trend: its residual sum of squares is minimal.
+The least-squares method provides a systematic criterion for the line that represents the linear trend: its residual sum of squares is minimal.
 
 If every <InlineMath math="x" /> value is the same, then <InlineMath math="n(\sum x^2)-(\sum x)^2=0" /> and the slope formula has a zero denominator. In that case, the data cannot determine a unique linear regression slope.

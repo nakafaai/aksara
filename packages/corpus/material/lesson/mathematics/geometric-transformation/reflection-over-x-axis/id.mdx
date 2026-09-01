@@ -5,11 +5,11 @@ export const metadata = {
   description: "Cerminkan titik, segitiga, dan garis terhadap sumbu horizontal serta turunkan aturan koordinat dari jarak yang sama.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Transformasi Geometri",
 };
 
-## Memahami Pencerminan terhadap Sumbu Horizontal
+## Pencerminan terhadap Sumbu Horizontal
 
 Pada pencerminan terhadap sumbu <InlineMath math="x" />, setiap bayangan berada di sisi berlawanan dari sumbu <InlineMath math="x" /> dengan jarak yang sama. Sumbu <InlineMath math="x" /> berperan seperti cermin horizontal.
 
@@ -24,7 +24,7 @@ Pasangan titik berikut memperlihatkan hubungan pencerminan terhadap sumbu <Inlin
 Telusuri koordinatnya: koordinat <InlineMath math="y" /> berubah tanda, sedangkan koordinat <InlineMath math="x" /> tetap.
 
 <LineEquation
-  title={<>Peta Titik terhadap Sumbu <InlineMath math="x" /></>}
+  title={<>Bayangan Titik terhadap Sumbu <InlineMath math="x" /></>}
   description={
     <>
       Visualisasi titik-titik <InlineMath math="A, B, C, D" /> dan bayangannya{" "}
@@ -65,14 +65,14 @@ Telusuri koordinatnya: koordinat <InlineMath math="y" /> berubah tanda, sedangka
   ]}
 />
 
-Pasangan pada grafik menunjukkan hubungan antara setiap titik asli (prapeta) dan bayangannya (peta):
+Setiap pasangan pada grafik memuat titik asal dan titik hasil pencerminannya:
 
 - Titik <InlineMath math="A(-5,2)" /> menjadi <InlineMath math="A'(-5,-2)" />
 - Titik <InlineMath math="B(-3,1)" /> menjadi <InlineMath math="B'(-3,-1)" />
 - Titik <InlineMath math="C(1,2)" /> menjadi <InlineMath math="C'(1,-2)" />
 - Titik <InlineMath math="D(4,-2)" /> menjadi <InlineMath math="D'(4,2)" />
 
-Pola yang tampak adalah nilai <InlineMath math="x" /> tetap, dan nilai <InlineMath math="y" /> berubah tanda (menjadi lawannya).
+Setiap pasangan mempertahankan nilai <InlineMath math="x" /> dan mengubah tanda nilai <InlineMath math="y" />.
 
 ## Sifat Pencerminan terhadap Sumbu Horizontal
 
@@ -82,13 +82,13 @@ Pasangan titik tersebut menghasilkan aturan koordinat pencerminan terhadap sumbu
 
 Artinya, bayangan titik <InlineMath math="P(x,y)" /> terhadap sumbu <InlineMath math="x" /> adalah <InlineMath math="P'(x,-y)" />. Sumbu <InlineMath math="x" /> merupakan garis <InlineMath math="y=0" />.
 
-## Contoh Aplikasi
+## Mencerminkan Segitiga dan Garis
 
 ### Mencerminkan Segitiga
 
-Tentukan peta dari segitiga <InlineMath math="ABC" /> dengan titik sudut <InlineMath math="A(-1,4)" />, <InlineMath math="B(2,1)" />, dan <InlineMath math="C(-2,-1)" /> yang dicerminkan terhadap sumbu <InlineMath math="x" />.
+Tentukan bayangan segitiga <InlineMath math="ABC" /> dengan titik sudut <InlineMath math="A(-1,4)" />, <InlineMath math="B(2,1)" />, dan <InlineMath math="C(-2,-1)" /> yang dicerminkan terhadap sumbu <InlineMath math="x" />.
 
-Untuk menentukan peta dari segitiga <InlineMath math="ABC" />, kita gunakan sifat pencerminan pada setiap titik sudutnya:
+Untuk menentukan bayangan segitiga <InlineMath math="ABC" />, kita gunakan sifat pencerminan pada setiap titik sudutnya:
 
 <MathContainer>
   <BlockMath math="A(-1,4) \xrightarrow{\text{Sumbu X}} A'(-1,-4)" />
@@ -96,7 +96,7 @@ Untuk menentukan peta dari segitiga <InlineMath math="ABC" />, kita gunakan sifa
   <BlockMath math="C(-2,-1) \xrightarrow{\text{Sumbu X}} C'(-2,1)" />
 </MathContainer>
 
-Akibatnya, peta dari segitiga <InlineMath math="ABC" /> adalah segitiga <InlineMath math="A'B'C'" /> dengan titik sudut <InlineMath math="A'(-1,-4)" />, <InlineMath math="B'(2,-1)" />, dan <InlineMath math="C'(-2,1)" />.
+Akibatnya, bayangan segitiga <InlineMath math="ABC" /> adalah segitiga <InlineMath math="A'B'C'" /> dengan titik sudut <InlineMath math="A'(-1,-4)" />, <InlineMath math="B'(2,-1)" />, dan <InlineMath math="C'(-2,1)" />.
 
 <LineEquation
   title={
@@ -129,6 +129,7 @@ Akibatnya, peta dari segitiga <InlineMath math="ABC" /> adalah segitiga <InlineM
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#ea580c",
       showPoints: true,
       labels: [
@@ -156,6 +157,7 @@ Akibatnya, peta dari segitiga <InlineMath math="ABC" /> adalah segitiga <InlineM
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#9333ea",
       showPoints: true,
       labels: [
@@ -223,6 +225,7 @@ Jadi, persamaan garis bayangannya adalah:
           { x: -6, y: (2 / 3) * -6, z: 0 },
           { x: 6, y: (2 / 3) * 6, z: 0 },
         ],
+        smooth: false,
         color: "#65a30d",
         labels: [{ text: <InlineMath math="2x-3y=0" />, at: 1, offset: [0.5, 0.5, 0] }],
       },
@@ -232,6 +235,7 @@ Jadi, persamaan garis bayangannya adalah:
           { x: -6, y: -(2 / 3) * -6, z: 0 },
           { x: 6, y: -(2 / 3) * 6, z: 0 },
         ],
+        smooth: false,
         color: "#c026d3",
         labels: [{ text: <InlineMath math="2x+3y=0" />, at: 1, offset: [0.5, -0.5, 0] }],
       },
@@ -239,4 +243,4 @@ Jadi, persamaan garis bayangannya adalah:
   />
 </ContentStack>
 
-Ini menunjukkan bagaimana persamaan sebuah garis berubah setelah dicerminkan terhadap sumbu <InlineMath math="x" />.
+Pencerminan terhadap sumbu <InlineMath math="x" /> mengubah <InlineMath math="2x-3y=0" /> menjadi <InlineMath math="2x+3y=0" /> dengan mengganti <InlineMath math="y" /> menjadi <InlineMath math="-y" />.

@@ -1,23 +1,21 @@
 export const metadata = {
    title: "Integral dalam Bidang Fisika",
-   description: "Pelajari penggunaan integral dalam fisika untuk menghitung usaha, energi pegas, distribusi massa, dan pusat massa.",
+  description: "Gunakan integral untuk menghitung usaha oleh gaya berubah, energi pegas, distribusi massa, dan pusat massa.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-08-29",
+   dateModified: "2026-09-01",
    subject: "Integral",
 };
 
-## Peran Integral dalam Dunia Fisika
+## Integral Menjumlahkan Besaran yang Berubah
 
-Pernahkah kalian bertanya-tanya bagaimana para fisikawan menghitung energi yang diperlukan untuk meluncurkan roket ke luar angkasa? Atau bagaimana mereka menentukan gaya yang bekerja pada bendungan air? Salah satu cara yang mereka gunakan adalah **integral**.
+Banyak besaran fisika berubah secara kontinu. Gaya dapat berubah terhadap posisi, misalnya, sehingga satu nilai gaya tidak mewakili seluruh lintasan. **Integral** menjumlahkan kontribusi pada setiap bagian interval yang dipilih.
 
-Dalam fisika, banyak besaran yang kita perlukan tidak bisa dihitung dengan rumus sederhana karena melibatkan perubahan yang kontinu. Misalnya, gaya yang bekerja pada suatu benda mungkin berubah seiring dengan posisi atau waktu. Di sinilah integral menjadi alat yang berguna.
-
-Konsep dasar integral dalam fisika adalah **akumulasi**. Jika kita memiliki laju perubahan suatu besaran, integral membantu kita menemukan total besaran tersebut dalam interval tertentu.
+Gagasan yang sama berlaku saat laju atau kerapatan diketahui. Integral dari laju perubahan memberikan perubahan total, sedangkan integral dari kerapatan memberikan jumlah yang tersebar sepanjang garis, bidang, atau volume.
 
 ## Menghitung Usaha dengan Integral
 
-Mari mulai dari **usaha**. Gaya konstan yang sejajar dengan perpindahan melakukan usaha sebesar <InlineMath math="W=Fs" />. Secara umum, usaha merupakan integral garis <InlineMath math="W=\int \mathbf{F}\cdot d\mathbf{r}" />. Dalam satu dimensi, ketika gaya dan gerak sama-sama berada di sepanjang sumbu <InlineMath math="x" />, bentuknya menjadi <InlineMath math="W=\int F(x)\,dx" />.
+Mulai dari **usaha**. Gaya konstan yang sejajar dengan perpindahan melakukan usaha sebesar <InlineMath math="W=Fs" />. Secara umum, usaha merupakan integral garis <InlineMath math="W=\int \mathbf{F}\cdot d\mathbf{r}" />. Dalam satu dimensi, ketika gaya dan gerak sama-sama berada di sepanjang sumbu <InlineMath math="x" />, integral usaha menjadi <InlineMath math="W=\int F(x)\,dx" />.
 
 Bayangkan sebuah partikel berada pada koordinat <InlineMath math="x" />, yang diukur dalam meter dari titik asal. Gaya <InlineMath math="F(x) = x^2 + 2x" /> Newton bekerja searah sumbu <InlineMath math="x" /> positif. Berapa usaha yang dilakukan gaya ini ketika partikel bergerak dari <InlineMath math="x = 1 \text{ meter}" /> ke <InlineMath math="x = 3 \text{ meter}" />?
 
@@ -69,7 +67,7 @@ Kita bisa menghitung usaha dengan integral:
 
 ## Menghitung Massa dari Fungsi Densitas
 
-Aplikasi integral lainnya dalam fisika adalah menghitung **massa** suatu benda jika kita mengetahui fungsi densitasnya. Ini sangat berguna untuk benda yang densitasnya tidak seragam.
+Jika densitas benda berubah terhadap posisi, **massa** benda adalah integral fungsi densitas terhadap panjang, luas, atau volumenya.
 
 Misalkan kita memiliki batang sepanjang <InlineMath math="2 \text{ meter}" /> dengan densitas linear <InlineMath math="\rho(x) = (3x + 2)\,\text{kg/m}" />, dengan <InlineMath math="x" /> sebagai koordinat numerik dalam meter dari salah satu ujung batang. Berapa massa total batang tersebut?
 
@@ -81,7 +79,7 @@ Misalkan kita memiliki batang sepanjang <InlineMath math="2 \text{ meter}" /> de
 
 ## Menentukan Pusat Massa
 
-Konsep lain yang sangat penting adalah **pusat massa**. Untuk benda dengan densitas yang tidak seragam, pusat massa dapat dihitung menggunakan integral.
+Untuk benda dengan densitas yang tidak seragam, integral juga dapat digunakan untuk menentukan **pusat massa**.
 
 Jika kita memiliki batang dengan densitas <InlineMath math="\rho(x)" /> sepanjang interval <InlineMath math="[a, b]" />, maka koordinat pusat massa adalah:
 
@@ -103,7 +101,7 @@ Untuk batang dengan densitas <InlineMath math="\rho(x) = 3x + 2" /> di atas:
 
 <BlockMath math="I = \int r^2 \, dm" />
 
-di mana <InlineMath math="r" /> adalah jarak dari sumbu rotasi dan <InlineMath math="dm" /> adalah elemen massa.
+Pada rumus ini, <InlineMath math="r" /> adalah jarak dari sumbu rotasi dan <InlineMath math="dm" /> adalah elemen massa.
 
 Untuk batang homogen dengan massa <InlineMath math="M" /> dan panjang <InlineMath math="L" /> yang berputar terhadap salah satu ujungnya:
 

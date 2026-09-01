@@ -1,9 +1,9 @@
 export const metadata = {
   title: "Triangularization and Jordan Normal Form",
-  description: "Understand triangularization, Jordan blocks, generalized eigenvector chains, and what Jordan form reveals about a non-diagonalizable matrix.",
+    description: "Use triangularization, Jordan blocks, and generalized eigenvector chains to describe a matrix that cannot be diagonalized.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-17",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Linear Methods of AI",
 };
 
@@ -44,11 +44,11 @@ The first vector is an ordinary eigenvector. Each following vector maps to the p
 
 ## The complete Jordan form
 
-Suppose
+Suppose the characteristic polynomial of <InlineMath math="A" /> has the following form.
 
 <BlockMath math="\chi_A(t)=\prod_{i=1}^{k}(t-\lambda_i)^{a_i}" />
 
-splits over <InlineMath math="\mathbb{K}" />, with distinct eigenvalues <InlineMath math="\lambda_1,\ldots,\lambda_k" />. Then there is an invertible matrix <InlineMath math="S" /> such that
+If this polynomial splits over <InlineMath math="\mathbb{K}" /> with distinct eigenvalues <InlineMath math="\lambda_1,\ldots,\lambda_k" />, then there is an invertible matrix <InlineMath math="S" /> such that
 
 <BlockMath math="S^{-1}AS=J=\operatorname{diag}\bigl(J_{s_{11}}(\lambda_1),\ldots,J_{s_{1q_1}}(\lambda_1),\ldots,J_{s_{k1}}(\lambda_k),\ldots,J_{s_{kq_k}}(\lambda_k)\bigr)" />
 
@@ -64,7 +64,7 @@ The number of blocks for <InlineMath math="\lambda_i" /> equals the geometric mu
 | How many independent eigenvectors belong to <InlineMath math="\lambda_i" />? | One for each Jordan block associated with <InlineMath math="\lambda_i" />. |
 | Why is a repeated eigenvalue not enough to decide diagonalizability? | The same algebraic multiplicity can be split among blocks of different sizes. |
 
-## Worked example
+## Reading Jordan Blocks from a Matrix
 
 Consider
 
@@ -81,18 +81,18 @@ For <InlineMath math="\lambda=1" />,
 <BlockMath math="\ker(A-I)=\operatorname{span}\left\{\begin{pmatrix}1\\0\\0\end{pmatrix}\right\}" />
 </MathContainer>
 
-The eigenvalue <InlineMath math="1" /> has algebraic multiplicity <InlineMath math="2" /> but only one independent eigenvector. Therefore <InlineMath math="A" /> is not diagonalizable. The vectors
+The eigenvalue <InlineMath math="1" /> has algebraic multiplicity <InlineMath math="2" /> but only one independent eigenvector. Therefore <InlineMath math="A" /> is not diagonalizable. Consider the following two vectors.
 
 <BlockMath math="v_1=\begin{pmatrix}1\\0\\0\end{pmatrix},\qquad v_2=\begin{pmatrix}0\\1\\0\end{pmatrix}" />
 
-form a chain because <InlineMath math="(A-I)v_1=0" /> and <InlineMath math="(A-I)v_2=v_1" />. The eigenvalue <InlineMath math="2" /> contributes the separate block <InlineMath math="J_1(2)" />.
+The two vectors form a Jordan chain because <InlineMath math="(A-I)v_1=0" /> and <InlineMath math="(A-I)v_2=v_1" />. The eigenvalue <InlineMath math="2" /> contributes the separate block <InlineMath math="J_1(2)" />.
 
-## Why the form is useful
+## Matrix Powers from Jordan Blocks
 
 Writing <InlineMath math="J_s(\lambda)=\lambda I+N" /> with <InlineMath math="N^s=0" /> makes powers explicit:
 
 <BlockMath math="J_s(\lambda)^m=\sum_{j=0}^{s-1}\binom{m}{j}\lambda^{m-j}N^j" />
 
-This formula explains why powers of a non-diagonalizable matrix contain polynomial factors in <InlineMath math="m" /> in addition to powers of the eigenvalues. It is useful for exact analysis of recurrences and differential equations.
+This formula explains why powers of a non-diagonalizable matrix contain polynomial factors in <InlineMath math="m" /> in addition to powers of the eigenvalues. It gives the exact matrix powers used to analyze recurrences and differential equations.
 
 Jordan form is primarily an exact algebraic classification. It is highly sensitive to small numerical perturbations, so numerical software usually computes a Schur decomposition for stable calculations.

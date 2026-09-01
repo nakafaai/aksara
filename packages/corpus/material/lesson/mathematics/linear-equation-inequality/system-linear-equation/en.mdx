@@ -5,15 +5,15 @@ export const metadata = {
   description: "Solve linear equation systems with substitution and elimination, then interpret worked examples and visual models.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-18",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Systems of Linear Equations and Inequalities",
 };
 
-## Understanding Linear Equation Systems
+## Linear Equation Systems
 
-A total price can be produced by many different item combinations. A second relationship, such as the total number of items, narrows those possibilities. A linear equation system keeps the relationships together, so its solution must satisfy every equation at once.
+A total price can be produced by many different item combinations. Additional information, such as the total number of items, narrows those possibilities. A linear equation system writes each piece of information as an equation. Its solution must satisfy every equation at once.
 
-### What Is a Linear Equation System?
+### Linear Equation System
 
 A linear equation system is a collection of two or more linear equations that must be satisfied simultaneously. Each linear equation has the form:
 
@@ -21,7 +21,7 @@ A linear equation system is a collection of two or more linear equations that mu
 
 Here <InlineMath math="a_1, a_2, \ldots, a_n" /> are coefficients, <InlineMath math="x_1, x_2, \ldots, x_n" /> are variables, and <InlineMath math="b" /> is a constant.
 
-### Two-Variable Linear Equation Systems
+### Two Variable Linear Equation Systems
 
 A two-variable linear equation system consists of two equations with two variables (usually <InlineMath math="x" /> and <InlineMath math="y" />). The general form is:
 
@@ -33,7 +33,7 @@ A two-variable linear equation system consists of two equations with two variabl
 
 The solution to this system is the pair of values <InlineMath math="(x,y)" /> that satisfies both equations.
 
-### Three-Variable Linear Equation Systems
+### Three Variable Linear Equation Systems
 
 A system may contain any number of equations. To determine unique values for <InlineMath math="x,y,z" />, however, the equations must provide three independent constraints. A common square form is:
 
@@ -47,7 +47,7 @@ A system may contain any number of equations. To determine unique values for <In
 
 ### Substitution Method
 
-The substitution method works by replacing one variable with another. Solve the following example:
+In the substitution method, express one variable in terms of another, then insert that expression into the other equation. The following example shows each step.
 
 <BlockMath math="\begin{cases} 2x + 3y = 21 & \ldots (1) \\ x + y = 10 & \ldots (2) \end{cases}" />
 
@@ -71,17 +71,17 @@ Insert equation (<InlineMath math="3" />) into equation (<InlineMath math="1" />
   <BlockMath math="y = 1 \ldots (4)" />
 </MathContainer>
 
-**Step** <InlineMath math="4" />: Back-substitute to find the other variable.
+**Step** <InlineMath math="4" />: Substitute the calculated value to find the other variable.
 
 Substitute the value <InlineMath math="y = 1" /> from equation (<InlineMath math="4" />) into equation (<InlineMath math="3" />):
 
 <BlockMath math="x = 10 - y = 10 - 1 = 9" />
 
-Therefore, the solution is <InlineMath math="x = 9" /> and <InlineMath math="y = 1" />.
+The solution is <InlineMath math="x = 9" /> and <InlineMath math="y = 1" />.
 
 ### Elimination Method
 
-The elimination method works by eliminating one variable. Solve the same example:
+In the elimination method, add or subtract two equations to remove one variable. The following calculation solves the same example.
 
 <BlockMath math="\begin{cases} 2x + 3y = 21 & \ldots (1) \\ x + y = 10 & \ldots (2) \end{cases}" />
 
@@ -107,7 +107,7 @@ Substitute the value <InlineMath math="y = 1" /> from equation (<InlineMath math
   <BlockMath math="x = 9" />
 </MathContainer>
 
-Therefore, the solution is <InlineMath math="x = 9" /> and <InlineMath math="y = 1" />.
+The solution is <InlineMath math="x = 9" /> and <InlineMath math="y = 1" />.
 
 Verify:
 
@@ -142,13 +142,13 @@ Both original equations confirm the result:
   <BlockMath math="4-2=2" />
 </MathContainer>
 
-Therefore, the solution is <InlineMath math="(x,y)=(4,2)" />.
+The solution is <InlineMath math="(x,y)=(4,2)" />.
 
-## Real-Life Applications
+## Linear Equation Systems in Context
 
 ### Mathematical Modeling
 
-Mathematical modeling is the process of converting real-world problems into mathematical form. For linear equation systems, we:
+To turn the quantities and relationships in a word problem into a linear equation system:
 
 1. Identify the variables to use
 2. Create a mathematical model based on the available information
@@ -177,7 +177,7 @@ Substituting <InlineMath math="a = 6" /> into the second equation:
   <BlockMath math="b + c = 10" />
 </MathContainer>
 
-Substituting into the first equation:
+Substitute <InlineMath math="a = 6" /> into the first equation:
 
 <MathContainer>
   <BlockMath math="6 + 2b + 3c = 27" />
@@ -190,7 +190,7 @@ From these two equations:
 
 Using elimination or substitution, we get <InlineMath math="b = 9" /> and <InlineMath math="c = 1" />.
 
-Therefore, Wijaya made <InlineMath math="6" /> free throws, <InlineMath math="9" /> <InlineMath math="2" />-point shots, and <InlineMath math="1" /> <InlineMath math="3" />-point shot.
+Wijaya made <InlineMath math="6" /> free throws, <InlineMath math="9" /> <InlineMath math="2" />-point shots, and <InlineMath math="1" /> <InlineMath math="3" />-point shot.
 
 ## Interpreting Solutions
 
@@ -215,6 +215,7 @@ In three dimensions, one linear equation represents a plane. Two distinct nonpar
           { x: 3, y: 5, z: 0 },
           { x: 9, y: 1, z: 0 },
         ],
+        smooth: false,
         labels: [{ text: <InlineMath math="2x+3y=21" />, offset: [-1, -1, 0] }],
         color: "#ea580c",
       },
@@ -224,6 +225,7 @@ In three dimensions, one linear equation represents a plane. Two distinct nonpar
           { x: 5, y: 5, z: 0 },
           { x: 15, y: -5, z: 0 },
         ],
+        smooth: false,
         labels: [{ text: <InlineMath math="x+y=10" />, offset: [1, 1, 0] }],
         color: "#9333ea",
       },
@@ -239,6 +241,7 @@ In three dimensions, one linear equation represents a plane. Two distinct nonpar
           { x: 1, y: 2, z: 0 },
           { x: 5, y: 8, z: 0 },
         ],
+        smooth: false,
         labels: [{ text: <InlineMath math="3x-2y=-1" />, offset: [-2, 0, 0] }],
         color: "#db2777",
       },
@@ -248,6 +251,7 @@ In three dimensions, one linear equation represents a plane. Two distinct nonpar
           { x: 1, y: 1, z: 0 },
           { x: 5, y: 7, z: 0 },
         ],
+        smooth: false,
         labels: [{ text: <InlineMath math="6x-4y=2" />, offset: [2, 0, 0] }],
         color: "#ca8a04",
       },
@@ -269,6 +273,7 @@ In three dimensions, one linear equation represents a plane. Two distinct nonpar
           { x: 2, y: -1, z: 0 },
           { x: 5, y: -3, z: 0 },
         ],
+        smooth: false,
         labels: [{ text: <InlineMath math="2x+3y=1" />, offset: [-2, -1, 0] }],
         color: "#7c3aed",
         lineWidth: 6,
@@ -279,6 +284,7 @@ In three dimensions, one linear equation represents a plane. Two distinct nonpar
           { x: 2, y: -1, z: 0 },
           { x: 5, y: -3, z: 0 },
         ],
+        smooth: false,
         labels: [
           {
             text: <InlineMath math="4x+6y=2" />,

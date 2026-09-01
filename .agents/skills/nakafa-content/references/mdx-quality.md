@@ -8,6 +8,10 @@
 - Do not add dynamic metadata, executable imports, or arbitrary module syntax.
 - Raw MDX remains trusted executable source. It is compiled ahead of time and
   rendered by Nakafa's native MDX renderer.
+- Reject hidden C0 control characters other than line feed and tab, as well as
+  DEL. They can corrupt prose or LaTeX while remaining hard to see in a diff.
+  Write the intended visible character explicitly and recheck every locale
+  sibling for the same corruption.
 - Keep provenance, originality, evidence URLs, and publication status in the
   source, readiness, and publisher contracts. Do not insert learner-facing
   notices such as "original practice text" into a question or answer.
@@ -26,13 +30,60 @@
 - Answer explanation MDX is rendered beneath an app-owned `###` heading, so its
   sections start at `####` and may use `#####` for real nested analysis.
 - Leave one blank line after headings.
-- Keep formulas, symbols, option letters, and parenthesized item numbers out of
-  headings.
+- Use one short phrase written with ordinary words. A page title or lesson
+  heading may contain only letters, numbers, and spaces. Keep punctuation,
+  formulas, code tokens, operators, emojis, option letters, decorative numbers,
+  and every other symbol out of headings. Move exact notation, aliases, and full
+  questions into the first sentence below the heading.
+  Do not remove an Indonesian hyphen mechanically. Rewrite a reduplicated term
+  with a natural synonym, such as `rerata` or `radius`, so the heading remains
+  both standard and symbol-free.
+
+## Learner facing punctuation
+
+- Do not use a visible semicolon in authored paragraphs, lists, tables,
+  metadata descriptions, or learner-facing component props. Use a comma for
+  one continuous sentence or a period for separate thoughts.
+- After replacing a semicolon with a period, read both sentences together.
+  Name the subject again when a pronoun or possessive could refer to more than
+  one noun.
+- Preserve semicolons that belong to JavaScript or MDX syntax, authored code
+  examples, HTML entities, and LaTeX spacing commands such as `\;`. These
+  characters are source syntax rather than learner-facing punctuation.
+- A visible semicolon used as a separator inside rendered mathematics is still
+  learner-facing punctuation and must be replaced with notation that states the
+  relationship clearly. An encoded entity that renders as a semicolon is also
+  forbidden.
+
+## Links
+
+- Nakafa renders external Markdown links as compact source chips. Keep the
+  explanation in ordinary prose and use the source, institution, journal,
+  report, or publication name as the label.
+- Do not use a clause, lesson term, page topic, chapter title, `tautan ini`,
+  `this source link`, or a sentence about opening the source as an external
+  label. A source chip must identify the evidence even when its destination is
+  hidden.
+- Keep generic words such as `official documentation`, `Dokumentasi resmi`, or
+  `Dokumentation` in the sentence, not in the chip. Use `[NumPy]` or `[GBIF]`
+  for the source label.
+- Internal links beginning with `/` use the ordinary underlined-link treatment.
+  Give them a descriptive destination label that fits the sentence.
+- Read the destination and the surrounding paragraph before editing a label.
+  Do not impose a global character limit or a hostname-to-label map. A longer
+  official publication name may be necessary, and one domain may host several
+  distinct journals or institutions.
 
 ## Mathematics and code
 
 - Use `<InlineMath />` for mathematical expressions, variables, quantities,
   units, coordinates, and calculated values in prose.
+- Use upright math letters for named factorizations and algorithms in prose.
+  Write `<InlineMath math="\mathrm{QR}" />`, `<InlineMath
+  math="\mathrm{LU}" />`, and `<InlineMath math="\mathrm{SVD}" />` instead of
+  bare labels such as `QR`, `LU`, `SVD`, `PLU`, or `PCA`. Keep the page title and headings as ordinary text,
+  then render the notation in the first body sentence. Exempt code, URLs,
+  immutable quotations, and string-only schema fields.
 - Use `<BlockMath />` for standalone formulas.
 - Apply the same rule inside renderer component props. When `title`,
   `description`, or another learner-facing prop accepts a React node, pass a
@@ -183,10 +234,23 @@ mostly prose, and a routine worked answer can remain prose plus one derivation.
 Do not add a table, blockquote, Mermaid diagram, video, or interaction merely
 to make the document look more varied.
 
+During a humanization pass, compare the representation inventory before and
+after editing. Do not flatten a useful list, table, blockquote, Mermaid diagram,
+math block, graph, or custom component into prose just to shorten or smooth the
+lesson. A removal is valid only when the representation no longer has a
+teaching job or when every locale sibling carries the same job more clearly in
+another form.
+
 Keep the teaching structure equivalent across locale siblings. If a diagram,
 table, example, warning, or worked model is necessary in one authored locale,
 preserve the same instructional evidence in the others while localizing its
 labels and explanation naturally.
+
+Structural parity applies to the teaching representation and its information.
+A list keeps the same ordered steps, a table keeps the same comparisons, and a
+displayed derivation keeps the same mathematical work in every sibling.
+Sentence boundaries and inline-math wrappers may follow each language's grammar
+and do not need a byte-for-byte match.
 
 Do not use raw HTML, manual React renderers, decorative component wrappers, or
 content-local component implementations. Verify every nonstandard component

@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Dilatasi Horizontal",
-  description: "Pahami bagaimana pengali masukan pada fungsi menentukan skala horizontal, lalu terapkan aturannya pada grafik, domain, dan contoh terbahas.",
+  description: "Pengali input fungsi menentukan skala horizontal, lalu terapkan aturan skala tersebut pada grafik, domain, dan contoh terbahas.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Transformasi Fungsi",
 };
 
 
 
-## Konsep Dasar Dilatasi Horizontal
+## Dilatasi Horizontal
 
 Dilatasi horizontal mengubah lebar grafik fungsi tanpa mengubah tingginya. Bayangkan sebuah foto ditarik dari tepi kiri dan kanan atau ditekan ke arah tengah.
 
@@ -93,6 +93,7 @@ Aturan yang sama berlaku pada fungsi linear <InlineMath math="f(x) = x + 2" />.
         const x = (i - 10) * 0.5;
         return { x, y: x + 2, z: 0 };
       }),
+      smooth: false,
       color: "#d97706",
       labels: [{ text: <InlineMath math="f(x)=x+2" />, offset: [2, 0.5, 0] }],
       showPoints: false,
@@ -102,6 +103,7 @@ Aturan yang sama berlaku pada fungsi linear <InlineMath math="f(x) = x + 2" />.
         const x = (i - 10) * 0.5;
         return { x, y: (2 * x) + 2, z: 0 };
       }),
+      smooth: false,
       color: "#0d9488",
       labels: [{ text: <InlineMath math="g(x)=2x+2" />, offset: [1, 1.5, 0] }],
       showPoints: false,
@@ -111,6 +113,7 @@ Aturan yang sama berlaku pada fungsi linear <InlineMath math="f(x) = x + 2" />.
         const x = (i - 10) * 0.5;
         return { x, y: (0.5 * x) + 2, z: 0 };
       }),
+      smooth: false,
       color: "#e11d48",
       labels: [{ text: <InlineMath math="h(x)=0{,}5x+2" />, offset: [3, -0.5, 0] }],
       showPoints: false,
@@ -124,7 +127,7 @@ Ketiga garis menunjukkan:
 - Fungsi <InlineMath math="h(x) = f(0{,}5x) = 0{,}5x + 2" /> memiliki kemiringan <InlineMath math="0{,}5" /> (diregangkan horizontal)
 - Semua garis memotong sumbu <InlineMath math="y" /> di titik yang sama <InlineMath math="(0, 2)" />
 
-## Sifat Penting Dilatasi Horizontal
+## Sifat Dilatasi Horizontal
 
 ### Pengaruh pada Koordinat Titik
 
@@ -142,9 +145,7 @@ Jika domain fungsi asli adalah <InlineMath math="[c, d]" />, maka domain setelah
 - **Titik potong sumbu <InlineMath math="x" />**: Koordinatnya dibagi dengan pengali masukan
 - **Titik potong sumbu <InlineMath math="y" />**: Tidak berubah
 
-## Contoh Penerapan
-
-### Fungsi Eksponensial
+## Mengubah Laju Pertumbuhan Fungsi Eksponensial
 
 Pada fungsi eksponensial <InlineMath math="f(x) = 2^x" />, pengali masukan mengubah seberapa cepat grafik naik.
 

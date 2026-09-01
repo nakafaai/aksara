@@ -3,10 +3,11 @@ export const metadata = {
    description: "Disjunkte Ereignisse erkennen, von unabhängigen Ereignissen unterscheiden und ihre Wahrscheinlichkeiten ohne Doppelzählung addieren.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
+   dateModified: "2026-09-01",
    subject: "Kombinatorik",
 };
 
-## Disjunkte Ereignisse verstehen
+## Disjunkte Ereignisse
 
 Manche Ereignisse können **nicht im selben Versuch gemeinsam eintreten**. Bei einem einzelnen Münzwurf erscheint zum Beispiel entweder Kopf oder Zahl, niemals beides zugleich. Solche Ereignisse heißen disjunkt oder sich gegenseitig ausschließend.
 
@@ -24,7 +25,7 @@ Disjunkte Ereignisse haben **keine gemeinsamen Ergebnisse**. Sind <InlineMath ma
 
 Das Symbol <InlineMath math="\emptyset" /> weist auf eine leere Menge hin, was bedeutet, dass es keine gemeinsamen Elemente zwischen den beiden Ereignissen gibt.
 
-### Einfache Beispiele
+### Unvereinbare Ergebnisse eines Versuchs
 
 Diese Ereignispaare schließen sich jeweils aus:
 
@@ -38,7 +39,7 @@ Frage: „Kann ein einziges Ergebnis beide Bedingungen erfüllen?“ Lautet die 
 
 ## Additionsregel für disjunkte Ereignisse
 
-Da disjunkte Ereignisse keine Schnittmenge haben, vereinfacht sich die **Additionsregel** zu:
+Die allgemeine Additionsregel zieht die Schnittmenge <InlineMath math="P(A \cap B)" /> ab. Bei disjunkten Ereignissen gilt <InlineMath math="P(A \cap B)=0" />, sodass dieser Term entfällt:
 
 <BlockMath math="P(A \cup B) = P(A) + P(B)" />
 
@@ -46,7 +47,7 @@ Die Wahrscheinlichkeit für <InlineMath math="A" /> oder <InlineMath math="B" />
 
 Disjunkt bedeutet **nicht** unabhängig. Gelten <InlineMath math="P(A) > 0" /> und <InlineMath math="P(B) > 0" />, macht die Information, dass <InlineMath math="A" /> eingetreten ist, <InlineMath math="B" /> unmöglich. Daher ist <InlineMath math="P(A \cap B) = 0" />. Unabhängigkeit würde dagegen <InlineMath math="P(A \cap B) = P(A)P(B) > 0" /> verlangen.
 
-### Warum diese Formel funktioniert
+### Leere Schnittmenge in der Additionsregel
 
 Für disjunkte Ereignisse gilt <InlineMath math="P(A \cap B) = 0" />. Die allgemeine Additionsregel zieht die Schnittmenge ab:
 
@@ -56,7 +57,7 @@ Setzen wir die leere Schnittmenge ein, erhalten wir:
 
 <BlockMath math="P(A \cup B) = P(A) + P(B) - 0 = P(A) + P(B)" />
 
-## Anwendung in Berechnungen
+## Berechnungen mit der Additionsregel
 
 ### Ein Würfelwurf
 
@@ -95,7 +96,7 @@ Da die Schnittmenge leer ist, sind die Ereignisse **disjunkt**.
 <BlockMath math="P(A \cup C) = P(A) + P(C) = \frac{1}{2} + \frac{1}{2} = 1" />
 </MathContainer>
 
-Dieses Ergebnis ist sinnvoll, da beim Würfeln auf jeden Fall entweder eine ungerade oder eine gerade Zahl erscheint (alle Möglichkeiten sind abgedeckt).
+Die ungeraden und geraden Ergebnisse decken zusammen alle sechs Würfelseiten ab. Daher hat ihre Vereinigung die Wahrscheinlichkeit <InlineMath math="1" />.
 
 ### Zwei Würfel werfen
 
@@ -164,7 +165,7 @@ Um <InlineMath math="\frac{1}{9} + \frac{1}{6}" /> zu addieren, benötigen wir d
 
 ## Problemlösungsstrategie
 
-### Systematische Schritte
+### Schnittmenge vor dem Addieren prüfen
 
 Bei Aufgaben zu disjunkten Ereignissen gehst du so vor:
 
@@ -174,17 +175,17 @@ Bei Aufgaben zu disjunkten Ereignissen gehst du so vor:
 4. **Berechne die Einzelwahrscheinlichkeiten**
 5. **Wende die Formel an** <InlineMath math="P(A \cup B) = P(A) + P(B)" />
 
-### Praktische Tipps
+### Kontrollen für das Endergebnis
 
-Hilfreiche Kontrollen:
+Prüfe drei Punkte, bevor du das Ergebnis übernimmst:
 
-- **Visualisiere** die Ereignisse bei Bedarf mit einem Diagramm oder einer Tabelle
-- **Prüfe den Wertebereich**: Eine Wahrscheinlichkeit liegt zwischen <InlineMath math="0" /> und <InlineMath math="1" />
-- **Lies „oder“ einschließend**, sofern die Aufgabe nichts anderes sagt
+- Stelle die Ereignismengen in einem Diagramm oder einer Tabelle dar, wenn ihre Schnittmenge noch unklar ist.
+- Prüfe, ob die Wahrscheinlichkeit zwischen <InlineMath math="0" /> und <InlineMath math="1" /> liegt.
+- Lies „oder“ als Vereinigung, sofern die Aufgabe nichts anderes sagt.
 
-### Vorsicht vor Ereignissen, die sich scheinbar gegenseitig ausschließen
+### Ereignisse mit nicht leerer Schnittmenge
 
-Manche Ereignisse wirken **auf den ersten Blick** disjunkt, sind es aber **tatsächlich nicht**:
+Zwei Ereignisse sind nicht disjunkt, wenn ihre Schnittmenge mindestens ein Ergebnis enthält. Die folgenden Beispiele haben eine nicht leere Schnittmenge:
 
 **Beispiel <InlineMath math="1" />: Würfeln**
 - Ereignis <InlineMath math="A" />: Das Erhalten einer Primzahl ist <InlineMath math="\{2, 3, 5\}" />

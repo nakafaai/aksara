@@ -1,19 +1,19 @@
 export const metadata = {
-  title: "Konsep Turunan Fungsi",
-  description: "Pahami fungsi turunan sebagai laju perubahan dan kemiringan kurva. Pelajari limit, garis singgung, dan diferensiasi dengan contoh visual dan penjelasan jelas.",
+  title: "Turunan sebagai Laju Perubahan",
+  description: "Turunan adalah laju perubahan lokal dan gradien garis singgung yang diperoleh dari limit gradien garis sekan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Turunan Fungsi",
 };
 
 
 
-## Ide di Balik Turunan
+## Turunan sebagai Laju Perubahan Lokal
 
 Bayangkan sepeda melaju di jalan berbukit. Ada bagian yang menanjak tajam, ada pula yang hampir datar. **Kemiringan** jalan berubah dari satu titik ke titik berikutnya. Kurva pada grafik fungsi juga dapat berubah dengan cara serupa.
 
-Untuk garis lurus, kemiringannya selalu sama di setiap titik. Namun, untuk kurva yang melengkung, kemiringannya terus berubah. Nah, **turunan** membantu kita menemukan kemiringan atau laju perubahan yang tepat di **satu titik spesifik** pada sebuah kurva.
+Garis lurus memiliki kemiringan yang sama di setiap titik, sedangkan kemiringan kurva dapat terus berubah. **Turunan** menyatakan kemiringan atau laju perubahan kurva pada **satu titik tertentu**.
 
 ## Gradien Garis Sekan
 
@@ -32,10 +32,10 @@ Gradien ini merupakan **laju perubahan rata-rata** fungsi <InlineMath math="f(x)
   description={
     <>
       Garis sekan menghubungkan dua titik berbeda pada kurva{" "}
-      <InlineMath math="y=x^2" />, sedangkan garis singgung menunjukkan arah
-      lokal kurva di <InlineMath math="P" />. Pada contoh ini, garis singgung
-      bertemu parabola di <InlineMath math="P" />. Secara umum, garis singgung
-      dapat berpotongan lagi dengan kurva yang sama di tempat lain.
+      <InlineMath math="y=x^2" />, sedangkan gradien garis singgung sama dengan
+      gradien lokal kurva di <InlineMath math="P" />. Pada contoh ini, garis
+      singgung bertemu parabola di <InlineMath math="P" />. Secara umum, garis
+      singgung dapat berpotongan lagi dengan kurva yang sama di tempat lain.
     </>
   }
   showZAxis={false}
@@ -74,6 +74,7 @@ Gradien ini merupakan **laju perubahan rata-rata** fungsi <InlineMath math="f(x)
       {
         points: [p1_secant, p2_secant],
         color: "#0891b2",
+        smooth: false,
         labels: [
           { text: <InlineMath math="P" />, at: 0, offset: [-0.5, -0.5, 0] },
           { text: <InlineMath math="Q" />, at: 1, offset: [0.5, 0.5, 0] },
@@ -83,6 +84,7 @@ Gradien ini merupakan **laju perubahan rata-rata** fungsi <InlineMath math="f(x)
       {
         points: tangentLinePoints,
         color: "#d97706",
+        smooth: false,
         showPoints: false,
         labels: [{ text: "Garis Singgung", at: 1, offset: [2, -0.5, 0] }],
       },
@@ -94,7 +96,7 @@ Gradien ini merupakan **laju perubahan rata-rata** fungsi <InlineMath math="f(x)
 
 Selanjutnya, geser <InlineMath math="Q" /> semakin dekat ke <InlineMath math="P" />. Jarak mendatar <InlineMath math="\Delta x" /> semakin kecil dan mendekati nol.
 
-Ketika <InlineMath math="\Delta x \to 0" /> (dibaca "delta x mendekati nol"), garis-garis sekan tersebut mendekati **garis singgung** di <InlineMath math="P" />. Garis singgung menunjukkan arah lokal kurva pada titik itu. Garis ini tidak harus hanya berpotongan satu kali dengan seluruh kurva; yang penting adalah perilakunya di sekitar <InlineMath math="P" />.
+Ketika <InlineMath math="\Delta x \to 0" /> (dibaca "delta x mendekati nol"), garis-garis sekan tersebut mendekati **garis singgung** di <InlineMath math="P" />. Garis singgung menunjukkan arah lokal kurva pada titik itu. Garis ini tidak harus hanya berpotongan satu kali dengan seluruh kurva. Yang penting adalah perilakunya di sekitar <InlineMath math="P" />.
 
 Gradien garis singgung merupakan **laju perubahan sesaat** kurva di <InlineMath math="P" />. Nilainya diperoleh dengan **limit**:
 
@@ -110,4 +112,4 @@ Turunan dari sebuah fungsi <InlineMath math="f(x)" />, yang dinotasikan sebagai 
 
 Proses mencari turunan disebut **diferensiasi**.
 
-> Turunan <InlineMath math="f'(x)" /> adalah fungsi baru. Pada setiap nilai <InlineMath math="x" /> tempat limit tersebut ada, turunannya memberikan **laju perubahan sesaat** dari <InlineMath math="f(x)" />, yang juga merupakan gradien garis singgung di titik itu. Gagasan ini menjadi dasar kalkulus diferensial.
+Turunan <InlineMath math="f'(x)" /> adalah fungsi baru. Pada setiap nilai <InlineMath math="x" /> tempat limit tersebut ada, turunannya memberikan **laju perubahan sesaat** dari <InlineMath math="f(x)" />, yang juga merupakan gradien garis singgung di titik itu. Kalkulus diferensial menggunakan fungsi turunan untuk menganalisis kedua besaran tersebut.

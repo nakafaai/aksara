@@ -3,14 +3,15 @@ export const metadata = {
   description: "Python-Zahlentypen wie Ganzzahlen, Gleitkommazahlen und komplexe Zahlen, einschließlich Typprüfung, Konstruktoren und wissenschaftlicher Notation.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "KI-Programmierung",
 };
 
 ## Einführung in Zahlendatentypen
 
-Python stellt eingebaute Zahlentypen für ganze Zahlen, näherungsweise Berechnungen mit reellen Zahlen und komplexe Zahlen bereit. Die Wahl des Typs ist wichtig, weil jeder Typ Werte anders darstellt und verarbeitet.
+Python hat drei eingebaute Zahlentypen: `int` für ganze Zahlen, `float` für näherungsweise Berechnungen mit reellen Zahlen und `complex` für komplexe Zahlen. Der Typ bestimmt, wie Python einen Wert darstellt und mit ihm rechnet.
 
-Python ist sehr flexibel im Umgang mit Zahlen. Wenn Sie Zahlen in die Python-Shell eingeben, erkennt Python diese sofort und zeigt sie an. Die folgenden Beispiele zeigen die wichtigsten Zahlenarten.
+Die interaktive Shell wertet ein Zahlenliteral aus und zeigt seinen Wert an. Vergleiche die folgenden Literale.
 
 <CodeBlock
   data={[
@@ -90,7 +91,7 @@ Komplexe Zahlen besitzen einen Real- und einen Imaginärteil. In einem Python-Li
 <BlockMath math="4.5 - 2.1j" />
 </MathContainer>
 
-Stellen Sie sich komplexe Zahlen wie Koordinaten auf einer Karte vor. Der Realteil ist die horizontale Position und der Imaginärteil ist die vertikale Position.
+Eine komplexe Zahl lässt sich in einer Koordinatenebene darstellen. Ihr Realteil bestimmt die waagerechte und ihr Imaginärteil die senkrechte Koordinate.
 
 ## Die Typfunktion zum Überprüfen von Datentypen
 
@@ -117,9 +118,9 @@ Für eine strikte Typgleichheit kannst du `type(value)` mit einer Klasse verglei
 
 ## Konstruktoren zum Erstellen von Zahlenobjekten
 
-Python bietet Konstruktoren zum Konvertieren oder Erstellen von Zahlenobjekten aus anderen Typen. Dies ist sehr nützlich, wenn Sie Daten von einem Format in ein anderes konvertieren müssen.
+Python bietet Konstruktoren, die Zahlenobjekte aus anderen Typen erzeugen. Damit lässt sich zum Beispiel eine Texteingabe vor einer Berechnung in eine Zahl umwandeln.
 
-### Konstruktor-Float
+### Konstruktor Float
 
 Der Konstruktor `float()` wandelt andere Zahlen in Dezimalzahlen um.
 
@@ -137,7 +138,7 @@ Der Konstruktor `float()` wandelt andere Zahlen in Dezimalzahlen um.
   ]}
 />
 
-Wenn Sie `float(2)` aufrufen, wandelt Python die Ganzzahl <InlineMath math="2" /> in den Gleitkommawert <InlineMath math="2.0" /> um. Wenn Sie `float()` ohne Argumente aufrufen, gibt Python den Standardwert <InlineMath math="0.0" /> aus.
+`float(2)` wandelt die Ganzzahl <InlineMath math="2" /> in den Gleitkommawert <InlineMath math="2.0" /> um. `float()` ohne Argument gibt den Standardwert <InlineMath math="0.0" /> zurück.
 
 ### Konstruktor int
 

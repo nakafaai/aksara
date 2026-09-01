@@ -4,16 +4,17 @@ export const metadata = {
   description: "Eigenschaften von Kreissehnen verstehen und Aufgaben zu Sehnenlänge, Mittelpunktabstand und Sehnensatz vollständig lösen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Kreis",
 };
 
 ## Definition einer Kreissehne
 
-Eine Sehne ist eine Strecke, die zwei Punkte auf einem Kreis verbindet. Im Gegensatz zu einem Durchmesser muss sie nicht durch den Kreismittelpunkt verlaufen. Ihre beiden Endpunkte liegen jedoch immer auf dem Kreis.
+Eine Sehne ist eine Strecke, deren beide Endpunkte auf einem Kreis liegen. Ein Durchmesser ist die besondere Sehne durch den Mittelpunkt. Andere Sehnen müssen nicht durch den Mittelpunkt verlaufen.
 
 <LineEquation
   title="Sehnen auf einem Kreis"
-  description="Verschiedene Sehnen unterschiedlicher Länge auf einem Kreis."
+  description="Zwei gleich lange Sehnen überspannen Winkel von dreißig Grad und eine längere Sehne überspannt einen Winkel von sechzig Grad."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -42,6 +43,7 @@ Eine Sehne ist eine Strecke, die zwei Punkte auf einem Kreis verbindet. Im Gegen
           { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -58,6 +60,7 @@ Eine Sehne ist eine Strecke, die zwei Punkte auf einem Kreis verbindet. Im Gegen
           { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [
@@ -74,6 +77,7 @@ Eine Sehne ist eine Strecke, die zwei Punkte auf einem Kreis verbindet. Im Gegen
           { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#db2777",
       showPoints: true,
       labels: [
@@ -86,7 +90,7 @@ Eine Sehne ist eine Strecke, die zwei Punkte auf einem Kreis verbindet. Im Gegen
   showZAxis={false}
 />
 
-In der Abbildung oben sind <InlineMath math="AB" />, <InlineMath math="CD" /> und <InlineMath math="EF" /> Sehnen mit unterschiedlichen Längen.
+Die Sehnen <InlineMath math="AB" /> und <InlineMath math="CD" /> überspannen gleich große Mittelpunktswinkel und sind daher gleich lang. Die Sehne <InlineMath math="EF" /> überspannt einen größeren Mittelpunktswinkel und ist länger.
 
 ## Eigenschaften von Sehnen
 
@@ -125,6 +129,7 @@ Zwei gleich lange Sehnen haben den gleichen Abstand vom Kreismittelpunkt.
           { x: x, y: y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -141,6 +146,7 @@ Zwei gleich lange Sehnen haben den gleichen Abstand vom Kreismittelpunkt.
           { x: x, y: y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [
@@ -210,6 +216,7 @@ Das Lot vom Kreismittelpunkt auf eine Sehne halbiert die Sehne.
           { x: 5 * Math.cos(angle2), y: 5 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -267,13 +274,13 @@ Um die Länge einer Sehne zu berechnen, können wir die Formel verwenden:
 Dabei gilt:
 
 - <InlineMath math="r" /> = Radius des Kreises
-- <InlineMath math="\theta" /> = der kleinere Mittelpunktswinkel über der Sehne; der Rechnermodus muss zur Winkeleinheit passen
+- <InlineMath math="\theta" /> = der kleinere Mittelpunktswinkel über der Sehne. Der Rechnermodus muss zur Winkeleinheit passen
 
-Der Zusammenhang zwischen Mittelpunktswinkel und Sehnenlänge lässt sich wie folgt visualisieren:
+Wenn der kleinere Mittelpunktswinkel <InlineMath math="\theta" /> von <InlineMath math="0" /> bis <InlineMath math="180^\circ" /> wächst, steigt <InlineMath math="\sin(\theta/2)" /> von <InlineMath math="0" /> bis <InlineMath math="1" />. Die Sehnenlänge wächst dadurch von <InlineMath math="0" /> bis zum Durchmesser <InlineMath math="2r" />.
 
 <LineEquation
   title="Mittelpunktswinkel und Sehne"
-  description="Zusammenhang zwischen Mittelpunktswinkel und Sehnenlänge."
+  description="Die Sehne wird länger, wenn der kleinere Mittelpunktswinkel gegen einhundertachtzig Grad wächst."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -302,6 +309,7 @@ Der Zusammenhang zwischen Mittelpunktswinkel und Sehnenlänge lässt sich wie fo
           { x: 4 * Math.cos(angle2), y: 4 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -399,6 +407,7 @@ Wenn sich zwei Sehnen innerhalb eines Kreises schneiden, dann ist das Produkt de
           { x: 5 * Math.cos(angle2), y: 5 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -415,6 +424,7 @@ Wenn sich zwei Sehnen innerhalb eines Kreises schneiden, dann ist das Produkt de
           { x: 5 * Math.cos(angle2), y: 5 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [
@@ -503,6 +513,7 @@ Umfangswinkel über derselben Sehne sind gleich groß, wenn ihre Scheitelpunkte 
           { x: 4 * Math.cos(angleB), y: 4 * Math.sin(angleB), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -586,6 +597,7 @@ Das Apothem einer Sehne ist das Lot vom Kreismittelpunkt auf die Sehne. Seine L�
           { x: x, y: y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -661,6 +673,7 @@ Zwei parallele Sehnen in einem Kreis haben besondere Eigenschaften.
           { x: x, y: y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -677,6 +690,7 @@ Zwei parallele Sehnen in einem Kreis haben besondere Eigenschaften.
           { x: x, y: y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [
@@ -735,18 +749,18 @@ Wenn <InlineMath math="AB \parallel CD" />, dann ist Bogen <InlineMath math="AC"
 
 ## Übungsaufgaben
 
-1. Ein Kreis hat einen Radius von <InlineMath math="10 \text{ cm}" />. Der kleinere Mittelpunktswinkel über einer Sehne beträgt <InlineMath math="60^\circ" />. Bestimmen Sie:
+1. Ein Kreis hat einen Radius von <InlineMath math="10 \text{ cm}" />. Der kleinere Mittelpunktswinkel über einer Sehne beträgt <InlineMath math="60^\circ" />. Bestimme:
 
    - Die Länge der Sehne
    - Der Abstand der Sehne vom Mittelpunkt des Kreises
 
-2. Zwei Sehnen <InlineMath math="AB" /> und <InlineMath math="CD" /> schneiden sich im Punkt <InlineMath math="P" /> innerhalb eines Kreises. Wenn <InlineMath math="PA = 4 \text{ cm}" />, <InlineMath math="PB = 6 \text{ cm}" /> und <InlineMath math="PC = 3 \text{ cm}" />, ermitteln Sie die Länge von <InlineMath math="PD" />.
+2. Zwei Sehnen <InlineMath math="AB" /> und <InlineMath math="CD" /> schneiden sich im Punkt <InlineMath math="P" /> innerhalb eines Kreises. Gegeben sind <InlineMath math="PA = 4 \text{ cm}" />, <InlineMath math="PB = 6 \text{ cm}" /> und <InlineMath math="PC = 3 \text{ cm}" />. Bestimme die Länge von <InlineMath math="PD" />.
 
-3. In einem Kreis mit Radius <InlineMath math="13 \text{ cm}" /> gibt es eine Sehne der Länge <InlineMath math="24 \text{ cm}" />. Berechnen Sie den Abstand dieser Sehne vom Mittelpunkt des Kreises.
+3. In einem Kreis mit Radius <InlineMath math="13 \text{ cm}" /> gibt es eine Sehne der Länge <InlineMath math="24 \text{ cm}" />. Berechne den Abstand dieser Sehne vom Mittelpunkt des Kreises.
 
-4. Zwei parallele Sehnen in einem Kreis sind <InlineMath math="3 \text{ cm}" /> bzw. <InlineMath math="4 \text{ cm}" /> vom Mittelpunkt entfernt. Wenn der Radius des Kreises <InlineMath math="5 \text{ cm}" /> beträgt, bestimmen Sie die Längen beider Sehnen.
+4. Zwei parallele Sehnen in einem Kreis sind <InlineMath math="3 \text{ cm}" /> bzw. <InlineMath math="4 \text{ cm}" /> vom Mittelpunkt entfernt. Wenn der Radius des Kreises <InlineMath math="5 \text{ cm}" /> beträgt, bestimme die Längen beider Sehnen.
 
-5. Beweisen Sie, dass die längste Sehne in einem Kreis der Durchmesser ist.
+5. Beweise, dass die längste Sehne in einem Kreis der Durchmesser ist.
 
 ### Ausführliche Lösungen
 
@@ -819,6 +833,6 @@ Wenn <InlineMath math="AB \parallel CD" />, dann ist Bogen <InlineMath math="AC"
 
 ## Quellen
 
-- [GeoGebra: Theorems about Tangents and Chords](https://www.geogebra.org/m/bvtxyfaj)
-- [GeoGebra: Intersecting Chords Theorem](https://www.geogebra.org/m/JWQjwAgw)
-- [Lehrerfortbildung Baden-Württemberg: Kreiswinkelsätze](https://lehrerfortbildung-bw.de/u_matnatech/imp/gym/bp2016/fb2/m03_geo/1_hintergrund/2_gang/m9geo01_unterrichtsverlauf.pdf)
+- [GeoGebra](https://www.geogebra.org/m/bvtxyfaj) bietet interaktive Konstruktionen zu Tangenten und Sehnen.
+- [GeoGebra](https://www.geogebra.org/m/JWQjwAgw) bietet eine interaktive Konstruktion zum Sehnensatz.
+- [Lehrerfortbildung BW](https://lehrerfortbildung-bw.de/u_matnatech/imp/gym/bp2016/fb2/m03_geo/1_hintergrund/2_gang/m9geo01_unterrichtsverlauf.pdf) zeigt Herleitungen der Kreiswinkelsätze für den Unterricht.

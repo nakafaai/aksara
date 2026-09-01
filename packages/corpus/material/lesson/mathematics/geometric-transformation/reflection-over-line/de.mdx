@@ -1,13 +1,14 @@
 
 export const metadata = {
   title: "Spiegelung an einer Geraden",
-  description: "Verstehe Spiegelungen an beliebigen Geraden mithilfe von Mittelsenkrechten, gleichen Abständen und einer präzisen Visualisierung.",
+    description: "Konstruiere eine Spiegelung an einer beliebigen Geraden mit Mittelsenkrechten und gleichen Abständen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometrische Transformation",
 };
 
-## Was ist eine Spiegelung an einer Geraden?
+## Spiegelung an einer Geraden
 
 Eine Spiegelung an einer Geraden bildet jeden Punkt der Ebene auf seine spiegelbildliche Position ab.
 
@@ -25,7 +26,7 @@ Gegeben seien ein Punkt <InlineMath math="P(x,y)" /> und eine Spiegelgerade <Inl
 
 2.  **Falls der Punkt <InlineMath math="P" /> nicht auf der Spiegelgeraden <InlineMath math="m" />** liegt:
 
-    Die Gerade <InlineMath math="m" /> ist die Mittelsenkrechte der Strecke <InlineMath math="PP'" />. Daraus folgen zwei wichtige Beziehungen:
+    Die Gerade <InlineMath math="m" /> ist die Mittelsenkrechte der Strecke <InlineMath math="PP'" />. Daraus folgen zwei Beziehungen:
 
     <MathContainer>
       <BlockMath math="\overline{PP'} \perp m" />
@@ -44,7 +45,7 @@ Das folgende Beispiel zeigt beide Eigenschaften unmittelbar:
     <>
       Der Punkt <InlineMath math="P(2,4)" /> wird an der Geraden{" "}
       <InlineMath math="m" /> gespiegelt. Dabei entsteht der Bildpunkt{" "}
-      <InlineMath math="P'(3{,}6;0{,}8)" />.
+      <InlineMath math="P'(3{,}6\mid0{,}8)" />.
     </>
   }
   cameraPosition={[12, 8, 12]}
@@ -54,6 +55,7 @@ Das folgende Beispiel zeigt beide Eigenschaften unmittelbar:
         { x: 0, y: 1, z: 0 },
         { x: 5, y: 3.5, z: 0 },
       ],
+      smooth: false,
       color: "#0891b2",
       lineWidth: 2,
       labels: [
@@ -82,7 +84,7 @@ Das folgende Beispiel zeigt beide Eigenschaften unmittelbar:
       showPoints: true,
       labels: [
         {
-          text: <><InlineMath math="P'(3{,}6;0{,}8)" /> (Bildpunkt)</>,
+          text: <><InlineMath math="P'(3{,}6\mid0{,}8)" /> (Bildpunkt)</>,
           at: 0,
           offset: [1.7, -0.5, 0],
         },
@@ -106,6 +108,7 @@ Das folgende Beispiel zeigt beide Eigenschaften unmittelbar:
         { x: 2.8, y: 2.4, z: 0 },
         { x: 3.6, y: 0.8, z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       labels: [{ text: <InlineMath math="PP'" />, at: 1, offset: [-0.3, 0.3, 0] }],
     },

@@ -1,8 +1,9 @@
 export const metadata = {
    title: "Spektralsatz für komplexe Matrizen",
-   description: "Lernen Sie die unitäre Diagonalisierung normaler Matrizen kennen und beweisen Sie die Äquivalenz zwischen Normalität und Eigenvektorbasen mithilfe mathematischer Induktion.",
+   description: "Beweise, dass eine normale Matrix eine Orthonormalbasis aus Eigenvektoren besitzt, und nutze diese Basis zur unitären Diagonalisierung.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
+   dateModified: "2026-09-01",
    subject: "Lineare Methoden der KI",
 };
 
@@ -42,7 +43,7 @@ Da dies für alle Basisvektoren gilt, ist <InlineMath math="AA^H = A^H A" />, wa
 
 ## Beweis von der Normalität zur Diagonalisierung
 
-Nun beweisen wir die Gegenrichtung durch mathematische Induktion. Der Basisschritt beginnt das Argument; im Induktionsschritt wird eine <InlineMath math="n \times n" />-Matrix auf einen normalen <InlineMath math="(n-1) \times (n-1)" />-Block zurückgeführt.
+Nun beweisen wir die Gegenrichtung durch mathematische Induktion. Der Basisschritt beginnt das Argument. Im Induktionsschritt wird eine <InlineMath math="n \times n" />-Matrix auf einen normalen <InlineMath math="(n-1) \times (n-1)" />-Block zurückgeführt.
 
 ### Mathematische Induktionsstruktur
 
@@ -50,7 +51,7 @@ Nun beweisen wir die Gegenrichtung durch mathematische Induktion. Der Basisschri
    Für <InlineMath math="n = 0" /> (leere Matrix) ist die Aussage eindeutig wahr.
 
 2. **Induktionshypothese**
-   Nehmen Sie an, dass die Aussage für alle Normalmatrizen der Größe <InlineMath math="(n-1) \times (n-1)" /> wahr ist.
+   Nimm an, dass die Aussage für alle Normalmatrizen der Größe <InlineMath math="(n-1) \times (n-1)" /> wahr ist.
 
 3. **Induktionsschritt**
    Sei <InlineMath math="A \in \mathbb{C}^{n \times n}" /> normal. Nach dem Fundamentalsatz der Algebra besitzt <InlineMath math="A" /> einen Eigenwert <InlineMath math="\lambda_1 \in \mathbb{C}" />. Sei <InlineMath math="v_1 \in \mathbb{C}^n" /> ein zugehöriger Eigenvektor mit <InlineMath math="v_1^H v_1 = 1" />.
@@ -70,7 +71,7 @@ Also ist <InlineMath math="B^Hv_1=0" /> und damit genau <InlineMath math="A^Hv_1
 
 ### Bildung des invarianten Unterraums
 
-Vervollständigen Sie <InlineMath math="v_1" /> zu einer Orthonormalbasis von <InlineMath math="\mathbb{C}^n" /> mit den Vektoren <InlineMath math="v_2, \ldots, v_n" />. Definieren:
+Vervollständige <InlineMath math="v_1" /> mit den Vektoren <InlineMath math="v_2, \ldots, v_n" /> zu einer Orthonormalbasis von <InlineMath math="\mathbb{C}^n" />. Definiere:
 
 <BlockMath math="W = \operatorname{span}(v_2, \ldots, v_n)" />
 
@@ -93,14 +94,14 @@ Mit anderen Worten ist <InlineMath math="W" /> unter <InlineMath math="A" /> inv
 
 Sei <InlineMath math="T \in \mathbb{C}^{n \times n}" /> eine unitäre Matrix mit den Spalten <InlineMath math="v_1, \ldots, v_n" />. Dann <InlineMath math="T \cdot T^H = T \cdot T^{-1} = I" />.
 
-Diese Transformation ergibt eine elegante Blockform:
+Bezüglich dieser unitären Basis hat <InlineMath math="A" /> folgende Blockform:
 
 <MathContainer>
 <BlockMath math="T^H \cdot A \cdot T = T^{-1} \cdot A \cdot T" />
 <BlockMath math="= \begin{pmatrix} \lambda_1 & 0^T \\ 0 & A' \end{pmatrix}" />
 </MathContainer>
 
-mit:
+Der rechte untere Block <InlineMath math="A'" /> hat die Größe
 
 <BlockMath math="A' \in \mathbb{C}^{(n-1) \times (n-1)}" />
 
@@ -122,11 +123,11 @@ Nach der Induktionshypothese besitzt <InlineMath math="A'" /> eine Orthonormalba
 
 <BlockMath math="S' \in \mathbb{C}^{(n-1) \times (n-1)}" />
 
-damit:
+In der Basis <InlineMath math="S'" /> wird die Matrix <InlineMath math="A'" /> diagonal:
 
 <BlockMath math="S'^H \cdot A' \cdot S' = \begin{pmatrix} \lambda_2 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix}" />
 
-mit Eigenwerten <InlineMath math="\lambda_2, \ldots, \lambda_n" /> von <InlineMath math="A'" />.
+Die Diagonaleinträge <InlineMath math="\lambda_2, \ldots, \lambda_n" /> sind die Eigenwerte von <InlineMath math="A'" />.
 
 Jetzt definieren wir:
 
@@ -136,7 +137,7 @@ Dann ist <InlineMath math="S" /> eine unitäre Matrix mit:
 
 <BlockMath math="S \in \mathbb{C}^{n \times n}" />
 
-und:
+Das Einsetzen der Matrix <InlineMath math="S" /> in die Ähnlichkeitstransformation ergibt
 
 <MathContainer>
 <BlockMath math="S^H \cdot A \cdot S = \begin{pmatrix} 1 & 0^T \\ 0 & S'^H \end{pmatrix} \cdot T^H \cdot A \cdot T" />
@@ -153,7 +154,7 @@ Bei reellen Matrizen ist entscheidend, ob die benötigten Eigenwerte und Eigenve
 
 <BlockMath math="A \in \mathbb{R}^{n \times n}" />
 
-heißt normal, wenn:
+Die reelle Matrix <InlineMath math="A" /> heißt normal, wenn
 
 <BlockMath math="A \cdot A^T = A^T \cdot A" />
 
@@ -161,7 +162,7 @@ Reelle normale Matrizen sind über <InlineMath math="\mathbb{C}" /> weiterhin un
 
 <BlockMath math="\begin{pmatrix}a&-b\\b&a\end{pmatrix}" />
 
-für konjugierte Eigenwertpaare <InlineMath math="a\pm bi" />. Eine reelle normale Matrix ist über <InlineMath math="\mathbb{R}" /> genau dann orthogonal diagonalisierbar, wenn alle Eigenwerte reell sind.
+Jeder <InlineMath math="2\times2" />-Block steht für ein konjugiertes Eigenwertpaar <InlineMath math="a\pm bi" />. Eine reelle normale Matrix ist über <InlineMath math="\mathbb{R}" /> genau dann orthogonal diagonalisierbar, wenn alle Eigenwerte reell sind.
 
 Symmetrische Matrizen und orthogonale Matrizen sind immer normal. Für eine symmetrische Matrix <InlineMath math="A^T = A" /> ist klar:
 
@@ -180,7 +181,7 @@ Die Matrix einer Vierteldrehung
 
 <BlockMath math="R=\begin{pmatrix}0&-1\\1&0\end{pmatrix}" />
 
-ist reell und orthogonal, also normal. Ihre Eigenwerte sind <InlineMath math="i" /> und <InlineMath math="-i" /> mit den normierten Eigenvektoren
+Die Matrix <InlineMath math="R" /> ist reell und orthogonal, also normal. Ihre Eigenwerte sind <InlineMath math="i" /> und <InlineMath math="-i" /> mit den normierten Eigenvektoren
 
 <MathContainer>
 <BlockMath math="u_+=\frac1{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix},\qquad u_-=\frac1{\sqrt2}\begin{pmatrix}1\\i\end{pmatrix}" />

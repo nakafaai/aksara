@@ -1,21 +1,19 @@
 export const metadata = {
   title: "Kedudukan Suatu Titik Terhadap Lingkaran",
-  description: "Pelajari cara menentukan apakah titik berada di dalam, pada, atau di luar lingkaran menggunakan metode kuasa titik dengan contoh bertahap.",
+  description: "Menentukan apakah titik berada di dalam, pada, atau di luar lingkaran menggunakan metode kuasa titik dengan contoh bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Geometri Analitik",
 };
 
 
 
-## Memahami Posisi Titik Relatif Terhadap Lingkaran
+## Posisi Titik Relatif Terhadap Lingkaran
 
 Untuk sebuah lingkaran dan satu titik, hanya ada tiga kemungkinan: titik berada di dalam lingkaran, tepat pada kelilingnya, atau di luar lingkaran.
 
-Perbandingan yang sama muncul pada model jangkauan sederhana, misalnya ketika kita memeriksa apakah suatu lokasi berada dalam jangkauan sinyal atau radar yang dimodelkan sebagai lingkaran. Setelah model lingkarannya ditetapkan, geometri koordinat memberi jawaban yang tepat.
-
-Persamaan lingkaran dan koordinat titik memberi klasifikasi posisi yang tepat secara matematis.
+Perbandingan yang sama muncul pada model jangkauan sederhana, misalnya ketika kita memeriksa apakah suatu lokasi berada dalam jangkauan sinyal atau radar yang dimodelkan sebagai lingkaran. Persamaan lingkaran dan koordinat titik kemudian menentukan posisi lokasi tersebut secara tepat.
 
 ## Konsep Kuasa Titik
 
@@ -23,7 +21,7 @@ Untuk menentukan kedudukan titik, kita memakai **kuasa titik terhadap lingkaran*
 
 <BlockMath math="K_A = (x_0-a)^2 + (y_0-b)^2 - r^2" />
 
-Kalau kita punya titik <InlineMath math="A(x_0, y_0)" /> dan lingkaran dengan persamaan umum <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, maka kuasa titik <InlineMath math="A" /> didefinisikan sebagai:
+Untuk titik <InlineMath math="A(x_0, y_0)" /> dan lingkaran umum <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, kuasa titik <InlineMath math="A" /> adalah:
 
 <BlockMath math="K_A = x_0^2 + y_0^2 + Dx_0 + Ey_0 + F" />
 
@@ -151,13 +149,11 @@ Ketiga kemungkinan tersebut tampak pada grafik berikut:
 
 ## Cara Menentukan Kedudukan Titik
 
-Pertama, identifikasi persamaan lingkaran dan koordinat titik. Setelah itu, substitusikan koordinat ke persamaan dan periksa tanda hasilnya.
+Pertama, identifikasi persamaan lingkaran dan koordinat titik. Substitusikan koordinat titik ke rumus kuasa titik untuk memperoleh <InlineMath math="K_A" />.
 
-Kalau hasilnya negatif, titik di dalam. Kalau nol, titik pada lingkaran. Kalau positif, titik di luar lingkaran.
+Tanda <InlineMath math="K_A" /> menentukan posisi titik. Jika <InlineMath math="K_A<0" />, titik berada di dalam lingkaran. Jika <InlineMath math="K_A=0" />, titik berada pada lingkaran. Jika <InlineMath math="K_A>0" />, titik berada di luar lingkaran.
 
-Coba dengan contoh konkret. Misalnya kita punya titik <InlineMath math="A(1, -2)" /> dan lingkaran <InlineMath math="x^2 + y^2 = 25" />.
-
-Hitung dahulu kuadrat jarak ke pusat, lalu kurangi dengan <InlineMath math="r^2" />:
+Untuk titik <InlineMath math="A(1, -2)" /> dan lingkaran <InlineMath math="x^2 + y^2 = 25" />, hitung dahulu kuadrat jarak ke pusat. Setelah itu, kurangi kuadrat jarak tersebut dengan <InlineMath math="r^2" />:
 
 <MathContainer>
   <BlockMath math="d_A^2 = 1^2 + (-2)^2 = 1 + 4 = 5" />
@@ -170,7 +166,7 @@ Karena <InlineMath math="K_A = -20 < 0" />, titik <InlineMath math="A(1, -2)" />
 
 ## Aplikasi untuk Bentuk Umum
 
-Kalau lingkarannya dalam bentuk umum <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, caranya sama saja. Tinggal substitusi koordinat titik ke seluruh persamaan dan lihat tanda hasilnya.
+Untuk lingkaran berbentuk umum <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, hitung <InlineMath math="K_A=x_0^2+y_0^2+Dx_0+Ey_0+F" />. Tanda <InlineMath math="K_A" /> menentukan apakah titik berada di dalam, pada, atau di luar lingkaran.
 
 Contohnya, untuk titik <InlineMath math="A(1, -2)" /> dan lingkaran <InlineMath math="x^2 + y^2 - 8x - 2y - 8 = 0" />:
 

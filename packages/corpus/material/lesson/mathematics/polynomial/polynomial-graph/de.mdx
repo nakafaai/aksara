@@ -5,6 +5,7 @@ export const metadata = {
   description: "Skizziere Polynomgraphen mit Wertetabellen und leite ihr Endverhalten aus Grad und Leitkoeffizient ab.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Polynom",
 };
 
@@ -12,7 +13,7 @@ export const metadata = {
 
 Der Graph einer Polynomfunktion zeigt, wie sich der Funktionswert verändert, wenn sich der Eingabewert <InlineMath math="x" /> ändert. Seine Form hängt vom Grad und von den Koeffizienten der Funktion ab.
 
-## Punktdarstellungsmethode
+## Einen Polynomgraphen mit Punkten skizzieren
 
 Ein möglicher Einstieg besteht darin, mehrere Punkte <InlineMath math="(x,y)" /> zu berechnen, die auf dem Graphen liegen. Diese Punkte helfen beim Skizzieren, doch eine kleine Wertetabelle allein bestimmt noch nicht alle Eigenschaften des Graphen. Nullstellen, Extrempunkte und das Endverhalten liefern zusätzliche Kontrollen.
 
@@ -57,6 +58,7 @@ Trage die Punkte ein und verbinde sie:
         const x = -3 + i;
         return { x, y: 2 * x + 5, z: 0 };
       }),
+      smooth: false,
       color: "#ca8a04",
     },
   ]}
@@ -173,7 +175,7 @@ Es gibt <InlineMath math="4 \text{mögliche Kombinationen}" />:
       <LineEquation
         title={
           <>
-            Diagramm von <InlineMath math="y = x^2" /> (Gerade, Positiv)
+            Diagramm von <InlineMath math="y = x^2" /> (gerader Grad, positiver Leitkoeffizient)
           </>
         }
         description="Die Grafik steigt nach links und rechts."
@@ -199,7 +201,7 @@ Es gibt <InlineMath math="4 \text{mögliche Kombinationen}" />:
       <LineEquation
         title={
           <>
-            Diagramm von <InlineMath math="y = -x^2" /> (Gerade, negativ)
+            Diagramm von <InlineMath math="y = -x^2" /> (gerader Grad, negativer Leitkoeffizient)
           </>
         }
         description="Die Grafik fällt nach links und rechts."
@@ -281,8 +283,8 @@ Bestimme das Endverhalten der folgenden Funktionen:
 1.  <InlineMath math="f(x) = x^4 + 2x^3 - 2x - 3" />
 
     - Leitterm: <InlineMath math="x^4" />
-    - Grad <InlineMath math="n=4" /> (Gerade)
-    - Führender Koeffizient <InlineMath math="a_n=1" /> (Positiv)
+    - Grad <InlineMath math="n=4" /> (gerade)
+    - Führender Koeffizient <InlineMath math="a_n=1" /> (positiv)
     - Endverhalten: Steigt nach links (<InlineMath math="\nwarrow" />), Steigt nach rechts (<InlineMath math="\nearrow" />)
 
     <ContentBlock>
@@ -353,7 +355,7 @@ Bestimme das Endverhalten der folgenden Funktionen:
 3.  <InlineMath math="h(x) = -x^6 - \frac{11}{4}x^5 + x^4 + 5x^3 + 2" />
 
     - Leitterm: <InlineMath math="-x^6" />
-    - Grad <InlineMath math="n=6" /> (Gerade)
+    - Grad <InlineMath math="n=6" /> (gerade)
     - Führender Koeffizient <InlineMath math="a_n=-1" /> (negativ)
     - Endverhalten: Fällt nach links (<InlineMath math="\swarrow" />), Fällt nach rechts (<InlineMath math="\searrow" />)
 
@@ -391,7 +393,7 @@ Bestimme das Endverhalten der folgenden Funktionen:
 
     - Leitterm: <InlineMath math="25x^5" />
     - Grad <InlineMath math="n=5" /> (ungerade)
-    - Führender Koeffizient <InlineMath math="a_n=25" /> (Positiv)
+    - Führender Koeffizient <InlineMath math="a_n=25" /> (positiv)
     - Endverhalten: Fällt nach links (<InlineMath math="\swarrow" />), Steigt nach rechts (<InlineMath math="\nearrow" />)
 
     <ContentBlock>

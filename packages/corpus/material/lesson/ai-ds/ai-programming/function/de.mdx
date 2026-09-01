@@ -1,8 +1,9 @@
 export const metadata = {
     title: "Funktionen",
-    description: "Verstehe Python-Funktionen mit Parametern, Rückgabewerten, Gültigkeitsbereichen, Closures und klaren Fehlerverträgen.",
+  description: "Definiere Python-Funktionen mit Parametern, Rückgabewerten, Gültigkeitsbereichen, Closures und expliziter Fehlerbehandlung.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "KI-Programmierung",
 };
 
@@ -14,7 +15,7 @@ Beim Programmieren helfen uns Funktionen dabei, das wiederholte Schreiben dessel
 
 ## Funktionsstruktur und Syntax
 
-Jede Funktion in Python hat eine Grundstruktur, die aus mehreren wichtigen Komponenten besteht.
+Jede Python-Funktion folgt derselben Grundstruktur:
 
 <CodeBlock
   data={[
@@ -66,16 +67,16 @@ print(greet("Bob"))  # Ausgabe: Hallo, Bob!`
 
 Prozess, der während des Funktionsaufrufs auftritt:
 
-1. Python löst den Namen oder Ausdruck zu einem aufrufbaren Objekt auf
+1. Python wertet den Namen oder Ausdruck aus und prüft, ob das Ergebnis aufrufbar ist
 2. Die Argumentbindung ordnet die übergebenen Werte der Funktionssignatur zu
 3. Python führt den Rumpf in einem neuen lokalen Gültigkeitsbereich aus
-4. `return` beendet den Aufruf mit einem Wert; das Erreichen des Endes liefert `None`
+4. `return` beendet den Aufruf mit einem Wert. Das Erreichen des Endes liefert `None`
 
 ## Parameter und Argumente
 
 Parameter sind in Funktionen definierte Variablen, während Argumente tatsächliche Werte sind, die beim Aufrufen von Funktionen gesendet werden. Python bietet verschiedene Arten von Parametern für mehr Flexibilität.
 
-### Positions- und Schlüsselwortparameter
+### Positionsparameter und Schlüsselwortparameter
 
 <CodeBlock
   data={[
@@ -100,7 +101,7 @@ print(introduction("Andi", age=28, city="Surabaya"))
   ]}
 />
 
-Wichtige Regeln bei der Parameterverwendung:
+Regeln für Parameter:
 
 1. Positionsparameter müssen der Reihe nach angegeben werden
 2. Schlüsselwortparameter können in beliebiger Reihenfolge angegeben werden
@@ -109,7 +110,7 @@ Wichtige Regeln bei der Parameterverwendung:
 
 ### Variable Anzahl von Parametern
 
-Mit `*args` und `**kwargs` kann eine Signatur eine variable Anzahl von Argumenten sammeln. Praktische Grenzen ergeben sich weiterhin aus den verfügbaren Ressourcen und der Arbeit der Funktion.
+Mit `*args` und `**kwargs` kann eine Funktion zusätzliche Argumente sammeln. Die Funktion muss Anzahl, Typen und Werte weiterhin nach den Anforderungen des Programms prüfen.
 
 <CodeBlock
   data={[

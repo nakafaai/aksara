@@ -1,15 +1,15 @@
 export const metadata = {
     title: "Array Operations with NumPy",
-    description: "Learn NumPy array operations: broadcasting, vectorization, arithmetic, statistics, and shape manipulation with practical examples for data science.",
+  description: "Use NumPy broadcasting, vectorized arithmetic, reductions, axes, reshaping, and z-score standardization in code examples.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-20",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "AI Programming",
 };
 
 ## Broadcasting in NumPy
 
-Broadcasting is NumPy's rule system for combining arrays with different but compatible shapes. It expands dimensions of size one conceptually, without copying the values into a larger array. The [NumPy broadcasting guide](https://numpy.org/doc/stable/user/basics.broadcasting.html) covers additional examples.
+Broadcasting is NumPy's rule for combining arrays with different but compatible shapes. NumPy treats a dimension of size one as if its size matched the paired dimension, without copying the data into a larger array. [NumPy](https://numpy.org/doc/stable/user/basics.broadcasting.html) provides additional examples.
 
 Vectorization lets one expression operate over an entire array. NumPy executes the underlying loop in optimized compiled code, which is often faster than an explicit Python loop.
 
@@ -41,7 +41,7 @@ To decide whether two shapes are compatible, NumPy compares their dimensions fro
 There are three main rules in broadcasting:
 
 1. **Rule** <InlineMath math="1" />: If the ranks differ, treat the lower-rank shape as if dimensions of size <InlineMath math="1" /> were added on the left
-2. **Rule** <InlineMath math="2" />: Two aligned dimensions are compatible when they are equal or one of them has size <InlineMath math="1" />; a size-one dimension is virtually expanded to the other size
+2. **Rule** <InlineMath math="2" />: Two aligned dimensions are compatible when they are equal or one of them has size <InlineMath math="1" />. NumPy treats the single entry along that dimension as repeated until the sizes match
 3. **Rule** <InlineMath math="3" />: If any aligned pair is incompatible, NumPy raises a `ValueError`
 
 ### Array with Scalar
@@ -71,9 +71,9 @@ print(f"Result a + b: {result}")
   ]}
 />
 
-### Two-Dimensional Array with One-Dimensional Array
+### Two Dimensional Array with One Dimensional Array
 
-When you work with arrays that have different dimensions, NumPy will try to automatically adjust their shapes. This process is very useful when you want to apply the same operation to each row or column of a matrix.
+When arrays have compatible but different shapes, NumPy can adjust them automatically through broadcasting. This applies one operation across every row or column without manually copying values.
 
 <CodeBlock
   data={[
@@ -191,11 +191,11 @@ print(f"a @ b = {a @ b}")
   ]}
 />
 
-It's important to understand the difference between element-wise multiplication (`*`) and matrix multiplication (`@` or `np.dot()`). Element-wise multiplication multiplies elements at the same position, while matrix multiplication follows linear algebra rules.
+Element-wise multiplication (`*`) and matrix multiplication (`@` or `np.dot()`) perform different operations. Element-wise multiplication multiplies entries at the same position, while matrix multiplication follows the row-by-column rule from linear algebra.
 
 ### Comparison and Logic
 
-NumPy also supports comparison operations that produce boolean arrays. These operations are very useful for data filtering or creating complex conditions.
+NumPy comparison operations produce boolean arrays. Use those arrays to filter data or combine several conditions.
 
 <CodeBlock
   data={[
@@ -228,9 +228,9 @@ For element-wise boolean logic, use `~` for NOT, `&` for AND, and `|` for OR, or
 
 ## Statistical Functions and Reductions
 
-Reduction functions combine many elements into fewer values. Without an axis they can reduce the whole array to one value; with an axis they reduce only that dimension. For a table of exam scores, this can produce an average for each subject or each student.
+Reduction functions combine many elements into fewer values. Without `axis`, a reduction combines all elements into one value. With `axis`, it combines values along that axis while leaving the other axes in place. For a table of exam scores, this can produce an average for each subject or each student.
 
-NumPy provides various statistical functions that are very useful for data analysis. These functions can be applied to the entire array or only to specific axes.
+NumPy provides statistical functions for summaries such as totals, means, and standard deviations. Each function can process the entire array or a selected axis.
 
 <CodeBlock
   data={[
@@ -267,7 +267,7 @@ print(f"Standard deviation: {np.std(data):.2f}")
 
 For a two-dimensional array, `axis=0` collapses the row dimension and produces one value per column. `axis=1` collapses the column dimension and produces one value per row.
 
-Understanding axes helps you control how statistical functions work on multidimensional data. For example, if you have monthly sales data for various products, you can calculate total sales per product or per month.
+The selected axis determines which dimension a statistical function reduces. For monthly sales data across several products, one axis can produce totals per product and the other totals per month.
 
 <CodeBlock
   data={[
@@ -355,7 +355,7 @@ print(a)
 
 print()
 
-# Ravel - tries to create view (more efficient)
+# Ravel - tries to create a view instead of always copying data
 b_ravel = a.ravel()
 print(f"Ravel result: {b_ravel}")
 
@@ -435,7 +435,7 @@ print("Is transpose a view?", np.shares_memory(a, b))`
   ]}
 />
 
-## Data Standardization with Z-Transform
+## Data Standardization with Z Transform
 
 Z-score standardization centers each feature at a mean of <InlineMath math="0" /> and scales it to a standard deviation of <InlineMath math="1" />. It is defined only for features with nonzero standard deviation and puts features on comparable numerical scales.
 
@@ -486,4 +486,4 @@ print(f"New standard deviation: {np.std(Z, axis=0)}")  # Should be close to 1
 
 Standardization prevents units alone from creating large scale differences. It does not guarantee equal importance or influence: the model and the data still determine that. For example, height in centimeters and weight in kilograms become numerically comparable after standardization.
 
-For more details about NumPy array operations, you can visit the [official NumPy documentation](https://numpy.org/doc/stable/user/basics.html), which provides guides and practical examples.
+[NumPy](https://numpy.org/doc/stable/user/basics.html) provides more details and practical examples for array operations.

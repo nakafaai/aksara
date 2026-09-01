@@ -3,46 +3,41 @@ export const metadata = {
   description: "Unterscheide Funktionen von anderen Relationen anhand ihrer Definition und überprüfe die eindeutige Zuordnung in Pfeildiagrammen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Funktionszusammensetzung und Umkehrfunktion",
 };
 
 ## Beziehungen zwischen Mengen
 
-In der Mathematik ist eine **Beziehung** von einer Menge <InlineMath math="A" /> zu einer Menge <InlineMath math="B" /> eine Regel, die Elemente der Menge <InlineMath math="A" /> mit Elementen der Menge <InlineMath math="B" /> verbindet. Diese Paarung kann in beliebiger Form erfolgen.
+In der Mathematik ist eine **Relation** von einer Menge <InlineMath math="A" /> zu einer Menge <InlineMath math="B" /> eine beliebige Teilmenge des kartesischen Produkts <InlineMath math="A\times B" />. Ein geordnetes Paar <InlineMath math="(a,b)" /> in der Relation besagt, dass <InlineMath math="a" /> zu <InlineMath math="b" /> in Beziehung steht. Eine Relation darf ein Element aus <InlineMath math="A" /> ohne Zuordnung lassen oder ihm mehrere Elemente aus <InlineMath math="B" /> zuordnen.
 
-**Beispiel:**
-
-Die „Kleiner-als“-Relation zwischen <InlineMath math="A = \{1, 2, 3\}" /> und <InlineMath math="B = \{1, 2, 3, 4\}" /> ergibt die Paare <InlineMath math="(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)" />.
-
-**Erklärung:**
-
-Wir suchen alle Paare <InlineMath math="(a, b)" /> mit <InlineMath math="a \in A" /> und <InlineMath math="b \in B" /> mit <InlineMath math="a < b" />.
+Für die Kleiner als Relation zwischen <InlineMath math="A = \{1, 2, 3\}" /> und <InlineMath math="B = \{1, 2, 3, 4\}" /> gehört <InlineMath math="(a,b)" /> genau dann zur Relation, wenn <InlineMath math="a < b" /> gilt:
 
 - Für <InlineMath math="a=1" /> erhalten wir <InlineMath math="1 < 2" />, <InlineMath math="1 < 3" />, <InlineMath math="1 < 4" />. Paare: <InlineMath math="(1, 2), (1, 3), (1, 4)" />.
 - Für <InlineMath math="a=2" /> erhalten wir <InlineMath math="2 < 3" />, <InlineMath math="2 < 4" />. Paare: <InlineMath math="(2, 3), (2, 4)" />.
 - Für <InlineMath math="a=3" /> erhalten wir <InlineMath math="3 < 4" />. Paar: <InlineMath math="(3, 4)" />.
 
-Die Kombination aller dieser Paare ist <InlineMath math="\{(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)\}" />.
+Die Relation ist <InlineMath math="\{(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)\}" />.
 
 ## Funktionen als besondere Relationen
 
 Eine **Funktion** (oder Abbildung) <InlineMath math="f" /> von einer Menge <InlineMath math="A" /> auf eine Menge <InlineMath math="B" />, geschrieben <InlineMath math="f: A \to B" />, ist eine spezielle Beziehung, die zwei Bedingungen erfüllt:
 
-1.  **Jedes** Element <InlineMath math="x \in A" /> muss ein Paar <InlineMath math="y \in B" /> haben.
+1.  **Jede** Eingabe <InlineMath math="x \in A" /> besitzt mindestens eine Ausgabe <InlineMath math="y \in B" />.
 
     <BlockMath math="\forall x \in A, \exists y \in B \text{ mit } (x, y) \in f" />
 
-2.  Jedes Element <InlineMath math="x \in A" /> hat **genau ein** Paar <InlineMath math="y \in B" />.
+2.  Keine Eingabe <InlineMath math="x \in A" /> besitzt zwei verschiedene Ausgaben in <InlineMath math="B" />.
 
     <BlockMath math="\text{Wenn} (x, y_1) \in f \text{und} (x, y_2) \in f, \text{dann} y_1 = y_2" />
 
-Damit muss jedes Element der Definitionsmenge genau ein Bild besitzen.
+Zusammen verlangen beide Bedingungen, dass jede Eingabe der Definitionsmenge genau eine Ausgabe besitzt.
 
-## Beispiele für Pfeildiagramme
+## Relationen mit Pfeildiagrammen prüfen
 
-Die folgenden Pfeildiagramme zeigen Funktionen und Relationen, die eine Funktionsregel verletzen.
+Die Pfeile zeigen, welche Bedingung jede Relation erfüllt oder verletzt.
 
-### Beziehungen, die keine Funktionen sind
+### Relationen ohne eindeutige Funktionszuordnung
 
 <ContentStack>
   <FunctionAndNonFunctionDiagram
@@ -107,7 +102,7 @@ Die folgenden Pfeildiagramme zeigen Funktionen und Relationen, die eine Funktion
   </FunctionAndNonFunctionDiagram>
 </ContentStack>
 
-### Beziehungen, die Funktionen sind
+### Relationen mit eindeutiger Funktionszuordnung
 
 <FunctionAndNonFunctionDiagram
   title="Genau ein Paar"
@@ -143,13 +138,13 @@ Die folgenden Pfeildiagramme zeigen Funktionen und Relationen, die eine Funktion
 
 Der Kreis <InlineMath math="x^2+y^2=4" /> ist zum Beispiel auf dem gesamten Kreis kein Graph von <InlineMath math="y" /> als Funktion von <InlineMath math="x" />. Für <InlineMath math="x=0" /> enthält die Relation sowohl <InlineMath math="y=2" /> als auch <InlineMath math="y=-2" />.
 
-## Überprüfe dein Verständnis
+## Relationen als Funktionen einordnen
 
 1. Ist <InlineMath math="R=\{(-1,3),(0,3),(2,5)\}" /> auf den dargestellten Eingaben eine Funktion?
 2. Ist <InlineMath math="S=\{(-1,3),(0,3),(-1,5)\}" /> auf den dargestellten Eingaben eine Funktion?
 3. Definiert <InlineMath math="y^2=x" /> die Variable <InlineMath math="y" /> als Funktion jedes <InlineMath math="x\geq0" />?
 
-### Ausführliche Lösungen
+### Jede Eingabe prüfen
 
 1. Ja. Jede erste Koordinate besitzt genau eine zweite Koordinate. Zwei Eingaben dürfen dieselbe Ausgabe <InlineMath math="3" /> besitzen.
 2. Nein. Die Eingabe <InlineMath math="-1" /> besitzt zwei verschiedene Ausgaben.

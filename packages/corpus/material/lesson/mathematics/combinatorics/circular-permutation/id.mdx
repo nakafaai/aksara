@@ -1,9 +1,9 @@
 export const metadata = {
    title: "Permutasi Siklis",
-  description: "Pelajari cara permutasi siklis menghitung urutan relatif, mengapa rotasi dianggap sama, kapan refleksi berbeda, dan cara menangani syarat khusus.",
+  description: "Permutasi siklis menghitung urutan relatif, mengapa rotasi dianggap sama, kapan refleksi berbeda, dan cara menangani syarat khusus.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-08-29",
+   dateModified: "2026-09-01",
    subject: "Kombinatorik",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 Di meja bundar, memindahkan semua orang satu kursi searah jarum jam tidak mengubah siapa yang duduk berdampingan. **Permutasi siklis** menghitung setiap urutan duduk relatif satu kali. Hasil rotasi dari urutan yang sama termasuk susunan yang sama.
 
-Hal ini berbeda dengan permutasi linear. Dalam barisan, posisi pertama dan terakhir sudah jelas; dalam lingkaran, tidak ada posisi awal yang istimewa.
+Permutasi linear memakai posisi pertama dan terakhir yang tetap. Pada permutasi siklis, tidak ada posisi awal yang istimewa.
 
 Setiap objek dapat dijadikan titik acuan. Urutan linear yang hanya berbeda karena rotasi mewakili **susunan melingkar yang sama**.
 
@@ -28,7 +28,7 @@ Keterangan:
 
 **Mengapa rumusnya <InlineMath math="(n-1)!" />?**
 
-Kuncinya, memutar semua objek bersama-sama tidak menghasilkan susunan melingkar baru. Contoh meja bundar memperlihatkan hal ini dengan jelas.
+Dalam permutasi melingkar, memutar semua objek bersama-sama tidak menghasilkan susunan baru. Contoh meja bundar menunjukkan mengapa susunan yang hanya berbeda karena rotasi dihitung satu kali.
 
 Misalkan <InlineMath math="3" /> anak, yaitu <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" />, duduk mengelilingi meja bundar. Urutan <InlineMath math="ABC" />, <InlineMath math="BCA" />, dan <InlineMath math="CAB" /> adalah **susunan yang sama** karena ketiganya hanya berbeda akibat rotasi dan posisi relatifnya tidak berubah.
 
@@ -40,11 +40,11 @@ Langkah perhitungan:
 
 Untuk <InlineMath math="3" /> anak: <InlineMath math="P_3 = (3-1)! = 2! = 2 \times 1 = 2 \text{ cara}" />.
 
-Rumus <InlineMath math="(n-1)!" /> menyamakan rotasi, tetapi masih menganggap bayangan cermin sebagai susunan berbeda. Hal ini sesuai untuk orang yang menghadap ke tengah meja karena pembalikan urutan menukar tetangga kiri dan kanan. Gelang juga dapat dibalik. Untuk <InlineMath math="n\geq3" /> manik-manik yang semuanya berbeda, setiap urutan melingkar berpasangan dengan bayangan cermin yang berbeda, sehingga gelang memiliki <InlineMath math="\frac{(n-1)!}{2}" /> susunan.
+Rumus <InlineMath math="(n-1)!" /> menyamakan rotasi, tetapi masih menganggap bayangan cermin sebagai susunan berbeda. Perhitungan ini sesuai untuk orang yang menghadap ke tengah meja karena pembalikan urutan menukar tetangga kiri dan kanan. Gelang juga dapat dibalik. Untuk <InlineMath math="n\geq3" /> manik-manik yang semuanya berbeda, setiap urutan melingkar berpasangan dengan bayangan cermin yang berbeda, sehingga gelang memiliki <InlineMath math="\frac{(n-1)!}{2}" /> susunan.
 
-## Penerapan dalam Kehidupan Sehari-hari
+## Menghitung Susunan Melingkar
 
-Permutasi siklis sering kita temui dalam berbagai situasi nyata:
+Rumus yang sama menghitung susunan tempat duduk melingkar dan formasi lain yang mengelilingi satu titik pusat.
 
 **Tempat Duduk Melingkar:**
 
@@ -123,4 +123,4 @@ Contoh: <InlineMath math="4" /> pasang suami istri duduk melingkar, setiap pasan
    - Total cara bersebelahan: <InlineMath math="120 \times 2 = 240" />
    - **Cara yang diinginkan:** <InlineMath math="720 - 240 = 480" />
 
-   Jadi, ada <InlineMath math="480 \text{ cara}" /> membentuk lingkaran di mana kedua siswa tidak bersebelahan.
+   Jadi, ada <InlineMath math="480 \text{ cara}" /> membentuk susunan melingkar dengan kedua siswa tidak bersebelahan.

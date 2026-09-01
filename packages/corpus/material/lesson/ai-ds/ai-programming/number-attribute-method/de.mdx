@@ -1,8 +1,9 @@
 export const metadata = {
-    title: "Zahlenattribute und -methoden",
-    description: "Erkunde numerische Python-Objekte anhand ihrer Typen, Attribute, Methoden und komplexen Rechenoperationen.",
+    title: "Attribute und Methoden von Zahlen",
+  description: "Numerische Python-Objekte werden anhand ihrer Typen, Attribute, Methoden und komplexen Rechenoperationen unterschieden.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "KI-Programmierung",
 };
 
@@ -14,7 +15,7 @@ Zum Beispiel erzeugt <InlineMath math="5" /> einen `int` und <InlineMath math="3
 
 ## Zugriff auf Attribute und Methoden
 
-Ein Attribut liest du mit `object.attribute`. Eine Methode rufst du mit `object.method()` auf, einschließlich der Klammern, die den Aufruf ausführen.
+Ein Attribut liest du mit `object.attribute`. Eine Methode rufst du mit `object.method()` auf. Die Klammern in der zweiten Form weisen Python an, die Methode auszuführen.
 
 Betrachten wir ein praktisches Beispiel mit komplexen Zahlen:
 
@@ -42,7 +43,7 @@ print(c.conjugate())  # Ausgabe: (2-3j)`
 
 Bevor du eine typspezifische Operation verwendest, kannst du den numerischen Typ eines Werts prüfen.
 
-### Verwendung der Funktion type()
+### Verwendung der Funktion Type
 
 Die Funktion `type()` gibt die Klasse des Werts zurück:
 
@@ -89,7 +90,7 @@ print(f"Der Realteil von {z3} ist {z3.real}")
   ]}
 />
 
-### Das imag-Attribut
+### Das Attribut imag
 
 Das Attribut `imag` gibt den Koeffizienten von <InlineMath math="i" /> zurück. Python schreibt diese Einheit in komplexen Literalen als `j`.
 
@@ -117,7 +118,7 @@ print(f"Der Imaginärteil von {z3} ist {z3.imag}")
 
 ## Methoden für komplexe Zahlen
 
-### Die conjugate()-Methode
+### Die Methode Conjugate
 
 Für <InlineMath math="z=a+bi" /> gibt `conjugate()` den Wert <InlineMath math="\overline{z}=a-bi" /> zurück. Der Realteil bleibt gleich, während sich das Vorzeichen des Imaginärteils ändert.
 
@@ -205,7 +206,7 @@ print(f"Byte-Darstellung von {n}: {byte_representation}")
 
 `bit_length()` zählt die Bits für den Absolutwert der Ganzzahl, ohne Vorzeichen und führende Nullen. `to_bytes()` benötigt zusätzlich eine Ausgabelänge und Byte-Reihenfolge. Deshalb beginnt das Zwei-Byte-Ergebnis oben mit einem Nullbyte.
 
-### Float-Zahlen
+### Zahlen vom Typ Float
 
 <CodeBlock
   data={[
@@ -233,7 +234,7 @@ print(f"Verhältnis von {f}: {ratio}")
 
 `is_integer()` prüft, ob ein endlicher Float keinen Nachkommaanteil besitzt. `as_integer_ratio()` gibt den exakten Bruch des gespeicherten binären Floats zurück. Dieser kann vom erwarteten Dezimalbruch abweichen.
 
-## Praktische Anwendungen in der Programmierung
+## Numerische Objekte prüfen und weiterverarbeiten
 
 ### Datenvalidierung
 
@@ -297,4 +298,4 @@ complex_operations(z1, z2)`
   ]}
 />
 
-Das wichtige Muster lautet: Erkenne den numerischen Typ, wähle die Operation dieses Typs und unterscheide, ob sie eine Komponente, eine Darstellung oder einen neuen Wert liefert. Diese Unterscheidung wird wichtiger, sobald numerischer Code über einen einzelnen Ausdruck hinauswächst.
+Bestimme zuerst den numerischen Typ und die Operationen, die er bereitstellt. Prüfe danach, ob eine Operation eine Komponente, eine Darstellung oder einen neuen Wert zurückgibt. Dieser Rückgabetyp legt fest, wie der nächste Ausdruck das Ergebnis verwenden kann.

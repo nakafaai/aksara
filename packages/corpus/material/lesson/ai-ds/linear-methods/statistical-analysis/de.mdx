@@ -1,8 +1,9 @@
 export const metadata = {
     title: "Statistische Analyse",
-    description: "Lernen Sie die Fisher-Informationsmatrix, Parameterkovarianz, gewichtete kleinste Quadrate und Konfidenzintervalle für statistische Modelle kennen.",
+    description: "Schätze Parameterkovarianzen und Konfidenzintervalle mit Fisher-Information und gewichteten kleinsten Quadraten.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Lineare Methoden der KI",
 };
 
@@ -12,13 +13,13 @@ Die Methode der kleinsten Quadrate wird erst dann zu einem statistischen Schätz
 
 <BlockMath math="y=X\beta+\varepsilon" />
 
-wobei <InlineMath math="X\in\mathbb{R}^{m\times p}" /> eine feste Designmatrix, <InlineMath math="\beta\in\mathbb{R}^p" /> der unbekannte Parametervektor und <InlineMath math="y\in\mathbb{R}^m" /> der Beobachtungsvektor ist. Für gewöhnliche gaußsche kleinste Quadrate nehmen wir an,
+In diesem Modell ist <InlineMath math="X\in\mathbb{R}^{m\times p}" /> eine feste Designmatrix, <InlineMath math="\beta\in\mathbb{R}^p" /> der unbekannte Parametervektor und <InlineMath math="y\in\mathbb{R}^m" /> der Beobachtungsvektor. Für gewöhnliche gaußsche kleinste Quadrate nehmen wir an,
 
 <BlockMath math="\varepsilon\sim\mathcal N(0,\sigma^2I_m)" />
 
-und dass <InlineMath math="X" /> vollen Spaltenrang besitzt. Nicht die Beobachtungen sind standardnormalverteilt. Der zufällige Fehlervektor ist zentriert gaußverteilt und hat die Varianz <InlineMath math="\sigma^2" />.
+Die zweite Annahme ist, dass <InlineMath math="X" /> vollen Spaltenrang besitzt. Unter diesen beiden Annahmen ist der Beobachtungsvektor <InlineMath math="y" /> gemäß <InlineMath math="\mathcal N(X\beta,\sigma^2I_m)" /> verteilt. Sein Erwartungswert ist <InlineMath math="X\beta" />, und seine Kovarianzmatrix ist <InlineMath math="\sigma^2I_m" />.
 
-## Fisher-Information und Kovarianz des Schätzers
+## Information nach Fisher und Kovarianz des Schätzers
 
 Bis auf eine von <InlineMath math="\beta" /> unabhängige Konstante lautet die Log-Likelihood
 
@@ -65,14 +66,14 @@ Das Intervall beschreibt die Überdeckungsrate des Verfahrens bei wiederholten S
 
 ## Stabile Berechnung mit QR
 
-Sei <InlineMath math="X=QR" /> die reduzierte QR-Zerlegung mit <InlineMath math="Q^TQ=I_p" /> und einer regulären oberen Dreiecksmatrix <InlineMath math="R" />. Dann gilt
+Sei <InlineMath math="X=QR" /> die reduzierte <InlineMath math="\mathrm{QR}" />-Zerlegung mit <InlineMath math="Q^TQ=I_p" /> und einer regulären oberen Dreiecksmatrix <InlineMath math="R" />. Dann gilt
 
 <MathContainer>
 <BlockMath math="\hat\beta=R^{-1}Q^Ty" />
 <BlockMath math="\operatorname{Cov}(\hat\beta)=\sigma^2R^{-1}R^{-T}" />
 </MathContainer>
 
-In numerischem Code löst man das Dreieckssystem <InlineMath math="R\hat\beta=Q^Ty" />, statt <InlineMath math="R^{-1}" /> explizit zu bilden. QR vermeidet außerdem, dass sich die Konditionszahl durch die allein zum Lösen des Kleinste-Quadrate-Problems gebildete Matrix <InlineMath math="X^TX" /> quadriert.
+In numerischem Code löst man das Dreieckssystem <InlineMath math="R\hat\beta=Q^Ty" />, statt <InlineMath math="R^{-1}" /> explizit zu bilden. <InlineMath math="\mathrm{QR}" /> vermeidet außerdem, dass sich die Konditionszahl durch die allein zum Lösen des Kleinste-Quadrate-Problems gebildete Matrix <InlineMath math="X^TX" /> quadriert.
 
 ## Gewichtete und verallgemeinerte kleinste Quadrate
 
@@ -84,7 +85,7 @@ Verallgemeinerte kleinste Quadrate minimieren
 
 <BlockMath math="(y-X\beta)^T\Omega^{-1}(y-X\beta)" />
 
-und liefern
+Die verallgemeinerte Kleinste-Quadrate-Lösung, die Fisher-Information und die Kovarianz des Schätzers lauten
 
 <MathContainer>
 <BlockMath math="\hat\beta_{\mathrm{GLS}}=(X^T\Omega^{-1}X)^{-1}X^T\Omega^{-1}y" />
@@ -96,9 +97,9 @@ Für unabhängige Fehler mit Varianzen <InlineMath math="\sigma_i^2" /> gilt <In
 
 <BlockMath math="\sum_{i=1}^m\frac{(y_i-x_i^T\beta)^2}{\sigma_i^2}" />
 
-und Beobachtung <InlineMath math="i" /> erhält das Gewicht <InlineMath math="1/\sigma_i^2" />. Das Whitening mit <InlineMath math="W=\Omega^{-1/2}" /> verwandelt die Aufgabe in gewöhnliche kleinste Quadrate für <InlineMath math="\widetilde X=WX" /> und <InlineMath math="\widetilde y=Wy" />.
+Jede Beobachtung <InlineMath math="i" /> erhält das Gewicht <InlineMath math="1/\sigma_i^2" />. Das Whitening mit <InlineMath math="W=\Omega^{-1/2}" /> verwandelt die Aufgabe in gewöhnliche kleinste Quadrate für <InlineMath math="\widetilde X=WX" /> und <InlineMath math="\widetilde y=Wy" />.
 
-## Vollständig gerechnetes gewichtetes Beispiel
+## Ein gewichtetes lineares Modell anpassen
 
 Betrachten wir drei Beobachtungen für einen Achsenabschnitt und eine Steigung:
 
@@ -114,7 +115,7 @@ Die dritte Beobachtung hat die Standardabweichung <InlineMath math="2" /> und er
 <BlockMath math="X^T\Omega^{-1}y=\begin{pmatrix}\frac{17}4\\\frac92\end{pmatrix}" />
 </MathContainer>
 
-und damit
+Das Lösen der gewichteten Normalgleichungen ergibt
 
 <MathContainer>
 <BlockMath math="\hat\beta_{\mathrm{GLS}}=\begin{pmatrix}\frac79\\\frac53\end{pmatrix}" />

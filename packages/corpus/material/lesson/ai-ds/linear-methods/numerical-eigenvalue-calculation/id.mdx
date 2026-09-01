@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung nilai eigen dengan iterasi pangkat, iterasi invers bergeser, dan algoritma QR. Pelajari asumsi konvergensi, pemeriksaan residual, dan pemilihan metode.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-17",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Metode Linear AI",
 };
 
@@ -13,13 +13,13 @@ Pasangan eigen dari matriks persegi <InlineMath math="A" /> memenuhi
 
 <BlockMath math="Av=\lambda v,\qquad v\ne0" />
 
-Untuk matriks simbolik berukuran kecil, kita dapat menyelesaikan <InlineMath math="\det(A-\lambda I)=0" />. Perangkat lunak numerik biasanya menghindari pembentukan polinomial karakteristik dan pencarian akarnya. Koefisien polinomial tersebut dapat peka terhadap pembulatan, sedangkan matriks besar atau jarang menawarkan jalur yang lebih efisien melalui perkalian matriks-vektor dan faktorisasi secara langsung.
+Untuk matriks simbolik berukuran kecil, kita dapat menyelesaikan <InlineMath math="\det(A-\lambda I)=0" />. Perangkat lunak numerik biasanya tidak membentuk polinomial karakteristik karena koefisiennya dapat peka terhadap pembulatan. Jika hanya sebagian spektrum matriks besar dan jarang yang dibutuhkan, metode Krylov memakai perkalian matriks dengan vektor tanpa membentuk polinomial tersebut. Algoritma untuk seluruh spektrum matriks padat memakai faktorisasi matriks.
 
 Algoritma yang berbeda menjawab kebutuhan yang berbeda:
 
 - Iterasi pangkat memperkirakan satu nilai eigen bermagnitudo terbesar.
 - Iterasi invers bergeser menargetkan nilai eigen di dekat pergeseran yang dipilih.
-- Algoritma QR menghitung spektrum lengkap matriks padat.
+- Algoritma <InlineMath math="\mathrm{QR}" /> menghitung spektrum lengkap matriks padat.
 - Metode Lanczos dan Arnoldi menargetkan sebagian kecil spektrum matriks jarang berukuran besar.
 
 ## Iterasi Pangkat
@@ -36,11 +36,11 @@ Skalar <InlineMath math="\mu_k" /> adalah hasil bagi Rayleigh. Untuk matriks yan
 
 <BlockMath math="|\lambda_1|>|\lambda_2|\ge\cdots\ge|\lambda_n|" />
 
-dan vektor awal yang memiliki komponen tak nol pada arah eigen dominan, <InlineMath math="q_k" /> mendekati arah tersebut. Galat asimtotiknya umumnya menyusut sebanding dengan
+Jika ketaksamaan di atas berlaku dan vektor awal memiliki komponen tak nol pada arah eigen dominan, <InlineMath math="q_k" /> akan mendekati arah eigen dominan. Galat asimtotiknya umumnya menyusut sebanding dengan
 
 <BlockMath math="\left|\frac{\lambda_2}{\lambda_1}\right|^k" />
 
-Hal ini menjelaskan dua kemungkinan kegagalan. Magnitudo dominan yang sama dapat mencegah konvergensi ke satu vektor, sedangkan vektor awal yang tegak lurus terhadap ruang eigen dominan tidak akan pernah menemukannya.
+Iterasi pangkat dapat gagal dalam dua keadaan. Beberapa nilai eigen dengan magnitudo dominan yang sama dapat mencegah konvergensi ke satu vektor. Vektor awal yang tegak lurus terhadap ruang eigen dominan juga tidak memiliki komponen yang dapat diperbesar menuju ruang tersebut.
 
 ### Berhenti Berdasarkan Residual
 
@@ -52,7 +52,7 @@ Syarat yang memperhitungkan skala adalah
 
 <BlockMath math="\|r_k\|_2\le \tau\bigl(\|A\|_2+|\mu_k|\bigr)" />
 
-dengan <InlineMath math="\tau" /> sebagai toleransi yang diminta. Residual kecil memastikan pasangan hasil hitung hampir memenuhi persamaan eigen, tetapi tidak dengan sendirinya menunjukkan nilai eigen terdekat mana yang ditemukan.
+Pada syarat ini, <InlineMath math="\tau" /> adalah toleransi yang diminta. Residual kecil memastikan pasangan hasil hitung hampir memenuhi persamaan eigen, tetapi tidak dengan sendirinya menunjukkan nilai eigen terdekat mana yang ditemukan.
 
 ## Contoh Iterasi Pangkat
 
@@ -96,7 +96,7 @@ Iterasi pangkat mengutamakan magnitudo terbesar. Untuk menargetkan nilai eigen d
 
 Nilai eigen <InlineMath math="(A-\sigma I)^{-1}" /> adalah <InlineMath math="1/(\lambda_i-\sigma)" />, sehingga nilai eigen yang paling dekat dengan <InlineMath math="\sigma" /> menjadi dominan. Jangan pernah membentuk invers secara eksplisit. Faktorkan <InlineMath math="A-\sigma I" /> dan selesaikan sistem linear pada setiap iterasi. Pergeseran tetap memungkinkan faktorisasinya digunakan kembali.
 
-Jika <InlineMath math="\sigma" /> sangat dekat dengan suatu nilai eigen, sistem bergeser tersebut berkondisi buruk. Penyelesaian linear yang akurat dan pemeriksaan residual menjadi sangat penting.
+Jika <InlineMath math="\sigma" /> sangat dekat dengan suatu nilai eigen, sistem bergeser tersebut berkondisi buruk. Karena itu, selesaikan sistem linearnya dengan akurat dan periksa residualnya.
 
 ## Algoritma QR untuk Spektrum Lengkap
 
@@ -107,7 +107,7 @@ Mulai dengan <InlineMath math="A_0=A" />. Pada iterasi <InlineMath math="k" />, 
 <BlockMath math="A_{k+1}=R_kQ_k=Q_k^TA_kQ_k" />
 </MathContainer>
 
-Setiap langkah adalah transformasi kesebangunan ortogonal sehingga nilai eigennya tetap sama. Algoritma QR praktis terlebih dahulu mereduksi matriks padat ke bentuk Hessenberg, menggunakan pergeseran, dan memisahkan blok yang telah konvergen. Untuk matriks real tak simetris, hasil akhirnya umumnya berupa bentuk Schur real dengan blok diagonal <InlineMath math="1\times1" /> dan <InlineMath math="2\times2" />. Matriks simetris direduksi ke bentuk tridiagonal dan berkonvergensi ke matriks diagonal.
+Setiap langkah merupakan transformasi kesebangunan ortogonal, sehingga nilai eigen tetap sama. Dalam perangkat lunak numerik, algoritma <InlineMath math="\mathrm{QR}" /> terlebih dahulu mereduksi matriks padat ke bentuk Hessenberg, memakai pergeseran, dan memisahkan blok yang telah konvergen. Untuk matriks real tak simetris, hasil akhirnya biasanya berupa bentuk Schur real dengan blok diagonal <InlineMath math="1\times1" /> dan <InlineMath math="2\times2" />. Matriks simetris direduksi ke bentuk tridiagonal dan berkonvergensi ke matriks diagonal.
 
 ## Memilih Metode yang Tepat
 
@@ -117,6 +117,6 @@ Setiap langkah adalah transformasi kesebangunan ortogonal sehingga nilai eigenny
 | Pasangan eigen di dekat <InlineMath math="\sigma" /> | Iterasi invers bergeser | penyelesaian stabil dengan <InlineMath math="A-\sigma I" /> |
 | Beberapa pasangan eigen ekstrem dari matriks simetris jarang berukuran besar | Lanczos | hilangnya ortogonalitas dan residual |
 | Beberapa pasangan eigen dari matriks tak simetris jarang berukuran besar | Arnoldi | ukuran subruang, pengulangan awal, dan residual |
-| Spektrum lengkap matriks padat | QR bergeser menuju bentuk Schur | blok diagonal atau kuasidiagonal yang telah konvergen |
+| Spektrum lengkap matriks padat | <InlineMath math="\mathrm{QR}" /> bergeser menuju bentuk Schur | blok diagonal atau kuasidiagonal yang telah konvergen |
 
 Uji penerimaan akhir selalu mengikuti pasangan eigen yang diminta: periksa residual, pertahankan pasangan konjugat kompleks untuk matriks real, dan jangan menyatakan vektor eigen sudah akurat hanya karena perkiraan nilai eigennya telah stabil.

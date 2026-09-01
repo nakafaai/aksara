@@ -1,8 +1,9 @@
 export const metadata = {
     title: "Symmetrische und hermitesche Matrizen",
-    description: "Lernen Sie symmetrische und hermitesche Matrizen, einschließlich reeller Eigenwerte, orthogonale Eigenvektoren, quadratische Formen und Diagonalisierung.",
+    description: "Verbinde symmetrische und hermitesche Matrizen mit reellen Eigenwerten, orthogonalen Eigenvektoren, quadratischen Formen und Diagonalisierung.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Lineare Methoden der KI",
 };
 
@@ -12,17 +13,17 @@ Eine reelle quadratische Matrix <InlineMath math="A\in\mathbb{R}^{n\times n}" />
 
 <BlockMath math="A^T=A" />
 
-oder eintragsweise <InlineMath math="a_{ji}=a_{ij}" /> gilt. Zum Beispiel ist
+Eintragsweise lautet dieselbe Bedingung <InlineMath math="a_{ji}=a_{ij}" />. Ein Beispiel ist
 
 <BlockMath math="A=\begin{pmatrix}1&2&3\\2&4&5\\3&5&6\end{pmatrix}" />
 
-symmetrisch, weil die Einträge auf beiden Seiten der Hauptdiagonalen übereinstimmen.
+Die Matrix <InlineMath math="A" /> ist symmetrisch, weil die Einträge auf beiden Seiten der Hauptdiagonalen übereinstimmen.
 
 Eine komplexe quadratische Matrix <InlineMath math="H\in\mathbb{C}^{n\times n}" /> heißt **hermitesch**, wenn
 
 <BlockMath math="H^H=H" />
 
-also <InlineMath math="h_{ji}=\overline{h_{ij}}" /> gilt. Ein Beispiel mit tatsächlich komplexen Einträgen ist
+Eintragsweise bedeutet die hermitesche Bedingung <InlineMath math="h_{ji}=\overline{h_{ij}}" />. Ein Beispiel mit komplexen Einträgen ist
 
 <BlockMath math="H=\begin{pmatrix}2&1+i\\1-i&3\end{pmatrix}" />
 
@@ -36,7 +37,7 @@ Transponieren und konjugiertes Transponieren dürfen nicht verwechselt werden. F
 
 <BlockMath math="x^Tx=\sum_{k=1}^n x_k^2\geq0" />
 
-und für <InlineMath math="x\in\mathbb{C}^n" /> gilt
+Für <InlineMath math="x\in\mathbb{C}^n" /> verwendet man die konjugierte Transponierte:
 
 <BlockMath math="x^Hx=\sum_{k=1}^n\overline{x_k}x_k=\sum_{k=1}^n|x_k|^2\geq0" />
 
@@ -69,7 +70,7 @@ Ein Skalar ist genau dann gleich seinem komplex Konjugierten, wenn er reell ist.
 
 <BlockMath math="x^TBx=x^T\left(\frac{B+B^T}{2}\right)x" />
 
-denn <InlineMath math="x^T(B-B^T)x=0" />. Quadratische Formen hängen somit nur vom symmetrischen Anteil ab.
+Der schiefsymmetrische Anteil trägt nichts bei, weil <InlineMath math="x^T(B-B^T)x=0" /> gilt. Quadratische Formen hängen somit nur vom symmetrischen Anteil ab.
 
 ## Warum hermitesche Eigenwerte reell sind
 
@@ -114,7 +115,7 @@ Für die zuvor betrachtete Matrix
 
 <BlockMath math="H=\begin{pmatrix}2&1+i\\1-i&3\end{pmatrix}" />
 
-lautet das charakteristische Polynom
+Für die Matrix <InlineMath math="H" /> lautet das charakteristische Polynom
 
 <BlockMath math="\det(H-\lambda I)=(2-\lambda)(3-\lambda)-2=(\lambda-1)(\lambda-4)" />
 
@@ -129,4 +130,4 @@ Sie erfüllen <InlineMath math="u_1^Hu_2=0" />. Mit <InlineMath math="U=(u_1\qua
 
 <BlockMath math="U^HHU=\operatorname{diag}(1,4)" />
 
-und der abstrakte Satz liefert eine unmittelbar überprüfbare unitäre Diagonalisierung.
+Diese Gleichung liefert eine unitäre Diagonalisierung, die sich direkt überprüfen lässt.

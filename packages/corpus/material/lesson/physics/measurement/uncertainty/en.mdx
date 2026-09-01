@@ -1,14 +1,14 @@
 export const metadata = {
   title: "Uncertainty in Repeated Measurements",
   description:
-    "Learn how to read repeated measurement data, calculate a mean, estimate uncertainty, and report a result without pretending it is more precise than it is.",
+    "Read repeated measurement data, calculate a mean, estimate uncertainty, and report a result without pretending it is more precise than it is.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-04-25",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Measurement in Scientific Work",
 };
 
-## Different Data Does Not Mean Failure
+## Variation in Repeated Measurements
 
 When one object is measured several times, the results can differ slightly. That is normal. A hand can press the tool with a different force, an eye can read the scale from a slightly different angle, and the object can shift a little.
 
@@ -16,9 +16,9 @@ When one object is measured several times, the results can differ slightly. That
 
 This lesson first uses the sample standard deviation <InlineMath math="s" /> to describe the spread of individual readings. The standard uncertainty of the mean is a different quantity and appears later.
 
-> Repeated measurements help reveal random error, meaning small changes that move up and down from one reading to another. Systematic error, such as a tool that does not start at zero or a damaged scale, still needs tool checking or calibration.
+> Repeated measurements show random variation through small changes between readings. Systematic errors, such as a tool that does not start at zero or a damaged scale, must be checked through inspection or calibration.
 
-## The Mean Represents the Data
+## Mean of Repeated Measurements
 
 Suppose <InlineMath math="5" /> students measure the diameter of a bottle cap with a vernier caliper. Every reading uses the same unit, <InlineMath math="\text{cm}" />.
 
@@ -30,7 +30,7 @@ Suppose <InlineMath math="5" /> students measure the diameter of a bottle cap wi
 | <InlineMath math="d_4" /> | <InlineMath math="3.11 \text{ cm}" /> |
 | <InlineMath math="d_5" /> | <InlineMath math="3.14 \text{ cm}" /> |
 
-The most reasonable single value for repeated data is the mean.
+For repeated data with a roughly symmetric spread and no clear outlier, the mean is an appropriate representative value.
 
 <BlockMath math="\bar d=\frac{\sum_{i=1}^{N} d_i}{N}" />
 
@@ -44,13 +44,13 @@ For the data above:
 
 The mean is not enough. We also need to know whether the data cluster tightly around the mean or spread farther away.
 
-## The Spread Around the Mean
+## Data Spread Around the Mean
 
 For repeated data, sample spread can be calculated from the distance between each reading and the mean.
 
 <BlockMath math="s_d=\sqrt{\frac{\sum_{i=1}^{N}(d_i-\bar d)^2}{N-1}}" />
 
-The value <InlineMath math="N-1" /> is used because the measurement data contains only a sample of all possible measurements.
+The denominator <InlineMath math="N-1" /> is used because the sample mean <InlineMath math="\bar d" /> is calculated from the same data. The deviations from the mean must sum to zero, so only <InlineMath math="N-1" /> deviations can vary independently.
 
 <BlockMath math="\begin{aligned}
 s_d
@@ -64,9 +64,9 @@ If we report the diameter with the spread of the repeated data, the result becom
 
 The value <InlineMath math="3.13 \text{ cm}" /> represents the data. The value <InlineMath math="0.02 \text{ cm}" /> reminds the reader that the repeated readings were not exactly the same.
 
-## The Compact Formula That Gets Confused
+## Data Spread and Uncertainty of the Mean
 
-School books sometimes write repeated-data spread in the compact form below.
+Some repeated-measurement exercises use the compact algebraic form below.
 
 <BlockMath math="\Delta x=\frac{1}{\sqrt{N}}\sqrt{\frac{N\sum_{i=1}^{N}x_i^2-\left(\sum_{i=1}^{N}x_i\right)^2}{N-1}}" />
 
@@ -80,9 +80,9 @@ In formal metrology, NIST and the JCGM GUM describe the standard uncertainty of 
 
 <BlockMath math="u(\bar x)=\frac{s_x}{\sqrt N}" />
 
-For simple measurement practice, follow the convention used by the problem statement. If a problem uses <InlineMath math="\Delta x" /> for the compact formula above, call <InlineMath math="\Delta x" /> the repeated-measurement uncertainty for that problem model. The key is not to mix the two meanings without saying so.
+For simple measurement practice, follow the convention used by the problem statement. If a problem uses <InlineMath math="\Delta x" /> for the compact formula above, call <InlineMath math="\Delta x" /> the repeated-measurement uncertainty for that problem model. Do not mix the two meanings without naming the quantity represented by the formula.
 
-## When the Target Is Not the Diameter
+## Area Calculated from Diameter Data
 
 Sometimes the measured data is diameter, but the required result is the area of the bottle cap. For a circle, the area is:
 
@@ -106,7 +106,7 @@ The area spread is:
 
 <BlockMath math="s_A=0.0808 \text{ cm}^2" />
 
-The result can be reported as:
+Using sample spread as the uncertainty convention for this exercise, the bottle-cap area can be written as follows.
 
 <BlockMath math="A=(7.70 \pm 0.08)\text{ cm}^2" />
 
@@ -124,4 +124,4 @@ For the bottle cap area:
 
 This means the sample spread is about <InlineMath math="1.05\,\%" /> of the mean area. Whether that is adequate depends on the intended use and target uncertainty, so the percentage should not be called "small enough" without a stated requirement.
 
-The uncertainty references used here are NIST Technical Note <InlineMath math="1297" /> for Type A evaluation and the JCGM GUM document from BIPM. NIST's Type A evaluation page can be opened through [this source link](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-3-type-evaluation-standard-uncertainty), while BIPM's JCGM GUM document can be opened through [this source link](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf).
+The uncertainty references used here are NIST Technical Note <InlineMath math="1297" /> for Type A evaluation and the JCGM GUM from BIPM. The documents are available from [NIST](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-3-type-evaluation-standard-uncertainty) and [BIPM](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf).

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Combine reflections, rotations, and dilations through matrix multiplication while keeping the transformation order explicit.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometric Transformation",
 };
 
@@ -82,7 +82,7 @@ The matrix for <InlineMath math="T_2" /> (rotation <InlineMath math="90^\circ" /
 
 - The final image is <InlineMath math="P''(-y,-x)" />.
 
-Both methods give the same result. Using the composite matrix (<InlineMath math="M_2 M_1" />) is often more efficient if we need to transform many points with the same composition.
+Both methods give the same result. If many points use the same composition, calculate <InlineMath math="M_2 M_1" /> once and apply that composite matrix to every point.
 
 ## Composite Matrix Rule
 
@@ -90,9 +90,9 @@ Suppose the matrices related to transformations <InlineMath math="T_1" /> and <I
 
 Then, the matrix related to the composition of transformations <InlineMath math="T_2 \circ T_1" /> (Transformation <InlineMath math="T_1" /> followed by <InlineMath math="T_2" />) is <InlineMath math="M_2 M_1 = \begin{pmatrix} t & u \\ v & w \end{pmatrix} \begin{pmatrix} p & q \\ r & s \end{pmatrix}" />.
 
-Remember that the order of matrix multiplication is important. The matrix for the transformation performed first (<InlineMath math="M_1" />) is written on the right.
+The order of matrix multiplication determines the order of the transformations. The matrix for the transformation performed first (<InlineMath math="M_1" />) is written on the right.
 
-## Application Examples
+## Combining Reflections and Rotations with Matrices
 
 ### Composition of Two Reflections
 
@@ -140,7 +140,7 @@ So, the image of the point is <InlineMath math="(-2,-3)" />.
 
 ### Composition of Three Transformations
 
-Suppose you want to perform three transformations on a point <InlineMath math="P(2,5)" />, namely reflection across the <InlineMath math="x" />-axis, rotation <InlineMath math="90^\circ" /> about the origin, and a half turn (<InlineMath math="180^\circ" /> rotation about the origin). Determine its image!
+Apply three transformations to point <InlineMath math="P(2,5)" />. First reflect it across the <InlineMath math="x" />-axis, then rotate it <InlineMath math="90^\circ" /> about the origin, and finally rotate it <InlineMath math="180^\circ" /> about the origin. Determine its image.
 
 **Solution:**
 
@@ -175,7 +175,7 @@ So, the image of the point is <InlineMath math="(-5,-2)" />.
 
 ## Exercise
 
-Suppose we want to perform three transformations on a point <InlineMath math="P(2,5)" />, namely reflection across the <InlineMath math="y" />-axis, rotation <InlineMath math="180^\circ" /> about the origin, and reflection across the line <InlineMath math="y=x" />. Determine its image!
+Apply three transformations to point <InlineMath math="P(2,5)" />. First reflect it across the <InlineMath math="y" />-axis, then rotate it <InlineMath math="180^\circ" /> about the origin, and finally reflect it across the line <InlineMath math="y=x" />. Determine its image.
 
 ### Solution
 

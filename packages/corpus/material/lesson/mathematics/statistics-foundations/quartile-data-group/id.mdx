@@ -1,25 +1,25 @@
 export const metadata = {
   title: "Kuartil Data Kelompok",
-  description: "Pelajari perhitungan kuartil data kelompok dengan metode interpolasi. Pelajari posisi Q1, Q2, Q3 menggunakan frekuensi kumulatif dan tepi kelas.",
+  description: "Hitung kuartil data kelompok dengan menentukan posisi pada frekuensi kumulatif dan melakukan interpolasi di antara tepi kelas.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Statistika",
 };
 
 ## Cara Mencari Kuartil di Data Kelompok
 
-Pada data tunggal, setiap nilai dapat diurutkan dan posisinya dapat dibaca langsung. Pada tabel frekuensi berkelompok, kita hanya mengetahui interval, misalnya <InlineMath math="70\text{-}79" /> dan <InlineMath math="80\text{-}89" />, beserta banyak data di setiap interval. Nilai satu per satu tidak lagi terlihat.
+Pada data tunggal, setiap nilai dapat diurutkan dan posisinya dapat ditentukan langsung. Tabel frekuensi berkelompok hanya memuat interval, misalnya <InlineMath math="70\text{-}79" /> dan <InlineMath math="80\text{-}89" />, beserta banyak data di setiap interval. Tabel tersebut tidak memuat nilai satu per satu.
 
 Seperti pada [median data kelompok](/id/materi/matematika/statistika-dasar/median-dan-kelas-modus-data-kelompok), <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" /> perlu diperkirakan dengan **interpolasi**. Perhitungan ini menempatkan setiap kuartil di dalam kelas interval yang memuat posisi sasarannya.
 
-Letak kuartilnya kita tentukan pakai rumus ini:
+Posisi setiap kuartil dihitung dengan rumus berikut:
 
 - Letak <InlineMath math="Q_1" /> adalah data ke-<InlineMath math="\frac{1}{4}n" />
 - Letak <InlineMath math="Q_2" /> adalah data ke-<InlineMath math="\frac{2}{4}n" /> (atau <InlineMath math="\frac{1}{2}n" />)
 - Letak <InlineMath math="Q_3" /> adalah data ke-<InlineMath math="\frac{3}{4}n" />
 
-Di mana <InlineMath math="n" /> itu jumlah semua data.
+Pada rumus ini, <InlineMath math="n" /> adalah banyaknya data.
 
 ## Langkah Mencari Nilai Kuartil Data Kelompok
 
@@ -27,7 +27,7 @@ Anggap kita punya data penjualan sepatu di Toko A dalam bentuk tabel frekuensi b
 
 ### Buat Tabel Frekuensi Kumulatif
 
-Pertama, kita butuh tabel frekuensi yang ada kolom frekuensi kumulatif (<InlineMath math="F_k" />). Frekuensi kumulatif itu jumlah frekuensi dari kelas pertama sampai kelas tersebut. Ini penting buat tahu kuartilnya jatuh di kelas mana.
+Pertama, tambahkan kolom frekuensi kumulatif (<InlineMath math="F_k" />) pada tabel. Frekuensi kumulatif menjumlahkan frekuensi dari kelas pertama sampai kelas yang sedang dibaca. Kolom ini menentukan kelas yang memuat setiap kuartil.
 
 Misalnya, ini tabel penjualan sepatu:
 
@@ -70,7 +70,7 @@ Setelah kelas kuartil diketahui, perkirakan nilainya di dalam interval tersebut 
 
 <BlockMath math="Q_i = T_b + \left( \frac{\frac{i}{4}n - F_{\text{kum}}}{f_i} \right) p" />
 
-Di mana:
+Pada rumus ini:
 
 - <InlineMath math="Q_i" /> = Nilai Kuartil ke-i (yang kita cari)
 - <InlineMath math="T_b" /> = Tepi bawah kelas kuartil ke-i
@@ -110,7 +110,7 @@ Jadi, nilai <InlineMath math="Q_1" /> adalah <InlineMath math="41" />. Artinya, 
 
 Hitung <InlineMath math="Q_3" /> dari data penjualan sepatu Toko A pada tabel di atas.
 
-Kemudian, bandingkan caranya dengan perhitungan kuartil data tunggal. Mengapa tabel kelompok hanya memberikan perkiraan?
+Kemudian, bandingkan langkah interpolasi kuartil data kelompok dengan cara menentukan kuartil data tunggal. Mengapa tabel kelompok hanya memberikan perkiraan?
 
 ### Kunci Jawaban
 
@@ -136,10 +136,10 @@ Kemudian, bandingkan caranya dengan perhitungan kuartil data tunggal. Mengapa ta
       <BlockMath math="Q_3 = 45{,}35" />
     </MathContainer>
 
-Jadi, nilai <InlineMath math="Q_3" /> adalah <InlineMath math="45{,}35" />. Artinya, sekitar <InlineMath math="75\%" /> sepatu yang terjual ukurannya <InlineMath math="45{,}35" /> atau lebih kecil (atau <InlineMath math="25\%" /> terjual ukurannya lebih besar dari <InlineMath math="45{,}35" />).
+Perkiraan nilai <InlineMath math="Q_3" /> adalah <InlineMath math="45{,}35" />. Dalam model data kelompok ini, sekitar <InlineMath math="75\%" /> sepatu yang terjual berukuran <InlineMath math="45{,}35" /> atau lebih kecil. Sisanya, sekitar <InlineMath math="25\%" />, berukuran lebih besar dari <InlineMath math="45{,}35" />.
 
 **Perbandingan dengan Data Tunggal:**
 
-Kuartil data kelompok dihitung dengan **interpolasi** karena kita mengetahui interval, sedangkan setiap nilai data sudah tersembunyi. Hasilnya berupa perkiraan nilai kuartil.
+Kuartil data kelompok dihitung dengan **interpolasi** karena tabel hanya memuat interval dan frekuensi tanpa setiap nilai asli. Perhitungan tersebut menghasilkan perkiraan nilai kuartil.
 
 Pada data tunggal, semua nilai yang telah diurutkan diketahui. Karena itu, konvensi kuartil yang dipilih dapat mengambil satu nilai atau menginterpolasi langsung di antara dua nilai yang diketahui. Interpolasi data kelompok kurang presisi karena nilai di dalam setiap kelas tidak lagi tersedia.

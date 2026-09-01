@@ -1,19 +1,19 @@
 export const metadata = {
   title: "Membuat Array dengan NumPy",
-  description: "Pelajari cara membuat array NumPy secara manual, dengan fungsi bawaan, dari sequence, dan melalui operasi dasar.",
+  description: "Membuat array NumPy secara manual, memakai built-in function, membentuk deret nilai, dan menjalankan operasi dasar.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-09-18",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Pemrograman AI",
 };
 
 ## Pengenalan NumPy
 
-NumPy membantu Python mengolah data numerik secara efisien. List Python dapat menampung tipe campuran, sedangkan array NumPy biasanya menyimpan nilai bertipe sama dalam struktur yang ringkas. Untuk operasi numerik tervectorisasi pada banyak nilai, susunan ini sering lebih cepat daripada loop Python yang setara.
+NumPy membantu Python mengolah data numerik secara efisien. List Python dapat menampung tipe campuran, sedangkan array NumPy biasanya menyimpan nilai bertipe sama dalam struktur yang ringkas. Untuk operasi numerik pada banyak nilai sekaligus, susunan ini sering lebih cepat daripada loop Python yang setara.
 
-Objek inti `ndarray` merepresentasikan wadah n-dimensi berukuran tetap yang seluruh elemennya memiliki satu tipe data. Desain ini memungkinkan operasi tervectorisasi, yaitu satu ekspresi yang menjelaskan pekerjaan pada seluruh array. [Dokumentasi resmi NumPy](https://numpy.org/doc/stable/) menyediakan tutorial dan contoh lanjutan.
+Objek inti `ndarray` adalah array n-dimensi berukuran tetap yang seluruh elemennya memakai satu tipe data. Dengan `ndarray`, satu ekspresi dapat menjalankan operasi yang sama pada seluruh array. [NumPy](https://numpy.org/doc/stable/) menyediakan tutorial dan contoh lanjutan.
 
-NumPy menyediakan beberapa keunggulan penting untuk pemrograman ilmiah:
+Untuk pemrograman ilmiah, array NumPy menjalankan loop numerik dalam kode terkompilasi, menerapkan satu operasi pada seluruh array, dan menyimpan nilai homogen secara ringkas:
 
 1. **Loop numerik yang efisien** karena dijalankan dalam kode native terkompilasi
 2. **Vektorisasi** memungkinkan operasi pada seluruh array tanpa loop eksplisit
@@ -47,7 +47,7 @@ print("Hasil NumPy:", z_np)  # Output: Hasil NumPy: [ 2  6 12 20 30]`
 
 ## Pembuatan Array Manual
 
-Cara paling dasar untuk membuat array NumPy adalah mengkonversi struktur data Python yang sudah ada menjadi array.
+Gunakan `np.array()` untuk mengonversi struktur data Python menjadi array NumPy.
 
 Array satu dimensi seperti barisan angka dalam satu baris. Kamu dapat membuatnya dari list Python menggunakan fungsi `np.array()`.
 
@@ -146,7 +146,7 @@ print("Dari list:", arr_from_list)  # Output: Dari list: [0 1 2 3]
 arr_from_tuple = np.array((0, 1, 2, 3))
 print("Dari tuple:", arr_from_tuple)  # Output: Dari tuple: [0 1 2 3]
 
-# Dari campuran (akan dikonversi ke tipe yang kompatibel)
+# Dari campuran yang akan dikonversi ke tipe yang kompatibel
 arr_mixed = np.array([0, 1, 2.5, 3])
 print("Dari campuran:", arr_mixed)  # Output: Dari campuran: [0.  1.  2.5 3. ]
 print("Tipe data otomatis:", arr_mixed.dtype)  # Output: Tipe data otomatis: float64`
@@ -156,7 +156,7 @@ print("Tipe data otomatis:", arr_mixed.dtype)  # Output: Tipe data otomatis: flo
 
 ## Fungsi Pembuat Array
 
-NumPy menyediakan fungsi-fungsi khusus untuk membuat array dengan shape dan nilai yang dapat diprediksi.
+NumPy menyediakan fungsi khusus yang menghasilkan array dengan bentuk dan nilai tertentu.
 
 ### Fungsi Nilai Konstan
 
@@ -272,7 +272,7 @@ print(a)
 
 ### Fungsi Matematika
 
-Fungsi `np.fromfunction` memungkinkan pembuatan array berdasarkan fungsi matematika. Ini seperti memiliki formula untuk menghasilkan nilai setiap elemen berdasarkan posisinya.
+Fungsi `np.fromfunction` membuat array dengan memanggil suatu fungsi untuk indeks setiap posisi. Nilai yang dikembalikan menjadi elemen pada posisi tersebut.
 
 <CodeBlock
   data={[
@@ -308,7 +308,7 @@ print(b)
   ]}
 />
 
-Fungsi `np.empty` mengalokasikan array tanpa menginisialisasi nilai elemennya. Isi memori yang terlihat bersifat sembarang, sehingga setiap elemen harus diberi nilai sebelum dibaca. Gunakan fungsi ini hanya jika array akan segera diisi.
+Fungsi `np.empty` mengalokasikan array tanpa menentukan nilai awal elemennya. Nilai yang dibaca sebelum array diisi tidak dapat diprediksi. Gunakan fungsi ini hanya jika setiap elemen akan segera diberi nilai.
 
 <CodeBlock
   data={[
@@ -333,13 +333,13 @@ print("Dtype:", a.dtype)  # Output: Dtype: float64`
   ]}
 />
 
-## Array dari Sequence
+## Membuat Array Berpola
 
 NumPy menyediakan fungsi khusus untuk membuat array dari urutan nilai dengan pola tertentu.
 
-### Fungsi np.arange
+### Fungsi Arange pada NumPy
 
-Fungsi `np.arange` menyerupai `range()` milik Python, tetapi mengembalikan array dan menerima argumen floating-point. Untuk step noninteger, pembulatan floating-point dapat membuat nilai akhir kurang mudah diprediksi. Karena itu, `np.linspace` sering lebih jelas ketika jumlah titik yang diinginkan sudah diketahui.
+Fungsi `np.arange` menyerupai `range()` milik Python, tetapi mengembalikan array dan menerima argumen bertipe `float`. Jika nilai `step` bukan bilangan bulat, pembulatan pada `float` dapat membuat batas akhir sulit dipastikan. Gunakan `np.linspace` jika kamu sudah mengetahui jumlah titik yang dibutuhkan.
 
 <CodeBlock
   data={[
@@ -370,7 +370,7 @@ print("- start default adalah 0")`
   ]}
 />
 
-### Fungsi np.linspace
+### Fungsi Linspace pada NumPy
 
 Berbeda dengan `np.arange` yang menggunakan step tetap, `np.linspace` membagi rentang menjadi sejumlah titik yang sama rata.
 
@@ -398,15 +398,15 @@ print("arange: jarak diketahui, jumlah elemen dihitung")`
   ]}
 />
 
-### Perbandingan arange vs linspace
+### Membandingkan arange dan linspace
 
 | Aspek | `np.arange` | `np.linspace` |
 |-------|-------------|---------------|
 | Parameter utama | start, stop, step | start, stop, num |
 | Kontrol | Jarak antar elemen | Jumlah total elemen |
-| Endpoint | Dikecualikan | Disertakan (default) |
-| Tipe data | Disimpulkan dari input | Floating-point secara default; dapat diatur dengan `dtype` |
-| Kegunaan | Sequence dengan jarak tetap | Pembagian rentang merata |
+| Titik akhir | Dikecualikan | Disertakan secara bawaan |
+| Tipe data | Disimpulkan dari input | `float` secara default dan dapat diatur dengan `dtype` |
+| Kegunaan | Deret nilai dengan selisih tetap | Pembagian rentang merata |
 
 ## Operasi Dasar
 

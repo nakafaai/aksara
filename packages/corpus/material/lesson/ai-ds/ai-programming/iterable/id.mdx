@@ -1,21 +1,21 @@
 export const metadata = {
     title: "Iterable",
-    description: "Pelajari cara iterable Python mendukung perulangan, pemeriksaan keanggotaan, uji truthiness, dan positional unpacking.",
+    description: "Objek iterable Python, membership test, truthiness, serta positional unpacking dengan asterisk.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Pemrograman AI",
 };
 
-## Konsep Dasar Iterable
+## Iterable
 
-Dalam Python, iterable adalah objek yang dapat menghasilkan satu item demi satu untuk perulangan atau pemakai lain. String, list, tuple, set, dictionary, file, dan generator semuanya iterable meskipun cara menyusun serta menghasilkan itemnya berbeda.
+Dalam Python, iterable adalah objek yang menghasilkan item satu per satu saat diiterasi atau digunakan oleh operasi lain. String, list, tuple, set, dictionary, file, dan generator semuanya iterable meskipun cara menyusun serta menghasilkan itemnya berbeda.
 
-Iterable tidak harus berurutan, memiliki indeks, dapat dipakai ulang, atau berhingga. Janji utamanya lebih sempit: `iter()` dapat memperoleh iterator yang memasok item sampai habis.
+Iterable tidak harus berurutan, memiliki indeks, dapat dipakai ulang, atau berhingga. Syarat utamanya hanya satu. Pemanggilan `iter()` harus menghasilkan iterator yang mengeluarkan item satu per satu sampai habis.
 
-### Jenis-jenis Iterable
+### Berbagai Jenis Iterable
 
-Python menyediakan berbagai jenis iterable yang sering kamu gunakan dalam pemrograman sehari-hari.
+Beberapa tipe bawaan Python dapat menghasilkan item satu per satu ketika diulang.
 
 <CodeBlock
   data={[
@@ -70,11 +70,11 @@ String menghasilkan karakter sesuai urutan teks. List dan tuple menghasilkan ele
 
 ## Operator Keanggotaan
 
-Operator `in` dan `not in` menanyakan apakah suatu container memuat nilai tertentu. Aturan keanggotaan tepatnya dimiliki oleh tipe container tersebut.
+Operator `in` dan `not in` memeriksa apakah suatu objek memuat nilai tertentu. Cara pemeriksaannya bergantung pada tipe objek tersebut.
 
 ### Penggunaan Operator in dan not in
 
-Sequence bawaan memeriksa item hingga menemukan kecocokan atau mencapai akhir. Set dan dictionary memakai cara pencariannya sendiri. Pemeriksaan keanggotaan pada dictionary mencari kuncinya.
+String, list, dan tuple bawaan memeriksa item hingga menemukan kecocokan atau mencapai akhir. `set` dan `dict` memakai mekanisme pencarian sendiri. Pada `dict`, pemeriksaan keanggotaan mencari kunci.
 
 <CodeBlock
   data={[
@@ -147,11 +147,11 @@ Pemeriksaan terakhir hanya menunjukkan dua penanda. Cara itu belum cukup untuk m
 
 ## Fungsi any dan all
 
-Fungsi bawaan `any()` dan `all()` memakai iterable dan menguji truthiness setiap item. Keduanya berhenti segera setelah hasilnya diketahui, sehingga generator expression menghindari pembuatan list perantara yang tidak diperlukan.
+Built-in `any()` dan `all()` menerima iterable lalu menguji truthiness setiap item, yaitu apakah Python menganggap item tersebut benar atau salah dalam konteks Boolean. Kedua fungsi berhenti segera setelah return value dapat ditentukan, sehingga ekspresi generator dapat menghindari pembuatan list perantara yang tidak diperlukan.
 
-### Fungsi any()
+### Fungsi Any
 
-`any()` mengembalikan `True` setelah menemukan item truthy pertama. Hasilnya baru `False` ketika semua item falsy atau iterable kosong.
+`any()` mengembalikan `True` setelah menemukan item pertama yang dianggap benar. Return value menjadi `False` jika semua item dianggap salah atau iterable tersebut kosong.
 
 <CodeBlock
   data={[
@@ -184,9 +184,9 @@ if any(numbers):
   ]}
 />
 
-### Fungsi all()
+### Fungsi All
 
-`all()` mengembalikan `False` setelah menemukan item falsy pertama. Jika iterasi selesai tanpa item tersebut, hasilnya `True`. Ini juga menjelaskan kasus kosong: tidak ada item yang melanggar kondisi.
+`all()` mengembalikan `False` setelah menemukan item pertama yang dianggap salah. Jika iterasi selesai tanpa item tersebut, return value menjadi `True`. Pada iterable kosong, tidak ada item yang melanggar kondisi sehingga `all()` juga mengembalikan `True`.
 
 <CodeBlock
   data={[
@@ -219,13 +219,13 @@ if all(age >= 18 for age in ages):
   ]}
 />
 
-## Operator Unpacking
+## Positional Unpacking
 
 Dalam pemanggilan fungsi, asterisk di depan iterable (`*`) mengembangkannya menjadi argumen posisi. Jumlah argumen yang dihasilkan tetap harus sesuai dengan yang diterima fungsi.
 
-### Masalah Tanpa Unpacking
+### Pemanggilan Tanpa Unpacking
 
-Fungsi yang mengharapkan koordinat terpisah akan menerima list sebagai satu argumen jika list itu tidak di-unpack. Pengindeksan manual berfungsi untuk bentuk tetap, tetapi mengulang struktur container di setiap tempat pemanggilan.
+Jika `coordinates` diberikan langsung kepada fungsi, seluruh list diterima sebagai satu argumen. Padahal, `math.hypot()` mengharapkan setiap koordinat sebagai argumen tersendiri. Mengakses setiap indeks secara manual dapat bekerja untuk jumlah koordinat yang tetap, tetapi pemanggil harus mengulang cara data tersebut disusun.
 
 <CodeBlock
   data={[
@@ -260,7 +260,7 @@ print("Hasil dengan 4 argumen:", result)
   ]}
 />
 
-### Solusi dengan Operator Unpacking
+### Unpacking dengan Asterisk
 
 Menempatkan `*` sebelum iterable di dalam pemanggilan akan meneruskan setiap item yang dihasilkan sebagai argumen posisi tersendiri.
 
@@ -301,33 +301,33 @@ print("Rata-rata nilai:", average)
   ]}
 />
 
-### Penggunaan Praktis Unpacking
+### Pemakaian Unpacking
 
-Sintaks yang sama bekerja dalam pemanggilan fungsi dan tampilan collection. Gunakan saat antarmuka mengharapkan item yang sudah dibuka. Berikan iterable secara langsung jika fungsi menerima satu iterable.
+Sintaks unpacking yang sama dapat dipakai saat memanggil fungsi atau membuat list baru. Gunakan asterisk jika fungsi mengharapkan beberapa argumen terpisah. Berikan iterable secara langsung jika fungsi memang menerima satu iterable.
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "unpacking_practical.py",
-      code: `# Unpacking untuk fungsi print
+      code: `# Meneruskan isi list ke fungsi print
 items = ["apel", "jeruk", "mangga"]
 print("Buah-buahan:", *items)
 # Output: Buah-buahan: apel jeruk mangga
 
-# Unpacking argumen tetap untuk range()
+# Meneruskan tiga argumen ke range()
 bounds = [2, 10, 2]
 print("Nilai genap:", list(range(*bounds)))
 # Output: Nilai genap: [2, 4, 6, 8]
 
-# Unpacking untuk menggabungkan list
+# Menggabungkan dua list
 list1 = [1, 2, 3]
 list2 = [4, 5, 6]
 combined = [*list1, *list2]
 print("List gabungan:", combined)
 # Output: List gabungan: [1, 2, 3, 4, 5, 6]
 
-# Unpacking dalam fungsi format string
+# Meneruskan nilai ke format string
 template = "Nama: {}, Umur: {}, Kota: {}"
 data = ["Alice", 25, "Jakarta"]
 formatted = template.format(*data)

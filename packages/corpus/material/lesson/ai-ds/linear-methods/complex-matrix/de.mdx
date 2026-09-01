@@ -3,6 +3,7 @@ export const metadata = {
     description: "Arbeite mit komplexen Matrizen, berechne konjugiert transponierte Matrizen und miss komplexe Vektoren korrekt mit dem hermiteschen Skalarprodukt.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Lineare Methoden der KI",
 };
 
@@ -10,11 +11,11 @@ export const metadata = {
 
 Komplexe Matrizen folgen denselben Regeln für Zeilen, Spalten, Addition und Multiplikation wie reelle Matrizen. Der Unterschied besteht darin, dass jeder Eintrag einen Realteil und einen Imaginärteil besitzen kann.
 
-Ein rechteckiges Schema komplexer Zahlen mit <InlineMath math="m \in \mathbb{N}" /> Zeilen und <InlineMath math="n \in \mathbb{N}" /> Spalten wird als komplexe <InlineMath math="m \times n" />-Matrix bezeichnet:
+Eine komplexe Matrix mit <InlineMath math="m \in \mathbb{N}" /> Zeilen und <InlineMath math="n \in \mathbb{N}" /> Spalten lässt sich schreiben als
 
 <BlockMath math="A = \begin{pmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & & \vdots \\ a_{m1} & \cdots & a_{mn} \end{pmatrix} = (a_{ij})_{\substack{i=1,\ldots,m \\ j=1,\ldots,n}}" />
 
-mit **Koeffizienten** <InlineMath math="a_{ij} \in \mathbb{C}" /> für <InlineMath math="i = 1, \ldots, m" /> und <InlineMath math="j = 1, \ldots, n" />. Die Menge aller komplexen <InlineMath math="m \times n" />-Matrizen wird als <InlineMath math="\mathbb{C}^{m \times n}" /> geschrieben.
+Jeder **Koeffizient** <InlineMath math="a_{ij} \in \mathbb{C}" /> hat Indizes <InlineMath math="i = 1, \ldots, m" /> und <InlineMath math="j = 1, \ldots, n" />. Die Menge aller komplexen <InlineMath math="m \times n" />-Matrizen wird als <InlineMath math="\mathbb{C}^{m \times n}" /> geschrieben.
 
 Einträge wie <InlineMath math="2+3i" /> und <InlineMath math="-1-4i" /> gehören beispielsweise zu <InlineMath math="\mathbb C" />. Da die Konjugation für Längen und Winkel entscheidend ist, eignet sich die gewöhnliche Transposition nicht mehr für jede geometrische Rechnung.
 
@@ -37,13 +38,13 @@ Der Eintrag in Zeile <InlineMath math="j" /> und Spalte <InlineMath math="i" /> 
 
 ## Eigenschaften der adjungierten Matrix
 
-Die adjungierte Matrix verfügt über mehrere wichtige Eigenschaften, die bei Berechnungen nützlich sind. Hier sind die grundlegenden Eigenschaften, die immer gelten:
+Die folgenden Identitäten beschreiben, wie sich die Adjungierte bei Addition, Multiplikation, Inversion und Skalarprodukten verhält:
 
 ### Grundlegende Eigenschaften
 
 1. **Beziehung zur echten Transponierung**: Für <InlineMath math="A \in \mathbb{R}^{m \times n} \subset \mathbb{C}^{m \times n}" /> gilt <InlineMath math="A^H = A^T" />
 
-Dies ist sinnvoll, denn wenn die Matrix nur reelle Einträge enthält, ändert das komplexe Konjugierte seinen Wert nicht.
+Bei reellen Einträgen ändert die komplexe Konjugation nichts. Deshalb ist die Adjungierte gleich der gewöhnlichen Transponierten.
 
 2. **Involution**: <InlineMath math="(A^H)^H = A" />
 
@@ -55,7 +56,7 @@ Wenn wir den Adjungierten eines Adjungierten nehmen, kehren wir zur ursprünglic
 
 4. **Konjugierte Linearität bezüglich eines Skalars**: <InlineMath math="(\lambda \cdot A)^H = \overline{\lambda} \cdot A^H" />
 
-Beachten Sie, dass wir für die Skalarmultiplikation das Konjugierte des Skalars <InlineMath math="\lambda" /> nehmen müssen.
+Bei der Skalarmultiplikation muss der Skalar <InlineMath math="\lambda" /> konjugiert werden.
 
 ### Multiplikationseigenschaften
 
@@ -98,4 +99,4 @@ Die euklidische Norm erfüllt die folgenden Eigenschaften:
 
 **Dreiecksungleichung**: <InlineMath math="\|v + w\|_2 \leq \|v\|_2 + \|w\|_2" />
 
-Diese Eigenschaften machen <InlineMath math="\|\cdot\|_2" /> zu einer echten Norm. Die Adjungierte ist also keine bloße Schreibweise: Sie sorgt dafür, dass komplexe Längen, Orthogonalität und Projektionen mit ihren reellen Gegenstücken übereinstimmen.
+Diese Eigenschaften zeigen, dass <InlineMath math="\|\cdot\|_2" /> die Definition einer Norm erfüllt. Die Adjungierte im hermiteschen Skalarprodukt sorgt dafür, dass komplexe Längen, Orthogonalität und Projektionen mit ihren reellen Gegenstücken übereinstimmen.

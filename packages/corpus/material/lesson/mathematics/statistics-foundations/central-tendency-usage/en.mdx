@@ -1,33 +1,33 @@
 export const metadata = {
   title: "Applications of Measures of Central Tendency",
-  description: "Learn when to use mean, median, or mode and how unusually large or small values affect each measure.",
+  description: "Choose the mean, median, or mode based on the data and the effect of unusually large or small values.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Statistics",
 };
 
 ## Choosing the Right Measure of Central Tendency
 
-We know the three main measures of central tendency: Mean (average), Median (middle value), and Mode (most frequent value). All three tell us about the "center" or tendency of the data, but they have different properties and are suitable for different situations.
+The mean, median, and mode describe the center of a dataset in different ways. The mean uses every value, the median uses the middle position, and the mode uses the highest frequency. They can therefore answer different questions about the same data.
 
-Choosing the wrong measure can give a misleading picture of the data. The data type, distribution, and purpose of the summary determine which measure is most useful.
+Choose the measure from the data type, the distribution's shape, and the question being asked. The mean changes when extreme values change, the median uses rank without measuring the gaps between values, and the mode identifies only the most frequent value or category.
 
-## Key Characteristics
+## How Mean Median and Mode Respond to Data
 
-### Mean (Average)
+### Mean or Average
 
 - **How to Calculate:** Sum all data values, then divide by the number of data points.
 - **Property:** Uses _all_ data values in the calculation. Because of this, the Mean is **very sensitive to extreme values**. A single unusually large or small value can significantly change the Mean.
 - **Sensitivity Example:** If your test scores are <InlineMath math="7, 8, 9, 8, 10" /> (Mean is <InlineMath math="8.4" />), and then one unusually low score of <InlineMath math="1" /> is added, the new Mean becomes <InlineMath math="(7+8+9+8+10+1)/6 = 7.17" />. The Mean drops substantially because every value contributes to it.
 
-### Median (Middle Value)
+### Median as the Middle Value
 
 - **How to Calculate:** Sort the data, then find the value exactly in the middle position.
 - **Property:** Depends on the middle position of the ordered data. Therefore, the Median is **far less sensitive to extreme values** than the Mean.
 - **Extreme-value Example:** For data <InlineMath math="7, 8, 9, 8, 10" /> (sorted: <InlineMath math="7, 8, 8, 9, 10" />), the median is <InlineMath math="8" />. If a score of <InlineMath math="1" /> is added (sorted: <InlineMath math="1, 7, 8, 8, 9, 10" />), the median is <InlineMath math="(8+8)/2=8" />. The median remains unchanged in this example.
 
-### Mode (Most Frequent Value)
+### Mode as the Most Frequent Value
 
 - **How to Calculate:** Find the data value with the highest frequency.
 - **Property:** Focuses on the most frequent value. A single isolated extreme value usually does not change the Mode. Also, the Mode is the only measure of central tendency here that can be used for **qualitative data** (non-numerical).
@@ -46,6 +46,6 @@ Here's a concise guide on when to use each measure:
 **Example Scenarios:**
 
 - **Calculating class average score:** If student scores are relatively evenly spread without extreme highs or lows, the **Mean** is suitable.
-- **Looking at average income in an area:** If there are a few individuals with very high incomes (outliers), the **Median** will give a better representation of the typical income than the Mean.
+- **Describing a typical income in an area:** A few very high incomes can pull the **mean** upward. The **median** then stays closer to the income of a person in the middle of the ordered data.
 - **Determining the best-selling shoe size in a store:** We want to know the size most frequently purchased, so the **Mode** is the right choice.
 - **Finding the favorite color among students:** Since the data is categorical (colors), the only applicable measure is the **Mode**.

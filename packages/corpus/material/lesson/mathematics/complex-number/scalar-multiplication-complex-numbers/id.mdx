@@ -2,14 +2,14 @@
 
 export const metadata = {
   title: "Perkalian Skalar Bilangan Kompleks",
-  description: "Pelajari efek perkalian skalar pada vektor kompleks, termasuk perpanjangan, perpendekkan, dan pembalikan arah.",
+    description: "Tentukan perubahan panjang dan arah vektor kompleks setelah dikalikan dengan skalar positif, negatif, atau nol.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Bilangan Kompleks",
 };
 
-## Apa itu Perkalian Skalar?
+## Perkalian Skalar
 
 Perkalian skalar adalah mengalikan bilangan kompleks dengan bilangan real yang disebut **skalar**.
 
@@ -31,6 +31,7 @@ Perkalian skalar adalah mengalikan bilangan kompleks dengan bilangan real yang d
         { x: 0, y: 0, z: 0 },
         { x: 1, y: 2, z: 0 },
       ],
+      smooth: false,
       color: "#0284c7",
       labels: [{ text: <InlineMath math="z" />, at: 1, offset: [0.5, 0.5, 0] }],
       cone: { position: "end" },
@@ -41,6 +42,7 @@ Perkalian skalar adalah mengalikan bilangan kompleks dengan bilangan real yang d
         { x: 0, y: 0, z: 0 },
         { x: 2, y: 4, z: 0 }, // 2 * (1+2i) = 2+4i
       ],
+      smooth: false,
       color: "#059669",
       labels: [{ text: <InlineMath math="2z" />, at: 1, offset: [0.5, 0.5, 0] }],
       cone: { position: "end" },
@@ -51,6 +53,7 @@ Perkalian skalar adalah mengalikan bilangan kompleks dengan bilangan real yang d
         { x: 0, y: 0, z: 0 },
         { x: -0.5, y: -1, z: 0 }, // -0.5 * (1+2i) = -0.5 - i
       ],
+      smooth: false,
       color: "#e11d48",
       labels: [{ text: <InlineMath math="-0{,}5z" />, at: 1, offset: [-0.5, -0.5, 0] }],
       cone: { position: "end" },
@@ -73,7 +76,7 @@ Jika <InlineMath math="z = x + iy" /> adalah bilangan kompleks dan <InlineMath m
 
 Rumus tersebut mengalikan skalar <InlineMath math="c" /> dengan bagian real <InlineMath math="x" /> dan bagian imajiner <InlineMath math="y" /> secara terpisah.
 
-### Contoh Perhitungan
+### Mengalikan Bilangan Kompleks dengan Skalar Real
 
 Jika <InlineMath math="z = -3 + 4i" /> dan <InlineMath math="c = 3" />, maka:
 
@@ -83,7 +86,7 @@ Jika <InlineMath math="z = 5 - i" /> dan <InlineMath math="c = -2" />, maka:
 
 <BlockMath math="cz = -2(5 - i) = -2(5) + i(-2 \times -1) = -10 + 2i" />
 
-## Contoh Visualisasi
+## Pengaruh Skalar pada Bilangan Kompleks
 
 Contoh berikut memisahkan efek perpanjangan, perpendekan, dan pembalikan arah.
 
@@ -110,6 +113,7 @@ Contoh berikut memisahkan efek perpanjangan, perpendekan, dan pembalikan arah.
         { x: 0, y: 0, z: 0 },
         { x: -2, y: 1, z: 0 },
       ],
+      smooth: false,
       color: "#7c3aed",
       labels: [{ text: <InlineMath math="z" />, at: 1, offset: [0.5, 0.5, 0] }],
       cone: { position: "end" },
@@ -119,6 +123,7 @@ Contoh berikut memisahkan efek perpanjangan, perpendekan, dan pembalikan arah.
         { x: 0, y: 0, z: 0 },
         { x: -3, y: 1.5, z: 0 }, // 1.5 * (-2+i)
       ],
+      smooth: false,
       color: "#65a30d",
       labels: [{ text: <InlineMath math="1{,}5z" />, at: 1, offset: [-0.5, 0.5, 0] }],
       cone: { position: "end" },
@@ -149,6 +154,7 @@ Contoh berikut memisahkan efek perpanjangan, perpendekan, dan pembalikan arah.
         { x: 0, y: 0, z: 0 },
         { x: 3, y: -2, z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       labels: [{ text: <InlineMath math="z" />, at: 1, offset: [-0.5, -0.5, 0] }],
       cone: { position: "end" },
@@ -158,6 +164,7 @@ Contoh berikut memisahkan efek perpanjangan, perpendekan, dan pembalikan arah.
         { x: 0, y: 0, z: 0 },
         { x: 2.25, y: -1.5, z: 0 }, // 0.75 * (3-2i)
       ],
+      smooth: false,
       color: "#0d9488",
       labels: [{ text: <InlineMath math="0{,}75z" />, at: 1, offset: [0.5, 1, 0] }],
       cone: { position: "end" },
@@ -190,6 +197,7 @@ Perkalian dengan <InlineMath math="-1" /> menghasilkan invers aditif (negatif) d
         { x: 0, y: 0, z: 0 },
         { x: -1, y: -3, z: 0 },
       ],
+      smooth: false,
       color: "#c026d3",
       labels: [{ text: <InlineMath math="z" />, at: 1, offset: [-0.5, -0.5, 0] }],
       cone: { position: "end" },
@@ -199,6 +207,7 @@ Perkalian dengan <InlineMath math="-1" /> menghasilkan invers aditif (negatif) d
         { x: 0, y: 0, z: 0 },
         { x: 1, y: 3, z: 0 }, // -1 * (-1-3i)
       ],
+      smooth: false,
       color: "#ca8a04",
       labels: [{ text: <InlineMath math="-z" />, at: 1, offset: [0.5, 0.5, 0] }],
       cone: { position: "end" },

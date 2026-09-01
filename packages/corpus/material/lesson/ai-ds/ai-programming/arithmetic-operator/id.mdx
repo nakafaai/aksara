@@ -3,15 +3,15 @@ export const metadata = {
     description: "Operator aritmatika Python, prioritas operasi, asosiativitas, dan penggunaan +, -, *, /, //, %, ** dalam kode.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-26",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Pemrograman AI",
 };
 
 ## Pengenalan Operator Aritmatika
 
-Operator aritmatika adalah simbol yang memungkinkan kamu melakukan operasi matematika dalam Python. Bayangkan operator seperti alat di dalam kotak perkakas. Setiap alat memiliki fungsi spesifik, dan kamu perlu tahu kapan dan bagaimana menggunakannya untuk mendapatkan hasil yang tepat.
+Operator aritmatika memberi tahu Python jenis perhitungan yang harus dilakukan. Misalnya, `+` menjumlahkan nilai, `*` mengalikannya, dan `**` memangkatkan satu nilai dengan nilai lain.
 
-Python menyediakan tujuh operator aritmatika utama yang dapat kamu gunakan untuk melakukan perhitungan matematika. Setiap operator memiliki urutan prioritas yang berbeda, sehingga penting untuk memahami mana yang akan dikerjakan terlebih dahulu.
+Python memiliki tujuh operator aritmatika utama. Saat satu ekspresi memuat beberapa operator, operator precedence menentukan operasi yang dikerjakan lebih dahulu.
 
 ## Urutan Prioritas Operator
 
@@ -40,7 +40,7 @@ Operator `**` digunakan untuk perpangkatan dan memiliki prioritas tertinggi di a
   ]}
 />
 
-Operator perpangkatan sangat berguna untuk berbagai perhitungan. Kamu bisa menggunakannya untuk menghitung kuadrat, kubik, akar kuadrat, atau bahkan pangkat negatif untuk mendapatkan pecahan.
+Gunakan `**` untuk menghitung kuadrat, kubik, akar, dan pangkat negatif. Misalnya, akar kuadrat dapat ditulis dengan pangkat `0.5`.
 
 ### Prioritas Menengah
 
@@ -79,9 +79,9 @@ Operator `/` melakukan pembagian dan selalu menghasilkan bilangan float, bahkan 
 
 Perhatikan bahwa meskipun `4 / 2` menghasilkan angka bulat secara matematis, Python tetap mengembalikan <InlineMath math="2.0" /> sebagai float.
 
-**Operator Pembagian Lantai**
+**Operator Floor Division**
 
-Operator `//` melakukan pembagian lantai. Hasil bagi dibulatkan ke bawah, yaitu ke bilangan bulat terbesar yang lebih kecil atau sama dengan hasil tepatnya.
+Operator `//` melakukan floor division. Hasil bagi dibulatkan ke bilangan bulat terbesar yang lebih kecil atau sama dengan hasil pembagian.
 
 <CodeBlock
   data={[
@@ -103,7 +103,7 @@ Operator `//` melakukan pembagian lantai. Hasil bagi dibulatkan ke bawah, yaitu 
   ]}
 />
 
-Pembagian lantai selalu membulatkan ke arah negatif tak hingga. Untuk `-7 // 2`, Python memperoleh `-3.5` lalu membulatkannya ke bawah menjadi `-4`. Jika salah satu operand berupa float, Python tetap menerapkan pembulatan lantai, tetapi mengembalikan float.
+Floor division membulatkan hasil ke arah negatif tak hingga. Untuk `-7 // 2`, Python memperoleh `-3.5` lalu membulatkannya menjadi `-4`. Jika salah satu operand berupa float, Python tetap melakukan floor division, tetapi mengembalikan float.
 
 **Operator Modulo `%`**
 
@@ -227,9 +227,9 @@ Operator `/` selalu menghasilkan float, termasuk ketika hasilnya berupa bilangan
 | **Tertinggi** | `**` | Perpangkatan | Kanan |
 | **Menengah** | `*` | Perkalian | Kiri |
 | **Menengah** | `/` | Pembagian | Kiri |
-| **Menengah** | `//` | Pembagian lantai | Kiri |
+| **Menengah** | `//` | Floor division | Kiri |
 | **Menengah** | `%` | Modulo | Kiri |
 | **Terendah** | `+` | Penjumlahan | Kiri |
 | **Terendah** | `-` | Pengurangan | Kiri |
 
-Dengan memahami operator aritmatika dan urutan prioritasnya, kamu dapat menulis ekspresi matematika yang akurat dan efisien dalam program Python. Gunakan tanda kurung ketika kamu ingin mengubah urutan evaluasi standar untuk mendapatkan hasil yang diinginkan.
+Prioritas operator menentukan cara Python mengelompokkan ekspresi aritmatika. Gunakan tanda kurung jika urutan yang dimaksud berbeda dari pengelompokan standar.

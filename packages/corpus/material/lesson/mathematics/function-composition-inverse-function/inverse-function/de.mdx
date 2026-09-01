@@ -1,17 +1,18 @@
 
 export const metadata = {
   title: "Umkehrfunktion",
-  description: "Verstehe Umkehrfunktionen Schritt für Schritt: Definition, Bijektivität, Formelbestimmung und Spiegelung des Graphen.",
+    description: "Bestimme eine Umkehrfunktion, prüfe, ob die ursprüngliche Funktion bijektiv ist, und verbinde beide Graphen mit der Spiegelung an der ersten Winkelhalbierenden.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Funktionszusammensetzung und Umkehrfunktion",
 };
 
-## Umkehrfunktionen verstehen
+## Umkehrfunktionen
 
 Beim Übersetzen wird einem englischen Wort ein indonesisches Wort zugeordnet. Dieser Vorgang lässt sich als Funktion betrachten: Das englische Wort ist die Eingabe, das indonesische Wort die Ausgabe.
 
-Betrachten Sie die folgende Abbildung:
+Betrachte die folgende Abbildung:
 
 Reale Übersetzungen können mehrdeutig sein. Hier verwenden wir bewusst ein kleines Wörterbuch, in dem jedes ausgewählte Wort genau einer Übersetzung zugeordnet ist.
 
@@ -24,9 +25,7 @@ Reale Übersetzungen können mehrdeutig sein. Hier verwenden wir bewusst ein kle
 
 Die „Übersetzungsmaschine“ ordnet hier dem englischen Wort „Mathematics“ die indonesische Übersetzung „Matematika“ zu.
 
-Was geschieht, wenn wir die Richtung umkehren und von „Matematika“ zurück zu „Mathematics“ gehen?
-
-Dieser umgekehrte Prozess ist die Grundlage des Konzepts der **Umkehrfunktion**.
+Die umgekehrte Zuordnung führt von „Matematika“ zurück zu „Mathematics“. Diese Zuordnung heißt **Umkehrfunktion**.
 
 ## Definition der Umkehrfunktion
 
@@ -38,7 +37,7 @@ Mathematisch:
 
 Kurz gesagt: Wenn <InlineMath math="f" /> aus <InlineMath math="x" /> den Wert <InlineMath math="y" /> erzeugt, führt <InlineMath math="f^{-1}" /> von <InlineMath math="y" /> wieder zu <InlineMath math="x" /> zurück.
 
-**Wichtig:** Die Notation <InlineMath math="f^{-1}(x)" /> bedeutet **nicht** <InlineMath math="\frac{1}{f(x)}" /> (multiplikativ invers oder reziprok). Es handelt sich um eine spezielle Notation für die Umkehrfunktion.
+Die Schreibweise <InlineMath math="f^{-1}(x)" /> bezeichnet die Umkehrfunktion. Der Kehrwert wird als <InlineMath math="\frac{1}{f(x)}" /> geschrieben.
 
 ## Voraussetzung für eine Umkehrfunktion
 
@@ -53,22 +52,22 @@ Zum Beispiel ist <InlineMath math="q(x)=x^2" /> auf <InlineMath math="\mathbb{R}
 
 <BlockMath math="q:[0,\infty)\to[0,\infty),\qquad q(x)=x^2" />
 
-mit der Umkehrfunktion <InlineMath math="q^{-1}(x)=\sqrt{x}" />.
+Diese Funktion hat die Umkehrfunktion <InlineMath math="q^{-1}(x)=\sqrt{x}" />.
 
 ## Bestimmen der Formel für eine Umkehrfunktion
 
-Um die Formel für die Umkehrfunktion <InlineMath math="f^{-1}(x)" /> aus einer Funktion <InlineMath math="f(x)" /> zu finden, können Sie die folgenden Schritte ausführen:
+Mit den folgenden Schritten bestimmst du aus <InlineMath math="f(x)" /> die Formel der Umkehrfunktion <InlineMath math="f^{-1}(x)" />:
 
-1.  Ersetzen Sie <InlineMath math="f(x)" /> durch <InlineMath math="y" />.
-2.  Vertauschen Sie die Positionen der Variablen <InlineMath math="x" /> und <InlineMath math="y" /> in der Gleichung.
-3.  Lösen Sie die Gleichung für <InlineMath math="y" /> anhand von <InlineMath math="x" /> auf.
-4.  Ersetzen Sie <InlineMath math="y" /> durch <InlineMath math="f^{-1}(x)" />, um die Umkehrfunktionsformel zu erhalten.
+1.  Ersetze <InlineMath math="f(x)" /> durch <InlineMath math="y" />.
+2.  Vertausche die Positionen der Variablen <InlineMath math="x" /> und <InlineMath math="y" /> in der Gleichung.
+3.  Löse die Gleichung für <InlineMath math="y" /> anhand von <InlineMath math="x" /> auf.
+4.  Ersetze <InlineMath math="y" /> durch <InlineMath math="f^{-1}(x)" />, um die Umkehrfunktionsformel zu erhalten.
 
 **Beispiel:**
 
 Sei <InlineMath math="f:\mathbb{R}\to\mathbb{R}" /> durch <InlineMath math="f(x) = 2x + 3" /> definiert. Bestimme die Umkehrfunktion.
 
-1.  Ersetzen Sie <InlineMath math="f(x)" /> durch <InlineMath math="y" />:
+1.  Ersetze <InlineMath math="f(x)" /> durch <InlineMath math="y" />:
 
     <BlockMath math="y = 2x + 3" />
 
@@ -83,7 +82,7 @@ Sei <InlineMath math="f:\mathbb{R}\to\mathbb{R}" /> durch <InlineMath math="f(x)
       <BlockMath math="\frac{x - 3}{2} = y" />
     </MathContainer>
 
-4.  Ersetzen Sie <InlineMath math="y" /> durch <InlineMath math="f^{-1}(x)" />:
+4.  Ersetze <InlineMath math="y" /> durch <InlineMath math="f^{-1}(x)" />:
 
     <BlockMath math="f^{-1}(x) = \frac{x - 3}{2}" />
 
@@ -115,6 +114,7 @@ Betrachten wir zum Beispiel den Graphen von <InlineMath math="f(x) = 2x + 3" />,
         const x = i - 5;
         return { x, y: 2 * x + 3, z: 0 };
       }),
+      smooth: false,
       color: "#ea580c",
       labels: [
         {
@@ -130,6 +130,7 @@ Betrachten wir zum Beispiel den Graphen von <InlineMath math="f(x) = 2x + 3" />,
         const x = i - 5;
         return { x, y: (x - 3) / 2, z: 0 };
       }),
+      smooth: false,
       color: "#059669",
       labels: [
         {
@@ -145,6 +146,7 @@ Betrachten wir zum Beispiel den Graphen von <InlineMath math="f(x) = 2x + 3" />,
         const x = i - 5;
         return { x, y: x, z: 0 };
       }),
+      smooth: false,
       color: "#db2777",
       labels: [
         {

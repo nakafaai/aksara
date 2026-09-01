@@ -3,22 +3,23 @@ export const metadata = {
   description: "Löse inkonsistente lineare Systeme mit kleinsten Quadraten, Residualnormen, orthogonaler Projektion, Normalgleichungen und numerisch stabilen Verfahren.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Lineare Methoden der KI",
 };
 
 ## Vom inkonsistenten System zur besten Anpassung
 
-Seien <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="x \in \mathbb{R}^n" /> und <InlineMath math="b \in \mathbb{R}^m" />. Liegt <InlineMath math="b" /> nicht im Spaltenraum von <InlineMath math="A" />, dann besitzt das System
+Seien <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="x \in \mathbb{R}^n" /> und <InlineMath math="b \in \mathbb{R}^m" />. Wir betrachten das folgende System.
 
 <BlockMath math="Ax=b" />
 
-keine exakte Lösung. Das kommt häufig vor, wenn ein Modell an verrauschte Messwerte angepasst wird oder ein überbestimmtes System mehr unabhängige Gleichungen als Unbekannte enthält.
+Liegt <InlineMath math="b" /> nicht im Spaltenraum von <InlineMath math="A" />, besitzt dieses System keine exakte Lösung. Das kommt häufig vor, wenn ein Modell an verrauschte Messwerte angepasst wird oder ein überbestimmtes System mehr unabhängige Gleichungen als Unbekannte enthält.
 
-Statt die Gleichheit zu erzwingen, definieren wir das Residuum
+Wenn kein Vektor <InlineMath math="x" /> die Gleichung <InlineMath math="Ax=b" /> exakt erfüllt, definieren wir das Residuum
 
 <BlockMath math="e(x)=Ax-b" />
 
-und wählen den Vektor mit dem kleinsten Residuum. Das gewöhnliche lineare Ausgleichsproblem lautet
+Wir wählen den Vektor <InlineMath math="x" /> mit dem kleinsten Residuum. Das gewöhnliche lineare Ausgleichsproblem wird wie folgt geschrieben.
 
 <BlockMath math="\hat{x}\in\operatorname*{arg\,min}_{x\in\mathbb{R}^n}\|Ax-b\|_2^2" />
 
@@ -49,6 +50,7 @@ Die zweite Gleichung heißt **Normalgleichung**.
         { x: 4, y: 2, z: 1 },
         { x: 6, y: 3, z: 1.5 }
       ],
+      smooth: false,
       color: "#0284c7",
       cone: { position: "end" },
       showPoints: false,
@@ -62,6 +64,7 @@ Die zweite Gleichung heißt **Normalgleichung**.
         { x: 2.5, y: 2, z: 1.5 },
         { x: 5, y: 4, z: 3 }
       ],
+      smooth: false,
       color: "#d97706",
       cone: { position: "end" },
       showPoints: false,
@@ -75,6 +78,7 @@ Die zweite Gleichung heißt **Normalgleichung**.
         { x: 5.5, y: 3.5, z: 2.25 },
         { x: 6, y: 3, z: 1.5 }
       ],
+      smooth: false,
       color: "#9333ea",
       cone: { position: "end" },
       showPoints: false,
@@ -87,13 +91,13 @@ Die zweite Gleichung heißt **Normalgleichung**.
 
 Die Szene zeigt den Zielvektor, seine Projektion und das verbindende Residuum. Der blaue Vektor stellt einen projizierten Punkt im Spaltenraum dar. Die Orthogonalitätsbedingung oben macht <InlineMath math="A\hat{x}" /> zum nächstgelegenen Punkt.
 
-## Ein kleines durchgerechnetes Beispiel
+## Eine Konstante an drei Beobachtungen anpassen
 
-Eine Konstante <InlineMath math="x" /> soll die drei Beobachtungen <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="6" /> möglichst gut darstellen. Dann gilt
+Eine Konstante <InlineMath math="x" /> soll die drei Beobachtungen <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="6" /> möglichst gut darstellen. Dazu verwenden wir die folgende Matrix und den folgenden Vektor.
 
 <BlockMath math="A=\begin{pmatrix}1\\1\\1\end{pmatrix},\qquad b=\begin{pmatrix}1\\2\\6\end{pmatrix}" />
 
-und die Zielfunktion lautet
+Die Zielfunktion für dieses Beispiel lautet
 
 <MathContainer>
 <BlockMath math="F(x)=(x-1)^2+(x-2)^2+(x-6)^2" />
@@ -131,14 +135,14 @@ Hat <InlineMath math="A" /> vollen Spaltenrang, ist der Ausgleichsvektor eindeut
 
 <BlockMath math="\hat{x}=(A^{\mathsf T}A)^{-1}A^{\mathsf T}b" />
 
-Diese Identität ist für die Analyse nützlich. Das explizite Bilden der Inversen ist jedoch nicht das bevorzugte numerische Verfahren. In der Praxis:
+Diese Identität beschreibt den eindeutigen Minimierer, wenn <InlineMath math="A" /> vollen Spaltenrang hat. Berechne ihn nicht durch ausdrückliches Bilden der Inversen. Wähle das numerische Verfahren anhand von Rang und Kondition:
 
-- verwendet man eine QR-Zerlegung für ein stabiles Ausgleichsproblem mit vollem Rang
-- verwendet man eine SVD, wenn Rangmangel oder schlechte Konditionierung wichtig sind
+- verwendet man eine <InlineMath math="\mathrm{QR}" />-Zerlegung für ein stabiles Ausgleichsproblem mit vollem Rang
+- verwendet man eine <InlineMath math="\mathrm{SVD}" />, wenn Rangmangel oder schlechte Konditionierung wichtig sind
 - verwendet man die Pseudoinverse, um bei mehreren Minimierern die Lösung mit kleinster Norm auszuwählen
 
-Es gibt außerdem eine präzise statistische Interpretation. Im Modell
+Es gibt außerdem eine präzise statistische Interpretation. Wir betrachten das folgende Modell.
 
 <BlockMath math="b=Ax_*+\varepsilon,\qquad \varepsilon\sim\mathcal{N}(0,\sigma^2I)" />
 
-mit festem <InlineMath math="A" /> und unabhängigen gaußverteilten Fehlern gleicher Varianz ist die Methode der kleinsten Quadrate der Maximum-Likelihood-Schätzer für <InlineMath math="x_*" />. Korrelierte Fehler oder unterschiedliche Varianzen erfordern eine andere Gewichtung statt der uneingeschränkten gewöhnlichen Ausgleichsformel.
+Ist <InlineMath math="A" /> fest und sind die gaußverteilten Fehler unabhängig mit gleicher Varianz, liefert die Methode der kleinsten Quadrate den Maximum-Likelihood-Schätzer für <InlineMath math="x_*" />. Korrelierte Fehler oder unterschiedliche Varianzen erfordern Gewichte, die der Fehlerkovarianz entsprechen.

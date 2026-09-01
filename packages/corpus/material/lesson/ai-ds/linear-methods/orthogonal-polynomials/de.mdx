@@ -3,6 +3,7 @@ export const metadata = {
   description: "Konstruiere Chebyshev- und Legendre-Basen aus gewichteten Skalarprodukten, projiziere Funktionen, transformiere Intervalle und verbinde ihre Nullstellen mit der Gauß-Quadratur.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Lineare Methoden der KI",
 };
 
@@ -32,7 +33,7 @@ Seien <InlineMath math="p_0,ldots,p_n" /> paarweise orthogonal. Die Projektion v
 
 Da alle Kreuzterme verschwinden, kann jeder Koeffizient unabhängig berechnet werden. Dies ist das funktionale Gegenstück zur Zerlegung eines Vektors entlang senkrechter Koordinatenachsen.
 
-## Dreitermrekursion aus Gram-Schmidt
+## Dreitermrekursion aus Orthogonalisierung nach Gram und Schmidt
 
 Die Anwendung von Gram-Schmidt auf <InlineMath math="1,x,x^2,ldots" /> erzeugt eine Folge monischer orthogonaler Polynome <InlineMath math="\pi_k" />. Für ein positives Skalarprodukt gilt
 
@@ -42,7 +43,7 @@ Die Anwendung von Gram-Schmidt auf <InlineMath math="1,x,x^2,ldots" /> erzeugt e
 <BlockMath math="\pi_{k+1}(x)=(x-\alpha_k)\pi_k(x)-\beta_k\pi_{k-1}(x)" />
 </MathContainer>
 
-mit
+Die Rekursionskoeffizienten lauten
 
 <MathContainer>
 <BlockMath math="\alpha_k=\frac{\langle x\pi_k,\pi_k\rangle_w}{\|\pi_k\|_w^2}" />
@@ -51,7 +52,7 @@ mit
 
 Die Dreitermform ist keine willkürliche Abkürzung. Die Multiplikation mit <InlineMath math="x" /> erhöht den Grad um eins. Durch die Orthogonalität verschwinden alle Komponenten unterhalb von <InlineMath math="\pi_{k-1}" />.
 
-## Chebyshev-Polynome erster Art
+## Polynome nach Tschebyschow erster Art
 
 Wähle auf <InlineMath math="[-1,1]" />
 
@@ -78,28 +79,28 @@ Da <InlineMath math="|T_k(x)|\le1" /> auf <InlineMath math="[-1,1]" /> gilt und 
   data={(() => {
     const samples = Array.from({ length: 81 }, (_, index) => -1 + index / 40);
     const polynomials = [
-      { color: "#0891b2", evaluate: (x) => 1 },
-      { color: "#ea580c", evaluate: (x) => x },
-      { color: "#7c3aed", evaluate: (x) => 2 * x * x - 1 },
-      { color: "#16a34a", evaluate: (x) => 4 * x * x * x - 3 * x }
+      { color: "#0891b2", evaluate: (x) => 1, smooth: false },
+      { color: "#ea580c", evaluate: (x) => x, smooth: false },
+      { color: "#7c3aed", evaluate: (x) => 2 * x * x - 1, smooth: true },
+      { color: "#16a34a", evaluate: (x) => 4 * x * x * x - 3 * x, smooth: true }
     ];
 
-    return polynomials.map(({ color, evaluate }) => ({
+    return polynomials.map(({ color, evaluate, smooth }) => ({
       points: samples.map((x) => ({ x, y: evaluate(x), z: 0 })),
       color,
-      smooth: true,
+      smooth,
       showPoints: false
     }));
   })()}
 />
 
-## Legendre-Polynome
+## Polynome nach Legendre
 
 Für das ungewichtete Skalarprodukt auf <InlineMath math="[-1,1]" />,
 
 <BlockMath math="\langle f,g\rangle=\int_{-1}^{1}f(x)g(x)\,dx" />
 
-erfüllen die üblichen Legendre-Polynome
+Für dieses Skalarprodukt erfüllen die üblichen Legendre-Polynome
 
 <MathContainer>
 <BlockMath math="P_0(x)=1,\qquad P_1(x)=x" />
@@ -123,7 +124,7 @@ Zum Beispiel gilt
 
 Die zweite Identität ist eine exakte orthogonale Entwicklung und keine Näherung.
 
-## Von <InlineMath math="[-1,1]" /> nach <InlineMath math="[a,b]" />
+## Das Intervall orthogonaler Polynome ändern
 
 Verwende die affine Variablentransformation
 
@@ -137,11 +138,11 @@ Ist <InlineMath math="\varphi_k" /> auf <InlineMath math="[-1,1]" /> orthonormal
 
 <BlockMath math="\widetilde{\varphi}_k(x)=\sqrt{\frac{2}{b-a}}\,\varphi_k\left(\frac{2x-a-b}{b-a}\right)" />
 
-auf <InlineMath math="[a,b]" /> orthonormal, denn
+Die Funktion <InlineMath math="\widetilde{\varphi}_k" /> ist auf <InlineMath math="[a,b]" /> orthonormal, denn
 
 <BlockMath math="\int_a^b\widetilde{\varphi}_j(x)\widetilde{\varphi}_k(x)\,dx=\int_{-1}^{1}\varphi_j(t)\varphi_k(t)\,dt=\delta_{jk}" />
 
-## Verbindung zur Gauß-Quadratur
+## Verbindung zur Quadratur nach Gauß
 
 Sei <InlineMath math="p_n" /> das orthogonale Polynom vom Grad <InlineMath math="n" /> für dasselbe positive Gewicht und Intervall wie ein Integral. Seine <InlineMath math="n" /> Nullstellen sind die Gauß-Quadraturknoten. Mit passenden positiven Gewichten <InlineMath math="w_i" /> erhält man
 

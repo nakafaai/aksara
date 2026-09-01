@@ -1,32 +1,32 @@
 export const metadata = {
-  title: "Non-Mutually Exclusive Events A and B",
+  title: "Overlapping Events A and B",
   description: "Calculate probabilities for overlapping events and avoid double counting through intersection examples and worked solutions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-21",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Probability",
 };
 
-## What Does Non-Mutually Exclusive Mean?
+## Overlapping Events
 
-We learned about [mutually exclusive events](/en/subjects/mathematics/probability/two-events-mutually-exclusive) that can't happen together (like turning left and right at the same time). Now, talk about **Non-Mutually Exclusive Events**. These are two (or more) events that **CAN happen at the same time** in a single experiment.
+Two events are **not mutually exclusive** when they can occur in the same trial. In set language, at least one outcome belongs to both events.
 
-This means it's possible to get an outcome that belongs to event <InlineMath math="A" /> and also belongs to event <InlineMath math="B" />.
+Their outcome sets therefore have a nonempty intersection.
 
-**Simple Examples:**
+**Two examples:**
 
 1.  **Drawing a Card:** You draw one card from a standard deck.
 
     - Event <InlineMath math="A" />: Getting a **Heart** (<InlineMath math="\heartsuit" />).
     - Event <InlineMath math="B" />: Getting a **King**.
-      Can events <InlineMath math="A" /> and <InlineMath math="B" /> happen together? Absolutely! There's a card that is both a Heart and a King: the **King of Hearts** (<InlineMath math="K\heartsuit" />). Since they can happen together, events <InlineMath math="A" /> and <InlineMath math="B" /> are **non-mutually exclusive**.
+      The **King of Hearts** (<InlineMath math="K\heartsuit" />) belongs to both events. Therefore, events <InlineMath math="A" /> and <InlineMath math="B" /> are not mutually exclusive.
 
 2.  **Rolling a Die (once):**
     - Event <InlineMath math="A" />: Getting an **even** number (<InlineMath math="\{2, 4, 6\}" />).
     - Event <InlineMath math="B" />: Getting a number **greater than** <InlineMath math="3" /> (<InlineMath math="\{4, 5, 6\}" />).
-      Can these happen together? Yes! The numbers <InlineMath math="4" /> and <InlineMath math="6" /> are both even and greater than <InlineMath math="3" />. So, events <InlineMath math="A" /> and <InlineMath math="B" /> are **non-mutually exclusive**.
+      The outcomes <InlineMath math="4" /> and <InlineMath math="6" /> belong to both events. Therefore, events <InlineMath math="A" /> and <InlineMath math="B" /> are not mutually exclusive.
 
-## Why the Intersection Matters
+## Intersection of Overlapping Events
 
 For non-mutually exclusive events, some outcomes may belong to both <InlineMath math="A" /> and <InlineMath math="B" />. These shared outcomes form the **intersection** <InlineMath math="A \cap B" />.
 
@@ -38,9 +38,9 @@ In a finite sample space where every elementary outcome has positive probability
 
 <BlockMath math="P(A \cap B) > 0" />
 
-This is very different from mutually exclusive events, where <InlineMath math="P(A \cap B) = 0" />.
+For mutually exclusive events, the intersection has probability <InlineMath math="P(A \cap B) = 0" />.
 
-## Calculating Combined Probability for Non-Mutually Exclusive Events
+## Calculating the Probability of a Union
 
 Because <InlineMath math="A" /> and <InlineMath math="B" /> may occur together, adding <InlineMath math="P(A) + P(B)" /> would count the overlap twice.
 
@@ -54,9 +54,9 @@ Using union and intersection symbols:
 
 <BlockMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
 
-This formula works generally, for both mutually exclusive and non-mutually exclusive events. (If they are mutually exclusive, <InlineMath math="P(A \cap B)" /> is zero, so the formula simplifies back to <InlineMath math="P(A \cup B) = P(A) + P(B)" />).
+This formula applies to both cases. For mutually exclusive events, <InlineMath math="P(A \cap B)=0" />, so it simplifies to <InlineMath math="P(A \cup B) = P(A) + P(B)" />.
 
-## Calculation Example
+## Probability of Drawing a Heart or a King
 
 Use the card example:
 
@@ -80,7 +80,7 @@ A fair six-sided die is rolled once. Let <InlineMath math="A=\{2,4,6\}" /> be th
 
 1.  Explain why <InlineMath math="A" /> and <InlineMath math="B" /> are not mutually exclusive.
 2.  Find <InlineMath math="P(A \cup B)" /> using the general addition rule.
-3.  Check the result by listing the outcomes in the union.
+3.  Verify the value of <InlineMath math="P(A \cup B)" /> by listing the outcomes in the union.
 
 ### Worked Solution
 

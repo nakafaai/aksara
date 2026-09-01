@@ -4,7 +4,7 @@ export const metadata = {
   description: "Bangun persamaan garis singgung dari jari-jari yang tegak lurus, lalu selesaikan soal titik luar dan garis singgung persekutuan secara bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Lingkaran",
 };
 
@@ -33,6 +33,7 @@ Garis singgung lingkaran adalah garis yang memotong lingkaran tepat di satu titi
         { x: 0, y: 0, z: 0 },
         { x: 3, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       showPoints: true,
       labels: [
@@ -45,6 +46,7 @@ Garis singgung lingkaran adalah garis yang memotong lingkaran tepat di satu titi
         { x: 3, y: -3, z: 0 },
         { x: 3, y: 3, z: 0 },
       ],
+      smooth: false,
       color: "#0891b2",
       showPoints: false,
       labels: [{ text: "Garis singgung", at: 1, offset: [1.5, 0, 0] }],
@@ -54,7 +56,7 @@ Garis singgung lingkaran adalah garis yang memotong lingkaran tepat di satu titi
   showZAxis={false}
 />
 
-**Sifat penting:** Garis singgung selalu tegak lurus dengan jari-jari lingkaran di titik singgung.
+Garis singgung selalu tegak lurus terhadap jari-jari lingkaran di titik singgung.
 
 ## Persamaan Garis Singgung Lingkaran
 
@@ -137,6 +139,7 @@ Dari sebuah titik di luar lingkaran, dapat ditarik dua garis singgung ke lingkar
           { x: T1x, y: T1y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [{ text: <InlineMath math="T_1" />, at: 1, offset: [0.3, 0.5, 0] }],
@@ -163,6 +166,7 @@ Dari sebuah titik di luar lingkaran, dapat ditarik dua garis singgung ke lingkar
           { x: T2x, y: T2y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#d97706",
       showPoints: true,
       labels: [{ text: <InlineMath math="T_2" />, at: 1, offset: [0.3, -0.5, 0] }],
@@ -218,6 +222,7 @@ Garis singgung persekutuan luar adalah garis yang menyinggung kedua lingkaran da
         { x: -3, y: 0, z: 0 },
         { x: 3, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       showPoints: true,
       labels: [
@@ -259,6 +264,7 @@ Garis singgung persekutuan luar adalah garis yang menyinggung kedua lingkaran da
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: false,
       labels: [{ text: <InlineMath math="\mathrm{GSPL}" />, at: 1, offset: [0, 0.5, 0] }],
@@ -297,6 +303,7 @@ Garis singgung persekutuan luar adalah garis yang menyinggung kedua lingkaran da
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0d9488",
       showPoints: false,
       labels: [{ text: <InlineMath math="\mathrm{GSPL}" />, at: 1, offset: [0, -0.5, 0] }],
@@ -311,7 +318,7 @@ Panjang garis singgung persekutuan luar:
 
 <BlockMath math="l = \sqrt{d^2 - (r_1 - r_2)^2}" />
 
-di mana <InlineMath math="d" /> adalah jarak antara kedua pusat lingkaran.
+Pada rumus ini, <InlineMath math="d" /> adalah jarak antara kedua pusat lingkaran.
 
 Ruas garis singgung luar dengan panjang positif hanya ada jika <InlineMath math="d>|r_1-r_2|" />. Pada saat sama dengan, kedua lingkaran bersinggungan dalam dan ruas antara kedua titik singgung menyusut menjadi nol.
 
@@ -352,6 +359,7 @@ Garis singgung persekutuan dalam adalah garis yang menyinggung kedua lingkaran d
         { x: -3, y: 0, z: 0 },
         { x: 3, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       showPoints: true,
       labels: [
@@ -394,6 +402,7 @@ Garis singgung persekutuan dalam adalah garis yang menyinggung kedua lingkaran d
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#db2777",
       showPoints: false,
       labels: [{ text: <InlineMath math="\mathrm{GSPD}" />, at: 0, offset: [-1, 0.5, 0] }],
@@ -433,6 +442,7 @@ Garis singgung persekutuan dalam adalah garis yang menyinggung kedua lingkaran d
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#d97706",
       showPoints: false,
       labels: [{ text: <InlineMath math="\mathrm{GSPD}" />, at: 0, offset: [-1, -0.5, 0] }],
@@ -601,6 +611,6 @@ Pusat lingkaran <InlineMath math="O(0, 0)" /> dan jari-jari <InlineMath math="r 
 
 ## Sumber
 
-- [OpenStax Intermediate Algebra 2e: Distance and Midpoint Formulas; Circles](https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles)
-- [Wolfram MathWorld: Circle-Circle Tangents](https://mathworld.wolfram.com/Circle-CircleTangents.html)
-- [GeoGebra: Theorems about Tangents and Chords](https://www.geogebra.org/m/bvtxyfaj)
+- Persamaan dan unsur dasar lingkaran dijelaskan oleh [OpenStax Intermediate Algebra 2e](https://openstax.org/books/intermediate-algebra-2e/pages/11-1-distance-and-midpoint-formulas-circles).
+- Garis singgung persekutuan dua lingkaran dijelaskan oleh [Wolfram MathWorld](https://mathworld.wolfram.com/Circle-CircleTangents.html).
+- Hubungan garis singgung dan tali busur ditunjukkan oleh [GeoGebra](https://www.geogebra.org/m/bvtxyfaj).

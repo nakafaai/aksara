@@ -4,10 +4,11 @@ export const metadata = {
   description: "Leite die vier grundlegenden Spiegelungsmatrizen her und wende sie auf Punkte und Dreiecke an.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometrische Transformation",
 };
 
-## Spiegelungsmatrix für die x-Achse
+## Spiegelungsmatrix für die horizontale Achse
 
 Bei der Spiegelung eines Punktes <InlineMath math="(x,y)" /> an der <InlineMath math="x" />-Achse bleibt die <InlineMath math="x" />-Koordinate erhalten, während die <InlineMath math="y" />-Koordinate ihr Vorzeichen wechselt. Der Bildpunkt ist also <InlineMath math="(x,-y)" />.
 
@@ -25,7 +26,7 @@ Durch Gleichsetzung der Koeffizienten erhalten wir:
 
 Somit ist die Spiegelungsmatrix für die <InlineMath math="x" />-Achse <InlineMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />.
 
-## Spiegelungsmatrix für die y-Achse
+## Spiegelungsmatrix für die vertikale Achse
 
 Die Spiegelung eines Punktes <InlineMath math="(x,y)" /> an der <InlineMath math="y" />-Achse ergibt <InlineMath math="(-x,y)" />.
 
@@ -128,6 +129,7 @@ Das Bilddreieck <InlineMath math="A'B'C'" /> hat daher die Eckpunkte <InlineMath
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#d97706",
       showPoints: true,
       labels: [{ text: segment.from.label, at: 0, offset: [0.3, 0.3, 0] }],
@@ -147,6 +149,7 @@ Das Bilddreieck <InlineMath math="A'B'C'" /> hat daher die Eckpunkte <InlineMath
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [{ text: segment.from.label, at: 0, offset: [0.3, 0.3, 0] }],

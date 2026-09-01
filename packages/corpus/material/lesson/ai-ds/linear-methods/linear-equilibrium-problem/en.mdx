@@ -1,25 +1,25 @@
 export const metadata = {
-  title: "Linear Least-Squares Problem",
+  title: "Linear Least Squares Problem",
   description: "Solve inconsistent linear systems with least squares, residual norms, orthogonal projection, normal equations, and numerically stable methods.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-15",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Linear Methods of AI",
 };
 
 ## From an inconsistent system to a best fit
 
-Let <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="x \in \mathbb{R}^n" />, and <InlineMath math="b \in \mathbb{R}^m" />. If <InlineMath math="b" /> does not belong to the column space of <InlineMath math="A" />, the system
+Let <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="x \in \mathbb{R}^n" />, and <InlineMath math="b \in \mathbb{R}^m" />. Consider the following system.
 
 <BlockMath math="Ax=b" />
 
-has no exact solution. This commonly happens when a model is fitted to noisy measurements or when an overdetermined system has more independent equations than unknowns.
+If <InlineMath math="b" /> does not belong to the column space of <InlineMath math="A" />, this system has no exact solution. This commonly happens when a model is fitted to noisy measurements or when an overdetermined system has more independent equations than unknowns.
 
-When exact equality is unavailable, define the residual
+If no vector <InlineMath math="x" /> satisfies <InlineMath math="Ax=b" /> exactly, define the residual
 
 <BlockMath math="e(x)=Ax-b" />
 
-and choose the vector whose residual is smallest. The standard linear least-squares problem is
+Choose the vector <InlineMath math="x" /> that produces the smallest residual. The standard linear least-squares problem is written as follows.
 
 <BlockMath math="\hat{x}\in\operatorname*{arg\,min}_{x\in\mathbb{R}^n}\|Ax-b\|_2^2" />
 
@@ -50,6 +50,7 @@ The second equation is called the **normal equation**.
         { x: 4, y: 2, z: 1 },
         { x: 6, y: 3, z: 1.5 }
       ],
+      smooth: false,
       color: "#0284c7",
       cone: { position: "end" },
       showPoints: false,
@@ -63,6 +64,7 @@ The second equation is called the **normal equation**.
         { x: 2.5, y: 2, z: 1.5 },
         { x: 5, y: 4, z: 3 }
       ],
+      smooth: false,
       color: "#d97706",
       cone: { position: "end" },
       showPoints: false,
@@ -76,6 +78,7 @@ The second equation is called the **normal equation**.
         { x: 5.5, y: 3.5, z: 2.25 },
         { x: 6, y: 3, z: 1.5 }
       ],
+      smooth: false,
       color: "#9333ea",
       cone: { position: "end" },
       showPoints: false,
@@ -86,15 +89,15 @@ The second equation is called the **normal equation**.
   ]}
 />
 
-The scene shows the target, its projection, and the connecting residual. The blue vector represents the projected point in the column space; it is not a drawing of the entire subspace. The orthogonality condition above is the exact statement that makes <InlineMath math="A\hat{x}" /> the nearest point.
+The scene shows the target, its projection, and the connecting residual. The blue vector represents the projected point in the column space. It is not a drawing of the entire subspace. The orthogonality condition above is the exact statement that makes <InlineMath math="A\hat{x}" /> the nearest point.
 
-## A small worked example
+## Fitting One Constant to Three Observations
 
-Suppose one constant <InlineMath math="x" /> must fit the three observations <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="6" />. Then
+Suppose one constant <InlineMath math="x" /> must fit the three observations <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="6" />. Use the following matrix and vector.
 
 <BlockMath math="A=\begin{pmatrix}1\\1\\1\end{pmatrix},\qquad b=\begin{pmatrix}1\\2\\6\end{pmatrix}" />
 
-and the objective is
+The objective function for this example is
 
 <MathContainer>
 <BlockMath math="F(x)=(x-1)^2+(x-2)^2+(x-6)^2" />
@@ -112,7 +115,7 @@ The residual components sum to zero, so
 
 <BlockMath math="A^{\mathsf T}(A\hat{x}-b)=2+1-3=0" />
 
-as required by the normal equation.
+The zero result satisfies the normal equation.
 
 ## Other residual norms
 
@@ -132,14 +135,14 @@ If <InlineMath math="A" /> has full column rank, the least-squares minimizer is 
 
 <BlockMath math="\hat{x}=(A^{\mathsf T}A)^{-1}A^{\mathsf T}b" />
 
-This identity is useful for analysis, but explicitly forming the inverse is not the preferred numerical algorithm. In practice:
+This identity characterizes the unique minimizer when <InlineMath math="A" /> has full column rank. Do not compute it by explicitly forming the inverse. Choose the numerical method from the rank and conditioning:
 
-- use a QR factorization for a stable full-rank least-squares solve
-- use an SVD when rank deficiency or ill-conditioning matters
+- use a <InlineMath math="\mathrm{QR}" /> factorization for a stable full-rank least-squares solve
+- use an <InlineMath math="\mathrm{SVD}" /> when rank deficiency or ill-conditioning matters
 - use the pseudoinverse to select the minimum-norm solution when minimizers are not unique
 
-There is also a precise statistical interpretation. In the model
+There is also a precise statistical interpretation. Consider the following model.
 
 <BlockMath math="b=Ax_*+\varepsilon,\qquad \varepsilon\sim\mathcal{N}(0,\sigma^2I)" />
 
-with fixed <InlineMath math="A" /> and independent Gaussian errors of common variance, least squares is the maximum-likelihood estimator of <InlineMath math="x_*" />. Correlated errors or errors with unequal variance require weights that reflect their covariance.
+If <InlineMath math="A" /> is fixed and the Gaussian errors are independent with common variance, least squares gives the maximum-likelihood estimator of <InlineMath math="x_*" />. Correlated errors or errors with unequal variance require weights that reflect the error covariance.

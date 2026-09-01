@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Ellipse",
-  description: "Learn the properties, foci, and standard equations of ellipses through visualizations and worked examples.",
+  description: "Identify an ellipse's foci and derive its standard equations from diagrams and worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Analytic Geometry",
 };
 
 
 
-## What is an Ellipse?
+## Ellipse
 
 Planetary orbits and the oblique shadow of a circle both suggest the same shape: an **ellipse**. An ellipse is more than a "flattened" circle because it satisfies a precise geometric condition.
 
@@ -50,6 +50,7 @@ An ellipse is the set of all points for which **the sum of the distances to two 
           { x: c, y: 0, z: 0 }
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -136,7 +137,7 @@ Before using the formulas, identify the parts that determine an ellipse's positi
 
 <LineEquation
   title="Ellipse Components"
-  description="Important parts of an ellipse with horizontal major axis."
+  description="Center, foci, vertices, and major and minor axes of an ellipse with a horizontal major axis."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -169,6 +170,7 @@ Before using the formulas, identify the parts that determine an ellipse's positi
           { x: c, y: 0, z: 0 }
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -181,6 +183,7 @@ Before using the formulas, identify the parts that determine an ellipse's positi
         { x: -4, y: 0, z: 0 },
         { x: 4, y: 0, z: 0 }
       ],
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [
@@ -193,6 +196,7 @@ Before using the formulas, identify the parts that determine an ellipse's positi
         { x: 0, y: -2.8, z: 0 },
         { x: 0, y: 2.8, z: 0 }
       ],
+      smooth: false,
       color: "#059669",
       showPoints: true,
       labels: [
@@ -284,6 +288,7 @@ If the ellipse center is at <InlineMath math="O(0,0)" />, there are two possible
           { x: c, y: 0, z: 0 }
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -338,7 +343,7 @@ When the major axis is parallel to the <InlineMath math="x" /> axis (horizontal)
 
 <BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
 
-with the condition <InlineMath math="a > b" />.
+This equation applies when <InlineMath math="a > b" />.
 
 <LineEquation
   title="Vertical Major Axis"
@@ -375,6 +380,7 @@ with the condition <InlineMath math="a > b" />.
           { x: 0, y: c, z: 0 }
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -429,7 +435,7 @@ When the major axis is parallel to the <InlineMath math="y" /> axis (vertical), 
 
 <BlockMath math="\frac{x^2}{b^2} + \frac{y^2}{a^2} = 1" />
 
-with the condition <InlineMath math="a > b" />.
+This equation applies when <InlineMath math="a > b" />.
 
 ### Shifted Center
 
@@ -479,6 +485,7 @@ Visualization:
           { x: h + c, y: k, z: 0 }
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -529,13 +536,13 @@ Visualization:
   showZAxis={false}
 />
 
-## Important Relationships
+## Relationships Among Ellipse Lengths
 
 The three characteristic lengths satisfy:
 
 <BlockMath math="c^2 = a^2 - b^2" />
 
-where <InlineMath math="c" /> is the distance from center to focus.
+In this equation, <InlineMath math="c" /> is the distance from the center to either focus.
 
 **Eccentricity** of an ellipse is defined as:
 

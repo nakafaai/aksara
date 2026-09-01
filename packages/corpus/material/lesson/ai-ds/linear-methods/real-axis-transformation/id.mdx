@@ -3,13 +3,13 @@ export const metadata = {
   description: "Diagonalkan bentuk kuadrat melalui perubahan koordinat ortogonal, lengkapkan kuadrat, dan klasifikasikan irisan kerucut dari nilai eigennya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-17",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Metode Linear AI",
 };
 
 ## Bentuk Kuadrat dengan Matriks Simetris
 
-Suku silang dalam persamaan kuadrat dapat menyamarkan bentuk geometrinya. Menulis persamaan sebagai bentuk kuadrat memperlihatkan matriks simetris yang menentukan arah sumbu utamanya. Dalam dua dimensi, misalkan
+Ketika persamaan kuadrat memuat suku silang, arah sumbu utama tidak dapat ditentukan hanya dari koefisien setiap suku kuadrat. Bentuk kuadrat menempatkan semua koefisien tersebut dalam matriks simetris. Vektor eigen matriks itu menentukan arah sumbu utama. Dalam dua dimensi, misalkan
 
 <MathContainer>
 <BlockMath math="A = \begin{pmatrix} a & b/2 \\ b/2 & c \end{pmatrix}" />
@@ -62,7 +62,7 @@ Jika <InlineMath math="\lambda_1 > 0" /> dan <InlineMath math="\lambda_2 > 0" />
 <BlockMath math="\frac{(\xi_1 - m_1)^2}{r_1^2} + \frac{(\xi_2 - m_2)^2}{r_2^2} = 1" />
 </MathContainer>
 
-Dengan panjang sumbu setengah <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" /> dalam arah <InlineMath math="v_1" /> dan <InlineMath math="r_2 = \sqrt{\frac{\gamma}{\lambda_2}}" /> dalam arah <InlineMath math="v_2" />.
+Panjang semisumbunya adalah <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" /> dalam arah <InlineMath math="v_1" /> dan <InlineMath math="r_2 = \sqrt{\frac{\gamma}{\lambda_2}}" /> dalam arah <InlineMath math="v_2" />.
 
 <LineEquation
   title={<>Visualisasi Elips dalam Koordinat <InlineMath math="\xi_1, \xi_2" /></>}
@@ -146,7 +146,7 @@ Ketika <InlineMath math="\lambda_1 > 0" /> dan <InlineMath math="\lambda_2 < 0" 
 <BlockMath math="\frac{(\xi_1 - m_1)^2}{r_1^2} - \frac{(\xi_2 - m_2)^2}{r_2^2} = 1" />
 </MathContainer>
 
-Dengan panjang sumbu setengah <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" /> dalam arah <InlineMath math="v_1" /> dan <InlineMath math="r_2 = \sqrt{\frac{\gamma}{-\lambda_2}}" /> dalam arah <InlineMath math="v_2" />.
+Panjang semisumbunya adalah <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" /> dalam arah <InlineMath math="v_1" /> dan <InlineMath math="r_2 = \sqrt{\frac{\gamma}{-\lambda_2}}" /> dalam arah <InlineMath math="v_2" />.
 
 <LineEquation
   title={<>Visualisasi Hiperbola dalam Koordinat <InlineMath math="\xi_1, \xi_2" /></>}
@@ -277,7 +277,7 @@ Kasus khusus terjadi ketika <InlineMath math="\lambda_1\neq0" />, <InlineMath ma
 <BlockMath math="= \lambda_1 (\xi_1 - m_1)^2 + \epsilon \xi_2 - \gamma" />
 </MathContainer>
 
-Dengan menyelesaikan persamaan terhadap <InlineMath math="\xi_2" />, bentuk parabolanya terlihat langsung:
+Menyelesaikan persamaan terhadap <InlineMath math="\xi_2" /> menghasilkan bentuk baku parabola:
 
 <MathContainer>
 <BlockMath math="\xi_2 = -\frac{\lambda_1}{\epsilon} (\xi_1 - m_1)^2 + \frac{\gamma}{\epsilon}" />
@@ -339,7 +339,7 @@ Dengan menyelesaikan persamaan terhadap <InlineMath math="\xi_2" />, bentuk para
   showZAxis={false}
 />
 
-## Contoh Dua Dimensi Terhitung
+## Merotasi dan Mentranslasi Irisan Kerucut Dua Dimensi
 
 Perhatikan persamaan
 
@@ -379,7 +379,7 @@ Secara ekuivalen,
 <BlockMath math="= \left\{ x \in \mathbb{R}^n : \sum_{j=1}^n \sum_{k=1}^n x_j a_{jk} x_k + \sum_{j=1}^n b_j x_j + c = 0 \right\}" />
 </MathContainer>
 
-Jika <InlineMath math="A \in \mathbb{R}^{n \times n}" /> simetris dan <InlineMath math="v_1, \ldots, v_n \in \mathbb{R}^n" /> adalah basis ortonormal dari vektor eigen dengan <InlineMath math="A \cdot v_i = \lambda_i \cdot v_i" />, maka matriks ortonormal <InlineMath math="S = (v_1 \quad \ldots \quad v_n)" /> memungkinkan diagonalisasi <InlineMath math="A \cdot S = S \cdot \Lambda" /> atau <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S = S^T \cdot A \cdot S" />.
+Jika <InlineMath math="A \in \mathbb{R}^{n \times n}" /> simetris dan <InlineMath math="v_1, \ldots, v_n \in \mathbb{R}^n" /> adalah basis ortonormal vektor eigen dengan <InlineMath math="A \cdot v_i = \lambda_i \cdot v_i" />, maka matriks ortonormal <InlineMath math="S = (v_1 \quad \ldots \quad v_n)" /> mendiagonalkan <InlineMath math="A" /> melalui <InlineMath math="A \cdot S = S \cdot \Lambda" /> atau <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S = S^T \cdot A \cdot S" />.
 
 Dalam basis koordinat baru <InlineMath math="\xi = S^T x" /> dan <InlineMath math="\mu = S^T b" />, permukaan kuadrat memiliki bentuk diagonal:
 

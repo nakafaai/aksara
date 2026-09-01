@@ -1,9 +1,9 @@
 export const metadata = {
     title: "File Input and Output",
-    description: "Learn how to read and write files in Python, file opening modes, read(), readline() methods, and output redirection with practical examples.",
+    description: "Read and write text and binary files safely in Python, choose suitable opening modes, and manage stream positions.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "AI Programming",
 };
 
@@ -13,7 +13,7 @@ Python reads and writes files through file objects. In text mode, the file objec
 
 ### Reading Entire File Content
 
-The simplest way to read a file is to take all its contents at once into memory.
+The `read()` method loads the entire file into memory at once:
 
 <CodeBlock
   data={[
@@ -159,7 +159,7 @@ The mode controls whether a file must already exist, whether opening it truncate
 
 Python provides several methods to read files in different ways according to needs.
 
-### read() Method with Parameters
+### Read Method with Parameters
 
 <CodeBlock
   data={[
@@ -214,7 +214,7 @@ In text mode, `read()` and `readline()` return strings and return `''` when no m
 
 ## Safe File Handling
 
-Python provides the `with` statement for safer and automatic file handling.
+The `with` statement closes a file automatically when its block ends, including when an operation inside the block raises an exception.
 
 <CodeBlock
   data={[

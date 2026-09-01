@@ -4,11 +4,11 @@ export const metadata = {
   description: "Reflect points across a horizontal mirror line and derive image coordinates from equal vertical distances.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometric Transformation",
 };
 
-## Understanding Reflection over a Horizontal Line
+## Reflection over a Horizontal Line
 
 Reflection over the horizontal line <InlineMath math="y = h" /> moves each point of an object to its reflected position. The line <InlineMath math="y = h" /> is the mirror line.
 
@@ -23,7 +23,7 @@ If a point <InlineMath math="P(x, y)" /> is reflected over the line <InlineMath 
   <BlockMath math="y' = 2h - y" />
 </MathContainer>
 
-Thus, the image of point <InlineMath math="P(x, y)" /> is <InlineMath math="P'(x, 2h - y)" />. Note that the <InlineMath math="x" />-coordinate remains the same, while the <InlineMath math="y" />-coordinate changes based on its distance from the line <InlineMath math="y=h" />.
+The image of point <InlineMath math="P(x, y)" /> is <InlineMath math="P'(x, 2h - y)" />. The <InlineMath math="x" />-coordinate remains the same, while the <InlineMath math="y" />-coordinate changes according to its distance from the line <InlineMath math="y=h" />.
 
 ## Reflecting a Point over a Horizontal Line
 
@@ -38,9 +38,9 @@ Using the rule <InlineMath math="P'(x, 2h - y)" />:
   <BlockMath math="y' = 2(3) - 2 = 6 - 2 = 4" />
 </MathContainer>
 
-Thus, the image of point <InlineMath math="P(3,2)" /> is <InlineMath math="P'(3,4)" />.
+The image of point <InlineMath math="P(3,2)" /> is <InlineMath math="P'(3,4)" />.
 
-The diagram makes the equal vertical distances visible.
+The diagram shows the equal vertical distances.
 
 <LineEquation
   title={
@@ -62,6 +62,7 @@ The diagram makes the equal vertical distances visible.
         { x: -5, y: 3, z: 0 },
         { x: 5, y: 3, z: 0 },
       ],
+      smooth: false,
       color: "#4f46e5",
       labels: [{ text: <InlineMath math="y=3" />, at: 1, offset: [0.5, 0.5, 0] }],
       }, // Reflection line
@@ -82,6 +83,7 @@ The diagram makes the equal vertical distances visible.
         { x: 3, y: 2, z: 0 },
         { x: 3, y: 4, z: 0 },
       ],
+      smooth: false,
       color: "#db2777",
     }, // Vertical helper line
   ]}
@@ -128,4 +130,4 @@ The diagram makes the equal vertical distances visible.
       <BlockMath math="y = 3" />
     </MathContainer>
 
-    Thus, the coordinates of point <InlineMath math="R" /> are <InlineMath math="R(-2,3)" />.
+    The coordinates of point <InlineMath math="R" /> are <InlineMath math="R(-2,3)" />.

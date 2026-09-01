@@ -3,7 +3,7 @@ export const metadata = {
   description: "Gunakan rumus, grafik, dan contoh terbahas lengkap untuk merotasi titik serta kurva fungsi terhadap pusat tetap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Transformasi Fungsi",
 };
 
@@ -13,7 +13,7 @@ export const metadata = {
 
 Rotasi adalah transformasi geometri yang memutar suatu objek terhadap titik pusat tertentu dengan sudut rotasi yang ditentukan. Dalam konteks fungsi, rotasi mengubah posisi grafik fungsi dengan cara memutar setiap titik pada grafik tersebut.
 
-Sebuah roda memperlihatkan geometrinya: setiap titik bergerak pada lingkaran yang berpusat di poros. Grafik berotasi dengan cara yang sama, titik demi titik, sambil mempertahankan jarak setiap titik dari pusat rotasi.
+Bayangkan sebuah roda yang berputar. Setiap titik pada roda bergerak di sepanjang lingkaran yang berpusat di poros. Rotasi grafik bekerja serupa. Setiap titik bergerak mengelilingi pusat rotasi dengan jarak yang tetap.
 
 ## Rumus Rotasi Terhadap Titik Pusat
 
@@ -24,7 +24,7 @@ Untuk rotasi terhadap titik pusat <InlineMath math="(a, b)" /> dengan sudut <Inl
 <BlockMath math="y' = (x - a) \sin \theta + (y - b) \cos \theta + b" />
 </MathContainer>
 
-Dimana:
+Setiap simbol pada rumus tersebut berarti:
 - <InlineMath math="(x, y)" /> adalah koordinat titik asal
 - <InlineMath math="(x', y')" /> adalah koordinat titik hasil rotasi
 - <InlineMath math="(a, b)" /> adalah titik pusat rotasi
@@ -32,7 +32,7 @@ Dimana:
 
 ## Rotasi Khusus Terhadap Titik Asal
 
-Ketika rotasi dilakukan terhadap titik asal <InlineMath math="(0, 0)" />, rumus menjadi lebih sederhana:
+Untuk rotasi terhadap titik asal <InlineMath math="(0, 0)" />, substitusi <InlineMath math="a=b=0" /> menghilangkan suku translasi dari rumus umum:
 
 1. Rotasi <InlineMath math="90^\circ" />
 
@@ -94,7 +94,7 @@ Rotasikan kurva kuadrat <InlineMath math="y = x^2" /> terhadap titik asal:
 
 ## Sifat Rotasi Fungsi
 
-Rotasi memiliki beberapa sifat penting:
+Rotasi memiliki sifat berikut:
 
 - **Mempertahankan Bentuk**: Rotasi tidak mengubah bentuk dasar grafik, hanya mengubah orientasinya
 - **Mempertahankan Jarak**: Jarak antara dua titik pada grafik tetap sama setelah rotasi
@@ -116,6 +116,7 @@ Untuk fungsi linear <InlineMath math="y = mx + c" />, rotasi akan mengubah kemir
         const y = 2 * x + 1;
         return { x, y, z: 0 };
       }),
+      smooth: false,
       color: "#0d9488",
       showPoints: false,
       labels: [
@@ -137,6 +138,7 @@ Untuk fungsi linear <InlineMath math="y = mx + c" />, rotasi akan mengubah kemir
         const yRotated = x * sin45 + y * cos45;
         return { x: xRotated, y: yRotated, z: 0 };
       }),
+      smooth: false,
       color: "#7c3aed",
       showPoints: false,
       labels: [
@@ -152,7 +154,7 @@ Untuk fungsi linear <InlineMath math="y = mx + c" />, rotasi akan mengubah kemir
 
 ### Rotasi Fungsi Eksponensial
 
-Rotasi juga dapat diterapkan pada fungsi eksponensial dengan hasil yang menarik.
+Kurva eksponensial juga dapat diputar titik demi titik. Setelah diputar, kurva tersebut belum tentu tetap menjadi grafik fungsi terhadap koordinat horizontal.
 
 <LineEquation
   title={<>Rotasi Fungsi <InlineMath math="y = 2^x" /></>}
@@ -240,6 +242,7 @@ Untuk menentukan hasil rotasi suatu fungsi, ikuti langkah berikut:
            { x: 0, y: 0, z: 0 },
            { x: 3, y: 4, z: 0 }
          ],
+         smooth: false,
          color: "#9333ea",
          showPoints: false,
          labels: [
@@ -256,6 +259,7 @@ Untuk menentukan hasil rotasi suatu fungsi, ikuti langkah berikut:
            { x: 0, y: 0, z: 0 },
            { x: -4, y: 3, z: 0 }
          ],
+         smooth: false,
          color: "#ea580c",
          showPoints: false,
          labels: [
@@ -345,6 +349,7 @@ Untuk menentukan hasil rotasi suatu fungsi, ikuti langkah berikut:
            const y = 3 * x - 2;
            return { x, y, z: 0 };
          }),
+         smooth: false,
          color: "#059669",
          showPoints: false,
          labels: [
@@ -364,6 +369,7 @@ Untuk menentukan hasil rotasi suatu fungsi, ikuti langkah berikut:
            const yRotated = -x;
            return { x: xRotated, y: yRotated, z: 0 };
          }),
+         smooth: false,
          color: "#d97706",
          showPoints: false,
          labels: [
@@ -400,6 +406,7 @@ Untuk menentukan hasil rotasi suatu fungsi, ikuti langkah berikut:
            { x: 1, y: 1, z: 0 },
            { x: 2, y: 5, z: 0 }
          ],
+         smooth: false,
          color: "#0891b2",
          showPoints: false,
          labels: [
@@ -421,6 +428,7 @@ Untuk menentukan hasil rotasi suatu fungsi, ikuti langkah berikut:
            { x: 1, y: 1, z: 0 },
            { x: 1.5 - 2 * Math.sqrt(3), y: 3 + Math.sqrt(3) / 2, z: 0 }
          ],
+         smooth: false,
          color: "#db2777",
          showPoints: false,
          labels: [

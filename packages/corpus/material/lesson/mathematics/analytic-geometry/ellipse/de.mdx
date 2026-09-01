@@ -1,14 +1,15 @@
 export const metadata = {
   title: "Ellipse",
-  description: "Verstehe Ellipsen über Brennpunkte, Achsen und Gleichungen und wende diese Beziehungen in vollständig gelösten Beispielen an.",
+  description: "Bestimme Brennpunkte und Achsen einer Ellipse und leite ihre Standardgleichungen in Rechenbeispielen her.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Analytische Geometrie",
 };
 
 
 
-## Was ist eine Ellipse?
+## Ellipse
 
 Planetenbahnen um die Sonne und der schräge Schatten eines Kreises erinnern an dieselbe Form: eine **Ellipse**. Sie ist jedoch mehr als ein „abgeflachter“ Kreis. Ihre Form folgt einer genauen geometrischen Bedingung.
 
@@ -49,6 +50,7 @@ Eine Ellipse besteht aus allen Punkten, für die **die Summe der Abstände zu zw
           { x: c, y: 0, z: 0 }
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -129,13 +131,13 @@ Eine Ellipse besteht aus allen Punkten, für die **die Summe der Abstände zu zw
 
 In der Grafik liegt <InlineMath math="P" /> auf der Ellipse. Sein Abstand zu <InlineMath math="F_1" />, bezeichnet mit <InlineMath math="r_1" />, und sein Abstand zu <InlineMath math="F_2" />, bezeichnet mit <InlineMath math="r_2" />, ergeben zusammen für jeden Ellipsenpunkt dieselbe Länge. Genau das ist das **grundlegende Merkmal einer Ellipse**.
 
-## Ellipse-Komponenten
+## Bestandteile einer Ellipse
 
 Bevor die Gleichungen folgen, ordnen wir die Bestandteile einer Ellipse. Jeder davon beschreibt einen anderen Aspekt ihrer Lage oder Form.
 
 <LineEquation
   title="Ellipsenkomponenten"
-  description="Wichtige Teile einer Ellipse mit horizontaler Hauptachse."
+  description="Mittelpunkt, Brennpunkte, Scheitel sowie Haupt- und Nebenachse einer Ellipse mit horizontaler Hauptachse."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -168,6 +170,7 @@ Bevor die Gleichungen folgen, ordnen wir die Bestandteile einer Ellipse. Jeder d
           { x: c, y: 0, z: 0 }
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -180,6 +183,7 @@ Bevor die Gleichungen folgen, ordnen wir die Bestandteile einer Ellipse. Jeder d
         { x: -4, y: 0, z: 0 },
         { x: 4, y: 0, z: 0 }
       ],
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [
@@ -192,6 +196,7 @@ Bevor die Gleichungen folgen, ordnen wir die Bestandteile einer Ellipse. Jeder d
         { x: 0, y: -2.8, z: 0 },
         { x: 0, y: 2.8, z: 0 }
       ],
+      smooth: false,
       color: "#059669",
       showPoints: true,
       labels: [
@@ -283,6 +288,7 @@ Liegt der Mittelpunkt bei <InlineMath math="O(0,0)" />, gibt es zwei mögliche A
           { x: c, y: 0, z: 0 }
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -337,7 +343,7 @@ Verläuft die Hauptachse parallel zur <InlineMath math="x" />-Achse, lautet die 
 
 <BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
 
-mit der Bedingung <InlineMath math="a > b" />.
+Diese Gleichung gilt für <InlineMath math="a > b" />.
 
 <LineEquation
   title="Vertikale Hauptachse"
@@ -374,6 +380,7 @@ mit der Bedingung <InlineMath math="a > b" />.
           { x: 0, y: c, z: 0 }
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -428,7 +435,7 @@ Verläuft die Hauptachse parallel zur <InlineMath math="y" />-Achse, lautet die 
 
 <BlockMath math="\frac{x^2}{b^2} + \frac{y^2}{a^2} = 1" />
 
-mit der Bedingung <InlineMath math="a > b" />.
+Diese Gleichung gilt für <InlineMath math="a > b" />.
 
 ### Verschobener Mittelpunkt
 
@@ -478,6 +485,7 @@ Die folgende Grafik zeigt ein Beispiel:
           { x: h + c, y: k, z: 0 }
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -528,7 +536,7 @@ Die folgende Grafik zeigt ein Beispiel:
   showZAxis={false}
 />
 
-## Wichtige Beziehungen
+## Beziehungen zwischen den Ellipsenlängen
 
 Zwischen den drei charakteristischen Längen gilt stets:
 

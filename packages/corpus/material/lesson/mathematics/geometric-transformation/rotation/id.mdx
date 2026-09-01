@@ -4,11 +4,11 @@ export const metadata = {
   description: "Gunakan pusat, arah, dan sudut untuk merotasi titik maupun garis sambil mempertahankan jarak dan bentuk.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Transformasi Geometri",
 };
 
-## Memahami Rotasi
+## Rotasi
 
 Rotasi memutar setiap titik suatu bangun dengan sudut yang sama terhadap satu titik pusat tetap. Bangun berpindah dan berputar, sedangkan jarak, sudut, bentuk, ukuran, dan urutan titik sudutnya tetap.
 
@@ -84,13 +84,14 @@ Jadi, bayangan titik <InlineMath math="B(0,4)" /> adalah <InlineMath math="B'(-4
       points: [{ x: -4, y: 0, z: 0 }],
       color: "#059669",
       showPoints: true,
-      labels: [{ text: <><InlineMath math="B'(-4,0)" /> - Peta</>, at: 0, offset: [-0.7, 0.3, 0] }],
-    }, // Titik Peta
+      labels: [{ text: <><InlineMath math="B'(-4,0)" /> - Bayangan</>, at: 0, offset: [-0.7, 0.3, 0] }],
+    }, // Titik Bayangan
     {
       points: [
         { x: 0, y: 0, z: 0 },
         { x: 0, y: 4, z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
     }, // Garis OB
     {
@@ -98,6 +99,7 @@ Jadi, bayangan titik <InlineMath math="B(0,4)" /> adalah <InlineMath math="B'(-4
         { x: 0, y: 0, z: 0 },
         { x: -4, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
     }, // Garis OB'
   ]}
@@ -107,7 +109,7 @@ Jadi, bayangan titik <InlineMath math="B(0,4)" /> adalah <InlineMath math="B'(-4
 
 ## Merotasikan Sebuah Garis Seperempat Putaran
 
-Tentukan peta dari garis <InlineMath math="y=2x" /> yang dirotasikan terhadap titik asal <InlineMath math="(0,0)" /> sebesar <InlineMath math="90^\circ" />.
+Tentukan bayangan garis <InlineMath math="y=2x" /> yang dirotasikan terhadap titik asal <InlineMath math="(0,0)" /> sebesar <InlineMath math="90^\circ" />.
 
 Ambil sembarang titik <InlineMath math="P(x,y)" /> pada garis <InlineMath math="y=2x" />. Bayangannya, <InlineMath math="P'(x',y')" />, setelah rotasi <InlineMath math="90^\circ" /> terhadap titik asal adalah:
 
@@ -154,6 +156,7 @@ Mengganti <InlineMath math="x'" /> dan <InlineMath math="y'" /> kembali ke <Inli
         const xVal = (i - 5) * 0.5; // range from -2.5 to 2.5
         return { x: xVal, y: 2 * xVal, z: 0 };
       }),
+      smooth: false,
       color: "#9333ea",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=2x" />, at: 6, offset: [1, 0.5, 0] }],
@@ -164,6 +167,7 @@ Mengganti <InlineMath math="x'" /> dan <InlineMath math="y'" /> kembali ke <Inli
         const xVal = (i - 5) * 0.5;
         return { x: xVal, y: (-1 / 2) * xVal, z: 0 };
       }),
+      smooth: false,
       color: "#db2777",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=(-\frac{1}{2})x" />, at: 1, offset: [0.3, 0.5, 0] }],
@@ -176,7 +180,7 @@ Mengganti <InlineMath math="x'" /> dan <InlineMath math="y'" /> kembali ke <Inli
 ## Latihan
 
 1.  Sebuah titik <InlineMath math="A(3,0)" /> dirotasikan terhadap titik asal <InlineMath math="(0,0)" /> sebesar <InlineMath math="90^\circ" />. Tentukan titik bayangannya.
-2.  Tentukan peta dari garis <InlineMath math="y=4x" /> yang dirotasikan terhadap titik asal <InlineMath math="(0,0)" /> sebesar <InlineMath math="90^\circ" />.
+2.  Tentukan bayangan garis <InlineMath math="y=4x" /> yang dirotasikan terhadap titik asal <InlineMath math="(0,0)" /> sebesar <InlineMath math="90^\circ" />.
 3.  Titik <InlineMath math="P(-2, -5)" /> dirotasikan terhadap titik asal <InlineMath math="O(0,0)" /> sebesar <InlineMath math="180^\circ" />. Tentukan koordinat bayangannya!
 
 ### Pembahasan

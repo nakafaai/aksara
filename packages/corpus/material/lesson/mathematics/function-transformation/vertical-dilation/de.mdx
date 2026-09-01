@@ -1,8 +1,9 @@
 export const metadata = {
   title: "Vertikale Streckung und Stauchung",
-  description: "Verstehe anhand von Graphen und Beispielen, wie ein Skalierungsfaktor die Funktionswerte vertikal streckt, staucht oder spiegelt.",
+  description: "Strecke, stauche oder spiegle die Funktionswerte mit einem vertikalen Skalierungsfaktor und vergleiche die Graphen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Funktionstransformation",
 };
 
@@ -76,7 +77,7 @@ Der Graph zeigt:
 
 ## Skalierung einer linearen Funktion
 
-Nun wenden wir dieselbe Regel auf die lineare Funktion <InlineMath math="f(x) = x + 1" /> an.
+Dieselbe Skalierungsregel gilt für die lineare Funktion <InlineMath math="f(x) = x + 1" />.
 
 <LineEquation
   title={<>Vertikale Skalierung der linearen Funktion <InlineMath math="f(x) = x + 1" /></>}
@@ -89,6 +90,7 @@ Nun wenden wir dieselbe Regel auf die lineare Funktion <InlineMath math="f(x) = 
         const x = (i - 10) * 0.5;
         return { x, y: x + 1, z: 0 };
       }),
+      smooth: false,
       color: "#d97706",
       labels: [{ text: <InlineMath math="f(x)=x+1" />, offset: [2, 1.5, 0] }],
       showPoints: false,
@@ -98,6 +100,7 @@ Nun wenden wir dieselbe Regel auf die lineare Funktion <InlineMath math="f(x) = 
         const x = (i - 10) * 0.5;
         return { x, y: 3 * (x + 1), z: 0 };
       }),
+      smooth: false,
       color: "#0d9488",
       labels: [{ text: <InlineMath math="g(x)=3(x+1)" />, offset: [1, 2, 0] }],
       showPoints: false,
@@ -107,6 +110,7 @@ Nun wenden wir dieselbe Regel auf die lineare Funktion <InlineMath math="f(x) = 
         const x = (i - 10) * 0.5;
         return { x, y: 0.5 * (x + 1), z: 0 };
       }),
+      smooth: false,
       color: "#e11d48",
       labels: [{ text: <InlineMath math="h(x)=0{,}5(x+1)" />, offset: [2, 0.5, 0] }],
       showPoints: false,
@@ -120,7 +124,7 @@ Der Vergleich zeigt:
 - Funktion <InlineMath math="h(x) = 0{,}5(x + 1)" /> hat Steigung <InlineMath math="0{,}5" /> (gestaucht)
 - Alle Geraden schneiden immer noch die <InlineMath math="y" />-Achse, allerdings an unterschiedlichen Punkten
 
-## Wichtige Eigenschaften
+## Eigenschaften der vertikalen Streckung
 
 ### Wirkung auf Koordinatenpunkte
 
@@ -138,9 +142,7 @@ Ist der ursprüngliche Wertebereich <InlineMath math="[c, d]" />, dann wird er b
 - **<InlineMath math="x" />-Achsenabschnitt**: Bleibt unverändert
 - **<InlineMath math="y" />-Achsenabschnitt**: Wird mit dem Skalierungsfaktor multipliziert
 
-## Weitere Beispiele
-
-### Exponentialfunktion
+## Die Werte einer Exponentialfunktion skalieren
 
 Bei der Exponentialfunktion <InlineMath math="f(x) = 2^x" /> verdoppelt der vertikale Faktor alle Funktionswerte.
 
@@ -261,7 +263,7 @@ Für einen negativen Skalierungsfaktor gilt:
 2. Gleichung der skalierten Funktion:
 
    - Vertikale Skalierung: <InlineMath math="g'(x) = \frac{1}{2}g(x) = \frac{1}{2}\sqrt{x}" />
-   - Wertebereich nach der Skalierung: <InlineMath math="[0, \infty)" /> bleibt <InlineMath math="[0, \infty)" />; für jede Eingabe wird der positive Funktionswert halbiert
+   - Wertebereich nach der Skalierung: <InlineMath math="[0, \infty)" /> bleibt <InlineMath math="[0, \infty)" />. Für jede Eingabe wird der positive Funktionswert halbiert
 
    Im Graphen:
 

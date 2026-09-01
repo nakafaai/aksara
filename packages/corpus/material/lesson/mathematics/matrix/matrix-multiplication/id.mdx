@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Perkalian Matriks",
-  description: "Pelajari aturan perkalian matriks, syarat, dan perhitungan. Pelajari metode bertahap, sifat-sifat, dan aplikasi nyata dengan contoh.",
+  description: "Kalikan matriks dengan memeriksa kecocokan ordo, menghitung hasil kali baris dan kolom, serta menerapkan sifat perkalian matriks.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Matriks",
 };
 
-## Memahami Perkalian Dua Matriks
+## Perkalian Dua Matriks
 
-Perkalian matriks adalah operasi fundamental dalam aljabar linear. Berbeda dengan penjumlahan atau pengurangan matriks yang elemennya langsung dioperasikan, perkalian matriks memiliki aturan tersendiri.
+Perkalian matriks memasangkan setiap baris matriks pertama dengan setiap kolom matriks kedua. Berbeda dengan penjumlahan matriks, perkalian tidak dilakukan pada elemen yang menempati posisi sama.
 
 ### Syarat Perkalian Matriks
 
@@ -35,9 +35,9 @@ Notasi <InlineMath math="\sum" /> (sigma) berarti penjumlahan.
 
 Dalam rumus di atas, kita menjumlahkan hasil perkalian <InlineMath math="a_{ik}b_{kj}" /> untuk semua nilai <InlineMath math="k" /> dari <InlineMath math="1" /> sampai <InlineMath math="n" />.
 
-## Langkah-Langkah Mengalikan Matriks
+## Langkah Mengalikan Matriks
 
-Lihat contoh sederhana untuk memahami prosesnya.
+Pada contoh berikut, setiap elemen matriks <InlineMath math="R" /> dihitung dari hasil kali titik antara satu baris matriks <InlineMath math="P" /> dan satu kolom matriks <InlineMath math="Q" />.
 
 Misalkan kita punya matriks <InlineMath math="P = \begin{bmatrix} p_{11} & p_{12} \\ p_{21} & p_{22} \end{bmatrix}" /> dan <InlineMath math="Q = \begin{bmatrix} q_{11} & q_{12} \\ q_{21} & q_{22} \end{bmatrix}" />.
 
@@ -91,15 +91,15 @@ Matriks <InlineMath math="B" /> berordo <InlineMath math="3 \times 2" /> dan mat
 
 Jumlah kolom matriks <InlineMath math="B" /> (yaitu <InlineMath math="2" />) **tidak sama** dengan jumlah baris matriks <InlineMath math="A" /> (yaitu <InlineMath math="3" />).
 
-Oleh karena itu, perkalian <InlineMath math="BA" /> **tidak terdefinisi**. Ini menunjukkan salah satu sifat penting perkalian matriks.
+Oleh karena itu, perkalian <InlineMath math="BA" /> **tidak terdefinisi**. Keterdefinisian perkalian matriks bergantung pada urutan kedua matriks.
 
-## Sifat-Sifat Perkalian Matriks
+## Sifat Perkalian Matriks
 
-Perkalian matriks memiliki beberapa sifat penting:
+Perkalian matriks memiliki sifat berikut:
 
 1.  **Umumnya Tidak Komutatif**:
 
-    Artinya, <InlineMath math="AB \neq BA" />. Kita sudah melihat contoh di atas di mana <InlineMath math="AB" /> terdefinisi tetapi <InlineMath math="BA" /> tidak. Bahkan jika keduanya terdefinisi, hasilnya belum tentu sama.
+    Artinya, <InlineMath math="AB \neq BA" />. Pada contoh di atas, <InlineMath math="AB" /> terdefinisi tetapi <InlineMath math="BA" /> tidak. Bahkan jika kedua produk terdefinisi, matriks hasil belum tentu sama.
 
 2.  **Asosiatif**:
 
@@ -132,7 +132,7 @@ Perkalian matriks memiliki beberapa sifat penting:
 
 ## Menghitung Pendapatan
 
-Perkalian matriks dapat menggabungkan tabel jumlah barang dengan tabel harga yang sesuai. Label pada baris dan kolom sama pentingnya dengan ordo numeriknya.
+Perkalian matriks dapat menggabungkan tabel jumlah barang dengan tabel harga yang sesuai. Label baris dan kolom menentukan besaran mana yang dikalikan dan dijumlahkan, sehingga kesesuaian ordo saja belum cukup.
 
 Misalkan sebuah industri rumahan menjual keripik tempe, keripik pisang, dan keripik kentang di Tempat A, Tempat B, dan Tempat C.
 
@@ -216,6 +216,4 @@ Apakah <InlineMath math="CD = DC" />?
       <BlockMath math="DC = \begin{bmatrix} -3 & -11 \\ 10 & -20 \end{bmatrix}" />
     </MathContainer>
 
-Dari hasil di atas, terlihat bahwa <InlineMath math="CD = \begin{bmatrix} -23 & -10 \\ 17 & 0 \end{bmatrix}" /> dan <InlineMath math="DC = \begin{bmatrix} -3 & -11 \\ 10 & -20 \end{bmatrix}" />.
-
-Jadi, <InlineMath math="CD \neq DC" />. Ini adalah contoh lain yang menunjukkan bahwa perkalian matriks umumnya tidak bersifat komutatif.
+Nilai <InlineMath math="CD = \begin{bmatrix} -23 & -10 \\ 17 & 0 \end{bmatrix}" /> berbeda dari <InlineMath math="DC = \begin{bmatrix} -3 & -11 \\ 10 & -20 \end{bmatrix}" />, sehingga <InlineMath math="CD \neq DC" />. Perkalian matriks pada contoh ini tidak komutatif.

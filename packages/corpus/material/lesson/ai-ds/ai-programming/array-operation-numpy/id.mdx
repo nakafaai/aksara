@@ -1,15 +1,15 @@
 export const metadata = {
     title: "Operasi pada Array dengan NumPy",
-    description: "Pelajari operasi array NumPy: broadcasting, vektorisasi, aritmetika, statistik, dan manipulasi bentuk dengan contoh kode.",
+  description: "Gunakan broadcasting, vektorisasi, reduksi, axis, reshape, dan standardisasi z score pada array NumPy.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-20",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Pemrograman AI",
 };
 
 ## Broadcasting dalam NumPy
 
-Broadcasting adalah sistem aturan NumPy untuk menggabungkan array yang shape-nya berbeda tetapi kompatibel. Dimensi berukuran satu diperluas secara konseptual tanpa menyalin nilainya ke array yang lebih besar. [Panduan broadcasting NumPy](https://numpy.org/doc/stable/user/basics.broadcasting.html) memuat contoh tambahan.
+Broadcasting adalah aturan NumPy untuk menggabungkan array dengan shape berbeda yang masih kompatibel. NumPy memperlakukan dimensi berukuran satu seolah-olah ukurannya sama dengan dimensi pasangannya, tanpa menyalin data ke array yang lebih besar. [NumPy](https://numpy.org/doc/stable/user/basics.broadcasting.html) menyediakan contoh tambahan tentang broadcasting.
 
 Vektorisasi memungkinkan satu ekspresi bekerja pada seluruh array. NumPy menjalankan loop di baliknya dalam kode terkompilasi yang telah dioptimalkan, sehingga sering lebih cepat daripada loop Python eksplisit.
 
@@ -41,7 +41,7 @@ Untuk menentukan apakah dua shape kompatibel, NumPy membandingkan dimensinya dar
 Terdapat tiga aturan utama dalam broadcasting:
 
 1. **Aturan** <InlineMath math="1" />: Jika rank berbeda, perlakukan shape dengan rank lebih rendah seolah-olah memiliki tambahan dimensi berukuran <InlineMath math="1" /> di sebelah kiri
-2. **Aturan** <InlineMath math="2" />: Dua dimensi yang sejajar kompatibel jika ukurannya sama atau salah satunya berukuran <InlineMath math="1" />; dimensi berukuran satu diperluas secara virtual ke ukuran pasangannya
+2. **Aturan** <InlineMath math="2" />: Dua dimensi yang sejajar kompatibel jika ukurannya sama atau salah satunya berukuran <InlineMath math="1" />. NumPy memperlakukan dimensi berukuran satu seolah-olah ukurannya sama dengan dimensi pasangannya
 3. **Aturan** <InlineMath math="3" />: Jika ada pasangan dimensi yang tidak kompatibel, NumPy menghasilkan `ValueError`
 
 ### Array dengan Skalar
@@ -73,7 +73,7 @@ print(f"Hasil a + b: {hasil}")
 
 ### Array Dua Dimensi dengan Array Satu Dimensi
 
-Ketika kamu bekerja dengan array yang memiliki dimensi berbeda, NumPy akan mencoba menyesuaikan bentuknya secara otomatis. Proses ini sangat berguna saat kamu ingin menerapkan operasi yang sama pada setiap baris atau kolom dari matriks.
+Jika dua array memiliki bentuk berbeda yang masih kompatibel, NumPy dapat menyesuaikannya secara otomatis melalui broadcasting. Dengan cara ini, satu operasi dapat diterapkan ke setiap baris atau kolom tanpa menyalin nilai secara manual.
 
 <CodeBlock
   data={[
@@ -131,7 +131,7 @@ except ValueError as e:
 
 Operator aritmetika NumPy bekerja elemen per elemen, kecuali operasi yang memang memiliki semantik lain, seperti perkalian matriks.
 
-Ketika array digabungkan dengan skalar, broadcasting menerapkan skalar itu pada setiap elemen. Kita tidak perlu menulis loop pengindeksan secara manual.
+Ketika array digabungkan dengan skalar, broadcasting menerapkan skalar itu pada setiap elemen. Kita tidak perlu menulis indexing loop secara manual.
 
 <CodeBlock
   data={[
@@ -191,11 +191,11 @@ print(f"a @ b = {a @ b}")
   ]}
 />
 
-Penting untuk memahami perbedaan antara perkalian elemen per elemen (`*`) dan perkalian matriks (`@` atau `np.dot()`). Perkalian elemen per elemen mengalikan elemen pada posisi yang sama, sedangkan perkalian matriks mengikuti aturan aljabar linear.
+Perkalian elemen per elemen dan perkalian matriks memakai aturan yang berbeda. Operator `*` mengalikan elemen pada posisi yang sama. Operator `@` dan fungsi `np.dot()` menghitung perkalian baris dengan kolom sesuai aturan aljabar linear.
 
 ### Perbandingan dan Logika
 
-NumPy juga mendukung operasi perbandingan yang menghasilkan array boolean. Operasi ini sangat berguna untuk filtering data atau membuat kondisi kompleks.
+Operasi perbandingan NumPy menghasilkan array boolean. Gunakan array tersebut untuk menyaring data atau menggabungkan beberapa kondisi.
 
 <CodeBlock
   data={[
@@ -230,7 +230,7 @@ Untuk logika boolean elemen per elemen, gunakan `~` untuk NOT, `&` untuk AND, da
 
 Fungsi reduksi menggabungkan banyak elemen menjadi lebih sedikit nilai. Tanpa axis, seluruh array dapat direduksi menjadi satu nilai. Dengan axis, hanya dimensi tersebut yang direduksi. Pada tabel nilai ujian, hasilnya dapat berupa rata-rata per mata pelajaran atau per siswa.
 
-NumPy menyediakan berbagai fungsi statistik yang sangat berguna untuk analisis data. Fungsi ini dapat diterapkan pada seluruh array atau hanya pada sumbu tertentu.
+NumPy menyediakan fungsi statistik untuk menghitung ringkasan seperti jumlah, rata-rata, dan simpangan baku. Setiap fungsi dapat diterapkan pada seluruh array atau sumbu tertentu.
 
 <CodeBlock
   data={[
@@ -267,7 +267,7 @@ print(f"Standar deviasi: {np.std(data):.2f}")
 
 Pada array dua dimensi, `axis=0` mereduksi dimensi baris dan menghasilkan satu nilai per kolom. `axis=1` mereduksi dimensi kolom dan menghasilkan satu nilai per baris.
 
-Pemahaman tentang sumbu ini membantu kamu mengontrol bagaimana fungsi statistik bekerja pada data multidimensi. Misalnya, jika kamu punya data penjualan per bulan untuk berbagai produk, kamu bisa menghitung total penjualan per produk atau per bulan.
+Sumbu yang dipilih menentukan dimensi yang direduksi oleh fungsi statistik. Pada data penjualan bulanan untuk beberapa produk, satu sumbu dapat menghasilkan total per produk dan sumbu lainnya menghasilkan total per bulan.
 
 <CodeBlock
   data={[
@@ -305,7 +305,7 @@ print(f"argmax(axis=1): {np.argmax(data, axis=1)}")
 
 Operasi shape mengubah cara elemen-elemen yang sama diindeks. Reshape mempertahankan jumlah elemen, tetapi menempatkannya ke dalam susunan dimensi yang berbeda.
 
-Array NumPy baru biasanya C-contiguous, sehingga indeks terakhir berubah paling cepat di memori. View hasil slicing atau transpose dapat memiliki stride berbeda, jadi array tidak selalu tersimpan dalam satu tata letak row-major sederhana. Aturan `order` dan stride penting ketika melakukan reshape atau flatten.
+Array NumPy yang baru dibuat biasanya tersimpan berurutan dengan tata letak `C-contiguous`. Dalam tata letak ini, indeks terakhir berubah paling cepat saat data dibaca dari memori. Hasil slicing atau transpose dapat merujuk ke data yang sama dengan jarak antarelemen memori yang berbeda. Karena itu, perhatikan argumen `order` dan atribut `strides` saat memakai `reshape()` atau `flatten()`.
 
 <CodeBlock
   data={[
@@ -347,7 +347,7 @@ print(a)
 b_flatten = a.flatten()
 print(f"Hasil flatten: {b_flatten}")
 
-# Mengubah nilai flatten tidak mempengaruhi array asli
+# Mengubah nilai flatten tidak memengaruhi array asli
 b_flatten[0] = 9
 print(f"Setelah mengubah flatten: {b_flatten}")
 print("Array asli tetap sama:")
@@ -355,11 +355,11 @@ print(a)
 
 print()
 
-# Ravel - mencoba membuat view (lebih efisien)
+# Ravel - mencoba membuat view tanpa selalu menyalin data
 b_ravel = a.ravel()
 print(f"Hasil ravel: {b_ravel}")
 
-# Mengubah nilai ravel mempengaruhi array asli
+# Mengubah nilai ravel memengaruhi array asli
 b_ravel[0] = 9
 print(f"Setelah mengubah ravel: {b_ravel}")
 print("Array asli berubah:")
@@ -370,7 +370,7 @@ print(a)`
 
 ### Reshape dan Resize
 
-`reshape()` mengubah shape selama jumlah elemennya tetap sama dan mengembalikan view jika memungkinkan. Method `ndarray.resize()` yang digunakan di bawah mengubah array asli secara langsung.
+`reshape()` mengubah shape selama jumlah elemennya tetap sama dan mengembalikan `view` jika memungkinkan. Method `ndarray.resize()` yang digunakan di bawah mengubah array asli secara langsung.
 
 <CodeBlock
   data={[
@@ -405,7 +405,7 @@ print(a_flat)  # Sekarang a_flat sudah menjadi 2D`
 
 ### Transpose
 
-Transpose menukar urutan axis array. Pada array dua dimensi, baris dan kolom saling bertukar. NumPy menyediakan method `transpose()` dan atribut `.T` yang lebih singkat.
+Transpose menukar urutan `axis` array. Pada array dua dimensi, baris dan kolom saling bertukar. NumPy menyediakan method `transpose()` dan atribut `.T` yang lebih singkat.
 
 <CodeBlock
   data={[
@@ -435,11 +435,11 @@ print("Apakah transpose adalah view?", np.shares_memory(a, b))`
   ]}
 />
 
-## Standardisasi Data dengan Z-Transform
+## Standardisasi Data dengan Z Score
 
-Standardisasi skor Z memusatkan setiap fitur pada rata-rata <InlineMath math="0" /> dan menskalakannya ke standar deviasi <InlineMath math="1" />. Operasi ini hanya terdefinisi untuk fitur dengan standar deviasi tak nol dan membuat skala numerik fitur dapat dibandingkan.
+Standardisasi z-score memusatkan setiap fitur pada rata-rata <InlineMath math="0" /> dan menskalakannya ke standar deviasi <InlineMath math="1" />. Operasi ini hanya terdefinisi untuk fitur dengan standar deviasi tak nol. Setelah standardisasi, fitur yang semula memakai skala berbeda dapat dibandingkan pada skala yang sama.
 
-Formula Z-Transform adalah <InlineMath math="Z = \frac{X - \mu}{\sigma}" />, dimana:
+Formula Z-Transform adalah <InlineMath math="Z = \frac{X - \mu}{\sigma}" />, dengan:
 - <InlineMath math="X" /> adalah matriks fitur berukuran <InlineMath math="n \times k" />
 - <InlineMath math="n" /> adalah jumlah observasi (baris)
 - <InlineMath math="k" /> adalah jumlah fitur (kolom)
@@ -486,4 +486,4 @@ print(f"Standar deviasi baru: {np.std(Z, axis=0)}")  # Harus mendekati 1
 
 Standardisasi mencegah perbedaan satuan saja menciptakan selisih skala yang besar. Namun, standardisasi tidak menjamin setiap fitur sama penting atau sama berpengaruh karena hal itu tetap ditentukan oleh model dan datanya. Misalnya, tinggi dalam sentimeter dan berat dalam kilogram menjadi sebanding secara numerik setelah distandardisasi.
 
-Untuk rincian operasi array NumPy yang lebih lengkap, kamu dapat membuka [dokumentasi resmi NumPy](https://numpy.org/doc/stable/user/basics.html) yang menyediakan panduan dan contoh praktis.
+[NumPy](https://numpy.org/doc/stable/user/basics.html) menyediakan panduan dan contoh praktis untuk berbagai operasi array.

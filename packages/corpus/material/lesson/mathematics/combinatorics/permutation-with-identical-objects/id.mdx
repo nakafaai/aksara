@@ -3,11 +3,11 @@ export const metadata = {
    description: "Hitung susunan berbeda ketika beberapa objek tidak dapat dibedakan. Contoh bertahap menurunkan rumus multinomial dan menerapkannya pada huruf, warna, serta digit.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-08-29",
+   dateModified: "2026-09-01",
    subject: "Kombinatorik",
 };
 
-## Mengapa objek identik mengubah hasil hitung?
+## Mengapa objek identik mengubah hasil hitung
 
 **Permutasi dengan objek identik** menghitung susunan ketika beberapa objek tidak dapat dibedakan satu sama lain. Hasilnya lebih sedikit daripada permutasi biasa karena **menukar objek yang identik tidak menghasilkan susunan baru**.
 
@@ -21,14 +21,14 @@ Untuk <InlineMath math="n" /> objek yang terbagi menjadi beberapa kelompok objek
 <BlockMath math="P = \frac{n!}{r_1! \times r_2! \times r_3! \times \cdots \times r_k!}" />
 </MathContainer>
 
-**Keterangan:**
+Setiap simbol pada rumus memiliki arti berikut:
 
 - <InlineMath math="n" /> = jumlah total objek
 - <InlineMath math="r_1, r_2, r_3, \ldots, r_k" /> = banyaknya objek yang sama pada setiap kelompok
 - <InlineMath math="k" /> = banyaknya kelompok objek yang identik
 - Seluruh frekuensi mencakup semua objek, sehingga <InlineMath math="r_1 + r_2 + \cdots + r_k = n" />
 
-**Cara mengidentifikasi kelompok:** Hitung frekuensi setiap objek yang berbeda. Pembagian dengan setiap <InlineMath math="r_i!" /> menghapus penghitungan berulang akibat pertukaran salinan dalam kelompok tersebut.
+Hitung frekuensi setiap objek yang berbeda. Pembagian dengan setiap <InlineMath math="r_i!" /> menghapus hitungan berulang akibat pertukaran objek identik dalam kelompok tersebut.
 
 ## Penerapan pada Kata dan Huruf
 
@@ -36,12 +36,11 @@ Untuk <InlineMath math="n" /> objek yang terbagi menjadi beberapa kelompok objek
 
 Hitung berapa banyak susunan huruf yang dapat dibuat dari kata "KALIMANTAN".
 
-**Langkah identifikasi sistematis:**
-Tulis huruf satu per satu: K-A-L-I-M-A-N-T-A-N
+Tulis huruf secara berurutan: K-A-L-I-M-A-N-T-A-N
 
 Total huruf: <InlineMath math="10" />
 
-Identifikasi huruf: <InlineMath math="K" /> muncul <InlineMath math="1 \text{ kali}" />, <InlineMath math="A" /> muncul <InlineMath math="3 \text{ kali}" /> (posisi <InlineMath math="2, 6, 9" />), <InlineMath math="L" /> muncul <InlineMath math="1 \text{ kali}" />, <InlineMath math="I" /> muncul <InlineMath math="1 \text{ kali}" />, <InlineMath math="M" /> muncul <InlineMath math="1 \text{ kali}" />, <InlineMath math="N" /> muncul <InlineMath math="2 \text{ kali}" /> (posisi <InlineMath math="7, 10" />), dan <InlineMath math="T" /> muncul <InlineMath math="1 \text{ kali}" />
+Huruf yang berulang adalah <InlineMath math="A" /> sebanyak <InlineMath math="3 \text{ kali}" /> dan <InlineMath math="N" /> sebanyak <InlineMath math="2 \text{ kali}" />. Huruf lainnya hanya muncul sekali.
 
 **Perhitungan:**
 
@@ -58,15 +57,14 @@ Sederhanakan pecahan dengan membatalkan faktor yang sama:
 <BlockMath math="= \frac{10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4}{2}" />
 </MathContainer>
 
-Hitung langkah demi langkah:
+Kalikan faktor yang masih tersisa:
 - Bagi <InlineMath math="10" /> dengan <InlineMath math="2" />: <InlineMath math="\frac{10}{2} = 5" />
-- Jadi: <InlineMath math="5 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4" />
-- <InlineMath math="= 5 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 = 302\,400" />
+- Hasil perkalian yang tersisa adalah <InlineMath math="5 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 = 302\,400" />
 
 ### Contoh Kata PALAPA
 
 Untuk kata "PALAPA" dengan <InlineMath math="6" /> huruf:
-Tulis huruf satu per satu: P-A-L-A-P-A
+Tulis huruf secara berurutan: P-A-L-A-P-A
 
 **Identifikasi huruf:** <InlineMath math="P" /> muncul <InlineMath math="2 \text{ kali}" /> (posisi <InlineMath math="1, 5" />), <InlineMath math="A" /> muncul <InlineMath math="3 \text{ kali}" /> (posisi <InlineMath math="2, 4, 6" />), dan <InlineMath math="L" /> muncul <InlineMath math="1 \text{ kali}" />
 
@@ -75,7 +73,7 @@ Hitung setiap faktorial:
 - <InlineMath math="2! = 2 \times 1 = 2" />
 - <InlineMath math="3! = 3 \times 2 \times 1 = 6" />
 
-Jadi, perhitungannya adalah:
+Substitusikan setiap faktorial ke rumus permutasi:
 
 <MathContainer>
 <BlockMath math="P = \frac{6!}{2! \times 3! \times 1!}" />
@@ -88,9 +86,9 @@ Sederhanakan dengan membagi <InlineMath math="6" /> dengan <InlineMath math="2" 
 - <InlineMath math="\frac{6}{2} = 3" />
 - Jadi: <InlineMath math="3 \times 5 \times 4 = 60 \text{ susunan}" />
 
-## Langkah Perhitungan Sistematis
+## Menghitung Susunan dengan Objek Sama
 
-Untuk menyelesaikan masalah permutasi dengan objek yang sama, ikuti langkah berikut:
+Gunakan cara yang sama untuk susunan lain yang memuat objek berulang:
 
 1. **Hitung total objek**: Tentukan nilai <InlineMath math="n" />
 2. **Identifikasi objek sama**: Kelompokkan objek yang identik
@@ -98,9 +96,9 @@ Untuk menyelesaikan masalah permutasi dengan objek yang sama, ikuti langkah beri
 4. **Terapkan rumus**: Masukkan ke dalam rumus permutasi
 5. **Hitung faktorial**: Selesaikan perhitungan dengan teliti
 
-### Kata BANANA
+### Susunan Kata BANANA
 
-Terapkan langkah-langkah ini untuk mencari susunan kata "BANANA":
+Terapkan cara tersebut pada kata "BANANA":
 
 1. **Hitung total objek**
 

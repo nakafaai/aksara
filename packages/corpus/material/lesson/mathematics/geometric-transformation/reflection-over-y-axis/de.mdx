@@ -1,17 +1,18 @@
 
 export const metadata = {
-  title: "Spiegelung an der y-Achse",
+  title: "Spiegelung an der vertikalen Achse",
   description: "Spiegle Punkte, Dreiecke und Geraden an der y-Achse und wende die Koordinatenregel auf Gleichungen und Visualisierungen an.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometrische Transformation",
 };
 
-## Spiegelung an der y-Achse verstehen
+## Spiegelung an der vertikalen Achse
 
 Die Spiegelung an der <InlineMath math="y" />-Achse bildet jeden Punkt auf die gegenüberliegende Seite der <InlineMath math="y" />-Achse ab. Stell dir die <InlineMath math="y" />-Achse als senkrechten Spiegel vor: Urbild und Bildpunkt haben denselben Abstand zur <InlineMath math="y" />-Achse.
 
-### Regel für die Spiegelung an der y-Achse
+### Regel für die Spiegelung an der vertikalen Achse
 
 Wenn ein Punkt <InlineMath math="P(x, y)" /> an der <InlineMath math="y" />-Achse gespiegelt wird, folgen die Koordinaten seines Bildes, <InlineMath math="P'(x', y')" />, der Regel:
 
@@ -108,6 +109,7 @@ Durch die Verbindung der Bildpunkte <InlineMath math="P'Q'R'" /> erhalten wir da
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#d97706",
       showPoints: true,
       labels: [
@@ -130,6 +132,7 @@ Durch die Verbindung der Bildpunkte <InlineMath math="P'Q'R'" /> erhalten wir da
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [
@@ -176,7 +179,7 @@ Die beiden Geraden sehen so aus:
         return { x, y: x + 2, z: 0 };
       }),
       color: "#9333ea",
-      smooth: true,
+      smooth: false,
       labels: [{ text: <InlineMath math="y=x+2" />, at: 9, offset: [0.7, -0.5, 0] }],
     },
     {
@@ -186,7 +189,7 @@ Die beiden Geraden sehen so aus:
         return { x, y: -x + 2, z: 0 };
       }),
       color: "#db2777",
-      smooth: true,
+      smooth: false,
       labels: [{ text: <InlineMath math="y=-x+2" />, at: 1, offset: [-0.7, -0.5, 0] }],
     },
   ]}

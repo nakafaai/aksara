@@ -1,8 +1,9 @@
 export const metadata = {
-    title: "Eigenwerte von Diagonal- und Dreiecksmatrizen",
+    title: "Eigenwerte von Diagonalmatrizen und Dreiecksmatrizen",
     description: "Eigenwerte aus den Diagonaleinträgen von Diagonal- und Dreiecksmatrizen ablesen und mit Determinante und Spur prüfen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Lineare Methoden der KI",
 };
 
@@ -10,7 +11,7 @@ export const metadata = {
 
 Bei Diagonal- und Dreiecksmatrizen lässt sich jeder Eigenwert zusammen mit seiner algebraischen Multiplizität direkt von der Hauptdiagonale ablesen. Die Matrix kann eine der folgenden Formen haben:
 
-Die Eigenwerte einer quadratischen Diagonalmatrix oder Dreiecksmatrix <InlineMath math="A \in \mathbb{K}^{n \times n}" />
+Die drei folgenden Formen zeigen eine Diagonal-, eine obere Dreiecks- und eine untere Dreiecksmatrix <InlineMath math="A \in \mathbb{K}^{n \times n}" />.
 
 <MathContainer>
 <BlockMath math="A = \begin{pmatrix} a_{11} & 0 & \cdots & 0 \\ 0 & a_{22} & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & a_{nn} \end{pmatrix}" />
@@ -18,7 +19,7 @@ Die Eigenwerte einer quadratischen Diagonalmatrix oder Dreiecksmatrix <InlineMat
 <BlockMath math="A = \begin{pmatrix} a_{11} & 0 & \cdots & 0 \\ * & a_{22} & \ddots & \vdots \\ \vdots & \vdots & \ddots & 0 \\ * & * & \cdots & a_{nn} \end{pmatrix}" />
 </MathContainer>
 
-sind seine wichtigsten diagonalen Einträge:
+Bei allen drei Formen sind die Eigenwerte die Einträge der Hauptdiagonale:
 
 <BlockMath math="\lambda_1 = a_{11}, \ldots, \lambda_n = a_{nn}" />
 
@@ -32,7 +33,7 @@ Dreiecksmatrizen haben die gleichen Eigenschaften wie Diagonalmatrizen. Sowohl f
 
 Dies liegt daran, dass bei der Berechnung von <InlineMath math="\det(A - tI)" /> die Einträge oberhalb oder unterhalb der Hauptdiagonale keinen Einfluss auf die Determinantenberechnung haben. Die Dreiecksstruktur ermöglicht die Berechnung der Determinante als Produkt diagonaler Einträge.
 
-## Beispiele für direkte Berechnungen
+## Eigenwerte nicht dreieckiger Matrizen berechnen
 
 Die Diagonalregel gilt speziell für Dreiecksmatrizen. Zum Vergleich müssen wir bei den folgenden nicht dreieckigen Matrizen jeweils das charakteristische Polynom berechnen.
 
@@ -45,9 +46,9 @@ Angenommen <InlineMath math="A = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}" 
 <BlockMath math="= (1-t) \cdot (1-t) - 1 \cdot (-1) = t^2 - 2t + 2" />
 </MathContainer>
 
-welches Wurzeln <InlineMath math="\lambda_1 = 1 + i" /> und <InlineMath math="\lambda_2 = 1 - i" /> hat.
+Die Nullstellen dieses charakteristischen Polynoms sind <InlineMath math="\lambda_1 = 1 + i" /> und <InlineMath math="\lambda_2 = 1 - i" />.
 
-### Null-Eigenwerte
+### Eigenwerte gleich null
 
 Für <InlineMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" /> ist das charakteristische Polynom:
 
@@ -56,7 +57,7 @@ Für <InlineMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" /> ist
 <BlockMath math="= (1-t) \cdot (1-t) - i \cdot (-i) = t^2 - 2t" />
 </MathContainer>
 
-mit Wurzeln <InlineMath math="\lambda_1 = 2" /> und <InlineMath math="\lambda_2 = 0" />.
+Die Nullstellen dieses charakteristischen Polynoms sind <InlineMath math="\lambda_1 = 2" /> und <InlineMath math="\lambda_2 = 0" />.
 
 ## Charakteristische Polynomfaktorisierung
 
@@ -76,7 +77,7 @@ Diese Eigenschaft gilt natürlich für komplexe Eigenwerte von Matrizen mit reel
 
 ## Beziehung zwischen Determinante und Spur
 
-Es besteht eine grundlegende Beziehung zwischen Eigenwerten und der Determinante und Spur einer Matrix. Wenn das charakteristische Polynom <InlineMath math="\chi_A(t)" /> linear in <InlineMath math="\mathbb{K}" /> faktorisiert werden kann, was bedeutet, dass die Matrix <InlineMath math="A" /> <InlineMath math="n" /> Eigenwerte <InlineMath math="\lambda_1, \ldots, \lambda_n \in \mathbb{K}" /> hat, dann:
+Wenn das charakteristische Polynom <InlineMath math="\chi_A(t)" /> über <InlineMath math="\mathbb{K}" /> in Linearfaktoren zerfällt, besitzt die Matrix <InlineMath math="A" /> dort <InlineMath math="n" /> Eigenwerte <InlineMath math="\lambda_1, \ldots, \lambda_n" />, mit Vielfachheiten gezählt. Für ihre Summe und ihr Produkt gilt:
 
 <MathContainer>
 <BlockMath math="\det A = \prod_{i=1}^n \lambda_i" />

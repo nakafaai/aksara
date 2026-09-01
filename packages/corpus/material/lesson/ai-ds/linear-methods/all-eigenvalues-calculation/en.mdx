@@ -3,15 +3,15 @@ export const metadata = {
     description: "Follow QR iteration from orthogonal factorization to Schur form, then read real and complex eigenvalues without forming a characteristic polynomial.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-17",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Linear Methods of AI",
 };
 
-## From a Matrix to Its Eigenvalues
+## Calculating All Eigenvalues of a Matrix
 
-The QR algorithm computes all eigenvalues of a square matrix by repeatedly changing its basis. It does not change the eigenvalues. Instead, it moves the matrix toward a form in which those eigenvalues are easier to read.
+The <InlineMath math="\mathrm{QR}" /> algorithm computes all eigenvalues of a square matrix through repeated changes of basis. Each step produces a similar matrix, so the eigenvalues stay the same. The iteration approaches a diagonal or Schur form, where the eigenvalues are obtained from diagonal entries or small diagonal blocks.
 
-The version below is the unshifted QR iteration. It exposes the central idea clearly. Production eigensolvers add shifts, reduce the matrix to Hessenberg form first, and deflate converged blocks so that the same idea runs faster and more reliably.
+The version below is the unshifted <InlineMath math="\mathrm{QR}" /> iteration. Production eigensolvers also use shifts, reduce the matrix to Hessenberg form, and deflate converged blocks to improve speed and numerical reliability.
 
 ## One QR Iteration
 
@@ -40,7 +40,7 @@ Because <InlineMath math="Q_k" /> is unitary, <InlineMath math="Q_k^{*}Q_k=I" />
 <BlockMath math="A_{k+1}=Q_k^{*}A_kQ_k" />
 </MathContainer>
 
-Thus <InlineMath math="A_{k+1}" /> is unitarily similar to <InlineMath math="A_k" />. Similar matrices have the same characteristic polynomial and therefore the same eigenvalues. Each QR step expresses the same linear transformation in new coordinates.
+<InlineMath math="A_{k+1}" /> is unitarily similar to <InlineMath math="A_k" />. Similar matrices have the same characteristic polynomial and therefore the same eigenvalues. Each <InlineMath math="\mathrm{QR}" /> step expresses the same linear transformation in new coordinates.
 
 ## What the Iteration Converges To
 
@@ -50,7 +50,7 @@ The final form depends on the matrix and the number system used.
 |---|---|---|
 | Real symmetric or complex Hermitian | Diagonal matrix | The diagonal entries are the real eigenvalues |
 | General complex | Upper triangular Schur form | The diagonal entries are the eigenvalues |
-| General real | Quasi-upper-triangular real Schur form | Each <InlineMath math="1\times1" /> block gives a real eigenvalue; each <InlineMath math="2\times2" /> block gives a complex-conjugate pair |
+| General real | Quasi-upper-triangular real Schur form | Each <InlineMath math="1\times1" /> block gives a real eigenvalue. Each <InlineMath math="2\times2" /> block gives a complex-conjugate pair |
 
 The eigenvalues can appear in any order. Repeated values and special arrangements need separate handling because a strict magnitude ordering does not cover them.
 
@@ -60,7 +60,7 @@ Consider the symmetric matrix
 
 <BlockMath math="A_0=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />
 
-One QR factorization and reverse multiplication give
+One <InlineMath math="\mathrm{QR}" /> factorization and reverse multiplication give
 
 <MathContainer>
 <BlockMath math="Q_0=\frac{1}{\sqrt5}\begin{pmatrix}2&-1\\1&2\end{pmatrix},\qquad R_0=\begin{pmatrix}\sqrt5&\frac4{\sqrt5}\\0&\frac3{\sqrt5}\end{pmatrix}" />
@@ -71,6 +71,6 @@ The off-diagonal magnitude has already fallen from <InlineMath math="1" /> to <I
 
 <BlockMath math="A_k\longrightarrow\begin{pmatrix}3&0\\0&1\end{pmatrix}" />
 
-The limiting diagonal reveals the eigenvalues <InlineMath math="3" /> and <InlineMath math="1" />. Every iterate is similar to <InlineMath math="A_0" />, so these values belong to the original matrix.
+The limiting diagonal contains the eigenvalues <InlineMath math="3" /> and <InlineMath math="1" />. Every iterate is similar to <InlineMath math="A_0" />, so these values belong to the original matrix.
 
-> QR iteration is a similarity process. For symmetric matrices it approaches a diagonal form; for general real matrices it approaches a real Schur form that may contain essential <InlineMath math="2\times2" /> blocks.
+> <InlineMath math="\mathrm{QR}" /> iteration is a similarity process. For symmetric matrices it approaches a diagonal form. For general real matrices it approaches a real Schur form that may contain essential <InlineMath math="2\times2" /> blocks.

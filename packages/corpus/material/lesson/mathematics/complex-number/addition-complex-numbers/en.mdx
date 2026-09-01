@@ -2,18 +2,16 @@
 
 export const metadata = {
   title: "Addition of Complex Numbers",
-  description: "Add complex numbers by combining their real and imaginary parts, then interpret the result with the parallelogram rule.",
+  description: "Add the real and imaginary parts of two complex numbers, then represent their sum as the diagonal of a parallelogram.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Complex Number",
 };
 
 ## Addition of Two Complex Numbers
 
-How do you add two complex numbers?
-
-Suppose we have two complex numbers:
+Start with two complex numbers:
 
 <MathContainer>
   <BlockMath math="z_1 = x_1 + iy_1" />
@@ -24,7 +22,7 @@ To form <InlineMath math="z_1 + z_2" />, add the real parts to each other and do
 
 <BlockMath math="z_1 + z_2 = (x_1 + x_2) + i(y_1 + y_2)" />
 
-### Addition Example
+### Adding Two Specific Complex Numbers
 
 Let <InlineMath math="z_1 = 2 + 3i" /> and <InlineMath math="z_2 = 1 - i" />.
 
@@ -35,7 +33,7 @@ Then their sum is:
 
 <BlockMath math="z_1 + z_2 = (2 + 1) + i(3 + (-1)) = 3 + i(2) = 3 + 2i" />
 
-### Visualization of Addition
+### Adding on the Complex Plane
 
 Using the parallelogram rule, the addition of complex numbers can be viewed geometrically on the complex plane. If we represent <InlineMath math="z_1" /> and <InlineMath math="z_2" /> as vectors (arrows) from the origin <InlineMath math="(0, 0)" />, then their sum, <InlineMath math="z_1 + z_2" />, is the diagonal vector of the parallelogram formed by <InlineMath math="z_1" /> and <InlineMath math="z_2" />.
 
@@ -56,6 +54,7 @@ Using the parallelogram rule, the addition of complex numbers can be viewed geom
         { x: 0, y: 0, z: 0 },
         { x: 2, y: 3, z: 0 },
       ],
+      smooth: false,
       color: "#0284c7",
       labels: [{ text: <InlineMath math="z_1=2+3i" />, at: 1, offset: [0.5, 0.5, 0] }],
       cone: { position: "end" },
@@ -66,6 +65,7 @@ Using the parallelogram rule, the addition of complex numbers can be viewed geom
         { x: 0, y: 0, z: 0 },
         { x: 1, y: -1, z: 0 },
       ],
+      smooth: false,
       color: "#059669",
       labels: [{ text: <InlineMath math="z_2=1-i" />, at: 1, offset: [0.5, -0.5, 0] }],
       cone: { position: "end" },
@@ -76,6 +76,7 @@ Using the parallelogram rule, the addition of complex numbers can be viewed geom
         { x: 0, y: 0, z: 0 },
         { x: 3, y: 2, z: 0 },
       ],
+      smooth: false,
       color: "#e11d48",
       labels: [{ text: <InlineMath math="z_1+z_2=3+2i" />, at: 1, offset: [2, -1, 0] }],
       cone: { position: "end" },
@@ -86,6 +87,7 @@ Using the parallelogram rule, the addition of complex numbers can be viewed geom
         { x: 2, y: 3, z: 0 },
         { x: 3, y: 2, z: 0 },
       ],
+      smooth: false,
       color: "#059669",
     },
     // Parallelogram helper line (from end of z2 to end of z1+z2)
@@ -94,14 +96,15 @@ Using the parallelogram rule, the addition of complex numbers can be viewed geom
         { x: 1, y: -1, z: 0 },
         { x: 3, y: 2, z: 0 },
       ],
+      smooth: false,
       color: "#0284c7",
     },
   ]}
 />
 
-## Related Operations
+## Scaling Negating and Subtracting
 
-Besides addition, other operations work similarly:
+The same separation of real and imaginary parts also applies to scalar multiplication, negation, and subtraction.
 
 ### Scalar Multiplication
 
@@ -129,16 +132,16 @@ So, subtract the real parts and subtract the imaginary parts.
 
 Geometrically, <InlineMath math="z_1 - z_2" /> is the vector from the tip of <InlineMath math="z_2" /> to the tip of <InlineMath math="z_1" />.
 
-### Example of Combined Operations
+### Combining Addition Subtraction and Scaling
 
-Suppose we have:
+Use the following two numbers:
 
 <MathContainer>
   <BlockMath math="z_1 = 2 + \frac{1}{2}i" />
   <BlockMath math="z_2 = -3 + \sqrt{2}i" />
 </MathContainer>
 
-The same idea can now be applied to three combined expressions:
+Calculate three expressions by handling the real and imaginary parts separately:
 
 1.  **<InlineMath math="2z_1" /> (Scalar Multiplication):**
 
@@ -200,6 +203,7 @@ Given <InlineMath math="z_1=1+2i" /> and <InlineMath math="z_2=3-i" />, determin
             { x: 0, y: 0, z: 0 },
             { x: 1, y: 2, z: 0 },
           ],
+          smooth: false,
           color: "#0284c7",
           labels: [{ text: <InlineMath math="z_1=1+2i" />, at: 1, offset: [0.5, 0.5, 0] }],
           cone: { position: "end" },
@@ -209,6 +213,7 @@ Given <InlineMath math="z_1=1+2i" /> and <InlineMath math="z_2=3-i" />, determin
             { x: 0, y: 0, z: 0 },
             { x: 3, y: -1, z: 0 },
           ],
+          smooth: false,
           color: "#059669",
           labels: [{ text: <InlineMath math="z_2=3-i" />, at: 1, offset: [0.5, -0.5, 0] }],
           cone: { position: "end" },
@@ -218,6 +223,7 @@ Given <InlineMath math="z_1=1+2i" /> and <InlineMath math="z_2=3-i" />, determin
             { x: 0, y: 0, z: 0 },
             { x: 4, y: 1, z: 0 }, // z3 = z1 + z2
           ],
+          smooth: false,
           color: "#e11d48",
           labels: [{ text: <InlineMath math="z_3=4+i" />, at: 1, offset: [0.5, 0.5, 0] }],
           cone: { position: "end" },
@@ -228,6 +234,7 @@ Given <InlineMath math="z_1=1+2i" /> and <InlineMath math="z_2=3-i" />, determin
             { x: 1, y: 2, z: 0 }, // end of z1
             { x: 4, y: 1, z: 0 }, // end of z3
           ],
+          smooth: false,
           color: "#059669",
         },
         {
@@ -235,6 +242,7 @@ Given <InlineMath math="z_1=1+2i" /> and <InlineMath math="z_2=3-i" />, determin
             { x: 3, y: -1, z: 0 }, // end of z2
             { x: 4, y: 1, z: 0 }, // end of z3
           ],
+          smooth: false,
           color: "#0284c7",
         },
       ]}

@@ -1,29 +1,29 @@
 export const metadata = {
     title: "Konsep Limit Fungsi",
-    description: "Pahami limit melalui tabel nilai, perilaku satu sisi, definisi epsilon-delta, dan contoh yang dibahas tuntas.",
+  description: "Perkirakan limit dari tabel nilai dan perilaku satu sisi, lalu jelaskan arti definisi epsilon delta.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Limit",
 };
 
-## Memahami Limit Secara Intuitif
+## Makna Limit
 
-**Limit** menanyakan perilaku nilai keluaran di sekitar suatu titik ketika input mendekati titik tersebut. Pertanyaan awalnya **bukan** nilai fungsi tepat di titik itu. Perbedaan ini memungkinkan kita membahas lubang yang dapat dihilangkan, lompatan, atau asimtot tegak tanpa menganggap fungsi harus terdefinisi di titik tersebut.
+**Limit** menggambarkan perilaku nilai keluaran ketika input mendekati suatu titik. Nilai fungsi tepat di titik itu dapat ada, tidak ada, atau berbeda dari limitnya. Karena itu, limit tetap dapat digunakan untuk membahas lubang yang dapat dihilangkan, lompatan, dan asimtot tegak.
 
-Limit menjadi bahasa untuk mendefinisikan kontinuitas, turunan, dan integral tentu. Kita akan membaca perilakunya terlebih dahulu dari tabel nilai, lalu menghubungkan intuisi itu dengan limit satu sisi dan definisi epsilon-delta yang tepat.
+Kontinuitas, turunan, dan integral tentu semuanya didefinisikan dengan limit. Kita akan membaca pola nilai fungsi terlebih dahulu dari tabel, lalu menghubungkan pola tersebut dengan limit satu sisi dan definisi epsilon-delta yang tepat.
 
 ## Pendekatan Melalui Tabel Nilai
 
-Untuk memahami limit secara lebih konkret, lihat bagaimana nilai fungsi berubah ketika variabel mendekati suatu titik. Misalkan kita memiliki fungsi <InlineMath math="f(x) = x + 2" /> dan ingin melihat apa yang terjadi ketika <InlineMath math="x" /> mendekati <InlineMath math="3" />.
+Tabel berikut mencatat perubahan <InlineMath math="f(x) = x + 2" /> saat <InlineMath math="x" /> mendekati <InlineMath math="3" /> dari kedua sisi.
 
 | <InlineMath math="x" /> | <InlineMath math="2{,}9" /> | <InlineMath math="2{,}99" /> | <InlineMath math="2{,}999" /> | ... | <InlineMath math="3{,}001" /> | <InlineMath math="3{,}01" /> | <InlineMath math="3{,}1" /> |
 |-------------|-----|------|-------|-----|-------|------|-----|
 | <InlineMath math="f(x)" /> | <InlineMath math="4{,}9" /> | <InlineMath math="4{,}99" /> | <InlineMath math="4{,}999" /> | ... | <InlineMath math="5{,}001" /> | <InlineMath math="5{,}01" /> | <InlineMath math="5{,}1" /> |
 
-Dari tabel di atas, kita dapat melihat bahwa ketika <InlineMath math="x" /> mendekati <InlineMath math="3" /> dari kiri (nilai <InlineMath math="x < 3" />) maupun kanan (nilai <InlineMath math="x > 3" />), nilai <InlineMath math="f(x)" /> mendekati <InlineMath math="5" />. **Nilai pendekatan inilah yang disebut limit**.
+Saat <InlineMath math="x" /> mendekati <InlineMath math="3" /> dari kedua sisi, nilai <InlineMath math="f(x)" /> pada tabel mendekati <InlineMath math="5" />. **Nilai yang didekati itu disebut limit**.
 
-## Notasi, Limit Satu Sisi, dan Makna Formal
+## Notasi Limit Satu Sisi dan Makna Formal
 
 Notasi baku untuk limit adalah:
 
@@ -53,17 +53,17 @@ Artinya, untuk setiap toleransi keluaran <InlineMath math="\varepsilon>0" /> sek
 
 ## Penerapan Limit
 
-### Contoh Sederhana
+### Menghitung Limit dengan Substitusi Langsung
 
 Tentukan <InlineMath math="\lim_{x \to 4} (2x - 1)" />.
 
 **Penyelesaian:**
 
-Karena fungsi <InlineMath math="f(x) = 2x - 1" /> kontinu di <InlineMath math="x = 4" />, kita dapat langsung mensubstitusi:
+Karena fungsi <InlineMath math="f(x) = 2x - 1" /> kontinu di <InlineMath math="x = 4" />, substitusikan <InlineMath math="x=4" /> secara langsung:
 
 <BlockMath math="\lim_{x \to 4} (2x - 1) = 2(4) - 1 = 8 - 1 = 7" />
 
-### Contoh dengan Bentuk Tak Tentu
+### Menyederhanakan Bentuk Tak Tentu Sebelum Menghitung Limit
 
 Tentukan <InlineMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2}" />.
 
@@ -82,7 +82,7 @@ Karena limit memakai nilai di sekitar titik dengan <InlineMath math="x \neq 2" /
 
 ## Sifat Dasar Limit
 
-Beberapa sifat penting yang memudahkan perhitungan limit:
+Sifat berikut digunakan untuk menghitung limit:
 
 1. **Sifat Linearitas:**
 
@@ -129,7 +129,7 @@ Beberapa sifat penting yang memudahkan perhitungan limit:
 
 3. **Penyelesaian:**
 
-   Ini adalah **limit fundamental trigonometri** yang sangat penting dalam kalkulus. Limit ini tidak dapat diselesaikan dengan substitusi langsung karena akan menghasilkan bentuk <InlineMath math="\frac{0}{0}" />. Namun, berdasarkan teorema limit trigonometri yang telah dibuktikan:
+   **Limit fundamental trigonometri** ini digunakan untuk menurunkan rumus turunan sinus dan kosinus. Substitusi langsung menghasilkan bentuk tak tentu <InlineMath math="\frac{0}{0}" />, sehingga kita memakai teorema limit trigonometri:
 
    <BlockMath math="\lim_{x \to 0} \frac{\sin x}{x} = 1" />
 

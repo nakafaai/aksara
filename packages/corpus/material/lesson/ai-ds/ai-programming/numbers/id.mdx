@@ -1,17 +1,17 @@
 export const metadata = {
-  title: "Numbers",
-  description: "Tipe angka Python seperti integer, float, dan kompleks, termasuk type checking, constructor, dan notasi ilmiah.",
+  title: "Bilangan dalam Python",
+  description: "Bandingkan tipe int, float, dan complex, periksa tipe objek, lalu ubah input teks atau angka dengan constructor yang sesuai.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-26",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Pemrograman AI",
 };
 
 ## Pengenalan Tipe Data Angka
 
-Python menyediakan tipe numerik bawaan untuk bilangan bulat, perhitungan bilangan real secara aproksimatif, dan bilangan kompleks. Pemilihan tipe penting karena setiap tipe merepresentasikan nilai dan menjalankan aritmetika dengan cara yang berbeda.
+Python memiliki tiga tipe numerik bawaan: `int` untuk bilangan bulat, `float` untuk aproksimasi bilangan real, dan `complex` untuk bilangan kompleks. Tipe tersebut menentukan cara Python merepresentasikan nilai dan menjalankan operasi aritmetika.
 
-Python sangat fleksibel dalam menangani angka. Ketika kamu mengetik angka di Python shell, Python langsung mengenali dan menampilkannya kembali. Lihat bagaimana Python bekerja dengan angka.
+Python shell mengevaluasi literal numerik dan menampilkan nilai literal. Bandingkan literal berikut.
 
 <CodeBlock
   data={[
@@ -36,32 +36,32 @@ Python sangat fleksibel dalam menangani angka. Ketika kamu mengetik angka di Pyt
   ]}
 />
 
-Python membaca setiap literal berdasarkan notasinya. <InlineMath math="4" /> menghasilkan integer, sedangkan titik desimal pada <InlineMath math="4." /> menjadikannya literal floating-point yang ditampilkan sebagai <InlineMath math="4.0" />.
+Python menentukan tipe setiap literal dari cara penulisannya. <InlineMath math="4" /> menghasilkan `int`, sedangkan titik desimal pada <InlineMath math="4." /> menjadikannya `float` yang ditampilkan sebagai <InlineMath math="4.0" />.
 
 ## Jenis Tipe Data Angka
 
 Tiga tipe numerik bawaan utama Python adalah `int`, `float`, dan `complex`.
 
-### Integer
+### Bilangan Bulat
 
-Integer adalah bilangan bulat positif, negatif, atau nol. Integer Python dapat terus membesar selama memori masih tersedia. Batasnya tidak terpaku pada rentang 32-bit atau 64-bit.
+Tipe `int` menyimpan bilangan bulat positif, negatif, atau nol. Nilai `int` dapat terus membesar selama memori masih tersedia, sehingga tidak dibatasi pada rentang 32 bit atau 64 bit.
 
-**Contoh integer yang valid**
+**Contoh bilangan bulat yang valid**
 
 <MathContainer>
 <BlockMath math="-2, -1, 0, 1, 2" />
 <BlockMath math="+1, +2, +3" />
 </MathContainer>
 
-**Fitur khusus integer di Python**
+**Penulisan bilangan bulat panjang**
 
-Python mengizinkan underscore di antara digit agar literal panjang lebih mudah dibaca. Misalnya, <InlineMath math="123\_456\_789" /> bernilai sama dengan <InlineMath math="123456789" />. Underscore hanya memengaruhi notasi dalam kode sumber.
+Python mengizinkan underscore di antara digit agar literal panjang lebih mudah dibaca. Misalnya, <InlineMath math="123\_456\_789" /> bernilai sama dengan <InlineMath math="123456789" />. Underscore hanya memengaruhi penulisan kode, bukan nilai literal.
 
-### Float
+### Tipe Float
 
-`float` menyimpan aproksimasi floating-point biner. Literal float dapat memuat titik desimal atau eksponen. Tipe ini cocok untuk pengukuran dan komputasi numerik, tetapi banyak pecahan desimal tidak dapat direpresentasikan secara persis dalam biner.
+Tipe `float` menyimpan pendekatan biner terhadap bilangan real. Literal `float` dapat memuat titik desimal atau eksponen. Tipe ini cocok untuk pengukuran dan komputasi numerik, tetapi banyak pecahan desimal tidak dapat disimpan secara persis dalam biner.
 
-**Contoh float yang umum**
+**Contoh literal `float`**
 
 <MathContainer>
 <BlockMath math="-1.2, 3.85, +7.01" />
@@ -70,7 +70,7 @@ Python mengizinkan underscore di antara digit agar literal panjang lebih mudah d
 
 **Notasi ilmiah untuk angka sangat kecil atau besar**
 
-Notasi eksponen `e` atau `E` memudahkan penulisan literal float yang sangat kecil atau sangat besar. Misalnya:
+Notasi eksponen `e` atau `E` memudahkan penulisan literal `float` yang sangat kecil atau sangat besar. Misalnya:
 
 <MathContainer>
 <BlockMath math="-3.2e5 = -3.2 \times 10^5" />
@@ -80,7 +80,7 @@ Notasi eksponen `e` atau `E` memudahkan penulisan literal float yang sangat keci
 
 Notasi <InlineMath math="e" /> atau <InlineMath math="E" /> dalam Python sama seperti notasi ilmiah yang kamu pelajari di matematika. Angka <InlineMath math="1E1" /> sama dengan <InlineMath math="1 \times 10^1 = 10.0" />, dan <InlineMath math="3.1E-7" /> sama dengan <InlineMath math="3.1 \times 10^{-7}" />.
 
-### Complex
+### Bilangan Kompleks
 
 Bilangan kompleks memiliki bagian real dan imajiner. Dalam literal Python, sufiks <InlineMath math="j" /> menandai koefisien unit imajiner. Aritmetika kompleks umum digunakan dalam pemrosesan sinyal, teknik listrik, dan komputasi ilmiah.
 
@@ -91,11 +91,11 @@ Bilangan kompleks memiliki bagian real dan imajiner. Dalam literal Python, sufik
 <BlockMath math="4.5 - 2.1j" />
 </MathContainer>
 
-Bayangkan bilangan kompleks seperti koordinat pada peta. Bagian real adalah posisi horizontal, dan bagian imajiner adalah posisi vertikal.
+Bilangan kompleks dapat digambar pada bidang koordinat. Bagian real menentukan koordinat horizontal, sedangkan bagian imajiner menentukan koordinat vertikal.
 
-## Fungsi type untuk Memeriksa Tipe Data
+## Memeriksa Tipe dengan Fungsi Type
 
-Fungsi `type()` melaporkan class persis dari sebuah objek. Fungsi ini berguna ketika mengeksplorasi nilai di Python shell atau melacak data yang tidak sesuai dugaan.
+Fungsi `type()` melaporkan class persis dari sebuah objek. Fungsi ini berguna ketika mencoba nilai di Python shell atau melacak data yang tidak sesuai dugaan.
 
 <CodeBlock
   data={[
@@ -114,15 +114,15 @@ Fungsi `type()` melaporkan class persis dari sebuah objek. Fungsi ini berguna ke
   ]}
 />
 
-Untuk pemeriksaan identitas tipe yang ketat, kamu dapat membandingkan `type(value)` dengan sebuah class. Dalam kode aplikasi, `isinstance(value, SomeType)` sering lebih fleksibel karena juga mengenali subclass.
+Untuk memeriksa class persis, bandingkan `type(value)` dengan class yang diharapkan. Dalam kode aplikasi, `isinstance(value, SomeType)` biasanya lebih sesuai karena juga mengenali subclass.
 
-## Constructor untuk Membuat Objek Angka
+## Constructor untuk Membuat Bilangan
 
-Python menyediakan constructor untuk mengubah atau membuat objek angka dari tipe lain. Ini sangat berguna ketika kamu perlu mengonversi data dari satu format ke format lain.
+Python menyediakan constructor untuk membuat bilangan dari tipe lain. Misalnya, input teks perlu diubah menjadi bilangan sebelum dipakai dalam perhitungan.
 
-### Constructor float
+### Constructor Float
 
-Constructor `float()` mengubah angka lain menjadi bilangan desimal.
+Constructor `float()` mengubah nilai numerik lain atau teks yang valid menjadi nilai `float`.
 
 <CodeBlock
   data={[
@@ -138,11 +138,11 @@ Constructor `float()` mengubah angka lain menjadi bilangan desimal.
   ]}
 />
 
-Ketika kamu memanggil `float(2)`, Python mengubah integer <InlineMath math="2" /> menjadi float <InlineMath math="2.0" />. Jika kamu memanggil `float()` tanpa argumen, Python memberikan nilai default <InlineMath math="0.0" />.
+Ketika kamu memanggil `float(2)`, Python mengubah bilangan bulat <InlineMath math="2" /> menjadi <InlineMath math="2.0" />. Jika `float()` dipanggil tanpa argumen, default value yang dihasilkan adalah <InlineMath math="0.0" />.
 
-### Constructor int
+### Constructor Int
 
-Constructor `int()` mengubah float berhingga menjadi integer dengan memotong nilainya ke arah nol.
+Constructor `int()` mengubah `float` berhingga menjadi bilangan bulat dengan memotong bagian pecahannya ke arah nol.
 
 <CodeBlock
   data={[
@@ -161,11 +161,11 @@ Constructor `int()` mengubah float berhingga menjadi integer dengan memotong nil
   ]}
 />
 
-`int()` tidak membulatkan ke integer terdekat. Kedua contoh positif menghasilkan <InlineMath math="2" />, sedangkan `int(-2.9)` menghasilkan <InlineMath math="-2" /> karena pemotongan bergerak ke arah nol.
+`int()` tidak membulatkan ke bilangan bulat terdekat. Kedua contoh positif menghasilkan <InlineMath math="2" />, sedangkan `int(-2.9)` menghasilkan <InlineMath math="-2" /> karena pemotongan bergerak ke arah nol.
 
-### Constructor complex
+### Constructor Complex
 
-Constructor `complex()` membuat bilangan kompleks dari bilangan real.
+Constructor `complex()` membuat bilangan kompleks dari satu atau dua bilangan real.
 
 <CodeBlock
   data={[
@@ -188,5 +188,5 @@ Constructor `complex()` membuat bilangan kompleks dari bilangan real.
 | Kategori | Tipe | Contoh | Keterangan |
 |----------|------|--------|------------|
 | **Integer** | `int` | <InlineMath math="-2, -1, 0, 1, 2" /> dan <InlineMath math="+1, +2, +3" /> | Bilangan bulat, bisa gunakan underscore untuk kejelasan |
-| **Floating-Point** | `float` | <InlineMath math="-1.2, 3.85, +7.01" /> dan <InlineMath math="-.21, .01, 2." /> | Bilangan desimal, mendukung notasi ilmiah dengan <InlineMath math="e" /> atau <InlineMath math="E" /> |
+| **Float** | `float` | <InlineMath math="-1.2, 3.85, +7.01" /> dan <InlineMath math="-.21, .01, 2." /> | Bilangan desimal, mendukung notasi ilmiah dengan <InlineMath math="e" /> atau <InlineMath math="E" /> |
 | **Complex** | `complex` | <InlineMath math="2 + 3j" /> dan <InlineMath math="4.5 - 2.1j" /> | Bilangan kompleks dengan <InlineMath math="j" /> sebagai unit imajiner |

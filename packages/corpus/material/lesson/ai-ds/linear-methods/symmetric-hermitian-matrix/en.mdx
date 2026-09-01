@@ -1,9 +1,9 @@
 export const metadata = {
     title: "Symmetric and Hermitian Matrices",
-    description: "Learn symmetric and Hermitian matrices, including real eigenvalues, orthogonal eigenvectors, quadratic forms, and diagonalization.",
+    description: "Relate symmetric and Hermitian matrices to real eigenvalues, orthogonal eigenvectors, quadratic forms, and diagonalization.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-13",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Linear Methods of AI",
 };
 
@@ -13,17 +13,17 @@ A real square matrix <InlineMath math="A\in\mathbb{R}^{n\times n}" /> is **symme
 
 <BlockMath math="A^T=A" />
 
-or, entry by entry, <InlineMath math="a_{ji}=a_{ij}" />. For example,
+Entry by entry, the same condition is <InlineMath math="a_{ji}=a_{ij}" />. For example,
 
 <BlockMath math="A=\begin{pmatrix}1&2&3\\2&4&5\\3&5&6\end{pmatrix}" />
 
-is symmetric because its entries match across the main diagonal.
+The matrix <InlineMath math="A" /> is symmetric because its entries match across the main diagonal.
 
 A complex square matrix <InlineMath math="H\in\mathbb{C}^{n\times n}" /> is **Hermitian** when
 
 <BlockMath math="H^H=H" />
 
-which means <InlineMath math="h_{ji}=\overline{h_{ij}}" />. A genuine complex example is
+Entry by entry, the Hermitian condition means <InlineMath math="h_{ji}=\overline{h_{ij}}" />. An example with complex entries is
 
 <BlockMath math="H=\begin{pmatrix}2&1+i\\1-i&3\end{pmatrix}" />
 
@@ -37,7 +37,7 @@ The transpose and conjugate transpose must not be mixed. For <InlineMath math="x
 
 <BlockMath math="x^Tx=\sum_{k=1}^n x_k^2\geq0" />
 
-whereas for <InlineMath math="x\in\mathbb{C}^n" />,
+For <InlineMath math="x\in\mathbb{C}^n" />, use the conjugate transpose:
 
 <BlockMath math="x^Hx=\sum_{k=1}^n\overline{x_k}x_k=\sum_{k=1}^n|x_k|^2\geq0" />
 
@@ -70,7 +70,7 @@ A scalar equals its complex conjugate exactly when it is real. In the real case,
 
 <BlockMath math="x^TBx=x^T\left(\frac{B+B^T}{2}\right)x" />
 
-because <InlineMath math="x^T(B-B^T)x=0" />. Thus quadratic forms depend only on the symmetric part.
+The skew-symmetric part contributes nothing because <InlineMath math="x^T(B-B^T)x=0" />. Thus, quadratic forms depend only on the symmetric part.
 
 ## Why Hermitian Eigenvalues Are Real
 
@@ -115,7 +115,7 @@ For the earlier matrix
 
 <BlockMath math="H=\begin{pmatrix}2&1+i\\1-i&3\end{pmatrix}" />
 
-the characteristic polynomial is
+For the matrix <InlineMath math="H" />, the characteristic polynomial is
 
 <BlockMath math="\det(H-\lambda I)=(2-\lambda)(3-\lambda)-2=(\lambda-1)(\lambda-4)" />
 
@@ -130,4 +130,4 @@ They satisfy <InlineMath math="u_1^Hu_2=0" />. With <InlineMath math="U=(u_1\qua
 
 <BlockMath math="U^HHU=\operatorname{diag}(1,4)" />
 
-so the abstract theorem produces a directly checkable unitary diagonalization.
+This equation gives a unitary diagonalization that can be checked directly.

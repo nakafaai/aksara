@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Properties of Function Composition",
-  description: "Explore function composition properties: non-commutative order, associative grouping, and identity elements. Learn (f∘g) rules with proofs.",
+  description: "Show that function composition generally depends on order, then prove its associative and identity properties.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Function Composition and Inverse Function",
 };
 
 ## Properties of Function Composition
 
-Function composition, which involves combining functions sequentially, has several important properties we need to know. Study these properties using the following example functions:
+Function composition applies functions in sequence. The examples below show how changing the order can change the result, while changing only the grouping does not:
 
 <MathContainer>
   <BlockMath math="f(x) = 2x + 1" />
@@ -21,9 +21,9 @@ Their domains are:
 
 <BlockMath math="D_f=D_g=\mathbb{R}\qquad D_h=\mathbb{R}\setminus\{-1\}" />
 
-### Non-Commutative Property
+### Not Commutative Property
 
-The first and most common property is that the order in which functions are composed **matters**. Changing the order of functions usually results in a different composite function.
+In a composition, each function receives the output of the function to its right. Reversing the order therefore usually produces a different composite function.
 
 In general, <InlineMath math="(f \circ g)(x)" /> is **not equal to** <InlineMath math="(g \circ f)(x)" />.
 
@@ -49,7 +49,7 @@ The two polynomial expressions have different coefficients, so they are not the 
 
 <BlockMath math="(g\circ f)(0)=5\neq9=(f\circ g)(0)" />
 
-Therefore, <InlineMath math="g\circ f\neq f\circ g" /> as functions. Other pairs must be checked in the same way; composition is not commutative in general.
+The counterexample proves that <InlineMath math="g\circ f\neq f\circ g" /> as functions. Other pairs must be checked in the same way. Composition is not commutative in general.
 
 ### Associative Property
 
@@ -59,7 +59,7 @@ Mathematically, for functions <InlineMath math="f" />, <InlineMath math="g" />, 
 
 <BlockMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)" />
 
-This means we can compose <InlineMath math="f" /> with <InlineMath math="g" /> first, and then compose the result with <InlineMath math="h" />. Alternatively, we can compose <InlineMath math="g" /> with <InlineMath math="h" /> first, and then compose <InlineMath math="f" /> with the result. The outcome will be the same.
+We may first form <InlineMath math="f\circ g" /> and then compose that function with <InlineMath math="h" />, or first form <InlineMath math="g\circ h" /> and then compose <InlineMath math="f" /> with the result. On any input for which both sides are defined, both expressions apply <InlineMath math="h" />, then <InlineMath math="g" />, then <InlineMath math="f" />.
 
 **Example:**
 

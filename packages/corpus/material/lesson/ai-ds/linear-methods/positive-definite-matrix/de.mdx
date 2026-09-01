@@ -3,6 +3,7 @@ export const metadata = {
   description: "Klassifiziere symmetrische und hermitesche Matrizen mithilfe quadratischer Formen, Eigenwerte, Hauptminoren, Cholesky-Faktoren und der Optimierungsgeometrie.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Lineare Methoden der KI",
 };
 
@@ -26,7 +27,7 @@ Symmetrie gehört zur üblichen Definition. Für eine nicht symmetrische reelle 
 
 <BlockMath math="x^TAx=x^T\left(\frac{A+A^T}{2}\right)x" />
 
-Die quadratische Form sieht also nur den symmetrischen Anteil.
+Diese Identität zeigt, dass die quadratische Form nur vom symmetrischen Anteil von <InlineMath math="A" /> abhängt.
 
 ## Spektralkriterium
 
@@ -34,7 +35,7 @@ Nach dem Spektralsatz lässt sich eine reelle symmetrische Matrix schreiben als
 
 <BlockMath math="A=Q\Lambda Q^T" />
 
-mit orthogonalem <InlineMath math="Q" /> und reeller Diagonalmatrix <InlineMath math="\Lambda=\operatorname{diag}(\lambda_1,ldots,lambda_n)" />. Mit <InlineMath math="y=Q^Tx" /> folgt
+In dieser Zerlegung ist <InlineMath math="Q" /> orthogonal und <InlineMath math="\Lambda=\operatorname{diag}(\lambda_1,ldots,lambda_n)" /> eine reelle Diagonalmatrix. Die Substitution <InlineMath math="y=Q^Tx" /> ergibt
 
 <BlockMath math="x^TAx=\sum_{i=1}^n\lambda_i y_i^2" />
 
@@ -56,11 +57,11 @@ Ist <InlineMath math="A" /> positiv definit, dann ist
 
 <BlockMath math="E=\{x\in\mathbb{R}^n:x^TAx=1\}" />
 
-ein Ellipsoid mit Mittelpunkt im Ursprung. In Eigenvektorkoordinaten gilt
+Die Menge <InlineMath math="E" /> ist ein Ellipsoid mit Mittelpunkt im Ursprung. In Eigenvektorkoordinaten lautet seine Gleichung
 
 <BlockMath math="\sum_{i=1}^n\lambda_i y_i^2=1" />
 
-Die Hauptachsen sind also die Eigenvektoren von <InlineMath math="A" />, und ihre Halbachsenlängen betragen <InlineMath math="1/\sqrt{\lambda_i}" />. Kleine Eigenwerte gehören zu langen, große Eigenwerte zu kurzen Richtungen.
+Diese Gleichung zeigt, dass die Hauptachsen des Ellipsoids den Eigenvektoren von <InlineMath math="A" /> folgen. Die Halbachse mit dem Index <InlineMath math="i" /> hat die Länge <InlineMath math="1/\sqrt{\lambda_i}" />. Kleine Eigenwerte ergeben längere Halbachsen, große Eigenwerte kürzere Halbachsen.
 
 ## Hauptminorentests
 
@@ -70,7 +71,7 @@ Sei <InlineMath math="A_k" /> der linke obere <InlineMath math="k\times k" />-Bl
 
 Dieser Test der führenden Hauptminoren lässt sich nicht durch bloßes Ersetzen von <InlineMath math=">" /> durch <InlineMath math="\ge" /> erweitern. Bei positiver Semidefinitheit müssen alle Hauptminoren nichtnegativ sein. Die führenden Hauptminoren allein reichen dafür nicht aus.
 
-## Prüfungen für Zwei-mal-zwei-Matrizen
+## Prüfungen für Matrizen der Größe zwei mal zwei
 
 Betrachte
 
@@ -83,7 +84,7 @@ Die führenden Hauptminoren sind
 <BlockMath math="\det(A)=20-1=19>0" />
 </MathContainer>
 
-Somit ist <InlineMath math="A" /> positiv definit. Die Eigenwerte bestätigen dies:
+Beide führenden Hauptminoren sind positiv, daher ist <InlineMath math="A" /> positiv definit. Beide Eigenwerte sind ebenfalls positiv:
 
 <BlockMath math="\lambda_1=\frac{9+\sqrt5}{2}\approx5{,}61803,\qquad \lambda_2=\frac{9-\sqrt5}{2}\approx3{,}38197" />
 
@@ -95,27 +96,27 @@ Obwohl beide Diagonaleinträge positiv sind, gilt
 
 <BlockMath math="\det(B)=4-25=-21<0" />
 
-Die beiden Eigenwerte haben daher verschiedene Vorzeichen und <InlineMath math="B" /> ist indefinit.
+Die negative Determinante zeigt, dass die beiden Eigenwerte von <InlineMath math="B" /> verschiedene Vorzeichen haben. Daher ist <InlineMath math="B" /> indefinit.
 
-## Cholesky-Charakterisierung
+## Charakterisierung durch Choleskyzerlegung
 
 Eine reelle symmetrische Matrix ist genau dann positiv definit, wenn sie eine Cholesky-Faktorisierung
 
 <BlockMath math="A=LL^T" />
 
-mit unterer Dreiecksmatrix <InlineMath math="L" /> und ausschließlich positiven Diagonaleinträgen besitzt. Dann gilt
+In dieser Faktorisierung ist <InlineMath math="L" /> eine untere Dreiecksmatrix mit ausschließlich positiven Diagonaleinträgen. Dann gilt
 
 <BlockMath math="x^TAx=x^TLL^Tx=\|L^Tx\|_2^2>0\qquad(x\ne0)" />
 
-Umgekehrt läuft der Cholesky-Algorithmus für jede positiv definite Matrix ohne nichtpositiven Pivot vollständig durch. Dies liefert sowohl einen Test als auch einen effizienten Weg zum Lösen von <InlineMath math="Ax=b" />.
+Umgekehrt läuft der Cholesky-Algorithmus für jede positiv definite Matrix ohne nichtpositiven Pivot vollständig durch. Bei einer symmetrischen Eingabe prüft dieser erfolgreiche Ablauf in exakter Arithmetik die positive Definitheit. Nach <InlineMath math="A=LL^T" /> löst du zuerst <InlineMath math="Ly=b" /> und danach <InlineMath math="L^Tx=y" />.
 
-## Gram-Matrizen und <InlineMath math="A^TA" />
+## Grammatrizen aus transponierten Produkten
 
 Für jede reelle Matrix <InlineMath math="M\in\mathbb{R}^{m\times n}" /> gilt
 
 <BlockMath math="x^TM^TMx=\|Mx\|_2^2\ge0" />
 
-Daher ist <InlineMath math="M^TM" /> immer positiv semidefinit. Sie ist genau dann positiv definit, wenn
+Diese Gleichung zeigt, dass <InlineMath math="M^TM" /> immer positiv semidefinit ist. Die Matrix <InlineMath math="M^TM" /> ist genau dann positiv definit, wenn
 
 <BlockMath math="\ker(M)=\{0\}\quad\Longleftrightarrow\quad\operatorname{rank}(M)=n" />
 
@@ -144,7 +145,7 @@ Positive Definitheit allein garantiert keine einfache oder numerisch stabile Ber
 
 <BlockMath math="\kappa_2(A)=\frac{\lambda_{\max}(A)}{\lambda_{\min}(A)}" />
 
-kann dennoch sehr groß sein. Dadurch wird die Zielfunktion langgestreckt und Algorithmen können langsam oder empfindlich werden.
+Die Konditionszahl kann dennoch sehr groß sein. Dadurch erhält die Zielfunktion langgestreckte Konturen, und Algorithmen können langsam oder empfindlich gegenüber numerischen Fehlern werden.
 
 ## Spektralverschiebungen und Inversen
 
@@ -152,4 +153,4 @@ Für eine hermitesche Matrix <InlineMath math="A" /> sind die Eigenwerte von <In
 
 <BlockMath math="A-tI\succ0\quad\Longleftrightarrow\quad t<\lambda_{\min}(A)" />
 
-Aus <InlineMath math="A\succ0" /> folgt außerdem <InlineMath math="A^{-1}\succ0" /> mit Eigenwerten <InlineMath math="1/\lambda_i(A)" />. Diese Tatsachen sind nützlich. Ein numerischer Algorithmus sollte lineare Gleichungssysteme trotzdem lösen, statt eine Inverse explizit zu bilden.
+Aus <InlineMath math="A\succ0" /> folgt außerdem <InlineMath math="A^{-1}\succ0" /> mit Eigenwerten <InlineMath math="1/\lambda_i(A)" />. In numerischen Algorithmen werden lineare Gleichungssysteme direkt gelöst, weil die explizite Bildung einer Inversen mehr Operationen erfordert und Rundungsfehler verstärken kann.

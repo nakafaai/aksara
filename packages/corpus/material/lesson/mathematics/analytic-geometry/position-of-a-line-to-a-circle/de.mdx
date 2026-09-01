@@ -3,6 +3,7 @@ export const metadata = {
   description: "Bestimme mit Diskriminante, Schnittpunkten und Tangentenbedingungen, ob eine Gerade einen Kreis schneidet, berührt oder verfehlt.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Analytische Geometrie",
 };
 
@@ -12,9 +13,9 @@ export const metadata = {
 
 Zeichnen wir einen Kreis und eine Gerade in dieselbe Ebene, sind genau drei Lagebeziehungen möglich.
 
-Die Gerade kann den Kreis **in zwei Punkten schneiden**, ihn **in genau einem Punkt berühren** oder ihn **vollständig verfehlen**. Ein Bleistift über einem Ring liefert ein einfaches Bild dafür: Er kann durch die Ringfläche verlaufen, nur den Rand berühren oder ganz außerhalb liegen.
+Die Gerade kann den Kreis **in zwei Punkten schneiden**, ihn **in genau einem Punkt berühren** oder ihn **vollständig verfehlen**. Lege einen Bleistift über einen Ring. Je nach Lage verläuft er durch den Ring, berührt nur den Rand oder bleibt vollständig außerhalb.
 
-Diese Lagebeziehung ist ein Grundproblem der analytischen Geometrie. Mit demselben Verfahren lässt sich etwa prüfen, ob eine geplante Straße ein kreisförmiges Schutzgebiet durchquert oder ob eine Flugbahn eine festgelegte Zone berührt.
+Setzt du die Geradengleichung in die Kreisgleichung ein, entsteht eine quadratische Gleichung. Zwei reelle Lösungen bedeuten zwei Schnittpunkte, eine doppelte Lösung bedeutet Tangentialberührung und keine reelle Lösung bedeutet, dass die Gerade den Kreis verfehlt. Dieselbe Prüfung kann modellieren, ob eine geplante Straße ein kreisförmiges Schutzgebiet durchquert oder ob eine Flugbahn eine festgelegte Zone berührt.
 
 ## Die drei Lagebeziehungen
 
@@ -141,7 +142,7 @@ Die oberste Gerade besitzt keinen gemeinsamen Punkt mit dem Kreis. Die mittlere 
 
 ## Entscheidung mit der Diskriminante
 
-Um die Lage rechnerisch zu bestimmen, setzen wir die Geradengleichung in die Kreisgleichung ein. Dadurch entsteht eine quadratische Gleichung. Ihre **Diskriminante** verrät, wie viele reelle Schnittpunkte existieren.
+Um die Anzahl der Schnittpunkte rechnerisch zu bestimmen, setzen wir die Geradengleichung in die Kreisgleichung ein. Dadurch entsteht eine quadratische Gleichung. Das Vorzeichen ihrer **Diskriminante** bestimmt, ob Gerade und Kreis zwei, einen oder keinen reellen Schnittpunkt besitzen.
 
 Gegeben seien eine Gerade <InlineMath math="y = mx + c" /> und ein Kreis <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />.
 
@@ -175,7 +176,7 @@ Jede reelle Lösung für <InlineMath math="x" /> gehört zu einem Schnittpunkt. 
 
 3. Bei **negativer Diskriminante** (<InlineMath math="\Delta < 0" />) gibt es keine reelle Lösung. Die Gerade ist eine Passante und **schneidet den Kreis nicht**.
 
-## Beispielrechnung
+## Eine Sekante mit der Diskriminante erkennen
 
 Betrachten wir die Gerade <InlineMath math="y = 2x - 1" /> und den Kreis <InlineMath math="x^2 + y^2 - 4x + 2y - 4 = 0" />.
 
@@ -200,9 +201,9 @@ Weil <InlineMath math="\Delta = 116 > 0" /> gilt, schneidet die Gerade <InlineMa
 
 > Das Vorzeichen der Diskriminante bestimmt die Zahl der Schnittpunkte. Ihre Größe allein ist jedoch kein geometrischer Abstand der Geraden von der Tangente, denn sie hängt auch von der Skalierung der Gleichung ab.
 
-## Sonderfall: Kreis mit Mittelpunkt im Ursprung
+## Kreis mit Mittelpunkt im Ursprung
 
-Für einen Kreis mit Mittelpunkt im Ursprung, <InlineMath math="x^2 + y^2 = r^2" />, und eine Gerade <InlineMath math="y = mx + c" /> wird die Rechnung kürzer.
+Beim Kreis mit Mittelpunkt im Ursprung, <InlineMath math="x^2 + y^2 = r^2" />, sind beide Mittelpunktkoordinaten null. Beim Einsetzen von <InlineMath math="y=mx+c" /> entstehen daher keine horizontalen oder vertikalen Verschiebungsterme.
 
 Wir setzen die Gerade in die Kreisgleichung ein:
 

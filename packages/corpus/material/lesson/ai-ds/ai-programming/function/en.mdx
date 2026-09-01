@@ -1,9 +1,9 @@
 export const metadata = {
     title: "Functions",
-    description: "Learn Python functions, including parameters, return values, variable scope, closures, and error handling with code examples.",
+  description: "Define Python functions with parameters, return values, variable scopes, closures, and explicit error handling.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "AI Programming",
 };
 
@@ -11,11 +11,11 @@ export const metadata = {
 
 A function names a reusable operation. Its parameters describe the inputs it accepts, its body performs the work, and a `return` statement can provide a result to the caller.
 
-In programming, functions help us avoid writing the same code repeatedly. Functions have names, can accept parameters (input data), and can return values.
+A function gives a reusable name to a block of behavior, so the same logic does not need to be copied. It can accept parameters and return a value.
 
 ## Function Structure and Syntax
 
-Every function in Python has a basic structure consisting of several important components.
+Every Python function follows the same basic structure:
 
 <CodeBlock
   data={[
@@ -67,10 +67,10 @@ print(greet("Bob"))  # Output: Hello, Bob!`
 
 Process that occurs during function call:
 
-1. Python resolves the name or expression to a callable object
+1. Python evaluates the name or expression and checks that the result is callable
 2. Argument binding matches supplied values to the function signature
 3. Python executes the body in a new local scope
-4. `return` ends the call with a value; reaching the end returns `None`
+4. `return` ends the call with a value. Reaching the end returns `None`
 
 ## Parameters and Arguments
 
@@ -101,7 +101,7 @@ print(introduction("Andi", age=28, city="Surabaya"))
   ]}
 />
 
-Important rules in parameter usage:
+Parameter rules:
 
 1. Positional parameters must be given in order
 2. Keyword parameters can be given in any order
@@ -110,7 +110,7 @@ Important rules in parameter usage:
 
 ### Variable Number of Parameters
 
-Python allows a signature to collect a variable number of arguments with `*args` and `**kwargs`. Practical limits still come from available resources and the work performed by the function.
+Python can collect extra arguments through `*args` and `**kwargs`. The function still needs to check their number, types, and values against the program's requirements.
 
 <CodeBlock
   data={[
@@ -241,7 +241,7 @@ Variable lookup rules follow LEGB order:
 3. **Global** - at module level
 4. **Built-in** - Python built-in names
 
-## Functions as First-Class Objects
+## Functions as First Class Objects
 
 In Python, functions are first-class objects, meaning functions can be treated like other data. You can store functions in variables, pass functions as arguments, or return functions from other functions.
 

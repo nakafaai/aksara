@@ -3,13 +3,13 @@ export const metadata = {
   description: "Bedakan konvergensi dan divergensi melalui jumlah parsial, lalu klasifikasikan contoh deret geometri, aritmetika, dan harmonik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-08",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Barisan dan Deret",
 };
 
-## Apa Itu Deret Konvergen dan Divergen?
+## Deret Konvergen dan Divergen
 
-Penjumlahan suku-suku suatu barisan tak hingga membentuk **deret tak hingga**. Perilakunya ditentukan melalui jumlah parsial: jika jumlah parsial mendekati bilangan berhingga, deretnya **konvergen**; jika tidak, deretnya **divergen**.
+Penjumlahan suku-suku suatu barisan tak hingga membentuk **deret tak hingga**. Perilakunya ditentukan melalui jumlah parsial: jika jumlah parsial mendekati bilangan berhingga, deretnya **konvergen**. Jika tidak, deretnya **divergen**.
 
 ## Konvergensi Barisan
 
@@ -29,7 +29,7 @@ Untuk deret tak hingga:
 
 <BlockMath math="\sum_{k=1}^{\infty}a_k" />
 
-kita mempelajari jumlah parsialnya:
+Untuk menentukan konvergensinya, kita mempelajari barisan jumlah parsial:
 
 <BlockMath math="S_n=\sum_{k=1}^{n}a_k" />
 
@@ -41,7 +41,7 @@ Sebuah deret disebut **konvergen** jika jumlah parsialnya mendekati nilai _berhi
 
 ### Ciri Khas Deret Konvergen
 
-- Jumlah parsialnya (jumlah <InlineMath math="n" /> suku pertama, <InlineMath math="S_n" />) mendekati suatu nilai <InlineMath math="L" /> saat <InlineMath math="n" /> mendekati tak hingga (<InlineMath math="\lim_{n \to \infty} S_n = L" />, dimana <InlineMath math="L" /> adalah bilangan real).
+- Jumlah parsialnya (jumlah <InlineMath math="n" /> suku pertama, <InlineMath math="S_n" />) mendekati suatu nilai <InlineMath math="L" /> saat <InlineMath math="n" /> mendekati tak hingga (<InlineMath math="\lim_{n \to \infty} S_n = L" />, dengan <InlineMath math="L" /> sebagai bilangan real).
 - Syarat perlu (tetapi tidak cukup): suku ke-<InlineMath math="n" /> (<InlineMath math="u_n" />) harus mendekati <InlineMath math="0" /> saat <InlineMath math="n" /> mendekati tak hingga (<InlineMath math="\lim_{n \to \infty} u_n = 0" />).
 
 ### Contoh Deret Konvergen
@@ -104,12 +104,12 @@ Setiap barisan yang monoton dan terbatas pasti konvergen. Kriteria ini berguna k
 
 Jumlah parsial dari deret dengan suku-suku tak negatif selalu naik. Jika jumlah parsial tersebut juga memiliki batas atas, deretnya konvergen.
 
-## Ringkasan Perbedaan Utama
+## Perbandingan Deret Konvergen dan Divergen
 
 | Fitur                               | Deret Konvergen                                                                                | Deret Divergen                                                                                                       |
 | ----------------------------------- | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| **Jumlah**                          | Menuju nilai _terbatas_ tertentu (<InlineMath math="L" />); <InlineMath math="S_\infty = L" /> | Tidak menuju nilai terbatas; <InlineMath math="\pm \infty" /> atau berosilasi                                        |
-| **Suku ke-<InlineMath math="n" />** | <InlineMath math="u_n\to0" /> merupakan syarat perlu | Jika <InlineMath math="u_n\not\to0" />, deret pasti divergen; meskipun demikian, <InlineMath math="u_n\to0" /> juga dapat terjadi |
+| **Jumlah**                          | Menuju nilai _terbatas_ tertentu (<InlineMath math="L" />). <InlineMath math="S_\infty = L" /> | Tidak menuju nilai terbatas. <InlineMath math="\pm \infty" /> atau berosilasi                                        |
+| **Suku ke-<InlineMath math="n" />** | <InlineMath math="u_n\to0" /> merupakan syarat perlu | Jika <InlineMath math="u_n\not\to0" />, deret pasti divergen. Meskipun demikian, <InlineMath math="u_n\to0" /> juga dapat terjadi |
 | **Contoh**                          | Deret geometri <InlineMath math="\lvert r\rvert < 1" />                                                 | Deret aritmetika, geometri <InlineMath math="\lvert r\rvert \geq 1" />, harmonik                                              |
 
 ## Latihan

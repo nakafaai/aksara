@@ -3,17 +3,17 @@ export const metadata = {
   description: "Factor a square matrix as PA = LU, follow a complete elimination example, solve repeated linear systems, and implement a guarded NumPy algorithm.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-13",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Linear Methods of AI",
 };
 
 ## The factorization
 
-LU decomposition stores Gaussian elimination as two triangular matrices. With partial pivoting, a nonsingular square matrix <InlineMath math="A \in \mathbb{R}^{n\times n}" /> is factored as
+<InlineMath math="\mathrm{LU}" /> decomposition stores Gaussian elimination as two triangular matrices. With partial pivoting, a nonsingular square matrix <InlineMath math="A \in \mathbb{R}^{n\times n}" /> is factored as
 
 <BlockMath math="PA=LU" />
 
-where:
+The three factors have the following roles:
 
 - <InlineMath math="P" /> is a permutation matrix that records row swaps
 - <InlineMath math="L" /> is unit lower triangular
@@ -29,13 +29,13 @@ After selecting the pivot in column <InlineMath math="k" />, eliminate each entr
 
 <BlockMath math="\ell_{ik}=\frac{u_{ik}}{u_{kk}},\qquad i=k+1,\ldots,n" />
 
-and the row update
+Then apply the following row update.
 
 <BlockMath math="u_{ij}\leftarrow u_{ij}-\ell_{ik}u_{kj},\qquad j=k,\ldots,n" />
 
 The multipliers are stored below the diagonal of <InlineMath math="L" />. If two rows are swapped after earlier elimination steps, the already-filled columns of <InlineMath math="L" /> must be swapped as well. Otherwise <InlineMath math="PA=LU" /> will no longer hold.
 
-## Complete worked example
+## Factoring a Matrix with Partial Pivoting
 
 Consider
 
@@ -46,7 +46,7 @@ Consider
 
 ### First pivot
 
-In the first column, the largest magnitude is <InlineMath math="2" /> in row three. Swap rows one and three. The first elimination multiplier is <InlineMath math="\ell_{31}=1/2" />; the other entry below the pivot is already zero.
+In the first column, the largest magnitude is <InlineMath math="2" /> in row three. Swap rows one and three. The first elimination multiplier is <InlineMath math="\ell_{31}=1/2" />. The other entry below the pivot is already zero.
 
 ### Second pivot
 
@@ -97,15 +97,15 @@ For the example,
 
 <BlockMath math="x=\begin{pmatrix}1\\2\\3\end{pmatrix}" />
 
-and direct substitution confirms <InlineMath math="Ax=b" />.
+Direct substitution confirms <InlineMath math="Ax=b" />.
 
 ## Cost and reuse
 
-Dense LU factorization requires approximately
+Dense <InlineMath math="\mathrm{LU}" /> factorization requires approximately
 
 <BlockMath math="\frac{2}{3}n^3+O(n^2)" />
 
-floating-point operations when multiplications and subtractions are counted separately. Once the factors are available, each new right-hand side requires only <InlineMath math="O(n^2)" /> work for the two substitutions. This is why LU is valuable when many systems share the same matrix.
+This count gives the number of floating-point operations when multiplications and subtractions are counted separately. Once the factors are available, each new right-hand side requires only <InlineMath math="O(n^2)" /> work for the two substitutions. Reusing the same <InlineMath math="\mathrm{LU}" /> factors therefore avoids repeating the <InlineMath math="O(n^3)" /> factorization for every right-hand side.
 
 The determinant also follows from the factors:
 
@@ -188,4 +188,4 @@ The checks are part of the example because factor order and row-swap bookkeeping
 
 ## Scope of the method
 
-This implementation deliberately accepts only nonsingular square matrices. It reports a zero numerical pivot as an error. For rectangular least-squares problems or rank-deficient matrices, use a rank-revealing QR factorization or an SVD. Those problems have different output contracts and should not be hidden inside a square PLU solver.
+This implementation accepts only nonsingular square matrices and reports a zero numerical pivot as an error. For a rectangular least-squares problem or a rank-deficient matrix, use a rank-revealing <InlineMath math="\mathrm{QR}" /> factorization or an <InlineMath math="\mathrm{SVD}" />. A square <InlineMath math="\mathrm{PLU}" /> solver cannot return a valid factorization for those inputs under its stated assumptions.

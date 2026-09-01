@@ -3,6 +3,7 @@ export const metadata = {
   description: "Verschiebe Funktionsgraphen nach links oder rechts, leite die Vorzeichenregel her und verfolge Definitions- und Wertebereich.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Funktionstransformation",
 };
 
@@ -20,7 +21,7 @@ Für jede Funktion <InlineMath math="f(x)" /> gilt:
 
 <BlockMath math="g(x) = f(x - h)" />
 
-Dabei gilt:
+Für die Richtung der Verschiebung gelten diese Regeln:
 - Für <InlineMath math="h > 0" /> verschiebt sich der Graph nach **rechts**, und zwar um <InlineMath math="h \text{Einheiten}" />.
 - Für <InlineMath math="h < 0" /> verschiebt sich der Graph nach **links**, und zwar um <InlineMath math="|h| \text{Einheiten}" />.
 - Für <InlineMath math="h = 0" /> bleibt der Graph unverändert.
@@ -72,7 +73,7 @@ Die Visualisierung zeigt:
 
 ## Horizontale Verschiebung linearer Funktionen
 
-Wenden wir nun dasselbe Konzept auf die lineare Funktion <InlineMath math="f(x) = 2x + 1" /> an.
+Dieselbe Verschiebungsregel gilt für die lineare Funktion <InlineMath math="f(x) = 2x + 1" />.
 
 <LineEquation
   title={<>Horizontale Verschiebung der linearen Funktion <InlineMath math="f(x) = 2x + 1" /></>}
@@ -85,6 +86,7 @@ Wenden wir nun dasselbe Konzept auf die lineare Funktion <InlineMath math="f(x) 
         const x = (i - 10) * 0.5;
         return { x, y: 2 * x + 1, z: 0 };
       }),
+      smooth: false,
       color: "#7c3aed",
       labels: [{ text: <InlineMath math="f(x)=2x+1" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -94,6 +96,7 @@ Wenden wir nun dasselbe Konzept auf die lineare Funktion <InlineMath math="f(x) 
         const x = (i - 10) * 0.5;
         return { x, y: 2 * (x - 4) + 1, z: 0 };
       }),
+      smooth: false,
       color: "#d97706",
       labels: [{ text: <InlineMath math="g(x)=2(x-4)+1" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -103,6 +106,7 @@ Wenden wir nun dasselbe Konzept auf die lineare Funktion <InlineMath math="f(x) 
         const x = (i - 10) * 0.5;
         return { x, y: 2 * (x + 3) + 1, z: 0 };
       }),
+      smooth: false,
       color: "#0891b2",
       labels: [{ text: <InlineMath math="h(x)=2(x+3)+1" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -115,7 +119,7 @@ Die drei Geraden lassen sich direkt vergleichen:
 - Die Funktion <InlineMath math="g(x) = 2(x - 4) + 1" /> ist um <InlineMath math="4 \text{Einheiten}" /> nach rechts verschoben.
 - Die Funktion <InlineMath math="h(x) = 2(x + 3) + 1" /> ist um <InlineMath math="3 \text{Einheiten}" /> nach links verschoben.
 
-## Wichtige Eigenschaften der horizontalen Verschiebung
+## Eigenschaften der horizontalen Verschiebung
 
 ### Die Graphenform bleibt unverändert
 
@@ -125,18 +129,16 @@ Eine horizontale Verschiebung erhält die Form des Graphen. Jeder Punkt bewegt s
 
 Liegt der Punkt <InlineMath math="(a, b)" /> auf dem Graphen von <InlineMath math="f(x)" />, liegt nach der Verschiebung um <InlineMath math="h" /> der Punkt <InlineMath math="(a + h, b)" /> auf dem Graphen von <InlineMath math="f(x - h)" />.
 
-### Definitions- und Wertebereich
+### Definitions und Wertebereich
 
 - **Definitionsbereich**: Verschiebt sich um <InlineMath math="h \text{Einheiten}" />.
 - **Wertebereich**: Bleibt bei einer horizontalen Verschiebung unverändert.
 
 Ist der Definitionsbereich der ursprünglichen Funktion <InlineMath math="[c, d]" />, wird er nach der Verschiebung um <InlineMath math="h" /> zu <InlineMath math="[c + h, d + h]" />.
 
-## Anwendungsbeispiele
+## Einen Exponentialgraphen horizontal verschieben
 
-### Beispiel mit einer Exponentialfunktion
-
-Nun wird die Exponentialfunktion <InlineMath math="f(x) = 2^x" /> horizontal verschoben.
+Die Exponentialfunktion <InlineMath math="f(x) = 2^x" /> wird horizontal verschoben.
 
 <LineEquation
   title={<>Horizontale Verschiebung der Exponentialfunktion <InlineMath math="f(x) = 2^x" /></>}

@@ -1,9 +1,9 @@
 export const metadata = {
     title: "Spectral Theorem for Real Normal Matrices",
-    description: "Learn exactly when a real normal matrix has a real orthonormal eigenbasis, and distinguish ordinary from orthogonal diagonalization.",
+   description: "Determine exactly when a real normal matrix has a real orthonormal eigenbasis, and distinguish ordinary from orthogonal diagonalization.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-16",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Linear Methods of AI",
 };
 
@@ -18,14 +18,14 @@ For <InlineMath math="A\in\mathbb{R}^{n\times n}" />, the following statements a
 
 The equivalence explains the extra condition compared with [complex normal matrices](/en/subjects/ai-ds/linear-methods/spectral-complex-matrix). A complex normal matrix always has a unitary eigenbasis, but that basis and its eigenvalues need not be real.
 
-The proof links the four statements directly. An orthonormal eigenbasis gives the columns of <InlineMath math="Q" />. From <InlineMath math="A=Q\Lambda Q^T" /> with real diagonal <InlineMath math="\Lambda" />, we obtain <InlineMath math="A^T=A" />. Conversely, the real spectral theorem orthogonally diagonalizes every real symmetric matrix. Finally, if a real normal matrix has only real eigenvalues, its complex unitary diagonalization satisfies <InlineMath math="A^H=A" />; because <InlineMath math="A" /> is real, this is exactly <InlineMath math="A^T=A" />.
+The proof links the four statements directly. An orthonormal eigenbasis gives the columns of <InlineMath math="Q" />. From <InlineMath math="A=Q\Lambda Q^T" /> with real diagonal <InlineMath math="\Lambda" />, we obtain <InlineMath math="A^T=A" />. Conversely, the real spectral theorem orthogonally diagonalizes every real symmetric matrix. Finally, if a real normal matrix has only real eigenvalues, its complex unitary diagonalization satisfies <InlineMath math="A^H=A" />. Because <InlineMath math="A" /> is real, this is exactly <InlineMath math="A^T=A" />.
 
 | Matrix class | Field | Guaranteed spectral form |
 | --- | --- | --- |
-| Complex normal | <InlineMath math="\mathbb{C}" /> | Unitary diagonalization; eigenvalues may be complex |
+| Complex normal | <InlineMath math="\mathbb{C}" /> | Unitary diagonalization. Eigenvalues may be complex |
 | Complex Hermitian | <InlineMath math="\mathbb{C}" /> | Unitary diagonalization with real eigenvalues |
 | Real symmetric | <InlineMath math="\mathbb{R}" /> | Orthogonal diagonalization with real eigenvalues |
-| Real orthogonal | <InlineMath math="\mathbb{R}" /> | Real rotation blocks in general; a real diagonal form only when all eigenvalues are real |
+| Real orthogonal | <InlineMath math="\mathbb{R}" /> | In general, the spectral form contains real rotation blocks. A real diagonal form exists only when all eigenvalues are real |
 
 ## A Normal Matrix without a Real Eigenbasis
 
@@ -44,15 +44,15 @@ Its discriminant is
 
 <BlockMath math="\Delta=4\cos^2\alpha-4=-4\sin^2\alpha<0" />
 
-because <InlineMath math="\sin\alpha\neq0" /> under the stated condition. Thus the polynomial has no real root, and <InlineMath math="R_\alpha" /> has no real eigenvector basis. Over <InlineMath math="\mathbb{C}" />, the eigenvalues are <InlineMath math="e^{i\alpha}" /> and <InlineMath math="e^{-i\alpha}" />.
+Because <InlineMath math="\alpha" /> is not an integer multiple of <InlineMath math="\pi" />, <InlineMath math="\sin\alpha\neq0" />. Thus the characteristic polynomial has no real root, and <InlineMath math="R_\alpha" /> has no real eigenvector basis. Over <InlineMath math="\mathbb{C}" />, the eigenvalues are <InlineMath math="e^{i\alpha}" /> and <InlineMath math="e^{-i\alpha}" />.
 
 ## A Diagonalizable Matrix That Is Not Normal
 
-Now consider
+The following matrix is diagonalizable over <InlineMath math="\mathbb{R}" />, but it is not normal:
 
 <BlockMath math="A=\begin{pmatrix}1&3\\0&2\end{pmatrix}" />
 
-Its distinct eigenvalues <InlineMath math="1" /> and <InlineMath math="2" /> already guarantee ordinary diagonalizability. The corresponding eigenspaces are
+Its eigenvalues <InlineMath math="1" /> and <InlineMath math="2" /> are distinct, so the matrix is diagonalizable. The corresponding eigenspaces are
 
 <MathContainer>
 <BlockMath math="E_A(1)=\ker(A-I)=\operatorname{span}\begin{pmatrix}1\\0\end{pmatrix}" />
@@ -70,7 +70,7 @@ However, the two eigenvectors are not orthogonal because
 
 <BlockMath math="\begin{pmatrix}1&0\end{pmatrix}\begin{pmatrix}3\\1\end{pmatrix}=3\neq0" />
 
-and direct multiplication confirms that <InlineMath math="A" /> is not normal:
+Direct multiplication also shows that <InlineMath math="A" /> is not normal:
 
 <MathContainer>
 <BlockMath math="AA^T=\begin{pmatrix}10&6\\6&4\end{pmatrix}" />

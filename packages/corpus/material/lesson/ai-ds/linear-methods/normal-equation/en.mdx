@@ -1,53 +1,49 @@
 export const metadata = {
     title: "Normal Equation System",
-    description: "Learn normal equations for least squares optimization. Learn closed-form solutions, orthogonality principles, and when systems are solvable.",
+    description: "Derive normal equations for least squares from orthogonality, solve the closed form when it exists, and identify singular cases.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Linear Methods of AI",
 };
 
-## What is a Normal Equation System?
+## Normal Equation System
 
 The normal equation converts the first-order optimality condition for a linear least-squares problem into a linear system.
 
-When we want to minimize
+Consider the least squares problem
 
 <BlockMath math="\min_x \|A \cdot x - b\|_2^2" />
 
-it turns out the solution can be found by solving the following system of equations
+A minimizer satisfies the following linear system:
 
 <BlockMath math="A^T A \cdot x = A^T b" />
 
 This is called the **normal equation** because the residual at a minimizer is normal, or perpendicular, to the column space of <InlineMath math="A" />.
 
-## Fundamental Relationship
+## Least Squares and the Normal Equation
 
-There's a very interesting relationship between the minimization problem and this normal equation system. Vector <InlineMath math="\hat{x} \in \mathbb{R}^n" /> is a solution to the least squares problem if and only if that vector satisfies the normal equation system.
+A vector <InlineMath math="\hat{x} \in \mathbb{R}^n" /> minimizes <InlineMath math="\|A \cdot x - b\|_2^2" /> if and only if it satisfies <InlineMath math="A^T A \cdot \hat{x} = A^T b" />. The optimization problem and the normal equation therefore have the same solution set.
 
-In other words, finding <InlineMath math="\hat{x}" /> that makes <InlineMath math="\|A \cdot x - b\|_2^2" /> minimal is exactly the same as finding <InlineMath math="\hat{x}" /> that satisfies <InlineMath math="A^T A \cdot \hat{x} = A^T b" />.
+## The Residual Is Orthogonal to the Column Space
 
-## Why This System Works
-
-To understand why this relationship holds, we need to look at it from a geometric perspective.
-
-When <InlineMath math="\hat{x}" /> gives the minimum value for <InlineMath math="\|A\hat{x} - b\|_2^2" />, then the error vector <InlineMath math="A\hat{x} - b" /> must be orthogonal to all vectors in the column space of matrix <InlineMath math="A" />.
+When <InlineMath math="\hat{x}" /> minimizes <InlineMath math="\|A\hat{x} - b\|_2^2" />, the residual vector <InlineMath math="A\hat{x} - b" /> is orthogonal to every vector in the column space of <InlineMath math="A" />.
 
 This column space consists of all vectors that can be written as <InlineMath math="Ax" /> for <InlineMath math="x \in \mathbb{R}^n" />. The orthogonality condition means
 
 <BlockMath math="0 = \langle Ax, A\hat{x} - b \rangle" />
 
-for every vector <InlineMath math="x \in \mathbb{R}^n" />. Using the properties of inner product, we can write
+This orthogonality condition holds for every vector <InlineMath math="x \in \mathbb{R}^n" />. The properties of the inner product give
 
 <MathContainer>
 <BlockMath math="0 = (Ax)^T (A\hat{x} - b) = x^T (A^T A\hat{x} - A^T b)" />
 </MathContainer>
 
-Since this relationship must hold for all vectors <InlineMath math="x" />, then
+Because this equality holds for every vector <InlineMath math="x" />, the vector in parentheses must be zero:
 
 <BlockMath math="A^T A\hat{x} - A^T b = 0" />
 
-This is what gives us the normal equation system.
+Rearranging this equation gives <InlineMath math="A^TA\hat{x}=A^Tb" />, the normal equation.
 
 ## Proof Using Pythagorean Theorem
 
@@ -61,13 +57,13 @@ Using the Pythagorean theorem, we can write
 <BlockMath math="= \|A\hat{x} - b\|_2^2 + \underbrace{\|A(\hat{x} - x)\|_2^2}_{\geq 0} - 2 \underbrace{(\hat{x} - x)^T (A^T A\hat{x} - A^T b)}_{=0}" />
 </MathContainer>
 
-Since <InlineMath math="\hat{x}" /> satisfies the normal equation system, then <InlineMath math="A^T A\hat{x} - A^T b = 0" /> and the squared norm is always non-negative. Therefore
+Because <InlineMath math="\hat{x}" /> satisfies the normal equation, the cross term is zero. The remaining squared norm is nonnegative, so
 
 <BlockMath math="\|Ax - b\|_2^2 = \|A\hat{x} - b\|_2^2 + \|A(\hat{x} - x)\|_2^2 \geq \|A\hat{x} - b\|_2^2" />
 
 This inequality proves that <InlineMath math="\hat{x}" /> indeed gives the minimum value.
 
-## Existence and uniqueness
+## Existence and Uniqueness
 
 The normal equation is consistent for every matrix <InlineMath math="A \in \mathbb{R}^{m\times n}" /> and every vector <InlineMath math="b \in \mathbb{R}^m" /> because a least-squares minimizer always exists in finite dimensions. The minimizer is unique exactly when <InlineMath math="A" /> has full column rank:
 
@@ -83,21 +79,21 @@ If <InlineMath math="A" /> is rank deficient, the normal equation still has solu
 
 All these parameter vectors produce the same fitted vector <InlineMath math="A\hat{x}" />.
 
-## Null-space and definiteness proof
+## Null Space and definiteness proof
 
 For every <InlineMath math="z\in\mathbb{R}^n" />,
 
 <BlockMath math="z^{\mathsf T}A^{\mathsf T}Az=\|Az\|_2^2\ge0" />
 
-so <InlineMath math="A^{\mathsf T}A" /> is always symmetric positive semidefinite. Moreover,
+This equation shows that <InlineMath math="A^{\mathsf T}A" /> is always symmetric positive semidefinite. Moreover,
 
 <BlockMath math="A^{\mathsf T}Az=0\quad\Longleftrightarrow\quad z^{\mathsf T}A^{\mathsf T}Az=0\quad\Longleftrightarrow\quad Az=0" />
 
-Therefore,
+The calculation gives:
 
 <BlockMath math="\ker(A^{\mathsf T}A)=\ker(A)" />
 
-and <InlineMath math="A^{\mathsf T}A" /> is positive definite exactly when <InlineMath math="A" /> has full column rank.
+This equality of null spaces shows that <InlineMath math="A^{\mathsf T}A" /> is positive definite exactly when <InlineMath math="A" /> has full column rank.
 
 ## Numerical warning
 
@@ -105,4 +101,4 @@ Positive definiteness gives uniqueness and permits a Cholesky solve, but it does
 
 <BlockMath math="\kappa_2(A^{\mathsf T}A)=\kappa_2(A)^2" />
 
-Explicitly forming <InlineMath math="A^{\mathsf T}A" /> can therefore magnify sensitivity and rounding effects. The inverse formula proves an algebraic identity. In software, use QR for a well-determined full-rank least-squares solve and SVD when rank deficiency or severe ill-conditioning matters.
+Explicitly forming <InlineMath math="A^{\mathsf T}A" /> can therefore magnify sensitivity and rounding effects. The inverse formula proves an algebraic identity. In software, use <InlineMath math="\mathrm{QR}" /> for a well-determined full-rank least-squares solve and <InlineMath math="\mathrm{SVD}" /> when rank deficiency or severe ill-conditioning matters.

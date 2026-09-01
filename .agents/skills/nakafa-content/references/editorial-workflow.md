@@ -29,23 +29,31 @@ For every authored target document or localized metadata record:
    reviewed meaning may be skipped.
 3. Read and apply the complete Humanizer skill to the source. Correct the source
    only when evidence supports the change.
-4. Record the corrected document's ordered teaching units: concepts, sections,
+4. Audit every causal, comparative, and qualitative claim. Record its subject,
+   condition, comparison or mechanism, consequence, and evidence. Remove a
+   claim when the source does not support the detail needed to make it clear.
+5. Record the corrected document's ordered teaching units: concepts, sections,
    examples, exercises, worked solutions, checks, tables, diagrams, math, code,
-   and custom MDX components. Every locale sibling must implement that same
-   inventory.
-5. Translate the complete corrected document. Natural target-language syntax is
+   and custom MDX components. Also trace the teacher-led reasoning from the
+   learner's starting point through each explanation, example, and check. This
+   trace describes the lesson at hand. It must not become a repeated template
+   imposed on unrelated lessons. Every locale sibling must implement the same
+   teaching and representation inventory.
+6. Translate the complete corrected document. Natural target-language syntax is
    required, but it must not add, remove, reorder, compress, or replace a
    teaching unit. Translation is not permission to redesign the lesson.
-6. Apply the complete Humanizer skill again to the target draft. Humanizer may
+7. Apply the complete Humanizer skill again to the target draft. Humanizer may
    improve wording, rhythm, and clarity, but it may not remove teaching context,
    reasoning steps, evidence, math, or components.
-7. Check fabrication, citations, terminology, headings, math, code,
-   accessibility, punctuation, and route identity.
-8. Compare the locale siblings structurally and semantically. Confirm that every
+8. Check fabrication, citations, terminology, headings, math, code,
+   accessibility, punctuation, and route identity. For each external link, keep
+   the teaching explanation outside the link and use the verified source or
+   publication name as its compact chip label.
+9. Compare the locale siblings structurally and semantically. Confirm that every
    teaching unit and component has one corresponding localized implementation.
-9. Compile the exact document through Aksara and preview it through Nakafa's
+10. Compile the exact document through Aksara and preview it through Nakafa's
    real renderer.
-10. Keep the resulting authored bytes in their domain-owned Aksara source. Git
+11. Keep the resulting authored bytes in their domain-owned Aksara source. Git
    provenance and the publication contracts authenticate those bytes.
 
 ## Assessed language

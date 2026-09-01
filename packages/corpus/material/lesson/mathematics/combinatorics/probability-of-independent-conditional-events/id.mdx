@@ -3,17 +3,17 @@ export const metadata = {
     description: "Gunakan peluang bersyarat dengan tepat, bedakan kebergantungan dari kebebasan, dan selesaikan soal pemilihan bertahap.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Kombinatorik",
 };
 
-## Memahami Konsep Dasar
+## Peluang Bersyarat dan Kebergantungan
 
-Bayangkan kamu mengambil satu kartu sebelum temanmu mengambil kartu berikutnya. Apakah kartumu mengubah peluang kartu yang dapat diambil temanmu? Jika kartu tidak dikembalikan, sering kali iya. **Peluang bersyarat** membantu kita menghitung peluang kedua berdasarkan informasi yang sudah diketahui.
+Kamu mengambil satu kartu, lalu temanmu mengambil kartu berikutnya. Apakah kartu pertama mengubah peluang kartu kedua? Jika kartu pertama tidak dikembalikan, peluang pengambilan kedua berubah. **Peluang bersyarat** menghitung peluang kedua setelah hasil pertama diketahui.
 
 **Peluang bersyarat** kejadian <InlineMath math="B" /> jika kejadian <InlineMath math="A" /> diketahui terjadi menanyakan: di antara semua hasil yang memenuhi <InlineMath math="A" />, berapa bagian yang juga memenuhi <InlineMath math="B" />? Jawabannya dapat berubah setelah <InlineMath math="A" />, yang menandakan kebergantungan, atau tetap sama, yang menandakan kebebasan.
 
-Kuncinya adalah memperbarui semua hasil yang mungkin berdasarkan **kondisi yang sudah diketahui** sebelum menghitung peluang berikutnya.
+Sebelum menghitung peluang berikutnya, batasi semua hasil yang mungkin berdasarkan **kondisi yang sudah diketahui**.
 
 ## Rumus dan Notasi Matematis
 
@@ -21,7 +21,7 @@ Untuk kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> dengan <Inlin
 
 <BlockMath math="P(B|A) = \frac{P(A \cap B)}{P(A)}" />
 
-di mana:
+Pada rumus ini:
 - <InlineMath math="P(B|A)" /> adalah peluang <InlineMath math="B" /> dengan syarat <InlineMath math="A" /> telah terjadi
 - <InlineMath math="P(A \cap B)" /> adalah peluang <InlineMath math="A" /> dan <InlineMath math="B" /> terjadi bersama
 - <InlineMath math="P(A)" /> adalah peluang kejadian syarat <InlineMath math="A" />
@@ -92,7 +92,7 @@ Setelah memilih satu manajer laki-laki, tersisa <InlineMath math="599" /> manaje
 
 ## Strategi Penyelesaian Masalah
 
-### Langkah Sistematis
+### Perbarui Ruang Sampel Sebelum Mengalikan
 
 Untuk menyelesaikan soal peluang bersyarat:
 

@@ -1,9 +1,9 @@
 export const metadata = {
     title: "Eigenvalues of Diagonal and Triangular Matrices",
-    description: "Learn how to read eigenvalues from diagonal entries of diagonal and triangular matrices, including determinant-trace relationships.",
+    description: "Read eigenvalues from diagonal entries of diagonal and triangular matrices, including determinant-trace relationships.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Linear Methods of AI",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 For diagonal and triangular matrices, every eigenvalue can be read directly from the main diagonal, with algebraic multiplicity. The matrix may have one of these forms:
 
-The eigenvalues of a square diagonal matrix or triangular matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" />
+The three forms below represent a diagonal, upper triangular, and lower triangular matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" />.
 
 <MathContainer>
 <BlockMath math="A = \begin{pmatrix} a_{11} & 0 & \cdots & 0 \\ 0 & a_{22} & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & a_{nn} \end{pmatrix}" />
@@ -19,13 +19,13 @@ The eigenvalues of a square diagonal matrix or triangular matrix <InlineMath mat
 <BlockMath math="A = \begin{pmatrix} a_{11} & 0 & \cdots & 0 \\ * & a_{22} & \ddots & \vdots \\ \vdots & \vdots & \ddots & 0 \\ * & * & \cdots & a_{nn} \end{pmatrix}" />
 </MathContainer>
 
-are its main diagonal entries:
+For all three forms, the eigenvalues are the main diagonal entries:
 
 <BlockMath math="\lambda_1 = a_{11}, \ldots, \lambda_n = a_{nn}" />
 
 Why is this true? Since <InlineMath math="\chi_A(t) = \det(A - t \cdot I) = (a_{11} - t) \cdots (a_{nn} - t)" /> with roots <InlineMath math="a_{11}, \ldots, a_{nn}" />.
 
-Thus no full determinant expansion or root-finding procedure is needed for a triangular matrix.
+No full determinant expansion or root-finding procedure is needed for a triangular matrix.
 
 ## Upper and Lower Triangular Matrices
 
@@ -33,7 +33,7 @@ Triangular matrices have the same property as diagonal matrices. For both upper 
 
 This happens because when we calculate <InlineMath math="\det(A - tI)" />, the entries above or below the main diagonal don't affect the determinant calculation. The triangular structure allows the determinant to be computed as the product of diagonal entries.
 
-## Direct Calculation Examples
+## Computing Eigenvalues of Nontriangular Matrices
 
 The diagonal rule is special to triangular matrices. For comparison, the following nontriangular matrices require us to compute their characteristic polynomials.
 
@@ -46,7 +46,7 @@ Suppose <InlineMath math="A = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}" />.
 <BlockMath math="= (1-t) \cdot (1-t) - 1 \cdot (-1) = t^2 - 2t + 2" />
 </MathContainer>
 
-which has roots <InlineMath math="\lambda_1 = 1 + i" /> and <InlineMath math="\lambda_2 = 1 - i" />.
+The roots of this characteristic polynomial are <InlineMath math="\lambda_1 = 1 + i" /> and <InlineMath math="\lambda_2 = 1 - i" />.
 
 ### Zero Eigenvalues
 
@@ -57,7 +57,7 @@ For <InlineMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" />, the
 <BlockMath math="= (1-t) \cdot (1-t) - i \cdot (-i) = t^2 - 2t" />
 </MathContainer>
 
-with roots <InlineMath math="\lambda_1 = 2" /> and <InlineMath math="\lambda_2 = 0" />.
+The roots of this characteristic polynomial are <InlineMath math="\lambda_1 = 2" /> and <InlineMath math="\lambda_2 = 0" />.
 
 ## Characteristic Polynomial Factorization
 
@@ -77,7 +77,7 @@ This property holds naturally for complex eigenvalues of matrices with real entr
 
 ## Relationship Between Determinant and Trace
 
-There's a fundamental relationship between eigenvalues and the determinant and trace of a matrix. If the characteristic polynomial <InlineMath math="\chi_A(t)" /> can be factored linearly in <InlineMath math="\mathbb{K}" />, which means matrix <InlineMath math="A" /> has <InlineMath math="n" /> eigenvalues <InlineMath math="\lambda_1, \ldots, \lambda_n \in \mathbb{K}" />, then:
+If the characteristic polynomial <InlineMath math="\chi_A(t)" /> splits into linear factors over <InlineMath math="\mathbb{K}" />, the matrix <InlineMath math="A" /> has <InlineMath math="n" /> eigenvalues <InlineMath math="\lambda_1, \ldots, \lambda_n" /> there, counted with multiplicity. Their sum and product satisfy:
 
 <MathContainer>
 <BlockMath math="\det A = \prod_{i=1}^n \lambda_i" />

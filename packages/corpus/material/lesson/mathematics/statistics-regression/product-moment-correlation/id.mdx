@@ -1,14 +1,14 @@
 
 export const metadata = {
   title: "Korelasi Product Moment",
-  description: "Hitung koefisien korelasi Pearson untuk mengukur hubungan linear. Pelajari rumus, analisis scatter plot, dan interpretasi kekuatan korelasi.",
+  description: "Hitung koefisien korelasi Pearson untuk mengukur hubungan linear. Pelajari rumus, baca scatter plot, dan jelaskan kekuatan korelasinya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-30",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Statistika",
 };
 
-## Apa Itu Korelasi Product Moment?
+## Korelasi Product Moment
 
 Korelasi product moment, yang juga disebut **korelasi Pearson** dan dilambangkan dengan **<InlineMath math="r" />**, adalah ukuran statistik yang umum digunakan untuk menunjukkan arah dan kekuatan **hubungan linear** antara dua variabel kuantitatif.
 
@@ -16,7 +16,7 @@ Nilai <InlineMath math="r" /> ini akan memberi tahu kita apakah kedua variabel b
 
 ## Korelasi dari Diagram Pencar
 
-Cara paling intuitif memahami nilai <InlineMath math="r" /> adalah dengan melihat bagaimana titik-titik data tersebar pada diagram pencar:
+Diagram pencar menunjukkan arah dan kekuatan hubungan yang dinyatakan oleh <InlineMath math="r" />:
 
 ### Korelasi Positif Kuat
 
@@ -82,7 +82,7 @@ bergerak ke arah yang sama, tapi tidak terlalu kuat.
   regressionLineStyle={{ color: "var(--chart-4)" }}
 />
 
-Untuk delapan titik ini, perhitungannya menghasilkan <InlineMath math="r\approx0{,}279" />. Kecenderungan linearnya positif, tetapi lemah, dan kelemahan itu terlihat pada sebaran titiknya.
+Untuk delapan titik ini, perhitungan koefisien korelasi menghasilkan <InlineMath math="r\approx0{,}279" />. Kecenderungan linearnya positif tetapi lemah karena titik-titiknya tersebar cukup jauh dari garis yang menanjak.
 
 ### Korelasi Negatif Kuat
 
@@ -149,19 +149,19 @@ Jika titik-titiknya turun dari kiri atas ke kanan bawah dan sangat rapat, nilai 
 
 Ketika titik-titik menyebar acak tanpa pola lurus yang jelas, nilai <InlineMath math="r" />-nya akan mendekati <InlineMath math="0" />.
 
-## Bagaimana Menghitung Koefisien Korelasi?
+## Bagaimana Menghitung Koefisien Korelasi
 
 Koefisien korelasi Pearson (<InlineMath math="r" />) membandingkan simpangan berpasangan dua variabel, <InlineMath math="X" /> dan <InlineMath math="Y" />, dengan variasi masing-masing variabel.
 
-Perhitungannya terdiri dari tiga bagian:
+Perhitungan koefisien korelasi terdiri dari tiga bagian:
 
-1.  **Variasi Sendiri:**
+1.  **Variasi Setiap Variabel:**
 
-    Setiap variabel (<InlineMath math="X" /> dan <InlineMath math="Y" />) punya variasinya sendiri. Ada yang nilainya naik-turun banyak (variasi besar), ada yang stabil (variasi kecil). Ini diukur oleh <InlineMath math="SS_{xx}" /> untuk <InlineMath math="X" /> dan <InlineMath math="SS_{yy}" /> untuk <InlineMath math="Y" /> (yang akan kita lihat rumusnya di bawah).
+    Nilai <InlineMath math="X" /> dan <InlineMath math="Y" /> dapat memiliki tingkat penyebaran yang berbeda. <InlineMath math="SS_{xx}" /> mengukur jumlah kuadrat simpangan nilai <InlineMath math="X" /> dari rata-rata <InlineMath math="X" />, sedangkan <InlineMath math="SS_{yy}" /> mengukur jumlah kuadrat simpangan nilai <InlineMath math="Y" /> dari rata-rata <InlineMath math="Y" />. Kedua rumus dituliskan di bawah.
 
 2.  **Variasi Bersama (Simpangan Silang):**
 
-    Kita juga perlu tahu bagaimana <InlineMath math="X" /> dan <InlineMath math="Y" /> bervariasi _bersama-sama_. Apakah saat <InlineMath math="X" /> naik, <InlineMath math="Y" /> cenderung naik atau justru turun? Jumlah <InlineMath math="SS_{xy}" /> mengukur simpangan silang dari pasangan data. Nilai ini merupakan pembilang dalam perhitungan kovarians; kovarians masih membaginya dengan <InlineMath math="n" /> atau <InlineMath math="n-1" />, bergantung pada konvensi yang digunakan.
+    Kita juga perlu tahu bagaimana <InlineMath math="X" /> dan <InlineMath math="Y" /> bervariasi _bersama-sama_. Apakah saat <InlineMath math="X" /> naik, <InlineMath math="Y" /> cenderung naik atau justru turun? Jumlah <InlineMath math="SS_{xy}" /> mengukur simpangan silang dari pasangan data dan menjadi pembilang kovarians. Untuk menghitung kovarians, bagi <InlineMath math="SS_{xy}" /> dengan <InlineMath math="n" /> atau <InlineMath math="n-1" />, sesuai konvensi yang digunakan.
 
     - Jika <InlineMath math="SS_{xy}" /> positif, simpangan berpasangan cenderung memiliki tanda yang sama.
     - Jika <InlineMath math="SS_{xy}" /> negatif, simpangan berpasangan cenderung memiliki tanda yang berlawanan.
@@ -187,7 +187,7 @@ Untuk menghitung nilai <InlineMath math="r" /> secara pasti, kita gunakan rumus 
 
 **Apa itu <InlineMath math="SS_{xy}" />, <InlineMath math="SS_{xx}" />, dan <InlineMath math="SS_{yy}" />?**
 
-Ini adalah cara mengukur seberapa bervariasi data kita:
+Ketiga besaran tersebut memiliki tugas yang berbeda. <InlineMath math="SS_{xx}" /> dan <InlineMath math="SS_{yy}" /> mengukur sebaran setiap variabel, sedangkan <InlineMath math="SS_{xy}" /> mengukur variasi berpasangan:
 
 1.  **<InlineMath math="SS_{xx}" /> (Sum of Squares for <InlineMath math="x" />):** Mengukur seberapa menyebar data <InlineMath math="x" /> dari rata-ratanya.
 
@@ -216,18 +216,18 @@ Dengan menghitung ketiga nilai <InlineMath math="SS" /> ini dan memasukkannya ke
 
 Rumus tersebut memerlukan <InlineMath math="SS_{xx}>0" /> dan <InlineMath math="SS_{yy}>0" />. Jika salah satu variabel konstan, penyebutnya bernilai nol dan koefisien Pearson <InlineMath math="r" /> tidak terdefinisi.
 
-## Interpretasi Koefisien Korelasi
+## Membaca Koefisien Korelasi
 
 Setelah mendapatkan nilai <InlineMath math="r" />, kita dapat memakai panduan deskriptif berikut sebagai perkiraan awal. Batas-batas ini merupakan kesepakatan praktis, dan bidang lain dapat memakai batas yang berbeda. Maknanya bergantung pada bidang kajian, kualitas pengukuran, ukuran sampel, dan konteks, sehingga diagram pencar tetap harus diperiksa.
 
 | Nilai <InlineMath math="r" />         | Tingkat Korelasi          | Keterangan                                |
 | :------------------------------------ | :------------------------ | :---------------------------------------- |
 | <InlineMath math="1" />               | Positif Sempurna          | Semua titik tepat pada garis lurus naik.  |
-| <InlineMath math="0{,}7 \le r < 1" />   | Positif Kuat              | Hubungan linear positif jelas dan kuat.   |
-| <InlineMath math="0{,}3 < r < 0{,}7" />   | Positif Sedang/Cukup      | Hubungan linear positif cukup terlihat.   |
-| <InlineMath math="0 < r \le 0{,}3" />   | Positif Lemah             | Hubungan linear positif sangat rendah.    |
-| <InlineMath math="0" />               | Tidak ada Korelasi Linear | Tidak ada pola linear; hubungan nonlinier masih mungkin ada. |
-| <InlineMath math="-0{,}3 \le r < 0" />  | Negatif Lemah             | Hubungan linear negatif sangat rendah.    |
-| <InlineMath math="-0{,}7 < r < -0{,}3" /> | Negatif Sedang/Cukup      | Hubungan linear negatif cukup terlihat.   |
-| <InlineMath math="-1 < r \le -0{,}7" /> | Negatif Kuat              | Hubungan linear negatif jelas dan kuat.   |
+| <InlineMath math="0{,}7 \le r < 1" />   | Positif Kuat              | Nilai <InlineMath math="r" /> positif dan mendekati <InlineMath math="1" />. |
+| <InlineMath math="0{,}3 < r < 0{,}7" />   | Positif Sedang             | Nilai <InlineMath math="r" /> positif dan berada di antara <InlineMath math="0{,}3" /> dan <InlineMath math="0{,}7" />. |
+| <InlineMath math="0 < r \le 0{,}3" />   | Positif Lemah             | Nilai <InlineMath math="r" /> positif dan mendekati <InlineMath math="0" />. |
+| <InlineMath math="0" />               | Tidak ada Korelasi Linear | Tidak ada pola linear. Hubungan nonlinier masih mungkin ada. |
+| <InlineMath math="-0{,}3 \le r < 0" />  | Negatif Lemah             | Nilai <InlineMath math="r" /> negatif dan mendekati <InlineMath math="0" />. |
+| <InlineMath math="-0{,}7 < r < -0{,}3" /> | Negatif Sedang             | Nilai <InlineMath math="r" /> negatif dan berada di antara <InlineMath math="-0{,}7" /> dan <InlineMath math="-0{,}3" />. |
+| <InlineMath math="-1 < r \le -0{,}7" /> | Negatif Kuat              | Nilai <InlineMath math="r" /> negatif dan mendekati <InlineMath math="-1" />. |
 | <InlineMath math="-1" />              | Negatif Sempurna          | Semua titik tepat pada garis lurus turun. |

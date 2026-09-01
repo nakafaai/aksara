@@ -3,17 +3,17 @@ export const metadata = {
   description: "Faktorkan matriks persegi sebagai PA = LU, ikuti contoh eliminasi lengkap, selesaikan sistem linear berulang, dan implementasikan algoritma NumPy yang aman.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-13",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Metode Linear AI",
 };
 
 ## Faktorisasi
 
-Dekomposisi LU menyimpan eliminasi Gauss dalam dua matriks segitiga. Dengan pivoting parsial, matriks persegi nonsingular <InlineMath math="A \in \mathbb{R}^{n\times n}" /> difaktorkan sebagai
+Dekomposisi <InlineMath math="\mathrm{LU}" /> menyimpan eliminasi Gauss dalam dua matriks segitiga. Dengan pivoting parsial, matriks persegi nonsingular <InlineMath math="A \in \mathbb{R}^{n\times n}" /> difaktorkan sebagai
 
 <BlockMath math="PA=LU" />
 
-dengan:
+Ketiga faktor memiliki peran berikut:
 
 - <InlineMath math="P" /> adalah matriks permutasi yang mencatat pertukaran baris
 - <InlineMath math="L" /> adalah matriks segitiga bawah dengan diagonal satu
@@ -29,13 +29,13 @@ Setelah memilih pivot pada kolom <InlineMath math="k" />, hilangkan setiap entri
 
 <BlockMath math="\ell_{ik}=\frac{u_{ik}}{u_{kk}},\qquad i=k+1,\ldots,n" />
 
-dan pembaruan baris
+Kemudian terapkan pembaruan baris berikut.
 
 <BlockMath math="u_{ij}\leftarrow u_{ij}-\ell_{ik}u_{kj},\qquad j=k,\ldots,n" />
 
 Pengali disimpan di bawah diagonal <InlineMath math="L" />. Jika dua baris ditukar setelah beberapa langkah eliminasi, kolom <InlineMath math="L" /> yang sudah terisi juga harus ditukar. Jika tidak, kesamaan <InlineMath math="PA=LU" /> tidak lagi terpenuhi.
 
-## Contoh terurai lengkap
+## Memfaktorkan Matriks dengan Pivoting Parsial
 
 Perhatikan
 
@@ -46,7 +46,7 @@ Perhatikan
 
 ### Pivot pertama
 
-Pada kolom pertama, magnitudo terbesar adalah <InlineMath math="2" /> di baris ketiga. Tukar baris pertama dan ketiga. Pengali eliminasi pertama adalah <InlineMath math="\ell_{31}=1/2" />; entri lain di bawah pivot sudah bernilai nol.
+Pada kolom pertama, magnitudo terbesar adalah <InlineMath math="2" /> di baris ketiga. Tukar baris pertama dan ketiga. Pengali eliminasi pertama adalah <InlineMath math="\ell_{31}=1/2" />. Entri lain di bawah pivot sudah bernilai nol.
 
 ### Pivot kedua
 
@@ -97,15 +97,15 @@ Untuk contoh tersebut,
 
 <BlockMath math="x=\begin{pmatrix}1\\2\\3\end{pmatrix}" />
 
-dan substitusi langsung mengonfirmasi <InlineMath math="Ax=b" />.
+Substitusi langsung mengonfirmasi <InlineMath math="Ax=b" />.
 
 ## Biaya dan penggunaan ulang
 
-Faktorisasi LU padat membutuhkan sekitar
+Faktorisasi <InlineMath math="\mathrm{LU}" /> padat membutuhkan sekitar
 
 <BlockMath math="\frac{2}{3}n^3+O(n^2)" />
 
-operasi titik mengambang ketika perkalian dan pengurangan dihitung secara terpisah. Setelah faktor tersedia, setiap ruas kanan baru hanya membutuhkan <InlineMath math="O(n^2)" /> kerja untuk dua substitusi. Inilah alasan LU bermanfaat ketika banyak sistem menggunakan matriks yang sama.
+Jumlah tersebut menyatakan operasi titik mengambang ketika perkalian dan pengurangan dihitung secara terpisah. Setelah faktor tersedia, setiap ruas kanan baru hanya membutuhkan <InlineMath math="O(n^2)" /> kerja untuk dua substitusi. Pemakaian ulang faktor <InlineMath math="\mathrm{LU}" /> menghindari faktorisasi <InlineMath math="O(n^3)" /> untuk setiap ruas kanan.
 
 Determinan juga dapat diperoleh dari faktor:
 
@@ -188,4 +188,4 @@ Pemeriksaan tersebut menjadi bagian dari contoh karena urutan faktor dan pencata
 
 ## Batas penggunaan metode
 
-Implementasi ini sengaja hanya menerima matriks persegi nonsingular. Pivot numerik nol akan menghasilkan galat. Untuk masalah kuadrat terkecil persegi panjang atau matriks rank-deficient, gunakan faktorisasi QR yang mengungkap peringkat atau SVD. Masalah-masalah tersebut memiliki kontrak keluaran yang berbeda dan tidak seharusnya disembunyikan di dalam penyelesai PLU persegi.
+Implementasi ini hanya menerima matriks persegi yang dapat diinvers. Jika pivot numeriknya nol, program mengeluarkan galat. Untuk masalah kuadrat terkecil persegi panjang atau matriks yang peringkatnya tidak penuh, gunakan dekomposisi <InlineMath math="\mathrm{QR}" /> dengan pivot kolom atau <InlineMath math="\mathrm{SVD}" />. Penyelesai <InlineMath math="\mathrm{PLU}" /> persegi tidak dapat menghasilkan faktorisasi yang sah untuk masukan tersebut.

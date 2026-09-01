@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bangun produk dalam real dan kompleks dari matriks definit positif, lalu gunakan untuk mendefinisikan panjang, sudut, ortogonalitas, dan proyeksi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-13",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Metode Linear AI",
 };
 
@@ -28,13 +28,13 @@ Untuk vektor real, rumus
 
 <BlockMath math="\langle x,y\rangle_A=x^TAy" />
 
-mendefinisikan produk dalam tepat ketika <InlineMath math="A" /> simetris definit positif. Simetri <InlineMath math="A" /> menghasilkan simetri pasangan, sedangkan <InlineMath math="x^TAx>0" /> bagi setiap <InlineMath math="x" /> tak nol menghasilkan kepositifan ketat.
+Rumus ini mendefinisikan produk dalam tepat ketika <InlineMath math="A" /> simetris definit positif. Simetri <InlineMath math="A" /> menghasilkan simetri pasangan, sedangkan <InlineMath math="x^TAx>0" /> bagi setiap <InlineMath math="x" /> tak nol menghasilkan kepositifan ketat.
 
 Untuk vektor kompleks, rumus yang sesuai adalah
 
 <BlockMath math="\langle x,y\rangle_A=x^HAy" />
 
-dengan <InlineMath math="A" /> Hermitian definit positif. Hanya menyatakan bahwa <InlineMath math="A" /> memiliki entri positif atau entri diagonal positif tidaklah cukup.
+Dalam rumus ini, <InlineMath math="A" /> harus Hermitian definit positif. Hanya menyatakan bahwa <InlineMath math="A" /> memiliki entri positif atau entri diagonal positif tidaklah cukup.
 
 Produk dalam Euklides standar diperoleh kembali dengan <InlineMath math="A=I" />:
 
@@ -43,7 +43,7 @@ Produk dalam Euklides standar diperoleh kembali dengan <InlineMath math="A=I" />
 <BlockMath math="\langle x,y\rangle=x^Hy\qquad\text{pada }\mathbb{C}^n" />
 </MathContainer>
 
-## Panjang, Sudut, dan Ortogonalitas
+## Panjang Sudut dan Ortogonalitas
 
 Setiap produk dalam menginduksi norm
 
@@ -53,13 +53,13 @@ Ketaksamaan Cauchy-Schwarz
 
 <BlockMath math="|\langle x,y\rangle_A|\le\|x\|_A\|y\|_A" />
 
-menjamin bahwa, bagi vektor real tak nol, sudut terdefinisi dengan baik melalui
+Bagi vektor real tak nol, ketaksamaan ini memastikan bahwa sudut dapat didefinisikan melalui
 
 <BlockMath math="\cos\theta_A=\frac{\langle x,y\rangle_A}{\|x\|_A\|y\|_A}" />
 
 Vektor bersifat ortogonal terhadap <InlineMath math="A" /> ketika <InlineMath math="\langle x,y\rangle_A=0" />. Mengubah <InlineMath math="A" /> berarti mengubah geometrinya, sehingga vektor yang tegak lurus dalam metrik Euklides belum tentu tegak lurus dalam metrik berbobot.
 
-## Contoh Berbobot Terhitung
+## Membandingkan Sudut Euklides dan Sudut Berbobot
 
 Misalkan
 
@@ -78,7 +78,7 @@ Nilai eigen positif memastikan bahwa <InlineMath math="A" /> simetris definit po
 
 Jadi, vektor koordinat yang sama tegak lurus dalam geometri Euklides, tetapi membentuk sudut <InlineMath math="60^\circ" /> dalam geometri <InlineMath math="A" />.
 
-## Contoh Kompleks
+## Vektor Kompleks Ortogonal dengan Konjugasi
 
 Untuk produk dalam standar, ambil
 

@@ -1,17 +1,17 @@
 export const metadata = {
   title: "Attributes and Data Types with NumPy",
-  description: "Learn NumPy array attributes such as shape, dtype, size, and ndim, then see how to read them from code examples.",
+  description: "Read a NumPy array's shape, dtype, size, and ndim from concrete code examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-09-20",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "AI Programming",
 };
 
 ## NumPy Data Type System
 
-Every element stored in a NumPy array has a specific type that determines how NumPy represents and processes it. Think of data types as storage formats designed for different kinds of information. A NumPy boolean occupies one byte, while a complex number stores separate real and imaginary components.
+Every element stored in a NumPy array has a type that determines its memory representation and the operations NumPy can perform on it. A NumPy boolean occupies one byte, while a complex number stores separate real and imaginary components.
 
-NumPy's type system ensures all array elements share the same data type so processing can stay efficient. This uniformity helps the underlying C code process data quickly. For details about each data type, check the [NumPy data types documentation](https://numpy.org/doc/stable/user/basics.types.html), which covers technical specifications and memory considerations.
+Every element in a regular NumPy array uses the same data type. This layout lets loops implemented by NumPy in C process elements without checking each value's type one by one. [NumPy](https://numpy.org/doc/stable/user/basics.types.html) lists the technical specifications and memory requirements for each type.
 
 ### Basic Data Types
 
@@ -157,7 +157,7 @@ print("Bytes used by elements:", a.nbytes)  # Output: Bytes used by elements: 48
   ]}
 />
 
-### Important Attribute Explanations
+### Array Attributes
 
 | Attribute | Function | Example Result |
 |-----------|----------|----------------|
@@ -200,7 +200,7 @@ NumPy provides various ways to convert and manipulate array data types according
 
 ### Data Type Conversion Methods
 
-Data type conversion lets you choose another representation for later analysis. The `astype()` method returns a converted array; it does not change the original array in place. When converting a floating-point value to an integer, NumPy cuts off the fractional part toward zero.
+Data type conversion changes the representation used in later analysis. The `astype()` method returns a converted array. It does not change the original array in place. When converting a floating-point value to an integer, NumPy cuts off the fractional part toward zero.
 
 <CodeBlock
   data={[
@@ -263,7 +263,7 @@ print("Memory saved percentage:", (memory_saved / large_array_int64.nbytes) * 10
 
 ### Detailed Data Type Information
 
-The `itemsize` attribute makes the precision and memory trade-off visible for each array.
+The `itemsize` attribute reports the number of bytes used by each element, so we can compare the precision and memory cost of different data types.
 
 <CodeBlock
   data={[
@@ -300,11 +300,11 @@ for name, arr in arrays.items():
 
 ## Practical Array Attribute Usage
 
-Array attributes help you find bugs, improve performance, and work with scientific data.
+Array attributes report the array's structure and memory layout. Inspect them when a shape, type, or memory assumption causes an incorrect result or poor performance.
 
 ### Data Structure Analysis
 
-Analysis functions help you read array characteristics quickly. This is useful when working with complex data or debugging programs.
+Analysis functions report array properties such as dimensions, finite values, and memory use. These checks can expose unexpected data before later calculations use it.
 
 <CodeBlock
   data={[

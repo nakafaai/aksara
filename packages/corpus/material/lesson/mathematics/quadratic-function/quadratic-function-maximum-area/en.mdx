@@ -3,17 +3,17 @@ export const metadata = {
   description: "Build a quadratic area model from a geometric constraint, locate its maximum, and interpret the result in the original problem.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-19",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Quadratic Functions",
 };
 
 ## Turning a constraint into a maximum area
 
-An optimization problem asks for the best value that is still allowed by a constraint. For example, a fixed length of fencing can enclose many rectangles, but those rectangles do not all have the same area. A quadratic function lets us compare every permitted rectangle in one model.
+An optimization problem asks for the best value that is still allowed by a constraint. For example, a fixed length of fencing can enclose many rectangles, but those rectangles do not all have the same area. A quadratic function models the area of every permitted rectangle in terms of one side length.
 
-The important move is not to memorize a formula for a particular fence. It is to express one dimension in terms of the other, substitute that relationship into the area formula, and then interpret the vertex of the resulting parabola.
+Express one dimension in terms of the other, substitute that relationship into the area formula, and then interpret the vertex of the resulting parabola. This procedure works for any rectangular fencing problem with the same type of constraint.
 
-## Why a downward-opening quadratic has a maximum
+## Why a downward opening quadratic has a maximum
 
 A quadratic function has the form
 
@@ -39,7 +39,7 @@ The equivalent discriminant form is
 
 The algebra identifies the vertex, but the context decides whether that vertex is usable. Lengths cannot be negative, a production count may need to be an integer, and time cannot fall outside the interval described by the model.
 
-## Worked example: a rectangular chicken coop
+## Maximum Area of a Rectangular Chicken Coop
 
 A farmer has <InlineMath math="20\text{ m}" /> of fencing and wants to enclose a rectangular chicken coop. What dimensions produce the greatest possible area?
 
@@ -73,7 +73,7 @@ A farmer has <InlineMath math="20\text{ m}" /> of fencing and wants to enclose a
      <BlockMath math="A(5)=5\cdot5=25" />
    </MathContainer>
 
-7. **Check and interpret the result.** The vertex lies inside <InlineMath math="0<l<10" />. At the boundary values, the rectangle collapses and the area approaches <InlineMath math="0" />, so the interior vertex gives the global maximum.
+7. **Confirm that the vertex gives the maximum area.** The vertex lies inside <InlineMath math="0<l<10" />. At the boundary values, the rectangle collapses and the area approaches <InlineMath math="0" />, so the interior vertex gives the global maximum.
 
 <ContentBlock>
   <LineEquation
@@ -111,7 +111,7 @@ A farmer has <InlineMath math="20\text{ m}" /> of fencing and wants to enclose a
 
 The greatest area is therefore <InlineMath math="25\text{ m}^2" />, obtained from a <InlineMath math="5\text{ m}\times5\text{ m}" /> square.
 
-## Reading the model at a glance
+## Constraint Model Domain and Vertex
 
 | Part of the problem | Mathematical statement | Meaning |
 | ------------------- | ---------------------- | ------- |

@@ -1,13 +1,13 @@
 export const metadata = {
   title: "Application of Derivatives",
-  description: "Learn how derivatives solve real-world physics problems. Calculate velocity, acceleration, and maximum heights with worked examples and formulas.",
+  description: "Use derivatives to calculate velocity, acceleration, and maximum height in worked physics problems.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Derivative Functions",
 };
 
-## Understanding Motion Through Derivatives
+## Motion Through Derivatives
 
 Derivatives describe how a quantity **changes**. Motion gives a concrete example: from an object's position function, we can determine its instantaneous velocity and then its acceleration.
 
@@ -65,13 +65,13 @@ Acceleration function:
 
 <BlockMath math="a(t) = v'(t) = -10" />
 
-> This classroom model chooses upward as the positive direction, ignores air resistance, and uses a constant acceleration of <InlineMath math="-10 \text{ m/s}^2" /> near Earth's surface. The negative sign means the acceleration points downward. The commonly used near-surface approximation is <InlineMath math="-9.8 \text{ m/s}^2" />; this model rounds it to <InlineMath math="-10 \text{ m/s}^2" />.
+> This classroom model chooses upward as the positive direction, ignores air resistance, and uses a constant acceleration of <InlineMath math="-10 \text{ m/s}^2" /> near Earth's surface. The negative sign means the acceleration points downward. The commonly used near-surface approximation is <InlineMath math="-9.8 \text{ m/s}^2" />. This model rounds it to <InlineMath math="-10 \text{ m/s}^2" />.
 
 Because <InlineMath math="h(0)=0" /> and <InlineMath math="h(10)=0" />, the modeled flight runs from launch at <InlineMath math="t=0" /> until the ball returns to its starting height at <InlineMath math="t=10" />.
 
 We now determine **when the ball reaches its maximum height**.
 
-The ball reaches its highest point exactly when it stops for a moment to change direction and fall back down. In other words, this occurs when its velocity is exactly zero.
+At the highest point, the ball's vertical velocity changes from positive to negative. We therefore solve <InlineMath math="v(t)=0" /> within the modeled flight interval.
 
 <MathContainer>
     <BlockMath math="v(t) = 0" />
@@ -84,4 +84,4 @@ So, the ball reaches its peak at <InlineMath math="5 \text{ seconds}" />. To fin
 
 <BlockMath math="h(5) = 50(5) - 5(5)^2 = 250 - 125 = 125" />
 
-Thus, the maximum height is **<InlineMath math="125 \text{ meters}" />**. The calculation follows a complete chain: differentiate position, solve for zero velocity within the physical time interval, and substitute that time into the original height function.
+The maximum height is **<InlineMath math="125 \text{ meters}" />**. To find a maximum height, differentiate the position function, find when the velocity is zero while the object is moving, and substitute that time into the original height function.
