@@ -64,38 +64,97 @@ export function moduleSpecifiers(
   return specifiers;
 }
 
-/** Returns bindings that expose one exact module export. */
-export function exposedImports(
+/** Returns exposed bindings from one static import declaration. */
+function importBindings(
+  node: ts.ImportDeclaration,
+  moduleName: string,
+  exportName: string
+): readonly ts.Node[] {
+  if (
+    !ts.isStringLiteral(node.moduleSpecifier) ||
+    node.moduleSpecifier.text !== moduleName
+  ) {
+    return [];
+  }
+  const namedBindings = node.importClause?.namedBindings;
+  if (!namedBindings) {
+    return [];
+  }
+  if (ts.isNamespaceImport(namedBindings)) {
+    return [namedBindings];
+  }
+  return namedBindings.elements.filter(
+    (specifier) =>
+      (specifier.propertyName ?? specifier.name).text === exportName
+  );
+}
+
+/** Returns exposed bindings from one static re-export declaration. */
+function exportBindings(
+  node: ts.ExportDeclaration,
+  moduleName: string,
+  exportName: string
+): readonly ts.Node[] {
+  if (
+    !(node.moduleSpecifier && ts.isStringLiteral(node.moduleSpecifier)) ||
+    node.moduleSpecifier.text !== moduleName
+  ) {
+    return [];
+  }
+  if (!node.exportClause || ts.isNamespaceExport(node.exportClause)) {
+    return [node.exportClause ?? node];
+  }
+  return node.exportClause.elements.filter(
+    (specifier) =>
+      (specifier.propertyName ?? specifier.name).text === exportName
+  );
+}
+
+/** Returns exposed bindings from one remaining supported module syntax. */
+function nonStaticBindings(
+  node: ts.Node,
+  moduleName: string,
+  exportName: string
+): readonly ts.Node[] {
+  if (ts.isImportEqualsDeclaration(node) || ts.isCallExpression(node)) {
+    return staticModuleSpecifier(node)?.text === moduleName ? [node] : [];
+  }
+  if (
+    ts.isImportTypeNode(node) &&
+    staticModuleSpecifier(node)?.text === moduleName &&
+    node.qualifier &&
+    ts.isIdentifier(node.qualifier) &&
+    node.qualifier.text === exportName
+  ) {
+    return [node.qualifier];
+  }
+  return [];
+}
+
+/** Returns syntax nodes that expose one exact module export. */
+export function exposedModuleBindings(
   sourceFile: ts.SourceFile,
   moduleName: string,
-  importName: string
-): readonly (ts.ImportSpecifier | ts.NamespaceImport)[] {
-  const imports: (ts.ImportSpecifier | ts.NamespaceImport)[] = [];
+  exportName: string
+): readonly ts.Node[] {
+  const bindings: ts.Node[] = [];
+  const nodes: ts.Node[] = [sourceFile];
 
-  for (const statement of sourceFile.statements) {
-    if (
-      !(
-        ts.isImportDeclaration(statement) &&
-        ts.isStringLiteral(statement.moduleSpecifier)
-      ) ||
-      statement.moduleSpecifier.text !== moduleName
-    ) {
-      continue;
-    }
-    const bindings = statement.importClause?.namedBindings;
-    if (!bindings) {
-      continue;
-    }
-    if (ts.isNamespaceImport(bindings)) {
-      imports.push(bindings);
-      continue;
-    }
-    for (const specifier of bindings.elements) {
-      if ((specifier.propertyName ?? specifier.name).text === importName) {
-        imports.push(specifier);
-      }
-    }
+  for (const node of nodes) {
+    bindings.push(
+      ...(ts.isImportDeclaration(node)
+        ? importBindings(node, moduleName, exportName)
+        : []),
+      ...(ts.isExportDeclaration(node)
+        ? exportBindings(node, moduleName, exportName)
+        : []),
+      ...nonStaticBindings(node, moduleName, exportName)
+    );
+
+    ts.forEachChild(node, (child) => {
+      nodes.push(child);
+    });
   }
 
-  return imports;
+  return bindings;
 }

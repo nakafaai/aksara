@@ -224,8 +224,31 @@ const multiple = require("first", "second");
       "scripts/check-imports.test.ts:1 @effect/vitest#vi: use the configured global vi for mocks",
     ]);
     for (const source of [
+      'export { vi } from "@effect/vitest";',
+      'export { vi as mockVi } from "@effect/vitest";',
+      'export * from "@effect/vitest";',
+      'export * as effectVitest from "@effect/vitest";',
+      'import EffectVitest = require("@effect/vitest");',
+      'const { vi } = await import("@effect/vitest");',
+      'const effectVitest = await import("@effect/vitest");',
+      'const effectVitest = require("@effect/vitest");',
+      'type Mock = import("@effect/vitest").vi;',
+    ]) {
+      expect(
+        importViolations(
+          "scripts/check-imports.test.ts",
+          source,
+          resolveIdentity
+        )
+      ).toEqual([
+        "scripts/check-imports.test.ts:1 @effect/vitest#vi: use the configured global vi for mocks",
+      ]);
+    }
+    for (const source of [
       'import "@effect/vitest";',
       'import { it } from "@effect/vitest";',
+      'export { it } from "@effect/vitest";',
+      'type Context = import("@effect/vitest").TestContext;',
     ]) {
       expect(
         importViolations(
