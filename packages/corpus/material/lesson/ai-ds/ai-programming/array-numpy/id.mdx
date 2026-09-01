@@ -11,16 +11,16 @@ export const metadata = {
 
 NumPy membantu Python mengolah data numerik secara efisien. List Python dapat menampung tipe campuran, sedangkan array NumPy biasanya menyimpan nilai bertipe sama dalam struktur yang ringkas. Untuk operasi numerik pada banyak nilai sekaligus, susunan ini sering lebih cepat daripada loop Python yang setara.
 
-Objek inti `ndarray` adalah array n-dimensi berukuran tetap yang seluruh elemennya memakai satu tipe data. Dengan `ndarray`, satu ekspresi dapat menjalankan operasi yang sama pada seluruh array. [NumPy](https://numpy.org/doc/stable/) menyediakan tutorial dan contoh lanjutan.
+Objek inti `ndarray` adalah array n-dimensi berukuran tetap yang seluruh elemennya memakai satu tipe data. Dengan `ndarray`, satu ekspresi dapat menjalankan operasi yang sama pada seluruh array. [NumPy](https://numpy.org/doc/stable/)
 
 Untuk pemrograman ilmiah, array NumPy menjalankan loop numerik dalam kode terkompilasi, menerapkan satu operasi pada seluruh array, dan menyimpan nilai homogen secara ringkas:
 
 1. **Loop numerik yang efisien** karena dijalankan dalam kode native terkompilasi
 2. **Vektorisasi** memungkinkan operasi pada seluruh array tanpa loop eksplisit
 3. **Penyimpanan yang ringkas** untuk nilai numerik homogen
-4. **Operasi matematika yang lengkap** dan siap dipakai
+4. **Banyak operasi matematika** yang siap dipakai
 
-Vektorisasi berarti menyatakan operasi untuk seluruh array tanpa menulis loop Python secara eksplisit bagi setiap elemen. NumPy tetap memproses elemen-elemen tersebut secara internal, tetapi loop-nya berjalan dalam kode terkompilasi yang telah dioptimalkan.
+Vektorisasi berarti menyatakan operasi untuk seluruh array tanpa menulis loop Python secara eksplisit bagi setiap elemen. NumPy tetap memproses elemen-elemen tersebut secara internal, tetapi perulangannya berjalan dalam kode terkompilasi yang telah dioptimalkan.
 
 <CodeBlock
   data={[
@@ -156,7 +156,7 @@ print("Tipe data otomatis:", arr_mixed.dtype)  # Output: Tipe data otomatis: flo
 
 ## Fungsi Pembuat Array
 
-NumPy menyediakan fungsi khusus yang menghasilkan array dengan bentuk dan nilai tertentu.
+NumPy menyediakan beberapa fungsi untuk membuat array dengan bentuk dan nilai tertentu.
 
 ### Fungsi Nilai Konstan
 
@@ -335,7 +335,7 @@ print("Dtype:", a.dtype)  # Output: Dtype: float64`
 
 ## Membuat Array Berpola
 
-NumPy menyediakan fungsi khusus untuk membuat array dari urutan nilai dengan pola tertentu.
+NumPy menyediakan beberapa fungsi untuk membuat array dari urutan nilai yang teratur.
 
 ### Fungsi Arange pada NumPy
 
@@ -392,8 +392,8 @@ print("linspace(-1, 1, 11):", a)
 
 # Perbandingan linspace vs arange
 print("\\nPerbedaan linspace vs arange:")
-print("linspace: jumlah elemen diketahui, jarak dihitung")
-print("arange: jarak diketahui, jumlah elemen dihitung")`
+print("linspace: jumlah elemen ditentukan, jarak antarelemen dihitung")
+print("arange: step ditentukan, jumlah elemen mengikuti batas")`
     }
   ]}
 />

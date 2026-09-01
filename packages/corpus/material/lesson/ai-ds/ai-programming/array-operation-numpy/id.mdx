@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Broadcasting dalam NumPy
 
-Broadcasting adalah aturan NumPy untuk menggabungkan array dengan shape berbeda yang masih kompatibel. NumPy memperlakukan dimensi berukuran satu seolah-olah ukurannya sama dengan dimensi pasangannya, tanpa menyalin data ke array yang lebih besar. [NumPy](https://numpy.org/doc/stable/user/basics.broadcasting.html) menyediakan contoh tambahan tentang broadcasting.
+Broadcasting adalah aturan NumPy untuk menggabungkan array dengan shape berbeda yang masih kompatibel. Dimensi berukuran satu diperlakukan seolah-olah ukurannya sama dengan ukuran dimensi yang bersesuaian pada array lain, tanpa menyalin data ke array yang lebih besar. [NumPy](https://numpy.org/doc/stable/user/basics.broadcasting.html)
 
 Vektorisasi memungkinkan satu ekspresi bekerja pada seluruh array. NumPy menjalankan loop di baliknya dalam kode terkompilasi yang telah dioptimalkan, sehingga sering lebih cepat daripada loop Python eksplisit.
 
@@ -40,7 +40,7 @@ Untuk menentukan apakah dua shape kompatibel, NumPy membandingkan dimensinya dar
 
 Terdapat tiga aturan utama dalam broadcasting:
 
-1. **Aturan** <InlineMath math="1" />: Jika rank berbeda, perlakukan shape dengan rank lebih rendah seolah-olah memiliki tambahan dimensi berukuran <InlineMath math="1" /> di sebelah kiri
+1. **Aturan** <InlineMath math="1" />: Jika jumlah dimensinya berbeda, tambahkan dimensi berukuran <InlineMath math="1" /> di sebelah kiri shape yang memiliki lebih sedikit dimensi
 2. **Aturan** <InlineMath math="2" />: Dua dimensi yang sejajar kompatibel jika ukurannya sama atau salah satunya berukuran <InlineMath math="1" />. NumPy memperlakukan dimensi berukuran satu seolah-olah ukurannya sama dengan dimensi pasangannya
 3. **Aturan** <InlineMath math="3" />: Jika ada pasangan dimensi yang tidak kompatibel, NumPy menghasilkan `ValueError`
 
@@ -485,5 +485,3 @@ print(f"Standar deviasi baru: {np.std(Z, axis=0)}")  # Harus mendekati 1
 />
 
 Standardisasi mencegah perbedaan satuan saja menciptakan selisih skala yang besar. Namun, standardisasi tidak menjamin setiap fitur sama penting atau sama berpengaruh karena hal itu tetap ditentukan oleh model dan datanya. Misalnya, tinggi dalam sentimeter dan berat dalam kilogram menjadi sebanding secara numerik setelah distandardisasi.
-
-[NumPy](https://numpy.org/doc/stable/user/basics.html) menyediakan panduan dan contoh praktis untuk berbagai operasi array.

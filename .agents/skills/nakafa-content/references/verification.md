@@ -18,9 +18,9 @@ Run focused scope tests first, then the repository gates appropriate to the
 change:
 
 ```sh
-node .agents/skills/nakafa-content/scripts/lesson-voice.ts
-node .agents/skills/nakafa-content/scripts/lesson-voice.ts --strict-review
-node --test '.agents/skills/nakafa-content/scripts/**/*.test.ts'
+node --conditions=aksara-source .agents/skills/nakafa-content/scripts/lesson-voice.ts
+node --conditions=aksara-source .agents/skills/nakafa-content/scripts/lesson-voice.ts --strict-review
+node --conditions=aksara-source --test '.agents/skills/nakafa-content/scripts/**/*.test.ts'
 pnpm format
 pnpm locales
 pnpm boundaries
@@ -37,7 +37,11 @@ titles and lesson headings. It also reports bare `QR`, `LU`, `SVD`, `PLU`, and
 strict review also reports a lowercase prose fragment immediately after a
 displayed math block because the renderer presents it as a separate paragraph.
 This flow check remains a review item and requires all three locale siblings to
-be read before editing. The default gate also blocks visible semicolons in
+be read before editing. The direct Node commands use the `aksara-source` export
+condition so they resolve the tracked locale contract in a clean checkout.
+`pnpm test` runs the Node checker suite and the default corpus gate through the
+root Turbo graph. It must not depend on an ignored `packages/contracts/dist`
+build from an earlier task. The default gate also blocks visible semicolons in
 learner prose and component labels. Its MDX parser excludes source syntax,
 code, HTML entities, and LaTeX spacing such as `\;`. The gate also blocks hidden
 C0 control characters other than line feed and tab, plus DEL, because those
@@ -109,7 +113,12 @@ typed blockers, never fallback conditions.
   or `5 m` when they carry mathematical meaning.
 - Confirm named factorizations and algorithms such as `QR`, `LU`, `SVD`, `PLU`, and `PCA`
   use upright `<InlineMath />` in learner prose. Keep them as plain letters in
-  page titles and headings, then render the notation in the first body sentence.
+  page titles, headings, code, and code comments, then render the notation in
+  the first body sentence. Include a negative regression fixture proving that
+  the checker ignores programming-language comments.
+- Confirm LaTeX commands inside `math` props keep their leading backslash.
+  Regression fixtures must reject bare `ldots`, `cdots`, `vdots`, and `ddots`
+  inside rendered math while accepting the same words in prose and code.
 - Compare every locale sibling for the same formulas,
   conditions, units, significant steps, and conclusions. Natural phrasing may
   differ, but mathematical meaning and instructional support may not.
@@ -146,7 +155,9 @@ typed blockers, never fallback conditions.
   loss is a release blocker.
 - Confirm no U+2014 character exists outside a pinned immutable allowlist.
 - Confirm every lesson heading passes the deterministic symbol rule and still
-  reads naturally in its locale.
+  reads naturally in its locale. The rule must allow a hyphen required by
+  standard word formation, such as Indonesian reduplication, without allowing
+  decorative separators or damaged spellings.
 - Confirm no visible semicolon remains in paragraphs, lists, tables, metadata
   descriptions, or learner-facing component props. Inspect the parsed MDX
   result rather than rejecting semicolons required by code, syntax, HTML
@@ -165,6 +176,11 @@ typed blockers, never fallback conditions.
   berubah`, `dibandingkan dengan apa`, `kenapa`, and `contohnya apa` whenever
   they apply. A paragraph that requires an explanation of its own wording is
   not ready.
+- Search for `latihan fiktif`, `skenario fiktif`, `model fiktif`, `fictional
+  exercise`, `fictional model`, `fiktive Aufgabe`, and `fiktives Modell`. Remove the
+  label when it does not change the mathematical or scientific meaning. Keep a
+  concrete safety boundary when the example could otherwise be mistaken for
+  real medical, policy, or scientific guidance.
 - Retell each revised lesson as a teacher would explain it. Every paragraph
   should begin from a named fact, question, representation, example, or prior
   result and prepare the learner for the next step. Do not require a fixed

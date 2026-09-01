@@ -1,3 +1,4 @@
+import { linkDefinitions, linkUrl } from "#nakafa-content/link-reference";
 import {
   type MdxNode,
   parseLessonMdx,
@@ -23,7 +24,15 @@ export const NAVIGATION_VOICE_RULES = [
 
 const EXTERNAL_URL_PATTERN = /^https?:\/\//iu;
 const DIGIT_PATTERN = /\d/u;
+const SENTENCE_END_PATTERN = /[.!?]["'’”)\]}]*$/u;
+const TERMINAL_ABBREVIATION_PATTERN =
+  /(?:\b(?:[a-z]\.){2,}|\b(?:dll|dr|dsb|etc|hlm|mis|no|prof|usw)\.)["'’”)\]}]*$/iu;
+const SENTENCE_START_PATTERN = /^[*_~"'‘“„([]*(?:[\p{Lu}\p{N}]|<|`)/u;
+const SOURCE_SECTION_PATTERN =
+  /^#{2,5}\s+(?:Quellen|References|Referensi|Sumber|Sources)\s*$/gimu;
 const WHITESPACE_PATTERN = /\s+/u;
+const PUNCTUATION_ONLY_PATTERN = /^[.!?]+$/u;
+const SENTENCE_LEADING_PUNCTUATION_PATTERN = /^[.!?]["'’”)\]}]*\s+/u;
 
 const PLACEHOLDER_LABEL_PATTERNS: Record<LessonVoiceLocale, RegExp> = {
   de: /^(?:dieser link|quellenlink)$/iu,
@@ -68,6 +77,96 @@ function wordCount(label: string): number {
   return label.split(WHITESPACE_PATTERN).filter(Boolean).length;
 }
 
+/** Removes external-link source spans while keeping the surrounding prose. */
+function proseWithoutExternalLinks(
+  node: MdxNode,
+  source: string,
+  startOffset: number,
+  endOffset: number,
+  definitions: ReadonlyMap<string, string>
+): string {
+  const ranges: Array<{ end: number; start: number }> = [];
+  visitMdxNodes(node, (child) => {
+    const start = child.position?.start?.offset;
+    const end = child.position?.end?.offset;
+    const url = linkUrl(child, definitions);
+    if (
+      url === undefined ||
+      !EXTERNAL_URL_PATTERN.test(url) ||
+      start === undefined ||
+      end === undefined ||
+      start < startOffset ||
+      end > endOffset
+    ) {
+      return;
+    }
+    ranges.push({ end, start });
+  });
+  ranges.sort((left, right) => left.start - right.start);
+
+  let cursor = startOffset;
+  let result = "";
+  for (const range of ranges) {
+    result += source.slice(cursor, range.start);
+    cursor = range.end;
+  }
+  return result + source.slice(cursor, endOffset);
+}
+
+/** Returns the nearest prose block that owns one inline link. */
+function proseContainer(ancestors: readonly MdxNode[]): MdxNode | undefined {
+  for (let index = ancestors.length - 1; index >= 0; index -= 1) {
+    const ancestor = ancestors[index];
+    if (
+      ancestor &&
+      (ancestor.type === "paragraph" || ancestor.type === "tableCell")
+    ) {
+      return ancestor;
+    }
+  }
+}
+
+/** Distinguishes a new sentence after a citation from continued link grammar. */
+function continuesSentenceAfterLink(value: string): boolean {
+  const trimmed = value.trim();
+  if (trimmed === "" || PUNCTUATION_ONLY_PATTERN.test(trimmed)) {
+    return false;
+  }
+  const withoutClosingPunctuation = trimmed.replace(
+    SENTENCE_LEADING_PUNCTUATION_PATTERN,
+    ""
+  );
+  return !SENTENCE_START_PATTERN.test(withoutClosingPunctuation);
+}
+
+/** Rejects an abbreviation dot as evidence that the source follows a claim. */
+function followsCompleteSentence(value: string): boolean {
+  return (
+    SENTENCE_END_PATTERN.test(value) &&
+    !TERMINAL_ABBREVIATION_PATTERN.test(value)
+  );
+}
+
+/** Traverses MDX with ancestors so placement can respect explicit source lists. */
+function visitWithAncestors(
+  node: MdxNode,
+  ancestors: readonly MdxNode[],
+  visit: (current: MdxNode, parents: readonly MdxNode[]) => void
+): void {
+  visit(node, ancestors);
+  for (const child of node.children ?? []) {
+    visitWithAncestors(child, [...ancestors, node], visit);
+  }
+}
+
+/** Returns whether an offset falls below the current explicit source heading. */
+function isInsideSourceSection(source: string, offset: number): boolean {
+  const headings = [...source.slice(0, offset).matchAll(/^#{2,5}\s+.+$/gmu)];
+  const currentHeading = headings.at(-1)?.[0] ?? "";
+  SOURCE_SECTION_PATTERN.lastIndex = 0;
+  return SOURCE_SECTION_PATTERN.test(currentHeading);
+}
+
 /** Returns the narrow evidence-backed failure for one external label. */
 function externalLinkRule(
   locale: LessonVoiceLocale,
@@ -99,12 +198,13 @@ export function findExternalLinkLabelIssues(
   tree: MdxNode = parseLessonMdx(source)
 ): LessonVoiceIssue[] {
   const issues: LessonVoiceIssue[] = [];
-  visitMdxNodes(tree, (node) => {
-    if (
-      node.type !== "link" ||
-      typeof node.url !== "string" ||
-      !EXTERNAL_URL_PATTERN.test(node.url)
-    ) {
+  const definitions = linkDefinitions(tree);
+  visitWithAncestors(tree, [], (node, ancestors) => {
+    if (ancestors.some(({ type }) => type === "blockquote")) {
+      return;
+    }
+    const url = linkUrl(node, definitions);
+    if (url === undefined || !EXTERNAL_URL_PATTERN.test(url)) {
       return;
     }
     const label = linkLabel(node);
@@ -123,6 +223,79 @@ export function findExternalLinkLabelIssues(
       excerpt: line.trim(),
       line: start.line,
       rule,
+    });
+  });
+  return issues;
+}
+
+/** Finds source chips used as grammatical parts of learner-facing prose. */
+export function findExternalLinkPlacementIssues(
+  source: string,
+  tree: MdxNode = parseLessonMdx(source)
+): LessonVoiceIssue[] {
+  const issues: LessonVoiceIssue[] = [];
+  const definitions = linkDefinitions(tree);
+  visitWithAncestors(tree, [], (node, ancestors) => {
+    if (ancestors.some(({ type }) => type === "blockquote")) {
+      return;
+    }
+    const url = linkUrl(node, definitions);
+    if (url === undefined || !EXTERNAL_URL_PATTERN.test(url)) {
+      return;
+    }
+    const container = proseContainer(ancestors);
+    const containerStart = container?.position?.start?.offset;
+    const containerEnd = container?.position?.end?.offset;
+    const linkStart = node.position?.start?.offset;
+    const linkEnd = node.position?.end?.offset;
+    const start = node.position?.start;
+    if (
+      container === undefined ||
+      containerStart === undefined ||
+      containerEnd === undefined ||
+      linkStart === undefined ||
+      linkEnd === undefined ||
+      start?.line === undefined ||
+      start.column === undefined
+    ) {
+      return;
+    }
+
+    const before = proseWithoutExternalLinks(
+      container,
+      source,
+      containerStart,
+      linkStart,
+      definitions
+    ).trim();
+    const after = proseWithoutExternalLinks(
+      container,
+      source,
+      linkEnd,
+      containerEnd,
+      definitions
+    );
+    const isExplicitSourceList =
+      ancestors.some(({ type }) => type === "listItem") &&
+      isInsideSourceSection(source, containerStart);
+    const isStandaloneCitation =
+      before === "" &&
+      (after.trim() === "" || PUNCTUATION_ONLY_PATTERN.test(after.trim()));
+    const followsCompleteClaim = followsCompleteSentence(before);
+    if (
+      isExplicitSourceList ||
+      isStandaloneCitation ||
+      (followsCompleteClaim && !continuesSentenceAfterLink(after))
+    ) {
+      return;
+    }
+
+    const line = source.split("\n")[start.line - 1] ?? "";
+    issues.push({
+      column: start.column,
+      excerpt: line.trim(),
+      line: start.line,
+      rule: "external-link-chip-in-sentence",
     });
   });
   return issues;

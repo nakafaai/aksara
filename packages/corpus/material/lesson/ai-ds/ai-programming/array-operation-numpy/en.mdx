@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Broadcasting in NumPy
 
-Broadcasting is NumPy's rule for combining arrays with different but compatible shapes. NumPy treats a dimension of size one as if its size matched the paired dimension, without copying the data into a larger array. [NumPy](https://numpy.org/doc/stable/user/basics.broadcasting.html) provides additional examples.
+Broadcasting is NumPy's rule for combining arrays with different but compatible shapes. A dimension of size one is treated as if it had the same size as the corresponding dimension of the other array, without copying the data into a larger array. [NumPy](https://numpy.org/doc/stable/user/basics.broadcasting.html)
 
 Vectorization lets one expression operate over an entire array. NumPy executes the underlying loop in optimized compiled code, which is often faster than an explicit Python loop.
 
@@ -40,7 +40,7 @@ To decide whether two shapes are compatible, NumPy compares their dimensions fro
 
 There are three main rules in broadcasting:
 
-1. **Rule** <InlineMath math="1" />: If the ranks differ, treat the lower-rank shape as if dimensions of size <InlineMath math="1" /> were added on the left
+1. **Rule** <InlineMath math="1" />: If the numbers of dimensions differ, add dimensions of size <InlineMath math="1" /> on the left of the shape with fewer dimensions
 2. **Rule** <InlineMath math="2" />: Two aligned dimensions are compatible when they are equal or one of them has size <InlineMath math="1" />. NumPy treats the single entry along that dimension as repeated until the sizes match
 3. **Rule** <InlineMath math="3" />: If any aligned pair is incompatible, NumPy raises a `ValueError`
 
@@ -485,5 +485,3 @@ print(f"New standard deviation: {np.std(Z, axis=0)}")  # Should be close to 1
 />
 
 Standardization prevents units alone from creating large scale differences. It does not guarantee equal importance or influence: the model and the data still determine that. For example, height in centimeters and weight in kilograms become numerically comparable after standardization.
-
-[NumPy](https://numpy.org/doc/stable/user/basics.html) provides more details and practical examples for array operations.

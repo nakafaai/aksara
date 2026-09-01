@@ -69,11 +69,11 @@ Unter allen linearen Rekonstruktionen vom Rang <InlineMath math="k" /> minimiert
 
 ## Gleichwertige Berechnung mit der SVD
 
-Berechne die dünne Singulärwertzerlegung
+Die <InlineMath math="\mathrm{PCA}" /> kann auch mit der folgenden dünnen Singulärwertzerlegung berechnet werden:
 
 <BlockMath math="X_c=U\Sigma V^T" />
 
-Dann sind die rechten Singulärvektoren die Hauptkomponentenrichtungen und
+Die rechten Singulärvektoren liefern die Hauptkomponentenrichtungen, während für die Eigenwerte gilt:
 
 <BlockMath math="\lambda_j=\frac{\sigma_j^2}{m-1}" />
 
@@ -81,11 +81,11 @@ Die Verwendung der <InlineMath math="\mathrm{SVD}" /> vermeidet die Bildung von 
 
 ## Beispiel einer zweidimensionalen Kovarianz
 
-Betrachte eine Kovarianzellipse, die um
+Die Kovarianzellipse wird um den folgenden Winkel gedreht:
 
 <BlockMath math="\theta=\frac{\pi}{6}" />
 
-Die Kovarianzellipse ist um <InlineMath math="\theta" /> gedreht und besitzt entlang ihrer Hauptachsen die Varianzen <InlineMath math="9" /> und <InlineMath math="2{,}25" />. Sei
+Die Varianzen entlang der beiden Hauptachsen betragen <InlineMath math="9" /> und <InlineMath math="2{,}25" />. Rotations- und Kovarianzmatrix lauten:
 
 <MathContainer>
 <BlockMath math="R=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}" />
@@ -100,11 +100,11 @@ Die Hauptkomponentenrichtungen sind die Spalten von <InlineMath math="R" />:
 <BlockMath math="v_2=\begin{pmatrix}-1/2\\\sqrt3/2\end{pmatrix},\qquad\lambda_2=2{,}25" />
 </MathContainer>
 
-Die erste Komponente erklärt
+Der von der ersten Komponente erklärte Varianzanteil wird aus den beiden Eigenwerten berechnet:
 
 <BlockMath math="\frac{9}{9+2{,}25}=0{,}8=80\%" />
 
-Dieses Ergebnis bedeutet, dass die erste Komponente <InlineMath math="80\%" /> der Gesamtvarianz erklärt.
+Das Ergebnis <InlineMath math="80\%" /> ist der Anteil der Gesamtvarianz, den die erste Komponente erklärt.
 
 <LineEquation
   title={<>Kovarianzellipse und Hauptkomponentenrichtungen <InlineMath math="v_1,v_2" /></>}

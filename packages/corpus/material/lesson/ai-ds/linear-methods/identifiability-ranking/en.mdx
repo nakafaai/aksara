@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Identifiability in a Linear Model
 
-Identifiability asks whether the available data determine a model parameter uniquely. Let <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="b \in \mathbb{R}^m" />, and <InlineMath math="m \geq n" />. The linear least-squares problem is
+A parameter is identifiable when the available data determine it uniquely. Let <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="b \in \mathbb{R}^m" />, and <InlineMath math="m \geq n" />. The linear least-squares problem is
 
 <BlockMath math="\min_{x \in \mathbb{R}^n} \|Ax-b\|_2^2" />
 
@@ -30,7 +30,7 @@ These statements are equivalent. If <InlineMath math="z \in \ker(A)" /> is nonze
 
 This equality shows that the data cannot distinguish <InlineMath math="x" /> from <InlineMath math="x+z" />. If <InlineMath math="\ker(A)=\{0\}" />, then <InlineMath math="A^TA" /> is positive definite and the least-squares problem has one minimizer.
 
-## Uniqueness Is Not the Same as Stability
+## Solution Uniqueness and Numerical Stability
 
 Full column rank guarantees a unique exact solution, but not a numerically reliable one. A very small nonzero singular value can make the estimate highly sensitive to small changes in the data.
 
@@ -86,7 +86,7 @@ The factor <InlineMath math="c" /> reflects the application and noise model, so 
 
 <BlockMath math="x^{\dagger}=V\Sigma^{\dagger}U^T b" />
 
-## Computing the Decomposition Safely
+## Estimating Matrix Rank with SVD or Rank Revealing QR
 
 The identity
 

@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Menentukan Luas Minimum",
-  description: "Menyusun model kuadrat untuk luas yang dibatasi, menentukan nilai minimumnya, lalu memeriksa apakah hasilnya sah dalam masalah semula.",
+  description: "Menyusun model kuadrat untuk luas yang memenuhi syarat tertentu, menentukan nilai minimumnya, lalu memeriksa apakah hasilnya dapat digunakan pada soal.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-19",
   dateModified: "2026-09-01",
   subject: "Fungsi Kuadrat",
 };
 
-## Mengubah kendala menjadi nilai minimum
+## Menggunakan Syarat untuk Mencari Nilai Minimum
 
-Sebagian masalah optimasi meminta nilai sekecil mungkin. Produsen mungkin mencari biaya terendah, atau suatu rancangan membutuhkan jumlah luas terkecil dengan syarat geometri tertentu. Tujuannya berbeda, tetapi proses pemodelannya tetap sama. Ubah kendala menjadi persamaan, susun fungsi dengan satu variabel, lalu gunakan titik puncak untuk menentukan nilai minimum yang memenuhi kendala.
+Pada masalah optimasi, hal yang dicari bisa berbeda. Produsen mungkin ingin menekan biaya, sedangkan suatu rancangan mungkin harus memakai luas total sekecil mungkin sambil tetap memenuhi syarat geometri. Langkah pemodelannya sama. Tulis syarat geometri sebagai persamaan, susun fungsi dengan satu variabel, lalu gunakan titik puncak untuk mencari nilai minimum yang masih memenuhi syarat tersebut.
 
 Mencari minimum bukan berarti langsung memilih nol. Masalah semula menentukan nilai mana yang diperbolehkan, dan minimum harus berada di dalam domain tersebut.
 
@@ -44,7 +44,7 @@ Setelah menghitung titik puncak, selalu kembali ke konteks. Periksa domain, satu
 Kawat sepanjang <InlineMath math="40\text{ cm}" /> dipotong menjadi dua bagian. Setiap bagian dibentuk menjadi sebuah persegi. Di mana kawat harus dipotong agar jumlah luas kedua persegi sekecil mungkin?
 
 1. **Namai panjang sisi.** Misalkan sisi persegi pertama <InlineMath math="x\text{ cm}" /> dan sisi persegi kedua <InlineMath math="y\text{ cm}" />.
-2. **Terjemahkan kendala panjang kawat.**
+2. **Tulis hubungan panjang kawat sebagai persamaan.**
 
    <MathContainer>
      <BlockMath math="4x+4y=40" />
@@ -133,7 +133,7 @@ Karena <InlineMath math="a=3>0" />, model ini memiliki minimum:
   <BlockMath math="C(10)=3(10)^2-60(10)+500=300-600+500=200" />
 </MathContainer>
 
-Model tersebut memprediksi biaya minimum sebesar <InlineMath math="\text{Rp }200\,000" /> pada produksi <InlineMath math="10" /> barang. Keputusan produksi nyata juga perlu memeriksa apakah domain model dan kendala operasional memperbolehkan jumlah tersebut.
+Model tersebut memprediksi biaya minimum sebesar <InlineMath math="\text{Rp }200\,000" /> pada produksi <InlineMath math="10" /> barang. Sebelum memakai hasil ini, periksa apakah <InlineMath math="10" /> barang berada dalam domain model dan dapat diproduksi dengan kapasitas yang tersedia.
 
 ## Latihan
 
@@ -142,7 +142,7 @@ Jumlah dua bilangan positif adalah <InlineMath math="16" />. Tentukan kedua bila
 ### Pembahasan lengkap
 
 1. Misalkan bilangan pertama <InlineMath math="x" /> dan bilangan kedua <InlineMath math="y" />.
-2. Terjemahkan kendala jumlah.
+2. Tulis hubungan kedua bilangan sebagai persamaan.
 
    <MathContainer>
      <BlockMath math="x+y=16" />

@@ -2,24 +2,24 @@
 export const metadata = {
   title: "Konversi Energi",
   description:
-    "Menelusuri konversi energi dari sumber alam menjadi energi listrik, termasuk energi berguna, energi terdisipasi, dan efisiensi sederhana.",
+    "Perubahan energi menghubungkan sumber alam dengan listrik, keluaran yang diinginkan, energi yang berpindah ke lingkungan, dan efisiensi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-01",
   dateModified: "2026-09-01",
   subject: "Energi Terbarukan",
 };
 
-## Telusuri Energi melalui Setiap Alat
+## Urutan Konversi Energi dalam Alat
 
 **Konversi energi** adalah perubahan energi dari satu bentuk ke bentuk lain. Kata "konversi" tidak berarti energi diciptakan dari nol. Energi tetap mengikuti hukum kekekalan. Bentuk energi dapat berubah dan energi dapat berpindah dari satu bagian sistem ke bagian lain.
 
-[EIA](https://www.eia.gov/energyexplained/what-is-energy/laws-of-energy.php) menjelaskan bahwa energi berubah bentuk saat digunakan, tetapi jumlah totalnya tetap. Dalam setiap konversi, sebagian energi menghasilkan keluaran yang dibutuhkan. Sebagian lainnya berpindah ke lingkungan, misalnya sebagai kalor, bunyi, atau getaran.
+Energi berubah bentuk saat digunakan, tetapi jumlah totalnya tetap. Dalam setiap konversi, sebagian energi menjadi keluaran yang dibutuhkan. Sebagian lainnya berpindah ke lingkungan, misalnya sebagai kalor, bunyi, atau getaran. [EIA](https://www.eia.gov/energyexplained/what-is-energy/laws-of-energy.php)
 
 Untuk menganalisis suatu teknologi energi, kita dapat menuliskan jalur konversinya dalam urutan berikut.
 
-<BlockMath math="\text{sumber energi} \rightarrow \text{bentuk awal} \rightarrow \text{alat konversi} \rightarrow \text{energi berguna}+\text{energi terdisipasi}" />
+<BlockMath math="\text{sumber energi} \rightarrow \text{bentuk awal} \rightarrow \text{alat konversi} \rightarrow \text{keluaran berguna}+\text{energi ke lingkungan}" />
 
-Energi terdisipasi bukan energi yang hilang. Energi itu menyebar ke lingkungan, misalnya sebagai kalor, bunyi, getaran, atau cahaya yang terpantul.
+Energi yang berpindah ke lingkungan tetap masuk dalam perhitungan. Energi tersebut dapat berupa kalor, bunyi, getaran, atau cahaya pantul.
 
 ## Jalur Konversi pada Pembangkit
 
@@ -27,16 +27,16 @@ Diagram berikut menjawab satu pertanyaan: energi dari alam berubah menjadi apa s
 
 <Mermaid
   title="Pembangkit Mengubah Energi Bertahap"
-  description="Telusuri urutan dari sumber energi ke turbin, generator, lalu listrik yang keluar dari pembangkit."
+  description="Diagram menunjukkan jalur dari sumber energi alam melalui alat konversi menuju keluaran berguna dan energi yang berpindah ke lingkungan."
   chart={`flowchart TD
     A["Sumber alam"] --> B["Bentuk energi awal"]
     B --> C["Alat konversi"]
     C --> D["Energi berguna"]
-    C --> E["Energi terdisipasi"]`}/>
+    C --> E["Energi ke lingkungan"]`}/>
 
-Pada pembangkit listrik tenaga air, [DOE](https://www.energy.gov/cmei/water/how-hydropower-works) menjelaskan bahwa air mengalir melalui penstock dan memutar turbin. Turbin kemudian memutar generator yang menghasilkan listrik.
+Pada pembangkit listrik tenaga air, air mengalir melalui penstock dan memutar turbin. Turbin kemudian memutar generator yang menghasilkan listrik. [DOE](https://www.energy.gov/cmei/water/how-hydropower-works)
 
-Pada pembangkit listrik tenaga angin, [DOE](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work) menjelaskan bahwa angin memutar bilah turbin, rotor memutar generator, lalu generator menghasilkan listrik.
+Pada pembangkit listrik tenaga angin, angin memutar bilah turbin, rotor memutar generator, lalu generator menghasilkan listrik. [DOE](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work)
 
 <WindEnergyConversionLab
   title={<>Konversi Energi pada Turbin Angin</>}
@@ -49,7 +49,7 @@ Pada pembangkit listrik tenaga angin, [DOE](https://www.energy.gov/cmei/systems/
   labels={{
     flow: <>Angin memutar rotor, rotor memutar generator, lalu listrik dialirkan keluar.</>,
     flowLabel: "Jalur konversi",
-    meaning: <>Kelajuan angin yang lebih besar membuat rotor berputar lebih cepat, tetapi daya keluaran sebenarnya tetap bergantung pada batas alat dan kondisi lokasi.</>,
+    meaning: <>Kelajuan angin yang lebih besar dapat membuat rotor berputar lebih cepat, tetapi daya keluaran tetap dibatasi oleh kapasitas turbin, sistem kontrol, dan kondisi lokasi.</>,
     meaningLabel: "Makna fisika",
     speedControl: "Kelajuan angin",
     speedUnit: "m/s",
@@ -57,9 +57,9 @@ Pada pembangkit listrik tenaga angin, [DOE](https://www.energy.gov/cmei/systems/
   }}
 />
 
-Pada panel surya fotovoltaik, [EIA](https://www.eia.gov/energyexplained/solar/photovoltaics-and-electricity.php) menjelaskan bahwa sel fotovoltaik mengubah cahaya Matahari langsung menjadi listrik. Hanya foton yang diserap oleh bahan semikonduktor yang memberi energi untuk menghasilkan listrik.
+Pada panel fotovoltaik, sel surya mengubah cahaya Matahari langsung menjadi listrik. Hanya foton yang diserap bahan semikonduktor yang menyumbangkan energi untuk menghasilkan listrik. [EIA](https://www.eia.gov/energyexplained/solar/photovoltaics-and-electricity.php)
 
-| Teknologi | Jalur konversi utama | Energi yang sering terdisipasi |
+| Teknologi | Jalur konversi utama | Energi yang sering berpindah ke lingkungan sebagai |
 | :-------- | :------------------- | :----------------------------- |
 | Pembangkit listrik tenaga air | <InlineMath math="\text{potensial gravitasi air}\rightarrow\text{kinetik air}\rightarrow\text{turbin}\rightarrow\text{generator}\rightarrow\text{listrik}" /> | kalor akibat gesekan poros, bunyi, getaran |
 | Turbin angin | <InlineMath math="\text{kinetik angin}\rightarrow\text{turbin}\rightarrow\text{generator}\rightarrow\text{listrik}" /> | bunyi, getaran, kalor pada komponen |
@@ -68,9 +68,9 @@ Pada panel surya fotovoltaik, [EIA](https://www.eia.gov/energyexplained/solar/ph
 | Biogas | <InlineMath math="\text{energi kimia}\rightarrow\text{pembakaran dalam mesin atau turbin}\rightarrow\text{gerak poros}\rightarrow\text{generator}\rightarrow\text{listrik}" /> | kalor sisa, gas buang, bunyi |
 | Panas bumi | <InlineMath math="\text{energi termal reservoir}\rightarrow\text{aliran uap atau fluida kerja}\rightarrow\text{turbin}\rightarrow\text{generator}\rightarrow\text{listrik}" /> | kalor sisa dan gesekan sistem |
 
-[DOE](https://www.energy.gov/cmei/fuels/biopower-energy-heat-and-electricity) menjelaskan bahwa teknologi biopower mengubah bahan bakar biomassa menjadi panas dan listrik melalui pembakaran, penguraian bakteri, atau konversi menjadi bahan bakar gas dan cair.
+Teknologi biopower mengubah biomassa menjadi panas dan listrik melalui pembakaran, penguraian oleh bakteri, atau konversi menjadi bahan bakar gas dan cair. [DOE](https://www.energy.gov/cmei/fuels/biopower-energy-heat-and-electricity)
 
-[DOE](https://www.energy.gov/hgeo/geothermal/geothermal-electricity-generation) juga menjelaskan bahwa pembangkit panas bumi memakai fluida panas atau uap dari bawah permukaan Bumi untuk menggerakkan turbin dan menghasilkan listrik.
+Pembangkit panas bumi memakai fluida panas atau uap dari bawah permukaan Bumi untuk menggerakkan turbin dan menghasilkan listrik. [DOE](https://www.energy.gov/hgeo/geothermal/geothermal-electricity-generation)
 
 ## Efisiensi Mengukur Bagian Energi yang Berguna
 
@@ -98,7 +98,7 @@ Misalkan sebuah panel menerima energi cahaya <InlineMath math="800 \text{ J}" />
 Energi yang tidak menjadi listrik berguna adalah:
 
 <BlockMath math="\begin{aligned}
-E_{\text{terdisipasi}}
+E_{\text{lingkungan}}
 &= E_{\text{masuk}}-E_{\text{berguna}} \\
 &= 800 \text{ J}-160 \text{ J} \\
 &= 640 \text{ J}
@@ -106,9 +106,9 @@ E_{\text{terdisipasi}}
 
 Jadi, efisiensi <InlineMath math="20\%" /> bukan berarti sisa <InlineMath math="80\%" /> hilang. Sisa energinya berpindah ke lingkungan, misalnya sebagai kalor dan cahaya yang tidak terserap panel.
 
-[EIA](https://www.eia.gov/energyexplained/use-of-energy/efficiency-and-conservation.php) memakai istilah efisiensi energi untuk menjelaskan kinerja teknis alat konversi energi dan alat pemakai energi.
+Efisiensi energi mengukur bagian energi masuk yang berhasil diubah alat menjadi keluaran berguna. [EIA](https://www.eia.gov/energyexplained/use-of-energy/efficiency-and-conservation.php)
 
-## Telusuri Jalur Energi pada Setiap Alat
+## Membandingkan Jalur Konversi Beberapa Alat
 
 Panel surya, turbin angin, generator, dan reaktor biogas mengubah energi dari satu bentuk ke bentuk lain. Nama alat saja belum menjelaskan sumber energi, urutan perubahannya, energi yang dapat digunakan, dan energi yang berpindah ke lingkungan.
 
@@ -120,4 +120,4 @@ Panel surya, turbin angin, generator, dan reaktor biogas mengubah energi dari sa
 | Biomassa | Apakah pasokan bahan baku biomassa cukup dan dikelola secara berkelanjutan? |
 | Pembangkit panas bumi | Apakah lokasi menyediakan suhu bawah tanah, fluida, dan aliran yang memadai untuk pembangkit? |
 
-Jalur konversi mencatat sumber, bentuk energi awal, bentuk keluaran, energi berguna, dan energi yang terdisipasi.
+Jalur konversi mencatat sumber, bentuk energi awal, bentuk keluaran, energi berguna, dan energi yang berpindah ke lingkungan.

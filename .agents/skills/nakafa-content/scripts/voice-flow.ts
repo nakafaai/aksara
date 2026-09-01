@@ -3,6 +3,70 @@ import type { LessonVoiceRule } from "#nakafa-content/voice-types";
 /** Checks stiff lesson choreography and personified instructional prose. */
 export const FLOW_VOICE_RULES = [
   {
+    id: "abrupt-scenario-imperative",
+    patterns: {
+      de: /\b(?:angenommen|stell dir vor)\b[^.!?\n]{0,180}\bGrundstück\b[^.!?\n]*[.!?]\s+(?:Nähere|Schätze|Berechne)\b[^.!?\n]{0,50}\bFläche\b/iu,
+      en: /\b(?:suppose|imagine)\b[^.!?\n]{0,180}\b(?:plot|piece) of land\b[^.!?\n]*[.!?]\s+(?:Approximate|Estimate|Calculate)\b[^.!?\n]{0,50}\b(?:area|land)\b/iu,
+      id: /\b(?:misalkan|bayangkan)\b[^.!?\n]{0,180}\b(?:tanah|lahan)\b[^.!?\n]*[.!?]\s+(?:Perkirakan|Hitung)\b[^.!?\n]{0,50}\b(?:luas|tanah|lahan)\b/iu,
+    },
+  },
+  {
+    id: "irrelevant-fiction-label",
+    patterns: {
+      de: /^(?!\s*>)(?:\s*\d+\.\s+)?(?:In dieser fiktiven Aufgabe\b|Das fiktive Modell\b|Eine hypothetische (?:Region hat|Substanz beginnt)|Ein hypothetisches (?:Medikament|Unternehmen)\b)/iu,
+      en: /^(?!\s*>)(?:\s*\d+\.\s+)?(?:In this fictional exercise\b|The fictional model\b|A hypothetical (?:company|region|substance)\b|Suppose a hypothetical medicine\b|Consider a hypothetical company\b)/iu,
+      id: /^(?!\s*>)(?:\s*\d+\.\s+)?(?:Dalam latihan fiktif ini\b|Model fiktif ini\b|Suatu (?:wilayah|zat) hipotetis\b|Anggap (?:sebuah perusahaan|suatu obat) hipotetis\b)/iu,
+    },
+  },
+  {
+    id: "indonesian-trailing-bare-range",
+    patterns: {
+      id: /\b(?:sebagai|berupa|menjadi) rentang[.!?](?:\s|$)/iu,
+    },
+  },
+  {
+    id: "indonesian-uncertainty-propagation-calque",
+    patterns: {
+      id: /(?:\b(?:ketidakpastian|pengukuran|data ukur)\b[^.!?\n]{0,100}\baturan rambatan\b|\baturan rambatan\b[^.!?\n]{0,100}\b(?:ketidakpastian|pengukuran|data ukur)\b)/iu,
+    },
+  },
+  {
+    id: "indonesian-detached-discussion-passive",
+    patterns: {
+      id: /\b(?:ketika|saat)\b[^.!?\n]{0,100}\bikut dibahas\b/iu,
+    },
+  },
+  {
+    id: "indonesian-meta-discussion-classification",
+    patterns: {
+      id: /\bdibahas (?:sebagai|dalam konteks)\b/iu,
+    },
+  },
+  {
+    id: "abstract-concept-question-personification",
+    patterns: {
+      de: /(?:\b(?:ein Grenzwert|der Grenzwert|Identifizierbarkeit|Atomökonomie|grüne Chemie|bedingte Wahrscheinlichkeit|Atomradius|erste Ionisierungsenergie|Elektronenaffinität|Elektronegativität)\b|die\s+`str\(\)`\s+Funktion)[^.!?\n]{0,180}\bfragt\b/iu,
+      en: /(?:\b(?:a limit|the limit|identifiability|atom economy|green chemistry|conditional probability|atomic radius|first ionization energy|electron affinity|electronegativity)\b|the\s+`str\(\)`\s+function)[^.!?\n]{0,180}\basks?\b/iu,
+      id: /(?:\b(?:limit|identifiabilitas|ekonomi atom|kimia hijau|peluang bersyarat|jari-jari atom|energi ionisasi pertama|afinitas elektron|keelektronegatifan)\b|fungsi\s+`str\(\)`)[^.!?\n]{0,180}\b(?:bertanya|menanyakan|meminta)\b/iu,
+    },
+  },
+  {
+    id: "empty-example-preface",
+    patterns: {
+      de: /\bum (?:dieses|das) Konzept besser zu verstehen,?\s+(?:betrachte|sieh dir)\s+(?:einige|die folgenden) Beispiele?\b/iu,
+      en: /\bto better understand (?:this|the) concept,?\s+(?:look at|consider)\s+(?:some|the following) examples?\b/iu,
+      id: /\buntuk lebih memahami konsep ini,?\s+(?:lihat|perhatikan)\s+(?:beberapa contoh|contoh berikut)\b/iu,
+    },
+  },
+  {
+    id: "unsupported-evaluative-preface",
+    patterns: {
+      de: /\bdies ist das häufigste Beispiel[.!?]?\s*$/iu,
+      en: /\bthis is (?:the )?most common example[.!?]?\s*$/iu,
+      id: /(?:\bpertanyaan menarik\s*:|\b(?:ini adalah )?contoh paling umum[.!?]?\s*$)/iu,
+    },
+  },
+  {
     id: "german-formal-address",
     patterns: {
       de: /(?:\b(?:[Aa]chten|[Aa]ddieren|[Bb]earbeiten|[Bb]eachten|[Bb]egründen|[Bb]erechnen|[Bb]estimmen|[Bb]etrachten|[Bb]ewegen|[Bb]eweisen|[Ee]rfahren|[Ee]rkunden|[Ee]rmitteln|[Ee]rsetzen|[Ee]rstellen|[Ee]rzwingen|[Ff]inden|[Gg]ehen|[Gg]ruppieren|[Hh]alten|[Ii]dentifizieren|[Ii]solieren|[Ll]ernen|[Ll]esen|[Ll]ösen|[Mm]ultiplizieren|[Nn]ehmen|[Nn]otieren|[Nn]utzen|[Pp]rüfen|[Qq]uadrieren|[Ss]chließen|[Ss]ehen|[Ss]etzen|[Ss]kizzieren|[Ss]tellen|[Ss]ubtrahieren|[Tt]eilen|[Tt]ragen|[Üü]berprüfen|[Uu]ntersuchen|[Vv]ereinfachen|[Vv]ergleichen|[Vv]ervollständigen|[Vv]erwenden|[Vv]ersuchen|[Vv]ertauschen|[Ww]ählen|[Ww]enden|[Zz]eichnen|[Zz]eigen) Sie\b|\b(?:[Ff]alls|[Hh]aben|[Kk]önnen|[Mm]öchten|[Mm]üssen|[Ss]ollen|[Ss]ollten|[Ww]enn|[Ww]erden) Sie\b|^\s*Sie (?:dürfen|haben|können|möchten|müssen|sollen|sollten|werden)\b)/u,
@@ -70,46 +134,6 @@ export const FLOW_VOICE_RULES = [
       de: /(?:^\s*Warum ist (?:das|dies) (?:nützlich|wichtig)\?|^#{2,5}\s+(?:Warum (?:ist|sind) .+ (?:nützlich|wichtig)|Wozu (?:dient|dienen) .+)\s*$)/iu,
       en: /(?:^\s*Why (?:is this useful|does this matter)\?|^#{2,5}\s+(?:Why (?:Is|Are) .+ (?:Useful|Important)|Why Does .+ Matter)\s*$)/iu,
       id: /(?:^\s*(?:Mengapa|Kenapa) ini (?:berguna|penting)\?|^#{2,5}\s+(?:Mengapa|Kenapa) .+ (?:Berguna|Penting)\s*$)/iu,
-    },
-  },
-  {
-    id: "formulaic-attention-filler",
-    patterns: {
-      de: /\b(?:es ist wichtig(?:,\s*sich daran zu erinnern)?|es ist zu beachten|beachte,\s*dass|man sollte beachten|wichtiger,?\s+darauf zu achten)\b/iu,
-      en: /\b(?:(?:it is|it's) important to|important to remember|more important to (?:consider|notice|watch)|note that|remember that)\b/iu,
-      id: /(?:\b(?:meng)?ingat bahwa|\bperlu (?:dipahami|diketahui|diingat|dicatat)(?: bahwa)?|\blebih penting untuk diperhatikan\b|^\s*(?:(?:sebelum|untuk memahami)[^.!?\n]{0,100},?\s+)?penting untuk (?:memahami|membedakan|menentukan|mengetahui|dipahami|diketahui|diingat)\b)/iu,
-    },
-  },
-  {
-    id: "generic-tip-intro",
-    patterns: {
-      de: /^\s*(?:einige|mehrere)?\s*(?:hilfreiche|nützliche)\s+(?:Hinweise|Kontrollen|Tipps)\s*:/iu,
-      en: /^\s*(?:a few|several|some)?\s*(?:helpful|useful)\s+(?:checks|tips)\s*:/iu,
-      id: /^\s*beberapa\s+tips?\s+(?:berguna|untuk memudahkan pemahaman)\s*:/iu,
-    },
-  },
-  {
-    id: "formulaic-simplification-transition",
-    patterns: {
-      de: /^\s*(?:der Einfachheit halber|um es einfacher zu machen),?\s+(?:nutzen|verwenden|wählen)\s+wir\b/iu,
-      en: /^\s*(?:for convenience|to simplify|to make (?:it|this) easier),?\s+we\s+(?:choose|use)\b/iu,
-      id: /^\s*(?:demi kemudahan|untuk memudahkan),?\s+kita\s+(?:gunakan|memakai|pilih)\b/iu,
-    },
-  },
-  {
-    id: "vague-abstraction-relief",
-    patterns: {
-      de: /\b(?:macht|wirkt|werden|wird)\b[^.!?\n]{0,100}\bweniger abstrakt\b|\banschaulich(?:er)?\s+(?:macht|wirkt|werden|wird)\b/iu,
-      en: /\b(?:feel|feels|make|makes)\b[^.!?\n]{0,100}\bless abstract\b/iu,
-      id: /\b(?:membuat|menjadikan|terasa)\b[^.!?\n]{0,100}\b(?:kurang|tidak terlalu) abstrak\b/iu,
-    },
-  },
-  {
-    id: "formulaic-utility-transition",
-    patterns: {
-      de: /\bhier (?:wird|werden)\b[^.!?\n]{0,80}\b(?:nützlich|wichtig)\b/iu,
-      en: /\bthis is where\b[^.!?\n]{0,80}\b(?:becomes? useful|plays? (?:a )?role|comes? in)\b/iu,
-      id: /\bdi sinilah\b[^.!?\n]{0,80}\b(?:berguna|berperan|dibutuhkan|digunakan)\b/iu,
     },
   },
   {

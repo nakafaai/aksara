@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Polinomial Ortogonal",
-  description: "Bangun basis polinomial Chebyshev dan Legendre dari hasil kali dalam berbobot, proyeksikan fungsi, ubah interval, dan hubungkan akar-akarnya dengan kuadratur Gauss.",
+  description: "Basis polinomial Chebyshev dan Legendre berasal dari hasil kali dalam berbobot. Basis ini dipakai untuk proyeksi fungsi, perubahan interval, dan kuadratur Gauss.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-16",
   dateModified: "2026-09-01",
@@ -16,15 +16,19 @@ Misalkan <InlineMath math="w(x)>0" /> pada interval <InlineMath math="[a,b]" />.
 <BlockMath math="\|f\|_w=\sqrt{\langle f,f\rangle_w}" />
 </MathContainer>
 
-Dua fungsi bersifat ortogonal ketika <InlineMath math="\langle f,g\rangle_w=0" />. Geometri <InlineMath math="L^2" /> berbobot ini mengukur galat kuadrat di seluruh interval
+Dua fungsi bersifat ortogonal ketika <InlineMath math="\langle f,g\rangle_w=0" />. Geometri <InlineMath math="L^2" /> berbobot mengukur galat kuadrat berbobot di seluruh interval.
+
+<BlockMath math="\|f-g\|_w^2=\int_a^b|f(x)-g(x)|^2w(x)\,dx" />
+
+Sebaliknya, norma maksimum mengukur galat titik terbesar.
 
 <BlockMath math="\|f-g\|_\infty=\max_{x\in[a,b]}|f(x)-g(x)|" />
 
-Perbedaan ini penting. Proyeksi ortogonal meminimumkan galat <InlineMath math="L^2" /> berbobot. Polinomial Chebyshev juga memiliki sifat minimaks yang terpisah, tetapi hasil kali dalam berbobot dan norma maksimum tidak dapat saling dipertukarkan.
+Proyeksi ortogonal meminimumkan galat <InlineMath math="L^2" /> berbobot. Polinomial Chebyshev juga memiliki sifat minimaks yang terpisah. Hasil kali dalam berbobot dan norma maksimum mengukur dua jenis galat yang berbeda.
 
 ## Proyeksi pada Basis Ortogonal
 
-Misalkan <InlineMath math="p_0,ldots,p_n" /> saling ortogonal. Proyeksi berderajat <InlineMath math="n" /> dari <InlineMath math="f" /> adalah
+Misalkan <InlineMath math="p_0,\ldots,p_n" /> saling ortogonal. Proyeksi berderajat <InlineMath math="n" /> dari <InlineMath math="f" /> adalah
 
 <MathContainer>
 <BlockMath math="\Pi_n f(x)=\sum_{k=0}^n c_kp_k(x)" />
@@ -35,7 +39,7 @@ Karena suku silang bernilai nol, setiap koefisien dapat dihitung secara terpisah
 
 ## Relasi Rekurensi Tiga Suku dari Gram Schmidt
 
-Penerapan Gram-Schmidt pada <InlineMath math="1,x,x^2,ldots" /> menghasilkan barisan polinomial ortogonal monik <InlineMath math="\pi_k" />. Di bawah hasil kali dalam positif, barisan tersebut memenuhi
+Penerapan Gram-Schmidt pada <InlineMath math="1,x,x^2,\ldots" /> menghasilkan barisan polinomial ortogonal monik <InlineMath math="\pi_k" />. Dengan hasil kali dalam yang positif, barisan ini memenuhi
 
 <MathContainer>
 <BlockMath math="\pi_0(x)=1" />
@@ -50,7 +54,7 @@ Koefisien rekurensi ditentukan oleh
 <BlockMath math="\beta_k=\frac{\|\pi_k\|_w^2}{\|\pi_{k-1}\|_w^2}>0" />
 </MathContainer>
 
-Bentuk tiga suku ini bukan jalan pintas sembarang. Perkalian dengan <InlineMath math="x" /> menaikkan derajat sebesar satu, sedangkan ortogonalitas menghilangkan semua komponen di bawah <InlineMath math="\pi_{k-1}" />.
+Perkalian dengan <InlineMath math="x" /> menaikkan derajat sebesar satu. Sifat ortogonal menghilangkan semua komponen di bawah <InlineMath math="\pi_{k-1}" />, sehingga rumus rekurensi di atas hanya memuat tiga suku.
 
 ## Polinomial Chebyshev Jenis Pertama
 
@@ -70,7 +74,7 @@ Ortogonalitas berbobotnya adalah
 
 <BlockMath math="\int_{-1}^{1}\frac{T_j(x)T_k(x)}{\sqrt{1-x^2}}\,dx=\begin{cases}\pi,&j=k=0,\\\frac{\pi}{2},&j=k>0,\\0,&j\ne k.\end{cases}" />
 
-Karena <InlineMath math="|T_k(x)|\le1" /> pada <InlineMath math="[-1,1]" /> dan koefisien utamanya adalah <InlineMath math="2^{k-1}" /> untuk <InlineMath math="k\ge1" />, polinomial monik <InlineMath math="2^{1-k}T_k" /> memiliki norma maksimum terkecil di antara semua polinomial monik berderajat <InlineMath math="k" />. Inilah hubungan yang tepat dengan aproksimasi minimaks.
+Karena <InlineMath math="|T_k(x)|\le1" /> pada <InlineMath math="[-1,1]" /> dan koefisien utamanya adalah <InlineMath math="2^{k-1}" /> untuk <InlineMath math="k\ge1" />, polinomial monik <InlineMath math="2^{1-k}T_k" /> memiliki norma maksimum terkecil di antara semua polinomial monik berderajat <InlineMath math="k" />. Karena itu, polinomial tersebut menyelesaikan masalah aproksimasi minimaks untuk polinomial monik berderajat <InlineMath math="k" />.
 
 <LineEquation
   title={<>Polinomial Chebyshev pertama <InlineMath math="T_0,T_1,T_2,T_3" /></>}
@@ -126,7 +130,7 @@ Identitas kedua memberikan ekspansi ortogonal yang eksak.
 
 ## Mengubah Interval Polinomial Ortogonal
 
-Gunakan perubahan variabel afin
+Untuk memindahkan interval <InlineMath math="[-1,1]" /> ke <InlineMath math="[a,b]" />, kita pakai perubahan variabel afin berikut.
 
 <MathContainer>
 <BlockMath math="x=\frac{a+b}{2}+\frac{b-a}{2}t" />
@@ -144,7 +148,7 @@ Fungsi <InlineMath math="\widetilde{\varphi}_k" /> ortonormal pada <InlineMath m
 
 ## Hubungan dengan Kuadratur Gauss
 
-Misalkan <InlineMath math="p_n" /> adalah polinomial ortogonal berderajat <InlineMath math="n" /> untuk bobot positif dan interval yang sama dengan suatu integral. Sebanyak <InlineMath math="n" /> akarnya menjadi titik kuadratur Gauss. Bobot positif yang sesuai <InlineMath math="w_i" /> kemudian memberikan
+Misalkan <InlineMath math="p_n" /> adalah polinomial ortogonal berderajat <InlineMath math="n" /> untuk bobot positif dan interval yang sama dengan suatu integral. Polinomial tersebut memiliki <InlineMath math="n" /> akar, dan akar-akar itu menjadi titik kuadratur Gauss. Bobot positif yang sesuai <InlineMath math="w_i" /> kemudian memberikan
 
 <BlockMath math="\int_a^b f(x)w(x)\,dx\approx\sum_{i=1}^n w_i f(x_i)" />
 
@@ -155,4 +159,4 @@ Aturan ini eksak untuk setiap polinomial berderajat paling tinggi <InlineMath ma
 | Chebyshev <InlineMath math="T_k" /> | <InlineMath math="1/\sqrt{1-x^2}" /> | grid interpolasi stabil, aproksimasi mendekati minimaks, metode spektral |
 | Legendre <InlineMath math="P_k" /> | <InlineMath math="1" /> | proyeksi <InlineMath math="L^2" /> tanpa bobot dan kuadratur Gauss-Legendre |
 
-Selalu selaraskan keluarga polinomial, hasil kali dalam, tujuan aproksimasi, dan bobot kuadratur. Mengubah salah satunya berarti mengubah masalah yang diselesaikan.
+Pilihan jenis polinomial bergantung pada hasil kali dalam, tujuan aproksimasi, dan bobot kuadratur. Mengubah hasil kali dalam, tujuan aproksimasi, atau bobot kuadratur akan mengubah masalah matematis yang dihitung.

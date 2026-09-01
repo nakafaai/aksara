@@ -19,7 +19,7 @@ If no vector <InlineMath math="x" /> satisfies <InlineMath math="Ax=b" /> exactl
 
 <BlockMath math="e(x)=Ax-b" />
 
-Choose the vector <InlineMath math="x" /> that produces the smallest residual. The standard linear least-squares problem is written as follows.
+We seek the vector <InlineMath math="x" /> that produces the smallest residual. The standard linear least-squares problem is written as follows.
 
 <BlockMath math="\hat{x}\in\operatorname*{arg\,min}_{x\in\mathbb{R}^n}\|Ax-b\|_2^2" />
 
@@ -89,7 +89,7 @@ The second equation is called the **normal equation**.
   ]}
 />
 
-The scene shows the target, its projection, and the connecting residual. The blue vector represents the projected point in the column space. It is not a drawing of the entire subspace. The orthogonality condition above is the exact statement that makes <InlineMath math="A\hat{x}" /> the nearest point.
+The diagram labels the target vector <InlineMath math="b" />, the projected point <InlineMath math="A\hat{x}" />, and the residual <InlineMath math="A\hat{x}-b" /> between them. The blue vector <InlineMath math="A\hat{x}" /> lies in the column space. The orthogonality condition above proves that it is the nearest point in that space to <InlineMath math="b" />.
 
 ## Fitting One Constant to Three Observations
 
@@ -129,7 +129,7 @@ The norm determines what kind of error the fit prioritizes.
 
 The <InlineMath math="\ell_1" /> and <InlineMath math="\ell_\infty" /> formulations can be rewritten as linear programs. Their suitability still depends on the data-generating process and the error criterion that matters for the application.
 
-## Solving least squares reliably
+## Choosing QR or SVD for Least Squares
 
 If <InlineMath math="A" /> has full column rank, the least-squares minimizer is unique. The normal equation then implies
 

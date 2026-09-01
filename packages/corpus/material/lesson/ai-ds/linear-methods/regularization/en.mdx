@@ -23,25 +23,25 @@ Tikhonov regularization balances data fit against a chosen notion of plausible p
 
 <BlockMath math="\min_x\left(\|Ax-b\|_2^2+\alpha^2\|L(x-x_0)\|_2^2\right),\qquad \alpha>0" />
 
-Here <InlineMath math="x_0" /> is a reference estimate, <InlineMath math="L" /> defines what should remain small or smooth, and <InlineMath math="\alpha" /> controls the tradeoff.
+Here <InlineMath math="x_0" /> is a reference estimate, <InlineMath math="L" /> defines what should remain small or smooth, and <InlineMath math="\alpha" /> sets how strongly the solution follows the data compared with the constraint defined by <InlineMath math="L" />.
 
 - <InlineMath math="L=I" /> penalizes distance from <InlineMath math="x_0" />.
 - A first-difference matrix penalizes rapid changes between neighboring parameters.
 - A second-difference matrix penalizes curvature and favors smoother profiles.
 
-The penalty does not create new information in the observations. It states the chosen prior structure explicitly and can improve the numerical conditioning of the optimization problem.
+The penalty adds an explicit modeling assumption about the solution and can improve the numerical conditioning of the optimization problem. The observations still contain the same information.
 
 ## Augmented Least Squares Form
 
-The objective is exactly the least-squares problem
+The regularized problem can be written as the following least-squares problem:
 
 <BlockMath math="\min_x\left\|\begin{pmatrix}A\\\alpha L\end{pmatrix}x-\begin{pmatrix}b\\\alpha Lx_0\end{pmatrix}\right\|_2^2" />
 
-Differentiating gives the normal equation
+Differentiating this objective with respect to <InlineMath math="x" /> gives the normal equation:
 
 <BlockMath math="(A^TA+\alpha^2L^TL)x=A^Tb+\alpha^2L^TLx_0" />
 
-The solution is unique precisely when
+This normal equation has a unique solution exactly when the following condition holds:
 
 <BlockMath math="\operatorname{null}(A)\cap\operatorname{null}(L)=\{0\}" />
 
@@ -56,7 +56,7 @@ For <InlineMath math="L=I" /> and <InlineMath math="x_0=0" />, write <InlineMath
 <BlockMath math="\phi_i(\alpha)=\frac{\sigma_i^2}{\sigma_i^2+\alpha^2}" />
 </MathContainer>
 
-The factor <InlineMath math="\phi_i" /> is close to <InlineMath math="1" /> when <InlineMath math="\sigma_i\gg\alpha" /> and close to <InlineMath math="0" /> when <InlineMath math="\sigma_i\ll\alpha" />. Regularization therefore preserves well-determined directions while damping directions that would amplify noise.
+When <InlineMath math="\sigma_i" /> is much larger than <InlineMath math="\alpha" />, the factor <InlineMath math="\phi_i(\alpha)" /> is close to <InlineMath math="1" />, so regularization changes the corresponding solution component very little. When <InlineMath math="\sigma_i" /> is much smaller than <InlineMath math="\alpha" />, the factor is close to <InlineMath math="0" />, so that component becomes smaller. This prevents a small measurement error from causing a large change in the fitted solution.
 
 ## Worked Sensitivity Example
 
@@ -76,7 +76,7 @@ With <InlineMath math="L=I" />, <InlineMath math="x_0=0" />, and <InlineMath mat
 <BlockMath math="x_{0.2}=\begin{pmatrix}1/1.04\\0.02/0.05\end{pmatrix}=\begin{pmatrix}25/26\\0.4\end{pmatrix}" />
 </MathContainer>
 
-The same <InlineMath math="0.01" /> perturbation now changes the second parameter by only <InlineMath math="0.02" />. This stability is purchased with bias: the estimate <InlineMath math="0.4" /> is farther from the unregularized value <InlineMath math="2" />.
+The same <InlineMath math="0.01" /> perturbation now changes the second parameter by only <InlineMath math="0.02" />. The estimate is more stable but also biased because <InlineMath math="0.4" /> is farther from the unregularized value <InlineMath math="2" />.
 
 ## Choosing the Regularization Parameter
 
@@ -97,10 +97,10 @@ A diagonal matrix <InlineMath math="L=\operatorname{diag}(\omega_1,\ldots,\omega
 
 <BlockMath math="\|L(x-x_0)\|_2^2=\sum_{i=1}^n\omega_i^2(x_i-x_{0i})^2" />
 
-Larger <InlineMath math="\omega_i" /> means stronger shrinkage toward <InlineMath math="x_{0i}" />. Choose weights from the units and a defensible prior structure. Difficulty in estimating a coefficient is not enough to determine its weight.
+Larger <InlineMath math="\omega_i" /> means stronger shrinkage toward <InlineMath math="x_{0i}" />. Choose weights from the units and prior knowledge such as each parameter's plausible scale or an expected smooth change between neighboring parameters. Difficulty in estimating a coefficient is not enough to determine its weight.
 
 An equality such as <InlineMath math="x_i=c" /> should be modeled as an explicit equality constraint when it must hold exactly. Bounds such as <InlineMath math="l_i\le x_i\le u_i" /> require constrained least squares. An extremely large penalty can approximate an equality, but it is not a replacement for an exact constraint and can worsen numerical scaling.
 
-## Solving the Problem Reliably
+## Solving the Augmented System with QR or SVD
 
 Use the normal equation to derive the regularized estimator and examine how <InlineMath math="\alpha" /> and <InlineMath math="L" /> change it. For numerical computation, avoid forming <InlineMath math="A^TA" /> because that squares the condition number. Solve the augmented least-squares system with <InlineMath math="\mathrm{QR}" /> or <InlineMath math="\mathrm{SVD}" /> instead. Report <InlineMath math="\alpha" />, <InlineMath math="L" />, parameter scaling, residual norm, and penalty norm so another reader can repeat the calculation and inspect the trade-off between data fit and penalty.

@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Ein vereinfachtes Modell aus dem Gesundheitsbereich
 
-Grenzwerte können das langfristige Verhalten eines mathematischen Modells beschreiben. Im Gesundheitsbereich muss eine Formel jedoch mit verlässlichen Daten abgeglichen und geprüft werden, bevor sie eine reale Entscheidung unterstützen kann. Das folgende **fiktive Unterrichtsmodell** dient dazu, Grenzwerte zu berechnen und den Gültigkeitsbereich eines Modells zu untersuchen.
+Grenzwerte können das langfristige Verhalten eines mathematischen Modells beschreiben. Im Gesundheitsbereich muss eine Formel mit verlässlichen Daten abgeglichen und geprüft werden, bevor sie eine reale Entscheidung unterstützen kann. Die folgende Formel zeigt, wie ein Grenzwert berechnet und der Gültigkeitsbereich eines Modells geprüft wird.
 
 ### Den Gültigkeitsbereich prüfen
 
@@ -36,13 +36,13 @@ Also,
 <BlockMath math="\lim_{t \to \infty} N(t) = \lim_{t \to \infty} (285000 - t) = -\infty" />
 </MathContainer>
 
-> Eine negative Fallzahl bedeutet, dass die Formel außerhalb des **Gültigkeitsbereichs des Modells** verwendet wurde. Eine Fallzahl kann nicht negativ sein, daher ist die Formel nur sinnvoll, solange <InlineMath math="N(t) \geq 0" /> gilt. Dieses fiktive Modell ist keine epidemiologische Prognose und darf nicht als medizinische oder politische Empfehlung verwendet werden.
+> Eine negative Fallzahl bedeutet, dass die Formel außerhalb des **Gültigkeitsbereichs des Modells** verwendet wurde. Eine Fallzahl kann nicht negativ sein, daher ist die Formel nur sinnvoll, solange <InlineMath math="N(t) \geq 0" /> gilt. Diese vereinfachte Formel dient als mathematisches Rechenbeispiel. Sie ist keine epidemiologische Prognose und darf nicht als medizinische oder politische Empfehlung verwendet werden.
 
-### Ein Impfziel interpretieren
+### Modellergebnis bei einem Impfziel
 
-In einem Unterrichtsmodell können Grenzwerte und Funktionswerte zeigen, was eine Formel in der Nähe eines vorgegebenen Impfziels liefert. Ohne empirische Daten, Annahmen zur Übertragung und reale Bevölkerungsdaten beweist diese Rechnung jedoch nicht, dass das Ziel wirksam ist.
+In diesem Modell zeigen Grenzwert und Funktionswert, welches Ergebnis die Formel in der Nähe eines vorgegebenen Impfziels liefert. Diese Rechnung belegt nicht, dass das Ziel wirksam ist. Dafür werden reale Daten zur Bevölkerung und zur Übertragung benötigt.
 
-Angenommen, eine Übung setzt für Einwohner über <InlineMath math="18 \text{Jahre}" /> ein Ziel von <InlineMath math="V \text{Menschen}" /> fest. Wir können die Formel an diesem Ziel auswerten und das Ergebnis innerhalb des Modells deuten. Die Rechnung allein belegt keine optimale Strategie.
+Angenommen, das Modell verwendet für Einwohner über <InlineMath math="18 \text{Jahre}" /> ein Impfziel von <InlineMath math="V \text{Menschen}" />. Das Einsetzen von <InlineMath math="V" /> in die Formel liefert die Fallzahl für dieses Ziel. Das Ergebnis beschreibt nur das modellierte Szenario und belegt nicht, dass dieses Ziel die beste Strategie ist.
 
 ## Anwendung in den Wirtschaftswissenschaften
 
@@ -102,88 +102,81 @@ Daraus folgt:
 
 Diese Schlussfolgerung gehört zu diesem irreversiblen Modell erster Ordnung. Eine reversible Reaktion im Gleichgewicht benötigt im Allgemeinen ein anderes Modell und muss keine Reaktandenkonzentration von null haben.
 
-## Ein fiktives Impfziel auswerten
+## Fallzahl bei einem Impfziel berechnen
 
-1. **Problembeschreibung:**
+Dabei steht <InlineMath math="t" /> für die Zahl der geimpften Personen. Das folgende Modell berechnet mit <InlineMath math="N(t)" /> die Zahl der verbleibenden positiven Fälle:
 
-    In diesem fiktiven Unterrichtsszenario hat eine Stadt <InlineMath math="576{.}260 \text{Menschen}" />. Die Aufgabe gibt eine vereinfachte Formel vor, die eine Impfzahl mit der modellierten Zahl verbleibender positiver Fälle verknüpft:
+<BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190{,}68)^3}" />
 
-    <BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190{,}68)^3}" />
+Wir berechnen <InlineMath math="N(282{.}367)" /> für ein Impfziel von <InlineMath math="282{.}367 \text{Menschen}" />.
 
-    Dabei gilt:
-    - <InlineMath math="N(t)" /> = Anzahl der verbleibenden positiven Fälle
-    - <InlineMath math="t" /> = Anzahl der geimpften Personen
+### Daten und Annahmen
 
-2. **Frage:**
+Die Rechnung verwendet folgende Annahmen:
 
-    Wenn das Ziel des Impfprogramms <InlineMath math="282{.}367 \text{Menschen}" /> ist, wie viele positive Fälle bleiben dann übrig, wenn das Ziel erreicht ist?
+- Die Gesamtbevölkerung beträgt <InlineMath math="576{.}260 \text{Menschen}" />.
+- Kinder machen <InlineMath math="21\%" /> und Erwachsene <InlineMath math="79\%" /> der Bevölkerung aus.
+- In jeder Altersgruppe beträgt der Anteil positiver Fälle <InlineMath math="30\%" />.
+- Nur Erwachsene ohne positiven Test sind für die Impfung vorgesehen.
 
-3. **Daten und Annahmen:**
+Aus diesen Annahmen folgen die folgenden Zahlen:
 
-    Die Aufgabe nimmt an:
-    - Gesamtbevölkerung: <InlineMath math="576{.}260 \text{Menschen}" />
-    - Alterszusammensetzung: <InlineMath math="21\%" /> Kinder (<InlineMath math="\leq 18 \text{Jahre}" />), <InlineMath math="79\%" /> Erwachsene (<InlineMath math="\gt 18 \text{Jahre}" />)
-    - Gesundheitszustand: <InlineMath math="30\%" /> bereits als positiv bestätigt, wobei für alle Altersgruppen derselbe Anteil angenommen wird
-    - Richtlinie: Nur Erwachsene, die nicht positiv getestet wurden, können geimpft werden
+<MathContainer>
+<BlockMath math="\text{Kinder} = 0{,}21 \times 576{.}260 = 121{.}014{,}6 \approx 121{.}015 \text{Menschen}" />
+<BlockMath math="\text{Erwachsene} = 0{,}79 \times 576{.}260 = 455{.}245{,}4 \approx 455{.}245 \text{Menschen}" />
+<BlockMath math="\text{Positive Fälle insgesamt} = 0{,}3 \times 576{.}260 = 172{.}878 \text{Menschen}" />
+<BlockMath math="\text{Positive Fälle unter Erwachsenen} = 0{,}79 \times 0{,}30 \times 576{.}260 = 136{.}573{,}62 \approx 136{.}574 \text{Menschen}" />
+<BlockMath math="\text{Berechtigte Erwachsene} = 0{,}79 \times 0{,}70 \times 576{.}260 = 318{.}671{,}78 \approx 318{.}672 \text{Menschen}" />
+</MathContainer>
 
-    Begründung für das Impfziel <InlineMath math="282{.}367 \text{Menschen}" />:
+Mit der ungerundeten Zahl der berechtigten Erwachsenen ergibt sich für den Zielanteil:
 
-    <MathContainer>
-    <BlockMath math="\text{Kinder} = 0{,}21 \times 576{.}260 = 121{.}014{,}6 \approx 121{.}015 \text{Menschen}" />
-    <BlockMath math="\text{Erwachsene} = 0{,}79 \times 576{.}260 = 455{.}245{,}4 \approx 455{.}245 \text{Menschen}" />
-    <BlockMath math="\text{Insgesamt positiv} = 0{,}3 \times 576{.}260 = 172{.}878 \text{Menschen}" />
-    <BlockMath math="\text{Positive Erwachsene} = 0{,}79 \times 0{,}30 \times 576{.}260 = 136{.}573{,}62 \approx 136{.}574 \text{Menschen}" />
-    <BlockMath math="\text{Berechtigte Erwachsene} = 0{,}79 \times 0{,}70 \times 576{.}260 = 318{.}671{,}78 \approx 318{.}672 \text{Menschen}" />
-    </MathContainer>
+<BlockMath math="\frac{282{.}367}{318{.}671{,}78}\times 100\% \approx 88{,}6\%" />
 
-    Der Anteil des Ziels wird mit der **ungerundeten Zahl der Berechtigten** berechnet:
+Das Ziel entspricht in dieser Rechnung ungefähr <InlineMath math="88{,}6\%" /> der berechtigten Erwachsenen. Die vereinfachte Formel zeigt nur, wie die Funktion an diesem Zielwert ausgewertet wird. Sie kann kein reales Impfziel festlegen.
 
-    <BlockMath math="\frac{282{.}367}{318{.}671{,}78}\times 100\% \approx 88{,}6\%" />
+### Berechnung
 
-    Das Impfziel entspricht in diesem fiktiven Szenario also ungefähr <InlineMath math="88{,}6\%" /> der berechtigten Erwachsenen. Die Aufgabe gibt dieses Ziel vor. Die Rechnung begründet nicht, wie ein reales Impfziel festgelegt werden sollte.
+Für die Fallzahl des Modells verwenden wir <InlineMath math="t=282{.}367" />:
 
-4. **Lösung:**
+<BlockMath math="N(282{.}367) = 285{.}000 - \sqrt{(282{.}367)^2 - 282{.}367 + (190{,}68)^3}" />
 
-    Um die Anzahl der verbleibenden Fälle bei <InlineMath math="t = 282{.}367" /> zu ermitteln, berechnen wir:
+**Schritt** <InlineMath math="1" /> berechnet den konstanten Term.
 
-    <BlockMath math="N(282{.}367) = 285{.}000 - \sqrt{(282{.}367)^2 - 282{.}367 + (190{,}68)^3}" />
+<BlockMath math="(190{,}68)^3 = 190{,}68 \times 190{,}68 \times 190{,}68 = 6{.}932{.}907{,}88" />
 
-    **Schritt** <InlineMath math="1" />: Berechne <InlineMath math="(190{,}68)^3" />
+Der angezeigte Wert ist auf zwei Dezimalstellen gerundet. Die nächste Rechnung verwendet intern weiterhin den ungerundeten Wert.
 
-    <BlockMath math="(190{,}68)^3 = 190{,}68 \times 190{,}68 \times 190{,}68 = 6{.}932{.}907{,}88" />
+**Schritt** <InlineMath math="2" /> berechnet das Quadrat der Impfzahl.
 
-    Der angezeigte Wert ist auf zwei Dezimalstellen gerundet. In der folgenden Rechnung wird intern weiterhin der ungerundete Wert verwendet.
+<BlockMath math="(282{.}367)^2 = 79{.}731{.}122{.}689" />
 
-    **Schritt** <InlineMath math="2" />: Berechne <InlineMath math="(282{.}367)^2" />
+**Schritt** <InlineMath math="3" /> fasst die Werte unter der Wurzel zusammen.
 
-    <BlockMath math="(282{.}367)^2 = 79{.}731{.}122{.}689" />
+<BlockMath math="79{.}731{.}122{.}689 - 282{.}367 + 6{.}932{.}907{,}88 = 79{.}737{.}773{.}229{,}88" />
 
-    **Schritt** <InlineMath math="3" />: Setze die Werte unter der Wurzel ein
+**Schritt** <InlineMath math="4" /> liefert das Endergebnis.
 
-    <BlockMath math="79{.}731{.}122{.}689 - 282{.}367 + 6{.}932{.}907{,}88 = 79{.}737{.}773{.}229{,}88" />
+<MathContainer>
+<BlockMath math="N(282{.}367) = 285{.}000 - \sqrt{79{.}737{.}773{.}229{,}88}" />
+<BlockMath math="= 285{.}000 - 282{.}378{,}78" />
+<BlockMath math="= 2{.}621{,}22 \approx 2{.}621 \text{Menschen}" />
+</MathContainer>
 
-    **Schritt** <InlineMath math="4" />: Berechne das Endergebnis
+### Bedeutung des Ergebnisses
 
-    <MathContainer>
-    <BlockMath math="N(282{.}367) = 285{.}000 - \sqrt{79{.}737{.}773{.}229{,}88}" />
-    <BlockMath math="= 285{.}000 - 282{.}378{,}78" />
-    <BlockMath math="= 2{.}621{,}22 \approx 2{.}621 \text{Menschen}" />
-    </MathContainer>
+Wenn <InlineMath math="282{.}367" /> Personen geimpft sind, liefert die Formel ungefähr <InlineMath math="2{.}621" /> verbleibende Fälle. Dieses Ergebnis stammt nur aus der vereinfachten Formel. Für eine Prognose oder die Verteilung von Gesundheitsressourcen werden reale Daten benötigt.
 
-5. **Ergebnisinterpretation:**
+## Grenzen von Formel und Modell
 
-    Bei <InlineMath math="282{.}367" /> geimpften Personen liefert die vorgegebene Formel ungefähr <InlineMath math="2{.}621" /> verbleibende Fälle. Das ist ein Ergebnis des fiktiven Modells, **keine reale Prognose** und keine ausreichende Grundlage für die Verteilung von Gesundheitsressourcen.
-
-## Das Ergebnis verantwortungsvoll deuten
-
-Der Wert <InlineMath math="2{.}621 \text{Fälle}" /> beantwortet die mathematische Frage der Übung. Eine reale Entscheidung bräuchte zusätzlich unabhängig geprüfte Erkenntnisse über:
+Der Wert <InlineMath math="2{.}621 \text{Fälle}" /> beantwortet die mathematische Frage zur vorgegebenen Formel. Eine reale Entscheidung bräuchte zusätzlich unabhängig geprüfte Erkenntnisse über:
 
 1. Aktuelle und erwartete **Krankenhauskapazitäten**
 2. Verfügbares **medizinisches Personal** und seine Auslastung
 3. Die **Ressourcenverteilung** unter mehreren plausiblen Szenarien
 4. Unsicherheit und eine ehrliche **öffentliche Kommunikation**
 
-> Ein Grenzwert beschreibt das Verhalten einer Formel. Ob diese Formel die Wirklichkeit beschreibt, ist eine eigene Beweisfrage. Vor jeder Deutung müssen Annahmen, Gültigkeitsbereich, Einheiten und Unsicherheit des Modells genannt werden.
+> Ein Grenzwert beschreibt das Verhalten einer Formel. Ob die Formel zu den tatsächlichen Bedingungen passt, muss mit realen Daten geprüft werden. Nenne deshalb die Annahmen, den Gültigkeitsbereich, die Einheiten und die Unsicherheit des Modells, wenn du das berechnete Ergebnis erklärst.
 
 ## Übungen
 

@@ -21,6 +21,7 @@ test("rejects every symbol in headings", () => {
     "## Mengapa Iklim Diukur dalam Puluhan Tahun?",
     "## Kata Serapan dan Istilah Satu-ke-Satu",
     "## Perubahan Iklim Selama Puluhan Tahun",
+    "## Kelajuan Rata-rata dan Jari-jari Lingkaran",
   ].join("\n");
 
   assert.deepEqual(findLessonVoiceIssues("id", source), [
@@ -49,6 +50,26 @@ test("rejects every symbol in headings", () => {
       rule: "heading-symbol",
     },
   ]);
+});
+test("rejects digits and math labels in headings and page titles", () => {
+  const source = [
+    "export const metadata = {",
+    '  title: "SDG 7 Energy Access",',
+    "};",
+    "",
+    "## Inner Product and L2 Error",
+  ].join("\n");
+
+  assert.deepEqual(
+    findLessonVoiceIssues("en", source).map(({ line, rule }) => ({
+      line,
+      rule,
+    })),
+    [
+      { line: 2, rule: "heading-symbol" },
+      { line: 5, rule: "heading-symbol" },
+    ]
+  );
 });
 test("allows only ordinary spaces as heading whitespace", () => {
   const source = [
@@ -113,6 +134,26 @@ test("rejects Indonesian reduplication damaged by the symbol rule", () => {
         line: 2,
         rule: "indonesian-heading-dehyphenated-reduplication",
       },
+    ]
+  );
+});
+test("allows required Indonesian reduplication hyphens only", () => {
+  const source = [
+    '  title: "Kecepatan Rata-rata",',
+    "## Kecepatan Rata-rata",
+    "## Jari-jari Lingkaran",
+    "## Istilah Satu-ke-Satu",
+    "## Nilai Rata-rata-Akhir",
+  ].join("\n");
+
+  assert.deepEqual(
+    findLessonVoiceIssues("id", source).map(({ line, rule }) => ({
+      line,
+      rule,
+    })),
+    [
+      { line: 4, rule: "heading-symbol" },
+      { line: 5, rule: "heading-symbol" },
     ]
   );
 });

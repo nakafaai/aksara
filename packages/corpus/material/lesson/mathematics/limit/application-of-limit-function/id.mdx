@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Model Kesehatan Masyarakat yang Disederhanakan
 
-Limit dapat menggambarkan perilaku jangka panjang sebuah model matematika. Namun, dalam kesehatan masyarakat, suatu rumus harus disesuaikan dengan data yang andal dan divalidasi sebelum digunakan untuk mengambil keputusan nyata. Contoh berikut adalah **model pembelajaran fiktif** untuk berlatih menghitung limit dan memeriksa daerah berlakunya.
+Limit dapat menggambarkan perilaku jangka panjang sebuah model matematika. Dalam kesehatan masyarakat, rumus harus dicocokkan dengan data yang andal dan diuji sebelum digunakan untuk mengambil keputusan nyata. Rumus berikut menunjukkan cara menghitung limit sekaligus memeriksa daerah berlaku model.
 
 ### Memeriksa Daerah Berlaku Model
 
@@ -36,13 +36,13 @@ Jadi,
 <BlockMath math="\lim_{t \to \infty} N(t) = \lim_{t \to \infty} (285000 - t) = -\infty" />
 </MathContainer>
 
-> Jumlah kasus yang negatif menunjukkan bahwa rumus dipakai di luar rentang waktu yang dapat dimodelkan. Karena jumlah kasus tidak mungkin negatif, rumus hanya bermakna selama <InlineMath math="N(t) \geq 0" />. Model fiktif ini bukan ramalan epidemiologis dan tidak boleh digunakan sebagai panduan medis atau kebijakan.
+> Jumlah kasus yang negatif menunjukkan bahwa rumus dipakai di luar rentang waktu yang dapat dimodelkan. Karena jumlah kasus tidak mungkin negatif, rumus hanya bermakna selama <InlineMath math="N(t) \geq 0" />. Rumus sederhana ini hanya menjadi contoh perhitungan matematika. Rumus ini bukan ramalan epidemiologis dan tidak boleh digunakan sebagai panduan medis atau kebijakan.
 
-### Menafsirkan Target Vaksinasi
+### Hasil Model pada Target Vaksinasi
 
-Dalam model pembelajaran, limit dan nilai fungsi dapat menunjukkan prediksi rumus di sekitar target vaksinasi tertentu. Keduanya tidak dapat membuktikan bahwa target tersebut efektif tanpa bukti empiris, asumsi penularan, dan data populasi nyata.
+Dalam model ini, limit dan nilai fungsi menunjukkan hasil rumus di sekitar target vaksinasi tertentu. Hasil perhitungan tersebut belum membuktikan bahwa target itu efektif. Untuk menilai efektivitas target, kita tetap membutuhkan data nyata tentang populasi dan penularan.
 
-Misalkan sebuah latihan menetapkan target <InlineMath math="V \text{ orang}" /> bagi penduduk berusia di atas <InlineMath math="18 \text{ tahun}" />. Kita dapat mengevaluasi rumus pada target itu dan menafsirkan hasilnya di dalam model. Perhitungan tersebut tidak dengan sendirinya membuktikan strategi yang optimal.
+Misalkan model memakai target vaksinasi <InlineMath math="V \text{ orang}" /> berusia di atas <InlineMath math="18 \text{ tahun}" />. Masukkan nilai <InlineMath math="V" /> ke dalam rumus untuk menghitung jumlah kasus yang diberikan oleh model pada target tersebut. Hasil ini hanya berasal dari rumus dan tidak membuktikan bahwa target itu merupakan strategi terbaik.
 
 ## Aplikasi dalam Bidang Ekonomi
 
@@ -102,88 +102,81 @@ Oleh karena itu,
 
 Kesimpulan ini hanya berlaku untuk model orde satu yang tidak dapat balik tersebut. Reaksi dapat balik pada kesetimbangan umumnya memerlukan model lain dan konsentrasi reaktannya tidak harus nol.
 
-## Mengevaluasi Target Vaksinasi Kota Fiktif
+## Menghitung Kasus pada Target Vaksinasi
 
-1. **Deskripsi Masalah:**
+Misalkan <InlineMath math="t" /> adalah jumlah orang yang telah divaksinasi dan <InlineMath math="N(t)" /> adalah jumlah kasus positif tersisa yang dihitung oleh model berikut:
 
-    Dalam skenario pembelajaran fiktif ini, sebuah kota berpenduduk <InlineMath math="576{.}260 \text{ orang}" />. Latihan memberikan rumus sederhana yang menghubungkan jumlah vaksinasi dengan jumlah kasus positif tersisa dalam model:
+<BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190{,}68)^3}" />
 
-    <BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190{,}68)^3}" />
+Kita akan menghitung <InlineMath math="N(282{.}367)" /> untuk target vaksinasi <InlineMath math="282{.}367 \text{ orang}" />.
 
-    dengan:
-    - <InlineMath math="N(t)" /> = jumlah kasus positif yang tersisa
-    - <InlineMath math="t" /> = jumlah orang yang telah divaksinasi
+### Data dan Asumsi
 
-2. **Pertanyaan:**
+Perhitungan ini memakai asumsi berikut:
 
-    Jika target program vaksinasi adalah <InlineMath math="282{.}367 \text{ orang}" />, berapa jumlah kasus positif yang masih tersisa ketika target tercapai?
+- Total populasi adalah <InlineMath math="576{.}260 \text{ orang}" />.
+- Anak-anak berjumlah <InlineMath math="21\%" /> dari populasi dan orang dewasa berjumlah <InlineMath math="79\%" />.
+- Proporsi kasus positif adalah <InlineMath math="30\%" /> pada setiap kelompok usia.
+- Hanya orang dewasa yang tidak termasuk kelompok kasus positif yang memenuhi syarat vaksinasi.
 
-3. **Data dan Asumsi:**
+Asumsi tersebut menghasilkan jumlah berikut:
 
-    Latihan mengasumsikan:
-    - Total populasi: <InlineMath math="576{.}260 \text{ orang}" />
-    - Komposisi usia: <InlineMath math="21\%" /> anak-anak (<InlineMath math="\leq 18 \text{ tahun}" />), <InlineMath math="79\%" /> dewasa (<InlineMath math="\gt 18 \text{ tahun}" />)
-    - Status kesehatan: <InlineMath math="30\%" /> sudah terkonfirmasi positif, dengan proporsi yang dianggap sama pada setiap kelompok usia
-    - Kebijakan: Hanya dewasa yang belum positif yang dapat divaksinasi
+<MathContainer>
+<BlockMath math="\text{Anak-anak} = 0{,}21 \times 576{.}260 = 121{.}014{,}6 \approx 121{.}015 \text{ orang}" />
+<BlockMath math="\text{Dewasa} = 0{,}79 \times 576{.}260 = 455{.}245{,}4 \approx 455{.}245 \text{ orang}" />
+<BlockMath math="\text{Total kasus positif} = 0{,}3 \times 576{.}260 = 172{.}878 \text{ orang}" />
+<BlockMath math="\text{Kasus positif pada orang dewasa} = 0{,}79 \times 0{,}30 \times 576{.}260 = 136{.}573{,}62 \approx 136{.}574 \text{ orang}" />
+<BlockMath math="\text{Orang dewasa yang memenuhi syarat} = 0{,}79 \times 0{,}70 \times 576{.}260 = 318{.}671{,}78 \approx 318{.}672 \text{ orang}" />
+</MathContainer>
 
-    Justifikasi Target Vaksinasi <InlineMath math="282{.}367 \text{ orang}" />:
+Dengan jumlah orang yang memenuhi syarat sebelum pembulatan, persentase targetnya adalah:
 
-    <MathContainer>
-    <BlockMath math="\text{Anak-anak} = 0{,}21 \times 576{.}260 = 121{.}014{,}6 \approx 121{.}015 \text{ orang}" />
-    <BlockMath math="\text{Dewasa} = 0{,}79 \times 576{.}260 = 455{.}245{,}4 \approx 455{.}245 \text{ orang}" />
-    <BlockMath math="\text{Total positif} = 0{,}3 \times 576{.}260 = 172{.}878 \text{ orang}" />
-    <BlockMath math="\text{Dewasa positif} = 0{,}79 \times 0{,}30 \times 576{.}260 = 136{.}573{,}62 \approx 136{.}574 \text{ orang}" />
-    <BlockMath math="\text{Dewasa yang memenuhi syarat} = 0{,}79 \times 0{,}70 \times 576{.}260 = 318{.}671{,}78 \approx 318{.}672 \text{ orang}" />
-    </MathContainer>
+<BlockMath math="\frac{282{.}367}{318{.}671{,}78}\times 100\% \approx 88{,}6\%" />
 
-    Hitung persentase target dari **jumlah yang belum dibulatkan**:
+Target tersebut sekitar <InlineMath math="88{,}6\%" /> dari jumlah orang dewasa yang memenuhi syarat dalam perhitungan ini. Rumus sederhana ini hanya menunjukkan cara menghitung nilai fungsi pada target tersebut. Rumus ini tidak dapat dipakai untuk menetapkan target vaksinasi di dunia nyata.
 
-    <BlockMath math="\frac{282{.}367}{318{.}671{,}78}\times 100\% \approx 88{,}6\%" />
+### Perhitungan
 
-    Jadi, target vaksinasi sekitar <InlineMath math="88{,}6\%" /> dari jumlah dewasa yang memenuhi syarat dalam skenario fiktif ini. Target tersebut diberikan oleh soal. Perhitungan ini tidak membenarkan cara menetapkan target nyata.
+Untuk menghitung jumlah kasus dalam model, kita memakai <InlineMath math="t=282{.}367" />:
 
-4. **Penyelesaian:**
+<BlockMath math="N(282{.}367) = 285{.}000 - \sqrt{(282{.}367)^2 - 282{.}367 + (190{,}68)^3}" />
 
-    Untuk menentukan jumlah kasus yang tersisa ketika <InlineMath math="t = 282{.}367" />, kita hitung:
+**Langkah** <InlineMath math="1" /> menghitung suku konstanta.
 
-    <BlockMath math="N(282{.}367) = 285{.}000 - \sqrt{(282{.}367)^2 - 282{.}367 + (190{,}68)^3}" />
+<BlockMath math="(190{,}68)^3 = 190{,}68 \times 190{,}68 \times 190{,}68 = 6{.}932{.}907{,}88" />
 
-    **Langkah** <InlineMath math="1" />: Hitung <InlineMath math="(190{,}68)^3" />
+Nilai yang ditampilkan dibulatkan hingga dua angka desimal. Perhitungan berikutnya tetap memakai nilai sebelum pembulatan.
 
-    <BlockMath math="(190{,}68)^3 = 190{,}68 \times 190{,}68 \times 190{,}68 = 6{.}932{.}907{,}88" />
+**Langkah** <InlineMath math="2" /> menghitung kuadrat jumlah orang yang divaksinasi.
 
-    Nilai yang ditampilkan dibulatkan hingga dua angka desimal. Perhitungan berikutnya tetap memakai nilai yang belum dibulatkan.
+<BlockMath math="(282{.}367)^2 = 79{.}731{.}122{.}689" />
 
-    **Langkah** <InlineMath math="2" />: Hitung <InlineMath math="(282{.}367)^2" />
+**Langkah** <InlineMath math="3" /> menggabungkan nilai di dalam akar.
 
-    <BlockMath math="(282{.}367)^2 = 79{.}731{.}122{.}689" />
+<BlockMath math="79{.}731{.}122{.}689 - 282{.}367 + 6{.}932{.}907{,}88 = 79{.}737{.}773{.}229{,}88" />
 
-    **Langkah** <InlineMath math="3" />: Substitusi ke dalam akar
+**Langkah** <InlineMath math="4" /> memberikan hasil akhir.
 
-    <BlockMath math="79{.}731{.}122{.}689 - 282{.}367 + 6{.}932{.}907{,}88 = 79{.}737{.}773{.}229{,}88" />
+<MathContainer>
+<BlockMath math="N(282{.}367) = 285{.}000 - \sqrt{79{.}737{.}773{.}229{,}88}" />
+<BlockMath math="= 285{.}000 - 282{.}378{,}78" />
+<BlockMath math="= 2{.}621{,}22 \approx 2{.}621 \text{ orang}" />
+</MathContainer>
 
-    **Langkah** <InlineMath math="4" />: Hitung hasil akhir
+### Arti Hasil
 
-    <MathContainer>
-    <BlockMath math="N(282{.}367) = 285{.}000 - \sqrt{79{.}737{.}773{.}229{,}88}" />
-    <BlockMath math="= 285{.}000 - 282{.}378{,}78" />
-    <BlockMath math="= 2{.}621{,}22 \approx 2{.}621 \text{ orang}" />
-    </MathContainer>
+Jika <InlineMath math="282{.}367" /> orang sudah divaksinasi, rumus menghasilkan sekitar <InlineMath math="2{.}621" /> kasus positif tersisa. Hasil ini hanya berasal dari rumus sederhana tersebut. Data nyata tetap diperlukan untuk membuat ramalan atau menentukan alokasi sumber daya kesehatan.
 
-5. **Arti Hasil:**
+## Batas Rumus dan Model
 
-    Pada <InlineMath math="282{.}367" /> orang yang divaksinasi, rumus yang diberikan menghasilkan sekitar <InlineMath math="2{.}621" /> kasus positif tersisa. Nilai ini adalah keluaran model fiktif, **bukan ramalan dunia nyata** atau dasar yang cukup untuk mengalokasikan sumber daya kesehatan.
-
-## Menafsirkan Hasil secara Bertanggung Jawab
-
-Nilai <InlineMath math="2{.}621 \text{ kasus}" /> menjawab pertanyaan matematis dalam latihan. Keputusan nyata masih memerlukan bukti yang divalidasi secara terpisah mengenai:
+Nilai <InlineMath math="2{.}621 \text{ kasus}" /> menjawab pertanyaan matematis dari rumus yang diberikan. Keputusan nyata masih memerlukan bukti yang diuji secara terpisah mengenai:
 
 1. **Kapasitas rumah sakit** saat ini dan proyeksinya
 2. **Tenaga medis** yang tersedia dan beban kerjanya
 3. **Alokasi sumber daya** dalam beberapa skenario yang masuk akal
 4. Ketidakpastian dan **strategi komunikasi publik** yang jujur
 
-> Limit menggambarkan perilaku sebuah rumus. Apakah rumus itu menggambarkan kenyataan merupakan pertanyaan bukti yang berbeda. Nyatakan selalu asumsi, daerah berlaku, satuan, dan ketidakpastian model sebelum menafsirkan hasilnya.
+> Limit menunjukkan perilaku sebuah rumus. Kita tetap membutuhkan data nyata untuk mengetahui apakah rumus itu sesuai dengan keadaan sebenarnya. Karena itu, tuliskan asumsi, daerah berlaku, satuan, dan ketidakpastian model saat menjelaskan hasil perhitungan.
 
 ## Latihan
 

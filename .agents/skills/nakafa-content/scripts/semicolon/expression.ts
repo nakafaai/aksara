@@ -3,6 +3,10 @@ import {
   type SemicolonScanOptions,
 } from "#nakafa-content/semicolon/source";
 import {
+  sourceOffsetForStaticMatch,
+  staticStringCandidates,
+} from "#nakafa-content/static-string";
+import {
   asEstreeNode,
   type EstreeNode,
   estreeRange,
@@ -11,6 +15,7 @@ import {
 
 const CODE_COMPONENT_NAMES = new Set(["CodeBlock"]);
 const MATH_COMPONENT_NAMES = new Set(["BlockMath", "InlineMath"]);
+const TRAILING_BACKSLASH_PATTERN = /\\+$/u;
 const NON_PROSE_FIELD_NAMES = new Set([
   "chart",
   "className",
@@ -68,17 +73,28 @@ export function collectStaticStringSemicolons(
   source: string,
   options: SemicolonScanOptions = {}
 ): void {
-  if (node.type === "Literal" && typeof node.value === "string") {
-    addSemicolonsInRange(offsets, source, estreeRange(node), options);
-    return;
-  }
-  if (node.type !== "TemplateLiteral" || !Array.isArray(node.quasis)) {
-    return;
-  }
-  for (const quasi of node.quasis) {
-    const quasiNode = asEstreeNode(quasi);
-    if (quasiNode) {
-      addSemicolonsInRange(offsets, source, estreeRange(quasiNode), options);
+  for (const candidate of staticStringCandidates(node)) {
+    for (const match of candidate.text.matchAll(/;/gu)) {
+      if (match.index === undefined) {
+        continue;
+      }
+      if (options.allowLatexSpacing) {
+        const preceding = candidate.text.slice(0, match.index);
+        const slashCount =
+          preceding.match(TRAILING_BACKSLASH_PATTERN)?.[0].length ?? 0;
+        if (slashCount % 2 === 1) {
+          continue;
+        }
+      }
+      const offset = sourceOffsetForStaticMatch(
+        candidate,
+        match.index,
+        match[0],
+        source
+      );
+      if (offset !== undefined) {
+        offsets.add(offset);
+      }
     }
   }
 }

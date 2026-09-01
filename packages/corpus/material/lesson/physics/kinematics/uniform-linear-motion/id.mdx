@@ -2,7 +2,7 @@
 export const metadata = {
   title: "Gerak Lurus Beraturan",
   description:
-    "Gerak lurus beraturan mengikuti lintasan lurus dengan kecepatan tetap dan dapat disajikan melalui jejak posisi, grafik, serta perhitungan.",
+    "Gerak lurus beraturan mengikuti lintasan lurus dengan kecepatan tetap dan dapat dijelaskan melalui catatan posisi, grafik, serta perhitungan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
   dateModified: "2026-09-01",
@@ -24,9 +24,9 @@ x(t) &= x(t_0)+v(t-t_0)
 
 Simbol <InlineMath math="x(t_0)" /> dan <InlineMath math="x(t)" /> menyatakan posisi pada waktu awal dan akhir, <InlineMath math="v" /> menyatakan kecepatan tetap, <InlineMath math="\Delta t=t-t_0" /> menyatakan selang waktu, dan <InlineMath math="\Delta x" /> menyatakan perpindahan.
 
-## Jejak Posisi yang Jaraknya Sama
+## Posisi pada Selang Waktu yang Sama
 
-Jika posisi benda dicatat setiap selang waktu yang sama, GLB menghasilkan jarak antartitik yang sama. Ini mirip pita ticker timer: tanda dibuat berkala, sehingga jarak tanda menunjukkan seberapa jauh benda bergerak pada setiap selang waktu.
+Jika posisi benda dicatat setiap selang waktu yang sama, GLB menghasilkan jarak antartitik yang sama. Pita pencatat waktu bekerja dengan memberi tanda pada pita dalam selang waktu yang tetap. Jarak antartanda menunjukkan seberapa jauh benda bergerak selama setiap selang waktu.
 
 Misalkan posisi awal benda <InlineMath math="x_0=1\text{ m}" /> dan kecepatannya <InlineMath math="+2\text{ m/s}" />. Artinya, setiap detik posisi bertambah <InlineMath math="2\text{ m}" />.
 
@@ -39,10 +39,10 @@ Misalkan posisi awal benda <InlineMath math="x_0=1\text{ m}" /> dan kecepatannya
 | <InlineMath math="4\text{ s}" /> | <InlineMath math="9\text{ m}" /> |
 | <InlineMath math="5\text{ s}" /> | <InlineMath math="11\text{ m}" /> |
 
-Angka posisinya berubah, sedangkan selisih antara dua posisi berturut-turut tetap sama. Dari <InlineMath math="1" /> ke <InlineMath math="3" />, dari <InlineMath math="3" /> ke <InlineMath math="5" />, dan seterusnya, selisihnya selalu <InlineMath math="2\text{ m}" />.
+Posisi benda berubah, tetapi selisih antara dua posisi berturut-turut tetap <InlineMath math="2\text{ m}" />. Nilai posisi bertambah dari <InlineMath math="1\text{ m}" /> menjadi <InlineMath math="3\text{ m}" />, lalu <InlineMath math="5\text{ m}" />, dan seterusnya.
 
 <UniformLinearMotionLab
-  title={<>Jejak GLB Mobil</>}
+  title={<>Posisi Mobil pada GLB</>}
   description={
     <>
       Ubah kecepatan tetap untuk melihat jarak antarjejak selalu sama pada
@@ -52,14 +52,14 @@ Angka posisinya berubah, sedangkan selisih antara dua posisi berturut-turut teta
   labels={{
     chooseSpeed: "Pilih kecepatan tetap",
     speed: <>Kecepatan tetap</>,
-    positionStep: <>Selang jejak</>,
+    positionStep: <>Selang waktu antarjejak</>,
     stepDistance: <>Jarak antarjejak</>,
     duration: <>Waktu gerak</>,
     viewLabel: "Visual jejak gerak lurus beraturan",
   }}
 />
 
-## Menghitung Posisi Akhir Tanpa Menebak
+## Menghitung Posisi Akhir
 
 Misalkan benda mulai dari <InlineMath math="x_0=1\text{ m}" /> dan bergerak ke kanan dengan kecepatan tetap <InlineMath math="v=2\text{ m/s}" /> selama <InlineMath math="5\text{ s}" />. Perpindahannya:
 
@@ -92,7 +92,7 @@ Luas bertanda antara grafik kecepatan-waktu dan sumbu waktu sama dengan perpinda
 
 Pada grafik posisi-waktu, kemiringan garis menyatakan kecepatan. Tanda kemiringan memberi arah, sedangkan nilai mutlak kemiringan yang lebih besar berarti kelajuan yang lebih besar. Untuk GLB, garisnya tetap lurus karena kemiringannya tidak berubah dari awal sampai akhir.
 
-## Kelajuan Tetap Belum Tentu Kecepatan Tetap
+## Arah Membedakan Kelajuan Tetap dan Kecepatan Tetap
 
 GLB membutuhkan kecepatan tetap. Artinya, besar dan arah gerak harus tetap. Kelajuan tetap hanya memastikan besarnya.
 

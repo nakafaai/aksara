@@ -94,7 +94,7 @@ List dan tuple mengatur item berdasarkan posisi. Dictionary mengatur isinya berd
 
 ## Aturan Kunci dan Urutan
 
-Dictionary bersifat mutable, tetapi setiap kuncinya harus unik dan memiliki nilai hash yang tetap. Ketika dictionary diulang, kuncinya muncul sesuai urutan saat pertama kali ditambahkan.
+Dictionary bersifat mutable, tetapi setiap kuncinya harus unik dan memiliki nilai hash yang tetap. Saat dictionary dibaca dengan `for` loop, kuncinya muncul sesuai urutan saat pertama kali ditambahkan.
 
 ### Urutan Penyisipan dan Kunci Unik
 
@@ -155,7 +155,7 @@ Akses kurung siku mengambil nilai yang sudah ada. Assignment dengan kurung siku 
 
 Pilih bentuk iterasi sesuai kebutuhanmu: kunci saja, nilai saja, atau kedua bagian setiap entri.
 
-### Mengulang Kunci
+### Iterasi Kunci Dictionary
 
 <CodeBlock
   data={[
@@ -178,7 +178,7 @@ for key in phone:
 
 Ketika dictionary dipakai langsung dalam `for` loop, Python menghasilkan setiap kunci sesuai insertion order.
 
-### Mengulang Kunci dan Nilai
+### Iterasi Entri Dictionary
 
 <CodeBlock
   data={[
@@ -201,11 +201,11 @@ for key, val in phone.items():
 
 Method `items()` menghasilkan pasangan kunci dan nilai. Pada `for key, val in phone.items()`, Python melakukan unpacking pada setiap pasangan, lalu menyimpan kunci dalam `key` dan nilai dalam `val`.
 
-## Melihat Kunci dan Nilai
+## Tiga Jenis Dictionary View
 
 Method `keys()`, `values()`, dan `items()` menghasilkan dictionary view yang berbeda. View tetap terhubung ke dictionary asal, sehingga perubahan pada dictionary juga muncul pada view tersebut.
 
-### View Dictionary untuk Kunci dan Nilai
+### Membuat Dictionary View
 
 <CodeBlock
   data={[
@@ -239,7 +239,7 @@ Objek yang dikembalikan ketiga method dapat diiterasi, tetapi tidak mendukung in
 
 Gunakan `get()` jika kunci mungkin tidak ada dan kamu ingin menerima default value. Gunakan kurung siku jika kunci yang hilang harus menghasilkan error.
 
-### Kurung Siku pada Kunci yang Hilang
+### Error saat Mengakses Kunci dengan Kurung Siku
 
 <CodeBlock
   data={[

@@ -53,7 +53,11 @@ const RENDERED_KEYS_BY_TYPE: Readonly<Record<string, readonly string[]>> = {
 };
 
 /** Returns a diagnostic at one exact source offset. */
-function issueAtOffset(source: string, offset: number): LessonVoiceIssue {
+function issueAtOffset(
+  source: string,
+  offset: number,
+  rule: string
+): LessonVoiceIssue {
   const lineStart = source.lastIndexOf("\n", offset - 1) + 1;
   const lineEndIndex = source.indexOf("\n", offset);
   const lineEnd = lineEndIndex === -1 ? source.length : lineEndIndex;
@@ -62,7 +66,7 @@ function issueAtOffset(source: string, offset: number): LessonVoiceIssue {
     column: offset - lineStart + 1,
     excerpt: source.slice(lineStart, lineEnd).trim(),
     line,
-    rule: "plain-math-label",
+    rule,
   };
 }
 
@@ -256,5 +260,5 @@ export function findPlainMathLabelIssues(
   collectNodeOffsets(tree, offsets, source);
   return [...offsets]
     .sort((left, right) => left - right)
-    .map((offset) => issueAtOffset(source, offset));
+    .map((offset) => issueAtOffset(source, offset, "plain-math-label"));
 }

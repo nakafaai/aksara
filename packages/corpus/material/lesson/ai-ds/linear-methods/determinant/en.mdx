@@ -11,21 +11,23 @@ export const metadata = {
 
 The determinant of a square matrix measures the oriented volume scaling of its linear transformation. Its absolute value gives the volume factor, while its sign records whether orientation is preserved or reversed.
 
-Every square matrix has one determinant. A zero value means that at least one dimension is collapsed, so no inverse transformation can recover the original vector.
+Every square matrix has one determinant. A zero determinant means that the image lies in a lower-dimensional set, so the transformation is not invertible.
 
 Determinant is a special function that takes a square matrix and produces one real number:
 
 <BlockMath math="\det : \mathbb{R}^{n \times n} \to \mathbb{R} : A \mapsto \det A" />
 
-This function is unique because it has three characteristic properties that no other function has.
+The sign and value of the determinant give three cases:
 
 | Determinant | Geometric effect | Invertibility |
 |---|---|---|
 | <InlineMath math="\det A>0" /> | Scales volume by <InlineMath math="\lvert\det A\rvert" /> and preserves orientation | Invertible |
 | <InlineMath math="\det A<0" /> | Scales volume by <InlineMath math="\lvert\det A\rvert" /> and reverses orientation | Invertible |
-| <InlineMath math="\det A=0" /> | Collapses volume into a lower-dimensional set | Not invertible |
+| <InlineMath math="\det A=0" /> | Maps the volume to zero and the image to a lower-dimensional set | Not invertible |
 
 ## Three Determining Properties of Determinant
+
+Only one determinant function satisfies the following three properties.
 
 ### Linear Property on Each Row
 
@@ -94,13 +96,13 @@ The determinant decides whether a square matrix <InlineMath math="A" /> is inver
 6. **Rows are linearly independent**
 7. **Determinant is not zero**: <InlineMath math="\det A \neq 0" />
 
-> If the determinant is zero, the matrix "flattens" space to a lower dimension, so the transformation cannot be inverted.
+> If the determinant is zero, the transformation maps space into a lower dimensional set, so it cannot be inverted.
 
 If the rows are linearly dependent, one row is a linear combination of the others. Multilinearity expands the determinant into terms with repeated rows, and every such term is zero by the alternating property.
 
 ## Multiplication Properties and Similar Matrices
 
-One of the most useful properties of determinant is how it interacts with matrix multiplication:
+The determinant of a matrix product equals the product of the two determinants:
 
 <BlockMath math="\det(AB) = \det A \cdot \det B" />
 
@@ -112,7 +114,7 @@ Two matrices <InlineMath math="A" /> and <InlineMath math="B" /> are called **si
 
 <BlockMath math="B = S^{-1}AS" />
 
-Similar matrices have the same determinant. The proof is simple:
+Similar matrices have the same determinant. Apply the product rule for determinants.
 
 <MathContainer>
 <BlockMath math="\det B = \det(S^{-1}AS)" />
@@ -139,11 +141,11 @@ As a simple example:
 <BlockMath math="= \det\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} = 4" />
 </MathContainer>
 
-But:
+If the two determinants are calculated separately, the result is:
 
 <MathContainer>
 <BlockMath math="\det\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} + \det\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}" />
 <BlockMath math="= 1 + 1 = 2" />
 </MathContainer>
 
-Clearly <InlineMath math="4 \neq 2" />, so determinant is not additive on matrix addition.
+Since <InlineMath math="4 \neq 2" />, the determinant is not additive under matrix addition.

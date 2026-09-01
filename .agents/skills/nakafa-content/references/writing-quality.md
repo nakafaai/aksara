@@ -4,6 +4,10 @@
 
 - Write like a teacher guiding students, not like a formal textbook, marketing
   page, or internal content note.
+- Apply a five-year-old clarity test to every explanation. The sentence should
+  name the object, action, input, and result clearly enough that a new learner
+  does not have to recover missing context. This is a clarity test, not
+  permission to use baby talk, remove technical terms, or weaken the facts.
 - Build a spoken teaching flow from the learner's current foothold to the new
   idea. A useful sequence can establish a familiar fact or representation,
   identify the problem, explain the concept, work an example, and check the
@@ -14,12 +18,43 @@
   metaphor to make the lesson sound human. Each transition should name the
   mathematical, scientific, or technical connection that leads to the next
   sentence.
+- Do not place the current learner in a classroom, school, course, or other
+  physical setting that the content cannot know. State the actual
+  simplification, such as rounded values or ignored air resistance, instead of
+  calling it a `model pembelajaran`, `classroom model`, or `Unterrichtsmodell`.
+  Keep real settings when they are the subject of a word problem, data set,
+  historical account, statistical class interval, taxonomic rank, or
+  programming construct.
+- Remove labels such as `latihan fiktif`, `model fiktif`, `fictional exercise`,
+  and `fiktive Aufgabe` when they merely classify an authored example. Introduce the
+  quantities, assumptions, and question directly. If a real-world safety or
+  evidence boundary matters, name that boundary once in concrete language
+  instead of repeatedly calling the example fictional.
+- Keep internal curriculum commentary out of learner prose. A phrase such as
+  `used in some curricula` does not explain a mathematical term. State the
+  definition and any alternative names directly. Retain a curriculum reference
+  only when curriculum design or a curriculum-specific requirement is the
+  actual subject of the passage.
 - Match the route, subject, education level, and target locale.
+- Keep locale siblings aligned by meaning, order, examples, math, and
+  representation. Do not align them by word choice or clause shape. Rewrite
+  each sentence as if it had been composed in the target language, then check
+  it without looking at the source. If a learner needs the source language to
+  recover the meaning, the localized sentence is incomplete.
+- Replace editorial classifications such as `dibahas sebagai` and `dibahas
+  dalam konteks` with the subject relationship itself. For example, say that a
+  virus damages tissue, changes microbial populations, or carries genetic
+  material to selected cells. Do not make the learner reconstruct the science
+  from a note about how the topic is discussed.
 - Prefer short paragraphs with clear transitions.
 - Prefer concise completeness over brevity. A shorter explanation is worse when
   it forces the learner to invent a missing premise or reasoning step.
 - Use concrete examples only when they immediately clarify the concept.
 - Define technical terms before using them as shortcuts.
+- Introduce a technical term with the action or object it names. A biology
+  learner should read that a virus has been modified to carry genetic material
+  into selected cells before the lesson shortens that idea to `vektor virus`,
+  `viral vector`, or `viraler Vektor`.
 - Use everyday words for the explanation around a technical term. A student
   should not need to translate the explanation before learning the subject.
 - Keep the technical term that students will encounter in code, APIs,
@@ -28,6 +63,19 @@
   `namespace`, `built-in`, `mutable`, `immutable`, `indexing`, `slicing`,
   `method`, and `loop` can be the clearest choice. Explain the term in natural
   Indonesian instead of replacing it with an unfamiliar translation.
+- A technical translation must not hide the mechanism. Do not write that a
+  solution direction is `disusutkan agar tidak memperbesar derau`. Explain what
+  changes in the formula and what `derau` means in that lesson. For example,
+  state that a filter factor near zero makes one solution component smaller so
+  a small random measurement error does not cause a large change in the fitted
+  solution.
+- Judge a translated term inside its full sentence. `Masukan` can be the right
+  word when a function lesson defines input and output. It becomes stiff in a
+  sentence such as `komposisi mengembalikan masukan x`, where `komposisi
+  membawa kita kembali ke nilai awal x` states the result more naturally.
+  Likewise, replace `terjemahkan kendala keliling` with the actual action,
+  such as `tulis keliling sebagai persamaan`. Do not blacklist `masukan` or
+  `kendala` across unrelated subject contexts.
 - Treat terminology as a teaching decision, not a language-purity score.
   English words are not evidence of artificial writing, and Indonesian words
   are not automatically easier. Read the full sentence and choose the term that
@@ -43,9 +91,22 @@
   `menjadwalkan keluaran pembangkit` should say whether a plant runs steadily,
   changes power with demand, or starts during peak demand. This rule targets an
   unclear sentence, not English technical terminology as a category.
+- In measurement prose, `aturan rambatan` is a calque that hides the
+  calculation. Name the output uncertainty, the measured inputs, and the
+  operation that connects them. This does not prohibit literal propagation
+  terms such as `cepat rambat cahaya` or a wave that `merambat`.
 - Use demonstratives and summary nouns only when their antecedent is unique.
   Rewrite `manfaat tersebut tidak menghapus risikonya` by naming the exact
   operating property and the exact stock, emission, waste, or safety issue.
+- Treat a bare sentence ending such as `dilaporkan sebagai rentang` as
+  incomplete. State what the range contains or measures, such as `dilaporkan
+  dalam bentuk rentang nilai`. Do not ban `rentang` when its noun or numerical
+  limits are already explicit.
+- Do not use a passive verb as a substitute for the missing condition. A phrase
+  such as `ketika hasil kali nol ikut dibahas` hides the actual case. Write
+  `ketika P atau Q adalah polinomial nol`. Preserve contextual passive prose
+  such as `topik keselamatan dibahas pada bagian berikutnya`, where both the
+  subject and location are explicit.
 - Review every Indonesian `-nya` as a reference. Keep it when the noun it refers
   to is local and unique. Replace it with the exact operation when a student
   could ask `yang mana?`, for example `lanjutkan konversi satuan` instead of
@@ -93,6 +154,12 @@
   general formula.
   Do not confuse this with an attributed statement such as `NOAA melaporkan
   ...`, which names the source of a factual claim.
+- Keep a familiar scenario inside the teacher's explanation. A setup such as
+  `Misalkan sebidang tanah memiliki sisi melengkung. Perkirakan luas tanah`
+  changes into an unexplained task. Continue the reasoning instead, for example
+  `Untuk memperkirakan luasnya, kita membagi tanah itu menjadi beberapa persegi
+  panjang`. A direct imperative remains appropriate in an exercise with a named
+  input and expected response.
 - Do not split one grammatical sentence around a displayed formula. A paragraph
   rendered after `BlockMath` or `MathContainer` must stand on its own. Replace a
   lowercase continuation such as `dengan`, `where`, or `wobei` with a complete
@@ -104,14 +171,17 @@
 ## Structure
 
 - Give every heading a specific teaching job.
-- Write headings with ordinary words only. A page title or lesson heading may
-  contain only letters, numbers, and spaces. Keep all punctuation, formulas,
-  code tokens, operators, emojis, decorative numbers, and other symbols in the
-  body. Rewrite a question as a short noun or verb phrase for the heading, then
-  ask the full question in the first sentence below it when needed.
-  Never remove a required Indonesian hyphen and leave a nonstandard form such
-  as `rata rata` or `jari jari`. Choose a natural synonym such as `rerata` or
-  `radius`.
+- Write headings with ordinary words only. Keep decorative punctuation,
+  formulas, code tokens, operators, emojis, and decorative numbers in the body.
+  Rewrite a question as a short noun or verb phrase for the heading, then ask
+  the full question in the first sentence below it when needed. A hyphen
+  required by standard word formation is allowed, including the Indonesian
+  reduplication in `rata-rata` and `jari-jari`. Never write the nonstandard
+  forms `rata rata` or `jari jari`, and do not choose a stiffer synonym solely
+  to avoid the required hyphen.
+- Never satisfy the symbol rule by deleting punctuation from the original
+  heading and leaving an ungrammatical word pile. Rewrite the whole heading as
+  a natural clause or direct noun phrase in that locale.
 - If a section has nested subsections, introduce their shared purpose with a
   substantive bridge paragraph first.
 - Avoid reusable headings such as `Overview`, `Key Takeaway`, or `Step One` when
@@ -146,6 +216,11 @@
 - Remove stock learner-benefit frames such as `memungkinkan kita`, `allows us
   to`, `we need to remember that`, `hilft uns`, and `ermöglicht es uns` when the
   sentence can state the operation or fact directly.
+- Treat `untuk lebih memahami konsep ini, lihat beberapa contoh` and its locale
+  siblings as the same empty choreography. Replace the sentence with the
+  specific operation shared by the examples. Remove `pertanyaan menarik`,
+  `this is the most common example`, and equivalent labels unless the lesson
+  supplies a factual basis for that evaluation.
 - Describe the precise work done by a model, example, table, or diagram. Replace
   vague claims such as `membuat hubungan lebih nyata`, `makes the idea more
   concrete`, or `macht den Zusammenhang anschaulicher` with the exact quantities,
@@ -193,7 +268,11 @@
 - Do not make a concept ask the lesson question. Replace `mitigasi bertanya
   tentang penyebab` or `the law asks a different question` with the operation or
   scope itself, such as `mitigasi mengurangi penyebab pemanasan` or `the law of
-  constant composition concerns mass ratios`.
+  constant composition concerns mass ratios`. Apply the same rule to a limit,
+  property, function, probability, or metric. Say that a limit describes nearby
+  values, `str()` returns a string representation, and atom economy measures a
+  fraction of reactant atoms. Preserve real questions asked by the teacher,
+  learner, prompt, program, or API.
 - Use `read`, `membaca`, and `lesen` for an actual file, symbol, graph, scale,
   measurement, or other representation. Do not use them as vague substitutes
   for analyzing a relationship, understanding a concept, or judging a process.
@@ -203,6 +282,17 @@
   it. A condition is not `hiasan`, capitalization is not `decoration`, and a
   theorem is not a `compass`. State what the condition controls, what
   capitalization changes, or which decision the theorem supports.
+- In Indonesian mathematical prose, avoid the literal calque `keluarga fungsi`,
+  `keluarga antiturunan`, `anggota keluarga`, or `keluarga sudut koterminal`.
+  Name the set directly, such as all functions that satisfy a condition, all
+  antiderivatives that differ by a constant, or all coterminal angles. Do not
+  ban literal human-family examples, and do not remove an established technical
+  term from English or German merely to mirror Indonesian wording.
+- Replace personified cell machinery with the biological actions being carried
+  out. State that the host cell copies a viral genome, makes viral proteins,
+  and assembles virions. A narrow checker may reject `mengambil alih kerja sel`
+  and its direct translation while preserving legitimate technical discussion
+  of cellular machinery.
 - Replace `serampangan` with the exact error or missing check. A warning such as
   `jangan membuat ulang rumus secara serampangan` does not tell the student what
   to verify. Name the available function, tested step, or condition that must be
@@ -274,6 +364,9 @@ authorship detector. Admit a new rule only when all of these conditions hold:
    safety claims, code, formulas, quotations, and metadata untouched.
 4. A positive test catches the failure and a negative test preserves a nearby
    valid construction that names its quantity, mechanism, or prevented error.
+   Add a boundary test for the nearest legitimate use of the same word when a
+   rule touches overloaded terms such as `kelas`, `class`, `school`, or
+   `Klasse`.
 5. Every match is reviewed in its complete paragraph and against both locale
    siblings before any rewrite.
 
@@ -300,6 +393,9 @@ clean gate as evidence that the corpus is human.
   or technical names that must remain. A zero count for one phrase does not
   prove that the writing is natural.
 - Read the complete document aloud in the target locale.
+- Review the document once with locale siblings visible to verify semantic and
+  structural parity, then once with the siblings hidden to verify that every
+  sentence stands on its own in the target language.
 - Ask whether a teacher could say every sentence to a student without first
   explaining the wording itself.
 - Retell the lesson aloud from start to finish. Confirm that each paragraph
