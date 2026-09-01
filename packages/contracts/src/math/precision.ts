@@ -1,5 +1,6 @@
-import { BigDecimal } from "effect";
+import { BigDecimal, Array as EffectArray } from "effect";
 
+import type { PlanePoint, SpacePoint } from "#contracts/math/base";
 import type { AxisRange } from "#contracts/math/extent";
 import {
   type AxisTraversal,
@@ -106,7 +107,8 @@ export function visiblePathResolvable(
     return false;
   }
   const parameterSpan = ratioDifference(interval.exit, interval.entry);
-  return axes.some((axis) => {
+  let hasVisibleExtent = false;
+  for (const axis of axes) {
     const direction = BigDecimal.abs(
       BigDecimal.subtract(decimal(axis.through), decimal(axis.start))
     );
@@ -114,11 +116,87 @@ export function visiblePathResolvable(
       BigDecimal.abs(parameterSpan.numerator),
       direction
     );
-    return BigDecimal.isGreaterThanOrEqualTo(
-      visibleNumerator,
-      BigDecimal.multiply(threshold, parameterSpan.denominator)
+    if (BigDecimal.isZero(visibleNumerator)) {
+      continue;
+    }
+    hasVisibleExtent = true;
+    if (
+      BigDecimal.isLessThan(
+        visibleNumerator,
+        BigDecimal.multiply(threshold, parameterSpan.denominator)
+      )
+    ) {
+      return false;
+    }
+  }
+  return hasVisibleExtent;
+}
+
+/** Checks whether any non-zero polygon altitude collapses in the renderer. */
+export function polygonAltitudeUnresolved(
+  vertices: readonly [
+    PlanePoint | SpacePoint,
+    PlanePoint | SpacePoint,
+    PlanePoint | SpacePoint,
+    ...(PlanePoint | SpacePoint)[],
+  ],
+  threshold: RenderThreshold
+) {
+  const exact = vertices.map((point) => ({
+    x: decimal(point.x),
+    y: decimal(point.y),
+    z: decimal("z" in point ? point.z : 0),
+  }));
+  const thresholdSquared = BigDecimal.multiply(threshold, threshold);
+  for (const [index, point] of exact.entries()) {
+    const previous = EffectArray.getUnsafe(
+      exact,
+      (index + exact.length - 1) % exact.length
     );
-  });
+    const next = EffectArray.getUnsafe(exact, (index + 1) % exact.length);
+    const baseline = {
+      x: BigDecimal.subtract(next.x, previous.x),
+      y: BigDecimal.subtract(next.y, previous.y),
+      z: BigDecimal.subtract(next.z, previous.z),
+    };
+    const offset = {
+      x: BigDecimal.subtract(point.x, previous.x),
+      y: BigDecimal.subtract(point.y, previous.y),
+      z: BigDecimal.subtract(point.z, previous.z),
+    };
+    const cross = {
+      x: BigDecimal.subtract(
+        BigDecimal.multiply(baseline.y, offset.z),
+        BigDecimal.multiply(baseline.z, offset.y)
+      ),
+      y: BigDecimal.subtract(
+        BigDecimal.multiply(baseline.z, offset.x),
+        BigDecimal.multiply(baseline.x, offset.z)
+      ),
+      z: BigDecimal.subtract(
+        BigDecimal.multiply(baseline.x, offset.y),
+        BigDecimal.multiply(baseline.y, offset.x)
+      ),
+    };
+    const crossSquared = BigDecimal.sumAll(
+      Object.values(cross).map((value) => BigDecimal.multiply(value, value))
+    );
+    if (BigDecimal.isZero(crossSquared)) {
+      continue;
+    }
+    const baselineSquared = BigDecimal.sumAll(
+      Object.values(baseline).map((value) => BigDecimal.multiply(value, value))
+    );
+    if (
+      BigDecimal.isLessThan(
+        crossSquared,
+        BigDecimal.multiply(thresholdSquared, baselineSquared)
+      )
+    ) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /** Returns a stable sine for an angle that may fall below Number.MIN_VALUE. */

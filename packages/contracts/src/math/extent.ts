@@ -7,6 +7,8 @@ import type { SpaceMathFrame, SpaceMathObject } from "#contracts/math/space";
 
 export type AxisRange = PlaneMathFrame["x"];
 
+const ZERO = BigDecimal.fromBigInt(0n);
+
 /** Checks one finite coordinate against its inclusive authored range. */
 export function axisContains(range: AxisRange, coordinate: number) {
   return coordinate >= range.min && coordinate <= range.max;
@@ -21,22 +23,6 @@ function axisContainsDecimal(
     BigDecimal.isGreaterThanOrEqualTo(coordinate, decimal(range.min)) &&
     BigDecimal.isLessThanOrEqualTo(coordinate, decimal(range.max))
   );
-}
-
-/** Checks an exact signed offset without rounding it into its origin. */
-function axisContainsOffset(
-  range: AxisRange,
-  origin: number,
-  offset: BigDecimal.BigDecimal
-) {
-  if (!axisContains(range, origin)) {
-    return false;
-  }
-  const center = decimal(origin);
-  const clearance = BigDecimal.isNegative(offset)
-    ? BigDecimal.subtract(center, decimal(range.min))
-    : BigDecimal.subtract(decimal(range.max), center);
-  return BigDecimal.isLessThanOrEqualTo(BigDecimal.abs(offset), clearance);
 }
 
 /** Checks one translated coordinate within its explicit numeric error envelope. */
@@ -71,14 +57,14 @@ function arcContainsAngle(start: number, sweep: number, angle: number) {
     : normalizeDegrees(start - angle) <= -sweep;
 }
 
-interface ArcOffset {
+export interface RadialOffset {
   readonly error: BigDecimal.BigDecimal;
   readonly x: BigDecimal.BigDecimal;
   readonly y: BigDecimal.BigDecimal;
 }
 
 /** Resolves exact cardinals or a trig offset with its renderer error envelope. */
-function arcOffset(radius: number, angle: number): ArcOffset {
+function arcOffset(radius: number, angle: number): RadialOffset {
   const normalized = normalizeDegrees(angle);
   const exactRadius = decimal(radius);
   const exact = BigDecimal.fromBigInt(0n);
@@ -105,11 +91,13 @@ function arcOffset(radius: number, angle: number): ArcOffset {
   };
 }
 
-/** Checks the exact endpoints and cardinal extrema of one directed arc. */
-export function arcContained(
-  frame: PlaneMathFrame,
-  object: Extract<PlaneMathObject, { readonly kind: "arc" }>
-) {
+/** Returns every endpoint or cardinal offset that bounds one radial object. */
+export function radialOffsets(
+  object: Extract<PlaneMathObject, { readonly kind: "arc" | "circle" }>
+): readonly RadialOffset[] {
+  if (object.kind === "circle") {
+    return [0, 90, 180, 270].map((angle) => arcOffset(object.radius, angle));
+  }
   const angles = [
     object.startDegrees,
     object.startDegrees + object.sweepDegrees,
@@ -119,9 +107,16 @@ export function arcContained(
       angles.push(angle);
     }
   }
-  return angles.every((angle) => {
-    const offset = arcOffset(object.radius, angle);
-    return (
+  return angles.map((angle) => arcOffset(object.radius, angle));
+}
+
+/** Checks the exact endpoints and cardinal extrema of one directed arc. */
+export function arcContained(
+  frame: PlaneMathFrame,
+  object: Extract<PlaneMathObject, { readonly kind: "arc" }>
+) {
+  return radialOffsets(object).every(
+    (offset) =>
       axisContainsTranslated(
         frame.x,
         object.center.x,
@@ -129,8 +124,7 @@ export function arcContained(
         offset.error
       ) &&
       axisContainsTranslated(frame.y, object.center.y, offset.y, offset.error)
-    );
-  });
+  );
 }
 
 /** Checks one circle through exact radius-to-boundary comparisons. */
@@ -138,13 +132,15 @@ export function circleContained(
   frame: PlaneMathFrame,
   object: Extract<PlaneMathObject, { readonly kind: "circle" }>
 ) {
-  const radius = decimal(object.radius);
-  const negativeRadius = BigDecimal.negate(radius);
-  return (
-    axisContainsOffset(frame.x, object.center.x, radius) &&
-    axisContainsOffset(frame.x, object.center.x, negativeRadius) &&
-    axisContainsOffset(frame.y, object.center.y, radius) &&
-    axisContainsOffset(frame.y, object.center.y, negativeRadius)
+  return radialOffsets(object).every(
+    (offset) =>
+      axisContainsTranslated(
+        frame.x,
+        object.center.x,
+        offset.x,
+        offset.error
+      ) &&
+      axisContainsTranslated(frame.y, object.center.y, offset.y, offset.error)
   );
 }
 
@@ -204,33 +200,53 @@ export function quadraticContained(
   return ratioInRange(vertexValue, outputRange.min, outputRange.max);
 }
 
+export interface CuboidExtent {
+  readonly axis: "x" | "y" | "z";
+  readonly center: number;
+  readonly dimension: "height" | "length" | "width";
+  readonly extent: BigDecimal.BigDecimal;
+}
+
+/** Returns the exact positive half-extent on every cuboid axis. */
+export function cuboidExtents(
+  object: Extract<SpaceMathObject, { readonly kind: "cuboid" }>
+): readonly CuboidExtent[] {
+  const half = decimal(0.5);
+  return [
+    {
+      axis: "x",
+      center: object.center.x,
+      dimension: "length",
+      extent: BigDecimal.multiply(decimal(object.size.length), half),
+    },
+    {
+      axis: "y",
+      center: object.center.y,
+      dimension: "height",
+      extent: BigDecimal.multiply(decimal(object.size.height), half),
+    },
+    {
+      axis: "z",
+      center: object.center.z,
+      dimension: "width",
+      extent: BigDecimal.multiply(decimal(object.size.width), half),
+    },
+  ];
+}
+
 /** Checks one cuboid through exact half-extent-to-boundary comparisons. */
 export function cuboidContained(
   frame: SpaceMathFrame,
   object: Extract<SpaceMathObject, { readonly kind: "cuboid" }>
 ) {
-  const halfLength = BigDecimal.multiply(
-    decimal(object.size.length),
-    decimal(0.5)
-  );
-  const halfHeight = BigDecimal.multiply(
-    decimal(object.size.height),
-    decimal(0.5)
-  );
-  const halfWidth = BigDecimal.multiply(
-    decimal(object.size.width),
-    decimal(0.5)
-  );
-  const dimensions: ReadonlyArray<
-    readonly [AxisRange, number, BigDecimal.BigDecimal]
-  > = [
-    [frame.x, object.center.x, halfLength],
-    [frame.y, object.center.y, halfHeight],
-    [frame.z, object.center.z, halfWidth],
-  ];
-  return dimensions.every(
-    ([range, center, extent]) =>
-      axisContainsOffset(range, center, extent) &&
-      axisContainsOffset(range, center, BigDecimal.negate(extent))
+  return cuboidExtents(object).every(
+    ({ axis, center, extent }) =>
+      axisContainsTranslated(frame[axis], center, extent, ZERO) &&
+      axisContainsTranslated(
+        frame[axis],
+        center,
+        BigDecimal.negate(extent),
+        ZERO
+      )
   );
 }

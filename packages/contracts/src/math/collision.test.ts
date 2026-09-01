@@ -85,7 +85,7 @@ describe("mathematical visual collisions", () => {
     assert.strictEqual(unresolvedCollisionIndexes(entries, THRESHOLD).size, 0);
   });
 
-  it("checks frame edges, label anchors, and concentric radii together", () => {
+  it("checks frame edges, label anchors, and radial extrema together", () => {
     const objects = [
       planeObject("point", {
         at: { x: 1 - BELOW_RESOLUTION, y: 0.75 },
@@ -102,8 +102,8 @@ describe("mathematical visual collisions", () => {
       }),
     ];
     const labels = [
-      { at: { x: 0.25, y: 0.25 }, key: "first" },
-      { at: { x: 0.25 + BELOW_RESOLUTION, y: 0.25 }, key: "second" },
+      { at: { x: 0.1, y: 0.1 }, key: "first" },
+      { at: { x: 0.1 + BELOW_RESOLUTION, y: 0.1 }, key: "second" },
     ];
 
     assert.deepStrictEqual(
@@ -115,6 +115,40 @@ describe("mathematical visual collisions", () => {
         ["labels", 1, "at", "x"],
         ["objects", 2, "radius"],
       ]
+    );
+  });
+
+  it("rejects curved extrema that collapse into a frame boundary", () => {
+    const circle = planeObject("circle", {
+      center: { x: 0.5, y: 0.5 },
+      radius: 0.5 - BELOW_RESOLUTION,
+    });
+
+    assert.deepStrictEqual(
+      paths(planeResolutionIssues(planeFrame, [circle], [], { kind: "fit" })),
+      [["objects", 0, "radius"]]
+    );
+  });
+
+  it("rejects sub-threshold face separation between coincident cuboids", () => {
+    const objects = [
+      spaceObject("cuboid", {
+        center: { x: 0.5, y: 0.5, z: 0.5 },
+        size: { height: 0.5, length: 0.5, width: 0.5 },
+      }),
+      spaceObject("cuboid", {
+        center: { x: 0.5, y: 0.5, z: 0.5 },
+        size: {
+          height: 0.5,
+          length: 0.5 + BELOW_RESOLUTION,
+          width: 0.5,
+        },
+      }),
+    ];
+
+    assert.deepStrictEqual(
+      paths(spaceResolutionIssues(spaceFrame, objects, [], { kind: "fit" })),
+      [["objects", 1, "size", "length"]]
     );
   });
 

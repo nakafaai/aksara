@@ -97,7 +97,6 @@ describe("math visual render resolution", () => {
         inputAxis: "x",
       }),
     ];
-
     assert.deepStrictEqual(
       planeResolutionIssues(planeFrame, objects, [], {
         kind: "fit",
@@ -129,7 +128,6 @@ describe("math visual render resolution", () => {
       ),
       [["view", "padding"]]
     );
-
     const objects = [
       planeObject("segment", {
         from: { x: 0, y: 0 },
@@ -155,6 +153,13 @@ describe("math visual render resolution", () => {
         domain: { max: BELOW_RESOLUTION, min: 0 },
         inputAxis: "x",
       }),
+      planeObject("polygon", {
+        vertices: [
+          { x: 0.2, y: 0.21 },
+          { x: 0.8, y: 0.81 },
+          { x: 0.5, y: 0.51 + BELOW_RESOLUTION },
+        ],
+      }),
     ];
     assertPlanePaths(objects, [
       ["objects", 0, "to", "x"],
@@ -163,6 +168,7 @@ describe("math visual render resolution", () => {
       ["objects", 3, "coefficients", "a"],
       ["objects", 4, "domain"],
       ["objects", 4, "coefficients", "a"],
+      ["objects", 5],
     ]);
   });
 
@@ -175,7 +181,6 @@ describe("math visual render resolution", () => {
           { x: 1, y: 2 - visible },
         ],
       });
-
     assertPlanePaths([line(BELOW_RESOLUTION)], [["objects", 0]]);
     assert.deepStrictEqual(
       planeResolutionIssues(planeFrame, [line(RESOLUTION)], [], {

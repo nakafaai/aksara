@@ -6,6 +6,8 @@ import {
   type CollisionPointEntry,
   concentricRadiusCollisionPaths,
   coordinateCollisionPaths,
+  cuboidCollisionEntries,
+  radialBoundaryCollisionPaths,
 } from "#contracts/math/collision";
 import type { AxisTraversal } from "#contracts/math/intersection";
 import type {
@@ -20,6 +22,7 @@ import {
   axisEnvelopePairs,
   axisSpan,
   measureUnresolved,
+  polygonAltitudeUnresolved,
   quadraticCurvatureUnresolved,
   type RenderThreshold,
   renderThreshold,
@@ -38,7 +41,6 @@ export const MATH_VISUAL_RESOLUTION_MESSAGE =
   "Expected every non-zero mathematical visual delta to be at least 2^-23 of its combined render envelope.";
 
 type IssuePath = CollisionPath;
-type PointEntry = CollisionPointEntry;
 
 /** Places the shared resolution failure at one authored schema path. */
 function issue(path: IssuePath): Schema.FilterIssue {
@@ -53,7 +55,7 @@ function coordinate(point: PlanePoint | SpacePoint): SpacePoint {
 /** Collects rich-label anchors as collision-aware scene points. */
 function labelPointEntries(
   labels: readonly (PlaneLabelAnchor | SpaceLabelAnchor)[]
-): PointEntry[] {
+): CollisionPointEntry[] {
   return labels.map((label, index) => ({
     path: ["labels", index, "at"],
     point: coordinate(label.at),
@@ -61,7 +63,7 @@ function labelPointEntries(
 }
 
 /** Collects semantic camera or isometric targets as scene points. */
-function viewPointEntries(view: SpaceMathView): PointEntry[] {
+function viewPointEntries(view: SpaceMathView): CollisionPointEntry[] {
   if (view.kind === "camera") {
     return [
       { path: ["view", "position"], point: view.position },
@@ -77,7 +79,7 @@ function viewPointEntries(view: SpaceMathView): PointEntry[] {
 function objectPointEntries(
   object: PlaneMathObject | SpaceMathObject,
   index: number
-): PointEntry[] {
+): CollisionPointEntry[] {
   const root: IssuePath = ["objects", index];
   if (object.kind === "point") {
     return [{ path: [...root, "at"], point: coordinate(object.at) }];
@@ -137,14 +139,19 @@ function measureIssue(
   return measureUnresolved(value, threshold) ? [issue(path)] : [];
 }
 
-/** Checks finite point separation and infinite-path visible extent. */
-function pathObjectIssues(
+/** Checks polygon altitude and infinite-path visible extent. */
+function objectResolutionIssues(
   frame: PlaneMathFrame | SpaceMathFrame,
   object: PlaneMathObject | SpaceMathObject,
   index: number,
   threshold: RenderThreshold
 ) {
   const root: IssuePath = ["objects", index];
+  if (object.kind === "polygon") {
+    return polygonAltitudeUnresolved(object.vertices, threshold)
+      ? [issue(root)]
+      : [];
+  }
   if (object.kind !== "line" && object.kind !== "ray") {
     return [];
   }
@@ -196,7 +203,7 @@ function planeObjectIssues(
       ? [...domainIssues, issue([...root, "coefficients", "a"])]
       : domainIssues;
   }
-  return pathObjectIssues(frame, object, index, threshold);
+  return objectResolutionIssues(frame, object, index, threshold);
 }
 
 /** Reports every frame axis whose non-zero span collapses in the envelope. */
@@ -237,8 +244,10 @@ export function planeResolutionIssues(
         ),
         ...labelPointEntries(labels),
       ],
+      [],
       threshold
     ).map(issue),
+    ...radialBoundaryCollisionPaths(frame, objects, threshold).map(issue),
     ...concentricRadiusCollisionPaths(objects, threshold).map(issue),
     ...objects.flatMap((object, index) =>
       planeObjectIssues(frame, object, index, threshold)
@@ -288,20 +297,11 @@ export function spaceResolutionIssues(
         ),
         ...labelPointEntries(labels),
       ],
+      cuboidCollisionEntries(objects),
       threshold
     ).map(issue),
-    ...objects.flatMap((object, index) => {
-      if (object.kind !== "cuboid") {
-        return pathObjectIssues(frame, object, index, threshold);
-      }
-      return (["height", "length", "width"] as const).flatMap((dimension) =>
-        measureIssue(object.size[dimension], threshold, [
-          "objects",
-          index,
-          "size",
-          dimension,
-        ])
-      );
-    }),
+    ...objects.flatMap((object, index) =>
+      objectResolutionIssues(frame, object, index, threshold)
+    ),
   ];
 }

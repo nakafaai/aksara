@@ -1,13 +1,18 @@
 import { BigDecimal, Array as EffectArray } from "effect";
 
 import type { SpacePoint } from "#contracts/math/base";
-import type { AxisRange } from "#contracts/math/extent";
+import {
+  type AxisRange,
+  cuboidExtents,
+  radialOffsets,
+} from "#contracts/math/extent";
 import type { PlaneMathObject } from "#contracts/math/plane";
 import { decimal } from "#contracts/math/rational";
+import type { SpaceMathObject } from "#contracts/math/space";
 
 /** One finite authored number participating in a resolution comparison. */
 export interface CollisionEntry {
-  readonly value: number;
+  readonly value: BigDecimal.BigDecimal | number;
 }
 
 export type CollisionPath = Array<number | string>;
@@ -16,6 +21,12 @@ export type CollisionPath = Array<number | string>;
 export interface CollisionPointEntry {
   readonly path: CollisionPath;
   readonly point: SpacePoint;
+}
+
+/** One derived coordinate with the authored path responsible for its value. */
+export interface CollisionCoordinateEntry extends CollisionEntry {
+  readonly axis: "x" | "y" | "z";
+  readonly path: CollisionPath;
 }
 
 interface ValueGroup {
@@ -43,7 +54,6 @@ function lowerBound(
   }
   return start;
 }
-
 /** Builds a range-minimum tree over the earliest source index per value. */
 function minimumTree(groups: readonly ValueGroup[]) {
   let base = 1;
@@ -62,7 +72,6 @@ function minimumTree(groups: readonly ValueGroup[]) {
   }
   return { base, tree };
 }
-
 /** Finds the earliest source index in one half-open value-rank interval. */
 function rangeMinimum(
   tree: readonly number[],
@@ -99,7 +108,8 @@ export function unresolvedCollisionIndexes(
   const ranked = entries
     .map((entry, sourceIndex) => ({
       sourceIndex,
-      value: decimal(entry.value),
+      value:
+        typeof entry.value === "number" ? decimal(entry.value) : entry.value,
     }))
     .sort((left, right) => BigDecimal.Order(left.value, right.value));
   const groups: ValueGroup[] = [];
@@ -124,7 +134,6 @@ export function unresolvedCollisionIndexes(
       value: entry.value,
     });
   }
-
   const { base, tree } = minimumTree(groups);
   const unresolved = new Set<number>();
   for (const [sourceIndex, rank] of rankBySource.entries()) {
@@ -147,6 +156,90 @@ export function unresolvedCollisionIndexes(
   return unresolved;
 }
 
+/** Checks one radial coordinate against frame edges outside its error envelope. */
+function radialBoundaryUnresolved(
+  range: AxisRange,
+  center: number,
+  offset: BigDecimal.BigDecimal,
+  error: BigDecimal.BigDecimal,
+  threshold: BigDecimal.BigDecimal
+) {
+  const coordinate = BigDecimal.sum(decimal(center), offset);
+  return [range.min, range.max].some((boundary) => {
+    const distance = BigDecimal.abs(
+      BigDecimal.subtract(coordinate, decimal(boundary))
+    );
+    const certainGap = BigDecimal.subtract(distance, error);
+    return (
+      BigDecimal.isGreaterThan(certainGap, BigDecimal.fromBigInt(0n)) &&
+      BigDecimal.isLessThan(certainGap, threshold)
+    );
+  });
+}
+
+/** Finds curved extrema whose non-zero frame clearance cannot be rendered. */
+export function radialBoundaryCollisionPaths(
+  frame: { readonly x: AxisRange; readonly y: AxisRange },
+  objects: readonly PlaneMathObject[],
+  threshold: BigDecimal.BigDecimal
+) {
+  const paths = objects.flatMap((object, index) => {
+    if (object.kind !== "arc" && object.kind !== "circle") {
+      return [];
+    }
+    const path: CollisionPath =
+      object.kind === "circle"
+        ? ["objects", index, "radius"]
+        : ["objects", index];
+    return radialOffsets(object).flatMap((offset) =>
+      radialBoundaryUnresolved(
+        frame.x,
+        object.center.x,
+        offset.x,
+        offset.error,
+        threshold
+      ) ||
+      radialBoundaryUnresolved(
+        frame.y,
+        object.center.y,
+        offset.y,
+        offset.error,
+        threshold
+      )
+        ? [path]
+        : []
+    );
+  });
+  return [
+    ...new Map(paths.map((path) => [JSON.stringify(path), path])).values(),
+  ];
+}
+
+/** Returns exact cuboid faces for scene-wide collision checks. */
+export function cuboidCollisionEntries(
+  objects: readonly SpaceMathObject[]
+): readonly CollisionCoordinateEntry[] {
+  return objects.flatMap((object, index) => {
+    if (object.kind !== "cuboid") {
+      return [];
+    }
+    return cuboidExtents(object).flatMap(
+      ({ axis, center, dimension, extent }) => [
+        {
+          axis,
+          path: ["objects", index, "size", dimension],
+          value: BigDecimal.subtract(decimal(center), extent),
+        },
+        {
+          axis,
+          path: ["objects", index, "size", dimension],
+          value: BigDecimal.sum(decimal(center), extent),
+        },
+      ]
+    );
+  });
+}
+
 /** Finds finite coordinates that collapse together or into a frame edge. */
 export function coordinateCollisionPaths(
   frame: {
@@ -155,6 +248,7 @@ export function coordinateCollisionPaths(
     readonly z?: AxisRange;
   },
   entries: readonly CollisionPointEntry[],
+  derivedEntries: readonly CollisionCoordinateEntry[],
   threshold: BigDecimal.BigDecimal
 ) {
   const axes = [
@@ -162,24 +256,26 @@ export function coordinateCollisionPaths(
     { axis: "y" as const, range: frame.y },
     ...(frame.z ? [{ axis: "z" as const, range: frame.z }] : []),
   ];
-  const unresolved = axes.map(({ axis, range }) => ({
-    axis,
-    indexes: unresolvedCollisionIndexes(
-      [
-        { value: range.min },
-        { value: range.max },
-        ...entries.map(({ point }) => ({ value: point[axis] })),
-      ],
+  const paths = axes.flatMap(({ axis, range }) => {
+    const coordinates: readonly CollisionCoordinateEntry[] = [
+      ...entries.map(({ path, point }) => ({
+        axis,
+        path: [...path, axis],
+        value: point[axis],
+      })),
+      ...derivedEntries.filter((entry) => entry.axis === axis),
+    ];
+    const unresolved = unresolvedCollisionIndexes(
+      [{ value: range.min }, { value: range.max }, ...coordinates],
       threshold
-    ),
-  }));
-  return entries.flatMap((entry, index) =>
-    unresolved.flatMap(({ axis, indexes }) =>
-      indexes.has(index + 2)
-        ? [[...entry.path, axis] satisfies CollisionPath]
-        : []
-    )
-  );
+    );
+    return coordinates.flatMap((entry, index) =>
+      unresolved.has(index + 2) ? [entry.path] : []
+    );
+  });
+  return [
+    ...new Map(paths.map((path) => [JSON.stringify(path), path])).values(),
+  ];
 }
 
 /** Finds non-zero radius deltas between concentric circles or arcs. */
