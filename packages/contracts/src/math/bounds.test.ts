@@ -24,17 +24,14 @@ const spaceFrame = Schema.decodeSync(SpaceMathFrameSchema)({
   z: { max: 10, min: -10 },
 });
 
-/** Creates one terse plane-coordinate test fixture. */
 function p2(x: number, y: number) {
   return { x, y };
 }
 
-/** Creates one terse space-coordinate test fixture. */
 function p3(x: number, y: number, z: number) {
   return { x, y, z };
 }
 
-/** Decodes one object before scene-level plane containment is applied. */
 function planeObject(kind: string, fields: Record<string, unknown>) {
   return Schema.decodeUnknownSync(PlaneMathObjectSchema)({
     appearance: "primary",
@@ -44,7 +41,6 @@ function planeObject(kind: string, fields: Record<string, unknown>) {
   });
 }
 
-/** Decodes one object before scene-level space containment is applied. */
 function spaceObject(kind: string, fields: Record<string, unknown>) {
   return Schema.decodeUnknownSync(SpaceMathObjectSchema)({
     appearance: "primary",
@@ -115,6 +111,13 @@ describe("math visual bounds", () => {
       y: { max: 2, min: -2 },
     };
     const objects = [
+      planeObject("line", {
+        through: [p2(-20, 20), p2(20, 20)],
+      }),
+      planeObject("ray", {
+        from: p2(-20, -20),
+        through: p2(-21, -21),
+      }),
       planeObject("point", { at: p2(3, 0) }),
       planeObject("point", { at: p2(0, 3) }),
       planeObject("segment", { from: p2(0, 0), to: p2(0, 3) }),
@@ -124,7 +127,7 @@ describe("math visual bounds", () => {
       planeObject("polygon", {
         vertices: [p2(0, 0), p2(3, 0), p2(0, 1)],
       }),
-      planeObject("circle", { center: p2(1.5, 0), radius: 1 }),
+      planeObject("circle", { center: p2(3, 0), radius: 1 }),
       planeObject("arc", {
         center: p2(1.5, 0),
         radius: 1,
@@ -152,7 +155,7 @@ describe("math visual bounds", () => {
       planeBoundsIssues(frame, objects, [{ at: p2(0, 3), key: "outside" }]),
       [
         ...objects.map((_, index) => ({
-          issue: "Expected finite plane geometry inside the Cartesian frame.",
+          issue: "Expected plane geometry visible inside its frame.",
           path: ["objects", index],
         })),
         {
@@ -202,6 +205,13 @@ describe("math visual bounds", () => {
       z: { max: 2, min: -2 },
     };
     const objects = [
+      spaceObject("line", {
+        through: [p3(-20, 0, 20), p3(20, 0, 20)],
+      }),
+      spaceObject("ray", {
+        from: p3(-20, -20, -20),
+        through: p3(-21, -21, -21),
+      }),
       spaceObject("point", { at: p3(3, 0, 0) }),
       spaceObject("point", { at: p3(0, 3, 0) }),
       ...finite,
@@ -214,7 +224,7 @@ describe("math visual bounds", () => {
       ),
       [
         ...objects.map((_, index) => ({
-          issue: "Expected finite space geometry inside the Cartesian frame.",
+          issue: "Expected space geometry visible inside its frame.",
           path: ["objects", index + infinite.length],
         })),
         {
