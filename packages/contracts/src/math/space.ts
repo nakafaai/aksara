@@ -13,6 +13,7 @@ import {
   SpacePointSchema,
   sameSpacePoint,
 } from "#contracts/math/base";
+import { spaceBoundsIssues } from "#contracts/math/bounds";
 import { hasCoplanarArea } from "#contracts/math/vector";
 
 const ObjectFields = {
@@ -105,35 +106,6 @@ const SpacePolygonObjectSchema = Schema.Struct({
   )
 );
 
-const SpaceSplineObjectSchema = Schema.Struct({
-  ...ObjectFields,
-  kind: Schema.Literal("spline"),
-  samples: SpaceShapeSchema,
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(
-      ({ samples }) => hasUniquePositions(samples, sameSpacePoint),
-      { message: "Expected at least three unique spline samples." }
-    )
-  )
-);
-
-const SpaceClosedSplineObjectSchema = Schema.Struct({
-  ...ObjectFields,
-  kind: Schema.Literal("closed-spline"),
-  samples: SpaceShapeSchema,
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(
-      ({ samples }) => hasUniquePositions(samples, sameSpacePoint),
-      {
-        message:
-          "Expected unique closed-spline samples without a repeated closing sample.",
-      }
-    )
-  )
-);
-
 /**
  * Axis-aligned cuboid whose length spans x, height spans y, and width spans z.
  */
@@ -150,7 +122,6 @@ const SpaceCuboidObjectSchema = Schema.Struct({
 
 /** Mathematical objects supported by a Cartesian space scene. */
 export const SpaceMathObjectSchema = Schema.Union([
-  SpaceClosedSplineObjectSchema,
   SpaceCuboidObjectSchema,
   SpaceLineObjectSchema,
   SpacePointObjectSchema,
@@ -158,8 +129,8 @@ export const SpaceMathObjectSchema = Schema.Union([
   SpacePolylineObjectSchema,
   SpaceRayObjectSchema,
   SpaceSegmentObjectSchema,
-  SpaceSplineObjectSchema,
 ]);
+export type SpaceMathObject = typeof SpaceMathObjectSchema.Type;
 
 /** Exact Cartesian frame presented behind a space construction. */
 export const SpaceMathFrameSchema = Schema.Struct({
@@ -170,6 +141,7 @@ export const SpaceMathFrameSchema = Schema.Struct({
   y: MathAxisRangeSchema,
   z: MathAxisRangeSchema,
 });
+export type SpaceMathFrame = typeof SpaceMathFrameSchema.Type;
 
 const SpaceFitViewSchema = Schema.Struct({
   kind: Schema.Literal("fit"),
@@ -207,6 +179,7 @@ export const SpaceLabelAnchorSchema = Schema.Struct({
   key: MathVisualKeySchema,
   placement: Schema.optionalKey(MathLabelPlacementSchema),
 });
+export type SpaceLabelAnchor = typeof SpaceLabelAnchorSchema.Type;
 
 /** Complete stable space visual before rich labels are attached. */
 export const SpaceMathVisualSchema = Schema.Struct({
@@ -217,8 +190,9 @@ export const SpaceMathVisualSchema = Schema.Struct({
   view: SpaceMathViewSchema,
 }).pipe(
   Schema.check(
-    Schema.makeFilter(({ labels = [], objects }) =>
-      mathVisualIdentityIssues(objects, labels)
-    )
+    Schema.makeFilter(({ frame, labels = [], objects }) => [
+      ...mathVisualIdentityIssues(objects, labels),
+      ...spaceBoundsIssues(frame, objects, labels),
+    ])
   )
 );

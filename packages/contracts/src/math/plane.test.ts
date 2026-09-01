@@ -65,27 +65,17 @@ describe("plane math visual", () => {
             { x: 0, y: 2 },
           ],
         }),
-        object("spline", {
-          samples: [
-            { x: -2, y: 0 },
-            { x: 0, y: 2 },
-            { x: 2, y: 1 },
-          ],
-        }),
-        object("closed-spline", {
-          samples: [
-            { x: -2, y: 0 },
-            { x: 0, y: 2 },
-            { x: 2, y: 0 },
-            { x: 0, y: -2 },
-          ],
-        }),
         object("circle", { center: { x: 1, y: 1 }, radius: 3 }),
         object("arc", {
           center: { x: 0, y: 0 },
           radius: 2,
           startDegrees: 30,
           sweepDegrees: -120,
+        }),
+        object("quadratic", {
+          coefficients: { a: 1, b: 0, c: 0 },
+          domain: { max: 2, min: -2 },
+          inputAxis: "x",
         }),
       ],
       space: "plane",
@@ -99,12 +89,32 @@ describe("plane math visual", () => {
       "segment",
       "polyline",
       "polygon",
-      "spline",
-      "closed-spline",
       "circle",
       "arc",
+      "quadratic",
     ]);
   });
+
+  it.each(["spline", "closed-spline"] as const)(
+    "rejects undefined %s interpolation",
+    (kind) => {
+      expect(
+        Exit.isFailure(
+          Schema.decodeUnknownExit(MathVisualSchema)(
+            planeScene(
+              object(kind, {
+                samples: [
+                  { x: -1, y: 0 },
+                  { x: 0, y: 1 },
+                  { x: 1, y: 0 },
+                ],
+              })
+            )
+          )
+        )
+      ).toBe(true);
+    }
+  );
 
   it("rejects degenerate constructions", () => {
     const same = { x: 1, y: 1 };
@@ -126,10 +136,6 @@ describe("plane math visual", () => {
           { x: 1_000_001, y: 1_000_002 },
           { x: 1_000_002, y: 1_000_004 },
         ],
-      }),
-      object("spline", { samples: [same, { x: 2, y: 2 }, same] }),
-      object("closed-spline", {
-        samples: [same, { x: 2, y: 2 }, same],
       }),
       object("circle", { center: same, radius: 0 }),
       object("arc", {
@@ -209,9 +215,14 @@ describe("plane math visual", () => {
     ]) {
       expect(
         Exit.isSuccess(
-          Schema.decodeUnknownExit(MathVisualSchema)(
-            planeScene(object("polygon", { vertices }))
-          )
+          Schema.decodeUnknownExit(MathVisualSchema)({
+            ...planeScene(object("polygon", { vertices })),
+            frame: {
+              ...planeFrame,
+              x: { max: maximum, min: -maximum },
+              y: { max: maximum, min: -maximum },
+            },
+          })
         )
       ).toBe(true);
     }

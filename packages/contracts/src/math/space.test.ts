@@ -61,20 +61,6 @@ describe("space math visual", () => {
           { x: 0, y: 2, z: 2 },
         ],
       }),
-      object("spline", {
-        samples: [
-          { x: -2, y: 0, z: 0 },
-          { x: 0, y: 2, z: 1 },
-          { x: 2, y: 1, z: 2 },
-        ],
-      }),
-      object("closed-spline", {
-        samples: [
-          { x: -2, y: 0, z: 0 },
-          { x: 0, y: 2, z: 1 },
-          { x: 2, y: 0, z: 0 },
-        ],
-      }),
       object("cuboid", {
         center: { x: 0, y: 0, z: 0 },
         size: { height: 4, length: 6, width: 5 },
@@ -104,6 +90,27 @@ describe("space math visual", () => {
       ).toBe(true);
     }
   });
+
+  it.each(["spline", "closed-spline"] as const)(
+    "rejects undefined %s interpolation",
+    (kind) => {
+      expect(
+        Exit.isFailure(
+          Schema.decodeUnknownExit(MathVisualSchema)(
+            spaceScene(
+              object(kind, {
+                samples: [
+                  { x: -1, y: 0, z: 0 },
+                  { x: 0, y: 1, z: 1 },
+                  { x: 1, y: 0, z: 0 },
+                ],
+              })
+            )
+          )
+        )
+      ).toBe(true);
+    }
+  );
 
   it("rejects non-planar polygons, invalid cuboids, and degenerate cameras", () => {
     const point = object("point", { at: { x: 0, y: 0, z: 0 } });
@@ -224,9 +231,15 @@ describe("space math visual", () => {
     ]) {
       expect(
         Exit.isSuccess(
-          Schema.decodeUnknownExit(MathVisualSchema)(
-            spaceScene(object("polygon", { vertices }))
-          )
+          Schema.decodeUnknownExit(MathVisualSchema)({
+            ...spaceScene(object("polygon", { vertices })),
+            frame: {
+              ...spaceFrame,
+              x: { max: maximum, min: -maximum },
+              y: { max: maximum, min: -maximum },
+              z: { max: maximum, min: -maximum },
+            },
+          })
         )
       ).toBe(true);
     }
