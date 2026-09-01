@@ -1,7 +1,6 @@
 import { afterEach, assert, describe, it } from "@effect/vitest";
 import { Deferred, Effect, Fiber } from "effect";
 import { TestClock } from "effect/testing";
-import { vi } from "vitest";
 import { terminateProcessGroup } from "#utilities/process/group";
 
 afterEach(() => vi.restoreAllMocks());

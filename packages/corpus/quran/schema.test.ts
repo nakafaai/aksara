@@ -1,11 +1,10 @@
-import { it } from "@effect/vitest";
+import { describe, expect, it } from "@effect/vitest";
 import { ACTIVE_APP_LOCALE_CODES } from "@nakafa/aksara-contracts/locale";
 import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect } from "vitest";
 import { QuranSurahSchema } from "#corpus/quran/schema";
 import { testQuranSources } from "#corpus/test/quran";
 

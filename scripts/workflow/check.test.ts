@@ -1,5 +1,5 @@
 import { readFileSync } from "node:fs";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@effect/vitest";
 import { verifyWorkflows, type WorkflowSources } from "#scripts/workflow/check";
 
 const OPERATION_HISTORY_INPUT =

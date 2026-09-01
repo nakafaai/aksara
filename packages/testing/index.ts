@@ -24,6 +24,7 @@ const config = defineConfig({
       },
     },
     environment: "node",
+    globals: true,
     testTimeout: 10_000,
   },
 });

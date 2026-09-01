@@ -1,7 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
-import { expect, layer } from "@effect/vitest";
+import { afterEach, expect, layer } from "@effect/vitest";
 import { Effect, FileSystem, Path, PlatformError } from "effect";
-import { afterEach } from "vitest";
 import {
   fingerprintSelectedDocument,
   verifySelectedDirectory,

@@ -4,7 +4,6 @@ import { ActiveRollbackContentReleaseSchema } from "@nakafa/aksara-contracts/rel
 import { replaceContentSnapshot } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Layer, Schema } from "effect";
-import { vi } from "vitest";
 import {
   PublicationActivation,
   PublicationActivationError,

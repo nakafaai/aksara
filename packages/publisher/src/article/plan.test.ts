@@ -4,7 +4,6 @@ import {
   ArticleHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import { Context, Effect, Layer, Schema } from "effect";
-import { vi } from "vitest";
 import {
   ArticleTestFixtures,
   articleTestLayer,

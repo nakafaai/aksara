@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@effect/vitest";
 import { Schema } from "effect";
-import { describe, expect, it } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import { canonicalizeTryoutSnapshot } from "#contracts/tryout/snapshot/canonical";

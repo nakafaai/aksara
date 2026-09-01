@@ -2,7 +2,6 @@ import { pathToFileURL } from "node:url";
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
 import { Console, Effect, FileSystem, Path, Result } from "effect";
-import { vi } from "vitest";
 import {
   makeLaunchCommand,
   makeLauncherProgram,

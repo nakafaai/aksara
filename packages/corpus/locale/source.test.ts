@@ -1,10 +1,9 @@
-import { it } from "@effect/vitest";
+import { describe, expect, it, test } from "@effect/vitest";
 import {
   APP_LOCALE_CODES,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { Effect, Schema } from "effect";
-import { describe, expect, test } from "vitest";
 
 import {
   localizedSourceMapSchema,

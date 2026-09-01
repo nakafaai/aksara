@@ -8,7 +8,6 @@ import {
 } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
-import { vi } from "vitest";
 import { hashCompiledContentPayload } from "#contracts/artifact/integrity";
 import { verifySignedContentArtifact } from "#contracts/artifact/verify";
 import {

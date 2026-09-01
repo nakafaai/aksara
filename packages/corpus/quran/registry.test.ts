@@ -1,10 +1,9 @@
-import { it } from "@effect/vitest";
+import { describe, expect, it } from "@effect/vitest";
 import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Effect, Stream } from "effect";
-import { describe, expect } from "vitest";
 import {
   QuranCountError,
   QuranRevelationError,

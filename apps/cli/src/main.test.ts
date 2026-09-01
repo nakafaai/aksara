@@ -1,6 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Fiber, FileSystem, Option, Path, Stream } from "effect";
-import { vi } from "vitest";
 import { cliNodeLayer, makeMainProgram } from "#cli/main";
 
 const runtime = vi.hoisted(() => ({ calls: 0 }));

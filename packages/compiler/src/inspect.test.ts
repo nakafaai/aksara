@@ -2,7 +2,6 @@ import { afterEach, assert, describe, it } from "@effect/vitest";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import { Effect } from "effect";
-import { vi } from "vitest";
 import { compileContent } from "#compiler/compile";
 import {
   extractAuthoredBody,

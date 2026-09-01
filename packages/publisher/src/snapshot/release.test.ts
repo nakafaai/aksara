@@ -12,7 +12,6 @@ import {
   inheritContentSnapshot,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Effect, Stream } from "effect";
-import { vi } from "vitest";
 import { prepareReleaseSnapshots } from "#publisher/snapshot/release";
 import {
   makeQuranSnapshotFixture,

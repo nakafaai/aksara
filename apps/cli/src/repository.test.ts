@@ -2,7 +2,6 @@ import { NodeServices } from "@effect/platform-node";
 import { beforeEach, expect, layer } from "@effect/vitest";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { Data, Effect, FileSystem, Path } from "effect";
-import { vi } from "vitest";
 import { selectCatalogDocument, selectPreviewDocument } from "#cli/repository";
 import {
   ENGLISH_ENTRY,

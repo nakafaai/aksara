@@ -1,6 +1,5 @@
-import { it } from "@effect/vitest";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
-import { describe, expect } from "vitest";
 
 import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
 import { snbtTryoutSource } from "#corpus/tryout/indonesia/snbt/source";

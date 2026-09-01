@@ -9,7 +9,6 @@ import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapsho
 import { replaceContentSnapshot } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Layer } from "effect";
-import { vi } from "vitest";
 
 import { selectSourceBase } from "#cli/production/base";
 import { verifyBaseTryoutRuntimeBundle } from "#cli/production/bundle";

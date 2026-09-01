@@ -6,7 +6,6 @@ import type {
 import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Stream } from "effect";
-import { vi } from "vitest";
 import type { PublicationPlan } from "#publisher/publication/plan";
 import type { PublicationTarget } from "#publisher/publication/spec";
 import { releaseEvidence, releaseReceipt } from "#test/lifecycle/state";

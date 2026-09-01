@@ -6,7 +6,6 @@ import {
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { MAX_HEAD_PAGE_COUNT } from "@nakafa/aksara-contracts/transport/limits";
 import { Effect, Schema, Stream } from "effect";
-import { vi } from "vitest";
 import { streamContentHeads } from "#publisher/heads";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { makePublicationTarget } from "#test/target";

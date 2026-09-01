@@ -1,7 +1,6 @@
 import { type BinaryLike, createHash } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
-import { vi } from "vitest";
 import { verifyCompiledContentSourceHash } from "#contracts/artifact/source";
 import { CompiledContentPayloadSchema } from "#contracts/content";
 

@@ -1,11 +1,10 @@
 import { NodeServices } from "@effect/platform-node";
-import { layer } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Effect, Path, Stream } from "effect";
-import { expect } from "vitest";
 
 import { loadVerifiedQuranSource } from "#corpus/quran/source/integrity";
 

@@ -1,6 +1,6 @@
+import { describe, expect, it } from "@effect/vitest";
 import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";
 import { Exit, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 
 import { LEARNING_PROGRAM_KEYS } from "#corpus/program/keys";
 

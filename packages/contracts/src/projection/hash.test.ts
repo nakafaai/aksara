@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@effect/vitest";
 import { Schema } from "effect";
-import { describe, expect, it } from "vitest";
 import { hashContentProjection } from "#contracts/projection/hash";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { materialGraph } from "#contracts/test/graph";

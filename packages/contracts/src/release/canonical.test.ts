@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@effect/vitest";
 import { Schema } from "effect";
-import { describe, expect, it } from "vitest";
 import { ReleaseIdSchema } from "#contracts/ids";
 import { canonicalizeContentReleaseItem } from "#contracts/release/canonical";
 import {

@@ -5,7 +5,6 @@ import type {
   ReleaseCleanupRequest,
 } from "@nakafa/aksara-contracts/release/lifecycle";
 import { Effect } from "effect";
-import { vi } from "vitest";
 import {
   cleanupContentRelease,
   ReleaseCleanupContractError,

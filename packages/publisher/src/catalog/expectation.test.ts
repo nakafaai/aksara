@@ -1,7 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import { beforeEach, expect, layer } from "@effect/vitest";
 import { Effect } from "effect";
-import { vi } from "vitest";
 import { readContentCatalogExpectation } from "#publisher/catalog/expectation";
 
 const control = vi.hoisted(() => ({

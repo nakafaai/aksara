@@ -1,7 +1,6 @@
 import { beforeEach, expect, layer } from "@effect/vitest";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Effect } from "effect";
-import { vi } from "vitest";
 import {
   MaterialPlanTestFixtures,
   materialPlanFingerprintCases,

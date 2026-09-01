@@ -13,7 +13,6 @@ import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapsh
 import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
 import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source";
 import { Context, Effect, Layer, Path, Stream } from "effect";
-import { vi } from "vitest";
 import { TryoutHeadMismatchError } from "#publisher/tryout/error";
 import { prepareTryoutSnapshot } from "#publisher/tryout/snapshot";
 import { testFileLayer } from "#test/files";

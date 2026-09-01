@@ -7,7 +7,6 @@ import {
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Path, Stream } from "effect";
-import { vi } from "vitest";
 
 import { prepareMaterialPublication } from "#publisher/material/publication";
 import { prepareContentRelease } from "#publisher/preparation";

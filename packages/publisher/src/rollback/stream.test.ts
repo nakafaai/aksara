@@ -1,5 +1,5 @@
 import { Buffer } from "node:buffer";
-import { describe, expect, it, vi } from "@effect/vitest";
+import { describe, expect, it } from "@effect/vitest";
 import {
   CompiledContentPayloadSchema,
   SignedContentArtifactSchema,

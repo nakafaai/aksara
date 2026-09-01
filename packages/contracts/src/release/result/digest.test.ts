@@ -1,7 +1,6 @@
 import type { BinaryLike } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema, Stream } from "effect";
-import { vi } from "vitest";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import { MaterialHeadSchema } from "#contracts/release/head";
 import {

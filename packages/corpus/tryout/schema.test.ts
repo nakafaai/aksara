@@ -1,6 +1,5 @@
-import { it } from "@effect/vitest";
+import { describe, expect, it, test } from "@effect/vitest";
 import { Effect, Exit, Schema } from "effect";
-import { describe, expect, test } from "vitest";
 import { importCorpusModules } from "#corpus/test/imports";
 import {
   defineTryoutExamSource,

@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "@effect/vitest";
 import {
   createWorkspaceIdentityResolver,
   importViolations,
@@ -173,6 +173,96 @@ const multiple = require("first", "second");
         "scripts/check-imports.ts",
         'import "node:fs";',
         resolveIdentity
+      )
+    ).toEqual([]);
+  });
+
+  it("rejects raw Vitest APIs in every supported import form", () => {
+    const resolveIdentity = createWorkspaceIdentityResolver(() => {
+      throw new Error("Raw Vitest imports must fail before manifest lookup");
+    });
+
+    const cases = [
+      ['import { it } from "vitest";', "vitest"],
+      ['export { it } from "vitest";', "vitest"],
+      ['import type { TestContext } from "vitest";', "vitest"],
+      ['import Vitest = require("vitest");', "vitest"],
+      ['const vitest = import("vitest");', "vitest"],
+      ['const vitest = import("vitest", { with: {} });', "vitest"],
+      ['const vitest = require("vitest");', "vitest"],
+      ['import { it } from "vitest/suite";', "vitest/suite"],
+    ] as const;
+
+    for (const [source, specifier] of cases) {
+      expect(
+        importViolations(
+          "packages/compiler/src/compile.test.ts",
+          source,
+          resolveIdentity
+        )
+      ).toEqual([
+        `packages/compiler/src/compile.test.ts:1 ${specifier}: test APIs must come from @effect/vitest`,
+      ]);
+    }
+
+    expect(
+      importViolations(
+        "scripts/check-imports.test.ts",
+        'import { vi as mockVi } from "@effect/vitest";',
+        resolveIdentity
+      )
+    ).toEqual([
+      "scripts/check-imports.test.ts:1 @effect/vitest#vi: use the configured global vi for mocks",
+    ]);
+    expect(
+      importViolations(
+        "scripts/check-imports.test.ts",
+        'import * as effectVitest from "@effect/vitest";',
+        resolveIdentity
+      )
+    ).toEqual([
+      "scripts/check-imports.test.ts:1 @effect/vitest#vi: use the configured global vi for mocks",
+    ]);
+    for (const source of [
+      'export { vi } from "@effect/vitest";',
+      'export { vi as mockVi } from "@effect/vitest";',
+      'export * from "@effect/vitest";',
+      'export * as effectVitest from "@effect/vitest";',
+      'import EffectVitest = require("@effect/vitest");',
+      'const { vi } = await import("@effect/vitest");',
+      'const effectVitest = await import("@effect/vitest");',
+      'const effectVitest = require("@effect/vitest");',
+      'type Mock = import("@effect/vitest").vi;',
+    ]) {
+      expect(
+        importViolations(
+          "scripts/check-imports.test.ts",
+          source,
+          resolveIdentity
+        )
+      ).toEqual([
+        "scripts/check-imports.test.ts:1 @effect/vitest#vi: use the configured global vi for mocks",
+      ]);
+    }
+    for (const source of [
+      'import "@effect/vitest";',
+      'import { it } from "@effect/vitest";',
+      'export { it } from "@effect/vitest";',
+      'type Context = import("@effect/vitest").TestContext;',
+    ]) {
+      expect(
+        importViolations(
+          "scripts/check-imports.test.ts",
+          source,
+          () => undefined
+        )
+      ).toEqual([]);
+    }
+    expect(
+      importViolations(
+        "packages/compiler/vitest.config.ts",
+        'import { defineConfig } from "vitest/config";',
+        () => undefined
       )
     ).toEqual([]);
   });

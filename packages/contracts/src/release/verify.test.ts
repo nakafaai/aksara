@@ -2,7 +2,6 @@
 import type { BinaryLike } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
-import { vi } from "vitest";
 import { Sha256HashSchema } from "#contracts/ids";
 import { hashContentReleaseManifest } from "#contracts/release/hash";
 import { invertContentSnapshots } from "#contracts/release/snapshot/spec";

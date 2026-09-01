@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@effect/vitest";
 
 import { effectTestViolations } from "#scripts/effect-tests";
 
@@ -64,7 +64,7 @@ describe("Effect test policy", () => {
   it("allows native tests, types, fixtures, and unrelated APIs", () => {
     const sources = [
       'import { Effect } from "effect";\nimport { it } from "@effect/vitest";\nit.effect("runs", () => Effect.succeed(1));',
-      'import { it } from "vitest";\nit("pure", () => true);',
+      'import { it } from "@effect/vitest";\nit("pure", () => true);',
       'import type { runPromise } from "effect/Effect";\ntype Runner = typeof runPromise;',
       'import { Effect } from "effect";\ntype Runner = typeof Effect.runPromise;\nEffect.succeed(1);',
       'import { Schema } from "effect";\nSchema.runSync(program);',

@@ -65,6 +65,11 @@ for clarity, measurable scale, and safe releases.
 - Run focused workspace tests through `pnpm exec turbo run test --filter=...`.
   Do not bypass Turbo for tests that consume another workspace because Turbo
   owns the dependency build order.
+- Import test APIs from `@effect/vitest`. Use the shared configured `vi` global
+  for mocks because Vitest hoists mock calls before re-export bindings
+  initialize. Do not import `vi`. Keep `vitest` installed only because
+  `@effect/vitest`, the CLI runner, coverage, and `vitest/config` require it.
+  Raw `vitest` imports are forbidden in authored TypeScript.
 - Never add deployment credentials to the repository. Publisher transport
   implementations must remain injected, authenticated, and exact-contract.
   Tests and repository verification never call a remote target; only an
