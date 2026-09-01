@@ -136,6 +136,22 @@ describe("MathVisual visible metadata", () => {
     ],
     [
       "title-dynamic",
+      'title={<span hidden>Coordinate plane</span>} description="A coordinate plane."',
+    ],
+    [
+      "title-dynamic",
+      'title={<span aria-hidden="true">Coordinate plane</span>} description="A coordinate plane."',
+    ],
+    [
+      "title-dynamic",
+      'title={<span className="visible">Coordinate plane</span>} description="A coordinate plane."',
+    ],
+    [
+      "title-dynamic",
+      'title={<script>Coordinate plane</script>} description="A coordinate plane."',
+    ],
+    [
+      "title-dynamic",
       'title={<Label>Coordinate plane</Label>} description="A coordinate plane."',
     ],
     ["description-empty", 'title="Coordinate plane" description'],

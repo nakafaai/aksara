@@ -29,6 +29,30 @@ function isMeaningfulString(value: unknown): value is string {
 /** Static visibility result for one authored rich metadata value. */
 export type RichAttributeState = "dynamic" | "empty" | "meaningful";
 
+const VISIBLE_RICH_TEXT_ELEMENTS = new Set([
+  "abbr",
+  "b",
+  "cite",
+  "code",
+  "del",
+  "em",
+  "i",
+  "ins",
+  "kbd",
+  "mark",
+  "q",
+  "s",
+  "samp",
+  "small",
+  "span",
+  "strong",
+  "sub",
+  "sup",
+  "time",
+  "u",
+  "var",
+]);
+
 /** Combines child visibility without treating unknown runtime output as empty. */
 function combineStates(
   states: readonly RichAttributeState[]
@@ -185,7 +209,10 @@ function inspectElement(element: JSXElement): RichAttributeState {
     return math;
   }
   const name = jsxName(element);
-  if (!(name && name === name.toLowerCase())) {
+  if (
+    !(name && VISIBLE_RICH_TEXT_ELEMENTS.has(name)) ||
+    element.openingElement.attributes.length > 0
+  ) {
     return "dynamic";
   }
   return combineStates(element.children.map(inspectChild));
