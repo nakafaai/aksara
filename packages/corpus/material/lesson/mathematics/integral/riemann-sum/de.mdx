@@ -2,30 +2,31 @@
 
 export const metadata = {
     title: "Riemannsumme",
-    description: "Nähere Integrale mit Riemann-Summen an und verstehe Partitionen, Stützstellen und die zugehörigen Rechteckbeiträge anhand vollständiger Beispiele.",
+    description: "Riemannsummen zerlegen ein Intervall in Teilintervalle und addieren vorzeichenbehaftete Rechteckbeiträge. Bei nicht negativen Funktionen nähert das Ergebnis die Fläche unter dem Graphen an.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
     dateModified: "2026-09-01",
     subject: "Integrale",
 };
 
-## Akkumulation mit Rechtecken annähern
+## Grundidee einer Riemannsumme
 
-Angenommen, eine Seite eines Grundstücks folgt einer unregelmäßigen Kurve. Nähere die Fläche an, indem du das Gebiet in gleich breite rechteckige Streifen zerlegst, ihre Flächen berechnest und die Ergebnisse addierst.
+Stell dir ein Grundstück vor, das an einer Seite von einer unregelmäßigen Kurve begrenzt wird. Um seine Fläche zu schätzen, können wir das Grundstück in gleich breite rechteckige Streifen zerlegen. Anschließend berechnen wir die Fläche jedes Streifens und addieren die Ergebnisse.
 
-Eine **Riemann-Summe** formuliert diese Näherung mathematisch. Sie nähert eine **vorzeichenbehaftete Akkumulation** an, indem das Intervall in Teilintervalle zerlegt und die zugehörigen Rechteckbeiträge addiert werden. Ist die Funktion nicht negativ, entspricht diese Akkumulation der Fläche unter dem Graphen. Für eine Riemann-integrierbare Funktion konvergieren die Summen gegen das bestimmte Integral, wenn die Breite des größten Teilintervalls gegen null geht. Bei gleich breiten Teilintervallen verkleinert eine größere Rechteckzahl diese Breite, auch wenn nicht jeder einzelne Schritt zwingend eine bessere Näherung liefert.
+Eine **Riemannsumme** zerlegt ein Intervall in Teilintervalle, wählt in jedem Teilintervall eine Stützstelle und addiert die vorzeichenbehafteten Rechteckbeiträge. Für eine Riemann-integrierbare Funktion nähern sich diese Summen dem bestimmten Integral, wenn die Breite des größten Teilintervalls gegen null geht. Ist die Funktion nicht negativ, entspricht die vorzeichenbehaftete Akkumulation der Fläche unter dem Graphen. Bei gleich breiten Teilintervallen werden die Rechtecke schmaler, wenn ihre Anzahl steigt. Ein zusätzliches Rechteck muss die Summe jedoch nicht bei jedem Schritt näher an den Wert des bestimmten Integrals bringen.
 
 ## Intervallzerlegung und Breite
 
-Um eine Riemann-Summe aufzustellen, müssen wir ihre Hauptkomponenten verstehen:
+Vier Größen bestimmen eine Riemannsumme mit gleich breiten Teilintervallen:
 
--   **Intervall <InlineMath math="[a, b]" />**: Dies ist die linke und rechte Grenze der Region, deren Fläche wir berechnen möchten.
--   **Partitionen (<InlineMath math="n" />)**: Dies ist die Anzahl der Rechtecke, die wir zum Teilen der Region verwenden.
--   **Teilintervallbreite (<InlineMath math="\Delta x" />)**: Dies ist die Breite jedes Rechtecks. Wenn wir das Intervall gleichmäßig teilen, wird seine Breite nach der Formel berechnet:
+| Symbol | Bedeutung |
+| :----- | :-------- |
+| <InlineMath math="[a,b]" /> | Intervall, das in Teilintervalle zerlegt wird |
+| <InlineMath math="n" /> | Anzahl der Teilintervalle |
+| <InlineMath math="\Delta x=\frac{b-a}{n}" /> | Breite jedes Teilintervalls |
+| <InlineMath math="x_i^*" /> | Stützstelle im Teilintervall <InlineMath math="i" />, deren Funktionswert <InlineMath math="f(x_i^*)" /> die Rechteckhöhe angibt |
 
-    <BlockMath math="\Delta x = \frac{b-a}{n}" />
-
--   **Stützstelle (<InlineMath math="x_i^*" />)**: Das ist ein Punkt im jeweiligen Teilintervall. Der Funktionswert <InlineMath math="f(x_i^*)" /> bestimmt die Höhe des zugehörigen Rechtecks. Häufig wählt man den linken oder rechten Randpunkt oder den Mittelpunkt des Teilintervalls.
+Als Stützstelle kann der linke Randpunkt, der rechte Randpunkt, der Mittelpunkt oder ein anderer Punkt im Teilintervall gewählt werden.
 
 ## Die Riemannsche Summenformel
 

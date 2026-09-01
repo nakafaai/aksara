@@ -2,30 +2,31 @@
 
 export const metadata = {
     title: "Jumlahan Riemann",
-    description: "Perkirakan luas di bawah kurva menggunakan persegi panjang dengan jumlahan Riemann. Pelajari partisi, titik sampel, dan perhitungan visual dengan contoh terarah.",
+    description: "Jumlahan Riemann membagi interval menjadi subinterval, memilih titik sampel, lalu menjumlahkan kontribusi persegi panjang bertanda. Jika fungsi tidak negatif, hasilnya mendekati luas di bawah kurva.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
     dateModified: "2026-09-01",
     subject: "Integral",
 };
 
-## Mendekati Akumulasi dengan Persegi Panjang
+## Ide Dasar Jumlahan Riemann
 
-Misalkan salah satu sisi sebidang tanah mengikuti kurva yang tidak beraturan. Perkirakan luas tanah dengan membagi bidang tersebut menjadi beberapa persegi panjang yang sama lebar, menghitung luas setiap bagian, lalu menjumlahkan luas semua bagian.
+Bayangkan sebidang tanah dengan salah satu sisi yang melengkung tidak beraturan. Untuk memperkirakan luas tanah tersebut, kita dapat membagi bidang tanah menjadi beberapa bagian berbentuk persegi panjang dengan lebar yang sama. Setelah itu, kita hitung luas setiap bagian dan menjumlahkan seluruh luas bagian.
 
-**Jumlahan Riemann** merumuskan pendekatan tersebut. Metode ini memperkirakan **akumulasi bertanda** dengan membagi interval menjadi beberapa subinterval, lalu menjumlahkan kontribusi setiap persegi panjang. Jika fungsi tidak negatif, akumulasi tersebut sama dengan luas daerah di bawah kurva. Untuk fungsi yang terintegralkan secara Riemann, jumlahan ini konvergen ke integral tentu ketika lebar subinterval terbesar mendekati nol. Pada partisi sama lebar, menambah jumlah persegi panjang akan memperkecil lebar setiap persegi panjang, meskipun setiap penambahan belum tentu langsung menghasilkan taksiran yang lebih dekat.
+**Jumlahan Riemann** menerapkan ide ini dengan membagi interval menjadi subinterval, memilih satu titik sampel pada setiap bagian, lalu menjumlahkan kontribusi persegi panjang bertanda. Untuk fungsi yang terintegralkan secara Riemann, hasil jumlahan mendekati integral tentu ketika lebar subinterval terbesar mendekati nol. Jika fungsi tidak negatif, akumulasi bertanda tersebut sama dengan luas di bawah kurva. Pada partisi sama lebar, semakin banyak persegi panjang yang digunakan, semakin sempit setiap persegi panjang. Namun, satu persegi panjang tambahan belum tentu membuat hasil jumlahan lebih dekat ke nilai integral tentu.
 
-## Interval dengan Partisi dan Lebarnya
+## Partisi Interval dan Lebar Subinterval
 
-Untuk melakukan Jumlahan Riemann, kita perlu memahami beberapa komponen utamanya:
+Empat besaran menentukan Jumlahan Riemann dengan partisi sama lebar:
 
--   **Interval <InlineMath math="[a, b]" />**: Ini adalah batas kiri dan kanan dari daerah yang ingin kita hitung luasnya.
--   **Partisi (<InlineMath math="n" />)**: Ini adalah jumlah persegi panjang yang akan kita gunakan untuk membagi daerah tersebut.
--   **Lebar Subinterval (<InlineMath math="\Delta x" />)**: Ini adalah lebar dari setiap persegi panjang. Jika kita membagi interval secara merata, lebarnya dihitung dengan rumus:
+| Simbol | Arti |
+| :----- | :--- |
+| <InlineMath math="[a,b]" /> | Interval yang dibagi menjadi beberapa subinterval |
+| <InlineMath math="n" /> | Jumlah subinterval |
+| <InlineMath math="\Delta x=\frac{b-a}{n}" /> | Lebar setiap subinterval |
+| <InlineMath math="x_i^*" /> | Titik sampel pada subinterval ke-<InlineMath math="i" />, sehingga tinggi persegi panjangnya <InlineMath math="f(x_i^*)" /> |
 
-    <BlockMath math="\Delta x = \frac{b-a}{n}" />
-
--   **Titik Sampel (<InlineMath math="x_i^*" />)**: Ini adalah titik pada setiap subinterval yang tingginya akan kita gunakan untuk menentukan tinggi persegi panjang (<InlineMath math="f(x_i^*)" />). Ada beberapa cara umum untuk memilih titik sampel, seperti titik ujung kiri, titik ujung kanan, atau titik tengah.
+Titik sampel dapat dipilih pada ujung kiri, ujung kanan, titik tengah, atau titik lain di dalam subinterval.
 
 ## Formula Jumlahan Riemann
 

@@ -2,30 +2,31 @@
 
 export const metadata = {
     title: "Riemann Sum",
-    description: "Approximate areas under curves using rectangles with Riemann sums. Learn partitions, sample points, and visual calculations with worked examples.",
+    description: "Riemann sums divide an interval into subintervals and add signed rectangle contributions. For nonnegative functions, the result approximates the area under the curve.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
     dateModified: "2026-09-01",
     subject: "Integrals",
 };
 
-## Approximating Accumulation with Rectangles
+## Basic Idea of a Riemann Sum
 
-Suppose one edge of a plot of land follows an irregular curve. Approximate its area by dividing the plot into rectangular strips of equal width, calculating each strip's area, and adding the results.
+Imagine a plot of land with one irregular curved edge. To estimate its area, we can divide the plot into rectangular strips of equal width. We then calculate the area of each strip and add the results.
 
-A **Riemann sum** formalizes this approximation. It estimates a **signed accumulation** by dividing an interval into subintervals and adding the corresponding rectangle contributions. When the function is nonnegative, that accumulation is the area under the curve. For an integrable function, Riemann sums converge to the definite integral as the widest subinterval shrinks toward zero. With equal-width partitions, increasing the number of rectangles makes that width smaller, although each individual increase need not produce a strictly better estimate.
+A **Riemann sum** divides an interval into subintervals, chooses one sample point in each, and adds the signed rectangle contributions. For a Riemann-integrable function, these sums approach the definite integral as the widest subinterval approaches zero. When the function is nonnegative, the signed accumulation equals the area under the curve. With equal-width partitions, increasing the number of rectangles makes each one narrower, although one additional rectangle does not always move the sum closer to the definite integral.
 
 ## Interval Partition and Width
 
-To perform a Riemann Sum, we need to understand its main components:
+Four quantities define an equal-width Riemann sum:
 
--   **Interval <InlineMath math="[a, b]" />**: This is the left and right boundary of the region whose area we want to calculate.
--   **Partitions (<InlineMath math="n" />)**: This is the number of rectangles we will use to divide the region.
--   **Subinterval Width (<InlineMath math="\Delta x" />)**: This is the width of each rectangle. If we divide the interval evenly, its width is calculated by the formula:
+| Symbol | Meaning |
+| :----- | :------ |
+| <InlineMath math="[a,b]" /> | Interval divided into subintervals |
+| <InlineMath math="n" /> | Number of subintervals |
+| <InlineMath math="\Delta x=\frac{b-a}{n}" /> | Width of each subinterval |
+| <InlineMath math="x_i^*" /> | Sample point in subinterval <InlineMath math="i" />, which gives the rectangle height <InlineMath math="f(x_i^*)" /> |
 
-    <BlockMath math="\Delta x = \frac{b-a}{n}" />
-
--   **Sample Point (<InlineMath math="x_i^*" />)**: This is a point in each subinterval whose height we will use to determine the height of the rectangle (<InlineMath math="f(x_i^*)" />). There are several common ways to choose a sample point, such as the left endpoint, right endpoint, or midpoint.
+The sample point can be the left endpoint, right endpoint, midpoint, or another point inside the subinterval.
 
 ## The Riemann Sum Formula
 

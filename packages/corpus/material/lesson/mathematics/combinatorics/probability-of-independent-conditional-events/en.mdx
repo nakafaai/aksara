@@ -11,7 +11,7 @@ export const metadata = {
 
 Imagine drawing a card from a deck before a friend draws the next one. Does your card change the probability of what your friend can draw? Without replacement, it often does. **Conditional probability** calculates the second probability using what is already known.
 
-The **conditional probability** of event <InlineMath math="B" /> given event <InlineMath math="A" /> asks: among the outcomes where <InlineMath math="A" /> occurred, what fraction also satisfy <InlineMath math="B" />? The answer may change after <InlineMath math="A" />, which signals dependence, or stay the same, which signals independence.
+In a finite sample space with equally likely outcomes, the **conditional probability** of event <InlineMath math="B" /> given event <InlineMath math="A" /> is the fraction of outcomes in <InlineMath math="A" /> that also belong to <InlineMath math="B" />. If conditioning on <InlineMath math="A" /> changes the probability of <InlineMath math="B" />, the events are dependent. If the probability stays the same, they are independent.
 
 Before calculating the next probability, restrict the possible outcomes using the **condition that is already known**.
 
@@ -56,7 +56,7 @@ Probability calculation:
 
 After one Ace is drawn, <InlineMath math="51 \text{ cards}" /> remain. All <InlineMath math="4 \text{ Kings}" /> are still present, so the conditional probability of drawing a King is <InlineMath math="\frac{4}{51}" />.
 
-### Specific Heart Card Calculation
+### Probability of Drawing Two Hearts in Sequence
 
 To see how the favorable count can change, consider drawing two Hearts in a row:
 
@@ -69,7 +69,7 @@ The probability of drawing Hearts on both draws is therefore:
 
 ## Application in Management Selection
 
-Consider a hypothetical company that reviews the distribution of managers by gender and job level. Its data has the following composition:
+A company reviews the distribution of managers by gender and job level. Its data has the following composition:
 
 | Management Position | Male | Female | Total |
 |------------------|---------------|---------------|-------|
