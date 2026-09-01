@@ -236,7 +236,7 @@ export const PlaneMathVisualSchema = Schema.Struct({
     Schema.makeFilter(({ frame, labels = [], objects, view }) => [
       ...mathVisualIdentityIssues(objects, labels),
       ...planeBoundsIssues(frame, objects, labels),
-      ...planeResolutionIssues(frame, objects, view),
+      ...planeResolutionIssues(frame, objects, labels, view),
     ])
   )
 );

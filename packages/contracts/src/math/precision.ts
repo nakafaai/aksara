@@ -10,8 +10,12 @@ import { decimal, type ExactRatio, makeRatio } from "#contracts/math/rational";
 const FLOAT32_RESOLUTION = BigDecimal.fromStringUnsafe(
   "0.00000011920928955078125"
 );
+const PI = BigDecimal.fromStringUnsafe(
+  "3.1415926535897932384626433832795028841971693993751"
+);
 const TWO = BigDecimal.fromBigInt(2n);
 const FOUR = BigDecimal.fromBigInt(4n);
+const THREE_SIXTY = BigDecimal.fromBigInt(360n);
 
 export type RenderThreshold = BigDecimal.BigDecimal;
 
@@ -25,21 +29,17 @@ export function spanUnresolved(range: AxisRange, threshold: RenderThreshold) {
   return BigDecimal.isLessThan(axisSpan(range), threshold);
 }
 
-/** Checks one non-zero numeric delta against the shared render threshold. */
-export function deltaUnresolved(
-  left: number,
-  right: number,
-  threshold: RenderThreshold
-) {
-  const value = BigDecimal.abs(
-    BigDecimal.subtract(decimal(left), decimal(right))
-  );
-  return !BigDecimal.isZero(value) && BigDecimal.isLessThan(value, threshold);
-}
-
 /** Checks one non-zero measurement against the shared render threshold. */
 export function measureUnresolved(value: number, threshold: RenderThreshold) {
-  const measure = BigDecimal.abs(decimal(value));
+  return decimalMeasureUnresolved(decimal(value), threshold);
+}
+
+/** Checks one exact non-zero measurement against the render threshold. */
+function decimalMeasureUnresolved(
+  value: BigDecimal.BigDecimal,
+  threshold: RenderThreshold
+) {
+  const measure = BigDecimal.abs(value);
   return (
     !BigDecimal.isZero(measure) && BigDecimal.isLessThan(measure, threshold)
   );
@@ -49,24 +49,39 @@ export function measureUnresolved(value: number, threshold: RenderThreshold) {
 export function renderThreshold(
   ranges: readonly [AxisRange, AxisRange, ...AxisRange[]],
   padding: number,
-  cameraPairs: readonly (readonly [number, number])[] = []
+  envelopePairs: readonly (readonly [number, number])[] = []
 ) {
   const [firstRange, ...remainingRanges] = ranges;
   let extent = axisSpan(firstRange);
   for (const range of remainingRanges) {
     extent = BigDecimal.max(extent, axisSpan(range));
   }
-  for (const [left, right] of cameraPairs) {
-    const cameraDelta = BigDecimal.abs(
+  for (const [left, right] of envelopePairs) {
+    const externalDelta = BigDecimal.abs(
       BigDecimal.subtract(decimal(left), decimal(right))
     );
-    extent = BigDecimal.max(extent, cameraDelta);
+    extent = BigDecimal.max(extent, externalDelta);
   }
   const padded = BigDecimal.sum(
     extent,
     BigDecimal.multiply(decimal(padding), TWO)
   );
   return BigDecimal.multiply(padded, FLOAT32_RESOLUTION);
+}
+
+/** Includes both view coordinates, their separation, and one frame axis. */
+export function axisEnvelopePairs(
+  range: AxisRange,
+  left: number,
+  right: number
+): readonly (readonly [number, number])[] {
+  return [
+    [left, right],
+    [left, range.min],
+    [left, range.max],
+    [right, range.min],
+    [right, range.max],
+  ];
 }
 
 /** Subtracts two exact path parameters without dividing either ratio. */
@@ -106,18 +121,62 @@ export function visiblePathResolvable(
   });
 }
 
+/** Returns a stable sine for an angle that may fall below Number.MIN_VALUE. */
+function stableSine(
+  exactRadians: BigDecimal.BigDecimal,
+  numericRadians: number
+) {
+  return numericRadians === 0
+    ? exactRadians
+    : decimal(Math.sin(numericRadians));
+}
+
+/** Resolves the endpoint chord and curvature sagitta of one finite arc. */
+function arcMeasures(radius: number, sweepDegrees: number) {
+  const minorSweep = Math.min(
+    Math.abs(sweepDegrees),
+    360 - Math.abs(sweepDegrees)
+  );
+  const halfRadians = BigDecimal.divideUnsafe(
+    BigDecimal.multiply(decimal(minorSweep), PI),
+    THREE_SIXTY
+  );
+  const numericHalfRadians = minorSweep * (Math.PI / 360);
+  const halfSine = stableSine(halfRadians, numericHalfRadians);
+  const quarterRadians = BigDecimal.divideUnsafe(halfRadians, TWO);
+  const quarterSine = stableSine(quarterRadians, numericHalfRadians / 2);
+  const doubledRadius = BigDecimal.multiply(decimal(radius), TWO);
+  return {
+    chord: BigDecimal.multiply(doubledRadius, halfSine),
+    sagitta: BigDecimal.multiply(
+      doubledRadius,
+      BigDecimal.multiply(quarterSine, quarterSine)
+    ),
+  };
+}
+
 /** Checks the rendered chord separating the two finite ends of one arc. */
 export function arcEndpointsUnresolved(
   radius: number,
   sweepDegrees: number,
   threshold: RenderThreshold
 ) {
-  const minorSweep = Math.min(
-    Math.abs(sweepDegrees),
-    360 - Math.abs(sweepDegrees)
+  return decimalMeasureUnresolved(
+    arcMeasures(Math.abs(radius), sweepDegrees).chord,
+    threshold
   );
-  const chord = 2 * Math.abs(radius) * Math.sin((minorSweep * Math.PI) / 360);
-  return measureUnresolved(chord, threshold);
+}
+
+/** Checks whether one arc's non-zero curvature collapses into its chord. */
+export function arcCurvatureUnresolved(
+  radius: number,
+  sweepDegrees: number,
+  threshold: RenderThreshold
+) {
+  return decimalMeasureUnresolved(
+    arcMeasures(Math.abs(radius), sweepDegrees).sagitta,
+    threshold
+  );
 }
 
 /** Checks exact quadratic curvature without relying on renderer sampling. */

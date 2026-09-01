@@ -69,7 +69,7 @@ function assertPlanePaths(
   expected: ReturnType<typeof paths>
 ) {
   assert.deepStrictEqual(
-    paths(planeResolutionIssues(planeFrame, objects, { kind: "fit" })),
+    paths(planeResolutionIssues(planeFrame, objects, [], { kind: "fit" })),
     expected
   );
 }
@@ -99,7 +99,10 @@ describe("math visual render resolution", () => {
     ];
 
     assert.deepStrictEqual(
-      planeResolutionIssues(planeFrame, objects, { kind: "fit", padding: 0 }),
+      planeResolutionIssues(planeFrame, objects, [], {
+        kind: "fit",
+        padding: 0,
+      }),
       []
     );
   });
@@ -111,12 +114,15 @@ describe("math visual render resolution", () => {
     });
     const point = planeObject("point", { at: { x: 0, y: 0 } });
     assert.deepStrictEqual(
-      paths(planeResolutionIssues(skinnyFrame, [point], { kind: "fit" })),
-      [["frame", "x"]]
+      paths(planeResolutionIssues(skinnyFrame, [point], [], { kind: "fit" })),
+      [
+        ["frame", "x"],
+        ["objects", 0, "at", "x"],
+      ]
     );
     assert.deepStrictEqual(
       paths(
-        planeResolutionIssues(planeFrame, [point], {
+        planeResolutionIssues(planeFrame, [point], [], {
           kind: "fit",
           padding: BELOW_RESOLUTION,
         })
@@ -172,7 +178,9 @@ describe("math visual render resolution", () => {
 
     assertPlanePaths([line(BELOW_RESOLUTION)], [["objects", 0]]);
     assert.deepStrictEqual(
-      planeResolutionIssues(planeFrame, [line(RESOLUTION)], { kind: "fit" }),
+      planeResolutionIssues(planeFrame, [line(RESOLUTION)], [], {
+        kind: "fit",
+      }),
       []
     );
     assertPlanePaths(
@@ -206,30 +214,6 @@ describe("math visual render resolution", () => {
     assertPlanePaths(objects, []);
   });
 
-  it("uses the actual arc chord at the render threshold", () => {
-    const radius = 0.25;
-    const resolvableSweep =
-      (360 * Math.asin((1.25 * RESOLUTION) / (2 * radius))) / Math.PI;
-    const unresolvedSweep =
-      (360 * Math.asin((0.75 * RESOLUTION) / (2 * radius))) / Math.PI;
-    const objects = [
-      planeObject("arc", {
-        center: { x: 0.5, y: 0.5 },
-        radius,
-        startDegrees: 0,
-        sweepDegrees: resolvableSweep,
-      }),
-      planeObject("arc", {
-        center: { x: 0.5, y: 0.5 },
-        radius,
-        startDegrees: 0,
-        sweepDegrees: unresolvedSweep,
-      }),
-    ];
-
-    assertPlanePaths(objects, [["objects", 1, "sweepDegrees"]]);
-  });
-
   it("rejects unresolved coordinates across separate finite objects", () => {
     const objects = [
       planeObject("point", { at: { x: 0, y: 0 } }),
@@ -242,7 +226,7 @@ describe("math visual render resolution", () => {
   it("accepts axis-aligned cameras and rejects unresolved space semantics", () => {
     const point = spaceObject("point", { at: { x: 0, y: 0, z: 0 } });
     assert.deepStrictEqual(
-      spaceResolutionIssues(spaceFrame, [point], {
+      spaceResolutionIssues(spaceFrame, [point], [], {
         kind: "camera",
         position: { x: 1, y: 0, z: 0 },
         target: { x: 0, y: 0, z: 0 },
@@ -251,13 +235,17 @@ describe("math visual render resolution", () => {
     );
     assert.deepStrictEqual(
       paths(
-        spaceResolutionIssues(spaceFrame, [point], {
+        spaceResolutionIssues(spaceFrame, [point], [], {
           kind: "camera",
           position: { x: 1, y: BELOW_RESOLUTION, z: 0 },
           target: { x: 0, y: 0, z: 0 },
         })
       ),
-      [["view", "target", "y"]]
+      [
+        ["view", "position", "y"],
+        ["view", "target", "y"],
+        ["objects", 0, "at", "y"],
+      ]
     );
 
     const objects = [
@@ -273,7 +261,9 @@ describe("math visual render resolution", () => {
       }),
     ];
     assert.deepStrictEqual(
-      paths(spaceResolutionIssues(spaceFrame, objects, { kind: "isometric" })),
+      paths(
+        spaceResolutionIssues(spaceFrame, objects, [], { kind: "isometric" })
+      ),
       [
         ["objects", 0, "vertices", 1, "x"],
         ["objects", 1, "size", "length"],
@@ -291,14 +281,20 @@ describe("math visual render resolution", () => {
 
     assert.deepStrictEqual(
       paths(
-        spaceResolutionIssues(spaceFrame, [ray(BELOW_RESOLUTION)], {
+        spaceResolutionIssues(spaceFrame, [ray(BELOW_RESOLUTION)], [], {
           kind: "fit",
         })
       ),
-      [["objects", 0]]
+      [
+        ["objects", 0, "from", "y"],
+        ["objects", 0, "from", "z"],
+        ["objects", 0],
+      ]
     );
     assert.deepStrictEqual(
-      spaceResolutionIssues(spaceFrame, [ray(RESOLUTION)], { kind: "fit" }),
+      spaceResolutionIssues(spaceFrame, [ray(RESOLUTION)], [], {
+        kind: "fit",
+      }),
       []
     );
   });

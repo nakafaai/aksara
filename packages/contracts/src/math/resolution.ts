@@ -1,16 +1,24 @@
 import type { Schema } from "effect";
 
 import type { PlanePoint, SpacePoint } from "#contracts/math/base";
+import {
+  type CollisionPath,
+  type CollisionPointEntry,
+  concentricRadiusCollisionPaths,
+  coordinateCollisionPaths,
+} from "#contracts/math/collision";
 import type { AxisTraversal } from "#contracts/math/intersection";
 import type {
+  PlaneLabelAnchor,
   PlaneMathFrame,
   PlaneMathObject,
   PlaneMathView,
 } from "#contracts/math/plane";
 import {
+  arcCurvatureUnresolved,
   arcEndpointsUnresolved,
+  axisEnvelopePairs,
   axisSpan,
-  deltaUnresolved,
   measureUnresolved,
   quadraticCurvatureUnresolved,
   type RenderThreshold,
@@ -19,6 +27,7 @@ import {
   visiblePathResolvable,
 } from "#contracts/math/precision";
 import type {
+  SpaceLabelAnchor,
   SpaceMathFrame,
   SpaceMathObject,
   SpaceMathView,
@@ -28,11 +37,8 @@ import type {
 export const MATH_VISUAL_RESOLUTION_MESSAGE =
   "Expected every non-zero mathematical visual delta to be at least 2^-23 of its combined render envelope.";
 
-type IssuePath = Array<number | string>;
-interface PointEntry {
-  readonly path: IssuePath;
-  readonly point: SpacePoint;
-}
+type IssuePath = CollisionPath;
+type PointEntry = CollisionPointEntry;
 
 /** Places the shared resolution failure at one authored schema path. */
 function issue(path: IssuePath): Schema.FilterIssue {
@@ -44,30 +50,30 @@ function coordinate(point: PlanePoint | SpacePoint): SpacePoint {
   return { x: point.x, y: point.y, z: "z" in point ? point.z : 0 };
 }
 
-/** Reports non-zero coordinate components that collapse within one object. */
-function pointIssues(
-  entries: readonly PointEntry[],
-  threshold: RenderThreshold
-) {
-  const issues: Schema.FilterIssue[] = [];
-  for (const [rightIndex, right] of entries.entries()) {
-    for (const axis of ["x", "y", "z"] as const) {
-      const rightValue = right.point[axis];
-      if (
-        entries
-          .slice(0, rightIndex)
-          .some((left) =>
-            deltaUnresolved(left.point[axis], rightValue, threshold)
-          )
-      ) {
-        issues.push(issue([...right.path, axis]));
-      }
-    }
-  }
-  return issues;
+/** Collects rich-label anchors as collision-aware scene points. */
+function labelPointEntries(
+  labels: readonly (PlaneLabelAnchor | SpaceLabelAnchor)[]
+): PointEntry[] {
+  return labels.map((label, index) => ({
+    path: ["labels", index, "at"],
+    point: coordinate(label.at),
+  }));
 }
 
-/** Collects finite authored positions whose coordinates must remain distinct. */
+/** Collects semantic camera or isometric targets as scene points. */
+function viewPointEntries(view: SpaceMathView): PointEntry[] {
+  if (view.kind === "camera") {
+    return [
+      { path: ["view", "position"], point: view.position },
+      { path: ["view", "target"], point: view.target },
+    ];
+  }
+  return view.kind === "isometric" && view.target
+    ? [{ path: ["view", "target"], point: view.target }]
+    : [];
+}
+
+/** Collects every finite position authored by one mathematical object. */
 function objectPointEntries(
   object: PlaneMathObject | SpaceMathObject,
   index: number
@@ -169,7 +175,11 @@ function planeObjectIssues(
       ...root,
       "radius",
     ]);
-    return arcEndpointsUnresolved(object.radius, object.sweepDegrees, threshold)
+    return arcEndpointsUnresolved(
+      object.radius,
+      object.sweepDegrees,
+      threshold
+    ) || arcCurvatureUnresolved(object.radius, object.sweepDegrees, threshold)
       ? [...radiusIssues, issue([...root, "sweepDegrees"])]
       : radiusIssues;
   }
@@ -206,6 +216,7 @@ function frameIssues(
 export function planeResolutionIssues(
   frame: PlaneMathFrame,
   objects: readonly PlaneMathObject[],
+  labels: readonly PlaneLabelAnchor[],
   view: PlaneMathView
 ): readonly Schema.FilterIssue[] {
   const threshold = renderThreshold([frame.x, frame.y], view.padding ?? 0);
@@ -218,10 +229,17 @@ export function planeResolutionIssues(
       threshold
     ),
     ...measureIssue(view.padding ?? 0, threshold, ["view", "padding"]),
-    ...pointIssues(
-      objects.flatMap((object, index) => objectPointEntries(object, index)),
+    ...coordinateCollisionPaths(
+      frame,
+      [
+        ...objects.flatMap((object, index) =>
+          objectPointEntries(object, index)
+        ),
+        ...labelPointEntries(labels),
+      ],
       threshold
-    ),
+    ).map(issue),
+    ...concentricRadiusCollisionPaths(objects, threshold).map(issue),
     ...objects.flatMap((object, index) =>
       planeObjectIssues(frame, object, index, threshold)
     ),
@@ -232,31 +250,22 @@ export function planeResolutionIssues(
 export function spaceResolutionIssues(
   frame: SpaceMathFrame,
   objects: readonly SpaceMathObject[],
+  labels: readonly SpaceLabelAnchor[],
   view: SpaceMathView
 ): readonly Schema.FilterIssue[] {
-  const cameraPairs: ReadonlyArray<readonly [number, number]> =
+  const envelopePairs: ReadonlyArray<readonly [number, number]> =
     view.kind === "camera"
       ? [
-          [view.position.x, view.target.x],
-          [view.position.y, view.target.y],
-          [view.position.z, view.target.z],
+          ...axisEnvelopePairs(frame.x, view.position.x, view.target.x),
+          ...axisEnvelopePairs(frame.y, view.position.y, view.target.y),
+          ...axisEnvelopePairs(frame.z, view.position.z, view.target.z),
         ]
       : [];
   const threshold = renderThreshold(
     [frame.x, frame.y, frame.z],
     view.kind === "fit" ? (view.padding ?? 0) : 0,
-    cameraPairs
+    envelopePairs
   );
-  const cameraIssues =
-    view.kind === "camera"
-      ? pointIssues(
-          [
-            { path: ["view", "position"], point: view.position },
-            { path: ["view", "target"], point: view.target },
-          ],
-          threshold
-        )
-      : [];
   return [
     ...frameIssues(
       [
@@ -270,11 +279,17 @@ export function spaceResolutionIssues(
       "view",
       "padding",
     ]),
-    ...cameraIssues,
-    ...pointIssues(
-      objects.flatMap((object, index) => objectPointEntries(object, index)),
+    ...coordinateCollisionPaths(
+      frame,
+      [
+        ...viewPointEntries(view),
+        ...objects.flatMap((object, index) =>
+          objectPointEntries(object, index)
+        ),
+        ...labelPointEntries(labels),
+      ],
       threshold
-    ),
+    ).map(issue),
     ...objects.flatMap((object, index) => {
       if (object.kind !== "cuboid") {
         return pathObjectIssues(frame, object, index, threshold);
