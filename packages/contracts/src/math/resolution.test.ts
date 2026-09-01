@@ -1,5 +1,5 @@
 import { assert, describe, it } from "@effect/vitest";
-import { Effect, Schema } from "effect";
+import { Schema } from "effect";
 
 import {
   PlaneMathFrameSchema,
@@ -14,7 +14,6 @@ import {
   SpaceMathFrameSchema,
   SpaceMathObjectSchema,
 } from "#contracts/math/space";
-import { decodeMathVisual } from "#contracts/math/visual";
 
 const RESOLUTION = 2 ** -23;
 const BELOW_RESOLUTION = RESOLUTION / 2;
@@ -64,30 +63,18 @@ function paths(issues: ReturnType<typeof planeResolutionIssues>) {
   });
 }
 
-describe("math visual render resolution", () => {
-  it.effect("surfaces one tagged contract error for unresolved scenes", () =>
-    Effect.gen(function* () {
-      const error = yield* decodeMathVisual({
-        frame: planeFrame,
-        objects: [
-          {
-            appearance: "primary",
-            from: { x: 0, y: 0 },
-            id: "unresolved-segment",
-            kind: "segment",
-            to: { x: BELOW_RESOLUTION, y: 0 },
-          },
-        ],
-        space: "plane",
-        view: { kind: "fit" },
-      }).pipe(Effect.flip);
-
-      assert.strictEqual(error._tag, "ContractDecodeError");
-      assert.strictEqual(error.contract, "MathVisual");
-      assert.ok(error.message.includes(MATH_VISUAL_RESOLUTION_MESSAGE));
-    })
+/** Asserts issue paths for objects in the standard plane frame and fit view. */
+function assertPlanePaths(
+  objects: Parameters<typeof planeResolutionIssues>[1],
+  expected: ReturnType<typeof paths>
+) {
+  assert.deepStrictEqual(
+    paths(planeResolutionIssues(planeFrame, objects, { kind: "fit" })),
+    expected
   );
+}
 
+describe("math visual render resolution", () => {
   it("accepts exact-threshold and intentionally axis-aligned plane deltas", () => {
     const objects = [
       planeObject("segment", {
@@ -163,17 +150,14 @@ describe("math visual render resolution", () => {
         inputAxis: "x",
       }),
     ];
-    assert.deepStrictEqual(
-      paths(planeResolutionIssues(planeFrame, objects, { kind: "fit" })),
-      [
-        ["objects", 0, "to", "x"],
-        ["objects", 1, "radius"],
-        ["objects", 2, "sweepDegrees"],
-        ["objects", 3, "coefficients", "a"],
-        ["objects", 4, "domain"],
-        ["objects", 4, "coefficients", "a"],
-      ]
-    );
+    assertPlanePaths(objects, [
+      ["objects", 0, "to", "x"],
+      ["objects", 1, "radius"],
+      ["objects", 2, "sweepDegrees"],
+      ["objects", 3, "coefficients", "a"],
+      ["objects", 4, "domain"],
+      ["objects", 4, "coefficients", "a"],
+    ]);
   });
 
   it("rejects plane line visibility below the exact corner threshold", () => {
@@ -186,33 +170,20 @@ describe("math visual render resolution", () => {
         ],
       });
 
-    assert.deepStrictEqual(
-      paths(
-        planeResolutionIssues(planeFrame, [line(BELOW_RESOLUTION)], {
-          kind: "fit",
-        })
-      ),
-      [["objects", 0]]
-    );
+    assertPlanePaths([line(BELOW_RESOLUTION)], [["objects", 0]]);
     assert.deepStrictEqual(
       planeResolutionIssues(planeFrame, [line(RESOLUTION)], { kind: "fit" }),
       []
     );
-    assert.deepStrictEqual(
-      paths(
-        planeResolutionIssues(
-          planeFrame,
-          [
-            planeObject("line", {
-              through: [
-                { x: 0, y: 2 },
-                { x: 1, y: 2 },
-              ],
-            }),
+    assertPlanePaths(
+      [
+        planeObject("line", {
+          through: [
+            { x: 0, y: 2 },
+            { x: 1, y: 2 },
           ],
-          { kind: "fit" }
-        )
-      ),
+        }),
+      ],
       [["objects", 0]]
     );
   });
@@ -232,10 +203,7 @@ describe("math visual render resolution", () => {
       }),
     ];
 
-    assert.deepStrictEqual(
-      planeResolutionIssues(planeFrame, objects, { kind: "fit" }),
-      []
-    );
+    assertPlanePaths(objects, []);
   });
 
   it("uses the actual arc chord at the render threshold", () => {
@@ -259,10 +227,7 @@ describe("math visual render resolution", () => {
       }),
     ];
 
-    assert.deepStrictEqual(
-      paths(planeResolutionIssues(planeFrame, objects, { kind: "fit" })),
-      [["objects", 1, "sweepDegrees"]]
-    );
+    assertPlanePaths(objects, [["objects", 1, "sweepDegrees"]]);
   });
 
   it("rejects unresolved coordinates across separate finite objects", () => {
@@ -271,10 +236,7 @@ describe("math visual render resolution", () => {
       planeObject("point", { at: { x: BELOW_RESOLUTION, y: 0 } }),
     ];
 
-    assert.deepStrictEqual(
-      paths(planeResolutionIssues(planeFrame, objects, { kind: "fit" })),
-      [["objects", 1, "at", "x"]]
-    );
+    assertPlanePaths(objects, [["objects", 1, "at", "x"]]);
   });
 
   it("accepts axis-aligned cameras and rejects unresolved space semantics", () => {

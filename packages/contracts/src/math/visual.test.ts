@@ -2,11 +2,14 @@ import { describe, expect, it } from "@effect/vitest";
 import { Effect, Exit, Schema } from "effect";
 
 import { ContractDecodeError } from "#contracts/errors";
+import { MATH_VISUAL_RESOLUTION_MESSAGE } from "#contracts/math/resolution";
 import {
   decodeMathVisual,
   MathVisualSchema,
   mathVisualLabelKeys,
 } from "#contracts/math/visual";
+
+const BELOW_RENDER_RESOLUTION = 2 ** -24;
 
 const planeFrame = {
   axes: "visible",
@@ -73,6 +76,27 @@ describe("math visual boundary", () => {
       expect(
         mathVisualLabelKeys(yield* decodeMathVisual(planeScene()))
       ).toEqual([]);
+    })
+  );
+
+  it.effect("surfaces one tagged contract error for unresolved scenes", () =>
+    Effect.gen(function* () {
+      const error = yield* decodeMathVisual({
+        ...planeScene(),
+        objects: [
+          {
+            appearance: "primary",
+            from: { x: 0, y: 0 },
+            id: "unresolved-segment",
+            kind: "segment",
+            to: { x: BELOW_RENDER_RESOLUTION, y: 0 },
+          },
+        ],
+      }).pipe(Effect.flip);
+
+      expect(error).toBeInstanceOf(ContractDecodeError);
+      expect(error.contract).toBe("MathVisual");
+      expect(error.message).toContain(MATH_VISUAL_RESOLUTION_MESSAGE);
     })
   );
 });
