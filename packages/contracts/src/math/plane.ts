@@ -18,6 +18,7 @@ import {
   samePlanePoint,
 } from "#contracts/math/base";
 import { planeBoundsIssues } from "#contracts/math/bounds";
+import { planeResolutionIssues } from "#contracts/math/resolution";
 
 const ObjectFields = {
   appearance: MathAppearanceSchema,
@@ -213,6 +214,7 @@ export const PlaneMathViewSchema = Schema.Struct({
   kind: Schema.Literal("fit"),
   padding: Schema.optionalKey(MathViewPaddingSchema),
 });
+export type PlaneMathView = typeof PlaneMathViewSchema.Type;
 
 /** One coordinate anchor resolved against a separate rich-label map. */
 export const PlaneLabelAnchorSchema = Schema.Struct({
@@ -231,9 +233,10 @@ export const PlaneMathVisualSchema = Schema.Struct({
   view: PlaneMathViewSchema,
 }).pipe(
   Schema.check(
-    Schema.makeFilter(({ frame, labels = [], objects }) => [
+    Schema.makeFilter(({ frame, labels = [], objects, view }) => [
       ...mathVisualIdentityIssues(objects, labels),
       ...planeBoundsIssues(frame, objects, labels),
+      ...planeResolutionIssues(frame, objects, view),
     ])
   )
 );

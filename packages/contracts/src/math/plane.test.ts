@@ -191,37 +191,57 @@ describe("plane math visual", () => {
 
   it("accepts resolvable polygon area across translation and scale", () => {
     const maximum = Number.MAX_VALUE;
-    for (const vertices of [
-      [
-        { x: 1_000_000, y: 1_000_000 },
-        { x: 1_000_001, y: 1_000_002 },
-        { x: 1_000_002, y: 1_000_004.000_001 },
-      ],
-      [
-        { x: 0, y: 0 },
-        { x: 1e-200, y: 0 },
-        { x: 0, y: 1e-200 },
-      ],
-      [
-        { x: -maximum, y: 0 },
-        { x: maximum, y: 0 },
-        { x: 0, y: maximum },
-      ],
-      [
-        { x: 0, y: -maximum },
-        { x: maximum, y: 0 },
-        { x: 0, y: maximum },
-      ],
+    for (const { frame, vertices } of [
+      {
+        frame: {
+          x: { max: 1_000_005, min: 999_999 },
+          y: { max: 1_000_005, min: 999_999 },
+        },
+        vertices: [
+          { x: 1_000_000, y: 1_000_000 },
+          { x: 1_000_001, y: 1_000_002 },
+          { x: 1_000_002, y: 1_000_004.000_001 },
+        ],
+      },
+      {
+        frame: {
+          x: { max: 1e-200, min: 0 },
+          y: { max: 1e-200, min: 0 },
+        },
+        vertices: [
+          { x: 0, y: 0 },
+          { x: 1e-200, y: 0 },
+          { x: 0, y: 1e-200 },
+        ],
+      },
+      {
+        frame: {
+          x: { max: maximum, min: -maximum },
+          y: { max: maximum, min: -maximum },
+        },
+        vertices: [
+          { x: -maximum, y: 0 },
+          { x: maximum, y: 0 },
+          { x: 0, y: maximum },
+        ],
+      },
+      {
+        frame: {
+          x: { max: maximum, min: -maximum },
+          y: { max: maximum, min: -maximum },
+        },
+        vertices: [
+          { x: 0, y: -maximum },
+          { x: maximum, y: 0 },
+          { x: 0, y: maximum },
+        ],
+      },
     ]) {
       expect(
         Exit.isSuccess(
           Schema.decodeUnknownExit(MathVisualSchema)({
             ...planeScene(object("polygon", { vertices })),
-            frame: {
-              ...planeFrame,
-              x: { max: maximum, min: -maximum },
-              y: { max: maximum, min: -maximum },
-            },
+            frame: { ...planeFrame, ...frame },
           })
         )
       ).toBe(true);

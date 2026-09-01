@@ -14,6 +14,7 @@ import {
   sameSpacePoint,
 } from "#contracts/math/base";
 import { spaceBoundsIssues } from "#contracts/math/bounds";
+import { spaceResolutionIssues } from "#contracts/math/resolution";
 import { hasCoplanarArea } from "#contracts/math/vector";
 
 const ObjectFields = {
@@ -172,6 +173,7 @@ export const SpaceMathViewSchema = Schema.Union([
   SpaceFitViewSchema,
   SpaceIsometricViewSchema,
 ]);
+export type SpaceMathView = typeof SpaceMathViewSchema.Type;
 
 /** One coordinate anchor resolved against a separate rich-label map. */
 export const SpaceLabelAnchorSchema = Schema.Struct({
@@ -190,9 +192,10 @@ export const SpaceMathVisualSchema = Schema.Struct({
   view: SpaceMathViewSchema,
 }).pipe(
   Schema.check(
-    Schema.makeFilter(({ frame, labels = [], objects }) => [
+    Schema.makeFilter(({ frame, labels = [], objects, view }) => [
       ...mathVisualIdentityIssues(objects, labels),
       ...spaceBoundsIssues(frame, objects, labels),
+      ...spaceResolutionIssues(frame, objects, view),
     ])
   )
 );
