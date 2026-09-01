@@ -1,5 +1,11 @@
 import { describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import { ReleaseItemIndexSchema } from "@nakafa/aksara-contracts/release";
+import {
+  QuestionAuditCountError,
+  QuestionAuditRecordError,
+  QuestionAuditStateError,
+} from "@nakafa/aksara-publisher/audit/error";
 import {
   PublicationTargetRejectedError,
   PublicationTargetTransportError,
@@ -71,6 +77,58 @@ describe("production failure boundary", () => {
       environmentVariable: "AKSARA_PUBLICATION_ENDPOINT",
       failure: "ProductionEnvironmentError",
       stage: "environment",
+    });
+  });
+
+  it("keeps bounded Question audit evidence", () => {
+    expect(
+      mapProductionError("audit")(
+        new QuestionAuditRecordError({
+          choicesCount: 1,
+          dateCount: 1,
+          index: ReleaseItemIndexSchema.make(17),
+          reason: "legacy",
+          side: "prior",
+        })
+      )
+    ).toMatchObject({
+      auditChoicesCount: 1,
+      auditDateCount: 1,
+      auditIndex: 17,
+      auditReason: "legacy",
+      auditSide: "prior",
+      failure: "QuestionAuditRecordError",
+      stage: "audit",
+    });
+  });
+
+  it("keeps bounded Question audit state evidence", () => {
+    expect(
+      mapProductionError("audit")(
+        new QuestionAuditStateError({ reason: "candidate-present" })
+      )
+    ).toMatchObject({
+      auditReason: "candidate-present",
+      failure: "QuestionAuditStateError",
+      stage: "audit",
+    });
+  });
+
+  it("keeps bounded Question audit count evidence", () => {
+    expect(
+      mapProductionError("audit")(
+        new QuestionAuditCountError({
+          actual: 17,
+          expected: 20,
+          source: "active-heads",
+        })
+      )
+    ).toMatchObject({
+      auditActualCount: 17,
+      auditCountSource: "active-heads",
+      auditExpectedCount: 20,
+      failure: "QuestionAuditCountError",
+      stage: "audit",
     });
   });
 

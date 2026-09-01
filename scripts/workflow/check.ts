@@ -49,6 +49,8 @@ const TERMINAL_GATE_PATTERN =
   /Verify terminal operation revision[\s\S]*pnpm exec turbo run typecheck test build[\s\S]*--filter=@nakafa\/aksara-contracts[\s\S]*--filter=@nakafa\/aksara-publisher[\s\S]*--filter=@nakafa\/aksara-cli[\s\S]*pnpm deprecations:audit/u;
 const PUBLICATION_SCOPE_PATTERN =
   /scope:[\s\S]*PUBLICATION_SCOPE: \$\{\{ inputs\.scope \}\}[\s\S]*jq -e 'type == "array" and length > 0[\s\S]*mapfile -t SCOPE_SELECTORS[\s\S]*scope_args\+=\(--scope "\$selector"\)[\s\S]*"\$\{scope_args\[@\]\}"/u;
+const QUESTION_AUDIT_PATTERN =
+  /- audit[\s\S]*manifest_hash:[\s\S]*recovery_manifest_hash:[\s\S]*Audit must name both exact manifest hashes[\s\S]*Audit active Question release[\s\S]*inputs\.operation == 'audit'[\s\S]*pnpm content:audit -- --release-id "\$RELEASE_ID"[\s\S]*--manifest-hash "\$MANIFEST_HASH"[\s\S]*--recovery-id "\$RECOVERY_ID"[\s\S]*--recovery-manifest-hash "\$RECOVERY_MANIFEST_HASH"/u;
 const CONTENT_CONTRACT_PATTERN =
   /contracts:[\s\S]*attestations: read[\s\S]*contents: read[\s\S]*fetch-depth: 0[\s\S]*pnpm --filter @nakafa\/aksara-contracts verify:consumer --output "\$TARBALL"[\s\S]*release\/command\.ts prove[\s\S]*--archive "\$CURRENT_ARCHIVE"[\s\S]*--repository "\$GITHUB_REPOSITORY"[\s\S]*--source-sha "\$GITHUB_SHA"[\s\S]*operate:[\s\S]*needs: contracts[\s\S]*needs\.contracts\.result == 'success'/u;
 const OPERATION_HISTORY_PATTERN =
@@ -273,6 +275,11 @@ export function verifyWorkflows({
     release,
     PUBLICATION_SCOPE_PATTERN,
     "Content releases must validate and pass one explicit scalable scope"
+  );
+  assert.match(
+    release,
+    QUESTION_AUDIT_PATTERN,
+    "Question audits must bind exact active and recovery identities"
   );
 }
 

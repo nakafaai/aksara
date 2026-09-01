@@ -14,11 +14,18 @@ export interface ReleaseCommand {
 /** Recovery command observation with its exact protected recovery identity. */
 export type RecoveryCommand = ReleaseCommand & { readonly recoveryId: string };
 
+/** Question audit observation bound to active and retained manifest hashes. */
+export type AuditCommand = RecoveryCommand & {
+  readonly manifestHash: string;
+  readonly recoveryManifestHash: string;
+};
+
 /** Mutable observations isolated and reset around every CLI program test. */
 export interface ProgramCalls {
   abort: ReleaseCommand | undefined;
   accept: RecoveryCommand | undefined;
   args: readonly string[];
+  audit: AuditCommand | undefined;
   check: string | undefined;
   cleanup: ReleaseCommand | undefined;
   document: string;

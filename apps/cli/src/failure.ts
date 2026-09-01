@@ -4,6 +4,11 @@ import {
 } from "@nakafa/aksara-contracts/transport/failure";
 import { PublicationOperationSchema } from "@nakafa/aksara-contracts/transport/request";
 import {
+  QuestionAuditCountError,
+  QuestionAuditRecordError,
+  QuestionAuditStateError,
+} from "@nakafa/aksara-publisher/audit/error";
+import {
   PublicationTargetTransportError,
   PublicationTransportDetailSchema,
 } from "@nakafa/aksara-publisher/target/errors";
@@ -14,6 +19,7 @@ import { ProductionEnvironmentError } from "#cli/environment/error";
 const ProductionStageSchema = Schema.Literals([
   "abort",
   "accept",
+  "audit",
   "cleanup",
   "environment",
   "keys",
@@ -35,6 +41,23 @@ export class ProductionError extends Schema.TaggedError<ProductionError>()(
   {
     appReason: Schema.optional(NakafaAppError.fields.reason),
     appStatus: NakafaAppError.fields.status,
+    auditActualCount: Schema.optional(QuestionAuditCountError.fields.actual),
+    auditChoicesCount: Schema.optional(
+      QuestionAuditRecordError.fields.choicesCount
+    ),
+    auditCountSource: Schema.optional(QuestionAuditCountError.fields.source),
+    auditDateCount: Schema.optional(QuestionAuditRecordError.fields.dateCount),
+    auditExpectedCount: Schema.optional(
+      QuestionAuditCountError.fields.expected
+    ),
+    auditIndex: Schema.optional(QuestionAuditRecordError.fields.index),
+    auditReason: Schema.optional(
+      Schema.Union([
+        QuestionAuditRecordError.fields.reason,
+        QuestionAuditStateError.fields.reason,
+      ])
+    ),
+    auditSide: Schema.optional(QuestionAuditRecordError.fields.side),
     environmentVariable: Schema.optional(
       ProductionEnvironmentError.fields.variable
     ),
@@ -70,6 +93,30 @@ function environmentEvidence(error: unknown) {
     return {};
   }
   return { environmentVariable: error.variable };
+}
+
+/** Preserves bounded evidence for the exact Question transition that failed. */
+function auditEvidence(error: unknown) {
+  if (error instanceof QuestionAuditRecordError) {
+    return {
+      auditChoicesCount: error.choicesCount,
+      auditDateCount: error.dateCount,
+      auditIndex: error.index,
+      auditReason: error.reason,
+      auditSide: error.side,
+    };
+  }
+  if (error instanceof QuestionAuditStateError) {
+    return { auditReason: error.reason };
+  }
+  if (error instanceof QuestionAuditCountError) {
+    return {
+      auditActualCount: error.actual,
+      auditCountSource: error.source,
+      auditExpectedCount: error.expected,
+    };
+  }
+  return {};
 }
 
 /** Extracts only a bounded tagged-error identity, never nested secret data. */
@@ -127,6 +174,7 @@ export function mapProductionError(stage: ProductionStage) {
     const phase = activationPhase(error);
     return new ProductionError({
       ...appEvidence(error),
+      ...auditEvidence(error),
       ...environmentEvidence(error),
       failure: failureName(error),
       ...(phase === undefined ? {} : { phase }),

@@ -1,4 +1,9 @@
-import { type ReleaseId, ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import {
+  type ReleaseId,
+  ReleaseIdSchema,
+  type Sha256Hash,
+  Sha256HashSchema,
+} from "@nakafa/aksara-contracts/ids";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Effect, Schema } from "effect";
 import { productionArgumentsError as argumentError } from "#cli/production/error";
@@ -31,6 +36,15 @@ export interface StatusArguments {
   readonly command: "status";
 }
 
+/** Exact active and retained inverse selected for a Question body audit. */
+export interface AuditArguments {
+  readonly command: "audit";
+  readonly manifestHash: Sha256Hash;
+  readonly recoveryId: ReleaseId;
+  readonly recoveryManifestHash: Sha256Hash;
+  readonly releaseId: ReleaseId;
+}
+
 /** Exact active and retained inverse selected for healthy acceptance. */
 export interface AcceptArguments {
   readonly command: "accept";
@@ -49,6 +63,7 @@ export interface RecoverArguments {
 export type ProductionArguments =
   | AcceptArguments
   | AbortArguments
+  | AuditArguments
   | CleanupArguments
   | RecoverArguments
   | ReleaseArguments
@@ -63,9 +78,20 @@ export function isProductionCommand(
     value === "cleanup" ||
     value === "accept" ||
     value === "abort" ||
+    value === "audit" ||
     value === "recover" ||
     value === "release" ||
     value === "status"
+  );
+}
+
+/** Decodes one release hash while preserving its owning option. */
+function decodeManifestHash(
+  option: "--manifest-hash" | "--recovery-manifest-hash",
+  value: string
+) {
+  return Schema.decodeEffect(Sha256HashSchema)(value).pipe(
+    Effect.mapError(() => argumentError("audit", option, "value"))
   );
 }
 
@@ -112,6 +138,31 @@ export const parseProductionArguments = Effect.fn(
   );
   if (recoveryId === releaseId) {
     return yield* argumentError(command, "--recovery-id", "identity");
+  }
+  if (command === "audit") {
+    if (options.manifestHash === undefined) {
+      return yield* argumentError(command, "--manifest-hash", "missing");
+    }
+    if (options.recoveryManifestHash === undefined) {
+      return yield* argumentError(
+        command,
+        "--recovery-manifest-hash",
+        "missing"
+      );
+    }
+    return {
+      command,
+      manifestHash: yield* decodeManifestHash(
+        "--manifest-hash",
+        options.manifestHash
+      ),
+      recoveryId,
+      recoveryManifestHash: yield* decodeManifestHash(
+        "--recovery-manifest-hash",
+        options.recoveryManifestHash
+      ),
+      releaseId,
+    } satisfies AuditArguments;
   }
   if (command === "accept") {
     return { command, recoveryId, releaseId } satisfies AcceptArguments;

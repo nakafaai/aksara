@@ -3,6 +3,7 @@ import { runAbortCommand } from "#cli/abort";
 import { printCliInfo } from "#cli/about";
 import { runAcceptCommand } from "#cli/accept";
 import { parseCliArguments } from "#cli/args";
+import { runAuditCommand } from "#cli/audit";
 import { runCheckCommand } from "#cli/check";
 import { runCleanupCommand } from "#cli/cleanup";
 import { runPreviewCommand } from "#cli/preview";
@@ -32,6 +33,9 @@ export function makeCliProgram(input: {
     }
     if (args.command === "accept") {
       return yield* runAcceptCommand(args);
+    }
+    if (args.command === "audit") {
+      return yield* runAuditCommand(args);
     }
     if (args.command === "cleanup") {
       return yield* runCleanupCommand(args);
