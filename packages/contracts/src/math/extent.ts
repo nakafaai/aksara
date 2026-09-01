@@ -1,5 +1,6 @@
 import { BigDecimal } from "effect";
 
+import { GEOMETRY_TOLERANCE } from "#contracts/math/base";
 import type { PlaneMathFrame, PlaneMathObject } from "#contracts/math/plane";
 import { decimal, makeRatio, ratioInRange } from "#contracts/math/rational";
 import type { SpaceMathFrame, SpaceMathObject } from "#contracts/math/space";
@@ -38,6 +39,26 @@ function axisContainsOffset(
   return BigDecimal.isLessThanOrEqualTo(BigDecimal.abs(offset), clearance);
 }
 
+/** Checks one translated coordinate within its explicit numeric error envelope. */
+function axisContainsTranslated(
+  range: AxisRange,
+  origin: number,
+  offset: BigDecimal.BigDecimal,
+  error: BigDecimal.BigDecimal
+) {
+  const coordinate = BigDecimal.sum(decimal(origin), offset);
+  return (
+    BigDecimal.isGreaterThanOrEqualTo(
+      coordinate,
+      BigDecimal.subtract(decimal(range.min), error)
+    ) &&
+    BigDecimal.isLessThanOrEqualTo(
+      coordinate,
+      BigDecimal.sum(decimal(range.max), error)
+    )
+  );
+}
+
 /** Normalizes one angle to the canonical half-open degree interval. */
 function normalizeDegrees(value: number) {
   return ((value % 360) + 360) % 360;
@@ -50,27 +71,35 @@ function arcContainsAngle(start: number, sweep: number, angle: number) {
     : normalizeDegrees(start - angle) <= -sweep;
 }
 
-/** Resolves an exact cardinal offset or one finite non-cardinal trig offset. */
-function arcOffset(
-  radius: number,
-  angle: number
-): { readonly x: BigDecimal.BigDecimal; readonly y: BigDecimal.BigDecimal } {
+interface ArcOffset {
+  readonly error: BigDecimal.BigDecimal;
+  readonly x: BigDecimal.BigDecimal;
+  readonly y: BigDecimal.BigDecimal;
+}
+
+/** Resolves exact cardinals or a trig offset with its renderer error envelope. */
+function arcOffset(radius: number, angle: number): ArcOffset {
   const normalized = normalizeDegrees(angle);
   const exactRadius = decimal(radius);
+  const exact = BigDecimal.fromBigInt(0n);
   if (normalized === 0) {
-    return { x: exactRadius, y: decimal(0) };
+    return { error: exact, x: exactRadius, y: exact };
   }
   if (normalized === 90) {
-    return { x: decimal(0), y: exactRadius };
+    return { error: exact, x: exact, y: exactRadius };
   }
   if (normalized === 180) {
-    return { x: BigDecimal.negate(exactRadius), y: decimal(0) };
+    return { error: exact, x: BigDecimal.negate(exactRadius), y: exact };
   }
   if (normalized === 270) {
-    return { x: decimal(0), y: BigDecimal.negate(exactRadius) };
+    return { error: exact, x: exact, y: BigDecimal.negate(exactRadius) };
   }
   const radians = (normalized * Math.PI) / 180;
+  const error = decimal(
+    Math.max(Number.MIN_VALUE, radius * GEOMETRY_TOLERANCE)
+  );
   return {
+    error,
     x: decimal(radius * Math.cos(radians)),
     y: decimal(radius * Math.sin(radians)),
   };
@@ -93,8 +122,13 @@ export function arcContained(
   return angles.every((angle) => {
     const offset = arcOffset(object.radius, angle);
     return (
-      axisContainsOffset(frame.x, object.center.x, offset.x) &&
-      axisContainsOffset(frame.y, object.center.y, offset.y)
+      axisContainsTranslated(
+        frame.x,
+        object.center.x,
+        offset.x,
+        offset.error
+      ) &&
+      axisContainsTranslated(frame.y, object.center.y, offset.y, offset.error)
     );
   });
 }

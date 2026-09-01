@@ -75,6 +75,32 @@ describe("finite curved extents", () => {
     assert.isFalse(arcContained(frame, arc(0, 90, { x: 1, y: 0 })));
   });
 
+  it("accepts a contained arc whose circle center is outside the frame", () => {
+    const frame = {
+      ...planeFrame,
+      x: { max: 10, min: -10 },
+      y: { max: 10, min: -10 },
+    };
+    assert.isTrue(arcContained(frame, arc(150, 60, { x: 11, y: 0 }, 2)));
+  });
+
+  it("bounds non-cardinal trig residue without hiding real escapes", () => {
+    const boundary = { ...planeFrame, x: { max: 1, min: -2 } };
+    assert.isTrue(arcContained(boundary, arc(60, 30, { x: 0, y: 0 }, 2)));
+    assert.isFalse(
+      arcContained(
+        { ...boundary, x: { max: 0.99, min: -2 } },
+        arc(60, 30, { x: 0, y: 0 }, 2)
+      )
+    );
+    assert.isFalse(
+      arcContained(
+        { ...boundary, x: { max: 1e308, min: -1e308 } },
+        arc(60, 30, { x: 1e308, y: 0 }, 1)
+      )
+    );
+  });
+
   it("accepts an exact circle boundary", () => {
     assert.isTrue(circleContained(planeFrame, circle({ x: 0, y: 0 }, 2)));
   });
