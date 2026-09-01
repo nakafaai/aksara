@@ -1,20 +1,18 @@
 export const metadata = {
   title: "Significant Figures Rules",
   description:
-    "Identify significant figures, round measurement results, and report calculated values with the right precision.",
+    "Significant figures and rounding rules keep calculated values consistent with the precision of the measurements.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-04-25",
   dateModified: "2026-09-01",
   subject: "Measurement in Scientific Work",
 };
 
-## A Calculator Does Not Know the Tool Precision
+## Measurement Resolution Determines the Reported Digits
 
-When a bottle cap diameter is read as <InlineMath math="3.12 \text{ cm}" />, a calculator can produce many digits after the area is calculated. The measuring tool does not justify all of those digits. This is why we use **significant figures**.
+When a bottle cap diameter is read as <InlineMath math="3.12 \text{ cm}" />, a calculator can produce many digits after the area is calculated. The resolution of the measuring tool limits how many of those digits can be reported. **Significant-figure** rules determine which digits belong in the final result.
 
-Significant figures are the digits retained to communicate the resolution of a measured value. The last reported digit is affected by the instrument resolution and rounding, so it is not an exact digit.
-
-<BlockMath math="\text{reported digits}=\text{supported digits}+\text{last rounded digit}" />
+Significant figures are the digits retained to communicate the resolution of a measured value. Write the value only to the decimal place supported by the instrument. The last reported digit shows the limit of the reading and can change when the value is rounded.
 
 The significant-figure rule keeps a report from claiming more precision than the measurement tool supports.
 
@@ -73,7 +71,7 @@ For an exact halfway case, round-to-even avoids a long series of values being bi
 
 Round directly from the unrounded value to the final precision. Do not round through several intermediate values.
 
-## Addition Follows Decimal Position
+## Rounding Sums by Decimal Position
 
 For addition and subtraction, precision is judged by decimal position. The roughest data decides the final decimal place.
 
@@ -86,9 +84,9 @@ Suppose an iron rod of length <InlineMath math="8.235 \text{ cm}" /> is joined t
 
 The value <InlineMath math="12.735 \text{ cm}" /> is rounded to <InlineMath math="1" /> decimal place because <InlineMath math="4.5 \text{ cm}" /> has only <InlineMath math="1" /> digit after the decimal point.
 
-## Multiplication Follows the Least Precise Data
+## Rounding Products by the Fewest Significant Figures
 
-For multiplication and division, the classroom significant-figure rule uses the smallest number of significant figures among the measured data. This shortcut helps report a result. When measured uncertainties are available, propagate those uncertainties directly.
+When a calculation tracks only significant figures, multiplication and division results are rounded to the fewest significant figures among the measured values. This shortcut does not replace a calculation of measurement uncertainty.
 
 Suppose a rectangle has width <InlineMath math="12.455 \text{ cm}" /> and length <InlineMath math="35.2 \text{ cm}" />.
 
@@ -114,4 +112,4 @@ If the International System of Units (SI) is required, convert <InlineMath math=
 
 <BlockMath math="7.65 \text{ cm}^2 = 0.000765 \text{ m}^2 = 7.65 \times 10^{-4} \text{ m}^2" />
 
-The classroom operation rules are introduced by [OpenStax University Physics](https://openstax.org/books/university-physics-volume-1/pages/1-6-significant-figures). NIST documents round-to-even, one-step rounding, and unrounded conversion factors in [Handbook 130](https://www.nist.gov/document/2023-nist-hb130-uniform-packaging-and-labeling-regulation).
+For addition and subtraction, round by decimal position. For multiplication and division, round by the fewest significant figures among the measured values. Round-to-even and one-step rounding prevent repeated rounding from biasing the result. [OpenStax University Physics](https://openstax.org/books/university-physics-volume-1/pages/1-6-significant-figures) [Handbook 130](https://www.nist.gov/document/2023-nist-hb130-uniform-packaging-and-labeling-regulation)

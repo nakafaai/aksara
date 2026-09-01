@@ -2,28 +2,28 @@
 export const metadata = {
   title: "Energieumwandlung",
   description:
-    "Verfolge die Umwandlung natürlicher Energiequellen in elektrische Energie und unterscheide Nutzenergie, dissipierte Energie und Wirkungsgrad.",
+    "Die Energieumwandlung verbindet natürliche Quellen mit elektrischer Energie, Nutzenergie, Energieabgabe an die Umgebung und Wirkungsgrad.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
   dateModified: "2026-09-01",
   subject: "Erneuerbare Energie",
 };
 
-## Energie durch jede Anlage verfolgen
+## Abfolge der Energieumwandlung in einer Anlage
 
 **Energieumwandlung** bedeutet, dass Energie von einer Form in eine andere übergeht. Dabei entsteht keine Energie aus dem Nichts. Nach dem Energieerhaltungsgesetz ändern sich lediglich ihre Form und ihr Übertragungsweg.
 
-Die [EIA](https://www.eia.gov/energyexplained/what-is-energy/laws-of-energy.php) erklärt, dass Energie bei ihrer Nutzung weder erzeugt noch zerstört wird, sondern ihre Form wechselt. Bei jeder Umwandlung entsteht neben der gewünschten Nutzenergie auch Energie, die dem Zweck des Geräts nicht dient.
+Bei der Nutzung ändert Energie ihre Form, ihre Gesamtmenge bleibt jedoch erhalten. Bei jeder Umwandlung gelangt ein Teil der Energie zur gewünschten Ausgabe und ein weiterer Teil an die Umgebung, etwa als Wärme, Schall, Vibration oder reflektiertes Licht. [EIA](https://www.eia.gov/energyexplained/what-is-energy/laws-of-energy.php)
 
 Eine Energietechnologie lässt sich am besten verstehen, indem wir ihre Umwandlungskette aufschreiben.
 
-<BlockMath math="\text{Energiequelle} \rightarrow \text{Ausgangsform} \rightarrow \text{Umwandlungsanlage} \rightarrow \text{Nutzenergie}+\text{dissipierte Energie}" />
+<BlockMath math="\text{Energiequelle} \rightarrow \text{Ausgangsform} \rightarrow \text{Umwandlungsanlage} \rightarrow \text{Nutzenergie}+\text{Energie an die Umgebung}" />
 
-Dissipierte Energie ist nicht verloren. Sie verteilt sich in der Umgebung, etwa als Wärme, Schall, Vibration oder reflektiertes Licht.
+Auch die an die Umgebung abgegebene Energie gehört zur Energiebilanz. Sie kann als Wärme, Schall, Vibration oder reflektiertes Licht auftreten.
 
 ## Umwandlungspfade in Kraftwerken
 
-Das folgende Diagramm zeigt, welche Formen Energie aus der Natur annimmt, bevor wir sie nutzen.
+Das Diagramm zeigt, in welchen Formen verschiedene Quellen Energie bereitstellen und wie Anlagen sie zur Nutzung umwandeln.
 
 <Mermaid
   title="Kraftwerke wandeln Energie stufenweise um"
@@ -32,24 +32,25 @@ Das folgende Diagramm zeigt, welche Formen Energie aus der Natur annimmt, bevor 
     A["Natürliche Quelle"] --> B["Anfängliche Energieform"]
     B --> C["Umwandlungsanlage"]
     C --> D["Nutzenergie"]
-    C --> E["Dissipierte Energie"]`}/>
+    C --> E["Energie an die Umgebung"]`}/>
 
-Für Wasserkraft beschreibt das [DOE](https://www.energy.gov/cmei/water/how-hydropower-works) die folgende Kette. Wasser fließt durch eine Druckrohrleitung und dreht die Turbinenschaufeln. Die Turbine treibt einen Generator an, der Strom erzeugt.
+Bei der Wasserkraft strömt Wasser durch eine Druckrohrleitung und dreht die Turbinenschaufeln. Die Turbine treibt einen Generator an, der Strom erzeugt. [DOE](https://www.energy.gov/cmei/water/how-hydropower-works)
 
-Bei Windkraft setzt der Wind die Rotorblätter in Bewegung. Der Rotor treibt einen Generator an, der Strom erzeugt. Das [DOE](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work) erläutert diese Kette.
+Bei der Windkraft setzt der Wind die Rotorblätter in Bewegung. Der Rotor treibt einen Generator an, der Strom erzeugt. [DOE](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work)
 
 <WindEnergyConversionLab
   title={<>Energieumwandlung in einer Windkraftanlage</>}
   description={
     <>
       Verändere die Windgeschwindigkeit, beobachte die Drehung des Rotors und
-      verfolge den Weg von bewegter Luft zu elektrischer Energie.
+      untersuche, wie die kinetische Energie der Luft in elektrische Energie
+      umgewandelt wird.
     </>
   }
   labels={{
     flow: <>Wind dreht den Rotor, der Rotor treibt den Generator an und elektrische Energie wird abgegeben.</>,
     flowLabel: "Umwandlungskette",
-    meaning: <>Eine höhere Windgeschwindigkeit beschleunigt den Rotor. Die reale Leistung bleibt jedoch durch Anlage und Standort begrenzt.</>,
+    meaning: <>Eine höhere Windgeschwindigkeit kann den Rotor beschleunigen. Turbinenleistung, Steuerung und Standortbedingungen begrenzen weiterhin die abgegebene Leistung.</>,
     meaningLabel: "Physikalische Bedeutung",
     speedControl: "Windgeschwindigkeit",
     speedUnit: "m/s",
@@ -57,9 +58,9 @@ Bei Windkraft setzt der Wind die Rotorblätter in Bewegung. Der Rotor treibt ein
   }}
 />
 
-Bei einem Photovoltaikmodul wandelt die Solarzelle Sonnenlicht direkt in Strom um. Zur Stromerzeugung tragen jedoch nur die Photonen bei, die das Halbleitermaterial absorbiert. Die [EIA](https://www.eia.gov/energyexplained/solar/photovoltaics-and-electricity.php) erklärt diesen Vorgang.
+In einem Photovoltaikmodul wandeln Solarzellen Sonnenlicht direkt in Strom um. Nur die vom Halbleitermaterial absorbierten Photonen tragen Energie zur Stromerzeugung bei. [EIA](https://www.eia.gov/energyexplained/solar/photovoltaics-and-electricity.php)
 
-| Technologie | Hauptumwandlungskette | Häufige Formen dissipierter Energie |
+| Technologie | Hauptumwandlungskette | Häufige Energieabgabe an die Umgebung |
 | :--------- | :------------------- | :---------------------------------- |
 | Wasserkraftwerk | <InlineMath math="\text{potenzielle Energie des Wassers}\rightarrow\text{kinetische Energie des Wassers}\rightarrow\text{Turbine}\rightarrow\text{Generator}\rightarrow\text{Strom}" /> | Reibungswärme an der Welle, Schall, Vibration |
 | Windkraftanlage | <InlineMath math="\text{kinetische Energie des Windes}\rightarrow\text{Turbine}\rightarrow\text{Generator}\rightarrow\text{Strom}" /> | Schall, Vibration, Bauteilwärme |
@@ -68,9 +69,9 @@ Bei einem Photovoltaikmodul wandelt die Solarzelle Sonnenlicht direkt in Strom u
 | Biogas | <InlineMath math="\text{chemische Energie}\rightarrow\text{Verbrennung in Motor oder Turbine}\rightarrow\text{Drehbewegung der Welle}\rightarrow\text{Generator}\rightarrow\text{Strom}" /> | Abwärme, Abgase, Schall |
 | Geothermie | <InlineMath math="\text{Wärmeenergie des Reservoirs}\rightarrow\text{strömender Dampf oder Arbeitsstoff}\rightarrow\text{Turbine}\rightarrow\text{Generator}\rightarrow\text{Strom}" /> | Abwärme und Reibungsverluste im System |
 
-Das [DOE](https://www.energy.gov/cmei/fuels/biopower-energy-heat-and-electricity) beschreibt, wie Bioenergietechnologien Biomasse durch Verbrennung, bakteriellen Abbau oder die Umwandlung in gasförmige und flüssige Brennstoffe für Wärme und Strom nutzen.
+Bioenergietechnologien wandeln Biomasse durch Verbrennung, bakteriellen Abbau oder die Umwandlung in gasförmige und flüssige Brennstoffe in Wärme und Strom um. [DOE](https://www.energy.gov/cmei/fuels/biopower-energy-heat-and-electricity)
 
-Geothermiekraftwerke nutzen heiße Flüssigkeiten oder Dampf aus dem Untergrund, um Turbinen anzutreiben und Strom zu erzeugen. Das [DOE](https://www.energy.gov/hgeo/geothermal/geothermal-electricity-generation) erläutert diesen Vorgang.
+Geothermiekraftwerke nutzen heiße Flüssigkeiten oder Dampf aus dem Untergrund, um Turbinen anzutreiben und Strom zu erzeugen. [DOE](https://www.energy.gov/hgeo/geothermal/geothermal-electricity-generation)
 
 ## Der Wirkungsgrad zeigt den nutzbaren Anteil
 
@@ -83,7 +84,7 @@ Symbolanleitung:
 | Symbol | Bedeutung |
 | :----- | :------ |
 | <InlineMath math="\eta" /> | Wirkungsgrad |
-| <InlineMath math="E_{\text{nützlich}}" /> | Energie, die dem Zweck des Geräts entspricht |
+| <InlineMath math="E_{\text{nützlich}}" /> | Energie, die als gewünschte Nutzenergie abgegeben wird |
 | <InlineMath math="E_{\text{zugeführt}}" /> | dem Gerät zugeführte Energie |
 
 Angenommen, ein Solarmodul empfängt <InlineMath math="800 \text{ J}" /> Strahlungsenergie und gibt <InlineMath math="160 \text{ J}" /> elektrische Energie ab. Sein Wirkungsgrad beträgt:
@@ -98,19 +99,19 @@ Angenommen, ein Solarmodul empfängt <InlineMath math="800 \text{ J}" /> Strahlu
 Die Energie, die nicht in nutzbaren Strom umgewandelt wird, ist:
 
 <BlockMath math="\begin{aligned}
-E_{\text{dissipiert}}
+E_{\text{Umgebung}}
 &= E_{\text{zugeführt}}-E_{\text{nützlich}} \\
 &= 800 \text{ J}-160 \text{ J} \\
 &= 640 \text{ J}
 \end{aligned}" />
 
-Ein Wirkungsgrad von <InlineMath math="20\%" /> bedeutet nicht, dass die übrigen <InlineMath math="80\%" /> verschwinden. Diese Energie gelangt an die Umgebung, etwa als Wärme oder als Licht, das das Modul nicht absorbiert.
+Ein Wirkungsgrad von <InlineMath math="20\%" /> bedeutet nicht, dass die übrigen <InlineMath math="80\%" /> verschwinden. Die übrigen <InlineMath math="80\%" /> werden an die Umgebung übertragen, zum Beispiel durch Erwärmung sowie reflektierte oder durchgelassene Strahlung.
 
-Die [EIA](https://www.eia.gov/energyexplained/use-of-energy/efficiency-and-conservation.php) nutzt den Wirkungsgrad, um die technische Leistung energieumwandelnder und energieverbrauchender Geräte zu beschreiben.
+Der Wirkungsgrad gibt an, welcher Anteil der zugeführten Energie von einem Gerät in Nutzenergie umgewandelt wird. [EIA](https://www.eia.gov/energyexplained/use-of-energy/efficiency-and-conservation.php)
 
-## Verfolge den Energiepfad jedes Geräts
+## Umwandlungspfade verschiedener Anlagen vergleichen
 
-Solarmodule, Windkraftanlagen, Generatoren und Biogasreaktoren wandeln vorhandene Energie von einer Form in eine andere um. Der Gerätename allein nennt weder Quelle und Umwandlungskette noch Nutzenergie und dissipierte Energie.
+Solarmodule, Windkraftanlagen, Generatoren und Biogasreaktoren wandeln vorhandene Energie von einer Form in eine andere um. Am Gerätenamen allein lässt sich noch nicht erkennen, welche Energiequelle genutzt wird, welche Umwandlungen stattfinden, welche Nutzenergie entsteht und welche Energie an die Umgebung abgegeben wird.
 
 | Wenn diese Technik genannt wird | Dann ist zu fragen |
 | :---------------- | :------- |
@@ -120,4 +121,4 @@ Solarmodule, Windkraftanlagen, Generatoren und Biogasreaktoren wandeln vorhanden
 | Biomasse | Ist der Rohstoff ausreichend und wird nachhaltig bewirtschaftet? |
 | Geothermiekraftwerk | Bietet der Standort ausreichend Wärme im Untergrund, Fluide und Strömung für die Stromerzeugung? |
 
-Die Umwandlungskette hält Quelle, anfängliche Energieform, Ausgangsform, Nutzenergie und dissipierte Energie fest.
+Die Umwandlungskette nennt Quelle, anfängliche Energieform, Ausgangsform, Nutzenergie und Energieabgabe an die Umgebung.

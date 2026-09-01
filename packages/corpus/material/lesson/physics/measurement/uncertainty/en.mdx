@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Uncertainty in Repeated Measurements",
   description:
-    "Read repeated measurement data, calculate a mean, estimate uncertainty, and report a result without pretending it is more precise than it is.",
+    "Repeated measurements can be summarized with a mean and an uncertainty so the reported result does not appear more precise than the available data.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-04-25",
   dateModified: "2026-09-01",
@@ -12,15 +12,15 @@ export const metadata = {
 
 When one object is measured several times, the results can differ slightly. That is normal. A hand can press the tool with a different force, an eye can read the scale from a slightly different angle, and the object can shift a little.
 
-**Measurement uncertainty** is a nonnegative parameter that characterizes the dispersion of quantity values attributed to the measurand, based on the available information. For repeated measurements, a Type A evaluation obtains an uncertainty component from statistical analysis of the observations.
+**Measurement uncertainty** is a number equal to or greater than zero that shows how widely measured values may be spread, based on the available data and information. For repeated measurements, a Type A evaluation calculates an uncertainty component from the observed results.
 
-This lesson first uses the sample standard deviation <InlineMath math="s" /> to describe the spread of individual readings. The standard uncertainty of the mean is a different quantity and appears later.
+The sample standard deviation <InlineMath math="s" /> describes how far individual readings spread around their mean. The standard uncertainty of the mean describes the uncertainty in the mean estimated from those readings.
 
 > Repeated measurements show random variation through small changes between readings. Systematic errors, such as a tool that does not start at zero or a damaged scale, must be checked through inspection or calibration.
 
 ## Mean of Repeated Measurements
 
-Suppose <InlineMath math="5" /> students measure the diameter of a bottle cap with a vernier caliper. Every reading uses the same unit, <InlineMath math="\text{cm}" />.
+The diameter of one bottle cap is measured <InlineMath math="5" /> times with a vernier caliper. Every reading uses the same unit, <InlineMath math="\text{cm}" />.
 
 | Data | Diameter |
 | :--- | :------- |
@@ -80,7 +80,7 @@ In formal metrology, NIST and the JCGM GUM describe the standard uncertainty of 
 
 <BlockMath math="u(\bar x)=\frac{s_x}{\sqrt N}" />
 
-For simple measurement practice, follow the convention used by the problem statement. If a problem uses <InlineMath math="\Delta x" /> for the compact formula above, call <InlineMath math="\Delta x" /> the repeated-measurement uncertainty for that problem model. Do not mix the two meanings without naming the quantity represented by the formula.
+For a measurement problem, follow the notation defined in its statement. If <InlineMath math="\Delta x" /> denotes the compact formula above, then <InlineMath math="\Delta x" /> is the sample standard deviation of the individual measurements. Do not confuse this spread with the standard uncertainty of the mean <InlineMath math="u(\bar x)=s_x/\sqrt N" />.
 
 ## Area Calculated from Diameter Data
 
@@ -112,7 +112,7 @@ Using sample spread as the uncertainty convention for this exercise, the bottle-
 
 The displayed table is not the calculation input. Rounding intermediate area values can change the final spread, so the mean and standard deviation above use the unrounded values.
 
-## A Percentage Shows the Relative Size
+## Relative Spread as a Percentage of the Mean
 
 Relative spread compares the sample standard deviation with the magnitude of the mean.
 
@@ -124,4 +124,4 @@ For the bottle cap area:
 
 This means the sample spread is about <InlineMath math="1.05\,\%" /> of the mean area. Whether that is adequate depends on the intended use and target uncertainty, so the percentage should not be called "small enough" without a stated requirement.
 
-The uncertainty references used here are NIST Technical Note <InlineMath math="1297" /> for Type A evaluation and the JCGM GUM from BIPM. The documents are available from [NIST](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-3-type-evaluation-standard-uncertainty) and [BIPM](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf).
+Type A evaluation uses statistical analysis of repeated observations to estimate an uncertainty component. A reported measurement result should include enough information to state how its uncertainty was evaluated. [NIST](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-3-type-evaluation-standard-uncertainty) [BIPM](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf)
