@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kedua sumber membantu menjelaskan perubahan produksi pertunjukan; perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
+            "Foto menunjukkan identitas mantel melalui tampilannya, sedangkan buku perawatan hanya mengulang informasi visual tersebut dalam bentuk tulisan.",
         },
         {
           isCorrect: true,
           label:
-            "Foto panggung dan inventaris sama-sama menunjukkan perubahan produksi, tetapi penggunaan kostum dan riwayat bahannya tidak dapat disamakan.",
+            "Foto menunjukkan kemunculan mantel berciri serupa di panggung, sedangkan buku perawatan melacak tindakan pada M-17 tanpa memastikan setiap kali kostum itu dipentaskan.",
         },
         {
           isCorrect: false,
           label:
-            "Karena membahas peristiwa yang sama, kedua sumber pasti mempunyai sudut pandang dan tujuan yang sama.",
+            "Buku perawatan membuktikan kemunculan mantel pada 2019 karena catatan terakhir tahun 2009 menyebut kostum telah dikembalikan.",
         },
         {
           isCorrect: false,
           label:
-            "Menggabungkan dua sumber memberi izin untuk mengisi bagian yang hilang dengan dugaan yang masuk akal.",
+            "Foto lebih lengkap daripada buku perawatan karena rentang tahunnya lebih panjang, sehingga celah provenans dapat diabaikan.",
         },
         {
           isCorrect: false,
           label:
-            "Perbedaan antarsumber hanya berkaitan dengan pilihan kata dan tidak memengaruhi simpulan.",
+            "Kedua sumber tidak dapat dibandingkan karena salah satunya merekam benda, sedangkan yang lain merekam tindakan perawatan.",
         },
       ],
     },

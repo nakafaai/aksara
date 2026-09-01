@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Pengaruh Suhu Air terhadap Produksi Gas pada Campuran Ragi",
+          label: "Suhu, Pengembangan Balon, dan Hipotesis Produksi Gas Ragi",
         },
         {
           isCorrect: false,

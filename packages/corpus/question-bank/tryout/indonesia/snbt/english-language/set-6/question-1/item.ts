@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The class tested how holding the mixture at 37 degrees Celsius affected enzyme activity in a classroom model, while controlling other factors and reporting a limitation.",
+            "The class found a higher colour-change score at 37°C under controlled conditions, while eye-based estimation limited the precision and reach of the conclusion.",
         },
         {
           isCorrect: false,

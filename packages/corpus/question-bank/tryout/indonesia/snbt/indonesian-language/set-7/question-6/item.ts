@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menggunakan nilai rata-rata yang lebih tinggi untuk memperkirakan bahwa perubahan akan bekerja pada keadaan serupa.",
+            "Simulasi membuktikan bahwa populasi nyata dengan sumber daya lebih banyak selalu bertambah sampai mencapai jumlah 24 individu.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menjelaskan daya dukung sebagai hasil utama, bukan sebagai bagian dari penelitian.",
+            "Perbedaan hasil simulasi A dan B menunjukkan bahwa keping warna dapat menggantikan pengamatan populasi di lapangan.",
         },
         {
           isCorrect: true,
           label:
-            "Simulasi populasi dengan keping warna menyederhanakan proses agar dapat diperiksa sambil tetap memiliki batas representasi.",
+            "Simulasi menunjukkan bagaimana dua batas sumber daya menghasilkan dua titik henti populasi, tetapi titik 16 dan 24 berasal dari aturan model dan bukan temuan lapangan.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membandingkan dua kondisi, tetapi menempatkan faktor kontrol sebagai rincian yang tidak memengaruhi penafsiran.",
+            "Karena model tidak memuat penyakit dan migrasi, hubungan antara sumber daya dan batas populasi tidak dapat dipelajari melalui simulasi.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan lebih menekankan keterbatasan sampel daripada hubungan antara perubahan dan hasil.",
+            "Definisi daya dukung memastikan bahwa setiap lingkungan memiliki batas populasi tetap yang dapat dihitung dari satu simulasi.",
         },
       ],
     },

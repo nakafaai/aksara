@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dito memilih untuk mengulang pengukuran pada jam yang sama dan menandai catatan yang meragukan; tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
+            "Tiga pengukuran yang berdekatan membuktikan bahwa 4,81 meter adalah kedalaman air yang tepat tanpa ketidakpastian.",
         },
         {
           isCorrect: true,
           label:
-            "Pengukuran ulang pada jam yang sama dan penandaan data meragukan membuat Dito memisahkan pola dari ketidakpastian catatan.",
+            "Pengukuran ulang yang mengelompok di sekitar 4,81 meter memberi alasan untuk tidak memakai 4,35 meter, sedangkan penandaan mempertahankan jejak alasan pengecualiannya.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dito memilih untuk mengulang pengukuran pada jam yang sama dan menandai catatan yang meragukan; definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
+            "Definisi integritas ilmiah membuat pemeriksaan pita ukur dan pengulangan pengukuran tidak lagi diperlukan.",
         },
       ],
     },

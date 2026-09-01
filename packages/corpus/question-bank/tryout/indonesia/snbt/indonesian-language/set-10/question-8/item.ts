@@ -7,28 +7,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Mengulang kolom infiltrasi tanah dengan lebih banyak unit, tetapi tetap memakai penyederhanaan yang sama tanpa pengamatan lapangan.",
+          label: "35 mililiter, karena 150 dikurangi 24 dan 91.",
+        },
+        {
+          isCorrect: false,
+          label: "43 mililiter, karena 150 dikurangi 16 dan 91.",
         },
         {
           isCorrect: false,
           label:
-            "Mengubah seluruh faktor lapangan sekaligus, lalu membandingkan satu hasil akhir tanpa kondisi acuan.",
+            "59 mililiter, karena seluruh air yang belum keluar dianggap sudah tersimpan.",
         },
         {
           isCorrect: false,
           label:
-            "Mengambil satu kejadian nyata yang sesuai dengan model sebagai konfirmasi bahwa pola selalu berlaku.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Mengganti pengukuran dengan survei tentang apakah peserta memahami definisi istilah pada model.",
+            "67 mililiter, karena air permukaan setelah lima menit ditambahkan ke air yang keluar.",
         },
         {
           isCorrect: true,
           label:
-            "mengukur laju infiltrasi pada petak tanah pasir, lempung, dan organik yang tidak terganggu dengan volume air sama.",
+            "51 mililiter, karena 150 mililiter dikurangi 8 mililiter di permukaan dan 91 mililiter yang keluar.",
         },
       ],
     },

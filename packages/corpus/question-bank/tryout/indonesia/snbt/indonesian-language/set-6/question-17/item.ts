@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Label pameran dan kartu kondisi sama-sama menelusuri perjalanan karya, tetapi kepemilikan, perpindahan, dan kerusakan tidak direkam untuk tujuan yang sama.",
+            "Label pameran menyebut koleksi atau pemberi pinjaman bagi pengunjung, sedangkan kartu kondisi mencatat lokasi dan kerusakan untuk perawatan; keduanya memberi bukti berbeda tentang perjalanan karya.",
         },
       ],
     },

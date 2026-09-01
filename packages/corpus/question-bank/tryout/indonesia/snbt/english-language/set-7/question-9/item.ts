@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Calling a cost *actionable information* establishes that the proposed change is affordable without using the estimated prices.",
+            "Defining *actionable information* proves that the alert will work equally well during a real flood.",
         },
         {
           isCorrect: false,
           label:
-            "The definition makes *actionable information* apply to every cost in the table, regardless of how activity levels change.",
+            "The definition makes the measured comparison and consultation unnecessary.",
         },
         {
           isCorrect: false,
           label:
-            "The term *actionable information* replaces the affected groups' evidence with a financial label that settles the decision by itself.",
+            "The term applies to any detailed flood description, even when no next action is stated.",
         },
         {
           isCorrect: true,
           label:
-            "The definition of *actionable information* supplies the classification rule needed to interpret the budget comparison and the consultation evidence.",
+            "The definition explains why the safe route is essential: the message must tell households what to do and why the stated flood depth makes that action necessary.",
         },
         {
           isCorrect: false,
           label:
-            "The definition explains why the trial used estimated invoices, rather than how the cost category should be read.",
+            "The definition shows that naming the street alone is enough, even if the alert omits the safe route.",
         },
       ],
     },

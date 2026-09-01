@@ -67,27 +67,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Data diukur di ruang latihan musik dan kemudian dibandingkan.",
+          label: "Data dikumpulkan di ruang latihan musik, lalu dibandingkan.",
+        },
+        {
+          isCorrect: false,
+          label: "Data di kumpulkan di ruang latihan musik, lalu dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data di ukur di ruang latihan musik dan kemudian dibandingkan.",
+            "Data dikumpulkan didepan ruang latihan musik, lalu dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data diukur didepan ruang latihan musik dan kemudian dibandingkan.",
+            "Data mengumpulkan di ruang latihan musik, lalu membandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data mengukur di ruang latihan musik dan kemudian membandingkan.",
-        },
-        {
-          isCorrect: false,
-          label: "Data diukur pada di ruang latihan musik lalu di bandingkan.",
+            "Data dikumpulkan pada di ruang latihan musik lalu di bandingkan.",
         },
       ],
     },

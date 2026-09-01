@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Label pameran membantu menelusuri kepemilikan, sedangkan kartu kondisi mencatat perpindahan dan kerusakan; keduanya memperluas riwayat karya, tetapi celah waktu tanpa catatan tetap tidak boleh diisi dengan dugaan.",
+            "Kartu 1967 membuktikan lukisan berada di Surabaya saat diperiksa, tetapi tidak menjelaskan siapa pemiliknya atau bagaimana karya berpindah dari Bandung; celah itu tetap terbuka.",
         },
         {
           isCorrect: false,

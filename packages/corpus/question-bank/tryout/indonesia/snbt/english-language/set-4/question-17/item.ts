@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Placing a plain sentence beside the recurring long label makes the contrast between display and access visible, and the ending response confirms its effect.",
+            "Writing a direct observation prompt on the recurring blank card changes it into an accessible entry point, and the visitors' response confirms that effect.",
         },
         {
           isCorrect: false,

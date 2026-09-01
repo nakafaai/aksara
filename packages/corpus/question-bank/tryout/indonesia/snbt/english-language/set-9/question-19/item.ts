@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The definition of *plot structure* identifies the narrative device that connects the recurring object, the character's action, and the unresolved response at the end.",
+            "The definition explains how the story orders blame, backward investigation, and final revelation so the true source appears only at the end.",
         },
         {
           isCorrect: false,

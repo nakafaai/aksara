@@ -2,34 +2,29 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
-    topic: "fact-opinion",
+    topic: "synthesis",
   },
   responses: {
     en: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
           isCorrect: true,
-          label:
-            "Public organizations should check repairability before replacement.",
+          label: "Assess safety.",
+        },
+        {
+          isCorrect: true,
+          label: "Estimate additional useful life.",
         },
         {
           isCorrect: false,
-          label: "The decision record includes an estimated repair cost.",
+          label: "Ignore the replacement option.",
         },
         {
-          isCorrect: false,
-          label: "The passage mentions damaged cables and worn wheels.",
-        },
-        {
-          isCorrect: false,
-          label: "An unapproved battery is given as one risk example.",
-        },
-        {
-          isCorrect: false,
-          label: "The final paragraph uses the word transparent.",
+          isCorrect: true,
+          label: "Record the reason for the final choice.",
         },
       ],
     },

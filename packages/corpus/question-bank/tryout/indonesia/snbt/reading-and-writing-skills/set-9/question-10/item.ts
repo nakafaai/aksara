@@ -68,7 +68,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Dengan aturan pengukuran yang sama, tim merencanakan uji label lokasi tanam yang lebih panjang.",
+            "Dengan aturan pengukuran yang sama, tim merencanakan uji yang lebih lama terhadap label lokasi tanam pada setiap baki bibit.",
         },
         {
           isCorrect: false,

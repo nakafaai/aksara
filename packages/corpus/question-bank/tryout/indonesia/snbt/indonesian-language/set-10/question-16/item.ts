@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang peta penerangan jalan kampung untuk menyusun penjelasan yang final dan dianggap berlaku untuk semua masa.",
+            "Siswa memakai peta sebagai bukti bahwa seluruh lampu berfungsi dan buku harian sebagai bukti bahwa semua warga mengalami perubahan yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang peta penerangan jalan kampung untuk menyusun penjelasan yang yang menghapus perbedaan tujuan kedua sumber.",
+            "Siswa menolak peta karena dibuat kantor desa dan hanya menerima buku harian sebagai sumber pengalaman yang benar.",
         },
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang peta penerangan jalan kampung untuk menyusun penjelasan yang dengan mengikuti sumber yang lebih baru secara otomatis.",
+            "Siswa menggabungkan tiga pengalaman menjadi gambaran seluruh kampung karena lokasinya dapat ditempelkan pada peta.",
         },
         {
           isCorrect: true,
           label:
-            "Siswa membandingkan dua jenis sumber tentang peta penerangan jalan kampung untuk menyusun penjelasan yang terbatas dan dapat diperiksa.",
+            "Siswa menghubungkan lokasi administratif dengan pengalaman malam yang terikat rute dan waktu, lalu membatasi kesimpulan pada bagian kampung yang benar-benar tercakup.",
         },
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang peta penerangan jalan kampung untuk menyusun penjelasan yang tanpa menilai asal serta tujuan tiap sumber.",
+            "Siswa memperlakukan catatan ‘pemeriksaan selesai’ sebagai bukti kinerja karena dibuat lebih dekat dengan waktu pemasangan.",
         },
       ],
     },

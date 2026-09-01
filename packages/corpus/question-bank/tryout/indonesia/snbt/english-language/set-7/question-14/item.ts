@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The definition of *cognitive load* provides a lens for reading the character's specific choice as a response to uncertainty, not as an isolated moral label.",
+            "The definition explains why removing nonessential detail can make the safe route easier to locate: the reader has less information to hold and process at once.",
         },
         {
           isCorrect: false,

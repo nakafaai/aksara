@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "mengikuti perubahan populasi dan sumber daya dari waktu ke waktu sambil mencatat migrasi serta struktur umur.",
+            "Mengikuti populasi dan sumber dayanya dari waktu ke waktu sambil mencatat migrasi, kelahiran, kematian, serta struktur umur.",
         },
         {
           isCorrect: false,

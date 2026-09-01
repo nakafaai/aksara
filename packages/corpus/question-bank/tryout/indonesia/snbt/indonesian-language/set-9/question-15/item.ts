@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Keputusan Berbasis Bukti dalam jalur wisata hutan kota",
+          label: "Menguji Aksesibilitas Papan Arah di Hutan Kota",
         },
         {
           isCorrect: false,
-          label: "aksesibilitas sebagai ukuran utama dalam uji layanan",
+          label: "Papan Baru yang Berhasil Sama Besar bagi Semua Pengunjung",
         },
         {
           isCorrect: false,
-          label: "Dari perbandingan singkat menuju perubahan layanan tetap",
+          label: "Mengapa Persentase Gabungan Selalu Cukup untuk Menilai Akses",
         },
         {
           isCorrect: false,
-          label: "Konsultasi tanpa pengukuran hasil yang dapat dibandingkan",
+          label: "Peta Raba sebagai Bukti Akhir Jalur yang Aksesibel",
         },
         {
           isCorrect: false,
-          label: "Uji layanan lokal tanpa keputusan tindak lanjut",
+          label: "Menilai Papan Arah tanpa Memisahkan Kelompok Pengguna",
         },
       ],
     },

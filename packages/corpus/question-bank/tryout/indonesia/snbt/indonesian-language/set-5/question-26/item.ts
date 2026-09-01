@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pilihan kecil Ayu mengubah makna benang merah dalam menghadapi konflik di kelas reparasi pakaian.",
+            "Ayu dan pelanggan mengubah benang merah yang tersembunyi menjadi jahitan terlihat untuk mempertemukan riwayat blus dengan keinginan memperbaikinya.",
         },
         {
           isCorrect: false,

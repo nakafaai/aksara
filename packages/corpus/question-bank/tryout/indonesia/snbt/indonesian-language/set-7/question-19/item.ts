@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *representasi* memberi dasar untuk membandingkan posisi kedua sumber tanpa menganggap salah satunya sebagai catatan yang sepenuhnya netral.",
+            "Definisi *representasi* membatasi poster sebagai bukti tentang citra yang ingin dibangun penyelenggara, sehingga poster tidak disamakan dengan catatan lengkap pengalaman pengunjung.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Definisi tersebut hanya menamai bentuk dokumen dan tidak memengaruhi cara asal serta tujuan sumber dibandingkan.",
+            "Definisi tersebut menjadikan semua isi poster tidak berguna karena sumber yang dibuat penyelenggara pasti tidak dapat diteliti.",
         },
       ],
     },

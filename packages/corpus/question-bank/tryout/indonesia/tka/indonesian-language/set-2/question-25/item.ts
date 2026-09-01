@@ -12,7 +12,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Pola Ketelitian pada Dua Sesi Latihan dengan Urutan Berbeda",
+          label: "Perbandingan Hasil Dua Paket Latihan dengan dan tanpa Jeda",
         },
         {
           isCorrect: false,
@@ -20,7 +20,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Perbandingan Hasil Dua Paket Latihan dengan dan tanpa Jeda",
+          label: "Pola Ketelitian pada Dua Sesi Latihan dengan Urutan Berbeda",
         },
         {
           isCorrect: false,

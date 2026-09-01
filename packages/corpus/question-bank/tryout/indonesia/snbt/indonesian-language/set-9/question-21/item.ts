@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Laras menghadapi hambatan dalam menikmati hutan kota tanpa mengejar seluruh titik foto dan menunggu seluruh proyek selesai sebelum meminta satu pun peninjauan.",
+            "Laras berubah dari takut pada hasil buram menjadi yakin bahwa semua karya yang tidak lengkap pasti lebih jujur daripada karya yang rapi.",
         },
         {
           isCorrect: false,
           label:
-            "Laras menghadapi hambatan dalam menikmati hutan kota tanpa mengejar seluruh titik foto dan menyerahkan langkah berikutnya kepada tokoh lain agar masalah segera berakhir.",
+            "Laras berubah karena penyunting menyetujui bingkai kosong, sehingga tanggung jawab atas isi esai beralih kepada penyunting.",
         },
         {
           isCorrect: false,
           label:
-            "Laras menghadapi hambatan dalam menikmati hutan kota tanpa mengejar seluruh titik foto dan memahami empati sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
+            "Laras mengatasi keterbatasan dengan mengganti seluruh foto menjadi rekaman suara agar tugas lima penanda tetap dianggap lengkap.",
         },
         {
           isCorrect: true,
           label:
-            "Laras menghadapi hambatan dalam menikmati hutan kota tanpa mengejar seluruh titik foto dan belajar melalui tindakan kecil yang bertanggung jawab.",
+            "Laras beralih dari mengejar kesan lengkap menuju penyajian pengalaman yang dapat dipertanggungjawabkan, termasuk bagian yang tidak berhasil ia capai.",
         },
         {
           isCorrect: false,
           label:
-            "Laras menghadapi hambatan dalam menikmati hutan kota tanpa mengejar seluruh titik foto dan menempatkan pencatatan ketidakpastian di atas tindakan kecil yang dapat diperiksa.",
+            "Laras menyimpulkan bahwa batas waktu dan baterai tidak penting selama sebuah karya memiliki keterangan yang menjelaskan kekurangannya.",
         },
       ],
     },

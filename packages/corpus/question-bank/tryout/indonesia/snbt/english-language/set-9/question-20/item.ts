@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "A green permit card in a night market after closing",
+          label: "Tracing a wrong bag to its first symbol",
         },
         {
           isCorrect: false,

@@ -2,20 +2,41 @@ export const metadata = {
   title: "Soal 9",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-01",
 };
 
 Garis <InlineMath math="x+2y=5" /> memotong lingkaran <InlineMath math="x^2+y^2=25" /> dan membentuk sebuah tali busur.
 
-<LineEquation
+<MathVisual
   title="Lingkaran dan tali busur"
-  description="Lingkaran eksak berjari-jari 5 dan tali busur lurus dari (5, 0) ke (-3, 4)."
-  cameraPosition={[0, 0, 18]}
-  showZAxis={false}
-  data={[
-    { kind: "circle-outline", radius: 5, color: "#64748b", showPoints: false },
-    { points: [{ x: 5, y: 0, z: 0 }, { x: -3, y: 4, z: 0 }], color: "#7c3aed", smooth: false, showPoints: true },
-  ]}
+  description={<>Tali busur lurus adalah irisan garis <InlineMath math="x+2y=5" /> dengan lingkaran.</>}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      axes: "visible",
+      grid: "visible",
+      x: { min: -6, max: 6 },
+      y: { min: -6, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      {
+        id: "circle",
+        kind: "circle",
+        appearance: "reference",
+        center: { x: 0, y: 0 },
+        radius: 5,
+      },
+      {
+        id: "chord",
+        kind: "segment",
+        appearance: "primary",
+        from: { x: 5, y: 0 },
+        to: { x: -3, y: 4 },
+      },
+    ],
+  }}
 />
 
 Berapa panjang tali busur tersebut?

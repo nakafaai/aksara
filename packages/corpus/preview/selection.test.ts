@@ -182,11 +182,15 @@ describe("preview selection", () => {
                 },
                 {
                   mode: "restart",
-                  sourcePath: "packages/corpus/tryout/readiness/schema.ts",
+                  sourcePath: "packages/corpus/tryout/readiness/validation.ts",
                 },
                 {
                   mode: "restart",
                   sourcePath: "packages/corpus/tryout/schema.ts",
+                },
+                {
+                  mode: "restart",
+                  sourcePath: "packages/corpus/tryout/readiness/schema.ts",
                 },
                 {
                   mode: "restart",

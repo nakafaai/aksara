@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Nilai 34 membuktikan bahwa tanda jarak memenuhi kebutuhan semua pengunjung, termasuk mereka yang belum terwakili dalam uji.",
+            "Memasang papan baru secara tetap, lalu menganggap berkurangnya pertanyaan kepada petugas sebagai bukti bahwa semua kebutuhan sudah terpenuhi.",
         },
         {
           isCorrect: false,
           label:
-            "Keterlibatan pemandu dan petugas taman membuat pengamatan langsung terhadap pengguna dengan hambatan penglihatan tidak diperlukan.",
+            "Mengulang uji hanya pada pengunjung berpenglihatan biasa karena kelompok itu memiliki jumlah peserta terbesar.",
         },
         {
           isCorrect: true,
           label:
-            "Nilai 34 dibandingkan 23 mendukung penerusan tanda jarak secara terbatas, tetapi hasil belum dapat digeneralisasi kepada pengunjung dengan hambatan penglihatan.",
+            "Melibatkan kelompok pengguna yang belum terwakili, mengacak kondisi pada blok yang sebanding, lalu melaporkan hasil dan pengalaman setiap kelompok secara terpisah.",
         },
         {
           isCorrect: false,
           label:
-            "Karena jadwal dan jumlah petugas tetap, kenaikan nilai pasti sepenuhnya disebabkan tanda jarak pada setiap jalur wisata.",
+            "Menggabungkan semua kelompok ke dalam satu persentase yang lebih besar agar hasil mudah dibandingkan dengan uji pertama.",
         },
         {
           isCorrect: false,
           label:
-            "Nilai dasar 22 dan pembanding 23 menunjukkan bahwa aksesibilitas sudah memadai sebelum perubahan.",
+            "Meminta perancang papan menilai produknya sendiri tanpa pengamatan perjalanan pengguna di jalur tersebut.",
         },
       ],
     },

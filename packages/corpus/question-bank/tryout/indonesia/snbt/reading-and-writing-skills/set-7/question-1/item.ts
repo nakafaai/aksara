@@ -6,9 +6,8 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Erste Belege zu Menüvorbestellung am Vortag im Kontext „Schulfrühstücksprogramm“",
+          isCorrect: true,
+          label: "Geordnete Prüfung einer Änderung: Schulfrühstücksprogramm",
         },
         {
           isCorrect: false,
@@ -16,8 +15,9 @@ const item: QuestionItem = {
             "Prüfung mehrerer gleichzeitiger Änderungen im Kontext „Schulfrühstücksprogramm“",
         },
         {
-          isCorrect: true,
-          label: "Geordnete Prüfung einer Änderung: Schulfrühstücksprogramm",
+          isCorrect: false,
+          label:
+            "Erste Belege zu Menüvorbestellung am Vortag im Kontext „Schulfrühstücksprogramm“",
         },
         {
           isCorrect: false,
@@ -35,9 +35,8 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Early evidence about menu booking one day in advance in the context of school breakfast programme",
+          isCorrect: true,
+          label: "A structured test of one change: school breakfast programme",
         },
         {
           isCorrect: false,
@@ -45,8 +44,9 @@ const item: QuestionItem = {
             "Testing several simultaneous changes in the context of school breakfast programme",
         },
         {
-          isCorrect: true,
-          label: "A structured test of one change: school breakfast programme",
+          isCorrect: false,
+          label:
+            "Early evidence about menu booking one day in advance in the context of school breakfast programme",
         },
         {
           isCorrect: false,
@@ -63,9 +63,8 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "Bukti awal tentang pemesanan menu sehari sebelumnya dalam konteks program sarapan sekolah",
+          isCorrect: true,
+          label: "Uji Teratur atas Satu Perubahan: program sarapan sekolah",
         },
         {
           isCorrect: false,
@@ -73,8 +72,9 @@ const item: QuestionItem = {
             "Pengujian beberapa perubahan serentak dalam konteks program sarapan sekolah",
         },
         {
-          isCorrect: true,
-          label: "Uji Teratur atas Satu Perubahan: program sarapan sekolah",
+          isCorrect: false,
+          label:
+            "Bukti awal tentang pemesanan menu sehari sebelumnya dalam konteks program sarapan sekolah",
         },
         {
           isCorrect: false,

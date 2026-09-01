@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Sari menghadapi hambatan dalam membantu teman belajar tanpa mengambil alih tugasnya dan belajar melalui tindakan kecil yang bertanggung jawab.",
+            "Sari mengurangi bantuan dari contoh lengkap menjadi pemeriksaan mandiri, lalu mengukur keberhasilan melalui kemampuan Dimas menjelaskan dan memperbaiki langkahnya.",
         },
         {
           isCorrect: false,

@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Jonas faced an obstacle while trying to translate a welcome sign for several community events and learned through a small accountable action.",
+            "Jonas keeps two translations and marks their appropriate contexts, allowing organisers to choose wording by relationship and level of formality.",
         },
         {
           isCorrect: false,

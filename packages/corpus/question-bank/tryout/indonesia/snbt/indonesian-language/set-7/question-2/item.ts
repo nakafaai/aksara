@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Nilai 23 adalah rata-rata pada air bersuhu 35°C; volume balon hanya memberi perkiraan kasar tentang jumlah gas.",
+            "Keliling rata-rata 23 sentimeter pada 35°C adalah yang terbesar dari tiga suhu, tetapi ukuran itu belum sama dengan volume gas yang diukur langsung.",
         },
         {
           isCorrect: false,

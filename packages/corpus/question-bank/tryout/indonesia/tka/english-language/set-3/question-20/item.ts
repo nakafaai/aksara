@@ -2,37 +2,30 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "textual",
     contentDomain: "procedure",
-    topic: "information-validity",
+    topic: "classification",
   },
   responses: {
     en: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "One speaker contributed most of the evidence and invited others only near the end.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Participants retained their original positions after restating another view.",
-        },
-        {
-          isCorrect: false,
-          label: "The fastest response was accepted without evidence.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The focused question was first given to participants who volunteered quickly.",
+          isCorrect: true,
+          label: "Provide quiet writing time.",
         },
         {
           isCorrect: true,
+          label: "Invite someone who has not spoken.",
+        },
+        {
+          isCorrect: true,
+          label: "Allow an invited person to pass.",
+        },
+        {
+          isCorrect: false,
           label:
-            "Restatements were accurate, evidence supported claims, and invitations respected choice.",
+            "Prioritize speakers who can respond immediately so the discussion keeps moving.",
         },
       ],
     },

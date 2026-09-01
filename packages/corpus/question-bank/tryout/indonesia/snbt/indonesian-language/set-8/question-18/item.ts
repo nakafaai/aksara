@@ -8,22 +8,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Daftar peminjaman menunjukkan alasan setiap peserta memilih buku sehingga catatan fasilitator tidak menambah informasi.",
+            "Kenaikan peminjaman membuktikan bahwa seluruh anggota menyelesaikan dan memahami lebih banyak buku setelah jadwal malam dimulai.",
         },
         {
           isCorrect: false,
           label:
-            "Catatan fasilitator harus menjadi dasar utama karena kesulitan peserta lebih penting daripada pilihan bacaan.",
+            "Tiga catatan peserta baru cukup untuk mewakili pengalaman semua anggota, termasuk peserta yang memilih diam.",
         },
         {
           isCorrect: false,
           label:
-            "Jika pilihan buku meningkat, kedua sumber membuktikan bahwa semua kesulitan membaca telah teratasi.",
+            "Jadwal malam pasti menyebabkan kenaikan pilihan buku cerita pendek karena kedua perubahan terjadi pada tahun yang sama.",
         },
         {
           isCorrect: true,
           label:
-            "Daftar peminjaman menunjukkan pilihan buku, sedangkan catatan fasilitator memberi konteks tentang kesulitan peserta; keduanya membantu membaca perkembangan kebiasaan, tetapi catatan fasilitator tetap merupakan sudut pandang pengamat.",
+            "Sesudah jadwal berubah, pilihan cerita pendek bergambar meningkat dan beberapa peserta baru mengaitkannya dengan keberanian berdiskusi, tetapi arsip belum membuktikan penyebab atau pengalaman seluruh anggota.",
         },
         {
           isCorrect: false,

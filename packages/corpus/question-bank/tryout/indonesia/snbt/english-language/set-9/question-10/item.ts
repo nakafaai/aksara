@@ -19,7 +19,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Evidence-informed change in a night-market waste station",
+          label: "Aligning waste symbols across a changing night market",
         },
         {
           isCorrect: false,

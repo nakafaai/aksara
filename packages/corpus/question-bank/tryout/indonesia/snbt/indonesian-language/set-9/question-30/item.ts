@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Benda berulang yang tetap menjadi bagian latar",
+          label: "Menghapus Label Lama demi Katalog Baru",
         },
         {
           isCorrect: false,
-          label: "Konflik yang selesai sebelum pilihan akhir tokoh",
+          label: "Kostum 1998 yang Tidak Boleh Diubah",
         },
         {
           isCorrect: true,
-          label: "Label kain di gudang kostum teater",
+          label: "Benang Putih di Balik Mantel",
         },
         {
           isCorrect: false,
-          label: "motif sebagai istilah tanpa peran dalam cerita",
+          label: "Raka dan Riwayat Kostum yang Sudah Lengkap",
         },
         {
           isCorrect: false,
-          label: "Akhir yang menghapus ketegangan makna benda",
+          label: "Pindah Gedung tanpa Menyimpan Jejak Lama",
         },
       ],
     },

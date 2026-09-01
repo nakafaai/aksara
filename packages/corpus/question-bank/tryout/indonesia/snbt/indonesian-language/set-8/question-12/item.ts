@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
+            "Hasil 27 dari 30 menunjukkan bahwa tiga pasangan yang tersisa pasti salah karena petugas tidak memahami satuan meter.",
         },
         {
           isCorrect: true,
           label:
-            "Nilai 14 adalah kondisi pembanding untuk format satuan seragam; musim dan waktu pengukuran tetap menentukan keterbandingan kedalaman.",
+            "Hasil 27 dari 30 menunjukkan formulir baru mengurangi kebutuhan menebak satuan dan titik acuan, tetapi pengukuran dari musim atau waktu berbeda tetap belum otomatis setara.",
         },
         {
           isCorrect: false,
           label:
-            "Kondisi pembanding menghasilkan nilai rata-rata 14; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+            "Perbedaan 27 dan 14 membuktikan bahwa formulir menjadi satu-satunya penjelasan atas setiap pasangan yang dapat dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
+            "Tiga puluh pasangan sudah cukup untuk memastikan formulir akan memberi hasil yang sama di setiap desa dan musim.",
         },
         {
           isCorrect: false,
           label:
-            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
+            "Selama nilai asli disimpan, semua catatan lama dapat dibandingkan tanpa mengetahui satuan dan titik acuannya.",
         },
       ],
     },

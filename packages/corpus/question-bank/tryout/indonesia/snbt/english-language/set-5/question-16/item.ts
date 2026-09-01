@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Samira's small choice changes the meaning of a blue date stamp while addressing a conflict in a food pantry at closing time.",
+            "Samira turns a blue date stamp from a reminder of unfinished work into a shared practice by recording the last package, and the next volunteer carries the action forward.",
         },
         {
           isCorrect: false,

@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The organisers of a night-market waste station evaluated matching symbols on bins and stall permits through a comparison and consultation with affected groups.",
+            "The night market compared matching permit and bin symbols across measured conditions, consulted affected groups, and supported only a limited extension because each evening's visitors and food mix varied.",
         },
         {
           isCorrect: false,

@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Nilai 32 adalah kondisi pembanding untuk label tujuan besar; uji tersebut mengukur ketepatan tujuan, bukan keterlambatan akibat cuaca laut.",
+            "Nilai 43 pada kelompok label besar dapat dibandingkan dengan nilai 32 pada kelompok label lama; perbedaan itu mendukung ketepatan tujuan, tetapi belum menjawab keterlambatan akibat cuaca laut.",
         },
       ],
     },

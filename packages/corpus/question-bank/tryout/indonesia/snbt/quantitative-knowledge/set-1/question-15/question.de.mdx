@@ -2,93 +2,85 @@ export const metadata = {
   title: "Aufgabe 15",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-17",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-01",
 };
 
 
 
 Das Dreieck <InlineMath math="ABC" /> ähnelt dem Dreieck <InlineMath math="ADE" />.
 
-<LineEquation
+<MathVisual
   title={<>Dreieck <InlineMath math="ABC" /> und <InlineMath math="ADE" /></>}
   description="Visualisierung zweier ähnlicher Dreiecke mit markierten Eckpunkten."
-  cameraPosition={[0, 0, 17]}
-  showZAxis={false}
-  data={[
-    {
-      points: [
-        { x: 2, y: 1, z: 0 },
-        { x: 5, y: 1, z: 0 },
-        { x: 8, y: 1, z: 0 }
-      ],
-      color: "#7c3aed",
-      showPoints: false,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="A(2,1)" />, at: 0, offset: [-0.8, 0.4, 0] }
-      ]
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      axes: "visible",
+      grid: "visible",
+      x: { min: 1, max: 11 },
+      y: { min: -4, max: 5 },
     },
-    {
-      points: [
-        { x: 8, y: 1, z: 0 },
-        { x: 8, y: 2.5, z: 0 },
-        { x: 8, y: 4, z: 0 }
-      ],
-      color: "#7c3aed",
-      showPoints: false,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="B(8,4)" />, at: 2, offset: [0.8, 0.4, 0] },
-        { text: <InlineMath math="C" />, at: 0, offset: [0.5, 0.5, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 8, y: 4, z: 0 },
-        { x: 5, y: 2.5, z: 0 },
-        { x: 2, y: 1, z: 0 }
-      ],
-      color: "#7c3aed",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 8, y: 1, z: 0 },
-        { x: 9, y: 1, z: 0 },
-        { x: 10, y: 1, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: false,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="D" />, at: 2, offset: [0.5, 0.4, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 2, y: 1, z: 0 },
-        { x: 2, y: -1, z: 0 },
-        { x: 2, y: -3, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: false,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="E(2,-3)" />, at: 2, offset: [-0.5, -0.4, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 2, y: -3, z: 0 },
-        { x: 6, y: -1, z: 0 },
-        { x: 10, y: 1, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: false,
-      smooth: false,
-    }
-  ]}
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      {
+        id: "segment-ac",
+        kind: "segment",
+        appearance: "primary",
+        from: { x: 2, y: 1 },
+        to: { x: 8, y: 1 },
+      },
+      {
+        id: "segment-cb",
+        kind: "segment",
+        appearance: "primary",
+        from: { x: 8, y: 1 },
+        to: { x: 8, y: 4 },
+      },
+      {
+        id: "segment-ba",
+        kind: "segment",
+        appearance: "primary",
+        from: { x: 8, y: 4 },
+        to: { x: 2, y: 1 },
+      },
+      {
+        id: "segment-cd",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: 8, y: 1 },
+        to: { x: 10, y: 1 },
+      },
+      {
+        id: "segment-ae",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: 2, y: 1 },
+        to: { x: 2, y: -3 },
+      },
+      {
+        id: "segment-ed",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: 2, y: -3 },
+        to: { x: 10, y: 1 },
+      },
+    ],
+    labels: [
+      { key: "point-a", at: { x: 2, y: 1 }, placement: "above-left" },
+      { key: "point-b", at: { x: 8, y: 4 }, placement: "above-right" },
+      { key: "point-c", at: { x: 8, y: 1 }, placement: "above-right" },
+      { key: "point-d", at: { x: 10, y: 1 }, placement: "above-right" },
+      { key: "point-e", at: { x: 2, y: -3 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "point-a": <><InlineMath math="A(2,1)" /></>,
+    "point-b": <><InlineMath math="B(8,4)" /></>,
+    "point-c": <><InlineMath math="C" /></>,
+    "point-d": <><InlineMath math="D" /></>,
+    "point-e": <><InlineMath math="E(2,-3)" /></>,
+  }}
 />
 
 Die Fläche des Dreiecks <InlineMath math="ADE" /> beträgt ....

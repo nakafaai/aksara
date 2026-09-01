@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Peta resmi menunjukkan lokasi pemasangan, sedangkan catatan harian memberi pengalaman tiga warga; keduanya dapat menghubungkan perubahan ruang dan pengalaman malam, tetapi tidak mewakili seluruh warga atau semua jalur.",
+            "Penerangan tampaknya lebih tersedia di sekitar pasar dan jalan utama daripada jalur sungai, tetapi tiga catatan belum cukup untuk mewakili seluruh rute atau memastikan kinerja setiap lampu.",
         },
         {
           isCorrect: false,
           label:
-            "Peta lokasi lampu membuktikan pengalaman berjalan malam semua warga karena penerangan ditentukan sepenuhnya oleh jumlah lampu.",
+            "Semua lampu bertanda penuh pasti berfungsi karena kantor desa telah menulis bahwa pemeriksaan selesai.",
         },
         {
           isCorrect: false,
           label:
-            "Catatan harian harus menggantikan peta karena pengalaman pribadi lebih nyata daripada dokumen resmi.",
+            "Empat malam gelap di jalur sungai membuktikan seluruh proyek penerangan gagal di seluruh kampung.",
         },
         {
           isCorrect: false,
           label:
-            "Jika catatan warga tidak sama, peta resmi menjadi satu-satunya sumber yang dapat digunakan.",
+            "Pengalaman Sari membuktikan lampu pasar menyala setiap malam sepanjang tahun sampai pukul sembilan.",
         },
         {
           isCorrect: false,
           label:
-            "Setelah lokasi dan pengalaman digabungkan, posisi warga serta tujuan kantor desa membuat peta tidak lagi perlu dicatat.",
+            "Karena Mina tetap menghindari gang, pemasangan lampu tidak mengubah pengalaman malam siapa pun.",
         },
       ],
     },

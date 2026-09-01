@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Data di ukur di pusat informasi taman kota dan kemudian dibandingkan.",
+            "Data di kumpulkan di pusat informasi taman kota, lalu dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data diukur didepan pusat informasi taman kota dan kemudian dibandingkan.",
+            "Data dikumpulkan didepan pusat informasi taman kota, lalu dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data mengukur di pusat informasi taman kota dan kemudian membandingkan.",
+            "Data mengumpulkan di pusat informasi taman kota, lalu membandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data diukur pada di pusat informasi taman kota lalu di bandingkan.",
+            "Data dikumpulkan pada di pusat informasi taman kota lalu di bandingkan.",
         },
         {
           isCorrect: true,
           label:
-            "Data diukur di pusat informasi taman kota dan kemudian dibandingkan.",
+            "Data dikumpulkan di pusat informasi taman kota, lalu dibandingkan.",
         },
       ],
     },

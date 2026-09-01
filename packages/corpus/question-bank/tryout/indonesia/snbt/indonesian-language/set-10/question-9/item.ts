@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Definisi *infiltrasi* membuktikan bahwa hasil model selalu sama dengan keadaan tanah di lapangan.",
+            "Menjadikan volume keluaran bawah sebagai ukuran tunggal bagi semua proses air di dalam kolom.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi itu menjadikan *infiltrasi* nama untuk seluruh alat, bukan proses tertentu yang disimulasikan.",
+            "Membuktikan bahwa air yang telah masuk pasti segera keluar sehingga penyimpanan tidak mungkin terjadi.",
         },
         {
           isCorrect: false,
           label:
-            "Istilah *infiltrasi* menghapus keterbatasan representasi karena prosesnya dapat diulang di kelas.",
+            "Menunjukkan bahwa kedua istilah dapat dipakai bergantian selama volume awalnya sama.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi tersebut hanya menjelaskan bahan pembuat model dan tidak berhubungan dengan proses yang diamati.",
+            "Menghapus kebutuhan menghitung air tersimpan karena perkolasi sudah mencakup seluruh air di dalam tanah.",
         },
         {
           isCorrect: true,
           label:
-            "Definisi *infiltrasi* menghubungkan proses pada model dengan proses yang diwakilinya sehingga kegunaan model dapat dibedakan dari batas penerapannya.",
+            "Mencegah pembaca menyamakan air yang masuk dari permukaan dengan air yang telah bergerak sampai ke bawah kolom.",
         },
       ],
     },

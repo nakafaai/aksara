@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "a green permit card gains meaning through its connection to the conflict, choice, and ending.",
+            "The green permit card gains meaning through the misplaced blame, Ravi's backward search, and its final contrast with the new bin.",
         },
         {
           isCorrect: false,

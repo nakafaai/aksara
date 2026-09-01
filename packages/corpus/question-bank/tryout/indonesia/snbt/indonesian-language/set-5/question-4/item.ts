@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *indikator* menetapkan makna konsep yang diukur sebelum pembaca menafsirkan perbandingan angka dan keterbatasan percobaan.",
+            "Definisi *indikator* menjelaskan bahwa persentase cahaya mewakili kejernihan visual, sehingga ukuran itu belum cukup untuk menyatakan air aman diminum.",
         },
         {
           isCorrect: false,

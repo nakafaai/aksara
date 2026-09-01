@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Miles's small choice changes the meaning of a spool of gold thread while addressing a conflict in a repair café during a storm.",
+            "Miles chooses a contrasting gold repair seam, and its line of light reframes repair as continuing an object's history rather than erasing it.",
         },
         {
           isCorrect: false,

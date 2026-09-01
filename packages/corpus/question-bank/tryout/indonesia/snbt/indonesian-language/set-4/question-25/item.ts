@@ -15,7 +15,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Langkah Kecil Nisa di pasar kecamatan",
+          label: "Dari Lorong Sempit ke Usulan Akses Nisa",
         },
         {
           isCorrect: false,

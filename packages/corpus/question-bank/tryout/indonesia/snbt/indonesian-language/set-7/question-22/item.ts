@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Arum memilih untuk bertanya kepada petugas, lalu menggambar ulang alur dengan bahasa yang sederhana; tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
+            "Pemeriksaan petugas membuat kartu Arum berlaku sebagai prosedur resmi bagi setiap pasien dengan kondisi apa pun.",
         },
         {
           isCorrect: true,
           label:
-            "Bertanya kepada petugas sebelum menggambar ulang alur membuat penyederhanaan Arum tetap terikat pada proses layanan yang sebenarnya.",
+            "Meminta petugas memeriksa kartu membuat penyederhanaan Arum tetap sesuai alur umum dan mengungkap pengecualian yang sebelumnya ia lewatkan.",
         },
         {
           isCorrect: false,
           label:
-            "Arum memilih untuk bertanya kepada petugas, lalu menggambar ulang alur dengan bahasa yang sederhana; perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
+            "Menggambar dengan ikon sudah menjamin semua pasien memahami kartu meskipun isi dan pengecualiannya belum diperiksa.",
         },
         {
           isCorrect: false,
           label:
-            "Arum memilih untuk bertanya kepada petugas, lalu menggambar ulang alur dengan bahasa yang sederhana; latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
+            "Kesalahan awal Arum menunjukkan bahwa petunjuk visual sebaiknya dihapus dan seluruh arahan disampaikan secara lisan.",
         },
         {
           isCorrect: false,
           label:
-            "Arum memilih untuk bertanya kepada petugas, lalu menggambar ulang alur dengan bahasa yang sederhana; definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
+            "Koreksi perawat membuktikan bahwa Arum tidak perlu menggunakan informasi dari petugas administrasi dalam kartu alurnya.",
         },
       ],
     },

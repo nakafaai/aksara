@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Arum menghadapi hambatan dalam menemani nenek menjalani pemeriksaan kesehatan dan menunggu seluruh proyek selesai sebelum meminta satu pun peninjauan.",
+            "Arum mengganti arahan petugas dengan kartu alur karena petunjuk yang sederhana selalu lebih tepat daripada prosedur klinik.",
         },
         {
           isCorrect: false,
           label:
-            "Arum menghadapi hambatan dalam menemani nenek menjalani pemeriksaan kesehatan dan menyerahkan langkah berikutnya kepada tokoh lain agar masalah segera berakhir.",
+            "Arum menyelesaikan masalah hanya dengan mengikuti panah yang tersedia sampai laboratorium tanpa meminta informasi tambahan.",
         },
         {
           isCorrect: false,
           label:
-            "Arum menghadapi hambatan dalam menemani nenek menjalani pemeriksaan kesehatan dan memahami empati sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
+            "Arum menyusun aturan layanan yang berlaku bagi semua pasien setelah mengetahui empat tahap umum pemeriksaan neneknya.",
         },
         {
           isCorrect: true,
           label:
-            "Arum menghadapi hambatan dalam menemani nenek menjalani pemeriksaan kesehatan dan belajar melalui tindakan kecil yang bertanggung jawab.",
+            "Arum mengubah kebingungan menjadi kartu alur yang diperiksa petugas, lalu memakainya sebagai alat bantu dengan tetap mencantumkan pengecualian.",
         },
         {
           isCorrect: false,
           label:
-            "Arum menghadapi hambatan dalam menemani nenek menjalani pemeriksaan kesehatan dan menempatkan pencatatan ketidakpastian di atas tindakan kecil yang dapat diperiksa.",
+            "Arum membuktikan bahwa setiap pasien akan mengikuti urutan yang sama selama nama dokumen ditulis dengan bahasa sederhana.",
         },
       ],
     },

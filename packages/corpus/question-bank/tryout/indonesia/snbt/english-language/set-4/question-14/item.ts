@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The definition of *co-design* provides a lens for reading the character's specific choice as a response to uncertainty, not as an isolated moral label.",
+            "The definition of *co-design* explains why Amina's participation in testing and revising the map is part of the design process rather than an afterthought.",
         },
         {
           isCorrect: false,

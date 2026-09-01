@@ -73,7 +73,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Dengan aturan pengukuran yang sama, tim merencanakan uji contoh foto untuk setiap kategori kondisi yang lebih panjang.",
+            "Dengan aturan pengukuran yang sama, tim merencanakan uji yang lebih lama terhadap contoh foto untuk setiap kategori kondisi.",
         },
         {
           isCorrect: false,

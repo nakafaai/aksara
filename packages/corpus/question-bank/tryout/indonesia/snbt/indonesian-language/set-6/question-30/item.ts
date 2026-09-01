@@ -7,25 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Benda berulang yang tetap menjadi bagian latar",
+          label: "Garis yang Pasti Disebabkan Kelembapan Tinggi",
         },
         {
           isCorrect: false,
-          label: "Konflik yang selesai sebelum pilihan akhir tokoh",
+          label: "Perintah Supervisor yang Sudah Dipahami Sepenuhnya",
         },
         {
           isCorrect: false,
           label:
-            "sudut pandang terbatas sebagai istilah tanpa peran dalam cerita",
+            "Sudut Pandang Terbatas sebagai Istilah Tanpa Peran dalam Cerita",
         },
         {
           isCorrect: false,
-          label: "Akhir yang menghapus ketegangan makna benda",
+          label: "Pemindahan Rutin yang Tidak Memerlukan Catatan Lama",
         },
         {
           isCorrect: true,
-          label:
-            "Kartu kondisi di ruang penyimpanan karya seni pada malam hari",
+          label: "Satu Kartu sebelum Lukisan Dipindahkan",
         },
       ],
     },

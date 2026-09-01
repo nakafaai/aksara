@@ -85,7 +85,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Tim mengubah satu faktor saja, yaitu kode pengembalian.",
+          label:
+            "Tim mengubah satu faktor saja, yaitu kode pengembalian pada setiap gagang.",
         },
       ],
     },

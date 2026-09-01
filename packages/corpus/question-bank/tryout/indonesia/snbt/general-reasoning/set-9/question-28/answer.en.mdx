@@ -2,9 +2,13 @@ export const metadata = {
   title: "Solution to Question 28",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-01",
 };
 
-Count cases with exactly one of A and B at an end, then exclude adjacent C and D. This leaves 240 arrangements before fixing their order; exactly half have C before D. Therefore <InlineMath math="120/720=1/6" />.
+Choose the report from A and B that occupies an end, then choose the left or right end. This gives <InlineMath math="2\cdot2=4" /> choices. The other report from A and B must occupy one of four non-end positions, and the remaining four reports have <InlineMath math="4!" /> arrangements. Before excluding adjacent C-D, the count is <InlineMath math="4\cdot4\cdot4!=384" />.
+
+For each report-and-end choice, treating C-D as one block with two internal orders gives <InlineMath math="2\cdot4!=48" /> arrangements in the remaining five positions. Of these, <InlineMath math="2\cdot3!=12" /> put the other report from A and B at the opposite end and are already invalid. Thus the number with adjacent C-D is <InlineMath math="4(48-12)=144" />.
+
+There are <InlineMath math="384-144=240" /> arrangements in which C and D are not adjacent. Swapping C and D shows that half have C before D, giving <InlineMath math="240/2=120" /> valid arrangements.
 
 Therefore, the requested value is <InlineMath math="\\frac16" />.

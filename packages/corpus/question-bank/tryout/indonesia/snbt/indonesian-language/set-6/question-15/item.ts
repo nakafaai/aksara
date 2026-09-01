@@ -19,7 +19,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Keputusan Berbasis Bukti dalam program teman belajar",
+          label: "Kartu Tujuan dalam Dukungan Sebaya: Uji Dua Minggu",
         },
         {
           isCorrect: false,

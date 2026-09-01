@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "the models held 39 washers on average, compared with 24 and 25; this supports an association between the triangular truss and the load held by the paper bridge under the tested conditions, while paper fibres and folds varied slightly between models requires further testing before a broader claim.",
+            "The truss models held 39 washers on average, compared with 24 and 25. This supports an association under the tested conditions, but more standardised paper and folds are needed before a broader claim.",
         },
       ],
     },

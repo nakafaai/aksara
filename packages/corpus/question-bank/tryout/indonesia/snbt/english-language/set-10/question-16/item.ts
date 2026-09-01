@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The recurring object mainly establishes the setting and changes little in relation to the conflict.",
+            "The ledger mainly establishes the hall as a realistic setting, while Iris's questions have little effect on its meaning.",
         },
         {
           isCorrect: false,
           label:
-            "The character's final decision removes the ambiguity that the recurring object previously carried.",
+            "Iris reaches a final budget decision, and that completed result removes the uncertainty attached to the ledger.",
         },
         {
           isCorrect: false,
           label:
-            "The passage uses open ending as a descriptive label without tying it to the character's choice.",
+            "The open ending matters mainly because the supplier fails to respond, independently of Iris's changes to the ledger.",
         },
         {
           isCorrect: false,
           label:
-            "The conflict is settled by the setting before the character's final action changes the object's meaning.",
+            "The teammates settle the conflict by adding deadlines, so the remaining blank line no longer carries interpretive weight.",
         },
         {
           isCorrect: true,
           label:
-            "Iris's small choice changes the meaning of a pencil-worn ledger while addressing a conflict in an empty hall after a planning meeting.",
+            "Iris turns a ledger that displayed false certainty into a shared record of open questions, while the ending leaves the final budget unresolved.",
         },
       ],
     },

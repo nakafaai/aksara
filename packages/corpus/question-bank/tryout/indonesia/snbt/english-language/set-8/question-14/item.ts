@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The definition of *connotation* provides a lens for reading the character's specific choice as a response to uncertainty, not as an isolated moral label.",
+            "The definition explains why two literal equivalents can suit different settings: each carries a social meaning and level of formality beyond its basic reference.",
         },
       ],
     },

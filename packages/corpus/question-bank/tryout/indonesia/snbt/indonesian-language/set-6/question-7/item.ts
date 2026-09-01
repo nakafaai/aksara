@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pengulangan langkah pada model membantu memeriksa bahwa penutup permukaan dapat mengubah banyaknya tanah yang terbawa aliran; karena baki kecil tidak meniru seluruh kemiringan, akar, dan curah hujan suatu lereng, pola itu menjadi hipotesis untuk pengamatan nyata, bukan bukti langsung tentang seluruh keadaan lapangan.",
+            "Selisih yang muncul pada kedua ulangan mendukung dugaan bahwa penutup mengurangi tanah terbawa, tetapi model belum dapat memprediksi besarnya erosi pada lereng dengan akar, tanah, dan hujan yang berbeda.",
         },
         {
           isCorrect: false,

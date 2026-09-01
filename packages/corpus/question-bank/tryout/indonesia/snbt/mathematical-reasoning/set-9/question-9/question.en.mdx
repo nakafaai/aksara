@@ -2,18 +2,44 @@ export const metadata = {
   title: "Question 9",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-01",
 };
 
 The vertices of a pentagon, listed counterclockwise, are <InlineMath math="(1,1)" />, <InlineMath math="(7,2)" />, <InlineMath math="(6,7)" />, <InlineMath math="(2,9)" />, and <InlineMath math="(-1,5)" />.
 
-<LineEquation
+<MathVisual
   title="Coordinate pentagon"
   description="An exact pentagon formed by five straight segments."
-  cameraPosition={[3, 5, 22]}
-  cameraTarget={[3, 5, 0]}
-  showZAxis={false}
-  data={[{ points: [{ x: 1, y: 1, z: 0 }, { x: 7, y: 2, z: 0 }, { x: 6, y: 7, z: 0 }, { x: 2, y: 9, z: 0 }, { x: -1, y: 5, z: 0 }, { x: 1, y: 1, z: 0 }], color: "#7c3aed", smooth: false, showPoints: true }]}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      axes: "visible",
+      grid: "visible",
+      x: { min: -2, max: 8 },
+      y: { min: 0, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      {
+        id: "coordinate-pentagon",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 1, y: 1 },
+          { x: 7, y: 2 },
+          { x: 6, y: 7 },
+          { x: 2, y: 9 },
+          { x: -1, y: 5 },
+        ],
+      },
+      { id: "vertex-one", kind: "point", appearance: "highlight", at: { x: 1, y: 1 } },
+      { id: "vertex-two", kind: "point", appearance: "highlight", at: { x: 7, y: 2 } },
+      { id: "vertex-three", kind: "point", appearance: "highlight", at: { x: 6, y: 7 } },
+      { id: "vertex-four", kind: "point", appearance: "highlight", at: { x: 2, y: 9 } },
+      { id: "vertex-five", kind: "point", appearance: "highlight", at: { x: -1, y: 5 } },
+    ],
+  }}
 />
 
 What is the area of the pentagon?

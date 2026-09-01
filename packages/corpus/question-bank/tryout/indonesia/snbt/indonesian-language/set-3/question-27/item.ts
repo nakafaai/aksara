@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Buku pada kursi kosong mengubah ruang tunggu yang berulang dari tanda ketiadaan menjadi undangan membaca, lalu respons akhir menegaskan perubahan itu.",
+            "Tindakan Mira membuat lampu beralih dari penanda panggung kosong menjadi undangan membaca, lalu permintaan sopir dan kedatangan penjual menguatkan perubahan itu.",
         },
       ],
     },

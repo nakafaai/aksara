@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kedua sumber membahas perubahan penerangan pada ruang yang sama; perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
+            "Peta membuktikan lampu menyala, sedangkan buku harian hanya menggambarkan perasaan yang tidak dapat dibandingkan dengan lokasi.",
         },
         {
           isCorrect: false,
           label:
-            "Karena membahas peristiwa yang sama, kedua sumber pasti mempunyai sudut pandang dan tujuan yang sama.",
+            "Buku harian menunjukkan seluruh lokasi lampu, sedangkan peta menjelaskan berapa lama setiap lampu menyala.",
         },
         {
           isCorrect: true,
           label:
-            "Peta lampu dan catatan harian sama-sama membahas ruang yang diterangi, tetapi lokasi resmi dan pengalaman tiga warga memberi cakupan yang berbeda.",
+            "Peta menunjukkan status dan sebaran pemasangan, sedangkan buku harian menunjukkan bagaimana beberapa warga mengalami penerangan pada rute serta waktu tertentu.",
         },
         {
           isCorrect: false,
           label:
-            "Menggabungkan dua sumber memberi izin untuk mengisi bagian yang hilang dengan dugaan yang masuk akal.",
+            "Kedua sumber memberi informasi yang sama karena titik peta dan lokasi dalam catatan dapat disejajarkan.",
         },
         {
           isCorrect: false,
           label:
-            "Perbedaan antarsumber hanya berkaitan dengan pilihan kata dan tidak memengaruhi simpulan.",
+            "Perbedaan tujuan membuat kedua sumber tidak dapat dipakai bersama dalam satu penyelidikan.",
         },
       ],
     },

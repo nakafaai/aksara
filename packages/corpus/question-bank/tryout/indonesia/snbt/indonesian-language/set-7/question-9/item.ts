@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *daya dukung* menghubungkan proses pada model dengan proses yang diwakilinya sehingga kegunaan model dapat dibedakan dari batas penerapannya.",
+            "Definisi *daya dukung* menjelaskan mengapa populasi berhenti pada dua batas sumber daya, sekaligus menegaskan bahwa batas lingkungan nyata dapat berubah dan bukan angka tetap.",
         },
         {
           isCorrect: false,

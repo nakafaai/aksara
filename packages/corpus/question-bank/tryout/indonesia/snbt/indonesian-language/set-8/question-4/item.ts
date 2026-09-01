@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Definisi *transpirasi* membuktikan bahwa perubahan uji menyebabkan hasil yang tercatat meskipun kondisi pembanding diabaikan.",
+            "Definisi *transpirasi* membuktikan bahwa seluruh penurunan massa pasti berupa uap air yang keluar melalui stomata.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *transpirasi* menetapkan makna konsep yang diukur sebelum pembaca menafsirkan perbandingan angka dan keterbatasan percobaan.",
+            "Definisi *transpirasi* menghubungkan kehilangan massa dengan perpindahan uap air yang sedang dipelajari, tetapi perbandingan perlakuan tetap diperlukan untuk menafsirkan hasilnya.",
         },
       ],
     },

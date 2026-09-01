@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The organisers of a youth event-planning group evaluated a budget sheet that separated fixed, flexible, and shared costs through a comparison and consultation with affected groups.",
+            "Across comparable workshop rounds, the separated budget sheet was linked to fewer classification errors, which justified a limited real-event trial rather than permanent adoption.",
         },
         {
           isCorrect: false,
           label:
-            "The organisers of a youth event-planning group evaluated a budget sheet that separated fixed, flexible, and shared costs through consultation alone, without comparing the measured outcome across conditions.",
+            "The separated budget sheet proved that teams using it would calculate accurate totals even when supplier prices changed after the workshop.",
         },
         {
           isCorrect: false,
           label:
-            "The organisers of a youth event-planning group evaluated a budget sheet that separated fixed, flexible, and shared costs through the measured comparison alone, while excluding the affected groups' experience from the decision.",
+            "The two old-sheet rounds produced different results, so the comparison cannot contribute any evidence about the new sheet.",
         },
         {
           isCorrect: false,
           label:
-            "The organisers of a youth event-planning group evaluated a budget sheet that separated fixed, flexible, and shared costs through a comparison and consultation, then treated the short trial as sufficient for permanent adoption.",
+            "Because the event scenario and instructions stayed the same, the trial established the separated sheet as the only possible cause of every corrected budget.",
         },
         {
           isCorrect: false,
           label:
-            "The organisers of a youth event-planning group evaluated a budget sheet that separated fixed, flexible, and shared costs mainly by defining a technical term, with the proposed change serving only as background information.",
+            "The report mainly redefined fixed cost, while the three rounds and the proposed real-event trial served only as background details.",
         },
       ],
     },

@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Nilai 16 adalah rata-rata pada tali 60 sentimeter; pengukuran manual masih dapat dipengaruhi waktu reaksi pencatat.",
+            "Rata-rata 15,6 detik untuk sepuluh ayunan pada tali 60 sentimeter memberi periode perkiraan 1,56 detik; ketelitiannya masih dipengaruhi pencatatan manual.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pada kondisi dengan perubahan, hasil rata-rata tercatat 16; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+            "Hasil 15,6 detik pada tali 60 sentimeter membuktikan bahwa periode selalu berkurang 4,5 detik untuk setiap pengurangan panjang tali sebesar 40 sentimeter.",
         },
       ],
     },

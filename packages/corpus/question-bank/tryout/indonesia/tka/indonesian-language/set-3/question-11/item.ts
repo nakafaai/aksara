@@ -2,26 +2,36 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "outline",
+    topic: "main-supporting-ideas",
   },
   responses: {
     id: {
-      categories: ["Data pengamatan", "Penjelasan alternatif"],
-      kind: "category",
-      statements: [
+      kind: "single-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "438 liter air pada minggu ketiga",
+          isCorrect: true,
+          label:
+            "terdapat pola yang mendukung perbaikan layanan, tetapi faktor lain masih perlu diukur",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Kantin berhenti menjual satu merek air kemasan",
+          isCorrect: false,
+          label:
+            "kenaikan volume air isi ulang dapat langsung diterjemahkan menjadi jumlah botol yang dihindari",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Suhu udara meningkat",
+          isCorrect: false,
+          label:
+            "penghitungan pada satu jam yang sama dipakai sebagai perkiraan harian tanpa sampel waktu lain",
+        },
+        {
+          isCorrect: false,
+          label: "suhu tidak mungkin memengaruhi kebutuhan minum",
+        },
+        {
+          isCorrect: false,
+          label: "stasiun isi ulang harus dihentikan",
         },
       ],
     },

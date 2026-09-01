@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kondisi pembanding menghasilkan nilai rata-rata 20; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+            "Semua kelompok memperoleh peningkatan yang sebanding karena penyebut pada setiap baris tidak berubah.",
         },
         {
           isCorrect: false,
           label:
-            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
+            "Kelompok tanpa kebutuhan akses menunjukkan peningkatan terbesar karena 19 dari 20 merupakan hasil tertinggi.",
         },
         {
           isCorrect: false,
           label:
-            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
+            "Hasil kelompok sensorik turun karena 13 dari 20 lebih kecil daripada 16 dari 20 pada kelompok mobilitas.",
         },
         {
           isCorrect: true,
           label:
-            "Nilai 20 adalah kondisi pembanding untuk peta kebutuhan akses; ragam kebutuhan sensorik dan motorik yang belum terlibat membatasi penerapan.",
+            "Manfaat tampak paling besar pada kelompok mobilitas dan kebutuhan majemuk, sedangkan perubahan kecil pada kelompok sensorik menunjukkan ikon masih perlu diperbaiki.",
         },
         {
           isCorrect: false,
           label:
-            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
+            "Perbedaan antarkelompok tidak dapat dibandingkan karena setiap kebutuhan pasti memiliki definisi keberhasilan yang berbeda dalam tabel.",
         },
       ],
     },

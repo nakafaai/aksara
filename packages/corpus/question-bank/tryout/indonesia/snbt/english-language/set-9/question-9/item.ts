@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Calling a cost *system alignment* establishes that the proposed change is affordable without using the estimated prices.",
+            "Defining *system alignment* proves that matching symbols alone caused every correctly sorted bag.",
         },
         {
           isCorrect: false,
           label:
-            "The definition makes *system alignment* apply to every cost in the table, regardless of how activity levels change.",
+            "The definition makes evening-to-evening variation irrelevant to the follow-up.",
         },
         {
           isCorrect: false,
           label:
-            "The term *system alignment* replaces the affected groups' evidence with a financial label that settles the decision by itself.",
+            "The term *system alignment* replaces the measured comparison and consultation evidence.",
         },
         {
           isCorrect: true,
           label:
-            "The definition of *system alignment* supplies the classification rule needed to interpret the budget comparison and the consultation evidence.",
+            "The definition explains why permits and bins need the same symbols: the disposal decision begins at the stall and must remain consistent at collection.",
         },
         {
           isCorrect: false,
           label:
-            "The definition explains why the trial used estimated invoices, rather than how the cost category should be read.",
+            "The definition shows that correctly coloured bins are enough even when stall permits use different symbols.",
         },
       ],
     },

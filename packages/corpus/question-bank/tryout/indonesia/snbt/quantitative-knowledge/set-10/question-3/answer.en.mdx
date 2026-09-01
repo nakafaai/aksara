@@ -2,15 +2,16 @@ export const metadata = {
   title: "Solution for Question 3",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-12-27",
+  dateModified: "2026-09-01",
 };
 
-For one fixed participant, <InlineMath math="20" /> of the <InlineMath math="3000" /> equally likely participant positions are winning positions. Let <InlineMath math="A" /> be the event that this participant wins. Then:
+Counting the cases in which either sibling wins can count the case in which both win twice. The complement, where neither sibling is selected, is cleaner.
+
+Removing the two siblings leaves <InlineMath math="2998" /> other participants. Therefore:
 
 <MathContainer>
-  <BlockMath math="P(A) = \frac{\text{number of prizes}}{\text{number of participants}}" />
-  <BlockMath math="P(A) = \frac{20}{3000}" />
-  <BlockMath math="P(A) = \frac{1}{150}" />
-  <BlockMath math="P(A) \approx 0.0067" />
+  <BlockMath math="\begin{aligned} P(\text{neither wins}) &= \frac{\binom{2998}{20}}{\binom{3000}{20}} \\ &= \frac{2980}{3000}\cdot\frac{2979}{2999} \end{aligned}" />
+  <BlockMath math="\begin{aligned} P(\text{at least one wins}) &= 1-P(\text{neither wins}) \\ &= 1-\frac{2980\cdot2979}{3000\cdot2999} \\ &= \frac{1993}{149950} \\ &\approx 0.0133 \end{aligned}" />
 </MathContainer>
 
-The decimal <InlineMath math="0.0067" /> is about <InlineMath math="0.67\%" />. Therefore, a particular participant wins with probability <InlineMath math="0.0067" />.
+The probability that at least one sibling wins is approximately <InlineMath math="0.0133" />, or <InlineMath math="1.33\%" />.

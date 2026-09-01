@@ -2,20 +2,60 @@ export const metadata = {
   title: "Soal 20",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-01",
 };
 
 Sebuah bengkel memproduksi kursi dan meja. Sebuah kursi memerlukan <InlineMath math="1" /> jam kerja pertukangan dan <InlineMath math="3" /> jam penyelesaian, sedangkan sebuah meja memerlukan <InlineMath math="2" /> jam pada setiap bagian. Tersedia paling banyak <InlineMath math="20" /> jam pertukangan dan <InlineMath math="36" /> jam penyelesaian setiap minggu. Keuntungan sebuah kursi <InlineMath math="500{.}000" /> rupiah dan sebuah meja <InlineMath math="800{.}000" /> rupiah.
 
-<LineEquation
+<MathVisual
   title="Batas produksi"
   description="Garis batas lurus x + 2y = 20 dan 3x + 2y = 36 pada kuadran pertama."
-  showZAxis={false}
-  cameraPosition={[0, 0, 25]}
-  data={[
-    { points: [{ x: 0, y: 10, z: 0 }, { x: 8, y: 6, z: 0 }, { x: 20, y: 0, z: 0 }], color: "#2563eb", smooth: false, showPoints: true },
-    { points: [{ x: 0, y: 18, z: 0 }, { x: 8, y: 6, z: 0 }, { x: 12, y: 0, z: 0 }], color: "#dc2626", smooth: false, showPoints: true },
-  ]}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      axes: "visible",
+      grid: "visible",
+      x: { min: -1, max: 21 },
+      y: { min: -1, max: 19 },
+    },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      {
+        id: "carpentry-boundary",
+        kind: "polyline",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 10 },
+          { x: 8, y: 6 },
+          { x: 20, y: 0 },
+        ],
+      },
+      {
+        id: "finishing-boundary",
+        kind: "polyline",
+        appearance: "warning",
+        vertices: [
+          { x: 0, y: 18 },
+          { x: 8, y: 6 },
+          { x: 12, y: 0 },
+        ],
+      },
+      { id: "carpentry-y-intercept", kind: "point", appearance: "primary", at: { x: 0, y: 10 } },
+      { id: "finishing-y-intercept", kind: "point", appearance: "warning", at: { x: 0, y: 18 } },
+      { id: "boundary-intersection", kind: "point", appearance: "highlight", at: { x: 8, y: 6 } },
+      { id: "finishing-x-intercept", kind: "point", appearance: "warning", at: { x: 12, y: 0 } },
+      { id: "carpentry-x-intercept", kind: "point", appearance: "primary", at: { x: 20, y: 0 } },
+    ],
+    labels: [
+      { key: "carpentry-equation", at: { x: 14, y: 3 }, placement: "above" },
+      { key: "finishing-equation", at: { x: 4, y: 12 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "carpentry-equation": <InlineMath math="x+2y=20" />,
+    "finishing-equation": <InlineMath math="3x+2y=36" />,
+  }}
 />
 
 Berapa juta rupiah keuntungan mingguan maksimum yang dapat diperoleh?

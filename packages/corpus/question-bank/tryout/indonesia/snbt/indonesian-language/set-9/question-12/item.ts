@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kondisi pembanding menghasilkan nilai rata-rata 23; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+            "Angka gabungan naik terutama karena jumlah peserta pada kondisi papan baru lebih besar daripada pada kondisi papan lama.",
         },
         {
           isCorrect: false,
           label:
-            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
+            "Kenaikan angka gabungan menunjukkan setiap peserta memperoleh manfaat yang sama, meskipun hasil per kelompok berbeda.",
         },
         {
           isCorrect: true,
           label:
-            "Nilai 23 adalah kondisi pembanding untuk tanda jarak; pengunjung dengan hambatan penglihatan belum terwakili dalam uji.",
+            "Kenaikan gabungan terutama mencerminkan perbaikan pada kelompok berpenglihatan rendah; kelompok berpenglihatan biasa bertahan di sekitar 84 persen.",
         },
         {
           isCorrect: false,
           label:
-            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
+            "Angka 52 dari 65 lebih rendah daripada 46 dari 70 karena jumlah seluruh pesertanya lebih sedikit.",
         },
         {
           isCorrect: false,
           label:
-            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
+            "Perbandingan kelompok tidak dapat dilakukan karena pembilang dan penyebut pada dua kondisi tidak sama persis.",
         },
       ],
     },

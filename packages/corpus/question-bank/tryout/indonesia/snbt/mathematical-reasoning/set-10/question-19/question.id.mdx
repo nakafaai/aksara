@@ -2,35 +2,77 @@ export const metadata = {
   title: "Soal 19",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-01",
 };
 
 Sebuah balok memiliki panjang <InlineMath math="6" /> cm, lebar <InlineMath math="4" /> cm, dan tinggi <InlineMath math="4" /> cm. Titik A, B, dan C adalah titik sudut yang ditandai pada gambar.
 
-<LineEquation
+<MathVisual
   title="Segitiga dalam balok"
   description="Balok eksak dengan dua belas rusuk lurus dan segitiga ABC."
-  cameraPosition={[10, 8, 11]}
-  data={[
-    { kind: "cuboid", length: 6, width: 4, height: 4, color: "#64748b", lineWidth: 2 },
-    {
-      points: [
-        { x: -3, y: -2, z: -2 },
-        { x: 3, y: -2, z: 2 },
-        { x: -3, y: 2, z: 2 },
-        { x: -3, y: -2, z: -2 },
-      ],
-      color: "#7c3aed",
-      lineWidth: 3,
-      showPoints: true,
-      smooth: false,
-      labels: [
-        { at: 0, text: "A", offset: [-0.35, -0.35, -0.35] },
-        { at: 1, text: "B", offset: [0.35, -0.35, 0.35] },
-        { at: 2, text: "C", offset: [-0.35, 0.35, 0.35] },
-      ],
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      axes: "hidden",
+      grid: "hidden",
+      x: { min: -4, max: 4 },
+      y: { min: -3, max: 3 },
+      z: { min: -3, max: 3 },
     },
-  ]}
+    view: {
+      kind: "camera",
+      position: { x: 10, y: 8, z: 11 },
+      target: { x: 0, y: 0, z: 0 },
+    },
+    objects: [
+      {
+        id: "cuboid",
+        kind: "cuboid",
+        appearance: "reference",
+        center: { x: 0, y: 0, z: 0 },
+        size: { length: 6, width: 4, height: 4 },
+      },
+      {
+        id: "triangle-abc",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: -3, y: -2, z: -2 },
+          { x: 3, y: -2, z: 2 },
+          { x: -3, y: 2, z: 2 },
+        ],
+      },
+      {
+        id: "point-a",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: -3, y: -2, z: -2 },
+      },
+      {
+        id: "point-b",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: 3, y: -2, z: 2 },
+      },
+      {
+        id: "point-c",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: -3, y: 2, z: 2 },
+      },
+    ],
+    labels: [
+      { key: "point-a", at: { x: -3, y: -2, z: -2 }, placement: "below-left" },
+      { key: "point-b", at: { x: 3, y: -2, z: 2 }, placement: "below-right" },
+      { key: "point-c", at: { x: -3, y: 2, z: 2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "point-a": <InlineMath math="A" />,
+    "point-b": <InlineMath math="B" />,
+    "point-c": <InlineMath math="C" />,
+  }}
 />
 
 Berapa sentimeter persegi luas segitiga ABC?

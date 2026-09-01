@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Definisi *konduksi* membuktikan bahwa hasil model selalu sama dengan keadaan tanah di lapangan.",
+            "Definisi *konduksi* membuktikan bahwa suhu akhir kedua wadah hanya ditentukan oleh daya hantar bahannya.",
         },
         {
           isCorrect: false,
@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *konduksi* menghubungkan proses pada model dengan proses yang diwakilinya sehingga kegunaan model dapat dibedakan dari batas penerapannya.",
+            "Definisi *konduksi* menjelaskan salah satu jalur perpindahan energi melalui dinding wadah, sekaligus mencegah seluruh pendinginan dianggap terjadi hanya melalui jalur itu.",
         },
         {
           isCorrect: false,

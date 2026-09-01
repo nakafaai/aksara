@@ -93,7 +93,7 @@ addition, revision, review, or translation in this repository.
   paragraph as a complete explanation and reject any rewrite that preserves the
   same artificial contrast, unexplained term, or stiff sentence structure under
   different words.
-- Do not translate assessed passages, assessed choices, quotations, code,
+- Do not translate assessed passages, assessed response options, quotations, code,
   mathematical notation, or immutable official source bytes.
 - Lessons must work from a direct visit. Define required terms, abbreviations,
   symbols, and prerequisites on first use.
@@ -131,11 +131,12 @@ addition, revision, review, or translation in this repository.
   already valid content; compose prose and `<InlineMath />` in one fragment when
   a label includes notation. Never flatten mathematical meaning into a string or
   invent a separate plain-versus-rich authoring mode.
-- Preserve geometric primitives exactly. Straight graphs, polygon edges, and
-  polyhedron wireframes must disable spline smoothing. Use the declarative
-  `LineEquation` `cuboid` primitive for a balok instead of repeating corner
-  coordinates or closing one multi-point path that a curve interpolator can
-  round. Verify the required vertex and edge counts in the rendered scene.
+- Preserve geometric primitives exactly. In `MathVisual`, author exact straight
+  geometry as `segment`, `polyline`, or `polygon` objects and reserve `spline`
+  objects for intentionally smooth curves. Author a balok as one declarative
+  `cuboid` with a center and positive `length`, `width`, and `height`, rather
+  than repeating corner coordinates. Verify the required vertex and edge
+  counts in the rendered scene.
 - Treat every question response label as one rich Markdown string. Plain text is
   already valid Markdown; combine prose, emphasis, inline math such as `$x=4$`,
   and display math such as `$$x=4$$` in the same source string when the learning

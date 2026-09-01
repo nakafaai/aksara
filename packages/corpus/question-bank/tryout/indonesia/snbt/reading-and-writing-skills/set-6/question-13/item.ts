@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "kerjasama tim dalam uji contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
+            "kerjasama tim dalam uji contoh pencatatan durasi suara pada sistem pencatatan kebisingan lingkungan",
         },
         {
           isCorrect: false,
           label:
-            "kerja-sama tim dalam uji contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
+            "kerja-sama tim dalam uji contoh pencatatan durasi suara pada sistem pencatatan kebisingan lingkungan",
         },
         {
           isCorrect: false,
           label:
-            "kerja  sama tim dalam uji contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
+            "kerja  sama tim dalam uji contoh pencatatan durasi suara pada sistem pencatatan kebisingan lingkungan",
         },
         {
           isCorrect: true,
           label:
-            "kerja sama tim dalam uji contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
+            "kerja sama tim dalam uji contoh pencatatan durasi suara pada sistem pencatatan kebisingan lingkungan",
         },
         {
           isCorrect: false,
           label:
-            "kerja sama-sama tim dalam uji contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
+            "kerja sama-sama tim dalam uji contoh pencatatan durasi suara pada sistem pencatatan kebisingan lingkungan",
         },
       ],
     },

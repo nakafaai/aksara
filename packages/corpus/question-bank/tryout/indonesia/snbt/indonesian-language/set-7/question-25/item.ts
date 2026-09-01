@@ -7,24 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Menunggu orang lain menyelesaikan langkah berikutnya",
+          label: "Mengganti Petugas Klinik dengan Kartu Bergambar",
         },
         {
           isCorrect: false,
-          label: "Menyembunyikan bukti yang belum tuntas dalam proyek besar",
+          label: "Empat Tahap yang Berlaku bagi Setiap Pasien",
         },
         {
           isCorrect: true,
-          label: "Langkah Kecil Arum di klinik kelurahan",
+          label: "Dari Salah Meja ke Kartu Teruji: Literasi Kesehatan Arum",
         },
         {
           isCorrect: false,
-          label:
-            "literasi kesehatan sebagai definisi tanpa tindakan yang dapat diperiksa",
+          label: "Literasi Kesehatan sebagai Kemampuan Membaca Nomor Meja",
         },
         {
           isCorrect: false,
-          label: "Rencana lengkap tanpa langkah kecil yang bertanggung jawab",
+          label: "Panah Lantai sebagai Penyebab Tunggal Kesalahan Pasien",
         },
       ],
     },

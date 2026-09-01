@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pada Senin, tim menguji kode pengembalian di peminjaman payung stasiun.",
+            "Pada Senin, tim menguji kode pengembalian pada setiap gagang dalam layanan peminjaman payung di stasiun.",
         },
         {
           isCorrect: false,
           label:
-            "pada Senin, tim menguji kode pengembalian di peminjaman payung stasiun.",
+            "pada Senin, tim menguji kode pengembalian pada setiap gagang dalam layanan peminjaman payung di stasiun.",
         },
         {
           isCorrect: false,
           label:
-            "Pada senin, tim menguji kode pengembalian di peminjaman payung stasiun.",
+            "Pada senin, tim menguji kode pengembalian pada setiap gagang dalam layanan peminjaman payung di stasiun.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin, Tim menguji kode pengembalian di peminjaman payung stasiun.",
+            "Pada Senin, Tim menguji kode pengembalian pada setiap gagang dalam layanan peminjaman payung di stasiun.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin tim menguji kode pengembalian di peminjaman payung stasiun",
+            "Pada Senin tim menguji kode pengembalian pada setiap gagang dalam layanan peminjaman payung di stasiun",
         },
       ],
     },

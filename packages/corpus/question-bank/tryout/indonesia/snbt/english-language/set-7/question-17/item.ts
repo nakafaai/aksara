@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Reading and cutting the recurring alert shifts it from formal wording to actionable guidance, and the final listener response tests that change.",
+            "Reading and cutting the alert shifts it from detailed description to actionable guidance, and its arrival at the final house before the siren ends shows the practical effect.",
         },
         {
           isCorrect: false,

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Because the trial reached 35, compared with a baseline of 21 and a comparison value of 22, a budget sheet separating fixed, flexible, and shared costs should become permanent before the stated limitation is examined.",
+            "The 35 correct classifications support permanent adoption because controlling the scenario removes the need to test real supplier quotes.",
         },
         {
           isCorrect: false,
           label:
-            "The consultation with affected groups makes the baseline and comparison figures unnecessary for the decision.",
+            "The two old-sheet rounds show that mentor instructions, rather than the sheet, must explain the difference in the trial round.",
         },
         {
           isCorrect: false,
           label:
-            "The limitation that the exercise used estimated prices rather than final invoices affects delivery details, but it does not restrict who can be covered by the conclusion.",
+            "Because fixed costs stay unchanged, replacing estimates with supplier quotes cannot affect the usefulness of the budget sheet.",
         },
         {
           isCorrect: true,
           label:
-            "The rise to 35, compared with a baseline of 21 and a comparison value of 22 supports a limited extension of a budget sheet separating fixed, flexible, and shared costs, while the fact that the exercise used estimated prices rather than final invoices must shape the follow-up.",
+            "The controlled comparison supports trying the separated sheet at one real event, where final supplier quotes can test whether better classification also yields a reliable total.",
         },
         {
           isCorrect: false,
           label:
-            "Because staffing and schedules were stable, the difference between the trial and comparison is best attributed to those unchanged conditions.",
+            "A real-event trial should change the sheet, instructions, price source, and classification rules together so the result covers more possibilities.",
         },
       ],
     },

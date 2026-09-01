@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The definition of *psychological safety* provides a lens for reading the character's specific choice as a response to uncertainty, not as an isolated moral label.",
+            "The definition clarifies why inviting each member to voice a concern changes the group's decision process: it creates room to raise problems without humiliation.",
         },
         {
           isCorrect: false,

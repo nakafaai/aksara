@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The class tested how a removable mesh with smaller openings affected the capture of floating plastic fragments, while controlling other factors and reporting a limitation.",
+            "The smaller mesh collected a higher percentage of controlled plastic fragments, while the single-material model limited conclusions about mixed environmental debris.",
         },
         {
           isCorrect: false,

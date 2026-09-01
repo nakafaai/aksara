@@ -13,26 +13,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "ketekunan menunggu pada akhirnya akan membuat orang yang dirindukan kembali",
+            "lega karena ketekunan Mira akhirnya menjamin Seno akan pulang",
         },
         {
           isCorrect: false,
           label:
-            "kehadiran pemain yang lengkap merupakan syarat utama keberhasilan pertunjukan",
+            "kecewa karena pertunjukan tanpa dua pemain dianggap kehilangan makna",
         },
         {
           isCorrect: true,
-          label: "harapan dapat berubah bentuk tanpa harus hilang",
+          label:
+            "terharu karena Mira mengubah harapan akan kepulangan menjadi kekuatan untuk tetap tampil",
         },
         {
           isCorrect: false,
           label:
-            "kursi ketujuh akhirnya hanya berfungsi sebagai penanda tempat kosong",
+            "marah karena Pak Damar mempertahankan kursi kosong ketika Seno tidak hadir",
         },
         {
           isCorrect: false,
           label:
-            "Mira memilih melepaskan latihan agar dapat menunggu tanpa gangguan",
+            "cemas karena Mira memilih berhenti berlatih setelah panggilan Seno",
         },
       ],
     },

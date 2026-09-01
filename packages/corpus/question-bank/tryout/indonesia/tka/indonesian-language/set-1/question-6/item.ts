@@ -2,30 +2,34 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "fiction",
-    topic: "setting-character-phenomenon",
+    topic: "emotional-response",
   },
   responses: {
     id: {
-      kind: "multiple-choice",
+      kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Awalnya lampu mempertahankan ingatan tentang ayahnya.",
-        },
-        {
-          isCorrect: true,
-          label: "Saat hujan, lampu membantu memanggil pertolongan.",
+          isCorrect: false,
+          label: "marah karena Raka menerima lampu baru",
         },
         {
           isCorrect: false,
-          label: "Pada akhir cerita, lampu menjadi alasan menjual dermaga.",
+          label: "datar karena perubahan fungsi lampu hanya bersifat praktis",
+        },
+        {
+          isCorrect: false,
+          label:
+            "cemas karena keterlibatan warga dapat menggeser makna pribadi kenangan Raka",
+        },
+        {
+          isCorrect: false,
+          label: "kecewa karena perahu ayah Raka kembali",
         },
         {
           isCorrect: true,
-          label:
-            "Pada akhir cerita, kebiasaan pribadi berkembang menjadi kepedulian bersama.",
+          label: "lega karena kenangan Raka memperoleh makna baru",
         },
       ],
     },

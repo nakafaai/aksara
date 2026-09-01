@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "memantau perubahan populasi serta beberapa hubungan makan di kebun pada musim yang berbeda.",
+            "Memantau perubahan populasi serta beberapa hubungan makan di kebun pada musim yang berbeda.",
         },
       ],
     },

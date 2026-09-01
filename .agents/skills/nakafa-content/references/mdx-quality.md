@@ -40,14 +40,34 @@
   of hiding it in a plain string.
 
   ```mdx
-  <LineEquation
-    title={<>Reflection of <InlineMath math="h(x)=|x-2|" /></>}
+  <MathVisual
+    title={<>Segment <InlineMath math="AB" /></>}
     description={
       <>
-        The graph is reflected across the <InlineMath math="y" />-axis; its
-        width is unchanged.
+        The segment joins <InlineMath math="A=(-2,-1)" /> and
+        <InlineMath math="B=(2,3)" />.
       </>
     }
+    scene={{
+      space: "plane",
+      frame: {
+        kind: "cartesian",
+        axes: "visible",
+        grid: "visible",
+        x: { min: -3, max: 3 },
+        y: { min: -2, max: 4 },
+      },
+      view: { kind: "fit" },
+      objects: [
+        {
+          id: "segment-ab",
+          kind: "segment",
+          appearance: "primary",
+          from: { x: -2, y: -1 },
+          to: { x: 2, y: 3 },
+        },
+      ],
+    }}
   />
   ```
 
@@ -89,9 +109,9 @@
   or runtime must parse.
 - Use inline code for programming syntax and identifiers.
 - MDX content must not import renderer components. Use only component names
-  exposed for the document's route domain by Nakafa's authenticated renderer
-  manifest. Components such as `NumberLine` and `LineEquation` are available
-  only in the domains that own them.
+  exposed by Nakafa's authenticated renderer manifest. `MathVisual` is the
+  shared mathematical visual boundary; domain-owned components such as
+  `NumberLine` remain limited to the domains that expose them.
 
 ## Components and visuals
 
@@ -145,12 +165,13 @@ siblings, and never move only the `isCorrect` marker to manufacture balance.
   objects, inspect and rotate the rendered scene when interaction is available
   so hidden intersections, incorrect depth, or misleading camera angles are
   not accepted from one static view.
-- Never let spline interpolation alter an exact straight segment, polygon, or
-  polyhedron. Set `smooth: false` for exact line data. Author a balok with the
-  declarative `LineEquation` item
-  `{ kind: "cuboid", length, width, height }`, then verify eight vertices,
-  twelve straight edges, four edges of each declared dimension, and a camera
-  view that still reads as a cuboid after rotation.
+- Never represent an exact straight segment, polygon, or polyhedron with a
+  spline. In `MathVisual`, use the semantic straight object kinds. Author a
+  balok as
+  `{ id, kind: "cuboid", appearance, center, size: { length, width, height } }`,
+  then verify eight vertices, twelve straight edges, four edges of each
+  declared dimension, and a camera view that still reads as a cuboid after
+  rotation.
 - Render every locale sibling that changes learner-facing labels or prose around
   a visual. Longer localized text must not clip, overlap, obscure data, or
   detach from the representation it explains.

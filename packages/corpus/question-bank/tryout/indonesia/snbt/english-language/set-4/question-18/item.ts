@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "a blank caption card gains meaning through its connection to the conflict, choice, and ending.",
+            "The blank card gains meaning through the curator's hesitation, Eli's invitation to look, and the visitors' closer observation.",
         },
         {
           isCorrect: false,

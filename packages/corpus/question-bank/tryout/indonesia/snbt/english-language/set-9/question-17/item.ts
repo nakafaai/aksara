@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Tracing the recurring bag backward turns a visible mistake into a route of causes, and the ending response shows why that reversal matters.",
+            "Tracing the bag backward turns an error found at the bin into a chain of causes, and the side-by-side symbols explain why its source was missed.",
         },
         {
           isCorrect: false,

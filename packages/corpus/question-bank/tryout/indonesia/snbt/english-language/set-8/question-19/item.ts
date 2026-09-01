@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The definition of *metaphor* identifies the narrative device that connects the recurring object, the character's action, and the unresolved response at the end.",
+            "The definition explains the card-as-doorway comparison: turning the card becomes a way of moving between relationships through language.",
         },
         {
           isCorrect: false,

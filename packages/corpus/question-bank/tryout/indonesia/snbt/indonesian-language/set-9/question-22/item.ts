@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Laras memilih untuk memilih jalur pendek, menyimpan ponsel, dan mencatat tiga suara yang ia dengar; tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
+            "Tindakan itu mengganti tuntutan tugas dari lima penanda menjadi tiga suara tanpa perlu menjelaskan perubahan kepada pembaca.",
         },
         {
           isCorrect: false,
           label:
-            "Laras memilih untuk memilih jalur pendek, menyimpan ponsel, dan mencatat tiga suara yang ia dengar; perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
+            "Tindakan itu mengalihkan perhatian Laras dari jalur tertutup sehingga konflik tentang kelengkapan hilang dengan sendirinya.",
         },
         {
           isCorrect: true,
           label:
-            "Jalur pendek, ponsel yang disimpan, dan tiga suara tercatat memberi Laras tugas pengamatan yang terbatas serta dapat dibandingkan.",
+            "Tindakan itu mengubah keterbatasan menjadi dokumentasi yang memiliki waktu dan tempat, sehingga Laras tidak perlu memakai bukti yang bukan pengalamannya.",
         },
         {
           isCorrect: false,
           label:
-            "Laras memilih untuk memilih jalur pendek, menyimpan ponsel, dan mencatat tiga suara yang ia dengar; latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
+            "Tindakan itu membuktikan rekaman suara selalu lebih dapat dipercaya daripada foto karena suara tidak dapat dipilih atau disunting.",
         },
         {
           isCorrect: false,
           label:
-            "Laras memilih untuk memilih jalur pendek, menyimpan ponsel, dan mencatat tiga suara yang ia dengar; definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
+            "Tindakan itu terutama bertujuan menghemat baterai agar Laras tetap dapat mengunduh foto lama dari arsip sekolah.",
         },
       ],
     },

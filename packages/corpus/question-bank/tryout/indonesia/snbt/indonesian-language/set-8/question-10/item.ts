@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Kegunaan dan Batas Kotak perbandingan perpindahan panas",
+          label: "Dua Wadah, Dua Laju Pendinginan: Pola dan Batas Percobaan",
         },
         {
           isCorrect: false,

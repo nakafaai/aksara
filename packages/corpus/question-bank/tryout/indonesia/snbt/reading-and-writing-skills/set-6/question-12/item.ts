@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "pada Senin, tim menguji contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan.",
+            "pada Senin, tim menguji contoh pencatatan durasi suara dalam sistem pencatatan kebisingan lingkungan.",
         },
         {
           isCorrect: true,
           label:
-            "Pada Senin, tim menguji contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan.",
+            "Pada Senin, tim menguji contoh pencatatan durasi suara dalam sistem pencatatan kebisingan lingkungan.",
         },
         {
           isCorrect: false,
           label:
-            "Pada senin, tim menguji contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan.",
+            "Pada senin, tim menguji contoh pencatatan durasi suara dalam sistem pencatatan kebisingan lingkungan.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin, Tim menguji contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan.",
+            "Pada Senin, Tim menguji contoh pencatatan durasi suara dalam sistem pencatatan kebisingan lingkungan.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin tim menguji contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
+            "Pada Senin tim menguji contoh pencatatan durasi suara dalam sistem pencatatan kebisingan lingkungan",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Karena langkah "wadah logam dan plastik berisi air hangat diukur suhunya pada selang waktu tetap" dapat diulang, model sudah mencakup faktor yang hilang ketika ketebalan penutup dan celah udara masih sulit dibuat benar-benar sama dan dapat menggantikan pengamatan lapangan.',
+            "Laju pendinginan rata-rata aluminium sekitar 1,27°C per menit, sehingga bahan aluminium pasti menjadi satu-satunya penyebab seluruh penurunan suhu.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bahwa ketebalan penutup dan celah udara masih sulit dibuat benar-benar sama membuat hubungan bahwa jenis bahan dapat memengaruhi laju perubahan suhu tidak dapat diperiksa, bahkan di dalam model.",
+            "Perbedaan ketebalan dinding membuat laju pendinginan yang tampak pada tabel tidak dapat dibandingkan sama sekali.",
         },
         {
           isCorrect: false,
           label:
-            "Hubungan bahwa jenis bahan dapat memengaruhi laju perubahan suhu dapat diterapkan langsung pada keadaan nyata selama urutan model diulang dengan cara yang sama.",
+            "Kesamaan volume dan suhu awal membuat laju tersebut dapat diterapkan langsung pada semua wadah aluminium dan plastik.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi istilah pada akhir bacaan sudah cukup membuktikan hubungan sebab dalam kotak perbandingan perpindahan panas, meskipun bagian model tidak dibandingkan.",
+            "Definisi konduksi sudah cukup membuktikan bahwa perbedaan laju berasal dari bahan, meskipun ketebalan dan penguapan belum disamakan.",
         },
         {
           isCorrect: true,
           label:
-            "Pengulangan langkah pada model membantu memeriksa bahwa jenis bahan dapat memengaruhi laju perubahan suhu; karena ketebalan penutup dan celah udara masih sulit dibuat benar-benar sama, pola itu menjadi hipotesis untuk pengamatan nyata, bukan bukti langsung tentang seluruh keadaan lapangan.",
+            "Laju pendinginan rata-rata sekitar 1,27°C per menit pada aluminium dan 0,73°C per menit pada polipropilena mendukung adanya perbedaan, tetapi rancangan belum mengisolasi bahan sebagai penyebabnya.",
         },
       ],
     },

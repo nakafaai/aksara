@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The definition of *sensory imagery* identifies the narrative device that connects the recurring object, the character's action, and the unresolved response at the end.",
+            "The definition explains how visual details such as the gold seam and its thin line of light make the repair's changed meaning perceptible.",
         },
         {
           isCorrect: false,

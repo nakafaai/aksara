@@ -13,25 +13,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Keep the original instructions so a revision does not confuse household members.",
+            "Keep the existing wording and ask the child to memorise it more carefully.",
         },
         {
           isCorrect: true,
-          label: "The household should revise that part of the plan.",
-        },
-        {
-          isCorrect: false,
-          label: "The plan should keep the confusing wording unchanged.",
+          label:
+            "Clarify how the meeting places are described, then practise that part again.",
         },
         {
           isCorrect: false,
           label:
-            "The out-of-area contact is the primary person who should know both meeting places.",
+            "Wait for a real emergency to determine which meeting-place description was confusing.",
         },
         {
           isCorrect: false,
           label:
-            "The out-of-area contact should receive the plan without names to reduce privacy risk.",
+            "Remove the second meeting place because the contact information was remembered correctly.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Ask the out-of-area contact to choose both places without reviewing household needs.",
         },
       ],
     },

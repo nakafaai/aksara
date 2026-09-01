@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *alur layanan* memberi kriteria untuk menilai apakah rancangan dan bukti akses benar-benar mencakup kebutuhan pengguna yang berbeda.",
+            "Definisi *alur layanan* menunjukkan bahwa ukuran tanpa kembali hanya menilai kelancaran urutan, bukan seluruh mutu layanan seperti waktu tunggu, ketepatan tindakan, dan aksesibilitas.",
         },
         {
           isCorrect: false,
           label:
-            "Penyebutan *alur layanan* membuktikan rancangan sudah adil tanpa perlu memeriksa data pembanding atau masukan pengguna.",
+            "Definisi *alur layanan* membuktikan bahwa penanda baru sudah memperbaiki setiap tahap layanan bagi seluruh pasien.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi itu membatasi *alur layanan* pada kebutuhan kelompok terbanyak sehingga variasi kebutuhan lain dapat diabaikan.",
+            "Definisi *alur layanan* menjadikan jumlah pasien tanpa kembali sebagai ukuran lengkap ketepatan tindakan medis.",
         },
         {
           isCorrect: false,
           label:
-            "Istilah *alur layanan* menggantikan konsultasi pihak terdampak dengan satu label yang langsung menentukan keputusan.",
+            "Definisi *alur layanan* menghapus perlunya masukan aksesibilitas karena urutan kegiatan sudah dapat dihitung.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi tersebut menjelaskan keterbatasan masa uji, bukan kriteria yang dipakai untuk membaca rancangan.",
+            "Definisi *alur layanan* menjelaskan mengapa kebutuhan medis pasien pasti sama pada setiap giliran yang dipasangkan.",
         },
       ],
     },

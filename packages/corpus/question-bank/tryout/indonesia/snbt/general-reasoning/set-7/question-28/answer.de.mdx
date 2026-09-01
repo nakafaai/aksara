@@ -2,9 +2,13 @@ export const metadata = {
   title: "Lösung zu Aufgabe 28",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-01",
 };
 
-A und B werden mit genau zwei Berichten dazwischen platziert; danach werden Fälle mit benachbarten E und F ausgeschlossen. Die Fallunterscheidung liefert 720 Anordnungen vor der Reihenfolge von C und D. Die Hälfte hat C vor D, also <InlineMath math="360/5040=1/14" />.
+Die möglichen Positionspaare für A und B mit genau zwei Berichten dazwischen sind <InlineMath math="(1,4),(2,5),(3,6),(4,7)" />. Es gibt vier Positionspaare, zwei Reihenfolgen für A und B sowie <InlineMath math="5!" /> Anordnungen der übrigen Berichte. Vor dem Ausschluss benachbarter E und F ergibt das <InlineMath math="4\cdot2\cdot5!=960" /> Anordnungen.
+
+Nach dem Entfernen der belegten A-B-Positionen stehen in den vier Fällen jeweils <InlineMath math="3,2,2,3" /> benachbarte Positionspaare für E und F zur Verfügung. Für jedes davon haben E und F zwei Reihenfolgen; die übrigen drei Berichte lassen sich auf <InlineMath math="3!" /> Arten anordnen. Einschließlich der zwei Reihenfolgen von A und B beträgt die Zahl der Anordnungen mit benachbarten E und F <InlineMath math="2(3+2+2+3)\cdot2\cdot3!=240" />.
+
+Es bleiben <InlineMath math="960-240=720" /> Anordnungen, bevor die Reihenfolge von C und D berücksichtigt wird. Durch den Tausch von C und D hat genau die Hälfte C vor D. Somit gibt es <InlineMath math="720/2=360" /> gültige Anordnungen.
 
 Damit ist der gesuchte Wert <InlineMath math="\\frac1{14}" />.

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The definition of *potential difference* proves that the tested change caused the recorded result, even without the comparison conditions.",
+            "The definition proves that the series arrangement caused the larger reading, so the comparison conditions are unnecessary.",
         },
         {
           isCorrect: false,
           label:
-            "The definition makes *potential difference* a substitute for the controls, so the unmeasured factor no longer limits the conclusion.",
+            "The definition replaces the need to control the resistor and meter because energy per charge is constant in every circuit.",
         },
         {
           isCorrect: false,
           label:
-            "The definition broadens *potential difference* from this short investigation to every similar system under any condition.",
+            "The definition shows that potential difference, current, and power are interchangeable names for the same measured quantity.",
         },
         {
           isCorrect: false,
           label:
-            "The term *potential difference* names the report's limitation rather than the concept represented by the measurements.",
+            "The term names the missing measurement of internal resistance rather than the quantity shown in the table.",
         },
         {
           isCorrect: true,
           label:
-            "By defining *potential difference*, the report fixes the meaning of the measured concept before the numerical comparison and its limitation are interpreted.",
+            "The definition identifies the table's voltage readings as energy transferred per unit charge between two points, without turning them into evidence about current or power by themselves.",
         },
       ],
     },

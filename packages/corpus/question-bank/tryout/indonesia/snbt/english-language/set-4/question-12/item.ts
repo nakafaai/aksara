@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Omar tested the route at wheelchair height and marked every place where a sign disappeared from view; the choice resolves the whole conflict at once and makes any later review unnecessary.",
+            "Omar and Amina tested the route and marked where signs disappeared from view; the choice resolves the whole conflict at once and makes any later review unnecessary.",
         },
         {
           isCorrect: false,
           label:
-            "Omar tested the route at wheelchair height and marked every place where a sign disappeared from view; the action transfers responsibility for the unresolved task to another character.",
+            "Omar and Amina tested the route and marked where signs disappeared from view; the action transfers responsibility for the unresolved task entirely to Amina.",
         },
         {
           isCorrect: true,
           label:
-            "Testing the route at wheelchair height turns Omar's assumption about access into visible failures he can document and correct.",
+            "Testing the route with Amina turns Omar's assumption about access into visible failures that an intended user can document and the team can correct.",
         },
         {
           isCorrect: false,
           label:
-            "Omar tested the route at wheelchair height and marked every place where a sign disappeared from view; the decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
+            "Omar and Amina tested the route and marked where signs disappeared from view; the decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
         },
         {
           isCorrect: false,
           label:
-            "Omar tested the route at wheelchair height and marked every place where a sign disappeared from view; the setting alone produces the change, so the character's decision has no role in the development.",
+            "Omar and Amina tested the route and marked where signs disappeared from view; the setting alone produces the change, so their decision has no role in the development.",
         },
       ],
     },

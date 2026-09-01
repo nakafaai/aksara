@@ -7,24 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Membaca Dua Sumber tentang pameran sains keliling",
-        },
-        {
-          isCorrect: false,
-          label: "Kesamaan Isi sebagai Bukti bahwa Dua Sumber Identik",
-        },
-        {
-          isCorrect: false,
-          label: "Mengutamakan Sumber Terbaru dalam Kajian representasi",
-        },
-        {
-          isCorrect: false,
-          label: "Menggabungkan Dua Sumber tanpa Memeriksa Konteks",
-        },
-        {
-          isCorrect: false,
           label:
-            "Perbedaan Format yang Membuat Dua Sumber Tidak Dapat Dibandingkan",
+            "Pesan Resmi dan Suara Pengunjung: Membaca Batas Arsip Pameran",
+        },
+        {
+          isCorrect: false,
+          label: "Buku Tamu sebagai Gambaran Lengkap Lima Kota",
+        },
+        {
+          isCorrect: false,
+          label: "Poster Tahun 1984 yang Membuktikan Pameran Inklusif",
+        },
+        {
+          isCorrect: false,
+          label: "Menghitung Pendapat Pengunjung tanpa Memeriksa Asal Sumber",
+        },
+        {
+          isCorrect: false,
+          label: "Keluhan Akses yang Membatalkan Seluruh Pesan Penyelenggara",
         },
       ],
     },

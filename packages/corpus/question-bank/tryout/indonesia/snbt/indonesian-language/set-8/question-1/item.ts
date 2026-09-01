@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Simulasi membandingkan pengaruh lapisan tipis petroleum jelly pada permukaan bawah daun terhadap kehilangan massa daun, sambil mengendalikan faktor yang disebutkan tetapi menjadikan satu uji singkat sebagai bukti yang berlaku umum.",
+            "Percobaan membuktikan bahwa semua jenis tumbuhan kehilangan sebagian besar air hanya melalui permukaan bawah daun.",
         },
         {
           isCorrect: false,
           label:
-            "Simulasi membandingkan pengaruh lapisan tipis petroleum jelly pada permukaan bawah daun terhadap kehilangan massa daun, sambil menyebut keterbatasan tetapi mengeluarkan kondisi pembanding dari penafsiran hasil.",
+            "Percobaan menunjukkan bahwa petroleum jelly menambah massa daun sehingga pengukuran kehilangan air tidak dapat ditafsirkan sama sekali.",
         },
         {
           isCorrect: true,
           label:
-            "Simulasi membandingkan pengaruh lapisan tipis petroleum jelly pada permukaan bawah daun terhadap kehilangan massa daun, sambil mengendalikan faktor lain dan mengakui keterbatasan pengukuran.",
+            "Pada daun kacang yang dipetik, pelapisan permukaan bawah berkaitan dengan kehilangan massa paling kecil, tetapi hasil satu jenis daun belum dapat digeneralisasi ke semua tumbuhan.",
         },
         {
           isCorrect: false,
           label:
-            "Simulasi membandingkan pengaruh lapisan tipis petroleum jelly pada permukaan bawah daun terhadap kehilangan massa daun, sambil menjadikan definisi istilah ilmiah sebagai hasil ukur yang menutup penelitian.",
+            "Pelapisan permukaan atas tidak memengaruhi transpirasi karena rata-rata 0,74 gram sama dengan 0,82 gram.",
         },
         {
           isCorrect: false,
           label:
-            "Simulasi membandingkan pengaruh lapisan tipis petroleum jelly pada permukaan bawah daun terhadap kehilangan massa daun, sambil memakai pembanding hanya untuk mengukuhkan hipotesis awal dan menghapus ketidakpastian yang tersisa.",
+            "Perbedaan ketiga rata-rata hanya dapat dijelaskan oleh letak stomata karena seluruh sumber ketidakpastian sudah dikendalikan.",
         },
       ],
     },

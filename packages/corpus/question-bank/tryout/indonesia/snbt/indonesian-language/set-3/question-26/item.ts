@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pilihan kecil Mira mengubah makna lampu baca kecil dalam menghadapi konflik di terminal saat hujan sore.",
+            "Mira mengubah panggung yang sepi dengan membacakan satu halaman, sehingga lampu yang semula menerangi kursi kosong menjadi simbol undangan untuk mendengarkan bersama.",
         },
         {
           isCorrect: false,

@@ -7,25 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Mengukur reservoir melalui satu perbandingan awal",
+          label: "Lima Unit Karbon sebagai Hasil Pengukuran Mangrove",
         },
         {
           isCorrect: false,
-          label:
-            "Menjadikan reservoir penjelasan tunggal atas hasil pengamatan",
+          label: "Menghapus Serasah dari Semua Perhitungan Karbon",
         },
         {
           isCorrect: false,
-          label: "Kaidah akhir dari perbandingan pertama tentang reservoir",
+          label: "Mengapa Fotosintesis Menentukan Seluruh Neraca Karbon",
         },
         {
           isCorrect: false,
-          label:
-            "Keterbatasan yang membuat uji lanjutan reservoir tidak diperlukan",
+          label: "Kartu Daur Karbon sebagai Pengganti Pengamatan Lapangan",
         },
         {
           isCorrect: true,
-          label: "Kegunaan dan Batas Peta kartu daur karbon",
+          label: "Batas Sistem dalam Simulasi Neraca Karbon Mangrove",
         },
       ],
     },

@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Caleb's next step in an event-planning meeting",
+          label: "Turning uncertain quotes into a workable concert budget",
         },
         {
           isCorrect: false,
-          label: "Waiting for someone else to complete the next step",
+          label: "Waiting for every price before making a decision",
         },
         {
           isCorrect: false,
-          label: "Hiding unresolved evidence in a larger project",
+          label: "A balanced total with no unanswered questions",
         },
         {
           isCorrect: false,
-          label: "contingency as a definition without a reviewable action",
+          label: "Why contingency means adding money without a reason",
         },
         {
           isCorrect: false,
-          label: "A complete plan without a small accountable step",
+          label: "Removing projection equipment from every youth concert",
         },
       ],
     },

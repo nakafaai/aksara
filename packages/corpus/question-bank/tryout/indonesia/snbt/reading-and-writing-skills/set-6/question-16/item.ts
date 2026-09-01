@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks catatan kebisingan lingkungan memberikan komentar yang singkat dan ringkas.",
+            "Pengguna sistem pencatatan kebisingan lingkungan memberikan komentar yang singkat dan ringkas.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks catatan kebisingan lingkungan memberikan komentar singkat mereka sendiri secara pribadi.",
+            "Pengguna sistem pencatatan kebisingan lingkungan memberikan komentar singkat mereka sendiri secara pribadi.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks catatan kebisingan lingkungan memberikan komentar singkat dalam bentuk pendek.",
+            "Pengguna sistem pencatatan kebisingan lingkungan memberikan komentar singkat dalam bentuk pendek.",
         },
         {
           isCorrect: true,
           label:
-            "Para pengguna di pencatatan kebisingan lingkungan memberikan komentar singkat.",
+            "Pengguna sistem pencatatan kebisingan lingkungan memberikan komentar singkat.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks catatan kebisingan lingkungan memberikan komentar singkat tentang pengalaman mereka dalam konteks tersebut.",
+            "Pengguna sistem pencatatan kebisingan lingkungan memberikan komentar singkat tentang pengalaman mereka dalam sistem tersebut.",
         },
       ],
     },

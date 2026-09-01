@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Dating the final unmarked package completes the recurring record motif and turns storage from anonymous accumulation into traceable history.",
+            "Dating the final unmarked package changes the blue stamp into a cue for shared care, and the next volunteer's response shows that meaning being carried forward.",
         },
         {
           isCorrect: false,

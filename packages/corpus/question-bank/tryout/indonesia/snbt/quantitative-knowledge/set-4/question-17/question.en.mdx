@@ -1,81 +1,88 @@
-
 export const metadata = {
   title: "Question 17",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-26",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-01",
 };
 
-<LineEquation
+<MathVisual
   title={<>Triangle <InlineMath math="ABC" /></>}
-  description={<>Illustration of triangle <InlineMath math="ABC" /> with lines <InlineMath math="AP" />, <InlineMath math="BQ" />, and <InlineMath math="CR" /> intersecting at point <InlineMath math="O" />.</>}
-  data={[
-    // Triangle ABC (centroid at 0,0)
-    {
-      points: [
-        { x: -5, y: -2.887, z: 0 }, // B
-        { x: 5, y: -2.887, z: 0 }, // C
-        { x: 0, y: 5.773, z: 0 }, // A
-        { x: -5, y: -2.887, z: 0 }, // Back to B
-      ],
-      color: "#2563eb",
-      showPoints: false,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="B" />, at: 0, offset: [-0.5, -0.5, 0], color: "#4f46e5" },
-        { text: <InlineMath math="C" />, at: 1, offset: [0.5, -0.5, 0], color: "#4f46e5" },
-        { text: <InlineMath math="A" />, at: 2, offset: [0, 0.5, 0], color: "#4f46e5" },
-      ],
+  description={<>The points show one possible initial configuration. The additional properties in statements <InlineMath math="(1)" /> and <InlineMath math="(2)" /> still have to be tested.</>}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      axes: "hidden",
+      grid: "hidden",
+      x: { min: -4, max: 4 },
+      y: { min: -3, max: 4 },
     },
-    // Line AP (Median from A to BC)
-    {
-      points: [
-        { x: 0, y: 5.773, z: 0 }, // A
-        { x: 0, y: -2.887, z: 0 }, // P (midpoint BC, also centroid)
-      ],
-      color: "#ea580c",
-      showPoints: false,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="P" />, at: 1, offset: [0, -0.5, 0], color: "#4f46e5" },
-      ],
-    },
-    // Line BQ (Median from B to AC)
-    {
-      points: [
-        { x: -5, y: -2.887, z: 0 }, // B
-        { x: 2.5, y: 1.443, z: 0 }, // Q (Midpoint AC)
-      ],
-      color: "#ea580c",
-      showPoints: false,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="Q" />, at: 1, offset: [0.5, 0, 0], color: "#4f46e5" },
-      ],
-    },
-    // Line CR (Median from C to AB)
-    {
-      points: [
-        { x: 5, y: -2.887, z: 0 }, // C
-        { x: -2.5, y: 1.443, z: 0 }, // R (Midpoint AB)
-      ],
-      color: "#ea580c",
-      showPoints: false,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="R" />, at: 1, offset: [-0.5, 0, 0], color: "#4f46e5" },
-      ],
-    },
-  ]}
-  cameraPosition={[0, 0, 15]}
-  showZAxis={false}
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      {
+        id: "triangle-abc",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 3.4641016151377544 },
+          { x: -3, y: -1.7320508075688772 },
+          { x: 3, y: -1.7320508075688772 },
+        ],
+      },
+      {
+        id: "cevian-ap",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: 0, y: 3.4641016151377544 },
+        to: { x: -1, y: -1.7320508075688772 },
+      },
+      {
+        id: "cevian-bq",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: -3, y: -1.7320508075688772 },
+        to: { x: 1.5, y: 0.8660254037844386 },
+      },
+      {
+        id: "cevian-cr",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: 3, y: -1.7320508075688772 },
+        to: { x: -2, y: 0 },
+      },
+      {
+        id: "intersection-o",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: -0.75, y: -0.4330127018922193 },
+      },
+    ],
+    labels: [
+      { key: "point-a", at: { x: 0, y: 3.4641016151377544 }, placement: "above" },
+      { key: "point-b", at: { x: -3, y: -1.7320508075688772 }, placement: "below-left" },
+      { key: "point-c", at: { x: 3, y: -1.7320508075688772 }, placement: "below-right" },
+      { key: "point-p", at: { x: -1, y: -1.7320508075688772 }, placement: "below" },
+      { key: "point-q", at: { x: 1.5, y: 0.8660254037844386 }, placement: "right" },
+      { key: "point-r", at: { x: -2, y: 0 }, placement: "left" },
+      { key: "point-o", at: { x: -0.75, y: -0.4330127018922193 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "point-a": <><InlineMath math="A" /></>,
+    "point-b": <><InlineMath math="B" /></>,
+    "point-c": <><InlineMath math="C" /></>,
+    "point-p": <><InlineMath math="P" /></>,
+    "point-q": <><InlineMath math="Q" /></>,
+    "point-r": <><InlineMath math="R" /></>,
+    "point-o": <><InlineMath math="O" /></>,
+  }}
 />
 
-Triangle <InlineMath math="ABC" /> is an equilateral triangle. If lines <InlineMath math="AP" />, <InlineMath math="BQ" />, and <InlineMath math="CR" /> intersect at a single point, which is point <InlineMath math="O" />.
+Triangle <InlineMath math="ABC" /> is equilateral. Lines <InlineMath math="AP" />, <InlineMath math="BQ" />, and <InlineMath math="CR" /> intersect at point <InlineMath math="O" />.
 
-Determine the measure of angle <InlineMath math="\angle BOC" />?
+Determine the measure of <InlineMath math="\angle BOC" />.
 
-Decide whether statements <InlineMath math="(1)" /> and <InlineMath math="(2)" /> below are sufficient to answer the question!
+Decide whether statements <InlineMath math="(1)" /> and <InlineMath math="(2)" /> below are sufficient to answer the question.
 
 1.  <InlineMath math="BC = 10 \text{ cm}" />.
 2.  Lines <InlineMath math="AP" />, <InlineMath math="BQ" />, and <InlineMath math="CR" /> are angle bisectors of triangle <InlineMath math="ABC" />.

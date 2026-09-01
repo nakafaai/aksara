@@ -2,26 +2,37 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "descriptive",
-    topic: "classification",
+    topic: "main-idea-purpose",
   },
   responses: {
     en: {
-      categories: ["Movement", "Moisture", "Access"],
-      kind: "category",
-      statements: [
+      kind: "single-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "Elastic shelf cords",
+          isCorrect: false,
+          label:
+            "The boat is designed mainly to provide permanent internet access.",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Sealed book boxes",
+          isCorrect: false,
+          label:
+            "The service follows one standard docking arrangement in each village throughout the year.",
         },
         {
-          correctCategoryOrder: 3,
-          label: "A folding ramp with raised edges",
+          isCorrect: false,
+          label:
+            "The crew prioritizes outdoor storage so returned books do not narrow the cabin aisle.",
+        },
+        {
+          isCorrect: false,
+          label: "A library building was copied without any changes.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "The boat adapts library services to river conditions and different users.",
         },
       ],
     },

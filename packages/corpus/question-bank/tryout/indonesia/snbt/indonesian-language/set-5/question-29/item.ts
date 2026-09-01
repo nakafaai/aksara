@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *konflik* mengenali perangkat penceritaan yang menghubungkan benda berulang, tindakan tokoh, dan respons yang belum tuntas pada penutup.",
+            "Definisi *konflik* menjelaskan mengapa makna benang merah berkembang melalui pertentangan antara menyembunyikan kerusakan dan mempertahankan riwayat blus.",
         },
         {
           isCorrect: false,

@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menggunakan nilai rata-rata yang lebih tinggi untuk memperkirakan bahwa perubahan akan bekerja pada keadaan serupa.",
+            "Karena jenis baterai dijaga sama, perilaku kedua susunan pada model dapat dianggap sama persis dengan perilaku instalasi rumah.",
         },
         {
           isCorrect: false,
@@ -18,12 +18,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan membandingkan dua kondisi, tetapi menempatkan faktor kontrol sebagai rincian yang tidak memengaruhi penafsiran.",
+            "Perbandingan seri dan paralel sudah cukup menjelaskan keselamatan instalasi rumah, sedangkan batas tegangan hanya memengaruhi terang lampu.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan lebih menekankan keterbatasan sampel daripada hubungan antara perubahan dan hasil.",
+            "Karena tidak meniru instalasi rumah, model tersebut tidak dapat dipakai untuk menjelaskan hubungan susunan komponen dan perilaku lampu.",
         },
         {
           isCorrect: true,

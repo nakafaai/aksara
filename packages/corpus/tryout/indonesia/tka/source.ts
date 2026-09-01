@@ -8,7 +8,7 @@ import { tkaMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/
 import { tkaEnglishTrack } from "#corpus/tryout/indonesia/tka/tracks/english";
 import { tkaIndonesianTrack } from "#corpus/tryout/indonesia/tka/tracks/indonesian";
 import { tkaMathematicsTrack } from "#corpus/tryout/indonesia/tka/tracks/mathematics";
-import { validateAssessmentSourceReadiness } from "#corpus/tryout/readiness/schema";
+import { validateAssessmentSourceReadiness } from "#corpus/tryout/readiness/validation";
 import { defineTryoutExamSource } from "#corpus/tryout/schema";
 
 /** Lazily validates the source-controlled TKA catalog and placements. */
@@ -33,7 +33,7 @@ const tkaTryoutCatalog = defineTryoutExamSource({
     },
   },
   scoringStrategy: "raw",
-  sourceRevision: "2026-08-30",
+  sourceRevision: "2026-08-31",
   tracks: [tkaMathematicsTrack, tkaIndonesianTrack, tkaEnglishTrack],
 });
 

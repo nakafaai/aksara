@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Siswa membandingkan dua jenis sumber tentang kelas reparasi pakaian untuk menyusun penjelasan yang terbatas dan dapat diperiksa.",
+            "Siswa membandingkan buku pesanan dan sejarah lisan untuk menjelaskan perubahan reparasi tanpa menganggap alasan tiga penjahit sebagai motif semua pelanggan.",
         },
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang kelas reparasi pakaian untuk menyusun penjelasan yang final dan dianggap berlaku untuk semua masa.",
+            "Siswa memakai buku pesanan untuk membuktikan alasan semua pelanggan karena catatan transaksi dibuat pada saat kejadian.",
         },
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang kelas reparasi pakaian untuk menyusun penjelasan yang yang menghapus perbedaan tujuan kedua sumber.",
+            "Siswa menyamakan buku pesanan dan wawancara karena keduanya membahas perubahan reparasi pada kawasan yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang kelas reparasi pakaian untuk menyusun penjelasan yang dengan mengikuti sumber yang lebih baru secara otomatis.",
+            "Siswa mengutamakan wawancara tahun 2026 karena sumber yang lebih baru selalu memberikan gambaran masa lalu yang lebih lengkap.",
         },
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang kelas reparasi pakaian untuk menyusun penjelasan yang tanpa menilai asal serta tujuan tiap sumber.",
+            "Siswa menggabungkan kedua sumber untuk mengisi alasan pelanggan yang tidak tercatat dengan dugaan yang dianggap masuk akal.",
         },
       ],
     },

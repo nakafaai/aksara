@@ -4,24 +4,35 @@ const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "narrative",
-    topic: "explicit-information",
+    topic: "synthesis",
   },
   responses: {
     en: {
-      categories: ["Initial interpretation", "Later evidence"],
-      kind: "category",
-      statements: [
+      kind: "single-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "The packet should stay closed until 2040.",
+          isCorrect: false,
+          label:
+            "Older packets contain instructions that later students should follow without checking context.",
         },
         {
-          correctCategoryOrder: 2,
-          label: "The code matched an eight-year check.",
+          isCorrect: true,
+          label:
+            "Check context before acting, and leave clear records for future participants.",
         },
         {
-          correctCategoryOrder: 2,
-          label: "2032 was one checkpoint in a series.",
+          isCorrect: false,
+          label:
+            "The project should test the entire seed reserve at the first checkpoint.",
+        },
+        {
+          isCorrect: false,
+          label: "Archive lists make experiments impossible.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Each class should finish its seed experiment without relying on earlier records.",
         },
       ],
     },

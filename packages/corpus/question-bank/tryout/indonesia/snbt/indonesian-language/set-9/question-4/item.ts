@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Definisi *atenuasi* membuktikan bahwa perubahan uji menyebabkan hasil yang tercatat meskipun kondisi pembanding diabaikan.",
+            "Definisi itu mengubah selisih desibel menjadi persentase penurunan energi agar ketiga frekuensi dapat langsung dijumlahkan.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi itu menjadikan *atenuasi* pengganti variabel kontrol sehingga faktor yang belum diukur tidak lagi membatasi simpulan.",
+            "Definisi itu membuktikan bahwa panel merupakan satu-satunya penyebab perubahan karena waktu dengung diukur setelah sumber dihentikan.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi tersebut memperluas *atenuasi* dari percobaan singkat ini ke semua keadaan yang menyerupainya.",
+            "Definisi itu memperluas hasil dari satu posisi mikrofon ke seluruh auditorium karena bunyi akhirnya melemah 60 dB.",
         },
         {
           isCorrect: true,
           label:
-            "Definisi *atenuasi* menetapkan makna konsep yang diukur sebelum pembaca menafsirkan perbandingan angka dan keterbatasan percobaan.",
+            "Definisi itu membedakan ukuran lamanya bunyi bertahan dari tingkat bunyi pada tabel, sehingga pembaca memahami mengapa keduanya menjadi bukti yang saling melengkapi.",
         },
         {
           isCorrect: false,
           label:
-            "Istilah *atenuasi* dipakai untuk menamai keterbatasan laporan, bukan konsep yang diwakili hasil pengukuran.",
+            "Definisi itu menunjukkan bahwa waktu dengung lebih objektif daripada desibel sehingga keterbatasan posisi mikrofon dapat diabaikan.",
         },
       ],
     },

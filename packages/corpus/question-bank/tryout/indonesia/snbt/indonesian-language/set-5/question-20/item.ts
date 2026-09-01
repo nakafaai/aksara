@@ -11,11 +11,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Mengutamakan Sumber Terbaru dalam Kajian sejarah lisan",
+          label: "Mengutamakan Sumber Terbaru dalam Kajian Sejarah Lisan",
         },
         {
           isCorrect: false,
-          label: "Menggabungkan Dua Sumber tanpa Memeriksa Konteks",
+          label: "Menggabungkan Dua Sumber Tanpa Memeriksa Konteks",
         },
         {
           isCorrect: false,
@@ -24,7 +24,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Membaca Dua Sumber tentang kelas reparasi pakaian",
+          label:
+            "Membandingkan Catatan Pesanan dan Sejarah Lisan tentang Reparasi Pakaian",
         },
       ],
     },

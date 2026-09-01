@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pilihan kecil Lila mengubah makna kartu pertanyaan dalam menghadapi konflik di pameran sains keliling.",
+            "Pertanyaan Lila mengubah interaksi di satu meja dari gerak tergesa menjadi penyelidikan bersama, meskipun keramaian aula tetap berlangsung.",
         },
         {
           isCorrect: false,
           label:
-            "Benda yang berulang terutama membangun latar dan hanya sedikit berhubungan dengan konflik.",
+            "Lila berhasil menenangkan seluruh aula dengan meminta pengeras suara dan bel pergantian sesi dihentikan.",
         },
         {
           isCorrect: false,
           label:
-            "Keputusan akhir tokoh menghapus ketegangan makna yang sebelumnya dimiliki benda tersebut.",
+            "Kartu pertanyaan memberi jawaban yang benar sehingga perdebatan pengunjung langsung selesai.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan memakai atmosfer sebagai label deskriptif tanpa menghubungkannya dengan pilihan tokoh.",
+            "Perubahan suasana terjadi karena jumlah pengunjung di aula berkurang setelah sesi berganti.",
         },
         {
           isCorrect: false,
           label:
-            "Latar menyelesaikan konflik sebelum tindakan akhir tokoh mengubah makna benda.",
+            "Tumpukan kartu kosong menunjukkan bahwa pengunjung tidak memiliki rasa ingin tahu sampai Lila memberi mereka jawaban.",
         },
       ],
     },

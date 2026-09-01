@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Definisi *reflektor* membuktikan bahwa perubahan uji menyebabkan hasil yang tercatat meskipun kondisi pembanding diabaikan.",
+            "Menetapkan bahwa iradiansi tinggi selalu membuat sudut 45 derajat menjadi sudut terbaik.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi itu menjadikan *reflektor* pengganti variabel kontrol sehingga faktor yang belum diukur tidak lagi membatasi simpulan.",
+            "Mengubah suhu akhir menjadi ukuran energi agar hasil dari semua putaran dapat langsung dijumlahkan.",
         },
         {
           isCorrect: true,
           label:
-            "Definisi *reflektor* menetapkan makna konsep yang diukur sebelum pembaca menafsirkan perbandingan angka dan keterbatasan percobaan.",
+            "Menjelaskan mengapa suhu antarputaran tidak boleh dibandingkan tanpa konteks energi matahari, sedangkan sudut reflektor dapat dibandingkan di dalam putaran yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi tersebut memperluas *reflektor* dari percobaan singkat ini ke semua keadaan yang menyerupainya.",
+            "Membuktikan bahwa pemutaran posisi oven tidak diperlukan selama daya matahari telah dicatat.",
         },
         {
           isCorrect: false,
           label:
-            "Istilah *reflektor* dipakai untuk menamai keterbatasan laporan, bukan konsep yang diwakili hasil pengukuran.",
+            "Menunjukkan bahwa iradiansi merupakan hasil yang disebabkan oleh perubahan sudut reflektor.",
         },
       ],
     },

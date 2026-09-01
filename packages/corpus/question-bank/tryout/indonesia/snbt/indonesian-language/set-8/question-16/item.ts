@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Siswa membandingkan dua jenis sumber tentang klub pembaca pemula untuk menyusun penjelasan yang terbatas dan dapat diperiksa.",
+            "Siswa menghubungkan perubahan pola peminjaman dengan beberapa catatan peserta, tetapi membatasi simpulan karena cakupan arsip dan sudut pandang fasilitator tidak lengkap.",
         },
         {
           isCorrect: false,
@@ -18,17 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang klub pembaca pemula untuk menyusun penjelasan yang yang menghapus perbedaan tujuan kedua sumber.",
+            "Siswa menyamakan daftar peminjaman dengan bukti bahwa setiap buku telah selesai dibaca dan dipahami oleh peminjamnya.",
         },
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang klub pembaca pemula untuk menyusun penjelasan yang dengan mengikuti sumber yang lebih baru secara otomatis.",
+            "Siswa mengutamakan catatan fasilitator karena sumber berbentuk narasi selalu lebih lengkap daripada daftar administratif.",
         },
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang klub pembaca pemula untuk menyusun penjelasan yang tanpa menilai asal serta tujuan tiap sumber.",
+            "Siswa menyatakan jadwal malam sebagai penyebab peningkatan kebiasaan membaca setelah menemukan dua pola yang terjadi berdekatan.",
         },
       ],
     },

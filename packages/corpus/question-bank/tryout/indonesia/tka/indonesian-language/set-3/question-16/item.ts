@@ -2,30 +2,38 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "fiction",
-    topic: "setting-character-phenomenon",
+    topic: "emotional-response",
   },
   responses: {
     id: {
-      kind: "multiple-choice",
+      kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Ia mula-mula menambah not pada birama kosong.",
-        },
-        {
-          isCorrect: true,
-          label: "Ia menahan diri agar Ayu menemukan tempo.",
+          isCorrect: false,
+          label:
+            "marah karena Ayu mengambil partitur Rafi tanpa memahami dukungan yang sedang ia perlukan",
         },
         {
           isCorrect: false,
           label:
-            "Ia masih mengisi ruang melodi Ayu ketika merasa bagian klarinet terlalu singkat.",
+            "takut karena penghentian konser membuat hubungan kedua tokoh berakhir tanpa penyelesaian",
+        },
+        {
+          isCorrect: false,
+          label:
+            "kecewa karena kerusakan klarinet menghalangi kedua tokoh menyampaikan dukungan melalui musik",
         },
         {
           isCorrect: true,
-          label: "Ia menulis kata ‘dengarkan’ pada partitur.",
+          label:
+            "hangat karena keduanya saling memahami bentuk dukungan yang tidak diucapkan",
+        },
+        {
+          isCorrect: false,
+          label:
+            "bingung karena orkes tidak membungkuk sehingga respons kedua tokoh pada akhir cerita tidak dapat ditafsirkan",
         },
       ],
     },

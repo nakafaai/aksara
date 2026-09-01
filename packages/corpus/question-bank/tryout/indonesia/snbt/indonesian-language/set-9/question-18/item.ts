@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Foto panggung membuktikan bahan kostum yang digunakan karena penampilan visual selalu menunjukkan komposisi material secara tepat.",
+            "M-17 pasti digunakan pada 1998, 2007, dan 2019 karena ciri visual pada foto tidak mungkin dibuat ulang pada mantel lain.",
         },
         {
           isCorrect: false,
           label:
-            "Daftar inventaris lebih lengkap daripada foto sehingga perubahan cara kostum digunakan tidak perlu diteliti.",
+            "M-17 tidak pernah dipentaskan karena buku perawatan hanya mencatat perbaikan dan peminjaman, bukan penggunaan panggung.",
         },
         {
           isCorrect: false,
           label:
-            "Kesamaan kostum pada satu dekade membuktikan bahwa produksi pertunjukan tidak berubah pada dekade lain.",
+            "Foto 2019 pasti memperlihatkan mantel pengganti karena buku perawatan berhenti mencatat setelah 2010.",
         },
         {
           isCorrect: false,
           label:
-            "Perbedaan antara penggunaan di panggung dan catatan bahan menunjukkan bahwa salah satu sumber salah.",
+            "Hilangnya halaman 2003 sampai 2005 membatalkan seluruh catatan M-17, termasuk entri yang masih tersedia.",
         },
         {
           isCorrect: true,
           label:
-            "Foto memperlihatkan bagaimana kostum digunakan dalam pementasan, sedangkan inventaris mencatat bahan dan perbaikan; gabungan keduanya mendukung penafsiran perubahan produksi tanpa memastikan sebab setiap perubahan.",
+            "Sumber mendukung keberadaan mantel berciri serupa dan riwayat perawatan M-17 pada sebagian periode, tetapi identitas benda dalam foto 2019 masih belum pasti.",
         },
       ],
     },

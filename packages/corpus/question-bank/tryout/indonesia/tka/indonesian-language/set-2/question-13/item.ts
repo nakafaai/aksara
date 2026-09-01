@@ -4,7 +4,7 @@ const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "daily-relevance",
+    topic: "meaning-relations",
   },
   responses: {
     id: {

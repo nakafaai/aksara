@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Priya faced an obstacle while trying to prepare a flood-safety message and learned through a small accountable action.",
+            "Priya reduces an overloaded flood warning to two sentences and tests it with an unfamiliar reader, turning assumed clarity into evidence.",
         },
         {
           isCorrect: false,

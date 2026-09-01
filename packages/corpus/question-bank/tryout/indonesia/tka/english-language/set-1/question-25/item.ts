@@ -12,24 +12,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The proposal mentions attendance and late arrivals.",
+          label: "The proposed trial would last one term.",
         },
         {
           isCorrect: false,
-          label: "The passage gives sibling care as one example.",
+          label: "The school would compare five named outcomes.",
         },
         {
           isCorrect: false,
-          label: "The trial is described as reversible.",
+          label:
+            "The proposal includes a route back if the costs outweigh the benefits.",
         },
         {
           isCorrect: false,
-          label: "Several routines are named in the second paragraph.",
+          label: "One example concerns collecting a younger sibling.",
         },
         {
           isCorrect: true,
           label:
-            "A secondary school should test a later start time for one term.",
+            "A reversible trial is the fairest timetable policy for every school.",
         },
       ],
     },

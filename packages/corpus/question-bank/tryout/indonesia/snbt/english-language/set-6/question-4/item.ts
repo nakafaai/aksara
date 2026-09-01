@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "By defining *enzyme*, the report fixes the meaning of the measured concept before the numerical comparison and its limitation are interpreted.",
+            "The definition identifies the biological process represented by the colour-change measure without turning that indirect measure into proof of concentration.",
         },
         {
           isCorrect: false,

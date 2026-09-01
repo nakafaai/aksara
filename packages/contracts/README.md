@@ -33,9 +33,13 @@ Current consumers use unversioned semantic Interfaces:
   validates every signed route and projection against it.
 - `projection/page` owns stable public page identities, localized paths, and
   signed metadata for human, agent, and sitemap delivery.
+- `math/visual` owns the unversioned, renderer-neutral plane and space scene
+  contract, including exact straight geometry, rich-label anchors, and the
+  axis-aligned cuboid dimension mapping.
+
 ## Publication dates
 
-Article, material, and public page metadata carries one required
+Article, material, public page, and question metadata carry one required
 `datePublished` and one optional `dateModified`, both as exact `DateOnly`
 values.
 

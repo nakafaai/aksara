@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "new leaf area reached 19 cm², compared with 12 and 13; this supports an association between the blue filter and new leaf area under the tested conditions, while the filter also reduced total light intensity requires further testing before a broader claim.",
+            "New leaf area reached 19 cm², compared with 12 and 13. This supports an association under the tested conditions, but the filter's lower light intensity must be separated from colour in a stronger follow-up.",
         },
       ],
     },

@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Raka menghadapi hambatan dalam menyelesaikan proyek dokumentasi kampung dan belajar melalui tindakan kecil yang bertanggung jawab.",
+            "Raka mengatasi kebiasaan menunda proyek dokumentasi dengan tiga langkah terukur dan pemeriksaan teman, lalu menyelesaikan wawancara pertama serta memperbaiki jadwal.",
         },
         {
           isCorrect: false,

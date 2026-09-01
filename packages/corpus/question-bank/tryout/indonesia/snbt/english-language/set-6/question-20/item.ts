@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "A spool of gold thread in a repair café during a storm",
+          label: "A seam that carries the past forward",
         },
         {
           isCorrect: false,

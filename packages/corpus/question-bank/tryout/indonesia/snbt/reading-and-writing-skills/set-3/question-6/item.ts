@@ -16,9 +16,9 @@ const item: QuestionItem = {
             "Im Kontext Evakuierungsplan verbesserten sich sämtliche Teilnehmenden um denselben Wert.",
         },
         {
-          isCorrect: true,
+          isCorrect: false,
           label:
-            "Der Versuchswert lag im Kontext Karte der Evakuierungswege über den beiden anderen Werten.",
+            "Im Kontext Evakuierungsplan belegte der kurze Test das langfristige Ergebnis.",
         },
         {
           isCorrect: false,
@@ -26,9 +26,9 @@ const item: QuestionItem = {
             "Im Kontext Evakuierungsplan waren die beiden Vergleichswerte identisch.",
         },
         {
-          isCorrect: false,
+          isCorrect: true,
           label:
-            "Im Kontext Evakuierungsplan belegte der kurze Test das langfristige Ergebnis.",
+            "Der Versuchswert lag im Kontext Karte der Evakuierungswege über den beiden anderen Werten.",
         },
       ],
     },
@@ -46,9 +46,9 @@ const item: QuestionItem = {
             "In this setting (evacuation route map), each participant improved by the same amount.",
         },
         {
-          isCorrect: true,
+          isCorrect: false,
           label:
-            "In this setting (evacuation route map), the trial value exceeded both other values.",
+            "In this setting (evacuation route map), the short trial established the long-term result.",
         },
         {
           isCorrect: false,
@@ -56,9 +56,9 @@ const item: QuestionItem = {
             "In this setting (evacuation route map), the two comparison values were identical.",
         },
         {
-          isCorrect: false,
+          isCorrect: true,
           label:
-            "In this setting (evacuation route map), the short trial established the long-term result.",
+            "In this setting (evacuation route map), the trial value exceeded both other values.",
         },
       ],
     },
@@ -76,9 +76,9 @@ const item: QuestionItem = {
             "Dalam konteks peta jalur evakuasi, setiap peserta mengalami peningkatan yang sama.",
         },
         {
-          isCorrect: true,
+          isCorrect: false,
           label:
-            "Di peta jalur evakuasi, nilai hari uji melampaui dua nilai lainnya.",
+            "Dalam konteks peta jalur evakuasi, uji singkat menetapkan hasil jangka panjang.",
         },
         {
           isCorrect: false,
@@ -86,9 +86,9 @@ const item: QuestionItem = {
             "Dalam konteks peta jalur evakuasi, kedua nilai pembanding sama.",
         },
         {
-          isCorrect: false,
+          isCorrect: true,
           label:
-            "Dalam konteks peta jalur evakuasi, uji singkat menetapkan hasil jangka panjang.",
+            "Di peta jalur evakuasi, nilai hari uji melampaui dua nilai lainnya.",
         },
       ],
     },

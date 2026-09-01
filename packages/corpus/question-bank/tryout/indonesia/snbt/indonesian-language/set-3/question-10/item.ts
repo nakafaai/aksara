@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Kegunaan dan Batas Model jaring-jaring makanan di kebun sekolah",
+            "Kegunaan dan Batas Model Jaring-Jaring Makanan di Kebun Sekolah",
         },
         {
           isCorrect: false,

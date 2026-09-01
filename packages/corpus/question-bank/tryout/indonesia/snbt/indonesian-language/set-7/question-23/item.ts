@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kemajuan bergantung pada penyelesaian tugas besar sebelum meminta orang lain meninjaunya.",
+            "Petunjuk yang memakai ikon selalu dapat berdiri sendiri tanpa arahan petugas atau penjelasan tambahan.",
         },
         {
           isCorrect: false,
           label:
-            "Benda atau latar membentuk hasil lebih kuat daripada pilihan khusus yang dibuat tokoh.",
+            "Urutan layanan yang paling mudah dipahami harus diterapkan tanpa pengecualian agar pasien tidak bingung.",
         },
         {
           isCorrect: true,
           label:
-            "Perubahan terjadi ketika Arum memecah hambatan menjadi tindakan yang dapat diperiksa.",
+            "Alat bantu menjadi lebih aman ketika isinya diperiksa, batas penggunaannya dinyatakan, dan arahan manusia tetap tersedia.",
         },
         {
           isCorrect: false,
           label:
-            "Bukti yang belum pasti sebaiknya disimpan sampai tokoh dapat menawarkan hasil lengkap.",
+            "Kesalahan mengikuti panah terjadi semata-mata karena Arum tidak mampu membaca nomor meja yang tersedia.",
         },
         {
           isCorrect: false,
           label:
-            "Tindakan kecil terutama berguna karena menunda bagian konflik yang belum selesai.",
+            "Karena kartu berhasil membantu nenek Arum, kartu itu sudah terbukti sesuai untuk seluruh pasien klinik.",
         },
       ],
     },

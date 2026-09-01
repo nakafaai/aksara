@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Karena langkah "volume air yang sama dituangkan ke kolom pasir, lempung, dan campuran organik" dapat diulang, model sudah mencakup faktor yang hilang ketika tanah dalam botol telah terganggu sehingga berbeda dari lapisan tanah alami dan dapat menggantikan pengamatan lapangan.',
+            "Hanya 62 mililiter yang keluar, jadi 88 mililiter lainnya pasti gagal memasuki permukaan campuran organik.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bahwa tanah dalam botol telah terganggu sehingga berbeda dari lapisan tanah alami membuat hubungan bahwa ukuran pori dan susunan partikel dapat memengaruhi laju masuknya air tidak dapat diperiksa, bahkan di dalam model.",
+            "Seluruh air telah masuk setelah 15 menit, jadi campuran organik dan pasir memiliki perkolasi yang sama.",
         },
         {
           isCorrect: true,
           label:
-            "Pengulangan langkah pada model membantu memeriksa bahwa ukuran pori dan susunan partikel dapat memengaruhi laju masuknya air; karena tanah dalam botol telah terganggu sehingga berbeda dari lapisan tanah alami, pola itu menjadi hipotesis untuk pengamatan nyata, bukan bukti langsung tentang seluruh keadaan lapangan.",
+            "Hampir seluruh air sudah masuk setelah lima menit dan seluruhnya masuk setelah 15 menit, tetapi keluaran yang lebih kecil menunjukkan banyak air masih tersimpan dalam kolom.",
         },
         {
           isCorrect: false,
           label:
-            "Hubungan bahwa ukuran pori dan susunan partikel dapat memengaruhi laju masuknya air dapat diterapkan langsung pada keadaan nyata selama urutan model diulang dengan cara yang sama.",
+            "Campuran organik memiliki infiltrasi lebih lambat daripada lempung karena air di permukaannya tersisa lebih sedikit setelah lima menit.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi istilah pada akhir bacaan sudah cukup membuktikan hubungan sebab dalam kolom infiltrasi dari tiga jenis tanah, meskipun bagian model tidak dibandingkan.",
+            "Keluaran kecil membuktikan penguapan tinggi meskipun bacaan menyatakan penguapan dapat diabaikan.",
         },
       ],
     },

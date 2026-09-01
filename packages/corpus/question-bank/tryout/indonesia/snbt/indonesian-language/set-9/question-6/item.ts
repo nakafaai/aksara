@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bacaan menggunakan nilai rata-rata yang lebih tinggi untuk memperkirakan bahwa perubahan akan bekerja pada keadaan serupa.",
+            "Simulasi menetapkan bahwa mangrove nyata menyimpan lima unit karbon per tahun karena semua aliran penting sudah tercantum pada tabel.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan menjelaskan reservoir sebagai hasil utama, bukan sebagai bagian dari penelitian.",
+            "Perbedaan hasil perhitungan menunjukkan bahwa salah satu siswa salah memahami operasi pengurangan, bukan berbeda dalam menentukan komponen yang dihitung.",
         },
         {
           isCorrect: true,
           label:
-            "Peta kartu daur karbon menyederhanakan proses agar dapat diperiksa sambil tetap memiliki batas representasi.",
+            "Simulasi menunjukkan bahwa hasil neraca karbon bergantung pada batas sistem dan kelengkapan aliran, tetapi angkanya belum dapat diperlakukan sebagai data mangrove nyata.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan membandingkan dua kondisi, tetapi menempatkan faktor kontrol sebagai rincian yang tidak memengaruhi penafsiran.",
+            "Karena serasah tetap berada di ekosistem, perpindahan tumbuhan ke tanah tidak perlu dihitung dalam batas sistem apa pun.",
         },
         {
           isCorrect: false,
           label:
-            "Bacaan lebih menekankan keterbatasan sampel daripada hubungan antara perubahan dan hasil.",
+            "Kegunaan utama model adalah mengganti pengukuran pasang dan emisi metana dengan kartu yang lebih mudah dihitung.",
         },
       ],
     },

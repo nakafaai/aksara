@@ -2,56 +2,23 @@ export const metadata = {
   title: "Lösung zu Aufgabe 17",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-26",
+  dateModified: "2026-09-01",
 };
 
-Gesucht ist <InlineMath math="\angle BOC" /> im gleichseitigen Dreieck <InlineMath math="ABC" />. Die Strecken <InlineMath math="AP" />, <InlineMath math="BQ" /> und <InlineMath math="CR" /> schneiden sich in <InlineMath math="O" />.
+Da <InlineMath math="ABC" /> gleichseitig ist, misst jeder Innenwinkel <InlineMath math="60^\circ" />. Aus den Ausgangsinformationen wissen wir nur, dass <InlineMath math="AP" />, <InlineMath math="BQ" /> und <InlineMath math="CR" /> in <InlineMath math="O" /> zusammentreffen. Ihre Richtungen können noch variieren. Deshalb ist <InlineMath math="\angle BOC" /> noch nicht festgelegt.
 
-#### Analyse erster Informationen
+#### Erste Aussage prüfen
 
-Dreieck <InlineMath math="ABC" /> ist ein gleichseitiges Dreieck. Das bedeutet:
+Die Länge <InlineMath math="BC=10\text{ cm}" /> bestimmt den Maßstab des Dreiecks. Sie legt die Richtungen von <InlineMath math="BQ" /> und <InlineMath math="CR" /> nicht fest. Eine maßstäbliche Vergrößerung oder Verkleinerung verändert außerdem keine Winkel. Aussage <InlineMath math="(1)" /> reicht daher nicht aus, um <InlineMath math="\angle BOC" /> zu bestimmen.
 
-*   <InlineMath math="AB = BC = CA" />
-*   <InlineMath math="\angle A = \angle B = \angle C = 60^\circ" />
+#### Zweite Aussage prüfen
 
-Allerdings kennen wir die Eigenschaften der Linien <InlineMath math="AP" />, <InlineMath math="BQ" /> und <InlineMath math="CR" /> aus dem ursprünglichen Problem noch nicht genau, außer dass sie sich bei <InlineMath math="O" /> schneiden.
+Nun sind <InlineMath math="BQ" /> und <InlineMath math="CR" /> Winkelhalbierende. Da <InlineMath math="O" /> auf beiden Strecken liegt, gilt
 
-#### Analyse der ersten Aussage
+<BlockMath math="\angle OBC=\frac{1}{2}\angle ABC=30^\circ\qquad\text{und}\qquad\angle OCB=\frac{1}{2}\angle ACB=30^\circ" />
 
-Aussage <InlineMath math="(1)" />: <InlineMath math="BC = 10 \text{ cm}" />.
+Die Innenwinkel des Dreiecks <InlineMath math="BOC" /> ergeben zusammen <InlineMath math="180^\circ" />. Damit folgt
 
-Diese Information gibt nur die Länge der Dreiecksseite an. Ohne die Eigenschaften der Linien <InlineMath math="BQ" /> und <InlineMath math="CR" /> zu kennen (ob es sich um Höhen, Winkelhalbierende oder Mediane handelt), können wir die Position des Punktes <InlineMath math="O" /> und die darin enthaltenen Winkel nicht mit Sicherheit bestimmen.
+<BlockMath math="\begin{aligned}\angle BOC&=180^\circ-\angle OBC-\angle OCB\\&=180^\circ-30^\circ-30^\circ\\&=120^\circ.\end{aligned}" />
 
-Die Aussage <InlineMath math="(1)" /> ALLEIN ist also **nicht ausreichend**.
-
-#### Analyse der zweiten Aussage
-
-Aussage <InlineMath math="(2)" />: Die Linien <InlineMath math="AP" />, <InlineMath math="BQ" /> und <InlineMath math="CR" /> sind Winkelhalbierende des Dreiecks <InlineMath math="ABC" />.
-
-Wenn <InlineMath math="BQ" /> die Winkelhalbierende des Winkels <InlineMath math="B" /> ist, dann:
-
-<MathContainer>
-  <BlockMath math="\angle OBC = \frac{1}{2} \times \angle B = \frac{1}{2} \times 60^\circ = 30^\circ" />
-</MathContainer>
-
-Wenn <InlineMath math="CR" /> die Winkelhalbierende des Winkels <InlineMath math="C" /> ist, dann:
-
-<MathContainer>
-  <BlockMath math="\angle OCB = \frac{1}{2} \times \angle C = \frac{1}{2} \times 60^\circ = 30^\circ" />
-</MathContainer>
-
-Im Dreieck <InlineMath math="BOC" /> beträgt die Winkelsumme <InlineMath math="180^\circ" />.
-
-<MathContainer>
-  <BlockMath math="\angle BOC + \angle OBC + \angle OCB = 180^\circ" />
-  <BlockMath math="\angle BOC + 30^\circ + 30^\circ = 180^\circ" />
-  <BlockMath math="\angle BOC + 60^\circ = 180^\circ" />
-  <BlockMath math="\angle BOC = 120^\circ" />
-</MathContainer>
-
-Wir können das Winkelmaß <InlineMath math="\angle BOC" /> nur mit der Aussage <InlineMath math="(2)" /> bestimmen.
-
-Die Aussage <InlineMath math="(2)" /> ALLEIN ist also **ausreichend**.
-
-#### Fazit
-
-Die Aussage <InlineMath math="(1)" /> ist nicht ausreichend, die Aussage <InlineMath math="(2)" /> jedoch ausreichend.
+Der Winkel ist damit eindeutig bestimmt. Aussage <InlineMath math="(2)" /> reicht aus. Insgesamt ist Aussage <InlineMath math="(1)" /> unzureichend und Aussage <InlineMath math="(2)" /> ausreichend.

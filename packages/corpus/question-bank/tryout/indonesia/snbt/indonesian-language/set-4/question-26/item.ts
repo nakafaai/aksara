@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pilihan kecil Galih mengubah makna serpihan cat biru dalam menghadapi konflik di bangunan tua yang sedang dipugar.",
+            "Galih menelusuri serpihan biru yang berulang, mencocokkannya dengan foto arsip, lalu membantu tim menyisakan bukti pintu ruang baca lama di tengah pemugaran.",
         },
         {
           isCorrect: false,

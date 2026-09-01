@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The definition of *open ending* identifies the narrative device that connects the recurring object, the character's action, and the unresolved response at the end.",
+            "The definition explains why the missing final budget is a deliberate part of the story, allowing the changed decision process to matter before the outcome is known.",
         },
         {
           isCorrect: false,
           label:
-            "The term *open ending* confirms one final outcome and therefore removes the need to interpret the ending.",
+            "The term confirms that the team will approve the larger concert, even though the story withholds its decision.",
         },
         {
           isCorrect: false,
           label:
-            "The definition treats *open ending* as the physical object itself rather than as a feature of the narrative ending.",
+            "The definition identifies the pencil-worn ledger itself as an open ending rather than describing the unresolved conclusion.",
         },
         {
           isCorrect: false,
           label:
-            "The term *open ending* makes the reader's personal impression sufficient even when it conflicts with story details.",
+            "The term allows any prediction about the final budget to be correct, even if it ignores the unresolved quotes.",
         },
         {
           isCorrect: false,
           label:
-            "The definition explains only the setting, so the recurring object and the character's action are irrelevant.",
+            "The definition explains why the hall is empty and therefore makes Iris's changes to the ledger irrelevant.",
         },
       ],
     },

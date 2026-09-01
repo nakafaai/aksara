@@ -2,35 +2,29 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "fiction",
-    topic: "continuation",
+    topic: "setting-character-phenomenon",
   },
   responses: {
     id: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
+          isCorrect: true,
+          label: "Melindungi Mira dari pertanyaan yang berulang.",
+        },
+        {
           isCorrect: false,
-          label:
-            "menunjukkan Mira mulai memandang stasiun sebagai tempat bekerja, bukan menunggu",
+          label: "Menjamin Seno akan pulang setiap Jumat.",
         },
         {
           isCorrect: true,
-          label:
-            "menjadi tempat pertemuan antara menunggu dan melanjutkan perjalanan",
+          label: "Memberi bentuk pada harapan Mira.",
         },
         {
-          isCorrect: false,
-          label: "menjelaskan cara membuat biola",
-        },
-        {
-          isCorrect: false,
-          label: "menunjukkan festival diadakan di dalam kereta",
-        },
-        {
-          isCorrect: false,
-          label: "membuat Pak Damar meninggalkan pekerjaannya",
+          isCorrect: true,
+          label: "Mengingatkan Mira agar tetap melanjutkan latihan.",
         },
       ],
     },

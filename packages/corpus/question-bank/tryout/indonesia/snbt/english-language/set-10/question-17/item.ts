@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Recasting the recurring budget total as three questions changes it from a false conclusion into a shared inquiry, which the ending takes up.",
+            "Erasing “FINAL” and adding three questions changes the ledger from a display of certainty into a shared inquiry that the blank ending continues.",
         },
         {
           isCorrect: false,
           label:
-            "Iris erased the total and rewrote the budget as three questions; the recurring object's physical appearance fixes its complete meaning from the first mention.",
+            "The pencil marks establish the ledger's full meaning before Iris reads the unresolved costs or changes the page.",
         },
         {
           isCorrect: false,
           label:
-            "Iris erased the total and rewrote the budget as three questions; the ending states the object's meaning directly, making the earlier actions irrelevant.",
+            "The ending supplies the final supplier quote, making Iris's earlier questions unnecessary to the outcome.",
         },
         {
           isCorrect: false,
           label:
-            "Iris erased the total and rewrote the budget as three questions; the setting alone changes the atmosphere, independently of the character's use of the recurring object.",
+            "The empty hall changes the ledger's meaning by itself, independently of the erased word and the teammates' additions.",
         },
         {
           isCorrect: false,
           label:
-            "Iris erased the total and rewrote the budget as three questions; the object keeps one fixed meaning even as the character's action and the final response change.",
+            "The ledger remains a record of fixed totals even after its final claim is erased and its open questions receive deadlines.",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Karena poster dan buku tamu sama-sama menyebut pameran, pesan resmi pasti sama dengan pengalaman seluruh pengunjung.",
+            "Slogan pada lima poster membuktikan bahwa pameran dapat diakses setiap keluarga di seluruh kota yang disinggahi.",
         },
         {
           isCorrect: false,
           label:
-            "Buku tamu harus menggantikan poster karena tanggapan pengunjung selalu lebih netral daripada promosi penyelenggara.",
+            "Sebanyak 64 komentar positif dari 240 catatan membuktikan bahwa sebagian besar seluruh pengunjung mudah mengikuti demonstrasi.",
         },
         {
           isCorrect: false,
           label:
-            "Perbedaan antara pesan poster dan komentar pengunjung membuktikan bahwa promosi pameran tidak jujur.",
+            "Adanya 31 komentar tentang bahasa teknis membuktikan bahwa pesan inklusif pada poster sengaja dibuat tidak jujur.",
         },
         {
           isCorrect: false,
           label:
-            "Asal kota dan tujuan pembuatan sumber tidak perlu diperiksa setelah lima poster dan satu buku tamu dikumpulkan.",
+            "Delapan belas catatan tentang akses kursi roda mewakili pengalaman semua pengguna kursi roda di lima kota.",
         },
         {
           isCorrect: true,
           label:
-            "Poster menunjukkan pesan resmi pameran, sedangkan buku tamu merekam sebagian tanggapan pengunjung; keduanya dapat dibandingkan untuk menilai hubungan pameran dengan masyarakat tanpa menganggap komentar itu mewakili semua pengunjung.",
+            "Penyelenggara menampilkan pameran sebagai kegiatan untuk setiap keluarga, tetapi catatan sukarela dari dua kota menunjukkan bahwa sebagian penulis masih mengalami hambatan bahasa dan akses.",
         },
       ],
     },

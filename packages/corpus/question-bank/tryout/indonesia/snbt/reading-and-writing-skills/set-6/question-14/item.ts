@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Data di ukur di pencatatan kebisingan lingkungan dan kemudian dibandingkan.",
+            "Data di kumpulkan dalam pencatatan kebisingan lingkungan, lalu dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data diukur didepan pencatatan kebisingan lingkungan dan kemudian dibandingkan.",
+            "Data dikumpulkan didalam pencatatan kebisingan lingkungan, lalu dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data mengukur di pencatatan kebisingan lingkungan dan kemudian membandingkan.",
+            "Data mengumpulkan dalam pencatatan kebisingan lingkungan, lalu membandingkan.",
         },
         {
           isCorrect: true,
           label:
-            "Data diukur di pencatatan kebisingan lingkungan dan kemudian dibandingkan.",
+            "Data dikumpulkan dalam pencatatan kebisingan lingkungan, lalu dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data diukur pada di pencatatan kebisingan lingkungan lalu di bandingkan.",
+            "Data dikumpulkan pada dalam pencatatan kebisingan lingkungan, lalu di bandingkan.",
         },
       ],
     },

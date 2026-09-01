@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The comparison condition produced 15, the reference for the repair-tool card trial; different objects still involved very different repair difficulty.",
+            "The trial reached 25 completed repairs, compared with 14 and 15; because objects differed greatly in repair difficulty, the result supports a limited follow-up rather than a general rule.",
         },
       ],
     },

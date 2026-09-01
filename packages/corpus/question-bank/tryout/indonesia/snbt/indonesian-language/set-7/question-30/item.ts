@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Benda berulang yang tetap menjadi bagian latar",
+          label: "Cara Lila Menenangkan Seluruh Aula Pameran",
         },
         {
           isCorrect: false,
-          label: "Konflik yang selesai sebelum pilihan akhir tokoh",
+          label: "Jawaban Lila atas Percobaan Cahaya dan Bayangan",
         },
         {
           isCorrect: false,
-          label: "atmosfer sebagai istilah tanpa peran dalam cerita",
+          label: "Bunyi Pameran yang Tidak Pernah Berubah",
         },
         {
           isCorrect: false,
-          label: "Akhir yang menghapus ketegangan makna benda",
+          label: "Kartu Kosong sebagai Tanda Gagal Bertanya",
         },
         {
           isCorrect: true,
-          label: "Kartu pertanyaan di pameran sains keliling",
+          label: "Satu Pertanyaan di Tengah Riuh Pameran",
         },
       ],
     },

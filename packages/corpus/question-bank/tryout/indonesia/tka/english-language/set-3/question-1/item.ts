@@ -2,26 +2,36 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "descriptive",
-    topic: "classification",
+    topic: "text-fit",
   },
   responses: {
     en: {
-      categories: ["Safe movement", "Product protection", "Drainage"],
-      kind: "category",
-      statements: [
+      kind: "single-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "Yellow-edged wooden bridges",
+          isCorrect: false,
+          label:
+            "Vendors uncover displays after rain so damp air can move across them.",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Vertical racks beneath deep awnings",
+          isCorrect: true,
+          label:
+            "A staff member replaces any bridge whose surface becomes loose or slippery.",
         },
         {
-          correctCategoryOrder: 3,
-          label: "A blue circle kept clear of chairs",
+          isCorrect: false,
+          label: "The drain is hidden beneath a group of chairs.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Staff replace bridges by visual judgment without recording the time of inspection.",
+        },
+        {
+          isCorrect: false,
+          label: "Paper prints are placed directly in the wet channel.",
         },
       ],
     },

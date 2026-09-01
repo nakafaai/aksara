@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "By defining *selectivity*, the report fixes the meaning of the measured concept before the numerical comparison and its limitation are interpreted.",
+            "The definition distinguishes collecting the target fragments from simply trapping everything, while the single-material model leaves real-world selectivity untested.",
         },
       ],
     },

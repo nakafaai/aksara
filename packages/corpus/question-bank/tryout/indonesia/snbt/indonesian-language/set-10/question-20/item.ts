@@ -7,24 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Kesamaan Isi sebagai Bukti bahwa Dua Sumber Identik",
+          label: "Dua Puluh Empat Lampu yang Pasti Menyala Setiap Malam",
         },
         {
           isCorrect: false,
-          label: "Mengutamakan Sumber Terbaru dalam Kajian perspektif",
+          label: "Tiga Buku Harian sebagai Suara Seluruh Kampung",
         },
         {
           isCorrect: true,
-          label: "Membaca Dua Sumber tentang peta penerangan jalan kampung",
+          label: "Membaca Peta Lampu dan Pengalaman Malam Warga",
         },
         {
           isCorrect: false,
-          label: "Menggabungkan Dua Sumber tanpa Memeriksa Konteks",
+          label: "Mengapa Peta Resmi Tidak Berguna bagi Sejarah",
         },
         {
           isCorrect: false,
-          label:
-            "Perbedaan Format yang Membuat Dua Sumber Tidak Dapat Dibandingkan",
+          label: "Penerangan yang Merata di Semua Jalan Kampung",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kemajuan bergantung pada penyelesaian tugas besar sebelum meminta orang lain meninjaunya.",
+            "Setiap nilai menyimpang harus dimasukkan ke perhitungan agar peneliti tidak dituduh memilih data.",
         },
         {
           isCorrect: false,
           label:
-            "Benda atau latar membentuk hasil lebih kuat daripada pilihan khusus yang dibuat tokoh.",
+            "Setiap nilai menyimpang harus dihapus setelah pengukuran ulang menghasilkan angka yang lebih berdekatan.",
         },
         {
           isCorrect: false,
           label:
-            "Bukti yang belum pasti sebaiknya disimpan sampai tokoh dapat menawarkan hasil lengkap.",
+            "Median tiga pengukuran selalu menjadi nilai benar sehingga ketelitian alat tidak perlu dilaporkan.",
         },
         {
           isCorrect: true,
           label:
-            "Perubahan terjadi ketika Dito memecah hambatan menjadi tindakan yang dapat diperiksa.",
+            "Nilai menyimpang perlu diselidiki, diberi status berdasarkan bukti, dan tetap disimpan agar keputusan memasukkan atau mengecualikannya dapat diaudit.",
         },
         {
           isCorrect: false,
           label:
-            "Tindakan kecil terutama berguna karena menunda bagian konflik yang belum selesai.",
+            "Dua hasil yang berbeda sebaiknya langsung dirata-ratakan sebelum penyebab perbedaannya diperiksa.",
         },
       ],
     },

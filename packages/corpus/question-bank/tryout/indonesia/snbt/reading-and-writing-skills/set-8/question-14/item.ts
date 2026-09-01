@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Data di ukur di layanan pencarian barang hilang dan kemudian dibandingkan.",
+            "Data di kumpulkan dalam layanan pencarian barang hilang, lalu dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data diukur didepan layanan pencarian barang hilang dan kemudian dibandingkan.",
+            "Data dikumpulkan didalam layanan pencarian barang hilang, lalu dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data mengukur di layanan pencarian barang hilang dan kemudian membandingkan.",
+            "Data mengumpulkan dalam layanan pencarian barang hilang, lalu membandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data diukur pada di layanan pencarian barang hilang lalu di bandingkan.",
+            "Data dikumpulkan pada dalam layanan pencarian barang hilang, lalu di bandingkan.",
         },
         {
           isCorrect: true,
           label:
-            "Data diukur di layanan pencarian barang hilang dan kemudian dibandingkan.",
+            "Data dikumpulkan dalam layanan pencarian barang hilang, lalu dibandingkan.",
         },
       ],
     },

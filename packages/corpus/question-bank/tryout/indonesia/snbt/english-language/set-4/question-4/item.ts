@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "By defining *solute*, the report fixes the meaning of the measured concept before the numerical comparison and its limitation are interpreted.",
+            "By defining *solute*, the report identifies the role of the dissolved salt before interpreting the temperature comparison and the study's limitation.",
         },
         {
           isCorrect: false,

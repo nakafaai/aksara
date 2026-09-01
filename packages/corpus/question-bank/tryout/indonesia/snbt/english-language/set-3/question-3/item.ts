@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "the mean rose to 16, compared with 9 at baseline and 10 in the comparison condition; this supports an association between side-facing seed openings and root growth under the tested conditions, while the containers were small and the trial lasted only six days requires further testing before a broader claim.",
+            "The mean rose to 16, compared with 9 at baseline and 10 in the comparison condition. This supports an association between side-facing seed openings and root growth under the tested conditions, but the small containers and six-day trial require further testing before a broader claim.",
         },
         {
           isCorrect: false,

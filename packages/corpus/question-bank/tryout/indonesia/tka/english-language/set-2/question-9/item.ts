@@ -2,37 +2,30 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "recount",
-    topic: "comparison",
+    topic: "outline",
   },
   responses: {
     en: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label:
-            "The writer learned that signs are adequate when their designer can explain them nearby.",
+          isCorrect: true,
+          label: "Signs were lowered.",
         },
         {
           isCorrect: false,
           label:
-            "The writer treated the rainy-day delays as proof that the project had failed.",
-        },
-        {
-          isCorrect: false,
-          label: "The writer stopped recording remaining problems.",
+            "Every display was moved out of the experiment room after the test walk.",
         },
         {
           isCorrect: true,
-          label:
-            "The writer learned that a route must be tested by people with different needs.",
+          label: "Pale text was replaced with darker lettering.",
         },
         {
           isCorrect: false,
-          label:
-            "The writer believed symbols were less useful than hidden arrows.",
+          label: "The portable ramp was permanently removed.",
         },
       ],
     },

@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Menunggu orang lain menyelesaikan langkah berikutnya",
+          label: "Aturan yang Sama untuk Semua Peserta",
         },
         {
           isCorrect: false,
-          label: "Menyembunyikan bukti yang belum tuntas dalam proyek besar",
+          label: "Tiga Jawaban yang Menyelesaikan Semua Hambatan",
         },
         {
           isCorrect: false,
-          label: "empati sebagai definisi tanpa tindakan yang dapat diperiksa",
+          label: "Permainan Sempurna setelah Peluit Diganti",
         },
         {
           isCorrect: true,
-          label: "Langkah Kecil Tari di taman bermain inklusif",
+          label: "Tari Mengubah Aturan setelah Mendengar",
         },
         {
           isCorrect: false,
-          label: "Rencana lengkap tanpa langkah kecil yang bertanggung jawab",
+          label: "Meja Tinggi sebagai Satu-satunya Masalah Taman",
         },
       ],
     },

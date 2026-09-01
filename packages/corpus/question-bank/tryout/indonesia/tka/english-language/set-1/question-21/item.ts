@@ -8,7 +8,7 @@ const item: QuestionItem = {
   },
   responses: {
     en: {
-      categories: ["Proposed measure", "Possible unequal effect"],
+      categories: ["Outcome to measure", "Potential unequal effect"],
       kind: "category",
       statements: [
         {

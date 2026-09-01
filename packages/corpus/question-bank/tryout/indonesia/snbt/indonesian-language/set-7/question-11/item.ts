@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pengelola antrean pemeriksaan kesehatan menilai nomor tahap yang ditandai pada lantai melalui masukan pihak terdampak saja, tanpa membandingkan hasil pengukuran.",
+            "Klinik menetapkan penanda baru sebagai sistem tetap karena jumlah pasien yang tidak kembali ke meja sebelumnya meningkat dari 40 menjadi 56.",
         },
         {
           isCorrect: false,
           label:
-            "Pengelola antrean pemeriksaan kesehatan menilai nomor tahap yang ditandai pada lantai melalui data pembanding saja, dengan pengalaman pihak terdampak ditempatkan di luar keputusan.",
+            "Klinik membatalkan penanda baru karena panah di lantai tidak dapat digunakan oleh semua pasien dalam setiap keadaan.",
         },
         {
           isCorrect: false,
           label:
-            "Pengelola antrean pemeriksaan kesehatan menilai nomor tahap yang ditandai pada lantai melalui data dan masukan pihak terdampak, lalu menjadikan uji singkat cukup untuk penerapan tetap.",
+            "Klinik menyimpulkan bahwa penanda baru memperbaiki seluruh mutu layanan karena jadwal dan jumlah petugas tidak berubah.",
         },
         {
           isCorrect: false,
           label:
-            "Pengelola antrean pemeriksaan kesehatan menilai nomor tahap yang ditandai pada lantai terutama melalui definisi istilah, sedangkan perubahan yang diusulkan hanya menjadi latar bacaan.",
+            "Klinik mengutamakan masukan pengguna dan mengabaikan perbandingan angka karena kebutuhan medis pasien berbeda.",
         },
         {
           isCorrect: true,
           label:
-            "Pengelola antrean pemeriksaan kesehatan menilai nomor tahap yang ditandai pada lantai melalui data pembanding dan masukan pihak terdampak.",
+            "Klinik memakai hasil perbandingan dan masukan aksesibilitas untuk memperbaiki penanda, lalu melanjutkan pengujian secara terbatas sebelum memutuskan penerapan tetap.",
         },
       ],
     },

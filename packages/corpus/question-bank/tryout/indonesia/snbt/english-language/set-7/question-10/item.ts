@@ -12,8 +12,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label:
-            "Evidence-informed change in a neighbourhood flood-warning exercise",
+          label: "Testing an actionable flood alert beyond the drill",
         },
         {
           isCorrect: false,

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Lila memilih untuk menuliskan satu pertanyaan pada kartu kosong dan menempelkannya di alat yang paling sunyi; bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
+            "Kartu mengubah suasana karena bentuk fisiknya lebih menarik daripada sakelar dan diagram pada meja pameran.",
         },
         {
           isCorrect: true,
           label:
-            "Kartu kosong pada alat yang sunyi mengubah ketiadaan tanggapan menjadi undangan bagi pengunjung untuk memulai percakapan.",
+            "Pertanyaan pada kartu menahan tindakan otomatis pengunjung dan mengarahkannya menjadi percobaan, pembacaan diagram, serta percakapan.",
         },
         {
           isCorrect: false,
           label:
-            "Lila memilih untuk menuliskan satu pertanyaan pada kartu kosong dan menempelkannya di alat yang paling sunyi; akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
+            "Kartu mengubah suasana dengan menyatakan jawaban percobaan secara langsung sehingga pengunjung tidak perlu berdiskusi.",
         },
         {
           isCorrect: false,
           label:
-            "Lila memilih untuk menuliskan satu pertanyaan pada kartu kosong dan menempelkannya di alat yang paling sunyi; perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
+            "Kartu membuat bel dan pengeras suara berhenti, sehingga penyebab perubahan suasana sepenuhnya berasal dari latar yang mendadak sunyi.",
         },
         {
           isCorrect: false,
           label:
-            "Lila memilih untuk menuliskan satu pertanyaan pada kartu kosong dan menempelkannya di alat yang paling sunyi; benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
+            "Kartu tetap menandai kegagalan pengunjung bertanya karena tidak ada seorang pun yang menuliskan jawaban di atasnya.",
         },
       ],
     },

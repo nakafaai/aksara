@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pengelola pengiriman buku antarpulau menilai label tujuan berukuran besar pada setiap kotak melalui data pembanding dan masukan pihak terdampak.",
+            "Pengelola menilai label tujuan besar melalui data pembanding dan masukan pihak terdampak, lalu melanjutkan uji secara terbatas karena pengaruh cuaca belum diperiksa.",
         },
         {
           isCorrect: false,

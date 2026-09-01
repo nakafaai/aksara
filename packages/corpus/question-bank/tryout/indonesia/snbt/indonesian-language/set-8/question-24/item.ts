@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *integritas ilmiah* menjadi lensa untuk membaca pilihan konkret tokoh sebagai perkembangan sikap, bukan sekadar label moral yang berdiri sendiri.",
+            "Definisi *integritas ilmiah* menjelaskan mengapa Dito menyimpan nilai menyimpang, mencatat alasan pengecualian, dan melaporkan ketidakpastian pengukuran.",
         },
         {
           isCorrect: false,

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The class tested how connecting two cells in series affected voltage in a simple circuit, while controlling the listed factors but treating one short trial as proof of a universal effect.",
+            "The class proved that two cells in series always double a circuit's voltage, current, power, and operating time.",
         },
         {
           isCorrect: false,
           label:
-            "The class tested how connecting two cells in series affected voltage in a simple circuit, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
+            "The class compared cell arrangements and found that the parallel arrangement produced the largest terminal voltage across the resistor.",
         },
         {
           isCorrect: false,
           label:
-            "The class tested how connecting two cells in series affected voltage in a simple circuit, while treating the scientific term as the measured outcome that settles the investigation.",
+            "The class measured potential difference mainly to determine which arrangement would deliver the greatest power under every possible load.",
         },
         {
           isCorrect: true,
           label:
-            "The class tested how connecting two cells in series affected voltage in a simple circuit, while controlling other factors and reporting a limitation.",
+            "The class found a higher terminal voltage for two cells in series under one fixed load, while its controls and limitations kept the conclusion tied to the tested circuit.",
         },
         {
           isCorrect: false,
           label:
-            "The class tested how connecting two cells in series affected voltage in a simple circuit, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
+            "By rotating the cells between arrangements, the class removed any need to measure internal resistance or test other resistor values.",
         },
       ],
     },

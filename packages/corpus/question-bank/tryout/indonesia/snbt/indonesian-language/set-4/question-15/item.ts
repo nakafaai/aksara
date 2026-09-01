@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Keputusan Berbasis Bukti dalam ruang laktasi di pasar",
+          label: "Keputusan Berbasis Bukti untuk Akses Ruang Laktasi di Pasar",
         },
         {
           isCorrect: false,

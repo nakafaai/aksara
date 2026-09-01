@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *atmosfer* mengenali perangkat penceritaan yang menghubungkan benda berulang, tindakan tokoh, dan respons yang belum tuntas pada penutup.",
+            "Definisi *atmosfer* mengarahkan pembaca menghubungkan bunyi aula, gerak pengunjung, dan percakapan di meja untuk menafsirkan perubahan suasana.",
         },
         {
           isCorrect: false,
@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Definisi itu menyamakan *atmosfer* dengan benda yang berulang, bukan dengan sifat penutup cerita.",
+            "Definisi itu menyamakan *atmosfer* dengan tingkat kebisingan, sehingga suasana tidak mungkin berubah selama bunyi aula tetap ada.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Definisi tersebut hanya menerangkan latar sehingga tindakan tokoh dan perubahan makna benda tidak relevan.",
+            "Definisi tersebut membuat pertanyaan pada kartu menjadi jawaban ilmiah yang menyelesaikan perdebatan kedua anak.",
         },
       ],
     },

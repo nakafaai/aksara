@@ -2,30 +2,34 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "analytical-exposition",
-    topic: "synthesis",
+    topic: "fact-opinion",
   },
   responses: {
     en: {
-      kind: "multiple-choice",
+      kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Trace a claim to its source.",
-        },
-        {
-          isCorrect: true,
-          label: "Match checking effort to possible harm.",
+          isCorrect: false,
+          label: "The passage lists three initial checking steps.",
         },
         {
           isCorrect: false,
-          label:
-            "Treat professional design as evidence that the source has already been verified.",
+          label: "Medical advice is named as a higher-risk example.",
         },
         {
           isCorrect: true,
-          label: "Use source checking across different subjects.",
+          label:
+            "Treating source checking as a task only for language or computer classes is unrealistic.",
+        },
+        {
+          isCorrect: false,
+          label: "Geography is mentioned in the fourth paragraph.",
+        },
+        {
+          isCorrect: false,
+          label: "The routine includes a stopping rule.",
         },
       ],
     },

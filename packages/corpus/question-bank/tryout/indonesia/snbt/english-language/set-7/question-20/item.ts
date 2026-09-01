@@ -11,7 +11,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "A rain-spotted message card in a neighbourhood flood drill",
+          label: "Cutting a warning down to action",
         },
         {
           isCorrect: false,

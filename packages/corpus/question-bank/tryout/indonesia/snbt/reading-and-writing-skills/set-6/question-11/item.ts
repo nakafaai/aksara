@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "analisa efektivitas contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
+            "analisa efektivitas contoh pencatatan durasi suara dalam pencatatan kebisingan lingkungan",
         },
         {
           isCorrect: false,
           label:
-            "analisis efektifitas contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
+            "analisis efektifitas contoh pencatatan durasi suara dalam pencatatan kebisingan lingkungan",
         },
         {
           isCorrect: true,
           label:
-            "analisis efektivitas contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
+            "analisis efektivitas contoh pencatatan durasi suara dalam pencatatan kebisingan lingkungan",
         },
         {
           isCorrect: false,
           label:
-            "analisa efektifitas contoh cara mencatat durasi suara di pencatatan kebisingan lingkungan",
+            "analisa efektifitas contoh pencatatan durasi suara dalam pencatatan kebisingan lingkungan",
         },
         {
           isCorrect: false,
           label:
-            "analisis efektivitas contoh cara mencatat durasi suara di kontek pencatatan kebisingan lingkungan",
+            "analisis efektivitas contoh pencatatan durasi suara dalam kontek pencatatan kebisingan lingkungan",
         },
       ],
     },

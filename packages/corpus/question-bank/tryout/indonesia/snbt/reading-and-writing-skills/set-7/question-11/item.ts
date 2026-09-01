@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "analisa efektivitas kode pengembalian di peminjaman payung stasiun",
+            "analisa efektivitas kode pengembalian pada setiap gagang dalam layanan peminjaman payung di stasiun",
         },
         {
           isCorrect: true,
           label:
-            "analisis efektivitas kode pengembalian di peminjaman payung stasiun",
+            "analisis efektivitas kode pengembalian pada setiap gagang dalam layanan peminjaman payung di stasiun",
         },
         {
           isCorrect: false,
           label:
-            "analisis efektifitas kode pengembalian di peminjaman payung stasiun",
+            "analisis efektifitas kode pengembalian pada setiap gagang dalam layanan peminjaman payung di stasiun",
         },
         {
           isCorrect: false,
           label:
-            "analisa efektifitas kode pengembalian di peminjaman payung stasiun",
+            "analisa efektifitas kode pengembalian pada setiap gagang dalam layanan peminjaman payung di stasiun",
         },
         {
           isCorrect: false,
           label:
-            "analisis efektivitas kode pengembalian di kontek peminjaman payung stasiun",
+            "analisis efektivitas kode pengembalian pada setiap gagang dalam kontek peminjaman payung di stasiun",
         },
       ],
     },

@@ -2,16 +2,35 @@ export const metadata = {
   title: "Aufgabe 12",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-08-30",
+  dateModified: "2026-09-01",
 };
 
 Die Quadrate der drei verschiedenen Flächendiagonalen eines Quaders sind <InlineMath math="85,\ 100,\ 113" />.
 
-<LineEquation
+<MathVisual
   title="Quader"
   description="Ein Quader mit zwölf geraden Kanten."
-  cameraPosition={[8, 7, 10]}
-  data={[{ kind: "cuboid", length: 6, width: 7, height: 8, color: "#7c3aed" }]}
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      axes: "hidden",
+      grid: "hidden",
+      x: { min: -4, max: 4 },
+      y: { min: -5, max: 5 },
+      z: { min: -4.5, max: 4.5 },
+    },
+    view: { kind: "isometric", target: { x: 0, y: 0, z: 0 } },
+    objects: [
+      {
+        id: "cuboid",
+        kind: "cuboid",
+        appearance: "primary",
+        center: { x: 0, y: 0, z: 0 },
+        size: { length: 6, width: 7, height: 8 },
+      },
+    ],
+  }}
 />
 
 Wie groß ist das Volumen des Quaders?

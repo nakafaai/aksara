@@ -23,12 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *literasi kesehatan* menjadi lensa untuk membaca pilihan konkret tokoh sebagai perkembangan sikap, bukan sekadar label moral yang berdiri sendiri.",
+            "Definisi *literasi kesehatan* menyatukan tiga tindakan Arum: memperoleh informasi dari petugas, memahaminya melalui kartu yang diperiksa, dan menggunakannya untuk membantu nenek.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi tersebut hanya menamai latar kegiatan dan tidak berkaitan dengan keputusan tokoh.",
+            "Definisi tersebut menunjukkan bahwa kemampuan membaca nomor meja sudah cukup untuk menggunakan semua informasi kesehatan.",
         },
       ],
     },

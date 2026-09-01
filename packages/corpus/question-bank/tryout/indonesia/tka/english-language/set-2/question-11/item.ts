@@ -2,26 +2,36 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "narrative",
-    topic: "explicit-information",
+    topic: "character",
   },
   responses: {
     en: {
-      categories: ["Planned", "Live", "Direct"],
-      kind: "category",
-      statements: [
+      kind: "single-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "The printed timetable",
+          isCorrect: false,
+          label:
+            "He expects a printed schedule to remain the most precise source during a disruption.",
         },
         {
-          correctCategoryOrder: 2,
-          label: "The official service page",
+          isCorrect: false,
+          label: "He refuses to use the service page again.",
         },
         {
-          correctCategoryOrder: 3,
-          label: "The clinic receptionist",
+          isCorrect: false,
+          label:
+            "He decides that service pages make direct phone contact unnecessary.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "He learns to combine sources rather than reject an imperfect one.",
+        },
+        {
+          isCorrect: false,
+          label: "He thinks the storm did not affect transport.",
         },
       ],
     },

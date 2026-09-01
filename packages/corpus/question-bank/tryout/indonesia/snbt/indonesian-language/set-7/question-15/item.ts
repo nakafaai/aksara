@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "alur layanan sebagai ukuran utama dalam uji layanan",
+          label: "Menghitung Keberhasilan Klinik dari Satu Ukuran",
         },
         {
           isCorrect: false,
-          label: "Dari perbandingan singkat menuju perubahan layanan tetap",
+          label: "Dari Uji Singkat Menuju Sistem Klinik yang Tetap",
         },
         {
           isCorrect: false,
-          label: "Konsultasi tanpa pengukuran hasil yang dapat dibandingkan",
+          label: "Masukan Pasien sebagai Pengganti Data Perbandingan",
         },
         {
           isCorrect: true,
-          label: "Keputusan Berbasis Bukti dalam antrean pemeriksaan kesehatan",
+          label: "Menguji Penanda Alur Klinik: Hasil, Batas, dan Perbaikan",
         },
         {
           isCorrect: false,
-          label: "Uji layanan lokal tanpa keputusan tindak lanjut",
+          label: "Perbedaan Kebutuhan Medis yang Membatalkan Penanda Baru",
         },
       ],
     },

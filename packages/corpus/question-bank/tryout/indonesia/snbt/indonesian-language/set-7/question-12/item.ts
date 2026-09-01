@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
+            "Perbedaan 56 dan 42 tidak memberi informasi apa pun karena kebutuhan medis tiap pasien tidak sama.",
         },
         {
           isCorrect: true,
           label:
-            "Nilai 42 adalah kondisi pembanding untuk nomor tahap; jumlah pasien dan kebutuhan medis yang berubah menuntut pengujian pada hari lain.",
+            "Hasil 56 dari 60 dibandingkan 42 dari 60 mendukung uji lanjut, tetapi belum menunjukkan bahwa penanda saja menyebabkan perbedaan karena kebutuhan pasien antargiliran tidak disamakan.",
         },
         {
           isCorrect: false,
           label:
-            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
+            "Kesamaan jadwal dan jumlah petugas sudah cukup memastikan bahwa penanda baru menjadi satu-satunya penyebab perbedaan hasil.",
         },
         {
           isCorrect: false,
           label:
-            "Kondisi pembanding menghasilkan nilai rata-rata 42; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+            "Data pengamatan awal 40 dari 60 membuktikan bahwa penanda lama selalu membuat tepat sepertiga pasien salah mengikuti alur.",
         },
         {
           isCorrect: false,
           label:
-            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
+            "Karena kedua kondisi masing-masing memuat 60 pasien, hasilnya dapat digeneralisasi ke semua klinik tanpa uji tambahan.",
         },
       ],
     },

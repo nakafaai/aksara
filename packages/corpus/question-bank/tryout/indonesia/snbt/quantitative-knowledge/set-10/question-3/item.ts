@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
+          label: "$$0{,}0133$$",
+        },
+        {
+          isCorrect: false,
           label: "$$0{,}0067$$",
         },
         {
           isCorrect: false,
-          label: "$$0{,}00033$$",
+          label: "$$0{,}000044$$",
         },
         {
           isCorrect: false,
-          label: "$$0{,}00067$$",
+          label: "$$0{,}0667$$",
         },
         {
           isCorrect: false,
-          label: "$$0{,}0033$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$0{,}033$$",
+          label: "$$0{,}1333$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
+          label: "$$0.0133$$",
+        },
+        {
+          isCorrect: false,
           label: "$$0.0067$$",
         },
         {
           isCorrect: false,
-          label: "$$0.00033$$",
+          label: "$$0.000044$$",
         },
         {
           isCorrect: false,
-          label: "$$0.00067$$",
+          label: "$$0.0667$$",
         },
         {
           isCorrect: false,
-          label: "$$0.0033$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$0.033$$",
+          label: "$$0.1333$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
+          label: "$$0{,}0133$$",
+        },
+        {
+          isCorrect: false,
           label: "$$0{,}0067$$",
         },
         {
           isCorrect: false,
-          label: "$$0{,}00033$$",
+          label: "$$0{,}000044$$",
         },
         {
           isCorrect: false,
-          label: "$$0{,}00067$$",
+          label: "$$0{,}0667$$",
         },
         {
           isCorrect: false,
-          label: "$$0{,}0033$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$0{,}033$$",
+          label: "$$0{,}1333$$",
         },
       ],
     },

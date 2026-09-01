@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The class tested how a blue-light filter affected leaf growth under different light colours, while controlling other factors and reporting a limitation.",
+            "The class observed greater new leaf area with a blue filter under mostly controlled conditions, but reduced light intensity prevented attributing the difference to colour alone.",
         },
         {
           isCorrect: false,

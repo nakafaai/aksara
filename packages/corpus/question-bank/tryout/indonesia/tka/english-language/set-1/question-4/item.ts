@@ -12,24 +12,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "To make rain fall more often",
-        },
-        {
-          isCorrect: false,
-          label: "To attract insects to the water",
+          label:
+            "The container will stay cooler because a dark surface reflects more sunlight.",
         },
         {
           isCorrect: false,
           label:
-            "To make debris beneath the mesh easier for gardeners to notice",
-        },
-        {
-          isCorrect: true,
-          label: "To help reduce heating in the hottest corner",
+            "The rain gauge will become less accurate because the container color has changed.",
         },
         {
           isCorrect: false,
-          label: "To make the containers heavier",
+          label:
+            "The tomato frames will be more likely to pull loose from their heavy planters.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "The stored water will probably warm more quickly, repeating the condition linked to the wilted lettuce.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The mesh will stop keeping leaves and insects out of the water.",
         },
       ],
     },

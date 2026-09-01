@@ -2,22 +2,59 @@ export const metadata = {
   title: "Soal 15",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-01",
 };
 
 Sebuah tiang tegak ditopang oleh dua kabel yang menghubungkan puncak tiang dengan dua jangkar tanah pada sisi yang berlawanan. Jarak kedua jangkar <InlineMath math="17" /> meter. Panjang kedua kabel adalah <InlineMath math="25" /> meter dan <InlineMath math="26" /> meter.
 
-<LineEquation
+<MathVisual
   title="Tiang dan kabel penopang"
-  description="Ruas-ruas garis eksak yang menghubungkan jangkar, kaki tiang, dan puncak tiang."
-  cameraPosition={[1.5, 12, 42]}
-  cameraTarget={[1.5, 12, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: -7, y: 0, z: 0 }, { x: 10, y: 0, z: 0 }], color: "#64748b", smooth: false, showPoints: true },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 24, z: 0 }], color: "#16a34a", smooth: false, showPoints: true },
-    { points: [{ x: -7, y: 0, z: 0 }, { x: 0, y: 24, z: 0 }, { x: 10, y: 0, z: 0 }], color: "#7c3aed", smooth: false, showPoints: true },
-  ]}
+  description="Model koordinat menggambar tanah, tiang, dan kedua kabel dengan ruas lurus yang berskala tepat terhadap data pada soal."
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      axes: "hidden",
+      grid: "hidden",
+      x: { min: -8, max: 11 },
+      y: { min: -1, max: 25 },
+    },
+    view: { kind: "fit", padding: 0.75 },
+    objects: [
+      {
+        id: "ground",
+        kind: "segment",
+        appearance: "reference",
+        from: { x: -7, y: 0 },
+        to: { x: 10, y: 0 },
+      },
+      {
+        id: "pole",
+        kind: "segment",
+        appearance: "primary",
+        from: { x: 0, y: 0 },
+        to: { x: 0, y: 24 },
+      },
+      {
+        id: "left-cable",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: -7, y: 0 },
+        to: { x: 0, y: 24 },
+      },
+      {
+        id: "right-cable",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: 0, y: 24 },
+        to: { x: 10, y: 0 },
+      },
+      { id: "left-anchor", kind: "point", appearance: "highlight", at: { x: -7, y: 0 } },
+      { id: "pole-base", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pole-top", kind: "point", appearance: "highlight", at: { x: 0, y: 24 } },
+      { id: "right-anchor", kind: "point", appearance: "highlight", at: { x: 10, y: 0 } },
+    ],
+  }}
 />
 
 Berapa meter tinggi tiang tersebut?

@@ -40,11 +40,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "$$1{,}5$$",
+          label: "$$1.5$$",
         },
         {
           isCorrect: false,
-          label: "$$2{,}5$$",
+          label: "$$2.5$$",
         },
         {
           isCorrect: false,

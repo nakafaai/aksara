@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Para pengguna di layanan pencarian barang hilang memberikan komentar singkat.",
+            "Pengguna layanan pencarian barang hilang memberikan komentar singkat.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks layanan barang hilang memberikan komentar yang singkat dan ringkas.",
+            "Pengguna layanan pencarian barang hilang memberikan komentar yang singkat dan ringkas.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks layanan barang hilang memberikan komentar singkat mereka sendiri secara pribadi.",
+            "Pengguna layanan pencarian barang hilang memberikan komentar singkat mereka sendiri secara pribadi.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks layanan barang hilang memberikan komentar singkat dalam bentuk pendek.",
+            "Pengguna layanan pencarian barang hilang memberikan komentar singkat dalam bentuk pendek.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks layanan barang hilang memberikan komentar singkat tentang pengalaman mereka dalam konteks tersebut.",
+            "Pengguna layanan pencarian barang hilang memberikan komentar singkat tentang pengalaman mereka dalam layanan tersebut.",
         },
       ],
     },

@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "A blank caption card in a quiet local museum",
+          label: "From a blank caption to an invitation to look",
         },
         {
           isCorrect: false,

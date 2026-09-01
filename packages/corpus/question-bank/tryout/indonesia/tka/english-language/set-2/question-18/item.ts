@@ -2,37 +2,29 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "procedure",
-    topic: "cause-effect",
+    topic: "classification",
   },
   responses: {
     en: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
           isCorrect: true,
-          label: "Nearby streets may be closed during the same emergency.",
+          label: "Two meeting places",
+        },
+        {
+          isCorrect: true,
+          label: "An out-of-area contact",
         },
         {
           isCorrect: false,
-          label:
-            "Choose the second meeting place without checking whether the first remains reachable.",
+          label: "Every medical detail shared with the out-of-area contact",
         },
         {
           isCorrect: false,
-          label:
-            "The second meeting place should be in another town even if children cannot reach it independently.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Paper cards are mainly useful after family members have left the neighborhood.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The second location is needed because the out-of-area contact cannot send messages to local numbers.",
+          label: "Unverified instructions for a medical device",
         },
       ],
     },

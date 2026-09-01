@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Theo faced an obstacle while trying to catalogue a box of community photographs and learned through a small accountable action.",
+            "Theo records uncertainty about a photograph instead of guessing, which preserves the record for later evidence from a visitor.",
         },
       ],
     },

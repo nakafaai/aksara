@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Turning the recurring map and retracing the route changes it from a fixed authority into a tool for the passenger's perspective, a shift confirmed by the ending response.",
+            "Rotating the recurring map and retracing the route changes it from a staff-facing reference into a passenger-facing guide, a shift confirmed when the child finds the stop.",
         },
         {
           isCorrect: false,

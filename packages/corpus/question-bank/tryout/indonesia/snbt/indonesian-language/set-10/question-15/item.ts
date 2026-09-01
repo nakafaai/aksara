@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "desain inklusif sebagai ukuran utama dalam uji layanan",
+          label: "Peta Baru yang Membuat Semua Alat Inklusif",
         },
         {
           isCorrect: true,
-          label: "Keputusan Berbasis Bukti dalam taman bermain inklusif",
+          label: "Menguji Peta Akses di Taman Bermain",
         },
         {
           isCorrect: false,
-          label: "Dari perbandingan singkat menuju perubahan layanan tetap",
+          label: "Satu Ikon Tenang untuk Semua Kebutuhan Sensorik",
         },
         {
           isCorrect: false,
-          label: "Konsultasi tanpa pengukuran hasil yang dapat dibandingkan",
+          label: "Menggabungkan Hasil Semua Keluarga dalam Satu Angka",
         },
         {
           isCorrect: false,
-          label: "Uji layanan lokal tanpa keputusan tindak lanjut",
+          label: "Kecepatan Menemukan Alat sebagai Bukti Akhir Inklusi",
         },
       ],
     },

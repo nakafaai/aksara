@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *sejarah lisan* memberi dasar untuk membandingkan posisi kedua sumber tanpa menganggap salah satunya sebagai catatan yang sepenuhnya netral.",
+            "Definisi *sejarah lisan* menempatkan wawancara sebagai rekaman pengalaman yang perlu dinilai menurut penutur dan waktu perekamannya, bukan disamakan dengan catatan transaksi.",
         },
         {
           isCorrect: false,

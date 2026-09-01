@@ -1,73 +1,79 @@
-
-
 export const metadata = {
   title: "Soal 9",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-24",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-01",
 };
 
 Perhatikan ilustrasi berikut!
 
-<LineEquation
+<MathVisual
   title="Ilustrasi Lingkaran"
   description={<>Lingkaran dengan pusat <InlineMath math="O" /> dan sudut <InlineMath math="\angle BOC = 50^\circ" />.</>}
-  cameraPosition={[0, 0, 12]}
-  showZAxis={false}
-  data={[
-    {
-      kind: "circle-outline",
-      radius: 3,
-      color: "#0891b2",
-      showPoints: false,
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      axes: "hidden",
+      grid: "hidden",
+      x: { min: -4, max: 4 },
+      y: { min: -4, max: 4 },
     },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      color: "#ca8a04",
-      showPoints: false,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0.5, 0] },
-        { text: <InlineMath math="O" />, at: 1, offset: [0, 0.5, 0] },
-        { text: <InlineMath math="B" />, at: 2, offset: [0.5, 0.5, 0] },
-      ],
-    },
-    {
-      kind: "circle-radius",
-      degrees: -50,
-      radius: 3,
-      color: "#ea580c",
-      showPoints: false,
-      labels: [
-        { text: <InlineMath math="C" />, at: 1, offset: [0.3, -0.4, 0] },
-      ],
-    },
-    {
-      kind: "circle-chord",
-      radius: 3,
-      startDegrees: 180,
-      sweepDegrees: 130,
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      kind: "circle-arc",
-      radius: 0.8,
-      startDegrees: 0,
-      sweepDegrees: -50,
-      color: "#7c3aed",
-      label: {
-        text: <InlineMath math="50^\circ" />,
-        progress: 0.5,
-        offset: [0.5, -0.2, 0],
-        fontSize: 0.35,
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      {
+        id: "circle",
+        kind: "circle",
+        appearance: "primary",
+        center: { x: 0, y: 0 },
+        radius: 3,
       },
-    },
-  ]}
+      {
+        id: "diameter-ab",
+        kind: "segment",
+        appearance: "reference",
+        from: { x: -3, y: 0 },
+        to: { x: 3, y: 0 },
+      },
+      {
+        id: "radius-oc",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: 0, y: 0 },
+        to: { x: 1.9283628290596182, y: -2.298133329356934 },
+      },
+      {
+        id: "chord-ac",
+        kind: "segment",
+        appearance: "highlight",
+        from: { x: -3, y: 0 },
+        to: { x: 1.9283628290596182, y: -2.298133329356934 },
+      },
+      {
+        id: "angle-boc",
+        kind: "arc",
+        appearance: "primary",
+        center: { x: 0, y: 0 },
+        radius: 0.8,
+        startDegrees: 0,
+        sweepDegrees: -50,
+      },
+    ],
+    labels: [
+      { key: "point-a", at: { x: -3, y: 0 }, placement: "above-left" },
+      { key: "point-o", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "point-b", at: { x: 3, y: 0 }, placement: "above-right" },
+      { key: "point-c", at: { x: 1.9283628290596182, y: -2.298133329356934 }, placement: "below-right" },
+      { key: "angle-value", at: { x: 0.72504622962932, y: -0.3380946093925596 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "point-a": <><InlineMath math="A" /></>,
+    "point-o": <><InlineMath math="O" /></>,
+    "point-b": <><InlineMath math="B" /></>,
+    "point-c": <><InlineMath math="C" /></>,
+    "angle-value": <><InlineMath math="50^\circ" /></>,
+  }}
 />
 
 Jika <InlineMath math="O" /> adalah pusat lingkaran, maka besar <InlineMath math="\angle OAC" /> adalah ....

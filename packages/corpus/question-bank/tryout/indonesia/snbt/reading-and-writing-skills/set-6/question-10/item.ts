@@ -88,7 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Dengan aturan pengukuran yang sama, tim merencanakan uji panah arah yang ditempatkan yang lebih panjang.",
+            "Dengan aturan pengukuran yang sama, tim merencanakan uji yang lebih lama terhadap panah arah di setiap persimpangan.",
         },
       ],
     },

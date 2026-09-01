@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Penyebutan *aksesibilitas* membuktikan rancangan sudah adil tanpa perlu memeriksa data pembanding atau masukan pengguna.",
+            "Menjadikan keberadaan peta raba sebagai bukti otomatis bahwa jalur dapat digunakan semua orang.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi itu membatasi *aksesibilitas* pada kebutuhan kelompok terbanyak sehingga variasi kebutuhan lain dapat diabaikan.",
+            "Mengarahkan pembaca agar hanya memakai persentase gabungan karena aksesibilitas merupakan sifat seluruh jalur.",
         },
         {
           isCorrect: true,
           label:
-            "Definisi *aksesibilitas* memberi kriteria untuk menilai apakah rancangan dan bukti akses benar-benar mencakup kebutuhan pengguna yang berbeda.",
+            "Mengubah tolok ukur dari sekadar kenaikan rata-rata menjadi kemampuan beragam kelompok memakai informasi secara mandiri.",
         },
         {
           isCorrect: false,
           label:
-            "Istilah *aksesibilitas* menggantikan konsultasi pihak terdampak dengan satu label yang langsung menentukan keputusan.",
+            "Menyamakan akses informasi dengan jumlah peserta sehingga kelompok terbesar otomatis menentukan keberhasilan.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi tersebut menjelaskan keterbatasan masa uji, bukan kriteria yang dipakai untuk membaca rancangan.",
+            "Membatasi penilaian pada kemampuan membaca huruf besar tanpa mempertimbangkan penggunaan informasi tersebut.",
         },
       ],
     },

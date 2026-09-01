@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Perubahan terjadi ketika Bima memecah hambatan menjadi tindakan yang dapat diperiksa.",
+            "Dengan menahan dua kotak yang belum cocok dan mencatat perubahan tugas, Bima menunjukkan bahwa akuntabilitas dapat menuntut hasil yang lebih sedikit tetapi dapat diperiksa.",
         },
         {
           isCorrect: false,

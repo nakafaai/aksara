@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *periode* menetapkan makna konsep yang diukur sebelum pembaca menafsirkan perbandingan angka dan keterbatasan percobaan.",
+            "Definisi *periode* menjelaskan mengapa waktu sepuluh ayunan perlu dibagi sepuluh sebelum hasil kedua panjang tali dibandingkan.",
         },
       ],
     },

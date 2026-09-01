@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The definition of *register* supplies the classification rule needed to interpret the budget comparison and the consultation evidence.",
+            "The definition explains why glossary entries need context: suitable wording depends on the situation and purpose, not on a single universal equivalent.",
         },
         {
           isCorrect: false,
           label:
-            "Calling a cost *register* establishes that the proposed change is affordable without using the estimated prices.",
+            "Defining *register* proves that every participant should use the same wording in every setting.",
         },
         {
           isCorrect: false,
           label:
-            "The definition makes *register* apply to every cost in the table, regardless of how activity levels change.",
+            "The definition makes regional and family usage irrelevant to the glossary.",
         },
         {
           isCorrect: false,
           label:
-            "The term *register* replaces the affected groups' evidence with a financial label that settles the decision by itself.",
+            "The term *register* replaces the measured comparison and peer review evidence.",
         },
         {
           isCorrect: false,
           label:
-            "The definition explains why the trial used estimated invoices, rather than how the cost category should be read.",
+            "The definition shows that an informal family expression is unsuitable in every public or private situation.",
         },
       ],
     },

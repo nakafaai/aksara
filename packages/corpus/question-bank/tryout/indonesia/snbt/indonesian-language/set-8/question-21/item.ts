@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dito menghadapi hambatan dalam membantu pendataan sumur warga dan menunggu seluruh proyek selesai sebelum meminta satu pun peninjauan.",
+            "Dito menghapus angka 4,35 meter agar hasil pengukuran terlihat konsisten dan laporan dapat segera diselesaikan.",
         },
         {
           isCorrect: true,
           label:
-            "Dito menghadapi hambatan dalam membantu pendataan sumur warga dan belajar melalui tindakan kecil yang bertanggung jawab.",
+            "Dito menelusuri penyebab angka menyimpang, mengulang pengukuran, mempertahankan jejak data, dan melaporkan 4,81 meter sebagai hasil dengan ketidakpastian.",
         },
         {
           isCorrect: false,
           label:
-            "Dito menghadapi hambatan dalam membantu pendataan sumur warga dan menyerahkan langkah berikutnya kepada tokoh lain agar masalah segera berakhir.",
+            "Dito merata-ratakan 4,35 dan 4,82 meter karena semua hasil ukur harus memiliki bobot yang sama tanpa melihat cara memperolehnya.",
         },
         {
           isCorrect: false,
           label:
-            "Dito menghadapi hambatan dalam membantu pendataan sumur warga dan memahami empati sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
+            "Dito memilih 4,82 meter sebagai nilai pasti karena hasil temannya sama dengan salah satu pengukuran ulang.",
         },
         {
           isCorrect: false,
           label:
-            "Dito menghadapi hambatan dalam membantu pendataan sumur warga dan menempatkan pencatatan ketidakpastian di atas tindakan kecil yang dapat diperiksa.",
+            "Dito menyimpan angka pertama sebagai nilai sah meskipun bukti fisik menunjukkan pemberat mungkin belum mencapai air.",
         },
       ],
     },

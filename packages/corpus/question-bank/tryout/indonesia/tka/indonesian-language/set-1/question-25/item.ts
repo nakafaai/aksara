@@ -2,33 +2,30 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "language-suitability",
+    topic: "outline",
   },
   responses: {
     id: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
-          isCorrect: false,
-          label: "Masukkan Apa Saja",
-        },
-        {
-          isCorrect: false,
-          label: "Tempat Barang yang Tidak Disukai",
-        },
-        {
-          isCorrect: false,
-          label: "Mungkin Bisa Menjadi Kompos",
-        },
-        {
-          isCorrect: false,
-          label: "Wadah Hijau yang Bagus",
+          isCorrect: true,
+          label: "Memasang contoh nyata pada tutup wadah.",
         },
         {
           isCorrect: true,
-          label: "Sisa Nabati Bersih Tanpa Kemasan",
+          label: "Menjelaskan masalah lapisan perekat atau pelindung.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Menggabungkan sisa yang belum teridentifikasi agar petugas dapat memilahnya kemudian.",
+        },
+        {
+          isCorrect: false,
+          label: "Menghapus relawan dari meja pengembalian.",
         },
       ],
     },

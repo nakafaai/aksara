@@ -23,7 +23,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Keputusan Berbasis Bukti dalam layanan perpustakaan keliling",
+          label: "Keputusan Berbasis Bukti dalam Layanan Perpustakaan Keliling",
         },
       ],
     },

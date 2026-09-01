@@ -19,8 +19,9 @@ const item: QuestionItem = {
           label: "Check whether essential equipment uses water.",
         },
         {
-          isCorrect: true,
-          label: "Make sure irrigation will not start.",
+          isCorrect: false,
+          label:
+            "Start the irrigation once before the reading to verify that its timer works.",
         },
         {
           isCorrect: false,

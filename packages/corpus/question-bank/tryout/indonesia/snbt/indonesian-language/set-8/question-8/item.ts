@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "membandingkan perubahan suhu wadah logam dan plastik yang ketebalan serta celah udaranya disamakan.",
+            "Menguji beberapa wadah aluminium dan polipropilena dengan bentuk, ketebalan, penutup, volume air, dan suhu awal yang sama serta mengacak posisinya pada setiap pengulangan.",
         },
         {
           isCorrect: false,

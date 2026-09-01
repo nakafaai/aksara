@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "serpihan cat biru memperoleh makna karena muncul bersama konflik, pilihan, dan perubahan pada akhir cerita.",
+            "Serpihan biru menjadi petunjuk sejarah karena berulang di sepanjang retakan, sesuai dengan foto 1978, dan mengarah pada bidang pintu lama yang akhirnya dipertahankan.",
         },
         {
           isCorrect: false,

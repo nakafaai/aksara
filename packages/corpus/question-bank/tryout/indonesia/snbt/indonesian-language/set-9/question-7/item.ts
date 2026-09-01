@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Karena langkah "siswa memindahkan penanda karbon mengikuti proses fotosintesis, respirasi, dan penguraian" dapat diulang, model sudah mencakup faktor yang hilang ketika panah pada kartu tidak menunjukkan besarnya aliran atau lamanya penyimpanan dan dapat menggantikan pengamatan lapangan.',
+            "Dalam batas tumbuhan, serasah tidak mengurangi cadangan karena karbonnya masih berada di dalam kawasan mangrove.",
         },
         {
           isCorrect: false,
           label:
-            "Keterbatasan bahwa panah pada kartu tidak menunjukkan besarnya aliran atau lamanya penyimpanan membuat hubungan bahwa karbon berpindah di antara atmosfer, makhluk hidup, tanah, dan perairan tidak dapat diperiksa, bahkan di dalam model.",
+            "Dalam batas gabungan tumbuhan dan tanah, serasah harus dihitung dua kali karena keluar dari tumbuhan sekaligus masuk ke tanah.",
         },
         {
           isCorrect: false,
           label:
-            "Hubungan bahwa karbon berpindah di antara atmosfer, makhluk hidup, tanah, dan perairan dapat diterapkan langsung pada keadaan nyata selama urutan model diulang dengan cara yang sama.",
+            "Perubahan batas sistem hanya mengubah istilah yang digunakan, sedangkan arus yang masuk dan keluar selalu menghasilkan jumlah bersih yang sama.",
         },
         {
           isCorrect: true,
           label:
-            "Pengulangan langkah pada model membantu memeriksa bahwa karbon berpindah di antara atmosfer, makhluk hidup, tanah, dan perairan; karena panah pada kartu tidak menunjukkan besarnya aliran atau lamanya penyimpanan, pola itu menjadi hipotesis untuk pengamatan nyata, bukan bukti langsung tentang seluruh keadaan lapangan.",
+            "Serasah merupakan arus keluar jika hanya tumbuhan yang dihitung, tetapi menjadi perpindahan internal jika tumbuhan dan tanah ditempatkan dalam satu batas sistem.",
         },
         {
           isCorrect: false,
           label:
-            "Definisi istilah pada akhir bacaan sudah cukup membuktikan hubungan sebab dalam peta kartu daur karbon, meskipun bagian model tidak dibandingkan.",
+            "Serasah dapat diabaikan pada kedua batas karena nilainya lebih kecil daripada fotosintesis dan tidak mengubah arah perhitungan.",
         },
       ],
     },

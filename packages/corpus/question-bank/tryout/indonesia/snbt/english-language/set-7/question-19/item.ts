@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The definition of *narrative conflict* identifies the narrative device that connects the recurring object, the character's action, and the unresolved response at the end.",
+            "The definition identifies the story's driving struggle: the alert contains accurate knowledge but fails to direct action before time runs out.",
         },
         {
           isCorrect: false,

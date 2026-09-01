@@ -2,144 +2,112 @@ export const metadata = {
   title: "Question 12",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-01",
 };
 
 
 
 A regular pyramid <InlineMath math="T.ABCD" /> has <InlineMath math="AB = 4 \text{ cm}" />. Point <InlineMath math="O" /> is the intersection of <InlineMath math="AC" /> and <InlineMath math="BD" />. What is the volume of the pyramid?
 
-<LineEquation
+<MathVisual
   title={<>Regular pyramid <InlineMath math="T.ABCD" /></>}
   description={<>Visualization of regular pyramid <InlineMath math="T.ABCD" /> with square base <InlineMath math="ABCD" /> and center of base at point <InlineMath math="O" />.</>}
-  cameraPosition={[6, 4, 8]}
-  data={[
-    {
-      points: [
-        { x: -2, y: 0, z: -2 },
-        { x: 2, y: 0, z: -2 }
-      ],
-      color: "#7c3aed",
-      showPoints: true,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [-0.3, 0, -0.3] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.3, 0, -0.3] }
-      ]
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      axes: "hidden",
+      grid: "hidden",
+      x: { min: -3, max: 3 },
+      y: { min: -1, max: 4 },
+      z: { min: -3, max: 3 },
     },
-    {
-      points: [
-        { x: 2, y: 0, z: -2 },
-        { x: 2, y: 0, z: 2 }
-      ],
-      color: "#7c3aed",
-      showPoints: true,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="C" />, at: 1, offset: [0.3, 0, 0.3] }
-      ]
-    },
-    {
-      points: [
-        { x: 2, y: 0, z: 2 },
-        { x: -2, y: 0, z: 2 }
-      ],
-      color: "#7c3aed",
-      showPoints: true,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="D" />, at: 1, offset: [-0.3, 0, 0.3] }
-      ]
-    },
-    {
-      points: [
-        { x: -2, y: 0, z: 2 },
-        { x: -2, y: 0, z: -2 }
-      ],
-      color: "#7c3aed",
-      showPoints: true,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: -2, y: 0, z: -2 },
-        { x: 2, y: 0, z: 2 }
-      ],
-      color: "#ea580c",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 2, y: 0, z: -2 },
-        { x: -2, y: 0, z: 2 }
-      ],
-      color: "#ea580c",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [0.3, 0.5, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 3, z: 0 }
-      ],
-      color: "#9333ea",
-      showPoints: true,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="T" />, at: 1, offset: [0.3, 0.3, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: -2, y: 0, z: -2 },
-        { x: 0, y: 3, z: 0 }
-      ],
-      color: "#7c3aed",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 2, y: 0, z: -2 },
-        { x: 0, y: 3, z: 0 }
-      ],
-      color: "#7c3aed",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 2, y: 0, z: 2 },
-        { x: 0, y: 3, z: 0 }
-      ],
-      color: "#7c3aed",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: -2, y: 0, z: 2 },
-        { x: 0, y: 3, z: 0 }
-      ],
-      color: "#7c3aed",
-      showPoints: false,
-      smooth: false,
-    }
-  ]}
-  showZAxis={false}
+    view: { kind: "isometric", target: { x: 0, y: 1, z: 0 } },
+    objects: [
+      {
+        id: "base-abcd",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: -2, y: 0, z: -2 },
+          { x: 2, y: 0, z: -2 },
+          { x: 2, y: 0, z: 2 },
+          { x: -2, y: 0, z: 2 },
+        ],
+      },
+      {
+        id: "diagonal-ac",
+        kind: "segment",
+        appearance: "construction",
+        from: { x: -2, y: 0, z: -2 },
+        to: { x: 2, y: 0, z: 2 },
+      },
+      {
+        id: "diagonal-bd",
+        kind: "segment",
+        appearance: "construction",
+        from: { x: 2, y: 0, z: -2 },
+        to: { x: -2, y: 0, z: 2 },
+      },
+      {
+        id: "center-o",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: 0, y: 0, z: 0 },
+      },
+      {
+        id: "height-ot",
+        kind: "segment",
+        appearance: "highlight",
+        from: { x: 0, y: 0, z: 0 },
+        to: { x: 0, y: 3, z: 0 },
+      },
+      {
+        id: "edge-at",
+        kind: "segment",
+        appearance: "primary",
+        from: { x: -2, y: 0, z: -2 },
+        to: { x: 0, y: 3, z: 0 },
+      },
+      {
+        id: "edge-bt",
+        kind: "segment",
+        appearance: "primary",
+        from: { x: 2, y: 0, z: -2 },
+        to: { x: 0, y: 3, z: 0 },
+      },
+      {
+        id: "edge-ct",
+        kind: "segment",
+        appearance: "primary",
+        from: { x: 2, y: 0, z: 2 },
+        to: { x: 0, y: 3, z: 0 },
+      },
+      {
+        id: "edge-dt",
+        kind: "segment",
+        appearance: "primary",
+        from: { x: -2, y: 0, z: 2 },
+        to: { x: 0, y: 3, z: 0 },
+      },
+    ],
+    labels: [
+      { key: "point-a", at: { x: -2, y: 0, z: -2 }, placement: "below-left" },
+      { key: "point-b", at: { x: 2, y: 0, z: -2 }, placement: "below-right" },
+      { key: "point-c", at: { x: 2, y: 0, z: 2 }, placement: "above-right" },
+      { key: "point-d", at: { x: -2, y: 0, z: 2 }, placement: "above-left" },
+      { key: "point-o", at: { x: 0, y: 0, z: 0 }, placement: "below" },
+      { key: "point-t", at: { x: 0, y: 3, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "point-a": <><InlineMath math="A" /></>,
+    "point-b": <><InlineMath math="B" /></>,
+    "point-c": <><InlineMath math="C" /></>,
+    "point-d": <><InlineMath math="D" /></>,
+    "point-o": <><InlineMath math="O" /></>,
+    "point-t": <><InlineMath math="T" /></>,
+  }}
 />
 
 Decide whether the following statements <InlineMath math="(1)" /> and <InlineMath math="(2)" /> are sufficient to answer the question.

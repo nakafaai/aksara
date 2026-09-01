@@ -3,6 +3,7 @@ import { Effect } from "effect";
 import {
   ExecutablePolicyError,
   type ExecutablePolicyViolation,
+  type MathVisualPolicyError,
   type UnsupportedMdxModuleOccurrence,
   UnsupportedMdxModuleSyntaxError,
 } from "#compiler/errors";
@@ -10,12 +11,14 @@ import {
   type AuthoredListHeadingError,
   createHeadingPolicy,
 } from "#compiler/heading-policy";
+import { createMathVisualPolicy } from "#compiler/math-policy";
 import { enforceExecutablePolicy } from "#compiler/policy";
 
 /** Every expected failure surfaced by authored-source policy validation. */
 export type SourcePolicyError =
   | AuthoredListHeadingError
   | ExecutablePolicyError
+  | MathVisualPolicyError
   | UnsupportedMdxModuleSyntaxError;
 
 /** Creates the complete authored-source policy used by inspection and compilation. */
@@ -24,10 +27,12 @@ export function createSourcePolicy(
   allowedComponents: ReadonlySet<string>
 ) {
   const headingPolicy = createHeadingPolicy(contentKey);
+  const mathVisualPolicy = createMathVisualPolicy(contentKey);
   const unsupportedModules: UnsupportedMdxModuleOccurrence[] = [];
   const violations: ExecutablePolicyViolation[] = [];
   const remarkPlugins = [
     headingPolicy.remarkPlugin,
+    mathVisualPolicy.remarkPlugin,
     enforceExecutablePolicy(allowedComponents, unsupportedModules, violations),
   ];
 
@@ -40,6 +45,7 @@ export function createSourcePolicy(
           occurrences: [...unsupportedModules],
         });
       }
+      yield* mathVisualPolicy.validate();
       if (violations.length > 0) {
         return yield* new ExecutablePolicyError({
           contentKey,

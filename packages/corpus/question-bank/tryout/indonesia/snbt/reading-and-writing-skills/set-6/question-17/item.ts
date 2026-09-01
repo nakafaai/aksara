@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim mengulang kembali uji contoh cara mencatat durasi suara untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
+            "Tim mengulang kembali uji contoh pencatatan durasi suara untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
         },
         {
           isCorrect: true,
           label:
-            "Tim mengulang uji contoh cara mencatat durasi suara untuk memperoleh bukti yang lebih kuat.",
+            "Tim mengulang uji contoh pencatatan durasi suara untuk memperoleh bukti yang lebih kuat.",
         },
         {
           isCorrect: false,
           label:
-            "Untuk memperoleh bukti lebih kuat, uji contoh cara mencatat durasi suara diulang kembali oleh tim.",
+            "Untuk memperoleh bukti lebih kuat, uji contoh pencatatan durasi suara diulang kembali oleh tim.",
         },
         {
           isCorrect: false,
           label:
-            "Tim melakukan pengulangan lain atas uji contoh cara mencatat durasi suara demi bukti yang lebih kuat.",
+            "Tim melakukan pengulangan lain atas uji contoh pencatatan durasi suara demi bukti yang lebih kuat.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengulang uji untuk memperoleh bukti lebih kuat tentang contoh cara mencatat durasi suara yang telah diuji sebelumnya.",
+            "Tim mengulang uji untuk memperoleh bukti lebih kuat tentang contoh pencatatan durasi suara yang telah diuji sebelumnya.",
         },
       ],
     },

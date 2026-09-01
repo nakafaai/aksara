@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Caleb labelled each estimate and created a separate line for costs that could change; the choice resolves the whole conflict at once and makes any later review unnecessary.",
+            "Labelling each amount made the supplier quotes final, so the team no longer needed to compare attendance scenarios.",
         },
         {
           isCorrect: false,
           label:
-            "Caleb labelled each estimate and created a separate line for costs that could change; the action transfers responsibility for the unresolved task to another character.",
+            "Assigning names beside unresolved amounts transferred the financial risk to those people and removed it from the budget.",
         },
         {
           isCorrect: true,
           label:
-            "Separating changeable costs from labelled estimates lets Caleb keep the budget revisable without pretending that uncertain figures are final.",
+            "Classifying the figures and comparing attendance scenarios showed which optional choice threatened the deposit while keeping unresolved prices open for confirmation.",
         },
         {
           isCorrect: false,
           label:
-            "Caleb labelled each estimate and created a separate line for costs that could change; the decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
+            "The two scenarios predicted the exact final cost of security and lighting, which allowed the team to close both questions immediately.",
         },
         {
           isCorrect: false,
           label:
-            "Caleb labelled each estimate and created a separate line for costs that could change; the setting alone produces the change, so the character's decision has no role in the development.",
+            "Removing the projection rental mattered only because it made the spreadsheet cleaner, not because it protected a required payment.",
         },
       ],
     },

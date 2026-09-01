@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The class tested how coarse fabric on a model ramp affected friction, while controlling other factors and reporting a limitation.",
+            "The class found that a coarse-fabric ramp was associated with a longer mean travel time under controlled conditions, while surface wear limited a broader conclusion.",
         },
       ],
     },

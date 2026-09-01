@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The comparison condition produced 43, the reference for the flood-alert trial, which did not reproduce the pressure of an actual emergency.",
+            "The trial reached 62 households identifying the safe route, compared with 41 and 43; because the drill lacked real emergency stress, the result supports a bounded follow-up rather than a permanent rule.",
         },
       ],
     },

@@ -2,34 +2,26 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "meaning-relations",
+    topic: "outline",
   },
   responses: {
     id: {
-      kind: "single-choice",
-      options: [
+      categories: ["Meja 1", "Meja 2", "Meja 3"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label: "agar siswa dapat melewati pemeriksaan keselamatan",
+          correctCategoryOrder: 1,
+          label: "Mencatat gejala dan tanda bahaya",
         },
         {
-          isCorrect: true,
-          label: "agar langkah yang sama tidak diulang tanpa alasan",
+          correctCategoryOrder: 2,
+          label: "Memilih pengujian yang aman",
         },
         {
-          isCorrect: false,
-          label:
-            "agar benda yang berhasil diuji dapat langsung dinyatakan layak tanpa catatan tambahan",
-        },
-        {
-          isCorrect: false,
-          label: "agar pemilik tidak mengetahui biaya",
-        },
-        {
-          isCorrect: false,
-          label: "agar fasilitator dapat membuang komponen",
+          correctCategoryOrder: 3,
+          label: "Membandingkan biaya dan kemungkinan umur pakai",
         },
       ],
     },

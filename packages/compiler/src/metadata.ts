@@ -1,15 +1,14 @@
 import type { ContentKey } from "@nakafa/aksara-contracts/ids";
 import { Effect, Predicate } from "effect";
-import type {
-  ArrayExpression,
-  Expression,
-  ObjectExpression,
-  Pattern,
-  Program,
-} from "estree-jsx";
+import type { Program } from "estree-jsx";
 import type { Root, RootContent } from "mdast";
 import type { MdxjsEsm } from "mdast-util-mdx";
 import type { Plugin } from "unified";
+import {
+  decodeStaticLiteral,
+  type StaticLiteral,
+  type StaticLiteralResult,
+} from "#compiler/ast/literal";
 import {
   AuthoredMetadataDuplicateError,
   AuthoredMetadataMissingError,
@@ -17,26 +16,21 @@ import {
   type AuthoredMetadataSyntaxReason,
 } from "#compiler/errors";
 
-export type AuthoredMetadataValue =
-  | boolean
-  | null
-  | number
-  | string
-  | readonly AuthoredMetadataValue[]
-  | { readonly [key: string]: AuthoredMetadataValue };
+export type AuthoredMetadataValue = StaticLiteral;
 
 /** Plain static object extracted from one reviewed MDX metadata export. */
 export interface AuthoredMetadata {
   readonly [key: string]: AuthoredMetadataValue;
 }
 
-type DecodeResult =
-  | { readonly reason: AuthoredMetadataSyntaxReason; readonly success: false }
-  | { readonly success: true; readonly value: AuthoredMetadataValue };
-
 type StatementResult =
   | { readonly matched: false }
-  | { readonly matched: true; readonly result: DecodeResult };
+  | {
+      readonly matched: true;
+      readonly result:
+        | StaticLiteralResult
+        | { readonly reason: "invalid-declaration"; readonly success: false };
+    };
 
 /** Mutable metadata state scoped to one official MDX compilation. */
 export interface MetadataCollector {
@@ -49,93 +43,6 @@ export interface MetadataSourceRange {
   readonly end: number;
   readonly source: string;
   readonly start: number;
-}
-
-/** Creates a failed static-metadata decode result for one syntax reason. */
-function failed(reason: AuthoredMetadataSyntaxReason): DecodeResult {
-  return { reason, success: false };
-}
-
-/** Resolves a supported static object-property name. */
-function propertyName(expression: Expression) {
-  if (expression.type === "Identifier") {
-    return expression.name;
-  }
-  if (expression.type === "Literal" && typeof expression.value === "string") {
-    return expression.value;
-  }
-}
-
-/** Decodes a metadata array containing only supported static values. */
-function decodeArray(node: ArrayExpression): DecodeResult {
-  const values: AuthoredMetadataValue[] = [];
-  for (const element of node.elements) {
-    if (element === null) {
-      return failed("array-hole");
-    }
-    if (element.type === "SpreadElement") {
-      return failed("spread");
-    }
-    const decoded = decodeValue(element);
-    if (!decoded.success) {
-      return decoded;
-    }
-    values.push(decoded.value);
-  }
-  return { success: true, value: values };
-}
-
-/** Decodes a metadata object while rejecting ambiguous property forms. */
-function decodeObject(node: ObjectExpression): DecodeResult {
-  const entries: [string, AuthoredMetadataValue][] = [];
-  const names = new Set<string>();
-  for (const property of node.properties) {
-    if (property.type === "SpreadElement") {
-      return failed("spread");
-    }
-    if (property.computed) {
-      return failed("computed-property");
-    }
-    if (property.kind !== "init" || property.method || property.shorthand) {
-      return failed("unsupported-property");
-    }
-    const name = propertyName(property.key);
-    if (!name) {
-      return failed("unsupported-property");
-    }
-    if (names.has(name)) {
-      return failed("duplicate-property");
-    }
-    const decoded = decodeValue(property.value);
-    if (!decoded.success) {
-      return decoded;
-    }
-    names.add(name);
-    entries.push([name, decoded.value]);
-  }
-  return { success: true, value: Object.fromEntries(entries) };
-}
-
-/** Decodes the supported recursive subset of authored metadata values. */
-function decodeValue(node: Expression | Pattern): DecodeResult {
-  if (node.type === "Literal") {
-    if (
-      node.value === null ||
-      typeof node.value === "boolean" ||
-      typeof node.value === "number" ||
-      typeof node.value === "string"
-    ) {
-      return { success: true, value: node.value };
-    }
-    return failed("dynamic-value");
-  }
-  if (node.type === "ArrayExpression") {
-    return decodeArray(node);
-  }
-  if (node.type === "ObjectExpression") {
-    return decodeObject(node);
-  }
-  return failed("dynamic-value");
 }
 
 /** Detects and statically decodes a metadata export statement. */
@@ -158,13 +65,19 @@ function inspectStatement(statement: Program["body"][number]): StatementResult {
     declaration.declarations.length !== 1 ||
     metadata.length !== 1
   ) {
-    return { matched: true, result: failed("invalid-declaration") };
+    return {
+      matched: true,
+      result: { reason: "invalid-declaration", success: false },
+    };
   }
   const initializer = metadata[0]?.init;
   if (!initializer) {
-    return { matched: true, result: failed("invalid-declaration") };
+    return {
+      matched: true,
+      result: { reason: "invalid-declaration", success: false },
+    };
   }
-  return { matched: true, result: decodeValue(initializer) };
+  return { matched: true, result: decodeStaticLiteral(initializer) };
 }
 
 /** Collects metadata candidates and removes matched exports from the body. */
@@ -192,7 +105,11 @@ function collectMetadata(
     if (result.result.success) {
       collector.candidates.push(result.result.value);
     } else {
-      collector.syntaxReasons.push(result.result.reason);
+      collector.syntaxReasons.push(
+        "reason" in result.result
+          ? result.result.reason
+          : result.result.failure.reason
+      );
     }
   }
   return false;

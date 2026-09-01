@@ -16,7 +16,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Kegunaan dan Batas Model daur air dalam kotak transparan",
+          label: "Kegunaan dan Batas Model Daur Air dalam Kotak Transparan",
         },
         {
           isCorrect: false,

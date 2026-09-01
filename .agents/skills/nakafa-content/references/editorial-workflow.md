@@ -6,7 +6,7 @@ Classify each target before changing its bytes.
 
 - Nakafa-authored prose and localized metadata receive the authored review
   workflow below.
-- Prompts and choices whose language is being assessed retain that assessed
+- Prompts and response options whose language is being assessed retain that assessed
   language.
 - Byte-exact official sources and quoted material retain their required source
   bytes and provenance.
@@ -50,10 +50,10 @@ For every authored target document or localized metadata record:
 
 ## Assessed language
 
-- Prompts and choices use the section's assessed `deliveryLanguage` for every
+- Prompts and response options use the section's assessed `deliveryLanguage` for every
   app locale.
 - Answers and explanations use the app locale.
-- Do not duplicate an assessed prompt or its choices merely because the app
+- Do not duplicate an assessed prompt or its response options merely because the app
   locale changes.
 - Do not change assessed bytes merely to match authored style.
 

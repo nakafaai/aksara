@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Progress depends on completing the larger task before asking another person to review it.",
+            "A responsible budget should remain unchanged until every uncertain price becomes final.",
         },
         {
           isCorrect: false,
           label:
-            "The object or setting shapes the outcome more strongly than the character's specific choice.",
+            "Deleting one optional item solved the problem independently of the labels, scenarios, and confirmation dates.",
         },
         {
           isCorrect: true,
           label:
-            "Caleb's progress began when the difficulty was turned into a specific, reviewable action.",
+            "The budget became more useful when uncertainty was recorded, linked to consequences, and assigned a next action.",
         },
         {
           isCorrect: false,
           label:
-            "The unresolved evidence should remain private until the character can offer a complete result.",
+            "Uncertain figures are safest when they remain inside one balanced total until the planning team can present a final answer.",
         },
         {
           isCorrect: false,
           label:
-            "The small action matters mainly because it postpones the unresolved part of the conflict.",
+            "A contingency is useful mainly because it postpones every unresolved choice until after the event.",
         },
       ],
     },

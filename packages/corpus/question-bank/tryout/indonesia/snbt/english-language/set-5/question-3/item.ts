@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "mean travel time reached 67 tenths of a second, compared with 42 and 41; this supports an association between coarse fabric and model-ramp travel time under the tested conditions, while wear could change the fabric surface during repeated trials requires further testing before a broader claim.",
+            "Mean travel time reached 67 tenths of a second, compared with 42 and 41. This supports an association between coarse fabric and longer travel time under the tested conditions, but possible surface wear requires further testing before a broader claim.",
         },
         {
           isCorrect: false,

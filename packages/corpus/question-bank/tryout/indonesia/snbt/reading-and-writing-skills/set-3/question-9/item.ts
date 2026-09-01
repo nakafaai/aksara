@@ -14,7 +14,7 @@ const item: QuestionItem = {
           label: "(4)-(2)-(3)-(1)",
         },
         {
-          isCorrect: false,
+          isCorrect: true,
           label: "(4)-(3)-(1)-(2)",
         },
         {
@@ -22,7 +22,7 @@ const item: QuestionItem = {
           label: "(1)-(4)-(3)-(2)",
         },
         {
-          isCorrect: true,
+          isCorrect: false,
           label: "(4)-(3)-(2)-(1)",
         },
       ],
@@ -39,7 +39,7 @@ const item: QuestionItem = {
           label: "(4)-(2)-(3)-(1)",
         },
         {
-          isCorrect: false,
+          isCorrect: true,
           label: "(4)-(3)-(1)-(2)",
         },
         {
@@ -47,7 +47,7 @@ const item: QuestionItem = {
           label: "(1)-(4)-(3)-(2)",
         },
         {
-          isCorrect: true,
+          isCorrect: false,
           label: "(4)-(3)-(2)-(1)",
         },
       ],
@@ -64,7 +64,7 @@ const item: QuestionItem = {
           label: "(4)-(2)-(3)-(1)",
         },
         {
-          isCorrect: false,
+          isCorrect: true,
           label: "(4)-(3)-(1)-(2)",
         },
         {
@@ -72,7 +72,7 @@ const item: QuestionItem = {
           label: "(1)-(4)-(3)-(2)",
         },
         {
-          isCorrect: true,
+          isCorrect: false,
           label: "(4)-(3)-(2)-(1)",
         },
       ],

@@ -13,27 +13,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "To make the meter move faster so that a hidden leak would become easier to locate",
+            "To make the meter move faster so the second test can locate a hidden pipe",
         },
         {
           isCorrect: true,
           label:
-            "To reduce the chance that unreported accidental use caused the change",
+            "To separate evidence of ongoing flow from the one known accidental use",
         },
         {
           isCorrect: false,
           label:
-            "To identify the exact pipe behind the wall from a single change in the meter reading",
+            "To prove that any second movement must come from the exact pipe behind the wall",
         },
         {
           isCorrect: false,
           label:
-            "To reset the irrigation timer so that scheduled use would no longer affect later readings",
+            "To reset the irrigation timer after the test, regardless of whether it was scheduled to run",
         },
         {
           isCorrect: false,
           label:
-            "To prevent the first meter reading from influencing the value recorded after the waiting period",
+            "To stop the first recorded number from mathematically influencing the later reading",
         },
       ],
     },

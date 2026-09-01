@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The organisers of a neighbourhood flood-warning exercise evaluated an alert that named the street, expected depth, and safe route through a comparison and consultation with affected groups.",
+            "The flood exercise compared a specific route-based alert across measured conditions, consulted affected groups, and supported only a limited extension because a drill cannot reproduce real emergency stress.",
         },
         {
           isCorrect: false,

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Benda berulang memperoleh makna terutama dari bentuk fisiknya, bukan dari hubungannya dengan pilihan tokoh.",
+            "Perkembangan Jati terlihat karena jumlah pertanyaannya berkurang setelah Mira menjelaskan kalimat tersebut.",
         },
         {
           isCorrect: true,
           label:
-            "pembatas buku kosong memperoleh makna karena muncul bersama konflik, pilihan, dan perubahan pada akhir cerita.",
+            "Perkembangan Jati ditandai oleh perubahan cara memperlakukan pertanyaan: dari sesuatu yang disembunyikan menjadi bahan penafsiran yang dapat diuji bersama.",
         },
         {
           isCorrect: false,
           label:
-            "Akhir cerita menunjukkan bahwa latar, bukan tindakan tokoh, menyelesaikan konflik.",
+            "Kesediaan membuka pertemuan berikutnya membuktikan bahwa Jati sudah menjadi pembaca paling mahir dalam kelompok.",
         },
         {
           isCorrect: false,
           label:
-            "Makna benda tetap sama meskipun tokoh menggunakannya dengan cara berbeda.",
+            "Dua pertanyaan pada akhir cerita menunjukkan bahwa Jati gagal berkembang karena masalahnya bertambah.",
         },
         {
           isCorrect: false,
           label:
-            "Tindakan akhir penting karena mengukuhkan penafsiran yang sudah terbentuk sejak awal.",
+            "Perubahan Jati hanya disebabkan oleh pujian Mira, meskipun cerita tidak menyebut adanya pujian.",
         },
       ],
     },
