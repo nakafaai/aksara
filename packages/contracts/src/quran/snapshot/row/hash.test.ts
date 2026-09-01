@@ -1,7 +1,6 @@
 import type { BinaryLike } from "node:crypto";
-import { it as effectIt } from "@effect/vitest";
+import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
-import { describe, expect, it, vi } from "vitest";
 
 import {
   canonicalizeQuranRow,
@@ -52,7 +51,7 @@ describe("Quran row hashing", () => {
     );
   });
 
-  effectIt.effect("maps current row hashing failures to the typed error", () =>
+  it.effect("maps current row hashing failures to the typed error", () =>
     Effect.gen(function* () {
       const payload = yield* Effect.fromNullishOr(
         quranRepresentativePayloads().find(

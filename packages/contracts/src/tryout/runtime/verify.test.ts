@@ -1,10 +1,8 @@
 // @vitest-environment node
 import { Buffer } from "node:buffer";
 import { generateKeyPairSync, sign as signBytes } from "node:crypto";
-
 import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
-import { vi } from "vitest";
 
 import {
   Ed25519SignatureSchema,

@@ -2,7 +2,6 @@
 import { createHash } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
-import { vi } from "vitest";
 import type { RendererComponentRequirement } from "#contracts/renderer/component";
 import { canonicalizeRendererManifestContract } from "#contracts/renderer/contract";
 import { RENDERER_DOMAINS } from "#contracts/renderer/domain";

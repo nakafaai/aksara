@@ -1,5 +1,5 @@
+import { assert, describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
-import { assert, describe, expect, it } from "vitest";
 import { DateOnlySchema } from "#contracts/date";
 import { QuestionKeySchema } from "#contracts/question/identity";
 import { responseText } from "#contracts/test/tryout";

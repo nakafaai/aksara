@@ -7,6 +7,7 @@ import {
   trackedFiles,
   typescriptFiles,
 } from "#scripts/files";
+import { moduleSpecifiers, namedImports } from "#scripts/imports/syntax";
 import {
   sourceConditionFromConfig,
   sourceConditionViolations,
@@ -62,66 +63,6 @@ const allowedWorkspaceDependencies: ReadonlyMap<
   ["testing", new Set()],
   ["utilities", new Set()],
 ]);
-
-/** Returns the statically knowable module specifier owned by one syntax node. */
-function staticModuleSpecifier(
-  node: ts.Node
-): ts.StringLiteralLike | undefined {
-  if (
-    (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) &&
-    node.moduleSpecifier &&
-    ts.isStringLiteral(node.moduleSpecifier)
-  ) {
-    return node.moduleSpecifier;
-  }
-  if (
-    ts.isImportTypeNode(node) &&
-    ts.isLiteralTypeNode(node.argument) &&
-    ts.isStringLiteral(node.argument.literal)
-  ) {
-    return node.argument.literal;
-  }
-  if (
-    ts.isImportEqualsDeclaration(node) &&
-    ts.isExternalModuleReference(node.moduleReference) &&
-    node.moduleReference.expression &&
-    ts.isStringLiteralLike(node.moduleReference.expression)
-  ) {
-    return node.moduleReference.expression;
-  }
-  if (!ts.isCallExpression(node)) {
-    return;
-  }
-  const isModuleCall =
-    node.expression.kind === ts.SyntaxKind.ImportKeyword ||
-    (ts.isIdentifier(node.expression) && node.expression.text === "require");
-  if (!isModuleCall || node.arguments.length !== 1) {
-    return;
-  }
-  for (const argument of node.arguments) {
-    return ts.isStringLiteralLike(argument) ? argument : undefined;
-  }
-}
-
-/** Returns every static or dynamic module specifier in one source module. */
-function moduleSpecifiers(
-  sourceFile: ts.SourceFile
-): readonly ts.StringLiteralLike[] {
-  const specifiers: ts.StringLiteralLike[] = [];
-  const nodes: ts.Node[] = [sourceFile];
-
-  for (const node of nodes) {
-    const specifier = staticModuleSpecifier(node);
-    if (specifier) {
-      specifiers.push(specifier);
-    }
-    ts.forEachChild(node, (child) => {
-      nodes.push(child);
-    });
-  }
-
-  return specifiers;
-}
 
 /** Returns declared package names from one manifest dependency section. */
 function dependencyNames(input: unknown): readonly string[] {
@@ -184,6 +125,12 @@ function importViolation(
   resolveIdentity: WorkspaceIdentityResolver
 ): string | undefined {
   if (
+    specifier === "vitest" ||
+    (specifier.startsWith("vitest/") && specifier !== "vitest/config")
+  ) {
+    return "test APIs must come from @effect/vitest";
+  }
+  if (
     RELATIVE_IMPORT_PATTERN.test(specifier) ||
     FILESYSTEM_IMPORT_PATTERN.test(specifier)
   ) {
@@ -239,7 +186,7 @@ export function importViolations(
     true
   );
 
-  return moduleSpecifiers(sourceFile).flatMap((specifier) => {
+  const moduleViolations = moduleSpecifiers(sourceFile).flatMap((specifier) => {
     const violation = importViolation(file, specifier.text, resolveIdentity);
     if (!violation) {
       return [];
@@ -248,6 +195,17 @@ export function importViolations(
       sourceFile.getLineAndCharacterOfPosition(specifier.getStart()).line + 1;
     return [`${file}:${line} ${specifier.text}: ${violation}`];
   });
+  const viImportViolations = namedImports(
+    sourceFile,
+    "@effect/vitest",
+    "vi"
+  ).map((specifier) => {
+    const line =
+      sourceFile.getLineAndCharacterOfPosition(specifier.getStart()).line + 1;
+    return `${file}:${line} @effect/vitest#vi: use the configured global vi for mocks`;
+  });
+
+  return [...moduleViolations, ...viImportViolations];
 }
 
 const repositoryIdentity = createWorkspaceIdentityResolver((path) =>

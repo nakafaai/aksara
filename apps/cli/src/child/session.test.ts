@@ -1,7 +1,6 @@
 import { Server } from "node:net";
 import { afterEach, assert, describe, expect, it } from "@effect/vitest";
 import { Effect, Redacted } from "effect";
-import { vi } from "vitest";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
 import {
   NakafaProcess,

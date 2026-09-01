@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@effect/vitest";
 import {
   EMPTY_RESULT_CATALOG_DIGEST,
   RESULT_CATALOG_DIGEST_DOMAIN,

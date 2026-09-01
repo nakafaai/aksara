@@ -2,7 +2,6 @@ import { describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { digestProjections } from "@nakafa/aksara-contracts/projection/digest";
 import { Effect, Stream } from "effect";
-import { vi } from "vitest";
 import {
   PublicationActivation,
   PublicationActivationError,

@@ -1,5 +1,5 @@
+import { describe, expect, expectTypeOf, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
-import { describe, expect, expectTypeOf, it } from "vitest";
 import {
   DateOnlySchema,
   type PublicationDates,

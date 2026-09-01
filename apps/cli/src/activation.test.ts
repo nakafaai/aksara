@@ -4,7 +4,6 @@ import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Redacted } from "effect";
 import { HttpClient } from "effect/unstable/http";
-import { vi } from "vitest";
 import { makeProductionActivation } from "#cli/activation";
 import { captureClient } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";

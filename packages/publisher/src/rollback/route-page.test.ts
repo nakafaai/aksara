@@ -14,7 +14,6 @@ import {
 } from "@nakafa/aksara-contracts/release/route/page";
 import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route/spec";
 import { Effect, Stream } from "effect";
-import { vi } from "vitest";
 import { PublicationTarget } from "#publisher/publication/spec";
 import { streamRouteRecords } from "#publisher/rollback/route-page";
 import { PublicationTargetTransportError } from "#publisher/target/errors";

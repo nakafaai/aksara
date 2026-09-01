@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 
 import { AppLocaleSchema } from "#contracts/locale";
 import {

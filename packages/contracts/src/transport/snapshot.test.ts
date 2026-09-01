@@ -1,5 +1,5 @@
+import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 
 import { Sha256HashSchema } from "#contracts/ids";
 import { ContentSnapshotRowSchema } from "#contracts/release/snapshot/data";

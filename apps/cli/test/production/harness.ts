@@ -4,7 +4,6 @@ import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/life
 import type { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import { Effect } from "effect";
-import { vi } from "vitest";
 import type { ReleaseArguments } from "#cli/production/arguments";
 import { runProductionCommand } from "#cli/production/command";
 import { unusedExactProcess } from "#test/process";

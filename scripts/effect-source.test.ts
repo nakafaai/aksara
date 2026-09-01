@@ -1,7 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import { afterEach, assert, layer } from "@effect/vitest";
 import { Effect, FileSystem, Path, Schema } from "effect";
-import { vi } from "vitest";
 import {
   type EffectSourceConfig,
   makeEffectSourceProgram,

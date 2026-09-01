@@ -1,4 +1,4 @@
-import { it } from "@effect/vitest";
+import { describe, expect, it } from "@effect/vitest";
 import {
   ACTIVE_APP_LOCALES,
   ActiveAppLocaleListSchema,
@@ -10,7 +10,6 @@ import {
   QURAN_VERSE_COUNT,
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Effect, Schema, Stream } from "effect";
-import { describe, expect } from "vitest";
 import { streamQuranRows } from "#corpus/quran/projection";
 import { testQuranRegistry } from "#corpus/test/quran";
 

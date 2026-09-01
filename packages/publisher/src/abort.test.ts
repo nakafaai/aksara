@@ -5,7 +5,6 @@ import type {
   ReleaseAbortRequest,
 } from "@nakafa/aksara-contracts/release/lifecycle";
 import { Effect } from "effect";
-import { vi } from "vitest";
 import {
   abortContentRelease,
   ReleaseAbortContractError,

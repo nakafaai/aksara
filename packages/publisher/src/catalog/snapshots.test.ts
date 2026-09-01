@@ -13,7 +13,6 @@ import {
 import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { Effect, Stream } from "effect";
-import { vi } from "vitest";
 import { validateCatalogSnapshots } from "#publisher/catalog/snapshots";
 
 const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);

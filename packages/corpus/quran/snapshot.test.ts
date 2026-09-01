@@ -1,8 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
-import { layer } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import { QuranSnapshotRowSchema } from "@nakafa/aksara-contracts/quran/snapshot/row";
 import { Effect, Path, Stream } from "effect";
-import { expect } from "vitest";
 import { prepareQuranSnapshot } from "#corpus/quran/snapshot";
 
 layer(NodeServices.layer)("Quran snapshot preparation", (it) => {

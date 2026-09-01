@@ -1,7 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import { afterEach, assert, describe, it } from "@effect/vitest";
 import { Effect, FileSystem, Path } from "effect";
-import { vi } from "vitest";
 import {
   GIT_ENVIRONMENT,
   GIT_EXECUTABLE,

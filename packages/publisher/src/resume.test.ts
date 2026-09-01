@@ -4,7 +4,6 @@ import type { ContentReleaseStatus } from "@nakafa/aksara-contracts/release/life
 import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect } from "effect";
-import { vi } from "vitest";
 import {
   PublicationActivation,
   PublicationActivationError,

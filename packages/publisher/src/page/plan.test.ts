@@ -6,7 +6,6 @@ import {
 } from "@nakafa/aksara-contracts/release/head";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Effect, Schema } from "effect";
-import { vi } from "vitest";
 import {
   collectPagePublication,
   collectPageResult,

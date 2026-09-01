@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@effect/vitest";
 
 import { QURAN_SOURCE_POLICY } from "#corpus/quran/source/policy";
 

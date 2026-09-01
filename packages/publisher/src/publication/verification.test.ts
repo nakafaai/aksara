@@ -9,7 +9,6 @@ import {
 } from "@nakafa/aksara-contracts/release";
 import { Effect, Fiber } from "effect";
 import { TestClock } from "effect/testing";
-import { vi } from "vitest";
 import { stageCandidateRelease } from "#publisher/publication/verification";
 import {
   PublicationTargetConflictError,

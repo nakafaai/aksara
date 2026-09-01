@@ -3,7 +3,6 @@ import { resolve } from "node:path";
 import { NodeHttpClient, NodeServices } from "@effect/platform-node";
 import { assert, describe, it } from "@effect/vitest";
 import { Effect } from "effect";
-import { vi } from "vitest";
 
 const runtime = vi.hoisted(() => ({ calls: 0 }));
 const sync = vi.hoisted(() => ({ repositoryRoots: [] as string[] }));

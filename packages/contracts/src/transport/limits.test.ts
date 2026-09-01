@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@effect/vitest";
 import {
   MAX_ARTIFACT_BATCH_BYTES,
   MAX_ARTIFACT_BATCH_COUNT,

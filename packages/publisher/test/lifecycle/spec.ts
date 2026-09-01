@@ -1,4 +1,3 @@
-import { vi } from "@effect/vitest";
 import {
   type ContentReleaseManifest,
   ReleaseVerificationCompleteSchema,

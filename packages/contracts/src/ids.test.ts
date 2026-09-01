@@ -1,6 +1,6 @@
 import { Buffer } from "node:buffer";
+import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
-import { describe, expect, it } from "vitest";
 import {
   CONTENT_KEY_MAX_LENGTH,
   ContentKeySchema,

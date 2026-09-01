@@ -1,6 +1,5 @@
 import { assert, beforeEach, describe, it } from "@effect/vitest";
 import { Effect, Result } from "effect";
-import { vi } from "vitest";
 import {
   ProvenanceBundleVerifier,
   publisherPolicy,

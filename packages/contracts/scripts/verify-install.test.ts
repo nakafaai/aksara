@@ -2,7 +2,6 @@ import { pathToFileURL } from "node:url";
 import { NodeServices } from "@effect/platform-node";
 import { assert, describe, it, layer } from "@effect/vitest";
 import { Effect, FileSystem, Path, Schema } from "effect";
-import { vi } from "vitest";
 import {
   type InstallVerificationInput,
   isInstalledPath,

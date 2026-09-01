@@ -4,7 +4,6 @@ import { Effect } from "effect";
 import type { Paragraph, Root } from "mdast";
 import type { MdxJsxFlowElement } from "mdast-util-mdx";
 import { unified } from "unified";
-import { vi } from "vitest";
 import type {
   ExecutablePolicyViolation,
   UnsupportedMdxModuleOccurrence,

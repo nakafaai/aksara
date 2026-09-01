@@ -1,7 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
-import { describe, expect, it } from "@effect/vitest";
+import { afterEach, describe, expect, it } from "@effect/vitest";
 import { Effect, Exit, FileSystem, Option, Path, PlatformError } from "effect";
-import { afterEach, vi } from "vitest";
 import {
   makeLauncherTeardown,
   readExitSignal,

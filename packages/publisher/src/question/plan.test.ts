@@ -5,7 +5,6 @@ import {
   QuestionHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import { Context, Effect, Layer, Path, Schema, Stream } from "effect";
-import { vi } from "vitest";
 import {
   planQuestionPublication,
   QuestionItemJoinError,

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "@effect/vitest";
 import {
   MAX_CANONICAL_PAYLOAD_BYTES,
   MAX_COMPILED_CODE_BYTES,

@@ -12,7 +12,6 @@ import type {
 import { digestResultCatalog } from "@nakafa/aksara-contracts/release/result/digest";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Context, Effect, Layer, Path, Stream } from "effect";
-import { vi } from "vitest";
 import { prepareContentCatalog } from "#publisher/catalog/publication";
 import { ArticleTestFixtures, articleTestLayer } from "#test/article";
 import { testFileLayer } from "#test/files";

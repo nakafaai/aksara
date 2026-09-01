@@ -1,7 +1,6 @@
 import { createPublicKey } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Redacted } from "effect";
-import { vi } from "vitest";
 import { makePreviewCredentials } from "#cli/credentials";
 
 const cryptoControl = vi.hoisted(() => ({

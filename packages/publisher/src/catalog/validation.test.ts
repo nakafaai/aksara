@@ -3,7 +3,6 @@ import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
-import { vi } from "vitest";
 import { validateContentCatalog } from "#publisher/catalog/validation";
 import {
   catalogHeads,

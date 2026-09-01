@@ -2,7 +2,6 @@
 import { createHash } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
-import { vi } from "vitest";
 
 import { hashText } from "#contracts/hash/text";
 

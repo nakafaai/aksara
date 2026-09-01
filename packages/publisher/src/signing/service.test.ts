@@ -14,7 +14,6 @@ import { canonicalizeTryoutRuntimeBundleSigningInput } from "@nakafa/aksara-cont
 import { TRYOUT_RUNTIME_BUNDLE_FORMAT } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import { Effect } from "effect";
-import { vi } from "vitest";
 import { makeEd25519PublicationSigner } from "#publisher/signing/service";
 import {
   signingManifest as manifest,

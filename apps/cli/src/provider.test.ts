@@ -3,7 +3,6 @@ import { afterEach, assert, describe, expect, it } from "@effect/vitest";
 import { canonicalizeSignedContentArtifact } from "@nakafa/aksara-contracts/content";
 import { previewDocumentRoute } from "@nakafa/aksara-contracts/preview/document";
 import { Effect } from "effect";
-import { vi } from "vitest";
 import { openPreviewProvider } from "#cli/provider";
 import { PREVIEW_EVENTS_PATH, PREVIEW_MANIFEST_PATH } from "#cli/provider/http";
 import { PREVIEW_REPOSITORIES } from "#test/preview";
