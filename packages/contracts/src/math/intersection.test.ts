@@ -3,6 +3,7 @@ import { assert, describe, it } from "@effect/vitest";
 import type { AxisTraversal } from "#contracts/math/intersection";
 import { infinitePathIntersectsBox } from "#contracts/math/intersection";
 
+/** Creates one axis traversal through the default unit slab. */
 function axis(
   start: number,
   through: number,

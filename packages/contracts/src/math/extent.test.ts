@@ -26,6 +26,7 @@ const spaceFrame: SpaceMathFrame = {
   z: { max: 2, min: -2 },
 };
 
+/** Creates one typed arc fixture for exact extent checks. */
 function arc(
   startDegrees: number,
   sweepDegrees: number,
@@ -43,6 +44,7 @@ function arc(
   };
 }
 
+/** Creates one typed circle fixture for exact extent checks. */
 function circle(center: Circle["center"], radius: number): Circle {
   return {
     appearance: "primary",

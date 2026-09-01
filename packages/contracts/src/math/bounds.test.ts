@@ -24,14 +24,17 @@ const spaceFrame = Schema.decodeSync(SpaceMathFrameSchema)({
   z: { max: 10, min: -10 },
 });
 
+/** Creates one terse plane-coordinate test fixture. */
 function p2(x: number, y: number) {
   return { x, y };
 }
 
+/** Creates one terse space-coordinate test fixture. */
 function p3(x: number, y: number, z: number) {
   return { x, y, z };
 }
 
+/** Decodes one plane object before scene-level containment is applied. */
 function planeObject(kind: string, fields: Record<string, unknown>) {
   return Schema.decodeUnknownSync(PlaneMathObjectSchema)({
     appearance: "primary",
@@ -41,6 +44,7 @@ function planeObject(kind: string, fields: Record<string, unknown>) {
   });
 }
 
+/** Decodes one space object before scene-level containment is applied. */
 function spaceObject(kind: string, fields: Record<string, unknown>) {
   return Schema.decodeUnknownSync(SpaceMathObjectSchema)({
     appearance: "primary",
