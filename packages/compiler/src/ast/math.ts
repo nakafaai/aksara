@@ -5,12 +5,15 @@ import type {
   MdxJsxTextElement,
 } from "mdast-util-mdx";
 import {
+  attributeExpression,
+  inspectRichAttribute,
+} from "#compiler/ast/attribute";
+import {
   decodeStaticLiteral,
   type StaticLiteral,
   type StaticLiteralSyntaxReason,
   staticPropertyName,
 } from "#compiler/ast/literal";
-import { readNodeProgram } from "#compiler/ast/program";
 import type {
   MathVisualPolicyViolation,
   MathVisualSourceReason,
@@ -98,19 +101,6 @@ function sceneReason(
   }
 }
 
-/** Reads the sole expression attached to one MDX JSX attribute. */
-function attributeExpression(attribute: MdxJsxAttribute) {
-  const { value } = attribute;
-  if (!(value && typeof value === "object")) {
-    return;
-  }
-  const program = readNodeProgram(value);
-  const [statement] = program?.body ?? [];
-  return program?.body.length === 1 && statement?.type === "ExpressionStatement"
-    ? statement.expression
-    : undefined;
-}
-
 /** Enumerates rich-label keys without interpreting their React values. */
 function readRichLabelKeys(
   attribute: MdxJsxAttribute,
@@ -175,10 +165,28 @@ function requiredMetadataViolations(
   location: SourceLocation
 ): MathVisualPolicyViolation[] {
   const violations: MathVisualPolicyViolation[] = [];
-  if (!attributes.some(({ name }) => name === "title")) {
+  const title = attributes.find(({ name }) => name === "title");
+  if (title) {
+    const state = inspectRichAttribute(title);
+    if (state !== "meaningful") {
+      violations.push({
+        ...mdxLocation(title),
+        reason: state === "empty" ? "title-empty" : "title-dynamic",
+      });
+    }
+  } else {
     violations.push({ ...location, reason: "title-missing" });
   }
-  if (!attributes.some(({ name }) => name === "description")) {
+  const description = attributes.find(({ name }) => name === "description");
+  if (description) {
+    const state = inspectRichAttribute(description);
+    if (state !== "meaningful") {
+      violations.push({
+        ...mdxLocation(description),
+        reason: state === "empty" ? "description-empty" : "description-dynamic",
+      });
+    }
+  } else {
     violations.push({ ...location, reason: "description-missing" });
   }
   return violations;
