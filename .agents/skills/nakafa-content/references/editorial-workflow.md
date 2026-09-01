@@ -39,9 +39,12 @@ For every authored target document or localized metadata record:
    trace describes the lesson at hand. It must not become a repeated template
    imposed on unrelated lessons. Every locale sibling must implement the same
    teaching and representation inventory.
-6. Translate the complete corrected document. Natural target-language syntax is
-   required, but it must not add, remove, reorder, compress, or replace a
-   teaching unit. Translation is not permission to redesign the lesson.
+6. Recreate the complete corrected document in the target language from the
+   reviewed meaning and teaching inventory. Do not map the source sentence word
+   by word or preserve its clause order merely for symmetry. Use the target
+   language's normal syntax, connective words, technical vocabulary, and
+   register. This language-specific rewrite must not add, remove, reorder,
+   compress, or replace a teaching unit.
 7. Apply the complete Humanizer skill again to the target draft. Humanizer may
    improve wording, rhythm, and clarity, but it may not remove teaching context,
    reasoning steps, evidence, math, or components.
@@ -51,6 +54,8 @@ For every authored target document or localized metadata record:
    publication name as its compact chip label.
 9. Compare the locale siblings structurally and semantically. Confirm that every
    teaching unit and component has one corresponding localized implementation.
+   Then hide the siblings and read each locale on its own. A sentence fails if
+   its meaning becomes clear only after consulting another language.
 10. Compile the exact document through Aksara and preview it through Nakafa's
    real renderer.
 11. Keep the resulting authored bytes in their domain-owned Aksara source. Git
@@ -82,3 +87,9 @@ scope. Use it consistently for education levels, subjects, mathematics,
 science, Quran, account, accessibility, and try-out terms. Route slugs use the
 contract-owned normalization policy. Validate collisions and stable
 cross-locale identity rather than adding spelling redirects.
+
+Read `locale-sources.md` before choosing language-specific wording.
+Official orthography sources settle spelling and punctuation. Naturalness and
+AI-writing references provide review candidates only. The surrounding lesson,
+subject community, and spoken teacher voice decide whether a sentence is
+natural and clear.

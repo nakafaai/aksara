@@ -23,25 +23,25 @@ Die Tikhonov-Regularisierung wägt Datentreue gegen eine gewählte Vorstellung p
 
 <BlockMath math="\min_x\left(\|Ax-b\|_2^2+\alpha^2\|L(x-x_0)\|_2^2\right),\qquad \alpha>0" />
 
-Dabei ist <InlineMath math="x_0" /> ein Referenzwert, <InlineMath math="L" /> legt fest, welche Größe klein oder glatt bleiben soll, und <InlineMath math="\alpha" /> steuert die Abwägung.
+Dabei ist <InlineMath math="x_0" /> ein Referenzwert und <InlineMath math="L" /> legt fest, welche Größe klein oder glatt bleiben soll. Der Wert <InlineMath math="\alpha" /> bestimmt, wie stark die Lösung den Daten und wie stark sie der durch <InlineMath math="L" /> beschriebenen Einschränkung folgt.
 
 - <InlineMath math="L=I" /> bestraft den Abstand zu <InlineMath math="x_0" />.
 - Eine Matrix erster Differenzen bestraft schnelle Änderungen benachbarter Parameter.
 - Eine Matrix zweiter Differenzen bestraft Krümmung und begünstigt glattere Profile.
 
-Die Strafe erzeugt keine neuen Informationen in den Beobachtungen. Sie gibt die gewählte Vorstruktur ausdrücklich an und kann die numerische Kondition des Optimierungsproblems verbessern.
+Der Strafterm fügt eine ausdrückliche Modellannahme über die Lösung hinzu und kann die numerische Kondition des Optimierungsproblems verbessern. Die Beobachtungsdaten enthalten weiterhin dieselben Informationen.
 
 ## Erweitertes Ausgleichsproblem
 
-Die Zielfunktion ist exakt das Ausgleichsproblem
+Das regularisierte Problem lässt sich als folgendes Ausgleichsproblem schreiben:
 
 <BlockMath math="\min_x\left\|\begin{pmatrix}A\\\alpha L\end{pmatrix}x-\begin{pmatrix}b\\\alpha Lx_0\end{pmatrix}\right\|_2^2" />
 
-Die Ableitung liefert die Normalgleichung
+Die Ableitung dieser Zielfunktion nach <InlineMath math="x" /> liefert die Normalgleichung:
 
 <BlockMath math="(A^TA+\alpha^2L^TL)x=A^Tb+\alpha^2L^TLx_0" />
 
-Die Lösung ist genau dann eindeutig, wenn
+Diese Normalgleichung hat genau dann eine eindeutige Lösung, wenn die folgende Bedingung erfüllt ist:
 
 <BlockMath math="\operatorname{null}(A)\cap\operatorname{null}(L)=\{0\}" />
 
@@ -56,7 +56,7 @@ Für <InlineMath math="L=I" /> und <InlineMath math="x_0=0" /> sei <InlineMath m
 <BlockMath math="\phi_i(\alpha)=\frac{\sigma_i^2}{\sigma_i^2+\alpha^2}" />
 </MathContainer>
 
-Der Faktor <InlineMath math="\phi_i" /> liegt nahe bei <InlineMath math="1" />, wenn <InlineMath math="\sigma_i\gg\alpha" />, und nahe bei <InlineMath math="0" />, wenn <InlineMath math="\sigma_i\ll\alpha" />. Die Regularisierung erhält somit gut bestimmte Richtungen und dämpft Richtungen, die Rauschen verstärken würden.
+Ist <InlineMath math="\sigma_i" /> deutlich größer als <InlineMath math="\alpha" />, liegt der Faktor <InlineMath math="\phi_i(\alpha)" /> nahe bei <InlineMath math="1" />. Die Regularisierung verändert den zugehörigen Anteil der Lösung daher kaum. Ist <InlineMath math="\sigma_i" /> deutlich kleiner als <InlineMath math="\alpha" />, liegt der Faktor nahe bei <InlineMath math="0" /> und der zugehörige Anteil wird kleiner. So führt ein kleiner Messfehler nicht zu einer großen Änderung der angepassten Lösung.
 
 ## Gerechnetes Sensitivitätsbeispiel
 
@@ -76,7 +76,7 @@ Mit <InlineMath math="L=I" />, <InlineMath math="x_0=0" /> und <InlineMath math=
 <BlockMath math="x_{0{,}2}=\begin{pmatrix}1/1{,}04\\0{,}02/0{,}05\end{pmatrix}=\begin{pmatrix}25/26\\0{,}4\end{pmatrix}" />
 </MathContainer>
 
-Dieselbe Störung um <InlineMath math="0{,}01" /> verändert den zweiten Parameter nun nur um <InlineMath math="0{,}02" />. Diese Stabilität kostet Verzerrung: Der Schätzwert <InlineMath math="0{,}4" /> liegt weiter vom unregularisierten Wert <InlineMath math="2" /> entfernt.
+Dieselbe Störung um <InlineMath math="0{,}01" /> verändert den zweiten Parameter nun nur um <InlineMath math="0{,}02" />. Die Schätzung ist stabiler, aber auch verzerrt, weil <InlineMath math="0{,}4" /> weiter vom unregularisierten Wert <InlineMath math="2" /> entfernt liegt.
 
 ## Wahl des Regularisierungsparameters
 
@@ -97,10 +97,10 @@ Eine Diagonalmatrix <InlineMath math="L=\operatorname{diag}(\omega_1,\ldots,\ome
 
 <BlockMath math="\|L(x-x_0)\|_2^2=\sum_{i=1}^n\omega_i^2(x_i-x_{0i})^2" />
 
-Ein größeres <InlineMath math="\omega_i" /> bedeutet eine stärkere Schrumpfung in Richtung <InlineMath math="x_{0i}" />. Die Gewichte sollten Einheiten und eine begründbare Vorstruktur widerspiegeln. Die Schwierigkeit einer Schätzung reicht als Begründung nicht aus.
+Ein größeres <InlineMath math="\omega_i" /> bedeutet eine stärkere Schrumpfung in Richtung <InlineMath math="x_{0i}" />. Wähle die Gewichte anhand der Einheiten und konkreter Vorinformationen, etwa der plausiblen Skala jedes Parameters oder einer erwarteten glatten Änderung zwischen benachbarten Parametern. Die Schwierigkeit einer Schätzung reicht als Begründung nicht aus.
 
 Eine Gleichung wie <InlineMath math="x_i=c" /> sollte als ausdrückliche Gleichungsnebenbedingung modelliert werden, wenn sie exakt gelten muss. Schranken wie <InlineMath math="l_i\le x_i\le u_i" /> erfordern ein beschränktes Ausgleichsproblem. Eine extrem große Strafe kann eine Gleichung annähern, ersetzt aber keine exakte Nebenbedingung und kann die numerische Skalierung verschlechtern.
 
-## Zuverlässige numerische Lösung
+## Das erweiterte System mit QR oder SVD lösen
 
 Verwende die Normalgleichung, um den regularisierten Schätzer herzuleiten und den Einfluss von <InlineMath math="\alpha" /> und <InlineMath math="L" /> zu untersuchen. Bilde <InlineMath math="A^TA" /> für die numerische Berechnung nicht ausdrücklich, weil dieser Schritt die Konditionszahl quadriert. Löse stattdessen das erweiterte Ausgleichssystem mit <InlineMath math="\mathrm{QR}" /> oder <InlineMath math="\mathrm{SVD}" />. Dokumentiere <InlineMath math="\alpha" />, <InlineMath math="L" />, die Parameterskalierung, die Residualnorm und die Strafnorm, damit andere die Rechnung wiederholen und die Abwägung zwischen Datentreue und Strafe prüfen können.

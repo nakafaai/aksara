@@ -89,7 +89,7 @@ print(f"Max: {ps.max}, Occupied: {ps.occ}")`
   }]}
 />
 
-The Python version keeps the parking rules and operations in one class. The class keeps its state valid by checking each input and preventing outside code from changing its internal data directly.
+The Python version keeps the parking rules and operations in one class. The `occupy` method checks the remaining capacity whenever it is called, but outside code can still change the public `max` and `occ` attributes directly. This short example therefore does not fully protect the object's state.
 
 ## Parking System as an Example
 
@@ -480,7 +480,7 @@ class Vector2D:
         return Vector2D(self.x + other.x, self.y + other.y)
 
     def __bool__(self):
-        """The zero vector is false; every other vector is true."""
+        """Return False for the zero vector and True for every other vector."""
         return bool(self.x or self.y)
 
 first = Vector2D(3, 4)

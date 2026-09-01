@@ -155,7 +155,7 @@ Square-bracket access retrieves an existing value. Assignment with brackets upda
 
 Choose the iteration form that matches whether you need keys alone, values alone, or both parts of each entry.
 
-### Simple For Loop
+### Iterating over Dictionary Keys
 
 <CodeBlock
   data={[
@@ -178,7 +178,7 @@ for key in phone:
 
 When you iterate a dictionary directly, Python retrieves keys in their insertion order.
 
-### For Loop with the Items Method
+### Iterating over Dictionary Entries
 
 <CodeBlock
   data={[
@@ -201,11 +201,11 @@ for key, val in phone.items():
 
 The `items()` view yields each key and value together, so tuple unpacking can name both values in one loop.
 
-## Dictionary Methods
+## Three Types of Dictionary Views
 
 A dictionary exposes dynamic views of its keys, values, and key-value pairs.
 
-### Methods for Keys Values and Items
+### Creating Dictionary Views
 
 <CodeBlock
   data={[
@@ -239,7 +239,7 @@ These methods return dynamic view objects. A view reflects later changes to its 
 
 Use `get()` when a missing key is an expected case and you want a fallback value. Use bracket access when a missing key should be treated as an error.
 
-### Regular Indexing Problems
+### Errors from Bracket Access to Missing Keys
 
 <CodeBlock
   data={[

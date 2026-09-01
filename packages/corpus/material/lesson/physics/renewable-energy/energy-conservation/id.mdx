@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Hukum Kekekalan Energi",
   description:
-    "Gunakan hukum kekekalan energi untuk menelusuri perubahan energi, energi berguna, dan energi yang terdisipasi pada sistem energi terbarukan.",
+    "Hukum kekekalan energi menghubungkan energi masuk, keluaran yang diinginkan, dan energi yang berpindah ke lingkungan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-01",
   dateModified: "2026-09-01",
@@ -16,9 +16,9 @@ Dalam Sistem Satuan Internasional (SI, International System of Units), semua ene
 
 <BlockMath math="\text{energi total sebelum proses}=\text{energi total sesudah proses}" />
 
-Jika energi listrik dari sebuah alat lebih kecil daripada energi masuknya, sisa energi telah berubah bentuk atau berpindah ke lingkungan. Energi tersebut biasanya menjadi kalor, bunyi, getaran, cahaya yang tidak berguna, atau energi internal pada komponen alat.
+Jika energi listrik dari sebuah alat lebih kecil daripada energi masuknya, sisa energi telah berubah bentuk atau berpindah ke lingkungan. Energi tersebut biasanya menjadi kalor, bunyi, getaran, cahaya yang bukan keluaran yang diinginkan, atau energi internal pada komponen alat.
 
-[OpenStax College Physics 2e](https://openstax.org/books/college-physics-2e/pages/7-6-conservation-of-energy) membahas hukum kekekalan energi melalui beberapa contoh perhitungan.
+Hukum kekekalan energi berlaku pada setiap perpindahan dan perubahan bentuk energi dalam sistem. [OpenStax College Physics 2e](https://openstax.org/books/college-physics-2e/pages/7-6-conservation-of-energy)
 
 ## Tentukan Batas Sistem Lebih Dahulu
 
@@ -30,10 +30,10 @@ Jika energi listrik dari sebuah alat lebih kecil daripada energi masuknya, sisa 
   chart={`flowchart TD
     A["Energi masuk"] --> B["Sistem"]
     B --> C["Energi berguna"]
-    B --> D["Energi terdisipasi"]
+    B --> D["Energi ke lingkungan"]
     D --> E["Kalor, bunyi, getaran"]`}/>
 
-Gunakan diagram untuk menelusuri setiap keluaran. Satu sistem dapat menghasilkan energi berguna sekaligus melepaskan energi sebagai kalor, bunyi, atau getaran.
+Diagram tersebut menunjukkan setiap keluaran. Satu sistem dapat menghasilkan energi berguna sekaligus memindahkan energi ke lingkungan sebagai kalor, bunyi, atau getaran.
 
 | Pilihan sistem | Yang masuk ke sistem | Yang keluar dari sistem |
 | :------------- | :------------------- | :---------------------- |
@@ -41,7 +41,7 @@ Gunakan diagram untuk menelusuri setiap keluaran. Satu sistem dapat menghasilkan
 | Turbin dan generator | energi kinetik putaran | energi listrik, kalor, bunyi |
 | Panel surya | energi radiasi Matahari | energi listrik, kalor, cahaya pantul |
 
-Jika sistem terlalu sempit, ada energi yang tampak keluar. Jika sistem diperluas sampai mencakup lingkungan, energi total tetap sama.
+Jika sistem hanya mencakup alat, sebagian energi melintasi batas sistem menuju lingkungan. Jika sistem diperluas hingga mencakup lingkungan, energi total tetap sama.
 
 ## Saat Gesekan Diabaikan
 
@@ -66,18 +66,18 @@ E_p &= mgh \\
 &= 120 \text{ J}
 \end{aligned}" />
 
-Jika tidak ada energi yang terdisipasi, energi sebesar <InlineMath math="120 \text{ J}" /> itu berubah menjadi energi kinetik air. Pada perangkat sebenarnya, sebagian energi berpindah ke lingkungan sebagai kalor, bunyi, dan getaran.
+Jika tidak ada energi yang berpindah ke lingkungan, energi sebesar <InlineMath math="120 \text{ J}" /> berubah menjadi energi kinetik air. Pada perangkat sebenarnya, sebagian energi berpindah ke lingkungan sebagai kalor, bunyi, dan getaran.
 
-## Energi Berguna adalah Bagian dari Energi Total
+## Energi Berguna Bergantung pada Tujuan Alat
 
 Pada teknologi energi terbarukan, yang biasanya kita inginkan adalah **energi berguna**, misalnya energi listrik. Hukum kekekalan energi tetap berlaku, tetapi energi masuk tidak seluruhnya menjadi energi listrik.
 
-<BlockMath math="E_{\text{masuk}}=E_{\text{berguna}}+E_{\text{terdisipasi}}" />
+<BlockMath math="E_{\text{masuk}}=E_{\text{berguna}}+E_{\text{lingkungan}}+\Delta E_{\text{tersimpan}}" />
 
-Contoh: aliran air membawa energi sebesar <InlineMath math="120 \text{ J}" /> menuju turbin kecil. Generator menghasilkan energi listrik <InlineMath math="90 \text{ J}" />. Energi yang terdisipasi adalah:
+Pada contoh berikut, energi yang tersimpan di dalam alat tidak berubah, jadi <InlineMath math="\Delta E_{\text{tersimpan}}=0" />. Aliran air membawa energi sebesar <InlineMath math="120 \text{ J}" /> menuju turbin kecil. Generator menghasilkan energi listrik <InlineMath math="90 \text{ J}" />. Energi yang berpindah ke lingkungan adalah:
 
 <BlockMath math="\begin{aligned}
-E_{\text{terdisipasi}}
+E_{\text{lingkungan}}
 &= E_{\text{masuk}}-E_{\text{berguna}} \\
 &= 120 \text{ J}-90 \text{ J} \\
 &= 30 \text{ J}
@@ -85,7 +85,7 @@ E_{\text{terdisipasi}}
 
 Jadi, energi <InlineMath math="30 \text{ J}" /> tidak hilang. Energi itu berpindah ke lingkungan, misalnya sebagai panas pada poros, suara putaran, atau getaran struktur.
 
-[DOE](https://www.energy.gov/cmei/water/how-hydropower-works) menjelaskan cara pembangkit listrik tenaga air memanfaatkan perbedaan ketinggian air untuk menggerakkan turbin dan generator.
+Pembangkit listrik tenaga air memanfaatkan perbedaan ketinggian air untuk menggerakkan turbin dan generator. [DOE](https://www.energy.gov/cmei/water/how-hydropower-works)
 
 ## Periksa Klaim dengan Neraca Energi
 
@@ -97,20 +97,20 @@ Hukum kekekalan energi dapat menguji klaim energi dengan menghitung setiap perpi
 | Turbin menerima <InlineMath math="120 \text{ J}" /> dan menghasilkan <InlineMath math="90 \text{ J}" /> listrik | Klaim ini masih masuk akal jika <InlineMath math="30 \text{ J}" /> berpindah ke lingkungan. |
 | Mesin menghasilkan <InlineMath math="150 \text{ J}" /> listrik dari masukan <InlineMath math="120 \text{ J}" /> tanpa sumber lain | Klaim ini melanggar hukum kekekalan energi. |
 
-[DOE](https://www.energy.gov/cmei/systems/solar-performance-and-efficiency) menjelaskan bahwa tidak semua cahaya yang mencapai sel fotovoltaik berubah menjadi listrik. Sebagian cahaya dipantulkan atau berubah menjadi panas.
+Sel fotovoltaik tidak mengubah seluruh cahaya yang datang menjadi listrik. Sebagian cahaya dipantulkan, sedangkan sebagian lainnya berubah menjadi panas. [DOE](https://www.energy.gov/cmei/systems/solar-performance-and-efficiency)
 
-Alat yang efisien mengubah bagian energi masuk yang lebih besar menjadi energi berguna dan bagian yang lebih kecil menjadi energi terdisipasi. Sebutan *ramah lingkungan* memerlukan bukti tambahan tentang emisi, bahan, penggunaan lahan atau air, dan limbah.
+Alat yang efisien mengubah bagian energi masuk yang lebih besar menjadi energi berguna dan memindahkan bagian yang lebih kecil ke lingkungan. Sebutan *ramah lingkungan* memerlukan bukti tambahan tentang emisi, bahan, penggunaan lahan atau air, dan limbah.
 
 ## Kekekalan Energi Berlaku pada Energi Terbarukan
 
 Sumber energi terbarukan tetap harus tunduk pada hukum kekekalan energi. Matahari, angin, air, panas bumi, dan biomassa menyediakan energi masuk. Teknologi membantu mengubah energi masuk itu menjadi energi yang kita perlukan.
 
-<BlockMath math="\text{sumber energi} \rightarrow \text{alat konversi} \rightarrow \text{energi berguna}+\text{energi terdisipasi}" />
+<BlockMath math="\text{sumber energi} \rightarrow \text{alat konversi} \rightarrow \text{energi berguna}+\text{energi ke lingkungan}" />
 
-Karena energi tidak diciptakan dari nol, pembahasan energi terbarukan selalu kembali ke tiga pertanyaan:
+Untuk memeriksa kekekalan energi pada teknologi energi terbarukan, jawab tiga pertanyaan berikut:
 
-- Dari mana energi masuknya?
+- Dari mana energi masuk ke sistem?
 - Ke mana energi yang tidak menjadi keluaran berguna berpindah?
-- Seberapa besar bagian energi yang benar-benar menjadi keluaran berguna?
+- Berapa bagian energi masuk yang menjadi keluaran berguna?
 
-Jika kalian bisa menjawab tiga pertanyaan itu, kalian sudah memakai hukum kekekalan energi untuk menilai teknologi energi.
+Jawabannya menunjukkan sumber energi masuk, setiap perpindahan energi keluar dari sistem, dan bagian yang menjadi keluaran berguna.

@@ -16,13 +16,13 @@ Misalkan <InlineMath math="X\in\mathbb{R}^{m\times n}" /> memuat <InlineMath mat
 <BlockMath math="X_c=X-\mathbf{1}\mu^T" />
 </MathContainer>
 
-Matriks kovarians sampelnya adalah
+Matriks kovarians untuk data yang sudah dipusatkan adalah:
 
 <BlockMath math="C=\frac{1}{m-1}X_c^TX_c" />
 
-Matriks ini simetris positif semidefinit. Matriksnya dapat singular ketika fitur saling bergantung linear atau ketika <InlineMath math="n>m-1" />.
+Matriks <InlineMath math="C" /> simetris positif semidefinit. Matriks <InlineMath math="C" /> dapat singular ketika fitur saling bergantung linear atau ketika <InlineMath math="n>m-1" />.
 
-Pemusatan bersifat wajib. Standardisasi setiap fitur menjadi varians satu merupakan pilihan pemodelan yang terpisah dan sering sesuai ketika fitur memakai satuan yang tidak sebanding. Standardisasi mengubah pertanyaan dari arah dengan varians absolut terbesar menjadi arah dengan varians terstandardisasi terbesar.
+Data harus dipusatkan sebelum <InlineMath math="\mathrm{PCA}" />. Standardisasi setiap fitur agar variansnya satu adalah pilihan model, dan biasanya berguna ketika fitur memakai satuan yang tidak sebanding. Standardisasi mengubah pertanyaan dari arah dengan varians absolut terbesar menjadi arah dengan varians terstandardisasi terbesar.
 
 ## Arah Komponen Utama
 
@@ -69,23 +69,23 @@ Di antara semua rekonstruksi linear ber-rank <InlineMath math="k" />, pilihan in
 
 ## Perhitungan Ekuivalen dengan SVD
 
-Hitung dekomposisi nilai singular tipis
+<InlineMath math="\mathrm{PCA}" /> juga dapat dihitung melalui dekomposisi nilai singular tipis berikut:
 
 <BlockMath math="X_c=U\Sigma V^T" />
 
-Vektor singular kanan menjadi arah komponen utama dan
+Vektor singular kanan memberi arah komponen utama, sedangkan nilai eigen memenuhi hubungan berikut:
 
 <BlockMath math="\lambda_j=\frac{\sigma_j^2}{m-1}" />
 
-Menggunakan <InlineMath math="\mathrm{SVD}" /> menghindari pembentukan <InlineMath math="X_c^TX_c" />, yang akan menguadratkan bilangan kondisi. <InlineMath math="\mathrm{SVD}" /> juga cocok ketika <InlineMath math="X_c" /> berbentuk persegi panjang atau kekurangan rank.
+Menggunakan <InlineMath math="\mathrm{SVD}" /> menghindari pembentukan <InlineMath math="X_c^TX_c" />, yang akan menguadratkan bilangan kondisi. <InlineMath math="\mathrm{SVD}" /> juga cocok ketika <InlineMath math="X_c" /> berbentuk persegi panjang atau memiliki rank yang tidak penuh.
 
 ## Contoh Kovarians Dua Dimensi
 
-Perhatikan elips kovarians yang diputar sebesar
+Elips kovarians diputar sebesar sudut berikut:
 
 <BlockMath math="\theta=\frac{\pi}{6}" />
 
-Elips kovarians diputar sebesar <InlineMath math="\theta" /> dan memiliki varians <InlineMath math="9" /> serta <InlineMath math="2{,}25" /> pada kedua sumbu utamanya. Misalkan
+Varians pada kedua sumbu utama adalah <InlineMath math="9" /> dan <InlineMath math="2{,}25" />. Matriks rotasi dan matriks kovariansnya adalah:
 
 <MathContainer>
 <BlockMath math="R=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}" />
@@ -100,15 +100,15 @@ Arah komponen utama adalah kolom <InlineMath math="R" />:
 <BlockMath math="v_2=\begin{pmatrix}-1/2\\\sqrt3/2\end{pmatrix},\qquad\lambda_2=2{,}25" />
 </MathContainer>
 
-Komponen pertama menjelaskan
+Rasio varians yang dijelaskan komponen pertama dapat dihitung dari kedua nilai eigen:
 
 <BlockMath math="\frac{9}{9+2{,}25}=0{,}8=80\%" />
 
-Hasil ini berarti komponen pertama menjelaskan <InlineMath math="80\%" /> dari varians total.
+Hasil <InlineMath math="80\%" /> adalah bagian dari varians total yang dijelaskan oleh komponen pertama.
 
 <LineEquation
   title={<>Elips kovarians dan arah komponen utama <InlineMath math="v_1,v_2" /></>}
-  description={<>Elips sian memiliki panjang semisumbu <InlineMath math="\sqrt{\lambda_1}=3" /> dan <InlineMath math="\sqrt{\lambda_2}=1{,}5" />. Arah jingga adalah vektor eigennya.</>}
+  description={<>Elips sian memiliki panjang semisumbu <InlineMath math="\sqrt{\lambda_1}=3" /> dan <InlineMath math="\sqrt{\lambda_2}=1{,}5" />. Garis jingga menunjukkan arah kedua vektor eigen.</>}
   data={[
     {
       points: Array.from({ length: 100 }, (_, index) => {
@@ -178,7 +178,7 @@ Hasil ini berarti komponen pertama menjelaskan <InlineMath math="80\%" /> dari v
 | Pemeriksaan | Alasan |
 | --- | --- |
 | Pusatkan hanya dengan rata-rata data latih | mencegah kebocoran data dan mempertahankan sistem koordinat yang dipelajari |
-| Tinjau satuan dan skala fitur | varians numerik besar dapat mendominasi karena alasan yang keliru |
+| Tinjau satuan dan skala fitur | fitur dengan rentang nilai numerik yang besar dapat mendominasi perhitungan meskipun perbedaan itu hanya berasal dari satuan |
 | Pilih <InlineMath math="k" /> berdasarkan kebutuhan validasi | varians terjelaskan tidak mengukur relevansi prediktif |
 | Tanda vektor eigen bersifat sembarang | <InlineMath math="v_j" /> dan <InlineMath math="-v_j" /> mendefinisikan komponen yang sama |
 | Periksa struktur nonlinear dan pencilan | <InlineMath math="\mathrm{PCA}" /> merupakan ringkasan linear berbasis varians dan peka terhadap keduanya |

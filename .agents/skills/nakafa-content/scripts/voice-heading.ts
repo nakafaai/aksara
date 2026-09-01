@@ -1,5 +1,6 @@
 import type {
   LessonVoiceIssue,
+  LessonVoiceLocale,
   LessonVoiceRule,
   LineState,
   SourceIssue,
@@ -126,8 +127,30 @@ export const HEADING_VOICE_RULES = [
 
 const HEADING_PATTERN = /^(#{2,6})(\s+)(.+)$/u;
 const METADATA_TITLE_PATTERN = /^(\s*title:\s*")([^"]+)(".*)$/u;
-const ALLOWED_HEADING_CHARACTER = /[\p{L}\p{N} ]/u;
+const ALLOWED_HEADING_CHARACTER = /[\p{L} ]/u;
+const LEADING_LETTERS_PATTERN = /^\p{L}+/u;
 const NON_ORDINARY_SPACE_PATTERN = /[^ ]/u;
+const TRAILING_LETTERS_PATTERN = /\p{L}+$/u;
+
+/** Allows the hyphen required by exact Indonesian reduplication. */
+function isIndonesianReduplicationHyphen(
+  heading: string,
+  index: number,
+  locale: LessonVoiceLocale
+): boolean {
+  if (locale !== "id" || heading[index] !== "-") {
+    return false;
+  }
+  const left = heading.slice(0, index).match(TRAILING_LETTERS_PATTERN)?.[0];
+  const right = heading.slice(index + 1).match(LEADING_LETTERS_PATTERN)?.[0];
+  return Boolean(
+    left &&
+      right &&
+      left.localeCompare(right, "id", {
+        sensitivity: "base",
+      }) === 0
+  );
+}
 
 /** Identifies control bytes that are never valid authored lesson text. */
 function isForbiddenControlCharacter(code: number): boolean {
@@ -155,14 +178,22 @@ function findForbiddenControlCharacterIssue(
 }
 
 /** Finds the first symbol forbidden by the plain lesson heading policy. */
-function findForbiddenHeadingCharacter(heading: string): number | undefined {
+function findForbiddenHeadingCharacter(
+  heading: string,
+  locale: LessonVoiceLocale
+): number | undefined {
   for (let index = 0; index < heading.length; ) {
     const codePoint = heading.codePointAt(index);
     if (codePoint === undefined) {
       return;
     }
     const character = String.fromCodePoint(codePoint);
-    if (!ALLOWED_HEADING_CHARACTER.test(character)) {
+    if (
+      !(
+        ALLOWED_HEADING_CHARACTER.test(character) ||
+        isIndonesianReduplicationHyphen(heading, index, locale)
+      )
+    ) {
       return index;
     }
     index += character.length;
@@ -170,7 +201,10 @@ function findForbiddenHeadingCharacter(heading: string): number | undefined {
 }
 
 /** Reports one symbol in an authored heading with its exact source column. */
-function findHeadingSymbolIssue(line: string): SourceIssue | undefined {
+function findHeadingSymbolIssue(
+  line: string,
+  locale: LessonVoiceLocale
+): SourceIssue | undefined {
   const match = HEADING_PATTERN.exec(line);
   if (!match) {
     return;
@@ -189,7 +223,7 @@ function findHeadingSymbolIssue(line: string): SourceIssue | undefined {
       rule: "heading-symbol",
     };
   }
-  const symbolIndex = findForbiddenHeadingCharacter(heading);
+  const symbolIndex = findForbiddenHeadingCharacter(heading, locale);
   if (symbolIndex === undefined) {
     return;
   }
@@ -201,7 +235,10 @@ function findHeadingSymbolIssue(line: string): SourceIssue | undefined {
 }
 
 /** Applies the heading symbol policy to a lesson metadata title. */
-function findMetadataTitleSymbolIssue(line: string): SourceIssue | undefined {
+function findMetadataTitleSymbolIssue(
+  line: string,
+  locale: LessonVoiceLocale
+): SourceIssue | undefined {
   const match = METADATA_TITLE_PATTERN.exec(line);
   if (!match) {
     return;
@@ -210,7 +247,7 @@ function findMetadataTitleSymbolIssue(line: string): SourceIssue | undefined {
   if (!(metadataPrefix && title)) {
     return;
   }
-  const symbolIndex = findForbiddenHeadingCharacter(title);
+  const symbolIndex = findForbiddenHeadingCharacter(title, locale);
   if (symbolIndex === undefined) {
     return;
   }
@@ -231,6 +268,7 @@ function locateIssue(
 
 /** Checks title, heading, and inline math structure outside protected MDX. */
 export function findStructuralIssues(
+  locale: LessonVoiceLocale,
   line: string,
   lineNumber: number,
   state: LineState,
@@ -245,7 +283,7 @@ export function findStructuralIssues(
     issues.push(controlCharacterIssue);
   }
   const metadataTitleIssue = state.inMetadata
-    ? locateIssue(findMetadataTitleSymbolIssue(line), lineNumber)
+    ? locateIssue(findMetadataTitleSymbolIssue(line, locale), lineNumber)
     : undefined;
   if (metadataTitleIssue) {
     issues.push(metadataTitleIssue);
@@ -253,7 +291,10 @@ export function findStructuralIssues(
   if (isProtectedRegion) {
     return issues;
   }
-  const headingIssue = locateIssue(findHeadingSymbolIssue(line), lineNumber);
+  const headingIssue = locateIssue(
+    findHeadingSymbolIssue(line, locale),
+    lineNumber
+  );
   if (headingIssue) {
     issues.push(headingIssue);
   }

@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Identifizierbarkeit und Matrixrang",
-    description: "Parameteridentifizierbarkeit mit Matrixrang, Singulärwerten, Kondition und stabilen rangoffenlegenden Faktorisierungen verbinden.",
+    description: "Parameteridentifizierbarkeit mit Matrixrang, Singulärwerten, Kondition und stabilen rangaufdeckenden Faktorisierungen verbinden.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
     dateModified: "2026-09-01",
@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Identifizierbarkeit in einem linearen Modell
 
-Identifizierbarkeit fragt, ob die verfügbaren Daten einen Modellparameter eindeutig bestimmen. Seien <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="b \in \mathbb{R}^m" /> und <InlineMath math="m \geq n" /> gegeben. Das lineare Ausgleichsproblem lautet
+Ein Parameter ist identifizierbar, wenn die verfügbaren Daten ihn eindeutig bestimmen. Seien <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="b \in \mathbb{R}^m" /> und <InlineMath math="m \geq n" /> gegeben. Das lineare Ausgleichsproblem lautet
 
 <BlockMath math="\min_{x \in \mathbb{R}^n} \|Ax-b\|_2^2" />
 
@@ -30,7 +30,7 @@ Diese Aussagen sind äquivalent. Gibt es ein <InlineMath math="z \in \ker(A)" />
 
 Diese Gleichheit zeigt, dass die Daten <InlineMath math="x" /> nicht von <InlineMath math="x+z" /> unterscheiden können. Gilt <InlineMath math="\ker(A)=\{0\}" />, dann ist <InlineMath math="A^TA" /> positiv definit und das Ausgleichsproblem besitzt genau einen Minimierer.
 
-## Eindeutigkeit ist nicht dasselbe wie Stabilität
+## Eindeutigkeit der Lösung und numerische Stabilität
 
 Voller Spaltenrang garantiert eine eindeutige exakte Lösung, aber noch keine numerisch verlässliche. Ein sehr kleiner positiver Singulärwert kann die Schätzung gegenüber kleinen Datenänderungen äußerst empfindlich machen.
 
@@ -86,7 +86,7 @@ Der Faktor <InlineMath math="c" /> richtet sich nach Anwendung und Rauschmodell.
 
 <BlockMath math="x^{\dagger}=V\Sigma^{\dagger}U^T b" />
 
-## Die Zerlegung sicher berechnen
+## Numerische Verfahren zur Bestimmung des Matrixrangs
 
 Die Identität
 

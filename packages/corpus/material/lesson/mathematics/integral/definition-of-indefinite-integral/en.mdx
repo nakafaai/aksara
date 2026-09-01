@@ -1,17 +1,17 @@
 export const metadata = {
     title: "Definition of Indefinite Integral",
-  description: "Treat an indefinite integral as a family of antiderivatives and explain why every result needs a constant of integration.",
+  description: "An indefinite integral includes all antiderivatives that differ by a constant of integration.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
     dateModified: "2026-09-01",
     subject: "Integrals",
 };
 
-## Indefinite Integrals as Antiderivative Families
+## Indefinite Integrals and Antiderivatives
 
-Differentiation turns a position function <InlineMath math="s(t)" /> into its velocity <InlineMath math="v(t)=s'(t)" />. Indefinite integration reverses that step: from <InlineMath math="v(t)" />, it recovers a family of possible position functions. This reverse process is **antidifferentiation**, and the resulting family is the **indefinite integral**. An initial position is still needed to select one member of that family.
+Differentiation turns a position function <InlineMath math="s(t)" /> into its velocity <InlineMath math="v(t)=s'(t)" />. **Antidifferentiation** reverses this process. From <InlineMath math="v(t)" />, we find every position function whose derivative equals <InlineMath math="v(t)" />. An initial position is still needed to select one particular position function.
 
-## The Constant Restores Lost Information
+## Role of the Constant of Integration
 
 Compare these functions and their derivatives.
 
@@ -24,11 +24,11 @@ Compare these functions and their derivatives.
 
 All four <InlineMath math="F(x)" /> functions have the same derivative, <InlineMath math="f(x) = 4x" />. The reason is that the derivative of a constant, such as <InlineMath math="1" />, <InlineMath math="5" />, or <InlineMath math="-10" />, is zero.
 
-Differentiation therefore erases the original constant. When we reverse the process, the derivative alone cannot tell us whether that constant was <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="-1000" />, or another value. The symbol <InlineMath math="C" /> represents every possibility, so the result contains a family of antiderivatives.
+A derivative does not retain the constant from the original function. It cannot tell us whether the original constant was <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="-1000" />, or another value. The symbol <InlineMath math="C" /> represents every possible constant. An indefinite integral therefore includes all antiderivatives that differ only in their constant.
 
 ## Formal Notation of Integrals
 
-The formal notation records the integrand, the variable of integration, and the full family of antiderivatives:
+The following notation shows the integrand, the variable of integration, the antiderivative, and the constant of integration:
 
 <BlockMath math="\int f(x) \, dx = F(x) + C" />
 
@@ -42,4 +42,4 @@ The defining relationship is:
 
 <BlockMath math="\frac{d}{dx} [F(x)] = f(x) \quad \iff \quad \int f(x) \, dx = F(x) + C" />
 
-> If a function <InlineMath math="F(x)" /> has derivative <InlineMath math="f(x)" />, then the indefinite integral of <InlineMath math="f(x)" /> is the family of all possible <InlineMath math="F(x)" /> functions, which we write as <InlineMath math="F(x) + C" />.
+> If the derivative of <InlineMath math="F(x)" /> is <InlineMath math="f(x)" />, then the indefinite integral of <InlineMath math="f(x)" /> includes every function of the form <InlineMath math="F(x) + C" />.

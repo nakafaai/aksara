@@ -1,5 +1,5 @@
 export const metadata = {
-    title: "Application of Limit Function",
+    title: "Applications of Limits",
     description: "Apply limits to simplified health, economic, population, signal, and reaction models while checking what each model can and cannot justify.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
@@ -9,7 +9,7 @@ export const metadata = {
 
 ## A Simplified Public Health Model
 
-Limits can describe the long-term behavior of a mathematical model. In public health, however, a formula must be fitted to reliable data and validated before anyone uses it to guide a real decision. The example below is a **fictional classroom model** designed to practice limits and model-domain checks.
+Limits can describe the long-term behavior of a mathematical model. In public health, a formula must be fitted to reliable data and validated before anyone uses it to guide a real decision. The formula below shows how to calculate a limit and check the valid domain of a model.
 
 ### Inspecting the Domain of the Model
 
@@ -36,13 +36,13 @@ So,
 <BlockMath math="\lim_{t \to \infty} N(t) = \lim_{t \to \infty} (285000 - t) = -\infty" />
 </MathContainer>
 
-> A negative case count means the formula has been used outside the model's **valid domain**. A case count cannot be negative, so the formula is meaningful only while <InlineMath math="N(t) \geq 0" />. This fictional model is not an epidemiological forecast and must not be used as medical or policy guidance.
+> A negative case count means the formula has been used outside the model's **valid domain**. A case count cannot be negative, so the formula is meaningful only while <InlineMath math="N(t) \geq 0" />. This simplified formula is a mathematical example, not an epidemiological forecast. It must not be used as medical or policy guidance.
 
-### Interpreting a Vaccination Target
+### Model Output at a Vaccination Target
 
-In a classroom model, limits and function values can show what a formula predicts near a chosen vaccination target. They cannot establish that the target is effective without empirical evidence, assumptions about transmission, and real population data.
+In this model, limits and function values show what the formula gives near a chosen vaccination target. That calculation does not establish that the target is effective. Evidence about the population and disease transmission is still required.
 
-Suppose a hypothetical exercise sets a target of <InlineMath math="V \text{ people}" /> among residents older than <InlineMath math="18 \text{ years}" />. We can evaluate the formula at that target and interpret the result within the model. That calculation does not, by itself, prove an optimal strategy.
+Suppose the vaccination target is <InlineMath math="V \text{ people}" /> among residents older than <InlineMath math="18 \text{ years}" />. Substitute <InlineMath math="V" /> into the formula to calculate the case count given by the model at that target. This result comes from the formula alone and does not establish that the target is the best strategy.
 
 ## Application in Economics
 
@@ -102,88 +102,81 @@ The calculation gives:
 
 This conclusion belongs to that irreversible first-order model. A reversible reaction at equilibrium generally requires a different model and need not have zero reactant concentration.
 
-## Evaluating a Fictional City Vaccination Target
+## Calculating Cases at a Vaccination Target
 
-1. **Problem Description:**
+Let <InlineMath math="t" /> be the number of vaccinated people. The following model calculates the number of remaining positive cases, <InlineMath math="N(t)" />:
 
-    In this fictional classroom scenario, a city has a population of <InlineMath math="576{,}260 \text{ people}" />. The exercise supplies a simplified formula relating a vaccination count to a modeled number of remaining positive cases:
+<BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190.68)^3}" />
 
-    <BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190.68)^3}" />
+We will calculate <InlineMath math="N(282{,}367)" /> for a vaccination target of <InlineMath math="282{,}367 \text{ people}" />.
 
-    where:
-    - <InlineMath math="N(t)" /> = number of positive cases remaining
-    - <InlineMath math="t" /> = number of people who have been vaccinated
+### Data and Assumptions
 
-2. **Question:**
+The calculation uses these assumptions:
 
-    If the vaccination program target is <InlineMath math="282{,}367 \text{ people}" />, how many positive cases will remain when the target is reached?
+- Total population is <InlineMath math="576{,}260 \text{ people}" />.
+- Children make up <InlineMath math="21\%" /> of the population and adults make up <InlineMath math="79\%" />.
+- The positive-case proportion is <InlineMath math="30\%" /> in each age group.
+- Only adults outside the positive-case group are eligible for vaccination.
 
-3. **Data and Assumptions:**
+These assumptions give the following population counts:
 
-    The exercise assumes:
-    - Total population: <InlineMath math="576{,}260 \text{ people}" />
-    - Age composition: <InlineMath math="21\%" /> children (<InlineMath math="\leq 18 \text{ years}" />), <InlineMath math="79\%" /> adults (<InlineMath math="\gt 18 \text{ years}" />)
-    - Health status: <InlineMath math="30\%" /> already confirmed positive, with the same proportion assumed across age groups
-    - Policy: Only adults who are not positive can be vaccinated
+<MathContainer>
+<BlockMath math="\text{Children} = 0.21 \times 576{,}260 = 121{,}014.6 \approx 121{,}015 \text{ people}" />
+<BlockMath math="\text{Adults} = 0.79 \times 576{,}260 = 455{,}245.4 \approx 455{,}245 \text{ people}" />
+<BlockMath math="\text{Total positive cases} = 0.3 \times 576{,}260 = 172{,}878 \text{ people}" />
+<BlockMath math="\text{Positive cases among adults} = 0.79 \times 0.30 \times 576{,}260 = 136{,}573.62 \approx 136{,}574 \text{ people}" />
+<BlockMath math="\text{Eligible adults} = 0.79 \times 0.70 \times 576{,}260 = 318{,}671.78 \approx 318{,}672 \text{ people}" />
+</MathContainer>
 
-    Justification for Vaccination Target of <InlineMath math="282{,}367 \text{ people}" />:
+Using the unrounded eligible count, the target represents:
 
-    <MathContainer>
-    <BlockMath math="\text{Children} = 0.21 \times 576{,}260 = 121{,}014.6 \approx 121{,}015 \text{ people}" />
-    <BlockMath math="\text{Adults} = 0.79 \times 576{,}260 = 455{,}245.4 \approx 455{,}245 \text{ people}" />
-    <BlockMath math="\text{Total positive} = 0.3 \times 576{,}260 = 172{,}878 \text{ people}" />
-    <BlockMath math="\text{Positive adults} = 0.79 \times 0.30 \times 576{,}260 = 136{,}573.62 \approx 136{,}574 \text{ people}" />
-    <BlockMath math="\text{Eligible adults} = 0.79 \times 0.70 \times 576{,}260 = 318{,}671.78 \approx 318{,}672 \text{ people}" />
-    </MathContainer>
+<BlockMath math="\frac{282{,}367}{318{,}671.78}\times 100\% \approx 88.6\%" />
 
-    Compute the target share from the **unrounded eligible count**:
+The target is about <InlineMath math="88.6\%" /> of the eligible adults in this calculation. This simplified formula only shows how to evaluate the function at that target. It cannot determine a real vaccination target.
 
-    <BlockMath math="\frac{282{,}367}{318{,}671.78}\times 100\% \approx 88.6\%" />
+### Calculation
 
-    The vaccination target is therefore about <InlineMath math="88.6\%" /> of the eligible adults in this fictional scenario. The exercise provides this target. The calculation does not justify how a real target should be selected.
+To calculate the model's case count, we use <InlineMath math="t=282{,}367" />:
 
-4. **Solution:**
+<BlockMath math="N(282{,}367) = 285{,}000 - \sqrt{(282{,}367)^2 - 282{,}367 + (190.68)^3}" />
 
-    To determine the number of cases remaining when <InlineMath math="t = 282{,}367" />, we calculate:
+**Step** <InlineMath math="1" /> calculates the constant term.
 
-    <BlockMath math="N(282{,}367) = 285{,}000 - \sqrt{(282{,}367)^2 - 282{,}367 + (190.68)^3}" />
+<BlockMath math="(190.68)^3 = 190.68 \times 190.68 \times 190.68 = 6{,}932{,}907.88" />
 
-    **Step** <InlineMath math="1" />: Calculate <InlineMath math="(190.68)^3" />
+The displayed value is rounded to two decimal places. The next calculation retains the unrounded value internally.
 
-    <BlockMath math="(190.68)^3 = 190.68 \times 190.68 \times 190.68 = 6{,}932{,}907.88" />
+**Step** <InlineMath math="2" /> calculates the square of the vaccination count.
 
-    The displayed value is rounded to two decimal places. The calculation below retains the unrounded value internally.
+<BlockMath math="(282{,}367)^2 = 79{,}731{,}122{,}689" />
 
-    **Step** <InlineMath math="2" />: Calculate <InlineMath math="(282{,}367)^2" />
+**Step** <InlineMath math="3" /> combines the values under the square root.
 
-    <BlockMath math="(282{,}367)^2 = 79{,}731{,}122{,}689" />
+<BlockMath math="79{,}731{,}122{,}689 - 282{,}367 + 6{,}932{,}907.88 = 79{,}737{,}773{,}229.88" />
 
-    **Step** <InlineMath math="3" />: Substitute into the root
+**Step** <InlineMath math="4" /> gives the final result.
 
-    <BlockMath math="79{,}731{,}122{,}689 - 282{,}367 + 6{,}932{,}907.88 = 79{,}737{,}773{,}229.88" />
+<MathContainer>
+<BlockMath math="N(282{,}367) = 285{,}000 - \sqrt{79{,}737{,}773{,}229.88}" />
+<BlockMath math="= 285{,}000 - 282{,}378.78" />
+<BlockMath math="= 2{,}621.22 \approx 2{,}621 \text{ people}" />
+</MathContainer>
 
-    **Step** <InlineMath math="4" />: Calculate the final result
+### Meaning of the Result
 
-    <MathContainer>
-    <BlockMath math="N(282{,}367) = 285{,}000 - \sqrt{79{,}737{,}773{,}229.88}" />
-    <BlockMath math="= 285{,}000 - 282{,}378.78" />
-    <BlockMath math="= 2{,}621.22 \approx 2{,}621 \text{ people}" />
-    </MathContainer>
+If <InlineMath math="282{,}367" /> people are vaccinated, the supplied formula gives approximately <InlineMath math="2{,}621" /> remaining cases. This result comes only from the simplified formula. Real data is still required for a forecast or a decision about health-resource allocation.
 
-5. **Result Interpretation:**
+## Limits of the Formula and Model
 
-    At <InlineMath math="282{,}367" /> vaccinated people, the supplied formula gives approximately <InlineMath math="2{,}621" /> remaining cases. This is an output of the fictional model, **not a real-world forecast** or a sufficient basis for allocating health resources.
-
-## Interpreting the Result Responsibly
-
-The value <InlineMath math="2{,}621 \text{ cases}" /> answers the mathematical question posed by the exercise. A real decision would still require independently validated evidence about:
+The value <InlineMath math="2{,}621 \text{ cases}" /> answers the mathematical question for the supplied formula. A real decision would still require independently validated evidence about:
 
 1. Current and projected **hospital capacity**
 2. Available **medical personnel** and workload
 3. **Resource allocation** under several credible scenarios
 4. Uncertainty and a truthful **public communication strategy**
 
-> A limit describes the behavior of a formula. Whether that formula describes reality is a separate evidence question. Always state the model's assumptions, valid domain, units, and uncertainty before interpreting its output.
+> A limit describes the behavior of a formula. Real data is still needed to determine whether the formula matches actual conditions. State the model's assumptions, valid domain, units, and uncertainty when explaining the calculated result.
 
 ## Exercises
 

@@ -7,9 +7,9 @@ export const metadata = {
   subject: "Lineare Methoden der KI",
 };
 
-## Welche Geometrie ein Skalarprodukt hinzufügt
+## Mit Skalarprodukten geometrische Beziehungen beschreiben
 
-Ein Vektorraum beschreibt Addition und Skalarmultiplikation. Ein Skalarprodukt fügt Geometrie hinzu: Damit lassen sich Länge, Winkel und Orthogonalität messen. Diese Lesson verwendet die Konvention, dass ein komplexes Skalarprodukt im ersten Argument konjugiert linear und im zweiten Argument linear ist.
+Ein Vektorraum besitzt Operationen für Addition und Skalarmultiplikation. Ein Skalarprodukt bestimmt Vektorlängen, Winkel zwischen Vektoren und ob zwei Vektoren orthogonal sind. Für komplexe Vektoren ist das hier verwendete Skalarprodukt im ersten Argument konjugiert linear und im zweiten Argument linear.
 
 Für <InlineMath math="x,y,z\in\mathbb{C}^n" /> und <InlineMath math="\lambda,\mu\in\mathbb{C}" /> erfüllt ein Skalarprodukt
 
@@ -24,7 +24,7 @@ Die konjugierte Symmetrie stellt sicher, dass <InlineMath math="\langle x,x\rang
 
 ## Matrixgewichtete Skalarprodukte
 
-Für reelle Vektoren definiert die Formel
+Für reelle Vektoren wird ein matrixgewichtetes Skalarprodukt wie folgt definiert:
 
 <BlockMath math="\langle x,y\rangle_A=x^TAy" />
 
@@ -43,13 +43,13 @@ Mit <InlineMath math="A=I" /> erhält man die euklidischen Standardskalarprodukt
 <BlockMath math="\langle x,y\rangle=x^Hy\qquad\text{über }\mathbb{C}^n" />
 </MathContainer>
 
-## Länge Winkel und Orthogonalität
+## Vektorlängen sowie Winkel und Orthogonalität
 
-Jedes Skalarprodukt induziert die Norm
+Jedes Skalarprodukt definiert die folgende Norm:
 
 <BlockMath math="\|x\|_A=\sqrt{\langle x,x\rangle_A}" />
 
-Die Cauchy-Schwarz-Ungleichung
+Diese Norm erfüllt die Cauchy-Schwarz-Ungleichung:
 
 <BlockMath math="|\langle x,y\rangle_A|\le\|x\|_A\|y\|_A" />
 
@@ -114,4 +114,4 @@ Für Vektoren <InlineMath math="v_1,\ldots,v_k" /> ist ihre Gram-Matrix durch
 
 <BlockMath math="G_{ij}=\langle v_i,v_j\rangle_A" />
 
-Diese Einträge bilden eine hermitesche positiv semidefinite Matrix. Die Gram-Matrix ist genau dann positiv definit, wenn die Vektoren linear unabhängig sind. Gram-Matrizen verwandeln geometrische Fragen nach Winkeln und Unabhängigkeit in Matrixfragen.
+Die Gram-Matrix ist hermitesch positiv semidefinit. Sie ist genau dann positiv definit, wenn die Vektoren linear unabhängig sind. Ihre Einträge erfassen alle paarweisen Skalarprodukte und erlauben damit die Prüfung von Winkeln und linearer Unabhängigkeit.

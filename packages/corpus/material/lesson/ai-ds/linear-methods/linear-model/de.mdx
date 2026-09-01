@@ -7,15 +7,13 @@ export const metadata = {
   subject: "Lineare Methoden der KI",
 };
 
-## Was linear hier bedeutet
+## Linearität in den Modellparametern
 
 Ein lineares Modell verbindet eine bekannte Eingabe <InlineMath math="t \in \mathbb{R}^k" /> mit einer beobachteten Antwort <InlineMath math="y \in \mathbb{R}^d" /> über unbekannte Parameter <InlineMath math="x \in \mathbb{R}^n" />:
 
 <BlockMath math="y=h(t)x,\qquad h(t)\in\mathbb{R}^{d\times n}" />
 
 Entscheidend ist die Formulierung **linear in den Parametern**. Bei festem <InlineMath math="t" /> ist die Abbildung von <InlineMath math="x" /> nach <InlineMath math="y" /> linear. Die Abhängigkeit von <InlineMath math="t" /> darf Potenzen, Logarithmen, Sinusfunktionen oder andere nichtlineare Basisfunktionen enthalten.
-
-Diese Unterscheidung verhindert ein häufiges Missverständnis: Ein lineares Modell muss als Funktion seiner Eingabe keine Gerade zeichnen. Es muss die unbekannten Parameter linear kombinieren.
 
 ## Von Messungen zur Designmatrix
 
@@ -31,7 +29,7 @@ Der Fehler <InlineMath math="\varepsilon_i" /> enthält Messrauschen und Modella
 <BlockMath math="b=Ax+\varepsilon" />
 </MathContainer>
 
-Die Matrix <InlineMath math="A" /> heißt **Designmatrix**. Lassen sich die Beobachtungen nicht durch einen einzigen Parametervektor exakt erfüllen, schätzt man <InlineMath math="x" /> mit kleinsten Quadraten oder einem anderen Residualmodell. Ob die Parameter identifizierbar sind, hängt außerdem vom Rang und von der Kondition von <InlineMath math="A" /> ab.
+Die Matrix <InlineMath math="A" /> heißt **Designmatrix**. Lassen sich die Beobachtungen nicht durch einen einzigen Parametervektor exakt erfüllen, schätzt man <InlineMath math="x" /> mit kleinsten Quadraten oder einem anderen Residualmodell. Die Daten bestimmen die Parameter eindeutig, wenn <InlineMath math="A" /> vollen Spaltenrang hat. Die Konditionszahl von <InlineMath math="A" /> beschreibt getrennt davon, wie empfindlich diese Schätzung auf kleine Änderungen der Daten reagiert.
 
 ## Basisfunktionen erzeugen verschiedene Modellformen
 

@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Orthogonale Polynome",
-  description: "Konstruiere Chebyshev- und Legendre-Basen aus gewichteten Skalarprodukten, projiziere Funktionen, transformiere Intervalle und verbinde ihre Nullstellen mit der Gauß-Quadratur.",
+  description: "Chebyshev- und Legendre-Basen entstehen aus gewichteten Skalarprodukten. Sie werden für Funktionsprojektionen, Intervalltransformationen und die Gauß-Quadratur verwendet.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
   dateModified: "2026-09-01",
@@ -16,15 +16,19 @@ Sei <InlineMath math="w(x)>0" /> auf einem Intervall <InlineMath math="[a,b]" />
 <BlockMath math="\|f\|_w=\sqrt{\langle f,f\rangle_w}" />
 </MathContainer>
 
-Zwei Funktionen sind orthogonal, wenn <InlineMath math="\langle f,g\rangle_w=0" /> gilt. Diese gewichtete <InlineMath math="L^2" />-Geometrie misst den quadratischen Fehler über das gesamte Intervall
+Zwei Funktionen sind orthogonal, wenn <InlineMath math="\langle f,g\rangle_w=0" /> gilt. Diese gewichtete <InlineMath math="L^2" />-Geometrie misst den gewichteten quadratischen Fehler über das gesamte Intervall.
+
+<BlockMath math="\|f-g\|_w^2=\int_a^b|f(x)-g(x)|^2w(x)\,dx" />
+
+Dagegen misst die Maximumsnorm den größten punktweisen Fehler.
 
 <BlockMath math="\|f-g\|_\infty=\max_{x\in[a,b]}|f(x)-g(x)|" />
 
-Der Unterschied ist wichtig. Die orthogonale Projektion minimiert den gewichteten <InlineMath math="L^2" />-Fehler. Chebyshev-Polynome besitzen zusätzlich eine eigene Minimax-Eigenschaft, aber das gewichtete Skalarprodukt und die Maximumsnorm sind nicht austauschbar.
+Die orthogonale Projektion minimiert den gewichteten <InlineMath math="L^2" />-Fehler. Chebyshev-Polynome besitzen zusätzlich eine eigene Minimax-Eigenschaft. Das gewichtete Skalarprodukt und die Maximumsnorm messen unterschiedliche Fehler.
 
 ## Projektion auf eine orthogonale Basis
 
-Seien <InlineMath math="p_0,ldots,p_n" /> paarweise orthogonal. Die Projektion vom Grad <InlineMath math="n" /> einer Funktion <InlineMath math="f" /> lautet
+Seien <InlineMath math="p_0,\ldots,p_n" /> paarweise orthogonal. Die Projektion vom Grad <InlineMath math="n" /> einer Funktion <InlineMath math="f" /> lautet
 
 <MathContainer>
 <BlockMath math="\Pi_n f(x)=\sum_{k=0}^n c_kp_k(x)" />
@@ -35,7 +39,7 @@ Da alle Kreuzterme verschwinden, kann jeder Koeffizient unabhängig berechnet we
 
 ## Dreitermrekursion aus Orthogonalisierung nach Gram und Schmidt
 
-Die Anwendung von Gram-Schmidt auf <InlineMath math="1,x,x^2,ldots" /> erzeugt eine Folge monischer orthogonaler Polynome <InlineMath math="\pi_k" />. Für ein positives Skalarprodukt gilt
+Die Anwendung von Gram-Schmidt auf <InlineMath math="1,x,x^2,\ldots" /> erzeugt eine Folge monischer orthogonaler Polynome <InlineMath math="\pi_k" />. Für ein positives Skalarprodukt gilt
 
 <MathContainer>
 <BlockMath math="\pi_0(x)=1" />
@@ -50,7 +54,7 @@ Die Rekursionskoeffizienten lauten
 <BlockMath math="\beta_k=\frac{\|\pi_k\|_w^2}{\|\pi_{k-1}\|_w^2}>0" />
 </MathContainer>
 
-Die Dreitermform ist keine willkürliche Abkürzung. Die Multiplikation mit <InlineMath math="x" /> erhöht den Grad um eins. Durch die Orthogonalität verschwinden alle Komponenten unterhalb von <InlineMath math="\pi_{k-1}" />.
+Die Multiplikation mit <InlineMath math="x" /> erhöht den Grad um eins. Die Orthogonalität entfernt alle Komponenten unterhalb von <InlineMath math="\pi_{k-1}" />, deshalb enthält die Rekursionsformel nur drei Terme.
 
 ## Polynome nach Tschebyschow erster Art
 
@@ -70,7 +74,7 @@ Ihre gewichtete Orthogonalität lautet
 
 <BlockMath math="\int_{-1}^{1}\frac{T_j(x)T_k(x)}{\sqrt{1-x^2}}\,dx=\begin{cases}\pi,&j=k=0,\\\frac{\pi}{2},&j=k>0,\\0,&j\ne k.\end{cases}" />
 
-Da <InlineMath math="|T_k(x)|\le1" /> auf <InlineMath math="[-1,1]" /> gilt und der Leitkoeffizient für <InlineMath math="k\ge1" /> gleich <InlineMath math="2^{k-1}" /> ist, hat das monische Polynom <InlineMath math="2^{1-k}T_k" /> unter allen monischen Polynomen vom Grad <InlineMath math="k" /> die kleinste Maximumsnorm. Dies ist die genaue Verbindung zur Minimax-Approximation.
+Da <InlineMath math="|T_k(x)|\le1" /> auf <InlineMath math="[-1,1]" /> gilt und der Leitkoeffizient für <InlineMath math="k\ge1" /> gleich <InlineMath math="2^{k-1}" /> ist, hat das monische Polynom <InlineMath math="2^{1-k}T_k" /> unter allen monischen Polynomen vom Grad <InlineMath math="k" /> die kleinste Maximumsnorm. Es löst damit das Minimax-Approximationsproblem für monische Polynome vom Grad <InlineMath math="k" />.
 
 <LineEquation
   title={<>Die ersten Chebyshev-Polynome <InlineMath math="T_0,T_1,T_2,T_3" /></>}
@@ -126,7 +130,7 @@ Die zweite Identität ist eine exakte orthogonale Entwicklung und keine Näherun
 
 ## Das Intervall orthogonaler Polynome ändern
 
-Verwende die affine Variablentransformation
+Um das Intervall <InlineMath math="[-1,1]" /> auf <InlineMath math="[a,b]" /> abzubilden, verwenden wir die folgende affine Variablentransformation.
 
 <MathContainer>
 <BlockMath math="x=\frac{a+b}{2}+\frac{b-a}{2}t" />

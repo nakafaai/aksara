@@ -1,16 +1,16 @@
 export const metadata = {
   title: "Notasi Ilmiah",
   description:
-    "Menulis nilai sangat besar atau sangat kecil dengan notasi ilmiah, menjaga angka penting, dan mengonversi satuan tanpa kehilangan makna.",
+    "Notasi ilmiah menulis nilai sangat besar atau sangat kecil dengan pangkat sepuluh, mempertahankan angka penting, dan memudahkan konversi satuan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-04-25",
   dateModified: "2026-09-01",
   subject: "Pengukuran dalam Kerja Ilmiah",
 };
 
-## Ketika Nol Mulai Mengganggu
+## Menulis Angka dengan Banyak Nol
 
-Fisika sering bertemu nilai yang terlalu besar atau terlalu kecil untuk ditulis nyaman. Luas <InlineMath math="0{,}000764 \text{ m}^2" /> masih bisa dibaca, tetapi massa elektron sekitar <InlineMath math="0{,}000000000000000000000000000000911 \text{ kg}" /> sudah membuat mata mudah kehilangan hitungan nol.
+Dalam fisika, kita sering menemukan nilai yang terlalu besar atau terlalu kecil untuk ditulis dengan deretan angka biasa. Luas <InlineMath math="0{,}000764 \text{ m}^2" /> masih mudah dibaca, tetapi pada massa elektron sekitar <InlineMath math="0{,}000000000000000000000000000000911 \text{ kg}" />, jumlah nolnya mudah salah dihitung.
 
 **Notasi ilmiah** adalah cara menulis nilai sebagai perkalian antara koefisien dan pangkat <InlineMath math="10" />.
 
@@ -20,7 +20,7 @@ Untuk nilai positif, bentuk bakunya adalah:
 
 <BlockMath math="1 \le a < 10 \quad \text{dan} \quad n \in \mathbb{Z}" />
 
-Koefisien <InlineMath math="a" /> menyimpan angka penting. Pangkat <InlineMath math="n" /> menyimpan skala.
+Koefisien <InlineMath math="a" /> memuat angka penting. Pangkat <InlineMath math="n" /> menentukan orde besaran.
 
 ## Menggeser Koma Tanpa Mengubah Nilai
 
@@ -39,9 +39,9 @@ Jika koma bergerak ke kiri, pangkatnya positif. Jika koma bergerak ke kanan, pan
 0{,}000764 &= 7{,}64 \times 10^{-4}
 \end{aligned}" />
 
-## Pangkat Bukan Angka Penting
+## Angka Penting pada Koefisien
 
-Dalam notasi ilmiah, baca jumlah angka penting dari koefisiennya. Pangkat <InlineMath math="10" /> menentukan skalanya.
+Dalam notasi ilmiah, baca jumlah angka penting dari koefisien. Pangkat <InlineMath math="10" /> menentukan besar faktor pengali.
 
 | Notasi ilmiah | Angka penting | Alasannya |
 | :------------ | :------------ | :-------- |
@@ -52,17 +52,17 @@ Dalam notasi ilmiah, baca jumlah angka penting dari koefisiennya. Pangkat <Inlin
 
 Notasi ilmiah mencatat ketelitian yang dimaksud dalam suatu pengukuran. Bentuk <InlineMath math="1000 \text{ m}" /> tidak menjelaskan apakah nol di belakangnya termasuk angka penting, sedangkan <InlineMath math="1{,}000 \times 10^3 \text{ m}" /> secara tegas memiliki <InlineMath math="4" /> angka penting.
 
-## Simpan Digit Pengaman sampai Laporan Akhir
+## Jangan Bulatkan Hasil Terlalu Awal
 
-Notasi ilmiah tidak boleh memaksa pembulatan terlalu awal. Hitung dan konversikan dengan digit pengaman, lalu bulatkan nilai laporan akhir satu kali.
+Pertahankan beberapa digit tambahan selama menghitung dan mengonversi satuan, lalu bulatkan sekali pada hasil akhir.
 
-<BlockMath math="\text{hitung dengan digit pengaman} \to \text{konversi dengan faktor eksak} \to \text{bulatkan sekali} \to \text{tulis notasi ilmiah}" />
+<BlockMath math="\text{hitung dengan digit tambahan} \to \text{konversi dengan faktor eksak} \to \text{bulatkan sekali} \to \text{tulis notasi ilmiah}" />
 
 Contohnya, tutup botol berdiameter <InlineMath math="3{,}12 \text{ cm}" /> memiliki luas berikut saat nilai <InlineMath math="\pi" /> dari kalkulator dipertahankan:
 
 <BlockMath math="A=\frac{1}{4}\pi(3{,}12 \text{ cm})^2=7{,}645379881\ldots \text{ cm}^2" />
 
-Gunakan konversi perpangkatan sepuluh yang eksak ke Sistem Satuan Internasional (SI) sebelum membuang digit pengaman tersebut.
+Gunakan faktor konversi pangkat sepuluh yang eksak saat mengubah satuan ke Sistem Satuan Internasional (SI). Setelah konversi selesai, bulatkan hasil akhirnya.
 
 <BlockMath math="\begin{aligned}
 1 \text{ cm} &= 10^{-2} \text{ m} \\
@@ -70,11 +70,11 @@ Gunakan konversi perpangkatan sepuluh yang eksak ke Sistem Satuan Internasional 
 7{,}645379881\ldots \text{ cm}^2 &= 7{,}645379881\ldots \times 10^{-4} \text{ m}^2
 \end{aligned}" />
 
-Diameter ukur mendukung <InlineMath math="3" /> angka penting, sehingga hasil akhir dalam SI adalah <InlineMath math="7{,}65 \times 10^{-4} \text{ m}^2" />.
+Diameter <InlineMath math="3{,}12 \text{ cm}" /> memiliki tiga angka penting. Karena itu, hasil akhirnya dalam SI ditulis sebagai <InlineMath math="7{,}65 \times 10^{-4} \text{ m}^2" />.
 
 > Hati-hati dengan satuan berpangkat. Faktor konversinya ikut berpangkat juga. Dari <InlineMath math="\text{cm}" /> ke <InlineMath math="\text{m}" /> faktornya <InlineMath math="10^{-2}" />, tetapi dari <InlineMath math="\text{cm}^2" /> ke <InlineMath math="\text{m}^2" /> faktornya <InlineMath math="10^{-4}" />.
 
-## Menghitung Tanpa Deretan Nol
+## Perhitungan dengan Notasi Ilmiah
 
 Dalam notasi ilmiah, kalikan koefisien dan jumlahkan pangkat <InlineMath math="10" /> secara terpisah.
 
@@ -87,6 +87,6 @@ A &= (2{,}5 \times 10^{-6})(4{,}0 \times 10^{-7}) \text{ m}^2 \\
 &= 1{,}0 \times 10^{-12} \text{ m}^2
 \end{aligned}" />
 
-Langkah terakhir melakukan dua hal. Koefisien <InlineMath math="10{,}0" /> belum berbentuk baku karena tidak kurang dari <InlineMath math="10" />, sedangkan kedua panjang ukur hanya memiliki <InlineMath math="2" /> angka penting. Karena itu, hasilnya dilaporkan sebagai <InlineMath math="1{,}0 \times 10^{-12}" />.
+Koefisien <InlineMath math="10{,}0" /> belum berbentuk baku karena nilainya tidak kurang dari <InlineMath math="10" />. Kedua hasil pengukuran, yaitu panjang dan lebar, memiliki dua angka penting. Karena itu, hasilnya ditulis sebagai <InlineMath math="1{,}0 \times 10^{-12}" />.
 
-[NIST](https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values) menjelaskan aturan penulisan nilai pengukuran, sedangkan [NIST](https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors) menjelaskan prosedur konversi satuan. [OpenStax University Physics](https://openstax.org/books/university-physics-volume-1/pages/1-6-significant-figures) membahas penerapan aturan angka penting.
+[NIST SP 811 Chapter 7](https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values) [NIST SP 811 Appendix B](https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors) [OpenStax University Physics](https://openstax.org/books/university-physics-volume-1/pages/1-6-significant-figures)

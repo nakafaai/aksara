@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Sistem Linear Berlebih",
-    description: "Bangun sistem linear berlebih dari data dan pahami mengapa kuadrat terkecil menghasilkan polinom terbaik ketika solusi tepat tidak ada.",
+    description: "Sistem linear berlebih dari data dapat diselesaikan dengan kuadrat terkecil ketika tidak ada polinom yang memenuhi semua persamaan secara eksak.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
     dateModified: "2026-09-01",
@@ -11,7 +11,7 @@ export const metadata = {
 
 Misalkan kita ingin mencocokkan kurva dengan data hasil pengukuran. Sering kali jumlah pengamatan lebih banyak daripada parameter model. Jika setiap pengamatan ditulis sebagai satu persamaan, terbentuklah **sistem linear berlebih**.
 
-Sebuah sistem disebut berlebih ketika jumlah persamaan <InlineMath math="m" /> lebih besar daripada jumlah variabel <InlineMath math="n" />, sehingga <InlineMath math="m > n" />. Sistem seperti ini masih dapat memiliki solusi tepat. Pada data pengukuran, titik-titiknya biasanya tidak persis mengikuti model yang dipilih.
+Sebuah sistem disebut berlebih ketika jumlah persamaan <InlineMath math="m" /> lebih besar daripada jumlah variabel <InlineMath math="n" />, sehingga <InlineMath math="m > n" />. Sistem seperti ini masih dapat memiliki solusi eksak. Pada data pengukuran, titik-titiknya biasanya tidak persis mengikuti model yang dipilih.
 
 ## Pencocokan Kuadrat untuk Tujuh Pengamatan
 
@@ -66,11 +66,11 @@ Untuk model kuadrat dengan <InlineMath math="m" /> titik data, susunan yang sama
 
 <BlockMath math="\begin{pmatrix} t_1^2 & t_1 & 1 \\ \vdots & \vdots & \vdots \\ t_m^2 & t_m & 1 \end{pmatrix} \begin{pmatrix} a_2 \\ a_1 \\ a_0 \end{pmatrix} = \begin{pmatrix} y_1 \\ \vdots \\ y_m \end{pmatrix}" />
 
-## Mengapa Tidak Ada Solusi Tepat
+## Mengapa Tidak Ada Solusi Eksak
 
 Dalam contoh ini, matriks <InlineMath math="A" /> berukuran <InlineMath math="7 \times 3" /> dan vektor koefisien <InlineMath math="x" /> berukuran <InlineMath math="3 \times 1" />. Jadi, ada <InlineMath math="7" /> persamaan untuk <InlineMath math="3" /> variabel.
 
-Ukuran matriks saja belum menentukan ada atau tidaknya solusi tepat. Penentunya adalah peringkat matriks.
+Solusi eksak ada tepat ketika <InlineMath math="\operatorname{rank}(A)=\operatorname{rank}(A\mid b)" />. Ukuran matriks saja belum menentukan hal itu.
 
 Ketiga kolom <InlineMath math="A" /> bebas linear. Alasannya, polinom <InlineMath math="c_2t^2+c_1t+c_0" /> berderajat paling tinggi <InlineMath math="2" /> yang bernilai nol pada ketujuh nilai <InlineMath math="t_i" /> yang berbeda harus merupakan polinom nol. Jadi <InlineMath math="\operatorname{rank}(A)=3" />.
 
@@ -80,17 +80,17 @@ Setelah vektor <InlineMath math="b" /> ditambahkan, terbentuk matriks diperluas 
 
 Minor tak nol ini menunjukkan bahwa <InlineMath math="\operatorname{rank}(A\mid b)=4" />.
 
-Karena <InlineMath math="\operatorname{rank}(A) \ne \operatorname{rank}(A\mid b)" />, sistem ini **tidak memiliki solusi tepat**. Tidak ada satu polinom kuadrat yang melewati seluruh <InlineMath math="7" /> pengamatan.
+Karena <InlineMath math="\operatorname{rank}(A) \ne \operatorname{rank}(A\mid b)" />, sistem ini **tidak memiliki solusi eksak**. Tidak ada satu polinom kuadrat yang melewati seluruh <InlineMath math="7" /> pengamatan.
 
 ## Solusi dengan Kuadrat Terkecil
 
-Jika sistem berlebih tidak memiliki solusi tepat, kita dapat mencari polinom yang paling dekat dengan semua pengamatan menurut kriteria **kuadrat terkecil**.
+Jika sistem berlebih tidak memiliki solusi eksak, kita dapat mencari polinom yang paling dekat dengan semua pengamatan menurut kriteria **kuadrat terkecil**.
 
 Untuk pengamatan ke-<InlineMath math="i" />, residual vertikalnya adalah <InlineMath math="r_i = y_i-(a_2t_i^2+a_1t_i+a_0)" />. Metode kuadrat terkecil memilih koefisien yang meminimalkan jumlah kuadrat residual:
 
 <BlockMath math="\min_{a_2,a_1,a_0}\sum_{i=1}^{7}\left[y_i-(a_2t_i^2+a_1t_i+a_0)\right]^2" />
 
-Kriteria ini memberi penalti lebih besar pada selisih yang besar dan menghasilkan tepat satu parabola terbaik karena <InlineMath math="A" /> memiliki rank kolom penuh. Persamaan normalnya adalah
+Kriteria ini memberi penalti lebih besar pada selisih yang besar dan menghasilkan tepat satu parabola terbaik karena <InlineMath math="A" /> memiliki peringkat kolom penuh. Persamaan normalnya adalah
 
 <MathContainer>
 <BlockMath math="A^TA=\begin{pmatrix}196&0&28\\0&28&0\\28&0&7\end{pmatrix}" />

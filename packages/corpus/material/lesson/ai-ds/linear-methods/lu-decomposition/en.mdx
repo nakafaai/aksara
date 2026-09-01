@@ -70,7 +70,7 @@ From <InlineMath math="PA=LU" />, the equation <InlineMath math="Ax=b" /> become
 
 <BlockMath math="LUx=Pb" />
 
-Solve it in two triangular stages.
+We solve this system in two stages using triangular matrices.
 
 ### Forward substitution
 
@@ -111,7 +111,7 @@ The determinant also follows from the factors:
 
 <BlockMath math="\det(A)=\det(P)\prod_{i=1}^{n}u_{ii}" />
 
-## Guarded NumPy implementation
+## NumPy Implementation with Pivot Checks
 
 <CodeBlock data={[{
   language: "python",
@@ -188,4 +188,4 @@ The checks are part of the example because factor order and row-swap bookkeeping
 
 ## Scope of the method
 
-This implementation accepts only nonsingular square matrices and reports a zero numerical pivot as an error. For a rectangular least-squares problem or a rank-deficient matrix, use a rank-revealing <InlineMath math="\mathrm{QR}" /> factorization or an <InlineMath math="\mathrm{SVD}" />. A square <InlineMath math="\mathrm{PLU}" /> solver cannot return a valid factorization for those inputs under its stated assumptions.
+This implementation solves systems only for nonsingular square matrices and treats a zero numerical pivot as a failure. Use <InlineMath math="\mathrm{QR}" /> for rectangular least-squares problems and column-pivoted <InlineMath math="\mathrm{QR}" /> or <InlineMath math="\mathrm{SVD}" /> for rank-deficient problems. A <InlineMath math="\mathrm{PLU}" /> factorization may still exist for a singular square matrix, but this solver cannot use it to obtain a unique solution.

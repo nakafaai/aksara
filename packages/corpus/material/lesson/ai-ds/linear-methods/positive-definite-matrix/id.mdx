@@ -35,7 +35,7 @@ Teorema spektral menulis matriks simetris real sebagai
 
 <BlockMath math="A=Q\Lambda Q^T" />
 
-Dalam dekomposisi ini, <InlineMath math="Q" /> ortogonal dan <InlineMath math="\Lambda=\operatorname{diag}(\lambda_1,ldots,lambda_n)" /> diagonal real. Substitusi <InlineMath math="y=Q^Tx" /> memberikan
+Dalam dekomposisi ini, <InlineMath math="Q" /> ortogonal dan <InlineMath math="\Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)" /> diagonal real. Substitusi <InlineMath math="y=Q^Tx" /> memberikan
 
 <BlockMath math="x^TAx=\sum_{i=1}^n\lambda_i y_i^2" />
 
@@ -49,7 +49,7 @@ Setiap entri diagonal matriks positif definit bernilai positif karena
 
 <BlockMath math="a_{ii}=e_i^TAe_i>0" />
 
-Kebalikannya tidak berlaku. Entri diagonal positif saja tidak mengendalikan suku silang.
+Sebuah matriks dapat memiliki entri diagonal positif tetapi tetap tidak positif definit karena suku silang juga memengaruhi <InlineMath math="x^TAx" />.
 
 ## Geometri Elipsoid
 
@@ -67,7 +67,7 @@ Persamaan ini menunjukkan bahwa sumbu utama elipsoid mengikuti arah vektor eigen
 
 Misalkan <InlineMath math="A_k" /> adalah blok kiri atas berukuran <InlineMath math="k\times k" /> dari matriks simetris real atau Hermitian kompleks. Kriteria Sylvester menyatakan
 
-<BlockMath math="A\text{ positif definit}\quad\Longleftrightarrow\quad\det(A_k)>0\text{ untuk }k=1,ldots,n" />
+<BlockMath math="A\text{ positif definit}\quad\Longleftrightarrow\quad\det(A_k)>0\text{ untuk }k=1,\ldots,n" />
 
 Uji minor utama terdepan ini tidak dapat diperluas hanya dengan mengganti <InlineMath math=">" /> menjadi <InlineMath math="\ge" />. Positif semidefinit mengharuskan semua minor utama bernilai tak negatif. Memeriksa minor utama terdepan saja belum cukup.
 
@@ -100,7 +100,7 @@ Determinan negatif menunjukkan bahwa kedua nilai eigen <InlineMath math="B" /> b
 
 ## Karakterisasi Cholesky
 
-Matriks simetris real positif definit tepat ketika memiliki faktorisasi Cholesky
+Matriks simetris real positif definit tepat ketika memiliki faktorisasi Cholesky:
 
 <BlockMath math="A=LL^T" />
 
@@ -108,7 +108,7 @@ Dalam faktorisasi ini, <InlineMath math="L" /> adalah matriks segitiga bawah den
 
 <BlockMath math="x^TAx=x^TLL^Tx=\|L^Tx\|_2^2>0\qquad(x\ne0)" />
 
-Sebaliknya, algoritma Cholesky selesai tanpa pivot tak positif untuk setiap matriks positif definit. Pada masukan simetris dalam aritmetika eksak, keberhasilan ini menguji sifat positif definit. Setelah memperoleh <InlineMath math="A=LL^T" />, selesaikan <InlineMath math="Ly=b" /> lalu <InlineMath math="L^Tx=y" />.
+Untuk setiap matriks positif definit, algoritma Cholesky akan selesai tanpa menemukan pivot nol atau negatif. Untuk matriks simetris dalam aritmetika eksak, algoritma Cholesky berhasil tepat ketika matriks tersebut positif definit. Setelah memperoleh <InlineMath math="A=LL^T" />, selesaikan <InlineMath math="Ly=b" /> lalu <InlineMath math="L^Tx=y" />.
 
 ## Matriks Gram dari Hasil Kali Transpos
 
@@ -120,11 +120,11 @@ Persamaan ini menunjukkan bahwa <InlineMath math="M^TM" /> selalu positif semide
 
 <BlockMath math="\ker(M)=\{0\}\quad\Longleftrightarrow\quad\operatorname{rank}(M)=n" />
 
-Rank kolom penuh secara otomatis menyiratkan <InlineMath math="m\ge n" />. Syarat tersebut tidak perlu diasumsikan sebelum pernyataan semidefinit.
+Kita tidak perlu menetapkan <InlineMath math="m\ge n" /> untuk menyimpulkan bahwa <InlineMath math="M^{\mathsf T}M" /> positif semidefinit. Syarat <InlineMath math="m\ge n" /> baru mengikuti ketika <InlineMath math="M" /> memiliki peringkat kolom penuh.
 
 Secara lebih umum, matriks Gram <InlineMath math="G_{ij}=\langle v_i,v_j\rangle" /> positif semidefinit dan menjadi positif definit tepat ketika vektor-vektor <InlineMath math="v_i" /> saling bebas linear.
 
-## Makna dalam Optimisasi
+## Peminimum Unik pada Fungsi Kuadrat
 
 Perhatikan fungsi objektif kuadrat
 
@@ -141,11 +141,11 @@ Jika <InlineMath math="A" /> positif definit, <InlineMath math="F" /> bersifat k
 
 <BlockMath math="x_*=A^{-1}b" />
 
-Positif definit saja tidak menjamin komputasi mudah atau stabil secara numerik. Rasio kelengkungan
+Kesulitan komputasi juga bergantung pada bilangan kondisi, yaitu rasio nilai eigen terbesar dan terkecil:
 
 <BlockMath math="\kappa_2(A)=\frac{\lambda_{\max}(A)}{\lambda_{\min}(A)}" />
 
-Bilangan kondisi ini masih dapat sangat besar. Akibatnya, kontur fungsi objektif memanjang dan algoritma dapat berjalan lambat atau peka terhadap galat numerik.
+Bilangan kondisi yang besar menghasilkan kontur fungsi objektif yang memanjang. Algoritma numerik kemudian dapat berjalan lambat atau peka terhadap galat pembulatan.
 
 ## Pergeseran Spektral dan Invers
 

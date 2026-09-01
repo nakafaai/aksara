@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Definisi Determinan",
-   description: "Jelaskan hubungan determinan dengan faktor volume berorientasi, turunkan sifat yang menentukan determinan, dan hubungkan determinan nol dengan peringkat serta keterbalikan.",
+   description: "Jelaskan hubungan determinan dengan faktor volume berorientasi, turunkan sifat yang menentukan determinan, lalu gunakan determinan nol untuk memeriksa peringkat dan apakah matriks dapat dibalik.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-10",
     dateModified: "2026-09-01",
@@ -11,21 +11,23 @@ export const metadata = {
 
 Determinan matriks persegi mengukur faktor perubahan volume berorientasi dari transformasi linearnya. Nilai mutlaknya memberi faktor volume, sedangkan tandanya menunjukkan apakah orientasi dipertahankan atau dibalik.
 
-Setiap matriks persegi memiliki satu determinan. Nilai nol berarti setidaknya satu dimensi diruntuhkan, sehingga tidak ada transformasi invers yang dapat memulihkan vektor semula.
+Setiap matriks persegi memiliki satu determinan. Determinan nol berarti hasil transformasi berada dalam himpunan berdimensi lebih rendah. Karena itu, transformasi tidak memiliki invers.
 
 Determinan adalah fungsi khusus yang mengambil matriks persegi dan menghasilkan satu bilangan real:
 
 <BlockMath math="\det : \mathbb{R}^{n \times n} \to \mathbb{R} : A \mapsto \det A" />
 
-Fungsi ini unik karena memiliki tiga sifat khas yang tidak dimiliki fungsi lain.
+Tanda dan nilai determinan memberi tiga kemungkinan berikut:
 
-| Determinan | Efek geometris | Keterbalikan |
+| Determinan | Efek geometris | Dapat Dibalik |
 |---|---|---|
 | <InlineMath math="\det A>0" /> | Mengalikan volume dengan <InlineMath math="\lvert\det A\rvert" /> dan mempertahankan orientasi | Dapat dibalik |
 | <InlineMath math="\det A<0" /> | Mengalikan volume dengan <InlineMath math="\lvert\det A\rvert" /> dan membalik orientasi | Dapat dibalik |
-| <InlineMath math="\det A=0" /> | Meruntuhkan volume ke himpunan berdimensi lebih rendah | Tidak dapat dibalik |
+| <InlineMath math="\det A=0" /> | Mengubah volume menjadi nol dan menghasilkan himpunan berdimensi lebih rendah | Tidak dapat dibalik |
 
 ## Tiga Sifat Penentu Determinan
+
+Hanya ada satu fungsi determinan yang memenuhi tiga sifat berikut.
 
 ### Sifat Linear pada Setiap Baris
 
@@ -63,11 +65,11 @@ Di sini <InlineMath math="I" /> adalah matriks identitas dengan ukuran yang sesu
 
 ## Operasi Matriks dan Determinan
 
-Jika kita mengalikan seluruh matriks dengan skalar <InlineMath math="\lambda" />, determinan akan terdampak dengan pangkat n:
+Jika seluruh matriks dikalikan dengan skalar <InlineMath math="\lambda" />, determinannya menjadi <InlineMath math="\lambda^n" /> kali determinan semula.
 
 <BlockMath math="\det(\lambda A) = \lambda^n \cdot \det A" />
 
-Ini karena setiap baris dikalikan dengan <InlineMath math="\lambda" />, dan ada <InlineMath math="n" /> baris total.
+Hal ini terjadi karena masing-masing dari <InlineMath math="n" /> baris dikalikan dengan <InlineMath math="\lambda" />.
 
 Ketika kita menukar dua baris matriks, determinan berubah tanda:
 
@@ -82,7 +84,7 @@ Penambahan kelipatan satu baris ke baris lain yang berbeda tidak mengubah determ
 
 Mengalikan baris dengan skalar <InlineMath math="\lambda \neq 0" /> mengubah determinan menjadi <InlineMath math="\det A' = \lambda \cdot \det A" />. Menukar baris mengubah tanda menjadi <InlineMath math="\det A' = -\det A" />. Menambahkan kelipatan baris lain tidak mengubah determinan sama sekali.
 
-## Hubungan dengan Keterbalikan Matriks
+## Kapan Matriks Dapat Dibalik
 
 Determinan menentukan apakah matriks persegi <InlineMath math="A" /> dapat dibalik. Kondisi berikut ekuivalen:
 
@@ -94,13 +96,13 @@ Determinan menentukan apakah matriks persegi <InlineMath math="A" /> dapat dibal
 6. **Baris-baris linear independen**
 7. **Determinan tidak nol**: <InlineMath math="\det A \neq 0" />
 
-> Jika determinan nol, matriks "meratakan" ruang ke dimensi yang lebih rendah, sehingga transformasi tidak dapat dibalik.
+> Jika determinan nol, transformasi memetakan ruang ke himpunan berdimensi lebih rendah, sehingga transformasi tidak dapat dibalik.
 
 Jika baris-barisnya bergantung linear, satu baris merupakan kombinasi linear baris lain. Multilinearitas menguraikan determinan menjadi suku-suku dengan baris berulang, dan setiap suku tersebut nol karena sifat berselang-seling.
 
-## Sifat Perkalian dan Matriks Similar
+## Sifat Perkalian dan Matriks Serupa
 
-Salah satu sifat paling berguna determinan adalah cara ia berinteraksi dengan perkalian matriks:
+Determinan hasil kali dua matriks sama dengan hasil kali determinan masing-masing matriks:
 
 <BlockMath math="\det(AB) = \det A \cdot \det B" />
 
@@ -112,7 +114,7 @@ Dua matriks <InlineMath math="A" /> dan <InlineMath math="B" /> disebut **serupa
 
 <BlockMath math="B = S^{-1}AS" />
 
-Matriks yang serupa memiliki determinan yang sama. Buktinya sederhana:
+Sifat perkalian determinan membuktikan bahwa matriks yang serupa memiliki determinan yang sama.
 
 <MathContainer>
 <BlockMath math="\det B = \det(S^{-1}AS)" />
@@ -139,11 +141,11 @@ Sebagai contoh sederhana:
 <BlockMath math="= \det\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} = 4" />
 </MathContainer>
 
-Tetapi:
+Namun, jika kedua determinan dihitung terpisah, hasilnya:
 
 <MathContainer>
 <BlockMath math="\det\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} + \det\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}" />
 <BlockMath math="= 1 + 1 = 2" />
 </MathContainer>
 
-Jelas bahwa <InlineMath math="4 \neq 2" />, sehingga determinan tidak bersifat additif pada penjumlahan matriks.
+Karena <InlineMath math="4 \neq 2" />, determinan tidak aditif terhadap penjumlahan matriks.

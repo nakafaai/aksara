@@ -11,21 +11,23 @@ export const metadata = {
 
 Die Determinante einer quadratischen Matrix misst die orientierte Volumenskalierung ihrer linearen Abbildung. Ihr Betrag gibt den Volumenfaktor an, ihr Vorzeichen zeigt, ob die Orientierung erhalten oder umgekehrt wird.
 
-Jede quadratische Matrix besitzt genau eine Determinante. Der Wert null bedeutet, dass mindestens eine Dimension zusammenfällt. Dann kann keine inverse Abbildung den ursprünglichen Vektor wiederherstellen.
+Jede quadratische Matrix besitzt genau eine Determinante. Bei einer Determinante von null liegt das Bild in einer Menge niedrigerer Dimension. Die Abbildung ist daher nicht invertierbar.
 
 Determinante ist eine spezielle Funktion, die eine quadratische Matrix annimmt und eine reelle Zahl erzeugt:
 
 <BlockMath math="\det : \mathbb{R}^{n \times n} \to \mathbb{R} : A \mapsto \det A" />
 
-Diese Funktion ist einzigartig, da sie über drei charakteristische Eigenschaften verfügt, die keine andere Funktion aufweist.
+Vorzeichen und Wert der Determinante ergeben drei Fälle:
 
 | Determinante | Geometrische Wirkung | Invertierbarkeit |
 |---|---|---|
 | <InlineMath math="\det A>0" /> | Skaliert das Volumen mit <InlineMath math="\lvert\det A\rvert" /> und erhält die Orientierung | Invertierbar |
 | <InlineMath math="\det A<0" /> | Skaliert das Volumen mit <InlineMath math="\lvert\det A\rvert" /> und kehrt die Orientierung um | Invertierbar |
-| <InlineMath math="\det A=0" /> | Lässt das Volumen auf eine niedriger dimensionale Menge zusammenfallen | Nicht invertierbar |
+| <InlineMath math="\det A=0" /> | Skaliert das Volumen auf null und bildet den Raum auf eine Menge niedrigerer Dimension ab | Nicht invertierbar |
 
 ## Drei bestimmende Eigenschaften der Determinante
+
+Genau eine Determinantenfunktion erfüllt die folgenden drei Eigenschaften.
 
 ### Lineare Eigenschaft in jeder Zeile
 
@@ -94,13 +96,13 @@ Die Determinante entscheidet, ob eine quadratische Matrix <InlineMath math="A" /
 6. **Zeilen sind linear unabhängig**
 7. **Determinante ist nicht Null**: <InlineMath math="\det A \neq 0" />
 
-> Wenn die Determinante Null ist, „flacht“ die Matrix den Raum auf eine niedrigere Dimension ab, sodass die Transformation nicht umgekehrt werden kann.
+> Wenn die Determinante null ist, bildet die Transformation den Raum auf eine Menge niedrigerer Dimension ab und ist deshalb nicht umkehrbar.
 
 Sind die Zeilen linear abhängig, ist eine Zeile eine Linearkombination der übrigen. Die Multilinearität zerlegt die Determinante dann in Terme mit wiederholten Zeilen, die wegen der alternierenden Eigenschaft alle null sind.
 
 ## Multiplikationseigenschaften und ähnliche Matrizen
 
-Eine der nützlichsten Eigenschaften der Determinante ist ihre Wechselwirkung mit der Matrixmultiplikation:
+Die Determinante eines Matrixprodukts ist gleich dem Produkt der beiden Determinanten:
 
 <BlockMath math="\det(AB) = \det A \cdot \det B" />
 
@@ -112,7 +114,7 @@ Zwei Matrizen <InlineMath math="A" /> und <InlineMath math="B" /> heißen **ähn
 
 <BlockMath math="B = S^{-1}AS" />
 
-Ähnliche Matrizen haben die gleiche Determinante. Der Beweis ist einfach:
+Ähnliche Matrizen haben dieselbe Determinante. Wende die Produktregel der Determinante an.
 
 <MathContainer>
 <BlockMath math="\det B = \det(S^{-1}AS)" />
@@ -139,11 +141,11 @@ Als einfaches Beispiel:
 <BlockMath math="= \det\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} = 4" />
 </MathContainer>
 
-Aber:
+Werden die beiden Determinanten getrennt berechnet, ergibt sich:
 
 <MathContainer>
 <BlockMath math="\det\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} + \det\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}" />
 <BlockMath math="= 1 + 1 = 2" />
 </MathContainer>
 
-Offensichtlich <InlineMath math="4 \neq 2" />, daher ist die Determinante bei der Matrixaddition nicht additiv.
+Da <InlineMath math="4 \neq 2" /> ist, ist die Determinante bei der Matrixaddition nicht additiv.

@@ -35,7 +35,7 @@ Nach dem Spektralsatz lässt sich eine reelle symmetrische Matrix schreiben als
 
 <BlockMath math="A=Q\Lambda Q^T" />
 
-In dieser Zerlegung ist <InlineMath math="Q" /> orthogonal und <InlineMath math="\Lambda=\operatorname{diag}(\lambda_1,ldots,lambda_n)" /> eine reelle Diagonalmatrix. Die Substitution <InlineMath math="y=Q^Tx" /> ergibt
+In dieser Zerlegung ist <InlineMath math="Q" /> orthogonal und <InlineMath math="\Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)" /> eine reelle Diagonalmatrix. Die Substitution <InlineMath math="y=Q^Tx" /> ergibt
 
 <BlockMath math="x^TAx=\sum_{i=1}^n\lambda_i y_i^2" />
 
@@ -49,7 +49,7 @@ Jeder Diagonaleintrag einer positiv definiten Matrix ist positiv, denn
 
 <BlockMath math="a_{ii}=e_i^TAe_i>0" />
 
-Die Umkehrung ist falsch. Positive Diagonaleinträge allein kontrollieren die gemischten Terme nicht.
+Eine Matrix kann positive Diagonaleinträge besitzen und trotzdem nicht positiv definit sein, weil auch die gemischten Terme <InlineMath math="x^TAx" /> beeinflussen.
 
 ## Ellipsoidgeometrie
 
@@ -67,7 +67,7 @@ Diese Gleichung zeigt, dass die Hauptachsen des Ellipsoids den Eigenvektoren von
 
 Sei <InlineMath math="A_k" /> der linke obere <InlineMath math="k\times k" />-Block einer reellen symmetrischen oder komplexen hermiteschen Matrix. Das Sylvester-Kriterium lautet
 
-<BlockMath math="A\text{ ist positiv definit}\quad\Longleftrightarrow\quad\det(A_k)>0\text{ für }k=1,ldots,n" />
+<BlockMath math="A\text{ ist positiv definit}\quad\Longleftrightarrow\quad\det(A_k)>0\text{ für }k=1,\ldots,n" />
 
 Dieser Test der führenden Hauptminoren lässt sich nicht durch bloßes Ersetzen von <InlineMath math=">" /> durch <InlineMath math="\ge" /> erweitern. Bei positiver Semidefinitheit müssen alle Hauptminoren nichtnegativ sein. Die führenden Hauptminoren allein reichen dafür nicht aus.
 
@@ -100,7 +100,7 @@ Die negative Determinante zeigt, dass die beiden Eigenwerte von <InlineMath math
 
 ## Charakterisierung durch Choleskyzerlegung
 
-Eine reelle symmetrische Matrix ist genau dann positiv definit, wenn sie eine Cholesky-Faktorisierung
+Eine reelle symmetrische Matrix ist genau dann positiv definit, wenn sie eine Cholesky-Faktorisierung besitzt:
 
 <BlockMath math="A=LL^T" />
 
@@ -124,7 +124,7 @@ Voller Spaltenrang impliziert automatisch <InlineMath math="m\ge n" />. Dies mus
 
 Allgemeiner ist eine Gram-Matrix <InlineMath math="G_{ij}=\langle v_i,v_j\rangle" /> positiv semidefinit. Sie ist genau dann positiv definit, wenn die Vektoren <InlineMath math="v_i" /> linear unabhängig sind.
 
-## Bedeutung für die Optimierung
+## Eindeutiger Minimierer einer quadratischen Zielfunktion
 
 Betrachte die quadratische Zielfunktion
 
@@ -141,11 +141,11 @@ Ist <InlineMath math="A" /> positiv definit, dann ist <InlineMath math="F" /> st
 
 <BlockMath math="x_*=A^{-1}b" />
 
-Positive Definitheit allein garantiert keine einfache oder numerisch stabile Berechnung. Das Krümmungsverhältnis
+Der numerische Aufwand hängt außerdem von der Konditionszahl ab. Sie ist das Verhältnis des größten zum kleinsten Eigenwert:
 
 <BlockMath math="\kappa_2(A)=\frac{\lambda_{\max}(A)}{\lambda_{\min}(A)}" />
 
-Die Konditionszahl kann dennoch sehr groß sein. Dadurch erhält die Zielfunktion langgestreckte Konturen, und Algorithmen können langsam oder empfindlich gegenüber numerischen Fehlern werden.
+Eine große Konditionszahl führt zu langgestreckten Konturen. Numerische Algorithmen können dann langsam oder empfindlich gegenüber Rundungsfehlern werden.
 
 ## Spektralverschiebungen und Inversen
 

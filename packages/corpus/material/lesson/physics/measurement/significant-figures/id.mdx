@@ -1,20 +1,18 @@
 export const metadata = {
   title: "Aturan Angka Penting",
   description:
-    "Menentukan angka penting, membulatkan hasil pengukuran, dan menulis hasil operasi hitung sesuai ketelitian alat ukur.",
+    "Angka penting dan aturan pembulatan menjaga hasil perhitungan tetap sesuai dengan ketelitian pengukuran.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-04-25",
   dateModified: "2026-09-01",
   subject: "Pengukuran dalam Kerja Ilmiah",
 };
 
-## Kalkulator Belum Tahu Ketelitian Alat
+## Resolusi Pengukuran Menentukan Digit Hasil
 
-Saat diameter tutup botol terbaca <InlineMath math="3{,}12 \text{ cm}" />, kalkulator bisa memberi banyak digit setelah kita menghitung luasnya. Namun alat ukur hanya mendukung sebagian digit itu. Di sinilah **angka penting** dipakai.
+Saat diameter tutup botol terbaca <InlineMath math="3{,}12 \text{ cm}" />, kalkulator bisa memberi banyak digit setelah kita menghitung luas tutup botol. Resolusi alat ukur membatasi jumlah digit yang dapat ditulis. Aturan **angka penting** menentukan digit yang ditulis pada hasil akhir.
 
-Angka penting adalah digit yang dipertahankan untuk menyatakan resolusi suatu nilai ukur. Digit terakhir yang dilaporkan dipengaruhi oleh resolusi alat dan pembulatan, sehingga bukan digit yang eksak.
-
-<BlockMath math="\text{digit laporan}=\text{digit yang didukung}+\text{digit bulat terakhir}" />
+Angka penting adalah digit yang dipertahankan untuk menyatakan resolusi suatu nilai ukur. Tulis nilai ukur hanya sampai tempat desimal yang didukung oleh alat. Digit terakhir menunjukkan batas ketelitian pembacaan dan dapat berubah saat nilai dibulatkan.
 
 Aturan angka penting menjaga agar laporan tidak menyatakan ketelitian yang melampaui kemampuan alat ukur.
 
@@ -24,7 +22,7 @@ Aturan angka penting menjaga agar laporan tidak menyatakan ketelitian yang melam
 | Penjumlahan dan pengurangan | Data mana yang punya tempat desimal paling sedikit? |
 | Perkalian dan pembagian | Data mana yang punya jumlah angka penting paling sedikit? |
 
-## Nol Bisa Menjadi Angka atau Penjaga Tempat
+## Posisi Nol Menentukan Angka Penting
 
 Nol sering membuat siswa keliru karena perannya bergantung pada posisi penulisan.
 
@@ -33,7 +31,7 @@ Nol sering membuat siswa keliru karena perannya bergantung pada posisi penulisan
 | <InlineMath math="3{,}25 \text{ cm}" /> | Semua digit bukan nol dihitung, jadi ada <InlineMath math="3" /> angka penting. |
 | <InlineMath math="1{,}004 \text{ cm}" /> | Nol di antara angka bukan nol dihitung, jadi ada <InlineMath math="4" /> angka penting. |
 | <InlineMath math="31{,}00 \text{ cm}" /> | Nol setelah tanda desimal dihitung, jadi ada <InlineMath math="4" /> angka penting. |
-| <InlineMath math="0{,}0026 \text{ kg}" /> | Nol di depan angka bukan nol hanya penjaga tempat, jadi ada <InlineMath math="2" /> angka penting. |
+| <InlineMath math="0{,}0026 \text{ kg}" /> | Nol di depan angka bukan nol tidak dihitung sebagai angka penting. Nol tersebut hanya menunjukkan posisi koma, jadi nilai ini memiliki <InlineMath math="2" /> angka penting. |
 | <InlineMath math="1000 \text{ m}" /> | Nol di belakang ambigu jika resolusi atau jumlah angka pentingnya tidak disebutkan. |
 | <InlineMath math="3{,}14 \times 10^{-5} \text{ m}" /> | Bagian <InlineMath math="3{,}14" /> punya <InlineMath math="3" /> angka penting. |
 
@@ -64,7 +62,7 @@ Jika hasil hitung adalah <InlineMath math="52{,}973376625 \text{ cm}^2" />, digi
 
 <BlockMath math="52{,}973376625 \text{ cm}^2 \to 52{,}97 \text{ cm}^2" />
 
-Untuk nilai yang tepat berada di tengah, pembulatan ke genap mencegah deretan hasil terus-menerus bias ke atas.
+Jika banyak nilai dibulatkan, pembulatan ke genap mengurangi kecenderungan hasil pembulatan selalu naik.
 
 <BlockMath math="\begin{aligned}
 7{,}450 &\to 7{,}4 \\
@@ -73,7 +71,7 @@ Untuk nilai yang tepat berada di tengah, pembulatan ke genap mencegah deretan ha
 
 Bulatkan langsung dari nilai yang belum dibulatkan ke ketelitian akhir. Jangan membulatkan melalui beberapa hasil antara.
 
-## Penjumlahan Mengikuti Posisi Desimal
+## Pembulatan Penjumlahan Berdasarkan Posisi Desimal
 
 Pada penjumlahan dan pengurangan, ketelitian dilihat dari posisi desimal. Data yang paling kasar menentukan posisi desimal terakhir pada hasil.
 
@@ -86,9 +84,9 @@ Misalnya panjang besi <InlineMath math="8{,}235 \text{ cm}" /> disambung dengan 
 
 Hasil <InlineMath math="12{,}735 \text{ cm}" /> harus dibulatkan ke <InlineMath math="1" /> tempat desimal karena <InlineMath math="4{,}5 \text{ cm}" /> hanya memiliki <InlineMath math="1" /> digit setelah koma.
 
-## Perkalian Mengikuti Data Paling Sedikit
+## Pembulatan Perkalian Berdasarkan Jumlah Angka Penting Terkecil
 
-Pada perkalian dan pembagian, aturan angka penting di tingkat sekolah memakai jumlah angka penting paling sedikit di antara data ukur. Aturan singkat ini membantu melaporkan hasil. Jika nilai ketidakpastian tersedia, rambatkan nilai tersebut secara langsung.
+Pada perkalian dan pembagian hasil pengukuran, bulatkan hasil sesuai jumlah angka penting paling sedikit pada data ukur. Aturan ini tidak menggantikan perhitungan ketidakpastian pengukuran.
 
 Misalnya lebar karton <InlineMath math="12{,}455 \text{ cm}" /> dan panjangnya <InlineMath math="35{,}2 \text{ cm}" />.
 
@@ -101,7 +99,7 @@ A &= l \times w \\
 
 Nilai <InlineMath math="12{,}455 \text{ cm}" /> punya <InlineMath math="5" /> angka penting, sedangkan <InlineMath math="35{,}2 \text{ cm}" /> punya <InlineMath math="3" /> angka penting. Karena itu, luas dilaporkan dengan <InlineMath math="3" /> angka penting.
 
-Untuk tutup botol berdiameter <InlineMath math="3{,}12 \text{ cm}" />, faktor rumus eksak seperti <InlineMath math="\pi" /> dan <InlineMath math="\frac{1}{4}" /> tidak membatasi angka penting karena bukan data ukur. Pakai nilai <InlineMath math="\pi" /> dari kalkulator dan simpan digit pengaman sampai baris terakhir.
+Untuk tutup botol berdiameter <InlineMath math="3{,}12 \text{ cm}" />, faktor rumus eksak seperti <InlineMath math="\pi" /> dan <InlineMath math="\frac{1}{4}" /> tidak membatasi angka penting karena bukan data ukur. Pakai nilai <InlineMath math="\pi" /> dari kalkulator dan pertahankan beberapa digit tambahan sampai baris terakhir.
 
 <BlockMath math="\begin{aligned}
 A &= \frac{1}{4}\pi d^2 \\
@@ -114,4 +112,4 @@ Jika satuan Sistem Satuan Internasional (SI) diminta, ubah <InlineMath math="\te
 
 <BlockMath math="7{,}65 \text{ cm}^2 = 0{,}000765 \text{ m}^2 = 7{,}65 \times 10^{-4} \text{ m}^2" />
 
-Aturan operasi tingkat sekolah diperkenalkan oleh [OpenStax University Physics](https://openstax.org/books/university-physics-volume-1/pages/1-6-significant-figures). NIST mendokumentasikan pembulatan ke genap, pembulatan satu langkah, dan pemakaian faktor konversi yang belum dibulatkan dalam [Handbook 130](https://www.nist.gov/document/2023-nist-hb130-uniform-packaging-and-labeling-regulation).
+Aturan angka penting berbeda antara penjumlahan, pengurangan, perkalian, dan pembagian. Pembulatan ke bilangan genap serta pembulatan satu kali membantu mengurangi bias dari pembulatan berulang. [OpenStax University Physics](https://openstax.org/books/university-physics-volume-1/pages/1-6-significant-figures) [Handbook 130](https://www.nist.gov/document/2023-nist-hb130-uniform-packaging-and-labeling-regulation)

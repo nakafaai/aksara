@@ -67,32 +67,6 @@ export const LANGUAGE_VOICE_RULES = [
     },
   },
   {
-    id: "indonesian-transformation-image-calque",
-    patterns: {
-      id: /\b(?:hitung|mencari)\s+peta\b|\b(?:koordinat|titik)\s+peta(?:\s+dari)?\b|\bpeta\s+(?:akhir(?:nya)?|titik(?:nya)?)\b|\bpeta\s+dari(?:\s+(?:garis|segitiga|titik)\b|(?=\s*(?:[.,!?]|$)))|\bpetanya\s+(?:adalah|dapat|berupa)\b|^\s*(?:-\s*)?peta(?:\s*:|\s+<InlineMath)/iu,
-    },
-  },
-  {
-    id: "indonesian-floor-division-calque",
-    patterns: { id: /\bpembagian lantai\b/iu },
-  },
-  {
-    id: "indonesian-unit-cancellation-calque",
-    patterns: {
-      id: /\bsatuan(?:-satuan)?\b[^.!?\n]{0,40}\bsaling habis\b/iu,
-    },
-  },
-  {
-    id: "indonesian-water-ratio-gateway",
-    patterns: { id: /\bgerbang rasio air\b/iu },
-  },
-  {
-    id: "indonesian-dimensional-container-calque",
-    patterns: {
-      id: /\bwadah\s+(?:n[ -]?dimensi|berdimensi\s+n)\b/iu,
-    },
-  },
-  {
     id: "empty-important-term-label",
     patterns: {
       id: /\b(?:Istilah|Kata)\s+(?:"[^"\n]+"|\*\*[^*\n]+\*\*|[\p{L}-]+)\s+penting(?:[.!?]|$)/iu,

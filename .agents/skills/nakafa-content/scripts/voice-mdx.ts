@@ -25,6 +25,7 @@ export interface MdxNode {
   data?: {
     estree?: EstreeNode;
   };
+  identifier?: string;
   name?: string;
   position?: SourceRange;
   title?: string;

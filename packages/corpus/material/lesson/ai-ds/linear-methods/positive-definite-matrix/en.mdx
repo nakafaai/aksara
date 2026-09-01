@@ -35,7 +35,7 @@ The spectral theorem writes a real symmetric matrix as
 
 <BlockMath math="A=Q\Lambda Q^T" />
 
-In this decomposition, <InlineMath math="Q" /> is orthogonal and <InlineMath math="\Lambda=\operatorname{diag}(\lambda_1,ldots,lambda_n)" /> is real and diagonal. Substituting <InlineMath math="y=Q^Tx" /> gives
+In this decomposition, <InlineMath math="Q" /> is orthogonal and <InlineMath math="\Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)" /> is real and diagonal. Substituting <InlineMath math="y=Q^Tx" /> gives
 
 <BlockMath math="x^TAx=\sum_{i=1}^n\lambda_i y_i^2" />
 
@@ -49,7 +49,7 @@ Every diagonal entry of a positive definite matrix is positive because
 
 <BlockMath math="a_{ii}=e_i^TAe_i>0" />
 
-The converse is false. Positive diagonal entries alone do not control the cross terms.
+A matrix can have positive diagonal entries and still fail to be positive definite because the cross terms also affect <InlineMath math="x^TAx" />.
 
 ## Ellipsoid Geometry
 
@@ -67,7 +67,7 @@ This equation shows that the principal axes of the ellipsoid follow the eigenvec
 
 Let <InlineMath math="A_k" /> denote the upper-left <InlineMath math="k\times k" /> block of a real symmetric or complex Hermitian matrix. Sylvester's criterion states
 
-<BlockMath math="A\text{ is positive definite}\quad\Longleftrightarrow\quad\det(A_k)>0\text{ for }k=1,ldots,n" />
+<BlockMath math="A\text{ is positive definite}\quad\Longleftrightarrow\quad\det(A_k)>0\text{ for }k=1,\ldots,n" />
 
 This leading-principal-minor test does not extend by replacing <InlineMath math=">" /> with <InlineMath math="\ge" />. Positive semidefiniteness requires every principal minor to be nonnegative. Checking the leading ones alone is insufficient.
 
@@ -100,7 +100,7 @@ The negative determinant shows that the two eigenvalues of <InlineMath math="B" 
 
 ## Cholesky Characterization
 
-A real symmetric matrix is positive definite exactly when it has a Cholesky factorization
+A real symmetric matrix is positive definite exactly when it has a Cholesky factorization:
 
 <BlockMath math="A=LL^T" />
 
@@ -124,7 +124,7 @@ Full column rank automatically implies <InlineMath math="m\ge n" />. It does not
 
 More generally, a Gram matrix <InlineMath math="G_{ij}=\langle v_i,v_j\rangle" /> is positive semidefinite and becomes positive definite exactly when the vectors <InlineMath math="v_i" /> are linearly independent.
 
-## Optimization Meaning
+## Unique Minimizer of a Quadratic Objective
 
 Consider the quadratic objective
 
@@ -141,11 +141,11 @@ If <InlineMath math="A" /> is positive definite, <InlineMath math="F" /> is stri
 
 <BlockMath math="x_*=A^{-1}b" />
 
-Positive definiteness alone does not guarantee an easy or numerically stable computation. The curvature ratio
+The numerical difficulty also depends on the condition number, defined as the ratio of the largest to the smallest eigenvalue:
 
 <BlockMath math="\kappa_2(A)=\frac{\lambda_{\max}(A)}{\lambda_{\min}(A)}" />
 
-The condition number can still be very large. As a result, the objective has elongated contours and algorithms may run slowly or become sensitive to numerical error.
+A large condition number gives elongated contours. Numerical algorithms may then run slowly or become sensitive to rounding error.
 
 ## Spectral Shifts and Inverses
 

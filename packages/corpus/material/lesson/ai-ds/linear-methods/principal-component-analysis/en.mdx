@@ -69,11 +69,11 @@ Among all rank-<InlineMath math="k" /> linear reconstructions, this choice minim
 
 ## Equivalent SVD Computation
 
-Compute the thin singular value decomposition
+<InlineMath math="\mathrm{PCA}" /> can also be computed through the following thin singular value decomposition:
 
 <BlockMath math="X_c=U\Sigma V^T" />
 
-Then the right singular vectors are the principal directions and
+The right singular vectors give the principal directions, while the eigenvalues satisfy:
 
 <BlockMath math="\lambda_j=\frac{\sigma_j^2}{m-1}" />
 
@@ -81,11 +81,11 @@ Using <InlineMath math="\mathrm{SVD}" /> avoids forming <InlineMath math="X_c^TX
 
 ## Worked Two Dimensional Covariance
 
-Consider a covariance ellipse rotated by
+The covariance ellipse is rotated by the following angle:
 
 <BlockMath math="\theta=\frac{\pi}{6}" />
 
-The covariance ellipse is rotated by <InlineMath math="\theta" /> and has variances <InlineMath math="9" /> and <InlineMath math="2.25" /> along its principal axes. Let
+The variances along the two principal axes are <InlineMath math="9" /> and <InlineMath math="2.25" />. The rotation and covariance matrices are:
 
 <MathContainer>
 <BlockMath math="R=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}" />
@@ -100,11 +100,11 @@ The principal directions are the columns of <InlineMath math="R" />:
 <BlockMath math="v_2=\begin{pmatrix}-1/2\\\sqrt3/2\end{pmatrix},\qquad\lambda_2=2.25" />
 </MathContainer>
 
-The first component explains
+The variance ratio explained by the first component is calculated from the two eigenvalues:
 
 <BlockMath math="\frac{9}{9+2.25}=0.8=80\%" />
 
-This result means that the first component explains <InlineMath math="80\%" /> of the total variance.
+The result <InlineMath math="80\%" /> is the fraction of the total variance explained by the first component.
 
 <LineEquation
   title={<>Covariance ellipse and principal directions <InlineMath math="v_1,v_2" /></>}

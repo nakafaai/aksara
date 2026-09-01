@@ -70,7 +70,7 @@ Aus <InlineMath math="PA=LU" /> wird die Gleichung <InlineMath math="Ax=b" /> zu
 
 <BlockMath math="LUx=Pb" />
 
-Wir lösen sie in zwei Dreiecksschritten.
+Wir lösen dieses System in zwei Schritten mit Dreiecksmatrizen.
 
 ### Vorwärtssubstitution
 
@@ -111,7 +111,7 @@ Auch die Determinante folgt aus den Faktoren:
 
 <BlockMath math="\det(A)=\det(P)\prod_{i=1}^{n}u_{ii}" />
 
-## Abgesicherte Implementierung mit NumPy
+## Implementierung mit NumPy und Pivotprüfung
 
 <CodeBlock data={[{
   language: "python",
@@ -188,4 +188,4 @@ Die Prüfungen gehören zum Beispiel, weil eine falsche Faktorordnung und fehler
 
 ## Gültigkeitsbereich der Methode
 
-Diese Implementierung akzeptiert nur invertierbare quadratische Matrizen und meldet einen numerischen Nullpivot als Fehler. Für rechteckige Ausgleichsprobleme oder rangdefiziente Matrizen verwendet man eine <InlineMath math="\mathrm{QR}" />-Zerlegung mit Spaltenpivotisierung oder eine <InlineMath math="\mathrm{SVD}" />. Ein quadratischer <InlineMath math="\mathrm{PLU}" />-Löser kann für solche Eingaben unter seinen Voraussetzungen keine gültige Faktorisierung liefern.
+Diese Implementierung löst nur Gleichungssysteme mit invertierbaren quadratischen Matrizen und behandelt einen numerischen Nullpivot als Fehler. Für rechteckige Ausgleichsprobleme eignet sich eine <InlineMath math="\mathrm{QR}" />-Zerlegung. Bei rangdefizienten Problemen sind eine <InlineMath math="\mathrm{QR}" />-Zerlegung mit Spaltenpivotisierung oder eine <InlineMath math="\mathrm{SVD}" /> erforderlich. Auch für eine singuläre quadratische Matrix kann eine <InlineMath math="\mathrm{PLU}" />-Faktorisierung existieren, doch dieses Lösungsverfahren kann damit keine eindeutige Lösung bestimmen.

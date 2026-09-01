@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Orthogonal Polynomials",
-  description: "Build Chebyshev and Legendre polynomial bases from weighted inner products, project functions, transform intervals, and connect their zeros to Gaussian quadrature.",
+  description: "Chebyshev and Legendre polynomial bases arise from weighted inner products. They support function projection, interval transformations, and Gaussian quadrature.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-16",
   dateModified: "2026-09-01",
@@ -16,15 +16,19 @@ Let <InlineMath math="w(x)>0" /> on an interval <InlineMath math="[a,b]" />. The
 <BlockMath math="\|f\|_w=\sqrt{\langle f,f\rangle_w}" />
 </MathContainer>
 
-Two functions are orthogonal when <InlineMath math="\langle f,g\rangle_w=0" />. This weighted <InlineMath math="L^2" /> geometry measures the squared error across the interval
+Two functions are orthogonal when <InlineMath math="\langle f,g\rangle_w=0" />. This weighted <InlineMath math="L^2" /> geometry measures the weighted squared error across the interval.
+
+<BlockMath math="\|f-g\|_w^2=\int_a^b|f(x)-g(x)|^2w(x)\,dx" />
+
+By contrast, the maximum norm measures the largest pointwise error.
 
 <BlockMath math="\|f-g\|_\infty=\max_{x\in[a,b]}|f(x)-g(x)|" />
 
-The distinction matters. Orthogonal projection minimizes the weighted <InlineMath math="L^2" /> error. Chebyshev polynomials also have a separate minimax property, but the weighted inner product and the maximum norm are not interchangeable.
+Orthogonal projection minimizes the weighted <InlineMath math="L^2" /> error. Chebyshev polynomials also have a separate minimax property. The weighted inner product and the maximum norm measure different errors.
 
 ## Projection onto an Orthogonal Basis
 
-Suppose <InlineMath math="p_0,ldots,p_n" /> are mutually orthogonal. The degree-<InlineMath math="n" /> projection of <InlineMath math="f" /> is
+Suppose <InlineMath math="p_0,\ldots,p_n" /> are mutually orthogonal. The degree-<InlineMath math="n" /> projection of <InlineMath math="f" /> is
 
 <MathContainer>
 <BlockMath math="\Pi_n f(x)=\sum_{k=0}^n c_kp_k(x)" />
@@ -35,7 +39,7 @@ Because cross terms vanish, each coefficient can be computed independently. This
 
 ## Three Term Recurrence from Gram Schmidt
 
-Applying Gram-Schmidt to <InlineMath math="1,x,x^2,ldots" /> produces a monic orthogonal sequence <InlineMath math="\pi_k" />. Under a positive inner product it satisfies
+Applying Gram-Schmidt to <InlineMath math="1,x,x^2,\ldots" /> produces a monic orthogonal sequence <InlineMath math="\pi_k" />. Under a positive inner product it satisfies
 
 <MathContainer>
 <BlockMath math="\pi_0(x)=1" />
@@ -50,7 +54,7 @@ The recurrence coefficients are
 <BlockMath math="\beta_k=\frac{\|\pi_k\|_w^2}{\|\pi_{k-1}\|_w^2}>0" />
 </MathContainer>
 
-The three-term form is not an arbitrary shortcut. Multiplication by <InlineMath math="x" /> raises the degree by one, while orthogonality removes all components below <InlineMath math="\pi_{k-1}" />.
+Multiplication by <InlineMath math="x" /> raises the degree by one. Orthogonality removes every component below <InlineMath math="\pi_{k-1}" />, so the recurrence needs only three terms.
 
 ## Chebyshev Polynomials of the First Kind
 
@@ -70,7 +74,7 @@ Their weighted orthogonality is
 
 <BlockMath math="\int_{-1}^{1}\frac{T_j(x)T_k(x)}{\sqrt{1-x^2}}\,dx=\begin{cases}\pi,&j=k=0,\\\frac{\pi}{2},&j=k>0,\\0,&j\ne k.\end{cases}" />
 
-Since <InlineMath math="|T_k(x)|\le1" /> on <InlineMath math="[-1,1]" /> and the leading coefficient is <InlineMath math="2^{k-1}" /> for <InlineMath math="k\ge1" />, the monic polynomial <InlineMath math="2^{1-k}T_k" /> has the smallest maximum norm among all monic degree-<InlineMath math="k" /> polynomials. This is the precise connection to minimax approximation.
+Since <InlineMath math="|T_k(x)|\le1" /> on <InlineMath math="[-1,1]" /> and the leading coefficient is <InlineMath math="2^{k-1}" /> for <InlineMath math="k\ge1" />, the monic polynomial <InlineMath math="2^{1-k}T_k" /> has the smallest maximum norm among all monic degree-<InlineMath math="k" /> polynomials. It therefore solves the minimax approximation problem for monic polynomials of degree <InlineMath math="k" />.
 
 <LineEquation
   title={<>The first Chebyshev polynomials <InlineMath math="T_0,T_1,T_2,T_3" /></>}
@@ -126,7 +130,7 @@ The second identity gives the exact orthogonal expansion.
 
 ## Changing the Interval of Orthogonal Polynomials
 
-Use the affine change of variables
+To map the interval <InlineMath math="[-1,1]" /> to <InlineMath math="[a,b]" />, use the following affine change of variables.
 
 <MathContainer>
 <BlockMath math="x=\frac{a+b}{2}+\frac{b-a}{2}t" />

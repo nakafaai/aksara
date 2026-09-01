@@ -1,46 +1,46 @@
 export const metadata = {
-  title: "Forms of Energy",
+  title: "Energy Stores and Transfers",
   description:
-    "Distinguish kinetic energy, gravitational potential energy, heat, electrical energy, and other forms that appear in renewable-energy technology.",
+    "Energy can be stored in a system or transferred to another system. The relevant formula depends on the process taking place.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-01",
   dateModified: "2026-09-01",
   subject: "Renewable Energy",
 };
 
-## Energy Can Be Stored or Transferred in Different Ways
+## Energy in a System and Energy Moving Between Systems
 
-Energy has the same unit, the joule with symbol <InlineMath math="\text{J}" />. Physical models distinguish energy by the state that stores it or the way it is transferred, including motion, position, thermal state, chemical bonds, radiation, and the arrangement of electric charges.
+Energy is measured in joules, with the symbol <InlineMath math="\text{J}" />. In a calculation, we track where energy is present and how it moves from one system to another. A moving object has kinetic energy, an elevated object has gravitational potential energy, and a battery or biomass contains chemical energy. Energy can move between systems through heating, radiation, mechanical work, or electrical work.
 
-In the International System of Units (SI), every form of energy can be expressed in joules. The relevant formula depends on the physical quantity that stores or transfers the energy.
+All of these descriptions refer to the same physical quantity. The relevant formula depends on the object or process being analyzed.
 
 <Mermaid
-  title="Energy Forms and Their Physical Clues"
-  description="Compare motion, heat, light, electrical, and chemical energy while keeping energy forms separate from energy sources."
+  title="Energy in Systems and Energy Transfers"
+  description="Separate energy present in a system from the processes that transfer energy between systems."
   chart={`flowchart TD
-    A["Energy"] --> B["Stored"]
-    A --> C["Moving or transferred"]
-    B --> D["Chemical"]
-    B --> E["Gravitational"]
-    C --> F["Motion"]
-    C --> G["Heat, light, electricity"]`}/>
+    A["Energy"] --> B["Present in a system"]
+    A --> C["Transferred between systems"]
+    B --> D["Kinetic and gravitational"]
+    B --> E["Chemical and internal"]
+    C --> F["Heating and radiation"]
+    C --> G["Mechanical and electrical work"]`}/>
 
-The compact diagram follows the [EIA](https://www.eia.gov/energyexplained/what-is-energy/forms-of-energy.php) classification of energy as potential or kinetic. In the formula discussion, we still treat heat separately as energy transferred because of a temperature difference.
+The diagram keeps two questions separate. The left branch asks where energy is present. The right branch asks how energy crosses from one system to another. Heat is energy transferred because of a temperature difference, while internal energy is energy present in the material. [EIA](https://www.eia.gov/energyexplained/what-is-energy/forms-of-energy.php)
 
-## Four Energy Forms in Renewable Systems
+## Four Common Energy Calculations
 
-The following forms appear often in renewable-energy discussions because electricity generation usually involves motion, height, heat, or moving charges.
+Renewable-energy systems often involve motion, height, temperature differences, and moving electric charge. Each situation uses a different calculation.
 
-| Energy form | When it appears | Common mathematical model | Renewable-energy example |
+| Quantity being calculated | When it appears | Mathematical model | Renewable-energy example |
 | :---------- | :-------------- | :------------------------ | :----------------------- |
 | Kinetic energy | an object moves | <InlineMath math="E_k=\frac{1}{2}mv^2" /> | wind turns a turbine |
 | Gravitational potential energy | an object is above a reference level | <InlineMath math="E_p=mgh" /> | stored water is higher than a turbine |
-| Heat | energy transfers because of a temperature difference | <InlineMath math="Q=mc\Delta T" /> | geothermal fluid heats a power system |
-| Electrical energy | charge moves because of electric potential difference | <InlineMath math="E=VIt" /> | a generator sends energy into the grid |
+| Energy transferred by heating | two systems have different temperatures | <InlineMath math="Q=mc\Delta T" /> | geothermal fluid heats a power system |
+| Energy transferred electrically | electric charge moves through a potential difference | <InlineMath math="E=VIt" /> | a generator sends energy into the grid |
 
-Beyond these four examples, biomass and batteries store chemical energy, while solar panels receive radiant energy from the Sun. The four formulas in the table are useful for many basic calculations in grade <InlineMath math="10" /> physics.
+Biomass and batteries also contain chemical energy, while solar panels receive energy carried by sunlight. The four formulas in the table calculate energy from motion, height, temperature change, and electrical power.
 
-## Choose a Formula from the Physical Situation
+## Match the Formula to the Situation
 
 Kinetic energy is the energy an object has because of its motion.
 
@@ -62,7 +62,7 @@ E_k &= \frac{1}{2}mv^2 \\
 &= 9 \text{ J}
 \end{aligned}" />
 
-[OpenStax](https://openstax.org/books/college-physics-2e/pages/7-2-kinetic-energy-and-the-work-energy-theorem) explains kinetic energy through work and energy.
+The work-energy theorem relates net work to the change in kinetic energy. [OpenStax](https://openstax.org/books/college-physics-2e/pages/7-2-kinetic-energy-and-the-work-energy-theorem)
 
 Gravitational potential energy is energy related to an object's position in a gravitational field. For objects near Earth's surface, the common model is:
 
@@ -77,9 +77,9 @@ Symbol guide:
 | <InlineMath math="g" /> | gravitational acceleration | <InlineMath math="\text{m/s}^2" /> |
 | <InlineMath math="h" /> | height relative to a reference level | <InlineMath math="\text{m}" /> |
 
-The value of <InlineMath math="g" /> near Earth's surface is about <InlineMath math="9.8 \text{ m/s}^2" />. Many school problems replace it with the integer <InlineMath math="10 \text{ m/s}^2" /> to avoid multiplying by a decimal. Results calculated with that rounded value are approximations.
+The value of <InlineMath math="g" /> near Earth's surface is about <InlineMath math="9.8 \text{ m/s}^2" />. Many basic calculations use <InlineMath math="g=10 \text{ m/s}^2" /> to make multiplication by hand simpler. Results calculated with that rounded value are approximations.
 
-Heat is energy transferred because of a temperature difference. An object has internal energy, while heat describes energy crossing a boundary during transfer. If the substance does not change phase and its specific heat is treated as constant over the temperature interval, the transferred energy is:
+An object contains internal energy. When two systems have different temperatures, energy moves from the hotter system to the colder system. Energy transferred because of this temperature difference is called heat. If the substance does not change phase and its specific heat is treated as constant over the temperature interval, the transferred energy is:
 
 <BlockMath math="Q=mc\Delta T" />
 
@@ -92,7 +92,7 @@ Symbol guide:
 | <InlineMath math="c" /> | specific heat capacity | <InlineMath math="\text{J/(kg K)}" /> |
 | <InlineMath math="\Delta T" /> | temperature change | <InlineMath math="\text{K}" /> |
 
-[OpenStax](https://openstax.org/books/college-physics-2e/pages/14-2-temperature-change-and-heat-capacity) explains the relationship <InlineMath math="Q=mc\Delta T" />.
+When no phase change occurs, <InlineMath math="Q=mc\Delta T" /> relates heat transferred to mass, specific heat capacity, and temperature change. [OpenStax](https://openstax.org/books/college-physics-2e/pages/14-2-temperature-change-and-heat-capacity)
 
 Electrical energy can be calculated from electric power over a time interval. The model below is used when <InlineMath math="V" /> and <InlineMath math="I" /> are treated as constant during the time interval.
 
@@ -112,11 +112,11 @@ Symbol guide:
 | <InlineMath math="I" /> | electric current | <InlineMath math="\text{A}" /> |
 | <InlineMath math="t" /> | time | <InlineMath math="\text{s}" /> |
 
-Some books use <InlineMath math="W" /> for electrical energy as electrical work. Nakafa uses <InlineMath math="E" /> so it is not confused with <InlineMath math="\text{W}" /> as the unit watt.
+Here <InlineMath math="E" /> denotes electrical energy. Upright <InlineMath math="\text{W}" /> is the unit symbol for watt, while italic <InlineMath math="W" /> often represents work.
 
-[OpenStax](https://openstax.org/books/college-physics-2e/pages/20-4-electric-power-and-energy) explains the relationship between electric power and energy.
+At constant power, electrical energy equals power multiplied by time. [OpenStax](https://openstax.org/books/college-physics-2e/pages/20-4-electric-power-and-energy)
 
-## One Situation Can Contain Many Forms
+## One Power Plant Converts Several Forms of Energy
 
 A power plant converts several forms of energy in sequence. Hydropower, for example, follows this chain:
 
@@ -126,7 +126,7 @@ A solar panel receives radiant energy from sunlight, then changes part of that e
 
 <BlockMath math="\text{solar radiation} \rightarrow \text{electrical energy}" />
 
-For each renewable-energy system, identify the initial energy form, the desired output, and every conversion between them.
+A complete energy chain names the initial energy, the desired output, and each conversion between them.
 
 ## Distinguish Commonly Confused Ideas
 
@@ -135,6 +135,6 @@ For each renewable-energy system, identify the initial energy form, the desired 
 | Kinetic energy is treated as depending only on mass | Kinetic energy also depends on the square of speed, written as <InlineMath math="v^2" /> |
 | Heat is treated as a substance stored inside an object | Heat is energy transferred because of a temperature difference |
 | <InlineMath math="\text{kWh}" /> is treated as a unit of power | <InlineMath math="\text{kWh}" /> is a unit of energy because it comes from <InlineMath math="P \times t" /> |
-| All energy from a renewable source is treated as directly becoming electricity | There is always an energy transformation process, and not all input energy becomes useful electrical output |
+| All energy from a renewable source is treated as directly becoming electricity | A conversion device also transfers some energy to the surroundings, so only part of the input becomes useful electrical output |
 
-When analyzing renewable-energy technology, identify the energy form before examining the device. Wind carries kinetic energy, elevated water stores gravitational potential energy, geothermal heat carries thermal energy, biomass stores chemical energy, and sunlight carries radiant energy.
+To choose the relevant formula for a renewable-energy device, identify the form of energy entering it. Moving air has kinetic energy, elevated water has gravitational potential energy, geothermal fluids carry thermal energy, biomass stores chemical energy, and sunlight carries radiant energy.

@@ -13,13 +13,13 @@ Misalkan <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="
 
 <BlockMath math="Ax=b" />
 
-Jika <InlineMath math="b" /> tidak berada dalam ruang kolom <InlineMath math="A" />, sistem tersebut tidak memiliki solusi eksak. Keadaan ini sering terjadi ketika model dicocokkan dengan pengukuran berderau atau ketika sistem memiliki lebih banyak persamaan bebas daripada variabel yang tidak diketahui.
+Jika <InlineMath math="b" /> tidak berada dalam ruang kolom <InlineMath math="A" />, sistem tersebut tidak memiliki solusi eksak. Keadaan ini sering terjadi ketika model dicocokkan dengan data pengukuran yang mengandung kesalahan acak atau ketika sistem memiliki lebih banyak persamaan bebas daripada variabel yang tidak diketahui.
 
 Jika tidak ada vektor <InlineMath math="x" /> yang memenuhi <InlineMath math="Ax=b" /> secara eksak, definisikan residual
 
 <BlockMath math="e(x)=Ax-b" />
 
-Pilih vektor <InlineMath math="x" /> yang menghasilkan residual terkecil. Masalah kuadrat terkecil linear standar ditulis sebagai berikut.
+Kita mencari vektor <InlineMath math="x" /> yang menghasilkan residual paling kecil. Masalah kuadrat terkecil linear ditulis sebagai berikut.
 
 <BlockMath math="\hat{x}\in\operatorname*{arg\,min}_{x\in\mathbb{R}^n}\|Ax-b\|_2^2" />
 
@@ -89,7 +89,7 @@ Persamaan kedua disebut **persamaan normal**.
   ]}
 />
 
-Adegan tersebut memperlihatkan target, proyeksinya, dan residual yang menghubungkan keduanya. Vektor biru menunjukkan satu titik hasil proyeksi di dalam ruang kolom. Syarat ortogonal di atas membuat <InlineMath math="A\hat{x}" /> menjadi titik terdekat.
+Diagram memberi label pada vektor target <InlineMath math="b" />, titik proyeksi <InlineMath math="A\hat{x}" />, dan residual <InlineMath math="A\hat{x}-b" /> di antara keduanya. Vektor biru <InlineMath math="A\hat{x}" /> berada di dalam ruang kolom. Syarat ortogonal di atas membuktikan bahwa titik tersebut paling dekat dengan <InlineMath math="b" />.
 
 ## Mencocokkan Satu Konstanta dengan Tiga Observasi
 
@@ -129,7 +129,7 @@ Norma yang dipilih menentukan jenis galat yang diprioritaskan oleh pencocokan.
 
 Formulasi <InlineMath math="\ell_1" /> dan <InlineMath math="\ell_\infty" /> dapat ditulis ulang sebagai program linear. Kecocokannya tetap bergantung pada proses pembentukan data dan kriteria galat yang penting bagi penerapan tersebut.
 
-## Menyelesaikan kuadrat terkecil dengan andal
+## Memilih QR atau SVD untuk Kuadrat Terkecil
 
 Jika <InlineMath math="A" /> memiliki peringkat kolom penuh, peminimum kuadrat terkecil bersifat unik. Persamaan normal kemudian memberikan
 

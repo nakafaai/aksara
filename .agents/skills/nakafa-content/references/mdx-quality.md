@@ -30,14 +30,13 @@
 - Answer explanation MDX is rendered beneath an app-owned `###` heading, so its
   sections start at `####` and may use `#####` for real nested analysis.
 - Leave one blank line after headings.
-- Use one short phrase written with ordinary words. A page title or lesson
-  heading may contain only letters, numbers, and spaces. Keep punctuation,
-  formulas, code tokens, operators, emojis, option letters, decorative numbers,
-  and every other symbol out of headings. Move exact notation, aliases, and full
-  questions into the first sentence below the heading.
-  Do not remove an Indonesian hyphen mechanically. Rewrite a reduplicated term
-  with a natural synonym, such as `rerata` or `radius`, so the heading remains
-  both standard and symbol-free.
+- Use one short phrase written with ordinary words. Keep decorative
+  punctuation, formulas, code tokens, operators, emojis, option letters, and
+  decorative numbers out of headings. Move exact notation, aliases, and full
+  questions into the first sentence below the heading. A hyphen required by
+  standard word formation is allowed, such as the Indonesian reduplication in
+  `rata-rata` and `jari-jari`. Do not delete that hyphen or replace a familiar
+  word with a stiffer synonym merely to make the checker pass.
 
 ## Learner facing punctuation
 
@@ -82,9 +81,14 @@
   Write `<InlineMath math="\mathrm{QR}" />`, `<InlineMath
   math="\mathrm{LU}" />`, and `<InlineMath math="\mathrm{SVD}" />` instead of
   bare labels such as `QR`, `LU`, `SVD`, `PLU`, or `PCA`. Keep the page title and headings as ordinary text,
-  then render the notation in the first body sentence. Exempt code, URLs,
-  immutable quotations, and string-only schema fields.
+  then render the notation in the first body sentence. Exempt code, code
+  comments, URLs, immutable quotations, and string-only schema fields. Never
+  insert JSX or LaTeX into a programming-language comment.
 - Use `<BlockMath />` for standalone formulas.
+- Keep the leading backslash on every LaTeX command in a `math` prop. Bare
+  `ldots`, `cdots`, `vdots`, or `ddots` render as letters rather than an
+  ellipsis. Check this only inside rendered math, not in prose, code, or
+  comments.
 - Apply the same rule inside renderer component props. When `title`,
   `description`, or another learner-facing prop accepts a React node, pass a
   JSX fragment and wrap every mathematical token with `<InlineMath />` instead
@@ -264,6 +268,11 @@ against the current route-domain renderer manifest before authoring with it.
   are clearer.
 - Keep external links after a complete explanatory sentence so the linked text
   does not replace required prose.
+- A source chip is a citation, not a grammatical subject, object, or
+  attribution. Reject constructions such as `[EPA] explains`, `menurut [EIA]`,
+  `ein Eintrag in [PubChem]`, and `published by [CIAAW]`. State the claim in
+  ordinary prose, end the sentence, and append one or more source chips. An
+  explicit source or reference list may begin an item with its source chip.
 
 ## Evidence basis
 

@@ -1,20 +1,18 @@
 export const metadata = {
   title: "Signifikante Stellen",
   description:
-    "Erkenne signifikante Stellen, runde Messergebnisse korrekt und gib berechnete Werte nur so genau an, wie es die Messung erlaubt.",
+    "Signifikante Stellen und Rundungsregeln halten berechnete Werte im Rahmen der Messgenauigkeit.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
   dateModified: "2026-09-01",
   subject: "Messen in der Naturwissenschaft",
 };
 
-## Ein Rechner kennt die Messgenauigkeit nicht
+## Die Messauflösung bestimmt die angegebenen Stellen
 
-Wird der Durchmesser eines Flaschendeckels als <InlineMath math="3{,}12 \text{cm}" /> abgelesen, kann ein Rechner für die Fläche viele weitere Ziffern ausgeben. Das Messgerät rechtfertigt diese scheinbare Genauigkeit jedoch nicht. Deshalb verwenden wir **signifikante Stellen**.
+Wird der Durchmesser eines Flaschendeckels als <InlineMath math="3{,}12 \text{cm}" /> abgelesen, kann ein Rechner für die Fläche viele weitere Ziffern ausgeben. Die Auflösung des Messgeräts begrenzt, wie viele dieser Ziffern angegeben werden können. Die Regeln für **signifikante Stellen** legen fest, welche Ziffern in das Endergebnis gehören.
 
-Signifikante Stellen sind die Ziffern, die beibehalten werden, um die Auflösung eines Messwerts auszudrücken. Die letzte angegebene Ziffer wird von Geräteauflösung und Rundung beeinflusst und ist daher nicht exakt.
-
-<BlockMath math="\text{angegebene Ziffern}=\text{gestützte Ziffern}+\text{letzte gerundete Ziffer}" />
+Signifikante Stellen sind die Ziffern, die beibehalten werden, um die Auflösung eines Messwerts auszudrücken. Gib den Messwert nur bis zu der Dezimalstelle an, die das Gerät unterstützt. Die letzte angegebene Ziffer kennzeichnet die Ablesegrenze und kann sich beim Runden ändern.
 
 Diese Regel verhindert, dass ein Ergebnis genauer wirkt als das verwendete Messwerkzeug.
 
@@ -73,7 +71,7 @@ Bei einem exakten Halbwert verhindert die Rundung zur geraden Zahl, dass eine la
 
 Runde direkt vom ungerundeten Wert auf die endgültige Genauigkeit. Runde nicht über mehrere Zwischenwerte.
 
-## Addition folgt der Dezimalstelle
+## Summen nach der geringsten Anzahl an Dezimalstellen runden
 
 Bei Addition und Subtraktion richtet sich das Ergebnis nach den Nachkommastellen. Der gröbste Messwert bestimmt die letzte zulässige Stelle.
 
@@ -86,9 +84,9 @@ Ein Eisenstab mit <InlineMath math="8{,}235 \text{cm}" /> Länge wird mit einem 
 
 Der Wert <InlineMath math="12{,}735 \text{cm}" /> wird auf <InlineMath math="1" /> Nachkommastelle gerundet, weil <InlineMath math="4{,}5 \text{cm}" /> ebenfalls nur <InlineMath math="1" /> Nachkommastelle besitzt.
 
-## Multiplikation folgt den am wenigsten präzisen Daten
+## Produkte nach der kleinsten Anzahl signifikanter Stellen runden
 
-Bei Multiplikation und Division verwendet die schulische Kurzregel die kleinste Anzahl signifikanter Stellen in den Messdaten. Sie ist eine Berichtsregel und ersetzt keine Unsicherheitsfortpflanzung, wenn Messunsicherheiten vorliegen.
+Wenn eine Rechnung nur signifikante Stellen berücksichtigt, wird das Ergebnis einer Multiplikation oder Division auf die kleinste Anzahl signifikanter Stellen der Messwerte gerundet. Diese Kurzregel ersetzt keine Berechnung der Messunsicherheit.
 
 Ein Rechteck sei <InlineMath math="12{,}455 \text{cm}" /> breit und <InlineMath math="35{,}2 \text{cm}" /> lang.
 
@@ -114,4 +112,4 @@ Ist eine SI-Angabe verlangt, wird <InlineMath math="\text{cm}^2" /> in <InlineMa
 
 <BlockMath math="7{,}65 \text{cm}^2 = 0{,}000765 \text{m}^2 = 7{,}65 \times 10^{-4} \text{m}^2" />
 
-Die schulischen Rechenregeln führt [OpenStax University Physics](https://openstax.org/books/university-physics-volume-1/pages/1-6-significant-figures) ein. NIST dokumentiert die Rundung zur geraden Zahl, das einmalige Runden und ungerundete Umrechnungsfaktoren im [Handbook 130](https://www.nist.gov/document/2023-nist-hb130-uniform-packaging-and-labeling-regulation).
+Bei Addition und Subtraktion richtet sich die Rundung nach der geringsten Anzahl an Dezimalstellen. Bei Multiplikation und Division richtet sie sich nach der geringsten Anzahl an signifikanten Stellen. Ergebnisse werden erst am Ende gerundet. [OpenStax University Physics](https://openstax.org/books/university-physics-volume-1/pages/1-6-significant-figures) [Handbook 130](https://www.nist.gov/document/2023-nist-hb130-uniform-packaging-and-labeling-regulation)

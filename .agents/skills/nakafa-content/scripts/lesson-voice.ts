@@ -5,7 +5,10 @@ import { basename, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { findExactLineSmoothingIssues } from "#nakafa-content/line-equation/check";
 import { findMathBlockFragmentIssues } from "#nakafa-content/voice-fragment";
-import { findExternalLinkLabelIssues } from "#nakafa-content/voice-links";
+import {
+  findExternalLinkLabelIssues,
+  findExternalLinkPlacementIssues,
+} from "#nakafa-content/voice-links";
 import { parseLessonMdx } from "#nakafa-content/voice-mdx";
 import {
   findSiblingRepresentationIssues,
@@ -71,6 +74,7 @@ export function checkLessonRoot(root: string): LessonVoiceReport {
       ...findMathBlockFragmentIssues(source, tree),
       ...findLearnerFacingSemicolonIssues(source, tree),
       ...findExternalLinkLabelIssues(locale, source, tree),
+      ...findExternalLinkPlacementIssues(source, tree),
       ...findExactLineSmoothingIssues(source, tree),
     ].map((issue) => ({
       file: repositoryPath,

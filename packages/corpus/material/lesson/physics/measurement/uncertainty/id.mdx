@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Nilai Ketidakpastian pada Pengukuran Berulang",
+  title: "Ketidakpastian pada Pengukuran Berulang",
   description:
-    "Membaca data pengukuran berulang, menghitung rerata, menentukan ketidakpastian, dan menulis hasil ukur tanpa memberi kesan terlalu pasti.",
+    "Data pengukuran berulang dapat diringkas dengan nilai rata-rata dan ketidakpastian agar hasilnya tidak terkesan lebih pasti daripada data yang tersedia.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-04-25",
   dateModified: "2026-09-01",
@@ -10,17 +10,17 @@ export const metadata = {
 
 ## Variasi pada Pengukuran Berulang
 
-Saat satu benda diukur beberapa kali, hasilnya bisa sedikit berbeda. Itu normal. Tangan bisa menekan alat dengan gaya berbeda, mata bisa membaca skala dari sudut yang berbeda, dan benda yang diukur bisa bergeser sedikit.
+Saat satu benda diukur beberapa kali, hasilnya bisa sedikit berbeda. Perbedaan kecil dapat muncul karena tekanan tangan, sudut pandang saat membaca skala, atau posisi benda yang berubah.
 
-**Ketidakpastian pengukuran** adalah parameter tak negatif yang mencirikan sebaran nilai besaran yang dikaitkan dengan besaran ukur berdasarkan informasi yang tersedia. Pada pengukuran berulang, evaluasi Tipe A memperoleh komponen ketidakpastian dari analisis statistik hasil pengamatan.
+**Ketidakpastian pengukuran** adalah angka nol atau positif yang menunjukkan seberapa lebar hasil ukur dapat menyebar berdasarkan data dan informasi yang tersedia. Pada pengukuran berulang, evaluasi Tipe A menghitung salah satu komponen ketidakpastian dari hasil pengamatan.
 
-Pelajaran ini lebih dulu memakai simpangan baku sampel <InlineMath math="s" /> untuk menggambarkan sebaran tiap hasil bacaan. Ketidakpastian baku rerata adalah besaran yang berbeda dan dibahas kemudian.
+Simpangan baku sampel <InlineMath math="s" /> menunjukkan seberapa jauh hasil bacaan tersebar dari rata-rata. Ketidakpastian baku nilai rata-rata menunjukkan ketidakpastian nilai rata-rata yang dihitung dari hasil bacaan tersebut.
 
-> Pengukuran berulang menunjukkan variasi acak melalui perubahan kecil antarpembacaan. Galat sistematis, misalnya alat tidak menunjukkan nol sebelum digunakan atau skalanya rusak, harus diperiksa melalui kalibrasi.
+> Pengukuran berulang menunjukkan variasi acak melalui perubahan kecil antarpembacaan. Galat sistematis, misalnya alat tidak menunjukkan nol sebelum digunakan atau skala alat rusak, harus diperiksa melalui kalibrasi.
 
-## Rerata Pengukuran
+## Rata-rata Pengukuran
 
-Misalkan <InlineMath math="5" /> siswa mengukur diameter tutup botol dengan jangka sorong. Semua pembacaan memakai satuan yang sama, yaitu <InlineMath math="\text{cm}" />.
+Diameter satu tutup botol diukur <InlineMath math="5" /> kali dengan jangka sorong. Semua pembacaan memakai satuan yang sama, yaitu <InlineMath math="\text{cm}" />.
 
 | Data | Diameter |
 | :--- | :------- |
@@ -30,7 +30,7 @@ Misalkan <InlineMath math="5" /> siswa mengukur diameter tutup botol dengan jang
 | <InlineMath math="d_4" /> | <InlineMath math="3{,}11 \text{ cm}" /> |
 | <InlineMath math="d_5" /> | <InlineMath math="3{,}14 \text{ cm}" /> |
 
-Untuk data berulang yang menyebar simetris tanpa pencilan yang jelas, rerata menjadi nilai wakil yang sesuai.
+Untuk data berulang yang menyebar simetris tanpa pencilan yang jelas, rata-rata menjadi nilai wakil yang sesuai.
 
 <BlockMath math="\bar d=\frac{\sum_{i=1}^{N} d_i}{N}" />
 
@@ -42,15 +42,15 @@ Untuk data di atas:
 &= 3{,}132 \text{ cm}
 \end{aligned}" />
 
-Rerata belum cukup. Kita juga perlu tahu apakah data menumpuk rapat di sekitar rerata atau menyebar jauh.
+Nilai rata-rata menunjukkan pusat data, tetapi belum menunjukkan seberapa jauh hasil pengukuran menyebar. Untuk melihat penyebaran itu, kita menghitung simpangan baku.
 
-## Sebaran Data di Sekitar Rerata
+## Sebaran Data di Sekitar Rata-rata
 
-Untuk data berulang, sebaran sampel dapat dihitung dari jarak setiap data terhadap reratanya.
+Untuk data berulang, sebaran sampel dapat dihitung dari jarak setiap data terhadap nilai rata-rata.
 
 <BlockMath math="s_d=\sqrt{\frac{\sum_{i=1}^{N}(d_i-\bar d)^2}{N-1}}" />
 
-Penyebut <InlineMath math="N-1" /> dipakai karena rerata sampel <InlineMath math="\bar d" /> dihitung dari data yang sama. Jumlah semua selisih terhadap rerata harus sama dengan nol, sehingga hanya <InlineMath math="N-1" /> selisih yang dapat berubah secara bebas.
+Penyebut <InlineMath math="N-1" /> dipakai karena rata-rata sampel <InlineMath math="\bar d" /> dihitung dari data yang sama. Jumlah semua selisih terhadap rata-rata harus sama dengan nol, sehingga hanya <InlineMath math="N-1" /> selisih yang dapat berubah secara bebas.
 
 <BlockMath math="\begin{aligned}
 s_d
@@ -62,9 +62,9 @@ Jika kita menulis hasil diameter dengan ketidakpastian sebaran data, bentuknya m
 
 <BlockMath math="d=(3{,}13 \pm 0{,}02)\text{ cm}" />
 
-Angka <InlineMath math="3{,}13 \text{ cm}" /> adalah nilai wakil data. Angka <InlineMath math="0{,}02 \text{ cm}" /> mengingatkan pembaca bahwa pembacaan berulang tidak persis sama.
+Angka <InlineMath math="3{,}13 \text{ cm}" /> adalah nilai wakil data. Angka <InlineMath math="0{,}02 \text{ cm}" /> menunjukkan bahwa hasil pengukuran berulang tidak persis sama.
 
-## Sebaran Data dan Ketidakpastian Rerata
+## Sebaran Data dan Ketidakpastian Rata-rata
 
 Beberapa soal pengukuran berulang memakai bentuk aljabar ringkas berikut.
 
@@ -74,13 +74,13 @@ Rumus itu setara dengan simpangan baku sampel:
 
 <BlockMath math="\Delta x=s_x=\sqrt{\frac{\sum_{i=1}^{N}(x_i-\bar x)^2}{N-1}}" />
 
-Jadi, tanda <InlineMath math="\frac{1}{\sqrt N}" /> pada bentuk ringkas bukan berarti hasilnya otomatis menjadi ketidakpastian rerata formal.
+Jadi, tanda <InlineMath math="\frac{1}{\sqrt N}" /> pada bentuk ringkas bukan berarti hasilnya otomatis menjadi ketidakpastian rata-rata formal.
 
-Dalam metrologi formal, NIST dan JCGM GUM menyebut ketidakpastian baku rerata sebagai:
+Dalam metrologi formal, NIST dan JCGM GUM menyebut ketidakpastian baku nilai rata-rata sebagai:
 
 <BlockMath math="u(\bar x)=\frac{s_x}{\sqrt N}" />
 
-Untuk latihan pengukuran sederhana, ikuti konvensi yang dipakai soal. Jika soal memakai simbol <InlineMath math="\Delta x" /> untuk rumus ringkas di atas, sebut <InlineMath math="\Delta x" /> sebagai ketidakpastian pengukuran berulang sesuai model soal. Jangan mencampur ketidakpastian sebaran data dengan ketidakpastian baku rerata tanpa penjelasan.
+Ikuti notasi yang ditetapkan pada soal pengukuran. Jika <InlineMath math="\Delta x" /> menyatakan rumus ringkas di atas, maka <InlineMath math="\Delta x" /> adalah simpangan baku sampel dari setiap hasil ukur. Jangan samakan sebaran ini dengan ketidakpastian baku nilai rata-rata <InlineMath math="u(\bar x)=s_x/\sqrt N" />.
 
 ## Luas dari Data Diameter
 
@@ -98,11 +98,11 @@ Karena luas bergantung pada diameter, setiap pembacaan diameter menghasilkan lua
 | <InlineMath math="4" /> | <InlineMath math="3{,}11 \text{ cm}" /> | <InlineMath math="7{,}5964 \text{ cm}^2" /> |
 | <InlineMath math="5" /> | <InlineMath math="3{,}14 \text{ cm}" /> | <InlineMath math="7{,}7437 \text{ cm}^2" /> |
 
-Rerata luasnya:
+Rata-rata dari kelima nilai luas adalah:
 
 <BlockMath math="\bar A=\frac{1}{5}\sum_{i=1}^{5}A_i=7{,}7045 \text{ cm}^2" />
 
-Sebaran luasnya:
+Simpangan baku dari kelima nilai luas adalah:
 
 <BlockMath math="s_A=0{,}0808 \text{ cm}^2" />
 
@@ -110,11 +110,11 @@ Dengan memakai sebaran sampel sebagai konvensi ketidakpastian dalam soal ini, lu
 
 <BlockMath math="A=(7{,}70 \pm 0{,}08)\text{ cm}^2" />
 
-Angka yang ditampilkan dalam tabel bukan masukan hitung. Pembulatan nilai luas di tengah perhitungan dapat mengubah sebaran akhir, sehingga rerata dan simpangan baku di atas memakai nilai yang belum dibulatkan.
+Perhitungan rata-rata dan simpangan baku memakai nilai luas yang belum dibulatkan. Angka dalam tabel hanya ditampilkan dalam bentuk yang sudah dibulatkan.
 
 ## Persentase Menunjukkan Besar Relatif
 
-Sebaran relatif membandingkan simpangan baku sampel dengan besar nilai rerata.
+Sebaran relatif membandingkan simpangan baku sampel dengan besar nilai rata-rata.
 
 <BlockMath math="\varepsilon_r=\frac{s_x}{|\bar x|}\times 100\,\%" />
 
@@ -122,6 +122,6 @@ Untuk luas tutup botol:
 
 <BlockMath math="\varepsilon_r=\frac{0{,}0808}{7{,}7045}\times 100\,\%\approx 1{,}05\,\%" />
 
-Artinya, sebaran sampel sekitar <InlineMath math="1{,}05\,\%" /> dari rerata luas. Kecukupannya bergantung pada tujuan penggunaan dan ketidakpastian sasaran, jadi persentase itu tidak boleh disebut "cukup kecil" tanpa persyaratan yang jelas.
+Artinya, sebaran sampel sekitar <InlineMath math="1{,}05\,\%" /> dari rata-rata luas. Apakah sebaran ini cukup kecil bergantung pada tujuan penggunaan dan batas ketidakpastian yang ditetapkan. Tanpa persyaratan tersebut, kita belum dapat menyebut sebaran <InlineMath math="1{,}05\,\%" /> cukup kecil.
 
-[NIST](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-3-type-evaluation-standard-uncertainty) menjelaskan evaluasi ketidakpastian Tipe A melalui Technical Note <InlineMath math="1297" />, sedangkan [BIPM](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf) menerbitkan JCGM GUM yang dipakai sebagai rujukan ketidakpastian di sini.
+Ketidakpastian Tipe A dihitung dari data pengukuran berulang, sedangkan hasil akhirnya perlu menyebut nilai ukur dan ketidakpastiannya dengan jelas. [NIST](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-3-type-evaluation-standard-uncertainty) [BIPM](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf)

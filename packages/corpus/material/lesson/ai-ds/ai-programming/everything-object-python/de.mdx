@@ -89,7 +89,7 @@ print(f"Max: {ps.max}, Occupied: {ps.occ}")`
   }]}
 />
 
-Die Python-Version speichert die Regeln und Operationen des Parksystems in einer Klasse. Die Klasse hält ihren Zustand gültig, indem sie jede Eingabe prüft und direkte Änderungen an ihren internen Daten verhindert.
+Die Python-Version speichert die Regeln und Operationen des Parksystems in einer Klasse. Die Methode `occupy` prüft beim Aufruf die Kapazität. Externer Code kann die öffentlichen Attribute `max` und `occ` jedoch direkt ändern. Dieses kurze Beispiel schützt den Zustand des Objekts daher noch nicht vollständig.
 
 ## Parksystem am Beispiel
 
@@ -480,7 +480,7 @@ class Vector2D:
         return Vector2D(self.x + other.x, self.y + other.y)
 
     def __bool__(self):
-        """Der Nullvektor ist false, jeder andere Vektor true."""
+        """Gibt für den Nullvektor False und für jeden anderen Vektor True zurück."""
         return bool(self.x or self.y)
 
 first = Vector2D(3, 4)
