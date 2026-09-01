@@ -1,3 +1,4 @@
+import { linkDefinitions, linkUrl } from "#nakafa-content/link-reference";
 import {
   type MdxNode,
   parseLessonMdx,
@@ -79,16 +80,17 @@ function proseWithoutExternalLinks(
   node: MdxNode,
   source: string,
   startOffset: number,
-  endOffset: number
+  endOffset: number,
+  definitions: ReadonlyMap<string, string>
 ): string {
   const ranges: Array<{ end: number; start: number }> = [];
   visitMdxNodes(node, (child) => {
     const start = child.position?.start?.offset;
     const end = child.position?.end?.offset;
+    const url = linkUrl(child, definitions);
     if (
-      child.type !== "link" ||
-      typeof child.url !== "string" ||
-      !EXTERNAL_URL_PATTERN.test(child.url) ||
+      url === undefined ||
+      !EXTERNAL_URL_PATTERN.test(url) ||
       start === undefined ||
       end === undefined ||
       start < startOffset ||
@@ -186,12 +188,13 @@ export function findExternalLinkLabelIssues(
   tree: MdxNode = parseLessonMdx(source)
 ): LessonVoiceIssue[] {
   const issues: LessonVoiceIssue[] = [];
-  visitMdxNodes(tree, (node) => {
-    if (
-      node.type !== "link" ||
-      typeof node.url !== "string" ||
-      !EXTERNAL_URL_PATTERN.test(node.url)
-    ) {
+  const definitions = linkDefinitions(tree);
+  visitWithAncestors(tree, [], (node, ancestors) => {
+    if (ancestors.some(({ type }) => type === "blockquote")) {
+      return;
+    }
+    const url = linkUrl(node, definitions);
+    if (url === undefined || !EXTERNAL_URL_PATTERN.test(url)) {
       return;
     }
     const label = linkLabel(node);
@@ -221,12 +224,13 @@ export function findExternalLinkPlacementIssues(
   tree: MdxNode = parseLessonMdx(source)
 ): LessonVoiceIssue[] {
   const issues: LessonVoiceIssue[] = [];
+  const definitions = linkDefinitions(tree);
   visitWithAncestors(tree, [], (node, ancestors) => {
-    if (
-      node.type !== "link" ||
-      typeof node.url !== "string" ||
-      !EXTERNAL_URL_PATTERN.test(node.url)
-    ) {
+    if (ancestors.some(({ type }) => type === "blockquote")) {
+      return;
+    }
+    const url = linkUrl(node, definitions);
+    if (url === undefined || !EXTERNAL_URL_PATTERN.test(url)) {
       return;
     }
     const container = proseContainer(ancestors);
@@ -251,13 +255,15 @@ export function findExternalLinkPlacementIssues(
       container,
       source,
       containerStart,
-      linkStart
+      linkStart,
+      definitions
     ).trim();
     const after = proseWithoutExternalLinks(
       container,
       source,
       linkEnd,
-      containerEnd
+      containerEnd,
+      definitions
     );
     const isExplicitSourceList =
       ancestors.some(({ type }) => type === "listItem") &&

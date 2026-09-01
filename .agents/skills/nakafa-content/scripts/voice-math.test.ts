@@ -62,6 +62,7 @@ test("rejects bare dot commands only inside rendered math", () => {
   const passing = [
     '<InlineMath math="x_1,\\ldots,x_n" />',
     '<MathVisual description="The word ldots is plain text." />',
+    '> <InlineMath math="x_1,ldots,x_n" />',
     "{/* ldots in a code comment */}",
   ].join("\n");
 

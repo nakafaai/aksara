@@ -63,6 +63,7 @@ const METADATA_DESCRIPTION_KEY_PATTERN = /^\s*description:\s*$/u;
 const METADATA_STRING_VALUE_PATTERN = /^\s*"[^"]*"\s*,?\s*$/u;
 const METADATA_END_PATTERN = /^\s*\};\s*$/u;
 const CODE_FENCE_PATTERN = /^\s*(```|~~~)/u;
+const BLOCKQUOTE_PATTERN = /^\s*>/u;
 const UNESCAPED_BACKTICK_PATTERN = /(?<!\\)`/gu;
 const REPETITIVE_OPENER_LIMIT = 2;
 const SECTION_HEADING_PATTERN = /^(#{2,6})\s+(.+)$/u;
@@ -213,6 +214,7 @@ function inspectLessonLine(
   matchesByRule: Map<string, LessonVoiceIssue[]>
 ): LessonVoiceIssue[] {
   const context = classifyLine(line, state);
+  const isImmutableBlockquote = BLOCKQUOTE_PATTERN.test(line);
   const issues = findStructuralIssues(
     locale,
     line,
@@ -220,7 +222,10 @@ function inspectLessonLine(
     state,
     context.isProtectedRegion
   );
-  if (!context.isProtectedRegion || context.isMetadataDescription) {
+  if (
+    !(context.isProtectedRegion || isImmutableBlockquote) ||
+    context.isMetadataDescription
+  ) {
     const searchableLine = maskProtectedInlineContent(line);
     issues.push(
       ...matchLineRules(
@@ -231,7 +236,7 @@ function inspectLessonLine(
         lineNumber
       )
     );
-    if (!context.isProtectedRegion) {
+    if (!(context.isProtectedRegion || isImmutableBlockquote)) {
       recordRepetitiveOpeners(
         matchesByRule,
         locale,

@@ -51,6 +51,13 @@ test("rejects mathematical family calques but preserves literal family prose", (
     ),
     []
   );
+  assert.deepEqual(
+    findLessonVoiceIssues(
+      "id",
+      "> Integral tak tentu memuat keluarga antiturunan.\n> Genom virus mengambil alih kerja sel inang."
+    ),
+    []
+  );
 });
 test("rejects redirected cell machinery metaphors but preserves literal mechanisms", () => {
   const failures = {

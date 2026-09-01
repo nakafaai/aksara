@@ -68,6 +68,7 @@ test("allows semicolons required by code math entities and MDX syntax", () => {
     "/>",
     '<a href="https://example.com/a;b">Link</a>',
     '<div style="color: red; display: block">Text</div>',
+    "> This source says A; therefore B.",
   ].join("\n");
 
   assert.deepEqual(findLearnerFacingSemicolonIssues(source), []);

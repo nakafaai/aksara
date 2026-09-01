@@ -135,6 +135,9 @@ function collectNodeOffsets(
   offsets: Set<number>,
   source: string
 ): void {
+  if (node.type === "blockquote") {
+    return;
+  }
   if (node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement") {
     for (const attribute of node.attributes ?? []) {
       collectAttributeOffsets(attribute, offsets, source);

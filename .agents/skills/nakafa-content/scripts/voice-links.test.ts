@@ -59,9 +59,16 @@ test("allows source names internal links and protected Markdown examples", () =>
     "[this source link](https://example.com)",
     "```",
     '<CodeBlock code="[this source link](https://example.com)" />',
+    "> [this source link](https://example.com) explains the quoted claim.",
   ].join("\n");
 
   assert.deepEqual(findExternalLinkLabelIssues("en", source), []);
+  assert.deepEqual(
+    findExternalLinkPlacementIssues(
+      "> [OpenStax](https://example.com) explains the quoted claim."
+    ),
+    []
+  );
 });
 
 test("rejects prose that points at a link instead of naming the source", () => {
@@ -116,5 +123,33 @@ test("does not treat an ordinary list as an automatic source list", () => {
       "- [OpenStax Biology 2e](https://example.com) explains the process."
     ).map(({ rule }) => rule),
     ["external-link-chip-in-sentence"]
+  );
+});
+
+test("checks reference-style external links", () => {
+  const placeholder = [
+    "[this source link][source]",
+    "",
+    "[source]: https://example.com",
+  ].join("\n");
+  const sentence = [
+    "[EPA][source] Explains the design goal.",
+    "",
+    "[source]: https://example.com",
+  ].join("\n");
+
+  assert.deepEqual(
+    findExternalLinkLabelIssues("en", placeholder).map(({ rule }) => rule),
+    ["external-link-placeholder-label"]
+  );
+  assert.deepEqual(
+    findExternalLinkPlacementIssues(sentence).map(({ rule }) => rule),
+    ["external-link-chip-in-sentence"]
+  );
+  assert.deepEqual(
+    findExternalLinkPlacementIssues(
+      "[Lesson notes][source]\n\n[source]: /en/material/notes"
+    ),
+    []
   );
 });
