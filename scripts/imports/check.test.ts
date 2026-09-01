@@ -2,7 +2,7 @@ import { describe, expect, it } from "@effect/vitest";
 import {
   createWorkspaceIdentityResolver,
   importViolations,
-} from "#scripts/check-imports";
+} from "#scripts/imports/check";
 
 /** Creates one manifest reader for import-boundary policy tests. */
 function createManifestReader(manifests: Readonly<Record<string, unknown>>) {
@@ -170,7 +170,7 @@ const multiple = require("first", "second");
 
     expect(
       importViolations(
-        "scripts/check-imports.ts",
+        "scripts/imports/check.ts",
         'import "node:fs";',
         resolveIdentity
       )
@@ -207,21 +207,21 @@ const multiple = require("first", "second");
 
     expect(
       importViolations(
-        "scripts/check-imports.test.ts",
+        "scripts/imports/check.test.ts",
         'import { vi as mockVi } from "@effect/vitest";',
         resolveIdentity
       )
     ).toEqual([
-      "scripts/check-imports.test.ts:1 @effect/vitest#vi: use the configured global vi for mocks",
+      "scripts/imports/check.test.ts:1 @effect/vitest#vi: use the configured global vi for mocks",
     ]);
     expect(
       importViolations(
-        "scripts/check-imports.test.ts",
+        "scripts/imports/check.test.ts",
         'import * as effectVitest from "@effect/vitest";',
         resolveIdentity
       )
     ).toEqual([
-      "scripts/check-imports.test.ts:1 @effect/vitest#vi: use the configured global vi for mocks",
+      "scripts/imports/check.test.ts:1 @effect/vitest#vi: use the configured global vi for mocks",
     ]);
     for (const source of [
       'export { vi } from "@effect/vitest";',
@@ -236,12 +236,12 @@ const multiple = require("first", "second");
     ]) {
       expect(
         importViolations(
-          "scripts/check-imports.test.ts",
+          "scripts/imports/check.test.ts",
           source,
           resolveIdentity
         )
       ).toEqual([
-        "scripts/check-imports.test.ts:1 @effect/vitest#vi: use the configured global vi for mocks",
+        "scripts/imports/check.test.ts:1 @effect/vitest#vi: use the configured global vi for mocks",
       ]);
     }
     for (const source of [
@@ -252,7 +252,7 @@ const multiple = require("first", "second");
     ]) {
       expect(
         importViolations(
-          "scripts/check-imports.test.ts",
+          "scripts/imports/check.test.ts",
           source,
           () => undefined
         )

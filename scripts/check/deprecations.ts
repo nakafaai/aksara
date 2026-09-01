@@ -5,7 +5,7 @@ import {
   enforceViolations,
   trackedFiles,
   typescriptFiles,
-} from "#scripts/files";
+} from "#scripts/check/files";
 
 const PROJECT_CONFIG_PATTERN =
   /^(?:tsconfig\.json|(?:apps|packages)\/[^/]+\/tsconfig\.json)$/u;

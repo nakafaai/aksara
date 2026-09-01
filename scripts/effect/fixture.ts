@@ -3,7 +3,7 @@ import { Effect, FileSystem, Path, Stream } from "effect";
 import type { PlatformError } from "effect/PlatformError";
 import { ChildProcess } from "effect/unstable/process";
 
-import type { EffectSourceConfig } from "#scripts/effect-source";
+import type { EffectSourceConfig } from "#scripts/effect/source";
 
 const installedManifest = "node_modules/effect/package.json";
 const vendoredManifest = "repos/effect/packages/effect/package.json";

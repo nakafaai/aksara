@@ -270,7 +270,7 @@ export const makeEffectSourceProgram = Effect.fn("EffectSource.main")(
     }
 
     return yield* new EffectSourceUsageError({
-      detail: "Usage: node scripts/effect-source.ts <check|update>",
+      detail: "Usage: node scripts/effect/source.ts <check|update>",
     });
   }
 );

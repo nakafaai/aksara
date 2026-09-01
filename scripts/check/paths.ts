@@ -1,4 +1,4 @@
-import { enforceViolations, trackedFiles } from "#scripts/files";
+import { enforceViolations, trackedFiles } from "#scripts/check/files";
 
 const WORD_SEPARATOR_PATTERN = /[-_.\s]+/u;
 const CAMEL_WORD_PATTERN = /([\p{Ll}\d])(\p{Lu})/gu;

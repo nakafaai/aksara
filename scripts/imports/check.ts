@@ -1,20 +1,20 @@
 import { readFileSync } from "node:fs";
 import { isObject } from "effect/Predicate";
 import ts from "typescript";
-import { effectTestViolations } from "#scripts/effect-tests";
 import {
   enforceViolations,
   trackedFiles,
   typescriptFiles,
-} from "#scripts/files";
+} from "#scripts/check/files";
+import {
+  sourceConditionFromConfig,
+  sourceConditionViolations,
+} from "#scripts/imports/conditions";
+import { effectTestViolations } from "#scripts/imports/effect";
 import {
   exposedModuleBindings,
   moduleSpecifiers,
 } from "#scripts/imports/syntax";
-import {
-  sourceConditionFromConfig,
-  sourceConditionViolations,
-} from "#scripts/source-conditions";
 
 const WORKSPACE_SOURCE_PATTERN = /^(apps|packages)\/([^/]+)\//u;
 const RELATIVE_IMPORT_PATTERN = /^\.{1,2}(?:\/|$)/u;

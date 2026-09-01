@@ -2,10 +2,6 @@ import { NodeServices } from "@effect/platform-node";
 import { afterEach, assert, layer } from "@effect/vitest";
 import { Effect, FileSystem, Path, Schema } from "effect";
 import {
-  type EffectSourceConfig,
-  makeEffectSourceProgram,
-} from "#scripts/effect-source";
-import {
   commitInstalledVersion,
   createOutdatedConsumer,
   createRepository,
@@ -13,7 +9,11 @@ import {
   git,
   gitValue,
   type RepositoryFixture,
-} from "#scripts/effect-source/fixture";
+} from "#scripts/effect/fixture";
+import {
+  type EffectSourceConfig,
+  makeEffectSourceProgram,
+} from "#scripts/effect/source";
 
 const runtime = vi.hoisted(() => ({ calls: 0 }));
 

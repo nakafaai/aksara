@@ -2,7 +2,7 @@ import { describe, expect, it } from "@effect/vitest";
 import {
   documentationViolations,
   missingDocumentation,
-} from "#scripts/check-docs";
+} from "#scripts/check/docs";
 
 const documentedSource = `
 /** Explains this named function. */

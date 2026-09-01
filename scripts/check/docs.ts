@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import ts from "typescript";
 
-import { enforceViolations, typescriptFiles } from "#scripts/files";
+import { enforceViolations, typescriptFiles } from "#scripts/check/files";
 
 const WHITESPACE_PATTERN = /\s+/u;
 const MINIMUM_DOCUMENTATION_WORDS = 3;
