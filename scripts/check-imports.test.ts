@@ -214,9 +214,17 @@ const multiple = require("first", "second");
     ).toEqual([
       "scripts/check-imports.test.ts:1 @effect/vitest#vi: use the configured global vi for mocks",
     ]);
+    expect(
+      importViolations(
+        "scripts/check-imports.test.ts",
+        'import * as effectVitest from "@effect/vitest";',
+        resolveIdentity
+      )
+    ).toEqual([
+      "scripts/check-imports.test.ts:1 @effect/vitest#vi: use the configured global vi for mocks",
+    ]);
     for (const source of [
       'import "@effect/vitest";',
-      'import * as effectVitest from "@effect/vitest";',
       'import { it } from "@effect/vitest";',
     ]) {
       expect(

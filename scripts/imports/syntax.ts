@@ -64,13 +64,13 @@ export function moduleSpecifiers(
   return specifiers;
 }
 
-/** Returns named imports from one exact module export. */
-export function namedImports(
+/** Returns bindings that expose one exact module export. */
+export function exposedImports(
   sourceFile: ts.SourceFile,
   moduleName: string,
   importName: string
-): readonly ts.ImportSpecifier[] {
-  const imports: ts.ImportSpecifier[] = [];
+): readonly (ts.ImportSpecifier | ts.NamespaceImport)[] {
+  const imports: (ts.ImportSpecifier | ts.NamespaceImport)[] = [];
 
   for (const statement of sourceFile.statements) {
     if (
@@ -83,7 +83,11 @@ export function namedImports(
       continue;
     }
     const bindings = statement.importClause?.namedBindings;
-    if (!(bindings && ts.isNamedImports(bindings))) {
+    if (!bindings) {
+      continue;
+    }
+    if (ts.isNamespaceImport(bindings)) {
+      imports.push(bindings);
       continue;
     }
     for (const specifier of bindings.elements) {

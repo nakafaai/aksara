@@ -7,7 +7,7 @@ import {
   trackedFiles,
   typescriptFiles,
 } from "#scripts/files";
-import { moduleSpecifiers, namedImports } from "#scripts/imports/syntax";
+import { exposedImports, moduleSpecifiers } from "#scripts/imports/syntax";
 import {
   sourceConditionFromConfig,
   sourceConditionViolations,
@@ -195,7 +195,7 @@ export function importViolations(
       sourceFile.getLineAndCharacterOfPosition(specifier.getStart()).line + 1;
     return [`${file}:${line} ${specifier.text}: ${violation}`];
   });
-  const viImportViolations = namedImports(
+  const viImportViolations = exposedImports(
     sourceFile,
     "@effect/vitest",
     "vi"
