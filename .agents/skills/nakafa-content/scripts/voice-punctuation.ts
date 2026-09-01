@@ -171,7 +171,6 @@ function collectNodeSemicolons(
   source: string
 ): void {
   if (
-    node.type === "blockquote" ||
     node.type === "code" ||
     node.type === "inlineCode" ||
     ((node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement") &&

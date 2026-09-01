@@ -38,6 +38,19 @@ test("rejects an abrupt command after a scenario but preserves teaching flow and
     ),
     []
   );
+
+  const establishedExerciseHeadings = {
+    de: "## Übungsaufgaben\n\nAngenommen, ein Grundstück hat eine gekrümmte Seite. Nähere die Fläche des Grundstücks an.",
+    en: "## Practice Problems\n\nSuppose a plot of land has one curved side. Estimate the area of the land.",
+    id: "## Latihan Soal\n\nMisalkan sebidang tanah memiliki satu sisi melengkung. Hitung luas tanah tersebut.",
+  };
+
+  for (const locale of ["de", "en", "id"] as const) {
+    assert.deepEqual(
+      findLessonVoiceIssues(locale, establishedExerciseHeadings[locale]),
+      []
+    );
+  }
 });
 test("rejects irrelevant fiction labels but preserves a concrete model limitation", () => {
   const failures = {

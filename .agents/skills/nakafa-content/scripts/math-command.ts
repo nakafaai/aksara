@@ -11,7 +11,20 @@ import {
 } from "#nakafa-content/voice-mdx";
 import type { LessonVoiceIssue } from "#nakafa-content/voice-types";
 
-const BARE_LATEX_DOTS_PATTERN = /(?<!\\)\b(?:ldots|cdots|vdots|ddots)\b/gu;
+const LATEX_DOTS_PATTERN = /\b(?:ldots|cdots|vdots|ddots)\b/gu;
+
+/** Checks whether a dot name is preceded by an active command backslash. */
+function isBareDotCommand(value: string, index: number): boolean {
+  let backslashCount = 0;
+  for (
+    let cursor = index - 1;
+    cursor >= 0 && value[cursor] === "\\";
+    cursor -= 1
+  ) {
+    backslashCount += 1;
+  }
+  return backslashCount % 2 === 0;
+}
 
 /** Returns a diagnostic at one exact source offset. */
 function issueAtOffset(source: string, offset: number): LessonVoiceIssue {
@@ -76,8 +89,8 @@ function collectAttributeOffsets(
   const directRange = directAttributeOffsets(attribute, source);
   if (directRange) {
     const math = source.slice(directRange.start, directRange.end);
-    for (const match of math.matchAll(BARE_LATEX_DOTS_PATTERN)) {
-      if (match.index !== undefined) {
+    for (const match of math.matchAll(LATEX_DOTS_PATTERN)) {
+      if (match.index !== undefined && isBareDotCommand(math, match.index)) {
         offsets.add(directRange.start + match.index);
       }
     }
@@ -89,8 +102,8 @@ function collectAttributeOffsets(
   }
   for (const candidate of staticStringCandidates(expression)) {
     const math = candidate.text;
-    for (const match of math.matchAll(BARE_LATEX_DOTS_PATTERN)) {
-      if (match.index === undefined) {
+    for (const match of math.matchAll(LATEX_DOTS_PATTERN)) {
+      if (match.index === undefined || !isBareDotCommand(math, match.index)) {
         continue;
       }
       const offset = sourceOffsetForStaticMatch(

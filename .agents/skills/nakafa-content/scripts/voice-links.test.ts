@@ -94,6 +94,7 @@ test("rejects source chips used inside sentence grammar", () => {
     "Menurut [EIA](https://example.com), listrik berasal dari sumber lain.",
     "A [PubChem](https://example.com) record describes the hazard.",
     "The values published by [CIAAW](https://example.com) form a range.",
+    "According to the U.S. [EPA](https://example.com)",
   ];
 
   for (const source of failures) {

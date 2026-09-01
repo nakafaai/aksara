@@ -68,10 +68,18 @@ test("allows semicolons required by code math entities and MDX syntax", () => {
     "/>",
     '<a href="https://example.com/a;b">Link</a>',
     '<div style="color: red; display: block">Text</div>',
-    "> This source says A; therefore B.",
   ].join("\n");
 
   assert.deepEqual(findLearnerFacingSemicolonIssues(source), []);
+});
+
+test("rejects visible semicolons inside instructional blockquotes", () => {
+  assert.deepEqual(
+    findLearnerFacingSemicolonIssues(
+      "> Bandingkan posisi awal; lalu hitung jaraknya."
+    ).map(({ column, line, rule }) => ({ column, line, rule })),
+    [{ column: 25, line: 1, rule: "learner-facing-semicolon" }]
+  );
 });
 
 test("checks learner text nested in component data without scanning code", () => {

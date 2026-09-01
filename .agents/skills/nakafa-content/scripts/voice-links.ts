@@ -25,6 +25,8 @@ export const NAVIGATION_VOICE_RULES = [
 const EXTERNAL_URL_PATTERN = /^https?:\/\//iu;
 const DIGIT_PATTERN = /\d/u;
 const SENTENCE_END_PATTERN = /[.!?]["'’”)\]}]*$/u;
+const TERMINAL_ABBREVIATION_PATTERN =
+  /(?:\b(?:[a-z]\.){2,}|\b(?:dll|dr|dsb|etc|hlm|mis|no|prof|usw)\.)["'’”)\]}]*$/iu;
 const SENTENCE_START_PATTERN = /^[*_~"'‘“„([]*(?:[\p{Lu}\p{N}]|<|`)/u;
 const SOURCE_SECTION_PATTERN =
   /^#{2,5}\s+(?:Quellen|References|Referensi|Sumber|Sources)\s*$/gimu;
@@ -135,6 +137,14 @@ function continuesSentenceAfterLink(value: string): boolean {
     ""
   );
   return !SENTENCE_START_PATTERN.test(withoutClosingPunctuation);
+}
+
+/** Rejects an abbreviation dot as evidence that the source follows a claim. */
+function followsCompleteSentence(value: string): boolean {
+  return (
+    SENTENCE_END_PATTERN.test(value) &&
+    !TERMINAL_ABBREVIATION_PATTERN.test(value)
+  );
 }
 
 /** Traverses MDX with ancestors so placement can respect explicit source lists. */
@@ -271,11 +281,11 @@ export function findExternalLinkPlacementIssues(
     const isStandaloneCitation =
       before === "" &&
       (after.trim() === "" || PUNCTUATION_ONLY_PATTERN.test(after.trim()));
-    const followsCompleteSentence = SENTENCE_END_PATTERN.test(before);
+    const followsCompleteClaim = followsCompleteSentence(before);
     if (
       isExplicitSourceList ||
       isStandaloneCitation ||
-      (followsCompleteSentence && !continuesSentenceAfterLink(after))
+      (followsCompleteClaim && !continuesSentenceAfterLink(after))
     ) {
       return;
     }

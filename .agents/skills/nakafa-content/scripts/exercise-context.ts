@@ -2,9 +2,9 @@ import type { LessonVoiceLocale } from "#nakafa-content/voice-types";
 
 const SECTION_HEADING_PATTERN = /^(#{2,6})\s+(.+)$/u;
 const EXERCISE_HEADING_PATTERNS: Record<LessonVoiceLocale, RegExp> = {
-  de: /^(?:Aufgaben|Übung|Übungen)$/iu,
-  en: /^(?:Exercise|Exercises|Practice)$/iu,
-  id: /^(?:Latihan|Latihan Mandiri)$/iu,
+  de: /^(?:Aufgaben|Übung|Übungen|Übungsaufgaben)$/iu,
+  en: /^(?:Exercise|Exercises|Practice|Practice Problems)$/iu,
+  id: /^(?:Latihan|Latihan Mandiri|Latihan Soal)$/iu,
 };
 
 /** Collects lines inside an explicit exercise section. */

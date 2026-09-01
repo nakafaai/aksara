@@ -59,6 +59,7 @@ test("rejects bare dot commands only inside rendered math", () => {
     "<BlockMath math={`x_1,vdots,x_n`} />",
     '<InlineMath math={"x_1," + "ddots,x_n"} />',
     '<InlineMath math={"l" + "dots"} />',
+    '<InlineMath math="x_1,\\\\ldots,x_n" />',
   ].join("\n");
   const passing = [
     '<InlineMath math="x_1,\\ldots,x_n" />',
@@ -79,6 +80,7 @@ test("rejects bare dot commands only inside rendered math", () => {
       { line: 3, rule: "malformed-latex-command" },
       { line: 4, rule: "malformed-latex-command" },
       { line: 5, rule: "malformed-latex-command" },
+      { line: 6, rule: "malformed-latex-command" },
     ]
   );
   assert.deepEqual(findLessonVoiceIssues("en", passing), []);
