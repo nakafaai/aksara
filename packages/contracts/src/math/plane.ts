@@ -4,7 +4,6 @@ import {
   ArcStartDegreesSchema,
   ArcSweepDegreesSchema,
   GEOMETRY_TOLERANCE,
-  hasUniqueKeys,
   hasUniquePositions,
   MathAppearanceSchema,
   MathAxisRangeSchema,
@@ -12,6 +11,7 @@ import {
   MathLabelPlacementSchema,
   MathViewPaddingSchema,
   MathVisualKeySchema,
+  mathVisualIdentityIssues,
   type PlanePoint,
   PlanePointSchema,
   PositiveMeasureSchema,
@@ -239,14 +239,8 @@ export const PlaneMathVisualSchema = Schema.Struct({
   view: PlaneMathViewSchema,
 }).pipe(
   Schema.check(
-    Schema.makeFilter(({ objects }) => hasUniqueKeys(objects, ({ id }) => id), {
-      message: "Expected unique mathematical object ids.",
-    })
-  ),
-  Schema.check(
-    Schema.makeFilter(
-      ({ labels = [] }) => hasUniqueKeys(labels, ({ key }) => key),
-      { message: "Expected unique mathematical label keys." }
+    Schema.makeFilter(({ labels = [], objects }) =>
+      mathVisualIdentityIssues(objects, labels)
     )
   )
 );

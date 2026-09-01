@@ -2,29 +2,33 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "fiction",
-    topic: "setting-character-phenomenon",
+    topic: "fiction-evidence",
   },
   responses: {
     id: {
-      kind: "multiple-choice",
+      kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Awalnya ia mengutamakan kertas yang berkilau.",
-        },
-        {
-          isCorrect: true,
-          label: "Ia belajar memeriksa kekuatan rangka.",
+          isCorrect: false,
+          label: "ia membawa rangka kepada Kakek",
         },
         {
           isCorrect: false,
-          label: "Ia tetap menganggap bekas perbaikan harus disembunyikan.",
+          label: "ia menutup mata saat diminta",
+        },
+        {
+          isCorrect: false,
+          label: "layangannya tidak menang hiasan terindah",
         },
         {
           isCorrect: true,
-          label: "Ia akhirnya melihat bekas perbaikan sebagai bukti belajar.",
+          label: "ia menjelaskan arti garis perbaikan kepada juri",
+        },
+        {
+          isCorrect: false,
+          label: "angin sore mulai tetap",
         },
       ],
     },

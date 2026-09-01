@@ -2,23 +2,59 @@ export const metadata = {
   title: "Question 15",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-01",
 };
 
 A vertical pole is supported by two cables running from its top to ground anchors on opposite sides. The anchors are <InlineMath math="17" /> metres apart. The cables are <InlineMath math="25" /> metres and <InlineMath math="26" /> metres long.
 
-<LineEquation
+<MathVisual
   title="Pole and support cables"
   description="The coordinate model draws the ground, pole, and both cables as straight segments exactly to scale from the stated data."
-  cameraPosition={[1.5, 12, 42]}
-  cameraTarget={[1.5, 12, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: -7, y: 0, z: 0 }, { x: 10, y: 0, z: 0 }], color: "#64748b", smooth: false, showPoints: true },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 24, z: 0 }], color: "#16a34a", smooth: false, showPoints: true },
-    { points: [{ x: -7, y: 0, z: 0 }, { x: 0, y: 24, z: 0 }], color: "#7c3aed", smooth: false, showPoints: true },
-    { points: [{ x: 0, y: 24, z: 0 }, { x: 10, y: 0, z: 0 }], color: "#7c3aed", smooth: false, showPoints: true },
-  ]}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      axes: "hidden",
+      grid: "hidden",
+      x: { min: -8, max: 11 },
+      y: { min: -1, max: 25 },
+    },
+    view: { kind: "fit", padding: 0.75 },
+    objects: [
+      {
+        id: "ground",
+        kind: "segment",
+        appearance: "reference",
+        from: { x: -7, y: 0 },
+        to: { x: 10, y: 0 },
+      },
+      {
+        id: "pole",
+        kind: "segment",
+        appearance: "primary",
+        from: { x: 0, y: 0 },
+        to: { x: 0, y: 24 },
+      },
+      {
+        id: "left-cable",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: -7, y: 0 },
+        to: { x: 0, y: 24 },
+      },
+      {
+        id: "right-cable",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: 0, y: 24 },
+        to: { x: 10, y: 0 },
+      },
+      { id: "left-anchor", kind: "point", appearance: "highlight", at: { x: -7, y: 0 } },
+      { id: "pole-base", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pole-top", kind: "point", appearance: "highlight", at: { x: 0, y: 24 } },
+      { id: "right-anchor", kind: "point", appearance: "highlight", at: { x: 10, y: 0 } },
+    ],
+  }}
 />
 
 What is the height of the pole?

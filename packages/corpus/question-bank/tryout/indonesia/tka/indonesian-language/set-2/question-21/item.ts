@@ -2,26 +2,35 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "outline",
+    topic: "daily-relevance",
   },
   responses: {
     id: {
-      categories: ["Hasil", "Keterbatasan"],
-      kind: "category",
-      statements: [
+      kind: "single-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "Rata-rata bagian akhir lebih tinggi pada sesi berjeda",
+          isCorrect: false,
+          label:
+            "menerapkan jeda lima menit sebagai aturan tetap sebelum memeriksa perbedaan individu",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Semua peserta menjalani urutan kondisi yang sama",
+          isCorrect: false,
+          label:
+            "mengganti latihan tanpa jeda dengan urutan sesi yang sama bagi setiap peserta",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Peserta berasal dari satu kelas",
+          isCorrect: true,
+          label: "mencoba jeda terencana sambil memantau hasil pribadi",
+        },
+        {
+          isCorrect: false,
+          label: "menyatakan hasil simulasi sebagai nasihat medis",
+        },
+        {
+          isCorrect: false,
+          label: "mengabaikan perbedaan kebutuhan peserta",
         },
       ],
     },

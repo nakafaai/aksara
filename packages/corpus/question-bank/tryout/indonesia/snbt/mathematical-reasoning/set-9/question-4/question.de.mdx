@@ -2,22 +2,76 @@ export const metadata = {
   title: "Aufgabe 4",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-01",
 };
 
 ABCD ist ein Quadrat mit Seitenlänge <InlineMath math="12" />. Punkt E liegt auf BC mit <InlineMath math="BE=3" />, Punkt F auf CD mit <InlineMath math="CF=4" />. Die Geraden AE und BF schneiden sich in P.
 
-<LineEquation
+<MathVisual
   title="Quadrat mit zwei Schnittgeraden"
   description="Exakte gerade Strecken für das Quadrat ABCD sowie AE und BF."
-  cameraPosition={[6, 6, 24]}
-  cameraTarget={[6, 6, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 12, y: 0, z: 0 }, { x: 12, y: 12, z: 0 }, { x: 0, y: 12, z: 0 }, { x: 0, y: 0, z: 0 }], color: "#64748b", smooth: false, showPoints: true },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 12, y: 3, z: 0 }], color: "#7c3aed", smooth: false, showPoints: true },
-    { points: [{ x: 12, y: 0, z: 0 }, { x: 8, y: 12, z: 0 }], color: "#f97316", smooth: false, showPoints: true },
-  ]}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      axes: "hidden",
+      grid: "hidden",
+      x: { min: -1, max: 13 },
+      y: { min: -1, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.75 },
+    objects: [
+      {
+        id: "square-abcd",
+        kind: "polygon",
+        appearance: "reference",
+        vertices: [
+          { x: 0, y: 0 },
+          { x: 12, y: 0 },
+          { x: 12, y: 12 },
+          { x: 0, y: 12 },
+        ],
+      },
+      {
+        id: "segment-ae",
+        kind: "segment",
+        appearance: "primary",
+        from: { x: 0, y: 0 },
+        to: { x: 12, y: 3 },
+      },
+      {
+        id: "segment-bf",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: 12, y: 0 },
+        to: { x: 8, y: 12 },
+      },
+      {
+        id: "intersection-p",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: 11.076923076923077, y: 2.769230769230769 },
+      },
+    ],
+    labels: [
+      { key: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "point-b", at: { x: 12, y: 0 }, placement: "below-right" },
+      { key: "point-c", at: { x: 12, y: 12 }, placement: "above-right" },
+      { key: "point-d", at: { x: 0, y: 12 }, placement: "above-left" },
+      { key: "point-e", at: { x: 12, y: 3 }, placement: "right" },
+      { key: "point-f", at: { x: 8, y: 12 }, placement: "above" },
+      { key: "point-p", at: { x: 11.076923076923077, y: 2.769230769230769 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "point-a": <InlineMath math="A" />,
+    "point-b": <InlineMath math="B" />,
+    "point-c": <InlineMath math="C" />,
+    "point-d": <InlineMath math="D" />,
+    "point-e": <InlineMath math="E" />,
+    "point-f": <InlineMath math="F" />,
+    "point-p": <InlineMath math="P" />,
+  }}
 />
 
 Wie groß ist die Fläche des Dreiecks ABP?

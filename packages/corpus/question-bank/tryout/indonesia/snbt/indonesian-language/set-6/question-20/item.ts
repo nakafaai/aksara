@@ -7,8 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Menelusuri Provenans Lukisan melalui Label dan Kartu Kondisi",
+          label: "Menelusuri Provenans Lukisan melalui Label dan Kartu Kondisi",
         },
         {
           isCorrect: false,

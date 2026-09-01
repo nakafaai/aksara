@@ -20,13 +20,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label:
-            "Proving that two cells in series double a circuit's power",
+          label: "Proving that two cells in series double a circuit's power",
         },
         {
           isCorrect: false,
-          label:
-            "A universal voltage law derived from one resistor value",
+          label: "A universal voltage law derived from one resistor value",
         },
       ],
     },

@@ -2,38 +2,26 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
-    topic: "main-idea-purpose",
+    topic: "explicit-information",
   },
   responses: {
     en: {
-      kind: "single-choice",
-      options: [
+      categories: ["Identifying", "Tracing", "Comparing"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label:
-            "To require a full investigation even when a claim has little consequence",
+          correctCategoryOrder: 1,
+          label: "Writing the exact claim in one sentence",
         },
         {
-          isCorrect: true,
-          label:
-            "To argue that source checking should be taught repeatedly across subjects",
+          correctCategoryOrder: 2,
+          label: "Finding the original report behind a screenshot",
         },
         {
-          isCorrect: false,
-          label:
-            "To limit source checking to web pages rather than graphs and quotations",
-        },
-        {
-          isCorrect: false,
-          label:
-            "To teach students to suspend acceptance until several experts agree",
-        },
-        {
-          isCorrect: false,
-          label:
-            "To concentrate source-checking instruction in a separate annual workshop",
+          correctCategoryOrder: 3,
+          label: "Checking another source with independent evidence",
         },
       ],
     },

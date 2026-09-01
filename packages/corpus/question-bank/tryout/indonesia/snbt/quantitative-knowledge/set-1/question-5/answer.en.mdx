@@ -2,7 +2,7 @@ export const metadata = {
   title: "Solution to Question 5",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-01",
 };
 
 
@@ -19,83 +19,65 @@ Verify the length of side <InlineMath math="PQ" />
 
 This matches the given perimeter.
 
-<LineEquation
+<MathVisual
   title="Rhombus PQRS with Auxiliary Lines"
   description={<>Visualization of rhombus <InlineMath math="PQRS" /> with auxiliary lines forming a right triangle to calculate the length of side <InlineMath math="PQ" />.</>}
-  data={[
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: 3, z: 0 }
-      ],
-      color: "#7c3aed",
-      showPoints: true,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="P(0,0)" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="Q(4,3)" />, at: 1, offset: [0.3, 0.3, 0] },
-        { text: <InlineMath math="5" />, at: 0, offset: [2, 2, 0] }
-      ]
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      axes: "visible",
+      grid: "visible",
+      x: { min: -1, max: 9 },
+      y: { min: -4, max: 4 },
     },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 }
-      ],
-      color: "#6b7280",
-      showPoints: false,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="4" />, at: 0, offset: [2, -0.5, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        { x: 4, y: 3, z: 0 }
-      ],
-      color: "#6b7280",
-      showPoints: false,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="3" />, at: 0, offset: [0.5, 1.5, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 4, y: 3, z: 0 },
-        { x: 8, y: 0, z: 0 }
-      ],
-      color: "#7c3aed",
-      showPoints: true,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="R(8,0)" />, at: 1, offset: [0.5, -0.5, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 8, y: 0, z: 0 },
-        { x: 4, y: -3, z: 0 }
-      ],
-      color: "#7c3aed",
-      showPoints: true,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="S" />, at: 1, offset: [0.3, -0.3, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 4, y: -3, z: 0 },
-        { x: 0, y: 0, z: 0 }
-      ],
-      color: "#7c3aed",
-      showPoints: true,
-      smooth: false,
-    }
-  ]}
-  showZAxis={false}
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      {
+        id: "rhombus-pqrs",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 0 },
+          { x: 4, y: 3 },
+          { x: 8, y: 0 },
+          { x: 4, y: -3 },
+        ],
+      },
+      {
+        id: "horizontal-leg",
+        kind: "segment",
+        appearance: "construction",
+        from: { x: 0, y: 0 },
+        to: { x: 4, y: 0 },
+      },
+      {
+        id: "vertical-leg",
+        kind: "segment",
+        appearance: "construction",
+        from: { x: 4, y: 0 },
+        to: { x: 4, y: 3 },
+      },
+    ],
+    labels: [
+      { key: "point-p", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "point-q", at: { x: 4, y: 3 }, placement: "above" },
+      { key: "point-r", at: { x: 8, y: 0 }, placement: "below-right" },
+      { key: "point-s", at: { x: 4, y: -3 }, placement: "below" },
+      { key: "side-length", at: { x: 2, y: 1.5 }, placement: "above-left" },
+      { key: "horizontal-length", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "vertical-length", at: { x: 4, y: 1.5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "point-p": <><InlineMath math="P(0,0)" /></>,
+    "point-q": <><InlineMath math="Q(4,3)" /></>,
+    "point-r": <><InlineMath math="R(8,0)" /></>,
+    "point-s": <><InlineMath math="S" /></>,
+    "side-length": <><InlineMath math="5" /></>,
+    "horizontal-length": <><InlineMath math="4" /></>,
+    "vertical-length": <><InlineMath math="3" /></>,
+  }}
 />
 
 Calculate the gradient of <InlineMath math="QR" /> using the slope formula

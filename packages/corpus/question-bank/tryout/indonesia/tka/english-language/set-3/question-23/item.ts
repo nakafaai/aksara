@@ -2,37 +2,27 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
-    topic: "supporting-detail",
+    topic: "explicit-information",
   },
   responses: {
     en: {
-      kind: "single-choice",
-      options: [
+      categories: ["Repair benefit", "Replacement reason"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
+          correctCategoryOrder: 1,
           label:
-            "Keep equipment in service whenever any repair remains technically possible.",
+            "A worn wheel can be changed without replacing the whole device.",
         },
         {
-          isCorrect: false,
-          label: "Safety guards may be removed to reduce cost.",
+          correctCategoryOrder: 2,
+          label: "An unapproved battery would be required.",
         },
         {
-          isCorrect: false,
-          label:
-            "Assess repair cost without comparing the safety of available replacements.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Repeated failures across identical items reveal a design problem.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Treat avoiding a new purchase as sufficient evidence of a lower environmental cost.",
+          correctCategoryOrder: 2,
+          label: "Old equipment no longer meets accessibility needs.",
         },
       ],
     },

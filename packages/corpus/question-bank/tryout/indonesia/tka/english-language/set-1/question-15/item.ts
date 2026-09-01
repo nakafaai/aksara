@@ -12,27 +12,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Rain damages a paper notebook left near a leaking pipe.",
+          label:
+            "The notebook is damaged by an ordinary cause, and the characters recover only the evidence still available.",
         },
         {
           isCorrect: false,
           label:
-            "A rain gauge reconstructs the previous week's records after the notebook gets wet.",
+            "The story is realistic because the surviving plants reveal the exact rainfall data missing from the notebook.",
         },
         {
           isCorrect: false,
           label:
-            "A loose drainage pipe carries the notebook safely back to Mina's backpack.",
+            "The story becomes unrealistic because wet pages cannot be dried or photographed.",
         },
         {
           isCorrect: false,
           label:
-            "A shared digital copy appears before anyone photographs the readable pages.",
+            "The digital copy restores every blurred record, so the accident causes no loss of evidence.",
         },
         {
           isCorrect: false,
           label:
-            "The seedlings change color to reveal the exact time of the next storm.",
+            "Mina's final observation turns the notebook into a character that can judge her accusation.",
         },
       ],
     },

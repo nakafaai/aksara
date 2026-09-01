@@ -1,55 +1,70 @@
-
 export const metadata = {
   title: "Aufgabe 5",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-26",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-01",
 };
 
-<LineEquation
+<MathVisual
   title="Parabolische Kurve"
   description={<>Visualisierung der Parabelkurve auf der kartesischen Ebene.</>}
-  data={[
-    {
-      points: Array.from({ length: 61 }, (_, i) => {
-        const y = -2 + (i / 60) * 6; // y from -2 to 4
-        const x = -Math.pow(y - 1, 2) + 4;
-        return { x, y, z: 0 };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-      smooth: true,
-      labels: [
-        { text: <InlineMath math="-1" />, at: 10, offset: [-0.5, 0, 0], color: "#4f46e5" }, // Approx at y=-1
-      ],
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      axes: "visible",
+      grid: "visible",
+      x: { min: -6, max: 5 },
+      y: { min: -3, max: 5 },
     },
-    {
-      points: [
-        { x: 0, y: 1, z: 0 },
-        { x: 4, y: 1, z: 0 },
-      ],
-      color: "#0d9488", // Helper line
-      showPoints: false,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="1" />, at: 0, offset: [-0.5, 0, 0], color: "#4f46e5" },
-      ],
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        { x: 4, y: 1, z: 0 },
-      ],
-      color: "#0d9488", // Helper line
-      showPoints: false,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="4" />, at: 0, offset: [0, -0.5, 0], color: "#4f46e5" },
-      ],
-    },
-  ]}
-  cameraPosition={[0, 0, 15]}
-  showZAxis={false}
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      {
+        id: "parabola",
+        kind: "spline",
+        appearance: "primary",
+        samples: [
+          { x: -5, y: -2 },
+          { x: -2.25, y: -1.5 },
+          { x: 0, y: -1 },
+          { x: 1.75, y: -0.5 },
+          { x: 3, y: 0 },
+          { x: 3.75, y: 0.5 },
+          { x: 4, y: 1 },
+          { x: 3.75, y: 1.5 },
+          { x: 3, y: 2 },
+          { x: 1.75, y: 2.5 },
+          { x: 0, y: 3 },
+          { x: -2.25, y: 3.5 },
+          { x: -5, y: 4 },
+        ],
+      },
+      {
+        id: "horizontal-helper",
+        kind: "segment",
+        appearance: "construction",
+        from: { x: 0, y: 1 },
+        to: { x: 4, y: 1 },
+      },
+      {
+        id: "vertical-helper",
+        kind: "segment",
+        appearance: "construction",
+        from: { x: 4, y: 0 },
+        to: { x: 4, y: 1 },
+      },
+    ],
+    labels: [
+      { key: "minus-one", at: { x: 0, y: -1 }, placement: "left" },
+      { key: "one", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "four", at: { x: 4, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "minus-one": <><InlineMath math="-1" /></>,
+    one: <><InlineMath math="1" /></>,
+    four: <><InlineMath math="4" /></>,
+  }}
 />
 
 Die richtige Aussage zur Kurve lautet:

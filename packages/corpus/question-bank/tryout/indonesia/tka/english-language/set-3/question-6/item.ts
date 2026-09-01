@@ -4,28 +4,35 @@ const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "recount",
-    topic: "outline",
+    topic: "summary",
   },
   responses: {
     en: {
-      kind: "multiple-choice",
+      kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Recording visible details",
-        },
-        {
-          isCorrect: true,
-          label: "Linking a newspaper comparison",
+          isCorrect: false,
+          label:
+            "A volunteer completes the identifications before attaching source notes.",
         },
         {
           isCorrect: false,
           label:
-            "Recording a visitor's identification as the main label before finding another source",
+            "The archivist stores contributor notes separately to keep the main database consistent.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "A box of photographs is discarded because most names are unknown.",
         },
         {
           isCorrect: true,
-          label: "Giving each photograph a stable number",
+          label:
+            "A volunteer learns to separate observation, memory, and uncertainty in archive records.",
+        },
+        {
+          isCorrect: false,
+          label: "The writer spends the week repairing a railway station.",
         },
       ],
     },

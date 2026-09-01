@@ -15,8 +15,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label:
-            "Testing a shared glossary without flattening language",
+          label: "Testing a shared glossary without flattening language",
         },
         {
           isCorrect: false,

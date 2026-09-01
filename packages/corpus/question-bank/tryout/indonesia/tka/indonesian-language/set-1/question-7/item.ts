@@ -12,23 +12,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "ceroboh",
+          label: "berani mengambil risiko tanpa memeriksa akibatnya",
         },
         {
           isCorrect: true,
-          label: "tanggap",
+          label:
+            "tanggap memanfaatkan alat yang tersedia saat rencana pertama gagal",
         },
         {
           isCorrect: false,
-          label: "pemalu",
+          label:
+            "setia mempertahankan kebiasaan walaupun keadaan sudah berubah",
         },
         {
           isCorrect: false,
-          label: "mudah menyerah",
+          label: "bergantung pada orang dewasa untuk memulai pertolongan",
         },
         {
           isCorrect: false,
-          label: "pendendam",
+          label: "keras kepala menolak alat baru yang ditawarkan kampung",
         },
       ],
     },

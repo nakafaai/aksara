@@ -1,86 +1,81 @@
-
 export const metadata = {
   title: "Question 17",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-26",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-01",
 };
 
-<LineEquation
+<MathVisual
   title={<>Triangle <InlineMath math="ABC" /></>}
   description={<>The points show one possible initial configuration. The additional properties in statements <InlineMath math="(1)" /> and <InlineMath math="(2)" /> still have to be tested.</>}
-  data={[
-    // Equilateral triangle ABC with side length 6.
-    {
-      points: [
-        { x: -3, y: -Math.sqrt(3), z: 0 }, // B
-        { x: 3, y: -Math.sqrt(3), z: 0 }, // C
-        { x: 0, y: 2 * Math.sqrt(3), z: 0 }, // A
-        { x: -3, y: -Math.sqrt(3), z: 0 }, // Back to B
-      ],
-      color: "#2563eb",
-      showPoints: false,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="B" />, at: 0, offset: [-0.5, -0.5, 0], color: "#4f46e5" },
-        { text: <InlineMath math="C" />, at: 1, offset: [0.5, -0.5, 0], color: "#4f46e5" },
-        { text: <InlineMath math="A" />, at: 2, offset: [0, 0.5, 0], color: "#4f46e5" },
-      ],
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      axes: "hidden",
+      grid: "hidden",
+      x: { min: -4, max: 4 },
+      y: { min: -3, max: 4 },
     },
-    // Line AP through P on BC.
-    {
-      points: [
-        { x: 0, y: 2 * Math.sqrt(3), z: 0 }, // A
-        { x: -1, y: -Math.sqrt(3), z: 0 }, // P
-      ],
-      color: "#ea580c",
-      showPoints: false,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="P" />, at: 1, offset: [0, -0.5, 0], color: "#4f46e5" },
-      ],
-    },
-    // Line BQ through Q on CA.
-    {
-      points: [
-        { x: -3, y: -Math.sqrt(3), z: 0 }, // B
-        { x: 1.5, y: Math.sqrt(3) / 2, z: 0 }, // Q
-      ],
-      color: "#ea580c",
-      showPoints: false,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="Q" />, at: 1, offset: [0.5, 0, 0], color: "#4f46e5" },
-      ],
-    },
-    // Line CR through R on AB.
-    {
-      points: [
-        { x: 3, y: -Math.sqrt(3), z: 0 }, // C
-        { x: -2, y: 0, z: 0 }, // R
-      ],
-      color: "#ea580c",
-      showPoints: false,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="R" />, at: 1, offset: [-0.5, 0, 0], color: "#4f46e5" },
-      ],
-    },
-    {
-      points: [
-        { x: -3 / 4, y: -Math.sqrt(3) / 4, z: 0 },
-        { x: -3 / 4, y: -Math.sqrt(3) / 4, z: 0 },
-      ],
-      color: "#16a34a",
-      showPoints: true,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [0.35, 0.35, 0], color: "#16a34a" },
-      ],
-    },
-  ]}
-  cameraPosition={[0, 0, 15]}
-  showZAxis={false}
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      {
+        id: "triangle-abc",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 3.4641016151377544 },
+          { x: -3, y: -1.7320508075688772 },
+          { x: 3, y: -1.7320508075688772 },
+        ],
+      },
+      {
+        id: "cevian-ap",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: 0, y: 3.4641016151377544 },
+        to: { x: -1, y: -1.7320508075688772 },
+      },
+      {
+        id: "cevian-bq",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: -3, y: -1.7320508075688772 },
+        to: { x: 1.5, y: 0.8660254037844386 },
+      },
+      {
+        id: "cevian-cr",
+        kind: "segment",
+        appearance: "secondary",
+        from: { x: 3, y: -1.7320508075688772 },
+        to: { x: -2, y: 0 },
+      },
+      {
+        id: "intersection-o",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: -0.75, y: -0.4330127018922193 },
+      },
+    ],
+    labels: [
+      { key: "point-a", at: { x: 0, y: 3.4641016151377544 }, placement: "above" },
+      { key: "point-b", at: { x: -3, y: -1.7320508075688772 }, placement: "below-left" },
+      { key: "point-c", at: { x: 3, y: -1.7320508075688772 }, placement: "below-right" },
+      { key: "point-p", at: { x: -1, y: -1.7320508075688772 }, placement: "below" },
+      { key: "point-q", at: { x: 1.5, y: 0.8660254037844386 }, placement: "right" },
+      { key: "point-r", at: { x: -2, y: 0 }, placement: "left" },
+      { key: "point-o", at: { x: -0.75, y: -0.4330127018922193 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "point-a": <><InlineMath math="A" /></>,
+    "point-b": <><InlineMath math="B" /></>,
+    "point-c": <><InlineMath math="C" /></>,
+    "point-p": <><InlineMath math="P" /></>,
+    "point-q": <><InlineMath math="Q" /></>,
+    "point-r": <><InlineMath math="R" /></>,
+    "point-o": <><InlineMath math="O" /></>,
+  }}
 />
 
 Triangle <InlineMath math="ABC" /> is equilateral. Lines <InlineMath math="AP" />, <InlineMath math="BQ" />, and <InlineMath math="CR" /> intersect at point <InlineMath math="O" />.

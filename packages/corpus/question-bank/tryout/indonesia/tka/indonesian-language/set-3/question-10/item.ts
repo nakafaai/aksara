@@ -12,25 +12,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "menunjukkan Laras tidak peduli pada keselamatan",
+          label:
+            "kesal karena noda membuktikan Laras ceroboh dan tidak layak membuat peta",
         },
         {
           isCorrect: false,
           label:
-            "menunjukkan bahwa peta kertas tidak cocok digunakan untuk pemeriksaan lapangan",
+            "ragu karena peta yang pernah dikoreksi pasti tidak aman digunakan",
         },
         {
           isCorrect: false,
-          label: "menandai lokasi tempat berkumpul yang baru",
+          label: "bangga karena noda menjadi tanda tempat berkumpul yang baru",
         },
         {
           isCorrect: true,
           label:
-            "menjadi pengingat bahwa peta diperbaiki melalui pemeriksaan nyata",
+            "menghargai keberanian Laras mengakui kekeliruan dan memperbaikinya melalui pemeriksaan nyata",
         },
         {
           isCorrect: false,
-          label: "membuat peta sengaja sulit dibaca",
+          label:
+            "cemas karena Laras sengaja membiarkan jalur tetap sulit dibaca",
         },
       ],
     },

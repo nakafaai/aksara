@@ -69,6 +69,20 @@ describe("MathVisual authored syntax", () => {
   );
 
   it.effect.each([
+    ["title-missing", 'description="A coordinate plane."'],
+    ["description-missing", 'title="Coordinate plane"'],
+  ] as const)("rejects %s accessibility metadata", ([reason, attribute]) =>
+    Effect.gen(function* () {
+      const error = yield* rejectMathVisual(
+        `<MathVisual ${attribute} scene={${planeScene()}} />`
+      );
+      assert.ok(
+        error.violations.some((violation) => violation.reason === reason)
+      );
+    })
+  );
+
+  it.effect.each([
     "smooth",
     "points",
     "curvePoints",
@@ -210,8 +224,14 @@ describe("MathVisual authored syntax", () => {
       const error = yield* Effect.flip(policy.validate());
       assert.deepStrictEqual(error.violations, [
         { column: 1, line: 1, reason: "scene-missing" },
+        { column: 1, line: 1, reason: "title-missing" },
+        { column: 1, line: 1, reason: "description-missing" },
         { column: 1, line: 1, reason: "scene-expression" },
+        { column: 1, line: 1, reason: "title-missing" },
+        { column: 1, line: 1, reason: "description-missing" },
         { column: 1, line: 1, reason: "scene-dynamic-value" },
+        { column: 1, line: 1, reason: "title-missing" },
+        { column: 1, line: 1, reason: "description-missing" },
       ]);
     })
   );

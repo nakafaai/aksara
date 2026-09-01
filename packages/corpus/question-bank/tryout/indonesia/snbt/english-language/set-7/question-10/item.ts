@@ -12,8 +12,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label:
-            "Testing an actionable flood alert beyond the drill",
+          label: "Testing an actionable flood alert beyond the drill",
         },
         {
           isCorrect: false,

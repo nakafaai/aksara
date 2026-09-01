@@ -13,25 +13,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Household members should memorise the existing wording more carefully.",
+            "Keep the existing wording and ask the child to memorise it more carefully.",
         },
         {
           isCorrect: true,
-          label: "The household should revise that part of the plan.",
+          label:
+            "Clarify how the meeting places are described, then practise that part again.",
         },
         {
           isCorrect: false,
           label:
-            "The household should wait for a real emergency before deciding whether to revise it.",
-        },
-        {
-          isCorrect: false,
-          label: "The plan should omit that step so no one needs to follow it.",
+            "Wait for a real emergency to determine which meeting-place description was confusing.",
         },
         {
           isCorrect: false,
           label:
-            "The out-of-area contact should choose a new instruction alone.",
+            "Remove the second meeting place because the contact information was remembered correctly.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Ask the out-of-area contact to choose both places without reviewing household needs.",
         },
       ],
     },

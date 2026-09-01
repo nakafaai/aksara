@@ -2,29 +2,36 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "outline",
+    topic: "main-supporting-ideas",
   },
   responses: {
     id: {
-      kind: "multiple-choice",
+      kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Lama genangan.",
-        },
-        {
-          isCorrect: true,
-          label: "Kekuatan arus.",
-        },
-        {
-          isCorrect: true,
-          label: "Jenis mangrove alami di sekitar.",
+          isCorrect: false,
+          label:
+            "bibit yang tidak ditemukan dapat dicatat mati agar jumlah akhir tetap lengkap",
         },
         {
           isCorrect: false,
-          label: "Warna polibag yang paling cerah.",
+          label: "pemantauan cukup dilakukan sekali",
+        },
+        {
+          isCorrect: true,
+          label:
+            "status bibit dicatat sesuai kekuatan bukti agar hasil tidak terlalu pasti",
+        },
+        {
+          isCorrect: false,
+          label:
+            "status bibit dapat ditentukan dari catatan lama tanpa menemukan kembali penandanya",
+        },
+        {
+          isCorrect: false,
+          label: "arus tidak memengaruhi lokasi tanam",
         },
       ],
     },

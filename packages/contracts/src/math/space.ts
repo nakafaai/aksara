@@ -1,7 +1,6 @@
 import { Schema } from "effect";
 
 import {
-  hasUniqueKeys,
   hasUniquePositions,
   MathAppearanceSchema,
   MathAxisRangeSchema,
@@ -9,6 +8,7 @@ import {
   MathLabelPlacementSchema,
   MathViewPaddingSchema,
   MathVisualKeySchema,
+  mathVisualIdentityIssues,
   PositiveMeasureSchema,
   SpacePointSchema,
   sameSpacePoint,
@@ -217,14 +217,8 @@ export const SpaceMathVisualSchema = Schema.Struct({
   view: SpaceMathViewSchema,
 }).pipe(
   Schema.check(
-    Schema.makeFilter(({ objects }) => hasUniqueKeys(objects, ({ id }) => id), {
-      message: "Expected unique mathematical object ids.",
-    })
-  ),
-  Schema.check(
-    Schema.makeFilter(
-      ({ labels = [] }) => hasUniqueKeys(labels, ({ key }) => key),
-      { message: "Expected unique mathematical label keys." }
+    Schema.makeFilter(({ labels = [], objects }) =>
+      mathVisualIdentityIssues(objects, labels)
     )
   )
 );

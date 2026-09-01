@@ -2,31 +2,65 @@ export const metadata = {
   title: "Question 9",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-01",
 };
 
 The graphs <InlineMath math="y=x+2" /> and <InlineMath math="y=-2x+8" /> are shown below.
 
-<LineEquation
+<MathVisual
   title="Two straight lines"
   description="Two lines that bound a region together with the y-axis."
-  cameraPosition={[0, 4, 18]}
-  cameraTarget={[0, 4, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [{ x: -4, y: -2, z: 0 }, { x: 0, y: 2, z: 0 }, { x: 4, y: 6, z: 0 }],
-      color: "#7c3aed",
-      showPoints: true,
-      smooth: false
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      axes: "visible",
+      grid: "visible",
+      x: { min: -5, max: 5 },
+      y: { min: -3, max: 11 },
     },
-    {
-      points: [{ x: -1, y: 10, z: 0 }, { x: 0, y: 8, z: 0 }, { x: 4, y: 0, z: 0 }],
-      color: "#f97316",
-      showPoints: true,
-      smooth: false
-    }
-  ]}
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      {
+        id: "rising-line",
+        kind: "line",
+        appearance: "primary",
+        through: [{ x: -4, y: -2 }, { x: 4, y: 6 }],
+      },
+      {
+        id: "falling-line",
+        kind: "line",
+        appearance: "secondary",
+        through: [{ x: -1, y: 10 }, { x: 4, y: 0 }],
+      },
+      {
+        id: "lower-axis-intercept",
+        kind: "point",
+        appearance: "reference",
+        at: { x: 0, y: 2 },
+      },
+      {
+        id: "upper-axis-intercept",
+        kind: "point",
+        appearance: "reference",
+        at: { x: 0, y: 8 },
+      },
+      {
+        id: "line-intersection",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: 2, y: 4 },
+      },
+    ],
+    labels: [
+      { key: "rising-equation", at: { x: 3, y: 5 }, placement: "above-left" },
+      { key: "falling-equation", at: { x: 3, y: 2 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "rising-equation": <InlineMath math="y=x+2" />,
+    "falling-equation": <InlineMath math="y=-2x+8" />,
+  }}
 />
 
 The two lines and the <InlineMath math="y" />-axis bound a triangle. A vertical line <InlineMath math="x=k" />, where <InlineMath math="0<k<2" />, divides the triangle into two equal areas. What is <InlineMath math="k" />?

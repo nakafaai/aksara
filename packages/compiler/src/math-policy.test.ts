@@ -14,6 +14,18 @@ import {
 } from "#compiler/test/math";
 
 describe("createMathVisualPolicy", () => {
+  /** Resolves one authored token to the one-based location diagnostics expose. */
+  function sourceLocation(source: string, token: string, fromIndex = 0) {
+    const offset = source.indexOf(token, fromIndex);
+    assert.notStrictEqual(offset, -1);
+    const prefix = source.slice(0, offset);
+    const lineStart = prefix.lastIndexOf("\n") + 1;
+    return {
+      column: offset - lineStart + 1,
+      line: prefix.split("\n").length,
+    };
+  }
+
   it("normalizes every Standard Schema path representation", () => {
     assert.deepStrictEqual(normalizeSchemaPath(undefined), []);
     assert.deepStrictEqual(
@@ -22,9 +34,13 @@ describe("createMathVisualPolicy", () => {
     );
   });
 
-  it.effect("accepts a flow scene with no label anchors or rich labels", () =>
+  it.effect("accepts a described flow scene with no rich labels", () =>
     validateMathVisual(
-      `<MathVisual scene={${planeScene().replace(/\s+/gu, " ")}} />`
+      `<MathVisual
+        title="Coordinate plane"
+        description="One diagonal line."
+        scene={${planeScene().replace(/\s+/gu, " ")}}
+      />`
     )
   );
 
@@ -42,7 +58,7 @@ describe("createMathVisualPolicy", () => {
   it.effect("preserves a typed root schema path and authored location", () =>
     Effect.gen(function* () {
       const error = yield* rejectMathVisual(
-        '<MathVisual scene={{ space: "plane", objects: [] }} />'
+        '<MathVisual scene={{ space: "plane", objects: [] }} title="Plane" description="A mathematical plane." />'
       );
       assert.deepStrictEqual(error.violations, [
         {
@@ -75,13 +91,104 @@ describe("createMathVisualPolicy", () => {
           from: { x: "wrong", y: -1 },
           to: { x: 1, y: 1 },
         }],
-      }} />`);
+      }} title="Plane" description="A mathematical plane." />`);
       assert.deepStrictEqual(error.violations, [
         {
           column: 19,
           line: 15,
           message: "Expected number",
           path: ["objects", 0, "from", "x"],
+          reason: "scene-schema",
+        },
+      ]);
+    })
+  );
+
+  it.effect("points a duplicate object id at its repeated authored key", () =>
+    Effect.gen(function* () {
+      const rawMdx = `<MathVisual scene={{
+        space: "plane",
+        frame: {
+          kind: "cartesian",
+          axes: "visible",
+          grid: "visible",
+          x: { min: -2, max: 2 },
+          y: { min: -2, max: 2 },
+        },
+        view: { kind: "fit" },
+        objects: [
+          {
+            id: "same-point",
+            kind: "point",
+            appearance: "primary",
+            at: { x: 0, y: 0 },
+          },
+          {
+            id: "same-point",
+            kind: "point",
+            appearance: "secondary",
+            at: { x: 1, y: 1 },
+          },
+        ],
+      }} title="Plane" description="A mathematical plane." />`;
+      const first = rawMdx.indexOf('id: "same-point"');
+      const expectedLocation = sourceLocation(
+        rawMdx,
+        'id: "same-point"',
+        first + 1
+      );
+      const error = yield* rejectMathVisual(rawMdx);
+      assert.deepStrictEqual(error.violations, [
+        {
+          ...expectedLocation,
+          message: "Expected a unique mathematical object id.",
+          path: ["objects", 1, "id"],
+          reason: "scene-schema",
+        },
+      ]);
+    })
+  );
+
+  it.effect("points a duplicate label key at its repeated authored key", () =>
+    Effect.gen(function* () {
+      const rawMdx = `<MathVisual
+        scene={{
+          space: "plane",
+          frame: {
+            kind: "cartesian",
+            axes: "visible",
+            grid: "visible",
+            x: { min: -2, max: 2 },
+            y: { min: -2, max: 2 },
+          },
+          view: { kind: "fit" },
+          objects: [{
+            id: "origin-point",
+            kind: "point",
+            appearance: "primary",
+            at: { x: 0, y: 0 },
+          }],
+          labels: [
+            { key: "origin", at: { x: 0, y: 0 } },
+            { key: "origin", at: { x: 1, y: 1 } },
+          ],
+        }}
+        labels={{ origin: <>Origin</> }}
+        title="Plane"
+        description="A mathematical plane."
+      />`;
+      const first = rawMdx.indexOf('key: "origin"');
+      const expectedLocation = sourceLocation(
+        rawMdx,
+        'key: "origin"',
+        first + 1
+      );
+      const error = yield* rejectMathVisual(rawMdx);
+      assert.deepStrictEqual(error.violations, [
+        {
+          ...expectedLocation,
+          message: "Expected a unique mathematical label key.",
+          path: ["labels", 1, "key"],
           reason: "scene-schema",
         },
       ]);
@@ -139,6 +246,8 @@ describe("createMathVisualPolicy", () => {
           'labels: [{ key: "point-a", at: { x: 0, y: 0 } }],'
         )}}
         labels={{ "point-b": <>B</> }}
+        title="Plane"
+        description="A mathematical plane."
       />`);
       assert.strictEqual(error.violations[0]?.reason, "label-keys-mismatch");
     })
@@ -149,7 +258,7 @@ describe("createMathVisualPolicy", () => {
       const error = yield* rejectMathVisual(
         `<MathVisual scene={${planeScene(
           'labels: [{ key: "point-a", at: { x: 0, y: 0 } }],'
-        )}} />`
+        )}} title="Plane" description="A mathematical plane." />`
       );
       assert.strictEqual(error.violations[0]?.reason, "label-keys-mismatch");
     })

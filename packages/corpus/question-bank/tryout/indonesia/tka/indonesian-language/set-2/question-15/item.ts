@@ -2,37 +2,26 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "language-suitability",
+    topic: "outline",
   },
   responses: {
     id: {
-      kind: "single-choice",
-      options: [
+      categories: ["Sudah dicatat", "Akan dicatat"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: false,
-          label:
-            "Taman resapan dapat ditetapkan sebagai penyebab utama karena dua pengamatan berikutnya lebih baik.",
+          correctCategoryOrder: 1,
+          label: "Lama genangan",
         },
         {
-          isCorrect: false,
-          label:
-            "Hasil dapat diterapkan pada sekolah lain yang membangun taman dengan ukuran serupa.",
+          correctCategoryOrder: 2,
+          label: "Intensitas hujan",
         },
         {
-          isCorrect: false,
-          label:
-            "Taman mengurangi genangan karena intensitas hujan sesudah pembangunan lebih rendah.",
-        },
-        {
-          isCorrect: false,
-          label: "Data tambahan tidak lagi diperlukan.",
-        },
-        {
-          isCorrect: true,
-          label:
-            "Pada dua hujan yang diamati sesudah pembangunan, genangan surut lebih cepat daripada dua pengamatan sebelumnya.",
+          correctCategoryOrder: 2,
+          label: "Kelembapan tanah sebelum hujan",
         },
       ],
     },

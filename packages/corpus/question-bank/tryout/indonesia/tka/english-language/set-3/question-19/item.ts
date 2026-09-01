@@ -13,25 +13,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Return to the focused question and invite another perspective.",
-        },
-        {
-          isCorrect: false,
-          label: "End the discussion and declare them winners.",
+            "Respect the pass, return to the focused question, and invite another perspective.",
         },
         {
           isCorrect: false,
           label:
-            "Require invited speakers to respond so the participation count increases.",
-        },
-        {
-          isCorrect: false,
-          label: "Delete the written revision step.",
+            "Require the invited student to answer so every participant reaches the same turn count.",
         },
         {
           isCorrect: false,
           label:
-            "Ask the two dominant speakers to judge whether the process was fair.",
+            "Let the two dominant students continue because the first invitation did not produce an answer.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "End the discussion and use the participation list to declare the most active speaker the winner.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Remove the right to pass from the next invitation so a different voice must enter.",
         },
       ],
     },

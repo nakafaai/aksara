@@ -2,32 +2,59 @@ export const metadata = {
   title: "Question 19",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-01",
 };
 
 A cuboid has length <InlineMath math="4" /> cm, width <InlineMath math="8" /> cm, and height <InlineMath math="2" /> cm. Point <InlineMath math="P" /> is the midpoint of one vertical edge. Point <InlineMath math="Q" /> is the midpoint of the diagonally opposite vertical edge.
 
-<LineEquation
+<MathVisual
   title={<>Cuboid with points <InlineMath math="P" /> and <InlineMath math="Q" /></>}
   description={<>An exact cuboid with dimensions <InlineMath math="4\text{ cm}\times8\text{ cm}\times2\text{ cm}" />. Points <InlineMath math="P" /> and <InlineMath math="Q" /> mark the midpoints of diagonally opposite vertical edges.</>}
-  cameraPosition={[8, 7, 10]}
-  data={[
-    { kind: "cuboid", length: 4, width: 8, height: 2, color: "#7c3aed" },
-    {
-      points: [{ x: -2, y: 0, z: -4 }],
-      color: "#f97316",
-      smooth: false,
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [-0.6, 0.45, -0.6] }],
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      axes: "hidden",
+      grid: "hidden",
+      x: { min: -3, max: 3 },
+      y: { min: -2, max: 2 },
+      z: { min: -5, max: 5 },
     },
-    {
-      points: [{ x: 2, y: 0, z: 4 }],
-      color: "#16a34a",
-      smooth: false,
-      showPoints: true,
-      labels: [{ text: <InlineMath math="Q" />, at: 0, offset: [0.6, 0.45, 0.6] }],
+    view: {
+      kind: "camera",
+      position: { x: 8, y: 7, z: 10 },
+      target: { x: 0, y: 0, z: 0 },
     },
-  ]}
+    objects: [
+      {
+        id: "cuboid",
+        kind: "cuboid",
+        appearance: "primary",
+        center: { x: 0, y: 0, z: 0 },
+        size: { length: 4, width: 8, height: 2 },
+      },
+      {
+        id: "point-p",
+        kind: "point",
+        appearance: "secondary",
+        at: { x: -2, y: 0, z: -4 },
+      },
+      {
+        id: "point-q",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: 2, y: 0, z: 4 },
+      },
+    ],
+    labels: [
+      { key: "point-p", at: { x: -2, y: 0, z: -4 }, placement: "above-left" },
+      { key: "point-q", at: { x: 2, y: 0, z: 4 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "point-p": <InlineMath math="P" />,
+    "point-q": <InlineMath math="Q" />,
+  }}
 />
 
 What is the shortest surface distance from <InlineMath math="P" /> to <InlineMath math="Q" />?

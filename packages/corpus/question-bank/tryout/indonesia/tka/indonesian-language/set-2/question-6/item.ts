@@ -2,30 +2,35 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "fiction",
-    topic: "setting-character-phenomenon",
+    topic: "continuation",
   },
   responses: {
     id: {
-      kind: "multiple-choice",
+      kind: "single-choice",
       options: [
         {
-          isCorrect: true,
-          label: "Ruang radio akan dipakai sebagai laboratorium bahasa.",
-        },
-        {
-          isCorrect: true,
-          label: "Kaset lama ditemukan dalam lemari.",
+          isCorrect: false,
+          label:
+            "mengganti label tanggal dengan urutan digital agar arsip lebih mudah dipindahkan",
         },
         {
           isCorrect: false,
           label:
-            "Rekaman yang konteksnya belum jelas dipindahkan tanpa pencatatan awal.",
+            "mempertahankan kaset di ruang siaran agar konteks aslinya tidak hilang",
+        },
+        {
+          isCorrect: false,
+          label: "memutar paksa kaset yang rapuh",
         },
         {
           isCorrect: true,
-          label: "Guru sejarah menawarkan penyimpanan kering.",
+          label: "membantu mendata rekaman sebelum proses digitalisasi",
+        },
+        {
+          isCorrect: false,
+          label: "mengambil alih laboratorium bahasa",
         },
       ],
     },

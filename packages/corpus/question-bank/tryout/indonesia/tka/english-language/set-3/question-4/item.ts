@@ -12,24 +12,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "To block the entrance lane",
+          label:
+            "The yellow edges of the wooden bridges will become harder to see.",
         },
         {
           isCorrect: true,
-          label: "To let damp air move behind them",
+          label:
+            "Damp air will have less room to circulate behind the paper prints.",
         },
         {
           isCorrect: false,
           label:
-            "To keep the lower clips dry after water drains from the aisle",
+            "The clips will no longer hold the lower corners when wind enters the lane.",
         },
         {
           isCorrect: false,
-          label: "To warm the soup pots",
+          label:
+            "The warmer lamps over the cooking row will cool the soup pots.",
         },
         {
           isCorrect: false,
-          label: "To cover the central drain",
+          label:
+            "The blue circle around the central drain will be covered by the rack.",
         },
       ],
     },

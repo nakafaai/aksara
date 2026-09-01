@@ -106,13 +106,39 @@ export function sameSpacePoint(left: SpacePoint, right: SpacePoint) {
   return left.x === right.x && left.y === right.y && left.z === right.z;
 }
 
-/** Checks uniqueness using one stable key selector. */
-export function hasUniqueKeys<T>(
+/** Returns every repeated-key index after its first authored occurrence. */
+function duplicateKeyIndexes<T>(
   values: readonly T[],
   keyOf: (value: T) => string
 ) {
-  const keys = new Set(values.map(keyOf));
-  return keys.size === values.length;
+  const seen = new Set<string>();
+  const duplicates: number[] = [];
+  for (const [index, value] of values.entries()) {
+    const key = keyOf(value);
+    if (seen.has(key)) {
+      duplicates.push(index);
+    } else {
+      seen.add(key);
+    }
+  }
+  return duplicates;
+}
+
+/** Reports every repeated scene identity at its exact authored key path. */
+export function mathVisualIdentityIssues(
+  objects: readonly { readonly id: string }[],
+  labels: readonly { readonly key: string }[]
+): readonly Schema.FilterIssue[] {
+  return [
+    ...duplicateKeyIndexes(objects, ({ id }) => id).map((index) => ({
+      issue: "Expected a unique mathematical object id.",
+      path: ["objects", index, "id"],
+    })),
+    ...duplicateKeyIndexes(labels, ({ key }) => key).map((index) => ({
+      issue: "Expected a unique mathematical label key.",
+      path: ["labels", index, "key"],
+    })),
+  ];
 }
 
 /** Checks that an authored coordinate sequence contains no repeated position. */

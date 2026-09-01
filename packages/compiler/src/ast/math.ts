@@ -169,6 +169,21 @@ function recordDuplicates(
   }
 }
 
+/** Finds absent visible metadata required to describe one visual. */
+function requiredMetadataViolations(
+  attributes: readonly MdxJsxAttribute[],
+  location: SourceLocation
+): MathVisualPolicyViolation[] {
+  const violations: MathVisualPolicyViolation[] = [];
+  if (!attributes.some(({ name }) => name === "title")) {
+    violations.push({ ...location, reason: "title-missing" });
+  }
+  if (!attributes.some(({ name }) => name === "description")) {
+    violations.push({ ...location, reason: "description-missing" });
+  }
+  return violations;
+}
+
 /** Inspects the exact authored JSX surface of one MathVisual node. */
 export function inspectMathVisual(
   node: MathVisualElement
@@ -209,17 +224,21 @@ export function inspectMathVisual(
   recordDuplicates(named, "description", "attribute-duplicate", violations);
   recordDuplicates(named, "scene", "scene-duplicate", violations);
   recordDuplicates(named, "labels", "labels-duplicate", violations);
+  const metadataViolations = requiredMetadataViolations(named, fallback);
 
   const sceneAttribute = named.find(({ name }) => name === "scene");
   const labelAttribute = named.find(({ name }) => name === "labels");
   if (!sceneAttribute) {
     violations.push({ ...fallback, reason: "scene-missing" });
+    violations.push(...metadataViolations);
     return { violations };
   }
   if (named.filter(({ name }) => name === "scene").length > 1) {
+    violations.push(...metadataViolations);
     return { violations };
   }
   if (named.filter(({ name }) => name === "labels").length > 1) {
+    violations.push(...metadataViolations);
     return { violations };
   }
   const sceneExpression = attributeExpression(sceneAttribute);
@@ -228,6 +247,7 @@ export function inspectMathVisual(
       ...mdxLocation(sceneAttribute),
       reason: "scene-expression",
     });
+    violations.push(...metadataViolations);
     return { violations };
   }
   const sceneLocation = mdxLocation(sceneAttribute);
@@ -237,6 +257,7 @@ export function inspectMathVisual(
       ...estreeLocation(scene.failure.node, sceneLocation),
       reason: sceneReason(scene.failure.reason),
     });
+    violations.push(...metadataViolations);
     return { violations };
   }
   const labelLocation = labelAttribute
@@ -247,8 +268,10 @@ export function inspectMathVisual(
     : { success: true, value: [] };
   if (!labelKeys.success) {
     violations.push(labelKeys.violation);
+    violations.push(...metadataViolations);
     return { violations };
   }
+  violations.push(...metadataViolations);
   return {
     candidate: {
       labelKeys: labelKeys.value,

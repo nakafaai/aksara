@@ -2,26 +2,37 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "outline",
+    topic: "information-quality",
   },
   responses: {
     id: {
-      categories: ["Mengurangi gangguan", "Memperjelas isi", "Menjaga akses"],
-      kind: "category",
-      statements: [
+      kind: "single-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "Menyediakan earphone",
+          isCorrect: false,
+          label: "earphone terbukti menjadi satu-satunya penyebab",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Mengganti nama audio menjadi pertanyaan",
+          isCorrect: false,
+          label:
+            "transkrip mungkin tidak memengaruhi hasil karena peserta tidak diminta melaporkan penggunaannya",
         },
         {
-          correctCategoryOrder: 3,
-          label: "Menambahkan transkrip",
+          isCorrect: false,
+          label:
+            "jumlah peserta yang sama menunjukkan kelompok minggu pertama dan kedua identik",
+        },
+        {
+          isCorrect: false,
+          label:
+            "angka tersebut membuktikan museum lain akan mendapat hasil sama",
+        },
+        {
+          isCorrect: true,
+          label:
+            "kenaikan terjadi setelah paket perubahan, tetapi belum menunjukkan penyebab tertentu",
         },
       ],
     },

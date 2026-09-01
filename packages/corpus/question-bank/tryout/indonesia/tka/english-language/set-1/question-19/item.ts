@@ -12,25 +12,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Further inspection by a responsible person is needed.",
-        },
-        {
-          isCorrect: false,
-          label: "The exact location of the leak is already known.",
+          label:
+            "Continuous flow is still suspected, so keep the records and contact the responsible manager or a qualified plumber.",
         },
         {
           isCorrect: false,
           label:
-            "The meter should be replaced before a second reading is attempted.",
+            "The leak must be behind the nearest wall, so that section should be opened immediately.",
         },
         {
           isCorrect: false,
           label:
-            "Visible wall sections should be opened as soon as the indicator first moves.",
+            "The repeated movement proves the meter is faulty, so replace it before recording the result.",
         },
         {
           isCorrect: false,
-          label: "The photographs should be deleted.",
+          label:
+            "Dry visible fixtures rule out continuous flow, so no further action is needed.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Delete the first readings because they cannot help a later inspection locate the problem.",
         },
       ],
     },

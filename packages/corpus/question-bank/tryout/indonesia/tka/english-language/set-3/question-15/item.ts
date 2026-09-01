@@ -13,26 +13,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The packet's written instructions answer Lea's questions without later interpretation.",
+            "The date on the packet predicts exactly how many seeds will germinate at every checkpoint.",
         },
         {
           isCorrect: false,
-          label: "A seed travels backward from 2040.",
+          label:
+            "The project becomes fantastic because students cooperate across years without meeting one another.",
         },
         {
           isCorrect: true,
           label:
-            "Stored seeds are tested at scheduled intervals by different classes.",
+            "An archive identifies the planned sequence, and each class records results it can directly observe.",
         },
         {
           isCorrect: false,
           label:
-            "The storage date alone makes the result of each later seed test predictable.",
+            "The project is realistic because every stored seed is guaranteed to remain viable through 2040.",
         },
         {
           isCorrect: false,
           label:
-            "The archive record determines when stored seeds will become viable.",
+            "The final note turns the 2036 class into visitors who can answer Lea from the future.",
         },
       ],
     },

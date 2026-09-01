@@ -12,28 +12,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "mendorong Nara mengganti layangan lama dengan yang tampilannya lebih rapi",
+          label: "kecewa karena Kakek mengabaikan rangka demi tampilan baru",
         },
         {
           isCorrect: false,
           label:
-            "lebih menghargai penampilan layangan daripada proses pengujian rangkanya",
+            "kagum karena Kakek menutupi setiap bekas perbaikan pada layangan",
         },
         {
           isCorrect: false,
           label:
-            "mengutamakan cerita proses perbaikan dibanding hasil uji terbang",
+            "khawatir karena Kakek mementingkan cerita perbaikan dan mengabaikan hasil uji terbang",
         },
         {
           isCorrect: true,
           label:
-            "menghargai proses dan membiarkan Nara menemukan maknanya sendiri",
+            "menghargai kesabaran Kakek yang menuntun Nara sampai ia menemukan makna perbaikan sendiri",
         },
         {
           isCorrect: false,
           label:
-            "memperbaiki rangka untuk Nara tanpa menjelaskan alasan setiap langkah",
+            "kesal karena Kakek memperbaiki rangka tanpa memberi Nara kesempatan belajar",
         },
       ],
     },

@@ -13,21 +13,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Frustration because the class documented barriers that its revisions had not resolved",
+            "Frustration that the class recorded unresolved barriers without cancelling the fair",
         },
         {
           isCorrect: false,
           label:
-            "Relief because the revised route is likely to remain usable during the next rain",
+            "Relief that the revised route proves the next disruption will be manageable",
         },
         {
           isCorrect: false,
           label:
-            "Disappointment because the revisions did not remove the remaining barriers",
+            "Disappointment that the class considered accessibility only after visitors complained",
         },
         {
           isCorrect: false,
-          label: "Fear because the robotics display disappeared",
+          label:
+            "Approval of the delay because extra setup time guarantees equal access",
         },
         {
           isCorrect: true,

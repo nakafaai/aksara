@@ -2,38 +2,29 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
-    topic: "fact-opinion",
+    topic: "synthesis",
   },
   responses: {
     en: {
-      kind: "single-choice",
+      kind: "multiple-choice",
       options: [
         {
           isCorrect: true,
-          label:
-            "Public organizations should check repairability before replacement.",
+          label: "Assess safety.",
+        },
+        {
+          isCorrect: true,
+          label: "Estimate additional useful life.",
         },
         {
           isCorrect: false,
-          label:
-            "The passage says that a repair should not become an automatic rule.",
+          label: "Ignore the replacement option.",
         },
         {
-          isCorrect: false,
-          label:
-            "The passage says that maintenance records can reveal repeated failures.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage states that an unapproved battery may create greater risk.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage uses the word transparent to describe the repair-first check.",
+          isCorrect: true,
+          label: "Record the reason for the final choice.",
         },
       ],
     },

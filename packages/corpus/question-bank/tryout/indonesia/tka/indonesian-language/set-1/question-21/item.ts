@@ -2,26 +2,34 @@ import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 
 const item: QuestionItem = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "outline",
+    topic: "main-supporting-ideas",
   },
   responses: {
     id: {
-      categories: ["Boleh", "Tidak boleh"],
-      kind: "category",
-      statements: [
+      kind: "single-choice",
+      options: [
         {
-          correctCategoryOrder: 1,
-          label: "Potongan sayur",
+          isCorrect: true,
+          label:
+            "kesalahan menurun setelah contoh nyata dan penjelasan ditambahkan",
         },
         {
-          correctCategoryOrder: 2,
-          label: "Kuah berminyak",
+          isCorrect: false,
+          label: "kantin menghasilkan sisa makanan setiap hari",
         },
         {
-          correctCategoryOrder: 1,
-          label: "Daun kering",
+          isCorrect: false,
+          label: "lubang biopori diperiksa secara berkala",
+        },
+        {
+          isCorrect: false,
+          label: "relawan berdiri di dekat wadah",
+        },
+        {
+          isCorrect: false,
+          label: "uji coba berlangsung empat minggu",
         },
       ],
     },

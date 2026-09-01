@@ -12,28 +12,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "The passage says that the school should report different measures honestly.",
+          label: "The proposed trial would last one term.",
+        },
+        {
+          isCorrect: false,
+          label: "The school would compare five named outcomes.",
         },
         {
           isCorrect: false,
           label:
-            "The passage says that the school should keep a clear route back if the costs outweigh the benefits.",
+            "The proposal includes a route back if the costs outweigh the benefits.",
         },
         {
           isCorrect: false,
-          label:
-            "The passage states that a later bus may prevent a student from collecting a younger sibling.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "The passage states that the schedule affects several connected routines.",
+          label: "One example concerns collecting a younger sibling.",
         },
         {
           isCorrect: true,
           label:
-            "A secondary school should test a later start time for one term.",
+            "A reversible trial is the fairest timetable policy for every school.",
         },
       ],
     },

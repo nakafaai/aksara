@@ -2,20 +2,85 @@ export const metadata = {
   title: "Soal 19",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-01",
 };
 
 Sebuah balok terletak pada oktan pertama dengan salah satu titik sudutnya di titik asal O. Tiga rusuk yang berawal dari O memiliki panjang <InlineMath math="4" />, <InlineMath math="6" />, dan <InlineMath math="8" />. Ujung lain ketiga rusuk tersebut adalah A, B, dan C.
 
-<LineEquation
+<MathVisual
   title="Bidang potong dalam balok"
   description="Balok eksak dan segitiga yang melalui titik potong sumbu A, B, dan C."
-  cameraPosition={[12, 11, 14]}
-  cameraTarget={[2, 3, 4]}
-  data={[
-    { kind: "cuboid", length: 4, width: 8, height: 6, center: { x: 2, y: 3, z: 4 }, color: "#64748b", lineWidth: 2 },
-    { points: [{ x: 4, y: 0, z: 0 }, { x: 0, y: 6, z: 0 }, { x: 0, y: 0, z: 8 }, { x: 4, y: 0, z: 0 }], color: "#7c3aed", lineWidth: 3, smooth: false, showPoints: true },
-  ]}
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      axes: "visible",
+      grid: "visible",
+      x: { min: -1, max: 5 },
+      y: { min: -1, max: 7 },
+      z: { min: -1, max: 9 },
+    },
+    view: {
+      kind: "camera",
+      position: { x: 12, y: 11, z: 14 },
+      target: { x: 2, y: 3, z: 4 },
+    },
+    objects: [
+      {
+        id: "cuboid",
+        kind: "cuboid",
+        appearance: "reference",
+        center: { x: 2, y: 3, z: 4 },
+        size: { length: 4, width: 8, height: 6 },
+      },
+      {
+        id: "cross-section",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 4, y: 0, z: 0 },
+          { x: 0, y: 6, z: 0 },
+          { x: 0, y: 0, z: 8 },
+        ],
+      },
+      {
+        id: "origin",
+        kind: "point",
+        appearance: "secondary",
+        at: { x: 0, y: 0, z: 0 },
+      },
+      {
+        id: "point-a",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: 4, y: 0, z: 0 },
+      },
+      {
+        id: "point-b",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: 0, y: 6, z: 0 },
+      },
+      {
+        id: "point-c",
+        kind: "point",
+        appearance: "highlight",
+        at: { x: 0, y: 0, z: 8 },
+      },
+    ],
+    labels: [
+      { key: "origin", at: { x: 0, y: 0, z: 0 }, placement: "below-left" },
+      { key: "point-a", at: { x: 4, y: 0, z: 0 }, placement: "below-right" },
+      { key: "point-b", at: { x: 0, y: 6, z: 0 }, placement: "above-left" },
+      { key: "point-c", at: { x: 0, y: 0, z: 8 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    origin: <InlineMath math="O" />,
+    "point-a": <InlineMath math="A" />,
+    "point-b": <InlineMath math="B" />,
+    "point-c": <InlineMath math="C" />,
+  }}
 />
 
 Berapa jarak tegak lurus titik O ke bidang ABC?

@@ -4,36 +4,24 @@ const item: QuestionItem = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "loanwords",
+    topic: "outline",
   },
   responses: {
     id: {
-      kind: "single-choice",
-      options: [
+      categories: ["Masukan", "Proses", "Keluaran"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: true,
-          label:
-            "karena benih bergerak dari lemari ke kebun lalu sebagian hasilnya kembali, sehingga terjadi putaran pertukaran",
+          correctCategoryOrder: 1,
+          label: "Persediaan benih di dalam lemari sebelum dipinjam",
         },
         {
-          isCorrect: false,
-          label:
-            "karena semua benih harus tetap berada di lemari sampai masa simpannya berakhir",
+          correctCategoryOrder: 2,
+          label: "Pengeringan benih setelah panen",
         },
         {
-          isCorrect: false,
-          label:
-            "karena setiap benih diuji di laboratorium sebelum boleh berpindah tangan",
-        },
-        {
-          isCorrect: false,
-          label:
-            "karena pengelola mengganti semua varietas lama dengan varietas yang lebih cepat tumbuh",
-        },
-        {
-          isCorrect: false,
-          label:
-            "karena kartu riwayat menjamin hasil panen yang sama di setiap kebun",
+          correctCategoryOrder: 3,
+          label: "Kartu riwayat yang telah diisi",
         },
       ],
     },

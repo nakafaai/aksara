@@ -24,8 +24,9 @@ const item: QuestionItem = {
           label: "Sorting mixed bolts by using notes and measurements",
         },
         {
-          isCorrect: true,
-          label: "Guiding a new volunteer with questions and a safe test",
+          isCorrect: false,
+          label:
+            "Giving a new volunteer the repair answer before asking what the rider noticed",
         },
       ],
     },

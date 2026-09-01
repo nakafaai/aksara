@@ -8,24 +8,20 @@ const item: QuestionItem = {
   },
   responses: {
     id: {
-      kind: "multiple-choice",
-      options: [
+      categories: ["Hasil", "Keterbatasan"],
+      kind: "category",
+      statements: [
         {
-          isCorrect: true,
-          label: "Membagi peserta ke dalam dua urutan kondisi.",
+          correctCategoryOrder: 1,
+          label: "Rata-rata bagian akhir lebih tinggi pada sesi berjeda",
         },
         {
-          isCorrect: true,
-          label: "Menguji kesetaraan paket pada kelompok lain.",
+          correctCategoryOrder: 2,
+          label: "Semua peserta menjalani urutan kondisi yang sama",
         },
         {
-          isCorrect: false,
-          label: "Menghapus pencatatan jawaban bagian akhir.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Memastikan setiap peserta memulai dari kondisi tanpa jeda sebelum kondisi lain.",
+          correctCategoryOrder: 2,
+          label: "Peserta berasal dari satu kelas",
         },
       ],
     },

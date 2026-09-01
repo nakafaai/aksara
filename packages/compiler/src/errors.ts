@@ -83,7 +83,9 @@ export const MathVisualSourceReasonSchema = Schema.Literals([
   "attribute-spread",
   "attribute-unexpected",
   "children-unexpected",
+  "description-missing",
   "placement-inline",
+  "title-missing",
   "scene-missing",
   "scene-duplicate",
   "scene-expression",
@@ -103,13 +105,6 @@ export const MathVisualSourceReasonSchema = Schema.Literals([
   "label-keys-mismatch",
 ]);
 export type MathVisualSourceReason = typeof MathVisualSourceReasonSchema.Type;
-
-/** Every stable cause for rejecting one statically inspected MathVisual. */
-export const MathVisualPolicyReasonSchema = Schema.Union([
-  MathVisualSourceReasonSchema,
-  Schema.Literal("scene-schema"),
-]);
-export type MathVisualPolicyReason = typeof MathVisualPolicyReasonSchema.Type;
 
 const MathVisualSourceLocationFields = {
   column: Schema.Int.check(Schema.isGreaterThan(0)),
