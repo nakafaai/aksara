@@ -1,6 +1,6 @@
 import { Schema } from "effect";
 import { Sha256HashSchema } from "#contracts/ids";
-import { ContentProjectionSchema } from "#contracts/projection/spec";
+import { CurrentContentProjectionSchema } from "#contracts/projection/spec";
 
 export const LOCAL_PREVIEW_ARTIFACT_PREFIX = "/v1/artifacts/";
 
@@ -21,7 +21,7 @@ function hasCoherentArtifactPath(input: {
 export const PreviewArtifactSchema = Schema.Struct({
   artifactHash: Sha256HashSchema,
   artifactPath: Schema.Trimmed.check(Schema.isNonEmpty()),
-  projection: ContentProjectionSchema,
+  projection: CurrentContentProjectionSchema,
 }).pipe(
   Schema.check(
     Schema.makeFilter(hasCoherentArtifactPath, {

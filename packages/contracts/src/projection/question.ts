@@ -1,6 +1,6 @@
-import { Effect, Schema } from "effect";
+import { Effect, Schema, Struct } from "effect";
 import { ContentAuthorSchema } from "#contracts/content";
-import { withPublicationDates } from "#contracts/date";
+import { DateOnlySchema, withPublicationDates } from "#contracts/date";
 import type { ContentKeySchema } from "#contracts/ids";
 import type { ArtifactLocaleSchema } from "#contracts/locale";
 import {
@@ -64,6 +64,78 @@ export const QuestionBodyProjectionSchema = Schema.Union([
   QuestionAnswerProjectionSchema,
 ]);
 export type QuestionBodyProjection = typeof QuestionBodyProjectionSchema.Type;
+
+/** One predecessor choice retained only while authenticated rollback needs it. */
+const HistoricalQuestionChoiceSchema = Schema.Struct({
+  label: Schema.String,
+  value: Schema.Boolean,
+}).mapFields(Struct.map(Schema.mutableKey));
+
+/** Checks that one predecessor prompt preserves exactly one correct choice. */
+function hasExactlyOneCorrectChoice(
+  choices: readonly (typeof HistoricalQuestionChoiceSchema.Type)[]
+) {
+  return choices.filter(({ value }) => value).length === 1;
+}
+
+const HistoricalQuestionChoiceListSchema = Schema.Array(
+  HistoricalQuestionChoiceSchema
+).pipe(
+  Schema.mutable,
+  Schema.check(
+    Schema.makeFilter(hasExactlyOneCorrectChoice, {
+      identifier: "HistoricalQuestionChoiceList",
+      message: "Expected exactly one correct historical choice.",
+    })
+  )
+);
+
+const HistoricalQuestionMetadataSchema = Schema.Struct({
+  authors: Schema.Array(ContentAuthorSchema),
+  date: DateOnlySchema,
+  title: Schema.String,
+});
+
+const HistoricalQuestionProjectionFields = {
+  kind: Schema.Literal("question-body"),
+  metadata: HistoricalQuestionMetadataSchema,
+};
+
+const HistoricalQuestionPromptProjectionSchema =
+  QuestionPromptIdentitySchema.mapFields(
+    (fields) => ({
+      ...fields,
+      ...HistoricalQuestionProjectionFields,
+      choices: HistoricalQuestionChoiceListSchema,
+    }),
+    { unsafePreserveChecks: true }
+  );
+
+const HistoricalQuestionAnswerProjectionSchema =
+  QuestionAnswerIdentitySchema.mapFields(
+    (fields) => ({ ...fields, ...HistoricalQuestionProjectionFields }),
+    { unsafePreserveChecks: true }
+  );
+
+/**
+ * Exact predecessor Question bytes retained for authenticated rollback reads.
+ * Delete only after two accepted scoped rebuilds and an authoritative
+ * current/prior audit reports zero `choices` and `date` projections.
+ */
+export const HistoricalQuestionBodyProjectionSchema = Schema.Union([
+  HistoricalQuestionPromptProjectionSchema,
+  HistoricalQuestionAnswerProjectionSchema,
+]);
+export type HistoricalQuestionBodyProjection =
+  typeof HistoricalQuestionBodyProjectionSchema.Type;
+
+/** Current Question values plus exact predecessor rollback bytes. */
+export const ReadableQuestionBodyProjectionSchema = Schema.Union([
+  QuestionBodyProjectionSchema,
+  HistoricalQuestionBodyProjectionSchema,
+]);
+export type ReadableQuestionBodyProjection =
+  typeof ReadableQuestionBodyProjectionSchema.Type;
 
 interface QuestionProjectionInput {
   readonly artifactLocale: typeof ArtifactLocaleSchema.Type;
@@ -135,36 +207,54 @@ export const makeQuestionBodyProjection = Effect.fn(
   return makeQuestionAnswerProjection({ ...input, bodyKind: "answer" });
 });
 
+/** Preserves the exact response fields owned by each readable prompt format. */
+function canonicalQuestionBody(projection: ReadableQuestionBodyProjection) {
+  if (projection.bodyKind === "answer") {
+    return {};
+  }
+  if ("response" in projection) {
+    return { response: canonicalQuestionResponse(projection.response) };
+  }
+  return {
+    choices: projection.choices.map(({ label, value }) => ({ label, value })),
+  };
+}
+
 /** Serializes one question projection with stable signed field order. */
 export function canonicalizeQuestionProjection(
-  projection: QuestionBodyProjection
+  projection: ReadableQuestionBodyProjection
 ) {
+  const body = canonicalQuestionBody(projection);
+  const metadata =
+    "date" in projection.metadata
+      ? {
+          authors: projection.metadata.authors.map(({ name }) => ({ name })),
+          date: projection.metadata.date,
+          title: projection.metadata.title,
+        }
+      : {
+          authors: projection.metadata.authors.map(({ name }) => ({ name })),
+          ...(projection.metadata.dateModified === undefined
+            ? {}
+            : { dateModified: projection.metadata.dateModified }),
+          datePublished: projection.metadata.datePublished,
+          title: projection.metadata.title,
+        };
   return JSON.stringify({
     bodyKind: projection.bodyKind,
-    ...(projection.bodyKind === "question"
-      ? {
-          response: canonicalQuestionResponse(projection.response),
-        }
-      : {}),
+    ...body,
     artifactLocale: projection.artifactLocale,
-    ...(projection.blueprint === undefined
+    ...(!("blueprint" in projection) || projection.blueprint === undefined
       ? {}
       : { blueprint: canonicalQuestionBlueprint(projection.blueprint) }),
     contentKey: projection.contentKey,
     kind: projection.kind,
-    metadata: {
-      authors: projection.metadata.authors.map(({ name }) => ({ name })),
-      ...(projection.metadata.dateModified === undefined
-        ? {}
-        : { dateModified: projection.metadata.dateModified }),
-      datePublished: projection.metadata.datePublished,
-      title: projection.metadata.title,
-    },
+    metadata,
     peerContentKey: projection.peerContentKey,
     questionKey: projection.questionKey,
     questionNumber: projection.questionNumber,
     setKey: projection.setKey,
-    ...(projection.stimulusKey === undefined
+    ...(!("stimulusKey" in projection) || projection.stimulusKey === undefined
       ? {}
       : { stimulusKey: projection.stimulusKey }),
   });

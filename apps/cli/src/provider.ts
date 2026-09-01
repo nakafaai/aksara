@@ -15,7 +15,7 @@ import {
   type LocalPreviewManifest,
   LocalPreviewManifestSchema,
 } from "@nakafa/aksara-contracts/preview/spec";
-import type { ContentProjection } from "@nakafa/aksara-contracts/projection/spec";
+import type { CurrentContentProjection } from "@nakafa/aksara-contracts/projection/spec";
 import { Effect, HashMap, Redacted, Schema } from "effect";
 import { isAddressInfo } from "#cli/address";
 import {
@@ -44,7 +44,7 @@ type PreviewFailure = Extract<
 /** One signed body and its matching renderer projection. */
 interface PreviewReadyResult {
   readonly artifact: SignedContentArtifact;
-  readonly projection: ContentProjection;
+  readonly projection: CurrentContentProjection;
 }
 
 /** Ordered values exposed only after every required body succeeds together. */

@@ -73,7 +73,7 @@ describe("prepared release staging", () => {
     })
   );
 
-  it.effect("stages rollback projections through the canonical operation", () =>
+  it.effect("confines rollback projections to the group-only operation", () =>
     Effect.gen(function* () {
       const stageGroup = vi.fn((_group: StageGroupInput) => Effect.void);
       const target = makePublicationTarget({ stageGroup });
@@ -86,7 +86,7 @@ describe("prepared release staging", () => {
       });
       expect(stageGroup).toHaveBeenCalledOnce();
       expect(stageGroup.mock.calls[0]?.[0].requests).toMatchObject([
-        { operation: "stageProjectionBatch" },
+        { operation: "stageRollbackProjectionBatch" },
       ]);
     })
   );
