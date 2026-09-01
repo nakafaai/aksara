@@ -66,8 +66,8 @@ Gunakan nilai eigen dengan magnitudo terkecil pada penyebut. Tanda positif atau 
 
 | Ukuran <InlineMath math="\kappa(A)" /> | Artinya |
 | --- | --- |
-| Dekat <InlineMath math="1" /> | Pada kasus terburuk, perubahan relatif pada solusi hampir sama besar dengan perubahan relatif pada masukan. |
-| Besar | Beberapa arah masukan dapat menimbulkan perubahan relatif yang jauh lebih besar pada solusi. |
+| Dekat <InlineMath math="1" /> | Pada kasus terburuk, perubahan relatif pada data <InlineMath math="b" /> menghasilkan perubahan relatif pada solusi yang hampir sama besar. |
+| Besar | Perubahan data <InlineMath math="b" /> pada arah tertentu dapat menghasilkan perubahan relatif yang jauh lebih besar pada solusi. |
 | Tak hingga | Matriks singular, sehingga masalah invers tidak memiliki solusi unik. |
 
 ## Sensitivitas Sistem Diagonal Dua Dimensi
@@ -86,9 +86,9 @@ Untuk <InlineMath math="b=(b_1,b_2)^{\mathsf T}" />, solusinya adalah
 
 Perubahan kecil pada <InlineMath math="b_2" /> diperbesar sebesar <InlineMath math="1/\varepsilon" /> pada komponen solusi kedua. Matriks tersebut mendekati singular karena vektor pada arah koordinat kedua dikalikan dengan <InlineMath math="\varepsilon" /> yang mendekati nol.
 
-## Batas perturbasi
+## Batas Perubahan Solusi
 
-Pertimbangkan sistem awal <InlineMath math="Ax=b" /> dan sistem yang mengalami perturbasi berikut.
+Bandingkan sistem awal <InlineMath math="Ax=b" /> dengan sistem yang matriks dan vektornya berubah sedikit.
 
 <BlockMath math="(A+\delta A)(x+\delta x)=b+\delta b" />
 
@@ -100,7 +100,7 @@ Jika syarat tersebut terpenuhi, perubahan relatif solusi dibatasi oleh
 
 <BlockMath math="\frac{\|\delta x\|}{\|x\|}\le\frac{\kappa(A)}{1-\kappa(A)\|\delta A\|/\|A\|}\left(\frac{\|\delta b\|}{\|b\|}+\frac{\|\delta A\|}{\|A\|}\right)" />
 
-Batas ini menjelaskan kasus terburuk. Kebanyakan perturbasi dapat menghasilkan penguatan yang lebih kecil.
+Batas ini menunjukkan perubahan solusi terbesar yang mungkin terjadi. Pada banyak perubahan kecil, perubahan solusi lebih kecil daripada batas tersebut.
 
 ## Kondisi Masalah dan Stabilitas Algoritma
 

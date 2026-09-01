@@ -15,19 +15,19 @@ Untuk <InlineMath math="A\in\mathbb{R}^{m\times n}" /> dan <InlineMath math="b\i
 
 Solusi minimum selalu ada, bahkan ketika persamaan <InlineMath math="Ax=b" /> tidak konsisten. Jika <InlineMath math="A" /> tidak berperingkat penuh, solusinya mungkin tidak tunggal. Jika <InlineMath math="A" /> hampir tidak berperingkat penuh, perubahan kecil pada <InlineMath math="b" /> dapat menyebabkan perubahan besar pada parameter hasil pencocokan.
 
-Dekomposisi nilai singular menjelaskan penguatan tersebut. Untuk <InlineMath math="A=U\Sigma V^T" />, solusi kuadrat terkecil memuat faktor <InlineMath math="1/\sigma_i" />. Komponen data pada arah dengan nilai singular <InlineMath math="\sigma_i" /> yang sangat kecil akan diperbesar.
+Dekomposisi nilai singular menunjukkan mengapa kesalahan kecil pada data dapat menghasilkan perubahan besar pada solusi. Dalam solusi kuadrat terkecil, setiap komponen data dibagi dengan nilai singular yang sesuai. Jika nilai singular itu sangat kecil, kesalahan pada komponen data tersebut ikut diperbesar.
 
 ## Masalah Tikhonov
 
-Regularisasi Tikhonov menyeimbangkan kecocokan terhadap data dengan batasan yang dipilih, misalnya kedekatan terhadap <InlineMath math="x_0" /> atau perubahan yang mulus antarparameter.
+Regularisasi Tikhonov menyeimbangkan kecocokan terhadap data dengan penalti yang dipilih, misalnya jarak dari <InlineMath math="x_0" /> atau perubahan antarparameter.
 
 <BlockMath math="\min_x\left(\|Ax-b\|_2^2+\alpha^2\|L(x-x_0)\|_2^2\right),\qquad \alpha>0" />
 
-Di sini <InlineMath math="x_0" /> adalah taksiran acuan dan <InlineMath math="L" /> menentukan besaran yang perlu tetap kecil atau mulus. Nilai <InlineMath math="\alpha" /> mengatur seberapa kuat solusi mengikuti data dan seberapa kuat solusi mengikuti batasan dari <InlineMath math="L" />.
+Di sini <InlineMath math="x_0" /> adalah perkiraan acuan dan <InlineMath math="L" /> menentukan besaran yang diberi penalti. Nilai <InlineMath math="\alpha" /> menentukan perbandingan bobot antara kecocokan data dan penalti yang ditentukan oleh <InlineMath math="L" />.
 
 - <InlineMath math="L=I" /> memberi penalti pada jarak dari <InlineMath math="x_0" />.
 - Matriks selisih pertama memberi penalti pada perubahan cepat antara parameter yang bertetangga.
-- Matriks selisih kedua memberi penalti pada kelengkungan dan mendorong profil yang lebih mulus.
+- Matriks selisih kedua memberi penalti lebih besar pada profil yang banyak melengkung, sehingga solusi cenderung lebih mulus.
 
 Penalti menambahkan asumsi model tentang bentuk solusi dan dapat memperbaiki kondisi numerik masalah optimisasi. Informasi di dalam data pengamatan tetap sama.
 
@@ -76,7 +76,7 @@ Dengan <InlineMath math="L=I" />, <InlineMath math="x_0=0" />, dan <InlineMath m
 <BlockMath math="x_{0{,}2}=\begin{pmatrix}1/1{,}04\\0{,}02/0{,}05\end{pmatrix}=\begin{pmatrix}25/26\\0{,}4\end{pmatrix}" />
 </MathContainer>
 
-Perubahan <InlineMath math="0{,}01" /> yang sama kini hanya mengubah parameter kedua sebesar <InlineMath math="0{,}02" />. Hasilnya lebih stabil, tetapi taksiran menjadi bias karena <InlineMath math="0{,}4" /> lebih jauh dari nilai tanpa regularisasi <InlineMath math="2" />.
+Perubahan data sebesar <InlineMath math="0{,}01" /> kini hanya mengubah parameter kedua sebesar <InlineMath math="0{,}02" />. Nilai <InlineMath math="0{,}4" /> juga menunjukkan bahwa penalti membuat perkiraan parameter kedua mendekati <InlineMath math="0" />. Jadi, regularisasi mengurangi sensitivitas terhadap perubahan data sekaligus menggeser perkiraan parameter.
 
 ## Memilih Parameter Regularisasi
 
@@ -97,7 +97,7 @@ Matriks diagonal <InlineMath math="L=\operatorname{diag}(\omega_1,\ldots,\omega_
 
 <BlockMath math="\|L(x-x_0)\|_2^2=\sum_{i=1}^n\omega_i^2(x_i-x_{0i})^2" />
 
-Nilai <InlineMath math="\omega_i" /> yang lebih besar menarik <InlineMath math="x_i" /> lebih kuat ke nilai acuan <InlineMath math="x_{0i}" />. Pilih bobot berdasarkan satuan dan informasi awal yang jelas, misalnya skala wajar setiap parameter atau perubahan yang diperkirakan mulus antarparameter. Tingkat kesulitan menaksir parameter belum cukup untuk menentukan bobot.
+Semakin besar <InlineMath math="\omega_i" />, semakin dekat nilai <InlineMath math="x_i" /> yang dipilih model dengan nilai acuan <InlineMath math="x_{0i}" />. Pilih bobot berdasarkan satuan dan informasi awal yang jelas, misalnya skala wajar setiap parameter atau perubahan yang diperkirakan mulus antarparameter. Tingkat kesulitan memperkirakan parameter belum cukup untuk menentukan bobot.
 
 Jika persamaan seperti <InlineMath math="x_i=c" /> harus selalu terpenuhi, masukkan persamaan itu sebagai syarat tersendiri dalam model. Batas seperti <InlineMath math="l_i\le x_i\le u_i" /> memerlukan metode kuadrat terkecil yang dapat membatasi nilai solusi. Penalti yang sangat besar dapat mendekatkan solusi ke persamaan tersebut, tetapi tidak menjamin persamaan terpenuhi tepat dan dapat memperburuk skala numerik.
 
