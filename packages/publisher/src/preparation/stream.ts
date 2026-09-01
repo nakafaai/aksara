@@ -3,7 +3,7 @@ import { verifyCompiledContentSourceHash } from "@nakafa/aksara-contracts/artifa
 import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import {
-  type ContentProjection,
+  type CurrentContentProjection,
   familyForProjection,
 } from "@nakafa/aksara-contracts/projection/spec";
 import {
@@ -45,7 +45,7 @@ export type DerivedContentRecord =
       readonly item: ContentReleaseItem;
       readonly kind: "upsert";
       readonly payload: PreparedContentUpsert["payload"];
-      readonly projection: ContentProjection;
+      readonly projection: CurrentContentProjection;
       readonly rollback: RollbackSnapshotEntry;
     };
 

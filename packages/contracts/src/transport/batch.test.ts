@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
+import { ContentProjectionSchema } from "#contracts/projection/spec";
 import { batchCeilingCases, emptyBatchCases } from "#contracts/test/batch";
 import {
   artifact,
@@ -13,12 +14,36 @@ import {
   StageItemBatchInputSchema,
   StageItemBatchRequestSchema,
   StageProjectionBatchInputSchema,
+  StageRollbackProjectionBatchInputSchema,
+  StageRollbackProjectionBatchRequestSchema,
   StageRouteBatchInputSchema,
   StageRouteBatchRequestSchema,
 } from "#contracts/transport/batch";
 
 const itemError =
   "Expected contiguous release items bound to the batch release identity.";
+const historicalQuestion = Schema.decodeSync(ContentProjectionSchema)({
+  artifactLocale: "en",
+  bodyKind: "question",
+  choices: [
+    { label: "A", value: true },
+    { label: "B", value: false },
+  ],
+  contentKey:
+    "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/question",
+  kind: "question-body",
+  metadata: {
+    authors: [{ name: "Test Author" }],
+    date: "2026-01-01",
+    title: "Question 1",
+  },
+  peerContentKey:
+    "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1/answer",
+  questionKey:
+    "question-bank/tryout/indonesia/snbt/general-reasoning/set-1/question-1",
+  questionNumber: 1,
+  setKey: "question-bank/tryout/indonesia/snbt/general-reasoning/set-1",
+});
 
 /** Strictly tests one batch transport schema without extra properties. */
 function accepts(schema: Schema.ConstraintDecoder<unknown>, input: unknown) {
@@ -102,6 +127,23 @@ describe("batch transport", () => {
         releaseId,
       })
     ).toBe(false);
+  });
+
+  it("confines predecessor projections to rollback group operations", () => {
+    const input = {
+      batchIndex: 0,
+      projections: [historicalQuestion],
+      releaseId,
+    };
+
+    expect(accepts(StageProjectionBatchInputSchema, input)).toBe(false);
+    expect(accepts(StageRollbackProjectionBatchInputSchema, input)).toBe(true);
+    expect(
+      accepts(StageRollbackProjectionBatchRequestSchema, {
+        ...input,
+        operation: "stageRollbackProjectionBatch",
+      })
+    ).toBe(true);
   });
 
   it("requires non-empty batches and enforces canonical count ceilings", () => {

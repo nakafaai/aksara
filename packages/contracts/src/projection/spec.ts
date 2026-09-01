@@ -14,6 +14,7 @@ import {
 import {
   canonicalizeQuestionProjection,
   QuestionBodyProjectionSchema,
+  ReadableQuestionBodyProjectionSchema,
 } from "#contracts/projection/question";
 
 /** Complete projection vocabulary backed by implemented content families. */
@@ -21,9 +22,19 @@ export const ContentProjectionSchema = Schema.Union([
   ArticleProjectionSchema,
   MaterialLessonProjectionSchema,
   PublicPageProjectionSchema,
-  QuestionBodyProjectionSchema,
+  ReadableQuestionBodyProjectionSchema,
 ]);
 export type ContentProjection = typeof ContentProjectionSchema.Type;
+
+/** Current projection vocabulary accepted for newly staged content. */
+export const CurrentContentProjectionSchema = Schema.Union([
+  ArticleProjectionSchema,
+  MaterialLessonProjectionSchema,
+  PublicPageProjectionSchema,
+  QuestionBodyProjectionSchema,
+]);
+export type CurrentContentProjection =
+  typeof CurrentContentProjectionSchema.Type;
 
 /** Public-route projections accepted by Nakafa's path-based runtime seam. */
 export const RoutedContentProjectionSchema = Schema.Union([

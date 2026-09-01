@@ -7,13 +7,12 @@ import {
 } from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route/spec";
-import {
-  ContentSnapshotManifestSchema,
-  ContentSnapshotRowSchema,
-} from "@nakafa/aksara-contracts/release/snapshot/data";
 import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { StageOperationSchema } from "@nakafa/aksara-contracts/transport/group";
+import {
+  type StageOperation,
+  StageOperationSchema,
+} from "@nakafa/aksara-contracts/transport/group";
 import {
   type PublicationRequest,
   PublicationRequestSchema,
@@ -31,13 +30,15 @@ import {
 } from "#test/content";
 import { headRequest } from "#test/head";
 import { testRendererDomains } from "#test/renderer";
+import { historicalQuestion } from "#test/transport/rollback";
 import { makeTransportRuntimeBundle } from "#test/transport/runtime";
+import {
+  transportSnapshot,
+  transportSnapshotRow,
+} from "#test/transport/snapshot";
 
 const manifestHash = `sha256:${"b".repeat(64)}`;
 const projectionDigest = `sha256:${"c".repeat(64)}`;
-const snapshotId = `sha256:${"e".repeat(64)}`;
-const snapshotRowDigest = `sha256:${"1".repeat(64)}`;
-const snapshotRowHash = `sha256:${"2".repeat(64)}`;
 const recoveryId = ReleaseIdSchema.make("test-http-recovery");
 export const transportRenderer = await Effect.runPromise(
   createRendererManifest({
@@ -48,68 +49,6 @@ export const transportRenderer = await Effect.runPromise(
     domains: testRendererDomains({}),
     publishedDomains: ["mathematics"],
   })
-);
-
-/** Test-only structured manifest used to prove exact HTTP staging. */
-export const transportSnapshot = Schema.decodeSync(
-  ContentSnapshotManifestSchema
-)({
-  family: "program",
-  manifest: {
-    activeAppLocales: ["en", "id", "de"],
-    curriculumRowCount: 585,
-    format: "localized-program-snapshot",
-    programRowCount: 6,
-    rowCount: 591,
-    rowDigest: snapshotRowDigest,
-    sitemapCount: 78,
-    slugCount: 18,
-    snapshotId,
-  },
-});
-
-/** Test-only structured row carried by one bounded HTTP batch. */
-export const transportSnapshotRow = Schema.decodeSync(ContentSnapshotRowSchema)(
-  {
-    family: "program",
-    record: {
-      kind: "program",
-      row: {
-        defaultCoverageStatus: "planned",
-        displayOrder: 1,
-        iconKey: "school",
-        key: "test-http-program",
-        kind: "school-curriculum",
-        navigation: {
-          levels: ["stage", "subject"],
-          model: "curriculum-tree",
-        },
-        provider: { kind: "nakafa", name: "Nakafa test suite" },
-        sources: [
-          {
-            label: "Test-only publisher transport source",
-            retrievedAt: "2026-01-01",
-            type: "nakafa-editorial",
-            url: "https://example.test/publisher-transport",
-          },
-        ],
-        translations: [
-          {
-            appLocale: "en",
-            publicSlug: "test-http-program",
-            title: "Test HTTP Program",
-          },
-          {
-            appLocale: "id",
-            publicSlug: "program-http-uji",
-            title: "Program HTTP Uji",
-          },
-        ],
-        version: { label: "Test-only version" },
-      },
-      rowHash: snapshotRowHash,
-    },
-  }
 );
 
 export const transportRelease: SignedContentRelease = Schema.decodeSync(
@@ -228,12 +167,32 @@ const transportStageRequests = Schema.decodeUnknownSync(
     releaseId: transportReleaseId,
   },
   {
+    batchIndex: 0,
+    operation: "stageRollbackProjectionBatch",
+    projections: [historicalQuestion],
+    releaseId: transportReleaseId,
+  },
+  {
     artifacts: [transportContent.artifact],
     batchIndex: 0,
     operation: "stageArtifactBatch",
     releaseId: transportReleaseId,
   },
 ]);
+
+/** Excludes the rollback-only child operation from top-level ingress fixtures. */
+function isTopLevelStageOperation(
+  request: StageOperation
+): request is Exclude<
+  StageOperation,
+  { readonly operation: "stageRollbackProjectionBatch" }
+> {
+  return request.operation !== "stageRollbackProjectionBatch";
+}
+
+const transportTopLevelStageRequests = transportStageRequests.filter(
+  isTopLevelStageOperation
+);
 
 export const transportRequests: readonly PublicationRequest[] =
   Schema.decodeSync(Schema.Array(PublicationRequestSchema))([
@@ -252,7 +211,7 @@ export const transportRequests: readonly PublicationRequest[] =
       release: transportRecovery,
       rendererManifest: transportRenderer,
     },
-    ...transportStageRequests,
+    ...transportTopLevelStageRequests,
     {
       operation: "stageGroup",
       releaseId: transportReleaseId,

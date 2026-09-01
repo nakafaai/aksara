@@ -9,7 +9,7 @@ import type {
   Sha256Hash,
 } from "@nakafa/aksara-contracts/ids";
 import type { ActiveAppLocaleList } from "@nakafa/aksara-contracts/locale";
-import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
+import { CurrentContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
 import type { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import {
   ContentDeleteSchema,
@@ -65,7 +65,7 @@ import type {
 const PreparedContentUpsertSchema = Schema.Struct({
   change: ContentUpsertSchema,
   payload: CompiledContentPayloadSchema,
-  projection: ContentProjectionSchema,
+  projection: CurrentContentProjectionSchema,
   source: CompileDocumentSourceSchema,
 });
 

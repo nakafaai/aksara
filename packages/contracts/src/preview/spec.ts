@@ -14,7 +14,7 @@ import type { ArticleProjection } from "#contracts/projection/article";
 import type { MaterialLessonProjection } from "#contracts/projection/material";
 import type { PublicPageProjection } from "#contracts/projection/page";
 import type { QuestionBodyProjection } from "#contracts/projection/question";
-import type { ContentProjection } from "#contracts/projection/spec";
+import type { CurrentContentProjection } from "#contracts/projection/spec";
 import type {
   QuestionAnswerIdentity,
   QuestionBodyIdentity,
@@ -44,7 +44,7 @@ type PreviewArtifactList = typeof PreviewArtifactListSchema.Type;
 /** Checks one article projection against its selected registry route. */
 function matchesArticleDocument(
   document: ArticlePreviewDocument,
-  projection: ContentProjection
+  projection: CurrentContentProjection
 ): projection is ArticleProjection {
   return (
     projection.kind === "article" &&
@@ -60,7 +60,7 @@ function matchesArticleDocument(
 /** Checks one material projection against its selected registry route. */
 function matchesMaterialDocument(
   document: MaterialPreviewDocument,
-  projection: ContentProjection
+  projection: CurrentContentProjection
 ): projection is MaterialLessonProjection {
   return (
     projection.kind === "subject-lesson" &&
@@ -78,7 +78,7 @@ function matchesMaterialDocument(
 /** Checks one page projection against its selected registry route. */
 function matchesPageDocument(
   document: PagePreviewDocument,
-  projection: ContentProjection
+  projection: CurrentContentProjection
 ): projection is PublicPageProjection {
   return (
     projection.kind === "public-page" &&
@@ -93,7 +93,7 @@ function matchesPageDocument(
 
 /** Checks one question projection against an exact prompt or answer identity. */
 function matchesQuestionIdentity(
-  projection: ContentProjection,
+  projection: CurrentContentProjection,
   identity: QuestionBodyIdentity
 ): projection is QuestionBodyProjection {
   return (
@@ -110,7 +110,7 @@ function matchesQuestionIdentity(
 
 /** Checks the ordered prompt required before one entitled answer artifact. */
 function matchesAnswerPrompt(
-  projection: ContentProjection,
+  projection: CurrentContentProjection,
   input: {
     readonly identity: QuestionAnswerIdentity;
     readonly questionArtifactLocale: ArtifactLocale;
