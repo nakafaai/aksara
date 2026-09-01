@@ -194,7 +194,7 @@ export const SpaceMathVisualSchema = Schema.Struct({
   Schema.check(
     Schema.makeFilter(({ frame, labels = [], objects, view }) => [
       ...mathVisualIdentityIssues(objects, labels),
-      ...spaceBoundsIssues(frame, objects, labels),
+      ...spaceBoundsIssues(frame, objects, labels, view),
       ...spaceResolutionIssues(frame, objects, view),
     ])
   )

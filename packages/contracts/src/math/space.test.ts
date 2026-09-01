@@ -70,7 +70,7 @@ describe("space math visual", () => {
     for (const view of [
       { kind: "fit", padding: 2 },
       { kind: "isometric" },
-      { kind: "isometric", target: { x: 1, y: 2, z: 3 } },
+      { kind: "isometric", target: { x: -10, y: 10, z: 10 } },
       {
         kind: "camera",
         position: { x: 8, y: 6, z: 10 },
@@ -150,6 +150,13 @@ describe("space math visual", () => {
           size: { height: 4, length: 0, width: 5 },
         })
       ),
+      {
+        ...spaceScene(point),
+        view: {
+          kind: "isometric",
+          target: { x: -10.000_000_000_000_002, y: 10, z: 10 },
+        },
+      },
       {
         ...spaceScene(point),
         view: {

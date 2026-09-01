@@ -16,6 +16,7 @@ import type {
   SpaceLabelAnchor,
   SpaceMathFrame,
   SpaceMathObject,
+  SpaceMathView,
 } from "#contracts/math/space";
 
 /** Checks one plane point against both inclusive frame ranges. */
@@ -164,12 +165,24 @@ export function planeBoundsIssues(
   ];
 }
 
-/** Reports every finite space object or label that escapes its authored frame. */
+/** Reports every finite space object, label, or view target outside its frame. */
 export function spaceBoundsIssues(
   frame: SpaceMathFrame,
   objects: readonly SpaceMathObject[],
-  labels: readonly SpaceLabelAnchor[]
+  labels: readonly SpaceLabelAnchor[],
+  view: SpaceMathView
 ): readonly Schema.FilterIssue[] {
+  const viewIssues: readonly Schema.FilterIssue[] =
+    view.kind === "isometric" &&
+    view.target !== undefined &&
+    !spaceContains(frame, view.target)
+      ? [
+          {
+            issue: "Expected an isometric target inside the Cartesian frame.",
+            path: ["view", "target"],
+          },
+        ]
+      : [];
   return [
     ...objects.flatMap((object, index): Schema.FilterIssue[] =>
       spaceObjectContained(frame, object)
@@ -192,5 +205,6 @@ export function spaceBoundsIssues(
             },
           ]
     ),
+    ...viewIssues,
   ];
 }
