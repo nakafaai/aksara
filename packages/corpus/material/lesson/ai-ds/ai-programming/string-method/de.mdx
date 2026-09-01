@@ -209,7 +209,7 @@ Wähle die Methode passend zum Fehlervertrag: `find()` gibt `-1` zurück, `index
 
 ### Zeichenklassen prüfen
 
-Python bietet Prädikate zur Klassifikation der Codepoints in einem String. Sie beantworten Fragen zu Zeichenkategorien. Für ein vollständiges fachliches Format brauchst du eigene Prüfregeln.
+Methoden wie `isalpha()` und `isdigit()` geben einen booleschen Wert zurück, nachdem sie geprüft haben, ob die Codepoints im String eine bestimmte Kategorienregel erfüllen. Diese Methoden prüfen nur Zeichenkategorien. Für Benutzernamen, E-Mail-Adressen oder Kontonummern brauchst du zusätzliche Regeln für das vollständige Format.
 
 <CodeBlock
   data={[
@@ -628,4 +628,4 @@ for title in titles:
 
 Diese vier Beispiele verbinden Klassifikation, Suche, Aufteilung und Ersetzung unter kleinen, klar angegebenen Formaten. Ein produktiver Telefon-, Dateinamen- oder Log-Parser sowie ein Slug-Generator benötigen zusätzlich einen Fachvertrag, eine Fehlerstrategie und Tests für mehrdeutige Eingaben.
 
-Entscheidend ist, jede Methode nach ihrer genauen Semantik einzusetzen und eine bequeme String-Operation nicht mit vollständiger Validierung zu verwechseln.
+Setze jede Methode so ein, wie sie tatsächlich arbeitet. Eine Stringoperation kann einen Prüfschritt übernehmen. Für eine vollständige Validierung sind oft weitere Regeln nötig.

@@ -7,15 +7,13 @@ export const metadata = {
   subject: "Metode Linear AI",
 };
 
-## Arti linear dalam model ini
+## Linear terhadap Parameter
 
 Model linear menghubungkan masukan yang diketahui <InlineMath math="t \in \mathbb{R}^k" /> dengan respons yang diamati <InlineMath math="y \in \mathbb{R}^d" /> melalui parameter yang belum diketahui <InlineMath math="x \in \mathbb{R}^n" />:
 
 <BlockMath math="y=h(t)x,\qquad h(t)\in\mathbb{R}^{d\times n}" />
 
-Istilah pentingnya adalah **linear terhadap parameter**. Untuk <InlineMath math="t" /> yang tetap, pemetaan dari <InlineMath math="x" /> ke <InlineMath math="y" /> bersifat linear. Ketergantungan pada <InlineMath math="t" /> boleh memuat pangkat, logaritma, sinus, atau fungsi basis nonlinear lainnya.
-
-Pembedaan ini mencegah kekeliruan umum: model linear tidak harus membentuk garis lurus sebagai fungsi masukannya. Model tersebut harus menggabungkan parameter yang belum diketahui secara linear.
+Model ini **linear terhadap parameter**. Untuk <InlineMath math="t" /> yang tetap, pemetaan dari <InlineMath math="x" /> ke <InlineMath math="y" /> bersifat linear. Ketergantungan pada <InlineMath math="t" /> boleh memuat pangkat, logaritma, sinus, atau fungsi basis nonlinear lainnya.
 
 ## Dari pengukuran ke matriks desain
 
@@ -23,7 +21,7 @@ Misalkan kita mengumpulkan <InlineMath math="M" /> pasangan masukan-respons <Inl
 
 <BlockMath math="y_i=h(t_i)x+\varepsilon_i,\qquad i=1,\ldots,M" />
 
-Galat <InlineMath math="\varepsilon_i" /> memuat derau pengukuran dan ketidakcocokan model. Setelah seluruh respons dan blok model disusun, kita memperoleh
+Galat <InlineMath math="\varepsilon_i" /> mencakup kesalahan acak pada pengukuran dan selisih antara model dengan kondisi sebenarnya. Setelah seluruh respons dan blok model disusun, kita memperoleh
 
 <MathContainer>
 <BlockMath math="b=\begin{pmatrix}y_1\\\vdots\\y_M\end{pmatrix}\in\mathbb{R}^{Md}" />
@@ -31,7 +29,7 @@ Galat <InlineMath math="\varepsilon_i" /> memuat derau pengukuran dan ketidakcoc
 <BlockMath math="b=Ax+\varepsilon" />
 </MathContainer>
 
-Matriks <InlineMath math="A" /> disebut **matriks desain**. Jika seluruh pengamatan tidak dapat dipenuhi secara eksak oleh satu vektor parameter, estimasikan <InlineMath math="x" /> dengan kuadrat terkecil atau model residual lain. Keteridentifikasian parameter juga bergantung pada peringkat dan kondisi <InlineMath math="A" />.
+Matriks <InlineMath math="A" /> disebut **matriks desain**. Jika seluruh pengamatan tidak dapat dipenuhi secara eksak oleh satu vektor parameter, nilai <InlineMath math="x" /> dapat diperkirakan dengan kuadrat terkecil atau model residual lain. Data menentukan parameter secara unik jika <InlineMath math="A" /> memiliki rank kolom penuh. Bilangan kondisi <InlineMath math="A" /> menunjukkan seberapa peka hasil perkiraan terhadap perubahan kecil pada data.
 
 ## Fungsi basis membentuk beragam model
 
@@ -86,12 +84,12 @@ Jacobian <InlineMath math="J_xg(t,x_0)" /> diketahui setelah <InlineMath math="x
 
 ## Pemeriksaan sebelum pencocokan
 
-Sebelum menafsirkan parameter hasil pencocokan, pastikan bahwa:
+Sebelum menjelaskan arti setiap parameter hasil pencocokan, periksa hal-hal berikut:
 
 - kolom matriks desain merepresentasikan fungsi basis dan satuan yang dimaksud
 - data memuat cukup informasi bebas untuk menentukan parameter, biasanya <InlineMath math="\operatorname{rank}(A)=n" />
-- skala fitur dan bilangan kondisi tidak membuat penyelesaian rapuh secara numerik
-- kerugian residual yang dipilih sesuai dengan asumsi derau dan pencilan
+- skala fitur dan bilangan kondisi masih memungkinkan hasil hitung yang stabil
+- cara mengukur residual sesuai dengan asumsi tentang kesalahan pengukuran dan pencilan
 - linearisasi lokal diperiksa kembali terhadap model nonlinear aslinya
 
-Basis yang fleksibel dapat mencocokkan banyak bentuk, tetapi fleksibilitas saja tidak menjamin keteridentifikasian, stabilitas numerik, atau prediksi yang berguna.
+Basis yang fleksibel dapat mencocokkan banyak bentuk. Kita tetap perlu memastikan bahwa parameter dapat ditentukan secara unik, hasil hitung stabil, dan prediksi berguna.

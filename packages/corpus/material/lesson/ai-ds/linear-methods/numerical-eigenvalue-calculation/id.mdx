@@ -7,7 +7,7 @@ export const metadata = {
   subject: "Metode Linear AI",
 };
 
-## Mengapa Metode Numerik Berbeda
+## Metode untuk Satu Nilai Eigen atau Spektrum Lengkap
 
 Pasangan eigen dari matriks persegi <InlineMath math="A" /> memenuhi
 
@@ -15,9 +15,9 @@ Pasangan eigen dari matriks persegi <InlineMath math="A" /> memenuhi
 
 Untuk matriks simbolik berukuran kecil, kita dapat menyelesaikan <InlineMath math="\det(A-\lambda I)=0" />. Perangkat lunak numerik biasanya tidak membentuk polinomial karakteristik karena koefisiennya dapat peka terhadap pembulatan. Jika hanya sebagian spektrum matriks besar dan jarang yang dibutuhkan, metode Krylov memakai perkalian matriks dengan vektor tanpa membentuk polinomial tersebut. Algoritma untuk seluruh spektrum matriks padat memakai faktorisasi matriks.
 
-Algoritma yang berbeda menjawab kebutuhan yang berbeda:
+Bagian spektrum yang perlu dihitung dan struktur matriks menentukan algoritma yang sesuai:
 
-- Iterasi pangkat memperkirakan satu nilai eigen bermagnitudo terbesar.
+- Iterasi pangkat memperkirakan satu nilai eigen dengan nilai mutlak terbesar.
 - Iterasi invers bergeser menargetkan nilai eigen di dekat pergeseran yang dipilih.
 - Algoritma <InlineMath math="\mathrm{QR}" /> menghitung spektrum lengkap matriks padat.
 - Metode Lanczos dan Arnoldi menargetkan sebagian kecil spektrum matriks jarang berukuran besar.
@@ -78,7 +78,7 @@ Langkah kedua menghasilkan
 <BlockMath math="\mu_2=\frac{122}{41}\approx2{,}97561" />
 </MathContainer>
 
-Iterasinya mendekati
+Vektor <InlineMath math="q_k" /> dan perkiraan nilai eigen <InlineMath math="\mu_k" /> mendekati
 
 <BlockMath math="q_*=\frac{1}{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix},\qquad \lambda_*=3" />
 

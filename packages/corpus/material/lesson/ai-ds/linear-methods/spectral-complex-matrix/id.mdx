@@ -13,11 +13,11 @@ Teorema spektral kompleks mengarakterisasi dengan tepat kapan vektor eigen dapat
 
 Untuk <InlineMath math="A\in\mathbb{C}^{n\times n}" />, pernyataan berikut ekuivalen:
 
-1. Terdapat basis ortonormal <InlineMath math="\mathbb{C}^n" /> yang terdiri dari vektor eigen <InlineMath math="A" />.
+1. Terdapat basis ortonormal bagi <InlineMath math="\mathbb{C}^n" /> yang terdiri atas vektor eigen <InlineMath math="A" />.
 2. Matriks tersebut normal: <InlineMath math="A^HA=AA^H" />.
 3. Terdapat matriks uniter <InlineMath math="U" /> dan matriks diagonal <InlineMath math="\Lambda" /> sehingga <InlineMath math="A=U\Lambda U^H" />.
 
-Teorema ini lebih kuat daripada diagonalisabilitas biasa. Matriks yang dapat didiagonalkan mungkin memiliki basis vektor eigen berkondisi buruk, sedangkan basis uniter mempertahankan norm dan sudut.
+Teorema ini lebih kuat daripada diagonalisabilitas biasa. Matriks yang dapat didiagonalkan mungkin memiliki basis vektor eigen berkondisi buruk, sedangkan basis uniter mempertahankan norma dan sudut.
 
 ## Pembuktian Arah Pertama
 
@@ -43,12 +43,12 @@ Karena ini berlaku untuk semua vektor basis, maka <InlineMath math="AA^H = A^H A
 
 ## Pembuktian Normalitas ke Diagonalisasi
 
-Sekarang kita buktikan arah sebaliknya menggunakan induksi matematis. Kasus dasar memulai argumen, lalu langkah induksi mereduksi matriks <InlineMath math="n \times n" /> menjadi blok normal berukuran <InlineMath math="(n-1) \times (n-1)" />.
+Gunakan induksi pada ukuran matriks <InlineMath math="n" />. Langkah induksi mereduksi matriks <InlineMath math="n \times n" /> menjadi blok normal berukuran <InlineMath math="(n-1) \times (n-1)" />.
 
 ### Struktur Induksi Matematis
 
 1. **Langkah Basis**
-   Untuk <InlineMath math="n = 0" /> (matriks kosong), pernyataan jelas benar.
+   Untuk <InlineMath math="n = 0" />, matriks kosong memenuhi pernyataan.
 
 2. **Hipotesis Induksi**
    Asumsikan pernyataan benar untuk semua matriks normal berukuran <InlineMath math="(n-1) \times (n-1)" />.
@@ -119,7 +119,7 @@ Oleh karena itu matriks blok diagonal juga normal, yang berarti <InlineMath math
 
 ## Konstruksi Basis Ortonormal Lengkap
 
-Berdasarkan hipotesis induksi, terdapat basis ortonormal <InlineMath math="v'_2, \ldots, v'_n" /> dari vektor eigen untuk <InlineMath math="A'" />. Misalkan <InlineMath math="S'" /> adalah matriks uniter dengan kolom tersebut, dengan:
+Berdasarkan hipotesis induksi, terdapat basis ortonormal <InlineMath math="v'_2, \ldots, v'_n" /> yang terdiri atas vektor-vektor eigen <InlineMath math="A'" />. Misalkan <InlineMath math="S'" /> adalah matriks uniter dengan kolom tersebut.
 
 <BlockMath math="S' \in \mathbb{C}^{(n-1) \times (n-1)}" />
 
@@ -150,7 +150,7 @@ Kolom dari <InlineMath math="S" /> membentuk basis ortonormal dari vektor eigen 
 
 ## Kasus Matriks Riil
 
-Untuk matriks riil, perbedaannya terletak pada apakah nilai eigen dan vektor eigen yang diperlukan tetap bernilai riil. Matriks riil:
+Untuk matriks real, perbedaannya terletak pada apakah nilai eigen dan vektor eigen yang diperlukan juga bernilai real.
 
 <BlockMath math="A \in \mathbb{R}^{n \times n}" />
 
@@ -164,7 +164,7 @@ Matriks normal real tetap dapat didiagonalkan secara uniter pada <InlineMath mat
 
 Setiap blok berukuran <InlineMath math="2\times2" /> ini mewakili pasangan nilai eigen konjugat <InlineMath math="a\pm bi" />. Matriks normal real dapat didiagonalkan secara ortogonal pada <InlineMath math="\mathbb{R}" /> tepat ketika semua nilai eigennya real.
 
-Matriks simetris dan matriks ortogonal selalu normal. Untuk matriks simetris <InlineMath math="A^T = A" />, jelas bahwa:
+Matriks simetris dan matriks ortogonal selalu normal. Untuk matriks simetris dengan <InlineMath math="A^T = A" />, berlaku
 
 <BlockMath math="A \cdot A^T = A \cdot A = A^T \cdot A" />
 
@@ -177,11 +177,11 @@ Untuk matriks ortogonal <InlineMath math="A^T = A^{-1}" />, kita punya:
 
 ### Contoh Rotasi
 
-Matriks seperempat putaran
+Rotasi seperempat putaran dapat ditulis dengan matriks berikut:
 
 <BlockMath math="R=\begin{pmatrix}0&-1\\1&0\end{pmatrix}" />
 
-Matriks <InlineMath math="R" /> bersifat real dan ortogonal, sehingga normal. Nilai eigennya adalah <InlineMath math="i" /> dan <InlineMath math="-i" />, dengan vektor eigen ternormalisasi
+Matriks <InlineMath math="R" /> bersifat real dan ortogonal, sehingga normal. Nilai eigennya adalah <InlineMath math="i" /> dan <InlineMath math="-i" />, dengan vektor eigen ternormalisasi berikut:
 
 <MathContainer>
 <BlockMath math="u_+=\frac1{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix},\qquad u_-=\frac1{\sqrt2}\begin{pmatrix}1\\i\end{pmatrix}" />

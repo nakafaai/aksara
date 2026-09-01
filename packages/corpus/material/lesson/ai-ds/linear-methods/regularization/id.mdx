@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Regularisasi Tikhonov",
-  description: "Stabilkan masalah kuadrat terkecil berkondisi buruk dengan regularisasi Tikhonov, penyaringan spektral, pemilihan parameter yang beralasan, dan penyelesaian numerik yang kokoh.",
+  description: "Gunakan regularisasi Tikhonov untuk menstabilkan kuadrat terkecil yang sensitif terhadap perubahan data. Pilih alpha berdasarkan besarnya gangguan acak atau data validasi, lalu selesaikan sistem dengan QR atau SVD.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-15",
   dateModified: "2026-09-01",
@@ -19,29 +19,29 @@ Dekomposisi nilai singular menjelaskan penguatan tersebut. Untuk <InlineMath mat
 
 ## Masalah Tikhonov
 
-Regularisasi Tikhonov menyeimbangkan kecocokan data dengan gagasan yang dipilih tentang parameter yang masuk akal:
+Regularisasi Tikhonov menyeimbangkan kecocokan terhadap data dengan batasan yang dipilih, misalnya kedekatan terhadap <InlineMath math="x_0" /> atau perubahan yang mulus antarparameter.
 
 <BlockMath math="\min_x\left(\|Ax-b\|_2^2+\alpha^2\|L(x-x_0)\|_2^2\right),\qquad \alpha>0" />
 
-Di sini <InlineMath math="x_0" /> adalah taksiran acuan, <InlineMath math="L" /> menentukan besaran yang perlu tetap kecil atau mulus, dan <InlineMath math="\alpha" /> mengendalikan pertukarannya.
+Di sini <InlineMath math="x_0" /> adalah taksiran acuan dan <InlineMath math="L" /> menentukan besaran yang perlu tetap kecil atau mulus. Nilai <InlineMath math="\alpha" /> mengatur seberapa kuat solusi mengikuti data dan seberapa kuat solusi mengikuti batasan dari <InlineMath math="L" />.
 
-- <InlineMath math="L=I" /> menghukum jarak dari <InlineMath math="x_0" />.
-- Matriks selisih pertama menghukum perubahan cepat antara parameter yang bertetangga.
-- Matriks selisih kedua menghukum kelengkungan dan mendorong profil yang lebih mulus.
+- <InlineMath math="L=I" /> memberi penalti pada jarak dari <InlineMath math="x_0" />.
+- Matriks selisih pertama memberi penalti pada perubahan cepat antara parameter yang bertetangga.
+- Matriks selisih kedua memberi penalti pada kelengkungan dan mendorong profil yang lebih mulus.
 
-Penalti tidak menciptakan informasi baru dalam pengamatan. Penalti menyatakan struktur prior yang dipilih secara eksplisit dan dapat memperbaiki kondisi numerik masalah optimisasi.
+Penalti menambahkan asumsi model tentang bentuk solusi dan dapat memperbaiki kondisi numerik masalah optimisasi. Informasi di dalam data pengamatan tetap sama.
 
 ## Bentuk Kuadrat Terkecil Teraugmentasi
 
-Objektif tersebut sama persis dengan masalah kuadrat terkecil
+Masalah regularisasi di atas dapat ditulis sebagai masalah kuadrat terkecil berikut:
 
 <BlockMath math="\min_x\left\|\begin{pmatrix}A\\\alpha L\end{pmatrix}x-\begin{pmatrix}b\\\alpha Lx_0\end{pmatrix}\right\|_2^2" />
 
-Turunannya menghasilkan persamaan normal
+Jika fungsi objektif ini diturunkan terhadap <InlineMath math="x" />, kita memperoleh persamaan normal berikut:
 
 <BlockMath math="(A^TA+\alpha^2L^TL)x=A^Tb+\alpha^2L^TLx_0" />
 
-Solusinya tunggal tepat ketika
+Persamaan normal tersebut memiliki solusi unik tepat ketika syarat berikut terpenuhi.
 
 <BlockMath math="\operatorname{null}(A)\cap\operatorname{null}(L)=\{0\}" />
 
@@ -56,9 +56,9 @@ Untuk <InlineMath math="L=I" /> dan <InlineMath math="x_0=0" />, tulis <InlineMa
 <BlockMath math="\phi_i(\alpha)=\frac{\sigma_i^2}{\sigma_i^2+\alpha^2}" />
 </MathContainer>
 
-Faktor <InlineMath math="\phi_i" /> mendekati <InlineMath math="1" /> ketika <InlineMath math="\sigma_i\gg\alpha" /> dan mendekati <InlineMath math="0" /> ketika <InlineMath math="\sigma_i\ll\alpha" />. Jadi, regularisasi mempertahankan arah yang ditentukan data dengan baik sambil meredam arah yang akan memperbesar derau.
+Jika <InlineMath math="\sigma_i" /> jauh lebih besar daripada <InlineMath math="\alpha" />, faktor <InlineMath math="\phi_i(\alpha)" /> mendekati <InlineMath math="1" />. Regularisasi hampir tidak mengubah komponen solusi yang terkait dengan nilai singular tersebut. Jika <InlineMath math="\sigma_i" /> jauh lebih kecil daripada <InlineMath math="\alpha" />, faktor <InlineMath math="\phi_i(\alpha)" /> mendekati <InlineMath math="0" />, sehingga komponen solusinya diperkecil. Cara ini mencegah kesalahan kecil pada data pengukuran menghasilkan perubahan besar pada solusi.
 
-## Contoh Sensitivitas Terhitung
+## Contoh Perhitungan Sensitivitas
 
 Perhatikan
 
@@ -76,31 +76,31 @@ Dengan <InlineMath math="L=I" />, <InlineMath math="x_0=0" />, dan <InlineMath m
 <BlockMath math="x_{0{,}2}=\begin{pmatrix}1/1{,}04\\0{,}02/0{,}05\end{pmatrix}=\begin{pmatrix}25/26\\0{,}4\end{pmatrix}" />
 </MathContainer>
 
-Perubahan <InlineMath math="0{,}01" /> yang sama kini hanya mengubah parameter kedua sebesar <InlineMath math="0{,}02" />. Stabilitas ini dibayar dengan bias: taksiran <InlineMath math="0{,}4" /> lebih jauh dari nilai tanpa regularisasi <InlineMath math="2" />.
+Perubahan <InlineMath math="0{,}01" /> yang sama kini hanya mengubah parameter kedua sebesar <InlineMath math="0{,}02" />. Hasilnya lebih stabil, tetapi taksiran menjadi bias karena <InlineMath math="0{,}4" /> lebih jauh dari nilai tanpa regularisasi <InlineMath math="2" />.
 
 ## Memilih Parameter Regularisasi
 
-Tidak ada satu nilai <InlineMath math="\alpha" /> yang selalu terbaik. Nilainya bergantung pada tingkat derau, skala parameter, penalti, dan tujuan model.
+Tidak ada satu nilai <InlineMath math="\alpha" /> yang selalu terbaik. Pilihan <InlineMath math="\alpha" /> bergantung pada besarnya gangguan acak dalam data pengamatan, skala parameter, penalti, dan tujuan model.
 
 | Metode | Bukti yang sesuai | Keputusan |
 | --- | --- | --- |
-| Validasi atau validasi silang | Pemodelan prediktif dengan pengamatan yang ditahan | Pilih nilai dengan kinerja terbaik di luar sampel |
-| Prinsip diskrepansi | Taksiran norma derau pengamatan yang dapat dipercaya | Cocokkan norma residual dengan tingkat derau yang diharapkan |
-| Validasi silang terumumkan | Masalah invers linear tanpa set validasi terpisah | Minimalkan skor prediktif yang dihitung dari sistem hasil pencocokan |
-| Kurva L | Analisis eksploratif masalah invers | Periksa sudut kurva antara norma residual dan norma penalti |
+| Validasi atau validasi silang | Pemodelan prediktif dengan sebagian data yang dipisahkan untuk validasi | Pilih nilai dengan kinerja terbaik pada data validasi |
+| Prinsip diskrepansi | Perkiraan besarnya gangguan acak pada data pengamatan | Cocokkan norma residual dengan besar gangguan yang diperkirakan |
+| Generalized cross-validation atau GCV | Masalah invers linear tanpa set validasi terpisah | Pilih nilai yang membuat skor prediksi GCV paling kecil |
+| Kurva L | Analisis eksploratif masalah invers | Cari titik tekuk pada kurva yang membandingkan norma residual dan norma penalti |
 
-Nilai <InlineMath math="\alpha" /> yang kecil menekankan kecocokan data dan dapat menyisakan penguatan derau. Nilai <InlineMath math="\alpha" /> yang besar menekankan penalti dan dapat membuat solusi terlalu mulus atau terlalu menyusut. Kolom parameter dan baris penalti juga harus memakai skala yang bermakna. Jika skala ini diabaikan, angka <InlineMath math="\alpha" /> saja belum menunjukkan seberapa kuat penalti bekerja.
+Nilai <InlineMath math="\alpha" /> yang kecil membuat solusi mengikuti data dengan lebih dekat, tetapi gangguan kecil pada data masih dapat menghasilkan perubahan besar pada solusi. Nilai <InlineMath math="\alpha" /> yang besar memberi pengaruh lebih kuat pada penalti, sehingga solusi dapat menjadi terlalu mulus atau komponennya menjadi terlalu kecil. Kolom parameter dan baris penalti juga harus memakai skala yang bermakna. Jika skala ini diabaikan, angka <InlineMath math="\alpha" /> saja belum menunjukkan seberapa kuat penalti bekerja.
 
-## Bobot Umum dan Kendala
+## Bobot dan Syarat pada Solusi
 
 Matriks diagonal <InlineMath math="L=\operatorname{diag}(\omega_1,\ldots,\omega_n)" /> memberikan penalti khusus per parameter:
 
 <BlockMath math="\|L(x-x_0)\|_2^2=\sum_{i=1}^n\omega_i^2(x_i-x_{0i})^2" />
 
-Nilai <InlineMath math="\omega_i" /> yang lebih besar berarti penyusutan yang lebih kuat menuju <InlineMath math="x_{0i}" />. Pilih bobot berdasarkan satuan dan struktur prior yang dapat dipertanggungjawabkan. Tingkat kesulitan menaksir parameter belum cukup untuk menentukan bobot.
+Nilai <InlineMath math="\omega_i" /> yang lebih besar menarik <InlineMath math="x_i" /> lebih kuat ke nilai acuan <InlineMath math="x_{0i}" />. Pilih bobot berdasarkan satuan dan informasi awal yang jelas, misalnya skala wajar setiap parameter atau perubahan yang diperkirakan mulus antarparameter. Tingkat kesulitan menaksir parameter belum cukup untuk menentukan bobot.
 
-Persamaan seperti <InlineMath math="x_i=c" /> perlu dimodelkan sebagai kendala persamaan eksplisit jika harus dipenuhi secara eksak. Batas seperti <InlineMath math="l_i\le x_i\le u_i" /> memerlukan kuadrat terkecil terkendala. Penalti yang sangat besar dapat mendekati suatu persamaan, tetapi bukan pengganti kendala eksak dan dapat memperburuk skala numerik.
+Jika persamaan seperti <InlineMath math="x_i=c" /> harus selalu terpenuhi, masukkan persamaan itu sebagai syarat tersendiri dalam model. Batas seperti <InlineMath math="l_i\le x_i\le u_i" /> memerlukan metode kuadrat terkecil yang dapat membatasi nilai solusi. Penalti yang sangat besar dapat mendekatkan solusi ke persamaan tersebut, tetapi tidak menjamin persamaan terpenuhi tepat dan dapat memperburuk skala numerik.
 
-## Menyelesaikan Masalah secara Andal
+## Menyelesaikan Sistem Teraugmentasi dengan QR atau SVD
 
 Persamaan normal dapat digunakan untuk menurunkan estimator teregularisasi dan memeriksa pengaruh <InlineMath math="\alpha" /> serta <InlineMath math="L" />. Untuk komputasi numerik, jangan membentuk <InlineMath math="A^TA" /> karena langkah itu menguadratkan bilangan kondisi. Sistem kuadrat terkecil teraugmentasi dapat diselesaikan dengan <InlineMath math="\mathrm{QR}" /> atau <InlineMath math="\mathrm{SVD}" />. Agar perhitungan mudah diperiksa dan diulang, cantumkan <InlineMath math="\alpha" />, <InlineMath math="L" />, skala parameter, norma residual, dan norma penalti yang digunakan.

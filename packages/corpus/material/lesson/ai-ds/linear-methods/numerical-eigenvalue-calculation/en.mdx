@@ -7,7 +7,7 @@ export const metadata = {
   subject: "Linear Methods of AI",
 };
 
-## Why Numerical Methods Are Different
+## Methods for One Eigenvalue or the Full Spectrum
 
 An eigenpair of a square matrix <InlineMath math="A" /> satisfies
 
@@ -15,7 +15,7 @@ An eigenpair of a square matrix <InlineMath math="A" /> satisfies
 
 For a small symbolic matrix, one can solve <InlineMath math="\det(A-\lambda I)=0" />. Numerical software usually avoids forming and rooting the characteristic polynomial because its coefficients can be sensitive to rounding. When only part of the spectrum of a large sparse matrix is needed, Krylov methods use matrix-vector products without forming that polynomial. Dense algorithms for the complete spectrum instead work with matrix factorizations.
 
-Different algorithms answer different questions:
+The required part of the spectrum and the matrix structure determine the algorithm:
 
 - Power iteration estimates one eigenvalue of largest magnitude.
 - Shifted inverse iteration targets an eigenvalue near a chosen shift.

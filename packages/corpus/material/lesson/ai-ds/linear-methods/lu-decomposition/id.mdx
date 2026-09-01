@@ -19,7 +19,7 @@ Ketiga faktor memiliki peran berikut:
 - <InlineMath math="L" /> adalah matriks segitiga bawah dengan diagonal satu
 - <InlineMath math="U" /> adalah matriks segitiga atas
 
-Pada langkah eliminasi <InlineMath math="k" />, pivoting parsial memilih entri bermagnitudo terbesar pada kolom <InlineMath math="k" /> yang berada pada atau di bawah diagonal. Langkah ini mencegah pembagian dengan pivot nol dan biasanya membatasi pertumbuhan galat numerik.
+Pada langkah eliminasi <InlineMath math="k" />, pivoting parsial memilih entri dengan nilai mutlak terbesar pada kolom <InlineMath math="k" /> yang berada pada atau di bawah diagonal. Langkah ini mencegah pembagian dengan pivot nol dan biasanya membatasi pertumbuhan galat numerik.
 
 Untuk matriks permutasi, berlaku <InlineMath math="P^{-1}=P^{\mathsf T}" />. Kesamaan <InlineMath math="P^{-1}=P" /> hanya berlaku pada permutasi khusus, misalnya satu pertukaran baris, dan tidak benar untuk setiap permutasi gabungan.
 
@@ -70,7 +70,7 @@ Dari <InlineMath math="PA=LU" />, persamaan <InlineMath math="Ax=b" /> berubah m
 
 <BlockMath math="LUx=Pb" />
 
-Selesaikan melalui dua tahap sistem segitiga.
+Kita menyelesaikan sistem ini dalam dua tahap menggunakan matriks segitiga.
 
 ### Substitusi maju
 
@@ -111,7 +111,7 @@ Determinan juga dapat diperoleh dari faktor:
 
 <BlockMath math="\det(A)=\det(P)\prod_{i=1}^{n}u_{ii}" />
 
-## Implementasi NumPy yang aman
+## Implementasi NumPy dengan Pemeriksaan Pivot
 
 <CodeBlock data={[{
   language: "python",
@@ -188,4 +188,4 @@ Pemeriksaan tersebut menjadi bagian dari contoh karena urutan faktor dan pencata
 
 ## Batas penggunaan metode
 
-Implementasi ini hanya menerima matriks persegi yang dapat diinvers. Jika pivot numeriknya nol, program mengeluarkan galat. Untuk masalah kuadrat terkecil persegi panjang atau matriks yang peringkatnya tidak penuh, gunakan dekomposisi <InlineMath math="\mathrm{QR}" /> dengan pivot kolom atau <InlineMath math="\mathrm{SVD}" />. Penyelesai <InlineMath math="\mathrm{PLU}" /> persegi tidak dapat menghasilkan faktorisasi yang sah untuk masukan tersebut.
+Implementasi ini hanya menyelesaikan sistem dengan matriks persegi yang dapat dibalik. Program menganggap pivot numerik nol sebagai kegagalan. Gunakan <InlineMath math="\mathrm{QR}" /> untuk masalah kuadrat terkecil dengan matriks persegi panjang. Untuk matriks yang tidak berperingkat penuh, gunakan <InlineMath math="\mathrm{QR}" /> dengan pivot kolom atau <InlineMath math="\mathrm{SVD}" />. Faktorisasi <InlineMath math="\mathrm{PLU}" /> masih dapat dibuat untuk matriks persegi singular, tetapi program ini tidak dapat memakainya untuk memperoleh satu solusi unik.

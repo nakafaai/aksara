@@ -7,7 +7,7 @@ export const metadata = {
   subject: "Lineare Methoden der KI",
 };
 
-## Warum numerische Methoden anders arbeiten
+## Verfahren für einen Eigenwert oder das vollständige Spektrum
 
 Ein Eigenpaar einer quadratischen Matrix <InlineMath math="A" /> erfüllt
 
@@ -15,7 +15,7 @@ Ein Eigenpaar einer quadratischen Matrix <InlineMath math="A" /> erfüllt
 
 Bei einer kleinen symbolischen Matrix kann man <InlineMath math="\det(A-\lambda I)=0" /> lösen. Numerische Software bildet das charakteristische Polynom meist nicht, weil seine Koeffizienten empfindlich auf Rundung reagieren können. Wird nur ein Teil des Spektrums einer großen dünn besetzten Matrix benötigt, verwenden Krylow-Verfahren Matrix-Vektor-Produkte, ohne dieses Polynom zu bilden. Algorithmen für das vollständige Spektrum einer dichten Matrix arbeiten stattdessen mit Matrixfaktorisierungen.
 
-Verschiedene Algorithmen beantworten verschiedene Fragen:
+Der benötigte Teil des Spektrums und die Matrixstruktur bestimmen das passende Verfahren:
 
 - Die Potenziteration schätzt einen Eigenwert mit größtem Betrag.
 - Die verschobene inverse Iteration zielt auf einen Eigenwert nahe einer gewählten Verschiebung.

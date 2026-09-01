@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Identifiabilitas dan Peringkat Matriks",
-    description: "Hubungkan identifiabilitas parameter dengan peringkat matriks, nilai singular, kondisi numerik, dan faktorisasi penyingkap peringkat.",
+    description: "Hubungan antara identifiabilitas parameter, peringkat matriks, nilai singular, dan kondisi numerik, beserta cara memperkirakan peringkat matriks.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
     dateModified: "2026-09-01",
@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Identifiabilitas dalam Model Linear
 
-Identifiabilitas menanyakan apakah data yang tersedia menentukan parameter model secara unik. Misalkan <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="b \in \mathbb{R}^m" />, dan <InlineMath math="m \geq n" />. Masalah kuadrat terkecil linear adalah
+Sebuah parameter dapat diidentifikasi jika data yang tersedia menentukan nilai parameter tersebut secara unik. Misalkan <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="b \in \mathbb{R}^m" />, dan <InlineMath math="m \geq n" />. Masalah kuadrat terkecil linear adalah
 
 <BlockMath math="\min_{x \in \mathbb{R}^n} \|Ax-b\|_2^2" />
 
@@ -30,7 +30,7 @@ Kedua pernyataan ini ekuivalen. Jika terdapat <InlineMath math="z \in \ker(A)" /
 
 Kesamaan tersebut menunjukkan bahwa data tidak dapat membedakan <InlineMath math="x" /> dan <InlineMath math="x+z" />. Jika <InlineMath math="\ker(A)=\{0\}" />, maka <InlineMath math="A^TA" /> bersifat definit positif dan masalah kuadrat terkecil memiliki satu peminimum.
 
-## Keunikan Tidak Sama dengan Kestabilan
+## Keunikan Solusi dan Kestabilan Numerik
 
 Peringkat kolom penuh menjamin solusi eksak yang unik, tetapi belum menjamin keandalan numerik. Nilai singular tak nol yang sangat kecil dapat membuat estimasi sangat sensitif terhadap perubahan kecil pada data.
 
@@ -40,7 +40,7 @@ Peringkat kolom penuh menjamin solusi eksak yang unik, tetapi belum menjamin kea
 | Apakah estimasi ditentukan dengan baik secara numerik? | <InlineMath math="\sigma_n" /> tidak sangat kecil relatif terhadap <InlineMath math="\sigma_1" /> | Gangguan kecil tidak menimbulkan perubahan parameter yang besar. |
 | Seberapa sensitif masalahnya? | <InlineMath math="\kappa_2(A)=\sigma_1/\sigma_n" /> | Bilangan kondisi besar menandakan sensitivitas tinggi. |
 
-Identifiabilitas struktural merupakan sifat aljabar eksak. Identifiabilitas praktis juga bergantung pada skala, derau, dan toleransi numerik yang digunakan.
+Identifiabilitas struktural merupakan sifat aljabar eksak. Identifiabilitas praktis juga bergantung pada skala data, gangguan acak dalam pengukuran, dan toleransi numerik yang digunakan.
 
 ## Faktorisasi untuk Menentukan Peringkat
 
@@ -82,11 +82,11 @@ Data titik mengambang jarang memuat nol eksak. Peringkat numerik menghitung nila
 <BlockMath math="\operatorname{rank}_{\tau}(A)=\#\{i:\sigma_i>\tau\}" />
 </MathContainer>
 
-Faktor <InlineMath math="c" /> mengikuti aplikasi dan model derau, sehingga tidak ada satu batas desimal yang berlaku universal. Jika <InlineMath math="A" /> mengalami defisiensi peringkat, nilai minimum kuadrat terkecil tetap ada, tetapi vektor parameter peminimumnya tidak unik. Pseudoinvers Moore-Penrose memilih solusi dengan norma minimum:
+Faktor <InlineMath math="c" /> bergantung pada penerapan dan perkiraan besarnya gangguan acak dalam data, sehingga tidak ada satu batas desimal yang berlaku untuk semua masalah. Jika <InlineMath math="A" /> tidak berperingkat penuh, nilai minimum kuadrat terkecil tetap ada, tetapi ada lebih dari satu vektor parameter yang menghasilkan nilai minimum tersebut. Pseudoinvers Moore-Penrose memilih solusi dengan norma paling kecil:
 
 <BlockMath math="x^{\dagger}=V\Sigma^{\dagger}U^T b" />
 
-## Menghitung Dekomposisi dengan Aman
+## Menentukan Peringkat Matriks dengan SVD atau QR
 
 Identitas
 

@@ -7,9 +7,9 @@ export const metadata = {
   subject: "Linear Methods of AI",
 };
 
-## What an Inner Product Adds
+## Using Inner Products to Describe Geometry
 
-A vector space describes addition and scalar multiplication. An inner product defines length, angle, and orthogonality. This lesson uses the convention that a complex inner product is conjugate-linear in its first argument and linear in its second.
+A vector space has operations for addition and scalar multiplication. An inner product determines vector lengths, angles between vectors, and whether two vectors are orthogonal. For complex vectors, the inner product used below is conjugate-linear in its first argument and linear in its second.
 
 For <InlineMath math="x,y,z\in\mathbb{C}^n" /> and <InlineMath math="\lambda,\mu\in\mathbb{C}" />, an inner product satisfies
 
@@ -24,11 +24,11 @@ Conjugate symmetry guarantees that <InlineMath math="\langle x,x\rangle" /> is r
 
 ## Matrix Weighted Inner Products
 
-For real vectors, the formula
+For real vectors, a matrix weighted inner product is written as:
 
 <BlockMath math="\langle x,y\rangle_A=x^TAy" />
 
-This formula defines an inner product exactly when <InlineMath math="A" /> is symmetric positive definite. Symmetry of <InlineMath math="A" /> gives symmetry of the pairing, and <InlineMath math="x^TAx>0" /> for every nonzero <InlineMath math="x" /> gives strict positivity.
+This formula defines an inner product exactly when <InlineMath math="A" /> is symmetric positive definite. Symmetry of <InlineMath math="A" /> makes the result symmetric in <InlineMath math="x" /> and <InlineMath math="y" />, while <InlineMath math="x^TAx>0" /> for every nonzero <InlineMath math="x" /> gives strict positivity.
 
 For complex vectors, the corresponding formula is
 
@@ -43,13 +43,13 @@ The standard Euclidean inner products are recovered with <InlineMath math="A=I" 
 <BlockMath math="\langle x,y\rangle=x^Hy\qquad\text{over }\mathbb{C}^n" />
 </MathContainer>
 
-## Length Angle and Orthogonality
+## Vector Lengths with Angles and Orthogonality
 
-Every inner product induces the norm
+Every inner product defines the following norm:
 
 <BlockMath math="\|x\|_A=\sqrt{\langle x,x\rangle_A}" />
 
-The Cauchy-Schwarz inequality
+This norm satisfies the Cauchy-Schwarz inequality:
 
 <BlockMath math="|\langle x,y\rangle_A|\le\|x\|_A\|y\|_A" />
 
@@ -114,4 +114,4 @@ For vectors <InlineMath math="v_1,\ldots,v_k" />, their Gram matrix is
 
 <BlockMath math="G_{ij}=\langle v_i,v_j\rangle_A" />
 
-It is Hermitian positive semidefinite, and it is positive definite exactly when the vectors are linearly independent. Gram matrices turn geometric questions about angles and independence into matrix questions.
+The Gram matrix is Hermitian positive semidefinite. It is positive definite exactly when the vectors are linearly independent. Its entries record every pairwise inner product, so they can be used to check angles and linear independence.
