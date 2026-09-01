@@ -1,7 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { findExternalLinkLabelIssues } from "#nakafa-content/voice-links";
+import {
+  findExternalLinkLabelIssues,
+  findExternalLinkPlacementIssues,
+} from "#nakafa-content/voice-links";
 import { findLessonVoiceIssues } from "#nakafa-content/voice-scan";
 
 test("rejects placeholders claims descriptions and linked lesson topics", () => {
@@ -74,4 +77,44 @@ test("rejects prose that points at a link instead of naming the source", () => {
       ["source-navigation-filler"]
     );
   }
+});
+
+test("rejects source chips used inside sentence grammar", () => {
+  const failures = [
+    "[EPA](https://example.com) explains the design goal.",
+    "[EPA](https://example.com) Explains the design goal.",
+    "[OpenStax](https://example.com) Biology explains cell division.",
+    "Menurut [EIA](https://example.com), listrik berasal dari sumber lain.",
+    "A [PubChem](https://example.com) record describes the hazard.",
+    "The values published by [CIAAW](https://example.com) form a range.",
+  ];
+
+  for (const source of failures) {
+    assert.deepEqual(
+      findExternalLinkPlacementIssues(source).map(({ rule }) => rule),
+      ["external-link-chip-in-sentence"]
+    );
+  }
+});
+
+test("allows citations after complete claims and explicit source lists", () => {
+  const source = [
+    "Electricity is a secondary energy source. [EIA](https://example.com)",
+    "The first claim is sourced. [EPA](https://example.com) The explanation continues in a new sentence.",
+    "Two claims share evidence. [EPA](https://example.com) [EIA](https://example.org)",
+    "## Sources",
+    "",
+    "- [OpenStax Biology 2e](https://example.com) presents the derivation.",
+  ].join("\n\n");
+
+  assert.deepEqual(findExternalLinkPlacementIssues(source), []);
+});
+
+test("does not treat an ordinary list as an automatic source list", () => {
+  assert.deepEqual(
+    findExternalLinkPlacementIssues(
+      "- [OpenStax Biology 2e](https://example.com) explains the process."
+    ).map(({ rule }) => rule),
+    ["external-link-chip-in-sentence"]
+  );
 });

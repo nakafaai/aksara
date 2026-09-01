@@ -3,6 +3,86 @@ import test from "node:test";
 
 import { findLessonVoiceIssues } from "#nakafa-content/voice-scan";
 
+test("rejects known decorative lesson headings and preserves direct headings", () => {
+  const failures = {
+    de: "## Ein Ausweis für das Atom",
+    en: "## An Atom Identity Card",
+    id: "## Kartu Identitas Atom",
+  };
+  const directHeadings = {
+    de: "## Angaben in einem Atomsymbol",
+    en: "## Information in an Atomic Symbol",
+    id: "## Informasi dalam Lambang Atom",
+  };
+
+  for (const locale of ["de", "en", "id"] as const) {
+    assert.deepEqual(
+      findLessonVoiceIssues(locale, failures[locale]).map(({ rule }) => rule),
+      ["known-decorative-science-heading"]
+    );
+    assert.deepEqual(findLessonVoiceIssues(locale, directHeadings[locale]), []);
+  }
+});
+test("rejects mathematical family calques but preserves literal family prose", () => {
+  const failures = [
+    "Integral tak tentu memuat keluarga antiturunan.",
+    "Untuk memperoleh satu anggota keluarga, pilih nilai a sama dengan satu.",
+    "Bandingkan dua senyawa sekeluarga.",
+  ];
+
+  for (const source of failures) {
+    assert.deepEqual(
+      findLessonVoiceIssues("id", source).map(({ rule }) => rule),
+      ["indonesian-mathematical-family-calque"]
+    );
+  }
+
+  assert.deepEqual(
+    findLessonVoiceIssues(
+      "id",
+      "Sebuah keluarga yang terdiri dari enam anggota akan duduk berjajar untuk foto keluarga."
+    ),
+    []
+  );
+  assert.deepEqual(
+    findLessonVoiceIssues(
+      "id",
+      "Gen TP53 termasuk dalam kelompok gen penekan tumor."
+    ),
+    []
+  );
+});
+test("rejects redirected cell machinery metaphors but preserves literal mechanisms", () => {
+  const failures = {
+    de: "Das Virus lenkt die Maschinerie der Zelle um.",
+    en: "The virus redirects the host-cell machinery.",
+    id: "Genom virus mengambil alih kerja sel inang.",
+  };
+  const directExplanations = {
+    de: "Die Wirtszelle kopiert das Virusgenom und stellt Virusproteine her.",
+    en: "The host cell copies the viral genome and makes viral proteins.",
+    id: "Sel inang menyalin genom virus dan membuat protein virus.",
+  };
+
+  for (const locale of ["de", "en", "id"] as const) {
+    assert.deepEqual(
+      findLessonVoiceIssues(locale, failures[locale]).map(({ rule }) => rule),
+      ["redirected-cell-machinery-metaphor"]
+    );
+    assert.deepEqual(
+      findLessonVoiceIssues(locale, directExplanations[locale]),
+      []
+    );
+  }
+
+  assert.deepEqual(
+    findLessonVoiceIssues(
+      "en",
+      "Ribosomes are part of the cell machinery for protein synthesis."
+    ),
+    []
+  );
+});
 test("finds stock bridge and journey metaphors", () => {
   const source = [
     "Konsep ini menjadi jembatan menuju materi berikutnya.",
@@ -92,130 +172,6 @@ test("rejects a journey metaphor for integration limits", () => {
     findLessonVoiceIssues(
       "id",
       "Perjalanan bus dari A ke B menempuh jarak 12 kilometer."
-    ),
-    []
-  );
-});
-test("rejects rank exposure metaphors and preserves named rank tests", () => {
-  const failures = {
-    de: "Zwei Werkzeuge legen den Rang offen.",
-    en: "Two tools expose rank.",
-    id: "Dua alat menyingkap peringkat.",
-  };
-  const directExplanations = {
-    de: "Bestimme den Rang aus der Anzahl der von null verschiedenen Singulärwerte.",
-    en: "Determine rank from the number of nonzero singular values.",
-    id: "Tentukan peringkat dari banyak nilai singular tak nol.",
-  };
-
-  for (const locale of ["de", "en", "id"] as const) {
-    assert.deepEqual(
-      findLessonVoiceIssues(locale, failures[locale]).map(({ rule }) => rule),
-      ["rank-exposure-metaphor"]
-    );
-    assert.deepEqual(
-      findLessonVoiceIssues(locale, directExplanations[locale]),
-      []
-    );
-  }
-});
-test("rejects a translated natural rank revealing label but preserves the technical term", () => {
-  const failures = {
-    de: "Diese Zerlegung ist das natürlichere rangoffenlegende Verfahren.",
-    en: "This factorization is the more natural rank-revealing choice.",
-    id: "Faktorisasi ini merupakan pilihan penyingkap peringkat yang lebih alami.",
-  };
-  const directExplanations = {
-    de: "Eine rangoffenlegende Faktorisierung schätzt den numerischen Rang.",
-    en: "A rank-revealing factorization estimates numerical rank.",
-    id: "Faktorisasi dengan pivoting kolom memperkirakan peringkat numerik.",
-  };
-
-  for (const locale of ["de", "en", "id"] as const) {
-    assert.deepEqual(
-      findLessonVoiceIssues(locale, failures[locale]).map(({ rule }) => rule),
-      ["rank-exposure-metaphor"]
-    );
-    assert.deepEqual(
-      findLessonVoiceIssues(locale, directExplanations[locale]),
-      []
-    );
-  }
-});
-test("rejects decorative bread metaphors for programming slices", () => {
-  const samples = {
-    de: "Wie bei einer Brotscheibe werden Anfang und Ende festgelegt.",
-    en: "Like choosing a slice from a loaf of bread, you set the bounds.",
-    id: "Seperti menentukan potongan pada sepotong roti, kamu memilih batasnya.",
-  };
-
-  for (const [locale, source] of Object.entries(samples)) {
-    assert.deepEqual(
-      findLessonVoiceIssues(locale, source).map(({ rule }) => rule),
-      ["decorative-bread-metaphor"]
-    );
-  }
-});
-test("rejects raw material metaphors for adaptation", () => {
-  const samples = {
-    de: "Genetische Variation ist das Ausgangsmaterial für Anpassung.",
-    en: "Genetic variation supplies raw material for adaptation.",
-    id: "Variasi gen menjadi bahan mentah adaptasi.",
-  };
-
-  for (const [locale, source] of Object.entries(samples)) {
-    assert.deepEqual(
-      findLessonVoiceIssues(locale, source).map(({ rule }) => rule),
-      ["decorative-raw-material-metaphor"]
-    );
-  }
-});
-test("rejects the formulaic world of introduction", () => {
-  const samples = {
-    de: "Integrale in der Welt der Physik.",
-    en: "Integrals in the world of physics.",
-    id: "Integral dalam dunia fisika.",
-  };
-
-  for (const [locale, source] of Object.entries(samples)) {
-    assert.deepEqual(
-      findLessonVoiceIssues(locale, source).map(({ rule }) => rule),
-      ["formulaic-world-of"]
-    );
-  }
-});
-test("rejects formulaic makes sense justifications", () => {
-  const samples = {
-    de: "Dieses Ergebnis ist sinnvoll, weil alle Fälle erfasst sind.",
-    en: "This makes sense because every case is included.",
-    id: "Hasil ini masuk akal karena semua kasus tercakup.",
-  };
-
-  for (const [locale, source] of Object.entries(samples)) {
-    assert.deepEqual(
-      findLessonVoiceIssues(locale, source).map(({ rule }) => rule),
-      ["formulaic-makes-sense-justification"]
-    );
-  }
-});
-test("rejects values that metaphorically capture a mathematical change", () => {
-  const samples = {
-    de: "Der Wert des Kosinus bildet diesen Übergang ab.",
-    en: "The cosine value captures that change.",
-    id: "Nilai kosinus menangkap perubahan itu.",
-  };
-
-  for (const [locale, source] of Object.entries(samples)) {
-    assert.deepEqual(
-      findLessonVoiceIssues(locale, source).map(({ rule }) => rule),
-      ["abstract-value-captures-change"]
-    );
-  }
-
-  assert.deepEqual(
-    findLessonVoiceIssues(
-      "id",
-      "Sensor cahaya menangkap perubahan intensitas pada layar."
     ),
     []
   );

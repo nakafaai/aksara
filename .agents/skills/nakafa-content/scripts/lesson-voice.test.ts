@@ -88,3 +88,32 @@ test("proven regressions still block the default checker", () => {
     rmSync(root, { force: true, recursive: true });
   }
 });
+test("structural punctuation and contextual regressions block the CLI", () => {
+  const samples = [
+    ["heading", "## SDG 7 Energy Access\n"],
+    ["semicolon", "Hitung nilai pertama; lalu hitung nilai kedua.\n"],
+    [
+      "context",
+      "Hitung ketidakpastian hasil dengan aturan rambatan yang sesuai.\n",
+    ],
+  ] as const;
+  const originalError = console.error;
+  const originalLog = console.log;
+  console.error = () => undefined;
+  console.log = () => undefined;
+
+  try {
+    for (const [name, source] of samples) {
+      const root = mkdtempSync(join(tmpdir(), `nakafa-lesson-voice-${name}-`));
+      try {
+        writeFileSync(join(root, "id.mdx"), source);
+        assert.equal(runCli(["--root", root]), 1, name);
+      } finally {
+        rmSync(root, { force: true, recursive: true });
+      }
+    }
+  } finally {
+    console.error = originalError;
+    console.log = originalLog;
+  }
+});

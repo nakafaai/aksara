@@ -52,6 +52,7 @@ addition, revision, review, or translation in this repository.
 | Work | Read |
 | --- | --- |
 | Any authored revision or translation | `references/editorial-workflow.md`, `references/writing-quality.md` |
+| Locale wording and cross-locale review | `references/locale-sources.md` |
 | Lesson or article MDX | `references/mdx-quality.md` |
 | Question or response items | `references/question-bank.md` |
 | Worked answer explanation | `references/question-bank.md`, `references/worked-solutions.md`, `references/mdx-quality.md` |
@@ -87,15 +88,53 @@ addition, revision, review, or translation in this repository.
   the learner compare or check the result before the next idea. Use only the
   stages that the topic needs. This is a reasoning flow, not a fixed lesson
   template.
+- Use a five-year-old clarity test without turning the lesson into baby talk.
+  Name the object, action, input, and result so the learner never has to guess
+  what a pronoun, passive verb, or shortened phrase refers to. Keep every
+  necessary technical term, then explain it immediately with familiar words
+  and a concrete example.
 - Teacher-led storytelling never means invented anecdotes, artificial suspense,
   personified concepts, decorative metaphors, rhetorical questions, or chatty
   filler. The lesson feels spoken because each sentence responds to the idea
   before it and prepares the next one. Every transition must carry subject
   meaning.
+- Never invent a classroom, school, course, or other physical learning setting
+  around the learner. State the exact assumption or limitation of a model,
+  such as rounded values or ignored air resistance. Do not write `model
+  pembelajaran`, `classroom model`, `Unterrichtsmodell`, `in this course`, or a
+  similar setting label merely to mark an example as simplified. A real school
+  dataset, historical classroom anecdote, statistical class interval,
+  taxonomic class, and programming `class` remain valid when that meaning is
+  actually part of the subject.
+- Do not label an exercise, example, case, model, or scenario as `fiktif`,
+  `fictional`, `hypothetical`, or `fiktiv` merely to announce that the author
+  constructed it. Start with the quantities and question instead. When the
+  distinction protects factual accuracy, state the exact limitation once, for
+  example that a simplified formula is not an epidemiological forecast, then
+  continue with the calculation without repeating the label.
+- Do not invoke a curriculum, syllabus, textbook tradition, or school level to
+  justify terminology in learner prose. Explain the concept and its alternative
+  names directly. Mention a curriculum only when the curriculum itself is the
+  subject being analyzed or cited as evidence for a curriculum-specific claim.
+- State what a concept measures, returns, requires, or changes. Do not write
+  that a limit, law, property, function, or scientific field `asks` a question.
+  Keep an actual learner question when it advances the explanation, and answer
+  it in the surrounding paragraph.
+- Before an example, name the operation and the object being worked on. Replace
+  `untuk lebih memahami konsep ini, lihat beberapa contoh` with a concrete cue
+  such as `dua contoh berikut mengalikan setiap entri dengan skalar yang sama`.
+  Delete unsupported labels such as `pertanyaan menarik` or `contoh paling
+  umum` when no evidence or comparison supports them.
 - Prefer the shortest familiar word that keeps the subject meaning exact. Keep
   a necessary subject term, define it in one plain sentence on first use, and
   never replace an everyday word with a formal synonym merely to sound
   academic.
+- Define a necessary technical label through its concrete action before using
+  the label as shorthand. For example, first explain that researchers modify a
+  virus so it can carry selected genetic material into target cells, then name
+  that modified virus a `viral vector`, `vektor virus`, or `viraler Vektor` in
+  the relevant locale. Never assume a familiar everyday meaning of `vector`
+  explains its biology meaning.
 - English is not a defect by itself. Keep a canonical English technical term
   when learners will see it in syntax, APIs, documentation, error messages, or
   community discussion. Terms such as `standard library`, `namespace`,
@@ -106,6 +145,20 @@ addition, revision, review, or translation in this repository.
   in its complete sentence, lesson, and subject community. A deterministic rule
   may reject a specific ambiguous construction, but it must not blacklist a
   language, a glossary, or a broad class of technical vocabulary.
+- Do not let a translated technical noun replace the action that students need
+  to understand. In Indonesian, a word such as `derau` is incomplete unless the
+  lesson first explains the concrete source, such as random error in measured
+  data. In a regularization lesson, replace `arahnya disusutkan agar tidak
+  memperbesar derau` with the actual filter behavior. State whether the filter
+  factor approaches zero or one, which solution component becomes smaller, and
+  which measurement error would otherwise cause a large change.
+- Translate a subject term only when the translated word is natural in the
+  sentence. `Masukan` is valid when a function lesson defines input and output,
+  but `mengembalikan masukan x` is a mechanical translation of `return the
+  input`. Write the result directly, such as `membawa kita kembali ke nilai
+  awal x`. In a simple optimization example, name the concrete condition,
+  such as fixed perimeter or total wire length, instead of repeatedly telling
+  the learner to `terjemahkan kendala`.
 - Make every claim complete enough for a student to test. Name the actor or
   quantity, the change or action, and the consequence. A qualitative claim such
   as `tinggi`, `efisien`, `fleksibel`, `mudah disimpan`, or `andal` must state
@@ -117,11 +170,32 @@ addition, revision, review, or translation in this repository.
   picture. Do not leave calques such as `pembangkit menjadwalkan keluarannya`
   unexplained. State whether the plant runs continuously, raises or lowers
   power as demand changes, or starts for several hours during peak demand.
+- Do not translate `propagation rule` mechanically as `aturan rambatan` in an
+  Indonesian measurement lesson. State the operation directly, such as
+  calculating the uncertainty of a product from the uncertainty of each
+  measured input. Preserve literal uses such as `cepat rambat cahaya`.
 - Keep references local and unmistakable. Words such as `ini`, `itu`,
   `tersebut`, `manfaat`, `kelebihan`, `risiko`, `dampak`, `this`, `those`, and
   their German equivalents must have one clear antecedent. After a list of
   claims, repeat the exact noun when a student could reasonably ask which
   benefit, risk, source, or process the sentence means.
+- A passive verb must still name the subject and the relevant context. Do not
+  write `hasil kali nol ikut dibahas`, `kasus ini dipertimbangkan`, or a locale
+  sibling that leaves the learner asking what is being done, by whom, or where.
+  State the mathematical or scientific condition directly, such as `aturan
+  tetap berlaku ketika P atau Q adalah polinomial nol`. Keep a passive sentence
+  when its subject and context are explicit, such as `topik keselamatan dibahas
+  pada bagian berikutnya`.
+- Do not use `dibahas sebagai` or `dibahas dalam konteks` as a shortcut for the
+  actual relationship. Write `virus yang merusak jaringan menyebabkan penyakit`
+  or `virus yang mengubah populasi mikroba memengaruhi ekosistem`. The learner
+  needs the biological action and result, not a note about how an author groups
+  the topic.
+- Do not end an Indonesian sentence with a bare category such as `sebagai
+  rentang` when the learner still has to guess what varies. Name the measured
+  quantity, for example `bobot atom standar dilaporkan dalam bentuk rentang
+  nilai`. Keep valid uses such as `rentang suhu` and `rentang 20 sampai 30
+  derajat`.
 - Apply the same check to the Indonesian suffix `-nya`. A phrase such as
   `lanjutkan perhitungannya` fails when the student could ask which calculation
   must continue. Name the operation directly, such as `lanjutkan konversi
@@ -140,6 +214,21 @@ addition, revision, review, or translation in this repository.
   endpoints, or use a declarative transition before the general formula.
   Keep factual uses such as `NOAA melaporkan ...` when the source and claim are
   explicit.
+- A familiar situation used to introduce an idea remains part of the teacher's
+  explanation. Do not end the setup and suddenly order the learner to calculate
+  something. Connect the setup to the method, for example `Untuk memperkirakan
+  luasnya, kita membagi tanah itu menjadi beberapa persegi panjang`. Keep a
+  direct command only in an exercise that clearly asks for a response.
+- Do not translate the English mathematical term `family` mechanically as
+  `keluarga` in Indonesian prose. Write the exact set being discussed, such as
+  `semua antiturunan yang berbeda pada konstantanya`, `beberapa fungsi yang
+  memenuhi syarat`, or `semua sudut koterminal`. Literal human families and
+  established terms in another locale remain valid in their own context.
+- Describe the actual host-cell process in virus lessons. Replace phrases such
+  as `genom mengambil alih kerja sel` or `mengarahkan mesin sel` with the named
+  actions, such as copying the viral genome, making capsid proteins, and
+  assembling virions. Do not turn this regression into a ban on every standard
+  scientific use of `cell machinery`.
 - Treat a displayed equation as the end of a visual block. The paragraph after
   `BlockMath` or `MathContainer` must begin as a complete sentence, not as a
   lowercase continuation such as `dengan`, `sehingga`, `where`, `so that`,
@@ -227,18 +316,19 @@ addition, revision, review, or translation in this repository.
   prose merely to make strict review return zero.
 - Treat every new lesson voice rule as a tested editorial invariant. Search all
   three locales for variants, keep the expression narrow, add one failing and
-  one valid regression example, then inspect every corpus match in context.
+  one valid regression example plus the nearest false-positive boundary, then
+  inspect every corpus match in context.
   Never add a global word ban from one sentence or edit prose to improve an AI
   detector score. Read `references/writing-quality.md` for the evidence basis
   and admission criteria.
 - Write every heading as one short phrase using ordinary words. A page title or
-  lesson heading may contain only letters, numbers, and spaces. Never put
-  punctuation, a formula, a code token, an operator, an emoji, a decorative
-  number, or any other symbol in a heading. Put exact notation, aliases, and
-  questions in the first sentence below it.
-  Do not satisfy this rule by deleting a required Indonesian hyphen. Use a
-  natural alternative, such as `rerata` instead of `rata rata` and `radius`
-  instead of `jari jari`.
+  lesson heading may contain only letters and ordinary spaces. Never put a
+  digit, punctuation mark, formula, code token, operator, emoji, or any other
+  symbol in a heading. Put exact notation, aliases, and questions in the first
+  sentence below it. The only exception is a hyphen required by standard word
+  formation, such as `rata-rata` or `jari-jari` in Indonesian. Do not replace a
+  familiar word with a stiffer synonym merely to satisfy the checker, and never
+  delete the required hyphen to produce `rata rata` or `jari jari`.
 - Never use a visible semicolon in learner-facing content. This rule covers
   paragraphs, lists, tables, metadata descriptions, and learner-facing
   component titles, descriptions, captions, and labels in every locale. Use a
@@ -260,6 +350,13 @@ addition, revision, review, or translation in this repository.
   Keep `resmi` or `documentation` in the prose and label the chips `[NumPy]` or
   `[GBIF]`. Internal links beginning with `/` render as ordinary underlined
   links and may use a clear descriptive destination label.
+- Complete the learner-facing claim before the external source chip. Do not use
+  a chip as the subject, object, attribution, or another grammatical part of a
+  sentence, such as `[EPA] menjelaskan`, `menurut [EIA]`, `a [PubChem] record`,
+  or `published by [CIAAW]`. Write the complete claim first, end the sentence,
+  then append the source chip or consecutive source chips. A dedicated source
+  list may begin each item with a source chip because the list itself already
+  establishes the citation role.
 - Judge every link in its sentence and verify the destination. Do not shorten a
   legitimate official publication name only to satisfy a character limit, and
   do not derive a mandatory label from the hostname. The checker blocks only
@@ -299,19 +396,31 @@ addition, revision, review, or translation in this repository.
 - Keep all locale siblings equivalent in facts, instructional sequence,
   examples, visual evidence, and learner support. Use
   natural language for each locale instead of forcing sentence-level symmetry.
+- Never translate a reviewed sentence word by word from a locale sibling.
+  Preserve the meaning and teaching job, then write the sentence again with the
+  normal syntax, connective words, technical vocabulary, and register of the
+  target language. A phrase that is natural in English can be vague, stiff, or
+  misleading in Indonesian or German. Review each localized sentence as an
+  original sentence in that language and use
+  `references/locale-sources.md` for the source hierarchy.
 - Render every learner-facing mathematical expression through Aksara's math
   components, including expressions inside component titles, descriptions, and
   other props that accept React nodes. Do not leave variables, formulas,
   coordinates, quantities, units, or axis symbols as plain text merely because
   they appear inside a prop.
+- Write every LaTeX command with its leading backslash inside a `math` prop.
+  For example, use `\ldots`, `\cdots`, `\vdots`, or `\ddots`, never the bare
+  words `ldots`, `cdots`, `vdots`, or `ddots`. The deterministic checker must
+  inspect only rendered `math` props for this rule and leave prose, code, and
+  comments alone.
 - Treat named matrix factorizations and algorithms as mathematical notation in
   learner prose. Render labels such as `QR`, `LU`, `SVD`, `PLU`, and `PCA` with upright
   letters, for example `<InlineMath math="\mathrm{QR}" />`. A page title or
   heading remains plain text because headings cannot contain JSX or symbols;
   introduce the rendered notation in the first sentence below it. Do not
-  rewrite code, URLs, immutable quotations, or schema-owned strings that cannot
-  render React content. For a component prop, verify that it accepts a React
-  node before replacing a string.
+  rewrite code, code comments, URLs, immutable quotations, or schema-owned
+  strings that cannot render React content. For a component prop, verify that
+  it accepts a React node before replacing a string.
 - Treat graph and 3D labels as semantic React content by default. Plain prose is
   already valid content; compose prose and `<InlineMath />` in one fragment when
   a label includes notation. Never flatten mathematical meaning into a string or

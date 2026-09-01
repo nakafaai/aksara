@@ -3,6 +3,36 @@ import type { LessonVoiceRule } from "#nakafa-content/voice-types";
 /** Checks decorative metaphors and stock narrative framing in lesson prose. */
 export const METAPHOR_VOICE_RULES = [
   {
+    id: "known-decorative-science-heading",
+    patterns: {
+      de: /^#{2,6}[ \t]+(?:Ein Ausweis für das Atom|Wenn Nullen im Weg stehen|Ein Rechner kennt die Messgenauigkeit nicht)[ \t]*$/iu,
+      en: /^#{2,6}[ \t]+(?:An Atom Identity Card|When Zeros Get in the Way|A Calculator Does Not Know the Tool Precision|Indefinite Integrals as Antiderivative Families)[ \t]*$/iu,
+      id: /^#{2,6}[ \t]+(?:Kartu Identitas Atom|Dimensi sebagai Kode|Ketika Nol Mulai Mengganggu|Kalkulator Belum Tahu Ketelitian Alat|Integral Tak Tentu sebagai Keluarga Antiturunan)[ \t]*$/iu,
+    },
+  },
+  {
+    id: "indonesian-mathematical-family-calque",
+    patterns: {
+      id: /\b(?:keluarga (?:antiturunan|fungsi|polinomial|sudut koterminal)|anggota keluarga,?\s+(?:pilih|ambil|tentukan)|senyawa sekeluarga)\b/iu,
+    },
+  },
+  {
+    id: "redirected-cell-machinery-metaphor",
+    patterns: {
+      de: /(?:\b(?:lenkt|lenken)\b[^.!?\n]{0,45}\bMaschinerie\b[^.!?\n]{0,20}\bum\b|\bübernimmt\b[^.!?\n]{0,45}\bZellmaschinerie\b)/iu,
+      en: /\b(?:redirects?|takes? over)\b[^.!?\n]{0,45}\b(?:cell(?:ular)?|host-cell)(?:'s)? (?:machinery|work)\b/iu,
+      id: /\b(?:mengarahkan|mengambil alih)\b[^.!?\n]{0,45}\b(?:mesin|kerja) sel(?: inang)?\b/iu,
+    },
+  },
+  {
+    id: "chemical-formula-personification",
+    patterns: {
+      de: /^\s*(?:(?:trägt|tragen) (?:die doppelte|die vierfache) \S*masse\b|(?:benötigt|benötigen)\s*$)/iu,
+      en: /^\s*(?:carries (?:twice|four times) the (?:\S+ )?mass\b|needs\s*$)/iu,
+      id: /^\s*(?:membawa (?:dua|empat) kali massa\b|membutuhkan\s*$)/iu,
+    },
+  },
+  {
     id: "formulaic-compass-metaphor",
     patterns: {
       de: /\bals\s+(?:(?:ein|eine|einen|der|die|das)\s+)?Kompass\b/iu,
@@ -48,62 +78,6 @@ export const METAPHOR_VOICE_RULES = [
       de: /\bWeg von Punkt\b[^.!?\n]{0,120}\bumgekehrt\b[^.!?\n]{0,120}\bAkkumulation\b/iu,
       en: /\breversing a journey\b[^.!?\n]{0,160}\baccumulat(?:ed|ion)\b/iu,
       id: /\b(?:membalik perjalanan|perjalanan pulang)\b[^.!?\n]{0,160}\bakumulasi(?:nya)?\b/iu,
-    },
-  },
-  {
-    id: "rank-exposure-metaphor",
-    patterns: {
-      de: /(?:\b(?:Werkzeuge|Faktorisierungen)\b[^.!?\n]{0,60}\b(?:legen|decken)\b[^.!?\n]{0,25}\bRang\b[^.!?\n]{0,20}\b(?:offen|auf)\b|\bnatürlicheren? rangoffenlegenden? Verfahren\b)/iu,
-      en: /(?:\b(?:tools?|factorizations?)\b[^.!?\n]{0,60}\b(?:expose|reveal)\b[^.!?\n]{0,20}\brank\b|\b(?:more )?natural rank-revealing (?:choice|method)\b)/iu,
-      id: /(?:\b(?:alat|faktorisasi)\b[^.!?\n]{0,60}\b(?:menyingkap|mengungkap)\b[^.!?\n]{0,20}\bperingkat\b|\bpilihan penyingkap peringkat yang lebih alami\b)/iu,
-    },
-  },
-  {
-    id: "decorative-bread-metaphor",
-    patterns: {
-      de: /\bwie (?:bei )?(?:einer )?(?:Brotscheibe|Scheibe (?:aus|von) (?:einem )?Brot)\b/iu,
-      en: /\blike (?:choosing|taking) (?:a )?slice (?:from|of) (?:a )?(?:loaf of )?bread\b/iu,
-      id: /\bseperti (?:menentukan|memilih|mengambil) (?:sebuah )?potongan (?:dari|pada) (?:sepotong )?roti\b/iu,
-    },
-  },
-  {
-    id: "decorative-raw-material-metaphor",
-    patterns: {
-      de: /\b(?:Ausgangsmaterial|Rohstoff)\s+(?:für|der)\s+(?:Anpassung|Evolution)\b/iu,
-      en: /\braw material\s+(?:for|of)\s+(?:adaptation|evolution)\b/iu,
-      id: /\bbahan mentah\s+(?:bagi|dari|untuk)?\s*(?:adaptasi|evolusi)\b/iu,
-    },
-  },
-  {
-    id: "stock-learning-journey",
-    patterns: {
-      de: /\b(?:(?:beginne|starte) (?:deine|die) Reise|lange[ns]? Weg(?:es)? (?:zu|zur|zum))\b/iu,
-      en: /\b(?:start (?:your|the) [^.!?\n]{0,40} journey|long (?:path|journey) (?:to|toward))\b/iu,
-      id: /\b(?:mulai(?:lah)? perjalanan|perjalanan panjang menuju)\b/iu,
-    },
-  },
-  {
-    id: "formulaic-world-of",
-    patterns: {
-      de: /\bin der Welt der\b/iu,
-      en: /\bin the world of\b/iu,
-      id: /\bdalam dunia\b/iu,
-    },
-  },
-  {
-    id: "formulaic-makes-sense-justification",
-    patterns: {
-      de: /\b(?:das|dies|dieses Ergebnis) ist sinnvoll(?:,|\s+(?:weil|denn))/iu,
-      en: /\b(?:this|that|the result) makes sense(?:,|\s+because)/iu,
-      id: /\b(?:ini|hal ini|hasil ini) masuk akal(?:,|\s+karena)/iu,
-    },
-  },
-  {
-    id: "abstract-value-captures-change",
-    patterns: {
-      de: /\bWert\b[^.!?\n]{0,50}\bbildet\b[^.!?\n]{0,30}(?:Änderung|Übergang|Verhältnis)[^.!?\n]{0,15}\bab\b/iu,
-      en: /\bvalue\b[^.!?\n]{0,50}\bcaptures?\b[^.!?\n]{0,30}\b(?:change|relationship|transition)\b/iu,
-      id: /\bnilai\b[^.!?\n]{0,50}\bmenangkap\b[^.!?\n]{0,30}\b(?:hubungan|perubahan|peralihan)\b/iu,
     },
   },
 ] satisfies readonly LessonVoiceRule[];

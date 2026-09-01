@@ -1,3 +1,8 @@
+import { FLOW_CONTEXT_RULES } from "#nakafa-content/flow-context";
+import { FLOW_STYLE_RULES } from "#nakafa-content/flow-style";
+import { LANGUAGE_CALQUE_RULES } from "#nakafa-content/language-calque";
+import { findMalformedLatexCommandIssues } from "#nakafa-content/math-command";
+import { TECHNICAL_METAPHOR_RULES } from "#nakafa-content/metaphor-technical";
 import { AMBIGUITY_VOICE_RULES } from "#nakafa-content/voice-ambiguity";
 import { CLAIM_VOICE_RULES } from "#nakafa-content/voice-claim";
 import { CONTRAST_VOICE_RULES } from "#nakafa-content/voice-contrast";
@@ -34,13 +39,17 @@ import { VISIBILITY_VOICE_RULES } from "#nakafa-content/voice-visibility";
 const LESSON_VOICE_RULES = [
   ...CORE_VOICE_RULES,
   ...METAPHOR_VOICE_RULES,
+  ...TECHNICAL_METAPHOR_RULES,
   ...METHOD_VOICE_RULES,
   ...TRANSITION_VOICE_RULES,
   ...CLAIM_VOICE_RULES,
   ...CONTRAST_VOICE_RULES,
   ...FLOW_VOICE_RULES,
+  ...FLOW_CONTEXT_RULES,
+  ...FLOW_STYLE_RULES,
   ...HEADING_VOICE_RULES,
   ...LANGUAGE_VOICE_RULES,
+  ...LANGUAGE_CALQUE_RULES,
   ...NAVIGATION_VOICE_RULES,
   ...AMBIGUITY_VOICE_RULES,
   ...REPORTING_VOICE_RULES,
@@ -56,6 +65,42 @@ const METADATA_END_PATTERN = /^\s*\};\s*$/u;
 const CODE_FENCE_PATTERN = /^\s*(```|~~~)/u;
 const UNESCAPED_BACKTICK_PATTERN = /(?<!\\)`/gu;
 const REPETITIVE_OPENER_LIMIT = 2;
+const SECTION_HEADING_PATTERN = /^(#{2,6})\s+(.+)$/u;
+const EXERCISE_HEADING_PATTERNS: Record<LessonVoiceLocale, RegExp> = {
+  de: /^(?:Aufgaben|Übung|Übungen)$/iu,
+  en: /^(?:Exercise|Exercises|Practice)$/iu,
+  id: /^(?:Latihan|Latihan Mandiri)$/iu,
+};
+
+/** Collects lines inside an explicit exercise section. */
+function exerciseSectionLines(
+  locale: LessonVoiceLocale,
+  source: string
+): ReadonlySet<number> {
+  const result = new Set<number>();
+  let exerciseDepth: number | undefined;
+  for (const [lineIndex, line] of source.split("\n").entries()) {
+    const heading = SECTION_HEADING_PATTERN.exec(line);
+    if (heading) {
+      const [, marker, label] = heading;
+      if (!(marker && label)) {
+        continue;
+      }
+      const depth = marker.length;
+      if (exerciseDepth !== undefined && depth <= exerciseDepth) {
+        exerciseDepth = undefined;
+      }
+      if (EXERCISE_HEADING_PATTERNS[locale].test(label.trim())) {
+        exerciseDepth = depth;
+      }
+      continue;
+    }
+    if (exerciseDepth !== undefined) {
+      result.add(lineIndex + 1);
+    }
+  }
+  return result;
+}
 
 /** Creates the mutable parser state used across lesson source lines. */
 function createLineState(): LineState {
@@ -169,6 +214,7 @@ function inspectLessonLine(
 ): LessonVoiceIssue[] {
   const context = classifyLine(line, state);
   const issues = findStructuralIssues(
+    locale,
     line,
     lineNumber,
     state,
@@ -245,7 +291,12 @@ export function findLessonVoiceIssues(
       parsedTree,
       LESSON_VOICE_RULES
     ),
-    ...findPlainMathLabelIssues(source, parsedTree)
+    ...findPlainMathLabelIssues(source, parsedTree),
+    ...findMalformedLatexCommandIssues(source, parsedTree)
   );
-  return deduplicateIssues(issues);
+  const exerciseLines = exerciseSectionLines(locale, source);
+  return deduplicateIssues(issues).filter(
+    ({ line, rule }) =>
+      rule !== "abrupt-scenario-imperative" || !exerciseLines.has(line)
+  );
 }
