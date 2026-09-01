@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import ts from "typescript";
 
-import { enforceViolations, typescriptFiles } from "#scripts/files";
+import { enforceViolations, typescriptFiles } from "#scripts/check/files";
 
 const LINE_BREAK_PATTERN = /\r?\n/u;
 const MAXIMUM_LINES = 300;

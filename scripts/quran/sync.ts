@@ -13,7 +13,7 @@ export const makeQuranSourceSyncProgram = Effect.fn(
   "AksaraScripts.syncGermanQuranSources"
 )(function* () {
   const result = yield* syncGermanQuranSources(
-    resolve(import.meta.dirname, "..")
+    resolve(import.meta.dirname, "../..")
   );
   yield* Effect.logInfo("German Quran sources synchronized", result);
 });

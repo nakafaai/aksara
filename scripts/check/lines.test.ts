@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { countModuleLines, lineViolations } from "#scripts/check-lines";
+import { countModuleLines, lineViolations } from "#scripts/check/lines";
 
 describe("line policy", () => {
   it("excludes JSDoc-only lines while retaining mixed source lines", () => {

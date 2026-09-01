@@ -2,10 +2,10 @@ import { readFileSync } from "node:fs";
 
 import ts from "typescript";
 
-import { enforceViolations, typescriptFiles } from "#scripts/files";
+import { enforceViolations, typescriptFiles } from "#scripts/check/files";
 
 const LOCALE_CONTRACT_MODULE = "packages/contracts/src/locale.ts";
-const LOCALE_POLICY_SCRIPT = "scripts/check-locales.ts";
+const LOCALE_POLICY_SCRIPT = "scripts/check/locales.ts";
 const LOCALE_VOCABULARY_MODULES = new Set([
   LOCALE_CONTRACT_MODULE,
   LOCALE_POLICY_SCRIPT,

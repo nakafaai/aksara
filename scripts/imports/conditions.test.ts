@@ -2,7 +2,7 @@ import { describe, expect, it } from "@effect/vitest";
 import {
   sourceConditionFromConfig,
   sourceConditionViolations,
-} from "#scripts/source-conditions";
+} from "#scripts/imports/conditions";
 
 describe("workspace source conditions", () => {
   it("derives the condition from TypeScript configuration", () => {

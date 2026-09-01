@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 
-import { effectTestViolations } from "#scripts/effect-tests";
+import { effectTestViolations } from "#scripts/imports/effect";
 
 const FILE = "packages/example/src/program.test.ts";
 const RUNNER_VIOLATION =

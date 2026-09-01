@@ -39,7 +39,7 @@ vi.mock("@nakafa/aksara-corpus/quran/source/sync", () => ({
   }),
 }));
 
-import { makeQuranSourceSyncProgram } from "#scripts/quran-sync";
+import { makeQuranSourceSyncProgram } from "#scripts/quran/sync";
 
 describe("German Quran source sync command", () => {
   it.effect(
@@ -51,7 +51,7 @@ describe("German Quran source sync command", () => {
         );
 
         assert.deepStrictEqual(sync.repositoryRoots, [
-          resolve(import.meta.dirname, ".."),
+          resolve(import.meta.dirname, "../.."),
         ]);
         assert.strictEqual(runtime.calls, 1);
       })

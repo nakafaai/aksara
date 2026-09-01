@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { trackedFiles } from "#scripts/files";
+import { trackedFiles } from "#scripts/check/files";
 import { verifyCliWorkflow } from "#scripts/workflow/cli";
 import { verifyProvenanceWorkflow } from "#scripts/workflow/provenance";
 import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";

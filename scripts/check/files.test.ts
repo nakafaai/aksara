@@ -4,7 +4,7 @@ import {
   parseTrackedFiles,
   trackedFiles,
   typescriptFiles,
-} from "#scripts/files";
+} from "#scripts/check/files";
 
 const originalExitCode = process.exitCode;
 
@@ -36,7 +36,7 @@ describe("files", () => {
         "package/_generated/api.ts",
       ])
     ).toEqual(["source.ts", "source.tsx", "source.mts", "source.cts"]);
-    expect(typescriptFiles()).toContain("scripts/files.ts");
+    expect(typescriptFiles()).toContain("scripts/check/files.ts");
     expect(trackedFiles()).toContain("package.json");
   });
 

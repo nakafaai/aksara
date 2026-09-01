@@ -3,7 +3,7 @@ import { describe, expect, it } from "@effect/vitest";
 import {
   contractLocaleCodes,
   localePolicyViolations,
-} from "#scripts/check-locales";
+} from "#scripts/check/locales";
 
 describe("locale source policy", () => {
   it("allows the canonical locale contract and derived consumers", () => {

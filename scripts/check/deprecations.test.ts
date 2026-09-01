@@ -8,7 +8,7 @@ import {
   projectConfigPaths,
   readScriptSnapshot,
   uncoveredTypeScriptViolations,
-} from "#scripts/check-deprecations";
+} from "#scripts/check/deprecations";
 
 const temporaryRoots: string[] = [];
 
