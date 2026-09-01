@@ -17,6 +17,7 @@ import {
   PositiveMeasureSchema,
   samePlanePoint,
 } from "#contracts/math/base";
+import { planeBoundsIssues } from "#contracts/math/bounds";
 
 const ObjectFields = {
   appearance: MathAppearanceSchema,
@@ -149,35 +150,6 @@ const PlanePolygonObjectSchema = Schema.Struct({
   )
 );
 
-const PlaneSplineObjectSchema = Schema.Struct({
-  ...ObjectFields,
-  kind: Schema.Literal("spline"),
-  samples: PlaneShapeSchema,
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(
-      ({ samples }) => hasUniquePositions(samples, samePlanePoint),
-      { message: "Expected at least three unique spline samples." }
-    )
-  )
-);
-
-const PlaneClosedSplineObjectSchema = Schema.Struct({
-  ...ObjectFields,
-  kind: Schema.Literal("closed-spline"),
-  samples: PlaneShapeSchema,
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(
-      ({ samples }) => hasUniquePositions(samples, samePlanePoint),
-      {
-        message:
-          "Expected unique closed-spline samples without a repeated closing sample.",
-      }
-    )
-  )
-);
-
 const PlaneCircleObjectSchema = Schema.Struct({
   ...ObjectFields,
   center: PlanePointSchema,
@@ -194,19 +166,37 @@ const PlaneArcObjectSchema = Schema.Struct({
   sweepDegrees: ArcSweepDegreesSchema,
 });
 
+const PlaneQuadraticObjectSchema = Schema.Struct({
+  ...ObjectFields,
+  coefficients: Schema.Struct({
+    a: Schema.Finite.pipe(
+      Schema.check(
+        Schema.makeFilter((value) => value !== 0, {
+          message: "Expected a non-zero quadratic coefficient.",
+        })
+      )
+    ),
+    b: Schema.Finite,
+    c: Schema.Finite,
+  }),
+  domain: MathAxisRangeSchema,
+  inputAxis: Schema.Literals(["x", "y"]),
+  kind: Schema.Literal("quadratic"),
+});
+
 /** Mathematical objects supported by a Cartesian plane scene. */
 export const PlaneMathObjectSchema = Schema.Union([
   PlaneArcObjectSchema,
   PlaneCircleObjectSchema,
-  PlaneClosedSplineObjectSchema,
   PlaneLineObjectSchema,
   PlanePointObjectSchema,
   PlanePolygonObjectSchema,
   PlanePolylineObjectSchema,
+  PlaneQuadraticObjectSchema,
   PlaneRayObjectSchema,
   PlaneSegmentObjectSchema,
-  PlaneSplineObjectSchema,
 ]);
+export type PlaneMathObject = typeof PlaneMathObjectSchema.Type;
 
 /** Exact Cartesian frame presented behind a plane construction. */
 export const PlaneMathFrameSchema = Schema.Struct({
@@ -216,6 +206,7 @@ export const PlaneMathFrameSchema = Schema.Struct({
   x: MathAxisRangeSchema,
   y: MathAxisRangeSchema,
 });
+export type PlaneMathFrame = typeof PlaneMathFrameSchema.Type;
 
 /** Plane visuals use semantic fit instead of renderer camera parameters. */
 export const PlaneMathViewSchema = Schema.Struct({
@@ -229,6 +220,7 @@ export const PlaneLabelAnchorSchema = Schema.Struct({
   key: MathVisualKeySchema,
   placement: Schema.optionalKey(MathLabelPlacementSchema),
 });
+export type PlaneLabelAnchor = typeof PlaneLabelAnchorSchema.Type;
 
 /** Complete stable plane visual before rich labels are attached. */
 export const PlaneMathVisualSchema = Schema.Struct({
@@ -239,8 +231,9 @@ export const PlaneMathVisualSchema = Schema.Struct({
   view: PlaneMathViewSchema,
 }).pipe(
   Schema.check(
-    Schema.makeFilter(({ labels = [], objects }) =>
-      mathVisualIdentityIssues(objects, labels)
-    )
+    Schema.makeFilter(({ frame, labels = [], objects }) => [
+      ...mathVisualIdentityIssues(objects, labels),
+      ...planeBoundsIssues(frame, objects, labels),
+    ])
   )
 );
