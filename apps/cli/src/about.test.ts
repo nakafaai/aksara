@@ -16,8 +16,6 @@ describe("CLI information", () => {
       yield* printCliInfo("version", "9.8.7");
 
       expect(output[0]).toContain("Aksara CLI");
-      expect(output[0]).toContain("aksara audit --release-id");
-      expect(output[0]).toContain("--recovery-manifest-hash");
       expect(output[0]).toContain("inside an Aksara checkout");
       expect(output[1]).toBe("9.8.7");
     }).pipe(Effect.provideService(Console.Console, testConsole));

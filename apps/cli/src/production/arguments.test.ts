@@ -9,7 +9,6 @@ const baseArguments = [
   "recovery-2026-07-22",
 ] as const;
 const assetHash = `sha256:${"a".repeat(64)}`;
-const recoveryHash = `sha256:${"b".repeat(64)}`;
 
 /** Decodes one production argument collection. */
 function parse(args: readonly string[]) {
@@ -141,74 +140,6 @@ describe("release production arguments", () => {
       expect(yield* reject(input.args)).toMatchObject({
         _tag: "ProductionArgumentsError",
         command: "release",
-        option: input.option,
-        reason: input.reason,
-      });
-    })
-  );
-});
-
-describe("audit production arguments", () => {
-  it.effect("decodes exact active and retained inverse identities", () =>
-    Effect.gen(function* () {
-      expect(
-        yield* parseProductionArguments("audit", [
-          ...baseArguments,
-          "--manifest-hash",
-          assetHash,
-          "--recovery-manifest-hash",
-          recoveryHash,
-        ])
-      ).toEqual({
-        command: "audit",
-        manifestHash: assetHash,
-        recoveryId: "recovery-2026-07-22",
-        recoveryManifestHash: recoveryHash,
-        releaseId: "release-2026-07-22",
-      });
-    })
-  );
-
-  it.effect.each([
-    {
-      args: baseArguments,
-      option: "--manifest-hash",
-      reason: "missing",
-    },
-    {
-      args: [...baseArguments, "--manifest-hash", assetHash],
-      option: "--recovery-manifest-hash",
-      reason: "missing",
-    },
-    {
-      args: [
-        ...baseArguments,
-        "--manifest-hash",
-        "invalid",
-        "--recovery-manifest-hash",
-        recoveryHash,
-      ],
-      option: "--manifest-hash",
-      reason: "value",
-    },
-    {
-      args: [
-        ...baseArguments,
-        "--manifest-hash",
-        assetHash,
-        "--recovery-manifest-hash",
-        "invalid",
-      ],
-      option: "--recovery-manifest-hash",
-      reason: "value",
-    },
-  ] as const)("rejects invalid audit identity input %#", (input) =>
-    Effect.gen(function* () {
-      expect(
-        yield* parseProductionArguments("audit", input.args).pipe(Effect.flip)
-      ).toMatchObject({
-        _tag: "ProductionArgumentsError",
-        command: "audit",
         option: input.option,
         reason: input.reason,
       });

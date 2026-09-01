@@ -5,12 +5,10 @@ import { ContentKeySchema } from "#contracts/ids";
 import { type ArtifactLocale, ArtifactLocaleSchema } from "#contracts/locale";
 import {
   canonicalizeQuestionProjection,
-  HistoricalQuestionBodyProjectionSchema,
   makeQuestionBodyProjection,
   QuestionAnswerProjectionSchema,
   QuestionBodyProjectionSchema,
   QuestionPromptProjectionSchema,
-  ReadableQuestionBodyProjectionSchema,
 } from "#contracts/projection/question";
 import {
   QuestionKeySchema,
@@ -59,48 +57,6 @@ const documentedItem = Schema.decodeSync(QuestionItemSchema)({
   responses: item.responses,
   stimulusKey: "shared-table",
 });
-const historicalPrompt = {
-  artifactLocale: "en",
-  bodyKind: "question",
-  choices: [
-    { label: "A", value: true },
-    { label: "B", value: false },
-  ],
-  contentKey: `${questionKey}/question`,
-  kind: "question-body",
-  metadata: {
-    authors: [{ name: "Test Author" }],
-    date: "2026-07-01",
-    title: "Question 1",
-  },
-  peerContentKey: `${questionKey}/answer`,
-  questionKey,
-  questionNumber: 1,
-  setKey,
-};
-const historicalAnswer = {
-  artifactLocale: "en",
-  bodyKind: "answer",
-  contentKey: `${questionKey}/answer`,
-  kind: "question-body",
-  metadata: {
-    authors: [{ name: "Test Author" }],
-    date: "2026-07-01",
-    title: "Question 1",
-  },
-  peerContentKey: `${questionKey}/question`,
-  questionKey,
-  questionNumber: 1,
-  setKey,
-};
-const historicalPromptBytes =
-  '{"bodyKind":"question","choices":[{"label":"A","value":true},{"label":"B","value":false}],"artifactLocale":"en",' +
-  `"contentKey":"${questionKey}/question","kind":"question-body","metadata":{"authors":[{"name":"Test Author"}],"date":"2026-07-01","title":"Question 1"},` +
-  `"peerContentKey":"${questionKey}/answer","questionKey":"${questionKey}","questionNumber":1,"setKey":"${setKey}"}`;
-const historicalAnswerBytes =
-  `{"bodyKind":"answer","artifactLocale":"en","contentKey":"${questionKey}/answer","kind":"question-body",` +
-  '"metadata":{"authors":[{"name":"Test Author"}],"date":"2026-07-01","title":"Question 1"},' +
-  `"peerContentKey":"${questionKey}/question","questionKey":"${questionKey}","questionNumber":1,"setKey":"${setKey}"}`;
 
 /** Builds one strict prompt projection for the selected locale. */
 const promptProjection = Effect.fn("QuestionProjectionTest.prompt")(function* (
@@ -211,29 +167,6 @@ describe("question projection", () => {
       });
     })
   );
-
-  it("reads predecessor bytes without admitting them as current content", () => {
-    for (const [value, expectedBytes] of [
-      [historicalPrompt, historicalPromptBytes],
-      [historicalAnswer, historicalAnswerBytes],
-    ] as const) {
-      const historical = Schema.decodeUnknownSync(
-        HistoricalQuestionBodyProjectionSchema
-      )(value);
-      const canonical = canonicalizeQuestionProjection(historical);
-
-      expect(
-        Schema.decodeSync(ReadableQuestionBodyProjectionSchema)(historical)
-      ).toEqual(historical);
-      expect(canonical).toBe(expectedBytes);
-      expect(JSON.parse(canonical)).toEqual(historical);
-      expect(
-        Exit.isFailure(
-          Schema.decodeUnknownExit(QuestionBodyProjectionSchema)(historical)
-        )
-      ).toBe(true);
-    }
-  });
 
   it.effect("rejects invented metadata and an answer response", () =>
     Effect.gen(function* () {
