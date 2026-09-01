@@ -1,9 +1,10 @@
 
 export const metadata = {
   title: "Multiplikation und Division von Funktionen",
-  description: "Untersuche Produkt- und Quotientenfunktionen, ihre Definitionsbereiche und den Ausschluss von Nennernullstellen.",
+  description: "Produkt- und Quotientenfunktionen besitzen Definitionsbereiche, die bei Quotienten alle Nennernullstellen ausschließen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Funktionszusammensetzung und Umkehrfunktion",
 };
 
@@ -28,11 +29,13 @@ Die Produktfunktion multipliziert <InlineMath math="f(x)" /> und <InlineMath mat
           y: i - 5,
           z: 0,
         })),
+        smooth: false,
         color: "#ea580c",
         labels: [{ text: <InlineMath math="f(x)=x" />, at: 6, offset: [1, -0.5, 0] }],
       },
       {
         points: Array.from({ length: 11 }, (_, i) => ({ x: i - 5, y: 2, z: 0 })),
+        smooth: false,
         color: "#0284c7",
         labels: [{ text: <InlineMath math="g(x)=2" />, at: 8, offset: [1, 0.5, 0] }],
       },
@@ -42,6 +45,7 @@ Die Produktfunktion multipliziert <InlineMath math="f(x)" /> und <InlineMath mat
           y: 2 * (i - 5),
           z: 0,
         })),
+        smooth: false,
         color: "#e11d48",
         labels: [{ text: <InlineMath math="(f\cdot g)(x)=2x" />, at: 7, offset: [-1.5, 1, 0] }],
       },
@@ -65,7 +69,7 @@ Verwenden wir dieses Mal etwas andere Funktionen:
 2.  <InlineMath math="g(x) = x - 1" />, mit Definitionsbereich <InlineMath math="D_g = \{x | x \in \mathbb{R}\}" /> (alle
     reelle Zahlen).
 
-**Schritt** <InlineMath math="1" />: Bestimmen Sie die resultierende Funktion aus der Multiplikation
+**Schritt** <InlineMath math="1" />: Bestimme die resultierende Funktion aus der Multiplikation
 
 <MathContainer>
   <BlockMath math="(f \cdot g)(x) = f(x) \cdot g(x)" />
@@ -73,7 +77,7 @@ Verwenden wir dieses Mal etwas andere Funktionen:
   <BlockMath math="= x^3 - x^2" />
 </MathContainer>
 
-**Schritt** <InlineMath math="2" />: Bestimmen Sie den Definitionsbereich der resultierenden Funktion
+**Schritt** <InlineMath math="2" />: Bestimme den Definitionsbereich der resultierenden Funktion
 
 Wir finden den Schnittpunkt von <InlineMath math="D_f" /> und <InlineMath math="D_g" />:
 
@@ -106,17 +110,17 @@ Wir verwenden die gleichen Funktionen wie im Multiplikationsbeispiel:
 1.  <InlineMath math="f(x) = x^2" />, <InlineMath math="D_f = \{x | x \in \mathbb{R}\}" />
 2.  <InlineMath math="g(x) = x - 1" />, <InlineMath math="D_g = \{x | x \in \mathbb{R}\}" />
 
-**Schritt** <InlineMath math="1" />: Bestimmen Sie die resultierende Funktion aus der Division
+**Schritt** <InlineMath math="1" />: Bestimme die resultierende Funktion aus der Division
 
 <BlockMath math="\left(\frac{f}{g}\right)(x) = \frac{f(x)}{g(x)} = \frac{x^2}{x-1}" />
 
-**Schritt** <InlineMath math="2" />: Bestimmen Sie den Definitionsbereich der resultierenden Funktion
+**Schritt** <InlineMath math="2" />: Bestimme den Definitionsbereich der resultierenden Funktion
 
-Finden Sie zunächst den Schnittpunkt von <InlineMath math="D_f" /> und <InlineMath math="D_g" />:
+Finde zunächst den Schnittpunkt von <InlineMath math="D_f" /> und <InlineMath math="D_g" />:
 
 <BlockMath math="D_f \cap D_g = \{x | x \in \mathbb{R}\}" />
 
-Zweitens ermitteln Sie den Wert von <InlineMath math="x" />, der <InlineMath math="g(x) = 0" /> ergibt:
+Bestimme anschließend den Wert von <InlineMath math="x" />, für den <InlineMath math="g(x) = 0" /> gilt:
 
 <MathContainer>
   <BlockMath math="g(x) = 0" />
@@ -124,7 +128,7 @@ Zweitens ermitteln Sie den Wert von <InlineMath math="x" />, der <InlineMath mat
   <BlockMath math="x = 1" />
 </MathContainer>
 
-Drittens schließen Sie <InlineMath math="x=1" /> aus der Schnittmenge der Definitionsbereiche aus:
+Schließe danach <InlineMath math="x=1" /> aus der Schnittmenge der Definitionsbereiche aus:
 
 <BlockMath math="D_{\frac{f}{g}}=\{x\mid x\in\mathbb{R}\}\setminus\{1\}" />
 
@@ -138,9 +142,9 @@ Die resultierende Funktion aus der Division ist also <InlineMath math="(\frac{f}
 
 Gegeben sei die Funktion <InlineMath math="f(x) = \sqrt{x+4}" /> mit <InlineMath math="D_f = \{x | x \ge -4, x \in \mathbb{R}\}" /> und die Funktion <InlineMath math="g(x) = x^2 - 9" /> mit <InlineMath math="D_g = \{x | x \in \mathbb{R}\}" />.
 
-1.  Bestimmen Sie <InlineMath math="(f \cdot g)(x)" /> und seinen Definitionsbereich <InlineMath math="D_{f \cdot g}" />.
-2.  Bestimmen Sie <InlineMath math="(\frac{f}{g})(x)" /> und seinen Definitionsbereich <InlineMath math="D_{\frac{f}{g}}" />.
-3.  Berechnen Sie den Wert von <InlineMath math="(f \cdot g)(5)" />.
+1.  Bestimme <InlineMath math="(f \cdot g)(x)" /> und seinen Definitionsbereich <InlineMath math="D_{f \cdot g}" />.
+2.  Bestimme <InlineMath math="(\frac{f}{g})(x)" /> und seinen Definitionsbereich <InlineMath math="D_{\frac{f}{g}}" />.
+3.  Berechne den Wert von <InlineMath math="(f \cdot g)(5)" />.
 4.  Ist <InlineMath math="(\frac{f}{g})(3)" /> definiert? Erklären.
 
 ### Lösungen
@@ -180,7 +184,7 @@ Gegeben sei die Funktion <InlineMath math="f(x) = \sqrt{x+4}" /> mit <InlineMath
       <BlockMath math="x = 3 \text{oder} x = -3" />
     </MathContainer>
 
-    Schließen Sie <InlineMath math="x=3" /> und <InlineMath math="x=-3" /> aus der Schnittmenge der Definitionsbereiche aus:
+    Schließe <InlineMath math="x=3" /> und <InlineMath math="x=-3" /> aus der Schnittmenge der Definitionsbereiche aus:
 
     <BlockMath math="D_{\frac{f}{g}}=\{x\mid x\geq-4,\ x\in\mathbb{R}\}\setminus\{-3,3\}" />
 

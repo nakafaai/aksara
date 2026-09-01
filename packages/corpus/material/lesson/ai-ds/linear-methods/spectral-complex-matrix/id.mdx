@@ -1,9 +1,9 @@
 export const metadata = {
    title: "Teorema Spektral untuk Matriks Kompleks",
-   description: "Pelajari diagonalisasi uniter matriks normal: buktikan ekuivalensi antara normalitas dan basis vektor eigen menggunakan induksi matematis.",
+   description: "Buktikan bahwa matriks normal memiliki basis vektor eigen ortonormal, lalu gunakan basis itu untuk diagonalisasi uniter.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-07-16",
-   dateModified: "2026-08-22",
+   dateModified: "2026-09-01",
    subject: "Metode Linear AI",
 };
 
@@ -94,14 +94,14 @@ Dengan kata lain, <InlineMath math="W" /> invarian terhadap <InlineMath math="A"
 
 Misalkan <InlineMath math="T \in \mathbb{C}^{n \times n}" /> adalah matriks uniter dengan kolom <InlineMath math="v_1, \ldots, v_n" />. Maka <InlineMath math="T \cdot T^H = T \cdot T^{-1} = I" />.
 
-Transformasi ini memberikan bentuk blok yang elegan:
+Dalam basis uniter ini, <InlineMath math="A" /> memiliki bentuk blok berikut:
 
 <MathContainer>
 <BlockMath math="T^H \cdot A \cdot T = T^{-1} \cdot A \cdot T" />
 <BlockMath math="= \begin{pmatrix} \lambda_1 & 0^T \\ 0 & A' \end{pmatrix}" />
 </MathContainer>
 
-dengan:
+Blok kanan bawah <InlineMath math="A'" /> memiliki ukuran
 
 <BlockMath math="A' \in \mathbb{C}^{(n-1) \times (n-1)}" />
 
@@ -123,11 +123,11 @@ Berdasarkan hipotesis induksi, terdapat basis ortonormal <InlineMath math="v'_2,
 
 <BlockMath math="S' \in \mathbb{C}^{(n-1) \times (n-1)}" />
 
-sehingga:
+Dalam basis <InlineMath math="S'" />, matriks <InlineMath math="A'" /> menjadi diagonal:
 
 <BlockMath math="S'^H \cdot A' \cdot S' = \begin{pmatrix} \lambda_2 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix}" />
 
-dengan nilai eigen <InlineMath math="\lambda_2, \ldots, \lambda_n" /> dari <InlineMath math="A'" />.
+Entri diagonal <InlineMath math="\lambda_2, \ldots, \lambda_n" /> adalah nilai eigen dari <InlineMath math="A'" />.
 
 Sekarang kita definisikan:
 
@@ -137,7 +137,7 @@ Maka <InlineMath math="S" /> adalah matriks uniter dengan:
 
 <BlockMath math="S \in \mathbb{C}^{n \times n}" />
 
-dan:
+Substitusi matriks <InlineMath math="S" /> ke transformasi kesebangunan memberikan
 
 <MathContainer>
 <BlockMath math="S^H \cdot A \cdot S = \begin{pmatrix} 1 & 0^T \\ 0 & S'^H \end{pmatrix} \cdot T^H \cdot A \cdot T" />
@@ -154,7 +154,7 @@ Untuk matriks riil, perbedaannya terletak pada apakah nilai eigen dan vektor eig
 
 <BlockMath math="A \in \mathbb{R}^{n \times n}" />
 
-disebut normal jika:
+Matriks real <InlineMath math="A" /> disebut normal jika
 
 <BlockMath math="A \cdot A^T = A^T \cdot A" />
 
@@ -162,7 +162,7 @@ Matriks normal real tetap dapat didiagonalkan secara uniter pada <InlineMath mat
 
 <BlockMath math="\begin{pmatrix}a&-b\\b&a\end{pmatrix}" />
 
-untuk pasangan nilai eigen konjugat <InlineMath math="a\pm bi" />. Matriks normal real dapat didiagonalkan secara ortogonal pada <InlineMath math="\mathbb{R}" /> tepat ketika semua nilai eigennya real.
+Setiap blok berukuran <InlineMath math="2\times2" /> ini mewakili pasangan nilai eigen konjugat <InlineMath math="a\pm bi" />. Matriks normal real dapat didiagonalkan secara ortogonal pada <InlineMath math="\mathbb{R}" /> tepat ketika semua nilai eigennya real.
 
 Matriks simetris dan matriks ortogonal selalu normal. Untuk matriks simetris <InlineMath math="A^T = A" />, jelas bahwa:
 
@@ -181,7 +181,7 @@ Matriks seperempat putaran
 
 <BlockMath math="R=\begin{pmatrix}0&-1\\1&0\end{pmatrix}" />
 
-bersifat real dan ortogonal, sehingga normal. Nilai eigennya adalah <InlineMath math="i" /> dan <InlineMath math="-i" />, dengan vektor eigen ternormalisasi
+Matriks <InlineMath math="R" /> bersifat real dan ortogonal, sehingga normal. Nilai eigennya adalah <InlineMath math="i" /> dan <InlineMath math="-i" />, dengan vektor eigen ternormalisasi
 
 <MathContainer>
 <BlockMath math="u_+=\frac1{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix},\qquad u_-=\frac1{\sqrt2}\begin{pmatrix}1\\i\end{pmatrix}" />

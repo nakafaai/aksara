@@ -3,13 +3,13 @@ export const metadata = {
   description: "Menyusun model kuadrat untuk luas yang dibatasi, menentukan nilai minimumnya, lalu memeriksa apakah hasilnya sah dalam masalah semula.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-19",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Fungsi Kuadrat",
 };
 
 ## Mengubah kendala menjadi nilai minimum
 
-Sebagian masalah optimasi meminta nilai sekecil mungkin. Produsen mungkin mencari biaya terendah, atau suatu rancangan membutuhkan jumlah luas terkecil dengan syarat geometri tertentu. Tujuannya berbeda, tetapi proses pemodelannya tetap sama: terjemahkan kendala, susun fungsi dengan satu variabel, lalu tafsirkan titik puncaknya.
+Sebagian masalah optimasi meminta nilai sekecil mungkin. Produsen mungkin mencari biaya terendah, atau suatu rancangan membutuhkan jumlah luas terkecil dengan syarat geometri tertentu. Tujuannya berbeda, tetapi proses pemodelannya tetap sama. Ubah kendala menjadi persamaan, susun fungsi dengan satu variabel, lalu gunakan titik puncak untuk menentukan nilai minimum yang memenuhi kendala.
 
 Mencari minimum bukan berarti langsung memilih nol. Masalah semula menentukan nilai mana yang diperbolehkan, dan minimum harus berada di dalam domain tersebut.
 
@@ -39,7 +39,7 @@ Bentuk ekuivalen yang menggunakan diskriminan adalah
 
 Setelah menghitung titik puncak, selalu kembali ke konteks. Periksa domain, satuan, dan apakah variabel harus berupa bilangan bulat.
 
-## Contoh terurai: satu kawat, dua persegi
+## Luas Minimum dari Satu Kawat dan Dua Persegi
 
 Kawat sepanjang <InlineMath math="40\text{ cm}" /> dipotong menjadi dua bagian. Setiap bagian dibentuk menjadi sebuah persegi. Di mana kawat harus dipotong agar jumlah luas kedua persegi sekecil mungkin?
 
@@ -73,7 +73,7 @@ Kawat sepanjang <InlineMath math="40\text{ cm}" /> dipotong menjadi dua bagian. 
      <BlockMath math="A(5)=5^2+5^2=50" />
    </MathContainer>
 
-7. **Tafsirkan potongannya.** Setiap persegi membutuhkan keliling <InlineMath math="4(5)=20\text{ cm}" />, sehingga kawat dipotong menjadi dua bagian sepanjang <InlineMath math="20\text{ cm}" />. Seluruh kawat <InlineMath math="40\text{ cm}" /> tetap digunakan. Yang diminimalkan hanya jumlah luas yang dikelilingi.
+7. **Tentukan panjang setiap potongan.** Setiap persegi membutuhkan keliling <InlineMath math="4(5)=20\text{ cm}" />, sehingga kawat dipotong menjadi dua bagian sepanjang <InlineMath math="20\text{ cm}" />. Seluruh kawat <InlineMath math="40\text{ cm}" /> tetap digunakan. Yang diminimalkan hanya jumlah luas yang dikelilingi.
 
 <ContentBlock>
   <LineEquation
@@ -111,7 +111,7 @@ Kawat sepanjang <InlineMath math="40\text{ cm}" /> dipotong menjadi dua bagian. 
 
 Jumlah luas minimum adalah <InlineMath math="50\text{ cm}^2" />, yang diperoleh ketika kedua persegi memiliki sisi <InlineMath math="5\text{ cm}" />.
 
-## Membaca model secara ringkas
+## Menentukan Domain Model dan Titik Puncak
 
 | Bagian masalah | Pernyataan matematika | Makna |
 | -------------- | --------------------- | ----- |
@@ -120,7 +120,7 @@ Jumlah luas minimum adalah <InlineMath math="50\text{ cm}^2" />, yang diperoleh 
 | Domain | <InlineMath math="0<x<10" /> | Kedua persegi tetap memiliki sisi positif. |
 | Titik puncak | <InlineMath math="(5,50)" /> | Sisi yang sama panjang menghasilkan jumlah luas terkecil. |
 
-## Penerapan lain: biaya produksi
+## Penerapan Lain pada Biaya Produksi
 
 Misalkan biaya produksi <InlineMath math="x" /> barang, dalam ribuan rupiah, dinyatakan oleh
 

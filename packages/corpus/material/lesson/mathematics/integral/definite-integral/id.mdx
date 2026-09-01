@@ -3,7 +3,7 @@ export const metadata = {
     description: "Definisikan integral tentu sebagai limit jumlahan Riemann dan evaluasi satu contoh langsung dari limit tersebut.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Integral",
 };
 
@@ -20,8 +20,8 @@ Integral tentu mencatat akumulasi pada limit tersebut. Secara matematis, integra
 <BlockMath math="\int_{a}^{b} f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x" />
 
 Notasi ini memiliki arti spesifik:
-- **<InlineMath math="\int_{a}^{b}" />**: Ini adalah simbol integral dengan batas **bawah** <InlineMath math="a" /> dan batas **atas** <InlineMath math="b" />. Angka-angka ini mendefinisikan interval di mana kita menghitung luas.
-- **<InlineMath math="f(x)" />**: Ini adalah **integran**; nilai sampelnya menentukan akumulasi bertanda.
+- **<InlineMath math="\int_{a}^{b}" />**: Simbol ini memiliki batas **bawah** <InlineMath math="a" /> dan batas **atas** <InlineMath math="b" />. Kedua batas menentukan interval perhitungan integral.
+- **<InlineMath math="f(x)" />**: Ini adalah **integran**. Nilai sampelnya menentukan akumulasi bertanda.
 - **<InlineMath math="dx" />**: Sama seperti pada integral tak tentu, ini menandakan bahwa kita mengintegrasikan terhadap variabel <InlineMath math="x" />.
 
 Berbeda dengan integral tak tentu yang mewakili keluarga fungsi (<InlineMath math="F(x) + C" />), integral tentu adalah sebuah **angka tunggal**. Nilainya menyatakan akumulasi bertanda dari <InlineMath math="x=a" /> hingga <InlineMath math="x=b" /> dan sama dengan luas geometris hanya jika integrannya tidak negatif pada interval tersebut.
@@ -66,7 +66,7 @@ Kita bisa mengeluarkan konstanta dari sigma, karena <InlineMath math="n" /> dian
 
 <BlockMath math="\frac{49}{n^2} \sum_{i=1}^{n} i" />
 
-Selanjutnya, kita ganti <InlineMath math="\sum_{i=1}^{n} i" /> dengan rumus jumlah deretnya, yaitu <InlineMath math="\frac{n(n+1)}{2}" />, lalu kita sederhanakan ekspresinya untuk mempermudah perhitungan limit.
+Selanjutnya, ganti <InlineMath math="\sum_{i=1}^{n} i" /> dengan <InlineMath math="\frac{n(n+1)}{2}" />, lalu sederhanakan sampai suku yang bergantung pada <InlineMath math="n" /> terpisah.
 
 <MathContainer>
 <BlockMath math="\frac{49}{n^2} \cdot \frac{n(n+1)}{2}" />
@@ -75,9 +75,9 @@ Selanjutnya, kita ganti <InlineMath math="\sum_{i=1}^{n} i" /> dengan rumus juml
 <BlockMath math="= \frac{49}{2} \left( \frac{n+1}{n} \right) = \frac{49}{2} \left( 1 + \frac{1}{n} \right)" />
 </MathContainer>
 
-Langkah-langkah penyederhanaan di atas memastikan kita mendapatkan bentuk yang paling mudah untuk dihitung limitnya. Pertama kita kanselasi <InlineMath math="n" /> dari pembilang dan penyebut, kemudian kita pisahkan pecahannya.
+Penyederhanaan tersebut menghasilkan faktor konstan yang dikalikan dengan <InlineMath math="1+\frac{1}{n}" />. Limit sisanya dapat dihitung dari <InlineMath math="\frac{1}{n}\to0" />.
 
-> Untuk menyelesaikan limit dari Jumlahan Riemann, seringkali kita memerlukan beberapa rumus jumlah deret umum:
+> Untuk menghitung limit jumlah Riemann, kita sering memerlukan beberapa rumus jumlah deret yang umum:
 > - <InlineMath math="\sum_{i=1}^{n} i = \frac{n(n+1)}{2}" />
 > - <InlineMath math="\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}" />
 > - <InlineMath math="\sum_{i=1}^{n} i^3 = \left( \frac{n(n+1)}{2} \right)^2" />

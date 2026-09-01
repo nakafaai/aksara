@@ -1,9 +1,9 @@
 export const metadata = {
   title: "Tikhonov Regularization",
-  description: "Stabilize ill-conditioned least-squares problems with Tikhonov regularization, spectral filtering, informed parameter selection, and robust numerical solvers.",
+  description: "Stabilize ill-conditioned least-squares problems with Tikhonov regularization, spectral filtering, informed parameter selection, and numerically stable solution methods.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-15",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Linear Methods of AI",
 };
 
@@ -13,7 +13,7 @@ For <InlineMath math="A\in\mathbb{R}^{m\times n}" /> and <InlineMath math="b\in\
 
 <BlockMath math="\min_x\|Ax-b\|_2^2" />
 
-A minimizer always exists, even when the equations <InlineMath math="Ax=b" /> are inconsistent. The difficulty is different: if <InlineMath math="A" /> is rank deficient, the minimizer may not be unique; if <InlineMath math="A" /> is nearly rank deficient, small perturbations in <InlineMath math="b" /> can cause large changes in the fitted parameters.
+A minimizer always exists, even when the equations <InlineMath math="Ax=b" /> are inconsistent. If <InlineMath math="A" /> is rank deficient, that minimizer may not be unique. If <InlineMath math="A" /> is nearly rank deficient, small perturbations in <InlineMath math="b" /> can cause large changes in the fitted parameters.
 
 The singular value decomposition explains the amplification. For <InlineMath math="A=U\Sigma V^T" />, the least-squares solution contains factors <InlineMath math="1/\sigma_i" />. A data component along a very small singular value <InlineMath math="\sigma_i" /> is therefore magnified.
 
@@ -29,9 +29,9 @@ Here <InlineMath math="x_0" /> is a reference estimate, <InlineMath math="L" /> 
 - A first-difference matrix penalizes rapid changes between neighboring parameters.
 - A second-difference matrix penalizes curvature and favors smoother profiles.
 
-The penalty does not create new information in the observations. It makes the chosen prior structure explicit and produces a stable optimization problem.
+The penalty does not create new information in the observations. It states the chosen prior structure explicitly and can improve the numerical conditioning of the optimization problem.
 
-## Augmented Least-Squares Form
+## Augmented Least Squares Form
 
 The objective is exactly the least-squares problem
 
@@ -89,7 +89,7 @@ There is no universally best <InlineMath math="\alpha" />. It depends on the noi
 | Generalized cross-validation | Linear inverse problems without a separate validation set | Minimize a predictive score computed from the fitted system |
 | L-curve | Exploratory inverse-problem analysis | Inspect the corner of the residual-norm versus penalty-norm curve |
 
-Small <InlineMath math="\alpha" /> emphasizes data fit and can leave noise amplification. Large <InlineMath math="\alpha" /> emphasizes the penalty and can oversmooth or over-shrink the solution. Parameter columns and penalty rows must also use meaningful scales; otherwise the numerical value of <InlineMath math="\alpha" /> is hard to interpret.
+A small <InlineMath math="\alpha" /> prioritizes fitting the data, so noise can still be amplified. A large <InlineMath math="\alpha" /> prioritizes the penalty, which can make the fitted solution too smooth or shrink it too strongly. Scale the parameter columns and penalty rows consistently so the numerical value of <InlineMath math="\alpha" /> has a clear meaning.
 
 ## General Weights and Constraints
 
@@ -103,4 +103,4 @@ An equality such as <InlineMath math="x_i=c" /> should be modeled as an explicit
 
 ## Solving the Problem Reliably
 
-The normal equation is useful for analysis, but explicitly forming <InlineMath math="A^TA" /> squares the condition number. In numerical code, solve the augmented least-squares system with QR or SVD whenever stability matters. Report <InlineMath math="\alpha" />, <InlineMath math="L" />, parameter scaling, residual norm, and penalty norm. These details let another reader understand how regularization shaped the estimate.
+Use the normal equation to derive the regularized estimator and examine how <InlineMath math="\alpha" /> and <InlineMath math="L" /> change it. For numerical computation, avoid forming <InlineMath math="A^TA" /> because that squares the condition number. Solve the augmented least-squares system with <InlineMath math="\mathrm{QR}" /> or <InlineMath math="\mathrm{SVD}" /> instead. Report <InlineMath math="\alpha" />, <InlineMath math="L" />, parameter scaling, residual norm, and penalty norm so another reader can repeat the calculation and inspect the trade-off between data fit and penalty.

@@ -3,15 +3,15 @@ export const metadata = {
     description: "Fungsi print Python, parameter sep dan end, serta teknik formatting untuk mengontrol output dengan presisi.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-17",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Pemrograman AI",
 };
 
 ## Pengenalan Fungsi Print
 
-Fungsi bawaan `print()` menulis representasi teks suatu nilai ke stream. Secara default stream tersebut adalah `sys.stdout`, yang biasanya ditampilkan terminal di layar. Output juga dapat dialihkan ke file atau tujuan lain.
+Built-in `print()` menulis representasi teks suatu nilai ke output stream. Secara default, output dikirim ke `sys.stdout`, yang biasanya ditampilkan oleh terminal. Output juga dapat dialihkan ke file atau tujuan lain.
 
-Fungsi print termasuk dalam kategori built-in function, sama seperti `len()`, `abs()`, dan `round()`. Artinya kamu tidak perlu mengimpor modul tambahan untuk menggunakannya.
+`print()` adalah built-in function, sama seperti `len()`, `abs()`, dan `round()`. Kamu dapat menggunakannya tanpa mengimpor modul tambahan.
 
 ## Sintaks Dasar Fungsi Print
 
@@ -28,7 +28,7 @@ Sintaks lengkap fungsi print memiliki beberapa parameter yang dapat dikustomisas
 # Contoh penggunaan dasar
 print("Hello, World!")
 
-# Print dengan multiple objects
+# Print dengan beberapa objek
 print("Nama:", "Ahmad", "Umur:", 25)
 
 # Menampilkan hasil perhitungan
@@ -41,9 +41,9 @@ print("Hasil penjumlahan", x, "+", y, "=", x + y)`
 
 Notasi `*objects` berarti `print()` menerima nol atau lebih objek posisional. Separator yang ditentukan oleh `sep` ditulis di antara dua objek yang berdekatan.
 
-## Parameter Separator (sep)
+## Parameter Sep untuk Pemisah
 
-Parameter `sep` menentukan karakter atau string yang digunakan untuk memisahkan multiple objects dalam satu pemanggilan print. Default value dari `sep` adalah spasi tunggal.
+Parameter `sep` menentukan karakter atau string yang memisahkan beberapa objek dalam satu pemanggilan `print()`. Parameter ini memakai satu spasi secara default.
 
 <CodeBlock
   data={[
@@ -65,7 +65,7 @@ print("Solve", 2, "x =", x, "for x", sep="-")
 # Custom separator dengan koma dan spasi
 print("Ahmad", "Budi", "Citra", sep=", ")
 
-# Multiple separator characters
+# Beberapa karakter pemisah
 print("Python", "Java", "JavaScript", sep=" | ")
 
 # Separator dengan karakter khusus
@@ -75,11 +75,11 @@ print("Baris", "Pertama", "Baris", "Kedua", sep="\\n")     # newline`
   ]}
 />
 
-Penggunaan separator yang tepat dapat membuat output lebih mudah dibaca dan sesuai dengan format yang diinginkan.
+Nilai `sep` menentukan karakter yang ditulis di antara dua objek, misalnya spasi, koma, tab, atau baris baru.
 
 ## Parameter End
 
-Parameter `end` menentukan karakter atau string yang ditambahkan di akhir output. Default value dari `end` adalah newline (`\n`), yang menyebabkan setiap pemanggilan print membuat baris baru.
+Parameter `end` menentukan karakter atau string yang ditulis setelah objek. Parameter ini memakai newline (`\n`) secara default, sehingga pemanggilan `print` berikutnya dimulai pada baris baru.
 
 <CodeBlock
   data={[
@@ -147,23 +147,23 @@ print("Boolean:", boolean_value)
 print("List:", list_data)
 print("Dictionary:", dict_data)
 
-# Print dengan format yang lebih rapi
-print("\\nFormat yang lebih rapi:")
+# Print setiap bidang pada baris terpisah
+print("\\nFormat per bidang:")
 print(f"Nama: {dict_data['nama']}")
 print(f"Umur: {dict_data['umur']} tahun")
 print(f"Pi: {angka_desimal:.2f}")
 
-# Print multiple types dalam satu baris
+# Print beberapa tipe dalam satu baris
 print("Hasil:", angka_bulat, "+", angka_desimal, "=", angka_bulat + angka_desimal)`
     }
   ]}
 />
 
-Kemampuan print untuk menangani berbagai tipe data membuatnya sangat fleksibel untuk debugging dan menampilkan informasi program.
+Satu pemanggilan `print()` dapat menerima nilai dari beberapa tipe, mengubah setiap nilai menjadi teks, lalu menuliskannya secara berurutan. Bentuk ini cukup untuk memeriksa beberapa nilai saat program berjalan.
 
 ## Teknik Formatting Output
 
-### Print dengan F-String
+### Print dengan F String
 
 F-string mengevaluasi ekspresi di dalam kurung kurawal dan dapat menerapkan format specification. Nilai dan teks yang mengelilinginya tetap berada dalam satu ekspresi yang mudah dibaca.
 
@@ -209,7 +209,7 @@ print(f"Penyelesaian: {completion:.1%}")  # 87.5%`
   ]}
 />
 
-F-string memberikan cara yang sangat readable dan efisien untuk menggabungkan teks dengan variabel atau hasil perhitungan.
+F-string menggabungkan teks dengan variabel atau hasil perhitungan dalam format yang ringkas dan mudah dibaca.
 
 ### Print Tanpa Newline
 

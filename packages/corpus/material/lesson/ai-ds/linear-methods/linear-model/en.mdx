@@ -3,7 +3,7 @@ export const metadata = {
   description: "Build linear-in-parameter models from basis functions, stack measurements into a design matrix, and distinguish exact linear models from local linearization.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-14",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Linear Methods of AI",
 };
 
@@ -23,7 +23,7 @@ Suppose we collect <InlineMath math="M" /> input-response pairs <InlineMath math
 
 <BlockMath math="y_i=h(t_i)x+\varepsilon_i,\qquad i=1,\ldots,M" />
 
-where <InlineMath math="\varepsilon_i" /> contains measurement noise and model mismatch. Stacking all responses and model blocks gives
+The error <InlineMath math="\varepsilon_i" /> contains measurement noise and model mismatch. Stacking all responses and model blocks gives
 
 <MathContainer>
 <BlockMath math="b=\begin{pmatrix}y_1\\\vdots\\y_M\end{pmatrix}\in\mathbb{R}^{Md}" />
@@ -58,17 +58,17 @@ If every input produces several responses, place their parameter vectors in a ma
 
 Each column of <InlineMath math="B" /> describes one response. This is still a linear model because every output is a linear combination of the same known basis values.
 
-## Physical example: the ideal gas law
+## The Ideal Gas Law
 
-For an ideal gas,
+The ideal gas law is
 
 <BlockMath math="pV=nRT" />
 
-so at known temperature <InlineMath math="T" /> and volume <InlineMath math="V" />,
+At known temperature <InlineMath math="T" /> and volume <InlineMath math="V" />, solving for pressure gives
 
 <BlockMath math="p=\frac{RT}{V}n" />
 
-Pressure <InlineMath math="p" /> is linear in the unknown amount of substance <InlineMath math="n" />, measured in moles. The quantity <InlineMath math="n" /> is not itself the number of molecules; the number of specified entities is <InlineMath math="N=nN_A" />.
+Pressure <InlineMath math="p" /> is linear in the unknown amount of substance <InlineMath math="n" />, measured in moles. The quantity <InlineMath math="n" /> is not itself the number of molecules. The number of specified entities is <InlineMath math="N=nN_A" />.
 
 Repeated pressure measurements at several known <InlineMath math="(T_i,V_i)" /> values yield one design-matrix row <InlineMath math="RT_i/V_i" /> per observation.
 
@@ -78,7 +78,7 @@ A genuinely nonlinear parameter model has the form
 
 <BlockMath math="y=g(t,x)" />
 
-where parameters may occur inside exponentials, powers, or products with one another. Near a current parameter value <InlineMath math="x_0" />, a first-order Taylor approximation gives
+In this model, parameters may occur inside exponentials, powers, or products with one another. Near a current parameter value <InlineMath math="x_0" />, a first-order Taylor approximation gives
 
 <BlockMath math="g(t,x)\approx g(t,x_0)+J_xg(t,x_0)(x-x_0)" />
 

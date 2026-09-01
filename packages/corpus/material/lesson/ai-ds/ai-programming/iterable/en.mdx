@@ -1,9 +1,9 @@
 export const metadata = {
     title: "Iterables",
-    description: "Learn how Python iterables support loops, membership checks, truth tests, and positional unpacking.",
+    description: "Python iterables support loops, membership checks, truth tests, and positional unpacking.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "AI Programming",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 In Python, an iterable is an object that can produce one item at a time for a loop or another consumer. Strings, lists, tuples, sets, dictionaries, files, and generators are all iterable even though they organize and produce items differently.
 
-An iterable does not have to be ordered, indexable, reusable, or finite. Its defining promise is narrower: `iter()` can obtain an iterator that supplies items until it is exhausted.
+An iterable does not have to be ordered, indexable, reusable, or finite. Its defining requirement is that `iter()` returns an iterator that yields items until it is exhausted.
 
 ### Types of Iterables
 
@@ -70,7 +70,7 @@ The string yields characters in text order. Lists and tuples yield their stored 
 
 ## Membership Operators
 
-The operators `in` and `not in` ask whether a container contains a value. The exact membership rule belongs to the container type.
+The operators `in` and `not in` ask whether a container contains a value. Each container type defines how membership is checked.
 
 ### Using in and not in Operators
 
@@ -145,11 +145,11 @@ if "@" in email and ".com" in email:
 
 The final check only demonstrates two markers. It is not sufficient email validation because many invalid addresses contain both `@` and `.com`, while many valid addresses use another domain suffix.
 
-## any and all Functions
+## Any and All Functions
 
 The built-ins `any()` and `all()` consume an iterable and test the truthiness of its items. Both stop as soon as the result is known, so generator expressions avoid building an unnecessary intermediate list.
 
-### any() Function
+### The Any Function
 
 `any()` returns `True` after the first truthy item. It returns `False` only when every item is falsy or the iterable is empty.
 
@@ -184,7 +184,7 @@ if any(numbers):
   ]}
 />
 
-### all() Function
+### The All Function
 
 `all()` returns `False` after the first falsy item. If iteration ends without one, it returns `True`. This also explains the empty case: there is no item that violates the condition.
 

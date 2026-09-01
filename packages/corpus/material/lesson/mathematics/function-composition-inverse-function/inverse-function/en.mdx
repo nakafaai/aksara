@@ -1,14 +1,14 @@
 
 export const metadata = {
   title: "Inverse Function",
-  description: "Learn inverse functions step by step, from their bijective requirement and formula to the reflection of their graphs.",
+    description: "Find an inverse function, verify that the original function is bijective, and relate the two graphs through reflection across the line y equals x.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Function Composition and Inverse Function",
 };
 
-## Understanding Inverse Functions
+## Inverse Functions
 
 You often translate words or sentences from English to Indonesian, for example, when watching movies or reading news. This translation process is similar to how a function works: there is an input (English word) and an output (Indonesian word).
 
@@ -25,9 +25,7 @@ Real language translation can be ambiguous. Here we use a deliberately small dic
 
 Here, the "Translation Machine" acts like a function that transforms "Mathematics" (input) into "Matematika" (output).
 
-Now, what if we want to do the reverse? Translate "Matematika" back into "Mathematics"?
-
-This reverse process is the basis of the **inverse function** concept.
+The reverse mapping sends "Matematika" back to "Mathematics". This mapping is an **inverse function**.
 
 ## Definition of Inverse Function
 
@@ -39,7 +37,7 @@ Mathematically:
 
 In other words, if <InlineMath math="f" /> changes <InlineMath math="x" /> to <InlineMath math="y" />, then <InlineMath math="f^{-1}" /> changes <InlineMath math="y" /> back to <InlineMath math="x" />. The inverse function "undoes" the effect of the original function.
 
-**Important:** The notation <InlineMath math="f^{-1}(x)" /> does **not** mean <InlineMath math="\frac{1}{f(x)}" /> (multiplicative inverse or reciprocal). It is special notation for the inverse function.
+The notation <InlineMath math="f^{-1}(x)" /> denotes the inverse function. The multiplicative inverse or reciprocal is written <InlineMath math="\frac{1}{f(x)}" />.
 
 ## Condition for a Function to Have an Inverse
 
@@ -54,7 +52,7 @@ For example, <InlineMath math="q(x)=x^2" /> is not injective on <InlineMath math
 
 <BlockMath math="q:[0,\infty)\to[0,\infty),\qquad q(x)=x^2" />
 
-whose inverse is <InlineMath math="q^{-1}(x)=\sqrt{x}" />.
+This function has the inverse <InlineMath math="q^{-1}(x)=\sqrt{x}" />.
 
 ## Determining the Formula for an Inverse Function
 
@@ -116,6 +114,7 @@ For example, look at the graph of <InlineMath math="f(x) = 2x + 3" />, its inver
         const x = i - 5;
         return { x, y: 2 * x + 3, z: 0 };
       }),
+      smooth: false,
       color: "#ea580c",
       labels: [
         {
@@ -131,6 +130,7 @@ For example, look at the graph of <InlineMath math="f(x) = 2x + 3" />, its inver
         const x = i - 5;
         return { x, y: (x - 3) / 2, z: 0 };
       }),
+      smooth: false,
       color: "#059669",
       labels: [
         {
@@ -146,6 +146,7 @@ For example, look at the graph of <InlineMath math="f(x) = 2x + 3" />, its inver
         const x = i - 5;
         return { x, y: x, z: 0 };
       }),
+      smooth: false,
       color: "#db2777",
       labels: [
         {

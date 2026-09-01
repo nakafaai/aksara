@@ -1,17 +1,15 @@
 export const metadata = {
    title: "Sifat Limit Fungsi",
-   description: "Sederhanakan perhitungan limit kompleks dengan sifat penting. Pelajari aturan jumlah, kali, bagi, pangkat, dan akar dengan penerapan bertahap.",
+   description: "Uraikan perhitungan limit yang kompleks menjadi langkah teratur dengan aturan jumlah, hasil kali, hasil bagi, pangkat, dan akar.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-08-22",
+   dateModified: "2026-09-01",
    subject: "Limit",
 };
 
-## Memahami Sifat Limit Fungsi
+## Sifat Limit Fungsi
 
-Setelah mempelajari [konsep dasar limit](/id/subjects/mathematics/limit/concept-of-limit-function), kita dapat menggunakan **sifat-sifat limit** untuk memecah perhitungan limit yang kompleks menjadi bagian-bagian yang lebih sederhana.
-
-Sifat-sifat limit ini menjadi fondasi penting dalam kalkulus karena memungkinkan kita untuk menghitung limit tanpa harus selalu menggunakan definisi formal atau tabel nilai. Dengan memahami sifat-sifat ini, perhitungan limit menjadi lebih efisien dan sistematis.
+**Sifat limit** menghitung limit penjumlahan, selisih, hasil kali, atau hasil bagi dari limit setiap suku. Pastikan limit setiap suku ada. Khusus pada hasil bagi, limit penyebut juga harus tidak nol.
 
 ## Sifat Dasar Limit
 
@@ -21,7 +19,7 @@ Sifat paling sederhana adalah limit dari fungsi konstanta. Jika <InlineMath math
 
 <BlockMath math="\lim_{x \to c} k = k" />
 
-Artinya, limit dari **konstanta** adalah **konstanta itu sendiri**. Hal ini masuk akal karena nilai konstanta tidak berubah terhadap variabel <InlineMath math="x" />.
+Nilai konstanta tidak berubah ketika <InlineMath math="x" /> mendekati <InlineMath math="c" />, sehingga limitnya tetap konstanta tersebut.
 
 ### Sifat Identitas
 
@@ -44,7 +42,7 @@ Limit dari **jumlah** atau **selisih** dua fungsi sama dengan jumlah atau selisi
 <BlockMath math="\lim_{x \to c} [f(x) - g(x)] = \lim_{x \to c} f(x) - \lim_{x \to c} g(x) = L - M" />
 </MathContainer>
 
-> Sifat ini memungkinkan kita memecah limit yang kompleks menjadi bagian-bagian yang lebih sederhana.
+> Sifat limit dapat memecah limit gabungan menjadi beberapa limit yang lebih sederhana dan dapat dihitung secara terpisah.
 
 ### Sifat Perkalian
 
@@ -64,7 +62,7 @@ Limit dari **hasil bagi** dua fungsi sama dengan hasil bagi **limit masing-masin
 
 <BlockMath math="\lim_{x \to c} \frac{f(x)}{g(x)} = \frac{\lim_{x \to c} f(x)}{\lim_{x \to c} g(x)} = \frac{L}{M}" />
 
-dengan syarat <InlineMath math="M \neq 0" />.
+Aturan pembagian ini berlaku jika <InlineMath math="M \neq 0" />.
 
 ## Sifat Perpangkatan dan Akar
 
@@ -74,7 +72,7 @@ Limit dari **fungsi berpangkat** sama dengan **pangkat** dari limit fungsi:
 
 <BlockMath math="\lim_{x \to c} [f(x)]^n = \left[\lim_{x \to c} f(x)\right]^n = L^n" />
 
-dengan <InlineMath math="n" /> adalah bilangan bulat positif.
+Pada aturan ini, <InlineMath math="n" /> adalah bilangan bulat positif.
 
 ### Sifat Akar
 
@@ -82,13 +80,13 @@ Limit dari **akar fungsi** sama dengan **akar** dari limit fungsi:
 
 <BlockMath math="\lim_{x \to c} \sqrt[n]{f(x)} = \sqrt[n]{\lim_{x \to c} f(x)} = \sqrt[n]{L}" />
 
-**Syarat penting:** Fungsi akar harus terdefinisi untuk input di sekitar titik yang didekati.
+**Syarat domain:** Fungsi akar harus terdefinisi untuk input di sekitar titik yang didekati.
 - Jika <InlineMath math="n" /> ganjil: akar real terdefinisi untuk setiap nilai real <InlineMath math="L" />
 - Jika <InlineMath math="n" /> genap: fungsi di dalam akar harus tetap tak negatif di sekitar titik tersebut dan <InlineMath math="L \geq 0" />
 
 ## Contoh Penerapan Sifat Limit
 
-### Contoh Sederhana
+### Limit Fungsi Polinomial
 
 Hitung <InlineMath math="\lim_{x \to 2} (3x^2 + 5x - 1)" />.
 
@@ -102,7 +100,7 @@ Menggunakan sifat-sifat limit:
 <BlockMath math="= 3(2)^2 + 5(2) - 1 = 12 + 10 - 1 = 21" />
 </MathContainer>
 
-### Contoh dengan Pecahan
+### Limit Fungsi Rasional
 
 Hitung <InlineMath math="\lim_{x \to 4} \frac{x\sqrt{x}}{x^2 + 3}" />.
 
@@ -123,7 +121,7 @@ Sekarang kita substitusi nilai <InlineMath math="x = 4" />:
 
 Dalam bentuk **desimal**: <InlineMath math="\frac{8}{19} \approx 0{,}421" />
 
-### Contoh dengan Akar
+### Limit Fungsi Akar
 
 Hitung <InlineMath math="\lim_{x \to 0} \sqrt{x^2 - 3x + 2}" />.
 

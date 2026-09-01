@@ -2,18 +2,18 @@
 export const metadata = {
   title: "Kecepatan dan Kelajuan Sesaat",
   description:
-    "Pelajari kelajuan dan kecepatan pada satu saat tertentu, seperti bacaan speedometer kendaraan.",
+    "Kelajuan sesaat ditunjukkan oleh speedometer pada satu saat, sedangkan kecepatan sesaat juga memuat arah gerak.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Kinematika",
 };
 
-## Bacaan pada Satu Saat
+## Kelajuan dan Kecepatan pada Satu Saat
 
 Kelajuan sesaat adalah kelajuan benda pada waktu tertentu atau pada titik tertentu di lintasannya. Contohnya adalah angka yang ditunjukkan speedometer kendaraan saat pengendara melihatnya.
 
-Kecepatan sesaat juga dibaca pada waktu tertentu, tetapi tetap menyertakan arah. Jika kendaraan sedang bergerak ke kanan, kecepatannya positif; jika bergerak ke kiri, kecepatannya negatif.
+Kecepatan sesaat juga diukur pada waktu tertentu, tetapi kecepatan menyertakan arah. Jika kendaraan bergerak ke kanan, kecepatan bernilai positif, sedangkan gerak ke kiri menghasilkan kecepatan negatif.
 
 > Nilai sesaat menjawab pertanyaan, "Seberapa cepat tepat sekarang?" Nilai rata-rata mencakup bagian perjalanan yang lebih panjang.
 
@@ -28,17 +28,17 @@ Jika posisi merupakan fungsi waktu yang dapat diturunkan, kecepatan sesaat adala
 Alat ukur nyata menaksir nilai ini dalam selang pencuplikan yang singkat tetapi tetap berhingga. Jika geraknya berubah mulus, selang yang lebih singkat dapat mendekati nilai pada saat tersebut dengan lebih baik.
 
 <InstantaneousVelocitySpeedLab
-  title={<>Bacaan di Titik Ukur</>}
+  title={<>Pengukuran di Satu Titik</>}
   description={
     <>
-      Pilih momen baca untuk melihat mobil melewati titik ukur dan nilai
-      kecepatan sesaatnya.
+      Pilih waktu pengukuran lalu bandingkan kelajuan dan kecepatan sesaat
+      mobil ketika melewati titik ukur.
     </>
   }
   labels={{
-    chooseMoment: "Pilih momen baca",
+    chooseMoment: "Pilih waktu pengukuran",
     factLabels: {
-      time: <>Waktu baca</>,
+      time: <>Waktu pengukuran</>,
       speed: <>Kelajuan sesaat</>,
       velocity: <>Kecepatan sesaat</>,
     },
@@ -46,9 +46,9 @@ Alat ukur nyata menaksir nilai ini dalam selang pencuplikan yang singkat tetapi 
   }}
 />
 
-## Membaca Gerak Sesaat
+## Arah Menentukan Tanda Kecepatan Sesaat
 
-Titik ukur pada simulasi mewakili tempat gerak dibaca pada satu momen. Angka kelajuan memberi besar bacaan, sedangkan arah mobil saat melewati titik ukur menentukan tanda kecepatannya.
+Titik ukur pada simulasi mencatat gerak mobil pada satu saat. Kelajuan menyatakan besar gerak mobil, sedangkan arah mobil saat melewati titik ukur menentukan tanda kecepatannya.
 
 Pada <InlineMath math="t=6 \text{ s}" />, mobil bergerak ke kanan dengan kelajuan sesaat <InlineMath math="20 \text{ m/s}" />. Karena arah kanan dipilih sebagai arah positif, kecepatan sesaatnya <InlineMath math="+20 \text{ m/s}" />.
 
@@ -59,20 +59,20 @@ Pada <InlineMath math="t=9 \text{ s}" />, mobil bergerak ke kiri dengan kelajuan
 | <InlineMath math="6 \text{ s}" /> | <InlineMath math="20 \text{ m/s}" /> | ke kanan | <InlineMath math="+20 \text{ m/s}" /> |
 | <InlineMath math="9 \text{ s}" /> | <InlineMath math="8 \text{ m/s}" /> | ke kiri | <InlineMath math="-8 \text{ m/s}" /> |
 
-Jadi, kelajuan sesaat selalu ditulis sebagai besar yang tidak bertanda, sedangkan kecepatan sesaat memakai tanda untuk menunjukkan arah gerak.
+Kelajuan sesaat tidak memiliki tanda arah. Kecepatan sesaat memakai tanda positif atau negatif untuk menunjukkan arah pada sumbu yang dipilih.
 
-## Bukan Rata-Rata Perjalanan
+## Membandingkan Kelajuan Sesaat dan Kelajuan Rerata
 
-Kelajuan sesaat berbeda dari kelajuan rata-rata. Kelajuan rata-rata memakai seluruh jarak dan seluruh waktu, sedangkan kelajuan sesaat membaca keadaan pada satu waktu.
+Kelajuan rata-rata merangkum seluruh perjalanan dengan membagi jarak total oleh waktu total. Kelajuan sesaat menunjukkan kelajuan pada satu waktu tertentu.
 
 Jika speedometer menunjukkan <InlineMath math="15 \text{ m/s}" /> sekarang, itu tidak berarti sepanjang perjalanan kendaraan selalu bergerak <InlineMath math="15 \text{ m/s}" />.
 
 Misalnya kendaraan sempat berhenti di lampu merah, lalu melaju cepat setelahnya. Kelajuan rata-ratanya bisa kecil karena seluruh waktu perjalanan ikut dihitung, sementara kelajuan sesaat saat kendaraan melaju bisa jauh lebih besar.
 
-## Mengapa Speedometer Tidak Menunggu Perjalanan Selesai
+## Speedometer Mengukur Kelajuan Saat Kendaraan Melintas
 
-Batas kelajuan <InlineMath math="80 \text{ km/jam}" /> berlaku pada kendaraan setiap saat. Karena itu, alat pengukur di tepi jalan membaca kelajuan sesaat ketika kendaraan melintas.
+Batas kelajuan <InlineMath math="80 \text{ km/jam}" /> berlaku pada kendaraan setiap saat. Alat pengukur di tepi jalan mengukur kelajuan sesaat ketika kendaraan melintas.
 
-Karena itu, petugas tidak perlu menunggu kendaraan sampai tujuan untuk mengetahui apakah kelajuannya melewati batas. Yang diperiksa adalah kelajuan pada momen kendaraan melewati titik pengukuran.
+Petugas tidak perlu menunggu kendaraan sampai tujuan untuk mengetahui apakah kelajuannya melewati batas. Alat tersebut memeriksa kelajuan ketika kendaraan melewati titik pengukuran.
 
-Jadi, kata "sesaat" berarti nilai gerak dibaca pada satu waktu tertentu.
+Kata "sesaat" berarti hasil pengukuran berlaku pada satu waktu tertentu.

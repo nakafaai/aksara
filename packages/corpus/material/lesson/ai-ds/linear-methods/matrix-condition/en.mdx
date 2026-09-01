@@ -1,9 +1,9 @@
 export const metadata = {
   title: "Matrix Norms and Condition Numbers",
-  description: "Understand induced matrix norms, spectral radius, singular-value condition numbers, perturbation bounds, and the difference between conditioning and stability.",
+   description: "Relate induced matrix norms, spectral radius, singular values, condition numbers, and perturbation bounds, then distinguish conditioning from stability.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-13",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Linear Methods of AI",
 };
 
@@ -70,7 +70,7 @@ Use the eigenvalue with the smallest magnitude in the denominator. Its sign does
 | Large | Some input directions can produce much larger relative changes in the solution. |
 | Infinite | The matrix is singular, so the inverse problem is not uniquely solvable. |
 
-## A two-dimensional example
+## Sensitivity of a Two Dimensional Diagonal System
 
 Consider
 
@@ -88,23 +88,23 @@ A small change in <InlineMath math="b_2" /> is amplified by <InlineMath math="1/
 
 ## Perturbation bound
 
-Let <InlineMath math="Ax=b" /> and
+Consider the original system <InlineMath math="Ax=b" /> and the following perturbed system.
 
 <BlockMath math="(A+\delta A)(x+\delta x)=b+\delta b" />
 
-use the same induced norm. If
+Use the same induced norm for every quantity. The following bound requires
 
 <BlockMath math="\kappa(A)\frac{\|\delta A\|}{\|A\|}<1" />
 
-then the relative solution change is bounded by
+Under this condition, the relative solution change is bounded by
 
 <BlockMath math="\frac{\|\delta x\|}{\|x\|}\le\frac{\kappa(A)}{1-\kappa(A)\|\delta A\|/\|A\|}\left(\frac{\|\delta b\|}{\|b\|}+\frac{\|\delta A\|}{\|A\|}\right)" />
 
 This bound describes the worst case. Most perturbations may produce less amplification.
 
-## Conditioning is not algorithmic stability
+## Problem Conditioning and Algorithmic Stability
 
-These concepts answer different questions:
+Problem conditioning and algorithmic stability describe different properties:
 
 - **conditioning** describes the sensitivity of the mathematical problem to input changes
 - **stability** describes how much additional error a numerical algorithm introduces

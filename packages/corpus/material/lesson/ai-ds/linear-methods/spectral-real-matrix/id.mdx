@@ -1,9 +1,9 @@
 export const metadata = {
     title: "Teorema Spektral untuk Matriks Normal Real",
-    description: "Pelajari dengan tepat kapan matriks normal real memiliki basis eigen ortonormal real, lalu bedakan diagonalisasi biasa dari diagonalisasi ortogonal.",
+   description: "Tentukan kapan matriks normal real memiliki basis eigen ortonormal real, lalu bedakan diagonalisasi biasa dari diagonalisasi ortogonal.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-16",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Metode Linear AI",
 };
 
@@ -18,14 +18,14 @@ Untuk <InlineMath math="A\in\mathbb{R}^{n\times n}" />, pernyataan berikut ekuiv
 
 Ekuivalensi ini menjelaskan syarat tambahan dibandingkan dengan [matriks normal kompleks](/id/materi/ai-ds/metode-linear-ai/teorema-spektral-untuk-matriks-kompleks). Matriks normal kompleks selalu memiliki basis eigen uniter, tetapi basis dan nilai eigennya belum tentu real.
 
-Buktinya menghubungkan keempat pernyataan secara langsung. Basis eigen ortonormal menjadi kolom-kolom <InlineMath math="Q" />. Dari <InlineMath math="A=Q\Lambda Q^T" /> dengan <InlineMath math="\Lambda" /> diagonal real, kita memperoleh <InlineMath math="A^T=A" />. Sebaliknya, teorema spektral real mendiagonalisasi setiap matriks simetris real secara ortogonal. Terakhir, jika matriks normal real hanya memiliki nilai eigen real, diagonalisasi uniternya di bilangan kompleks memenuhi <InlineMath math="A^H=A" />; karena <InlineMath math="A" /> real, persamaan ini sama dengan <InlineMath math="A^T=A" />.
+Buktinya menghubungkan keempat pernyataan secara langsung. Basis eigen ortonormal menjadi kolom-kolom <InlineMath math="Q" />. Dari <InlineMath math="A=Q\Lambda Q^T" /> dengan <InlineMath math="\Lambda" /> diagonal real, kita memperoleh <InlineMath math="A^T=A" />. Sebaliknya, teorema spektral real mendiagonalisasi setiap matriks simetris real secara ortogonal. Terakhir, jika matriks normal real hanya memiliki nilai eigen real, diagonalisasi uniternya di bilangan kompleks memenuhi <InlineMath math="A^H=A" />. Karena <InlineMath math="A" /> real, persamaan ini sama dengan <InlineMath math="A^T=A" />.
 
 | Kelas matriks | Medan | Bentuk spektral yang dijamin |
 | --- | --- | --- |
-| Normal kompleks | <InlineMath math="\mathbb{C}" /> | Diagonalisasi uniter; nilai eigen dapat kompleks |
+| Normal kompleks | <InlineMath math="\mathbb{C}" /> | Diagonalisasi uniter. Nilai eigen dapat kompleks |
 | Hermitian kompleks | <InlineMath math="\mathbb{C}" /> | Diagonalisasi uniter dengan nilai eigen real |
 | Simetris real | <InlineMath math="\mathbb{R}" /> | Diagonalisasi ortogonal dengan nilai eigen real |
-| Ortogonal real | <InlineMath math="\mathbb{R}" /> | Umumnya berbentuk blok rotasi real; bentuk diagonal real hanya jika semua nilai eigen real |
+| Ortogonal real | <InlineMath math="\mathbb{R}" /> | Umumnya berbentuk blok rotasi real. Bentuk diagonal real hanya jika semua nilai eigen real |
 
 ## Matriks Normal tanpa Basis Eigen Real
 
@@ -44,15 +44,15 @@ Diskriminannya
 
 <BlockMath math="\Delta=4\cos^2\alpha-4=-4\sin^2\alpha<0" />
 
-karena <InlineMath math="\sin\alpha\neq0" /> berdasarkan syarat sudut tadi. Jadi polinomial tersebut tidak memiliki akar real dan <InlineMath math="R_\alpha" /> tidak mempunyai basis vektor eigen real. Di <InlineMath math="\mathbb{C}" />, nilai eigennya adalah <InlineMath math="e^{i\alpha}" /> dan <InlineMath math="e^{-i\alpha}" />.
+Karena <InlineMath math="\alpha" /> bukan kelipatan bulat dari <InlineMath math="\pi" />, berlaku <InlineMath math="\sin\alpha\neq0" />. Jadi, polinomial karakteristik tidak memiliki akar real dan <InlineMath math="R_\alpha" /> tidak mempunyai basis vektor eigen real. Di <InlineMath math="\mathbb{C}" />, nilai eigennya adalah <InlineMath math="e^{i\alpha}" /> dan <InlineMath math="e^{-i\alpha}" />.
 
 ## Matriks Diagonalisabel yang Tidak Normal
 
-Sekarang perhatikan
+Matriks berikut dapat didiagonalisasi di <InlineMath math="\mathbb{R}" />, tetapi bukan matriks normal:
 
 <BlockMath math="A=\begin{pmatrix}1&3\\0&2\end{pmatrix}" />
 
-Dua nilai eigennya yang berbeda, yaitu <InlineMath math="1" /> dan <InlineMath math="2" />, sudah menjamin bahwa matriks ini dapat didiagonalisasi secara biasa. Ruang eigennya adalah
+Nilai eigen <InlineMath math="1" /> dan <InlineMath math="2" /> berbeda, sehingga matriks ini dapat didiagonalisasi. Ruang eigennya adalah
 
 <MathContainer>
 <BlockMath math="E_A(1)=\ker(A-I)=\operatorname{span}\begin{pmatrix}1\\0\end{pmatrix}" />
@@ -70,7 +70,7 @@ Namun, kedua vektor eigen tidak ortogonal karena
 
 <BlockMath math="\begin{pmatrix}1&0\end{pmatrix}\begin{pmatrix}3\\1\end{pmatrix}=3\neq0" />
 
-dan perkalian langsung memastikan bahwa <InlineMath math="A" /> tidak normal:
+Perkalian langsung juga menunjukkan bahwa <InlineMath math="A" /> tidak normal:
 
 <MathContainer>
 <BlockMath math="AA^T=\begin{pmatrix}10&6\\6&4\end{pmatrix}" />

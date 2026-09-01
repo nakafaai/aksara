@@ -1,19 +1,19 @@
 export const metadata = {
-  title: "Concept of Derivative Function",
-  description: "Understand derivative functions as rates of change and curve slopes through limits, tangent lines, and visual examples.",
+  title: "Derivative as a Rate of Change",
+  description: "A derivative is the local rate of change and tangent slope obtained from the limit of secant slopes.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Derivative Functions",
 };
 
 
 
-## The Idea Behind Derivatives
+## Derivative as a Local Rate of Change
 
 Picture a bicycle moving along a hilly road. Some stretches climb steeply, while others are almost flat. The road's **slope** changes from point to point. A curved function graph behaves in much the same way.
 
-For a straight line, the slope is always the same at every point. However, for a curved line, the slope is constantly changing. A **derivative** lets us find the precise slope or rate of change at **one specific point** on a curve.
+For a straight line, the slope is the same at every point. For a curved line, the slope changes from point to point. A **derivative** gives the slope or rate of change at **one specific point** on a curve.
 
 ## Gradient of a Secant Line
 
@@ -32,8 +32,8 @@ This slope is the **average rate of change** of <InlineMath math="f(x)" /> betwe
   description={
     <>
       The secant line connects two distinct points on the curve{" "}
-      <InlineMath math="y=x^2" />, while the tangent line captures the curve's
-      local direction at <InlineMath math="P" />. In this example, the tangent
+      <InlineMath math="y=x^2" />, while the tangent line has the same slope as
+      the curve at <InlineMath math="P" />. In this example, the tangent
       meets the parabola at <InlineMath math="P" />. In general, a tangent line
       may intersect the same curve elsewhere.
     </>
@@ -74,6 +74,7 @@ This slope is the **average rate of change** of <InlineMath math="f(x)" /> betwe
       {
         points: [p1_secant, p2_secant],
         color: "#0891b2",
+        smooth: false,
         labels: [
           { text: <InlineMath math="P" />, at: 0, offset: [-0.5, -0.5, 0] },
           { text: <InlineMath math="Q" />, at: 1, offset: [0.5, 0.5, 0] },
@@ -83,6 +84,7 @@ This slope is the **average rate of change** of <InlineMath math="f(x)" /> betwe
       {
         points: tangentLinePoints,
         color: "#d97706",
+        smooth: false,
         showPoints: false,
         labels: [{ text: "Tangent Line", at: 1, offset: [2, -0.5, 0] }],
       },
@@ -94,7 +96,7 @@ This slope is the **average rate of change** of <InlineMath math="f(x)" /> betwe
 
 Next, move <InlineMath math="Q" /> closer and closer to <InlineMath math="P" />. The horizontal distance <InlineMath math="\Delta x" /> becomes smaller and approaches zero.
 
-As <InlineMath math="\Delta x \to 0" /> (read "delta x approaches zero"), the secant lines approach the **tangent line** at <InlineMath math="P" />. The tangent line captures the curve's local direction at that point. It need not intersect the entire curve only once; what matters is its local behavior near <InlineMath math="P" />.
+As <InlineMath math="\Delta x \to 0" /> (read "delta x approaches zero"), the secant lines approach the **tangent line** at <InlineMath math="P" />. The tangent line shows the curve's local direction at that point. It need not intersect the entire curve only once. What matters is its local behavior near <InlineMath math="P" />.
 
 The tangent's slope is the **instantaneous rate of change** of the curve at <InlineMath math="P" />. We find it with a **limit**:
 
@@ -110,4 +112,4 @@ The derivative of a function <InlineMath math="f(x)" />, denoted as <InlineMath 
 
 Finding a derivative is called **differentiation**.
 
-> The derivative <InlineMath math="f'(x)" /> is a new function. At every value of <InlineMath math="x" /> where the limit exists, it gives the **instantaneous rate of change** of <InlineMath math="f(x)" />, which is also the slope of the tangent line there. This idea is the foundation of differential calculus.
+The derivative <InlineMath math="f'(x)" /> is a new function. At every value of <InlineMath math="x" /> where the limit exists, it gives the **instantaneous rate of change** of <InlineMath math="f(x)" />, which is also the slope of the tangent line there. Differential calculus uses the derivative function to analyze both quantities.

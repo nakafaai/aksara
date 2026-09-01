@@ -1,10 +1,10 @@
 export const metadata = {
   title: "Projectile Motion Analysis",
   description:
-    "Learn how to calculate peak time, range, and instantaneous velocity in projectile motion from velocity components.",
+    "Calculate peak time, range, and instantaneous velocity in projectile motion from velocity components.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Kinematics",
 };
 
@@ -20,7 +20,7 @@ Projectile analysis almost always starts with one simple question: how much of t
 
 After that, the horizontal and vertical directions are calculated with different rules. In the model used here, air resistance is ignored and gravitational acceleration is constant. The horizontal direction uses uniform motion because there is no horizontal acceleration. The vertical direction uses uniformly accelerated motion because gravity keeps acting downward.
 
-> The key to projectile analysis is using the same time for two different directions.
+> The horizontal and vertical equations use the same time variable.
 
 <ParabolicMovementAnalysisLab
   title={<>Cannonball Component Analysis</>}
@@ -51,7 +51,7 @@ After that, the horizontal and vertical directions are calculated with different
 
 The arc and faded balls show one motion at equal time intervals. The values below split that motion into components: <InlineMath math="v_{0x}" /> stays constant, while <InlineMath math="v_y=v_{0y}-gt" /> changes because gravity acts downward.
 
-The scenes launch and land at the same height. Under that condition, the number flow is easier to read as one connected formula sequence:
+The scenes launch and land at the same height. Under that condition, time of flight, maximum height, and range can be calculated in one sequence:
 
 <BlockMath math="\begin{aligned}
 v_{0x}&=v_0\cos\theta\\
@@ -107,7 +107,7 @@ If <InlineMath math="v_x>0" />, this is equivalent to <InlineMath math="\tan\alp
 
 A ball is launched with an initial speed of <InlineMath math="40\text{ m/s}" /> and an angle of <InlineMath math="60^\circ" />. Use <InlineMath math="g=10\text{ m/s}^2" />.
 
-This example uses an angle with clear trigonometric components, so the full analysis stays visible: split the initial velocity, get time from vertical motion, then use the same time to read range and instantaneous velocity.
+At <InlineMath math="60^\circ" />, the sine and cosine have exact values. We can therefore split the initial velocity exactly, find the time from the vertical motion, and use that same time to calculate the range and instantaneous velocity.
 
 The initial components are:
 

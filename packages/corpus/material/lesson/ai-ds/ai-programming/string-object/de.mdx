@@ -1,16 +1,17 @@
 export const metadata = {
-    title: "String-Objekte",
-    description: "Lerne, wie Python-Strings Text darstellen, über Quellcodezeilen verteilt und als Literale oder Variablen verknüpft werden.",
+    title: "Stringobjekte",
+    description: "Stelle Text mit Python-Strings dar. Schreibe lange Stringliterale über mehrere Quellcodezeilen und verknüpfe Literale oder Variablen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "KI-Programmierung",
 };
 
-## String-Objekte definieren
+## Stringobjekte definieren
 
 In Python ist ein String eine unveränderliche Folge von Unicode-Zeichen. Ihre Reihenfolge ist wichtig: Jedes Zeichen hat eine Position, die etwa beim Indizieren und Slicen verwendet wird.
 
-Strings haben drei wichtige Merkmale:
+Strings haben drei Merkmale:
 
 1. **Geordnete Zeichenfolge:** Jedes Zeichen hat eine feste Position.
 2. **Als Literal geschrieben:** Einfache oder doppelte Anführungszeichen begrenzen den Text im Quellcode.
@@ -43,7 +44,7 @@ hello
 
 Die interaktive Eingabe zeigt die Repräsentation eines Strings. Python kann dafür einfache oder doppelte Anführungszeichen wählen, damit sie gut lesbar bleibt. `print()` gibt dagegen den Stringwert selbst ohne die Begrenzungszeichen des Literals aus.
 
-## Leere Strings und str()-Funktion
+## Leere Strings und die Funktion Str
 
 Python kann leere Strings erzeugen und Werte anderer Datentypen in Strings umwandeln.
 
@@ -64,7 +65,7 @@ Ein leerer String enthält kein Zeichen und hat die Länge null. Du schreibst ih
   ]}
 />
 
-### str() Funktion
+### Die Funktion Str
 
 Die Funktion `str()` fragt die gut lesbare Stringdarstellung eines Werts ab. Verwende sie, wenn ein Text eine Zahl oder einen anderen Wert enthalten soll, der noch kein String ist.
 
@@ -113,7 +114,7 @@ xxxyyy`
 
 ### Zeilenfortsetzung mit Klammern
 
-Innerhalb von Klammern setzt Python die Anweisung implizit fort. Das ist meist leichter zu lesen und sicherer zu bearbeiten als ein ausdrücklicher Backslash.
+Innerhalb von Klammern setzt Python eine Anweisung über den Zeilenumbruch hinweg fort, ohne dass ein Backslash nötig ist. Kommentare oder Leerzeichen am Zeilenende unterbrechen diese Fortsetzung nicht. Beim Verschieben einer Zeile muss außerdem kein Fortsetzungszeichen mitverschoben werden.
 
 <CodeBlock
   data={[
@@ -162,7 +163,7 @@ zzz`
 
 Drei doppelte Anführungszeichen funktionieren genauso. Wähle die Begrenzung, mit der sich der enthaltene Text am klarsten und mit möglichst wenigen Escape-Zeichen schreiben lässt.
 
-## String-Literal-Verkettung
+## Verknüpfung von Stringliteralen
 
 Python kann Stringliterale bereits beim Lesen des Quellcodes oder Stringwerte während der Programmausführung verbinden.
 
@@ -186,7 +187,7 @@ Python verbindet benachbarte Stringliterale beim Lesen des Quellcodes. Diese Kur
   ]}
 />
 
-### Plus-Operator
+### Plusoperator
 
 Der Operator `+` verkettet zwei Stringwerte zur Laufzeit.
 
@@ -218,7 +219,7 @@ Der Operator `*` wiederholt einen String so oft, wie es die angegebene ganze Zah
   ]}
 />
 
-## String-Variablenverkettung
+## Verknüpfung von Stringvariablen
 
 Variablen enthalten Werte und keine Literaltoken. Deshalb brauchen sie beim Verknüpfen einen Operator.
 

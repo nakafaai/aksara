@@ -1,31 +1,32 @@
 export const metadata = {
-   title: "QR-Zerlegung",
+   title: "Matrizen mit dem QR Verfahren zerlegen",
    description: "QR-Zerlegung mit Gram-Schmidt- und Householder-Verfahren. Volle und reduzierte Faktorisierung, numerische Stabilität und Rechenaufwand werden hergeleitet.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
+   dateModified: "2026-09-01",
    subject: "Lineare Methoden der KI",
 };
 
-## Existenzsatz der QR-Zerlegung
+## Existenzsatz der Zerlegung mit QR
 
-Die QR-Zerlegung bringt eine Matrix durch orthogonale Transformationen in obere Dreiecksform. Anders als elementare Zeilenoperationen bewahren diese Transformationen Längen und Winkel und sind numerisch gut konditioniert.
+Die <InlineMath math="\mathrm{QR}" />-Zerlegung faktorisiert eine Matrix in einen orthogonalen und einen oberen dreieckigen Faktor. Orthogonale Multiplikationen erhalten Längen und Winkel und eignen sich deshalb für stabile numerische Rechnungen.
 
-Sei <InlineMath math="A \in \mathbb{R}^{m \times n}" /> eine rechteckige Matrix mit <InlineMath math="m \geq n" /> und <InlineMath math="\text{Rang}A = n" />. Dann gibt es eine orthogonale Matrix <InlineMath math="Q \in \mathbb{R}^{m \times m}" /> mit <InlineMath math="Q^T Q = I" /> und eine obere Dreiecksmatrix <InlineMath math="R \in \mathbb{R}^{m \times n}" /> mit Diagonalelementen <InlineMath math="r_{ii} > 0" /> für <InlineMath math="i = 1, \ldots, n" />, so dass:
+Sei <InlineMath math="A\in\mathbb{R}^{m\times n}" /> mit <InlineMath math="m\geq n" /> und <InlineMath math="\operatorname{rang}(A)=n" />. Dann gibt es eine orthogonale Matrix <InlineMath math="Q\in\mathbb{R}^{m\times m}" /> mit <InlineMath math="Q^TQ=I" /> und eine obere Dreiecksmatrix <InlineMath math="R\in\mathbb{R}^{m\times n}" />, deren erste <InlineMath math="n" /> Diagonaleinträge positiv sind, sodass
 
 <BlockMath math="A = Q \cdot R" />
 
-Diese Darstellung wird als QR-Zerlegung von <InlineMath math="A" /> bezeichnet.
+Diese Faktorisierung heißt <InlineMath math="\mathrm{QR}" />-Zerlegung von <InlineMath math="A" />.
 
-### Beweis mit Gram-Schmidt
+### Beweis mit Orthogonalisierung nach Gram und Schmidt
 
-Die Spalten <InlineMath math="a_j" /> für <InlineMath math="j = 1, \ldots, n" /> der Matrix <InlineMath math="A" /> können mit dem Gram-Schmidt-Prozess orthonormalisiert werden:
+Sei <InlineMath math="a_j" /> die <InlineMath math="j" />-te Spalte von <InlineMath math="A" />. Das Gram-Schmidt-Verfahren entfernt die Anteile in bereits bestimmten Richtungen und normiert anschließend den Rest:
 
 <MathContainer>
 <BlockMath math="\tilde{q}_j := a_j - \sum_{k=1}^{j-1} \langle a_j, q_k \rangle \cdot q_k" />
 <BlockMath math="q_j := \frac{\tilde{q}_j}{\|\tilde{q}_j\|_2}" />
 </MathContainer>
 
-Wir erhalten Orthonormalvektoren <InlineMath math="q_j" /> für <InlineMath math="j = 1, \ldots, n" /> als Spalten der orthogonalen Matrix <InlineMath math="Q_1 \in \mathbb{R}^{m \times n}" />. Umgekehrt:
+Der volle Spaltenrang garantiert <InlineMath math="\widetilde q_j\neq0" /> in jedem Schritt. Die normierten Vektoren bilden die Spalten von <InlineMath math="Q_1\in\mathbb{R}^{m\times n}" /> und erfüllen <InlineMath math="Q_1^TQ_1=I_n" />. Jede ursprüngliche Spalte lässt sich darstellen als
 
 <MathContainer>
 <BlockMath math="a_j = \sum_{k=1}^{j-1} \langle a_j, q_k \rangle \cdot q_k + \tilde{q}_j" />
@@ -33,40 +34,31 @@ Wir erhalten Orthonormalvektoren <InlineMath math="q_j" /> für <InlineMath math
 <BlockMath math="= \sum_{k=1}^{j-1} q_k \cdot r_{kj} + q_j \cdot r_{jj}" />
 </MathContainer>
 
-Also <InlineMath math="A = Q_1 R_1" /> mit oberer Dreiecksmatrix <InlineMath math="R_1 \in \mathbb{R}^{n \times n}" />, deren Diagonalelemente <InlineMath math="r_{ii} = \|\tilde{q}_i\|_2 > 0" /> sind.
+Damit gilt <InlineMath math="A=Q_1R_1" />, wobei <InlineMath math="R_1\in\mathbb{R}^{n\times n}" /> eine obere Dreiecksmatrix mit <InlineMath math="r_{ii}=\|\widetilde q_i\|_2>0" /> ist.
 
-Wenn <InlineMath math="Q_1" /> mit <InlineMath math="m - n" /> zusätzlichen Spalten vervollständigt wird, um zur orthogonalen Matrix <InlineMath math="Q = (Q_1 \quad Q_2) \in \mathbb{R}^{m \times m}" /> zu werden, und <InlineMath math="R_1" /> zu <InlineMath math="R = \begin{pmatrix} R_1 \\ 0 \end{pmatrix} \in \mathbb{R}^{m \times n}" /> wird, dann <InlineMath math="A = Q_1 R_1 = QR" />.
+Ergänzt man <InlineMath math="Q_1" /> um <InlineMath math="m-n" /> orthonormale Spalten, entsteht <InlineMath math="Q=(Q_1\quad Q_2)\in\mathbb{R}^{m\times m}" />. Ergänzt man <InlineMath math="R_1" /> um <InlineMath math="m-n" /> Nullzeilen, entsteht <InlineMath math="R=\begin{pmatrix}R_1\\0\end{pmatrix}\in\mathbb{R}^{m\times n}" />. Damit gilt <InlineMath math="A=Q_1R_1=QR" />.
 
-## Vollständige und reduzierte QR-Zerlegung
+## Vollständige und reduzierte Zerlegung mit QR
 
-Wenn wir eine Matrix <InlineMath math="A \in \mathbb{R}^{m \times n}" /> mit <InlineMath math="m \geq n" /> haben,
-Es gibt zwei Möglichkeiten, die QR-Zerlegung darzustellen. Der Unterschied liegt in der Größe der verwendeten Matrizen.
+Für <InlineMath math="A\in\mathbb{R}^{m\times n}" /> mit <InlineMath math="m\geq n" /> beschreiben die vollständige und die reduzierte Form dieselbe Faktorisierung mit unterschiedlichen Matrixgrößen.
 
-### Vollständige QR-Zerlegung
+### Vollständige Zerlegung mit QR
 
-Bei der vollständigen QR-Zerlegung werden Matrizen in voller Größe verwendet:
+Die vollständige Form behält alle <InlineMath math="m" /> Spalten von <InlineMath math="Q" />:
 
 <BlockMath math="A = Q \cdot R" />
 
-wobei <InlineMath math="Q \in \mathbb{R}^{m \times m}" /> eine orthogonale Matrix voller Größe ist und
-<InlineMath math="R \in \mathbb{R}^{m \times n}" /> ist eine obere Dreiecksmatrix.
+Dabei ist <InlineMath math="Q\in\mathbb{R}^{m\times m}" /> orthogonal. Die Matrix <InlineMath math="R\in\mathbb{R}^{m\times n}" /> enthält oben einen dreieckigen <InlineMath math="n\times n" />-Block und darunter <InlineMath math="m-n" /> Nullzeilen.
 
-### Eökonomische QR-Zerlegung
+### Reduzierte Zerlegung mit QR
 
-Da der untere Teil der Matrix <InlineMath math="R" /> nur Nullen enthält, können wir Speicherplatz und Rechenaufwand sparen.
-Bei der reduzierten QR-Zerlegung werden nur die benötigten Blöcke verwendet:
+Die reduzierte Form entfernt diese Nullzeilen und die dazugehörigen ungenutzten Spalten von <InlineMath math="Q" />:
 
 <BlockMath math="A = Q \cdot R = (Q_1 \quad Q_2) \cdot \begin{pmatrix} R_1 \\ 0 \end{pmatrix} = Q_1 \cdot R_1" />
 
-Hier übernimmt <InlineMath math="Q_1 \in \mathbb{R}^{m \times n}" /> nur die erste bis <InlineMath math="n" />-te Spalte
-aus <InlineMath math="Q" /> und <InlineMath math="R_1 \in \mathbb{R}^{n \times n}" /> ist eine quadratische obere Dreiecksmatrix.
+Hier enthält <InlineMath math="Q_1\in\mathbb{R}^{m\times n}" /> die ersten <InlineMath math="n" /> Spalten von <InlineMath math="Q" />, und <InlineMath math="R_1\in\mathbb{R}^{n\times n}" /> ist eine obere Dreiecksmatrix. Das Speichern von <InlineMath math="Q_1" /> spart Speicher und vermeidet Rechnungen mit Blöcken, die bereits als null bekannt sind.
 
-Die reduzierte Form spart Speicher und Rechenzeit.
-Anstelle der vollständigen Matrix <InlineMath math="Q" /> der Größe <InlineMath math="m \times m" />
-benötigen wir nur <InlineMath math="Q_1" /> der Größe <InlineMath math="m \times n" />.
-
-Die nicht verwendeten Spalten der Matrix <InlineMath math="Q_2 \in \mathbb{R}^{m \times (m-n)}" /> bilden
-eine Orthonormalbasis von <InlineMath math="\text{Kern}A^T" />:
+Die ungenutzten Spalten <InlineMath math="Q_2\in\mathbb{R}^{m\times(m-n)}" /> bilden eine Orthonormalbasis des Kerns von <InlineMath math="A^T" />:
 
 <BlockMath math="A^T Q_2 = R_1^T Q_1^T Q_2 = 0" />
 
@@ -74,11 +66,9 @@ Der Kern von <InlineMath math="A^T" /> enthält genau die Vektoren <InlineMath m
 
 ### Eindeutigkeit
 
-Die reduzierte QR-Zerlegung <InlineMath math="A = Q_1 \cdot R_1" /> mit der Bedingung <InlineMath math="r_{ii} > 0" />
-für alle <InlineMath math="i = 1, \ldots, n" /> ist eindeutig für die Matrix <InlineMath math="A" />
-das hat vollen Rang.
+Für eine Matrix mit vollem Spaltenrang ist die reduzierte Faktorisierung <InlineMath math="A=Q_1R_1" /> eindeutig, wenn alle Diagonaleinträge von <InlineMath math="R_1" /> positiv sind.
 
-## Beispiel einer dünnen QR-Zerlegung
+## Beispiel einer dünnen Zerlegung mit QR
 
 Sei
 
@@ -101,63 +91,51 @@ Damit gilt
 <BlockMath math="Q_1^TQ_1=I,\qquad Q_1R_1=A" />
 </MathContainer>
 
-## Householder-Methode zur QR-Zerlegung
+## Householderverfahren zur Zerlegung mit QR
 
-Das klassische Gram-Schmidt-Verfahren liefert eine klare Herleitung, kann aber in Gleitkommaarithmetik bei nahezu linear abhängigen Spalten Orthogonalität verlieren. Das modifizierte Gram-Schmidt-Verfahren verbessert dieses Verhalten. Householder-QR ist die übliche dichte, numerisch stabile Implementierung, weil es orthogonale Reflektoren direkt anwendet.
+Das klassische Gram-Schmidt-Verfahren lässt sich direkt herleiten, kann aber bei nahezu linear abhängigen Spalten in Gleitkommaarithmetik Orthogonalität verlieren. Das modifizierte Verfahren verringert diesen Fehler. Numerische Software verwendet für dichte Matrizen meist Householder-Spiegelungen. Givens-Rotationen eignen sich, wenn nur einzelne Einträge beseitigt werden sollen.
 
-Das Householder-Verfahren vermeidet dieses Problem durch orthogonale Spiegelungen. Eine weitere stabile Möglichkeit sind Givens-Rotationen.
+### Householdertransformation
 
-### Householder-Transformation
-
-Für einen Vektor <InlineMath math="v \in \mathbb{R}^m" /> mit <InlineMath math="\|v\|_2 = 1" />,
-definieren wir die Householder-Matrix:
+Für einen Einheitsvektor <InlineMath math="v\in\mathbb{R}^m" /> ist die Householder-Matrix definiert durch
 
 <BlockMath math="S = I - 2vv^T \in \mathbb{R}^{m \times m}" />
 
-Dabei ist <InlineMath math="vv^T" /> ein dyadisches Produkt, also das Produkt des Spaltenvektors
-<InlineMath math="v \in \mathbb{R}^{m \times 1}" /> mit Zeilenvektor <InlineMath math="v^T \in \mathbb{R}^{1 \times m}" />.
-Das Ergebnis dieser Multiplikation ist eine <InlineMath math="m \times m" />-Matrix mit dem Rang <InlineMath math="1" /> für <InlineMath math="v \neq 0" />.
-Verwechseln Sie dies nicht mit der Skalarmultiplikation <InlineMath math="v^T v \in \mathbb{R}" />.
+Das äußere Produkt <InlineMath math="vv^T" /> multipliziert eine <InlineMath math="m\times1" />-Spalte mit einer <InlineMath math="1\times m" />-Zeile und ergibt daher eine <InlineMath math="m\times m" />-Matrix vom Rang eins. Das umgekehrte Produkt <InlineMath math="v^Tv" /> ist der Skalar <InlineMath math="1" />.
 
-## Eigenschaften der Householder-Transformation
+## Eigenschaften der Householdertransformation
 
-Sei <InlineMath math="S = I - 2vv^T \in \mathbb{R}^{m \times m}" /> eine Householder-Transformationsmatrix
-für Vektor <InlineMath math="v \in \mathbb{R}^m" /> mit <InlineMath math="\|v\|_2 = 1" />. Dann gilt:
+Für <InlineMath math="S=I-2vv^T" /> und <InlineMath math="\|v\|_2=1" /> gelten folgende Eigenschaften:
 
 1. <InlineMath math="S" /> ist symmetrisch: <InlineMath math="S^T = S" />
 
 2. <InlineMath math="S" /> ist eine orthogonale Matrix: <InlineMath math="S^T S = I" />
 
-3. Der Ausdruck <InlineMath math="S \cdot x" /> beschreibt die Linksmultiplikation von <InlineMath math="S" /> mit dem Vektor <InlineMath math="x \in \mathbb{R}^m" /> und
-   spiegelt <InlineMath math="x" /> am Unterraum <InlineMath math="\text{Span}(v)^{\perp}" />,
-   das heißt, in der Hyperebene mit Normalenvektor <InlineMath math="v" />
+3. <InlineMath math="Sx" /> spiegelt <InlineMath math="x\in\mathbb{R}^m" /> an der zu <InlineMath math="v" /> senkrechten Hyperebene
 
 4. <InlineMath math="\text{cond}_2(S) = 1" />
 
-## Householder-Verfahren
+## Householderverfahren
 
-Für eine Matrix <InlineMath math="A \in \mathbb{R}^{m \times n}" /> mit <InlineMath math="m \geq n" />
-und <InlineMath math="\text{Rang}A = n" /> wird die Matrix <InlineMath math="A" /> Spalte für Spalte durch Householder-Spiegelungen
-in obere Dreiecksform überführt.
+Sei <InlineMath math="A\in\mathbb{R}^{m\times n}" /> mit <InlineMath math="m\geq n" /> und <InlineMath math="\operatorname{rang}(A)=n" />. In jedem Householder-Schritt werden die Einträge unter einer Diagonalposition null, während die bereits erzeugten Nullen erhalten bleiben.
 
-Wir beginnen mit <InlineMath math="A_1 = A" /> und spiegeln die erste Spalte von <InlineMath math="A_1" />
-auf ein Vielfaches des ersten Einheitsvektors:
+Wir beginnen mit <InlineMath math="A_1=A" /> und spiegeln die erste Spalte auf ein Vielfaches des ersten Koordinatenvektors:
 
 <MathContainer>
 <BlockMath math="\tilde{a}_1 \text{erste Spalte von} A_1" />
 <BlockMath math="\pm\|\tilde{a}_1\|_2 \cdot e_1 \in \mathbb{R}^m \text{Zielvektor}" />
-<BlockMath math="v_1 = u_1/\|u_1\|_2 \text{mit} \text{Span}(v_1)^{\perp}" />
+<BlockMath math="v_1 = u_1/\|u_1\|_2" />
 </MathContainer>
 
 <BlockMath math="u_1 = \tilde{a}_1 \mp \|\tilde{a}_1\|_2 \cdot e_1" />
 
 ### Iterativer Transformationsprozess
 
-Mit der Householder-Matrix <InlineMath math="S_1 = I_m - 2v_1v_1^T \in \mathbb{R}^{m \times m}" /> erhalten wir:
+Mit <InlineMath math="S_1=I_m-2v_1v_1^T" /> werden alle Einträge der ersten Spalte unterhalb der Diagonale null:
 
 <BlockMath math="A_2 = S_1 \cdot A_1 = \begin{pmatrix} r_{11} & * \\ 0 & \tilde{A}_2 \end{pmatrix}" />
 
-mit <InlineMath math="r_{11} = \pm\|\tilde{a}_1\|_2" /> und <InlineMath math="\tilde{A}_2 \in \mathbb{R}^{m-1 \times n-1}" />.
+In der Matrix <InlineMath math="A_2" /> gilt <InlineMath math="r_{11} = \pm\|\tilde{a}_1\|_2" /> und <InlineMath math="\tilde{A}_2 \in \mathbb{R}^{m-1 \times n-1}" />.
 
 Im nächsten Schritt spiegeln wir die erste Spalte der verbleibenden Untermatrix:
 
@@ -169,50 +147,48 @@ Im nächsten Schritt spiegeln wir die erste Spalte der verbleibenden Untermatrix
 
 <BlockMath math="u_2 = \tilde{a}_2 \mp \|\tilde{a}_2\|_2 \cdot \tilde{e}_1" />
 
-Die zugehörige Transformationsmatrix lautet:
+Der zweite Reflektor wird in den rechten unteren Block der Einheitsmatrix eingebettet:
 
 <MathContainer>
 <BlockMath math="\tilde{S}_2 = I_{m-1} - 2v_2v_2^T \in \mathbb{R}^{m-1 \times m-1}" />
 <BlockMath math="S_2 = \begin{pmatrix} I_1 & 0 \\ 0 & \tilde{S}_2 \end{pmatrix} \in \mathbb{R}^{m \times m}" />
 </MathContainer>
 
-Wir erhalten:
+Danach sind auch die Einträge der zweiten Spalte unterhalb der Diagonale null:
 
 <BlockMath math="A_3 = S_2 \cdot A_2 = \begin{pmatrix} r_{11} & * & * \\ 0 & r_{22} & * \\ 0 & 0 & \tilde{A}_3 \end{pmatrix}" />
 
-mit <InlineMath math="r_{22} = \pm\|\tilde{a}_2\|_2" /> und <InlineMath math="\tilde{A}_3 \in \mathbb{R}^{m-2 \times n-2}" /> usw. bis:
+Dabei gilt <InlineMath math="r_{22}=\pm\|\widetilde a_2\|_2" /> und <InlineMath math="\widetilde A_3\in\mathbb{R}^{(m-2)\times(n-2)}" />. Durch Wiederholung bleibt schließlich die letzte aktive Spalte
 
 <BlockMath math="\tilde{A}_n = \begin{pmatrix} \tilde{a}_{nn} \\ \vdots \\ \tilde{a}_{mn} \end{pmatrix} \in \mathbb{R}^{m-(n-1) \times 1}" />
 
-Schließlich erhalten wir die obere Dreiecksmatrix:
+Nach der letzten Spiegelung ist die transformierte Matrix oberdreieckig:
 
 <BlockMath math="A_{n+1} = R = \begin{pmatrix} r_{11} & & * \\ & \ddots & \\ 0 & & r_{nn} \\ 0 & \cdots & 0 \\ \vdots & & \vdots \\ 0 & \cdots & 0 \end{pmatrix} = S_n \cdot \ldots \cdot S_1 \cdot A = Q^T \cdot A" />
 
-Somit erhalten wir die Faktorisierung:
+Da jeder Reflektor orthogonal und symmetrisch ist, liefert ihr Produkt
 
 <MathContainer>
 <BlockMath math="A = Q \cdot R" />
 <BlockMath math="Q = (S_n \cdot \ldots \cdot S_1)^T = S_1 \cdot \ldots \cdot S_n" />
 </MathContainer>
 
-wobei <InlineMath math="Q" /> eine orthogonale Matrix ist.
+Die Matrix <InlineMath math="Q" /> ist als Produkt orthogonaler Reflektoren ebenfalls orthogonal.
 
 ## Implementierungsalgorithmus
 
-Das Householder-Verfahren lässt sich direkt als Iteration formulieren.
-
-Initialisierung:
+Zuerst werden die aktive Matrix und der gesammelte orthogonale Faktor initialisiert:
 
 <MathContainer>
 <BlockMath math="A_1 := A" />
 <BlockMath math="Q_1 := I" />
 </MathContainer>
 
-Für <InlineMath math="i = 1, \ldots, n" />:
+Im Schritt <InlineMath math="i" /> wird der aktive Teil der <InlineMath math="i" />-ten Spalte entnommen:
 
 <BlockMath math="\tilde{a}_i = \begin{pmatrix} a_{ii} \\ \vdots \\ a_{mi} \end{pmatrix} := \begin{pmatrix} (A_i)_{ii} \\ \vdots \\ (A_i)_{mi} \end{pmatrix} \in \mathbb{R}^{m-i+1}" />
 
-Berechnung:
+Danach werden Norm, Vorzeichen und Householder-Vektor berechnet. Das Vorzeichen verhindert die Subtraktion fast gleicher Zahlen:
 
 <MathContainer>
 <BlockMath math="\sigma := \|\tilde{a}_i\|_2" />
@@ -221,11 +197,11 @@ Berechnung:
 <BlockMath math="\hat{u}_i := \begin{pmatrix} 0 \\ \vdots \\ 0 \\ u_i \end{pmatrix} \in \mathbb{R}^m" />
 </MathContainer>
 
-und:
+Der zugehörige Skalenfaktor ist
 
 <BlockMath math="\beta := \frac{2}{u_i^Tu_i}=\frac{1}{\sigma(\sigma+|\tilde a_{ii}|)}" />
 
-Dann:
+Der normierte Vektor und der vollständige Reflektor lauten
 
 <MathContainer>
 <BlockMath math="v_i=\frac{u_i}{\|u_i\|_2}" />
@@ -233,14 +209,14 @@ Dann:
 <BlockMath math="S_i = I_m - \beta \hat{u}_i \hat{u}_i^T" />
 </MathContainer>
 
-Wir erhalten also:
+Die aktive Matrix und der gesammelte Faktor werden ohne ein zusätzliches dichtes Matrixprodukt aktualisiert:
 
 <MathContainer>
 <BlockMath math="A_{i+1} := S_i A_i = (I_m - \beta \hat{u}_i \hat{u}_i^T) A_i = A_i - \hat{u}_i (\beta \hat{u}_i^T A_i)" />
 <BlockMath math="Q_{i+1} := Q_i S_i = Q_i (I_m - \beta \hat{u}_i \hat{u}_i^T) = Q_i - (Q_i \hat{u}_i) \beta \hat{u}_i^T" />
 </MathContainer>
 
-Schließlich erhalten wir:
+Nach <InlineMath math="n" /> Schritten gilt
 
 <MathContainer>
 <BlockMath math="R := A_{n+1}" />
@@ -251,7 +227,7 @@ Schließlich erhalten wir:
 
 ### Rechenkomplexität
 
-Für <InlineMath math="m\ge n" /> benötigt Householder-QR ungefähr
+Für <InlineMath math="m\ge n" /> benötigt eine <InlineMath math="\mathrm{QR}" />-Zerlegung mit Householder-Spiegelungen ungefähr
 
 <MathContainer>
 <BlockMath math="2mn^2-\frac{2}{3}n^3\text{ Gleitkommaoperationen}" />
@@ -260,24 +236,17 @@ Für <InlineMath math="m\ge n" /> benötigt Householder-QR ungefähr
 
 ### Numerische Eigenschaften
 
-1. Aufgrund der orthogonalen Transformation gilt <InlineMath math="\text{cond}_2(R) = \text{cond}_2(A)" />
+1. Orthogonale Multiplikationen erhalten die Singulärwerte. Daher gilt für eine Matrix mit vollem Spaltenrang <InlineMath math="\operatorname{cond}_2(R)=\operatorname{cond}_2(A)" />.
 
-2. Die Diagonalelemente von <InlineMath math="R" /> sind die Zahlen <InlineMath math="\pm\|\tilde{a}_i\|_2" />
-   ab dem <InlineMath math="i" />-ten Schritt. Wenn man die Transformation so wählt, dass alle positiv sind, erhält man die QR-Zerlegung.
-   Wenn <InlineMath math="\|\tilde{a}_i\|_2 = 0" />, hat <InlineMath math="A" /> nicht den vollen Rang
-   und die Eindeutigkeitsaussage für vollen Rang gilt nicht mehr. Eine QR-Zerlegung existiert weiterhin; wenn der numerische Rang wichtig ist, eignet sich eine rangoffenbarende QR-Zerlegung mit Spaltenpivotisierung besser.
-
-   Das Vorzeichen wird so gewählt, dass numerische Auslöschung vermieden wird:
+2. Im Schritt <InlineMath math="i" /> entsteht der neue Diagonaleintrag <InlineMath math="\pm\|\widetilde a_i\|_2" />. Das folgende Vorzeichen verhindert beim Berechnen des Reflektors die Subtraktion fast gleicher Zahlen:
 
    <MathContainer>
    <BlockMath math="u_i = \tilde{a}_i + s_i\|\tilde{a}_i\|_2e_1" />
    <BlockMath math="s_i=1\text{ für }\tilde a_{ii}\ge0,\qquad s_i=-1\text{ sonst}" />
    </MathContainer>
 
-3. Statt <InlineMath math="Q" /> vollständig zu konstruieren, genügt es, die für jede Spiegelung benötigten Informationen zu speichern:
+   Nach der Faktorisierung können die Vorzeichen einer Spalte von <InlineMath math="Q" /> und der zugehörigen Zeile von <InlineMath math="R" /> gemeinsam gewechselt werden, damit die Diagonale von <InlineMath math="R" /> positiv ist. Gilt <InlineMath math="\|\widetilde a_i\|_2=0" />, fehlt der volle Spaltenrang und diese Eindeutigkeitsbedingung entfällt. Eine <InlineMath math="\mathrm{QR}" />-Zerlegung mit Spaltenpivotisierung eignet sich besser, wenn der numerische Rang bestimmt werden soll.
 
-   <BlockMath math="\text{Speichere den Householder-Vektor }u_i" />
+3. Eine kompakte Implementierung speichert jeden Householder-Vektor <InlineMath math="u_i" /> unterhalb der Diagonale der Arbeitskopie von <InlineMath math="A" /> und die Diagonaleinträge separat. So lassen sich die Reflektoren anwenden, ohne <InlineMath math="Q" /> explizit zu bilden.
 
-   Dieser Vektor passt in den freien Bereich von <InlineMath math="A" /> unterhalb der Diagonale; die Diagonalelemente werden separat gespeichert.
-
-4. Für die reduzierte QR-Zerlegung werden die nicht benötigten Spalten von <InlineMath math="Q" /> und die zugehörigen Nullzeilen von <InlineMath math="R" /> weggelassen.
+4. Die reduzierte Faktorisierung behält die ersten <InlineMath math="n" /> Spalten von <InlineMath math="Q" /> und die ersten <InlineMath math="n" /> Zeilen von <InlineMath math="R" />.

@@ -1,21 +1,21 @@
 export const metadata = {
   title: "Position of a Line Relative to a Circle",
-  description: "Learn how lines intersect, touch, or miss circles using discriminants, intersection points, and tangent conditions.",
+  description: "Use discriminants, intersection points, and tangent conditions to determine whether a line intersects, touches, or misses a circle.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Analytic Geometry",
 };
 
 
 
-## Understanding the Relationship Between Lines and Circles
+## Relationship Between Lines and Circles
 
 Draw a circle and a straight line in the same plane. Exactly three positional relationships are possible.
 
-The line can **intersect the circle at two points**, **be tangent at one point**, or **miss the circle entirely**. A pencil laid across a ring gives a simple picture: it can cross the ring, touch only its rim, or remain outside it.
+The line can **intersect the circle at two points**, **be tangent at one point**, or **miss the circle entirely**. Place a pencil across a ring: depending on its position, it crosses the ring, touches only the rim, or remains outside it.
 
-Analytic geometry turns this picture into a reliable calculation. The same method can test whether a planned road crosses a circular protected area or whether a path reaches a defined zone.
+Substituting the line equation into the circle equation produces a quadratic equation. Two real solutions mean two intersections, one repeated solution means tangency, and no real solution means the line misses the circle. The same test can model whether a planned road crosses a circular protected area or whether a path reaches a defined zone.
 
 ## Three Possible Positions
 
@@ -142,7 +142,7 @@ The upper line has no point in common with the circle. The middle line touches i
 
 ## Discriminant Method
 
-To determine the case algebraically, substitute the line equation into the circle equation. The result is a quadratic equation whose **discriminant** counts the real intersection points.
+To determine the number of intersection points algebraically, substitute the line equation into the circle equation. The substitution produces a quadratic equation. The sign of its **discriminant** determines whether the line and circle have two, one, or no real intersection points.
 
 Suppose we have a line with equation <InlineMath math="y = mx + c" /> and a circle with equation <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />.
 
@@ -176,7 +176,7 @@ Each real solution for <InlineMath math="x" /> corresponds to an intersection po
 
 3. **Negative discriminant** (<InlineMath math="\Delta < 0" />) means the quadratic equation has no real roots. Geometrically, the line **does not intersect the circle**.
 
-## Worked Example
+## Classifying a Secant with the Discriminant
 
 Determine the position of line <InlineMath math="y=2x-1" /> relative to circle <InlineMath math="x^2+y^2-4x+2y-4=0" />.
 
@@ -203,7 +203,7 @@ Since <InlineMath math="\Delta = 116 > 0" />, the line <InlineMath math="y = 2x 
 
 ## Standard Circle Case
 
-For circles with center at the origin like <InlineMath math="x^2 + y^2 = r^2" /> and line <InlineMath math="y = mx + c" />, the process becomes more concise.
+For a circle centered at the origin, <InlineMath math="x^2 + y^2 = r^2" />, the center coordinates are both zero. Substituting <InlineMath math="y=mx+c" /> therefore produces no horizontal or vertical center terms.
 
 Substitute the line into the circle:
 

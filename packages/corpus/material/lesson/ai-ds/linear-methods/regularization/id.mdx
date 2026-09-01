@@ -3,7 +3,7 @@ export const metadata = {
   description: "Stabilkan masalah kuadrat terkecil berkondisi buruk dengan regularisasi Tikhonov, penyaringan spektral, pemilihan parameter yang beralasan, dan penyelesaian numerik yang kokoh.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-15",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Metode Linear AI",
 };
 
@@ -13,7 +13,7 @@ Untuk <InlineMath math="A\in\mathbb{R}^{m\times n}" /> dan <InlineMath math="b\i
 
 <BlockMath math="\min_x\|Ax-b\|_2^2" />
 
-Minimizer selalu ada, bahkan ketika persamaan <InlineMath math="Ax=b" /> tidak konsisten. Masalah sebenarnya berbeda: jika <InlineMath math="A" /> kekurangan rank, minimizernya mungkin tidak tunggal; jika <InlineMath math="A" /> hampir kekurangan rank, perubahan kecil pada <InlineMath math="b" /> dapat mengubah parameter hasil pencocokan secara besar.
+Solusi minimum selalu ada, bahkan ketika persamaan <InlineMath math="Ax=b" /> tidak konsisten. Jika <InlineMath math="A" /> tidak berperingkat penuh, solusinya mungkin tidak tunggal. Jika <InlineMath math="A" /> hampir tidak berperingkat penuh, perubahan kecil pada <InlineMath math="b" /> dapat menyebabkan perubahan besar pada parameter hasil pencocokan.
 
 Dekomposisi nilai singular menjelaskan penguatan tersebut. Untuk <InlineMath math="A=U\Sigma V^T" />, solusi kuadrat terkecil memuat faktor <InlineMath math="1/\sigma_i" />. Komponen data pada arah dengan nilai singular <InlineMath math="\sigma_i" /> yang sangat kecil akan diperbesar.
 
@@ -29,7 +29,7 @@ Di sini <InlineMath math="x_0" /> adalah taksiran acuan, <InlineMath math="L" />
 - Matriks selisih pertama menghukum perubahan cepat antara parameter yang bertetangga.
 - Matriks selisih kedua menghukum kelengkungan dan mendorong profil yang lebih mulus.
 
-Penalti tidak menciptakan informasi baru dalam pengamatan. Penalti membuat struktur prior yang dipilih menjadi eksplisit dan menghasilkan masalah optimisasi yang stabil.
+Penalti tidak menciptakan informasi baru dalam pengamatan. Penalti menyatakan struktur prior yang dipilih secara eksplisit dan dapat memperbaiki kondisi numerik masalah optimisasi.
 
 ## Bentuk Kuadrat Terkecil Teraugmentasi
 
@@ -85,11 +85,11 @@ Tidak ada satu nilai <InlineMath math="\alpha" /> yang selalu terbaik. Nilainya 
 | Metode | Bukti yang sesuai | Keputusan |
 | --- | --- | --- |
 | Validasi atau validasi silang | Pemodelan prediktif dengan pengamatan yang ditahan | Pilih nilai dengan kinerja terbaik di luar sampel |
-| Prinsip diskrepansi | Taksiran norm derau pengamatan yang dapat dipercaya | Cocokkan norm residual dengan tingkat derau yang diharapkan |
+| Prinsip diskrepansi | Taksiran norma derau pengamatan yang dapat dipercaya | Cocokkan norma residual dengan tingkat derau yang diharapkan |
 | Validasi silang terumumkan | Masalah invers linear tanpa set validasi terpisah | Minimalkan skor prediktif yang dihitung dari sistem hasil pencocokan |
-| Kurva L | Analisis eksploratif masalah invers | Periksa sudut kurva antara norm residual dan norm penalti |
+| Kurva L | Analisis eksploratif masalah invers | Periksa sudut kurva antara norma residual dan norma penalti |
 
-Nilai <InlineMath math="\alpha" /> yang kecil menekankan kecocokan data dan dapat menyisakan penguatan derau. Nilai <InlineMath math="\alpha" /> yang besar menekankan penalti dan dapat membuat solusi terlalu mulus atau terlalu menyusut. Kolom parameter dan baris penalti juga harus memakai skala yang bermakna; jika tidak, nilai numerik <InlineMath math="\alpha" /> sulit ditafsirkan.
+Nilai <InlineMath math="\alpha" /> yang kecil menekankan kecocokan data dan dapat menyisakan penguatan derau. Nilai <InlineMath math="\alpha" /> yang besar menekankan penalti dan dapat membuat solusi terlalu mulus atau terlalu menyusut. Kolom parameter dan baris penalti juga harus memakai skala yang bermakna. Jika skala ini diabaikan, angka <InlineMath math="\alpha" /> saja belum menunjukkan seberapa kuat penalti bekerja.
 
 ## Bobot Umum dan Kendala
 
@@ -103,4 +103,4 @@ Persamaan seperti <InlineMath math="x_i=c" /> perlu dimodelkan sebagai kendala p
 
 ## Menyelesaikan Masalah secara Andal
 
-Persamaan normal berguna untuk analisis, tetapi membentuk <InlineMath math="A^TA" /> secara langsung akan menguadratkan bilangan kondisi. Dalam kode numerik, selesaikan sistem kuadrat terkecil teraugmentasi dengan QR atau SVD ketika kestabilan penting. Laporkan <InlineMath math="\alpha" />, <InlineMath math="L" />, skala parameter, norm residual, dan norm penalti. Rincian ini membantu pembaca memahami pengaruh regularisasi terhadap hasil taksiran.
+Persamaan normal dapat digunakan untuk menurunkan estimator teregularisasi dan memeriksa pengaruh <InlineMath math="\alpha" /> serta <InlineMath math="L" />. Untuk komputasi numerik, jangan membentuk <InlineMath math="A^TA" /> karena langkah itu menguadratkan bilangan kondisi. Sistem kuadrat terkecil teraugmentasi dapat diselesaikan dengan <InlineMath math="\mathrm{QR}" /> atau <InlineMath math="\mathrm{SVD}" />. Agar perhitungan mudah diperiksa dan diulang, cantumkan <InlineMath math="\alpha" />, <InlineMath math="L" />, skala parameter, norma residual, dan norma penalti yang digunakan.

@@ -1,26 +1,26 @@
 export const metadata = {
    title: "Peluang Suatu Kejadian",
-  description: "Modelkan kejadian dengan ruang sampel, hitung peluangnya, lalu tafsirkan hasilnya.",
+  description: "Modelkan kejadian dengan ruang sampel, hitung peluang kejadian, lalu jelaskan arti nilai peluang dalam konteks soal.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-08-22",
+   dateModified: "2026-09-01",
    subject: "Kombinatorik",
 };
 
 ## Pengertian Peluang
 
-Apakah hari ini akan hujan? Apakah sebuah tim akan menang pada pertandingan berikutnya? Hasilnya tidak pasti, tetapi **peluang** memberi kita cara yang tepat untuk menyatakan ketidakpastian tersebut.
+Apakah hari ini akan hujan? Apakah sebuah tim akan menang pada pertandingan berikutnya? Jawaban kedua pertanyaan belum pasti. **Peluang** menyatakan seberapa mungkin setiap hasil terjadi dengan bilangan dari <InlineMath math="0" /> sampai <InlineMath math="1" />.
 
 **Peluang** mengukur seberapa mungkin suatu kejadian terjadi. Nilainya berada di antara <InlineMath math="0" /> dan <InlineMath math="1" />:
 - Peluang <InlineMath math="0" /> berarti kejadian tersebut **mustahil**
 - Peluang <InlineMath math="1" /> berarti kejadian tersebut **pasti**
 - Peluang <InlineMath math="0{,}5" /> berarti kejadian dan komplemennya **sama mungkin**
 
-Peluang tidak memastikan hasil dari satu percobaan. Peluang membantu kita menalar hasil berulang dan mengambil keputusan dengan menyatakan ketidakpastiannya secara terbuka.
+Peluang tidak memastikan hasil satu percobaan. Peluang mengukur ketidakpastian agar hasil berulang dapat dibandingkan dan keputusan dapat menyatakan tingkat ketidakpastiannya.
 
 ## Ruang Sampel dan Kejadian
 
-Ada dua gagasan yang perlu dipahami sebelum menghitung peluang:
+Sebelum menghitung peluang, bedakan dua gagasan berikut:
 
 **Ruang sampel (S)** adalah himpunan seluruh hasil yang mungkin dari suatu percobaan. Pada pelemparan dua dadu, misalnya, setiap hasil berupa pasangan terurut dari dua mata dadu.
 
@@ -34,20 +34,20 @@ Untuk menghitung peluang suatu kejadian, kita menggunakan **rumus peluang klasik
 
 <BlockMath math="P(A) = \frac{n(A)}{n(S)}" />
 
-dengan:
+Pada rumus ini:
 - <InlineMath math="P(A)" /> = peluang terjadinya kejadian <InlineMath math="A" />
 - <InlineMath math="n(A)" /> = banyaknya hasil yang menguntungkan (anggota kejadian <InlineMath math="A" />)
 - <InlineMath math="n(S)" /> = banyaknya semua hasil yang mungkin (anggota ruang sampel)
 
-**Syarat penting:** Rumus pencacahan ini hanya berlaku jika semua hasil dalam ruang sampel **sama mungkin** terjadi.
+**Syarat:** Rumus pencacahan ini hanya berlaku jika semua hasil dalam ruang sampel **sama mungkin** terjadi.
 
 **Sifat-sifat dasar:**
 - <InlineMath math="0 \leq P(A) \leq 1" /> (peluang selalu antara <InlineMath math="0" /> dan <InlineMath math="1" />)
-- <InlineMath math="P(A) + P(A') = 1" />, dimana <InlineMath math="A'" /> adalah **komplemen** dari kejadian <InlineMath math="A" />
+- <InlineMath math="P(A) + P(A') = 1" />, dengan <InlineMath math="A'" /> sebagai **komplemen** kejadian <InlineMath math="A" />
 
 **Komplemen:** Komplemen <InlineMath math="A" /> memuat seluruh hasil dalam ruang sampel yang **tidak** termasuk <InlineMath math="A" />. Jika <InlineMath math="A" /> adalah “mendapat bilangan genap,” maka <InlineMath math="A'" /> adalah “mendapat bilangan ganjil.”
 
-## Contoh dengan Pembahasan
+## Peluang Jumlah Dua Dadu Sama dengan Sembilan
 
 **Analisis Pelemparan Dua Dadu:**
 
@@ -71,7 +71,7 @@ Dua dadu adil menghasilkan <InlineMath math="6 \times 6 = 36" /> pasangan teruru
 
 Sebuah perusahaan minuman memasukkan kupon hadiah ke dalam sebagian kotak susu. Data historis memperkirakan peluang sebuah kotak yang dibeli memuat hadiah sebesar <InlineMath math="\frac{3}{32}" />.
 
-**Interpretasi praktis:** Dalam banyak pembelian, diperkirakan sekitar <InlineMath math="3" /> dari setiap <InlineMath math="32" /> kotak yang dibeli memuat hadiah. Perkiraan ini dapat membantu perusahaan:
+**Artinya dalam contoh ini:** Dalam banyak pembelian, diperkirakan sekitar <InlineMath math="3" /> dari setiap <InlineMath math="32" /> kotak yang dibeli memuat hadiah. Perkiraan ini dapat membantu perusahaan:
 - Merencanakan anggaran promosi
 - Memperkirakan respons konsumen
 - Menentukan target penjualan
@@ -84,7 +84,7 @@ Cara mendapat jumlah <InlineMath math="7" />: <InlineMath math="(1,6), (2,5), (3
 
 <BlockMath math="P(\text{jumlah} = 7) = \frac{6}{36} = \frac{1}{6} \approx 0{,}167" />
 
-Nilai ini merupakan peluang terbesar di antara semua jumlah yang mungkin. Namun, peluang tersebut tidak menjamin pelemparan berikutnya menghasilkan <InlineMath math="7" />; peluang menggambarkan model jangka panjang.
+Nilai ini merupakan peluang terbesar di antara semua jumlah yang mungkin. Namun, peluang tersebut tidak menjamin pelemparan berikutnya menghasilkan <InlineMath math="7" />. Peluang menggambarkan model jangka panjang.
 
 ## Latihan
 
@@ -162,4 +162,4 @@ Kerjakan setiap soal sebelum membaca pembahasannya. Nyatakan ruang sampel dan ke
 
    <BlockMath math="P(\text{tidak cacat}) = \frac{950}{1000} = \frac{19}{20} = 0{,}95 = 95\%" />
 
-   **Interpretasi:** Jika dipilih secara acak dari kelompok yang telah diperiksa ini, peluang memperoleh produk tidak cacat adalah <InlineMath math="95\%" />. Hasil satu pemilihan tetap tidak dijamin.
+   **Artinya:** Jika dipilih secara acak dari kelompok yang telah diperiksa ini, peluang memperoleh produk tidak cacat adalah <InlineMath math="95\%" />. Hasil satu pemilihan tetap tidak dijamin.

@@ -1,18 +1,19 @@
 export const metadata = {
   title: "Indizieren und Slicen mit NumPy",
-  description: "Lerne NumPy-Indexing und Slicing für ein- und zweidimensionale Arrays, boolesche Masken sowie fortgeschrittene Auswahlmuster kennen.",
+  description: "Wähle Daten aus ein- und zweidimensionalen NumPy-Arrays mit Indizes, Slices, booleschen Masken und Index-Arrays aus.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "KI-Programmierung",
 };
 
-## Grundlegende Indexierungs- und Slicing-Konzepte
+## Indexierung und Slicing
 
 Indexing wählt Werte an bestimmten Positionen aus, Slicing dagegen einen Bereich entlang einer oder mehrerer Achsen. Ein Slice einer Python-Liste erzeugt eine neue Liste. Basic Slicing in NumPy liefert meistens eine View, die ihre Daten mit dem ursprünglichen Array teilt. Advanced Indexing mit Integer- oder Boolean-Arrays erzeugt hingegen eine Kopie.
 
-Eine View vermeidet das Kopieren der Daten. Schreibst du jedoch über die View, ändern sich auch die entsprechenden Werte im ursprünglichen Array. Die [NumPy-Dokumentation zum Indexing](https://numpy.org/doc/stable/user/basics.indexing.html) beschreibt die genauen Regeln für grundlegende und fortgeschrittene Auswahl.
+Eine View vermeidet das Kopieren der Daten. Schreibst du jedoch über die View, ändern sich auch die entsprechenden Werte im ursprünglichen Array. [NumPy](https://numpy.org/doc/stable/user/basics.indexing.html) beschreibt die genauen Regeln für grundlegende und fortgeschrittene Auswahl.
 
-## Eindimensionale Array-Operationen
+## Eindimensionale Operationen mit Arrays
 
 Eindimensionale Arrays verwenden die vertraute Indexing-Syntax von Python. Ein Basic Slice wie `a[1:4]` liefert eine View. Änderungen an dieser View betreffen daher dieselben Elemente in `a`.
 
@@ -42,7 +43,7 @@ print("Nach a[:3] = 0:", a)  # Ausgabe: Nach a[:3] = 0: [0. 0. 0. 3. 4. 5. 6. 7.
   ]}
 />
 
-Das nächste Beispiel macht den Unterschied bei der Dateneigentümerschaft sichtbar: Eine View teilt den Speicher, `.copy()` legt dagegen unabhängige Daten an.
+Das nächste Beispiel verändert eine View und eine Kopie getrennt. Die View teilt den Speicher mit dem ursprünglichen Array, während `.copy()` unabhängige Daten anlegt.
 
 <CodeBlock
   data={[
@@ -75,7 +76,7 @@ print("Kopie:", copy_array)  # Ausgabe: Kopie: [777   3   4]`
   ]}
 />
 
-## Multidimensionale Array-Operationen
+## Multidimensionale Operationen mit Arrays
 
 In einer mehrdimensionalen Auswahl behandelt jeder durch Komma getrennte Eintrag die nächste Achse. Ein Integer entfernt die gewählte Achse aus dem Ergebnis, ein Slice erhält sie.
 
@@ -500,9 +501,9 @@ print(a[[0, 2], 1:4])
   ]}
 />
 
-## Praktische Anwendungen
+## Daten in Arrays auswählen und neu anordnen
 
-Mit denselben Auswahlregeln kannst du Daten ohne selbst geschriebene Schleifen filtern, sampeln und neu anordnen.
+Mit denselben Auswahlregeln kannst du Daten ohne selbst geschriebene Schleifen filtern, Stichproben ziehen und neu anordnen.
 
 Das folgende Beispiel zeigt Masken und Zuweisungen. In einer echten Analyse muss der Messkontext die Temperaturgrenzen und die Ersetzungsregel bestimmen:
 

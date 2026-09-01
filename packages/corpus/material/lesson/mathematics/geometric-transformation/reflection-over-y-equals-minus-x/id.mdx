@@ -4,11 +4,11 @@ export const metadata = {
   description: "Cerminkan titik, segitiga, dan garis terhadap diagonal menurun dengan aturan koordinat dan contoh terbahas.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Transformasi Geometri",
 };
 
-## Memahami Pencerminan terhadap Garis Diagonal Negatif
+## Pencerminan terhadap Garis Diagonal Negatif
 
 Pencerminan terhadap garis <InlineMath math="y = -x" /> memindahkan setiap titik objek ke posisi bayangannya. Garis <InlineMath math="y = -x" /> menjadi garis cermin.
 
@@ -23,7 +23,7 @@ Jika sebuah titik <InlineMath math="P(x, y)" /> dicerminkan terhadap garis <Inli
   <BlockMath math="y' = -x" />
 </MathContainer>
 
-Jadi, peta dari titik <InlineMath math="P(x, y)" /> adalah <InlineMath math="P'(-y, -x)" />. Perhatikan bahwa nilai koordinat <InlineMath math="x" /> dan <InlineMath math="y" /> saling bertukar tempat dan berubah tanda (menjadi negatifnya).
+Jadi, bayangan titik <InlineMath math="P(x, y)" /> adalah <InlineMath math="P'(-y, -x)" />. Koordinat <InlineMath math="x" /> dan <InlineMath math="y" /> bertukar tempat, lalu tanda keduanya berubah.
 
 ## Mencerminkan Titik
 
@@ -41,7 +41,7 @@ Pasangan titik berikut memperlihatkan kedua langkah pencerminan terhadap <Inline
 <LineEquation
   title={
     <>
-      Peta Titik terhadap Garis <InlineMath math="y=-x" />
+      Bayangan Titik terhadap Garis <InlineMath math="y=-x" />
     </>
   }
   description={
@@ -56,6 +56,7 @@ Pasangan titik berikut memperlihatkan kedua langkah pencerminan terhadap <Inline
         { x: -6, y: 6, z: 0 },
         { x: 6, y: -6, z: 0 },
       ],
+      smooth: false,
       color: "#4f46e5",
       labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [0.5, 0.5, 0] }],
       }, // Garis refleksi
@@ -92,7 +93,7 @@ Pasangan titik berikut memperlihatkan kedua langkah pencerminan terhadap <Inline
 
 ## Mencerminkan Segitiga
 
-Tentukan peta dari segitiga <InlineMath math="ABC" /> dengan titik sudut <InlineMath math="A(-2,4)" />, <InlineMath math="B(3,1)" />, dan <InlineMath math="C(-3,-1)" /> yang dicerminkan terhadap garis <InlineMath math="y=-x" />.
+Tentukan bayangan segitiga <InlineMath math="ABC" /> dengan titik sudut <InlineMath math="A(-2,4)" />, <InlineMath math="B(3,1)" />, dan <InlineMath math="C(-3,-1)" /> yang dicerminkan terhadap garis <InlineMath math="y=-x" />.
 
 Untuk mencerminkan segitiga, kita cerminkan setiap titik sudutnya:
 
@@ -121,6 +122,7 @@ Segitiga bayangan <InlineMath math="A'B'C'" /> terbentuk dengan menghubungkan ti
         { x: -7, y: 7, z: 0 },
         { x: 7, y: -7, z: 0 },
       ],
+      smooth: false,
       color: "#4f46e5",
       labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [0.5, 0.5, 0] }],
       }, // Garis refleksi
@@ -140,6 +142,7 @@ Segitiga bayangan <InlineMath math="A'B'C'" /> terbentuk dengan menghubungkan ti
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#d97706",
       showPoints: true,
       labels: [{ text: segment.from.label, at: 0, offset: [0.4, 0.4, 0] }],
@@ -160,6 +163,7 @@ Segitiga bayangan <InlineMath math="A'B'C'" /> terbentuk dengan menghubungkan ti
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [{ text: segment.from.label, at: 0, offset: [0.4, 0.4, 0] }],
@@ -213,6 +217,7 @@ Jadi, persamaan bayangan dari garis <InlineMath math="y = -4x - 2" /> setelah di
         { x: -7, y: 7, z: 0 },
         { x: 7, y: -7, z: 0 },
       ],
+      smooth: false,
       color: "#4f46e5",
       labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [0.5, 0.5, 0] }],
       }, // Garis refleksi
@@ -223,7 +228,7 @@ Jadi, persamaan bayangan dari garis <InlineMath math="y = -4x - 2" /> setelah di
         return { x: xVal, y: -4 * xVal - 2, z: 0 };
       }),
       color: "#9333ea",
-      smooth: true,
+      smooth: false,
       labels: [{ text: <InlineMath math="y=-4x-2" />, at: 6, offset: [1, 0.5, 0] }],
     },
     {
@@ -233,7 +238,7 @@ Jadi, persamaan bayangan dari garis <InlineMath math="y = -4x - 2" /> setelah di
         return { x: xVal, y: (-1 / 4) * xVal + 1 / 2, z: 0 };
       }),
       color: "#db2777",
-      smooth: true,
+      smooth: false,
       labels: [{ text: <InlineMath math="y=(-\frac{1}{4})x+\frac{1}{2}" />, at: 8, offset: [0.5, -1, 0] }],
     },
   ]}
@@ -244,7 +249,7 @@ Jadi, persamaan bayangan dari garis <InlineMath math="y = -4x - 2" /> setelah di
 ## Latihan
 
 1.  Tentukan koordinat bayangan dari titik <InlineMath math="S(5, -9)" /> jika dicerminkan terhadap garis <InlineMath math="y = -x" />!
-2.  Tentukan peta dari segitiga <InlineMath math="ABC" /> dengan titik sudut <InlineMath math="A(1, -2)" />, <InlineMath math="B(2, 3)" />, dan <InlineMath math="C(-2, 0)" /> yang dicerminkan terhadap garis <InlineMath math="y = -x" />.
+2.  Tentukan bayangan segitiga <InlineMath math="ABC" /> dengan titik sudut <InlineMath math="A(1, -2)" />, <InlineMath math="B(2, 3)" />, dan <InlineMath math="C(-2, 0)" /> yang dicerminkan terhadap garis <InlineMath math="y = -x" />.
 3.  Jika sebuah garis memiliki persamaan <InlineMath math="4x + 3y - 2 = 0" /> dicerminkan terhadap garis <InlineMath math="y = -x" />, tentukan persamaan garis bayangannya.
 
 ### Pembahasan

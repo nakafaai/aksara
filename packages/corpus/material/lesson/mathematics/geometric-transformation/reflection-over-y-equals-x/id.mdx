@@ -4,11 +4,11 @@ export const metadata = {
   description: "Telusuri pertukaran koordinat saat titik, segitiga, dan garis dicerminkan terhadap diagonal utama.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-17",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Transformasi Geometri",
 };
 
-## Memahami Pencerminan terhadap Garis Diagonal Utama
+## Pencerminan terhadap Garis Diagonal Utama
 
 Pencerminan terhadap garis <InlineMath math="y = x" /> memindahkan setiap titik objek ke posisi bayangannya. Garis <InlineMath math="y = x" /> menjadi garis cermin.
 
@@ -23,7 +23,7 @@ Jika sebuah titik <InlineMath math="P(x, y)" /> dicerminkan terhadap garis <Inli
   <BlockMath math="y' = x" />
 </MathContainer>
 
-Sehingga, peta dari titik <InlineMath math="P(x, y)" /> adalah <InlineMath math="P'(y, x)" />. Perhatikan bahwa koordinat <InlineMath math="x" /> dan <InlineMath math="y" /> saling bertukar posisi.
+Jadi, bayangan titik <InlineMath math="P(x, y)" /> adalah <InlineMath math="P'(y, x)" />. Perhatikan bahwa koordinat <InlineMath math="x" /> dan <InlineMath math="y" /> saling bertukar posisi.
 
 ## Mencerminkan Titik
 
@@ -40,7 +40,7 @@ Pasangan titik berikut memperlihatkan pertukaran koordinatnya:
 <LineEquation
   title={
     <>
-      Peta Titik terhadap Garis <InlineMath math="y=x" />
+      Bayangan Titik terhadap Garis <InlineMath math="y=x" />
     </>
   }
   description={
@@ -55,6 +55,7 @@ Pasangan titik berikut memperlihatkan pertukaran koordinatnya:
         { x: -6, y: -6, z: 0 },
         { x: 6, y: 6, z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [0.5, -0.5, 0] }],
       }, // Garis refleksi
@@ -104,7 +105,7 @@ Pasangan titik berikut memperlihatkan pertukaran koordinatnya:
 
 ## Mencerminkan Segitiga
 
-Tentukan peta dari segitiga <InlineMath math="ABC" /> dengan titik sudut <InlineMath math="A(-2,4)" />, <InlineMath math="B(3,1)" />, dan <InlineMath math="C(-3,-1)" /> yang dicerminkan terhadap garis <InlineMath math="y=x" />.
+Tentukan bayangan segitiga <InlineMath math="ABC" /> dengan titik sudut <InlineMath math="A(-2,4)" />, <InlineMath math="B(3,1)" />, dan <InlineMath math="C(-3,-1)" /> yang dicerminkan terhadap garis <InlineMath math="y=x" />.
 
 Untuk mencerminkan segitiga, kita cerminkan setiap titik sudutnya terhadap garis <InlineMath math="y=x" />:
 
@@ -133,6 +134,7 @@ Segitiga bayangan <InlineMath math="A'B'C'" /> terbentuk dengan menghubungkan ti
         { x: -7, y: -7, z: 0 },
         { x: 7, y: 7, z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [0.5, -0.5, 0] }],
       }, // Garis refleksi
@@ -152,6 +154,7 @@ Segitiga bayangan <InlineMath math="A'B'C'" /> terbentuk dengan menghubungkan ti
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#d97706",
       showPoints: true,
       labels: [{ text: segment.from.label, at: 0, offset: [0.4, 0.4, 0] }],
@@ -172,6 +175,7 @@ Segitiga bayangan <InlineMath math="A'B'C'" /> terbentuk dengan menghubungkan ti
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [{ text: segment.from.label, at: 0, offset: [0.4, 0.4, 0] }],
@@ -223,6 +227,7 @@ Jadi, persamaan bayangan dari garis <InlineMath math="y = 2x + 3" /> setelah dic
         { x: -7, y: -7, z: 0 },
         { x: 7, y: 7, z: 0 },
       ],
+      smooth: false,
       color: "#4f46e5",
       labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [0.5, -0.5, 0] }],
       }, // Garis refleksi
@@ -233,7 +238,7 @@ Jadi, persamaan bayangan dari garis <InlineMath math="y = 2x + 3" /> setelah dic
         return { x: xVal, y: 2 * xVal + 3, z: 0 };
       }),
       color: "#9333ea",
-      smooth: true,
+      smooth: false,
       labels: [{ text: <InlineMath math="y=2x+3" />, at: 4, offset: [-1, 0.5, 0] }],
     },
     {
@@ -243,7 +248,7 @@ Jadi, persamaan bayangan dari garis <InlineMath math="y = 2x + 3" /> setelah dic
         return { x: xVal, y: (1 / 2) * xVal - 3 / 2, z: 0 };
       }),
       color: "#db2777",
-      smooth: true,
+      smooth: false,
       labels: [{ text: <InlineMath math="y=(\frac{1}{2})x-\frac{3}{2}" />, at: 9, offset: [0.5, -1, 0] }],
     },
   ]}
@@ -254,7 +259,7 @@ Jadi, persamaan bayangan dari garis <InlineMath math="y = 2x + 3" /> setelah dic
 ## Latihan
 
 1.  Tentukan koordinat bayangan dari titik <InlineMath math="M(-4, 7)" /> jika dicerminkan terhadap garis <InlineMath math="y = x" />!
-2.  Tentukan peta dari segitiga <InlineMath math="ABC" /> dengan titik sudut <InlineMath math="A(1, -2)" />, <InlineMath math="B(2, 3)" />, dan <InlineMath math="C(-2, 0)" /> yang dicerminkan terhadap garis <InlineMath math="y = x" />.
+2.  Tentukan bayangan segitiga <InlineMath math="ABC" /> dengan titik sudut <InlineMath math="A(1, -2)" />, <InlineMath math="B(2, 3)" />, dan <InlineMath math="C(-2, 0)" /> yang dicerminkan terhadap garis <InlineMath math="y = x" />.
 3.  Jika sebuah garis memiliki persamaan <InlineMath math="y = -3x + 5" /> dicerminkan terhadap garis <InlineMath math="y = x" />, tentukan persamaan garis bayangannya.
 
 ### Pembahasan

@@ -3,17 +3,17 @@ export const metadata = {
   description: "Gunakan grafik dan contoh untuk memahami bagaimana faktor skala meregangkan, memampatkan, atau mencerminkan fungsi secara vertikal.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Transformasi Fungsi",
 };
 
 
 
-## Konsep Dasar Dilatasi Vertikal
+## Dilatasi Vertikal
 
 Dilatasi vertikal mengubah tinggi grafik fungsi tanpa mengubah koordinat horizontalnya. Bayangkan sebuah foto ditarik dari tepi atas dan bawah atau ditekan ke arah sumbu <InlineMath math="x" />.
 
-Jika kita memiliki fungsi <InlineMath math="f(x)" />, maka dilatasi vertikal menghasilkan fungsi baru <InlineMath math="g(x) = k \cdot f(x)" /> di mana <InlineMath math="k \ne 0" /> adalah faktor skala yang menentukan seberapa besar perubahan ukuran vertikal.
+Untuk fungsi <InlineMath math="f(x)" />, dilatasi vertikal menghasilkan <InlineMath math="g(x) = k \cdot f(x)" />. Faktor skala <InlineMath math="k \ne 0" /> menentukan perubahan ukuran vertikal grafik.
 
 ### Aturan Dilatasi Vertikal
 
@@ -21,7 +21,7 @@ Untuk setiap fungsi <InlineMath math="f(x)" /> dan faktor skala tak nol <InlineM
 
 <BlockMath math="g(x) = k \cdot f(x)" />
 
-Dimana <InlineMath math="k" /> adalah faktor skala yang mempengaruhi transformasi:
+Faktor skala <InlineMath math="k" /> menentukan perubahan grafik:
 - Jika <InlineMath math="k > 1" />, grafik diregangkan secara vertikal (diperbesar)
 - Jika <InlineMath math="0 < k < 1" />, grafik ditekan secara vertikal (diperkecil)
 - Jika <InlineMath math="k = 1" />, grafik tidak berubah
@@ -90,6 +90,7 @@ Aturan yang sama berlaku pada fungsi linear <InlineMath math="f(x) = x + 1" />.
         const x = (i - 10) * 0.5;
         return { x, y: x + 1, z: 0 };
       }),
+      smooth: false,
       color: "#d97706",
       labels: [{ text: <InlineMath math="f(x)=x+1" />, offset: [2, 1.5, 0] }],
       showPoints: false,
@@ -99,6 +100,7 @@ Aturan yang sama berlaku pada fungsi linear <InlineMath math="f(x) = x + 1" />.
         const x = (i - 10) * 0.5;
         return { x, y: 3 * (x + 1), z: 0 };
       }),
+      smooth: false,
       color: "#0d9488",
       labels: [{ text: <InlineMath math="g(x)=3(x+1)" />, offset: [1, 2, 0] }],
       showPoints: false,
@@ -108,6 +110,7 @@ Aturan yang sama berlaku pada fungsi linear <InlineMath math="f(x) = x + 1" />.
         const x = (i - 10) * 0.5;
         return { x, y: 0.5 * (x + 1), z: 0 };
       }),
+      smooth: false,
       color: "#e11d48",
       labels: [{ text: <InlineMath math="h(x)=0{,}5(x+1)" />, offset: [2, 0.5, 0] }],
       showPoints: false,
@@ -121,7 +124,7 @@ Ketiga garis menunjukkan:
 - Fungsi <InlineMath math="h(x) = 0{,}5(x + 1)" /> memiliki kemiringan <InlineMath math="0{,}5" /> (ditekan)
 - Semua garis masih memotong sumbu <InlineMath math="y" />, tetapi di titik yang berbeda
 
-## Sifat Penting Dilatasi Vertikal
+## Sifat Dilatasi Vertikal
 
 ### Pengaruh pada Koordinat Titik
 
@@ -139,9 +142,7 @@ Jika range fungsi asli adalah <InlineMath math="[c, d]" />, maka range setelah d
 - **Titik potong sumbu <InlineMath math="x" />**: Tidak berubah
 - **Titik potong sumbu <InlineMath math="y" />**: Berubah sesuai faktor skala
 
-## Contoh Penerapan
-
-### Fungsi Eksponensial
+## Mengalikan Nilai Fungsi Eksponensial
 
 Pada fungsi eksponensial <InlineMath math="f(x) = 2^x" />, faktor skala mengalikan setiap nilai fungsi.
 
@@ -262,7 +263,7 @@ Ketika faktor skala negatif:
 2. Persamaan fungsi hasil dilatasi:
 
    - Dilatasi vertikal: <InlineMath math="g'(x) = \frac{1}{2}g(x) = \frac{1}{2}\sqrt{x}" />
-   - Range setelah dilatasi: <InlineMath math="[0, \infty)" /> tetap <InlineMath math="[0, \infty)" />; pada setiap input, nilai fungsi positif menjadi setengahnya
+   - Range setelah dilatasi: <InlineMath math="[0, \infty)" /> tetap <InlineMath math="[0, \infty)" />. Pada setiap input, nilai fungsi positif menjadi setengahnya
 
    Visualisasi:
 

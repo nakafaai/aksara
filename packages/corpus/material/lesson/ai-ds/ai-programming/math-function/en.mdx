@@ -3,13 +3,13 @@ export const metadata = {
     description: "Use Python's math module, numeric built-ins, import styles, domains, and constants in verified calculations.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-16",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "AI Programming",
 };
 
 ## Module Concept in Python
 
-Python keeps its core language focused and organizes reusable code in modules. A module can own functions, constants, classes, and other names without placing all of them in the global namespace.
+Python stores much of its reusable code in modules. A module can contain functions, constants, classes, and other names without placing all of them in the global namespace.
 
 An `import` loads a module when needed and binds a name through which your code can reach its public members. The standard library already supplies well-tested mathematical operations. Reusing them avoids mistakes from rewriting the formulas yourself.
 
@@ -23,7 +23,7 @@ Python offers several ways to import modules, each with different characteristic
 
 ### Basic Import with Namespace
 
-The most basic way to import a module is using the `import math` command. This way, all function and constant names remain bound to the `math` namespace.
+The statement `import math` imports the module under the `math` namespace. Functions and constants are then accessed with names such as `math.sqrt` and `math.pi`.
 
 <CodeBlock
   data={[
@@ -46,7 +46,7 @@ print(math.pi)  # Output: 3.141592653589793
 
 ### Import with Alias
 
-An alias binds the module to another local name. Use one only when it follows an established convention or resolves a genuine naming conflict; `math` is already short and explicit.
+An alias binds the module to another local name. Use one only when it follows an established convention or resolves a genuine naming conflict. `math` is already short and explicit.
 
 <CodeBlock
   data={[
@@ -86,11 +86,11 @@ print(pi)       # Output: 3.141592653589793
   ]}
 />
 
-`from math import *` can silently overwrite an existing name, makes each imported name's owner harder to trace, and lets a future module change alter the importing namespace. Explicit imports keep those dependencies reviewable.
+`from math import *` places every public name from `math` in the current namespace. If one of those names is already in use, the value from `math` replaces it without an error. The code also stops showing which module supplied each name, and a later change to `math` can add new names to the importing module. An explicit import lists every dependency on the import line.
 
 ### Import Specific Functions
 
-A more selective approach is to import only the specific functions needed. This provides direct access without a prefix while maintaining code clarity.
+Import only the functions the program uses. The function name remains available without a module prefix, while the import line still records its source.
 
 <CodeBlock
   data={[
@@ -113,7 +113,7 @@ print(sqrt(9))  # Output: 3.0
 
 ### Import with Function Alias
 
-You can also give an alias to specific functions when importing them. This is useful for making function names more concise or avoiding name conflicts.
+An imported function can receive an alias to resolve a name conflict or follow an established local convention.
 
 <CodeBlock
   data={[
@@ -134,7 +134,7 @@ print(fac(5))  # Output: 120
   ]}
 />
 
-## Built-in Functions vs Module Functions
+## Built In Functions vs Module Functions
 
 Python provides numeric built-ins such as `abs()` and `round()` without an import. They work across types through Python's numeric protocols. Each type can define the operations it supports.
 
@@ -163,7 +163,7 @@ The result for `4 + 3j` is <InlineMath math="5.0" /> because <InlineMath math="|
 
 ### Rounding Function
 
-For Python's built-in numeric types, `round()` uses round-to-nearest with ties going to the even choice. A call without `ndigits` returns an integer for a float; a second argument chooses the decimal position.
+For Python's built-in numeric types, `round()` rounds to the nearest value and resolves exact halfway cases by rounding to even. Without `ndigits`, `round()` returns an integer for a float. Pass `ndigits` as the second argument to choose the place value used for rounding.
 
 <CodeBlock
   data={[
@@ -182,7 +182,7 @@ print(round(1234.4321, -2))         # Output: 1200.0`
   ]}
 />
 
-Therefore `round(4.5)` produces <InlineMath math="4" />, while `round(3.5)` produces <InlineMath math="4" />. Decimal-looking float values are stored in binary, so a value that appears to be an exact tie may not be one internally. Use decimal arithmetic when a domain requires decimal rounding rules.
+`round(4.5)` produces <InlineMath math="4" />, while `round(3.5)` produces <InlineMath math="4" />. Decimal-looking float values are stored in binary, so a value that appears to be an exact tie may not be one internally. Use decimal arithmetic when a domain requires decimal rounding rules.
 
 ## Functions and Constants in the math Module
 
@@ -295,16 +295,16 @@ print(f"Circle area with radius {circle_radius}: {circle_area}")`
 
 ## Choosing the Right Import Method
 
-Choose an import style that makes ownership obvious at the call site and introduces only the names the module needs.
+Choose an import style that shows the module name at each call when that context matters and introduces only the names the program uses.
 
 ### Guide to Choosing Import Methods
 
-1. **Prefer `import math`** when several members are used and their origin should stay visible.
+1. **Prefer `import math`** when the program uses several members. Calls such as `math.sqrt()` keep the module name next to the function.
 2. **Use `import math as m` deliberately** only when the alias is a documented local convention.
 3. **Use `from math import sqrt, pi`** when a small set of unambiguous names improves the local code.
-4. **Avoid `from math import *`** because it obscures ownership and can create name conflicts.
+4. **Avoid `from math import *`** because its names have no module prefix and can replace names that the program already uses.
 
-### Implementation in Real Applications
+### Calculating Distance and Area
 
 <CodeBlock
   data={[

@@ -1,15 +1,15 @@
 export const metadata = {
     title: "Objek String",
-    description: "Pelajari cara string Python merepresentasikan teks, ditulis lintas baris, serta digabung sebagai literal atau variabel.",
+    description: "String Python merepresentasikan teks, ditulis lintas baris, serta digabung sebagai literal atau variabel.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-16",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Pemrograman AI",
 };
 
 ## Mendefinisikan Objek String
 
-Dalam Python, string adalah urutan karakter Unicode yang tidak dapat diubah. Urutannya penting: setiap karakter memiliki posisi, dan operasi seperti pengindeksan serta pengirisan memakai urutan tersebut.
+Dalam Python, string adalah sequence karakter Unicode yang bersifat immutable. Indexing dan slicing memakai posisi setiap karakter, sehingga perubahan urutan menghasilkan string yang berbeda.
 
 String memiliki tiga karakteristik utama yang perlu kamu pahami:
 
@@ -44,9 +44,9 @@ hello
 
 Prompt interaktif menampilkan representasi string, sehingga Python dapat memilih kutip tunggal atau ganda agar representasinya mudah dibaca. `print()` menulis nilai string itu sendiri tanpa tanda kutip pembatas literal.
 
-## String Kosong dan Fungsi str()
+## String Kosong dan Fungsi Str
 
-Python memungkinkan kamu membuat string kosong dan mengubah tipe data lain menjadi string.
+Python mendukung string kosong dan konversi tipe data lain menjadi string.
 
 ### String Kosong
 
@@ -65,7 +65,7 @@ String kosong tidak memuat karakter dan panjangnya nol. Kamu dapat menulisnya de
   ]}
 />
 
-### Fungsi str()
+### Fungsi Str
 
 Fungsi `str()` meminta bentuk string yang mudah dibaca dari suatu nilai. Gunakan fungsi ini ketika teks perlu memuat angka atau nilai non-string lainnya.
 
@@ -86,20 +86,20 @@ Fungsi `str()` meminta bentuk string yang mudah dibaca dari suatu nilai. Gunakan
   ]}
 />
 
-## String Multi-baris
+## String Multibaris
 
 Python membedakan pemecahan kode sumber ke beberapa baris dari penyimpanan karakter baris baru di dalam string.
 
 ### Karakter Lanjutan Baris
 
-Backslash di akhir baris fisik kode sumber melanjutkan pernyataan secara eksplisit. Pada contoh ini, pernyataan yang dilanjutkan memuat dua literal berdekatan yang digabung Python tanpa menambahkan baris baru ke nilainya.
+Backslash di akhir baris fisik kode sumber melanjutkan statement secara eksplisit. Pada contoh ini, statement yang dilanjutkan memuat dua literal berdekatan yang digabung Python tanpa menambahkan karakter baris baru ke nilai string.
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "line_continuation.py",
-      code: `# Melanjutkan pernyataan dengan backslash
+      code: `# Melanjutkan statement dengan backslash
 >>> text = 'xxx' \\
 ...     'yyy'
 
@@ -114,14 +114,14 @@ xxxyyy`
 
 ### Lanjutan Baris dengan Tanda Kurung
 
-Di dalam tanda kurung, Python melanjutkan pernyataan secara implisit. Cara ini biasanya lebih mudah dibaca dan lebih aman disunting daripada backslash eksplisit.
+Di dalam tanda kurung, Python tetap membaca baris berikutnya sebagai bagian dari statement yang sama, jadi kita tidak perlu menulis backslash. Komentar atau spasi di akhir baris tidak memutus kelanjutan ini. Saat baris dipindahkan, tidak ada tanda kelanjutan yang perlu ikut dipindahkan.
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "parentheses_continuation.py",
-      code: `# Melanjutkan pernyataan di dalam tanda kurung
+      code: `# Melanjutkan statement di dalam tanda kurung
 >>> text = (
 ...     'xxx'
 ...     'yyy'

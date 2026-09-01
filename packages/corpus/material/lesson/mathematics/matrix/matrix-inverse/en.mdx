@@ -1,13 +1,13 @@
 export const metadata = {
   title: "Matrix Inverse",
-  description: "Learn inverse formulas for order-two and order-three matrices through determinants, adjugates, and linear equation examples.",
+  description: "Calculate inverses of order-two and order-three matrices with determinants and adjugates, then solve linear equations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Matrix",
 };
 
-## Understanding Matrix Inverse
+## Matrix Inverse
 
 In the set of real numbers, every non-zero number <InlineMath math="a" /> has a reciprocal, which is the number <InlineMath math="a^{-1}" />, satisfying the property <InlineMath math="a \cdot a^{-1} = a^{-1} \cdot a = 1" />. A similar concept applies to matrices.
 
@@ -24,7 +24,7 @@ Not all square matrices have an inverse. A matrix <InlineMath math="A" /> has an
 - Matrix <InlineMath math="A" /> is called a **nonsingular matrix** if <InlineMath math="\det(A) \neq 0" />. A nonsingular matrix always has an inverse.
 - Matrix <InlineMath math="A" /> is called a **singular matrix** if <InlineMath math="\det(A) = 0" />. A singular matrix does not have an inverse.
 
-## Inverse of a Two-by-Two Matrix
+## Inverse of a Two by Two Matrix
 
 For a <InlineMath math="2 \times 2" /> matrix <InlineMath math="A" />, let:
 
@@ -52,7 +52,7 @@ So, the complete formula for the inverse of a <InlineMath math="2 \times 2" /> m
 
 <BlockMath math="A^{-1} = \frac{1}{ad-bc} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}" />
 
-### Example of a Two-by-Two Matrix Inverse
+### Example of a Two by Two Matrix Inverse
 
 Find the inverse of matrix <InlineMath math="P = \begin{bmatrix} 3 & -7 \\ -1 & 2 \end{bmatrix}" />.
 
@@ -81,13 +81,13 @@ Step <InlineMath math="4" />: Calculate the inverse of matrix <InlineMath math="
   <BlockMath math="P^{-1} = \begin{bmatrix} -2 & -7 \\ -1 & -3 \end{bmatrix}" />
 </MathContainer>
 
-Thus, the inverse of matrix <InlineMath math="P" /> is <InlineMath math="P^{-1} = \begin{bmatrix} -2 & -7 \\ -1 & -3 \end{bmatrix}" />.
+The inverse of matrix <InlineMath math="P" /> is <InlineMath math="P^{-1} = \begin{bmatrix} -2 & -7 \\ -1 & -3 \end{bmatrix}" />.
 
 Verify the result by multiplying the matrices:
 
 <BlockMath math="PP^{-1}=\begin{bmatrix}3&-7\\-1&2\end{bmatrix}\begin{bmatrix}-2&-7\\-1&-3\end{bmatrix}=\begin{bmatrix}1&0\\0&1\end{bmatrix}=I_2" />
 
-## Inverse of a Three-by-Three Matrix
+## Inverse of a Three by Three Matrix
 
 The basic concept for finding the inverse of a <InlineMath math="3 \times 3" /> matrix is the same as for a <InlineMath math="2 \times 2" /> matrix, i.e., using the formula:
 
@@ -102,11 +102,11 @@ A fuller discussion on how to calculate the determinant and adjugate of a <Inlin
 
 ## Solving a Linear System with an Inverse
 
-One important use of the matrix inverse is to solve systems of linear equations. If a system of linear equations can be expressed in matrix multiplication form:
+A matrix inverse can solve a system of linear equations when its coefficient matrix is invertible. Write the system in matrix form:
 
 <BlockMath math="AX = B" />
 
-where <InlineMath math="A" /> is the coefficient matrix, <InlineMath math="X" /> is the variable matrix, and <InlineMath math="B" /> is the constant matrix. If matrix <InlineMath math="A" /> has an inverse (<InlineMath math="A^{-1}" />), multiply both sides from the left. The side matters because matrix multiplication is not generally commutative:
+In this equation, <InlineMath math="A" /> is the coefficient matrix, <InlineMath math="X" /> is the variable matrix, and <InlineMath math="B" /> is the constant matrix. If <InlineMath math="A" /> has an inverse <InlineMath math="A^{-1}" />, multiply both sides from the left by <InlineMath math="A^{-1}" />. Keep this order because matrix multiplication is not generally commutative:
 
 <MathContainer>
   <BlockMath math="A^{-1}(AX)=A^{-1}B" />
@@ -173,6 +173,4 @@ Given matrices <InlineMath math="X = \begin{bmatrix} 1 & -3 \\ -1 & 4 \end{bmatr
       <BlockMath math="(X+Y)^{-1} = \begin{bmatrix} -1/2 & -1/4 \\ 1/2 & 3/4 \end{bmatrix}" />
     </MathContainer>
 
-    Clearly, <InlineMath math="X^{-1} + Y^{-1} \neq (X+Y)^{-1}" />. This shows that the inverse of the sum of two matrices is generally not equal to the sum of their individual inverses.
-
-    Inversion is not distributive over addition. The same warning already holds for ordinary reciprocals: in general, <InlineMath math="1/x+1/y\neq1/(x+y)" />.
+    The two matrices differ, so <InlineMath math="X^{-1} + Y^{-1} \neq (X+Y)^{-1}" />. Inversion is not distributive over addition. The same rule already holds for ordinary reciprocals: in general, <InlineMath math="1/x+1/y\neq1/(x+y)" />.

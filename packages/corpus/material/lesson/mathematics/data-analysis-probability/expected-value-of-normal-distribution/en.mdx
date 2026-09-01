@@ -1,9 +1,9 @@
 export const metadata = {
    title: "Expected Value of Normal Distribution",
-   description: "Understand expected value in a normal distribution and interpret the mean in statistics problems.",
+  description: "Interpret the mean of a normal distribution as its expected value in statistics problems.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-08-22",
+   dateModified: "2026-09-01",
    subject: "Data Analysis and Probability",
 };
 
@@ -19,7 +19,7 @@ Mathematically, we can write:
 
 <BlockMath math="E(X) = \mu" />
 
-where <InlineMath math="X" /> is a random variable that follows normal distribution and <InlineMath math="\mu" /> is the mean parameter of that distribution.
+In this notation, <InlineMath math="X" /> is a normally distributed random variable and <InlineMath math="\mu" /> is the distribution's mean parameter.
 
 The following calculation shows why.
 
@@ -45,22 +45,22 @@ Use the substitution <InlineMath math="t = \frac{x-\mu}{\sigma}" />. Then <Inlin
 <BlockMath math="E(X) = \frac{\sigma}{\sqrt{2\pi}} \int_{-\infty}^{\infty} t e^{-\frac{1}{2}t^2} \, dt + \frac{\mu}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} \, dt" />
 </MathContainer>
 
-Note that:
+Evaluate the two integrals separately:
 
 - **First integral** <InlineMath math="\int_{-\infty}^{\infty} t e^{-\frac{1}{2}t^2} \, dt = 0" /> because <InlineMath math="g(t)=t e^{-\frac{1}{2}t^2}" /> is odd. Thus <InlineMath math="g(-t) = -g(t)" />, and the signed areas over the symmetric interval <InlineMath math="(-\infty, \infty)" /> cancel.
 
 - **Second integral** <InlineMath math="\int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} \, dt = \sqrt{2\pi}" /> is the Gaussian integral. After multiplication by the normalizing factor <InlineMath math="1/\sqrt{2\pi}" />, it gives total probability <InlineMath math="1" /> for the standard normal density.
 
-Therefore:
+The calculation gives:
 
 <MathContainer>
 <BlockMath math="E(X) = \frac{\sigma}{\sqrt{2\pi}} \cdot 0 + \frac{\mu}{\sqrt{2\pi}} \cdot \sqrt{2\pi}" />
 <BlockMath math="E(X) = 0 + \mu = \mu" />
 </MathContainer>
 
-Therefore, **the expected value of a normal random variable equals its mean parameter**.
+**The expected value of a normal random variable equals its mean parameter**.
 
-> For every normal distribution <InlineMath math="X \sim N(\mu, \sigma^2)" />, we have <InlineMath math="E(X) = \mu" />. This means we don't need to perform integration every time we calculate the expected value of a normal distribution; we simply use the parameter value <InlineMath math="\mu" />.
+> For every normal distribution <InlineMath math="X \sim N(\mu, \sigma^2)" />, we have <InlineMath math="E(X) = \mu" />. This means we don't need to perform integration every time we calculate the expected value of a normal distribution. We simply use the parameter value <InlineMath math="\mu" />.
 
 ## Practical Interpretation
 
@@ -72,7 +72,7 @@ For a normal random variable with mean <InlineMath math="\mu" /> and standard de
 
 If the height of students in your school is normally distributed with mean <InlineMath math="165 \text{ cm}" />, then the expected value of the height of a randomly selected student is <InlineMath math="165 \text{ cm}" />.
 
-## Application Examples
+## Expected Values for Exam Scores and Birth Weights
 
 **Example** <InlineMath math="1" />
 
@@ -84,7 +84,7 @@ Since normal distribution has the property <InlineMath math="E(X) = \mu" />, the
 
 <BlockMath math="E(X) = 75" />
 
-Therefore, the expected value of a student's exam score is <InlineMath math="75" />.
+The expected value of a student's exam score is <InlineMath math="75" />.
 
 **Example** <InlineMath math="2" />
 
@@ -132,7 +132,7 @@ The expected weight is the mean parameter:
 
    Given: <InlineMath math="\mu = 78" />, <InlineMath math="\sigma = 12" />
 
-   Based on the fundamental property of normal distribution:
+   A normally distributed variable satisfies <InlineMath math="E(X)=\mu" />. Therefore:
 
    <BlockMath math="E(X) = \mu = 78" />
 

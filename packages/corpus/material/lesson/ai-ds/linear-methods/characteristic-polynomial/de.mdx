@@ -1,8 +1,9 @@
 export const metadata = {
     title: "Charakteristisches Polynom",
-    description: "Erkunden Sie charakteristische Polynome, um Eigenwerte zu finden, algebraische Multiplizität zu verstehen und Matrixspurbeziehungen in der linearen Algebra zu analysieren.",
+    description: "Nutze charakteristische Polynome, um Eigenwerte und algebraische Multiplizitäten zu bestimmen und ihre Koeffizienten mit der Matrixspur zu verbinden.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Lineare Methoden der KI",
 };
 
@@ -44,17 +45,15 @@ Das bedeutet:
 
 ## Eigenwerte als Polynomwurzeln
 
-Das wichtigste Konzept des charakteristischen Polynoms ist seine Beziehung zu Eigenwerten.
+Der Wert <InlineMath math="\lambda \in \mathbb{K}" /> ist genau dann ein Eigenwert von <InlineMath math="A" />, wenn <InlineMath math="\det(A - \lambda \cdot I) = 0" />.
 
-Betrachten wir nun eine sehr wichtige Beziehung: <InlineMath math="\lambda \in \mathbb{K}" /> ist genau dann ein Eigenwert von <InlineMath math="A" />, wenn <InlineMath math="\det(A - \lambda \cdot I) = 0" />.
+Daher sind **die Eigenwerte die Nullstellen des charakteristischen Polynoms**.
 
-Mit anderen Worten: **Eigenwerte sind die Wurzeln des charakteristischen Polynoms**.
-
-Die Gleichung für <InlineMath math="t \in \mathbb{K}" />:
+Für <InlineMath math="t \in \mathbb{K}" /> betrachten wir die folgende Gleichung.
 
 <BlockMath math="\det(A - t \cdot I) = 0" />
 
-nennen wir die **charakteristische Gleichung** von <InlineMath math="A" />.
+Diese Gleichung heißt **charakteristische Gleichung** von <InlineMath math="A" />.
 
 ## Algebraische Multiplizität
 
@@ -68,7 +67,7 @@ Für jeden Eigenwert <InlineMath math="\lambda" /> gilt für seine algebraische 
 
 ## Beziehung zwischen geometrischer und algebraischer Vielfachheit
 
-Ein wichtiges Ergebnis der Eigenwerttheorie ist der Zusammenhang zwischen geometrischer und algebraischer Multiplizität.
+Geometrische und algebraische Multiplizität erfüllen die folgende Beziehung.
 
 Für einen Eigenwert <InlineMath math="\lambda" /> von <InlineMath math="A \in \mathbb{K}^{n \times n}" /> gilt zwischen geometrischer und algebraischer Vielfachheit
 
@@ -78,11 +77,11 @@ Für einen Eigenwert <InlineMath math="\lambda" /> von <InlineMath math="A \in \
 
 Die geometrische Vielfachheit zählt die unabhängigen Eigenvektoren im Eigenraum. Die algebraische Vielfachheit zählt dagegen, wie oft die Nullstelle im charakteristischen Polynom vorkommt. Die Jordanform zeigt, dass jeder unabhängige Eigenvektor mindestens einen Jordanblock benötigt. Deshalb kann die geometrische Anzahl die algebraische nicht übersteigen.
 
-## Beispiele für die Berechnung charakteristischer Polynome
+## Charakteristische Polynome berechnen
 
 Nun wenden wir die Definition an und nutzen die Koeffizientenbeziehungen zur Kontrolle der Rechnung.
 
-### Beispiel für eine Matrix dritter Ordnung
+### Matrix dritter Ordnung
 
 Sei <InlineMath math="A = \begin{pmatrix} 3 & 2 & -1 \\ 1 & 0 & -4 \\ 3 & 0 & 1 \end{pmatrix} \in \mathbb{K}^{3 \times 3}" />. Das charakteristische Polynom von <InlineMath math="A" /> ist:
 
@@ -104,7 +103,7 @@ Die Nullstellen bestehen zwei nützliche Kontrollen: Ihre Summe ist die Spur, ih
 <BlockMath math="\lambda_1\lambda_2\lambda_3=-26=\det(A)" />
 </MathContainer>
 
-### Einfaches Beispiel
+### Wiederholter Eigenwert bei einer oberen Dreiecksmatrix
 
 Das charakteristische Polynom der Matrix <InlineMath math="A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" /> ist:
 
@@ -116,7 +115,7 @@ Das charakteristische Polynom der Matrix <InlineMath math="A = \begin{pmatrix} 1
 
 Diese Matrix hat die Wurzel <InlineMath math="\lambda = 1" /> mit der algebraischen Multiplizität <InlineMath math="\mu_A(1) = 2" />. <InlineMath math="\lambda = 1" /> ist der einzige Eigenwert von <InlineMath math="A" />. Wir haben berechnet, dass <InlineMath math="\dim \text{Eig}_A(1) = 1" />.
 
-## Beispiele für geometrische Transformationen
+## Charakteristische Polynome geometrischer Transformationen
 
 Die folgenden vertrauten Abbildungen auf <InlineMath math="\mathbb{R}^2" /> verbinden die algebraische Rechnung mit ihrer geometrischen Bedeutung.
 

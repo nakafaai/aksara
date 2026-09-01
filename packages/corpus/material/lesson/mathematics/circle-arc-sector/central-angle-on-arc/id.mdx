@@ -1,9 +1,9 @@
 export const metadata = {
   title: "Sudut Pusat pada Busur",
-  description: "Temukan sudut pusat yang dibentuk jari-jari dan hubungan langsung dengan busur. Pelajari klasifikasi sudut-busur, perhitungan, dan aplikasi nyata.",
+  description: "Hubungkan ukuran sudut pusat dengan busur yang dihadapinya, lalu hitung salah satunya dari ukuran yang lain.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Busur dan Juring Lingkaran",
 };
 
@@ -31,6 +31,7 @@ Pada lingkaran berpusat <InlineMath math="O" />, misalkan <InlineMath math="A" /
         { x: 1.5 * Math.cos(Math.PI / 6), y: 1.5 * Math.sin(Math.PI / 6), z: 0 },
         { x: 3 * Math.cos(Math.PI / 6), y: 3 * Math.sin(Math.PI / 6), z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       labels: [{ text: <InlineMath math="OA" />, at: 1, offset: [0.3, 0.3, 0] }],
       showPoints: true,
@@ -41,6 +42,7 @@ Pada lingkaran berpusat <InlineMath math="O" />, misalkan <InlineMath math="A" /
         { x: 1.5 * Math.cos(5 * Math.PI / 6), y: 1.5 * Math.sin(5 * Math.PI / 6), z: 0 },
         { x: 3 * Math.cos(5 * Math.PI / 6), y: 3 * Math.sin(5 * Math.PI / 6), z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       labels: [{ text: <InlineMath math="OB" />, at: 1, offset: [-0.3, 0.3, 0] }],
       showPoints: true,
@@ -157,6 +159,7 @@ Busur besar dibentang oleh sudut pusat refleks yang lebih dari <InlineMath math=
         { x: 0, y: 0, z: 0 },
         { x: 4 * Math.cos(Math.PI / 3), y: 4 * Math.sin(Math.PI / 3), z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       lineWidth: 2,
       showPoints: false,
@@ -166,6 +169,7 @@ Busur besar dibentang oleh sudut pusat refleks yang lebih dari <InlineMath math=
         { x: 0, y: 0, z: 0 },
         { x: 4, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       lineWidth: 2,
       showPoints: false,
@@ -175,6 +179,7 @@ Busur besar dibentang oleh sudut pusat refleks yang lebih dari <InlineMath math=
         { x: 0, y: 0, z: 0 },
         { x: -4, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       lineWidth: 2,
       showPoints: false,
@@ -233,22 +238,22 @@ Panjang busur dapat dihitung menggunakan perbandingan antara sudut pusat dengan 
 
 <BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
 
-dengan:
+Pada rumus ini:
 - <InlineMath math="s" /> = panjang busur
 - <InlineMath math="\theta" /> = besar sudut pusat dalam derajat
 - <InlineMath math="r" /> = jari-jari lingkaran
 
-Jika sudut pusat dinyatakan dalam radian, rumusnya menjadi lebih sederhana:
+Satu radian menyatakan perbandingan panjang busur dengan jari-jari. Karena itu, sudut dalam radian langsung menghasilkan rumus:
 
 <BlockMath math="s = \theta \times r" />
 
 Di sini <InlineMath math="\theta" /> harus dinyatakan dalam radian.
 
-## Contoh Penerapan
+## Menghitung Panjang Busur dari Sudut Pusat
 
 Perhatikan sebuah lingkaran dengan jari-jari <InlineMath math="r = 6 \text{ cm}" /> dan sudut pusat <InlineMath math="\theta = 120^\circ" />.
 
-Langkah pertama, kita hitung panjang busur:
+Masukkan jari-jari dan sudut pusat ke rumus panjang busur:
 
 <MathContainer>
 <BlockMath math="s = \frac{120^\circ}{360^\circ} \times 2\pi \times 6" />
@@ -256,7 +261,7 @@ Langkah pertama, kita hitung panjang busur:
 <BlockMath math="s = 4\pi \text{ cm}" />
 </MathContainer>
 
-Jadi panjang busur yang dihadapi sudut pusat <InlineMath math="120^\circ" /> adalah <InlineMath math="4\pi \text{ cm}" /> atau sekitar <InlineMath math="12{,}57 \text{ cm}" />.
+Jadi, busur yang bersesuaian dengan sudut pusat <InlineMath math="120^\circ" /> memiliki panjang <InlineMath math="4\pi \text{ cm}" /> atau sekitar <InlineMath math="12{,}57 \text{ cm}" />.
 
 <LineEquation
   title={<>Contoh Sudut Pusat <InlineMath math="120^\circ" /></>}
@@ -268,6 +273,7 @@ Jadi panjang busur yang dihadapi sudut pusat <InlineMath math="120^\circ" /> ada
         { x: 3, y: 0, z: 0 },
         { x: 6, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       labels: [{ text: <InlineMath math="r=6\,\mathrm{cm}" />, at: 1, offset: [0, -0.5, 0] }],
       showPoints: true,
@@ -278,6 +284,7 @@ Jadi panjang busur yang dihadapi sudut pusat <InlineMath math="120^\circ" /> ada
         { x: 3 * Math.cos(2 * Math.PI / 3), y: 3 * Math.sin(2 * Math.PI / 3), z: 0 },
         { x: 6 * Math.cos(2 * Math.PI / 3), y: 6 * Math.sin(2 * Math.PI / 3), z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       labels: [{ text: <InlineMath math="r=6\,\mathrm{cm}" />, at: 1, offset: [-0.5, 0.3, 0] }],
       showPoints: true,
@@ -329,11 +336,11 @@ Jadi panjang busur yang dihadapi sudut pusat <InlineMath math="120^\circ" /> ada
   showZAxis={false}
 />
 
-## Model dan Penerapan
+## Contoh Penggunaan Sudut Pusat
 
-Jarak sudut yang sama menempatkan fitur berulang secara merata pada roda gigi atau cakram; untuk mengubah sudut itu menjadi panjang busur, kita juga memerlukan jari-jari. Pada jam analog, jarum menyapu sudut pusat seiring berjalannya waktu. Geometri busur juga dapat menentukan garis bentuk ideal sebuah lengkungan atau kubah, tetapi rancangan strukturnya memerlukan informasi tambahan.
+Pada roda gigi atau cakram, bagian yang dipisahkan oleh sudut pusat sama akan tersusun merata. Untuk menghitung jarak antarbagian di sepanjang tepi, kita juga perlu mengetahui jari-jari. Pada jam analog, jarum menyapu sudut pusat seiring waktu. Geometri busur juga dapat digunakan untuk memodelkan bentuk lengkungan atau kubah, tetapi rancangan struktur memerlukan informasi tambahan.
 
-Jika Bumi dihampiri sebagai bola, panjang rute pada lingkaran besar memenuhi <InlineMath math="s=r\theta" /> untuk sudut pusat <InlineMath math="\theta" /> dalam radian. Ini adalah model matematika; navigasi presisi memakai model Bumi dan data rute yang sesuai dengan ketelitian yang dibutuhkan.
+Jika Bumi dimodelkan sebagai bola, panjang rute pada lingkaran besar memenuhi <InlineMath math="s=r\theta" /> untuk sudut pusat <InlineMath math="\theta" /> dalam radian. Model bola ini cukup untuk contoh matematika, tetapi navigasi presisi memerlukan model Bumi dan data rute dengan tingkat ketelitian yang sesuai.
 
 ## Latihan
 

@@ -3,6 +3,7 @@ export const metadata = {
     description: "Grenzwerte auf vereinfachte Gesundheits-, Wirtschafts-, Bevölkerungs-, Signal- und Reaktionsmodelle anwenden und die Aussagegrenzen jedes Modells prüfen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Grenzwerte",
 };
 
@@ -35,7 +36,7 @@ Also,
 <BlockMath math="\lim_{t \to \infty} N(t) = \lim_{t \to \infty} (285000 - t) = -\infty" />
 </MathContainer>
 
-> Das negative Ergebnis zeigt den **begrenzten Gültigkeitsbereich** des Modells. Eine Fallzahl kann nicht negativ sein, daher ist die Formel nur sinnvoll, solange <InlineMath math="N(t) \geq 0" /> gilt. Dieses fiktive Modell ist keine epidemiologische Prognose und darf nicht als medizinische oder politische Empfehlung verwendet werden.
+> Eine negative Fallzahl bedeutet, dass die Formel außerhalb des **Gültigkeitsbereichs des Modells** verwendet wurde. Eine Fallzahl kann nicht negativ sein, daher ist die Formel nur sinnvoll, solange <InlineMath math="N(t) \geq 0" /> gilt. Dieses fiktive Modell ist keine epidemiologische Prognose und darf nicht als medizinische oder politische Empfehlung verwendet werden.
 
 ### Ein Impfziel interpretieren
 
@@ -53,7 +54,7 @@ In einem differenzierbaren Kostenmodell beschreiben **Grenzkosten**, wie schnell
 
 <BlockMath math="\text{Grenzkosten} = \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x}" />
 
-Dabei gilt:
+Die Größen in dieser Definition bedeuten:
 - <InlineMath math="C(x)" /> = Gesamtproduktionskostenfunktion für <InlineMath math="x \text{Einheiten}" />
 - <InlineMath math="\Delta x" /> = kleine Änderung der Produktionsmenge
 - Der Grenzwert gibt die **augenblickliche Änderungsrate** der Kosten in Bezug auf die Produktion an
@@ -188,7 +189,7 @@ Der Wert <InlineMath math="2{.}621 \text{Fälle}" /> beantwortet die mathematisc
 
 1. Ein Pharmaunternehmen modelliert die kumulierte Impfstoffproduktion mit <InlineMath math="P(t) = 50000(1 - e^{-0{,}1t})" /> für <InlineMath math="t \geq 0" />. Bestimme die langfristige Produktionsgrenze, die das Modell vorhersagt.
 
-2. Die kumulierte Reichweite einer Nachricht in sozialen Medien wird durch <InlineMath math="I(t) = \frac{100000t}{t + 50}" /> für <InlineMath math="t \geq 0" /> modelliert. Berechne den Grenzwert für <InlineMath math="t \to \infty" /> und deute ihn innerhalb des Modells.
+2. Die kumulierte Reichweite einer Nachricht in sozialen Medien wird durch <InlineMath math="I(t) = \frac{100000t}{t + 50}" /> für <InlineMath math="t \geq 0" /> modelliert. Berechne den Grenzwert für <InlineMath math="t \to \infty" /> und erkläre die vom Modell vorhergesagte langfristige Reichweite.
 
 3. Die Gesamtkosten für die Produktion von <InlineMath math="x" /> Masken werden durch <InlineMath math="C(x) = 1000 + 5x + 0{,}01x^2" /> modelliert. Bestimme die Grenzkostenfunktion mit der Grenzwertdefinition und vergleiche sie anschließend mit den exakten Zusatzkosten beim Anstieg von <InlineMath math="x" /> auf <InlineMath math="x+1" /> Einheiten.
 

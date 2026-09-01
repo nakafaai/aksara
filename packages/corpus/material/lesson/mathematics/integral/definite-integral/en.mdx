@@ -3,7 +3,7 @@ export const metadata = {
     description: "Define a definite integral as the limit of Riemann sums and evaluate one directly from that limit.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Integrals",
 };
 
@@ -24,7 +24,7 @@ This notation has a specific meaning:
 - **<InlineMath math="f(x)" />**: This is the **integrand**, whose sampled values determine the signed accumulation.
 - **<InlineMath math="dx" />**: Just as with indefinite integrals, this indicates that we are integrating with respect to the variable <InlineMath math="x" />.
 
-Unlike an indefinite integral, which represents a family of functions (<InlineMath math="F(x) + C" />), a definite integral is a **single number**. It measures signed accumulation from <InlineMath math="x=a" /> to <InlineMath math="x=b" />; it equals ordinary geometric area only when the integrand is nonnegative on the interval.
+Unlike an indefinite integral, which represents a family of functions (<InlineMath math="F(x) + C" />), a definite integral is a **single number**. It measures signed accumulation from <InlineMath math="x=a" /> to <InlineMath math="x=b" />. It equals ordinary geometric area only when the integrand is nonnegative on the interval.
 
 ## Calculating the Definite Integral with Limits
 
@@ -42,7 +42,7 @@ From the problem <InlineMath math="\int_{0}^{7} x \, dx" />, we know:
 - Function: <InlineMath math="f(x) = x" />
 - Interval: <InlineMath math="[a, b] = [0, 7]" />
 
-Thus, the width of each subinterval is:
+The width of each subinterval is:
 
 <BlockMath math="\Delta x = \frac{b-a}{n} = \frac{7-0}{n} = \frac{7}{n}" />
 
@@ -66,7 +66,7 @@ We can factor constants out of the sigma notation, as <InlineMath math="n" /> is
 
 <BlockMath math="\frac{49}{n^2} \sum_{i=1}^{n} i" />
 
-Next, we replace <InlineMath math="\sum_{i=1}^{n} i" /> with its series summation formula, <InlineMath math="\frac{n(n+1)}{2}" />, and then simplify the expression to make it easier to evaluate the limit.
+Next, replace <InlineMath math="\sum_{i=1}^{n} i" /> with <InlineMath math="\frac{n(n+1)}{2}" /> and simplify until the term that depends on <InlineMath math="n" /> is isolated.
 
 <MathContainer>
 <BlockMath math="\frac{49}{n^2} \cdot \frac{n(n+1)}{2}" />
@@ -75,7 +75,7 @@ Next, we replace <InlineMath math="\sum_{i=1}^{n} i" /> with its series summatio
 <BlockMath math="= \frac{49}{2} \left( \frac{n+1}{n} \right) = \frac{49}{2} \left( 1 + \frac{1}{n} \right)" />
 </MathContainer>
 
-The simplification steps above ensure we get the easiest form to evaluate the limit. First, we cancel <InlineMath math="n" /> from the numerator and denominator, then we split the fraction.
+The algebra reduces the expression to a constant factor multiplied by <InlineMath math="1+\frac{1}{n}" />. The remaining limit follows from <InlineMath math="\frac{1}{n}\to0" />.
 
 > To solve the limit of a Riemann Sum, we often need some common series summation formulas:
 > - <InlineMath math="\sum_{i=1}^{n} i = \frac{n(n+1)}{2}" />

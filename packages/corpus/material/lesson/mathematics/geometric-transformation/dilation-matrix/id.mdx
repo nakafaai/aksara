@@ -4,7 +4,7 @@ export const metadata = {
   description: "Turunkan matriks dilatasi dan gunakan untuk menghitung bayangan dari titik asal maupun pusat sembarang.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Transformasi Geometri",
 };
 
@@ -43,13 +43,13 @@ Operasi matriks yang terkait dengan dilatasi dengan faktor <InlineMath math="k \
 
 <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} k & 0 \\ 0 & k \end{pmatrix} \begin{pmatrix} x-a \\ y-b \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix}" />
 
-atau dapat juga ditulis sebagai:
+Bentuk yang setara adalah:
 
 <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} - \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} k & 0 \\ 0 & k \end{pmatrix} \left( \begin{pmatrix} x \\ y \end{pmatrix} - \begin{pmatrix} a \\ b \end{pmatrix} \right)" />
 
-## Mencari Peta dari Sebuah Dilatasi dengan Bantuan Matriks
+## Mencari Bayangan Hasil Dilatasi dengan Matriks
 
-Tentukan peta dari titik <InlineMath math="A(2,4)" /> yang ditransformasikan oleh dilatasi dengan faktor <InlineMath math="2" /> oleh titik pusat <InlineMath math="P(1,1)" />!
+Tentukan bayangan titik <InlineMath math="A(2,4)" /> yang ditransformasikan oleh dilatasi dengan faktor <InlineMath math="2" /> oleh titik pusat <InlineMath math="P(1,1)" />!
 
 **Penyelesaian:**
 
@@ -62,7 +62,7 @@ Diketahui <InlineMath math="x=2, y=4, k=2, a=1, b=1" />.
   <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 2 \\ 6 \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 3 \\ 7 \end{pmatrix}" />
 </MathContainer>
 
-Jadi, peta dari titik <InlineMath math="A(2,4)" /> adalah <InlineMath math="A'(3,7)" />.
+Jadi, bayangan titik <InlineMath math="A(2,4)" /> adalah <InlineMath math="A'(3,7)" />.
 
 <LineEquation
   title={
@@ -105,6 +105,7 @@ Jadi, peta dari titik <InlineMath math="A(2,4)" /> adalah <InlineMath math="A'(3
         { x: 1, y: 1, z: 0 }, // P
         { x: 2, y: 4, z: 0 }, // A
       ],
+      smooth: false,
       color: "#d97706",
     },
     {
@@ -112,6 +113,7 @@ Jadi, peta dari titik <InlineMath math="A(2,4)" /> adalah <InlineMath math="A'(3
         { x: 1, y: 1, z: 0 }, // P
         { x: 3, y: 7, z: 0 }, // A'
       ],
+      smooth: false,
       color: "#0284c7",
       cone: { position: "end", size: 0.3 },
     },
@@ -122,7 +124,7 @@ Jadi, peta dari titik <InlineMath math="A(2,4)" /> adalah <InlineMath math="A'(3
 
 ## Latihan
 
-1.  Carilah koordinat peta dari titik <InlineMath math="(a,b)" /> oleh dilatasi <InlineMath math="[O,3]" />!
+1.  Carilah koordinat bayangan titik <InlineMath math="(a,b)" /> oleh dilatasi <InlineMath math="[O,3]" />!
 2.  Tentukan matriks yang bersesuaian dengan dilatasi dengan faktor skala <InlineMath math="-2" /> dan pusat di <InlineMath math="O(0,0)" />.
 3.  Sebuah titik <InlineMath math="B(-1, 5)" /> didilatasikan dengan pusat <InlineMath math="P(2, -3)" /> dan faktor skala <InlineMath math="k = \frac{1}{2}" />. Tentukan koordinat bayangan titik <InlineMath math="B" />!
 4.  Sebuah segitiga <InlineMath math="KLM" /> dengan titik sudut <InlineMath math="K(1,1)" />, <InlineMath math="L(5,1)" />, dan <InlineMath math="M(3,4)" /> didilatasikan dengan pusat <InlineMath math="O(0,0)" /> dan faktor skala <InlineMath math="2" />. Gambarkan segitiga asli dan bayangannya, lalu tentukan koordinat titik-titik bayangannya!
@@ -137,7 +139,7 @@ Jadi, peta dari titik <InlineMath math="A(2,4)" /> adalah <InlineMath math="A'(3
 
     <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 3 & 0 \\ 0 & 3 \end{pmatrix} \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} 3a \\ 3b \end{pmatrix}" />
 
-    Jadi, koordinat peta dari titik <InlineMath math="(a,b)" /> adalah <InlineMath math="(3a, 3b)" />.
+    Jadi, koordinat bayangan titik <InlineMath math="(a,b)" /> adalah <InlineMath math="(3a, 3b)" />.
 
 2.  Faktor skala <InlineMath math="k=-2" />, pusat <InlineMath math="O(0,0)" />.
 
@@ -198,6 +200,7 @@ Jadi, peta dari titik <InlineMath math="A(2,4)" /> adalah <InlineMath math="A'(3
               { x: 1, y: 1, z: 0 }, // K
               { x: 5, y: 1, z: 0 }, // L
             ],
+            smooth: false,
             color: "#0284c7",
             labels: [
               { text: <InlineMath math="K(1,1)" />, at: 0, offset: [-0.7, -0.2, 0] },
@@ -210,6 +213,7 @@ Jadi, peta dari titik <InlineMath math="A(2,4)" /> adalah <InlineMath math="A'(3
               { x: 5, y: 1, z: 0 }, // L
               { x: 3, y: 4, z: 0 }, // M
             ],
+            smooth: false,
             color: "#ea580c",
             labels: [{ text: <InlineMath math="M(3,4)" />, at: 1, offset: [0, 0.5, 0] }],
             showPoints: true,
@@ -219,6 +223,7 @@ Jadi, peta dari titik <InlineMath math="A(2,4)" /> adalah <InlineMath math="A'(3
               { x: 3, y: 4, z: 0 }, // M
               { x: 1, y: 1, z: 0 }, // K
             ],
+            smooth: false,
             color: "#9333ea",
             showPoints: true,
           },
@@ -228,6 +233,7 @@ Jadi, peta dari titik <InlineMath math="A(2,4)" /> adalah <InlineMath math="A'(3
               { x: 2, y: 2, z: 0 }, // K'
               { x: 10, y: 2, z: 0 }, // L'
             ],
+            smooth: false,
             color: "#0d9488",
             labels: [
               { text: <InlineMath math="K'(2,2)" />, at: 0, offset: [-0.8, -0.3, 0] },
@@ -240,6 +246,7 @@ Jadi, peta dari titik <InlineMath math="A(2,4)" /> adalah <InlineMath math="A'(3
               { x: 10, y: 2, z: 0 }, // L'
               { x: 6, y: 8, z: 0 }, // M'
             ],
+            smooth: false,
             color: "#db2777",
             labels: [{ text: <InlineMath math="M'(6,8)" />, at: 1, offset: [0, 0.6, 0] }],
             showPoints: true,
@@ -249,6 +256,7 @@ Jadi, peta dari titik <InlineMath math="A(2,4)" /> adalah <InlineMath math="A'(3
               { x: 6, y: 8, z: 0 }, // M'
               { x: 2, y: 2, z: 0 }, // K'
             ],
+            smooth: false,
             color: "#4f46e5",
             showPoints: true,
           },

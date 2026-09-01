@@ -1,13 +1,13 @@
 export const metadata = {
     title: "Syntactic Sugar",
-    description: "Pelajari fitur syntactic sugar Python seperti list comprehension, lambda functions, dan operator assignment untuk menulis kode yang lebih bersih dan efisien.",
+  description: "Tulis ekspresi Python dengan list comprehension, lambda function, dan compound assignment.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-20",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Pemrograman AI",
 };
 
-## Apa itu Syntactic Sugar
+## Syntactic Sugar
 
 Syntactic sugar adalah notasi ringkas untuk perilaku yang juga dapat ditulis secara lebih eksplisit. Notasi ini dapat mengurangi bagian yang berulang, tetapi sintaks yang lebih pendek hanya berguna jika pembaca tetap memahami maksud kode.
 
@@ -36,11 +36,11 @@ newlist = [if_expr if condition else else_expr for item in iterable]`
   ]}
 />
 
-Perhatikan bahwa pada bentuk ketiga, ekspresi if-else harus muncul sebelum loop `for`. Ini berbeda dengan bentuk kedua di mana kondisi `if` muncul setelah loop.
+Pada bentuk ketiga, ekspresi if-else harus muncul sebelum loop `for`. Pada bentuk kedua, kondisi `if` justru muncul setelah loop.
 
 ### Implementasi List Comprehension
 
-Mari lihat bagaimana list comprehension bekerja dalam praktik:
+Contoh berikut memisahkan dua kasus: ekspresi kondisional dan filter.
 
 <CodeBlock
   data={[
@@ -98,9 +98,9 @@ Sebagai contoh, `[i**2 for i in x]` dapat dibaca sebagai "kuadrat dari i untuk s
 
 ## Lambda Functions
 
-Ekspresi lambda membuat objek fungsi tanpa statement `def`. Lambda paling berguna untuk fungsi kecil yang langsung diberikan sebagai argumen.
+Ekspresi lambda membuat objek fungsi tanpa statement `def`. Gunakan lambda untuk fungsi kecil yang langsung diberikan sebagai argumen.
 
-Body lambda berisi tepat satu ekspresi, dan nilai ekspresi itu menjadi nilai kembalinya. Lambda boleh memanggil fungsi seperti `print()`, tetapi tidak dapat memuat statement seperti `return`, assignment biasa, `for`, atau `while`. Lambda dapat disimpan dalam variabel, tetapi `def` bernama biasanya lebih jelas jika fungsinya akan digunakan kembali.
+Isi fungsi `lambda` hanya boleh berupa satu ekspresi, dan hasil ekspresi itu menjadi return value. Fungsi tersebut boleh memanggil fungsi lain seperti `print()`, tetapi tidak dapat memuat statement seperti `return`, assignment biasa, `for`, atau `while`. Fungsi `lambda` dapat disimpan dalam variabel, tetapi `def` bernama biasanya lebih jelas jika fungsi akan digunakan kembali.
 
 ### Cara Menggunakan Lambda
 
@@ -116,7 +116,7 @@ lambda parameters : expression
 square = lambda x: x**2
 print(square(5))  # Output: 25
 
-# Lambda dengan multiple parameter
+# Lambda dengan beberapa parameter
 add = lambda x, y: x + y
 print(add(3, 4))  # Output: 7
 
@@ -130,7 +130,7 @@ def add_normal(x, y):
   ]}
 />
 
-### Lambda dengan Built-in Functions
+### Lambda dengan Built In Functions
 
 Lambda pendek cocok digunakan sebagai callback, terutama sebagai fungsi `key` untuk `sorted()`. `map()` dan `filter()` juga menerimanya, walaupun comprehension yang setara kadang lebih mudah dibaca:
 
@@ -162,7 +162,7 @@ Python memiliki sintaks ringkas lain untuk operasi yang umum. Bentuk tersebut da
 
 ### Assignment Operators
 
-Python menyediakan operator assignment yang lebih ringkas untuk operasi umum:
+Python menyediakan assignment operator yang lebih ringkas untuk operasi umum:
 
 <CodeBlock
   data={[
@@ -186,7 +186,7 @@ print(a)  # Output: 9.0`
   ]}
 />
 
-Untuk angka immutable, contoh ini menghasilkan nilai yang sama dengan bentuk panjangnya. Pada objek mutable atau class buatan sendiri, `+=` dapat menjalankan operasi in-place, sehingga perilakunya tidak selalu identik dengan pengikatan ulang melalui `a = a + value`.
+Untuk angka immutable, contoh ini menghasilkan nilai yang sama dengan bentuk panjangnya. Pada objek mutable atau class buatan sendiri, `+=` dapat mengubah objek yang sama secara langsung. Karena itu, perilakunya tidak selalu identik dengan reassignment melalui `a = a + value`.
 
 ### Negative Indexing
 
@@ -216,7 +216,7 @@ print(data[:-2])   # Output: [10, 20, 30]`
 
 ### Multiple Assignment
 
-Python memungkinkan assignment multiple variabel dalam satu baris:
+Python mendukung multiple assignment untuk menetapkan beberapa variabel dalam satu baris:
 
 <CodeBlock
   data={[
@@ -252,4 +252,4 @@ Untuk memahami keunggulan syntactic sugar, mari bandingkan cara penulisan yang b
 | Assignment | `a = a + 5` | `a += 5` |
 | Akses elemen terakhir | `data[len(data) - 1]` | `data[-1]` |
 
-Pilih bentuk ringkas jika operasinya menjadi lebih mudah dikenali. Jika bentuk tersebut justru menyembunyikan alur kontrol atau efek samping, bentuk eksplisit lebih baik untuk penjelasan dan sering juga lebih baik untuk programnya.
+Gunakan bentuk ringkas hanya jika pembaca dapat mengenali operasi yang dilakukan tanpa menelusuri alur kontrol atau efek samping yang tersembunyi. Jika tidak, gunakan bentuk eksplisit.

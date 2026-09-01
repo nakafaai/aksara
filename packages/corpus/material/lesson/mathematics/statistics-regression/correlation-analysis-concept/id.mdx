@@ -1,16 +1,16 @@
 export const metadata = {
   title: "Konsep Analisis Korelasi",
   description:
-    "Pelajari cara korelasi menggambarkan arah dan kekuatan hubungan linear, cara menafsirkan r Pearson, dan alasan korelasi bukan kausalitas.",
+    "Korelasi menggambarkan arah dan kekuatan hubungan linear, cara menafsirkan r Pearson, dan alasan korelasi bukan kausalitas.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-30",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Statistika",
 };
 
-## Informasi yang Diberikan Korelasi
+## Arah dan Kekuatan Korelasi Linear
 
-Misalkan kita mencatat dua variabel numerik dari pengamatan yang sama, misalnya waktu belajar dan nilai ujian seorang siswa atau usia mobil dan harga jualnya. Diagram pencar membantu kita melihat apakah pasangan nilai itu membentuk pola. **Analisis korelasi** merangkum arah dan kekuatan pola linear, yaitu pola yang menyerupai garis lurus.
+Misalkan kita mencatat dua variabel numerik dari pengamatan yang sama, misalnya waktu belajar dan nilai ujian seorang siswa atau usia mobil dan harga jualnya. Diagram pencar menampilkan pasangan nilai tersebut beserta pola yang terbentuk. **Analisis korelasi** merangkum arah dan kekuatan pola linear, yaitu pola yang menyerupai garis lurus.
 
 Korelasi menjawab pertanyaan deskriptif: bagaimana kedua variabel berubah bersama? Korelasi belum menjelaskan mengapa pola itu muncul.
 
@@ -18,12 +18,12 @@ Korelasi menjawab pertanyaan deskriptif: bagaimana kedua variabel berubah bersam
 
 Koefisien korelasi Pearson dilambangkan dengan <InlineMath math="r" />. Tandanya menunjukkan arah, sedangkan jaraknya dari nol menunjukkan kekuatan pola linear.
 
-| Nilai | Interpretasi |
+| Nilai | Artinya |
 | --- | --- |
 | <InlineMath math="r>0" /> | Nilai yang lebih besar pada satu variabel cenderung muncul bersama nilai yang lebih besar pada variabel lain. |
 | <InlineMath math="r<0" /> | Nilai yang lebih besar pada satu variabel cenderung muncul bersama nilai yang lebih kecil pada variabel lain. |
 | <InlineMath math="\lvert r\rvert\approx1" /> | Titik-titik data berada dekat dengan suatu garis lurus. |
-| <InlineMath math="r\approx0" /> | Pola linearnya lemah atau tidak terlihat. |
+| <InlineMath math="r\approx0" /> | Hubungan linear yang diukur sangat lemah atau bernilai nol. |
 
 Jika kedua variabel memiliki variasi bukan nol sehingga <InlineMath math="r" /> terdefinisi, nilai koefisien berada dalam interval berikut:
 
@@ -41,7 +41,7 @@ Korelasi memperlakukan kedua variabel secara simetris. Menukar variabel pada sum
 
 <BlockMath math="r_{xy}=r_{yx}" />
 
-Perubahan skala satuan yang positif juga tidak mengubah <InlineMath math="r" />. Mengukur tinggi badan dalam sentimeter alih-alih meter menghasilkan koefisien yang sama. Hal ini berbeda dari regresi, yang sengaja memakai satu variabel untuk memprediksi variabel lain.
+Perubahan skala satuan yang positif juga tidak mengubah <InlineMath math="r" />. Mengukur tinggi badan dalam sentimeter alih-alih meter menghasilkan koefisien yang sama. Korelasi berbeda dari regresi karena regresi sengaja memakai satu variabel untuk memprediksi variabel lain.
 
 ## Koefisien Determinasi
 
@@ -61,15 +61,15 @@ Koefisien determinasi memenuhi:
 
 Korelasi yang kuat tidak membuktikan bahwa satu variabel menyebabkan variabel lain. Beberapa penjelasan dapat menghasilkan pola yang sama:
 
-- variabel pertama mungkin memengaruhi variabel kedua;
-- variabel kedua mungkin memengaruhi variabel pertama;
-- variabel ketiga mungkin memengaruhi keduanya;
-- pengambilan sampel, pengukuran, atau satu pengamatan yang tidak biasa mungkin mengubah pola.
+- Variabel pertama mungkin memengaruhi variabel kedua.
+- Variabel kedua mungkin memengaruhi variabel pertama.
+- Variabel ketiga mungkin memengaruhi keduanya.
+- Pengambilan sampel, pengukuran, atau satu pengamatan yang tidak biasa mungkin mengubah pola.
 
 Sebagai contoh, penjualan es krim dan kasus tenggelam dapat sama-sama meningkat ketika cuaca panas. Korelasi itu tidak berarti membeli es krim menyebabkan orang tenggelam. Cuaca musim panas dan meningkatnya aktivitas berenang memengaruhi kedua pengamatan tersebut.
 
 Gunakan korelasi untuk menggambarkan pola linear. Kesimpulan sebab-akibat memerlukan bukti tambahan dari rancangan penelitian, urutan waktu, mekanisme yang masuk akal, dan penjelasan alternatif.
 
-## Periksa Interpretasimu
+## Periksa Kesimpulanmu
 
 Misalkan suatu kumpulan data memiliki <InlineMath math="r=-0{,}9" />. Nilai ini menunjukkan hubungan linear negatif yang kuat: nilai yang lebih besar pada satu variabel cenderung muncul bersama nilai yang lebih kecil pada variabel lain. Nilai tersebut tidak dengan sendirinya menunjukkan penyebab atau menjamin bahwa setiap titik berada tepat pada garis yang sama.

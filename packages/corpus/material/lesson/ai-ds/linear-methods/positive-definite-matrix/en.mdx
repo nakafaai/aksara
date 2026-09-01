@@ -3,11 +3,11 @@ export const metadata = {
   description: "Classify symmetric and Hermitian matrices with quadratic forms, eigenvalues, principal minors, Cholesky factors, and optimization geometry.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-13",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Linear Methods of AI",
 };
 
-## Quadratic-Form Definitions
+## Quadratic Form Definitions
 
 For a real symmetric matrix <InlineMath math="A\in\mathbb{R}^{n\times n}" />, consider the quadratic form
 
@@ -27,7 +27,7 @@ Symmetry is part of the usual definition. For a nonsymmetric real matrix,
 
 <BlockMath math="x^TAx=x^T\left(\frac{A+A^T}{2}\right)x" />
 
-so the quadratic form sees only the symmetric part.
+This identity shows that the quadratic form depends only on the symmetric part of <InlineMath math="A" />.
 
 ## Spectral Criterion
 
@@ -35,11 +35,11 @@ The spectral theorem writes a real symmetric matrix as
 
 <BlockMath math="A=Q\Lambda Q^T" />
 
-with orthogonal <InlineMath math="Q" /> and real diagonal <InlineMath math="\Lambda=\operatorname{diag}(\lambda_1,ldots,lambda_n)" />. Setting <InlineMath math="y=Q^Tx" /> gives
+In this decomposition, <InlineMath math="Q" /> is orthogonal and <InlineMath math="\Lambda=\operatorname{diag}(\lambda_1,ldots,lambda_n)" /> is real and diagonal. Substituting <InlineMath math="y=Q^Tx" /> gives
 
 <BlockMath math="x^TAx=\sum_{i=1}^n\lambda_i y_i^2" />
 
-Therefore:
+The calculation gives:
 
 - <InlineMath math="A" /> is positive definite exactly when every <InlineMath math="\lambda_i>0" />.
 - <InlineMath math="A" /> is positive semidefinite exactly when every <InlineMath math="\lambda_i\ge0" />.
@@ -57,13 +57,13 @@ If <InlineMath math="A" /> is positive definite, then
 
 <BlockMath math="E=\{x\in\mathbb{R}^n:x^TAx=1\}" />
 
-is an ellipsoid centered at the origin. In eigenvector coordinates,
+The set <InlineMath math="E" /> is an ellipsoid centered at the origin. In eigenvector coordinates, its equation becomes
 
 <BlockMath math="\sum_{i=1}^n\lambda_i y_i^2=1" />
 
-so its principal axes are the eigenvectors of <InlineMath math="A" /> and their semiaxis lengths are <InlineMath math="1/\sqrt{\lambda_i}" />. Small eigenvalues correspond to long directions; large eigenvalues correspond to short directions.
+This equation shows that the principal axes of the ellipsoid follow the eigenvectors of <InlineMath math="A" />. The <InlineMath math="i" />th semiaxis has length <InlineMath math="1/\sqrt{\lambda_i}" />. Small eigenvalues produce longer semiaxes, while large eigenvalues produce shorter semiaxes.
 
-## Principal-Minor Tests
+## Principal Minor Tests
 
 Let <InlineMath math="A_k" /> denote the upper-left <InlineMath math="k\times k" /> block of a real symmetric or complex Hermitian matrix. Sylvester's criterion states
 
@@ -71,7 +71,7 @@ Let <InlineMath math="A_k" /> denote the upper-left <InlineMath math="k\times k"
 
 This leading-principal-minor test does not extend by replacing <InlineMath math=">" /> with <InlineMath math="\ge" />. Positive semidefiniteness requires every principal minor to be nonnegative. Checking the leading ones alone is insufficient.
 
-## Worked Two-by-Two Checks
+## Worked Two by Two Checks
 
 Consider
 
@@ -84,7 +84,7 @@ Its leading principal minors are
 <BlockMath math="\det(A)=20-1=19>0" />
 </MathContainer>
 
-so <InlineMath math="A" /> is positive definite. Its eigenvalues confirm the result:
+Both leading principal minors are positive, so <InlineMath math="A" /> is positive definite. Both eigenvalues are also positive:
 
 <BlockMath math="\lambda_1=\frac{9+\sqrt5}{2}\approx5.61803,\qquad \lambda_2=\frac{9-\sqrt5}{2}\approx3.38197" />
 
@@ -96,7 +96,7 @@ Although both diagonal entries are positive,
 
 <BlockMath math="\det(B)=4-25=-21<0" />
 
-so its two eigenvalues have opposite signs and <InlineMath math="B" /> is indefinite.
+The negative determinant shows that the two eigenvalues of <InlineMath math="B" /> have opposite signs. Therefore, <InlineMath math="B" /> is indefinite.
 
 ## Cholesky Characterization
 
@@ -104,23 +104,23 @@ A real symmetric matrix is positive definite exactly when it has a Cholesky fact
 
 <BlockMath math="A=LL^T" />
 
-with lower-triangular <InlineMath math="L" /> and strictly positive diagonal entries. Then
+In this factorization, <InlineMath math="L" /> is lower triangular and has strictly positive diagonal entries. Then
 
 <BlockMath math="x^TAx=x^TLL^Tx=\|L^Tx\|_2^2>0\qquad(x\ne0)" />
 
-Conversely, the Cholesky algorithm completes without a nonpositive pivot for every positive definite matrix. This gives both a test and an efficient route for solving <InlineMath math="Ax=b" />.
+Conversely, the Cholesky algorithm completes without a nonpositive pivot for every positive definite matrix. For a symmetric input in exact arithmetic, this completion tests positive definiteness. Once <InlineMath math="A=LL^T" /> is available, solve <InlineMath math="Ly=b" /> and then <InlineMath math="L^Tx=y" />.
 
-## Gram Matrices and <InlineMath math="A^TA" />
+## Gram Matrices from Transposed Products
 
 For every real matrix <InlineMath math="M\in\mathbb{R}^{m\times n}" />,
 
 <BlockMath math="x^TM^TMx=\|Mx\|_2^2\ge0" />
 
-so <InlineMath math="M^TM" /> is always positive semidefinite. It is positive definite exactly when
+This equation shows that <InlineMath math="M^TM" /> is always positive semidefinite. The matrix <InlineMath math="M^TM" /> is positive definite exactly when
 
 <BlockMath math="\ker(M)=\{0\}\quad\Longleftrightarrow\quad\operatorname{rank}(M)=n" />
 
-Full column rank automatically implies <InlineMath math="m\ge n" />; it does not need to be assumed before the semidefinite statement.
+Full column rank automatically implies <InlineMath math="m\ge n" />. It does not need to be assumed before the semidefinite statement.
 
 More generally, a Gram matrix <InlineMath math="G_{ij}=\langle v_i,v_j\rangle" /> is positive semidefinite and becomes positive definite exactly when the vectors <InlineMath math="v_i" /> are linearly independent.
 
@@ -145,7 +145,7 @@ Positive definiteness alone does not guarantee an easy or numerically stable com
 
 <BlockMath math="\kappa_2(A)=\frac{\lambda_{\max}(A)}{\lambda_{\min}(A)}" />
 
-can still be very large, producing an elongated objective and slow or sensitive algorithms.
+The condition number can still be very large. As a result, the objective has elongated contours and algorithms may run slowly or become sensitive to numerical error.
 
 ## Spectral Shifts and Inverses
 
@@ -153,4 +153,4 @@ For Hermitian <InlineMath math="A" />, the eigenvalues of <InlineMath math="A-tI
 
 <BlockMath math="A-tI\succ0\quad\Longleftrightarrow\quad t<\lambda_{\min}(A)" />
 
-If <InlineMath math="A\succ0" />, then <InlineMath math="A^{-1}\succ0" /> as well, with eigenvalues <InlineMath math="1/\lambda_i(A)" />. These facts are useful. In a numerical algorithm, solve the linear system directly to avoid forming an inverse.
+If <InlineMath math="A\succ0" />, then <InlineMath math="A^{-1}\succ0" /> as well, with eigenvalues <InlineMath math="1/\lambda_i(A)" />. In numerical algorithms, solve the linear system directly because forming an explicit inverse requires more operations and can amplify rounding error.

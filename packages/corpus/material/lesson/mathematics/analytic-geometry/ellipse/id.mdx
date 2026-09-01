@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Elips",
-  description: "Pahami sifat, fokus, dan persamaan baku elips melalui visualisasi interaktif serta contoh bertahap.",
+  description: "Tentukan fokus elips dan turunkan persamaan bakunya melalui diagram serta contoh bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Geometri Analitik",
 };
 
 
 
-## Apa itu Elips?
+## Elips
 
 Orbit planet dan bayangan miring sebuah lingkaran sama-sama mengingatkan kita pada bentuk **elips**. Elips memenuhi syarat geometri yang akan dijelaskan pada bagian berikutnya.
 
@@ -50,6 +50,7 @@ Elips adalah himpunan semua titik yang **jumlah jaraknya ke dua titik tetap sela
           { x: c, y: 0, z: 0 }
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -136,7 +137,7 @@ Sebelum memakai rumus, kenali bagian-bagian yang menentukan posisi dan bentuk el
 
 <LineEquation
   title="Komponen Elips"
-  description="Bagian-bagian penting dalam elips dengan sumbu mayor horizontal."
+  description="Pusat, fokus, titik puncak, serta sumbu mayor dan minor pada elips bersumbu mayor horizontal."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -169,6 +170,7 @@ Sebelum memakai rumus, kenali bagian-bagian yang menentukan posisi dan bentuk el
           { x: c, y: 0, z: 0 }
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -181,6 +183,7 @@ Sebelum memakai rumus, kenali bagian-bagian yang menentukan posisi dan bentuk el
         { x: -4, y: 0, z: 0 },
         { x: 4, y: 0, z: 0 }
       ],
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [
@@ -193,6 +196,7 @@ Sebelum memakai rumus, kenali bagian-bagian yang menentukan posisi dan bentuk el
         { x: 0, y: -2.8, z: 0 },
         { x: 0, y: 2.8, z: 0 }
       ],
+      smooth: false,
       color: "#059669",
       showPoints: true,
       labels: [
@@ -284,6 +288,7 @@ Kalau pusat elips ada di <InlineMath math="O(0,0)" />, ada dua kemungkinan orien
           { x: c, y: 0, z: 0 }
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -338,7 +343,7 @@ Kalau sumbu mayor sejajar sumbu <InlineMath math="x" /> (horizontal), persamaan 
 
 <BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
 
-dengan syarat <InlineMath math="a > b" />.
+Rumus ini berlaku ketika <InlineMath math="a > b" />.
 
 <LineEquation
   title="Sumbu Mayor Vertikal"
@@ -375,6 +380,7 @@ dengan syarat <InlineMath math="a > b" />.
           { x: 0, y: c, z: 0 }
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -429,7 +435,7 @@ Kalau sumbu mayor sejajar sumbu <InlineMath math="y" /> (vertikal), persamaan el
 
 <BlockMath math="\frac{x^2}{b^2} + \frac{y^2}{a^2} = 1" />
 
-dengan syarat <InlineMath math="a > b" />.
+Rumus ini berlaku ketika <InlineMath math="a > b" />.
 
 ### Pusat Berpindah
 
@@ -479,6 +485,7 @@ Visualisasi:
           { x: h + c, y: k, z: 0 }
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -529,13 +536,13 @@ Visualisasi:
   showZAxis={false}
 />
 
-## Hubungan Penting
+## Hubungan Antarpanjang pada Elips
 
 Ketiga panjang khas elips memenuhi hubungan:
 
 <BlockMath math="c^2 = a^2 - b^2" />
 
-di mana <InlineMath math="c" /> adalah jarak dari pusat ke fokus.
+Pada rumus ini, <InlineMath math="c" /> adalah jarak dari pusat ke fokus.
 
 **Eksentrisitas** elips didefinisikan sebagai:
 

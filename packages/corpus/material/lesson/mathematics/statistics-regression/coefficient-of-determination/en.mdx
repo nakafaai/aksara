@@ -1,14 +1,14 @@
 
 export const metadata = {
   title: "Coefficient of Determination",
-  description: "Learn how the coefficient of determination measures the variation explained by a regression model through visual examples and calculations.",
+  description: "Calculate the coefficient of determination and interpret how much of the observed variation the regression model explains.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-30",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Statistics",
 };
 
-## What is the Coefficient of Determination?
+## Coefficient of Determination
 
 After fitting a linear regression line, the next question is: **how much of the observed variation does the model account for?**
 
@@ -90,7 +90,7 @@ The value of <InlineMath math="r^2" /> is closely related to how tightly the dat
 
 ## Calculating the Coefficient of Determination
 
-The easiest way to calculate <InlineMath math="r^2" /> is by **squaring the Correlation Coefficient (<InlineMath math="r" />)** that we learned about earlier.
+For a simple linear regression with one predictor and an intercept, <InlineMath math="R^2" /> equals the square of the correlation coefficient <InlineMath math="r" />.
 
 <BlockMath math="r^2 = (r)^2" />
 
@@ -110,7 +110,7 @@ This ratio requires variation in both variables, so <InlineMath math="SS_{xx}>0"
 
 ## Interpretation as a Percentage
 
-The value of <InlineMath math="r^2" /> is often converted into a percentage (by multiplying by <InlineMath math="100" />) for easier interpretation.
+Multiply <InlineMath math="r^2" /> by <InlineMath math="100" /> to express the proportion of variation in <InlineMath math="Y" /> accounted for by the model as a percentage.
 
 - If <InlineMath math="r^2 = 0.81" />, the fitted linear model using <InlineMath math="X" /> accounts for **<InlineMath math="81\%" />** of the observed variation in <InlineMath math="Y" />.
 - The remaining variation (<InlineMath math="1 - r^2" /> or <InlineMath math="19\%" /> in this example) is **not explained by this linear model**. It may involve omitted variables, a nonlinear pattern, measurement error, or ordinary random variation, but <InlineMath math="r^2" /> alone cannot tell us which explanation is responsible.

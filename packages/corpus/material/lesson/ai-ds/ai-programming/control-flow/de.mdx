@@ -3,6 +3,7 @@ export const metadata = {
     description: "Steuere Python-Programme mit break, continue, pass, Schleifen-else, enumerate, while, zip, range und if/elif/else.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "KI-Programmierung",
 };
 
@@ -10,7 +11,7 @@ export const metadata = {
 
 Python bietet mehrere Anweisungen, die den Ablauf innerhalb einer Schleife steuern. Damit legst du fest, wann eine Schleife endet, zur nächsten Iteration springt oder einen besonderen Abschluss ausführt.
 
-### break, continue, pass und else
+### Break Continue Pass und Else
 
 Die `break`-Anweisung verlässt sofort die nächstgelegene Schleife, sobald eine Bedingung erfüllt ist. Danach läuft das Programm mit der ersten Anweisung hinter dieser Schleife weiter.
 
@@ -53,7 +54,7 @@ for i in range(1, 11):
   ]}
 />
 
-Die `pass`-Anweisung bewirkt nichts, ist aber als Platzhalter für Code nützlich, der noch nicht geschrieben wurde. Python erfordert mindestens eine Anweisung in jedem Codeblock.
+Die `pass`-Anweisung führt keine Aktion aus. Sie hält einen sonst leeren Block syntaktisch gültig, solange seine Implementierung noch fehlt.
 
 <CodeBlock
   data={[
@@ -74,7 +75,7 @@ for i in range(1, 11):
   ]}
 />
 
-Der `else`-Block läuft, wenn die Schleife endet, ohne `break` auszuführen. Das passt besonders gut zu einer Suche: Behandle einen Treffer vor `break` und den Fall "nicht gefunden" im `else`-Block.
+Der `else`-Block läuft, wenn die Schleife endet, ohne `break` auszuführen. In einer Suchschleife wird ein Treffer vor `break` und der Fall "nicht gefunden" im `else`-Block behandelt.
 
 <CodeBlock
   data={[
@@ -93,7 +94,7 @@ else:
   ]}
 />
 
-## Enumerate-Funktion
+## Funktion Enumerate
 
 Nutze `enumerate()`, wenn eine Iteration sowohl einen Zähler als auch den jeweiligen Wert benötigt. Die Funktion liefert einen Iterator, der Tupel der Form `(Index, Wert)` erzeugt.
 
@@ -139,7 +140,7 @@ for i, fruit in enumerate(fruits, 5):
 
 In `for i, fruit in enumerate(fruits)` bindet das Tuple-Unpacking bei jeder Iteration den Index an `i` und den zugehörigen Wert an `fruit`.
 
-## While-Schleife
+## Schleife mit While
 
 Die `while`-Schleife führt einen Block aus, solange ihre Bedingung truthy ist. Eine `for`-Schleife verbraucht ein Iterable, während `while` anhand einer Bedingung wiederholt, die der Schleifenrumpf normalerweise verändert.
 
@@ -174,11 +175,11 @@ Eine `while`-Schleife eignet sich für bedingungsgesteuerte Wiederholungen. Ihr 
   `}
 />
 
-## Zip-Funktion
+## Funktion Zip
 
 Mit `zip()` kannst du mehrere Iterables parallel durchlaufen. Die Funktion verbindet jeweils die Werte an derselben Iterationsposition zu einem Tupel.
 
-### Grundlegende Zip-Nutzung
+### Grundlegende Verwendung von Zip
 
 <CodeBlock
   data={[
@@ -200,9 +201,9 @@ for pair in zip(p, q):
   ]}
 />
 
-Die Funktion `zip()` liefert einen Iterator aus Tupeln. Jedes Tupel enthält die zusammengehörigen Elemente der Eingaben. Standardmäßig endet der Iterator mit dem kürzesten Iterable und kann dadurch unterschiedliche Längen verbergen. Nutze `zip(..., strict=True)`, wenn ungleiche Längen ein Fehler sein sollen.
+Die Funktion `zip()` liefert einen Iterator aus Tupeln. Jedes Tupel enthält die zusammengehörigen Elemente der Eingaben. Standardmäßig endet die Iteration mit dem kürzesten Iterable, sodass übrige Elemente längerer Eingaben nicht im Ergebnis stehen. Mit `zip(..., strict=True)` führen unterschiedliche Eingabelängen zu einem Fehler.
 
-### Zip-Ergebnisse konvertieren
+### Ergebnisse von Zip konvertieren
 
 <CodeBlock
   data={[
@@ -225,7 +226,7 @@ print(tuple(zipped_new))  # In Tupel konvertieren
   ]}
 />
 
-### Entpacken mit dem Asterisk-Operator
+### Entpacken mit dem Sternoperator
 
 Mit dem Entpackoperator `*` lässt sich ein nichtleerer Satz gezippter Tupel wieder nach Positionen trennen.
 
@@ -245,9 +246,9 @@ print(numbers, letters)
 
 Dieser Vorgang wird als „Entpacken“ bezeichnet, da er die zusammengeführten Daten trennt.
 
-## Range und For-Schleife
+## Range und Schleife mit For
 
-Die Funktion `range()` erstellt eine Folge von Zahlen, die iteriert werden können. Dies ist sehr nützlich für Schleifen mit numerischen Indizes.
+Die Funktion `range()` erzeugt eine Folge ganzer Zahlen für eine Iteration. Sie eignet sich für Schleifen mit numerischen Positionen oder einer festen Anzahl von Wiederholungen.
 
 ### Bereichssyntax
 
@@ -302,7 +303,7 @@ for i in index:
     else:
         break
 
-# Effizienter - verwendet range
+# Verwendet range ohne eine Liste zu erstellen
 for i in range(n):  # Speichert nicht alle Zahlen im Speicher
     if i < k:
         print(i)
@@ -316,7 +317,7 @@ for i in range(n):  # Speichert nicht alle Zahlen im Speicher
 
 Bedingte Anweisungen lassen ein Programm anhand ausgewerteter Bedingungen einen Zweig wählen. Einrückung gehört zur Python-Syntax. Verwende vier Leerzeichen pro Ebene und mische innerhalb eines Blocks keine Tabs und Leerzeichen.
 
-### If-, Elif- und Else-Syntax
+### Syntax mit If Elif und Else
 
 <CodeBlock
   data={[
@@ -341,7 +342,7 @@ else:
 
 Bedingungen brauchen keine umschließenden Klammern, der Doppelpunkt hinter jedem Zweigkopf ist jedoch Pflicht. Alle Anweisungen eines Blocks benötigen eine einheitliche Einrückungsebene.
 
-### Verschachtelte If-Anweisung
+### Verschachtelte Anweisung mit If
 
 <CodeBlock
   data={[
@@ -365,11 +366,11 @@ else:
   ]}
 />
 
-Verschachtelte ifs sind nützlich, um komplexere Entscheidungen mit mehreren Bedingungsebenen zu treffen.
+Verschachtelte `if`-Anweisungen eignen sich, wenn eine spätere Bedingung erst nach einer vorherigen geprüft werden soll.
 
-## For-Schleifensyntax
+## Syntax einer Schleife mit For
 
-For-Schleifen in Python werden verwendet, um Elemente in iterierbaren Objekten wie Listen, Tupeln, Zeichenfolgen oder Bereichen zu iterieren.
+Eine `for`-Schleife durchläuft die Elemente eines iterierbaren Objekts wie einer Liste, eines Tupels, einer Zeichenfolge oder eines Bereichs.
 
 <CodeBlock
   data={[

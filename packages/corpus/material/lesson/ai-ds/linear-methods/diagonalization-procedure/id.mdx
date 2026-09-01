@@ -1,19 +1,19 @@
 export const metadata = {
    title: "Prosedur Dasar untuk Diagonalisasi",
-   description: "Pelajari prosedur 3 langkah diagonalisasi matriks: hitung nilai eigen, cari ruang eigen, dan periksa kondisi dengan contoh praktis.",
+   description: "Ubah matriks menjadi bentuk diagonal dalam tiga langkah dengan menghitung nilai eigen, mencari ruang eigen, dan memeriksa apakah vektor eigennya cukup.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-07-16",
-   dateModified: "2026-08-29",
+   dateModified: "2026-09-01",
    subject: "Metode Linear AI",
 };
 
 ## Prosedur Umum Diagonalisasi Matriks
 
-Diagonalisasi tidak mengubah transformasi linearnya. Kita mengganti basis koordinat agar transformasi bekerja secara independen pada arah vektor-vektor eigen. Representasi diagonal yang dihasilkan lebih mudah dibaca dan dihitung.
+Diagonalisasi tidak mengubah transformasi linearnya. Basis koordinat diganti agar transformasi bekerja secara terpisah pada setiap arah vektor eigen. Dalam representasi diagonal, perkalian matriks cukup menskalakan setiap koordinat vektor eigen.
 
-Untuk mendiagonalisasi sebuah matriks <InlineMath math="A \in \mathbb{K}^{n \times n}" />, kita menggunakan prosedur sistematis yang akan menentukan apakah matriks tersebut dapat disederhanakan dan bagaimana caranya.
+Untuk mendiagonalisasi matriks <InlineMath math="A \in \mathbb{K}^{n \times n}" />, hitung nilai eigen dan ruang eigennya. Jika tersedia <InlineMath math="n" /> vektor eigen yang bebas linear, susun vektor tersebut menjadi matriks perubahan basis.
 
-## Langkah-Langkah Diagonalisasi
+## Langkah Diagonalisasi
 
 Prosedur diagonalisasi terdiri dari tiga langkah utama yang harus dilakukan secara berurutan:
 
@@ -32,7 +32,7 @@ Prosedur diagonalisasi terdiri dari tiga langkah utama yang harus dilakukan seca
 
    <BlockMath math="(A - \lambda_i \cdot I) \cdot v = 0" />
 
-   Di sini kita mencari setiap vektor yang dipetakan matriks <InlineMath math="A" /> menjadi kelipatan skalar dirinya sendiri. Faktornya adalah nilai eigen <InlineMath math="\lambda_i" />; faktor negatif membalik arah vektor, tetapi vektor tetap berada pada garis yang sama.
+   Di sini kita mencari setiap vektor yang dipetakan matriks <InlineMath math="A" /> menjadi kelipatan skalar dirinya sendiri. Nilai eigen <InlineMath math="\lambda_i" /> adalah faktor pengalinya. Jika <InlineMath math="\lambda_i" /> negatif, hasil perkalian <InlineMath math="Av" /> berbalik arah dari <InlineMath math="v" />, tetapi tetap berada pada garis yang sama.
 
 3. **Memeriksa kondisi diagonalisasi** dengan memverifikasi apakah multiplisitas aljabar sama dengan multiplisitas geometris untuk semua nilai eigen. Secara matematis, untuk semua <InlineMath math="i = 1, \ldots, k" /> harus berlaku <InlineMath math="\mu_A(\lambda_i) = \dim E_A(\lambda_i)" />.
 
@@ -56,7 +56,7 @@ Terapkan prosedur diagonalisasi pada contoh konkret ini:
 
    <BlockMath math="\chi_A(t) = (1 - t)^2 \cdot (-1 - t)" />
 
-   Dari sini terlihat bahwa nilai eigen adalah <InlineMath math="\lambda_1 = 1" /> dengan multiplisitas aljabar <InlineMath math="\mu_A(1) = 2" /> dan <InlineMath math="\lambda_2 = -1" /> dengan multiplisitas aljabar <InlineMath math="\mu_A(-1) = 1" />. Karena <InlineMath math="2 + 1 = 3" /> sama dengan dimensi matriks, syarat awal terpenuhi.
+   Faktor-faktor tersebut memberikan nilai eigen <InlineMath math="\lambda_1 = 1" /> dengan multiplisitas aljabar <InlineMath math="\mu_A(1) = 2" /> dan <InlineMath math="\lambda_2 = -1" /> dengan multiplisitas aljabar <InlineMath math="\mu_A(-1) = 1" />. Jumlah multiplisitasnya adalah <InlineMath math="2 + 1 = 3" />, sama dengan dimensi matriks.
 
 2. Kita tentukan ruang eigen untuk setiap nilai eigen:
 

@@ -2,18 +2,18 @@
 export const metadata = {
   title: "Instantaneous Velocity and Speed",
   description:
-    "Learn velocity and speed at one particular instant, like the reading on a vehicle speedometer.",
+    "Instantaneous speed is a speedometer reading at one instant, while instantaneous velocity also includes direction.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Kinematics",
 };
 
-## A Reading at One Instant
+## Speed and Velocity at One Instant
 
 Instantaneous speed is the speed of an object at a particular time or at a particular point on its path. A common example is the number shown by a vehicle speedometer when the driver looks at it.
 
-Instantaneous velocity is also read at a particular time, but it still includes direction. If the vehicle is moving right, the velocity is positive; if it is moving left, the velocity is negative.
+Instantaneous velocity is also measured at a particular time, but it includes direction. If the vehicle is moving right, the velocity is positive. If it is moving left, the velocity is negative.
 
 > An instantaneous value answers, "How fast right now?" An average value covers a longer part of the trip.
 
@@ -28,17 +28,17 @@ If position is a differentiable function of time, instantaneous velocity is the 
 Real instruments estimate this value over a short but finite sampling interval. A shorter interval can better approximate the value at that instant when the motion varies smoothly.
 
 <InstantaneousVelocitySpeedLab
-  title={<>Reading at a Measuring Point</>}
+  title={<>Measurement at One Point</>}
   description={
     <>
-      Choose a reading moment to see the car pass a measuring point and its
-      instantaneous velocity value.
+      Choose a measurement time and compare the car's instantaneous speed and
+      velocity as it passes the measuring point.
     </>
   }
   labels={{
-    chooseMoment: "Choose reading moment",
+    chooseMoment: "Choose measurement time",
     factLabels: {
-      time: <>Reading time</>,
+      time: <>Measurement time</>,
       speed: <>Instantaneous speed</>,
       velocity: <>Instantaneous velocity</>,
     },
@@ -46,9 +46,9 @@ Real instruments estimate this value over a short but finite sampling interval. 
   }}
 />
 
-## Reading Instant Motion
+## Direction Sets the Sign of Instantaneous Velocity
 
-The measuring point in the simulation represents the place where motion is read at one instant. The speed gives the magnitude of the reading, while the car's direction as it passes the measuring point sets the sign of its velocity.
+The measuring point in the simulation records the car at one instant. Speed gives the magnitude of its motion. The direction of travel sets the sign of its velocity.
 
 At <InlineMath math="t=6 \text{ s}" />, the car moves rightward with an instantaneous speed of <InlineMath math="20 \text{ m/s}" />. Because rightward is chosen as the positive direction, the instantaneous velocity is <InlineMath math="+20 \text{ m/s}" />.
 
@@ -59,20 +59,20 @@ At <InlineMath math="t=9 \text{ s}" />, the car moves leftward with an instantan
 | <InlineMath math="6 \text{ s}" /> | <InlineMath math="20 \text{ m/s}" /> | rightward | <InlineMath math="+20 \text{ m/s}" /> |
 | <InlineMath math="9 \text{ s}" /> | <InlineMath math="8 \text{ m/s}" /> | leftward | <InlineMath math="-8 \text{ m/s}" /> |
 
-So instantaneous speed is always written as an unsigned magnitude, while instantaneous velocity uses a sign to show direction.
+Instantaneous speed has no direction sign. Instantaneous velocity uses a positive or negative sign to show direction along the chosen axis.
 
-## Not the Trip Average
+## Difference from Average Speed
 
-Instantaneous speed is different from average speed. Average speed uses the whole distance and the whole time, while instantaneous speed reads the state at one time.
+Average speed summarizes the whole trip by dividing total distance by total time. Instantaneous speed gives the speed at one chosen time.
 
 If a speedometer shows <InlineMath math="15 \text{ m/s}" /> right now, it does not mean the vehicle moved at <InlineMath math="15 \text{ m/s}" /> for the whole trip.
 
 For example, a vehicle may stop at a red light and then move quickly afterward. Its average speed can be small because the whole trip time is counted, while its instantaneous speed while moving can be much larger.
 
-## Speedometer Reads One Moment
+## A Speedometer Measures the Current Speed
 
 A posted limit of <InlineMath math="80 \text{ km/h}" /> applies to the vehicle at every moment. A roadside detector therefore reads the instantaneous speed as the vehicle passes.
 
 That is why a detector does not need to wait for the vehicle to reach its destination. It checks the speed at the moment the vehicle passes the measuring point.
 
-The word "instantaneous" therefore means that we read the motion at one particular time.
+Here, "instantaneous" means that the measurement applies to one particular time.

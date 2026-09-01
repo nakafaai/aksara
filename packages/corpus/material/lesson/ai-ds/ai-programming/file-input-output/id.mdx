@@ -1,9 +1,9 @@
 export const metadata = {
     title: "File Input dan Output",
-    description: "Pelajari cara membaca dan menulis file dalam Python, mode pembukaan file, metode read(), readline(), dan pengalihan output dengan contoh praktis.",
+    description: "Membaca dan menulis file dalam Python, mode pembukaan file, method read dan readline, serta pengalihan output.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Pemrograman AI",
 };
 
@@ -13,7 +13,7 @@ Python membaca dan menulis file melalui objek file. Dalam text mode, objek ini m
 
 ### Membaca Seluruh Isi File
 
-Cara paling sederhana untuk membaca file adalah mengambil seluruh isinya sekaligus ke dalam memori.
+Method `read()` memuat seluruh isi file ke dalam memori sekaligus:
 
 <CodeBlock
   data={[
@@ -155,18 +155,18 @@ with open('data.txt', 'r+', encoding='utf-8') as f:
 
 Mode menentukan apakah file harus sudah ada, apakah pembukaan file mengosongkan isi lama, dan operasi apa yang diizinkan. `r` dan `r+` memerlukan file yang sudah ada. `w` membuat atau mengosongkan file, sedangkan `a` membuat atau menambahkan data. Sufiks `b` memilih binary mode yang tidak memakai `encoding`.
 
-## Metode Pembacaan File
+## Method untuk Membaca File
 
-Python menyediakan beberapa metode untuk membaca file dengan cara yang berbeda sesuai kebutuhan.
+Python menyediakan beberapa method untuk membaca file dengan cara yang berbeda sesuai kebutuhan.
 
-### Metode read() dengan Parameter
+### Method Read dengan Parameter
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "read_methods.py",
-      code: `# Mencoba beberapa metode pembacaan teks
+      code: `# Mencoba beberapa method pembacaan teks
 with open('file.txt', 'r', encoding='utf-8') as f:
     # Membaca paling banyak 10 karakter
     s = f.read(10)
@@ -214,7 +214,7 @@ Dalam text mode, `read()` dan `readline()` mengembalikan string serta menghasilk
 
 ## Penanganan File yang Aman
 
-Python menyediakan statement `with` untuk penanganan file yang lebih aman dan otomatis.
+Statement `with` menutup file secara otomatis ketika blok selesai, termasuk saat operasi di dalam blok gagal.
 
 <CodeBlock
   data={[
@@ -242,4 +242,4 @@ with open('input.txt', 'r', encoding='utf-8') as input_file, open('output.txt', 
   ]}
 />
 
-Statement `with` memastikan file selalu tertutup dengan benar, bahkan jika terjadi error dalam program. Ini mencegah masalah seperti file yang terbuka terus dan menghabiskan sumber daya sistem.
+Statement `with` menutup file setelah blok selesai, termasuk ketika program mengalami error. Dengan begitu, file tidak dibiarkan terbuka dan resource sistem dapat dilepas.

@@ -1,9 +1,9 @@
 export const metadata = {
     title: "Matrix Similarity",
-    description: "Understand matrix similarity, basis transformations, and invariant properties. Learn eigenvalue preservation, coordinate changes, and linear transformations.",
+    description: "Relate similar matrices through basis transformations, coordinate changes, and properties such as unchanged eigenvalues.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-16",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Linear Methods of AI",
 };
 
@@ -15,11 +15,11 @@ Two matrices <InlineMath math="A, B \in \mathbb{K}^{n \times n}" /> are said to 
 
 <BlockMath math="B = S^{-1} \cdot A \cdot S" />
 
-The matrix <InlineMath math="S" /> in this case is called the similarity transformation matrix.
+The matrix <InlineMath math="S" /> is the change-of-basis matrix connecting the two representations.
 
 ## Basis Transformation and Coordinate Representation
 
-To understand why matrix similarity is so important, we need to look at its relationship with basis transformation. Let <InlineMath math="e_1, \ldots, e_n \in \mathbb{K}^n" /> be the canonical basis and <InlineMath math="v_1, \ldots, v_n \in \mathbb{K}^n" /> be another basis of <InlineMath math="\mathbb{K}^n" />.
+Similar matrices represent the same linear transformation in two different bases. Let <InlineMath math="e_1, \ldots, e_n \in \mathbb{K}^n" /> be the canonical basis and <InlineMath math="v_1, \ldots, v_n \in \mathbb{K}^n" /> be another basis of <InlineMath math="\mathbb{K}^n" />.
 
 If <InlineMath math="S" /> is an invertible matrix with columns <InlineMath math="v_k" />:
 
@@ -39,7 +39,7 @@ The matrix <InlineMath math="S^{-1}" /> represents the **coordinate transformati
 
 ## Linear Transformation in Different Bases
 
-Now consider the linear transformation <InlineMath math="y = A \cdot x" />. In the canonical basis, <InlineMath math="y" /> is expressed through coordinates <InlineMath math="y_k" />, while in the basis <InlineMath math="v_1, \ldots, v_n" /> through coordinates <InlineMath math="\eta_k" />:
+For the linear transformation <InlineMath math="y = A \cdot x" />, the canonical basis expresses <InlineMath math="y" /> with coordinates <InlineMath math="y_k" />. The basis <InlineMath math="v_1, \ldots, v_n" /> expresses the same vector with coordinates <InlineMath math="\eta_k" />:
 
 <MathContainer>
 <BlockMath math="y = \sum_{k=1}^n y_k \cdot e_k" />
@@ -47,14 +47,14 @@ Now consider the linear transformation <InlineMath math="y = A \cdot x" />. In t
 <BlockMath math="\eta = \begin{pmatrix} \eta_1 \\ \vdots \\ \eta_n \end{pmatrix} = S^{-1} \cdot y" />
 </MathContainer>
 
-Therefore:
+The calculation gives:
 
 <MathContainer>
 <BlockMath math="S \cdot \eta = y = A \cdot x" />
 <BlockMath math="= A \cdot S \cdot \xi" />
 </MathContainer>
 
-or in other words:
+The same coordinate relation can be written as follows.
 
 <BlockMath math="\eta = S^{-1} \cdot A \cdot S \cdot \xi" />
 
@@ -62,9 +62,9 @@ In the basis <InlineMath math="v_1, \ldots, v_n" />, the linear transformation <
 
 <BlockMath math="B = S^{-1} \cdot A \cdot S" />
 
-Thus, similar matrices represent one linear transformation with respect to different bases of <InlineMath math="\mathbb{K}^n" />.
+Similar matrices represent one linear transformation with respect to different bases of <InlineMath math="\mathbb{K}^n" />.
 
-## Worked Basis-Change Example
+## Worked Basis Change Example
 
 Let
 
@@ -119,4 +119,4 @@ If <InlineMath math="v \in \mathbb{K}^n" /> is an eigenvector of <InlineMath mat
 <BlockMath math="= \lambda \cdot w" />
 </MathContainer>
 
-This shows that similarity preserves the spectrum. The coordinate vector of an eigenvector changes from <InlineMath math="v" /> to <InlineMath math="S^{-1}v" />, while the represented geometric direction belongs to the same underlying transformation.
+Matrix similarity preserves the spectrum. When the basis changes, the eigenvector coordinates change from <InlineMath math="v" /> to <InlineMath math="S^{-1}v" />, but both coordinate vectors represent the same geometric direction.

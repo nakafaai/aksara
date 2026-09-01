@@ -3,7 +3,7 @@ export const metadata = {
     description: "Apply limits to simplified health, economic, population, signal, and reaction models while checking what each model can and cannot justify.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Limits",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 Limits can describe the long-term behavior of a mathematical model. In public health, however, a formula must be fitted to reliable data and validated before anyone uses it to guide a real decision. The example below is a **fictional classroom model** designed to practice limits and model-domain checks.
 
-### Inspecting the Model's Domain
+### Inspecting the Domain of the Model
 
 Consider this deliberately simplified function:
 
@@ -36,7 +36,7 @@ So,
 <BlockMath math="\lim_{t \to \infty} N(t) = \lim_{t \to \infty} (285000 - t) = -\infty" />
 </MathContainer>
 
-> The negative result exposes the model's **limited domain**. A case count cannot be negative, so the formula is meaningful only while <InlineMath math="N(t) \geq 0" />. This fictional model is not an epidemiological forecast and must not be used as medical or policy guidance.
+> A negative case count means the formula has been used outside the model's **valid domain**. A case count cannot be negative, so the formula is meaningful only while <InlineMath math="N(t) \geq 0" />. This fictional model is not an epidemiological forecast and must not be used as medical or policy guidance.
 
 ### Interpreting a Vaccination Target
 
@@ -54,7 +54,7 @@ In a differentiable cost model, **marginal cost** is the instantaneous rate at w
 
 <BlockMath math="\text{Marginal Cost} = \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x}" />
 
-where:
+The quantities in this definition are:
 - <InlineMath math="C(x)" /> = total production cost function for <InlineMath math="x \text{ units}" />
 - <InlineMath math="\Delta x" /> = small change in production quantity
 - The limit gives the **instantaneous rate of change** of cost with respect to production
@@ -96,7 +96,7 @@ For an **idealized first-order consumption** of reactant <InlineMath math="A" />
 
 <BlockMath math="[A](t)=[A]_0e^{-kt}, \qquad k>0" />
 
-Therefore,
+The calculation gives:
 
 <BlockMath math="\lim_{t \to \infty}[A](t)=[A]_0\lim_{t \to \infty}e^{-kt}=0" />
 
@@ -140,7 +140,7 @@ This conclusion belongs to that irreversible first-order model. A reversible rea
 
     <BlockMath math="\frac{282{,}367}{318{,}671.78}\times 100\% \approx 88.6\%" />
 
-    The vaccination target is therefore about <InlineMath math="88.6\%" /> of the eligible adults in this fictional scenario. The exercise provides this target; the calculation does not justify how a real target should be selected.
+    The vaccination target is therefore about <InlineMath math="88.6\%" /> of the eligible adults in this fictional scenario. The exercise provides this target. The calculation does not justify how a real target should be selected.
 
 4. **Solution:**
 
@@ -152,7 +152,7 @@ This conclusion belongs to that irreversible first-order model. A reversible rea
 
     <BlockMath math="(190.68)^3 = 190.68 \times 190.68 \times 190.68 = 6{,}932{,}907.88" />
 
-    The displayed value is rounded to two decimal places; the calculation below retains the unrounded value internally.
+    The displayed value is rounded to two decimal places. The calculation below retains the unrounded value internally.
 
     **Step** <InlineMath math="2" />: Calculate <InlineMath math="(282{,}367)^2" />
 
@@ -189,7 +189,7 @@ The value <InlineMath math="2{,}621 \text{ cases}" /> answers the mathematical q
 
 1. A pharmaceutical company models cumulative vaccine production with <InlineMath math="P(t) = 50000(1 - e^{-0.1t})" /> for <InlineMath math="t \geq 0" />. Determine the long-term production ceiling predicted by the model.
 
-2. The modeled cumulative reach of a social-media message is <InlineMath math="I(t) = \frac{100000t}{t + 50}" /> for <InlineMath math="t \geq 0" />. Calculate the limit when <InlineMath math="t \to \infty" /> and interpret it within the model.
+2. The modeled cumulative reach of a social-media message is <InlineMath math="I(t) = \frac{100000t}{t + 50}" /> for <InlineMath math="t \geq 0" />. Calculate the limit when <InlineMath math="t \to \infty" /> and explain the long-run reach predicted by the model.
 
 3. The total cost model for producing <InlineMath math="x" /> masks is <InlineMath math="C(x) = 1000 + 5x + 0.01x^2" />. Determine the marginal-cost function using the limit definition, then compare it with the exact cost of increasing output from <InlineMath math="x" /> to <InlineMath math="x+1" />.
 

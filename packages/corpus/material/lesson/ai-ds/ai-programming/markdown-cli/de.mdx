@@ -1,8 +1,9 @@
 export const metadata = {
-  title: "Markdown- und Befehlszeilenschnittstellen",
+  title: "Markdown und Befehlszeilenschnittstellen",
   description: "Schreibe Markdown und nutze sichere Kommandozeilenabläufe, um Dokumentation zu prüfen, umzuwandeln und zu versionieren.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "KI-Programmierung",
 };
 
@@ -12,7 +13,7 @@ Markdown ist eine leichtgewichtige Auszeichnungssprache, die Dokumentstruktur in
 
 Dieser lesbare Quelltext ist der wichtigste Vorteil von Markdown. Du kannst Änderungen Zeile für Zeile prüfen, sie in Git speichern und die endgültige Typografie einem Renderer überlassen, ohne das Dokument hinter Formatierungsschaltflächen zu verstecken.
 
-### Grundlegende Markdown-Syntax
+### Grundlegende Syntax von Markdown
 
 Das folgende Beispiel sammelt häufige Syntax in einer Datei. Eine Raute leitet eine Überschrift ein, während umschließende Zeichen Hervorhebungen, Links, Code und weitere Strukturen ausdrücken:
 
@@ -58,7 +59,7 @@ def hello_world():
   }]}
 />
 
-### Markdown-Workflow
+### Arbeitsablauf mit Markdown
 
 Behalte die Quelldatei als geprüften Inhalt und behandle gerenderte Dateien als reproduzierbare Ausgabe. Ein kurzer Ablauf genügt: erstellen, bearbeiten, validieren, umwandeln und ansehen.
 
@@ -89,9 +90,9 @@ open document.html`
 
 Eine Befehlszeilenschnittstelle oder CLI nimmt Textbefehle über eine Shell entgegen. Jeder Befehl besteht aus einem Programmnamen, optionalen Schaltern und Argumenten wie Pfaden.
 
-CLI-Arbeit ist wertvoll, weil sich Befehle prüfen, wiederholen, skripten und begutachten lassen. Genaue Pfade und destruktive Schalter sind wichtig, weil die Shell den geschriebenen Befehl genau befolgt. Prüfe ihn vor dem Ausführen.
+CLI-Befehle lassen sich prüfen, wiederholen, skripten und begutachten. Die Shell befolgt den angegebenen Pfad und jeden Schalter genau. Ermittle deshalb zuerst das Ziel und prüfe destruktive Schalter vor dem Ausführen.
 
-### Verzeichnisnavigation und -erkundung
+### Navigation und Erkundung von Verzeichnissen
 
 Bevor du Dateien änderst, bestätige das aktuelle Verzeichnis, untersuche seinen Inhalt und wechsle mit einem ausdrücklichen Pfad:
 
@@ -119,7 +120,7 @@ mkdir -p project/src/components  # Verzeichnishierarchie erstellen`
   }]}
 />
 
-### Datei- und Verzeichnisoperationen
+### Operationen mit Dateien und Verzeichnissen
 
 Dateibefehle wirken sofort auf reale Pfade. Prüfe ein Ziel vor dem Löschen, setze Pfade mit möglichen Leerzeichen in Anführungszeichen und vermeide rekursive Force-Schalter, solange das genaue Verzeichnis nicht nachweislich entbehrlich ist.
 
@@ -194,7 +195,7 @@ chmod +x build.sh
   }]}
 />
 
-### CLI-Tools für Markdown
+### Werkzeuge für die CLI für Markdown
 
 Nutze die offiziellen Installationswege der Werkzeuge und prüfe anschließend die installierten Befehle, bevor ein Skript von ihnen abhängt. Pandoc wandelt Dokumente um, ein Markdown-Linter prüft die Konventionen des Quelltexts:
 
@@ -268,7 +269,7 @@ git diff -- docs`
 
 ### Echtes Projektbeispiel
 
-Das letzte Beispiel erstellt vier Quellseiten und verbindet sie zu einem eigenständigen HTML-Dokument. Jeder Eingabepfad ist ausdrücklich genannt. Eine fehlende Seite lässt den Build deshalb scheitern, statt unbemerkt zu fehlen:
+Das letzte Beispiel erstellt vier Quelldateien und verbindet sie zu einem eigenständigen HTML-Dokument. Jeder Eingabepfad ist ausdrücklich genannt. Fehlt eine Datei, schlägt der Build mit einer Fehlermeldung fehl:
 
 <CodeBlock
   data={[{
@@ -338,4 +339,4 @@ chmod +x scripts/build-docs.sh
   }]}
 />
 
-Markdown hält die Dokumentstruktur in der Versionsverwaltung lesbar, während die CLI Validierung und Umwandlung wiederholbar macht. Ein verlässlicher Ablauf bewahrt diese Grenze: Bearbeite die Quelle, prüfe Befehle und Pfade, erzeuge die Ausgabe neu und begutachte die entstandenen Änderungen.
+Markdown hält die Dokumentstruktur in der Versionsverwaltung lesbar. Mit einer CLI lassen sich dieselben Prüf- und Umwandlungsschritte erneut ausführen. Ein verlässlicher Ablauf bewahrt diese Grenze: Bearbeite die Quelle, prüfe Befehle und Pfade, erzeuge die Ausgabe neu und begutachte die entstandenen Änderungen.

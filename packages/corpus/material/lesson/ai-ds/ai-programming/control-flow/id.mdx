@@ -1,19 +1,19 @@
 export const metadata = {
     title: "Control Flow",
-    description: "Pelajari kontrol alur dalam Python meliputi break, continue, pass, else, enumerate, while loops, zip, range, dan if/elif/else dengan contoh praktis.",
+    description: "Atur alur eksekusi Python dengan conditional statement, while loop, for loop, break, continue, pass, enumerate, zip, dan range.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Pemrograman AI",
 };
 
-## Statement Kontrol Loop
+## Loop Control Statements
 
-Python menyediakan beberapa statement khusus untuk mengendalikan alur eksekusi dalam perulangan. Statement ini memungkinkan kamu mengatur kapan perulangan harus berhenti, melanjutkan, atau melakukan tindakan tertentu.
+Python menyediakan beberapa statement untuk mengubah alur loop. Statement ini dapat menghentikan loop, melompat ke iterasi berikutnya, atau menjalankan tindakan setelah loop selesai tanpa dihentikan.
 
-### Break, Continue, Pass, dan Else
+### Pernyataan untuk Mengatur Loop
 
-Statement `break` langsung keluar dari perulangan terdekat ketika suatu kondisi terpenuhi. Eksekusi kemudian berlanjut ke statement pertama setelah perulangan tersebut.
+Statement `break` langsung keluar dari loop terdekat ketika suatu kondisi terpenuhi. Eksekusi kemudian berlanjut ke statement pertama setelah loop tersebut.
 
 <CodeBlock
   data={[
@@ -32,7 +32,7 @@ print(x, 'dapat dibagi 15 dan 25')
   ]}
 />
 
-Statement `continue` melewati sisa kode dalam iterasi saat ini dan melanjutkan ke iterasi berikutnya. Ini berbeda dengan `break` yang menghentikan seluruh perulangan.
+Statement `continue` melewati sisa kode dalam iterasi saat ini dan melanjutkan ke iterasi berikutnya. `break` menghentikan seluruh loop.
 
 <CodeBlock
   data={[
@@ -54,7 +54,7 @@ for i in range(1, 11):
   ]}
 />
 
-Statement `pass` tidak melakukan apa-apa tetapi berguna sebagai placeholder untuk kode yang belum ditulis. Python membutuhkan setidaknya satu statement dalam setiap blok kode.
+Statement `pass` tidak menjalankan tindakan apa pun. Gunakan `pass` sebagai placeholder agar blok kosong tetap valid sebelum isinya ditulis.
 
 <CodeBlock
   data={[
@@ -75,7 +75,7 @@ for i in range(1, 11):
   ]}
 />
 
-Blok `else` berjalan jika perulangan selesai tanpa mengeksekusi `break`. Pola ini berguna untuk pencarian: tangani hasil yang ditemukan sebelum `break`, lalu tangani "tidak ditemukan" di dalam `else`.
+Blok `else` berjalan jika loop selesai tanpa mengeksekusi `break`. Dalam loop pencarian, tangani hasil yang ditemukan sebelum `break`, lalu tangani kasus "tidak ditemukan" di dalam `else`.
 
 <CodeBlock
   data={[
@@ -138,11 +138,11 @@ for i, fruit in enumerate(fruits, 5):
   ]}
 />
 
-Pada `for i, fruit in enumerate(fruits)`, tuple unpacking mengikat indeks ke `i` dan nilai yang bersesuaian ke `fruit` pada setiap iterasi.
+Pada `for i, fruit in enumerate(fruits)`, tuple unpacking memisahkan setiap pasangan hasil `enumerate()`. Indeks disimpan dalam `i`, sedangkan nama buah disimpan dalam `fruit`.
 
 ## While Loop
 
-Perulangan `while` mengeksekusi blok selama kondisinya truthy. Perulangan `for` mengonsumsi sebuah iterable, sedangkan `while` mengulang berdasarkan kondisi yang biasanya diperbarui oleh isi blok.
+`while` loop mengeksekusi blok selama kondisi `while` bernilai truthy. `for` loop mengambil item dari iterable satu per satu, sedangkan `while` mengulang berdasarkan kondisi yang biasanya diperbarui oleh isi blok.
 
 <CodeBlock
   data={[
@@ -159,10 +159,10 @@ print(z)
   ]}
 />
 
-Perulangan `while` cocok untuk pengulangan berbasis kondisi, tetapi isi bloknya harus pada akhirnya mengubah kondisi atau keluar secara eksplisit. Jika tidak, loop dapat berjalan selamanya.
+`while` loop cocok untuk pengulangan berbasis kondisi, tetapi isi bloknya harus mengubah kondisi atau keluar secara eksplisit. Jika tidak, loop dapat berjalan selamanya.
 
 <Mermaid
-  title="Siklus Perulangan while"
+  title="Siklus While Loop"
   description="Baca siklus cek kondisi, jalankan blok, lalu kembali cek kondisi sampai loop berhenti."
   chart={`
     flowchart TD
@@ -177,7 +177,7 @@ Perulangan `while` cocok untuk pengulangan berbasis kondisi, tetapi isi bloknya 
 
 ## Fungsi Zip
 
-Fungsi `zip()` memungkinkan kamu mengiterasi beberapa iterable secara bersamaan. Bayangkan seperti resleting yang menggabungkan dua sisi menjadi satu.
+Fungsi `zip()` memasangkan elemen yang posisinya sama dari beberapa iterable. Iterasi berhenti ketika iterable terpendek kehabisan elemen.
 
 ### Penggunaan Dasar Zip
 
@@ -201,7 +201,7 @@ for pair in zip(p, q):
   ]}
 />
 
-Fungsi `zip()` mengembalikan iterator berisi tuple. Setiap tuple memuat elemen yang bersesuaian dari setiap input. Secara default iterator berhenti saat iterable terpendek habis, sehingga perbedaan panjang dapat tersembunyi; gunakan `zip(..., strict=True)` jika panjang yang berbeda harus dianggap error.
+Fungsi `zip()` mengembalikan iterator berisi tuple. Setiap tuple memuat elemen yang bersesuaian dari setiap input. Secara default, iterasi berhenti ketika iterable terpendek habis, sehingga elemen yang tersisa pada input lebih panjang tidak masuk ke hasil. Gunakan `zip(..., strict=True)` untuk memunculkan error ketika panjang input berbeda.
 
 ### Mengonversi Hasil Zip
 
@@ -228,7 +228,7 @@ print(tuple(zipped_new))  # Mengonversi ke tuple
 
 ### Unzipping dengan Operator Asterisk
 
-Operator unpacking `*` dapat memisahkan kembali kumpulan tuple hasil zip yang tidak kosong berdasarkan posisinya.
+Unpacking operator `*` memisahkan kumpulan pasangan yang tidak kosong. Pada `zip(*pairs)`, semua nilai pertama dikumpulkan bersama, begitu pula semua nilai kedua.
 
 <CodeBlock
   data={[
@@ -248,7 +248,7 @@ Proses ini disebut "unzipping" karena memisahkan kembali data yang telah digabun
 
 ## Range dan For Loop
 
-Fungsi `range()` menciptakan urutan angka yang dapat diiterasi. Ini sangat berguna untuk perulangan dengan indeks numerik.
+Fungsi `range()` menghasilkan urutan bilangan bulat untuk iterasi. Gunakan fungsi ini jika loop memerlukan posisi numerik atau jumlah iterasi yang tetap.
 
 ### Sintaks Range
 
@@ -280,7 +280,7 @@ for i in range(8, 4, -1):
   ]}
 />
 
-Range mengikuti formula aritmatika dimana setiap elemen ke-i adalah `start + i * step` untuk semua `i` dari <InlineMath math="0" /> sampai `n-1`.
+Range mengikuti pola aritmetika. Elemen ke-i adalah `start + i * step` untuk setiap `i` dari <InlineMath math="0" /> sampai `n-1`.
 
 ### Efisiensi Range vs List
 
@@ -303,7 +303,7 @@ for i in index:
     else:
         break
 
-# Lebih efisien - menggunakan range
+# Menggunakan range tanpa membuat list
 for i in range(n):  # Tidak menyimpan semua angka di memori
     if i < k:
         print(i)
@@ -313,11 +313,11 @@ for i in range(n):  # Tidak menyimpan semua angka di memori
   ]}
 />
 
-## Pernyataan Kondisional
+## Conditional Statements
 
-Pernyataan kondisional membuat program memilih cabang berdasarkan kondisi yang dievaluasi. Indentasi adalah bagian dari sintaks Python; gunakan empat spasi per tingkat dan jangan mencampur tab dengan spasi dalam satu blok.
+Conditional statement membuat program memilih cabang berdasarkan kondisi yang dievaluasi. Indentasi adalah bagian dari sintaks Python. Gunakan empat spasi per tingkat dan jangan mencampur tab dengan spasi dalam satu blok.
 
-### Sintaks If, Elif, dan Else
+### Percabangan dengan Beberapa Kondisi
 
 <CodeBlock
   data={[
@@ -342,7 +342,7 @@ else:
 
 Kondisi tidak memerlukan tanda kurung, sedangkan titik dua setelah setiap kepala cabang wajib ada. Setiap statement dalam satu blok harus memakai tingkat indentasi yang konsisten.
 
-### Nested If Statement
+### Nested If
 
 <CodeBlock
   data={[
@@ -366,11 +366,11 @@ else:
   ]}
 />
 
-Nested if berguna untuk membuat keputusan yang lebih kompleks dengan beberapa tingkat kondisi.
+Gunakan percabangan `if` bertingkat jika keputusan berikutnya hanya perlu diperiksa setelah kondisi sebelumnya terpenuhi.
 
 ## Sintaks For Loop
 
-For loop dalam Python digunakan untuk mengiterasi elemen dalam objek iterable seperti list, tuple, string, atau range.
+`for` loop mengunjungi setiap elemen dalam iterable, seperti list, tuple, string, atau range.
 
 <CodeBlock
   data={[
@@ -397,4 +397,4 @@ for char in text:
   ]}
 />
 
-Iterable menyediakan nilai satu per satu, tetapi tidak selalu terurut, dapat diindeks, dapat digunakan ulang, atau berhingga. Perulangan `for` meminta nilai berikutnya dari iterator. Operator `in` melakukan uji keanggotaan sesuai tipe, sedangkan titik dua dan indentasi yang konsisten membentuk blok statement.
+Iterable menyediakan nilai satu per satu, tetapi tidak selalu terurut, memiliki indeks, dapat digunakan ulang, atau berhingga. `for` loop meminta nilai berikutnya dari iterator. Operator `in` melakukan uji keanggotaan sesuai tipe, sedangkan titik dua dan indentasi yang konsisten membentuk blok statement.

@@ -1,0 +1,194 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+
+import { findLessonVoiceIssues } from "#nakafa-content/voice-scan";
+
+test("rejects invisible control characters in source text", () => {
+  assert.deepEqual(findLessonVoiceIssues("id", "Nilai \u000Bvektor"), [
+    {
+      column: 7,
+      excerpt: "Nilai \u000Bvektor",
+      line: 1,
+      rule: "forbidden-control-character",
+    },
+  ]);
+});
+
+test("rejects every symbol in headings", () => {
+  const source = [
+    "## Cuaca Berubah Cepat; Iklim Diukur Selama Puluhan Tahun",
+    "## Cuaca, Iklim, dan Pola Musiman",
+    "## Mengapa Iklim Diukur dalam Puluhan Tahun?",
+    "## Kata Serapan dan Istilah Satu-ke-Satu",
+    "## Perubahan Iklim Selama Puluhan Tahun",
+  ].join("\n");
+
+  assert.deepEqual(findLessonVoiceIssues("id", source), [
+    {
+      column: 23,
+      excerpt: "## Cuaca Berubah Cepat; Iklim Diukur Selama Puluhan Tahun",
+      line: 1,
+      rule: "heading-symbol",
+    },
+    {
+      column: 9,
+      excerpt: "## Cuaca, Iklim, dan Pola Musiman",
+      line: 2,
+      rule: "heading-symbol",
+    },
+    {
+      column: 44,
+      excerpt: "## Mengapa Iklim Diukur dalam Puluhan Tahun?",
+      line: 3,
+      rule: "heading-symbol",
+    },
+    {
+      column: 33,
+      excerpt: "## Kata Serapan dan Istilah Satu-ke-Satu",
+      line: 4,
+      rule: "heading-symbol",
+    },
+  ]);
+});
+test("allows only ordinary spaces as heading whitespace", () => {
+  const source = [
+    "## Cuaca\tIklim",
+    "## Cuaca\u00A0Iklim",
+    "##\tCuaca Iklim",
+    "##\u00A0Cuaca Iklim",
+    "## Cuaca Iklim",
+  ].join("\n");
+
+  assert.deepEqual(
+    findLessonVoiceIssues("id", source).map(({ column, line, rule }) => ({
+      column,
+      line,
+      rule,
+    })),
+    [
+      { column: 9, line: 1, rule: "heading-symbol" },
+      { column: 9, line: 2, rule: "heading-symbol" },
+      { column: 3, line: 3, rule: "heading-symbol" },
+      { column: 3, line: 4, rule: "heading-symbol" },
+    ]
+  );
+});
+test("applies the heading rule to the page title", () => {
+  const source = [
+    "export const metadata = {",
+    '  title: "Syarat: Bentuk Akar",',
+    "};",
+    "",
+    "## Syarat Bentuk Akar",
+  ].join("\n");
+
+  assert.deepEqual(findLessonVoiceIssues("id", source), [
+    {
+      column: 17,
+      excerpt: 'title: "Syarat: Bentuk Akar",',
+      line: 2,
+      rule: "heading-symbol",
+    },
+  ]);
+});
+test("rejects Indonesian reduplication damaged by the symbol rule", () => {
+  const source = [
+    "## Menentukan Jari Jari Lingkaran",
+    "## Membandingkan Kelajuan Rata Rata",
+    "## Menentukan Radius Lingkaran",
+    "## Membandingkan Kelajuan Rerata",
+  ].join("\n");
+
+  assert.deepEqual(
+    findLessonVoiceIssues("id", source).map(({ line, rule }) => ({
+      line,
+      rule,
+    })),
+    [
+      {
+        line: 1,
+        rule: "indonesian-heading-dehyphenated-reduplication",
+      },
+      {
+        line: 2,
+        rule: "indonesian-heading-dehyphenated-reduplication",
+      },
+    ]
+  );
+});
+test("requires named matrix factorizations to use math rendering in prose", () => {
+  const source = [
+    "export const metadata = {",
+    '  title: "QR Decomposition",',
+    '  description: "Compare the QR algorithm with related factorizations.",',
+    "};",
+    "",
+    "## QR Decomposition",
+    "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.",
+    'Use <InlineMath math="\\mathrm{QR}" /> in mathematical prose.',
+    "`QR` is a code token.",
+    "[QR documentation](https://example.com/QR)",
+    "```text",
+    "QR LU SVD",
+    "```",
+    "<CodeBlock data={[{",
+    "  code: `PLU",
+    "PCA`",
+    "}]} />",
+  ].join("\n");
+
+  assert.deepEqual(findLessonVoiceIssues("en", source), [
+    {
+      column: 5,
+      excerpt: "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.",
+      line: 7,
+      rule: "plain-math-label",
+    },
+    {
+      column: 26,
+      excerpt: "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.",
+      line: 7,
+      rule: "plain-math-label",
+    },
+    {
+      column: 30,
+      excerpt: "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.",
+      line: 7,
+      rule: "plain-math-label",
+    },
+    {
+      column: 35,
+      excerpt: "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.",
+      line: 7,
+      rule: "plain-math-label",
+    },
+    {
+      column: 43,
+      excerpt: "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.",
+      line: 7,
+      rule: "plain-math-label",
+    },
+  ]);
+});
+
+test("rejects German headings that need forbidden punctuation", () => {
+  const source = [
+    "## Emissionen sinken wenn sich ihre Quellen verändern",
+    "## Details die oft verwechselt werden",
+    "## Was der Beobachter sieht ist der Unterschied",
+    "## Wenn der Beobachter still steht",
+    "## Wie der Leitkoeffizient die Parabel verändert",
+  ].join("\n");
+
+  assert.deepEqual(
+    findLessonVoiceIssues("de", source).map(({ line, rule }) => ({
+      line,
+      rule,
+    })),
+    [
+      { line: 1, rule: "german-heading-dependent-clause" },
+      { line: 2, rule: "german-heading-dependent-clause" },
+      { line: 3, rule: "german-heading-dependent-clause" },
+    ]
+  );
+});

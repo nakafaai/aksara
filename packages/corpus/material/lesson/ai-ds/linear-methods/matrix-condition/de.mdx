@@ -1,8 +1,9 @@
 export const metadata = {
   title: "Matrixnormen und Konditionszahlen",
-  description: "Verstehe induzierte Matrixnormen, Spektralradius, Konditionszahlen aus Singulärwerten, Störungsabschätzungen und den Unterschied zwischen Kondition und Stabilität.",
+   description: "Verbinde induzierte Matrixnormen, Spektralradius, Singulärwerte, Konditionszahlen und Störungsabschätzungen und unterscheide Kondition von Stabilität.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Lineare Methoden der KI",
 };
 
@@ -12,7 +13,7 @@ Eine Vektornorm misst die Größe eines Vektors. Die zugehörige induzierte Matr
 
 <BlockMath math="\|A\|=\sup_{x\ne0}\frac{\|Ax\|}{\|x\|}=\max_{\|x\|=1}\|Ax\|" />
 
-Aus dieser Definition folgen unmittelbar zwei wichtige Abschätzungen für Matrizen und Vektoren mit passenden Dimensionen:
+Aus dieser Definition folgen zwei Abschätzungen für Matrizen und Vektoren mit passenden Dimensionen:
 
 <MathContainer>
 <BlockMath math="\|Ax\|\le\|A\|\|x\|" />
@@ -69,7 +70,7 @@ Im Nenner steht der Eigenwert mit dem kleinsten Betrag. Sein Vorzeichen entschei
 | Groß | Bestimmte Eingaberichtungen können viel größere relative Änderungen der Lösung erzeugen. |
 | Unendlich | Die Matrix ist singulär, daher ist das inverse Problem nicht eindeutig lösbar. |
 
-## Ein zweidimensionales Beispiel
+## Empfindlichkeit eines zweidimensionalen Diagonalsystems
 
 Betrachten wir
 
@@ -87,23 +88,23 @@ Eine kleine Änderung von <InlineMath math="b_2" /> wird in der zweiten Lösungs
 
 ## Störungsabschätzung
 
-Es seien <InlineMath math="Ax=b" /> und
+Wir betrachten das Ausgangssystem <InlineMath math="Ax=b" /> und das folgende gestörte System.
 
 <BlockMath math="(A+\delta A)(x+\delta x)=b+\delta b" />
 
-mit derselben induzierten Norm gegeben. Falls
+Für alle Größen wird dieselbe induzierte Norm verwendet. Die folgende Abschätzung setzt voraus, dass
 
 <BlockMath math="\kappa(A)\frac{\|\delta A\|}{\|A\|}<1" />
 
-gilt, wird die relative Lösungsänderung beschränkt durch
+Unter dieser Voraussetzung wird die relative Lösungsänderung beschränkt durch
 
 <BlockMath math="\frac{\|\delta x\|}{\|x\|}\le\frac{\kappa(A)}{1-\kappa(A)\|\delta A\|/\|A\|}\left(\frac{\|\delta b\|}{\|b\|}+\frac{\|\delta A\|}{\|A\|}\right)" />
 
 Dies ist eine Abschätzung für den ungünstigsten Fall. Sie sagt nicht voraus, dass jede Störung die maximale Verstärkung erreicht.
 
-## Kondition ist nicht algorithmische Stabilität
+## Problemkondition und algorithmische Stabilität
 
-Die beiden Begriffe beantworten verschiedene Fragen:
+Problemkondition und algorithmische Stabilität beschreiben verschiedene Eigenschaften:
 
 - **Kondition** beschreibt die Empfindlichkeit des mathematischen Problems gegenüber Eingabeänderungen
 - **Stabilität** beschreibt den zusätzlichen Fehler, den ein numerisches Verfahren einführt

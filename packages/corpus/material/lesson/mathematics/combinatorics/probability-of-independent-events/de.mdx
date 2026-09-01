@@ -3,20 +3,21 @@ export const metadata = {
    description: "Unabhängigkeit prüfen und gemeinsame Wahrscheinlichkeiten berechnen, ohne sich von oberflächlichen Schlüsselwörtern täuschen zu lassen.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
+   dateModified: "2026-09-01",
    subject: "Kombinatorik",
 };
 
-## Unabhängige Ereignisse verstehen
+## Unabhängige Ereignisse
 
 In manchen Wahrscheinlichkeitsmodellen gilt: **Die Kenntnis eines Ergebnisses verändert die Wahrscheinlichkeit eines anderen nicht**. Wirf eine faire Münze und einen fairen Würfel. Das Ergebnis der Münze liefert keine Information über das Würfelergebnis. Die beiden Ereignisse sind unabhängig.
 
 Die Ereignisse <InlineMath math="A" /> und <InlineMath math="B" /> sind **unabhängig**, wenn die Wahrscheinlichkeit des jeweils anderen unverändert bleibt, sobald wir eines als Bedingung voraussetzen. Unabhängigkeit ist eine Eigenschaft des Wahrscheinlichkeitsmodells. Gleichzeitig stattfindende Ereignisse sind nicht automatisch unabhängig.
 
-Diese Unterscheidung ist wichtig, weil zwei Ereignisse eine verborgene gemeinsame Ursache haben können. Zwei Alarme steuern einander vielleicht nicht direkt, reagieren aber möglicherweise auf denselben Vorfall. Nimm Unabhängigkeit daher nur an, wenn sie aus dem Modell folgt oder ausdrücklich gegeben ist.
+Zwei Ereignisse können eine gemeinsame Ursache haben, obwohl keines das andere direkt steuert. Zwei Alarme können zum Beispiel auf denselben Vorfall reagieren. Nimm Unabhängigkeit nur an, wenn sie im Wahrscheinlichkeitsmodell vorgegeben ist oder sich aus den bedingten Wahrscheinlichkeiten ergibt.
 
 ## Eigenschaften unabhängiger Ereignisse
 
-### Keine gegenseitige Beeinflussung
+### Ein Ereignis ändert die Wahrscheinlichkeit des anderen nicht
 
 Das Hauptmerkmal unabhängiger Ereignisse lautet: **Das Ergebnis eines Ereignisses verändert die Wahrscheinlichkeit des anderen nicht**. Sind <InlineMath math="A" /> und <InlineMath math="B" /> unabhängig und gilt <InlineMath math="P(B) > 0" />, dann folgt:
 
@@ -24,7 +25,7 @@ Das Hauptmerkmal unabhängiger Ereignisse lautet: **Das Ergebnis eines Ereigniss
 
 Dies bedeutet, dass die Wahrscheinlichkeit, dass <InlineMath math="A" /> auftritt, wenn <InlineMath math="B" /> bereits aufgetreten ist, genauso groß ist wie die Wahrscheinlichkeit, dass <InlineMath math="A" /> im Allgemeinen auftritt.
 
-### Beispiele aus dem täglichen Leben
+### Getrennte Zufallsversuche
 
 Beispiele mit einem klar unabhängigen Mechanismus sind:
 
@@ -35,7 +36,7 @@ Beispiele mit einem klar unabhängigen Mechanismus sind:
 
 ### Identifizieren unabhängiger Ereignisse
 
-Frage zur Prüfung: „Verändert die Kenntnis des ersten Ergebnisses die Wahrscheinlichkeitsverteilung des zweiten?“ Eine bloße Ursache-Wirkungs-Geschichte reicht nicht. Nutze das angegebene Modell oder vergleiche bedingte und gewöhnliche Wahrscheinlichkeit.
+Frage zur Prüfung: „Verändert die Kenntnis des ersten Ergebnisses die Wahrscheinlichkeitsverteilung des zweiten?“ Eine vermutete Ursache-Wirkungs-Beziehung allein reicht nicht aus. Nutze das angegebene Modell oder vergleiche die bedingte mit der gewöhnlichen Wahrscheinlichkeit.
 
 ## Formel für die Wahrscheinlichkeit unabhängiger Ereignisse
 
@@ -47,13 +48,13 @@ Die Wahrscheinlichkeit dafür, dass <InlineMath math="A" /> und <InlineMath math
 
 ### Warum diese Formel funktioniert
 
-Bei unabhängigen Ereignissen stimmt die bedingte Wahrscheinlichkeit mit der gewöhnlichen Wahrscheinlichkeit überein. Aus <InlineMath math="P(A|B) = P(A)" /> folgt:
+Bei unabhängigen Ereignissen stimmt die bedingte Wahrscheinlichkeit mit der gewöhnlichen Wahrscheinlichkeit überein. Wegen <InlineMath math="P(A|B) = P(A)" /> lautet die Multiplikationsregel:
 
 <BlockMath math="P(A \cap B) = P(A|B) \times P(B) = P(A) \times P(B)" />
 
-Aus diesem Grund können wir einzelne Wahrscheinlichkeiten direkt multiplizieren, um die gemeinsame Wahrscheinlichkeit zu erhalten.
+Setzen wir <InlineMath math="P(A|B)=P(A)" /> in die Multiplikationsregel ein, erhalten wir <InlineMath math="P(A\cap B)=P(A)P(B)" />.
 
-## Anwendung in Berechnungen
+## Berechnungen mit unabhängigen Ereignissen
 
 ### Zwei Würfel werfen
 
@@ -96,7 +97,7 @@ Beide Ereignisse sind **unabhängig**, da das Ergebnis des Würfels keinen Einfl
 <BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
 </MathContainer>
 
-### Beispiel für angewandte Modellierung
+### Unabhängige Selbsttests zweier Sensoren
 
 Zwei unabhängig versorgte Überwachungssensoren führen täglich einen Selbsttest durch. Sensor <InlineMath math="A" /> besteht ihn mit Wahrscheinlichkeit <InlineMath math="0{,}98" />, Sensor <InlineMath math="B" /> mit Wahrscheinlichkeit <InlineMath math="0{,}92" />. Wie groß ist im angegebenen Unabhängigkeitsmodell die Wahrscheinlichkeit, dass beide Tests erfolgreich sind?
 
@@ -120,9 +121,9 @@ Die Wahrscheinlichkeit, dass beide Sensoren bestehen, beträgt somit <InlineMath
 
 ## Problemlösungsstrategien
 
-### Systematische Schritte
+### Unabhängigkeit vor dem Multiplizieren prüfen
 
-Bei Aufgaben mit unabhängigen Ereignissen gehen Sie so vor:
+Bei Aufgaben mit unabhängigen Ereignissen gehst du so vor:
 
 1. **Benenne die Ereignisse** im Problem
 2. **Prüfe ihre Unabhängigkeit** anhand des Modells oder der bedingten Wahrscheinlichkeiten
@@ -130,9 +131,9 @@ Bei Aufgaben mit unabhängigen Ereignissen gehen Sie so vor:
 4. **Wende die Formel an** <InlineMath math="P(A \cap B) = P(A) \times P(B)" />
 5. **Prüfe das Ergebnis** im Kontext der Aufgabe
 
-### Praktische Tipps
+### Kontrollen für das Endergebnis
 
-Einige nützliche Strategien:
+Nutze diese Kontrollen:
 
 - **Visualisiere** Ereignisse bei Bedarf mit einem Baumdiagramm
 - **Prüfe die Unabhängigkeit** am Modell oder an bedingten Wahrscheinlichkeiten. Der Zeitpunkt reicht dafür nicht aus
@@ -141,7 +142,7 @@ Einige nützliche Strategien:
 
 ### Unabhängige Ereignisse erkennen
 
-Achten Sie auf die folgenden Merkmale, um unabhängige Ereignisse zu identifizieren:
+Prüfe die folgenden Merkmale, um unabhängige Ereignisse zu erkennen:
 
 **Unabhängig unter dem angegebenen Modell:**
 - getrennte Würfe mit fairen Münzen
@@ -165,7 +166,7 @@ Achten Sie auf die folgenden Merkmale, um unabhängige Ereignisse zu identifizie
 
 4. Drei faire Münzen werden unabhängig voneinander geworfen. Bestimme die Wahrscheinlichkeit für genau zweimal Zahl.
 
-Bearbeiten Sie jede Aufgabe selbst, bevor Sie die ausführliche Lösung lesen. Begründen Sie die Unabhängigkeit, bevor Sie Wahrscheinlichkeiten multiplizieren.
+Bearbeite jede Aufgabe selbst, bevor du die ausführliche Lösung liest. Begründe die Unabhängigkeit, bevor du Wahrscheinlichkeiten multiplizierst.
 
 ### Ausführliche Lösungen
 

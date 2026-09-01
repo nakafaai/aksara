@@ -1,25 +1,25 @@
 export const metadata = {
-    title: "Semuanya adalah Objek di Python",
-    description: "Pelajari sifat object-oriented Python dan bagaimana angka, string, list, serta fungsi menjadi objek dengan method dan atribut.",
+    title: "Setiap Nilai Python adalah Objek",
+    description: "Bandingkan procedural, functional, dan object oriented programming, lalu periksa atribut serta method pada objek Python.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-26",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Pemrograman AI",
 };
 
 ## Cara Python Mengatur Data dan Perilaku
 
-Python mendukung beberapa cara menyusun program. Gaya prosedural mengatur program sebagai urutan langkah. Gaya fungsional mengolah data dengan fungsi. Gaya berorientasi objek menyatukan data dan tindakan yang berkaitan. Ketiganya dapat dipakai bersama.
+Python mendukung beberapa cara menyusun program. Procedural programming mengatur program sebagai urutan langkah. Functional programming mengolah data dengan fungsi. Object-oriented programming menyatukan data dan operasi yang berkaitan. Ketiganya dapat dipakai bersama.
 
 Saat program berjalan, setiap nilai di Python merupakan objek. Bilangan, fungsi, class, dan modul memiliki tipe, identitas yang membedakannya dari objek lain, serta nilai yang disimpan.
 
-Tipe sebuah objek menentukan data dan tindakan yang tersedia melalui atribut serta method. Karena aturan ini berlaku untuk semua objek, fungsi dapat disimpan di list, class dapat diberikan ke fungsi lain, dan bilangan dapat memiliki method. Kamu tetap dapat memilih cara menyusun program yang paling sesuai.
+Tipe sebuah objek menentukan atribut dan method yang tersedia. Karena aturan ini berlaku untuk semua objek, fungsi dapat disimpan dalam list, class dapat diberikan kepada fungsi lain, dan bilangan dapat memiliki method. Model objek Python dapat digunakan dalam program procedural, functional, maupun object-oriented.
 
 ## Membandingkan Cara Menyusun Program
 
-### Gaya Prosedural
+### Procedural Programming
 
-Dalam gaya prosedural, program disusun sebagai rangkaian operasi dengan aliran data yang jelas. Struktur data dan fungsi yang mengolahnya dapat ditulis secara terpisah, termasuk dalam bahasa yang mendukung class.
+Dalam procedural programming, program disusun sebagai rangkaian operasi dengan aliran data yang jelas. Struktur data dan fungsi yang mengolahnya dapat ditulis secara terpisah, termasuk dalam bahasa yang mendukung class.
 
 <CodeBlock
   data={[{
@@ -56,11 +56,11 @@ int main() {
   }]}
 />
 
-Di sini, `struct` C menyimpan state parkir dan setiap fungsi menerima pointer ke state tersebut. Organisasinya procedural; bukan berarti setiap fungsi procedural harus memutasi input.
+Di sini, `struct` C menyimpan state parkir. Setiap fungsi menerima pointer ke data tersebut. Fungsi procedural dapat membaca input dan membiarkannya tetap sama.
 
-### Bahasa Object-Oriented
+### Object Oriented Programming
 
-Dalam gaya object-oriented, class dapat mengelompokkan state dan behavior yang berkaitan di balik satu interface. Atribut merepresentasikan state objek, sedangkan method mendefinisikan operasi yang memakai atau memperbaruinya.
+Dalam object-oriented programming, class mengelompokkan data dan operasi yang saling berkaitan. Atribut menyimpan state objek, sedangkan method membaca atau memperbarui state tersebut.
 
 <CodeBlock
   data={[{
@@ -89,11 +89,11 @@ print(f"Max: {ps.max}, Occupied: {ps.occ}")`
   }]}
 />
 
-Versi Python mengelompokkan invariant dan operasi parkir dalam satu class. Boundary itu dapat melindungi state yang valid, tetapi hanya jika method benar-benar memvalidasi input dan tidak sembarangan mengekspos internal mutable.
+Versi Python mengelompokkan aturan dan operasi parkir dalam satu class. Method memeriksa input, tetapi atribut seperti `vehicles` masih dapat diubah dari luar. Jika state harus dijaga, sediakan interface yang diperlukan dan jangan mengekspos objek mutable tersebut secara langsung.
 
 ## Sistem Parkir sebagai Contoh
 
-Gunakan sistem parkir sebagai contoh untuk memahami konsep objek. Dalam dunia nyata, sistem parkir memiliki karakteristik seperti kapasitas maksimal dan jumlah tempat yang terisi. Sistem ini juga dapat melakukan aksi seperti menerima mobil masuk atau keluar.
+Pada contoh ini, sistem parkir menjadi objek dengan state dan behavior. State menyimpan kapasitas maksimum dan jumlah tempat yang terisi. Method menerima mobil masuk atau mencatat mobil keluar.
 
 <CodeBlock
   data={[{
@@ -105,10 +105,10 @@ Gunakan sistem parkir sebagai contoh untuk memahami konsep objek. Dalam dunia ny
         if capacity <= 0:
             raise ValueError("Kapasitas harus positif")
         self.capacity = capacity
-        self.vehicles = []  # Daftar kendaraan yang parkir
+        self.vehicles = []  # List kendaraan yang parkir
 
     def park_vehicle(self, vehicle_plate):
-        """Method untuk parkir kendaraan"""
+        """Method untuk memarkir kendaraan"""
         if vehicle_plate in self.vehicles:
             return f"Kendaraan {vehicle_plate} sudah terparkir"
         if len(self.vehicles) >= self.capacity:
@@ -118,7 +118,7 @@ Gunakan sistem parkir sebagai contoh untuk memahami konsep objek. Dalam dunia ny
         return f"Kendaraan {vehicle_plate} berhasil parkir"
 
     def exit_vehicle(self, vehicle_plate):
-        """Method untuk keluar parkir"""
+        """Method untuk mengeluarkan kendaraan"""
         if vehicle_plate in self.vehicles:
             self.vehicles.remove(vehicle_plate)
             return f"Kendaraan {vehicle_plate} keluar parkir"
@@ -137,7 +137,7 @@ Gunakan sistem parkir sebagai contoh untuk memahami konsep objek. Dalam dunia ny
         }
 
     def is_full(self):
-        """Method untuk mengecek apakah parkir penuh"""
+        """Method untuk memeriksa apakah parkir penuh"""
         return len(self.vehicles) >= self.capacity
 
 # Contoh penggunaan
@@ -151,7 +151,7 @@ print(parking.is_full())`
 
 ## Konsep Objek pada Tipe Data
 
-"Semuanya adalah objek" berarti Python memperlakukan nilai runtime melalui satu model objek. Atribut dan method yang tersedia tetap bergantung pada tipe setiap nilai.
+"Setiap nilai adalah objek" berarti Python memakai satu model objek untuk seluruh nilai saat program berjalan. Atribut dan method yang tersedia tetap bergantung pada tipe objek tersebut.
 
 ### Angka adalah Objek
 
@@ -164,12 +164,12 @@ number = 42
 
 # Angka memiliki method
 print(number.bit_length())  # Method untuk menghitung bit length
-print(number.__add__(8))    # Method untuk penjumlahan (sama dengan number + 8)
+print(number.__add__(8))    # Method penjumlahan (sama dengan number + 8)
 
 # Angka float juga objek
 price = 15.75
-print(price.is_integer())   # Method untuk cek apakah bilangan bulat
-print(price.as_integer_ratio())  # Method untuk konversi ke rasio
+print(price.is_integer())   # Method untuk memeriksa apakah bilangan bulat
+print(price.as_integer_ratio())  # Method untuk mengubah nilai menjadi rasio
 
 # Bahkan hasil operasi matematika adalah objek
 result = 10 + 5
@@ -184,30 +184,30 @@ print(dir(result))          # Melihat semua method yang tersedia`
   data={[{
     language: "python",
     filename: "strings_as_objects.py",
-    code: `# String di Python adalah objek yang sangat powerful
+    code: `# String di Python adalah objek dengan built-in method
 message = "Belajar Python itu Menyenangkan"
 
-# String memiliki banyak method berguna
+# String memiliki banyak method
 print(message.upper())              # BELAJAR PYTHON ITU MENYENANGKAN
 print(message.lower())              # belajar python itu menyenangkan
 print(message.title())              # Belajar Python Itu Menyenangkan
 print(message.count('a'))           # Menghitung huruf 'a'
 print(message.replace('Python', 'Programming'))  # Mengganti kata
 
-# Method untuk pemeriksaan
+# Method pemeriksaan
 email = "user@example.com"
 print(email.endswith('.com'))       # True
 print(email.startswith('user'))     # True
 print(email.find('@'))              # Posisi karakter '@'
 
-# Method untuk formatting
+# Method formatting
 name = "alice"
 age = 25
 formatted = "Nama: {}, Umur: {}".format(name.title(), age)
 print(formatted)
 
 # String split dan join
-words = message.split()             # Memecah jadi list kata
+words = message.split()             # Memecah teks menjadi list kata
 print(words)
 rejoined = " ".join(words)          # Menggabung kembali
 print(rejoined)`
@@ -223,7 +223,7 @@ print(rejoined)`
     code: `# List di Python adalah objek yang dinamis
 fruits = ["apel", "jeruk", "mangga"]
 
-# List memiliki method untuk manipulasi data
+# List memiliki method untuk mengubah data
 fruits.append("pisang")             # Menambah di akhir
 print(fruits)
 
@@ -233,7 +233,7 @@ print(fruits)
 fruits.remove("jeruk")              # Menghapus item tertentu
 print(fruits)
 
-# Method untuk pencarian dan pengurutan
+# Method pencarian dan pengurutan
 numbers = [3, 1, 4, 1, 5, 9, 2, 6]
 print(numbers.count(1))             # Menghitung kemunculan
 print(numbers.index(4))             # Mencari posisi
@@ -248,10 +248,10 @@ print(numbers)
 squares = [x**2 for x in range(1, 6)]
 print(squares)                      # [1, 4, 9, 16, 25]
 
-# Method untuk operasi advanced
+# Method untuk operasi lanjutan
 original = [1, 2, 3]
 copy_list = original.copy()         # Membuat salinan
-original.extend([4, 5])             # Menambah multiple items
+original.extend([4, 5])             # Menambah beberapa item
 print(f"Original: {original}")
 print(f"Copy: {copy_list}")`
   }]}
@@ -271,7 +271,7 @@ student = {
     "gpa": 3.8
 }
 
-# Dictionary memiliki method untuk manipulasi
+# Dictionary memiliki method untuk mengubah data
 print(student.get("name"))          # Mengambil value dengan aman
 print(student.get("height", "Unknown"))  # Default value jika key tidak ada
 
@@ -280,11 +280,11 @@ print(student.keys())               # Semua keys
 print(student.values())             # Semua values
 print(student.items())              # Pasangan key-value
 
-# Method untuk update dan manipulasi
-student.update({"semester": 6, "age": 23})  # Update multiple values
+# Method untuk memperbarui data
+student.update({"semester": 6, "age": 23})  # Memperbarui beberapa nilai
 print(student)
 
-# Pop method untuk mengambil dan menghapus
+# Method pop untuk mengambil dan menghapus
 gpa = student.pop("gpa")
 print(f"GPA yang dihapus: {gpa}")
 print(student)
@@ -294,7 +294,7 @@ grades = {"Math": 85, "Physics": 92, "Chemistry": 78}
 passed = {subject: grade for subject, grade in grades.items() if grade >= 80}
 print(passed)
 
-# Nested dictionary
+# Dictionary bertingkat
 university = {
     "students": {
         "CS": ["Alice", "Bob"],
@@ -306,15 +306,15 @@ print(university["students"]["CS"])`
   }]}
 />
 
-## Fungsi juga adalah Objek
+## Fungsi sebagai Objek
 
-Salah satu hal yang menarik di Python adalah bahwa fungsi juga merupakan objek. Ini memungkinkan kamu untuk memperlakukan fungsi seperti data biasa.
+Fungsi juga merupakan objek di Python. Fungsi dapat diberikan sebagai argumen, disimpan di dalam collection, dan ditempatkan pada variabel seperti nilai lain.
 
 <CodeBlock
   data={[{
     language: "python",
     filename: "functions_as_objects.py",
-    code: `# Fungsi di Python adalah objek first-class
+    code: `# Fungsi di Python dapat diperlakukan seperti nilai lain
 def greet(name):
     return f"Hello, {name}!"
 
@@ -329,7 +329,7 @@ print(type(greet))                  # <class 'function'>
 my_function = greet
 print(my_function("Alice"))         # Hello, Alice!
 
-# Fungsi bisa disimpan dalam list
+# Fungsi dapat disimpan dalam list
 functions = [greet, farewell]
 for func in functions:
     print(func("Bob"))
@@ -368,19 +368,19 @@ print(square(5))                    # 25`
 
 ## Class dan Instance sebagai Objek
 
-Class mendefinisikan cara instance dibuat dan cara shared behavior-nya di-resolve. Class itu sendiri juga objek, sedangkan setiap instance membawa instance state masing-masing.
+Class menentukan cara instance dibuat serta menyediakan class attribute dan method yang dipakai bersama. Class itu sendiri juga merupakan objek, sedangkan setiap instance menyimpan state masing-masing.
 
 <CodeBlock
   data={[{
     language: "python",
     filename: "class_and_instances.py",
-    code: `# Membuat class sebagai blueprint
+    code: `# Mendefinisikan class sebagai blueprint
 class Student:
-    # Class attribute (shared by all instances)
+    # Class attribute yang dipakai semua instance
     university = "Universitas Indonesia"
 
     def __init__(self, name, major, semester):
-        # Instance attributes (unique for each instance)
+        # Instance attribute yang berbeda pada setiap instance
         self.name = name
         self.major = major
         self.semester = semester
@@ -402,18 +402,18 @@ class Student:
         }
 
     def __str__(self):
-        """Method khusus untuk representasi string"""
+        """Special method untuk representasi string"""
         return f"Student({self.name}, {self.major})"
 
     def __len__(self):
-        """Method khusus untuk mendapatkan jumlah mata kuliah"""
+        """Special method untuk mendapatkan jumlah mata kuliah"""
         return len(self.courses)
 
-# Membuat instance (objek) dari class
+# Membuat instance dari class
 student1 = Student("Alice", "Computer Science", 4)
 student2 = Student("Bob", "Mathematics", 6)
 
-# Setiap instance adalah objek dengan atribut dan method
+# Setiap instance adalah objek dengan attribute dan method
 print(student1.add_course("Python Programming"))
 print(student1.add_course("Data Structures"))
 
@@ -424,25 +424,25 @@ print(student2.add_course("Linear Algebra"))
 print(student1.get_info())
 print(student2.get_info())
 
-# Method khusus (__str__ dan __len__)
+# Special method (__str__ dan __len__)
 print(student1)                     # Student(Alice, Computer Science)
 print(len(student1))                # 2 (jumlah mata kuliah)
 
-# Instance memiliki atribut yang bisa diakses
+# Instance memiliki attribute yang dapat diakses
 print(f"Nama: {student1.name}")
 print(f"Jurusan: {student1.major}")
 print(f"Universitas: {student1.university}")
 
-# Class juga objek
+# Class juga merupakan objek
 print(type(Student))                # <class 'type'>
 print(Student.__name__)             # Student
 print(Student.university)           # Universitas Indonesia`
   }]}
 />
 
-## Method Khusus
+## Special Methods
 
-Special method dimulai dan diakhiri dengan double underscore. Python memanggilnya melalui sintaks dan built-in seperti `+`, `abs()`, `repr()`, dan truth testing. Implementasikan hanya jika maknanya alami untuk domain tersebut.
+Nama special method dimulai dan diakhiri dengan double underscore, seperti `__len__`. Python memanggil method ini melalui sintaks atau built-in function seperti `+`, `abs()`, `repr()`, dan `bool()`. Tambahkan special method hanya jika operasi tersebut memang masuk akal untuk objek yang dibuat.
 
 <CodeBlock
   data={[{
@@ -501,9 +501,9 @@ print(bool(nol))                       # False`
   }]}
 />
 
-## Praktik Object-Oriented Programming
+## Praktik Object Oriented Programming
 
-Buat contoh yang lebih kompleks untuk memahami bagaimana OOP diterapkan dalam skenario nyata.
+Contoh berikut menggabungkan beberapa class untuk memodelkan buku, anggota, dan proses peminjaman di perpustakaan.
 
 <CodeBlock
   data={[{
@@ -653,4 +653,4 @@ print(library.return_book("M001", "978-1234567890"))`
   }]}
 />
 
-Model objek Python menjelaskan mengapa nilai, fungsi, dan class dapat bergerak melalui mekanisme bahasa yang sama. Gunakan komposisi object-oriented ketika state dan behavior membentuk boundary yang berguna, tetapi pertahankan desain procedural atau functional jika itu menjelaskan masalah dengan lebih langsung.
+Karena semua nilai mengikuti model objek yang sama, fungsi dan class dapat disimpan dalam variabel, dimasukkan ke list, atau diberikan sebagai argumen seperti nilai lain. Gunakan object-oriented programming ketika data dan operasi terkait perlu dikelola bersama. Gunakan procedural programming atau functional programming ketika urutan langkah atau aliran datanya lebih mudah dijelaskan secara langsung.

@@ -1,21 +1,19 @@
 export const metadata = {
   title: "Position of a Point to a Circle",
-  description: "Learn to determine if a point is inside, on, or outside a circle using power of a point method. Learn coordinate geometry with worked examples.",
+  description: "Use point power to determine whether a point lies inside, on, or outside a circle in the coordinate plane.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Analytic Geometry",
 };
 
 
 
-## Understanding Point Position Relative to a Circle
+## Point Position Relative to a Circle
 
 Given a circle and a point, exactly one of three cases applies: the point lies inside the circle, on its circumference, or outside it.
 
-The same comparison appears in simplified coverage models, such as deciding whether a location lies inside an idealized circular signal or radar range. Once the circular model is chosen, coordinate geometry gives an exact answer.
-
-The circle equation and the point coordinates give an exact classification.
+The same comparison appears in simplified coverage models, such as deciding whether a location lies inside an idealized circular signal or radar range. The circle equation and point coordinates then classify the location exactly.
 
 ## Power of a Point Concept
 
@@ -23,7 +21,7 @@ To classify the point, we use its **power with respect to the circle**. This alg
 
 <BlockMath math="K_A = (x_0-a)^2 + (y_0-b)^2 - r^2" />
 
-If we have point <InlineMath math="A(x_0, y_0)" /> and a circle with general equation <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, then the power of point <InlineMath math="A" /> is defined as:
+For point <InlineMath math="A(x_0, y_0)" /> and the general circle <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, the power of <InlineMath math="A" /> is:
 
 <BlockMath math="K_A = x_0^2 + y_0^2 + Dx_0 + Ey_0 + F" />
 
@@ -151,13 +149,12 @@ The three cases are shown in the graph below:
 
 ## How to Determine Point Position
 
-First identify the circle equation and the coordinates of the point. Then substitute the coordinates into the equation and inspect the sign of the result.
+First identify the circle equation and the point coordinates. Substitute the coordinates into the power-of-a-point formula to obtain <InlineMath math="K_A" />.
 
-If the result is negative, the point is inside. If zero, the point is on the circle. If positive, the point is outside the circle.
+The sign of <InlineMath math="K_A" /> determines the point's position. If <InlineMath math="K_A<0" />, the point is inside the circle. If <InlineMath math="K_A=0" />, the point is on the circle. If <InlineMath math="K_A>0" />, the point is outside the circle.
 
-Try with a concrete example. Say we have point <InlineMath math="A(1, -2)" /> and circle <InlineMath math="x^2 + y^2 = 25" />.
-
-First compute the squared distance to the center, then subtract <InlineMath math="r^2" />:
+For point <InlineMath math="A(1, -2)" /> and circle <InlineMath math="x^2 + y^2 = 25" />, first compute the squared distance to the center.
+Then subtract <InlineMath math="r^2" />:
 
 <MathContainer>
   <BlockMath math="d_A^2 = 1^2 + (-2)^2 = 1 + 4 = 5" />
@@ -170,7 +167,7 @@ Because <InlineMath math="K_A = -20 < 0" />, point <InlineMath math="A(1, -2)" /
 
 ## Application for General Form
 
-If the circle is in general form <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, the method is the same. Just substitute the point coordinates into the entire equation and look at the sign of the result.
+For a circle in general form <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, calculate <InlineMath math="K_A=x_0^2+y_0^2+Dx_0+Ey_0+F" />. The sign of <InlineMath math="K_A" /> determines whether the point is inside, on, or outside the circle.
 
 For example, for point <InlineMath math="A(1, -2)" /> and circle <InlineMath math="x^2 + y^2 - 8x - 2y - 8 = 0" />:
 

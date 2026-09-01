@@ -3,6 +3,7 @@ export const metadata = {
   description: "Verschiebe Funktionsgraphen nach oben oder unten und verfolge dabei Koordinaten, Asymptoten und Wertebereiche.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Funktionstransformation",
 };
 
@@ -20,7 +21,7 @@ Für jede Funktion <InlineMath math="f(x)" /> gilt:
 
 <BlockMath math="g(x) = f(x) + k" />
 
-Dabei gilt:
+Für die Richtung der Verschiebung gelten diese Regeln:
 - Für <InlineMath math="k > 0" /> verschiebt sich der Graph **nach oben**, und zwar um <InlineMath math="k \text{Einheiten}" />.
 - Für <InlineMath math="k < 0" /> verschiebt sich der Graph **nach unten**, und zwar um <InlineMath math="|k| \text{Einheiten}" />.
 - Für <InlineMath math="k = 0" /> bleibt der Graph unverändert.
@@ -39,6 +40,7 @@ Die lineare Funktion <InlineMath math="f(x) = 2x" /> zeigt, dass sich die Steigu
         const x = (i - 10) * 0.5;
         return { x, y: 2 * x, z: 0 };
       }),
+      smooth: false,
       color: "#9333ea",
       labels: [{ text: <InlineMath math="f(x)=2x" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -48,6 +50,7 @@ Die lineare Funktion <InlineMath math="f(x) = 2x" /> zeigt, dass sich die Steigu
         const x = (i - 10) * 0.5;
         return { x, y: 2 * x + 3, z: 0 };
       }),
+      smooth: false,
       color: "#ea580c",
       labels: [{ text: <InlineMath math="g(x)=2x+3" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -57,6 +60,7 @@ Die lineare Funktion <InlineMath math="f(x) = 2x" /> zeigt, dass sich die Steigu
         const x = (i - 10) * 0.5;
         return { x, y: 2 * x - 2, z: 0 };
       }),
+      smooth: false,
       color: "#0d9488",
       labels: [{ text: <InlineMath math="h(x)=2x-2" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -71,7 +75,7 @@ Die Visualisierung zeigt:
 
 ## Vertikale Verschiebung quadratischer Funktionen
 
-Wenden wir nun dasselbe Konzept auf die quadratische Funktion <InlineMath math="f(x) = x^2" /> an.
+Dieselbe Verschiebungsregel gilt für die quadratische Funktion <InlineMath math="f(x) = x^2" />.
 
 <LineEquation
   title={<>Vertikale Verschiebung der quadratischen Funktion <InlineMath math="f(x) = x^2" /></>}
@@ -113,7 +117,7 @@ An den Scheitelpunkten ist die Verschiebung direkt ablesbar:
 - Nach der vertikalen Verschiebung <InlineMath math="+4" /> liegt der Scheitelpunkt von <InlineMath math="g(x) = x^2 + 4" /> bei <InlineMath math="(0, 4)" />
 - Nach der vertikalen Verschiebung <InlineMath math="-3" /> liegt der Scheitelpunkt von <InlineMath math="h(x) = x^2 - 3" /> bei <InlineMath math="(0, -3)" />
 
-## Wichtige Eigenschaften der vertikalen Verschiebung
+## Eigenschaften der vertikalen Verschiebung
 
 ### Die Graphenform bleibt unverändert
 
@@ -123,18 +127,16 @@ Eine vertikale Verschiebung erhält die Form des Graphen. Jeder Punkt bewegt sic
 
 Liegt der Punkt <InlineMath math="(a, b)" /> auf dem Graphen von <InlineMath math="f(x)" />, liegt nach der Verschiebung um <InlineMath math="k" /> der Punkt <InlineMath math="(a, b + k)" /> auf dem Graphen von <InlineMath math="f(x) + k" />.
 
-### Definitions- und Wertebereich
+### Definitions und Wertebereich
 
 - **Definitionsbereich**: Bleibt bei einer vertikalen Verschiebung unverändert.
 - **Wertebereich**: Verschiebt sich um <InlineMath math="k \text{Einheiten}" />.
 
 Ist der Wertebereich der ursprünglichen Funktion <InlineMath math="[c, d]" />, wird er nach der Verschiebung um <InlineMath math="k" /> zu <InlineMath math="[c + k, d + k]" />.
 
-## Anwendungsbeispiele
+## Einen Exponentialgraphen vertikal verschieben
 
-### Beispiel mit einer Exponentialfunktion
-
-Nun wird die Exponentialfunktion <InlineMath math="f(x) = 2^x" /> vertikal verschoben.
+Die Exponentialfunktion <InlineMath math="f(x) = 2^x" /> wird vertikal verschoben.
 
 <LineEquation
   title={<>Vertikale Verschiebung der Exponentialfunktion <InlineMath math="f(x) = 2^x" /></>}
@@ -242,6 +244,7 @@ Für Exponentialfunktionen:
            const x = (i - 10) * 0.5;
            return { x, y: 3 * x + 2, z: 0 };
          }),
+         smooth: false,
          color: "#7c3aed",
          labels: [{ text: <InlineMath math="g(x)=3x+2" />, offset: [1, 0.5, 0] }],
          showPoints: false,
@@ -251,6 +254,7 @@ Für Exponentialfunktionen:
            const x = (i - 10) * 0.5;
            return { x, y: 3 * x + 2 - 7, z: 0 };
          }),
+         smooth: false,
          color: "#0d9488",
          labels: [{ text: <InlineMath math="g'(x)=3x-5" />, offset: [1, 0.5, 0] }],
          showPoints: false,

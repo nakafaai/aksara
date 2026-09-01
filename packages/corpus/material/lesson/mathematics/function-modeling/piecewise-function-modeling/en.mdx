@@ -1,10 +1,10 @@
 
 export const metadata = {
   title: "Piecewise Function Modeling",
-  description: "Learn how to build piecewise function models from interval boundaries, tiered rates, staged motion, and connection points.",
+  description: "Build piecewise function models from interval boundaries, tiered rates, staged motion, and connection points.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Functions and Their Modeling",
 };
 
@@ -20,7 +20,7 @@ A piecewise function can be written in the form:
 
 <BlockMath math="f(x) = \begin{cases} f_1(x), & \text{if } x \in D_1 \\ f_2(x), & \text{if } x \in D_2 \\ f_3(x), & \text{if } x \in D_3 \\ \vdots \\ f_n(x), & \text{if } x \in D_n \end{cases}" />
 
-where <InlineMath math="D_1, D_2, D_3, \ldots, D_n" /> are intervals that form a partition of the function's domain.
+In this definition, <InlineMath math="D_1, D_2, D_3, \ldots, D_n" /> are non-overlapping intervals that partition the function's domain.
 
 When reading or building a piecewise function, pay attention to three things:
 
@@ -43,6 +43,7 @@ A linear piecewise function uses a linear function on each interval. This form o
         const x = -2 + i * 0.1;
         return { x, y: 2 * x + 3, z: 0 };
       }),
+      smooth: false,
       color: "#9333ea",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=2x+3" />, at: 10, offset: [-1.5, 1, 0] }],
@@ -52,6 +53,7 @@ A linear piecewise function uses a linear function on each interval. This form o
         const x = 0 + i * 0.1;
         return { x, y: -x + 3, z: 0 };
       }),
+      smooth: false,
       color: "#ea580c",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=-x+3" />, at: 10, offset: [1, 1, 0] }],
@@ -61,6 +63,7 @@ A linear piecewise function uses a linear function on each interval. This form o
         const x = 2 + i * 0.1;
         return { x, y: 0.5 * x, z: 0 };
       }),
+      smooth: false,
       color: "#0891b2",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=0.5x" />, at: 10, offset: [1, -0.5, 0] }],
@@ -98,6 +101,7 @@ Piecewise functions can also use quadratic pieces. A quadratic piece can describ
         const x = 0 + i * 0.1;
         return { x, y: 2 * x, z: 0 };
       }),
+      smooth: false,
       color: "#0d9488",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=2x" />, at: 15, offset: [1, -1, 0] }],
@@ -149,6 +153,7 @@ For example, the two rules below meet at <InlineMath math="x=1" /> but approach 
         const x = -1 + i * 0.1;
         return { x, y: x + 2, z: 0 };
       }),
+      smooth: false,
       color: "#e11d48",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=x+2" />, at: 10, offset: [-1, 1, 0] }],
@@ -158,6 +163,7 @@ For example, the two rules below meet at <InlineMath math="x=1" /> but approach 
         const x = 1 + i * 0.1;
         return { x, y: 2 * x - 3, z: 0 };
       }),
+      smooth: false,
       color: "#d97706",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=2x-3" />, at: 10, offset: [1, 1, 0] }],
@@ -171,7 +177,7 @@ For example, the two rules below meet at <InlineMath math="x=1" /> but approach 
 
 ### Progressive Rates
 
-Many real-world situations can be modeled with piecewise functions because their rules change after certain boundaries. Progressive taxes, tiered parking fees, and tiered electricity rates are common examples.
+Piecewise functions model rules that change at specified thresholds. Progressive taxes, tiered parking fees, and tiered electricity rates all apply a different rule after a boundary is crossed.
 
 **Example: Electricity Rates**
 
@@ -326,6 +332,7 @@ Piecewise function:
            const x = -2 + i * 0.1;
            return { x, y: -x + 2, z: 0 };
          }),
+         smooth: false,
          color: "#9333ea",
          showPoints: false,
          labels: [{ text: <InlineMath math="y=-x+2" />, at: 10, offset: [0, 0.5, 0] }],
@@ -344,6 +351,7 @@ Piecewise function:
            const x = 2 + i * 0.1;
            return { x, y: 4, z: 0 };
          }),
+         smooth: false,
          color: "#0891b2",
          showPoints: false,
          labels: [{ text: <InlineMath math="y=4" />, at: 10, offset: [0, 0.5, 0] }],

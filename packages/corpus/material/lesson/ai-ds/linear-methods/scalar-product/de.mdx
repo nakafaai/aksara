@@ -3,6 +3,7 @@ export const metadata = {
   description: "Reelle und komplexe Skalarprodukte aus positiv definiten Matrizen aufbauen und damit Länge, Winkel, Orthogonalität und Projektion definieren.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Lineare Methoden der KI",
 };
 
@@ -27,13 +28,13 @@ Für reelle Vektoren definiert die Formel
 
 <BlockMath math="\langle x,y\rangle_A=x^TAy" />
 
-genau dann ein Skalarprodukt, wenn <InlineMath math="A" /> symmetrisch positiv definit ist. Die Symmetrie von <InlineMath math="A" /> liefert die Symmetrie der Paarung, und <InlineMath math="x^TAx>0" /> für jedes <InlineMath math="x" /> ungleich null liefert die strikte Positivität.
+Diese Formel definiert genau dann ein Skalarprodukt, wenn <InlineMath math="A" /> symmetrisch positiv definit ist. Die Symmetrie von <InlineMath math="A" /> liefert die Symmetrie der Paarung, und <InlineMath math="x^TAx>0" /> für jedes <InlineMath math="x" /> ungleich null liefert die strikte Positivität.
 
 Für komplexe Vektoren lautet die entsprechende Formel
 
 <BlockMath math="\langle x,y\rangle_A=x^HAy" />
 
-wobei <InlineMath math="A" /> hermitesch positiv definit sein muss. Nur zu sagen, dass <InlineMath math="A" /> positive Einträge oder positive Diagonaleinträge besitzt, genügt nicht.
+In dieser Formel muss <InlineMath math="A" /> hermitesch positiv definit sein. Nur zu sagen, dass <InlineMath math="A" /> positive Einträge oder positive Diagonaleinträge besitzt, genügt nicht.
 
 Mit <InlineMath math="A=I" /> erhält man die euklidischen Standardskalarprodukte:
 
@@ -42,7 +43,7 @@ Mit <InlineMath math="A=I" /> erhält man die euklidischen Standardskalarprodukt
 <BlockMath math="\langle x,y\rangle=x^Hy\qquad\text{über }\mathbb{C}^n" />
 </MathContainer>
 
-## Länge, Winkel und Orthogonalität
+## Länge Winkel und Orthogonalität
 
 Jedes Skalarprodukt induziert die Norm
 
@@ -52,13 +53,13 @@ Die Cauchy-Schwarz-Ungleichung
 
 <BlockMath math="|\langle x,y\rangle_A|\le\|x\|_A\|y\|_A" />
 
-stellt sicher, dass der Winkel für reelle Vektoren ungleich null durch
+Für reelle Vektoren ungleich null stellt diese Ungleichung sicher, dass der Winkel durch
 
 <BlockMath math="\cos\theta_A=\frac{\langle x,y\rangle_A}{\|x\|_A\|y\|_A}" />
 
-wohldefiniert ist. Vektoren sind <InlineMath math="A" />-orthogonal, wenn <InlineMath math="\langle x,y\rangle_A=0" /> gilt. Eine Änderung von <InlineMath math="A" /> ändert die Geometrie. Daher müssen euklidisch senkrechte Vektoren in einer gewichteten Metrik nicht senkrecht sein.
+Der Winkel <InlineMath math="\theta_A" /> ist damit wohldefiniert. Vektoren sind <InlineMath math="A" />-orthogonal, wenn <InlineMath math="\langle x,y\rangle_A=0" /> gilt. Eine Änderung von <InlineMath math="A" /> ändert die Geometrie. Daher müssen euklidisch senkrechte Vektoren in einer gewichteten Metrik nicht senkrecht sein.
 
-## Gerechnetes gewichtetes Beispiel
+## Euklidische und gewichtete Winkel vergleichen
 
 Sei
 
@@ -77,7 +78,7 @@ Die positiven Eigenwerte bestätigen, dass <InlineMath math="A" /> symmetrisch p
 
 Dieselben Koordinatenvektoren stehen somit in der euklidischen Geometrie senkrecht, bilden in der <InlineMath math="A" />-Geometrie aber einen Winkel von <InlineMath math="60^\circ" />.
 
-## Komplexes Beispiel
+## Orthogonale komplexe Vektoren mit Konjugation
 
 Für das Standardskalarprodukt sei
 
@@ -101,7 +102,7 @@ Das Residuum ist <InlineMath math="A" />-orthogonal zu <InlineMath math="u" />:
 
 Dasselbe geometrische Prinzip liegt der gewichteten Methode der kleinsten Quadrate zugrunde: Das angepasste Residuum steht bezüglich des gewählten Skalarprodukts senkrecht auf dem Modellraum.
 
-## Matrixdarstellung und Gram-Matrizen
+## Matrixdarstellung und Grammatrizen
 
 In der Standardbasis <InlineMath math="e_1,\ldots,e_n" /> besitzt jedes endlichdimensionale Skalarprodukt genau eine Darstellungsmatrix mit den Einträgen
 
@@ -113,4 +114,4 @@ Für Vektoren <InlineMath math="v_1,\ldots,v_k" /> ist ihre Gram-Matrix durch
 
 <BlockMath math="G_{ij}=\langle v_i,v_j\rangle_A" />
 
-gegeben. Sie ist hermitesch positiv semidefinit und genau dann positiv definit, wenn die Vektoren linear unabhängig sind. Gram-Matrizen verwandeln geometrische Fragen nach Winkeln und Unabhängigkeit in Matrixfragen.
+Diese Einträge bilden eine hermitesche positiv semidefinite Matrix. Die Gram-Matrix ist genau dann positiv definit, wenn die Vektoren linear unabhängig sind. Gram-Matrizen verwandeln geometrische Fragen nach Winkeln und Unabhängigkeit in Matrixfragen.

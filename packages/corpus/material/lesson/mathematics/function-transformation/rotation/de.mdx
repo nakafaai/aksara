@@ -1,8 +1,9 @@
 export const metadata = {
   title: "Drehung",
-  description: "Verstehe mit Formeln, Graphen und vollständig gelösten Beispielen, wie Punkte und Funktionskurven um einen Mittelpunkt gedreht werden.",
+  description: "Drehe Punkte und Funktionskurven mit Koordinatenformeln um einen festgelegten Mittelpunkt.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Funktionstransformation",
 };
 
@@ -12,7 +13,7 @@ export const metadata = {
 
 Eine Drehung bewegt jeden Punkt einer Figur um einen festen Mittelpunkt und durch denselben Winkel. Bei einem Funktionsgraphen wird deshalb die gesamte Punktmenge gedreht.
 
-Das lässt sich mit einem Rad vergleichen: Jeder Punkt bewegt sich auf einem Kreis um die Radmitte. Der Abstand zum Drehzentrum bleibt dabei unverändert.
+Stell dir ein Rad vor, das sich dreht. Jeder Punkt auf dem Rad bewegt sich auf einem Kreis um die Radmitte. Bei der Drehung eines Graphen geschieht dasselbe. Jeder Punkt bewegt sich um das Drehzentrum und behält dabei denselben Abstand.
 
 ## Drehformel für einen beliebigen Mittelpunkt
 
@@ -23,7 +24,7 @@ Für eine Drehung um <InlineMath math="(a, b)" /> durch den Winkel <InlineMath m
 <BlockMath math="y' = (x - a) \sin \theta + (y - b) \cos \theta + b" />
 </MathContainer>
 
-Dabei bezeichnet:
+Die Symbole in diesen Gleichungen bedeuten:
 - <InlineMath math="(x, y)" /> die ursprünglichen Punktkoordinaten
 - <InlineMath math="(x', y')" /> die Koordinaten nach der Drehung
 - <InlineMath math="(a, b)" /> den Drehmittelpunkt
@@ -31,7 +32,7 @@ Dabei bezeichnet:
 
 ## Drehungen um den Ursprung
 
-Für den Ursprung <InlineMath math="(0, 0)" /> vereinfachen sich die Formeln:
+Bei einer Drehung um den Ursprung <InlineMath math="(0, 0)" /> entfernt das Einsetzen von <InlineMath math="a=b=0" /> die Verschiebungsterme aus der allgemeinen Formel:
 
 1. Drehung um <InlineMath math="90^\circ" />
 
@@ -93,7 +94,7 @@ Die quadratische Funktion <InlineMath math="y = x^2" /> wird nun um den Ursprung
 
 ## Eigenschaften einer Drehung
 
-Bei jeder Drehung gelten drei wichtige Eigenschaften:
+Eine Drehung erhält die folgenden drei Merkmale:
 
 - **Die Form bleibt erhalten**: Nur die Lage und Ausrichtung der Kurve ändern sich
 - **Abstände bleiben erhalten**: Zwei Punkte liegen nach der Drehung genauso weit auseinander wie zuvor
@@ -115,6 +116,7 @@ Bei einer Geraden <InlineMath math="y = mx + c" /> verändert die Drehung sowohl
         const y = 2 * x + 1;
         return { x, y, z: 0 };
       }),
+      smooth: false,
       color: "#0d9488",
       showPoints: false,
       labels: [
@@ -136,6 +138,7 @@ Bei einer Geraden <InlineMath math="y = mx + c" /> verändert die Drehung sowohl
         const yRotated = x * sin45 + y * cos45;
         return { x: xRotated, y: yRotated, z: 0 };
       }),
+      smooth: false,
       color: "#7c3aed",
       showPoints: false,
       labels: [
@@ -239,6 +242,7 @@ Gehe für eine punktweise Konstruktion so vor:
            { x: 0, y: 0, z: 0 },
            { x: 3, y: 4, z: 0 }
          ],
+         smooth: false,
          color: "#9333ea",
          showPoints: false,
          labels: [
@@ -255,6 +259,7 @@ Gehe für eine punktweise Konstruktion so vor:
            { x: 0, y: 0, z: 0 },
            { x: -4, y: 3, z: 0 }
          ],
+         smooth: false,
          color: "#ea580c",
          showPoints: false,
          labels: [
@@ -344,6 +349,7 @@ Gehe für eine punktweise Konstruktion so vor:
            const y = 3 * x - 2;
            return { x, y, z: 0 };
          }),
+         smooth: false,
          color: "#059669",
          showPoints: false,
          labels: [
@@ -363,6 +369,7 @@ Gehe für eine punktweise Konstruktion so vor:
            const yRotated = -x;
            return { x: xRotated, y: yRotated, z: 0 };
          }),
+         smooth: false,
          color: "#d97706",
          showPoints: false,
          labels: [
@@ -399,6 +406,7 @@ Gehe für eine punktweise Konstruktion so vor:
            { x: 1, y: 1, z: 0 },
            { x: 2, y: 5, z: 0 }
          ],
+         smooth: false,
          color: "#0891b2",
          showPoints: false,
          labels: [
@@ -420,6 +428,7 @@ Gehe für eine punktweise Konstruktion so vor:
            { x: 1, y: 1, z: 0 },
            { x: 1.5 - 2 * Math.sqrt(3), y: 3 + Math.sqrt(3) / 2, z: 0 }
          ],
+         smooth: false,
          color: "#db2777",
          showPoints: false,
          labels: [

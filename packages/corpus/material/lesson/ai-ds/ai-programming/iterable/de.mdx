@@ -1,8 +1,9 @@
 export const metadata = {
     title: "Iterables",
-    description: "Lerne, wie Python-Iterables Schleifen, Mitgliedschaftstests, Wahrheitsprüfungen und Positionsentpackung ermöglichen.",
+    description: "Nutze Python-Iterables in Schleifen, für Mitgliedschafts- und Wahrheitsprüfungen sowie zum Entpacken nach Position.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "KI-Programmierung",
 };
 
@@ -10,7 +11,7 @@ export const metadata = {
 
 In Python ist ein Iterable ein Objekt, das einer Schleife oder einem anderen Verbraucher nacheinander Elemente liefern kann. Strings, Listen, Tupel, Mengen, Dictionaries, Dateien und Generatoren sind alle iterierbar, obwohl sie ihre Elemente unterschiedlich ordnen und erzeugen.
 
-Ein Iterable muss weder geordnet noch indizierbar, wiederverwendbar oder endlich sein. Seine eigentliche Zusage ist enger: `iter()` kann einen Iterator erhalten, der Elemente liefert, bis er erschöpft ist.
+Ein Iterable muss weder geordnet noch indizierbar, wiederverwendbar oder endlich sein. Entscheidend ist nur, dass `iter()` einen Iterator liefert, über den sich die Elemente nacheinander abrufen lassen, bis er erschöpft ist.
 
 ### Typen von Iterables
 
@@ -69,9 +70,9 @@ Der String liefert Zeichen in Textreihenfolge. Listen und Tupel liefern ihre ges
 
 ## Mitgliedschaftsoperatoren
 
-Die Operatoren `in` und `not in` fragen, ob ein Container einen bestimmten Wert enthält. Die genaue Mitgliedschaftsregel gehört zum jeweiligen Container-Typ.
+Die Operatoren `in` und `not in` fragen, ob ein Container einen bestimmten Wert enthält. Jeder Container-Typ legt fest, wie die Mitgliedschaft geprüft wird.
 
-### Verwendung von `in` und `not in`
+### Verwendung von In und Not In
 
 Eingebaute Sequenzen durchsuchen ihre Elemente bis zu einem Treffer oder bis zum Ende. Mengen und Dictionaries verwenden ihr eigenes Suchverhalten. Ein Mitgliedschaftstest in einem Dictionary durchsucht seine Schlüssel.
 
@@ -144,11 +145,11 @@ if "@" in email and ".com" in email:
 
 Die letzte Prüfung demonstriert nur zwei Markierungen. Sie reicht nicht als E-Mail-Validierung, weil viele ungültige Adressen sowohl `@` als auch `.com` enthalten und viele gültige Adressen eine andere Domainendung verwenden.
 
-## Die Funktionen any() und all()
+## Die Funktionen Any und All
 
 Die eingebauten Funktionen `any()` und `all()` verbrauchen ein Iterable und prüfen den Wahrheitswert seiner Elemente. Beide stoppen, sobald das Ergebnis feststeht. Generatorausdrücke vermeiden deshalb eine unnötige Zwischenliste.
 
-### any()-Funktion
+### Die Funktion Any
 
 `any()` gibt nach dem ersten wahren Element `True` zurück. Nur wenn alle Elemente falsch sind oder das Iterable leer ist, lautet das Ergebnis `False`.
 
@@ -160,7 +161,7 @@ Die eingebauten Funktionen `any()` und `all()` verbrauchen ein Iterable und prü
       code: `# Beispiel mit any()
 grades = [60, 75, 45, 80]
 
-# Prüfen Sie, ob Werte über 70 vorhanden sind
+# Prüfe, ob Werte über 70 vorhanden sind
 print("Hohe Noten vorhanden:", any(grade > 70 for grade in grades))
 # Ausgabe: Hohe Noten vorhanden: True
 
@@ -183,7 +184,7 @@ if any(numbers):
   ]}
 />
 
-### all()-Funktion
+### Die Funktion All
 
 `all()` gibt nach dem ersten falschen Element `False` zurück. Endet die Iteration ohne ein solches Element, lautet das Ergebnis `True`. Das erklärt auch den leeren Fall: Es gibt kein Element, das die Bedingung verletzt.
 
@@ -195,7 +196,7 @@ if any(numbers):
       code: `# Beispiel mit all()
 scores = [85, 90, 78, 92]
 
-# Überprüfen Sie, ob alle Werte über 70 liegen
+# Prüfe, ob alle Werte über 70 liegen
 print("Alle Noten bestehen:", all(score >= 70 for score in scores))
 # Ausgabe: Alle Noten bestehen: True
 
@@ -300,7 +301,7 @@ print("Durchschnittsnote:", average)
   ]}
 />
 
-### Praktische Anwendungen des Auspackens
+### Praktische Anwendungen des Entpackens
 
 Dieselbe Syntax funktioniert in Funktionsaufrufen und Collection-Darstellungen. Verwende sie, wenn die Schnittstelle einzelne erweiterte Elemente erwartet. Nimmt die Funktion ein Iterable an, übergibst du dieses direkt.
 

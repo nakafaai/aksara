@@ -1,13 +1,13 @@
 export const metadata = {
   title: "Metode Sarrus",
-  description: "Cara menghitung determinan matriks 3×3 dengan pola diagonal Sarrus, termasuk alasan tanda positif dan negatifnya.",
+  description: "Hitung determinan matriks berordo tiga kali tiga dengan pola diagonal Sarrus dan lacak tanda setiap hasil kali.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Matriks",
 };
 
-## Konsep Dasar Metode Sarrus
+## Metode Sarrus
 
 Metode Sarrus adalah cara praktis untuk menghitung determinan matriks berordo <InlineMath math="3 \times 3" />. Untuk memahami pola tandanya, ingat kembali cara menghitung determinan matriks <InlineMath math="2 \times 2" />.
 
@@ -35,7 +35,7 @@ Tuliskan kembali dua kolom pertama matriks <InlineMath math="A" /> di sebelah ka
 
 <BlockMath math="\begin{array}{|ccc|cc} a_{11} & a_{12} & a_{13} & a_{11} & a_{12} \\ a_{21} & a_{22} & a_{23} & a_{21} & a_{22} \\ a_{31} & a_{32} & a_{33} & a_{31} & a_{32} \end{array}" />
 
-Ini membantu kita memvisualisasikan diagonal-diagonal yang akan dikalikan.
+Salinan kedua kolom menampilkan tiga diagonal turun dan tiga diagonal naik yang akan dikalikan.
 
 **Langkah** <InlineMath math="2" />: Hitung Jumlah Hasil Perkalian Diagonal Positif
 
@@ -87,9 +87,9 @@ Pisahkan kedua jumlah diagonal hingga pengurangan terakhir agar tandanya lebih m
 
 Jadi, determinannya adalah <InlineMath math="-12" />. Ekspansi kofaktor pada matriks yang sama menghasilkan nilai yang sama dan dapat dipakai sebagai pemeriksaan independen.
 
-### Visualisasi Metode Sarrus
+### Enam Hasil Kali Diagonal dalam Metode Sarrus
 
-Untuk memvisualisasikan proses ini, kita bisa menuliskan:
+Mulai dari matriks berikut:
 
 <BlockMath math="\det(A) = \left| \begin{matrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{matrix} \right|" />
 
@@ -105,7 +105,7 @@ Sehingga, formula lengkapnya menjadi:
 
 <BlockMath math="\det(A) = (a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}) - (a_{13}a_{22}a_{31} + a_{11}a_{23}a_{32} + a_{12}a_{21}a_{33})" />
 
-## Batasan Penting Metode Sarrus
+## Metode Sarrus Hanya Berlaku untuk Matriks Tiga Kali Tiga
 
 Metode Sarrus **hanya berlaku untuk matriks berordo <InlineMath math="3 \times 3" />**. Perhitungan matriks <InlineMath math="2 \times 2" /> di atas sekadar mengingatkan kita pada pola tanda diagonal. Untuk matriks yang lebih besar, seperti matriks <InlineMath math="4 \times 4" />, gunakan metode lain seperti ekspansi kofaktor atau reduksi baris.
 

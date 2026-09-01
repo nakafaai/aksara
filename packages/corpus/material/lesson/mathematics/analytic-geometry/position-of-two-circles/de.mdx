@@ -3,6 +3,7 @@ export const metadata = {
   description: "Lagebeziehungen zweier Kreise anhand von Mittelpunktabstand und Radien bestimmen: schneidend, berührend, getrennt oder konzentrisch.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Analytische Geometrie",
 };
 
@@ -10,7 +11,7 @@ export const metadata = {
 
 ## Lagebeziehungen zweier Kreise
 
-Zwei Seifenblasen liefern ein anschauliches Bild: Manchmal überlappen sie sich, manchmal berühren sie sich nur, und manchmal bleiben sie vollständig voneinander getrennt. Ganz ähnlich beschreiben wir in der Mathematik die **Lage zweier Kreise**.
+Die Umfänge zweier Kreise können sich in zwei Punkten schneiden, sich in einem Punkt berühren oder getrennt bleiben. Ihre Kreisflächen überlappen sich entsprechend, treffen sich nur am Rand oder lassen eine Lücke.
 
 In der analytischen Geometrie reichen die Mittelpunkte und Radien aus, um die Lage eindeutig zu bestimmen. Entscheidend ist der Abstand zwischen den beiden Mittelpunkten.
 
@@ -93,6 +94,7 @@ Zwei Kreise **schneiden sich**, wenn sie genau zwei gemeinsame Punkte haben. Ans
           { x: px, y: py2, z: 0 }
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -135,7 +137,7 @@ Die beiden strengen Grenzen erklären diese Bedingung:
 
 ## Sich berührende Kreise
 
-Zwei Kreise berühren sich tangential, wenn sie **genau einen gemeinsamen Punkt** haben. Zwei Zahnräder, die sich an einem Punkt berühren, liefern dafür ein anschauliches Bild.
+Zwei Kreise berühren sich tangential, wenn sie **genau einen gemeinsamen Punkt** haben.
 
 <LineEquation
   title="Von außen berührende Kreise"
@@ -520,7 +522,7 @@ Unter der Annahme positiver Radien erfassen die folgenden Bedingungen alle Mögl
 - **Äußerlich tangential**: <InlineMath math="d = r_1+r_2" /> (ein äußerer Berührpunkt)
 - **Äußerlich getrennt**: <InlineMath math="d > r_1+r_2" /> (die beiden Kreisscheiben treffen sich nicht)
 
-### Ausführliches Beispiel
+### Die Lage zweier Kreise aus ihren Gleichungen bestimmen
 
 Wir bestimmen die Lage der Kreise mit den Gleichungen <InlineMath math="x^2 + y^2 = 9" /> und <InlineMath math="x^2 + y^2 - 6x - 8y = 0" />.
 

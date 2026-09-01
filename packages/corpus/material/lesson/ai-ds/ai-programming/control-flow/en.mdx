@@ -1,17 +1,17 @@
 export const metadata = {
     title: "Control Flow",
-    description: "Learn control flow in Python including break, continue, pass, else, enumerate, while loops, zip, range, and if/elif/else with practical examples.",
+  description: "Control Python execution with conditions, loops, break, continue, pass, enumerate, zip, and range.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "AI Programming",
 };
 
 ## Loop Control Statements
 
-Python provides several special statements to control the execution flow in loops. These statements allow you to control when loops should stop, continue, or perform certain actions.
+Python provides several statements that change the flow of a loop. They can stop the loop, skip to the next iteration, or define what happens after normal completion.
 
-### Break, Continue, Pass, and Else
+### Break Continue Pass and Else
 
 The `break` statement exits the nearest enclosing loop immediately when a condition is met. Execution then continues with the first statement after that loop.
 
@@ -54,7 +54,7 @@ for i in range(1, 11):
   ]}
 />
 
-The `pass` statement does nothing but is useful as a placeholder for code that hasn't been written yet. Python requires at least one statement in every code block.
+The `pass` statement performs no action. It keeps an otherwise empty block syntactically valid while its implementation is still pending.
 
 <CodeBlock
   data={[
@@ -75,7 +75,7 @@ for i in range(1, 11):
   ]}
 />
 
-The `else` block runs when the loop finishes without executing `break`. This pattern is especially useful for searches: handle a match before `break`, and handle "not found" in `else`.
+The `else` block runs when the loop finishes without executing `break`. In a search loop, handle a match before `break` and handle the "not found" case in `else`.
 
 <CodeBlock
   data={[
@@ -177,7 +177,7 @@ A `while` loop fits condition-driven repetition, but its body must eventually ch
 
 ## Zip Function
 
-The `zip()` function allows you to iterate over multiple iterables simultaneously. Think of it like a zipper that combines two sides into one.
+The `zip()` function pairs items at the same position in several iterables. Iteration stops when the shortest iterable runs out of items.
 
 ### Basic Zip Usage
 
@@ -201,7 +201,7 @@ for pair in zip(p, q):
   ]}
 />
 
-The `zip()` function returns an iterator of tuples. Each tuple contains corresponding elements from the inputs. By default it stops at the shortest iterable, which can hide a length mismatch; use `zip(..., strict=True)` when unequal lengths should be an error.
+The `zip()` function returns an iterator of tuples. Each tuple contains corresponding elements from the inputs. By default, iteration stops when the shortest iterable ends, so remaining elements in longer inputs are omitted. Use `zip(..., strict=True)` to raise an error when the input lengths differ.
 
 ### Converting Zip Results
 
@@ -248,7 +248,7 @@ This process is called "unzipping" because it separates data that has been combi
 
 ## Range and For Loop
 
-The `range()` function creates a sequence of numbers that can be iterated. This is very useful for loops with numeric indices.
+The `range()` function produces a sequence of integers for iteration. Use it when a loop needs numeric positions or a fixed number of repetitions.
 
 ### Range Syntax
 
@@ -303,7 +303,7 @@ for i in index:
     else:
         break
 
-# More efficient - using range
+# Uses range without building a list
 for i in range(n):  # Doesn't store all numbers in memory
     if i < k:
         print(i)
@@ -315,9 +315,9 @@ for i in range(n):  # Doesn't store all numbers in memory
 
 ## Conditional Statements
 
-Conditional statements let a program choose a branch from evaluated conditions. Indentation is part of Python's syntax; use four spaces per level and never mix tabs and spaces in one block.
+Conditional statements let a program choose a branch from evaluated conditions. Indentation is part of Python's syntax. Use four spaces per level and never mix tabs and spaces in one block.
 
-### If, Elif, and Else Syntax
+### If Elif and Else Syntax
 
 <CodeBlock
   data={[
@@ -366,11 +366,11 @@ else:
   ]}
 />
 
-Nested if is useful for making more complex decisions with multiple levels of conditions.
+Nest an `if` statement when a later decision should be evaluated only after an earlier condition passes.
 
 ## For Loop Syntax
 
-For loops in Python are used to iterate elements in iterable objects like lists, tuples, strings, or ranges.
+A `for` loop visits the elements of an iterable such as a list, tuple, string, or range.
 
 <CodeBlock
   data={[

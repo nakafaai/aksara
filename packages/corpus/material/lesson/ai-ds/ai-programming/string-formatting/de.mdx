@@ -1,14 +1,15 @@
 export const metadata = {
-    title: "String-Formatierung",
+    title: "Formatierung von Strings",
     description: "Formatiere Python-Ausgaben mit str.format(), F-Strings, Feldbreite, Ausrichtung, Genauigkeit und Vorzeichen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "KI-Programmierung",
 };
 
-## Grundkonzepte und Breitensteuerung
+## Formatfelder und Breite
 
-Stringformatierung verwandelt Werte in gezielt gestaltete Textausgaben. Damit kannst du Tabellenspalten ausrichten, eine Zahlendarstellung wählen, die Genauigkeit steuern und verständliche Meldungen zusammensetzen. Python stellt dafür die Methode `str.format()` und F-Strings bereit.
+Stringformatierung bestimmt, wie Werte als Text erscheinen. Damit kannst du Tabellenspalten ausrichten, eine Zahlendarstellung wählen, die Genauigkeit steuern und verständliche Meldungen zusammensetzen. Python stellt dafür die Methode `str.format()` und F-Strings bereit.
 
 Ein einfaches Ersetzungsfeld hat die Form `{field_name:format_spec}`. Eine Breite innerhalb der Formatspezifikation legt eine Mindestbreite und keine Höchstbreite fest. Braucht der formatierte Wert mehr Platz, gibt Python ihn vollständig aus, statt ihn abzuschneiden.
 
@@ -108,7 +109,7 @@ Ersetzungsfelder können Positionsargumente über einen Index, Schlüsselwortarg
         B --> E["Automatisch: {}"]
 
         C --> F["Explizit und wiederverwendbar"]
-        D --> G["Lesbar und flexibel"]
+        D --> G["Namen kennzeichnen Werte"]
         E --> H["Einfach, aber fortlaufend"]
   `}
 />
@@ -118,7 +119,7 @@ Ersetzungsfelder können Positionsargumente über einen Index, Schlüsselwortarg
 | Methode | Syntax | Vorteile | Einschränkungen |
 |--------|---------|-----------|-------------|
 | Nummeriert | `{0}, {1}` | Explizite Kontrolle, kann wiederholt werden | Jeder verwendete Index muss vorhanden sein |
-| Schlüsselwort | `{name}, {age}` | Leicht lesbar, flexibel | Namen müssen übereinstimmen |
+| Schlüsselwort | `{name}, {age}` | Jeder Name kennzeichnet seinen Wert und kann wiederholt werden | Namen müssen übereinstimmen |
 | Automatisch | `{}, {}` | Einfache Syntax | Nicht mit nummerierten Feldern kombinierbar |
 
 <CodeBlock
@@ -217,15 +218,15 @@ print('Tiny number g: {0:12g}'.format(1.1e-10))  # Ausgabe: Tiny number g:      
   ]}
 />
 
-## F-Strings und dynamische Vorlagen
+## Formatierte Strings und dynamische Vorlagen
 
-### F-Strings und Python-Version
+### Formatierte Strings und Version von Python
 
 F-Strings gibt es seit Python 3.6. Sie werten Ausdrücke direkt im Ersetzungsfeld aus. Dadurch ist eine lokale Formatierung oft leichter lesbar als eine getrennte Argumentliste für `format()`.
 
 ### Dynamische Formatvorlagen
 
-Verschachtelte Ersetzungsfelder können Teile einer Formatspezifikation liefern, etwa Breite, Füllzeichen oder Ausrichtung. Das ist nützlich, wenn diese Angaben erst zur Laufzeit feststehen.
+Verschachtelte Ersetzungsfelder können Breite, Füllzeichen oder Ausrichtung aus einem anderen Wert übernehmen. Verwende diese Form, wenn diese Formatwerte erst zur Laufzeit feststehen.
 
 <CodeBlock
   data={[
@@ -261,7 +262,7 @@ print(f'Fläche: {math.pi * radius**2:.2f} cm²') # Ausgabe: Fläche: 102.07 cm�
 
 <Mermaid
   title="Reihenfolge innerhalb eines Formatbezeichners"
-  description="Lies diese häufig verwendete Teilmenge vom Füllzeichen bis zum Darstellungstyp, damit jeder Abschnitt einen klaren Platz hat."
+  description="Folge der Reihenfolge vom Füllzeichen bis zum Darstellungstyp."
   chart={`
     flowchart TD
         A["Formatspezifikation"] --> B["Reihenfolge der Komponenten"]

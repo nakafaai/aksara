@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Pembuat Nol Rasional",
-  description: "Pelajari Teorema Pembuat Nol Rasional untuk mencari akar polinomial dengan efisien. Pelajari metode bertahap dengan contoh praktis.",
+  description: "Gunakan Teorema Pembuat Nol Rasional untuk menyusun kandidat akar polinomial dan mengujinya secara bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Polinomial",
 };
 
 ## Mencari Akar Rasional Polinomial
 
-Setelah mengetahui [Teorema Faktor](/id/materi/matematika/polinomial/teorema-faktor), kita tahu bahwa mencari faktor <InlineMath math="(x-c)" /> sama saja dengan mencari pembuat nol (akar) <InlineMath math="c" /> dari polinomial <InlineMath math="P(x)" />. Namun, bagaimana cara kita menemukan nilai <InlineMath math="c" /> tersebut, terutama jika polinomialnya berderajat tinggi?
+Menurut [Teorema Faktor](/id/materi/matematika/polinomial/teorema-faktor), <InlineMath math="(x-c)" /> merupakan faktor dari <InlineMath math="P(x)" /> tepat ketika <InlineMath math="c" /> merupakan pembuat nol polinomial tersebut. Untuk polinomial berderajat tinggi, langkah pertama adalah membuat daftar terbatas nilai yang perlu diuji.
 
 Menguji bilangan secara acak tidak menghasilkan rencana pencarian yang terbatas. **Teorema Pembuat Nol Rasional** (atau Teorema Akar Rasional) memakai koefisien utama dan suku konstanta untuk membentuk daftar terbatas kemungkinan akar rasional.
 
@@ -17,22 +17,22 @@ Menguji bilangan secara acak tidak menghasilkan rencana pencarian yang terbatas.
 
 Misalkan <InlineMath math="P(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0" /> adalah polinomial dengan koefisien-koefisien (<InlineMath math="a_n, a_{n-1}, \dots, a_1, a_0" />) yang semuanya merupakan **bilangan bulat**, dengan <InlineMath math="a_n \neq 0" /> dan <InlineMath math="a_0 \neq 0" />.
 
-Jika polinomial <InlineMath math="P(x)" /> tersebut memiliki pembuat nol (akar) rasional berbentuk <InlineMath math="\frac{p}{q}" /> (di mana <InlineMath math="p" /> dan <InlineMath math="q" /> adalah bilangan bulat, <InlineMath math="q \neq 0" />, dan <InlineMath math="\frac{p}{q}" /> adalah pecahan paling sederhana), maka:
+Jika polinomial <InlineMath math="P(x)" /> memiliki akar rasional <InlineMath math="\frac{p}{q}" /> dalam bentuk paling sederhana, dengan <InlineMath math="p" /> dan <InlineMath math="q" /> bilangan bulat serta <InlineMath math="q \neq 0" />, maka:
 
 - <InlineMath math="p" /> pasti merupakan faktor dari konstanta <InlineMath math="a_0" />.
 - <InlineMath math="q" /> pasti merupakan faktor dari koefisien utama <InlineMath math="a_n" />.
 
 Teorema ini hanya memberikan daftar **kemungkinan** akar rasional. Belum tentu semua nilai <InlineMath math="\frac{p}{q}" /> dari daftar tersebut benar-benar akar dari polinomialnya. Kita masih perlu mengujinya.
 
-## Langkah-langkah Teorema Pembuat Nol Rasional
+## Langkah Teorema Pembuat Nol Rasional
 
-Berikut langkah-langkah untuk menemukan akar rasional menggunakan teorema ini, seringkali dikombinasikan dengan Teorema Faktor:
+Berikut langkah-langkah untuk menemukan akar rasional dengan teorema ini. Setelah kandidat diperoleh, Teorema Faktor dapat digunakan untuk memeriksanya:
 
 1.  **Identifikasi Koefisien:** Pastikan semua koefisien (<InlineMath math="a_n, \dots, a_0" />) adalah bilangan bulat. Identifikasi konstanta <InlineMath math="a_0" /> dan koefisien utama <InlineMath math="a_n" />.
 2.  **Daftar Faktor <InlineMath math="p" />:** Buat daftar semua faktor bilangan bulat (positif dan negatif) dari konstanta <InlineMath math="a_0" />.
 3.  **Daftar Faktor <InlineMath math="q" />:** Buat daftar semua faktor bilangan bulat (positif dan negatif) dari koefisien utama <InlineMath math="a_n" />.
 4.  **Daftar Kemungkinan Akar <InlineMath math="\frac{p}{q}" />:** Buat daftar semua kemungkinan nilai <InlineMath math="\frac{p}{q}" /> dengan membagi setiap faktor <InlineMath math="p" /> dengan setiap faktor <InlineMath math="q" />. Sederhanakan pecahan dan hilangkan duplikat.
-5.  **Uji Kemungkinan Akar:** Uji setiap nilai <InlineMath math="\frac{p}{q}" /> dari daftar kemungkinan dengan mensubstitusikannya ke <InlineMath math="P(x)" /> (menggunakan Teorema Sisa) atau menggunakan metode Horner. Jika hasilnya <InlineMath math="P(\frac{p}{q}) = 0" />, maka <InlineMath math="\frac{p}{q}" /> adalah akar rasional, dan <InlineMath math="(x - \frac{p}{q})" /> (atau bentuk <InlineMath math="(qx - p)" />) adalah faktornya (Teorema Faktor).
+5.  **Uji Kemungkinan Akar:** Substitusikan setiap nilai <InlineMath math="\frac{p}{q}" /> ke <InlineMath math="P(x)" />, atau uji dengan metode Horner. Jika <InlineMath math="P(\frac{p}{q}) = 0" />, maka <InlineMath math="\frac{p}{q}" /> adalah akar rasional dan <InlineMath math="(x - \frac{p}{q})" /> atau <InlineMath math="(qx - p)" /> adalah faktor dari <InlineMath math="P(x)" />.
 6.  **Faktorkan Lebih Lanjut:** Setelah menemukan satu akar rasional <InlineMath math="c" />, gunakan hasil bagi dari metode Horner untuk mencari akar-akar lainnya dari polinomial yang derajatnya sudah lebih rendah.
 
 ### Penggunaan Teorema Faktor dan Pembuat Nol Rasional

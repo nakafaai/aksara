@@ -3,13 +3,13 @@ export const metadata = {
     description: "Cara memakai format(), f-string, lebar kolom, perataan, presisi angka, tanda, dan penanganan error saat membentuk teks Python.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Pemrograman AI",
 };
 
-## Konsep Dasar dan Kontrol Lebar
+## Kolom Format dan Lebar
 
-Pemformatan string mengubah nilai menjadi keluaran teks yang terencana. Kamu dapat meratakan kolom tabel, memilih notasi angka, mengatur presisi, dan menyusun pesan yang mudah dibaca. Python menyediakan metode `str.format()` dan f-string untuk pekerjaan ini.
+String formatting mengatur cara nilai ditampilkan sebagai teks. Kamu dapat meratakan kolom tabel, memilih notasi angka, mengatur presisi, dan menyusun pesan yang mudah dibaca. Python menyediakan method `str.format()` dan f-string untuk pekerjaan ini.
 
 Replacement field dasar berbentuk `{field_name:format_spec}`. Nilai lebar di dalam spesifikasi format menetapkan ruang minimum. Python tetap menampilkan nilai lengkap saat memerlukan ruang yang lebih besar.
 
@@ -48,7 +48,7 @@ print('|{0:1}|'.format('xxx'))      # Output: |xxx|`
   description="Bandingkan perataan kiri, kanan, dan tengah untuk string yang sama di dalam bidang berlebar tetap."
   chart={`
     flowchart TD
-        A["String masukan: 'xxx'"] --> B["Pilihan perataan"]
+        A["Input string: 'xxx'"] --> B["Pilihan perataan"]
 
         B --> C["< (rata kiri)"]
         B --> D["> (rata kanan)"]
@@ -60,7 +60,7 @@ print('|{0:1}|'.format('xxx'))      # Output: |xxx|`
   `}
 />
 
-| Simbol | Nama | Perilaku | Default untuk |
+| Simbol | Nama | Perilaku | Pilihan bawaan untuk |
 |--------|------|----------|---------------|
 | `<` | Rata kiri | Teks di kiri, padding di kanan | String |
 | `>` | Rata kanan | Teks di kanan, padding di kiri | Angka |
@@ -93,7 +93,7 @@ print('x = {0:12e}'.format(x))      # Output: x = 1.239800e+02`
   ]}
 />
 
-## Metode Referensi Argumen
+## Cara Merujuk Argumen
 
 Replacement field dapat memilih argumen posisi berdasarkan indeks, argumen kata kunci berdasarkan nama, atau argumen posisi melalui penomoran otomatis.
 
@@ -102,24 +102,24 @@ Replacement field dapat memilih argumen posisi berdasarkan indeks, argumen kata 
   description="Lihat bagaimana referensi posisi, nama, dan indeks memilih nilai untuk setiap placeholder format."
   chart={`
     flowchart TD
-        A["Pemformatan String"] --> B["Metode Referensi Argumen"]
+        A["String Formatting"] --> B["Cara Merujuk Argumen"]
 
         B --> C["Numbered: {0} {1}"]
         B --> D["Keyword: {name}"]
         B --> E["Automatic: {}"]
 
         C --> F["Eksplisit dan bisa diulang"]
-        D --> G["Mudah dibaca dan fleksibel"]
+        D --> G["Nama menunjukkan nilai"]
         E --> H["Sederhana tetapi berurutan"]
   `}
 />
 
-### Perbandingan Metode Referensi
+### Perbandingan Referensi Argumen
 
-| Metode | Sintaks | Kelebihan | Batasan |
+| Cara | Sintaks | Kelebihan | Batasan |
 |--------|---------|-----------|---------|
 | Numbered | `{0}, {1}` | Kontrol eksplisit, bisa diulang | Setiap indeks yang dirujuk harus tersedia |
-| Keyword | `{name}, {age}` | Mudah dibaca, fleksibel | Nama harus cocok |
+| Keyword | `{name}, {age}` | Setiap nama menunjukkan value yang terkait dan dapat diulang | Nama harus cocok |
 | Automatic | `{}, {}` | Sintaks sederhana | Tidak bisa dicampur dengan numbered |
 
 <CodeBlock
@@ -169,10 +169,10 @@ Arti presisi bergantung pada tipe penyajian. Untuk `f` dan `e`, presisi menentuk
 
 <Mermaid
   title="Tanda yang Muncul pada Angka"
-  description="Bandingkan tanda plus, minus, dan spasi agar keluaran angka positif dan negatif terbaca konsisten."
+  description="Bandingkan tanda plus, minus, dan spasi agar output angka positif dan negatif terbaca konsisten."
   chart={`
     flowchart TD
-        A["Angka masukan"] --> B{"Pilihan tanda"}
+        A["Input angka"] --> B{"Pilihan tanda"}
 
         B --> C["+ (selalu tampilkan)"]
         B --> D["- (default)"]
@@ -189,7 +189,7 @@ Pada baris spasi, simbolnya memang satu karakter kosong di dalam format specifie
 | Simbol | Perilaku | Contoh |
 |--------|----------|--------|
 | `+` | Selalu tampilkan tanda | `+100`, `-200` |
-| `-` | Hanya tanda negatif (default) | `100`, `-200` |
+| `-` | Hanya tanda negatif secara bawaan | `100`, `-200` |
 | spasi literal | Menyisakan satu spasi sebelum angka positif | `' 100'`, `'-200'` |
 
 <CodeBlock
@@ -218,15 +218,15 @@ print('Tiny number g: {0:12g}'.format(1.1e-10))  # Output: Tiny number g:      1
   ]}
 />
 
-## F-Strings dan Template Dinamis
+## F Strings dan Template Dinamis
 
-### F-Strings dan Versi Python
+### F Strings dan Versi Python
 
 F-string tersedia sejak Python 3.6. Ekspresi dievaluasi langsung di dalam replacement field, sehingga pemformatan lokal sering lebih mudah dibaca daripada daftar argumen `format()` yang terpisah.
 
 ### Template Format Dinamis
 
-Replacement field bertingkat dapat memasok bagian spesifikasi format, seperti lebar, pengisi, atau perataan. Cara ini berguna ketika pilihan tersebut baru diketahui saat program berjalan.
+Replacement field bertingkat dapat menentukan lebar, karakter pengisi, atau perataan dari nilai lain. Gunakan bentuk ini ketika nilai spesifikasi format baru diketahui saat program berjalan.
 
 <CodeBlock
   data={[
@@ -262,7 +262,7 @@ print(f'Area: {math.pi * radius**2:.2f} cm²') # Output: Area: 102.07 cm²`
 
 <Mermaid
   title="Urutan di Dalam Spesifikasi Format"
-  description="Baca subset yang umum dipakai dari pengisi hingga tipe penyajian agar setiap bagian memiliki tempat yang jelas."
+  description="Ikuti urutan komponen dari karakter pengisi sampai tipe penyajian."
   chart={`
     flowchart TD
         A["Spesifikasi format"] --> B["Urutan komponen"]

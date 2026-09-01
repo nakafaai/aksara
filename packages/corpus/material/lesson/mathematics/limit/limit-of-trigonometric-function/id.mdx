@@ -1,35 +1,35 @@
 export const metadata = {
    title: "Limit Fungsi Trigonometri",
-   description: "Pelajari limit trigonometri menggunakan teorema fundamental. Pelajari sifat perbandingan sinus, identitas, dan teknik substitusi lanjutan.",
+   description: "Hitung limit trigonometri dengan limit dasar sinus, identitas, dan substitusi.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-08-29",
+   dateModified: "2026-09-01",
    subject: "Limit",
 };
 
-## Memahami Limit Fungsi Trigonometri
+## Limit Fungsi Trigonometri
 
 **Limit trigonometri** mengajukan pertanyaan lokal yang sama dengan limit aljabar: nilai apa yang didekati suatu bentuk di sekitar input tertentu? Sinus dan cosinus kontinu pada setiap bilangan real, sedangkan tangen kontinu ketika cosinus tidak nol. Jadi, substitusi langsung tetap berlaku jika bentuk yang dihasilkan terdefinisi.
 
-Langkah khusus diperlukan ketika substitusi menghasilkan bentuk tak tentu seperti <InlineMath math="\frac{0}{0}" />. Di sekitar nol, satu **limit sinus fundamental** dan identitas trigonometri yang sudah dikenal membantu kita mengubah bentuk tersebut menjadi bentuk yang dapat dinilai.
+Langkah khusus diperlukan ketika substitusi menghasilkan bentuk tak tentu seperti <InlineMath math="\frac{0}{0}" />. Di sekitar nol, gunakan **limit sinus dasar** dan identitas trigonometri untuk mengubah ekspresi menjadi bentuk yang limitnya dapat dihitung.
 
-## Teorema Fundamental Limit Trigonometri
+## Limit Sinus di Nol
 
-Dasar terpenting limit trigonometri adalah teorema yang menyatakan bahwa perbandingan sinus suatu sudut dengan sudut itu sendiri mendekati satu ketika sudut mendekati nol.
+Ketika sudut dalam radian mendekati nol, perbandingan sinus sudut dengan sudut itu sendiri mendekati satu.
 
-### Limit Dasar Sine
+### Limit Sinus Dasar
 
-Teorema paling mendasar adalah:
+Limitnya adalah:
 
 <BlockMath math="\lim_{x \to 0} \frac{\sin x}{x} = 1" />
 
-Teorema ini **tidak dapat dibuktikan** menggunakan substitusi langsung karena menghasilkan bentuk <InlineMath math="\frac{0}{0}" />. Pembuktiannya memerlukan pendekatan geometris menggunakan lingkaran satuan dan teorema sandwich (squeeze theorem).
+Ekspresinya tidak terdefinisi pada <InlineMath math="x=0" />, sehingga substitusi langsung tidak membuktikan nilai limit. Bukti geometrinya menggunakan lingkaran satuan dan teorema apit.
 
 > Dalam teorema ini, ukur <InlineMath math="x" /> dalam **radian**. Penggunaan derajat akan memberi hasil yang berbeda.
 
 ### Konsekuensi dari Limit Dasar
 
-Dari limit fundamental di atas, kita dapat menurunkan beberapa limit penting lainnya:
+Gunakan limit tersebut untuk menurunkan hasil berikut:
 
 <MathContainer>
 <BlockMath math="\lim_{x \to 0} \frac{\tan x}{x} = 1 \quad \text{(karena } \tan x = \frac{\sin x}{\cos x} \text{ dan} \cos x \to 1\text{)}" />
@@ -46,7 +46,7 @@ Identitas tersebut langsung menghasilkan kedua limit cosinus tanpa memakai atura
 
 ## Sifat Limit Trigonometri
 
-Berdasarkan teorema fundamental, kita dapat membangun serangkaian sifat yang sangat berguna:
+Limit dasar tersebut menghasilkan beberapa limit terkait berikut:
 
 ### Perbandingan Trigonometri
 
@@ -72,7 +72,7 @@ Dari sifat perbandingan trigonometri, kita dapat menurunkan beberapa sifat kombi
 
 ### Teknik Substitusi dan Manipulasi
 
-Ketika menghadapi limit trigonometri yang kompleks, kita sering perlu memanipulasi ekspresi agar dapat menggunakan teorema fundamental.
+Untuk menghitung limit trigonometri yang belum dapat disubstitusikan langsung, ubah ekspresinya hingga memuat bentuk limit sinus di nol.
 
 **Hitung:** <InlineMath math="\lim_{x \to 0} \frac{\sin 2x}{3x}" />
 

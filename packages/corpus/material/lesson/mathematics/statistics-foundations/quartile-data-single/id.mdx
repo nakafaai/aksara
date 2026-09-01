@@ -3,11 +3,11 @@ export const metadata = {
   description: "Hitung Q1, Q2, dan Q3 data tunggal dengan satu konvensi interpolasi yang dinyatakan jelas serta contoh pembahasan lengkap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Statistika",
 };
 
-## Apa Itu Kuartil?
+## Kuartil
 
 Median menandai bagian tengah data terurut pada <InlineMath math="50\%" />. **Kuartil** memperluas gagasan tersebut dengan menandai tiga posisi pada data terurut.
 
@@ -36,7 +36,7 @@ Untuk kuartil bawah:
 <BlockMath math="\text{Letak } Q_1 = \text{Data ke-}\frac{1}{4}(n+1)" />
 
 - **Kalau hasilnya angka bulat**, misalnya <InlineMath math="5" />, berarti <InlineMath math="Q_1" /> itu nilai data di urutan ke-<InlineMath math="5" />.
-- **Kalau hasilnya berupa desimal**, misalnya <InlineMath math="5{,}25" />, berarti <InlineMath math="Q_1" /> berada di antara posisi <InlineMath math="5" /> dan <InlineMath math="6" />. Nilai interpolasinya akan kita hitung nanti; untuk sekarang, kita tentukan letaknya terlebih dahulu.
+- **Kalau hasilnya berupa desimal**, misalnya <InlineMath math="5{,}25" />, berarti <InlineMath math="Q_1" /> berada di antara posisi <InlineMath math="5" /> dan <InlineMath math="6" />. Nilai interpolasinya akan kita hitung nanti. Untuk sekarang, kita tentukan letaknya terlebih dahulu.
 
 **Contoh:**
 
@@ -52,10 +52,10 @@ Kuartil tengah adalah median:
 
 <BlockMath math="\text{Letak } Q_2 = \text{Data ke-}\frac{1}{2}(n+1)" />
 
-Aturannya sama kayak <InlineMath math="Q_1" />:
+Gunakan aturan yang sama seperti pada <InlineMath math="Q_1" />:
 
-- **Kalau hasilnya angka bulat**, misal <InlineMath math="10" />, <InlineMath math="Q_2" /> itu nilai data ke-<InlineMath math="10" />.
-- **Kalau hasilnya angka pakai koma**, misal <InlineMath math="10{,}5" />, <InlineMath math="Q_2" /> ada di antara data ke-<InlineMath math="10" /> dan data ke-<InlineMath math="11" />.
+- Jika letaknya bilangan bulat, misalnya <InlineMath math="10" />, <InlineMath math="Q_2" /> adalah nilai data ke-<InlineMath math="10" />.
+- Jika letaknya berada di antara dua indeks, misalnya <InlineMath math="10{,}5" />, <InlineMath math="Q_2" /> berada di antara data ke-<InlineMath math="10" /> dan data ke-<InlineMath math="11" />.
 
 **Contoh (<InlineMath math="n=20" />):**
 
@@ -124,8 +124,6 @@ Lihat data terurut: <InlineMath math="5, 6, 7, 7, 8, 9, 10" />
 
 ## Kuartil Keempat
 
-Mungkin kamu bertanya-tanya, "Kalau ada <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" />, apakah ada <InlineMath math="Q_4" />?"
+Kuartil membagi data terurut menjadi empat bagian. <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" /> menandai batas pada <InlineMath math="25\%" />, <InlineMath math="50\%" />, dan <InlineMath math="75\%" />. Batas terluar pada <InlineMath math="100\%" /> adalah nilai maksimum.
 
-Secara teknis, konsep kuartil membagi data menjadi empat bagian. <InlineMath math="Q_1" /> adalah batas <InlineMath math="25\%" /> pertama, <InlineMath math="Q_2" /> (median) adalah batas <InlineMath math="50\%" />, dan <InlineMath math="Q_3" /> adalah batas <InlineMath math="75\%" />. Batas terakhir, yang mencakup <InlineMath math="100\%" /> data, sebenarnya adalah **nilai maksimum** dari data tersebut.
-
-Jadi, meskipun kita bisa menyebut nilai maksimum sebagai <InlineMath math="Q_4" />, dalam analisis statistik kita biasanya tidak secara eksplisit menggunakan istilah <InlineMath math="Q_4" />. Fokus utamanya adalah pada <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" /> karena mereka memberikan informasi penting tentang penyebaran dan pusat data di bagian bawah, tengah, dan atas. Nilai minimum kadang disebut <InlineMath math="Q_0" />, tapi sama seperti <InlineMath math="Q_4" />, ini kurang umum digunakan dibandingkan <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" />.
+Nilai maksimum kadang diberi lambang <InlineMath math="Q_4" />, sedangkan nilai minimum kadang diberi lambang <InlineMath math="Q_0" />. Dalam ringkasan statistik, keduanya biasanya disebut langsung sebagai nilai minimum dan maksimum. Notasi kuartil umumnya dipakai untuk <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" />.

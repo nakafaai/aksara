@@ -1,31 +1,31 @@
 
 export const metadata = {
   title: "Dilatasi",
-  description: "Bangun dilatasi dari pusat dan faktor skala, lalu periksa perbesaran serta pengecilannya melalui grafik dan soal terbahas.",
+  description: "Tentukan bayangan hasil dilatasi dari pusat dan faktor skala, lalu pelajari perbesaran dan pengecilan melalui grafik serta pembahasan soal.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Transformasi Geometri",
 };
 
-## Memahami Dilatasi
+## Dilatasi
 
 Dilatasi adalah transformasi geometri yang mengubah ukuran suatu objek (memperbesar atau memperkecil) tanpa mengubah bentuknya. Setiap titik pada objek dipetakan ke posisi baru berdasarkan titik pusat dilatasi dan faktor skala.
 
 ### Definisi Formal Dilatasi
 
-Diketahui titik <InlineMath math="C" /> sebagai pusat dilatasi dan sebuah faktor skala <InlineMath math="k \neq 0" />. Dilatasi terhadap titik <InlineMath math="A" /> yang berpusat di titik <InlineMath math="C" /> dengan faktor <InlineMath math="k" />, dinotasikan sebagai <InlineMath math="D_{(C,k)}" />, adalah sebuah transformasi yang memetakan <InlineMath math="A" /> ke <InlineMath math="A' = D_{(C,k)}(A)" /> sedemikian rupa sehingga memenuhi <InlineMath math="\vec{CA'} = k \cdot \vec{CA}" />.
+Misalkan <InlineMath math="C" /> adalah pusat dilatasi dan <InlineMath math="k \neq 0" /> adalah faktor skala. Dilatasi <InlineMath math="D_{(C,k)}" /> memetakan titik <InlineMath math="A" /> ke bayangan <InlineMath math="A' = D_{(C,k)}(A)" /> dan memenuhi <InlineMath math="\vec{CA'} = k \cdot \vec{CA}" />.
 
-Ini berarti vektor dari pusat dilatasi ke bayangan adalah <InlineMath math="k \text{ kali}" /> vektor dari pusat dilatasi ke titik asli.
+Artinya, <InlineMath math="\vec{CA'}" /> adalah <InlineMath math="k" /> kali <InlineMath math="\vec{CA}" />.
 
 - Jika <InlineMath math="|k| > 1" />, terjadi perbesaran.
 - Jika <InlineMath math="0 < |k| < 1" />, terjadi pengecilan.
-- Jika <InlineMath math="k > 0" />, titik asli dan bayangannya berada pada sisi yang sama dari pusat dilatasi.
-- Jika <InlineMath math="k < 0" />, titik asli dan bayangannya berada pada sisi yang berlawanan dari pusat dilatasi (dan bayangan terbalik).
+- Jika <InlineMath math="k > 0" />, titik awal dan bayangannya berada pada sisi yang sama dari pusat dilatasi.
+- Jika <InlineMath math="k < 0" />, titik awal dan bayangannya berada pada sisi yang berlawanan dari pusat dilatasi. Arah vektor dari pusat ke bayangan berlawanan dengan arah vektor dari pusat ke titik awal.
 
 ## Dilatasi terhadap Titik Asal
 
-Jika pusat dilatasi adalah titik asal <InlineMath math="O(0,0)" /> dan faktor skalanya adalah <InlineMath math="k" />, maka untuk sebuah titik <InlineMath math="A(x,y)" />, bayangannya <InlineMath math="A'(x',y')" /> diberikan oleh:
+Jika pusat dilatasi adalah titik asal <InlineMath math="O(0,0)" /> dan faktor skala adalah <InlineMath math="k" />, maka untuk sebuah titik <InlineMath math="A(x,y)" />, bayangannya <InlineMath math="A'(x',y')" /> diberikan oleh:
 
 <MathContainer>
   <BlockMath math="x' = kx" />
@@ -34,7 +34,7 @@ Jika pusat dilatasi adalah titik asal <InlineMath math="O(0,0)" /> dan faktor sk
 
 ### Mendilatasikan Sebuah Titik terhadap Titik Asal
 
-Jika titik <InlineMath math="A(1,2)" /> dilatasi terhadap titik asal <InlineMath math="(0,0)" /> dengan faktor <InlineMath math="2" />, tentukan peta dari titik tersebut.
+Jika titik <InlineMath math="A(1,2)" /> didilatasi terhadap titik asal <InlineMath math="(0,0)" /> dengan faktor <InlineMath math="2" />, tentukan bayangan titik tersebut.
 
 Di sini, <InlineMath math="x=1" />, <InlineMath math="y=2" />, dan <InlineMath math="k=2" />.
 
@@ -45,7 +45,7 @@ Pusat dilatasi <InlineMath math="O(0,0)" />.
   <BlockMath math="y' = 2 \cdot 2 = 4" />
 </MathContainer>
 
-Jadi, petanya adalah <InlineMath math="A'(2,4)" />.
+Jadi, bayangannya adalah <InlineMath math="A'(2,4)" />.
 
 <LineEquation
   title={
@@ -78,13 +78,14 @@ Jadi, petanya adalah <InlineMath math="A'(2,4)" />.
       points: [{ x: 2, y: 4, z: 0 }],
       color: "#059669",
       showPoints: true,
-      labels: [{ text: <><InlineMath math="A'(2,4)" /> - Peta</>, at: 0, offset: [0.3, 0.3, 0] }],
-    }, // Titik Peta
+      labels: [{ text: <><InlineMath math="A'(2,4)" /> - Bayangan</>, at: 0, offset: [0.3, 0.3, 0] }],
+    }, // Titik Bayangan
     {
       points: [
         { x: 0, y: 0, z: 0 },
         { x: 1, y: 2, z: 0 },
       ],
+      smooth: false,
       color: "#4f46e5",
     }, // Garis OA
     {
@@ -92,6 +93,7 @@ Jadi, petanya adalah <InlineMath math="A'(2,4)" />.
         { x: 0, y: 0, z: 0 },
         { x: 2, y: 4, z: 0 },
       ],
+      smooth: false,
       color: "#4f46e5",
     }, // Garis OA'
   ]}
@@ -101,18 +103,18 @@ Jadi, petanya adalah <InlineMath math="A'(2,4)" />.
 
 ## Dilatasi terhadap Titik Sembarang
 
-Jika pusat dilatasi adalah titik sembarang <InlineMath math="C(a,b)" /> dan faktor skalanya adalah <InlineMath math="k" />, maka untuk sebuah titik <InlineMath math="A(x,y)" />, bayangannya <InlineMath math="A'(x',y')" /> diberikan oleh:
+Jika pusat dilatasi adalah titik sembarang <InlineMath math="C(a,b)" /> dan faktor skala adalah <InlineMath math="k" />, maka untuk sebuah titik <InlineMath math="A(x,y)" />, bayangannya <InlineMath math="A'(x',y')" /> diberikan oleh:
 
 <MathContainer>
   <BlockMath math="x' = a + k(x - a)" />
   <BlockMath math="y' = b + k(y - b)" />
 </MathContainer>
 
-Ini dapat diinterpretasikan sebagai: translasikan sistem sehingga <InlineMath math="C" /> menjadi titik asal, lakukan dilatasi dengan faktor <InlineMath math="k" />, lalu translasikan kembali.
+Rumus ini dapat diterapkan dengan menggeser koordinat agar <InlineMath math="C" /> menjadi titik asal, melakukan dilatasi dengan faktor <InlineMath math="k" />, lalu menggeser koordinat kembali.
 
 ### Mendilatasikan Sebuah Titik terhadap Titik Sembarang
 
-Jika titik <InlineMath math="C(5,2)" /> dilatasi terhadap titik <InlineMath math="P(2,3)" /> dengan faktor <InlineMath math="2" />, tentukan peta dari titik tersebut.
+Jika titik <InlineMath math="C(5,2)" /> didilatasi terhadap titik <InlineMath math="P(2,3)" /> dengan faktor <InlineMath math="2" />, tentukan bayangan titik tersebut.
 
 Di sini, titik yang akan didilatasi adalah <InlineMath math="C(5,2)" /> jadi <InlineMath math="x=5, y=2" />.
 
@@ -125,7 +127,7 @@ Faktor skala <InlineMath math="k=2" />.
   <BlockMath math="y' = 3 + 2(2 - 3) = 3 + 2(-1) = 3 - 2 = 1" />
 </MathContainer>
 
-Jadi, petanya adalah <InlineMath math="C'(8,1)" />.
+Jadi, bayangannya adalah <InlineMath math="C'(8,1)" />.
 
 <LineEquation
   title={
@@ -158,13 +160,14 @@ Jadi, petanya adalah <InlineMath math="C'(8,1)" />.
       points: [{ x: 8, y: 1, z: 0 }],
       color: "#059669",
       showPoints: true,
-      labels: [{ text: <><InlineMath math="C'(8,1)" /> - Peta</>, at: 0, offset: [0.5, -0.5, 0] }],
-    }, // Titik Peta
+      labels: [{ text: <><InlineMath math="C'(8,1)" /> - Bayangan</>, at: 0, offset: [0.5, -0.5, 0] }],
+    }, // Titik Bayangan
     {
       points: [
         { x: 2, y: 3, z: 0 },
         { x: 5, y: 2, z: 0 },
       ],
+      smooth: false,
       color: "#4f46e5",
     }, // Garis PC
     {
@@ -172,6 +175,7 @@ Jadi, petanya adalah <InlineMath math="C'(8,1)" />.
         { x: 2, y: 3, z: 0 },
         { x: 8, y: 1, z: 0 },
       ],
+      smooth: false,
       color: "#4f46e5",
     }, // Garis PC'
   ]}
@@ -180,8 +184,8 @@ Jadi, petanya adalah <InlineMath math="C'(8,1)" />.
 
 ## Latihan
 
-1.  Tentukan peta dari <InlineMath math="B(2,5)" /> oleh dilatasi <InlineMath math="D_{(O,3)}" /> (pusat di <InlineMath math="O(0,0)" />, faktor <InlineMath math="3" />).
-2.  Tentukan peta dari <InlineMath math="B(2,5)" /> oleh dilatasi dengan pusat <InlineMath math="P(1,3)" /> dan faktor <InlineMath math="3" />.
+1.  Tentukan bayangan <InlineMath math="B(2,5)" /> oleh dilatasi <InlineMath math="D_{(O,3)}" /> (pusat di <InlineMath math="O(0,0)" />, faktor <InlineMath math="3" />).
+2.  Tentukan bayangan <InlineMath math="B(2,5)" /> oleh dilatasi dengan pusat <InlineMath math="P(1,3)" /> dan faktor <InlineMath math="3" />.
 3.  Sebuah segitiga dengan titik sudut <InlineMath math="A(1,1)" />, <InlineMath math="B(3,1)" />, dan <InlineMath math="C(1,4)" /> didilatasi terhadap titik asal <InlineMath math="O(0,0)" /> dengan faktor skala <InlineMath math="k=-2" />. Tentukan koordinat bayangan segitiga <InlineMath math="A'B'C'" />!
 
 ### Pembahasan

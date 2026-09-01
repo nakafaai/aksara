@@ -3,11 +3,11 @@ export const metadata = {
   description: "Derive orthogonal projections from the best-approximation theorem, compute them with orthonormal and arbitrary bases, and verify their geometry numerically.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-15",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Linear Methods of AI",
 };
 
-## The Best-Approximation Theorem
+## The Best Approximation Theorem
 
 Let <InlineMath math="V" /> be an inner-product space and let <InlineMath math="S\subseteq V" /> be a finite-dimensional subspace. For every <InlineMath math="f\in V" />, there is a unique vector <InlineMath math="g\in S" /> such that
 
@@ -40,7 +40,7 @@ Equality holds only when <InlineMath math="\varphi=g" />, which proves both opti
 
 ## Formula for an Orthonormal Basis
 
-If <InlineMath math="\varphi_1,ldots,arphi_n" /> is an orthonormal basis of <InlineMath math="S" />, then
+If <InlineMath math="\varphi_1,\ldots,\varphi_n" /> is an orthonormal basis of <InlineMath math="S" />, then
 
 <MathContainer>
 <BlockMath math="P_Sf=\sum_{i=1}^n\langle f,\varphi_i\rangle\varphi_i" />
@@ -53,9 +53,9 @@ For a real matrix <InlineMath math="Q\in\mathbb{R}^{m\times n}" /> with orthonor
 
 <BlockMath math="P=QQ^T" />
 
-projects vectors in <InlineMath math="\mathbb{R}^m" /> onto <InlineMath math="\operatorname{col}(Q)" />.
+The matrix <InlineMath math="P" /> projects vectors in <InlineMath math="\mathbb{R}^m" /> onto <InlineMath math="\operatorname{col}(Q)" />.
 
-## Worked Vector Example
+## Projecting a Vector onto a One Dimensional Subspace
 
 Project
 
@@ -64,11 +64,11 @@ Project
 <BlockMath math="u=\begin{pmatrix}2\\1\end{pmatrix}" />
 </MathContainer>
 
-onto <InlineMath math="S=\operatorname{span}\{u\}" />. The projection coefficient is
+Project the vector <InlineMath math="f" /> onto <InlineMath math="S=\operatorname{span}\{u\}" />. The projection coefficient is
 
 <BlockMath math="\frac{\langle f,u\rangle}{\langle u,u\rangle}=\frac{1\cdot2+3\cdot1}{2^2+1^2}=1" />
 
-Therefore,
+The calculation gives:
 
 <MathContainer>
 <BlockMath math="g=P_Sf=u=\begin{pmatrix}2\\1\end{pmatrix}" />
@@ -112,23 +112,23 @@ Let <InlineMath math="\psi_1,ldots,psi_n" /> be any basis of <InlineMath math="S
 The orthogonality conditions give the Gram system
 
 <MathContainer>
-<BlockMath math="\sum_{i=1}^n\langle\psi_i,\psi_k\rangle\alpha_i=\langle f,\psi_k\rangle,\qquad k=1,ldots,n" />
+<BlockMath math="\sum_{i=1}^n\langle\psi_i,\psi_k\rangle\alpha_i=\langle f,\psi_k\rangle,\qquad k=1,\ldots,n" />
 <BlockMath math="G\alpha=c" />
 </MathContainer>
 
-where <InlineMath math="G_{ki}=\langle\psi_i,psi_k\rangle" /> and <InlineMath math="c_k=\langle f,psi_k\rangle" />. Since the basis vectors are linearly independent,
+In this system, <InlineMath math="G_{ki}=\langle\psi_i,psi_k\rangle" /> and <InlineMath math="c_k=\langle f,psi_k\rangle" />. Since the basis vectors are linearly independent,
 
 <BlockMath math="z^TGz=\left\|\sum_{i=1}^nz_i\psi_i\right\|^2>0\qquad\text{for }z\ne0" />
 
-so <InlineMath math="G" /> is symmetric positive definite and the coefficients are unique.
+The inequality above shows that <InlineMath math="G" /> is symmetric positive definite, so the projection coefficients are unique.
 
 If the columns of a full-column-rank matrix <InlineMath math="A" /> are the basis vectors, then
 
 <BlockMath math="P=A(A^TA)^{-1}A^T" />
 
-is the same orthogonal projector. This identity is useful for analysis, but QR or SVD is usually preferable in numerical software because forming <InlineMath math="A^TA" /> squares the condition number.
+The matrix <InlineMath math="P" /> is the same orthogonal projector. This formula gives the algebraic form of the projector. For numerical computation, obtain the projection with <InlineMath math="\mathrm{QR}" /> or <InlineMath math="\mathrm{SVD}" /> because forming <InlineMath math="A^TA" /> squares the condition number.
 
-## Function-Space Example
+## Function Space Example
 
 Project <InlineMath math="f(x)=x^2" /> onto <InlineMath math="S=\operatorname{span}\{1,x\}" /> using
 
@@ -141,7 +141,7 @@ The functions <InlineMath math="1" /> and <InlineMath math="x" /> are orthogonal
 <BlockMath math="c_1=\frac{\langle x^2,x\rangle}{\langle x,x\rangle}=0" />
 </MathContainer>
 
-Thus,
+The calculation gives:
 
 <MathContainer>
 <BlockMath math="P_Sf(x)=\frac13" />

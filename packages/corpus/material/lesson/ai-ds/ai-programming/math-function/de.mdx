@@ -3,26 +3,27 @@ export const metadata = {
     description: "Nutze Pythons math-Modul, numerische Built-ins, Importstile, Definitionsbereiche und Konstanten in überprüften Berechnungen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "KI-Programmierung",
 };
 
 ## Modulkonzept in Python
 
-Python hält seine Kernsprache übersichtlich und organisiert wiederverwendbaren Code in Modulen. Ein Modul kann Funktionen, Konstanten, Klassen und weitere Namen enthalten, ohne sie alle im globalen Namensraum abzulegen.
+Python speichert viel wiederverwendbaren Code in Modulen. Ein Modul kann Funktionen, Konstanten, Klassen und weitere Namen enthalten, ohne sie alle im globalen Namensraum abzulegen.
 
 Ein `import` lädt ein Modul bei Bedarf und bindet einen Namen, über den dein Code auf dessen öffentliche Elemente zugreift. Die Standardbibliothek bietet bereits gut getestete mathematische Operationen. Anwendungscode sollte sie nutzen, statt Formeln unbedacht neu zu implementieren.
 
-## Das Modul `math`
+## Das Modul Math
 
 Das Modul `math` stellt reellwertige Funktionen und Konstanten bereit. Es akzeptiert kompatible reelle Zahlen wie `int` und `float`, nimmt bei Operationen wie `sqrt()` aber keine komplexen Werte an. Verwende `cmath`, wenn der Definitionsbereich oder das Ergebnis komplex sein kann.
 
-## Das Modul `math` importieren
+## Das Modul Math importieren
 
 Python bietet mehrere Möglichkeiten zum Importieren von Modulen mit jeweils unterschiedlichen Eigenschaften und Verwendungszwecken.
 
 ### Basisimport mit Namespace
 
-Die einfachste Möglichkeit, ein Modul zu importieren, ist die Verwendung des Befehls `import math`. Auf diese Weise bleiben alle Funktions- und Konstantennamen an den Namensraum `math` gebunden.
+Die Anweisung `import math` importiert das Modul unter dem Namensraum `math`. Funktionen und Konstanten werden anschließend über Namen wie `math.sqrt` und `math.pi` aufgerufen.
 
 <CodeBlock
   data={[
@@ -85,11 +86,11 @@ print(pi)       # Ausgabe: 3.141592653589793
   ]}
 />
 
-`from math import *` kann bestehende Namen unbemerkt überschreiben, erschwert die Zuordnung eines Namens zu seinem Modul und lässt spätere Änderungen am Modul den importierenden Namensraum verändern. Explizite Imports halten diese Abhängigkeiten überprüfbar.
+`from math import *` fügt jeden öffentlichen Namen aus `math` in den aktuellen Namensraum ein. Wird einer dieser Namen bereits verwendet, ersetzt der Wert aus `math` ihn ohne Fehlermeldung. Im Code ist außerdem nicht mehr erkennbar, aus welchem Modul der jeweilige Name stammt. Eine spätere Änderung an `math` kann dem importierenden Modul weitere Namen hinzufügen. Ein expliziter Import nennt jede Abhängigkeit in der Importzeile.
 
 ### Spezifische Funktionen importieren
 
-Ein selektiverer Ansatz besteht darin, nur die spezifischen Funktionen zu importieren, die benötigt werden. Dies ermöglicht einen direkten Zugriff ohne Präfix bei gleichzeitiger Wahrung der Codeklarheit.
+Importiere nur die Funktionen, die das Programm verwendet. Der Funktionsname bleibt ohne Modulpräfix verfügbar, während die Importzeile weiterhin seine Herkunft nennt.
 
 <CodeBlock
   data={[
@@ -112,7 +113,7 @@ print(sqrt(9))  # Ausgabe: 3.0
 
 ### Importieren mit Funktionsalias
 
-Auch eine einzelne importierte Funktion kann einen Alias erhalten. Das ist sinnvoll, wenn dadurch ein Namenskonflikt verschwindet oder eine etablierte lokale Konvention eingehalten wird.
+Eine importierte Funktion kann einen Alias erhalten, um einen Namenskonflikt aufzulösen oder einer etablierten lokalen Konvention zu folgen.
 
 <CodeBlock
   data={[
@@ -133,7 +134,7 @@ print(fac(5))  # Ausgabe: 120
   ]}
 />
 
-## Eingebaute Funktionen vs. Modulfunktionen
+## Eingebaute Funktionen und Modulfunktionen
 
 Python stellt numerische Built-ins wie `abs()` und `round()` ohne Import bereit. Sie arbeiten über Pythons numerische Protokolle mit verschiedenen Typen: Ein Typ kann die unterstützte Operation definieren. Python wählt dabei nicht zwischen mehreren statisch überladenen Funktionsdeklarationen.
 
@@ -187,7 +188,7 @@ Deshalb ergibt `round(4.5)` den Wert <InlineMath math="4" />, während auch `rou
 
 Jede `math`-Funktion hat einen Definitionsbereich. `sqrt(x)` benötigt beispielsweise eine nichtnegative reelle Eingabe, Logarithmen benötigen positive reelle Eingaben.
 
-### Quadratwurzel- und Logarithmusfunktionen
+### Funktionen für Quadratwurzeln und Logarithmen
 
 <CodeBlock
   data={[
@@ -238,7 +239,7 @@ print(f"45 Grad = {angle_rad} Bogenmaß")  # Ausgabe: 0.7853981633974483`
   ]}
 />
 
-### Aufrunden, Abrunden und Fakultät
+### Aufrunden Abrunden und Fakultät
 
 <CodeBlock
   data={[
@@ -294,16 +295,16 @@ print(f"Kreisfläche mit Radius {circle_radius}: {circle_area}")`
 
 ## Auswahl der richtigen Importmethode
 
-Wähle einen Importstil, der am Aufrufort die Herkunft der Operation erkennen lässt und nur die Namen einführt, die das Modul benötigt.
+Wähle einen Importstil, der den Modulnamen bei jedem Aufruf nennt, wenn dieser Kontext nötig ist. Importiere nur Namen, die das Programm verwendet.
 
 ### Leitfaden zur Auswahl von Importmethoden
 
-1. **Bevorzuge `import math`**, wenn du mehrere Elemente nutzt und ihre Herkunft sichtbar bleiben soll.
+1. **Bevorzuge `import math`**, wenn das Programm mehrere Elemente nutzt. Aufrufe wie `math.sqrt()` nennen das Modul direkt neben der Funktion.
 2. **Verwende `import math as m` bewusst** und nur, wenn der Alias eine dokumentierte lokale Konvention ist.
 3. **Verwende `from math import sqrt, pi`**, wenn eine kleine Menge eindeutiger Namen den lokalen Code klarer macht.
-4. **Vermeide `from math import *`**, weil es die Herkunft verschleiert und Namenskonflikte erzeugen kann.
+4. **Vermeide `from math import *`**, weil die importierten Namen kein Modulpräfix tragen und bereits verwendete Namen ersetzen können.
 
-### Implementierung in realen Anwendungen
+### Abstände und Flächen berechnen
 
 <CodeBlock
   data={[
@@ -344,4 +345,4 @@ print(f"Dreiecksfläche bei Seitenlängen 3, 4 und 5: {area}")`
   ]}
 />
 
-Klarer numerischer Code macht drei Entscheidungen sichtbar: Welcher Namensraum besitzt eine Operation, welchen Eingabebereich akzeptiert sie und wie behandelt der Code außergewöhnliche Eingaben? Diese Entscheidungen sind wichtiger, als einen Funktionsnamen um wenige Zeichen zu verkürzen.
+In klarem numerischem Code lassen sich drei Entscheidungen direkt erkennen: Welcher Namensraum besitzt eine Operation, welchen Eingabebereich akzeptiert sie und wie behandelt der Code außergewöhnliche Eingaben? Diese Entscheidungen sind wichtiger, als einen Funktionsnamen um wenige Zeichen zu verkürzen.

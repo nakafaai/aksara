@@ -1,17 +1,17 @@
 export const metadata = {
   title: "Pengurangan Matriks",
-  description: "Pelajari pengurangan matriks dengan contoh bertahap, sifat-sifat, dan soal latihan. Pelajari operasi pengurangan elemen matriks seletak.",
+  description: "Kurangkan elemen matriks yang seletak, periksa syarat ordonya, lalu terapkan operasi tersebut pada contoh dan latihan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Matriks",
 };
 
-## Apa Itu Pengurangan Matriks?
+## Pengurangan Matriks
 
 Pengurangan matriks adalah operasi untuk menemukan selisih antara dua matriks. Sama seperti penjumlahan matriks, operasi pengurangan hanya dapat dilakukan jika kedua matriks yang terlibat memiliki ukuran atau ordo yang sama.
 
-Hasil dari pengurangan matriks adalah sebuah matriks baru yang juga memiliki ordo yang sama, di mana setiap elemennya merupakan hasil pengurangan elemen-elemen yang bersesuaian dari kedua matriks awal.
+Hasil pengurangan memiliki ordo yang sama dengan kedua matriks awal. Setiap elemennya diperoleh dengan mengurangkan elemen-elemen yang letaknya sama.
 
 ## Definisi Formal Pengurangan Matriks
 
@@ -41,7 +41,7 @@ Kedua definisi ini ekuivalen dan akan menghasilkan matriks selisih yang sama.
 
 Untuk mengurangkan dua matriks, ikuti langkah-langkah berikut:
 
-1.  **Pastikan Ordo Sama**: Langkah pertama dan paling penting adalah memeriksa apakah kedua matriks memiliki jumlah baris dan kolom yang sama. Jika ordonya berbeda, pengurangan tidak dapat dilakukan.
+1.  **Pastikan Ordo Sama**: Periksa bahwa kedua matriks memiliki jumlah baris dan kolom yang sama. Jika ordonya berbeda, pengurangan tidak terdefinisi.
 2.  **Kurangkan Elemen Seletak**: Jika ordonya sama, kurangkan setiap elemen matriks kedua (pengurang) dari elemen matriks pertama yang posisinya bersesuaian (seletak).
 3.  **Bentuk Matriks Hasil**: Susun hasil pengurangan elemen-elemen tersebut ke dalam sebuah matriks baru. Matriks baru ini akan memiliki ordo yang sama dengan matriks-matriks awal.
 
@@ -87,9 +87,9 @@ Misalkan matriks <InlineMath math="K = \begin{bmatrix} 1 & 0 \\ -2 & 5 \\ 3 & 1 
 
 Matriks <InlineMath math="K" /> berordo <InlineMath math="3 \times 2" />, sedangkan matriks <InlineMath math="L" /> berordo <InlineMath math="2 \times 2" />. Karena ordo kedua matriks ini berbeda, maka pengurangan <InlineMath math="K-L" /> (atau <InlineMath math="L-K" />) tidak dapat dilakukan atau tidak terdefinisi.
 
-## Sifat-Sifat Pengurangan Matriks
+## Sifat Pengurangan Matriks
 
-Berbeda dengan penjumlahan matriks yang memiliki beberapa sifat penting seperti komutatif dan asosiatif, pengurangan matriks umumnya tidak memiliki sifat-sifat tersebut.
+Penjumlahan matriks bersifat komutatif dan asosiatif, sedangkan pengurangan matriks umumnya tidak memiliki kedua sifat tersebut.
 
 1.  **Tidak Komutatif**: Secara umum, urutan pengurangan matriks sangat berpengaruh. Artinya, <InlineMath math="A - B" /> tidak sama dengan <InlineMath math="B - A" />, kecuali dalam kasus-kasus khusus (misalnya jika <InlineMath math="A=B" />).
 
@@ -107,7 +107,7 @@ Berbeda dengan penjumlahan matriks yang memiliki beberapa sifat penting seperti 
       <BlockMath math="= \begin{bmatrix} -6 & -4 \\ -4 & -3 \end{bmatrix}" />
     </MathContainer>
 
-    Terlihat jelas bahwa <InlineMath math="P-Q \neq Q-P" />.
+    Jadi, <InlineMath math="P-Q \neq Q-P" />.
 
 2.  **Tidak Asosiatif**: Pengelompokan dalam pengurangan tiga matriks atau lebih juga berpengaruh pada hasil akhir. Secara umum, <InlineMath math="(A - B) - C" /> tidak sama dengan <InlineMath math="A - (B - C)" />.
 
@@ -262,4 +262,4 @@ Kemudian, <InlineMath math="A-(B-C)" />:
 
 Hasilnya tidak sama: <InlineMath math="\begin{bmatrix} 2 & 2 \\ -7 & 3 \end{bmatrix} \neq \begin{bmatrix} -6 & 2 \\ -3 & -3 \end{bmatrix}" />.
 
-Ini menunjukkan bahwa pengurangan matriks tidak bersifat asosiatif.
+Jadi, pengurangan matriks tidak bersifat asosiatif.

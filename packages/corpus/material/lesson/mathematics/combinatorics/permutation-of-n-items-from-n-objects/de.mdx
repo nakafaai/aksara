@@ -1,80 +1,81 @@
 export const metadata = {
    title: "Permutation aller Objekte",
-   description: "Lernen Sie die Permutation aller Objekte mithilfe von Fakultätsformeln. Ordnen Sie alle Objekte mit ausgearbeiteten Beispielen und praktischen Übungen.",
+   description: "Berechne mit der Fakultätsformel, wie viele Anordnungen alle vorhandenen Objekte verwenden.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
+   dateModified: "2026-09-01",
    subject: "Kombinatorik",
 };
 
-## Permutation aller Objekte verstehen
+## Permutation aller Objekte
 
-**Permutation aller Objekte** ist eine Anordnung aller verfügbaren Objekte, nämlich <InlineMath math="n" /> Elemente aus <InlineMath math="n" /> Objekten, wobei jedes Objekt genau einmal verwendet wird und **die Reihenfolge der Anordnung sehr wichtig ist**. In diesem Fall nutzen wir alle verfügbaren Objekte, ohne dass etwas übrig bleibt.
+Eine **Permutation aller Objekte** ordnet alle <InlineMath math="n" /> verfügbaren Objekte an, verwendet jedes Objekt genau einmal und zählt verschiedene Reihenfolgen als verschiedene Anordnungen.
 
-Stellen Sie sich vor, Sie richten eine Fotolinie für <InlineMath math="5 \text{Studenten}" /> ein. Alle fünf Schüler werden in einer Reihe platziert. Jeder Schüler bekommt eine Position, keiner sitzt auf der Ersatzbank und Andis Position vorne oder hinten führt zu unterschiedlichen Ergebnissen.
+Fünf Schüler sollen sich für ein Foto in einer Reihe aufstellen. Alle fünf erhalten genau einen Platz. Jede andere Reihenfolge zählt als neues Ergebnis.
 
 ## Vollständige Permutationsformel
 
-Für die Permutation von <InlineMath math="n" /> Elementen aus <InlineMath math="n" /> Objekten lautet **die verwendete Formel**:
+Setze <InlineMath math="r=n" /> in die allgemeine Permutationsformel ein:
 
 <MathContainer>
 <BlockMath math="nP_n = \frac{n!}{(n-n)!} = \frac{n!}{0!}" />
 </MathContainer>
 
-**Erklärung, warum diese Formel einfach wird:**
+Da alle Objekte verwendet werden:
 - <InlineMath math="(n-n) = 0" />, also wird der Nenner zu <InlineMath math="0!" />
 - Nach der mathematischen Definition gilt <InlineMath math="0! = 1" />
 - Daher: <InlineMath math="\frac{n!}{0!} = \frac{n!}{1} = n!" />
 
-Die Formel lautet also:
+Wegen <InlineMath math="0!=1" /> lautet die Formel für eine vollständige Permutation:
 
 <MathContainer>
 <BlockMath math="nP_n = n!" />
 </MathContainer>
 
-## Fakultätskonzept
+## Definition der Fakultät
 
-**Fakultät** ist die fortlaufende Multiplikation positiver Ganzzahlen. Die Fakultät einer Zahl <InlineMath math="n" /> wird als <InlineMath math="n!" /> geschrieben und definiert als:
+Die Fakultät <InlineMath math="n!" /> ist das Produkt der positiven ganzen Zahlen von <InlineMath math="n" /> bis <InlineMath math="1" />:
 
 <MathContainer>
 <BlockMath math="n! = n \times (n-1) \times (n-2) \times \cdots \times 2 \times 1" />
 </MathContainer>
 
-**Sonderregeln** für Fakultät:
+**Nach Definition:**
 - <InlineMath math="0! = 1" /> (nach mathematischer Definition)
 - <InlineMath math="1! = 1" />
 
-## Anwendung im täglichen Leben
+## Alle Objekte verschiedenen Positionen zuordnen
 
 ### Schulorganisation
 
-Angenommen, es gibt <InlineMath math="4 \text{Studenten}" />, die <InlineMath math="4" /> Positionen in einem Studentenausschuss besetzen: Präsident, Vizepräsident, Sekretär und Schatzmeister. Jeder Student kann nur eine Position bekleiden.
+Vier Lernende besetzen vier Ämter in einer Schülervertretung: Vorsitz, Stellvertretung, Schriftführung und Kassenführung. Jede Person übernimmt genau ein Amt.
 
-Die Anzahl der Möglichkeiten, die Führung zu organisieren, ist:
+Für diese Zuordnung gibt es:
 
 <MathContainer>
-<BlockMath math="4P_4 = 4! = 4 \times 3 \times 2 \times 1 = 24 \text{Wege}" />
+<BlockMath math="4P_4 = 4! = 4 \times 3 \times 2 \times 1 = 24 \text{Anordnungen}" />
 </MathContainer>
 
 ### Sitzordnung
 
-Für ein Familienfoto sitzt eine Familie aus <InlineMath math="6" /> Mitgliedern in einer Reihe auf einem Sofa. Es gibt folgende Möglichkeiten, sie zu arrangieren:
+Für ein Familienfoto sitzen <InlineMath math="6" /> Familienmitglieder in einer Reihe auf einem Sofa. Für ihre Sitzordnung gibt es:
 
 <MathContainer>
-<BlockMath math="6P_6 = 6! = 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 720 \text{Wege}" />
+<BlockMath math="6P_6 = 6! = 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 720 \text{Anordnungen}" />
 </MathContainer>
 
-## Systematische Berechnungsschritte
+## Vollständige Permutationen berechnen
 
-Um die Permutation von <InlineMath math="n" /> Elementen aus <InlineMath math="n" /> Objekten zu berechnen, gehen Sie folgendermaßen vor:
+Für eine vollständige Permutation von <InlineMath math="n" /> Objekten:
 
-1. **Identifizieren Sie die Anzahl der Objekte**: Stellen Sie sicher, dass alle Objekte verwendet werden
-2. **Wenden Sie die Formel an**: Verwenden Sie <InlineMath math="n!" />
-3. **Fakultät berechnen**: Kontinuierlich von <InlineMath math="n" /> bis <InlineMath math="1" /> multiplizieren
-4. **Überprüfen Sie das Ergebnis**: Stellen Sie sicher, dass die Berechnung korrekt ist
+1. **Zähle die Objekte**: Prüfe, ob alle Objekte verwendet werden
+2. **Schreibe die Formel auf**: Verwende <InlineMath math="n!" />
+3. **Multipliziere die Faktoren**: Rechne von <InlineMath math="n" /> bis <InlineMath math="1" />
+4. **Prüfe die Arithmetik**: Berechne das Produkt erneut
 
-### Detaillierte Berechnung
+### Fakultät von Fünf ausmultiplizieren
 
-<InlineMath math="5!" /> berechnen mit klaren Schritten:
+Multipliziere bei <InlineMath math="5!" /> in jedem Schritt einen weiteren Faktor:
 
 <MathContainer>
 <BlockMath math="5! = 5 \times 4 \times 3 \times 2 \times 1" />
@@ -83,12 +84,12 @@ Um die Permutation von <InlineMath math="n" /> Elementen aus <InlineMath math="n
 <BlockMath math="= 120 \times 1 = 120" />
 </MathContainer>
 
-## Differenz zur partiellen Permutation
+## Vollständige und partielle Permutationen
 
 **Vollständige Permutation (<InlineMath math="n" /> aus <InlineMath math="n" /> Objekten)**: Verwendet alle verfügbaren Objekte.
 **Partielle Permutation (<InlineMath math="r" /> aus <InlineMath math="n" /> Objekten)**: Verwendet nur einige Objekte.
 
-**Konkretes Beispiel**:
+**Für fünf Bücher:**
 - Vollständige Permutation: Die Anordnung von <InlineMath math="5 \text{Bücher}" /> in <InlineMath math="5 \text{Positionen}" /> auf einem Regal ergibt <InlineMath math="5! = 120 \text{Wege}" />
 - Teilpermutation: Das Auswählen und Anordnen von <InlineMath math="3 \text{Bücher}" /> aus <InlineMath math="5 \text{verfügbare Bücher}" /> ergibt <InlineMath math="5P_3 = 60 \text{Wege}" />
 
@@ -112,7 +113,7 @@ Bei der Permutation von <InlineMath math="n" /> Elementen aus <InlineMath math="
 
 4. Eine Bibliothek hat <InlineMath math="8 \text{verschiedene Bücher}" />, die in einem Regal angeordnet werden. Wenn alle Bücher in diesem Regal platziert werden müssen, wie viele mögliche Anordnungen gibt es?
 
-### Antwortschlüssel
+### Lösungen
 
 1. Gegeben: <InlineMath math="7 \text{Modelle}" /> wird in einer Zeile angeordnet (alle verwendeten Modelle)
 

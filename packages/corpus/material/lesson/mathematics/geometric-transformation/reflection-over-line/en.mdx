@@ -1,14 +1,14 @@
 
 export const metadata = {
   title: "Reflection over a Line",
-  description: "Understand reflection across any line through perpendicular bisectors, equal distances, and a precise visualization.",
+    description: "Construct a reflection across any line with perpendicular bisectors and equal distances.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometric Transformation",
 };
 
-## What is Reflection over a Line?
+## Reflection over a Line
 
 Reflection over a line is a type of geometric transformation that moves every point on a plane to its mirror image position.
 
@@ -26,7 +26,7 @@ Mathematically, if we have a point <InlineMath math="P(x,y)" /> and a line <Inli
 
 2.  **If point <InlineMath math="P" /> does not lie on the mirror line <InlineMath math="m" />**:
 
-    The line <InlineMath math="m" /> will be the perpendicular bisector of the line segment <InlineMath math="PP'" />. This means two important things:
+    The line <InlineMath math="m" /> is the perpendicular bisector of the line segment <InlineMath math="PP'" />. Therefore:
 
     <MathContainer>
       <BlockMath math="\overline{PP'} \perp m" />
@@ -37,7 +37,7 @@ Mathematically, if we have a point <InlineMath math="P(x,y)" /> and a line <Inli
 
 ## Visualization of Point Reflection over a Line
 
-The following example makes both reflection properties visible at once:
+The following example checks both reflection properties at once:
 
 <LineEquation
   title="Illustration of the Concept of Point Reflection over a Line"
@@ -55,6 +55,7 @@ The following example makes both reflection properties visible at once:
         { x: 0, y: 1, z: 0 },
         { x: 5, y: 3.5, z: 0 },
       ],
+      smooth: false,
       color: "#0891b2",
       lineWidth: 2,
       labels: [
@@ -107,10 +108,11 @@ The following example makes both reflection properties visible at once:
         { x: 2.8, y: 2.4, z: 0 },
         { x: 3.6, y: 0.8, z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       labels: [{ text: <InlineMath math="PP'" />, at: 1, offset: [-0.3, 0.3, 0] }],
     },
   ]}
 />
 
-This concept is fundamental to understanding how the coordinates of a point change after being reflected over various types of lines. The most important thing to remember is the geometric relationship between the original point, the image point, and the mirror line.
+For every line reflection, the segment from the original point to its image is perpendicular to the mirror line, and both points have the same distance from that line. These two conditions determine the image coordinates.

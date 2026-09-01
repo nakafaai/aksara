@@ -1,14 +1,15 @@
 export const metadata = {
-  title: "Grundidee der Ableitung",
-  description: "Die Ableitung als lokale Änderungsrate und Tangentensteigung mithilfe von Sekanten, Grenzwerten und visuellen Beispielen verstehen.",
+  title: "Ableitung als Änderungsrate",
+  description: "Die Ableitung ist die lokale Änderungsrate und Tangentensteigung aus dem Grenzwert der Sekantensteigungen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Ableitungsfunktionen",
 };
 
 
 
-## Die Idee hinter Ableitungen
+## Ableitung als lokale Änderungsrate
 
 Stell dir ein Fahrrad auf einer hügeligen Straße vor. Manche Abschnitte steigen steil an, andere sind fast eben. Die **Steigung** ändert sich von Punkt zu Punkt. Bei einem gekrümmten Funktionsgraphen ist es ähnlich.
 
@@ -31,10 +32,11 @@ Diese Steigung ist die **mittlere Änderungsrate** von <InlineMath math="f(x)" /
   description={
     <>
       Die Sekante verbindet zwei verschiedene Punkte der Kurve{" "}
-      <InlineMath math="y=x^2" />. Die Tangente beschreibt dagegen die lokale
-      Richtung der Kurve in <InlineMath math="P" />. In diesem Beispiel trifft
-      sie die Parabel in <InlineMath math="P" />. Allgemein kann eine Tangente
-      dieselbe Kurve an anderer Stelle erneut schneiden.
+      <InlineMath math="y=x^2" />. Die Steigung der Tangente stimmt dagegen in
+      <InlineMath math="P" /> mit der lokalen Steigung der Kurve überein. In
+      diesem Beispiel trifft sie die Parabel in <InlineMath math="P" />.
+      Allgemein kann eine Tangente dieselbe Kurve an anderer Stelle erneut
+      schneiden.
     </>
   }
   showZAxis={false}
@@ -73,6 +75,7 @@ Diese Steigung ist die **mittlere Änderungsrate** von <InlineMath math="f(x)" /
       {
         points: [p1_secant, p2_secant],
         color: "#0891b2",
+        smooth: false,
         labels: [
           { text: <InlineMath math="P" />, at: 0, offset: [-0.5, -0.5, 0] },
           { text: <InlineMath math="Q" />, at: 1, offset: [0.5, 0.5, 0] },
@@ -82,6 +85,7 @@ Diese Steigung ist die **mittlere Änderungsrate** von <InlineMath math="f(x)" /
       {
         points: tangentLinePoints,
         color: "#d97706",
+        smooth: false,
         showPoints: false,
         labels: [{ text: "Tangente", at: 1, offset: [2, -0.5, 0] }],
       },
@@ -109,4 +113,4 @@ Die Ableitung einer Funktion <InlineMath math="f(x)" />, bezeichnet als <InlineM
 
 Das Bestimmen einer Ableitung heißt **Differenzieren**.
 
-> Die Ableitung <InlineMath math="f'(x)" /> ist eine neue Funktion. Für jeden Wert <InlineMath math="x" />, an dem der Grenzwert existiert, gibt sie die **momentane Änderungsrate** von <InlineMath math="f(x)" /> und damit die dortige Tangentensteigung an. Diese Idee bildet die Grundlage der Differentialrechnung.
+Die Ableitung <InlineMath math="f'(x)" /> ist eine neue Funktion. Für jeden Wert <InlineMath math="x" />, an dem der Grenzwert existiert, gibt sie die **momentane Änderungsrate** von <InlineMath math="f(x)" /> und damit die dortige Tangentensteigung an. Die Differentialrechnung verwendet die Ableitungsfunktion, um beide Größen zu untersuchen.

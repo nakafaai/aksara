@@ -1,16 +1,17 @@
 export const metadata = {
-  title: "Sich nicht gegenseitig ausschließende Ereignisse A und B",
+  title: "Überlappende Ereignisse A und B",
   description: "Berechne Wahrscheinlichkeiten überlappender Ereignisse und vermeide Doppelzählungen anhand von Schnittmengen und ausgearbeiteten Lösungen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Wahrscheinlichkeit",
 };
 
-## Was bedeutet „nicht gegenseitig ausschließend“?
+## Überlappende Ereignisse
 
-Wir kennen bereits [unvereinbare Ereignisse](/de/faecher/mathematik/wahrscheinlichkeit/zwei-unvereinbare-ereignisse), die nicht gleichzeitig eintreten können. Nun betrachten wir **vereinbare Ereignisse**. Zwei vereinbare Ereignisse können in demselben Zufallsexperiment gemeinsam eintreten.
+Zwei Ereignisse sind **vereinbar**, wenn sie in demselben Zufallsexperiment gemeinsam eintreten können. In der Sprache der Mengen gehört dann mindestens ein Ergebnis zu beiden Ereignissen.
 
-Dies bedeutet, dass es möglich ist, ein Ergebnis zu erhalten, das zum Ereignis <InlineMath math="A" /> und auch zum Ereignis <InlineMath math="B" /> gehört.
+Ihre Ergebnismengen haben daher eine nicht leere Schnittmenge.
 
 **Einfache Beispiele:**
 
@@ -25,7 +26,7 @@ Dies bedeutet, dass es möglich ist, ein Ergebnis zu erhalten, das zum Ereignis 
     - Ereignis <InlineMath math="B" />: eine Zahl **größer als** <InlineMath math="3" /> würfeln (<InlineMath math="\{4, 5, 6\}" />).
       Können beide Ereignisse gemeinsam eintreten? Ja. Die Zahlen <InlineMath math="4" /> und <InlineMath math="6" /> sind gerade und größer als <InlineMath math="3" />. Daher schließen sich <InlineMath math="A" /> und <InlineMath math="B" /> **nicht gegenseitig aus**.
 
-## Die Schnittmenge ist entscheidend
+## Schnittmenge überlappender Ereignisse
 
 Bei vereinbaren Ereignissen können Ergebnisse zugleich zu <InlineMath math="A" /> und zu <InlineMath math="B" /> gehören. Diese gemeinsamen Ergebnisse bilden die **Schnittmenge** <InlineMath math="A \cap B" />.
 
@@ -37,9 +38,9 @@ In einer endlichen Ergebnismenge, in der jedes Elementarereignis eine positive W
 
 <BlockMath math="P(A \cap B) > 0" />
 
-Dies unterscheidet sich stark von sich gegenseitig ausschließenden Ereignissen, bei denen <InlineMath math="P(A \cap B) = 0" />.
+Bei unvereinbaren Ereignissen hat die Schnittmenge die Wahrscheinlichkeit <InlineMath math="P(A \cap B) = 0" />.
 
-## Berechnung der kombinierten Wahrscheinlichkeit für sich nicht gegenseitig ausschließende Ereignisse
+## Wahrscheinlichkeit einer Vereinigung berechnen
 
 Da <InlineMath math="A" /> und <InlineMath math="B" /> gemeinsam eintreten können, würde <InlineMath math="P(A) + P(B)" /> die Überschneidung doppelt zählen.
 
@@ -53,9 +54,9 @@ Mit Vereinigungs- und Schnittmengensymbolen:
 
 <BlockMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
 
-Diese Formel funktioniert im Allgemeinen sowohl für sich gegenseitig ausschließende als auch für sich nicht gegenseitig ausschließende Ereignisse. (Wenn sie sich gegenseitig ausschließen, ist <InlineMath math="P(A \cap B)" /> Null, daher vereinfacht sich die Formel wieder zu <InlineMath math="P(A \cup B) = P(A) + P(B)" />).
+Diese Formel gilt in beiden Fällen. Für unvereinbare Ereignisse ist <InlineMath math="P(A \cap B)=0" />, sodass sie sich zu <InlineMath math="P(A \cup B) = P(A) + P(B)" /> vereinfacht.
 
-## Berechnungsbeispiel
+## Wahrscheinlichkeit für eine Herzkarte oder einen König
 
 Nehmen wir das Kartenbeispiel:
 
@@ -79,7 +80,7 @@ Ein fairer sechsseitiger Würfel wird einmal geworfen. Es sei <InlineMath math="
 
 1.  Begründe, warum <InlineMath math="A" /> und <InlineMath math="B" /> sich nicht gegenseitig ausschließen.
 2.  Bestimme <InlineMath math="P(A \cup B)" /> mit der allgemeinen Additionsregel.
-3.  Prüfe das Ergebnis, indem du die Elemente der Vereinigung auflistest.
+3.  Prüfe den Wert von <InlineMath math="P(A \cup B)" />, indem du die Elemente der Vereinigung auflistest.
 
 ### Ausführliche Lösung
 

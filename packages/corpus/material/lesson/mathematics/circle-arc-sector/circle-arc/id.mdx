@@ -1,9 +1,9 @@
 export const metadata = {
   title: "Busur Lingkaran",
-  description: "Pelajari hubungan busur-tali busur, perhitungan sagita, dan persamaan parametrik. Terapkan rumus trigonometri lanjutan untuk desain teknik dan arsitektur.",
+  description: "Hubungkan busur dengan tali busur, hitung sagita, dan tulis persamaan parametrik untuk perhitungan desain.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Busur dan Juring Lingkaran",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 ## Hubungan Busur dengan Tali Busur
 
-Setiap busur lingkaran memiliki hubungan erat dengan tali busur yang menghubungkan kedua ujungnya. Tali busur adalah garis lurus yang menghubungkan dua titik ujung busur, sedangkan busur adalah jalur melengkung di sepanjang keliling lingkaran. Bayangkan seperti busur panah, dimana tali adalah garis lurus dan busur adalah lengkungan kayu.
+Setiap busur lingkaran memiliki hubungan erat dengan tali busur yang menghubungkan kedua ujungnya. Tali busur adalah garis lurus yang menghubungkan dua titik ujung busur, sedangkan busur adalah jalur melengkung di sepanjang keliling lingkaran. Pada busur panah, talinya berupa garis lurus dan kayunya melengkung.
 
 Untuk busur kecil pada lingkaran yang sama, sudut pusat yang lebih besar menghasilkan busur dan tali busur yang lebih panjang, tetapi hubungannya tidak linear. Setelah melewati <InlineMath math="180^\circ" />, busur besar terus memanjang sedangkan tali busurnya memendek, karena tali busur tersebut juga dimiliki oleh busur kecil pelengkapnya.
 
@@ -39,6 +39,7 @@ Untuk busur kecil pada lingkaran yang sama, sudut pusat yang lebih besar menghas
         { x: (5 + 5 * Math.cos(Math.PI / 3)) / 2, y: (5 * Math.sin(Math.PI / 3)) / 2, z: 0 },
         { x: 5 * Math.cos(Math.PI / 3), y: 5 * Math.sin(Math.PI / 3), z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       lineWidth: 3,
       showPoints: false,
@@ -80,6 +81,7 @@ Untuk busur kecil pada lingkaran yang sama, sudut pusat yang lebih besar menghas
         { x: (-5 + 5 * Math.cos(5 * Math.PI / 3)) / 2, y: (5 * Math.sin(5 * Math.PI / 3)) / 2, z: 0 },
         { x: 5 * Math.cos(5 * Math.PI / 3), y: 5 * Math.sin(5 * Math.PI / 3), z: 0 },
       ],
+      smooth: false,
       color: "#d97706",
       lineWidth: 3,
       showPoints: false,
@@ -130,32 +132,32 @@ Untuk busur kecil pada lingkaran yang sama, sudut pusat yang lebih besar menghas
 
 ## Rumus Panjang Tali Busur
 
-Panjang tali busur dapat dihitung menggunakan rumus trigonometri yang melibatkan sudut pusat dan jari-jari lingkaran:
+Jari-jari dan sudut pusat menentukan panjang tali busur:
 
 <BlockMath math="c = 2r \sin\left(\frac{\theta}{2}\right)" />
 
-dengan:
+Pada rumus ini:
 - <InlineMath math="c" /> = panjang tali busur
 - <InlineMath math="r" /> = jari-jari lingkaran
-- <InlineMath math="\theta" /> = sudut pusat; gunakan mode derajat untuk derajat dan mode radian untuk radian
+- <InlineMath math="\theta" /> = sudut pusat. Gunakan mode derajat untuk derajat dan mode radian untuk radian
 
 Rumus ini menentukan panjang tali busur dari jari-jari dan sudut pusat sebuah busur lingkaran. Rumus tersebut dapat dipakai untuk menentukan geometri ideal jendela bundar, lengkungan, atau bentuk melengkung lainnya. Struktur nyata tetap memerlukan analisis beban, material, dan tumpuan secara terpisah.
 
 ## Tinggi Busur dan Sagita
 
-Tinggi busur, atau sagita, adalah jarak tegak lurus dari titik tengah tali busur ke titik tengah busur kecil yang bersesuaian. Bersama tali busur, sagita menentukan bentuk sebuah busur lingkaran ideal.
+Tinggi busur, atau sagita, adalah jarak dari titik tengah tali busur ke busur kecil yang bersesuaian, diukur tegak lurus terhadap tali busur. Bersama tali busur, sagita menentukan bentuk sebuah busur lingkaran ideal.
 
 <BlockMath math="h = r - r\cos\left(\frac{\theta}{2}\right) = r\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
 
-dengan:
+Pada rumus ini:
 - <InlineMath math="h" /> = tinggi busur (sagita)
 - <InlineMath math="r" /> = jari-jari lingkaran
-- <InlineMath math="\theta" /> = sudut pusat; hitung kosinus dalam satuan sudut yang sama dengan <InlineMath math="\theta" />
+- <InlineMath math="\theta" /> = sudut pusat. Hitung kosinus dalam satuan sudut yang sama dengan <InlineMath math="\theta" />
 
-Perhatikan visualisasi berikut:
+Diagram berikut menandai tali busur, titik tengahnya, dan ruas tegak lurus yang panjangnya sama dengan sagita.
 
 <LineEquation
-  title="Visualisasi Tinggi Busur"
+  title="Tinggi Busur pada Berbagai Sudut Pusat"
   description="Tinggi busur (sagita) pada berbagai sudut pusat."
   data={[
     {
@@ -178,6 +180,7 @@ Perhatikan visualisasi berikut:
         { x: (4 * Math.cos(-Math.PI / 6) + 4 * Math.cos(Math.PI / 6)) / 2, y: (4 * Math.sin(-Math.PI / 6) + 4 * Math.sin(Math.PI / 6)) / 2, z: 0 },
         { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6), z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       lineWidth: 3,
       showPoints: false,
@@ -196,6 +199,7 @@ Perhatikan visualisasi berikut:
         { x: (4 * Math.cos(-Math.PI / 6) + 4 * Math.cos(Math.PI / 6)) / 2, y: (4 * Math.sin(-Math.PI / 6) + 4 * Math.sin(Math.PI / 6)) / 2, z: 0 },
         { x: 4 * Math.cos(0), y: 4 * Math.sin(0), z: 0 },
       ],
+      smooth: false,
       color: "#e11d48",
       lineWidth: 4,
       showPoints: false,
@@ -206,6 +210,7 @@ Perhatikan visualisasi berikut:
         { x: 0, y: 0, z: 0 },
         { x: 4 * Math.cos(-Math.PI / 6), y: 4 * Math.sin(-Math.PI / 6), z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
@@ -216,6 +221,7 @@ Perhatikan visualisasi berikut:
         { x: 0, y: 0, z: 0 },
         { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6), z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
@@ -315,6 +321,7 @@ Di sini, <InlineMath math="t" /> adalah parameter yang bervariasi dari sudut awa
         { x: 1.5 * Math.cos(Math.PI / 4), y: 1.5 * Math.sin(Math.PI / 4), z: 0 },
         { x: 3 * Math.cos(Math.PI / 4), y: 3 * Math.sin(Math.PI / 4), z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
@@ -326,6 +333,7 @@ Di sini, <InlineMath math="t" /> adalah parameter yang bervariasi dari sudut awa
         { x: 1.5 * Math.cos(3 * Math.PI / 4), y: 1.5 * Math.sin(3 * Math.PI / 4), z: 0 },
         { x: 3 * Math.cos(3 * Math.PI / 4), y: 3 * Math.sin(3 * Math.PI / 4), z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
@@ -360,7 +368,7 @@ Di sini, <InlineMath math="t" /> adalah parameter yang bervariasi dari sudut awa
 
 ## Contoh Lengkungan Lingkaran Ideal
 
-Perhatikan penampang lingkaran ideal untuk sebuah lengkungan. Jari-jarinya <InlineMath math="25 \text{ meter}" />, sedangkan sudut pusatnya <InlineMath math="120^\circ" />. Kita dapat menentukan bentang yang diwakili tali busur dan kenaikan yang diwakili sagita.
+Sebuah lengkungan lingkaran ideal memiliki jari-jari <InlineMath math="25 \text{ meter}" /> dan sudut pusat <InlineMath math="120^\circ" />. Tali busur menyatakan bentangnya, sedangkan sagita menyatakan tinggi lengkungan.
 
 **Menghitung panjang tali busur:**
 

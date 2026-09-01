@@ -5,11 +5,11 @@ export const metadata = {
   description: "Relate real scalar multiplication to changes in the length and direction of a complex vector.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Complex Number",
 };
 
-## What is Scalar Multiplication?
+## Scalar Multiplication
 
 Scalar multiplication involves multiplying a complex number by a real number, called a **scalar**.
 
@@ -31,6 +31,7 @@ Scalar multiplication involves multiplying a complex number by a real number, ca
         { x: 0, y: 0, z: 0 },
         { x: 1, y: 2, z: 0 },
       ],
+      smooth: false,
       color: "#0284c7",
       labels: [{ text: <InlineMath math="z" />, at: 1, offset: [0.5, 0.5, 0] }],
       cone: { position: "end" },
@@ -41,6 +42,7 @@ Scalar multiplication involves multiplying a complex number by a real number, ca
         { x: 0, y: 0, z: 0 },
         { x: 2, y: 4, z: 0 }, // 2 * (1+2i) = 2+4i
       ],
+      smooth: false,
       color: "#059669",
       labels: [{ text: <InlineMath math="2z" />, at: 1, offset: [0.5, 0.5, 0] }],
       cone: { position: "end" },
@@ -51,6 +53,7 @@ Scalar multiplication involves multiplying a complex number by a real number, ca
         { x: 0, y: 0, z: 0 },
         { x: -0.5, y: -1, z: 0 }, // -0.5 * (1+2i) = -0.5 - i
       ],
+      smooth: false,
       color: "#e11d48",
       labels: [{ text: <InlineMath math="-0.5z" />, at: 1, offset: [-0.5, -0.5, 0] }],
       cone: { position: "end" },
@@ -58,7 +61,7 @@ Scalar multiplication involves multiplying a complex number by a real number, ca
   ]}
 />
 
-From the visualization above, we can see:
+The visualization shows how the scalar changes the vector:
 
 - Multiplying <InlineMath math="z" /> by a scalar <InlineMath math="c > 1" /> (like <InlineMath math="2" />) will **stretch** the vector <InlineMath math="z" /> in the same direction.
 - Multiplying <InlineMath math="z" /> by a scalar <InlineMath math="0 < c < 1" /> will **shrink** the vector <InlineMath math="z" /> in the same direction.
@@ -73,7 +76,7 @@ If <InlineMath math="z = x + iy" /> is a complex number and <InlineMath math="c"
 
 The formula multiplies the scalar <InlineMath math="c" /> by the real part <InlineMath math="x" /> and the imaginary part <InlineMath math="y" /> separately.
 
-### Calculation Examples
+### Scaling Complex Numbers by Real Scalars
 
 If <InlineMath math="z = -3 + 4i" /> and <InlineMath math="c = 3" />, then:
 
@@ -83,7 +86,7 @@ If <InlineMath math="z = 5 - i" /> and <InlineMath math="c = -2" />, then:
 
 <BlockMath math="cz = -2(5 - i) = -2(5) + i(-2 \times -1) = -10 + 2i" />
 
-## Visualization Examples
+## Stretching Shrinking and Reversing on the Complex Plane
 
 The following examples separate the effects of stretching, shrinking, and reversing direction.
 
@@ -110,6 +113,7 @@ The following examples separate the effects of stretching, shrinking, and revers
         { x: 0, y: 0, z: 0 },
         { x: -2, y: 1, z: 0 },
       ],
+      smooth: false,
       color: "#7c3aed",
       labels: [{ text: <InlineMath math="z" />, at: 1, offset: [0.5, 0.5, 0] }],
       cone: { position: "end" },
@@ -119,6 +123,7 @@ The following examples separate the effects of stretching, shrinking, and revers
         { x: 0, y: 0, z: 0 },
         { x: -3, y: 1.5, z: 0 }, // 1.5 * (-2+i)
       ],
+      smooth: false,
       color: "#65a30d",
       labels: [{ text: <InlineMath math="1.5z" />, at: 1, offset: [-0.5, 0.5, 0] }],
       cone: { position: "end" },
@@ -149,6 +154,7 @@ The following examples separate the effects of stretching, shrinking, and revers
         { x: 0, y: 0, z: 0 },
         { x: 3, y: -2, z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       labels: [{ text: <InlineMath math="z" />, at: 1, offset: [-0.5, -0.5, 0] }],
       cone: { position: "end" },
@@ -158,6 +164,7 @@ The following examples separate the effects of stretching, shrinking, and revers
         { x: 0, y: 0, z: 0 },
         { x: 2.25, y: -1.5, z: 0 }, // 0.75 * (3-2i)
       ],
+      smooth: false,
       color: "#0d9488",
       labels: [{ text: <InlineMath math="0.75z" />, at: 1, offset: [0.5, 1, 0] }],
       cone: { position: "end" },
@@ -190,6 +197,7 @@ Multiplication by <InlineMath math="-1" /> yields the additive inverse (negative
         { x: 0, y: 0, z: 0 },
         { x: -1, y: -3, z: 0 },
       ],
+      smooth: false,
       color: "#c026d3",
       labels: [{ text: <InlineMath math="z" />, at: 1, offset: [-0.5, -0.5, 0] }],
       cone: { position: "end" },
@@ -199,6 +207,7 @@ Multiplication by <InlineMath math="-1" /> yields the additive inverse (negative
         { x: 0, y: 0, z: 0 },
         { x: 1, y: 3, z: 0 }, // -1 * (-1-3i)
       ],
+      smooth: false,
       color: "#ca8a04",
       labels: [{ text: <InlineMath math="-z" />, at: 1, offset: [0.5, 0.5, 0] }],
       cone: { position: "end" },

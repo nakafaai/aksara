@@ -3,17 +3,17 @@ export const metadata = {
     description: "Use conditional probability correctly, distinguish dependence from independence, and solve sequential selection problems.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Combinatorics",
 };
 
-## Understanding Basic Concepts
+## Conditional Probability and Dependence
 
-Imagine drawing a card from a deck before a friend draws the next one. Does your card change the probability of what your friend can draw? Without replacement, it often does. **Conditional probability** lets us calculate the second probability using what is already known.
+Imagine drawing a card from a deck before a friend draws the next one. Does your card change the probability of what your friend can draw? Without replacement, it often does. **Conditional probability** calculates the second probability using what is already known.
 
 The **conditional probability** of event <InlineMath math="B" /> given event <InlineMath math="A" /> asks: among the outcomes where <InlineMath math="A" /> occurred, what fraction also satisfy <InlineMath math="B" />? The answer may change after <InlineMath math="A" />, which signals dependence, or stay the same, which signals independence.
 
-The key is to update the possible outcomes using the **condition that is already known** before calculating the next probability.
+Before calculating the next probability, restrict the possible outcomes using the **condition that is already known**.
 
 ## Mathematical Formula and Notation
 
@@ -21,7 +21,7 @@ For events <InlineMath math="A" /> and <InlineMath math="B" /> with <InlineMath 
 
 <BlockMath math="P(B|A) = \frac{P(A \cap B)}{P(A)}" />
 
-where:
+The quantities in this formula are:
 - <InlineMath math="P(B|A)" /> is the probability of <InlineMath math="B" /> under the condition that <InlineMath math="A" /> occurred
 - <InlineMath math="P(A \cap B)" /> is the probability that <InlineMath math="A" /> and <InlineMath math="B" /> both occur
 - <InlineMath math="P(A)" /> is the probability of the conditioning event <InlineMath math="A" />
@@ -92,7 +92,7 @@ After selecting one male manager, there are <InlineMath math="599" /> total mana
 
 ## Problem Solving Strategy
 
-### Systematic Steps
+### Update the Sample Space Before Multiplying
 
 To solve conditional probability problems:
 

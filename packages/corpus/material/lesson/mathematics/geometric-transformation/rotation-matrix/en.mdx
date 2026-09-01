@@ -4,7 +4,7 @@ export const metadata = {
   description: "Derive the rotation matrix and apply it to rotations about the origin and arbitrary centers.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometric Transformation",
 };
 
@@ -12,13 +12,13 @@ export const metadata = {
 
 The image of a point <InlineMath math="(x,y)" /> rotated about the origin <InlineMath math="(0,0)" /> by an angle <InlineMath math="\theta" /> is <InlineMath math="(x \cos \theta - y \sin \theta, x \sin \theta + y \cos \theta)" />.
 
-We want to find a <InlineMath math="2 \times 2" /> matrix, say <InlineMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix}" />, that represents this rotation transformation.
+A general <InlineMath math="2 \times 2" /> matrix <InlineMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix}" /> represents this rotation only if it produces the same coordinates for every <InlineMath math="x" /> and <InlineMath math="y" />.
 
 This matrix must satisfy:
 
 <BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x \cos \theta - y \sin \theta \\ x \sin \theta + y \cos \theta \end{pmatrix}" />
 
-From the matrix multiplication on the left side, we get:
+Expanding the multiplication on the left gives:
 
 <BlockMath math="\begin{pmatrix} rx + sy \\ tx + uy \end{pmatrix} = \begin{pmatrix} x \cos \theta - y \sin \theta \\ x \sin \theta + y \cos \theta \end{pmatrix}" />
 
@@ -34,11 +34,11 @@ By equating the corresponding components:
 
 ### Rotation Matrix about the Origin
 
-The matrix associated with a rotation by an angle <InlineMath math="\theta" /> radians (or degrees) about the origin <InlineMath math="O(0,0)" /> is:
+Using one consistent angle unit, the rotation matrix about the origin <InlineMath math="O(0,0)" /> is:
 
 <BlockMath math="R_\theta = \begin{pmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{pmatrix}" />
 
-## Matrix Operation for Rotation about an Arbitrary Point
+## Rotating about an Arbitrary Center
 
 To rotate a point <InlineMath math="(x,y)" /> about an arbitrary point <InlineMath math="P(a,b)" /> by an angle <InlineMath math="\theta" />, we perform three steps:
 
@@ -46,7 +46,7 @@ To rotate a point <InlineMath math="(x,y)" /> about an arbitrary point <InlineMa
 2. Rotate the translated point about the origin by <InlineMath math="\theta" /> using the matrix <InlineMath math="R_\theta" />.
 3. Translate the rotated point back by adding <InlineMath math="(a,b)" />.
 
-### Matrix Operation for Rotation about an Arbitrary Point
+### Centered Matrix Formula
 
 The operation associated with rotation by an angle <InlineMath math="\theta" /> radians about the point <InlineMath math="(a,b)" /> is:
 
@@ -54,9 +54,7 @@ The operation associated with rotation by an angle <InlineMath math="\theta" /> 
 
 ## Finding a Specific Rotation Matrix
 
-The matrix associated with a rotation by <InlineMath math="\theta = \frac{1}{4}\pi" /> radians (<InlineMath math="45^\circ" />) about the origin is:
-
-We know <InlineMath math="\cos(\frac{\pi}{4}) = \frac{1}{\sqrt{2}}" /> and <InlineMath math="\sin(\frac{\pi}{4}) = \frac{1}{\sqrt{2}}" />.
+For <InlineMath math="\theta = \frac{1}{4}\pi" /> radians, or <InlineMath math="45^\circ" />, both trigonometric values equal <InlineMath math="\frac{1}{\sqrt{2}}" />:
 
 <BlockMath math="R_{\frac{\pi}{4}} = \begin{pmatrix} \cos(\frac{\pi}{4}) & -\sin(\frac{\pi}{4}) \\ \sin(\frac{\pi}{4}) & \cos(\frac{\pi}{4}) \end{pmatrix} = \begin{pmatrix} \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \end{pmatrix}" />
 
@@ -101,6 +99,7 @@ This matrix rotates every position vector by <InlineMath math="45^\circ" /> coun
         { x: 0, y: 0, z: 0 },
         { x: 2, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#4f46e5",
     },
     {
@@ -108,6 +107,7 @@ This matrix rotates every position vector by <InlineMath math="45^\circ" /> coun
         { x: 0, y: 0, z: 0 },
         { x: Math.sqrt(2), y: Math.sqrt(2), z: 0 },
       ],
+      smooth: false,
       color: "#4f46e5",
     },
   ]}
@@ -123,24 +123,24 @@ This matrix rotates every position vector by <InlineMath math="45^\circ" /> coun
 
 ### Solutions
 
-1.  Given <InlineMath math="\theta = \frac{\pi}{6}" /> or <InlineMath math="30^\circ" />:
+1.  For <InlineMath math="\theta = \frac{\pi}{6}" />, or <InlineMath math="30^\circ" />, the sine and cosine are:
 
     <MathContainer>
       <BlockMath math="\cos(\frac{\pi}{6}) = \frac{\sqrt{3}}{2}" />
       <BlockMath math="\sin(\frac{\pi}{6}) = \frac{1}{2}" />
     </MathContainer>
 
-    Rotation matrix:
+    Substituting these values gives:
 
     <BlockMath math="\begin{pmatrix} \frac{\sqrt{3}}{2} & -\frac{1}{2} \\ \frac{1}{2} & \frac{\sqrt{3}}{2} \end{pmatrix}" />
 
-2.  Point <InlineMath math="P(4,2)" />, <InlineMath math="\theta = 60^\circ" />. <InlineMath math="\cos 60^\circ = \frac{1}{2}" />, <InlineMath math="\sin 60^\circ = \frac{\sqrt{3}}{2}" />.
+2.  For point <InlineMath math="P(4,2)" /> and <InlineMath math="\theta = 60^\circ" />, use <InlineMath math="\cos 60^\circ = \frac{1}{2}" /> and <InlineMath math="\sin 60^\circ = \frac{\sqrt{3}}{2}" />.
 
     <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} \frac{1}{2} & -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} & \frac{1}{2} \end{pmatrix} \begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} (4)(\frac{1}{2}) - (2)(\frac{\sqrt{3}}{2}) \\ (4)(\frac{\sqrt{3}}{2}) + (2)(\frac{1}{2}) \end{pmatrix} = \begin{pmatrix} 2 - \sqrt{3} \\ 2\sqrt{3} + 1 \end{pmatrix}" />
 
-    Image: <InlineMath math="P'(2-\sqrt{3}, 2\sqrt{3}+1)" />.
+    The image is <InlineMath math="P'(2-\sqrt{3}, 2\sqrt{3}+1)" />.
 
-3.  Given point <InlineMath math="Q(3,1)" />, center <InlineMath math="C(1,-2)" />, <InlineMath math="\theta = 90^\circ" />. <InlineMath math="(a,b)=(1,-2)" />.
+3.  The point being rotated is <InlineMath math="Q(3,1)" />, the center of rotation is <InlineMath math="C(1,-2)" />, and <InlineMath math="\theta = 90^\circ" />. Thus, <InlineMath math="(a,b)=(1,-2)" />.
 
     <MathContainer>
       <BlockMath math="\cos 90^\circ = 0" />
@@ -149,4 +149,4 @@ This matrix rotates every position vector by <InlineMath math="45^\circ" /> coun
       <BlockMath math="= \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 2 \\ 3 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} = \begin{pmatrix} -3 \\ 2 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} = \begin{pmatrix} -2 \\ 0 \end{pmatrix}" />
     </MathContainer>
 
-    Image: <InlineMath math="Q'(-2,0)" />.
+    The image is <InlineMath math="Q'(-2,0)" />.

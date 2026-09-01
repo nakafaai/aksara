@@ -1,16 +1,16 @@
 
 export const metadata = {
   title: "Pencerminan terhadap Titik",
-  description: "Pahami pencerminan titik sebagai setengah putaran dan hitung bayangan titik maupun garis dengan rumus koordinat.",
+    description: "Hubungkan pencerminan terhadap titik dengan setengah putaran, lalu hitung bayangan titik dan garis dengan koordinat.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Transformasi Geometri",
 };
 
-## Memahami Pencerminan terhadap Titik
+## Pencerminan terhadap Titik
 
-Pencerminan terhadap titik, sering juga disebut rotasi setengah putar (<InlineMath math="180^\circ" />), adalah transformasi geometri di mana setiap titik pada objek dipetakan ke posisi baru sedemikian rupa sehingga titik pusat pencerminan menjadi titik tengah antara titik asli dan bayangannya.
+Pencerminan terhadap titik, yang juga disebut rotasi setengah putar <InlineMath math="180^\circ" />, memetakan setiap titik ke sisi berlawanan dari pusat pencerminan. Pusat tersebut menjadi titik tengah antara titik asal dan bayangannya.
 
 Misalkan titik pusat pencerminan adalah <InlineMath math="P(a,b)" />. Jika sebuah titik <InlineMath math="Q(x,y)" /> dicerminkan terhadap titik <InlineMath math="P" />, maka bayangannya <InlineMath math="Q'(x',y')" /> akan berada pada garis yang melalui <InlineMath math="Q" /> dan <InlineMath math="P" />, dengan <InlineMath math="P" /> sebagai titik tengah segmen <InlineMath math="QQ'" />.
 
@@ -31,7 +31,7 @@ Ini berarti koordinat <InlineMath math="x" /> bayangan adalah dua kali koordinat
 
 ## Mencerminkan Titik terhadap Titik Lain
 
-Tentukan titik peta dari setengah putar <InlineMath math="\sigma_{(2,3)}" /> untuk titik <InlineMath math="(5, 4)" />.
+Tentukan bayangan titik <InlineMath math="(5,4)" /> oleh setengah putar <InlineMath math="\sigma_{(2,3)}" />.
 
 Ini berarti kita mencerminkan titik <InlineMath math="Q(5,4)" /> terhadap titik pusat <InlineMath math="P(2,3)" />.
 
@@ -49,7 +49,7 @@ Jadi, bayangan titik <InlineMath math="(5,4)" /> adalah <InlineMath math="(-1,2)
 <LineEquation
   title={
     <>
-      Peta Titik <InlineMath math="Q(5,4)" /> terhadap Titik{" "}
+      Bayangan Titik <InlineMath math="Q(5,4)" /> terhadap Titik{" "}
       <InlineMath math="P(2,3)" />
     </>
   }
@@ -84,6 +84,7 @@ Jadi, bayangan titik <InlineMath math="(5,4)" /> adalah <InlineMath math="(-1,2)
         { x: 5, y: 4, z: 0 },
         { x: -1, y: 2, z: 0 },
       ],
+      smooth: false,
       color: "#db2777",
     }, // Garis penghubung Q ke Q'
   ]}
@@ -92,7 +93,7 @@ Jadi, bayangan titik <InlineMath math="(5,4)" /> adalah <InlineMath math="(-1,2)
 
 ## Mencerminkan Garis terhadap Titik
 
-Tentukan titik peta dari setengah putar <InlineMath math="\sigma_{(1,3)}" /> untuk garis <InlineMath math="l" /> dengan persamaan <InlineMath math="2x - y + 3 = 0" />.
+Tentukan bayangan garis <InlineMath math="l" /> dengan persamaan <InlineMath math="2x-y+3=0" /> oleh setengah putar <InlineMath math="\sigma_{(1,3)}" />.
 
 Ambil sembarang titik <InlineMath math="(x,y)" /> pada garis <InlineMath math="l" />. Bayangannya, <InlineMath math="(x',y')" />, setelah dicerminkan terhadap titik <InlineMath math="P(1,3)" /> adalah:
 
@@ -118,7 +119,7 @@ Atau bisa ditulis sebagai <InlineMath math="2x - y - 1 = 0" />.
 <LineEquation
   title={
     <>
-      Peta Garis <InlineMath math="2x-y+3=0" /> terhadap Titik{" "}
+      Bayangan Garis <InlineMath math="2x-y+3=0" /> terhadap Titik{" "}
       <InlineMath math="P(1,3)" />
     </>
   }
@@ -142,6 +143,7 @@ Atau bisa ditulis sebagai <InlineMath math="2x - y - 1 = 0" />.
         const xVal = i - 5;
         return { x: xVal, y: 2 * xVal + 3, z: 0 };
       }),
+      smooth: false,
       color: "#0284c7",
       labels: [{ text: <InlineMath math="2x-y+3=0" />, at: 5, offset: [-2, 0.5, 0] }],
     },
@@ -151,6 +153,7 @@ Atau bisa ditulis sebagai <InlineMath math="2x - y - 1 = 0" />.
         const xVal = i - 5;
         return { x: xVal, y: 2 * xVal - 1, z: 0 };
       }),
+      smooth: false,
       color: "#059669",
       labels: [{ text: <InlineMath math="2x-y-1=0" />, at: 5, offset: [2, -0.5, 0] }],
     },
@@ -161,9 +164,9 @@ Atau bisa ditulis sebagai <InlineMath math="2x - y - 1 = 0" />.
 
 ## Latihan
 
-1.  Tentukan titik peta dari setengah putar <InlineMath math="\sigma_{(-2,3)}" /> untuk titik <InlineMath math="(3, -4)" />.
+1.  Tentukan bayangan titik <InlineMath math="(3,-4)" /> oleh setengah putar <InlineMath math="\sigma_{(-2,3)}" />.
 2.  Titik <InlineMath math="K(-5, 1)" /> dicerminkan terhadap titik asal <InlineMath math="O(0,0)" />. Tentukan koordinat bayangannya!
-3.  Tentukan titik peta dari setengah putar <InlineMath math="\sigma_{(1,-3)}" /> untuk garis <InlineMath math="l" /> dengan persamaan <InlineMath math="2x + 5y + 6 = 0" />.
+3.  Tentukan bayangan garis <InlineMath math="l" /> dengan persamaan <InlineMath math="2x+5y+6=0" /> oleh setengah putar <InlineMath math="\sigma_{(1,-3)}" />.
 
 ### Pembahasan
 

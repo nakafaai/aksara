@@ -3,6 +3,7 @@ export const metadata = {
   description: "Bestimme mit der Punktpotenz, ob ein Punkt innerhalb, auf oder außerhalb eines Kreises liegt, und übe das Verfahren an vollständigen Beispielen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Analytische Geometrie",
 };
 
@@ -12,9 +13,7 @@ export const metadata = {
 
 Für einen Kreis und einen Punkt gibt es genau drei Möglichkeiten: Der Punkt liegt innerhalb des Kreises, auf seiner Kreislinie oder außerhalb des Kreises.
 
-Der gleiche Vergleich tritt in vereinfachten Reichweitenmodellen auf, etwa wenn geprüft wird, ob ein Ort innerhalb eines kreisförmig modellierten Funk- oder Radarbereichs liegt. Sobald das Kreismodell feststeht, liefert die Koordinatengeometrie eine eindeutige Antwort.
-
-Kreisgleichung und Punktkoordinaten liefern eine mathematisch eindeutige Einordnung.
+Der gleiche Vergleich tritt in vereinfachten Reichweitenmodellen auf, etwa wenn geprüft wird, ob ein Ort innerhalb eines kreisförmig modellierten Funk- oder Radarbereichs liegt. Kreisgleichung und Punktkoordinaten ordnen den Ort dann eindeutig ein.
 
 ## Potenz eines Punktes
 
@@ -22,7 +21,7 @@ Zur Einordnung verwenden wir die **Potenz eines Punktes bezüglich des Kreises**
 
 <BlockMath math="K_A = (x_0-a)^2 + (y_0-b)^2 - r^2" />
 
-Wenn wir Punkt <InlineMath math="A(x_0, y_0)" /> und einen Kreis mit der allgemeinen Gleichung <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" /> haben, dann ist die Potenz von Punkt <InlineMath math="A" /> definiert als:
+Für den Punkt <InlineMath math="A(x_0, y_0)" /> und den allgemeinen Kreis <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" /> ist die Potenz von <InlineMath math="A" />:
 
 <BlockMath math="K_A = x_0^2 + y_0^2 + Dx_0 + Ey_0 + F" />
 
@@ -150,13 +149,11 @@ Die drei Fälle sind in der folgenden Grafik dargestellt:
 
 ## So wird die Lage bestimmt
 
-Zuerst werden Kreisgleichung und Punktkoordinaten bestimmt. Danach setzen wir die Koordinaten in die Gleichung ein und prüfen das Vorzeichen des Ergebnisses.
+Zuerst bestimmen wir Kreisgleichung und Punktkoordinaten. Durch Einsetzen der Koordinaten in die Formel für die Punktpotenz erhalten wir <InlineMath math="K_A" />.
 
-Ist das Ergebnis negativ, liegt der Punkt im Inneren. Bei null liegt der Punkt auf dem Kreis. Ist es positiv, liegt der Punkt außerhalb des Kreises.
+Das Vorzeichen von <InlineMath math="K_A" /> bestimmt die Lage des Punktes. Für <InlineMath math="K_A<0" /> liegt der Punkt innerhalb, für <InlineMath math="K_A=0" /> auf und für <InlineMath math="K_A>0" /> außerhalb des Kreises.
 
-Versuchen wir es anhand eines konkreten Beispiels. Angenommen, wir haben den Punkt <InlineMath math="A(1, -2)" /> und den Kreis <InlineMath math="x^2 + y^2 = 25" />.
-
-Zuerst berechnen wir das Abstandsquadrat zum Mittelpunkt und ziehen dann <InlineMath math="r^2" /> ab:
+Für den Punkt <InlineMath math="A(1, -2)" /> und den Kreis <InlineMath math="x^2 + y^2 = 25" /> berechnen wir zuerst das Abstandsquadrat zum Mittelpunkt. Anschließend ziehen wir <InlineMath math="r^2" /> ab:
 
 <MathContainer>
   <BlockMath math="d_A^2 = 1^2 + (-2)^2 = 1 + 4 = 5" />
@@ -169,7 +166,7 @@ Wegen <InlineMath math="K_A = -20 < 0" /> liegt <InlineMath math="A(1, -2)" /> i
 
 ## Anwendung auf die allgemeine Form
 
-Hat der Kreis die allgemeine Form <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, bleibt das Verfahren gleich. Wir setzen die Punktkoordinaten in die gesamte linke Seite ein und prüfen das Vorzeichen.
+Für einen Kreis in der allgemeinen Form <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" /> berechnen wir <InlineMath math="K_A=x_0^2+y_0^2+Dx_0+Ey_0+F" />. Das Vorzeichen von <InlineMath math="K_A" /> bestimmt, ob der Punkt innerhalb, auf oder außerhalb des Kreises liegt.
 
 Zum Beispiel für Punkt <InlineMath math="A(1, -2)" /> und Kreis <InlineMath math="x^2 + y^2 - 8x - 2y - 8 = 0" />:
 

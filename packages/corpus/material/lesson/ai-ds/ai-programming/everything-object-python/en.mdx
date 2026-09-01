@@ -1,19 +1,19 @@
 export const metadata = {
     title: "Everything is an Object in Python",
-    description: "Learn Python's object-oriented nature and how numbers, strings, lists, and functions become objects with methods and attributes.",
+  description: "Numbers, strings, lists, and functions are Python objects with their own attributes and methods.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-26",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "AI Programming",
 };
 
 ## How Python Organizes Data and Behavior
 
-Python supports several ways to organize a program. Procedural code follows a sequence of steps. Functional code transforms data with functions. Object-oriented code groups related data and behavior. Python lets you combine all three styles.
+Python supports several ways to organize a program. Procedural code follows a sequence of steps. Functional code transforms data with functions. Object-oriented code groups related data and behavior. One program may combine all three styles.
 
 While a program is running, every Python value is an object. Numbers, functions, classes, and modules each have a type, an identity that distinguishes the object, and a stored value.
 
-An object's type determines the attributes and methods available on it. Since this rule applies to every object, a function can be stored in a list, a class can be passed to another function, and a number can have methods. You can still choose the program structure that best fits the problem.
+An object's type determines the attributes and methods available on it. Since this rule applies to every object, a function can be stored in a list, a class can be passed to another function, and a number can have methods. Python's object model works with procedural, functional, and object-oriented program structures.
 
 ## Comparing Ways to Organize a Program
 
@@ -56,9 +56,9 @@ int main() {
   }]}
 />
 
-Here, the C `struct` stores parking state and each function receives a pointer to that state. The organization is procedural; it does not imply that every procedural function must mutate its input.
+Here, the C `struct` stores parking state and each function receives a pointer to that state. A procedural function can read an input and leave it unchanged.
 
-### Object-Oriented Languages
+### Object Oriented Languages
 
 In an object-oriented style, a class can group related state and behavior behind one interface. Attributes represent object state, while methods define operations that use or update it.
 
@@ -89,11 +89,11 @@ print(f"Max: {ps.max}, Occupied: {ps.occ}")`
   }]}
 />
 
-The Python version groups parking invariants and operations in one class. That boundary can protect valid state, but only if its methods actually validate their inputs and avoid exposing mutable internals carelessly.
+The Python version keeps the parking rules and operations in one class. The class keeps its state valid by checking each input and preventing outside code from changing its internal data directly.
 
 ## Parking System as an Example
 
-Use a parking system as an example to understand the concept of objects. In the real world, a parking system has characteristics like maximum capacity and number of occupied spaces. This system can also perform actions like accepting cars entering or leaving.
+In this example, the parking system is an object with state and behavior. Its state records the maximum capacity and the number of occupied spaces. Its methods admit a car or record its departure.
 
 <CodeBlock
   data={[{
@@ -184,7 +184,7 @@ print(dir(result))          # View all available methods`
   data={[{
     language: "python",
     filename: "strings_as_objects.py",
-    code: `# Strings in Python are very powerful objects
+    code: `# Strings in Python are objects with built-in methods
 message = "Learning Python is Fun"
 
 # Strings have many useful methods
@@ -308,7 +308,7 @@ print(university["students"]["CS"])`
 
 ## Functions are Also Objects
 
-One interesting thing about Python is that functions are also objects. This allows you to treat functions like regular data.
+Functions are also objects in Python. You can pass them as arguments, store them in containers, and assign them to variables like other values.
 
 <CodeBlock
   data={[{
@@ -501,9 +501,9 @@ print(bool(zero))                    # False`
   }]}
 />
 
-## Object-Oriented Programming Practice
+## Object Oriented Programming Practice
 
-Create a more complex example to understand how OOP is applied in real scenarios.
+The following example combines several classes to model books, members, and library loans.
 
 <CodeBlock
   data={[{
@@ -653,4 +653,4 @@ print(library.return_book("M001", "978-1234567890"))`
   }]}
 />
 
-Python's object model explains why values, functions, and classes can move through the same language mechanisms. Use object-oriented composition when state and behavior form a useful boundary, but keep a procedural or functional design when it communicates the problem more directly.
+Python's object model explains why values, functions, and classes can move through the same language mechanisms. Use object-oriented composition when related state and behavior need to be managed together. Use a procedural or functional design when the sequence of steps or the flow of data is easier to explain directly.

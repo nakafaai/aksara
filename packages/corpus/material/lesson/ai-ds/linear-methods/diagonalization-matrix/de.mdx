@@ -1,14 +1,15 @@
 export const metadata = {
    title: "Matrixdiagonalisierung",
-   description: "Matrizen mithilfe von Eigenwerten und Eigenvektoren diagonalisieren. Algebraische und geometrische Multiplizität liefern das entscheidende Kriterium.",
+   description: "Bestimme mit Eigenwerten und Eigenvektoren, ob eine Matrix diagonalisierbar ist, und vergleiche algebraische mit geometrischer Multiplizität.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
+   dateModified: "2026-09-01",
    subject: "Lineare Methoden der KI",
 };
 
 ## Idee der Matrixdiagonalisierung
 
-In der Matrixtheorie schreibt die Diagonalisierung eine lineare Transformation auf einer Basis um, bei der sich die Koordinaten nicht mehr vermischen. Diese einfachere Darstellung erleichtert sowohl die Analyse als auch wiederholte Berechnungen.
+Die Diagonalisierung schreibt eine lineare Transformation in einer Basis aus Eigenvektoren. In dieser Basis wird jede Koordinate mit ihrem Eigenwert multipliziert, ohne sich mit den anderen Koordinaten zu vermischen.
 
 Das Hauptziel besteht darin, eine Basis zu finden, in der die lineare Transformation <InlineMath math="y = A \cdot x" /> durch die Diagonalmatrix <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" /> dargestellt wird. Lässt sich die Eigenbasis orthonormal wählen, dann gilt <InlineMath math="S^{-1} = S^T" /> im reellen und <InlineMath math="S^{-1} = S^H" /> im komplexen Fall.
 
@@ -18,7 +19,7 @@ Eine Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> heißt **diagona
 
 <BlockMath math="\Lambda = S^{-1} \cdot A \cdot S" />
 
-Äquivalent dazu gilt <InlineMath math="A = S\Lambda S^{-1}" />. Diese Form vereinfacht wiederholte Anwendungen erheblich:
+Äquivalent dazu gilt <InlineMath math="A = S\Lambda S^{-1}" />. Wiederholte Anwendungen haben dann die Form:
 
 <BlockMath math="A^m = S\Lambda^m S^{-1}" />
 
@@ -32,7 +33,7 @@ Die Diagonalmatrix <InlineMath math="\Lambda" /> ist:
 
 <BlockMath math="\Lambda = \begin{pmatrix} \lambda_1 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix} = \text{diag}(\lambda_1, \ldots, \lambda_n)" />
 
-und <InlineMath math="S" /> ist die Matrix mit Spalten:
+Die Matrix <InlineMath math="S" /> enthält die Eigenvektoren als Spalten:
 
 <BlockMath math="S = (v_1 \quad \ldots \quad v_n)" />
 
@@ -40,7 +41,7 @@ Wenn <InlineMath math="A" /> diagonalisierbar ist, dann bilden die Spalten <Inli
 
 Wenn umgekehrt <InlineMath math="v_1, \ldots, v_n" /> eine Basis von Eigenvektoren ist, dann ist <InlineMath math="S" /> invertierbar und aus <InlineMath math="A \cdot v_i = \lambda_i \cdot v_i" /> für <InlineMath math="i = 1, \ldots, n" /> erhalten wir <InlineMath math="A \cdot S = S \cdot \Lambda" /> und damit <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" />.
 
-## Beispiel für einen nicht diagonalisierbaren Fall
+## Nichtdiagonalisierbare Matrix
 
 Betrachten wir die Matrix:
 
@@ -62,19 +63,19 @@ Wenn eine Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> diagonalisi
 
 <BlockMath math="\chi_A(t) = (\lambda_1 - t) \cdots (\lambda_n - t)" />
 
-wobei <InlineMath math="A" /> insgesamt <InlineMath math="n" /> Eigenwerte mit Multiplizitäten besitzt; die Werte <InlineMath math="\lambda_i \in \mathbb{K}" /> müssen also nicht paarweise verschieden sein.
+Die Matrix <InlineMath math="A" /> besitzt insgesamt <InlineMath math="n" /> Eigenwerte <InlineMath math="\lambda_i \in \mathbb{K}" />, wenn die Multiplizitäten mitgezählt werden. Die Eigenwerte müssen nicht paarweise verschieden sein.
 
 Der gewählte Körper ist entscheidend. Eine reelle Matrix kann über <InlineMath math="\mathbb{R}" /> nicht diagonalisierbar sein, aber über <InlineMath math="\mathbb{C}" /> diagonalisierbar werden, sobald ihr charakteristisches Polynom dort zerfällt.
 
-Sind alle Eigenwerte verschieden, vereinfacht sich das Kriterium. Für <InlineMath math="A \in \mathbb{K}^{n \times n}" /> zerfalle das charakteristische Polynom <InlineMath math="\chi_A(t)" /> von <InlineMath math="A" /> über <InlineMath math="\mathbb{K}" /> in lineare Faktoren:
+Bei lauter verschiedenen Eigenwerten entfällt der Vergleich von algebraischer und geometrischer Multiplizität. Das charakteristische Polynom <InlineMath math="\chi_A(t)" /> von <InlineMath math="A \in \mathbb{K}^{n \times n}" /> zerfalle über <InlineMath math="\mathbb{K}" /> wie folgt.
 
 <BlockMath math="\chi_A(t) = (\lambda_1 - t) \cdots (\lambda_n - t)" />
 
-mit paarweise unterschiedlichen Eigenwerten <InlineMath math="\lambda_i \neq \lambda_j" /> für <InlineMath math="i \neq j" /> mit <InlineMath math="i, j \in \{1, \ldots, n\}" />, dann ist <InlineMath math="A" /> sicher diagonalisierbar.
+Sind die Eigenwerte paarweise verschieden, gilt also <InlineMath math="\lambda_i \neq \lambda_j" /> für <InlineMath math="i \neq j" /> mit <InlineMath math="i, j \in \{1, \ldots, n\}" />, dann ist <InlineMath math="A" /> diagonalisierbar.
 
 Eigenvektoren zu paarweise verschiedenen Eigenwerten von <InlineMath math="A" /> sind linear unabhängig. Bei <InlineMath math="n" /> solchen Eigenwerten bilden sie daher eine Basis von <InlineMath math="\mathbb{K}^n" />.
 
-Was aber, wenn <InlineMath math="A" /> wiederholte Eigenwerte hat? Das müssen wir genauer prüfen. Eigenwerte haben eine algebraische Multiplizität <InlineMath math="\mu_A(\lambda_i)" /> und eine geometrische Multiplizität <InlineMath math="\dim E_A(\lambda_i)" /> mit der Beziehung:
+Wiederholte Eigenwerte erfordern eine zusätzliche Prüfung. Jeder Eigenwert hat eine algebraische Multiplizität <InlineMath math="\mu_A(\lambda_i)" /> und eine geometrische Multiplizität <InlineMath math="\dim E_A(\lambda_i)" /> mit der Beziehung:
 
 <BlockMath math="\dim E_A(\lambda_i) \leq \mu_A(\lambda_i)" />
 
@@ -102,4 +103,4 @@ Für jedes <InlineMath math="i = 1, \ldots, k" /> sei <InlineMath math="v_1^{(i)
 
 <BlockMath math="v_1^{(1)}, \ldots, v_{d_1}^{(1)}, v_1^{(2)}, \ldots, v_{d_2}^{(2)}, \ldots, v_1^{(k)}, \ldots, v_{d_k}^{(k)}" />
 
-ist eine Basis von <InlineMath math="\mathbb{K}^n" /> bestehend aus Eigenvektoren von <InlineMath math="A" />. Daher ist <InlineMath math="A" /> diagonalisierbar.
+Diese Vektoren bilden eine Basis von <InlineMath math="\mathbb{K}^n" /> aus Eigenvektoren von <InlineMath math="A" />. Daher ist <InlineMath math="A" /> diagonalisierbar.

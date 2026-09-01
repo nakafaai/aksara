@@ -4,6 +4,16 @@
 
 - Write like a teacher guiding students, not like a formal textbook, marketing
   page, or internal content note.
+- Build a spoken teaching flow from the learner's current foothold to the new
+  idea. A useful sequence can establish a familiar fact or representation,
+  identify the problem, explain the concept, work an example, and check the
+  result. Keep only the stages the topic needs, and vary the sequence when the
+  subject calls for a different route.
+- Treat storytelling as continuity of reasoning. Do not invent a classroom
+  anecdote, fake dialogue, suspense, emotional reaction, personification, or
+  metaphor to make the lesson sound human. Each transition should name the
+  mathematical, scientific, or technical connection that leads to the next
+  sentence.
 - Match the route, subject, education level, and target locale.
 - Prefer short paragraphs with clear transitions.
 - Prefer concise completeness over brevity. A shorter explanation is worse when
@@ -12,14 +22,96 @@
 - Define technical terms before using them as shortcuts.
 - Use everyday words for the explanation around a technical term. A student
   should not need to translate the explanation before learning the subject.
+- Keep the technical term that students will encounter in code, APIs,
+  documentation, error messages, and community discussion. In an Indonesian
+  programming lesson, familiar English terms such as `standard library`,
+  `namespace`, `built-in`, `mutable`, `immutable`, `indexing`, `slicing`,
+  `method`, and `loop` can be the clearest choice. Explain the term in natural
+  Indonesian instead of replacing it with an unfamiliar translation.
+- Treat terminology as a teaching decision, not a language-purity score.
+  English words are not evidence of artificial writing, and Indonesian words
+  are not automatically easier. Read the full sentence and choose the term that
+  gives the student the least extra translation work.
 - If a sentence would sound unusual when spoken by a teacher, rewrite the idea
   instead of replacing one formal word with another.
+- Read causal and comparative claims as a student would. A word such as
+  `tinggi`, `rendah`, `efisien`, `stabil`, `fleksibel`, or `mudah` needs a named
+  quantity, condition, comparison, or consequence. Avoid modal fragments such
+  as `dapat tinggi`; state the measured behavior or remove the unsupported
+  claim.
+- Explain literal translations that hide the action they denote. For example,
+  `menjadwalkan keluaran pembangkit` should say whether a plant runs steadily,
+  changes power with demand, or starts during peak demand. This rule targets an
+  unclear sentence, not English technical terminology as a category.
+- Use demonstratives and summary nouns only when their antecedent is unique.
+  Rewrite `manfaat tersebut tidak menghapus risikonya` by naming the exact
+  operating property and the exact stock, emission, waste, or safety issue.
+- Review every Indonesian `-nya` as a reference. Keep it when the noun it refers
+  to is local and unique. Replace it with the exact operation when a student
+  could ask `yang mana?`, for example `lanjutkan konversi satuan` instead of
+  `lanjutkan perhitungannya`. This is a contextual review, not a suffix ban.
+- Treat a standalone follow-up such as `periksa hasilnya`, `gunakan rumusnya`,
+  or `bandingkan caranya` as a review candidate. Name the value, formula, or
+  method when the command begins a new sentence and the learner would otherwise
+  need to recover the object from an earlier step. Keep a local construction
+  such as `hitung determinan dan periksa hasilnya` when only one result can be
+  meant.
+- Replace `menulis sendiri perhitungannya` with the actual programming decision.
+  For example, ask whether `standard library` already provides the required
+  function before writing a new implementation. The sentence must name both
+  the available operation and the code a student might otherwise create.
+- Name the process again when a possessive suffix would force the learner to
+  recover it from several earlier ideas. Replace `dampaknya dapat terasa` with
+  the exact change, such as `perubahan suhu laut dapat mengubah arus`. Replace
+  `tujuannya adalah mendapatkan angka sekaligus memahami artinya` with the
+  quantity, unit, or interpretation that the example actually explains.
+- Treat a sensory verb as a literal claim. `Terlihat`, `visible`, and
+  `sichtbar` are appropriate for a line, color, object, displayed output, or
+  another named feature that a learner can observe in a stated place. An
+  abstract statement such as `hubungannya menjadi terlihat` must instead name
+  the values, direction, sign, or cases being compared.
+- A purpose clause does not make an abstract object visible. Replace `agar ide
+  utamanya terlihat` with the exact simplification, such as omitting friction so
+  the model contains only kinetic and gravitational potential energy.
+- A trailing phrase such as `tanpa terlihat` is incomplete unless it names the
+  missing signal or observer. In a programming lesson, write `tanpa pesan
+  galat`, `tidak ditampilkan pada keluaran`, or another exact runtime effect
+  supported by the code. Do not repair the sentence with a different vague
+  adverb.
+- Split a list of reasons when the learner needs a condition or mechanism for
+  each one. A smooth sentence is still ambiguous if its clauses do not explain
+  why the facts matter.
+- Check every imperative against the surrounding teaching activity. A command
+  such as `Laporkan ...` needs a real task, a named object, and an expected form
+  of response. If the lesson is presenting a worked result instead, write a
+  declarative transition that says exactly what will be written or calculated.
+  Check the English and German locale siblings for the same misplaced command,
+  including `Report ... with its uncertainty` and `Gib ... mit ihrer
+  Unsicherheit ... an`.
+  A command such as `Tuliskan jalur konversinya` must also name the technology
+  and the endpoints of the path, or become a declarative transition before a
+  general formula.
+  Do not confuse this with an attributed statement such as `NOAA melaporkan
+  ...`, which names the source of a factual claim.
+- Do not split one grammatical sentence around a displayed formula. A paragraph
+  rendered after `BlockMath` or `MathContainer` must stand on its own. Replace a
+  lowercase continuation such as `dengan`, `where`, or `wobei` with a complete
+  sentence that names the variable, condition, or conclusion. This is a
+  renderer-aware flow rule, not a ban on those words inside ordinary sentences.
 - Reintroduce prerequisite context briefly so each document stands alone.
 - Do not rely on another lesson unless a specific link and reason are present.
 
 ## Structure
 
 - Give every heading a specific teaching job.
+- Write headings with ordinary words only. A page title or lesson heading may
+  contain only letters, numbers, and spaces. Keep all punctuation, formulas,
+  code tokens, operators, emojis, decorative numbers, and other symbols in the
+  body. Rewrite a question as a short noun or verb phrase for the heading, then
+  ask the full question in the first sentence below it when needed.
+  Never remove a required Indonesian hyphen and leave a nonstandard form such
+  as `rata rata` or `jari jari`. Choose a natural synonym such as `rerata` or
+  `radius`.
 - If a section has nested subsections, introduce their shared purpose with a
   substantive bridge paragraph first.
 - Avoid reusable headings such as `Overview`, `Key Takeaway`, or `Step One` when
@@ -41,8 +133,85 @@
 - Check every localized title, description, label, and route slug with the body.
 - Remove vague intensifiers, canned transitions, false balance, repetitive
   conclusions, and prose that explains its own writing process.
-- Remove empty lesson choreography such as `mari kita lihat`, `let's examine`,
-  or `schauen wir uns an`. Give the observation or instruction directly.
+- Replace a bare label such as `cara ini berguna` or `these facts are useful`
+  with the exact operation, input condition, or error it addresses.
+- Replace emotional result labels such as `hasilnya lebih mengejutkan` with the
+  observation and the expectation it contradicts. State which data departed
+  from which model or prediction.
+- Remove empty lesson choreography such as `mari kita lihat`, `lihat contoh
+  sederhana untuk memahami prosesnya`, `lihat bagaimana caranya dengan
+  contoh`, `let's examine`, `look at a simple example to understand the
+  process`, `here we focus on`, or `schauen wir uns an`. State the operation
+  performed in the example and the quantity or object the learner will obtain.
+- Remove stock learner-benefit frames such as `memungkinkan kita`, `allows us
+  to`, `we need to remember that`, `hilft uns`, and `ermöglicht es uns` when the
+  sentence can state the operation or fact directly.
+- Describe the precise work done by a model, example, table, or diagram. Replace
+  vague claims such as `membuat hubungan lebih nyata`, `makes the idea more
+  concrete`, or `macht den Zusammenhang anschaulicher` with the exact quantities,
+  cases, changes, or relationships the learner will compare.
+- Treat `lebih aman`, `lebih rapi`, `easier`, `safer`, `übersichtlicher`, and
+  `sicherer` as incomplete claims unless the sentence names the specific error
+  prevented or the operation simplified. Prefer `jumlah elektron tidak salah`
+  or `koefisien dan pangkat dihitung terpisah` over a general promise of ease.
+- Treat `fastest`, `quickest`, `cara tercepat`, and German speed superlatives as
+  measured comparisons. Name the compared methods, input, and relevant measure
+  when speed matters. Otherwise, remove the ranking and state the operation.
+- Remove stock labels such as `kuncinya`, `the key word is`, and `Das
+  Schlüsselwort lautet`. Remove gateway and foundation metaphors used only to
+  move between sections. Replace `gagasan ini menjadi dasar kalkulus` with the
+  exact operation, such as `kalkulus diferensial menggunakan turunan untuk
+  menganalisis laju perubahan sesaat`. State the rule, dependency, or next topic
+  directly.
+- Give every sentence a literal subject and action. A table can list or compare
+  values, and a model can display a change. A comparison does not `teach us`,
+  chemistry does not `read` a goal, and a relationship does not become useful
+  merely because it is described as `visible`. Name what the student checks and
+  what evidence answers the question.
+- A mathematical value does not `capture` or `menangkap` a change. Replace that
+  metaphor with the actual relationship, such as a table showing how
+  <InlineMath math="\cos\theta" /> changes as <InlineMath math="\theta" />
+  changes.
+- Keep established technical terms when they are the clearest wording, but do
+  not translate their surrounding prose mechanically. `Rank-revealing QR` is a
+  valid English term. `Pilihan penyingkap peringkat yang lebih alami` is not a
+  clear Indonesian explanation. State that pivoted `QR` or `SVD` is used to
+  determine rank.
+- In Indonesian transformation lessons, use `bayangan titik` for the image of a
+  point. Avoid mechanical phrases such as `peta titiknya`, `hitung peta`, or
+  `peta akhir`. Keep `peta` for an actual map and `memetakan` for the
+  mathematical action when that verb is the established term.
+- Do not turn English technical terms into literal physical objects. Keep
+  `floor division` and explain that its result is rounded down instead of
+  writing `pembagian lantai`. Describe an `ndarray` as an `array n-dimensi`,
+  not a `wadah n-dimensi`. In dimensional analysis, say that matching units in
+  the numerator and denominator can be canceled, not that the units `saling
+  habis`. A component title must name the represented comparison, such as
+  `Perbandingan Massa Tetap pada Air`, instead of inventing a label such as
+  `Gerbang Rasio Air`. Literal floors, containers, and gates remain valid when
+  the lesson is actually discussing those objects.
+- Do not make a concept ask the lesson question. Replace `mitigasi bertanya
+  tentang penyebab` or `the law asks a different question` with the operation or
+  scope itself, such as `mitigasi mengurangi penyebab pemanasan` or `the law of
+  constant composition concerns mass ratios`.
+- Use `read`, `membaca`, and `lesen` for an actual file, symbol, graph, scale,
+  measurement, or other representation. Do not use them as vague substitutes
+  for analyzing a relationship, understanding a concept, or judging a process.
+- Remove prose about the writing itself, such as `tabel ini bukan hafalan baru`.
+  State the scope or decision rule directly.
+- Avoid corrective metaphors that introduce an imaginary object only to reject
+  it. A condition is not `hiasan`, capitalization is not `decoration`, and a
+  theorem is not a `compass`. State what the condition controls, what
+  capitalization changes, or which decision the theorem supports.
+- Replace `serampangan` with the exact error or missing check. A warning such as
+  `jangan membuat ulang rumus secara serampangan` does not tell the student what
+  to verify. Name the available function, tested step, or condition that must be
+  checked.
+- Keep a mathematical explanation inside the mathematical operation when an
+  analogy adds a second concept without helping the calculation. For example,
+  explain that swapping integration bounds reverses the interval orientation
+  and the sign of every accumulated contribution. A journey and displacement
+  analogy adds terms that the learner does not need for this rule.
 - Rewrite rhetorical negation around the actual teaching point. Avoid
   `X, bukan Y`, `X, not Y`, `X, nicht Y`, and their `not only` variants in
   authored prose. Replacing them with `rather than`, `instead of`, `dan bukan`,
@@ -56,8 +225,73 @@
   `krusial`, `esensial`, `literal prediction`, or German abstraction clusters
   when a familiar phrase carries the same meaning. These examples are warning
   signs, not a replacement dictionary.
+- Give Indonesian students a concrete action instead of the broad instruction
+  `tafsirkan` or `interpretasikan`. Name what they should read or connect, such
+  as the meaning of a solution in the original problem, the sign of a
+  discriminant, or the role of a resultant in motion. Do not turn this guidance
+  into a word blacklist. Technical terms such as Python `interpreter` remain
+  valid when the lesson is teaching that concept.
 - Never use Humanizer as a compression rule. It removes artificial prose
   patterns, not necessary teaching context, worked reasoning, or evidence.
+
+## Evidence and checker limits
+
+- Use [EYD V](https://ejaan.kemendikdasmen.go.id/eyd/) for Indonesian spelling,
+  word formation, capitalization, and punctuation. EYD does not classify a
+  sentence as natural or AI-generated.
+- The global Humanizer pattern catalog is based on
+  [Wikipedia's Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing).
+  Its false-positive guidance is part of the method: one pattern is never proof
+  of authorship, and polished or technical prose is not suspicious by itself.
+- The German review follows the same contextual limit documented by
+  [humanizer-de](https://github.com/marmbiz/humanizer-de). Raw linter output is
+  a list of candidates. Code, formulas, metadata, quotations, and legitimate
+  technical terms must be excluded before editing prose.
+- The learner-clarity rules in this skill are project-specific editorial
+  requirements. They turn each explanation into testable questions: who or
+  what changes, under which condition, compared with what, why it matters, and
+  which concrete result follows. These requirements evaluate meaning, not the
+  writer's identity.
+- Corpus examples and explicit learner feedback establish project-specific
+  regression cases such as bare `tanpa terlihat`, abstract visibility claims,
+  and unmeasured speed superlatives. EYD and the Humanizer catalogs inform the
+  surrounding language review, but this skill does not attribute those exact
+  Nakafa rules to an external source that does not state them.
+- The representation rules are supported by the evidence listed in
+  `mdx-quality.md`, including the What Works Clearinghouse practice guide,
+  Mayer's multimedia principles, and signaling meta-analyses. Those sources
+  support purposeful structure and relevant signals. They do not justify a
+  visual quota or automatic sentence shortening.
+
+The deterministic lesson voice gate is a quality regression linter, not an AI
+authorship detector. Admit a new rule only when all of these conditions hold:
+
+1. A real corpus sentence or user report demonstrates a distinct ambiguity,
+   standard-language error, unsupported label, or artificial prose pattern.
+2. A corpus-wide search checks likely wording variants in English, Indonesian,
+   and German before the pattern is designed.
+3. The expression is narrow enough to leave valid scientific comparisons,
+   safety claims, code, formulas, quotations, and metadata untouched.
+4. A positive test catches the failure and a negative test preserves a nearby
+   valid construction that names its quantity, mechanism, or prevented error.
+5. Every match is reviewed in its complete paragraph and against both locale
+   siblings before any rewrite.
+
+Objective source constraints and proven regressions may block the default
+gate. A broader wording pattern remains a review item until corpus evidence and
+negative tests show that automatic rejection is safe. Strict review may fail on
+all candidates during an editorial audit, but a match still requires the full
+paragraph, subject terminology, and locale siblings before any edit.
+
+Teacher-led narrative quality remains a contextual review. A deterministic
+checker may flag a proven empty transition, ambiguous reference, or rhetorical
+template. It must not require one universal lesson arc, count story stages, or
+reject a lesson because it starts with a definition, example, diagram, or
+calculation. Those rules would reward a new template and create false positives.
+
+Do not add a global word ban from one awkward sentence, optimize prose for a
+detector score, translate terminology merely to make a lint pass, or treat a
+clean gate as evidence that the corpus is human.
 
 ## Final language review
 
@@ -68,8 +302,42 @@
 - Read the complete document aloud in the target locale.
 - Ask whether a teacher could say every sentence to a student without first
   explaining the wording itself.
+- Retell the lesson aloud from start to finish. Confirm that each paragraph
+  follows from a named fact, question, example, or result and gives the learner
+  enough context for the next step. Reject a transition that only announces the
+  writing structure.
+- For every causal or qualitative statement, ask `apa yang berubah`,
+  `dibandingkan dengan apa`, `kenapa`, and `contohnya apa`. Require answers from
+  the paragraph when those questions apply.
+- For every claim that a method is easier, safer, clearer, or neater, name the
+  exact student action or likely error. Delete the claim if no concrete effect
+  can be stated.
+- Circle every `ini`, `itu`, `tersebut`, `this`, `those`, and German
+  demonstrative used after a multi-item list. Replace it with the exact noun if
+  more than one antecedent is possible.
 - Confirm terminology is consistent with the current glossary.
 - Confirm the prose does not preserve unnatural source-language syntax.
-- Confirm headings contain no formula notation or decorative numbering.
+- Confirm headings contain no forbidden symbol, formula notation, code token,
+  alias in parentheses, or decorative numbering.
+- Confirm learner-facing prose and component labels contain no visible
+  semicolon. Use a period when two thoughts should be taught separately, then
+  make the subject of the second sentence explicit when needed. Do not rewrite
+  code, MDX syntax, HTML entities, or LaTeX spacing commands. Reject visible
+  semicolon separators in rendered mathematics and entities that render as a
+  semicolon.
+- Confirm every external link label names its source, institution, journal,
+  report, or publication. Keep the claim and page topic outside the chip.
+  Review internal links separately because they render as ordinary links and
+  may use descriptive destination text.
+- Confirm the external-link audit used the complete sentence and verified
+  destination. Do not accept or reject a source label from its character count
+  or hostname alone.
+- Confirm mathematical labels use math rendering in prose. Named matrix methods
+  such as `QR`, `LU`, `SVD`, `PLU`, and `PCA` use upright `<InlineMath />`; their page titles
+  and headings stay as ordinary letters and introduce the rendered form in the
+  first sentence below.
 - Confirm there is no U+2014 character.
 - Confirm no assessed or immutable byte was silently rewritten.
+- Treat deterministic wording rules as regression guards, not proof of a human
+  voice. A clean scan still requires a line-by-line read in the complete lesson
+  and comparison with every locale sibling.

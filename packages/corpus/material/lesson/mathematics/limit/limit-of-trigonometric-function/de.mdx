@@ -3,18 +3,19 @@ export const metadata = {
    description: "Trigonometrische Grenzwerte mit dem grundlegenden Sinusgrenzwert, passenden Identitäten und gezielten Substitutionen berechnen.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
+   dateModified: "2026-09-01",
    subject: "Grenzwerte",
 };
 
-## Trigonometrische Grenzwerte verstehen
+## Trigonometrische Grenzwerte
 
 **Trigonometrische Grenzwerte** stellen dieselbe lokale Frage wie algebraische Grenzwerte: Welchem Wert nähert sich ein Ausdruck in der Umgebung einer bestimmten Eingabe? Sinus und Kosinus sind überall stetig, Tangens überall dort, wo der Kosinus nicht null ist. Direktes Einsetzen funktioniert daher weiterhin, wenn der entstehende Ausdruck definiert ist.
 
 Besondere Schritte sind nötig, wenn das Einsetzen eine unbestimmte Form wie <InlineMath math="\frac{0}{0}" /> ergibt. In der Umgebung von null lassen sich solche Ausdrücke mit einem **grundlegenden Sinusgrenzwert** und bekannten trigonometrischen Identitäten umformen.
 
-## Der grundlegende trigonometrische Grenzwert
+## Sinusgrenzwert bei null
 
-Die wichtigste Grundlage trigonometrischer Grenzwerte ist der Satz, dass das Verhältnis aus dem Sinus eines Winkels und dem Winkel selbst gegen eins geht, wenn sich der Winkel null nähert.
+Nähert sich ein im Bogenmaß angegebener Winkel null, dann nähert sich das Verhältnis aus seinem Sinus und dem Winkel selbst dem Wert eins.
 
 ### Sinusgrenzwert
 
@@ -22,13 +23,13 @@ Es gilt:
 
 <BlockMath math="\lim_{x \to 0} \frac{\sin x}{x} = 1" />
 
-Direktes Einsetzen liefert nur <InlineMath math="\frac{0}{0}" /> und beweist den Satz daher nicht. Ein geometrischer Beweis verwendet den Einheitskreis und den Einschließungssatz.
+Der Ausdruck ist bei <InlineMath math="x=0" /> nicht definiert. Direktes Einsetzen bestimmt den Grenzwert daher nicht. Ein geometrischer Beweis verwendet den Einheitskreis und den Einschließungssatz.
 
 > Hier muss <InlineMath math="x" /> im **Bogenmaß** stehen. Für Gradmaß gilt dieser Grenzwert nicht in derselben Form.
 
 ### Folgen der Grundgrenze
 
-Aus diesem Grenzwert folgen weitere wichtige Ergebnisse:
+Mit diesem Grenzwert lassen sich die folgenden Ergebnisse herleiten:
 
 <MathContainer>
 <BlockMath math="\lim_{x \to 0} \frac{\tan x}{x} = 1 \quad \text{(weil} \tan x = \frac{\sin x}{\cos x} \text{und} \cos x \to 1\text{)}" />
@@ -71,7 +72,7 @@ Die Verhältnisgrenzwerte lassen sich auch miteinander verbinden:
 
 ### Auf die Grundform zurückführen
 
-Wir formen den Ausdruck so um, dass der grundlegende Sinusgrenzwert sichtbar wird.
+Wir formen den Ausdruck in ein Produkt um, das den grundlegenden Sinusgrenzwert enthält.
 
 **Berechne:** <InlineMath math="\lim_{x \to 0} \frac{\sin 2x}{3x}" />
 
@@ -99,7 +100,7 @@ Direktes Einsetzen:
 
 ### Eine neue Variable einführen
 
-Bei einem Ausdruck der Form <InlineMath math="\frac{0}{0}" /> kann eine geeignete Substitution die Grundform sichtbar machen.
+Bei einem Ausdruck der Form <InlineMath math="\frac{0}{0}" /> kann eine geeignete Substitution den Ausdruck auf eine bekannte Grundform zurückführen.
 
 **Berechne:** <InlineMath math="\lim_{x \to \frac{\pi}{2}} \frac{\sin^2(x - \frac{\pi}{2})}{x(x - \frac{\pi}{2})}" />
 
@@ -113,7 +114,7 @@ Sei <InlineMath math="u = x - \frac{\pi}{2}" />, dann haben wir für <InlineMath
 
 ## Grenzwerte mit Winkelidentitäten
 
-### Summen- und Differenzformeln
+### Summen und Differenzformeln
 
 Enthält ein Ausdruck eine Winkelsumme oder Winkeldifferenz, helfen die passenden trigonometrischen Identitäten.
 

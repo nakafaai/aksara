@@ -3,13 +3,13 @@ export const metadata = {
   description: "Shift function graphs up or down while tracking coordinates, asymptotes, and ranges.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Function Transformation",
 };
 
 
 
-## Basic Concepts of Vertical Translation
+## Vertical Translation
 
 Vertical translation slides a function graph up or down along the <InlineMath math="y" />-axis without changing its shape. Every point moves by the same vertical distance, as if the entire graph were lifted or lowered.
 
@@ -21,7 +21,7 @@ For any function <InlineMath math="f(x)" />, vertical translation is defined as:
 
 <BlockMath math="g(x) = f(x) + k" />
 
-Where:
+The direction of the shift follows these rules:
 - If <InlineMath math="k > 0" />, the graph shifts **upward** by <InlineMath math="k \text{ units}" />
 - If <InlineMath math="k < 0" />, the graph shifts **downward** by <InlineMath math="|k| \text{ units}" />
 - If <InlineMath math="k = 0" />, there is no translation (graph remains the same)
@@ -40,6 +40,7 @@ The linear function <InlineMath math="f(x) = 2x" /> shows that a vertical transl
         const x = (i - 10) * 0.5;
         return { x, y: 2 * x, z: 0 };
       }),
+      smooth: false,
       color: "#9333ea",
       labels: [{ text: <InlineMath math="f(x)=2x" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -49,6 +50,7 @@ The linear function <InlineMath math="f(x) = 2x" /> shows that a vertical transl
         const x = (i - 10) * 0.5;
         return { x, y: 2 * x + 3, z: 0 };
       }),
+      smooth: false,
       color: "#ea580c",
       labels: [{ text: <InlineMath math="g(x)=2x+3" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -58,6 +60,7 @@ The linear function <InlineMath math="f(x) = 2x" /> shows that a vertical transl
         const x = (i - 10) * 0.5;
         return { x, y: 2 * x - 2, z: 0 };
       }),
+      smooth: false,
       color: "#0d9488",
       labels: [{ text: <InlineMath math="h(x)=2x-2" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -114,7 +117,7 @@ The vertices make the displacement explicit:
 - After vertical translation <InlineMath math="+4" />, the vertex of <InlineMath math="g(x) = x^2 + 4" /> is at <InlineMath math="(0, 4)" />
 - After vertical translation <InlineMath math="-3" />, the vertex of <InlineMath math="h(x) = x^2 - 3" /> is at <InlineMath math="(0, -3)" />
 
-## Important Properties of Vertical Translation
+## Properties of Vertical Translation
 
 ### Graph Shape Remains Unchanged
 
@@ -131,9 +134,7 @@ If point <InlineMath math="(a, b)" /> is on the graph of <InlineMath math="f(x)"
 
 If the range of the original function is <InlineMath math="[c, d]" />, then the range after vertical translation <InlineMath math="k" /> becomes <InlineMath math="[c + k, d + k]" />.
 
-## Application Examples
-
-### Exponential Function Example
+## Moving an Exponential Graph Vertically
 
 For the exponential function <InlineMath math="f(x) = 2^x" />, the vertical translation also moves the horizontal asymptote.
 
@@ -243,6 +244,7 @@ For exponential functions:
            const x = (i - 10) * 0.5;
            return { x, y: 3 * x + 2, z: 0 };
          }),
+         smooth: false,
          color: "#7c3aed",
          labels: [{ text: <InlineMath math="g(x)=3x+2" />, offset: [1, 0.5, 0] }],
          showPoints: false,
@@ -252,6 +254,7 @@ For exponential functions:
            const x = (i - 10) * 0.5;
            return { x, y: 3 * x + 2 - 7, z: 0 };
          }),
+         smooth: false,
          color: "#0d9488",
          labels: [{ text: <InlineMath math="g'(x)=3x-5" />, offset: [1, 0.5, 0] }],
          showPoints: false,

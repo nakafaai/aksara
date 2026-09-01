@@ -1,29 +1,30 @@
 export const metadata = {
-  title: "Container",
-  description: "Vergleiche Strings, Listen, Tupel, Dictionaries und Sets und übe Indizierung, Slicing sowie gezielte Datenänderungen.",
+  title: "Sammlungen in Python",
+  description: "Vergleiche Python-Sammlungen nach Reihenfolge, Veränderlichkeit, eindeutigen Elementen und Zugriffsmöglichkeiten.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "KI-Programmierung",
 };
 
-## Containerkonzepte in Python
+## Sammlungen in Python
 
-Container gruppieren Werte und bestimmen, wie Code darauf zugreift. Eine Sequenz bewahrt Positionen, ein Mapping verbindet Schlüssel mit Werten und ein Set beschreibt eindeutige Mitglieder. Entscheidend sind dieses Verhalten und die Form der Klammern.
+Sammlungen speichern mehrere Werte in einem Objekt. Einige bewahren die Position jedes Elements, andere ordnen Schlüsseln Werte zu und wieder andere enthalten nur eindeutige Elemente. Wähle die Sammlung danach aus, wie das Programm auf die Daten zugreifen und sie verändern soll.
 
-Manche Container können verschiedene Objekttypen mischen, doch jeder hat eigene Bedingungen. Dictionary-Schlüssel und Set-Mitglieder müssen hashbar sein, Strings enthalten Text und die Veränderlichkeit unterscheidet sich je nach Container.
+Einige Sammlungen können Objekte verschiedener Typen enthalten. Für jeden Sammlungstyp gelten jedoch eigene Regeln. Schlüssel eines Dictionaries und Elemente eines Sets müssen zum Beispiel unverändert hashbar bleiben, solange sie in der Sammlung liegen. Der Sammlungstyp bestimmt außerdem, ob sich sein Inhalt nach der Erstellung ändern lässt.
 
 
-Diese Lektion vergleicht fünf eingebaute Sammlungsformen:
+Python stellt fünf häufig verwendete eingebaute Sammlungen bereit:
 
 - **String**: unveränderliche Textsequenz
 - **Liste**: veränderliche, indexierbare Sequenz
 - **Tupel**: unveränderliche Sequenz
 - **Dictionary**: Zuordnung von Schlüsseln zu Werten
-- **Set** - Sammlung eindeutiger Elemente ohne feste Reihenfolge
+- **Set**: Sammlung eindeutiger Elemente ohne Indizes
 
-## Einführung in Listen
+## Listen in Python
 
-Eine Liste ist eine geordnete, veränderliche Sequenz. Sie kann Werte verschiedener Typen aufnehmen, obwohl Sammlungen mit einer klaren Elementform meist leichter zu verstehen sind.
+Eine Liste bewahrt die Reihenfolge ihrer Elemente und ihr Inhalt lässt sich verändern. Eine Liste darf Werte verschiedener Typen enthalten, eine einheitliche Elementform ist jedoch meist leichter zu verarbeiten.
 
 Anders als ein niedrigstufiges Array fester Größe kann eine Python-Liste wachsen und schrumpfen. Sie speichert Verweise auf Python-Objekte. Eine Änderung an einem verschachtelten Objekt kann deshalb über jeden Verweis auf dieses Objekt sichtbar sein.
 
@@ -36,9 +37,9 @@ Anders als ein niedrigstufiges Array fester Größe kann eine Python-Liste wachs
 | Heterogen | Kann verschiedene Datentypen enthalten | `[1, 'text', 3.14, True]` |
 | Veränderlich | Inhalte können nach der Erstellung geändert werden | Kann Elemente hinzufügen, entfernen oder ändern |
 
-### Syntax zur Listenerstellung
+### Listen schreiben
 
-Listen werden mit eckigen Klammern erstellt, wobei die Elemente durch Kommas getrennt sind. Listen können Elemente unterschiedlicher Datentypen oder sogar andere Listen enthalten.
+Ein Listenliteral verwendet eckige Klammern und trennt die Elemente durch Kommas. Eine Liste kann Werte unterschiedlicher Typen oder weitere Listen enthalten.
 
 <CodeBlock
   data={[
@@ -66,14 +67,14 @@ nested = [1, [2.5, False, 'red'], 3.5, 'blue']  # Ausgabe: [1, [2.5, False, 'red
 
 ## Listenindizierung
 
-Die Indizierung ist eine Möglichkeit, über Positionsnummern auf einzelne Elemente einer Liste zuzugreifen. Python verwendet eine nullbasierte Indizierung, was bedeutet, dass das erste Element den Index <InlineMath math="0" /> hat.
+Die Indizierung greift über seine Position auf ein einzelnes Listenelement zu. Python zählt ab <InlineMath math="0" />, daher hat das erste Element den Index <InlineMath math="0" />.
 
 
-Für die Indizierung in Python gelten spezielle Regeln, die verstanden werden müssen:
+Für Listenindizes gelten diese Regeln:
 
 - **Positive Indizes** beginnen bei <InlineMath math="0" /> für das erste Element
 - **Negative Indizes** beginnen bei <InlineMath math="-1" /> für das letzte Element
-- **Indizes außerhalb des Bereichs** führen zu IndexError
+- **Ein Index außerhalb des gültigen Bereichs** löst `IndexError` aus
 
 <CodeBlock
   data={[
@@ -101,13 +102,14 @@ print('nested[1][2][1] =', nested[1][2][1])  # Ausgabe: nested[1][2][1] = e`
 
 ## Slicing mit Schrittweite
 
-Mit Slicing wird ein Teil einer Liste ausgewählt. Der Stride legt den Abstand zwischen den ausgewählten Elementen fest.
+Mit Slicing wird ein Teil einer Liste ausgewählt. Die Schrittweite legt den Abstand zwischen den ausgewählten Elementen fest.
 
 
-Die vollständige Slicing-Syntax ist `list[start:stop:step]`, wobei:
-- `start` ist der Startindex (einschließlich)
-- `stop` ist der Endindex (exklusiv)
-- `step` ist das Intervall für die Aufnahme von Elementen
+Die vollständige Syntax lautet `list[start:stop:step]`:
+
+- `start` ist der erste enthaltene Index
+- `stop` ist der erste nicht mehr enthaltene Index
+- `step` ist der Abstand zwischen den ausgewählten Indizes
 
 <CodeBlock
   data={[
@@ -133,11 +135,11 @@ print('x[::-1] =', x[::-1])                  # Ausgabe: x[::-1] = [5, 4, 3, 2, 1
   ]}
 />
 
-Beim Slicing wählt man einen zusammenhängenden oder regelmäßig übersprungenen Teil einer Liste aus. Für `x = [0, 1, 2, 3, 4, 5]` liefert `x[1:4]` die Elemente an den Indizes <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="3" />. Der Endindex <InlineMath math="4" /> gehört nicht mehr zum Ergebnis. Mit `x[1:4:2]` wird zusätzlich nur jeder zweite Index berücksichtigt, also <InlineMath math="1" /> und <InlineMath math="3" />.
+Beim Slicing wählt man einen zusammenhängenden oder regelmäßig übersprungenen Teil einer Liste aus. Für `x = [0, 1, 2, 3, 4, 5]` liefert `x[1:4]` die Elemente an den Indizes <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="3" />. Der Endindex <InlineMath math="4" /> gehört nicht mehr zum Ergebnis. Der Ausdruck `x[1:4:2]` verwendet die Schrittweite <InlineMath math="2" /> und wählt deshalb die Indizes <InlineMath math="1" /> und <InlineMath math="3" /> aus.
 
-## Operationen und Ähnlichkeiten mit Strings
+## Listen und Strings
 
-Listen unterstützen verschiedene Operationen zum Anzeigen und Bearbeiten von Daten. Auch hinsichtlich des Elementzugriffs weisen Listen Ähnlichkeiten mit Zeichenfolgen auf.
+Listen stellen Operationen zum Lesen und Verändern von Daten bereit. Für den Elementzugriff verwenden sie dieselbe Indizierungs- und Slicing-Syntax wie Strings.
 
 <CodeBlock
   data={[
@@ -163,18 +165,18 @@ print('Listeninhalt:', nested)
 />
 
 
-Listen und Strings weisen hinsichtlich des Elementzugriffs Ähnlichkeiten auf. Beide unterstützen die Indizierung und das Slicing mit denselben Mustern.
+Listen und Strings unterstützen beide Indizierung und Slicing.
 
 | Operation | Zeichenfolge | Liste |
 |---------|--------|------|
 | **Indizierung** | Einzelnes Zeichen lesen | Einzelnes Element lesen |
 | **Slicing mit Schrittweite** | Teilstring bilden | Teilliste bilden |
 
-Der Hauptunterschied liegt in der Veränderlichkeit: Ein String kann nach seiner Erstellung nicht in-place geändert werden, eine Liste schon. Deshalb besitzt die Liste Methoden, die ihren Inhalt direkt verändern.
+Der Hauptunterschied liegt in der Veränderlichkeit. Ein String kann nach seiner Erstellung nicht geändert werden, eine Liste dagegen schon. Listenmethoden können daher Elemente hinzufügen, entfernen, ersetzen oder neu anordnen.
 
 <Mermaid
-  title="Strings, Listen und Tupel haben einige Gemeinsamkeiten"
-  description="Vergleiche ähnliche Operationen, ohne die unterschiedlichen Eigenschaften von Strings, Listen und Tupeln zu vermischen."
+  title="Häufige Listenmethoden"
+  description="Mit diesen Methoden kannst du Elemente hinzufügen, entfernen und suchen. Du kannst damit auch Listen kopieren oder die Reihenfolge einer Liste ändern."
   chart={`
     flowchart LR
         A[Listenmethoden] --> B[Hinzufügen]
@@ -202,7 +204,7 @@ Der Hauptunterschied liegt in der Veränderlichkeit: Ein String kann nach seiner
 | `reverse()` | Listenreihenfolge direkt umkehren | Reihenfolge umkehren |
 | `remove(element)` | Erstes Vorkommen des Elements entfernen | Bestimmtes Element entfernen |
 | `sort()` | Liste direkt sortieren | Daten sortieren |
-| `copy()` | Listenkopie erstellen | Liste duplizieren |
+| `copy()` | Flache Kopie erstellen | Liste kopieren, ohne verschachtelte Objekte zu kopieren |
 | `count(element)` | Vorkommen eines Elements zählen | Häufigkeit bestimmen |
 
 <CodeBlock
@@ -253,21 +255,21 @@ print('Copied list:', copied)               # Ausgabe: Copied list: [0, 1, 2, 4,
   ]}
 />
 
-## Spezielle Listentypen
+## Häufige Listenformen
 
-Python unterstützt mehrere spezielle Listentypen mit unterschiedlichen Eigenschaften und Verwendungszwecken:
+Eine Liste kann leer sein, gemischte Typen enthalten oder weitere Listen enthalten:
 
 1. **Leere Listen**
 
-   Leere Listen eignen sich als erste Container, die später mit Daten gefüllt werden. Es gibt zwei Möglichkeiten, leere Listen mit demselben Ergebnis zu erstellen.
+   Sowohl `[]` als auch `list()` erzeugen eine leere Liste, die später gefüllt werden kann.
 
 2. **Heterogene Listen**
 
-   Heterogene Listen können Elemente unterschiedlicher Datentypen in einem Container enthalten. Dies bietet eine hohe Flexibilität bei der Datenspeicherung.
+   Eine Liste kann zum Beispiel einen Namen, ein Alter und einen booleschen Wert enthalten. Gemischte Typen sind sinnvoll, wenn jede Position eine klar festgelegte Bedeutung hat.
 
 3. **Verschachtelte Listen**
 
-   Verschachtelte Listen sind Listen, die andere Listen als Elemente enthalten. Dieses Konzept ermöglicht die Erstellung mehrdimensionaler Datenstrukturen wie Matrizen oder Tabellen.
+   Eine verschachtelte Liste enthält weitere Listen als Elemente. Innere Listen gleicher Länge können die Zeilen einer Matrix oder Tabelle darstellen.
 
 <CodeBlock
   data={[
@@ -292,23 +294,23 @@ print('Nested structure:', nested)`
   ]}
 />
 
-Verschachtelte Listen können Zeilen, Bäume oder kleine tabellenartige Strukturen darstellen. Sie garantieren weder automatisch eine rechteckige Matrix noch unabhängige innere Listen. Eine Mehrfachindizierung wie `nested[1][2]` folgt bei jedem Schritt einem Container.
+Verschachtelte Listen können Zeilen, Bäume oder kleine tabellenartige Strukturen darstellen. Sie bilden nicht automatisch eine rechteckige Matrix. Mehrere Elemente können außerdem auf dieselbe innere Liste verweisen. Eine verkettete Indizierung wie `nested[1][2]` wählt auf jeder Ebene ein Element aus.
 
-## Andere Container
+## Weitere Sammlungen
 
-Neben Listen stellt Python drei weitere Containertypen mit unterschiedlichen Eigenschaften und Verwendungszwecken zur Verfügung.
+Neben Listen stellt Python Tupel, Dictionaries und Sets mit jeweils eigenen Regeln bereit.
 
 ### Tupel
 
-Tupel ist eine Datenstruktur ähnlich einer Liste, aber unveränderlich. Tuple unterstützt Pack- und Entpackvorgänge, die für den Datenaustausch nützlich sind. Obwohl Tupel unveränderlich sind, können Tupel Verweise auf veränderliche Objekte wie Listen enthalten.
+Ein Tupel ähnelt einer Liste, aber seine Positionen können nach der Erstellung nicht ersetzt werden. Mehrere Werte lassen sich in einem Tupel zusammenfassen und später wieder auf einzelne Variablen verteilen.
 
-Ein wichtiges Konzept bei Tupeln ist der Unterschied zwischen dem unveränderlichen Tupel selbst und den darin enthaltenen veränderlichen Objekten. Tupel können ihre Struktur nicht ändern, aber der Inhalt der darin enthaltenen veränderlichen Objekte kann dennoch geändert werden.
+Ein Tupel kann seine eigenen Elemente nicht ersetzen. Ein Element darf jedoch auf ein veränderliches Objekt verweisen, dessen Inhalt sich weiterhin ändern lässt.
 
 | Aspekt | Tupel | Liste |
 |-------|-------|------|
 | **Veränderlichkeit** | Unveränderlich | Veränderlich |
 | **Syntax** | `()` oder ohne Klammern | `[]` |
-| **Nutzung** | Feste Daten, Koordinaten | Daten ändern |
+| **Nutzung** | Daten mit festen Positionen, etwa Koordinaten | Daten, die ergänzt oder geändert werden |
 
 <CodeBlock
   data={[
@@ -351,7 +353,7 @@ print('Nach dem Ändern der inneren Liste:', t) # Ausgabe: Nach dem Ändern der 
 
 ### Dictionary
 
-Ein Dictionary speichert Schlüssel-Wert-Paare. Jeder Schlüssel ist eindeutig und hashbar, während Werte mehrfach vorkommen und veränderlich sein dürfen. Ein Literal nutzt `{}` mit einem Doppelpunkt zwischen Schlüssel und Wert.
+Ein Dictionary speichert Schlüssel-Wert-Paare. Jeder Schlüssel muss eindeutig sein und unverändert hashbar bleiben, solange er im Dictionary liegt. Werte dürfen mehrfach vorkommen und auf veränderliche Objekte verweisen. Ein Dictionary-Literal verwendet `{}` mit einem Doppelpunkt zwischen Schlüssel und Wert.
 
 <CodeBlock
   data={[
@@ -374,9 +376,9 @@ print('Nach dem Hinzufügen von David:', kontakte)
   ]}
 />
 
-### Mengen (Set)
+### Mengen in Python
 
-Ein Set speichert eindeutige, hashbare Elemente und unterstützt mathematische Mengenoperationen. Es besitzt keine semantische Position oder garantierte Einfügereihenfolge. Nichtleere Literale nutzen `{}`. Ein leeres Set entsteht mit `set()`, weil `{}` ein leeres Dictionary erzeugt.
+Ein Set speichert eindeutige, hashbare Elemente und unterstützt mathematische Mengenoperationen. Es bietet keine Elementindizes und garantiert keine Iterationsreihenfolge. Nichtleere Set-Literale verwenden `{}`. Ein leeres Set entsteht mit `set()`, weil `{}` ein leeres Dictionary erzeugt.
 
 <CodeBlock
   data={[
@@ -406,13 +408,13 @@ print('gerade & ungerade =', gerade & ungerade) # Ausgabe: gerade & ungerade = s
   ]}
 />
 
-### Vergleich der Containertypen
+### Vergleich der Sammlungstypen
 
-| Container | Syntax | Geordnet | Veränderlich | Duplikate | Hauptverwendung |
+| Sammlung | Syntax | Geordnet | Veränderlich | Duplikate | Hauptverwendung |
 |-----------|---------|---------|---------|------------|------------|
 | **Liste** | `[1, 2, 3]` | Ja | Ja | Ja | Daten, die geändert werden müssen |
 | **Tupel** | `(1, 2, 3)` | Ja | Nein | Ja | Feste Daten, Koordinaten |
 | **Wörterbuch** | `{'a': 1}` | Ja* | Ja | Nein (Schlüssel) | Schlüsselwertzuordnung |
 | **Set** | `{1, 2, 3}` | Nein | Ja | Nein | Eindeutige Elemente, Mengenoperationen |
 
-> Dictionary-Iteration bewahrt die Einfügereihenfolge als Sprachgarantie seit Python `3.7`. Das Aktualisieren eines vorhandenen Schlüssels behält seine Position; Löschen und erneutes Einfügen setzt ihn ans Ende.
+> Seit Python `3.7` folgt die Iteration eines Dictionaries garantiert der Einfügereihenfolge der Schlüssel. Das Aktualisieren eines Schlüssels ändert seine Position nicht. Wird ein Schlüssel gelöscht und erneut eingefügt, steht er anschließend am Ende.

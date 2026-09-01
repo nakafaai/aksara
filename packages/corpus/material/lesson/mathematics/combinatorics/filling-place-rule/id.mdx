@@ -1,24 +1,25 @@
 export const metadata = {
    title: "Aturan Pengisian Tempat",
-   description: "Pelajari aturan pengisian tempat kombinatorik dengan metode tabel, diagram cabang, dan perkalian. Pelajari perhitungan susunan dengan contoh dan latihan.",
+   description: "Hitung banyak susunan dengan mengalikan pilihan yang sah pada setiap langkah, lalu periksa jumlah susunan melalui tabel atau diagram pohon.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
+   dateModified: "2026-09-01",
    subject: "Kombinatorik",
 };
 
-## Pengertian Aturan Pengisian Tempat
+## Menghitung Pilihan per Tempat
 
-**Aturan pengisian tempat** adalah metode untuk menentukan banyaknya cara menempatkan objek-objek pada tempat-tempat yang tersedia. Konsep ini sangat berguna dalam menyelesaikan masalah kombinatorik dimana kita perlu menghitung semua kemungkinan susunan atau pilihan yang dapat dibuat.
+**Aturan pengisian tempat** menghitung banyak susunan dengan mengalikan jumlah pilihan yang sah untuk setiap tempat secara berurutan. Aturan ini berlaku ketika setiap hasil lengkap dapat dibentuk melalui urutan pilihan yang tetap.
 
-Bayangkan seperti mengisi formulir yang memiliki beberapa kolom. Setiap kolom memiliki pilihan tertentu, dan kita ingin tahu berapa banyak cara berbeda untuk mengisi seluruh formulir tersebut.
+Formulir dengan beberapa kolom mengikuti pola yang sama. Setiap kolom menjadi satu tempat dan setiap isian yang diizinkan menjadi satu pilihan. Hasil kali jumlah pilihan memberi banyak kombinasi isian yang sah.
 
-## Metode Aturan Tabel
+## Mendaftar Pilihan dalam Tabel
 
-**Metode tabel** menyajikan semua kemungkinan kombinasi dalam bentuk tabel yang sistematis. Setiap baris dan kolom mewakili pilihan dari kategori yang berbeda.
+**Metode tabel** mencantumkan setiap kombinasi. Baris mewakili pilihan dari satu kategori dan kolom mewakili pilihan dari kategori lain.
 
-Misalkan seorang siswa ingin memilih paket pembelajaran online. Tersedia tiga platform (Platform A, Platform B, Platform C) dan empat mata pelajaran (Matematika, Fisika, Kimia, Biologi).
+Seorang siswa ingin memilih paket pembelajaran daring. Tersedia tiga platform (Platform A, Platform B, Platform C) dan empat mata pelajaran (Matematika, Fisika, Kimia, Biologi).
 
-Dengan menggunakan tabel, kita dapat melihat semua kombinasi yang mungkin:
+Tabel berikut memuat semua kombinasi yang mungkin:
 
 | Platform | Matematika | Fisika | Kimia | Biologi |
 |----------|------------|--------|-------|---------|
@@ -32,42 +33,42 @@ Dengan menggunakan tabel, kita dapat melihat semua kombinasi yang mungkin:
 
 ## Metode Diagram Cabang
 
-**Diagram cabang** menggambarkan setiap pilihan sebagai cabang pohon. Metode ini membantu visualisasi langkah demi langkah dalam membuat keputusan.
+Pada **diagram cabang**, setiap cabang mewakili satu pilihan. Satu lintasan lengkap dari titik awal sampai ujung cabang mewakili satu hasil.
 
-Untuk kasus yang sama, diagram cabang dimulai dari satu titik awal, kemudian bercabang menjadi pilihan-pilihan yang tersedia.
+Untuk pilihan paket yang sama, cabang pertama menentukan platform dan cabang berikutnya menentukan mata pelajaran.
 
 1. Tingkat <InlineMath math="1" />:
 
-   <BlockMath math="1 \text{ titik awal} \rightarrow 3 \text{ cabang platform}" />
+   <BlockMath math="1 \text{ titik awal} \rightarrow 3 \text{ pilihan platform}" />
 
 2. Tingkat <InlineMath math="2" />:
 
-   <BlockMath math="3 \text{ platform} \rightarrow 3 \times 4 = 12 \text{ cabang mata pelajaran}" />
+   <BlockMath math="3 \text{ platform} \times 4 \text{ mata pelajaran} = 12 \text{ ujung cabang}" />
 
 3. Struktur cabang:
 
    <BlockMath math="\text{Awal} \rightarrow \text{Platform} \rightarrow \text{Mata Pelajaran}" />
 
-4. Total rute lengkap:
+4. Jumlah lintasan lengkap:
 
    <BlockMath math="3 \times 4 = 12 \text{ kombinasi}" />
 
 ## Metode Aturan Perkalian
 
-**Aturan perkalian** adalah metode paling efisien untuk menghitung banyaknya cara mengisi tempat yang tersedia. Jika terdapat <InlineMath math="n" /> tempat dengan masing-masing tempat ke-<InlineMath math="i" /> memiliki <InlineMath math="k_i" /> pilihan, maka **total cara pengisian** adalah:
+**Aturan perkalian** menghasilkan hitungan yang sama tanpa mendaftar setiap hasil. Jika ada <InlineMath math="n" /> tempat dan tempat ke-<InlineMath math="i" /> memiliki <InlineMath math="k_i" /> pilihan yang sah, maka banyak hasil lengkap adalah:
 
 <MathContainer>
 <BlockMath math="\text{Total cara} = k_1 \times k_2 \times k_3 \times \cdots \times k_n" />
 </MathContainer>
 
-### Contoh Penggunaan Aturan Perkalian
+### Menghitung Kode Akses
 
 Sebuah sekolah ingin membuat kode akses untuk sistem pembelajaran digital. Kode tersebut terdiri dari:
 - Tempat pertama: <InlineMath math="3 \text{ huruf}" /> (<InlineMath math="A, B, C" />)
 - Tempat kedua: <InlineMath math="5 \text{ angka}" /> (<InlineMath math="1, 2, 3, 4, 5" />)
 - Tempat ketiga: <InlineMath math="2 \text{ simbol}" /> (<InlineMath math="@, \#" />)
 
-Maka, total kode berbeda yang dapat dibuat adalah:
+Kalikan jumlah pilihan pada ketiga tempat:
 
 <MathContainer>
 <BlockMath math="k_1 = 3 \text{ (pilihan huruf)}" />
@@ -78,13 +79,13 @@ Maka, total kode berbeda yang dapat dibuat adalah:
 
 ## Kasus Dengan Pembatasan
 
-Dalam beberapa situasi, terdapat **pembatasan tertentu** yang mempengaruhi jumlah pilihan di setiap tempat.
+Pembatasan dapat mengubah jumlah pilihan dari satu tempat ke tempat berikutnya.
 
 ### Pengulangan Tidak Diperbolehkan
 
 Jika objek yang sama **tidak boleh digunakan berulang**, maka setiap tempat yang terisi akan mengurangi pilihan untuk tempat berikutnya.
 
-**Contoh:** Membuat bilangan <InlineMath math="3 \text{ digit}" /> dari angka <InlineMath math="2, 3, 4, 5, 6" /> tanpa pengulangan.
+**Contoh:** Membuat bilangan <InlineMath math="3 \text{ digit}" /> dari digit <InlineMath math="2, 3, 4, 5, 6" /> tanpa pengulangan.
 
 <MathContainer>
 <BlockMath math="\text{Tempat pertama} = 5 \text{ pilihan}" />
@@ -106,29 +107,29 @@ Untuk kasus yang sama dengan pengulangan diperbolehkan:
 
 ## Latihan
 
-1. Sebuah toko elektronik menjual smartphone dengan <InlineMath math="4" /> merek berbeda, masing-masing tersedia dalam <InlineMath math="3" /> kapasitas memori dan <InlineMath math="5" /> pilihan warna. Berapa banyak kombinasi smartphone yang berbeda?
+1. Sebuah toko elektronik menjual ponsel dari <InlineMath math="4" /> merek. Setiap merek tersedia dalam <InlineMath math="3" /> kapasitas memori dan <InlineMath math="5" /> warna. Berapa banyak pilihan ponsel yang berbeda?
 
-2. Untuk membuat password yang terdiri dari <InlineMath math="1" /> huruf diikuti <InlineMath math="2" /> angka, dimana huruf dipilih dari A, B, C, D dan angka dipilih dari <InlineMath math="\{1, 2, 3, 4, 5\}" /> tanpa pengulangan. Berapa banyak password yang dapat dibuat?
+2. Sebuah kata sandi terdiri dari <InlineMath math="1" /> huruf yang diikuti <InlineMath math="2" /> digit. Huruf dipilih dari A, B, C, D, sedangkan digit dipilih dari <InlineMath math="\{1, 2, 3, 4, 5\}" /> tanpa pengulangan. Berapa banyak kata sandi yang dapat dibuat?
 
 3. Dari kota <InlineMath math="P" /> ke kota <InlineMath math="R" /> melalui kota <InlineMath math="Q" />, terdapat <InlineMath math="3" /> jalan dari <InlineMath math="P" /> ke <InlineMath math="Q" /> dan <InlineMath math="4" /> jalan dari <InlineMath math="Q" /> ke <InlineMath math="R" />. Berapa banyak rute berbeda yang dapat dipilih untuk perjalanan dari <InlineMath math="P" /> ke <InlineMath math="R" />?
 
-4. Membuat nomor plat kendaraan yang terdiri dari <InlineMath math="2" /> huruf diikuti <InlineMath math="3" /> angka. Jika tersedia <InlineMath math="26" /> huruf dan <InlineMath math="10" /> angka (<InlineMath math="0\text{-}9" />), dan pengulangan diperbolehkan, berapa banyak nomor plat yang dapat dibuat?
+4. Nomor pelat kendaraan terdiri dari <InlineMath math="2" /> huruf yang diikuti <InlineMath math="3" /> digit. Jika tersedia <InlineMath math="26" /> huruf dan <InlineMath math="10" /> digit <InlineMath math="0\text{-}9" />, serta pengulangan diperbolehkan, berapa banyak nomor pelat yang dapat dibuat?
 
 ### Kunci Jawaban
 
 1. Diketahui: <InlineMath math="4 \text{ merek}" />, <InlineMath math="3 \text{ kapasitas memori}" />, <InlineMath math="5 \text{ pilihan warna}" />
 
    <MathContainer>
-   <BlockMath math="\text{Total kombinasi} = 4 \times 3 \times 5 = 60 \text{ kombinasi smartphone}" />
+   <BlockMath math="\text{Jumlah pilihan} = 4 \times 3 \times 5 = 60 \text{ pilihan ponsel}" />
    </MathContainer>
 
-2. Diketahui: <InlineMath math="1 \text{ huruf}" /> dari <InlineMath math="\{A, B, C, D\}" />, <InlineMath math="2 \text{ angka}" /> dari <InlineMath math="\{1, 2, 3, 4, 5\}" /> tanpa pengulangan
+2. Diketahui: <InlineMath math="1 \text{ huruf}" /> dari <InlineMath math="\{A, B, C, D\}" />, <InlineMath math="2 \text{ digit}" /> dari <InlineMath math="\{1, 2, 3, 4, 5\}" /> tanpa pengulangan
 
    <MathContainer>
    <BlockMath math="\text{Pilihan huruf} = 4" />
-   <BlockMath math="\text{Pilihan angka pertama} = 5" />
-   <BlockMath math="\text{Pilihan angka kedua} = 4 \text{ (tanpa pengulangan)}" />
-   <BlockMath math="\text{Total password} = 4 \times 5 \times 4 = 80 \text{ password}" />
+   <BlockMath math="\text{Pilihan digit pertama} = 5" />
+   <BlockMath math="\text{Pilihan digit kedua} = 4 \text{ (tanpa pengulangan)}" />
+   <BlockMath math="\text{Jumlah kata sandi} = 4 \times 5 \times 4 = 80 \text{ kata sandi}" />
    </MathContainer>
 
 3. Diketahui: <InlineMath math="3 \text{ jalan}" /> dari <InlineMath math="P" /> ke <InlineMath math="Q" />, <InlineMath math="4 \text{ jalan}" /> dari <InlineMath math="Q" /> ke <InlineMath math="R" />
@@ -137,12 +138,12 @@ Untuk kasus yang sama dengan pengulangan diperbolehkan:
    <BlockMath math="\text{Total rute} = 3 \times 4 = 12 \text{ rute berbeda}" />
    </MathContainer>
 
-4. Diketahui: <InlineMath math="2 \text{ huruf}" /> dari <InlineMath math="26 \text{ huruf}" />, <InlineMath math="3 \text{ angka}" /> dari <InlineMath math="10 \text{ angka}" />, pengulangan diperbolehkan
+4. Diketahui: <InlineMath math="2 \text{ huruf}" /> dari <InlineMath math="26 \text{ huruf}" />, <InlineMath math="3 \text{ digit}" /> dari <InlineMath math="10 \text{ digit}" />, pengulangan diperbolehkan
 
    <MathContainer>
    <BlockMath math="\text{Pilihan huruf pertama} = 26" />
    <BlockMath math="\text{Pilihan huruf kedua} = 26" />
-   <BlockMath math="\text{Pilihan setiap angka} = 10" />
-   <BlockMath math="\text{Total nomor plat} = 26 \times 26 \times 10 \times 10 \times 10" />
-   <BlockMath math="= 676 \times 1000 = 676000 \text{ nomor plat}" />
+   <BlockMath math="\text{Pilihan setiap digit} = 10" />
+   <BlockMath math="\text{Jumlah nomor pelat} = 26 \times 26 \times 10 \times 10 \times 10" />
+   <BlockMath math="= 676 \times 1000 = 676000 \text{ nomor pelat}" />
    </MathContainer>

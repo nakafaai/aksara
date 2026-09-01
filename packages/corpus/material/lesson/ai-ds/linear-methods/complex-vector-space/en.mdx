@@ -3,7 +3,7 @@ export const metadata = {
     description: "Build complex vector spaces from the complex field, understand the vector-space axioms, and see why the chosen scalar field changes dimension and linearity.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Linear Methods of AI",
 };
 
@@ -17,7 +17,7 @@ Addition, subtraction, multiplication, and division by a nonzero number stay ins
 
 ### Conjugate and Modulus
 
-For <InlineMath math="z=x+iy" />, the **complex conjugate** is <InlineMath math="\overline z=x-iy" />. Since <InlineMath math="z\overline z=x^2+y^2" />, conjugation lets us compute both magnitudes and reciprocals, for example <InlineMath math="z^{-1}=\overline z/|z|^2" /> when <InlineMath math="z\neq0" />.
+For <InlineMath math="z=x+iy" />, the **complex conjugate** is <InlineMath math="\overline z=x-iy" />. Since <InlineMath math="z\overline z=x^2+y^2" />, conjugation gives both the magnitude and, when <InlineMath math="z\neq0" />, the reciprocal <InlineMath math="z^{-1}=\overline z/|z|^2" />.
 
 The **modulus** or absolute value of a complex number is calculated with the formula:
 
@@ -29,31 +29,31 @@ This modulus gives the "distance" of the complex number from the origin in the c
 
 The fundamental theorem of algebra says that every nonconstant polynomial with complex coefficients has a complex root.
 
-Now, look at a very important result. Every non-constant polynomial
+Let <InlineMath math="p" /> be a nonconstant polynomial of the following form.
 
 <BlockMath math="p(z) = a_n z^n + a_{n-1} z^{n-1} + \cdots + a_1 z + a_0, \quad z \in \mathbb{C}" />
 
-with degree <InlineMath math="n \geq 1" /> and complex coefficients <InlineMath math="a_k \in \mathbb{C}" /> for <InlineMath math="k = 0, 1, \ldots, n" /> with <InlineMath math="a_n \neq 0" />, has at least one complex root. This means there exists a number <InlineMath math="z_* \in \mathbb{C}" /> such that <InlineMath math="p(z_*) = 0" />.
+If <InlineMath math="n \geq 1" /> and the complex coefficients <InlineMath math="a_k \in \mathbb{C}" /> for <InlineMath math="k = 0, 1, \ldots, n" /> satisfy <InlineMath math="a_n \neq 0" />, then <InlineMath math="p" /> has at least one complex root. In other words, some <InlineMath math="z_* \in \mathbb{C}" /> satisfies <InlineMath math="p(z_*) = 0" />.
 
 Applying the theorem repeatedly shows that a degree-<InlineMath math="n" /> polynomial factors completely over <InlineMath math="\mathbb C" />:
 
 <BlockMath math="p(z)=a_n\prod_{j=1}^n(z-z_j)" />
 
-Thus it has exactly <InlineMath math="n" /> complex roots when multiplicities are counted. The qualification "nonconstant" matters: a nonzero constant polynomial has no root.
+It has exactly <InlineMath math="n" /> complex roots when multiplicities are counted. The qualification "nonconstant" matters: a nonzero constant polynomial has no root.
 
 ## Definition and Axioms of Complex Vector Space
 
 A complex vector space uses numbers from <InlineMath math="\mathbb C" /> as scalars. The operations must be closed in the stated sets and obey the same algebraic compatibility rules as a real vector space.
 
-A set <InlineMath math="V" /> with an addition operation
+Addition on a set <InlineMath math="V" /> is defined by
 
 <BlockMath math="+ : V \times V \to V : (x, y) \mapsto x + y" />
 
-and a scalar multiplication operation
+Scalar multiplication on <InlineMath math="V" /> is defined by
 
 <BlockMath math="\cdot : \mathbb{C} \times V \to V : (\lambda, x) \mapsto \lambda \cdot x" />
 
-is called a **complex vector space** if it satisfies the following axioms:
+The set <InlineMath math="V" /> with these two operations is a **complex vector space** if it satisfies the following axioms:
 
 ### Vector Addition Axioms
 
@@ -79,7 +79,7 @@ is called a **complex vector space** if it satisfies the following axioms:
 
 Elements <InlineMath math="x \in V" /> are called **vectors**, and elements <InlineMath math="\lambda \in \mathbb{C}" /> are called **scalars**.
 
-## A Concrete Example
+## Complex Scalar Multiplication in Two Dimensions
 
 The set <InlineMath math="V=\mathbb C^2" /> is a complex vector space with componentwise operations. For instance,
 

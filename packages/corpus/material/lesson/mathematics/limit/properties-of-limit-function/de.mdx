@@ -3,14 +3,13 @@ export const metadata = {
    description: "Komplizierte Grenzwerte mit Summen-, Produkt-, Quotienten-, Potenz- und Wurzelregeln in überschaubare Schritte zerlegen.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
+   dateModified: "2026-09-01",
    subject: "Grenzwerte",
 };
 
-## Warum Grenzwertregeln helfen
+## Grenzwertregeln für zusammengesetzte Ausdrücke
 
-Nach dem [Begriff des Grenzwerts](/de/faecher/mathematik/grenzwerte/begriff-des-grenzwerts) geht es nun um das Rechnen. Mit **Grenzwertregeln** zerlegen wir einen komplizierten Ausdruck in einfachere Teile.
-
-So müssen wir nicht bei jeder Aufgabe wieder mit der formalen Definition oder einer Wertetabelle beginnen. Wir prüfen die Voraussetzungen der passenden Regel und berechnen dann die Teilgrenzwerte.
+Die **Grenzwertregeln** berechnen den Grenzwert einer Summe, Differenz, eines Produkts oder Quotienten aus den Grenzwerten der einzelnen Teile. Alle Teilgrenzwerte müssen existieren. Bei einem Quotienten muss der Grenzwert des Nenners außerdem ungleich null sein.
 
 ## Zwei grundlegende Regeln
 
@@ -34,7 +33,7 @@ Nähert sich <InlineMath math="x" /> dem Wert <InlineMath math="c" />, dann näh
 
 Es gelte <InlineMath math="\lim_{x \to c} f(x) = L" /> und <InlineMath math="\lim_{x \to c} g(x) = M" />, wobei <InlineMath math="L" /> und <InlineMath math="M" /> reelle Zahlen sind. Dann gelten die folgenden Regeln:
 
-### Summen- und Differenzregel
+### Summenregel und Differenzregel
 
 Bei einer **Summe** oder **Differenz** dürfen wir die Grenzwerte der einzelnen Funktionen getrennt berechnen:
 
@@ -65,7 +64,7 @@ Beim **Quotienten** teilen wir die Grenzwerte, sofern der Grenzwert des Nenners 
 
 Die entscheidende Bedingung lautet <InlineMath math="M \neq 0" />.
 
-## Potenz- und Wurzelregeln
+## Potenzregeln und Wurzelregeln
 
 ### Potenzregel
 
@@ -73,7 +72,7 @@ Bei einer **Potenz** darf der Grenzwert zuerst gebildet und anschließend potenz
 
 <BlockMath math="\lim_{x \to c} [f(x)]^n = \left[\lim_{x \to c} f(x)\right]^n = L^n" />
 
-wobei <InlineMath math="n" /> eine positive ganze Zahl ist.
+In dieser Regel ist <InlineMath math="n" /> eine positive ganze Zahl.
 
 ### Wurzelregel
 
@@ -81,13 +80,13 @@ Bei einer **Wurzel** darf der Grenzwert unter den Wurzelausdruck gezogen werden:
 
 <BlockMath math="\lim_{x \to c} \sqrt[n]{f(x)} = \sqrt[n]{\lim_{x \to c} f(x)} = \sqrt[n]{L}" />
 
-**Wichtige Bedingungen:** Die Wurzelfunktion muss für Eingaben in der Nähe der betrachteten Stelle definiert sein.
+**Definitionsbedingung:** Die Wurzelfunktion muss für Eingaben in der Nähe der betrachteten Stelle definiert sein.
 - Ist <InlineMath math="n" /> ungerade, ist die reelle Wurzel für jeden reellen Wert von <InlineMath math="L" /> definiert
 - Ist <InlineMath math="n" /> gerade, muss der Ausdruck unter der Wurzel in der Umgebung nichtnegativ bleiben und <InlineMath math="L \geq 0" /> gelten
 
 ## Grenzwertregeln anwenden
 
-### Einfaches Beispiel
+### Grenzwert einer Polynomfunktion
 
 Berechne <InlineMath math="\lim_{x \to 2} (3x^2 + 5x - 1)" />.
 
@@ -101,7 +100,7 @@ Wir zerlegen den Ausdruck mithilfe der Grenzwertregeln:
 <BlockMath math="= 3(2)^2 + 5(2) - 1 = 12 + 10 - 1 = 21" />
 </MathContainer>
 
-### Beispiel mit Brüchen
+### Grenzwert einer gebrochenrationalen Funktion
 
 Berechne <InlineMath math="\lim_{x \to 4} \frac{x\sqrt{x}}{x^2 + 3}" />.
 
@@ -122,7 +121,7 @@ Nun setzen wir <InlineMath math="x = 4" /> ein:
 
 In **Dezimalform**: <InlineMath math="\frac{8}{19} \approx 0{,}421" />
 
-### Beispiel mit Wurzeln
+### Grenzwert einer Wurzelfunktion
 
 Berechne <InlineMath math="\lim_{x \to 0} \sqrt{x^2 - 3x + 2}" />.
 

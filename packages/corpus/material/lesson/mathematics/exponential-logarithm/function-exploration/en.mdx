@@ -1,10 +1,10 @@
 export const metadata = {
-  title: "Exploring Exponential Functions",
+  title: "Exponential Function Models",
   description:
     "Use an idealized transmission tree to distinguish per-phase and cumulative counts, compare function families, and examine the limits of a model.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-02",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Exponents and Logarithms",
 };
 
@@ -12,7 +12,7 @@ export const metadata = {
 
 Suppose one initial case leads to exactly <InlineMath math="3" /> new cases, and every new case leads to exactly <InlineMath math="3" /> more cases in the next phase. Assume no contacts overlap, nobody recovers during the model, and the factor never changes.
 
-These assumptions are deliberately unrealistic. They create a simple branching pattern that helps us study exponential functions. Real outbreaks involve many more factors.
+Under these assumptions, each phase has three times as many new cases as the previous phase. The model is only for studying exponential functions because real outbreaks include overlapping contacts, recovery, and changing transmission rates.
 
 ## New Cases in Each Phase
 
@@ -42,7 +42,7 @@ The chart compares three formulas over the same phase values:
 2. **Linear**: <InlineMath math="y=3x" />
 3. **Logarithmic**: <InlineMath math="y=20\ln(x+1)" />
 
-Only the exponential curve follows the stated “multiply by three each phase” rule. The other curves help us compare shapes. They do not describe other forms of transmission.
+Only the exponential curve follows the stated “multiply by three each phase” rule. The other curves are shape comparisons and do not describe other forms of transmission.
 
 <FunctionExplorationVirusChart
   labels={{
@@ -53,7 +53,7 @@ Only the exponential curve follows the stated “multiply by three each phase”
     logarithmic: "Logarithmic",
     yLabel: "New cases in the phase",
     caption:
-      "The exponential curve matches the fixed factor of three; real transmission does not keep these assumptions indefinitely.",
+      "The exponential curve uses a fixed growth factor of three per phase. Real transmission does not always follow this pattern.",
     phase: "Phase",
   }}
 />
@@ -72,9 +72,9 @@ Only the exponential curve follows the stated “multiply by three each phase”
 
    The exponential model multiplies the previous phase by <InlineMath math="3" />. A linear model would add the same amount each phase. Multiplication by a constant factor and addition of a constant amount are different processes.
 
-The enormous results are evidence that the assumptions cannot be extended casually. They are not plausible case forecasts.
+At phase <InlineMath math="20" />, the model gives <InlineMath math="3{,}486{,}784{,}401" /> new cases and <InlineMath math="5{,}230{,}176{,}600" /> cumulative cases. These values depend on a constant factor of three with no overlapping contacts or recovery, so they are classroom calculations rather than case forecasts.
 
-## Properties Seen in the Exploration
+## Properties of Exponential Functions
 
 For <InlineMath math="f(x)=a^x" /> with <InlineMath math="a>0" /> and <InlineMath math="a\neq1" />:
 
@@ -82,7 +82,7 @@ For <InlineMath math="f(x)=a^x" /> with <InlineMath math="a>0" /> and <InlineMat
 2. The graph passes through <InlineMath math="(0,1)" /> because <InlineMath math="a^0=1" />.
 3. If <InlineMath math="a>1" />, the function is increasing.
 4. If <InlineMath math="0<a<1" />, the function is decreasing.
-5. The distance of <InlineMath math="a" /> from <InlineMath math="1" /> affects how quickly the output changes. Exponential behavior is not automatically “extremely rapid.”
+5. For <InlineMath math="a>1" />, a larger value of <InlineMath math="a" /> gives more growth per interval. For <InlineMath math="0<a<1" />, a smaller value of <InlineMath math="a" /> gives more decay per interval.
 
 ## Where Exponential Models Appear
 

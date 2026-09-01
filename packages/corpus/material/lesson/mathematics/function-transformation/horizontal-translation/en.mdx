@@ -3,13 +3,13 @@ export const metadata = {
   description: "Shift function graphs left or right, derive the sign rule, and track how the domain and range change.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Function Transformation",
 };
 
 
 
-## Basic Concepts of Horizontal Translation
+## Horizontal Translation
 
 Horizontal translation slides a function graph left or right along the <InlineMath math="x" />-axis without changing its shape. Every point moves by the same horizontal distance, as if the graph were an object sliding across a table.
 
@@ -21,14 +21,14 @@ For any function <InlineMath math="f(x)" />, horizontal translation is defined a
 
 <BlockMath math="g(x) = f(x - h)" />
 
-Where:
+The direction of the shift follows these rules:
 - If <InlineMath math="h > 0" />, the graph shifts to the **right** by <InlineMath math="h \text{ units}" />
 - If <InlineMath math="h < 0" />, the graph shifts to the **left** by <InlineMath math="|h| \text{ units}" />
 - If <InlineMath math="h = 0" />, there is no translation (graph remains the same)
 
 ## Visualization of Horizontal Translation
 
-The quadratic function <InlineMath math="f(x) = x^2" /> makes the sign rule visible at its vertex.
+For the quadratic function <InlineMath math="f(x) = x^2" />, the new vertex shows how the sign inside the input controls the direction of the shift.
 
 <LineEquation
   title={<>Horizontal Translation of Quadratic Function <InlineMath math="f(x) = x^2" /></>}
@@ -86,6 +86,7 @@ The same translation rule applies to the linear function <InlineMath math="f(x) 
         const x = (i - 10) * 0.5;
         return { x, y: 2 * x + 1, z: 0 };
       }),
+      smooth: false,
       color: "#7c3aed",
       labels: [{ text: <InlineMath math="f(x)=2x+1" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -95,6 +96,7 @@ The same translation rule applies to the linear function <InlineMath math="f(x) 
         const x = (i - 10) * 0.5;
         return { x, y: 2 * (x - 4) + 1, z: 0 };
       }),
+      smooth: false,
       color: "#d97706",
       labels: [{ text: <InlineMath math="g(x)=2(x-4)+1" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -104,6 +106,7 @@ The same translation rule applies to the linear function <InlineMath math="f(x) 
         const x = (i - 10) * 0.5;
         return { x, y: 2 * (x + 3) + 1, z: 0 };
       }),
+      smooth: false,
       color: "#0891b2",
       labels: [{ text: <InlineMath math="h(x)=2(x+3)+1" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -116,7 +119,7 @@ The three lines show:
 - Function <InlineMath math="g(x) = 2(x - 4) + 1" /> shifts right by <InlineMath math="4 \text{ units}" />
 - Function <InlineMath math="h(x) = 2(x + 3) + 1" /> shifts left by <InlineMath math="3 \text{ units}" />
 
-## Important Properties of Horizontal Translation
+## Properties of Horizontal Translation
 
 ### Graph Shape Remains Unchanged
 
@@ -133,9 +136,7 @@ If point <InlineMath math="(a, b)" /> is on the graph of <InlineMath math="f(x)"
 
 If the domain of the original function is <InlineMath math="[c, d]" />, then the domain after horizontal translation <InlineMath math="h" /> becomes <InlineMath math="[c + h, d + h]" />.
 
-## Application Examples
-
-### Exponential Function Example
+## Moving an Exponential Graph Horizontally
 
 The exponential function <InlineMath math="f(x) = 2^x" /> retains its shape and asymptote under a horizontal translation.
 

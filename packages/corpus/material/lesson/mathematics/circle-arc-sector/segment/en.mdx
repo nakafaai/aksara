@@ -1,22 +1,20 @@
 export const metadata = {
-  title: "Segment",
-  description: "Understand circle segments bounded by chord and arc. Learn minor and major types, area calculations using sector-triangle methods, and tank applications.",
+  title: "Circle Segments",
+  description: "Calculate minor and major segment areas by subtracting a triangle from a sector, including a tank cross-section problem.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Circle Arcs and Sectors",
 };
 
 
-## Basic Concept of Segment
+## Circle Segments
 
-When a straight cut removes part of a circular region, the separated shape resembles a circle segment.
-
-A chord and either of the two arcs joining its endpoints bound a circle segment. The minor arc bounds the minor segment, while the remaining major arc bounds the major segment. A diameter is the limiting case in which both segments are semicircles.
+A line that intersects a circle at two points forms a chord. The chord and either arc between its endpoints bound a circle segment. The minor arc bounds the minor segment, while the remaining major arc bounds the major segment. A diameter is the limiting case in which both segments are semicircles.
 
 ## Difference Between Arc and Segment
 
-Start with the fundamental difference between an arc and a segment:
+An arc and a segment name different parts of a circle:
 
 <ContentStack>
 
@@ -304,7 +302,7 @@ Based on their size, segments can be divided into two types with different chara
 
 </ContentStack>
 
-**Key Differences:**
+For a fixed radius, the central angle distinguishes the two segments:
 - **Minor Segment**: central angle <InlineMath math="< 180^\circ" />, segment area <InlineMath math="< \frac{1}{2}\pi r^2" />
 - **Major Segment**: central angle <InlineMath math="> 180^\circ" />, segment area <InlineMath math="> \frac{1}{2}\pi r^2" />
 
@@ -312,41 +310,40 @@ Based on their size, segments can be divided into two types with different chara
 
 To calculate the area of a minor segment, subtract the triangle formed by the two radii and the chord from its sector.
 
-**Why is it different from the arc length formula?**
-- **Arc Length** is <InlineMath math="\frac{\alpha}{360^\circ} \times 2\pi r" /> (units: cm, m, etc.)
-- **Segment Area** <InlineMath math="\neq" /> Arc Length (segment area is measured in square units; arc length is measured in length units)
+Compare arc length and segment area before using their formulas.
 
-    <MathContainer>
-    <BlockMath math="\text{Segment Area} = \text{Sector Area} - \text{Triangle Area}" />
-    </MathContainer>
+| Quantity | Formula | Unit type |
+| :------- | :------ | :-------- |
+| Arc length | <InlineMath math="s=\frac{\alpha}{360^\circ}\times 2\pi r" /> | Length, such as <InlineMath math="\text{cm}" /> or <InlineMath math="\text{m}" /> |
+| Segment area | <InlineMath math="A_{\mathrm{segment}}=A_{\mathrm{sector}}-A_{\mathrm{triangle}}" /> | Area, such as <InlineMath math="\text{cm}^2" /> or <InlineMath math="\text{m}^2" /> |
 
-    In more detail, the formula can be written as:
+<MathContainer>
+  <BlockMath math="\text{Segment Area} = \text{Sector Area} - \text{Triangle Area}" />
+</MathContainer>
 
-    <MathContainer>
-    <BlockMath math="\text{Segment Area} = \frac{\alpha}{360^\circ} \times \pi r^2 - \frac{1}{2} r^2 \sin \alpha" />
-    </MathContainer>
+Substituting the sector-area and triangle-area formulas gives:
 
-    Here <InlineMath math="0^\circ < \alpha < 180^\circ" /> is the minor central angle in degrees and <InlineMath math="r" /> is the circle radius.
+<MathContainer>
+  <BlockMath math="\text{Segment Area} = \frac{\alpha}{360^\circ} \times \pi r^2 - \frac{1}{2} r^2 \sin \alpha" />
+</MathContainer>
 
-    For a major segment, first use the complementary minor angle <InlineMath math="\beta=360^\circ-\alpha" />, then subtract the corresponding minor segment from the whole circle:
+Here <InlineMath math="0^\circ < \alpha < 180^\circ" /> is the minor central angle in degrees and <InlineMath math="r" /> is the circle radius.
 
-    <MathContainer>
-    <BlockMath math="\beta=360^\circ-\alpha" />
-    <BlockMath math="A_{\mathrm{major}}=\pi r^2-\left(\frac{\beta}{360^\circ}\pi r^2-\frac{1}{2}r^2\sin\beta\right)" />
-    </MathContainer>
+For a major segment, first use the complementary minor angle <InlineMath math="\beta=360^\circ-\alpha" />, then subtract the corresponding minor segment from the whole circle:
 
-**Note the difference in units:**
-- Arc length: <InlineMath math="\text{cm}" />, <InlineMath math="\text{m}" /> (length units)
-- Segment area: <InlineMath math="\text{cm}^2" />, <InlineMath math="\text{m}^2" /> (area units)
+<MathContainer>
+  <BlockMath math="\beta=360^\circ-\alpha" />
+  <BlockMath math="A_{\mathrm{major}}=\pi r^2-\left(\frac{\beta}{360^\circ}\pi r^2-\frac{1}{2}r^2\sin\beta\right)" />
+</MathContainer>
 
-## Visualization of Segment Formation
+## Sector Triangle and Segment
 
-The diagram shows how the sector, triangle, and remaining segment fit together:
+The diagram labels the sector, the triangle formed by the two radii and chord, and the segment left after subtracting the triangle.
 
 <ContentStack>
 
 <LineEquation
-  title="Components of Segment Formation"
+  title="Sector Minus Triangle"
   description={
     <>
       A segment is formed from sector <InlineMath math="AOB" /> minus triangle{" "}

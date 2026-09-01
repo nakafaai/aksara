@@ -3,6 +3,7 @@ export const metadata = {
   description: "Erstelle parameterlineare Modelle aus Basisfunktionen, fasse Messungen in einer Designmatrix zusammen und unterscheide exakte lineare Modelle von lokaler Linearisierung.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Lineare Methoden der KI",
 };
 
@@ -22,7 +23,7 @@ Wir erfassen <InlineMath math="M" /> Eingabe-Antwort-Paare <InlineMath math="(t_
 
 <BlockMath math="y_i=h(t_i)x+\varepsilon_i,\qquad i=1,\ldots,M" />
 
-wobei <InlineMath math="\varepsilon_i" /> Messrauschen und Modellabweichungen enthält. Durch Stapeln aller Antworten und Modellblöcke erhält man
+Der Fehler <InlineMath math="\varepsilon_i" /> enthält Messrauschen und Modellabweichungen. Durch Stapeln aller Antworten und Modellblöcke erhält man
 
 <MathContainer>
 <BlockMath math="b=\begin{pmatrix}y_1\\\vdots\\y_M\end{pmatrix}\in\mathbb{R}^{Md}" />
@@ -57,13 +58,13 @@ Liefert jede Eingabe mehrere Antworten, ordnet man ihre Parametervektoren in ein
 
 Jede Spalte von <InlineMath math="B" /> beschreibt eine Antwort. Auch dies ist ein lineares Modell, weil jede Ausgabe eine lineare Kombination derselben bekannten Basiswerte ist.
 
-## Physikalisches Beispiel: das ideale Gasgesetz
+## Das ideale Gasgesetz
 
-Für ein ideales Gas gilt
+Das ideale Gasgesetz lautet
 
 <BlockMath math="pV=nRT" />
 
-und damit bei bekannter Temperatur <InlineMath math="T" /> und bekanntem Volumen <InlineMath math="V" />
+Bei bekannter Temperatur <InlineMath math="T" /> und bekanntem Volumen <InlineMath math="V" /> ergibt das Auflösen nach dem Druck
 
 <BlockMath math="p=\frac{RT}{V}n" />
 
@@ -77,7 +78,7 @@ Ein tatsächlich nichtlineares Parametermodell hat die Form
 
 <BlockMath math="y=g(t,x)" />
 
-wobei Parameter in Exponentialfunktionen, Potenzen oder Produkten miteinander auftreten können. In der Nähe eines aktuellen Parameterwerts <InlineMath math="x_0" /> liefert eine Taylor-Näherung erster Ordnung
+In diesem Modell können Parameter in Exponentialfunktionen, Potenzen oder Produkten miteinander auftreten. In der Nähe eines aktuellen Parameterwerts <InlineMath math="x_0" /> liefert eine Taylor-Näherung erster Ordnung
 
 <BlockMath math="g(t,x)\approx g(t,x_0)+J_xg(t,x_0)(x-x_0)" />
 

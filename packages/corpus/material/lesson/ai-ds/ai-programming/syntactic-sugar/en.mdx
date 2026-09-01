@@ -1,13 +1,13 @@
 export const metadata = {
     title: "Syntactic Sugar",
-    description: "Learn Python syntactic sugar features like list comprehensions, lambda functions, and assignment operators to write cleaner, more efficient code.",
+  description: "Write Python expressions with list comprehensions, lambda functions, and augmented assignment operators.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-20",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "AI Programming",
 };
 
-## What is Syntactic Sugar
+## Syntactic Sugar
 
 Syntactic sugar is a concise notation for behavior that could also be expressed more explicitly. It can remove repetitive ceremony, but shorter syntax is useful only when the reader can still see what the code does.
 
@@ -36,11 +36,11 @@ newlist = [if_expr if condition else else_expr for item in iterable]`
   ]}
 />
 
-Note that in the third form, the if-else expression must appear before the `for` loop. This is different from the second form where the `if` condition appears after the loop.
+In the third form, the if-else expression appears before the `for` loop. In the second form, the `if` condition appears after the loop.
 
 ### List Comprehension Implementation
 
-See how list comprehension works in practice:
+The following examples separate two cases: a conditional expression and a filter.
 
 <CodeBlock
   data={[
@@ -130,7 +130,7 @@ def add_normal(x, y):
   ]}
 />
 
-### Lambda with Built-in Functions
+### Lambda with Built In Functions
 
 Short lambdas work well as callbacks, especially a `key` function passed to `sorted()`. `map()` and `filter()` also accept them, although an equivalent comprehension may be easier to read:
 
@@ -252,4 +252,4 @@ To understand the advantages of syntactic sugar, compare different ways of writi
 | Assignment | `a = a + 5` | `a += 5` |
 | Access last element | `data[len(data) - 1]` | `data[-1]` |
 
-Choose the compact form when it makes the operation easier to recognize. If it hides control flow or side effects, the explicit form is the better explanation and often the better program.
+Use the compact form only when a reader can identify the operation without tracing hidden control flow or side effects. Otherwise, use the explicit form.

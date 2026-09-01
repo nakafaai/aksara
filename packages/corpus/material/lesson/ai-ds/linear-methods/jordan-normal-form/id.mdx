@@ -1,9 +1,9 @@
 export const metadata = {
   title: "Trigonalisasi dan Bentuk Normal Jordan",
-  description: "Pahami trigonalisasi, blok Jordan, rantai vektor eigen tergeneralisasi, dan informasi yang diberikan bentuk Jordan tentang matriks yang tidak dapat didiagonalisasi.",
+    description: "Gunakan trigonalisasi, blok Jordan, dan rantai vektor eigen tergeneralisasi untuk menjelaskan matriks yang tidak dapat didiagonalisasi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-17",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Metode Linear AI",
 };
 
@@ -44,11 +44,11 @@ Vektor pertama adalah vektor eigen biasa. Setelah dikenai <InlineMath math="A-\l
 
 ## Bentuk Jordan lengkap
 
-Misalkan
+Misalkan polinomial karakteristik <InlineMath math="A" /> memiliki bentuk berikut.
 
 <BlockMath math="\chi_A(t)=\prod_{i=1}^{k}(t-\lambda_i)^{a_i}" />
 
-terurai atas <InlineMath math="\mathbb{K}" />, dengan nilai eigen berbeda <InlineMath math="\lambda_1,\ldots,\lambda_k" />. Terdapat matriks yang dapat diinverskan <InlineMath math="S" /> sehingga
+Jika polinomial ini terurai atas <InlineMath math="\mathbb{K}" /> dengan nilai eigen berbeda <InlineMath math="\lambda_1,\ldots,\lambda_k" />, terdapat matriks yang dapat diinverskan <InlineMath math="S" /> sehingga
 
 <BlockMath math="S^{-1}AS=J=\operatorname{diag}\bigl(J_{s_{11}}(\lambda_1),\ldots,J_{s_{1q_1}}(\lambda_1),\ldots,J_{s_{k1}}(\lambda_k),\ldots,J_{s_{kq_k}}(\lambda_k)\bigr)" />
 
@@ -64,7 +64,7 @@ Jumlah blok untuk <InlineMath math="\lambda_i" /> sama dengan multiplisitas geom
 | Berapa banyak vektor eigen bebas linear untuk <InlineMath math="\lambda_i" />? | Satu untuk setiap blok Jordan yang terkait dengan <InlineMath math="\lambda_i" />. |
 | Mengapa nilai eigen berulang belum menentukan diagonalisabilitas? | Multiplisitas aljabar yang sama dapat terbagi menjadi blok-blok dengan ukuran berbeda. |
 
-## Contoh terurai
+## Membaca Blok Jordan dari Matriks
 
 Perhatikan
 
@@ -81,18 +81,18 @@ Untuk <InlineMath math="\lambda=1" />,
 <BlockMath math="\ker(A-I)=\operatorname{span}\left\{\begin{pmatrix}1\\0\\0\end{pmatrix}\right\}" />
 </MathContainer>
 
-Nilai eigen <InlineMath math="1" /> memiliki multiplisitas aljabar <InlineMath math="2" />, tetapi hanya satu vektor eigen bebas linear. Jadi, <InlineMath math="A" /> tidak dapat didiagonalisasi. Vektor
+Nilai eigen <InlineMath math="1" /> memiliki multiplisitas aljabar <InlineMath math="2" />, tetapi hanya satu vektor eigen bebas linear. Jadi, <InlineMath math="A" /> tidak dapat didiagonalisasi. Perhatikan dua vektor berikut.
 
 <BlockMath math="v_1=\begin{pmatrix}1\\0\\0\end{pmatrix},\qquad v_2=\begin{pmatrix}0\\1\\0\end{pmatrix}" />
 
-membentuk sebuah rantai karena <InlineMath math="(A-I)v_1=0" /> dan <InlineMath math="(A-I)v_2=v_1" />. Nilai eigen <InlineMath math="2" /> menghasilkan blok terpisah <InlineMath math="J_1(2)" />.
+Kedua vektor membentuk rantai Jordan karena <InlineMath math="(A-I)v_1=0" /> dan <InlineMath math="(A-I)v_2=v_1" />. Nilai eigen <InlineMath math="2" /> menghasilkan blok terpisah <InlineMath math="J_1(2)" />.
 
-## Kegunaan bentuk Jordan
+## Pangkat Matriks dari Blok Jordan
 
-Penulisan <InlineMath math="J_s(\lambda)=\lambda I+N" /> dengan <InlineMath math="N^s=0" /> membuat perpangkatan dapat dihitung secara eksplisit:
+Untuk <InlineMath math="J_s(\lambda)=\lambda I+N" /> dengan <InlineMath math="N^s=0" />, teorema binomial memberikan rumus pangkat yang eksplisit:
 
 <BlockMath math="J_s(\lambda)^m=\sum_{j=0}^{s-1}\binom{m}{j}\lambda^{m-j}N^j" />
 
-Rumus ini menjelaskan mengapa pangkat matriks yang tidak dapat didiagonalisasi mengandung faktor polinomial dalam <InlineMath math="m" />, selain pangkat nilai eigennya. Hasil ini berguna untuk menganalisis relasi rekurensi dan persamaan diferensial secara eksak.
+Rumus ini menjelaskan mengapa pangkat matriks yang tidak dapat didiagonalisasi mengandung faktor polinomial dalam <InlineMath math="m" />, selain pangkat nilai eigennya. Rumus tersebut memberikan pangkat matriks eksak yang digunakan untuk menganalisis relasi rekurensi dan persamaan diferensial.
 
-Bentuk Jordan terutama digunakan untuk klasifikasi aljabar eksak. Bentuk ini sangat peka terhadap gangguan numerik kecil, sehingga perangkat lunak numerik biasanya menghitung dekomposisi Schur agar perhitungannya stabil.
+Bentuk Jordan terutama digunakan untuk klasifikasi aljabar eksak. Bentuk ini sangat peka terhadap gangguan numerik kecil. Karena itu, perangkat lunak numerik biasanya memakai dekomposisi Schur, yang lebih stabil terhadap pembulatan dan perubahan kecil pada entri matriks.

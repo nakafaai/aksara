@@ -1,49 +1,50 @@
 export const metadata = {
    title: "Permutation of All Objects",
-   description: "Learn permutation of all objects using factorial formulas. Arrange all objects with worked examples and practical exercises.",
+   description: "Count arrangements that use every object with the factorial formula, then apply it in worked examples and exercises.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
+   dateModified: "2026-09-01",
    subject: "Combinatorics",
 };
 
-## Understanding Permutation of All Objects
+## Permutation of All Objects
 
-**Permutation of all objects** is an arrangement of all available objects, namely <InlineMath math="n" /> items from <InlineMath math="n" /> objects, where each object is used exactly once and **the order of arrangement is very important**. In this case, we use all available objects without any remaining.
+**Permutation of all objects** arranges all <InlineMath math="n" /> available objects, uses each object exactly once, and treats different orders as different arrangements.
 
-Imagine arranging a photo line for <InlineMath math="5 \text{ students}" />. All five students are placed in one line. Each student gets one position, none sits on the backup bench, and Andi's position in front or back gives different results.
+Five students are lining up for a photo. All five receive one position, and every different order counts as a different arrangement.
 
 ## Complete Permutation Formula
 
-For permutation of <InlineMath math="n" /> items from <InlineMath math="n" /> objects, **the formula used** is:
+Set <InlineMath math="r=n" /> in the general permutation formula:
 
 <MathContainer>
 <BlockMath math="nP_n = \frac{n!}{(n-n)!} = \frac{n!}{0!}" />
 </MathContainer>
 
-**Explanation of why this formula becomes simple:**
+Since all objects are used:
 - <InlineMath math="(n-n) = 0" />, so the denominator becomes <InlineMath math="0!" />
 - Based on mathematical definition, <InlineMath math="0! = 1" />
 - Therefore: <InlineMath math="\frac{n!}{0!} = \frac{n!}{1} = n!" />
 
-So, the formula is:
+Because <InlineMath math="0!=1" />, a complete permutation has the formula:
 
 <MathContainer>
 <BlockMath math="nP_n = n!" />
 </MathContainer>
 
-## Factorial Concept
+## Factorial Definition
 
-**Factorial** is the consecutive multiplication of positive integers. The factorial of a number <InlineMath math="n" /> is written as <InlineMath math="n!" /> and defined as:
+The factorial <InlineMath math="n!" /> is the product of the positive integers from <InlineMath math="n" /> down to <InlineMath math="1" />:
 
 <MathContainer>
 <BlockMath math="n! = n \times (n-1) \times (n-2) \times \cdots \times 2 \times 1" />
 </MathContainer>
 
-**Special rules** for factorial:
+**By definition:**
 - <InlineMath math="0! = 1" /> (based on mathematical definition)
 - <InlineMath math="1! = 1" />
 
-## Application in Daily Life
+## Assigning All Objects to Distinct Positions
 
 ### School Organization
 
@@ -63,18 +64,18 @@ A family consisting of <InlineMath math="6" /> members will sit in a row on a so
 <BlockMath math="6P_6 = 6! = 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 720 \text{ ways}" />
 </MathContainer>
 
-## Systematic Calculation Steps
+## Calculating Complete Permutations
 
-To calculate permutation of <InlineMath math="n" /> items from <InlineMath math="n" /> objects, follow these steps:
+For a complete permutation of <InlineMath math="n" /> objects:
 
-1. **Identify the number of objects**: Ensure all objects will be used
-2. **Apply the formula**: Use <InlineMath math="n!" />
-3. **Calculate factorial**: Multiply consecutively from <InlineMath math="n" /> to <InlineMath math="1" />
-4. **Verify the result**: Ensure the calculation is correct
+1. **Count the objects**: Confirm that every object is used
+2. **Write the formula**: Use <InlineMath math="n!" />
+3. **Expand the factorial**: Multiply from <InlineMath math="n" /> down to <InlineMath math="1" />
+4. **Check the arithmetic**: Recalculate the product
 
-### Detailed Calculation
+### Expanding Five Factorial
 
-Calculating <InlineMath math="5!" /> with clear steps:
+Expand <InlineMath math="5!" /> one factor at a time:
 
 <MathContainer>
 <BlockMath math="5! = 5 \times 4 \times 3 \times 2 \times 1" />
@@ -83,12 +84,12 @@ Calculating <InlineMath math="5!" /> with clear steps:
 <BlockMath math="= 120 \times 1 = 120" />
 </MathContainer>
 
-## Difference from Partial Permutation
+## Complete and Partial Permutations
 
 **Complete permutation (<InlineMath math="n" /> from <InlineMath math="n" /> objects)**: Uses all available objects.
 **Partial permutation (<InlineMath math="r" /> from <InlineMath math="n" /> objects)**: Only uses some objects.
 
-**Concrete example**:
+**For five books:**
 - Complete permutation: Arranging <InlineMath math="5 \text{ books}" /> in <InlineMath math="5 \text{ positions}" /> on a shelf is <InlineMath math="5! = 120 \text{ ways}" />
 - Partial permutation: Selecting and arranging <InlineMath math="3 \text{ books}" /> from <InlineMath math="5 \text{ available books}" /> is <InlineMath math="5P_3 = 60 \text{ ways}" />
 

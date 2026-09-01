@@ -1,29 +1,29 @@
 export const metadata = {
     title: "Fungsi Matematika",
-    description: "Gunakan modul math Python, built-in numerik, gaya import, domain, dan konstanta dalam perhitungan yang terverifikasi.",
+    description: "Gunakan modul math, built-in numerik, beberapa cara import, domain fungsi, dan konstanta Python dalam perhitungan.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-16",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Pemrograman AI",
 };
 
 ## Konsep Modul dalam Python
 
-Python menjaga inti bahasanya tetap terarah dan mengatur kode yang dapat digunakan ulang di dalam modul. Sebuah modul dapat memiliki fungsi, konstanta, kelas, dan nama lain tanpa menempatkan semuanya di namespace global.
+Python menyimpan banyak kode yang dapat digunakan ulang di dalam modul. Sebuah modul dapat berisi fungsi, konstanta, class, dan nama lain tanpa menempatkan semuanya di namespace global.
 
-`import` memuat modul ketika diperlukan dan mengikat sebuah nama untuk mengakses anggota publiknya. Standard library sudah menyediakan operasi matematika yang teruji, sehingga kode aplikasi sebaiknya menggunakannya daripada membuat ulang rumus secara serampangan.
+`import` memuat modul ketika diperlukan dan mengikat sebuah nama untuk mengakses anggota publik modul tersebut. Standard library menyediakan banyak fungsi matematika yang siap dipakai dan sudah diuji. Sebelum menulis rumus sendiri, periksa apakah standard library sudah menyediakan fungsi yang dibutuhkan.
 
 ## Modul math untuk Fungsi Matematika
 
 Modul `math` menyediakan fungsi dan konstanta bernilai riil. Modul ini menerima bilangan riil yang kompatibel seperti `int` dan `float`, tetapi operasi seperti `sqrt()` tidak menerima nilai kompleks. Gunakan `cmath` ketika domain atau hasilnya dapat berupa bilangan kompleks.
 
-## Cara Mengimpor Modul math
+## Cara Import Modul math
 
 Python menawarkan beberapa cara untuk mengimpor modul, masing-masing dengan karakteristik dan penggunaan yang berbeda.
 
 ### Import Dasar dengan Namespace
 
-Cara paling dasar untuk mengimpor modul adalah menggunakan perintah `import math`. Dengan cara ini, semua nama fungsi dan konstanta tetap terikat pada namespace `math`.
+Statement `import math` menambahkan modul ke namespace dengan nama `math`. Setelah itu, fungsi dan konstanta dipanggil dengan nama seperti `math.sqrt` dan `math.pi`.
 
 <CodeBlock
   data={[
@@ -46,7 +46,7 @@ print(math.pi)  # Output: 3.141592653589793
 
 ### Import dengan Alias
 
-Alias mengikat modul ke nama lokal lain. Pakai hanya ketika mengikuti konvensi yang sudah mapan atau menyelesaikan konflik nama nyata; `math` sendiri sudah singkat dan eksplisit.
+Alias mengikat modul ke nama lokal lain. Pakai alias jika mengikuti konvensi yang sudah mapan atau jika dua nama memang bertabrakan. Nama `math` sendiri sudah singkat dan jelas.
 
 <CodeBlock
   data={[
@@ -67,7 +67,7 @@ print(m.pi)       # Output: 3.141592653589793
 
 ### Import Semua Fungsi
 
-Bentuk ini mengimpor setiap nama publik dari `math` ke namespace saat ini. Cara tersebut mungkin nyaman dalam sesi interaktif sekali pakai, tetapi sebaiknya dihindari dalam kode aplikasi.
+Bentuk ini memasukkan setiap nama publik dari `math` ke namespace saat ini. Cara tersebut mungkin nyaman dalam sesi interaktif sekali pakai, tetapi sebaiknya dihindari dalam kode aplikasi.
 
 <CodeBlock
   data={[
@@ -86,11 +86,11 @@ print(pi)       # Output: 3.141592653589793
   ]}
 />
 
-`from math import *` dapat menimpa nama yang sudah ada tanpa terlihat, menyulitkan pelacakan pemilik setiap nama, dan membuat perubahan modul di masa depan mengubah namespace pengimpor. Import eksplisit menjaga dependensi tersebut tetap dapat ditinjau.
+`from math import *` memasukkan semua nama publik dari `math` ke namespace saat ini. Jika salah satu nama itu sudah dipakai, nilai dari `math` menggantikannya tanpa pesan error. Kode juga tidak lagi menunjukkan modul asal setiap nama, dan perubahan pada `math` dapat menambahkan nama baru ke modul yang melakukan import. Import eksplisit mencantumkan setiap nama beserta modul asalnya.
 
-### Import Fungsi Spesifik
+### Import Fungsi Tertentu
 
-Cara yang lebih selektif adalah mengimpor hanya fungsi tertentu yang dibutuhkan. Ini memberikan akses langsung tanpa prefix sambil tetap menjaga kejelasan kode.
+Import hanya fungsi yang dipakai program. Nama fungsi tetap dapat dipanggil tanpa prefix modul, sedangkan baris import tetap mencatat asalnya.
 
 <CodeBlock
   data={[
@@ -113,7 +113,7 @@ print(sqrt(9))  # Output: 3.0
 
 ### Import dengan Alias Fungsi
 
-Kamu juga bisa memberikan alias pada fungsi tertentu saat mengimpornya. Ini berguna untuk membuat nama fungsi lebih ringkas atau menghindari konflik nama.
+Fungsi yang di-import dapat diberi alias untuk menghindari konflik nama atau mengikuti konvensi lokal yang sudah ditetapkan.
 
 <CodeBlock
   data={[
@@ -134,7 +134,7 @@ print(fac(5))  # Output: 120
   ]}
 />
 
-## Fungsi Built-in vs Fungsi Modul
+## Built In dan Fungsi Modul
 
 Python menyediakan built-in numerik seperti `abs()` dan `round()` tanpa import. Keduanya bekerja pada berbagai tipe melalui protokol numerik Python. Setiap tipe dapat menentukan operasi yang didukungnya.
 
@@ -186,7 +186,7 @@ Karena itu, `round(4.5)` menghasilkan <InlineMath math="4" />, sedangkan `round(
 
 ## Fungsi dan Konstanta dalam Modul math
 
-Setiap fungsi `math` memiliki domain. Sebagai contoh, `sqrt(x)` memerlukan masukan riil nonnegatif dan logaritma memerlukan masukan riil positif.
+Setiap fungsi `math` memiliki domain. Sebagai contoh, `sqrt(x)` menerima input riil nonnegatif, sedangkan logaritma menerima input riil positif.
 
 ### Fungsi Akar dan Logaritma
 
@@ -264,7 +264,7 @@ print(f"5!: {math.factorial(5)}")  # Output: 120`
 
 ### Konstanta Matematika
 
-Modul ini juga menyediakan konstanta, termasuk konstanta matematika berhingga dan nilai floating-point khusus.
+Modul ini juga menyediakan konstanta matematika berhingga serta nilai khusus bertipe `float`.
 
 <CodeBlock
   data={[
@@ -293,18 +293,18 @@ print(f"Luas lingkaran dengan radius {lingkaran_radius}: {luas_lingkaran}")`
   ]}
 />
 
-## Memilih Cara Import yang Tepat
+## Memilih Cara Import Modul
 
-Pilih gaya import yang membuat pemilik operasi terlihat jelas di tempat pemanggilan dan hanya memperkenalkan nama yang dibutuhkan modul.
+Pilih cara mengimpor yang tetap menampilkan nama modul pada setiap pemanggilan ketika konteks itu dibutuhkan. Impor hanya nama yang dipakai program.
 
-### Panduan Memilih Metode Import
+### Panduan Import Modul
 
-1. **Utamakan `import math`** ketika beberapa anggota dipakai dan asalnya perlu tetap terlihat.
+1. **Utamakan `import math`** ketika program memakai beberapa anggota. Pemanggilan seperti `math.sqrt()` menempatkan nama modul di sebelah fungsi.
 2. **Gunakan `import math as m` dengan sengaja** hanya ketika alias tersebut merupakan konvensi lokal yang terdokumentasi.
 3. **Gunakan `from math import sqrt, pi`** ketika sekumpulan kecil nama yang tidak ambigu memperjelas kode lokal.
-4. **Hindari `from math import *`** karena menyamarkan kepemilikan dan dapat membuat konflik nama.
+4. **Hindari `from math import *`** karena setiap nama dipakai tanpa awalan modul dan dapat mengganti nama yang sudah digunakan program.
 
-### Implementasi dalam Aplikasi Nyata
+### Menghitung Jarak dan Luas
 
 <CodeBlock
   data={[
@@ -345,4 +345,4 @@ print(f"Luas segitiga dengan sisi 3, 4, 5: {luas}")`
   ]}
 />
 
-Kode numerik yang jelas membuat tiga keputusan terlihat: namespace pemilik operasi, domain masukan yang diterimanya, dan cara masukan luar biasa ditangani. Keputusan itu lebih penting daripada menyingkat nama fungsi beberapa karakter.
+Kode numerik perlu menunjukkan tiga hal: namespace pemilik operasi, domain input, dan cara menangani input yang berada di luar domain atau memiliki nilai khusus seperti `nan`. Informasi ini lebih berguna daripada menyingkat nama fungsi beberapa karakter.

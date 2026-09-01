@@ -3,7 +3,7 @@ export const metadata = {
   description: "Gabungkan pencerminan, rotasi, dan dilatasi melalui perkalian matriks dengan urutan transformasi yang jelas.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Transformasi Geometri",
 };
 
@@ -13,7 +13,7 @@ Dalam geometri, transformasi memetakan setiap titik suatu bangun ke titik bayang
 
 Kita dapat menggunakan matriks untuk merepresentasikan banyak transformasi geometri dan juga untuk mencari hasil dari komposisi transformasi tersebut.
 
-Kita akan fokus pada transformasi-transformasi yang dapat direpresentasikan dengan matriks berordo <InlineMath math="2 \times 2" />. Sebagai contoh, pencerminan terhadap sumbu <InlineMath math="x" /> dapat direpresentasikan oleh matriks <InlineMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />. Jika titik <InlineMath math="(x,y)" /> dicerminkan terhadap sumbu <InlineMath math="x" />, petanya dapat ditemukan dengan mengalikan matriks ini dengan vektor posisi titik: <InlineMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />.
+Kita akan fokus pada transformasi-transformasi yang dapat direpresentasikan dengan matriks berordo <InlineMath math="2 \times 2" />. Sebagai contoh, pencerminan terhadap sumbu <InlineMath math="x" /> dapat direpresentasikan oleh matriks <InlineMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />. Jika titik <InlineMath math="(x,y)" /> dicerminkan terhadap sumbu <InlineMath math="x" />, bayangannya dapat ditemukan dengan mengalikan matriks ini dengan vektor posisi titik: <InlineMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />.
 
 Berikut adalah beberapa transformasi dasar beserta matriksnya yang sering digunakan dalam komposisi transformasi:
 
@@ -29,12 +29,12 @@ Berikut adalah beberapa transformasi dasar beserta matriksnya yang sering diguna
 
 Komposisi transformasi berarti melakukan beberapa transformasi secara berurutan. Jika transformasi <InlineMath math="T_1" /> diikuti oleh transformasi <InlineMath math="T_2" />, kita menotasikannya sebagai <InlineMath math="T_2 \circ T_1" />. Artinya, <InlineMath math="T_1" /> diterapkan terlebih dahulu, kemudian hasilnya ditransformasikan oleh <InlineMath math="T_2" />.
 
-Misalkan matriks yang bersesuaian dengan <InlineMath math="T_1" /> adalah <InlineMath math="M_1" />, dan matriks yang bersesuaian dengan <InlineMath math="T_2" /> adalah <InlineMath math="M_2" />. Untuk mencari peta dari titik <InlineMath math="P(x,y)" /> oleh komposisi <InlineMath math="T_2 \circ T_1" />, ada dua cara yang ekuivalen:
+Misalkan matriks yang bersesuaian dengan <InlineMath math="T_1" /> adalah <InlineMath math="M_1" />, dan matriks yang bersesuaian dengan <InlineMath math="T_2" /> adalah <InlineMath math="M_2" />. Untuk mencari bayangan titik <InlineMath math="P(x,y)" /> oleh komposisi <InlineMath math="T_2 \circ T_1" />, ada dua cara yang ekuivalen:
 
 1.  **Menerapkan Transformasi secara Berurutan pada Titik:**
 
-    - Hitung peta <InlineMath math="P'(x',y')" /> dari <InlineMath math="P(x,y)" /> oleh <InlineMath math="T_1" />: <InlineMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = M_1 \begin{pmatrix} x \\ y \end{pmatrix}" />.
-    - Kemudian, hitung peta <InlineMath math="P''(x'',y'')" /> dari <InlineMath math="P'(x',y')" /> oleh <InlineMath math="T_2" />: <InlineMath math="\begin{pmatrix} x'' \\ y'' \end{pmatrix} = M_2 \begin{pmatrix} x' \\ y' \end{pmatrix}" />.
+    - Hitung bayangan <InlineMath math="P'(x',y')" /> dari <InlineMath math="P(x,y)" /> oleh <InlineMath math="T_1" />: <InlineMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = M_1 \begin{pmatrix} x \\ y \end{pmatrix}" />.
+    - Kemudian, hitung bayangan <InlineMath math="P''(x'',y'')" /> dari <InlineMath math="P'(x',y')" /> oleh <InlineMath math="T_2" />: <InlineMath math="\begin{pmatrix} x'' \\ y'' \end{pmatrix} = M_2 \begin{pmatrix} x' \\ y' \end{pmatrix}" />.
 
     Jika kita substitusikan langkah (a) ke (b), kita dapatkan: <InlineMath math="\begin{pmatrix} x'' \\ y'' \end{pmatrix} = M_2 \left( M_1 \begin{pmatrix} x \\ y \end{pmatrix} \right)" />.
 
@@ -44,13 +44,13 @@ Misalkan matriks yang bersesuaian dengan <InlineMath math="T_1" /> adalah <Inlin
 
       **Perhatikan urutannya:** matriks transformasi kedua (<InlineMath math="M_2" />) dikalikan dari kiri dengan matriks transformasi pertama (<InlineMath math="M_1" />).
 
-    - Hitung peta <InlineMath math="P''(x'',y'')" /> dari <InlineMath math="P(x,y)" /> menggunakan matriks komposisi <InlineMath math="M" />: <InlineMath math="\begin{pmatrix} x'' \\ y'' \end{pmatrix} = M \begin{pmatrix} x \\ y \end{pmatrix} = (M_2 M_1) \begin{pmatrix} x \\ y \end{pmatrix}" />.
+    - Hitung bayangan <InlineMath math="P''(x'',y'')" /> dari <InlineMath math="P(x,y)" /> menggunakan matriks komposisi <InlineMath math="M" />: <InlineMath math="\begin{pmatrix} x'' \\ y'' \end{pmatrix} = M \begin{pmatrix} x \\ y \end{pmatrix} = (M_2 M_1) \begin{pmatrix} x \\ y \end{pmatrix}" />.
 
-Kedua cara ini menghasilkan peta akhir yang sama karena sifat asosiatif perkalian matriks, yaitu <InlineMath math="M_2 (M_1 P) = (M_2 M_1) P" />, di mana <InlineMath math="P" /> adalah vektor kolom <InlineMath math="\begin{pmatrix} x \\ y \end{pmatrix}" />.
+Kedua cara ini menghasilkan bayangan akhir yang sama karena perkalian matriks bersifat asosiatif, yaitu <InlineMath math="M_2 (M_1 P) = (M_2 M_1) P" />. Pada persamaan ini, <InlineMath math="P" /> adalah vektor kolom <InlineMath math="\begin{pmatrix} x \\ y \end{pmatrix}" />.
 
 **Contoh Ilustratif:**
 
-Misalkan <InlineMath math="T_1" /> adalah pencerminan terhadap sumbu <InlineMath math="y" />, dan <InlineMath math="T_2" /> adalah rotasi terhadap titik asal <InlineMath math="O" /> sebesar <InlineMath math="\frac{1}{2}\pi" /> radian (<InlineMath math="90^\circ" />). Kita ingin mencari peta titik <InlineMath math="P(x,y)" /> oleh <InlineMath math="T_2 \circ T_1" />.
+Misalkan <InlineMath math="T_1" /> adalah pencerminan terhadap sumbu <InlineMath math="y" />, dan <InlineMath math="T_2" /> adalah rotasi terhadap titik asal <InlineMath math="O" /> sebesar <InlineMath math="\frac{1}{2}\pi" /> radian (<InlineMath math="90^\circ" />). Kita ingin mencari bayangan titik <InlineMath math="P(x,y)" /> oleh <InlineMath math="T_2 \circ T_1" />.
 
 Matriks untuk <InlineMath math="T_1" /> (pencerminan sumbu <InlineMath math="y" />) adalah <InlineMath math="M_1 = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />.
 
@@ -58,17 +58,17 @@ Matriks untuk <InlineMath math="T_2" /> (rotasi <InlineMath math="90^\circ" />) 
 
 **Cara <InlineMath math="1" />: Transformasi Berurutan pada Titik**
 
-- Peta <InlineMath math="P(x,y)" /> oleh <InlineMath math="T_1" />:
+- Bayangan <InlineMath math="P(x,y)" /> oleh <InlineMath math="T_1" />:
 
   <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = M_1 \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} -x \\ y \end{pmatrix}" />
 
   Jadi <InlineMath math="P'(-x,y)" />.
 
-- Peta <InlineMath math="P'(-x,y)" /> oleh <InlineMath math="T_2" />:
+- Bayangan <InlineMath math="P'(-x,y)" /> oleh <InlineMath math="T_2" />:
 
   <BlockMath math="\begin{pmatrix} x'' \\ y'' \end{pmatrix} = M_2 \begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} -x \\ y \end{pmatrix} = \begin{pmatrix} (0)(-x)+(-1)(y) \\ (1)(-x)+(0)(y) \end{pmatrix} = \begin{pmatrix} -y \\ -x \end{pmatrix}" />
 
-- Peta akhirnya adalah <InlineMath math="P''(-y,-x)" />.
+- Bayangan akhirnya adalah <InlineMath math="P''(-y,-x)" />.
 
 **Cara <InlineMath math="2" />: Matriks Komposisi Terlebih Dahulu**
 
@@ -76,13 +76,13 @@ Matriks untuk <InlineMath math="T_2" /> (rotasi <InlineMath math="90^\circ" />) 
 
   <BlockMath math="M = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} (0)(-1)+(-1)(0) & (0)(0)+(-1)(1) \\ (1)(-1)+(0)(0) & (1)(0)+(0)(1) \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}" />
 
-- Peta <InlineMath math="P(x,y)" /> oleh <InlineMath math="M" />:
+- Bayangan <InlineMath math="P(x,y)" /> oleh <InlineMath math="M" />:
 
   <BlockMath math="\begin{pmatrix} x'' \\ y'' \end{pmatrix} = M \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} (0)(x)+(-1)(y) \\ (-1)(x)+(0)(y) \end{pmatrix} = \begin{pmatrix} -y \\ -x \end{pmatrix}" />
 
-- Peta akhirnya adalah <InlineMath math="P''(-y,-x)" />.
+- Bayangan akhirnya adalah <InlineMath math="P''(-y,-x)" />.
 
-Kedua cara memberikan hasil yang sama. Menggunakan matriks komposisi (<InlineMath math="M_2 M_1" />) seringkali lebih efisien jika kita perlu mentransformasikan banyak titik dengan komposisi yang sama.
+Kedua cara memberikan hasil yang sama. Jika banyak titik memakai komposisi yang sama, hitung matriks komposisi <InlineMath math="M_2 M_1" /> sekali lalu terapkan matriks tersebut ke setiap titik.
 
 ## Aturan Matriks Komposisi
 
@@ -90,13 +90,13 @@ Misal, matriks yang berkaitan dengan transformasi <InlineMath math="T_1" /> dan 
 
 Maka, matriks yang terkait dengan komposisi transformasi <InlineMath math="T_2 \circ T_1" /> (Transformasi <InlineMath math="T_1" /> dilanjutkan dengan <InlineMath math="T_2" />) adalah <InlineMath math="M_2 M_1 = \begin{pmatrix} t & u \\ v & w \end{pmatrix} \begin{pmatrix} p & q \\ r & s \end{pmatrix}" />.
 
-Ingat bahwa urutan perkalian matriks penting. Matriks untuk transformasi yang dilakukan lebih dulu (<InlineMath math="M_1" />) ditulis di sebelah kanan.
+Urutan perkalian matriks menentukan urutan transformasi. Matriks untuk transformasi yang dilakukan lebih dulu (<InlineMath math="M_1" />) ditulis di sebelah kanan.
 
-## Contoh Penerapan
+## Menggabungkan Pencerminan dan Rotasi dengan Matriks
 
 ### Komposisi Dua Pencerminan
 
-Tentukan peta dari titik <InlineMath math="(2,5)" /> yang dicerminkan terhadap sumbu <InlineMath math="x" /> dan kemudian dicerminkan terhadap sumbu <InlineMath math="y" />.
+Tentukan bayangan titik <InlineMath math="(2,5)" /> yang dicerminkan terhadap sumbu <InlineMath math="x" /> dan kemudian dicerminkan terhadap sumbu <InlineMath math="y" />.
 
 **Penyelesaian:**
 
@@ -110,15 +110,15 @@ Komposisi transformasi <InlineMath math="T_2 \circ T_1" /> memiliki matriks <Inl
 
 <BlockMath math="M = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} (-1)(1)+(0)(0) & (-1)(0)+(0)(-1) \\ (0)(1)+(1)(0) & (0)(0)+(1)(-1) \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
-Peta dari titik <InlineMath math="(2,5)" /> adalah:
+Bayangan titik <InlineMath math="(2,5)" /> adalah:
 
 <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = M \begin{pmatrix} 2 \\ 5 \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 2 \\ 5 \end{pmatrix} = \begin{pmatrix} (-1)(2)+(0)(5) \\ (0)(2)+(-1)(5) \end{pmatrix} = \begin{pmatrix} -2 \\ -5 \end{pmatrix}" />
 
-Jadi, peta titiknya adalah <InlineMath math="(-2,-5)" />.
+Jadi, bayangan titik <InlineMath math="(2,5)" /> adalah <InlineMath math="(-2,-5)" />.
 
 ### Komposisi Refleksi dan Rotasi
 
-Tentukan peta dari titik <InlineMath math="(-2,3)" /> yang ditransformasikan oleh komposisi dari refleksi sumbu <InlineMath math="y" /> yang dilanjutkan dengan rotasi <InlineMath math="180^\circ" /> terhadap titik asal.
+Tentukan bayangan titik <InlineMath math="(-2,3)" /> yang ditransformasikan oleh komposisi dari refleksi sumbu <InlineMath math="y" /> yang dilanjutkan dengan rotasi <InlineMath math="180^\circ" /> terhadap titik asal.
 
 **Penyelesaian:**
 
@@ -132,15 +132,15 @@ Komposisi transformasi <InlineMath math="T_2 \circ T_1" /> memiliki matriks <Inl
 
 <BlockMath math="M = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} (-1)(-1)+(0)(0) & (-1)(0)+(0)(1) \\ (0)(-1)+(-1)(0) & (0)(0)+(-1)(1) \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
-Peta dari titik <InlineMath math="(-2,3)" /> adalah:
+Bayangan titik <InlineMath math="(-2,3)" /> adalah:
 
 <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = M \begin{pmatrix} -2 \\ 3 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} -2 \\ 3 \end{pmatrix} = \begin{pmatrix} (1)(-2)+(0)(3) \\ (0)(-2)+(-1)(3) \end{pmatrix} = \begin{pmatrix} -2 \\ -3 \end{pmatrix}" />
 
-Jadi, peta titiknya adalah <InlineMath math="(-2,-3)" />.
+Jadi, bayangan titik <InlineMath math="(-2,3)" /> adalah <InlineMath math="(-2,-3)" />.
 
 ### Komposisi Tiga Transformasi
 
-Misalkan, kalian ingin melakukan tiga buah transformasi pada sebuah titik <InlineMath math="P(2,5)" />, yakni refleksi terhadap sumbu <InlineMath math="x" />, rotasi <InlineMath math="90^\circ" /> terhadap titik asal, dan setengah putar (<InlineMath math="180^\circ" /> rotasi terhadap titik asal). Tentukan petanya!
+Lakukan tiga transformasi pada titik <InlineMath math="P(2,5)" />, yaitu refleksi terhadap sumbu <InlineMath math="x" />, rotasi <InlineMath math="90^\circ" /> terhadap titik asal, lalu rotasi <InlineMath math="180^\circ" /> terhadap titik asal. Tentukan bayangannya.
 
 **Penyelesaian:**
 
@@ -167,15 +167,15 @@ Komposisi transformasi adalah <InlineMath math="T_3 \circ T_2 \circ T_1" />. Mat
   <BlockMath math="M = M_3 (M_2 M_1) = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} (-1)(0)+(0)(1) & (-1)(1)+(0)(0) \\ (0)(0)+(-1)(1) & (0)(1)+(-1)(0) \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}" />
 </MathContainer>
 
-Peta dari <InlineMath math="P(2,5)" /> adalah:
+Bayangan <InlineMath math="P(2,5)" /> adalah:
 
 <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = M \begin{pmatrix} 2 \\ 5 \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} 2 \\ 5 \end{pmatrix} = \begin{pmatrix} (0)(2)+(-1)(5) \\ (-1)(2)+(0)(5) \end{pmatrix} = \begin{pmatrix} -5 \\ -2 \end{pmatrix}" />
 
-Jadi, peta titiknya adalah <InlineMath math="(-5,-2)" />.
+Jadi, bayangan titik <InlineMath math="P(2,5)" /> adalah <InlineMath math="P'(-5,-2)" />.
 
 ## Latihan
 
-Misalkan, kita ingin melakukan tiga buah transformasi pada sebuah titik <InlineMath math="P(2,5)" />, yakni refleksi terhadap sumbu <InlineMath math="y" />, rotasi <InlineMath math="180^\circ" /> terhadap titik asal, dan pencerminan terhadap garis <InlineMath math="y=x" />. Tentukan petanya!
+Lakukan tiga transformasi pada titik <InlineMath math="P(2,5)" />, yaitu refleksi terhadap sumbu <InlineMath math="y" />, rotasi <InlineMath math="180^\circ" /> terhadap titik asal, lalu pencerminan terhadap garis <InlineMath math="y=x" />. Tentukan bayangannya.
 
 ### Pembahasan
 
@@ -205,8 +205,8 @@ Komposisi transformasi adalah <InlineMath math="T_3 \circ T_2 \circ T_1" />. Mat
 
 <BlockMath math="M = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} (0)(1)+(1)(0) & (0)(0)+(1)(-1) \\ (1)(1)+(0)(0) & (1)(0)+(0)(-1) \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />
 
-Peta dari <InlineMath math="P(2,5)" /> adalah:
+Bayangan <InlineMath math="P(2,5)" /> adalah:
 
 <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = M \begin{pmatrix} 2 \\ 5 \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 2 \\ 5 \end{pmatrix} = \begin{pmatrix} (0)(2)+(-1)(5) \\ (1)(2)+(0)(5) \end{pmatrix} = \begin{pmatrix} -5 \\ 2 \end{pmatrix}" />
 
-Jadi, peta titiknya adalah <InlineMath math="(-5,2)" />.
+Jadi, bayangan titik <InlineMath math="P(2,5)" /> adalah <InlineMath math="P'(-5,2)" />.

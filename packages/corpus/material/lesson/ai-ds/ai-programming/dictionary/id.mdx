@@ -1,19 +1,19 @@
 export const metadata = {
-    title: "Dictionary",
-    description: "Pelajari cara dictionary Python menyimpan, memperbarui, mengiterasi, dan mencari pasangan kunci-nilai dengan aman.",
+    title: "Dictionary Python",
+    description: "Cara menyimpan, memperbarui, mengulang, dan mencari pasangan kunci dan nilai dalam Python.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Pemrograman AI",
 };
 
-## Definisi dan Pembuatan Dictionary
+## Membuat Dictionary Python
 
-Dictionary adalah pemetaan yang dapat diubah dari kunci unik ke nilai. Alih-alih meminta item berdasarkan posisi angka, kamu mencarinya melalui kunci yang bermakna seperti nama, pengenal, atau tanggal.
+Tipe `dict` menyimpan pasangan kunci dan nilai. Setiap kunci harus unik. Kamu dapat memakai nama, pengenal, atau tanggal sebagai kunci untuk menemukan nilai pasangannya.
 
-### Cara Membuat Dictionary
+### Beberapa Cara Membuat Dictionary
 
-Python menyediakan beberapa cara untuk membuat dictionary, mulai dari yang kosong hingga yang sudah berisi data.
+Dictionary kosong dapat dibuat dengan `{}` atau `dict()`. Kamu juga dapat langsung mengisi pasangan kunci dan nilai saat membuatnya.
 
 <CodeBlock
   data={[
@@ -49,9 +49,9 @@ print("Dictionary mass:", mass)
   ]}
 />
 
-### Sintaks Dictionary
+### Cara Menulis Pasangan Kunci dan Nilai
 
-Tampilan dictionary memakai kurung kurawal. Koma memisahkan setiap entri, sedangkan titik dua memisahkan kunci dari nilainya. Tampilan kosong `{}` membuat dictionary kosong.
+Dictionary ditulis dengan kurung kurawal. Koma memisahkan setiap pasangan, sedangkan titik dua memisahkan key dari value. Kurung kurawal kosong `{}` membuat dictionary kosong.
 
 <CodeBlock
   data={[
@@ -66,14 +66,14 @@ print(phone)
   ]}
 />
 
-Kunci harus hashable, sehingga nilai yang tidak berubah seperti string, angka, dan tuple yang sesuai lazim dipakai. Nilai dictionary boleh berupa objek Python apa pun, termasuk dictionary lain.
+Nilai hash sebuah kunci harus tetap selama kunci itu berada di dalam dictionary. Karena itu, string, angka, dan tuple yang hanya berisi nilai tetap dapat dijadikan kunci. List tidak dapat dijadikan kunci karena isinya bisa berubah. Nilai yang dipasangkan dengan kunci boleh berupa objek Python apa pun, termasuk dictionary lain.
 
-## Dictionary sebagai Container
+## Kunci Menentukan Nilai
 
-Dictionary termasuk container karena menyimpan kumpulan objek lain. Perilaku utamanya adalah memetakan setiap kunci ke satu nilai sambil mempertahankan urutan pertama kali kunci disisipkan.
+Dictionary menghubungkan setiap kunci dengan satu nilai. Python juga mengingat urutan saat setiap kunci pertama kali ditambahkan.
 
 <Mermaid
-  title="Dictionary Menyimpan Pasangan Berdasarkan Key"
+  title="Dictionary Memilih Nilai Berdasarkan Kunci"
   description="Lihat bagaimana kunci memilih nilai pasangannya tanpa memakai posisi angka."
   chart={`
     flowchart TD
@@ -83,22 +83,22 @@ Dictionary termasuk container karena menyimpan kumpulan objek lain. Perilaku uta
         A --> E[Dictionary]
         A --> F[Set]
 
-        E --> E1[Pasangan kunci-nilai]
+        E --> E1[Pasangan kunci dan nilai]
         E --> E2[Kunci unik]
-        E --> E3[Dapat diubah]
+        E --> E3[Mutable]
         E --> E4[Berurutan menurut penyisipan]
   `}
 />
 
-List dan tuple mengatur item berdasarkan posisi, sedangkan dictionary mengatur entri berdasarkan kunci. Perbedaan ini menentukan cara kamu membaca, memperbarui, dan mengiterasi isinya.
+List dan tuple mengatur item berdasarkan posisi. Dictionary mengatur isinya berdasarkan kunci, sehingga kamu membaca dan memperbarui nilai melalui kunci tersebut.
 
-## Karakteristik Dictionary
+## Aturan Kunci dan Urutan
 
-Dictionary dapat diubah, kuncinya unik dan hashable, serta urutan iterasinya mengikuti urutan penyisipan kunci.
+Dictionary bersifat mutable, tetapi setiap kuncinya harus unik dan memiliki nilai hash yang tetap. Ketika dictionary diulang, kuncinya muncul sesuai urutan saat pertama kali ditambahkan.
 
 ### Urutan Penyisipan dan Kunci Unik
 
-Spesifikasi bahasa Python menjamin urutan penyisipan dictionary sejak Python `3.7`. Menetapkan nilai baru ke kunci yang sudah ada memperbarui entri tanpa memindahkan kuncinya. Jika kunci dihapus lalu disisipkan kembali, posisinya berpindah ke akhir.
+Sejak Python `3.7`, spesifikasi bahasa menjamin insertion order pada dictionary. Menetapkan nilai baru ke kunci yang sudah ada tidak memindahkan posisi kunci tersebut. Jika kunci dihapus lalu ditambahkan kembali, posisinya berpindah ke akhir.
 
 <CodeBlock
   data={[
@@ -115,13 +115,13 @@ print(phone)
   ]}
 />
 
-Karena kunci bersifat unik, kunci berulang dalam tampilan dictionary hanya menyimpan nilai terakhir yang diberikan. Kunci yang bertahan tetap menempati posisi yang ditetapkan oleh kemunculan pertamanya.
+Jika satu kunci ditulis beberapa kali saat membuat dictionary, hanya nilai terakhir yang tersimpan. Posisi kunci tersebut tetap mengikuti kemunculan pertamanya.
 
-## Mengakses Dictionary
+## Mengakses Nilai
 
-Untuk mengambil nilai dari dictionary, masukkan kuncinya. Kunci yang jelas, seperti nama atau tanggal, menggantikan indeks angka yang berurutan.
+Untuk mengambil value, tulis key di dalam kurung siku. Key seperti nama atau tanggal dapat dipakai sebagai pengenal, jadi kamu tidak perlu mencari value melalui indeks angka.
 
-### Indexing dengan Kunci
+### Memakai Kunci
 
 <CodeBlock
   data={[
@@ -149,13 +149,13 @@ print(phone)
   ]}
 />
 
-Akses kurung siku mengambil nilai yang sudah ada. Penugasan dengan kurung siku memperbarui kunci lama atau menambahkan pasangan kunci-nilai baru ke urutan penyisipan.
+Akses kurung siku mengambil nilai yang sudah ada. Assignment dengan kurung siku memperbarui kunci lama atau menambahkan pasangan kunci dan nilai baru ke insertion order.
 
 ## Iterasi Dictionary
 
 Pilih bentuk iterasi sesuai kebutuhanmu: kunci saja, nilai saja, atau kedua bagian setiap entri.
 
-### For Loop Sederhana
+### Mengulang Kunci
 
 <CodeBlock
   data={[
@@ -176,9 +176,9 @@ for key in phone:
   ]}
 />
 
-Ketika kamu mengiterasi dictionary secara langsung, Python mengambil kunci-kunci dalam urutan penyisipannya.
+Ketika dictionary dipakai langsung dalam `for` loop, Python menghasilkan setiap kunci sesuai insertion order.
 
-### For Loop dengan Metode items()
+### Mengulang Kunci dan Nilai
 
 <CodeBlock
   data={[
@@ -199,20 +199,20 @@ for key, val in phone.items():
   ]}
 />
 
-View `items()` menghasilkan kunci dan nilai bersama-sama, sehingga tuple unpacking dapat memberi nama keduanya dalam satu perulangan.
+Method `items()` menghasilkan pasangan kunci dan nilai. Pada `for key, val in phone.items()`, Python melakukan unpacking pada setiap pasangan, lalu menyimpan kunci dalam `key` dan nilai dalam `val`.
 
-## Metode Dictionary
+## Melihat Kunci dan Nilai
 
-Dictionary menyediakan view dinamis untuk kunci, nilai, dan pasangan kunci-nilainya.
+Method `keys()`, `values()`, dan `items()` menghasilkan dictionary view yang berbeda. View tetap terhubung ke dictionary asal, sehingga perubahan pada dictionary juga muncul pada view tersebut.
 
-### Metode keys(), values(), dan items()
+### View Dictionary untuk Kunci dan Nilai
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "dictionary_methods.py",
-      code: `# Menggunakan metode dictionary
+      code: `# Menggunakan dictionary method
 phone = {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}
 
 # Mendapatkan semua kunci
@@ -233,13 +233,13 @@ print("Items:", list(items))
   ]}
 />
 
-Metode tersebut mengembalikan objek view dinamis. View mengikuti perubahan berikutnya pada dictionary dan dapat diiterasi, tetapi tidak mendukung indeks posisi atau pengisian item. Panggil `list()` saat kamu memerlukan salinan terpisah dalam bentuk list.
+Objek yang dikembalikan ketiga method dapat diiterasi, tetapi tidak mendukung indeks posisi atau penggantian item. Panggil `list()` jika kamu memerlukan copy terpisah yang tidak lagi mengikuti perubahan dictionary.
 
-## Metode get()
+## Nilai Pengganti untuk Kunci yang Hilang
 
-Gunakan `get()` ketika kunci yang tidak ada merupakan keadaan wajar dan kamu menginginkan nilai pengganti. Gunakan akses kurung siku ketika kunci yang hilang seharusnya dianggap sebagai error.
+Gunakan `get()` jika kunci mungkin tidak ada dan kamu ingin menerima default value. Gunakan kurung siku jika kunci yang hilang harus menghasilkan error.
 
-### Masalah Indexing Biasa
+### Kurung Siku pada Kunci yang Hilang
 
 <CodeBlock
   data={[
@@ -258,16 +258,16 @@ except KeyError as e:
   ]}
 />
 
-Mengindeks dictionary dengan kunci yang tidak ada akan menghasilkan error `KeyError`.
+Mengakses kunci yang tidak ada dengan kurung siku menghasilkan `KeyError`.
 
-### Solusi dengan Metode get()
+### Memakai Method Get
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "dictionary_get_method.py",
-      code: `# Menggunakan metode get() untuk akses aman
+      code: `# Menggunakan method get() untuk akses aman
 phone = {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}
 
 # get() mengembalikan None jika kunci tidak ada
@@ -288,4 +288,4 @@ print("Hasil get('ann'):", result)
   ]}
 />
 
-`get()` mengembalikan nilai tersimpan ketika kuncinya ada. Jika tidak, metode ini mengembalikan nilai default yang diberikan, atau `None` bila tidak ada default. Pilih default yang tidak dapat tertukar dengan nilai valid ketika perbedaannya penting.
+`get()` mengembalikan value yang tersimpan ketika key ditemukan. Jika key tidak ditemukan, method ini mengembalikan default value yang diberikan, atau `None` bila default value tidak ditentukan. Pilih default value yang tidak dapat tertukar dengan value yang sah ketika kedua keadaan perlu dibedakan.

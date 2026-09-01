@@ -3,11 +3,11 @@ export const metadata = {
   description: "Calculate the interquartile range, compare it with the full range, and interpret how the middle half of a data set is distributed.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Statistics",
 };
 
-## What Is the Interquartile Range?
+## Interquartile Range
 
 The [mean](/en/subjects/mathematics/statistics-foundations/mean) describes a data set's center, but not its spread. Two groups can have the same average age even when their ages are distributed very differently.
 
@@ -116,9 +116,8 @@ The results can now be compared in one table:
 |  One  | <InlineMath math="16" /> | <InlineMath math="15" /> | <InlineMath math="17" /> | <InlineMath math="5" /> | <InlineMath math="2" /> |
 |  Two  | <InlineMath math="16" /> | <InlineMath math="4.25" /> | <InlineMath math="28.75" /> | <InlineMath math="35" /> | <InlineMath math="24.5" /> |
 
-- Both groups have the **same Mean (average) age**, which is <InlineMath math="16" />.
-- But their **Range** and <InlineMath math="\mathrm{IQR}" /> values are **very different**.
-- **Group One** has a small Range (<InlineMath math="5" />) and a very small <InlineMath math="\mathrm{IQR}" /> (<InlineMath math="2" />). This means the ages of people in Group One are **very close together**, especially the middle <InlineMath math="50\%" />, whose ages only differ by <InlineMath math="2 \text{ years}" /> (<InlineMath math="Q_1=15, Q_3=17" />). The data is **clustered** around the mean.
-- **Group Two** has a large Range (<InlineMath math="35" />) and a large <InlineMath math="\mathrm{IQR}" /> (<InlineMath math="24.5" />). This means the ages of people in Group Two are **much more spread out**. Even the middle <InlineMath math="50\%" /> spans <InlineMath math="24.5 \text{ years}" /> (<InlineMath math="Q_1=4.25, Q_3=28.75" />). The data is **not as clustered** as Group One.
+- Both groups have the same mean age, <InlineMath math="16" />.
+- Group One has a range of <InlineMath math="5" /> and an <InlineMath math="\mathrm{IQR}" /> of <InlineMath math="2" />. Its middle <InlineMath math="50\%" /> lies between <InlineMath math="Q_1=15" /> and <InlineMath math="Q_3=17" />, so those ages span only <InlineMath math="2\text{ years}" />.
+- Group Two has a range of <InlineMath math="35" /> and an <InlineMath math="\mathrm{IQR}" /> of <InlineMath math="24.5" />. Its middle <InlineMath math="50\%" /> lies between <InlineMath math="Q_1=4.25" /> and <InlineMath math="Q_3=28.75" />, a span of <InlineMath math="24.5\text{ years}" />.
 
-Even if the average is the same, the spread of the data can be very different. The <InlineMath math="\mathrm{IQR}" /> helps us see how spread out the middle part of the data is, giving a better picture of data variation than just looking at the mean or range, especially when there are extreme values.
+Two datasets can have the same mean but different spreads. The <InlineMath math="\mathrm{IQR}" /> measures the width of the middle half of the data and is resistant to extreme values because it does not use the outer quarters.

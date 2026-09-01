@@ -1,9 +1,9 @@
 export const metadata = {
     title: "Kesamaan Matriks",
-    description: "Pahami kesamaan matriks, transformasi basis, dan sifat invarian. Pelajari preservasi nilai eigen, perubahan koordinat, dan transformasi linear.",
+    description: "Hubungkan matriks serupa melalui perubahan basis dan koordinat, lalu periksa sifat yang tetap sama, termasuk nilai eigennya.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-16",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Metode Linear AI",
 };
 
@@ -15,11 +15,11 @@ Dua matriks <InlineMath math="A, B \in \mathbb{K}^{n \times n}" /> dikatakan **s
 
 <BlockMath math="B = S^{-1} \cdot A \cdot S" />
 
-Matriks <InlineMath math="S" /> dalam hal ini disebut sebagai matriks transformasi kesamaan.
+Matriks <InlineMath math="S" /> adalah matriks perubahan basis yang menghubungkan kedua representasi.
 
 ## Transformasi Basis dan Representasi Koordinat
 
-Untuk memahami mengapa kesamaan matriks begitu penting, kita perlu melihat hubungannya dengan transformasi basis. Misalkan <InlineMath math="e_1, \ldots, e_n \in \mathbb{K}^n" /> adalah basis kanonik dan <InlineMath math="v_1, \ldots, v_n \in \mathbb{K}^n" /> adalah basis lain dari <InlineMath math="\mathbb{K}^n" />.
+Matriks yang serupa mewakili transformasi linear yang sama dalam dua basis berbeda. Misalkan <InlineMath math="e_1, \ldots, e_n \in \mathbb{K}^n" /> adalah basis kanonik dan <InlineMath math="v_1, \ldots, v_n \in \mathbb{K}^n" /> adalah basis lain dari <InlineMath math="\mathbb{K}^n" />.
 
 Jika <InlineMath math="S" /> adalah matriks yang dapat dibalik dengan kolom <InlineMath math="v_k" />:
 
@@ -54,7 +54,7 @@ Oleh karena itu:
 <BlockMath math="= A \cdot S \cdot \xi" />
 </MathContainer>
 
-atau dengan kata lain:
+Hubungan koordinat tersebut juga dapat ditulis sebagai berikut.
 
 <BlockMath math="\eta = S^{-1} \cdot A \cdot S \cdot \xi" />
 
@@ -119,4 +119,4 @@ Jika <InlineMath math="v \in \mathbb{K}^n" /> adalah vektor eigen dari <InlineMa
 <BlockMath math="= \lambda \cdot w" />
 </MathContainer>
 
-Ini menunjukkan bahwa keserupaan matriks mempertahankan spektrum. Vektor koordinat sebuah vektor eigen berubah dari <InlineMath math="v" /> menjadi <InlineMath math="S^{-1}v" />, sedangkan arah geometris yang direpresentasikannya tetap terkait dengan transformasi dasar yang sama.
+Keserupaan matriks mempertahankan spektrum. Ketika basis berubah, koordinat vektor eigen berubah dari <InlineMath math="v" /> menjadi <InlineMath math="S^{-1}v" />, tetapi keduanya mewakili arah geometris yang sama.

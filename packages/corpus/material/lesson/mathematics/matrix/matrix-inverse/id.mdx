@@ -1,9 +1,9 @@
 export const metadata = {
   title: "Invers Matriks",
-  description: "Pelajari rumus invers matriks ordo dua dan ordo tiga. Pelajari perhitungan determinan, metode adjoin, dan penyelesaian sistem persamaan linear bertahap.",
+  description: "Hitung invers matriks ordo dua dan tiga melalui determinan dan adjoin, lalu gunakan invers untuk menyelesaikan sistem persamaan linear.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Matriks",
 };
 
@@ -83,7 +83,7 @@ Langkah <InlineMath math="4" />: Hitung invers matriks <InlineMath math="P" />.
 
 Jadi, invers dari matriks <InlineMath math="P" /> adalah <InlineMath math="P^{-1} = \begin{bmatrix} -2 & -7 \\ -1 & -3 \end{bmatrix}" />.
 
-Verifikasi hasilnya, jangan hanya mengandalkan rumus:
+Periksa matriks invers dengan mengalikan <InlineMath math="P" /> dan <InlineMath math="P^{-1}" />. Hasil perkalian harus sama dengan matriks identitas:
 
 <BlockMath math="PP^{-1}=\begin{bmatrix}3&-7\\-1&2\end{bmatrix}\begin{bmatrix}-2&-7\\-1&-3\end{bmatrix}=\begin{bmatrix}1&0\\0&1\end{bmatrix}=I_2" />
 
@@ -98,15 +98,15 @@ Namun, perhitungan determinan (<InlineMath math="\det(A)" />) dan adjoin (<Inlin
 - **Determinan matriks <InlineMath math="3 \times 3" />** dapat dihitung menggunakan Metode Sarrus atau metode ekspansi kofaktor.
 - **Adjoin matriks <InlineMath math="3 \times 3" />** diperoleh dari transpos matriks kofaktornya.
 
-Perhitungan determinan dan adjoin matriks <InlineMath math="3 \times 3" /> memerlukan langkah yang lebih panjang, sehingga halaman ini cukup memakai keduanya sebagai alat untuk membaca bentuk invers matriks.
+Untuk contoh matriks <InlineMath math="3 \times 3" />, hitung determinan dan adjoin terlebih dahulu, lalu substitusikan keduanya ke rumus invers.
 
 ## Menyelesaikan Sistem Linear dengan Invers
 
-Salah satu kegunaan penting dari invers matriks adalah untuk menyelesaikan sistem persamaan linear. Jika sebuah sistem persamaan linear dapat dinyatakan dalam bentuk perkalian matriks:
+Invers matriks dapat menyelesaikan sistem persamaan linear ketika matriks koefisiennya dapat dibalik. Tuliskan sistem tersebut dalam bentuk matriks:
 
 <BlockMath math="AX = B" />
 
-di mana <InlineMath math="A" /> adalah matriks koefisien, <InlineMath math="X" /> adalah matriks variabel, dan <InlineMath math="B" /> adalah matriks konstanta. Jika matriks <InlineMath math="A" /> memiliki invers (<InlineMath math="A^{-1}" />), kalikan kedua ruas dari kiri. Sisi perkalian penting karena perkalian matriks umumnya tidak komutatif:
+Pada persamaan tersebut, <InlineMath math="A" /> adalah matriks koefisien, <InlineMath math="X" /> adalah matriks variabel, dan <InlineMath math="B" /> adalah matriks konstanta. Jika <InlineMath math="A" /> memiliki invers <InlineMath math="A^{-1}" />, kalikan kedua ruas dari sebelah kiri dengan <InlineMath math="A^{-1}" />. Urutan ini harus dipertahankan karena perkalian matriks umumnya tidak komutatif:
 
 <MathContainer>
   <BlockMath math="A^{-1}(AX)=A^{-1}B" />
@@ -173,6 +173,4 @@ Diketahui matriks <InlineMath math="X = \begin{bmatrix} 1 & -3 \\ -1 & 4 \end{bm
       <BlockMath math="(X+Y)^{-1} = \begin{bmatrix} -1/2 & -1/4 \\ 1/2 & 3/4 \end{bmatrix}" />
     </MathContainer>
 
-    Jelas bahwa <InlineMath math="X^{-1} + Y^{-1} \neq (X+Y)^{-1}" />. Ini menunjukkan bahwa invers dari penjumlahan dua matriks umumnya tidak sama dengan penjumlahan dari invers masing-masing matriks.
-
-    Operasi invers tidak distributif terhadap penjumlahan. Peringatan yang sama berlaku pada kebalikan bilangan biasa: secara umum, <InlineMath math="1/x+1/y\neq1/(x+y)" />.
+    Kedua matriks berbeda, sehingga <InlineMath math="X^{-1} + Y^{-1} \neq (X+Y)^{-1}" />. Operasi invers tidak distributif terhadap penjumlahan. Aturan yang sama berlaku pada kebalikan bilangan biasa: secara umum, <InlineMath math="1/x+1/y\neq1/(x+y)" />.

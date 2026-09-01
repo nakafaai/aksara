@@ -4,17 +4,17 @@ export const metadata = {
   description: "Hubungkan panjang tali busur dengan jari-jari, sudut pusat, dan jarak dari pusat, lalu terapkan teoremanya dalam pembahasan lengkap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Lingkaran",
 };
 
 ## Pengertian Tali Busur
 
-Tali busur adalah ruas garis yang menghubungkan dua titik pada lingkaran. Berbeda dengan diameter yang melewati pusat lingkaran, tali busur dapat berada di posisi mana saja asalkan kedua ujungnya terletak pada lingkaran.
+Tali busur adalah ruas garis yang kedua ujungnya terletak pada lingkaran. Diameter merupakan tali busur khusus yang melewati pusat. Tali busur lain tidak harus melewati pusat.
 
 <LineEquation
   title="Tali Busur pada Lingkaran"
-  description="Berbagai tali busur dengan panjang berbeda pada sebuah lingkaran."
+  description="Dua tali busur yang sama panjang menghadap sudut tiga puluh derajat dan tali busur yang lebih panjang menghadap sudut enam puluh derajat."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -43,6 +43,7 @@ Tali busur adalah ruas garis yang menghubungkan dua titik pada lingkaran. Berbed
           { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -59,6 +60,7 @@ Tali busur adalah ruas garis yang menghubungkan dua titik pada lingkaran. Berbed
           { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [
@@ -75,6 +77,7 @@ Tali busur adalah ruas garis yang menghubungkan dua titik pada lingkaran. Berbed
           { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#db2777",
       showPoints: true,
       labels: [
@@ -87,9 +90,9 @@ Tali busur adalah ruas garis yang menghubungkan dua titik pada lingkaran. Berbed
   showZAxis={false}
 />
 
-Pada diagram di atas, <InlineMath math="AB" />, <InlineMath math="CD" />, dan <InlineMath math="EF" /> adalah tali busur dengan panjang yang berbeda-beda.
+Tali busur <InlineMath math="AB" /> dan <InlineMath math="CD" /> menghadap sudut pusat yang sama, sehingga panjangnya sama. Tali busur <InlineMath math="EF" /> menghadap sudut pusat yang lebih besar dan lebih panjang.
 
-## Sifat-Sifat Tali Busur
+## Sifat Tali Busur
 
 ### Tali Busur Sama Panjang
 
@@ -126,6 +129,7 @@ Dua tali busur yang sama panjang memiliki jarak yang sama dari pusat lingkaran.
           { x: x, y: y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -142,6 +146,7 @@ Dua tali busur yang sama panjang memiliki jarak yang sama dari pusat lingkaran.
           { x: x, y: y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [
@@ -211,6 +216,7 @@ Garis yang ditarik dari pusat lingkaran tegak lurus terhadap tali busur akan mem
           { x: 5 * Math.cos(angle2), y: 5 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -265,16 +271,16 @@ Untuk menghitung panjang tali busur, kita dapat menggunakan rumus:
 
 <BlockMath math="AB = 2r \sin\left(\frac{\theta}{2}\right)" />
 
-Di mana:
+Keterangan:
 
 - <InlineMath math="r" /> = jari-jari lingkaran
-- <InlineMath math="\theta" /> = sudut pusat terkecil yang menghadap tali busur; gunakan mode kalkulator yang sesuai dengan satuan sudut
+- <InlineMath math="\theta" /> = sudut pusat terkecil yang menghadap tali busur. Gunakan mode kalkulator yang sesuai dengan satuan sudut
 
-Hubungan antara sudut pusat dan panjang tali busur dapat kita visualisasikan sebagai berikut:
+Ketika sudut pusat terkecil <InlineMath math="\theta" /> bertambah dari <InlineMath math="0" /> sampai <InlineMath math="180^\circ" />, nilai <InlineMath math="\sin(\theta/2)" /> bertambah dari <InlineMath math="0" /> sampai <InlineMath math="1" />. Panjang tali busur pun bertambah dari <InlineMath math="0" /> sampai sebesar diameter <InlineMath math="2r" />.
 
 <LineEquation
   title="Sudut Pusat dan Tali Busur"
-  description="Hubungan antara sudut pusat dan panjang tali busur."
+  description="Tali busur memanjang ketika sudut pusat terkecil bertambah menuju seratus delapan puluh derajat."
   data={[
     {
       points: Array.from({ length: 361 }, (_, i) => {
@@ -303,6 +309,7 @@ Hubungan antara sudut pusat dan panjang tali busur dapat kita visualisasikan seb
           { x: 4 * Math.cos(angle2), y: 4 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -400,6 +407,7 @@ Jika dua tali busur berpotongan di dalam lingkaran, maka hasil kali segmen-segme
           { x: 5 * Math.cos(angle2), y: 5 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -416,6 +424,7 @@ Jika dua tali busur berpotongan di dalam lingkaran, maka hasil kali segmen-segme
           { x: 5 * Math.cos(angle2), y: 5 * Math.sin(angle2), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [
@@ -504,6 +513,7 @@ Sudut-sudut keliling yang menghadap tali busur yang sama memiliki besar yang sam
           { x: 4 * Math.cos(angleB), y: 4 * Math.sin(angleB), z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -587,6 +597,7 @@ Apotema tali busur adalah ruas garis yang ditarik tegak lurus dari pusat lingkar
           { x: x, y: y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -626,7 +637,7 @@ Panjang apotema dapat dihitung dengan rumus:
 
 <BlockMath math="a = r \cos\left(\frac{\theta}{2}\right) = \sqrt{r^2 - \left(\frac{l}{2}\right)^2}" />
 
-Di mana:
+Keterangan:
 
 - <InlineMath math="a" /> = panjang apotema
 - <InlineMath math="r" /> = jari-jari lingkaran
@@ -662,6 +673,7 @@ Dua tali busur yang sejajar dalam lingkaran memiliki sifat khusus.
           { x: x, y: y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0891b2",
       showPoints: true,
       labels: [
@@ -678,6 +690,7 @@ Dua tali busur yang sejajar dalam lingkaran memiliki sifat khusus.
           { x: x, y: y, z: 0 },
         ];
       })(),
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [
@@ -820,6 +833,6 @@ Jika <InlineMath math="AB \parallel CD" />, maka busur <InlineMath math="AC" /> 
 
 ## Sumber
 
-- [GeoGebra: Theorems about Tangents and Chords](https://www.geogebra.org/m/bvtxyfaj)
-- [GeoGebra: Intersecting Chords Theorem](https://www.geogebra.org/m/JWQjwAgw)
-- [Lehrerfortbildung Baden-Württemberg: Kreiswinkelsätze](https://lehrerfortbildung-bw.de/u_matnatech/imp/gym/bp2016/fb2/m03_geo/1_hintergrund/2_gang/m9geo01_unterrichtsverlauf.pdf)
+- Hubungan garis singgung dan tali busur ditunjukkan oleh [GeoGebra](https://www.geogebra.org/m/bvtxyfaj).
+- Teorema dua tali busur yang berpotongan ditunjukkan oleh [GeoGebra](https://www.geogebra.org/m/JWQjwAgw).
+- Teorema sudut pada lingkaran dirangkum dalam materi [Lehrerfortbildung Baden-Württemberg](https://lehrerfortbildung-bw.de/u_matnatech/imp/gym/bp2016/fb2/m03_geo/1_hintergrund/2_gang/m9geo01_unterrichtsverlauf.pdf).

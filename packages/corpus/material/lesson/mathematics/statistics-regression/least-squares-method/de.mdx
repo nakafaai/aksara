@@ -1,13 +1,14 @@
 
 export const metadata = {
   title: "Methode der kleinsten Quadrate",
-  description: "Lerne, wie die Methode der kleinsten Quadrate eine Regressionsgerade durch die Minimierung quadrierter Residuen bestimmt.",
+  description: "Bestimme eine Ausgleichsgerade, indem du die Summe der quadrierten Residuen minimierst, und berechne sowie deute ihre Koeffizienten.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Statistik",
 };
 
-## Was ist die Methode der kleinsten Quadrate?
+## Methode der kleinsten Quadrate
 
 Angenommen, Beobachtungs- oder Versuchsdaten bestehen aus Wertepaaren <InlineMath math="(x, y)" />. Folgt ihr Streudiagramm einem annähernd geradlinigen Trend, lassen sich viele verschiedene Geraden durch die Punktwolke legen.
 
@@ -31,7 +32,7 @@ Die angepasste Gerade wird über das vertikale **Residuum** an jedem beobachtete
 - Durch das Quadrieren können sich positive und negative Residuen nicht gegenseitig aufheben.
 - Große Residuen gehen wegen der Quadrierung besonders stark in die Summe ein.
 
-## Visualisierungsbeispiel
+## Werbekosten und Verkaufszahlen anpassen
 
 Ein Unternehmen untersucht beispielsweise den Zusammenhang zwischen Werbekosten in Millionen Rupiah und Verkaufszahlen in Tausend Stück. Das Streudiagramm zeigt die erhobenen Daten, die Regressionsgerade und die vertikalen Residuen.
 
@@ -75,11 +76,9 @@ Mathematisch suchen wir eine Gerade der Form:
 
 <BlockMath math="\hat{y} = a + bx" />
 
-Der Achsenabschnitt <InlineMath math="a" /> und die Steigung <InlineMath math="b" /> werden so gewählt, dass
+Der Achsenabschnitt <InlineMath math="a" /> und die Steigung <InlineMath math="b" /> werden so gewählt, dass sie die folgende Summe der quadrierten Residuen minimieren:
 
 <BlockMath math="\sum e_i^2 = \sum (y_i - \hat{y}_i)^2 = \sum (y_i - (a + bx_i))^2" />
-
-möglichst klein wird.
 
 Mit Differenzialrechnung lassen sich daraus Formeln für <InlineMath math="a" /> und <InlineMath math="b" /> ableiten. Die Herleitung benötigen wir an dieser Stelle noch nicht:
 

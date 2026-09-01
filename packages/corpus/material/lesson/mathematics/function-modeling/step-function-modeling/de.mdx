@@ -4,10 +4,11 @@ export const metadata = {
   description: "Modelliere Stufenfunktionen mit Buchrabatten und Aufzugskapazitäten und vergleiche Abrundungs-, Aufrundungs- und Einheitssprungfunktionen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Funktionen und ihre Modellierung",
 };
 
-## Stufenfunktionen verstehen
+## Stufenfunktionen
 
 Eine Stufenfunktion hat in jedem Intervall einen konstanten Wert und kann beim Übergang zum nächsten Intervall springen. Ihr Graph ähnelt einer Treppe: Waagerechte Abschnitte zeigen die konstanten Werte, getrennte Endpunkte kennzeichnen mögliche Sprungstellen.
 
@@ -34,7 +35,7 @@ Die Abrundungsfunktion, bezeichnet mit <InlineMath math="\lfloor x \rfloor" />, 
 
 <BlockMath math="\lfloor x \rfloor = \max\{n \in \mathbb{Z} : n \leq x\}" />
 
-Das folgende Beispiel zeigt den Ablauf:
+Der Graph markiert jeden enthaltenen linken Randpunkt ausgefüllt und jeden ausgeschlossenen rechten Randpunkt offen.
 
 <LineEquation
   title={
@@ -82,7 +83,7 @@ Die Aufrundungsfunktion, bezeichnet mit <InlineMath math="\lceil x \rceil" />, g
 
 <BlockMath math="\lceil x \rceil = \min\{n \in \mathbb{Z} : n \geq x\}" />
 
-Betrachten wir das folgende Beispiel:
+Der Graph markiert jeden ausgeschlossenen linken Randpunkt offen und jeden enthaltenen rechten Randpunkt ausgefüllt.
 
 <LineEquation
   title={
@@ -118,7 +119,7 @@ Betrachten wir das folgende Beispiel:
   showZAxis={false}
 />
 
-### Einheitssprungfunktion (Heaviside)
+### Einheitssprungfunktion nach Heaviside
 
 In diesem Kapitel verwenden wir für die Einheitsschrittfunktion oder Heaviside-Funktion, bezeichnet mit <InlineMath math="H(x)" /> oder <InlineMath math="u(x)" />, die folgende verbreitete Konvention:
 
@@ -263,7 +264,7 @@ Die Funktion <InlineMath math="f(x) = \lfloor x - h \rfloor" /> verschiebt den G
 
 ## Übungsaufgaben
 
-1. Bestimmen Sie den Wert von <InlineMath math="\lfloor 3{,}7 \rfloor + \lceil -2{,}3 \rceil" />
+1. Bestimme den Wert von <InlineMath math="\lfloor 3{,}7 \rfloor + \lceil -2{,}3 \rceil" />
 
 2. Eine Buchhandlung gewährt Rabatte abhängig von der Anzahl der gekauften Artikel:
 
@@ -272,11 +273,11 @@ Die Funktion <InlineMath math="f(x) = \lfloor x - h \rfloor" /> verschiebt den G
 - <InlineMath math="11\text{-}20" /> Bücher: <InlineMath math="15\%" /> Rabatt
 - <InlineMath math="> 20" /> Bücher: <InlineMath math="20\%" /> Rabatt
 
-   Wenn der Preis pro Buch <InlineMath math="\text{Rp}\,50{.}000" /> beträgt, erstellen Sie eine Funktion, die den Gesamtpreis nach Rabatt darstellt!
+Wenn der Preis pro Buch <InlineMath math="\text{Rp}\,50{.}000" /> beträgt, erstelle eine Funktion, die den Gesamtpreis nach Rabatt darstellt!
 
-3. Zeichnen Sie den Graphen der Funktion <InlineMath math="f(x) = 2\lfloor x \rfloor - 1" /> für <InlineMath math="-3 \leq x \leq 3" />.
+3. Zeichne den Graphen der Funktion <InlineMath math="f(x) = 2\lfloor x \rfloor - 1" /> für <InlineMath math="-3 \leq x \leq 3" />.
 
-4. Lösen Sie die Gleichung <InlineMath math="\lfloor 2x + 1 \rfloor = 5" />
+4. Löse die Gleichung <InlineMath math="\lfloor 2x + 1 \rfloor = 5" />
 
 5. Ein Aufzug kann maximal <InlineMath math="8 \text{Menschen}" /> aufnehmen. Wenn es <InlineMath math="n \text{Menschen}" /> gibt, die den Aufzug benutzen möchten, wie oft muss der Aufzug fahren?
 
@@ -310,7 +311,7 @@ Die Funktion <InlineMath math="f(x) = \lfloor x - h \rfloor" /> verschiebt den G
    - <InlineMath math="2 \leq x < 3: f(x) = 2(2) - 1 = 3" />
    - Am Endpunkt gilt <InlineMath math="f(3)=2\lfloor3\rfloor-1=5" />
 
-   Der Graph sieht so aus:
+   Der folgende Graph zeigt den Funktionswert in jedem Intervall und an den Randpunkten:
 
    <LineEquation
      title={
@@ -364,7 +365,7 @@ Die Funktion <InlineMath math="f(x) = \lfloor x - h \rfloor" /> verschiebt den G
      <BlockMath math="2 \leq x < 2{,}5" />
    </MathContainer>
 
-   Die Lösungsmenge ist also <InlineMath math="x \in [2; 2{,}5)" />.
+   Die Lösungsmenge ist also <InlineMath math="\{x\mid 2 \leq x &lt; 2{,}5\}" />.
 
 5. **Erforderliche Anzahl der Aufzugsfahrten:**
 

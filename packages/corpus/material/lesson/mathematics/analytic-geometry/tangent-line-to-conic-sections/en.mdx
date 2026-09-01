@@ -3,7 +3,7 @@ export const metadata = {
   description: "Find tangent lines to parabolas, ellipses, and hyperbolas from a point on the curve, a given slope, or an external point.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Analytic Geometry",
 };
 
@@ -13,9 +13,9 @@ A ruler placed against a smooth curve can meet it at just one point without cros
 
 For the conic sections in this lesson, a tangent line meets the curve at one repeated intersection point. A secant line, by contrast, cuts the curve at two distinct points.
 
-On the parabola <InlineMath math="y = x^2" />, the distinction is visible: a tangent has one repeated point of intersection, while a secant has two different intersections.
+On the parabola <InlineMath math="y = x^2" />, a tangent has one repeated point of intersection, while a secant has two distinct intersections.
 
-For conic sections like parabolas, ellipses, and hyperbolas, there are several ways to determine the equation of their tangent lines depending on the information we have.
+The given information determines the method: a known tangent point gives a point form, a known slope gives a line with an unknown intercept, and an external point gives a family of lines through that point.
 
 ## Point on the Curve
 
@@ -25,11 +25,11 @@ When the point of tangency is known, implicit differentiation gives the slope th
 
 For a point <InlineMath math="T(x_1, y_1)" /> on a conic, the resulting point form replaces each squared coordinate by a product with the corresponding tangent-point coordinate. Linear terms are shared symmetrically between the variable point and the tangent point. This compact form comes from the derivative calculation. Before using it, check that <InlineMath math="T" /> lies on the curve.
 
-For example, if we have a parabola <InlineMath math="y^2 = 4px" /> and tangent point <InlineMath math="T(x_1, y_1)" />, then the tangent line equation becomes:
+For the parabola <InlineMath math="y^2 = 4px" /> at the tangent point <InlineMath math="T(x_1, y_1)" />, the tangent line equation is:
 
 <BlockMath math="yy_1 = 2p(x + x_1)" />
 
-Take an example of parabola <InlineMath math="y^2 = 8x" /> at point <InlineMath math="(2, 4)" />.
+Apply the formula to the parabola <InlineMath math="y^2 = 8x" /> at <InlineMath math="(2, 4)" />.
 
 From parabola <InlineMath math="y^2 = 8x" />, we know <InlineMath math="4p = 8" /> so <InlineMath math="p = 2" />. The tangent line at point <InlineMath math="(2, 4)" /> is:
 
@@ -57,7 +57,7 @@ A line with slope <InlineMath math="m" /> has the form <InlineMath math="y = mx 
   <BlockMath math="-140x^2 - 72cx - 9c^2 - 36 = 0" />
 </MathContainer>
 
-For a tangent line, the discriminant must be zero:
+For <InlineMath math="y=4x+c" /> to touch the hyperbola at one repeated intersection, the substituted quadratic equation must have a repeated root. Its discriminant must therefore be zero:
 
 <MathContainer>
   <BlockMath math="D = (-72c)^2 - 4(-140)(-9c^2-36) = 0" />
@@ -66,13 +66,13 @@ For a tangent line, the discriminant must be zero:
   <BlockMath math="c = \pm 2\sqrt{35}" />
 </MathContainer>
 
-Therefore the two tangent lines are <InlineMath math="y = 4x + 2\sqrt{35}" /> and <InlineMath math="y = 4x - 2\sqrt{35}" />.
+The two tangent lines are <InlineMath math="y = 4x + 2\sqrt{35}" /> and <InlineMath math="y = 4x - 2\sqrt{35}" />.
 
 ## Tangents Through an External Point
 
 Depending on the conic and the point's location, zero, one, or two real tangents can pass through a given point. In the example below, there are two. Drawing tangents from a point outside a circle is a familiar special case.
 
-For example, take parabola <InlineMath math="y^2 = 8x" /> with point <InlineMath math="A(2, 5)" />. From point <InlineMath math="A" />, we can draw two different tangent lines to the parabola.
+For the parabola <InlineMath math="y^2 = 8x" />, two different tangent lines pass through <InlineMath math="A(2, 5)" />.
 
 For an external point, the polar equation gives the **chord of contact**, the line joining the two tangent points. It is not itself either tangent. For <InlineMath math="y^2 = 8x" /> and <InlineMath math="A(2,5)" />, the polar is:
 

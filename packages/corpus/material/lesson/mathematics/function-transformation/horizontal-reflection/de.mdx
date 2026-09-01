@@ -1,8 +1,9 @@
 export const metadata = {
   title: "Horizontale Spiegelung",
-  description: "Verstehe anhand von Graphen und Beispielen, wie eine Spiegelung an der y-Achse die x-Koordinaten einer Funktion verändert.",
+  description: "Spiegle einen Funktionsgraphen an der y-Achse und bestimme die neuen x-Koordinaten.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Funktionstransformation",
 };
 
@@ -60,7 +61,7 @@ Am Graphen lässt sich direkt ablesen:
 
 ## Spiegelung einer linearen Funktion
 
-Nun wenden wir dieselbe Regel auf die lineare Funktion <InlineMath math="f(x) = 2x + 3" /> an.
+Dieselbe Spiegelungsregel gilt für die lineare Funktion <InlineMath math="f(x) = 2x + 3" />.
 
 <LineEquation
   title={<>Spiegelung der linearen Funktion <InlineMath math="f(x) = 2x + 3" /></>}
@@ -73,6 +74,7 @@ Nun wenden wir dieselbe Regel auf die lineare Funktion <InlineMath math="f(x) = 
         const x = (i - 10) * 0.5;
         return { x, y: 2 * x + 3, z: 0 };
       }),
+      smooth: false,
       color: "#7c3aed",
       labels: [{ text: <InlineMath math="f(x)=2x+3" />, offset: [2.5, 0.5, 0] }],
       showPoints: false,
@@ -82,6 +84,7 @@ Nun wenden wir dieselbe Regel auf die lineare Funktion <InlineMath math="f(x) = 
         const x = (i - 10) * 0.5;
         return { x, y: 2 * (-x) + 3, z: 0 };
       }),
+      smooth: false,
       color: "#d97706",
       labels: [{ text: <InlineMath math="g(x)=-2x+3" />, offset: [-2.5, -0.5, 0] }],
       showPoints: false,
@@ -94,7 +97,7 @@ Der Vergleich zeigt:
 - Die gespiegelte Funktion <InlineMath math="g(x) = -2x + 3" /> hat die Steigung <InlineMath math="-2" />
 - Beide Geraden schneiden die <InlineMath math="y" />-Achse im selben Punkt <InlineMath math="(0, 3)" />
 
-## Wichtige Eigenschaften
+## Eigenschaften der horizontalen Spiegelung
 
 ### Vertikale Achse als Spiegellinie
 
@@ -111,9 +114,7 @@ Liegt <InlineMath math="(a, b)" /> auf dem Graphen von <InlineMath math="f(x)" /
 
 Wenn der Definitionsbereich der ursprünglichen Funktion <InlineMath math="[c, d]" /> ist, dann wird der Definitionsbereich nach der horizontalen Spiegelung zu <InlineMath math="[-d, -c]" />.
 
-## Weitere Beispiele
-
-### Beispiel für eine Exponentialfunktion
+## Exponentielles Wachstum in Zerfall umwandeln
 
 Bei der Exponentialfunktion <InlineMath math="f(x) = 2^x" /> wird aus Wachstum durch die Spiegelung ein Zerfall.
 

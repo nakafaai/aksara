@@ -1,9 +1,9 @@
 export const metadata = {
   title: "Circle Arc",
-  description: "Learn arc-chord relationships, sagitta calculations, and parametric equations. Apply advanced trigonometric formulas to engineering and architectural designs.",
+  description: "Relate arcs to chords, calculate the sagitta, and write parametric equations for design calculations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Circle Arcs and Sectors",
 };
 
@@ -39,6 +39,7 @@ For minor arcs in the same circle, a larger central angle produces both a longer
         { x: (5 + 5 * Math.cos(Math.PI / 3)) / 2, y: (5 * Math.sin(Math.PI / 3)) / 2, z: 0 },
         { x: 5 * Math.cos(Math.PI / 3), y: 5 * Math.sin(Math.PI / 3), z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       lineWidth: 3,
       showPoints: false,
@@ -80,6 +81,7 @@ For minor arcs in the same circle, a larger central angle produces both a longer
         { x: (-5 + 5 * Math.cos(5 * Math.PI / 3)) / 2, y: (5 * Math.sin(5 * Math.PI / 3)) / 2, z: 0 },
         { x: 5 * Math.cos(5 * Math.PI / 3), y: 5 * Math.sin(5 * Math.PI / 3), z: 0 },
       ],
+      smooth: false,
       color: "#d97706",
       lineWidth: 3,
       showPoints: false,
@@ -130,32 +132,32 @@ For minor arcs in the same circle, a larger central angle produces both a longer
 
 ## Chord Length Formula
 
-The chord length can be calculated using a trigonometric formula involving the central angle and circle radius:
+The radius and central angle determine the chord length:
 
 <BlockMath math="c = 2r \sin\left(\frac{\theta}{2}\right)" />
 
-with:
+The variables in this formula are:
 - <InlineMath math="c" /> = chord length
 - <InlineMath math="r" /> = circle radius
-- <InlineMath math="\theta" /> = central angle; use degree mode for degrees and radian mode for radians
+- <InlineMath math="\theta" /> = central angle. Use degree mode for degrees and radian mode for radians
 
 The formula determines a chord from a circular arc's radius and central angle. It can specify the geometry of an idealized circular window, arch, or other curved outline. A real structure still requires a separate analysis of its loads, materials, and supports.
 
 ## Arc Height and Sagitta
 
-Arc height, or sagitta, is the perpendicular distance from the chord's midpoint to the midpoint of the corresponding minor arc. Together with the chord, it specifies the shape of an idealized circular arc.
+Arc height, or sagitta, is the distance from the chord's midpoint to the corresponding minor arc, measured perpendicular to the chord. Together with the chord, it specifies the shape of an idealized circular arc.
 
 <BlockMath math="h = r - r\cos\left(\frac{\theta}{2}\right) = r\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
 
-with:
+The variables in this formula are:
 - <InlineMath math="h" /> = arc height (sagitta)
 - <InlineMath math="r" /> = circle radius
-- <InlineMath math="\theta" /> = central angle; evaluate the cosine in the same angle unit used for <InlineMath math="\theta" />
+- <InlineMath math="\theta" /> = central angle. Evaluate the cosine in the same angle unit used for <InlineMath math="\theta" />
 
-Observe the following visualization:
+The diagram marks the chord, its midpoint, and the perpendicular segment whose length is the sagitta.
 
 <LineEquation
-  title="Arc Height Visualization"
+  title="Arc Height at Different Central Angles"
   description="Arc height (sagitta) at various central angles."
   data={[
     {
@@ -178,6 +180,7 @@ Observe the following visualization:
         { x: (4 * Math.cos(-Math.PI / 6) + 4 * Math.cos(Math.PI / 6)) / 2, y: (4 * Math.sin(-Math.PI / 6) + 4 * Math.sin(Math.PI / 6)) / 2, z: 0 },
         { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6), z: 0 },
       ],
+      smooth: false,
       color: "#ea580c",
       lineWidth: 3,
       showPoints: false,
@@ -196,6 +199,7 @@ Observe the following visualization:
         { x: (4 * Math.cos(-Math.PI / 6) + 4 * Math.cos(Math.PI / 6)) / 2, y: (4 * Math.sin(-Math.PI / 6) + 4 * Math.sin(Math.PI / 6)) / 2, z: 0 },
         { x: 4 * Math.cos(0), y: 4 * Math.sin(0), z: 0 },
       ],
+      smooth: false,
       color: "#e11d48",
       lineWidth: 4,
       showPoints: false,
@@ -206,6 +210,7 @@ Observe the following visualization:
         { x: 0, y: 0, z: 0 },
         { x: 4 * Math.cos(-Math.PI / 6), y: 4 * Math.sin(-Math.PI / 6), z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
@@ -216,6 +221,7 @@ Observe the following visualization:
         { x: 0, y: 0, z: 0 },
         { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6), z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
@@ -315,6 +321,7 @@ Where <InlineMath math="t" /> is a parameter that varies from the initial angle 
         { x: 1.5 * Math.cos(Math.PI / 4), y: 1.5 * Math.sin(Math.PI / 4), z: 0 },
         { x: 3 * Math.cos(Math.PI / 4), y: 3 * Math.sin(Math.PI / 4), z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
@@ -326,6 +333,7 @@ Where <InlineMath math="t" /> is a parameter that varies from the initial angle 
         { x: 1.5 * Math.cos(3 * Math.PI / 4), y: 1.5 * Math.sin(3 * Math.PI / 4), z: 0 },
         { x: 3 * Math.cos(3 * Math.PI / 4), y: 3 * Math.sin(3 * Math.PI / 4), z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
@@ -358,9 +366,9 @@ Where <InlineMath math="t" /> is a parameter that varies from the initial angle 
   showZAxis={false}
 />
 
-## Idealized Circular-Arch Example
+## Idealized Circular Arch Example
 
-Consider an idealized circular cross-section for an arch. Its radius is <InlineMath math="25 \text{ meters}" />, and its central angle is <InlineMath math="120^\circ" />. We can determine the span represented by the chord and the rise represented by the sagitta.
+An idealized circular arch has radius <InlineMath math="25 \text{ meters}" /> and central angle <InlineMath math="120^\circ" />. The chord gives its span, and the sagitta gives its rise.
 
 **Calculating chord length:**
 

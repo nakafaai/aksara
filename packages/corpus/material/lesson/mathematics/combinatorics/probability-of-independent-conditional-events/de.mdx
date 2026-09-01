@@ -3,12 +3,13 @@ export const metadata = {
     description: "Bedingte Wahrscheinlichkeiten berechnen, Abhängigkeit von Unabhängigkeit unterscheiden und mehrstufige Ziehungen lösen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Kombinatorik",
 };
 
-## Grundlegende Konzepte verstehen
+## Bedingte Wahrscheinlichkeit und Abhängigkeit
 
-Stellen Sie sich vor, Sie ziehen eine Karte aus einem Stapel und danach zieht ein Freund die nächste. Verändert Ihre Karte die Wahrscheinlichkeit seiner möglichen Karten? Ohne Zurücklegen ist das oft der Fall. Mit der **bedingten Wahrscheinlichkeit** berechnen wir die zweite Wahrscheinlichkeit anhand der Information aus der ersten Ziehung.
+Eine Person zieht eine Karte aus einem Stapel, danach zieht eine zweite Person die nächste. Ohne Zurücklegen verändert die erste Ziehung die Zusammensetzung des Stapels und damit die Wahrscheinlichkeiten der zweiten Ziehung. Mit der **bedingten Wahrscheinlichkeit** berechnen wir diese zweite Wahrscheinlichkeit aus der Information über die erste Ziehung.
 
 Die **bedingte Wahrscheinlichkeit** von <InlineMath math="B" /> unter der Bedingung <InlineMath math="A" /> fragt: Welcher Anteil der Ergebnisse mit <InlineMath math="A" /> erfüllt zusätzlich <InlineMath math="B" />? Ändert sich die Antwort durch <InlineMath math="A" />, sind die Ereignisse abhängig. Bleibt sie gleich, sind sie unabhängig.
 
@@ -20,7 +21,7 @@ Für Ereignisse <InlineMath math="A" /> und <InlineMath math="B" /> mit <InlineM
 
 <BlockMath math="P(B|A) = \frac{P(A \cap B)}{P(A)}" />
 
-dabei gilt:
+Die Größen in dieser Formel bedeuten:
 - <InlineMath math="P(B|A)" /> ist die Wahrscheinlichkeit von <InlineMath math="B" /> unter der Bedingung, dass <InlineMath math="A" /> eingetreten ist
 - <InlineMath math="P(A \cap B)" /> ist die Wahrscheinlichkeit dafür, dass <InlineMath math="A" /> und <InlineMath math="B" /> gemeinsam eintreten
 - <InlineMath math="P(A)" /> ist die Wahrscheinlichkeit des bedingenden Ereignisses <InlineMath math="A" />
@@ -68,7 +69,7 @@ Die Wahrscheinlichkeit, bei beiden Ziehungen ein Herz zu ziehen, beträgt daher:
 
 ## Anwendung in der Managementauswahl
 
-Stellen Sie sich ein hypothetisches Unternehmen vor, das die Verteilung der Manager nach Geschlecht und Stellenebene überprüft. Seine Daten haben folgende Zusammensetzung:
+Ein hypothetisches Unternehmen prüft die Verteilung seiner Führungskräfte nach Geschlecht und Stellenebene. Die Daten sind wie folgt zusammengesetzt:
 
 | Führungsposition | Männlich | Weiblich | Gesamt |
 |------------------|---------------|---------------|-------|
@@ -91,9 +92,9 @@ Nach der Auswahl eines männlichen Managers bleiben insgesamt <InlineMath math="
 
 ## Problemlösungsstrategie
 
-### Schritt für Schritt
+### Ergebnisraum vor dem Multiplizieren aktualisieren
 
-So lösen Sie Aufgaben zur bedingten Wahrscheinlichkeit:
+Gehe bei Aufgaben zur bedingten Wahrscheinlichkeit so vor:
 
 1. **Benenne die Ereignisse** der ersten und zweiten Stufe eindeutig
 2. **Aktualisiere die Bedingungen**, nachdem das erste Ereignis eingetreten ist
@@ -101,7 +102,7 @@ So lösen Sie Aufgaben zur bedingten Wahrscheinlichkeit:
 4. **Berechne die bedingte Wahrscheinlichkeit** des zweiten Ereignisses aus der neuen Lage
 5. **Multipliziere beide Wahrscheinlichkeiten**, um die gemeinsame Wahrscheinlichkeit zu erhalten
 
-### Unabhängig oder abhängig?
+### Unabhängig oder abhängig
 
 Bei **unabhängigen Ereignissen** ändert die Bedingung die nächste Wahrscheinlichkeit nicht. Bei **abhängigen Ereignissen** ändert das bekannte Ergebnis entweder die günstige Anzahl, die Gesamtanzahl oder beides.
 
@@ -141,7 +142,7 @@ In diesem Beispiel ist das Ergebnis ohne Zurücklegen **kleiner**. Nach dem erst
 
 2. Ein Kartenspiel wird gemischt. Drei Karten werden nacheinander ohne Zurücklegen gezogen. Wie groß ist die Wahrscheinlichkeit für Ass, dann König, dann Dame?
 
-Bearbeiten Sie jede Aufgabe selbst, bevor Sie die ausführliche Lösung lesen. Notieren Sie bei jeder Ziehung die Anzahl der günstigen Karten und die neue Gesamtzahl, bevor Sie multiplizieren.
+Bearbeite jede Aufgabe selbst, bevor Sie die ausführliche Lösung lesen. Notiere bei jeder Ziehung die Anzahl der günstigen Karten und die neue Gesamtzahl, bevor Sie multiplizieren.
 
 ### Ausführliche Lösungen
 

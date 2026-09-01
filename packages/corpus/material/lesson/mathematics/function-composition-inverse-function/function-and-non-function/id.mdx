@@ -4,45 +4,39 @@ export const metadata = {
     "Bedakan fungsi dari relasi lain dengan memeriksa apakah setiap anggota domain memiliki tepat satu output melalui diagram panah dan definisi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Fungsi Komposisi dan Fungsi Invers",
 };
 
 ## Relasi Antar Himpunan
 
-Dalam matematika, **relasi** dari himpunan <InlineMath math="A" /> ke himpunan <InlineMath math="B" /> adalah suatu aturan yang menghubungkan anggota himpunan <InlineMath math="A" /> dengan anggota himpunan <InlineMath math="B" />. Pemasangan ini bisa dalam bentuk apapun.
+Dalam matematika, **relasi** dari himpunan <InlineMath math="A" /> ke himpunan <InlineMath math="B" /> adalah sembarang himpunan bagian dari produk Kartesius <InlineMath math="A\times B" />. Pasangan berurutan <InlineMath math="(a,b)" /> dalam relasi menyatakan bahwa <InlineMath math="a" /> berelasi dengan <InlineMath math="b" />. Sebuah relasi boleh tidak memasangkan suatu anggota <InlineMath math="A" /> atau memasangkannya dengan beberapa anggota <InlineMath math="B" />.
 
-**Contoh:**
-
-Relasi "kurang dari" antara <InlineMath math="A = \{1, 2, 3\}" /> dan <InlineMath math="B = \{1, 2, 3, 4\}" /> menghasilkan pasangan <InlineMath math="(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)" />.
-
-**Penjelasan:**
-
-Kita mencari semua pasangan <InlineMath math="(a, b)" /> dengan <InlineMath math="a \in A" /> dan <InlineMath math="b \in B" /> dimana <InlineMath math="a < b" />.
+Untuk relasi "kurang dari" antara <InlineMath math="A = \{1, 2, 3\}" /> dan <InlineMath math="B = \{1, 2, 3, 4\}" />, masukkan <InlineMath math="(a,b)" /> jika <InlineMath math="a < b" />:
 
 - Untuk <InlineMath math="a=1" />, kita peroleh <InlineMath math="1 < 2" />, <InlineMath math="1 < 3" />, <InlineMath math="1 < 4" />. Pasangan: <InlineMath math="(1, 2), (1, 3), (1, 4)" />.
 - Untuk <InlineMath math="a=2" />, kita peroleh <InlineMath math="2 < 3" />, <InlineMath math="2 < 4" />. Pasangan: <InlineMath math="(2, 3), (2, 4)" />.
 - Untuk <InlineMath math="a=3" />, kita peroleh <InlineMath math="3 < 4" />. Pasangan: <InlineMath math="(3, 4)" />.
 
-Gabungan semua pasangan ini adalah <InlineMath math="\{(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)\}" />.
+Relasinya adalah <InlineMath math="\{(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)\}" />.
 
 ## Fungsi Sebagai Relasi Khusus
 
 **Fungsi** (atau pemetaan) <InlineMath math="f" /> dari himpunan <InlineMath math="A" /> ke himpunan <InlineMath math="B" />, ditulis <InlineMath math="f: A \to B" />, adalah relasi khusus yang memenuhi dua syarat:
 
-1.  **Setiap** elemen <InlineMath math="x \in A" /> harus memiliki pasangan <InlineMath math="y \in B" />.
+1.  **Setiap** masukan <InlineMath math="x \in A" /> memiliki setidaknya satu keluaran <InlineMath math="y \in B" />.
 
     <BlockMath math="\forall x \in A, \exists y \in B \text{ sehingga} (x, y) \in f" />
 
-2.  Setiap elemen <InlineMath math="x \in A" /> memiliki **tepat satu** pasangan <InlineMath math="y \in B" />.
+2.  Tidak ada masukan <InlineMath math="x \in A" /> yang memiliki dua keluaran berbeda di <InlineMath math="B" />.
 
     <BlockMath math="\text{Jika } (x, y_1) \in f \text{ dan} (x, y_2) \in f, \text{ maka} y_1 = y_2" />
 
-Artinya, setiap anggota domain harus terhubung, dan tidak boleh memiliki lebih dari satu hubungan.
+Kedua syarat tersebut mengharuskan setiap masukan dalam domain memiliki tepat satu keluaran.
 
-## Contoh Diagram Panah
+## Menguji Relasi dengan Diagram Panah
 
-Berikut adalah contoh visualisasi relasi menggunakan diagram panah untuk membedakan mana yang fungsi dan mana yang bukan.
+Panah pada diagram berikut menunjukkan syarat yang dipenuhi atau dilanggar oleh setiap relasi.
 
 ### Relasi Bukan Fungsi
 
@@ -102,7 +96,7 @@ Berikut adalah contoh visualisasi relasi menggunakan diagram panah untuk membeda
       mappings={[
         { from: "a", to: "m" },
         { from: "b", to: "o" },
-        // 'c' has no mapping
+// c tidak memiliki pasangan
       ]}
     />
   </FunctionAndNonFunctionDiagram>
@@ -144,13 +138,13 @@ Berikut adalah contoh visualisasi relasi menggunakan diagram panah untuk membeda
 
 Sebagai contoh, lingkaran <InlineMath math="x^2+y^2=4" /> bukan grafik <InlineMath math="y" /> sebagai fungsi dari <InlineMath math="x" /> pada seluruh lingkaran. Saat <InlineMath math="x=0" />, relasi tersebut memuat <InlineMath math="y=2" /> dan <InlineMath math="y=-2" />.
 
-## Periksa Pemahamanmu
+## Mengelompokkan Relasi sebagai Fungsi atau Bukan Fungsi
 
 1. Apakah <InlineMath math="R=\{(-1,3),(0,3),(2,5)\}" /> merupakan fungsi pada masukan yang ditampilkan?
 2. Apakah <InlineMath math="S=\{(-1,3),(0,3),(-1,5)\}" /> merupakan fungsi pada masukan yang ditampilkan?
 3. Apakah <InlineMath math="y^2=x" /> mendefinisikan <InlineMath math="y" /> sebagai fungsi dari setiap <InlineMath math="x\geq0" />?
 
-### Pembahasan
+### Memeriksa Setiap Masukan
 
 1. Ya. Setiap koordinat pertama memiliki tepat satu koordinat kedua. Dua masukan boleh memiliki keluaran <InlineMath math="3" /> yang sama.
 2. Tidak. Masukan <InlineMath math="-1" /> memiliki dua keluaran yang berbeda.

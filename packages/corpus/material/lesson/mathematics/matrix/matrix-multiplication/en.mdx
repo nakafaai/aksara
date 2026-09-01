@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Matrix Multiplication",
-  description: "Learn matrix multiplication rules, conditions, properties, and real-world applications through worked calculations.",
+  description: "Multiply matrices with the row by column rule, check compatible dimensions, and use the operation's main properties.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Matrix",
 };
 
-## Understanding the Multiplication of Two Matrices
+## Multiplication of Two Matrices
 
-Matrix multiplication is a fundamental operation in linear algebra. Unlike matrix addition or subtraction where elements are operated on directly, matrix multiplication has its own specific rules.
+Matrix multiplication combines each row of the first matrix with each column of the second. Unlike matrix addition, it does not operate on entries in matching positions.
 
 ### Condition for Matrix Multiplication
 
@@ -37,7 +37,7 @@ In the formula above, we sum the products <InlineMath math="a_{ik}b_{kj}" /> for
 
 ## Steps to Multiply Matrices
 
-Look at a simple example to understand the process.
+In the following example, each entry of matrix <InlineMath math="R" /> is the dot product of one row of matrix <InlineMath math="P" /> and one column of matrix <InlineMath math="Q" />.
 
 Suppose we have matrices <InlineMath math="P = \begin{bmatrix} p_{11} & p_{12} \\ p_{21} & p_{22} \end{bmatrix}" /> and <InlineMath math="Q = \begin{bmatrix} q_{11} & q_{12} \\ q_{21} & q_{22} \end{bmatrix}" />.
 
@@ -91,11 +91,11 @@ Matrix <InlineMath math="B" /> has an order of <InlineMath math="3 \times 2" /> 
 
 The number of columns in matrix <InlineMath math="B" /> (which is <InlineMath math="2" />) is **not equal** to the number of rows in matrix <InlineMath math="A" /> (which is <InlineMath math="3" />).
 
-Therefore, the multiplication <InlineMath math="BA" /> is **undefined**. This illustrates one of the important properties of matrix multiplication.
+<InlineMath math="BA" /> is **undefined**. Whether a matrix product exists can change when the factors are reversed.
 
 ## Properties of Matrix Multiplication
 
-Matrix multiplication has several important properties:
+Matrix multiplication satisfies the following rules:
 
 1.  **Generally Not Commutative**:
 
@@ -132,7 +132,7 @@ Matrix multiplication has several important properties:
 
 ## Calculating Revenue
 
-Matrix multiplication can combine a table of quantities with a compatible table of prices. The labels attached to the rows and columns are just as important as their numerical dimensions.
+Matrix multiplication can combine a table of quantities with a compatible table of prices. The row and column labels determine which quantities are multiplied and added, so matching dimensions alone is not enough.
 
 Suppose a home business sells tempeh chips, banana chips, and potato chips at Place A, Place B, and Place C.
 
@@ -159,7 +159,7 @@ Matrix <InlineMath math="Q^T" /> has dimensions <InlineMath math="1 \times 3" />
   <BlockMath math="s_{13} = (20{,}000)(20) + (15{,}000)(15) + (30{,}000)(20) = 400{,}000 + 225{,}000 + 600{,}000 = 1{,}225{,}000" />
 </MathContainer>
 
-Thus, <InlineMath math="S = \begin{bmatrix} 1{,}125{,}000 & 840{,}000 & 1{,}225{,}000 \end{bmatrix}" />.
+<InlineMath math="S = \begin{bmatrix} 1{,}125{,}000 & 840{,}000 & 1{,}225{,}000 \end{bmatrix}" />.
 
 This means the total revenue from Place A is <InlineMath math="\text{Rp}1{,}125{,}000" />, from Place B is <InlineMath math="\text{Rp}840{,}000" />, and from Place C is <InlineMath math="\text{Rp}1{,}225{,}000" />.
 
@@ -216,6 +216,4 @@ Is <InlineMath math="CD = DC" />?
       <BlockMath math="DC = \begin{bmatrix} -3 & -11 \\ 10 & -20 \end{bmatrix}" />
     </MathContainer>
 
-From the results above, it is clear that <InlineMath math="CD = \begin{bmatrix} -23 & -10 \\ 17 & 0 \end{bmatrix}" /> and <InlineMath math="DC = \begin{bmatrix} -3 & -11 \\ 10 & -20 \end{bmatrix}" />.
-
-So, <InlineMath math="CD \neq DC" />. This is another example showing that matrix multiplication is generally not commutative.
+The value <InlineMath math="CD = \begin{bmatrix} -23 & -10 \\ 17 & 0 \end{bmatrix}" /> differs from <InlineMath math="DC = \begin{bmatrix} -3 & -11 \\ 10 & -20 \end{bmatrix}" />, so <InlineMath math="CD \neq DC" />. Matrix multiplication is not commutative in this example.

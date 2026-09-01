@@ -1,20 +1,20 @@
 export const metadata = {
   title: "Function Composition",
-  description: "Learn function composition through a shopping example, sequential application, and the effect of reversing the order.",
+  description: "Compose functions in sequence and compare the result when their order is reversed.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Function Composition and Inverse Function",
 };
 
-## Understanding Function Composition
+## Function Composition
 
-Imagine you are shopping at a store that offers two attractive promos:
+A store applies the same discount and fixed price reduction in two different orders:
 
 1.  **Promo A:** <InlineMath math="20\%" /> discount, then another deduction of <InlineMath math="\text{Rp}25{,}000.00" />.
 2.  **Promo B:** Price reduction of <InlineMath math="\text{Rp}25{,}000.00" />, then a <InlineMath math="20\%" /> discount.
 
-Do both promos result in the same final price? Which promo is more beneficial? To answer this, we need to understand the concept of **function composition**.
+Do both promotions produce the same final price? We can answer this by writing each operation as a function and composing the two functions in the stated order.
 
 ### Definition of Function Composition
 
@@ -63,9 +63,9 @@ Now compose these two functions according to the promo sequence:
 
     So, the final price with Promo B is <InlineMath math="\text{Rp}140{,}000.00" />.
 
-It turns out that the order of applying the functions (discount and price reduction) affects the final result. Promo A (<InlineMath math="p \circ d" />) is more beneficial for the buyer than Promo B (<InlineMath math="d \circ p" />) for an item priced at <InlineMath math="\text{Rp}200{,}000.00" />. This demonstrates that, generally, <InlineMath math="(f \circ g)(x) \neq (g \circ f)(x)" />.
+For this item, Promo A (<InlineMath math="p \circ d" />) gives a final price of <InlineMath math="\text{Rp}135{,}000.00" />, while Promo B (<InlineMath math="d \circ p" />) gives <InlineMath math="\text{Rp}140{,}000.00" />. Reversing the order changes the result, so in general <InlineMath math="(f \circ g)(x) \neq (g \circ f)(x)" />.
 
-## Another Example
+## Comparing Both Orders of Composition
 
 Suppose we have two functions:
 
@@ -98,7 +98,7 @@ Determine <InlineMath math="(f \circ g)(x)" /> and <InlineMath math="(g \circ f)
 
     So, <InlineMath math="(g \circ f)(x) = 4x^2 + 4x - 2" />.
 
-Note that <InlineMath math="(f \circ g)(x) \neq (g \circ f)(x)" />, illustrating the non-commutative property.
+Because <InlineMath math="(f \circ g)(x) \neq (g \circ f)(x)" />, function composition is not commutative.
 
 ## The Domain Must Follow the Order
 

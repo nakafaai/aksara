@@ -3,21 +3,21 @@ export const metadata = {
    description: "Uji apakah dua kejadian saling bebas dan hitung peluang gabungannya tanpa bergantung pada kata kunci yang menyesatkan.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-08-29",
+   dateModified: "2026-09-01",
    subject: "Kombinatorik",
 };
 
-## Memahami Kejadian Saling Bebas
+## Kejadian Saling Bebas
 
 Sebagian model peluang memuat kejadian ketika **informasi tentang satu hasil tidak mengubah peluang hasil lainnya**. Lempar sebuah koin adil dan sebuah dadu adil. Mengetahui hasil koin tidak memberi informasi tentang hasil dadu, sehingga kedua kejadian saling bebas.
 
 Kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> **saling bebas** jika menjadikan salah satunya sebagai syarat tidak mengubah peluang kejadian lainnya. Sifat ini ditentukan oleh model peluang. Waktu terjadinya kedua kejadian belum cukup untuk menentukannya.
 
-Pembedaan ini penting karena dua kejadian dapat memiliki penyebab bersama yang tersembunyi. Dua alarm mungkin tidak saling mengendalikan, misalnya, tetapi keduanya dapat bereaksi terhadap kejadian yang sama. Jangan menganggap kejadian bebas tanpa memeriksa model atau informasi pada soal.
+Dua kejadian dapat memiliki penyebab bersama meskipun tidak saling mengendalikan. Dua alarm, misalnya, dapat bereaksi terhadap kejadian yang sama. Anggap dua kejadian saling bebas hanya jika model peluang menyatakannya atau peluang bersyaratnya membuktikannya.
 
 ## Ciri Kejadian Saling Bebas
 
-### Tidak Saling Mempengaruhi
+### Satu Kejadian Tidak Mengubah Peluang Kejadian Lain
 
 Ciri utama kejadian saling bebas adalah **hasil satu kejadian tidak mengubah probabilitas kejadian lainnya**. Dalam notasi matematika, jika <InlineMath math="A" /> dan <InlineMath math="B" /> saling bebas serta <InlineMath math="P(B) > 0" />, maka:
 
@@ -25,7 +25,7 @@ Ciri utama kejadian saling bebas adalah **hasil satu kejadian tidak mengubah pro
 
 Artinya probabilitas <InlineMath math="A" /> terjadi ketika <InlineMath math="B" /> sudah terjadi sama dengan probabilitas <InlineMath math="A" /> terjadi secara umum.
 
-### Contoh Kehidupan Sehari Hari
+### Percobaan Acak yang Terpisah
 
 Contoh dengan mekanisme yang jelas saling bebas meliputi:
 
@@ -36,11 +36,11 @@ Contoh dengan mekanisme yang jelas saling bebas meliputi:
 
 ### Identifikasi Kejadian Saling Bebas
 
-Untuk menguji kebebasan, tanyakan: “Apakah mengetahui hasil pertama mengubah distribusi peluang hasil kedua?” Cerita sebab-akibat saja tidak cukup; gunakan model yang dinyatakan atau periksa kesamaan peluang bersyarat dan peluang biasa.
+Untuk menguji kebebasan, tanyakan: “Apakah mengetahui hasil pertama mengubah distribusi peluang hasil kedua?” Dugaan hubungan sebab-akibat saja belum cukup. Gunakan model yang dinyatakan atau bandingkan peluang bersyarat dengan peluang biasa.
 
 ## Rumus Peluang Kejadian Saling Bebas
 
-Karena kejadian saling bebas tidak saling mempengaruhi, perhitungan probabilitas gabungannya menjadi sederhana. **Rumus dasar** untuk probabilitas kejadian saling bebas adalah:
+Karena kejadian saling bebas tidak saling memengaruhi, perhitungan probabilitas gabungannya menjadi sederhana. **Rumus dasar** untuk probabilitas kejadian saling bebas adalah:
 
 <BlockMath math="P(A \cap B) = P(A) \times P(B)" />
 
@@ -48,13 +48,13 @@ Rumus ini menunjukkan bahwa probabilitas kedua kejadian <InlineMath math="A" /> 
 
 ### Mengapa Rumus Ini Berlaku
 
-Berbeda dengan kejadian yang saling mempengaruhi, pada kejadian saling bebas probabilitas kondisional sama dengan probabilitas biasa. Karena <InlineMath math="P(A|B) = P(A)" />, maka:
+Berbeda dengan kejadian yang saling memengaruhi, pada kejadian saling bebas probabilitas kondisional sama dengan probabilitas biasa. Karena <InlineMath math="P(A|B) = P(A)" />, aturan perkalian menjadi:
 
 <BlockMath math="P(A \cap B) = P(A|B) \times P(B) = P(A) \times P(B)" />
 
-Inilah mengapa kita bisa langsung mengalikan probabilitas individual untuk mendapatkan probabilitas gabungan.
+Dengan memasukkan <InlineMath math="P(A|B)=P(A)" /> ke aturan perkalian, kita memperoleh <InlineMath math="P(A\cap B)=P(A)P(B)" />.
 
-## Penerapan dalam Perhitungan
+## Perhitungan Kejadian Saling Bebas
 
 ### Pelemparan Dua Dadu
 
@@ -65,7 +65,7 @@ Dua dadu dilempar bersamaan, satu dadu merah dan satu dadu putih. Tentukan proba
 - Kejadian <InlineMath math="A" />: munculnya angka <InlineMath math="2" /> pada dadu merah
 - Kejadian <InlineMath math="B" />: munculnya angka <InlineMath math="5" /> pada dadu putih
 
-Kedua kejadian ini **saling bebas** karena hasil dadu merah tidak mempengaruhi hasil dadu putih.
+Kedua kejadian ini **saling bebas** karena hasil dadu merah tidak memengaruhi hasil dadu putih.
 
 <MathContainer>
 <BlockMath math="P(A) = \frac{1}{6}" />
@@ -89,7 +89,7 @@ Sebuah dadu dan sebuah koin dilempar bersamaan. Tentukan probabilitas mendapatka
 - Kejadian <InlineMath math="A" />: munculnya angka genap pada dadu adalah <InlineMath math="\{2, 4, 6\}" />
 - Kejadian <InlineMath math="B" />: sisi gambar pada koin, yang dilambangkan dengan <InlineMath math="1" />, adalah <InlineMath math="\{1\}" />
 
-Kedua kejadian **saling bebas** karena hasil dadu tidak mempengaruhi hasil koin.
+Kedua kejadian **saling bebas** karena hasil dadu tidak memengaruhi hasil koin.
 
 <MathContainer>
 <BlockMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
@@ -97,7 +97,7 @@ Kedua kejadian **saling bebas** karena hasil dadu tidak mempengaruhi hasil koin.
 <BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
 </MathContainer>
 
-### Contoh Pemodelan Terapan
+### Uji Mandiri Dua Sensor Saling Bebas
 
 Dua sensor pemantauan dengan sumber daya terpisah menjalankan uji mandiri setiap hari. Sensor <InlineMath math="A" /> berhasil dengan peluang <InlineMath math="0{,}98" />, sedangkan sensor <InlineMath math="B" /> berhasil dengan peluang <InlineMath math="0{,}92" />. Dalam model yang menyatakan keduanya saling bebas, berapa peluang kedua uji berhasil?
 
@@ -121,7 +121,7 @@ Jadi peluang kedua sensor lulus adalah <InlineMath math="0{,}9016" /> atau <Inli
 
 ## Strategi Pemecahan Masalah
 
-### Langkah Sistematis
+### Periksa Kebebasan Sebelum Mengalikan
 
 Untuk menyelesaikan soal probabilitas kejadian saling bebas, ikuti langkah berikut:
 
@@ -131,12 +131,12 @@ Untuk menyelesaikan soal probabilitas kejadian saling bebas, ikuti langkah berik
 4. **Terapkan rumus** <InlineMath math="P(A \cap B) = P(A) \times P(B)" />
 5. **Periksa hasil** apakah masuk akal dalam konteks masalah
 
-### Tips Praktis
+### Pemeriksaan Hasil Akhir
 
-Beberapa strategi untuk memudahkan pemahaman:
+Gunakan pemeriksaan berikut:
 
 - **Visualisasikan** kejadian dengan diagram pohon jika diperlukan
-- **Periksa kebebasan** melalui model atau peluang bersyarat; waktu kejadian saja belum membuktikannya
+- **Periksa kebebasan** melalui model atau peluang bersyarat. Waktu kejadian saja belum membuktikannya
 - **Periksa konsistensi** hasil dengan menggunakan pendekatan berbeda
 - **Gunakan konteks** untuk memvalidasi apakah jawaban masuk akal
 
@@ -175,7 +175,7 @@ Coba kerjakan setiap latihan sebelum membaca pembahasannya. Jelaskan alasan kedu
    - Kejadian <InlineMath math="A" />: angka pada koin pertama, <InlineMath math="P(A) = \frac{1}{2}" />
    - Kejadian <InlineMath math="B" />: gambar pada koin kedua, <InlineMath math="P(B) = \frac{1}{2}" />
 
-   Kedua kejadian saling bebas karena hasil koin pertama tidak mempengaruhi koin kedua.
+   Kedua kejadian saling bebas karena hasil koin pertama tidak memengaruhi koin kedua.
 
    <BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
 
@@ -224,7 +224,7 @@ Coba kerjakan setiap latihan sebelum membaca pembahasannya. Jelaskan alasan kedu
    - <InlineMath math="\left(\frac{1}{2}\right)^2 = \frac{1}{4}" /> (probabilitas <InlineMath math="2" /> gambar)
    - <InlineMath math="\left(\frac{1}{2}\right)^1 = \frac{1}{2}" /> (probabilitas <InlineMath math="1" /> angka)
 
-   Jadi, perhitungannya adalah:
+   Kalikan ketiga faktor peluang tersebut:
 
    <BlockMath math="P(\text{tepat 2 gambar}) = 3 \times \frac{1}{4} \times \frac{1}{2} = 3 \times \frac{1}{8} = \frac{3}{8}" />
 

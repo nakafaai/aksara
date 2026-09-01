@@ -1,8 +1,9 @@
 export const metadata = {
   title: "Vertikale Spiegelung",
-  description: "Verstehe anhand von Graphen und Beispielen, wie eine Spiegelung an der x-Achse die y-Koordinaten einer Funktion verändert.",
+  description: "Spiegle einen Funktionsgraphen an der x-Achse und bestimme die neuen y-Koordinaten.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Funktionstransformation",
 };
 
@@ -59,7 +60,7 @@ Am Graphen lässt sich direkt ablesen:
 
 ## Spiegelung einer linearen Funktion
 
-Nun wenden wir dieselbe Regel auf die lineare Funktion <InlineMath math="f(x) = 2x + 3" /> an.
+Dieselbe Spiegelungsregel gilt für die lineare Funktion <InlineMath math="f(x) = 2x + 3" />.
 
 <LineEquation
   title={<>Spiegelung der linearen Funktion <InlineMath math="f(x) = 2x + 3" /></>}
@@ -72,6 +73,7 @@ Nun wenden wir dieselbe Regel auf die lineare Funktion <InlineMath math="f(x) = 
         const x = (i - 10) * 0.5;
         return { x, y: 2 * x + 3, z: 0 };
       }),
+      smooth: false,
       color: "#7c3aed",
       labels: [{ text: <InlineMath math="f(x)=2x+3" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -81,6 +83,7 @@ Nun wenden wir dieselbe Regel auf die lineare Funktion <InlineMath math="f(x) = 
         const x = (i - 10) * 0.5;
         return { x, y: -(2 * x + 3), z: 0 };
       }),
+      smooth: false,
       color: "#d97706",
       labels: [{ text: <InlineMath math="g(x)=-(2x+3)=-2x-3" />, offset: [1, -0.5, 0] }],
       showPoints: false,
@@ -93,7 +96,7 @@ Der Vergleich zeigt:
 - Die reflektierte Funktion <InlineMath math="g(x) = -2x - 3" /> hat eine negative Steigung und schneidet die <InlineMath math="y" />-Achse bei <InlineMath math="(0, -3)" />
 - Beide Geraden schneiden sich auf der <InlineMath math="x" />-Achse
 
-## Wichtige Eigenschaften
+## Eigenschaften der vertikalen Spiegelung
 
 ### Horizontale Achse als Spiegellinie
 
@@ -110,9 +113,7 @@ Liegt <InlineMath math="(a, b)" /> auf dem Graphen von <InlineMath math="f(x)" /
 
 Hat die ursprüngliche Funktion den Wertebereich <InlineMath math="[c, d]" />, so besitzt die vertikal gespiegelte Funktion den Wertebereich <InlineMath math="[-d, -c]" />.
 
-## Weitere Beispiele
-
-### Beispiel für eine Exponentialfunktion
+## Einen Exponentialgraphen an der horizontalen Achse spiegeln
 
 Bei der Exponentialfunktion <InlineMath math="f(x) = 2^x" /> liegt der gespiegelte Graph vollständig unterhalb der horizontalen Achse.
 

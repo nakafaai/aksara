@@ -1,15 +1,15 @@
 export const metadata = {
    title: "Matrix Diagonalization",
-   description: "Transform matrices using eigenvalues and eigenvectors. Learn diagonalization conditions, geometric vs algebraic multiplicity for AI computations.",
+   description: "Use eigenvalues and eigenvectors to decide whether a matrix is diagonalizable and compare algebraic with geometric multiplicity.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-07-16",
-   dateModified: "2026-08-22",
+   dateModified: "2026-09-01",
    subject: "Linear Methods of AI",
 };
 
 ## Matrix Diagonalization Concept
 
-In matrix theory, diagonalization rewrites a linear transformation in a basis where the coordinates no longer mix. That simpler representation makes both analysis and repeated computations easier.
+Diagonalization rewrites a linear transformation in a basis of eigenvectors. In that basis, each coordinate is multiplied by its eigenvalue instead of being mixed with the other coordinates.
 
 The main goal is to find a basis in which the linear transformation <InlineMath math="y = A \cdot x" /> is represented by the diagonal matrix <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" />. If the eigenbasis can be chosen orthonormally, then <InlineMath math="S^{-1} = S^T" /> in the real case and <InlineMath math="S^{-1} = S^H" /> in the complex case.
 
@@ -19,7 +19,7 @@ A matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> is called **diagona
 
 <BlockMath math="\Lambda = S^{-1} \cdot A \cdot S" />
 
-Equivalently, <InlineMath math="A = S\Lambda S^{-1}" />. This form makes repeated application especially simple:
+Equivalently, <InlineMath math="A = S\Lambda S^{-1}" />. Repeated application then has the form:
 
 <BlockMath math="A^m = S\Lambda^m S^{-1}" />
 
@@ -33,7 +33,7 @@ The diagonal matrix <InlineMath math="\Lambda" /> is:
 
 <BlockMath math="\Lambda = \begin{pmatrix} \lambda_1 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix} = \text{diag}(\lambda_1, \ldots, \lambda_n)" />
 
-and <InlineMath math="S" /> is the matrix with columns:
+The matrix <InlineMath math="S" /> has the eigenvectors as its columns:
 
 <BlockMath math="S = (v_1 \quad \ldots \quad v_n)" />
 
@@ -41,7 +41,7 @@ If <InlineMath math="A" /> is diagonalizable, then the columns <InlineMath math=
 
 Conversely, if <InlineMath math="v_1, \ldots, v_n" /> is a basis of eigenvectors, then <InlineMath math="S" /> is invertible and from <InlineMath math="A \cdot v_i = \lambda_i \cdot v_i" /> for <InlineMath math="i = 1, \ldots, n" /> we obtain <InlineMath math="A \cdot S = S \cdot \Lambda" /> and thus <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" />.
 
-## Example of Non-Diagonalizable Case
+## A Matrix That Cannot Be Diagonalized
 
 Consider the matrix:
 
@@ -63,19 +63,19 @@ If a matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> is diagonalizabl
 
 <BlockMath math="\chi_A(t) = (\lambda_1 - t) \cdots (\lambda_n - t)" />
 
-where <InlineMath math="A" /> has <InlineMath math="n" /> eigenvalues that need not be distinct <InlineMath math="\lambda_i \in \mathbb{K}" />.
+The matrix <InlineMath math="A" /> has <InlineMath math="n" /> eigenvalues <InlineMath math="\lambda_i \in \mathbb{K}" />, counted with multiplicity, and they need not be distinct.
 
 The chosen field matters. A real matrix can fail to be diagonalizable over <InlineMath math="\mathbb{R}" /> yet become diagonalizable over <InlineMath math="\mathbb{C}" /> after its characteristic polynomial splits there.
 
-When all eigenvalues are distinct, the process becomes simpler. If <InlineMath math="A \in \mathbb{K}^{n \times n}" /> and the characteristic polynomial <InlineMath math="\chi_A(t)" /> of <InlineMath math="A" /> over <InlineMath math="\mathbb{K}" /> factors into linear factors:
+Distinct eigenvalues remove the need to compare algebraic and geometric multiplicities. Suppose the characteristic polynomial <InlineMath math="\chi_A(t)" /> of <InlineMath math="A \in \mathbb{K}^{n \times n}" /> factors over <InlineMath math="\mathbb{K}" /> as follows.
 
 <BlockMath math="\chi_A(t) = (\lambda_1 - t) \cdots (\lambda_n - t)" />
 
-with pairwise distinct eigenvalues <InlineMath math="\lambda_i \neq \lambda_j" /> for <InlineMath math="i \neq j" /> with <InlineMath math="i, j \in \{1, \ldots, n\}" />, then <InlineMath math="A" /> is certainly diagonalizable.
+If the eigenvalues are pairwise distinct, so <InlineMath math="\lambda_i \neq \lambda_j" /> for <InlineMath math="i \neq j" /> with <InlineMath math="i, j \in \{1, \ldots, n\}" />, then <InlineMath math="A" /> is diagonalizable.
 
-Why is this so? Eigenvectors for pairwise distinct eigenvalues of <InlineMath math="A" /> are linearly independent. With <InlineMath math="n" /> such eigenvalues, they therefore form a basis of <InlineMath math="\mathbb{K}^n" />.
+Eigenvectors for pairwise distinct eigenvalues of <InlineMath math="A" /> are linearly independent. With <InlineMath math="n" /> such eigenvalues, they form a basis of <InlineMath math="\mathbb{K}^n" />.
 
-But what if <InlineMath math="A" /> has repeated eigenvalues? We must check this more carefully. Eigenvalues have algebraic multiplicity <InlineMath math="\mu_A(\lambda_i)" /> and geometric multiplicity <InlineMath math="\dim E_A(\lambda_i)" /> with the relationship:
+Repeated eigenvalues require an additional check. Each eigenvalue has algebraic multiplicity <InlineMath math="\mu_A(\lambda_i)" /> and geometric multiplicity <InlineMath math="\dim E_A(\lambda_i)" />, with the relationship:
 
 <BlockMath math="\dim E_A(\lambda_i) \leq \mu_A(\lambda_i)" />
 
@@ -103,4 +103,4 @@ For each <InlineMath math="i = 1, \ldots, k" />, let <InlineMath math="v_1^{(i)}
 
 <BlockMath math="v_1^{(1)}, \ldots, v_{d_1}^{(1)}, v_1^{(2)}, \ldots, v_{d_2}^{(2)}, \ldots, v_1^{(k)}, \ldots, v_{d_k}^{(k)}" />
 
-is a basis of <InlineMath math="\mathbb{K}^n" /> consisting of eigenvectors of <InlineMath math="A" />. Therefore, <InlineMath math="A" /> is diagonalizable.
+These vectors form a basis of <InlineMath math="\mathbb{K}^n" /> consisting of eigenvectors of <InlineMath math="A" />. Therefore, <InlineMath math="A" /> is diagonalizable.

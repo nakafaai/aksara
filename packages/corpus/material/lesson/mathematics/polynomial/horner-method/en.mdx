@@ -1,14 +1,15 @@
 export const metadata = {
-  title: "Horner's Method",
-  description: "Learn Horner's method for efficient polynomial division. Learn this simplified alternative to long division with worked examples and practice.",
+  title: "Horner Method",
+  description: "Apply Horner's method to divide a polynomial by a linear factor and calculate its quotient and remainder.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
+  dateModified: "2026-09-01",
   subject: "Polynomial",
 };
 
-## Understanding Horner's Method
+## Horner Method
 
-Horner's method is a more efficient and simpler way to perform polynomial division, especially when the divisor is linear, like <InlineMath math="(x-c)" />. This method can be considered a simplification of long division because it only involves writing coefficients and more concise multiplication and addition operations.
+Horner's method divides a polynomial by a linear divisor such as <InlineMath math="(x-c)" /> using only its ordered coefficients. Each step multiplies the latest result by <InlineMath math="c" /> and adds the next coefficient, so the calculation does not repeat the variables and powers used in long division.
 
 ### Comparison with Long Division
 
@@ -46,11 +47,11 @@ x-2\overline{\big)x^3 + 0x^2 - 7x + 8} \\
 
 Notice how Horner's method only focuses on the coefficients <InlineMath math="(1, 0, -7, 8)" /> and the value <InlineMath math="c=2" />. The bottom row in Horner's method <InlineMath math="(1, 2, -3)" /> directly gives the coefficients of the quotient <InlineMath math="1x^2 + 2x - 3" />, and the last number <InlineMath math="\boxed{2}" /> is the remainder.
 
-This is much more concise than writing out all the variables and powers as in long division.
+The scheme omits the repeated variables and powers required by long division. Its bottom row already contains the quotient coefficients followed by the remainder.
 
 This method can only be directly used if the divisor is a linear polynomial of degree one, i.e., in the form <InlineMath math="(x-c)" /> or <InlineMath math="(ax-b)" /> (which can be transformed).
 
-## Preparing to Use Horner's Method
+## Preparing to Use the Horner Method
 
 Before performing division with Horner's method, there are several preparation steps:
 
@@ -74,7 +75,7 @@ Before performing division with Horner's method, there are several preparation s
 
     Draw the Horner scheme or diagram. Place the value <InlineMath math="c" /> on the left and write the coefficients of <InlineMath math="P(x)" /> in the top row.
 
-## Division Process with Horner's Method
+## Division with the Horner Method
 
 Here are the steps to perform division using the Horner scheme:
 
@@ -84,7 +85,7 @@ Here are the steps to perform division using the Horner scheme:
 4.  **Repeat:** Repeat step <InlineMath math="2" /> (multiply by <InlineMath math="c" />) and step <InlineMath math="3" /> (add to the coefficient above it) for all remaining coefficients.
 5.  **Final Result:** The last number in the result row is the **remainder (<InlineMath math="S" />)**. The other numbers in the result row, from left to right, are the **coefficients of the quotient polynomial (<InlineMath math="H(x)" />)**, starting from the power <InlineMath math="n-1" />.
 
-## Using Horner's Method
+## Using the Horner Method
 
 Divide <InlineMath math="P(x) = 2x^3 + 5x^2 + 6" /> by <InlineMath math="x+3" /> using both methods.
 

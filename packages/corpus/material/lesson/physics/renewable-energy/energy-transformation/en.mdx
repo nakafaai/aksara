@@ -2,20 +2,20 @@
 export const metadata = {
   title: "Energy Transformation",
   description:
-    "Learn how to trace energy transformation from natural sources into electricity, including useful energy, dissipated energy, and simple efficiency.",
+    "Trace energy transformation from natural sources into electricity, including useful energy, dissipated energy, and simple efficiency.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-01",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Renewable Energy",
 };
 
-## Read the Device by Its Path
+## Trace Energy through Each Device
 
 **Energy transformation** is the change of energy from one form into another. The word "transformation" does not mean energy is created from nothing. Energy still follows the law of energy conservation, but its form and transfer path change.
 
-The U.S. Energy Information Administration (EIA) explains that the total amount of energy stays constant while energy changes form. Every conversion produces useful energy along with energy that the device cannot use for its purpose. EIA's Laws of Energy page can be opened through [this source link](https://www.eia.gov/energyexplained/what-is-energy/laws-of-energy.php).
+[EIA](https://www.eia.gov/energyexplained/what-is-energy/laws-of-energy.php) explains that the total amount of energy stays constant while energy changes form. Every conversion produces useful energy along with energy that the device cannot use for its purpose.
 
-The cleanest way to read an energy technology is to write its path.
+Write the conversion path to analyze an energy technology.
 
 <BlockMath math="\text{energy source} \rightarrow \text{initial form} \rightarrow \text{conversion device} \rightarrow \text{useful energy}+\text{dissipated energy}" />
 
@@ -23,33 +23,33 @@ Dissipated energy is not lost energy. It spreads to the surroundings, for exampl
 
 ## Conversion Paths in Power Plants
 
-The diagram below helps us ask one simple question: what does energy from nature become before we use it?
+Use the diagram below to trace what energy from nature becomes before it reaches the user.
 
 <Mermaid
   title="Power Plants Convert Energy in Stages"
-  description="Read the sequence from energy source to turbine, generator, and the electricity delivered by a power plant."
+  description="Trace the sequence from energy source to turbine, generator, and the electricity delivered by a power plant."
   chart={`flowchart TD
     A["Natural source"] --> B["Initial energy form"]
     B --> C["Conversion device"]
     C --> D["Useful energy"]
     C --> E["Dissipated energy"]`}/>
 
-In hydropower, the U.S. Department of Energy (DOE) explains that water flows through a penstock, spins turbine blades, and the turbine spins a generator that produces electricity. DOE's explanation of how hydropower works can be opened through [this source link](https://www.energy.gov/cmei/water/how-hydropower-works).
+In hydropower, [DOE](https://www.energy.gov/cmei/water/how-hydropower-works) explains that water flows through a penstock, spins turbine blades, and the turbine spins a generator that produces electricity.
 
-In wind power, DOE explains that wind turns turbine blades, the rotor spins a generator, and the generator creates electricity. DOE's page on how wind turbines work can be opened through [this source link](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work).
+In wind power, [DOE](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work) explains that wind turns turbine blades, the rotor spins a generator, and the generator creates electricity.
 
 <WindEnergyConversionLab
   title={<>Wind Turbine Energy Conversion</>}
   description={
     <>
-      Change the wind speed to see the rotor spin faster and read the path from
+      Change the wind speed to see the rotor spin faster and trace the path from
       moving air to electricity.
     </>
   }
   labels={{
     flow: <>Wind turns the rotor, the rotor turns the generator, and electricity flows out.</>,
     flowLabel: "Conversion path",
-    meaning: <>Higher wind speed makes the rotor spin faster, but real output still depends on device limits and site conditions.</>,
+    meaning: <>Higher wind speed makes the rotor spin faster, but actual output still depends on device limits and site conditions.</>,
     meaningLabel: "Physics meaning",
     speedControl: "Wind speed",
     speedUnit: "m/s",
@@ -57,22 +57,22 @@ In wind power, DOE explains that wind turns turbine blades, the rotor spins a ge
   }}
 />
 
-In a photovoltaic solar panel, EIA explains that a photovoltaic cell converts sunlight directly into electricity. However, only photons absorbed by the semiconductor material provide energy to generate electricity. EIA's Photovoltaics and Electricity page can be opened through [this source link](https://www.eia.gov/energyexplained/solar/photovoltaics-and-electricity.php).
+In a photovoltaic solar panel, [EIA](https://www.eia.gov/energyexplained/solar/photovoltaics-and-electricity.php) explains that a photovoltaic cell converts sunlight directly into electricity. Only photons absorbed by the semiconductor material provide energy to generate electricity.
 
 | Technology | Main conversion path | Energy often dissipated as |
 | :--------- | :------------------- | :------------------------- |
-| Hydropower plant | <InlineMath math="\text{gravitational potential of water}\rightarrow\text{water motion}\rightarrow\text{turbine}\rightarrow\text{generator}\rightarrow\text{electricity}" /> | shaft heat, sound, vibration |
-| Wind turbine | <InlineMath math="\text{wind kinetic energy}\rightarrow\text{turbine}\rightarrow\text{generator}\rightarrow\text{electricity}" /> | sound, vibration, component heat |
+| Hydropower plant | <InlineMath math="\text{gravitational potential of water}\rightarrow\text{kinetic energy of water}\rightarrow\text{turbine}\rightarrow\text{generator}\rightarrow\text{electricity}" /> | heat from shaft friction, sound, vibration |
+| Wind turbine | <InlineMath math="\text{wind kinetic energy}\rightarrow\text{turbine}\rightarrow\text{generator}\rightarrow\text{electricity}" /> | sound, vibration, heat from components |
 | Photovoltaic solar panel | <InlineMath math="\text{solar radiation}\rightarrow\text{electricity}" /> | reflected light and heat |
 | Biomass | <InlineMath math="\text{chemical energy}\rightarrow\text{combustion}\rightarrow\text{heat}\rightarrow\text{turbine}\rightarrow\text{generator}\rightarrow\text{electricity}" /> | waste heat, exhaust gases, sound |
 | Biogas | <InlineMath math="\text{chemical energy}\rightarrow\text{combustion in an engine or turbine}\rightarrow\text{shaft motion}\rightarrow\text{generator}\rightarrow\text{electricity}" /> | waste heat, exhaust gases, sound |
-| Geothermal power | <InlineMath math="\text{reservoir thermal energy}\rightarrow\text{moving steam or working fluid}\rightarrow\text{turbine}\rightarrow\text{generator}\rightarrow\text{electricity}" /> | waste heat and system friction |
+| Geothermal power | <InlineMath math="\text{reservoir thermal energy}\rightarrow\text{flowing steam or working fluid}\rightarrow\text{turbine}\rightarrow\text{generator}\rightarrow\text{electricity}" /> | waste heat and system friction |
 
-DOE explains that biopower technologies convert biomass fuels into heat and electricity through burning, bacterial decay, or conversion into gas and liquid fuels. DOE's biopower explanation can be opened through [this source link](https://www.energy.gov/cmei/fuels/biopower-energy-heat-and-electricity).
+[DOE](https://www.energy.gov/cmei/fuels/biopower-energy-heat-and-electricity) explains that biopower technologies convert biomass fuels into heat and electricity through burning, bacterial decay, or conversion into gas and liquid fuels.
 
-DOE also explains that geothermal power plants use hot fluid or steam from below Earth's surface to drive turbines and produce electricity. DOE's Geothermal Electricity Generation page can be opened through [this source link](https://www.energy.gov/hgeo/geothermal/geothermal-electricity-generation).
+[DOE](https://www.energy.gov/hgeo/geothermal/geothermal-electricity-generation) explains that geothermal power plants use hot fluid or steam from below Earth's surface to drive turbines and produce electricity.
 
-## Efficiency Tells Us the Useful Part
+## Efficiency Measures the Useful Share
 
 Because not all input energy becomes the output we need, we use **efficiency**. Efficiency compares useful energy with input energy.
 
@@ -106,18 +106,18 @@ E_{\text{dissipated}}
 
 So, an efficiency of <InlineMath math="20\%" /> does not mean the remaining <InlineMath math="80\%" /> disappears. The remaining energy moves into the surroundings, for example as heat and light that the panel does not absorb.
 
-EIA uses energy efficiency to describe the technical performance of energy conversion and energy-consuming devices. EIA's Energy Efficiency and Conservation page can be opened through [this source link](https://www.eia.gov/energyexplained/use-of-energy/efficiency-and-conservation.php).
+[EIA](https://www.eia.gov/energyexplained/use-of-energy/efficiency-and-conservation.php) uses energy efficiency to describe the technical performance of energy conversion and energy-consuming devices.
 
-## Do Not Stop at the Device Name
+## Trace the Energy Path for Each Device
 
-Device names often make energy transformation sound too simple. Solar panels, wind turbines, generators, and biogas reactors are not "energy makers". They redirect energy paths.
+Solar panels, wind turbines, generators, and biogas reactors convert existing energy from one form to another. The device name alone does not state the source, conversion path, useful output, or dissipated output.
 
 | When you see this | Ask this |
 | :---------------- | :------- |
-| solar panel | how much radiant energy becomes electricity? |
-| wind turbine | is the wind fast enough to rotate the rotor? |
-| hydropower plant | how large are the water flow rate and height difference? |
-| biomass | is the feedstock sufficient and managed sustainably? |
-| geothermal heat | does the site have enough heat, fluid, and flow pathways? |
+| Solar panel | How much radiant energy becomes electricity? |
+| Wind turbine | Is the wind fast enough to rotate the rotor? |
+| Hydropower plant | How large are the water flow rate and height difference? |
+| Biomass | Is the feedstock sufficient and managed sustainably? |
+| Geothermal power plant | Does the site provide sufficient underground heat, fluid, and flow for power generation? |
 
-By tracing the conversion path, you can evaluate renewable-energy technology more carefully: what the source is, what the initial energy form is, what the device transforms it into, and which part is actually useful.
+The conversion path records the source, initial energy form, output form, useful energy, and dissipated energy.

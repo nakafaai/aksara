@@ -1,13 +1,14 @@
 
 export const metadata = {
   title: "Verschiebung",
-  description: "Verstehe geometrische Verschiebungen mit Vektoren und berechne die Bildpunkte von Punkten, Geraden und Dreiecken.",
+    description: "Verschiebe Punkte, Geraden und Dreiecke mit Vektoren und berechne ihre Bildpunkte.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometrische Transformation",
 };
 
-## Verschiebungen verstehen
+## Verschiebungen
 
 Eine Verschiebung bewegt jeden Punkt eines Objekts um dieselbe Strecke in dieselbe Richtung. Ausrichtung, Größe und Form bleiben dabei erhalten. Nur die Position des Objekts ändert sich.
 
@@ -72,6 +73,7 @@ Somit ist das Bild des Punktes <InlineMath math="(3,2)" /> <InlineMath math="(1,
         { x: 3, y: 2, z: 0 },
         { x: 1, y: 5, z: 0 },
       ],
+      smooth: false,
       color: "#e11d48",
       labels: [{ text: <>Vektor <InlineMath math="(-2,3)" /></>, at: 0, offset: [-1, 1.5, 0] }],
     }, // Verschiebungsvektor von P nach P'
@@ -124,6 +126,7 @@ Ersetzen wir <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch 
           const xVal = i - 5;
           return { x: xVal, y: (-2 / 3) * xVal + 1 / 3, z: 0 };
         }),
+        smooth: false,
         color: "#9333ea",
         labels: [{ text: <InlineMath math="2x+3y-1=0" />, at: 2, offset: [-1, -0.5, 0] }],
       },
@@ -133,6 +136,7 @@ Ersetzen wir <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch 
           const xVal = i - 5;
           return { x: xVal, y: (-2 / 3) * xVal + 2 / 3, z: 0 };
         }),
+        smooth: false,
         color: "#db2777",
         labels: [{ text: <InlineMath math="2x+3y-2=0" />, at: 8, offset: [1, 0.5, 0] }],
       },

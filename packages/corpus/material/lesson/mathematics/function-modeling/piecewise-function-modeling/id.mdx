@@ -1,14 +1,14 @@
 
 export const metadata = {
   title: "Pemodelan Fungsi Piecewise",
-  description: "Pelajari cara membuat model fungsi piecewise dari batas interval, tarif bertingkat, gerak bertahap, dan titik sambung.",
+  description: "Membuat model fungsi piecewise dari batas interval, tarif bertingkat, gerak bertahap, dan titik sambung.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Fungsi dan Pemodelannya",
 };
 
-## Kapan Memakai Fungsi Piecewise?
+## Kapan Memakai Fungsi Piecewise
 
 Fungsi piecewise (fungsi sepotong-sepotong) dipakai ketika satu situasi tidak cukup dijelaskan oleh satu rumus. Domainnya dibagi menjadi beberapa interval, lalu setiap interval memakai aturan sendiri.
 
@@ -20,7 +20,7 @@ Fungsi piecewise dapat ditulis dalam bentuk:
 
 <BlockMath math="f(x) = \begin{cases} f_1(x), & \text{jika } x \in D_1 \\ f_2(x), & \text{jika } x \in D_2 \\ f_3(x), & \text{jika } x \in D_3 \\ \vdots \\ f_n(x), & \text{jika } x \in D_n \end{cases}" />
 
-dengan <InlineMath math="D_1, D_2, D_3, \ldots, D_n" /> adalah interval-interval yang membentuk partisi dari domain fungsi.
+Dalam definisi ini, <InlineMath math="D_1, D_2, D_3, \ldots, D_n" /> adalah interval yang membagi domain fungsi tanpa tumpang tindih.
 
 Saat membaca atau membuat fungsi piecewise, perhatikan tiga hal berikut:
 
@@ -43,6 +43,7 @@ Fungsi piecewise linear memakai fungsi linear pada setiap interval. Bentuk ini s
         const x = -2 + i * 0.1;
         return { x, y: 2 * x + 3, z: 0 };
       }),
+      smooth: false,
       color: "#9333ea",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=2x+3" />, at: 10, offset: [-1.5, 1, 0] }],
@@ -52,6 +53,7 @@ Fungsi piecewise linear memakai fungsi linear pada setiap interval. Bentuk ini s
         const x = 0 + i * 0.1;
         return { x, y: -x + 3, z: 0 };
       }),
+      smooth: false,
       color: "#ea580c",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=-x+3" />, at: 10, offset: [1, 1, 0] }],
@@ -61,6 +63,7 @@ Fungsi piecewise linear memakai fungsi linear pada setiap interval. Bentuk ini s
         const x = 2 + i * 0.1;
         return { x, y: 0.5 * x, z: 0 };
       }),
+      smooth: false,
       color: "#0891b2",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=0{,}5x" />, at: 10, offset: [1, -0.5, 0] }],
@@ -98,6 +101,7 @@ Fungsi piecewise juga bisa memakai potongan kuadratik. Potongan kuadratik dapat 
         const x = 0 + i * 0.1;
         return { x, y: 2 * x, z: 0 };
       }),
+      smooth: false,
       color: "#0d9488",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=2x" />, at: 15, offset: [1, -1, 0] }],
@@ -148,6 +152,7 @@ Sebagai contoh, dua aturan berikut bertemu di <InlineMath math="x=1" />, tetapi 
         const x = -1 + i * 0.1;
         return { x, y: x + 2, z: 0 };
       }),
+      smooth: false,
       color: "#e11d48",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=x+2" />, at: 10, offset: [-1, 1, 0] }],
@@ -157,6 +162,7 @@ Sebagai contoh, dua aturan berikut bertemu di <InlineMath math="x=1" />, tetapi 
         const x = 1 + i * 0.1;
         return { x, y: 2 * x - 3, z: 0 };
       }),
+      smooth: false,
       color: "#d97706",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=2x-3" />, at: 10, offset: [1, 1, 0] }],
@@ -170,7 +176,7 @@ Sebagai contoh, dua aturan berikut bertemu di <InlineMath math="x=1" />, tetapi 
 
 ### Tarif Progresif
 
-Banyak situasi nyata dapat dimodelkan dengan fungsi piecewise karena aturannya berubah setelah melewati batas tertentu. Tarif pajak progresif, biaya parkir bertingkat, dan tarif listrik bertingkat adalah contoh yang mudah dilihat.
+Fungsi sepotong-sepotong memodelkan aturan yang berubah pada batas tertentu. Pajak progresif, biaya parkir bertingkat, dan tarif listrik bertingkat memakai aturan berbeda setelah nilai input melewati suatu batas.
 
 **Contoh: Tarif Listrik**
 
@@ -325,6 +331,7 @@ Fungsi piecewise:
            const x = -2 + i * 0.1;
            return { x, y: -x + 2, z: 0 };
          }),
+         smooth: false,
          color: "#9333ea",
          showPoints: false,
          labels: [{ text: <InlineMath math="y=-x+2" />, at: 10, offset: [0, 0.5, 0] }],
@@ -343,6 +350,7 @@ Fungsi piecewise:
            const x = 2 + i * 0.1;
            return { x, y: 4, z: 0 };
          }),
+         smooth: false,
          color: "#0891b2",
          showPoints: false,
          labels: [{ text: <InlineMath math="y=4" />, at: 10, offset: [0, 0.5, 0] }],

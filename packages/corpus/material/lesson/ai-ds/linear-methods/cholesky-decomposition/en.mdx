@@ -1,9 +1,9 @@
 export const metadata = {
     title: "Cholesky Decomposition",
-    description: "Learn Cholesky decomposition for positive definite matrices with efficient algorithms, lower triangular factorization, and computational complexity analysis.",
+   description: "Factor positive definite matrices with Cholesky decomposition and estimate the algorithm's computational cost.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-14",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Linear Methods of AI",
 };
 
@@ -13,7 +13,7 @@ Let <InlineMath math="A\in\mathbb{R}^{n\times n}" /> be symmetric positive defin
 
 <BlockMath math="x^TAx>0\qquad\text{for every }x\neq0" />
 
-This condition makes factorization especially well behaved. [LU decomposition](/en/subjects/ai-ds/linear-methods/lu-decomposition) can proceed without row swaps, and every pivot produced by exact Gaussian elimination is positive.
+For a matrix with this condition, [LU decomposition](/en/subjects/ai-ds/linear-methods/lu-decomposition) can proceed without row swaps. In exact arithmetic, every pivot produced by Gaussian elimination is also positive.
 
 This means we obtain factorization in the form <InlineMath math="A = L \cdot U" />, where the diagonal elements of <InlineMath math="U" /> are positive pivot elements for all diagonal indices.
 
@@ -23,25 +23,25 @@ Since <InlineMath math="A = A^T" />, we also have:
 <BlockMath math="A = A^T = (L \cdot U)^T = (L \cdot D \cdot \tilde{U})^T = \tilde{U}^T \cdot D \cdot L^T" />
 </MathContainer>
 
-where <InlineMath math="\tilde{U}" /> is a matrix whose main diagonal is normalized to <InlineMath math="1" />, and <InlineMath math="D" /> is a diagonal matrix:
+Here, <InlineMath math="\tilde{U}" /> is a matrix whose main diagonal is normalized to <InlineMath math="1" />, and <InlineMath math="D" /> is a diagonal matrix:
 
 <MathContainer>
 <BlockMath math="\tilde{U} = \begin{pmatrix} 1 & u_{12}/u_{11} & \cdots & u_{1n}/u_{11} \\ & \ddots & \ddots & \vdots \\ & & 1 & u_{n-1,n}/u_{n-1,n-1} \\ 0 & & & 1 \end{pmatrix}" />
 <BlockMath math="D = \begin{pmatrix} u_{11} & & 0 \\ & \ddots & \\ 0 & & u_{nn} \end{pmatrix}" />
 </MathContainer>
 
-When <InlineMath math="L" /> and <InlineMath math="\tilde U" /> have unit diagonals, this LU decomposition is unique. Comparing the two factorizations gives
+When <InlineMath math="L" /> and <InlineMath math="\tilde U" /> have unit diagonals, this <InlineMath math="\mathrm{LU}" /> decomposition is unique. Comparing the two factorizations gives
 
 <MathContainer>
 <BlockMath math="A = L \cdot U = \tilde{U}^T \cdot (D \cdot L^T)" />
 <BlockMath math="L = \tilde{U}^T \quad \text{and} \quad U = D \cdot L^T" />
 </MathContainer>
 
-If we define:
+Define the diagonal square-root matrix as follows.
 
 <BlockMath math="D^{\frac{1}{2}} = \begin{pmatrix} \sqrt{u_{11}} & & 0 \\ & \ddots & \\ 0 & & \sqrt{u_{nn}} \end{pmatrix}" />
 
-then <InlineMath math="D^{\frac{1}{2}} \cdot D^{\frac{1}{2}} = D" />.
+This matrix satisfies <InlineMath math="D^{\frac{1}{2}} \cdot D^{\frac{1}{2}} = D" />.
 
 ## Cholesky Decomposition
 
@@ -49,13 +49,13 @@ Every real symmetric positive definite matrix <InlineMath math="A \in \mathbb{R}
 
 <BlockMath math="A = L \cdot D \cdot L^T = \tilde{L} \cdot \tilde{L}^T" />
 
-where <InlineMath math="\tilde{L} = L \cdot D^{\frac{1}{2}}" /> is nonsingular and lower triangular. The positive square roots of the pivots fix the signs of its diagonal and make the factor unique.
+The matrix <InlineMath math="\tilde{L} = L \cdot D^{\frac{1}{2}}" /> is nonsingular and lower triangular. The positive square roots of the pivots fix the signs of its diagonal and make the Cholesky factor unique.
 
 The computation of matrix <InlineMath math="\tilde{L}" /> is performed with:
 
 <BlockMath math="\tilde{L} = \begin{pmatrix} \tilde{l}_{11} & 0 \\ \vdots & \ddots \\ \tilde{l}_{n1} & \cdots & \tilde{l}_{nn} \end{pmatrix}" />
 
-based on the relationship <InlineMath math="\tilde{L} \cdot \tilde{L}^T = A" />. The following algorithm produces the Cholesky factor.
+This computation uses the relationship <InlineMath math="\tilde{L} \cdot \tilde{L}^T = A" />. The following algorithm produces the Cholesky factor.
 
 ## Cholesky Algorithm
 
@@ -73,15 +73,15 @@ For <InlineMath math="i = 2, \ldots, n" />:
 <BlockMath math="\tilde{l}_{ji} := \tilde{l}_{ii}^{-1} \cdot \left( a_{ji} - \tilde{l}_{j1}\tilde{l}_{i1} - \tilde{l}_{j2}\tilde{l}_{i2} - \ldots - \tilde{l}_{j,i-1}\tilde{l}_{i,i-1} \right)" />
 </MathContainer>
 
-for <InlineMath math="j = i + 1, \ldots, n" />.
+The second recurrence applies for <InlineMath math="j = i + 1, \ldots, n" />.
 
-The expression under each square root must remain positive. A zero or negative value is therefore not something to hide with an absolute value: it shows that the input is not positive definite, or that finite-precision arithmetic requires a more careful numerical treatment.
+The expression under each square root must remain positive. A zero or negative value means that the input is not positive definite or that rounding has affected a nearly singular problem. Replacing that value with its absolute value changes the recurrence and can produce a factor that does not satisfy <InlineMath math="A=LL^T" />.
 
 After running the algorithm, we obtain the lower triangular Cholesky factor:
 
 <BlockMath math="\tilde{L} = \begin{pmatrix} \tilde{l}_{11} & 0 \\ \vdots & \ddots \\ \tilde{l}_{n1} & \cdots & \tilde{l}_{nn} \end{pmatrix}" />
 
-## Worked Example
+## Factoring a Two by Two Positive Definite Matrix
 
 Factor the matrix
 
@@ -110,6 +110,6 @@ The Cholesky algorithm for computing the Cholesky factor <InlineMath math="\tild
 
 <BlockMath math="\frac{1}{3}n^3 + O(n^2)\quad\text{flops}" />
 
-arithmetic operations.
+This expression gives the number of arithmetic operations.
 
-The leading count contains about <InlineMath math="n^3/6" /> multiplications and <InlineMath math="n^3/6" /> additions. Together they give about <InlineMath math="n^3/3" /> floating-point operations, roughly half the <InlineMath math="2n^3/3" /> leading cost of LU factorization for a general dense matrix. Cholesky saves work by using symmetry and storing only one triangular half of the factorization.
+The leading count contains about <InlineMath math="n^3/6" /> multiplications and <InlineMath math="n^3/6" /> additions. Together they give about <InlineMath math="n^3/3" /> floating-point operations, roughly half the <InlineMath math="2n^3/3" /> leading cost of <InlineMath math="\mathrm{LU}" /> factorization for a general dense matrix. Cholesky saves work by using symmetry and storing only one triangular half of the factorization.

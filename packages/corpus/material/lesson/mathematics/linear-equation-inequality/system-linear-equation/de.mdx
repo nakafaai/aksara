@@ -2,18 +2,18 @@
 
 export const metadata = {
   title: "Lineare Gleichungssysteme",
-  description: "Löse lineare Gleichungssysteme durch Substitution und Elimination und deute ausgearbeitete Beispiele sowie grafische Modelle.",
+  description: "Löse lineare Gleichungssysteme durch Substitution und Elimination und deute ihre Lösungen anhand ausgearbeiteter Beispiele und grafischer Modelle.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Systeme linearer Gleichungen und Ungleichungen",
 };
 
-## Lineare Gleichungssysteme verstehen
+## Lineare Gleichungssysteme
 
-Ein Gesamtpreis kann durch verschiedene Warenkombinationen entstehen. Eine zweite Beziehung, etwa die Gesamtzahl der Waren, schränkt die Möglichkeiten ein. Ein lineares Gleichungssystem hält diese Beziehungen zusammen, sodass seine Lösung jede Gleichung gleichzeitig erfüllen muss.
+Ein Gesamtpreis kann durch verschiedene Warenkombinationen entstehen. Eine weitere Angabe, etwa die Gesamtzahl der Waren, schränkt die Möglichkeiten ein. Ein lineares Gleichungssystem schreibt jede Angabe als Gleichung auf. Seine Lösung muss alle Gleichungen gleichzeitig erfüllen.
 
-### Was ist ein lineares Gleichungssystem?
+### Lineares Gleichungssystem
 
 Ein lineares Gleichungssystem ist eine Sammlung von zwei oder mehr linearen Gleichungen, die gleichzeitig erfüllt sein müssen. Jede lineare Gleichung hat die Form:
 
@@ -47,7 +47,7 @@ Ein System kann beliebig viele Gleichungen enthalten. Um jedoch eindeutige Werte
 
 ### Substitutionsmethode
 
-Bei der Substitutionsmethode wird eine Variable durch eine andere ersetzt. Lösen wir das folgende Beispiel:
+Bei der Substitutionsmethode wird eine Variable durch einen gleichwertigen Ausdruck in der anderen Variablen ersetzt. Das folgende Beispiel zeigt die einzelnen Schritte.
 
 <BlockMath math="\begin{cases} 2x + 3y = 21 & \ldots (1) \\ x + y = 10 & \ldots (2) \end{cases}" />
 
@@ -71,7 +71,7 @@ Gleichung (<InlineMath math="3" />) in Gleichung (<InlineMath math="1" />) einf�
   <BlockMath math="y = 1 \ldots (4)" />
 </MathContainer>
 
-**Schritt** <InlineMath math="4" />: Rückwärtsersetzen, um die andere Variable zu finden.
+**Schritt** <InlineMath math="4" />: Setze den berechneten Wert ein, um die andere Variable zu finden.
 
 Setze den Wert <InlineMath math="y = 1" /> aus Gleichung (<InlineMath math="4" />) in Gleichung (<InlineMath math="3" />) ein:
 
@@ -81,7 +81,7 @@ Daher ist die Lösung <InlineMath math="x = 9" /> und <InlineMath math="y = 1" /
 
 ### Eliminationsmethode
 
-Bei der Eliminierungsmethode wird eine Variable eliminiert. Lösen wir das gleiche Beispiel:
+Bei der Eliminationsmethode werden zwei Gleichungen addiert oder subtrahiert, um eine Variable zu entfernen. Die folgende Rechnung löst dasselbe Beispiel.
 
 <BlockMath math="\begin{cases} 2x + 3y = 21 & \ldots (1) \\ x + y = 10 & \ldots (2) \end{cases}" />
 
@@ -144,11 +144,11 @@ Beide Ausgangsgleichungen bestätigen das Ergebnis:
 
 Die Lösung ist also <InlineMath math="(x,y)=(4,2)" />.
 
-## Anwendungen im Alltag
+## Lineare Gleichungssysteme im Kontext
 
 ### Mathematische Modellierung
 
-Mathematische Modellierung ist der Prozess der Umwandlung realer Probleme in mathematische Form. Für lineare Gleichungssysteme gilt:
+So werden die Größen und Beziehungen einer Sachaufgabe in ein lineares Gleichungssystem übersetzt:
 
 1. Lege die gesuchten Größen als Variablen fest
 2. Übersetze die gegebenen Beziehungen in Gleichungen
@@ -156,7 +156,7 @@ Mathematische Modellierung ist der Prozess der Umwandlung realer Probleme in mat
 4. Löse das System mit einer geeigneten Methode
 5. Deute die Lösung im Kontext der ursprünglichen Aufgabe
 
-### Basketball-Punktzahl
+### Punktzahl beim Basketball
 
 Im Basketball gibt es drei Arten von Schüssen mit unterschiedlichen Punktwerten: Freiwürfe (<InlineMath math="1" />-Punkt), Zweipunktschüsse (<InlineMath math="2" />-Punkte) und Dreipunktschüsse (<InlineMath math="3" />-Punkte).
 
@@ -177,7 +177,7 @@ Setze <InlineMath math="a = 6" /> in die zweite Gleichung ein:
   <BlockMath math="b + c = 10" />
 </MathContainer>
 
-Setze den Wert auch in die erste Gleichung ein:
+Setze <InlineMath math="a = 6" /> in die erste Gleichung ein:
 
 <MathContainer>
   <BlockMath math="6 + 2b + 3c = 27" />
@@ -190,7 +190,7 @@ Aus diesen beiden Gleichungen:
 
 Durch Eliminierung oder Substitution erhalten wir <InlineMath math="b = 9" /> und <InlineMath math="c = 1" />.
 
-Daher machte Wijaya <InlineMath math="6" /> Freiwürfe, <InlineMath math="9" /> <InlineMath math="2" />-Punktwürfe und <InlineMath math="1" /> <InlineMath math="3" />-Punktwürfe.
+Wijaya machte <InlineMath math="6" /> Freiwürfe, <InlineMath math="9" /> <InlineMath math="2" />-Punktwürfe und <InlineMath math="1" /> <InlineMath math="3" />-Punktwürfe.
 
 ## Lösungen interpretieren
 
@@ -215,6 +215,7 @@ In drei Dimensionen stellt eine lineare Gleichung eine Ebene dar. Zwei verschied
           { x: 3, y: 5, z: 0 },
           { x: 9, y: 1, z: 0 },
         ],
+        smooth: false,
         labels: [{ text: <InlineMath math="2x+3y=21" />, offset: [-1, -1, 0] }],
         color: "#ea580c",
       },
@@ -224,6 +225,7 @@ In drei Dimensionen stellt eine lineare Gleichung eine Ebene dar. Zwei verschied
           { x: 5, y: 5, z: 0 },
           { x: 15, y: -5, z: 0 },
         ],
+        smooth: false,
         labels: [{ text: <InlineMath math="x+y=10" />, offset: [1, 1, 0] }],
         color: "#9333ea",
       },
@@ -239,6 +241,7 @@ In drei Dimensionen stellt eine lineare Gleichung eine Ebene dar. Zwei verschied
           { x: 1, y: 2, z: 0 },
           { x: 5, y: 8, z: 0 },
         ],
+        smooth: false,
         labels: [{ text: <InlineMath math="3x-2y=-1" />, offset: [-2, 0, 0] }],
         color: "#db2777",
       },
@@ -248,6 +251,7 @@ In drei Dimensionen stellt eine lineare Gleichung eine Ebene dar. Zwei verschied
           { x: 1, y: 1, z: 0 },
           { x: 5, y: 7, z: 0 },
         ],
+        smooth: false,
         labels: [{ text: <InlineMath math="6x-4y=2" />, offset: [2, 0, 0] }],
         color: "#ca8a04",
       },
@@ -270,6 +274,7 @@ In drei Dimensionen stellt eine lineare Gleichung eine Ebene dar. Zwei verschied
           { x: 2, y: -1, z: 0 },
           { x: 5, y: -3, z: 0 },
         ],
+        smooth: false,
         labels: [{ text: <InlineMath math="2x+3y=1" />, offset: [-2, -1, 0] }],
         color: "#7c3aed",
         lineWidth: 6,
@@ -280,6 +285,7 @@ In drei Dimensionen stellt eine lineare Gleichung eine Ebene dar. Zwei verschied
           { x: 2, y: -1, z: 0 },
           { x: 5, y: -3, z: 0 },
         ],
+        smooth: false,
         labels: [
           {
             text: <InlineMath math="4x+6y=2" />,

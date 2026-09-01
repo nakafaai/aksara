@@ -1,13 +1,14 @@
 
 export const metadata = {
-  title: "Produkt-Moment-Korrelation",
-  description: "Lerne, wie Pearsons Korrelationskoeffizient Richtung und Stärke eines linearen Zusammenhangs misst und wie du seinen Wert mit Streudiagramm und Kontext deutest.",
+  title: "Produktmomentkorrelation",
+  description: "Deute mit Pearsons Korrelationskoeffizienten die Richtung und Stärke eines linearen Zusammenhangs anhand des Streudiagramms und des Sachzusammenhangs.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Statistik",
 };
 
-## Was ist Produkt-Moment-Korrelation?
+## Produktmomentkorrelation
 
 Die Produkt-Moment-Korrelation, meist **Pearson-Korrelation** genannt, wird mit **<InlineMath math="r" />** bezeichnet. Sie beschreibt die Richtung und Stärke des **linearen Zusammenhangs** zwischen zwei quantitativen Variablen.
 
@@ -15,7 +16,7 @@ Das Vorzeichen von <InlineMath math="r" /> zeigt die Richtung: positiv bedeutet 
 
 ## Korrelation aus Streudiagrammen
 
-Am anschaulichsten wird <InlineMath math="r" />, wenn wir zuerst die Punktwolke im Streudiagramm betrachten.
+Das Streudiagramm zeigt die Richtung und Stärke des Zusammenhangs, den <InlineMath math="r" /> beschreibt.
 
 ### Starke positive Korrelation
 
@@ -145,7 +146,7 @@ Liegt <InlineMath math="r" /> nahe bei <InlineMath math="0" />, ist nur ein sehr
 
 Fehlt ein klares geradliniges Muster, liegt <InlineMath math="r" /> nahe bei <InlineMath math="0" />. Ein gekrümmter oder anderer nichtlinearer Zusammenhang kann trotzdem vorhanden sein.
 
-## Wie wird der Korrelationskoeffizient berechnet?
+## Wie wird der Korrelationskoeffizient berechnet
 
 Der Pearson-Korrelationskoeffizient (<InlineMath math="r" />) misst, wie **gemeinsam** zwei Variablen (<InlineMath math="X" /> und <InlineMath math="Y" />) von ihren Mittelwerten abweichen, relativ zu ihrer jeweiligen eigenen Streuung.
 
@@ -157,7 +158,7 @@ Der Pearson-Korrelationskoeffizient (<InlineMath math="r" />) misst, wie **gemei
 
 2.  **Gemeinsame Abweichung:**
 
-    Zusätzlich betrachten wir, wie <InlineMath math="X" /> und <InlineMath math="Y" /> _gemeinsam_ abweichen. Steigt <InlineMath math="Y" /> tendenziell, wenn <InlineMath math="X" /> zunimmt, oder fällt es? Die Summe <InlineMath math="SS_{xy}" /> misst diese paarweisen Kreuzabweichungen. Sie ist der Zähler der Kovarianz; je nach Konvention wird für die Kovarianz zusätzlich durch <InlineMath math="n" /> oder <InlineMath math="n-1" /> geteilt.
+    Zusätzlich betrachten wir, wie <InlineMath math="X" /> und <InlineMath math="Y" /> _gemeinsam_ abweichen. Steigt <InlineMath math="Y" /> tendenziell, wenn <InlineMath math="X" /> zunimmt, oder fällt es? Die Summe <InlineMath math="SS_{xy}" /> misst diese paarweisen Kreuzabweichungen. Sie ist der Zähler der Kovarianz. Je nach Konvention wird für die Kovarianz zusätzlich durch <InlineMath math="n" /> oder <InlineMath math="n-1" /> geteilt.
 
     - Ist <InlineMath math="SS_{xy}" /> positiv, haben die gepaarten Abweichungen tendenziell dasselbe Vorzeichen.
     - Ist <InlineMath math="SS_{xy}" /> negativ, haben die gepaarten Abweichungen tendenziell entgegengesetzte Vorzeichen.
@@ -175,7 +176,7 @@ Das Ergebnis ist **<InlineMath math="r" />**, der Pearson-Korrelationskoeffizien
 
 Damit vergleicht <InlineMath math="r" /> die paarweisen Abweichungen von <InlineMath math="X" /> und <InlineMath math="Y" /> mit der getrennten Streuung beider Variablen.
 
-## Produktmoment-Korrelationsformel
+## Formel der Produktmomentkorrelation
 
 Für die genaue Berechnung von <InlineMath math="r" /> verwenden wir die folgenden **Abweichungssummen**:
 
@@ -183,7 +184,7 @@ Für die genaue Berechnung von <InlineMath math="r" /> verwenden wir die folgend
 
 **Was sind <InlineMath math="SS_{xy}" />, <InlineMath math="SS_{xx}" /> und <InlineMath math="SS_{yy}" />?**
 
-Sie beschreiben die Streuung und gemeinsame Abweichung unserer Daten:
+Die drei Größen haben unterschiedliche Aufgaben. <InlineMath math="SS_{xx}" /> und <InlineMath math="SS_{yy}" /> messen die Streuung der einzelnen Variablen, während <InlineMath math="SS_{xy}" /> die gemeinsame Abweichung misst:
 
 1.  **<InlineMath math="SS_{xx}" /> (Quadratsumme für <InlineMath math="x" />):** Misst, wie weit die <InlineMath math="x" />-Daten von ihrem Mittelwert abweichen.
 
@@ -218,11 +219,11 @@ Sobald <InlineMath math="r" /> bestimmt ist, bietet die folgende Tabelle eine gr
 | Wert von <InlineMath math="r" /> | Korrelationsstärke | Beschreibung |
 | :------------------------------------ | :-------------------- | :---------------------------------------------------------------- |
 | <InlineMath math="1" /> | Perfekt positiv | Alle Punkte liegen genau auf einer ansteigenden Linie.  |
-| <InlineMath math="0{,}7 \le r < 1" /> | Stark positiv | Klare und starke positive lineare Beziehung.     |
-| <InlineMath math="0{,}3 < r < 0{,}7" /> | Mäßig positiv | Mäßig sichtbarer positiver linearer Zusammenhang.   |
-| <InlineMath math="0 < r \le 0{,}3" /> | Schwach positiv | Sehr geringe positive lineare Beziehung.             |
-| <InlineMath math="0" /> | Keine lineare Korrelation | Kein lineares Muster; ein nichtlinearer Zusammenhang ist weiterhin möglich. |
-| <InlineMath math="-0{,}3 \le r < 0" /> | Schwach negativ | Sehr schwacher negativer linearer Zusammenhang.             |
-| <InlineMath math="-0{,}7 < r < -0{,}3" /> | Mäßig negativ | Mäßig sichtbarer negativer linearer Zusammenhang.   |
-| <InlineMath math="-1 < r \le -0{,}7" /> | Stark negativ | Klarer und starker negativer linearer Zusammenhang.     |
+| <InlineMath math="0{,}7 \le r < 1" /> | Stark positiv | <InlineMath math="r" /> ist positiv und liegt nahe bei <InlineMath math="1" />. |
+| <InlineMath math="0{,}3 < r < 0{,}7" /> | Mäßig positiv | <InlineMath math="r" /> ist positiv und liegt zwischen <InlineMath math="0{,}3" /> und <InlineMath math="0{,}7" />. |
+| <InlineMath math="0 < r \le 0{,}3" /> | Schwach positiv | <InlineMath math="r" /> ist positiv und liegt nahe bei <InlineMath math="0" />. |
+| <InlineMath math="0" /> | Keine lineare Korrelation | Kein lineares Muster. Ein nichtlinearer Zusammenhang ist weiterhin möglich. |
+| <InlineMath math="-0{,}3 \le r < 0" /> | Schwach negativ | <InlineMath math="r" /> ist negativ und liegt nahe bei <InlineMath math="0" />. |
+| <InlineMath math="-0{,}7 < r < -0{,}3" /> | Mäßig negativ | <InlineMath math="r" /> ist negativ und liegt zwischen <InlineMath math="-0{,}7" /> und <InlineMath math="-0{,}3" />. |
+| <InlineMath math="-1 < r \le -0{,}7" /> | Stark negativ | <InlineMath math="r" /> ist negativ und liegt nahe bei <InlineMath math="-1" />. |
 | <InlineMath math="-1" /> | Perfekt negativ | Alle Punkte liegen genau auf einer fallenden Geraden. |

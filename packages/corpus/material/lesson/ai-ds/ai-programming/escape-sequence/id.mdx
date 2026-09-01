@@ -1,15 +1,15 @@
 export const metadata = {
-    title: "Escape Sequence",
-    description: "Escape sequence Python dengan notasi backslash untuk tanda kutip, baris baru, tab, dan karakter khusus dalam string.",
+    title: "Escape Sequence Python",
+    description: "Cara Python membaca notasi backslash untuk tanda kutip, baris baru, tab, dan karakter khusus di dalam string.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-17",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Pemrograman AI",
 };
 
-## Pengenalan Escape Sequence
+## Cara Kerja Escape Sequence
 
-Escape sequence diawali backslash (`\`) yang diikuti satu atau beberapa karakter dan ditafsirkan secara khusus oleh Python. Notasi ini memungkinkan literal string memuat karakter seperti baris baru atau tanda kutip yang seharusnya menutup literal tersebut.
+Escape sequence ditulis dengan backslash (`\`) yang diikuti satu atau beberapa karakter. Python membaca gabungan tersebut sebagai satu notasi khusus. Misalnya, `\n` mewakili baris baru dan `\'` mewakili tanda kutip tunggal di dalam string yang dibatasi tanda kutip tunggal.
 
 Backslash mengubah cara Python membaca karakter setelahnya. Backslash itu merupakan bagian dari notasi dalam kode sumber, sedangkan string hasilnya berisi karakter yang diwakili notasi tersebut.
 
@@ -17,7 +17,7 @@ Backslash mengubah cara Python membaca karakter setelahnya. Backslash itu merupa
 
 ### Konflik Tanda Kutip
 
-Jika karakter kutip yang sama dipakai sebagai pembatas string dan muncul di dalamnya, kutip yang tidak di-escape akan menutup literal terlalu awal. Karakter setelahnya lalu dibaca sebagai kode Python yang tidak valid.
+Jika tanda kutip yang sama dipakai sebagai pembatas string dan muncul di dalam teksnya, tanda kutip yang tidak didahului backslash akan menutup literal terlalu awal. Karakter setelahnya lalu dibaca sebagai kode Python yang tidak valid.
 
 <CodeBlock
   data={[
@@ -43,7 +43,7 @@ Ketika kamu menggunakan tanda kutip tunggal untuk membuat string, tetapi di dala
 
 ### Solusi dengan Backslash
 
-Letakkan backslash (`\`) sebelum sebuah karakter untuk membuat escape sequence. Backslash memberi tahu Python agar membaca karakter berikutnya sebagai bagian dari teks.
+Letakkan backslash (`\`) sebelum tanda kutip yang ingin dimasukkan ke dalam teks. Python lalu membaca tanda kutip tersebut sebagai isi string, bukan sebagai penutupnya.
 
 <CodeBlock
   data={[
@@ -54,7 +54,7 @@ Letakkan backslash (`\`) sebelum sebuah karakter untuk membuat escape sequence. 
 >>> 'He said: "I\\'m Bob."'
 'He said: "I\\'m Bob."'
 
-# Ketika di-print, escape sequence diinterpretasikan
+# Python memproses escape sequence saat di-print
 >>> print('He said: "I\\'m Bob."')
 He said: "I'm Bob."`
     }
@@ -65,7 +65,7 @@ Dalam contoh ini, `\'` memberi tahu Python agar mempertahankan tanda kutip tungg
 
 ### Menampilkan Karakter Backslash
 
-Karena backslash memiliki makna khusus dalam escape sequence, bagaimana cara menampilkan backslash itu sendiri? Kamu perlu menggunakan dua backslash berturut-turut.
+Untuk menampilkan satu backslash di dalam string biasa, tulis dua backslash berturut-turut.
 
 <CodeBlock
   data={[
@@ -86,13 +86,13 @@ Escape sequence untuk baris baru adalah \\n.`
   ]}
 />
 
-Prefix raw string seperti `r` mempertahankan sebagian besar backslash tanpa menafsirkannya sebagai escape sequence. Tanda kutip tetap harus mengikuti aturan pembatas literal, dan raw string tidak dapat diakhiri dengan jumlah backslash yang ganjil.
+Prefix raw string seperti `r` mempertahankan sebagian besar backslash tanpa menafsirkannya sebagai notasi khusus. Tanda kutip tetap harus mengikuti aturan pembatas literal, dan raw string tidak dapat diakhiri dengan jumlah backslash yang ganjil.
 
-## Referensi Escape Sequence
+## Daftar Escape Sequence
 
-Berikut adalah escape sequence yang sering digunakan dalam pemrograman:
+Tabel berikut memuat notasi escape yang sering dipakai dalam Python.
 
-| Escape Sequence | Makna |
+| Notasi | Makna |
 |---|---|
 | `\'` | Tanda kutip tunggal (') |
 | `\"` | Tanda kutip ganda (") |
@@ -106,11 +106,11 @@ Berikut adalah escape sequence yang sering digunakan dalam pemrograman:
 | `\N{name}` | Karakter Unicode berdasarkan nama terdaftarnya |
 | `\xhh` | Karakter dengan nilai heksadesimal dua digit |
 
-Setiap escape sequence memiliki fungsi khusus untuk mengontrol tampilan atau format teks dalam program.
+Setiap notasi menghasilkan karakter tertentu di dalam string. Sebagian mengatur tata letak teks, sedangkan sebagian lain memasukkan karakter yang sulit ditulis langsung.
 
 ### Escape Kurung Kurawal dalam Format String
 
-Dalam `str.format()` dan f-string, kurung kurawal membatasi replacement field. Kurung kurawal ganda meng-escape karakter itu dari sintaks pemformatan. Mekanisme ini berbeda dari escape sequence dengan backslash dalam literal string.
+Dalam `str.format()` dan f-string, kurung kurawal menandai bagian yang akan diisi nilai. Kurung kurawal ganda membuat tanda tersebut dibaca sebagai teks biasa. Mekanisme ini berbeda dari notasi backslash di dalam literal string.
 
 <CodeBlock
   data={[
@@ -128,11 +128,11 @@ Dalam `str.format()` dan f-string, kurung kurawal membatasi replacement field. K
   ]}
 />
 
-Tulis `{{` untuk menghasilkan `{` dan `}}` untuk menghasilkan `}`. Pada `'{{{}}}'`, pasangan kurung terluar menjadi karakter literal, sedangkan `{}` di tengah tetap menjadi replacement field.
+Tulis `{{` untuk menghasilkan `{` dan `}}` untuk menghasilkan `}`. Pada `'{{{}}}'`, pasangan kurung terluar menjadi teks biasa, sedangkan `{}` di tengah tetap menjadi tempat untuk memasukkan nilai.
 
 ## Implementasi Praktis
 
-Mari lihat bagaimana escape sequence digunakan dalam situasi nyata untuk membuat output yang rapi dan terformat dengan baik.
+Contoh berikut menggabungkan tab, baris baru, tanda kutip, dan backslash literal dalam satu output.
 
 <CodeBlock
   data={[
@@ -150,7 +150,7 @@ print('Dia berkata: "Hari ini cuaca sangat cerah!"')
 # Menampilkan path file dengan backslash
 print("File tersimpan di: C:\\\\Users\\\\Documents\\\\data.txt")
 
-# Kombinasi berbagai escape sequence
+# Menggabungkan beberapa karakter escape
 print("Baris pertama\\nBaris kedua\\t(dengan tab)\\nBaris ketiga")`
     }
   ]}
@@ -158,4 +158,4 @@ print("Baris pertama\\nBaris kedua\\t(dengan tab)\\nBaris ketiga")`
 
 Dalam contoh ini, `\t` membuat kolom yang rapi, `\n` memisahkan baris, dan `\\` menampilkan path file Windows dengan benar.
 
-Hal terpenting adalah membedakan notasi dalam kode sumber dari string yang dihasilkan. `\n`, misalnya, ditulis dengan dua karakter dalam kode sumber tetapi mewakili satu karakter baris baru di dalam string.
+Bedakan notasi di dalam kode sumber dari string yang dihasilkan. `\n`, misalnya, ditulis dengan dua karakter dalam kode sumber tetapi mewakili satu karakter baris baru di dalam string.

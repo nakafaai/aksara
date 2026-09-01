@@ -1,14 +1,15 @@
 export const metadata = {
   title: "Metode Horner",
-  description: "Pelajari metode Horner untuk pembagian polinomial yang efisien. Pahami alternatif sederhana dari pembagian bersusun dengan contoh dan latihan.",
+  description: "Bagi polinomial dengan metode Horner dan bandingkan langkah Horner dengan pembagian bersusun.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
+  dateModified: "2026-09-01",
   subject: "Polinomial",
 };
 
 ## Mengenal Metode Horner
 
-Metode Horner adalah cara yang lebih efisien dan sederhana untuk melakukan pembagian polinomial, terutama ketika polinomial pembaginya berbentuk linier seperti <InlineMath math="(x-c)" />. Metode ini bisa dianggap sebagai penyederhanaan dari pembagian bersusun, karena hanya melibatkan penulisan koefisien dan operasi perkalian serta penjumlahan yang lebih ringkas.
+Metode Horner membagi polinomial dengan pembagi linear seperti <InlineMath math="(x-c)" /> hanya dari urutan koefisiennya. Pada setiap langkah, hasil terakhir dikalikan dengan <InlineMath math="c" /> lalu ditambah dengan koefisien berikutnya. Karena itu, kita tidak perlu menulis ulang variabel dan pangkat seperti pada pembagian bersusun.
 
 ### Perbandingan dengan Pembagian Bersusun
 
@@ -46,7 +47,7 @@ x-2\overline{\big)x^3 + 0x^2 - 7x + 8} \\
 
 Perhatikan bagaimana Metode Horner hanya fokus pada koefisien <InlineMath math="(1, 0, -7, 8)" /> dan nilai <InlineMath math="c=2" />. Baris bawah pada Metode Horner <InlineMath math="(1, 2, -3)" /> langsung memberikan koefisien hasil bagi <InlineMath math="1x^2 + 2x - 3" /> dan angka terakhir <InlineMath math="\boxed{2}" /> adalah sisanya.
 
-Ini jauh lebih ringkas daripada menuliskan semua variabel dan pangkat seperti pada pembagian bersusun.
+Skema tersebut tidak menulis ulang variabel dan pangkat. Baris paling bawah langsung memuat koefisien hasil bagi, diikuti oleh sisa pembagian.
 
 Metode ini hanya bisa langsung digunakan jika pembaginya adalah polinomial linier derajat satu, yaitu berbentuk <InlineMath math="(x-c)" /> atau <InlineMath math="(ax-b)" /> (yang bisa diubah bentuk).
 

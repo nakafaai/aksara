@@ -1,8 +1,9 @@
 export const metadata = {
     title: "Variablen",
-    description: "Verstehe Python-Namensbindungen, Objektidentität, dynamische Typisierung, Identifier und reservierte Schlüsselwörter anhand überprüfbarer Beispiele.",
+    description: "Binde Namen an Python-Objekte und prüfe Objektidentität, dynamische Typisierung, Bezeichner und reservierte Schlüsselwörter in Codebeispielen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "KI-Programmierung",
 };
 
@@ -67,7 +68,7 @@ print(z == x)   # Ausgabe: True (gleicher Wert)
 
 Die Zuweisung `y = x` garantiert, dass beide Namen in diesem Moment auf dasselbe Objekt verweisen. Ein neu erstellter gleicher Wert besteht den Gleichheitsvergleich, kann aber in einem eigenen Objekt liegen. Manche Python-Implementierungen verwenden unveränderliche Objekte wieder, doch korrekter Code hängt nicht von dieser Optimierung ab.
 
-## Python-Variableneigenschaften
+## Eigenschaften von Python Variablen
 
 Python verfügt über mehrere einzigartige Merkmale im Umgang mit Variablen, die es von anderen Programmiersprachen unterscheiden.
 
@@ -170,7 +171,7 @@ print(data1, data_2, _data3)`
   ]}
 />
 
-### Groß-/Kleinschreibung
+### Großschreibung und Kleinschreibung
 
 Python unterscheidet bei Variablennamen zwischen Groß- und Kleinbuchstaben. Das bedeutet, dass `nama`, `Nama` und `NAMA` drei verschiedene Variablen sind.
 
@@ -195,11 +196,11 @@ print(Nama == NAMA)         # Ausgabe: False`
   ]}
 />
 
-## Schlüsselwörter, die nicht verwendet werden können
+## Für Python reservierte Schlüsselwörter
 
 Python verfügt über eine Liste von Schlüsselwörtern, die nicht als Variablennamen verwendet werden können, da diese Wörter in der Python-Sprache spezielle Funktionen haben.
 
-### Python-Schlüsselwortliste
+### Liste der Python Schlüsselwörter
 
 Hier sind die Schlüsselwörter, die nicht als Variablennamen verwendet werden können. Die erste Gruppe umfasst `and`, `as`, `assert`, `async`, `await`, `break`, `class`, `continue`, `def`, `del`, `elif`, `else`. Die zweite Gruppe umfasst `except`, `finally`, `for`, `from`, `global`, `if`, `import`, `in`, `is`, `lambda`, `nonlocal`, `not`. Die dritte Gruppe besteht aus `or`, `pass`, `raise`, `return`, `try`, `while`, `with`, `yield`, `False`, `True`, `None`.
 
@@ -252,7 +253,7 @@ print(f"Ist „class“ ein Schlüsselwort? {keyword.iskeyword('class')}")`
 
 ## Bewährte Vorgehensweisen für Variablennamen
 
-Obwohl Python bei der Benennung von Variablen viel Freiheit bietet, helfen einige bewährte Vorgehensweisen dabei, den Code lesbar und wartbar zu halten.
+Python-Bezeichner müssen die oben beschriebenen Syntaxregeln erfüllen. Innerhalb dieser Regeln sollten die Namen angeben, wofür ein Wert steht.
 
 ### Bedeutungsvolle Namen
 
@@ -277,7 +278,7 @@ age = 25
 bmi = body_weight / ((body_height / 100) ** 2)
 print(f"BMI: {bmi:.2f}")
 
-# Die Bedeutung jeder Variablen ist leichter zu verstehen
+# Variablennamen nennen die Bedeutung jedes Werts
 print(f"Höhe: {body_height} cm")
 print(f"Gewicht: {body_weight} kg")
 print(f"Alter: {age} Jahre")`
@@ -380,7 +381,7 @@ can_edit = True`
 
 ## Beispiel für Variablen in einem Programm
 
-Wir betrachten, wie Variablen in einem einfachen Programm verwendet werden, das die Fläche und den Umfang eines Rechtecks berechnet.
+Das folgende Programm verwendet Variablen, um Fläche und Umfang eines Rechtecks zu berechnen.
 
 <CodeBlock
   data={[
@@ -414,6 +415,6 @@ else:
   ]}
 />
 
-Das obige Beispielprogramm zeigt die Verwendung von Variablen mit aussagekräftigen Namen, mathematische Berechnungen und Datenvalidierung. Jede Variable hat einen klaren Zweck und einen Namen, der ihren Inhalt erklärt.
+In diesem Programm bezeichnen `length` und `width` die beiden Eingaben, während `area` und `perimeter` die berechneten Ergebnisse benennen. Die letzte Bedingung weist nicht positive Abmessungen zurück, bevor die Berechnung als gültig ausgegeben wird.
 
-Namensbindung, Identifier-Regeln und klare Konventionen bilden gemeinsam die Grundlage für lesbaren Python-Code. Wenn du Gleichheit, Identität und Neuzuweisung auseinanderhalten kannst, werden spätere Themen wie Mutability, Funktionsargumente und Objektmodelle deutlich leichter.
+Namensbindung, Identifier-Regeln und einheitliche Konventionen machen Python-Code leichter lesbar. Wer Gleichheit, Identität und Neuzuweisung unterscheidet, kann später auch Mutability, Funktionsargumente und Objektmodelle besser einordnen.

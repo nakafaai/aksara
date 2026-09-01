@@ -1,9 +1,9 @@
 export const metadata = {
   title: "Orthogonal and Unitary Matrices",
-  description: "Understand orthogonal and unitary matrices through inner-product preservation, determinant and eigenvalue structure, rotations, reflections, and numerical use.",
+    description: "Compare orthogonal and unitary matrices through inner-product preservation, determinant and eigenvalue structure, rotations, and reflections.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-12",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Linear Methods of AI",
 };
 
@@ -43,7 +43,7 @@ All their singular values equal <InlineMath math="1" />, so
 
 <BlockMath math="\|Q\|_2=1,\qquad\kappa_2(Q)=1" />
 
-Multiplication by such a matrix does not amplify relative errors in the Euclidean norm. This is why QR factorizations rely on Householder reflectors and Givens rotations.
+Multiplication by such a matrix does not amplify relative errors in the Euclidean norm. This is why <InlineMath math="\mathrm{QR}" /> factorizations rely on Householder reflectors and Givens rotations.
 
 ## Determinants and Orientation
 
@@ -73,7 +73,7 @@ Every eigenvalue therefore lies on the complex unit circle. Nonreal eigenvalues 
 
 <BlockMath math="U=V\operatorname{diag}(e^{i\theta_1},ldots,e^{i\theta_n})V^H" />
 
-with unitary <InlineMath math="V" />. Over the real numbers, an orthogonal matrix can instead be reduced to blocks consisting of <InlineMath math="1" />, <InlineMath math="-1" />, and planar rotations.
+In this decomposition, <InlineMath math="V" /> is unitary. Over the real numbers, an orthogonal matrix can instead be reduced to blocks consisting of <InlineMath math="1" />, <InlineMath math="-1" />, and planar rotations.
 
 ## Rotation Example
 
@@ -100,14 +100,14 @@ For a unit vector <InlineMath math="u\in\mathbb{R}^n" />, the Householder matrix
 
 <BlockMath math="H=I-2uu^T" />
 
-reflects a vector across the hyperplane perpendicular to <InlineMath math="u" />. Since
+The matrix <InlineMath math="H" /> reflects a vector across the hyperplane perpendicular to <InlineMath math="u" />. Its orthogonality can be checked from
 
 <MathContainer>
 <BlockMath math="H^T=H" />
 <BlockMath math="H^2=(I-2uu^T)^2=I" />
 </MathContainer>
 
-we have <InlineMath math="H^TH=I" />. Its eigenvalue in the direction <InlineMath math="u" /> is <InlineMath math="-1" />, while every vector perpendicular to <InlineMath math="u" /> has eigenvalue <InlineMath math="1" />. Therefore <InlineMath math="\det H=-1" />.
+The two identities above give <InlineMath math="H^TH=I" />. Its eigenvalue in the direction <InlineMath math="u" /> is <InlineMath math="-1" />, while every vector perpendicular to <InlineMath math="u" /> has eigenvalue <InlineMath math="1" />. Therefore <InlineMath math="\det H=-1" />.
 
 ## Equivalent Checks and Consequences
 
@@ -127,4 +127,4 @@ Products and inverses remain in the same class:
 <BlockMath math="Q^{-1}=Q^T" />
 </MathContainer>
 
-These closure and stability properties make orthogonal and unitary matrices central to QR algorithms, least-squares solvers, Fourier transforms, quantum mechanics, and geometry processing.
+Their inverses stay in the same class, and their two-norm condition number is <InlineMath math="1" />. Algorithms based on <InlineMath math="\mathrm{QR}" /> and least-squares solvers use these properties to avoid amplifying lengths in the Euclidean norm. Fourier transforms, quantum mechanics, and geometry processing use orthogonal or unitary transformations to preserve inner products and norms.

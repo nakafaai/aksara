@@ -1,17 +1,17 @@
 export const metadata = {
    title: "Circular Permutation",
-   description: "Learn how circular permutations count relative order, why rotations match, when reflections differ, and how to solve constrained arrangements.",
+   description: "Count circular arrangements by relative order, treat rotations as equivalent, distinguish reflections when needed, and solve constrained arrangements.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-08-22",
+   dateModified: "2026-09-01",
    subject: "Combinatorics",
 };
 
-## Understanding Circular Permutation
+## Circular Permutation
 
 At a round table, moving every person one seat clockwise does not change who sits next to whom. A **circular permutation** therefore counts each relative seating order once. Rotations of the same order belong to the same arrangement.
 
-This differs from a linear permutation. In a row, the first and last positions are fixed; in a circle, there is no distinguished starting position.
+This differs from a linear permutation. In a row, the first and last positions are fixed. In a circle, there is no distinguished starting position.
 
 Any object can therefore serve as the reference point. Linear orders that differ only by a rotation represent **the same circular arrangement**.
 
@@ -28,7 +28,7 @@ Where:
 
 **Why is the formula <InlineMath math="(n-1)!" /> and not <InlineMath math="n!" />?**
 
-The key is that rotating everyone together does not create a new circular arrangement. A round-table example makes this visible.
+Rotating everyone together does not create a new circular arrangement. The round-table example below shows why.
 
 Suppose <InlineMath math="3" /> children, <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" />, sit around a round table. The orders <InlineMath math="ABC" />, <InlineMath math="BCA" />, and <InlineMath math="CAB" /> are **the same arrangement** because each is a rotation of the others and the relative positions do not change.
 
@@ -42,9 +42,9 @@ For <InlineMath math="3" /> children: <InlineMath math="P_3 = (3-1)! = 2! = 2 \t
 
 The formula <InlineMath math="(n-1)!" /> identifies rotations but still treats mirror images as different. That is appropriate for people facing the center of a table because reversing the order swaps left and right neighbors. A bracelet can also be flipped. For <InlineMath math="n\geq3" /> distinct beads, every circular order pairs with a different mirror image, so the bracelet has <InlineMath math="\frac{(n-1)!}{2}" /> arrangements.
 
-## Applications in Daily Life
+## Counting Circular Arrangements
 
-Circular permutation is often encountered in various real situations:
+The same formula counts circular seating orders and other formations arranged around a center.
 
 **Circular Seating:**
 

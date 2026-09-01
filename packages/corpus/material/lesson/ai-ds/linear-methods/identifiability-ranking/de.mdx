@@ -3,6 +3,7 @@ export const metadata = {
     description: "Parameteridentifizierbarkeit mit Matrixrang, Singulärwerten, Kondition und stabilen rangoffenlegenden Faktorisierungen verbinden.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Lineare Methoden der KI",
 };
 
@@ -12,7 +13,7 @@ Identifizierbarkeit fragt, ob die verfügbaren Daten einen Modellparameter einde
 
 <BlockMath math="\min_{x \in \mathbb{R}^n} \|Ax-b\|_2^2" />
 
-und seine Normalgleichungen sind
+Die zugehörigen Normalgleichungen sind
 
 <BlockMath math="A^T A x = A^T b" />
 
@@ -27,7 +28,7 @@ Diese Aussagen sind äquivalent. Gibt es ein <InlineMath math="z \in \ker(A)" />
 
 <BlockMath math="A(x+z)=Ax" />
 
-und die Daten können <InlineMath math="x" /> nicht von <InlineMath math="x+z" /> unterscheiden. Ist der Kern trivial, dann ist <InlineMath math="A^TA" /> positiv definit und der Minimierer des Ausgleichsproblems eindeutig.
+Diese Gleichheit zeigt, dass die Daten <InlineMath math="x" /> nicht von <InlineMath math="x+z" /> unterscheiden können. Gilt <InlineMath math="\ker(A)=\{0\}" />, dann ist <InlineMath math="A^TA" /> positiv definit und das Ausgleichsproblem besitzt genau einen Minimierer.
 
 ## Eindeutigkeit ist nicht dasselbe wie Stabilität
 
@@ -39,18 +40,18 @@ Voller Spaltenrang garantiert eine eindeutige exakte Lösung, aber noch keine nu
 | Ist die Schätzung numerisch gut bestimmt? | <InlineMath math="\sigma_n" /> ist im Verhältnis zu <InlineMath math="\sigma_1" /> nicht sehr klein | Kleine Störungen bewirken keine großen Parameteränderungen. |
 | Wie empfindlich ist das Problem? | <InlineMath math="\kappa_2(A)=\sigma_1/\sigma_n" /> | Eine große Konditionszahl weist auf hohe Empfindlichkeit hin. |
 
-Diese Unterscheidung ist für angewandte Modelle wichtig: Strukturelle Identifizierbarkeit ist eine exakte algebraische Eigenschaft. Praktische Identifizierbarkeit hängt dagegen von Skalierung, Rauschen und numerischer Toleranz ab.
+Strukturelle Identifizierbarkeit ist eine exakte algebraische Eigenschaft. Praktische Identifizierbarkeit hängt zusätzlich von Skalierung, Rauschen und numerischer Toleranz ab.
 
-## Rangoffenlegende Faktorisierungen
+## Faktorisierungen zur Rangbestimmung
 
-Zwei verbreitete Werkzeuge legen den Rang offen, ohne sich auf empfindliche Determinantenberechnungen zu stützen:
+Mit zwei verbreiteten Faktorisierungen lässt sich der Rang bestimmen, ohne Determinanten zu berechnen, die empfindlich auf numerische Fehler reagieren:
 
 | Methode | Stärke | Typischer Einsatz |
 | --- | --- | --- |
-| QR-Zerlegung mit Spaltenpivotisierung | Meist günstiger als eine vollständige SVD | Schnelle Ausgleichsrechnung und praktische Rangbestimmung |
-| Singulärwertzerlegung | Zeigt alle unabhängigen Richtungen und ihre Skalen unmittelbar | Robuste Diagnose nahe einem Rangdefizit |
+| <InlineMath math="\mathrm{QR}" />-Zerlegung mit Spaltenpivotisierung | Meist günstiger als eine vollständige <InlineMath math="\mathrm{SVD}" /> | Schnelle Ausgleichsrechnung und praktische Rangbestimmung |
+| Singulärwertzerlegung | Trennt die unabhängigen Richtungen und die Skala jeder Richtung | Erkennt kleine Singulärwerte, die auf ein beinahe vorhandenes Rangdefizit hinweisen |
 
-Die gewöhnliche LU-Zerlegung ist vor allem ein Werkzeug für quadratische Systeme. Für eine rechteckige Entwurfsmatrix sind pivotisiertes QR oder SVD die natürlicheren rangoffenlegenden Verfahren.
+Die gewöhnliche <InlineMath math="\mathrm{LU}" />-Zerlegung ist vor allem für quadratische Systeme bestimmt. Bei einer rechteckigen Entwurfsmatrix wird der Rang meist mit pivotisiertem <InlineMath math="\mathrm{QR}" /> oder einer <InlineMath math="\mathrm{SVD}" /> bestimmt.
 
 ## Singulärwertzerlegung
 
@@ -58,7 +59,7 @@ Sei <InlineMath math="q=\min(m,n)" />. Jede Matrix <InlineMath math="A \in \math
 
 <BlockMath math="A=U\Sigma V^T" />
 
-wobei <InlineMath math="U \in \mathbb{R}^{m \times m}" /> und <InlineMath math="V \in \mathbb{R}^{n \times n}" /> orthogonal sind und <InlineMath math="\Sigma \in \mathbb{R}^{m \times n}" /> nichtnegative Diagonaleinträge hat:
+In dieser Zerlegung sind <InlineMath math="U \in \mathbb{R}^{m \times m}" /> und <InlineMath math="V \in \mathbb{R}^{n \times n}" /> orthogonal. Die Matrix <InlineMath math="\Sigma \in \mathbb{R}^{m \times n}" /> hat nichtnegative Diagonaleinträge mit
 
 <BlockMath math="\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_q \geq 0" />
 
@@ -66,7 +67,7 @@ Der exakte Rang ist die Anzahl der positiven Singulärwerte:
 
 <BlockMath math="\operatorname{rank}(A)=\#\{i:\sigma_i>0\}" />
 
-Für <InlineMath math="m \geq n" /> ist voller Spaltenrang daher äquivalent zu <InlineMath math="\sigma_n>0" />. Die zu Singulärwert null gehörenden rechten Singulärvektoren spannen <InlineMath math="\ker(A)" /> auf und zeigen Parameterrichtungen, die sich aus den Daten nicht identifizieren lassen.
+Für <InlineMath math="m \geq n" /> ist voller Spaltenrang daher äquivalent zu <InlineMath math="\sigma_n>0" />. Die aus den Daten nicht identifizierbaren Parameterrichtungen werden von den rechten Singulärvektoren zu Singulärwert null aufgespannt. Diese Vektoren bilden eine Basis von <InlineMath math="\ker(A)" />.
 
 ## Exakter und numerischer Rang
 
@@ -91,8 +92,8 @@ Die Identität
 
 <BlockMath math="A^TA=V\Sigma^2V^T" />
 
-erklärt, warum die quadrierten Singulärwerte Eigenwerte von <InlineMath math="A^TA" /> sind. Für die Theorie ist das nützlich. Das explizite Bilden von <InlineMath math="A^TA" /> quadriert jedoch die Konditionszahl:
+Diese Identität zeigt, warum die quadrierten Singulärwerte Eigenwerte von <InlineMath math="A^TA" /> sind. Bei numerischen Berechnungen quadriert das explizite Bilden von <InlineMath math="A^TA" /> die Konditionszahl:
 
 <BlockMath math="\kappa_2(A^TA)=\kappa_2(A)^2" />
 
-Numerische Software verwendet deshalb direkte SVD- oder rangoffenlegende QR-Verfahren, statt <InlineMath math="A^TA" /> nur zur Rangschätzung zu bilden. Dadurch bleiben mehr Informationen in den bereits nahezu unidentifizierbaren Richtungen erhalten.
+Numerische Software verwendet deshalb meist <InlineMath math="\mathrm{SVD}" /> oder rangoffenlegendes <InlineMath math="\mathrm{QR}" />, um den Matrixrang zu schätzen. Beide Verfahren arbeiten direkt mit <InlineMath math="A" /> und quadrieren daher die Konditionszahl nicht wie beim Bilden von <InlineMath math="A^TA" />.

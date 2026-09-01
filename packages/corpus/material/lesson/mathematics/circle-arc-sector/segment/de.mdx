@@ -1,21 +1,20 @@
 export const metadata = {
   title: "Kreissegmente",
-  description: "Kreissegmente erkennen und ihre Fläche als Differenz aus Sektor- und Dreiecksfläche berechnen.",
+  description: "Die Fläche kleiner und großer Kreissegmente ergibt sich aus Sektorfläche und Dreiecksfläche.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Kreisbögen und Sektoren",
 };
 
 
-## Grundidee des Kreissegments
+## Kreissegmente
 
-Schneidet eine gerade Linie ein Stück von einer kreisförmigen Fläche ab, entsteht die Form eines Kreissegments. Man sieht sie etwa am Rand eines angeschnittenen runden Kuchens.
-
-Eine Sehne und einer der beiden Bögen zwischen ihren Endpunkten begrenzen ein Kreissegment. Der kleine Bogen begrenzt das kleine Kreissegment, der verbleibende große Bogen das große Kreissegment. Ein Durchmesser ist der Grenzfall, in dem beide Segmente Halbkreise sind.
+Eine Gerade, die einen Kreis in zwei Punkten schneidet, bildet eine Sehne. Die Sehne und einer der beiden Bögen zwischen ihren Endpunkten begrenzen ein Kreissegment. Der kleine Bogen begrenzt das kleine Kreissegment, der verbleibende große Bogen das große Kreissegment. Ein Durchmesser ist der Grenzfall, in dem beide Segmente Halbkreise sind.
 
 ## Unterschied zwischen Bogen und Segment
 
-Zuerst trennen wir zwei Begriffe, die leicht verwechselt werden:
+Ein Bogen und ein Kreissegment bezeichnen verschiedene Teile eines Kreises:
 
 <ContentStack>
 
@@ -303,7 +302,7 @@ Je nachdem, welcher der beiden Bögen zur Sehne gehört, entsteht ein kleines od
 
 </ContentStack>
 
-**Kurz zusammengefasst:**
+Bei festem Radius unterscheidet der Mittelpunktswinkel die beiden Segmente:
 - **Kleines Segment**: Mittelpunktswinkel <InlineMath math="< 180^\circ" />, Segmentfläche <InlineMath math="< \frac{1}{2}\pi r^2" />
 - **Großes Segment**: Mittelpunktswinkel <InlineMath math="> 180^\circ" />, Segmentfläche <InlineMath math="> \frac{1}{2}\pi r^2" />
 
@@ -311,44 +310,43 @@ Je nachdem, welcher der beiden Bögen zur Sehne gehört, entsteht ein kleines od
 
 Das kleine Kreissegment entsteht, wenn wir vom Kreissektor das Dreieck aus den beiden Radien und der Sehne abziehen.
 
-**Warum ist das nicht die Bogenlängenformel?**
-- **Bogenlänge** ist <InlineMath math="\frac{\alpha}{360^\circ} \times 2\pi r" /> (Einheiten: cm, m usw.)
-- **Segmentfläche** <InlineMath math="\neq" /> Bogenlänge (da das Segment eine <InlineMath math="2\text{D}" />-Fläche und keine <InlineMath math="1\text{D}" />-Linie ist)
+Vergleiche Bogenlänge und Segmentfläche, bevor du die Formeln verwendest.
 
-    <MathContainer>
-    <BlockMath math="\text{Segmentfläche} = \text{Sektorfläche} - \text{Dreiecksfläche}" />
-    </MathContainer>
+| Größe | Formel | Einheitentyp |
+| :---- | :----- | :----------- |
+| Bogenlänge | <InlineMath math="s=\frac{\alpha}{360^\circ}\times 2\pi r" /> | Länge, zum Beispiel <InlineMath math="\text{cm}" /> oder <InlineMath math="\text{m}" /> |
+| Segmentfläche | <InlineMath math="A_{\mathrm{Segment}}=A_{\mathrm{Sektor}}-A_{\mathrm{Dreieck}}" /> | Fläche, zum Beispiel <InlineMath math="\text{cm}^2" /> oder <InlineMath math="\text{m}^2" /> |
 
-    Setzen wir beide Flächenformeln ein, ergibt sich:
+<MathContainer>
+  <BlockMath math="\text{Segmentfläche} = \text{Sektorfläche} - \text{Dreiecksfläche}" />
+</MathContainer>
 
-    <MathContainer>
-    <BlockMath math="\text{Segmentfläche} = \frac{\alpha}{360^\circ} \times \pi r^2 - \frac{1}{2} r^2 \sin \alpha" />
-    </MathContainer>
+Nach dem Einsetzen der beiden Flächenformeln gilt:
 
-    Dabei ist <InlineMath math="0^\circ < \alpha < 180^\circ" /> der kleine Mittelpunktswinkel in Grad und <InlineMath math="r" /> der Kreisradius.
+<MathContainer>
+  <BlockMath math="\text{Segmentfläche} = \frac{\alpha}{360^\circ} \times \pi r^2 - \frac{1}{2} r^2 \sin \alpha" />
+</MathContainer>
 
-    Für ein großes Kreissegment verwenden wir zunächst den ergänzenden kleinen Winkel <InlineMath math="\beta=360^\circ-\alpha" /> und ziehen dann die kleine Segmentfläche von der gesamten Kreisfläche ab:
+Dabei ist <InlineMath math="0^\circ < \alpha < 180^\circ" /> der kleine Mittelpunktswinkel in Grad und <InlineMath math="r" /> der Kreisradius.
 
-    <MathContainer>
-    <BlockMath math="\beta=360^\circ-\alpha" />
-    <BlockMath math="A_{\mathrm{major}}=\pi r^2-\left(\frac{\beta}{360^\circ}\pi r^2-\frac{1}{2}r^2\sin\beta\right)" />
-    </MathContainer>
+Für ein großes Kreissegment verwenden wir zunächst den ergänzenden kleinen Winkel <InlineMath math="\beta=360^\circ-\alpha" /> und ziehen dann die kleine Segmentfläche von der gesamten Kreisfläche ab:
 
-**Die Einheiten zeigen den Unterschied:**
-- Bogenlänge: <InlineMath math="\text{cm}" />, <InlineMath math="\text{m}" /> (Längeneinheiten)
-- Segmentfläche: <InlineMath math="\text{cm}^2" />, <InlineMath math="\text{m}^2" /> (Flächeneinheiten)
+<MathContainer>
+  <BlockMath math="\beta=360^\circ-\alpha" />
+  <BlockMath math="A_{\mathrm{major}}=\pi r^2-\left(\frac{\beta}{360^\circ}\pi r^2-\frac{1}{2}r^2\sin\beta\right)" />
+</MathContainer>
 
-## Visualisierung der Segmentbildung
+## Sektor Dreieck und Kreissegment
 
-Die Darstellung zeigt Sektor, Dreieck und das dazwischen verbleibende Segment:
+Die Abbildung markiert den Sektor, das von den beiden Radien und der Sehne gebildete Dreieck sowie das Segment, das nach dem Abziehen der Dreiecksfläche übrig bleibt.
 
 <ContentStack>
 
 <LineEquation
-  title="Komponenten der Segmentbildung"
+  title="Sektorfläche minus Dreiecksfläche"
   description={
     <>
-    Das Segment entsteht aus Sektor <InlineMath math="AOB" /> minus Dreieck{" "}
+      Das Segment entsteht aus Sektor <InlineMath math="AOB" /> minus Dreieck{" "}
       <InlineMath math="AOB" />. Der Mittelpunktswinkel beträgt{" "}
       <InlineMath math="90^\circ" />, der Radius{" "}
       <InlineMath math="4 \text{ Einheiten}" />.

@@ -1,56 +1,53 @@
 export const metadata = {
     title: "Normales Gleichungssystem",
-    description: "Lernen Sie Normalgleichungen für die Optimierung der kleinsten Quadrate. Lernen Sie geschlossene Lösungen, Orthogonalitätsprinzipien und wann Systeme lösbar sind.",
+    description: "Leite Normalgleichungen für kleinste Quadrate aus der Orthogonalität her, löse sie in geschlossener Form, wenn das möglich ist, und erkenne Fälle ohne eindeutige Lösung.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Lineare Methoden der KI",
 };
 
-## Was ist ein Normalgleichungssystem?
+## Normalgleichungssystem
 
 Die Normalgleichung überführt die Optimalitätsbedingung erster Ordnung eines linearen Ausgleichsproblems in ein lineares Gleichungssystem.
 
-Wenn wir minimieren wollen
+Betrachte das folgende Ausgleichsproblem:
 
 <BlockMath math="\min_x \|A \cdot x - b\|_2^2" />
 
-Es stellt sich heraus, dass die Lösung durch Lösen des folgenden Gleichungssystems gefunden werden kann
+Ein Minimierer erfüllt das folgende lineare Gleichungssystem:
 
 <BlockMath math="A^T A \cdot x = A^T b" />
 
 Diese Gleichung heißt **Normalgleichung**, weil das Residuum am Minimum normal, also senkrecht, zum Spaltenraum von <InlineMath math="A" /> steht.
 
-## Grundlegende Beziehung
+## Kleinste Quadrate und die Normalgleichung
 
-Es besteht eine sehr interessante Beziehung zwischen dem Minimierungsproblem und diesem normalen Gleichungssystem. Der Vektor <InlineMath math="\hat{x} \in \mathbb{R}^n" /> ist genau dann eine Lösung für das Problem der kleinsten Quadrate, wenn dieser Vektor das Normalengleichungssystem erfüllt.
+Ein Vektor <InlineMath math="\hat{x} \in \mathbb{R}^n" /> minimiert <InlineMath math="\|A \cdot x - b\|_2^2" /> genau dann, wenn er <InlineMath math="A^T A \cdot \hat{x} = A^T b" /> erfüllt. Das Optimierungsproblem und die Normalgleichung haben daher dieselbe Lösungsmenge.
 
-Mit anderen Worten: Das Finden von <InlineMath math="\hat{x}" />, das <InlineMath math="\|A \cdot x - b\|_2^2" /> minimal macht, ist genau dasselbe wie das Finden von <InlineMath math="\hat{x}" />, das <InlineMath math="A^T A \cdot \hat{x} = A^T b" /> erfüllt.
+## Das Residuum steht senkrecht zum Spaltenraum
 
-## Warum dieses System funktioniert
-
-Um zu verstehen, warum diese Beziehung gilt, müssen wir sie aus einer geometrischen Perspektive betrachten.
-
-Wenn <InlineMath math="\hat{x}" /> den Minimalwert für <InlineMath math="\|A\hat{x} - b\|_2^2" /> angibt, muss der Fehlervektor <InlineMath math="A\hat{x} - b" /> orthogonal zu allen Vektoren im Spaltenraum der Matrix <InlineMath math="A" /> sein.
+Wenn <InlineMath math="\hat{x}" /> den Ausdruck <InlineMath math="\|A\hat{x} - b\|_2^2" /> minimiert, steht der Residualvektor <InlineMath math="A\hat{x} - b" /> senkrecht auf jedem Vektor im Spaltenraum von <InlineMath math="A" />.
 
 Dieser Spaltenraum besteht aus allen Vektoren, die als <InlineMath math="Ax" /> für <InlineMath math="x \in \mathbb{R}^n" /> geschrieben werden können. Die Orthogonalitätsbedingung bedeutet
 
 <BlockMath math="0 = \langle Ax, A\hat{x} - b \rangle" />
 
-für jeden Vektor <InlineMath math="x \in \mathbb{R}^n" />. Mithilfe der Eigenschaften des inneren Produkts können wir schreiben
+Diese Orthogonalitätsbedingung gilt für jeden Vektor <InlineMath math="x \in \mathbb{R}^n" />. Die Eigenschaften des inneren Produkts liefern
 
 <MathContainer>
 <BlockMath math="0 = (Ax)^T (A\hat{x} - b) = x^T (A^T A\hat{x} - A^T b)" />
 </MathContainer>
 
-Da diese Beziehung also für alle Vektoren <InlineMath math="x" /> gelten muss
+Da diese Gleichheit für jeden Vektor <InlineMath math="x" /> gilt, muss der Vektor in der Klammer null sein:
 
 <BlockMath math="A^T A\hat{x} - A^T b = 0" />
 
-Dies ist es, was uns das normale Gleichungssystem liefert.
+Nach dem Umstellen folgt <InlineMath math="A^TA\hat{x}=A^Tb" />, die Normalgleichung.
 
 ## Beweis mit dem Satz des Pythagoras
 
-Wir können dieses Ergebnis auch auf andere Weise überprüfen. Sei <InlineMath math="\hat{x}" /> die Lösung des Normalengleichungssystems und <InlineMath math="x" /> ein beliebiger Vektor in <InlineMath math="\mathbb{R}^n" />.
+Wir können dieses Ergebnis auch auf andere Weise überprüfen. Sei <InlineMath math="\hat{x}" /> die Lösung des Normalgleichungssystems und <InlineMath math="x" /> ein beliebiger Vektor in <InlineMath math="\mathbb{R}^n" />.
 
 Mit dem Satz des Pythagoras können wir schreiben
 
@@ -60,7 +57,7 @@ Mit dem Satz des Pythagoras können wir schreiben
 <BlockMath math="= \|A\hat{x} - b\|_2^2 + \underbrace{\|A(\hat{x} - x)\|_2^2}_{\geq 0} - 2 \underbrace{(\hat{x} - x)^T (A^T A\hat{x} - A^T b)}_{=0}" />
 </MathContainer>
 
-Da <InlineMath math="\hat{x}" /> das Normalgleichungssystem erfüllt, sind <InlineMath math="A^T A\hat{x} - A^T b = 0" /> und die quadrierte Norm immer nicht negativ. Deshalb
+Da <InlineMath math="\hat{x}" /> die Normalgleichung erfüllt, verschwindet der Kreuzterm. Die verbleibende quadrierte Norm ist nicht negativ. Daher gilt
 
 <BlockMath math="\|Ax - b\|_2^2 = \|A\hat{x} - b\|_2^2 + \|A(\hat{x} - x)\|_2^2 \geq \|A\hat{x} - b\|_2^2" />
 
@@ -96,7 +93,7 @@ Daher ist
 
 <BlockMath math="\ker(A^{\mathsf T}A)=\ker(A)" />
 
-und <InlineMath math="A^{\mathsf T}A" /> ist genau dann positiv definit, wenn <InlineMath math="A" /> vollen Spaltenrang hat.
+Die Gleichheit der Nullräume zeigt, dass <InlineMath math="A^{\mathsf T}A" /> genau dann positiv definit ist, wenn <InlineMath math="A" /> vollen Spaltenrang hat.
 
 ## Numerischer Hinweis
 
@@ -104,4 +101,4 @@ Positive Definitheit liefert Eindeutigkeit und erlaubt ein Cholesky-Verfahren, g
 
 <BlockMath math="\kappa_2(A^{\mathsf T}A)=\kappa_2(A)^2" />
 
-Das explizite Bilden von <InlineMath math="A^{\mathsf T}A" /> kann daher Empfindlichkeit und Rundungseffekte verstärken. Die Inversenformel ist eine algebraische Identität und keine Anweisung, in Software eine Inverse zu bilden. Für ein gut bestimmtes Ausgleichsproblem mit vollem Rang verwendet man QR, bei Rangmangel oder starker Fehlkonditionierung eine SVD.
+Das explizite Bilden von <InlineMath math="A^{\mathsf T}A" /> kann daher Empfindlichkeit und Rundungseffekte verstärken. Die Inversenformel ist eine algebraische Identität und keine Anweisung, in Software eine Inverse zu bilden. Für ein gut bestimmtes Ausgleichsproblem mit vollem Rang verwendet man <InlineMath math="\mathrm{QR}" />, bei Rangmangel oder starker Fehlkonditionierung eine <InlineMath math="\mathrm{SVD}" />.

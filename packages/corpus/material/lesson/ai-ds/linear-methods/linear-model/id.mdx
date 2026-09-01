@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bangun model yang linear terhadap parameter dari fungsi basis, susun pengukuran menjadi matriks desain, dan bedakan model linear eksak dari linearisasi lokal.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-14",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Metode Linear AI",
 };
 
@@ -23,7 +23,7 @@ Misalkan kita mengumpulkan <InlineMath math="M" /> pasangan masukan-respons <Inl
 
 <BlockMath math="y_i=h(t_i)x+\varepsilon_i,\qquad i=1,\ldots,M" />
 
-dengan <InlineMath math="\varepsilon_i" /> memuat derau pengukuran dan ketidakcocokan model. Penyusunan seluruh respons dan blok model menghasilkan
+Galat <InlineMath math="\varepsilon_i" /> memuat derau pengukuran dan ketidakcocokan model. Setelah seluruh respons dan blok model disusun, kita memperoleh
 
 <MathContainer>
 <BlockMath math="b=\begin{pmatrix}y_1\\\vdots\\y_M\end{pmatrix}\in\mathbb{R}^{Md}" />
@@ -58,17 +58,17 @@ Jika setiap masukan menghasilkan beberapa respons, letakkan vektor-vektor parame
 
 Setiap kolom <InlineMath math="B" /> menjelaskan satu respons. Bentuk ini tetap merupakan model linear karena setiap keluaran adalah kombinasi linear dari nilai basis yang sama dan telah diketahui.
 
-## Contoh fisika: hukum gas ideal
+## Hukum Gas Ideal
 
-Untuk gas ideal,
+Hukum gas ideal ditulis sebagai berikut.
 
 <BlockMath math="pV=nRT" />
 
-sehingga pada suhu <InlineMath math="T" /> dan volume <InlineMath math="V" /> yang diketahui,
+Pada suhu <InlineMath math="T" /> dan volume <InlineMath math="V" /> yang diketahui, penyelesaian untuk tekanan memberikan
 
 <BlockMath math="p=\frac{RT}{V}n" />
 
-Tekanan <InlineMath math="p" /> bersifat linear terhadap jumlah zat yang belum diketahui <InlineMath math="n" />, yang diukur dalam mol. Besaran <InlineMath math="n" /> bukan jumlah molekul secara langsung; jumlah entitas yang ditentukan adalah <InlineMath math="N=nN_A" />.
+Tekanan <InlineMath math="p" /> bersifat linear terhadap jumlah zat yang belum diketahui <InlineMath math="n" />. Besaran <InlineMath math="n" /> menyatakan jumlah zat dalam mol, sedangkan jumlah molekul atau partikel dihitung dengan <InlineMath math="N=nN_A" />.
 
 Pengukuran tekanan berulang pada beberapa nilai <InlineMath math="(T_i,V_i)" /> yang diketahui menghasilkan satu baris matriks desain <InlineMath math="RT_i/V_i" /> untuk setiap pengamatan.
 
@@ -78,7 +78,7 @@ Model parameter yang benar-benar nonlinear berbentuk
 
 <BlockMath math="y=g(t,x)" />
 
-dengan parameter yang dapat muncul di dalam fungsi eksponensial, pangkat, atau hasil kali antarsesama parameter. Di sekitar nilai parameter saat ini <InlineMath math="x_0" />, aproksimasi Taylor orde pertama memberikan
+Dalam model ini, parameter dapat muncul di dalam fungsi eksponensial, pangkat, atau hasil kali antarsesama parameter. Di sekitar nilai parameter <InlineMath math="x_0" />, aproksimasi Taylor orde pertama memberikan
 
 <BlockMath math="g(t,x)\approx g(t,x_0)+J_xg(t,x_0)(x-x_0)" />
 

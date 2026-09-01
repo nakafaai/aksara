@@ -1,9 +1,9 @@
 export const metadata = {
     title: "Perbandingan dan Logika",
-    description: "Pelajari operator perbandingan dan logika Python dengan diagram interaktif. Pahami prioritas operator, boolean, nilai falsy/truthy, dan perbandingan float.",
+    description: "Bandingkan operator Python, tentukan operator precedence, lalu uji nilai Boolean dan kesetaraan bilangan bertipe float.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-16",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Pemrograman AI",
 };
 
@@ -16,7 +16,7 @@ Prioritas operator menentukan cara Python mengelompokkan ekspresi ketika tanda k
   description="Baca urutan evaluasi dari tanda kurung sampai operator logika agar hasil ekspresi tidak ditebak."
   chart={`
     flowchart LR
-        A["tanda kurung, pemanggilan, pengindeksan"] --> B["** pangkat"]
+        A["tanda kurung, pemanggilan, indexing"] --> B["** pangkat"]
         B --> C["unary +, -, ~"]
         C --> D["*, /, //, %"]
         D --> E["+, -"]
@@ -59,7 +59,7 @@ True`
 
 ## Operator Boolean
 
-Operator boolean memungkinkan kamu menggabungkan beberapa kondisi atau memodifikasi nilai boolean. Python menyediakan tiga operator boolean utama:
+Operator boolean menggabungkan beberapa kondisi atau mengubah nilai boolean. Python menyediakan tiga operator boolean utama:
 
 <Mermaid
   title="Operator Boolean Menggabungkan Keputusan"
@@ -144,15 +144,15 @@ Python memiliki aturan khusus untuk menentukan nilai mana yang dianggap `False` 
 3. Angka nol dari semua tipe data numerik:
    - `0` (integer nol)
    - `0.0` (float nol)
-   - `0j` (bilangan kompleks nol, dimana j adalah unit imajiner)
+   - `0j` (bilangan kompleks nol, j adalah unit imajiner)
 4. String kosong `""`
 5. Kontainer kosong: `[]`, `{}`, `()`, `set()`
 
 **Nilai yang dianggap `True` (Truthy):**
 
-1. Nilai bawaan lain, seperti bilangan selain nol atau koleksi yang berisi item
+1. Nilai lain bersifat truthy, seperti bilangan selain nol atau collection yang berisi item
 
-Objek buatan sendiri dapat mengatur pengujian kebenaran melalui `__bool__()` atau `__len__()`. Jika keduanya tidak didefinisikan, instance tersebut dianggap truthy secara default.
+Objek buatan sendiri dapat mengatur pengujian kebenaran melalui `__bool__()` atau `__len__()`. Jika keduanya tidak didefinisikan, objek tersebut dianggap benar.
 
 ### Tipe Data Boolean
 
@@ -163,7 +163,7 @@ Tipe `bool` dalam Python merepresentasikan nilai kebenaran `False` dan `True`, m
     {
       language: "python",
       filename: "boolean_values.py",
-      code: `# Konstruktor bool dan operasi aritmatika
+      code: `# Constructor bool dan operasi aritmatika
 >>> bool(-1)
 True
 
@@ -181,7 +181,7 @@ False
 
 ## Menggabungkan Operator
 
-Kamu dapat menggabungkan operator perbandingan dengan operator boolean untuk membuat kondisi yang lebih kompleks. Python juga memungkinkan rantai perbandingan yang lebih natural seperti `1 < 2 < 3`.
+Kamu dapat menggabungkan operator perbandingan dengan operator boolean untuk membuat kondisi yang lebih kompleks. Python juga mendukung rantai perbandingan yang ringkas seperti `1 < 2 < 3`.
 
 <CodeBlock
   data={[
@@ -208,9 +208,9 @@ True`
   ]}
 />
 
-## Perbandingan Bilangan Floating Point
+## Membandingkan Nilai Float
 
-Banyak pecahan desimal tidak memiliki representasi floating-point biner berhingga yang persis. Operasi aritmetika membulatkan hasil antara, sehingga dua perhitungan yang setara secara matematis dapat menghasilkan float yang berdekatan tetapi tidak sama.
+Banyak pecahan desimal tidak dapat direpresentasikan secara persis sebagai bilangan biner dengan jumlah digit terbatas. Karena hasil antara dibulatkan, dua perhitungan yang setara secara matematis dapat menghasilkan nilai `float` yang sangat dekat tetapi tidak sama.
 
 ### Masalah Presisi Float
 
@@ -259,8 +259,8 @@ True`
   ]}
 />
 
-### Solusi dengan math.isclose()
+### Solusi dengan Fungsi Isclose
 
 Python menyediakan fungsi `math.isclose(a, b, rel_tol=1e-09, abs_tol=0.0)` untuk menguji kesetaraan aproksimasi. Fungsi ini menggunakan toleransi relatif (rel_tol) dan toleransi absolut (abs_tol) untuk menentukan apakah dua nilai cukup dekat.
 
-> Gunakan kesetaraan persis jika identitas nilai floating-point yang persis memang dibutuhkan. Untuk besaran hasil pengukuran atau perhitungan, pilih toleransi berdasarkan domain masalah dan gunakan `math.isclose()`. Di dekat nol, `abs_tol` yang sesuai sangat penting karena toleransi relatif ikut mengecil bersama nilai yang dibandingkan.
+> Gunakan kesetaraan persis hanya jika nilai `float` memang harus identik. Untuk hasil pengukuran atau perhitungan, tentukan toleransi yang sesuai dengan jenis perhitungan lalu gunakan `math.isclose()`. Saat nilai yang dibandingkan mendekati nol, tentukan `abs_tol` karena toleransi relatif juga mengecil.

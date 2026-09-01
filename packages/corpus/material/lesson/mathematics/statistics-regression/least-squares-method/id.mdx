@@ -1,20 +1,20 @@
 
 export const metadata = {
   title: "Metode Kuadrat Terkecil",
-  description: "Pelajari metode kuadrat terkecil untuk mencari garis terbaik dengan meminimalkan kuadrat residu. Pelajari rumus, perhitungan, dan aplikasi nyata.",
+  description: "Cari garis kecocokan terbaik dengan meminimalkan jumlah kuadrat residu, lalu hitung dan jelaskan arti setiap koefisien.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Statistika",
 };
 
-## Apa Itu Metode Kuadrat Terkecil?
+## Metode Kuadrat Terkecil
 
 Misalkan hasil pengamatan atau eksperimen terdiri dari pasangan nilai <InlineMath math="(x, y)" />. Ketika diagram pencarnya mengikuti tren yang mendekati garis lurus, ada banyak garis berbeda yang dapat digambar melalui kumpulan titik tersebut.
 
 Pertanyaannya, dari sekian banyak garis lurus yang bisa kita gambar melewati titik-titik itu, mana **garis lurus terbaik** yang paling mewakili keseluruhan data?
 
-Metode Kuadrat Terkecil (Least Squares Method) adalah **prosedur matematis** untuk mencari garis yang paling cocok dengan kumpulan titik data menurut kriteria yang jelas: jumlah kuadrat residu vertikal harus sekecil mungkin. Kemiringan garisnya unik selama nilai <InlineMath math="x" /> yang diamati tidak semuanya sama.
+Metode kuadrat terkecil mencari garis dengan jumlah kuadrat residu vertikal sekecil mungkin. Kriteria ini menentukan arti "garis yang paling cocok" secara matematis. Kemiringan garisnya unik selama nilai <InlineMath math="x" /> yang diamati tidak semuanya sama.
 
 ## Meminimalkan Kuadrat Residu
 
@@ -32,7 +32,7 @@ Garis yang dipasang ditentukan dari **residu** vertikal pada setiap titik pengam
 - Pengkuadratan mencegah residu positif dan negatif saling meniadakan.
 - Residu dengan besar dua kali lipat memberi kontribusi empat kali lebih besar, sehingga penyimpangan besar mendapat bobot lebih besar.
 
-## Contoh Visualisasi
+## Mencocokkan Data Biaya Iklan dan Penjualan
 
 Misalnya, sebuah perusahaan ingin melihat hubungan antara biaya iklan yang mereka keluarkan (dalam jutaan rupiah) dengan jumlah produk yang terjual (dalam ribuan unit). Data yang mereka kumpulkan adalah sebagai berikut:
 
@@ -76,11 +76,9 @@ Secara matematis, kita mencari garis dengan persamaan:
 
 <BlockMath math="\hat{y} = a + bx" />
 
-Di mana nilai <InlineMath math="a" /> (intercept) dan <InlineMath math="b" /> (slope) dipilih sedemikian rupa sehingga nilai dari:
+Nilai <InlineMath math="a" /> sebagai intercept dan <InlineMath math="b" /> sebagai slope dipilih untuk meminimalkan jumlah kuadrat residu berikut:
 
 <BlockMath math="\sum e_i^2 = \sum (y_i - \hat{y}_i)^2 = \sum (y_i - (a + bx_i))^2" />
-
-menjadi minimum.
 
 Melalui proses kalkulus (yang tidak perlu kita turunkan di sini), ditemukan rumus untuk mendapatkan nilai <InlineMath math="a" /> dan <InlineMath math="b" /> yang memenuhi syarat tersebut:
 

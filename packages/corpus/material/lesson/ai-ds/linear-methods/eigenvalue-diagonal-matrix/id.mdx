@@ -1,9 +1,9 @@
 export const metadata = {
     title: "Nilai Eigen dari Matriks Diagonal dan Segitiga",
-    description: "Temukan cara membaca nilai eigen langsung dari entri diagonal matriks diagonal dan segitiga, plus hubungan determinan-jejak.",
+    description: "Membaca nilai eigen langsung dari entri diagonal matriks diagonal dan segitiga, plus hubungan determinan-jejak.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Metode Linear AI",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 Untuk matriks diagonal dan segitiga, setiap nilai eigen dapat dibaca langsung dari diagonal utama beserta multiplisitas aljabarnya. Matriksnya dapat memiliki salah satu bentuk berikut:
 
-Nilai eigen dari matriks diagonal kuadrat atau matriks segitiga <InlineMath math="A \in \mathbb{K}^{n \times n}" />
+Tiga bentuk berikut masing-masing menunjukkan matriks diagonal, segitiga atas, dan segitiga bawah <InlineMath math="A \in \mathbb{K}^{n \times n}" />.
 
 <MathContainer>
 <BlockMath math="A = \begin{pmatrix} a_{11} & 0 & \cdots & 0 \\ 0 & a_{22} & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & a_{nn} \end{pmatrix}" />
@@ -19,7 +19,7 @@ Nilai eigen dari matriks diagonal kuadrat atau matriks segitiga <InlineMath math
 <BlockMath math="A = \begin{pmatrix} a_{11} & 0 & \cdots & 0 \\ * & a_{22} & \ddots & \vdots \\ \vdots & \vdots & \ddots & 0 \\ * & * & \cdots & a_{nn} \end{pmatrix}" />
 </MathContainer>
 
-adalah entri diagonal utamanya:
+Pada ketiga bentuk tersebut, nilai eigen matriks adalah entri diagonal utama:
 
 <BlockMath math="\lambda_1 = a_{11}, \ldots, \lambda_n = a_{nn}" />
 
@@ -31,9 +31,9 @@ Dengan demikian, kita tidak memerlukan ekspansi determinan lengkap atau prosedur
 
 Matriks segitiga memiliki sifat yang sama dengan matriks diagonal. Baik matriks segitiga atas maupun segitiga bawah, nilai eigennya tetap merupakan entri diagonal utama.
 
-Hal ini terjadi karena ketika kita menghitung <InlineMath math="\det(A - tI)" />, entri di atas atau di bawah diagonal utama tidak mempengaruhi hasil perhitungan determinan. Struktur segitiga membuat determinan bisa dihitung sebagai perkalian entri diagonal.
+Saat menghitung <InlineMath math="\det(A - tI)" />, entri di atas atau di bawah diagonal utama tidak mengubah hasil determinan. Karena matriksnya berbentuk segitiga, determinannya sama dengan perkalian semua entri diagonal.
 
-## Contoh Perhitungan Langsung
+## Menghitung Nilai Eigen Matriks yang Bukan Segitiga
 
 Aturan diagonal hanya berlaku khusus untuk matriks segitiga. Sebagai pembanding, dua matriks nonsegitiga berikut mengharuskan kita menghitung polinomial karakteristiknya.
 
@@ -46,7 +46,7 @@ Misalkan <InlineMath math="A = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}" />
 <BlockMath math="= (1-t) \cdot (1-t) - 1 \cdot (-1) = t^2 - 2t + 2" />
 </MathContainer>
 
-yang memiliki akar <InlineMath math="\lambda_1 = 1 + i" /> dan <InlineMath math="\lambda_2 = 1 - i" />.
+Akar polinomial karakteristik ini adalah <InlineMath math="\lambda_1 = 1 + i" /> dan <InlineMath math="\lambda_2 = 1 - i" />.
 
 ### Nilai Eigen Nol
 
@@ -57,7 +57,7 @@ Untuk <InlineMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" />, p
 <BlockMath math="= (1-t) \cdot (1-t) - i \cdot (-i) = t^2 - 2t" />
 </MathContainer>
 
-dengan akar <InlineMath math="\lambda_1 = 2" /> dan <InlineMath math="\lambda_2 = 0" />.
+Akar polinomial karakteristik ini adalah <InlineMath math="\lambda_1 = 2" /> dan <InlineMath math="\lambda_2 = 0" />.
 
 ## Faktorisasi Polinomial Karakteristik
 
@@ -77,7 +77,7 @@ Sifat ini berlaku secara alami untuk nilai eigen kompleks dari matriks dengan en
 
 ## Hubungan Determinan dan Jejak
 
-Ada hubungan fundamental antara nilai eigen dengan determinan dan jejak matriks. Jika polinomial karakteristik <InlineMath math="\chi_A(t)" /> dapat difaktorkan secara linear di <InlineMath math="\mathbb{K}" />, yang berarti matriks <InlineMath math="A" /> memiliki <InlineMath math="n" /> nilai eigen <InlineMath math="\lambda_1, \ldots, \lambda_n \in \mathbb{K}" />, maka:
+Jika polinomial karakteristik <InlineMath math="\chi_A(t)" /> terurai menjadi faktor linear di <InlineMath math="\mathbb{K}" />, matriks <InlineMath math="A" /> memiliki <InlineMath math="n" /> nilai eigen <InlineMath math="\lambda_1, \ldots, \lambda_n" /> di medan tersebut, dengan multiplisitas dihitung. Jumlah dan hasil kalinya memenuhi:
 
 <MathContainer>
 <BlockMath math="\det A = \prod_{i=1}^n \lambda_i" />

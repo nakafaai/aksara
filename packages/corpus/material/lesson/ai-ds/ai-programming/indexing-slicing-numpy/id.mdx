@@ -1,21 +1,21 @@
 export const metadata = {
-  title: "Indexing dan Slicing dengan NumPy",
-  description: "Indexing dan slicing NumPy untuk array 1D, array 2D, boolean mask, dan advanced indexing dengan contoh kode.",
+  title: "Indexing dan Slicing NumPy",
+  description: "Pilih elemen array dengan indexing, slicing, Boolean mask, dan array indeks, lalu bedakan view dari copy.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-09-20",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Pemrograman AI",
 };
 
-## Konsep Dasar Indexing dan Slicing
+## Indexing dan Slicing
 
-Indexing memilih nilai pada posisi tertentu, sedangkan slicing memilih rentang pada satu atau beberapa axis. Slice pada list Python membuat list baru. Basic slicing NumPy biasanya membuat view yang berbagi data dengan array asal, sedangkan advanced indexing dengan array integer atau boolean membuat copy.
+Indexing memilih nilai pada posisi tertentu, sedangkan slicing memilih rentang pada satu atau beberapa `axis`. Slicing pada `list` Python membuat `list` baru. Basic slicing NumPy biasanya menghasilkan `view` yang berbagi data dengan array asal. Advanced indexing dengan array integer atau Boolean selalu membuat copy.
 
-View menghindari penyalinan data, tetapi penulisan melalui view juga mengubah nilai yang bersesuaian pada array asal. [Dokumentasi indexing NumPy](https://numpy.org/doc/stable/user/basics.indexing.html) menjelaskan aturan tepat untuk seleksi dasar dan lanjutan.
+`View` tidak menyalin data. Karena `view` dan array asal memakai data yang sama, perubahan melalui `view` juga mengubah elemen terkait pada array asal. [NumPy](https://numpy.org/doc/stable/user/basics.indexing.html) menjelaskan aturan basic indexing dan advanced indexing secara lengkap.
 
 ## Operasi Array Satu Dimensi
 
-Array satu dimensi memakai sintaks indexing Python yang sudah familier. Basic slice seperti `a[1:4]` mengembalikan view, sehingga perubahan pada view tersebut mengubah elemen yang sama di `a`.
+Array satu dimensi memakai sintaks indeks Python. Basic slicing seperti `a[1:4]` menghasilkan `view`, sehingga perubahan melalui `view` juga mengubah elemen yang sama di `a`.
 
 <CodeBlock
   data={[
@@ -43,7 +43,7 @@ print("Setelah a[:3] = 0:", a)  # Output: Setelah a[:3] = 0: [0. 0. 0. 3. 4. 5. 
   ]}
 />
 
-Contoh berikut memperjelas kepemilikan datanya: view berbagi penyimpanan, sedangkan `.copy()` mengalokasikan data yang mandiri.
+Contoh berikut mengubah `view` dan `copy` secara terpisah. `View` berbagi penyimpanan dengan array asli, sedangkan `.copy()` membuat data baru yang terpisah.
 
 <CodeBlock
   data={[
@@ -60,7 +60,7 @@ print("Original:", original)  # Output: Original: [1 2 3 4 5]
 view = original[1:4]
 print("View:", view)  # Output: View: [2 3 4]
 
-# Mengubah view (mempengaruhi original)
+# Mengubah view (memengaruhi array original)
 view[0] = 999
 print("Setelah mengubah view:")
 print("Original:", original)  # Output: Original: [  1 999   3   4   5]
@@ -166,7 +166,7 @@ print(a[:, ::2])
 
 ## Advanced Indexing
 
-Advanced indexing memakai array integer atau boolean untuk memilih elemen secara bebas dan selalu mengembalikan copy. Pada sumber satu dimensi, array index menentukan shape hasil. Pada sumber multidimensi, NumPy melakukan broadcasting terhadap array index lalu menggabungkan shape-nya dengan dimensi yang tersisa dari basic slice.
+Advanced indexing memakai array integer atau Boolean untuk memilih elemen secara bebas dan selalu menghasilkan copy. Pada sumber satu dimensi, bentuk array indeks menentukan bentuk hasil. Pada sumber multidimensi, NumPy menerapkan `broadcasting` pada array indeks, lalu menggabungkan bentuk array indeks dengan dimensi yang tersisa dari basic slicing.
 
 <CodeBlock
   data={[
@@ -200,7 +200,7 @@ print(a[i])
   ]}
 />
 
-Boolean mask memilih posisi yang nilai mask-nya `True`. Jika shape mask sama dengan sumber, nilai yang terpilih dikembalikan sebagai copy satu dimensi.
+Boolean mask memilih posisi yang bernilai `True`. Jika bentuk mask sama dengan bentuk sumber, nilai yang terpilih dikembalikan sebagai copy satu dimensi.
 
 <CodeBlock
   data={[
@@ -231,7 +231,7 @@ print("a[complex_mask]:", a[complex_mask])  # Output: a[complex_mask]: [2. 3.]`
   ]}
 />
 
-Advanced index dan basic slice dapat dipakai dalam seleksi yang sama. Bagian advanced tetap membuat hasilnya berupa copy:
+Advanced indexing dan basic slicing dapat dipakai dalam seleksi yang sama. Jika sebuah seleksi memuat advanced indexing, seleksi tersebut tetap menghasilkan copy:
 
 <CodeBlock
   data={[
@@ -306,7 +306,7 @@ print(b[::2, ::2])
   ]}
 />
 
-Ellipsis (`...`) mengisi sebanyak mungkin full slice untuk dimensi yang tidak disebutkan. Notasi ini menjaga seleksi array berdimensi tinggi tetap mudah dibaca.
+Elipsis (`...`) mewakili full slice pada semua dimensi yang tidak disebutkan. Notasi ini mempersingkat seleksi pada array berdimensi tinggi.
 
 <CodeBlock
   data={[
@@ -343,9 +343,9 @@ print(a[1, ..., ::2])
   ]}
 />
 
-## Boolean Indexing
+## Indexing dengan Boolean Mask
 
-Boolean indexing mengevaluasi mask pada setiap posisi yang relevan. `True` memilih nilainya, sedangkan `False` melewatinya.
+Boolean indexing memeriksa mask pada setiap posisi. Nilai `True` memilih elemen, sedangkan `False` melewatinya.
 
 <CodeBlock
   data={[
@@ -417,9 +417,9 @@ print(a)
   ]}
 />
 
-## Fancy Indexing
+## Indexing dengan Array Indeks
 
-Fancy indexing adalah nama umum untuk advanced indexing dengan integer. Teknik ini dapat mengurutkan ulang posisi, mengulanginya, atau menyusun hasil mengikuti bentuk array index.
+Istilah `fancy indexing` biasanya merujuk pada advanced indexing dengan array integer. Cara ini dapat mengurutkan ulang posisi, memilih posisi yang sama beberapa kali, atau menyusun hasil mengikuti bentuk array indeks.
 
 <CodeBlock
   data={[
@@ -501,11 +501,11 @@ print(a[[0, 2], 1:4])
   ]}
 />
 
-## Aplikasi Praktis
+## Memilih dan Menyusun Ulang Data dalam Array
 
-Aturan seleksi yang sama mendukung filtering, sampling, dan penyusunan ulang data tanpa loop buatan sendiri.
+Aturan seleksi yang sama dapat dipakai untuk menyaring baris, mengambil sampel, dan menyusun ulang data tanpa menulis loop.
 
-Contoh ini memperlihatkan mask dan assignment. Dalam analisis nyata, konteks pengukuran harus menentukan ambang suhu dan aturan penggantian:
+Contoh ini memperlihatkan mask dan pemberian nilai. Dalam analisis sebenarnya, konteks pengukuran harus menentukan ambang suhu dan aturan penggantian:
 
 <CodeBlock
   data={[
@@ -537,7 +537,7 @@ print("Data setelah cleaning:", temperatures_cleaned)  # Output: Data setelah cl
   ]}
 />
 
-Untuk memperoleh sampling yang sama saat kode dijalankan ulang, buat generator acak lokal dengan seed yang jelas. Cara ini menjaga random state global lama milik NumPy tetap sama:
+Untuk memperoleh sampel yang sama setiap kali kode dijalankan, buat generator acak lokal dengan `seed` yang tetap. Cara ini tidak mengubah state generator acak global NumPy:
 
 <CodeBlock
   data={[

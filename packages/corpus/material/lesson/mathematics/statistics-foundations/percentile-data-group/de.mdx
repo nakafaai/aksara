@@ -1,12 +1,13 @@
 export const metadata = {
   title: "Perzentile bei gruppierten Daten",
-  description: "Schätze Perzentile gruppierter Daten und deute sie anhand einer Tabelle mit kumulierten Häufigkeiten.",
+  description: "Schätze ein Perzentil gruppierter Daten aus einer Tabelle mit kumulierten Häufigkeiten und erkläre seine Position in der Verteilung.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Statistik",
 };
 
-## Was sind Perzentile?
+## Was sind Perzentile
 
 Du kennst bereits [Quartile](/de/faecher/mathematik/grundlagen-der-statistik/quartile-gruppierter-daten): Sie teilen geordnete Daten in <InlineMath math="4" /> gleich stark besetzte Teile. **Perzentile** führen denselben Gedanken weiter.
 
@@ -15,12 +16,12 @@ Perzentile teilen die Positionen der geordneten Daten in <InlineMath math="100" 
 Die <InlineMath math="99" /> inneren Trennpunkte werden meist als <InlineMath math="P_1" />, <InlineMath math="P_2" />, <InlineMath math="P_3" />, ..., bis <InlineMath math="P_{99}" /> bezeichnet. Ihre Zahlenwerte können je nach Perzentilkonvention abweichen, besonders bei kleinen Stichproben.
 
 - <InlineMath math="P_{10}" /> (das <InlineMath math="10" />. Perzentil) markiert den Wert, auf oder unter dem
-  ungefähr <InlineMath math="10\%" /> der Beobachtungen liegen; die anderen <InlineMath math="90\%" /> liegen darüber.
+  ungefähr <InlineMath math="10\%" /> der Beobachtungen liegen. Die anderen <InlineMath math="90\%" /> liegen darüber.
 - <InlineMath math="P_{50}" /> (das <InlineMath math="50" />. Perzentil) entspricht dem **Median**
   oder **zweiten Quartil (<InlineMath math="Q_2" />
-  )**. Es markiert die mittlere Rangposition; bei Bindungen muss nicht genau die Hälfte der beobachteten Werte streng auf jeder Seite liegen.
+  )**. Es markiert die mittlere Rangposition. Bei Bindungen muss nicht genau die Hälfte der beobachteten Werte streng auf jeder Seite liegen.
 - <InlineMath math="P_{85}" /> (das <InlineMath math="85" />. Perzentil) markiert den Wert, auf oder unter dem
-  ungefähr <InlineMath math="85\%" /> der Beobachtungen liegen; rund <InlineMath math="15\%" /> liegen darüber.
+  ungefähr <InlineMath math="85\%" /> der Beobachtungen liegen. Rund <InlineMath math="15\%" /> liegen darüber.
 
 Perzentile beschreiben die relative Position eines Werts innerhalb einer Verteilung. So lässt sich etwa ein Testergebnis mit dem Rest einer Lerngruppe oder ein Wachstumswert mit einer passenden Referenzgruppe vergleichen.
 
@@ -47,7 +48,7 @@ Sobald die Perzentilklasse feststeht, interpolieren wir innerhalb dieser Klasse:
 
 <BlockMath math="P_i = T_b + \left( \frac{\frac{i}{100}n - F_{\text{kum}}}{f_i} \right) p" />
 
-Dabei gilt:
+Die Größen in dieser Formel bedeuten:
 
 - <InlineMath math="P_i" /> = geschätzter Wert des gesuchten Perzentils
 - <InlineMath math="T_b" /> = untere Grenze der Perzentilklasse
@@ -61,7 +62,7 @@ Die Formel entspricht der Quartilinterpolation, verwendet aber <InlineMath math=
 
 Die Interpolation setzt voraus, dass die Beobachtungen innerhalb der gewählten Klasse gleichmäßig verteilt sind. Sie schätzt ein Perzentil anhand des gruppierten Modells, rekonstruiert aber nicht die ursprünglichen Einzelwerte.
 
-## Durchgerechnetes Beispiel: Mathematiktest
+## Perzentile in einem Mathematiktest
 
 Die Tabelle fasst die Ergebnisse von <InlineMath math="40 \text{ Lernenden}" /> in einem Mathematiktest zusammen:
 

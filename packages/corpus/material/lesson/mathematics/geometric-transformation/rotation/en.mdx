@@ -4,11 +4,11 @@ export const metadata = {
   description: "Use centers, directions, and angles to rotate points and lines while preserving distances and shape.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometric Transformation",
 };
 
-## Understanding Rotation
+## Rotation
 
 Rotation turns every point of a figure through the same angle around a fixed center. The figure changes position and turns, while distances, angles, shape, size, and the order of its vertices are preserved.
 
@@ -50,7 +50,7 @@ Using the formulas:
   <BlockMath math="y' = (0) \sin 90^\circ + (4) \cos 90^\circ = 0 \cdot 1 + 4 \cdot 0 = 0" />
 </MathContainer>
 
-Thus, the image of point <InlineMath math="B(0,4)" /> is <InlineMath math="B'(-4,0)" />.
+The image of point <InlineMath math="B(0,4)" /> is <InlineMath math="B'(-4,0)" />.
 
 <LineEquation
   title={
@@ -90,6 +90,7 @@ Thus, the image of point <InlineMath math="B(0,4)" /> is <InlineMath math="B'(-4
         { x: 0, y: 0, z: 0 },
         { x: 0, y: 4, z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
     }, // Line OB
     {
@@ -97,6 +98,7 @@ Thus, the image of point <InlineMath math="B(0,4)" /> is <InlineMath math="B'(-4
         { x: 0, y: 0, z: 0 },
         { x: -4, y: 0, z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
     }, // Line OB'
   ]}
@@ -153,6 +155,7 @@ Replacing <InlineMath math="x'" /> and <InlineMath math="y'" /> back to <InlineM
         const xVal = (i - 5) * 0.5; // range from -2.5 to 2.5
         return { x: xVal, y: 2 * xVal, z: 0 };
       }),
+      smooth: false,
       color: "#9333ea",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=2x" />, at: 6, offset: [1, 0.5, 0] }],
@@ -163,6 +166,7 @@ Replacing <InlineMath math="x'" /> and <InlineMath math="y'" /> back to <InlineM
         const xVal = (i - 5) * 0.5;
         return { x: xVal, y: (-1 / 2) * xVal, z: 0 };
       }),
+      smooth: false,
       color: "#db2777",
       showPoints: false,
       labels: [{ text: <InlineMath math="y=(-\frac{1}{2})x" />, at: 1, offset: [0.3, 0.5, 0] }],

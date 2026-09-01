@@ -5,17 +5,17 @@ export const metadata = {
     description: "Approximate areas under curves using rectangles with Riemann sums. Learn partitions, sample points, and visual calculations with worked examples.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Integrals",
 };
 
-## The Basic Idea of Riemann Sums
+## Approximating Accumulation with Rectangles
 
-Imagine you have a plot of land with one side that is an irregular curve. How would you calculate its area? One of the most practical ways is to divide the land into several rectangular pieces of the same width, calculate the area of each piece, and then add them all up.
+Suppose one edge of a plot of land follows an irregular curve. Approximate its area by dividing the plot into rectangular strips of equal width, calculating each strip's area, and adding the results.
 
-That's the basic idea behind a **Riemann sum**. It approximates a **signed accumulation** by dividing an interval into subintervals and adding the corresponding rectangle contributions. When the function is nonnegative, that accumulation is the area under the curve. For an integrable function, Riemann sums converge to the definite integral as the widest subinterval shrinks toward zero. With equal-width partitions, increasing the number of rectangles makes that width smaller, although each individual increase need not produce a strictly better estimate.
+A **Riemann sum** formalizes this approximation. It estimates a **signed accumulation** by dividing an interval into subintervals and adding the corresponding rectangle contributions. When the function is nonnegative, that accumulation is the area under the curve. For an integrable function, Riemann sums converge to the definite integral as the widest subinterval shrinks toward zero. With equal-width partitions, increasing the number of rectangles makes that width smaller, although each individual increase need not produce a strictly better estimate.
 
-## Key Components
+## Interval Partition and Width
 
 To perform a Riemann Sum, we need to understand its main components:
 
@@ -35,9 +35,7 @@ If we combine all these components, we get the general formula for a Riemann Sum
 
 The sigma notation (<InlineMath math="\sum" />) simply means "sum up all the areas of the rectangles," where the area of each rectangle is its **height** (<InlineMath math="f(x_i^*)" />) times its **width** (<InlineMath math="\Delta x" />).
 
-## Visual Calculation Example
-
-Apply this concept to an example.
+## Left Endpoint Sum for a Linear Function
 
 **Problem:** Determine the Riemann Sum for the function <InlineMath math="f(x) = x" /> on the interval <InlineMath math="[0, 7]" /> by dividing it into <InlineMath math="7" /> subintervals of equal length and using the **left endpoint** as the sample point.
 
@@ -48,6 +46,7 @@ Apply this concept to an example.
   data={[
     {
       points: Array.from({ length: 8 }).map((_, i) => ({ x: i, y: i, z: 0 })),
+      smooth: false,
       color: "#9333ea",
       showPoints: false,
       labels: [{ text: <InlineMath math="f(x)=x" />, at: 4, offset: [-1, 0.5, 0] }],
@@ -111,7 +110,7 @@ Apply this concept to an example.
 
 5.  **Calculate the Riemann Sum:**
 
-    Now we can calculate the total area by summing the areas of all rectangles. Remember that the area of each rectangle is height times width:
+    Now we can calculate the total area by adding the areas of all rectangles. The area of each rectangle is its height times its width:
 
     <MathContainer>
     <BlockMath math="R_7 = \sum_{i=1}^{7} f(x_i^*) \Delta x" />

@@ -3,17 +3,17 @@ export const metadata = {
   description: "Use formulas, graphs, and fully worked examples to rotate points and function curves around a fixed center.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Function Transformation",
 };
 
 
 
-## Understanding Function Rotation
+## Function Rotation
 
 Rotation is a geometric transformation that rotates an object around a specific center point with a determined rotation angle. In the context of functions, rotation changes the position of the function graph by rotating every point on the graph.
 
-A wheel illustrates the geometry: every point travels along a circle centered at the axle. A graph rotates in the same point-by-point way, with every point keeping its distance from the rotation center.
+Imagine a wheel turning. Each point on the wheel moves along a circle centered at the axle. A graph rotation works the same way. Each point moves around the rotation center while keeping the same distance from it.
 
 ## Rotation Formula Around Center Point
 
@@ -24,7 +24,7 @@ For rotation around center point <InlineMath math="(a, b)" /> with angle <Inline
 <BlockMath math="y' = (x - a) \sin \theta + (y - b) \cos \theta + b" />
 </MathContainer>
 
-Where:
+The symbols in these equations mean:
 - <InlineMath math="(x, y)" /> is the original point coordinate
 - <InlineMath math="(x', y')" /> is the rotated point coordinate
 - <InlineMath math="(a, b)" /> is the rotation center point
@@ -32,7 +32,7 @@ Where:
 
 ## Special Rotation Around Origin
 
-When rotation is performed around the origin <InlineMath math="(0, 0)" />, the formula becomes simpler:
+For a rotation around the origin <InlineMath math="(0, 0)" />, substituting <InlineMath math="a=b=0" /> removes the translation terms from the general formula:
 
 1. <InlineMath math="90^\circ" /> Rotation
 
@@ -94,7 +94,7 @@ Rotate the quadratic curve <InlineMath math="y = x^2" /> around the origin:
 
 ## Properties of Function Rotation
 
-Rotation has several important properties:
+A rotation preserves the following features:
 
 - **Preserves Shape**: Rotation does not change the basic shape of the graph, only changes its orientation
 - **Preserves Distance**: The distance between two points on the graph remains the same after rotation
@@ -116,6 +116,7 @@ For linear function <InlineMath math="y = mx + c" />, rotation will change the s
         const y = 2 * x + 1;
         return { x, y, z: 0 };
       }),
+      smooth: false,
       color: "#0d9488",
       showPoints: false,
       labels: [
@@ -137,6 +138,7 @@ For linear function <InlineMath math="y = mx + c" />, rotation will change the s
         const yRotated = x * sin45 + y * cos45;
         return { x: xRotated, y: yRotated, z: 0 };
       }),
+      smooth: false,
       color: "#7c3aed",
       showPoints: false,
       labels: [
@@ -152,7 +154,7 @@ For linear function <InlineMath math="y = mx + c" />, rotation will change the s
 
 ### Exponential Function Rotation
 
-Rotation can also be applied to exponential functions with interesting results.
+An exponential curve can also be rotated point by point. After rotation, the curve may no longer represent a function of the horizontal coordinate.
 
 <LineEquation
   title={<>Rotation of Function <InlineMath math="y = 2^x" /></>}
@@ -240,6 +242,7 @@ To determine the rotation result of a function, follow these steps:
            { x: 0, y: 0, z: 0 },
            { x: 3, y: 4, z: 0 }
          ],
+         smooth: false,
          color: "#9333ea",
          showPoints: false,
          labels: [
@@ -256,6 +259,7 @@ To determine the rotation result of a function, follow these steps:
            { x: 0, y: 0, z: 0 },
            { x: -4, y: 3, z: 0 }
          ],
+         smooth: false,
          color: "#ea580c",
          showPoints: false,
          labels: [
@@ -345,6 +349,7 @@ To determine the rotation result of a function, follow these steps:
            const y = 3 * x - 2;
            return { x, y, z: 0 };
          }),
+         smooth: false,
          color: "#059669",
          showPoints: false,
          labels: [
@@ -364,6 +369,7 @@ To determine the rotation result of a function, follow these steps:
            const yRotated = -x;
            return { x: xRotated, y: yRotated, z: 0 };
          }),
+         smooth: false,
          color: "#d97706",
          showPoints: false,
          labels: [
@@ -400,6 +406,7 @@ To determine the rotation result of a function, follow these steps:
            { x: 1, y: 1, z: 0 },
            { x: 2, y: 5, z: 0 }
          ],
+         smooth: false,
          color: "#0891b2",
          showPoints: false,
          labels: [
@@ -421,6 +428,7 @@ To determine the rotation result of a function, follow these steps:
            { x: 1, y: 1, z: 0 },
            { x: 1.5 - 2 * Math.sqrt(3), y: 3 + Math.sqrt(3) / 2, z: 0 }
          ],
+         smooth: false,
          color: "#db2777",
          showPoints: false,
          labels: [

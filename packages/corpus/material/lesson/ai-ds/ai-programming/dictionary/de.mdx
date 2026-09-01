@@ -1,14 +1,15 @@
 export const metadata = {
     title: "Dictionary",
-    description: "Lerne, wie Python-Dictionaries Schlüssel-Wert-Paare speichern, aktualisieren, durchlaufen und sicher nachschlagen.",
+    description: "Speichere und aktualisiere Schlüssel-Wert-Paare in Python-Dictionaries. Durchlaufe Dictionaries und schlage Schlüssel sicher nach.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "KI-Programmierung",
 };
 
 ## Wörterbücher definieren und erstellen
 
-Ein Dictionary ist eine veränderliche Zuordnung von eindeutigen Schlüsseln zu Werten. Statt ein Element über seine Zahlenposition anzufordern, schlägst du es über einen aussagekräftigen Schlüssel wie einen Namen, eine Kennung oder ein Datum nach.
+Ein Dictionary ist eine veränderliche Zuordnung von eindeutigen Schlüsseln zu Werten. Du schlägst jedes Element über einen aussagekräftigen Schlüssel wie einen Namen, eine Kennung oder ein Datum nach.
 
 ### Möglichkeiten zum Erstellen von Wörterbüchern
 
@@ -150,11 +151,11 @@ print(phone)
 
 Der Zugriff mit eckigen Klammern liest einen vorhandenen Wert. Eine Zuweisung mit eckigen Klammern aktualisiert einen vorhandenen Schlüssel oder hängt ein neues Schlüssel-Wert-Paar an die Einfügereihenfolge an.
 
-## Wörterbuch-Iteration
+## Wörterbuch Iteration
 
 Wähle die Iterationsform danach, ob du nur Schlüssel, nur Werte oder beide Teile jedes Eintrags brauchst.
 
-### Einfache For-Schleife
+### Einfache Schleife mit For
 
 <CodeBlock
   data={[
@@ -177,7 +178,7 @@ for key in phone:
 
 Wenn du ein Dictionary direkt durchläufst, liefert Python seine Schlüssel in Einfügereihenfolge.
 
-### For-Schleife mit items()-Methode
+### Schleife mit For mit der Methode Items
 
 <CodeBlock
   data={[
@@ -204,7 +205,7 @@ Die Ansicht `items()` liefert Schlüssel und Wert gemeinsam. Durch Tupelentpacku
 
 Ein Dictionary stellt dynamische Ansichten seiner Schlüssel, Werte und Schlüssel-Wert-Paare bereit.
 
-### Methoden keys(), values() und items()
+### Methoden für Keys Values und Items
 
 <CodeBlock
   data={[
@@ -234,7 +235,7 @@ print("Items:", list(items))
 
 Diese Methoden geben dynamische Ansichtsobjekte und keine Listen zurück. Eine Ansicht spiegelt spätere Änderungen am Dictionary wider und kann durchlaufen werden, unterstützt aber weder Positionsindizes noch Elementzuweisungen. Rufe `list()` nur auf, wenn du ausdrücklich eine getrennte Listenmomentaufnahme brauchst.
 
-## get()-Methode
+## Die Methode Get
 
 Verwende `get()`, wenn ein fehlender Schlüssel erwartet wird und du einen Ersatzwert möchtest. Verwende eckige Klammern, wenn ein fehlender Schlüssel als Fehler behandelt werden soll.
 
@@ -259,7 +260,7 @@ except KeyError as e:
 
 Der Zugriff auf einen nicht vorhandenen Schlüssel mit eckigen Klammern führt zu einem `KeyError`.
 
-### Lösung mit get()-Methode
+### Lösung mit der Methode Get
 
 <CodeBlock
   data={[

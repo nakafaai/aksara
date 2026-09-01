@@ -1,26 +1,25 @@
 export const metadata = {
-    title: "Eigenwerte, Eigenvektoren und Eigenräume",
+    title: "Eigenwerte Eigenvektoren und Eigenräume",
     description: "Eigenwerte, Eigenvektoren und Eigenräume verstehen, berechnen und mit der Invertierbarkeit einer Matrix verknüpfen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Lineare Methoden der KI",
 };
 
-## Definition grundlegender Konzepte
+## Eigenwerte und Eigenvektoren
 
-Die meisten Vektoren ändern unter einer Matrixtransformation sowohl ihre Länge als auch ihre Richtung. Ein Eigenvektor ist besonders: Die Transformation hält ihn auf derselben Geraden. Ein positiver Eigenwert erhält die Orientierung, ein negativer kehrt sie um und ein Eigenwert von null bildet den Vektor auf den Nullvektor ab.
+Die meisten Vektoren ändern unter einer Matrixtransformation sowohl ihre Länge als auch ihre Richtung. Bei einem Eigenvektor bleibt das Ergebnis auf derselben Geraden. Ein positiver Eigenwert erhält die Orientierung, ein negativer kehrt sie um und ein Eigenwert von null bildet den Vektor auf den Nullvektor ab.
 
 Sei <InlineMath math="A \in \mathbb{K}^{n \times n}" /> eine quadratische Matrix. Ein **Eigenvektor** <InlineMath math="v \in \mathbb{K}^n" /> für einen **Eigenwert** <InlineMath math="\lambda \in \mathbb{K}" /> ist ein Nicht-Null-Vektor <InlineMath math="v \neq 0" />, der Folgendes erfüllt:
 
 <BlockMath math="A \cdot v = \lambda \cdot v" />
 
-Diese Gleichung zeigt, dass das Ergebnis ein skalares Vielfaches desselben Vektors ist, wenn die Matrix <InlineMath math="A" /> auf den Vektor <InlineMath math="v" /> operiert.
+Die Multiplikation von <InlineMath math="v" /> mit <InlineMath math="A" /> ändert somit nur seine Skalierung oder Orientierung, nicht aber die Gerade, auf der er liegt.
 
 > Per Definition können Eigenwerte gleich <InlineMath math="0" /> sein, aber Eigenvektoren sind immer ungleich Null.
 
 ## Grundlegende Eigenschaften von Eigenvektoren
-
-Eigenvektoren haben grundlegende Eigenschaften, die in verschiedenen mathematischen Anwendungen sehr nützlich sind.
 
 **Skalare Multiplikation**: Seien <InlineMath math="A \in \mathbb{K}^{n \times n}" /> und <InlineMath math="v \in \mathbb{K}^n" /> mit <InlineMath math="v \neq 0" /> ein Eigenvektor von <InlineMath math="A" /> für den Eigenwert <InlineMath math="\lambda \in \mathbb{K}" />. Dann sind alle Vielfachen <InlineMath math="t \cdot v" /> mit <InlineMath math="t \neq 0" /> auch Eigenvektoren von <InlineMath math="A" /> für denselben Eigenwert <InlineMath math="\lambda" />.
 
@@ -28,11 +27,11 @@ Das folgt direkt aus der Linearität:
 
 <BlockMath math="A \cdot (t \cdot v) = t \cdot (A \cdot v) = t \cdot (\lambda \cdot v) = \lambda \cdot (t \cdot v)" />
 
-Diese Eigenschaft zeigt, dass, wenn wir einen Eigenvektor finden, alle seine Vielfachen ungleich Null auch Eigenvektoren für denselben Eigenwert sind.
+Wegen <InlineMath math="t\neq0" /> ist <InlineMath math="tv" /> weiterhin ungleich null und erfüllt die Eigenvektordefinition für denselben Eigenwert.
 
 ## Beispiele für Eigenvektorberechnungen
 
-Betrachten wir einige konkrete Beispiele, um dieses Konzept besser zu verstehen:
+Die folgenden Beispiele prüfen die Gleichung <InlineMath math="Av=\lambda v" /> direkt.
 
 ### Diagonale Matrix
 
@@ -54,25 +53,25 @@ Für Matrix <InlineMath math="A = \begin{pmatrix} 3 & 1 \\ 1 & 3 \end{pmatrix}" 
 
 Seien <InlineMath math="A \in \mathbb{K}^{n \times n}" /> und <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> paarweise verschiedene Eigenwerte von <InlineMath math="A" />, sodass <InlineMath math="\lambda_i \neq \lambda_j" /> gilt, sobald <InlineMath math="i \neq j" /> ist. Dann sind die zugehörigen Eigenvektoren <InlineMath math="v_1, \ldots, v_k \in \mathbb{K}^n" /> linear unabhängig.
 
-Dieser Satz kann durch mathematische Induktion bewiesen werden und hat die wichtige Konsequenz, dass eine <InlineMath math="n \times n" />-Matrix höchstens <InlineMath math="n" /> verschiedene Eigenwerte hat.
+Durch mathematische Induktion folgt aus diesem Satz, dass eine <InlineMath math="n \times n" />-Matrix höchstens <InlineMath math="n" /> verschiedene Eigenwerte hat.
 
 ## Eigenräume und geometrische Multiplizität
 
-Für jeden Eigenwert können wir einen Vektorraum definieren, der aus allen Eigenvektoren besteht, die diesem Eigenwert entsprechen.
+Für jeden Eigenwert definieren wir einen Vektorraum mit allen Lösungen von <InlineMath math="Av=\lambda v" />, einschließlich des Nullvektors.
 
-Seien <InlineMath math="A \in \mathbb{K}^{n \times n}" /> und <InlineMath math="\lambda \in \mathbb{K}" />. Die Menge
+Seien <InlineMath math="A \in \mathbb{K}^{n \times n}" /> und <InlineMath math="\lambda \in \mathbb{K}" />. Die folgende Menge heißt **Eigenraum** der Matrix <InlineMath math="A" /> zum Eigenwert <InlineMath math="\lambda" />.
 
 <BlockMath math="E_A(\lambda) = \{v \in \mathbb{K}^n : A \cdot v = \lambda \cdot v\}" />
 
-heißt der **Eigenraum** von <InlineMath math="A" /> für <InlineMath math="\lambda" />. Seine Dimension:
+Die Dimension eines Eigenraums heißt **geometrische Multiplizität**. Wir schreiben sie als
 
 <BlockMath math="\dim E_A(\lambda)" />
 
-wird die **geometrische Multiplizität** des Eigenwerts <InlineMath math="\lambda" /> von <InlineMath math="A" /> genannt.
+Der Wert <InlineMath math="\dim E_A(\lambda)" /> gibt somit die geometrische Multiplizität des Eigenwerts <InlineMath math="\lambda" /> der Matrix <InlineMath math="A" /> an.
 
 ### Eigenschaften von Eigenräumen
 
-Eigenräume haben mehrere wichtige Eigenschaften:
+Für jeden Eigenraum gelten die folgenden Eigenschaften:
 
 1. **Nullvektor ist kein Eigenvektor**: Der Nullvektor ist kein Eigenvektor, gehört aber zu <InlineMath math="E_A(\lambda)" />.
 
@@ -90,8 +89,6 @@ Eigenräume haben mehrere wichtige Eigenschaften:
 
 ## Zusammenhang mit Invertibilität
 
-Eigenwerte stehen in engem Zusammenhang mit der Invertibilitätseigenschaft von Matrizen.
-
 Eine Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> ist genau dann invertierbar, wenn null keiner ihrer Eigenwerte ist.
 
 Tatsächlich ist <InlineMath math="A" /> genau dann invertierbar, wenn <InlineMath math="\operatorname{rank} A = n" /> gilt, äquivalent zu <InlineMath math="E_A(0) = \ker A = \{0\}" />.
@@ -100,13 +97,13 @@ Tatsächlich ist <InlineMath math="A" /> genau dann invertierbar, wenn <InlineMa
 
 Wenn die Matrix <InlineMath math="A" /> invertierbar ist und <InlineMath math="v \neq 0" /> ein Eigenvektor von <InlineMath math="A" /> für den Eigenwert <InlineMath math="\lambda \in \mathbb{K}" /> ist, dann ist <InlineMath math="v" /> auch ein Eigenvektor von <InlineMath math="A^{-1}" /> für den Eigenwert <InlineMath math="\frac{1}{\lambda}" />.
 
-Wenden wir <InlineMath math="A^{-1}" /> auf <InlineMath math="A \cdot v = \lambda \cdot v" /> an, erhalten wir:
+Die Multiplikation von <InlineMath math="A \cdot v = \lambda \cdot v" /> mit <InlineMath math="A^{-1}" /> ergibt:
 
 <BlockMath math="v = \lambda A^{-1}v \quad \Longrightarrow \quad A^{-1}v = \frac{1}{\lambda}v" />
 
 ## Invertibilitätskriterien
 
-Betrachten wir verschiedene Möglichkeiten, um zu bestimmen, ob eine Matrix invertierbar ist. Für eine quadratische Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> sind die folgenden Aussagen äquivalent:
+Für eine quadratische Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> sind die folgenden Aussagen äquivalent:
 
 1. <InlineMath math="A" /> ist invertierbar
 2. Es existiert eine Matrix <InlineMath math="A^{-1} \in \mathbb{K}^{n \times n}" /> mit <InlineMath math="A \cdot A^{-1} = I = A^{-1} \cdot A" />
@@ -116,4 +113,4 @@ Betrachten wir verschiedene Möglichkeiten, um zu bestimmen, ob eine Matrix inve
 6. <InlineMath math="\det A \neq 0" />
 7. <InlineMath math="0" /> ist kein Eigenwert von <InlineMath math="A" />
 
-Dieser Satz bietet verschiedene äquivalente Möglichkeiten, um zu überprüfen, ob eine Matrix invertierbar ist, wobei Eigenwerte eines der sehr nützlichen Kriterien sind.
+Jede einzelne dieser Bedingungen reicht als Nachweis der Invertierbarkeit aus.

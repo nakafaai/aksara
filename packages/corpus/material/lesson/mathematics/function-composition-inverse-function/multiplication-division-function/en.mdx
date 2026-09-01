@@ -1,10 +1,10 @@
 
 export const metadata = {
   title: "Multiplication and Division of Functions",
-  description: "Learn product and quotient functions, their domain rules, and the need to exclude zeros of the denominator.",
+    description: "Form products and quotients of functions, determine their domains, and exclude zeros of the denominator.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Function Composition and Inverse Function",
 };
 
@@ -29,11 +29,13 @@ The product function multiplies <InlineMath math="f(x)" /> and <InlineMath math=
           y: i - 5,
           z: 0,
         })),
+        smooth: false,
         color: "#ea580c",
         labels: [{ text: <InlineMath math="f(x)=x" />, at: 6, offset: [1, -0.5, 0] }],
       },
       {
         points: Array.from({ length: 11 }, (_, i) => ({ x: i - 5, y: 2, z: 0 })),
+        smooth: false,
         color: "#0284c7",
         labels: [{ text: <InlineMath math="g(x)=2" />, at: 8, offset: [1, 0.5, 0] }],
       },
@@ -43,6 +45,7 @@ The product function multiplies <InlineMath math="f(x)" /> and <InlineMath math=
           y: 2 * (i - 5),
           z: 0,
         })),
+        smooth: false,
         color: "#e11d48",
         labels: [{ text: <InlineMath math="(f\cdot g)(x)=2x" />, at: 7, offset: [-1.5, 1, 0] }],
       },
@@ -94,7 +97,7 @@ Dividing function <InlineMath math="f" /> by function <InlineMath math="g" /> is
 
 Division has one additional condition. Besides being in the domains of <InlineMath math="f" /> and <InlineMath math="g" />, the input <InlineMath math="x" /> must satisfy <InlineMath math="g(x)\neq0" /> so that the denominator is nonzero.
 
-Therefore, the domain of the division function <InlineMath math="(\frac{f}{g})" /> is the intersection of domains <InlineMath math="D_f" /> and <InlineMath math="D_g" />, but we must _exclude_ all values of <InlineMath math="x" /> that cause <InlineMath math="g(x) = 0" />.
+The domain of the division function <InlineMath math="(\frac{f}{g})" /> is the intersection of domains <InlineMath math="D_f" /> and <InlineMath math="D_g" />, but we must _exclude_ all values of <InlineMath math="x" /> that cause <InlineMath math="g(x) = 0" />.
 
 <BlockMath math="D_{\frac{f}{g}}=(D_f\cap D_g)\setminus\{x\mid g(x)=0\}" />
 

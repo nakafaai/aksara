@@ -3,7 +3,7 @@ export const metadata = {
     description: "Build an overdetermined linear system from data and understand why least squares gives the best-fitting polynomial when no exact solution exists.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Linear Methods of AI",
 };
 
@@ -11,9 +11,9 @@ export const metadata = {
 
 Suppose we want to fit a curve to measured data. We often have more observations than model parameters. Writing one equation for each observation then produces an **overdetermined linear system**.
 
-A system is overdetermined when the number <InlineMath math="m" /> of equations is greater than the number <InlineMath math="n" /> of unknowns, so <InlineMath math="m > n" />. An exact solution can still exist. With measurement data, however, the points usually do not lie exactly on the chosen model.
+A system is overdetermined when the number <InlineMath math="m" /> of equations is greater than the number <InlineMath math="n" /> of unknowns, so <InlineMath math="m > n" />. Such a system can have an exact solution. Measurement data usually contain points that do not lie exactly on the chosen model.
 
-## Real Example with Quadratic Polynomial Model
+## Quadratic Fit for Seven Observations
 
 Consider <InlineMath math="7" /> data points that we want to fit with a quadratic polynomial.
 
@@ -78,7 +78,7 @@ Appending <InlineMath math="b" /> forms the augmented matrix <InlineMath math="(
 
 <BlockMath math="\det\begin{pmatrix}9&-3&1&-2.2\\4&-2&1&-4.2\\1&-1&1&-4.2\\0&0&1&-1.8\end{pmatrix}=-\frac45" />
 
-so <InlineMath math="\operatorname{rank}(A\mid b)=4" />.
+This nonzero minor shows that <InlineMath math="\operatorname{rank}(A\mid b)=4" />.
 
 Because <InlineMath math="\operatorname{rank}(A) \ne \operatorname{rank}(A\mid b)" />, the system **has no exact solution**. No single quadratic polynomial passes through all <InlineMath math="7" /> observations.
 
@@ -108,7 +108,7 @@ The fitted values do not equal every observation, which is expected. The residua
 
 <BlockMath math="r=b-A\hat x=\begin{pmatrix}\frac1{15}\\-\frac2{35}\\-\frac17\\\frac{22}{105}\\-\frac15\\\frac8{35}\\-\frac{11}{105}\end{pmatrix}" />
 
-and it satisfies
+The residual vector <InlineMath math="r" /> satisfies
 
 <MathContainer>
 <BlockMath math="A^Tr=0" />

@@ -1,21 +1,19 @@
 export const metadata = {
     title: "Fungsi",
-    description: "Pelajari fungsi Python, termasuk parameter, return values, scope variabel, closure, dan error handling dengan contoh kode.",
+    description: "Definisikan fungsi Python dengan parameter dan return value, lalu pelajari scope, closure, dan error handling.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Pemrograman AI",
 };
 
-## Konsep Dasar Fungsi
+## Fungsi
 
-Fungsi memberi nama pada operasi yang dapat digunakan ulang. Parameter menjelaskan input yang diterima, body menjalankan pekerjaan, dan statement `return` dapat memberikan hasil kepada pemanggil.
-
-Dalam pemrograman, fungsi membantu kita menghindari penulisan kode yang sama berulang kali. Fungsi memiliki nama, dapat menerima parameter (data masukan), dan dapat mengembalikan nilai.
+Fungsi memberi nama pada sekumpulan instruksi agar logika yang sama dapat dijalankan tanpa menyalin kode. Parameter menyatakan input yang diterima, function body berisi kode yang dijalankan, dan statement `return` mengirimkan hasil kepada pemanggil.
 
 ## Struktur dan Sintaks Fungsi
 
-Setiap fungsi dalam Python memiliki struktur dasar yang terdiri dari beberapa komponen penting.
+Setiap fungsi Python mengikuti struktur dasar yang sama:
 
 <CodeBlock
   data={[
@@ -39,11 +37,11 @@ Komponen fungsi terdiri dari:
 3. Tanda kurung yang berisi daftar parameter (bisa kosong)
 4. Titik dua untuk mengakhiri baris definisi
 5. Blok kode yang diindentasi
-6. Pernyataan `return` opsional untuk mengembalikan nilai
+6. Statement `return` bersifat opsional dan mengembalikan nilai kepada pemanggil
 
 ## Cara Kerja Pemanggilan Fungsi
 
-Pemanggilan fungsi mengevaluasi ekspresi callable, mengikat argumen yang diberikan ke parameter, lalu mengeksekusi body fungsi di frame lokal baru.
+Saat fungsi dipanggil, Python memastikan nama atau ekspresi tersebut merujuk ke objek callable. Python kemudian memasangkan setiap argumen dengan parameter dan menjalankan function body di local scope baru.
 
 <CodeBlock
   data={[
@@ -67,10 +65,10 @@ print(sapa("Bob"))  # Output: Halo, Bob!`
 
 Proses yang terjadi saat pemanggilan fungsi:
 
-1. Python me-resolve nama atau ekspresi menjadi objek callable
-2. Argument binding mencocokkan nilai yang diberikan dengan signature fungsi
-3. Python mengeksekusi body dalam scope lokal baru
-4. `return` mengakhiri pemanggilan dengan nilai; mencapai akhir fungsi mengembalikan `None`
+1. Python mengevaluasi nama atau ekspresi dan memeriksa bahwa hasilnya callable
+2. Argument binding memasangkan setiap argumen dengan parameter pada definisi fungsi
+3. Python menjalankan function body di local scope baru
+4. `return` mengakhiri pemanggilan dengan nilai. Mencapai akhir fungsi mengembalikan `None`
 
 ## Parameter dan Argumen
 
@@ -101,16 +99,16 @@ print(perkenalan("Andi", umur=28, kota="Surabaya"))
   ]}
 />
 
-Aturan penting dalam penggunaan parameter:
+Aturan penggunaan parameter:
 
-1. Parameter posisi harus diberikan sesuai urutan
-2. Parameter kata kunci dapat diberikan dalam urutan apa saja
-3. Parameter posisi harus ditulis sebelum parameter kata kunci
-4. Parameter dengan nilai default bersifat opsional
+1. Argumen posisi diberikan sesuai urutan parameter
+2. Keyword argument dapat diberikan dalam urutan apa saja
+3. Argumen posisi ditulis sebelum keyword argument
+4. Parameter dengan default value tidak wajib diberi argumen
 
-### Parameter dengan Jumlah Variabel
+### Argumen Tambahan
 
-Python memungkinkan signature mengumpulkan jumlah argumen yang bervariasi melalui `*args` dan `**kwargs`. Batas praktis tetap ditentukan oleh resource dan pekerjaan yang dilakukan fungsi.
+Python dapat mengumpulkan argumen tambahan melalui `*args` dan `**kwargs`. Fungsi tetap perlu memeriksa jumlah, jenis, dan nilai argumen sesuai aturan yang dibutuhkan program.
 
 <CodeBlock
   data={[
@@ -145,11 +143,11 @@ info_siswa("Maya", umur=20, jurusan="Informatika", ipk=3.8)
   ]}
 />
 
-Parameter `*args` mengumpulkan argumen posisi tambahan ke dalam tuple, sedangkan `**kwargs` mengumpulkan argumen kata kunci tambahan ke dalam dictionary.
+Parameter `*args` mengumpulkan argumen posisi tambahan ke dalam `tuple`, sedangkan `**kwargs` mengumpulkan argumen kata kunci tambahan ke dalam `dictionary`.
 
-## Nilai Kembalian Fungsi
+## Return Value
 
-Fungsi dapat mengembalikan nilai menggunakan pernyataan `return`. Jika tidak ada `return` atau `return` tanpa nilai, fungsi akan mengembalikan `None`.
+Fungsi dapat mengembalikan nilai dengan statement `return`. Jika tidak ada `return`, atau jika `return` ditulis tanpa nilai, fungsi mengembalikan `None`.
 
 <CodeBlock
   data={[
@@ -185,22 +183,18 @@ print(f"Hasil fungsi cetak_pesan: {hasil}")  # Output: Hasil fungsi cetak_pesan:
   ]}
 />
 
-## Lingkup Variabel dalam Fungsi
+## Scope dalam Fungsi
 
-Variabel dalam Python memiliki lingkup (scope) yang menentukan di mana variabel dapat diakses. Pemahaman tentang lingkup variabel penting untuk menghindari kesalahan dalam program.
+Setiap nama dalam Python memiliki scope yang menentukan bagian program yang dapat mengaksesnya. Ketika beberapa scope memakai nama yang sama, Python mencarinya menurut urutan LEGB.
 
 <Mermaid
-  title="Di Mana Variabel Fungsi Bisa Dibaca"
-  description="Ikuti pencarian nama dari ruang lokal ke luar fungsi agar aturan scope mudah dilacak."
+  title="Urutan Pencarian Nama"
+  description="Python mencari nama dari Local Scope, lalu berlanjut ke Enclosing Scope, Global Scope, dan Built-in Scope."
   chart={`
     flowchart TD
-        A[Built-in Scope] --> B[Global Scope]
-        B --> C[Enclosing Scope]
-        C --> D[Local Scope]
-        A1[Fungsi bawaan] --> A
-        B1[Variabel global] --> B
-        C1[Variabel enclosing] --> C
-        D1[Variabel lokal] --> D
+        L[Local Scope] --> E[Enclosing Scope]
+        E --> G[Global Scope]
+        G --> B[Built In Scope]
   `}
 />
 
@@ -237,13 +231,13 @@ print(f"Counter akhir: {counter}")      # Output: Counter akhir: 1`
 Aturan pencarian variabel mengikuti urutan LEGB:
 
 1. **Local** - di dalam fungsi saat ini
-2. **Enclosing** - di fungsi yang membungkus (untuk nested functions)
+2. **Enclosing** - di fungsi yang membungkus fungsi saat ini
 3. **Global** - di level modul
-4. **Built-in** - nama built-in Python
+4. **Built-in** - nama yang disediakan Python
 
-## Fungsi sebagai Objek Kelas Pertama
+## Fungsi sebagai First Class Object
 
-Dalam Python, fungsi adalah objek kelas pertama, yang berarti fungsi dapat diperlakukan seperti data lainnya. Kamu dapat menyimpan fungsi dalam variabel, mengirimkan fungsi sebagai argumen, atau mengembalikan fungsi dari fungsi lain.
+Python memperlakukan fungsi sebagai nilai. Karena itu, fungsi dapat disimpan dalam variabel, diberikan sebagai argumen, atau dikembalikan oleh fungsi lain. Sifat ini disebut first class object.
 
 <CodeBlock
   data={[
@@ -279,7 +273,7 @@ print(f"Hasil: {hasil1}, {hasil2}")  # Output: Hasil: 14, 21`
 
 ## Dokumentasi Fungsi dengan Docstring
 
-Docstring adalah string literal yang ditempatkan sebagai pernyataan pertama dalam definisi fungsi. Isinya menjelaskan tujuan fungsi dan cara menggunakannya.
+Docstring adalah string literal yang ditempatkan sebagai statement pertama dalam definisi fungsi. Isinya menjelaskan tujuan fungsi dan cara menggunakannya.
 
 <CodeBlock
   data={[
@@ -329,12 +323,12 @@ Konvensi penulisan docstring yang baik:
 
 1. Baris pertama berisi ringkasan singkat fungsi
 2. Jika perlu penjelasan tambahan, pisahkan dengan baris kosong
-3. Jelaskan parameter, nilai kembalian, dan exception yang mungkin terjadi
+3. Jelaskan parameter, return value, dan exception yang mungkin terjadi
 4. Berikan contoh penggunaan jika membantu
 
-## Fungsi Bersarang dan Closure
+## Closure pada Fungsi Bersarang
 
-Python mengizinkan definisi fungsi di dalam fungsi lain. Ketika inner function yang dikembalikan mempertahankan free variable dari enclosing scope, fungsi dan environment yang dipertahankan itu membentuk closure.
+Python mengizinkan fungsi didefinisikan di dalam fungsi lain. Jika inner function dikembalikan, fungsi tersebut tetap dapat mengakses nama dari enclosing scope. Inner function beserta environment yang dipertahankan ini disebut `closure`.
 
 <CodeBlock
   data={[
@@ -385,9 +379,9 @@ print(calc['kali'](6, 7))    # Output: 42`
   ]}
 />
 
-## Penanganan Error dalam Fungsi
+## Error Handling dalam Fungsi
 
-Fungsi perlu menyatakan input yang diterima dan gagal secara eksplisit ketika kontrak itu dilanggar. Tangkap exception hanya ketika kode dapat memulihkan keadaan, menambah konteks yang berguna, atau menyajikan kegagalan kepada pengguna.
+Tentukan jenis dan nilai input yang diterima fungsi, lalu hasilkan error yang jelas ketika kontrak input dilanggar. Tangkap exception hanya ketika kode dapat memulihkan keadaan, menambahkan keterangan yang berguna, atau menjelaskan kegagalan kepada pengguna.
 
 <CodeBlock
   data={[
@@ -414,7 +408,7 @@ print(f"Hasil pembagian: {bagi(10, 2)}")
 print(konversi_ke_int("123"))
 # Output: 123
 
-# Tangkap di boundary presentasi tempat pemulihan memungkinkan
+# Tangkap error di lapisan presentasi yang dapat menanganinya
 for nilai in ("abc", [1, 2]):
     try:
         print(konversi_ke_int(nilai))

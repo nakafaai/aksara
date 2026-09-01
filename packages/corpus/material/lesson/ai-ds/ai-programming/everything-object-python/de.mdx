@@ -1,8 +1,9 @@
 export const metadata = {
     title: "In Python ist alles ein Objekt",
-    description: "Lerne, warum in Python Zahlen, Zeichenketten, Listen und Funktionen Objekte mit eigenen Attributen und Methoden sind.",
+  description: "In Python sind Zahlen, Zeichenketten, Listen und Funktionen Objekte mit eigenen Attributen und Methoden.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "KI-Programmierung",
 };
 
@@ -12,7 +13,7 @@ Python unterstützt mehrere Arten, ein Programm aufzubauen. Prozeduraler Code fo
 
 Während ein Programm läuft, ist jeder Python-Wert ein Objekt. Zahlen, Funktionen, Klassen und Module haben jeweils einen Typ, eine eindeutige Identität und einen gespeicherten Wert.
 
-Der Typ eines Objekts bestimmt seine Attribute und Methoden. Da diese Regel für alle Objekte gilt, kann eine Funktion in einer Liste stehen, eine Klasse an eine andere Funktion übergeben werden und eine Zahl Methoden haben. Der Aufbau des Programms kann trotzdem passend zur Aufgabe gewählt werden.
+Der Typ eines Objekts bestimmt seine Attribute und Methoden. Da diese Regel für alle Objekte gilt, kann eine Funktion in einer Liste stehen, eine Klasse an eine andere Funktion übergeben werden und eine Zahl Methoden haben. Pythons Objektmodell funktioniert mit prozeduralen, funktionalen und objektorientierten Programmstrukturen.
 
 ## Arten des Programmaufbaus im Vergleich
 
@@ -55,7 +56,7 @@ int main() {
   }]}
 />
 
-Hier speichert das C-`struct` den Parkzustand und jede Funktion erhält einen Zeiger darauf. Diese Organisation ist prozedural. Sie bedeutet nicht, dass jede prozedurale Funktion ihre Eingabe verändern muss.
+Hier speichert das C-`struct` den Parkzustand und jede Funktion erhält einen Zeiger darauf. Eine prozedurale Funktion kann eine Eingabe lesen und unverändert lassen.
 
 ### Objektorientierte Sprachen
 
@@ -88,11 +89,11 @@ print(f"Max: {ps.max}, Occupied: {ps.occ}")`
   }]}
 />
 
-Die Python-Version bündelt Parkinvarianten und Operationen in einer Klasse. Diese Grenze schützt gültigen Zustand aber nur, wenn ihre Methoden Eingaben prüfen und veränderliche Interna nicht unbedacht offenlegen.
+Die Python-Version speichert die Regeln und Operationen des Parksystems in einer Klasse. Die Klasse hält ihren Zustand gültig, indem sie jede Eingabe prüft und direkte Änderungen an ihren internen Daten verhindert.
 
 ## Parksystem am Beispiel
 
-Nehmen wir als Beispiel ein Parksystem, um das Konzept von Objekten zu verstehen. In der realen Welt weist ein Parksystem Merkmale wie die maximale Kapazität und die Anzahl der belegten Stellplätze auf. Dieses System kann auch Aktionen wie das Akzeptieren ein- oder ausfahrender Autos durchführen.
+In diesem Beispiel ist das Parksystem ein Objekt mit Zustand und Verhalten. Sein Zustand speichert die maximale Kapazität und die Zahl der belegten Stellplätze. Seine Methoden erfassen einfahrende und ausfahrende Autos.
 
 <CodeBlock
   data={[{
@@ -502,7 +503,7 @@ print(bool(zero))                    # False`
 
 ## Objektorientierte Programmierpraxis
 
-Wir wollen ein komplexeres Beispiel erstellen, um zu verstehen, wie OOP in realen Szenarien angewendet wird.
+Das folgende Beispiel verbindet mehrere Klassen, um Bücher, Mitglieder und Ausleihen in einer Bibliothek abzubilden.
 
 <CodeBlock
   data={[{
@@ -652,4 +653,4 @@ print(library.return_book("M001", "978-1234567890"))`
   }]}
 />
 
-Pythons Objektmodell erklärt, warum Werte, Funktionen und Klassen dieselben Sprachmechanismen durchlaufen können. Nutze objektorientierte Komposition, wenn Zustand und Verhalten eine sinnvolle Grenze bilden. Ein prozedurales oder funktionales Design bleibt besser, wenn es das Problem direkter ausdrückt.
+Pythons Objektmodell erklärt, warum Werte, Funktionen und Klassen dieselben Sprachmechanismen durchlaufen können. Nutze objektorientierte Komposition, wenn zusammengehöriger Zustand und Verhalten gemeinsam verwaltet werden müssen. Nutze ein prozedurales oder funktionales Design, wenn sich die Abfolge der Schritte oder der Datenfluss damit direkter erklären lässt.

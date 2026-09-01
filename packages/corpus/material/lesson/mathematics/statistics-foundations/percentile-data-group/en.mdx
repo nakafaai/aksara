@@ -1,13 +1,13 @@
 export const metadata = {
   title: "Percentiles for Grouped Data",
-  description: "Estimate percentiles of grouped data and interpret them from a cumulative-frequency table.",
+  description: "Estimate a grouped-data percentile from a cumulative-frequency table, then explain the percentile's position in the distribution.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Statistics",
 };
 
-## What Are Percentiles?
+## What Are Percentiles
 
 You already know that [quartiles](/en/subjects/mathematics/statistics-foundations/quartile-data-group) divide ordered data into <InlineMath math="4" /> equally populated parts. **Percentiles** extend the same idea.
 
@@ -16,12 +16,12 @@ Percentiles divide positions in ordered data into <InlineMath math="100" /> equa
 The <InlineMath math="99" /> interior cut points are commonly written <InlineMath math="P_1" />, <InlineMath math="P_2" />, <InlineMath math="P_3" />, ..., through <InlineMath math="P_{99}" />. Exact numerical values can vary with the percentile convention, especially for small samples.
 
 - <InlineMath math="P_{10}" /> (the <InlineMath math="10" />th percentile) marks the point at or below which
-  approximately <InlineMath math="10\%" /> of the observations lie; the other <InlineMath math="90\%" /> lie above it.
+  approximately <InlineMath math="10\%" /> of the observations lie. The other <InlineMath math="90\%" /> lie above it.
 - <InlineMath math="P_{50}" /> (the <InlineMath math="50" />th percentile) is the **median**
   or **second quartile (<InlineMath math="Q_2" />
-  )**. It marks the distribution's halfway rank; ties can prevent exactly half of the observed values from lying strictly on each side.
+  )**. It marks the distribution's halfway rank. Ties can prevent exactly half of the observed values from lying strictly on each side.
 - <InlineMath math="P_{85}" /> (the <InlineMath math="85" />th percentile) marks the point at or below which
-  approximately <InlineMath math="85\%" /> of the observations lie; about <InlineMath math="15\%" /> lie above it.
+  approximately <InlineMath math="85\%" /> of the observations lie. About <InlineMath math="15\%" /> lie above it.
 
 Percentiles describe a value's relative position in a distribution. They are used, for example, to compare a test score with the rest of a cohort or a child's growth measurement with a suitable reference group.
 
@@ -48,7 +48,7 @@ Once the percentile class is known, interpolate within it:
 
 <BlockMath math="P_i = T_b + \left( \frac{\frac{i}{100}n - F_{\text{cum}}}{f_i} \right) p" />
 
-where:
+The quantities in this formula are:
 
 - <InlineMath math="P_i" /> = estimated value of the requested percentile
 - <InlineMath math="T_b" /> = lower boundary of the percentile class
@@ -61,7 +61,7 @@ where:
 
 This is the quartile interpolation formula with <InlineMath math="\frac{i}{100}n" /> in place of <InlineMath math="\frac{i}{4}n" />.
 
-The interpolation assumes that observations are distributed uniformly within the selected class. It estimates a percentile from the grouped model; it does not reconstruct the original observations.
+The interpolation assumes that observations are distributed uniformly within the selected class. It estimates a percentile from the grouped model. It does not reconstruct the original observations.
 
 ## Finding Math Test Scores
 

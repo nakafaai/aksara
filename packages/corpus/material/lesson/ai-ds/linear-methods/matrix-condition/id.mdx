@@ -1,9 +1,9 @@
 export const metadata = {
   title: "Norma Matriks dan Bilangan Kondisi",
-  description: "Pahami norma matriks terinduksi, radius spektral, bilangan kondisi berbasis nilai singular, batas perturbasi, serta perbedaan kondisi masalah dan stabilitas algoritma.",
+   description: "Hubungkan norma matriks terinduksi, radius spektral, nilai singular, bilangan kondisi, dan batas perturbasi, lalu bedakan kondisi masalah dari stabilitas algoritma.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-13",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Metode Linear AI",
 };
 
@@ -64,13 +64,13 @@ Untuk matriks simetris yang dapat diinverskan, rumus ini menjadi
 
 Gunakan nilai eigen dengan magnitudo terkecil pada penyebut. Tanda positif atau negatif tidak menentukan pilihan ini.
 
-| Ukuran <InlineMath math="\kappa(A)" /> | Interpretasi |
+| Ukuran <InlineMath math="\kappa(A)" /> | Artinya |
 | --- | --- |
 | Dekat <InlineMath math="1" /> | Perturbasi relatif tidak diperbesar dengan kuat dalam kasus terburuk. |
 | Besar | Beberapa arah masukan dapat menimbulkan perubahan relatif yang jauh lebih besar pada solusi. |
 | Tak hingga | Matriks singular, sehingga masalah invers tidak memiliki solusi unik. |
 
-## Contoh dua dimensi
+## Sensitivitas Sistem Diagonal Dua Dimensi
 
 Perhatikan
 
@@ -88,23 +88,23 @@ Perubahan kecil pada <InlineMath math="b_2" /> diperbesar sebesar <InlineMath ma
 
 ## Batas perturbasi
 
-Misalkan <InlineMath math="Ax=b" /> dan
+Pertimbangkan sistem awal <InlineMath math="Ax=b" /> dan sistem yang mengalami perturbasi berikut.
 
 <BlockMath math="(A+\delta A)(x+\delta x)=b+\delta b" />
 
-menggunakan norma terinduksi yang sama. Jika
+Gunakan norma terinduksi yang sama untuk semua besaran. Batas berikut memerlukan syarat
 
 <BlockMath math="\kappa(A)\frac{\|\delta A\|}{\|A\|}<1" />
 
-maka perubahan relatif solusi dibatasi oleh
+Jika syarat tersebut terpenuhi, perubahan relatif solusi dibatasi oleh
 
 <BlockMath math="\frac{\|\delta x\|}{\|x\|}\le\frac{\kappa(A)}{1-\kappa(A)\|\delta A\|/\|A\|}\left(\frac{\|\delta b\|}{\|b\|}+\frac{\|\delta A\|}{\|A\|}\right)" />
 
 Batas ini menjelaskan kasus terburuk. Kebanyakan perturbasi dapat menghasilkan penguatan yang lebih kecil.
 
-## Kondisi masalah berbeda dari stabilitas algoritma
+## Kondisi Masalah dan Stabilitas Algoritma
 
-Kedua konsep ini menjawab pertanyaan yang berbeda:
+Kondisi masalah dan stabilitas algoritma menjelaskan dua sifat yang berbeda:
 
 - **kondisi masalah** menjelaskan sensitivitas masalah matematis terhadap perubahan masukan
 - **stabilitas** menjelaskan besar galat tambahan yang diperkenalkan oleh algoritma numerik

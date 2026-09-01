@@ -1,12 +1,13 @@
 export const metadata = {
   title: "Grundlagen von Folgen",
-  description: "Untersuche Zahlenfolgen anhand eines interaktiven Tisch-Stuhl-Musters, unterscheide arithmetische und geometrische Folgen und löse Musteraufgaben Schritt für Schritt.",
+  description: "Nutze ein Tisch-Stuhl-Muster, um Zahlenfolgen zu bilden und arithmetische von geometrischen Folgen anhand ihrer Änderungsgesetze zu unterscheiden.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Folgen und Reihen",
 };
 
-## Zahlenfolgen verstehen
+## Zahlenfolgen
 
 Eine Zahlenfolge ordnet Zahlen in einer festgelegten Reihenfolge an. Jede Zahl in der Folge heißt **Glied**. Dafür verwenden wir folgende Notation:
 
@@ -36,11 +37,9 @@ Das ergibt <InlineMath math="3,5,7,9,\ldots" />. Eine **rekursive Regel** gibt e
   <BlockMath math="U_{n+1}=U_n+2" />
 </MathContainer>
 
-Beide Regeln beschreiben dieselbe Folge. Mit der expliziten Form lässt sich ein weit entferntes Glied direkt berechnen. Die rekursive Form macht dagegen den Schritt von einem Glied zum nächsten sichtbar.
+Beide Regeln beschreiben dieselbe Folge. Mit der expliziten Form lässt sich ein weit entferntes Glied direkt berechnen. Die rekursive Form berechnet dagegen jedes neue Glied aus dem vorherigen.
 
-## Zahlenmuster im Alltag
-
-### Tische und Stühle erkunden
+## Zahlenmuster aus Tischen und Stühlen
 
 Ein einfaches Zahlenmuster entsteht, wenn quadratische Tische in einer Reihe zusammengestellt werden:
 
@@ -67,7 +66,7 @@ Wir können eine Tabelle erstellen, um das Muster zu beobachten:
 | ---------------- | --- | --- | --- | --- | --- | --- |
 | Anzahl Stühle | <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="8" /> | <InlineMath math="10" /> | <InlineMath math="12" /> | <InlineMath math="14" /> |
 
-Die Tabelle zeigt:
+Die Tabelle zeigt die ersten drei Paare:
 
 - Wenn es <InlineMath math="1 \text{Tisch}" /> gibt, gibt es <InlineMath math="4" /> Stühle
 - Wenn es <InlineMath math="2 \text{Tische}" /> gibt, gibt es <InlineMath math="6" /> Stühle
@@ -77,7 +76,7 @@ Mit jedem zusätzlichen <InlineMath math="1 \text{Tisch}" /> kommen <InlineMath 
 
 <BlockMath math="U_n = 2n + 2" />
 
-Wo:
+Dabei gilt:
 
 - <InlineMath math="U_n" /> ist die Anzahl der Stühle
 - <InlineMath math="n" /> ist die Anzahl der Tische
@@ -133,7 +132,7 @@ Beispiel einer Fibonacci-Folge: <InlineMath math="0, 1, 1, 2, 3, 5, 8, 13, \ldot
 
 Eine kurze Liste von Gliedern kann ein plausibles Muster nahelegen, erzwingt aber keine eindeutige Fortsetzung. Die Folge <InlineMath math="1,2,4" /> könnte mit <InlineMath math="8,16,\ldots" /> weitergehen, wenn jedes Glied verdoppelt wird. Eine andere Regel könnte zu den ersten drei Gliedern passen und sich ab dem vierten Glied unterscheiden.
 
-Eine vollständig definierte Folge braucht deshalb eine eindeutige Regel oder genügend Bedingungen. Ein erkanntes Muster ist ein sinnvoller Anfang, aber noch kein Beweis.
+Eine vollständig definierte Folge braucht eine eindeutige Regel oder genügend Bedingungen. Ein erkanntes Muster liefert eine Vermutung. Ein Beweis benötigt eine Regel, die jedes Glied bestimmt.
 
 ## Muster finden
 
@@ -144,7 +143,7 @@ So lässt sich das Muster einer Folge untersuchen:
 3. Falls nicht, prüfe, ob der Quotient konstant ist. Dann liegt eine geometrische Folge vor.
 4. Trifft beides nicht zu, untersuche andere mögliche Regeln.
 
-Mit dem Folgenbegriff lassen sich mathematische Probleme zu Zahlenmustern im Alltag klar beschreiben und lösen.
+Eine Folge ordnet jedem Index ein Glied zu. Ihre Regel kann explizit, rekursiv oder auf eine andere Weise angegeben werden.
 
 ## Übung
 

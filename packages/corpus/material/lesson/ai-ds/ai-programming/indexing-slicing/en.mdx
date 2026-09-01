@@ -1,15 +1,15 @@
 export const metadata = {
     title: "Indexing and Slicing",
-    description: "Python indexing and slicing for strings and lists with positive indices, negative indices, and stride usage.",
+    description: "Use positive and negative indices and slice steps to select items from Python strings and lists.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-17",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "AI Programming",
 };
 
-## Introduction to Indexing
+## Accessing One Element
 
-Indexing is a way to access specific elements in strings or lists using position numbers. Imagine you have a row of books on a shelf, and each book has a sequential number. Indexing allows you to pick a specific book based on its sequence number.
+Indexing selects one element of a string or list by its position. For example, if `letters = ["a", "b", "c"]`, then `letters[1]` returns `"b"`.
 
 Python starts its index numbers at <InlineMath math="0" />. The first element has index <InlineMath math="0" />, the second has index <InlineMath math="1" />, and so on. Python also supports negative indices that count backward from the end.
 
@@ -44,13 +44,13 @@ except IndexError:
 
 An index outside the valid range raises `IndexError`. This bounds check prevents Python sequences from returning an unrelated value.
 
-## Slicing Concept
+## Selecting Several Elements
 
-Slicing takes one part of a string or list that can contain several elements. Like choosing a slice from a loaf of bread, you set where the slice starts and stops.
+A slice selects several elements from a string or list. You set a start index, a stop index, and, when needed, the distance between selected elements.
 
-### Simple Slicing
+### Slices with Two Bounds
 
-Basic slicing syntax uses the format `[i:j]` where `i` is the start index and `j` is the end index. The result includes the start index and stops before the end index.
+The syntax `[i:j]` uses `i` as the start index and `j` as the stop index. The result includes the element at `i` but excludes the element at `j`.
 
 <CodeBlock
   data={[
@@ -76,11 +76,11 @@ print(s[-2:-4])  # Output: '' (empty string)`
   ]}
 />
 
-When the start index is greater than the end index in regular slicing, the result is an empty string or list. This is different from slicing using negative stride.
+When the start index is greater than the stop index and the step is positive, the result is an empty string or list. A negative step selects items in the opposite direction.
 
-### Slicing with Stride
+### Setting the Distance Between Items
 
-Stride is the third parameter in slicing that determines the step or distance between elements taken. Stride allows you to take elements with specific patterns.
+The third parameter in `[start:stop:step]` sets the distance between selected elements. A step of `2`, for example, selects one item and skips the next.
 
 <CodeBlock
   data={[
@@ -105,13 +105,13 @@ print(s[-1:4:-1])  # Output: '!dlroW'`
   ]}
 />
 
-Negative stride is very useful for reversing element order. When stride is <InlineMath math="-1" />, Python will take all elements from end to start.
+A negative step reverses the selection direction. With a step of <InlineMath math="-1" />, Python selects all elements from the end to the beginning.
 
-## Slicing Properties
+## Slice Rules
 
-Slicing has several important properties that need to be understood to avoid errors in usage.
+The following rules determine the selected elements and the length of a slice.
 
-### Length of Slicing Result
+### Counting the Selected Elements
 
 For the simple case <InlineMath math="0 \le i \le j \le n" /> with the default positive step, `s[i:j]` has length <InlineMath math="j-i" />. General slices may contain omitted, negative, or out-of-range bounds and a different step. Python first normalizes them against the sequence length. The exact count is `len(range(*slice(i, j, step).indices(len(s))))`.
 
@@ -140,11 +140,11 @@ print(s[10:])    # Output: '' (empty string)`
   ]}
 />
 
-One advantage of slicing is that it won't cause an error even if indices exceed the string or list length. Python automatically adjusts to valid bounds.
+Python clips slice bounds to the valid range of the string or list. Therefore, `s[3:10]` remains valid even when the stop index is greater than the length of `s`.
 
-## Slicing as Loop
+## Indices Selected by a Slice
 
-The indices selected by a slice can be modeled with a `range()`. This explains the result without claiming that every sequence type implements slicing as a Python-level loop.
+You can use `range()` to show which indices a slice selects. This model explains the result without making assumptions about how each Python type performs the operation internally.
 
 <CodeBlock
   data={[
@@ -178,13 +178,13 @@ print(f"Manual: '{result_negative}'")`
   ]}
 />
 
-Comparing the slice with its `range()` model makes the start, stop, and step rules visible, especially when the step is negative.
+Comparing the slice with its `range()` model shows how start, stop, and step work together, especially when the step is negative.
 
-## Slicing Variations
+## Slice Shorthand
 
-Python provides several shorthand ways to perform commonly used slicing.
+Omit the start or stop bound when the selection should extend to one end of the data.
 
-### Slicing from Start and End
+### From the Beginning or to the End
 
 You can leave the start or end parameter empty to take elements from the beginning or to the end of string/list.
 
@@ -223,11 +223,11 @@ print(f"Middle part: {middle}")`
   ]}
 />
 
-These slicing variations are very useful in data processing when you need to take specific parts from large datasets.
+These forms select a specific region or regularly spaced items from a larger dataset without a separate loop.
 
-## Practical Applications
+## Working with Parts of Strings and Lists
 
-Indexing and slicing are often used in various programming scenarios, from string manipulation to data processing.
+The examples below use indexing and slicing to reverse strings, format phone numbers, build initials, and check palindromes. The file extension example uses `Path.suffix` because extensions do not have a fixed length.
 
 <CodeBlock
   data={[
@@ -273,8 +273,8 @@ print(f"'kasur rusak' palindrome? {is_palindrome('kasur rusak')}")`
   ]}
 />
 
-These examples use indexing where a position is known and slicing where a contiguous or stepped subsequence is intended. Reversing a sequence with `[::-1]` is concise. File extensions are different: their length varies, so `Path.suffix` expresses that domain rule more reliably than a fixed slice.
+Use an index to select one item at a known position. Use a slice to select several adjacent or regularly spaced items. The form `[::-1]` reverses their order. For file extensions, avoid a fixed number of characters because extension lengths vary. `Path.suffix` reads the extension from the path structure.
 
-Slice bounds are clipped to the sequence, so `s[10:]` on a shorter string returns `""`. Direct indexing such as `s[10]` still raises `IndexError`. Choose the form that matches whether an empty subsequence makes sense for your task.
+Slice bounds are clipped to the sequence, so `s[10:]` on a shorter string returns `""`. Direct indexing such as `s[10]` still raises `IndexError`. Use a slice only when an empty result is acceptable.
 
-Negative indices let you count from the end. Use `s[-1]` for the last element or `s[-3:]` for the last three elements. This approach is useful in file processing, text parsing, and dataset work when you care about a position near the end.
+Negative indices count from the end. Use `s[-1]` for the last element or `s[-3:]` for the last three elements. This form selects positions near the end during file processing, text parsing, or dataset work.

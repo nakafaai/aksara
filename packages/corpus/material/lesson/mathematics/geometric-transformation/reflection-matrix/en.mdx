@@ -4,7 +4,7 @@ export const metadata = {
   description: "Derive the four basic reflection matrices and apply them to points and triangles.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometric Transformation",
 };
 
@@ -24,7 +24,7 @@ By equating the coefficients, we get:
 - <InlineMath math="rx + sy = 1x + 0y \implies r=1, s=0" />
 - <InlineMath math="tx + uy = 0x - 1y \implies t=0, u=-1" />
 
-Thus, the reflection matrix for the <InlineMath math="x" />-axis is <InlineMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+The reflection matrix for the <InlineMath math="x" />-axis is <InlineMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />.
 
 ## Reflection Matrix for Vertical Axis
 
@@ -82,7 +82,7 @@ Using the reflection matrix for the <InlineMath math="x" />-axis:
 
 <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 3 \\ -4 \end{pmatrix} = \begin{pmatrix} (1)(3) + (0)(-4) \\ (0)(3) + (-1)(-4) \end{pmatrix} = \begin{pmatrix} 3 \\ 4 \end{pmatrix}" />
 
-Thus, the image is <InlineMath math="(3,4)" />.
+The image is <InlineMath math="(3,4)" />.
 
 ## Finding the Image of a Triangle using Matrix
 
@@ -99,7 +99,7 @@ The matrix of triangle <InlineMath math="ABC" />'s vertices: <InlineMath math="\
   <BlockMath math="= \begin{pmatrix} (-1)(3)+0 & (-1)(-2)+0 & (-1)(2)+0 \\ 0+(1)(1) & 0+(1)(3) & 0+(1)(-1) \end{pmatrix} = \begin{pmatrix} -3 & 2 & -2 \\ 1 & 3 & -1 \end{pmatrix}" />
 </MathContainer>
 
-Thus, the image is triangle <InlineMath math="A'B'C'" /> with vertices <InlineMath math="A'(-3,1)" />, <InlineMath math="B'(2,3)" />, and <InlineMath math="C'(-2,-1)" />.
+The image is triangle <InlineMath math="A'B'C'" /> with vertices <InlineMath math="A'(-3,1)" />, <InlineMath math="B'(2,3)" />, and <InlineMath math="C'(-2,-1)" />.
 
 <LineEquation
   title={
@@ -129,6 +129,7 @@ Thus, the image is triangle <InlineMath math="A'B'C'" /> with vertices <InlineMa
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#d97706",
       showPoints: true,
       labels: [{ text: segment.from.label, at: 0, offset: [0.3, 0.3, 0] }],
@@ -148,6 +149,7 @@ Thus, the image is triangle <InlineMath math="A'B'C'" /> with vertices <InlineMa
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [{ text: segment.from.label, at: 0, offset: [0.3, 0.3, 0] }],

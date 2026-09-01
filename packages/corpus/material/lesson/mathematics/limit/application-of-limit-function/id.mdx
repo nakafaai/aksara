@@ -3,7 +3,7 @@ export const metadata = {
     description: "Terapkan limit pada model kesehatan, ekonomi, populasi, sinyal, dan reaksi yang disederhanakan sambil memeriksa batas kesimpulan setiap model.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Limit",
 };
 
@@ -17,7 +17,7 @@ Perhatikan fungsi yang sengaja disederhanakan berikut:
 
 <BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190{,}68)^3}" />
 
-Di sini, <InlineMath math="N(t)" /> ditafsirkan sebagai jumlah kasus dalam model, sedangkan <InlineMath math="t" /> adalah input tak negatif yang satuannya harus ditentukan sesuai skenario.
+Di sini, <InlineMath math="N(t)" /> menyatakan jumlah kasus dalam model, sedangkan <InlineMath math="t" /> adalah input tak negatif yang satuannya harus ditentukan sesuai skenario.
 
 Untuk menguji apakah rumus ini tetap bermakna dalam jangka panjang, hitung:
 
@@ -36,7 +36,7 @@ Jadi,
 <BlockMath math="\lim_{t \to \infty} N(t) = \lim_{t \to \infty} (285000 - t) = -\infty" />
 </MathContainer>
 
-> Hasil negatif memperlihatkan bahwa **daerah berlaku model ini terbatas**. Jumlah kasus tidak mungkin negatif, sehingga rumus hanya bermakna selama <InlineMath math="N(t) \geq 0" />. Model fiktif ini bukan ramalan epidemiologis dan tidak boleh digunakan sebagai panduan medis atau kebijakan.
+> Jumlah kasus yang negatif menunjukkan bahwa rumus dipakai di luar rentang waktu yang dapat dimodelkan. Karena jumlah kasus tidak mungkin negatif, rumus hanya bermakna selama <InlineMath math="N(t) \geq 0" />. Model fiktif ini bukan ramalan epidemiologis dan tidak boleh digunakan sebagai panduan medis atau kebijakan.
 
 ### Menafsirkan Target Vaksinasi
 
@@ -54,7 +54,7 @@ Dalam model biaya yang dapat diturunkan, **biaya marginal** adalah laju sesaat p
 
 <BlockMath math="\text{Biaya Marginal} = \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x}" />
 
-dimana:
+Pada definisi ini:
 - <InlineMath math="C(x)" /> = fungsi total biaya produksi untuk <InlineMath math="x \text{ unit}" />
 - <InlineMath math="\Delta x" /> = perubahan kecil dalam jumlah produksi
 - Limit memberikan **laju perubahan sesaat** biaya terhadap produksi
@@ -110,7 +110,7 @@ Kesimpulan ini hanya berlaku untuk model orde satu yang tidak dapat balik terseb
 
     <BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190{,}68)^3}" />
 
-    dimana:
+    dengan:
     - <InlineMath math="N(t)" /> = jumlah kasus positif yang tersisa
     - <InlineMath math="t" /> = jumlah orang yang telah divaksinasi
 
@@ -140,7 +140,7 @@ Kesimpulan ini hanya berlaku untuk model orde satu yang tidak dapat balik terseb
 
     <BlockMath math="\frac{282{.}367}{318{.}671{,}78}\times 100\% \approx 88{,}6\%" />
 
-    Jadi, target vaksinasi sekitar <InlineMath math="88{,}6\%" /> dari jumlah dewasa yang memenuhi syarat dalam skenario fiktif ini. Target tersebut diberikan oleh soal; perhitungan ini tidak membenarkan cara menetapkan target nyata.
+    Jadi, target vaksinasi sekitar <InlineMath math="88{,}6\%" /> dari jumlah dewasa yang memenuhi syarat dalam skenario fiktif ini. Target tersebut diberikan oleh soal. Perhitungan ini tidak membenarkan cara menetapkan target nyata.
 
 4. **Penyelesaian:**
 
@@ -152,7 +152,7 @@ Kesimpulan ini hanya berlaku untuk model orde satu yang tidak dapat balik terseb
 
     <BlockMath math="(190{,}68)^3 = 190{,}68 \times 190{,}68 \times 190{,}68 = 6{.}932{.}907{,}88" />
 
-    Nilai yang ditampilkan dibulatkan hingga dua angka desimal; perhitungan berikutnya tetap memakai nilai yang belum dibulatkan.
+    Nilai yang ditampilkan dibulatkan hingga dua angka desimal. Perhitungan berikutnya tetap memakai nilai yang belum dibulatkan.
 
     **Langkah** <InlineMath math="2" />: Hitung <InlineMath math="(282{.}367)^2" />
 
@@ -170,7 +170,7 @@ Kesimpulan ini hanya berlaku untuk model orde satu yang tidak dapat balik terseb
     <BlockMath math="= 2{.}621{,}22 \approx 2{.}621 \text{ orang}" />
     </MathContainer>
 
-5. **Interpretasi Hasil:**
+5. **Arti Hasil:**
 
     Pada <InlineMath math="282{.}367" /> orang yang divaksinasi, rumus yang diberikan menghasilkan sekitar <InlineMath math="2{.}621" /> kasus positif tersisa. Nilai ini adalah keluaran model fiktif, **bukan ramalan dunia nyata** atau dasar yang cukup untuk mengalokasikan sumber daya kesehatan.
 
@@ -189,7 +189,7 @@ Nilai <InlineMath math="2{.}621 \text{ kasus}" /> menjawab pertanyaan matematis 
 
 1. Sebuah perusahaan farmasi memodelkan produksi vaksin kumulatif dengan <InlineMath math="P(t) = 50000(1 - e^{-0{,}1t})" /> untuk <InlineMath math="t \geq 0" />. Tentukan batas produksi jangka panjang yang diprediksi model.
 
-2. Jangkauan kumulatif sebuah pesan media sosial dimodelkan dengan <InlineMath math="I(t) = \frac{100000t}{t + 50}" /> untuk <InlineMath math="t \geq 0" />. Hitung limit ketika <InlineMath math="t \to \infty" /> dan tafsirkan hasilnya di dalam model.
+2. Jangkauan kumulatif sebuah pesan media sosial dimodelkan dengan <InlineMath math="I(t) = \frac{100000t}{t + 50}" /> untuk <InlineMath math="t \geq 0" />. Hitung limit ketika <InlineMath math="t \to \infty" /> dan jelaskan jangkauan jangka panjang yang diprediksi model.
 
 3. Model biaya total untuk memproduksi <InlineMath math="x" /> masker adalah <InlineMath math="C(x) = 1000 + 5x + 0{,}01x^2" />. Tentukan fungsi biaya marginal dengan definisi limit, lalu bandingkan dengan tambahan biaya tepat ketika produksi naik dari <InlineMath math="x" /> menjadi <InlineMath math="x+1" />.
 

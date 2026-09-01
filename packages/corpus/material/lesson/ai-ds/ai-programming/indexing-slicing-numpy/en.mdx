@@ -1,9 +1,9 @@
 export const metadata = {
   title: "Indexing and Slicing with NumPy",
-  description: "Learn NumPy indexing and slicing techniques for 1D arrays, 2D arrays, boolean masks, and advanced indexing with code examples.",
+  description: "Select data from one-dimensional and two-dimensional NumPy arrays with indices, slices, Boolean masks, and index arrays.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-09-20",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "AI Programming",
 };
 
@@ -11,9 +11,9 @@ export const metadata = {
 
 Indexing selects values at specific positions, while slicing selects a range along one or more axes. A Python list slice creates a new list. Basic NumPy slicing usually creates a view that shares the original array's data, whereas integer-array and boolean advanced indexing create copies.
 
-Views avoid copying data, but a write through a view also changes the corresponding values in the original array. The [NumPy indexing documentation](https://numpy.org/doc/stable/user/basics.indexing.html) covers the exact rules for basic and advanced selections.
+Views avoid copying data, but a write through a view also changes the corresponding values in the original array. [NumPy](https://numpy.org/doc/stable/user/basics.indexing.html) explains the exact rules for basic and advanced selections.
 
-## One-Dimensional Array Operations
+## One Dimensional Array Operations
 
 One-dimensional arrays use familiar Python indexing syntax. A basic slice such as `a[1:4]` returns a view, so changing that view changes the same elements in `a`.
 
@@ -43,7 +43,7 @@ print("After a[:3] = 0:", a)  # Output: After a[:3] = 0: [0. 0. 0. 3. 4. 5. 6. 7
   ]}
 />
 
-The next example makes the ownership difference concrete: a view shares storage, while `.copy()` allocates independent data.
+The next example changes a view and a copy separately. The view shares storage with the original array, while `.copy()` allocates independent data.
 
 <CodeBlock
   data={[
@@ -153,7 +153,7 @@ print(a[:, ::2])
   ]}
 />
 
-### Two-Dimensional Operations Summary
+### Two Dimensional Operations Summary
 
 | Operation | Description | Example Result |
 |-----------|-------------|----------------|
@@ -501,9 +501,9 @@ print(a[[0, 2], 1:4])
   ]}
 />
 
-## Practical Applications
+## Selecting and Rearranging Array Data
 
-The same selection rules support filtering, sampling, and rearranging data without hand-written loops.
+Use the same selection rules to filter rows, draw samples, and rearrange data without writing loops.
 
 This example demonstrates masks and assignment. In a real analysis, the measurement context must determine the temperature thresholds and replacement rule:
 

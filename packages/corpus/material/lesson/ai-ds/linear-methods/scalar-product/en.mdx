@@ -3,13 +3,13 @@ export const metadata = {
   description: "Build real and complex inner products from positive-definite matrices, then use them to define length, angle, orthogonality, and projection.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-13",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Linear Methods of AI",
 };
 
 ## What an Inner Product Adds
 
-A vector space describes addition and scalar multiplication. An inner product adds geometry: it lets us measure length, angle, and orthogonality. This lesson uses the convention that a complex inner product is conjugate-linear in its first argument and linear in its second.
+A vector space describes addition and scalar multiplication. An inner product defines length, angle, and orthogonality. This lesson uses the convention that a complex inner product is conjugate-linear in its first argument and linear in its second.
 
 For <InlineMath math="x,y,z\in\mathbb{C}^n" /> and <InlineMath math="\lambda,\mu\in\mathbb{C}" />, an inner product satisfies
 
@@ -22,19 +22,19 @@ For <InlineMath math="x,y,z\in\mathbb{C}^n" /> and <InlineMath math="\lambda,\mu
 
 Conjugate symmetry guarantees that <InlineMath math="\langle x,x\rangle" /> is real. Over <InlineMath math="\mathbb{R}^n" />, complex conjugation disappears, so the inner product is symmetric and bilinear.
 
-## Matrix-Weighted Inner Products
+## Matrix Weighted Inner Products
 
 For real vectors, the formula
 
 <BlockMath math="\langle x,y\rangle_A=x^TAy" />
 
-defines an inner product exactly when <InlineMath math="A" /> is symmetric positive definite. Symmetry of <InlineMath math="A" /> gives symmetry of the pairing, and <InlineMath math="x^TAx>0" /> for every nonzero <InlineMath math="x" /> gives strict positivity.
+This formula defines an inner product exactly when <InlineMath math="A" /> is symmetric positive definite. Symmetry of <InlineMath math="A" /> gives symmetry of the pairing, and <InlineMath math="x^TAx>0" /> for every nonzero <InlineMath math="x" /> gives strict positivity.
 
 For complex vectors, the corresponding formula is
 
 <BlockMath math="\langle x,y\rangle_A=x^HAy" />
 
-where <InlineMath math="A" /> must be Hermitian positive definite. Merely saying that <InlineMath math="A" /> has positive entries or positive diagonal entries is not enough.
+In this formula, <InlineMath math="A" /> must be Hermitian positive definite. Merely saying that <InlineMath math="A" /> has positive entries or positive diagonal entries is not enough.
 
 The standard Euclidean inner products are recovered with <InlineMath math="A=I" />:
 
@@ -43,7 +43,7 @@ The standard Euclidean inner products are recovered with <InlineMath math="A=I" 
 <BlockMath math="\langle x,y\rangle=x^Hy\qquad\text{over }\mathbb{C}^n" />
 </MathContainer>
 
-## Length, Angle, and Orthogonality
+## Length Angle and Orthogonality
 
 Every inner product induces the norm
 
@@ -53,13 +53,13 @@ The Cauchy-Schwarz inequality
 
 <BlockMath math="|\langle x,y\rangle_A|\le\|x\|_A\|y\|_A" />
 
-ensures that, for nonzero real vectors, the angle is well defined by
+For nonzero real vectors, this inequality ensures that the angle can be defined by
 
 <BlockMath math="\cos\theta_A=\frac{\langle x,y\rangle_A}{\|x\|_A\|y\|_A}" />
 
 Vectors are <InlineMath math="A" />-orthogonal when <InlineMath math="\langle x,y\rangle_A=0" />. Changing <InlineMath math="A" /> changes the geometry, so vectors that are perpendicular in the Euclidean metric need not be perpendicular in a weighted metric.
 
-## Worked Weighted Example
+## Comparing Euclidean and Weighted Angles
 
 Let
 
@@ -76,9 +76,9 @@ The positive eigenvalues confirm that <InlineMath math="A" /> is symmetric posit
 <BlockMath math="\cos\theta_A=\frac{1}{\sqrt2\sqrt2}=\frac12,\qquad \theta_A=60^\circ" />
 </MathContainer>
 
-Thus the same coordinate vectors are perpendicular in the Euclidean geometry but form a <InlineMath math="60^\circ" /> angle in the <InlineMath math="A" />-geometry.
+The same coordinate vectors are perpendicular in the Euclidean geometry but form a <InlineMath math="60^\circ" /> angle in the <InlineMath math="A" />-geometry.
 
-## Complex Example
+## Orthogonal Complex Vectors with Conjugation
 
 For the standard inner product, take
 

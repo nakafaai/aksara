@@ -3,6 +3,7 @@ export const metadata = {
   description: "Leite orthogonale Projektionen aus dem Satz über die beste Approximation her, berechne sie mit orthonormalen und beliebigen Basen und prüfe ihre Geometrie numerisch.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Lineare Methoden der KI",
 };
 
@@ -39,7 +40,7 @@ Gleichheit gilt nur für <InlineMath math="\varphi=g" />. Damit sind sowohl die 
 
 ## Formel für eine orthonormale Basis
 
-Ist <InlineMath math="\varphi_1,ldots,arphi_n" /> eine orthonormale Basis von <InlineMath math="S" />, dann gilt
+Ist <InlineMath math="\varphi_1,\ldots,\varphi_n" /> eine orthonormale Basis von <InlineMath math="S" />, dann gilt
 
 <MathContainer>
 <BlockMath math="P_Sf=\sum_{i=1}^n\langle f,\varphi_i\rangle\varphi_i" />
@@ -52,9 +53,9 @@ Für eine reelle Matrix <InlineMath math="Q\in\mathbb{R}^{m\times n}" /> mit ort
 
 <BlockMath math="P=QQ^T" />
 
-Vektoren aus <InlineMath math="\mathbb{R}^m" /> auf <InlineMath math="\operatorname{col}(Q)" />.
+Die Matrix <InlineMath math="P" /> projiziert Vektoren aus <InlineMath math="\mathbb{R}^m" /> auf <InlineMath math="\operatorname{col}(Q)" />.
 
-## Vektorrechnung als Beispiel
+## Einen Vektor auf einen eindimensionalen Unterraum projizieren
 
 Projiziere
 
@@ -63,7 +64,7 @@ Projiziere
 <BlockMath math="u=\begin{pmatrix}2\\1\end{pmatrix}" />
 </MathContainer>
 
-auf <InlineMath math="S=\operatorname{span}\{u\}" />. Der Projektionskoeffizient ist
+Projiziere den Vektor <InlineMath math="f" /> auf <InlineMath math="S=\operatorname{span}\{u\}" />. Der Projektionskoeffizient ist
 
 <BlockMath math="\frac{\langle f,u\rangle}{\langle u,u\rangle}=\frac{1\cdot2+3\cdot1}{2^2+1^2}=1" />
 
@@ -111,21 +112,21 @@ Sei <InlineMath math="\psi_1,ldots,psi_n" /> eine beliebige Basis von <InlineMat
 Die Orthogonalitätsbedingungen ergeben das Gram-System
 
 <MathContainer>
-<BlockMath math="\sum_{i=1}^n\langle\psi_i,\psi_k\rangle\alpha_i=\langle f,\psi_k\rangle,\qquad k=1,ldots,n" />
+<BlockMath math="\sum_{i=1}^n\langle\psi_i,\psi_k\rangle\alpha_i=\langle f,\psi_k\rangle,\qquad k=1,\ldots,n" />
 <BlockMath math="G\alpha=c" />
 </MathContainer>
 
-mit <InlineMath math="G_{ki}=\langle\psi_i,psi_k\rangle" /> und <InlineMath math="c_k=\langle f,psi_k\rangle" />. Da die Basisvektoren linear unabhängig sind, gilt
+In diesem System gilt <InlineMath math="G_{ki}=\langle\psi_i,psi_k\rangle" /> und <InlineMath math="c_k=\langle f,psi_k\rangle" />. Da die Basisvektoren linear unabhängig sind, gilt
 
 <BlockMath math="z^TGz=\left\|\sum_{i=1}^nz_i\psi_i\right\|^2>0\qquad\text{für }z\ne0" />
 
-Somit ist <InlineMath math="G" /> symmetrisch positiv definit und die Koeffizienten sind eindeutig.
+Die Ungleichung zeigt, dass <InlineMath math="G" /> symmetrisch positiv definit ist. Deshalb sind die Projektionskoeffizienten eindeutig.
 
 Sind die Spalten einer Matrix <InlineMath math="A" /> mit vollem Spaltenrang die Basisvektoren, dann ist
 
 <BlockMath math="P=A(A^TA)^{-1}A^T" />
 
-derselbe orthogonale Projektor. Diese Identität ist für die Analyse nützlich. In numerischer Software sind QR oder SVD meist vorzuziehen, weil die Bildung von <InlineMath math="A^TA" /> die Konditionszahl quadriert.
+Die Matrix <InlineMath math="P" /> ist derselbe orthogonale Projektor. Die Formel gibt die algebraische Form des Projektors an. Berechne die Projektion numerisch mit <InlineMath math="\mathrm{QR}" /> oder <InlineMath math="\mathrm{SVD}" />, weil die Bildung von <InlineMath math="A^TA" /> die Konditionszahl quadriert.
 
 ## Beispiel aus einem Funktionenraum
 

@@ -3,17 +3,17 @@ export const metadata = {
   description: "Geser grafik fungsi ke kiri atau kanan, turunkan aturan tandanya, lalu telusuri perubahan domain dan range.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Transformasi Fungsi",
 };
 
 
 
-## Konsep Dasar Translasi Horizontal
+## Translasi Horizontal
 
 Translasi horizontal menggeser grafik fungsi ke kiri atau ke kanan sepanjang sumbu <InlineMath math="x" /> tanpa mengubah bentuknya. Setiap titik berpindah sejauh jarak horizontal yang sama, seperti sebuah benda yang digeser di atas meja.
 
-Jika kita memiliki fungsi <InlineMath math="f(x)" />, maka translasi horizontal menghasilkan fungsi baru <InlineMath math="g(x) = f(x - h)" /> dimana <InlineMath math="h" /> adalah konstanta translasi.
+Jika kita memiliki fungsi <InlineMath math="f(x)" />, translasi horizontal menghasilkan fungsi baru <InlineMath math="g(x) = f(x - h)" />. Konstanta <InlineMath math="h" /> menentukan arah dan jarak pergeserannya.
 
 ### Aturan Translasi Horizontal
 
@@ -21,7 +21,7 @@ Untuk setiap fungsi <InlineMath math="f(x)" />, translasi horizontal didefinisik
 
 <BlockMath math="g(x) = f(x - h)" />
 
-Dimana:
+Aturan pergeserannya adalah:
 - Jika <InlineMath math="h > 0" />, grafik bergeser ke **kanan** sebesar <InlineMath math="h \text{ satuan}" />
 - Jika <InlineMath math="h < 0" />, grafik bergeser ke **kiri** sebesar <InlineMath math="|h| \text{ satuan}" />
 - Jika <InlineMath math="h = 0" />, tidak ada translasi (grafik tetap sama)
@@ -86,6 +86,7 @@ Aturan translasi yang sama berlaku pada fungsi linear <InlineMath math="f(x) = 2
         const x = (i - 10) * 0.5;
         return { x, y: 2 * x + 1, z: 0 };
       }),
+      smooth: false,
       color: "#7c3aed",
       labels: [{ text: <InlineMath math="f(x)=2x+1" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -95,6 +96,7 @@ Aturan translasi yang sama berlaku pada fungsi linear <InlineMath math="f(x) = 2
         const x = (i - 10) * 0.5;
         return { x, y: 2 * (x - 4) + 1, z: 0 };
       }),
+      smooth: false,
       color: "#d97706",
       labels: [{ text: <InlineMath math="g(x)=2(x-4)+1" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -104,6 +106,7 @@ Aturan translasi yang sama berlaku pada fungsi linear <InlineMath math="f(x) = 2
         const x = (i - 10) * 0.5;
         return { x, y: 2 * (x + 3) + 1, z: 0 };
       }),
+      smooth: false,
       color: "#0891b2",
       labels: [{ text: <InlineMath math="h(x)=2(x+3)+1" />, offset: [1, 0.5, 0] }],
       showPoints: false,
@@ -116,7 +119,7 @@ Ketiga garis menunjukkan:
 - Fungsi <InlineMath math="g(x) = 2(x - 4) + 1" /> bergeser ke kanan <InlineMath math="4 \text{ satuan}" />
 - Fungsi <InlineMath math="h(x) = 2(x + 3) + 1" /> bergeser ke kiri <InlineMath math="3 \text{ satuan}" />
 
-## Sifat Penting Translasi Horizontal
+## Sifat Translasi Horizontal
 
 ### Bentuk Grafik Tidak Berubah
 
@@ -133,9 +136,7 @@ Jika titik <InlineMath math="(a, b)" /> berada pada grafik <InlineMath math="f(x
 
 Jika domain fungsi asli adalah <InlineMath math="[c, d]" />, maka domain setelah translasi horizontal <InlineMath math="h" /> menjadi <InlineMath math="[c + h, d + h]" />.
 
-## Contoh Penerapan
-
-### Contoh Fungsi Eksponensial
+## Menggeser Grafik Eksponensial secara Horizontal
 
 Fungsi eksponensial <InlineMath math="f(x) = 2^x" /> mempertahankan bentuk dan asimtotnya setelah translasi horizontal.
 
@@ -188,13 +189,13 @@ Translasi horizontal dan vertikal bekerja pada bagian yang berbeda dari aturan f
 ### Translasi Horizontal
 
 - Mengubah input fungsi: <InlineMath math="f(x - h)" />
-- Mempengaruhi posisi x dari setiap titik
+- Memengaruhi posisi x dari setiap titik
 - Domain berubah, range tetap
 
 ### Translasi Vertikal
 
 - Mengubah output fungsi: <InlineMath math="f(x) + k" />
-- Mempengaruhi posisi y dari setiap titik
+- Memengaruhi posisi y dari setiap titik
 - Domain tetap, range berubah
 
 ## Latihan

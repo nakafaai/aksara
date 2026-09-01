@@ -1,29 +1,29 @@
 export const metadata = {
     title: "Concept of Limit Function",
-    description: "Understand limits through value tables, one-sided behavior, the epsilon-delta definition, and fully worked examples.",
+  description: "Estimate limits from value tables and one-sided behavior, then interpret the epsilon-delta definition.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Limits",
 };
 
-## Understanding Limits Intuitively
+## What a Limit Describes
 
-A **limit** asks what nearby output values are doing as the input approaches a chosen point. It does **not** begin by asking for the value at that point. This distinction lets us describe a removable hole, a jump, or a vertical asymptote without pretending that the function must be defined there.
+A **limit** asks what nearby output values do as the input approaches a chosen point. It does **not** begin by asking for the value at that point. Therefore, a limit can describe a removable hole, a jump, or a vertical asymptote even when the function is not defined at the chosen point.
 
-Limits provide the language used to define continuity, derivatives, and definite integrals. We will first read the behavior from a value table, then connect that intuition to one-sided limits and the precise epsilon-delta definition.
+Continuity, derivatives, and definite integrals are all defined using limits. We will first read the pattern from a value table, then connect it to one-sided limits and the precise epsilon-delta definition.
 
 ## Approach Through Value Tables
 
-To understand limits more concretely, see how function values change when the variable approaches a certain point. Suppose we have function <InlineMath math="f(x) = x + 2" /> and want to see what happens when <InlineMath math="x" /> approaches <InlineMath math="3" />.
+The table below records how <InlineMath math="f(x) = x + 2" /> changes as <InlineMath math="x" /> approaches <InlineMath math="3" /> from both sides.
 
 | <InlineMath math="x" /> | <InlineMath math="2.9" /> | <InlineMath math="2.99" /> | <InlineMath math="2.999" /> | ... | <InlineMath math="3.001" /> | <InlineMath math="3.01" /> | <InlineMath math="3.1" /> |
 |-------------|-----|------|-------|-----|-------|------|-----|
 | <InlineMath math="f(x)" /> | <InlineMath math="4.9" /> | <InlineMath math="4.99" /> | <InlineMath math="4.999" /> | ... | <InlineMath math="5.001" /> | <InlineMath math="5.01" /> | <InlineMath math="5.1" /> |
 
-From the table above, we can see that when <InlineMath math="x" /> approaches <InlineMath math="3" /> from the left (values <InlineMath math="x < 3" />) and from the right (values <InlineMath math="x > 3" />), the value of <InlineMath math="f(x)" /> approaches <InlineMath math="5" />. **This approaching value is called the limit**.
+As <InlineMath math="x" /> approaches <InlineMath math="3" /> from either side, the table values of <InlineMath math="f(x)" /> approach <InlineMath math="5" />. **That approaching value is the limit**.
 
-## Notation, One-Sided Limits, and Formal Meaning
+## Notation One Sided Limits and Formal Meaning
 
 The standard notation is:
 
@@ -53,7 +53,7 @@ In words, for every requested output tolerance <InlineMath math="\varepsilon>0" 
 
 ## Application of Limits
 
-### Simple Example
+### Evaluating a Limit by Direct Substitution
 
 Find <InlineMath math="\lim_{x \to 4} (2x - 1)" />.
 
@@ -63,7 +63,7 @@ Since the function <InlineMath math="f(x) = 2x - 1" /> is continuous at <InlineM
 
 <BlockMath math="\lim_{x \to 4} (2x - 1) = 2(4) - 1 = 8 - 1 = 7" />
 
-### Example with Indeterminate Form
+### Simplifying an Indeterminate Form Before Taking the Limit
 
 Find <InlineMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2}" />.
 
@@ -82,7 +82,7 @@ Since a limit concerns nearby values with <InlineMath math="x \neq 2" />, we may
 
 ## Basic Properties of Limits
 
-Some important properties that facilitate limit calculations:
+The following properties are used to calculate limits:
 
 1. **Linearity Property:**
 
@@ -129,7 +129,7 @@ Some important properties that facilitate limit calculations:
 
 3. **Solution:**
 
-   This is a **fundamental trigonometric limit** that is very important in calculus. This limit cannot be solved by direct substitution because it would yield the form <InlineMath math="\frac{0}{0}" />. However, based on the proven trigonometric limit theorem:
+   This **fundamental trigonometric limit** is used to derive the derivatives of sine and cosine. Direct substitution gives the indeterminate form <InlineMath math="\frac{0}{0}" />, so we use the trigonometric limit theorem:
 
    <BlockMath math="\lim_{x \to 0} \frac{\sin x}{x} = 1" />
 

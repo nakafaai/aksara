@@ -3,7 +3,7 @@ export const metadata = {
   description: "Klasifikasikan matriks simetris dan Hermitian dengan bentuk kuadrat, nilai eigen, minor utama, faktor Cholesky, dan geometri optimisasi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-13",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Metode Linear AI",
 };
 
@@ -27,7 +27,7 @@ Kesimetrian merupakan bagian dari definisi yang lazim. Untuk matriks real tak si
 
 <BlockMath math="x^TAx=x^T\left(\frac{A+A^T}{2}\right)x" />
 
-sehingga bentuk kuadrat hanya melihat bagian simetrisnya.
+Identitas ini menunjukkan bahwa bentuk kuadrat hanya bergantung pada bagian simetris matriks <InlineMath math="A" />.
 
 ## Kriteria Spektral
 
@@ -35,7 +35,7 @@ Teorema spektral menulis matriks simetris real sebagai
 
 <BlockMath math="A=Q\Lambda Q^T" />
 
-dengan <InlineMath math="Q" /> ortogonal dan <InlineMath math="\Lambda=\operatorname{diag}(\lambda_1,ldots,lambda_n)" /> diagonal real. Dengan <InlineMath math="y=Q^Tx" />, kita memperoleh
+Dalam dekomposisi ini, <InlineMath math="Q" /> ortogonal dan <InlineMath math="\Lambda=\operatorname{diag}(\lambda_1,ldots,lambda_n)" /> diagonal real. Substitusi <InlineMath math="y=Q^Tx" /> memberikan
 
 <BlockMath math="x^TAx=\sum_{i=1}^n\lambda_i y_i^2" />
 
@@ -57,11 +57,11 @@ Jika <InlineMath math="A" /> positif definit, maka
 
 <BlockMath math="E=\{x\in\mathbb{R}^n:x^TAx=1\}" />
 
-adalah elipsoid yang berpusat di titik asal. Dalam koordinat vektor eigen,
+Himpunan <InlineMath math="E" /> adalah elipsoid yang berpusat di titik asal. Dalam koordinat vektor eigen, persamaan elipsoid menjadi
 
 <BlockMath math="\sum_{i=1}^n\lambda_i y_i^2=1" />
 
-sehingga sumbu utamanya adalah vektor eigen <InlineMath math="A" /> dan panjang semisumbunya <InlineMath math="1/\sqrt{\lambda_i}" />. Nilai eigen kecil berkaitan dengan arah panjang; nilai eigen besar berkaitan dengan arah pendek.
+Persamaan ini menunjukkan bahwa sumbu utama elipsoid mengikuti arah vektor eigen dari <InlineMath math="A" />. Panjang semisumbu ke-<InlineMath math="i" /> adalah <InlineMath math="1/\sqrt{\lambda_i}" />. Nilai eigen yang lebih kecil menghasilkan semisumbu yang lebih panjang, sedangkan nilai eigen yang lebih besar menghasilkan semisumbu yang lebih pendek.
 
 ## Uji Minor Utama
 
@@ -71,7 +71,7 @@ Misalkan <InlineMath math="A_k" /> adalah blok kiri atas berukuran <InlineMath m
 
 Uji minor utama terdepan ini tidak dapat diperluas hanya dengan mengganti <InlineMath math=">" /> menjadi <InlineMath math="\ge" />. Positif semidefinit mengharuskan semua minor utama bernilai tak negatif. Memeriksa minor utama terdepan saja belum cukup.
 
-## Pemeriksaan Matriks Dua-kali-Dua
+## Pemeriksaan Matriks Dua Kali Dua
 
 Perhatikan
 
@@ -84,7 +84,7 @@ Minor utama terdepannya adalah
 <BlockMath math="\det(A)=20-1=19>0" />
 </MathContainer>
 
-sehingga <InlineMath math="A" /> positif definit. Nilai eigennya menegaskan hasil tersebut:
+Kedua minor utama terdepan bernilai positif, sehingga <InlineMath math="A" /> positif definit. Kedua nilai eigennya juga positif:
 
 <BlockMath math="\lambda_1=\frac{9+\sqrt5}{2}\approx5{,}61803,\qquad \lambda_2=\frac{9-\sqrt5}{2}\approx3{,}38197" />
 
@@ -96,7 +96,7 @@ Walaupun kedua entri diagonalnya positif,
 
 <BlockMath math="\det(B)=4-25=-21<0" />
 
-sehingga kedua nilai eigennya berlainan tanda dan <InlineMath math="B" /> bersifat indefinit.
+Determinan negatif menunjukkan bahwa kedua nilai eigen <InlineMath math="B" /> berlainan tanda. Karena itu, <InlineMath math="B" /> bersifat indefinit.
 
 ## Karakterisasi Cholesky
 
@@ -104,19 +104,19 @@ Matriks simetris real positif definit tepat ketika memiliki faktorisasi Cholesky
 
 <BlockMath math="A=LL^T" />
 
-dengan <InlineMath math="L" /> segitiga bawah dan entri diagonal yang semuanya positif. Kemudian
+Dalam faktorisasi ini, <InlineMath math="L" /> adalah matriks segitiga bawah dengan entri diagonal yang semuanya positif. Maka
 
 <BlockMath math="x^TAx=x^TLL^Tx=\|L^Tx\|_2^2>0\qquad(x\ne0)" />
 
-Sebaliknya, algoritma Cholesky selesai tanpa pivot tak positif untuk setiap matriks positif definit. Fakta ini memberikan uji sekaligus jalur efisien untuk menyelesaikan <InlineMath math="Ax=b" />.
+Sebaliknya, algoritma Cholesky selesai tanpa pivot tak positif untuk setiap matriks positif definit. Pada masukan simetris dalam aritmetika eksak, keberhasilan ini menguji sifat positif definit. Setelah memperoleh <InlineMath math="A=LL^T" />, selesaikan <InlineMath math="Ly=b" /> lalu <InlineMath math="L^Tx=y" />.
 
-## Matriks Gram dan <InlineMath math="A^TA" />
+## Matriks Gram dari Hasil Kali Transpos
 
 Untuk setiap matriks real <InlineMath math="M\in\mathbb{R}^{m\times n}" />,
 
 <BlockMath math="x^TM^TMx=\|Mx\|_2^2\ge0" />
 
-sehingga <InlineMath math="M^TM" /> selalu positif semidefinit. Matriks ini positif definit tepat ketika
+Persamaan ini menunjukkan bahwa <InlineMath math="M^TM" /> selalu positif semidefinit. Matriks <InlineMath math="M^TM" /> positif definit tepat ketika
 
 <BlockMath math="\ker(M)=\{0\}\quad\Longleftrightarrow\quad\operatorname{rank}(M)=n" />
 
@@ -145,7 +145,7 @@ Positif definit saja tidak menjamin komputasi mudah atau stabil secara numerik. 
 
 <BlockMath math="\kappa_2(A)=\frac{\lambda_{\max}(A)}{\lambda_{\min}(A)}" />
 
-masih dapat sangat besar, sehingga bentuk objektif memanjang dan algoritma menjadi lambat atau peka.
+Bilangan kondisi ini masih dapat sangat besar. Akibatnya, kontur fungsi objektif memanjang dan algoritma dapat berjalan lambat atau peka terhadap galat numerik.
 
 ## Pergeseran Spektral dan Invers
 
@@ -153,4 +153,4 @@ Untuk matriks Hermitian <InlineMath math="A" />, nilai eigen <InlineMath math="A
 
 <BlockMath math="A-tI\succ0\quad\Longleftrightarrow\quad t<\lambda_{\min}(A)" />
 
-Jika <InlineMath math="A\succ0" />, maka <InlineMath math="A^{-1}\succ0" /> juga berlaku, dengan nilai eigen <InlineMath math="1/\lambda_i(A)" />. Fakta ini berguna, tetapi algoritma numerik tetap sebaiknya menyelesaikan sistem linear daripada membentuk invers secara eksplisit.
+Jika <InlineMath math="A\succ0" />, maka <InlineMath math="A^{-1}\succ0" /> juga berlaku, dengan nilai eigen <InlineMath math="1/\lambda_i(A)" />. Dalam algoritma numerik, selesaikan sistem linear secara langsung karena membentuk invers eksplisit memerlukan lebih banyak operasi dan dapat memperbesar galat pembulatan.

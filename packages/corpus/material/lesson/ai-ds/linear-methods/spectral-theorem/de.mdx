@@ -1,8 +1,9 @@
 export const metadata = {
     title: "Spektralsatz",
-    description: "Erfahren Sie, wann Matrizen mit orthonormalen Eigenvektoren diagonalisiert werden können und wie normale, hermitesche und unitäre Matrizen zusammenhängen.",
+    description: "Bestimme, wann Matrizen mit einer Orthonormalbasis aus Eigenvektoren diagonalisiert werden können, und verbinde normale, hermitesche sowie unitäre Matrizen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Lineare Methoden der KI",
 };
 
@@ -12,7 +13,7 @@ Der komplexe Spektralsatz besagt, dass sich eine Matrix genau dann mithilfe eine
 
 <BlockMath math="A\text{ ist normal}\qquad\Longleftrightarrow\qquad A=U\Lambda U^H" />
 
-wobei <InlineMath math="U" /> unitär und <InlineMath math="\Lambda" /> diagonal ist. Eine solche Basis zerlegt die Transformation in unabhängige Eigenvektorrichtungen und bewahrt dabei Längen und Winkel. Im reellen symmetrischen Fall kann <InlineMath math="U" /> reell und orthogonal gewählt werden, sodass <InlineMath math="U^{-1}=U^T" /> gilt.
+In dieser Form ist <InlineMath math="U" /> unitär und <InlineMath math="\Lambda" /> diagonal. Die Spalten von <InlineMath math="U" /> zerlegen die Transformation in unabhängige Eigenvektorrichtungen und bewahren dabei Längen und Winkel. Im reellen symmetrischen Fall kann <InlineMath math="U" /> reell und orthogonal gewählt werden, sodass <InlineMath math="U^{-1}=U^T" /> gilt.
 
 Eine komplexe Matrix <InlineMath math="A \in \mathbb{C}^{n \times n}" /> heißt normal, wenn sie mit ihrer konjugierten Transponierten die Kommutativitätsbedingung erfüllt:
 
@@ -22,7 +23,7 @@ Diese algebraische Bedingung hat eine starke geometrische Folge: Eigenräume zu 
 
 ## Spezielle Eigenschaften von Eigenräumen normaler Matrizen
 
-Normale Matrizen haben interessante Eigenschaften, die beliebige Matrizen nicht besitzen. Bei normalen Matrizen erweisen sich der Nullraum der Matrix und der Nullraum ihrer konjugierten Transponierten als identisch.
+Bei einer normalen Matrix stimmt der Nullraum der Matrix mit dem Nullraum ihrer konjugierten Transponierten überein.
 
 Der Kern ist die Menge aller Vektoren <InlineMath math="x" />, die <InlineMath math="Ax=0" /> erfüllen. Aus der Normalität folgt für jedes <InlineMath math="x" /> die Normidentität
 
@@ -35,7 +36,7 @@ Damit gilt <InlineMath math="Ax=0" /> genau dann, wenn <InlineMath math="A^Hx=0"
 
 <BlockMath math="\ker A=\ker A^H" />
 
-Wenden wir dieselbe Kerngleichheit auf die normale Matrix <InlineMath math="A-\lambda I" /> an, erhalten wir für jeden Eigenwert <InlineMath math="\lambda \in \mathbb{C}" /> die zugehörige Eigenraumbeziehung:
+Für die normale Matrix <InlineMath math="A-\lambda I" /> liefert dieselbe Kerngleichheit für jeden Eigenwert <InlineMath math="\lambda \in \mathbb{C}" /> die zugehörige Eigenraumbeziehung:
 
 <BlockMath math="E_A(\lambda)=E_{A^H}(\overline{\lambda})" />
 
@@ -50,7 +51,7 @@ Diese Identität beweist zugleich die Orthogonalität. Gelten <InlineMath math="
 
 ## Hermitesche und Unitäre Matrizen als Beispiele für Normalmatrizen
 
-Zwei wichtige Klassen normaler Matrizen sind hermitesche und unitäre Matrizen. Die definierenden Gleichungen zeigen unmittelbar, warum beide normal sind.
+Hermitesche und unitäre Matrizen sind immer normal. Ihre definierenden Gleichungen zeigen warum:
 
 ### Hermitesche Matrizen und reelle Eigenwerte
 

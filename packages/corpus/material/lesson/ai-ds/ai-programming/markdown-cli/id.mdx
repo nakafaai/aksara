@@ -3,7 +3,7 @@ export const metadata = {
   description: "Tulis Markdown dan gunakan alur kerja command line yang aman untuk memeriksa, mengonversi, dan membuat versi dokumentasi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-26",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Pemrograman AI",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 Markdown adalah bahasa markup ringan untuk menyatakan struktur dokumen dalam teks biasa. Judul, daftar, tautan, blok kode, dan tabel tetap mudah dibaca di sumber serta dapat dirender menjadi HTML atau format lain.
 
-Sumber yang mudah dibaca itulah keunggulan utama Markdown. Kamu dapat meninjau perubahan baris demi baris, menyimpannya di Git, dan membiarkan renderer menentukan tipografi akhir tanpa menyembunyikan dokumen di balik tombol pemformatan.
+Source file yang mudah dibaca adalah keunggulan utama Markdown. Kamu dapat meninjau perubahan baris demi baris, menyimpannya di Git, dan membiarkan renderer menentukan tipografi akhir. Struktur dokumen tetap terlihat langsung di source file.
 
 ### Sintaks Dasar Markdown
 
@@ -61,9 +61,9 @@ def hello_world():
 
 ### Alur Kerja Markdown
 
-Pertahankan file sumber sebagai artefak yang ditinjau dan perlakukan file hasil render sebagai keluaran yang dapat dibuat ulang. Alurnya cukup singkat: buat, sunting, validasi, konversi, lalu pratinjau.
+Simpan source file sebagai berkas utama yang ditinjau. Hasil render dapat dibuat ulang dari berkas ini. Alurnya terdiri atas membuat, mengedit, memvalidasi, mengonversi, lalu melihat preview.
 
-Buat file berekstensi `.md`, tulis isinya, lalu konversi dengan alat terpasang seperti Pandoc. Keluaran HTML berdiri sendiri ketika memakai `--standalone`. Keluaran PDF juga memerlukan mesin PDF yang kompatibel di perangkatmu.
+Buat file berekstensi `.md`, tulis isinya, lalu konversi dengan tool seperti Pandoc. Output HTML dapat berdiri sendiri ketika memakai `--standalone`. Output PDF juga memerlukan PDF engine yang kompatibel di perangkatmu.
 
 <CodeBlock
   data={[{
@@ -86,7 +86,7 @@ open document.html`
   }]}
 />
 
-## Dasar-Dasar Antarmuka Baris Perintah
+## Dasar Antarmuka Baris Perintah
 
 Antarmuka baris perintah atau CLI menerima perintah teks melalui shell. Setiap perintah memiliki nama program, flag opsional, dan argumen seperti path.
 
@@ -152,7 +152,7 @@ less file.txt       # view dengan navigasi`
 
 ### Integrasi Markdown dengan CLI
 
-Skrip build kecil membuat konversi dapat diulang. Skrip harus gagal ketika sebuah perintah gagal, membuat direktori keluarannya sendiri, mengutip setiap path, dan menangani keadaan tanpa file sumber:
+Skrip build kecil menjalankan langkah konversi yang sama setiap kali. Skrip harus gagal ketika sebuah perintah gagal, membuat direktori output sendiri, mengutip setiap path, dan menangani keadaan tanpa file sumber:
 
 <CodeBlock
   data={[{
@@ -222,7 +222,7 @@ pandoc input.md -o output.html --template=custom.html`
 
 ### Praktik Terbaik CLI dan Markdown
 
-Simpan Markdown sumber di version control, validasi sebelum konversi, buat hasil di direktori keluaran yang dapat diganti, dan tinjau diff sebelum commit:
+Simpan source file Markdown di version control. Validasi file sebelum konversi, simpan hasil konversi di direktori output yang dapat dibuat ulang, lalu tinjau diff sebelum commit:
 
 <CodeBlock
   data={[{
@@ -269,7 +269,7 @@ git diff -- docs`
 
 ### Contoh Proyek Nyata
 
-Contoh terakhir membuat empat halaman sumber dan menggabungkannya menjadi satu dokumen HTML mandiri. Setiap path masukan ditulis eksplisit, sehingga halaman yang hilang menggagalkan build dan tidak terlewat diam-diam:
+Contoh terakhir membuat empat source file dan menggabungkannya menjadi satu dokumen HTML mandiri. Setiap input path ditulis secara eksplisit. Build langsung gagal jika salah satu input file tidak ditemukan:
 
 <CodeBlock
   data={[{
@@ -339,4 +339,4 @@ chmod +x scripts/build-docs.sh
   }]}
 />
 
-Markdown menjaga struktur dokumen tetap terbaca di source control, sedangkan CLI membuat validasi dan konversi dapat diulang. Alur kerja yang dapat dipercaya mempertahankan batas itu: sunting sumber, verifikasi perintah dan path, buat ulang keluaran, lalu tinjau perubahannya.
+Markdown membuat struktur dokumen tetap mudah dibaca di version control. CLI dapat menjalankan validasi dan konversi berulang kali. Edit source file Markdown, lalu periksa command dan path. Buat ulang output dan tinjau perubahannya.

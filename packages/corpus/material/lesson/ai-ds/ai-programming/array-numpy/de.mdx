@@ -1,18 +1,19 @@
 export const metadata = {
   title: "Arrays mit NumPy erstellen",
-  description: "Lerne, wie NumPy-Arrays aus Python-Daten, festen Mustern, Zufallswerten und Zahlenfolgen entstehen und wie ihre Form verändert wird.",
+  description: "Erstelle NumPy-Arrays aus Python-Daten, festen Mustern, Zufallswerten und Zahlenfolgen und verändere ihre Form.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "KI-Programmierung",
 };
 
-## NumPy-Einführung
+## Einführung in NumPy
 
 NumPy hilft Python, numerische Daten effizient zu verarbeiten. Python-Listen können gemischte Typen enthalten, während ein NumPy-Array normalerweise Werte eines gemeinsamen Datentyps kompakt speichert. Bei vektorisierten Rechnungen mit vielen Werten ist diese Darstellung oft schneller als eine entsprechende Python-Schleife.
 
-Das zentrale Objekt `ndarray` ist ein n-dimensionaler Behälter fester Größe, dessen Elemente einen gemeinsamen Datentyp besitzen. Dieses Modell ermöglicht vektorisierte Operationen: Ein Ausdruck beschreibt die Arbeit auf dem gesamten Array. Die [offizielle NumPy-Dokumentation](https://numpy.org/doc/stable/) bietet weitere Tutorials und Beispiele.
+Das zentrale Objekt `ndarray` ist ein n-dimensionaler Behälter fester Größe, dessen Elemente einen gemeinsamen Datentyp besitzen. Dieses Modell ermöglicht vektorisierte Operationen. Ein Ausdruck beschreibt die Arbeit auf dem gesamten Array. [NumPy](https://numpy.org/doc/stable/) bietet weitere Tutorials und Beispiele.
 
-NumPy bietet mehrere wichtige Vorteile für die wissenschaftliche Programmierung:
+NumPy-Arrays bieten die folgenden Vorteile für die wissenschaftliche Programmierung:
 
 1. **Effiziente numerische Schleifen** in kompiliertem Maschinencode
 2. **Vektorisierung** ermöglicht Operationen auf ganzen Arrays ohne explizite Schleifen
@@ -44,9 +45,9 @@ print("NumPy-Ergebnis:", z_np)  # Ausgabe: NumPy-Ergebnis: [ 2  6 12 20 30]`
   ]}
 />
 
-## Manuelle Array-Erstellung
+## Manuelle Erstellung von Arrays
 
-Die einfachste Möglichkeit, NumPy-Arrays zu erstellen, besteht darin, vorhandene Python-Datenstrukturen in Arrays zu konvertieren.
+Mit `np.array()` wird eine vorhandene Python-Datenstruktur in ein NumPy-Array umgewandelt.
 
 Ein eindimensionales Array ist eine Folge von Werten entlang einer Achse. Wir können es mit `np.array()` aus einer Python-Liste erstellen.
 
@@ -153,7 +154,7 @@ print("Automatischer Datentyp:", arr_mixed.dtype)  # Ausgabe: Automatischer Date
   ]}
 />
 
-## Array-Erstellungsfunktionen
+## Funktionen zum Erstellen von Arrays
 
 NumPy bietet spezielle Funktionen, die Arrays mit vorhersehbarer Form und festgelegten Werten erzeugen.
 
@@ -336,7 +337,7 @@ print("Dtype:", a.dtype)  # Ausgabe: Dtype: float64`
 
 NumPy bietet spezielle Funktionen zum Erstellen von Arrays aus Wertesequenzen mit bestimmten Mustern.
 
-### np.arange-Funktion
+### Funktion Arange in NumPy
 
 Die Funktion `np.arange` ähnelt Pythons `range()`, gibt aber ein Array zurück und akzeptiert Gleitkommaargumente. Bei nicht ganzzahligen Schritten kann die Gleitkommarundung den letzten Wert schwerer vorhersehbar machen. Wenn die Anzahl der Punkte feststeht, ist `np.linspace` oft eindeutiger.
 
@@ -369,7 +370,7 @@ print("- Der Standard-Startwert ist 0")`
   ]}
 />
 
-### np.linspace-Funktion
+### Funktion Linspace in NumPy
 
 Im Gegensatz zu `np.arange`, das feste Schritte verwendet, unterteilt `np.linspace` einen Bereich in eine Anzahl gleichmäßig verteilter Punkte.
 
@@ -397,14 +398,14 @@ print("arange: Abstand vorgegeben, Anzahl der Elemente ergibt sich daraus")`
   ]}
 />
 
-### Vergleich arange vs. linspace
+### Vergleich von Arange und Linspace
 
 | Aspekt | `np.arange` | `np.linspace` |
 |--------|-------------|---------------|
 | Hauptparameter | `start`, `stop`, `step` | `start`, `stop`, `num` |
 | Kontrolle | Abstand zwischen Elementen | Gesamtzahl der Elemente |
 | Endpunkt | Ausgeschlossen | Enthalten (Standard) |
-| Datentyp | Aus der Eingabe abgeleitet | Standardmäßig Gleitkomma; mit `dtype` einstellbar |
+| Datentyp | Aus der Eingabe abgeleitet | Verwendet standardmäßig einen Gleitkommatyp. Mit `dtype` lässt sich ein anderer Typ wählen |
 | Verwendung | Sequenz mit festem Abstand | Gleichmäßige Bereichseinteilung |
 
 ## Grundfunktionen

@@ -3,21 +3,21 @@ export const metadata = {
    description: "Test whether events are independent and calculate their joint probability without relying on misleading keywords.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-08-29",
+   dateModified: "2026-09-01",
    subject: "Combinatorics",
 };
 
-## Understanding Independent Events
+## Independent Events
 
 Some probability models contain events where **learning one result does not change the probability of another**. Toss a fair coin and roll a fair die. Knowing the coin result gives no information about the die result, so the two events are independent.
 
 Events <InlineMath math="A" /> and <InlineMath math="B" /> are **independent** when conditioning on either event leaves the probability of the other unchanged. The probability model determines this property. Timing alone does not.
 
-This distinction matters because events can share a hidden cause. Two alarms may not directly control each other, for example, yet both can react to the same incident. Never assume independence without checking the model or being told that it holds.
+Events can share a hidden cause even when neither event directly controls the other. Two alarms, for example, can both react to the same incident. Treat events as independent only when the probability model states it or the conditional probabilities confirm it.
 
 ## Characteristics of Independent Events
 
-### Not Mutually Affecting
+### One Event Does Not Change the Other Probability
 
 The main characteristic of independent events is that **the result of one event does not change the probability of another event**. In mathematical notation, if <InlineMath math="A" /> and <InlineMath math="B" /> are independent and <InlineMath math="P(B) > 0" />, then:
 
@@ -25,7 +25,7 @@ The main characteristic of independent events is that **the result of one event 
 
 This means the probability of <InlineMath math="A" /> occurring when <InlineMath math="B" /> has already occurred is the same as the probability of <InlineMath math="A" /> occurring in general.
 
-### Daily Life Examples
+### Separate Random Trials
 
 Examples with a clear independent mechanism include:
 
@@ -36,7 +36,7 @@ Examples with a clear independent mechanism include:
 
 ### Identifying Independent Events
 
-To test independence, ask: “Does knowing the first result change the probability distribution of the second?” A causal story alone is not enough; use the stated model or verify the equality of conditional and ordinary probabilities.
+To test independence, ask: “Does knowing the first result change the probability distribution of the second?” A suspected causal link alone is not enough. Use the stated model or compare the conditional probability with the ordinary probability.
 
 ## Formula for Probability of Independent Events
 
@@ -48,13 +48,13 @@ This formula shows that the probability of both events <InlineMath math="A" /> a
 
 ### Why This Formula Works
 
-Unlike events that affect each other, in independent events the conditional probability equals the regular probability. Since <InlineMath math="P(A|B) = P(A)" />, then:
+For independent events, the conditional probability equals the ordinary probability. Because <InlineMath math="P(A|B) = P(A)" />, the multiplication rule becomes:
 
 <BlockMath math="P(A \cap B) = P(A|B) \times P(B) = P(A) \times P(B)" />
 
-This is why we can directly multiply individual probabilities to get the joint probability.
+Substituting <InlineMath math="P(A|B)=P(A)" /> into the multiplication rule gives <InlineMath math="P(A\cap B)=P(A)P(B)" />.
 
-## Application in Calculations
+## Calculations with Independent Events
 
 ### Rolling Two Dice
 
@@ -97,7 +97,7 @@ Both events are **independent** because the result of the die does not affect th
 <BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
 </MathContainer>
 
-### Applied Modeling Example
+### Independent Sensor Self Tests
 
 Two independently powered monitoring sensors run a daily self-test. Sensor <InlineMath math="A" /> succeeds with probability <InlineMath math="0.98" />, while sensor <InlineMath math="B" /> succeeds with probability <InlineMath math="0.92" />. Under the stated independence model, what is the probability that both tests succeed?
 
@@ -119,9 +119,9 @@ The problem states that the two self-tests are **independent**, so one result do
 
 So the probability that both sensors pass is <InlineMath math="0.9016" /> or <InlineMath math="90.16\%" />.
 
-## Problem-Solving Strategies
+## Problem Solving Strategies
 
-### Systematic Steps
+### Check Independence Before Multiplying
 
 To solve probability problems involving independent events, follow these steps:
 
@@ -131,12 +131,12 @@ To solve probability problems involving independent events, follow these steps:
 4. **Apply the formula** <InlineMath math="P(A \cap B) = P(A) \times P(B)" />
 5. **Check the result** to see if it makes sense in the problem context
 
-### Practical Tips
+### Checks for the Final Answer
 
-Some useful strategies:
+Use these checks:
 
 - **Visualize** events with tree diagrams if necessary
-- **Verify independence** from the model or conditional probabilities; timing alone does not prove it
+- **Verify independence** from the model or conditional probabilities. Timing alone does not prove it
 - **Check consistency** of results using different approaches
 - **Use context** to validate whether the answer makes sense
 

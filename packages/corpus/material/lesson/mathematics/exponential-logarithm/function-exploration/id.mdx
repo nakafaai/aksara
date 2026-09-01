@@ -1,10 +1,10 @@
 export const metadata = {
-  title: "Mengeksplorasi Fungsi Eksponensial",
+  title: "Model Fungsi Eksponensial",
   description:
     "Gunakan pohon penularan ideal untuk membedakan jumlah per fase dan kumulatif, membandingkan keluarga fungsi, serta menguji batas model.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-02",
-  dateModified: "2026-08-29",
+  dateModified: "2026-09-01",
   subject: "Eksponen dan Logaritma",
 };
 
@@ -12,7 +12,7 @@ export const metadata = {
 
 Anggap satu kasus awal menghasilkan tepat <InlineMath math="3" /> kasus baru dan setiap kasus baru menghasilkan tepat <InlineMath math="3" /> kasus lagi pada fase berikutnya. Anggap tidak ada kontak yang tumpang tindih, tidak ada yang pulih selama model berlangsung, dan faktornya tidak pernah berubah.
 
-Asumsi tersebut sengaja dibuat tidak realistis. Tujuannya adalah membentuk pola percabangan sederhana untuk mempelajari fungsi eksponensial. Wabah nyata dipengaruhi jauh lebih banyak faktor.
+Dengan asumsi tersebut, jumlah kasus baru pada setiap fase menjadi tiga kali jumlah pada fase sebelumnya. Model ini hanya dipakai untuk mempelajari fungsi eksponensial karena penularan nyata melibatkan kontak yang tumpang tindih, pemulihan, dan laju penularan yang berubah.
 
 ## Kasus Baru pada Setiap Fase
 
@@ -42,7 +42,7 @@ Grafik membandingkan tiga rumus pada nilai fase yang sama:
 2. **Linear**: <InlineMath math="y=3x" />
 3. **Logaritmik**: <InlineMath math="y=20\ln(x+1)" />
 
-Hanya kurva eksponensial yang mengikuti aturan “dikalikan tiga pada setiap fase.” Kedua kurva lainnya membantu kita membandingkan bentuk. Kurva tersebut tidak menggambarkan cara penularan lain.
+Hanya kurva eksponensial yang mengikuti aturan “dikalikan tiga pada setiap fase.” Dua kurva lainnya hanya menjadi pembanding bentuk dan tidak menggambarkan cara penularan lain.
 
 <FunctionExplorationVirusChart
   labels={{
@@ -53,7 +53,7 @@ Hanya kurva eksponensial yang mengikuti aturan “dikalikan tiga pada setiap fas
     logarithmic: "Logaritmik",
     yLabel: "Kasus baru pada fase",
     caption:
-      "Kurva eksponensial sesuai dengan faktor tetap tiga; penularan nyata tidak mempertahankan asumsi ini tanpa batas.",
+      "Kurva eksponensial menunjukkan faktor pertumbuhan tetap tiga pada setiap fase. Penularan nyata tidak selalu mengikuti pola ini.",
     phase: "Fase",
   }}
 />
@@ -72,17 +72,17 @@ Hanya kurva eksponensial yang mengikuti aturan “dikalikan tiga pada setiap fas
 
    Model eksponensial mengalikan fase sebelumnya dengan <InlineMath math="3" />. Model linear akan menambahkan jumlah yang sama pada setiap fase. Perkalian dengan faktor tetap dan penambahan dengan jumlah tetap merupakan dua proses berbeda.
 
-Hasil yang sangat besar menunjukkan bahwa asumsi tersebut tidak boleh diperpanjang sembarangan. Nilai itu bukan ramalan jumlah kasus yang masuk akal.
+Pada fase <InlineMath math="20" />, model menghasilkan <InlineMath math="3{.}486{.}784{.}401" /> kasus baru dan <InlineMath math="5{.}230{.}176{.}600" /> kasus kumulatif. Nilai tersebut bergantung pada faktor tiga yang tetap tanpa kontak tumpang tindih atau pemulihan, sehingga angka dari model hanya berlaku sebagai perhitungan kelas dan tidak menjadi ramalan jumlah kasus.
 
-## Sifat yang Terlihat dalam Eksplorasi
+## Sifat Fungsi Eksponensial
 
 Untuk <InlineMath math="f(x)=a^x" /> dengan <InlineMath math="a>0" /> dan <InlineMath math="a\neq1" />:
 
-1. Domainnya <InlineMath math="\mathbb{R}" /> dan range-nya <InlineMath math="(0,\infty)" />.
+1. Domain fungsi adalah <InlineMath math="\mathbb{R}" /> dan daerah hasil fungsi adalah <InlineMath math="(0,\infty)" />.
 2. Grafik melalui <InlineMath math="(0,1)" /> karena <InlineMath math="a^0=1" />.
 3. Jika <InlineMath math="a>1" />, fungsi tersebut naik.
 4. Jika <InlineMath math="0<a<1" />, fungsi tersebut turun.
-5. Jarak <InlineMath math="a" /> dari <InlineMath math="1" /> memengaruhi seberapa cepat keluarannya berubah. Perilaku eksponensial tidak selalu berarti “sangat cepat.”
+5. Untuk <InlineMath math="a>1" />, nilai <InlineMath math="a" /> yang lebih besar menghasilkan pertumbuhan lebih besar pada setiap interval. Untuk <InlineMath math="0<a<1" />, nilai <InlineMath math="a" /> yang lebih kecil menghasilkan peluruhan lebih besar pada setiap interval.
 
 ## Tempat Model Eksponensial Digunakan
 

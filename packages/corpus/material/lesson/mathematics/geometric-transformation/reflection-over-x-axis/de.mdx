@@ -1,14 +1,15 @@
 
 
 export const metadata = {
-  title: "Spiegelung an der x-Achse",
+  title: "Spiegelung an der horizontalen Achse",
   description: "Spiegle Punkte, Dreiecke und Geraden an der x-Achse und leite die Koordinatenregel aus den Abständen zum Spiegel her.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometrische Transformation",
 };
 
-## Spiegelung an der x-Achse verstehen
+## Spiegelung an der horizontalen Achse
 
 Bei einer Spiegelung an der <InlineMath math="x" />-Achse liegt jeder Bildpunkt auf der gegenüberliegenden Seite der <InlineMath math="x" />-Achse und hat denselben Abstand zu ihr. Die <InlineMath math="x" />-Achse wirkt dabei wie ein waagerechter Spiegel.
 
@@ -76,9 +77,9 @@ In der interaktiven Visualisierung oben lässt sich die Beziehung zwischen den u
 - Punkt <InlineMath math="C(1,2)" /> wird zu <InlineMath math="C'(1,-2)" />
 - Punkt <InlineMath math="D(4,-2)" /> wird zu <InlineMath math="D'(4,2)" />
 
-Das Muster ist eindeutig: <InlineMath math="x" /> bleibt unverändert und <InlineMath math="y" /> wechselt sein Vorzeichen.
+Jedes Punktepaar behält denselben Wert von <InlineMath math="x" /> und wechselt das Vorzeichen von <InlineMath math="y" />.
 
-## Eigenschaften der Spiegelung an der x-Achse
+## Eigenschaften der Spiegelung an der horizontalen Achse
 
 Aus diesen Beobachtungen folgt die Regel für die Spiegelung an der <InlineMath math="x" />-Achse:
 
@@ -86,7 +87,7 @@ Aus diesen Beobachtungen folgt die Regel für die Spiegelung an der <InlineMath 
 
 Dies bedeutet, dass das Bild des Punktes <InlineMath math="P(x,y)" />, der an der <InlineMath math="x" />-Achse gespiegelt wird, <InlineMath math="P'(x,-y)" /> ist. Die <InlineMath math="x" />-Achse fungiert in diesem Fall als Gerade <InlineMath math="y=0" />.
 
-## Anwendungsbeispiele
+## Dreiecke und Geraden spiegeln
 
 ### Ein Dreieck spiegeln
 
@@ -133,6 +134,7 @@ Folglich ist das Bild des Dreiecks <InlineMath math="ABC" /> das Dreieck <Inline
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#ea580c",
       showPoints: true,
       labels: [
@@ -160,6 +162,7 @@ Folglich ist das Bild des Dreiecks <InlineMath math="ABC" /> das Dreieck <Inline
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#9333ea",
       showPoints: true,
       labels: [
@@ -226,6 +229,7 @@ Somit lautet die Gleichung der gespiegelten Geraden:
           { x: -6, y: (2 / 3) * -6, z: 0 },
           { x: 6, y: (2 / 3) * 6, z: 0 },
         ],
+        smooth: false,
         color: "#65a30d",
         labels: [{ text: <InlineMath math="2x-3y=0" />, at: 1, offset: [0.5, 0.5, 0] }],
       },
@@ -235,6 +239,7 @@ Somit lautet die Gleichung der gespiegelten Geraden:
           { x: -6, y: -(2 / 3) * -6, z: 0 },
           { x: 6, y: -(2 / 3) * 6, z: 0 },
         ],
+        smooth: false,
         color: "#c026d3",
         labels: [{ text: <InlineMath math="2x+3y=0" />, at: 1, offset: [0.5, -0.5, 0] }],
       },
@@ -242,4 +247,4 @@ Somit lautet die Gleichung der gespiegelten Geraden:
   />
 </ContentStack>
 
-Dies zeigt, wie sich die Gleichung einer Gerade ändert, nachdem sie an der <InlineMath math="x" />-Achse gespiegelt wurde.
+Die Spiegelung an der <InlineMath math="x" />-Achse ersetzt <InlineMath math="y" /> durch <InlineMath math="-y" /> und ändert dadurch <InlineMath math="2x-3y=0" /> in <InlineMath math="2x+3y=0" />.

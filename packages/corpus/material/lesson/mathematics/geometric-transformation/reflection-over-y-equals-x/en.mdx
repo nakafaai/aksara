@@ -4,11 +4,11 @@ export const metadata = {
   description: "Trace how coordinates exchange when points, triangles, and lines are reflected across the rising diagonal.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-17",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Geometric Transformation",
 };
 
-## Understanding Reflection over the Main Diagonal Line
+## Reflection over the Main Diagonal Line
 
 Reflection over the line <InlineMath math="y = x" /> is a geometric transformation that maps every point of an object to a new position with the line <InlineMath math="y = x" /> acting as a mirror.
 
@@ -23,7 +23,7 @@ If a point <InlineMath math="P(x, y)" /> is reflected over the line <InlineMath 
   <BlockMath math="y' = x" />
 </MathContainer>
 
-Thus, the image of point <InlineMath math="P(x, y)" /> is <InlineMath math="P'(y, x)" />. Notice that the <InlineMath math="x" /> and <InlineMath math="y" /> coordinates swap positions.
+The image of point <InlineMath math="P(x, y)" /> is <InlineMath math="P'(y, x)" />. Notice that the <InlineMath math="x" /> and <InlineMath math="y" /> coordinates swap positions.
 
 ## Reflecting a Point
 
@@ -33,9 +33,9 @@ The original <InlineMath math="x" />-coordinate is <InlineMath math="1" />, beco
 
 The original <InlineMath math="y" />-coordinate is <InlineMath math="4" />, becoming the new <InlineMath math="x" />-coordinate.
 
-Thus, the image of point <InlineMath math="A" /> is <InlineMath math="A'(4, 1)" />.
+The image of point <InlineMath math="A" /> is <InlineMath math="A'(4, 1)" />.
 
-The following point pairs make the coordinate swap visible:
+In the following point pairs, the coordinates exchange places:
 
 <LineEquation
   title={
@@ -55,6 +55,7 @@ The following point pairs make the coordinate swap visible:
         { x: -6, y: -6, z: 0 },
         { x: 6, y: 6, z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [0.5, -0.5, 0] }],
       }, // Reflection line
@@ -133,6 +134,7 @@ The image triangle <InlineMath math="A'B'C'" /> is formed by connecting the poin
         { x: -7, y: -7, z: 0 },
         { x: 7, y: 7, z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [0.5, -0.5, 0] }],
       }, // Reflection line
@@ -152,6 +154,7 @@ The image triangle <InlineMath math="A'B'C'" /> is formed by connecting the poin
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#d97706",
       showPoints: true,
       labels: [{ text: segment.from.label, at: 0, offset: [0.4, 0.4, 0] }],
@@ -172,6 +175,7 @@ The image triangle <InlineMath math="A'B'C'" /> is formed by connecting the poin
       },
     ].map((segment) => ({
       points: [segment.from, segment.to],
+      smooth: false,
       color: "#0d9488",
       showPoints: true,
       labels: [{ text: segment.from.label, at: 0, offset: [0.4, 0.4, 0] }],
@@ -223,6 +227,7 @@ So, the equation of the image of the line <InlineMath math="y = 2x + 3" /> after
         { x: -7, y: -7, z: 0 },
         { x: 7, y: 7, z: 0 },
       ],
+      smooth: false,
       color: "#4f46e5",
       labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [0.5, -0.5, 0] }],
       }, // Reflection line
@@ -233,7 +238,7 @@ So, the equation of the image of the line <InlineMath math="y = 2x + 3" /> after
         return { x: xVal, y: 2 * xVal + 3, z: 0 };
       }),
       color: "#9333ea",
-      smooth: true,
+      smooth: false,
       labels: [{ text: <InlineMath math="y=2x+3" />, at: 4, offset: [-1, 0.5, 0] }],
     },
     {
@@ -243,7 +248,7 @@ So, the equation of the image of the line <InlineMath math="y = 2x + 3" /> after
         return { x: xVal, y: (1 / 2) * xVal - 3 / 2, z: 0 };
       }),
       color: "#db2777",
-      smooth: true,
+      smooth: false,
       labels: [{ text: <InlineMath math="y=(\frac{1}{2})x-\frac{3}{2}" />, at: 9, offset: [0.5, -1, 0] }],
     },
   ]}

@@ -3,7 +3,7 @@ export const metadata = {
     description: "Hubungkan identifiabilitas parameter dengan peringkat matriks, nilai singular, kondisi numerik, dan faktorisasi penyingkap peringkat.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Metode Linear AI",
 };
 
@@ -13,7 +13,7 @@ Identifiabilitas menanyakan apakah data yang tersedia menentukan parameter model
 
 <BlockMath math="\min_{x \in \mathbb{R}^n} \|Ax-b\|_2^2" />
 
-dengan persamaan normal
+Persamaan normal untuk masalah ini adalah
 
 <BlockMath math="A^T A x = A^T b" />
 
@@ -28,7 +28,7 @@ Kedua pernyataan ini ekuivalen. Jika terdapat <InlineMath math="z \in \ker(A)" /
 
 <BlockMath math="A(x+z)=Ax" />
 
-sehingga data tidak dapat membedakan <InlineMath math="x" /> dan <InlineMath math="x+z" />. Jika kernelnya trivial, <InlineMath math="A^TA" /> bersifat definit positif dan peminimum kuadrat terkecilnya unik.
+Kesamaan tersebut menunjukkan bahwa data tidak dapat membedakan <InlineMath math="x" /> dan <InlineMath math="x+z" />. Jika <InlineMath math="\ker(A)=\{0\}" />, maka <InlineMath math="A^TA" /> bersifat definit positif dan masalah kuadrat terkecil memiliki satu peminimum.
 
 ## Keunikan Tidak Sama dengan Kestabilan
 
@@ -40,18 +40,18 @@ Peringkat kolom penuh menjamin solusi eksak yang unik, tetapi belum menjamin kea
 | Apakah estimasi ditentukan dengan baik secara numerik? | <InlineMath math="\sigma_n" /> tidak sangat kecil relatif terhadap <InlineMath math="\sigma_1" /> | Gangguan kecil tidak menimbulkan perubahan parameter yang besar. |
 | Seberapa sensitif masalahnya? | <InlineMath math="\kappa_2(A)=\sigma_1/\sigma_n" /> | Bilangan kondisi besar menandakan sensitivitas tinggi. |
 
-Pembedaan ini penting dalam model terapan: identifiabilitas struktural merupakan sifat aljabar eksak, sedangkan identifiabilitas praktis bergantung pada skala, derau, dan toleransi numerik yang digunakan.
+Identifiabilitas struktural merupakan sifat aljabar eksak. Identifiabilitas praktis juga bergantung pada skala, derau, dan toleransi numerik yang digunakan.
 
-## Faktorisasi Penyingkap Peringkat
+## Faktorisasi untuk Menentukan Peringkat
 
-Dua alat umum menyingkap peringkat tanpa mengandalkan perhitungan determinan yang rapuh:
+Dua faktorisasi umum dapat menentukan peringkat tanpa mengandalkan perhitungan determinan yang peka terhadap galat numerik:
 
 | Metode | Kekuatan | Penggunaan umum |
 | --- | --- | --- |
-| Faktorisasi QR dengan pivoting kolom | Biasanya lebih murah daripada SVD penuh | Penyelesaian kuadrat terkecil yang cepat dan deteksi peringkat praktis |
-| Dekomposisi nilai singular | Menampilkan langsung semua arah independen beserta skalanya | Diagnostik yang kuat ketika mendekati defisiensi peringkat |
+| Faktorisasi <InlineMath math="\mathrm{QR}" /> dengan pivoting kolom | Biasanya lebih murah daripada <InlineMath math="\mathrm{SVD}" /> penuh | Penyelesaian kuadrat terkecil yang cepat dan deteksi peringkat praktis |
+| Dekomposisi nilai singular | Memisahkan arah independen dan skala setiap arah | Mendeteksi nilai singular kecil yang menandakan matriks hampir mengalami defisiensi peringkat |
 
-Faktorisasi LU biasa terutama ditujukan untuk sistem persegi. Untuk matriks desain persegi panjang, QR berpivot atau SVD merupakan pilihan penyingkap peringkat yang lebih alami.
+Faktorisasi <InlineMath math="\mathrm{LU}" /> biasa terutama ditujukan untuk sistem persegi. Untuk matriks desain persegi panjang, peringkat biasanya ditentukan dengan <InlineMath math="\mathrm{QR}" /> berpivot atau <InlineMath math="\mathrm{SVD}" />.
 
 ## Dekomposisi Nilai Singular
 
@@ -59,7 +59,7 @@ Misalkan <InlineMath math="q=\min(m,n)" />. Setiap matriks <InlineMath math="A \
 
 <BlockMath math="A=U\Sigma V^T" />
 
-dengan <InlineMath math="U \in \mathbb{R}^{m \times m}" /> dan <InlineMath math="V \in \mathbb{R}^{n \times n}" /> ortogonal, sedangkan <InlineMath math="\Sigma \in \mathbb{R}^{m \times n}" /> memiliki elemen diagonal nonnegatif
+Dalam dekomposisi ini, <InlineMath math="U \in \mathbb{R}^{m \times m}" /> dan <InlineMath math="V \in \mathbb{R}^{n \times n}" /> bersifat ortogonal. Matriks <InlineMath math="\Sigma \in \mathbb{R}^{m \times n}" /> memiliki elemen diagonal nonnegatif yang memenuhi
 
 <BlockMath math="\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_q \geq 0" />
 
@@ -67,7 +67,7 @@ Peringkat eksak sama dengan banyaknya nilai singular positif:
 
 <BlockMath math="\operatorname{rank}(A)=\#\{i:\sigma_i>0\}" />
 
-Untuk <InlineMath math="m \geq n" />, peringkat kolom penuh ekuivalen dengan <InlineMath math="\sigma_n>0" />. Vektor singular kanan yang bersesuaian dengan nilai singular nol merentang <InlineMath math="\ker(A)" /> dan menunjukkan arah parameter yang tidak dapat diidentifikasi oleh data.
+Untuk <InlineMath math="m \geq n" />, peringkat kolom penuh ekuivalen dengan <InlineMath math="\sigma_n>0" />. Arah parameter yang tidak dapat diidentifikasi oleh data direntang oleh vektor singular kanan yang bersesuaian dengan nilai singular nol, yaitu basis untuk <InlineMath math="\ker(A)" />.
 
 ## Peringkat Eksak dan Peringkat Numerik
 
@@ -92,8 +92,8 @@ Identitas
 
 <BlockMath math="A^TA=V\Sigma^2V^T" />
 
-menjelaskan bahwa kuadrat nilai singular merupakan nilai eigen dari <InlineMath math="A^TA" />. Identitas ini berguna dalam teori, tetapi membentuk <InlineMath math="A^TA" /> secara eksplisit akan menguadratkan bilangan kondisi:
+Identitas ini menunjukkan bahwa kuadrat nilai singular merupakan nilai eigen dari <InlineMath math="A^TA" />. Untuk perhitungan numerik, membentuk <InlineMath math="A^TA" /> secara eksplisit akan menguadratkan bilangan kondisi:
 
 <BlockMath math="\kappa_2(A^TA)=\kappa_2(A)^2" />
 
-Karena itu, perangkat lunak numerik memperkirakan peringkat dengan algoritma SVD atau QR penyingkap peringkat. Cara ini mempertahankan lebih banyak informasi pada arah yang sudah sulit dibedakan.
+Karena itu, perangkat lunak numerik biasanya memakai <InlineMath math="\mathrm{SVD}" /> atau *rank-revealing* <InlineMath math="\mathrm{QR}" /> untuk memperkirakan peringkat matriks. Kedua algoritma bekerja langsung pada <InlineMath math="A" />, sehingga tidak menguadratkan bilangan kondisi seperti saat membentuk <InlineMath math="A^TA" />.

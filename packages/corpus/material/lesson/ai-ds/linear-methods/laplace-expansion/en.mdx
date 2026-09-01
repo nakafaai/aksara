@@ -1,17 +1,17 @@
 export const metadata = {
     title: "Laplace Expansion Theorem",
-    description: "Learn Laplace expansion theorem: systematic determinant calculation using minors and cofactors, with row/column flexibility and Sarrus rule examples.",
+   description: "Calculate determinants by Laplace expansion with minors and cofactors, then compare the result with the Sarrus rule for a three-by-three matrix.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-10",
-    dateModified: "2026-08-22",
+    dateModified: "2026-09-01",
     subject: "Linear Methods of AI",
 };
 
-## What is the Laplace Expansion Theorem?
+## Laplace Expansion Theorem
 
-The Laplace Expansion Theorem provides a way to calculate the determinant of a matrix by breaking it down into determinants of smaller matrices. This method is very useful because it allows us to calculate determinants of large matrices systematically.
+Laplace expansion writes a determinant as a sum of cofactors along any one row or column. Each cofactor contains the determinant of a matrix that is one size smaller.
 
-This theorem provides flexibility in choosing which row or column to use for expansion, so we can choose the most advantageous one for calculation.
+Choose a row or column with many zero entries. Its zero terms vanish, so fewer smaller determinants need to be calculated.
 
 ## Theorem Statement
 
@@ -21,7 +21,7 @@ Let <InlineMath math="A_{ij}" /> be the <InlineMath math="(n-1) \times (n-1)" />
 
 <BlockMath math="C_{ij}=(-1)^{i+j}\det A_{ij}" />
 
-### Column-Based Expansion
+### Expansion Along a Column
 
 Expanding along any chosen column <InlineMath math="j" /> gives
 
@@ -29,9 +29,9 @@ Expanding along any chosen column <InlineMath math="j" /> gives
 <BlockMath math="\det A = \sum_{i=1}^{n} (-1)^{i+j} \cdot a_{ij} \cdot \det A_{ij}" />
 </MathContainer>
 
-for any chosen column <InlineMath math="j \in \{1, 2, \ldots, n\}" />.
+The column-expansion formula holds for every <InlineMath math="j \in \{1, 2, \ldots, n\}" />.
 
-### Row-Based Expansion
+### Expansion Along a Row
 
 The determinant can also be calculated based on row <InlineMath math="i" />:
 
@@ -39,11 +39,11 @@ The determinant can also be calculated based on row <InlineMath math="i" />:
 <BlockMath math="\det A = \sum_{j=1}^{n} (-1)^{i+j} \cdot a_{ij} \cdot \det A_{ij}" />
 </MathContainer>
 
-for any chosen row <InlineMath math="i \in \{1, 2, \ldots, n\}" />.
+The row-expansion formula holds for every <InlineMath math="i \in \{1, 2, \ldots, n\}" />.
 
-## Expansion Examples
+## Cofactor Expansion by Matrix Size
 
-### Two-by-Two Matrix
+### Two by Two Matrix
 
 For a matrix of size <InlineMath math="n = 2" />:
 
@@ -56,7 +56,7 @@ Expansion based on the first row:
 <BlockMath math="= a_{11} \cdot a_{22} - a_{12} \cdot a_{21}" />
 </MathContainer>
 
-### Three-by-Three Matrix
+### Three by Three Matrix
 
 For a matrix of size <InlineMath math="n = 3" />:
 
@@ -88,7 +88,7 @@ If we expand it fully:
 
 ## Sarrus Rule
 
-The result of the <InlineMath math="3 \times 3" /> matrix expansion above corresponds to **Sarrus Rule**. This rule provides a visual way to calculate <InlineMath math="3 \times 3" /> determinants through diagonal patterns.
+The expansion above gives the same expression as **Sarrus Rule**. For a <InlineMath math="3 \times 3" /> matrix, the rule adds the products along three downward diagonals and subtracts the products along three upward diagonals.
 
 Sarrus formula for <InlineMath math="3 \times 3" /> matrices:
 
@@ -110,13 +110,13 @@ For a dense <InlineMath math="n \times n" /> matrix, a direct recursive implemen
 <BlockMath math="T(n)=\Theta(n!)" />
 </MathContainer>
 
-The factorial growth makes recursive Laplace expansion impractical for large dense matrices. Gaussian elimination or an LU factorization computes a determinant in <InlineMath math="O(n^3)" /> arithmetic operations.
+The factorial growth makes recursive Laplace expansion impractical for large dense matrices. Gaussian elimination or an <InlineMath math="\mathrm{LU}" /> factorization computes a determinant in <InlineMath math="O(n^3)" /> arithmetic operations.
 
 ## Using Zero Entries
 
 When a matrix has many zero entries, choose a row or column containing as many zeros as possible. Every term whose selected coefficient <InlineMath math="a_{ij}" /> is zero vanishes, so its minor never needs to be evaluated.
 
-### Optimization Example
+### Choosing a Row with Zero Entries
 
 Suppose we have a matrix:
 
@@ -141,7 +141,7 @@ By choosing rows or columns that have many zeros, we can save calculations.
 
 ## Determinant of Transpose Matrix
 
-One important property related to the Laplace theorem is:
+Laplace expansion also gives the following property:
 
 <BlockMath math="\det A^T = \det A" />
 
@@ -158,6 +158,4 @@ For example:
 
 ## Larger Matrices
 
-For matrices of size <InlineMath math="n = 4" /> and beyond, the principle of Laplace expansion still applies. However, the computational complexity becomes very high, so in practice other more efficient methods such as Gaussian elimination are often used.
-
-The Laplace Expansion Theorem provides a solid theoretical foundation for understanding determinant structure, although in practical applications it may be replaced by more efficient algorithms.
+Laplace expansion remains valid for <InlineMath math="n = 4" /> and larger matrices. For dense matrices, Gaussian elimination or <InlineMath math="\mathrm{LU}" /> factorization is usually preferred because it requires <InlineMath math="O(n^3)" /> arithmetic operations instead of factorial growth.

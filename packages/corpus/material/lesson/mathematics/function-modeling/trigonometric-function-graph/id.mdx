@@ -4,13 +4,13 @@ export const metadata = {
   description: "Baca grafik sinus, kosinus, dan tangen melalui visualisasi interaktif tentang radian, amplitudo, periode, dan transformasi grafik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-08-22",
+  dateModified: "2026-09-01",
   subject: "Fungsi dan Pemodelannya",
 };
 
-## Memahami Grafik Fungsi Trigonometri
+## Grafik Fungsi Trigonometri
 
-Pernahkah kalian melihat gelombang air laut? Gerakan naik-turunnya membentuk pola yang berulang secara teratur. Ternyata, pola ini dapat dimodelkan dengan fungsi trigonometri.
+Gelombang air laut bergerak naik dan turun dengan pola yang berulang. Fungsi trigonometri dapat memodelkan gerak periodik seperti ini.
 
 Untuk membaca grafik fungsi trigonometri, kita perlu memahami ukuran sudut dalam radian. Dalam kehidupan sehari-hari, kita terbiasa menggunakan derajat. Namun dalam matematika tingkat lanjut, radian lebih sering digunakan.
 
@@ -41,9 +41,9 @@ Mengubah radian ke derajat:
   <BlockMath math="\frac{3\pi}{4} \text{ radian} = \frac{3\pi}{4} \times \frac{180}{\pi} = 135^\circ" />
 </MathContainer>
 
-## Apa itu Amplitudo dan Periode?
+## Amplitudo dan Periode
 
-Dua konsep kunci pada grafik fungsi trigonometri adalah **amplitudo** dan **periode**.
+**Amplitudo** dan **periode** menentukan bentuk dasar grafik fungsi trigonometri.
 
 ### Amplitudo
 
@@ -67,6 +67,7 @@ Amplitudo adalah jarak vertikal maksimum dari garis tengah gelombang sinusoidal 
         { x: Math.PI / 2, y: 0, z: 0 },
         { x: Math.PI / 2, y: 2, z: 0 },
       ],
+      smooth: false,
       color: "#e11d48",
       showPoints: false,
     },
@@ -97,6 +98,7 @@ Periode adalah panjang interval yang diperlukan untuk satu siklus lengkap. Untuk
         { x: 0, y: -1.2, z: 0 },
         { x: 2 * Math.PI, y: -1.2, z: 0 },
       ],
+      smooth: false,
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
@@ -275,6 +277,7 @@ Fungsi <InlineMath math="y = \tan x" /> berbeda dengan <InlineMath math="\sin" /
           { x, y: -5, z: 0 },
           { x, y: 5, z: 0 },
         ],
+        smooth: false,
         color: "#e11d48",
         showPoints: false,
         labels:
@@ -305,7 +308,7 @@ Fungsi <InlineMath math="y = A \sin x" /> mengubah amplitudo menjadi <InlineMath
   title="Pengaruh Amplitudo"
   description={
     <>
-      Perhatikan bagaimana nilai <InlineMath math="A" /> mempengaruhi tinggi
+      Perhatikan bagaimana nilai <InlineMath math="A" /> memengaruhi tinggi
       gelombang.
     </>
   }
@@ -350,7 +353,7 @@ Fungsi <InlineMath math="y = \sin(Bx)" /> mengubah periode menjadi <InlineMath m
   title="Pengaruh Periode"
   description={
     <>
-      Nilai <InlineMath math="B" /> mempengaruhi seberapa cepat fungsi berulang.
+      Nilai <InlineMath math="B" /> memengaruhi seberapa cepat fungsi berulang.
     </>
   }
   data={[
@@ -393,7 +396,7 @@ Bentuk umum:
 <BlockMath math="y = A \sin(B(x - C)) + D" />
 
 - <InlineMath math="A" />: Amplitudo
-- <InlineMath math="B" />: Mempengaruhi periode (
+- <InlineMath math="B" />: Memengaruhi periode (
   <InlineMath math="\text{periode} = \frac{2\pi}{|B|}" />)
 - <InlineMath math="C" />: Pergeseran horizontal (fase)
 - <InlineMath math="D" />: Pergeseran vertikal

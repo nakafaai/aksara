@@ -1,13 +1,13 @@
 export const metadata = {
     title: "Expected Value of Binomial Distribution",
-    description: "Understand expected value in a binomial distribution and calculate the mean number of successes across repeated trials.",
+  description: "Calculate the expected number of successes in repeated binomial trials.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-08-29",
+    dateModified: "2026-09-01",
     subject: "Data Analysis and Probability",
 };
 
-## Understanding the Concept of Expected Value
+## Expected Value
 
 Suppose each free throw goes in independently with probability <InlineMath math="p=0.8" />, and let <InlineMath math="X" /> count the baskets in <InlineMath math="n=10" /> attempts. Then <InlineMath math="E(X)=8" />: across many sets of ten attempts, the average number of baskets approaches <InlineMath math="8" />.
 
@@ -17,17 +17,17 @@ Expected value is the probability-weighted average of a random variable. It desc
 
 A binomial random variable counts successes in a fixed number of independent trials, each with the same success probability. Its expected value gives the long-run mean number of successes. It is not necessarily the most likely count, which is described by the mode instead.
 
-Binomial distribution <InlineMath math="b(x;n,p)" /> has an expected value:
+Binomial distribution <InlineMath math="b_{n,p}(x)" /> has an expected value:
 
 <BlockMath math="E(X) = np" />
 
-where <InlineMath math="n" /> is the number of trials and <InlineMath math="p" /> is the probability of success.
+In this formula, <InlineMath math="n" /> is the number of trials and <InlineMath math="p" /> is the probability of success in each trial.
 
 If the success probability in each trial is <InlineMath math="p" />, then the expected number of successes in <InlineMath math="n" /> trials is:
 
 <BlockMath math="E(X) = n \times p" />
 
-## Where Does the Formula Come From?
+## Where Does the Formula Come From
 
 The formula follows by representing each trial with an indicator variable.
 
@@ -48,7 +48,7 @@ By linearity of expectation, the expected values add:
 <BlockMath math="E(X) = \underbrace{p + p + ... + p}_{n \text{ times}} = np" />
 </MathContainer>
 
-Therefore, the expected number of successes is the number of trials multiplied by the success probability.
+The expected number of successes is the number of trials multiplied by the success probability.
 
 ## Dice Rolling Case Study
 
