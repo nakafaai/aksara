@@ -10,6 +10,7 @@ on:
         options:
           - accept
           - abort
+          - audit
           - cleanup
           - recover
           - release
@@ -19,6 +20,14 @@ on:
         type: string
       recovery_id:
         description: Exact retained inverse ID for release, accept, or recover
+        required: false
+        type: string
+      manifest_hash:
+        description: Exact active manifest hash for audit
+        required: false
+        type: string
+      recovery_manifest_hash:
+        description: Exact retained inverse manifest hash for audit
         required: false
         type: string
       rebuild:
@@ -100,11 +109,13 @@ jobs:
         env:
           OPERATION: ${{ inputs.operation }}
           REBUILD: ${{ inputs.rebuild }}
+          MANIFEST_HASH: ${{ inputs.manifest_hash }}
           RECOVERY_ID: ${{ inputs.recovery_id }}
+          RECOVERY_MANIFEST_HASH: ${{ inputs.recovery_manifest_hash }}
           RELEASE_ID: ${{ inputs.release_id }}
           PUBLICATION_SCOPE: ${{ inputs.scope }}
         run: |
-          if [[ "$OPERATION" == "release" || "$OPERATION" == "accept" || "$OPERATION" == "recover" ]]; then
+          if [[ "$OPERATION" == "release" || "$OPERATION" == "accept" || "$OPERATION" == "audit" || "$OPERATION" == "recover" ]]; then
             if [[ -z "$RECOVERY_ID" ]]; then
               echo "The operation must name its exact retained inverse." >&2
               exit 1
@@ -115,6 +126,15 @@ jobs:
             fi
           elif [[ -n "$RECOVERY_ID" ]]; then
             echo "Abort and cleanup do not accept a recovery identity." >&2
+            exit 1
+          fi
+          if [[ "$OPERATION" == "audit" ]]; then
+            if [[ -z "$MANIFEST_HASH" || -z "$RECOVERY_MANIFEST_HASH" ]]; then
+              echo "Audit must name both exact manifest hashes." >&2
+              exit 1
+            fi
+          elif [[ -n "$MANIFEST_HASH" || -n "$RECOVERY_MANIFEST_HASH" ]]; then
+            echo "Only audit accepts manifest hash inputs." >&2
             exit 1
           fi
           if [[ "$OPERATION" == "release" ]]; then
@@ -168,7 +188,7 @@ jobs:
           pnpm boundaries
 
       - name: Verify full publication revision
-        if: inputs.operation == 'accept' || inputs.operation == 'release'
+        if: inputs.operation == 'accept' || inputs.operation == 'audit' || inputs.operation == 'release'
         run: |
           pnpm deprecations
           pnpm typecheck
@@ -237,6 +257,22 @@ jobs:
         run: >-
           pnpm accept -- --release-id "$RELEASE_ID"
           --recovery-id "$RECOVERY_ID"
+
+      - name: Audit active Question release
+        if: inputs.operation == 'audit'
+        working-directory: ${{ runner.temp }}/aksara-operation
+        env:
+          AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_PUBLICATION_ENDPOINT }}
+          AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
+          MANIFEST_HASH: ${{ inputs.manifest_hash }}
+          RECOVERY_ID: ${{ inputs.recovery_id }}
+          RECOVERY_MANIFEST_HASH: ${{ inputs.recovery_manifest_hash }}
+          RELEASE_ID: ${{ inputs.release_id }}
+        run: >-
+          pnpm content:audit -- --release-id "$RELEASE_ID"
+          --manifest-hash "$MANIFEST_HASH"
+          --recovery-id "$RECOVERY_ID"
+          --recovery-manifest-hash "$RECOVERY_MANIFEST_HASH"
 
       - name: Recover active release
         if: inputs.operation == 'recover'

@@ -7,14 +7,17 @@ export class ProductionArgumentsError extends Schema.TaggedError<ProductionArgum
     command: Schema.Literals([
       "abort",
       "accept",
+      "audit",
       "cleanup",
       "recover",
       "release",
       "status",
     ]),
     option: Schema.Literals([
+      "--manifest-hash",
       "--rebuild",
       "--recovery-id",
+      "--recovery-manifest-hash",
       "--release-id",
       "--scope",
       "command",

@@ -267,4 +267,34 @@ describe("workflow policy", () => {
       "Content releases must validate and pass one explicit scalable scope"
     );
   });
+  it("binds Question audits to both exact manifest identities", () => {
+    for (const [expected, wrong] of [
+      [
+        'pnpm content:audit -- --release-id "$RELEASE_ID"',
+        'pnpm content:audit -- --release-id "$RECOVERY_ID"',
+      ],
+      [
+        '--manifest-hash "$MANIFEST_HASH"',
+        '--manifest-hash "$RECOVERY_MANIFEST_HASH"',
+      ],
+      [
+        '--recovery-id "$RECOVERY_ID"\n          --recovery-manifest-hash',
+        '--recovery-id "$RELEASE_ID"\n          --recovery-manifest-hash',
+      ],
+      [
+        '--recovery-manifest-hash "$RECOVERY_MANIFEST_HASH"',
+        '--recovery-manifest-hash "$MANIFEST_HASH"',
+      ],
+    ] as const) {
+      expect(sources.release).toContain(expected);
+      expect(() =>
+        verifyWorkflows({
+          ...sources,
+          release: sources.release.replace(expected, wrong),
+        })
+      ).toThrow(
+        "Question audits must bind exact active and recovery identities"
+      );
+    }
+  });
 });

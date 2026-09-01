@@ -15,6 +15,15 @@ export function programArguments(calls: ProgramCalls, args: readonly string[]) {
       releaseId: "release-active",
     });
   }
+  if (args[0] === "audit") {
+    return Effect.succeed({
+      command: "audit",
+      manifestHash: `sha256:${"a".repeat(64)}`,
+      recoveryId: "recovery-active",
+      recoveryManifestHash: `sha256:${"b".repeat(64)}`,
+      releaseId: "release-active",
+    });
+  }
   if (args[0] === "cleanup") {
     return Effect.succeed({ command: "cleanup", releaseId: "release-cleanup" });
   }

@@ -18,6 +18,7 @@ Usage:
   aksara status
   aksara release --release-id <id> --recovery-id <id> --scope <selector> [--rebuild]
   aksara accept --release-id <id> --recovery-id <id>
+  aksara audit --release-id <id> --manifest-hash <hash> --recovery-id <id> --recovery-manifest-hash <hash>
   aksara recover --release-id <id> --recovery-id <id>
   aksara abort --release-id <id>
   aksara cleanup --release-id <id>
