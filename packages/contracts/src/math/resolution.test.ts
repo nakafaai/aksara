@@ -217,6 +217,66 @@ describe("math visual render resolution", () => {
     );
   });
 
+  it("keeps infinite-path resolution invariant under direction scaling", () => {
+    const tinyDirection = RESOLUTION / 1024;
+    const objects = [
+      planeObject("line", {
+        through: [
+          { x: 0, y: 0 },
+          { x: tinyDirection, y: tinyDirection },
+        ],
+      }),
+      planeObject("ray", {
+        from: { x: 0, y: 0 },
+        through: { x: tinyDirection, y: tinyDirection },
+      }),
+    ];
+
+    assert.deepStrictEqual(
+      planeResolutionIssues(planeFrame, objects, { kind: "fit" }),
+      []
+    );
+  });
+
+  it("uses the actual arc chord at the render threshold", () => {
+    const radius = 0.25;
+    const resolvableSweep =
+      (360 * Math.asin((1.25 * RESOLUTION) / (2 * radius))) / Math.PI;
+    const unresolvedSweep =
+      (360 * Math.asin((0.75 * RESOLUTION) / (2 * radius))) / Math.PI;
+    const objects = [
+      planeObject("arc", {
+        center: { x: 0.5, y: 0.5 },
+        radius,
+        startDegrees: 0,
+        sweepDegrees: resolvableSweep,
+      }),
+      planeObject("arc", {
+        center: { x: 0.5, y: 0.5 },
+        radius,
+        startDegrees: 0,
+        sweepDegrees: unresolvedSweep,
+      }),
+    ];
+
+    assert.deepStrictEqual(
+      paths(planeResolutionIssues(planeFrame, objects, { kind: "fit" })),
+      [["objects", 1, "sweepDegrees"]]
+    );
+  });
+
+  it("rejects unresolved coordinates across separate finite objects", () => {
+    const objects = [
+      planeObject("point", { at: { x: 0, y: 0 } }),
+      planeObject("point", { at: { x: BELOW_RESOLUTION, y: 0 } }),
+    ];
+
+    assert.deepStrictEqual(
+      paths(planeResolutionIssues(planeFrame, objects, { kind: "fit" })),
+      [["objects", 1, "at", "x"]]
+    );
+  });
+
   it("accepts axis-aligned cameras and rejects unresolved space semantics", () => {
     const point = spaceObject("point", { at: { x: 0, y: 0, z: 0 } });
     assert.deepStrictEqual(

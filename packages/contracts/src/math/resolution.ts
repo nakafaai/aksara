@@ -67,6 +67,39 @@ function pointIssues(
   return issues;
 }
 
+/** Collects finite authored positions whose coordinates must remain distinct. */
+function objectPointEntries(
+  object: PlaneMathObject | SpaceMathObject,
+  index: number
+): PointEntry[] {
+  const root: IssuePath = ["objects", index];
+  if (object.kind === "point") {
+    return [{ path: [...root, "at"], point: coordinate(object.at) }];
+  }
+  if (object.kind === "ray") {
+    return [{ path: [...root, "from"], point: coordinate(object.from) }];
+  }
+  if (object.kind === "segment") {
+    return [
+      { path: [...root, "from"], point: coordinate(object.from) },
+      { path: [...root, "to"], point: coordinate(object.to) },
+    ];
+  }
+  if (object.kind === "polyline" || object.kind === "polygon") {
+    return object.vertices.map((point, pointIndex) => ({
+      path: [...root, "vertices", pointIndex],
+      point: coordinate(point),
+    }));
+  }
+  if (object.kind === "circle" || object.kind === "arc") {
+    return [{ path: [...root, "center"], point: coordinate(object.center) }];
+  }
+  if (object.kind === "cuboid") {
+    return [{ path: [...root, "center"], point: object.center }];
+  }
+  return [];
+}
+
 /** Maps one directed path onto every axis of its authored frame. */
 function pathAxes(
   frame: PlaneMathFrame | SpaceMathFrame,
@@ -106,31 +139,8 @@ function pathObjectIssues(
   threshold: RenderThreshold
 ) {
   const root: IssuePath = ["objects", index];
-  let entries: PointEntry[] = [];
-  if (object.kind === "line") {
-    entries = object.through.map((point, pointIndex) => ({
-      path: [...root, "through", pointIndex],
-      point: coordinate(point),
-    }));
-  } else if (object.kind === "ray") {
-    entries = [
-      { path: [...root, "from"], point: coordinate(object.from) },
-      { path: [...root, "through"], point: coordinate(object.through) },
-    ];
-  } else if (object.kind === "segment") {
-    entries = [
-      { path: [...root, "from"], point: coordinate(object.from) },
-      { path: [...root, "to"], point: coordinate(object.to) },
-    ];
-  } else if (object.kind === "polyline" || object.kind === "polygon") {
-    entries = object.vertices.map((point, pointIndex) => ({
-      path: [...root, "vertices", pointIndex],
-      point: coordinate(point),
-    }));
-  }
-  const issues = pointIssues(entries, threshold);
   if (object.kind !== "line" && object.kind !== "ray") {
-    return issues;
+    return [];
   }
   const [from, through] =
     object.kind === "line" ? object.through : [object.from, object.through];
@@ -139,8 +149,8 @@ function pathObjectIssues(
     pathAxes(frame, coordinate(from), coordinate(through)),
     threshold
   )
-    ? issues
-    : [...issues, issue(root)];
+    ? []
+    : [issue(root)];
 }
 
 /** Applies plane-specific measure and exact curve-resolution checks. */
@@ -208,6 +218,10 @@ export function planeResolutionIssues(
       threshold
     ),
     ...measureIssue(view.padding ?? 0, threshold, ["view", "padding"]),
+    ...pointIssues(
+      objects.flatMap((object, index) => objectPointEntries(object, index)),
+      threshold
+    ),
     ...objects.flatMap((object, index) =>
       planeObjectIssues(frame, object, index, threshold)
     ),
@@ -257,6 +271,10 @@ export function spaceResolutionIssues(
       "padding",
     ]),
     ...cameraIssues,
+    ...pointIssues(
+      objects.flatMap((object, index) => objectPointEntries(object, index)),
+      threshold
+    ),
     ...objects.flatMap((object, index) => {
       if (object.kind !== "cuboid") {
         return pathObjectIssues(frame, object, index, threshold);

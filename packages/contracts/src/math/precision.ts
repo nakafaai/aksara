@@ -12,7 +12,6 @@ const FLOAT32_RESOLUTION = BigDecimal.fromStringUnsafe(
 );
 const TWO = BigDecimal.fromBigInt(2n);
 const FOUR = BigDecimal.fromBigInt(4n);
-const NINETY = BigDecimal.fromBigInt(90n);
 
 export type RenderThreshold = BigDecimal.BigDecimal;
 
@@ -107,21 +106,18 @@ export function visiblePathResolvable(
   });
 }
 
-/** Checks the exact lower bound for the visible separation of arc ends. */
+/** Checks the rendered chord separating the two finite ends of one arc. */
 export function arcEndpointsUnresolved(
   radius: number,
   sweepDegrees: number,
   threshold: RenderThreshold
 ) {
-  const sweep = BigDecimal.abs(decimal(sweepDegrees));
-  const minorSweep = BigDecimal.min(
-    sweep,
-    BigDecimal.subtract(decimal(360), sweep)
+  const minorSweep = Math.min(
+    Math.abs(sweepDegrees),
+    360 - Math.abs(sweepDegrees)
   );
-  return BigDecimal.isLessThan(
-    BigDecimal.multiply(decimal(radius), minorSweep),
-    BigDecimal.multiply(threshold, NINETY)
-  );
+  const chord = 2 * Math.abs(radius) * Math.sin((minorSweep * Math.PI) / 360);
+  return measureUnresolved(chord, threshold);
 }
 
 /** Checks exact quadratic curvature without relying on renderer sampling. */
