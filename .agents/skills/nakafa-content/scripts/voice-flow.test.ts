@@ -139,6 +139,7 @@ test("rejects irrelevant fiction labels but preserves a concrete model limitatio
   ].join("\n");
   assert.deepEqual(findLessonVoiceIssues("en", protectedCode), []);
 });
+
 test("rejects vague flexibility claims", () => {
   const samples = {
     de: "Python ist sehr flexibel im Umgang mit Zahlen.",

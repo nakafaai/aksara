@@ -153,6 +153,10 @@ test("rejects visible math separators but allows LaTeX spacing", () => {
     '<InlineMath math="f(x;y)\\;z" />',
     '<BlockMath math="g(x;y)" />',
     '<Plot data={{ math: "h(x;y)\\;z" }} />',
+    '<InlineMath math={"x;y"} />',
+    "<BlockMath math={`x;y`} />",
+    '<InlineMath math={"x" + ";" + "y"} />',
+    '<InlineMath math={"x\\\\;" + "y"} />',
   ].join("\n");
 
   assert.deepEqual(
@@ -164,6 +168,9 @@ test("rejects visible math separators but allows LaTeX spacing", () => {
       { line: 1, rule: "learner-facing-semicolon" },
       { line: 2, rule: "learner-facing-semicolon" },
       { line: 3, rule: "learner-facing-semicolon" },
+      { line: 4, rule: "learner-facing-semicolon" },
+      { line: 5, rule: "learner-facing-semicolon" },
+      { line: 6, rule: "learner-facing-semicolon" },
     ]
   );
 });

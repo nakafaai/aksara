@@ -1,3 +1,4 @@
+import { exerciseSectionLines } from "#nakafa-content/exercise-context";
 import { FLOW_CONTEXT_RULES } from "#nakafa-content/flow-context";
 import { FLOW_STYLE_RULES } from "#nakafa-content/flow-style";
 import { LANGUAGE_CALQUE_RULES } from "#nakafa-content/language-calque";
@@ -15,7 +16,11 @@ import {
 import { LANGUAGE_VOICE_RULES } from "#nakafa-content/voice-language";
 import { NAVIGATION_VOICE_RULES } from "#nakafa-content/voice-links";
 import { findPlainMathLabelIssues } from "#nakafa-content/voice-math";
-import { type MdxNode, parseLessonMdx } from "#nakafa-content/voice-mdx";
+import {
+  type MdxNode,
+  parseLessonMdx,
+  type SourceRange,
+} from "#nakafa-content/voice-mdx";
 import { METAPHOR_VOICE_RULES } from "#nakafa-content/voice-metaphor";
 import { METHOD_VOICE_RULES } from "#nakafa-content/voice-method";
 import {
@@ -23,8 +28,11 @@ import {
   REPETITIVE_OPENER_RULES,
 } from "#nakafa-content/voice-pedagogy";
 import { findVisibleProseRuleIssues } from "#nakafa-content/voice-prose";
+import {
+  maskRawLineProtectedContent,
+  rawLineProtectedRanges,
+} from "#nakafa-content/voice-protection";
 import { REPORTING_VOICE_RULES } from "#nakafa-content/voice-reporting";
-import { maskProtectedInlineContent } from "#nakafa-content/voice-text";
 import { TRANSITION_VOICE_RULES } from "#nakafa-content/voice-transition";
 import {
   isLessonVoiceLocale,
@@ -63,46 +71,8 @@ const METADATA_DESCRIPTION_KEY_PATTERN = /^\s*description:\s*$/u;
 const METADATA_STRING_VALUE_PATTERN = /^\s*"[^"]*"\s*,?\s*$/u;
 const METADATA_END_PATTERN = /^\s*\};\s*$/u;
 const CODE_FENCE_PATTERN = /^\s*(```|~~~)/u;
-const BLOCKQUOTE_PATTERN = /^\s*>/u;
 const UNESCAPED_BACKTICK_PATTERN = /(?<!\\)`/gu;
 const REPETITIVE_OPENER_LIMIT = 2;
-const SECTION_HEADING_PATTERN = /^(#{2,6})\s+(.+)$/u;
-const EXERCISE_HEADING_PATTERNS: Record<LessonVoiceLocale, RegExp> = {
-  de: /^(?:Aufgaben|Übung|Übungen)$/iu,
-  en: /^(?:Exercise|Exercises|Practice)$/iu,
-  id: /^(?:Latihan|Latihan Mandiri)$/iu,
-};
-
-/** Collects lines inside an explicit exercise section. */
-function exerciseSectionLines(
-  locale: LessonVoiceLocale,
-  source: string
-): ReadonlySet<number> {
-  const result = new Set<number>();
-  let exerciseDepth: number | undefined;
-  for (const [lineIndex, line] of source.split("\n").entries()) {
-    const heading = SECTION_HEADING_PATTERN.exec(line);
-    if (heading) {
-      const [, marker, label] = heading;
-      if (!(marker && label)) {
-        continue;
-      }
-      const depth = marker.length;
-      if (exerciseDepth !== undefined && depth <= exerciseDepth) {
-        exerciseDepth = undefined;
-      }
-      if (EXERCISE_HEADING_PATTERNS[locale].test(label.trim())) {
-        exerciseDepth = depth;
-      }
-      continue;
-    }
-    if (exerciseDepth !== undefined) {
-      result.add(lineIndex + 1);
-    }
-  }
-  return result;
-}
-
 /** Creates the mutable parser state used across lesson source lines. */
 function createLineState(): LineState {
   return {
@@ -210,11 +180,12 @@ function inspectLessonLine(
   locale: LessonVoiceLocale,
   line: string,
   lineNumber: number,
+  lineOffset: number,
+  protectedRanges: readonly SourceRange[],
   state: LineState,
   matchesByRule: Map<string, LessonVoiceIssue[]>
 ): LessonVoiceIssue[] {
   const context = classifyLine(line, state);
-  const isImmutableBlockquote = BLOCKQUOTE_PATTERN.test(line);
   const issues = findStructuralIssues(
     locale,
     line,
@@ -222,11 +193,12 @@ function inspectLessonLine(
     state,
     context.isProtectedRegion
   );
-  if (
-    !(context.isProtectedRegion || isImmutableBlockquote) ||
-    context.isMetadataDescription
-  ) {
-    const searchableLine = maskProtectedInlineContent(line);
+  if (!context.isProtectedRegion || context.isMetadataDescription) {
+    const searchableLine = maskRawLineProtectedContent(
+      line,
+      lineOffset,
+      protectedRanges
+    );
     issues.push(
       ...matchLineRules(
         LESSON_VOICE_RULES,
@@ -236,7 +208,7 @@ function inspectLessonLine(
         lineNumber
       )
     );
-    if (!(context.isProtectedRegion || isImmutableBlockquote)) {
+    if (!context.isProtectedRegion) {
       recordRepetitiveOpeners(
         matchesByRule,
         locale,
@@ -273,6 +245,8 @@ export function findLessonVoiceIssues(
     throw new TypeError(`Unsupported lesson locale: ${locale}`);
   }
   const issues: LessonVoiceIssue[] = [];
+  const parsedTree = tree ?? parseLessonMdx(source);
+  const protectedRanges = rawLineProtectedRanges(parsedTree);
   const matchesByRule = new Map<string, LessonVoiceIssue[]>(
     REPETITIVE_OPENER_RULES.map(({ id }): [string, LessonVoiceIssue[]] => [
       id,
@@ -280,15 +254,24 @@ export function findLessonVoiceIssues(
     ])
   );
   const state = createLineState();
+  let lineOffset = 0;
   for (const [lineIndex, line] of source.split("\n").entries()) {
     issues.push(
-      ...inspectLessonLine(locale, line, lineIndex + 1, state, matchesByRule)
+      ...inspectLessonLine(
+        locale,
+        line,
+        lineIndex + 1,
+        lineOffset,
+        protectedRanges,
+        state,
+        matchesByRule
+      )
     );
+    lineOffset += line.length + 1;
   }
   for (const matches of matchesByRule.values()) {
     issues.push(...matches.slice(REPETITIVE_OPENER_LIMIT));
   }
-  const parsedTree = tree ?? parseLessonMdx(source);
   issues.push(
     ...findVisibleProseRuleIssues(
       locale,

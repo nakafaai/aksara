@@ -1,7 +1,10 @@
 import {
+  sourceOffsetForStaticMatch,
+  staticStringCandidates,
+} from "#nakafa-content/static-string";
+import {
   asEstreeNode,
   type EstreeNode,
-  estreeRange,
   type MdxAttribute,
   type MdxNode,
   parseLessonMdx,
@@ -9,16 +12,6 @@ import {
 import type { LessonVoiceIssue } from "#nakafa-content/voice-types";
 
 const BARE_LATEX_DOTS_PATTERN = /(?<!\\)\b(?:ldots|cdots|vdots|ddots)\b/gu;
-const STATIC_EXPRESSION_KEYS: Readonly<Record<string, readonly string[]>> = {
-  ArrayExpression: ["elements"],
-  BinaryExpression: ["left", "right"],
-  ConditionalExpression: ["consequent", "alternate"],
-  ExpressionStatement: ["expression"],
-  LogicalExpression: ["left", "right"],
-  ParenthesizedExpression: ["expression"],
-  Program: ["body"],
-  TemplateLiteral: ["quasis"],
-};
 
 /** Returns a diagnostic at one exact source offset. */
 function issueAtOffset(source: string, offset: number): LessonVoiceIssue {
@@ -56,38 +49,8 @@ function directAttributeOffsets(
       };
 }
 
-/** Adds static string ranges from an authored math expression. */
-function collectExpressionRanges(
-  node: EstreeNode,
-  ranges: Array<{ end: number; start: number }>
-): void {
-  if (
-    (node.type === "Literal" && typeof node.value === "string") ||
-    node.type === "TemplateElement"
-  ) {
-    const range = estreeRange(node);
-    const start = range?.start?.offset;
-    const end = range?.end?.offset;
-    if (start !== undefined && end !== undefined) {
-      ranges.push({ end, start });
-    }
-    return;
-  }
-  for (const key of STATIC_EXPRESSION_KEYS[node.type] ?? []) {
-    const values = Array.isArray(node[key]) ? node[key] : [node[key]];
-    for (const value of values) {
-      const child = asEstreeNode(value);
-      if (child) {
-        collectExpressionRanges(child, ranges);
-      }
-    }
-  }
-}
-
-/** Returns static authored ranges from a JSX expression attribute. */
-function expressionAttributeOffsets(
-  attribute: MdxAttribute
-): Array<{ end: number; start: number }> {
+/** Returns the static expression stored in one JSX attribute. */
+function attributeExpression(attribute: MdxAttribute): EstreeNode | undefined {
   if (
     !attribute.value ||
     typeof attribute.value !== "object" ||
@@ -96,14 +59,9 @@ function expressionAttributeOffsets(
     typeof attribute.value.data !== "object" ||
     !("estree" in attribute.value.data)
   ) {
-    return [];
+    return;
   }
-  const estree = asEstreeNode(attribute.value.data.estree);
-  const ranges: Array<{ end: number; start: number }> = [];
-  if (estree) {
-    collectExpressionRanges(estree, ranges);
-  }
-  return ranges;
+  return asEstreeNode(attribute.value.data.estree);
 }
 
 /** Collects malformed dot commands from one explicit math prop. */
@@ -116,14 +74,33 @@ function collectAttributeOffsets(
     return;
   }
   const directRange = directAttributeOffsets(attribute, source);
-  const ranges = directRange
-    ? [directRange]
-    : expressionAttributeOffsets(attribute);
-  for (const range of ranges) {
-    const math = source.slice(range.start, range.end);
+  if (directRange) {
+    const math = source.slice(directRange.start, directRange.end);
     for (const match of math.matchAll(BARE_LATEX_DOTS_PATTERN)) {
       if (match.index !== undefined) {
-        offsets.add(range.start + match.index);
+        offsets.add(directRange.start + match.index);
+      }
+    }
+    return;
+  }
+  const expression = attributeExpression(attribute);
+  if (!expression) {
+    return;
+  }
+  for (const candidate of staticStringCandidates(expression)) {
+    const math = candidate.text;
+    for (const match of math.matchAll(BARE_LATEX_DOTS_PATTERN)) {
+      if (match.index === undefined) {
+        continue;
+      }
+      const offset = sourceOffsetForStaticMatch(
+        candidate,
+        match.index,
+        match[0],
+        source
+      );
+      if (offset !== undefined) {
+        offsets.add(offset);
       }
     }
   }
