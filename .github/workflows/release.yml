@@ -99,9 +99,9 @@ jobs:
       && needs.contracts.result == 'success'
     environment: content-production
     runs-on: ubuntu-latest
-    # Preserve setup, exact-revision gates, bounded renderer recovery, upload,
-    # two independent ten-minute proof SLOs, and compensation in one budget.
-    timeout-minutes: 50
+    # Full rebuilds must cover validation, candidate upload, retained-inverse
+    # upload, two bounded proof passes, activation, and compensation.
+    timeout-minutes: 120
     permissions:
       contents: read
     steps:
