@@ -50,6 +50,7 @@ const BLOCKING_RULES = new Set([
   "known-decorative-science-heading",
   "redirected-cell-machinery-metaphor",
   "rhetorical-not-only",
+  "source-only-heading",
   "source-navigation-filler",
   "unexplained-output-scheduling",
   "unqualified-energy-density-claim",

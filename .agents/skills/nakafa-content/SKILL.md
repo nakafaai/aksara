@@ -329,6 +329,16 @@ addition, revision, review, or translation in this repository.
   formation, such as `rata-rata` or `jari-jari` in Indonesian. Do not replace a
   familiar word with a stiffer synonym merely to satisfy the checker, and never
   delete the required hyphen to produce `rata rata` or `jari jari`.
+- Never add a learner-facing citation-only section. Do not use headings such as
+  `Source`, `Sources`, `Reference`, `References`, `Sumber`, `Referensi`,
+  `Quelle`, or `Quellen`, or localized bibliography variants, for a list whose
+  only job is to enumerate evidence. Keep provenance and evidence URLs in the
+  source, readiness, and publisher contracts. If a citation helps a learner
+  evaluate a claim, finish the claim in ordinary prose and append the source
+  chip after the sentence.
+- A substantive concept heading that contains one of these words remains valid,
+  such as `Energy Sources`, when the section teaches that concept rather than
+  listing citations.
 - Never use a visible semicolon in learner-facing content. This rule covers
   paragraphs, lists, tables, metadata descriptions, and learner-facing
   component titles, descriptions, captions, and labels in every locale. Use a
@@ -354,9 +364,8 @@ addition, revision, review, or translation in this repository.
   a chip as the subject, object, attribution, or another grammatical part of a
   sentence, such as `[EPA] menjelaskan`, `menurut [EIA]`, `a [PubChem] record`,
   or `published by [CIAAW]`. Write the complete claim first, end the sentence,
-  then append the source chip or consecutive source chips. A dedicated source
-  list may begin each item with a source chip because the list itself already
-  establishes the citation role.
+  then append the source chip or consecutive source chips. Do not create a
+  dedicated source or reference list in learner-facing lesson MDX.
 - Judge every link in its sentence and verify the destination. Do not shorten a
   legitimate official publication name only to satisfy a character limit, and
   do not derive a mandatory label from the hostname. The checker blocks only

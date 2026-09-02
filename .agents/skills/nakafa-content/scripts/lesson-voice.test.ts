@@ -91,6 +91,7 @@ test("proven regressions still block the default checker", () => {
 test("structural punctuation and contextual regressions block the CLI", () => {
   const samples = [
     ["heading", "## SDG 7 Energy Access\n"],
+    ["source heading", "## Sumber\n"],
     ["semicolon", "Hitung nilai pertama; lalu hitung nilai kedua.\n"],
     [
       "context",

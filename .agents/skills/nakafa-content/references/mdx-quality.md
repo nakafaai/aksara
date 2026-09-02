@@ -37,6 +37,12 @@
   standard word formation is allowed, such as the Indonesian reduplication in
   `rata-rata` and `jari-jari`. Do not delete that hyphen or replace a familiar
   word with a stiffer synonym merely to make the checker pass.
+- Do not create a learner-facing citation-only section with a heading such as
+  `Source`, `Sources`, `Reference`, `References`, `Sumber`, `Referensi`,
+  `Quelle`, or `Quellen`, including localized bibliography variants. Keep
+  evidence URLs in source, readiness, and publisher contracts. A substantive
+  concept heading such as `Energy Sources` remains valid when it teaches the
+  concept instead of listing citations.
 
 ## Learner facing punctuation
 
@@ -271,8 +277,8 @@ against the current route-domain renderer manifest before authoring with it.
 - A source chip is a citation, not a grammatical subject, object, or
   attribution. Reject constructions such as `[EPA] explains`, `menurut [EIA]`,
   `ein Eintrag in [PubChem]`, and `published by [CIAAW]`. State the claim in
-  ordinary prose, end the sentence, and append one or more source chips. An
-  explicit source or reference list may begin an item with its source chip.
+  ordinary prose, end the sentence, and append one or more source chips. Do not
+  add a dedicated source or reference list to learner-facing lesson MDX.
 
 ## Evidence basis
 

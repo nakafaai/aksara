@@ -14,6 +14,68 @@ test("rejects invisible control characters in source text", () => {
   ]);
 });
 
+test("rejects citation-only headings in every lesson locale", () => {
+  const cases = [
+    {
+      allowed: ["Energy Sources", "Reference Frames"],
+      locale: "en",
+      rejected: [
+        "Source",
+        "Sources",
+        "Reference",
+        "References",
+        "Bibliography",
+        "Further Reading",
+        "Works Cited",
+      ],
+    },
+    {
+      allowed: ["Sumber Energi", "Kerangka Acuan"],
+      locale: "id",
+      rejected: [
+        "Sumber",
+        "Referensi",
+        "Daftar Referensi",
+        "Daftar Sumber",
+        "Daftar Pustaka",
+        "Bacaan Lanjutan",
+        "Rujukan",
+      ],
+    },
+    {
+      allowed: ["Energiequellen", "Bezugsrahmen"],
+      locale: "de",
+      rejected: [
+        "Quelle",
+        "Quellen",
+        "Quellenangaben",
+        "Quellenverzeichnis",
+        "Referenz",
+        "Referenzen",
+        "Literatur",
+        "Literaturverzeichnis",
+        "Weiterführende Literatur",
+      ],
+    },
+  ] as const;
+
+  for (const { locale, rejected, allowed } of cases) {
+    const source = [...rejected, ...allowed]
+      .map((heading) => `## ${heading}`)
+      .join("\n");
+    assert.deepEqual(
+      findLessonVoiceIssues(locale, source).map(({ line, rule }) => ({
+        line,
+        rule,
+      })),
+      rejected.map((_, index) => ({
+        line: index + 1,
+        rule: "source-only-heading",
+      }))
+    );
+  }
+});
+
 test("rejects every symbol in headings", () => {
   const source = [
     "## Cuaca Berubah Cepat; Iklim Diukur Selama Puluhan Tahun",
