@@ -158,6 +158,9 @@ typed blockers, never fallback conditions.
   reads naturally in its locale. The rule must allow a hyphen required by
   standard word formation, such as Indonesian reduplication, without allowing
   decorative separators or damaged spellings.
+- Confirm no learner-facing lesson contains a citation-only source or reference
+  heading. Check all three locale siblings and keep evidence URLs in the source,
+  readiness, or publisher contract.
 - Confirm no visible semicolon remains in paragraphs, lists, tables, metadata
   descriptions, or learner-facing component props. Inspect the parsed MDX
   result rather than rejecting semicolons required by code, syntax, HTML

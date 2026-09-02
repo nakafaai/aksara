@@ -105,14 +105,12 @@ test("rejects source chips used inside sentence grammar", () => {
   }
 });
 
-test("allows citations after complete claims and explicit source lists", () => {
+test("allows citations after complete claims and standalone citation items", () => {
   const source = [
     "Electricity is a secondary energy source. [EIA](https://example.com)",
     "The first claim is sourced. [EPA](https://example.com) The explanation continues in a new sentence.",
     "Two claims share evidence. [EPA](https://example.com) [EIA](https://example.org)",
-    "## Sources",
-    "",
-    "- [OpenStax Biology 2e](https://example.com) presents the derivation.",
+    "- [OpenStax Biology 2e](https://example.com)",
   ].join("\n\n");
 
   assert.deepEqual(findExternalLinkPlacementIssues(source), []);

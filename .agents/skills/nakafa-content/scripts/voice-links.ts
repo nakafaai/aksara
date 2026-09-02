@@ -28,8 +28,6 @@ const SENTENCE_END_PATTERN = /[.!?]["'’”)\]}]*$/u;
 const TERMINAL_ABBREVIATION_PATTERN =
   /(?:\b(?:[a-z]\.){2,}|\b(?:dll|dr|dsb|etc|hlm|mis|no|prof|usw)\.)["'’”)\]}]*$/iu;
 const SENTENCE_START_PATTERN = /^[*_~"'‘“„([]*(?:[\p{Lu}\p{N}]|<|`)/u;
-const SOURCE_SECTION_PATTERN =
-  /^#{2,5}\s+(?:Quellen|References|Referensi|Sumber|Sources)\s*$/gimu;
 const WHITESPACE_PATTERN = /\s+/u;
 const PUNCTUATION_ONLY_PATTERN = /^[.!?]+$/u;
 const SENTENCE_LEADING_PUNCTUATION_PATTERN = /^[.!?]["'’”)\]}]*\s+/u;
@@ -147,7 +145,7 @@ function followsCompleteSentence(value: string): boolean {
   );
 }
 
-/** Traverses MDX with ancestors so placement can respect explicit source lists. */
+/** Traverses MDX with ancestors so placement can inspect prose containers. */
 function visitWithAncestors(
   node: MdxNode,
   ancestors: readonly MdxNode[],
@@ -157,14 +155,6 @@ function visitWithAncestors(
   for (const child of node.children ?? []) {
     visitWithAncestors(child, [...ancestors, node], visit);
   }
-}
-
-/** Returns whether an offset falls below the current explicit source heading. */
-function isInsideSourceSection(source: string, offset: number): boolean {
-  const headings = [...source.slice(0, offset).matchAll(/^#{2,5}\s+.+$/gmu)];
-  const currentHeading = headings.at(-1)?.[0] ?? "";
-  SOURCE_SECTION_PATTERN.lastIndex = 0;
-  return SOURCE_SECTION_PATTERN.test(currentHeading);
 }
 
 /** Returns the narrow evidence-backed failure for one external label. */
@@ -275,15 +265,11 @@ export function findExternalLinkPlacementIssues(
       containerEnd,
       definitions
     );
-    const isExplicitSourceList =
-      ancestors.some(({ type }) => type === "listItem") &&
-      isInsideSourceSection(source, containerStart);
     const isStandaloneCitation =
       before === "" &&
       (after.trim() === "" || PUNCTUATION_ONLY_PATTERN.test(after.trim()));
     const followsCompleteClaim = followsCompleteSentence(before);
     if (
-      isExplicitSourceList ||
       isStandaloneCitation ||
       (followsCompleteClaim && !continuesSentenceAfterLink(after))
     ) {

@@ -72,6 +72,14 @@ export const HEADING_VOICE_RULES = [
     },
   },
   {
+    id: "source-only-heading",
+    patterns: {
+      de: /^#{2,6}[ \t]+(?:Quelle|Quellen|Quellenangaben|Quellenverzeichnis|Referenz|Referenzen|Literatur|Literaturverzeichnis|Weiterführende Literatur)[ \t]*$/iu,
+      en: /^#{2,6}[ \t]+(?:Source|Sources|Reference|References|Bibliography|Further Reading|Works Cited)[ \t]*$/iu,
+      id: /^#{2,6}[ \t]+(?:Sumber|Daftar Referensi|Daftar Sumber|Referensi|Daftar Pustaka|Bacaan Lanjutan|Rujukan)[ \t]*$/iu,
+    },
+  },
+  {
     id: "generic-calculation-heading",
     patterns: {
       de: /^#{2,6}[ \t]+(?:Berechnungsschritte|Detaillierte Berechnung|Rechenschritte|Lösungsschritte|Systematische Berechnungsschritte)[ \t]*$/iu,
@@ -124,7 +132,6 @@ export const HEADING_VOICE_RULES = [
     },
   },
 ] satisfies readonly LessonVoiceRule[];
-
 const HEADING_PATTERN = /^(#{2,6})(\s+)(.+)$/u;
 const METADATA_TITLE_PATTERN = /^(\s*title:\s*")([^"]+)(".*)$/u;
 const ALLOWED_HEADING_CHARACTER = /[\p{L} ]/u;

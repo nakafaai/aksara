@@ -182,6 +182,10 @@
 - Never satisfy the symbol rule by deleting punctuation from the original
   heading and leaving an ungrammatical word pile. Rewrite the whole heading as
   a natural clause or direct noun phrase in that locale.
+- Do not give a learner-facing section the sole job of listing citations. Keep
+  source and provenance metadata in the source, readiness, or publisher
+  contract, and place a source chip after the complete teaching claim when the
+  learner needs to inspect the evidence.
 - If a section has nested subsections, introduce their shared purpose with a
   substantive bridge paragraph first.
 - Avoid reusable headings such as `Overview`, `Key Takeaway`, or `Step One` when
