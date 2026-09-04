@@ -70,7 +70,7 @@ describe("space math visual", () => {
     for (const view of [
       { kind: "fit", padding: 2 },
       { kind: "isometric" },
-      { kind: "isometric", target: { x: 1, y: 2, z: 3 } },
+      { kind: "isometric", target: { x: -10, y: 10, z: 10 } },
       {
         kind: "camera",
         position: { x: 8, y: 6, z: 10 },
@@ -153,6 +153,13 @@ describe("space math visual", () => {
       {
         ...spaceScene(point),
         view: {
+          kind: "isometric",
+          target: { x: -10.000_000_000_000_002, y: 10, z: 10 },
+        },
+      },
+      {
+        ...spaceScene(point),
+        view: {
           kind: "camera",
           position: { x: 0, y: 0, z: 0 },
           target: { x: 0, y: 0, z: 0 },
@@ -201,44 +208,62 @@ describe("space math visual", () => {
 
   it("accepts coplanar polygons across translation and scale", () => {
     const maximum = Number.MAX_VALUE;
-    for (const vertices of [
-      [
-        { x: 1_000_000_000_000, y: 1_000_000_000_000, z: 8 },
-        { x: 1_000_000_000_001, y: 1_000_000_000_000, z: 8 },
-        { x: 1_000_000_000_001, y: 1_000_000_000_001, z: 8 },
-        { x: 1_000_000_000_000, y: 1_000_000_000_001, z: 8 },
-      ],
-      [
-        { x: 0, y: 0, z: 0 },
-        { x: 1e-200, y: 0, z: 0 },
-        { x: 0, y: 1e-200, z: 0 },
-      ],
-      [
-        { x: -maximum, y: 0, z: 0 },
-        { x: maximum, y: 0, z: 0 },
-        { x: 0, y: maximum, z: 0 },
-      ],
-      [
-        { x: 0, y: -maximum, z: 0 },
-        { x: maximum, y: 0, z: 0 },
-        { x: 0, y: maximum, z: 0 },
-      ],
-      [
-        { x: 0, y: 0, z: -maximum },
-        { x: maximum, y: 0, z: 0 },
-        { x: 0, y: 0, z: maximum },
-      ],
+    for (const { frame, vertices } of [
+      {
+        frame: {
+          x: { max: 1_000_000_000_002, min: 1_000_000_000_000 },
+          y: { max: 1_000_000_000_002, min: 1_000_000_000_000 },
+          z: { max: 9, min: 7 },
+        },
+        vertices: [
+          { x: 1_000_000_000_000, y: 1_000_000_000_000, z: 8 },
+          { x: 1_000_000_000_001, y: 1_000_000_000_000, z: 8 },
+          { x: 1_000_000_000_001, y: 1_000_000_000_001, z: 8 },
+          { x: 1_000_000_000_000, y: 1_000_000_000_001, z: 8 },
+        ],
+      },
+      {
+        frame: {
+          x: { max: 1e-200, min: 0 },
+          y: { max: 1e-200, min: 0 },
+          z: { max: 1e-200, min: -1e-200 },
+        },
+        vertices: [
+          { x: 0, y: 0, z: 0 },
+          { x: 1e-200, y: 0, z: 0 },
+          { x: 0, y: 1e-200, z: 0 },
+        ],
+      },
+      ...[
+        [
+          { x: -maximum, y: 0, z: 0 },
+          { x: maximum, y: 0, z: 0 },
+          { x: 0, y: maximum, z: 0 },
+        ],
+        [
+          { x: 0, y: -maximum, z: 0 },
+          { x: maximum, y: 0, z: 0 },
+          { x: 0, y: maximum, z: 0 },
+        ],
+        [
+          { x: 0, y: 0, z: -maximum },
+          { x: maximum, y: 0, z: 0 },
+          { x: 0, y: 0, z: maximum },
+        ],
+      ].map((extremeVertices) => ({
+        frame: {
+          x: { max: maximum, min: -maximum },
+          y: { max: maximum, min: -maximum },
+          z: { max: maximum, min: -maximum },
+        },
+        vertices: extremeVertices,
+      })),
     ]) {
       expect(
         Exit.isSuccess(
           Schema.decodeUnknownExit(MathVisualSchema)({
             ...spaceScene(object("polygon", { vertices })),
-            frame: {
-              ...spaceFrame,
-              x: { max: maximum, min: -maximum },
-              y: { max: maximum, min: -maximum },
-              z: { max: maximum, min: -maximum },
-            },
+            frame: { ...spaceFrame, ...frame },
           })
         )
       ).toBe(true);

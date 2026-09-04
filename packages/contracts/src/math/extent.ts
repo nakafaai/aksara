@@ -2,41 +2,23 @@ import { BigDecimal } from "effect";
 
 import { GEOMETRY_TOLERANCE } from "#contracts/math/base";
 import type { PlaneMathFrame, PlaneMathObject } from "#contracts/math/plane";
-import { decimal, makeRatio, ratioInRange } from "#contracts/math/rational";
+import {
+  decimal,
+  decimalRatio,
+  type ExactRatio,
+  makeRatio,
+  numberRatio,
+  ratioInRange,
+} from "#contracts/math/rational";
 import type { SpaceMathFrame, SpaceMathObject } from "#contracts/math/space";
 
 export type AxisRange = PlaneMathFrame["x"];
 
+const ZERO = BigDecimal.fromBigInt(0n);
+
 /** Checks one finite coordinate against its inclusive authored range. */
 export function axisContains(range: AxisRange, coordinate: number) {
   return coordinate >= range.min && coordinate <= range.max;
-}
-
-/** Checks one exact decimal coordinate against an inclusive authored range. */
-function axisContainsDecimal(
-  range: AxisRange,
-  coordinate: BigDecimal.BigDecimal
-) {
-  return (
-    BigDecimal.isGreaterThanOrEqualTo(coordinate, decimal(range.min)) &&
-    BigDecimal.isLessThanOrEqualTo(coordinate, decimal(range.max))
-  );
-}
-
-/** Checks an exact signed offset without rounding it into its origin. */
-function axisContainsOffset(
-  range: AxisRange,
-  origin: number,
-  offset: BigDecimal.BigDecimal
-) {
-  if (!axisContains(range, origin)) {
-    return false;
-  }
-  const center = decimal(origin);
-  const clearance = BigDecimal.isNegative(offset)
-    ? BigDecimal.subtract(center, decimal(range.min))
-    : BigDecimal.subtract(decimal(range.max), center);
-  return BigDecimal.isLessThanOrEqualTo(BigDecimal.abs(offset), clearance);
 }
 
 /** Checks one translated coordinate within its explicit numeric error envelope. */
@@ -61,7 +43,11 @@ function axisContainsTranslated(
 
 /** Normalizes one angle to the canonical half-open degree interval. */
 function normalizeDegrees(value: number) {
-  return ((value % 360) + 360) % 360;
+  if (value >= 0 && value < 360) {
+    return value;
+  }
+  const remainder = value % 360;
+  return remainder < 0 ? remainder + 360 : remainder;
 }
 
 /** Returns whether one cardinal angle lies on the authored directed arc. */
@@ -71,14 +57,14 @@ function arcContainsAngle(start: number, sweep: number, angle: number) {
     : normalizeDegrees(start - angle) <= -sweep;
 }
 
-interface ArcOffset {
+export interface RadialOffset {
   readonly error: BigDecimal.BigDecimal;
   readonly x: BigDecimal.BigDecimal;
   readonly y: BigDecimal.BigDecimal;
 }
 
 /** Resolves exact cardinals or a trig offset with its renderer error envelope. */
-function arcOffset(radius: number, angle: number): ArcOffset {
+function arcOffset(radius: number, angle: number): RadialOffset {
   const normalized = normalizeDegrees(angle);
   const exactRadius = decimal(radius);
   const exact = BigDecimal.fromBigInt(0n);
@@ -105,11 +91,13 @@ function arcOffset(radius: number, angle: number): ArcOffset {
   };
 }
 
-/** Checks the exact endpoints and cardinal extrema of one directed arc. */
-export function arcContained(
-  frame: PlaneMathFrame,
-  object: Extract<PlaneMathObject, { readonly kind: "arc" }>
-) {
+/** Returns every endpoint or cardinal offset that bounds one radial object. */
+export function radialOffsets(
+  object: Extract<PlaneMathObject, { readonly kind: "arc" | "circle" }>
+): readonly RadialOffset[] {
+  if (object.kind === "circle") {
+    return [0, 90, 180, 270].map((angle) => arcOffset(object.radius, angle));
+  }
   const angles = [
     object.startDegrees,
     object.startDegrees + object.sweepDegrees,
@@ -119,9 +107,16 @@ export function arcContained(
       angles.push(angle);
     }
   }
-  return angles.every((angle) => {
-    const offset = arcOffset(object.radius, angle);
-    return (
+  return angles.map((angle) => arcOffset(object.radius, angle));
+}
+
+/** Checks the exact endpoints and cardinal extrema of one directed arc. */
+export function arcContained(
+  frame: PlaneMathFrame,
+  object: Extract<PlaneMathObject, { readonly kind: "arc" }>
+) {
+  return radialOffsets(object).every(
+    (offset) =>
       axisContainsTranslated(
         frame.x,
         object.center.x,
@@ -129,8 +124,7 @@ export function arcContained(
         offset.error
       ) &&
       axisContainsTranslated(frame.y, object.center.y, offset.y, offset.error)
-    );
-  });
+  );
 }
 
 /** Checks one circle through exact radius-to-boundary comparisons. */
@@ -138,13 +132,15 @@ export function circleContained(
   frame: PlaneMathFrame,
   object: Extract<PlaneMathObject, { readonly kind: "circle" }>
 ) {
-  const radius = decimal(object.radius);
-  const negativeRadius = BigDecimal.negate(radius);
-  return (
-    axisContainsOffset(frame.x, object.center.x, radius) &&
-    axisContainsOffset(frame.x, object.center.x, negativeRadius) &&
-    axisContainsOffset(frame.y, object.center.y, radius) &&
-    axisContainsOffset(frame.y, object.center.y, negativeRadius)
+  return radialOffsets(object).every(
+    (offset) =>
+      axisContainsTranslated(
+        frame.x,
+        object.center.x,
+        offset.x,
+        offset.error
+      ) &&
+      axisContainsTranslated(frame.y, object.center.y, offset.y, offset.error)
   );
 }
 
@@ -162,6 +158,40 @@ function quadraticValue(
   ]);
 }
 
+/** One exact input and output pair at a quadratic domain extremum. */
+export interface QuadraticExtremum {
+  readonly input: ExactRatio;
+  readonly output: ExactRatio;
+}
+
+/** Returns both domain endpoints and the in-domain vertex of one quadratic. */
+export function quadraticExtrema(
+  object: Extract<PlaneMathObject, { readonly kind: "quadratic" }>
+): readonly QuadraticExtremum[] {
+  const endpoints = [object.domain.min, object.domain.max].map((input) => ({
+    input: numberRatio(input),
+    output: decimalRatio(quadraticValue(object, input)),
+  }));
+  const a = decimal(object.coefficients.a);
+  const b = decimal(object.coefficients.b);
+  const fourA = BigDecimal.multiply(decimal(4), a);
+  const vertexInput = makeRatio(
+    BigDecimal.negate(b),
+    BigDecimal.multiply(decimal(2), a)
+  );
+  if (!ratioInRange(vertexInput, object.domain.min, object.domain.max)) {
+    return endpoints;
+  }
+  const vertexOutput = makeRatio(
+    BigDecimal.subtract(
+      BigDecimal.multiply(fourA, decimal(object.coefficients.c)),
+      BigDecimal.multiply(b, b)
+    ),
+    fourA
+  );
+  return [...endpoints, { input: vertexInput, output: vertexOutput }];
+}
+
 /** Checks the complete quadratic domain and exact endpoint or vertex range. */
 export function quadraticContained(
   frame: PlaneMathFrame,
@@ -176,32 +206,43 @@ export function quadraticContained(
   ) {
     return false;
   }
-  if (
-    ![object.domain.min, object.domain.max].every((input) =>
-      axisContainsDecimal(outputRange, quadraticValue(object, input))
-    )
-  ) {
-    return false;
-  }
-  const a = decimal(object.coefficients.a);
-  const b = decimal(object.coefficients.b);
-  const c = decimal(object.coefficients.c);
-  const fourA = BigDecimal.multiply(decimal(4), a);
-  const vertex = makeRatio(
-    BigDecimal.negate(b),
-    BigDecimal.multiply(decimal(2), a)
+  return quadraticExtrema(object).every(({ output }) =>
+    ratioInRange(output, outputRange.min, outputRange.max)
   );
-  if (!ratioInRange(vertex, object.domain.min, object.domain.max)) {
-    return true;
-  }
-  const vertexValue = makeRatio(
-    BigDecimal.subtract(
-      BigDecimal.multiply(fourA, c),
-      BigDecimal.multiply(b, b)
-    ),
-    fourA
-  );
-  return ratioInRange(vertexValue, outputRange.min, outputRange.max);
+}
+
+export interface CuboidExtent {
+  readonly axis: "x" | "y" | "z";
+  readonly center: number;
+  readonly dimension: "height" | "length" | "width";
+  readonly extent: BigDecimal.BigDecimal;
+}
+
+/** Returns the exact positive half-extent on every cuboid axis. */
+export function cuboidExtents(
+  object: Extract<SpaceMathObject, { readonly kind: "cuboid" }>
+): readonly CuboidExtent[] {
+  const half = decimal(0.5);
+  return [
+    {
+      axis: "x",
+      center: object.center.x,
+      dimension: "length",
+      extent: BigDecimal.multiply(decimal(object.size.length), half),
+    },
+    {
+      axis: "y",
+      center: object.center.y,
+      dimension: "height",
+      extent: BigDecimal.multiply(decimal(object.size.height), half),
+    },
+    {
+      axis: "z",
+      center: object.center.z,
+      dimension: "width",
+      extent: BigDecimal.multiply(decimal(object.size.width), half),
+    },
+  ];
 }
 
 /** Checks one cuboid through exact half-extent-to-boundary comparisons. */
@@ -209,28 +250,14 @@ export function cuboidContained(
   frame: SpaceMathFrame,
   object: Extract<SpaceMathObject, { readonly kind: "cuboid" }>
 ) {
-  const halfLength = BigDecimal.multiply(
-    decimal(object.size.length),
-    decimal(0.5)
-  );
-  const halfHeight = BigDecimal.multiply(
-    decimal(object.size.height),
-    decimal(0.5)
-  );
-  const halfWidth = BigDecimal.multiply(
-    decimal(object.size.width),
-    decimal(0.5)
-  );
-  const dimensions: ReadonlyArray<
-    readonly [AxisRange, number, BigDecimal.BigDecimal]
-  > = [
-    [frame.x, object.center.x, halfLength],
-    [frame.y, object.center.y, halfHeight],
-    [frame.z, object.center.z, halfWidth],
-  ];
-  return dimensions.every(
-    ([range, center, extent]) =>
-      axisContainsOffset(range, center, extent) &&
-      axisContainsOffset(range, center, BigDecimal.negate(extent))
+  return cuboidExtents(object).every(
+    ({ axis, center, extent }) =>
+      axisContainsTranslated(frame[axis], center, extent, ZERO) &&
+      axisContainsTranslated(
+        frame[axis],
+        center,
+        BigDecimal.negate(extent),
+        ZERO
+      )
   );
 }

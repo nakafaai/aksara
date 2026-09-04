@@ -13,6 +13,11 @@ export function decimal(value: number) {
   return BigDecimal.fromNumberUnsafe(value);
 }
 
+/** Lifts one exact decimal into the shared rational coordinate form. */
+export function decimalRatio(value: BigDecimal.BigDecimal): ExactRatio {
+  return { denominator: unit, numerator: value };
+}
+
 /** Creates one exact ratio from a known non-zero denominator. */
 export function makeRatio(
   numerator: BigDecimal.BigDecimal,
@@ -28,7 +33,26 @@ export function makeRatio(
 
 /** Creates one exact ratio from a finite number. */
 export function numberRatio(value: number): ExactRatio {
-  return { denominator: unit, numerator: decimal(value) };
+  return decimalRatio(decimal(value));
+}
+
+/** Evaluates one affine coordinate without dividing its exact parameter. */
+export function affineRatio(
+  start: number,
+  through: number,
+  parameter: ExactRatio
+): ExactRatio {
+  const origin = decimal(start);
+  return makeRatio(
+    BigDecimal.sum(
+      BigDecimal.multiply(origin, parameter.denominator),
+      BigDecimal.multiply(
+        BigDecimal.subtract(decimal(through), origin),
+        parameter.numerator
+      )
+    ),
+    parameter.denominator
+  );
 }
 
 /** Creates the exact path parameter `(boundary - start) / (through - start)`. */

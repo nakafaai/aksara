@@ -198,7 +198,9 @@ describe("math visual bounds", () => {
       }),
     ];
     assert.deepStrictEqual(
-      spaceBoundsIssues(spaceFrame, [...infinite, ...finite], []),
+      spaceBoundsIssues(spaceFrame, [...infinite, ...finite], [], {
+        kind: "fit",
+      }),
       []
     );
 
@@ -224,7 +226,8 @@ describe("math visual bounds", () => {
       spaceBoundsIssues(
         frame,
         [...infinite, ...objects],
-        [{ at: p3(0, 0, 3), key: "outside" }]
+        [{ at: p3(0, 0, 3), key: "outside" }],
+        { kind: "isometric" }
       ),
       [
         ...objects.map((_, index) => ({
@@ -234,6 +237,28 @@ describe("math visual bounds", () => {
         {
           issue: "Expected a space label anchor inside the Cartesian frame.",
           path: ["labels", 0, "at"],
+        },
+      ]
+    );
+  });
+
+  it("keeps an explicit isometric target inside the inclusive frame", () => {
+    assert.deepStrictEqual(
+      spaceBoundsIssues(spaceFrame, [], [], {
+        kind: "isometric",
+        target: p3(-10, 10, 10),
+      }),
+      []
+    );
+    assert.deepStrictEqual(
+      spaceBoundsIssues(spaceFrame, [], [], {
+        kind: "isometric",
+        target: p3(-10.000_000_000_000_002, 10, 10),
+      }),
+      [
+        {
+          issue: "Expected an isometric target inside the Cartesian frame.",
+          path: ["view", "target"],
         },
       ]
     );

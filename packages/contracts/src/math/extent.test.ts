@@ -1,10 +1,12 @@
 import { assert, describe, it } from "@effect/vitest";
+import { BigDecimal } from "effect";
 
 import {
   arcContained,
   circleContained,
   cuboidContained,
   quadraticContained,
+  radialOffsets,
 } from "#contracts/math/extent";
 import type { PlaneMathFrame, PlaneMathObject } from "#contracts/math/plane";
 import type { SpaceMathFrame, SpaceMathObject } from "#contracts/math/space";
@@ -56,6 +58,13 @@ function circle(center: Circle["center"], radius: number): Circle {
 }
 
 describe("finite curved extents", () => {
+  it("preserves a positive sub-ULP canonical start in approximate offsets", () => {
+    const [start] = radialOffsets(arc(Number.EPSILON, 90));
+
+    assert.ok(start);
+    assert.isFalse(BigDecimal.isZero(start.y));
+  });
+
   it("accepts both exact directed cardinal boundaries", () => {
     const frame = {
       ...planeFrame,
