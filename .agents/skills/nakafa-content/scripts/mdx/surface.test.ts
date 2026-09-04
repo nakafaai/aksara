@@ -27,6 +27,11 @@ it("checks native placeholder and accessible-label copy", () => {
     '<input {...{ placeholder: "Anda dapat mencoba ini." }} />';
   const spreadAccessible =
     '<button {...{ "aria-label": "Sie können den Wert prüfen." }} />';
+  const nestedSpreadCopy =
+    '<Chart {...{ data: { placeholder: "Anda dapat mencoba ini." } }} />';
+  const nestedSpreadName =
+    '<Chart {...{ data: { name: "Anda dapat mencoba ini." } }} />';
+  const unownedSpread = '<Callout {..."Anda dapat mencoba ini."} />';
 
   assert.deepEqual(
     findLessonVoiceIssues("id", placeholder).map(({ rule }) => rule),
@@ -44,6 +49,12 @@ it("checks native placeholder and accessible-label copy", () => {
     findLessonVoiceIssues("de", spreadAccessible).map(({ rule }) => rule),
     ["german-formal-address"]
   );
+  assert.deepEqual(findLessonVoiceIssues("id", nestedSpreadCopy), []);
+  assert.deepEqual(
+    findLessonVoiceIssues("id", nestedSpreadName).map(({ rule }) => rule),
+    ["indonesian-formal-learner-address"]
+  );
+  assert.deepEqual(findLessonVoiceIssues("id", unownedSpread), []);
 });
 
 it("checks expression string props and fragments without duplicates", () => {

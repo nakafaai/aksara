@@ -34,6 +34,10 @@ it("checks Markdown link labels but protects destinations", () => {
     findLessonVoiceIssues("en", "[![Diagram](plot.png)](/lesson)."),
     []
   );
+  assert.deepEqual(
+    findLessonVoiceIssues("en", "[![Diagram](plot.png)](/lesson)"),
+    []
+  );
 });
 
 it("checks one formal-address frame across formatted link-label children", () => {

@@ -52,12 +52,12 @@ export function collectLinkLabelIssues(
   state: ProseState,
   context: MdxNode | undefined
 ): void {
-  assert.ok(context);
-  const allowUnanchoredAddress = allowsUnanchoredAddress(node, context, source);
   const range = renderedNodeRange(node, source);
   if (!range) {
     return;
   }
+  assert.ok(context);
+  const allowUnanchoredAddress = allowsUnanchoredAddress(node, context, source);
   issues.push(
     ...matchRangeRules(
       locale,

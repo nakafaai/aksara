@@ -66,8 +66,11 @@ function collectNestedAttributeRanges(
     const attribute = asEstreeNode(value);
     assert.ok(attribute);
     if (attribute.type === "JSXSpreadAttribute") {
-      collectExpressionValues(attribute.argument, ranges, source, (fieldName) =>
-        Boolean(fieldName && isAddressTextAttribute(fieldName))
+      collectExpressionValues(
+        attribute.argument,
+        ranges,
+        source,
+        includeSpreadAddressField
       );
       continue;
     }
@@ -85,8 +88,12 @@ function collectExpressionRanges(
   node: EstreeNode,
   ranges: SourceRange[],
   source: string,
-  include: (fieldName: string | undefined) => boolean,
-  fieldName?: string
+  include: (
+    fieldName: string | undefined,
+    rootFieldName: string | undefined
+  ) => boolean,
+  fieldName?: string,
+  rootFieldName?: string
 ): void {
   if (
     (node.type === "Literal" && typeof node.value === "string") ||
@@ -94,7 +101,7 @@ function collectExpressionRanges(
     node.type === "TemplateElement"
   ) {
     const range = renderedStringRange(node, source);
-    if (include(fieldName)) {
+    if (include(fieldName, rootFieldName)) {
       ranges.push(range);
     }
     return;
@@ -104,16 +111,37 @@ function collectExpressionRanges(
       return;
     }
     collectNestedAttributeRanges(node, ranges, source);
-    collectExpressionValues(node.children, ranges, source, include, fieldName);
+    collectExpressionValues(
+      node.children,
+      ranges,
+      source,
+      include,
+      fieldName,
+      rootFieldName
+    );
     return;
   }
   if (node.type === "Property") {
     const propertyName = staticFieldName(asEstreeNode(node.key));
-    collectExpressionValues(node.value, ranges, source, include, propertyName);
+    collectExpressionValues(
+      node.value,
+      ranges,
+      source,
+      include,
+      propertyName,
+      rootFieldName ?? propertyName
+    );
     return;
   }
   for (const key of RENDERED_KEYS_BY_TYPE[node.type] ?? []) {
-    collectExpressionValues(node[key], ranges, source, include, fieldName);
+    collectExpressionValues(
+      node[key],
+      ranges,
+      source,
+      include,
+      fieldName,
+      rootFieldName
+    );
   }
 }
 
@@ -122,15 +150,43 @@ function collectExpressionValues(
   value: unknown,
   ranges: SourceRange[],
   source: string,
-  include: (fieldName: string | undefined) => boolean,
-  fieldName?: string
+  include: (
+    fieldName: string | undefined,
+    rootFieldName: string | undefined
+  ) => boolean,
+  fieldName?: string,
+  rootFieldName?: string
 ): void {
   for (const child of Array.isArray(value) ? value : [value]) {
     const childNode = asEstreeNode(child);
     if (childNode) {
-      collectExpressionRanges(childNode, ranges, source, include, fieldName);
+      collectExpressionRanges(
+        childNode,
+        ranges,
+        source,
+        include,
+        fieldName,
+        rootFieldName
+      );
     }
   }
+}
+
+/** Selects learner copy from one top-level JSX spread property. */
+function includeSpreadAddressField(
+  fieldName: string | undefined,
+  rootFieldName: string | undefined
+): boolean {
+  if (!rootFieldName) {
+    return false;
+  }
+  if (isAddressTextAttribute(rootFieldName)) {
+    return true;
+  }
+  return (
+    isNestedAddressAttribute(rootFieldName) &&
+    isNestedAddressField(rootFieldName, fieldName)
+  );
 }
 
 /** Reads one expression-backed MDX attribute program. */
@@ -159,8 +215,12 @@ export function generalAttributeRanges(
     const ranges: SourceRange[] = [];
     const estree = attributeEstree(attribute);
     assert.ok(estree);
-    collectExpressionRanges(estree, ranges, source, (fieldName) =>
-      Boolean(fieldName && isGeneralTextAttribute(fieldName))
+    collectExpressionRanges(
+      estree,
+      ranges,
+      source,
+      (_fieldName, rootFieldName) =>
+        Boolean(rootFieldName && isGeneralTextAttribute(rootFieldName))
     );
     return ranges;
   }
@@ -188,9 +248,7 @@ export function addressAttributeRanges(
     const ranges: SourceRange[] = [];
     const estree = attributeEstree(attribute);
     assert.ok(estree);
-    collectExpressionRanges(estree, ranges, source, (fieldName) =>
-      Boolean(fieldName && isAddressTextAttribute(fieldName))
-    );
+    collectExpressionRanges(estree, ranges, source, includeSpreadAddressField);
     return ranges;
   }
   const attributeName = attribute.name;
