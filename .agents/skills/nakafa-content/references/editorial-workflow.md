@@ -26,7 +26,9 @@ For every authored target document or localized metadata record:
    paths.
 2. Audit every canonical source sibling for factual, citation, structural,
    terminology, and artificial-writing problems. No sibling that contributes
-   reviewed meaning may be skipped.
+   reviewed meaning may be skipped. Reconcile inaccurate, incomplete,
+   artificial, or pedagogically weak siblings into one shared teaching document
+   and apply the correction to every affected sibling before translation.
 3. Read and apply the complete Humanizer skill to the source. Correct the source
    only when evidence supports the change.
 4. Audit every causal, comparative, and qualitative claim. Record its subject,
@@ -48,17 +50,9 @@ For every authored target document or localized metadata record:
 7. Apply the complete Humanizer skill again to the target draft. Humanizer may
    improve wording, rhythm, and clarity, but it may not remove teaching context,
    reasoning steps, evidence, math, or components.
-8. Check fabrication, citations, terminology, headings, math, code,
-   accessibility, punctuation, and route identity. Keep authoring evidence in
-   the source and publisher contracts. Competitor or secondary explainers may
-   inform the writing and remain as non-published, claim-matched provenance,
-   but never as learner-visible links. Remove redundant, citation-only, and
-   optional external navigation. Keep official documentation, primary data, a
-   standard, or a reference link visible only when the learner has a concrete
-   reason to inspect that exact resource. Put a descriptive linked source name
-   or phrase beside the exact claim it supports without flattening the teaching
-   sentence. Never add a lesson, domain, or URL allowlist to the deterministic
-   checker.
+8. Check fabrication, terminology, headings, math, code, accessibility,
+   punctuation, and route identity. Apply the [MDX link policy](mdx-quality.md#links)
+   to source eligibility, claim-matched provenance, and every removed URL.
 9. Compare the locale siblings structurally and semantically. Confirm that every
    teaching unit and component has one corresponding localized implementation.
    Then hide the siblings and read each locale on its own. A sentence fails if
@@ -95,7 +89,7 @@ science, Quran, account, accessibility, and try-out terms. Route slugs use the
 contract-owned normalization policy. Validate collisions and stable
 cross-locale identity rather than adding spelling redirects.
 
-Read `locale-sources.md` before choosing language-specific wording.
+Read [locale sources](locale-sources.md) before choosing language-specific wording.
 Official orthography sources settle spelling and punctuation. Naturalness and
 AI-writing references provide review candidates only. The surrounding lesson,
 subject community, and spoken teacher voice decide whether a sentence is

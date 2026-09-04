@@ -10,13 +10,14 @@ for clarity, measurable scale, and safe releases.
   while `packages/testing` owns shared test-runner defaults consumed by local
   workspace configs. Add CLI ownership only with the actual Nakafa preview
   caller; never fill a workspace with substitute content.
-- File and folder names may contain at most two words. Exact source-owned
-  educational directory segments below `packages/corpus/material/lesson` and
-  `packages/corpus/question-bank/tryout` are the only exceptions; never split
-  one source identity into a fake hierarchy to satisfy code naming. Source
-  filenames and every code or configuration directory still obey the two-word
-  limit. Group longer code concepts under a domain folder, such as
-  `artifact/verify.ts`, without repeating the domain in the filename.
+- Name new code directories and new or touched code and script files with one
+  concise domain word. Group a longer capability under its domain, such as
+  `artifact/verify.ts`, without repeating the parent name. Preserve toolchain
+  filenames and suffixes such as `.config.ts`, `.d.ts`, and `.test.ts`, plus
+  contract-owned source filenames. Preserve exact educational directory
+  identities below `packages/corpus/material/lesson` and
+  `packages/corpus/question-bank/tryout`; never invent a hierarchy or rename
+  source identities to satisfy code naming. Do not mass-rename unrelated code.
 - Never invent educational content, author metadata, corpus facts, renderer
   manifests, or production-state claims. Test-only protocol values must be
   unmistakably named as tests; content evidence must cite an exact Nakafa
@@ -83,9 +84,7 @@ for clarity, measurable scale, and safe releases.
   without lowering thresholds or excluding behavior. Keep declarative
   configuration outside the executable coverage surface instead of creating
   mirror modules solely to manufacture tests.
-- Name new folders and files with one concise domain word per path segment
-  whenever the toolchain permits it. Avoid hyphenated phrases, repeated parent
-  wording, and names that restate the containing capability.
+- Do not use U+2014 in authored content, metadata, documentation, or code.
 - Do not add compatibility layers. Migration-only seams need explicit deletion
   gates.
 
@@ -95,9 +94,10 @@ for clarity, measurable scale, and safe releases.
 - Follow the official Effect guidance on
   [vendoring source for coding agents](https://www.effect.website/blog/the-one-weird-git-trick-that-makes-coding-agents-more-effect-ive).
 - `repos/effect` is pinned to the installed `effect` package version. Before
-  writing or reviewing Effect code, read its `AGENTS.md`, then inspect the
-  relevant implementation, tests, type-level tests, module structure, and API
-  design under `packages/effect`.
+  writing or reviewing Effect code, read `repos/effect/LLMS.md` and
+  `repos/effect/.agents/AGENTS.md`, then inspect relevant implementation,
+  tests, type-level tests, module structure, and API design under
+  `repos/effect/packages/effect`.
 - Prefer the matching vendored source for Effect API shape and idioms instead
   of guessing from memory, generated declarations, or examples for another
   major version.
