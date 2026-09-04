@@ -180,7 +180,7 @@ function collectNodeIssues(
   issues: LessonVoiceIssue[],
   state: ProseState,
   isProtected = false,
-  linkContextStart?: number
+  linkContext?: MdxNode
 ): void {
   if (!isProtected && node.type === "blockquote") {
     collectBlockquoteIssues(locale, node, rules, source, issues);
@@ -197,7 +197,7 @@ function collectNodeIssues(
       source,
       issues,
       state,
-      linkContextStart
+      linkContext
     );
     return;
   }
@@ -223,9 +223,7 @@ function collectNodeIssues(
       issues,
       state,
       protectedHere,
-      LINK_CONTEXT_NODE_TYPES.has(node.type)
-        ? node.position?.start?.offset
-        : linkContextStart
+      LINK_CONTEXT_NODE_TYPES.has(node.type) ? node : linkContext
     );
   }
   if (!protectedHere && node.type === "paragraph") {

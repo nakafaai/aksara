@@ -34,6 +34,7 @@ const RENDERED_KEYS_BY_TYPE: Readonly<Record<string, readonly string[]>> = {
   ParenthesizedExpression: ["expression"],
   Program: ["body"],
   Property: ["value"],
+  SpreadElement: ["argument"],
   TemplateLiteral: ["quasis", "expressions"],
 };
 
@@ -134,6 +135,9 @@ function collectExpressionValues(
 
 /** Reads one expression-backed MDX attribute program. */
 function attributeEstree(attribute: MdxAttribute): EstreeNode | undefined {
+  if (attribute.data?.estree) {
+    return attribute.data.estree;
+  }
   const { value } = attribute;
   if (value === null || value === undefined) {
     return;
@@ -151,7 +155,16 @@ export function generalAttributeRanges(
   attribute: MdxAttribute,
   source: string
 ): SourceRange[] {
-  if (!(attribute.name && isGeneralTextAttribute(attribute.name))) {
+  if (!attribute.name) {
+    const ranges: SourceRange[] = [];
+    const estree = attributeEstree(attribute);
+    assert.ok(estree);
+    collectExpressionRanges(estree, ranges, source, (fieldName) =>
+      Boolean(fieldName && isGeneralTextAttribute(fieldName))
+    );
+    return ranges;
+  }
+  if (!isGeneralTextAttribute(attribute.name)) {
     return [];
   }
   const directRange = directAttributeRange(attribute, source);
@@ -171,7 +184,16 @@ export function addressAttributeRanges(
   attribute: MdxAttribute,
   source: string
 ): SourceRange[] {
-  const attributeName = String(attribute.name);
+  if (!attribute.name) {
+    const ranges: SourceRange[] = [];
+    const estree = attributeEstree(attribute);
+    assert.ok(estree);
+    collectExpressionRanges(estree, ranges, source, (fieldName) =>
+      Boolean(fieldName && isAddressTextAttribute(fieldName))
+    );
+    return ranges;
+  }
+  const attributeName = attribute.name;
   if (isAddressTextAttribute(attributeName)) {
     const directRange = directAttributeRange(attribute, source);
     if (directRange) {

@@ -23,6 +23,10 @@ it("checks learner-visible component copy", () => {
 it("checks native placeholder and accessible-label copy", () => {
   const placeholder = '<input placeholder="Anda dapat mencoba ini." />';
   const accessible = '<button aria-label="Sie können den Wert prüfen." />';
+  const spreadPlaceholder =
+    '<input {...{ placeholder: "Anda dapat mencoba ini." }} />';
+  const spreadAccessible =
+    '<button {...{ "aria-label": "Sie können den Wert prüfen." }} />';
 
   assert.deepEqual(
     findLessonVoiceIssues("id", placeholder).map(({ rule }) => rule),
@@ -30,6 +34,14 @@ it("checks native placeholder and accessible-label copy", () => {
   );
   assert.deepEqual(
     findLessonVoiceIssues("de", accessible).map(({ rule }) => rule),
+    ["german-formal-address"]
+  );
+  assert.deepEqual(
+    findLessonVoiceIssues("id", spreadPlaceholder).map(({ rule }) => rule),
+    ["indonesian-formal-learner-address"]
+  );
+  assert.deepEqual(
+    findLessonVoiceIssues("de", spreadAccessible).map(({ rule }) => rule),
     ["german-formal-address"]
   );
 });

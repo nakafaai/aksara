@@ -49,6 +49,19 @@ it("maps decoded entities and quoted values to authored offsets", () => {
     [1, 2, 3, 4, 5]
   );
 
+  const continued = "> Anda\n> dapat";
+  assert.deepEqual(
+    renderedSourceRange(
+      {
+        end: { offset: continued.length },
+        start: { column: 3, offset: 2 },
+      },
+      "Anda\ndapat",
+      continued
+    ).rendered?.offsets,
+    [2, 3, 4, 5, 6, 9, 10, 11, 12, 13]
+  );
+
   const singleQuoted = "'copy'";
   assert.deepEqual(
     renderedSourceRange(

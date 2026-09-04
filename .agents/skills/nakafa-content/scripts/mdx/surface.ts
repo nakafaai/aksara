@@ -8,10 +8,8 @@ export function imageAltRange(node: MdxNode, source: string): SourceRange {
   assert.ok(node.type === "image" || node.type === "imageReference");
   const start = node.position?.start?.offset;
   const end = node.position?.end?.offset;
-  const continuationColumn = node.position?.start?.column;
   assert.ok(start !== undefined);
   assert.ok(end !== undefined);
-  assert.ok(continuationColumn !== undefined);
   const authored = source.slice(start, end);
   const markerOffset = authored.indexOf("![");
   assert.notEqual(markerOffset, -1);
@@ -39,8 +37,8 @@ export function imageAltRange(node: MdxNode, source: string): SourceRange {
   assert.notEqual(altEnd, -1);
   const range = {
     end: { offset: start + altEnd },
-    start: { column: continuationColumn, offset: start + altStart },
+    start: { offset: start + altStart },
   };
   assert.ok(typeof node.alt === "string");
-  return renderedSourceRange(range, node.alt, source);
+  return renderedSourceRange(range, node.alt, source, false, true);
 }

@@ -157,11 +157,10 @@ it("keeps external destinations limited to HTTPS Markdown links", () => {
       source:
         '<button formAction="https://data.example.org/submit">Submit</button>',
     },
-    {
-      source: "<button formAction>Submit</button>",
-    },
+    { source: "<button formAction>Submit</button>" },
     { source: '<img srcSet="data:image/svg+xml,unsafe 1x" />' },
     { source: '<img srcSet="/local.png 1x, https://e.co/image.png 2x" />' },
+    { source: '<img srcSet="/local.png 1x, //localhost/image.png 2x" />' },
     { source: '<blockquote cite="javascript:alert(1)">Quote</blockquote>' },
     { source: '<object data="data:text/html,unsafe" />' },
     {

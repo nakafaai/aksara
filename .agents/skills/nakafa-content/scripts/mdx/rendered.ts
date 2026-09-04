@@ -11,6 +11,7 @@ const ENTITY_PATTERN = /&(?:#[xX][\dA-Fa-f]+|#\d+|[A-Za-z][A-Za-z\d]+);/uy;
 const ESCAPABLE_CHARACTER_PATTERN = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/u;
 const ENTITY_VALUES = new Map<string, string>();
 const MARKDOWN_CONTINUATION_PREFIX_PATTERN = /^(?:[\t ]|>[\t ]?)+$/u;
+const MARKDOWN_CONTINUATION_PREFIX_START_PATTERN = /^(?:[\t ]|>[\t ]?)+/u;
 const NON_WHITESPACE_PATTERN = /\S/u;
 
 interface RenderedPart {
@@ -38,17 +39,19 @@ function renderedOffsets(
   authored: string,
   rendered: string,
   sourceStart: number,
-  continuationPrefixLength: number
+  continuationPrefixLength: number,
+  inferContinuationPrefix: boolean
 ): number[] {
   const offsets: number[] = [];
   let decoded = "";
   let followsNewline = false;
   for (let sourceIndex = 0; sourceIndex < authored.length; ) {
     if (followsNewline && continuationPrefixLength > 0) {
-      const prefix = authored.slice(
-        sourceIndex,
-        sourceIndex + continuationPrefixLength
-      );
+      const prefix = inferContinuationPrefix
+        ? (MARKDOWN_CONTINUATION_PREFIX_START_PATTERN.exec(
+            authored.slice(sourceIndex)
+          )?.[0] ?? "")
+        : authored.slice(sourceIndex, sourceIndex + continuationPrefixLength);
       if (MARKDOWN_CONTINUATION_PREFIX_PATTERN.test(prefix)) {
         sourceIndex += prefix.length;
       }
@@ -102,7 +105,8 @@ export function renderedSourceRange(
   range: SourceRange,
   rendered: string,
   source: string,
-  trimQuotes = false
+  trimQuotes = false,
+  inferContinuationPrefix = false
 ): SourceRange {
   let start = range.start?.offset;
   let end = range.end?.offset;
@@ -127,7 +131,8 @@ export function renderedSourceRange(
     authored,
     rendered,
     start,
-    Math.max(0, (range.start?.column ?? 1) - 1)
+    inferContinuationPrefix ? 1 : Math.max(0, (range.start?.column ?? 1) - 1),
+    inferContinuationPrefix
   );
   return {
     end: { offset: end },

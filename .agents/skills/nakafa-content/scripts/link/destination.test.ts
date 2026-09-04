@@ -37,6 +37,11 @@ it("classifies complete destination values without mistaking prose", () => {
     externalMatch("/small.png 1x, /large.png 2x", true, true),
     undefined
   );
+  for (const host of ["localhost", "127.0.0.1", "[::1]"]) {
+    assert.ok(
+      externalMatch(`/small.png 1x, //${host}/large.png 2x`, true, true)
+    );
+  }
 });
 
 it("recognizes exact, case-insensitive, and suffixed destination fields", () => {
