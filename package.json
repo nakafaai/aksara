@@ -34,7 +34,7 @@
     "quran:source:sync": "node --conditions=aksara-source scripts/quran/sync.ts",
     "recover": "turbo run recover --filter=@nakafa/aksara-cli",
     "release": "turbo run release --filter=@nakafa/aksara-cli",
-    "security:audit": "pnpm audit --audit-level=low",
+    "security:audit": "pnpm audit --audit-level=low --fetch-timeout=420000 --fetch-retries=0",
     "status": "turbo run status --filter=@nakafa/aksara-cli",
     "test": "turbo run test --concurrency=1",
     "test:lesson-voice": "node --conditions=aksara-source --test '.agents/skills/nakafa-content/scripts/**/*.test.ts' && node --conditions=aksara-source .agents/skills/nakafa-content/scripts/lesson-voice.ts",
