@@ -61,3 +61,28 @@ it("reviews the first paragraph after a math container", () => {
     ]
   );
 });
+
+it("handles roots without children and unavailable source lines", () => {
+  assert.deepEqual(findMathBlockFragmentIssues("", { type: "root" }), []);
+  assert.deepEqual(
+    findMathBlockFragmentIssues("one line", {
+      children: [
+        { name: "BlockMath", type: "mdxJsxFlowElement" },
+        {
+          children: [{ type: "text", value: "lowercase fragment" }],
+          position: { start: { column: 1, line: 2 } },
+          type: "paragraph",
+        },
+      ],
+      type: "root",
+    }),
+    [
+      {
+        column: 1,
+        excerpt: "",
+        line: 2,
+        rule: "lowercase-fragment-after-math-block",
+      },
+    ]
+  );
+});

@@ -1,9 +1,11 @@
+import assert from "node:assert/strict";
+
 import type { MdxNode, SourceRange } from "#nakafa-content/mdx/parse";
 import {
   addressAttributeRanges,
   generalAttributeRanges,
   renderedExpressionRanges,
-} from "#nakafa-content/mdx/surface";
+} from "#nakafa-content/mdx/ranges";
 import {
   addressRules,
   matchRangeRules,
@@ -56,7 +58,7 @@ export function collectParagraphIssues(
 
 /** Creates one stable identity for comparing two authored source ranges. */
 function rangeKey(range: SourceRange): string {
-  return `${range.start?.offset ?? ""}:${range.end?.offset ?? ""}`;
+  return `${String(range.start?.offset)}:${String(range.end?.offset)}`;
 }
 
 /** Adds general prose and address-only matches from learner-visible JSX props. */
@@ -72,7 +74,8 @@ export function collectAttributeIssues(
     return;
   }
   const selectedAddressRules = addressRules(rules);
-  for (const attribute of node.attributes ?? []) {
+  assert.ok(node.attributes);
+  for (const attribute of node.attributes) {
     const generalRanges = generalAttributeRanges(attribute, source);
     for (const range of generalRanges) {
       issues.push(

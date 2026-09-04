@@ -64,6 +64,16 @@ it("allows HTTPS Markdown links for editorial source review", () => {
   );
 });
 
+it("reports exact excerpts for terminal and multiline JSX destinations", () => {
+  const terminal = '<Resource href="https://example.org/report" />';
+  const multiline = `${terminal}\nAfter`;
+  assert.equal(findExternalLinkPlacementIssues(terminal)[0]?.excerpt, terminal);
+  assert.equal(
+    findExternalLinkPlacementIssues(multiline)[0]?.excerpt,
+    terminal
+  );
+});
+
 it("keeps external destinations limited to HTTPS Markdown links", () => {
   const httpsUrl = "https://data.example.org/report";
   const samples = [
@@ -134,6 +144,38 @@ it("keeps external destinations limited to HTTPS Markdown links", () => {
     {
       source: "<Panel content={<iframe src={externalUrl}>Open</iframe>} />",
     },
+    {
+      source: "<button formAction={externalUrl}>Submit</button>",
+    },
+    {
+      source:
+        '<button formAction="https://data.example.org/submit">Submit</button>',
+    },
+    {
+      source: "<button formAction>Submit</button>",
+    },
+    {
+      source:
+        '<Resource data={{ targets: [, "https://data.example.org/report"] }} />',
+    },
+    {
+      source: '<Resource href="https&#58;//data.example.org/report" />',
+    },
+    {
+      source: "<Panel content={<button formAction>Submit</button>} />",
+    },
+    {
+      source:
+        '<Panel content={<a href={"https://data.example.org/report"}>Open</a>} />',
+    },
+    {
+      // biome-ignore lint/suspicious/noTemplateCurlyInString: This is authored MDX source.
+      source: "<Resource href={`/lesson/${slug}`} />",
+    },
+    {
+      source:
+        '<Resource {...(condition ? { title: "safe" } : externalAttributes)} />',
+    },
   ];
 
   for (const { source } of samples) {
@@ -163,10 +205,40 @@ it("allows internal links and URLs protected by code math or metadata syntax", (
     '<Callout {...{ title: "Direct explanation", count: 2, active: true }} />',
     "<Panel content={<MathVisual {...{ width: 400 }} />} />",
     '<Chart label="The ratio is 1//2" />',
+    '<button formAction="/internal/submit">Submit</button>',
+    "<Resource href={`/internal/lesson`} />",
+    // biome-ignore lint/suspicious/noTemplateCurlyInString: This is authored MDX source.
+    '<Resource href={`/internal/${"lesson"}`} />',
+    '<Resource href={condition ? "/first" : "/second"} />',
+    '<Resource href={("/first", "/second")} />',
+    '<Resource href={"/lesson" + "/part"} />',
+    '<Resource {...{ items: [null, "safe"] }} />',
+    '<Resource {...{ items: [, "safe"], title: "/" + "safe" }} />',
+    '<Resource {...{ ...{ title: "safe" } }} />',
+    '<Resource {...(condition ? { title: "safe" } : { title: "also safe" })} />',
+    "<Panel content={<Callout title={label} />} />",
+    "<Panel content={<button disabled>Submit</button>} />",
     'export const sourceUrl = "https://example.com";',
   ].join("\n");
 
   assert.deepEqual(findExternalLinkPlacementIssues(source), []);
+});
+
+it("fails closed when static destination combinations exceed the bound", () => {
+  const parts = [
+    'a ? "/a" : "ht"',
+    'b ? "/b" : "tps"',
+    'c ? "/c" : "://"',
+    'd ? "/d" : "example"',
+    'e ? "/e" : "."',
+    'f ? "/f" : "org"',
+  ];
+  const source = `<Resource href={${parts.map((part) => `(${part})`).join(" + ")}} />`;
+
+  assert.deepEqual(
+    findExternalLinkPlacementIssues(source).map(({ rule }) => rule),
+    ["external-link-invalid-placement"]
+  );
 });
 
 it("checks external URLs after more than thirty-two structured values", () => {

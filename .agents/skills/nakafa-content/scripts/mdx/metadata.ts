@@ -6,29 +6,23 @@ import {
   staticFieldName,
   visitMdxNodes,
 } from "#nakafa-content/mdx/parse";
-import { staticExpressionRanges } from "#nakafa-content/mdx/surface";
+import { staticExpressionRanges } from "#nakafa-content/mdx/ranges";
 
 const METADATA_ADDRESS_FIELDS = new Set(["description", "subject", "title"]);
 
 /** Finds the exported metadata object in one ESM program. */
 function metadataObject(estree: EstreeNode): EstreeNode | undefined {
-  if (estree.type !== "Program" || !Array.isArray(estree.body)) {
-    return;
-  }
-  for (const statement of estree.body) {
-    const exportNode = asEstreeNode(statement);
-    const declaration = asEstreeNode(exportNode?.declaration);
+  for (const exportNode of estree.body as readonly EstreeNode[]) {
+    const declaration = asEstreeNode(exportNode.declaration);
     if (
-      exportNode?.type !== "ExportNamedDeclaration" ||
-      declaration?.type !== "VariableDeclaration" ||
-      !Array.isArray(declaration.declarations)
+      exportNode.type !== "ExportNamedDeclaration" ||
+      declaration?.type !== "VariableDeclaration"
     ) {
       continue;
     }
-    for (const declarationValue of declaration.declarations) {
-      const declarator = asEstreeNode(declarationValue);
+    for (const declarator of declaration.declarations as readonly EstreeNode[]) {
       if (
-        declarator?.type === "VariableDeclarator" &&
+        declarator.type === "VariableDeclarator" &&
         staticFieldName(asEstreeNode(declarator.id)) === "metadata"
       ) {
         return asEstreeNode(declarator.init);
@@ -48,16 +42,12 @@ export function metadataAddressRanges(
       return;
     }
     const metadata = metadataObject(node.data.estree);
-    if (
-      metadata?.type !== "ObjectExpression" ||
-      !Array.isArray(metadata.properties)
-    ) {
+    if (metadata?.type !== "ObjectExpression") {
       return;
     }
-    for (const propertyValue of metadata.properties) {
-      const property = asEstreeNode(propertyValue);
-      const fieldName = staticFieldName(asEstreeNode(property?.key));
-      const value = asEstreeNode(property?.value);
+    for (const property of metadata.properties as readonly EstreeNode[]) {
+      const fieldName = staticFieldName(asEstreeNode(property.key));
+      const value = asEstreeNode(property.value);
       if (!(fieldName && value && METADATA_ADDRESS_FIELDS.has(fieldName))) {
         continue;
       }

@@ -1,3 +1,5 @@
+import assert from "node:assert/strict";
+
 import type { MdxNode, SourceRange } from "#nakafa-content/mdx/parse";
 import { isNonProseFieldName } from "#nakafa-content/semicolon/expression";
 import { maskProtectedInlineContent } from "#nakafa-content/voice/text";
@@ -38,18 +40,18 @@ function isNonRenderedExpression(node: MdxNode): boolean {
 /** Collects parsed regions that raw prose rules must never inspect. */
 function collectProtectedRanges(node: MdxNode, ranges: SourceRange[]): void {
   const protectedNode =
-    RAW_LINE_PROTECTED_NODE_TYPES.has(node.type ?? "") ||
+    RAW_LINE_PROTECTED_NODE_TYPES.has(node.type) ||
     isNonRenderedExpression(node) ||
     ((node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement") &&
-      RAW_LINE_PROTECTED_COMPONENT_NAMES.has(node.name ?? ""));
+      RAW_LINE_PROTECTED_COMPONENT_NAMES.has(String(node.name)));
   if (protectedNode) {
-    if (node.position) {
-      ranges.push(node.position);
-    }
+    assert.ok(node.position);
+    ranges.push(node.position);
     return;
   }
   if (node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement") {
-    for (const attribute of node.attributes ?? []) {
+    assert.ok(node.attributes);
+    for (const attribute of node.attributes) {
       if (attribute.position && isNonProseFieldName(attribute.name)) {
         ranges.push(attribute.position);
       }

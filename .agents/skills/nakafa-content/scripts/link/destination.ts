@@ -6,6 +6,7 @@ const EMBEDDED_PROTOCOL_RELATIVE_PATTERN =
 const NON_WHITESPACE_PATTERN = /\S/u;
 const DESTINATION_ATTRIBUTES = new Set([
   "action",
+  "formaction",
   "href",
   "poster",
   "source",

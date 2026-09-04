@@ -1,3 +1,5 @@
+import assert from "node:assert/strict";
+
 import type { MdxNode } from "#nakafa-content/mdx/parse";
 import type { ProseState } from "#nakafa-content/voice/copy";
 import {
@@ -23,6 +25,7 @@ export function collectTextAddressIssues(
   if (node.type !== "text") {
     return;
   }
+  assert.ok(node.position);
   const selectedAddressRules = addressRules(rules);
   issues.push(
     ...matchRangeRules(

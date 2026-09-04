@@ -10,7 +10,7 @@ export function sourceOffsetForStaticMatch(
   let consumed = 0;
   for (const part of candidate.parts) {
     const partEnd = consumed + part.text.length;
-    if (renderedOffset < partEnd || part.text.length === 0) {
+    if (renderedOffset < partEnd) {
       const start = part.range?.start?.offset;
       const end = part.range?.end?.offset;
       if (start === undefined || end === undefined) {

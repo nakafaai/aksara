@@ -26,6 +26,7 @@ export const lessonPhysicsRenewableEnergyMaterial = defineLessonMaterial({
       evidenceUrls: [
         "https://www.energy.gov/cmei/water/how-hydropower-works",
         "https://www.energy.gov/cmei/systems/solar-performance-and-efficiency",
+        "https://openstax.org/books/college-physics-2e/pages/7-6-conservation-of-energy",
       ],
       routeSlugs: {
         de: "energieerhaltung",
@@ -37,6 +38,9 @@ export const lessonPhysicsRenewableEnergyMaterial = defineLessonMaterial({
     {
       evidenceUrls: [
         "https://www.eia.gov/energyexplained/what-is-energy/forms-of-energy.php",
+        "https://openstax.org/books/college-physics-2e/pages/7-2-kinetic-energy-and-the-work-energy-theorem",
+        "https://openstax.org/books/college-physics-2e/pages/14-2-temperature-change-and-heat-capacity",
+        "https://openstax.org/books/college-physics-2e/pages/20-4-electric-power-and-energy",
       ],
       routeSlugs: {
         de: "energieformen",

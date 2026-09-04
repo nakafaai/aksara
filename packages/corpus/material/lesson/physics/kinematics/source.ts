@@ -123,7 +123,10 @@ export const lessonPhysicsKinematicsMaterial = defineLessonMaterial({
       slug: "velocity-speed",
     },
     {
-      evidenceUrls: ["https://physics.nist.gov/cuu/pdf/sp811.pdf"],
+      evidenceUrls: [
+        "https://physics.nist.gov/cuu/pdf/sp811.pdf",
+        "https://openstax.org/books/university-physics-volume-1/pages/3-5-free-fall",
+      ],
       routeSlugs: {
         de: "vertikale-bewegung",
         en: "vertical-movement",

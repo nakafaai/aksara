@@ -1,6 +1,7 @@
 import type { LessonVoiceLocale } from "#nakafa-content/voice/types";
 
-const SECTION_HEADING_PATTERN = /^(#{2,6})\s+(.+)$/u;
+const SECTION_HEADING_PATTERN = /^#{2,6}\s+.+$/u;
+const HEADING_SEPARATOR_PATTERN = /\s/u;
 const EXERCISE_HEADING_PATTERNS: Record<LessonVoiceLocale, RegExp> = {
   de: /^(?:Aufgaben|Übung|Übungen|Übungsaufgaben)$/iu,
   en: /^(?:Exercise|Exercises|Practice|Practice Problems)$/iu,
@@ -15,13 +16,9 @@ export function exerciseSectionLines(
   const result = new Set<number>();
   let exerciseDepth: number | undefined;
   for (const [lineIndex, line] of source.split("\n").entries()) {
-    const heading = SECTION_HEADING_PATTERN.exec(line);
-    if (heading) {
-      const [, marker, label] = heading;
-      if (!(marker && label)) {
-        continue;
-      }
-      const depth = marker.length;
+    if (SECTION_HEADING_PATTERN.test(line)) {
+      const depth = line.search(HEADING_SEPARATOR_PATTERN);
+      const label = line.slice(depth).trim();
       if (exerciseDepth !== undefined && depth <= exerciseDepth) {
         exerciseDepth = undefined;
       }

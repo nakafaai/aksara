@@ -49,8 +49,7 @@ export function unanchoredGermanFormalAddressOffset(
     if (match?.index === undefined) {
       return [];
     }
-    const pronoun = GERMAN_ADDRESS_PRONOUN_PATTERN.exec(match[0]);
-    return pronoun?.index === undefined ? [] : [match.index + pronoun.index];
+    return [match.index + match[0].search(GERMAN_ADDRESS_PRONOUN_PATTERN)];
   });
   return offsets.length === 0 ? undefined : Math.min(...offsets);
 }
@@ -63,8 +62,7 @@ export function establishedGermanFormalSentenceOffset(
   if (match?.index === undefined) {
     return;
   }
-  const pronoun = GERMAN_ADDRESS_PRONOUN_PATTERN.exec(match[0]);
-  return pronoun?.index === undefined ? undefined : match.index + pronoun.index;
+  return match.index + match[0].search(GERMAN_ADDRESS_PRONOUN_PATTERN);
 }
 
 /** Enforces Nakafa's Indonesian learner address in authored visible prose. */

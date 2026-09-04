@@ -14,12 +14,16 @@ export const lessonBiologyBiodiversityMaterial = defineLessonMaterial({
     {
       evidenceUrls: [
         "https://irp.nih.gov/catalyst/21/6/the-human-microbiome-project",
+        "https://openstax.org/books/biology-2e/pages/22-2-structure-of-prokaryotes-bacteria-and-archaea",
       ],
       routeSlugs: { de: "bakterien", en: "bacteria", id: "bakteri" },
       slug: "bacteria",
     },
     {
-      evidenceUrls: ["https://www.ncbi.nlm.nih.gov/taxonomy"],
+      evidenceUrls: [
+        "https://www.ncbi.nlm.nih.gov/taxonomy",
+        "https://openstax.org/books/biology-2e/pages/20-1-organizing-life-on-earth",
+      ],
       routeSlugs: {
         de: "klassifikation",
         en: "classification",
@@ -28,7 +32,10 @@ export const lessonBiologyBiodiversityMaterial = defineLessonMaterial({
       slug: "classification",
     },
     {
-      evidenceUrls: ["https://research.fs.usda.gov/treesearch/41353"],
+      evidenceUrls: [
+        "https://research.fs.usda.gov/treesearch/41353",
+        "https://openstax.org/books/biology-2e/pages/24-1-characteristics-of-fungi",
+      ],
       routeSlugs: { de: "pilze", en: "fungi", id: "fungi" },
       slug: "fungi",
     },
@@ -37,6 +44,8 @@ export const lessonBiologyBiodiversityMaterial = defineLessonMaterial({
         "https://www.cbd.int/convention/articles?a=cbd-02",
         "https://doi.org/10.1111/brv.12683",
         "https://docs.gbif.org/course-introduction-to-gbif/en/primary-biodiversity-data.html",
+        "https://openstax.org/books/biology-2e/pages/45-6-community-ecology",
+        "https://openstax.org/books/biology-2e/pages/47-1-the-biodiversity-crisis",
       ],
       routeSlugs: {
         de: "ebenen-der-vielfalt",
@@ -46,7 +55,10 @@ export const lessonBiologyBiodiversityMaterial = defineLessonMaterial({
       slug: "levels",
     },
     {
-      evidenceUrls: ["https://www.fao.org/pollination/"],
+      evidenceUrls: [
+        "https://www.fao.org/pollination/",
+        "https://openstax.org/books/biology-2e/pages/46-1-ecology-of-ecosystems",
+      ],
       routeSlugs: {
         de: "lebewesen",
         en: "living-organisms",

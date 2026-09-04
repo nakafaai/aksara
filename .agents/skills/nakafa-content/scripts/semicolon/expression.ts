@@ -11,7 +11,6 @@ import {
   type SemicolonScanOptions,
 } from "#nakafa-content/semicolon/source";
 
-const CODE_COMPONENT_NAMES = new Set(["CodeBlock"]);
 const MATH_COMPONENT_NAMES = new Set(["BlockMath", "InlineMath"]);
 const TRAILING_BACKSLASH_PATTERN = /\\+$/u;
 const NON_PROSE_FIELD_NAMES = new Set([
@@ -34,17 +33,84 @@ const RENDERED_KEYS_BY_TYPE: Readonly<Record<string, readonly string[]>> = {
   ArrayExpression: ["elements"],
   BinaryExpression: ["left", "right"],
   ConditionalExpression: ["consequent", "alternate"],
+  ExpressionStatement: ["expression"],
   JSXExpressionContainer: ["expression"],
   JSXFragment: ["children"],
   LogicalExpression: ["left", "right"],
   ObjectExpression: ["properties"],
   ParenthesizedExpression: ["expression"],
+  Program: ["body"],
   TemplateLiteral: ["quasis", "expressions"],
 };
 
+type BlockStatementNode = EstreeNode & {
+  body: EstreeNode[];
+  type: "BlockStatement";
+};
+
+type ExpressionContainerNode = EstreeNode & {
+  expression: EstreeNode;
+  type: "JSXExpressionContainer";
+};
+
+type FunctionExpressionNode = EstreeNode & {
+  body: EstreeNode;
+  type: "ArrowFunctionExpression" | "FunctionExpression";
+};
+
+type JsxElementNode = EstreeNode & {
+  children: EstreeNode[];
+  openingElement: JsxOpeningElementNode;
+  type: "JSXElement";
+};
+
+type JsxOpeningElementNode = EstreeNode & {
+  attributes: EstreeNode[];
+  type: "JSXOpeningElement";
+};
+
+type PropertyNode = EstreeNode & {
+  value: EstreeNode;
+  type: "Property";
+};
+
+/** Narrows one parser-owned block statement. */
+function isBlockStatementNode(
+  node: EstreeNode | undefined
+): node is BlockStatementNode {
+  return node?.type === "BlockStatement";
+}
+
+/** Narrows one parser-owned expression container. */
+function isExpressionContainerNode(
+  node: EstreeNode | undefined
+): node is ExpressionContainerNode {
+  return node?.type === "JSXExpressionContainer";
+}
+
+/** Narrows one parser-owned function expression. */
+function isFunctionExpressionNode(
+  node: EstreeNode
+): node is FunctionExpressionNode {
+  return (
+    node.type === "ArrowFunctionExpression" ||
+    node.type === "FunctionExpression"
+  );
+}
+
+/** Narrows one parser-owned JSX element. */
+function isJsxElementNode(node: EstreeNode): node is JsxElementNode {
+  return node.type === "JSXElement";
+}
+
+/** Narrows one parser-owned object property. */
+function isPropertyNode(node: EstreeNode): node is PropertyNode {
+  return node.type === "Property";
+}
+
 /** Identifies a component whose entire rendered region contains authored code. */
 export function isCodeComponentName(name: string | undefined): boolean {
-  return CODE_COMPONENT_NAMES.has(name ?? "");
+  return name === "CodeBlock";
 }
 
 /** Tells the MDX adapter whether an attribute stores non-prose configuration. */
@@ -54,9 +120,6 @@ export function isNonProseFieldName(name: string | undefined): boolean {
 
 /** Reads the unqualified name of one JSX component when statically known. */
 function jsxComponentName(node: EstreeNode): string | undefined {
-  if (node.type !== "JSXElement") {
-    return;
-  }
   const openingElement = asEstreeNode(node.openingElement);
   const name = asEstreeNode(openingElement?.name);
   return name?.type === "JSXIdentifier" && typeof name.name === "string"
@@ -73,9 +136,6 @@ export function collectStaticStringSemicolons(
 ): void {
   for (const candidate of staticStringCandidates(node)) {
     for (const match of candidate.text.matchAll(/;/gu)) {
-      if (match.index === undefined) {
-        continue;
-      }
       if (options.allowLatexSpacing) {
         const preceding = candidate.text.slice(0, match.index);
         const slashCount =
@@ -84,15 +144,11 @@ export function collectStaticStringSemicolons(
           continue;
         }
       }
-      const offset = sourceOffsetForStaticMatch(
-        candidate,
-        match.index,
-        match[0],
-        source
+      offsets.add(
+        Number(
+          sourceOffsetForStaticMatch(candidate, match.index, match[0], source)
+        )
       );
-      if (offset !== undefined) {
-        offsets.add(offset);
-      }
     }
   }
 }
@@ -113,35 +169,27 @@ function collectAttributeSemicolons(
     collectStaticStringSemicolons(value, offsets, source, options);
     return;
   }
-  if (value?.type !== "JSXExpressionContainer") {
-    return;
-  }
-  const expression = asEstreeNode(value.expression);
-  if (!expression) {
+  if (!isExpressionContainerNode(value)) {
     return;
   }
   if (name === "math") {
-    collectStaticStringSemicolons(expression, offsets, source, options);
+    collectStaticStringSemicolons(value.expression, offsets, source, options);
   } else {
-    collectStructuredExpressionSemicolons(expression, offsets, source);
+    collectStructuredExpressionSemicolons(value.expression, offsets, source);
   }
 }
 
 /** Scans only values returned from a block-bodied render callback. */
 function collectReturnedExpressionSemicolons(
-  block: EstreeNode,
+  block: BlockStatementNode,
   offsets: Set<number>,
   source: string
 ): void {
-  if (block.type !== "BlockStatement" || !Array.isArray(block.body)) {
-    return;
-  }
   for (const statement of block.body) {
-    const statementNode = asEstreeNode(statement);
-    if (statementNode?.type !== "ReturnStatement") {
+    if (statement.type !== "ReturnStatement") {
       continue;
     }
-    const argument = asEstreeNode(statementNode.argument);
+    const argument = asEstreeNode(statement.argument);
     if (argument) {
       collectStructuredExpressionSemicolons(argument, offsets, source);
     }
@@ -164,7 +212,7 @@ function collectStructuredValues(
 
 /** Scans one JSX element without treating code or math as prose. */
 function collectJsxElementSemicolons(
-  node: EstreeNode,
+  node: JsxElementNode,
   offsets: Set<number>,
   source: string
 ): void {
@@ -172,14 +220,8 @@ function collectJsxElementSemicolons(
   if (isCodeComponentName(componentName)) {
     return;
   }
-  const openingElement = asEstreeNode(node.openingElement);
-  if (Array.isArray(openingElement?.attributes)) {
-    for (const attribute of openingElement.attributes) {
-      const attributeNode = asEstreeNode(attribute);
-      if (attributeNode) {
-        collectAttributeSemicolons(attributeNode, offsets, source);
-      }
-    }
+  for (const attribute of node.openingElement.attributes) {
+    collectAttributeSemicolons(attribute, offsets, source);
   }
   if (!MATH_COMPONENT_NAMES.has(componentName ?? "")) {
     collectStructuredValues(node.children, offsets, source);
@@ -188,7 +230,7 @@ function collectJsxElementSemicolons(
 
 /** Scans the visible value of one statically named object property. */
 function collectPropertySemicolons(
-  node: EstreeNode,
+  node: PropertyNode,
   offsets: Set<number>,
   source: string
 ): void {
@@ -196,30 +238,25 @@ function collectPropertySemicolons(
   if (name !== undefined && isNonProseFieldName(name)) {
     return;
   }
-  const value = asEstreeNode(node.value);
-  if (!value) {
-    return;
-  }
   if (name === "math") {
-    collectStaticStringSemicolons(value, offsets, source, {
+    collectStaticStringSemicolons(node.value, offsets, source, {
       allowLatexSpacing: true,
     });
     return;
   }
-  collectStructuredExpressionSemicolons(value, offsets, source);
+  collectStructuredExpressionSemicolons(node.value, offsets, source);
 }
 
 /** Scans only the rendered result of a callback, never its implementation. */
 function collectFunctionSemicolons(
-  node: EstreeNode,
+  node: FunctionExpressionNode,
   offsets: Set<number>,
   source: string
 ): void {
-  const body = asEstreeNode(node.body);
-  if (body?.type === "BlockStatement") {
-    collectReturnedExpressionSemicolons(body, offsets, source);
-  } else if (body) {
-    collectStructuredExpressionSemicolons(body, offsets, source);
+  if (isBlockStatementNode(node.body)) {
+    collectReturnedExpressionSemicolons(node.body, offsets, source);
+  } else {
+    collectStructuredExpressionSemicolons(node.body, offsets, source);
   }
 }
 
@@ -237,18 +274,15 @@ export function collectStructuredExpressionSemicolons(
     addSemicolonsInRange(offsets, source, estreeRange(node));
     return;
   }
-  if (node.type === "JSXElement") {
+  if (isJsxElementNode(node)) {
     collectJsxElementSemicolons(node, offsets, source);
     return;
   }
-  if (node.type === "Property") {
+  if (isPropertyNode(node)) {
     collectPropertySemicolons(node, offsets, source);
     return;
   }
-  if (
-    node.type === "ArrowFunctionExpression" ||
-    node.type === "FunctionExpression"
-  ) {
+  if (isFunctionExpressionNode(node)) {
     collectFunctionSemicolons(node, offsets, source);
     return;
   }

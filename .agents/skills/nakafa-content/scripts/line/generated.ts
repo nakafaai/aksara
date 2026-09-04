@@ -1,3 +1,14 @@
+import {
+  type CallExpressionNode,
+  type FunctionExpressionNode,
+  isBlockStatementNode,
+  isCallExpressionNode,
+  isFunctionExpressionNode,
+  isObjectExpressionNode,
+  isVariableDeclarationNode,
+  type ObjectExpressionNode,
+  type VariableDeclarationNode,
+} from "#nakafa-content/line/ast";
 import { staticNumber } from "#nakafa-content/line/numeric";
 import {
   asEstreeNode,
@@ -14,10 +25,10 @@ type ExpressionKind = "affine" | "constant" | "unknown";
 
 /** Returns one statically named property from an object expression. */
 function objectProperty(
-  object: EstreeNode,
+  object: EstreeNode | undefined,
   name: string
 ): EstreeNode | undefined {
-  if (object.type !== "ObjectExpression" || !Array.isArray(object.properties)) {
+  if (!isObjectExpressionNode(object)) {
     return;
   }
   let match: EstreeNode | undefined;
@@ -71,7 +82,11 @@ function binaryKind(
   if (node.operator === "*") {
     return productKind(left, right);
   }
-  return node.operator === "/" && right === "constant" ? left : "unknown";
+  if (node.operator === "/") {
+    const divisor = staticNumber(asEstreeNode(node.right));
+    return divisor !== undefined && divisor !== 0 ? left : "unknown";
+  }
+  return "unknown";
 }
 
 /** Classifies one property access. */
@@ -90,12 +105,9 @@ function memberKind(
 
 /** Classifies one object expression used as a constant container. */
 function objectKind(
-  node: EstreeNode,
+  node: ObjectExpressionNode,
   environment: ReadonlyMap<string, ExpressionKind>
 ): ExpressionKind {
-  if (!Array.isArray(node.properties)) {
-    return "unknown";
-  }
   const constant = node.properties.every((property) => {
     const propertyNode = asEstreeNode(property);
     return (
@@ -119,7 +131,7 @@ function expressionKind(
     return "constant";
   }
   if (node.type === "Identifier") {
-    return environment.get(staticFieldName(node) ?? "") ?? "unknown";
+    return environment.get(String(node.name)) ?? "unknown";
   }
   if (node.type === "UnaryExpression") {
     const argument = expressionKind(asEstreeNode(node.argument), environment);
@@ -137,38 +149,33 @@ function expressionKind(
   if (node.type === "CallExpression") {
     return "unknown";
   }
-  return node.type === "ObjectExpression"
+  return isObjectExpressionNode(node)
     ? objectKind(node, environment)
     : "unknown";
 }
 
 /** Seeds generator parameters with their index dependence. */
 function callbackEnvironment(
-  callback: EstreeNode
+  callback: FunctionExpressionNode
 ): Map<string, ExpressionKind> {
   const environment = new Map<string, ExpressionKind>();
-  if (Array.isArray(callback.params)) {
-    const [valueParameter, indexParameter] = callback.params.map(asEstreeNode);
-    const valueName = staticFieldName(valueParameter);
-    const indexName = staticFieldName(indexParameter);
-    if (valueName) {
-      environment.set(valueName, "constant");
-    }
-    if (indexName) {
-      environment.set(indexName, "affine");
-    }
+  const [valueParameter, indexParameter] = callback.params.map(asEstreeNode);
+  const valueName = staticFieldName(valueParameter);
+  const indexName = staticFieldName(indexParameter);
+  if (valueName) {
+    environment.set(valueName, "constant");
+  }
+  if (indexName) {
+    environment.set(indexName, "affine");
   }
   return environment;
 }
 
 /** Adds one callback variable declaration to the affine environment. */
 function addDeclaration(
-  statement: EstreeNode,
+  statement: VariableDeclarationNode,
   environment: Map<string, ExpressionKind>
 ): boolean {
-  if (!Array.isArray(statement.declarations)) {
-    return false;
-  }
   for (const declarationValue of statement.declarations) {
     const declaration = asEstreeNode(declarationValue);
     const name = staticFieldName(asEstreeNode(declaration?.id));
@@ -185,19 +192,19 @@ function addDeclaration(
 
 /** Finds the point object returned by one generator callback. */
 function returnedPoint(
-  callback: EstreeNode,
+  callback: FunctionExpressionNode,
   environment: Map<string, ExpressionKind>
 ): EstreeNode | undefined {
   const body = asEstreeNode(callback.body);
-  if (body?.type === "ObjectExpression") {
+  if (isObjectExpressionNode(body)) {
     return body;
   }
-  if (body?.type !== "BlockStatement" || !Array.isArray(body.body)) {
+  if (!isBlockStatementNode(body)) {
     return;
   }
   for (const statementValue of body.body) {
     const statement = asEstreeNode(statementValue);
-    if (statement?.type === "VariableDeclaration") {
+    if (isVariableDeclarationNode(statement)) {
       if (addDeclaration(statement, environment)) {
         continue;
       }
@@ -211,17 +218,12 @@ function returnedPoint(
 
 /** Classifies whether a generator callback varies affinely with its index. */
 function pointCallbackKind(callback: EstreeNode | undefined): ExpressionKind {
-  if (
-    !(
-      callback &&
-      ["ArrowFunctionExpression", "FunctionExpression"].includes(callback.type)
-    )
-  ) {
+  if (!isFunctionExpressionNode(callback)) {
     return "unknown";
   }
   const environment = callbackEnvironment(callback);
   const point = returnedPoint(callback, environment);
-  if (point?.type !== "ObjectExpression") {
+  if (!isObjectExpressionNode(point)) {
     return "unknown";
   }
   const coordinateKinds = ["x", "y", "z"].map((coordinate) => {
@@ -242,11 +244,10 @@ function arrayFromDetails(
 ): { callback?: EstreeNode; length: number } | undefined {
   const callee = asEstreeNode(call?.callee);
   if (
-    call?.type !== "CallExpression" ||
+    !isCallExpressionNode(call) ||
     callee?.type !== "MemberExpression" ||
     staticFieldName(asEstreeNode(callee.object)) !== "Array" ||
-    staticFieldName(asEstreeNode(callee.property)) !== "from" ||
-    !Array.isArray(call.arguments)
+    staticFieldName(asEstreeNode(callee.property)) !== "from"
   ) {
     return;
   }
@@ -262,7 +263,7 @@ function arrayFromDetails(
 
 /** Proves exactness for a direct Array.from or Array.from(...).map generator. */
 export function inspectGeneratedLine(
-  call: EstreeNode
+  call: CallExpressionNode
 ): GeneratedLineInspection | undefined {
   const direct = arrayFromDetails(call);
   if (direct?.callback) {
@@ -277,9 +278,7 @@ export function inspectGeneratedLine(
   const callee = asEstreeNode(call.callee);
   const sourceCall = asEstreeNode(callee?.object);
   const source = arrayFromDetails(sourceCall);
-  const callback = Array.isArray(call.arguments)
-    ? asEstreeNode(call.arguments[0])
-    : undefined;
+  const callback = asEstreeNode(call.arguments[0]);
   if (
     callee?.type !== "MemberExpression" ||
     staticFieldName(asEstreeNode(callee.property)) !== "map" ||

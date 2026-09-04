@@ -11,6 +11,15 @@ import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 const LATEX_DOTS_PATTERN = /\b(?:ldots|cdots|vdots|ddots)\b/gu;
 
+type JsxMdxNode = MdxNode & {
+  attributes: MdxAttribute[];
+};
+
+/** Narrows one parser-owned JSX node. */
+function isJsxMdxNode(node: MdxNode): node is JsxMdxNode {
+  return node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement";
+}
+
 /** Checks whether a dot name is preceded by an active command backslash. */
 function isBareDotCommand(value: string, index: number): boolean {
   let backslashCount = 0;
@@ -46,18 +55,13 @@ function directAttributeOffsets(
   if (typeof attribute.value !== "string") {
     return;
   }
-  const start = attribute.position?.start?.offset;
-  const end = attribute.position?.end?.offset;
-  if (start === undefined || end === undefined) {
-    return;
-  }
+  const start = Number(attribute.position?.start?.offset);
+  const end = Number(attribute.position?.end?.offset);
   const localOffset = source.slice(start, end).indexOf(attribute.value);
-  return localOffset === -1
-    ? undefined
-    : {
-        end: start + localOffset + attribute.value.length,
-        start: start + localOffset,
-      };
+  return {
+    end: start + localOffset + attribute.value.length,
+    start: start + localOffset,
+  };
 }
 
 /** Returns the static expression stored in one JSX attribute. */
@@ -88,7 +92,7 @@ function collectAttributeOffsets(
   if (directRange) {
     const math = source.slice(directRange.start, directRange.end);
     for (const match of math.matchAll(LATEX_DOTS_PATTERN)) {
-      if (match.index !== undefined && isBareDotCommand(math, match.index)) {
+      if (isBareDotCommand(math, match.index)) {
         offsets.add(directRange.start + match.index);
       }
     }
@@ -101,18 +105,14 @@ function collectAttributeOffsets(
   for (const candidate of staticStringCandidates(expression)) {
     const math = candidate.text;
     for (const match of math.matchAll(LATEX_DOTS_PATTERN)) {
-      if (match.index === undefined || !isBareDotCommand(math, match.index)) {
+      if (!isBareDotCommand(math, match.index)) {
         continue;
       }
-      const offset = sourceOffsetForStaticMatch(
-        candidate,
-        match.index,
-        match[0],
-        source
+      offsets.add(
+        Number(
+          sourceOffsetForStaticMatch(candidate, match.index, match[0], source)
+        )
       );
-      if (offset !== undefined) {
-        offsets.add(offset);
-      }
     }
   }
 }
@@ -126,8 +126,8 @@ function collectNodeOffsets(
   if (node.type === "blockquote") {
     return;
   }
-  if (node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement") {
-    for (const attribute of node.attributes ?? []) {
+  if (isJsxMdxNode(node)) {
+    for (const attribute of node.attributes) {
       collectAttributeOffsets(attribute, offsets, source);
     }
   }

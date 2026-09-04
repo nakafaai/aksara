@@ -52,23 +52,16 @@ export function findExternalLinkPlacementIssues(
 ): LessonVoiceIssue[] {
   const issues: LessonVoiceIssue[] = [];
   const definitions = linkDefinitions(tree);
-  const lines = source.split("\n");
   visitMdxNodes(tree, (node) => {
     const url = linkUrl(node, definitions);
-    const start = node.position?.start;
+    const start = node.position?.start?.offset;
     if (
       url !== undefined &&
       isExternalDestination(url) &&
       !isHttpsMarkdownLink(node, url) &&
-      start?.line !== undefined &&
-      start.column !== undefined
+      start !== undefined
     ) {
-      issues.push({
-        column: start.column,
-        excerpt: (lines[start.line - 1] ?? "").trim(),
-        line: start.line,
-        rule: "external-link-invalid-placement",
-      });
+      issues.push(issueAtOffset(source, start));
     }
     issues.push(
       ...jsxDestinationOffsets(node, source).map((offset) =>

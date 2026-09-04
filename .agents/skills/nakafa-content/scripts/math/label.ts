@@ -1,12 +1,14 @@
+import assert from "node:assert/strict";
+
 import {
   asEstreeNode,
   type EstreeNode,
-  estreeRange,
   type MdxAttribute,
   type MdxNode,
   parseLessonMdx,
   type SourceRange,
 } from "#nakafa-content/mdx/parse";
+import { directAttributeRange } from "#nakafa-content/mdx/rendered";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 const PLAIN_MATH_LABEL_PATTERN = /\b(?:QR|LU|SVD|PLU|PCA)\b/gu;
@@ -22,7 +24,6 @@ const LEARNER_TEXT_ATTRIBUTES = new Set([
   "title",
 ]);
 const PROTECTED_NODE_TYPES = new Set([
-  "blockquote",
   "code",
   "definition",
   "heading",
@@ -51,6 +52,25 @@ const RENDERED_KEYS_BY_TYPE: Readonly<Record<string, readonly string[]>> = {
   Program: ["body"],
   TemplateLiteral: ["quasis", "expressions"],
 };
+
+type JsxMdxNode = MdxNode & {
+  attributes: MdxAttribute[];
+};
+
+type TextMdxNode = MdxNode & {
+  position: SourceRange;
+  type: "text";
+};
+
+/** Narrows one parser-owned JSX node. */
+function isJsxMdxNode(node: MdxNode): node is JsxMdxNode {
+  return node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement";
+}
+
+/** Narrows one parser-owned text node. */
+function isTextMdxNode(node: MdxNode): node is TextMdxNode {
+  return node.type === "text";
+}
 
 /** Returns a diagnostic at one exact source offset. */
 function issueAtOffset(
@@ -83,33 +103,29 @@ function isQrCodeTerm(text: string, start: number, end: number): boolean {
 function collectRangeOffsets(
   offsets: Set<number>,
   source: string,
-  range: SourceRange | undefined
+  range: SourceRange
 ): void {
-  const start = range?.start?.offset;
-  const end = range?.end?.offset;
-  if (start === undefined || end === undefined) {
-    return;
-  }
-  const text = source.slice(start, end);
+  const start = range.start?.offset;
+  const end = range.end?.offset;
+  assert.ok(start !== undefined);
+  assert.ok(end !== undefined);
+  const { rendered } = range;
+  const text = rendered?.text ?? source.slice(start, end);
   for (const match of text.matchAll(PLAIN_MATH_LABEL_PATTERN)) {
-    if (match.index === undefined) {
-      continue;
-    }
     if (
       match[0] === "QR" &&
       isQrCodeTerm(text, match.index, match.index + match[0].length)
     ) {
       continue;
     }
-    offsets.add(start + match.index);
+    const renderedOffset = rendered?.offsets[match.index];
+    assert.ok(!rendered || renderedOffset !== undefined);
+    offsets.add(renderedOffset ?? start + match.index);
   }
 }
 
 /** Reads one statically authored JSX component name. */
 function jsxComponentName(node: EstreeNode): string | undefined {
-  if (node.type !== "JSXElement") {
-    return;
-  }
   const openingElement = asEstreeNode(node.openingElement);
   const name = asEstreeNode(openingElement?.name);
   return name?.type === "JSXIdentifier" && typeof name.name === "string"
@@ -154,7 +170,10 @@ function collectExpressionOffsets(
     node.type === "JSXText" ||
     node.type === "TemplateElement"
   ) {
-    collectRangeOffsets(offsets, source, estreeRange(node));
+    collectRangeOffsets(offsets, source, {
+      end: { offset: Number(node.end) },
+      start: { offset: Number(node.start) },
+    });
     return;
   }
   if (node.type === "JSXElement") {
@@ -164,28 +183,6 @@ function collectExpressionOffsets(
   for (const key of RENDERED_KEYS_BY_TYPE[node.type] ?? []) {
     collectExpressionValues(node[key], offsets, source);
   }
-}
-
-/** Locates one direct string attribute value inside its source range. */
-function directAttributeValueRange(
-  attribute: MdxAttribute,
-  source: string
-): SourceRange | undefined {
-  if (typeof attribute.value !== "string") {
-    return;
-  }
-  const start = attribute.position?.start?.offset;
-  const end = attribute.position?.end?.offset;
-  if (start === undefined || end === undefined) {
-    return;
-  }
-  const localOffset = source.slice(start, end).indexOf(attribute.value);
-  return localOffset === -1
-    ? undefined
-    : {
-        end: { offset: start + localOffset + attribute.value.length },
-        start: { offset: start + localOffset },
-      };
 }
 
 /** Collects math labels from one learner-facing component attribute. */
@@ -200,7 +197,7 @@ function collectAttributeOffsets(
   ) {
     return;
   }
-  const directRange = directAttributeValueRange(attribute, source);
+  const directRange = directAttributeRange(attribute, source);
   if (directRange) {
     collectRangeOffsets(offsets, source, directRange);
     return;
@@ -215,10 +212,7 @@ function collectAttributeOffsets(
   ) {
     return;
   }
-  const estree = asEstreeNode(attribute.value.data.estree);
-  if (estree) {
-    collectExpressionOffsets(estree, offsets, source);
-  }
+  collectExpressionValues(attribute.value.data.estree, offsets, source);
 }
 
 /** Traverses learner-visible MDX while preserving code, links, and quotations. */
@@ -230,19 +224,16 @@ function collectNodeOffsets(
 ): void {
   const componentIsProtected =
     (node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement") &&
-    PROTECTED_COMPONENT_NAMES.has(node.name ?? "");
+    PROTECTED_COMPONENT_NAMES.has(String(node.name));
   const protectedHere =
     isProtected ||
-    PROTECTED_NODE_TYPES.has(node.type ?? "") ||
+    PROTECTED_NODE_TYPES.has(String(node.type)) ||
     componentIsProtected;
-  if (!protectedHere && node.type === "text") {
+  if (!protectedHere && isTextMdxNode(node)) {
     collectRangeOffsets(offsets, source, node.position);
   }
-  if (
-    !protectedHere &&
-    (node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement")
-  ) {
-    for (const attribute of node.attributes ?? []) {
+  if (!protectedHere && isJsxMdxNode(node)) {
+    for (const attribute of node.attributes) {
       collectAttributeOffsets(attribute, offsets, source);
     }
   }

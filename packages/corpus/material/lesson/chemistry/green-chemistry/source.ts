@@ -14,6 +14,8 @@ export const lessonChemistryGreenChemistryMaterial = defineLessonMaterial({
         "https://goldbook.iupac.org/terms/view/C01022",
         "https://goldbook.iupac.org/terms/view/M04002",
         "https://www.cdc.gov/hygiene/about/cleaning-and-disinfecting-with-bleach.html",
+        "https://openstax.org/books/chemistry-2e/pages/4-1-writing-and-balancing-chemical-equations",
+        "https://openstax.org/books/concepts-biology/pages/5-1-overview-of-photosynthesis",
       ],
       routeSlugs: {
         de: "chemische-prozesse-im-alltag",

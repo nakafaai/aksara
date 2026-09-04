@@ -28,6 +28,66 @@ interface LessonSiblingInventory extends LessonSiblingDocument {
   tokens: RepresentationToken[];
 }
 
+type HeadingNode = Omit<MdxNode, "position" | "type"> & {
+  depth: number;
+  position: { start: { line: number } };
+  type: "heading";
+};
+
+type ListNode = Omit<MdxNode, "children" | "position" | "type"> & {
+  children: MdxNode[];
+  ordered?: boolean;
+  position: { start: { line: number } };
+  type: "list";
+};
+
+type TableNode = Omit<MdxNode, "children" | "position" | "type"> & {
+  children: TableRowNode[];
+  position: { start: { line: number } };
+  type: "table";
+};
+
+type TableRowNode = Omit<MdxNode, "children" | "type"> & {
+  children: MdxNode[];
+  type: "tableRow";
+};
+
+type BlockNode = Omit<MdxNode, "position" | "type"> & {
+  position: { start: { line: number } };
+  type: "blockquote" | "code";
+};
+
+type ComponentNode = Omit<MdxNode, "name" | "position" | "type"> & {
+  name: string;
+  position: { start: { line: number } };
+  type: "mdxJsxFlowElement";
+};
+
+/** Narrows one parser-owned heading. */
+function isHeadingNode(node: MdxNode): node is HeadingNode {
+  return node.type === "heading";
+}
+
+/** Narrows one parser-owned list. */
+function isListNode(node: MdxNode): node is ListNode {
+  return node.type === "list";
+}
+
+/** Narrows one parser-owned table. */
+function isTableNode(node: MdxNode): node is TableNode {
+  return node.type === "table";
+}
+
+/** Narrows one parser-owned block representation. */
+function isBlockNode(node: MdxNode): node is BlockNode {
+  return node.type === "blockquote" || node.type === "code";
+}
+
+/** Narrows one parser-owned flow component. */
+function isComponentNode(node: MdxNode): node is ComponentNode {
+  return node.type === "mdxJsxFlowElement" && typeof node.name === "string";
+}
+
 /** Groups values by a stable string key without requiring a newer JS lib. */
 function groupByKey<Value>(
   values: readonly Value[],
@@ -48,45 +108,39 @@ function groupByKey<Value>(
 
 /** Converts one structural MDX node into its locale-parity token. */
 function representationToken(node: MdxNode): RepresentationToken | undefined {
-  const line = node.position?.start?.line ?? 1;
-  if (node.type === "heading") {
-    const depth =
-      "depth" in node && typeof node.depth === "number" ? node.depth : 0;
-    return { line, value: `heading:${depth}` };
-  }
-  if (node.type === "list") {
-    const ordered = "ordered" in node && node.ordered === true;
-    const itemCount = (node.children ?? []).filter(
-      (child) => child.type === "listItem"
-    ).length;
+  if (isHeadingNode(node)) {
     return {
-      line,
-      value: `list:${ordered ? "ordered" : "unordered"}:${itemCount}`,
+      line: node.position.start.line,
+      value: `heading:${node.depth}`,
     };
   }
-  if (node.type === "table") {
-    const rows = (node.children ?? []).filter(
-      (child) => child.type === "tableRow"
-    );
+  if (isListNode(node)) {
+    return {
+      line: node.position.start.line,
+      value: `list:${node.ordered === true ? "ordered" : "unordered"}:${node.children.length}`,
+    };
+  }
+  if (isTableNode(node)) {
     const columns = Math.max(
       0,
-      ...rows.map(
-        (row) =>
-          (row.children ?? []).filter((child) => child.type === "tableCell")
-            .length
-      )
+      ...node.children.map((row) => row.children.length)
     );
-    return { line, value: `table:${rows.length}:${columns}` };
+    return {
+      line: node.position.start.line,
+      value: `table:${node.children.length}:${columns}`,
+    };
   }
-  if (node.type === "blockquote" || node.type === "code") {
-    return { line, value: node.type };
+  if (isBlockNode(node)) {
+    return {
+      line: node.position.start.line,
+      value: node.type,
+    };
   }
-  if (
-    node.type === "mdxJsxFlowElement" &&
-    typeof node.name === "string" &&
-    node.name !== "InlineMath"
-  ) {
-    return { line, value: `component:${node.name}` };
+  if (isComponentNode(node) && node.name !== "InlineMath") {
+    return {
+      line: node.position.start.line,
+      value: `component:${node.name}`,
+    };
   }
 }
 
@@ -127,14 +181,14 @@ function majorityInventory(
     inventories,
     (inventory) => inventory.signature
   );
-  const [expectedGroup] = [...signatureGroups.values()].sort(
-    (left, right) => right.length - left.length
+  const expectedGroup = [...signatureGroups.values()].reduce(
+    (largest, group) => (group.length > largest.length ? group : largest),
+    []
   );
-  if (!expectedGroup || expectedGroup.length <= inventories.length / 2) {
+  if (expectedGroup.length <= inventories.length / 2) {
     return;
   }
-  const [expected] = expectedGroup;
-  return expected;
+  return expectedGroup.at(0);
 }
 
 /** Finds the first teaching step whose structural tokens differ. */
@@ -192,8 +246,15 @@ function siblingGroupIssues(
     }
     const comparison =
       expected ??
-      inventories.find(({ signature }) => signature !== inventory.signature);
-    return comparison ? [representationIssue(root, inventory, comparison)] : [];
+      inventories.reduce(
+        (candidate, sibling) =>
+          candidate.signature === inventory.signature &&
+          sibling.signature !== inventory.signature
+            ? sibling
+            : candidate,
+        inventory
+      );
+    return [representationIssue(root, inventory, comparison)];
   });
 }
 
@@ -209,9 +270,10 @@ export function findSiblingRepresentationIssues(
     issues.push(...siblingGroupIssues(root, siblings));
   }
 
-  return issues.sort(
-    (left, right) =>
-      left.file.localeCompare(right.file) || left.line - right.line
+  return issues.sort((left, right) =>
+    `${left.file}\0${left.line.toString().padStart(10, "0")}`.localeCompare(
+      `${right.file}\0${right.line.toString().padStart(10, "0")}`
+    )
   );
 }
 

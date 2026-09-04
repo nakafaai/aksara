@@ -1,3 +1,9 @@
+import {
+  isArrayExpressionNode,
+  isBlockStatementNode,
+  isCallExpressionNode,
+  isFunctionExpressionNode,
+} from "#nakafa-content/line/ast";
 import { inspectGeneratedLine } from "#nakafa-content/line/generated";
 import {
   areCollinear,
@@ -34,7 +40,7 @@ function visitEstree(
 
 /** Reads an ordinary point array without holes or spread elements. */
 function pointArray(node: EstreeNode | undefined): EstreeNode[] | undefined {
-  if (node?.type !== "ArrayExpression" || !Array.isArray(node.elements)) {
+  if (!isArrayExpressionNode(node)) {
     return;
   }
   const elements = node.elements.map(asEstreeNode);
@@ -58,19 +64,22 @@ function pointArray(node: EstreeNode | undefined): EstreeNode[] | undefined {
 function twoPointIife(call: EstreeNode): EstreeNode[] | undefined {
   const callee = asEstreeNode(call.callee);
   const body = asEstreeNode(callee?.body);
+  if (!(isFunctionExpressionNode(callee) && isBlockStatementNode(body))) {
+    return;
+  }
+  const statements = body.body.map(asEstreeNode);
   if (
-    !(
-      callee &&
-      ["ArrowFunctionExpression", "FunctionExpression"].includes(callee.type)
-    ) ||
-    body?.type !== "BlockStatement" ||
-    !Array.isArray(body.body)
+    statements.some(
+      (statement) =>
+        statement?.type !== "VariableDeclaration" &&
+        statement?.type !== "ReturnStatement"
+    )
   ) {
     return;
   }
-  const returns = body.body
-    .map(asEstreeNode)
-    .filter((statement) => statement?.type === "ReturnStatement");
+  const returns = statements.filter(
+    (statement) => statement?.type === "ReturnStatement"
+  );
   if (returns.length !== 1) {
     return;
   }
@@ -104,9 +113,9 @@ export function inspectExactPointExpression(
   seen: ReadonlySet<string> = new Set()
 ): ExactPointExpressionInspection {
   if (node?.type === "Identifier") {
-    const name = staticFieldName(node);
-    const initializer = name ? bindings.get(name) : undefined;
-    if (!(name && initializer) || seen.has(name)) {
+    const name = String(node.name);
+    const initializer = bindings.get(name);
+    if (!initializer || seen.has(name)) {
       return { exactSegment: false };
     }
     return inspectExactPointExpression(
@@ -129,7 +138,7 @@ export function inspectExactPointExpression(
       pointCount: points.length,
     };
   }
-  if (node?.type !== "CallExpression") {
+  if (!isCallExpressionNode(node)) {
     return { exactSegment: false };
   }
   const generated = inspectGeneratedLine(node);

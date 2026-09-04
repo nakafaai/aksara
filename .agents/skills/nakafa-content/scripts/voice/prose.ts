@@ -1,3 +1,5 @@
+import assert from "node:assert/strict";
+
 import { isProtectedProseComponent } from "#nakafa-content/mdx/fields";
 import { metadataAddressRanges } from "#nakafa-content/mdx/metadata";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
@@ -69,7 +71,7 @@ function collectImageAltIssues(
 
 /** Recognizes source and component regions that must remain untouched. */
 function isProtectedNode(node: MdxNode, inherited: boolean): boolean {
-  if (inherited || PROTECTED_NODE_TYPES.has(node.type ?? "")) {
+  if (inherited || PROTECTED_NODE_TYPES.has(node.type)) {
     return true;
   }
   return (
@@ -92,7 +94,8 @@ function collectBlockquoteIssues(
     germanPossessiveAntecedent: false,
     quotationRanges: multilineQuotationRanges(source),
   };
-  for (const child of node.children ?? []) {
+  assert.ok(node.children);
+  for (const child of node.children) {
     issues.push(
       ...matchRangeRules(
         locale,
@@ -135,6 +138,7 @@ function collectParagraphAddressIssues(
   if (node.type !== "paragraph") {
     return;
   }
+  assert.ok(node.position);
   issues.push(
     ...matchUnanchoredGermanAddress(locale, source, node.position, rules, {
       allowPersonalAddress: !state.germanPersonalAntecedent,
@@ -151,15 +155,11 @@ function updateAntecedentAfterParagraph(
   source: string,
   state: ProseState
 ): void {
-  if (node.type !== "paragraph") {
-    return;
-  }
   const start = node.position?.start?.offset;
   const end = node.position?.end?.offset;
-  const antecedent =
-    start === undefined || end === undefined
-      ? { personal: false, possessive: false }
-      : germanAntecedentState(source.slice(start, end));
+  assert.ok(start !== undefined);
+  assert.ok(end !== undefined);
+  const antecedent = germanAntecedentState(source.slice(start, end));
   state.germanPersonalAntecedent = antecedent.personal;
   state.germanPossessiveAntecedent = antecedent.possessive;
 }
@@ -180,7 +180,7 @@ function collectNodeIssues(
     collectBlockquoteIssues(locale, node, rules, source, issues);
     return;
   }
-  if (!isProtected && LINK_NODE_TYPES.has(node.type ?? "")) {
+  if (!isProtected && LINK_NODE_TYPES.has(node.type)) {
     const linkRules = rules.filter(
       ({ inspectLinkLabels }) => inspectLinkLabels
     );
@@ -195,7 +195,7 @@ function collectNodeIssues(
     );
     return;
   }
-  if (!isProtected && IMAGE_NODE_TYPES.has(node.type ?? "")) {
+  if (!isProtected && IMAGE_NODE_TYPES.has(node.type)) {
     collectImageAltIssues(locale, node, rules, source, issues, state);
     return;
   }

@@ -46,41 +46,15 @@ export function addSemicolonsInRange(
   }
 }
 
-/** Maps a decoded field value back to its authored entity-aware source length. */
-function decodedFieldSourceLength(
-  authored: string,
-  decoded: string
-): number | undefined {
-  let sourceOffset = 0;
-  for (const character of decoded) {
-    if (character !== ";" || authored[sourceOffset] === ";") {
-      if (!authored.startsWith(character, sourceOffset)) {
-        return;
-      }
-      sourceOffset += character.length;
-      continue;
-    }
-    const terminatorOffset = authored.indexOf(";", sourceOffset);
-    if (
-      terminatorOffset === -1 ||
-      entityTerminatorKind(authored, terminatorOffset) !== "semicolon"
-    ) {
-      return;
-    }
-    sourceOffset = terminatorOffset + 1;
-  }
-  return sourceOffset;
-}
-
 /** Builds a source expression that accepts authored semicolon entities. */
 function encodedFieldPattern(value: string): RegExp {
-  const encodedSemicolon = "(?:;|&(?:#0*59|#x0*3b|semi);)";
+  const encodedSemicolon = "(?:;|&(?:#0*59|#[xX]0*3[bB]|[sS][eE][mM][iI]);)";
   return new RegExp(
     value
       .split(";")
       .map((part) => part.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&"))
       .join(encodedSemicolon),
-    "iu"
+    "gu"
   );
 }
 
@@ -100,18 +74,15 @@ export function addStaticMarkdownFieldSemicolons(
   let localOffset = sourceRange.indexOf(value);
   let sourceLength = value.length;
   if (localOffset === -1) {
-    localOffset = sourceRange.search(encodedFieldPattern(value));
-    if (localOffset === -1) {
-      return;
+    const pattern = encodedFieldPattern(value);
+    for (const encodedMatch of sourceRange.matchAll(pattern)) {
+      localOffset = encodedMatch.index;
+      sourceLength = encodedMatch[0].length;
+      break;
     }
-    const decodedSourceLength = decodedFieldSourceLength(
-      sourceRange.slice(localOffset),
-      value
-    );
-    if (decodedSourceLength === undefined) {
-      return;
-    }
-    sourceLength = decodedSourceLength;
+  }
+  if (localOffset === -1) {
+    return;
   }
   addSemicolonsInRange(offsets, source, {
     end: { offset: start + localOffset + sourceLength },

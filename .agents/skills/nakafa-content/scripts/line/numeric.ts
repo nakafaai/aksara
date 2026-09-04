@@ -1,3 +1,5 @@
+import assert from "node:assert/strict";
+
 import {
   asEstreeNode,
   type EstreeNode,
@@ -49,9 +51,8 @@ function objectProperty(
   object: EstreeNode,
   name: string
 ): EstreeNode | undefined {
-  if (object.type !== "ObjectExpression" || !Array.isArray(object.properties)) {
-    return;
-  }
+  assert.equal(object.type, "ObjectExpression");
+  assert.ok(Array.isArray(object.properties));
   let match: EstreeNode | undefined;
   for (const property of object.properties) {
     const propertyNode = asEstreeNode(property);
@@ -106,11 +107,7 @@ function staticMathCall(node: EstreeNode): number | undefined {
   if (values.some((value) => value === undefined)) {
     return;
   }
-  const operation = Reflect.get(Math, method);
-  if (typeof operation !== "function") {
-    return;
-  }
-  const result = Reflect.apply(operation, Math, values);
+  const result = Reflect.apply(Reflect.get(Math, method), Math, values);
   return typeof result === "number" && Number.isFinite(result)
     ? result
     : undefined;
@@ -179,9 +176,8 @@ export function staticPoint(
 /** Proves that three or more static points lie on one straight line. */
 export function areCollinear(points: readonly PointCoordinates[]): boolean {
   const [first, second] = points;
-  if (!(first && second)) {
-    return false;
-  }
+  assert.ok(first);
+  assert.ok(second);
   const direction = {
     x: second.x - first.x,
     y: second.y - first.y,
@@ -225,9 +221,8 @@ function expressionFingerprint(value: unknown): unknown {
 /** Rejects two identical point encodings used only to render one marker. */
 export function distinctPointPair(points: readonly EstreeNode[]): boolean {
   const [first, second] = points;
-  if (!(first && second)) {
-    return false;
-  }
+  assert.ok(first);
+  assert.ok(second);
   const firstCoordinates = staticPoint(first);
   const secondCoordinates = staticPoint(second);
   if (firstCoordinates && secondCoordinates) {

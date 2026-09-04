@@ -42,17 +42,10 @@ export function protectedInlineRanges(line: string): Array<{
   start: number;
 }> {
   return PROTECTED_INLINE_PATTERNS.flatMap((pattern) =>
-    [...line.matchAll(pattern)].flatMap((match) => {
-      if (match.index === undefined) {
-        return [];
-      }
-      return [
-        {
-          end: match.index + match[0].length,
-          start: match.index,
-        },
-      ];
-    })
+    [...line.matchAll(pattern)].map((match) => ({
+      end: match.index + match[0].length,
+      start: match.index,
+    }))
   );
 }
 
@@ -70,9 +63,6 @@ export function maskInlineQuotations(line: string): string {
   const characters = line.split("");
   for (const pattern of INLINE_QUOTATION_PATTERNS) {
     for (const match of line.matchAll(pattern)) {
-      if (match.index === undefined) {
-        continue;
-      }
       characters.fill(" ", match.index, match.index + match[0].length);
     }
   }

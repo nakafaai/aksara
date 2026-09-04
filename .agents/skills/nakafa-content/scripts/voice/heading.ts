@@ -132,14 +132,16 @@ export const HEADING_VOICE_RULES = [
     },
   },
 ] satisfies readonly LessonVoiceRule[];
-const HEADING_PATTERN = /^(#{2,6})(\s+)(.+)$/u;
-const METADATA_TITLE_PATTERN = /^(\s*title:\s*")([^"]+)(".*)$/u;
+const HEADING_PATTERN = /^#{2,6}\s+.+$/u;
+const METADATA_TITLE_PATTERN = /^\s*title:\s*"[^"]+".*$/u;
 const ALLOWED_HEADING_CHARACTER = /[\p{L} ]/u;
 const LEADING_LETTERS_PATTERN = /^\p{L}+/u;
 const NON_ORDINARY_SPACE_PATTERN = /[^ ]/u;
+const HEADING_SEPARATOR_PATTERN = /\s/u;
+const HEADING_TEXT_PATTERN = /\S/u;
 const TRAILING_LETTERS_PATTERN = /\p{L}+$/u;
 
-/** Allows the hyphen required by exact Indonesian reduplication. */
+/** Allows the ordinary repeated-word hyphen in Indonesian headings. */
 function isIndonesianReduplicationHyphen(
   heading: string,
   index: number,
@@ -159,7 +161,7 @@ function isIndonesianReduplicationHyphen(
   );
 }
 
-/** Identifies control bytes that are never valid authored lesson text. */
+/** Recognizes forbidden ASCII control bytes. */
 function isForbiddenControlCharacter(code: number): boolean {
   return (
     code <= 8 ||
@@ -184,17 +186,13 @@ function findForbiddenControlCharacterIssue(
   }
 }
 
-/** Finds the first symbol forbidden by the plain lesson heading policy. */
+/** Finds the first forbidden symbol in one learner-facing heading. */
 function findForbiddenHeadingCharacter(
   heading: string,
   locale: LessonVoiceLocale
 ): number | undefined {
-  for (let index = 0; index < heading.length; ) {
-    const codePoint = heading.codePointAt(index);
-    if (codePoint === undefined) {
-      return;
-    }
-    const character = String.fromCodePoint(codePoint);
+  let index = 0;
+  for (const character of heading) {
     if (
       !(
         ALLOWED_HEADING_CHARACTER.test(character) ||
@@ -207,25 +205,25 @@ function findForbiddenHeadingCharacter(
   }
 }
 
-/** Reports one symbol in an authored heading with its exact source column. */
+/** Reports a forbidden symbol in a Markdown lesson heading. */
 function findHeadingSymbolIssue(
   line: string,
   locale: LessonVoiceLocale
 ): SourceIssue | undefined {
-  const match = HEADING_PATTERN.exec(line);
-  if (!match) {
+  if (!HEADING_PATTERN.test(line)) {
     return;
   }
-  const [, headingMarker, headingSeparator, heading] = match;
-  if (!(heading && headingMarker && headingSeparator)) {
-    return;
-  }
+  const headingMarkerLength = line.search(HEADING_SEPARATOR_PATTERN);
+  const headingRemainder = line.slice(headingMarkerLength);
+  const headingStart = headingRemainder.search(HEADING_TEXT_PATTERN);
+  const headingSeparator = headingRemainder.slice(0, headingStart);
+  const heading = headingRemainder.slice(headingStart);
   const invalidSeparatorIndex = headingSeparator.search(
     NON_ORDINARY_SPACE_PATTERN
   );
   if (invalidSeparatorIndex !== -1) {
     return {
-      column: headingMarker.length + invalidSeparatorIndex + 1,
+      column: headingMarkerLength + invalidSeparatorIndex + 1,
       excerpt: line.trim(),
       rule: "heading-symbol",
     };
@@ -235,31 +233,29 @@ function findHeadingSymbolIssue(
     return;
   }
   return {
-    column: headingMarker.length + headingSeparator.length + symbolIndex + 1,
+    column: headingMarkerLength + headingSeparator.length + symbolIndex + 1,
     excerpt: line.trim(),
     rule: "heading-symbol",
   };
 }
 
-/** Applies the heading symbol policy to a lesson metadata title. */
+/** Reports a forbidden symbol in the lesson metadata title. */
 function findMetadataTitleSymbolIssue(
   line: string,
   locale: LessonVoiceLocale
 ): SourceIssue | undefined {
-  const match = METADATA_TITLE_PATTERN.exec(line);
-  if (!match) {
+  if (!METADATA_TITLE_PATTERN.test(line)) {
     return;
   }
-  const [, metadataPrefix, title] = match;
-  if (!(metadataPrefix && title)) {
-    return;
-  }
+  const titleStart = line.indexOf('"') + 1;
+  const titleEnd = line.indexOf('"', titleStart);
+  const title = line.slice(titleStart, titleEnd);
   const symbolIndex = findForbiddenHeadingCharacter(title, locale);
   if (symbolIndex === undefined) {
     return;
   }
   return {
-    column: metadataPrefix.length + symbolIndex + 1,
+    column: titleStart + symbolIndex + 1,
     excerpt: line.trim(),
     rule: "heading-symbol",
   };

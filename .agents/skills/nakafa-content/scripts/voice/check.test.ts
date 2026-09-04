@@ -1,11 +1,36 @@
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import {
+  mkdirSync,
+  mkdtempSync,
+  rmSync,
+  symlinkSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { assert, it } from "@effect/vitest";
 
-import { checkLessonRoot, runCli } from "#nakafa-content/voice/check";
+import {
+  checkLessonRoot,
+  collectLessonFiles,
+  runCli,
+} from "#nakafa-content/voice/check";
 
 const EMPTY_ROOT_ERROR = /No lesson locale files found/;
+const PASSING_REPORT_PATTERN = /passed for 1 files/u;
+const LESSON_ROOT = join(
+  process.cwd(),
+  "packages",
+  "corpus",
+  "material",
+  "lesson"
+);
+
+it("accepts every current lesson through the production checker", () => {
+  const report = checkLessonRoot(LESSON_ROOT);
+  assert.ok(report.fileCount > 1000);
+  assert.deepEqual(report.issues, []);
+}, 90_000);
 
 it("scans every locale sibling below a lesson root", () => {
   const root = mkdtempSync(join(tmpdir(), "nakafa-lesson-voice-"));
@@ -36,6 +61,26 @@ it("scans every locale sibling below a lesson root", () => {
         },
       ],
     });
+  } finally {
+    rmSync(root, { force: true, recursive: true });
+  }
+});
+
+it("collects only supported locale files without following symlinks", () => {
+  const root = mkdtempSync(join(tmpdir(), "nakafa-lesson-files-"));
+  const nested = join(root, "nested");
+  mkdirSync(nested);
+  try {
+    writeFileSync(join(root, "id.mdx"), "Salin nilai.");
+    writeFileSync(join(nested, "de.mdx"), "Kopiere den Wert.");
+    writeFileSync(join(root, "fr.mdx"), "Copiez la valeur.");
+    writeFileSync(join(root, "notes.txt"), "notes");
+    symlinkSync(join(root, "id.mdx"), join(root, "linked.mdx"));
+
+    assert.deepEqual(
+      collectLessonFiles(root).map((file) => file.slice(root.length + 1)),
+      ["id.mdx", "nested/de.mdx"]
+    );
   } finally {
     rmSync(root, { force: true, recursive: true });
   }
@@ -115,5 +160,74 @@ it("structural punctuation and contextual regressions block the CLI", () => {
   } finally {
     console.error = originalError;
     console.log = originalLog;
+  }
+});
+
+it("rejects incomplete and unsupported CLI arguments", () => {
+  const originalError = console.error;
+  console.error = () => undefined;
+  try {
+    for (const arguments_ of [
+      ["--format"],
+      ["--root"],
+      ["--format", "xml"],
+      ["--unknown"],
+      ["--root", join(tmpdir(), "missing-nakafa-lessons")],
+    ]) {
+      assert.equal(runCli(arguments_), 2);
+    }
+  } finally {
+    console.error = originalError;
+  }
+});
+
+it("prints clean text and JSON reports", () => {
+  const root = mkdtempSync(join(tmpdir(), "nakafa-lesson-output-"));
+  const output: string[] = [];
+  const originalLog = console.log;
+  console.log = (value?: unknown) => output.push(String(value));
+  try {
+    writeFileSync(
+      join(root, "en.mdx"),
+      "The value follows from the equation.\n"
+    );
+    assert.equal(runCli(["--format", "text", "--root", root]), 0);
+    assert.match(output.at(-1) ?? "", PASSING_REPORT_PATTERN);
+    assert.equal(runCli(["--format", "json", "--root", root]), 0);
+    assert.deepEqual(JSON.parse(output.at(-1) ?? "{}"), {
+      blockingIssueCount: 0,
+      fileCount: 1,
+      issues: [],
+      reviewIssueCount: 0,
+    });
+  } finally {
+    console.log = originalLog;
+    rmSync(root, { force: true, recursive: true });
+  }
+});
+
+it("runs the checker when the module is the process entrypoint", async () => {
+  const root = mkdtempSync(join(tmpdir(), "nakafa-lesson-main-"));
+  const originalArgv = process.argv;
+  const originalExitCode = process.exitCode;
+  const originalLog = console.log;
+  console.log = () => undefined;
+  try {
+    writeFileSync(join(root, "en.mdx"), "The equation gives the value.\n");
+    process.argv = [
+      process.execPath,
+      fileURLToPath(new URL("./check.ts", import.meta.url)),
+      "--root",
+      root,
+    ];
+    process.exitCode = undefined;
+    vi.resetModules();
+    await import("#nakafa-content/voice/check");
+    assert.equal(process.exitCode, 0);
+  } finally {
+    console.log = originalLog;
+    process.argv = originalArgv;
+    process.exitCode = originalExitCode;
+    rmSync(root, { force: true, recursive: true });
   }
 });

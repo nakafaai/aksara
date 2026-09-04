@@ -1,4 +1,8 @@
 import {
+  isObjectExpressionNode,
+  type ObjectExpressionNode,
+} from "#nakafa-content/line/ast";
+import {
   inspectExactPointExpression,
   pointExpressionBindings,
 } from "#nakafa-content/line/exact";
@@ -26,6 +30,18 @@ interface SourceEdit {
   end: number;
   start: number;
   text: string;
+}
+
+type LineEquationNode = MdxNode & {
+  attributes: MdxAttribute[];
+};
+
+/** Narrows one authored LineEquation component. */
+function isLineEquationNode(node: MdxNode): node is LineEquationNode {
+  return (
+    (node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement") &&
+    node.name === "LineEquation"
+  );
 }
 
 const WHITESPACE_ONLY = /^\s*$/u;
@@ -64,12 +80,9 @@ function attributeEstree(attribute: MdxAttribute): EstreeNode | undefined {
 
 /** Returns one statically named property from an object expression. */
 function objectProperty(
-  object: EstreeNode,
+  object: ObjectExpressionNode,
   name: string
 ): EstreeNode | undefined {
-  if (object.type !== "ObjectExpression" || !Array.isArray(object.properties)) {
-    return;
-  }
   let match: EstreeNode | undefined;
   for (const property of object.properties) {
     const propertyNode = asEstreeNode(property);
@@ -119,7 +132,7 @@ function inspectDataProgram(
   const bindings = pointExpressionBindings(program);
   const inspections: LineEquationSeriesInspection[] = [];
   visitEstree(program, (node) => {
-    if (node.type !== "ObjectExpression") {
+    if (!isObjectExpressionNode(node)) {
       return;
     }
     const pointsProperty = objectProperty(node, "points");
@@ -128,10 +141,7 @@ function inspectDataProgram(
       return;
     }
     const pointInspection = inspectExactPointExpression(pointsValue, bindings);
-    const offset = pointsProperty.start ?? node.start;
-    if (offset === undefined) {
-      return;
-    }
+    const offset = Number(pointsProperty.start);
     const smooth = staticBoolean(objectProperty(node, "smooth"));
     inspections.push({
       exactSegment: pointInspection.exactSegment,
@@ -161,10 +171,7 @@ function smoothInsertion(
   pointsProperty: EstreeNode,
   source: string
 ): SourceEdit | undefined {
-  if (pointsProperty.start === undefined || pointsProperty.end === undefined) {
-    return;
-  }
-  let offset = pointsProperty.end;
+  let offset = Number(pointsProperty.end);
   while (source[offset] === " " || source[offset] === "\t") {
     offset += 1;
   }
@@ -172,8 +179,9 @@ function smoothInsertion(
   if (hasComma) {
     offset += 1;
   }
-  const lineStart = source.lastIndexOf("\n", pointsProperty.start - 1) + 1;
-  const prefix = source.slice(lineStart, pointsProperty.start);
+  const start = Number(pointsProperty.start);
+  const lineStart = source.lastIndexOf("\n", start - 1) + 1;
+  const prefix = source.slice(lineStart, start);
   const text = WHITESPACE_ONLY.test(prefix)
     ? `${hasComma ? "" : ","}\n${prefix}smooth: false,`
     : `${hasComma ? "" : ","} smooth: false,`;
@@ -186,7 +194,7 @@ function exactLineEdit(
   bindings: ReadonlyMap<string, EstreeNode | null>,
   source: string
 ): SourceEdit | undefined {
-  if (node.type !== "ObjectExpression") {
+  if (!isObjectExpressionNode(node)) {
     return;
   }
   const pointsProperty = objectProperty(node, "points");
@@ -229,14 +237,10 @@ export function inspectLineEquationSeries(
 ): LineEquationSeriesInspection[] {
   const inspections: LineEquationSeriesInspection[] = [];
   visitMdxNodes(tree, (node) => {
-    if (
-      (node.type !== "mdxJsxFlowElement" &&
-        node.type !== "mdxJsxTextElement") ||
-      node.name !== "LineEquation"
-    ) {
+    if (!isLineEquationNode(node)) {
       return;
     }
-    for (const attribute of node.attributes ?? []) {
+    for (const attribute of node.attributes) {
       if (attribute.name !== "data") {
         continue;
       }
@@ -271,14 +275,10 @@ export function addExactLineSmoothing(
 ): { changeCount: number; source: string } {
   const edits: SourceEdit[] = [];
   visitMdxNodes(tree, (node) => {
-    if (
-      (node.type !== "mdxJsxFlowElement" &&
-        node.type !== "mdxJsxTextElement") ||
-      node.name !== "LineEquation"
-    ) {
+    if (!isLineEquationNode(node)) {
       return;
     }
-    for (const attribute of node.attributes ?? []) {
+    for (const attribute of node.attributes) {
       if (attribute.name !== "data") {
         continue;
       }

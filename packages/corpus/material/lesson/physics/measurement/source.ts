@@ -12,6 +12,9 @@ export const lessonPhysicsMeasurementMaterial = defineLessonMaterial({
   },
   sections: [
     {
+      evidenceUrls: [
+        "https://openstax.org/books/university-physics-volume-1/pages/1-4-dimensional-analysis",
+      ],
       routeSlugs: { de: "dimension", en: "dimension", id: "dimensi" },
       slug: "dimension",
     },
@@ -19,6 +22,7 @@ export const lessonPhysicsMeasurementMaterial = defineLessonMaterial({
       evidenceUrls: [
         "https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values",
         "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors",
+        "https://openstax.org/books/university-physics-volume-1/pages/1-6-significant-figures",
       ],
       routeSlugs: { de: "schreibweise", en: "notation", id: "notasi-ilmiah" },
       slug: "notation",
@@ -35,6 +39,7 @@ export const lessonPhysicsMeasurementMaterial = defineLessonMaterial({
     {
       evidenceUrls: [
         "https://www.nist.gov/document/2023-nist-hb130-uniform-packaging-and-labeling-regulation",
+        "https://openstax.org/books/university-physics-volume-1/pages/1-6-significant-figures",
       ],
       routeSlugs: {
         de: "signifikante-stellen",

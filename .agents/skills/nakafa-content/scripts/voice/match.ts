@@ -1,6 +1,9 @@
+import assert from "node:assert/strict";
+
 import type { SourceRange } from "#nakafa-content/mdx/parse";
 import {
   establishedGermanFormalSentenceOffset,
+  GERMAN_FORMAL_ADDRESS_PATTERN,
   unanchoredGermanFormalAddressOffset,
 } from "#nakafa-content/voice/address";
 import {
@@ -8,6 +11,7 @@ import {
   maskBalancedQuotations,
   maskMultilineQuotations,
   maskProtectedInlineContent,
+  multilineQuotationRanges,
 } from "#nakafa-content/voice/text";
 import type {
   LessonVoiceIssue,
@@ -61,9 +65,14 @@ export function matchRangeRules(
   if (start === undefined || end === undefined) {
     return [];
   }
-  const original = source.slice(start, end);
+  const rendered = range?.rendered;
+  const original = rendered?.text ?? source.slice(start, end);
+  const localQuotationRanges = rendered
+    ? multilineQuotationRanges(original)
+    : quotationRanges;
+  const quotationOffset = rendered ? 0 : start;
   const searchable = maskProtectedInlineContent(
-    maskMultilineQuotations(original, start, quotationRanges)
+    maskMultilineQuotations(original, quotationOffset, localQuotationRanges)
   );
   return rules.flatMap((rule) => {
     const pattern = rule.patterns[locale];
@@ -87,7 +96,10 @@ export function matchRangeRules(
     ) {
       return [];
     }
-    return [issueAtOffset(source, start + match.index, rule.id)];
+    const renderedOffset = rendered?.offsets[match.index];
+    const issueOffset = renderedOffset ?? start + match.index;
+    assert.ok(!rendered || renderedOffset !== undefined);
+    return [issueAtOffset(source, issueOffset, rule.id)];
   });
 }
 
@@ -95,15 +107,15 @@ export function matchRangeRules(
 export function matchUnanchoredGermanAddress(
   locale: LessonVoiceLocale,
   source: string,
-  range: SourceRange | undefined,
+  range: SourceRange,
   rules: readonly LessonVoiceRule[],
   options: {
     allowPersonalAddress?: boolean;
     allowPossessiveAddress?: boolean;
     continueEstablishedAddress?: boolean;
     enabled?: boolean;
-    quotationRanges?: readonly InlineQuotationRange[];
-  } = {}
+    quotationRanges: readonly InlineQuotationRange[];
+  }
 ): LessonVoiceIssue[] {
   if (
     options.enabled === false ||
@@ -112,33 +124,38 @@ export function matchUnanchoredGermanAddress(
   ) {
     return [];
   }
-  const start = range?.start?.offset;
-  const end = range?.end?.offset;
-  if (start === undefined || end === undefined) {
-    return [];
-  }
-  const original = source.slice(start, end);
+  const start = range.start?.offset;
+  const end = range.end?.offset;
+  assert.ok(start !== undefined);
+  assert.ok(end !== undefined);
+  const { rendered } = range;
+  const original = rendered?.text ?? source.slice(start, end);
+  const localQuotationRanges = rendered
+    ? multilineQuotationRanges(original)
+    : options.quotationRanges;
+  const quotationOffset = rendered ? 0 : start;
   const searchable = maskBalancedQuotations(
     maskProtectedInlineContent(
-      maskMultilineQuotations(original, start, options.quotationRanges ?? [])
+      maskMultilineQuotations(original, quotationOffset, localQuotationRanges)
     )
   ).replace(/[\r\n]/gu, " ");
-  const formalPattern = rules.find(({ id }) => id === "german-formal-address")
-    ?.patterns.de;
-  if (formalPattern) {
-    formalPattern.lastIndex = 0;
-  }
+  GERMAN_FORMAL_ADDRESS_PATTERN.lastIndex = 0;
   const directOffset = unanchoredGermanFormalAddressOffset(
     searchable,
     options.allowPossessiveAddress,
     options.allowPersonalAddress
   );
   const continuedOffset =
-    options.continueEstablishedAddress && formalPattern?.test(searchable)
+    options.continueEstablishedAddress &&
+    GERMAN_FORMAL_ADDRESS_PATTERN.test(searchable)
       ? establishedGermanFormalSentenceOffset(searchable)
       : undefined;
   const addressOffset = directOffset ?? continuedOffset;
-  return addressOffset === undefined
-    ? []
-    : [issueAtOffset(source, start + addressOffset, "german-formal-address")];
+  if (addressOffset === undefined) {
+    return [];
+  }
+  const renderedOffset = rendered?.offsets[addressOffset];
+  const issueOffset = renderedOffset ?? start + addressOffset;
+  assert.ok(!rendered || renderedOffset !== undefined);
+  return [issueAtOffset(source, issueOffset, "german-formal-address")];
 }

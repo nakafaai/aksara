@@ -1,4 +1,7 @@
+import assert from "node:assert/strict";
+
 import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { renderedNodeRange } from "#nakafa-content/mdx/rendered";
 import type { ProseState } from "#nakafa-content/voice/copy";
 import {
   matchRangeRules,
@@ -17,13 +20,11 @@ const SENTENCE_BOUNDARY_PATTERN = /[.!?:]\s*$/u;
 /** Allows locally direct link-copy checks without breaking clear anaphora. */
 function allowsUnanchoredAddress(
   node: MdxNode,
-  paragraphStart: number | undefined,
+  paragraphStart: number,
   source: string
 ): boolean {
   const linkStart = node.position?.start?.offset;
-  if (linkStart === undefined || paragraphStart === undefined) {
-    return false;
-  }
+  assert.ok(linkStart !== undefined);
   const prefix = source.slice(paragraphStart, linkStart);
   return (
     prefix.trim().length === 0 ||
@@ -42,25 +43,28 @@ export function collectLinkLabelIssues(
   state: ProseState,
   paragraphStart: number | undefined
 ): void {
+  assert.ok(paragraphStart !== undefined);
   const allowUnanchoredAddress = allowsUnanchoredAddress(
     node,
     paragraphStart,
     source
   );
-  for (const child of node.children ?? []) {
-    issues.push(
-      ...matchRangeRules(
-        locale,
-        source,
-        child.position,
-        rules,
-        false,
-        state.quotationRanges
-      ),
-      ...matchUnanchoredGermanAddress(locale, source, child.position, rules, {
-        enabled: allowUnanchoredAddress,
-        quotationRanges: state.quotationRanges,
-      })
-    );
+  const range = renderedNodeRange(node, source);
+  if (!range) {
+    return;
   }
+  issues.push(
+    ...matchRangeRules(
+      locale,
+      source,
+      range,
+      rules,
+      false,
+      state.quotationRanges
+    ),
+    ...matchUnanchoredGermanAddress(locale, source, range, rules, {
+      enabled: allowUnanchoredAddress,
+      quotationRanges: state.quotationRanges,
+    })
+  );
 }

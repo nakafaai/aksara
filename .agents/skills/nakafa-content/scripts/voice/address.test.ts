@@ -2,6 +2,8 @@ import { assert, it } from "@effect/vitest";
 
 import { findLessonVoiceIssues } from "#nakafa-content/voice/scan";
 
+const UNSUPPORTED_LOCALE_PATTERN = /Unsupported lesson locale/u;
+
 it("rejects formal German learner address in proven direct-address frames", () => {
   const source = [
     "Bearbeite jede Aufgabe selbst, bevor Sie die Lösung lesen.",
@@ -227,6 +229,25 @@ it("checks learner-visible metadata descriptions", () => {
       [rule]
     );
   }
+});
+
+it("checks formal German address at the start of metadata copy", () => {
+  const source = [
+    "export const metadata = {",
+    '  description: "Sie können den Wert prüfen.",',
+    "};",
+  ].join("\n");
+  assert.deepEqual(
+    findLessonVoiceIssues("de", source).map(({ rule }) => rule),
+    ["german-formal-address"]
+  );
+});
+
+it("rejects unsupported lesson locales", () => {
+  assert.throws(
+    () => findLessonVoiceIssues("fr", "Texte"),
+    UNSUPPORTED_LOCALE_PATTERN
+  );
 });
 
 it("rejects unambiguous formal German instructions in the du register", () => {

@@ -19,25 +19,79 @@ import {
 } from "#nakafa-content/semicolon/source";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
+type JsxMdxNode = MdxNode & {
+  attributes: MdxAttribute[];
+};
+
+type EsmMdxNode = MdxNode & {
+  data: { estree: ProgramNode };
+  type: "mdxjsEsm";
+};
+
+type ObjectExpressionNode = EstreeNode & {
+  properties: EstreeNode[];
+  type: "ObjectExpression";
+};
+
+type ProgramNode = EstreeNode & {
+  body: EstreeNode[];
+  type: "Program";
+};
+
+type PropertyNode = EstreeNode & {
+  type: "Property";
+  value: EstreeNode;
+};
+
+type VariableDeclarationNode = EstreeNode & {
+  declarations: EstreeNode[];
+  type: "VariableDeclaration";
+};
+
+/** Narrows one parser-owned JSX node. */
+function isJsxMdxNode(node: MdxNode): node is JsxMdxNode {
+  return node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement";
+}
+
+/** Narrows one parser-owned ESM node. */
+function isEsmMdxNode(node: MdxNode): node is EsmMdxNode {
+  return node.type === "mdxjsEsm";
+}
+
+/** Narrows one parser-owned object expression. */
+function isObjectExpressionNode(
+  node: EstreeNode | undefined
+): node is ObjectExpressionNode {
+  return node?.type === "ObjectExpression";
+}
+
+/** Narrows one parser-owned program. */
+function isProgramNode(node: EstreeNode | undefined): node is ProgramNode {
+  return node?.type === "Program";
+}
+
+/** Narrows one parser-owned object property. */
+function isPropertyNode(node: EstreeNode): node is PropertyNode {
+  return node.type === "Property";
+}
+
+/** Narrows one parser-owned variable declaration. */
+function isVariableDeclarationNode(
+  node: EstreeNode | undefined
+): node is VariableDeclarationNode {
+  return node?.type === "VariableDeclaration";
+}
+
 /** Scans the expression returned directly by an MDX expression container. */
 function collectMdxExpressionSemicolons(
   estree: EstreeNode | undefined,
   offsets: Set<number>,
   source: string
 ): void {
-  if (estree?.type !== "Program" || !Array.isArray(estree.body)) {
+  if (!isProgramNode(estree)) {
     return;
   }
-  for (const statement of estree.body) {
-    const statementNode = asEstreeNode(statement);
-    if (statementNode?.type !== "ExpressionStatement") {
-      continue;
-    }
-    const expression = asEstreeNode(statementNode.expression);
-    if (expression) {
-      collectStructuredExpressionSemicolons(expression, offsets, source);
-    }
-  }
+  collectStructuredExpressionSemicolons(estree, offsets, source);
 }
 
 /** Reads the ESTree program stored by an MDX expression attribute. */
@@ -83,33 +137,22 @@ function collectMdxAttributeSemicolons(
 }
 
 /** Finds the exported metadata object in one ESM program. */
-function metadataObject(
-  estree: EstreeNode | undefined
-): EstreeNode | undefined {
-  if (estree?.type !== "Program" || !Array.isArray(estree.body)) {
-    return;
-  }
+function metadataObject(estree: ProgramNode): EstreeNode | undefined {
   for (const statement of estree.body) {
-    const statementNode = asEstreeNode(statement);
     const declaration =
-      statementNode?.type === "ExportNamedDeclaration"
-        ? asEstreeNode(statementNode.declaration)
-        : statementNode;
-    if (declaration?.type !== "VariableDeclaration") {
+      statement.type === "ExportNamedDeclaration"
+        ? asEstreeNode(statement.declaration)
+        : statement;
+    if (!isVariableDeclarationNode(declaration)) {
       continue;
     }
-    for (const declarator of Array.isArray(declaration.declarations)
-      ? declaration.declarations
-      : []) {
-      const declaratorNode = asEstreeNode(declarator);
+    for (const declarator of declaration.declarations) {
       if (
-        declaratorNode?.type === "VariableDeclarator" &&
-        staticFieldName(asEstreeNode(declaratorNode.id)) === "metadata"
+        declarator.type === "VariableDeclarator" &&
+        staticFieldName(asEstreeNode(declarator.id)) === "metadata"
       ) {
-        const initializer = asEstreeNode(declaratorNode.init);
-        return initializer?.type === "ObjectExpression"
-          ? initializer
-          : undefined;
+        const initializer = asEstreeNode(declarator.init);
+        return isObjectExpressionNode(initializer) ? initializer : undefined;
       }
     }
   }
@@ -117,26 +160,22 @@ function metadataObject(
 
 /** Records semicolons in the static authored metadata description. */
 function collectMetadataDescriptionSemicolons(
-  estree: EstreeNode | undefined,
+  estree: ProgramNode,
   offsets: Set<number>,
   source: string
 ): void {
   const metadata = metadataObject(estree);
-  if (!(metadata && Array.isArray(metadata.properties))) {
+  if (!isObjectExpressionNode(metadata)) {
     return;
   }
   for (const property of metadata.properties) {
-    const propertyNode = asEstreeNode(property);
     if (
-      propertyNode?.type !== "Property" ||
-      staticFieldName(asEstreeNode(propertyNode.key)) !== "description"
+      !isPropertyNode(property) ||
+      staticFieldName(asEstreeNode(property.key)) !== "description"
     ) {
       continue;
     }
-    const value = asEstreeNode(propertyNode.value);
-    if (value) {
-      collectStaticStringSemicolons(value, offsets, source);
-    }
+    collectStaticStringSemicolons(property.value, offsets, source);
   }
 }
 
@@ -182,8 +221,8 @@ function collectNodeSemicolons(
     addSemicolonsInRange(offsets, source, node.position);
   }
   collectMarkdownFieldSemicolons(node, offsets, source);
-  if (node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement") {
-    for (const attribute of node.attributes ?? []) {
+  if (isJsxMdxNode(node)) {
+    for (const attribute of node.attributes) {
       collectMdxAttributeSemicolons(attribute, offsets, source);
     }
   }
@@ -193,8 +232,8 @@ function collectNodeSemicolons(
   ) {
     collectMdxExpressionSemicolons(node.data.estree, offsets, source);
   }
-  if (node.type === "mdxjsEsm") {
-    collectMetadataDescriptionSemicolons(node.data?.estree, offsets, source);
+  if (isEsmMdxNode(node)) {
+    collectMetadataDescriptionSemicolons(node.data.estree, offsets, source);
   }
   for (const child of node.children ?? []) {
     collectNodeSemicolons(child, offsets, source);

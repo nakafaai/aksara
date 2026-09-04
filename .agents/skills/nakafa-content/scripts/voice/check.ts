@@ -7,15 +7,13 @@ import { findExactLineSmoothingIssues } from "#nakafa-content/line/check";
 import { findExternalLinkPlacementIssues } from "#nakafa-content/link/check";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import { findMathBlockFragmentIssues } from "#nakafa-content/voice/fragment";
-import {
-  findSiblingRepresentationIssues,
-  lessonSiblingDocument,
-} from "#nakafa-content/voice/parity";
+import { findSiblingRepresentationIssues } from "#nakafa-content/voice/parity";
 import { isBlockingLessonVoiceIssue } from "#nakafa-content/voice/policy";
 import { findLearnerFacingSemicolonIssues } from "#nakafa-content/voice/punctuation";
 import { findLessonVoiceIssues } from "#nakafa-content/voice/scan";
 import {
   isLessonVoiceLocale,
+  type LessonVoiceLocale,
   type LessonVoiceReport,
 } from "#nakafa-content/voice/types";
 
@@ -25,53 +23,57 @@ interface CliOptions {
   strictReview: boolean;
 }
 
-/** Collects every English, Indonesian, and German lesson source below a root. */
-export function collectLessonFiles(root: string): string[] {
-  const files: string[] = [];
+interface LessonFile {
+  file: string;
+  locale: LessonVoiceLocale;
+}
+
+/** Collects locale-qualified lesson files without validating them twice. */
+function collectLocaleFiles(root: string): LessonFile[] {
+  const files: LessonFile[] = [];
 
   /** Traverses one lesson directory without following non-directory entries. */
   function visit(directory: string): void {
     for (const entry of readdirSync(directory, { withFileTypes: true })) {
-      const path = join(directory, entry.name);
+      const file = join(directory, entry.name);
       if (entry.isDirectory()) {
-        visit(path);
-      } else if (
-        entry.isFile() &&
-        isLessonVoiceLocale(basename(path, ".mdx"))
-      ) {
-        files.push(path);
+        visit(file);
+        continue;
+      }
+      const locale = basename(file, ".mdx");
+      if (entry.isFile() && isLessonVoiceLocale(locale)) {
+        files.push({ file, locale });
       }
     }
   }
 
   visit(root);
-  return files.sort();
+  return files.sort((left, right) => left.file.localeCompare(right.file));
+}
+
+/** Collects every English, Indonesian, and German lesson source below a root. */
+export function collectLessonFiles(root: string): string[] {
+  return collectLocaleFiles(root).map(({ file }) => file);
 }
 
 /** Scans every lesson file and attaches its locale and repository path. */
 export function checkLessonRoot(root: string): LessonVoiceReport {
-  const files = collectLessonFiles(root);
+  const files = collectLocaleFiles(root);
   if (files.length === 0) {
     throw new Error(`No lesson locale files found under ${root}`);
   }
 
-  const documents = files.flatMap((file) => {
-    const locale = basename(file, ".mdx");
-    if (!isLessonVoiceLocale(locale)) {
-      return [];
-    }
+  const documents = files.map(({ file, locale }) => {
     const source = readFileSync(file, "utf8");
     const repositoryPath = relative(root, file);
     const tree = parseLessonMdx(source, repositoryPath);
-    return [
-      {
-        file,
-        locale,
-        repositoryPath,
-        source,
-        tree,
-      },
-    ];
+    return {
+      file,
+      locale,
+      repositoryPath,
+      source,
+      tree,
+    };
   });
   const issues = documents.flatMap(({ locale, repositoryPath, source, tree }) =>
     [
@@ -86,10 +88,12 @@ export function checkLessonRoot(root: string): LessonVoiceReport {
       ...issue,
     }))
   );
-  const siblingDocuments = documents.flatMap(({ file, source, tree }) => {
-    const document = lessonSiblingDocument(file, source, tree);
-    return document ? [document] : [];
-  });
+  const siblingDocuments = documents.map(({ file, locale, source, tree }) => ({
+    file,
+    locale,
+    source,
+    tree,
+  }));
   issues.push(...findSiblingRepresentationIssues(root, siblingDocuments));
   return { fileCount: files.length, issues };
 }
@@ -135,7 +139,7 @@ export function runCli(arguments_: readonly string[]): number {
   try {
     options = parseArguments(arguments_);
   } catch (error) {
-    console.error(error instanceof Error ? error.message : String(error));
+    console.error(String(error));
     return 2;
   }
 
@@ -143,7 +147,7 @@ export function runCli(arguments_: readonly string[]): number {
   try {
     report = checkLessonRoot(options.root);
   } catch (error) {
-    console.error(error instanceof Error ? error.message : String(error));
+    console.error(String(error));
     return 2;
   }
 

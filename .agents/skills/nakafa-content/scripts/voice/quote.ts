@@ -1,4 +1,5 @@
 import { type MdxNode, visitMdxNodes } from "#nakafa-content/mdx/parse";
+import { renderedNodeRange } from "#nakafa-content/mdx/rendered";
 import { matchRangeRules } from "#nakafa-content/voice/match";
 import type {
   LessonVoiceIssue,
@@ -11,9 +12,9 @@ const BLOCKQUOTE_VOICE_RULES = [
   {
     id: "blockquote-editorial-label",
     patterns: {
-      de: /^>\s*(?:Kurzer Check|Kurze Kontrolle|Kurz geprüft|Schnellcheck)\s*:/iu,
-      en: /^>\s*(?:Quick check|Quick test|Checkpoint)\s*:/iu,
-      id: /^>\s*(?:Cek cepat|Periksa cepat|Pemeriksaan cepat)\s*:/iu,
+      de: /^\s*(?:Kurzer Check|Kurze Kontrolle|Kurz geprüft|Schnellcheck)\s*:/iu,
+      en: /^\s*(?:Quick check|Quick test|Checkpoint)\s*:/iu,
+      id: /^\s*(?:Cek cepat|Periksa cepat|Pemeriksaan cepat)\s*:/iu,
     },
   },
 ] satisfies readonly LessonVoiceRule[];
@@ -31,7 +32,7 @@ export function findBlockquoteEditorialLabelIssues(
         ...matchRangeRules(
           locale,
           source,
-          node.position,
+          renderedNodeRange(node, source),
           BLOCKQUOTE_VOICE_RULES
         )
       );

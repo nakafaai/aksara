@@ -214,3 +214,65 @@ it("checks metadata strings Markdown labels titles and returned JSX", () => {
     ]
   );
 });
+
+it("checks every statically rendered branch of nested JSX expressions", () => {
+  const source = [
+    "<Chart",
+    "  label={condition ? (",
+    '    <Panel disabled title="Title; visible"',
+    "      subtitle={`Subtitle; visible`}",
+    '      href="https://example.com/a;b"',
+    "    >",
+    "      Body; visible",
+    "      <UI.Label>Member; visible</UI.Label>",
+    "      <CodeBlock>const hidden = 1;</CodeBlock>",
+    '      <InlineMath math={"x;y"} />',
+    "      {condition && <>Logical; visible</>}",
+    '      {[, "Array; visible", dynamic]}',
+    "    </Panel>",
+    "  ) : (",
+    "    <>Alternate; visible</>",
+    "  )}",
+    "  callback={() => <>",
+    "    Callback; visible",
+    "  </>}",
+    "  render={function () {",
+    '    const hidden = "implementation;";',
+    "    return <span>Returned; visible</span>;",
+    "  }}",
+    "  empty={() => {}}",
+    "  missing={() => {",
+    "    return;",
+    "  }}",
+    "  data={{",
+    '    caption: "Caption; visible",',
+    '    math: "m;n\\;p",',
+    '    code: "const hidden = 1;",',
+    '    ["helperCaption"]: "Help; visible",',
+    "  }}",
+    "/> ",
+  ].join("\n");
+
+  assert.deepEqual(
+    findLearnerFacingSemicolonIssues(source).map(({ line, rule }) => ({
+      line,
+      rule,
+    })),
+    [3, 4, 7, 8, 10, 11, 12, 15, 18, 22, 29, 30, 32].map((line) => ({
+      line,
+      rule: "learner-facing-semicolon",
+    }))
+  );
+});
+
+it("ignores module code and non-object metadata", () => {
+  const sources = [
+    'import Panel from "./panel";',
+    'export const helper = "implementation;";',
+    'export const helper = "implementation;", metadata = "invalid;";',
+  ];
+
+  for (const source of sources) {
+    assert.deepEqual(findLearnerFacingSemicolonIssues(source), []);
+  }
+});

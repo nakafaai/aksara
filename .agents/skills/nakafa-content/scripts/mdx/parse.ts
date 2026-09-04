@@ -1,3 +1,4 @@
+import assert from "node:assert/strict";
 import { createProcessor } from "@mdx-js/mdx";
 import remarkGfm from "remark-gfm";
 
@@ -9,6 +10,10 @@ export interface SourcePosition {
 
 export interface SourceRange {
   end?: SourcePosition;
+  rendered?: {
+    offsets: readonly number[];
+    text: string;
+  };
   start?: SourcePosition;
 }
 
@@ -33,7 +38,7 @@ export interface MdxNode {
   name?: string;
   position?: SourceRange;
   title?: string;
-  type?: string;
+  type: string;
   url?: string;
   value?: unknown;
 }
@@ -60,10 +65,9 @@ export function asEstreeNode(value: unknown): EstreeNode | undefined {
 }
 
 /** Converts an ESTree offset pair into the shared source range shape. */
-export function estreeRange(node: EstreeNode): SourceRange | undefined {
-  if (node.start === undefined || node.end === undefined) {
-    return undefined;
-  }
+export function estreeRange(node: EstreeNode): SourceRange {
+  assert.ok(node.start !== undefined);
+  assert.ok(node.end !== undefined);
   return {
     end: { offset: node.end },
     start: { offset: node.start },
@@ -75,7 +79,8 @@ export function staticFieldName(
   node: EstreeNode | undefined
 ): string | undefined {
   if (node?.type === "Identifier" || node?.type === "JSXIdentifier") {
-    return typeof node.name === "string" ? node.name : undefined;
+    assert.ok(typeof node.name === "string");
+    return node.name;
   }
   return node?.type === "Literal" && typeof node.value === "string"
     ? node.value
@@ -92,8 +97,7 @@ export function parseLessonMdx(
       .use(remarkGfm)
       .parse(source) as MdxNode;
   } catch (cause) {
-    const message = cause instanceof Error ? cause.message : String(cause);
-    throw new SyntaxError(`Failed to parse ${sourcePath}: ${message}`, {
+    throw new SyntaxError(`Failed to parse ${sourcePath}: ${String(cause)}`, {
       cause,
     });
   }

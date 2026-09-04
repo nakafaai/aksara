@@ -20,7 +20,7 @@ change:
 ```sh
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --strict-review
-node --conditions=aksara-source --test '.agents/skills/nakafa-content/scripts/**/*.test.ts'
+pnpm exec vitest run --config scripts/voice.config.ts
 pnpm format
 pnpm locales
 pnpm boundaries

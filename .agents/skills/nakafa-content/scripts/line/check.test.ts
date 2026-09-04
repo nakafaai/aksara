@@ -10,6 +10,7 @@ const INSERTED_SMOOTH = /\],\n {6}smooth: false,\n {6}color: "cyan"/u;
 const CURVE_WITH_SMOOTH_FALSE = /Array\.from[\s\S]*smooth: false/iu;
 const SMOOTH_FALSE = /smooth: false/gu;
 const SMOOTH_TRUE = /smooth: true/u;
+const COMMA_FREE_SMOOTH = /points: \[.+\],\n {6}smooth: false,/u;
 
 it("rejects two-point and collinear exact lines without disabled smoothing", () => {
   const source = `<LineEquation
@@ -191,4 +192,80 @@ it("preserves explicit straight lines and intentionally sampled curves", () => {
       },
     ]
   );
+});
+
+it("repairs exact lines across compact and comma-free source layouts", () => {
+  const source = `<LineEquation data={[{ points: [{ x: 0, y: 0 }, { x: 1, y: 1 }]   , color: "red" }, { points: [{ x: 0, y: 0 }, { x: 2, y: 2 }] }, { points: [{ x: 0, y: 0 }, { x: 3, y: 3 }], color: "blue" }]} />`;
+
+  const result = addExactLineSmoothing(source);
+
+  assert.equal(result.changeCount, 3);
+  assert.equal(result.source.match(SMOOTH_FALSE)?.length, 3);
+  assert.deepEqual(findExactLineSmoothingIssues(result.source), []);
+  assert.equal(inspectLineEquationSeries(source)[0]?.excerpt, source);
+});
+
+it("repairs a comma-free multiline points property", () => {
+  const source = `<LineEquation
+  data={[
+    {
+      points: [{ x: 0, y: 0 }, { x: 1, y: 1 }]
+    },
+  ]}
+/>`;
+
+  const result = addExactLineSmoothing(source);
+
+  assert.equal(result.changeCount, 1);
+  assert.match(result.source, COMMA_FREE_SMOOTH);
+  assert.deepEqual(findExactLineSmoothingIssues(result.source), []);
+});
+
+it("leaves unsupported authored point expressions unchanged", () => {
+  const source = `<LineEquation />
+<LineEquation data />
+<LineEquation data="static" />
+<LineEquation
+  title="Unsupported points"
+  data={(() => {
+    let uninitialized;
+    const { ignored } = {};
+    const duplicate = [{ x: 0, y: 0 }, { x: 1, y: 1 }];
+    {
+      const duplicate = [];
+    }
+    const first = second;
+    const second = first;
+    return [
+      { points: uninitialized },
+      { points: duplicate },
+      { points: first },
+      { points: 1 },
+      { points: [...duplicate] },
+      { points: [,] },
+      { points: (() => [])() },
+      { points: (() => [{ x: 0, y: 0 }])() },
+      { points: (() => { const value = 1; })() },
+      { points: (() => { return [{ x: 0, y: 0 }]; })() },
+      {
+        points: (() => {
+          if (first) return [{ x: 0, y: 0 }, { x: 1, y: 1 }];
+          return [{ x: 0, y: 0 }, { x: 2, y: 2 }];
+        })(),
+      },
+    ];
+  })()}
+/>`;
+
+  const inspections = inspectLineEquationSeries(source);
+
+  assert.equal(inspections.length, 11);
+  assert.equal(
+    inspections.every(({ exactSegment }) => !exactSegment),
+    true
+  );
+  assert.deepEqual(addExactLineSmoothing(source), {
+    changeCount: 0,
+    source,
+  });
 });

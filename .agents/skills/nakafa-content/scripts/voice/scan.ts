@@ -122,9 +122,6 @@ function matchMetadataGermanAddress(
     return [];
   }
   const valueStart = searchableLine.indexOf('"') + 1;
-  if (valueStart === 0) {
-    return [];
-  }
   const addressOffset = unanchoredGermanFormalAddressOffset(
     searchableLine.slice(valueStart)
   );
