@@ -43,6 +43,13 @@
   evidence URLs in source, readiness, and publisher contracts. A substantive
   concept heading such as `Energy Sources` remains valid when it teaches the
   concept instead of listing citations.
+- Keep lessons self-contained with Nakafa-owned prose and components. Reject
+  claim citations, standalone source chips, optional further reading,
+  competitor learning-platform links, and resources that duplicate what the
+  lesson already teaches. Exact official documentation, primary data, a
+  standard, or a reference page may remain when the learner has a concrete
+  reason to inspect it. Generic instructions to open or use a link do not prove
+  necessity.
 
 ## Learner facing punctuation
 
@@ -62,22 +69,27 @@
 
 ## Links
 
-- Nakafa renders external Markdown links as compact source chips. Keep the
-  explanation in ordinary prose and use the source, institution, journal,
-  report, or publication name as the label.
-- Do not use a clause, lesson term, page topic, chapter title, `tautan ini`,
-  `this source link`, or a sentence about opening the source as an external
-  label. A source chip must identify the evidence even when its destination is
-  hidden.
-- Keep generic words such as `official documentation`, `Dokumentasi resmi`, or
-  `Dokumentation` in the sentence, not in the chip. Use `[NumPy]` or `[GBIF]`
-  for the source label.
-- Internal links beginning with `/` use the ordinary underlined-link treatment.
-  Give them a descriptive destination label that fits the sentence.
+- Nakafa renders external Markdown links with the same ordinary underlined-link
+  treatment as internal links. The only interaction difference is that an
+  external destination opens in a new tab. Never render a source chip, badge,
+  card, preview, embed, or separate evidence style.
+- Learner-facing lessons must remain self-contained. Use an external link only
+  for exact official documentation, a standard, primary data or research, or
+  first-party evidence for an explicitly attributed claim. Never link a
+  competitor platform or an explanation, visual, example, or exercise that
+  Nakafa should provide itself.
+- Put a descriptive linked source name or phrase beside the exact claim it
+  supports. Preserve the natural teaching sentence and never rewrite a good
+  explanation merely to fit a citation. Do not use `tautan ini`,
+  `this source link`, a bare generic label, or a sentence about opening the
+  source.
+- Internal links beginning with `/` use the same ordinary underlined-link
+  treatment and remain in the current tab. Give them a descriptive destination
+  label that fits the sentence.
 - Read the destination and the surrounding paragraph before editing a label.
-  Do not impose a global character limit or a hostname-to-label map. A longer
-  official publication name may be necessary, and one domain may host several
-  distinct journals or institutions.
+  Do not impose a global character limit, hostname-to-label map, or growing
+  lesson, domain, or URL allowlist. A longer official publication name may be
+  necessary, and one domain may host several distinct resources.
 
 ## Mathematics and code
 
@@ -272,13 +284,11 @@ against the current route-domain renderer manifest before authoring with it.
   component blocks.
 - Do not hide educational prose inside component props when normal paragraphs
   are clearer.
-- Keep external links after a complete explanatory sentence so the linked text
-  does not replace required prose.
-- A source chip is a citation, not a grammatical subject, object, or
-  attribution. Reject constructions such as `[EPA] explains`, `menurut [EIA]`,
-  `ein Eintrag in [PubChem]`, and `published by [CIAAW]`. State the claim in
-  ordinary prose, end the sentence, and append one or more source chips. Do not
-  add a dedicated source or reference list to learner-facing lesson MDX.
+- External evidence belongs in source and publisher contracts, not in
+  learner-facing citation-only sections. Semantic necessity cannot be inferred
+  from link wording. An eligible official or primary source may be linked
+  naturally inside the concrete claim it supports. Reject standalone evidence
+  links, competitor links, and optional platform links.
 
 ## Evidence basis
 

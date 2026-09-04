@@ -4,6 +4,17 @@
 
 - Write like a teacher guiding students, not like a formal textbook, marketing
   page, or internal content note.
+- German learner-facing author voice uses `du`, the matching verb forms, and
+  informal imperatives. Do not mix `du` with formal `Sie` address in the same
+  document. A capitalized `Sie` can also refer back to a feminine or plural
+  noun at the beginning of a sentence or after a colon, so classify its
+  grammatical role before editing it.
+- Indonesian learner-facing author voice uses `aku` for a singular teacher and
+  `kamu` for the learner. Do not use formal `saya` or `Anda` for that pair.
+  Inclusive `kita` remains natural when teacher and learner really calculate,
+  compare, or inspect something together. If only the learner acts, use `kamu`
+  or a clear imperative. If only the explanation acts, name the subject rather
+  than inventing a shared `kita`.
 - Apply a five-year-old clarity test to every explanation. The sentence should
   name the object, action, input, and result clearly enough that a new learner
   does not have to recover missing context. This is a clarity test, not
@@ -184,8 +195,22 @@
   a natural clause or direct noun phrase in that locale.
 - Do not give a learner-facing section the sole job of listing citations. Keep
   source and provenance metadata in the source, readiness, or publisher
-  contract, and place a source chip after the complete teaching claim when the
-  learner needs to inspect the evidence.
+  contract. Do not place a source chip after a teaching claim merely to expose
+  its citation.
+- When removing a citation-only section, first inventory every external URL.
+  Classify the destination before preserving it. Prefer claim-matched primary,
+  official, or first-party evidence in the source, readiness, or publisher
+  contract. Keep primary research or an official institutional history when it
+  is the evidence the claim needs. A competitor learning platform, scholarly
+  review, or secondary explainer may remain only as non-published,
+  claim-matched authoring provenance. It must never become learner-visible
+  navigation. Replace it with stronger evidence when the claim needs support,
+  or remove it with the reviewed reason recorded in the change. Preserve a
+  learner-visible source only when it is exact official documentation, a
+  standard, primary data or research, or first-party evidence for an explicitly
+  attributed claim. Put a descriptive linked source name or phrase beside the
+  exact claim it supports without flattening the teaching sentence. A cleaner
+  page outline is not evidence that valid provenance can be discarded.
 - If a section has nested subsections, introduce their shared purpose with a
   substantive bridge paragraph first.
 - Avoid reusable headings such as `Overview`, `Key Takeaway`, or `Step One` when
@@ -201,8 +226,13 @@
 ## Accuracy and evidence
 
 - Preserve the source's meaning, uncertainty, scope, names, and numerical facts.
-- Verify citations against primary evidence. Never invent a citation to fill a
-  structural gap.
+- Prefer primary evidence for factual claims. Use an authoritative review or
+  institutional history when the claim itself depends on synthesis or
+  historical interpretation, and keep that scope explicit. Never invent a
+  citation to fill a structural gap.
+- Match evidence in the source or publisher contract to the claim it supports.
+  A relevant domain or a source that supports another sentence in the lesson
+  is not enough. This evidence does not require a learner-facing source chip.
 - Keep quotations exact and clearly separate them from authored explanation.
 - Check every localized title, description, label, and route slug with the body.
 - Remove vague intensifiers, canned transitions, false balance, repetitive
@@ -374,6 +404,24 @@ authorship detector. Admit a new rule only when all of these conditions hold:
 5. Every match is reviewed in its complete paragraph and against both locale
    siblings before any rewrite.
 
+The address rules are authored-voice rules, not raw pronoun bans. Indonesian
+`Anda` and `saya` are blocked only in learner-visible authored prose. German
+formal address is blocked in direct-address syntax such as a formal imperative
+or a capitalized formal pronoun in a local frame that requires a human actor.
+This includes standalone `Sie können ...` plus a learner action, an explicit
+learner label such as `Hinweis: Sie können ...`, `Ihnen steht ... zur
+Verfügung`, and learner-owned `Ihr ...` copy when no prose antecedent exists.
+Learner-visible metadata descriptions, direct string props,
+expression props, rendered fragments, and Markdown link labels are part of
+this authored voice. Link destinations and source string delimiters remain
+syntax. Real single-line and balanced multiline quotations, code, math, non-prose
+technical fields, assessed text, and immutable source bytes stay protected.
+Keep anaphoric `Sie`, `Ihnen`, and `Ihr` when a named feminine, plural, or human
+subject in the same paragraph supports that reading. The deterministic rule
+does not infer every ambiguous cross-sentence referent. Review those cases in
+context instead of widening the rule to a raw pronoun ban. An unmatched opening
+quotation mark never protects the rest of the document.
+
 Objective source constraints and proven regressions may block the default
 gate. A broader wording pattern remains a review item until corpus evidence and
 negative tests show that automatic rejection is safe. Strict review may fail on
@@ -425,13 +473,21 @@ clean gate as evidence that the corpus is human.
   code, MDX syntax, HTML entities, or LaTeX spacing commands. Reject visible
   semicolon separators in rendered mathematics and entities that render as a
   semicolon.
-- Confirm every external link label names its source, institution, journal,
-  report, or publication. Keep the claim and page topic outside the chip.
-  Review internal links separately because they render as ordinary links and
-  may use descriptive destination text.
-- Confirm the external-link audit used the complete sentence and verified
-  destination. Do not accept or reject a source label from its character count
-  or hostname alone.
+- Confirm every lesson is self-contained before allowing an external link.
+  Prefer Nakafa-owned visuals and components. Allow only exact official
+  documentation, a standard, primary data or research, or first-party evidence
+  for an explicitly attributed claim. Put a descriptive linked source name or
+  phrase beside the exact claim it supports without flattening the teaching
+  sentence. Reject citation-only sections, optional explanations, redundant
+  resources, competitor platforms, external images, and JSX escape hatches.
+  The deterministic checker validates structure only and must not maintain a
+  lesson, domain, or URL allowlist. Review internal Nakafa links separately
+  because they may use descriptive text.
+- When a removed external resource represented a relationship visually, inspect
+  the current lesson and renderer manifest first. Reuse an existing Nakafa-owned
+  visual when it already does the teaching job. Create a new owned visual only
+  after proving a representation gap. Do not add decorative 3D or turn a planar
+  concept into a depth scene.
 - Confirm mathematical labels use math rendering in prose. Named matrix methods
   such as `QR`, `LU`, `SVD`, `PLU`, and `PCA` use upright `<InlineMath />`; their page titles
   and headings stay as ordinary letters and introduce the rendered form in the

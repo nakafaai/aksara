@@ -1,7 +1,7 @@
 const LOWER_KEBAB_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 const LOWER_KEBAB_PATH_PATTERN =
   /^[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*$/u;
-const HTTPS_URL_PATTERN = /^https:\/\/\S+$/u;
+const WHITESPACE_PATTERN = /\s/u;
 
 /** Checks one lowercase kebab-case segment without owning its domain meaning. */
 export function isLowerKebab(value: string) {
@@ -15,5 +15,9 @@ export function isLowerKebabPath(value: string) {
 
 /** Checks one whitespace-free absolute HTTPS source URL. */
 export function isHttpsUrl(value: string) {
-  return HTTPS_URL_PATTERN.test(value);
+  if (WHITESPACE_PATTERN.test(value) || !URL.canParse(value)) {
+    return false;
+  }
+  const url = new URL(value);
+  return url.protocol === "https:" && url.hostname.length > 0;
 }

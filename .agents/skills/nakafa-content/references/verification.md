@@ -18,9 +18,9 @@ Run focused scope tests first, then the repository gates appropriate to the
 change:
 
 ```sh
-node --conditions=aksara-source .agents/skills/nakafa-content/scripts/lesson-voice.ts
-node --conditions=aksara-source .agents/skills/nakafa-content/scripts/lesson-voice.ts --strict-review
-node --conditions=aksara-source --test '.agents/skills/nakafa-content/scripts/**/*.test.ts'
+node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts
+node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --strict-review
+pnpm exec vitest run --config scripts/voice.config.ts
 pnpm format
 pnpm locales
 pnpm boundaries
@@ -61,18 +61,39 @@ MDX file can misread metadata quotes, JSX delimiters, code, math, and technical
 identifiers as prose. Those diagnostics are false positives unless the same
 problem remains in the rendered learner text.
 
-The link guard inspects only real `http` and `https` Markdown links in the MDX
-tree. It rejects proven placeholder, claim, generic-description, and topic-label
-patterns while excluding internal links and code examples. It deliberately has
-no character-count gate and no hostname-to-label map. After the automated gate
-passes, inspect every external link in context and confirm that the explanation
-is ordinary prose while the chip label identifies the source or publication.
+The link guard inspects external destinations in the MDX tree, including
+Markdown links, reference links, images, and static JSX destinations. It
+accepts structurally valid HTTPS Markdown links while excluding internal links
+and URLs in code, math, metadata syntax, and other protected examples. It
+rejects non-HTTPS destinations, external images, static JSX destinations, and
+dynamic escape hatches. It does not decide whether a source is official or
+eligible. That decision requires contextual editorial review of the claim, the
+destination, and all locale siblings. Prefer Nakafa-owned content and reject
+competitor platforms, redundant resources, and citation-only sections. Never
+add a growing lesson, domain, or URL allowlist to the checker.
 
 The gate distinguishes abstract and concrete visibility. It may reject
 `hubungannya menjadi terlihat` or bare `tanpa terlihat`, while accepting a
 named line that is visible on a graph or a physical change that cannot be seen
 from a stated surface. It also rejects unmeasured claims such as `cara
 tercepat`, but accepts a comparison that states the input and measured runtime.
+
+The gate also enforces the project-owned informal address policy. German
+authored learner voice uses `du` and informal imperatives. Indonesian authored
+learner voice uses `aku` and `kamu`, with `kita` reserved for a genuinely shared
+teacher-learner action. The deterministic rule blocks Indonesian `Anda` and
+`saya` plus unambiguous German formal-address frames. Regression fixtures must
+prove that learner-visible metadata descriptions and component copy are
+checked, including direct props, expression props, and rendered fragments.
+Markdown link labels are learner-visible too, while destinations stay
+protected. Real single-line and balanced multiline quotations, code, math, non-prose
+technical fields, and German anaphoric `Sie`, `Ihnen`, or `Ihr` must remain
+untouched. A metadata string delimiter is source syntax, not quoted speech.
+Cover standalone and explicitly labeled direct-address frames with local
+grammar, including learner actions, without widening the German rule to every
+capitalized pronoun. Add embedded-link, soft-wrapped same-paragraph anaphora,
+balanced multiline quotation, and unmatched-opening fixtures whenever the
+boundary changes.
 
 Before adding or widening a lesson voice rule, record the concrete failure
 class in `writing-quality.md`, search the complete lesson corpus for variants,
@@ -159,8 +180,23 @@ typed blockers, never fallback conditions.
   standard word formation, such as Indonesian reduplication, without allowing
   decorative separators or damaged spellings.
 - Confirm no learner-facing lesson contains a citation-only source or reference
-  heading. Check all three locale siblings and keep evidence URLs in the source,
-  readiness, or publisher contract.
+  heading. Check all three locale siblings. Compare the base and changed URL
+  inventories, and investigate every removed URL. Preserve claim-matched
+  primary, official, first-party, or institutional evidence in the source,
+  readiness, or publisher contract. A competitor platform, scholarly review,
+  or redundant explainer may inform authoring and remain in non-published
+  provenance only when it is genuinely claim-matched. It must never appear in
+  learner-visible content. Review each learner-visible link in context. Allow
+  only exact official documentation, a standard, primary data or research, or
+  first-party evidence for an explicitly attributed claim. The deterministic
+  checker validates objective structure only and never stores lesson, domain,
+  or URL approvals. A removed, dead, or mismatched URL is a release blocker
+  until its replacement or justified removal is recorded.
+- If a removed resource supplied an interactive or visual explanation, inspect
+  the current lesson and renderer manifest. Verify that a Nakafa-owned visual
+  already performs the teaching job, or record the specific representation gap
+  filled by a new owned component. Never treat a component count as proof of
+  quality, and never force 3D depth onto planar geometry.
 - Confirm no visible semicolon remains in paragraphs, lists, tables, metadata
   descriptions, or learner-facing component props. Inspect the parsed MDX
   result rather than rejecting semicolons required by code, syntax, HTML

@@ -1,5 +1,6 @@
 export const aiProgrammingNumpy = {
   arrayNumpy: {
+    evidenceUrls: ["https://numpy.org/doc/stable/"],
     routeSlugs: {
       de: "numpy-arrays",
       en: "array-numpy",
@@ -8,6 +9,9 @@ export const aiProgrammingNumpy = {
     slug: "array-numpy",
   },
   arrayOperationNumpy: {
+    evidenceUrls: [
+      "https://numpy.org/doc/stable/user/basics.broadcasting.html",
+    ],
     routeSlugs: {
       de: "array-operationen-mit-numpy",
       en: "array-operation-numpy",
@@ -16,6 +20,7 @@ export const aiProgrammingNumpy = {
     slug: "array-operation-numpy",
   },
   attributeDataTypeNumpy: {
+    evidenceUrls: ["https://numpy.org/doc/stable/user/basics.types.html"],
     routeSlugs: {
       de: "attribute-und-datentypen-in-numpy",
       en: "attribute-data-type-numpy",
@@ -24,6 +29,7 @@ export const aiProgrammingNumpy = {
     slug: "attribute-data-type-numpy",
   },
   indexingSlicingNumpy: {
+    evidenceUrls: ["https://numpy.org/doc/stable/user/basics.indexing.html"],
     routeSlugs: {
       de: "indizierung-und-slicing-in-numpy",
       en: "indexing-slicing-numpy",

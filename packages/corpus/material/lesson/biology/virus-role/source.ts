@@ -12,6 +12,10 @@ export const lessonBiologyVirusRoleMaterial = defineLessonMaterial({
   },
   sections: [
     {
+      evidenceUrls: [
+        "https://openstax.org/books/biology-2e/pages/21-2-virus-infections-and-hosts",
+        "https://openstax.org/books/microbiology/pages/6-2-the-viral-life-cycle",
+      ],
       routeSlugs: {
         de: "wie-viren-sich-vermehren",
         en: "how-virus-reproduce",
@@ -20,6 +24,13 @@ export const lessonBiologyVirusRoleMaterial = defineLessonMaterial({
       slug: "how-virus-reproduce",
     },
     {
+      evidenceUrls: [
+        "https://www.cdc.gov/infection-control/hcp/isolation-precautions/scientific-review.html",
+        "https://www.cdc.gov/dengue/prevention/index.html",
+        "https://www.cdc.gov/clean-hands/data-research/facts-stats/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC8451441/",
+        "https://www.cdc.gov/flu/hcp/antivirals/index.html",
+      ],
       routeSlugs: {
         de: "ausbreitung-von-viren-verhindern",
         en: "prevent-virus-spread",
@@ -28,10 +39,22 @@ export const lessonBiologyVirusRoleMaterial = defineLessonMaterial({
       slug: "prevent-virus-spread",
     },
     {
+      evidenceUrls: [
+        "https://www.nature.com/articles/s41564-018-0166-y",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC4452904/",
+        "https://www.nhlbi.nih.gov/health/genetic-therapies/types",
+        "https://openstax.org/books/biology-2e/pages/21-2-virus-infections-and-hosts",
+      ],
       routeSlugs: { de: "rolle", en: "role", id: "peranan-virus" },
       slug: "role",
     },
     {
+      evidenceUrls: [
+        "https://ictv.global/about/taxonomy",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC7148634/",
+        "https://www.nature.com/articles/s41586-020-2665-2",
+        "https://openstax.org/books/biology-2e/pages/21-1-viral-evolution-morphology-and-classification",
+      ],
       routeSlugs: {
         de: "was-ist-ein-virus",
         en: "what-is-virus",

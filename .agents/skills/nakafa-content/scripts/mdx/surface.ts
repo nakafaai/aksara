@@ -1,0 +1,41 @@
+import assert from "node:assert/strict";
+
+import type { MdxNode, SourceRange } from "#nakafa-content/mdx/parse";
+
+/** Locates accessible alt copy while leaving a Markdown image URL protected. */
+export function imageAltRange(node: MdxNode, source: string): SourceRange {
+  assert.ok(node.type === "image" || node.type === "imageReference");
+  const start = node.position?.start?.offset;
+  const end = node.position?.end?.offset;
+  assert.ok(start !== undefined);
+  assert.ok(end !== undefined);
+  const authored = source.slice(start, end);
+  const markerOffset = authored.indexOf("![");
+  assert.notEqual(markerOffset, -1);
+  const altStart = markerOffset + 2;
+  let depth = 1;
+  let altEnd = -1;
+  for (let index = altStart; index < authored.length; index += 1) {
+    if (authored[index] === "\\") {
+      index += 1;
+      continue;
+    }
+    if (authored[index] === "[") {
+      depth += 1;
+      continue;
+    }
+    if (authored[index] !== "]") {
+      continue;
+    }
+    depth -= 1;
+    if (depth === 0) {
+      altEnd = index;
+      break;
+    }
+  }
+  assert.notEqual(altEnd, -1);
+  return {
+    end: { offset: start + altEnd },
+    start: { offset: start + altStart },
+  };
+}

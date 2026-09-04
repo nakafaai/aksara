@@ -8,6 +8,9 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
   routeSlugs: { de: "kreisgeometrie", en: "circle", id: "lingkaran" },
   sections: [
     {
+      evidenceUrls: [
+        "https://lehrerfortbildung-bw.de/u_matnatech/imp/gym/bp2016/fb2/m03_geo/1_hintergrund/2_gang/m9geo01_unterrichtsverlauf.pdf",
+      ],
       routeSlugs: {
         de: "mittelpunkt-und-umfangswinkel",
         en: "central-angle-and-inscribed-angle",
@@ -16,6 +19,9 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
       slug: "central-angle-and-inscribed-angle",
     },
     {
+      evidenceUrls: [
+        "https://lehrerfortbildung-bw.de/u_matnatech/imp/gym/bp2016/fb2/m03_geo/1_hintergrund/2_gang/m9geo01_unterrichtsverlauf.pdf",
+      ],
       routeSlugs: {
         de: "kreis-und-kreisbogen",
         en: "circle-and-arc-circle",
@@ -24,6 +30,9 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
       slug: "circle-and-arc-circle",
     },
     {
+      evidenceUrls: [
+        "https://lehrerfortbildung-bw.de/u_matnatech/imp/gym/bp2016/fb2/m03_geo/1_hintergrund/2_gang/m9geo01_unterrichtsverlauf.pdf",
+      ],
       routeSlugs: {
         de: "kreis-und-sehne",
         en: "circle-and-chord",
@@ -48,6 +57,9 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
       slug: "external-tangent-line-and-internal-tangent-line",
     },
     {
+      evidenceUrls: [
+        "https://lehrerfortbildung-bw.de/u_matnatech/imp/gym/bp2016/fb2/m03_geo/1_hintergrund/2_gang/m9geo01_unterrichtsverlauf.pdf",
+      ],
       routeSlugs: {
         de: "winkelsaetze-am-kreis",
         en: "properties-of-angle-in-circle",

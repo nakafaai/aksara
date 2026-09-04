@@ -49,9 +49,16 @@ For every authored target document or localized metadata record:
    improve wording, rhythm, and clarity, but it may not remove teaching context,
    reasoning steps, evidence, math, or components.
 8. Check fabrication, citations, terminology, headings, math, code,
-   accessibility, punctuation, and route identity. For each external link, keep
-   the teaching explanation outside the link and use the verified source or
-   publication name as its compact chip label.
+   accessibility, punctuation, and route identity. Keep authoring evidence in
+   the source and publisher contracts. Competitor or secondary explainers may
+   inform the writing and remain as non-published, claim-matched provenance,
+   but never as learner-visible links. Remove redundant, citation-only, and
+   optional external navigation. Keep official documentation, primary data, a
+   standard, or a reference link visible only when the learner has a concrete
+   reason to inspect that exact resource. Put a descriptive linked source name
+   or phrase beside the exact claim it supports without flattening the teaching
+   sentence. Never add a lesson, domain, or URL allowlist to the deterministic
+   checker.
 9. Compare the locale siblings structurally and semantically. Confirm that every
    teaching unit and component has one corresponding localized implementation.
    Then hide the siblings and read each locale on its own. A sentence fails if

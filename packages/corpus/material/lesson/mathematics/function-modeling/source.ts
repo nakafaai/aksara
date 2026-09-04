@@ -32,6 +32,10 @@ export const lessonMathematicsFunctionModelingMaterial = defineLessonMaterial({
       slug: "exponential-function",
     },
     {
+      evidenceUrls: [
+        "https://kemkes.go.id/id/positif-covid-19-usai-kontak-dengan-wn-jepang",
+        "https://kemkes.go.id/id/pasien-positif-covid-19-capai-10-ribu",
+      ],
       routeSlugs: {
         de: "begriff-der-logarithmusfunktion",
         en: "logarithmic-function-concept",

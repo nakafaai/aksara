@@ -37,7 +37,7 @@
     "security:audit": "node scripts/osv.ts",
     "status": "turbo run status --filter=@nakafa/aksara-cli",
     "test": "turbo run test --concurrency=1",
-    "test:lesson-voice": "node --conditions=aksara-source --test '.agents/skills/nakafa-content/scripts/**/*.test.ts' && node --conditions=aksara-source .agents/skills/nakafa-content/scripts/lesson-voice.ts",
+    "test:lesson-voice": "vitest run --config scripts/voice.config.ts",
     "test:root": "vitest run --config scripts/vitest.config.ts",
     "typecheck": "turbo run typecheck",
     "typecheck:root": "tsc --project tsconfig.json",
