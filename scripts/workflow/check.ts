@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { trackedFiles } from "#scripts/check/files";
 import { verifyCliWorkflow } from "#scripts/workflow/cli";
 import { verifyProvenanceWorkflow } from "#scripts/workflow/provenance";
+import { verifySnapshotDispatch } from "#scripts/workflow/snapshot";
 import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";
 
 const FORBIDDEN_REGISTRY_PATTERN =
@@ -281,6 +282,7 @@ export function verifyWorkflows({
     QUESTION_AUDIT_PATTERN,
     "Question audits must bind exact active and recovery identities"
   );
+  verifySnapshotDispatch(release);
 }
 
 const workflowPaths = trackedFiles().filter((path) =>

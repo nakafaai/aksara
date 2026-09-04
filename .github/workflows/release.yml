@@ -304,3 +304,33 @@ jobs:
           AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_PUBLICATION_TOKEN }}
           RELEASE_ID: ${{ inputs.release_id }}
         run: pnpm abort -- --release-id "$RELEASE_ID"
+
+      - name: Create Nakafa snapshot token
+        id: nakafa-snapshot-token
+        if: >-
+          success()
+          && (inputs.operation == 'release'
+          || inputs.operation == 'recover'
+          || inputs.operation == 'accept'
+          || inputs.operation == 'abort')
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ vars.NAKAFA_SNAPSHOT_APP_CLIENT_ID }}
+          private-key: ${{ secrets.NAKAFA_SNAPSHOT_APP_PRIVATE_KEY }}
+          owner: nakafaai
+          repositories: nakafa.com
+          permission-actions: write
+
+      - name: Refresh Nakafa content snapshot
+        if: >-
+          success()
+          && (inputs.operation == 'release'
+          || inputs.operation == 'recover'
+          || inputs.operation == 'accept'
+          || inputs.operation == 'abort')
+        env:
+          GH_TOKEN: ${{ steps.nakafa-snapshot-token.outputs.token }}
+        run: >-
+          gh api --method POST
+          repos/nakafaai/nakafa.com/actions/workflows/cache.yml/dispatches
+          -f ref=main
