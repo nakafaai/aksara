@@ -1,229 +1,308 @@
 import { createHash } from "node:crypto";
+import { mkdtemp, readdir, rm, stat } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { resolve } from "node:path";
 
-import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, FileSystem, PlatformError } from "effect";
 
 import {
   type CommandRunner,
-  makeOsvAuditProgram,
+  downloadOsvRelease,
   OsvAuditError,
+  type OsvFetcher,
   type OsvRelease,
   resolveOsvRelease,
   runCommand,
-  startOsvAudit,
+  runOsvAudit,
 } from "#scripts/osv";
 
 const SCANNER = new TextEncoder().encode("verified scanner");
+const ASSET_PATTERN = /^osv-scanner_[a-z0-9_.]+$/u;
+const CHECKSUM_PATTERN = /^[a-f0-9]{64}$/u;
 const RELEASE = {
   asset: "osv-scanner_test",
   checksum: createHash("sha256").update(SCANNER).digest("hex"),
 } satisfies OsvRelease;
 
-interface FakeRunnerOptions {
-  readonly downloadExit?: number;
-  readonly scannerExit?: number;
-  readonly source?: Uint8Array;
+/** Builds one deterministic HTTP response for the download boundary. */
+function response(
+  status: number,
+  body: string | Uint8Array | null = null,
+  headers?: Readonly<Record<string, string>>
+) {
+  return new Response(body, headers ? { headers, status } : { status });
 }
 
-/** Creates a deterministic scanner process with a real temporary binary. */
-function fakeRunner(
-  calls: { args: readonly string[]; executable: string }[],
-  options: FakeRunnerOptions = {}
-): CommandRunner {
-  return (executable, args) =>
-    Effect.gen(function* () {
-      calls.push({ args, executable });
-      if (executable !== "curl") {
-        return options.scannerExit ?? 0;
-      }
-      if ((options.downloadExit ?? 0) !== 0) {
-        return options.downloadExit ?? 1;
-      }
-      const output = args[args.indexOf("--output") + 1] ?? "missing-output";
-      const fileSystem = yield* FileSystem.FileSystem;
-      yield* fileSystem
-        .writeFile(output, options.source ?? SCANNER)
-        .pipe(
-          Effect.mapError(
-            (error) => new OsvAuditError({ detail: error.message })
-          )
-        );
-      return 0;
-    });
+/** Runs one assertion inside an isolated filesystem root and erases it. */
+async function withTemporaryRoot(operation: (root: string) => Promise<void>) {
+  const root = await mkdtemp(resolve(tmpdir(), "aksara-osv-test-"));
+  try {
+    await operation(root);
+  } finally {
+    await rm(root, { force: true, recursive: true });
+  }
+}
+
+/** Returns the authenticated scanner bytes without external network access. */
+const scannerFetcher: OsvFetcher = () =>
+  Promise.resolve(response(200, SCANNER));
+
+/** Builds the explicit repository and platform input for one audit. */
+function auditInput(
+  root: string,
+  platform: NodeJS.Platform = "darwin",
+  release: OsvRelease = RELEASE,
+  temporaryRoot = root
+) {
+  return { platform, release, root, temporaryRoot };
 }
 
 describe("OSV dependency audit", () => {
-  it.effect.each([
+  it.each([
+    ["darwin", "arm64"],
+    ["darwin", "x64"],
+    ["linux", "arm64"],
+    ["linux", "x64"],
+    ["win32", "arm64"],
+    ["win32", "x64"],
+  ] as const)("selects a pinned %s/%s release", (platform, architecture) => {
+    const release = resolveOsvRelease(platform, architecture);
+
+    expect(release.asset).toMatch(ASSET_PATTERN);
+    expect(release.checksum).toMatch(CHECKSUM_PATTERN);
+    expect(release.asset.endsWith(".exe")).toBe(platform === "win32");
+  });
+
+  it("rejects a platform without an official binary", () => {
+    expect(() => resolveOsvRelease("aix", "ppc64")).toThrow("aix/ppc64");
+  });
+
+  it("follows HTTPS redirects and preserves the bounded request policy", async () => {
+    const calls: { init: RequestInit; url: string }[] = [];
+    /** Records each redirect request before returning deterministic bytes. */
+    const fetcher: OsvFetcher = (url, init) => {
+      calls.push({ init, url });
+      return Promise.resolve(
+        calls.length === 1
+          ? response(302, null, { location: "/scanner" })
+          : response(200, SCANNER)
+      );
+    };
+
+    await expect(
+      downloadOsvRelease("https://example.test/release", fetcher)
+    ).resolves.toEqual(SCANNER);
+    expect(calls.map(({ url }) => url)).toEqual([
+      "https://example.test/release",
+      "https://example.test/scanner",
+    ]);
+    expect(calls[0]?.init.redirect).toBe("manual");
+  });
+
+  it("retries a transient download failure", async () => {
+    let attempts = 0;
+    /** Fails once before returning the authenticated scanner bytes. */
+    const fetcher: OsvFetcher = () => {
+      attempts += 1;
+      if (attempts === 1) {
+        return Promise.reject(new Error("temporary network failure"));
+      }
+      return Promise.resolve(response(200, SCANNER));
+    };
+
+    await expect(
+      downloadOsvRelease("https://example.test/scanner", fetcher)
+    ).resolves.toEqual(SCANNER);
+  });
+
+  it.each([
     [
-      "darwin",
-      "arm64",
-      "osv-scanner_darwin_arm64",
-      "75c44d6332f892a1e56286f4105a98ed751ae28d215ca0a8b65cc00d84103054",
+      "redirect lost its location",
+      async () => response(302),
+      "https://example.test/scanner",
+      128,
     ],
     [
-      "darwin",
-      "x64",
-      "osv-scanner_darwin_amd64",
-      "9f89beb6c3d784893cb1cae0a3d56c529bfe91075418c2f9440c45b79654198b",
+      "download left HTTPS",
+      async () => response(200, SCANNER),
+      "http://example.test/scanner",
+      128,
     ],
     [
-      "linux",
-      "arm64",
-      "osv-scanner_linux_arm64",
-      "3d0f5aa5a6baa8eb32bcef247388e149ef6030a6634ccae6fa0d62681fb27a6d",
+      "download left HTTPS",
+      async () =>
+        response(302, null, { location: "http://example.test/scanner" }),
+      "https://example.test/scanner",
+      128,
     ],
     [
-      "linux",
-      "x64",
-      "osv-scanner_linux_amd64",
-      "f9f25499a2c8cc367b3af45df2ea7eeca7fbccceab9c35079968f4b3652194be",
+      "returned HTTP 503",
+      async () => response(503),
+      "https://example.test/scanner",
+      128,
     ],
-  ] as const)(
-    "selects the pinned %s/%s release",
-    ([platform, arch, asset, checksum]) =>
-      Effect.gen(function* () {
-        expect(yield* resolveOsvRelease(platform, arch)).toEqual({
-          asset,
-          checksum,
-        });
+    [
+      "exceeded its byte limit",
+      async () => response(200, null, { "content-length": "9" }),
+      "https://example.test/scanner",
+      8,
+    ],
+    [
+      "exceeded its byte limit",
+      async () => response(200, new Uint8Array(9)),
+      "https://example.test/scanner",
+      8,
+    ],
+  ] satisfies readonly [string, OsvFetcher, string, number][])(
+    "fails closed when a response $0",
+    async (expected, fetcher, url, maxBytes) => {
+      await expect(
+        downloadOsvRelease(url, fetcher, maxBytes)
+      ).rejects.toMatchObject({
+        cause: expect.objectContaining({
+          message: expect.stringContaining(expected),
+        }),
+        message: "Unable to download OSV Scanner.",
+        name: "OsvAuditError",
+      });
+    }
+  );
+
+  it("stops after the redirect limit", async () => {
+    let calls = 0;
+    /** Returns an endless redirect while recording the bounded call count. */
+    const fetcher: OsvFetcher = () => {
+      calls += 1;
+      return Promise.resolve(response(302, null, { location: "/again" }));
+    };
+
+    await expect(
+      downloadOsvRelease("https://example.test/scanner", fetcher)
+    ).rejects.toMatchObject({
+      cause: expect.objectContaining({
+        message: "OSV Scanner download exceeded its redirect limit.",
+      }),
+    });
+    expect(calls).toBe(24);
+  });
+
+  it("downloads, authenticates, executes, and erases one scanner", async () =>
+    withTemporaryRoot(async (root) => {
+      const calls: { args: readonly string[]; cwd: string; file: string }[] =
+        [];
+      /** Records the authenticated executable and verifies POSIX permissions. */
+      const runner: CommandRunner = async (file, args, cwd) => {
+        calls.push({ args, cwd, file });
+        expect((await stat(file)).mode % 0o1000).toBe(0o700);
+        return 0;
+      };
+
+      await runOsvAudit(auditInput(root), scannerFetcher, runner);
+
+      expect(calls[0]).toMatchObject({
+        args: [
+          "scan",
+          "source",
+          `--lockfile=${resolve(root, "pnpm-lock.yaml")}`,
+        ],
+        cwd: root,
+      });
+      await expect(readdir(root)).resolves.toEqual([]);
+    }));
+
+  it("uses the Windows executable without applying POSIX permissions", async () =>
+    withTemporaryRoot(async (root) => {
+      /** Verifies that Windows binaries retain their written permissions. */
+      const runner: CommandRunner = async (file) => {
+        expect((await stat(file)).mode % 0o1000).toBe(0o644);
+        return 0;
+      };
+
+      await runOsvAudit(
+        auditInput(root, "win32", {
+          ...RELEASE,
+          asset: "osv-scanner_test.exe",
+        }),
+        scannerFetcher,
+        runner
+      );
+    }));
+
+  it.each([
+    [
+      "Unable to download",
+      () => Promise.reject(new Error("offline")),
+      RELEASE,
+      async () => 0,
+    ],
+    [
+      "checksum verification failed",
+      async () => response(200, "foreign scanner"),
+      RELEASE,
+      async () => 0,
+    ],
+    [
+      "Unable to write",
+      scannerFetcher,
+      { ...RELEASE, asset: "missing/scanner" },
+      async () => 0,
+    ],
+    [
+      "Unable to start",
+      scannerFetcher,
+      RELEASE,
+      () => Promise.reject(new Error("cannot spawn")),
+    ],
+    [
+      "preserved failure",
+      scannerFetcher,
+      RELEASE,
+      () => Promise.reject(new OsvAuditError("preserved failure")),
+    ],
+    ["found an issue or failed", scannerFetcher, RELEASE, async () => 1],
+  ] satisfies readonly [string, OsvFetcher, OsvRelease, CommandRunner][])(
+    "erases temporary files when the audit $0",
+    async (expected, fetcher, release, runner) =>
+      withTemporaryRoot(async (root) => {
+        await expect(
+          runOsvAudit(auditInput(root, "darwin", release), fetcher, runner)
+        ).rejects.toThrow(expected);
+        await expect(readdir(root)).resolves.toEqual([]);
       })
   );
 
-  it.effect("rejects a platform without an official binary", () =>
-    Effect.gen(function* () {
-      const error = yield* resolveOsvRelease("aix", "ppc64").pipe(Effect.flip);
-      expect(error.detail).toContain("aix/ppc64");
-    })
-  );
+  it("maps a scanner directory creation failure", async () => {
+    await expect(
+      runOsvAudit(
+        auditInput(
+          import.meta.dirname,
+          "darwin",
+          RELEASE,
+          resolve(import.meta.dirname, "missing-osv-test-directory")
+        ),
+        scannerFetcher,
+        async () => 0
+      )
+    ).rejects.toThrow("Unable to create the scanner directory.");
+  });
 
-  it.effect("downloads, authenticates, executes, and erases one scanner", () =>
-    Effect.gen(function* () {
-      const fileSystem = yield* FileSystem.FileSystem;
-      const root = yield* fileSystem.makeTempDirectoryScoped();
-      yield* fileSystem.writeFileString(
-        `${root}/pnpm-lock.yaml`,
-        "lockfileVersion: '9.0'"
-      );
-      const calls: { args: readonly string[]; executable: string }[] = [];
-
-      yield* makeOsvAuditProgram(
-        root,
-        Effect.succeed(RELEASE),
-        fakeRunner(calls)
-      );
-
-      expect(calls).toHaveLength(2);
-      expect(calls[0]).toMatchObject({ executable: "curl" });
-      expect(calls[0]?.args).toContain("--retry-all-errors");
-      expect(calls[1]?.args).toEqual([
-        "scan",
-        "source",
-        `--lockfile=${root}/pnpm-lock.yaml`,
-      ]);
-      expect(calls[1]?.executable).toContain(RELEASE.asset);
-      yield* fileSystem.access(calls[1]?.executable ?? "").pipe(Effect.flip);
-    }).pipe(Effect.provide(NodeServices.layer))
-  );
-
-  it.effect.each([
-    {
-      expected: "Unable to download",
-      options: { downloadExit: 1 },
-      release: RELEASE,
-    },
-    {
-      expected: "checksum verification failed",
-      options: { source: new TextEncoder().encode("foreign scanner") },
-      release: RELEASE,
-    },
-    {
-      expected: "found an issue or failed",
-      options: { scannerExit: 1 },
-      release: RELEASE,
-    },
-  ])("fails closed when $expected", ({ expected, options, release }) =>
-    Effect.gen(function* () {
-      const fileSystem = yield* FileSystem.FileSystem;
-      const root = yield* fileSystem.makeTempDirectoryScoped();
-      const calls: { args: readonly string[]; executable: string }[] = [];
-      const error = yield* makeOsvAuditProgram(
-        root,
-        Effect.succeed(release),
-        fakeRunner(calls, options)
-      ).pipe(Effect.flip);
-
-      expect(error.detail).toContain(expected);
-    }).pipe(Effect.provide(NodeServices.layer))
-  );
-
-  it.effect.each([
-    ["makeTempDirectoryScoped", "create the scanner directory"],
-    ["readFile", "read OSV Scanner"],
-    ["chmod", "authorize OSV Scanner"],
-  ] as const)("maps a %s filesystem failure", ([method, expected]) =>
-    Effect.gen(function* () {
-      const fileSystem = yield* FileSystem.FileSystem;
-      const failure = PlatformError.systemError({
-        _tag: "Unknown",
-        description: "forced failure",
-        method,
-        module: "FileSystem",
-      });
-      const failingFileSystem = FileSystem.makeNoop({
-        ...fileSystem,
-        [method]: () => Effect.fail(failure),
-      });
-      const error = yield* makeOsvAuditProgram(
-        import.meta.dirname,
-        Effect.succeed(RELEASE),
-        fakeRunner([])
-      ).pipe(
-        Effect.provideService(FileSystem.FileSystem, failingFileSystem),
-        Effect.flip
-      );
-
-      expect(error.detail).toContain(expected);
-    }).pipe(Effect.provide(NodeServices.layer))
-  );
-
-  it.effect("fails before filesystem work on an unsupported platform", () =>
-    makeOsvAuditProgram(
-      import.meta.dirname,
-      resolveOsvRelease("aix", "ppc64"),
-      fakeRunner([])
-    ).pipe(
-      Effect.flip,
-      Effect.tap((error) =>
-        Effect.sync(() => expect(error.detail).toContain("aix/ppc64"))
-      ),
-      Effect.provide(NodeServices.layer)
-    )
-  );
-
-  it.effect("maps subprocess startup and preserves nonzero exits", () =>
-    Effect.gen(function* () {
-      const exitCode = yield* runCommand(
+  it("runs real subprocesses without a shell and preserves failure state", async () => {
+    await expect(
+      runCommand(
         process.execPath,
         ["--eval", "process.exit(3)"],
-        { cwd: import.meta.dirname }
-      );
-      const missing = yield* runCommand("aksara-missing-osv-command", [], {
-        cwd: import.meta.dirname,
-      }).pipe(Effect.flip);
-
-      expect(exitCode).toBe(3);
-      expect(missing.detail.length).toBeGreaterThan(0);
-    }).pipe(Effect.provide(NodeServices.layer))
-  );
-
-  it("starts only the direct executable boundary", () => {
-    const programs: unknown[] = [];
-    const program = Effect.void;
-
-    startOsvAudit(false, program, (audit) => programs.push(audit));
-    startOsvAudit(true, program, (audit) => programs.push(audit));
-
-    expect(programs).toHaveLength(1);
+        import.meta.dirname
+      )
+    ).resolves.toBe(3);
+    await expect(
+      runCommand("aksara-missing-osv-command", [], import.meta.dirname)
+    ).rejects.toBeInstanceOf(Error);
+    await expect(
+      runCommand(
+        process.execPath,
+        ["--eval", "process.kill(process.pid, 'SIGTERM')"],
+        import.meta.dirname
+      )
+    ).rejects.toBeInstanceOf(OsvAuditError);
   });
 });
