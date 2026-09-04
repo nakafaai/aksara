@@ -152,7 +152,10 @@ function collectParagraphAddressIssues(
 
 /** Reads parser-decoded prose across ordinary Markdown formatting. */
 function paragraphText(node: MdxNode): string {
-  if (node.type === "text" && typeof node.value === "string") {
+  if (
+    (node.type === "text" || node.type === "inlineCode") &&
+    typeof node.value === "string"
+  ) {
     return node.value;
   }
   if (node.type === "break") {
