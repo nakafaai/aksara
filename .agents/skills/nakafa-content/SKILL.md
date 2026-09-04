@@ -82,6 +82,16 @@ addition, revision, review, or translation in this repository.
   corrected document into every locale in the authorized scope.
 - Use natural teacher voice for the target locale. A translation must read as a
   lesson written for that student, while preserving meaning and evidence.
+- Keep learner address close and consistent. In German authored learner prose,
+  address the learner with `du` and use informal imperatives. Never switch to
+  formal `Sie`, `Ihnen`, or possessive `Ihr` address. Do not mistake a
+  sentence-initial or post-colon `Sie` that refers to a previously named
+  feminine or plural subject for learner address.
+- In Indonesian authored learner prose, the singular teacher and learner pair
+  is `aku` and `kamu`. Never address the learner as `Anda` or refer to the
+  teacher voice as `saya`. Use `kita` only when teacher and learner genuinely
+  perform or inspect the same step together. Do not replace every clear subject
+  with a pronoun merely to make the lesson sound conversational.
 - Give the lesson a teacher-led narrative. Start from a fact, situation,
   representation, or prerequisite the learner can identify. Move through the
   question or problem, explain the new idea, work through an example, and let
@@ -321,6 +331,24 @@ addition, revision, review, or translation in this repository.
   Never add a global word ban from one sentence or edit prose to improve an AI
   detector score. Read `references/writing-quality.md` for the evidence basis
   and admission criteria.
+- The informal-address guard checks authored learner voice, including
+  learner-facing metadata descriptions, direct and expression-based component
+  copy, rendered fragments, and Markdown link labels. Link destinations remain
+  protected. The quotes that delimit a metadata string are source syntax, not
+  quoted speech. The guard must still ignore real single-line or balanced
+  multiline quotations, code, math, technical configuration, assessed text,
+  and immutable source bytes. An unmatched opening mark never protects the
+  remaining document. German `Sie`, `Ihnen`, and possessive `Ihr` are blocked
+  only in unambiguous direct-address frames. Standalone copy boundaries and
+  explicit learner labels such as `Hinweis:` are checked, while a preceding
+  same-paragraph noun can support anaphoric `Sie`, `Ihnen`, or `Ihr`. A broad
+  pronoun scan would misclassify ordinary German prose.
+- Write Indonesian learner copy with `aku` and `kamu`, never `saya`, `Anda`,
+  or `kalian`. Use `kita` only when the teacher and learner genuinely perform
+  the action together. Write German learner copy with `du`, never formal
+  learner-address `Sie`, `Ihnen`, or possessive `Ihr`. Preserve German forms
+  that clearly refer back to a noun, quoted speech, assessed text, and immutable
+  source bytes.
 - Write every heading as one short phrase using ordinary words. A page title or
   lesson heading may contain only letters and ordinary spaces. Never put a
   digit, punctuation mark, formula, code token, operator, emoji, or any other
@@ -332,10 +360,23 @@ addition, revision, review, or translation in this repository.
 - Never add a learner-facing citation-only section. Do not use headings such as
   `Source`, `Sources`, `Reference`, `References`, `Sumber`, `Referensi`,
   `Quelle`, or `Quellen`, or localized bibliography variants, for a list whose
-  only job is to enumerate evidence. Keep provenance and evidence URLs in the
-  source, readiness, and publisher contracts. If a citation helps a learner
-  evaluate a claim, finish the claim in ordinary prose and append the source
-  chip after the sentence.
+  only job is to enumerate evidence. Keep complete provenance in the source,
+  readiness, and publisher contracts. An exact eligible source may still be
+  linked where it supports a concrete claim or provides official documentation,
+  data, a standard, or first-party evidence.
+- Removing a citation-only section never authorizes discarding valid
+  provenance. Inventory every external URL before the rewrite, then classify
+  it. Prefer claim-matched primary, official, or first-party evidence. A primary
+  research paper or official institutional history may remain when it is the
+  evidence the claim needs. A competitor learning platform, scholarly review,
+  or secondary explainer may inform the authoring process and may remain in
+  non-published provenance when it is genuinely claim-matched. It never
+  qualifies as a learner-visible resource. Do not retain any URL merely because
+  it existed.
+  Replace weak evidence when the claim needs stronger support, or remove it
+  with the reviewed reason recorded in the change. Remove an incorrect or dead
+  URL only after verifying the mismatch and recording its replacement or the
+  reason no citation remains.
 - A substantive concept heading that contains one of these words remains valid,
   such as `Energy Sources`, when the section teaches that concept rather than
   listing citations.
@@ -350,27 +391,45 @@ addition, revision, review, or translation in this repository.
   is also forbidden when it renders as learner-facing punctuation. The
   deterministic check must parse MDX structure so source syntax and spacing
   commands never become false positives.
-- Nakafa renders an external Markdown link as a compact source chip. Put the
-  explanation, claim, lesson term, and page topic in ordinary sentence text.
-  Use only the source, institution, journal, report, or publication name as the
-  external link label, for example `[EIA]`, `[Nature Microbiology]`, or
-  `[OpenStax Biology 2e]`. Never use `tautan ini`, `this source link`, a teaching
-  term, a complete claim, or a navigation sentence as the label. Generic labels
-  such as `[Dokumentasi resmi NumPy]` and `[GBIF documentation]` also fail.
-  Keep `resmi` or `documentation` in the prose and label the chips `[NumPy]` or
-  `[GBIF]`. Internal links beginning with `/` render as ordinary underlined
-  links and may use a clear descriptive destination label.
-- Complete the learner-facing claim before the external source chip. Do not use
-  a chip as the subject, object, attribution, or another grammatical part of a
-  sentence, such as `[EPA] menjelaskan`, `menurut [EIA]`, `a [PubChem] record`,
-  or `published by [CIAAW]`. Write the complete claim first, end the sentence,
-  then append the source chip or consecutive source chips. Do not create a
-  dedicated source or reference list in learner-facing lesson MDX.
-- Judge every link in its sentence and verify the destination. Do not shorten a
-  legitimate official publication name only to satisfy a character limit, and
-  do not derive a mandatory label from the hostname. The checker blocks only
-  narrow failure patterns proven in the corpus. A clean result does not replace
-  a contextual audit of every external link.
+- Keep Nakafa lessons self-contained. Prefer Nakafa-owned prose, visuals, data,
+  diagrams, and interactive components. Competitor learning platforms,
+  standalone link dumps, bibliography entries, optional further reading, and
+  links that outsource an explanation Nakafa should teach must fail. An evidence
+  link may support a claim, but it never supplies the lesson's explanation,
+  visual, example, or interaction.
+- Authoring inputs and learner-visible resources are different contracts. A
+  writer may consult relevant external explanations, including competitors,
+  while researching. Never expose those URLs as links, embeds, images, or
+  learner navigation. Verify their factual claims against stronger evidence
+  when primary, official, or first-party evidence exists.
+- A learner-visible external link is allowed for exact official documentation,
+  a standard, primary data or research, or first-party evidence for an
+  explicitly attributed claim. Put a descriptive linked source name or phrase
+  beside the exact claim it supports. Preserve the natural teaching sentence.
+  Never flatten or rewrite a good explanation merely to fit a citation, and
+  never send the learner away for an explanation, visual, or exercise Nakafa
+  should provide.
+- Nakafa renders an eligible external Markdown link with the same ordinary text
+  link treatment as an internal link. The only interaction difference is that
+  the external destination opens in a new tab. Never turn an external evidence
+  link into a source-preview chip, badge, card, embed, or separate visual style.
+- Do not maintain a growing allowlist of lesson paths, domains, or exact URLs.
+  Source legitimacy is an editorial judgment that requires reading the claim and
+  the source in context. Record every learner-visible source in the owning
+  material's evidence metadata and review all locale siblings together. The
+  deterministic link checker enforces only objective structure: learner-visible
+  external links use HTTPS Markdown, while external images, embeds, arbitrary
+  JSX destinations, and dynamic URL escape hatches fail. It must not pretend to
+  decide whether a source is official from its hostname. Internal links
+  beginning with `/` remain ordinary Nakafa navigation and may use a clear
+  descriptive label.
+- Start every blockquote with its actual teaching message. Never prefix it with
+  an editorial label such as `Quick check:`, `Cek cepat:`, `Kurzer Check:`,
+  `Kurze Kontrolle:`, or `Kurz geprüft:`. Remove the label and keep the useful
+  sentence, instruction, warning, or distinction that follows it.
+- Keep checker scripts grouped by one concern per directory. Every TypeScript
+  filename under `scripts/` must have one lowercase word, with `.test.ts` as
+  the only test suffix. Do not repeat the directory concern in the filename.
 - Do not translate assessed passages, assessed response options, quotations, code,
   mathematical notation, or immutable official source bytes.
 - Lessons must work from a direct visit. Define required terms, abbreviations,
@@ -398,6 +457,13 @@ addition, revision, review, or translation in this repository.
   table, quotation, diagram, math block, and custom component that still does a
   teaching job. Remove or replace one only after the same instructional work is
   carried elsewhere in every locale sibling.
+- When an external explainer or interactive resource is removed, inspect the
+  renderer manifest and the lesson's existing representation inventory before
+  creating anything. Reuse a Nakafa-owned graph, diagram, lab, or Three.js
+  component when it already teaches the relationship. Add a new owned visual
+  only for a verified representation gap and give it one specific teaching
+  job. Do not force a depth axis or 3D scene onto a planar idea merely to meet a
+  visual quota.
 - Do not satisfy a component quota. A decorative table, quotation, diagram, or
   interaction adds cognitive load without adding instruction. Every visual
   must be explained in nearby prose and must remain understandable through its

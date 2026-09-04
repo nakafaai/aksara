@@ -73,6 +73,27 @@ layer(NodeServices.layer)("material source", (it) => {
         expect(new Set(sources.map(({ assetRoot }) => assetRoot)).size).toBe(
           36
         );
+
+        const sectionsWithEvidence = sources.flatMap(({ sections }) =>
+          sections.filter(({ evidenceUrls }) => evidenceUrls !== undefined)
+        );
+        const catalogEvidenceUrls = sectionsWithEvidence.flatMap(
+          ({ evidenceUrls }) => evidenceUrls ?? []
+        );
+        expect(sectionsWithEvidence.length).toBeGreaterThan(0);
+        expect(catalogEvidenceUrls.length).toBeGreaterThanOrEqual(
+          sectionsWithEvidence.length
+        );
+        expect(
+          sectionsWithEvidence.every(
+            ({ evidenceUrls }) =>
+              evidenceUrls !== undefined &&
+              new Set(evidenceUrls).size === evidenceUrls.length
+          )
+        ).toBe(true);
+
+        const entries = yield* decodeMaterialRegistry();
+        expect(entries.some((entry) => "evidenceUrls" in entry)).toBe(false);
       })
   );
 

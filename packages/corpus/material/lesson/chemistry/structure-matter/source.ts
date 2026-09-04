@@ -24,10 +24,17 @@ export const lessonChemistryStructureMatterMaterial = defineLessonMaterial({
       slug: "atom-shell",
     },
     {
+      evidenceUrls: [
+        "https://www.physics.nist.gov/PhysRefData/Compositions/notes.html",
+        "https://iupac.org/what-we-do/periodic-table-of-elements/",
+      ],
       routeSlugs: { de: "atomsymbol", en: "atom-symbol", id: "lambang-atom" },
       slug: "atom-symbol",
     },
     {
+      evidenceUrls: [
+        "https://physics.nist.gov/cuu/Constants/Table/allascii.txt",
+      ],
       routeSlugs: {
         de: "elektronenkonfiguration",
         en: "electron-configuration",
@@ -36,14 +43,24 @@ export const lessonChemistryStructureMatterMaterial = defineLessonMaterial({
       slug: "electron-configuration",
     },
     {
+      evidenceUrls: ["https://goldbook.iupac.org/terms/view/I03158"],
       routeSlugs: { de: "ionen", en: "ion", id: "ion" },
       slug: "ion",
     },
     {
+      evidenceUrls: [
+        "https://goldbook.iupac.org/terms/view/I03331",
+        "https://www.energy.gov/science/doe-explainsdeuterium-tritium-fusion-fuel",
+        "https://news.uchicago.edu/explainer/what-is-carbon-14-dating",
+        "https://www.physics.nist.gov/PhysRefData/Compositions/notes.html",
+      ],
       routeSlugs: { de: "isotope", en: "isotope", id: "isotop" },
       slug: "isotope",
     },
     {
+      evidenceUrls: [
+        "https://iupac.org/what-we-do/periodic-table-of-elements/",
+      ],
       routeSlugs: {
         de: "modernes-periodensystem",
         en: "modern-periodic-table",
@@ -52,6 +69,7 @@ export const lessonChemistryStructureMatterMaterial = defineLessonMaterial({
       slug: "modern-periodic-table",
     },
     {
+      evidenceUrls: ["https://goldbook.iupac.org/terms/view/E01977"],
       routeSlugs: {
         de: "periodische-eigenschaften",
         en: "periodic-properties",
@@ -60,6 +78,7 @@ export const lessonChemistryStructureMatterMaterial = defineLessonMaterial({
       slug: "periodic-properties",
     },
     {
+      evidenceUrls: ["https://ciaaw.org/atomic-weights.htm"],
       routeSlugs: {
         de: "entwicklung-des-atommodells",
         en: "reconceptualization-atom",
@@ -68,6 +87,11 @@ export const lessonChemistryStructureMatterMaterial = defineLessonMaterial({
       slug: "reconceptualization-atom",
     },
     {
+      evidenceUrls: [
+        "https://history.aip.org/exhibits/rutherford/sections/alpha-particles-atom.html",
+        "https://www.nobelprize.org/prizes/physics/1990/9592-the-nobel-prize-in-physics-1990/",
+        "https://www.nobelprize.org/prizes/physics/1935/chadwick/facts/",
+      ],
       routeSlugs: {
         de: "subatomare-teilchen",
         en: "subatomic-particles",
@@ -76,6 +100,7 @@ export const lessonChemistryStructureMatterMaterial = defineLessonMaterial({
       slug: "subatomic-particles",
     },
     {
+      evidenceUrls: ["https://physics.nist.gov/cuu/pdf/wall_2022.pdf"],
       routeSlugs: {
         de: "eigenschaften-subatomarer-teilchen",
         en: "subatomic-particles-properties",

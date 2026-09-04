@@ -48,6 +48,14 @@ export const lessonMathematicsCircleArcSectorMaterial = defineLessonMaterial({
       slug: "circle-sector",
     },
     {
+      evidenceUrls: [
+        "https://www.nist.gov/pml/owm/circumference-area-and-volume",
+        "https://mathshistory.st-andrews.ac.uk/HistTopics/Pi_through_the_ages/",
+        "https://mathshistory.st-andrews.ac.uk/Miller/mathsym/constants/",
+        "https://mathshistory.st-andrews.ac.uk/Biographies/Zu_Chongzhi/",
+        "https://mathshistory.st-andrews.ac.uk/Biographies/Lambert/",
+        "https://mathshistory.st-andrews.ac.uk/Biographies/Lindemann/",
+      ],
       routeSlugs: {
         de: "geschichte-der-kreiszahl-pi",
         en: "pi-history",
@@ -56,6 +64,9 @@ export const lessonMathematicsCircleArcSectorMaterial = defineLessonMaterial({
       slug: "pi-history",
     },
     {
+      evidenceUrls: [
+        "https://imagine.gsfc.nasa.gov/features/cosmic/earth_info.html",
+      ],
       routeSlugs: {
         de: "bogenlaenge-und-sektorflaeche",
         en: "relationship-between-arc-length-and-sector-area",

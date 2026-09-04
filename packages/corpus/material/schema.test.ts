@@ -17,6 +17,7 @@ function lessonSource() {
     routeSlugs: { en: "function-concept", id: "konsep-fungsi" },
     sections: [
       {
+        evidenceUrls: ["https://example.edu/reviewed-source"],
         routeSlugs: { en: "definition", id: "definisi" },
         slug: "definition",
       },
@@ -37,7 +38,12 @@ describe("material schema", () => {
       expect(material).toMatchObject({
         domain: "mathematics",
         key: "lesson.mathematics.function-concept",
-        sections: [{ slug: "definition" }],
+        sections: [
+          {
+            evidenceUrls: ["https://example.edu/reviewed-source"],
+            slug: "definition",
+          },
+        ],
       });
     })
   );
@@ -80,6 +86,39 @@ describe("material schema", () => {
     },
   ])("rejects an invalid $field", ({ input, message }) => {
     const result = Schema.decodeExit(LessonMaterialSourceSchema)(input);
+
+    expect(Exit.isFailure(result)).toBe(true);
+    if (Exit.isFailure(result)) {
+      expect(String(result.cause)).toContain(message);
+    }
+  });
+
+  it.each([
+    {
+      evidenceUrls: ["http://example.edu/insecure-source"] as const,
+      message: "Invalid lesson evidence URL.",
+    },
+    {
+      evidenceUrls: ["https://?claim"] as const,
+      message: "Invalid lesson evidence URL.",
+    },
+    {
+      evidenceUrls: ["https://%"] as const,
+      message: "Invalid lesson evidence URL.",
+    },
+    {
+      evidenceUrls: [
+        "https://example.edu/reviewed-source",
+        "https://example.edu/reviewed-source",
+      ] as const,
+      message: "Duplicate lesson evidence URL.",
+    },
+  ])("rejects $message", ({ evidenceUrls, message }) => {
+    const source = lessonSource();
+    const result = Schema.decodeExit(LessonMaterialSourceSchema)({
+      ...source,
+      sections: [{ ...source.sections[0], evidenceUrls }],
+    });
 
     expect(Exit.isFailure(result)).toBe(true);
     if (Exit.isFailure(result)) {

@@ -1,6 +1,7 @@
 import { MaterialDomainSchema } from "@nakafa/aksara-contracts/material/domain";
 import { MaterialKeySchema } from "@nakafa/aksara-contracts/projection/material";
 import {
+  isHttpsUrl,
   isLowerKebab,
   isLowerKebabPath,
 } from "@nakafa/aksara-contracts/text/syntax";
@@ -38,8 +39,32 @@ const LocaleDescriptionMapSchema = localizedSourceMapSchema(
   LocalizedDescriptionSchema
 );
 
+const LessonEvidenceUrlSchema = Schema.String.pipe(
+  Schema.check(
+    Schema.makeFilter(isHttpsUrl, {
+      description:
+        "HTTPS claim-matched evidence URL reviewed for one lesson section.",
+      identifier: "LessonEvidenceUrl",
+      message: "Invalid lesson evidence URL.",
+    })
+  )
+);
+
+const LessonEvidenceUrlsSchema = Schema.NonEmptyArray(
+  LessonEvidenceUrlSchema
+).pipe(
+  Schema.check(
+    Schema.makeFilter((urls) => new Set(urls).size === urls.length, {
+      description: "Unique evidence URLs reviewed for one lesson section.",
+      identifier: "LessonEvidenceUrls",
+      message: "Duplicate lesson evidence URL.",
+    })
+  )
+);
+
 /** One ordered localized lesson section in a material source. */
 export const LessonMaterialSectionSchema = Schema.Struct({
+  evidenceUrls: Schema.optionalKey(LessonEvidenceUrlsSchema),
   routeSlugs: localizedSourceMapSchema(PublicRouteSegmentSchema),
   slug: MaterialSlugSchema,
 });

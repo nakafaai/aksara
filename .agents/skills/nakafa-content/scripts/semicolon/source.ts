@@ -1,5 +1,5 @@
-import type { SourceRange } from "#nakafa-content/voice-mdx";
-import type { LessonVoiceIssue } from "#nakafa-content/voice-types";
+import type { SourceRange } from "#nakafa-content/mdx/parse";
+import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 const ENTITY_TERMINATOR_PATTERN = /&(?:#[0-9]+|#x[0-9a-f]+|[a-z][a-z0-9]+);$/iu;
 const SEMICOLON_ENTITY_PATTERN = /&(?:#0*59|#x0*3b|semi);$/iu;

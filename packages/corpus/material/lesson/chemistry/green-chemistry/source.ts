@@ -8,6 +8,13 @@ export const lessonChemistryGreenChemistryMaterial = defineLessonMaterial({
   routeSlugs: { de: "gruene-chemie", en: "green-chemistry", id: "kimia-hijau" },
   sections: [
     {
+      evidenceUrls: [
+        "https://www.epa.gov/greenchemistry/basics-green-chemistry",
+        "https://goldbook.iupac.org/terms/view/A00493",
+        "https://goldbook.iupac.org/terms/view/C01022",
+        "https://goldbook.iupac.org/terms/view/M04002",
+        "https://www.cdc.gov/hygiene/about/cleaning-and-disinfecting-with-bleach.html",
+      ],
       routeSlugs: {
         de: "chemische-prozesse-im-alltag",
         en: "chemical-processes-daily-life",
@@ -16,6 +23,13 @@ export const lessonChemistryGreenChemistryMaterial = defineLessonMaterial({
       slug: "chemical-processes-daily-life",
     },
     {
+      evidenceUrls: [
+        "https://www.epa.gov/greenchemistry/basics-green-chemistry",
+        "https://chem.washington.edu/lecture-demos/electrolysis-water",
+        "https://www.energy.gov/cmei/fuels/hydrogen-production-electrolysis",
+        "https://www.mdpi.com/1996-1944/12/23/3902",
+        "https://www.acs.org/green-chemistry-sustainability/principles/12-principles-of-green-chemistry.html",
+      ],
       routeSlugs: {
         de: "definition",
         en: "definition",
@@ -24,6 +38,13 @@ export const lessonChemistryGreenChemistryMaterial = defineLessonMaterial({
       slug: "definition",
     },
     {
+      evidenceUrls: [
+        "https://sdgs.un.org/goals",
+        "https://www.acs.org/green-chemistry-sustainability/education/chemistry-sustainable-development-goals.html",
+        "https://www.epa.gov/sustainable-management-food/approaches-composting",
+        "https://www.epa.gov/trash-free-waters/frequently-asked-questions-about-plastic-recycling-and-composting",
+        "https://www.epa.gov/greenchemistry/basics-green-chemistry",
+      ],
       routeSlugs: {
         de: "massnahmen-der-gruenen-chemie",
         en: "green-chemistry-activities",
@@ -32,6 +53,13 @@ export const lessonChemistryGreenChemistryMaterial = defineLessonMaterial({
       slug: "green-chemistry-activities",
     },
     {
+      evidenceUrls: [
+        "https://www.epa.gov/greenchemistry/basics-green-chemistry",
+        "https://www.acs.org/green-chemistry-sustainability/principles/12-principles-of-green-chemistry.html",
+        "https://pubchem.ncbi.nlm.nih.gov/compound/Capsaicin",
+        "https://pubchem.ncbi.nlm.nih.gov/compound/Ethanol",
+        "https://goldbook.iupac.org/terms/view/C00876",
+      ],
       routeSlugs: {
         de: "prinzipien",
         en: "principles",

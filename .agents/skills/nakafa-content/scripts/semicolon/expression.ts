@@ -1,17 +1,15 @@
-import {
-  addSemicolonsInRange,
-  type SemicolonScanOptions,
-} from "#nakafa-content/semicolon/source";
-import {
-  sourceOffsetForStaticMatch,
-  staticStringCandidates,
-} from "#nakafa-content/static-string";
+import { sourceOffsetForStaticMatch } from "#nakafa-content/mdx/offset";
 import {
   asEstreeNode,
   type EstreeNode,
   estreeRange,
   staticFieldName,
-} from "#nakafa-content/voice-mdx";
+} from "#nakafa-content/mdx/parse";
+import { staticStringCandidates } from "#nakafa-content/mdx/static";
+import {
+  addSemicolonsInRange,
+  type SemicolonScanOptions,
+} from "#nakafa-content/semicolon/source";
 
 const CODE_COMPONENT_NAMES = new Set(["CodeBlock"]);
 const MATH_COMPONENT_NAMES = new Set(["BlockMath", "InlineMath"]);

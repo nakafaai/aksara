@@ -12,6 +12,9 @@ export const lessonChemistryBasicChemistryLawsMaterial = defineLessonMaterial({
   },
   sections: [
     {
+      evidenceUrls: [
+        "https://inchemistry.acs.org/content/dam/acsorg/about/governance/committees/chemicalsafety/publications/safety-in-academic-chemistry-laboratories-students.pdf",
+      ],
       routeSlugs: {
         de: "merkmale-chemischer-reaktionen",
         en: "chemical-reaction-characteristics",
@@ -36,6 +39,13 @@ export const lessonChemistryBasicChemistryLawsMaterial = defineLessonMaterial({
       slug: "combining-volumes-law",
     },
     {
+      evidenceUrls: [
+        "https://goldbook.iupac.org/terms/view/C01039/plain",
+        "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/water/property/MolecularFormula/JSON",
+        "https://www.ciaaw.org/abridged-atomic-weights.htm",
+        "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/calcium%20oxide/property/MolecularFormula/JSON",
+        "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/ferric%20oxide/property/MolecularFormula/JSON",
+      ],
       routeSlugs: {
         de: "gesetz-der-konstanten-proportionen",
         en: "constant-composition-law",
@@ -44,6 +54,10 @@ export const lessonChemistryBasicChemistryLawsMaterial = defineLessonMaterial({
       slug: "constant-composition-law",
     },
     {
+      evidenceUrls: [
+        "https://www.sciencehistory.org/education/scientific-biographies/antoine-laurent-lavoisier/",
+        "https://www.ciaaw.org/abridged-atomic-weights.htm",
+      ],
       routeSlugs: {
         de: "gesetz-der-massenerhaltung",
         en: "mass-conservation-law",
@@ -52,6 +66,12 @@ export const lessonChemistryBasicChemistryLawsMaterial = defineLessonMaterial({
       slug: "mass-conservation-law",
     },
     {
+      evidenceUrls: [
+        "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/water/property/MolecularFormula/JSON",
+        "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/hydrogen%20peroxide/property/MolecularFormula/JSON",
+        "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/nitrous%20oxide/property/MolecularFormula/JSON",
+        "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/nitrogen%20dioxide/property/MolecularFormula/JSON",
+      ],
       routeSlugs: {
         de: "gesetz-der-multiplen-proportionen",
         en: "multiple-proportions-law",
@@ -60,6 +80,10 @@ export const lessonChemistryBasicChemistryLawsMaterial = defineLessonMaterial({
       slug: "multiple-proportions-law",
     },
     {
+      evidenceUrls: [
+        "https://pubchem.ncbi.nlm.nih.gov/compound/P4O10",
+        "https://nvlpubs.nist.gov/nistpubs/TechnicalNotes/NIST.TN.2377.pdf",
+      ],
       routeSlugs: {
         de: "arten-chemischer-reaktionen",
         en: "types-chemical-reaction",
@@ -68,6 +92,7 @@ export const lessonChemistryBasicChemistryLawsMaterial = defineLessonMaterial({
       slug: "types-chemical-reaction",
     },
     {
+      evidenceUrls: ["https://goldbook.iupac.org/terms/view/C01034"],
       routeSlugs: {
         de: "chemische-reaktionen-formulieren",
         en: "writing-chemical-reactions",

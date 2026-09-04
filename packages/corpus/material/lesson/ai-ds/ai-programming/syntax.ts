@@ -40,6 +40,7 @@ export const aiProgrammingSyntax = {
     slug: "print-function",
   },
   pythonStep1: {
+    evidenceUrls: ["https://docs.python.org"],
     routeSlugs: {
       de: "erster-schritt-mit-python",
       en: "python-step-1",

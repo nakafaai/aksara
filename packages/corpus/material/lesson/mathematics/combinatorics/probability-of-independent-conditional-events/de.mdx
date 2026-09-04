@@ -3,7 +3,7 @@ export const metadata = {
     description: "Bedingte Wahrscheinlichkeiten berechnen, Abhängigkeit von Unabhängigkeit unterscheiden und mehrstufige Ziehungen lösen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-01",
+  dateModified: "2026-09-04",
     subject: "Kombinatorik",
 };
 
@@ -80,7 +80,7 @@ Ein Unternehmen prüft die Verteilung seiner Führungskräfte nach Geschlecht un
 
 Sei <InlineMath math="L" /> das Ereignis, dass eine ausgewählte Führungskraft männlich ist.
 
-Das Unternehmen wählt nach dem Zufallsprinzip zwei ersatzlose Manager für ein Gremium aus. Die Wahrscheinlichkeit, dass beide ausgewählten Manager männlich sind, beträgt:
+Das Unternehmen wählt nach dem Zufallsprinzip zwei Manager ohne Zurücklegen für ein Gremium aus. Die Wahrscheinlichkeit, dass beide ausgewählten Manager männlich sind, beträgt:
 
 <MathContainer>
 <BlockMath math="P(L_1) = \frac{200}{600} = \frac{1}{3}" />
@@ -108,16 +108,16 @@ Bei **unabhängigen Ereignissen** ändert die Bedingung die nächste Wahrscheinl
 
 **Konkretes Beispiel: Zwei Asse ziehen**
 
-Wir berechnen die Wahrscheinlichkeit dafür, aus einem üblichen Kartenspiel nacheinander zwei Asse zu ziehen (<InlineMath math="52 \text{Karten}" />, davon <InlineMath math="4" /> Asse).
+Wir berechnen die Wahrscheinlichkeit dafür, aus einem üblichen Kartenspiel nacheinander zwei Asse zu ziehen (<InlineMath math="52 \text{Karten}" />, davon <InlineMath math="4" /> Asse). Sei <InlineMath math="A_1" /> das Ereignis, dass die erste Karte ein Ass ist, und <InlineMath math="A_2" /> das Ereignis, dass die zweite Karte ein Ass ist.
 
 1. **Unabhängige Ziehungen (mit Zurücklegen):**
 
     Nach der ersten Ziehung wird die Karte zurückgelegt und der Stapel neu gemischt:
 
     <MathContainer>
-    <BlockMath math="P(As_1) = \frac{4}{52} = \frac{1}{13}" />
-    <BlockMath math="P(As_2) = \frac{4}{52} = \frac{1}{13}" />
-    <BlockMath math="P(As_1 \cap As_2) = \frac{4}{52} \times \frac{4}{52} = \frac{1}{13} \times \frac{1}{13} = \frac{1}{169}" />
+    <BlockMath math="P(A_1) = \frac{4}{52} = \frac{1}{13}" />
+    <BlockMath math="P(A_2) = \frac{4}{52} = \frac{1}{13}" />
+    <BlockMath math="P(A_1 \cap A_2) = \frac{4}{52} \times \frac{4}{52} = \frac{1}{13} \times \frac{1}{13} = \frac{1}{169}" />
     </MathContainer>
 
 2. **Abhängige Ziehungen (ohne Zurücklegen):**
@@ -125,9 +125,9 @@ Wir berechnen die Wahrscheinlichkeit dafür, aus einem üblichen Kartenspiel nac
     Die erste Karte wird nicht zurückgelegt:
 
     <MathContainer>
-    <BlockMath math="P(As_1) = \frac{4}{52} = \frac{1}{13}" />
-    <BlockMath math="P(As_2|As_1) = \frac{3}{51} = \frac{1}{17}" />
-    <BlockMath math="P(As_1 \cap As_2) = \frac{4}{52} \times \frac{3}{51} = \frac{1}{13} \times \frac{1}{17} = \frac{1}{221}" />
+    <BlockMath math="P(A_1) = \frac{4}{52} = \frac{1}{13}" />
+    <BlockMath math="P(A_2|A_1) = \frac{3}{51} = \frac{1}{17}" />
+    <BlockMath math="P(A_1 \cap A_2) = \frac{4}{52} \times \frac{3}{51} = \frac{1}{13} \times \frac{1}{17} = \frac{1}{221}" />
     </MathContainer>
 
 **Ergebnisvergleich:**
@@ -142,7 +142,7 @@ In diesem Beispiel ist das Ergebnis ohne Zurücklegen **kleiner**. Nach dem erst
 
 2. Ein Kartenspiel wird gemischt. Drei Karten werden nacheinander ohne Zurücklegen gezogen. Wie groß ist die Wahrscheinlichkeit für Ass, dann König, dann Dame?
 
-Bearbeite jede Aufgabe selbst, bevor Sie die ausführliche Lösung lesen. Notiere bei jeder Ziehung die Anzahl der günstigen Karten und die neue Gesamtzahl, bevor Sie multiplizieren.
+Bearbeite jede Aufgabe selbst, bevor du die ausführliche Lösung liest. Notiere bei jeder Ziehung die Anzahl der günstigen Karten und die neue Gesamtzahl, bevor du multiplizierst.
 
 ### Ausführliche Lösungen
 

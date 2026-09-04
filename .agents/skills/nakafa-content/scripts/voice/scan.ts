@@ -1,0 +1,286 @@
+import { exerciseSectionLines } from "#nakafa-content/exercise/context";
+import { FLOW_CONTEXT_RULES } from "#nakafa-content/flow/context";
+import { FLOW_STYLE_RULES } from "#nakafa-content/flow/style";
+import { LANGUAGE_CALQUE_RULES } from "#nakafa-content/language/calque";
+import { NAVIGATION_VOICE_RULES } from "#nakafa-content/link/check";
+import { findMalformedLatexCommandIssues } from "#nakafa-content/math/command";
+import { findPlainMathLabelIssues } from "#nakafa-content/math/label";
+import {
+  type MdxNode,
+  parseLessonMdx,
+  type SourceRange,
+} from "#nakafa-content/mdx/parse";
+import { TECHNICAL_METAPHOR_RULES } from "#nakafa-content/metaphor/technical";
+import {
+  ADDRESS_VOICE_RULES,
+  unanchoredGermanFormalAddressOffset,
+} from "#nakafa-content/voice/address";
+import { AMBIGUITY_VOICE_RULES } from "#nakafa-content/voice/ambiguity";
+import { CLAIM_VOICE_RULES } from "#nakafa-content/voice/claim";
+import { CONTRAST_VOICE_RULES } from "#nakafa-content/voice/contrast";
+import { CORE_VOICE_RULES } from "#nakafa-content/voice/core";
+import { FLOW_VOICE_RULES } from "#nakafa-content/voice/flow";
+import {
+  findStructuralIssues,
+  HEADING_VOICE_RULES,
+} from "#nakafa-content/voice/heading";
+import { LANGUAGE_VOICE_RULES } from "#nakafa-content/voice/language";
+import { METAPHOR_VOICE_RULES } from "#nakafa-content/voice/metaphor";
+import { METHOD_VOICE_RULES } from "#nakafa-content/voice/method";
+import {
+  PEDAGOGY_VOICE_RULES,
+  REPETITIVE_OPENER_RULES,
+} from "#nakafa-content/voice/pedagogy";
+import { findVisibleProseRuleIssues } from "#nakafa-content/voice/prose";
+import {
+  maskRawLineProtectedContent,
+  rawLineProtectedRanges,
+} from "#nakafa-content/voice/protection";
+import { findBlockquoteEditorialLabelIssues } from "#nakafa-content/voice/quote";
+import { REPORTING_VOICE_RULES } from "#nakafa-content/voice/reporting";
+import {
+  classifyLine,
+  createLineState,
+  finishLine,
+} from "#nakafa-content/voice/state";
+import {
+  maskInlineQuotations,
+  maskMetadataDescriptionQuotations,
+  maskMultilineQuotations,
+  multilineQuotationRanges,
+} from "#nakafa-content/voice/text";
+import { TRANSITION_VOICE_RULES } from "#nakafa-content/voice/transition";
+import {
+  isLessonVoiceLocale,
+  type LessonVoiceIssue,
+  type LessonVoiceLocale,
+  type LessonVoiceRule,
+  type LineState,
+} from "#nakafa-content/voice/types";
+import { VISIBILITY_VOICE_RULES } from "#nakafa-content/voice/visibility";
+
+const LESSON_VOICE_RULES = [
+  ...ADDRESS_VOICE_RULES,
+  ...CORE_VOICE_RULES,
+  ...METAPHOR_VOICE_RULES,
+  ...TECHNICAL_METAPHOR_RULES,
+  ...METHOD_VOICE_RULES,
+  ...TRANSITION_VOICE_RULES,
+  ...CLAIM_VOICE_RULES,
+  ...CONTRAST_VOICE_RULES,
+  ...FLOW_VOICE_RULES,
+  ...FLOW_CONTEXT_RULES,
+  ...FLOW_STYLE_RULES,
+  ...HEADING_VOICE_RULES,
+  ...LANGUAGE_VOICE_RULES,
+  ...LANGUAGE_CALQUE_RULES,
+  ...NAVIGATION_VOICE_RULES,
+  ...AMBIGUITY_VOICE_RULES,
+  ...REPORTING_VOICE_RULES,
+  ...VISIBILITY_VOICE_RULES,
+  ...PEDAGOGY_VOICE_RULES,
+] satisfies readonly LessonVoiceRule[];
+
+const REPETITIVE_OPENER_LIMIT = 2;
+
+/** Matches all selected prose rules against one masked source line. */
+function matchLineRules(
+  rules: readonly LessonVoiceRule[],
+  locale: LessonVoiceLocale,
+  searchableLine: string,
+  originalLine: string,
+  lineNumber: number,
+  quotationMaskedLine = maskInlineQuotations(searchableLine)
+): LessonVoiceIssue[] {
+  return rules.flatMap((rule) => {
+    const ruleLine = rule.protectInlineQuotations
+      ? quotationMaskedLine
+      : searchableLine;
+    const match = rule.patterns[locale]?.exec(ruleLine);
+    if (match?.index === undefined) {
+      return [];
+    }
+    return [
+      {
+        column: match.index + 1,
+        excerpt: originalLine.trim(),
+        line: lineNumber,
+        rule: rule.id,
+      },
+    ];
+  });
+}
+
+/** Flags formal German address at the start of standalone metadata copy. */
+function matchMetadataGermanAddress(
+  locale: LessonVoiceLocale,
+  searchableLine: string,
+  originalLine: string,
+  lineNumber: number
+): LessonVoiceIssue[] {
+  if (locale !== "de") {
+    return [];
+  }
+  const valueStart = searchableLine.indexOf('"') + 1;
+  if (valueStart === 0) {
+    return [];
+  }
+  const addressOffset = unanchoredGermanFormalAddressOffset(
+    searchableLine.slice(valueStart)
+  );
+  if (addressOffset === undefined) {
+    return [];
+  }
+  return [
+    {
+      column: valueStart + addressOffset + 1,
+      excerpt: originalLine.trim(),
+      line: lineNumber,
+      rule: "german-formal-address",
+    },
+  ];
+}
+
+/** Records repeated opener matches for the lesson-level frequency limit. */
+function recordRepetitiveOpeners(
+  matchesByRule: Map<string, LessonVoiceIssue[]>,
+  locale: LessonVoiceLocale,
+  searchableLine: string,
+  originalLine: string,
+  lineNumber: number
+): void {
+  for (const issue of matchLineRules(
+    REPETITIVE_OPENER_RULES,
+    locale,
+    searchableLine,
+    originalLine,
+    lineNumber
+  )) {
+    matchesByRule.get(issue.rule)?.push(issue);
+  }
+}
+
+/** Scans one source line and preserves rule order for stable diagnostics. */
+function inspectLessonLine(
+  locale: LessonVoiceLocale,
+  line: string,
+  lineNumber: number,
+  lineOffset: number,
+  protectedRanges: readonly SourceRange[],
+  quotationRanges: readonly { end: number; start: number }[],
+  state: LineState,
+  matchesByRule: Map<string, LessonVoiceIssue[]>
+): LessonVoiceIssue[] {
+  const context = classifyLine(line, state);
+  const issues = findStructuralIssues(
+    locale,
+    line,
+    lineNumber,
+    state,
+    context.isProtectedRegion
+  );
+  if (!context.isProtectedRegion || context.isMetadataDescription) {
+    const searchableLine = context.isMetadataDescription
+      ? maskMetadataDescriptionQuotations(line)
+      : maskRawLineProtectedContent(line, lineOffset, protectedRanges);
+    const quotationMaskedLine = context.isMetadataDescription
+      ? searchableLine
+      : maskInlineQuotations(
+          maskMultilineQuotations(searchableLine, lineOffset, quotationRanges)
+        );
+    issues.push(
+      ...matchLineRules(
+        LESSON_VOICE_RULES,
+        locale,
+        searchableLine,
+        line,
+        lineNumber,
+        quotationMaskedLine
+      ),
+      ...(context.isMetadataDescription
+        ? matchMetadataGermanAddress(locale, searchableLine, line, lineNumber)
+        : [])
+    );
+    if (!context.isProtectedRegion) {
+      recordRepetitiveOpeners(
+        matchesByRule,
+        locale,
+        searchableLine,
+        line,
+        lineNumber
+      );
+    }
+  }
+  finishLine(line, state, context);
+  return issues;
+}
+
+/** Preserves stable order while merging line and AST findings at one offset. */
+function deduplicateIssues(issues: LessonVoiceIssue[]): LessonVoiceIssue[] {
+  const keys = new Set<string>();
+  return issues.filter((issue) => {
+    const key = `${issue.rule}:${issue.line}:${issue.column}`;
+    if (keys.has(key)) {
+      return false;
+    }
+    keys.add(key);
+    return true;
+  });
+}
+
+/** Returns deterministic lesson voice issues with exact source locations. */
+export function findLessonVoiceIssues(
+  locale: string,
+  source: string,
+  tree?: MdxNode
+): LessonVoiceIssue[] {
+  if (!isLessonVoiceLocale(locale)) {
+    throw new TypeError(`Unsupported lesson locale: ${locale}`);
+  }
+  const issues: LessonVoiceIssue[] = [];
+  const parsedTree = tree ?? parseLessonMdx(source);
+  const protectedRanges = rawLineProtectedRanges(parsedTree);
+  const quotationRanges = multilineQuotationRanges(source);
+  const matchesByRule = new Map<string, LessonVoiceIssue[]>(
+    REPETITIVE_OPENER_RULES.map(({ id }): [string, LessonVoiceIssue[]] => [
+      id,
+      [],
+    ])
+  );
+  const state = createLineState();
+  let lineOffset = 0;
+  for (const [lineIndex, line] of source.split("\n").entries()) {
+    issues.push(
+      ...inspectLessonLine(
+        locale,
+        line,
+        lineIndex + 1,
+        lineOffset,
+        protectedRanges,
+        quotationRanges,
+        state,
+        matchesByRule
+      )
+    );
+    lineOffset += line.length + 1;
+  }
+  for (const matches of matchesByRule.values()) {
+    issues.push(...matches.slice(REPETITIVE_OPENER_LIMIT));
+  }
+  issues.push(
+    ...findVisibleProseRuleIssues(
+      locale,
+      source,
+      parsedTree,
+      LESSON_VOICE_RULES
+    ),
+    ...findPlainMathLabelIssues(source, parsedTree),
+    ...findMalformedLatexCommandIssues(source, parsedTree),
+    ...findBlockquoteEditorialLabelIssues(locale, source, parsedTree)
+  );
+  const exerciseLines = exerciseSectionLines(locale, source);
+  return deduplicateIssues(issues).filter(
+    ({ line, rule }) =>
+      rule !== "abrupt-scenario-imperative" || !exerciseLines.has(line)
+  );
+}
