@@ -76,6 +76,16 @@ for clarity, measurable scale, and safe releases.
   explicit CLI or protected release boundary may execute publication after
   approval.
 - Use colocated `name.test.ts` files to test the real `name.ts` module.
+- Do not create a test merely because a `.ts` file exists, to restate
+  declarative configuration, or to satisfy coverage. Every test must prove
+  meaningful behavior, a regression, or a failure contract at the owning
+  public seam. Maintain 100% statement, branch, function, and line coverage
+  without lowering thresholds or excluding behavior. Keep declarative
+  configuration outside the executable coverage surface instead of creating
+  mirror modules solely to manufacture tests.
+- Name new folders and files with one concise domain word per path segment
+  whenever the toolchain permits it. Avoid hyphenated phrases, repeated parent
+  wording, and names that restate the containing capability.
 - Do not add compatibility layers. Migration-only seams need explicit deletion
   gates.
 
