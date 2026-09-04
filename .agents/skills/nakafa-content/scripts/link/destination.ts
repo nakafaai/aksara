@@ -3,6 +3,9 @@ const PROTOCOL_RELATIVE_PATTERN = /^\/\//u;
 const EXPLICIT_EXTERNAL_PATTERN = /(?:(?:https?|ftp):\/\/|(?:mailto|tel):)/iu;
 const EMBEDDED_PROTOCOL_RELATIVE_PATTERN =
   /(?:^|[\s("'=])(\/\/(?=[A-Za-z\d.-]+\.[A-Za-z]{2,}(?:[/:?#]|$)))/iu;
+const SRCSET_EXTERNAL_PATTERN =
+  /(?:^|[\s,])(?:[A-Za-z][A-Za-z\d+.-]*:|\/\/(?=[A-Za-z\d.-]+\.[A-Za-z]{2,}(?:[/:?#\s,]|$)))/iu;
+const SRCSET_VALUE_PATTERN = /[A-Za-z/]/u;
 const NON_WHITESPACE_PATTERN = /\S/u;
 const DESTINATION_ATTRIBUTES = new Set([
   "action",
@@ -68,11 +71,28 @@ function completeExternalMatch(text: string): ExternalMatch | undefined {
   };
 }
 
+/** Finds an external URL scheme at the start of any srcset candidate. */
+function srcSetExternalMatch(text: string): ExternalMatch | undefined {
+  const match = SRCSET_EXTERNAL_PATTERN.exec(text);
+  if (!match) {
+    return;
+  }
+  const valueIndex = Math.max(0, match[0].search(SRCSET_VALUE_PATTERN));
+  return {
+    index: match.index + valueIndex,
+    value: match[0].slice(valueIndex),
+  };
+}
+
 /** Applies the stricter whole-value rule only to destination fields. */
 export function externalMatch(
   text: string,
-  destinationAttribute: boolean
+  destinationAttribute: boolean,
+  srcSetAttribute = false
 ): ExternalMatch | undefined {
+  if (srcSetAttribute) {
+    return srcSetExternalMatch(text);
+  }
   return destinationAttribute
     ? completeExternalMatch(text)
     : explicitExternalMatch(text);
@@ -89,9 +109,19 @@ export function isDestinationAttribute(
   const normalized = name.toLowerCase();
   return (
     DESTINATION_ATTRIBUTES.has(normalized) ||
-    NATIVE_DESTINATION_ATTRIBUTES.get(elementName?.toLowerCase() ?? "")?.has(
-      normalized
-    ) === true ||
+    NATIVE_DESTINATION_ATTRIBUTES.get(elementName ?? "")?.has(normalized) ===
+      true ||
     DESTINATION_ATTRIBUTE_SUFFIXES.some((suffix) => normalized.endsWith(suffix))
+  );
+}
+
+/** Recognizes the candidate-list syntax used by native image sources. */
+export function isSrcSetAttribute(
+  name: string | undefined,
+  elementName?: string
+): boolean {
+  return (
+    name?.toLowerCase() === "srcset" &&
+    (elementName === "img" || elementName === "source")
   );
 }

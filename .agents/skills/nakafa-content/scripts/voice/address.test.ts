@@ -30,6 +30,7 @@ it("preserves German anaphoric Sie and accepts du address", () => {
     "Ordne die Maßnahme ein: Sie begrenzt Treibhausgase.",
     "Matrizen beschreiben lineare Abbildungen. Ihre Einträge hängen von der Basis ab.",
     "Die **Matrizen** stehen in der nächsten Zeile.\n\nSie können anschließend verglichen werden.",
+    "Die Matrizen  \nstehen bereit.\n\nSie können anschließend verglichen werden.",
     "Die Gleichung steht oberhalb.\n\nIhre Lösung ist bereits angegeben.",
     "Die Lernenden erhalten zwei Werkzeuge. Ihnen stehen zwei Methoden zur Verfügung.",
     "Algorithmen analysieren Daten. Sie können erkennen, ob ein Muster vorliegt.",

@@ -20,12 +20,12 @@ const SENTENCE_BOUNDARY_PATTERN = /[.!?:]\s*$/u;
 /** Allows locally direct link-copy checks without breaking clear anaphora. */
 function allowsUnanchoredAddress(
   node: MdxNode,
-  paragraphStart: number,
+  contextStart: number,
   source: string
 ): boolean {
   const linkStart = node.position?.start?.offset;
   assert.ok(linkStart !== undefined);
-  const prefix = source.slice(paragraphStart, linkStart);
+  const prefix = source.slice(contextStart, linkStart);
   return (
     prefix.trim().length === 0 ||
     GERMAN_LINK_COMMAND_PREFIX_PATTERN.test(prefix) ||
@@ -41,9 +41,8 @@ export function collectLinkLabelIssues(
   source: string,
   issues: LessonVoiceIssue[],
   state: ProseState,
-  paragraphStart: number | undefined
+  contextStart: number | undefined
 ): void {
-  const contextStart = paragraphStart ?? node.position?.start?.offset;
   assert.ok(contextStart !== undefined);
   const allowUnanchoredAddress = allowsUnanchoredAddress(
     node,

@@ -1,6 +1,9 @@
 import assert from "node:assert/strict";
 
-import { isDestinationAttribute } from "#nakafa-content/link/destination";
+import {
+  isDestinationAttribute,
+  isSrcSetAttribute,
+} from "#nakafa-content/link/destination";
 import {
   expressionExternalOffset,
   isProtectedExampleAttribute,
@@ -57,12 +60,14 @@ function invalidDestinationOffset(
     attribute.name,
     componentName
   );
+  const srcSetAttribute = isSrcSetAttribute(attribute.name, componentName);
   if (expression) {
     const externalOffset = expressionExternalOffset(
       expression,
       source,
       destinationAttribute,
-      componentName
+      componentName,
+      srcSetAttribute
     );
     if (externalOffset !== undefined) {
       return externalOffset;
@@ -78,7 +83,8 @@ function invalidDestinationOffset(
       source,
       destinationAttribute,
       attributeStart,
-      attributeEnd
+      attributeEnd,
+      srcSetAttribute
     );
   }
   return destinationAttribute ? attributeStart : undefined;

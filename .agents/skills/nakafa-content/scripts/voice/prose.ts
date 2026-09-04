@@ -37,6 +37,7 @@ const PROTECTED_NODE_TYPES = new Set([
   "mdxjsEsm",
 ]);
 const LINK_NODE_TYPES = new Set(["link", "linkReference"]);
+const LINK_CONTEXT_NODE_TYPES = new Set(["heading", "paragraph", "tableCell"]);
 const IMAGE_NODE_TYPES = new Set(["image", "imageReference"]);
 
 /** Adds address-only findings from learner-visible Markdown image alt copy. */
@@ -154,6 +155,9 @@ function paragraphText(node: MdxNode): string {
   if (node.type === "text" && typeof node.value === "string") {
     return node.value;
   }
+  if (node.type === "break") {
+    return " ";
+  }
   return (node.children ?? []).map(paragraphText).join("");
 }
 
@@ -176,7 +180,7 @@ function collectNodeIssues(
   issues: LessonVoiceIssue[],
   state: ProseState,
   isProtected = false,
-  paragraphStart?: number
+  linkContextStart?: number
 ): void {
   if (!isProtected && node.type === "blockquote") {
     collectBlockquoteIssues(locale, node, rules, source, issues);
@@ -193,7 +197,7 @@ function collectNodeIssues(
       source,
       issues,
       state,
-      paragraphStart
+      linkContextStart
     );
     return;
   }
@@ -219,7 +223,9 @@ function collectNodeIssues(
       issues,
       state,
       protectedHere,
-      node.type === "paragraph" ? node.position?.start?.offset : paragraphStart
+      LINK_CONTEXT_NODE_TYPES.has(node.type)
+        ? node.position?.start?.offset
+        : linkContextStart
     );
   }
   if (!protectedHere && node.type === "paragraph") {

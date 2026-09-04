@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   externalMatch,
   isDestinationAttribute,
+  isSrcSetAttribute,
 } from "#nakafa-content/link/destination";
 import { sourceOffsetForStaticMatch } from "#nakafa-content/mdx/offset";
 import {
@@ -33,7 +34,8 @@ export function expressionExternalOffset(
   expression: EstreeNode,
   source: string,
   destinationAttribute: boolean,
-  componentName?: string
+  componentName?: string,
+  srcSetAttribute = false
 ): number | undefined {
   const offsets = destinationPropertyExternalOffsets(
     expression,
@@ -41,7 +43,11 @@ export function expressionExternalOffset(
     componentName
   );
   for (const candidate of nestedStaticStringCandidates(expression)) {
-    const match = externalMatch(candidate.text, destinationAttribute);
+    const match = externalMatch(
+      candidate.text,
+      destinationAttribute,
+      srcSetAttribute
+    );
     if (!match) {
       continue;
     }
@@ -74,7 +80,11 @@ function destinationPropertyExternalOffsets(
     assert.ok(value);
     if (isDestinationAttribute(name, componentName)) {
       for (const candidate of nestedStaticStringCandidates(value)) {
-        const match = externalMatch(candidate.text, true);
+        const match = externalMatch(
+          candidate.text,
+          true,
+          isSrcSetAttribute(name, componentName)
+        );
         if (!match) {
           continue;
         }
@@ -103,9 +113,10 @@ export function stringExternalOffset(
   source: string,
   destinationAttribute: boolean,
   start: number,
-  end: number
+  end: number,
+  srcSetAttribute: boolean
 ): number | undefined {
-  const match = externalMatch(value, destinationAttribute);
+  const match = externalMatch(value, destinationAttribute, srcSetAttribute);
   if (!match) {
     return;
   }
@@ -153,6 +164,7 @@ function nestedJsxAttributeOffset(
     attributeName,
     componentName
   );
+  const srcSetAttribute = isSrcSetAttribute(attributeName, componentName);
   const value = asEstreeNode(attribute.value);
   if (!value) {
     return destinationAttribute ? start : undefined;
@@ -165,7 +177,8 @@ function nestedJsxAttributeOffset(
       source,
       destinationAttribute,
       value.start,
-      value.end
+      value.end,
+      srcSetAttribute
     );
   }
   assert.equal(value.type, "JSXExpressionContainer");
@@ -175,7 +188,8 @@ function nestedJsxAttributeOffset(
     expression,
     source,
     destinationAttribute,
-    componentName
+    componentName,
+    srcSetAttribute
   );
   if (externalOffset !== undefined) {
     return externalOffset;
