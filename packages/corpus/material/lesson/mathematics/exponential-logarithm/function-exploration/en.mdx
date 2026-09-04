@@ -1,38 +1,38 @@
 export const metadata = {
   title: "Exponential Function Models",
   description:
-    "An idealized transmission tree shows the difference between per-phase and cumulative counts. The comparison covers exponential, linear, and logarithmic functions as well as the model's limits.",
+    "Follow a simple transmission story to compare each phase with the running total. Then compare exponential, linear, and logarithmic curves and see where the model stops matching real life.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-02",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-04",
   subject: "Exponents and Logarithms",
 };
 
-## An Idealized Transmission Tree
+## A Simple Transmission Story
 
-Suppose one initial case leads to exactly <InlineMath math="3" /> new cases, and every new case leads to exactly <InlineMath math="3" /> more cases in the next phase. Assume no contacts overlap, nobody recovers during the model, and the factor never changes.
+Imagine that one infected person passes the infection to exactly <InlineMath math="3" /> other people. In the next phase, each of those three people infects three more. For a clean calculation, suppose that no two people infect the same person, nobody recovers, and the factor of three never changes.
 
-Under these assumptions, each phase has three times as many new cases as the previous phase. The model is only for studying exponential functions because real outbreaks include overlapping contacts, recovery, and changing transmission rates.
+Now the pattern is easy to follow: every phase has three times as many newly infected people as the phase before it. Real outbreaks are messier. Contacts overlap, people recover, and transmission changes over time. The story isolates the exponential pattern. It does not predict an outbreak.
 
-## New Cases in Each Phase
+## New Infections in Each Phase
 
-The number below counts **new cases in that phase**. Add all phases to get the cumulative total:
+Each number below tells us how many people become infected **during that phase**. It is not the running total:
 
-- **Phase** <InlineMath math="1" />: <InlineMath math="3=3^1" /> new cases
-- **Phase** <InlineMath math="2" />: <InlineMath math="9=3^2" /> new cases
-- **Phase** <InlineMath math="3" />: <InlineMath math="27=3^3" /> new cases
-- **Phase** <InlineMath math="4" />: <InlineMath math="81=3^4" /> new cases
-- **Phase** <InlineMath math="5" />: <InlineMath math="243=3^5" /> new cases
+- **Phase** <InlineMath math="1" />: <InlineMath math="3=3^1" /> people newly infected
+- **Phase** <InlineMath math="2" />: <InlineMath math="9=3^2" /> people newly infected
+- **Phase** <InlineMath math="3" />: <InlineMath math="27=3^3" /> people newly infected
+- **Phase** <InlineMath math="4" />: <InlineMath math="81=3^4" /> people newly infected
+- **Phase** <InlineMath math="5" />: <InlineMath math="243=3^5" /> people newly infected
 
-If <InlineMath math="N(x)" /> is the number of new cases in phase <InlineMath math="x" />, then:
+If <InlineMath math="N(x)" /> is the number of people newly infected in phase <InlineMath math="x" />, then:
 
 <BlockMath math="N(x)=3^x" />
 
-The cumulative number of new cases through phase <InlineMath math="x" /> is a geometric sum:
+If we add the new infections from phase <InlineMath math="1" /> through phase <InlineMath math="x" />, we get this geometric sum:
 
 <BlockMath math="S(x)=3+3^2+\cdots+3^x=\frac{3^{x+1}-3}{2}" />
 
-Keeping these two quantities separate prevents a common modeling error: <InlineMath math="N(x)" /> describes one phase, while <InlineMath math="S(x)" /> adds all completed phases.
+The two formulas answer different questions. <InlineMath math="N(x)" /> describes one phase, while <InlineMath math="S(x)" /> adds every completed phase.
 
 ## Comparing Three Types of Functions
 
@@ -46,25 +46,25 @@ Only the exponential curve follows the stated “multiply by three each phase”
 
 <FunctionExplorationVirusChart
   labels={{
-    title: "Idealized Transmission Tree",
-    description: "New cases generated in each phase under a fixed branching rule.",
+    title: "A Simple Transmission Pattern",
+    description: "People newly infected in each phase when the factor stays at three.",
     exponential: "Exponential",
     linear: "Linear",
     logarithmic: "Logarithmic",
-    yLabel: "New cases in the phase",
+    yLabel: "People newly infected",
     caption:
-      "The exponential curve uses a fixed growth factor of three per phase. Real transmission does not always follow this pattern.",
+      "The exponential curve triples from one phase to the next. A real outbreak will not keep following this neat pattern.",
     phase: "Phase",
   }}
 />
 
 ## Worked Questions
 
-1. How many new cases does the model produce in phase <InlineMath math="20" />?
+1. In this simple story, how many people become infected in phase <InlineMath math="20" />?
 
    <BlockMath math="N(20)=3^{20}=3{,}486{,}784{,}401" />
 
-2. How many new cases have accumulated from phase <InlineMath math="1" /> through phase <InlineMath math="20" />?
+2. If we add phases <InlineMath math="1" /> through <InlineMath math="20" />, how many new infections occur during those phases?
 
    <BlockMath math="S(20)=\frac{3^{21}-3}{2}=5{,}230{,}176{,}600" />
 
@@ -72,7 +72,9 @@ Only the exponential curve follows the stated “multiply by three each phase”
 
    The exponential model multiplies the previous phase by <InlineMath math="3" />. A linear model would add the same amount each phase. Multiplication by a constant factor and addition of a constant amount are different processes.
 
-At phase <InlineMath math="20" />, the model gives <InlineMath math="3{,}486{,}784{,}401" /> new cases and <InlineMath math="5{,}230{,}176{,}600" /> cumulative cases. The model assumes that every case produces three new cases, no person is infected from two sources, and no one recovers. These values are outputs of the simplified model and cannot forecast real case counts.
+Phase <InlineMath math="20" /> alone contains <InlineMath math="3{,}486{,}784{,}401" /> newly infected people in our example. Adding phases <InlineMath math="1" /> through <InlineMath math="20" /> gives <InlineMath math="5{,}230{,}176{,}600" /> new infections across those twenty phases. That sum does not include the one person who was already infected before phase one began.
+
+Those huge numbers come from our tidy assumptions: every newly infected person infects exactly three others, nobody is infected twice, and nobody has recovered yet. The pattern is useful for learning how exponential growth works, but it cannot tell us how many people a real outbreak will infect.
 
 ## Properties of Exponential Functions
 

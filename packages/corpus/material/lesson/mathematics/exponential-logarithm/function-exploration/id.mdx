@@ -1,34 +1,34 @@
 export const metadata = {
   title: "Model Fungsi Eksponensial",
   description:
-    "Pohon penularan ideal menunjukkan perbedaan antara jumlah per fase dan jumlah kumulatif. Perbandingan fungsi eksponensial, linear, dan logaritmik disertai penjelasan tentang batas model.",
+    "Pohon penularan ideal menunjukkan perbedaan antara jumlah orang yang baru terinfeksi pada satu fase dan total orang yang baru terinfeksi selama beberapa fase. Perbandingan fungsi eksponensial, linear, dan logaritmik disertai penjelasan tentang batas model.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-02",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-04",
   subject: "Eksponen dan Logaritma",
 };
 
 ## Pohon Penularan Ideal
 
-Anggap satu kasus awal menghasilkan tepat <InlineMath math="3" /> kasus baru dan setiap kasus baru menghasilkan tepat <InlineMath math="3" /> kasus lagi pada fase berikutnya. Anggap tidak ada kontak yang tumpang tindih, tidak ada yang pulih selama model berlangsung, dan faktornya tidak pernah berubah.
+Bayangkan pada awalnya ada satu orang yang terinfeksi. Orang tersebut kemudian menulari tepat <InlineMath math="3" /> orang lain. Pada fase berikutnya, masing-masing dari ketiga orang itu menulari <InlineMath math="3" /> orang lagi. Agar polanya mudah dihitung, kita anggap setiap orang yang baru terinfeksi selalu menulari tepat <InlineMath math="3" /> orang lain, tidak ada satu orang pun yang tertular dari dua sumber, dan belum ada yang pulih.
 
-Dengan asumsi tersebut, jumlah kasus baru pada setiap fase menjadi tiga kali jumlah pada fase sebelumnya. Model ini hanya dipakai untuk mempelajari fungsi eksponensial karena penularan nyata melibatkan kontak yang tumpang tindih, pemulihan, dan laju penularan yang berubah.
+Dengan aturan sederhana tadi, jumlah orang yang baru terinfeksi pada setiap fase menjadi tiga kali jumlah pada fase sebelumnya. Contoh ini hanya dipakai untuk mempelajari fungsi eksponensial. Saat wabah benar-benar terjadi, seseorang bisa tertular dari lebih dari satu sumber, sebagian orang akan pulih, dan laju penularan dapat terus berubah.
 
-## Kasus Baru pada Setiap Fase
+## Orang yang Baru Terinfeksi pada Setiap Fase
 
-Jumlah berikut menghitung **kasus baru pada fase tersebut**. Jumlah kumulatif diperoleh dengan menjumlahkan semua fase:
+Jumlah berikut menghitung **orang yang baru terinfeksi pada fase tersebut**. Untuk mengetahui jumlahnya selama beberapa fase, kita menjumlahkan semua fase yang sudah selesai:
 
-- **Fase** <InlineMath math="1" />: <InlineMath math="3=3^1" /> kasus baru
-- **Fase** <InlineMath math="2" />: <InlineMath math="9=3^2" /> kasus baru
-- **Fase** <InlineMath math="3" />: <InlineMath math="27=3^3" /> kasus baru
-- **Fase** <InlineMath math="4" />: <InlineMath math="81=3^4" /> kasus baru
-- **Fase** <InlineMath math="5" />: <InlineMath math="243=3^5" /> kasus baru
+- **Fase** <InlineMath math="1" />: <InlineMath math="3=3^1" /> orang yang baru terinfeksi
+- **Fase** <InlineMath math="2" />: <InlineMath math="9=3^2" /> orang yang baru terinfeksi
+- **Fase** <InlineMath math="3" />: <InlineMath math="27=3^3" /> orang yang baru terinfeksi
+- **Fase** <InlineMath math="4" />: <InlineMath math="81=3^4" /> orang yang baru terinfeksi
+- **Fase** <InlineMath math="5" />: <InlineMath math="243=3^5" /> orang yang baru terinfeksi
 
-Jika <InlineMath math="N(x)" /> adalah jumlah kasus baru pada fase <InlineMath math="x" />, maka:
+Jika <InlineMath math="N(x)" /> adalah jumlah orang yang baru terinfeksi pada fase <InlineMath math="x" />, maka:
 
 <BlockMath math="N(x)=3^x" />
 
-Jumlah kumulatif kasus baru dari fase pertama hingga fase <InlineMath math="x" /> merupakan jumlah geometri:
+Jumlah orang yang baru terinfeksi dari fase pertama hingga fase <InlineMath math="x" /> merupakan jumlah geometri:
 
 <BlockMath math="S(x)=3+3^2+\cdots+3^x=\frac{3^{x+1}-3}{2}" />
 
@@ -47,24 +47,24 @@ Hanya kurva eksponensial yang mengikuti aturan “dikalikan tiga pada setiap fas
 <FunctionExplorationVirusChart
   labels={{
     title: "Pohon Penularan Ideal",
-    description: "Kasus baru yang dihasilkan pada setiap fase menurut aturan percabangan tetap.",
+    description: "Jumlah orang yang baru terinfeksi pada setiap fase menurut aturan percabangan tetap.",
     exponential: "Eksponensial",
     linear: "Linear",
     logarithmic: "Logaritmik",
-    yLabel: "Kasus baru pada fase",
+    yLabel: "Orang yang baru terinfeksi",
     caption:
-      "Kurva eksponensial menunjukkan faktor pertumbuhan tetap tiga pada setiap fase. Penularan nyata tidak selalu mengikuti pola ini.",
+      "Kurva eksponensial menunjukkan bahwa jumlah orang yang baru terinfeksi selalu dikalikan tiga pada setiap fase. Saat wabah benar-benar terjadi, pola penularannya tidak selalu seperti ini.",
     phase: "Fase",
   }}
 />
 
 ## Pembahasan Pertanyaan
 
-1. Berapa banyak kasus baru yang dihasilkan model pada fase <InlineMath math="20" />?
+1. Berapa banyak orang yang baru terinfeksi menurut contoh ini pada fase <InlineMath math="20" />?
 
    <BlockMath math="N(20)=3^{20}=3{.}486{.}784{.}401" />
 
-2. Berapa jumlah kumulatif kasus baru dari fase <InlineMath math="1" /> hingga fase <InlineMath math="20" />?
+2. Jika jumlah pada semua fase dijumlahkan, berapa banyak orang yang baru terinfeksi dari fase <InlineMath math="1" /> hingga fase <InlineMath math="20" />?
 
    <BlockMath math="S(20)=\frac{3^{21}-3}{2}=5{.}230{.}176{.}600" />
 
@@ -72,7 +72,7 @@ Hanya kurva eksponensial yang mengikuti aturan “dikalikan tiga pada setiap fas
 
    Model eksponensial mengalikan fase sebelumnya dengan <InlineMath math="3" />. Model linear akan menambahkan jumlah yang sama pada setiap fase. Perkalian dengan faktor tetap dan penambahan dengan jumlah tetap merupakan dua proses berbeda.
 
-Pada fase <InlineMath math="20" />, model menghasilkan <InlineMath math="3{.}486{.}784{.}401" /> kasus baru dan <InlineMath math="5{.}230{.}176{.}600" /> kasus kumulatif. Model mengasumsikan setiap kasus menghasilkan tiga kasus baru, tidak ada orang yang tertular dari dua sumber, dan tidak ada pemulihan. Nilai kasus baru dan kasus kumulatif tersebut hanya berlaku di dalam model sederhana ini dan tidak dapat dipakai untuk meramalkan jumlah kasus nyata.
+Pada fase <InlineMath math="20" />, contoh ini menghasilkan <InlineMath math="3{.}486{.}784{.}401" /> orang yang baru terinfeksi. Jika fase <InlineMath math="1" /> sampai fase <InlineMath math="20" /> dijumlahkan, hasilnya adalah <InlineMath math="5{.}230{.}176{.}600" /> orang yang baru terinfeksi selama dua puluh fase tersebut. Jumlah kedua ini belum memasukkan satu orang yang sudah terinfeksi sebelum fase pertama dimulai. Perhitungannya menganggap setiap orang yang baru terinfeksi menulari tiga orang lain, tidak ada seorang pun yang tertular dari dua sumber, dan belum ada yang pulih. Semua angka ini hanya berlaku pada contoh penularan sederhana tadi. Angka-angka tersebut tidak dapat digunakan untuk memprediksi jumlah orang yang akan tertular saat wabah berlangsung.
 
 ## Sifat Fungsi Eksponensial
 
