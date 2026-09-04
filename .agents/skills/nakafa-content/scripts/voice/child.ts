@@ -1,6 +1,5 @@
-import assert from "node:assert/strict";
-
 import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { renderedNodeRange } from "#nakafa-content/mdx/rendered";
 import type { ProseState } from "#nakafa-content/voice/copy";
 import {
   addressRules,
@@ -13,8 +12,8 @@ import type {
   LessonVoiceRule,
 } from "#nakafa-content/voice/types";
 
-/** Checks learner-visible text children that line scanning cannot anchor. */
-export function collectTextAddressIssues(
+/** Checks one JSX child range after combining its rendered text leaves. */
+export function collectJsxChildAddressIssues(
   locale: LessonVoiceLocale,
   node: MdxNode,
   rules: readonly LessonVoiceRule[],
@@ -22,16 +21,19 @@ export function collectTextAddressIssues(
   issues: LessonVoiceIssue[],
   state: ProseState
 ): void {
-  if (node.type !== "text") {
+  if (node.type !== "mdxJsxFlowElement" && node.type !== "mdxJsxTextElement") {
     return;
   }
-  assert.ok(node.position);
+  const range = renderedNodeRange(node, source);
+  if (!range) {
+    return;
+  }
   const selectedAddressRules = addressRules(rules);
   issues.push(
     ...matchRangeRules(
       locale,
       source,
-      node.position,
+      range,
       selectedAddressRules,
       false,
       state.quotationRanges
@@ -39,7 +41,7 @@ export function collectTextAddressIssues(
     ...matchUnanchoredGermanAddress(
       locale,
       source,
-      node.position,
+      range,
       selectedAddressRules,
       {
         allowPersonalAddress: !state.germanPersonalAntecedent,

@@ -9,7 +9,10 @@ export function linkDefinitions(tree: MdxNode): ReadonlyMap<string, string> {
       typeof node.identifier === "string" &&
       typeof node.url === "string"
     ) {
-      definitions.set(node.identifier.toLowerCase(), node.url);
+      const identifier = node.identifier.toLowerCase();
+      if (!definitions.has(identifier)) {
+        definitions.set(identifier, node.url);
+      }
     }
   });
   return definitions;

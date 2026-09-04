@@ -78,6 +78,27 @@ it("allows inline math counts to follow the grammar of each locale", () => {
   assert.deepEqual(findSiblingRepresentationIssues(ROOT, siblings), []);
 });
 
+it("reports a Markdown image missing from one locale", () => {
+  const siblings = [
+    document("id", "![Diagram](/diagram.svg)\n"),
+    document("en", "![Diagram](/diagram.svg)\n"),
+    document("de", "Das Diagramm fehlt.\n"),
+  ];
+
+  assert.deepEqual(
+    findSiblingRepresentationIssues(ROOT, siblings).map(({ file, rule }) => ({
+      file,
+      rule,
+    })),
+    [
+      {
+        file: "subject/topic/de.mdx",
+        rule: "locale-representation-parity",
+      },
+    ]
+  );
+});
+
 it("tracks each learner-facing block representation and ignores inline math", () => {
   const tokens = lessonRepresentationTokens(
     parseLessonMdx(

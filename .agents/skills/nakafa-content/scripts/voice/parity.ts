@@ -57,6 +57,11 @@ type BlockNode = Omit<MdxNode, "position" | "type"> & {
   type: "blockquote" | "code";
 };
 
+type ImageNode = Omit<MdxNode, "position" | "type"> & {
+  position: { start: { line: number } };
+  type: "image" | "imageReference";
+};
+
 type ComponentNode = Omit<MdxNode, "name" | "position" | "type"> & {
   name: string;
   position: { start: { line: number } };
@@ -81,6 +86,11 @@ function isTableNode(node: MdxNode): node is TableNode {
 /** Narrows one parser-owned block representation. */
 function isBlockNode(node: MdxNode): node is BlockNode {
   return node.type === "blockquote" || node.type === "code";
+}
+
+/** Narrows one learner-facing Markdown image. */
+function isImageNode(node: MdxNode): node is ImageNode {
+  return node.type === "image" || node.type === "imageReference";
 }
 
 /** Narrows one parser-owned flow component. */
@@ -134,6 +144,12 @@ function representationToken(node: MdxNode): RepresentationToken | undefined {
     return {
       line: node.position.start.line,
       value: node.type,
+    };
+  }
+  if (isImageNode(node)) {
+    return {
+      line: node.position.start.line,
+      value: "image",
     };
   }
   if (isComponentNode(node) && node.name !== "InlineMath") {

@@ -121,6 +121,12 @@ it("keeps external destinations limited to HTTPS Markdown links", () => {
       source: `<Resource {...{ target: "${httpsUrl}" }} />`,
     },
     {
+      source: '<a {...{ href: "javascript:alert(1)" }}>Open</a>',
+    },
+    {
+      source: '<Resource {...{ imageUrl: "data:text/plain,unsafe" }} />',
+    },
+    {
       source: "<Resource {...externalAttributes} />",
     },
     {
@@ -265,4 +271,25 @@ it("rejects prose that points at a link instead of naming its source", () => {
       ["source-navigation-filler"]
     );
   }
+});
+
+it("uses the first Markdown reference definition", () => {
+  const invalidFirst = [
+    "[Resource][source]",
+    "",
+    "[source]: javascript:alert(1)",
+    "[source]: /internal",
+  ].join("\n");
+  const safeFirst = [
+    "[Resource][source]",
+    "",
+    "[source]: /internal",
+    "[source]: javascript:alert(1)",
+  ].join("\n");
+
+  assert.deepEqual(
+    findExternalLinkPlacementIssues(invalidFirst).map(({ rule }) => rule),
+    ["external-link-invalid-placement"]
+  );
+  assert.deepEqual(findExternalLinkPlacementIssues(safeFirst), []);
 });

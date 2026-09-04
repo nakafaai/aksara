@@ -34,7 +34,7 @@ export function expressionExternalOffset(
   source: string,
   destinationAttribute: boolean
 ): number | undefined {
-  const offsets: number[] = [];
+  const offsets = destinationPropertyExternalOffsets(expression, source);
   for (const candidate of nestedStaticStringCandidates(expression)) {
     const match = externalMatch(candidate.text, destinationAttribute);
     if (!match) {
@@ -54,6 +54,39 @@ export function expressionExternalOffset(
     offsets.push(nestedJsxOffset);
   }
   return offsets.length > 0 ? Math.min(...offsets) : undefined;
+}
+
+/** Locates destinations stored under static keys inside JSX spread objects. */
+function destinationPropertyExternalOffsets(
+  node: EstreeNode,
+  source: string
+): number[] {
+  const offsets: number[] = [];
+  if (node.type === "Property") {
+    const name = staticFieldName(asEstreeNode(node.key));
+    const value = asEstreeNode(node.value);
+    assert.ok(value);
+    if (isDestinationAttribute(name)) {
+      for (const candidate of nestedStaticStringCandidates(value)) {
+        const match = externalMatch(candidate.text, true);
+        if (!match) {
+          continue;
+        }
+        const offset = sourceOffsetForStaticMatch(
+          candidate,
+          match.index,
+          match.value,
+          source
+        );
+        assert.ok(offset !== undefined);
+        offsets.push(offset);
+      }
+    }
+  }
+  for (const child of estreeChildren(node)) {
+    offsets.push(...destinationPropertyExternalOffsets(child, source));
+  }
+  return offsets;
 }
 
 /** Locates an external destination inside one string-valued JSX attribute. */

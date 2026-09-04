@@ -54,11 +54,13 @@ it("checks expression string props and fragments without duplicates", () => {
   ]);
 });
 
-it("checks learner copy in nested JSX attributes and static spreads", () => {
+it("checks learner copy in nested JSX, attributes, and static spreads", () => {
   const nested =
     '<Panel content={<Callout href="/safe" title="Sie können den Wert prüfen." />} />';
   const spread =
     '<Panel content={<Callout {...{ title: "Anda dapat mencoba ini." }} />} />';
+  const formattedChild =
+    "<Callout>Sie **können** nun beide Seiten vergleichen.</Callout>";
 
   assert.deepEqual(
     findLessonVoiceIssues("de", nested).map(({ column, rule }) => ({
@@ -83,6 +85,10 @@ it("checks learner copy in nested JSX attributes and static spreads", () => {
         rule: "indonesian-formal-learner-address",
       },
     ]
+  );
+  assert.deepEqual(
+    findLessonVoiceIssues("de", formattedChild).map(({ rule }) => rule),
+    ["german-formal-address"]
   );
 });
 

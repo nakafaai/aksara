@@ -5,7 +5,7 @@ import { metadataAddressRanges } from "#nakafa-content/mdx/metadata";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
 import { imageAltRange } from "#nakafa-content/mdx/surface";
 import { germanAntecedentState } from "#nakafa-content/voice/address";
-import { collectTextAddressIssues } from "#nakafa-content/voice/child";
+import { collectJsxChildAddressIssues } from "#nakafa-content/voice/child";
 import {
   collectAttributeIssues,
   collectParagraphIssues,
@@ -173,8 +173,7 @@ function collectNodeIssues(
   issues: LessonVoiceIssue[],
   state: ProseState,
   isProtected = false,
-  paragraphStart?: number,
-  insideJsx = false
+  paragraphStart?: number
 ): void {
   if (!isProtected && node.type === "blockquote") {
     collectBlockquoteIssues(locale, node, rules, source, issues);
@@ -200,16 +199,10 @@ function collectNodeIssues(
     return;
   }
   const protectedHere = isProtectedNode(node, isProtected);
-  const jsxHere =
-    insideJsx ||
-    node.type === "mdxJsxFlowElement" ||
-    node.type === "mdxJsxTextElement";
   if (!protectedHere) {
     resetAntecedentAtHeading(node, state);
     collectParagraphAddressIssues(locale, node, rules, source, issues, state);
-    if (insideJsx) {
-      collectTextAddressIssues(locale, node, rules, source, issues, state);
-    }
+    collectJsxChildAddressIssues(locale, node, rules, source, issues, state);
     collectParagraphIssues(locale, node, rules, source, issues, state);
     collectAttributeIssues(locale, node, rules, source, issues, state);
     collectRenderedExpressionIssues(locale, node, rules, source, issues, state);
@@ -223,8 +216,7 @@ function collectNodeIssues(
       issues,
       state,
       protectedHere,
-      node.type === "paragraph" ? node.position?.start?.offset : paragraphStart,
-      jsxHere
+      node.type === "paragraph" ? node.position?.start?.offset : paragraphStart
     );
   }
   if (!protectedHere && node.type === "paragraph") {
