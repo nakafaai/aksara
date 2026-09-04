@@ -32,9 +32,14 @@ export function isProtectedExampleAttribute(
 export function expressionExternalOffset(
   expression: EstreeNode,
   source: string,
-  destinationAttribute: boolean
+  destinationAttribute: boolean,
+  componentName?: string
 ): number | undefined {
-  const offsets = destinationPropertyExternalOffsets(expression, source);
+  const offsets = destinationPropertyExternalOffsets(
+    expression,
+    source,
+    componentName
+  );
   for (const candidate of nestedStaticStringCandidates(expression)) {
     const match = externalMatch(candidate.text, destinationAttribute);
     if (!match) {
@@ -59,14 +64,15 @@ export function expressionExternalOffset(
 /** Locates destinations stored under static keys inside JSX spread objects. */
 function destinationPropertyExternalOffsets(
   node: EstreeNode,
-  source: string
+  source: string,
+  componentName?: string
 ): number[] {
   const offsets: number[] = [];
   if (node.type === "Property") {
     const name = staticFieldName(asEstreeNode(node.key));
     const value = asEstreeNode(node.value);
     assert.ok(value);
-    if (isDestinationAttribute(name)) {
+    if (isDestinationAttribute(name, componentName)) {
       for (const candidate of nestedStaticStringCandidates(value)) {
         const match = externalMatch(candidate.text, true);
         if (!match) {
@@ -84,7 +90,9 @@ function destinationPropertyExternalOffsets(
     }
   }
   for (const child of estreeChildren(node)) {
-    offsets.push(...destinationPropertyExternalOffsets(child, source));
+    offsets.push(
+      ...destinationPropertyExternalOffsets(child, source, componentName)
+    );
   }
   return offsets;
 }
@@ -131,7 +139,7 @@ function nestedJsxAttributeOffset(
     const argument = asEstreeNode(attribute.argument);
     assert.ok(argument);
     return (
-      expressionExternalOffset(argument, source, false) ??
+      expressionExternalOffset(argument, source, false, componentName) ??
       (isFullyStaticValueExpression(argument) ? undefined : start)
     );
   }
@@ -141,7 +149,10 @@ function nestedJsxAttributeOffset(
   if (isProtectedExampleAttribute(componentName, attributeName)) {
     return;
   }
-  const destinationAttribute = isDestinationAttribute(attributeName);
+  const destinationAttribute = isDestinationAttribute(
+    attributeName,
+    componentName
+  );
   const value = asEstreeNode(attribute.value);
   if (!value) {
     return destinationAttribute ? start : undefined;
@@ -163,7 +174,8 @@ function nestedJsxAttributeOffset(
   const externalOffset = expressionExternalOffset(
     expression,
     source,
-    destinationAttribute
+    destinationAttribute,
+    componentName
   );
   if (externalOffset !== undefined) {
     return externalOffset;

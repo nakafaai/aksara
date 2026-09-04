@@ -46,19 +46,23 @@ function invalidDestinationOffset(
   if (attribute.name === undefined) {
     assert.ok(expression);
     return (
-      expressionExternalOffset(expression, source, false) ??
+      expressionExternalOffset(expression, source, false, componentName) ??
       (isFullyStaticValueExpression(expression) ? undefined : attributeStart)
     );
   }
   if (isProtectedExampleAttribute(componentName, attribute.name)) {
     return;
   }
-  const destinationAttribute = isDestinationAttribute(attribute.name);
+  const destinationAttribute = isDestinationAttribute(
+    attribute.name,
+    componentName
+  );
   if (expression) {
     const externalOffset = expressionExternalOffset(
       expression,
       source,
-      destinationAttribute
+      destinationAttribute,
+      componentName
     );
     if (externalOffset !== undefined) {
       return externalOffset;

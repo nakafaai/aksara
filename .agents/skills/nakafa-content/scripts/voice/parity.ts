@@ -131,13 +131,10 @@ function representationToken(node: MdxNode): RepresentationToken | undefined {
     };
   }
   if (isTableNode(node)) {
-    const columns = Math.max(
-      0,
-      ...node.children.map((row) => row.children.length)
-    );
+    const rowWidths = node.children.map((row) => row.children.length);
     return {
       line: node.position.start.line,
-      value: `table:${node.children.length}:${columns}`,
+      value: `table:${rowWidths.join(",")}`,
     };
   }
   if (isBlockNode(node)) {

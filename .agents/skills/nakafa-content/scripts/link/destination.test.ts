@@ -35,5 +35,7 @@ it("recognizes exact, case-insensitive, and suffixed destination fields", () => 
   assert.equal(isDestinationAttribute("formAction"), true);
   assert.equal(isDestinationAttribute("sourceURL"), true);
   assert.equal(isDestinationAttribute("sourceUri"), true);
+  assert.equal(isDestinationAttribute("data", "object"), true);
+  assert.equal(isDestinationAttribute("data", "Chart"), false);
   assert.equal(isDestinationAttribute("title"), false);
 });

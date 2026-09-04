@@ -15,6 +15,15 @@ const DESTINATION_ATTRIBUTES = new Set([
   "uri",
   "url",
 ]);
+const NATIVE_DESTINATION_ATTRIBUTES = new Map([
+  ["blockquote", new Set(["cite"])],
+  ["del", new Set(["cite"])],
+  ["img", new Set(["srcset"])],
+  ["ins", new Set(["cite"])],
+  ["object", new Set(["data"])],
+  ["q", new Set(["cite"])],
+  ["source", new Set(["srcset"])],
+]);
 const DESTINATION_ATTRIBUTE_SUFFIXES = ["uri", "url"] as const;
 
 export interface ExternalMatch {
@@ -70,13 +79,19 @@ export function externalMatch(
 }
 
 /** Recognizes exact and domain-specific JSX destination field names. */
-export function isDestinationAttribute(name: string | undefined): boolean {
+export function isDestinationAttribute(
+  name: string | undefined,
+  elementName?: string
+): boolean {
   if (!name) {
     return false;
   }
   const normalized = name.toLowerCase();
   return (
     DESTINATION_ATTRIBUTES.has(normalized) ||
+    NATIVE_DESTINATION_ATTRIBUTES.get(elementName?.toLowerCase() ?? "")?.has(
+      normalized
+    ) === true ||
     DESTINATION_ATTRIBUTE_SUFFIXES.some((suffix) => normalized.endsWith(suffix))
   );
 }

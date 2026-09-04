@@ -58,6 +58,24 @@ it("checks one formal-address frame across formatted link-label children", () =>
   ]);
 });
 
+it("checks link labels in headings and GFM table cells", () => {
+  const heading = "## [Sie können den Wert prüfen](/de/ergebnis)";
+  const table = [
+    "| Hinweis | Nächster Schritt |",
+    "| --- | --- |",
+    "| Ergebnis | [Sie können den Wert prüfen](/de/ergebnis) |",
+  ].join("\n");
+
+  assert.deepEqual(
+    findLessonVoiceIssues("de", heading).map(({ rule }) => rule),
+    ["heading-symbol", "german-formal-address"]
+  );
+  assert.deepEqual(
+    findLessonVoiceIssues("de", table).map(({ rule }) => rule),
+    ["german-formal-address"]
+  );
+});
+
 it("checks emphasized headings and explicitly labelled table copy", () => {
   const source = [
     "**Sie** können beide Seiten vergleichen.",
@@ -89,6 +107,7 @@ it("checks Markdown image alt copy but protects image destinations", () => {
   const formal = "![Panduan Anda][gambar-anda]\n\n[gambar-anda]: image.png";
   const german = "![Sie können den Wert ablesen](/Sie-koennen.png)";
   const escaped = "![Kalian \\] [membandingkan] c](image.png)";
+  const encoded = "![&#65;nda dapat mencoba ini](image.png)";
 
   assert.deepEqual(findLessonVoiceIssues("id", plural), [
     {
@@ -120,6 +139,14 @@ it("checks Markdown image alt copy but protects image destinations", () => {
       excerpt: escaped,
       line: 1,
       rule: "indonesian-plural-learner-address",
+    },
+  ]);
+  assert.deepEqual(findLessonVoiceIssues("id", encoded), [
+    {
+      column: encoded.indexOf("&#65;") + 1,
+      excerpt: encoded,
+      line: 1,
+      rule: "indonesian-formal-learner-address",
     },
   ]);
 });

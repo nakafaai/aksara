@@ -160,6 +160,9 @@ it("keeps external destinations limited to HTTPS Markdown links", () => {
     {
       source: "<button formAction>Submit</button>",
     },
+    { source: '<img srcSet="data:image/svg+xml,unsafe 1x" />' },
+    { source: '<blockquote cite="javascript:alert(1)">Quote</blockquote>' },
+    { source: '<object data="data:text/html,unsafe" />' },
     {
       source:
         '<Resource data={{ targets: [, "https://data.example.org/report"] }} />',

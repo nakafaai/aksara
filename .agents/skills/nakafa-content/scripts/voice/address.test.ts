@@ -29,13 +29,13 @@ it("preserves German anaphoric Sie and accepts du address", () => {
     "Die erste Antwort heißt Minderung. Sie senkt Treibhausgasemissionen.",
     "Ordne die Maßnahme ein: Sie begrenzt Treibhausgase.",
     "Matrizen beschreiben lineare Abbildungen. Ihre Einträge hängen von der Basis ab.",
-    "Die Matrizen stehen in der nächsten Zeile. Sie können anschließend verglichen werden.",
+    "Die **Matrizen** stehen in der nächsten Zeile.\n\nSie können anschließend verglichen werden.",
     "Die Gleichung steht oberhalb.\n\nIhre Lösung ist bereits angegeben.",
     "Die Lernenden erhalten zwei Werkzeuge. Ihnen stehen zwei Methoden zur Verfügung.",
     "Algorithmen analysieren Daten. Sie können erkennen, ob ein Muster vorliegt.",
     "Die Gleichung hat eine eindeutige Lösung. [Ihre Lösung](/de/loesung) steht in der Tabelle.",
     "Die Programme haben eine gemeinsame Fähigkeit: Sie können Muster erkennen.",
-    "Die Werkzeuge haben einen Vorteil: Sie können beide Seiten vergleichen.",
+    "Die [Werkzeuge](/de/werkzeuge) stehen bereit.\n\nSie können beide Seiten vergleichen.",
     "Bearbeite jede Aufgabe selbst, bevor du die Lösung liest.",
   ].join("\n");
 

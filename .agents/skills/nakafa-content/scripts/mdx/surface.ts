@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 
 import type { MdxNode, SourceRange } from "#nakafa-content/mdx/parse";
+import { renderedSourceRange } from "#nakafa-content/mdx/rendered";
 
 /** Locates accessible alt copy while leaving a Markdown image URL protected. */
 export function imageAltRange(node: MdxNode, source: string): SourceRange {
@@ -34,8 +35,10 @@ export function imageAltRange(node: MdxNode, source: string): SourceRange {
     }
   }
   assert.notEqual(altEnd, -1);
-  return {
+  const range = {
     end: { offset: start + altEnd },
     start: { offset: start + altStart },
   };
+  assert.ok(typeof node.alt === "string");
+  return renderedSourceRange(range, node.alt, source);
 }

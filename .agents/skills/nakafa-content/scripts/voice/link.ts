@@ -43,10 +43,11 @@ export function collectLinkLabelIssues(
   state: ProseState,
   paragraphStart: number | undefined
 ): void {
-  assert.ok(paragraphStart !== undefined);
+  const contextStart = paragraphStart ?? node.position?.start?.offset;
+  assert.ok(contextStart !== undefined);
   const allowUnanchoredAddress = allowsUnanchoredAddress(
     node,
-    paragraphStart,
+    contextStart,
     source
   );
   const range = renderedNodeRange(node, source);

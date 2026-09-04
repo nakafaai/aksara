@@ -149,17 +149,20 @@ function collectParagraphAddressIssues(
   );
 }
 
+/** Reads parser-decoded prose across ordinary Markdown formatting. */
+function paragraphText(node: MdxNode): string {
+  if (node.type === "text" && typeof node.value === "string") {
+    return node.value;
+  }
+  return (node.children ?? []).map(paragraphText).join("");
+}
+
 /** Records the nearest prose antecedent while owned components stay neutral. */
 function updateAntecedentAfterParagraph(
   node: MdxNode,
-  source: string,
   state: ProseState
 ): void {
-  const start = node.position?.start?.offset;
-  const end = node.position?.end?.offset;
-  assert.ok(start !== undefined);
-  assert.ok(end !== undefined);
-  const antecedent = germanAntecedentState(source.slice(start, end));
+  const antecedent = germanAntecedentState(paragraphText(node));
   state.germanPersonalAntecedent = antecedent.personal;
   state.germanPossessiveAntecedent = antecedent.possessive;
 }
@@ -220,7 +223,7 @@ function collectNodeIssues(
     );
   }
   if (!protectedHere && node.type === "paragraph") {
-    updateAntecedentAfterParagraph(node, source, state);
+    updateAntecedentAfterParagraph(node, state);
   }
 }
 
