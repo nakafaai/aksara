@@ -211,6 +211,12 @@ export function renderedNodeRange(
       }
       return;
     }
+    if (current.type === "break") {
+      const start = current.position?.start?.offset;
+      assert.ok(start !== undefined);
+      parts.push({ offsets: [start], text: " " });
+      return;
+    }
     if (current.data?.altChildren) {
       for (const child of current.data.altChildren) {
         visit(child);

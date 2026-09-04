@@ -249,3 +249,22 @@ it("maps formatted image alt copy through native Markdown source positions", () 
   );
   assert.deepEqual(findLessonVoiceIssues("id", "![](image.png)"), []);
 });
+
+it("preserves word boundaries across image alt hard breaks", () => {
+  const samples = [
+    "![Sie  \nkönnen den Wert prüfen](image.png)",
+    "![Sie\\\nkönnen den Wert prüfen](image.png)",
+    "![Sie  \r\nkönnen den Wert prüfen](image.png)",
+  ];
+
+  for (const source of samples) {
+    assert.deepEqual(findLessonVoiceIssues("de", source), [
+      {
+        column: 3,
+        excerpt: source.split("\n")[0]?.trim(),
+        line: 1,
+        rule: "german-formal-address",
+      },
+    ]);
+  }
+});
