@@ -133,6 +133,18 @@ function collectExpressionRanges(
     );
     return;
   }
+  if (node.type === "SequenceExpression") {
+    assert.ok(Array.isArray(node.expressions));
+    collectExpressionValues(
+      node.expressions.at(-1),
+      ranges,
+      source,
+      include,
+      fieldName,
+      rootFieldName
+    );
+    return;
+  }
   for (const key of RENDERED_KEYS_BY_TYPE[node.type] ?? []) {
     collectExpressionValues(
       node[key],

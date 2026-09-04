@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import type { PhrasingContent } from "mdast";
 
 import type {
   MdxAttribute,
@@ -184,19 +185,22 @@ export function renderedNodeRange(
   const parts: RenderedPart[] = [];
 
   /** Collects rendered text leaves in authored order. */
-  function visit(current: MdxNode): void {
+  function visit(current: MdxNode | PhrasingContent): void {
     if (current.type === "text" && typeof current.value === "string") {
-      assert.ok(current.position);
+      const start = current.position?.start?.offset;
+      const end = current.position?.end?.offset;
+      assert.ok(start !== undefined);
+      assert.ok(end !== undefined);
       const range = renderedSourceRange(
-        current.position,
+        { end: { offset: end }, start: { offset: start } },
         current.value,
-        source
+        source,
+        false,
+        true
       );
-      const start = range.start?.offset;
       if (range.rendered) {
         parts.push(range.rendered);
       } else {
-        assert.ok(start !== undefined);
         parts.push({
           offsets: Array.from(
             { length: current.value.length },
@@ -207,8 +211,17 @@ export function renderedNodeRange(
       }
       return;
     }
-    for (const child of current.children ?? []) {
-      visit(child);
+    if (current.data?.altChildren) {
+      for (const child of current.data.altChildren) {
+        visit(child);
+      }
+      return;
+    }
+    if ("children" in current) {
+      assert.ok(current.children);
+      for (const child of current.children) {
+        visit(child);
+      }
     }
   }
 

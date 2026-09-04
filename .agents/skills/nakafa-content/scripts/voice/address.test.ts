@@ -71,16 +71,8 @@ it("rejects unanchored formal German address without a local antecedent", () => 
 });
 
 it("checks possessive address against the adjacent antecedent", () => {
-  const direct = [
-    "Der Graph steht oben.",
-    "",
-    "Ihr Ergebnis lautet zwölf.",
-  ].join("\n");
-  const anaphoric = [
-    "Die Gleichung steht oben.",
-    "",
-    "Ihr Ergebnis lautet zwölf.",
-  ].join("\n");
+  const direct = "Der Graph steht oben.\n\nIhr Ergebnis lautet zwölf.";
+  const anaphoric = "Die Gleichung steht oben.\n\nIhr Ergebnis lautet zwölf.";
 
   assert.deepEqual(findLessonVoiceIssues("de", direct), [
     {
@@ -129,20 +121,23 @@ it("preserves clear plural anaphora across owned math components", () => {
 });
 
 it("does not borrow an antecedent from an earlier paragraph", () => {
-  const source = [
+  const prefixes = [
     "Die Gleichung steht in der ersten Zeile.",
-    "",
-    "Sie können nun beide Seiten vergleichen.",
-  ].join("\n");
+    "Gib `Die Matrizen stehen bereit` ein.",
+    "Gib <CodeBlock>Die Matrizen stehen bereit</CodeBlock> ein.",
+  ];
 
-  assert.deepEqual(findLessonVoiceIssues("de", source), [
-    {
-      column: 1,
-      excerpt: "Sie können nun beide Seiten vergleichen.",
-      line: 3,
-      rule: "german-formal-address",
-    },
-  ]);
+  for (const prefix of prefixes) {
+    const source = `${prefix}\n\nSie können nun beide Seiten vergleichen.`;
+    assert.deepEqual(findLessonVoiceIssues("de", source), [
+      {
+        column: 1,
+        excerpt: "Sie können nun beide Seiten vergleichen.",
+        line: 3,
+        rule: "german-formal-address",
+      },
+    ]);
+  }
 });
 
 it("keeps soft-wrapped anaphora inside one paragraph", () => {

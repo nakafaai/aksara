@@ -57,6 +57,28 @@ it("checks native placeholder and accessible-label copy", () => {
   assert.deepEqual(findLessonVoiceIssues("id", unownedSpread), []);
 });
 
+it("checks only the rendered final value of a sequence expression", () => {
+  const rendered = [
+    '<input {...(0, { placeholder: "Anda dapat mencoba ini." })} />',
+    '<input placeholder={("Kamu", "Anda dapat mencoba ini.")} />',
+    '<Panel content={<input {...(0, { placeholder: "Anda dapat mencoba ini." })} />} />',
+  ];
+  const discarded =
+    '<input {...({ placeholder: "Anda" }, { placeholder: "Kamu" })} />';
+
+  for (const source of rendered) {
+    assert.deepEqual(findLessonVoiceIssues("id", source), [
+      {
+        column: source.indexOf("Anda") + 1,
+        excerpt: source,
+        line: 1,
+        rule: "indonesian-formal-learner-address",
+      },
+    ]);
+  }
+  assert.deepEqual(findLessonVoiceIssues("id", discarded), []);
+});
+
 it("checks expression string props and fragments without duplicates", () => {
   const indonesianLine =
     '<Callout description={"Anda dapat mencoba contoh ini."} />';

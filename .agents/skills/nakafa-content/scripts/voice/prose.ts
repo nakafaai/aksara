@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { isProtectedProseComponent } from "#nakafa-content/mdx/fields";
 import { metadataAddressRanges } from "#nakafa-content/mdx/metadata";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
-import { imageAltRange } from "#nakafa-content/mdx/surface";
+import { renderedNodeRange } from "#nakafa-content/mdx/rendered";
 import { germanAntecedentState } from "#nakafa-content/voice/address";
 import { collectJsxChildAddressIssues } from "#nakafa-content/voice/child";
 import {
@@ -39,6 +39,7 @@ const PROTECTED_NODE_TYPES = new Set([
 const LINK_NODE_TYPES = new Set(["link", "linkReference"]);
 const LINK_CONTEXT_NODE_TYPES = new Set(["heading", "paragraph", "tableCell"]);
 const IMAGE_NODE_TYPES = new Set(["image", "imageReference"]);
+const INLINE_ANTECEDENT_PATTERN = /^[\p{L}\p{N}_-]+$/u;
 
 /** Adds address-only findings from learner-visible Markdown image alt copy. */
 function collectImageAltIssues(
@@ -49,7 +50,10 @@ function collectImageAltIssues(
   issues: LessonVoiceIssue[],
   state: ProseState
 ): void {
-  const range = imageAltRange(node, source);
+  const range = renderedNodeRange(node, source);
+  if (!range) {
+    return;
+  }
   const selectedAddressRules = addressRules(rules);
   issues.push(
     ...matchRangeRules(
@@ -150,15 +154,16 @@ function collectParagraphAddressIssues(
   );
 }
 
-/** Reads parser-decoded prose across ordinary Markdown formatting. */
+/** Reads prose and inline noun tokens without borrowing protected examples. */
 function paragraphText(node: MdxNode): string {
-  if (
-    (node.type === "text" || node.type === "inlineCode") &&
-    typeof node.value === "string"
-  ) {
+  if (node.type === "inlineCode") {
+    assert.ok(typeof node.value === "string");
+    return INLINE_ANTECEDENT_PATTERN.test(node.value) ? node.value : " ";
+  }
+  if (node.type === "text" && typeof node.value === "string") {
     return node.value;
   }
-  if (node.type === "break") {
+  if (node.type === "break" || isProtectedProseComponent(node.name)) {
     return " ";
   }
   return (node.children ?? []).map(paragraphText).join("");

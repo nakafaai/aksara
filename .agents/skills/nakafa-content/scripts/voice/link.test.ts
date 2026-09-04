@@ -200,3 +200,52 @@ it("checks Markdown image alt copy but protects image destinations", () => {
     ["indonesian-formal-learner-address"]
   );
 });
+
+it("maps formatted image alt copy through native Markdown source positions", () => {
+  const samples = [
+    { column: 5, line: 1, source: "![**Anda** dapat mencoba ini](image.png)" },
+    {
+      column: 6,
+      line: 1,
+      source: "[![**Anda** dapat mencoba ini](image.png)](/lesson)",
+    },
+    {
+      column: 5,
+      line: 1,
+      source: "![__&#65;nda__ dapat mencoba ini](image.png)",
+    },
+    { column: 6, line: 1, source: "![\\* Anda dapat mencoba ini](image.png)" },
+    {
+      column: 1,
+      line: 2,
+      source: "![Panduan:  \nAnda dapat mencoba ini](image.png)",
+    },
+    {
+      column: 1,
+      line: 2,
+      source: "![Panduan:\\\nAnda dapat mencoba ini](image.png)",
+    },
+    {
+      column: 5,
+      line: 2,
+      source: "> See ![Panduan\r\n> **&#65;nda** dapat mencoba ini](image.png)",
+    },
+  ];
+
+  for (const { source, line, column } of samples) {
+    assert.deepEqual(findLessonVoiceIssues("id", source), [
+      {
+        column,
+        excerpt: source.split("\n")[line - 1]?.trim(),
+        line,
+        rule: "indonesian-formal-learner-address",
+      },
+    ]);
+  }
+  assert.deepEqual(findLessonVoiceIssues("id", "![`Anda`](image.png)"), []);
+  assert.deepEqual(
+    findLessonVoiceIssues("id", "[![`Anda`](image.png)](/lesson)"),
+    []
+  );
+  assert.deepEqual(findLessonVoiceIssues("id", "![](image.png)"), []);
+});
