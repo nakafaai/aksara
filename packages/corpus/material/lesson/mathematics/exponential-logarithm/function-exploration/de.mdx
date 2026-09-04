@@ -1,38 +1,38 @@
 export const metadata = {
   title: "Modelle exponentieller Funktionen",
   description:
-    "Ein idealisierter Übertragungsbaum zeigt den Unterschied zwischen neuen Fällen pro Phase und der Gesamtzahl. Der Vergleich umfasst exponentielle, lineare und logarithmische Funktionen sowie die Grenzen des Modells.",
+    "Eine einfache Geschichte zur Ansteckung zeigt den Unterschied zwischen einer einzelnen Phase und der Summe aller Phasen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-04",
   subject: "Potenzen und Logarithmen",
 };
 
-## Ein idealisierter Übertragungsbaum
+## Eine einfache Geschichte zur Ansteckung
 
-Ein Ausgangsfall soll genau <InlineMath math="3" /> neue Fälle verursachen. Jeder neue Fall verursacht in der nächsten Phase wiederum genau <InlineMath math="3" /> weitere Fälle. Kontakte überschneiden sich nicht, niemand erholt sich während des Modells und der Faktor verändert sich nicht.
+Stell dir vor, eine infizierte Person steckt genau <InlineMath math="3" /> weitere Menschen an. In der nächsten Phase steckt jede dieser drei Personen wieder drei Menschen an. Damit die Rechnung übersichtlich bleibt, nehmen wir an: Niemand wird von zwei Personen gleichzeitig angesteckt, noch niemand ist genesen und der Faktor drei bleibt immer gleich.
 
-Unter diesen Annahmen ist die Zahl der neuen Fälle in jeder Phase dreimal so groß wie in der vorherigen Phase. Das Modell dient nur zur Untersuchung von Exponentialfunktionen, da bei realen Ausbrüchen Kontakte überlappen, Menschen genesen und sich Übertragungsraten ändern.
+So entsteht ein leicht erkennbares Muster: In jeder Phase stecken sich dreimal so viele Menschen neu an wie in der Phase davor. Bei einem echten Ausbruch ist das natürlich anders. Kontakte überschneiden sich, Menschen genesen und die Ansteckung verändert sich mit der Zeit. Unser Beispiel soll exponentielles Wachstum erklären, keinen Ausbruch vorhersagen.
 
-## Neue Fälle in jeder Phase
+## Neu infizierte Personen in jeder Phase
 
-Die folgenden Werte zählen **neue Fälle in der jeweiligen Phase**. Für die kumulierte Gesamtzahl addierst du alle Phasen:
+Jede Zahl zeigt, wie viele Menschen sich **in genau dieser Phase** neu anstecken. Sie ist noch nicht die Summe aller Phasen:
 
-- **Phase** <InlineMath math="1" />: <InlineMath math="3=3^1" /> neue Fälle
-- **Phase** <InlineMath math="2" />: <InlineMath math="9=3^2" /> neue Fälle
-- **Phase** <InlineMath math="3" />: <InlineMath math="27=3^3" /> neue Fälle
-- **Phase** <InlineMath math="4" />: <InlineMath math="81=3^4" /> neue Fälle
-- **Phase** <InlineMath math="5" />: <InlineMath math="243=3^5" /> neue Fälle
+- **Phase** <InlineMath math="1" />: <InlineMath math="3=3^1" /> neu infizierte Personen
+- **Phase** <InlineMath math="2" />: <InlineMath math="9=3^2" /> neu infizierte Personen
+- **Phase** <InlineMath math="3" />: <InlineMath math="27=3^3" /> neu infizierte Personen
+- **Phase** <InlineMath math="4" />: <InlineMath math="81=3^4" /> neu infizierte Personen
+- **Phase** <InlineMath math="5" />: <InlineMath math="243=3^5" /> neu infizierte Personen
 
-Bezeichnet <InlineMath math="N(x)" /> die Zahl der neuen Fälle in Phase <InlineMath math="x" />, dann gilt:
+<InlineMath math="N(x)" /> bezeichnet die Zahl der Menschen, die sich in Phase <InlineMath math="x" /> neu anstecken:
 
 <BlockMath math="N(x)=3^x" />
 
-Die kumulierte Zahl der neuen Fälle von Phase eins bis Phase <InlineMath math="x" /> ist eine geometrische Summe:
+Addieren wir dagegen alle neuen Infektionen von Phase eins bis Phase <InlineMath math="x" />, erhalten wir diese geometrische Summe:
 
 <BlockMath math="S(x)=3+3^2+\cdots+3^x=\frac{3^{x+1}-3}{2}" />
 
-Die Trennung beider Größen verhindert einen häufigen Modellierungsfehler: <InlineMath math="N(x)" /> beschreibt eine einzelne Phase, <InlineMath math="S(x)" /> addiert alle abgeschlossenen Phasen.
+Die beiden Formeln beantworten also verschiedene Fragen: <InlineMath math="N(x)" /> beschreibt eine einzelne Phase, <InlineMath math="S(x)" /> addiert alle abgeschlossenen Phasen.
 
 ## Drei Funktionstypen vergleichen
 
@@ -46,25 +46,25 @@ Nur die Exponentialkurve entspricht der Regel „in jeder Phase mit drei multipl
 
 <FunctionExplorationVirusChart
   labels={{
-    title: "Idealisiertes Übertragungsmodell",
-    description: "Neue Fälle pro Phase unter einer festen Verzweigungsregel.",
+    title: "Ein einfaches Ansteckungsmuster",
+    description: "Neu infizierte Personen pro Phase bei einem festen Faktor von drei.",
     exponential: "Exponentiell",
     linear: "Linear",
     logarithmic: "Logarithmisch",
-    yLabel: "Neue Fälle in der Phase",
+    yLabel: "Neu infizierte Personen",
     caption:
-      "Die Exponentialkurve verwendet pro Phase den festen Wachstumsfaktor drei. Reale Übertragungen folgen diesem Muster nicht immer.",
+      "Die Exponentialkurve verdreifacht sich von Phase zu Phase. Ein echter Ausbruch folgt diesem sauberen Muster nicht dauerhaft.",
     phase: "Phase",
   }}
 />
 
 ## Ausführliche Antworten
 
-1. Wie viele neue Fälle erzeugt das Modell in Phase <InlineMath math="20" />?
+1. Wie viele Menschen stecken sich in unserem Beispiel in Phase <InlineMath math="20" /> neu an?
 
    <BlockMath math="N(20)=3^{20}=3{.}486{.}784{.}401" />
 
-2. Wie viele neue Fälle haben sich von Phase <InlineMath math="1" /> bis Phase <InlineMath math="20" /> angesammelt?
+2. Wie viele neue Infektionen kommen zusammen, wenn wir die Phasen <InlineMath math="1" /> bis <InlineMath math="20" /> addieren?
 
    <BlockMath math="S(20)=\frac{3^{21}-3}{2}=5{.}230{.}176{.}600" />
 
@@ -72,7 +72,9 @@ Nur die Exponentialkurve entspricht der Regel „in jeder Phase mit drei multipl
 
    Das Exponentialmodell multipliziert die vorherige Phase mit <InlineMath math="3" />. Ein lineares Modell würde in jeder Phase denselben Betrag addieren. Die Multiplikation mit einem festen Faktor und die Addition eines festen Betrags sind unterschiedliche Prozesse.
 
-In Phase <InlineMath math="20" /> liefert das Modell <InlineMath math="3{.}486{.}784{.}401" /> neue Fälle und <InlineMath math="5{.}230{.}176{.}600" /> kumulierte Fälle. Das Modell nimmt an, dass jeder Fall drei neue Fälle verursacht, niemand von zwei Quellen infiziert wird und niemand genesen ist. Diese Werte gelten nur innerhalb des vereinfachten Modells und eignen sich nicht als Prognose realer Fallzahlen.
+Allein in Phase <InlineMath math="20" /> stecken sich in unserem Beispiel <InlineMath math="3{.}486{.}784{.}401" /> Menschen neu an. Addieren wir die Phasen <InlineMath math="1" /> bis <InlineMath math="20" />, kommen wir auf <InlineMath math="5{.}230{.}176{.}600" /> neue Infektionen. Die eine Person, die schon vor der ersten Phase infiziert war, ist in dieser Summe noch nicht enthalten.
+
+Die riesigen Zahlen entstehen durch unsere einfachen Annahmen: Jede neu infizierte Person steckt genau drei weitere Menschen an, niemand wird doppelt gezählt und noch niemand ist genesen. So lässt sich exponentielles Wachstum gut verstehen. Wie viele Menschen sich bei einem echten Ausbruch anstecken, kann dieses Beispiel jedoch nicht vorhersagen.
 
 ## Eigenschaften von Exponentialfunktionen
 
