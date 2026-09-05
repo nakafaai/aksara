@@ -49,9 +49,10 @@ not replace the full lesson context.
 - The [upstream humanizer-de project](https://github.com/marmbiz/humanizer-de)
   documents its evidence, pattern categories, register profiles, and
   false-positive boundaries.
-- Apply both complete global `humanizer-de` skill entry points and their routed
-  references. Keep the selected register consistent and judge every linter
-  candidate in the full lesson context.
+- Read the canonical global `humanizer-de/SKILL.md` completely and follow its
+  routed references. The nested `skills/humanizer-de/SKILL.md` is a plugin
+  router to that same workflow, not a second review. Keep the selected register
+  consistent and judge every linter candidate in the full lesson context.
 
 ## Cross-locale acceptance check
 

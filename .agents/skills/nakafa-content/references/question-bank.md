@@ -32,28 +32,22 @@ its response options merely because the application locale changes.
 - Do not mention answer-option letters unless the source format itself requires
   them.
 - Keep quoted and assessed passages byte-preserved when policy requires it.
-- Use math components consistently with lesson MDX.
+- Use math components consistently with [MDX quality](mdx-quality.md).
+- Every question must contain the information needed to answer it. Never depend
+  on an unstated intermediate value from a preceding question.
+- Every question and locale sibling with the same `stimulusKey` must present
+  the exact same stimulus. Question-specific instructions may differ, but may
+  not shorten, enrich, or otherwise change the shared evidence.
 
 ## Answer rules
 
-- Read `worked-solutions.md` before writing or revising any answer explanation.
-- Treat the answer as a novice-safe worked example shown after the learner has
-  attempted the problem. It is not a shortened lesson and not an answer key
-  with extra words.
-- Explain why the method applies, show how each meaningful step follows, and
-  connect the result back to what the question asks.
-- Preserve every method change, substitution, theorem condition, probability
-  case, domain restriction, non-obvious transformation, unit, and useful
-  check. Group continuous algebra into one aligned display without deleting
-  steps.
-- Start explanation sections at `####`.
-- Use descriptive headings only for real subgoals, not for every arithmetic
-  action.
-- Restate the context needed to understand the answer.
-- State the final answer by its content, not by an option letter.
-- Keep notation consistent with the prompt.
-- Do not remove reasoning merely to reduce line count. Remove only duplicated
-  conclusions, generic headings, filler transitions, and presentation noise.
+Read [worked solutions](worked-solutions.md) before editing any explanation.
+It owns the complete novice-safe reasoning contract, including method choice,
+subgoals, substitutions, conditions, cases, transformations, units, checks,
+and a conclusion stated by content rather than an option letter. Keep notation
+consistent with the prompt. Use the [MDX heading rules](mdx-quality.md#headings):
+answer sections start at `####` and name real subgoals. Never delete reasoning
+to reduce line count.
 
 ## Response items
 
@@ -69,12 +63,16 @@ its response options merely because the application locale changes.
   `category`. Array position is the authoring order. Publication derives stable
   option, statement, and category keys once, so authors must not duplicate those
   runtime identities.
-- A response label is one non-empty rich Markdown string. Plain prose needs no
-  wrapper. Combine prose and inline math with `$...$` in one sentence, and use
-  `$$...$$` when the expression needs its own block. Markdown emphasis, lists,
-  tables, and other supported syntax use the same string contract. Never add a
-  plain-versus-rich mode, text-versus-math union, fragment array, or
-  renderer-specific AST. Escape LaTeX backslashes in TypeScript strings.
+- A response label is one non-empty rich Markdown string rendered by Nakafa's
+  canonical `MarkdownContent` surface. Plain prose needs no wrapper. Use
+  no-space `$$...$$` for inline math, such as `The result is $$x=4$$.`, and a
+  fenced `math` block for display math. Do not author single-dollar math or
+  assume a same-line double-dollar span is a display. Escape LaTeX backslashes
+  and newlines in TypeScript strings.
+- Markdown emphasis, lists, tables, and other supported syntax use that same
+  string. Never add a plain-versus-rich mode, text-versus-math union, fragment
+  array, renderer-specific AST, or second response-label renderer. MDX
+  components belong in the prompt or answer, not in these labels.
 - A `single-choice` response has at least two options and exactly one correct
   option. A `multiple-choice` response has at least two correct options and at
   least one distractor. A `category` response has at least two categories and
@@ -87,3 +85,25 @@ its response options merely because the application locale changes.
 - When an official blueprint applies, record `cognitiveLevel`, `contentDomain`,
   and `topic` on the item. Use one `stimulusKey` for a contiguous grouped
   stimulus and preserve it across every localized placement.
+
+## Assessment review
+
+- Match the source-owned blueprint and current official framework. Benchmark
+  new try-out sets against official examples and any authorized reference
+  corpus. Preserve a deliberate cognitive-level distribution.
+- Build difficulty from linked decisions, constraints, interpretation, and
+  plausible distractors. Use a small number of meaningful dependent steps.
+  Application or reasoning must require more than direct formula recall; a
+  reasoning item cannot reduce to substitution. Larger numbers, obscure
+  wording, oversized arithmetic, or gratuitous data do not establish a harder
+  cognitive task.
+- A graph, chart, or 3D model must support a real inference. Trace the complete
+  path from stimulus to answer; visual polish does not establish reasoning.
+- Independently solve every new question, verify each distractor, and confirm
+  that exactly the intended responses are correct before publication. Compare
+  sibling sets for substantive uniqueness. Flag a template whose only variation
+  is changed numbers or names.
+- Across each active set, section, locale, and option-count cohort, balance
+  correct positions so frequencies differ by at most one. Keep their question
+  order unpredictable and preserve distractor meaning across locales. Never
+  move only the `isCorrect` marker to manufacture balance.

@@ -15,13 +15,6 @@
 - Keep provenance, originality, evidence URLs, and publication status in the
   source, readiness, and publisher contracts. Do not insert learner-facing
   notices such as "original practice text" into a question or answer.
-- Every locale sibling that shares a `stimulusKey` must present the exact same
-  stimulus to every question in that group. Question-specific instructions may
-  differ, but they must not silently change, shorten, or enrich the shared
-  evidence.
-- A scored question must contain all information needed to answer it. Do not
-  require a learner to remember or solve a preceding question merely to obtain
-  an unstated intermediate value.
 
 ## Headings
 
@@ -30,26 +23,16 @@
 - Answer explanation MDX is rendered beneath an app-owned `###` heading, so its
   sections start at `####` and may use `#####` for real nested analysis.
 - Leave one blank line after headings.
-- Use one short phrase written with ordinary words. Keep decorative
-  punctuation, formulas, code tokens, operators, emojis, option letters, and
-  decorative numbers out of headings. Move exact notation, aliases, and full
-  questions into the first sentence below the heading. A hyphen required by
-  standard word formation is allowed, such as the Indonesian reduplication in
-  `rata-rata` and `jari-jari`. Do not delete that hyphen or replace a familiar
-  word with a stiffer synonym merely to make the checker pass.
-- Do not create a learner-facing citation-only section with a heading such as
-  `Source`, `Sources`, `Reference`, `References`, `Sumber`, `Referensi`,
-  `Quelle`, or `Quellen`, including localized bibliography variants. Keep
-  evidence URLs in source, readiness, and publisher contracts. A substantive
-  concept heading such as `Energy Sources` remains valid when it teaches the
-  concept instead of listing citations.
-- Keep lessons self-contained with Nakafa-owned prose and components. Reject
-  claim citations, standalone source chips, optional further reading,
-  competitor learning-platform links, and resources that duplicate what the
-  lesson already teaches. Exact official documentation, primary data, a
-  standard, or a reference page may remain when the learner has a concrete
-  reason to inspect it. Generic instructions to open or use a link do not prove
-  necessity.
+- Page titles and body headings use one short phrase containing letters and
+  ordinary spaces. Put formulas, code tokens, aliases, digits, operators,
+  punctuation, emojis, and full questions in the first sentence below instead.
+  A hyphen required by standard word formation remains valid, such as `rata-rata`
+  or `jari-jari`. Never delete that hyphen, choose a stiffer synonym, or strip
+  punctuation from a sentence to leave an ungrammatical word pile.
+- A heading must teach a concept. Citation-only sections such as `Source`,
+  `References`, `Sumber`, `Referensi`, `Quelle`, `Quellen`, and localized
+  bibliography variants are forbidden. A substantive `Energy Sources` section
+  remains valid. Preserve its evidence according to the link policy below.
 
 ## Learner facing punctuation
 
@@ -69,29 +52,45 @@
 
 ## Links
 
-- Nakafa renders external Markdown links with the same ordinary underlined-link
-  treatment as internal links. The only interaction difference is that an
-  external destination opens in a new tab. Never render a source chip, badge,
-  card, preview, embed, or separate evidence style.
-- Learner-facing lessons must remain self-contained. Use an external link only
-  for exact official documentation, a standard, primary data or research, or
-  first-party evidence for an explicitly attributed claim. Never link a
-  competitor platform or an explanation, visual, example, or exercise that
-  Nakafa should provide itself.
-- Put a descriptive linked source name or phrase beside the exact claim it
-  supports. Preserve the natural teaching sentence and never rewrite a good
-  explanation merely to fit a citation. Do not use `tautan ini`,
-  `this source link`, a bare generic label, or a sentence about opening the
-  source.
-- Internal links beginning with `/` use the same ordinary underlined-link
-  treatment and remain in the current tab. Give them a descriptive destination
-  label that fits the sentence.
-- Read the destination and the surrounding paragraph before editing a label.
-  Do not impose a global character limit, hostname-to-label map, or growing
-  lesson, domain, or URL allowlist. A longer official publication name may be
-  necessary, and one domain may host several distinct resources.
+- Keep lessons self-contained with Nakafa-owned explanations, examples,
+  visuals, data, and interactions. External evidence can support a claim but
+  cannot supply a teaching step the lesson omits.
+- A learner-visible external resource must be exact official documentation, a
+  standard, primary data or research, or first-party evidence for an explicitly
+  attributed claim. Read the destination and paragraph to establish why that
+  exact resource is needed. Reject competitor learning platforms, secondary
+  explainers, redundant resources, optional further reading, and link dumps.
+- Put a descriptive linked source name or phrase beside the claim it supports.
+  Preserve the natural teaching sentence. Do not use `tautan ini`, `this source
+  link`, a generic label, or instructions about opening the link. A longer
+  official publication name may be necessary; do not impose a character limit
+  or hostname-to-label map.
+- Inventory every external URL before removing a citation-only section or
+  resource. Preserve claim-matched provenance in the source, readiness, or
+  publisher contract, including primary research or official institutional
+  history when the claim needs it. Record each learner-visible resource in the
+  owning material's evidence metadata. A cleaner outline does not authorize
+  discarding evidence.
+- Competitors, scholarly reviews, and secondary explainers may inform authoring
+  and remain as non-published provenance when genuinely claim-matched. Verify
+  their claims against stronger primary, official, or first-party evidence when
+  available. Replace weak evidence when needed. For an incorrect, dead, or
+  removed URL, verify the mismatch and record its replacement or the reviewed
+  reason for removal. A URL is not valid merely because it already existed.
+- External destinations use HTTPS Markdown links. External images, embeds,
+  arbitrary JSX destinations, and dynamic URL escape hatches fail. The
+  deterministic checker validates structure, not source legitimacy. Never add
+  a growing lesson, domain, or URL allowlist.
+- Nakafa renders external and internal Markdown links with the same ordinary
+  underlined text treatment. External links open in a new tab; internal paths
+  beginning with `/` remain in the current tab. Use a descriptive destination
+  label. Do not add source chips, badges, cards, previews, embeds, or a separate
+  evidence style.
 
 ## Mathematics and code
+
+These rules apply to MDX and renderer props. Response labels are Markdown
+strings with their own [math syntax](question-bank.md#response-items).
 
 - Use `<InlineMath />` for mathematical expressions, variables, quantities,
   units, coordinates, and calculated values in prose.
@@ -166,8 +165,8 @@
   to the same derivation and should remain visually distinct. Do not use it to
   group a formula with a graph, diagram, simulation, code block, or other
   non-math component.
-- MDX math props use a single LaTeX backslash. TypeScript semantic math parts
-  escape the backslash.
+- MDX math props use a single LaTeX backslash. TypeScript strings escape the
+  backslash.
 - Format learner-facing numbers according to the authored locale without
   changing their value. English uses `.` for decimals and `{,}` for grouped
   thousands. Indonesian and German use `{,}` for decimals and `{.}` for grouped
@@ -190,17 +189,8 @@
 
 Choose a representation for its instructional job, not for variety alone.
 
-For try-out content, visual polish does not compensate for a weak assessment
-task. A graph, chart, or 3D model must support a real inference. Review the
-complete cognitive path from stimulus to answer and reject items whose assessed
-step remains direct formula recall when the blueprint calls for application or
-reasoning. Difficulty should come from a small number of meaningful dependent
-steps, not obscure wording, oversized arithmetic, or gratuitous data.
-
-Across each active set, section, locale, and option-count cohort, balance the
-correct positions so their frequencies differ by at most one. Keep the pattern
-unpredictable in question order, preserve distractor meaning across locale
-siblings, and never move only the `isCorrect` marker to manufacture balance.
+For assessed content, also apply the
+[question-bank assessment review](question-bank.md#assessment-review).
 
 - Use prose for explanation, interpretation, uncertainty, and causal reasoning.
 - Use a short list for parallel items that do not need cross-column comparison.
@@ -208,7 +198,9 @@ siblings, and never move only the `isCorrect` marker to manufacture balance.
   compact and explain nuanced reasoning outside the table.
 - Use a blockquote only for a real quotation or a clearly identified claim,
   misconception, or source excerpt that the surrounding prose analyzes. Do not
-  turn ordinary emphasis into decorative quotations.
+  turn ordinary emphasis into decorative quotations. Start with the actual
+  teaching message, without editorial prefixes such as `Quick check:`,
+  `Cek cepat:`, `Kurzer Check:`, `Kurze Kontrolle:`, or `Kurz geprüft:`.
 - Use Mermaid for a sequence, flow, hierarchy, state change, or relationship
   that is materially harder to understand in prose. Do not convert a simple
   list or one-step process into a diagram.
@@ -238,16 +230,21 @@ siblings, and never move only the `isCorrect` marker to manufacture balance.
   objects, inspect and rotate the rendered scene when interaction is available
   so hidden intersections, incorrect depth, or misleading camera angles are
   not accepted from one static view.
-- Never represent an exact straight segment, polygon, or polyhedron with a
-  spline. In `MathVisual`, use the semantic straight object kinds. Author a
-  balok as
-  `{ id, kind: "cuboid", appearance, center, size: { length, width, height } }`,
-  then verify eight vertices, twelve straight edges, four edges of each
+- Preserve exact straight geometry with `MathVisual`'s `segment`, `polyline`,
+  or `polygon` objects. Reserve `spline` for intentionally smooth curves.
+  Author a balok as one declarative cuboid with positive dimensions:
+  `{ id, kind: "cuboid", appearance, center, size: { length, width, height } }`.
+  Verify eight vertices, twelve straight edges, four edges of each
   declared dimension, and a camera view that still reads as a cuboid after
   rotation.
 - Render every locale sibling that changes learner-facing labels or prose around
   a visual. Longer localized text must not clip, overlap, obscure data, or
   detach from the representation it explains.
+
+When removing an external visual or interactive resource, inspect the existing
+lesson and renderer manifest first. Reuse a Nakafa-owned visual that already
+performs the teaching job. Add a new owned component only for a verified gap.
+Never force a depth axis or decorative 3D scene onto a planar concept.
 
 Lessons and articles should not become uninterrupted walls of text when a
 meaningful structure or representation would reduce search and comparison
@@ -284,11 +281,6 @@ against the current route-domain renderer manifest before authoring with it.
   component blocks.
 - Do not hide educational prose inside component props when normal paragraphs
   are clearer.
-- External evidence belongs in source and publisher contracts, not in
-  learner-facing citation-only sections. Semantic necessity cannot be inferred
-  from link wording. An eligible official or primary source may be linked
-  naturally inside the concrete claim it supports. Reject standalone evidence
-  links, competitor links, and optional platform links.
 
 ## Evidence basis
 

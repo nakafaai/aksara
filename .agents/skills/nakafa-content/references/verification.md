@@ -9,220 +9,144 @@ pnpm dev -- --document packages/corpus/material/lesson/mathematics/function-comp
 ```
 
 Set `NAKAFA_APP_DIR` when the sibling Nakafa checkout is not at the configured
-default. The preview must use the real Nakafa renderer. Do not create a second
-preview renderer for content review.
+default. Use Nakafa's real renderer; do not create a second preview renderer.
 
-## Required checks
+## Checks by scope
 
-Run focused scope tests first, then the repository gates appropriate to the
-change:
+Run the nearest behavior tests first. Tests consuming another workspace run
+through Turbo, which owns dependency build order. The repository-owned lesson
+voice suite has its own root command:
 
 ```sh
+pnpm test:lesson-voice
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --strict-review
-pnpm exec vitest run --config scripts/voice.config.ts
+```
+
+Run that suite before the corpus gate when changing a voice rule. The
+`aksara-source` condition resolves the tracked locale contract in a clean
+checkout. `pnpm test` includes the suite and default corpus gate through Turbo;
+checks must never depend on an ignored `packages/contracts/dist` left by an
+older task.
+
+Format changed files, then run the repository gates appropriate to the change:
+
+```sh
 pnpm format
+pnpm names
+pnpm lines
+pnpm jsdocs
 pnpm locales
 pnpm boundaries
+pnpm lint
 pnpm typecheck
 pnpm test
 pnpm build
 pnpm verify:consumer
 ```
 
-The lesson voice test is a deterministic regression gate for known wording,
-ambiguity, and standard-language failures, including forbidden symbols in page
-titles and lesson headings. It also reports bare `QR`, `LU`, `SVD`, `PLU`, and
-`PCA` labels in learner prose when they should use upright inline math. The
-strict review also reports a lowercase prose fragment immediately after a
-displayed math block because the renderer presents it as a separate paragraph.
-This flow check remains a review item and requires all three locale siblings to
-be read before editing. The direct Node commands use the `aksara-source` export
-condition so they resolve the tracked locale contract in a clean checkout.
-`pnpm test` runs the Node checker suite and the default corpus gate through the
-root Turbo graph. It must not depend on an ignored `packages/contracts/dist`
-build from an earlier task. The default gate also blocks visible semicolons in
-learner prose and component labels. Its MDX parser excludes source syntax,
-code, HTML entities, and LaTeX spacing such as `\;`. The gate also blocks hidden
-C0 control characters other than line feed and tab, plus DEL, because those
-bytes can silently corrupt prose or LaTeX. The default command exits with an
-error only for objective constraints and proven regressions. Broader style
-patterns are labeled `review` and do not block the default command.
-`--strict-review` makes every reported item fail so an editor can complete a
-bounded corpus audit. It never proves authorship or replaces contextual
-editorial review. Inspect every reported line with its paragraph and locale
-siblings, fix the shared teaching document, then rerun strict review until every
-remaining match has been judged. Do not rewrite a valid sentence merely to
-obtain a zero count.
-
-The global prose linters are not MDX parsers. Pass them only the
-learner-visible sentence or paragraph being reviewed. Running them over a raw
-MDX file can misread metadata quotes, JSX delimiters, code, math, and technical
-identifiers as prose. Those diagnostics are false positives unless the same
-problem remains in the rendered learner text.
-
-The link guard inspects external destinations in the MDX tree, including
-Markdown links, reference links, images, and static JSX destinations. It
-accepts structurally valid HTTPS Markdown links while excluding internal links
-and URLs in code, math, metadata syntax, and other protected examples. It
-rejects non-HTTPS destinations, external images, static JSX destinations, and
-dynamic escape hatches. It does not decide whether a source is official or
-eligible. That decision requires contextual editorial review of the claim, the
-destination, and all locale siblings. Prefer Nakafa-owned content and reject
-competitor platforms, redundant resources, and citation-only sections. Never
-add a growing lesson, domain, or URL allowlist to the checker.
-
-The gate distinguishes abstract and concrete visibility. It may reject
-`hubungannya menjadi terlihat` or bare `tanpa terlihat`, while accepting a
-named line that is visible on a graph or a physical change that cannot be seen
-from a stated surface. It also rejects unmeasured claims such as `cara
-tercepat`, but accepts a comparison that states the input and measured runtime.
-
-The gate also enforces the project-owned informal address policy. German
-authored learner voice uses `du` and informal imperatives. Indonesian authored
-learner voice uses `aku` and `kamu`, with `kita` reserved for a genuinely shared
-teacher-learner action. The deterministic rule blocks Indonesian `Anda` and
-`saya` plus unambiguous German formal-address frames. Regression fixtures must
-prove that learner-visible metadata descriptions and component copy are
-checked, including direct props, expression props, and rendered fragments.
-Markdown link labels are learner-visible too, while destinations stay
-protected. Real single-line and balanced multiline quotations, code, math, non-prose
-technical fields, and German anaphoric `Sie`, `Ihnen`, or `Ihr` must remain
-untouched. A metadata string delimiter is source syntax, not quoted speech.
-Cover standalone and explicitly labeled direct-address frames with local
-grammar, including learner actions, without widening the German rule to every
-capitalized pronoun. Add embedded-link, soft-wrapped same-paragraph anaphora,
-balanced multiline quotation, and unmatched-opening fixtures whenever the
-boundary changes.
-
-Before adding or widening a lesson voice rule, record the concrete failure
-class in `writing-quality.md`, search the complete lesson corpus for variants,
-and add both a failing example and a legitimate nearby example to the test
-suite. Run the test before the corpus gate. A rule that catches valid technical
-prose, assessed text, code, math, quotations, or a comparison with a named
-quantity is too broad and must be narrowed. Never tune the corpus merely to
-obtain a zero count.
-
-For Indonesian programming lessons, compare terminology before and after the
-edit. Investigate any broad loss of canonical English terms such as `standard
-library`, `namespace`, `built-in`, `mutable`, `immutable`, `indexing`,
-`slicing`, `method`, or `loop`. Keep the English term when it is the clearest
-bridge to code and documentation. The checker must include a negative test that
-proves these terms are not rejected merely because they are English.
-
 Before a release candidate, also run:
 
 ```sh
-pnpm lint
 pnpm deprecations
 pnpm security:audit
 pnpm check
 ```
 
-`pnpm check` requires exact renderer credentials and validates the complete
-current corpus. It must not read Humanizer output or an editorial review
+`pnpm check` needs exact renderer credentials and validates the complete
+current corpus. It must not consume Humanizer output or an editorial review
 catalog. Source, provenance, renderer, locale, and publication failures remain
-typed blockers, never fallback conditions.
+typed blockers. Run the security audit after every dependency or lockfile
+change as required by `AGENTS.md`.
 
-## Final review
+## Lesson voice gate
 
-- Confirm app locale and delivery language are intentionally different only for
-  assessed-language policy.
-- Inspect learner-facing component props as well as prose. Any mathematical
-  token in a React-node-capable title, description, caption, or label must use
-  `<InlineMath />`; reject plain strings such as `y-axis`, `x = 2`, `(3, 4)`,
-  or `5 m` when they carry mathematical meaning.
-- Confirm named factorizations and algorithms such as `QR`, `LU`, `SVD`, `PLU`, and `PCA`
-  use upright `<InlineMath />` in learner prose. Keep them as plain letters in
-  page titles, headings, code, and code comments, then render the notation in
-  the first body sentence. Include a negative regression fixture proving that
-  the checker ignores programming-language comments.
-- Confirm LaTeX commands inside `math` props keep their leading backslash.
-  Regression fixtures must reject bare `ldots`, `cdots`, `vdots`, and `ddots`
-  inside rendered math while accepting the same words in prose and code.
-- Compare every locale sibling for the same formulas,
-  conditions, units, significant steps, and conclusions. Natural phrasing may
-  differ, but mathematical meaning and instructional support may not.
-- Verify every localized number against its source meaning and calculation.
-  Confirm that the digit sequence and numerical value are unchanged while the
-  decimal and thousands separators follow the target locale. Treat assessed
-  source text and programming literals according to their owned language and
-  syntax rather than rewriting them mechanically.
-- Confirm the document compiles and renders without console or network errors.
-- For every graph, diagram, simulation, or three-dimensional component, compare
-  representative rendered points and relationships with an independent
-  calculation. Inspect all branches, boundaries, signs, axes, labels, legends,
-  camera framing, clipping, and supported interactions in Nakafa's real
-  renderer. Repeat the visual check for every locale with localized labels.
-- Confirm localized route identity has no collision.
-- Confirm every new authored translation completed both Humanizer passes.
-- Compare each translated document with every audited source sibling. The
-  ordered concepts, sections, examples, exercises, worked solutions, checks,
-  tables, diagrams, math, code, and custom MDX components must match exactly.
-  A shorter file, a compiling file, or a semantically similar summary is not
-  sufficient evidence of locale parity.
-- Treat `locale-representation-parity` as a structural release blocker. It
-  compares heading levels, list type and item count, table shape, blockquotes,
-  code blocks, display math, and custom flow components in teaching order. It
-  intentionally ignores sentence shape and inline-math count so every locale
-  can use natural grammar.
-- Treat `indonesian-stiff-interpret-instruction` as a wording release blocker.
-  It catches generic learner instructions such as `tafsirkan solusi` and labels
-  such as `Interpretasi Hasil`, while leaving technical uses such as Python
-  `interpreter` alone.
-- Compare the changed corpus with its base representation inventory. Investigate
-  every lost list, table, blockquote, Mermaid diagram, math block, graph, or
-  custom component and record which teaching job replaced it. An unexplained
-  loss is a release blocker.
-- Confirm no U+2014 character exists outside a pinned immutable allowlist.
-- Confirm every lesson heading passes the deterministic symbol rule and still
-  reads naturally in its locale. The rule must allow a hyphen required by
-  standard word formation, such as Indonesian reduplication, without allowing
-  decorative separators or damaged spellings.
-- Confirm no learner-facing lesson contains a citation-only source or reference
-  heading. Check all three locale siblings. Compare the base and changed URL
-  inventories, and investigate every removed URL. Preserve claim-matched
-  primary, official, first-party, or institutional evidence in the source,
-  readiness, or publisher contract. A competitor platform, scholarly review,
-  or redundant explainer may inform authoring and remain in non-published
-  provenance only when it is genuinely claim-matched. It must never appear in
-  learner-visible content. Review each learner-visible link in context. Allow
-  only exact official documentation, a standard, primary data or research, or
-  first-party evidence for an explicitly attributed claim. The deterministic
-  checker validates objective structure only and never stores lesson, domain,
-  or URL approvals. A removed, dead, or mismatched URL is a release blocker
-  until its replacement or justified removal is recorded.
-- If a removed resource supplied an interactive or visual explanation, inspect
-  the current lesson and renderer manifest. Verify that a Nakafa-owned visual
-  already performs the teaching job, or record the specific representation gap
-  filled by a new owned component. Never treat a component count as proof of
-  quality, and never force 3D depth onto planar geometry.
-- Confirm no visible semicolon remains in paragraphs, lists, tables, metadata
-  descriptions, or learner-facing component props. Inspect the parsed MDX
-  result rather than rejecting semicolons required by code, syntax, HTML
-  entities, or LaTeX spacing.
-- Confirm every causal or comparative claim names the relevant quantity,
-  condition, mechanism, and consequence. Reject bare claims such as `dapat
-  tinggi`, unexplained operational calques, and summary nouns with more than one
-  possible antecedent.
-- Review Indonesian words ending in `-nya` in their full paragraph. Ask what
-  exact noun or operation the suffix refers to. Replace the suffix when more
-  than one answer is possible, but do not treat the suffix itself as an error.
-- Confirm every claim that a method is easier, safer, clearer, or neater names
-  the exact operation changed or error prevented. Reject stock `key`, gateway,
-  and foundation transitions that carry no teaching content.
-- Read revised paragraphs aloud and answer the student questions `apa yang
-  berubah`, `dibandingkan dengan apa`, `kenapa`, and `contohnya apa` whenever
-  they apply. A paragraph that requires an explanation of its own wording is
-  not ready.
-- Search for `latihan fiktif`, `skenario fiktif`, `model fiktif`, `fictional
-  exercise`, `fictional model`, `fiktive Aufgabe`, and `fiktives Modell`. Remove the
-  label when it does not change the mathematical or scientific meaning. Keep a
-  concrete safety boundary when the example could otherwise be mistaken for
-  real medical, policy, or scientific guidance.
-- Retell each revised lesson as a teacher would explain it. Every paragraph
-  should begin from a named fact, question, representation, example, or prior
-  result and prepare the learner for the next step. Do not require a fixed
-  storytelling template, and do not accept empty signposting as narrative flow.
-- Confirm no temporary input, preview process, cache, or task-owned artifact is
-  left behind.
+The gate checks source constraints and known language regressions. It does not
+identify authorship or replace the full document review. The default command
+fails only on objective constraints and proven regressions. Broader patterns
+are reported as `review`; `--strict-review` makes those candidates fail during
+an editorial audit. Inspect each match with its complete paragraph, subject
+terminology, and locale siblings. Rerun after corrections and account for every
+remaining match. Do not rewrite valid prose to obtain a zero count.
+
+Rule ownership and admission criteria live in
+[writing quality](writing-quality.md#evidence-and-checker-limits). Record a new
+failure class there, search the complete lesson corpus for locale variants,
+and add a failing case, a legitimate nearby case, and the nearest false-positive
+boundary before widening a rule. Preserve the following verification boundaries:
+
+- Parsed learner text follows [MDX constraints](mdx-quality.md), including
+  headings, hidden control characters, visible semicolons, and mathematical
+  notation. Tests must retain semicolons used by code, MDX syntax, HTML entities,
+  and LaTeX spacing while rejecting an entity or math separator that renders a
+  visible semicolon.
+- Math fixtures reject bare `ldots`, `cdots`, `vdots`, and `ddots` in rendered
+  math and bare `QR`, `LU`, `SVD`, `PLU`, or `PCA` where upright inline math is
+  required. Preserve valid prose, code, and programming-language comments.
+- Address fixtures cover learner-facing metadata, direct and expression props,
+  rendered fragments, Markdown link labels, and image alt text. Protect
+  destinations, non-prose fields, code, math, assessed and immutable bytes, and
+  real single-line or balanced multiline quotations. Metadata delimiters are
+  syntax; an unmatched opening quote cannot protect the rest of the document.
+- German address fixtures preserve anaphoric `Sie`, `Ihnen`, and `Ihr` with
+  embedded links and soft wraps, while catching standalone and explicitly
+  labeled direct address through local grammar. Never broaden the rule to all
+  capitalized pronouns. Use the authored-voice boundaries in writing quality.
+- Link fixtures enforce HTTPS Markdown structure and reject external images,
+  JSX destinations, and dynamic escape hatches. Internal links and protected
+  source examples remain valid. Source eligibility requires the
+  [editorial link review](mdx-quality.md#links), never a path or domain allowlist.
+- `locale-representation-parity` is a structural blocker. It compares heading
+  levels, list type and count, table shape, blockquotes, code blocks, display
+  math, and custom flow components in teaching order. It ignores sentence shape
+  and inline-math count so locale grammar can remain natural.
+- `indonesian-stiff-interpret-instruction` blocks generic instructions such as
+  `tafsirkan solusi` and `Interpretasi Hasil`, while preserving technical uses
+  such as Python `interpreter`. Terminology fixtures must also preserve valid
+  English programming terms.
+- A lowercase prose continuation after display math remains a review item.
+  Read every locale sibling before deciding whether it fails the complete
+  sentence rule. Visibility and speed candidates likewise need the named
+  observer, quantity, input, or measured comparison described in writing quality.
+
+Global language linters are not MDX parsers. Give them only the learner-visible
+passage being reviewed and validate their findings in context.
+
+## Acceptance review
+
+1. Confirm exact ownership, app locale, assessed delivery language, and route
+   identity without collisions. Preserve every assessed or immutable byte
+   governed by source policy; authored content contains no U+2014.
+2. Complete both Humanizer passes for authored translations and the
+   [final language review](writing-quality.md#final-language-review) for each
+   changed document. Read each locale alone, then compare all audited siblings.
+   Retell the reasoning and answer the student questions about what changes,
+   compared with what, why, and with which example.
+3. Compare the base and changed teaching inventories from the
+   [editorial workflow](editorial-workflow.md). Preserve every meaningful step,
+   condition, unit, conclusion, and representation. Investigate each lost list,
+   table, quotation, diagram, derivation, or component and record which teaching
+   job replaced it in every locale. A compiling summary is insufficient.
+4. Compare source and revised URL inventories under the
+   [link policy](mdx-quality.md#links). A removed, dead, or mismatched URL blocks
+   release until its replacement or justified removal is recorded. For a
+   removed visual resource, verify the owned replacement or the documented gap
+   addressed by a new component.
+5. Recompute localized numerical values independently. Preserve digits and
+   value while applying the authored locale's decimal and grouping separators.
+   Keep assessed text and programming literals in their required syntax.
+   Investigate any broad loss of established English programming terms in an
+   Indonesian revision.
+6. Verify MDX math, props, geometry, accessibility, layout, and localized labels
+   through [MDX quality](mdx-quality.md). Compare representative rendered values
+   with independent calculations, inspect every branch and boundary, and test
+   supported interactions and 3D rotation. Render every affected locale without
+   clipping, overlap, console errors, or network errors. Check response labels
+   through Nakafa's canonical Markdown surface too.
+7. For questions, complete the [assessment review](question-bank.md#assessment-review)
+   and [worked-solution checks](worked-solutions.md). Keep language policy,
+   answer keys, difficulty, and shared stimuli coherent across all placements.
+8. Audit task-owned temporary inputs, preview processes, caches, and artifacts.
+   Remove only resources proven obsolete and safe to remove; record anything
+   retained for active review or recovery. Repository verification is not
+   publication approval.
