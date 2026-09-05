@@ -263,6 +263,11 @@ function verifyPnpmJob(
     undefined,
     "Workflows must derive the toolchain from the root package.json"
   );
+  assert.equal(
+    actionInput(inputs, "working-directory"),
+    undefined,
+    "Workflows must derive the toolchain from the root package.json"
+  );
   const cache = actionInput(inputs, "cache");
   assert.ok(
     isScalar(cache) && cache.value === true,

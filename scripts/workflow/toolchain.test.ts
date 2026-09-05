@@ -8,7 +8,7 @@ const contracts = readFileSync(".github/workflows/contracts.yml", "utf8");
 const release = readFileSync(".github/workflows/release.yml", "utf8");
 const sources = [ci, cli, contracts, release];
 const TOOLCHAIN_STEP = `      - name: Setup toolchain
-        uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2
+        uses: pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b # v2.1.0
         with:
           cache: true
           install: false`;
@@ -87,7 +87,7 @@ describe("workflow toolchain policy", () => {
 
   it("rejects legacy and competing setup actions", () => {
     const legacyPnpm = ci.replace(
-      "pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2",
+      "pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b",
       "pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271"
     );
     const competingNode = ci.replace(
@@ -165,7 +165,7 @@ ${TOOLCHAIN_STEP}`
 
     const inlineRuntime = ci.replace(
       "          cache: true",
-      "          runtime: node@24.19.0\n          cache: true"
+      "          runtime: node@24.20.0\n          cache: true"
     );
     expect(() => verifyWorkflowToolchains([inlineRuntime])).toThrow(
       "Workflows must derive the runtime from package.json"
@@ -173,7 +173,7 @@ ${TOOLCHAIN_STEP}`
 
     const noInputs = ci.replace(
       `${TOOLCHAIN_STEP}\n`,
-      "      - name: Setup toolchain\n        uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2\n"
+      "      - name: Setup toolchain\n        uses: pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b # v2.1.0\n"
     );
     expect(() => verifyWorkflowToolchains([noInputs])).toThrow(
       "The toolchain setup step must define inputs"
@@ -239,7 +239,7 @@ ${TOOLCHAIN_STEP}`
   it("rejects malformed action inputs without matching unrelated values", () => {
     const malformedInputs = ci.replace(
       TOOLCHAIN_STEP,
-      "      - name: Setup toolchain\n        uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2\n        with: invalid"
+      "      - name: Setup toolchain\n        uses: pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b # v2.1.0\n        with: invalid"
     );
     expect(() => verifyWorkflowToolchains([malformedInputs])).toThrow(
       "Workflow action inputs must be a mapping"
@@ -257,6 +257,14 @@ ${TOOLCHAIN_STEP}`
     ["RUNTIME: node@24", "Workflows must derive the runtime from package.json"],
     [
       "PACKAGE-JSON-FILE: other/package.json",
+      "Workflows must derive the toolchain from the root package.json",
+    ],
+    [
+      "working-directory: packages/contracts",
+      "Workflows must derive the toolchain from the root package.json",
+    ],
+    [
+      "WORKING-DIRECTORY: packages/contracts",
       "Workflows must derive the toolchain from the root package.json",
     ],
   ])("normalizes pnpm input %s", (input, message) => {

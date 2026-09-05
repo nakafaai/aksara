@@ -29,7 +29,7 @@ describe("workflow policy", () => {
   });
   it("always verifies each named release workflow", () => {
     const release = sources.release.replaceAll(
-      "pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2",
+      "pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b",
       "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1"
     );
     expect(() => verifyWorkflows({ ...sources, release })).toThrow(
