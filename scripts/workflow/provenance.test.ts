@@ -150,7 +150,7 @@ describe("contract provenance policy", () => {
         mutateJob(
           source,
           "verify",
-          "          node-version: 24.19.0",
+          "          node-version: 24.20.0",
           "          node-version: 22.0.0"
         ),
         "npm verification must use the repository Node runtime",

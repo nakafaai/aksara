@@ -95,11 +95,11 @@ export const createRepository = Effect.fn(
     prefix: "aksara-effect-source-",
   });
   yield* initializeRepository(root);
-  yield* writeManifest(root, installedManifest, '{"version":"4.0.0-rc.110"}');
+  yield* writeManifest(root, installedManifest, '{"version":"4.0.0-rc.112"}');
   yield* writeManifest(
     root,
     vendoredManifest,
-    input?.vendored ?? '{"version":"4.0.0-rc.110"}'
+    input?.vendored ?? '{"version":"4.0.0-rc.112"}'
   );
   yield* git(root, "add", "--force", ".");
   yield* git(

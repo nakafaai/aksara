@@ -7,9 +7,9 @@ import {
 
 describe("dependency hold policy", () => {
   it("extracts exact direct, aliased, and package-manager versions", () => {
-    expect(declaredVersion("4.0.0-rc.110")).toBe("4.0.0-rc.110");
+    expect(declaredVersion("4.0.0-rc.112")).toBe("4.0.0-rc.112");
     expect(declaredVersion("npm:typescript@7.0.2")).toBe("7.0.2");
-    expect(declaredVersion("pnpm@11.22.0")).toBe("11.22.0");
+    expect(declaredVersion("pnpm@11.25.0")).toBe("11.25.0");
     expect(declaredVersion("workspace:*")).toBeUndefined();
   });
 

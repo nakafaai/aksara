@@ -22,7 +22,7 @@ describe("dependency command boundary", () => {
   it.effect("decodes registry and outdated responses", () =>
     Effect.gen(function* () {
       const version = yield* decodeRegistryVersion(
-        output(0, '"4.0.0-rc.110"'),
+        output(0, '"4.0.0-rc.112"'),
         "effect@rc"
       );
       const outdated = yield* decodeOutdatedDependencies(
@@ -30,7 +30,7 @@ describe("dependency command boundary", () => {
       );
       const current = yield* decodeOutdatedDependencies(output(0));
 
-      expect(version).toBe("4.0.0-rc.110");
+      expect(version).toBe("4.0.0-rc.112");
       expect(outdated).toEqual(["yaml"]);
       expect(current).toEqual([]);
     })

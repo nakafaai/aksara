@@ -203,7 +203,7 @@ export function verifyNpmWorkflow(
     const setup = job.steps.find(({ uses }) => uses === SETUP_NODE_ACTION);
     assert.equal(
       setup?.with?.["node-version"],
-      "24.19.0",
+      "24.20.0",
       `npm ${owner} must use the repository Node runtime`
     );
     assert.equal(

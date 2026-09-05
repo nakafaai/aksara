@@ -47,8 +47,8 @@ describe("consumer tooling", () => {
   it("serializes an isolated pnpm consumer manifest", () => {
     const manifest = JSON.parse(
       createConsumerManifest({
-        effectVersion: "4.0.0-rc.110",
-        packageManager: "pnpm@11.22.0",
+        effectVersion: "4.0.0-rc.112",
+        packageManager: "pnpm@11.25.0",
         packageName: "@nakafa/aksara-contracts",
         tarballPath: "/tmp/contracts.tgz",
       })
@@ -57,9 +57,9 @@ describe("consumer tooling", () => {
     expect(manifest).toMatchObject({
       dependencies: {
         "@nakafa/aksara-contracts": "file:/tmp/contracts.tgz",
-        effect: "4.0.0-rc.110",
+        effect: "4.0.0-rc.112",
       },
-      packageManager: "pnpm@11.22.0",
+      packageManager: "pnpm@11.25.0",
       private: true,
     });
   });
