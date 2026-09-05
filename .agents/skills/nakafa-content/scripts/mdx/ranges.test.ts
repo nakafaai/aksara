@@ -151,6 +151,23 @@ it("checks learner copy in nested JSX, attributes, and static spreads", () => {
   );
 });
 
+it("checks composed copy inside nested JSX attribute expressions", () => {
+  const source =
+    '<Panel content={<input placeholder={"An" + "da dapat mencoba ini."} />} />';
+  assert.deepEqual(findLessonVoiceIssues("id", source), [
+    {
+      column: source.indexOf("An") + 1,
+      excerpt: source,
+      line: 1,
+      rule: "indonesian-formal-learner-address",
+    },
+  ]);
+  assert.deepEqual(
+    findLessonVoiceIssues("id", "<Panel content={<input placeholder />} />"),
+    []
+  );
+});
+
 it("checks parser-decoded HTML entities in direct and nested JSX copy", () => {
   const direct = '<Callout title="&#65;nda &amp; saya menjelaskan." />';
   const singleQuoted = "<Callout title='Anda dapat mencoba ini.' />";

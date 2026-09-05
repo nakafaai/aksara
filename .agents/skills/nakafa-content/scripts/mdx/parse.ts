@@ -74,13 +74,32 @@ export function asEstreeNode(value: unknown): EstreeNode | undefined {
 }
 
 /** Converts an ESTree offset pair into the shared source range shape. */
-export function estreeRange(node: EstreeNode): SourceRange {
+export function estreeRange(node: EstreeNode) {
   assert.ok(node.start !== undefined);
   assert.ok(node.end !== undefined);
   return {
     end: { offset: node.end },
     start: { offset: node.start },
   };
+}
+
+/** Reads the parser-owned program from an expression-backed MDX attribute. */
+export function attributeEstree(
+  attribute: MdxAttribute
+): EstreeNode | undefined {
+  if (attribute.data?.estree) {
+    return attribute.data.estree;
+  }
+  const { value } = attribute;
+  if (value === null || value === undefined) {
+    return;
+  }
+  assert.ok(typeof value === "object");
+  assert.ok("data" in value);
+  const { data } = value;
+  assert.ok(data && typeof data === "object");
+  assert.ok("estree" in data);
+  return asEstreeNode(data.estree);
 }
 
 /** Reads a static identifier or string key from an ESTree field. */

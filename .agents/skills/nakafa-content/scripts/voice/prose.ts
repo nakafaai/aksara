@@ -158,7 +158,9 @@ function collectParagraphAddressIssues(
 function paragraphText(node: MdxNode): string {
   if (node.type === "inlineCode") {
     assert.ok(typeof node.value === "string");
-    return INLINE_ANTECEDENT_PATTERN.test(node.value) ? node.value : " ";
+    return INLINE_ANTECEDENT_PATTERN.test(node.value)
+      ? `\`${node.value}\``
+      : " ";
   }
   if (node.type === "text" && typeof node.value === "string") {
     return node.value;

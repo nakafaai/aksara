@@ -66,6 +66,73 @@ it("scans every locale sibling below a lesson root", () => {
   }
 });
 
+it("keeps rendered copy and destination checks consistent at the complete audit seam", () => {
+  const samples = [
+    [
+      "de",
+      "Gib `Die` `Matrizen` `stehen` ein.\n\nSie können nun beide Seiten vergleichen.",
+      "german-formal-address",
+    ],
+    [
+      "de",
+      "Die `Matrizen` stehen bereit.\n\nSie können anschließend verglichen werden.",
+      undefined,
+    ],
+    [
+      "de",
+      "Hinweis: [Sie können den Wert prüfen](/de/ergebnis).",
+      "german-formal-address",
+    ],
+    [
+      "de",
+      "Die Matrizen: [Sie können verglichen werden](/de/matrizen).",
+      undefined,
+    ],
+    [
+      "id",
+      '<input placeholder={"An" + "da dapat mencoba ini."} />',
+      "indonesian-formal-learner-address",
+    ],
+    [
+      "id",
+      `<input aria-label={\`An\${"da"} dapat mencoba ini.\`} />`,
+      "indonesian-formal-learner-address",
+    ],
+    ["id", '<input {...(0, { placeholder: "Kamu" })} />', undefined],
+    [
+      "id",
+      '<input {...({ src: "https://example.org/image.png" }, { placeholder: "Kamu" })} />',
+      undefined,
+    ],
+    [
+      "id",
+      '<input {...(0, { src: "https://example.org/image.png" })} />',
+      "external-link-invalid-placement",
+    ],
+    ["id", "<input {...(0, properties)} />", "external-link-invalid-placement"],
+    [
+      "id",
+      '<Panel content={<input {...(0, { placeholder: "Kamu" })} />} />',
+      undefined,
+    ],
+  ] as const;
+  const root = mkdtempSync(join(tmpdir(), "nakafa-lesson-boundaries-"));
+  try {
+    for (const [index, [locale, source, rule]] of samples.entries()) {
+      const lesson = join(root, String(index));
+      mkdirSync(lesson);
+      writeFileSync(join(lesson, `${locale}.mdx`), source);
+      assert.deepEqual(
+        checkLessonRoot(lesson).issues.map((issue) => issue.rule),
+        rule ? [rule] : [],
+        source
+      );
+    }
+  } finally {
+    rmSync(root, { force: true, recursive: true });
+  }
+});
+
 it("collects only supported locale files without following symlinks", () => {
   const root = mkdtempSync(join(tmpdir(), "nakafa-lesson-files-"));
   const nested = join(root, "nested");

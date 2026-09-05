@@ -51,13 +51,7 @@ export function expressionExternalOffset(
     if (!match) {
       continue;
     }
-    const offset = sourceOffsetForStaticMatch(
-      candidate,
-      match.index,
-      match.value,
-      source
-    );
-    assert.ok(offset !== undefined);
+    const offset = sourceOffsetForStaticMatch(candidate, match.index, source);
     offsets.push(offset);
   }
   const nestedJsxOffset = nestedJsxExternalOffset(expression, source);
@@ -91,10 +85,8 @@ function destinationPropertyExternalOffsets(
         const offset = sourceOffsetForStaticMatch(
           candidate,
           match.index,
-          match.value,
           source
         );
-        assert.ok(offset !== undefined);
         offsets.push(offset);
       }
     }
@@ -126,6 +118,12 @@ export function stringExternalOffset(
 
 /** Returns every ESTree child without interpreting identifiers as content. */
 function estreeChildren(node: EstreeNode): EstreeNode[] {
+  if (node.type === "SequenceExpression") {
+    assert.ok(Array.isArray(node.expressions));
+    const result = asEstreeNode(node.expressions.at(-1));
+    assert.ok(result);
+    return [result];
+  }
   return Object.values(node).flatMap((value) => {
     if (Array.isArray(value)) {
       return value.flatMap((item) => {

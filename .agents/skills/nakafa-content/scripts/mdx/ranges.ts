@@ -7,8 +7,10 @@ import {
   isNestedAddressField,
   isProtectedProseComponent,
 } from "#nakafa-content/mdx/fields";
+import { renderedStaticStringRange } from "#nakafa-content/mdx/offset";
 import {
   asEstreeNode,
+  attributeEstree,
   type EstreeNode,
   estreeRange,
   type MdxAttribute,
@@ -20,6 +22,18 @@ import {
   directAttributeRange,
   renderedSourceRange,
 } from "#nakafa-content/mdx/rendered";
+
+import {
+  isFullyStaticStringExpression,
+  staticStringCandidates,
+} from "#nakafa-content/mdx/static";
+
+const STATIC_TEXT_NODE_TYPES = new Set([
+  "BinaryExpression",
+  "Literal",
+  "TemplateElement",
+  "TemplateLiteral",
+]);
 
 const RENDERED_KEYS_BY_TYPE: Readonly<Record<string, readonly string[]>> = {
   ArrayExpression: ["elements"],
@@ -48,45 +62,48 @@ function jsxComponentName(node: EstreeNode): string | undefined {
 /** Removes source quote delimiters from one static string range. */
 function renderedStringRange(node: EstreeNode, source: string): SourceRange {
   const range = estreeRange(node);
-  return node.type === "Literal" && typeof node.value === "string"
-    ? renderedSourceRange(range, node.value, source, true)
-    : range;
+  assert.ok(node.type === "Literal" && typeof node.value === "string");
+  return renderedSourceRange(range, node.value, source, true);
 }
 
 /** Traverses learner-copy attributes owned by one nested JSX element. */
 function collectNestedAttributeRanges(
   node: EstreeNode,
-  ranges: SourceRange[],
   source: string
-): void {
+): SourceRange[] {
   const opening = asEstreeNode(node.openingElement);
   assert.ok(opening);
   assert.ok(Array.isArray(opening.attributes));
-  for (const value of opening.attributes) {
+  return opening.attributes.flatMap((value) => {
     const attribute = asEstreeNode(value);
     assert.ok(attribute);
     if (attribute.type === "JSXSpreadAttribute") {
-      collectExpressionValues(
+      return collectExpressionValues(
         attribute.argument,
-        ranges,
         source,
         includeSpreadAddressField
       );
-      continue;
     }
     assert.equal(attribute.type, "JSXAttribute");
     const attributeName = staticFieldName(asEstreeNode(attribute.name));
     assert.ok(attributeName);
-    if (isAddressTextAttribute(attributeName)) {
-      collectExpressionValues(attribute.value, ranges, source, () => true);
+    if (!isAddressTextAttribute(attributeName)) {
+      return [];
     }
-  }
+    const attributeValue = asEstreeNode(attribute.value);
+    if (
+      attributeValue?.type === "Literal" &&
+      typeof attributeValue.value === "string"
+    ) {
+      return [renderedStringRange(attributeValue, source)];
+    }
+    return collectExpressionValues(attribute.value, source, () => true);
+  });
 }
 
 /** Traverses selected ESTree fields that can statically render text. */
 function collectExpressionRanges(
   node: EstreeNode,
-  ranges: SourceRange[],
   source: string,
   include: (
     fieldName: string | undefined,
@@ -94,73 +111,70 @@ function collectExpressionRanges(
   ) => boolean,
   fieldName?: string,
   rootFieldName?: string
-): void {
+): SourceRange[] {
   if (
-    (node.type === "Literal" && typeof node.value === "string") ||
-    node.type === "JSXText" ||
-    node.type === "TemplateElement"
+    STATIC_TEXT_NODE_TYPES.has(node.type) &&
+    isFullyStaticStringExpression(node)
   ) {
-    const range = renderedStringRange(node, source);
-    if (include(fieldName, rootFieldName)) {
-      ranges.push(range);
+    if (!include(fieldName, rootFieldName)) {
+      return [];
     }
-    return;
+    return staticStringCandidates(node).map((candidate) =>
+      renderedStaticStringRange(candidate, source)
+    );
+  }
+  if (node.type === "JSXText") {
+    return include(fieldName, rootFieldName) ? [estreeRange(node)] : [];
   }
   if (node.type === "JSXElement") {
     if (isProtectedProseComponent(jsxComponentName(node))) {
-      return;
+      return [];
     }
-    collectNestedAttributeRanges(node, ranges, source);
-    collectExpressionValues(
-      node.children,
-      ranges,
-      source,
-      include,
-      fieldName,
-      rootFieldName
-    );
-    return;
+    return [
+      ...collectNestedAttributeRanges(node, source),
+      ...collectExpressionValues(
+        node.children,
+        source,
+        include,
+        fieldName,
+        rootFieldName
+      ),
+    ];
   }
   if (node.type === "Property") {
     const propertyName = staticFieldName(asEstreeNode(node.key));
-    collectExpressionValues(
+    return collectExpressionValues(
       node.value,
-      ranges,
       source,
       include,
       propertyName,
       rootFieldName ?? propertyName
     );
-    return;
   }
   if (node.type === "SequenceExpression") {
     assert.ok(Array.isArray(node.expressions));
-    collectExpressionValues(
+    return collectExpressionValues(
       node.expressions.at(-1),
-      ranges,
       source,
       include,
       fieldName,
       rootFieldName
     );
-    return;
   }
-  for (const key of RENDERED_KEYS_BY_TYPE[node.type] ?? []) {
+  return (RENDERED_KEYS_BY_TYPE[node.type] ?? []).flatMap((key) =>
     collectExpressionValues(
       node[key],
-      ranges,
       source,
       include,
       fieldName,
       rootFieldName
-    );
-  }
+    )
+  );
 }
 
 /** Applies the expression visitor to one or more ESTree values. */
 function collectExpressionValues(
   value: unknown,
-  ranges: SourceRange[],
   source: string,
   include: (
     fieldName: string | undefined,
@@ -168,20 +182,20 @@ function collectExpressionValues(
   ) => boolean,
   fieldName?: string,
   rootFieldName?: string
-): void {
-  for (const child of Array.isArray(value) ? value : [value]) {
+): SourceRange[] {
+  return (Array.isArray(value) ? value : [value]).flatMap((child) => {
     const childNode = asEstreeNode(child);
     if (childNode) {
-      collectExpressionRanges(
+      return collectExpressionRanges(
         childNode,
-        ranges,
         source,
         include,
         fieldName,
         rootFieldName
       );
     }
-  }
+    return [];
+  });
 }
 
 /** Selects learner copy from one top-level JSX spread property. */
@@ -201,40 +215,20 @@ function includeSpreadAddressField(
   );
 }
 
-/** Reads one expression-backed MDX attribute program. */
-function attributeEstree(attribute: MdxAttribute): EstreeNode | undefined {
-  if (attribute.data?.estree) {
-    return attribute.data.estree;
-  }
-  const { value } = attribute;
-  if (value === null || value === undefined) {
-    return;
-  }
-  assert.ok(typeof value === "object");
-  assert.ok("data" in value);
-  const { data } = value;
-  assert.ok(data && typeof data === "object");
-  assert.ok("estree" in data);
-  return asEstreeNode(data.estree);
-}
-
 /** Returns current general-purpose learner-copy ranges for one attribute. */
 export function generalAttributeRanges(
   attribute: MdxAttribute,
   source: string
 ): SourceRange[] {
   if (!attribute.name) {
-    const ranges: SourceRange[] = [];
     const estree = attributeEstree(attribute);
     assert.ok(estree);
-    collectExpressionRanges(
+    return collectExpressionRanges(
       estree,
-      ranges,
       source,
       (_fieldName, rootFieldName) =>
         Boolean(rootFieldName && isGeneralTextAttribute(rootFieldName))
     );
-    return ranges;
   }
   if (!isGeneralTextAttribute(attribute.name)) {
     return [];
@@ -244,11 +238,7 @@ export function generalAttributeRanges(
     return [directRange];
   }
   const estree = attributeEstree(attribute);
-  const ranges: SourceRange[] = [];
-  if (estree) {
-    collectExpressionRanges(estree, ranges, source, () => true);
-  }
-  return ranges;
+  return estree ? staticExpressionRanges(estree, source) : [];
 }
 
 /** Returns every statically authored JSX range covered by address policy. */
@@ -257,11 +247,9 @@ export function addressAttributeRanges(
   source: string
 ): SourceRange[] {
   if (!attribute.name) {
-    const ranges: SourceRange[] = [];
     const estree = attributeEstree(attribute);
     assert.ok(estree);
-    collectExpressionRanges(estree, ranges, source, includeSpreadAddressField);
-    return ranges;
+    return collectExpressionRanges(estree, source, includeSpreadAddressField);
   }
   const attributeName = attribute.name;
   if (isAddressTextAttribute(attributeName)) {
@@ -276,13 +264,11 @@ export function addressAttributeRanges(
     return [];
   }
   const estree = attributeEstree(attribute);
-  const ranges: SourceRange[] = [];
-  if (estree) {
-    collectExpressionRanges(estree, ranges, source, (fieldName) =>
-      isNestedAddressField(attributeName, fieldName)
-    );
-  }
-  return ranges;
+  return estree
+    ? collectExpressionRanges(estree, source, (fieldName) =>
+        isNestedAddressField(attributeName, fieldName)
+      )
+    : [];
 }
 
 /** Returns every static rendered string range below one ESTree expression. */
@@ -290,9 +276,7 @@ export function staticExpressionRanges(
   node: EstreeNode,
   source: string
 ): SourceRange[] {
-  const ranges: SourceRange[] = [];
-  collectExpressionRanges(node, ranges, source, () => true);
-  return ranges;
+  return collectExpressionRanges(node, source, () => true);
 }
 
 /** Returns static text ranges rendered by a standalone MDX expression. */

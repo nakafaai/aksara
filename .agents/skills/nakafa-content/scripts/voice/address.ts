@@ -11,9 +11,9 @@ const GERMAN_UNANCHORED_POSSESSIVE_ADDRESS_PATTERN =
   /^\s*(?:(?:[-+*]|\d+[.)])\s+)?(?:\*{1,2}|_{1,2})?Ihr(?:e|en|em|er|es)?(?:\*{1,2}|_{1,2})?\s+(?:Antwort|Aufgabe|Eingabe|Ergebnis|Lösung|Rechnung|Ziel)\b/u;
 const GERMAN_ADDRESS_PRONOUN_PATTERN = /(?:Sie|Ihnen|Ihr(?:e|en|em|er|es)?)/u;
 const GERMAN_FEMININE_SUBJECT_PATTERN =
-  /(?:^|[.!?]\s+)(?:Die|Eine|Diese|Jene|Beide|Mehrere)\s+(?:[\p{Ll}][\p{L}-]*\s+){0,4}[\p{Lu}][\p{L}-]*\b/u;
+  /(?:^|[.!?]\s+)(?:Die|Eine|Diese|Jene|Beide|Mehrere)\s+(?:[\p{Ll}][\p{L}-]*\s+){0,4}(?:`[\p{Lu}][\p{L}-]*`|[\p{Lu}][\p{L}-]*\b)/u;
 const GERMAN_PLURAL_SUBJECT_PATTERN =
-  /(?:^|[\s,])(?:Die|Diese|Jene|Beide|Mehrere|Ähnliche|Normierte|beide[nm]?|mehrere|ähnliche|normierte)(?:\s+[\p{Ll}][\p{L}-]*){0,3}\s+[\p{Lu}][\p{L}-]*(?:\s+(?:<[^>\n]+>|[\p{L}-]+)){0,14}\s+(?:beschreiben|besitzen|bleiben|erfüllen|haben|können|lauten|liegen|schließen|sind|stehen|werden|zeigen)\b/u;
+  /(?:^|[\s,])(?:Die|Diese|Jene|Beide|Mehrere|Ähnliche|Normierte|beide[nm]?|mehrere|ähnliche|normierte)(?:\s+[\p{Ll}][\p{L}-]*){0,3}\s+(?:`[\p{Lu}][\p{L}-]*`|[\p{Lu}][\p{L}-]*)(?:\s+(?:<[^>\n]+>|`[\p{L}\p{N}_-]+`|[\p{L}-]+)){0,14}\s+(?:beschreiben|besitzen|bleiben|erfüllen|haben|können|lauten|liegen|schließen|sind|stehen|werden|zeigen)\b/u;
 
 export const GERMAN_FORMAL_ADDRESS_PATTERN =
   /(?:(?<=[\p{L}\p{N},;]\s)(?:Sie|Ihnen|Ihr(?:e|en|em|er|es)?)\b|^\s*(?:#{1,6}\s+|\|\s*(?:Aufgabe|Hinweis|Kontrolle|Schritt|Tipp)\s*\|\s*)(?:\*{1,2}|_{1,2})?(?:Sie(?:\*{1,2}|_{1,2})?\s+(?:können|sollten|müssen|dürfen|berechnen|bestimmen|erkennen|finden|lösen|prüfen|sehen|vergleichen|verwenden|wählen|zeichnen)\b|Ihnen(?:\*{1,2}|_{1,2})?\s+(?:steht|stehen|wird)\b|Ihr(?:e|en|em|er|es)?(?:\*{1,2}|_{1,2})?\s+(?:Antwort|Aufgabe|Eingabe|Ergebnis|Lösung|Rechnung|Ziel)\b))/u;

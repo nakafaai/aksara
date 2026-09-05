@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 
 import type { MdxNode } from "#nakafa-content/mdx/parse";
 import { renderedNodeRange } from "#nakafa-content/mdx/rendered";
+import { unanchoredGermanFormalAddressOffset } from "#nakafa-content/voice/address";
 import type { ProseState } from "#nakafa-content/voice/copy";
 import {
   matchRangeRules,
@@ -24,7 +25,9 @@ function allowsUnanchoredAddress(
   source: string
 ): boolean {
   const linkStart = node.position?.start?.offset;
+  const linkEnd = node.position?.end?.offset;
   assert.ok(linkStart !== undefined);
+  assert.ok(linkEnd !== undefined);
   const rendered = renderedNodeRange(context, source)?.rendered;
   assert.ok(rendered);
   const prefix = rendered.text
@@ -35,7 +38,13 @@ function allowsUnanchoredAddress(
       return offset < linkStart;
     })
     .join("");
+  const directAddress = unanchoredGermanFormalAddressOffset(rendered.text);
+  const directSourceOffset =
+    directAddress === undefined ? undefined : rendered.offsets[directAddress];
   return (
+    (directSourceOffset !== undefined &&
+      directSourceOffset >= linkStart &&
+      directSourceOffset < linkEnd) ||
     prefix.trim().length === 0 ||
     GERMAN_LINK_COMMAND_PREFIX_PATTERN.test(prefix) ||
     !SENTENCE_BOUNDARY_PATTERN.test(prefix)
