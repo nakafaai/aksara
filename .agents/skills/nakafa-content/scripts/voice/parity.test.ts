@@ -64,7 +64,29 @@ it("tracks table shape and learner-facing flow components", () => {
 
   assert.deepEqual(
     tokens.map(({ value }) => value),
-    ["table:2:2", "component:Mermaid"]
+    ["table:2,2", "component:Mermaid"]
+  );
+});
+
+it("reports one shortened row even when the table maximum matches", () => {
+  const complete = "| A | B |\n| - | - |\n| 1 | 2 |\n| 3 | 4 |\n";
+  const siblings = [
+    document("id", complete),
+    document("en", complete),
+    document("de", "| A | B |\n| - | - |\n| 1 | 2 |\n| 3 |\n"),
+  ];
+
+  assert.deepEqual(
+    findSiblingRepresentationIssues(ROOT, siblings).map(({ file, rule }) => ({
+      file,
+      rule,
+    })),
+    [
+      {
+        file: "subject/topic/de.mdx",
+        rule: "locale-representation-parity",
+      },
+    ]
   );
 });
 

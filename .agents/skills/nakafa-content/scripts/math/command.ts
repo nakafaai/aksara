@@ -108,11 +108,7 @@ function collectAttributeOffsets(
       if (!isBareDotCommand(math, match.index)) {
         continue;
       }
-      offsets.add(
-        Number(
-          sourceOffsetForStaticMatch(candidate, match.index, match[0], source)
-        )
-      );
+      offsets.add(sourceOffsetForStaticMatch(candidate, match.index, source));
     }
   }
 }

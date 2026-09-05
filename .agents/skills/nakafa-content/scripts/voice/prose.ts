@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { isProtectedProseComponent } from "#nakafa-content/mdx/fields";
 import { metadataAddressRanges } from "#nakafa-content/mdx/metadata";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
-import { imageAltRange } from "#nakafa-content/mdx/surface";
+import { renderedNodeRange } from "#nakafa-content/mdx/rendered";
 import { germanAntecedentState } from "#nakafa-content/voice/address";
 import { collectJsxChildAddressIssues } from "#nakafa-content/voice/child";
 import {
@@ -37,7 +37,9 @@ const PROTECTED_NODE_TYPES = new Set([
   "mdxjsEsm",
 ]);
 const LINK_NODE_TYPES = new Set(["link", "linkReference"]);
+const LINK_CONTEXT_NODE_TYPES = new Set(["heading", "paragraph", "tableCell"]);
 const IMAGE_NODE_TYPES = new Set(["image", "imageReference"]);
+const INLINE_ANTECEDENT_PATTERN = /^[\p{L}\p{N}_-]+$/u;
 
 /** Adds address-only findings from learner-visible Markdown image alt copy. */
 function collectImageAltIssues(
@@ -48,7 +50,10 @@ function collectImageAltIssues(
   issues: LessonVoiceIssue[],
   state: ProseState
 ): void {
-  const range = imageAltRange(node, source);
+  const range = renderedNodeRange(node, source);
+  if (!range) {
+    return;
+  }
   const selectedAddressRules = addressRules(rules);
   issues.push(
     ...matchRangeRules(
@@ -149,17 +154,29 @@ function collectParagraphAddressIssues(
   );
 }
 
+/** Reads prose and inline noun tokens without borrowing protected examples. */
+function paragraphText(node: MdxNode): string {
+  if (node.type === "inlineCode") {
+    assert.ok(typeof node.value === "string");
+    return INLINE_ANTECEDENT_PATTERN.test(node.value)
+      ? `\`${node.value}\``
+      : " ";
+  }
+  if (node.type === "text" && typeof node.value === "string") {
+    return node.value;
+  }
+  if (node.type === "break" || isProtectedProseComponent(node.name)) {
+    return " ";
+  }
+  return (node.children ?? []).map(paragraphText).join("");
+}
+
 /** Records the nearest prose antecedent while owned components stay neutral. */
 function updateAntecedentAfterParagraph(
   node: MdxNode,
-  source: string,
   state: ProseState
 ): void {
-  const start = node.position?.start?.offset;
-  const end = node.position?.end?.offset;
-  assert.ok(start !== undefined);
-  assert.ok(end !== undefined);
-  const antecedent = germanAntecedentState(source.slice(start, end));
+  const antecedent = germanAntecedentState(paragraphText(node));
   state.germanPersonalAntecedent = antecedent.personal;
   state.germanPossessiveAntecedent = antecedent.possessive;
 }
@@ -173,7 +190,7 @@ function collectNodeIssues(
   issues: LessonVoiceIssue[],
   state: ProseState,
   isProtected = false,
-  paragraphStart?: number
+  linkContext?: MdxNode
 ): void {
   if (!isProtected && node.type === "blockquote") {
     collectBlockquoteIssues(locale, node, rules, source, issues);
@@ -190,7 +207,7 @@ function collectNodeIssues(
       source,
       issues,
       state,
-      paragraphStart
+      linkContext
     );
     return;
   }
@@ -216,11 +233,11 @@ function collectNodeIssues(
       issues,
       state,
       protectedHere,
-      node.type === "paragraph" ? node.position?.start?.offset : paragraphStart
+      LINK_CONTEXT_NODE_TYPES.has(node.type) ? node : linkContext
     );
   }
   if (!protectedHere && node.type === "paragraph") {
-    updateAntecedentAfterParagraph(node, source, state);
+    updateAntecedentAfterParagraph(node, state);
   }
 }
 

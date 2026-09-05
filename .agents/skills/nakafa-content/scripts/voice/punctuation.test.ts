@@ -159,7 +159,7 @@ it("rejects visible math separators but allows LaTeX spacing", () => {
   const source = [
     '<InlineMath math="f(x;y)\\;z" />',
     '<BlockMath math="g(x;y)" />',
-    '<Plot data={{ math: "h(x;y)\\;z" }} />',
+    '<Plot data={{ math: "h(x;y)\\\\;z" }} />',
     '<InlineMath math={"x;y"} />',
     "<BlockMath math={`x;y`} />",
     '<InlineMath math={"x" + ";" + "y"} />',
@@ -179,6 +179,14 @@ it("rejects visible math separators but allows LaTeX spacing", () => {
       { line: 5, rule: "learner-facing-semicolon" },
       { line: 6, rule: "learner-facing-semicolon" },
     ]
+  );
+});
+
+it("reports each visible separator when a JavaScript identity escape removes the backslash", () => {
+  const source = '<Plot data={{ math: "h(x;y)\\;z" }} />';
+  assert.deepEqual(
+    findLearnerFacingSemicolonIssues(source).map(({ column }) => column),
+    [source.indexOf(";") + 1, source.lastIndexOf("\\;") + 1]
   );
 });
 
@@ -246,7 +254,7 @@ it("checks every statically rendered branch of nested JSX expressions", () => {
     "  }}",
     "  data={{",
     '    caption: "Caption; visible",',
-    '    math: "m;n\\;p",',
+    '    math: "m;n\\\\;p",',
     '    code: "const hidden = 1;",',
     '    ["helperCaption"]: "Help; visible",',
     "  }}",

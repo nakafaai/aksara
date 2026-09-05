@@ -1,18 +1,21 @@
-import { sourceOffsetForStaticMatch } from "#nakafa-content/mdx/offset";
+import assert from "node:assert/strict";
+
+import { renderedStaticStringRange } from "#nakafa-content/mdx/offset";
 import {
   asEstreeNode,
   type EstreeNode,
   estreeRange,
   staticFieldName,
 } from "#nakafa-content/mdx/parse";
+import { renderedSourceRange } from "#nakafa-content/mdx/rendered";
 import { staticStringCandidates } from "#nakafa-content/mdx/static";
 import {
+  addRenderedSemicolonsInRange,
   addSemicolonsInRange,
   type SemicolonScanOptions,
 } from "#nakafa-content/semicolon/source";
 
 const MATH_COMPONENT_NAMES = new Set(["BlockMath", "InlineMath"]);
-const TRAILING_BACKSLASH_PATTERN = /\\+$/u;
 const NON_PROSE_FIELD_NAMES = new Set([
   "chart",
   "className",
@@ -135,21 +138,12 @@ export function collectStaticStringSemicolons(
   options: SemicolonScanOptions = {}
 ): void {
   for (const candidate of staticStringCandidates(node)) {
-    for (const match of candidate.text.matchAll(/;/gu)) {
-      if (options.allowLatexSpacing) {
-        const preceding = candidate.text.slice(0, match.index);
-        const slashCount =
-          preceding.match(TRAILING_BACKSLASH_PATTERN)?.[0].length ?? 0;
-        if (slashCount % 2 === 1) {
-          continue;
-        }
-      }
-      offsets.add(
-        Number(
-          sourceOffsetForStaticMatch(candidate, match.index, match[0], source)
-        )
-      );
-    }
+    addRenderedSemicolonsInRange(
+      offsets,
+      source,
+      renderedStaticStringRange(candidate, source),
+      options
+    );
   }
 }
 
@@ -165,8 +159,14 @@ function collectAttributeSemicolons(
   }
   const options = { allowLatexSpacing: name === "math" };
   const value = asEstreeNode(attribute.value);
-  if (value?.type === "Literal" || value?.type === "TemplateLiteral") {
-    collectStaticStringSemicolons(value, offsets, source, options);
+  if (value?.type === "Literal") {
+    assert.ok(typeof value.value === "string");
+    addRenderedSemicolonsInRange(
+      offsets,
+      source,
+      renderedSourceRange(estreeRange(value), value.value, source, true),
+      options
+    );
     return;
   }
   if (!isExpressionContainerNode(value)) {

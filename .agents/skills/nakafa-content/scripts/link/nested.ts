@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   externalMatch,
   isDestinationAttribute,
+  isSrcSetAttribute,
 } from "#nakafa-content/link/destination";
 import { sourceOffsetForStaticMatch } from "#nakafa-content/mdx/offset";
 import {
@@ -32,21 +33,25 @@ export function isProtectedExampleAttribute(
 export function expressionExternalOffset(
   expression: EstreeNode,
   source: string,
-  destinationAttribute: boolean
+  destinationAttribute: boolean,
+  componentName?: string,
+  srcSetAttribute = false
 ): number | undefined {
-  const offsets = destinationPropertyExternalOffsets(expression, source);
+  const offsets = destinationPropertyExternalOffsets(
+    expression,
+    source,
+    componentName
+  );
   for (const candidate of nestedStaticStringCandidates(expression)) {
-    const match = externalMatch(candidate.text, destinationAttribute);
+    const match = externalMatch(
+      candidate.text,
+      destinationAttribute,
+      srcSetAttribute
+    );
     if (!match) {
       continue;
     }
-    const offset = sourceOffsetForStaticMatch(
-      candidate,
-      match.index,
-      match.value,
-      source
-    );
-    assert.ok(offset !== undefined);
+    const offset = sourceOffsetForStaticMatch(candidate, match.index, source);
     offsets.push(offset);
   }
   const nestedJsxOffset = nestedJsxExternalOffset(expression, source);
@@ -59,32 +64,37 @@ export function expressionExternalOffset(
 /** Locates destinations stored under static keys inside JSX spread objects. */
 function destinationPropertyExternalOffsets(
   node: EstreeNode,
-  source: string
+  source: string,
+  componentName?: string
 ): number[] {
   const offsets: number[] = [];
   if (node.type === "Property") {
     const name = staticFieldName(asEstreeNode(node.key));
     const value = asEstreeNode(node.value);
     assert.ok(value);
-    if (isDestinationAttribute(name)) {
+    if (isDestinationAttribute(name, componentName)) {
       for (const candidate of nestedStaticStringCandidates(value)) {
-        const match = externalMatch(candidate.text, true);
+        const match = externalMatch(
+          candidate.text,
+          true,
+          isSrcSetAttribute(name, componentName)
+        );
         if (!match) {
           continue;
         }
         const offset = sourceOffsetForStaticMatch(
           candidate,
           match.index,
-          match.value,
           source
         );
-        assert.ok(offset !== undefined);
         offsets.push(offset);
       }
     }
   }
   for (const child of estreeChildren(node)) {
-    offsets.push(...destinationPropertyExternalOffsets(child, source));
+    offsets.push(
+      ...destinationPropertyExternalOffsets(child, source, componentName)
+    );
   }
   return offsets;
 }
@@ -95,9 +105,10 @@ export function stringExternalOffset(
   source: string,
   destinationAttribute: boolean,
   start: number,
-  end: number
+  end: number,
+  srcSetAttribute: boolean
 ): number | undefined {
-  const match = externalMatch(value, destinationAttribute);
+  const match = externalMatch(value, destinationAttribute, srcSetAttribute);
   if (!match) {
     return;
   }
@@ -107,6 +118,12 @@ export function stringExternalOffset(
 
 /** Returns every ESTree child without interpreting identifiers as content. */
 function estreeChildren(node: EstreeNode): EstreeNode[] {
+  if (node.type === "SequenceExpression") {
+    assert.ok(Array.isArray(node.expressions));
+    const result = asEstreeNode(node.expressions.at(-1));
+    assert.ok(result);
+    return [result];
+  }
   return Object.values(node).flatMap((value) => {
     if (Array.isArray(value)) {
       return value.flatMap((item) => {
@@ -131,7 +148,7 @@ function nestedJsxAttributeOffset(
     const argument = asEstreeNode(attribute.argument);
     assert.ok(argument);
     return (
-      expressionExternalOffset(argument, source, false) ??
+      expressionExternalOffset(argument, source, false, componentName) ??
       (isFullyStaticValueExpression(argument) ? undefined : start)
     );
   }
@@ -141,7 +158,11 @@ function nestedJsxAttributeOffset(
   if (isProtectedExampleAttribute(componentName, attributeName)) {
     return;
   }
-  const destinationAttribute = isDestinationAttribute(attributeName);
+  const destinationAttribute = isDestinationAttribute(
+    attributeName,
+    componentName
+  );
+  const srcSetAttribute = isSrcSetAttribute(attributeName, componentName);
   const value = asEstreeNode(attribute.value);
   if (!value) {
     return destinationAttribute ? start : undefined;
@@ -154,7 +175,8 @@ function nestedJsxAttributeOffset(
       source,
       destinationAttribute,
       value.start,
-      value.end
+      value.end,
+      srcSetAttribute
     );
   }
   assert.equal(value.type, "JSXExpressionContainer");
@@ -163,7 +185,9 @@ function nestedJsxAttributeOffset(
   const externalOffset = expressionExternalOffset(
     expression,
     source,
-    destinationAttribute
+    destinationAttribute,
+    componentName,
+    srcSetAttribute
   );
   if (externalOffset !== undefined) {
     return externalOffset;

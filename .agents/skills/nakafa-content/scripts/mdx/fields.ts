@@ -1,9 +1,11 @@
 const GENERAL_TEXT_ATTRIBUTES = new Set([
   "alt",
+  "aria-label",
   "caption",
   "description",
   "helperCaption",
   "label",
+  "placeholder",
   "subtitle",
   "title",
 ]);

@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import type { PhrasingContent } from "mdast";
 
 import type {
   MdxAttribute,
@@ -11,6 +12,7 @@ const ENTITY_PATTERN = /&(?:#[xX][\dA-Fa-f]+|#\d+|[A-Za-z][A-Za-z\d]+);/uy;
 const ESCAPABLE_CHARACTER_PATTERN = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/u;
 const ENTITY_VALUES = new Map<string, string>();
 const MARKDOWN_CONTINUATION_PREFIX_PATTERN = /^(?:[\t ]|>[\t ]?)+$/u;
+const MARKDOWN_CONTINUATION_PREFIX_START_PATTERN = /^(?:[\t ]|>[\t ]?)+/u;
 const NON_WHITESPACE_PATTERN = /\S/u;
 
 interface RenderedPart {
@@ -38,17 +40,19 @@ function renderedOffsets(
   authored: string,
   rendered: string,
   sourceStart: number,
-  continuationPrefixLength: number
+  continuationPrefixLength: number,
+  inferContinuationPrefix: boolean
 ): number[] {
   const offsets: number[] = [];
   let decoded = "";
   let followsNewline = false;
   for (let sourceIndex = 0; sourceIndex < authored.length; ) {
     if (followsNewline && continuationPrefixLength > 0) {
-      const prefix = authored.slice(
-        sourceIndex,
-        sourceIndex + continuationPrefixLength
-      );
+      const prefix = inferContinuationPrefix
+        ? (MARKDOWN_CONTINUATION_PREFIX_START_PATTERN.exec(
+            authored.slice(sourceIndex)
+          )?.[0] ?? "")
+        : authored.slice(sourceIndex, sourceIndex + continuationPrefixLength);
       if (MARKDOWN_CONTINUATION_PREFIX_PATTERN.test(prefix)) {
         sourceIndex += prefix.length;
       }
@@ -102,7 +106,8 @@ export function renderedSourceRange(
   range: SourceRange,
   rendered: string,
   source: string,
-  trimQuotes = false
+  trimQuotes = false,
+  inferContinuationPrefix = false
 ): SourceRange {
   let start = range.start?.offset;
   let end = range.end?.offset;
@@ -127,7 +132,8 @@ export function renderedSourceRange(
     authored,
     rendered,
     start,
-    Math.max(0, (range.start?.column ?? 1) - 1)
+    inferContinuationPrefix ? 1 : Math.max(0, (range.start?.column ?? 1) - 1),
+    inferContinuationPrefix
   );
   return {
     end: { offset: end },
@@ -179,19 +185,22 @@ export function renderedNodeRange(
   const parts: RenderedPart[] = [];
 
   /** Collects rendered text leaves in authored order. */
-  function visit(current: MdxNode): void {
+  function visit(current: MdxNode | PhrasingContent): void {
     if (current.type === "text" && typeof current.value === "string") {
-      assert.ok(current.position);
+      const start = current.position?.start?.offset;
+      const end = current.position?.end?.offset;
+      assert.ok(start !== undefined);
+      assert.ok(end !== undefined);
       const range = renderedSourceRange(
-        current.position,
+        { end: { offset: end }, start: { offset: start } },
         current.value,
-        source
+        source,
+        false,
+        true
       );
-      const start = range.start?.offset;
       if (range.rendered) {
         parts.push(range.rendered);
       } else {
-        assert.ok(start !== undefined);
         parts.push({
           offsets: Array.from(
             { length: current.value.length },
@@ -202,8 +211,23 @@ export function renderedNodeRange(
       }
       return;
     }
-    for (const child of current.children ?? []) {
-      visit(child);
+    if (current.type === "break") {
+      const start = current.position?.start?.offset;
+      assert.ok(start !== undefined);
+      parts.push({ offsets: [start], text: " " });
+      return;
+    }
+    if (current.data?.altChildren) {
+      for (const child of current.data.altChildren) {
+        visit(child);
+      }
+      return;
+    }
+    if ("children" in current) {
+      assert.ok(current.children);
+      for (const child of current.children) {
+        visit(child);
+      }
     }
   }
 

@@ -157,9 +157,12 @@ it("keeps external destinations limited to HTTPS Markdown links", () => {
       source:
         '<button formAction="https://data.example.org/submit">Submit</button>',
     },
-    {
-      source: "<button formAction>Submit</button>",
-    },
+    { source: "<button formAction>Submit</button>" },
+    { source: '<img srcSet="data:image/svg+xml,unsafe 1x" />' },
+    { source: '<img srcSet="/local.png 1x, https://e.co/image.png 2x" />' },
+    { source: '<img srcSet="/local.png 1x, //localhost/image.png 2x" />' },
+    { source: '<blockquote cite="javascript:alert(1)">Quote</blockquote>' },
+    { source: '<object data="data:text/html,unsafe" />' },
     {
       source:
         '<Resource data={{ targets: [, "https://data.example.org/report"] }} />',
@@ -207,6 +210,7 @@ it("allows internal links and URLs protected by code math or metadata syntax", (
     '<Panel content={<BlockMath math="\\\\text{https://example.com}" />} />',
     '<LineEquation title="Case: Distant Circles" />',
     '<Chart data={{ ratio: "H:O = 2:1" }} />',
+    "<Object data={rows} />",
     '<Callout title="Use //2 for floor division" />',
     '<Callout {...{ title: "Direct explanation", count: 2, active: true }} />',
     "<Panel content={<MathVisual {...{ width: 400 }} />} />",

@@ -1,11 +1,42 @@
+import assert from "node:assert/strict";
+
 import type { SourceRange } from "#nakafa-content/mdx/parse";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 const ENTITY_TERMINATOR_PATTERN = /&(?:#[0-9]+|#x[0-9a-f]+|[a-z][a-z0-9]+);$/iu;
 const SEMICOLON_ENTITY_PATTERN = /&(?:#0*59|#x0*3b|semi);$/iu;
+const TRAILING_BACKSLASH_PATTERN = /\\+$/u;
 
 export interface SemicolonScanOptions {
   allowLatexSpacing?: boolean;
+}
+
+/** Adds punctuation from parser-rendered text while preserving source offsets. */
+export function addRenderedSemicolonsInRange(
+  offsets: Set<number>,
+  source: string,
+  range: SourceRange,
+  options: SemicolonScanOptions
+): void {
+  const start = range.start?.offset;
+  const end = range.end?.offset;
+  assert.ok(start !== undefined && end !== undefined);
+  const text = range.rendered?.text ?? source.slice(start, end);
+  for (const match of text.matchAll(/;/gu)) {
+    if (options.allowLatexSpacing) {
+      const preceding = text.slice(0, match.index);
+      const slashCount =
+        preceding.match(TRAILING_BACKSLASH_PATTERN)?.[0].length ?? 0;
+      if (slashCount % 2 === 1) {
+        continue;
+      }
+    }
+    const offset = range.rendered
+      ? range.rendered.offsets[match.index]
+      : start + match.index;
+    assert.ok(offset !== undefined);
+    offsets.add(offset);
+  }
 }
 
 /** Classifies an entity terminator at one authored semicolon. */

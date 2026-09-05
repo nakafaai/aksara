@@ -20,6 +20,65 @@ it("checks learner-visible component copy", () => {
   );
 });
 
+it("checks native placeholder and accessible-label copy", () => {
+  const placeholder = '<input placeholder="Anda dapat mencoba ini." />';
+  const accessible = '<button aria-label="Sie können den Wert prüfen." />';
+  const spreadPlaceholder =
+    '<input {...{ placeholder: "Anda dapat mencoba ini." }} />';
+  const spreadAccessible =
+    '<button {...{ "aria-label": "Sie können den Wert prüfen." }} />';
+  const nestedSpreadCopy =
+    '<Chart {...{ data: { placeholder: "Anda dapat mencoba ini." } }} />';
+  const nestedSpreadName =
+    '<Chart {...{ data: { name: "Anda dapat mencoba ini." } }} />';
+  const unownedSpread = '<Callout {..."Anda dapat mencoba ini."} />';
+
+  assert.deepEqual(
+    findLessonVoiceIssues("id", placeholder).map(({ rule }) => rule),
+    ["indonesian-formal-learner-address"]
+  );
+  assert.deepEqual(
+    findLessonVoiceIssues("de", accessible).map(({ rule }) => rule),
+    ["german-formal-address"]
+  );
+  assert.deepEqual(
+    findLessonVoiceIssues("id", spreadPlaceholder).map(({ rule }) => rule),
+    ["indonesian-formal-learner-address"]
+  );
+  assert.deepEqual(
+    findLessonVoiceIssues("de", spreadAccessible).map(({ rule }) => rule),
+    ["german-formal-address"]
+  );
+  assert.deepEqual(findLessonVoiceIssues("id", nestedSpreadCopy), []);
+  assert.deepEqual(
+    findLessonVoiceIssues("id", nestedSpreadName).map(({ rule }) => rule),
+    ["indonesian-formal-learner-address"]
+  );
+  assert.deepEqual(findLessonVoiceIssues("id", unownedSpread), []);
+});
+
+it("checks only the rendered final value of a sequence expression", () => {
+  const rendered = [
+    '<input {...(0, { placeholder: "Anda dapat mencoba ini." })} />',
+    '<input placeholder={("Kamu", "Anda dapat mencoba ini.")} />',
+    '<Panel content={<input {...(0, { placeholder: "Anda dapat mencoba ini." })} />} />',
+  ];
+  const discarded =
+    '<input {...({ placeholder: "Anda" }, { placeholder: "Kamu" })} />';
+
+  for (const source of rendered) {
+    assert.deepEqual(findLessonVoiceIssues("id", source), [
+      {
+        column: source.indexOf("Anda") + 1,
+        excerpt: source,
+        line: 1,
+        rule: "indonesian-formal-learner-address",
+      },
+    ]);
+  }
+  assert.deepEqual(findLessonVoiceIssues("id", discarded), []);
+});
+
 it("checks expression string props and fragments without duplicates", () => {
   const indonesianLine =
     '<Callout description={"Anda dapat mencoba contoh ini."} />';
@@ -89,6 +148,23 @@ it("checks learner copy in nested JSX, attributes, and static spreads", () => {
   assert.deepEqual(
     findLessonVoiceIssues("de", formattedChild).map(({ rule }) => rule),
     ["german-formal-address"]
+  );
+});
+
+it("checks composed copy inside nested JSX attribute expressions", () => {
+  const source =
+    '<Panel content={<input placeholder={"An" + "da dapat mencoba ini."} />} />';
+  assert.deepEqual(findLessonVoiceIssues("id", source), [
+    {
+      column: source.indexOf("An") + 1,
+      excerpt: source,
+      line: 1,
+      rule: "indonesian-formal-learner-address",
+    },
+  ]);
+  assert.deepEqual(
+    findLessonVoiceIssues("id", "<Panel content={<input placeholder />} />"),
+    []
   );
 });
 

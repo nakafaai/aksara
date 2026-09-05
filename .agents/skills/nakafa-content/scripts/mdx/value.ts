@@ -59,6 +59,12 @@ export function isFullyStaticValueExpression(node: EstreeNode): boolean {
     assert.ok(expression);
     return isFullyStaticValueExpression(expression);
   }
+  if (node.type === "SequenceExpression") {
+    assert.ok(Array.isArray(node.expressions));
+    const result = asEstreeNode(node.expressions.at(-1));
+    assert.ok(result);
+    return isFullyStaticValueExpression(result);
+  }
   if (node.type === "ConditionalExpression") {
     const consequent = asEstreeNode(node.consequent);
     const alternate = asEstreeNode(node.alternate);

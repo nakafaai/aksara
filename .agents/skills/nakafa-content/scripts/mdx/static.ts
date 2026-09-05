@@ -4,13 +4,14 @@ import {
   asEstreeNode,
   type EstreeNode,
   estreeRange,
-  type SourceRange,
 } from "#nakafa-content/mdx/parse";
 
 const MAX_STATIC_CANDIDATES = 32;
 
 export interface StaticStringPart {
-  range: SourceRange | undefined;
+  quoted: boolean;
+  range: ReturnType<typeof estreeRange>;
+  raw: string;
   text: string;
 }
 
@@ -28,14 +29,20 @@ function candidate(parts: readonly StaticStringPart[]): StaticStringCandidate {
 }
 
 /** Reads the cooked text stored in one template-literal segment. */
-function templateElementText(node: EstreeNode): string | undefined {
+function templatePart(node: EstreeNode): StaticStringPart | undefined {
   if (node.type !== "TemplateElement") {
     return;
   }
   const { value } = node;
   assert.ok(value && typeof value === "object");
   assert.ok("cooked" in value && typeof value.cooked === "string");
-  return value.cooked;
+  assert.ok("raw" in value && typeof value.raw === "string");
+  return {
+    quoted: false,
+    range: estreeRange(node),
+    raw: value.raw,
+    text: value.cooked,
+  };
 }
 
 /** Joins every statically possible left and right string. */
@@ -85,8 +92,7 @@ function binaryCandidates(node: EstreeNode): StaticStringCandidate[] {
   }
   const left = asEstreeNode(node.left);
   const right = asEstreeNode(node.right);
-  assert.ok(left);
-  assert.ok(right);
+  assert.ok(left && right);
   return concatenateCandidates(
     staticStringCandidates(left),
     staticStringCandidates(right)
@@ -97,8 +103,7 @@ function binaryCandidates(node: EstreeNode): StaticStringCandidate[] {
 function conditionalCandidates(node: EstreeNode): StaticStringCandidate[] {
   const consequent = asEstreeNode(node.consequent);
   const alternate = asEstreeNode(node.alternate);
-  assert.ok(consequent);
-  assert.ok(alternate);
+  assert.ok(consequent && alternate);
   return [
     ...staticStringCandidates(consequent),
     ...staticStringCandidates(alternate),
@@ -149,11 +154,21 @@ export function staticStringCandidates(
   node: EstreeNode
 ): StaticStringCandidate[] {
   if (node.type === "Literal" && typeof node.value === "string") {
-    return [candidate([{ range: estreeRange(node), text: node.value }])];
+    assert.ok(typeof node.raw === "string");
+    return [
+      candidate([
+        {
+          quoted: true,
+          range: estreeRange(node),
+          raw: node.raw.slice(1, -1),
+          text: node.value,
+        },
+      ]),
+    ];
   }
-  const templateText = templateElementText(node);
-  if (templateText !== undefined) {
-    return [candidate([{ range: estreeRange(node), text: templateText }])];
+  const template = templatePart(node);
+  if (template) {
+    return [candidate([template])];
   }
   if (node.type === "TemplateLiteral") {
     return templateCandidates(node);
@@ -181,7 +196,6 @@ const NESTED_STRING_KEYS: Readonly<Record<string, readonly string[]>> = {
   Program: ["body"],
   Property: ["value"],
   ReturnStatement: ["argument"],
-  SequenceExpression: ["expressions"],
   SpreadElement: ["argument"],
   TemplateLiteral: ["quasis", "expressions"],
   VariableDeclaration: ["declarations"],
@@ -195,6 +209,12 @@ export function nestedStaticStringCandidates(
   const direct = staticStringCandidates(node);
   if (direct.length > 0) {
     return direct;
+  }
+  if (node.type === "SequenceExpression") {
+    assert.ok(Array.isArray(node.expressions));
+    const result = asEstreeNode(node.expressions.at(-1));
+    assert.ok(result);
+    return nestedStaticStringCandidates(result);
   }
   const keys = NESTED_STRING_KEYS[node.type] ?? [];
   const nested: StaticStringCandidate[] = [];
@@ -238,7 +258,7 @@ function isFullyStaticStringStructure(node: EstreeNode): boolean {
     return typeof node.value === "string";
   }
   if (node.type === "TemplateElement") {
-    return templateElementText(node) !== undefined;
+    return templatePart(node) !== undefined;
   }
   if (node.type === "TemplateLiteral") {
     return isFullyStaticTemplate(node);
@@ -246,8 +266,7 @@ function isFullyStaticStringStructure(node: EstreeNode): boolean {
   if (node.type === "BinaryExpression") {
     const left = asEstreeNode(node.left);
     const right = asEstreeNode(node.right);
-    assert.ok(left);
-    assert.ok(right);
+    assert.ok(left && right);
     return (
       node.operator === "+" &&
       isFullyStaticStringStructure(left) &&
@@ -257,8 +276,7 @@ function isFullyStaticStringStructure(node: EstreeNode): boolean {
   if (node.type === "ConditionalExpression") {
     const consequent = asEstreeNode(node.consequent);
     const alternate = asEstreeNode(node.alternate);
-    assert.ok(consequent);
-    assert.ok(alternate);
+    assert.ok(consequent && alternate);
     return (
       isFullyStaticStringStructure(consequent) &&
       isFullyStaticStringStructure(alternate)

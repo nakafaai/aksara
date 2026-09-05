@@ -1,6 +1,14 @@
 import assert from "node:assert/strict";
 import { createProcessor } from "@mdx-js/mdx";
+import type { PhrasingContent } from "mdast";
 import remarkGfm from "remark-gfm";
+import type {} from "remark-parse";
+
+declare module "mdast" {
+  interface Data {
+    altChildren?: PhrasingContent[];
+  }
+}
 
 export interface SourcePosition {
   column?: number;
@@ -32,6 +40,7 @@ export interface MdxNode {
   attributes?: MdxAttribute[];
   children?: MdxNode[];
   data?: {
+    altChildren?: PhrasingContent[];
     estree?: EstreeNode;
   };
   identifier?: string;
@@ -65,13 +74,32 @@ export function asEstreeNode(value: unknown): EstreeNode | undefined {
 }
 
 /** Converts an ESTree offset pair into the shared source range shape. */
-export function estreeRange(node: EstreeNode): SourceRange {
+export function estreeRange(node: EstreeNode) {
   assert.ok(node.start !== undefined);
   assert.ok(node.end !== undefined);
   return {
     end: { offset: node.end },
     start: { offset: node.start },
   };
+}
+
+/** Reads the parser-owned program from an expression-backed MDX attribute. */
+export function attributeEstree(
+  attribute: MdxAttribute
+): EstreeNode | undefined {
+  if (attribute.data?.estree) {
+    return attribute.data.estree;
+  }
+  const { value } = attribute;
+  if (value === null || value === undefined) {
+    return;
+  }
+  assert.ok(typeof value === "object");
+  assert.ok("data" in value);
+  const { data } = value;
+  assert.ok(data && typeof data === "object");
+  assert.ok("estree" in data);
+  return asEstreeNode(data.estree);
 }
 
 /** Reads a static identifier or string key from an ESTree field. */
@@ -95,6 +123,25 @@ export function parseLessonMdx(
   try {
     return createProcessor({ format: "mdx" })
       .use(remarkGfm)
+      .data("fromMarkdownExtensions", [
+        {
+          exit: {
+            /** Retains image label positions before mdast flattens the alt text. */
+            labelMarker(token) {
+              if (this.sliceSerialize(token) !== "]") {
+                return;
+              }
+              const image = this.stack.at(-2);
+              if (image?.type !== "image") {
+                return;
+              }
+              const fragment = this.stack.at(-1);
+              assert.ok(fragment?.type === "fragment");
+              image.data = { ...image.data, altChildren: fragment.children };
+            },
+          },
+        },
+      ])
       .parse(source) as MdxNode;
   } catch (cause) {
     throw new SyntaxError(`Failed to parse ${sourcePath}: ${String(cause)}`, {

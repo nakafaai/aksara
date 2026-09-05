@@ -1,6 +1,9 @@
 import assert from "node:assert/strict";
 
-import { isDestinationAttribute } from "#nakafa-content/link/destination";
+import {
+  isDestinationAttribute,
+  isSrcSetAttribute,
+} from "#nakafa-content/link/destination";
 import {
   expressionExternalOffset,
   isProtectedExampleAttribute,
@@ -46,19 +49,25 @@ function invalidDestinationOffset(
   if (attribute.name === undefined) {
     assert.ok(expression);
     return (
-      expressionExternalOffset(expression, source, false) ??
+      expressionExternalOffset(expression, source, false, componentName) ??
       (isFullyStaticValueExpression(expression) ? undefined : attributeStart)
     );
   }
   if (isProtectedExampleAttribute(componentName, attribute.name)) {
     return;
   }
-  const destinationAttribute = isDestinationAttribute(attribute.name);
+  const destinationAttribute = isDestinationAttribute(
+    attribute.name,
+    componentName
+  );
+  const srcSetAttribute = isSrcSetAttribute(attribute.name, componentName);
   if (expression) {
     const externalOffset = expressionExternalOffset(
       expression,
       source,
-      destinationAttribute
+      destinationAttribute,
+      componentName,
+      srcSetAttribute
     );
     if (externalOffset !== undefined) {
       return externalOffset;
@@ -74,7 +83,8 @@ function invalidDestinationOffset(
       source,
       destinationAttribute,
       attributeStart,
-      attributeEnd
+      attributeEnd,
+      srcSetAttribute
     );
   }
   return destinationAttribute ? attributeStart : undefined;
