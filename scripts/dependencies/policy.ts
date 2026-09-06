@@ -109,21 +109,22 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "root-dev-dependency",
   },
   {
-    approvedCurrent: "7.10.8",
+    approvedCurrent: "7.11.0",
     cohort: "Biome and Ultracite",
     dependency: "ultracite",
     reason: "Formatter behavior is reviewed as one linting cohort.",
     registry: "ultracite@latest",
-    reviewedLatest: "7.10.8",
+    reviewedLatest: "7.11.0",
     source: "root-dev-dependency",
   },
   {
     approvedCurrent: "11.25.0",
     cohort: "pnpm",
     dependency: "pnpm",
-    reason: "The package manager owns lockfile and workspace semantics.",
+    reason:
+      "OSV Scanner 2.5.1 skips the application graph after pnpm 12 adds a package-manager YAML document.",
     registry: "pnpm@latest",
-    reviewedLatest: "11.25.0",
+    reviewedLatest: "12.3.4",
     source: "package-manager",
   },
 ];
