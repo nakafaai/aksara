@@ -6,7 +6,10 @@
   },
   "overrides": [
     {
-      "includes": ["apps/*/package.json", "packages/*/package.json"],
+      // Custom source conditions must precede the published types condition.
+      "includes": [
+        "packages/{compiler,contracts,corpus,publisher,utilities}/package.json"
+      ],
       "assist": {
         "actions": {
           "source": {

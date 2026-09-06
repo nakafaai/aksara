@@ -54,7 +54,7 @@ const createConfig = Effect.fn("BumpDependenciesTest.createConfig")(
       "@biomejs/biome": "2.5.12",
       "@effect/tsgo": "0.41.0",
       "@types/node": "24.13.3",
-      ...(input?.omitUltracite ? {} : { ultracite: "7.10.8" }),
+      ...(input?.omitUltracite ? {} : { ultracite: "7.11.0" }),
     };
     const ignoreDeps = expectedIgnoredDependencies().filter(
       (dependency) => dependency !== input?.omitIgnore
