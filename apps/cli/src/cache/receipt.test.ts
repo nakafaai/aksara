@@ -1,8 +1,8 @@
 import { describe, expect, it } from "@effect/vitest";
 import {
   type ContentCacheRequest,
+  ContentCacheRequestSchema,
   makeArtifactCacheTag,
-  makeContentCacheRequest,
 } from "@nakafa/aksara-contracts/cache/content";
 import {
   ReleaseIdSchema,
@@ -13,16 +13,14 @@ import { HttpClientRequest } from "effect/unstable/http";
 import { readCacheReceipt } from "#cli/cache/receipt";
 import { webResponse } from "#test/http";
 
-const REQUEST: ContentCacheRequest = makeContentCacheRequest({
-  artifactHashes: [],
-  family: "material",
+const REQUEST: ContentCacheRequest = ContentCacheRequestSchema.make({
   releaseId: ReleaseIdSchema.make("test-cache-release"),
+  scope: "material",
 });
 const VALID_BODY = JSON.stringify({
-  family: REQUEST.family,
   releaseId: REQUEST.releaseId,
   revalidated: true,
-  tags: REQUEST.tags,
+  scope: REQUEST.scope,
 });
 
 /** Creates one cache response with valid private JSON headers by default. */
@@ -74,57 +72,52 @@ describe("cache receipt", () => {
     ],
     [
       JSON.stringify({
-        family: REQUEST.family,
         releaseId: REQUEST.releaseId,
         revalidated: false,
-        tags: REQUEST.tags,
+        scope: REQUEST.scope,
       }),
       undefined,
     ],
     [
       JSON.stringify({
         extra: true,
-        family: REQUEST.family,
         releaseId: REQUEST.releaseId,
         revalidated: true,
-        tags: REQUEST.tags,
+        scope: REQUEST.scope,
       }),
       undefined,
     ],
     [
       JSON.stringify({
-        family: "article",
         releaseId: REQUEST.releaseId,
         revalidated: true,
-        tags: REQUEST.tags,
+        scope: "article",
       }),
       undefined,
     ],
     [
       JSON.stringify({
-        family: REQUEST.family,
         releaseId: "test-other-release",
         revalidated: true,
-        tags: REQUEST.tags,
+        scope: REQUEST.scope,
       }),
       undefined,
     ],
     [
       JSON.stringify({
-        family: REQUEST.family,
         releaseId: REQUEST.releaseId,
         revalidated: true,
+        scope: REQUEST.scope,
         tags: ["content-runtime"],
       }),
       undefined,
     ],
     [
       JSON.stringify({
-        family: REQUEST.family,
         releaseId: REQUEST.releaseId,
         revalidated: true,
+        scope: REQUEST.scope,
         tags: [
-          ...REQUEST.tags,
           makeArtifactCacheTag(
             Sha256HashSchema.make(`sha256:${"a".repeat(64)}`)
           ),

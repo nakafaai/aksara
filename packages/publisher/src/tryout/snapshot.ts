@@ -12,7 +12,7 @@ import { digestTryoutCatalog } from "@nakafa/aksara-contracts/tryout/catalog-has
 import { digestTryoutPlacements } from "@nakafa/aksara-contracts/tryout/placement-hash";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";
 import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
-import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
+import type { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import type { FileSystem, Path } from "effect";
 import { Effect, Result, type Scope, Stream } from "effect";
 import type { inspectQuestionDocument } from "#publisher/question/document";
@@ -28,6 +28,10 @@ import type {
 /** Exact-Git inputs required to prepare one complete try-out snapshot. */
 export interface TryoutSnapshotPreparationInput<E, R> {
   readonly checkoutRoot: string;
+  readonly content: Pick<
+    Effect.Success<ReturnType<typeof loadTryoutContent>>,
+    "entries" | "projection" | "sources"
+  >;
   /** Replays the complete desired question-head catalog in canonical order. */
   readonly questionHeads: Stream.Stream<QuestionHead, E, R>;
   readonly rendererManifest: unknown;
@@ -48,7 +52,6 @@ export interface PreparedTryoutSnapshot {
 type RendererManifestError = Effect.Error<
   ReturnType<typeof validateRendererManifestHash>
 >;
-type TryoutContentError = Effect.Error<ReturnType<typeof loadTryoutContent>>;
 type QuestionInspectionError = Effect.Error<
   ReturnType<typeof inspectQuestionDocument>
 >;
@@ -66,7 +69,6 @@ export type PrepareTryoutSnapshotError<E> =
   | ReplaySpoolError
   | SnapshotVerificationError
   | TryoutHeadBindingError<never>
-  | TryoutContentError
   | TryoutContentMissingError;
 
 /** Selects immutable hierarchy records from a complete snapshot replay. */
@@ -123,9 +125,7 @@ export const prepareTryoutSnapshot: <E, R>(
   const rendererManifest = yield* validateRendererManifestHash(
     input.rendererManifest
   );
-  const { entries, projection, sources } = yield* loadTryoutContent(
-    input.checkoutRoot
-  );
+  const { entries, projection, sources } = input.content;
   const bindings = bindTryoutHeads(projection.placements, input.questionHeads);
   const placements = bindTryoutContent({
     bindings,

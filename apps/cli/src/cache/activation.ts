@@ -1,10 +1,10 @@
 import {
   type ContentCacheChange,
   type ContentCacheRequest,
-  MAX_CONTENT_CACHE_ARTIFACTS,
-  makeContentCacheRequest,
+  ContentCacheRequestSchema,
+  type ContentCacheScope,
+  ContentCacheScopeSchema,
 } from "@nakafa/aksara-contracts/cache/content";
-import { ContentFamilySchema } from "@nakafa/aksara-contracts/content";
 import type { SignedContentRelease } from "@nakafa/aksara-contracts/release";
 import { PublicationActivationError } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, type Redacted, Schedule, Stream } from "effect";
@@ -26,37 +26,29 @@ function makeCacheEndpoint(rendererEndpoint: URL) {
   return new URL(CACHE_PATH, rendererEndpoint);
 }
 
-/** Selects unique body hashes from one already-bounded family change batch. */
-function uniqueArtifactHashes(changes: readonly ContentCacheChange[]) {
-  return [
-    ...new Set(
-      changes.flatMap(({ artifactHash }) =>
-        artifactHash === undefined ? [] : [artifactHash]
-      )
-    ),
-  ];
-}
-
-/** Streams bounded invalidation requests for each family touched by a release. */
+/** Emits at most one request per source-owned mutable publication scope. */
 function makeCacheRequests<E, R>(input: {
   /** Replays the exact family-aware changes authenticated by the release. */
   readonly cacheChanges: Stream.Stream<ContentCacheChange, E, R>;
   readonly release: SignedContentRelease;
 }) {
-  return Stream.fromIterable(ContentFamilySchema.literals).pipe(
-    Stream.flatMap((family) =>
-      input.cacheChanges.pipe(
-        Stream.filter((change) => change.family === family),
-        Stream.grouped(MAX_CONTENT_CACHE_ARTIFACTS),
-        Stream.map((changes) =>
-          makeContentCacheRequest({
-            artifactHashes: uniqueArtifactHashes(changes),
-            family,
+  return input.cacheChanges.pipe(
+    Stream.runFold(
+      () => new Set<ContentCacheScope>(),
+      (scopes, change) => new Set([...scopes, change.scope])
+    ),
+    Effect.map((scopes) =>
+      Stream.fromIterable(ContentCacheScopeSchema.literals).pipe(
+        Stream.filter((scope) => scopes.has(scope)),
+        Stream.map((scope) =>
+          ContentCacheRequestSchema.make({
             releaseId: input.release.manifest.releaseId,
+            scope,
           })
         )
       )
-    )
+    ),
+    Stream.unwrap
   );
 }
 
@@ -70,7 +62,7 @@ export function makeProductionCacheInvalidation(settings: {
     E,
     R,
   >(input: {
-    /** Replays exact family-aware transitions for the activated release. */
+    /** Replays exact source-owned transitions for the activated release. */
     readonly cacheChanges: Stream.Stream<ContentCacheChange, E, R>;
     readonly release: SignedContentRelease;
   }) {

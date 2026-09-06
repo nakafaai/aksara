@@ -1,12 +1,8 @@
 import { assert, describe, expect, it } from "@effect/vitest";
 import {
-  CONTENT_CACHE_GLOBAL_TAG,
   type ContentCacheChange,
   ContentCacheRequestSchema,
-  MAX_CONTENT_CACHE_ARTIFACTS,
-  makeContentFamilyCacheTag,
 } from "@nakafa/aksara-contracts/cache/content";
-import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { Effect, Fiber, Redacted, Schema, Stream } from "effect";
 import { TestClock } from "effect/testing";
 import { HttpClientError, HttpClientRequest } from "effect/unstable/http";
@@ -31,10 +27,9 @@ function cacheResponse(
   return webResponse(
     responseRequest,
     JSON.stringify({
-      family: body.family,
       releaseId: body.releaseId,
       revalidated: true,
-      tags: body.tags,
+      scope: body.scope,
     }),
     { ...init, headers }
   );
@@ -67,9 +62,9 @@ function runAfter<A, E>(program: Effect.Effect<A, E>, milliseconds: number) {
   });
 }
 
-/** Builds one production cache input from exact family-aware changes. */
+/** Builds one production cache input from exact scope-aware changes. */
 const cacheInput = (
-  changes: readonly ContentCacheChange[] = [{ family: "material" }]
+  changes: readonly ContentCacheChange[] = [{ scope: "material" }]
 ) => ({ cacheChanges: Stream.fromIterable(changes), release: RELEASE });
 
 describe("production cache activation", () => {
@@ -92,58 +87,53 @@ describe("production cache activation", () => {
         const [request] = requests;
         assert(request !== undefined, "Expected one cache request.");
         expect(requestJson(request)).toEqual({
-          family: "material",
           releaseId: "release-next",
-          tags: [
-            CONTENT_CACHE_GLOBAL_TAG,
-            makeContentFamilyCacheTag("material"),
-          ],
+          scope: "material",
         });
       })
   );
 
-  it.effect("partitions more than 98 exact family artifacts", () =>
-    Effect.gen(function* () {
-      const { invalidate, requests } = makeInvalidation();
-      const hashes = Array.from(
-        { length: MAX_CONTENT_CACHE_ARTIFACTS + 1 },
-        (_, index) =>
-          Sha256HashSchema.make(
-            `sha256:${index.toString(16).padStart(64, "0")}`
+  it.effect(
+    "invalidates each changed scope once while retaining immutable bodies",
+    () =>
+      Effect.gen(function* () {
+        const { invalidate, requests } = makeInvalidation();
+        yield* invalidate(
+          cacheInput([
+            ...Array.from({ length: 250 }, () =>
+              ContentCacheRequestSchema.make({
+                releaseId: RELEASE.manifest.releaseId,
+                scope: "material",
+              })
+            ),
+            { scope: "program" },
+            { scope: "quran" },
+            { scope: "program" },
+          ])
+        );
+        expect(requests.map(requestJson)).toEqual([
+          { releaseId: "release-next", scope: "material" },
+          { releaseId: "release-next", scope: "program" },
+          { releaseId: "release-next", scope: "quran" },
+        ]);
+      })
+  );
+
+  it.effect(
+    "finishes the complete change stream before invalidating any cache",
+    () =>
+      Effect.gen(function* () {
+        const { invalidate, requests } = makeInvalidation();
+        const cacheChanges = Stream.make({ scope: "material" } as const).pipe(
+          Stream.concat(Stream.fail("source-unavailable"))
+        );
+        expect(
+          yield* invalidate({ cacheChanges, release: RELEASE }).pipe(
+            Effect.flip
           )
-      );
-      yield* invalidate(
-        cacheInput(
-          hashes.map((artifactHash) => ({
-            artifactHash,
-            family: "material",
-          }))
-        )
-      );
-      expect(requests).toHaveLength(2);
-      const payloads = requests.map((request) =>
-        Schema.decodeUnknownSync(ContentCacheRequestSchema)(
-          requestJson(request)
-        )
-      );
-      const [firstBatch, secondBatch] = payloads;
-      const finalHash = Sha256HashSchema.make(
-        `sha256:${MAX_CONTENT_CACHE_ARTIFACTS.toString(16).padStart(64, "0")}`
-      );
-      assert(firstBatch !== undefined, "Expected the first cache batch.");
-      assert(secondBatch !== undefined, "Expected the second cache batch.");
-      expect(firstBatch.tags.slice(0, 3)).toEqual([
-        CONTENT_CACHE_GLOBAL_TAG,
-        makeContentFamilyCacheTag("material"),
-        `content-artifact:${hashes[0]}`,
-      ]);
-      expect(secondBatch.tags).toEqual([
-        CONTENT_CACHE_GLOBAL_TAG,
-        makeContentFamilyCacheTag("material"),
-        `content-artifact:${finalHash}`,
-      ]);
-      expect(firstBatch.tags).toHaveLength(MAX_CONTENT_CACHE_ARTIFACTS + 2);
-    })
+        ).toBe("source-unavailable");
+        expect(requests).toHaveLength(0);
+      })
   );
 
   it.effect.each([

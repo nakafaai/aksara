@@ -1,20 +1,21 @@
 import { Schema } from "effect";
-import { type ContentFamily, ContentFamilySchema } from "#contracts/content";
+import { ContentFamilySchema } from "#contracts/content";
 import {
-  type ReleaseId,
   ReleaseIdSchema,
   type Sha256Hash,
   Sha256HashSchema,
 } from "#contracts/ids";
-
-/** Global content-runtime tag always invalidated before narrower tags. */
-export const CONTENT_CACHE_GLOBAL_TAG = "content-runtime";
+import { ContentSnapshotKindSchema } from "#contracts/release/snapshot/scope";
 
 const ARTIFACT_CACHE_PREFIX = "content-artifact:";
-const FAMILY_CACHE_PREFIX = "content-family:";
+const SCOPE_CACHE_PREFIX = "content-scope:";
 
-/** Maximum exact artifact tags carried with global and family cache tags. */
-export const MAX_CONTENT_CACHE_ARTIFACTS = 98;
+/** Mutable publication dependencies owned by the signed source contracts. */
+export const ContentCacheScopeSchema = Schema.Literals([
+  ...ContentFamilySchema.literals,
+  ...ContentSnapshotKindSchema.literals,
+]);
+export type ContentCacheScope = typeof ContentCacheScopeSchema.Type;
 
 /** One immutable published-artifact cache tag derived only from its hash. */
 export const ArtifactCacheTagSchema = Schema.String.pipe(
@@ -33,117 +34,32 @@ export const ArtifactCacheTagSchema = Schema.String.pipe(
 );
 export type ArtifactCacheTag = typeof ArtifactCacheTagSchema.Type;
 
-/** One exact content-family cache tag derived from the family contract. */
-export const ContentFamilyCacheTagSchema = Schema.String.pipe(
-  Schema.check(
-    Schema.makeFilter(
-      (tag) =>
-        tag.startsWith(FAMILY_CACHE_PREFIX) &&
-        Schema.is(ContentFamilySchema)(tag.slice(FAMILY_CACHE_PREFIX.length)),
-      { message: "Expected one canonical content-family cache tag." }
-    )
-  ),
-  Schema.brand("@NakafaAI/AksaraContentFamilyCacheTag")
-);
-export type ContentFamilyCacheTag = typeof ContentFamilyCacheTagSchema.Type;
-
-/** Checks one cache request carries no redundant exact artifact tags. */
-function hasUniqueArtifactTags(tags: readonly string[]) {
-  const artifacts = tags.slice(2);
-  return new Set(artifacts).size === artifacts.length;
-}
-
-/**
- * Ordered cache tags shared by Aksara and Nakafa.
- *
- * Global and exact family tags come first; remaining tags name exact changed
- * artifacts while keeping one invalidation request at or below 100 tags.
- */
-export const ContentCacheTagsSchema = Schema.TupleWithRest(
-  Schema.Tuple([
-    Schema.Literal(CONTENT_CACHE_GLOBAL_TAG),
-    ContentFamilyCacheTagSchema,
-  ]),
-  [ArtifactCacheTagSchema]
-).pipe(
-  Schema.check(Schema.isMaxLength(MAX_CONTENT_CACHE_ARTIFACTS + 2)),
-  Schema.check(
-    Schema.makeFilter(hasUniqueArtifactTags, {
-      message: "Expected unique exact artifact cache tags.",
-    })
-  )
-);
-export type ContentCacheTags = typeof ContentCacheTagsSchema.Type;
-
-/** One changed family plus its optional newly published immutable artifact. */
+/** A changed item or snapshot invalidates its mutable selection dependency. */
 export const ContentCacheChangeSchema = Schema.Struct({
-  artifactHash: Schema.optional(Sha256HashSchema),
-  family: ContentFamilySchema,
+  scope: ContentCacheScopeSchema,
 });
 export type ContentCacheChange = typeof ContentCacheChangeSchema.Type;
+
+/** One release-bound invalidation cannot name global or immutable cache tags. */
+export const ContentCacheRequestSchema = Schema.Struct({
+  releaseId: ReleaseIdSchema,
+  scope: ContentCacheScopeSchema,
+});
+export type ContentCacheRequest = typeof ContentCacheRequestSchema.Type;
+
+/** Nakafa proof that one exact release-bound dependency was invalidated. */
+export const ContentCacheReceiptSchema = Schema.Struct({
+  ...ContentCacheRequestSchema.fields,
+  revalidated: Schema.Literal(true),
+});
+export type ContentCacheReceipt = typeof ContentCacheReceiptSchema.Type;
 
 /** Derives the canonical cache tag for one already-canonical artifact hash. */
 export function makeArtifactCacheTag(hash: Sha256Hash): ArtifactCacheTag {
   return ArtifactCacheTagSchema.make(`${ARTIFACT_CACHE_PREFIX}${hash}`);
 }
 
-/** Derives the canonical cache tag for one implemented content family. */
-export function makeContentFamilyCacheTag(
-  family: ContentFamily
-): ContentFamilyCacheTag {
-  return ContentFamilyCacheTagSchema.make(`${FAMILY_CACHE_PREFIX}${family}`);
-}
-
-/** Checks the explicit family and ordered family cache tag cannot disagree. */
-function hasCoherentFamily(input: {
-  readonly family: ContentFamily;
-  readonly tags: ContentCacheTags;
-}) {
-  return input.tags[1] === makeContentFamilyCacheTag(input.family);
-}
-
-/** One release-bound, family-exact cache invalidation request. */
-export const ContentCacheRequestSchema = Schema.Struct({
-  family: ContentFamilySchema,
-  releaseId: ReleaseIdSchema,
-  tags: ContentCacheTagsSchema,
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(hasCoherentFamily, {
-      message: "Expected the cache family to match its ordered family tag.",
-    })
-  )
-);
-export type ContentCacheRequest = typeof ContentCacheRequestSchema.Type;
-
-/** Nakafa proof that one exact release-bound invalidation completed. */
-export const ContentCacheReceiptSchema = Schema.Struct({
-  family: ContentFamilySchema,
-  releaseId: ReleaseIdSchema,
-  revalidated: Schema.Literal(true),
-  tags: ContentCacheTagsSchema,
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(hasCoherentFamily, {
-      message: "Expected the cache family to match its ordered family tag.",
-    })
-  )
-);
-export type ContentCacheReceipt = typeof ContentCacheReceiptSchema.Type;
-
-/** Builds one ordered invalidation request for one exact content family. */
-export function makeContentCacheRequest(input: {
-  readonly artifactHashes: readonly Sha256Hash[];
-  readonly family: ContentFamily;
-  readonly releaseId: ReleaseId;
-}): ContentCacheRequest {
-  return ContentCacheRequestSchema.make({
-    family: input.family,
-    releaseId: input.releaseId,
-    tags: [
-      CONTENT_CACHE_GLOBAL_TAG,
-      makeContentFamilyCacheTag(input.family),
-      ...input.artifactHashes.map(makeArtifactCacheTag),
-    ],
-  });
+/** Derives the same mutable dependency tag in the reader and invalidator. */
+export function makeContentCacheTag(scope: ContentCacheScope) {
+  return `${SCOPE_CACHE_PREFIX}${scope}`;
 }

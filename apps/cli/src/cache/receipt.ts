@@ -14,17 +14,6 @@ import { ContentCacheError } from "#cli/cache/error";
 const MAX_CACHE_RECEIPT_BYTES = 32 * 1024;
 const CacheReceiptJsonSchema = Schema.fromJsonString(ContentCacheReceiptSchema);
 
-/** Checks that Nakafa acknowledged the exact ordered tags sent by Aksara. */
-function hasExactTags(
-  received: readonly string[],
-  expected: readonly string[]
-) {
-  return (
-    received.length === expected.length &&
-    received.every((tag, index) => tag === expected[index])
-  );
-}
-
 /** Reads and strictly validates one bounded private JSON receipt. */
 export const readCacheReceipt = Effect.fn("AksaraCli.readCacheReceipt")(
   function* (
@@ -53,9 +42,8 @@ export const readCacheReceipt = Effect.fn("AksaraCli.readCacheReceipt")(
       Effect.mapError(() => new ContentCacheError({ retryable: false }))
     );
     if (
-      receipt.family !== request.family ||
-      receipt.releaseId !== request.releaseId ||
-      !hasExactTags(receipt.tags, request.tags)
+      receipt.scope !== request.scope ||
+      receipt.releaseId !== request.releaseId
     ) {
       return yield* new ContentCacheError({ retryable: false });
     }

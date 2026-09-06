@@ -165,7 +165,7 @@ layer(NodeServices.layer)("preparePublicationPlan", (it) => {
       const prepared = yield* prepareDeletion(emptySnapshotSources);
       const changes = yield* collectCacheChanges(prepared);
 
-      expect([...changes]).toEqual([{ family: "material" }]);
+      expect([...changes]).toEqual([{ scope: "material" }]);
     })
   );
 
@@ -176,7 +176,7 @@ layer(NodeServices.layer)("preparePublicationPlan", (it) => {
         const programOnlyRelease = yield* prepareProgramOnly();
         const changes = yield* collectCacheChanges(programOnlyRelease);
 
-        expect([...changes]).toEqual([{ family: "material" }]);
+        expect([...changes]).toEqual([{ scope: "program" }]);
       })
   );
 
@@ -187,8 +187,8 @@ layer(NodeServices.layer)("preparePublicationPlan", (it) => {
       const changes = yield* collectCacheChanges(prepared);
 
       expect([...changes]).toEqual([
-        { family: "material" },
-        { family: "material" },
+        { scope: "program" },
+        { scope: "material" },
       ]);
     })
   );
