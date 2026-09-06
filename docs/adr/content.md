@@ -85,10 +85,14 @@ reviewed full commit SHA and reads each signed corpus path with `git cat-file`;
 it neither reads the mutable working tree nor reconstructs source metadata.
 This streaming contract alone is not evidence that a 100,000- or
 1,000,000-item release meets the operational or cost gates.
-Every Git command disables replacement refs, `cat-file -s` rejects an oversized
-blob before its body is read, retained output is bounded, and UTF-8 decoding is
-fatal. The adapter also requires the body byte count to equal Git's preflight
-size, so truncated or substituted source cannot silently enter compilation.
+Every Git command disables replacement refs. Sequential batches contain at most
+128 signed source paths. A metadata-only `cat-file --batch-check` verifies each
+blob's identity, type, and authored byte limit before `cat-file --batch` reads
+the verified object IDs. Retained output is bounded by those exact sizes, and
+UTF-8 decoding is fatal while preserving the BOM and original line endings.
+Body headers must match the preflight object IDs and sizes, and body framing
+must contain exactly the requested bytes. Compilation still verifies each
+source against its signed artifact hash before any target staging.
 
 Nakafa may execute an artifact only in a server-only Node runtime through the
 official `@mdx-js/mdx/run` API and only after all of these checks pass:

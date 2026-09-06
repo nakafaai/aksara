@@ -1,9 +1,10 @@
 import { NodeServices } from "@effect/platform-node";
-import { expect, layer } from "@effect/vitest";
+import { afterEach, expect, layer } from "@effect/vitest";
 import { inspectContentSource } from "@nakafa/aksara-compiler/inspect";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { selectPreviewDocument } from "@nakafa/aksara-corpus/preview/selection";
 import type { PreviewSource } from "@nakafa/aksara-corpus/preview/source";
+import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Effect, Layer } from "effect";
 import {
   loadPreviewSources,
@@ -126,6 +127,20 @@ const previewTestLayer = Layer.mergeAll(
 );
 
 layer(previewTestLayer)("preview source", (it) => {
+  afterEach(() => vi.restoreAllMocks());
+
+  it.effect("loads MDX-only families without acquiring a native parser", () =>
+    Effect.gen(function* () {
+      const fixture = yield* previewSources();
+      const parser = vi.spyOn(TypeScriptParser, "of");
+      yield* Effect.forEach(
+        [fixture.articleSource, fixture.materialSource, fixture.pageSource],
+        (source) => loadPreviewSources(fixture.checkoutRoot, [source])
+      );
+      expect(parser).not.toHaveBeenCalled();
+    })
+  );
+
   it.effect("loads and projects every supported real content family", () =>
     Effect.gen(function* () {
       const fixture = yield* previewSources();
@@ -175,6 +190,7 @@ layer(previewTestLayer)("preview source", (it) => {
   it.effect("parses one shared item source for an ordered answer closure", () =>
     Effect.gen(function* () {
       const fixture = yield* previewSources();
+      const parser = vi.spyOn(TypeScriptParser, "of");
       const loaded = yield* loadPreviewSources(fixture.checkoutRoot, [
         fixture.answerPromptSource,
         fixture.answerSource,
@@ -192,6 +208,7 @@ layer(previewTestLayer)("preview source", (it) => {
         fixture.answerSource.entry.sourcePath,
       ]);
       expect(prompt.source.item).toBe(answer.source.item);
+      expect(parser).toHaveBeenCalledTimes(1);
     })
   );
 
