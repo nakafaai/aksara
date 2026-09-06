@@ -1,4 +1,28 @@
-import ts from "typescript";
+import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
+import { Effect } from "effect";
+import {
+  isBinaryExpression,
+  isBindingElement,
+  isCallExpression,
+  isComputedPropertyName,
+  isElementAccessExpression,
+  isIdentifier,
+  isImportDeclaration,
+  isImportSpecifier,
+  isNamespaceImport,
+  isObjectBindingPattern,
+  isPropertyAccessExpression,
+  isPropertyAssignment,
+  isShorthandPropertyAssignment,
+  isStatement,
+  isStringLiteral,
+  isStringLiteralLikeNode,
+  isTypeNode,
+  isVariableDeclaration,
+  type Node,
+  type SourceFile,
+  SyntaxKind,
+} from "typescript/unstable/ast";
 
 const TEST_MODULE_PATTERN = /\.test\.ts$/u;
 const LEGACY_ADAPTER = "@nakafa/testing/effect";
@@ -15,13 +39,13 @@ const MANAGED_RUNTIME_RUNNERS = new Set(
 );
 
 /** Returns value-position descendants while excluding type-only subtrees. */
-function descendants(sourceFile: ts.SourceFile) {
-  const nodes: ts.Node[] = [sourceFile];
+function descendants(sourceFile: SourceFile) {
+  const nodes: Node[] = [sourceFile];
   for (const node of nodes) {
-    if (ts.isTypeNode(node)) {
+    if (isTypeNode(node)) {
       continue;
     }
-    ts.forEachChild(node, (child) => {
+    node.forEachChild((child) => {
       nodes.push(child);
     });
   }
@@ -29,26 +53,23 @@ function descendants(sourceFile: ts.SourceFile) {
 }
 
 /** Returns a statically named module loaded by import syntax. */
-function importedModule(node: ts.Node) {
-  if (
-    ts.isImportDeclaration(node) &&
-    ts.isStringLiteral(node.moduleSpecifier)
-  ) {
+function importedModule(node: Node) {
+  if (isImportDeclaration(node) && isStringLiteral(node.moduleSpecifier)) {
     return node.moduleSpecifier.text;
   }
   if (
-    ts.isCallExpression(node) &&
-    node.expression.kind === ts.SyntaxKind.ImportKeyword
+    isCallExpression(node) &&
+    node.expression.kind === SyntaxKind.ImportKeyword
   ) {
     const [specifier] = node.arguments;
-    return specifier !== undefined && ts.isStringLiteralLike(specifier)
+    return specifier !== undefined && isStringLiteralLikeNode(specifier)
       ? specifier.text
       : undefined;
   }
 }
 
 /** Collects imports that expose Effect runtime APIs. */
-function runtimeImports(nodes: readonly ts.Node[]) {
+function runtimeImports(nodes: readonly Node[]) {
   const bindings: string[] = [];
   let legacy = false;
   let runtime = false;
@@ -58,16 +79,20 @@ function runtimeImports(nodes: readonly ts.Node[]) {
     if (moduleName === undefined || !EFFECT_MODULES.has(moduleName)) {
       continue;
     }
-    if (!ts.isImportDeclaration(node)) {
+    if (!isImportDeclaration(node)) {
       runtime = true;
       continue;
     }
     const clause = node.importClause;
     const namedBindings = clause?.namedBindings;
-    if (clause?.isTypeOnly !== false || namedBindings === undefined) {
+    if (
+      clause === undefined ||
+      clause.phaseModifier === SyntaxKind.TypeKeyword ||
+      namedBindings === undefined
+    ) {
       continue;
     }
-    if (ts.isNamespaceImport(namedBindings)) {
+    if (isNamespaceImport(namedBindings)) {
       bindings.push(namedBindings.name.text);
       runtime = true;
       continue;
@@ -87,22 +112,22 @@ function runtimeImports(nodes: readonly ts.Node[]) {
 }
 
 /** Returns one statically knowable property name. */
-function staticProperty(node: ts.Node, computed = false) {
-  const isComputed = computed || ts.isComputedPropertyName(node);
-  const property = ts.isComputedPropertyName(node) ? node.expression : node;
-  return (!isComputed && ts.isIdentifier(property)) ||
-    ts.isStringLiteralLike(property)
+function staticProperty(node: Node, computed = false) {
+  const isComputed = computed || isComputedPropertyName(node);
+  const property = isComputedPropertyName(node) ? node.expression : node;
+  return (!isComputed && isIdentifier(property)) ||
+    isStringLiteralLikeNode(property)
     ? property.text
     : undefined;
 }
 
 /** Tests whether a property is inside an assignment target. */
-function isAssignmentKey(node: ts.Node) {
+function isAssignmentKey(node: Node) {
   let { parent } = node;
-  while (!(ts.isStatement(parent) || ts.isVariableDeclaration(parent))) {
+  while (!(isStatement(parent) || isVariableDeclaration(parent))) {
     if (
-      ts.isBinaryExpression(parent) &&
-      parent.operatorToken.kind === ts.SyntaxKind.EqualsToken
+      isBinaryExpression(parent) &&
+      parent.operatorToken.kind === SyntaxKind.EqualsToken
     ) {
       return node.pos >= parent.left.pos && node.end <= parent.left.end;
     }
@@ -112,8 +137,8 @@ function isAssignmentKey(node: ts.Node) {
 }
 
 /** Returns a reserved member or destructuring key. */
-function reservedName(node: ts.Node) {
-  if (ts.isImportSpecifier(node) && !node.isTypeOnly) {
+function reservedName(node: Node) {
+  if (isImportSpecifier(node) && !node.isTypeOnly) {
     const moduleName = importedModule(node.parent.parent.parent);
     const name = node.propertyName?.text ?? node.name.text;
     if (moduleName === "effect/Effect" && EFFECT_RUNNERS.has(name)) {
@@ -124,23 +149,22 @@ function reservedName(node: ts.Node) {
       ? name
       : undefined;
   }
-  if (ts.isPropertyAccessExpression(node)) {
+  if (isPropertyAccessExpression(node)) {
     return node.name.text;
   }
-  if (ts.isElementAccessExpression(node)) {
+  if (isElementAccessExpression(node)) {
     return staticProperty(node.argumentExpression, true);
   }
   if (
-    ts.isBindingElement(node) &&
+    isBindingElement(node) &&
     node.dotDotDotToken === undefined &&
-    ts.isObjectBindingPattern(node.parent)
+    isObjectBindingPattern(node.parent)
   ) {
     return node.propertyName === undefined
-      ? node.name.getText()
+      ? node.name?.getText()
       : staticProperty(node.propertyName);
   }
-  return (ts.isPropertyAssignment(node) ||
-    ts.isShorthandPropertyAssignment(node)) &&
+  return (isPropertyAssignment(node) || isShorthandPropertyAssignment(node)) &&
     isAssignmentKey(node)
     ? staticProperty(node.name)
     : undefined;
@@ -148,7 +172,7 @@ function reservedName(node: ts.Node) {
 
 /** Reports reserved runner syntax in a value position. */
 function hasReservedRunner(
-  nodes: readonly ts.Node[],
+  nodes: readonly Node[],
   bindings: ReadonlySet<string>
 ) {
   return nodes.some((node) => {
@@ -156,9 +180,9 @@ function hasReservedRunner(
       return true;
     }
     if (
-      !ts.isElementAccessExpression(node) ||
+      !isElementAccessExpression(node) ||
       staticProperty(node.argumentExpression, true) !== undefined ||
-      !ts.isIdentifier(node.expression)
+      !isIdentifier(node.expression)
     ) {
       return false;
     }
@@ -167,28 +191,33 @@ function hasReservedRunner(
 }
 
 /** Reports authored tests that retain the adapter or reserved runners. */
-export function effectTestViolations(file: string, sourceText: string) {
-  if (!TEST_MODULE_PATTERN.test(file)) {
-    return [];
-  }
-  const sourceFile = ts.createSourceFile(
-    file,
-    sourceText,
-    ts.ScriptTarget.Latest,
-    true
-  );
-  const nodes = descendants(sourceFile);
-  const imports = runtimeImports(nodes);
-  const violations: string[] = [];
-  if (imports.legacy) {
-    violations.push(
-      `${file}: import Effect test APIs directly from @effect/vitest.`
+export const effectTestViolations = Effect.fn("AksaraPolicy.effectTests")(
+  function* (file: string, sourceText: string) {
+    if (!TEST_MODULE_PATTERN.test(file)) {
+      return [];
+    }
+    const parser = yield* TypeScriptParser;
+    return yield* parser.inspect(
+      { fileName: file, source: sourceText },
+      ({ sourceFile }) => {
+        const nodes = descendants(sourceFile);
+        const imports = runtimeImports(nodes);
+        const violations: string[] = [];
+        if (imports.legacy) {
+          violations.push(
+            `${file}: import Effect test APIs directly from @effect/vitest.`
+          );
+        }
+        if (
+          imports.runtime &&
+          hasReservedRunner(nodes, new Set(imports.bindings))
+        ) {
+          violations.push(
+            `${file}: use @effect/vitest instead of Effect runtime runners.`
+          );
+        }
+        return violations;
+      }
     );
   }
-  if (imports.runtime && hasReservedRunner(nodes, new Set(imports.bindings))) {
-    violations.push(
-      `${file}: use @effect/vitest instead of Effect runtime runners.`
-    );
-  }
-  return violations;
-}
+);

@@ -1,5 +1,10 @@
 import { readFileSync } from "node:fs";
-import ts from "typescript";
+import {
+  TypeScriptParser,
+  TypeScriptSourceError,
+} from "@nakafa/aksara-utilities/typescript/parse";
+import { Effect } from "effect";
+import { isJSDoc, type Node, type SourceFile } from "typescript/unstable/ast";
 
 import { enforceViolations, typescriptFiles } from "#scripts/check/files";
 
@@ -7,24 +12,18 @@ const LINE_BREAK_PATTERN = /\r?\n/u;
 const MAXIMUM_LINES = 300;
 
 /** Masks only parsed JSDoc ranges while preserving offsets and line breaks. */
-function maskDocumentation(file: string, sourceText: string) {
+function maskDocumentation(sourceFile: SourceFile, sourceText: string) {
   const masked = sourceText.split("");
   const documentedLines = new Set<number>();
-  const sourceFile = ts.createSourceFile(
-    file,
-    sourceText,
-    ts.ScriptTarget.Latest,
-    true
-  );
   const ranges = new Map<number, number>();
-  const nodes: ts.Node[] = [sourceFile];
+  const nodes: Node[] = [sourceFile];
 
   for (const node of nodes) {
-    for (const doc of ts.getJSDocCommentsAndTags(node).filter(ts.isJSDoc)) {
+    for (const doc of (node.jsDoc ?? []).filter(isJSDoc)) {
       const start = doc.getStart(sourceFile);
       ranges.set(start, doc.getEnd());
     }
-    ts.forEachChild(node, (child) => {
+    node.forEachChild((child) => {
       nodes.push(child);
     });
   }
@@ -46,40 +45,64 @@ function maskDocumentation(file: string, sourceText: string) {
 }
 
 /** Counts physical module lines while excluding lines occupied only by JSDoc. */
-export function countModuleLines(file: string, sourceText: string): number {
-  if (sourceText.length === 0) {
-    return 0;
-  }
-  const sourceLines = sourceText.split(LINE_BREAK_PATTERN);
-  const { documentedLines, maskedText } = maskDocumentation(file, sourceText);
-  const maskedLines = maskedText.split(LINE_BREAK_PATTERN);
-  const hasTrailingLine = !sourceText.endsWith("\n");
-  const lineCount = hasTrailingLine
-    ? sourceLines.length
-    : sourceLines.length - 1;
-  let count = 0;
-
-  for (let line = 0; line < lineCount; line += 1) {
-    if (!documentedLines.has(line) || maskedLines[line]?.trim()) {
-      count += 1;
+export const countModuleLines = Effect.fn("AksaraPolicy.countModuleLines")(
+  function* (file: string, sourceText: string) {
+    if (sourceText.length === 0) {
+      return 0;
     }
-  }
+    const parser = yield* TypeScriptParser;
+    return yield* parser.inspect(
+      { fileName: file, source: sourceText },
+      ({ sourceFile }) => {
+        const sourceLines = sourceText.split(LINE_BREAK_PATTERN);
+        const { documentedLines, maskedText } = maskDocumentation(
+          sourceFile,
+          sourceText
+        );
+        const maskedLines = maskedText.split(LINE_BREAK_PATTERN);
+        const hasTrailingLine = !sourceText.endsWith("\n");
+        const lineCount = hasTrailingLine
+          ? sourceLines.length
+          : sourceLines.length - 1;
+        let count = 0;
 
-  return count;
-}
+        for (let line = 0; line < lineCount; line += 1) {
+          if (!documentedLines.has(line) || maskedLines[line]?.trim()) {
+            count += 1;
+          }
+        }
+
+        return count;
+      }
+    );
+  }
+);
 
 /** Collects authored TypeScript modules that exceed the repository line limit. */
-export function lineViolations(
+export const lineViolations = Effect.fn("AksaraPolicy.moduleLines")(function* (
   files: readonly string[],
   readSource: (file: string) => string
-): readonly string[] {
-  return files.flatMap((file) => {
-    const lines = countModuleLines(file, readSource(file));
-    return lines > MAXIMUM_LINES ? [`${file}: ${lines} lines`] : [];
-  });
-}
+) {
+  const violations = yield* Effect.forEach(files, (file) =>
+    Effect.try({
+      catch: (cause) => new TypeScriptSourceError({ cause, fileName: file }),
+      try: () => readSource(file),
+    }).pipe(
+      Effect.flatMap((source) => countModuleLines(file, source)),
+      Effect.map((lines) =>
+        lines > MAXIMUM_LINES ? [`${file}: ${lines} lines`] : []
+      )
+    )
+  );
+  return violations.flat();
+});
 
+const violations = await Effect.runPromise(
+  lineViolations(typescriptFiles(), (file) => readFileSync(file, "utf8")).pipe(
+    Effect.provide(TypeScriptParser.layer)
+  )
+);
 enforceViolations(
   `TypeScript modules may contain at most ${MAXIMUM_LINES} non-JSDoc lines`,
-  lineViolations(typescriptFiles(), (file) => readFileSync(file, "utf8"))
+  violations
 );

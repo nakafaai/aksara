@@ -1,6 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
-import { describe, expect, it, layer } from "@effect/vitest";
-import { Effect, FileSystem, Path } from "effect";
+import { expect, layer } from "@effect/vitest";
+import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
+import { Effect, FileSystem, Layer, Path } from "effect";
 import {
   EDGE_CONTRACT_EXPORTS,
   EdgeVerificationError,
@@ -45,188 +46,209 @@ const writePackageManifest = Effect.fn("ContractEdgeTest.writePackageManifest")(
   }
 );
 
-describe("Edge import syntax", () => {
-  it("collects static, re-exported, and literal dynamic imports", () => {
-    expect(
-      runtimeImports(
-        "inline.js",
-        'import "a"; export * from "b"; import("c"); import(variable);'
-      )
-    ).toEqual(["a", "b", "c"]);
-  });
-});
-
-layer(NodeServices.layer)("Edge contract verification", (effectIt) => {
-  effectIt.effect("runs only for the selected CLI entrypoint", () =>
+layer(TypeScriptParser.layer)("Edge import syntax", (it) => {
+  it.effect("collects static, re-exported, and literal dynamic imports", () =>
     Effect.gen(function* () {
-      const fileSystem = yield* FileSystem.FileSystem;
-      const path = yield* Path.Path;
-      const packageRoot = yield* fileSystem.makeTempDirectoryScoped({
-        prefix: "aksara-edge-cli-",
-      });
-      const scriptDirectory = path.join(packageRoot, "scripts");
-      const moduleFile = path.join(scriptDirectory, "verify-edge.ts");
-      yield* writePackageManifest(packageRoot);
-      for (const entry of EDGE_CONTRACT_EXPORTS) {
-        yield* writeModule(path.join(packageRoot, "dist"), entry, "export {};");
-      }
-
       expect(
-        yield* runEdgeVerification({
-          entry: undefined,
-          moduleFile,
-          scriptDirectory,
-        })
-      ).toBe(false);
-      expect(
-        yield* runEdgeVerification({
-          entry: path.join(packageRoot, "other.ts"),
-          moduleFile,
-          scriptDirectory,
-        })
-      ).toBe(false);
-      expect(
-        yield* runEdgeVerification({
-          entry: moduleFile,
-          moduleFile,
-          scriptDirectory,
-        })
-      ).toBe(true);
+        yield* runtimeImports(
+          "inline.js",
+          'import "a"; export * from "b"; import("c"); import(variable);'
+        )
+      ).toEqual(["a", "b", "c"]);
     })
   );
+});
 
-  effectIt.effect(
-    "traces private, relative, re-exported, and dynamic imports",
-    () =>
+layer(Layer.mergeAll(NodeServices.layer, TypeScriptParser.layer))(
+  "Edge contract verification",
+  (effectIt) => {
+    effectIt.effect("runs only for the selected CLI entrypoint", () =>
       Effect.gen(function* () {
         const fileSystem = yield* FileSystem.FileSystem;
-        const root = yield* fileSystem.makeTempDirectoryScoped({
-          prefix: "aksara-edge-pass-",
+        const path = yield* Path.Path;
+        const packageRoot = yield* fileSystem.makeTempDirectoryScoped({
+          prefix: "aksara-edge-cli-",
         });
-        yield* writeModule(
-          root,
-          "entry",
-          [
-            'import "#contracts/private";',
-            'export * from "./relative.js";',
-            'export * from "./extensionless";',
-            'const loaded = import("#contracts/dynamic");',
-          ].join("\n")
-        );
-        yield* writeModule(
-          root,
-          "private",
-          'import "./entry.js"; import "effect";'
-        );
-        yield* writeModule(root, "relative", 'export const value = "safe";');
-        yield* writeModule(
-          root,
-          "extensionless",
-          'export const value = "safe";'
-        );
-        yield* writeModule(root, "dynamic", 'export const value = "safe";');
+        const scriptDirectory = path.join(packageRoot, "scripts");
+        const moduleFile = path.join(scriptDirectory, "verify-edge.ts");
+        yield* writePackageManifest(packageRoot);
+        for (const entry of EDGE_CONTRACT_EXPORTS) {
+          yield* writeModule(
+            path.join(packageRoot, "dist"),
+            entry,
+            "export {};"
+          );
+        }
 
-        const visited = yield* verifyEdgeEntry(root, "entry");
-
-        expect(visited.size).toBe(5);
+        expect(
+          yield* runEdgeVerification({
+            entry: undefined,
+            moduleFile,
+            scriptDirectory,
+          })
+        ).toBe(false);
+        expect(
+          yield* runEdgeVerification({
+            entry: path.join(packageRoot, "other.ts"),
+            moduleFile,
+            scriptDirectory,
+          })
+        ).toBe(false);
+        expect(
+          yield* runEdgeVerification({
+            entry: moduleFile,
+            moduleFile,
+            scriptDirectory,
+          })
+        ).toBe(true);
       })
-  );
+    );
 
-  effectIt.effect("returns typed module failures", () =>
-    Effect.gen(function* () {
-      const fileSystem = yield* FileSystem.FileSystem;
-      const path = yield* Path.Path;
-      const root = yield* fileSystem.makeTempDirectoryScoped({
-        prefix: "aksara-edge-module-failure-",
-      });
-      const nodeRoot = path.join(root, "node");
-      yield* writeModule(nodeRoot, "entry", 'import "#contracts/crypto";');
-      yield* writeModule(nodeRoot, "crypto", 'import "node:crypto";');
+    effectIt.effect(
+      "traces private, relative, re-exported, and dynamic imports",
+      () =>
+        Effect.gen(function* () {
+          const fileSystem = yield* FileSystem.FileSystem;
+          const root = yield* fileSystem.makeTempDirectoryScoped({
+            prefix: "aksara-edge-pass-",
+          });
+          yield* writeModule(
+            root,
+            "entry",
+            [
+              'import "#contracts/private";',
+              'export * from "./relative.js";',
+              'export * from "./extensionless";',
+              'const loaded = import("#contracts/dynamic");',
+            ].join("\n")
+          );
+          yield* writeModule(
+            root,
+            "private",
+            'import "./entry.js"; import "effect";'
+          );
+          yield* writeModule(root, "relative", 'export const value = "safe";');
+          yield* writeModule(
+            root,
+            "extensionless",
+            'export const value = "safe";'
+          );
+          yield* writeModule(root, "dynamic", 'export const value = "safe";');
 
-      const nodeError = yield* verifyEdgeEntry(nodeRoot, "entry").pipe(
-        Effect.flip
-      );
-      expect(nodeError).toBeInstanceOf(EdgeVerificationError);
-      expect(nodeError).toMatchObject({ reason: "module" });
-      expect(nodeError.detail).toContain(
-        "reaches Node-only import node:crypto"
-      );
+          const visited = yield* verifyEdgeEntry(root, "entry");
 
-      const missingRoot = path.join(root, "missing");
-      yield* writeModule(missingRoot, "entry", 'import "#contracts/missing";');
-      const missingError = yield* verifyEdgeEntry(missingRoot, "entry").pipe(
-        Effect.flip
-      );
-      expect(missingError).toBeInstanceOf(EdgeVerificationError);
-      expect(missingError).toMatchObject({ reason: "module" });
-      expect(missingError.detail).toContain(
-        "Edge contract module could not be read"
-      );
-    })
-  );
+          expect(visited.size).toBe(5);
+        })
+    );
 
-  effectIt.effect("returns typed filesystem and manifest failures", () =>
-    Effect.gen(function* () {
-      const fileSystem = yield* FileSystem.FileSystem;
-      const path = yield* Path.Path;
-      const root = yield* fileSystem.makeTempDirectoryScoped({
-        prefix: "aksara-edge-contract-failure-",
-      });
+    effectIt.effect("returns typed module failures", () =>
+      Effect.gen(function* () {
+        const fileSystem = yield* FileSystem.FileSystem;
+        const path = yield* Path.Path;
+        const root = yield* fileSystem.makeTempDirectoryScoped({
+          prefix: "aksara-edge-module-failure-",
+        });
+        const nodeRoot = path.join(root, "node");
+        yield* writeModule(nodeRoot, "entry", 'import "#contracts/crypto";');
+        yield* writeModule(nodeRoot, "crypto", 'import "node:crypto";');
 
-      const filesystemRoot = path.join(root, "filesystem");
-      yield* fileSystem.makeDirectory(filesystemRoot);
-      const filesystemError = yield* verifyEdgeContracts(filesystemRoot).pipe(
-        Effect.flip
-      );
-      expect(filesystemError).toMatchObject({
-        _tag: "EdgeVerificationError",
-        reason: "filesystem",
-      });
-
-      const invalidRoot = path.join(root, "invalid");
-      yield* fileSystem.makeDirectory(invalidRoot);
-      yield* fileSystem.writeFileString(
-        path.join(invalidRoot, "package.json"),
-        "{"
-      );
-      const invalidError = yield* verifyEdgeContracts(invalidRoot).pipe(
-        Effect.flip
-      );
-      expect(invalidError).toMatchObject({
-        _tag: "EdgeVerificationError",
-        reason: "manifest",
-      });
-      expect(invalidError.cause).toBeInstanceOf(SyntaxError);
-
-      const missingRoot = path.join(root, "missing-export");
-      yield* fileSystem.makeDirectory(missingRoot);
-      yield* fileSystem.writeFileString(
-        path.join(missingRoot, "package.json"),
-        JSON.stringify({ exports: {}, name: "@nakafa/aksara-contracts" })
-      );
-      const missingError = yield* verifyEdgeContracts(missingRoot).pipe(
-        Effect.flip
-      );
-      expect(missingError).toMatchObject({ reason: "manifest" });
-      expect(missingError.detail).toContain("Edge contract export is missing");
-
-      const conditionRoot = path.join(root, "condition");
-      yield* fileSystem.makeDirectory(conditionRoot);
-      yield* writePackageManifest(conditionRoot, "node");
-      for (const entry of EDGE_CONTRACT_EXPORTS) {
-        yield* writeModule(
-          path.join(conditionRoot, "dist"),
-          entry,
-          "export {};"
+        const nodeError = yield* verifyEdgeEntry(nodeRoot, "entry").pipe(
+          Effect.flip
         );
-      }
-      const conditionError = yield* verifyEdgeContracts(conditionRoot).pipe(
-        Effect.flip
-      );
-      expect(conditionError).toMatchObject({ reason: "manifest" });
-      expect(conditionError.detail).toContain(
-        "Edge contract export must declare an import condition: release/canonical"
-      );
-    })
-  );
-});
+        expect(nodeError).toBeInstanceOf(EdgeVerificationError);
+        expect(nodeError).toMatchObject({ reason: "module" });
+        expect(nodeError).toMatchObject({
+          detail: expect.stringContaining(
+            "reaches Node-only import node:crypto"
+          ),
+        });
+
+        const missingRoot = path.join(root, "missing");
+        yield* writeModule(
+          missingRoot,
+          "entry",
+          'import "#contracts/missing";'
+        );
+        const missingError = yield* verifyEdgeEntry(missingRoot, "entry").pipe(
+          Effect.flip
+        );
+        expect(missingError).toBeInstanceOf(EdgeVerificationError);
+        expect(missingError).toMatchObject({ reason: "module" });
+        expect(missingError).toMatchObject({
+          detail: expect.stringContaining(
+            "Edge contract module could not be read"
+          ),
+        });
+      })
+    );
+
+    effectIt.effect("returns typed filesystem and manifest failures", () =>
+      Effect.gen(function* () {
+        const fileSystem = yield* FileSystem.FileSystem;
+        const path = yield* Path.Path;
+        const root = yield* fileSystem.makeTempDirectoryScoped({
+          prefix: "aksara-edge-contract-failure-",
+        });
+
+        const filesystemRoot = path.join(root, "filesystem");
+        yield* fileSystem.makeDirectory(filesystemRoot);
+        const filesystemError = yield* verifyEdgeContracts(filesystemRoot).pipe(
+          Effect.flip
+        );
+        expect(filesystemError).toMatchObject({
+          _tag: "EdgeVerificationError",
+          reason: "filesystem",
+        });
+
+        const invalidRoot = path.join(root, "invalid");
+        yield* fileSystem.makeDirectory(invalidRoot);
+        yield* fileSystem.writeFileString(
+          path.join(invalidRoot, "package.json"),
+          "{"
+        );
+        const invalidError = yield* verifyEdgeContracts(invalidRoot).pipe(
+          Effect.flip
+        );
+        expect(invalidError).toMatchObject({
+          _tag: "EdgeVerificationError",
+          reason: "manifest",
+        });
+        expect(invalidError.cause).toBeInstanceOf(SyntaxError);
+
+        const missingRoot = path.join(root, "missing-export");
+        yield* fileSystem.makeDirectory(missingRoot);
+        yield* fileSystem.writeFileString(
+          path.join(missingRoot, "package.json"),
+          JSON.stringify({ exports: {}, name: "@nakafa/aksara-contracts" })
+        );
+        const missingError = yield* verifyEdgeContracts(missingRoot).pipe(
+          Effect.flip
+        );
+        expect(missingError).toMatchObject({ reason: "manifest" });
+        expect(missingError).toMatchObject({
+          detail: expect.stringContaining("Edge contract export is missing"),
+        });
+
+        const conditionRoot = path.join(root, "condition");
+        yield* fileSystem.makeDirectory(conditionRoot);
+        yield* writePackageManifest(conditionRoot, "node");
+        for (const entry of EDGE_CONTRACT_EXPORTS) {
+          yield* writeModule(
+            path.join(conditionRoot, "dist"),
+            entry,
+            "export {};"
+          );
+        }
+        const conditionError = yield* verifyEdgeContracts(conditionRoot).pipe(
+          Effect.flip
+        );
+        expect(conditionError).toMatchObject({ reason: "manifest" });
+        expect(conditionError).toMatchObject({
+          detail: expect.stringContaining(
+            "Edge contract export must declare an import condition: release/canonical"
+          ),
+        });
+      })
+    );
+  }
+);

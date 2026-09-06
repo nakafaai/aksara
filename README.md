@@ -175,9 +175,9 @@ attested archive for independent byte and source verification.
 
 ## Toolchain notes
 
-- TypeScript 7 is the repository CLI compiler. TypeScript 6 remains installed
-  under its package name for programmatic consumers that still require the
-  JavaScript compiler API.
+- TypeScript 7 provides the repository CLI compiler and native AST API.
+  Source inspection uses scoped native compiler snapshots. The compiler,
+  unstable API, and Effect patch are pinned and upgraded together.
 - Effect work uses the version-matched read-only source under `repos/effect`.
   Run `pnpm effect:source:check` before review. Update that subtree only through
   `pnpm effect:source:update` as part of an approved dependency cohort.

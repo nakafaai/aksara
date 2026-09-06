@@ -1,5 +1,8 @@
-import { dirname, relative, resolve } from "node:path";
-import ts from "typescript";
+import { readFileSync } from "node:fs";
+import { relative, resolve } from "node:path";
+import { Effect, Schema } from "effect";
+import { computeLineStarts } from "typescript/unstable/ast";
+import { API } from "typescript/unstable/sync";
 
 import {
   enforceViolations,
@@ -15,104 +18,73 @@ export function projectConfigPaths(files: readonly string[]) {
   return files.filter((file) => PROJECT_CONFIG_PATTERN.test(file)).sort();
 }
 
-/** Formats one TypeScript diagnostic relative to its repository root. */
-function formatDiagnostic(diagnostic: ts.Diagnostic, repositoryRoot: string) {
-  const message = ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n");
-  if (diagnostic.file === undefined || diagnostic.start === undefined) {
-    return `TS${diagnostic.code} ${message}`;
-  }
+/** Native project loading or diagnostic collection failed. */
+export class TypeScriptProjectError extends Schema.TaggedError<TypeScriptProjectError>()(
+  "TypeScriptProjectError",
+  { cause: Schema.Unknown, configPath: Schema.String }
+) {}
 
-  const position = diagnostic.file.getLineAndCharacterOfPosition(
-    diagnostic.start
+/** Audits exact native project roots while preserving configuration failures. */
+export const auditProjectDeprecations = Effect.fn(
+  "AksaraPolicy.projectDeprecations"
+)(function* (configPath: string, repositoryRoot: string) {
+  /** Preserves a native or source-read failure at its project boundary. */
+  const failure = (cause: unknown) =>
+    new TypeScriptProjectError({ cause, configPath });
+  const api = yield* Effect.acquireRelease(
+    Effect.try({ catch: failure, try: () => new API({ cwd: repositoryRoot }) }),
+    (resource) => Effect.sync(() => resource.close())
   );
-  const sourcePath = relative(repositoryRoot, diagnostic.file.fileName);
-  return `${sourcePath}:${position.line + 1}:${position.character + 1} TS${
-    diagnostic.code
-  } ${message}`;
-}
-
-/** Reports deprecated API usage from one resolved TypeScript language service. */
-function deprecatedViolations(
-  languageService: ts.LanguageService,
-  fileNames: readonly string[],
-  repositoryRoot: string
-) {
-  return fileNames.flatMap((fileName) =>
-    languageService
-      .getSuggestionDiagnostics(fileName)
-      .filter((diagnostic) => diagnostic.reportsDeprecated !== undefined)
-      .map((diagnostic) => formatDiagnostic(diagnostic, repositoryRoot))
+  const snapshot = yield* Effect.acquireRelease(
+    Effect.try({
+      catch: failure,
+      try: () => api.updateSnapshot({ openProjects: [configPath] }),
+    }),
+    (resource) => Effect.sync(() => resource.dispose())
   );
-}
-
-/** Reads one TypeScript source snapshot while preserving missing-file absence. */
-export function readScriptSnapshot(fileName: string) {
-  const source = ts.sys.readFile(fileName);
-  if (source === undefined) {
-    return;
-  }
-
-  return ts.ScriptSnapshot.fromString(source);
-}
-
-/** Creates and audits one TypeScript project without suppressing config errors. */
-export function auditProjectDeprecations(
-  configPath: string,
-  repositoryRoot: string
-) {
-  const configDiagnostics: ts.Diagnostic[] = [];
-  const parsed = ts.getParsedCommandLineOfConfigFile(
-    configPath,
-    {},
-    {
-      ...ts.sys,
-      onUnRecoverableConfigFileDiagnostic: (diagnostic) => {
-        configDiagnostics.push(diagnostic);
-      },
-    }
-  );
-  if (parsed === undefined) {
-    return {
-      fileNames: [],
-      violations: configDiagnostics.map((diagnostic) =>
-        formatDiagnostic(diagnostic, repositoryRoot)
-      ),
-    };
-  }
-
-  const parseDiagnostics = [...configDiagnostics, ...parsed.errors];
-  if (parseDiagnostics.length > 0) {
-    return {
-      fileNames: parsed.fileNames,
-      violations: parseDiagnostics.map((diagnostic) =>
-        formatDiagnostic(diagnostic, repositoryRoot)
-      ),
-    };
-  }
-
-  const languageService = ts.createLanguageService({
-    fileExists: ts.sys.fileExists,
-    getCompilationSettings: () => parsed.options,
-    getCurrentDirectory: () => dirname(configPath),
-    getDefaultLibFileName: ts.getDefaultLibFilePath,
-    getProjectReferences: () => parsed.projectReferences,
-    getScriptFileNames: () => parsed.fileNames,
-    getScriptSnapshot: readScriptSnapshot,
-    getScriptVersion: () => "0",
-    readFile: ts.sys.readFile,
-    useCaseSensitiveFileNames: () => ts.sys.useCaseSensitiveFileNames,
+  const project = yield* Effect.try({
+    catch: failure,
+    try: () => snapshot.getProject(configPath),
   });
-  const violations = deprecatedViolations(
-    languageService,
-    parsed.fileNames,
-    repositoryRoot
-  );
-  languageService.dispose();
-  return {
-    fileNames: parsed.fileNames,
-    violations,
-  };
-}
+  if (project === undefined) {
+    return yield* failure("The native TypeScript project could not be opened.");
+  }
+  return yield* Effect.try({
+    catch: failure,
+    try: () => {
+      const configDiagnostics =
+        project.program.getConfigFileParsingDiagnostics();
+      const diagnostics =
+        configDiagnostics.length > 0
+          ? configDiagnostics
+          : project.rootFiles.flatMap((file) =>
+              project.program
+                .getSuggestionDiagnostics(file)
+                .filter((diagnostic) => diagnostic.reportsDeprecated === true)
+            );
+      return {
+        fileNames: project.rootFiles,
+        violations: diagnostics.map((diagnostic) => {
+          const message = `TS${diagnostic.code} ${diagnostic.text}`;
+          if (diagnostic.fileName === undefined) {
+            return message;
+          }
+          const source = readFileSync(diagnostic.fileName, "utf8");
+          let line = 0;
+          let character = diagnostic.pos + 1;
+          for (const offset of computeLineStarts(source)) {
+            if (offset > diagnostic.pos) {
+              break;
+            }
+            line += 1;
+            character = diagnostic.pos - offset + 1;
+          }
+          return `${relative(repositoryRoot, diagnostic.fileName)}:${line}:${character} ${message}`;
+        }),
+      };
+    },
+  });
+}, Effect.scoped);
 
 /** Reports authored TypeScript files absent from every audited project. */
 export function uncoveredTypeScriptViolations(
@@ -134,8 +106,10 @@ export function uncoveredTypeScriptViolations(
 
 const currentRoot = process.cwd();
 const repositoryFiles = trackedFiles();
-const projectAudits = projectConfigPaths(repositoryFiles).map((configPath) =>
-  auditProjectDeprecations(resolve(currentRoot, configPath), currentRoot)
+const projectAudits = await Effect.runPromise(
+  Effect.forEach(projectConfigPaths(repositoryFiles), (configPath) =>
+    auditProjectDeprecations(resolve(currentRoot, configPath), currentRoot)
+  )
 );
 const violations = [
   ...new Set([
