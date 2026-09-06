@@ -1,48 +1,38 @@
 import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
 import type { GitCommitSha } from "@nakafa/aksara-contracts/ids";
-import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
 import { Effect, Layer, Stream } from "effect";
+import { MAX_GIT_BATCH_BLOBS } from "#publisher/git/batch";
 import { GitBlob, makeGitBlobLive } from "#publisher/git/blob";
 import {
   PublicationSource,
   PublicationSourceError,
 } from "#publisher/publication/spec";
 
-/** Loads one signed upsert identity from its immutable reviewed Git blob. */
-function loadItem(
+/** Loads one bounded source batch while preserving authenticated item order. */
+const loadBatch = Effect.fn("AksaraPublisher.loadGitSourceBatch")(function* (
   gitBlob: typeof GitBlob.Service,
   aksaraSha: GitCommitSha,
-  item: ContentReleaseItem
+  items: readonly ContentReleaseItem[]
 ) {
-  if (item.change.operation === "delete") {
-    return Effect.fail(
-      new PublicationSourceError({
-        aksaraSha,
-        cause: item,
-        message: "PublicationSource accepts authenticated upsert items only.",
-      })
-    );
-  }
-
-  const { change } = item;
-
-  return gitBlob
+  const changes = yield* Effect.forEach(items, (item) => {
+    if (item.change.operation === "delete") {
+      return Effect.fail(
+        new PublicationSourceError({
+          aksaraSha,
+          cause: item,
+          message: "PublicationSource accepts authenticated upsert items only.",
+        })
+      );
+    }
+    return Effect.succeed(item.change);
+  });
+  const blobs = yield* gitBlob
     .read({
-      maxBytes: MAX_RAW_MDX_BYTES,
       revision: aksaraSha,
-      sourcePath: change.sourcePath,
+      sourcePaths: changes.map(({ sourcePath }) => sourcePath),
     })
     .pipe(
-      Effect.map((rawMdx) =>
-        CompileDocumentSourceSchema.make({
-          artifactLocale: change.artifactLocale,
-          contentKey: change.contentKey,
-          rawMdx,
-          rendererDomain: change.rendererDomain,
-          sourcePath: change.sourcePath,
-        })
-      ),
       Effect.mapError(
         (cause) =>
           new PublicationSourceError({
@@ -52,17 +42,33 @@ function loadItem(
           })
       )
     );
-}
+  return yield* Effect.forEach(changes, (change) =>
+    Effect.fromNullishOr(blobs.get(change.sourcePath)).pipe(
+      Effect.orDie,
+      Effect.map((rawMdx) =>
+        CompileDocumentSourceSchema.make({
+          artifactLocale: change.artifactLocale,
+          contentKey: change.contentKey,
+          rawMdx,
+          rendererDomain: change.rendererDomain,
+          sourcePath: change.sourcePath,
+        })
+      )
+    )
+  );
+});
 
 const GitPublicationSourceFromBlob = Layer.effect(
   PublicationSource,
   GitBlob.pipe(
     Effect.map((gitBlob) =>
       PublicationSource.of({
-        /** Streams exact-Git sources for authenticated upsert items only. */
+        /** Streams sequential bounded batches without collecting the corpus. */
         loadExactRevision: ({ aksaraSha, items }) =>
           items.pipe(
-            Stream.mapEffect((item) => loadItem(gitBlob, aksaraSha, item))
+            Stream.grouped(MAX_GIT_BATCH_BLOBS),
+            Stream.mapEffect((batch) => loadBatch(gitBlob, aksaraSha, batch)),
+            Stream.flatMap(Stream.fromIterable)
           ),
       })
     )

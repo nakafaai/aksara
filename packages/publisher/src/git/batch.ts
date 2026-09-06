@@ -3,26 +3,24 @@ import type {
   GitCommitSha,
 } from "@nakafa/aksara-contracts/ids";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
+import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import { Effect, Schema } from "effect";
 
-const MAX_BATCH_BLOBS = 128;
-const MAX_BATCH_BODY_BYTES = 32 * 1024 * 1024;
+export const MAX_GIT_BATCH_BLOBS = 128;
 const MAX_BATCH_HEADER_BYTES = 96;
-const BLOB_HEADER_PATTERN = /^[a-f\d]{40} blob ([1-9]\d*|0)$/;
+const BLOB_HEADER_PATTERN = /^([a-f\d]{40}) blob ([1-9]\d*|0)$/;
 
-/** One bounded blob expected from Git's batch protocol. */
-export interface GitBatchBlob {
-  readonly maxBytes: number;
-  readonly sourcePath: CorpusSourcePath;
-}
-
-/** One complete bounded request to Git's batch protocol. */
-export interface GitBatchRequest {
-  readonly blobs: readonly GitBatchBlob[];
-  readonly stdin: Uint8Array;
-  readonly stdoutLimit: number;
-}
+const GitBlobMetadataSchema = Schema.Struct({
+  byteLength: Schema.Number.check(
+    Schema.isInt(),
+    Schema.isGreaterThanOrEqualTo(0)
+  ),
+  objectId: Schema.String.check(Schema.isPattern(/^[a-f\d]{40}$/)).pipe(
+    Schema.brand("GitBlobObjectId")
+  ),
+  sourcePath: CorpusSourcePathSchema,
+});
+type GitBlobMetadata = typeof GitBlobMetadataSchema.Type;
 
 /** Git's binary batch response violated its exact framing contract. */
 export class GitBatchError extends Schema.TaggedError<GitBatchError>()(
@@ -34,117 +32,80 @@ export class GitBatchError extends Schema.TaggedError<GitBatchError>()(
   }
 ) {}
 
-/** Splits canonical paths by both process count and retained byte ceilings. */
-export function partitionGitBlobInputs(inputs: readonly GitBatchBlob[]) {
-  const ordered = [...inputs].sort((left, right) =>
-    compareCodeUnits(left.sourcePath, right.sourcePath)
-  );
-  const batches: GitBatchBlob[][] = [];
-  let batch: GitBatchBlob[] = [];
-  let batchBytes = 0;
-  for (const input of ordered) {
-    const exceedsCount = batch.length >= MAX_BATCH_BLOBS;
-    const exceedsBytes = batchBytes + input.maxBytes > MAX_BATCH_BODY_BYTES;
-    if (batch.length > 0 && (exceedsCount || exceedsBytes)) {
-      batches.push(batch);
-      batch = [];
-      batchBytes = 0;
-    }
-    batch.push(input);
-    batchBytes += input.maxBytes;
-  }
-  if (batch.length > 0) {
-    batches.push(batch);
-  }
-  return batches;
+/** Requests only immutable object identities and sizes before any body read. */
+export function makeGitMetadataRequest(
+  commitSha: GitCommitSha,
+  sourcePaths: readonly CorpusSourcePath[]
+) {
+  return {
+    stdin: new TextEncoder().encode(
+      sourcePaths.map((sourcePath) => `${commitSha}:${sourcePath}\n`).join("")
+    ),
+    stdoutLimit: sourcePaths.length * MAX_BATCH_HEADER_BYTES,
+  };
 }
 
-/** Encodes one argument-safe Git batch request with a bounded response ceiling. */
-export function makeGitBatchRequest(
-  commitSha: GitCommitSha,
-  blobs: readonly GitBatchBlob[]
-): GitBatchRequest {
-  const coordinates = blobs
-    .map(({ sourcePath }) => `${commitSha}:${sourcePath}\n`)
-    .join("");
+/** Requests verified object IDs with a ceiling derived from their exact sizes. */
+export function makeGitBatchRequest(blobs: readonly GitBlobMetadata[]) {
   return {
-    blobs,
-    stdin: new TextEncoder().encode(coordinates),
+    stdin: new TextEncoder().encode(
+      blobs.map(({ objectId }) => `${objectId}\n`).join("")
+    ),
     stdoutLimit: blobs.reduce(
-      (total, { maxBytes }) => total + maxBytes + MAX_BATCH_HEADER_BYTES + 1,
+      (total, { byteLength }) =>
+        total + byteLength + MAX_BATCH_HEADER_BYTES + 1,
       0
     ),
   };
 }
 
-/** Finds the next line terminator without decoding following blob bytes. */
-function lineEnd(bytes: Uint8Array, offset: number) {
-  const index = bytes.indexOf(0x0a, offset);
-  return index === -1 ? null : index;
-}
-
-/** Decodes one strict ASCII-compatible Git batch header. */
-function decodeHeader(
-  bytes: Uint8Array,
-  start: number,
-  end: number,
+/** Decodes a bounded blob header without decoding any following body bytes. */
+const readHeader = Effect.fn("AksaraPublisher.readGitBatchHeader")(function* (
+  output: Uint8Array,
+  offset: number,
   sourcePath: CorpusSourcePath
 ) {
-  return Effect.try({
+  const end = output.indexOf(0x0a, offset);
+  if (end === -1 || end - offset >= MAX_BATCH_HEADER_BYTES) {
+    return yield* new GitBatchError({
+      cause: "Missing or oversized Git batch header terminator.",
+      reason: "protocol",
+      sourcePath,
+    });
+  }
+  const header = yield* Effect.try({
     catch: (cause) =>
       new GitBatchError({ cause, reason: "protocol", sourcePath }),
     try: () =>
-      new TextDecoder("utf-8", { fatal: true }).decode(bytes.slice(start, end)),
+      new TextDecoder("utf-8", { fatal: true }).decode(
+        output.subarray(offset, end)
+      ),
   });
-}
-
-/** Decodes exact raw blob bytes from one complete Git batch response. */
-export const decodeGitBatchResponse = Effect.fn(
-  "AksaraPublisher.decodeGitBatchResponse"
-)(function* (output: Uint8Array, blobs: readonly GitBatchBlob[]) {
-  const decoded = new Map<CorpusSourcePath, Uint8Array>();
-  let offset = 0;
-  for (const blob of blobs) {
-    const end = lineEnd(output, offset);
-    if (end === null) {
-      return yield* new GitBatchError({
-        cause: "Missing Git batch header terminator.",
-        reason: "protocol",
-        sourcePath: blob.sourcePath,
-      });
-    }
-    const header = yield* decodeHeader(output, offset, end, blob.sourcePath);
-    const match = BLOB_HEADER_PATTERN.exec(header);
-    const size = match?.[1] === undefined ? Number.NaN : Number(match[1]);
-    if (!Number.isSafeInteger(size)) {
-      return yield* new GitBatchError({
-        cause: { header },
-        reason: "protocol",
-        sourcePath: blob.sourcePath,
-      });
-    }
-    if (size > blob.maxBytes) {
-      return yield* new GitBatchError({
-        cause: { actualBytes: size, maxBytes: blob.maxBytes },
-        reason: "limit",
-        sourcePath: blob.sourcePath,
-      });
-    }
-    const bodyStart = end + 1;
-    const bodyEnd = bodyStart + size;
-    if (bodyEnd >= output.byteLength || output[bodyEnd] !== 0x0a) {
-      return yield* new GitBatchError({
-        cause: {
-          actualBytes: output.byteLength - bodyStart,
-          expectedBytes: size,
-        },
-        reason: "protocol",
-        sourcePath: blob.sourcePath,
-      });
-    }
-    decoded.set(blob.sourcePath, output.slice(bodyStart, bodyEnd));
-    offset = bodyEnd + 1;
+  const match = BLOB_HEADER_PATTERN.exec(header);
+  const blob = yield* Schema.decodeUnknownEffect(GitBlobMetadataSchema)({
+    byteLength: Number(match?.[2]),
+    objectId: match?.[1],
+    sourcePath,
+  }).pipe(
+    Effect.mapError(
+      (cause) => new GitBatchError({ cause, reason: "protocol", sourcePath })
+    )
+  );
+  if (blob.byteLength > MAX_RAW_MDX_BYTES) {
+    return yield* new GitBatchError({
+      cause: { actualBytes: blob.byteLength, maxBytes: MAX_RAW_MDX_BYTES },
+      reason: "limit",
+      sourcePath,
+    });
   }
+  return { blob, nextOffset: end + 1 };
+});
+
+/** Rejects additional response frames that were not requested. */
+const verifyEnd = Effect.fn("AksaraPublisher.verifyGitBatchEnd")(function* (
+  output: Uint8Array,
+  offset: number
+) {
   if (offset !== output.byteLength) {
     return yield* new GitBatchError({
       cause: { trailingBytes: output.byteLength - offset },
@@ -152,5 +113,59 @@ export const decodeGitBatchResponse = Effect.fn(
       sourcePath: null,
     });
   }
+});
+
+/** Verifies every blob type and authored byte limit before requesting bodies. */
+export const decodeGitBatchMetadata = Effect.fn(
+  "AksaraPublisher.decodeGitBatchMetadata"
+)(function* (output: Uint8Array, sourcePaths: readonly CorpusSourcePath[]) {
+  const blobs: GitBlobMetadata[] = [];
+  let offset = 0;
+  for (const sourcePath of sourcePaths) {
+    const header = yield* readHeader(output, offset, sourcePath);
+    blobs.push(header.blob);
+    offset = header.nextOffset;
+  }
+  yield* verifyEnd(output, offset);
+  return blobs;
+});
+
+/** Checks body framing and identity against the metadata-only preflight. */
+export const decodeGitBatchResponse = Effect.fn(
+  "AksaraPublisher.decodeGitBatchResponse"
+)(function* (output: Uint8Array, blobs: readonly GitBlobMetadata[]) {
+  const decoded = new Map<CorpusSourcePath, Uint8Array>();
+  let offset = 0;
+  for (const expected of blobs) {
+    const { blob, nextOffset } = yield* readHeader(
+      output,
+      offset,
+      expected.sourcePath
+    );
+    if (
+      blob.objectId !== expected.objectId ||
+      blob.byteLength !== expected.byteLength
+    ) {
+      return yield* new GitBatchError({
+        cause: { actual: blob, expected },
+        reason: "protocol",
+        sourcePath: expected.sourcePath,
+      });
+    }
+    const bodyEnd = nextOffset + blob.byteLength;
+    if (bodyEnd >= output.byteLength || output[bodyEnd] !== 0x0a) {
+      return yield* new GitBatchError({
+        cause: {
+          actualBytes: output.byteLength - nextOffset,
+          expectedBytes: blob.byteLength,
+        },
+        reason: "protocol",
+        sourcePath: expected.sourcePath,
+      });
+    }
+    decoded.set(expected.sourcePath, output.slice(nextOffset, bodyEnd));
+    offset = bodyEnd + 1;
+  }
+  yield* verifyEnd(output, offset);
   return decoded;
 });

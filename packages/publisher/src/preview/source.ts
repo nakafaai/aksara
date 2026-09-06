@@ -102,7 +102,8 @@ const loadQuestionItem = Effect.fn("AksaraPublisher.loadPreviewItem")(
             checkoutRoot,
             sourcePath: CorpusSourcePathSchema.make(`${sourceRoot}/item.ts`),
           })
-      )
+      ),
+      Effect.provide(TypeScriptParser.layer)
     );
     itemsByRoot.set(sourceRoot, item);
     return item;
@@ -178,7 +179,7 @@ export const loadPreviewSources = Effect.fn(
     LoadedPreviewSource,
     ...LoadedPreviewSource[],
   ];
-}, Effect.provide(TypeScriptParser.layer));
+});
 
 /** Derives one family-owned projection from trusted compiler metadata. */
 export function projectPreviewSource(

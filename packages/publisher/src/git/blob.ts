@@ -1,16 +1,18 @@
-import type {
-  CorpusSourcePath,
-  GitCommitSha,
+import type { CorpusSourcePath } from "@nakafa/aksara-contracts/ids";
+import {
+  CorpusSourcePathSchema,
+  GitCommitShaSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
-import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import { makeExactGitInput } from "@nakafa/aksara-utilities/git/exact";
 import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import { Context, Effect, Layer, Schema } from "effect";
 import {
+  decodeGitBatchMetadata,
   decodeGitBatchResponse,
+  type GitBatchError,
+  MAX_GIT_BATCH_BLOBS,
   makeGitBatchRequest,
-  partitionGitBlobInputs,
+  makeGitMetadataRequest,
 } from "#publisher/git/batch";
 
 const MAX_GIT_TEXT_BYTES = 4096;
@@ -24,11 +26,13 @@ const GitBlobOperationSchema = Schema.Literals([
 ]);
 type GitBlobOperation = typeof GitBlobOperationSchema.Type;
 
-const GitBlobLimitSchema = Schema.Finite.pipe(
-  Schema.check(Schema.isInt()),
-  Schema.check(Schema.isGreaterThan(0)),
-  Schema.check(Schema.isLessThanOrEqualTo(MAX_RAW_MDX_BYTES))
-);
+const GitBlobInputSchema = Schema.Struct({
+  revision: GitCommitShaSchema,
+  sourcePaths: Schema.Array(CorpusSourcePathSchema).check(
+    Schema.isMaxLength(MAX_GIT_BATCH_BLOBS)
+  ),
+});
+export type GitBlobInput = typeof GitBlobInputSchema.Type;
 
 /** A repository command or exact-revision validation step failed. */
 export class GitBlobError extends Schema.TaggedError<GitBlobError>()(
@@ -40,150 +44,117 @@ export class GitBlobError extends Schema.TaggedError<GitBlobError>()(
   }
 ) {}
 
-/** Branded exact-revision coordinates for one authored corpus blob. */
-export interface GitBlobInput {
-  readonly maxBytes: number;
-  readonly revision: GitCommitSha;
-  readonly sourcePath: CorpusSourcePath;
-}
-
-/** Reads immutable corpus blobs through argument-safe Git commands. */
+/** Reads one bounded batch of immutable UTF-8 corpus blobs. */
 export class GitBlob extends Context.Service<
   GitBlob,
   {
-    /** Returns the exact unmodified blob bytes at a verified commit. */
-    readonly readBytes: (
+    /** Resolves unique paths at one commit after checking every body size. */
+    readonly read: (
       input: GitBlobInput
-    ) => Effect.Effect<Uint8Array, GitBlobError>;
-    /** Returns exact unmodified blobs through bounded Git batch processes. */
-    readonly readManyBytes: (
-      inputs: readonly GitBlobInput[]
-    ) => Effect.Effect<ReadonlyMap<CorpusSourcePath, Uint8Array>, GitBlobError>;
-    /** Returns the exact unmodified UTF-8 blob at a verified commit. */
-    readonly read: (input: GitBlobInput) => Effect.Effect<string, GitBlobError>;
+    ) => Effect.Effect<ReadonlyMap<CorpusSourcePath, string>, GitBlobError>;
   }
 >()("AksaraGitBlob") {}
 
-/** Decodes trusted command bytes without accepting replacement characters. */
-function decodeGitText(
-  bytes: Uint8Array,
-  operation: GitBlobOperation,
-  message: string
-) {
-  return Effect.try({
-    catch: (cause) => new GitBlobError({ cause, message, operation }),
-    try: () => new TextDecoder("utf-8", { fatal: true }).decode(bytes),
+/** Decodes trusted bytes without replacement characters or BOM removal. */
+const decodeGitText = Effect.fn("AksaraPublisher.decodeGitText")(
+  (bytes: Uint8Array, operation: GitBlobOperation, message: string) =>
+    Effect.try({
+      catch: (cause) => new GitBlobError({ cause, message, operation }),
+      try: () =>
+        new TextDecoder("utf-8", { fatal: true, ignoreBOM: true }).decode(
+          bytes
+        ),
+    })
+);
+
+/** Associates protocol failures with the Git operation that produced them. */
+function batchError(cause: GitBatchError, operation: GitBlobOperation) {
+  return new GitBlobError({
+    cause,
+    message:
+      cause.reason === "limit"
+        ? "The authored corpus blob exceeds its byte limit."
+        : "Git returned an invalid corpus blob batch.",
+    operation: cause.reason === "limit" ? "size-blob" : operation,
   });
 }
 
 /** Executes one exact Git command with independently bounded output pipes. */
-function runGitBytes(
-  exactProcess: typeof ExactProcess.Service,
-  repositoryRoot: string,
-  args: readonly string[],
-  operation: GitBlobOperation,
-  message: string,
-  maxBytes: number,
-  stdin?: Uint8Array
-) {
-  const processInput = makeExactGitInput({
-    args,
-    root: repositoryRoot,
-    stderrLimit: MAX_GIT_ERROR_BYTES,
-    stdoutLimit: maxBytes,
-    ...(stdin === undefined ? {} : { stdin }),
-  });
-  return exactProcess.run(processInput).pipe(
-    Effect.mapError((cause) => new GitBlobError({ cause, message, operation })),
-    Effect.flatMap(({ exitCode, stderr, stdout }) => {
-      if (exitCode === 0) {
-        return Effect.succeed(stdout);
-      }
-      return decodeGitText(
-        stderr,
-        operation,
-        "Git returned non-UTF-8 diagnostic output."
-      ).pipe(
-        Effect.flatMap((decodedError) =>
-          Effect.fail(
-            new GitBlobError({
-              cause: { exitCode, stderr: decodedError },
-              message,
-              operation,
-            })
-          )
-        )
-      );
-    })
-  );
-}
+const runGitBytes = Effect.fn("AksaraPublisher.runGitBytes")(
+  (
+    exactProcess: typeof ExactProcess.Service,
+    repositoryRoot: string,
+    args: readonly string[],
+    operation: GitBlobOperation,
+    message: string,
+    maxBytes: number,
+    stdin?: Uint8Array
+  ) =>
+    exactProcess
+      .run(
+        makeExactGitInput({
+          args,
+          root: repositoryRoot,
+          stderrLimit: MAX_GIT_ERROR_BYTES,
+          stdoutLimit: maxBytes,
+          ...(stdin === undefined ? {} : { stdin }),
+        })
+      )
+      .pipe(
+        Effect.mapError(
+          (cause) => new GitBlobError({ cause, message, operation })
+        ),
+        Effect.flatMap(({ exitCode, stderr, stdout }) => {
+          if (exitCode === 0) {
+            return Effect.succeed(stdout);
+          }
+          return decodeGitText(
+            stderr,
+            operation,
+            "Git returned non-UTF-8 diagnostic output."
+          ).pipe(
+            Effect.flatMap((decodedError) =>
+              Effect.fail(
+                new GitBlobError({
+                  cause: { exitCode, stderr: decodedError },
+                  message,
+                  operation,
+                })
+              )
+            )
+          );
+        })
+      )
+);
 
-/** Executes one small Git metadata command and fatally decodes its output. */
-function runGitText(
-  exactProcess: typeof ExactProcess.Service,
-  repositoryRoot: string,
-  args: readonly string[],
-  operation: GitBlobOperation,
-  message: string
-) {
-  return runGitBytes(
-    exactProcess,
-    repositoryRoot,
-    args,
-    operation,
-    message,
-    MAX_GIT_TEXT_BYTES
-  ).pipe(Effect.flatMap((bytes) => decodeGitText(bytes, operation, message)));
-}
-
-/** Builds an exact-checkout Git implementation for immutable corpus blobs. */
+/** Builds an exact-checkout Git implementation for bounded immutable blobs. */
 export function makeGitBlobLive(repositoryRoot: string) {
   return Layer.effect(
     GitBlob,
     ExactProcess.pipe(
       Effect.map((exactProcess) => {
-        /** Reads exact corpus blobs after resolving one shared commit SHA. */
-        const readManyBytes = Effect.fn(
-          "AksaraPublisher.GitBlob.readManyBytes"
-        )(function* (inputs: readonly GitBlobInput[]) {
-          if (inputs.length === 0) {
-            return new Map<CorpusSourcePath, Uint8Array>();
-          }
-          const revision = inputs[0]?.revision;
-          const seenPaths = new Set<CorpusSourcePath>();
-          const bounded = yield* Effect.forEach(inputs, (input) =>
-            Schema.decodeEffect(GitBlobLimitSchema)(input.maxBytes).pipe(
-              Effect.mapError(
-                (cause) =>
-                  new GitBlobError({
-                    cause,
-                    message: "The authored corpus blob limit is invalid.",
-                    operation: "size-blob",
-                  })
-              ),
-              Effect.flatMap((maxBytes) => {
-                if (
-                  input.revision !== revision ||
-                  seenPaths.has(input.sourcePath)
-                ) {
-                  return Effect.fail(
-                    new GitBlobError({
-                      cause: input,
-                      message:
-                        "A Git blob batch requires one revision and unique source paths.",
-                      operation: "resolve-commit",
-                    })
-                  );
-                }
-                seenPaths.add(input.sourcePath);
-                return Effect.succeed({
-                  maxBytes,
-                  sourcePath: input.sourcePath,
-                });
-              })
+        /** Checks metadata first, then reads only the verified immutable objects. */
+        const read = Effect.fn("AksaraPublisher.GitBlob.read")(function* (
+          input: GitBlobInput
+        ) {
+          const { revision, sourcePaths } = yield* Schema.decodeEffect(
+            GitBlobInputSchema
+          )(input).pipe(
+            Effect.mapError(
+              (cause) =>
+                new GitBlobError({
+                  cause,
+                  message: "The exact Git source batch is invalid.",
+                  operation: "resolve-commit",
+                })
             )
           );
-          const revisionOutput = yield* runGitText(
+          const paths = [...new Set(sourcePaths)];
+          const result = new Map<CorpusSourcePath, string>();
+          if (paths.length === 0) {
+            return result;
+          }
+          const revisionBytes = yield* runGitBytes(
             exactProcess,
             repositoryRoot,
             [
@@ -193,10 +164,16 @@ export function makeGitBlobLive(repositoryRoot: string) {
               `${revision}^{commit}`,
             ],
             "resolve-commit",
-            "Git could not resolve the authored Aksara revision."
+            "Git could not resolve the authored Aksara revision.",
+            MAX_GIT_TEXT_BYTES
+          );
+          const revisionText = yield* decodeGitText(
+            revisionBytes,
+            "resolve-commit",
+            "Git returned an invalid revision."
           );
           const commitSha = yield* Schema.decodeEffect(GitCommitShaSchema)(
-            revisionOutput.trim()
+            revisionText.trim()
           ).pipe(
             Effect.mapError(
               (cause) =>
@@ -218,78 +195,45 @@ export function makeGitBlobLive(repositoryRoot: string) {
               operation: "resolve-commit",
             });
           }
-
-          const decoded = yield* Effect.forEach(
-            partitionGitBlobInputs(bounded),
-            (blobs) => {
-              const request = makeGitBatchRequest(commitSha, blobs);
-              return runGitBytes(
-                exactProcess,
-                repositoryRoot,
-                ["cat-file", "--batch"],
-                "read-blob",
-                "Git could not read the reviewed corpus blob batch.",
-                request.stdoutLimit,
-                request.stdin
-              ).pipe(
-                Effect.flatMap((output) =>
-                  decodeGitBatchResponse(output, blobs)
-                ),
-                Effect.mapError((cause) =>
-                  cause._tag === "GitBlobError"
-                    ? cause
-                    : new GitBlobError({
-                        cause: {
-                          batchReason: cause.reason,
-                          detail: cause.cause,
-                          sourcePath: cause.sourcePath,
-                        },
-                        message:
-                          cause.reason === "limit"
-                            ? "The authored corpus blob exceeds its byte limit."
-                            : "Git returned an invalid corpus blob batch.",
-                        operation:
-                          cause.reason === "limit" ? "size-blob" : "read-blob",
-                      })
-                )
-              );
-            },
-            { concurrency: 2 }
+          const metadataRequest = makeGitMetadataRequest(commitSha, paths);
+          const metadataOutput = yield* runGitBytes(
+            exactProcess,
+            repositoryRoot,
+            ["cat-file", "--batch-check"],
+            "size-blob",
+            "Git could not inspect the reviewed corpus blob batch.",
+            metadataRequest.stdoutLimit,
+            metadataRequest.stdin
           );
-          const result = new Map<CorpusSourcePath, Uint8Array>();
-          for (const batch of decoded) {
-            for (const [sourcePath, bytes] of batch) {
-              result.set(sourcePath, bytes);
-            }
+          const metadata = yield* decodeGitBatchMetadata(
+            metadataOutput,
+            paths
+          ).pipe(Effect.mapError((cause) => batchError(cause, "size-blob")));
+          const bodyRequest = makeGitBatchRequest(metadata);
+          const bodyOutput = yield* runGitBytes(
+            exactProcess,
+            repositoryRoot,
+            ["cat-file", "--batch"],
+            "read-blob",
+            "Git could not read the reviewed corpus blob batch.",
+            bodyRequest.stdoutLimit,
+            bodyRequest.stdin
+          );
+          const bodies = yield* decodeGitBatchResponse(
+            bodyOutput,
+            metadata
+          ).pipe(Effect.mapError((cause) => batchError(cause, "read-blob")));
+          for (const [sourcePath, bytes] of bodies) {
+            const rawMdx = yield* decodeGitText(
+              bytes,
+              "decode-blob",
+              "The reviewed corpus blob is not valid UTF-8."
+            );
+            result.set(sourcePath, rawMdx);
           }
           return result;
         });
-
-        /** Reads one corpus blob through the bounded batch implementation. */
-        const readBytes = Effect.fn("AksaraPublisher.GitBlob.readBytes")(
-          function* (input: GitBlobInput) {
-            const blobs = yield* readManyBytes([input]);
-            return yield* Effect.fromNullishOr(
-              blobs.get(input.sourcePath)
-            ).pipe(Effect.orDie);
-          }
-        );
-
-        /** Decodes one exact corpus blob without normalizing its bytes. */
-        const read = Effect.fn("AksaraPublisher.GitBlob.read")(
-          (input: GitBlobInput) =>
-            readBytes(input).pipe(
-              Effect.flatMap((blobBytes) =>
-                decodeGitText(
-                  blobBytes,
-                  "decode-blob",
-                  "The reviewed corpus blob is not valid UTF-8."
-                )
-              )
-            )
-        );
-
-        return GitBlob.of({ read, readBytes, readManyBytes });
+        return GitBlob.of({ read });
       })
     )
   );

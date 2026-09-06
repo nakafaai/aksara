@@ -1,145 +1,215 @@
 import { describe, expect, it } from "@effect/vitest";
-import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
+import {
+  type CompileDocumentSource,
+  CompileDocumentSourceSchema,
+} from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
-  GitCommitShaSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { ContentReleaseItemSchema } from "@nakafa/aksara-contracts/release";
-import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
-import { Effect, Stream } from "effect";
+import {
+  ExactProcess,
+  type ExactProcessInput,
+} from "@nakafa/aksara-utilities/process/exact";
+import { Deferred, Effect, Fiber, Stream } from "effect";
+import { MAX_GIT_BATCH_BLOBS } from "#publisher/git/batch";
 import { makeGitPublicationSourceLive } from "#publisher/git/source";
 import {
   PublicationSource,
-  type PublicationSourceError,
+  PublicationSourceError,
 } from "#publisher/publication/spec";
+import {
+  makeGitProcess,
+  TEST_COMMIT_SHA,
+  TEST_RAW_MDX,
+  TEST_REPOSITORY_ROOT,
+} from "#test/git";
 
-const TEST_AKSARA_SHA = GitCommitShaSchema.make("a".repeat(40));
-const TEST_RELEASE_ID = ReleaseIdSchema.make("test-git-publication-source");
-const TEST_ARTIFACT_HASH = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
-const TEST_REPOSITORY_ROOT = "/test-only/aksara";
-const TEST_SOURCES = [
-  CompileDocumentSourceSchema.make({
-    artifactLocale: ArtifactLocaleSchema.make("en"),
-    contentKey: ContentKeySchema.make("test:git-source-first"),
-    rawMdx: "export const testProtocolFirst = true;\n",
-    rendererDomain: "mathematics",
-    sourcePath: CorpusSourcePathSchema.make(
-      "packages/corpus/test-protocol/first/en.mdx"
-    ),
-  }),
-  CompileDocumentSourceSchema.make({
-    artifactLocale: ArtifactLocaleSchema.make("id"),
-    contentKey: ContentKeySchema.make("test:git-source-second"),
-    rawMdx: "export const testProtocolSecond = true;\n",
-    rendererDomain: "chemistry",
-    sourcePath: CorpusSourcePathSchema.make(
-      "packages/corpus/test-protocol/second/id.mdx"
-    ),
-  }),
-];
-const TEST_ITEMS = TEST_SOURCES.map((source, index) =>
-  ContentReleaseItemSchema.make({
-    change: {
-      artifactHash: TEST_ARTIFACT_HASH,
-      artifactLocale: source.artifactLocale,
-      contentKey: source.contentKey,
-      delivery: "public",
-      family: "material",
-      operation: "upsert",
-      rendererDomain: source.rendererDomain,
-      sourcePath: source.sourcePath,
+const releaseId = ReleaseIdSchema.make("test-git-publication-source");
+const artifactHash = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
+
+/** Creates explicitly test-only sources with distinct immutable coordinates. */
+function sources(count: number) {
+  return Array.from({ length: count }, (_, index) =>
+    CompileDocumentSourceSchema.make({
+      artifactLocale: ArtifactLocaleSchema.make("en"),
+      contentKey: ContentKeySchema.make(`test:git-source-${index}`),
+      rawMdx: `${TEST_RAW_MDX}${index}\n`,
+      rendererDomain: "mathematics",
+      sourcePath: CorpusSourcePathSchema.make(
+        `packages/corpus/test-protocol/${index}/en.mdx`
+      ),
+    })
+  );
+}
+
+/** Associates each test source with its signed release-item identity. */
+function itemsFor(input: readonly CompileDocumentSource[]) {
+  return input.map((source, index) =>
+    ContentReleaseItemSchema.make({
+      change: {
+        artifactHash,
+        artifactLocale: source.artifactLocale,
+        contentKey: source.contentKey,
+        delivery: "public",
+        family: "material",
+        operation: "upsert",
+        rendererDomain: source.rendererDomain,
+        sourcePath: source.sourcePath,
+      },
+      index,
+      releaseId,
+    })
+  );
+}
+
+/** Supplies the exact raw bytes for the selected test-only source paths. */
+function sourceProcess(
+  input: readonly CompileDocumentSource[],
+  commands?: ExactProcessInput[]
+) {
+  return makeGitProcess(
+    {
+      blobs: new Map(
+        input.map((source) => [
+          source.sourcePath,
+          new TextEncoder().encode(source.rawMdx),
+        ])
+      ),
     },
-    index,
-    releaseId: TEST_RELEASE_ID,
-  })
-);
+    commands
+  );
+}
 
-/** Loads publication sources through the live exact-Git source layer. */
-const loadTestSources = Effect.fn("GitPublicationSourceTest.load")(
-  (exactProcess: typeof ExactProcess.Service, items = TEST_ITEMS) =>
+/** Collects at most the requested number of sources through the live adapter. */
+const loadSources = Effect.fn("GitPublicationSourceTest.load")(
+  (
+    process: typeof ExactProcess.Service,
+    items: Stream.Stream<
+      ReturnType<typeof itemsFor>[number],
+      PublicationSourceError
+    >,
+    limit = Number.POSITIVE_INFINITY
+  ) =>
     PublicationSource.pipe(
-      Effect.flatMap((publicationSource) =>
-        publicationSource
-          .loadExactRevision({
-            aksaraSha: TEST_AKSARA_SHA,
-            items: Stream.fromIterable(items),
-          })
-          .pipe(
-            Stream.runCollect,
-            Effect.map((sources) => [...sources])
-          )
+      Effect.flatMap((source) =>
+        source
+          .loadExactRevision({ aksaraSha: TEST_COMMIT_SHA, items })
+          .pipe(Stream.take(limit), Stream.runCollect)
       ),
       Effect.provide(makeGitPublicationSourceLive(TEST_REPOSITORY_ROOT)),
-      Effect.provideService(ExactProcess, exactProcess)
+      Effect.provideService(ExactProcess, process)
     )
 );
 
-/** Responds to the exact revision and blob command shapes used by the layer. */
-function gitResponder() {
-  return ExactProcess.of({
-    /** Returns one deterministic exact Git response for source tests. */
-    run: (input) =>
-      Effect.gen(function* () {
-        const [, , replacePolicy, operation] = input.args;
-        if (replacePolicy !== "--no-replace-objects") {
-          return yield* Effect.die(
-            "Test-only Git command allowed replacement refs."
-          );
-        }
-        if (operation === "rev-parse") {
-          return {
-            exitCode: 0,
-            stderr: new Uint8Array(),
-            stdout: new TextEncoder().encode(`${TEST_AKSARA_SHA}\n`),
-          };
-        }
-        const coordinates = new TextDecoder()
-          .decode(input.stdin)
-          .trimEnd()
-          .split("\n");
-        const sources: (typeof TEST_SOURCES)[number][] = [];
-        for (const coordinate of coordinates) {
-          const source = TEST_SOURCES.find(
-            (candidate) =>
-              `${TEST_AKSARA_SHA}:${candidate.sourcePath}` === coordinate
-          );
-          if (source === undefined) {
-            return yield* Effect.die("Test-only unexpected Git blob request.");
-          }
-          sources.push(source);
-        }
-        const frames = sources.map((source) => {
-          const bytes = new TextEncoder().encode(source.rawMdx);
-          return `${"b".repeat(40)} blob ${bytes.byteLength}\n${source.rawMdx}\n`;
-        });
-        return {
-          exitCode: 0,
-          stderr: new Uint8Array(),
-          stdout: new TextEncoder().encode(frames.join("")),
-        };
-      }),
-  });
-}
-
 describe("GitPublicationSourceLive", () => {
   it.effect(
-    "pairs ordered authenticated identities with their exact Git blobs",
+    "reads 257 sources in three bounded batches while preserving signed order",
     () =>
       Effect.gen(function* () {
-        const sources = yield* loadTestSources(gitResponder());
-        expect(sources).toEqual(TEST_SOURCES);
+        const input = sources(257).reverse();
+        const commands: ExactProcessInput[] = [];
+        expect(
+          yield* loadSources(
+            sourceProcess(input, commands),
+            Stream.fromIterable(itemsFor(input))
+          )
+        ).toEqual(input);
+        expect(commands).toHaveLength(9);
+        const metadata = commands.filter(({ args }) =>
+          args.includes("--batch-check")
+        );
+        expect(
+          metadata.map(
+            ({ stdin }) =>
+              new TextDecoder().decode(stdin).trimEnd().split("\n").length
+          )
+        ).toEqual([128, 128, 1]);
+        expect(
+          commands.filter(({ args }) => args.includes("--batch"))
+        ).toHaveLength(3);
       })
   );
 
   it.effect(
-    "rejects a delete item instead of inventing source coordinates",
+    "reads a shared physical path once without discarding item identities",
     () =>
       Effect.gen(function* () {
-        const deleteItem = ContentReleaseItemSchema.make({
+        const [first] = sources(1);
+        if (!first) {
+          return yield* Effect.die("Missing test source.");
+        }
+        const duplicate = CompileDocumentSourceSchema.make({
+          ...first,
+          contentKey: ContentKeySchema.make("test:git-source-shared"),
+        });
+        const input = [first, duplicate];
+        const commands: ExactProcessInput[] = [];
+        expect(
+          yield* loadSources(
+            sourceProcess(input, commands),
+            Stream.fromIterable(itemsFor(input))
+          )
+        ).toEqual(input);
+        expect(new TextDecoder().decode(commands[1]?.stdin)).toBe(
+          `${TEST_COMMIT_SHA}:${first.sourcePath}\n`
+        );
+      })
+  );
+
+  it.effect(
+    "stops before the next batch when the consumer takes one source",
+    () =>
+      Effect.gen(function* () {
+        const input = sources(257);
+        const commands: ExactProcessInput[] = [];
+        let pulled = 0;
+        const items = Stream.fromIterable(itemsFor(input)).pipe(
+          Stream.mapEffect((item) =>
+            Effect.sync(() => {
+              pulled += 1;
+              return item;
+            })
+          )
+        );
+        expect(
+          yield* loadSources(sourceProcess(input, commands), items, 1)
+        ).toEqual(input.slice(0, 1));
+        expect(pulled).toBe(MAX_GIT_BATCH_BLOBS);
+        expect(commands).toHaveLength(3);
+      })
+  );
+
+  it.effect(
+    "does not start Git for empty input or a failed upstream batch",
+    () =>
+      Effect.gen(function* () {
+        const commands: ExactProcessInput[] = [];
+        const process = sourceProcess([], commands);
+        expect(yield* loadSources(process, Stream.empty)).toEqual([]);
+        const failure = new PublicationSourceError({
+          aksaraSha: TEST_COMMIT_SHA,
+          cause: "test-upstream-failure",
+          message: "Test-only upstream failure.",
+        });
+        const error = yield* loadSources(process, Stream.fail(failure)).pipe(
+          Effect.flip
+        );
+        expect(error).toBe(failure);
+        expect(commands).toEqual([]);
+      })
+  );
+
+  it.effect(
+    "rejects a delete item before reading any source in its batch",
+    () =>
+      Effect.gen(function* () {
+        const commands: ExactProcessInput[] = [];
+        const deletion = ContentReleaseItemSchema.make({
           change: {
             artifactLocale: ArtifactLocaleSchema.make("en"),
             contentKey: ContentKeySchema.make("test:git-source-delete"),
@@ -147,41 +217,59 @@ describe("GitPublicationSourceLive", () => {
             operation: "delete",
           },
           index: 0,
-          releaseId: TEST_RELEASE_ID,
+          releaseId,
         });
-        const error = yield* loadTestSources(gitResponder(), [deleteItem]).pipe(
-          Effect.flip
-        );
-        expect(error).toMatchObject({
-          _tag: "PublicationSourceError",
-          aksaraSha: TEST_AKSARA_SHA,
-        });
-        expect(error.message).toContain("upsert items only");
-      })
-  );
-
-  it.effect(
-    "maps exact-Git failures to the publication source error contract",
-    () =>
-      Effect.gen(function* () {
-        const exactProcess = ExactProcess.of({
-          /** Returns one invalid reviewed revision for source error mapping. */
-          run: () =>
-            Effect.succeed({
-              exitCode: 0,
-              stderr: new Uint8Array(),
-              stdout: new TextEncoder().encode("test-branch\n"),
-            }),
-        });
-        const error: PublicationSourceError = yield* loadTestSources(
-          exactProcess,
-          TEST_ITEMS.slice(0, 1)
+        const error = yield* loadSources(
+          sourceProcess([], commands),
+          Stream.make(deletion)
         ).pipe(Effect.flip);
         expect(error).toMatchObject({
           _tag: "PublicationSourceError",
-          aksaraSha: TEST_AKSARA_SHA,
-          cause: { _tag: "GitBlobError", operation: "resolve-commit" },
+          aksaraSha: TEST_COMMIT_SHA,
         });
+        expect(error.message).toContain("upsert items only");
+        expect(commands).toEqual([]);
+      })
+  );
+
+  it.effect("maps exact-Git failures without losing their operation", () =>
+    Effect.gen(function* () {
+      const error = yield* loadSources(
+        makeGitProcess({ revision: "test-branch\n" }),
+        Stream.fromIterable(itemsFor(sources(1)))
+      ).pipe(Effect.flip);
+      expect(error).toMatchObject({
+        _tag: "PublicationSourceError",
+        aksaraSha: TEST_COMMIT_SHA,
+        cause: { _tag: "GitBlobError", operation: "resolve-commit" },
+      });
+    })
+  );
+
+  it.effect(
+    "cancels the active Git process without starting another batch",
+    () =>
+      Effect.gen(function* () {
+        const started = yield* Deferred.make<void>();
+        const released = yield* Deferred.make<void>();
+        let calls = 0;
+        const process = ExactProcess.of({
+          /** Holds the first subprocess until stream cancellation runs its finalizer. */
+          run: () =>
+            Effect.gen(function* () {
+              calls += 1;
+              yield* Deferred.succeed(started, undefined);
+              return yield* Effect.never;
+            }).pipe(Effect.ensuring(Deferred.succeed(released, undefined))),
+        });
+        const fiber = yield* loadSources(
+          process,
+          Stream.fromIterable(itemsFor(sources(257)))
+        ).pipe(Effect.forkChild);
+        yield* Deferred.await(started);
+        yield* Fiber.interrupt(fiber);
+        yield* Deferred.await(released);
+        expect(calls).toBe(1);
       })
   );
 });
