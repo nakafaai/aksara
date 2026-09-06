@@ -3,47 +3,31 @@ import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
+import { QuestionKeySchema } from "@nakafa/aksara-contracts/question/identity";
 import { Effect, FileSystem, Path } from "effect";
 
 import {
   loadQuestionContent,
+  loadSelectedQuestionContent,
   readQuestionDocument,
   selectQuestionContent,
 } from "#corpus/question-bank/content";
 import {
-  absoluteQuestionTestSourceRoot,
   corpusRoot,
   generalQuestionSourceFiles,
+  itemForQuestion,
   makeQuestionSourceLayer,
+  questionEntries,
   questionTestSourceRoot,
   realQuestionEntries,
   realQuestionItems,
   realTryoutSources,
-  validQuestionItemSource,
 } from "#corpus/test/question-layer";
 
 const readingSetKey =
   "question-bank/tryout/indonesia/snbt/reading-and-writing-skills/set-1";
 const readingQuestionKey = `${readingSetKey}/question-1`;
 const readingSourceRoot = `packages/corpus/${readingQuestionKey}`;
-
-/** Creates recursive directory output for synthetic question directories. */
-function questionEntries(...roots: readonly string[]) {
-  return roots.flatMap((root) => [
-    root,
-    ...generalQuestionSourceFiles.map((file) => `${root}/${file}`),
-  ]);
-}
-
-/** Creates localized item sources for synthetic question directories. */
-function itemsFor(...roots: readonly string[]) {
-  return new Map(
-    roots.map((root) => [
-      resolve(absoluteQuestionTestSourceRoot, root, "item.ts"),
-      validQuestionItemSource,
-    ])
-  );
-}
 
 /** Builds one synthetic question registry Effect without hiding its error type. */
 function registry(
@@ -144,13 +128,29 @@ layer(NodeServices.layer)("question registry", (it) => {
   );
 
   it.effect(
-    "preserves one exact source-owned section directory",
+    "reads each selected question once and preserves every required body",
     () =>
       Effect.gen(function* () {
-        const entries = yield* questionRegistry(
-          realQuestionEntries,
-          realQuestionItems
-        );
+        const fileSystem = yield* FileSystem.FileSystem;
+        const observed = {
+          ...fileSystem,
+          readDirectory: vi.fn(fileSystem.readDirectory),
+          readFileString: vi.fn(fileSystem.readFileString),
+        };
+        const keys = [
+          readingQuestionKey,
+          readingQuestionKey,
+          "question-bank/tryout/indonesia/snbt/english-language/set-1/question-1",
+        ].map((key) => QuestionKeySchema.make(key));
+        const { entries, sources } = yield* loadSelectedQuestionContent(
+          corpusRoot,
+          realTryoutSources,
+          keys
+        ).pipe(Effect.provideService(FileSystem.FileSystem, observed));
+        expect(observed.readDirectory).toHaveBeenCalledTimes(2);
+        expect(observed.readFileString).toHaveBeenCalledTimes(2);
+        expect(sources).toHaveLength(2);
+        expect(entries).toHaveLength(10);
         const question = entries.find(
           ({ artifactLocale, contentKey }) =>
             contentKey === `${readingQuestionKey}/question` &&
@@ -263,8 +263,8 @@ layer(NodeServices.layer)("question registry", (it) => {
         440
       )}/question-1`;
       const error = yield* rejectRegistry(
-        questionEntries(root),
-        itemsFor(root)
+        questionEntries(root, generalQuestionSourceFiles),
+        itemForQuestion(root)
       );
 
       expect(error).toMatchObject({
@@ -286,7 +286,7 @@ layer(NodeServices.layer)("question registry", (it) => {
       const root = "indonesia/snbt/general-reasoning/set-1/question-1";
       const content = yield* registry(
         [root, ...generalQuestionSourceFiles.map((file) => `${root}/${file}`)],
-        itemsFor(root)
+        itemForQuestion(root)
       );
 
       expect(

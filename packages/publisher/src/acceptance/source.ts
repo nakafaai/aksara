@@ -1,21 +1,14 @@
-import {
-  compareContentHeads,
-  headIdentity,
-} from "@nakafa/aksara-contracts/content";
-import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import {
   ACTIVE_APP_LOCALES,
   ArtifactLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
+import { QuestionKeySchema } from "@nakafa/aksara-contracts/question/identity";
 import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
-import {
-  type QuestionEntry,
-  selectQuestionContent,
-} from "@nakafa/aksara-corpus/question-bank/content";
-import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source";
+import { loadSelectedQuestionContent } from "@nakafa/aksara-corpus/question-bank/content";
 import type { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import { projectTryoutSources } from "@nakafa/aksara-corpus/tryout/projection";
 import { validateAssessmentReadinessRegistry } from "@nakafa/aksara-corpus/tryout/readiness/registry";
@@ -74,11 +67,11 @@ type AcceptanceTryout = Pick<
 type AcceptanceTryoutError =
   | AcceptanceSourceError
   | Effect.Error<ReturnType<typeof decodeTryoutRegistry>>
-  | Effect.Error<ReturnType<typeof selectQuestionContent>>
+  | Effect.Error<ReturnType<typeof loadSelectedQuestionContent>>
   | Effect.Error<ReturnType<typeof validateAssessmentReadinessRegistry>>
   | Effect.Error<ReturnType<typeof projectTryoutSources>>;
 type AcceptanceSourceServices = Effect.Services<
-  ReturnType<typeof selectQuestionContent>
+  ReturnType<typeof loadSelectedQuestionContent>
 >;
 
 /** Loads complete reviewed set-one inputs without scanning unrelated question banks. */
@@ -108,42 +101,27 @@ export const loadAcceptanceTryout: (
       return { ...source, tracks };
     })
   );
-  const paths = selection.flatMap(({ tracks }) =>
+  const questionKeys = selection.flatMap(({ tracks }) =>
     tracks.flatMap(({ sets }) =>
       sets.flatMap(({ sections }) =>
         sections.flatMap((section) =>
           Array.from({ length: section.questionCount }, (_, index) =>
-            ACTIVE_APP_LOCALES.map((locale) =>
-              CorpusSourcePathSchema.make(
-                `packages/corpus/${section.questionSourcePath}/question-${index + 1}/answer.${locale}.mdx`
-              )
+            QuestionKeySchema.make(
+              `${section.questionSourcePath}/question-${index + 1}`
             )
-          ).flat()
+          )
         )
       )
     )
   );
-  const selected = yield* Effect.forEach(
-    paths,
-    (path) => selectQuestionContent(checkoutRoot, selection, path),
-    { concurrency: 16 }
+  const { entries, sources } = yield* loadSelectedQuestionContent(
+    checkoutRoot,
+    selection,
+    questionKeys
   );
-  const entries = new Map<string, QuestionEntry>();
-  const sources = new Map<string, QuestionSource>();
-  for (const question of selected) {
-    sources.set(question.source.questionKey, question.source);
-    for (const entry of question.entries) {
-      entries.set(headIdentity(entry), entry);
-    }
-  }
-  const questionSources = [...sources.values()];
-  yield* validateAssessmentReadinessRegistry(selection, questionSources);
-  const projection = yield* projectTryoutSources(selection, questionSources);
-  return {
-    entries: [...entries.values()].sort(compareContentHeads),
-    projection,
-    sources: questionSources,
-  };
+  yield* validateAssessmentReadinessRegistry(selection, sources);
+  const projection = yield* projectTryoutSources(selection, sources);
+  return { entries, projection, sources };
 });
 
 /** Resolves the finite acceptance selection from the pinned authored checkout. */

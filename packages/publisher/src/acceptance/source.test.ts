@@ -93,7 +93,7 @@ beforeEach(() => {
 
 layer(NodeServices.layer)("acceptance source selection", (it) => {
   it.effect(
-    "keeps complete selected material groups and every page locale",
+    "keeps complete material groups, pages, and every first-set question locale",
     () =>
       Effect.gen(function* () {
         const selected = yield* loadAcceptanceSources(checkoutRoot);
@@ -129,15 +129,8 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
           expect(ACTIVE_APP_LOCALES).toContain(entry.route.artifactLocale);
         }
         expect(selected.article).toHaveLength(ACTIVE_APP_LOCALES.length);
-      })
-  );
-
-  it.effect(
-    "retains all questions in set 1 for every track and each required body locale",
-    () =>
-      Effect.gen(function* () {
         const registry = yield* decodeTryoutRegistry();
-        const selected = yield* loadAcceptanceTryout(checkoutRoot);
+        const { tryout } = selected;
         const expectedRoots = registry.flatMap(({ tracks }) =>
           tracks.flatMap(({ sets }) =>
             sets
@@ -154,16 +147,16 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
           )
         );
         expect(
-          selected.sources.map(({ questionKey }) => questionKey).sort()
+          tryout.sources.map(({ questionKey }) => questionKey).sort()
         ).toEqual([...new Set(expectedRoots)].sort());
-        expect(selected.entries).toEqual(
-          [...selected.entries].sort(compareContentHeads)
+        expect(tryout.entries).toEqual(
+          [...tryout.entries].sort(compareContentHeads)
         );
-        expect(new Set(selected.entries.map(headIdentity)).size).toBe(
-          selected.entries.length
+        expect(new Set(tryout.entries.map(headIdentity)).size).toBe(
+          tryout.entries.length
         );
-        for (const source of selected.sources) {
-          const entries = selected.entries.filter(
+        for (const source of tryout.sources) {
+          const entries = tryout.entries.filter(
             ({ questionKey }) => questionKey === source.questionKey
           );
           expect(
@@ -181,13 +174,13 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
             [...questionArtifactLocalesForPolicy(source.languagePolicy)].sort()
           );
         }
-        expect(selected.projection.placements).toHaveLength(
+        expect(tryout.projection.placements).toHaveLength(
           expectedRoots.length * ACTIVE_APP_LOCALES.length
         );
-        const catalogTracks = selected.projection.catalog.filter(
+        const catalogTracks = tryout.projection.catalog.filter(
           ({ row }) => row.kind === "track"
         );
-        const catalogSets = selected.projection.catalog.filter(
+        const catalogSets = tryout.projection.catalog.filter(
           ({ row }) => row.kind === "set"
         );
         expect(catalogSets).toHaveLength(catalogTracks.length);

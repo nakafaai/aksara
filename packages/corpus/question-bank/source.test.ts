@@ -1,4 +1,5 @@
 import { expect, layer } from "@effect/vitest";
+import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Effect, Path } from "effect";
 import { decodeQuestionPath } from "#corpus/question-bank/path";
 import {
@@ -95,7 +96,10 @@ layer(Path.layer)("question source", (it) => {
         corpusRoot,
         location
       ).pipe(
-        Effect.provide(makeQuestionSourceLayer([], new Map(), true)),
+        Effect.provide([
+          makeQuestionSourceLayer([], new Map(), true),
+          TypeScriptParser.layer,
+        ]),
         Effect.flip
       );
       const itemError = yield* rejectSyntheticQuestionSources(

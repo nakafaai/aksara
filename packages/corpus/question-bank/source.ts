@@ -167,8 +167,7 @@ export const readQuestionSource = Effect.fn("AksaraCorpus.readQuestionSource")(
         )
       );
     return yield* loadQuestionSource(corpusRoot, location, files);
-  },
-  Effect.provide(TypeScriptParser.layer)
+  }
 );
 
 /** Builds one complete question source from already-discovered direct files. */

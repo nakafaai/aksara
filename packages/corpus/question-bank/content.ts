@@ -11,15 +11,21 @@ import {
   ArtifactLocaleSchema,
   artifactLocaleCode,
 } from "@nakafa/aksara-contracts/locale";
-import type { QuestionBodyKind } from "@nakafa/aksara-contracts/question/identity";
+import {
+  QUESTION_BANK_KEY_ROOT,
+  type QuestionBodyKind,
+  type QuestionKey,
+} from "@nakafa/aksara-contracts/question/identity";
 import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 import {
   questionArtifactLocaleForPolicy,
   questionArtifactLocalesForPolicy,
 } from "@nakafa/aksara-contracts/tryout/language";
+import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Effect, FileSystem, Path, Schema, Struct } from "effect";
 import {
   decodeQuestionDocumentPath,
+  decodeQuestionPath,
   indexQuestionBanks,
 } from "#corpus/question-bank/path";
 import {
@@ -164,6 +170,30 @@ export const loadQuestionContent = Effect.fn(
   return { entries, questionBanks, sources };
 });
 
+/** Loads each selected question once and projects every required body locale. */
+export const loadSelectedQuestionContent = Effect.fn(
+  "AksaraCorpus.loadSelectedQuestionContent"
+)(function* (
+  corpusRoot: string,
+  tryoutSources: readonly TryoutExamSource[],
+  questionKeys: readonly QuestionKey[]
+) {
+  const questionBanks = yield* indexQuestionBanks(tryoutSources);
+  const sources = yield* Effect.forEach(
+    [...new Set(questionKeys)],
+    (questionKey) =>
+      Effect.gen(function* () {
+        const location = yield* decodeQuestionPath(
+          questionBanks,
+          questionKey.slice(QUESTION_BANK_KEY_ROOT.length + 1)
+        );
+        return yield* readQuestionSource(corpusRoot, location);
+      }),
+    { concurrency: 16 }
+  );
+  return { entries: projectQuestionEntries(sources), sources };
+}, Effect.provide(TypeScriptParser.layer));
+
 /** Loads only the selected question and its required compilation bodies. */
 export const selectQuestionContent = Effect.fn(
   "AksaraCorpus.selectQuestionContent"
@@ -181,7 +211,7 @@ export const selectQuestionContent = Effect.fn(
     location.artifactLocale
   );
   return questionContentForEntry(source, selected);
-});
+}, Effect.provide(TypeScriptParser.layer));
 
 /** Reads one registry-owned question body from its exact reviewed source path. */
 export const readQuestionDocument = Effect.fn(
