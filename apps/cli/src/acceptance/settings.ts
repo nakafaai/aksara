@@ -1,4 +1,5 @@
 import { createPublicKey } from "node:crypto";
+import { fileURLToPath } from "node:url";
 import {
   GitCommitShaSchema,
   ReleaseIdSchema,
@@ -12,6 +13,7 @@ export class AcceptanceEnvironmentError extends Schema.TaggedError<AcceptanceEnv
   "AcceptanceEnvironmentError",
   {
     reason: Schema.Literals([
+      "checkout",
       "endpoint",
       "signer",
       "renderer",
@@ -63,7 +65,22 @@ export const readAcceptanceSettings = Effect.fn(
   "AksaraCli.readAcceptanceSettings"
 )(function* () {
   const fs = yield* FileSystem.FileSystem;
-  const checkoutRoot = yield* Config.nonEmptyString("AKSARA_ACCEPTANCE_SOURCE");
+  const configuredRoot = yield* Config.nonEmptyString(
+    "AKSARA_ACCEPTANCE_SOURCE"
+  );
+  const { checkoutRoot, executingRoot } = yield* Effect.all({
+    checkoutRoot: fs.realPath(configuredRoot),
+    executingRoot: fs.realPath(
+      fileURLToPath(new URL("../../../../", import.meta.url))
+    ),
+  }).pipe(
+    Effect.mapError(
+      () => new AcceptanceEnvironmentError({ reason: "checkout" })
+    )
+  );
+  if (checkoutRoot !== executingRoot) {
+    return yield* new AcceptanceEnvironmentError({ reason: "checkout" });
+  }
   const revision = yield* Config.schema(
     GitCommitShaSchema,
     "AKSARA_ACCEPTANCE_REVISION"

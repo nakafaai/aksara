@@ -9,7 +9,7 @@ import {
   readAcceptanceRenderer,
   readAcceptanceSettings,
 } from "#cli/acceptance/settings";
-import { RENDERER_MANIFEST } from "#test/real";
+import { RENDERER_MANIFEST, REPOSITORY_ROOT } from "#test/real";
 
 const endpoint = "http://127.0.0.1:3210/internal/content/releases";
 
@@ -31,6 +31,7 @@ const makeFixture = Effect.fn("AcceptanceSettingsTest.makeFixture")(
     yield* fs.writeFileString(privateKeyPath, privateKeyPem);
     yield* fs.writeFileString(rendererPath, JSON.stringify(RENDERER_MANIFEST));
     return {
+      directory,
       fs,
       privateKeyPath,
       privateKeyPem,
@@ -40,7 +41,7 @@ const makeFixture = Effect.fn("AcceptanceSettingsTest.makeFixture")(
         AKSARA_ACCEPTANCE_PRIVATE_KEY: privateKeyPath,
         AKSARA_ACCEPTANCE_RENDERER: rendererPath,
         AKSARA_ACCEPTANCE_REVISION: "a".repeat(40),
-        AKSARA_ACCEPTANCE_SOURCE: directory,
+        AKSARA_ACCEPTANCE_SOURCE: REPOSITORY_ROOT,
         AKSARA_AGENT_SIGNING_KEY_ID: "test-acceptance-key",
         AKSARA_PUBLICATION_TOKEN: "test-acceptance-token",
       },
@@ -95,7 +96,7 @@ layer(NodeServices.layer)("acceptance environment", (test) => {
         const fixture = yield* makeFixture();
         const settings = yield* readSettings(fixture.values);
         expect(settings).toMatchObject({
-          checkoutRoot: fixture.values.AKSARA_ACCEPTANCE_SOURCE,
+          checkoutRoot: yield* fixture.fs.realPath(REPOSITORY_ROOT),
           recoveryId: "acceptance-inverse-aaaaaaaaaaaa",
           releaseId: "acceptance-aaaaaaaaaaaa",
           rendererPath: fixture.rendererPath,
@@ -117,6 +118,68 @@ layer(NodeServices.layer)("acceptance environment", (test) => {
         expect(yield* readAcceptanceRenderer(settings.rendererPath)).toEqual(
           RENDERER_MANIFEST
         );
+      })
+  );
+
+  test.effect(
+    "rejects a different source root before loading any signing key",
+    () =>
+      Effect.gen(function* () {
+        const fixture = yield* makeFixture();
+        const error = yield* readSettings({
+          ...fixture.values,
+          AKSARA_ACCEPTANCE_PRIVATE_KEY: `${fixture.directory}/missing.pem`,
+          AKSARA_ACCEPTANCE_SOURCE: fixture.directory,
+        }).pipe(Effect.flip);
+        expect(error).toBeInstanceOf(AcceptanceEnvironmentError);
+        expect(error).toMatchObject({ reason: "checkout" });
+      })
+  );
+
+  test.effect(
+    "accepts a symlink to the executing checkout and normalizes its root",
+    () =>
+      Effect.gen(function* () {
+        const fixture = yield* makeFixture();
+        const alias = `${fixture.directory}/source`;
+        yield* fixture.fs.symlink(REPOSITORY_ROOT, alias);
+        const settings = yield* readSettings({
+          ...fixture.values,
+          AKSARA_ACCEPTANCE_SOURCE: alias,
+        });
+        expect(settings.checkoutRoot).toBe(
+          yield* fixture.fs.realPath(REPOSITORY_ROOT)
+        );
+      })
+  );
+
+  test.effect(
+    "rejects symlinks that resolve outside the executing checkout",
+    () =>
+      Effect.gen(function* () {
+        const fixture = yield* makeFixture();
+        const alias = `${fixture.directory}/source`;
+        yield* fixture.fs.symlink(fixture.directory, alias);
+        const error = yield* readSettings({
+          ...fixture.values,
+          AKSARA_ACCEPTANCE_SOURCE: alias,
+        }).pipe(Effect.flip);
+        expect(error).toBeInstanceOf(AcceptanceEnvironmentError);
+        expect(error).toMatchObject({ reason: "checkout" });
+      })
+  );
+
+  test.effect(
+    "maps an unresolved source path to the checkout failure contract",
+    () =>
+      Effect.gen(function* () {
+        const fixture = yield* makeFixture();
+        const error = yield* readSettings({
+          ...fixture.values,
+          AKSARA_ACCEPTANCE_SOURCE: `${fixture.directory}/missing`,
+        }).pipe(Effect.flip);
+        expect(error).toBeInstanceOf(AcceptanceEnvironmentError);
+        expect(error).toMatchObject({ reason: "checkout" });
       })
   );
 
