@@ -2,7 +2,6 @@ import { describe, expect, it } from "@effect/vitest";
 import {
   type ContentCacheRequest,
   ContentCacheRequestSchema,
-  makeContentCacheRequest,
 } from "@nakafa/aksara-contracts/cache/content";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { Effect, Redacted, Schema } from "effect";
@@ -18,20 +17,18 @@ import { captureClient, webResponse } from "#test/http";
 
 const ENDPOINT = new URL("https://www.example.test/api/internal/content/cache");
 const TOKEN = Redacted.make("cache-token");
-const REQUEST: ContentCacheRequest = makeContentCacheRequest({
-  artifactHashes: [],
-  family: "material",
+const REQUEST: ContentCacheRequest = ContentCacheRequestSchema.make({
   releaseId: ReleaseIdSchema.make("test-cache-release"),
+  scope: "material",
 });
 
 /** Creates one exact private cache receipt for a captured request. */
 function cacheResponse(
   request: HttpClientRequest.HttpClientRequest,
   body: ConstructorParameters<typeof Response>[0] = JSON.stringify({
-    family: REQUEST.family,
     releaseId: REQUEST.releaseId,
     revalidated: true,
-    tags: REQUEST.tags,
+    scope: REQUEST.scope,
   }),
   init: ResponseInit = {}
 ) {
@@ -74,7 +71,7 @@ const decodeRequest = Effect.fn("AksaraCliCacheTest.decodeRequest")(
 
 describe("cache invalidation exchange", () => {
   it.effect(
-    "sends exact JSON tags and accepts their private no-store receipt",
+    "sends the exact release and scope and accepts their private no-store receipt",
     () =>
       Effect.gen(function* () {
         const captured = captureClient((request) =>
@@ -109,10 +106,9 @@ describe("cache invalidation exchange", () => {
         return Promise.resolve(
           new Response(
             JSON.stringify({
-              family: REQUEST.family,
               releaseId: REQUEST.releaseId,
               revalidated: true,
-              tags: REQUEST.tags,
+              scope: REQUEST.scope,
             }),
             {
               headers: {

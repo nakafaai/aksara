@@ -7,12 +7,7 @@ import {
   PublicationActivationError,
 } from "#publisher/publication/spec";
 import { makeTarget } from "#test/lifecycle/spec";
-import {
-  contentRecord,
-  makeRelease,
-  projection,
-  record,
-} from "#test/publication";
+import { makeRelease, projection, record } from "#test/publication";
 import { publish, publishPrepared } from "#test/publication/run";
 
 vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
@@ -54,7 +49,7 @@ describe("content publication", () => {
   );
 
   it.effect(
-    "invalidates only the exact decoded family and artifact after activation",
+    "invalidates only the changed mutable family after activation",
     () =>
       Effect.gen(function* () {
         const release = yield* Effect.promise(() =>
@@ -77,12 +72,7 @@ describe("content publication", () => {
           verify: () => Effect.void,
         });
         yield* publish(release, state.target, undefined, activation);
-        expect(cacheChanges).toEqual([
-          {
-            artifactHash: contentRecord.change.artifactHash,
-            family: "material",
-          },
-        ]);
+        expect(cacheChanges).toEqual([{ scope: "material" }]);
         expect(receivedRelease).toBe(release.manifest.releaseId);
       })
   );

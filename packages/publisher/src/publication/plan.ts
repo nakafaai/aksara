@@ -165,20 +165,12 @@ function upsertItems<E, R>(items: Stream.Stream<ContentReleaseItem, E, R>) {
   );
 }
 
-/** Selects cache family and optional immutable hash from every changed item. */
+/** Selects the mutable family dependency for both upserts and withdrawals. */
 function contentCacheChanges<E, R>(
   items: Stream.Stream<ContentReleaseItem, E, R>
 ) {
   return items.pipe(
-    Stream.map(
-      (item): ContentCacheChange =>
-        item.change.operation === "upsert"
-          ? {
-              artifactHash: item.change.artifactHash,
-              family: item.change.family,
-            }
-          : { family: item.change.family }
-    )
+    Stream.map((item): ContentCacheChange => ({ scope: item.change.family }))
   );
 }
 

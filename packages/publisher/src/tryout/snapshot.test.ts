@@ -8,10 +8,8 @@ import {
 } from "@nakafa/aksara-contracts/release/head";
 import type { ContentSnapshotRow } from "@nakafa/aksara-contracts/release/snapshot/data";
 import type { TryoutCatalogRecord } from "@nakafa/aksara-contracts/tryout/catalog";
-import type { TryoutPlacementSource } from "@nakafa/aksara-contracts/tryout/placement";
 import type { TryoutCatalogCounts } from "@nakafa/aksara-contracts/tryout/snapshot/spec";
-import type { QuestionEntry } from "@nakafa/aksara-corpus/question-bank/content";
-import type { QuestionSource } from "@nakafa/aksara-corpus/question-bank/source";
+import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import { Context, Effect, Layer, Path, Stream } from "effect";
 import { TryoutHeadMismatchError } from "#publisher/tryout/error";
 import { prepareTryoutSnapshot } from "#publisher/tryout/snapshot";
@@ -27,31 +25,6 @@ import {
 import { historicalRendererManifest } from "#test/renderer";
 import { selectTryoutSlice } from "#test/tryout-slice";
 
-interface TestProjection {
-  readonly catalog: readonly TryoutCatalogRecord[];
-  readonly placements: readonly TryoutPlacementSource[];
-  readonly routeCount: number;
-}
-
-interface TestContent {
-  readonly entries: readonly QuestionEntry[];
-  readonly projection: TestProjection;
-  readonly sources: readonly QuestionSource[];
-}
-
-const contentState = vi.hoisted((): { current: TestContent | undefined } => ({
-  current: undefined,
-}));
-
-vi.mock("@nakafa/aksara-corpus/tryout/content", async () => {
-  const { Effect: RuntimeEffect } = await import("effect");
-  return {
-    loadTryoutContent: () =>
-      RuntimeEffect.fromNullishOr(contentState.current).pipe(
-        RuntimeEffect.orDie
-      ),
-  };
-});
 /** Counts exact hierarchy kinds from the configured snapshot fixture. */
 function countCatalogKinds(records: readonly TryoutCatalogRecord[]) {
   const counts = {
@@ -74,38 +47,30 @@ function countCatalogRoutes(records: readonly TryoutCatalogRecord[]) {
   ).length;
 }
 
-/** Loads real heads and try-out content before configuring the mocked seam. */
+/** Loads real heads and an explicit complete source slice for snapshot binding. */
 const makeSnapshotTestFixtures = Effect.fn("TryoutSnapshotTest.makeFixtures")(
   () =>
     Effect.gen(function* () {
       const tryoutHeads = yield* Effect.promise(publishedQuestionHeads);
-      const { loadTryoutContent: loadRealTryoutContent } =
-        yield* Effect.promise(() =>
-          vi.importActual<
-            typeof import("@nakafa/aksara-corpus/tryout/content")
-          >("@nakafa/aksara-corpus/tryout/content")
-        );
-      const completeTryoutContent = yield* loadRealTryoutContent(
-        checkoutRoot
-      ).pipe(Effect.provide(NodeServices.layer));
+      const completeTryoutContent = yield* loadTryoutContent(checkoutRoot).pipe(
+        Effect.provide(NodeServices.layer)
+      );
       const { catalog: tryoutCatalog, placements: tryoutPlacements } =
         selectTryoutSlice(
           completeTryoutContent.projection,
           questionEntries.filter(({ bodyKind }) => bodyKind === "question")
         );
       const routeCount = countCatalogRoutes(tryoutCatalog);
-      yield* Effect.sync(() => {
-        contentState.current = {
-          entries: questionEntries,
-          projection: {
-            catalog: tryoutCatalog,
-            placements: tryoutPlacements,
-            routeCount,
-          },
-          sources: questionSources,
-        };
-      });
-      return { tryoutCatalog, tryoutHeads, tryoutPlacements };
+      const content = {
+        entries: questionEntries,
+        projection: {
+          catalog: tryoutCatalog,
+          placements: tryoutPlacements,
+          routeCount,
+        },
+        sources: questionSources,
+      };
+      return { content, tryoutCatalog, tryoutHeads, tryoutPlacements };
     })
 );
 
@@ -122,14 +87,15 @@ const snapshotTestLayer = Layer.effect(
 /** Runs preparation and replays its sealed rows twice inside one scope. */
 const prepare = Effect.fn("TryoutSnapshotTest.prepare")(
   (
-    tryoutHeads: readonly QuestionHead[],
-    inputHeads: readonly QuestionHead[] = tryoutHeads,
+    fixture: Effect.Success<ReturnType<typeof makeSnapshotTestFixtures>>,
+    inputHeads: readonly QuestionHead[] = fixture.tryoutHeads,
     renderer = rendererManifest
   ) =>
     Effect.scoped(
       Effect.gen(function* () {
         const prepared = yield* prepareTryoutSnapshot({
           checkoutRoot,
+          content: fixture.content,
           questionHeads: Stream.fromIterable(inputHeads),
           rendererManifest: renderer,
         });
@@ -149,7 +115,7 @@ const prepare = Effect.fn("TryoutSnapshotTest.prepare")(
 /** Returns one typed preparation failure without a FiberFailure wrapper. */
 const reject = Effect.fn("TryoutSnapshotTest.reject")(
   (
-    tryoutHeads: readonly QuestionHead[],
+    fixture: Effect.Success<ReturnType<typeof makeSnapshotTestFixtures>>,
     input: {
       /** Supplies a replayable desired-head source when testing source failures. */
       readonly questionHeads?: Stream.Stream<QuestionHead, string>;
@@ -159,7 +125,9 @@ const reject = Effect.fn("TryoutSnapshotTest.reject")(
     Effect.scoped(
       prepareTryoutSnapshot({
         checkoutRoot,
-        questionHeads: input.questionHeads ?? Stream.fromIterable(tryoutHeads),
+        content: fixture.content,
+        questionHeads:
+          input.questionHeads ?? Stream.fromIterable(fixture.tryoutHeads),
         rendererManifest: input.renderer ?? rendererManifest,
       })
     ).pipe(
@@ -176,7 +144,7 @@ layer(snapshotTestLayer, { timeout: "30 seconds" })(
       () =>
         Effect.gen(function* () {
           const fixture = yield* TryoutSnapshotTestFixtures;
-          const prepared = yield* prepare(fixture.tryoutHeads);
+          const prepared = yield* prepare(fixture);
           const placements = prepared.first.filter(
             (
               row
@@ -221,7 +189,7 @@ layer(snapshotTestLayer, { timeout: "30 seconds" })(
         const fixture = yield* TryoutSnapshotTestFixtures;
         const historical = historicalRendererManifest(rendererManifest);
         const prepared = yield* prepare(
-          fixture.tryoutHeads,
+          fixture,
           fixture.tryoutHeads,
           historical
         );
@@ -233,9 +201,9 @@ layer(snapshotTestLayer, { timeout: "30 seconds" })(
 
     it.effect("preserves renderer and desired-head source failures", () =>
       Effect.gen(function* () {
-        const { tryoutHeads } = yield* TryoutSnapshotTestFixtures;
-        const rendererError = yield* reject(tryoutHeads, { renderer: {} });
-        const sourceError = yield* reject(tryoutHeads, {
+        const fixture = yield* TryoutSnapshotTestFixtures;
+        const rendererError = yield* reject(fixture, { renderer: {} });
+        const sourceError = yield* reject(fixture, {
           questionHeads: Stream.fail("test-head-source"),
         });
 
@@ -249,15 +217,15 @@ layer(snapshotTestLayer, { timeout: "30 seconds" })(
 
     it.effect("rejects a desired head that does not own its source path", () =>
       Effect.gen(function* () {
-        const { tryoutHeads } = yield* TryoutSnapshotTestFixtures;
-        const [first, second, ...rest] = tryoutHeads;
+        const fixture = yield* TryoutSnapshotTestFixtures;
+        const [first, second, ...rest] = fixture.tryoutHeads;
         const firstHead = yield* Effect.fromNullishOr(first);
         const secondHead = yield* Effect.fromNullishOr(second);
         const altered = QuestionHeadSchema.make({
           ...firstHead,
           sourcePath: secondHead.sourcePath,
         });
-        const error = yield* reject(tryoutHeads, {
+        const error = yield* reject(fixture, {
           questionHeads: Stream.fromIterable(
             [altered, secondHead, ...rest].sort(compareContentHeads)
           ),

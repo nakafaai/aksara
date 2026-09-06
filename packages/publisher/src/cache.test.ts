@@ -12,22 +12,25 @@ import {
 
 describe("allContentCacheChanges", () => {
   it.effect(
-    "replays one family-wide invalidation for every supported family",
+    "replays one invalidation for every mutable publication dependency",
     () =>
       Effect.gen(function* () {
         const changes = yield* allContentCacheChanges.pipe(Stream.runCollect);
 
         expect([...changes]).toEqual([
-          { family: "article" },
-          { family: "material" },
-          { family: "page" },
-          { family: "question" },
+          { scope: "article" },
+          { scope: "material" },
+          { scope: "page" },
+          { scope: "question" },
+          { scope: "program" },
+          { scope: "quran" },
+          { scope: "tryout" },
         ]);
       })
   );
 
   it.effect(
-    "maps changed structured snapshots to their runtime content families",
+    "retains each changed snapshot dependency without unrelated body families",
     () =>
       Effect.gen(function* () {
         const empty = inheritContentSnapshots(null);
@@ -41,8 +44,9 @@ describe("allContentCacheChanges", () => {
         }).pipe(Stream.runCollect);
 
         expect([...changes]).toEqual([
-          { family: "material" },
-          { family: "question" },
+          { scope: "program" },
+          { scope: "quran" },
+          { scope: "tryout" },
         ]);
         expect(
           yield* contentSnapshotCacheChanges(empty).pipe(Stream.runCount)

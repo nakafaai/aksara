@@ -15,6 +15,7 @@ import {
   type PreparedQuranSnapshot,
   prepareQuranSnapshot,
 } from "@nakafa/aksara-corpus/quran/snapshot";
+import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import type { FileSystem, Path } from "effect";
 import { Effect, type Scope, Stream } from "effect";
 import type { ReplaySpoolError } from "#publisher/replay/error";
@@ -62,6 +63,7 @@ export type PrepareReleaseSnapshotError<E> =
   | E
   | PrepareQuranSnapshotError
   | PrepareTryoutSnapshotError<never>
+  | Effect.Error<ReturnType<typeof loadTryoutContent>>
   | ProgramSnapshotError;
 
 /** Checks whether one desired snapshot differs from the active family result. */
@@ -99,6 +101,7 @@ export const prepareReleaseSnapshots: <E, R>(
     (input.runtime.kind === "refresh" && input.runtime.snapshot === null)
       ? yield* prepareTryoutSnapshot({
           checkoutRoot: input.checkoutRoot,
+          content: yield* loadTryoutContent(input.checkoutRoot),
           questionHeads: input.questionHeads,
           rendererManifest: input.rendererManifest,
         })

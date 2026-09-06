@@ -2,177 +2,81 @@ import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
 import {
   ArtifactCacheTagSchema,
-  CONTENT_CACHE_GLOBAL_TAG,
   ContentCacheChangeSchema,
   ContentCacheReceiptSchema,
   ContentCacheRequestSchema,
-  ContentCacheTagsSchema,
-  ContentFamilyCacheTagSchema,
+  ContentCacheScopeSchema,
   makeArtifactCacheTag,
-  makeContentCacheRequest,
-  makeContentFamilyCacheTag,
+  makeContentCacheTag,
 } from "#contracts/cache/content";
 import { ContentFamilySchema } from "#contracts/content";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
+import { ContentSnapshotKindSchema } from "#contracts/release/snapshot/scope";
 
-const decodeRequest = Schema.decodeUnknownEffect(ContentCacheRequestSchema);
-const decodeReceipt = Schema.decodeUnknownEffect(ContentCacheReceiptSchema);
-
-/** Returns whether one unknown value satisfies an exact cache contract. */
-function accepts(
-  decode: (input: unknown) => Effect.Effect<unknown, unknown>,
-  input: unknown
-) {
-  return Effect.isSuccess(decode(input));
-}
+const releaseId = ReleaseIdSchema.make("test-cache-release");
+const decodeRequest = Schema.decodeUnknownEffect(ContentCacheRequestSchema, {
+  onExcessProperty: "error",
+});
+const decodeReceipt = Schema.decodeUnknownEffect(ContentCacheReceiptSchema, {
+  onExcessProperty: "error",
+});
 
 describe("content cache contracts", () => {
-  it("distinguishes body changes from family-only deletion invalidation", () => {
-    const artifactHash = Sha256HashSchema.make(`sha256:${"d".repeat(64)}`);
-
-    expect(
-      Schema.decodeSync(ContentCacheChangeSchema)({
-        artifactHash,
-        family: "article",
-      })
-    ).toEqual({ artifactHash, family: "article" });
-    expect(
-      Schema.decodeSync(ContentCacheChangeSchema)({
-        family: "material",
-      })
-    ).toEqual({ family: "material" });
+  it("derives mutable scopes from every source-owned family and snapshot", () => {
+    expect(ContentCacheScopeSchema.literals).toEqual([
+      ...ContentFamilySchema.literals,
+      ...ContentSnapshotKindSchema.literals,
+    ]);
   });
 
-  it.effect.each(ContentFamilySchema.literals)(
-    "derives canonical ordered %s tags for changed artifacts",
-    (family) =>
+  it.effect.each(ContentCacheScopeSchema.literals)(
+    "acknowledges exactly one release-bound %s dependency",
+    (scope) =>
       Effect.gen(function* () {
-        const releaseId = ReleaseIdSchema.make("test-cache-release");
-        const first = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
-        const second = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
-        const request = makeContentCacheRequest({
-          artifactHashes: [first, second],
-          family,
-          releaseId,
-        });
-
-        expect(yield* accepts(decodeRequest, request)).toBe(true);
-        expect(
-          yield* accepts(decodeReceipt, { ...request, revalidated: true })
-        ).toBe(true);
-        expect(request.tags).toEqual([
-          CONTENT_CACHE_GLOBAL_TAG,
-          makeContentFamilyCacheTag(family),
-          makeArtifactCacheTag(first),
-          makeArtifactCacheTag(second),
-        ]);
+        const request = ContentCacheRequestSchema.make({ releaseId, scope });
+        expect(yield* decodeRequest(request)).toEqual(request);
+        expect(yield* decodeReceipt({ ...request, revalidated: true })).toEqual(
+          { ...request, revalidated: true }
+        );
+        expect(ContentCacheChangeSchema.make({ scope })).toEqual({ scope });
+        expect(makeContentCacheTag(scope)).toBe(`content-scope:${scope}`);
       })
   );
 
   it.effect.each([
-    {
-      family: "material",
-      releaseId: "INVALID",
-      tags: [CONTENT_CACHE_GLOBAL_TAG, "content-family:material"],
-    },
-    {
-      family: "material",
-      releaseId: "test-cache-release",
-      tags: [CONTENT_CACHE_GLOBAL_TAG],
-    },
-    {
-      family: "article",
-      releaseId: "test-cache-release",
-      tags: [CONTENT_CACHE_GLOBAL_TAG, "content-family:material"],
-    },
-    {
-      family: "material",
-      releaseId: "test-cache-release",
-      tags: [
-        CONTENT_CACHE_GLOBAL_TAG,
-        "content-family:material",
-        "content-artifact:unknown",
-      ],
-    },
-  ])("rejects a noncanonical request", (request) =>
+    { releaseId: "INVALID", scope: "material" },
+    { releaseId, scope: "unknown" },
+    { releaseId, scope: "content-runtime" },
+    { releaseId, scope: "content-artifact:sha256:invalid" },
+    { releaseId, scope: "material", tags: ["content-runtime"] },
+    { family: "material", releaseId, tags: ["content-runtime"] },
+  ])("rejects an invalid or predecessor invalidation request", (request) =>
     Effect.gen(function* () {
-      expect(yield* accepts(decodeRequest, request)).toBe(false);
+      expect(yield* Effect.isFailure(decodeRequest(request))).toBe(true);
     })
   );
 
   it.effect.each([
-    {
-      family: "material",
-      releaseId: "test-cache-release",
-      revalidated: false,
-      tags: [CONTENT_CACHE_GLOBAL_TAG, "content-family:material"],
-    },
-    {
-      family: "material",
-      releaseId: "test-cache-release",
-      revalidated: true,
-      tags: [CONTENT_CACHE_GLOBAL_TAG, "content-family:article"],
-    },
-  ])("rejects a noncanonical receipt", (receipt) =>
+    { releaseId, revalidated: false, scope: "material" },
+    { releaseId, revalidated: true, scope: "unknown" },
+    { releaseId, revalidated: true, scope: "material", tags: [] },
+  ])("rejects an invalid receipt", (receipt) =>
     Effect.gen(function* () {
-      expect(yield* accepts(decodeReceipt, receipt)).toBe(false);
+      expect(yield* Effect.isFailure(decodeReceipt(receipt))).toBe(true);
     })
   );
 
-  it("rejects malformed family and artifact tags", () => {
-    expect(() =>
-      Schema.decodeSync(ContentFamilyCacheTagSchema)("content-family:unknown")
-    ).toThrow("Expected one canonical content-family cache tag.");
-    expect(() =>
-      Schema.decodeSync(ArtifactCacheTagSchema)(
-        "content-artifact:sha256:invalid"
-      )
-    ).toThrow(
-      "Expected content-artifact followed by one canonical SHA-256 hash."
+  it("keeps immutable artifact tags outside the publication wire contract", () => {
+    const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
+    expect(makeArtifactCacheTag(hash)).toBe(`content-artifact:${hash}`);
+    expect(Schema.is(ArtifactCacheTagSchema)("content-artifact:invalid")).toBe(
+      false
     );
-  });
-
-  it("rejects duplicate artifacts and more than 100 ordered tags", () => {
-    const validTag = makeArtifactCacheTag(
-      Sha256HashSchema.make(`sha256:${"c".repeat(64)}`)
+    expect(Schema.is(ArtifactCacheTagSchema)("content-scope:material")).toBe(
+      false
     );
-    const base = [
-      CONTENT_CACHE_GLOBAL_TAG,
-      makeContentFamilyCacheTag("material"),
-    ] as const;
-
-    expect(() =>
-      Schema.decodeSync(ContentCacheTagsSchema)([...base, validTag, validTag])
-    ).toThrow("Expected unique exact artifact cache tags.");
-    expect(
-      Schema.is(ContentCacheTagsSchema)([
-        ...base,
-        ...Array.from({ length: 99 }, (_, index) =>
-          makeArtifactCacheTag(
-            Sha256HashSchema.make(
-              `sha256:${index.toString(16).padStart(64, "0")}`
-            )
-          )
-        ),
-      ])
-    ).toBe(false);
-  });
-
-  it("reports explicit family contradictions for requests and receipts", () => {
-    const mismatched = {
-      family: "article",
-      releaseId: "test-cache-release",
-      tags: [CONTENT_CACHE_GLOBAL_TAG, "content-family:material"],
-    };
-
-    expect(() =>
-      Schema.decodeUnknownSync(ContentCacheRequestSchema)(mismatched)
-    ).toThrow("Expected the cache family to match its ordered family tag.");
-    expect(() =>
-      Schema.decodeUnknownSync(ContentCacheReceiptSchema)({
-        ...mismatched,
-        revalidated: true,
-      })
-    ).toThrow("Expected the cache family to match its ordered family tag.");
+    expect(Schema.is(ContentCacheScopeSchema)(makeArtifactCacheTag(hash))).toBe(
+      false
+    );
   });
 });

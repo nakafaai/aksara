@@ -38,6 +38,18 @@ vi.mock("@nakafa/aksara-corpus/quran/snapshot", async () => {
   };
 });
 
+vi.mock("@nakafa/aksara-corpus/tryout/content", async () => {
+  const { Effect: RuntimeEffect } = await import("effect");
+  return {
+    loadTryoutContent: () =>
+      RuntimeEffect.succeed({
+        entries: [],
+        projection: { catalog: [], placements: [], routeCount: 0 },
+        sources: [],
+      }),
+  };
+});
+
 vi.mock("#publisher/tryout/snapshot", async () => {
   const { Effect: RuntimeEffect } = await import("effect");
   return {
