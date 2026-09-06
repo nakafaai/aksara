@@ -54,7 +54,6 @@ const createConfig = Effect.fn("BumpDependenciesTest.createConfig")(
       "@biomejs/biome": "2.5.12",
       "@effect/tsgo": "0.41.0",
       "@types/node": "24.13.3",
-      "@typescript/native": "npm:typescript@7.0.2",
       ...(input?.omitUltracite ? {} : { ultracite: "7.10.8" }),
     };
     const ignoreDeps = expectedIgnoredDependencies().filter(
@@ -79,7 +78,7 @@ const createConfig = Effect.fn("BumpDependenciesTest.createConfig")(
             "@effect/vitest": "4.0.0-rc.112",
             "@vitest/coverage-istanbul": "4.1.11",
             effect: "4.0.0-rc.112",
-            typescript: "npm:@typescript/typescript6@6.0.2",
+            typescript: "7.0.2",
             vitest: "4.1.11",
           },
           update: { ignoreDeps },

@@ -1,5 +1,6 @@
-import { describe, expect, it } from "@effect/vitest";
+import { expect, layer } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Effect } from "effect";
 
 import { decodeQuestionItemSource } from "#corpus/question-bank/item-source";
@@ -58,7 +59,7 @@ function expectRejections(sources: readonly string[]) {
   );
 }
 
-describe("question item source", () => {
+layer(TypeScriptParser.layer)("question item source", (it) => {
   it.effect("decodes reviewed literal data without executing the module", () =>
     Effect.gen(function* () {
       const item = yield* decodeQuestionItemSource(itemModule(), sourcePath);

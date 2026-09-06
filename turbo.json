@@ -14,10 +14,18 @@
         "packages/*/scripts/**/*.ts",
         "packages/*/package.json"
       ],
-      "outputs": []
+      "outputs": [],
+      "dependsOn": [
+        "@nakafa/aksara-contracts#transit",
+        "@nakafa/aksara-utilities#transit"
+      ]
     },
     "//#test:root": {
-      "dependsOn": ["//#test:lesson-voice"],
+      "dependsOn": [
+        "//#test:lesson-voice",
+        "@nakafa/aksara-contracts#build",
+        "@nakafa/aksara-utilities#build"
+      ],
       "inputs": [
         "package.json",
         "scripts/**/*.ts",

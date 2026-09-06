@@ -49,8 +49,8 @@ catalogs:
       specifier: 6.0.0
       version: 6.0.0
     typescript:
-      specifier: npm:@typescript/typescript6@6.0.2
-      version: 6.0.2
+      specifier: 7.0.2
+      version: 7.0.2
     unified:
       specifier: 11.0.5
       version: 11.0.5
@@ -93,6 +93,9 @@ importers:
       '@nakafa/aksara-publisher':
         specifier: workspace:*
         version: link:packages/publisher
+      '@nakafa/aksara-utilities':
+        specifier: workspace:*
+        version: link:packages/utilities
       '@nakafa/testing':
         specifier: workspace:*
         version: link:packages/testing
@@ -105,9 +108,6 @@ importers:
       '@types/node':
         specifier: 24.13.3
         version: 24.13.3
-      '@typescript/native':
-        specifier: npm:typescript@7.0.2
-        version: typescript@7.0.2
       '@vitest/coverage-istanbul':
         specifier: 'catalog:'
         version: 4.1.11(supports-color@7.2.0)(vitest@4.1.11)
@@ -134,7 +134,7 @@ importers:
         version: 2.10.12
       typescript:
         specifier: 'catalog:'
-        version: '@typescript/typescript6@6.0.2'
+        version: 7.0.2
       ultracite:
         specifier: 7.10.8
         version: 7.10.8
@@ -257,6 +257,9 @@ importers:
       '@effect/vitest':
         specifier: 'catalog:'
         version: 4.0.0-rc.112(effect@4.0.0-rc.112)(vitest@4.1.11)
+      '@nakafa/aksara-utilities':
+        specifier: workspace:*
+        version: link:../utilities
       '@nakafa/testing':
         specifier: workspace:*
         version: link:../testing
@@ -271,7 +274,7 @@ importers:
         version: 4.0.0-rc.112
       typescript:
         specifier: 'catalog:'
-        version: '@typescript/typescript6@6.0.2'
+        version: 7.0.2
       vitest:
         specifier: 'catalog:'
         version: 4.1.11(@types/node@24.13.3)(@vitest/coverage-istanbul@4.1.11)(vite@8.1.5(@types/node@24.13.3)(esbuild@0.28.2)(yaml@2.9.0))
@@ -289,7 +292,7 @@ importers:
         version: 4.0.0-rc.112
       typescript:
         specifier: 'catalog:'
-        version: '@typescript/typescript6@6.0.2'
+        version: 7.0.2
     devDependencies:
       '@effect/platform-node':
         specifier: 'catalog:'
@@ -368,7 +371,7 @@ importers:
         version: 4.0.0-rc.112
       typescript:
         specifier: 'catalog:'
-        version: '@typescript/typescript6@6.0.2'
+        version: 7.0.2
     devDependencies:
       '@effect/vitest':
         specifier: 'catalog:'
@@ -1206,10 +1209,6 @@ packages:
     engines: {node: '>=16.20.0'}
     cpu: [x64]
     os: [win32]
-
-  '@typescript/typescript6@6.0.2':
-    resolution: {integrity: sha512-mbCddXd+jm7hfx7w2YU64/Av4/NqqeG3GoRZgxPcgoTxYjhrcfJRw9ULch71SS4G+Q3bOXFhRvPqjguN0Hyp5w==}
-    hasBin: true
 
   '@ungap/structured-clone@1.3.3':
     resolution: {integrity: sha512-60YRaenCQcVjYEKOcG824+DRGGIQ3VKErcBoAEDJZz5bKIs2ZG+X/H9Nk+Q6EVkwJk5QNApxbrc5QtBSwtrXAg==}
@@ -2411,11 +2410,6 @@ packages:
     resolution: {integrity: sha512-AswgMPnpOoaVZHrrSBejETzEbuIA69OVGwfkHwfrY0A23VjWXBANzgq9+OymWOHAIArB7D1+1z498WY8fGg1Jw==}
     hasBin: true
 
-  typescript@6.0.3:
-    resolution: {integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}
-    engines: {node: '>=14.17'}
-    hasBin: true
-
   typescript@7.0.2:
     resolution: {integrity: sha512-8FYau96o3NKOhbjKi/qNvG/W5jhzxkbdm5sj9AbZ/5T5sWqn3hJgLfGx27sRKZWTvyzCP8dLRBTf5tBTSRVUNA==}
     engines: {node: '>=16.20.0'}
@@ -3266,10 +3260,6 @@ snapshots:
 
   '@typescript/typescript-win32-x64@7.0.2':
     optional: true
-
-  '@typescript/typescript6@6.0.2':
-    dependencies:
-      '@typescript/old': typescript@6.0.3
 
   '@ungap/structured-clone@1.3.3': {}
 
@@ -4744,8 +4734,6 @@ snapshots:
       '@turbo/linux-arm64': 2.10.12
       '@turbo/windows-64': 2.10.12
       '@turbo/windows-arm64': 2.10.12
-
-  typescript@6.0.3: {}
 
   typescript@7.0.2:
     optionalDependencies:

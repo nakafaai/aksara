@@ -75,19 +75,10 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
   {
     approvedCurrent: "7.0.2",
     cohort: "TypeScript",
-    dependency: "@typescript/native",
-    reason: "The native compiler and Effect patch must move together.",
+    dependency: "typescript",
+    reason: "The native compiler, AST API, and Effect patch move together.",
     registry: "typescript@latest",
     reviewedLatest: "7.0.2",
-    source: "root-dev-dependency",
-  },
-  {
-    approvedCurrent: "6.0.2",
-    cohort: "TypeScript",
-    dependency: "typescript",
-    reason: "Programmatic consumers still require the TypeScript 6 API.",
-    registry: "@typescript/typescript6@latest",
-    reviewedLatest: "6.0.2",
     source: "catalog",
   },
   {

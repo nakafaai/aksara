@@ -1,6 +1,26 @@
 import { readFileSync } from "node:fs";
 
-import ts from "typescript";
+import { AppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
+import {
+  TypeScriptParser,
+  TypeScriptSourceError,
+} from "@nakafa/aksara-utilities/typescript/parse";
+import { Effect } from "effect";
+import {
+  type CallExpression,
+  isArrayLiteralExpression,
+  isCallExpression,
+  isIdentifier,
+  isLiteralTypeNode,
+  isObjectLiteralExpression,
+  isPropertyAccessExpression,
+  isSpreadAssignment,
+  isStringLiteralLikeNode,
+  isTupleTypeNode,
+  isUnionTypeNode,
+  type Node,
+  type NodeArray,
+} from "typescript/unstable/ast";
 
 import { enforceViolations, typescriptFiles } from "#scripts/check/files";
 
@@ -12,62 +32,30 @@ const LOCALE_VOCABULARY_MODULES = new Set([
 ]);
 const TEST_SOURCE_PATTERN = /(?:^|\/)(?:test|tests)(?:\/|$)|\.test\.[^.]+$/u;
 
-/** Reads the canonical current locale vocabulary from its contract declaration. */
-export function contractLocaleCodes(
-  sourceText = readFileSync(LOCALE_CONTRACT_MODULE, "utf8")
-) {
-  const sourceFile = ts.createSourceFile(
-    LOCALE_CONTRACT_MODULE,
-    sourceText,
-    ts.ScriptTarget.Latest,
-    true
-  );
-  for (const statement of sourceFile.statements) {
-    if (!ts.isVariableStatement(statement)) {
-      continue;
-    }
-    for (const declaration of statement.declarationList.declarations) {
-      if (
-        ts.isIdentifier(declaration.name) &&
-        declaration.name.text === "AppLocaleCodeSchema" &&
-        declaration.initializer !== undefined
-      ) {
-        const codes = schemaLiteralNodes(declaration.initializer)
-          .filter(ts.isStringLiteralLike)
-          .map(({ text }) => text);
-        if (codes.length > 0) {
-          return new Set(codes);
-        }
-      }
-    }
-  }
-  throw new Error("The canonical app-locale contract could not be decoded.");
-}
-
-const localeCodes = contractLocaleCodes();
+const localeCodes: ReadonlySet<string> = new Set(AppLocaleCodeSchema.literals);
 
 /** Returns a statically declared locale code from one syntax node. */
-function localeCode(node: ts.Node): string | undefined {
-  const value = ts.isLiteralTypeNode(node) ? node.literal : node;
-  if (!(ts.isStringLiteralLike(value) && localeCodes.has(value.text))) {
+function localeCode(node: Node): string | undefined {
+  const value = isLiteralTypeNode(node) ? node.literal : node;
+  if (!(isStringLiteralLikeNode(value) && localeCodes.has(value.text))) {
     return;
   }
   return value.text;
 }
 
 /** Checks whether a call names one Effect Schema constructor. */
-function isSchemaCall(node: ts.Node, name: string): node is ts.CallExpression {
+function isSchemaCall(node: Node, name: string): node is CallExpression {
   return (
-    ts.isCallExpression(node) &&
-    ts.isPropertyAccessExpression(node.expression) &&
-    ts.isIdentifier(node.expression.expression) &&
+    isCallExpression(node) &&
+    isPropertyAccessExpression(node.expression) &&
+    isIdentifier(node.expression.expression) &&
     node.expression.expression.text === "Schema" &&
     node.expression.name.text === name
   );
 }
 
 /** Returns literal value nodes from v4 singular and plural Schema APIs. */
-function schemaLiteralNodes(node: ts.Node): readonly ts.Node[] {
+function schemaLiteralNodes(node: Node): readonly Node[] {
   if (isSchemaCall(node, "Literal")) {
     return [...node.arguments];
   }
@@ -75,18 +63,16 @@ function schemaLiteralNodes(node: ts.Node): readonly ts.Node[] {
     return [];
   }
   const [values] = node.arguments;
-  return values && ts.isArrayLiteralExpression(values)
-    ? [...values.elements]
-    : [];
+  return values && isArrayLiteralExpression(values) ? [...values.elements] : [];
 }
 
 /** Returns distinct locale codes declared directly by syntax nodes. */
-function declaredLocaleCodes(nodes: readonly ts.Node[]) {
+function declaredLocaleCodes(nodes: readonly Node[]) {
   return new Set(nodes.map(localeCode).filter((value) => value !== undefined));
 }
 
 /** Detects a Schema.keyof object that declares a second locale vocabulary. */
-function duplicatedLocaleKeyof(node: ts.Node) {
+function duplicatedLocaleKeyof(node: Node) {
   if (!isSchemaCall(node, "keyof")) {
     return false;
   }
@@ -95,14 +81,15 @@ function duplicatedLocaleKeyof(node: ts.Node) {
     return false;
   }
   const [fields] = schema.arguments;
-  if (!(fields && ts.isObjectLiteralExpression(fields))) {
+  if (!(fields && isObjectLiteralExpression(fields))) {
     return false;
   }
-  const names = fields.properties.flatMap(({ name }) => {
-    if (name === undefined) {
+  const names = fields.properties.flatMap((property) => {
+    if (isSpreadAssignment(property)) {
       return [];
     }
-    if (ts.isIdentifier(name) || ts.isStringLiteralLike(name)) {
+    const { name } = property;
+    if (isIdentifier(name) || isStringLiteralLikeNode(name)) {
       return localeCodes.has(name.text) ? [name.text] : [];
     }
     return [];
@@ -111,8 +98,8 @@ function duplicatedLocaleKeyof(node: ts.Node) {
 }
 
 /** Detects one duplicated schema or type-level locale vocabulary. */
-function duplicatedLocaleVocabulary(node: ts.Node) {
-  if (ts.isUnionTypeNode(node)) {
+function duplicatedLocaleVocabulary(node: Node) {
+  if (isUnionTypeNode(node)) {
     return declaredLocaleCodes(node.types).size >= 2;
   }
   const literalNodes = schemaLiteralNodes(node);
@@ -126,7 +113,7 @@ function duplicatedLocaleVocabulary(node: ts.Node) {
     return false;
   }
   const [members] = node.arguments;
-  if (!(members && ts.isArrayLiteralExpression(members))) {
+  if (!(members && isArrayLiteralExpression(members))) {
     return false;
   }
   const literals = members.elements.flatMap((member) =>
@@ -136,17 +123,14 @@ function duplicatedLocaleVocabulary(node: ts.Node) {
 }
 
 /** Detects a duplicated multi-locale policy array or tuple. */
-function duplicatedLocaleList(node: ts.Node) {
-  if (
-    ts.isArrayLiteralExpression(node) &&
-    isSchemaCall(node.parent, "Literals")
-  ) {
+function duplicatedLocaleList(node: Node) {
+  if (isArrayLiteralExpression(node) && isSchemaCall(node.parent, "Literals")) {
     return false;
   }
-  let values: ts.NodeArray<ts.Node> | undefined;
-  if (ts.isArrayLiteralExpression(node)) {
+  let values: NodeArray<Node> | undefined;
+  if (isArrayLiteralExpression(node)) {
     values = node.elements;
-  } else if (ts.isTupleTypeNode(node)) {
+  } else if (isTupleTypeNode(node)) {
     values = node.elements;
   }
   if (values === undefined) {
@@ -156,52 +140,61 @@ function duplicatedLocaleList(node: ts.Node) {
 }
 
 /** Reports locale vocabularies that bypass the canonical contract module. */
-export function localePolicyViolations(
-  file: string,
-  sourceText: string
-): readonly string[] {
-  const sourceFile = ts.createSourceFile(
-    file,
-    sourceText,
-    ts.ScriptTarget.Latest,
-    true
-  );
-  const violations: Array<{
-    readonly offset: number;
-    readonly reason: string;
-  }> = [];
-  const nodes: ts.Node[] = [sourceFile];
-  const ownsLocaleVocabulary = LOCALE_VOCABULARY_MODULES.has(file);
-  const allowsConcreteLists = TEST_SOURCE_PATTERN.test(file);
+export const localePolicyViolations = Effect.fn(
+  "AksaraPolicy.localeVocabulary"
+)(function* (file: string, sourceText: string) {
+  const parser = yield* TypeScriptParser;
+  return yield* parser.inspect(
+    { fileName: file, source: sourceText },
+    ({ sourceFile }) => {
+      const violations: Array<{
+        readonly offset: number;
+        readonly reason: string;
+      }> = [];
+      const nodes: Node[] = [sourceFile];
+      const ownsLocaleVocabulary = LOCALE_VOCABULARY_MODULES.has(file);
+      const allowsConcreteLists = TEST_SOURCE_PATTERN.test(file);
 
-  for (const node of nodes) {
-    const duplicatedVocabulary =
-      !ownsLocaleVocabulary && duplicatedLocaleVocabulary(node);
-    const hardcodedList =
-      !(ownsLocaleVocabulary || allowsConcreteLists) &&
-      duplicatedLocaleList(node);
-    if (duplicatedVocabulary || hardcodedList) {
-      const reason = duplicatedVocabulary
-        ? "locale vocabulary must derive from the locale contract"
-        : "locale lists must derive from the locale contract";
-      violations.push({ offset: node.getStart(sourceFile), reason });
+      for (const node of nodes) {
+        const duplicatedVocabulary =
+          !ownsLocaleVocabulary && duplicatedLocaleVocabulary(node);
+        const hardcodedList =
+          !(ownsLocaleVocabulary || allowsConcreteLists) &&
+          duplicatedLocaleList(node);
+        if (duplicatedVocabulary || hardcodedList) {
+          const reason = duplicatedVocabulary
+            ? "locale vocabulary must derive from the locale contract"
+            : "locale lists must derive from the locale contract";
+          violations.push({ offset: node.getStart(sourceFile), reason });
+        }
+        node.forEachChild((child) => {
+          nodes.push(child);
+        });
+      }
+
+      return violations
+        .sort((left, right) => left.offset - right.offset)
+        .map(({ offset, reason }) => {
+          const line =
+            sourceFile.getLineAndCharacterOfPosition(offset).line + 1;
+          return `${file}:${line}: ${reason}`;
+        });
     }
-    ts.forEachChild(node, (child) => {
-      nodes.push(child);
-    });
-  }
+  );
+});
 
-  return violations
-    .sort((left, right) => left.offset - right.offset)
-    .map(({ offset, reason }) => {
-      const line = sourceFile.getLineAndCharacterOfPosition(offset).line + 1;
-      return `${file}:${line}: ${reason}`;
-    });
-}
-
+const violations = await Effect.runPromise(
+  Effect.forEach(typescriptFiles(), (file) =>
+    Effect.try({
+      catch: (cause) => new TypeScriptSourceError({ cause, fileName: file }),
+      try: () => readFileSync(file, "utf8"),
+    }).pipe(Effect.flatMap((source) => localePolicyViolations(file, source)))
+  ).pipe(
+    Effect.map((results) => results.flat()),
+    Effect.provide(TypeScriptParser.layer)
+  )
+);
 enforceViolations(
   "Locale vocabularies must have one contract source",
-  typescriptFiles().flatMap((file) =>
-    localePolicyViolations(file, readFileSync(file, "utf8"))
-  )
+  violations
 );

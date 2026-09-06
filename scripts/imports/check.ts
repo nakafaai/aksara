@@ -1,6 +1,10 @@
 import { readFileSync } from "node:fs";
+import {
+  TypeScriptParser,
+  TypeScriptSourceError,
+} from "@nakafa/aksara-utilities/typescript/parse";
+import { Effect } from "effect";
 import { isObject } from "effect/Predicate";
-import ts from "typescript";
 import {
   enforceViolations,
   trackedFiles,
@@ -23,6 +27,7 @@ const IMPORT_WILDCARD_PATTERN = /\*$/u;
 const VITEST_CONFIG_PATTERN = /\/vitest\.config\.ts$/u;
 const TEST_MODULE_PATTERN = /(?:^|\/)(?:test\/.*|[^/]+\.test\.ts)$/u;
 const WORKSPACE_MANIFEST_PATTERN = /^(?:apps|packages)\/[^/]+\/package\.json$/u;
+const WORKSPACE_SCRIPT_PATTERN = /^(?:apps|packages)\/[^/]+\/scripts\//u;
 const TESTING_PACKAGE = "@nakafa/testing";
 
 interface WorkspaceIdentity {
@@ -161,6 +166,12 @@ function importViolation(
   }
   const packageName = specifier.split("/").slice(0, 2).join("/");
   if (
+    WORKSPACE_SCRIPT_PATTERN.test(file) &&
+    identity.developmentDependencies.has(packageName)
+  ) {
+    return;
+  }
+  if (
     packageName === TESTING_PACKAGE &&
     (VITEST_CONFIG_PATTERN.test(file) || TEST_MODULE_PATTERN.test(file))
   ) {
@@ -177,54 +188,71 @@ function importViolation(
 }
 
 /** Collects stable file and line diagnostics for invalid module imports. */
-export function importViolations(
+export const importViolations = Effect.fn("AksaraPolicy.imports")(function* (
   file: string,
   sourceText: string,
   resolveIdentity: WorkspaceIdentityResolver
-): readonly string[] {
-  const sourceFile = ts.createSourceFile(
-    file,
-    sourceText,
-    ts.ScriptTarget.Latest,
-    true
-  );
+) {
+  const parser = yield* TypeScriptParser;
+  return yield* parser.inspect(
+    { fileName: file, source: sourceText },
+    ({ sourceFile }) => {
+      const moduleViolations = moduleSpecifiers(sourceFile).flatMap(
+        (specifier) => {
+          const violation = importViolation(
+            file,
+            specifier.text,
+            resolveIdentity
+          );
+          if (!violation) {
+            return [];
+          }
+          const line =
+            sourceFile.getLineAndCharacterOfPosition(specifier.getStart())
+              .line + 1;
+          return [`${file}:${line} ${specifier.text}: ${violation}`];
+        }
+      );
+      const viImportViolations = exposedModuleBindings(
+        sourceFile,
+        "@effect/vitest",
+        "vi"
+      ).map((specifier) => {
+        const line =
+          sourceFile.getLineAndCharacterOfPosition(specifier.getStart()).line +
+          1;
+        return `${file}:${line} @effect/vitest#vi: use the configured global vi for mocks`;
+      });
 
-  const moduleViolations = moduleSpecifiers(sourceFile).flatMap((specifier) => {
-    const violation = importViolation(file, specifier.text, resolveIdentity);
-    if (!violation) {
-      return [];
+      return [...moduleViolations, ...viImportViolations];
     }
-    const line =
-      sourceFile.getLineAndCharacterOfPosition(specifier.getStart()).line + 1;
-    return [`${file}:${line} ${specifier.text}: ${violation}`];
-  });
-  const viImportViolations = exposedModuleBindings(
-    sourceFile,
-    "@effect/vitest",
-    "vi"
-  ).map((specifier) => {
-    const line =
-      sourceFile.getLineAndCharacterOfPosition(specifier.getStart()).line + 1;
-    return `${file}:${line} @effect/vitest#vi: use the configured global vi for mocks`;
-  });
-
-  return [...moduleViolations, ...viImportViolations];
-}
+  );
+});
 
 const repositoryIdentity = createWorkspaceIdentityResolver((path) =>
   readFileSync(path, "utf8")
 );
+const sourceViolations = await Effect.runPromise(
+  Effect.forEach(typescriptFiles(), (file) =>
+    Effect.gen(function* () {
+      const source = yield* Effect.try({
+        catch: (cause) => new TypeScriptSourceError({ cause, fileName: file }),
+        try: () => readFileSync(file, "utf8"),
+      });
+      return {
+        imports: yield* importViolations(file, source, repositoryIdentity),
+        tests: yield* effectTestViolations(file, source),
+      };
+    })
+  ).pipe(Effect.provide(TypeScriptParser.layer))
+);
 enforceViolations(
   "TypeScript imports must respect workspace aliases",
-  typescriptFiles().flatMap((file) =>
-    importViolations(file, readFileSync(file, "utf8"), repositoryIdentity)
-  )
+  sourceViolations.flatMap((result) => result.imports)
 );
 enforceViolations(
   "Effect tests must use native Effect Vitest execution",
-  typescriptFiles().flatMap((file) =>
-    effectTestViolations(file, readFileSync(file, "utf8"))
-  )
+  sourceViolations.flatMap((result) => result.tests)
 );
 const workspaceSourceCondition = sourceConditionFromConfig(
   readFileSync("packages/typescript-config/base.json", "utf8")

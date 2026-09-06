@@ -1,37 +1,54 @@
-import ts from "typescript";
+import {
+  type ExportDeclaration,
+  type ImportDeclaration,
+  isCallExpression,
+  isExportDeclaration,
+  isExternalModuleReference,
+  isIdentifier,
+  isImportDeclaration,
+  isImportEqualsDeclaration,
+  isImportTypeNode,
+  isLiteralTypeNode,
+  isNamespaceExport,
+  isNamespaceImport,
+  isStringLiteral,
+  isStringLiteralLikeNode,
+  type Node,
+  type SourceFile,
+  type StringLiteralLikeNode,
+  SyntaxKind,
+} from "typescript/unstable/ast";
 
 /** Returns the statically knowable module specifier owned by one syntax node. */
-function staticModuleSpecifier(
-  node: ts.Node
-): ts.StringLiteralLike | undefined {
+function staticModuleSpecifier(node: Node): StringLiteralLikeNode | undefined {
   if (
-    (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) &&
+    (isImportDeclaration(node) || isExportDeclaration(node)) &&
     node.moduleSpecifier &&
-    ts.isStringLiteral(node.moduleSpecifier)
+    isStringLiteral(node.moduleSpecifier)
   ) {
     return node.moduleSpecifier;
   }
   if (
-    ts.isImportTypeNode(node) &&
-    ts.isLiteralTypeNode(node.argument) &&
-    ts.isStringLiteral(node.argument.literal)
+    isImportTypeNode(node) &&
+    isLiteralTypeNode(node.argument) &&
+    isStringLiteral(node.argument.literal)
   ) {
     return node.argument.literal;
   }
   if (
-    ts.isImportEqualsDeclaration(node) &&
-    ts.isExternalModuleReference(node.moduleReference) &&
+    isImportEqualsDeclaration(node) &&
+    isExternalModuleReference(node.moduleReference) &&
     node.moduleReference.expression &&
-    ts.isStringLiteralLike(node.moduleReference.expression)
+    isStringLiteralLikeNode(node.moduleReference.expression)
   ) {
     return node.moduleReference.expression;
   }
-  if (!ts.isCallExpression(node)) {
+  if (!isCallExpression(node)) {
     return;
   }
-  const isImportCall = node.expression.kind === ts.SyntaxKind.ImportKeyword;
+  const isImportCall = node.expression.kind === SyntaxKind.ImportKeyword;
   const isRequireCall =
-    ts.isIdentifier(node.expression) && node.expression.text === "require";
+    isIdentifier(node.expression) && node.expression.text === "require";
   if (
     !(isImportCall || isRequireCall) ||
     (isImportCall &&
@@ -41,22 +58,24 @@ function staticModuleSpecifier(
     return;
   }
   const [specifier] = node.arguments;
-  return specifier && ts.isStringLiteralLike(specifier) ? specifier : undefined;
+  return specifier && isStringLiteralLikeNode(specifier)
+    ? specifier
+    : undefined;
 }
 
 /** Returns every static or dynamic module specifier in one source module. */
 export function moduleSpecifiers(
-  sourceFile: ts.SourceFile
-): readonly ts.StringLiteralLike[] {
-  const specifiers: ts.StringLiteralLike[] = [];
-  const nodes: ts.Node[] = [sourceFile];
+  sourceFile: SourceFile
+): readonly StringLiteralLikeNode[] {
+  const specifiers: StringLiteralLikeNode[] = [];
+  const nodes: Node[] = [sourceFile];
 
   for (const node of nodes) {
     const specifier = staticModuleSpecifier(node);
     if (specifier) {
       specifiers.push(specifier);
     }
-    ts.forEachChild(node, (child) => {
+    node.forEachChild((child) => {
       nodes.push(child);
     });
   }
@@ -66,12 +85,12 @@ export function moduleSpecifiers(
 
 /** Returns exposed bindings from one static import declaration. */
 function importBindings(
-  node: ts.ImportDeclaration,
+  node: ImportDeclaration,
   moduleName: string,
   exportName: string
-): readonly ts.Node[] {
+): readonly Node[] {
   if (
-    !ts.isStringLiteral(node.moduleSpecifier) ||
+    !isStringLiteral(node.moduleSpecifier) ||
     node.moduleSpecifier.text !== moduleName
   ) {
     return [];
@@ -80,7 +99,7 @@ function importBindings(
   if (!namedBindings) {
     return [];
   }
-  if (ts.isNamespaceImport(namedBindings)) {
+  if (isNamespaceImport(namedBindings)) {
     return [namedBindings];
   }
   return namedBindings.elements.filter(
@@ -91,17 +110,17 @@ function importBindings(
 
 /** Returns exposed bindings from one static re-export declaration. */
 function exportBindings(
-  node: ts.ExportDeclaration,
+  node: ExportDeclaration,
   moduleName: string,
   exportName: string
-): readonly ts.Node[] {
+): readonly Node[] {
   if (
-    !(node.moduleSpecifier && ts.isStringLiteral(node.moduleSpecifier)) ||
+    !(node.moduleSpecifier && isStringLiteral(node.moduleSpecifier)) ||
     node.moduleSpecifier.text !== moduleName
   ) {
     return [];
   }
-  if (!node.exportClause || ts.isNamespaceExport(node.exportClause)) {
+  if (!node.exportClause || isNamespaceExport(node.exportClause)) {
     return [node.exportClause ?? node];
   }
   return node.exportClause.elements.filter(
@@ -112,18 +131,18 @@ function exportBindings(
 
 /** Returns exposed bindings from one remaining supported module syntax. */
 function nonStaticBindings(
-  node: ts.Node,
+  node: Node,
   moduleName: string,
   exportName: string
-): readonly ts.Node[] {
-  if (ts.isImportEqualsDeclaration(node) || ts.isCallExpression(node)) {
+): readonly Node[] {
+  if (isImportEqualsDeclaration(node) || isCallExpression(node)) {
     return staticModuleSpecifier(node)?.text === moduleName ? [node] : [];
   }
   if (
-    ts.isImportTypeNode(node) &&
+    isImportTypeNode(node) &&
     staticModuleSpecifier(node)?.text === moduleName &&
     node.qualifier &&
-    ts.isIdentifier(node.qualifier) &&
+    isIdentifier(node.qualifier) &&
     node.qualifier.text === exportName
   ) {
     return [node.qualifier];
@@ -133,25 +152,25 @@ function nonStaticBindings(
 
 /** Returns syntax nodes that expose one exact module export. */
 export function exposedModuleBindings(
-  sourceFile: ts.SourceFile,
+  sourceFile: SourceFile,
   moduleName: string,
   exportName: string
-): readonly ts.Node[] {
-  const bindings: ts.Node[] = [];
-  const nodes: ts.Node[] = [sourceFile];
+): readonly Node[] {
+  const bindings: Node[] = [];
+  const nodes: Node[] = [sourceFile];
 
   for (const node of nodes) {
     bindings.push(
-      ...(ts.isImportDeclaration(node)
+      ...(isImportDeclaration(node)
         ? importBindings(node, moduleName, exportName)
         : []),
-      ...(ts.isExportDeclaration(node)
+      ...(isExportDeclaration(node)
         ? exportBindings(node, moduleName, exportName)
         : []),
       ...nonStaticBindings(node, moduleName, exportName)
     );
 
-    ts.forEachChild(node, (child) => {
+    node.forEachChild((child) => {
       nodes.push(child);
     });
   }

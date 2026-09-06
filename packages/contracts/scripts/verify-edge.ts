@@ -1,6 +1,14 @@
 import { NodeRuntime, NodeServices } from "@effect/platform-node";
+import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Effect, FileSystem, Path, Schema } from "effect";
-import ts from "typescript";
+import {
+  isCallExpression,
+  isExportDeclaration,
+  isImportDeclaration,
+  isStringLiteral,
+  type Node,
+  SyntaxKind,
+} from "typescript/unstable/ast";
 import { parseInstalledManifest } from "#scripts/manifest";
 
 export const EDGE_CONTRACT_EXPORTS = [
@@ -46,43 +54,41 @@ function edgeFailure(
 }
 
 /** Returns statically reachable runtime imports from emitted JavaScript. */
-export function runtimeImports(
-  file: string,
-  source: string
-): readonly string[] {
-  const sourceFile = ts.createSourceFile(
-    file,
-    source,
-    ts.ScriptTarget.Latest,
-    true,
-    ts.ScriptKind.JS
-  );
-  const imports: string[] = [];
-  const nodes: ts.Node[] = [sourceFile];
-  for (const node of nodes) {
-    if (
-      (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) &&
-      node.moduleSpecifier &&
-      ts.isStringLiteral(node.moduleSpecifier)
-    ) {
-      imports.push(node.moduleSpecifier.text);
-    }
-    if (
-      ts.isCallExpression(node) &&
-      node.expression.kind === ts.SyntaxKind.ImportKeyword
-    ) {
-      for (const argument of node.arguments) {
-        if (ts.isStringLiteral(argument)) {
-          imports.push(argument.text);
+export const runtimeImports = Effect.fn("AksaraContracts.runtimeImports")(
+  function* (file: string, source: string) {
+    const parser = yield* TypeScriptParser;
+    return yield* parser.inspect(
+      { fileName: file, source },
+      ({ sourceFile }) => {
+        const imports: string[] = [];
+        const nodes: Node[] = [sourceFile];
+        for (const node of nodes) {
+          if (
+            (isImportDeclaration(node) || isExportDeclaration(node)) &&
+            node.moduleSpecifier &&
+            isStringLiteral(node.moduleSpecifier)
+          ) {
+            imports.push(node.moduleSpecifier.text);
+          }
+          if (
+            isCallExpression(node) &&
+            node.expression.kind === SyntaxKind.ImportKeyword
+          ) {
+            for (const argument of node.arguments) {
+              if (isStringLiteral(argument)) {
+                imports.push(argument.text);
+              }
+            }
+          }
+          node.forEachChild((child) => {
+            nodes.push(child);
+          });
         }
+        return imports;
       }
-    }
-    ts.forEachChild(node, (child) => {
-      nodes.push(child);
-    });
+    );
   }
-  return imports;
-}
+);
 
 /** Resolves one package-private or relative emitted import for traversal. */
 function internalImport(
@@ -126,7 +132,8 @@ export const verifyEdgeEntry = Effect.fn("AksaraContracts.verifyEdgeEntry")(
           )
         );
       visited.add(file);
-      for (const specifier of runtimeImports(file, source)) {
+      const imports = yield* runtimeImports(file, source);
+      for (const specifier of imports) {
         if (specifier.startsWith("node:")) {
           return yield* edgeError(
             "module",
@@ -187,7 +194,7 @@ export const verifyEdgeContracts = Effect.fn(
     }
     yield* verifyEdgeEntry(distRoot, entry);
   }
-});
+}, Effect.provide(TypeScriptParser.layer));
 
 /** Runs verification only when this module is the selected CLI entrypoint. */
 export const runEdgeVerification = Effect.fn(

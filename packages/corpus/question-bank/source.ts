@@ -7,6 +7,7 @@ import { QuestionItemSchema } from "@nakafa/aksara-contracts/question/item";
 import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
 import { questionArtifactLocalesForPolicy } from "@nakafa/aksara-contracts/tryout/language";
+import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Effect, FileSystem, Path, Schema } from "effect";
 import { decodeQuestionItemSource } from "#corpus/question-bank/item-source";
 import {
@@ -166,7 +167,8 @@ export const readQuestionSource = Effect.fn("AksaraCorpus.readQuestionSource")(
         )
       );
     return yield* loadQuestionSource(corpusRoot, location, files);
-  }
+  },
+  Effect.provide(TypeScriptParser.layer)
 );
 
 /** Builds one complete question source from already-discovered direct files. */
@@ -251,4 +253,4 @@ export const discoverQuestionSources = Effect.fn(
   );
 
   return yield* validateSequences(sources);
-});
+}, Effect.provide(TypeScriptParser.layer));

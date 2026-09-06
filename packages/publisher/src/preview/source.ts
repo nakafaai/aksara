@@ -3,6 +3,7 @@ import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 import type { PreviewSource } from "@nakafa/aksara-corpus/preview/source";
 import { readQuestionItem } from "@nakafa/aksara-corpus/question-bank/source";
+import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Effect, Schema } from "effect";
 import {
   type InspectedArticleDocument,
@@ -177,7 +178,7 @@ export const loadPreviewSources = Effect.fn(
     LoadedPreviewSource,
     ...LoadedPreviewSource[],
   ];
-});
+}, Effect.provide(TypeScriptParser.layer));
 
 /** Derives one family-owned projection from trusted compiler metadata. */
 export function projectPreviewSource(

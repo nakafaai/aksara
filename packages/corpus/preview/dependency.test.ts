@@ -6,7 +6,10 @@ import {
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { Effect, FileSystem, Path, PlatformError } from "effect";
-import { discoverSourceDependencies } from "#corpus/preview/dependency";
+import {
+  discoverSourceDependencies,
+  SourceDependencyError,
+} from "#corpus/preview/dependency";
 import { corpusRoot } from "#corpus/test/question-layer";
 
 /** Loads checked-in corpus TypeScript through the Node Effect services. */
@@ -223,7 +226,13 @@ layer(NodeServices.layer)("source dependencies", (it) => {
           ),
         ]);
 
-        expect(failures.map(({ reason }) => reason)).toEqual([
+        expect(
+          failures.map((failure) =>
+            failure instanceof SourceDependencyError
+              ? failure.reason
+              : failure._tag
+          )
+        ).toEqual([
           "missing",
           "syntax",
           "module",

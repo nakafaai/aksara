@@ -2,9 +2,21 @@ import {
   type CorpusSourcePath,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { hasTypeScriptSyntaxError } from "@nakafa/aksara-utilities/typescript/syntax";
+import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Effect, FileSystem, Path, Schema } from "effect";
-import ts from "typescript";
+import {
+  isCallExpression,
+  isExportDeclaration,
+  isIdentifier,
+  isImportDeclaration,
+  isImportEqualsDeclaration,
+  isImportTypeNode,
+  isLiteralTypeNode,
+  isStringLiteral,
+  type Node,
+  type SourceFile,
+  SyntaxKind,
+} from "typescript/unstable/ast";
 
 const CORPUS_ALIAS = "#corpus/";
 const MAX_SOURCE_FILES = 128;
@@ -19,40 +31,39 @@ export class SourceDependencyError extends Schema.TaggedError<SourceDependencyEr
 ) {}
 
 /** Collects every static module reference or rejects unsupported loading. */
-function inspectModuleSpecifiers(sourceFile: ts.SourceFile) {
+function inspectModuleSpecifiers(sourceFile: SourceFile) {
   const specifiers: string[] = [];
-  const pending: ts.Node[] = [sourceFile];
+  const pending: Node[] = [sourceFile];
   for (const node of pending) {
-    if (ts.isImportEqualsDeclaration(node)) {
+    if (isImportEqualsDeclaration(node)) {
       return;
     }
     if (
-      ts.isCallExpression(node) &&
-      (node.expression.kind === ts.SyntaxKind.ImportKeyword ||
-        (ts.isIdentifier(node.expression) &&
-          node.expression.text === "require"))
+      isCallExpression(node) &&
+      (node.expression.kind === SyntaxKind.ImportKeyword ||
+        (isIdentifier(node.expression) && node.expression.text === "require"))
     ) {
       return;
     }
     if (
-      (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) &&
+      (isImportDeclaration(node) || isExportDeclaration(node)) &&
       node.moduleSpecifier !== undefined &&
-      ts.isStringLiteral(node.moduleSpecifier)
+      isStringLiteral(node.moduleSpecifier)
     ) {
       specifiers.push(node.moduleSpecifier.text);
     }
-    if (ts.isImportTypeNode(node)) {
+    if (isImportTypeNode(node)) {
       if (
         !(
-          ts.isLiteralTypeNode(node.argument) &&
-          ts.isStringLiteral(node.argument.literal)
+          isLiteralTypeNode(node.argument) &&
+          isStringLiteral(node.argument.literal)
         )
       ) {
         return;
       }
       specifiers.push(node.argument.literal.text);
     }
-    ts.forEachChild(node, (child) => {
+    node.forEachChild((child) => {
       pending.push(child);
     });
   }
@@ -101,20 +112,18 @@ const readSourceDependencies = Effect.fn("AksaraCorpus.readSourceDependencies")(
             })
         )
       );
-    if (hasTypeScriptSyntaxError(source, sourcePath)) {
-      return yield* new SourceDependencyError({
-        reason: "syntax",
-        sourcePath,
-      });
-    }
-    const sourceFile = ts.createSourceFile(
-      sourcePath,
-      source,
-      ts.ScriptTarget.ES2022,
-      false,
-      ts.ScriptKind.TS
+    const parser = yield* TypeScriptParser;
+    const inspected = yield* parser.inspect(
+      { fileName: sourcePath, source },
+      ({ diagnostics, sourceFile }) => ({
+        invalid: diagnostics.length > 0,
+        specifiers: inspectModuleSpecifiers(sourceFile),
+      })
     );
-    const specifiers = inspectModuleSpecifiers(sourceFile);
+    if (inspected.invalid) {
+      return yield* new SourceDependencyError({ reason: "syntax", sourcePath });
+    }
+    const { specifiers } = inspected;
     if (specifiers === undefined) {
       return yield* new SourceDependencyError({
         reason: "module",
@@ -158,4 +167,4 @@ export const discoverSourceDependencies = Effect.fn(
     }
   }
   return dependencies;
-});
+}, Effect.provide(TypeScriptParser.layer));

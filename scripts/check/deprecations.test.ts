@@ -2,11 +2,12 @@ import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "@effect/vitest";
+import { Effect } from "effect";
 
 import {
   auditProjectDeprecations,
   projectConfigPaths,
-  readScriptSnapshot,
+  TypeScriptProjectError,
   uncoveredTypeScriptViolations,
 } from "#scripts/check/deprecations";
 
@@ -44,62 +45,63 @@ describe("deprecated API policy", () => {
     ]);
   });
 
-  it("reports authored usage of a deprecated declaration", () => {
-    const root = createProject(`
+  it.effect("reports authored usage of a deprecated declaration", () =>
+    Effect.gen(function* () {
+      const root = createProject(`
 /** @deprecated Use currentApi instead. */
 declare function oldApi(): void;
 oldApi();
 `);
 
-    expect(
-      auditProjectDeprecations(join(root, "tsconfig.json"), root)
-    ).toMatchObject({
-      violations: [
-        "source.ts:4:1 TS6387 The signature '(): void' of 'oldApi' is deprecated.",
-      ],
-    });
-  });
+      expect(
+        yield* auditProjectDeprecations(join(root, "tsconfig.json"), root)
+      ).toMatchObject({
+        violations: [
+          "source.ts:4:1 TS6387 The signature '(): void' of 'oldApi' is deprecated.",
+        ],
+      });
+    })
+  );
 
-  it("accepts current declarations and reports missing projects", () => {
-    const currentRoot = createProject(`
+  it.effect("accepts current declarations and reports missing projects", () =>
+    Effect.gen(function* () {
+      const currentRoot = createProject(`
 declare function currentApi(): void;
 currentApi();
 `);
-    expect(
-      auditProjectDeprecations(join(currentRoot, "tsconfig.json"), currentRoot)
-    ).toMatchObject({ violations: [] });
-    expect(
-      auditProjectDeprecations(join(currentRoot, "missing.json"), currentRoot)
-    ).toMatchObject({
-      fileNames: [],
-      violations: [expect.stringContaining("TS5083 Cannot read file")],
-    });
-  });
+      expect(
+        yield* auditProjectDeprecations(
+          join(currentRoot, "tsconfig.json"),
+          currentRoot
+        )
+      ).toMatchObject({ violations: [] });
+      const missing = yield* auditProjectDeprecations(
+        join(currentRoot, "missing.json"),
+        currentRoot
+      ).pipe(Effect.flip);
+      expect(missing).toBeInstanceOf(TypeScriptProjectError);
+      expect(missing).toMatchObject({
+        configPath: join(currentRoot, "missing.json"),
+      });
+    })
+  );
 
-  it("reports invalid project options before creating a program", () => {
-    const root = createProject(
-      "",
-      '{"compilerOptions":{"target":"unsupported"}}'
-    );
+  it.effect("reports invalid project options before creating a program", () =>
+    Effect.gen(function* () {
+      const root = createProject(
+        "",
+        '{"compilerOptions":{"target":"unsupported"}}'
+      );
 
-    expect(
-      auditProjectDeprecations(join(root, "tsconfig.json"), root)
-    ).toMatchObject({
-      violations: [
-        expect.stringContaining("TS6046 Argument for '--target' option"),
-      ],
-    });
-  });
-
-  it("preserves missing source files while reading script snapshots", () => {
-    const root = createProject("export const value = 1;");
-    const sourcePath = join(root, "source.ts");
-
-    expect(readScriptSnapshot(sourcePath)?.getText(0, 23)).toBe(
-      "export const value = 1;"
-    );
-    expect(readScriptSnapshot(join(root, "missing.ts"))).toBeUndefined();
-  });
+      expect(
+        yield* auditProjectDeprecations(join(root, "tsconfig.json"), root)
+      ).toMatchObject({
+        violations: [
+          expect.stringContaining("TS6046 Argument for '--target' option"),
+        ],
+      });
+    })
+  );
 
   it("reports authored TypeScript absent from every audited project", () => {
     expect(
@@ -112,4 +114,20 @@ currentApi();
       "apps/cli/missing.ts: not included by an audited tsconfig.json",
     ]);
   });
+  it.effect("preserves global configuration diagnostics", () =>
+    Effect.gen(function* () {
+      const root = createProject(
+        "export {};",
+        '{"include":["no-source/**/*.ts"]}'
+      );
+      const result = yield* auditProjectDeprecations(
+        join(root, "tsconfig.json"),
+        root
+      );
+      expect(result).toMatchObject({
+        fileNames: [],
+        violations: [expect.stringContaining("TS18003 No inputs were found")],
+      });
+    })
+  );
 });
