@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The term *confounding variable* names the report's limitation rather than the concept represented by the measurements.",
+            "The term *confounding variable* names the measured leaf area and shows that colour was successfully isolated from intensity.",
         },
         {
           isCorrect: true,

@@ -2,6 +2,7 @@ export const metadata = {
   title: "Solution for Question 4",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-24",
+  dateModified: "2026-09-07",
 };
 
 Given:
@@ -11,28 +12,31 @@ Given:
 
 First, we calculate the price after the discount. Since the discount is <InlineMath math="25\%" />, Mrs. Kartika pays <InlineMath math="100\% - 25\% = 75\%" /> of the initial price.
 
-<MathContainer>
-  <BlockMath math="\text{Price after discount} = 75\% \times 250{,}000" />
-  <BlockMath math="= \frac{75}{100} \times 250{,}000" />
-  <BlockMath math="= 187{,}500" />
-</MathContainer>
+Let <InlineMath math="H_0" /> be the original price, <InlineMath math="H_1" /> the discounted price, and <InlineMath math="H_2" /> the price after tax. All prices are in rupiah.
+
+<BlockMath math="\begin{aligned}
+H_1&=75\%\cdot H_0 \\
+&=\frac{75}{100}\cdot250{,}000 \\
+&=187{,}500
+\end{aligned}" />
 
 Next, a tax of <InlineMath math="5\%" /> is applied to the price after discount. Thus, the total to be paid is <InlineMath math="100\% + 5\% = 105\%" /> of the price after discount.
 
-<MathContainer>
-  <BlockMath math="\text{Price to pay} = 105\% \times 187{,}500" />
-  <BlockMath math="= \frac{105}{100} \times 187{,}500" />
-  <BlockMath math="= 1.05 \times 187.500" />
-  <BlockMath math="= 196{,}875" />
-</MathContainer>
+<BlockMath math="\begin{aligned}
+H_2&=105\%\cdot H_1 \\
+&=\frac{105}{100}\cdot187{,}500 \\
+&=1.05\cdot187{,}500 \\
+&=196{,}875
+\end{aligned}" />
 
 Directly, the calculation can be written as:
 
-<MathContainer>
-  <BlockMath math="\text{Price} = (100 - 25)\% \times (100 + 5)\% \times 250{,}000" />
-  <BlockMath math="= 75\% \times 105\% \times 250{,}000" />
-  <BlockMath math="= 0.75 \times 1.05 \times 250.000" />
-  <BlockMath math="= 196{,}875" />
-</MathContainer>
+<BlockMath math="\begin{aligned}
+H_2&=(100-25)\% \\
+&\quad\cdot(100+5)\%\cdot H_0 \\
+&=0.75\cdot1.05\cdot H_0 \\
+&=0.7875\cdot250{,}000 \\
+&=196{,}875
+\end{aligned}" />
 
 So, the price Mrs. Kartika has to pay is <InlineMath math="\text{Rp}196{,}875.00" />.

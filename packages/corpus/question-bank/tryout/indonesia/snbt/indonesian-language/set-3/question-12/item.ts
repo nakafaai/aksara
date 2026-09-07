@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kondisi pembanding menghasilkan nilai rata-rata 26; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+            "Kondisi pembanding menghasilkan nilai rata-rata $$26$$. Karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Nilai 26 adalah kondisi pembanding untuk jadwal singkat; selisihnya terhadap nilai uji 35 tetap harus dibaca bersama pengaruh cuaca dan kegiatan sekolah.",
+            "Nilai $$26$$ adalah rata-rata peminjaman selesai per kunjungan pada kondisi pembanding untuk ringkasan jadwal. Selisih terhadap nilai uji $$35$$ tetap harus dibaca bersama pengaruh cuaca dan kegiatan sekolah.",
         },
       ],
     },

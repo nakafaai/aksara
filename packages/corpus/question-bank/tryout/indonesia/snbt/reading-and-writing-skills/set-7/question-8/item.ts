@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dennoch, begrenzte das Team seine Schlussfolgerung zum Kontext Schulfrühstücksprogramm auf den kurzen Versuch.",
+            "Dennoch, behauptete das Team nicht, dass Vorbestellungen immer weniger Reste hinterließen.",
         },
         {
           isCorrect: true,
           label:
-            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Schulfrühstücksprogramm auf den kurzen Versuch.",
+            "Dennoch behauptete das Team nicht, dass Vorbestellungen immer weniger Reste hinterließen.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch: begrenzte das Team seine Schlussfolgerung zum Kontext Schulfrühstücksprogramm auf den kurzen Versuch.",
+            "Dennoch: behauptete das Team nicht, dass Vorbestellungen immer weniger Reste hinterließen.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch; begrenzte das Team seine Schlussfolgerung zum Kontext Schulfrühstücksprogramm auf den kurzen Versuch.",
+            "Dennoch behauptete das Team, nicht, dass Vorbestellungen immer weniger Reste hinterließen.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Schulfrühstücksprogramm auf den kurzen Versuch?",
+            "Dennoch behauptete das Team nicht, dass Vorbestellungen immer weniger Reste hinterließen?",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Nevertheless the team limited its conclusion for this setting (school breakfast programme) to the short trial.",
+            "Nevertheless, the, team did not claim that advance orders always reduced leftovers.",
         },
         {
           isCorrect: true,
           label:
-            "Nevertheless, the team limited its conclusion for this setting (school breakfast programme) to the short trial.",
+            "Nevertheless, the team did not claim that advance orders always reduced leftovers.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless: the team limited its conclusion for this setting (school breakfast programme) to the short trial.",
+            "Nevertheless: the team did not claim that advance orders always reduced leftovers.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless; the team limited its conclusion for this setting (school breakfast programme) to the short trial.",
+            "Nevertheless, the team, did not claim that advance orders always reduced leftovers.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless, the team limited its conclusion for this setting (school breakfast programme) to the short trial?",
+            "Nevertheless, the team did not claim that advance orders always reduced leftovers?",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Meskipun demikian tim membatasi simpulan tentang program sarapan sekolah pada uji singkat tersebut.",
+            "Meskipun demikian tim tidak menganggap pemesanan awal selalu mengurangi sisa makanan.",
         },
         {
           isCorrect: true,
           label:
-            "Meskipun demikian, tim membatasi simpulan tentang program sarapan sekolah pada uji singkat tersebut.",
+            "Meskipun demikian, tim tidak menganggap pemesanan awal selalu mengurangi sisa makanan.",
         },
         {
           isCorrect: false,
           label:
-            "Meskipun demikian: tim membatasi simpulan tentang program sarapan sekolah pada uji singkat tersebut.",
+            "Meskipun demikian: tim tidak menganggap pemesanan awal selalu mengurangi sisa makanan.",
         },
         {
           isCorrect: false,
           label:
-            "Meskipun demikian; tim membatasi simpulan tentang program sarapan sekolah pada uji singkat tersebut.",
+            "Meskipun demikian, tim, tidak menganggap pemesanan awal selalu mengurangi sisa makanan.",
         },
         {
           isCorrect: false,
           label:
-            "Meskipun demikian, tim membatasi simpulan tentang program sarapan sekolah pada uji singkat tersebut?",
+            "Meskipun demikian, tim tidak menganggap pemesanan awal selalu mengurangi sisa makanan?",
         },
       ],
     },

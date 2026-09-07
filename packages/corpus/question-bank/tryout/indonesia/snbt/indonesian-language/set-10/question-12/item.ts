@@ -13,12 +13,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kelompok tanpa kebutuhan akses menunjukkan peningkatan terbesar karena 19 dari 20 merupakan hasil tertinggi.",
+            "Kelompok tanpa kebutuhan akses menunjukkan peningkatan terbesar karena $$19$$ dari $$20$$ merupakan hasil tertinggi.",
         },
         {
           isCorrect: false,
           label:
-            "Hasil kelompok sensorik turun karena 13 dari 20 lebih kecil daripada 16 dari 20 pada kelompok mobilitas.",
+            "Hasil kelompok sensorik turun karena $$13$$ dari $$20$$ lebih kecil daripada $$16$$ dari $$20$$ pada kelompok mobilitas.",
         },
         {
           isCorrect: true,

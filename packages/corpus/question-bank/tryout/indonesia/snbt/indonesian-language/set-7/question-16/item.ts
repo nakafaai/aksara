@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Siswa memakai 240 catatan buku tamu untuk membuktikan bahwa seluruh pengunjung di lima kota mengalami pameran dengan cara yang sama.",
+            "Siswa memakai $$240$$ catatan buku tamu untuk membuktikan bahwa seluruh pengunjung di lima kota mengalami pameran dengan cara yang sama.",
         },
         {
           isCorrect: false,

@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *dukungan sebaya* menempatkan kartu sebagai alat percakapan antarpeserta yang setara, sehingga kartu tidak boleh mengubah satu peserta menjadi pengawas tetap bagi yang lain.",
+            "Definisi *dukungan sebaya* menempatkan kartu sebagai alat percakapan antarpeserta yang relatif setara, sehingga kartu tidak boleh mengubah satu peserta menjadi pengawas tetap bagi yang lain.",
         },
         {
           isCorrect: false,

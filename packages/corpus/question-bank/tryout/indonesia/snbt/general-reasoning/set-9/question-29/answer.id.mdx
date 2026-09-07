@@ -2,9 +2,33 @@ export const metadata = {
   title: "Pembahasan Soal 29",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Dari 66 pasangan, terdapat 15 pasangan merah-merah, 36 pasangan campuran, dan 15 pasangan biru-biru. Nilai harapan satu percobaan adalah <InlineMath math="[40(15)+20(36)]/66=20" />. Percobaan ulang terjadi dengan peluang <InlineMath math="15/66=5/22" />, sehingga nilai harapan pembayaran <InlineMath math="20+(5/22)(20)=270/11" />. Setelah biaya masuk 20, keuntungan bersih yang diharapkan adalah <InlineMath math="270/11-20=50/11" />.
+Dua bola dipilih tanpa memperhatikan urutan. Banyak pasangan yang sama mungkin adalah:
 
-Jadi, nilai yang diminta adalah <InlineMath math="\\frac{50}{11}" />.
+<BlockMath math="\binom{12}{2}=\frac{12\times11}{2}=66" />
+
+| Pasangan | Banyak | Hadiah |
+| --- | ---: | ---: |
+| Merah dan merah | <InlineMath math="\binom62=15" /> | <InlineMath math="40" /> |
+| Merah dan biru | <InlineMath math="6\times6=36" /> | <InlineMath math="20" /> |
+| Biru dan biru | <InlineMath math="\binom62=15" /> | <InlineMath math="0" /> |
+
+Semua hadiah dalam tabel dinyatakan dalam ribu rupiah. Misalkan <InlineMath math="X" /> adalah pembayaran satu percobaan. Nilai harapannya adalah:
+
+<BlockMath math="\begin{aligned}\mathrm{E}[X]&=\frac{40\times15+20\times36}{66}\\&=\frac{600+720}{66}\\&=20\end{aligned}" />
+
+Percobaan ulang hanya diberikan setelah dua bola biru. Peluangnya adalah:
+
+<BlockMath math="\frac{15}{66}=\frac5{22}" />
+
+Kotak dikembalikan ke keadaan semula, sehingga nilai harapan percobaan ulang kembali <InlineMath math="20" />. Tambahkan nilai harapan pembayaran awal dan pembayaran ulang yang ditimbang dengan peluang mendapat percobaan ulang:
+
+<BlockMath math="\begin{aligned}20+\frac5{22}\times20&=20+\frac{50}{11}\\&=\frac{270}{11}\end{aligned}" />
+
+Biaya masuk dibayar satu kali. Nilai harapan keuntungan bersih adalah:
+
+<BlockMath math="\frac{270}{11}-20=\frac{50}{11}" />
+
+Jadi, keuntungan bersih yang diharapkan adalah **<InlineMath math="50/11" /> ribu rupiah**.

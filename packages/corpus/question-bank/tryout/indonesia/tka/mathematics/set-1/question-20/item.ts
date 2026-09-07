@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$8$$",
+          label: "$$\\frac8{13}$$",
         },
         {
           isCorrect: false,
-          label: "$$9$$",
+          label: "$$\\frac{\\sqrt{105}}8$$",
         },
         {
           isCorrect: false,
-          label: "$$11$$",
+          label: "$$\\frac5{13}$$",
         },
         {
           isCorrect: false,
-          label: "$$12$$",
+          label: "$$\\frac{12}{13}$$",
         },
         {
           isCorrect: true,
-          label: "$$\\sqrt{105}$$",
+          label: "$$\\frac{\\sqrt{105}}{13}$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$8$$",
+          label: "$$\\frac8{13}$$",
         },
         {
           isCorrect: false,
-          label: "$$9$$",
+          label: "$$\\frac{\\sqrt{105}}8$$",
         },
         {
           isCorrect: false,
-          label: "$$11$$",
+          label: "$$\\frac5{13}$$",
         },
         {
           isCorrect: false,
-          label: "$$12$$",
+          label: "$$\\frac{12}{13}$$",
         },
         {
           isCorrect: true,
-          label: "$$\\sqrt{105}$$",
+          label: "$$\\frac{\\sqrt{105}}{13}$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$8$$",
+          label: "$$\\frac8{13}$$",
         },
         {
           isCorrect: false,
-          label: "$$9$$",
+          label: "$$\\frac{\\sqrt{105}}8$$",
         },
         {
           isCorrect: false,
-          label: "$$11$$",
+          label: "$$\\frac5{13}$$",
         },
         {
           isCorrect: false,
-          label: "$$12$$",
+          label: "$$\\frac{12}{13}$$",
         },
         {
           isCorrect: true,
-          label: "$$\\sqrt{105}$$",
+          label: "$$\\frac{\\sqrt{105}}{13}$$",
         },
       ],
     },

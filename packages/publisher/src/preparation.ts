@@ -28,10 +28,9 @@ import {
 } from "@nakafa/aksara-contracts/release/rollback/digest";
 import { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
 import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";
-import {
-  type GitPublicationScope,
-  publicationScopeSelectsSnapshot,
-  verifyGitPublicationScope,
+import type {
+  ContentSnapshotKind,
+  PublicationScope,
 } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import {
   decodeContentSnapshotManifests,
@@ -66,10 +65,10 @@ function isDerivedUpsert(
 
 /** Rejects a replacement manifest outside the signed publication scope. */
 function requireScopedSnapshot(
-  scope: GitPublicationScope,
-  family: Parameters<typeof publicationScopeSelectsSnapshot>[1]
+  scope: PublicationScope,
+  family: ContentSnapshotKind
 ) {
-  if (publicationScopeSelectsSnapshot(scope, family)) {
+  if (scope.snapshots.includes(family)) {
     return Effect.void;
   }
   return Effect.fail(new PreparedSnapshotScopeError({ family }));
@@ -79,7 +78,7 @@ function requireScopedSnapshot(
 export const prepareContentRelease: PrepareContentRelease = Effect.fn(
   "AksaraPublisher.prepareContentRelease"
 )(function* <E, R>(input: PrepareContentReleaseInput<E, R>) {
-  const scope = yield* verifyGitPublicationScope(input.scope);
+  const { scope } = input;
   const basePolicy = yield* prepareReleaseBase(input);
   const rendererManifest = yield* validateRendererManifestHash(
     input.rendererManifest

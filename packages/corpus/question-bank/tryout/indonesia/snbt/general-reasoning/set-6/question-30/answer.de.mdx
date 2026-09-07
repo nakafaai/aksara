@@ -2,9 +2,39 @@ export const metadata = {
   title: "Lösung zu Aufgabe 30",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Das eindeutige zulässige Maximum liegt bei <InlineMath math="(X,Y)=(6,5)" /> mit Gewinn <InlineMath math="6(10)+5(8)=100" />. Es werden 11 Pakete produziert, daher beträgt der mittlere Gewinn pro Paket <InlineMath math="100/(6+5)=100/11" />.
+Die Anzahlen der Pakete X und Y seien <InlineMath math="x" /> und <InlineMath math="y" />. Beide sind nicht negative ganze Zahlen. Material und Arbeitszeit begrenzen sie durch:
 
-Damit ist der gesuchte Wert <InlineMath math="\\frac{100}{11}" />.
+<BlockMath math="\begin{aligned}5x+2y&\le40\\x+3y&\le21\end{aligned}" />
+
+Der zu maximierende Gesamtgewinn ist <InlineMath math="L=10x+8y" />. Wegen <InlineMath math="x\ge0" /> folgt aus der Zeitgrenze <InlineMath math="y\le7" />. Es genügt daher, alle ganzzahligen Werte von <InlineMath math="y" /> zwischen <InlineMath math="0" /> und <InlineMath math="7" /> zu prüfen.
+
+Für jedes <InlineMath math="y" /> wählen wir das größte ganzzahlige <InlineMath math="x" />, das beide Grenzen einhält. Damit ist der Gewinn in dieser Zeile maximal, denn jedes zusätzliche Paket X bringt <InlineMath math="10" /> Gewinneinheiten.
+
+| <InlineMath math="y" /> | <InlineMath math="x" /> maximal | <InlineMath math="L" /> |
+| ---: | ---: | ---: |
+| <InlineMath math="0" /> | <InlineMath math="8" /> | <InlineMath math="80" /> |
+| <InlineMath math="1" /> | <InlineMath math="7" /> | <InlineMath math="78" /> |
+| <InlineMath math="2" /> | <InlineMath math="7" /> | <InlineMath math="86" /> |
+| <InlineMath math="3" /> | <InlineMath math="6" /> | <InlineMath math="84" /> |
+| <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="92" /> |
+| <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="100" /> |
+| <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="78" /> |
+| <InlineMath math="7" /> | <InlineMath math="0" /> | <InlineMath math="56" /> |
+
+Für <InlineMath math="y=5" /> lauten die beiden Grenzen beispielsweise:
+
+<MathContainer>
+<BlockMath math="5x+10\le40\Rightarrow x\le6" />
+<BlockMath math="x+15\le21\Rightarrow x\le6" />
+</MathContainer>
+
+Die Tabelle zeigt das eindeutige Maximum bei <InlineMath math="x=6" /> und <InlineMath math="y=5" /> mit dem Gewinn <InlineMath math="100" />. Beide Ressourcen werden vollständig genutzt, denn <InlineMath math="5(6)+2(5)=40" /> und <InlineMath math="6+3(5)=21" />.
+
+Insgesamt entstehen <InlineMath math="6+5=11" /> Pakete. Der durchschnittliche Gewinn je Paket beträgt bei dieser Lösung:
+
+<BlockMath math="\frac{100}{11}" />
+
+Der gesuchte Durchschnitt beträgt also <InlineMath math="\frac{100}{11}" /> Gewinneinheiten je Paket.

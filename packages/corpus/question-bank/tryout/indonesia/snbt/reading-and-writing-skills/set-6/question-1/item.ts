@@ -7,28 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Erste Belege zu Richtungspfeile an jeder Kreuzung im Kontext „Ausstellung von Schülerarbeiten“",
+          label: "Ausgangsdaten vor der Prüfung von Richtungspfeilen",
         },
         {
           isCorrect: true,
           label:
-            "Geordnete Prüfung einer Änderung: Ausstellung von Schülerarbeiten",
+            "Richtungspfeile beim Rundgang durch die Schülerausstellung im Test",
         },
         {
           isCorrect: false,
-          label:
-            "Prüfung mehrerer gleichzeitiger Änderungen im Kontext „Ausstellung von Schülerarbeiten“",
+          label: "Gleichzeitige Prüfung mehrerer Änderungen an der Ausstellung",
         },
         {
           isCorrect: false,
-          label:
-            "Rückmeldungen zur dauerhaften Neugestaltung des Kontexts „Ausstellung von Schülerarbeiten“",
+          label: "Rückmeldungen zur dauerhaften Neugestaltung der Ausstellung",
         },
         {
           isCorrect: false,
-          label:
-            "Vollständige Bewertung des Kontexts „Ausstellung von Schülerarbeiten“",
+          label: "Vollständige Bewertung aller Ausstellungstätigkeiten",
         },
       ],
     },
@@ -37,26 +33,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Early evidence about direction arrows placed at each junction in the context of student work exhibition",
+          label: "Baseline Records Before Direction Arrows Were Tested",
         },
         {
           isCorrect: true,
-          label: "A structured test of one change: student work exhibition",
+          label: "Testing Direction Arrows on the Student Exhibition Route",
         },
         {
           isCorrect: false,
-          label:
-            "Testing several simultaneous changes in the context of student work exhibition",
+          label: "Testing Several Simultaneous Changes to the Exhibition",
         },
         {
           isCorrect: false,
-          label:
-            "User reactions to a permanent redesign of student work exhibition",
+          label: "Visitor Reactions to a Permanent Redesign of the Exhibition",
         },
         {
           isCorrect: false,
-          label: "A complete evaluation of student work exhibition",
+          label: "A Complete Evaluation of All Exhibition Activities",
         },
       ],
     },
@@ -65,26 +58,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Bukti awal tentang panah arah di setiap persimpangan dalam konteks pameran karya siswa",
+          label: "Catatan Awal Sebelum Pengujian Panah Arah",
         },
         {
           isCorrect: true,
-          label: "Uji Teratur atas Satu Perubahan: pameran karya siswa",
+          label: "Pengujian Panah Arah pada Rute Pameran Karya Siswa",
+        },
+        {
+          isCorrect: false,
+          label: "Pengujian Beberapa Perubahan Serentak pada Pameran",
         },
         {
           isCorrect: false,
           label:
-            "Pengujian beberapa perubahan serentak dalam konteks pameran karya siswa",
+            "Tanggapan Pengunjung terhadap Perancangan Ulang Permanen Pameran",
         },
         {
           isCorrect: false,
-          label:
-            "Tanggapan pengguna terhadap perancangan ulang tetap pada pameran karya siswa",
-        },
-        {
-          isCorrect: false,
-          label: "Evaluasi menyeluruh terhadap pameran karya siswa",
+          label: "Evaluasi Menyeluruh atas Semua Kegiatan Pameran",
         },
       ],
     },

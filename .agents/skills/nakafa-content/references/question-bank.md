@@ -65,10 +65,19 @@ to reduce line count.
   runtime identities.
 - A response label is one non-empty rich Markdown string rendered by Nakafa's
   canonical `MarkdownContent` surface. Plain prose needs no wrapper. Use
-  no-space `$$...$$` for inline math, such as `The result is $$x=4$$.`, and a
-  fenced `math` block for display math. Do not author single-dollar math or
-  assume a same-line double-dollar span is a display. Escape LaTeX backslashes
-  and newlines in TypeScript strings.
+  no-space `$$...$$` for inline math, such as `The result is $$x=4$$.`.
+  Response choices, category names, and statements keep mathematics inline.
+  Never use display math, a fenced `math` block, or single-dollar math in a
+  response label. Keep substantial derivations in the prompt or worked answer.
+  Escape LaTeX backslashes in TypeScript strings. For a literal currency dollar
+  in prose, use an escaped Markdown dollar or the explicit currency code.
+  Write percentage signs as `\%` inside LaTeX, with the backslash escaped in
+  TypeScript. A bare `%` starts a LaTeX comment and can silently hide the sign
+  or the rest of a response. Comments have no place in a response formula.
+  Do not wrap math in inline code or use alternate LaTeX delimiters such as
+  `\(...\)` and `\[...\]`. Raw HTML and MDX math components are not response
+  syntax. Renderer preprocessing can otherwise change their meaning before
+  Markdown parsing, so source validation rejects these forms.
 - Markdown emphasis, lists, tables, and other supported syntax use that same
   string. Never add a plain-versus-rich mode, text-versus-math union, fragment
   array, renderer-specific AST, or second response-label renderer. MDX
@@ -103,6 +112,12 @@ to reduce line count.
   that exactly the intended responses are correct before publication. Compare
   sibling sets for substantive uniqueness. Flag a template whose only variation
   is changed numbers or names.
+- Check the logical force of each prompt and option. A sufficient combination
+  can have sufficient supersets, so ask for the minimal combination when that
+  is intended. Distinguish a possible claim from one that is guaranteed.
+  A percentage in one group alone does not establish an association without
+  a comparison group. State assumptions needed for equal probabilities,
+  mixture volumes, exhaustive categories, or constant rates in the prompt.
 - Across each active set, section, locale, and option-count cohort, balance
   correct positions so frequencies differ by at most one. Keep their question
   order unpredictable and preserve distractor meaning across locales. Never

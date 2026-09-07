@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Änderung, Fotobeschriftungen an den Rückgaberegalen, ersetzte die Notwendigkeit, die ursprüngliche Unsicherheit zu messen.",
+            "Fotoetiketten sollten eine Messung der richtigen Rückgaben überflüssig machen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, Fotobeschriftungen an den Rückgaberegalen, führte mehrere nicht trennbare Unterschiede ein.",
+            "Fotoetiketten sollten dem Team die gleichzeitige Änderung vieler Bedingungen ermöglichen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, Fotobeschriftungen an den Rückgaberegalen, erklärte, warum die Vergleichswerte identisch waren.",
+            "Fotoetiketten wurden gewählt, weil alle Vergleichswerte bereits nachweislich gleich waren.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, Fotobeschriftungen an den Rückgaberegalen, betraf das Endergebnis statt die Quelle der Unsicherheit.",
+            "Fotoetiketten wurden nur gewählt, weil das Endergebnis des Versuchs bereits feststand.",
         },
         {
           isCorrect: true,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Fotoetiketten an den Rückgaberegalen.",
+            "Fotoetiketten sollten den Ausleihenden helfen, das richtige Rückgaberegal zu erkennen.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change, photo labels on the return shelves, replaced the need to measure the original uncertainty.",
+            "Photo labels were selected to remove the need to measure correct returns.",
         },
         {
           isCorrect: false,
           label:
-            "The change, photo labels on the return shelves, introduced several differences that could not be separated.",
+            "Photo labels were selected to let the team change many conditions simultaneously.",
         },
         {
           isCorrect: false,
           label:
-            "The change, photo labels on the return shelves, explained why the comparison values were identical.",
+            "Photo labels were selected because all comparison values had already proved identical.",
         },
         {
           isCorrect: false,
           label:
-            "The change, photo labels on the return shelves, addressed the final outcome rather than the source of uncertainty.",
+            "Photo labels were selected only because the final test result was already certain.",
         },
         {
           isCorrect: true,
           label:
-            "The change, photo labels on the return shelves, directly addressed the observed uncertainty.",
+            "Photo labels were selected to help borrowers identify the correct return shelf.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan berupa label foto pada rak pengembalian menggantikan kebutuhan untuk mengukur ketidakpastian awal.",
+            "Label foto dipilih agar keberhasilan pengembalian tidak perlu diukur lagi.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa label foto pada rak pengembalian menimbulkan beberapa perbedaan yang tidak dapat dipisahkan.",
+            "Label foto dipilih agar tim dapat mengubah banyak kondisi sekaligus.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa label foto pada rak pengembalian menjelaskan mengapa nilai pembanding sama.",
+            "Label foto dipilih karena semua nilai pembanding sudah terbukti sama.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa label foto pada rak pengembalian menanggapi hasil akhir, bukan sumber ketidakpastian.",
+            "Label foto dipilih hanya karena hasil akhir uji sudah dipastikan.",
         },
         {
           isCorrect: true,
           label:
-            "Perubahan berupa label foto langsung menanggapi keraguan yang diamati.",
+            "Label foto dipilih untuk membantu peminjam mengenali rak pengembalian yang tepat.",
         },
       ],
     },

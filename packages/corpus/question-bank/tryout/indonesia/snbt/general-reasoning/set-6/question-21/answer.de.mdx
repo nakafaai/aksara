@@ -2,9 +2,23 @@ export const metadata = {
   title: "Lösung zu Aufgabe 21",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Die ungeraden Glieder wachsen um <InlineMath math="5" />, die geraden werden mit <InlineMath math="3" /> multipliziert. Damit sind <InlineMath math="a_9=26" /> und <InlineMath math="a_8=81" />, also <InlineMath math="a_8-2a_9=81-52=29" />.
+Wir trennen die Glieder nach ihrer Position. An den ungeraden Positionen steht die Teilfolge:
 
-Damit ist der gesuchte Wert <InlineMath math="29" />.
+<BlockMath math="6,\ 11,\ 16,\ 21,\ldots" />
+
+Aufeinanderfolgende Glieder dieser Teilfolge unterscheiden sich um <InlineMath math="5" />. Das nächste Glied an einer ungeraden Position ist daher <InlineMath math="a_9=21+5=26" />.
+
+An den geraden Positionen steht die Teilfolge:
+
+<BlockMath math="3,\ 9,\ 27,\ldots" />
+
+Jedes Glied entsteht durch Multiplikation des vorherigen Glieds dieser Teilfolge mit <InlineMath math="3" />. Deshalb gilt <InlineMath math="a_8=27\times3=81" />.
+
+Wir setzen beide Werte in den gesuchten Ausdruck ein:
+
+<BlockMath math="\begin{aligned}a_8-2a_9&=81-2(26)\\&=81-52\\&=29\end{aligned}" />
+
+Der gesuchte Wert ist <InlineMath math="29" />.

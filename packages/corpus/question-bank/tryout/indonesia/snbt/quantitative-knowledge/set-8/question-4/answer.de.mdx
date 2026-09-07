@@ -2,36 +2,29 @@ export const metadata = {
   title: "Lösung zu Aufgabe 4",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-12-25",
+  dateModified: "2026-09-07",
 };
 
 Die neuen Daten haben die Form:
 
-<MathContainer>
-  <BlockMath math="\frac{x_1}{2} + 3, \frac{x_2}{2} + 5, \frac{x_3}{2} + 7, ..." />
-</MathContainer>
+<BlockMath math="\begin{gathered}y_1=\frac{x_1}{2}+3,\\y_2=\frac{x_2}{2}+5,\\y_3=\frac{x_3}{2}+7,\dots\end{gathered}" />
 
 Ihr Mittelwert ist:
 
-<MathContainer>
-  <BlockMath math="\bar{x} = \frac{\left(\frac{x_1}{2} + 3\right) + \left(\frac{x_2}{2} + 5\right) + \left(\frac{x_3}{2} + 7\right) + ... + \left(\frac{x_{10}}{2} + (2(10)+1)\right)}{10}" />
-</MathContainer>
+Mit <InlineMath math="S=x_1+x_2+\dots+x_{10}" /> bezeichnen wir die ursprüngliche Summe und mit <InlineMath math="T" /> die Summe der Ergänzungen <InlineMath math="3+5+\dots+21" />. Der neue Mittelwert lautet:
+
+<BlockMath math="\bar{y}=\frac{S/2+T}{10}" />
 
 Zuerst bestimmen wir die Summe der arithmetischen Folge <InlineMath math="3, 5, 7, \dots" />. Ihr erstes Glied ist <InlineMath math="a_1 = 3" />, ihre Differenz <InlineMath math="d = 2" />. Das zehnte Glied lautet:
 
-<MathContainer>
-  <BlockMath math="a_{10} = 3 + 9(2) = 21" />
-</MathContainer>
+<BlockMath math="a_{10} = 3 + 9(2) = 21" />
 
 Die Summe der ersten <InlineMath math="10" /> Glieder ist:
 
-<MathContainer>
-  <BlockMath math="S_{10} = \frac{10}{2}(3 + 21) = 5(24) = 120" />
-</MathContainer>
+<BlockMath math="\begin{aligned}T=S_{10}&=\frac{10}{2}(3+21)\\&=5(24)\\&=120\end{aligned}" />
 
 Damit ergibt sich für den neuen Mittelwert:
 
-<MathContainer>
-  <BlockMath math="\begin{aligned} \bar{x} &= \frac{\frac{1}{2}(x_1 + x_2 + ... + x_{10}) + 120}{10} \\ &= \frac{1}{2}\frac{(x_1 + x_2 + ... + x_{10})}{10} + \frac{120}{10} \\ &= \frac{1}{2}x_0 + 12 \end{aligned}" />
-</MathContainer>
+<BlockMath math="\begin{aligned}\bar{y}&=\frac{S/2+120}{10}\\&=\frac12\cdot\frac{S}{10}+12\\&=\frac12x_0+12\end{aligned}" />
 
 Der neue Mittelwert ist also <InlineMath math="\frac{1}{2}x_0 + 12" />.

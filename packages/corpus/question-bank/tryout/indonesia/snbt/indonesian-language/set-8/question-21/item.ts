@@ -8,22 +8,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dito menghapus angka 4,35 meter agar hasil pengukuran terlihat konsisten dan laporan dapat segera diselesaikan.",
+            "Dito menghapus angka $$4{,}35$$ meter agar hasil pengukuran terlihat konsisten dan laporan dapat segera diselesaikan.",
         },
         {
           isCorrect: true,
           label:
-            "Dito menelusuri penyebab angka menyimpang, mengulang pengukuran, mempertahankan jejak data, dan melaporkan 4,81 meter sebagai hasil dengan ketidakpastian.",
+            "Dito menelusuri penyebab angka menyimpang, mengulang pengukuran, mempertahankan jejak data, dan melaporkan $$4{,}81$$ meter sebagai hasil dengan ketidakpastian.",
         },
         {
           isCorrect: false,
           label:
-            "Dito merata-ratakan 4,35 dan 4,82 meter karena semua hasil ukur harus memiliki bobot yang sama tanpa melihat cara memperolehnya.",
+            "Dito merata-ratakan $$4{,}35$$ dan $$4{,}82$$ meter karena semua hasil ukur harus memiliki bobot yang sama tanpa melihat cara memperolehnya.",
         },
         {
           isCorrect: false,
           label:
-            "Dito memilih 4,82 meter sebagai nilai pasti karena hasil temannya sama dengan salah satu pengukuran ulang.",
+            "Dito memilih $$4{,}82$$ meter sebagai nilai pasti karena hasil temannya sama dengan salah satu pengukuran ulang.",
         },
         {
           isCorrect: false,

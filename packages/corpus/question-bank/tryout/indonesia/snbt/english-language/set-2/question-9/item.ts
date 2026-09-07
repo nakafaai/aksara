@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The analysis included 1,311 Afro-Palaearctic songbird species.",
+            "The analysis included $$1{,}311$$ Afro-Palaearctic songbird species.",
         },
         {
           isCorrect: false,

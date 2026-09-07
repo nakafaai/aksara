@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The mean result with the change was 71; because it differs from the other conditions, the tested change is the only plausible explanation.",
+            "The mean result with the change was $$71$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The smaller-mesh condition produced a mean of 71 at the tested flow rate; clean fragments of one material do not represent every waste stream.",
+            "The smaller-mesh condition produced a mean of $$71$$ at the tested flow rate. Clean fragments of one material do not represent every waste stream.",
         },
       ],
     },

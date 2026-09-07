@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Daten worden im Kontext Lärmprotokoll im Wohngebiet erhebt und danach vergleichen.",
+            "Die Daten worden im Wohngebiet erhebt und danach vergleichen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten wurden an den Kontext Lärmprotokoll im Wohngebiet erhoben und danach verglichen.",
+            "Die Daten wurden an das Wohngebiet erhoben und danach verglichen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten wurden in diesem Kontext erhoben Lärmprotokoll im Wohngebiet anschließend sie verglichen wurden.",
+            "Die Daten wurden im Wohngebiet erhoben anschließend sie verglichen wurden.",
         },
         {
           isCorrect: true,
           label:
-            "Die Daten wurden in diesem Kontext erhoben: Lärmprotokoll im Wohngebiet. Anschließend wurden sie verglichen.",
+            "Die Daten wurden im Wohngebiet erhoben und danach verglichen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten wurden von Lärmprotokoll im Wohngebiet erheben und anschließend vergleicht.",
+            "Die Daten wurden von Wohngebiet erheben und anschließend vergleicht.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Data were collected at this setting (neighbourhood noise log) and compared afterward in.",
+            "Data were collected for the neighbourhood noise log and compared afterward in.",
         },
         {
           isCorrect: false,
           label:
-            "Data was collect in this setting (neighbourhood noise log) and comparing afterward.",
+            "Data was collect for the neighbourhood noise log and comparing afterward.",
         },
         {
           isCorrect: false,
           label:
-            "Data were collected on this setting (neighbourhood noise log) and afterward compared it.",
+            "Data were collected for the neighbourhood noise log and afterward compared it.",
         },
         {
           isCorrect: true,
           label:
-            "Data were collected in this setting (neighbourhood noise log) and compared afterward.",
+            "Data were collected for the neighbourhood noise log and compared afterward.",
         },
         {
           isCorrect: false,
           label:
-            "Data collected this setting (neighbourhood noise log) and were comparison afterward.",
+            "Data collected the neighbourhood noise log and were comparison afterward.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Data di kumpulkan dalam pencatatan kebisingan lingkungan, lalu dibandingkan.",
+            "Data di kumpulkan di lingkungan warga dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data dikumpulkan didalam pencatatan kebisingan lingkungan, lalu dibandingkan.",
+            "Data dikumpulkan dilingkungan warga dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data mengumpulkan dalam pencatatan kebisingan lingkungan, lalu membandingkan.",
+            "Data mengumpulkan di lingkungan warga dan kemudian membandingkan.",
         },
         {
           isCorrect: true,
           label:
-            "Data dikumpulkan dalam pencatatan kebisingan lingkungan, lalu dibandingkan.",
+            "Data dikumpulkan di lingkungan warga dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data dikumpulkan pada dalam pencatatan kebisingan lingkungan, lalu di bandingkan.",
+            "Data dikumpulkan pada di lingkungan warga lalu di bandingkan.",
         },
       ],
     },

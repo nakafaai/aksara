@@ -1,43 +1,44 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 17",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2025-06-11",
 };
 
 #### Von den Mittelwerten zu den Gesamtgewichten
 
-Wir nennen die beiden Gruppen <InlineMath math="A" /> und <InlineMath math="B" />. Da jede Gruppe <InlineMath math="4" /> Kinder hat, erhalten wir ihr Gesamtgewicht, indem wir den jeweiligen Mittelwert mit <InlineMath math="4" /> multiplizieren:
+Wir nennen die Gruppen <InlineMath math="A" /> und <InlineMath math="B" />. Ihre Mitgliederzahlen sind <InlineMath math="n_A=n_B=4" />, ihre Durchschnittsgewichte <InlineMath math="\bar{x}_A=30" /> und <InlineMath math="\bar{x}_B=33" /> in Kilogramm. Die Gesamtgewichte <InlineMath math="W_A" /> und <InlineMath math="W_B" /> ergeben sich, indem wir jeden Mittelwert mit der Mitgliederzahl multiplizieren:
 
 <MathContainer>
-  <BlockMath math="\sum x_A = n_A \cdot \bar{x}_A = 4 \cdot 30 = 120" />
-  <BlockMath math="\sum x_B = n_B \cdot \bar{x}_B = 4 \cdot 33 = 132" />
+  <BlockMath math="\begin{aligned}W_A&=n_A\cdot\bar{x}_A \\ &=4\cdot30=120\end{aligned}" />
+  <BlockMath math="\begin{aligned}W_B&=n_B\cdot\bar{x}_B \\ &=4\cdot33=132\end{aligned}" />
 </MathContainer>
 
 #### Den Tausch beschreiben
 
-Die beiden ausgetauschten Kinder wiegen <InlineMath math="x_A" /> beziehungsweise <InlineMath math="x_B" />, wobei <InlineMath math="x_A" /> aus Gruppe <InlineMath math="A" /> stammt. Nach dem Tausch bestehen beide Gruppen weiterhin aus vier Kindern. Gleiche Mittelwerte bedeuten deshalb auch gleiche Gesamtgewichte.
+Die beiden ausgetauschten Kinder wiegen <InlineMath math="x_A" /> beziehungsweise <InlineMath math="x_B" />, wobei das Kind mit dem Gewicht <InlineMath math="x_A" /> aus Gruppe <InlineMath math="A" /> stammt. Nach dem Tausch bestehen beide Gruppen weiterhin aus vier Kindern. Gleiche Mittelwerte bedeuten deshalb auch gleiche Gesamtgewichte.
 
-Neues Gesamtgewicht der Gruppe <InlineMath math="A" /> (<InlineMath math="\sum x_A'" />):
+Neues Gesamtgewicht der Gruppe <InlineMath math="A" /> (<InlineMath math="W_A'" />):
 
-<BlockMath math="\sum x_A' = \sum x_A - x_A + x_B = 120 - x_A + x_B" />
+<BlockMath math="\begin{aligned}W_A'&=W_A-x_A+x_B \\ &=120-x_A+x_B\end{aligned}" />
 
-Neues Gesamtgewicht der Gruppe <InlineMath math="B" /> (<InlineMath math="\sum x_B'" />):
+Neues Gesamtgewicht der Gruppe <InlineMath math="B" /> (<InlineMath math="W_B'" />):
 
-<BlockMath math="\sum x_B' = \sum x_B - x_B + x_A = 132 - x_B + x_A" />
+<BlockMath math="\begin{aligned}W_B'&=W_B-x_B+x_A \\ &=132-x_B+x_A\end{aligned}" />
 
 #### Den Gewichtsunterschied bestimmen
 
 Da die neuen Durchschnittswerte gleich sind, sind auch die neuen Gesamtsummen gleich:
 
 <MathContainer>
-  <BlockMath math="\sum x_A' = \sum x_B'" />
-  <BlockMath math="120 - x_A + x_B = 132 - x_B + x_A" />
+  <BlockMath math="W_A' = W_B'" />
+  <BlockMath math="\begin{aligned}&120-x_A+x_B \\ &\quad=132-x_B+x_A\end{aligned}" />
 </MathContainer>
 
 Wir bringen die Gewichte der beiden Kinder auf eine Seite:
 
 <MathContainer>
-  <BlockMath math="x_B + x_B - x_A - x_A = 132 - 120" />
+  <BlockMath math="\begin{aligned}&x_B+x_B-x_A-x_A \\ &\quad=132-120\end{aligned}" />
   <BlockMath math="2x_B - 2x_A = 12" />
   <BlockMath math="2(x_B - x_A) = 12" />
   <BlockMath math="x_B - x_A = 6" />

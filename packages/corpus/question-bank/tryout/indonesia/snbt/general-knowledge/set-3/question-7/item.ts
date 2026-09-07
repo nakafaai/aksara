@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Das Inventarbuch nennt einen Abendmarkt, während vier ehemalige Händler den Hauptbetrieb am Morgen erinnern.",
+            "Das Inventarbuch nennt einen Abendmarkt, während sich vier ehemalige Händler an den Hauptbetrieb am Morgen erinnern.",
         },
         {
           isCorrect: false,

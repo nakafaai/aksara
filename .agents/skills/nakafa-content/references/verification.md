@@ -13,6 +13,17 @@ default. Use Nakafa's real renderer; do not create a second preview renderer.
 
 ## Checks by scope
 
+Question-item ingestion checks parsed Markdown nodes and their original source
+before renderer preprocessing. It rejects single-dollar and display math,
+alternate LaTeX delimiters, raw HTML, and mathematics hidden in inline code.
+Regression tests must cover broken math, valid inline math, escaped currency,
+and protected code. They must also reject unescaped percentage signs inside
+math while preserving escaped percentages and ordinary prose percentages.
+Check the real rendered choices as well as prompt and answer MDX. Verify inline
+math baselines in paragraphs and list items, including a formula at the end of
+a line. Inspect display widths in every affected locale at a narrow viewport.
+Source validity alone cannot prove baseline alignment or legibility.
+
 Run the nearest behavior tests first. Tests consuming another workspace run
 through Turbo, which owns dependency build order. The repository-owned lesson
 voice suite has its own root command:

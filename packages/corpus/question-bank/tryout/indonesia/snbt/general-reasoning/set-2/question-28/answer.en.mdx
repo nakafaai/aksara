@@ -2,9 +2,27 @@ export const metadata = {
   title: "Solution to Question 28",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-First count the arrangements that satisfy all constraints simultaneously. Because every arrangement is equally likely, divide that count by the total number of permutations and reduce the fraction fully.
+First choose positions two places apart for reports <InlineMath math="A" /> and <InlineMath math="B" />. For each pair, count the adjacent unoccupied position pairs available for <InlineMath math="C" /> and <InlineMath math="D" />.
 
-Therefore, the requested value is <InlineMath math="\frac1{35}" />.
+| Positions for A and B | Adjacent free pairs |
+| :---: | :---: |
+| <InlineMath math="(1,3)" /> | <InlineMath math="3" /> |
+| <InlineMath math="(2,4)" /> | <InlineMath math="2" /> |
+| <InlineMath math="(3,5)" /> | <InlineMath math="2" /> |
+| <InlineMath math="(4,6)" /> | <InlineMath math="2" /> |
+| <InlineMath math="(5,7)" /> | <InlineMath math="3" /> |
+
+There are <InlineMath math="3+2+2+2+3=12" /> choices for the <InlineMath math="C,D" /> position pair in total. Reports <InlineMath math="A,B" /> have <InlineMath math="2" /> orders, as do <InlineMath math="C,D" />. The remaining three reports fill the empty positions in <InlineMath math="3!=6" /> ways.
+
+<BlockMath math="12\times2\times2\times6=288" />
+
+Half of these arrangements put <InlineMath math="E" /> before <InlineMath math="F" />. Swapping those reports pairs each permitted order with exactly one reversed order.
+
+<BlockMath math="288\div2=144" />
+
+There are <InlineMath math="7!=5040" /> unrestricted arrangements, so the probability is
+
+<BlockMath math="P=\frac{144}{5040}=\frac1{35}" />

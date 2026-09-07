@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Knoblauchproduktion in $$2018$$ war doppelt so hoch wie die Knoblauchproduktion in $$2017$$",
+            "Die Knoblauchproduktion in $$2018$$ war mehr als doppelt so hoch wie die Knoblauchproduktion in $$2017$$",
         },
         {
           isCorrect: false,
@@ -43,7 +43,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Garlic production in $$2018$$ was double the garlic production in $$2017$$",
+            "Garlic production in $$2018$$ was more than double the garlic production in $$2017$$",
         },
         {
           isCorrect: false,
@@ -73,7 +73,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Produksi bawang putih di tahun $$2018$$ dua kali lipat dari produksi bawang putih di tahun $$2017$$",
+            "Produksi bawang putih di tahun $$2018$$ lebih dari dua kali lipat dari produksi bawang putih di tahun $$2017$$",
         },
         {
           isCorrect: false,

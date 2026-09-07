@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pelapisan permukaan atas tidak memengaruhi transpirasi karena rata-rata 0,74 gram sama dengan 0,82 gram.",
+            "Pelapisan permukaan atas tidak memengaruhi transpirasi karena rata-rata $$0{,}74$$ gram sama dengan $$0{,}82$$ gram.",
         },
         {
           isCorrect: false,

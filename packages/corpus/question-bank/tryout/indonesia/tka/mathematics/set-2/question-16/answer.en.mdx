@@ -2,15 +2,23 @@ export const metadata = {
   title: "Solution to Question 16",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-08-30",
+  dateModified: "2026-09-07",
 };
 
-The required region is the sector minus the triangle formed by the two radii. The sector has area
+The region between the minor arc and chord is a circular segment. Its area is the sector area minus the triangle formed by the radii.
 
-<BlockMath math="\frac{120}{360}\pi(12^2)=48\pi" />
+<BlockMath math="A_1=\frac{120}{360}\pi(12)^2=48\pi" />
 
-and the triangle has area
+For a triangle with two known sides and their included angle, use the sine of that angle to find its area.
 
-<BlockMath math="\frac12(12)(12)\sin120^\circ=36\sqrt3" />
+<BlockMath math="\begin{aligned}
+A_2&=\frac12(12)(12)\sin120^\circ \\
+&=72\cdot\frac{\sqrt3}{2}=36\sqrt3
+\end{aligned}" />
 
-Therefore, the shaded area is <InlineMath math="48\pi-36\sqrt3" /> cm². Using the sector area alone would include the triangle between the two radii.
+Subtract the triangle area from the sector area.
+
+<BlockMath math="\begin{aligned}
+A&=A_1-A_2 \\
+&=(48\pi-36\sqrt3)\,\mathrm{cm}^2
+\end{aligned}" />

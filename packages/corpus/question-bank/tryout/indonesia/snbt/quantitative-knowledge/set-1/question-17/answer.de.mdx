@@ -2,11 +2,12 @@ export const metadata = {
   title: "Lösung zu Aufgabe 17",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-17",
+  dateModified: "2026-09-07",
 };
 
 Gegeben seien die Funktion <InlineMath math="f(x) = (x+3)(x^2+6x+8)^4" /> und <InlineMath math="F(x) = \int f(x) \, dx" /> mit der Bedingung <InlineMath math="F(-3) = 2" />.
 
-#### U-Substitution
+#### Substitution
 
 Um dieses Integral zu lösen, verwenden wir die Substitutionsmethode.
 
@@ -32,7 +33,7 @@ Wir teilen beide Seiten durch <InlineMath math="2" />:
 
 Wir setzen in das Integral ein:
 
-<BlockMath math="F(x) = \int f(x) \, dx = \int (x+3)(x^2+6x+8)^4 \, dx" />
+<BlockMath math="\begin{aligned}F(x)&=\int f(x)\,dx\\&=\int(x+3)u^4\,dx\end{aligned}" />
 
 Mit der Substitution <InlineMath math="u = x^2 + 6x + 8" /> und <InlineMath math="(x+3) \, dx = \frac{du}{2}" /> folgt:
 
@@ -51,13 +52,11 @@ Wir ersetzen <InlineMath math="u = x^2 + 6x + 8" /> zurück:
 
 Nun verwenden wir die Bedingung <InlineMath math="F(-3) = 2" />:
 
-<BlockMath math="F(-3) = \frac{1}{10}((-3)^2 + 6(-3) + 8)^5 + C = 2" />
+<BlockMath math="\begin{aligned}F(-3)&=\frac1{10}\bigl(9-18+8\bigr)^5\\&\quad+C\\&=2\end{aligned}" />
 
 Zuerst berechnen wir den Klammerausdruck:
 
-<MathContainer>
-<BlockMath math="(-3)^2 + 6(-3) + 8 = 9 - 18 + 8 = -1" />
-</MathContainer>
+<BlockMath math="\begin{aligned}&(-3)^2+6(-3)+8\\&=9-18+8\\&=-1\end{aligned}" />
 
 Damit gilt:
 
@@ -74,6 +73,6 @@ Damit gilt:
 
 Wir setzen den Wert von <InlineMath math="C" /> in <InlineMath math="F(x)" /> ein:
 
-<BlockMath math="F(x) = \frac{1}{10}(x^2 + 6x + 8)^5 + \frac{21}{10}" />
+<BlockMath math="\begin{aligned}F(x)&=\frac1{10}(x^2+6x+8)^5\\&\quad+\frac{21}{10}\end{aligned}" />
 
-Daher ist die Funktion <InlineMath math="F(x)" /> <InlineMath math="\frac{1}{10}(x^2 + 6x + 8)^5 + \frac{21}{10}" />.
+Mit dieser Konstante gilt wie gefordert <InlineMath math="F(-3)=2" />.

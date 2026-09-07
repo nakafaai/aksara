@@ -23,12 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The mean result with the change was 31; because it differs from the other conditions, the tested change is the only plausible explanation.",
+            "The mean result with the change was $$31$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
           isCorrect: true,
           label:
-            "The mixture held at 37°C produced a mean of 31 under the stated sample controls; an eye-estimated colour scale keeps the result provisional.",
+            "The mixture held at $$37^{\\circ}\\text{C}$$ produced a mean of $$31$$ under the stated sample controls. An eye-estimated colour scale keeps the result provisional.",
         },
       ],
     },

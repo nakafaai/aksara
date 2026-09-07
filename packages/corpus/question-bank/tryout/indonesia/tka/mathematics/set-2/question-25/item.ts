@@ -14,17 +14,17 @@ const item: QuestionItem = {
         {
           correctCategoryOrder: 1,
           label:
-            "Die Wahrscheinlichkeit für eine ungerade Summe beträgt $\\frac47$.",
+            "Die Wahrscheinlichkeit für eine ungerade Summe beträgt $$\\frac47$$.",
         },
         {
           correctCategoryOrder: 1,
           label:
-            "Die Wahrscheinlichkeit für zwei Primzahlen beträgt $\\frac3{14}$.",
+            "Die Wahrscheinlichkeit für zwei Primzahlen beträgt $$\\frac3{14}$$.",
         },
         {
           correctCategoryOrder: 1,
           label:
-            "Ist die erste Karte gerade, beträgt die Wahrscheinlichkeit für eine ungerade zweite Karte $\\frac47$.",
+            "Ist die erste Karte gerade, beträgt die Wahrscheinlichkeit für eine ungerade zweite Karte $$\\frac47$$.",
         },
         {
           correctCategoryOrder: 2,
@@ -34,7 +34,7 @@ const item: QuestionItem = {
         {
           correctCategoryOrder: 1,
           label:
-            "Die Wahrscheinlichkeit, dass die größere Zahl $8$ ist, beträgt $\\frac14$.",
+            "Die Wahrscheinlichkeit, dass die größere Zahl $$8$$ ist, beträgt $$\\frac14$$.",
         },
       ],
     },
@@ -44,16 +44,17 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "The probability of an odd sum is $\\frac47$.",
-        },
-        {
-          correctCategoryOrder: 1,
-          label: "The probability that both cards are prime is $\\frac3{14}$.",
+          label: "The probability of an odd sum is $$\\frac47$$.",
         },
         {
           correctCategoryOrder: 1,
           label:
-            "Given an even first card, the probability that the second card is odd is $\\frac47$.",
+            "The probability that both cards are prime is $$\\frac3{14}$$.",
+        },
+        {
+          correctCategoryOrder: 1,
+          label:
+            "Given an even first card, the probability that the second card is odd is $$\\frac47$$.",
         },
         {
           correctCategoryOrder: 2,
@@ -62,7 +63,8 @@ const item: QuestionItem = {
         },
         {
           correctCategoryOrder: 1,
-          label: "The probability that the larger number is $8$ is $\\frac14$.",
+          label:
+            "The probability that the larger number is $$8$$ is $$\\frac14$$.",
         },
       ],
     },
@@ -72,16 +74,16 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Peluang jumlah kedua angka ganjil adalah $\\frac47$.",
+          label: "Peluang jumlah kedua angka ganjil adalah $$\\frac47$$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "Peluang kedua kartu bernomor prima adalah $\\frac3{14}$.",
+          label: "Peluang kedua kartu bernomor prima adalah $$\\frac3{14}$$.",
         },
         {
           correctCategoryOrder: 1,
           label:
-            "Jika kartu pertama genap, peluang kartu kedua ganjil adalah $\\frac47$.",
+            "Jika kartu pertama genap, peluang kartu kedua ganjil adalah $$\\frac47$$.",
         },
         {
           correctCategoryOrder: 2,
@@ -91,7 +93,7 @@ const item: QuestionItem = {
         {
           correctCategoryOrder: 1,
           label:
-            "Peluang angka yang lebih besar adalah $8$ sebesar $\\frac14$.",
+            "Peluang angka yang lebih besar adalah $$8$$ sebesar $$\\frac14$$.",
         },
       ],
     },

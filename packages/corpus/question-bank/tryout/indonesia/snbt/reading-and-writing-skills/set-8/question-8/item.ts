@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dennoch, begrenzte das Team seine Schlussfolgerung zum Kontext Tag der offenen Labortür auf den kurzen Versuch.",
+            "Dennoch, hatte das Team das Verständnis der Besuchenden noch nicht gemessen.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch: begrenzte das Team seine Schlussfolgerung zum Kontext Tag der offenen Labortür auf den kurzen Versuch.",
+            "Dennoch: hatte das Team das Verständnis der Besuchenden noch nicht gemessen.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch; begrenzte das Team seine Schlussfolgerung zum Kontext Tag der offenen Labortür auf den kurzen Versuch.",
+            "Dennoch hatte das Team, das Verständnis der Besuchenden noch nicht gemessen.",
         },
         {
           isCorrect: true,
           label:
-            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Tag der offenen Labortür auf den kurzen Versuch.",
+            "Dennoch hatte das Team das Verständnis der Besuchenden noch nicht gemessen.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Tag der offenen Labortür auf den kurzen Versuch?",
+            "Dennoch hatte das Team das Verständnis der Besuchenden noch nicht gemessen?",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Nevertheless the team limited its conclusion for this setting (open laboratory tour) to the short trial.",
+            "Nevertheless, the, team had not measured visitor understanding.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless: the team limited its conclusion for this setting (open laboratory tour) to the short trial.",
+            "Nevertheless: the team had not measured visitor understanding.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless; the team limited its conclusion for this setting (open laboratory tour) to the short trial.",
+            "Nevertheless, the team, had not measured visitor understanding.",
         },
         {
           isCorrect: true,
           label:
-            "Nevertheless, the team limited its conclusion for this setting (open laboratory tour) to the short trial.",
+            "Nevertheless, the team had not measured visitor understanding.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless, the team limited its conclusion for this setting (open laboratory tour) to the short trial?",
+            "Nevertheless, the team had not measured visitor understanding?",
         },
       ],
     },
@@ -67,28 +67,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Meskipun demikian tim membatasi simpulan tentang tur laboratorium terbuka pada uji singkat tersebut.",
+          label: "Meskipun demikian tim belum mengukur pemahaman pengunjung.",
         },
         {
           isCorrect: false,
-          label:
-            "Meskipun demikian: tim membatasi simpulan tentang tur laboratorium terbuka pada uji singkat tersebut.",
+          label: "Meskipun demikian: tim belum mengukur pemahaman pengunjung.",
         },
         {
           isCorrect: false,
-          label:
-            "Meskipun demikian; tim membatasi simpulan tentang tur laboratorium terbuka pada uji singkat tersebut.",
+          label: "Meskipun demikian, tim, belum mengukur pemahaman pengunjung.",
         },
         {
           isCorrect: true,
-          label:
-            "Meskipun demikian, tim membatasi simpulan tentang tur laboratorium terbuka pada uji singkat tersebut.",
+          label: "Meskipun demikian, tim belum mengukur pemahaman pengunjung.",
         },
         {
           isCorrect: false,
-          label:
-            "Meskipun demikian, tim membatasi simpulan tentang tur laboratorium terbuka pada uji singkat tersebut?",
+          label: "Meskipun demikian, tim belum mengukur pemahaman pengunjung?",
         },
       ],
     },

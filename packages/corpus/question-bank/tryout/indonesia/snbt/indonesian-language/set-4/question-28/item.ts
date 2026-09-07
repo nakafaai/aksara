@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Serpihan biru menjadi petunjuk sejarah karena berulang di sepanjang retakan, sesuai dengan foto 1978, dan mengarah pada bidang pintu lama yang akhirnya dipertahankan.",
+            "Serpihan biru menjadi petunjuk sejarah karena berulang di sepanjang retakan, mengungkap lengkung yang sesuai dengan foto $$1978$$, dan mengarah pada bidang pintu lama yang akhirnya dipertahankan.",
         },
         {
           isCorrect: false,

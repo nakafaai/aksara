@@ -1,31 +1,30 @@
 export const metadata = {
   title: "Solution to Problem 18",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2025-12-30",
 };
 
-Order the cooking times from the **fastest** (least time) to the **slowest** (most time).
+Use the following symbols for the cooking time of each piece of meat.
 
-1.  "Beef takes longer to cook than lamb."
-    -   Meaning: <InlineMath math="\text{Time(Beef)} > \text{Time(Lamb)}" />.
-    -   Current order: <InlineMath math="\text{Lamb} < \text{Beef}" />.
+| Meat | Time |
+| :--- | :---: |
+| Lamb | <InlineMath math="t_1" /> |
+| Beef | <InlineMath math="t_2" /> |
+| Duck | <InlineMath math="t_3" /> |
+| Rabbit | <InlineMath math="t_4" /> |
+| Chicken | <InlineMath math="t_5" /> |
 
-2.  "...but not longer than duck" (referring to beef).
-    -   Meaning: <InlineMath math="\text{Time(Beef)} \leq \text{Time(Duck)}" />.
-    -   Current order: <InlineMath math="\text{Lamb} < \text{Beef} \leq \text{Duck}" />.
+Beef takes longer than lamb. <InlineMath math="t_2>t_1" />.
 
-3.  "Rabbit cooks faster than chicken."
-    -   Meaning: <InlineMath math="\text{Time(Rabbit)} < \text{Time(Chicken)}" />.
-    -   Current order: <InlineMath math="\text{Rabbit} < \text{Chicken}" />.
+Beef takes no longer than duck. <InlineMath math="t_2\leq t_3" />.
 
-4.  "...but takes longer than duck" (referring to Rabbit).
-    -   Meaning: <InlineMath math="\text{Time(Rabbit)} > \text{Time(Duck)}" />.
-    -   Current order: <InlineMath math="\text{Duck} < \text{Rabbit} < \text{Chicken}" />.
+Rabbit takes less time than chicken. <InlineMath math="t_4<t_5" />.
 
-If we combine all the information, the order of cooking time from fastest to slowest is:
+Rabbit takes longer than duck. <InlineMath math="t_4>t_3" />.
 
-<MathContainer>
-  <BlockMath math="\text{Lamb} < \text{Beef} \leq \text{Duck} < \text{Rabbit} < \text{Chicken}" />
-</MathContainer>
+Combining the comparisons gives:
 
-Beef and duck may take the same amount of time, but both still take longer than lamb. Therefore, **lamb** cooks the fastest.
+<BlockMath math="t_1<t_2\leq t_3<t_4<t_5" />
+
+Therefore, **lamb** has the shortest cooking time. Beef and duck may take the same time, but both take longer than lamb.

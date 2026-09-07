@@ -2,9 +2,23 @@ export const metadata = {
   title: "Solution to Question 30",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Check the feasible integer pairs that satisfy both resource constraints and compare their profits. Once the unique maximum is found, apply the count, difference, fraction, or added cost requested in the prompt.
+Let <InlineMath math="x" /> and <InlineMath math="y" /> be the counts of packages <InlineMath math="X" /> and <InlineMath math="Y" />. Both are non-negative integers. The material and labour constraints are
 
-Therefore, the requested value is <InlineMath math="7" />.
+<BlockMath math="\begin{aligned} 2x+3y &\le18 \\ 3x+y &\le14 \end{aligned}" />
+
+Profit is <InlineMath math="L=5x+4y" />. Since <InlineMath math="3x\le14" />, only <InlineMath math="x" /> from <InlineMath math="0" /> through <InlineMath math="4" /> needs checking. For each <InlineMath math="x" />, choose the largest <InlineMath math="y" /> satisfying both constraints, because every additional <InlineMath math="Y" /> increases profit.
+
+| <InlineMath math="X" /> count | Largest <InlineMath math="Y" /> count | Profit |
+| ---: | ---: | ---: |
+| <InlineMath math="0" /> | <InlineMath math="6" /> | <InlineMath math="24" /> |
+| <InlineMath math="1" /> | <InlineMath math="5" /> | <InlineMath math="25" /> |
+| <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="26" /> |
+| <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="31" /> |
+| <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="28" /> |
+
+The maximum profit of <InlineMath math="31" /> occurs only at <InlineMath math="x=3" /> and <InlineMath math="y=4" />. This uses <InlineMath math="18" /> material units and <InlineMath math="13" /> labour hours, satisfying both constraints.
+
+The total number of packages is <InlineMath math="3+4=7" />.

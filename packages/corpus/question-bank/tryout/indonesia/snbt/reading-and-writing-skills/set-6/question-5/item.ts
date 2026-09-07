@@ -15,11 +15,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Währenddessen",
+          label: "Dagegen",
         },
         {
           isCorrect: false,
-          label: "Umgekehrt",
+          label: "Zuvor",
         },
         {
           isCorrect: false,
@@ -40,11 +40,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Meanwhile",
+          label: "In contrast",
         },
         {
           isCorrect: false,
-          label: "Conversely",
+          label: "Previously",
         },
         {
           isCorrect: false,
@@ -65,11 +65,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Sementara itu",
+          label: "Sebaliknya",
         },
         {
           isCorrect: false,
-          label: "Sebaliknya",
+          label: "Sebelumnya",
         },
         {
           isCorrect: false,

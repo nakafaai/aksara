@@ -7,25 +7,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Aussage $$(1)$$ ist ausreichend.",
+          label:
+            "Aussage $$(1)$$ allein reicht aus, Aussage $$(2)$$ allein reicht nicht aus.",
         },
         {
           isCorrect: false,
           label:
-            "Die Aussagen $$(1)$$ und $$(2)$$ sind ausreichend, wenn sie zusammen verwendet werden.",
+            "Beide Aussagen zusammen reichen aus, aber keine reicht allein aus.",
         },
         {
           isCorrect: false,
-          label:
-            "Aussage $$(1)$$ ist ausreichend, Aussage $$(2)$$ ist ausreichend.",
+          label: "Jede Aussage allein reicht aus.",
         },
         {
           isCorrect: true,
-          label: "Aussage $$(2)$$ ist ausreichend.",
+          label:
+            "Aussage $$(2)$$ allein reicht aus, Aussage $$(1)$$ allein reicht nicht aus.",
         },
         {
           isCorrect: false,
-          label: "Die Aussagen $$(1)$$ und $$(2)$$ sind nicht ausreichend.",
+          label: "Auch zusammen reichen die beiden Aussagen nicht aus.",
         },
       ],
     },
@@ -34,25 +35,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Statement $$(1)$$ is sufficient.",
+          label:
+            "Statement $$(1)$$ alone is sufficient, but statement $$(2)$$ alone is not.",
         },
         {
           isCorrect: false,
           label:
-            "Statements $$(1)$$ and $$(2)$$ are sufficient if used together.",
+            "The statements together are sufficient, but neither is sufficient alone.",
         },
         {
           isCorrect: false,
-          label:
-            "Statement $$(1)$$ is sufficient, statement $$(2)$$ is sufficient.",
+          label: "Each statement alone is sufficient.",
         },
         {
           isCorrect: true,
-          label: "Statement $$(2)$$ is sufficient.",
+          label:
+            "Statement $$(2)$$ alone is sufficient, but statement $$(1)$$ alone is not.",
         },
         {
           isCorrect: false,
-          label: "Statements $$(1)$$ and $$(2)$$ are not sufficient.",
+          label: "The statements remain insufficient even when used together.",
         },
       ],
     },
@@ -61,24 +63,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Pernyataan $$(1)$$ cukup.",
+          label:
+            "Pernyataan $$(1)$$ saja cukup, tetapi pernyataan $$(2)$$ saja tidak cukup.",
         },
         {
           isCorrect: false,
           label:
-            "Pernyataan $$(1)$$ dan $$(2)$$ cukup jika digunakan bersama-sama.",
+            "Kedua pernyataan cukup jika digunakan bersama-sama, tetapi masing-masing saja tidak cukup.",
         },
         {
           isCorrect: false,
-          label: "Pernyataan $$(1)$$ cukup, pernyataan $$(2)$$ cukup.",
+          label: "Setiap pernyataan cukup jika digunakan sendiri.",
         },
         {
           isCorrect: true,
-          label: "Pernyataan $$(2)$$ cukup.",
+          label:
+            "Pernyataan $$(2)$$ saja cukup, tetapi pernyataan $$(1)$$ saja tidak cukup.",
         },
         {
           isCorrect: false,
-          label: "Pernyataan $$(1)$$ dan $$(2)$$ tidak cukup.",
+          label:
+            "Kedua pernyataan tetap tidak cukup meskipun digunakan bersama-sama.",
         },
       ],
     },

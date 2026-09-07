@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            'Der erste Teil legt "Mit einem Code müssen Lieferantendaten nicht mehr aktualisiert werden" als endgültigen Schluss fest; der folgende nennt nur den Plan "Ein Verpackungscode wird zu einem vollständigen Lieferkettendatensatz führen".',
+            'Der erste Teil legt "Mit einem Code müssen Lieferantendaten nicht mehr aktualisiert werden" als endgültigen Schluss fest; der folgende nennt nur den Plan "Ein Verpackungscode wird zu einem ausführlicheren Lieferkettendatensatz führen".',
         },
         {
           isCorrect: true,

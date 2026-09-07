@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team testete die Änderung Richtungspfeile an jeder Kreuzung an ausgewählten Tagen, weil das frühere Verfahren bereits als unwirksam galt.",
+            "Die Pfeile wurden angebracht, weil der alte Rundgang nachweislich in jeder Situation unbrauchbar war.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team führte die Änderung Richtungspfeile an jeder Kreuzung dauerhaft ein, während das frühere Verfahren nur in den Rückmeldungen erhalten blieb.",
+            "Die Pfeile wurden dauerhaft eingeführt und Termine ohne Pfeile eingestellt.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team testete die Änderung Richtungspfeile an jeder Kreuzung und das frühere Verfahren an denselben Tagen ohne getrennte Vergleichsbedingungen.",
+            "Pfeile und die Bedingung ohne Pfeile wurden ohne getrennte Vergleichstermine geprüft.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team verglich Tage mit der Änderung Richtungspfeile an jeder Kreuzung mit Rückmeldungen zum früheren Verfahren.",
+            "Termine mit Pfeilen wurden nur mit Rückmeldungen zum alten Rundgang verglichen.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team prüfte Richtungspfeile an jeder Abzweigung an ausgewählten Tagen, während an Vergleichstagen der bisherige Ablauf bestehen blieb.",
+            "Bei den Versuchsterminen wurden an jeder Abzweigung Pfeile angebracht, während die Vergleichstermine ohne zusätzliche Pfeile stattfanden.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested direction arrows placed at each junction on selected days because the earlier process had already been proved ineffective.",
+            "Arrows were added because the old route had proved useless in every situation.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested direction arrows placed at each junction permanently, while the earlier process remained only in user records.",
+            "Arrows were adopted permanently and sessions without arrows were discontinued.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested direction arrows placed at each junction and the earlier process on the same days without separate comparison conditions.",
+            "Arrows and the condition without arrows were tested without separate comparison sessions.",
         },
         {
           isCorrect: false,
           label:
-            "The team compared selected days using direction arrows placed at each junction with comments about the earlier process.",
+            "Sessions with arrows were compared only with comments about the old route.",
         },
         {
           isCorrect: true,
           label:
-            "The team tested direction arrows placed at each junction on selected days, while the earlier process remained on comparison days.",
+            "Arrows were placed at every junction in trial sessions, while comparison sessions had no additional arrows.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji panah arah di setiap persimpangan pada hari tertentu karena proses lama telah terbukti tidak efektif.",
+            "Panah dipasang karena rute lama terbukti tidak berguna dalam semua keadaan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menerapkan panah arah di setiap persimpangan secara tetap, sedangkan proses lama hanya tersisa dalam catatan pengguna.",
+            "Panah diterapkan permanen dan kondisi tanpa panah tidak digunakan lagi.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji panah arah di setiap persimpangan dan proses lama pada hari yang sama tanpa kondisi pembanding terpisah.",
+            "Panah dan kondisi tanpa panah diuji tanpa memisahkan kelompok sesi pembanding.",
         },
         {
           isCorrect: false,
           label:
-            "Tim membandingkan hari penggunaan panah arah di setiap persimpangan dengan komentar tentang proses lama.",
+            "Sesi dengan panah hanya dibandingkan dengan komentar tentang rute lama.",
         },
         {
           isCorrect: true,
           label:
-            "Tim menguji pemasangan panah arah di setiap persimpangan pada hari tertentu, sedangkan alur lama tetap digunakan pada hari pembanding.",
+            "Pada sesi uji, panah dipasang di setiap persimpangan, sedangkan sesi pembanding berlangsung tanpa panah tambahan.",
         },
       ],
     },

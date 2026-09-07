@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Karena kondisi perubahan menghasilkan 25, sedangkan nilai awal 29 dan pembanding 28, panel peneduh yang dipasang selama empat jam siang telah terisolasi sebagai satu-satunya penyebab selama volume air, letak termometer, dan waktu pencatatan dibuat sama.",
+            "Karena kondisi perubahan menghasilkan $$25$$, sedangkan nilai awal $$29$$ dan pembanding $$28$$, panel peneduh yang dipasang selama empat jam siang telah terisolasi sebagai satu-satunya penyebab selama volume air, letak termometer, dan waktu pencatatan dibuat sama.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pada kondisi yang diuji, panel peneduh yang dipasang selama empat jam siang berkaitan dengan perubahan dari 29 dan 28 menjadi 25; karena simulasi belum menguji hari berawan atau perubahan kecepatan angin, pola itu perlu diuji lagi sebelum diperluas menjadi klaim umum.",
+            "Pada kondisi yang diuji, panel peneduh yang dipasang selama empat jam siang berkaitan dengan suhu rata-rata $$25$$ derajat Celsius, lebih rendah daripada nilai awal $$29$$ dan pembanding $$28$$ derajat Celsius. Karena simulasi belum menguji hari berawan atau perubahan kecepatan angin, pola itu perlu diuji lagi sebelum diperluas menjadi klaim umum.",
         },
       ],
     },

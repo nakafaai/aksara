@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The mean result with the change was 67; because it differs from the other conditions, the tested change is the only plausible explanation.",
+            "The mean result with the change was $$67$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
           isCorrect: false,
@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The coarse-fabric condition produced a mean of 67 under the fixed ramp setup; surface wear across repetitions still limits a broader inference.",
+            "The coarse-fabric condition produced a mean of $$67$$ under the fixed ramp setup. Surface wear across repetitions still limits a broader inference.",
         },
         {
           isCorrect: false,

@@ -22,12 +22,12 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Ein Anreiz wirkt über einen konkreten Dienst; die einfache Pfanderstattung beeinflusst daher das Ergebnis.",
+            "Ein Anreiz wirkt über einen konkreten Dienst. Die einfache Pfanderstattung beeinflusst daher das Ergebnis.",
         },
         {
           isCorrect: false,
           label:
-            "Ein Pfand kann Abfall senken, muss aber zusammen mit Zugang und Kosten für verschiedene Gruppen bewertet werden.",
+            "Allein die Pfandhöhe bestimmt das Ergebnis, unabhängig von Lage und Öffnungszeit der Rückgabestellen.",
         },
       ],
     },
@@ -56,7 +56,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "A deposit can reduce waste, but success must be judged alongside service access and costs for different groups.",
+            "The deposit amount alone determines the outcome, regardless of return-desk locations and opening hours.",
         },
       ],
     },
@@ -85,7 +85,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Uang jaminan dapat mengurangi sampah, tetapi keberhasilannya harus dinilai bersama akses layanan dan biaya bagi berbagai pihak.",
+            "Besarnya uang jaminan saja menentukan hasil, terlepas dari lokasi dan jam layanan loket.",
         },
       ],
     },

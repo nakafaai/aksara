@@ -22,7 +22,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Bibit tidak ditemukan; status hidup belum dapat dipastikan",
+          label:
+            "Bibit tidak ditemukan. Status hidup bibit belum dapat dipastikan",
         },
         {
           isCorrect: false,

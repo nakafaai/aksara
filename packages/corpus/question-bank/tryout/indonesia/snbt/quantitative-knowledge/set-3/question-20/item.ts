@@ -19,8 +19,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label:
-            "Die bereitgestellten Informationen reichen nicht aus, um sich für eine der drei oben genannten Optionen zu entscheiden",
+          label: "$$P\\ge Q$$",
         },
         {
           isCorrect: false,
@@ -45,8 +44,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label:
-            "The information provided is not sufficient to decide on one of the three options above",
+          label: "$$P\\ge Q$$",
         },
         {
           isCorrect: false,
@@ -71,8 +69,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label:
-            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari tiga pilihan di atas",
+          label: "$$P\\ge Q$$",
         },
         {
           isCorrect: false,

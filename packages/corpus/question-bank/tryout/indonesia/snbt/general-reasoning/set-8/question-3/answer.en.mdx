@@ -2,22 +2,18 @@ export const metadata = {
   title: "Question 3 Explanation",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-01-29",
+  dateModified: "2026-09-07",
 };
 
-The operations between successive terms reveal the pattern:
+Check the six transitions between the known terms:
 
 <MathContainer>
-  <BlockMath math="\begin{array}{ccl} 4 \xrightarrow{+2} 6 & \quad & (\text{1st to 2nd term}) \\ 6 \xrightarrow{+4} 10 & \quad & (\text{2nd to 3rd term}) \\ 10 \xrightarrow{-1} 9 & \quad & (\text{3rd to 4th term}) \\ 9 \xrightarrow{+2} 11 & \quad & (\text{4th to 5th term}) \\ 11 \xrightarrow{+4} 15 & \quad & (\text{5th to 6th term}) \\ 15 \xrightarrow{-1} 14 & \quad & (\text{6th to 7th term}) \end{array}" />
+  <BlockMath math="\begin{aligned}4+2&=6\\6+4&=10\\10-1&=9\end{aligned}" />
+  <BlockMath math="\begin{aligned}9+2&=11\\11+4&=15\\15-1&=14\end{aligned}" />
 </MathContainer>
 
-We can see that the pattern is a repeating cycle of operations: **<InlineMath math="+2, +4, -1" />**.
+The operations <InlineMath math="+2" />, <InlineMath math="+4" />, and <InlineMath math="-1" /> occur twice in the same order. After the last term, the cycle returns to <InlineMath math="+2" />:
 
-Based on this pattern, the operation following **<InlineMath math="-1" />** cycles back to **<InlineMath math="+2" />**.
+<BlockMath math="14+2=16" />
 
-The cycle now returns to its first operation:
-
-<MathContainer>
-  <BlockMath math="14 + 2 = 16" />
-</MathContainer>
-
-The value that completes the sequence is **<InlineMath math="16" />**.
+Therefore, the next term is **<InlineMath math="16" />**.

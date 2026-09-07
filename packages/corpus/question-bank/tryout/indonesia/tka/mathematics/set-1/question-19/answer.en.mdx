@@ -2,7 +2,26 @@ export const metadata = {
   title: "Solution to Question 19",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-08-30",
+  dateModified: "2026-09-07",
 };
 
-The area factors for the <InlineMath math="pl" /> and <InlineMath math="lt" /> faces are <InlineMath math="2\cdot3=6" /> and <InlineMath math="3\cdot\frac12=\frac32" />. The volume factor is <InlineMath math="2\cdot3\cdot\frac12=3" />. Because the directional scale factors differ, neither the space diagonal nor total surface area has one constant factor valid for every cuboid. The order is true, true, true, false, false.
+A face area depends on its two edge lengths, while volume depends on all three. Multiply the corresponding scale factors.
+
+<BlockMath math="\begin{aligned}
+k_{pl}&=2\cdot3=6 \\
+k_{lt}&=3\cdot\frac12=\frac32 \\
+k_V&=2\cdot3\cdot\frac12=3
+\end{aligned}" />
+
+The directional scale factors differ, so the space diagonal and total surface area do not always change by one fixed factor. For a counterexample, take <InlineMath math="p=l=t=1" />.
+
+<BlockMath math="\begin{aligned}
+d^2&=1^2+1^2+1^2=3 \\
+(d')^2&=2^2+3^2+\left(\frac12\right)^2 \\
+&=\frac{53}{4}\ne4d^2 \\
+A&=6 \\
+A'&=2\left(6+1+\frac32\right)=17 \\
+A'&\ne3A
+\end{aligned}" />
+
+The three claims about face-area and volume factors are true. The claims that the diagonal always doubles and the total surface area always triples are false.

@@ -23,7 +23,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Die Künstlerin erhielt **Lob** für ihr neues Werk.",
+          label: "Sie benutzte eine **Waage**, um das Mehl abzuwiegen.",
         },
       ],
     },
@@ -48,7 +48,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "The artist received **praise** for the new work.",
+          label: "She used **scales** to weigh the flour.",
         },
       ],
     },
@@ -73,7 +73,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Seniman itu menerima **pujian** atas karya barunya.",
+          label: "Ia memakai **timbangan** untuk menakar tepung.",
         },
       ],
     },

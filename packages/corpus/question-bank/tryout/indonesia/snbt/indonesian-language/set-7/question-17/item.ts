@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Buku tamu lebih kuat untuk mengetahui keberhasilan pameran secara keseluruhan karena memuat 240 catatan setelah kunjungan.",
+            "Buku tamu lebih kuat untuk mengetahui keberhasilan pameran secara keseluruhan karena memuat $$240$$ catatan setelah kunjungan.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Poster mendukung simpulan tentang citra yang ingin dibangun di lima kota, sedangkan buku tamu mendukung simpulan tentang sebagian pengalaman sukarela di dua kota.",
+            "Poster mendukung simpulan tentang citra yang ingin dibangun di lima kota, sedangkan buku tamu mendukung simpulan tentang sebagian pengalaman yang dicatat secara sukarela di dua kota.",
         },
       ],
     },

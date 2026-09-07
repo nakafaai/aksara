@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: kontrastreichere Symbole für Sammelpunkte.",
+            "Kontrastreichere Symbole sollten es den Teilnehmenden erleichtern, die Schilder zu unterscheiden.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, kontrastreichere Sammelplatzsymbole, ersetzte die Notwendigkeit, die ursprüngliche Unsicherheit zu messen.",
+            "Kontrastreichere Symbole machten eine Messung des Erfolgs der Teilnehmenden überflüssig.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, kontrastreichere Sammelplatzsymbole, führte mehrere nicht trennbare Unterschiede ein.",
+            "Kontrastreichere Symbole erlaubten dem Team, viele Bedingungen gleichzeitig zu ändern.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, kontrastreichere Sammelplatzsymbole, erklärte, warum die Vergleichswerte identisch waren.",
+            "Kontrastreichere Symbole erklärten, warum alle Vergleichswerte identisch waren.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, kontrastreichere Sammelplatzsymbole, betraf das Endergebnis statt die Quelle der Unsicherheit.",
+            "Kontrastreichere Symbole wurden nur gewählt, weil das Endergebnis bereits feststand.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The change, higher-contrast assembly-point symbols, directly addressed the observed uncertainty.",
+            "Higher-contrast symbols were selected to address participants’ difficulty distinguishing the signs.",
         },
         {
           isCorrect: false,
           label:
-            "The change, higher-contrast assembly-point symbols, replaced the need to measure the original uncertainty.",
+            "Higher-contrast symbols removed the need to measure participants’ success.",
         },
         {
           isCorrect: false,
           label:
-            "The change, higher-contrast assembly-point symbols, introduced several differences that could not be separated.",
+            "Higher-contrast symbols allowed the team to change many conditions at once.",
         },
         {
           isCorrect: false,
           label:
-            "The change, higher-contrast assembly-point symbols, explained why the comparison values were identical.",
+            "Higher-contrast symbols explained why all comparison values were identical.",
         },
         {
           isCorrect: false,
           label:
-            "The change, higher-contrast assembly-point symbols, addressed the final outcome rather than the source of uncertainty.",
+            "Higher-contrast symbols were selected only because the final result was already certain.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Perubahan berupa simbol titik kumpul yang lebih kontras langsung menanggapi keraguan yang diamati.",
+            "Simbol yang lebih kontras dipilih untuk mengatasi kesulitan peserta membedakan penanda.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa simbol titik kumpul dengan kontras lebih tinggi menggantikan kebutuhan untuk mengukur ketidakpastian awal.",
+            "Simbol yang lebih kontras menghapus kebutuhan untuk mengukur keberhasilan peserta.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa simbol titik kumpul dengan kontras lebih tinggi menimbulkan beberapa perbedaan yang tidak dapat dipisahkan.",
+            "Simbol yang lebih kontras memungkinkan tim mengubah banyak kondisi sekaligus.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa simbol titik kumpul dengan kontras lebih tinggi menjelaskan mengapa nilai pembanding sama.",
+            "Simbol yang lebih kontras menjelaskan mengapa semua nilai pembanding sama.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa simbol titik kumpul dengan kontras lebih tinggi menanggapi hasil akhir, bukan sumber ketidakpastian.",
+            "Simbol yang lebih kontras dipilih hanya karena hasil akhirnya sudah dipastikan.",
         },
       ],
     },

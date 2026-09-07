@@ -2,9 +2,28 @@ export const metadata = {
   title: "Solution to Question 30",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Check the feasible integer pairs that satisfy both resource constraints and compare their profits. Once the unique maximum is found, apply the count, difference, fraction, or added cost requested in the prompt.
+Let <InlineMath math="x" /> and <InlineMath math="y" /> count packages <InlineMath math="X" /> and <InlineMath math="Y" />. The material and labour constraints and profit <InlineMath math="L" /> are
 
-Therefore, the requested value is <InlineMath math="2" />.
+<BlockMath math="\begin{aligned}3x+2y&\leq24\\x+4y&\leq20\\L&=6x+7y\end{aligned}" />
+
+Each <InlineMath math="Y" /> requires <InlineMath math="4" /> hours, so check <InlineMath math="y=0,1,2,3,4,5" />. For each <InlineMath math="y" />, take the largest feasible <InlineMath math="x" />. This maximizes profit for that row because every <InlineMath math="X" /> has positive profit.
+
+| Number of Y | Maximum number of X | Profit |
+| :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="8" /> | <InlineMath math="48" /> |
+| <InlineMath math="1" /> | <InlineMath math="7" /> | <InlineMath math="49" /> |
+| <InlineMath math="2" /> | <InlineMath math="6" /> | <InlineMath math="50" /> |
+| <InlineMath math="3" /> | <InlineMath math="6" /> | <InlineMath math="57" /> |
+| <InlineMath math="4" /> | <InlineMath math="4" /> | <InlineMath math="52" /> |
+| <InlineMath math="5" /> | <InlineMath math="0" /> | <InlineMath math="35" /> |
+
+The unique maximum profit, <InlineMath math="57" />, occurs at <InlineMath math="(x,y)=(6,3)" />. Labour used is
+
+<BlockMath math="6+4\times3=18" />
+
+<BlockMath math="20-18=2" />
+
+The unused labour is therefore **<InlineMath math="2" /> hours**.

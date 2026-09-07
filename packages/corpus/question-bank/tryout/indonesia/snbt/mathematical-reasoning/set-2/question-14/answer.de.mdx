@@ -1,42 +1,28 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 14",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2026-01-31",
 };
 
-**Bestimmen der Zeit pro Segment**
+#### Zeit pro ursprünglichem Abschnitt
 
-Aus der vorherigen Streckenanalyse wissen wir: Bis der Läufer den Kontrollpunkt <InlineMath math="C" /> zum <InlineMath math="3" />. Mal passiert, legt er <InlineMath math="10" /> normale Streckenabschnitte in <InlineMath math="12\text{ Minuten}" /> zurück. Die Zeit pro normalem Abschnitt beträgt somit:
+Bis zur ersten Ankunft bei <InlineMath math="C" /> legt der Läufer <InlineMath math="2" /> Abschnitte zurück. Für die zweite und dritte Ankunft kommt jeweils eine ganze Runde mit <InlineMath math="4" /> Abschnitten hinzu. Insgesamt sind das:
 
-<MathContainer>
-  <BlockMath math="t_{\text{Segment}} = \frac{12 \text{ Minuten}}{10} = 1{,}2 \text{ Minuten}" />
-</MathContainer>
+<BlockMath math="2+4+4=10" />
 
-**Berechnung der Zeit für den neuen Weg**
+Für diese <InlineMath math="10" /> Abschnitte braucht er <InlineMath math="12\text{ Minuten}" />. Die Zeit pro ursprünglichem Abschnitt beträgt daher:
 
-Gesucht ist die Laufzeit von <InlineMath math="A" /> nach <InlineMath math="D" />, wenn der Abschnitt von <InlineMath math="C" /> nach <InlineMath math="D" /> auf das <InlineMath math="2" />-Fache seiner ursprünglichen Länge gestreckt wird.
+<BlockMath math="\frac{12}{10}=1{,}2\text{ Minuten}" />
 
-Die normale Route von <InlineMath math="A" /> nach <InlineMath math="D" /> folgt dem Pfad:
+#### Zeit auf der neuen Strecke
 
-<MathContainer>
-  <BlockMath math="A \to B \to C \to D" />
-</MathContainer>
+Der Läufer folgt der Route <InlineMath math="A \to B \to C \to D" />. Gemessen an einem ursprünglichen Abschnitt haben die Teilstrecken folgende Längen:
 
-Die Aufteilung der Segmente ist:
-1.  <InlineMath math="A \to B" />: <InlineMath math="1" /> normales Segment.
-2.  <InlineMath math="B \to C" />: <InlineMath math="1" /> normales Segment.
-3.  <InlineMath math="C \to D" />: Der Abschnitt ist auf das <InlineMath math="2" />-Fache verlängert und entspricht daher <InlineMath math="2" /> normalen Segmenten.
+- <InlineMath math="A \to B" />: <InlineMath math="1" /> Abschnitt.
+- <InlineMath math="B \to C" />: <InlineMath math="1" /> Abschnitt.
+- <InlineMath math="C \to D" />: <InlineMath math="2" /> Abschnitte, da die Länge verdoppelt wurde.
 
-Die gesamten abzudeckenden effektiven Segmente betragen:
+Die Route ist so lang wie <InlineMath math="1+1+2=4" /> ursprüngliche Abschnitte. Bei gleicher Geschwindigkeit braucht der Läufer von <InlineMath math="A" /> nach <InlineMath math="D" />:
 
-<MathContainer>
-  <BlockMath math="\text{Gesamtsegmente} = 1 + 1 + 2 = 4 \text{ Segmente}" />
-</MathContainer>
-
-Somit beträgt der Gesamtzeitaufwand:
-
-<MathContainer>
-  <BlockMath math="\text{Gesamtzeit} = 4 \times 1{,}2 \text{ Minuten} = 4{,}8 \text{ Minuten}" />
-</MathContainer>
-
-Daher beträgt die Zeit, die der Läufer benötigt, um vom Kontrollpunkt <InlineMath math="A" /> zu <InlineMath math="D" /> zu gelangen, <InlineMath math="4{,}8\text{ Minuten}" />.
+<BlockMath math="4\times1{,}2=4{,}8\text{ Minuten}" />

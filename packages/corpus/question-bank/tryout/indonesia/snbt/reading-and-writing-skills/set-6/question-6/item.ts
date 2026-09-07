@@ -8,27 +8,25 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Der Versuchswert lag im Kontext Ausstellung von Schülerarbeiten über den beiden anderen Werten.",
+            "Die mittlere Zahl abgeschlossener Rundgänge lag im Versuch über dem Ausgangs- und dem Vergleichswert.",
         },
         {
           isCorrect: false,
           label:
-            "Im Kontext Ausstellung von Schülerarbeiten verursachte die Änderung Richtungspfeile an jeder Kreuzung den höheren Testwert.",
+            "Pfeile waren nachweislich die einzige Ursache des höheren Mittelwerts.",
+        },
+        {
+          isCorrect: false,
+          label: "Jede besuchende Person verbesserte sich im selben Umfang.",
+        },
+        {
+          isCorrect: false,
+          label: "Ausgangs- und Vergleichswert waren gleich.",
         },
         {
           isCorrect: false,
           label:
-            "Im Kontext Ausstellung von Schülerarbeiten verbesserten sich sämtliche Teilnehmenden um denselben Wert.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Im Kontext Ausstellung von Schülerarbeiten waren die beiden Vergleichswerte identisch.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Im Kontext Ausstellung von Schülerarbeiten belegte der kurze Test das langfristige Ergebnis.",
+            "Der Versuch belegte das langfristige Ergebnis für alle Ausstellungen.",
         },
       ],
     },
@@ -38,27 +36,25 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "In this setting (student work exhibition), the trial value exceeded both other values.",
+            "Mean route completion in trial sessions exceeded both the baseline and comparison means.",
         },
         {
           isCorrect: false,
           label:
-            "In this setting (student work exhibition), direction arrows placed at each junction caused the higher trial value.",
+            "Arrows were proved to be the sole cause of the higher completion mean.",
+        },
+        {
+          isCorrect: false,
+          label: "Every visitor improved by the same amount.",
+        },
+        {
+          isCorrect: false,
+          label: "The baseline and comparison means were identical.",
         },
         {
           isCorrect: false,
           label:
-            "In this setting (student work exhibition), each participant improved by the same amount.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (student work exhibition), the two comparison values were identical.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (student work exhibition), the short trial established the long-term result.",
+            "The trial established the long-term result for every exhibition.",
         },
       ],
     },
@@ -68,27 +64,25 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Di pameran karya siswa, nilai hari uji melampaui dua nilai lainnya.",
+            "Rata-rata penyelesaian rute pada sesi uji lebih tinggi daripada rata-rata awal dan pembanding.",
         },
         {
           isCorrect: false,
           label:
-            "Dalam konteks pameran karya siswa, panah arah di setiap persimpangan menyebabkan nilai uji menjadi lebih tinggi.",
+            "Panah terbukti menjadi satu-satunya penyebab rata-rata penyelesaian yang lebih tinggi.",
+        },
+        {
+          isCorrect: false,
+          label: "Setiap pengunjung mengalami peningkatan yang sama.",
+        },
+        {
+          isCorrect: false,
+          label: "Rata-rata awal dan pembanding sama.",
         },
         {
           isCorrect: false,
           label:
-            "Dalam konteks pameran karya siswa, setiap peserta mengalami peningkatan yang sama.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Dalam konteks pameran karya siswa, kedua nilai pembanding sama.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Dalam konteks pameran karya siswa, uji singkat menetapkan hasil jangka panjang.",
+            "Uji tersebut menetapkan hasil jangka panjang untuk semua pameran.",
         },
       ],
     },

@@ -18,12 +18,12 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Berkat formulir baru, lebih banyak pasangan catatan bisa diperiksa tanpa menebak, tetapi tim tetap menyimpan nilai asli dan menyelaraskan waktu pengukuran sebelum penerapan luas.",
+            "Pada formulir baru, lebih banyak pasangan catatan dapat diperiksa tanpa menebak, tetapi tim tetap menyimpan nilai asli dan menyelaraskan waktu pengukuran sebelum penerapan luas.",
         },
         {
           isCorrect: false,
           label:
-            "Kenaikan dari 14 menjadi 27 pasangan membuktikan bahwa semua kesalahan pencatatan telah dihilangkan oleh formulir baru.",
+            "Kenaikan dari $$14$$ menjadi $$27$$ pasangan membuktikan bahwa semua kesalahan pencatatan telah dihilangkan oleh formulir baru.",
         },
         {
           isCorrect: false,

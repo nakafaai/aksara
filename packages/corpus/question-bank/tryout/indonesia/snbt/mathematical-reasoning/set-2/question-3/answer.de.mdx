@@ -1,44 +1,30 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 3",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2026-01-31",
 };
 
-Wir erhalten Informationen über den Originalpreis des Motorrads, den Rabattprozentsatz und die auf diesen Rabatt erhobene Steuer.
+Der ursprüngliche Motorradpreis beträgt <InlineMath math="\text{Rp}75{.}000{.}000{,}00" />. Der Rabatt beträgt <InlineMath math="10\%" />, die Steuer auf den Rabattbetrag <InlineMath math="2{,}5\%" />. Alle Geldbeträge in den folgenden Rechnungen sind in Rupiah angegeben.
 
-Gegeben:
-- Der Originalpreis beträgt <InlineMath math="\text{Rp}75{.}000{.}000{,}00" />
-- Der Rabatt beträgt <InlineMath math="10\%" />
-- Die Steuer auf den Rabatt beträgt <InlineMath math="2{,}5\%" />
+#### Rabatt berechnen
 
-Zuerst berechnen wir den Rabattbetrag:
+Der Rabattbetrag sei <InlineMath math="D" />. Er wird aus dem ursprünglichen Preis berechnet:
 
-<MathContainer>
-  <BlockMath math="\text{Rabattbetrag} = 10\% \times 75{.}000{.}000" />
-  <BlockMath math="\text{Rabattbetrag} = 7{.}500{.}000" />
-</MathContainer>
+<BlockMath math="\begin{aligned} D&=10\%\times75{.}000{.}000 \\ &=7{.}500{.}000 \end{aligned}" />
 
-Als nächstes berechnen wir den Preis des Motorrads nach dem Rabatt (vor Steuern):
+Nach Abzug des Rabatts verbleibt der Preis <InlineMath math="H" />:
 
-<MathContainer>
-  <BlockMath math="\text{Preis nach Rabatt} = 75{.}000{.}000 - 7{.}500{.}000" />
-  <BlockMath math="\text{Preis nach Rabatt} = 67{.}500{.}000" />
-</MathContainer>
+<BlockMath math="\begin{aligned} H&=75{.}000{.}000 \\ &\quad-7{.}500{.}000 \\ &=67{.}500{.}000 \end{aligned}" />
 
-Das Problem besagt, dass **auf den Rabatt** eine <InlineMath math="2{,}5\%" /> Steuer erhoben wird. Das heißt, wir berechnen <InlineMath math="2{,}5\%" /> des Rabattbetrags (<InlineMath math="\text{Rp}7{.}500{.}000{,}00" />) und addieren ihn zum zu zahlenden Betrag.
+#### Steuer und Gesamtpreis berechnen
 
-<MathContainer>
-  <BlockMath math="\text{Steuer} = 2{,}5\% \times 7{.}500{.}000" />
-  <BlockMath math="\text{Steuer} = \frac{2{,}5}{100} \times 7{.}500{.}000" />
-  <BlockMath math="\text{Steuer} = 187{.}500" />
-</MathContainer>
+Die Steuer <InlineMath math="P" /> wird auf den Rabattbetrag <InlineMath math="D" /> erhoben:
 
-Für den Gesamtpreis addieren wir den Preis nach Rabatt und die Steuer:
+<BlockMath math="\begin{aligned} P&=2{,}5\%\times D \\ &=\frac{2{,}5}{100}\times7{.}500{.}000 \\ &=187{.}500 \end{aligned}" />
 
-<MathContainer>
-  <BlockMath math="\text{Gesamtlohn} = \text{Preis nach Rabatt} + \text{Steuer}" />
-  <BlockMath math="\text{Gesamtlohn} = 67{.}500{.}000 + 187{.}500" />
-  <BlockMath math="\text{Gesamtlohn} = 67{.}687{.}500" />
-</MathContainer>
+Diese Steuer wird zum ermäßigten Preis addiert. Der Gesamtpreis <InlineMath math="T" /> beträgt:
 
-Somit beträgt der endgültige Motorradpreis, den der Vater zahlen muss, <InlineMath math="\text{Rp}67{.}687{.}500{,}00" />.
+<BlockMath math="\begin{aligned} T&=H+P \\ &=67{.}500{.}000+187{.}500 \\ &=67{.}687{.}500 \end{aligned}" />
+
+Der Vater bezahlt somit <InlineMath math="\text{Rp}67{.}687{.}500{,}00" />.

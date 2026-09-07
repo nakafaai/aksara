@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Auf Grundlage der Daten eine begrenzte Schlussfolgerung für den Kontext Musikproberäume.",
+            "Auf Grundlage der Daten eine begrenzte Schlussfolgerung zu den Proberäumen.",
         },
         {
           isCorrect: true,
           label:
-            "Auf Grundlage der Daten formulierte das Team eine begrenzte Schlussfolgerung zu folgendem Kontext: Musikproberäume.",
+            "Auf Grundlage der Daten formulierte das Team eine begrenzte Schlussfolgerung zu den Proberäumen.",
         },
         {
           isCorrect: false,
           label:
-            "Auf Grundlage der Daten kam das Team zu einer Schlussfolgerung, die begrenzt war, im Kontext Musikproberäume.",
+            "Das Team, das auf Grundlage der Daten eine begrenzte Schlussfolgerung zu den Proberäumen formulierte.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten führten zu einer begrenzten Schlussfolgerung, weil Kontext Musikproberäume.",
+            "Weil das Team eine begrenzte Schlussfolgerung zu den Proberäumen formulierte.",
         },
         {
           isCorrect: false,
-          label:
-            "Auf Grundlage der Daten zog es eine begrenzte Schlussfolgerung für den Kontext Musikproberäume.",
+          label: "Auf Grundlage der Daten formulierte über die Proberäume.",
         },
       ],
     },
@@ -38,27 +37,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Based on the data, a limited conclusion for this setting (music practice rooms).",
+            "Based on the data, a limited conclusion about the music practice rooms.",
         },
         {
           isCorrect: true,
           label:
-            "Based on the data, the team reached a limited conclusion for this setting (music practice rooms).",
+            "Based on the data, the team reached a limited conclusion about the music practice rooms.",
         },
         {
           isCorrect: false,
           label:
-            "Based on the data, the team reached a conclusion, which was limited, in this setting (music practice rooms).",
+            "The team that reached a limited conclusion about the music practice rooms based on the data.",
         },
         {
           isCorrect: false,
           label:
-            "The data led to a limited conclusion because this setting (music practice rooms).",
+            "Because the team reached a limited conclusion about the music practice rooms.",
         },
         {
           isCorrect: false,
-          label:
-            "Based on the data, it reached a limited conclusion for this setting (music practice rooms).",
+          label: "Based on the data, reached about the music practice rooms.",
         },
       ],
     },
@@ -68,7 +66,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Berdasarkan data, sebuah simpulan terbatas untuk konteks ruang latihan musik.",
+            "Berdasarkan data, sebuah simpulan terbatas tentang ruang latihan musik.",
         },
         {
           isCorrect: true,
@@ -78,17 +76,16 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Berdasarkan data, tim sampai pada simpulan, yang terbatas, dalam konteks ruang latihan musik.",
+            "Tim yang berdasarkan data menarik simpulan terbatas tentang ruang latihan musik.",
         },
         {
           isCorrect: false,
           label:
-            "Data menghasilkan simpulan terbatas karena konteks ruang latihan musik.",
+            "Karena tim menarik simpulan terbatas tentang ruang latihan musik.",
         },
         {
           isCorrect: false,
-          label:
-            "Berdasarkan data, hal itu menarik simpulan terbatas untuk konteks ruang latihan musik.",
+          label: "Berdasarkan data, menarik tentang ruang latihan musik.",
         },
       ],
     },

@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Zwei weitere unabhängige Archive bestätigen ebenfalls den Unterschied zwischen Ortsname und Handelszeit.",
+            "Zwei weitere unabhängige Archive liefern ebenfalls widersprüchliche Angaben zur Handelszeit.",
         },
         {
           isCorrect: false,
@@ -42,7 +42,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Two additional independent archives also show that the place name and trading time genuinely differ.",
+            "Two additional independent archives also give conflicting accounts of the trading time.",
         },
         {
           isCorrect: false,
@@ -71,7 +71,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dua arsip independen tambahan juga menunjukkan bahwa istilah dan waktu kegiatan memang berbeda.",
+            "Dua arsip independen tambahan juga memberikan keterangan yang saling berbeda tentang waktu kegiatan.",
         },
         {
           isCorrect: false,

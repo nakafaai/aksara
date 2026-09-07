@@ -27,7 +27,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Automatische Archivsuche ist nützlich, wenn ihre Ausgabe als begrenzter, prüf- und korrigierbarer Index gilt.",
+            "Automatisierung ist nützlich, weil sie Originalbilder durch Ausgaben ersetzt, die keiner weiteren Prüfung bedürfen.",
         },
       ],
     },
@@ -56,7 +56,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Automated archive search is useful when its output is treated as a limited index that can be inspected and corrected.",
+            "Automation is useful because it can replace original images with output that requires no further inspection.",
         },
       ],
     },
@@ -86,7 +86,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pencarian arsip otomatis bermanfaat jika hasil diperlakukan sebagai indeks terbatas yang dapat diperiksa dan dikoreksi.",
+            "Otomatisasi bermanfaat karena dapat menggantikan gambar asli dengan keluaran yang tidak perlu diperiksa lagi.",
         },
       ],
     },

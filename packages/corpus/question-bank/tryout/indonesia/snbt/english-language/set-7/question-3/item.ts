@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Because new leaf area reached 19 cm², compared with 12 and 13, holding plant variety, water, light duration, and lamp distance constant isolates using a blue light filter as the only possible cause.",
+            "Because new leaf area reached $$19\\text{ cm}^2$$, compared with $$12$$ and $$13$$, holding plant variety, water, light duration, and lamp distance constant isolates using a blue light filter as the only possible cause.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "New leaf area reached 19 cm², compared with 12 and 13. This supports an association under the tested conditions, but the filter's lower light intensity must be separated from colour in a stronger follow-up.",
+            "New leaf area reached $$19\\text{ cm}^2$$, compared with $$12$$ and $$13$$. This supports an association under the tested conditions, but the filter's lower light intensity must be separated from colour in a stronger follow-up.",
         },
       ],
     },

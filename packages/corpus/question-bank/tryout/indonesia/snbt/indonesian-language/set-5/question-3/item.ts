@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Karena kondisi perubahan menghasilkan 68, sedangkan nilai awal 46 dan pembanding 44, susunan kerikil, pasir, dan arang dengan ketebalan sama telah terisolasi sebagai satu-satunya penyebab selama volume awal, jenis wadah, dan lama pengendapan dibuat sama.",
+            "Karena kondisi perubahan menghasilkan $$68$$, sedangkan nilai awal $$46$$ dan pembanding $$44$$, susunan kerikil, pasir, dan arang dengan ketebalan sama telah terisolasi sebagai satu-satunya penyebab selama volume awal, jenis wadah, dan lama pengendapan dibuat sama.",
         },
         {
           isCorrect: false,
@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pada kondisi yang diuji, susunan kerikil, pasir, dan arang dengan ketebalan sama berkaitan dengan perubahan dari 46 dan 44 menjadi 68; karena kejernihan visual tidak membuktikan bahwa air aman diminum, pola itu perlu diuji lagi sebelum diperluas menjadi klaim umum.",
+            "Pada kondisi yang diuji, penyaringan berkaitan dengan rata-rata cahaya yang lewat sebesar $$68$$ persen, dibandingkan $$46$$ persen pada kondisi awal dan $$44$$ persen pada pembanding. Pola kejernihan perlu diuji ulang, sedangkan keamanan air memerlukan pengujian lain.",
         },
         {
           isCorrect: false,

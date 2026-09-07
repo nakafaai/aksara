@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Use the second meeting place because it anticipates closures around the neighborhood.",
+            "Use the second meeting place because it is outside the immediate neighborhood.",
         },
         {
           isCorrect: false,

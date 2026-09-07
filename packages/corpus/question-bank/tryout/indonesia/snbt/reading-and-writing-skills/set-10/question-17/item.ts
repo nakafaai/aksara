@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team wiederholte den Test von kleine Karten mit Gehzeiten erneut, um stärkere Belege als zuvor zu erhalten.",
+            "Das Team wird den Versuch mit kleinen Karten samt Gehzeiten erneut wiederholen, um belastbarere Belege als zuvor zu erhalten.",
         },
         {
           isCorrect: false,
           label:
-            "Um stärkere Belege zu erhalten, wurde der Test von kleine Karten mit Gehzeiten vom Team erneut wiederholt.",
+            "Um belastbarere Belege zu erhalten, wird der Versuch mit kleinen Karten samt Gehzeiten vom Team erneut wiederholt werden.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team führte eine weitere Wiederholung des Tests von kleine Karten mit Gehzeiten für stärkere Belege durch.",
+            "Das Team wird eine Tätigkeit durchführen, nämlich die Wiederholung des Versuchs mit kleinen Karten samt Gehzeiten, um belastbarere Belege zu erhalten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team wiederholte den Test, um stärkere Belege zu kleine Karten mit Gehzeiten zu erhalten, die es bereits getestet hatte.",
+            "Das Team wird den Versuch wiederholen, um belastbarere Belege zu kleinen Karten samt Gehzeiten zu erhalten, die es bereits getestet hat.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team wiederholte den Versuch mit folgender Änderung, um belastbarere Belege zu erhalten: kleine Karten mit Gehzeiten.",
+            "Das Team wird den Versuch mit kleinen Karten samt Gehzeiten wiederholen, um belastbarere Belege zu erhalten.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team repeated the test of small maps showing walking times again to obtain evidence that was stronger than before.",
+            "The team will repeat the test of small maps showing walking times again to obtain evidence that is stronger than before.",
         },
         {
           isCorrect: false,
           label:
-            "To obtain stronger evidence, the test of small maps showing walking times was repeated again by the team.",
+            "To obtain stronger evidence, the test of small maps showing walking times will be repeated again by the team.",
         },
         {
           isCorrect: false,
           label:
-            "The team carried out another repetition of the test of small maps showing walking times for stronger evidence.",
+            "The team will carry out the activity of repeating the test of small maps showing walking times to obtain stronger evidence.",
         },
         {
           isCorrect: false,
           label:
-            "The team repeated the test to obtain stronger evidence about small maps showing walking times, which it had already tested.",
+            "The team will repeat the test to obtain stronger evidence about small maps showing walking times that it has already tested.",
         },
         {
           isCorrect: true,
           label:
-            "The team repeated the test of small maps showing walking times to obtain stronger evidence.",
+            "The team will repeat the test of small maps showing walking times to obtain stronger evidence.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim mengulang kembali uji peta kecil yang menampilkan waktu tempuh untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
+            "Tim akan mengulang kembali uji peta kecil dengan waktu tempuh untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
         },
         {
           isCorrect: false,
           label:
-            "Untuk memperoleh bukti lebih kuat, uji peta kecil yang menampilkan waktu tempuh diulang kembali oleh tim.",
+            "Untuk memperoleh bukti yang lebih kuat, uji peta kecil dengan waktu tempuh akan diulang kembali oleh tim.",
         },
         {
           isCorrect: false,
           label:
-            "Tim melakukan pengulangan lain atas uji peta kecil yang menampilkan waktu tempuh demi bukti yang lebih kuat.",
+            "Tim akan melakukan kegiatan berupa pengulangan uji peta kecil dengan waktu tempuh demi memperoleh bukti yang lebih kuat.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengulang uji untuk memperoleh bukti lebih kuat tentang peta kecil yang menampilkan waktu tempuh yang telah diuji sebelumnya.",
+            "Tim akan mengulang uji untuk memperoleh bukti yang lebih kuat tentang peta kecil dengan waktu tempuh yang telah diuji sebelumnya.",
         },
         {
           isCorrect: true,
           label:
-            "Tim mengulang uji peta kecil yang menampilkan waktu tempuh untuk memperoleh bukti yang lebih kuat.",
+            "Tim akan mengulang uji peta kecil dengan waktu tempuh untuk memperoleh bukti yang lebih kuat.",
         },
       ],
     },

@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Suhu putaran ketiga membuktikan reflektor 45 derajat menghasilkan suhu 66 derajat Celsius pada semua tingkat iradiansi.",
+            "Suhu putaran ketiga membuktikan reflektor $$45$$ derajat menghasilkan suhu $$66$$ derajat Celsius pada semua tingkat iradiansi.",
         },
         {
           isCorrect: false,
@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Reflektor 45 derajat menghasilkan suhu tertinggi pada setiap putaran uji, tetapi sudut, bentuk oven, dan kondisi cuaca yang terbatas belum menetapkan sudut terbaik secara umum.",
+            "Reflektor $$45$$ derajat menghasilkan suhu tertinggi pada setiap putaran uji, tetapi sudut, bentuk oven, dan kondisi cuaca yang terbatas belum menetapkan sudut terbaik secara umum.",
         },
         {
           isCorrect: false,

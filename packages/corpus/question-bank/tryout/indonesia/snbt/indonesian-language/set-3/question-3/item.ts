@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Karena kondisi perubahan menghasilkan 18, sedangkan nilai awal 11 dan pembanding 12, pencahayaan enam jam dengan jarak lampu yang tetap telah terisolasi sebagai satu-satunya penyebab selama jenis benih, volume air, dan ukuran wadah dibuat sama.",
+            "Karena kondisi perubahan menghasilkan $$18$$, sedangkan nilai awal $$11$$ dan pembanding $$12$$, pencahayaan enam jam dengan jarak lampu yang tetap telah terisolasi sebagai satu-satunya penyebab selama jenis benih, volume air, dan ukuran wadah dibuat sama.",
         },
         {
           isCorrect: false,
@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pada kondisi yang diuji, pencahayaan enam jam dengan jarak lampu yang tetap berkaitan dengan perubahan dari 11 dan 12 menjadi 18; karena jumlah wadah sedikit dan pengamatan hanya berlangsung delapan hari, pola itu perlu diuji lagi sebelum diperluas menjadi klaim umum.",
+            "Pada kondisi yang diuji, pencahayaan enam jam dengan jarak lampu yang tetap menghasilkan rata-rata $$18$$ benih berkecambah per wadah, lebih tinggi daripada nilai awal $$11$$ dan pembanding $$12$$. Karena jumlah wadah sedikit dan pengamatan hanya berlangsung delapan hari, pola itu perlu diuji lagi sebelum diperluas menjadi klaim umum.",
         },
         {
           isCorrect: false,

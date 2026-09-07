@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$3\\frac{1}{2} \\text{ Meter}$$",
+          label: "$$3\\frac{1}{2} \\text{ m}$$",
         },
         {
           isCorrect: true,
-          label: "$$2\\frac{1}{2} \\text{ Meter}$$",
+          label: "$$2\\frac{1}{2} \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$4\\frac{1}{2} \\text{ Meter}$$",
+          label: "$$4\\frac{1}{2} \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$2\\frac{1}{3} \\text{ Meter}$$",
+          label: "$$2\\frac{1}{3} \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$3\\frac{1}{3} \\text{ Meter}$$",
+          label: "$$3\\frac{1}{3} \\text{ m}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$3\\frac{1}{2} \\text{ Meters}$$",
+          label: "$$3\\frac{1}{2} \\text{ m}$$",
         },
         {
           isCorrect: true,
-          label: "$$2\\frac{1}{2} \\text{ Meters}$$",
+          label: "$$2\\frac{1}{2} \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$4\\frac{1}{2} \\text{ Meters}$$",
+          label: "$$4\\frac{1}{2} \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$2\\frac{1}{3} \\text{ Meters}$$",
+          label: "$$2\\frac{1}{3} \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$3\\frac{1}{3} \\text{ Meters}$$",
+          label: "$$3\\frac{1}{3} \\text{ m}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$3\\frac{1}{2} \\text{ Meter}$$",
+          label: "$$3\\frac{1}{2} \\text{ m}$$",
         },
         {
           isCorrect: true,
-          label: "$$2\\frac{1}{2} \\text{ Meter}$$",
+          label: "$$2\\frac{1}{2} \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$4\\frac{1}{2} \\text{ Meter}$$",
+          label: "$$4\\frac{1}{2} \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$2\\frac{1}{3} \\text{ Meter}$$",
+          label: "$$2\\frac{1}{3} \\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$3\\frac{1}{3} \\text{ Meter}$$",
+          label: "$$3\\frac{1}{3} \\text{ m}$$",
         },
       ],
     },

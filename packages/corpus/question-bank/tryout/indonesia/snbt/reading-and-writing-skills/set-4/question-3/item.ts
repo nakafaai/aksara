@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Beobachtung bewies daher, dass die Änderung Fotobeschriftungen an den Rückgaberegalen den Unterschied verursachte.",
+            "Die Ausgangsbeobachtung bewies, dass Fotoetiketten den Ergebnisunterschied verursachten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team musste daher mehrere Merkmale im Kontext Sportgeräteausleihe ändern, bevor es erneut maß.",
+            "Das Team musste vor der nächsten Messung mehrere Merkmale des Dienstes gleichzeitig ändern.",
         },
         {
           isCorrect: false,
           label:
-            "Das erste Muster rechtfertigte daher die dauerhafte Einführung von Fotobeschriftungen an den Rückgaberegalen.",
+            "Das Ausgangsmuster rechtfertigte die dauerhafte Einführung von Fotoetiketten.",
         },
         {
           isCorrect: false,
           label:
-            "Die verbleibende Unsicherheit machte einen weiteren Vergleich daher überflüssig.",
+            "Die verbleibende Unsicherheit machte einen weiteren Vergleich überflüssig.",
         },
         {
           isCorrect: true,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Fotoetiketten an den Rückgaberegalen.",
+            "Die Hypothese musste deshalb durch zusätzliche Fotoetiketten an den Regalen geprüft werden.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The observation therefore established that photo labels on the return shelves caused the difference.",
+            "The baseline observation proved that photo labels caused the difference in results.",
         },
         {
           isCorrect: false,
           label:
-            "The team therefore needed to alter several features of sports equipment lending before measuring again.",
+            "The team needed to change several service features at once before measuring again.",
         },
         {
           isCorrect: false,
           label:
-            "The initial pattern therefore justified permanent adoption of photo labels on the return shelves.",
+            "The baseline pattern justified adopting photo labels permanently.",
         },
         {
           isCorrect: false,
           label:
-            "The remaining uncertainty therefore made another comparison unnecessary.",
+            "The remaining uncertainty made a further comparison unnecessary.",
         },
         {
           isCorrect: true,
           label:
-            "The hypothesis therefore needed a limited test of photo labels on the return shelves.",
+            "The hypothesis therefore needed to be tested by adding photo labels to the shelves.",
         },
       ],
     },
@@ -68,17 +68,16 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pengamatan itu membuktikan bahwa label foto pada rak pengembalian menyebabkan perbedaan.",
+            "Pengamatan awal membuktikan bahwa label foto menyebabkan perbedaan hasil.",
         },
         {
           isCorrect: false,
           label:
-            "Tim perlu mengubah beberapa unsur peminjaman alat olahraga sebelum melakukan pengukuran ulang.",
+            "Tim perlu mengubah beberapa unsur layanan sekaligus sebelum mengukur ulang.",
         },
         {
           isCorrect: false,
-          label:
-            "Pola awal itu membenarkan penerapan tetap label foto pada rak pengembalian.",
+          label: "Pola awal membenarkan penerapan permanen label foto.",
         },
         {
           isCorrect: false,
@@ -88,7 +87,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui label foto.",
+            "Oleh karena itu, hipotesis tersebut perlu diuji dengan menambahkan label foto pada rak.",
         },
       ],
     },

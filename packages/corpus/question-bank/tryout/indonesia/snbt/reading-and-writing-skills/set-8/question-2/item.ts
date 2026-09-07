@@ -7,25 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "frühere Ergebnisse ohne neue Messung verwenden",
+          label: "frühere Ergebnisse ohne neue Datenerhebung verwenden",
         },
         {
           isCorrect: true,
           label:
-            "einheitliche Kriterien und Verfahren anwenden, damit Ergebnisse vergleichbar sind",
+            "die Vorgaben zur Gruppengröße beibehalten, damit die Teilnahmebedingungen vergleichbar bleiben",
         },
         {
           isCorrect: false,
-          label:
-            "das Messgerät wechseln, sobald ein Wert nicht zur Erwartung passt",
+          label: "die Teilnehmerzahl bei unerwarteten Ergebnissen ändern",
         },
         {
           isCorrect: false,
-          label: "alle Werte vor der Mittelwertbildung angleichen",
+          label: "alle Ergebnisse vor der Mittelwertbildung angleichen",
         },
         {
           isCorrect: false,
-          label: "Teilnehmende zu einheitlichen Antworten verpflichten",
+          label: "alle Teilnehmenden zu derselben Frage verpflichten",
         },
       ],
     },
@@ -34,26 +33,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "using earlier results without making new measurements",
+          label: "using earlier results without collecting new data",
         },
         {
           isCorrect: true,
           label:
-            "applying consistent criteria and procedures so that results can be compared",
+            "retaining group-size requirements so that participant conditions remain comparable",
         },
         {
           isCorrect: false,
           label:
-            "changing the instrument whenever a value does not fit expectations",
+            "changing participant numbers whenever results do not meet expectations",
         },
         {
           isCorrect: false,
-          label: "making all values equal before calculating a mean",
+          label: "making all results equal before calculating a mean",
         },
         {
           isCorrect: false,
-          label:
-            "restricting participants so that they produce uniform answers",
+          label: "requiring every participant to ask the same question",
         },
       ],
     },
@@ -62,24 +60,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "menggunakan hasil lama tanpa melakukan pengukuran baru",
+          label: "menggunakan hasil lama tanpa mengumpulkan data baru",
         },
         {
           isCorrect: true,
           label:
-            "memakai kriteria dan prosedur yang konsisten agar hasil dapat dibandingkan",
+            "mempertahankan ketentuan ukuran kelompok agar kondisi peserta tetap sebanding",
         },
         {
           isCorrect: false,
-          label: "mengubah alat ukur setiap kali nilai tidak sesuai harapan",
+          label:
+            "mengubah jumlah peserta setiap kali hasil tidak sesuai harapan",
         },
         {
           isCorrect: false,
-          label: "menyamakan semua nilai sebelum menghitung rata-rata",
+          label: "menyamakan semua hasil sebelum menghitung rata-rata",
         },
         {
           isCorrect: false,
-          label: "membatasi peserta agar menghasilkan jawaban seragam",
+          label: "mewajibkan seluruh peserta memberikan pertanyaan yang sama",
         },
       ],
     },

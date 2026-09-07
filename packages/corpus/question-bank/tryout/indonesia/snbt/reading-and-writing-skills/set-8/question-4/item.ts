@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Änderung, Fragekarten an jedem Demonstrationstisch, ersetzte die Notwendigkeit, die ursprüngliche Unsicherheit zu messen.",
+            "Fragekarten machten die Zählung fragender Besuchender überflüssig.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, Fragekarten an jedem Demonstrationstisch, führte mehrere nicht trennbare Unterschiede ein.",
+            "Fragekarten ermöglichten die gleichzeitige Änderung vieler Merkmale der Führung.",
         },
         {
           isCorrect: true,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Fragekarten an jedem Demonstrationstisch.",
+            "Die zwei Einstiegsfragen jeder Karte boten einen konkreteren Ausgangspunkt als die Aufforderung, irgendetwas zu fragen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, Fragekarten an jedem Demonstrationstisch, erklärte, warum die Vergleichswerte identisch waren.",
+            "Die Karten wurden gewählt, weil bereits alle Vergleichswerte nachweislich gleich waren.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, Fragekarten an jedem Demonstrationstisch, betraf das Endergebnis statt die Quelle der Unsicherheit.",
+            "Die Karten wurden nur gewählt, weil das endgültige Testergebnis bereits feststand.",
         },
       ],
     },
@@ -38,27 +38,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change, question cards at each demonstration table, replaced the need to measure the original uncertainty.",
+            "Question cards made it unnecessary to count visitors who asked questions.",
         },
         {
           isCorrect: false,
-          label:
-            "The change, question cards at each demonstration table, introduced several differences that could not be separated.",
+          label: "Question cards allowed many tour features to change at once.",
         },
         {
           isCorrect: true,
           label:
-            "The change, question cards at each demonstration table, directly addressed the observed uncertainty.",
+            "The two opening questions on each card gave visitors a more specific starting point than an invitation to ask anything.",
         },
         {
           isCorrect: false,
           label:
-            "The change, question cards at each demonstration table, explained why the comparison values were identical.",
+            "The cards were chosen because all comparison values had proved equal.",
         },
         {
           isCorrect: false,
           label:
-            "The change, question cards at each demonstration table, addressed the final outcome rather than the source of uncertainty.",
+            "The cards were chosen only because the final test result was already certain.",
         },
       ],
     },
@@ -68,27 +67,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan berupa kartu pertanyaan di setiap meja demonstrasi menggantikan kebutuhan untuk mengukur ketidakpastian awal.",
+            "Kartu pertanyaan membuat jumlah pengunjung yang bertanya tidak perlu diukur.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa kartu pertanyaan di setiap meja demonstrasi menimbulkan beberapa perbedaan yang tidak dapat dipisahkan.",
+            "Kartu pertanyaan memungkinkan banyak unsur tur diubah sekaligus.",
         },
         {
           isCorrect: true,
           label:
-            "Perubahan berupa kartu pertanyaan untuk setiap meja demonstrasi langsung menanggapi keraguan yang diamati.",
+            "Dua pertanyaan awal pada kartu memberi pengunjung titik awal yang lebih khusus daripada undangan untuk bertanya apa saja.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa kartu pertanyaan di setiap meja demonstrasi menjelaskan mengapa nilai pembanding sama.",
+            "Kartu dipilih karena semua nilai pembanding sudah terbukti sama.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa kartu pertanyaan di setiap meja demonstrasi menanggapi hasil akhir, bukan sumber ketidakpastian.",
+            "Kartu dipilih hanya karena hasil akhir pengujiannya telah dipastikan.",
         },
       ],
     },

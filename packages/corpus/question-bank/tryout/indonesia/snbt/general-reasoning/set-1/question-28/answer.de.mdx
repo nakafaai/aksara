@@ -2,9 +2,19 @@ export const metadata = {
   title: "Lösung zu Aufgabe 28",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Zähle zunächst die Anordnungen, die alle Bedingungen gleichzeitig erfüllen. Da jede Anordnung gleich wahrscheinlich ist, teile diese Anzahl durch die Gesamtzahl aller Permutationen und kürze den Bruch vollständig.
+Alle Anordnungen sind gleich wahrscheinlich. Der Nenner der Wahrscheinlichkeit ist daher <InlineMath math="6!=720" />. Zähle die zulässigen Anordnungen schrittweise.
 
-Damit ist der gesuchte Wert <InlineMath math="\frac7{30}" />.
+Zuerst steht <InlineMath math="E" /> auf einer der <InlineMath math="4" /> inneren Positionen. Die übrigen Berichte lassen sich auf <InlineMath math="5!" /> Arten anordnen. Das ergibt <InlineMath math="4\times5!=480" /> Anordnungen.
+
+Ziehe davon die Anordnungen mit benachbarten <InlineMath math="A" /> und <InlineMath math="B" /> ab. Als gemeinsamer Block ergeben sie <InlineMath math="2\times5!" /> Anordnungen. Davon steht <InlineMath math="E" /> jedoch in <InlineMath math="2\times2\times4!" /> Fällen an einem Ende.
+
+<BlockMath math="\begin{aligned} N_{AB} &=2\times5!-2\times2\times4! \\ &=240-96=144 \\ N &=480-144=336 \end{aligned}" />
+
+Unter den Anordnungen mit getrennten <InlineMath math="A" /> und <InlineMath math="B" /> und einem inneren <InlineMath math="E" /> bildet der Tausch von <InlineMath math="C" /> und <InlineMath math="D" /> Paare mit umgekehrter Reihenfolge. In genau der Hälfte steht <InlineMath math="C" /> vor <InlineMath math="D" />.
+
+<BlockMath math="\begin{aligned} N_{\mathrm{valid}} &=336\div2=168 \\ P &=\frac{168}{720}=\frac{7}{30} \end{aligned}" />
+
+Die Wahrscheinlichkeit für alle Bedingungen beträgt <InlineMath math="\frac{7}{30}" />.

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Das Team wiederholte den Versuch mit folgender Änderung, um belastbarere Belege zu erhalten: einen nach Absagen aktualisierten digitalen Plan.",
+            "Das Team wird den Versuch mit dem Digitalplan wiederholen, um belastbarere Belege zu erhalten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team wiederholte den Test von ein nach Ausfällen aktualisierter digitaler Zeitplan erneut, um stärkere Belege als zuvor zu erhalten.",
+            "Das Team wird den Versuch mit dem Digitalplan erneut wiederholen, um belastbarere Belege als zuvor zu erhalten.",
         },
         {
           isCorrect: false,
           label:
-            "Um stärkere Belege zu erhalten, wurde der Test von ein nach Ausfällen aktualisierter digitaler Zeitplan vom Team erneut wiederholt.",
+            "Um belastbarere Belege zu erhalten, wird der Versuch mit dem Digitalplan vom Team erneut wiederholt werden.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team führte eine weitere Wiederholung des Tests von ein nach Ausfällen aktualisierter digitaler Zeitplan für stärkere Belege durch.",
+            "Das Team wird eine Tätigkeit durchführen, nämlich die Wiederholung des Versuchs mit dem Digitalplan, um belastbarere Belege zu erhalten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team wiederholte den Test, um stärkere Belege zu ein nach Ausfällen aktualisierter digitaler Zeitplan zu erhalten, die es bereits getestet hatte.",
+            "Das Team wird den Versuch wiederholen, um belastbarere Belege zu dem Digitalplan zu erhalten, den es bereits getestet hat.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The team repeated the test of a digital schedule updated after cancellations to obtain stronger evidence.",
+            "The team will repeat the test of the digital schedule to obtain stronger evidence.",
         },
         {
           isCorrect: false,
           label:
-            "The team repeated the test of a digital schedule updated after cancellations again to obtain evidence that was stronger than before.",
+            "The team will repeat the test of the digital schedule again to obtain evidence that is stronger than before.",
         },
         {
           isCorrect: false,
           label:
-            "To obtain stronger evidence, the test of a digital schedule updated after cancellations was repeated again by the team.",
+            "To obtain stronger evidence, the test of the digital schedule will be repeated again by the team.",
         },
         {
           isCorrect: false,
           label:
-            "The team carried out another repetition of the test of a digital schedule updated after cancellations for stronger evidence.",
+            "The team will carry out the activity of repeating the test of the digital schedule to obtain stronger evidence.",
         },
         {
           isCorrect: false,
           label:
-            "The team repeated the test to obtain stronger evidence about a digital schedule updated after cancellations, which it had already tested.",
+            "The team will repeat the test to obtain stronger evidence about the digital schedule that it has already tested.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Tim mengulang uji jadwal digital yang diperbarui setelah pembatalan untuk memperoleh bukti yang lebih kuat.",
+            "Tim akan mengulang uji jadwal digital setelah pembatalan untuk memperoleh bukti yang lebih kuat.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengulang kembali uji jadwal digital yang diperbarui setelah pembatalan untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
+            "Tim akan mengulang kembali uji jadwal digital setelah pembatalan untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
         },
         {
           isCorrect: false,
           label:
-            "Untuk memperoleh bukti lebih kuat, uji jadwal digital yang diperbarui setelah pembatalan diulang kembali oleh tim.",
+            "Untuk memperoleh bukti yang lebih kuat, uji jadwal digital setelah pembatalan akan diulang kembali oleh tim.",
         },
         {
           isCorrect: false,
           label:
-            "Tim melakukan pengulangan lain atas uji jadwal digital yang diperbarui setelah pembatalan demi bukti yang lebih kuat.",
+            "Tim akan melakukan kegiatan berupa pengulangan uji jadwal digital setelah pembatalan demi memperoleh bukti yang lebih kuat.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengulang uji untuk memperoleh bukti lebih kuat tentang jadwal digital yang diperbarui setelah pembatalan yang telah diuji sebelumnya.",
+            "Tim akan mengulang uji untuk memperoleh bukti yang lebih kuat tentang jadwal digital setelah pembatalan yang telah diuji sebelumnya.",
         },
       ],
     },

@@ -5,28 +5,22 @@ import { productionArgumentsError } from "#cli/production/error";
 
 /** Raw named options collected before domain decoding. */
 export interface RawProductionOptions {
-  manifestHash?: string;
   rebuild: boolean;
   recoveryId?: string;
-  recoveryManifestHash?: string;
   releaseId?: string;
   scope: string[];
 }
 
 type ProductionOption =
-  | "--manifest-hash"
   | "--rebuild"
   | "--recovery-id"
-  | "--recovery-manifest-hash"
   | "--release-id"
   | "--scope";
 type ValueProductionOption = Exclude<ProductionOption, "--rebuild">;
 type UniqueProductionOption = Exclude<ValueProductionOption, "--scope">;
 
 const OPTION_KEYS = {
-  "--manifest-hash": "manifestHash",
   "--recovery-id": "recoveryId",
-  "--recovery-manifest-hash": "recoveryManifestHash",
   "--release-id": "releaseId",
 } as const satisfies Record<UniqueProductionOption, keyof RawProductionOptions>;
 
@@ -35,10 +29,8 @@ function isProductionOption(
   value: string | undefined
 ): value is ProductionOption {
   return (
-    value === "--manifest-hash" ||
     value === "--rebuild" ||
     value === "--recovery-id" ||
-    value === "--recovery-manifest-hash" ||
     value === "--release-id" ||
     value === "--scope"
   );
@@ -54,9 +46,6 @@ function acceptsOption(command: ProductionCommand, option: ProductionOption) {
   }
   if (option === "--scope") {
     return command === "release";
-  }
-  if (option === "--manifest-hash" || option === "--recovery-manifest-hash") {
-    return command === "audit";
   }
   if (option === "--recovery-id") {
     return command !== "abort" && command !== "cleanup";

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Auf Grundlage der Daten formulierte das Team eine begrenzte Schlussfolgerung zu folgendem Kontext: Informationsstelle im Stadtpark.",
+            "Auf Grundlage der Daten formulierte das Team eine begrenzte Schlussfolgerung zur Informationsstelle im Stadtpark.",
         },
         {
           isCorrect: false,
           label:
-            "Auf Grundlage der Daten eine begrenzte Schlussfolgerung für den Kontext Informationsschalter im Stadtpark.",
+            "Auf Grundlage der Daten eine begrenzte Schlussfolgerung zur Informationsstelle im Stadtpark.",
         },
         {
           isCorrect: false,
           label:
-            "Auf Grundlage der Daten kam das Team zu einer Schlussfolgerung, die begrenzt war, im Kontext Informationsschalter im Stadtpark.",
+            "Das Team, das auf Grundlage der Daten eine begrenzte Schlussfolgerung zur Informationsstelle im Stadtpark formulierte.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten führten zu einer begrenzten Schlussfolgerung, weil Kontext Informationsschalter im Stadtpark.",
+            "Weil das Team eine begrenzte Schlussfolgerung zur Informationsstelle im Stadtpark formulierte.",
         },
         {
           isCorrect: false,
           label:
-            "Auf Grundlage der Daten zog es eine begrenzte Schlussfolgerung für den Kontext Informationsschalter im Stadtpark.",
+            "Auf Grundlage der Daten formulierte über die Informationsstelle im Stadtpark.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Based on the data, the team reached a limited conclusion for this setting (city park information desk).",
+            "Based on the data, the team reached a limited conclusion about the city park information desk.",
         },
         {
           isCorrect: false,
           label:
-            "Based on the data, a limited conclusion for this setting (city park information desk).",
+            "Based on the data, a limited conclusion about the city park information desk.",
         },
         {
           isCorrect: false,
           label:
-            "Based on the data, the team reached a conclusion, which was limited, in this setting (city park information desk).",
+            "The team that reached a limited conclusion about the city park information desk based on the data.",
         },
         {
           isCorrect: false,
           label:
-            "The data led to a limited conclusion because this setting (city park information desk).",
+            "Because the team reached a limited conclusion about the city park information desk.",
         },
         {
           isCorrect: false,
           label:
-            "Based on the data, it reached a limited conclusion for this setting (city park information desk).",
+            "Based on the data, reached about the city park information desk.",
         },
       ],
     },
@@ -73,22 +73,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Berdasarkan data, sebuah simpulan terbatas untuk konteks meja informasi taman kota.",
+            "Berdasarkan data, sebuah simpulan terbatas tentang pusat informasi taman kota.",
         },
         {
           isCorrect: false,
           label:
-            "Berdasarkan data, tim sampai pada simpulan, yang terbatas, dalam konteks meja informasi taman kota.",
+            "Tim yang berdasarkan data menarik simpulan terbatas tentang pusat informasi taman kota.",
         },
         {
           isCorrect: false,
           label:
-            "Data menghasilkan simpulan terbatas karena konteks meja informasi taman kota.",
+            "Karena tim menarik simpulan terbatas tentang pusat informasi taman kota.",
         },
         {
           isCorrect: false,
           label:
-            "Berdasarkan data, hal itu menarik simpulan terbatas untuk konteks meja informasi taman kota.",
+            "Berdasarkan data, menarik tentang pusat informasi taman kota.",
         },
       ],
     },

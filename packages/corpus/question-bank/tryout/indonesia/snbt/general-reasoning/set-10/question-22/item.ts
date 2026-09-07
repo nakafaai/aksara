@@ -40,7 +40,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$52{,}5\\%$$",
+          label: "$$52.5\\%$$",
         },
         {
           isCorrect: false,
@@ -48,7 +48,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "$$47{,}5\\%$$",
+          label: "$$47.5\\%$$",
         },
       ],
     },

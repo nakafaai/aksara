@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kondisi pembanding menghasilkan nilai rata-rata 19; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+            "Kondisi pembanding menghasilkan nilai rata-rata $$19$$. Karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
         {
           isCorrect: false,
@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Nilai 19 adalah kondisi pembanding untuk penunjuk arah; pasar malam yang lebih ramai belum termasuk dalam cakupan pengamatan.",
+            "Nilai $$19$$ adalah rata-rata pengunjung per periode pada kondisi pembanding untuk penunjuk arah. Pasar malam yang lebih ramai belum termasuk dalam cakupan pengamatan.",
         },
         {
           isCorrect: false,

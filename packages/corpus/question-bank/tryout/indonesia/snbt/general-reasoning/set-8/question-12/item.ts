@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Verträge verlängern sich automatisch, wenn Beschäftigte nicht aktiv widersprechen.",
+            "Verträge verlängern sich automatisch, sofern Beschäftigte kein Widerspruchsformular einreichen.",
         },
       ],
     },

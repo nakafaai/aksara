@@ -7,28 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "die Folge Studie des Teams im untersuchten Kontext (Informationsstelle im Stadtpark)",
+          label: "die Folge Studie des Teams zu Karten mit Gehzeiten",
         },
         {
           isCorrect: true,
-          label:
-            "die Folgestudie des Teams im untersuchten Kontext (Informationsstelle im Stadtpark)",
+          label: "die Folgestudie des Teams zu Karten mit Gehzeiten",
         },
         {
           isCorrect: false,
-          label:
-            "die Folge-studie des Teams im untersuchten Kontext (Informationsstelle im Stadtpark)",
+          label: "die Folge-studie des Teams zu Karten mit Gehzeiten",
         },
         {
           isCorrect: false,
-          label:
-            "die Folgestudie des Team im untersuchten Kontext (Informationsstelle im Stadtpark)",
+          label: "die Folgestudie des Team zu Karten mit Gehzeiten",
         },
         {
           isCorrect: false,
-          label:
-            "die Folge  Studie des Teams im untersuchten Kontext (Informationsstelle im Stadtpark)",
+          label: "die Folgestudie des Teems zu Karten mit Gehzeiten",
         },
       ],
     },
@@ -37,28 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "the team's follow up study of small maps showing walking times in this setting (city park information desk)",
+          label: "the team's follow up study of maps showing walking times",
         },
         {
           isCorrect: true,
-          label:
-            "the team's follow-up study of small maps showing walking times in this setting (city park information desk)",
+          label: "the team's follow-up study of maps showing walking times",
         },
         {
           isCorrect: false,
-          label:
-            "the team's followup study of small maps showing walking times in this setting (city park information desk)",
+          label: "the team's follow-uup study of maps showing walking times",
         },
         {
           isCorrect: false,
-          label:
-            "the teams' follow--up study of small maps showing walking times in this setting (city park information desk)",
+          label: "the teams' follow--up study of maps showing walking times",
         },
         {
           isCorrect: false,
-          label:
-            "the team follow-up-study of small maps showing walking times in this setting (city park information desk)",
+          label: "the team follow-up-study of maps showing walking times",
         },
       ],
     },
@@ -67,28 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "kerjasama tim dalam uji peta kecil yang menampilkan waktu tempuh di pusat informasi taman kota",
+          label: "kerjasama tim dalam uji peta dengan waktu tempuh",
         },
         {
           isCorrect: true,
-          label:
-            "kerja sama tim dalam uji peta kecil yang menampilkan waktu tempuh di pusat informasi taman kota",
+          label: "kerja sama tim dalam uji peta dengan waktu tempuh",
         },
         {
           isCorrect: false,
-          label:
-            "kerja-sama tim dalam uji peta kecil yang menampilkan waktu tempuh di pusat informasi taman kota",
+          label: "kerja-sama tim dalam uji peta dengan waktu tempuh",
         },
         {
           isCorrect: false,
-          label:
-            "kerja  sama tim dalam uji peta kecil yang menampilkan waktu tempuh di pusat informasi taman kota",
+          label: "kerja samah tim dalam uji peta dengan waktu tempuh",
         },
         {
           isCorrect: false,
-          label:
-            "kerja sama-sama tim dalam uji peta kecil yang menampilkan waktu tempuh di pusat informasi taman kota",
+          label: "kerja sama-sama tim dalam uji peta dengan waktu tempuh",
         },
       ],
     },

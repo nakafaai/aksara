@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Because the trial reached 44, compared with a baseline of 28 and a comparison value of 30, a map showing walking time from each bus stop should become permanent before the stated limitation is examined.",
+            "Because the trial reached $$44$$, compared with a baseline of $$28$$ and a comparison value of $$30$$, a map showing walking time from each bus stop should become permanent before the stated limitation is examined.",
         },
         {
           isCorrect: false,
@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The rise to 44, compared with a baseline of 28 and a comparison value of 30 supports a limited extension of a map showing walking time from each bus stop, while the fact that walking times differed for people with different mobility needs must shape the follow-up.",
+            "The rise to $$44$$, compared with $$28$$ at baseline and $$30$$ in the comparison, supports a limited extension of the map trial. Differences in mobility needs must shape the follow-up.",
         },
         {
           isCorrect: false,

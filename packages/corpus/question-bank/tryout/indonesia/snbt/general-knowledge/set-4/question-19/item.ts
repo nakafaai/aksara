@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Schilder, Grundstücksschreiben, Interviews und Koordinaten zeigen, dass alle drei Namen denselben Ort bezeichnen.",
+            "Schilder, Grundstücksunterlagen, Interviews und Koordinaten zeigen, dass alle drei Namen denselben Ort bezeichnen.",
         },
       ],
     },
@@ -58,7 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Signs, land letters, interviews, and coordinates show that all three names refer to the same location.",
+            "Signs, land records, interviews, and coordinates show that all three names refer to the same location.",
         },
       ],
     },

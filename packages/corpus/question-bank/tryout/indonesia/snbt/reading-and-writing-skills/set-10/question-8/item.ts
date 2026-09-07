@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Kochkurs für Jugendliche auf den kurzen Versuch.",
+            "Dennoch begrenzte das Team seine Schlussfolgerung auf den kurzen Versuch mit dieser Rezeptart.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch, begrenzte das Team seine Schlussfolgerung zum Kontext Kochkurs für Jugendliche auf den kurzen Versuch.",
+            "Dennoch, begrenzte das Team seine Schlussfolgerung auf den kurzen Versuch mit dieser Rezeptart.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch: begrenzte das Team seine Schlussfolgerung zum Kontext Kochkurs für Jugendliche auf den kurzen Versuch.",
+            "Dennoch: begrenzte das Team seine Schlussfolgerung auf den kurzen Versuch mit dieser Rezeptart.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch; begrenzte das Team seine Schlussfolgerung zum Kontext Kochkurs für Jugendliche auf den kurzen Versuch.",
+            "Dennoch begrenzte das Team, seine Schlussfolgerung auf den kurzen Versuch mit dieser Rezeptart.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Kochkurs für Jugendliche auf den kurzen Versuch?",
+            "Dennoch begrenzte das Team seine Schlussfolgerung auf den kurzen Versuch mit dieser Rezeptart?",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Nevertheless, the team limited its conclusion for this setting (teen cooking class) to the short trial.",
+            "Nevertheless, the team limited its conclusion to the short trial with that type of recipe.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless the team limited its conclusion for this setting (teen cooking class) to the short trial.",
+            "Nevertheless, the, team limited its conclusion to the short trial with that type of recipe.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless: the team limited its conclusion for this setting (teen cooking class) to the short trial.",
+            "Nevertheless: the team limited its conclusion to the short trial with that type of recipe.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless; the team limited its conclusion for this setting (teen cooking class) to the short trial.",
+            "Nevertheless, the team, limited its conclusion to the short trial with that type of recipe.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless, the team limited its conclusion for this setting (teen cooking class) to the short trial?",
+            "Nevertheless, the team limited its conclusion to the short trial with that type of recipe?",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Meskipun demikian, tim membatasi simpulan tentang kelas memasak remaja pada uji singkat tersebut.",
+            "Meskipun demikian, tim membatasi simpulan pada uji singkat dengan jenis resep tersebut.",
         },
         {
           isCorrect: false,
           label:
-            "Meskipun demikian tim membatasi simpulan tentang kelas memasak remaja pada uji singkat tersebut.",
+            "Meskipun demikian tim membatasi simpulan pada uji singkat dengan jenis resep tersebut.",
         },
         {
           isCorrect: false,
           label:
-            "Meskipun demikian: tim membatasi simpulan tentang kelas memasak remaja pada uji singkat tersebut.",
+            "Meskipun demikian: tim membatasi simpulan pada uji singkat dengan jenis resep tersebut.",
         },
         {
           isCorrect: false,
           label:
-            "Meskipun demikian; tim membatasi simpulan tentang kelas memasak remaja pada uji singkat tersebut.",
+            "Meskipun demikian, tim, membatasi simpulan pada uji singkat dengan jenis resep tersebut.",
         },
         {
           isCorrect: false,
           label:
-            "Meskipun demikian, tim membatasi simpulan tentang kelas memasak remaja pada uji singkat tersebut?",
+            "Meskipun demikian, tim membatasi simpulan pada uji singkat dengan jenis resep tersebut?",
         },
       ],
     },

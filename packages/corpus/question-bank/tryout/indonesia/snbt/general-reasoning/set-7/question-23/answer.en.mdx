@@ -2,9 +2,23 @@ export const metadata = {
   title: "Solution to Question 23",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-The number using exactly one service is <InlineMath math="(100+84+75)-2(38+30+26)+3(14)=113" />. Adding the 14 participants who use all three gives <InlineMath math="113+14=127" />.
+Let <InlineMath math="n_A" />, <InlineMath math="n_B" />, and <InlineMath math="n_C" /> count participants using only A, only B, and only C.
 
-Therefore, the requested value is <InlineMath math="127" />.
+For A, subtract both pairwise intersections from the total using A. Users of all three have then been subtracted twice, so add them back once. Apply the same method to B and C:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}n_A&=100-38-30+14\\&=46\end{aligned}" />
+  <BlockMath math="\begin{aligned}n_B&=84-38-26+14\\&=34\end{aligned}" />
+  <BlockMath math="\begin{aligned}n_C&=75-30-26+14\\&=33\end{aligned}" />
+</MathContainer>
+
+These three single-service groups are disjoint. Their total is:
+
+<BlockMath math="46+34+33=113" />
+
+The group using all three services is also separate from the single-service groups. The requested count is therefore:
+
+<BlockMath math="113+14=127" />

@@ -2,7 +2,21 @@ export const metadata = {
   title: "Solution to Question 8",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-08-30",
+  dateModified: "2026-09-07",
 };
 
-Rewrite the function as <InlineMath math="f(x)=2+\frac5{x-1}" />. The asymptote center is therefore <InlineMath math="(1,2)" />, the function decreases on each domain interval, and <InlineMath math="x>1" /> implies <InlineMath math="f(x)>2" />. Solving <InlineMath math="y=f(x)" /> for <InlineMath math="x" /> gives <InlineMath math="f^{-1}(y)=\frac{y+3}{y-2}" />. The function is undefined at <InlineMath math="x=1" />. The first four statements are true.
+Divide the numerator by the denominator to separate the constant part.
+
+<BlockMath math="f(x)=2+\frac5{x-1}" />
+
+The denominator excludes <InlineMath math="x=1" />. The fraction is never zero, so <InlineMath math="y=2" /> is outside the range. The asymptotes <InlineMath math="x=1" /> and <InlineMath math="y=2" /> intersect at <InlineMath math="(1,2)" />. When <InlineMath math="x>1" />, the fraction is positive, giving <InlineMath math="f(x)>2" />.
+
+On each interval <InlineMath math="(-\infty,1)" /> and <InlineMath math="(1,\infty)" />, the reciprocal <InlineMath math="\frac1{x-1}" /> decreases as <InlineMath math="x" /> increases. Multiplying by positive <InlineMath math="5" /> and adding <InlineMath math="2" /> preserves this behavior. For the inverse, solve <InlineMath math="y=f(x)" /> for <InlineMath math="x" />.
+
+<BlockMath math="\begin{aligned}
+y(x-1)&=2x+3 \\
+x(y-2)&=y+3 \\
+x&=\frac{y+3}{y-2}
+\end{aligned}" />
+
+Thus <InlineMath math="f^{-1}(x)=\frac{x+3}{x-2}" /> for <InlineMath math="x\ne2" />. The claims about the asymptote intersection, decreasing behavior, values to the right of the asymptote, and the inverse are all true. The value <InlineMath math="f(1)" /> is undefined.

@@ -1,4 +1,5 @@
 import { expect, layer } from "@effect/vitest";
+import { DateOnlySchema } from "@nakafa/aksara-contracts/date";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import type { QuestionBodyKind } from "@nakafa/aksara-contracts/question/identity";
 import {
@@ -24,9 +25,9 @@ import {
 
 const alteredHash = Sha256HashSchema.make(`sha256:${"2".repeat(64)}`);
 const EXPECTED_CONTENT_HASHES = [
-  "5822c9ba07d7e0a55ab1d204d478ae571f52eca3d9f13f6fd05e88e76a80caab",
-  "2e441e7c5b25e52c1211947bd81c8bf7774403d924a80f38abf93198ee355c82",
-  "1e42f5179b870666ba80bc7f87493bfd9fe2dab0cf11609b68e21a82c5008243",
+  "b515b7f19a11e40dc4384ed14d940a3b71eddeb6a8e8215699594f954283a4e1",
+  "ba7d4ce028b068ae1f9bb0a5dbcff11f99a628fc49f522dd7e153aa7d4293856",
+  "5783daa744e89c06f7b16f8852f1003f370c83b3549222a8a698560c5f08c8a8",
 ];
 
 /** Loads exact real bindings once for every content-binding test. */
@@ -197,16 +198,23 @@ contentTests("try-out content binding", (it) => {
     () =>
       Effect.gen(function* () {
         const { binding } = yield* TryoutContentTestFixtures;
+        const undated = yield* collectEnrichedTryoutContent(binding, undefined);
         const {
           blueprint,
           modifiedQuestionSource,
           questionSource,
           record,
           stimulusKey,
-        } = yield* collectEnrichedTryoutContent(binding);
+        } = yield* collectEnrichedTryoutContent(
+          binding,
+          DateOnlySchema.make("2026-08-30")
+        );
 
         expect(modifiedQuestionSource).not.toBe(questionSource);
         expect(record?.row).toMatchObject({ blueprint, stimulusKey });
+        expect(record?.row.contentHash).not.toBe(
+          undated.record?.row.contentHash
+        );
         expect(EXPECTED_CONTENT_HASHES).not.toContain(record?.row.contentHash);
       })
   );

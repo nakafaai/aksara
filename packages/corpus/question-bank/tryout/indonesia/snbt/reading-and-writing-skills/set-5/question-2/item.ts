@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "während des Versuchstags schrittweise erhöht",
+          label: "während der Versuchstermine schrittweise erhöht",
         },
         {
           isCorrect: false,
@@ -33,7 +33,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "increased gradually during the trial day",
+          label: "increased gradually during trial sessions",
         },
         {
           isCorrect: false,
@@ -59,7 +59,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "ditambah secara bertahap selama hari uji",
+          label: "ditambah secara bertahap selama sesi uji",
         },
         {
           isCorrect: false,

@@ -31,19 +31,4 @@ describe("release signing", () => {
     );
     expect(canonical).toContain('"activeAppLocales":["en","id","de"]');
   });
-
-  it("preserves predecessor scope ordering in authenticated bytes", () => {
-    const legacyManifest = {
-      ...release.manifest,
-      scope: {
-        content: [],
-        families: release.manifest.scope.families,
-        snapshots: release.manifest.scope.snapshots,
-      },
-    };
-
-    expect(canonicalizeContentReleaseManifest(legacyManifest)).toContain(
-      '"scope":{"content":[],"families":["material"],"snapshots":["program"]}'
-    );
-  });
 });

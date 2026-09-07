@@ -2,9 +2,25 @@ export const metadata = {
   title: "Solution to Question 30",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Checking feasible integer pairs gives the unique maximum at <InlineMath math="(X,Y)=(5,4)" /> with profit 60; the next-best feasible pair <InlineMath math="(4,5)" /> gives 57. Therefore <InlineMath math="XY=5(4)=20" />.
+Let the package counts be <InlineMath math="X" />, <InlineMath math="Y" />. The resource constraints and profit are
 
-Therefore, the requested value is <InlineMath math="20" />.
+<BlockMath math="\begin{aligned} 4X+Y&\le25 \\ 2X+3Y&\le24 \\ L&=8X+5Y \end{aligned}" />
+
+For each fixed count of the first package, profit increases with the count of the second. It is therefore enough to check the largest feasible second count.
+
+| <InlineMath math="X" /> | <InlineMath math="Y" /> (maximum) | Profit |
+| ---: | ---: | ---: |
+| <InlineMath math="0" /> | <InlineMath math="8" /> | <InlineMath math="40" /> |
+| <InlineMath math="1" /> | <InlineMath math="7" /> | <InlineMath math="43" /> |
+| <InlineMath math="2" /> | <InlineMath math="6" /> | <InlineMath math="46" /> |
+| <InlineMath math="3" /> | <InlineMath math="6" /> | <InlineMath math="54" /> |
+| <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="57" /> |
+| <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="60" /> |
+| <InlineMath math="6" /> | <InlineMath math="1" /> | <InlineMath math="53" /> |
+
+The table covers every feasible first-package count. The highest profit is <InlineMath math="60" /> at <InlineMath math="(X,Y)=(5,4)" />. The required product is
+
+<BlockMath math="XY=5\times4=20" />

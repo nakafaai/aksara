@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pengaruh Pencahayaan Enam Jam terhadap Perkecambahan Kacang Hijau",
+            "Uji Awal Pencahayaan Enam Jam pada Perkecambahan Kacang Hijau",
         },
         {
           isCorrect: false,

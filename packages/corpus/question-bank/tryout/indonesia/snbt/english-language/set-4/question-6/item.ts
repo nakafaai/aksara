@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The organisers of a local history display evaluated short captions that separated observation from interpretation through consultation alone, without comparing the measured outcome across conditions.",
+            "The organisers of a local history display evaluated revised captions that separated observation from interpretation through consultation alone, without comparing the measured outcome across conditions.",
         },
         {
           isCorrect: true,
           label:
-            "The organisers of a local history display evaluated short captions that separated observation from interpretation through a comparison and consultation with affected groups.",
+            "The organisers of a local history display evaluated revised captions that separated observation from interpretation through a comparison and consultation with affected groups.",
         },
         {
           isCorrect: false,
           label:
-            "The organisers of a local history display evaluated short captions that separated observation from interpretation through the measured comparison alone, while excluding the affected groups' experience from the decision.",
+            "The organisers of a local history display evaluated revised captions that separated observation from interpretation through the measured comparison alone, while excluding the affected groups' experience from the decision.",
         },
         {
           isCorrect: false,
           label:
-            "The organisers of a local history display evaluated short captions that separated observation from interpretation through a comparison and consultation, then treated the short trial as sufficient for permanent adoption.",
+            "The organisers of a local history display evaluated revised captions that separated observation from interpretation through a comparison and consultation, then treated the short trial as sufficient for permanent adoption.",
         },
         {
           isCorrect: false,
           label:
-            "The organisers of a local history display evaluated short captions that separated observation from interpretation mainly by defining a technical term, with the proposed change serving only as background information.",
+            "The organisers of a local history display evaluated revised captions that separated observation from interpretation mainly by defining a technical term, with the proposed change serving only as background information.",
         },
       ],
     },

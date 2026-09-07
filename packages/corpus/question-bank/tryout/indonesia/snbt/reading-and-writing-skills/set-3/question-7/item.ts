@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team testete die Änderung kontrastreichere Sammelplatzsymbole an ausgewählten Tagen, weil das frühere Verfahren bereits als unwirksam galt.",
+            "Das Team testete die neuen Symbole, weil die alten Schilder bereits nachweislich unwirksam waren.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team führte die Änderung kontrastreichere Sammelplatzsymbole dauerhaft ein, während das frühere Verfahren nur in den Rückmeldungen erhalten blieb.",
+            "Das Team führte die neuen Symbole dauerhaft ein, während die alte Karte nur im Archiv erhalten blieb.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team prüfte kontrastreichere Symbole für Sammelpunkte an ausgewählten Tagen, während an Vergleichstagen der bisherige Ablauf bestehen blieb.",
+            "Das Team nutzte in den Versuchsdurchgängen neue Symbole, während in den Vergleichsdurchgängen die bisherige Karte und die alten Schilder bestehen blieben.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team testete die Änderung kontrastreichere Sammelplatzsymbole und das frühere Verfahren an denselben Tagen ohne getrennte Vergleichsbedingungen.",
+            "Das Team nutzte die neuen Symbole und alten Schilder unter derselben Bedingung ohne getrennten Vergleich.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team verglich Tage mit der Änderung kontrastreichere Sammelplatzsymbole mit Rückmeldungen zum früheren Verfahren.",
+            "Das Team verglich die Nutzung der neuen Symbole mit Rückmeldungen zur alten Karte.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested higher-contrast assembly-point symbols on selected days because the earlier process had already been proved ineffective.",
+            "The team tested the new symbols because the old signs had already been proved ineffective.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested higher-contrast assembly-point symbols permanently, while the earlier process remained only in user records.",
+            "The team adopted the new symbols permanently, while the old map was kept only in the archive.",
         },
         {
           isCorrect: true,
           label:
-            "The team tested higher-contrast assembly-point symbols on selected days, while the earlier process remained on comparison days.",
+            "The team used new symbols in trial sessions, while comparison sessions retained the previous map and signs.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested higher-contrast assembly-point symbols and the earlier process on the same days without separate comparison conditions.",
+            "The team used the new symbols and old signs in the same condition without a separate comparison.",
         },
         {
           isCorrect: false,
           label:
-            "The team compared selected days using higher-contrast assembly-point symbols with comments about the earlier process.",
+            "The team compared use of the new symbols with participants’ comments about the old map.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji simbol titik kumpul dengan kontras lebih tinggi pada hari tertentu karena proses lama telah terbukti tidak efektif.",
+            "Tim menguji simbol baru karena penanda lama sudah terbukti tidak efektif.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menerapkan simbol titik kumpul dengan kontras lebih tinggi secara tetap, sedangkan proses lama hanya tersisa dalam catatan pengguna.",
+            "Tim menerapkan simbol baru secara permanen, sedangkan peta lama hanya disimpan dalam arsip.",
         },
         {
           isCorrect: true,
           label:
-            "Tim menguji simbol titik kumpul yang lebih kontras pada hari tertentu, sedangkan alur lama tetap digunakan pada hari pembanding.",
+            "Pada sesi uji, tim memakai simbol baru, sedangkan pada sesi pembanding peta dan penanda lama tetap digunakan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji simbol titik kumpul dengan kontras lebih tinggi dan proses lama pada hari yang sama tanpa kondisi pembanding terpisah.",
+            "Tim memakai simbol baru dan penanda lama dalam kondisi yang sama tanpa pembanding terpisah.",
         },
         {
           isCorrect: false,
           label:
-            "Tim membandingkan hari penggunaan simbol titik kumpul dengan kontras lebih tinggi dengan komentar tentang proses lama.",
+            "Tim membandingkan penggunaan simbol baru dengan komentar peserta tentang peta lama.",
         },
       ],
     },

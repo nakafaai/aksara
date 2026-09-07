@@ -2,9 +2,26 @@ export const metadata = {
   title: "Solution to Question 27",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-The initial price is 600. Without the voucher, the marked-up and taxed price would be <InlineMath math="600(1.30)(1.10)=858" />. Compared with the actual final price 792, the voucher reduces the final payment by <InlineMath math="858-792=66" />.
+All prices below are in thousand rupiah. The price after the markup and voucher deduction, before tax, is:
 
-Therefore, the requested value is <InlineMath math="66" />.
+<BlockMath math="792\div\frac{11}{10}=720" />
+
+Add the voucher back to recover the marked-up price. Divide by the markup factor to recover the initial price:
+
+<MathContainer>
+  <BlockMath math="720+60=780" />
+  <BlockMath math="780\div\frac{13}{10}=600" />
+</MathContainer>
+
+Without the voucher, the marked-up price remains <InlineMath math="780" />. After tax:
+
+<BlockMath math="780\times\frac{11}{10}=858" />
+
+Compared with the final price using the voucher, the additional payment is:
+
+<BlockMath math="858-792=66" />
+
+We can also check directly. Without the voucher, the taxable amount increases by <InlineMath math="60" /> thousand rupiah. Including tax, the extra payment is <InlineMath math="60\times11/10=66" /> thousand rupiah.

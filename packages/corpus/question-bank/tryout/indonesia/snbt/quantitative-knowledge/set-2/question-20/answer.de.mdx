@@ -2,44 +2,68 @@ export const metadata = {
   title: "Lösung zu Aufgabe 20",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-22",
+  dateModified: "2026-09-07",
 };
 
-Wir berechnen beide Integrale nacheinander.
+Für jedes Integral verwenden wir eine Stammfunktion. Das bestimmte Integral ergibt sich aus dem Wert der Stammfunktion an der oberen Grenze minus ihrem Wert an der unteren Grenze.
 
-#### Berechnung des ersten Integrals
+#### Das erste Integral berechnen
+
+Eine Stammfunktion von <InlineMath math="3x+5" /> lautet:
+
+<BlockMath math="F(x)=\frac32x^2+5x" />
+
+An den beiden Integrationsgrenzen ergeben sich die Werte:
+
+<BlockMath math="\begin{aligned}
+F(3)&=\frac{27}{2}+15 \\
+&=\frac{57}{2} \\
+F(1)&=\frac32+5 \\
+&=\frac{13}{2}
+\end{aligned}" />
+
+Damit gilt:
+
+<BlockMath math="\begin{aligned}
+I_1&=F(3)-F(1) \\
+&=\frac{57}{2}-\frac{13}{2} \\
+&=\frac{44}{2}=22
+\end{aligned}" />
+
+#### Das zweite Integral berechnen
+
+Eine Stammfunktion von <InlineMath math="2x-3" /> lautet:
+
+<BlockMath math="G(x)=x^2-3x" />
+
+Mit der unteren Grenze <InlineMath math="2" /> folgt:
 
 <MathContainer>
-  <BlockMath math="\int_{1}^{3} (3x + 5) dx = \left[ \frac{3}{2}x^2 + 5x \right]_{1}^{3}" />
-  <BlockMath math="= \left( \frac{3}{2}(3)^2 + 5(3) \right) - \left( \frac{3}{2}(1)^2 + 5(1) \right)" />
-  <BlockMath math="= \left( \frac{27}{2} + 15 \right) - \left( \frac{3}{2} + 5 \right)" />
-  <BlockMath math="= \frac{27}{2} + \frac{30}{2} - \frac{3}{2} - \frac{10}{2}" />
-  <BlockMath math="= \frac{44}{2} = 22" />
+  <BlockMath math="G(2)=4-6=-2" />
+  <BlockMath math="\begin{aligned}
+I_2&=G(b)-G(2) \\
+&=b^2-3b-(-2) \\
+&=b^2-3b+2
+\end{aligned}" />
 </MathContainer>
 
-#### Berechnung des zweiten Integrals
+#### Die obere Grenze bestimmen
 
-<MathContainer>
-  <BlockMath math="\int_{2}^{b} (2x - 3) dx = \left[ x^2 - 3x \right]_{2}^{b}" />
-  <BlockMath math="= (b^2 - 3b) - (2^2 - 3(2))" />
-  <BlockMath math="= (b^2 - 3b) - (4 - 6)" />
-  <BlockMath math="= b^2 - 3b - (-2)" />
-  <BlockMath math="= b^2 - 3b + 2" />
-</MathContainer>
+Die Summe der Integrale beträgt <InlineMath math="28" />. Somit gilt:
 
-#### Lösung der Gleichung
+<BlockMath math="\begin{aligned}
+I_2&=28-I_1 \\
+&=28-22=6
+\end{aligned}" />
 
-Ihre Summe beträgt laut Angabe <InlineMath math="28" />.
+Wir setzen den ermittelten Ausdruck für <InlineMath math="I_2" /> ein:
 
-<MathContainer>
-  <BlockMath math="22 + (b^2 - 3b + 2) = 28" />
-  <BlockMath math="b^2 - 3b + 24 = 28" />
-  <BlockMath math="b^2 - 3b - 4 = 0" />
-</MathContainer>
+<BlockMath math="\begin{aligned}
+b^2-3b+2&=6 \\
+b^2-3b-4&=0 \\
+(b-4)(b+1)&=0
+\end{aligned}" />
 
-Die quadratische Gleichung lässt sich faktorisieren:
+Es folgt <InlineMath math="b=4" /> oder <InlineMath math="b=-1" />. Wegen <InlineMath math="b>0" /> entfällt der negative Wert.
 
-<BlockMath math="(b - 4)(b + 1) = 0" />
-
-Damit gilt <InlineMath math="b = 4" /> oder <InlineMath math="b = -1" />.
-
-Wegen <InlineMath math="b > 0" /> bleibt nur <InlineMath math="b = 4" />.
+Für <InlineMath math="b=4" /> ist das zweite Integral gleich <InlineMath math="16-12+2=6" />. Zusammen mit dem ersten ergibt sich <InlineMath math="22+6=28" />, wie gefordert. Der gesuchte Wert ist daher <InlineMath math="b=4" />.

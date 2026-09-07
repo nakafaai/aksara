@@ -7,27 +7,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Erste Belege zu Beispielfotos für jede Zustandskategorie im Kontext „Straßenbaumerhebung“",
+          label: "Ausgangsdaten vor der Prüfung von Beispielfotos",
         },
         {
           isCorrect: false,
           label:
-            "Prüfung mehrerer gleichzeitiger Änderungen im Kontext „Straßenbaumerhebung“",
+            "Gleichzeitige Prüfung mehrerer Änderungen an der Baumerfassung",
         },
         {
           isCorrect: true,
           label:
-            "Geordnete Prüfung einer Änderung: Erfassung von Straßenbäumen",
+            "Beispielfotos für die Erfassung von Straßenbaumschäden im Test",
         },
         {
           isCorrect: false,
           label:
-            "Rückmeldungen zur dauerhaften Neugestaltung des Kontexts „Straßenbaumerhebung“",
+            "Rückmeldungen zur dauerhaften Neugestaltung der Baumerfassung",
         },
         {
           isCorrect: false,
-          label: "Vollständige Bewertung des Kontexts „Straßenbaumerhebung“",
+          label:
+            "Vollständige Bewertung aller Tätigkeiten bei der Baumerfassung",
         },
       ],
     },
@@ -36,25 +36,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Early evidence about sample photos for each condition category in the context of street-tree survey",
+          label: "Baseline Records Before Sample Photographs Were Tested",
         },
         {
           isCorrect: false,
-          label:
-            "Testing several simultaneous changes in the context of street-tree survey",
+          label: "Testing Several Simultaneous Changes to Tree Surveys",
         },
         {
           isCorrect: true,
-          label: "A structured test of one change: street-tree survey",
+          label: "Testing Sample Photographs in Street-Tree Condition Surveys",
         },
         {
           isCorrect: false,
-          label: "User reactions to a permanent redesign of street-tree survey",
+          label: "Observer Reactions to a Permanent Redesign of Tree Surveys",
         },
         {
           isCorrect: false,
-          label: "A complete evaluation of street-tree survey",
+          label: "A Complete Evaluation of All Tree-Survey Activities",
         },
       ],
     },
@@ -63,26 +61,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Bukti awal tentang foto contoh untuk setiap kategori kondisi dalam konteks survei pohon jalan",
+          label: "Catatan Awal Sebelum Contoh Foto Diuji",
         },
         {
           isCorrect: false,
-          label:
-            "Pengujian beberapa perubahan serentak dalam konteks survei pohon jalan",
+          label: "Pengujian Beberapa Perubahan Serentak dalam Pendataan Pohon",
         },
         {
           isCorrect: true,
-          label: "Uji Teratur atas Satu Perubahan: pendataan pohon jalan",
+          label: "Pengujian Contoh Foto dalam Pendataan Kondisi Pohon Jalan",
         },
         {
           isCorrect: false,
           label:
-            "Tanggapan pengguna terhadap perancangan ulang tetap pada survei pohon jalan",
+            "Tanggapan Pencatat terhadap Perancangan Ulang Permanen Pendataan",
         },
         {
           isCorrect: false,
-          label: "Evaluasi menyeluruh terhadap survei pohon jalan",
+          label: "Evaluasi Menyeluruh atas Semua Kegiatan Pendataan Pohon",
         },
       ],
     },

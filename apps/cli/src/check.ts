@@ -1,6 +1,7 @@
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { validateContentCatalog } from "@nakafa/aksara-publisher/catalog/validation";
 import { Effect, Schema } from "effect";
+import { findAksaraRoot } from "#cli/checkout";
 import { readPreviewEnvironment } from "#cli/environment/read";
 import {
   readCleanAksaraRevision,
@@ -16,15 +17,16 @@ export class CatalogCheckBlockedError extends Schema.TaggedError<CatalogCheckBlo
 ) {}
 
 /** Runs complete read-only validation against the actual Nakafa renderer. */
-export function runCheckCommand(cwd: string) {
-  return Effect.gen(function* () {
+export const runCheckCommand = Effect.fn("AksaraCli.runCheckCommand")(
+  function* (cwd: string) {
+    const aksaraRoot = yield* findAksaraRoot(cwd);
+    const revision = yield* readCleanAksaraRevision(aksaraRoot);
     const environment = yield* readPreviewEnvironment();
     const renderer = yield* openRendererSession({
-      cwd,
+      cwd: aksaraRoot,
       environment,
       selection: { kind: "catalog" },
     });
-    const revision = yield* readCleanAksaraRevision(renderer.aksaraRoot);
     const validation = yield* validateContentCatalog({
       checkoutRoot: renderer.aksaraRoot,
       rendererManifest: renderer.manifest,
@@ -63,5 +65,7 @@ export function runCheckCommand(cwd: string) {
       });
     }
     return validation;
-  }).pipe(Effect.provide(NakafaAppLive), Effect.scoped);
-}
+  },
+  Effect.provide(NakafaAppLive),
+  Effect.scoped
+);

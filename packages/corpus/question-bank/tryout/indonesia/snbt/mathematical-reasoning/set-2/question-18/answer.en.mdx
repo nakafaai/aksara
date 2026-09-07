@@ -1,33 +1,25 @@
 export const metadata = {
   title: "Solution to Question 18",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2026-02-01",
 };
 
-**Strategy to Minimize Average**
+#### Choosing the lowest scores
 
-To find the **smallest possible average** score, we must make every participant's score as low as possible while strictly adhering to the constraints given in the problem.
+The smallest mean occurs when the total score is as small as possible. The participants form two groups with different score limits:
 
-We have a total of <InlineMath math="60" /> participants divided into two groups based on the information provided:
-1. First group: <InlineMath math="21" /> participants with scores <InlineMath math="\geq 80" />.
-2. Second group: The remaining <InlineMath math="60 - 21 = 39" /> participants with scores <InlineMath math="< 80" />.
+- <InlineMath math="21" /> participants scored at least <InlineMath math="80" />. The lowest possible score for each of them is <InlineMath math="80" />.
+- The remaining <InlineMath math="60-21=39" /> participants scored below <InlineMath math="80" />. The score range starts at <InlineMath math="0" />, so each of them can score <InlineMath math="0" />.
 
-**Determining Minimum Scores for Each Group**
+Both choices satisfy the conditions. Lowering any score further would violate its lower limit.
 
-To minimize the total sum (and consequently the average), we assign the lowest possible scores to each group:
+#### Calculating the mean
 
-*   **For the <InlineMath math="21" /> participants (scores <InlineMath math="\geq 80" />):** The smallest value satisfying this condition is exactly <InlineMath math="80" />. We assume all <InlineMath math="21\text{ people}" /> scored exactly <InlineMath math="80" />.
-*   **For the other <InlineMath math="39" /> participants (scores <InlineMath math="< 80" />):** Since the score range is <InlineMath math="0" /> to <InlineMath math="100" />, the lowest possible score they can get is <InlineMath math="0" />. We assume all <InlineMath math="39\text{ people}" /> scored <InlineMath math="0" />.
+Let <InlineMath math="S" /> be the total score. With these lowest possible scores:
 
-**Calculating the Smallest Average**
+<BlockMath math="\begin{aligned} S&=21\times80+39\times0 \\ &=1{,}680+0 \\ &=1{,}680 \end{aligned}" />
 
-Now we calculate the average based on this minimum score scenario:
+There are still <InlineMath math="60" /> participants, so the smallest mean is:
 
-<MathContainer>
-  <BlockMath math="\bar{x}_{\text{min}} = \frac{(21 \times 80) + (39 \times 0)}{60}" />
-  <BlockMath math="\bar{x}_{\text{min}} = \frac{1{,}680 + 0}{60}" />
-  <BlockMath math="\bar{x}_{\text{min}} = \frac{1{,}680}{60}" />
-  <BlockMath math="\bar{x}_{\text{min}} = 28" />
-</MathContainer>
-
-Thus, the smallest possible average score for the <InlineMath math="60" /> participants is <InlineMath math="28" />.
+<BlockMath math="\bar{x}_{\min}=\frac{1{,}680}{60}=28" />

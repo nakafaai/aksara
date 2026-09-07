@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Deshalb blieb die Schlussfolgerung zu Büchertauschmarkt begrenzt.",
+            "Der Mittelwert war im Versuch höher. Deshalb blieb die Schlussfolgerung zum Büchertauschmarkt begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Außerdem blieb die Schlussfolgerung zu Büchertauschmarkt begrenzt.",
+            "Der Mittelwert war im Versuch höher. Außerdem blieb die Schlussfolgerung zum Büchertauschmarkt begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Zuvor blieb die Schlussfolgerung zu Büchertauschmarkt begrenzt.",
+            "Der Mittelwert war im Versuch höher. Zuvor blieb die Schlussfolgerung zum Büchertauschmarkt begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Folglich blieb die Schlussfolgerung zu Büchertauschmarkt begrenzt.",
+            "Der Mittelwert war im Versuch höher. Folglich blieb die Schlussfolgerung zum Büchertauschmarkt begrenzt.",
         },
         {
           isCorrect: true,
           label:
-            "Die Zahlen stiegen. Dennoch blieb die Schlussfolgerung für diesen Kontext begrenzt: Büchertauschmarkt.",
+            "Der Mittelwert war im Versuch höher. Dennoch blieb die Schlussfolgerung zum Büchertauschmarkt begrenzt.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The figures increased. Therefore, the conclusion about the book exchange market remained limited.",
+            "The trial mean was higher. Therefore, the conclusion about the book exchange remained limited.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Moreover, the conclusion about the book exchange market remained limited.",
+            "The trial mean was higher. Moreover, the conclusion about the book exchange remained limited.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Previously, the conclusion about the book exchange market remained limited.",
+            "The trial mean was higher. Previously, the conclusion about the book exchange remained limited.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Consequently, the conclusion about the book exchange market remained limited.",
+            "The trial mean was higher. Consequently, the conclusion about the book exchange remained limited.",
         },
         {
           isCorrect: true,
           label:
-            "The figures increased. Nevertheless, the conclusion for this setting (book exchange market) remained limited.",
+            "The trial mean was higher. Nevertheless, the conclusion about the book exchange remained limited.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Oleh karena itu, simpulan tentang pasar tukar buku tetap dibatasi.",
+            "Rata-rata sesi uji lebih tinggi. Oleh karena itu, simpulan tentang pasar tukar buku tetap dibatasi.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Selain itu, simpulan tentang pasar tukar buku tetap dibatasi.",
+            "Rata-rata sesi uji lebih tinggi. Selain itu, simpulan tentang pasar tukar buku tetap dibatasi.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Sebelumnya, simpulan tentang pasar tukar buku tetap dibatasi.",
+            "Rata-rata sesi uji lebih tinggi. Sebelumnya, simpulan tentang pasar tukar buku tetap dibatasi.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Akibatnya, simpulan tentang pasar tukar buku tetap dibatasi.",
+            "Rata-rata sesi uji lebih tinggi. Akibatnya, simpulan tentang pasar tukar buku tetap dibatasi.",
         },
         {
           isCorrect: true,
           label:
-            "Angka meningkat. Namun, simpulan tentang pasar tukar buku tetap dibatasi.",
+            "Rata-rata sesi uji lebih tinggi. Namun, simpulan tentang pasar tukar buku tetap dibatasi.",
         },
       ],
     },

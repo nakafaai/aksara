@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Lärmprotokoll der Nachbarschaft gaben kurze und knappe Rückmeldungen.",
+            "Die Freiwilligen des Lärmprotokolls gaben kurze Rückmeldungen, die nicht lang waren.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Lärmprotokoll der Nachbarschaft gaben ihre eigenen kurzen Rückmeldungen persönlich ab.",
+            "Die Freiwilligen des Lärmprotokolls gaben kurze Rückmeldungen als Freiwillige, die am Lärmprotokoll arbeiteten.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Lärmprotokoll der Nachbarschaft gaben kurze Rückmeldungen in knapper Form.",
+            "Die Freiwilligen des Lärmprotokolls gaben kurze Rückmeldungen in kurzer Form.",
         },
         {
           isCorrect: true,
           label:
-            "Die Nutzenden im untersuchten Kontext (Lärmprotokoll im Wohngebiet) gaben kurze Rückmeldungen.",
+            "Die Freiwilligen des Lärmprotokolls gaben kurze Rückmeldungen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Lärmprotokoll der Nachbarschaft gaben kurze Rückmeldungen über ihre Erfahrungen in diesem Kontext.",
+            "Die Freiwilligen des Lärmprotokolls gaben kurze Rückmeldungen, also Rückmeldungen von geringer Länge.",
         },
       ],
     },
@@ -38,27 +38,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Users in this setting (neighbourhood noise log) provided comments that were brief and concise.",
+            "The noise-log volunteers gave brief comments that were not long.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (neighbourhood noise log) provided their own brief comments personally.",
+            "The noise-log volunteers gave brief comments as volunteers working on the noise log.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (neighbourhood noise log) provided brief comments in a short form.",
+            "The noise-log volunteers gave brief comments in a brief form.",
         },
         {
           isCorrect: true,
-          label:
-            "Users in this setting (neighbourhood noise log) provided brief comments.",
+          label: "The noise-log volunteers gave brief comments.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (neighbourhood noise log) provided brief comments about their experience in this setting.",
+            "The noise-log volunteers gave brief comments, meaning comments that were short.",
         },
       ],
     },
@@ -68,27 +67,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pengguna sistem pencatatan kebisingan lingkungan memberikan komentar yang singkat dan ringkas.",
+            "Relawan pencatatan kebisingan memberikan komentar singkat yang tidak panjang.",
         },
         {
           isCorrect: false,
           label:
-            "Pengguna sistem pencatatan kebisingan lingkungan memberikan komentar singkat mereka sendiri secara pribadi.",
+            "Relawan pencatatan kebisingan memberikan komentar singkat sebagai relawan yang mencatat kebisingan.",
         },
         {
           isCorrect: false,
           label:
-            "Pengguna sistem pencatatan kebisingan lingkungan memberikan komentar singkat dalam bentuk pendek.",
+            "Relawan pencatatan kebisingan memberikan komentar singkat dalam bentuk yang singkat.",
         },
         {
           isCorrect: true,
-          label:
-            "Pengguna sistem pencatatan kebisingan lingkungan memberikan komentar singkat.",
+          label: "Relawan pencatatan kebisingan memberikan komentar singkat.",
         },
         {
           isCorrect: false,
           label:
-            "Pengguna sistem pencatatan kebisingan lingkungan memberikan komentar singkat tentang pengalaman mereka dalam sistem tersebut.",
+            "Relawan pencatatan kebisingan memberikan komentar singkat, yaitu komentar yang pendek.",
         },
       ],
     },

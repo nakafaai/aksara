@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Stundenpläne, Fotos, Raumschreiben und weitere Interviews zeigen einen schrittweisen Umzug.",
+            "Stundenpläne, Fotos, Raumnutzungsunterlagen und weitere Interviews zeigen einen schrittweisen Umzug.",
         },
         {
           isCorrect: false,
@@ -43,7 +43,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Timetables, photographs, room letters, and additional interviews show that the move occurred in stages.",
+            "Timetables, photographs, room-use records, and additional interviews show that the move occurred in stages.",
         },
         {
           isCorrect: false,
@@ -73,7 +73,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Jadwal, foto, surat ruang, dan wawancara tambahan menunjukkan perpindahan berlangsung bertahap.",
+            "Jadwal, foto, surat penggunaan ruang, dan wawancara tambahan menunjukkan perpindahan berlangsung bertahap.",
         },
         {
           isCorrect: false,

@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Das Kind nimmt wenig Fett und viel Vitamin B6 auf",
+          label: "Das Kind nimmt wenig Fett und Vitamin B6 auf",
         },
         {
           isCorrect: true,
@@ -19,11 +19,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Fleisch kann viel Fett, aber wenig Vitamin B6 liefern",
+          label: "Auch andere Lebensmittel können Vitamin B6 liefern",
         },
         {
           isCorrect: false,
-          label: "Manche Kinder, die Bananen essen, nehmen viel Vitamin B6 auf",
+          label: "Manche Kinder, die Bananen essen, nehmen Vitamin B6 auf",
         },
       ],
     },
@@ -32,7 +32,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The child gets a small amount of fat and a lot of vitamin B6",
+          label: "The child gets a small amount of fat and vitamin B6",
         },
         {
           isCorrect: true,
@@ -44,11 +44,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Meat can provide a lot of fat but little vitamin B6",
+          label: "Bananas are not the only food that can provide vitamin B6",
         },
         {
           isCorrect: false,
-          label: "Some children who eat bananas get a lot of vitamin B6",
+          label: "Some children who eat bananas get vitamin B6",
         },
       ],
     },
@@ -57,7 +57,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Anak memperoleh sedikit lemak dan banyak vitamin B6",
+          label: "Anak memperoleh sedikit lemak dan vitamin B6",
         },
         {
           isCorrect: true,
@@ -70,11 +70,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Daging dapat memberikan banyak lemak tetapi sedikit vitamin B6",
+            "Pisang bukan satu-satunya makanan yang dapat memberikan vitamin B6",
         },
         {
           isCorrect: false,
-          label: "Sebagian anak yang makan pisang memperoleh banyak vitamin B6",
+          label: "Sebagian anak yang makan pisang memperoleh vitamin B6",
         },
       ],
     },

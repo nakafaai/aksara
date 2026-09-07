@@ -18,12 +18,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Nisa menghadapi hambatan dalam mengikuti latihan mandiri di pasar dan memahami empati sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
+            "Nisa menghadapi hambatan dalam mengikuti latihan mandiri di pasar dan memahami advokasi diri sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
         },
         {
           isCorrect: true,
           label:
-            "Nisa mengubah kesulitan melewati lorong pasar menjadi catatan rute dan usulan tanda akses, lalu ikut menilai tanda yang diuji pengelola.",
+            "Nisa mengubah kesulitan melewati lorong pasar menjadi catatan rute dan usulan tanda akses, lalu diminta menilai tanda yang diuji pengelola.",
         },
         {
           isCorrect: false,

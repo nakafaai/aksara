@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Informationsschalter im Stadtpark gaben kurze und knappe Rückmeldungen.",
+            "Die Parkbesuchenden gaben kurze Rückmeldungen, die nicht lang waren.",
         },
         {
           isCorrect: true,
-          label:
-            "Die Nutzenden im untersuchten Kontext (Informationsstelle im Stadtpark) gaben kurze Rückmeldungen.",
+          label: "Die Parkbesuchenden gaben kurze Rückmeldungen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Informationsschalter im Stadtpark gaben ihre eigenen kurzen Rückmeldungen persönlich ab.",
+            "Die Parkbesuchenden gaben kurze Rückmeldungen als Personen, die den Park besuchten.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Informationsschalter im Stadtpark gaben kurze Rückmeldungen in knapper Form.",
+            "Die Parkbesuchenden gaben kurze Rückmeldungen in kurzer Form.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Informationsschalter im Stadtpark gaben kurze Rückmeldungen über ihre Erfahrungen in diesem Kontext.",
+            "Die Parkbesuchenden gaben kurze Rückmeldungen, also Rückmeldungen von geringer Länge.",
         },
       ],
     },
@@ -37,28 +36,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Users in this setting (city park information desk) provided comments that were brief and concise.",
+          label: "The park visitors gave brief comments that were not long.",
         },
         {
           isCorrect: true,
-          label:
-            "Users in this setting (city park information desk) provided brief comments.",
+          label: "The park visitors gave brief comments.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (city park information desk) provided their own brief comments personally.",
+            "The park visitors gave brief comments as people visiting the park.",
+        },
+        {
+          isCorrect: false,
+          label: "The park visitors gave brief comments in a brief form.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (city park information desk) provided brief comments in a short form.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Users in this setting (city park information desk) provided brief comments about their experience in this setting.",
+            "The park visitors gave brief comments, meaning comments that were short.",
         },
       ],
     },
@@ -68,27 +64,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pengguna pusat informasi taman kota memberikan komentar yang singkat dan ringkas.",
+            "Pengunjung taman memberikan komentar singkat yang tidak panjang.",
         },
         {
           isCorrect: true,
-          label:
-            "Pengguna pusat informasi taman kota memberikan komentar singkat.",
+          label: "Pengunjung taman memberikan komentar singkat.",
         },
         {
           isCorrect: false,
           label:
-            "Pengguna pusat informasi taman kota memberikan komentar singkat mereka sendiri secara pribadi.",
+            "Pengunjung taman memberikan komentar singkat sebagai orang yang mengunjungi taman.",
         },
         {
           isCorrect: false,
           label:
-            "Pengguna pusat informasi taman kota memberikan komentar singkat dalam bentuk pendek.",
+            "Pengunjung taman memberikan komentar singkat dalam bentuk yang singkat.",
         },
         {
           isCorrect: false,
           label:
-            "Pengguna pusat informasi taman kota memberikan komentar singkat tentang pengalaman mereka di pusat tersebut.",
+            "Pengunjung taman memberikan komentar singkat, yaitu komentar yang pendek.",
         },
       ],
     },

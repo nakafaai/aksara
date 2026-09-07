@@ -2,11 +2,18 @@ export const metadata = {
   title: "Lösung zu Aufgabe 2",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Die Kosten für <InlineMath math="n" /> Karten betragen
+Mit <InlineMath math="C(n)" /> bezeichnen wir die Kosten für <InlineMath math="n" /> Karten in Tausend Rupiah. Es gibt <InlineMath math="\lfloor n/5\rfloor" /> vollständige Fünfergruppen. Damit gilt
 
 <BlockMath math="C(n)=12n+18-10\left\lfloor\frac n5\right\rfloor" />
 
-Für <InlineMath math="n=13" /> gilt <InlineMath math="C(13)=156+18-20=154" />. Bei <InlineMath math="n=14" /> entstehen Kosten von <InlineMath math="168+18-20=166" /> und damit mehr als das Budget. Maximal sind **13 Karten** möglich.
+Für die beiden Kartenanzahlen an der Budgetgrenze ergibt sich:
+
+<MathContainer>
+  <BlockMath math="C(13)=156+18-20=154" />
+  <BlockMath math="C(14)=168+18-20=166" />
+</MathContainer>
+
+Jede weitere Karte erhöht die Kosten um <InlineMath math="12" /> Tausend Rupiah. Vervollständigt sie eine weitere Fünfergruppe, beträgt der Anstieg <InlineMath math="12-10=2" /> Tausend Rupiah. Die Kosten steigen also stets an. Deshalb überschreitet auch jede Anzahl über <InlineMath math="14" /> das Budget. Maximal sind somit <InlineMath math="13" /> Karten möglich.

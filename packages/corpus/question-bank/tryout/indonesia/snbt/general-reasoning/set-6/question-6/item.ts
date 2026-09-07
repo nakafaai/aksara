@@ -23,7 +23,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Tanz hat in Klasse X die wenigsten Teilnehmenden",
+          label:
+            "Unter den drei Jahrgangsstufen hat Klasse X die wenigsten Tanzinteressierten",
         },
       ],
     },
@@ -49,7 +50,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "The lowest interest in dance is in Grade X",
+          label:
+            "Grade X has the fewest dance participants among the three grades",
         },
       ],
     },
@@ -74,7 +76,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Kegemaran seni tari yang paling sedikit ada di kelas X",
+          label:
+            "Di antara ketiga jenjang, kelas X memiliki peminat seni tari paling sedikit",
         },
       ],
     },

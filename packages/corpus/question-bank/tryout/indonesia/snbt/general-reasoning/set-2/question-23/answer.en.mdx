@@ -2,9 +2,19 @@ export const metadata = {
   title: "Solution to Question 23",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Apply inclusion-exclusion, then distinguish carefully whether the prompt asks for exactly one, exactly two, at least two, or none of the three sets. Participants in all three sets must be counted with the correct multiplicity during this regrouping.
+Each pairwise intersection includes the <InlineMath math="10" /> people who use all three services. Subtract those people from each intersection to obtain the counts for exactly two services.
 
-Therefore, the requested value is <InlineMath math="33" />.
+| Only these services | Number of users |
+| :--- | :---: |
+| <InlineMath math="A,B" /> | <InlineMath math="25-10=15" /> |
+| <InlineMath math="A,C" /> | <InlineMath math="20-10=10" /> |
+| <InlineMath math="B,C" /> | <InlineMath math="18-10=8" /> |
+
+The resulting groups are disjoint, so add their counts.
+
+<BlockMath math="15+10+8=33" />
+
+Therefore, **<InlineMath math="33" /> participants** use exactly two services.

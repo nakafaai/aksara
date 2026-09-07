@@ -2,9 +2,17 @@ export const metadata = {
   title: "Solution to Question 23",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Start with <InlineMath math="|A\cup B|=80+70-29=121" />. Among these, the number who also use C is <InlineMath math="24+20-10=34" /> because the triple intersection appears in both pair counts. Thus <InlineMath math="121-34=87" /> use A or B but not C.
+First count users of A or B. Users of both were counted twice, so subtract the intersection of A and B once:
 
-Therefore, the requested value is <InlineMath math="87" />.
+<BlockMath math="80+70-29=121" />
+
+Within that group, C users belong to the intersection of A with C or B with C. Users of all three belong to both intersections, so subtract them once:
+
+<BlockMath math="24+20-10=34" />
+
+Remove the C users from the users of A or B:
+
+<BlockMath math="121-34=87" />

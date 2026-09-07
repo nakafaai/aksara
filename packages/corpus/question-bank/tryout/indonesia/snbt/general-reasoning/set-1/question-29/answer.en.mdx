@@ -2,9 +2,19 @@ export const metadata = {
   title: "Solution to Question 29",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Use combinations without replacement to find the probabilities of the three colour outcomes. Multiply each probability by its payout, then apply the revised bonus, refund, retry, or fee rule stated in the prompt.
+There are <InlineMath math="\binom{10}{2}=45" /> equally likely pairs of balls. The numbers of red-red, mixed-colour, and blue-blue pairs are respectively
 
-Therefore, the requested value is <InlineMath math="\frac{144}{11}" />.
+<BlockMath math="\begin{aligned} \binom42 &=6 \\ 4\times6 &=24 \\ \binom62 &=15 \end{aligned}" />
+
+Use thousand rupiah for every monetary amount. The expected prize payout before any fee refund is
+
+<BlockMath math="\begin{aligned} E &=30\times\frac6{45}+15\times\frac{24}{45} \\ &=4+8=12 \end{aligned}" />
+
+Let the entry fee be <InlineMath math="c" />. Two blue balls have probability <InlineMath math="\frac{15}{45}=\frac13" />, and only that outcome refunds <InlineMath math="\frac{c}{4}" />. The entry fee is paid on every play.
+
+<BlockMath math="\begin{aligned} 12-c+\frac13\times\frac c4 &=0 \\ 12-\frac{11c}{12} &=0 \\ c &=\frac{144}{11} \end{aligned}" />
+
+An entry fee of <InlineMath math="\frac{144}{11}" /> thousand rupiah gives an expected net gain of zero.

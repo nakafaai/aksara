@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Änderung, nach Rezeptschritten gruppierte Zutaten, ersetzte die Notwendigkeit, die ursprüngliche Unsicherheit zu messen.",
+            "Die Zutatenordnung machte die Zählung rechtzeitig fertiger Gerichte überflüssig.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, nach Rezeptschritten gruppierte Zutaten, führte mehrere nicht trennbare Unterschiede ein.",
+            "Die Zutatenordnung erlaubte die gleichzeitige Änderung mehrerer Kursmerkmale.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, nach Rezeptschritten gruppierte Zutaten, erklärte, warum die Vergleichswerte identisch waren.",
+            "Die Anordnung wurde gewählt, weil bereits alle Vergleichswerte nachweislich gleich waren.",
         },
         {
           isCorrect: true,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: nach Rezeptschritten geordnete Zutaten.",
+            "Zutaten nach Rezeptschritten zu ordnen könnte die Suche beim Wechsel zum nächsten Schritt verkürzen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, nach Rezeptschritten gruppierte Zutaten, betraf das Endergebnis statt die Quelle der Unsicherheit.",
+            "Die Anordnung wurde gewählt, weil das endgültige Testergebnis bereits feststand.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change, ingredients grouped by recipe stage, replaced the need to measure the original uncertainty.",
+            "Grouping ingredients made it unnecessary to count dishes finished before the deadline.",
         },
         {
           isCorrect: false,
           label:
-            "The change, ingredients grouped by recipe stage, introduced several differences that could not be separated.",
+            "Grouping ingredients allowed several class features to change at once.",
         },
         {
           isCorrect: false,
           label:
-            "The change, ingredients grouped by recipe stage, explained why the comparison values were identical.",
+            "The layout was chosen because all comparison values had proved equal.",
         },
         {
           isCorrect: true,
           label:
-            "The change, ingredients grouped by recipe stage, directly addressed the observed uncertainty.",
+            "Grouping ingredients by recipe stage could shorten the search when groups moved to the next stage.",
         },
         {
           isCorrect: false,
           label:
-            "The change, ingredients grouped by recipe stage, addressed the final outcome rather than the source of uncertainty.",
+            "The layout was chosen because the final test result was already certain.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan berupa bahan yang dikelompokkan menurut tahap resep menggantikan kebutuhan untuk mengukur ketidakpastian awal.",
+            "Pengelompokan bahan membuat penyelesaian hidangan sebelum batas waktu tidak perlu diukur.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa bahan yang dikelompokkan menurut tahap resep menimbulkan beberapa perbedaan yang tidak dapat dipisahkan.",
+            "Pengelompokan bahan memungkinkan beberapa unsur kelas diubah sekaligus.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa bahan yang dikelompokkan menurut tahap resep menjelaskan mengapa nilai pembanding sama.",
+            "Pengelompokan bahan dipilih karena semua nilai pembanding sudah terbukti sama.",
         },
         {
           isCorrect: true,
           label:
-            "Perubahan berupa bahan yang dikelompokkan menurut tahap resep langsung menanggapi keraguan yang diamati.",
+            "Pengelompokan bahan menurut tahap resep dapat mempersingkat pencarian saat kelompok berpindah tahap.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa bahan yang dikelompokkan menurut tahap resep menanggapi hasil akhir, bukan sumber ketidakpastian.",
+            "Pengelompokan bahan dipilih karena hasil akhir pengujiannya sudah pasti.",
         },
       ],
     },

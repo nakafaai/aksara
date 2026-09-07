@@ -1,36 +1,26 @@
 export const metadata = {
   title: "Solution to Question 9",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2026-02-17",
 };
 
 #### Constructing the Mathematical Model
 
-The basic formula for the phone tariff (<InlineMath math="y" />) is given as:
+Let <InlineMath math="r" /> be the rate per minute in rupiah. The total call duration for the month is <InlineMath math="x" /> minutes, so the calls cost <InlineMath math="xr" /> rupiah. Adding the subscription fee <InlineMath math="z" /> gives:
 
-<BlockMath math="y = (\text{duration} \times \text{rate per minute}) + \text{subscription fee}" />
+<BlockMath math="y=xr+z" />
 
-The pricing rule gives:
-1. Call duration is <InlineMath math="x\text{ minutes}" />.
-2. Subscription fee (<InlineMath math="z" />) is <InlineMath math="60{,}000" />.
-3. The rate per minute is <InlineMath math="x + 150" />:
+The pricing rule gives <InlineMath math="r=x+150" /> and <InlineMath math="z=60{,}000" />.
 
-<MathContainer>
-  <BlockMath math="\text{Rate per minute} = x + 150" />
-</MathContainer>
+#### Substituting into the Formula
 
-#### Substitution into the Formula
+Substitute these two values:
 
-Substitute these quantities into the billing formula:
-
-<MathContainer>
-  <BlockMath math="y = x(x + 150) + 60{,}000" />
-</MathContainer>
+<BlockMath math="y=x(x+150)+60{,}000" />
 
 Expand the multiplication:
 
-<MathContainer>
-  <BlockMath math="y = x^2 + 150x + 60{,}000" />
-</MathContainer>
+<BlockMath math="y=x^2+150x+60{,}000" />
 
-Therefore, <InlineMath math="y = x^2 + 150x + 60{,}000" /> models the monthly bill.
+Therefore, <InlineMath math="y=x^2+150x+60{,}000" /> models the monthly bill.

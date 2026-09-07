@@ -2,9 +2,40 @@ export const metadata = {
   title: "Lösung zu Aufgabe 30",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Das ganzzahlige Maximum liegt bei <InlineMath math="(X,Y)=(5,5)" /> mit Gewinn 55 und damit um eins über dem nächstbesten Paar. Der Anteil der X-Pakete beträgt <InlineMath math="5/(5+5)=1/2" />.
+<InlineMath math="x" /> und <InlineMath math="y" /> bezeichnen die Anzahlen der Pakete X und Y. Materialgrenze, Zeitgrenze und Gewinn <InlineMath math="L" /> lauten:
 
-Damit ist der gesuchte Wert <InlineMath math="\\frac12" />.
+<MathContainer>
+  <BlockMath math="2x+3y\le27" />
+  <BlockMath math="5x+y\le30" />
+  <BlockMath math="L=6x+5y" />
+</MathContainer>
+
+<InlineMath math="x" /> und <InlineMath math="y" /> sind nicht negative ganze Zahlen. Aus der Zeitgrenze folgt <InlineMath math="x\le6" />.
+
+Für jeden Wert von <InlineMath math="x" /> wählen wir das größte <InlineMath math="y" />, das beide Grenzen einhält. Das maximiert den Gewinn in der jeweiligen Zeile, weil jedes zusätzliche Y den Gewinn um <InlineMath math="5" /> erhöht.
+
+| <InlineMath math="x" /> | Größtes <InlineMath math="y" /> | <InlineMath math="L" /> |
+| ---: | ---: | ---: |
+| <InlineMath math="0" /> | <InlineMath math="9" /> | <InlineMath math="45" /> |
+| <InlineMath math="1" /> | <InlineMath math="8" /> | <InlineMath math="46" /> |
+| <InlineMath math="2" /> | <InlineMath math="7" /> | <InlineMath math="47" /> |
+| <InlineMath math="3" /> | <InlineMath math="7" /> | <InlineMath math="53" /> |
+| <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="54" /> |
+| <InlineMath math="5" /> | <InlineMath math="5" /> | <InlineMath math="55" /> |
+| <InlineMath math="6" /> | <InlineMath math="0" /> | <InlineMath math="36" /> |
+
+Der größte Gewinn beträgt <InlineMath math="55" /> und wird nur bei <InlineMath math="x=5" /> und <InlineMath math="y=5" /> erreicht. Das nächstbeste Paar liefert <InlineMath math="54" />.
+
+Das gewählte Paar hält beide Grenzen ein:
+
+<MathContainer>
+  <BlockMath math="2(5)+3(5)=25\le27" />
+  <BlockMath math="5(5)+5=30\le30" />
+</MathContainer>
+
+Von den <InlineMath math="5+5=10" /> Paketen sind <InlineMath math="5" /> vom Typ X. Ihr Anteil beträgt:
+
+<BlockMath math="\frac5{10}=\frac12" />

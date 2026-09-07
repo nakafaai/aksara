@@ -13,12 +13,12 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The changed condition produced a mean of 16 in the six-day seed-orientation trial; the number belongs to those controlled conditions and does not establish a universal effect.",
+            "The changed condition produced a mean of $$16$$ in the six-day seed-orientation trial. The number belongs to those controlled conditions and does not establish a universal effect.",
         },
         {
           isCorrect: false,
           label:
-            "The mean result with the change was 16; because it differs from the other conditions, the tested change is the only plausible explanation.",
+            "The mean result with the change was $$16$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
           isCorrect: false,

@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Sari menghadapi hambatan dalam membantu teman belajar tanpa mengambil alih tugasnya dan memahami empati sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
+            "Sari menghadapi hambatan dalam membantu teman belajar tanpa mengambil alih tugasnya dan memahami penyangga belajar sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
         },
         {
           isCorrect: false,

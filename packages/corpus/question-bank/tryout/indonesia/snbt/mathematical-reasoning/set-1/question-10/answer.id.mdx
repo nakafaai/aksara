@@ -2,7 +2,7 @@ export const metadata = {
   title: "Pembahasan Soal 10",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-23",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
 Kita akan mencari nilai <InlineMath math="x" /> yang memaksimumkan luas permukaan balok, lalu menghitung luas permukaan tersebut.
@@ -11,7 +11,7 @@ Kita akan mencari nilai <InlineMath math="x" /> yang memaksimumkan luas permukaa
 
 Luas permukaan balok (<InlineMath math="L" />) dapat dihitung dengan rumus:
 
-<BlockMath math="L = 2 \times \text{Luas Alas} + \text{Keliling Alas} \times \text{Tinggi}" />
+<BlockMath math="L=2pl+Kt" />
 
 Dari <InlineMath math="2(p+l)=6x" /> dan <InlineMath math="l=4x-5" />, dimensi balok dalam <InlineMath math="x" /> adalah:
 - Panjang (<InlineMath math="p" />) adalah <InlineMath math="5 - x" />
@@ -23,7 +23,7 @@ Substitusikan dimensi tersebut ke rumus luas permukaan:
 
 <MathContainer>
   <BlockMath math="L(x) = 2(p \times l) + K \times t" />
-  <BlockMath math="L(x) = 2((5 - x)(4x - 5)) + 6x\left(5 - \frac{1}{3}x\right)" />
+  <BlockMath math="\begin{aligned}L(x)&=2(5-x)(4x-5) \\ &\quad+6x\left(5-\frac{x}{3}\right)\end{aligned}" />
 </MathContainer>
 
 #### Menyederhanakan Fungsi Luas Permukaan
@@ -33,21 +33,19 @@ Kita uraikan persamaan di atas:
 **Bagian Luas Alas:**
 
 <MathContainer>
-  <BlockMath math="2((5 - x)(4x - 5)) = 2(20x - 25 - 4x^2 + 5x)" />
+  <BlockMath math="\begin{aligned}&2(5-x)(4x-5) \\ &=2(20x-25-4x^2+5x)\end{aligned}" />
   <BlockMath math="= 2(-4x^2 + 25x - 25)" />
   <BlockMath math="= -8x^2 + 50x - 50" />
 </MathContainer>
 
 **Bagian Keliling kali Tinggi:**
 
-<MathContainer>
-  <BlockMath math="6x\left(5 - \frac{1}{3}x\right) = 30x - 2x^2" />
-</MathContainer>
+<BlockMath math="\begin{aligned}&6x\left(5-\frac{x}{3}\right) \\ &=30x-2x^2\end{aligned}" />
 
 **Total Luas Permukaan:**
 
 <MathContainer>
-  <BlockMath math="L(x) = (-8x^2 + 50x - 50) + (30x - 2x^2)" />
+  <BlockMath math="\begin{aligned}L(x)&=(-8x^2+50x-50) \\ &\quad+(30x-2x^2)\end{aligned}" />
   <BlockMath math="L(x) = -10x^2 + 80x - 50" />
 </MathContainer>
 
@@ -62,14 +60,14 @@ Fungsi <InlineMath math="L(x)" /> adalah fungsi kuadrat dengan koefisien <Inline
   <BlockMath math="x = 4" />
 </MathContainer>
 
-Kita periksa apakah <InlineMath math="x = 4" /> memenuhi himpunan <InlineMath math="A" /> (syarat dimensi positif) yang telah dicari sebelumnya, yaitu <InlineMath math="\frac{5}{4} < x < 5" />. Karena <InlineMath math="1{,}25 < 4 < 5" />, maka nilai <InlineMath math="x = 4" /> valid.
+Panjang, lebar, dan tinggi harus positif. Syarat <InlineMath math="5-x>0" />, <InlineMath math="4x-5>0" />, dan <InlineMath math="5-\frac{x}{3}>0" /> bersama-sama memberi <InlineMath math="\frac54<x<5" />. Karena <InlineMath math="1{,}25 < 4 < 5" />, maka nilai <InlineMath math="x = 4" /> valid.
 
 #### Menghitung Luas Permukaan Maksimum
 
 Substitusikan <InlineMath math="x = 4" /> ke dalam fungsi <InlineMath math="L(x)" />:
 
 <MathContainer>
-  <BlockMath math="L(4) = -10(4)^2 + 80(4) - 50" />
+  <BlockMath math="\begin{aligned}L(4)&=-10(4)^2+80(4) \\ &\quad-50\end{aligned}" />
   <BlockMath math="L(4) = -10(16) + 320 - 50" />
   <BlockMath math="L(4) = -160 + 320 - 50" />
   <BlockMath math="L(4) = 110" />

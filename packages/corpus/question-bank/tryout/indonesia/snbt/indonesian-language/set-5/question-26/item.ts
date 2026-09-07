@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Ayu dan pelanggan mengubah benang merah yang tersembunyi menjadi jahitan terlihat untuk mempertemukan riwayat blus dengan keinginan memperbaikinya.",
+            "Ayu dan pelanggan menjadikan warna jahitan merah lama sebagai dasar pola reparasi yang terlihat untuk mempertemukan riwayat blus dengan keinginan memperbaikinya.",
         },
         {
           isCorrect: false,

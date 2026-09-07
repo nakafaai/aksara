@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team testete die Änderung Pflanzortetiketten auf jedem Tablett an ausgewählten Tagen, weil das frühere Verfahren bereits als unwirksam galt.",
+            "Die Etiketten wurden verwendet, weil Lieferscheine nachweislich immer scheiterten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team führte die Änderung Pflanzortetiketten auf jedem Tablett dauerhaft ein, während das frühere Verfahren nur in den Rückmeldungen erhalten blieb.",
+            "Die Etiketten wurden dauerhaft eingeführt und Lieferscheine abgeschafft.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team testete die Änderung Pflanzortetiketten auf jedem Tablett und das frühere Verfahren an denselben Tagen ohne getrennte Vergleichsbedingungen.",
+            "Etiketten und früherer Ablauf wurden ohne getrennte Vergleichsbedingungen verwendet.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team verglich Tage mit der Änderung Pflanzortetiketten auf jedem Tablett mit Rückmeldungen zum früheren Verfahren.",
+            "Das Team verglich den Etiketteneinsatz nur mit Rückmeldungen zu Lieferscheinen.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team prüfte Pflanzortetiketten auf jedem Tablett an ausgewählten Tagen, während an Vergleichstagen der bisherige Ablauf bestehen blieb.",
+            "An Versuchstagen erhielt jedes Tablett ein wasserfestes Pflanzortetikett, während an Vergleichstagen das Ziel nur auf dem Lieferschein stand.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested planting-site labels on every tray on selected days because the earlier process had already been proved ineffective.",
+            "The labels were used because dispatch sheets had proved to fail in every situation.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested planting-site labels on every tray permanently, while the earlier process remained only in user records.",
+            "The labels were adopted permanently and dispatch sheets were discontinued.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested planting-site labels on every tray and the earlier process on the same days without separate comparison conditions.",
+            "Labels and the old process were used without separate comparison conditions.",
         },
         {
           isCorrect: false,
           label:
-            "The team compared selected days using planting-site labels on every tray with comments about the earlier process.",
+            "The team compared label use only with comments about dispatch sheets.",
         },
         {
           isCorrect: true,
           label:
-            "The team tested planting-site labels on every tray on selected days, while the earlier process remained on comparison days.",
+            "On trial days, each tray received a waterproof planting-site label, while on comparison days destinations appeared only on the dispatch sheet.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji label lokasi tanam pada setiap baki pada hari tertentu karena proses lama telah terbukti tidak efektif.",
+            "Label digunakan karena lembar pengiriman terbukti gagal dalam setiap keadaan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menerapkan label lokasi tanam pada setiap baki secara tetap, sedangkan proses lama hanya tersisa dalam catatan pengguna.",
+            "Label diterapkan permanen dan lembar pengiriman tidak dipakai lagi.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji label lokasi tanam pada setiap baki dan proses lama pada hari yang sama tanpa kondisi pembanding terpisah.",
+            "Label dan cara lama digunakan tanpa kondisi pembanding terpisah.",
         },
         {
           isCorrect: false,
           label:
-            "Tim membandingkan hari penggunaan label lokasi tanam pada setiap baki dengan komentar tentang proses lama.",
+            "Tim membandingkan penggunaan label hanya dengan komentar tentang lembar pengiriman.",
         },
         {
           isCorrect: true,
           label:
-            "Tim menguji label lokasi tanam pada setiap baki bibit pada hari tertentu, sedangkan alur lama tetap digunakan pada hari pembanding.",
+            "Pada hari uji, tiap baki diberi label lokasi tanam tahan air, sedangkan pada hari pembanding tujuan hanya tertulis di lembar pengiriman.",
         },
       ],
     },

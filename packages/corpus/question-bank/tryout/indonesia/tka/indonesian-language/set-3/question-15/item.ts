@@ -33,7 +33,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "data awal menunjukkan penggunaan meningkat dan botol terlihat menurun",
+            "data awal menunjukkan penggunaan meningkat dan jumlah botol yang terlihat menurun",
         },
       ],
     },

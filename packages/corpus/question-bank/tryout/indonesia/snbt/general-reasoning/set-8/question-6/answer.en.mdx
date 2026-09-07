@@ -2,63 +2,36 @@ export const metadata = {
   title: "Question 6 Explanation",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-01-29",
+  dateModified: "2026-09-07",
 };
 
-Finding <InlineMath math="M" /> requires a closed system of equations. Each statement supplies one part of that system.
+Let <InlineMath math="T" /> be the total valid votes. Each valid vote goes to one of the four candidates, so:
 
-#### Determining Total Votes
+<BlockMath math="M+N+O+P=T" />
 
-To calculate the absolute value (exact number) of any candidate's votes, we need **Statement** <InlineMath math="4" />, which gives the total votes:
-
-<MathContainer>
-  <BlockMath math="\text{Total Votes} = 468" />
-</MathContainer>
-
-#### Calculating the Other Candidates' Votes
-
-We know the relationship for the sum of all votes:
+Statement <InlineMath math="4" /> gives <InlineMath math="T=468" />. Statements <InlineMath math="2" /> and <InlineMath math="3" /> then determine the votes for O and P:
 
 <MathContainer>
-  <BlockMath math="M + N + O + P = \text{Total Votes}" />
+  <BlockMath math="O=\frac14(468)=117" />
+  <BlockMath math="P=\frac23(117)=78" />
 </MathContainer>
 
-We need to know the values of <InlineMath math="O" /> and <InlineMath math="P" /> to isolate <InlineMath math="M" /> and <InlineMath math="N" />:
+The remaining votes belong to M and N:
 
-*   **Statement** <InlineMath math="2" /> is needed to calculate <InlineMath math="O" /> (using Total Votes from Statement <InlineMath math="4" />).
-*   **Statement** <InlineMath math="3" /> is needed to calculate <InlineMath math="P" /> (using the value of <InlineMath math="O" /> derived from Statement <InlineMath math="2" />).
+<BlockMath math="\begin{aligned}M+N&=468-117-78\\&=273\end{aligned}" />
 
-Without <InlineMath math="O" /> and <InlineMath math="P" />, our equation still has too many unknown variables.
-
-#### Solving for the Requested Value
-
-After knowing the total, <InlineMath math="O" />, and <InlineMath math="P" />, the equation becomes:
+Statement <InlineMath math="1" /> gives <InlineMath math="M=2N" />. Substitute this into the remaining-votes equation:
 
 <MathContainer>
-  <BlockMath math="M + N = \text{Remaining Votes}" />
+  <BlockMath math="\begin{aligned}2N+N&=273\\3N&=273\\N&=91\end{aligned}" />
+  <BlockMath math="M=2(91)=182" />
 </MathContainer>
 
-We still have two variables (<InlineMath math="M" /> and <InlineMath math="N" />) in one equation. To get a specific value for <InlineMath math="M" />, we need the relationship between <InlineMath math="M" /> and <InlineMath math="N" />.
+Every statement has a necessary role:
 
-**Statement** <InlineMath math="1" /> provides this relationship:
+- Without the total in statement <InlineMath math="4" />, all counts can be scaled by the same factor.
+- Without statement <InlineMath math="2" />, the counts for O and P are not fixed.
+- Without statement <InlineMath math="3" />, the count for P is not fixed.
+- Without statement <InlineMath math="1" />, the combined votes for M and N cannot be split uniquely.
 
-<MathContainer>
-  <BlockMath math="M = 2N \quad \text{or} \quad N = \frac{1}{2}M" />
-</MathContainer>
-
-By substituting <InlineMath math="N" /> into the remaining votes equation, we can solve for <InlineMath math="M" />.
-
-The complete calculation also confirms that every vote count is a whole number:
-
-<MathContainer>
-  <BlockMath math="O = \frac{1}{4}(468) = 117" />
-  <BlockMath math="P = \frac{2}{3}(117) = 78" />
-  <BlockMath math="M + N = 468 - 117 - 78 = 273" />
-  <BlockMath math="2N + N = 273 \quad\Longrightarrow\quad N = 91" />
-  <BlockMath math="M = 2(91) = 182" />
-</MathContainer>
-
-#### Conclusion
-
-We need **Statement** <InlineMath math="4" /> (Total), **Statement** <InlineMath math="2" /> (for <InlineMath math="O" />), **Statement** <InlineMath math="3" /> (for <InlineMath math="P" />), and **Statement** <InlineMath math="1" /> (for the <InlineMath math="M" /> and <InlineMath math="N" /> relation) all together to find the solution.
-
-Therefore, the information needed is **<InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, and <InlineMath math="4" />**.
+Therefore, **all four statements** are needed, giving <InlineMath math="M=182" /> votes.

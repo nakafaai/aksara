@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The comparison condition produced a mean value of 18; because it differs from the other conditions, the tested change is the only plausible explanation.",
+            "The comparison condition produced a mean value of $$18$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
           isCorrect: false,
@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The comparison condition produced 18, the reference for the caption trial; visitors using screen readers were not represented in that comparison.",
+            "The comparison condition produced $$18$$, the reference for the caption trial. Visitors using screen readers were not represented in that comparison.",
         },
         {
           isCorrect: false,

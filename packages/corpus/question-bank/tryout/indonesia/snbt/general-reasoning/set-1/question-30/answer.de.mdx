@@ -2,9 +2,23 @@ export const metadata = {
   title: "Lösung zu Aufgabe 30",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Prüfe die zulässigen ganzzahligen Paare, die beide Ressourcenbeschränkungen erfüllen, und vergleiche ihre Gewinne. Wende auf das eindeutige Gewinnmaximum anschließend die im Fragetext verlangte Anzahl, Differenz, den Anteil oder die Zusatzkosten an.
+Seien <InlineMath math="x" /> und <InlineMath math="y" /> die Anzahlen der Pakete <InlineMath math="X" /> und <InlineMath math="Y" />. Beide sind nicht negative ganze Zahlen. Die Grenzen für Material und Arbeitszeit lauten
 
-Damit ist der gesuchte Wert <InlineMath math="7" />.
+<BlockMath math="\begin{aligned} 2x+3y &\le18 \\ 3x+y &\le14 \end{aligned}" />
+
+Der Gewinn ist <InlineMath math="L=5x+4y" />. Wegen <InlineMath math="3x\le14" /> genügt es, <InlineMath math="x" /> von <InlineMath math="0" /> bis <InlineMath math="4" /> zu prüfen. Wähle zu jedem <InlineMath math="x" /> das größte <InlineMath math="y" />, das beide Grenzen einhält, denn jedes zusätzliche Paket <InlineMath math="Y" /> erhöht den Gewinn.
+
+| Anzahl <InlineMath math="X" /> | Größte Anzahl <InlineMath math="Y" /> | Gewinn |
+| ---: | ---: | ---: |
+| <InlineMath math="0" /> | <InlineMath math="6" /> | <InlineMath math="24" /> |
+| <InlineMath math="1" /> | <InlineMath math="5" /> | <InlineMath math="25" /> |
+| <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="26" /> |
+| <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="31" /> |
+| <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="28" /> |
+
+Der maximale Gewinn von <InlineMath math="31" /> entsteht nur bei <InlineMath math="x=3" /> und <InlineMath math="y=4" />. Dafür werden <InlineMath math="18" /> Materialeinheiten und <InlineMath math="13" /> Arbeitsstunden benötigt. Beide Grenzen werden eingehalten.
+
+Insgesamt werden <InlineMath math="3+4=7" /> Pakete hergestellt.

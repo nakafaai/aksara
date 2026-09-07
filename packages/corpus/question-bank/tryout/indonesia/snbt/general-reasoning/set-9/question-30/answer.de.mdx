@@ -2,9 +2,42 @@ export const metadata = {
   title: "Lösung zu Aufgabe 30",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Das eindeutige zulässige Maximum liegt bei <InlineMath math="(X,Y)=(4,6)" /> mit Gewinn 86; das nächstbeste Paar <InlineMath math="(5,5)" /> erreicht 85. Somit gibt es <InlineMath math="6-4=2" /> Y-Pakete mehr als X-Pakete.
+<InlineMath math="x" /> und <InlineMath math="y" /> bezeichnen die Anzahlen der Pakete X und Y. Beide sind nicht negative ganze Zahlen.
 
-Damit ist der gesuchte Wert <InlineMath math="2" />.
+Die Material- und Zeitgrenzen ergeben:
+
+<MathContainer>
+  <BlockMath math="3x+5y\le42" />
+  <BlockMath math="4x+y\le28" />
+</MathContainer>
+
+Der Gesamtgewinn in den vorgegebenen Einheiten beträgt:
+
+<BlockMath math="L=8x+9y" />
+
+Jedes X benötigt <InlineMath math="4" /> Stunden. Daher sind höchstens <InlineMath math="7" /> Pakete X möglich. Bei festem <InlineMath math="x" /> steigt der Gewinn mit <InlineMath math="y" />. Es genügt deshalb, jeweils den größten Wert von <InlineMath math="y" /> zu prüfen, der beide Grenzen einhält:
+
+| <InlineMath math="x" /> | Größtes <InlineMath math="y" /> | Gewinn |
+| ---: | ---: | ---: |
+| <InlineMath math="0" /> | <InlineMath math="8" /> | <InlineMath math="72" /> |
+| <InlineMath math="1" /> | <InlineMath math="7" /> | <InlineMath math="71" /> |
+| <InlineMath math="2" /> | <InlineMath math="7" /> | <InlineMath math="79" /> |
+| <InlineMath math="3" /> | <InlineMath math="6" /> | <InlineMath math="78" /> |
+| <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="86" /> |
+| <InlineMath math="5" /> | <InlineMath math="5" /> | <InlineMath math="85" /> |
+| <InlineMath math="6" /> | <InlineMath math="4" /> | <InlineMath math="84" /> |
+| <InlineMath math="7" /> | <InlineMath math="0" /> | <InlineMath math="56" /> |
+
+Der höchste Gewinn beträgt <InlineMath math="86" /> bei <InlineMath math="x=4" /> und <InlineMath math="y=6" />. Das nächstbeste Paar, <InlineMath math="x=5" /> und <InlineMath math="y=5" />, erreicht nur <InlineMath math="85" />.
+
+Die optimale Lösung hält beide Grenzen ein:
+
+<MathContainer>
+  <BlockMath math="3\times4+5\times6=42" />
+  <BlockMath math="4\times4+6=22\le28" />
+</MathContainer>
+
+Es werden somit **<InlineMath math="6-4=2" /> Pakete Y mehr** als Pakete X hergestellt.

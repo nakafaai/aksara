@@ -8,22 +8,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Daten worden im Kontext Büchertauschmarkt erhebt und danach vergleichen.",
+            "Die Daten worden auf dem Büchertauschmarkt erhebt und danach vergleichen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten wurden an den Kontext Büchertauschmarkt erhoben und danach verglichen.",
+            "Die Daten wurden an den Büchertauschmarkt erhoben und danach verglichen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten wurden in diesem Kontext erhoben Büchertauschmarkt anschließend sie verglichen wurden.",
+            "Die Daten wurden auf dem Büchertauschmarkt erhoben anschließend sie verglichen wurden.",
         },
         {
           isCorrect: true,
           label:
-            "Die Daten wurden in diesem Kontext erhoben: Büchertauschmarkt. Anschließend wurden sie verglichen.",
+            "Die Daten wurden auf dem Büchertauschmarkt erhoben und danach verglichen.",
         },
         {
           isCorrect: false,
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Data were collected at this setting (book exchange market) and compared afterward in.",
+            "Data were collected at the book exchange and compared afterward in.",
         },
         {
           isCorrect: false,
           label:
-            "Data was collect in this setting (book exchange market) and comparing afterward.",
+            "Data was collect at the book exchange and comparing afterward.",
         },
         {
           isCorrect: false,
           label:
-            "Data were collected on this setting (book exchange market) and afterward compared it.",
+            "Data were collected at the book exchange and afterward compared it.",
         },
         {
           isCorrect: true,
           label:
-            "Data were collected in this setting (book exchange market) and compared afterward.",
+            "Data were collected at the book exchange and compared afterward.",
         },
         {
           isCorrect: false,
           label:
-            "Data collected this setting (book exchange market) and were comparison afterward.",
+            "Data collected the book exchange and were comparison afterward.",
         },
       ],
     },
@@ -67,25 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Data di ukur di pasar tukar buku dan kemudian dibandingkan.",
+          label:
+            "Data di kumpulkan di pasar tukar buku dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data diukur didepan pasar tukar buku dan kemudian dibandingkan.",
+            "Data dikumpulkan didepan pasar tukar buku dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data mengukur di pasar tukar buku dan kemudian membandingkan.",
+            "Data mengumpulkan di pasar tukar buku dan kemudian membandingkan.",
         },
         {
           isCorrect: true,
-          label: "Data diukur di pasar tukar buku dan kemudian dibandingkan.",
+          label:
+            "Data dikumpulkan di pasar tukar buku dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,
-          label: "Data diukur pada di pasar tukar buku lalu di bandingkan.",
+          label:
+            "Data dikumpulkan pada di pasar tukar buku lalu di bandingkan.",
         },
       ],
     },

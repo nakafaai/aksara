@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama; bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
+            "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama. Bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
         },
         {
           isCorrect: true,
@@ -18,17 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama; akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
+            "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama. Akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
         },
         {
           isCorrect: false,
           label:
-            "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama; perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
+            "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama. Perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
         },
         {
           isCorrect: false,
           label:
-            "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama; benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
+            "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama. Benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
         },
       ],
     },

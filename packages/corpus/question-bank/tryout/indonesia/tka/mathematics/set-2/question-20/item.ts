@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$2\\sqrt{13}$$",
+          label: "$$4\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "$$2\\sqrt{17}$$",
+          label: "$$5$$",
         },
         {
           isCorrect: true,
+          label: "$$5\\sqrt3$$",
+        },
+        {
+          isCorrect: false,
           label: "$$2\\sqrt{21}$$",
         },
         {
           isCorrect: false,
-          label: "$$4\\sqrt6$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$6\\sqrt2$$",
+          label: "$$10$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$2\\sqrt{13}$$",
+          label: "$$4\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "$$2\\sqrt{17}$$",
+          label: "$$5$$",
         },
         {
           isCorrect: true,
+          label: "$$5\\sqrt3$$",
+        },
+        {
+          isCorrect: false,
           label: "$$2\\sqrt{21}$$",
         },
         {
           isCorrect: false,
-          label: "$$4\\sqrt6$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$6\\sqrt2$$",
+          label: "$$10$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$2\\sqrt{13}$$",
+          label: "$$4\\sqrt3$$",
         },
         {
           isCorrect: false,
-          label: "$$2\\sqrt{17}$$",
+          label: "$$5$$",
         },
         {
           isCorrect: true,
+          label: "$$5\\sqrt3$$",
+        },
+        {
+          isCorrect: false,
           label: "$$2\\sqrt{21}$$",
         },
         {
           isCorrect: false,
-          label: "$$4\\sqrt6$$",
-        },
-        {
-          isCorrect: false,
-          label: "$$6\\sqrt2$$",
+          label: "$$10$$",
         },
       ],
     },

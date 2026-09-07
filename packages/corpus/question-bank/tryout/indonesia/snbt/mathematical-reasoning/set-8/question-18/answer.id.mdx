@@ -2,11 +2,23 @@ export const metadata = {
   title: "Pembahasan Soal 18",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Untuk dua digit terakhir, pangkat <InlineMath math="3" /> dan <InlineMath math="2" /> dapat dilacak dalam siklus modulo <InlineMath math="100" />. Karena <InlineMath math="2026\equiv6\pmod{20}" /> dan <InlineMath math="2025\equiv5\pmod{20}" />,
+Untuk menentukan dua digit terakhir, kita gunakan siklus pangkat modulo <InlineMath math="100" />. Kita peroleh
 
-<BlockMath math="3^{2026}\equiv3^6\equiv29\pmod{100}" />
+<MathContainer>
+  <BlockMath math="3^{20}\equiv1\pmod{100}" />
+  <BlockMath math="2^{22}\equiv2^2\pmod{100}" />
+</MathContainer>
 
-serta <InlineMath math="2^{2025}\equiv2^5\equiv32\pmod{100}" />. Jumlahnya bersisa <InlineMath math="29+32=61" />.
+Karena itu, sisa pangkat <InlineMath math="3" /> berulang setiap <InlineMath math="20" /> pangkat. Hal yang sama berlaku untuk pangkat <InlineMath math="2" /> mulai dari pangkat kedua: mengalikan kedua ruas kongruensi kedua dengan pangkat <InlineMath math="2" /> mempertahankan pola tersebut.
+
+Eksponen memenuhi <InlineMath math="2026\equiv6\pmod{20}" /> dan <InlineMath math="2025\equiv5\pmod{20}" />. Maka
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}3^{2026}&\equiv3^6\pmod{100}\\&\equiv29\pmod{100}\end{aligned}" />
+  <BlockMath math="\begin{aligned}2^{2025}&\equiv2^5\pmod{100}\\&\equiv32\pmod{100}\end{aligned}" />
+</MathContainer>
+
+Jumlahnya bersisa <InlineMath math="29+32=61" />.

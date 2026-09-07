@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Ein Verpackungscode wird zu einem vollständigen Lieferkettendatensatz führen.",
+            "Ein Verpackungscode wird zu einem ausführlicheren Lieferkettendatensatz führen.",
         },
       ],
     },

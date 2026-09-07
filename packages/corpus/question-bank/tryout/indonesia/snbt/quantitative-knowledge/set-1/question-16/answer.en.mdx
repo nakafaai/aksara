@@ -2,6 +2,7 @@ export const metadata = {
   title: "Solution for Question 16",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-17",
+  dateModified: "2026-09-07",
 };
 
 Given the expression
@@ -24,28 +25,22 @@ The LCM of <InlineMath math="3" />, <InlineMath math="4" />, and <InlineMath mat
 Convert each fraction to have denominator <InlineMath math="12" />:
 
 <MathContainer>
-<BlockMath math="\frac{x + 2y}{3} = \frac{4(x + 2y)}{12} = \frac{4x + 8y}{12}" />
-<BlockMath math="\frac{2x - y}{4} = \frac{3(2x - y)}{12} = \frac{6x - 3y}{12}" />
-<BlockMath math="\frac{3x + 2y}{6} = \frac{2(3x + 2y)}{12} = \frac{6x + 4y}{12}" />
+<BlockMath math="\begin{aligned}\frac{x + 2y}{3}&=\frac{4(x + 2y)}{12}\\&=\frac{4x + 8y}{12}\end{aligned}" />
+<BlockMath math="\begin{aligned}\frac{2x - y}{4}&=\frac{3(2x - y)}{12}\\&=\frac{6x - 3y}{12}\end{aligned}" />
+<BlockMath math="\begin{aligned}\frac{3x + 2y}{6}&=\frac{2(3x + 2y)}{12}\\&=\frac{6x + 4y}{12}\end{aligned}" />
 </MathContainer>
 
 #### Simplifying the Expression
 
-Substitute into the original expression:
+Call the expression <InlineMath math="E" />. Once the denominators match, combine the numerators. Keep the minus sign before the third fraction.
 
-<BlockMath math="\frac{x + 2y}{3} + \frac{2x - y}{4} - \frac{3x + 2y}{6} = \frac{4x + 8y}{12} + \frac{6x - 3y}{12} - \frac{6x + 4y}{12}" />
+<BlockMath math="\begin{aligned}E&=\frac{4x+8y}{12}+\frac{6x-3y}{12}\\&\quad-\frac{6x+4y}{12}\end{aligned}" />
 
-Since all fractions have the same denominator, we can combine the numerators:
+Let <InlineMath math="N" /> be the combined numerator, so <InlineMath math="E=N/12" />. Expand the brackets and collect like terms:
 
-<BlockMath math="= \frac{(4x + 8y) + (6x - 3y) - (6x + 4y)}{12}" />
+<BlockMath math="\begin{aligned}N&=(4x+8y)+(6x-3y)\\&\quad-(6x+4y)\\&=4x+8y+6x-3y\\&\quad-6x-4y\\&=(4x+6x-6x)\\&\quad+(8y-3y-4y)\\&=4x+y\end{aligned}" />
 
-Simplify the numerator by combining like terms:
-
-<MathContainer>
-<BlockMath math="= \frac{4x + 8y + 6x - 3y - 6x - 4y}{12}" />
-<BlockMath math="= \frac{(4x + 6x - 6x) + (8y - 3y - 4y)}{12}" />
-<BlockMath math="= \frac{4x + y}{12}" />
-</MathContainer>
+<BlockMath math="E=\frac N{12}=\frac{4x+y}{12}" />
 
 Therefore, the result of
 

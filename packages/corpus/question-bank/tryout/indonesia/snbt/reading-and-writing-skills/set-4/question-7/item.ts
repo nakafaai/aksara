@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team testete die Änderung Fotobeschriftungen an den Rückgaberegalen an ausgewählten Tagen, weil das frühere Verfahren bereits als unwirksam galt.",
+            "Das Team ergänzte Fotos bei den Versuchsterminen, weil Buchstabencodes bereits nachweislich nutzlos waren.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team führte die Änderung Fotobeschriftungen an den Rückgaberegalen dauerhaft ein, während das frühere Verfahren nur in den Rückmeldungen erhalten blieb.",
+            "Das Team führte Fotos dauerhaft ein, während Buchstabencodes nur in den Aufzeichnungen erhalten blieben.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team testete die Änderung Fotobeschriftungen an den Rückgaberegalen und das frühere Verfahren an denselben Tagen ohne getrennte Vergleichsbedingungen.",
+            "Das Team verwendete bei allen Terminen Fotos und Buchstabencodes ohne getrennte Vergleichsbedingung.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team verglich Tage mit der Änderung Fotobeschriftungen an den Rückgaberegalen mit Rückmeldungen zum früheren Verfahren.",
+            "Das Team verglich Termine mit Fotos nur mit Rückmeldungen zu den alten Buchstabencodes.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team prüfte Fotoetiketten an den Rückgaberegalen an ausgewählten Tagen, während an Vergleichstagen der bisherige Ablauf bestehen blieb.",
+            "Bei den Versuchsterminen zeigten die Regale Fotos neben Buchstabencodes, während bei den Vergleichsterminen nur die Codes zu sehen waren.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested photo labels on the return shelves on selected days because the earlier process had already been proved ineffective.",
+            "The team added photographs in trial sessions because letter codes had already proved useless.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested photo labels on the return shelves permanently, while the earlier process remained only in user records.",
+            "The team installed photographs permanently, while letter codes remained only in records.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested photo labels on the return shelves and the earlier process on the same days without separate comparison conditions.",
+            "The team used photographs and letter codes in every session without a separate comparison condition.",
         },
         {
           isCorrect: false,
           label:
-            "The team compared selected days using photo labels on the return shelves with comments about the earlier process.",
+            "The team compared sessions with photographs only with comments about the old letter codes.",
         },
         {
           isCorrect: true,
           label:
-            "The team tested photo labels on the return shelves on selected days, while the earlier process remained on comparison days.",
+            "Shelves displayed photographs alongside letter codes in trial sessions, while comparison sessions used only letter codes.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji label foto pada rak pengembalian pada hari tertentu karena proses lama telah terbukti tidak efektif.",
+            "Tim menambahkan foto pada sesi uji karena kode huruf sudah terbukti tidak berguna.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menerapkan label foto pada rak pengembalian secara tetap, sedangkan proses lama hanya tersisa dalam catatan pengguna.",
+            "Tim memasang foto secara permanen, sedangkan kode huruf hanya tersisa dalam catatan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji label foto pada rak pengembalian dan proses lama pada hari yang sama tanpa kondisi pembanding terpisah.",
+            "Tim memakai foto dan kode huruf pada semua sesi tanpa kondisi pembanding terpisah.",
         },
         {
           isCorrect: false,
           label:
-            "Tim membandingkan hari penggunaan label foto pada rak pengembalian dengan komentar tentang proses lama.",
+            "Tim membandingkan sesi berlabel foto hanya dengan komentar tentang kode huruf lama.",
         },
         {
           isCorrect: true,
           label:
-            "Tim menguji label foto pada hari tertentu, sedangkan alur lama tetap digunakan pada hari pembanding.",
+            "Pada sesi uji, rak menampilkan foto beserta kode huruf, sedangkan pada sesi pembanding hanya kode huruf.",
         },
       ],
     },

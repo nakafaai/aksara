@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The definition explains the accessibility goal of the short captions, while the comparison and later screen-reader testing still determine whether that goal is met.",
+            "The definition explains the accessibility goal of the revised captions, while the comparison and later screen-reader testing still determine whether that goal is met.",
         },
       ],
     },

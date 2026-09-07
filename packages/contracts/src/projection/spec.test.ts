@@ -6,7 +6,6 @@ import { PublicPageProjectionSchema } from "#contracts/projection/page";
 import { QuestionBodyProjectionSchema } from "#contracts/projection/question";
 import {
   ContentProjectionSchema,
-  CurrentContentProjectionSchema,
   canonicalizeContentProjection,
   familyForProjection,
   projectionPublicPath,
@@ -105,25 +104,6 @@ const question = Schema.decodeSync(QuestionBodyProjectionSchema)({
   },
   setKey: "question-bank/tryout/indonesia/snbt/general-reasoning/set-1",
 });
-const historicalQuestion = {
-  artifactLocale: question.artifactLocale,
-  bodyKind: question.bodyKind,
-  choices: [
-    { label: "A", value: true },
-    { label: "B", value: false },
-  ],
-  contentKey: question.contentKey,
-  kind: question.kind,
-  metadata: {
-    authors: [{ name: "Test Author" }],
-    date: "2026-01-01",
-    title: "Question 1",
-  },
-  peerContentKey: question.peerContentKey,
-  questionKey: question.questionKey,
-  questionNumber: question.questionNumber,
-  setKey: question.setKey,
-};
 describe("content projection", () => {
   it("strictly decodes all implemented projection families", () => {
     expect(
@@ -134,23 +114,6 @@ describe("content projection", () => {
     expect(
       Exit.isFailure(
         Schema.decodeUnknownExit(RoutedContentProjectionSchema)(question)
-      )
-    ).toBe(true);
-  });
-
-  it("isolates predecessor Question reads from current staging", () => {
-    const readable = Schema.decodeUnknownSync(ContentProjectionSchema)(
-      historicalQuestion
-    );
-
-    expect(JSON.parse(canonicalizeContentProjection(readable))).toEqual(
-      readable
-    );
-    expect(
-      Exit.isFailure(
-        Schema.decodeUnknownExit(CurrentContentProjectionSchema)(
-          historicalQuestion
-        )
       )
     ).toBe(true);
   });

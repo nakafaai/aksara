@@ -19,7 +19,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Mengapa Pengukuran pada 250 Hz Tidak Lagi Diperlukan",
+          label:
+            "Mengapa Pengukuran pada $$250\\,\\text{Hz}$$ Tidak Lagi Diperlukan",
         },
         {
           isCorrect: true,

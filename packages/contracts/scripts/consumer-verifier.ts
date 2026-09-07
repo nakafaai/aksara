@@ -115,7 +115,7 @@ export const verifyConsumer = Effect.fn("AksaraContracts.verifyConsumer")(
     );
     yield* run(
       staged.pnpm,
-      ["install", "--ignore-scripts", "--frozen-lockfile=false", "--prod"],
+      ["install", "--ignore-scripts", "--no-frozen-lockfile", "--prod"],
       "Consumer dependency installation",
       staged.consumerDirectory
     );

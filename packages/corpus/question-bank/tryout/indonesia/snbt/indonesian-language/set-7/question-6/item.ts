@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Simulasi membuktikan bahwa populasi nyata dengan sumber daya lebih banyak selalu bertambah sampai mencapai jumlah 24 individu.",
+            "Simulasi membuktikan bahwa populasi nyata dengan sumber daya lebih banyak selalu bertambah sampai mencapai jumlah $$24$$ individu.",
         },
         {
           isCorrect: false,
@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Simulasi menunjukkan bagaimana dua batas sumber daya menghasilkan dua titik henti populasi, tetapi titik 16 dan 24 berasal dari aturan model dan bukan temuan lapangan.",
+            "Simulasi menunjukkan bagaimana dua batas sumber daya menghasilkan dua titik henti populasi, tetapi titik $$16$$ dan $$24$$ berasal dari aturan model dan bukan temuan lapangan.",
         },
         {
           isCorrect: false,

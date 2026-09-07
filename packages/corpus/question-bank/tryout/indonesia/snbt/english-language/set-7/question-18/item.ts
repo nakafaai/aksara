@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The rain-spotted card gains meaning through its failed description, Asha's cuts, and the shorter message reaching the final house in time.",
+            "The rain-spotted card gains meaning through its missing route, Asha's revision to add clear directions, and the message reaching the final house in time.",
         },
         {
           isCorrect: false,

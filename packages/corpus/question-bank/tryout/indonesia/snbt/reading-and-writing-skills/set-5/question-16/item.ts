@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Die Nutzenden im untersuchten Kontext (Aufnahmestudio der Schule) gaben kurze Rückmeldungen.",
+            "Die Bedienenden im Aufnahmestudio der Schule gaben kurze Rückmeldungen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext schulisches Tonstudio gaben kurze und knappe Rückmeldungen.",
+            "Die Bedienenden im Aufnahmestudio der Schule gaben kurze Rückmeldungen, die nicht lang waren.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext schulisches Tonstudio gaben ihre eigenen kurzen Rückmeldungen persönlich ab.",
+            "Die Bedienenden im Aufnahmestudio der Schule gaben kurze Rückmeldungen im Aufnahmestudio der Schule, in dem sie tätig waren.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext schulisches Tonstudio gaben kurze Rückmeldungen in knapper Form.",
+            "Die Bedienenden im Aufnahmestudio der Schule gaben kurze Rückmeldungen in kurzer Form.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext schulisches Tonstudio gaben kurze Rückmeldungen über ihre Erfahrungen in diesem Kontext.",
+            "Die Bedienenden im Aufnahmestudio der Schule gaben kurze Rückmeldungen, also Rückmeldungen von geringer Länge.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Users in this setting (school recording studio) provided brief comments.",
+            "Operators in the school recording studio gave brief comments.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (school recording studio) provided comments that were brief and concise.",
+            "Operators in the school recording studio gave brief comments that were not long.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (school recording studio) provided their own brief comments personally.",
+            "Operators in the school recording studio gave brief comments in the school recording studio where they worked.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (school recording studio) provided brief comments in a short form.",
+            "Operators in the school recording studio gave brief comments in a brief form.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (school recording studio) provided brief comments about their experience in this setting.",
+            "Operators in the school recording studio gave brief comments, meaning comments that were short.",
         },
       ],
     },
@@ -67,28 +67,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Para pengguna di studio rekaman sekolah memberikan komentar singkat.",
+          label: "Operator studio rekaman sekolah memberikan komentar singkat.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks studio rekaman sekolah memberikan komentar yang singkat dan ringkas.",
+            "Operator studio rekaman sekolah memberikan komentar singkat yang tidak panjang.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks studio rekaman sekolah memberikan komentar singkat mereka sendiri secara pribadi.",
+            "Operator studio rekaman sekolah memberikan komentar singkat di studio rekaman sekolah tempat mereka bertugas.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks studio rekaman sekolah memberikan komentar singkat dalam bentuk pendek.",
+            "Operator studio rekaman sekolah memberikan komentar singkat dalam bentuk yang singkat.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks studio rekaman sekolah memberikan komentar singkat tentang pengalaman mereka dalam konteks tersebut.",
+            "Operator studio rekaman sekolah memberikan komentar yang singkat, yaitu komentar yang pendek.",
         },
       ],
     },

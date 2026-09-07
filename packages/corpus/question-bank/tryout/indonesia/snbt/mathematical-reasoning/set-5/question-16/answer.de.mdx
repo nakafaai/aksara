@@ -1,6 +1,7 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 16",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2026-02-09",
 };
 
@@ -10,23 +11,23 @@ Der April hat insgesamt <InlineMath math="30\text{ Tage}" />.
 
 Ab dem <InlineMath math="1" />. April ergeben sich diese Liefertermine:
 
-<MathContainer>
-  <BlockMath math="B = \{1, 5, 9, 13, 17, 21, 25, 29\}" />
-  <BlockMath math="C = \{1, 8, 15, 22, 29\}" />
-</MathContainer>
+| Menge | Liefertage |
+| :--- | :--- |
+| <InlineMath math="B" /> | <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="9" />, <InlineMath math="13" />, <InlineMath math="17" />, <InlineMath math="21" />, <InlineMath math="25" />, <InlineMath math="29" /> |
+| <InlineMath math="C" /> | <InlineMath math="1" />, <InlineMath math="8" />, <InlineMath math="15" />, <InlineMath math="22" />, <InlineMath math="29" /> |
 
 Die Vereinigung der Mengen <InlineMath math="B" /> und <InlineMath math="C" /> enthält alle Tage, an denen mindestens einer der beiden Lieferanten kommt:
 
-<MathContainer>
-  <BlockMath math="B \cup C = \{1, 5, 8, 9, 13, 15, 17, 21, 22, 25, 29\}" />
-</MathContainer>
+| Menge | Liefertage |
+| :--- | :--- |
+| <InlineMath math="B\cup C" /> | <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="8" />, <InlineMath math="9" />, <InlineMath math="13" />, <InlineMath math="15" />, <InlineMath math="17" />, <InlineMath math="21" />, <InlineMath math="22" />, <InlineMath math="25" />, <InlineMath math="29" /> |
 
 Damit gibt es an <InlineMath math="11\text{ Tagen}" /> mindestens eine Lieferung.
 
 Die Tage ohne Lieferung erhalten wir, indem wir diese elf Tage von allen Apriltagen abziehen:
 
 <MathContainer>
-  <BlockMath math="\text{Tage ohne Lieferung} = \text{Apriltage} - |B \cup C|" />
+  <BlockMath math="30-|B\cup C|" />
   <BlockMath math="= 30 - 11" />
   <BlockMath math="= 19 \text{ Tage}" />
 </MathContainer>

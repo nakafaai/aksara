@@ -8,17 +8,17 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Dalam setiap putaran yang memiliki iradiansi sama untuk semua oven, sudut 45 derajat unggul 2 derajat Celsius atas sudut 60 derajat, tetapi sudut di antara keduanya belum diuji.",
+            "Dalam setiap putaran yang memiliki iradiansi sama untuk semua oven, sudut $$45$$ derajat unggul $$2$$ derajat Celsius atas sudut $$60$$ derajat, tetapi sudut di antara keduanya belum diuji.",
         },
         {
           isCorrect: false,
           label:
-            "Sudut 45 derajat selalu menghasilkan kenaikan 13 derajat Celsius dibandingkan oven tanpa reflektor pada ketiga putaran.",
+            "Sudut $$45$$ derajat selalu menghasilkan kenaikan $$13$$ derajat Celsius dibandingkan oven tanpa reflektor pada ketiga putaran.",
         },
         {
           isCorrect: false,
           label:
-            "Sudut 60 derajat lebih efektif pada iradiansi tinggi karena suhu akhirnya 64 derajat Celsius, lebih tinggi daripada hasil 45 derajat pada putaran pertama.",
+            "Sudut $$60$$ derajat lebih efektif pada iradiansi tinggi karena suhu akhirnya $$64$$ derajat Celsius, lebih tinggi daripada hasil $$45$$ derajat pada putaran pertama.",
         },
         {
           isCorrect: false,

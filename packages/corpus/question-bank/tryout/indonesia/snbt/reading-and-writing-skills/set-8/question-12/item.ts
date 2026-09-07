@@ -7,28 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "am Montag prüfte das Team ein Formular mit strukturierten Ortsangaben im Kontext Fundbüroservice.",
+          label: "am Montag prüfte das Team das Ortsformular im Fundbüro.",
         },
         {
           isCorrect: false,
-          label:
-            "Am montag prüfte das Team ein Formular mit strukturierten Ortsangaben im Kontext Fundbüroservice.",
+          label: "Am montag prüfte das Team das Ortsformular im Fundbüro.",
         },
         {
           isCorrect: false,
-          label:
-            "Am Montag prüfte Das Team ein Formular mit strukturierten Ortsangaben im Kontext Fundbüroservice.",
+          label: "Am Montag prüfte Das Team das Ortsformular im Fundbüro.",
         },
         {
           isCorrect: true,
-          label:
-            "Am Montag prüfte das Team ein Formular mit strukturierten Ortsangaben im folgenden Kontext: Fundbüroservice.",
+          label: "Am Montag prüfte das Team das Ortsformular im Fundbüro.",
         },
         {
           isCorrect: false,
-          label:
-            "Am Montag, prüfte das Team ein Formular mit strukturierten Ortsangaben im Kontext Fundbüroservice",
+          label: "Am Montag, prüfte das Team das Ortsformular im Fundbüro",
         },
       ],
     },
@@ -38,27 +33,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "on Monday, the team tested a form with structured location choices in this setting (lost-property service).",
+            "on Monday, the team tested the form with structured location choices.",
         },
         {
           isCorrect: false,
           label:
-            "On monday, the team tested a form with structured location choices in this setting (lost-property service).",
+            "On monday, the team tested the form with structured location choices.",
         },
         {
           isCorrect: false,
           label:
-            "On Monday, The team tested a form with structured location choices in this setting (lost-property service).",
+            "On Monday, The team tested the form with structured location choices.",
         },
         {
           isCorrect: true,
           label:
-            "On Monday, the team tested a form with structured location choices in this setting (lost-property service).",
+            "On Monday, the team tested the form with structured location choices.",
         },
         {
           isCorrect: false,
           label:
-            "On Monday the team tested a form with structured location choices in this setting (lost-property service)",
+            "On Monday the team tested the form with structured location choices",
         },
       ],
     },
@@ -68,27 +63,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "pada Senin, tim menguji formulir dengan pilihan lokasi yang terstruktur di layanan pencarian barang hilang.",
+            "pada Senin, tim menguji formulir dengan pilihan lokasi terstruktur.",
         },
         {
           isCorrect: false,
           label:
-            "Pada senin, tim menguji formulir dengan pilihan lokasi yang terstruktur di layanan pencarian barang hilang.",
+            "Pada senin, tim menguji formulir dengan pilihan lokasi terstruktur.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin, Tim menguji formulir dengan pilihan lokasi yang terstruktur di layanan pencarian barang hilang.",
+            "Pada Senin, Tim menguji formulir dengan pilihan lokasi terstruktur.",
         },
         {
           isCorrect: true,
           label:
-            "Pada Senin, tim menguji formulir dengan pilihan lokasi yang terstruktur di layanan pencarian barang hilang.",
+            "Pada Senin, tim menguji formulir dengan pilihan lokasi terstruktur.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin tim menguji formulir dengan pilihan lokasi yang terstruktur di layanan pencarian barang hilang",
+            "Pada Senin tim menguji formulir dengan pilihan lokasi terstruktur",
         },
       ],
     },

@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Memberi kriteria untuk menilai kesinambungan identitas mantel dan menjelaskan mengapa celah riwayat membatasi hubungan antara M-17 dan foto 2019.",
+            "Memberi kriteria untuk menilai kesinambungan identitas mantel dan menjelaskan mengapa celah riwayat membatasi hubungan antara M-17 dan foto $$2019$$.",
         },
         {
           isCorrect: false,

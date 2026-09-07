@@ -24,7 +24,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die bereitgestellten Informationen reichen nicht aus, um sich für eine der vier oben genannten Optionen zu entscheiden",
+            "Die Angaben reichen nicht aus, um die Beziehung zwischen $$P$$ und $$Q$$ zu bestimmen.",
         },
       ],
     },
@@ -50,7 +50,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The information provided is not sufficient to decide on one of the four options above",
+            "The information is insufficient to determine the relationship between $$P$$ and $$Q$$.",
         },
       ],
     },
@@ -76,7 +76,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari empat pilihan di atas",
+            "Informasi tidak cukup untuk menentukan hubungan antara $$P$$ dan $$Q$$.",
         },
       ],
     },

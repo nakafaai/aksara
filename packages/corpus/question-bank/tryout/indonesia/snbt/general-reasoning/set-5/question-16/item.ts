@@ -11,7 +11,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Das Wachstum lag in jedem genannten Jahr über $$5%$$",
+          label: "Das Wachstum lag in jedem genannten Jahr über $$5\\%$$",
         },
         {
           isCorrect: false,
@@ -21,11 +21,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das niedrigste genannte Wachstum betrug $$4{,}88%$$ im Jahr $$2015$$",
+            "Das niedrigste genannte Wachstum betrug $$4{,}88\\%$$ im Jahr $$2015$$",
         },
         {
           isCorrect: false,
-          label: "Das Wirtschaftswachstum betrug $$2018$$ $$5{,}17%$$",
+          label: "Das Wirtschaftswachstum betrug $$2018$$ $$5{,}17\\%$$",
         },
       ],
     },
@@ -38,7 +38,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Growth remained above $$5%$$ in every year mentioned",
+          label: "Growth remained above $$5\\%$$ in every year mentioned",
         },
         {
           isCorrect: false,
@@ -47,11 +47,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "The lowest stated growth was $$4.88%$$ in $$2015$$",
+          label: "The lowest stated growth was $$4.88\\%$$ in $$2015$$",
         },
         {
           isCorrect: false,
-          label: "Economic growth in $$2018$$ was $$5.17%$$",
+          label: "Economic growth in $$2018$$ was $$5.17\\%$$",
         },
       ],
     },
@@ -65,7 +65,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pertumbuhan tetap di atas $$5%$$ pada setiap tahun yang disebutkan",
+            "Pertumbuhan tetap di atas $$5\\%$$ pada setiap tahun yang disebutkan",
         },
         {
           isCorrect: false,
@@ -75,11 +75,11 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pertumbuhan terendah yang disebutkan adalah $$4{,}88%$$ pada $$2015$$",
+            "Pertumbuhan terendah yang disebutkan adalah $$4{,}88\\%$$ pada $$2015$$",
         },
         {
           isCorrect: false,
-          label: "Pertumbuhan ekonomi pada $$2018$$ sebesar $$5{,}17%$$",
+          label: "Pertumbuhan ekonomi pada $$2018$$ sebesar $$5{,}17\\%$$",
         },
       ],
     },

@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "karena transkrip dipertahankan sebagai akses dasar bagi semua kelompok, sedangkan earphone dan penamaanlah yang dibedakan untuk diuji",
+            "karena transkrip tetap dapat diakses semua kelompok, sedangkan pemberian earphone dibedakan dengan penamaan audio yang dibuat sama",
         },
         {
           isCorrect: false,

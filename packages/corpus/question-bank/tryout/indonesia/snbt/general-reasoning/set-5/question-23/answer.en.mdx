@@ -2,9 +2,21 @@ export const metadata = {
   title: "Solution to Question 23",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Exactly one service is used by <InlineMath math="(75+68+55)-2(28+22+19)+3(9)=87" /> participants. Inclusion-exclusion gives <InlineMath math="75+68+55-28-22-19+9=138" /> using at least one service, so <InlineMath math="160-138=22" /> use none. At most one service therefore gives <InlineMath math="87+22=109" />.
+First count participants using at least two services. Subtract users of all three from each pairwise intersection to count those using exactly two:
 
-Therefore, the requested value is <InlineMath math="109" />.
+<BlockMath math="28-9=19" />
+
+<BlockMath math="22-9=13" />
+
+<BlockMath math="19-9=10" />
+
+Add the group using all three, exactly once.
+
+<BlockMath math="19+13+10+9=51" />
+
+Everyone else uses at most one service. Their count is:
+
+<BlockMath math="160-51=109" />

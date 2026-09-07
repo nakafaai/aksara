@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Alle Einwohner von Jakarta haben eine Geburtsurkunde oder einen Personalausweis (KTP).",
+            "Alle Einwohner von Jakarta besitzen genau eines der beiden Dokumente: Geburtsurkunde oder Personalausweis (KTP).",
         },
         {
           isCorrect: false,
@@ -48,7 +48,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "All Jakarta residents have a birth certificate or ID card (KTP)",
+            "All Jakarta residents have exactly one of a birth certificate and an ID card (KTP)",
         },
         {
           isCorrect: false,
@@ -67,25 +67,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Sebagian warga Jakarta memiliki AKTA kelahiran dan KTP",
+          label: "Sebagian warga Jakarta memiliki akta kelahiran dan KTP",
         },
         {
           isCorrect: false,
-          label: "Semua warga Jakarta memiliki AKTA kelahiran dan KTP",
-        },
-        {
-          isCorrect: false,
-          label: "Semua warga Jakarta memiliki AKTA kelahiran atau KTP",
+          label: "Semua warga Jakarta memiliki akta kelahiran dan KTP",
         },
         {
           isCorrect: false,
           label:
-            "Ada warga Jakarta di atas $$17$$ tahun tidak memiliki AKTA kelahiran namun memiliki KTP",
+            "Semua warga Jakarta hanya memiliki salah satu dari akta kelahiran atau KTP",
         },
         {
           isCorrect: false,
           label:
-            "Sebagian warga Jakarta tidak memiliki AKTA kelahiran namun mempunyai KTP",
+            "Ada warga Jakarta di atas $$17$$ tahun tidak memiliki akta kelahiran namun memiliki KTP",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Sebagian warga Jakarta tidak memiliki akta kelahiran namun mempunyai KTP",
         },
       ],
     },

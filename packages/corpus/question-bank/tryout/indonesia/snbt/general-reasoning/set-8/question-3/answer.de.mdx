@@ -2,22 +2,18 @@ export const metadata = {
   title: "Lösung zu Aufgabe 3",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-01-29",
+  dateModified: "2026-09-07",
 };
 
-Wir bestimmen zunächst die Rechenschritte zwischen den aufeinanderfolgenden Gliedern:
+Wir prüfen die sechs Übergänge zwischen den bekannten Gliedern:
 
 <MathContainer>
-  <BlockMath math="\begin{array}{ccl} 4 \xrightarrow{+2} 6 &amp; \quad &amp; (\text{1. zum 2. Glied}) \\ 6 \xrightarrow{+4} 10 &amp; \quad &amp; (\text{2. zum 3. Glied}) \\ 10 \xrightarrow{-1} 9 &amp; \quad &amp; (\text{3. zum 4. Glied}) \\ 9 \xrightarrow{+2} 11 &amp; \quad &amp; (\text{4. zum 5. Glied}) \\ 11 \xrightarrow{+4} 15 &amp; \quad &amp; (\text{5. zum 6. Glied}) \\ 15 \xrightarrow{-1} 14 &amp; \quad &amp; (\text{6. zum 7. Glied}) \end{array}" />
+  <BlockMath math="\begin{aligned}4+2&=6\\6+4&=10\\10-1&=9\end{aligned}" />
+  <BlockMath math="\begin{aligned}9+2&=11\\11+4&=15\\15-1&=14\end{aligned}" />
 </MathContainer>
 
-Die Rechenschritte **<InlineMath math="+2, +4, -1" />** wiederholen sich zyklisch.
+Die Operationen <InlineMath math="+2" />, <InlineMath math="+4" /> und <InlineMath math="-1" /> treten zweimal in derselben Reihenfolge auf. Nach dem letzten Glied beginnt der Zyklus wieder mit <InlineMath math="+2" />:
 
-Nach **<InlineMath math="-1" />** folgt deshalb wieder **<InlineMath math="+2" />**.
+<BlockMath math="14+2=16" />
 
-Das nächste Glied lautet:
-
-<MathContainer>
-  <BlockMath math="14 + 2 = 16" />
-</MathContainer>
-
-Damit vervollständigt **<InlineMath math="16" />** die Folge.
+Das nächste Glied ist somit **<InlineMath math="16" />**.

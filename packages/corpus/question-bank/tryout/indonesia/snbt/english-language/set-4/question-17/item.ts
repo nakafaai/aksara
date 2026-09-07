@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Eli placed one plain sentence beside the longest museum label; the recurring object's physical appearance fixes its complete meaning from the first mention.",
+            "Eli placed one plain sentence beside the longest museum label. The recurring object's physical appearance fixes its complete meaning from the first mention.",
         },
         {
           isCorrect: true,
@@ -18,17 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Eli placed one plain sentence beside the longest museum label; the ending states the object's meaning directly, making the earlier actions irrelevant.",
+            "Eli placed one plain sentence beside the longest museum label. The ending states the object's meaning directly, making the earlier actions irrelevant.",
         },
         {
           isCorrect: false,
           label:
-            "Eli placed one plain sentence beside the longest museum label; the setting alone changes the atmosphere, independently of the character's use of the recurring object.",
+            "Eli placed one plain sentence beside the longest museum label. The setting alone changes the atmosphere, independently of the character's use of the recurring object.",
         },
         {
           isCorrect: false,
           label:
-            "Eli placed one plain sentence beside the longest museum label; the object keeps one fixed meaning even as the character's action and the final response change.",
+            "Eli placed one plain sentence beside the longest museum label. The object keeps one fixed meaning even as the character's action and the final response change.",
         },
       ],
     },

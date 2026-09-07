@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Rückverfolgbarkeit verbindet ein Produkt mit einem aktuellen Wegdatensatz und nicht nur mit einem Ort.",
+            "Rückverfolgbarkeit verbindet ein Produkt mit aktuellen Aufzeichnungen über seinen Weg und nicht nur mit einem Ort.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Produktangaben müssen Lieferstufen unterscheiden, damit sie für Käufer knapp und bei Prüfungen rückverfolgbar bleiben.",
+            "Für Rückverfolgbarkeit genügt die Adresse des letzten Händlers ohne Aufzeichnungen früherer Stufen.",
         },
       ],
     },
@@ -58,7 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Product-origin information must distinguish supply-chain stages so it remains concise for buyers and traceable during inspection.",
+            "Traceability only needs to connect a product to its last distributor's address without records of earlier stages.",
         },
       ],
     },
@@ -87,7 +87,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Informasi asal produk perlu memisahkan tahap rantai pasok agar ringkas bagi pembeli sekaligus dapat ditelusuri saat pemeriksaan.",
+            "Ketertelusuran cukup menghubungkan produk dengan alamat distributor terakhir tanpa catatan tahap sebelumnya.",
         },
       ],
     },

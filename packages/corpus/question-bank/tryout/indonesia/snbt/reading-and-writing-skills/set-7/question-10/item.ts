@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Mit geänderten Messregeln plant das Team einen längeren Test von Menüvorbestellung am Vortag.",
+            "Das Team wird den Versuch verlängern und die Messgröße für passende Abholungen ändern.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team will nur die Tage wiederholen, an denen die Änderung Menüvorbestellung am Vortag den höchsten Wert ergab.",
+            "Das Team wird nur Termine mit der höchsten Zahl passender Abholungen wiederholen.",
         },
         {
           isCorrect: true,
           label:
-            "Unter unveränderten Messregeln plant das Team einen längeren Versuch mit folgender Änderung: Menübestellung am Vortag.",
+            "Das Team wird den Vorbestellungsversuch verlängern, Anwesenheit und Reste erfassen und dasselbe Maß für passende Abholungen verwenden.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team will Menüvorbestellung am Vortag dauerhaft einführen statt einen längeren Vergleich durchzuführen.",
+            "Das Team wird Vorbestellungen statt weiterer Tests dauerhaft einführen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team plant einen längeren Test von Menüvorbestellung am Vortag ohne Vergleichsbedingung.",
+            "Das Team wird den Versuch verlängern, ohne Anwesenheit und Reste zu erfassen.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Using revised measurement rules, the team plans a longer test of menu booking one day in advance.",
+            "The team will extend the test while changing the order-matching measure.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans to repeat only the days on which menu booking one day in advance produced the highest value.",
+            "The team will repeat only sessions with the highest number of matched orders.",
         },
         {
           isCorrect: true,
           label:
-            "Using the same measurement rules, the team plans a longer test of menu booking one day in advance.",
+            "The team will extend the advance-ordering test, record attendance and leftovers, and retain the order-matching measure.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans to adopt menu booking one day in advance permanently instead of running a longer comparison.",
+            "The team will adopt advance ordering permanently instead of conducting further tests.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans a longer test of menu booking one day in advance without retaining a comparison condition.",
+            "The team will extend the test without recording attendance and leftovers.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dengan kaidah pengukuran yang diubah, tim merencanakan uji pemesanan menu sehari sebelumnya yang lebih panjang.",
+            "Tim akan memperpanjang uji sambil mengubah ukuran kesesuaian pesanan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim akan mengulang hari ketika pemesanan menu sehari sebelumnya menghasilkan nilai tertinggi.",
+            "Tim akan mengulang hanya sesi dengan jumlah pesanan sesuai tertinggi.",
         },
         {
           isCorrect: true,
           label:
-            "Dengan aturan pengukuran yang sama, tim merencanakan uji yang lebih lama terhadap pemesanan menu sehari sebelumnya.",
+            "Tim akan memperpanjang uji pemesanan awal, mencatat kehadiran dan sisa makanan, serta mempertahankan ukuran kesesuaian pesanan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim akan menerapkan pemesanan menu sehari sebelumnya secara tetap sebagai pengganti perbandingan yang lebih panjang.",
+            "Tim akan menerapkan pemesanan awal permanen sebagai pengganti uji lanjutan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim merencanakan uji pemesanan menu sehari sebelumnya yang lebih panjang tanpa mempertahankan kondisi pembanding.",
+            "Tim akan memperpanjang uji tanpa mencatat kehadiran dan sisa makanan.",
         },
       ],
     },

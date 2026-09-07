@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$41\\text{ Stunden }15\\text{ Minuten}$$",
+          label: "$$41\\text{ Stunden }15\\text{ min}$$",
         },
         {
           isCorrect: false,
-          label: "$$41\\text{ Stunden }25\\text{ Minuten}$$",
+          label: "$$41\\text{ Stunden }25\\text{ min}$$",
         },
         {
           isCorrect: false,
-          label: "$$42\\text{ Stunden }15\\text{ Minuten}$$",
+          label: "$$42\\text{ Stunden }15\\text{ min}$$",
         },
         {
           isCorrect: false,
-          label: "$$42\\text{ Stunden }25\\text{ Minuten}$$",
+          label: "$$42\\text{ Stunden }25\\text{ min}$$",
         },
         {
           isCorrect: false,
-          label: "$$42\\text{ Stunden }45\\text{ Minuten}$$",
+          label: "$$42\\text{ Stunden }45\\text{ min}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$41\\text{ hours }15\\text{ minutes}$$",
+          label: "$$41\\text{ hours }15\\text{ min}$$",
         },
         {
           isCorrect: false,
-          label: "$$41\\text{ hours }25\\text{ minutes}$$",
+          label: "$$41\\text{ hours }25\\text{ min}$$",
         },
         {
           isCorrect: false,
-          label: "$$42\\text{ hours }15\\text{ minutes}$$",
+          label: "$$42\\text{ hours }15\\text{ min}$$",
         },
         {
           isCorrect: false,
-          label: "$$42\\text{ hours }25\\text{ minutes}$$",
+          label: "$$42\\text{ hours }25\\text{ min}$$",
         },
         {
           isCorrect: false,
-          label: "$$42\\text{ hours }45\\text{ minutes}$$",
+          label: "$$42\\text{ hours }45\\text{ min}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$41\\text{ jam }15\\text{ menit}$$",
+          label: "$$41\\text{ jam }15\\text{ min}$$",
         },
         {
           isCorrect: false,
-          label: "$$41\\text{ jam }25\\text{ menit}$$",
+          label: "$$41\\text{ jam }25\\text{ min}$$",
         },
         {
           isCorrect: false,
-          label: "$$42\\text{ jam }15\\text{ menit}$$",
+          label: "$$42\\text{ jam }15\\text{ min}$$",
         },
         {
           isCorrect: false,
-          label: "$$42\\text{ jam }25\\text{ menit}$$",
+          label: "$$42\\text{ jam }25\\text{ min}$$",
         },
         {
           isCorrect: false,
-          label: "$$42\\text{ jam }45\\text{ menit}$$",
+          label: "$$42\\text{ jam }45\\text{ min}$$",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team änderte nur ein Faktor: ein Formular mit strukturierten Ortsangaben.",
+            "Das Team änderte nur ein Faktor: die Ergänzung strukturierter Ortsangaben im Formular.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team änderte nur einem Faktor: ein Formular mit strukturierten Ortsangaben.",
+            "Das Team änderte nur einem Faktor: die Ergänzung strukturierter Ortsangaben im Formular.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team änderte nur einen Faktor: ein Formular mit strukturierten Ortsangaben.",
+            "Das Team änderte nur einen Faktor: die Ergänzung strukturierter Ortsangaben im Formular.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team änderte lediglich nur einen Faktor: ein Formular mit strukturierten Ortsangaben.",
+            "Das Team änderte lediglich nur einen Faktor: die Ergänzung strukturierter Ortsangaben im Formular.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team änderte nur einen Faktor, und zwar: ein Formular mit strukturierten Ortsangaben.",
+            "Das Team änderte nur einen Faktoren: die Ergänzung strukturierter Ortsangaben im Formular.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team changed only one factors: a form with structured location choices.",
+            "The team changed only one factors: adding structured location choices to the form.",
         },
         {
           isCorrect: false,
           label:
-            "The team changed merely only one factor: a form with structured location choices.",
+            "The team changed merely only one factor: adding structured location choices to the form.",
         },
         {
           isCorrect: true,
           label:
-            "The team changed only one factor: a form with structured location choices.",
+            "The team changed only one factor: adding structured location choices to the form.",
         },
         {
           isCorrect: false,
           label:
-            "The team changed only one factor, namely: a form with structured location choices.",
+            "The team changed only one factor, namely: adding structured location choices to the form.",
         },
         {
           isCorrect: false,
           label:
-            "The team changed only one factor; namely a form with structured location choices.",
+            "The team changed only one factor; namely adding structured location choices to the form.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim merubah satu faktor saja, yaitu formulir dengan pilihan lokasi yang terstruktur.",
+            "Tim merubah satu faktor saja, yaitu penambahan pilihan lokasi terstruktur pada formulir.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengubahkan satu faktor saja, yaitu formulir dengan pilihan lokasi yang terstruktur.",
+            "Tim mengrubah satu faktor saja, yaitu penambahan pilihan lokasi terstruktur pada formulir.",
         },
         {
           isCorrect: true,
           label:
-            "Tim mengubah satu faktor saja, yaitu formulir dengan pilihan lokasi yang terstruktur.",
+            "Tim mengubah satu faktor saja, yaitu penambahan pilihan lokasi terstruktur pada formulir.",
         },
         {
           isCorrect: false,
           label:
-            "Tim hanya mengubah satu faktor saja, yaitu formulir dengan pilihan lokasi yang terstruktur.",
+            "Tim hanya mengubah satu faktor saja, yaitu penambahan pilihan lokasi terstruktur pada formulir.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengubah terhadap satu faktor saja, yaitu formulir dengan pilihan lokasi yang terstruktur.",
+            "Tim mengubah terhadap satu faktor saja, yaitu penambahan pilihan lokasi terstruktur pada formulir.",
         },
       ],
     },

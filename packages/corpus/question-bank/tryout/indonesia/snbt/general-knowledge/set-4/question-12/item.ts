@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Vorteile digitaler Zahlungen müssen mit vergleichbaren Daten und unter Berücksichtigung des Zugangs bewertet werden; ihre Ergänzung rechtfertigt nicht automatisch die Abschaffung von Bargeld.",
+            "Im nächsten Test reicht der bisherige Durchschnitt aus, ohne Vorgänge mit ähnlicher Artikelzahl zu vergleichen.",
         },
       ],
     },
@@ -57,7 +57,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Digital payment benefits must be judged with comparable data and user access, so adding it does not automatically justify removing cash.",
+            "In the next test, the old average is sufficient without matching the item counts of transactions.",
         },
       ],
     },
@@ -87,7 +87,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Manfaat pembayaran digital perlu dinilai dengan data yang sebanding dan akses pengguna, sehingga penambahannya tidak otomatis berarti penghapusan tunai.",
+            "Pada uji berikutnya, rata-rata lama cukup dipakai tanpa menyamakan jumlah barang dalam transaksi.",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Die Daten wurden in diesem Kontext erhoben: Musikproberäume. Anschließend wurden sie verglichen.",
+            "Die Daten wurden in den Proberäumen erhoben und danach verglichen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten worden im Kontext Musikproberäume erhebt und danach vergleichen.",
+            "Die Daten worden in den Proberäumen erhebt und danach vergleichen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten wurden an den Kontext Musikproberäume erhoben und danach verglichen.",
+            "Die Daten wurden an die Proberäume erhoben und danach verglichen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten wurden in diesem Kontext erhoben Musikproberäume anschließend sie verglichen wurden.",
+            "Die Daten wurden in den Proberäumen erhoben anschließend sie verglichen wurden.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten wurden von Musikproberäume erheben und anschließend vergleicht.",
+            "Die Daten wurden von Proberäume erheben und anschließend vergleicht.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Data were collected in this setting (music practice rooms) and compared afterward.",
+            "Data were collected in the music practice rooms and compared afterward.",
         },
         {
           isCorrect: false,
           label:
-            "Data were collected at this setting (music practice rooms) and compared afterward in.",
+            "Data were collected in the music practice rooms and compared afterward in.",
         },
         {
           isCorrect: false,
           label:
-            "Data was collect in this setting (music practice rooms) and comparing afterward.",
+            "Data was collect in the music practice rooms and comparing afterward.",
         },
         {
           isCorrect: false,
           label:
-            "Data were collected on this setting (music practice rooms) and afterward compared it.",
+            "Data were collected in the music practice rooms and afterward compared it.",
         },
         {
           isCorrect: false,
           label:
-            "Data collected this setting (music practice rooms) and were comparison afterward.",
+            "Data collected the music practice rooms and were comparison afterward.",
         },
       ],
     },
@@ -67,21 +67,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Data dikumpulkan di ruang latihan musik, lalu dibandingkan.",
-        },
-        {
-          isCorrect: false,
-          label: "Data di kumpulkan di ruang latihan musik, lalu dibandingkan.",
+          label:
+            "Data dikumpulkan di ruang latihan musik dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data dikumpulkan didepan ruang latihan musik, lalu dibandingkan.",
+            "Data di kumpulkan di ruang latihan musik dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data mengumpulkan di ruang latihan musik, lalu membandingkan.",
+            "Data dikumpulkan diruang latihan musik dan kemudian dibandingkan.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Data mengumpulkan di ruang latihan musik dan kemudian membandingkan.",
         },
         {
           isCorrect: false,

@@ -8,7 +8,6 @@ type PublicationBatchKind =
   | "content-route"
   | "content-projection"
   | "release-item"
-  | "rollback-projection"
   | "snapshot"
   | "stage-group";
 
@@ -37,7 +36,6 @@ export class PublicationBatchLimitError extends Schema.TaggedError<PublicationBa
       "content-route",
       "content-projection",
       "release-item",
-      "rollback-projection",
       "snapshot",
       "stage-group",
     ]),

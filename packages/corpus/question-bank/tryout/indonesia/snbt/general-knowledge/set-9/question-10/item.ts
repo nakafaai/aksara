@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Botschaften über deskriptive Normen können Verhalten ändern, doch ihr Effekt muss von anderen Faktoren getrennt und ihre Aussage korrekt sein.",
+            "Eine hohe Mehrheitszahl genügt für Glaubwürdigkeit, selbst wenn sie dem Verhalten der Fahrgäste widerspricht.",
         },
       ],
     },
@@ -57,7 +57,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Descriptive-norm messages can change behaviour, but their effect must be separated from other factors and their claims must be accurate.",
+            "A large majority figure is enough to maintain credibility even when it conflicts with passenger behaviour.",
         },
       ],
     },
@@ -87,7 +87,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pesan norma deskriptif dapat mengubah perilaku, tetapi efeknya harus dipisahkan dari faktor lain dan klaimnya harus akurat.",
+            "Kredibilitas pesan cukup dijaga dengan angka mayoritas yang besar meskipun tidak sesuai perilaku penumpang.",
         },
       ],
     },

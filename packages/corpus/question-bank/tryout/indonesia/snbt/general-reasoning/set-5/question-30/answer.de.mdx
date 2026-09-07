@@ -2,9 +2,34 @@ export const metadata = {
   title: "Lösung zu Aufgabe 30",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Das ganzzahlige Maximum vor den Fixkosten liegt bei <InlineMath math="(X,Y)=(8,2)" /> mit <InlineMath math="8(9)+2(5)=82" />; der nächstbeste zulässige Gewinn beträgt 81. Nach Abzug der täglichen Fixkosten bleiben <InlineMath math="82-10=72" />.
+Dabei sind <InlineMath math="x" /> und <InlineMath math="y" /> die Anzahlen der beiden Paketarten. Es gelten folgende Bedingungen:
 
-Damit ist der gesuchte Wert <InlineMath math="72" />.
+<BlockMath math="3x+4y\le36" />
+
+<BlockMath math="2x+y\le18" />
+
+<BlockMath math="x,y\in\mathbb Z_{\ge0}" />
+
+Für jeden Wert von <InlineMath math="x" /> wird das größte <InlineMath math="y" /> gewählt, das beide Bedingungen erfüllt. Das liefert den höchsten Gewinn, weil jedes Paket <InlineMath math="Y" /> einen positiven Gewinnbeitrag liefert.
+
+| <InlineMath math="x" /> | <InlineMath math="y" /> maximal | Gewinn vor Fixkosten |
+| :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="9" /> | <InlineMath math="45" /> |
+| <InlineMath math="1" /> | <InlineMath math="8" /> | <InlineMath math="49" /> |
+| <InlineMath math="2" /> | <InlineMath math="7" /> | <InlineMath math="53" /> |
+| <InlineMath math="3" /> | <InlineMath math="6" /> | <InlineMath math="57" /> |
+| <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="66" /> |
+| <InlineMath math="5" /> | <InlineMath math="5" /> | <InlineMath math="70" /> |
+| <InlineMath math="6" /> | <InlineMath math="4" /> | <InlineMath math="74" /> |
+| <InlineMath math="7" /> | <InlineMath math="3" /> | <InlineMath math="78" /> |
+| <InlineMath math="8" /> | <InlineMath math="2" /> | <InlineMath math="82" /> |
+| <InlineMath math="9" /> | <InlineMath math="0" /> | <InlineMath math="81" /> |
+
+Der höchste Gewinn vor Fixkosten beträgt <InlineMath math="82" /> bei <InlineMath math="(x,y)=(8,2)" />.
+
+Von jeder Wahl werden dieselben Fixkosten abgezogen. Der maximale Nettogewinn beträgt:
+
+<BlockMath math="82-10=72" />

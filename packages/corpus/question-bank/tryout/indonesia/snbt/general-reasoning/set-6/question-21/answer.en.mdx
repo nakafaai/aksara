@@ -2,9 +2,23 @@ export const metadata = {
   title: "Solution to Question 21",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-The odd-position terms increase by <InlineMath math="5" />, and the even-position terms are multiplied by <InlineMath math="3" />. Thus <InlineMath math="a_9=26" /> and <InlineMath math="a_8=81" />, giving <InlineMath math="a_8-2a_9=81-52=29" />.
+Separate the terms by position. The odd-position subsequence is:
 
-Therefore, the requested value is <InlineMath math="29" />.
+<BlockMath math="6,\ 11,\ 16,\ 21,\ldots" />
+
+Consecutive terms in this subsequence differ by <InlineMath math="5" />. The next odd-position term is therefore <InlineMath math="a_9=21+5=26" />.
+
+The even-position subsequence is:
+
+<BlockMath math="3,\ 9,\ 27,\ldots" />
+
+Each term is obtained by multiplying the previous term in this subsequence by <InlineMath math="3" />. Thus, <InlineMath math="a_8=27\times3=81" />.
+
+Substitute both values into the requested expression:
+
+<BlockMath math="\begin{aligned}a_8-2a_9&=81-2(26)\\&=81-52\\&=29\end{aligned}" />
+
+The requested value is <InlineMath math="29" />.

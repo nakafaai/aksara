@@ -1,48 +1,26 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 5",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2025-11-23",
 };
 
-Wir legen die Mindestanzahl der Raten fest, damit Jojos monatliche Zahlung das angegebene Limit nicht überschreitet.
+Jojo kauft einen Laptop der Serie <InlineMath math="A" /> und erhält deshalb <InlineMath math="20\%" /> Rabatt auf den ursprünglichen Preis. Bei der Jubiläumsaktion entfällt die Anzahlung. Es gilt der niedrigste Jahreszinssatz von <InlineMath math="4\%" />.
 
-#### Berechnen des Preises nach Rabatt
+#### Kaufpreis und Zinsen
 
-Jojo kauft einen Laptop der Serie <InlineMath math="A" /> für <InlineMath math="\text{Rp}15{.}000{.}000{,}00" />. Da es einen Rabatt von <InlineMath math="20\%" /> gibt, beträgt der zu zahlende Preis:
+Nach dem Rabatt bleiben <InlineMath math="100\%-20\%=80\%" /> des ursprünglichen Preises zu zahlen. Dieser gesamte Betrag bildet den Kreditbetrag <InlineMath math="P" /> in Rupiah.
 
-<MathContainer>
-<BlockMath math="\text{Ermäßigter Preis} = (100\% - 20\%) \times 15{.}000{.}000" />
-<BlockMath math="\text{Ermäßigter Preis} = 80\% \times 15{.}000{.}000 = 12{.}000{.}000" />
-</MathContainer>
+<BlockMath math="\begin{aligned}P&=80\%\times15{.}000{.}000\\&=12{.}000{.}000\end{aligned}" />
 
-Der Hauptdarlehensbetrag beträgt <InlineMath math="\text{Rp}12{.}000{.}000{,}00" />.
+Die einfachen Zinsen werden aus dem ursprünglichen Kreditbetrag berechnet. Die monatlichen Zinsen <InlineMath math="B" /> ergeben sich, indem wir die Jahreszinsen durch <InlineMath math="12" /> teilen.
 
-#### Ermittlung von Zinsen und Kapitalrate
+<BlockMath math="\begin{aligned}B&=\frac{4\%}{12}P\\&=\frac{1}{300}P\\&=40{.}000\end{aligned}" />
 
-Bei dieser Jubiläumsaktion erhält Jojo das Angebot mit den niedrigsten Ratenzinsen. Nach den Filialregeln beträgt der erzielbare Mindestzins <InlineMath math="4\%" /> pro Jahr (maximale Reduzierung von <InlineMath math="2\%" /> vom Basiszins von <InlineMath math="6\%" />).
+#### Anzahl der Raten
 
-Wir berechnen den monatlichen Zinsanteil:
+Bei <InlineMath math="n" /> Raten enthält jede Monatszahlung einen Tilgungsanteil von <InlineMath math="P/n" /> und Zinsen von <InlineMath math="B" />. Zusammen dürfen sie höchstens <InlineMath math="\text{Rp}600{.}000{,}00" /> betragen.
 
-<MathContainer>
-<BlockMath math="\text{Monatliche Zinsen} = \frac{4\%}{12} \times 12{.}000{.}000" />
-<BlockMath math="\text{Monatliche Zinsen} = \frac{1}{300} \times 12{.}000{.}000 = 40{.}000" />
-</MathContainer>
+<BlockMath math="\begin{aligned}\frac{P}{n}+B&\le600{.}000\\\frac{12{.}000{.}000}{n}&\le560{.}000\\n&\ge\frac{12{.}000{.}000}{560{.}000}\\n&\ge\frac{150}{7}\end{aligned}" />
 
-Der monatliche Ratenbetrag setzt sich aus der Hauptrate und den Zinsen zusammen:
-
-<BlockMath math="\text{Ratenzahlung} = \frac{\text{Darlehensgeber}}{n} + \text{Monatliche Zinsen}" />
-
-Wobei <InlineMath math="n" /> die Anzahl der Raten ist.
-
-#### Berechnung der Mindestratendauer
-
-Es ist bekannt, dass die monatliche Rate <InlineMath math="\text{Rp}600{.}000{,}00" /> nicht überschreiten darf.
-
-<MathContainer>
-  <BlockMath math="\frac{12{.}000{.}000}{n} + 40{.}000 \le 600{.}000" />
-  <BlockMath math="\frac{12{.}000{.}000}{n} \le 560{.}000" />
-  <BlockMath math="n \ge \frac{12{.}000{.}000}{560{.}000}" />
-  <BlockMath math="n \ge 21{,}42" />
-</MathContainer>
-
-Da die Anzahl der Raten ganzzahlig sein muss, benötigt Jojo mindestens **<InlineMath math="22 \text{ Raten}" />**.
+Diese Untergrenze liegt zwischen <InlineMath math="21" /> und <InlineMath math="22" />. Da die Anzahl der Raten ganzzahlig sein muss, braucht Jojo mindestens **<InlineMath math="22" /> Raten**.

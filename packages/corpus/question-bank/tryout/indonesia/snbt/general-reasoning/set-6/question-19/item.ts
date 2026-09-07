@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Sowohl die höchsten Reisimporte als auch die höchste Reisbeschaffung treten 1999 auf.",
+            "Sowohl die höchsten Reisimporte als auch die höchste Reisbeschaffung treten $$1999$$ auf.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Sowohl die niedrigsten Reisimporte als auch die niedrigste Reisbeschaffung treten 2004 auf.",
+            "Sowohl die niedrigsten Reisimporte als auch die niedrigste Reisbeschaffung treten $$2004$$ auf.",
         },
       ],
     },
@@ -48,7 +48,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The highest rice imports and the highest rice procurement both occur in 1999.",
+            "The highest rice imports and the highest rice procurement both occur in $$1999$$.",
         },
         {
           isCorrect: false,
@@ -58,7 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The lowest rice imports and the lowest rice procurement both occur in 2004.",
+            "The lowest rice imports and the lowest rice procurement both occur in $$2004$$.",
         },
       ],
     },
@@ -78,7 +78,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Impor beras tertinggi dan pengadaan beras tertinggi sama-sama terjadi pada 1999.",
+            "Impor beras tertinggi dan pengadaan beras tertinggi sama-sama terjadi pada $$1999$$.",
         },
         {
           isCorrect: false,
@@ -88,7 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Impor beras terendah dan pengadaan beras terendah sama-sama terjadi pada 2004.",
+            "Impor beras terendah dan pengadaan beras terendah sama-sama terjadi pada $$2004$$.",
         },
       ],
     },

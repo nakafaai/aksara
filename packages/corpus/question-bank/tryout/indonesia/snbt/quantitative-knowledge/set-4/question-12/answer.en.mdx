@@ -2,13 +2,14 @@ export const metadata = {
     title: "Explanation for Question 12",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-11-26",
+  dateModified: "2026-09-07",
 };
 
 Given:
 
-- Total number of students: <InlineMath math="S = 800" />
-- Students who like Mathematics: <InlineMath math="M = 400" />
-- Students who like Physics: <InlineMath math="F = 500" />
+- Total number of students: <InlineMath math="n(S) = 800" />
+- Students who like Mathematics: <InlineMath math="n(M) = 400" />
+- Students who like Physics: <InlineMath math="n(F) = 500" />
 
 We want to find the maximum value (<InlineMath math="x" />) and minimum value (<InlineMath math="y" />) of the intersection of these two sets (students who like both).
 
@@ -18,15 +19,20 @@ The number of students who like both will be maximum if the smaller set is a sub
 Here, the number of students who like Mathematics (<InlineMath math="400" />) is less than those who like Physics (<InlineMath math="500" />).
 So, the maximum value of the intersection is the number of students in the smallest group.
 
-<MathContainer>
-  <BlockMath math="x = 400" />
-</MathContainer>
+<BlockMath math="x = 400" />
 
 #### Finding the Minimum Intersection
 
 The intersection is smallest when the union is as large as possible. Because the school has only <InlineMath math="800" /> students, <InlineMath math="n(M \cup F)" /> cannot exceed <InlineMath math="800" />.
 
-Using <InlineMath math="n(M \cup F) = n(M) + n(F) - n(M \cap F)" />, the smallest possible intersection occurs when the union reaches that upper bound. This arrangement is feasible: every student likes at least one of the two subjects.
+The number of elements in the union is given by:
+
+<BlockMath math="\begin{aligned}
+n(M\cup F)&=n(M)+n(F) \\
+&\quad{}-n(M\cap F)
+\end{aligned}" />
+
+The smallest possible intersection occurs when the union reaches that upper bound. This is feasible when every student likes at least one of the two subjects.
 
 <MathContainer>
   <BlockMath math="800 = 400 + 500 - y" />
@@ -39,8 +45,6 @@ Using <InlineMath math="n(M \cup F) = n(M) + n(F) - n(M \cap F)" />, the smalles
 
 Finally, we calculate the difference between the maximum and minimum values.
 
-<MathContainer>
-  <BlockMath math="x - y = 400 - 100 = 300" />
-</MathContainer>
+<BlockMath math="x - y = 400 - 100 = 300" />
 
 So, the value of <InlineMath math="x - y" /> is <InlineMath math="300\text{ people}" />.

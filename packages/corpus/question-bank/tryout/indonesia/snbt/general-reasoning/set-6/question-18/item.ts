@@ -8,16 +8,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Industrielle Transfette behandeln die Symptome eines Schlaganfalls.",
+            "Alle frittierten Lebensmittel enthalten industrielle Transfette.",
         },
         {
           isCorrect: false,
           label:
-            "Nur Menschen mit einer Nierenerkrankung müssen industrielle Transfette meiden.",
+            "Weniger industrielle Transfette zu verzehren, garantiert, dass keine koronare Herzkrankheit auftritt.",
         },
         {
           isCorrect: false,
-          label: "Industrielle Transfette steigern zuverlässig den Appetit.",
+          label:
+            "Die Veränderungen von LDL und HDL heben sich auf, sodass das Herzkrankheitsrisiko unverändert bleibt.",
         },
         {
           isCorrect: true,
@@ -27,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Industrielle Transfette verhindern, dass der Körper sämtliche Nahrung verdaut.",
+            "Eine Begrenzung industrieller Transfette nützt nur Menschen, die bereits an einer koronaren Herzkrankheit leiden.",
         },
       ],
     },
@@ -36,16 +37,17 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Industrial trans fat treats the symptoms of a stroke.",
+          label: "Every fried food contains industrial trans fat.",
         },
         {
           isCorrect: false,
           label:
-            "Only people with kidney disease need to avoid industrial trans fat.",
+            "Reducing industrial trans-fat intake guarantees that coronary heart disease will not occur.",
         },
         {
           isCorrect: false,
-          label: "Industrial trans fat reliably increases appetite.",
+          label:
+            "The LDL and HDL changes cancel each other out, leaving heart-disease risk unchanged.",
         },
         {
           isCorrect: true,
@@ -55,7 +57,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Industrial trans fat prevents the body from digesting all food.",
+            "Limiting industrial trans fat is useful only for people who already have coronary heart disease.",
         },
       ],
     },
@@ -64,16 +66,17 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Lemak trans industri mengobati gejala stroke.",
+          label: "Semua makanan gorengan mengandung lemak trans industri.",
         },
         {
           isCorrect: false,
           label:
-            "Hanya orang dengan penyakit ginjal yang perlu menghindari lemak trans industri.",
+            "Mengurangi konsumsi lemak trans industri menjamin seseorang tidak mengalami penyakit jantung koroner.",
         },
         {
           isCorrect: false,
-          label: "Lemak trans industri selalu meningkatkan nafsu makan.",
+          label:
+            "Perubahan LDL dan HDL saling meniadakan sehingga risiko penyakit jantung tidak berubah.",
         },
         {
           isCorrect: true,
@@ -83,7 +86,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Lemak trans industri membuat tubuh tidak dapat mencerna semua makanan.",
+            "Membatasi lemak trans industri hanya bermanfaat bagi orang yang sudah menderita penyakit jantung koroner.",
         },
       ],
     },

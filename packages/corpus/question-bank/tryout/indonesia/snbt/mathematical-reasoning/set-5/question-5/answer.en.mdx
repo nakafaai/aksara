@@ -1,37 +1,28 @@
 export const metadata = {
   title: "Solution to Question 5",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2026-02-09",
 };
 
 The time reference matters here. The count <InlineMath math="10" /> is measured at the start of day <InlineMath math="1" />, so the start of day <InlineMath math="n" /> comes after <InlineMath math="n-1" /> periods of <InlineMath math="24\text{ hours}" />. Because <InlineMath math="120\text{ hours}" /> equals <InlineMath math="5\text{ days}" />, the first removal happens at the start of day <InlineMath math="6" />, after five divisions.
 
-<MathContainer>
-  <BlockMath math="10 \cdot 2^5 = 320" />
-</MathContainer>
+<BlockMath math="10 \cdot 2^5 = 320" />
 
 Immediately after that first <InlineMath math="120\text{-hour}" /> interval, half of the <InlineMath math="320" /> bacteria are removed. The count at the start of day <InlineMath math="6" /> is therefore:
 
-<MathContainer>
-  <BlockMath math="320 \cdot \frac{1}{2} = 160" />
-</MathContainer>
+<BlockMath math="320 \cdot \frac{1}{2} = 160" />
 
 Five more <InlineMath math="24\text{-hour}" /> periods pass from the start of day <InlineMath math="6" /> to the start of day <InlineMath math="11" />. Before the second removal, the population is:
 
-<MathContainer>
-  <BlockMath math="160 \cdot 2^5 = 5120" />
-</MathContainer>
+<BlockMath math="160 \cdot 2^5 = 5120" />
 
 At the start of day <InlineMath math="11" />, the second <InlineMath math="120\text{-hour}" /> interval has ended, so half are removed again:
 
-<MathContainer>
-  <BlockMath math="5120 \cdot \frac{1}{2} = 2560" />
-</MathContainer>
+<BlockMath math="5120 \cdot \frac{1}{2} = 2560" />
 
 One final <InlineMath math="24\text{-hour}" /> period leads to the start of day <InlineMath math="12" />:
 
-<MathContainer>
-  <BlockMath math="2560 \cdot 2 = 5120" />
-</MathContainer>
+<BlockMath math="2560 \cdot 2 = 5120" />
 
 Thus, there are <InlineMath math="5120" /> bacteria at the start of the <InlineMath math="12" />-th observation day.

@@ -7,28 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "eine Wirksamkeitsanalise zur geprüften Änderung im Kontext „Schirmverleih am Bahnhof“",
+          label: "eine Wirksamkeitsanalise zum Rückgabecode beim Schirmverleih",
         },
         {
           isCorrect: true,
-          label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontext „Schirmverleih am Bahnhof“",
+          label: "eine Wirksamkeitsanalyse zum Rückgabecode beim Schirmverleih",
+        },
+        {
+          isCorrect: false,
+          label: "eine Wirksamkaitsanalyse zum Rückgabecode beim Schirmverleih",
+        },
+        {
+          isCorrect: false,
+          label: "eine Wirksamkeitsanalyse zum Rückgabecod beim Schirmverleih",
         },
         {
           isCorrect: false,
           label:
-            "eine Wirksamkaitsanalyse zur geprüften Änderung im Kontext „Schirmverleih am Bahnhof“",
-        },
-        {
-          isCorrect: false,
-          label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Konteks „Schirmverleih am Bahnhof“",
-        },
-        {
-          isCorrect: false,
-          label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontextt „Schirmverleih am Bahnhof“",
+            "eine Wirksamkeitsanalyse zum Rückgabecode beim Schirmverleihh",
         },
       ],
     },
@@ -38,27 +34,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "an analyse of the effectiveness of a return code on each handle in this setting (station umbrella lending)",
+            "an analysiss of the effectiveness of the return code on each umbrella handle",
         },
         {
           isCorrect: true,
           label:
-            "an analysis of the effectiveness of a return code on each handle in this setting (station umbrella lending)",
+            "an analysis of the effectiveness of the return code on each umbrella handle",
         },
         {
           isCorrect: false,
           label:
-            "an analysis of the effectivness of a return code on each handle in this setting (station umbrella lending)",
+            "an analysis of the effectivness of the return code on each umbrella handle",
         },
         {
           isCorrect: false,
           label:
-            "an analisis of the effectiveness of a return code on each handle in this setting (station umbrella lending)",
+            "an analisis of the effectiveness of the return code on each umbrella handle",
         },
         {
           isCorrect: false,
           label:
-            "an analysis of the effectivity of a return code on each handle in this setting (station umbrella lending)",
+            "an analysis of the effectivenes of the return code on each umbrella handle",
         },
       ],
     },
@@ -67,28 +63,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "analisa efektivitas kode pengembalian pada setiap gagang dalam layanan peminjaman payung di stasiun",
+          label: "analisa efektivitas kode pengembalian pada setiap gagang",
         },
         {
           isCorrect: true,
-          label:
-            "analisis efektivitas kode pengembalian pada setiap gagang dalam layanan peminjaman payung di stasiun",
+          label: "analisis efektivitas kode pengembalian pada setiap gagang",
+        },
+        {
+          isCorrect: false,
+          label: "analisis efektifitas kode pengembalian pada setiap gagang",
+        },
+        {
+          isCorrect: false,
+          label: "analisa efektifitas kode pengembalian pada setiap gagang",
         },
         {
           isCorrect: false,
           label:
-            "analisis efektifitas kode pengembalian pada setiap gagang dalam layanan peminjaman payung di stasiun",
-        },
-        {
-          isCorrect: false,
-          label:
-            "analisa efektifitas kode pengembalian pada setiap gagang dalam layanan peminjaman payung di stasiun",
-        },
-        {
-          isCorrect: false,
-          label:
-            "analisis efektivitas kode pengembalian pada setiap gagang dalam kontek peminjaman payung di stasiun",
+            "analisis efektivitas kode pengembalian dalam kontek peminjaman payung",
         },
       ],
     },

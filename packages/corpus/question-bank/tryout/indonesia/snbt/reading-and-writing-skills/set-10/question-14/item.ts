@@ -8,17 +8,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Daten worden im Kontext Informationsstelle im Stadtpark erhebt und danach vergleichen.",
+            "Die Daten worden an der Informationsstelle im Stadtpark erhebt und danach vergleichen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten wurden an den Kontext Informationsstelle im Stadtpark erhoben und danach verglichen.",
+            "Die Daten wurden an die Informationsstelle im Stadtpark erhoben und danach verglichen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten wurden in diesem Kontext erhoben Informationsstelle im Stadtpark anschließend sie verglichen wurden.",
+            "Die Daten wurden an der Informationsstelle im Stadtpark erhoben anschließend sie verglichen wurden.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Die Daten wurden in diesem Kontext erhoben: Informationsstelle im Stadtpark. Anschließend wurden sie verglichen.",
+            "Die Daten wurden an der Informationsstelle im Stadtpark erhoben und danach verglichen.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Data were collected at this setting (city park information desk) and compared afterward in.",
+            "Data were collected at the city park information desk and compared afterward in.",
         },
         {
           isCorrect: false,
           label:
-            "Data was collect in this setting (city park information desk) and comparing afterward.",
+            "Data was collect at the city park information desk and comparing afterward.",
         },
         {
           isCorrect: false,
           label:
-            "Data were collected on this setting (city park information desk) and afterward compared it.",
+            "Data were collected at the city park information desk and afterward compared it.",
         },
         {
           isCorrect: false,
           label:
-            "Data collected this setting (city park information desk) and were comparison afterward.",
+            "Data collected the city park information desk and were comparison afterward.",
         },
         {
           isCorrect: true,
           label:
-            "Data were collected in this setting (city park information desk) and compared afterward.",
+            "Data were collected at the city park information desk and compared afterward.",
         },
       ],
     },
@@ -68,17 +68,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Data di kumpulkan di pusat informasi taman kota, lalu dibandingkan.",
+            "Data di kumpulkan di pusat informasi taman kota dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data dikumpulkan didepan pusat informasi taman kota, lalu dibandingkan.",
+            "Data dikumpulkan dipusat informasi taman kota dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data mengumpulkan di pusat informasi taman kota, lalu membandingkan.",
+            "Data mengumpulkan di pusat informasi taman kota dan kemudian membandingkan.",
         },
         {
           isCorrect: false,
@@ -88,7 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Data dikumpulkan di pusat informasi taman kota, lalu dibandingkan.",
+            "Data dikumpulkan di pusat informasi taman kota dan kemudian dibandingkan.",
         },
       ],
     },

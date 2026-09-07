@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Unter unveränderten Messregeln plant das Team einen längeren Versuch mit folgender Änderung: Pflanzortetiketten auf jedem Tablett.",
+            "Das Team wird den Etikettenversuch verlängern, verschiedene Gezeiten einbeziehen und dieselben Messregeln beibehalten.",
         },
         {
           isCorrect: false,
           label:
-            "Mit geänderten Messregeln plant das Team einen längeren Test von Pflanzortetiketten auf jedem Tablett.",
+            "Das Team wird den Versuch verlängern und dabei die Messregeln ändern.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team will nur die Tage wiederholen, an denen die Änderung Pflanzortetiketten auf jedem Tablett den höchsten Wert ergab.",
+            "Das Team wird nur Tage mit dem höchsten Ankunftswert der Setzlinge wiederholen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team will Pflanzortetiketten auf jedem Tablett dauerhaft einführen statt einen längeren Vergleich durchzuführen.",
+            "Das Team wird die Etiketten statt weiterer Tests dauerhaft einführen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team plant einen längeren Test von Pflanzortetiketten auf jedem Tablett ohne Vergleichsbedingung.",
+            "Das Team wird den Versuch nur bei einer Gezeitenbedingung verlängern.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Using the same measurement rules, the team plans a longer test of planting-site labels on every tray.",
+            "The team will extend the tray-label test, include different tidal conditions, and retain the measurement rules.",
         },
         {
           isCorrect: false,
           label:
-            "Using revised measurement rules, the team plans a longer test of planting-site labels on every tray.",
+            "The team will extend the test while changing the measurement rules.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans to repeat only the days on which planting-site labels on every tray produced the highest value.",
+            "The team will repeat only the days with the highest seedling-arrival value.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans to adopt planting-site labels on every tray permanently instead of running a longer comparison.",
+            "The team will adopt the labels permanently instead of conducting further tests.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans a longer test of planting-site labels on every tray without retaining a comparison condition.",
+            "The team will extend the test under only one tidal condition.",
         },
       ],
     },
@@ -68,27 +68,26 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Dengan aturan pengukuran yang sama, tim merencanakan uji yang lebih lama terhadap label lokasi tanam pada setiap baki bibit.",
+            "Tim akan memperpanjang uji label baki, mencakup berbagai kondisi pasang, dan mempertahankan aturan pengukuran.",
         },
         {
           isCorrect: false,
           label:
-            "Dengan kaidah pengukuran yang diubah, tim merencanakan uji label lokasi tanam pada setiap baki yang lebih panjang.",
+            "Tim akan memperpanjang uji sambil mengubah aturan pengukuran.",
         },
         {
           isCorrect: false,
           label:
-            "Tim akan mengulang hari ketika label lokasi tanam pada setiap baki menghasilkan nilai tertinggi.",
+            "Tim akan mengulang hanya hari dengan nilai kedatangan bibit tertinggi.",
         },
         {
           isCorrect: false,
           label:
-            "Tim akan menerapkan label lokasi tanam pada setiap baki secara tetap sebagai pengganti perbandingan yang lebih panjang.",
+            "Tim akan menerapkan label permanen sebagai pengganti uji lanjutan.",
         },
         {
           isCorrect: false,
-          label:
-            "Tim merencanakan uji label lokasi tanam pada setiap baki yang lebih panjang tanpa mempertahankan kondisi pembanding.",
+          label: "Tim akan memperpanjang uji hanya pada satu kondisi pasang.",
         },
       ],
     },

@@ -22,7 +22,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bürgerdaten können das Mangrovenmonitoring unterstützen, wenn Beobachtungsmöglichkeit und Klassifikationsgenauigkeit kalibriert werden.",
+            "Kalibrierung mittelt alle Meldungen, ohne Besuchszahlen und Validierungsergebnisse zu unterscheiden.",
         },
         {
           isCorrect: true,
@@ -51,7 +51,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Community data can support mangrove monitoring when observation opportunity and classification accuracy are calibrated.",
+            "Calibration averages every report without distinguishing visit counts and validation results.",
         },
         {
           isCorrect: true,
@@ -79,7 +79,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Data warga dapat mendukung pemantauan mangrove jika peluang pengamatan dan ketepatan klasifikasi dikalibrasi.",
+            "Kalibrasi dilakukan dengan merata-ratakan seluruh laporan tanpa membedakan jumlah kunjungan dan hasil validasi.",
         },
         {
           isCorrect: true,

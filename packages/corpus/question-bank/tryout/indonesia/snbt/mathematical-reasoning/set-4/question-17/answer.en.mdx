@@ -1,17 +1,17 @@
 export const metadata = {
   title: "Solution Question 17",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2025-11-26",
 };
 
-To solve this problem, we need to understand the statistical properties regarding data transformation. Remember the key principles:
-1. **Mean** changes according to all arithmetic operations (multiplication, division, addition, subtraction).
-2. **Range** changes only with multiplication or division, but **remains unchanged** with addition or subtraction.
+Every data value is multiplied by <InlineMath math="p" />, then reduced by <InlineMath math="q" />. Two rules apply to this transformation:
+1. The mean is multiplied by the same factor and reduced by the same amount as each data value.
+2. The range is multiplied by <InlineMath math="|p|" />. Subtracting <InlineMath math="q" /> from every value leaves the difference between the largest and smallest values unchanged.
 
 First, find the value of <InlineMath math="p" /> using the range information. Since the initial range of <InlineMath math="6" /> becomes <InlineMath math="9" /> after being multiplied by <InlineMath math="p" />, we have:
 
 <MathContainer>
-  <BlockMath math="\text{New Range} = |p| \times \text{Old Range}" />
   <BlockMath math="9 = p \times 6" />
   <BlockMath math="p = \frac{9}{6} = \frac{3}{2}" />
 </MathContainer>
@@ -19,7 +19,6 @@ First, find the value of <InlineMath math="p" /> using the range information. Si
 Next, we find the value of <InlineMath math="q" /> using the mean information. The mean is affected by both the multiplication by <InlineMath math="p" /> and the subtraction by <InlineMath math="q" />.
 
 <MathContainer>
-  <BlockMath math="\text{New Mean} = (p \times \text{Old Mean}) - q" />
   <BlockMath math="20 = \left(\frac{3}{2} \times 16\right) - q" />
   <BlockMath math="20 = 24 - q" />
   <BlockMath math="q = 4" />

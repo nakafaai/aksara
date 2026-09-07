@@ -2,7 +2,21 @@ export const metadata = {
   title: "Lösung zu Aufgabe 25",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-08-30",
+  dateModified: "2026-09-07",
 };
 
-Es gibt <InlineMath math="\binom{9}{2}=36" /> Paare. Davon sind <InlineMath math="10" /> gleichfarbig, während <InlineMath math="4(5)" /> Paare genau eine rote Kugel enthalten. Nach einer grünen ersten Kugel bleiben <InlineMath math="8" /> Kugeln, darunter <InlineMath math="3" /> blaue. Ohne Zurücklegen sind die Ziehungen nicht unabhängig. Die Reihenfolge ist richtig, richtig, falsch, richtig.
+Für Ereignisse ohne Berücksichtigung der Reihenfolge gibt es <InlineMath math="\binom92=36" /> gleich wahrscheinliche Paare. Für ein gleichfarbiges Paar werden zwei Kugeln derselben Farbe gewählt.
+
+<BlockMath math="\begin{aligned}
+N&=\binom42+\binom32+\binom22 \\
+&=6+3+1=10 \\
+P&=\frac{10}{36}=\frac5{18}
+\end{aligned}" />
+
+Für genau eine rote Kugel wird eine der vier roten und eine der fünf anderen Kugeln gewählt.
+
+<BlockMath math="P=\frac{4\cdot5}{36}=\frac59" />
+
+Nach einer grünen ersten Kugel bleiben acht Kugeln, darunter drei blaue. Die bedingte Wahrscheinlichkeit für eine blaue zweite Kugel beträgt <InlineMath math="\frac38" />. Die erste Ziehung verändert die Wahrscheinlichkeiten der zweiten. Nach einer blauen Kugel beträgt die Wahrscheinlichkeit für eine weitere blaue Kugel <InlineMath math="\frac28" />, vor der Ziehung dagegen <InlineMath math="\frac39" />.
+
+Die drei Wahrscheinlichkeitsaussagen stimmen. Die Behauptung, die Farben beider Ziehungen seien unabhängig, ist falsch.

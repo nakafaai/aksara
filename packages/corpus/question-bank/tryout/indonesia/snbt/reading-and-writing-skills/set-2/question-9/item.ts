@@ -42,7 +42,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: 'Remove the colon after the word "namely".',
+          label: 'Replace the colon after the word "namely" with a comma.',
         },
         {
           isCorrect: false,

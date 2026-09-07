@@ -7,25 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Die Schlussfolgerung ist definitiv wahr.",
-        },
-        {
-          isCorrect: false,
-          label: "Die Schlussfolgerung ist definitiv falsch.",
+          label:
+            "Die Schlussfolgerung ist sicher, weil gleicher Regen immer dieselbe Vegetation erzeugt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Schlussfolgerung ist für die bereitgestellten Informationen irrelevant.",
+            "Die Schlussfolgerung ist sicher falsch, weil in einer Wüste keine Vegetation wachsen kann.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Die Schlussfolgerung ist irrelevant, weil der Text keinen Zusammenhang zwischen Regen und Vegetation nennt.",
         },
         {
           isCorrect: true,
-          label: "Die Schlussfolgerung ist möglicherweise wahr.",
+          label:
+            "Die Schlussfolgerung ist aufgrund der früheren Beobachtung plausibel, das Ergebnis aber nicht sicher.",
         },
         {
           isCorrect: false,
           label:
-            "Die Schlussfolgerung kann aufgrund unzureichender Informationen nicht beurteilt werden.",
+            "Es gibt keinen relevanten Beleg, weil der Text nach dem früheren Regen keine Vegetation beschreibt.",
         },
       ],
     },
@@ -34,24 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The conclusion is definitely true.",
-        },
-        {
-          isCorrect: false,
-          label: "The conclusion is definitely false.",
-        },
-        {
-          isCorrect: false,
-          label: "The conclusion is irrelevant to the information provided.",
-        },
-        {
-          isCorrect: true,
-          label: "The conclusion is possibly true.",
+          label:
+            "The conclusion is certain because the same rain always produces the same vegetation.",
         },
         {
           isCorrect: false,
           label:
-            "The conclusion cannot be assessed because the information is insufficient.",
+            "The conclusion is certainly false because vegetation cannot grow in a desert.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The conclusion is irrelevant because the passage gives no connection between rain and vegetation.",
+        },
+        {
+          isCorrect: true,
+          label:
+            "The conclusion is plausible based on the earlier observation, but the outcome is not certain.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "There is no relevant evidence because the passage reports no vegetation after the earlier rain.",
         },
       ],
     },
@@ -60,23 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Simpulan tersebut pasti benar.",
+          label:
+            "Simpulan pasti benar karena hujan yang sama selalu menghasilkan vegetasi yang sama.",
         },
         {
           isCorrect: false,
-          label: "Simpulan tersebut pasti salah.",
+          label:
+            "Simpulan pasti salah karena vegetasi tidak mungkin tumbuh di gurun.",
         },
         {
           isCorrect: false,
-          label: "Simpulan tidak relevan dengan informasi yang diberikan.",
+          label:
+            "Simpulan tidak relevan karena tidak ada hubungan antara hujan dan vegetasi dalam bacaan.",
         },
         {
           isCorrect: true,
-          label: "Simpulan tersebut mungkin benar.",
+          label:
+            "Simpulan masuk akal berdasarkan pengamatan sebelumnya, tetapi hasilnya belum pasti.",
         },
         {
           isCorrect: false,
-          label: "Simpulan tidak dapat dinilai karena informasi tidak cukup.",
+          label:
+            "Tidak ada bukti yang relevan karena bacaan tidak melaporkan vegetasi setelah hujan sebelumnya.",
         },
       ],
     },

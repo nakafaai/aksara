@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Riwayat kostum menjadi lengkap dan pasti setelah kartu 2026 diletakkan di depan label tahun 1998.",
+            "Riwayat kostum menjadi lengkap dan pasti setelah kartu $$2026$$ diletakkan di depan label tahun $$1998$$.",
         },
       ],
     },

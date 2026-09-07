@@ -2,17 +2,23 @@ export const metadata = {
   title: "Question 26",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
 The table contains data for three machines.
 
 | Machine | Output | Defects | Hours | Energy/hour |
 | --- | ---: | ---: | ---: | ---: |
-| A | 900 | 45 | 15 | 5 |
-| B | 820 | 20 | 13 | 5 |
-| C | 960 | 30 | 15 | 5 |
+| <InlineMath math="A" /> | <InlineMath math="900" /> | <InlineMath math="45" /> | <InlineMath math="15" /> | <InlineMath math="5" /> |
+| <InlineMath math="B" /> | <InlineMath math="820" /> | <InlineMath math="20" /> | <InlineMath math="13" /> | <InlineMath math="5" /> |
+| <InlineMath math="C" /> | <InlineMath math="960" /> | <InlineMath math="30" /> | <InlineMath math="15" /> | <InlineMath math="5" /> |
 
-The efficiency index is defined as <InlineMath math="\frac{\text{output}-\text{defects}}{\text{hours}\times\text{energy per hour}}" />.
+Let <InlineMath math="p" /> be output count, <InlineMath math="d" /> defective count, <InlineMath math="t" /> operating hours, and <InlineMath math="e" /> energy use in kilowatt-hours per hour. The ordinary index is:
 
-For a quality audit, corrected output is defined as output minus three times the defects. With the index denominator unchanged, which machine is best?
+<BlockMath math="I=\frac{p-d}{te}" />
+
+For the quality audit, replace the numerator with output minus three times the defective count. The audit index to compare is:
+
+<BlockMath math="J=\frac{p-3d}{te}" />
+
+Which machine has the highest audit index?

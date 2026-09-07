@@ -2,7 +2,11 @@ export const metadata = {
   title: "Solution to Question 24",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-08-30",
+  dateModified: "2026-09-07",
 };
 
-Count each event, subtract its intersection or count the exclusive cases as required, then divide by all equally likely outcomes. This gives <InlineMath math="\frac{10+6-2}{36}=\frac7{18}" />.
+There are <InlineMath math="6\cdot6=36" /> equally likely ordered outcomes. Sums of <InlineMath math="9,10,11,12" /> occur in <InlineMath math="4,3,2,1" /> outcomes respectively, giving <InlineMath math="10" /> outcomes with a sum of at least <InlineMath math="9" />.
+
+Matching dice occur in <InlineMath math="6" /> outcomes. Two of them, <InlineMath math="(5,5)" /> and <InlineMath math="(6,6)" />, also have a sum of at least <InlineMath math="9" />. Subtract these two outcomes to avoid counting them twice.
+
+<BlockMath math="P=\frac{10+6-2}{36}=\frac7{18}" />

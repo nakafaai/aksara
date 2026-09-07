@@ -37,7 +37,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "waited for staff to change the programme's goal",
+          label: "waited for staff to change the programme goal",
         },
         {
           isCorrect: false,
@@ -45,7 +45,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "was unsure which action should follow the current stage",
+          label: "were unsure which action should follow the current stage",
         },
         {
           isCorrect: false,

@@ -13,19 +13,19 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "$u_3=18$",
+          label: "$$u_3=18$$",
         },
         {
           correctCategoryOrder: 1,
-          label: "$u_4=-54$",
+          label: "$$u_4=-54$$",
         },
         {
           correctCategoryOrder: 1,
-          label: "$S_5=122$",
+          label: "$$S_5=122$$",
         },
         {
           correctCategoryOrder: 2,
-          label: "$u_6=486$",
+          label: "$$u_6=486$$",
         },
       ],
     },
@@ -35,19 +35,19 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "$u_3=18$",
+          label: "$$u_3=18$$",
         },
         {
           correctCategoryOrder: 1,
-          label: "$u_4=-54$",
+          label: "$$u_4=-54$$",
         },
         {
           correctCategoryOrder: 1,
-          label: "$S_5=122$",
+          label: "$$S_5=122$$",
         },
         {
           correctCategoryOrder: 2,
-          label: "$u_6=486$",
+          label: "$$u_6=486$$",
         },
       ],
     },
@@ -57,19 +57,19 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "$u_3=18$",
+          label: "$$u_3=18$$",
         },
         {
           correctCategoryOrder: 1,
-          label: "$u_4=-54$",
+          label: "$$u_4=-54$$",
         },
         {
           correctCategoryOrder: 1,
-          label: "$S_5=122$",
+          label: "$$S_5=122$$",
         },
         {
           correctCategoryOrder: 2,
-          label: "$u_6=486$",
+          label: "$$u_6=486$$",
         },
       ],
     },

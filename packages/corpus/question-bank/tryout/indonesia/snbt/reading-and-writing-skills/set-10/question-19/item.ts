@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team änderte nur ein Faktor: kleine Karten mit Gehzeiten.",
+            "Das Team änderte nur ein Faktor: die Verwendung kleiner Karten mit Gehzeiten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team änderte nur einem Faktor: kleine Karten mit Gehzeiten.",
+            "Das Team änderte nur einem Faktor: die Verwendung kleiner Karten mit Gehzeiten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team änderte lediglich nur einen Faktor: kleine Karten mit Gehzeiten.",
+            "Das Team änderte lediglich nur einen Faktor: die Verwendung kleiner Karten mit Gehzeiten.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team änderte nur einen Faktor: kleine Karten mit Gehzeiten.",
+            "Das Team änderte nur einen Faktor: die Verwendung kleiner Karten mit Gehzeiten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team änderte nur einen Faktor, und zwar: kleine Karten mit Gehzeiten.",
+            "Das Team änderte nur einen Faktoren: die Verwendung kleiner Karten mit Gehzeiten.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team changed only one factors: small maps showing walking times.",
+            "The team changed only one factors: using small maps showing walking times.",
         },
         {
           isCorrect: false,
           label:
-            "The team changed merely only one factor: small maps showing walking times.",
+            "The team changed merely only one factor: using small maps showing walking times.",
         },
         {
           isCorrect: false,
           label:
-            "The team changed only one factor, namely: small maps showing walking times.",
+            "The team changed only one factor, namely: using small maps showing walking times.",
         },
         {
           isCorrect: true,
           label:
-            "The team changed only one factor: small maps showing walking times.",
+            "The team changed only one factor: using small maps showing walking times.",
         },
         {
           isCorrect: false,
           label:
-            "The team changed only one factor; namely small maps showing walking times.",
+            "The team changed only one factor; namely using small maps showing walking times.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim merubah satu faktor saja, yaitu peta kecil yang menampilkan waktu tempuh.",
+            "Tim merubah satu faktor saja, yaitu pemakaian peta kecil dengan waktu tempuh.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengubahkan satu faktor saja, yaitu peta kecil yang menampilkan waktu tempuh.",
+            "Tim mengrubah satu faktor saja, yaitu pemakaian peta kecil dengan waktu tempuh.",
         },
         {
           isCorrect: false,
           label:
-            "Tim hanya mengubah satu faktor saja, yaitu peta kecil yang menampilkan waktu tempuh.",
+            "Tim hanya mengubah satu faktor saja, yaitu pemakaian peta kecil dengan waktu tempuh.",
         },
         {
           isCorrect: true,
           label:
-            "Tim mengubah satu faktor saja, yaitu peta kecil yang menampilkan waktu tempuh.",
+            "Tim mengubah satu faktor saja, yaitu pemakaian peta kecil dengan waktu tempuh.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengubah terhadap satu faktor saja, yaitu peta kecil yang menampilkan waktu tempuh.",
+            "Tim mengubah terhadap satu faktor saja, yaitu pemakaian peta kecil dengan waktu tempuh.",
         },
       ],
     },

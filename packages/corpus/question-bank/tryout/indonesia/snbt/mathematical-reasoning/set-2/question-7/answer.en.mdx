@@ -1,47 +1,32 @@
 export const metadata = {
   title: "Solution to Question 7",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2026-01-31",
 };
 
-This problem can be solved using the concept of an **Arithmetic Sequence**, where Mr. Brikson's salary increases by a constant amount each year. We need to determine the starting term and the common difference based on the age and salary information.
+#### Annual salary increases
 
-**Analyzing the Information**
+Mr. Brikson's monthly salary forms an arithmetic sequence because it increases by the same amount each year. We use his salary at age <InlineMath math="40" /> as the starting term, <InlineMath math="G_{40}=15{,}750{,}000" /> rupiah. The common difference is the annual increase <InlineMath math="d=750{,}000" /> rupiah.
 
-We know that this year, when Mr. Brikson is <InlineMath math="40\text{ years}" /> old, his salary is <InlineMath math="\text{Rp}15{,}750{,}000.00" />. The annual salary increase (common difference) is <InlineMath math="\text{Rp}750{,}000.00" />.
+The time between ages <InlineMath math="40" /> and <InlineMath math="54" /> is:
 
-We need to find his salary when he is <InlineMath math="54\text{ years}" /> old.
+<BlockMath math="54-40=14\text{ years}" />
 
-**Calculating the Time Difference**
+There are therefore <InlineMath math="14" /> salary increases.
 
-The first step is to calculate the time elapsed between the target age of <InlineMath math="54\text{ years}" /> and the current age of <InlineMath math="40\text{ years}" />.
+#### Salary after all increases
 
-<MathContainer>
-  <BlockMath math="\Delta t = 54 - 40 = 14 \text{ years}" />
-</MathContainer>
+The monthly salary at the required age is the starting salary plus <InlineMath math="14" /> increases:
 
-This implies that Mr. Brikson's salary will undergo <InlineMath math="14" /> increments.
+<BlockMath math="G_{54}=G_{40}+14d" />
 
-**Calculating Salary at Age <InlineMath math="54" />**
+In rupiah, the accumulated increase is:
 
-The salary at age <InlineMath math="54" /> is determined by adding the accumulated increase over <InlineMath math="14\text{ years}" /> to the base salary.
+<BlockMath math="\begin{aligned} 14d&=14\times750{,}000 \\ &=10{,}500{,}000 \end{aligned}" />
 
-<MathContainer>
-  <BlockMath math="\text{Salary}_{54} = \text{Salary}_{40} + (14 \times \text{Increase})" />
-  <BlockMath math="\text{Salary}_{54} = 15{,}750{,}000 + (14 \times 750{,}000)" />
-</MathContainer>
+Add it to the salary at age <InlineMath math="40" />:
 
-Calculate the total increase:
+<BlockMath math="\begin{aligned} G_{54}&=15{,}750{,}000 \\ &\quad+10{,}500{,}000 \\ &=26{,}250{,}000 \end{aligned}" />
 
-<MathContainer>
-  <BlockMath math="14 \times 750{,}000 = 10{,}500{,}000" />
-</MathContainer>
-
-So the total salary becomes:
-
-<MathContainer>
-  <BlockMath math="\text{Salary}_{54} = 15{,}750{,}000 + 10{,}500{,}000" />
-  <BlockMath math="\text{Salary}_{54} = 26{,}250{,}000" />
-</MathContainer>
-
-Thus, Mr. Brikson's monthly salary when he is <InlineMath math="54\text{ years}" /> old will be <InlineMath math="\text{Rp}26{,}250{,}000.00" />.
+Mr. Brikson's monthly salary at age <InlineMath math="54" /> is <InlineMath math="\text{Rp}26{,}250{,}000.00" />.

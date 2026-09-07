@@ -26,7 +26,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Pengaruh Panel Peneduh terhadap Suhu Air Kolam Mini",
+          label: "Uji Awal Panel Peneduh terhadap Suhu Air Kolam Mini",
         },
       ],
     },

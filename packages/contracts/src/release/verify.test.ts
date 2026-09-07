@@ -82,27 +82,18 @@ describe("server-only release verification", () => {
     })
   );
   it.effect(
-    "authenticates predecessor releases without weakening new scope bytes",
+    "rejects retired exact-content scope at the signed release boundary",
     () =>
       Effect.gen(function* () {
-        const legacyManifest = ContentReleaseManifestSchema.make({
-          ...manifest,
-          scope: {
-            content: [],
-            families: manifest.scope.families,
-            snapshots: manifest.scope.snapshots,
+        const release = signRelease();
+        const error = yield* reject({
+          ...release,
+          manifest: {
+            ...release.manifest,
+            scope: { ...release.manifest.scope, content: [] },
           },
         });
-        const release = signRelease(legacyManifest);
-
-        expect(
-          yield* verifySignedContentRelease(release).pipe(
-            Effect.provideService(
-              ContentVerificationKeyResolver,
-              trustedResolver
-            )
-          )
-        ).toEqual(release);
+        expect(error).toBeInstanceOf(ReleaseVerificationDecodeError);
       })
   );
   it.effect("maps current decoding and hashing failures", () =>

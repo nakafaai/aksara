@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Ein einheitliches Aussehen kann historisch unehrlich sein, wenn das Gebäude nachweislich stets verändert wurde.",
+            "Ein einheitliches Aussehen kann Geschichte verdecken, wenn es materiell belegte Veränderungen verbirgt.",
         },
         {
           isCorrect: false,
@@ -37,7 +37,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "A uniform appearance can reduce historical honesty when evidence shows that the building has always changed.",
+            "A uniform appearance can obscure history if it conceals changes evidenced by the building materials.",
         },
         {
           isCorrect: false,
@@ -65,7 +65,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Tampilan seragam dapat mengurangi kejujuran sejarah jika bukti menunjukkan bangunan selalu berubah.",
+            "Tampilan seragam dapat mengaburkan sejarah jika menutupi jejak perubahan yang dibuktikan oleh material bangunan.",
         },
         {
           isCorrect: false,

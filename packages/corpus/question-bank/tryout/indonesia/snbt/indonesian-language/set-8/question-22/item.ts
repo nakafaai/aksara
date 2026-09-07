@@ -8,22 +8,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tiga pengukuran yang berdekatan membuktikan bahwa 4,81 meter adalah kedalaman air yang tepat tanpa ketidakpastian.",
+            "Tiga pengukuran yang berdekatan membuktikan bahwa $$4{,}81$$ meter adalah kedalaman air yang tepat tanpa ketidakpastian.",
         },
         {
           isCorrect: true,
           label:
-            "Pengukuran ulang yang mengelompok di sekitar 4,81 meter memberi alasan untuk tidak memakai 4,35 meter, sedangkan penandaan mempertahankan jejak alasan pengecualiannya.",
+            "Bekas lumpur pada $$4{,}35$$ meter dan pengukuran ulang yang mengelompok di sekitar $$4{,}81$$ meter mendukung pengecualian nilai pertama, sedangkan penandaan mempertahankan alasan yang dapat diperiksa.",
         },
         {
           isCorrect: false,
           label:
-            "Dito memilih untuk mengulang pengukuran pada jam yang sama dan menandai catatan yang meragukan; perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
+            "Dito memilih untuk mengulang pengukuran dari titik acuan yang sama dan menandai catatan yang meragukan. Perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
         },
         {
           isCorrect: false,
           label:
-            "Dito memilih untuk mengulang pengukuran pada jam yang sama dan menandai catatan yang meragukan; latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
+            "Dito memilih untuk mengulang pengukuran dari titik acuan yang sama dan menandai catatan yang meragukan. Latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
         },
         {
           isCorrect: false,

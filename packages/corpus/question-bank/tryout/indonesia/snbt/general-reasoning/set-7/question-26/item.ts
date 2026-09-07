@@ -15,11 +15,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$A\\mathbin{/}B$$",
+          label: "Maschine A und B",
         },
         {
           isCorrect: false,
-          label: "$$B\\mathbin{/}C$$",
+          label: "Maschine B und C",
         },
         {
           isCorrect: true,
@@ -40,11 +40,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$A\\mathbin{/}B$$",
+          label: "Machine A and B",
         },
         {
           isCorrect: false,
-          label: "$$B\\mathbin{/}C$$",
+          label: "Machine B and C",
         },
         {
           isCorrect: true,
@@ -65,11 +65,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$A\\mathbin{/}B$$",
+          label: "Mesin A dan B",
         },
         {
           isCorrect: false,
-          label: "$$B\\mathbin{/}C$$",
+          label: "Mesin B dan C",
         },
         {
           isCorrect: true,

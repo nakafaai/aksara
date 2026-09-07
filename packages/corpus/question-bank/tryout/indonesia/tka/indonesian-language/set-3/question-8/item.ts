@@ -22,7 +22,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "warga menguji jalur lain dengan melibatkan pengguna yang beragam",
+            "warga memeriksa kembali jalur secara berkala dengan melibatkan pengguna yang beragam",
         },
         {
           isCorrect: false,

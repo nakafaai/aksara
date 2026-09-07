@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perbedaan 56 dan 42 tidak memberi informasi apa pun karena kebutuhan medis tiap pasien tidak sama.",
+            "Perbedaan $$56$$ dan $$42$$ tidak memberi informasi apa pun karena kebutuhan medis tiap pasien tidak sama.",
         },
         {
           isCorrect: true,
           label:
-            "Hasil 56 dari 60 dibandingkan 42 dari 60 mendukung uji lanjut, tetapi belum menunjukkan bahwa penanda saja menyebabkan perbedaan karena kebutuhan pasien antargiliran tidak disamakan.",
+            "Hasil $$56$$ dari $$60$$ dibandingkan $$42$$ dari $$60$$ mendukung uji lanjut, tetapi belum menunjukkan bahwa penanda saja menyebabkan perbedaan karena kebutuhan pasien antargiliran tidak disamakan.",
         },
         {
           isCorrect: false,
@@ -23,12 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Data pengamatan awal 40 dari 60 membuktikan bahwa penanda lama selalu membuat tepat sepertiga pasien salah mengikuti alur.",
+            "Data pengamatan awal $$40$$ dari $$60$$ membuktikan bahwa penanda lama selalu membuat tepat sepertiga pasien salah mengikuti alur.",
         },
         {
           isCorrect: false,
           label:
-            "Karena kedua kondisi masing-masing memuat 60 pasien, hasilnya dapat digeneralisasi ke semua klinik tanpa uji tambahan.",
+            "Karena kedua kondisi masing-masing memuat $$60$$ pasien, hasilnya dapat digeneralisasi ke semua klinik tanpa uji tambahan.",
         },
       ],
     },

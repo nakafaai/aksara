@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Laju pendinginan rata-rata aluminium sekitar 1,27°C per menit, sehingga bahan aluminium pasti menjadi satu-satunya penyebab seluruh penurunan suhu.",
+            "Laju pendinginan rata-rata aluminium sekitar $$1{,}27^\\circ\\text{C}$$ per menit, sehingga bahan aluminium pasti menjadi satu-satunya penyebab seluruh penurunan suhu.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Laju pendinginan rata-rata sekitar 1,27°C per menit pada aluminium dan 0,73°C per menit pada polipropilena mendukung adanya perbedaan, tetapi rancangan belum mengisolasi bahan sebagai penyebabnya.",
+            "Laju pendinginan rata-rata sekitar $$1{,}27^\\circ\\text{C}$$ per menit pada aluminium dan $$0{,}73^\\circ\\text{C}$$ per menit pada polipropilena mendukung adanya perbedaan, tetapi rancangan belum mengisolasi bahan sebagai penyebabnya.",
         },
       ],
     },

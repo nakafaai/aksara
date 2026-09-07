@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Sinta erhält weder eine Gehaltsüberprüfung noch ein Beförderungsverfahren.",
+            "Sinta erhält keine Gehaltsüberprüfung und nimmt nicht am Beförderungsverfahren teil.",
         },
         {
           isCorrect: false,

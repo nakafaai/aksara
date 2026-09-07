@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
-import { CurrentContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
+import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
 import type { StageGroupRequest } from "@nakafa/aksara-contracts/transport/group";
 import { MAX_PROJECTION_BATCH_BYTES } from "@nakafa/aksara-contracts/transport/limits";
 import type { PublicationCurrentRequest } from "@nakafa/aksara-contracts/transport/request";
@@ -114,7 +114,7 @@ describe("sendPublicationRequest", () => {
         projectionRequest.projections[0]
       );
       const oversizedProjection = yield* Schema.decodeUnknownEffect(
-        CurrentContentProjectionSchema
+        ContentProjectionSchema
       )({
         ...projection,
         metadata: {

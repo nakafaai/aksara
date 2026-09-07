@@ -2,7 +2,14 @@ export const metadata = {
   title: "Solution to Question 24",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-08-30",
+  dateModified: "2026-09-07",
 };
 
-Count each event, subtract its intersection or count the exclusive cases as required, then divide by all equally likely outcomes. This gives <InlineMath math="\frac{15+10-2(5)}{60}=\frac14" />.
+Among the <InlineMath math="60" /> equally likely integers, there are <InlineMath math="\frac{60}{4}=15" /> multiples of <InlineMath math="4" /> and <InlineMath math="\frac{60}{6}=10" /> multiples of <InlineMath math="6" />. Integers divisible by both are multiples of their least common multiple, <InlineMath math="12" />, giving <InlineMath math="5" /> such integers.
+
+The question requires exactly one divisibility condition. Remove the five common multiples from both counts.
+
+<BlockMath math="\begin{aligned}
+N&=(15-5)+(10-5)=15 \\
+P&=\frac{15}{60}=\frac14
+\end{aligned}" />

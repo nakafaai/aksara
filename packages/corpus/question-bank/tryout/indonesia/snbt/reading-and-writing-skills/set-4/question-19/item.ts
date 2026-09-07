@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team änderte nur einen Faktor, und zwar: Genre-Schilder auf jedem Tisch.",
+            "Das Team änderte nur einen Faktoren: Genre-Schilder auf jedem Tisch.",
         },
       ],
     },
@@ -77,7 +77,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim mengubahkan satu faktor saja, yaitu tanda genre di setiap meja.",
+            "Tim mengrubah satu faktor saja, yaitu tanda genre di setiap meja.",
         },
         {
           isCorrect: false,

@@ -1,43 +1,44 @@
 export const metadata = {
   title: "Solution to Question 17",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2025-06-11",
 };
 
 #### Convert the Averages into Totals
 
-Call the two groups <InlineMath math="A" /> and <InlineMath math="B" />. Each group has <InlineMath math="4" /> members, so multiply each average by <InlineMath math="4" /> to find its total weight:
+Call the two groups <InlineMath math="A" /> and <InlineMath math="B" />, with member counts <InlineMath math="n_A=n_B=4" />. Their mean weights are <InlineMath math="\bar{x}_A=30" /> and <InlineMath math="\bar{x}_B=33" /> in kilograms. Find the total weights <InlineMath math="W_A" /> and <InlineMath math="W_B" /> by multiplying each mean by its member count:
 
 <MathContainer>
-  <BlockMath math="\sum x_A = n_A \cdot \bar{x}_A = 4 \cdot 30 = 120" />
-  <BlockMath math="\sum x_B = n_B \cdot \bar{x}_B = 4 \cdot 33 = 132" />
+  <BlockMath math="\begin{aligned}W_A&=n_A\cdot\bar{x}_A \\ &=4\cdot30=120\end{aligned}" />
+  <BlockMath math="\begin{aligned}W_B&=n_B\cdot\bar{x}_B \\ &=4\cdot33=132\end{aligned}" />
 </MathContainer>
 
 #### Represent the Exchange
 
 Let the exchanged children have weights <InlineMath math="x_A" /> and <InlineMath math="x_B" />, where <InlineMath math="x_A" /> comes from group <InlineMath math="A" />. Both groups still have four members after the exchange. Therefore, equal averages also mean equal total weights.
 
-New total weight of group <InlineMath math="A" /> (<InlineMath math="\sum x_A'" />):
+New total weight of group <InlineMath math="A" /> (<InlineMath math="W_A'" />):
 
-<BlockMath math="\sum x_A' = \sum x_A - x_A + x_B = 120 - x_A + x_B" />
+<BlockMath math="\begin{aligned}W_A'&=W_A-x_A+x_B \\ &=120-x_A+x_B\end{aligned}" />
 
-New total weight of group <InlineMath math="B" /> (<InlineMath math="\sum x_B'" />):
+New total weight of group <InlineMath math="B" /> (<InlineMath math="W_B'" />):
 
-<BlockMath math="\sum x_B' = \sum x_B - x_B + x_A = 132 - x_B + x_A" />
+<BlockMath math="\begin{aligned}W_B'&=W_B-x_B+x_A \\ &=132-x_B+x_A\end{aligned}" />
 
 #### Find the Weight Difference
 
 Since the new averages are equal, the new total sums are also equal:
 
 <MathContainer>
-  <BlockMath math="\sum x_A' = \sum x_B'" />
-  <BlockMath math="120 - x_A + x_B = 132 - x_B + x_A" />
+  <BlockMath math="W_A' = W_B'" />
+  <BlockMath math="\begin{aligned}&120-x_A+x_B \\ &\quad=132-x_B+x_A\end{aligned}" />
 </MathContainer>
 
 Collect the exchanged weights on one side:
 
 <MathContainer>
-  <BlockMath math="x_B + x_B - x_A - x_A = 132 - 120" />
+  <BlockMath math="\begin{aligned}&x_B+x_B-x_A-x_A \\ &\quad=132-120\end{aligned}" />
   <BlockMath math="2x_B - 2x_A = 12" />
   <BlockMath math="2(x_B - x_A) = 12" />
   <BlockMath math="x_B - x_A = 6" />

@@ -18,12 +18,12 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Kenaikan gabungan terutama mencerminkan perbaikan pada kelompok berpenglihatan rendah; kelompok berpenglihatan biasa bertahan di sekitar 84 persen.",
+            "Kenaikan gabungan terutama mencerminkan perbaikan pada kelompok berpenglihatan rendah. Kelompok berpenglihatan biasa bertahan di sekitar $$84$$ persen.",
         },
         {
           isCorrect: false,
           label:
-            "Angka 52 dari 65 lebih rendah daripada 46 dari 70 karena jumlah seluruh pesertanya lebih sedikit.",
+            "Angka $$52$$ dari $$65$$ lebih rendah daripada $$46$$ dari $$70$$ karena jumlah seluruh pesertanya lebih sedikit.",
         },
         {
           isCorrect: false,

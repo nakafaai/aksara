@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Änderung, Beispielfotos für jede Zustandskategorie, ersetzte die Notwendigkeit, die ursprüngliche Unsicherheit zu messen.",
+            "Beispielfotos sollten die weitere Messung der Übereinstimmung überflüssig machen.",
         },
         {
           isCorrect: true,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Beispielfotos für jede Zustandskategorie.",
+            "Beispielfotos sollten die schriftlichen Kategorien verdeutlichen, die zuvor zu unterschiedlichen Einschätzungen geführt hatten.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, Beispielfotos für jede Zustandskategorie, führte mehrere nicht trennbare Unterschiede ein.",
+            "Beispielfotos sollten gleichzeitige Änderungen mehrerer Erfassungsmerkmale ermöglichen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, Beispielfotos für jede Zustandskategorie, erklärte, warum die Vergleichswerte identisch waren.",
+            "Beispielfotos wurden gewählt, weil bereits alle Vergleichswerte nachweislich gleich waren.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, Beispielfotos für jede Zustandskategorie, betraf das Endergebnis statt die Quelle der Unsicherheit.",
+            "Beispielfotos wurden nur gewählt, weil das endgültige Testergebnis bereits feststand.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change, sample photos for each condition category, replaced the need to measure the original uncertainty.",
+            "Sample photographs were chosen so that observer agreement would no longer need measuring.",
         },
         {
           isCorrect: true,
           label:
-            "The change, sample photos for each condition category, directly addressed the observed uncertainty.",
+            "Sample photographs were chosen to clarify the written categories that had led to differing assessments.",
         },
         {
           isCorrect: false,
           label:
-            "The change, sample photos for each condition category, introduced several differences that could not be separated.",
+            "Sample photographs were chosen so that several survey features could change at once.",
         },
         {
           isCorrect: false,
           label:
-            "The change, sample photos for each condition category, explained why the comparison values were identical.",
+            "Sample photographs were chosen because all comparison values had already proved identical.",
         },
         {
           isCorrect: false,
           label:
-            "The change, sample photos for each condition category, addressed the final outcome rather than the source of uncertainty.",
+            "Sample photographs were chosen only because the final test result was already certain.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan berupa foto contoh untuk setiap kategori kondisi menggantikan kebutuhan untuk mengukur ketidakpastian awal.",
+            "Contoh foto dipilih agar kesepakatan pencatat tidak perlu diukur lagi.",
         },
         {
           isCorrect: true,
           label:
-            "Perubahan berupa contoh foto untuk setiap kategori kondisi langsung menanggapi keraguan yang diamati.",
+            "Contoh foto dipilih untuk memperjelas kategori tertulis yang sebelumnya menghasilkan perbedaan penilaian.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa foto contoh untuk setiap kategori kondisi menimbulkan beberapa perbedaan yang tidak dapat dipisahkan.",
+            "Contoh foto dipilih agar beberapa unsur pendataan dapat diubah sekaligus.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa foto contoh untuk setiap kategori kondisi menjelaskan mengapa nilai pembanding sama.",
+            "Contoh foto dipilih karena semua nilai pembanding sudah terbukti sama.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa foto contoh untuk setiap kategori kondisi menanggapi hasil akhir, bukan sumber ketidakpastian.",
+            "Contoh foto dipilih hanya karena hasil akhir pengujian sudah dipastikan.",
         },
       ],
     },

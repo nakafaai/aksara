@@ -2,9 +2,42 @@ export const metadata = {
   title: "Solution to Question 30",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-The unique feasible maximum is <InlineMath math="(X,Y)=(4,6)" /> with profit 86; the next-best pair <InlineMath math="(5,5)" /> gives 85. Hence Y exceeds X by <InlineMath math="6-4=2" /> packages.
+Let <InlineMath math="x" /> and <InlineMath math="y" /> be the numbers of X and Y packages. Both are non-negative integers.
 
-Therefore, the requested value is <InlineMath math="2" />.
+The material and labour limits give:
+
+<MathContainer>
+  <BlockMath math="3x+5y\le42" />
+  <BlockMath math="4x+y\le28" />
+</MathContainer>
+
+Total profit, in the given units, is:
+
+<BlockMath math="L=8x+9y" />
+
+Each X needs <InlineMath math="4" /> hours, so at most <InlineMath math="7" /> X packages can be made. For each <InlineMath math="x" />, profit increases with <InlineMath math="y" />. It is therefore enough to check the largest <InlineMath math="y" /> satisfying both limits:
+
+| <InlineMath math="x" /> | Largest <InlineMath math="y" /> | Profit |
+| ---: | ---: | ---: |
+| <InlineMath math="0" /> | <InlineMath math="8" /> | <InlineMath math="72" /> |
+| <InlineMath math="1" /> | <InlineMath math="7" /> | <InlineMath math="71" /> |
+| <InlineMath math="2" /> | <InlineMath math="7" /> | <InlineMath math="79" /> |
+| <InlineMath math="3" /> | <InlineMath math="6" /> | <InlineMath math="78" /> |
+| <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="86" /> |
+| <InlineMath math="5" /> | <InlineMath math="5" /> | <InlineMath math="85" /> |
+| <InlineMath math="6" /> | <InlineMath math="4" /> | <InlineMath math="84" /> |
+| <InlineMath math="7" /> | <InlineMath math="0" /> | <InlineMath math="56" /> |
+
+The highest profit is <InlineMath math="86" /> at <InlineMath math="x=4" /> and <InlineMath math="y=6" />. The next-best pair, <InlineMath math="x=5" /> and <InlineMath math="y=5" />, yields only <InlineMath math="85" />.
+
+The maximum-profit solution satisfies both limits:
+
+<MathContainer>
+  <BlockMath math="3\times4+5\times6=42" />
+  <BlockMath math="4\times4+6=22\le28" />
+</MathContainer>
+
+Therefore, there are **<InlineMath math="6-4=2" /> more Y packages** than X packages.

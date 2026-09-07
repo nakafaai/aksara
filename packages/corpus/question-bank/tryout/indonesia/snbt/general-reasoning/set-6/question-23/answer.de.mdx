@@ -2,9 +2,17 @@ export const metadata = {
   title: "Lösung zu Aufgabe 23",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Mit Inklusion und Exklusion nutzen <InlineMath math="64+58+49-24-19-17+8=119" /> Personen mindestens einen Dienst. Somit nutzen <InlineMath math="140-119=21" /> keinen Dienst.
+Mit dem Inklusions-Exklusions-Prinzip zählen wir die Personen, die mindestens einen Dienst nutzen. Die Summe der Nutzerzahlen von A, B und C zählt Personen mit zwei Diensten doppelt. Deshalb ziehen wir die drei paarweisen Schnittmengen ab. Anschließend addieren wir die Personen mit allen drei Diensten einmal: Sie wurden zuerst dreimal gezählt und gerade dreimal abgezogen.
 
-Damit ist der gesuchte Wert <InlineMath math="21" />.
+Mit <InlineMath math="U" /> bezeichnen wir die Anzahl der Personen, die mindestens einen Dienst nutzen:
+
+<BlockMath math="\begin{aligned}U&=64+58+49\\&\quad-24-19-17+8\\&=171-60+8\\&=119\end{aligned}" />
+
+Die Personen ohne einen dieser Dienste sind der Rest der <InlineMath math="140" /> Befragten:
+
+<BlockMath math="140-119=21" />
+
+Somit nutzen <InlineMath math="21" /> Personen keinen der drei Dienste.

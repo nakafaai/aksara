@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The class tested how adding a measured mass of table salt affected a solution's freezing point, while controlling other factors and reporting a limitation.",
+            "The class tested how adding a measured mass of table salt affected the temperature at which visible ice first formed, while controlling other factors and reporting a limitation.",
         },
         {
           isCorrect: false,
           label:
-            "The class tested how adding a measured mass of table salt affected a solution's freezing point, while controlling the listed factors but treating one short trial as proof of a universal effect.",
+            "The class tested how adding a measured mass of table salt affected the temperature at which visible ice first formed, while controlling the listed factors but treating one short trial as proof of a universal effect.",
         },
         {
           isCorrect: false,
           label:
-            "The class tested how adding a measured mass of table salt affected a solution's freezing point, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
+            "The class tested how adding a measured mass of table salt affected the temperature at which visible ice first formed, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
         },
         {
           isCorrect: false,
           label:
-            "The class tested how adding a measured mass of table salt affected a solution's freezing point, while treating the scientific term as the measured outcome that settles the investigation.",
+            "The class tested how adding a measured mass of table salt affected the temperature at which visible ice first formed, while treating the scientific term as the measured outcome that settles the investigation.",
         },
         {
           isCorrect: false,
           label:
-            "The class tested how adding a measured mass of table salt affected a solution's freezing point, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
+            "The class tested how adding a measured mass of table salt affected the temperature at which visible ice first formed, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
         },
       ],
     },

@@ -24,7 +24,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "PT Batik setzt in diesem Jahr keines der beiden Vorhaben um.",
+          label: "Die Genehmigung wird in diesem Jahr erteilt.",
         },
       ],
     },
@@ -50,7 +50,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "PT Batik carries out neither program this year.",
+          label: "The permit will be completed this year.",
         },
       ],
     },
@@ -75,7 +75,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "PT Batik tidak menjalankan satu pun program pada tahun ini.",
+          label: "Izin pembukaan cabang selesai pada tahun ini.",
         },
       ],
     },

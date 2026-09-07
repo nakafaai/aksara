@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dennoch, begrenzte das Team seine Schlussfolgerung zum Kontext Karte der Evakuierungswege auf den kurzen Versuch.",
+            "Dennoch, begrenzte das Team seine Schlussfolgerung auf den kurzen Versuch.",
         },
         {
           isCorrect: true,
           label:
-            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Karte der Evakuierungswege auf den kurzen Versuch.",
+            "Dennoch begrenzte das Team seine Schlussfolgerung auf den kurzen Versuch.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch: begrenzte das Team seine Schlussfolgerung zum Kontext Karte der Evakuierungswege auf den kurzen Versuch.",
+            "Dennoch: begrenzte das Team seine Schlussfolgerung auf den kurzen Versuch.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch; begrenzte das Team seine Schlussfolgerung zum Kontext Karte der Evakuierungswege auf den kurzen Versuch.",
+            "Dennoch; begrenzte das Team seine Schlussfolgerung auf den kurzen Versuch.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Karte der Evakuierungswege auf den kurzen Versuch?",
+            "Dennoch begrenzte das Team seine Schlussfolgerung auf den kurzen Versuch?",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Nevertheless the team limited its conclusion for this setting (evacuation route map) to the short trial.",
+            "Nevertheless the, team limited its conclusion to the short trial.",
         },
         {
           isCorrect: true,
           label:
-            "Nevertheless, the team limited its conclusion for this setting (evacuation route map) to the short trial.",
+            "Nevertheless, the team limited its conclusion to the short trial.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless: the team limited its conclusion for this setting (evacuation route map) to the short trial.",
+            "Nevertheless: the team, limited its conclusion to the short trial.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless; the team limited its conclusion for this setting (evacuation route map) to the short trial.",
+            "Nevertheless; the team limited its conclusion to the short trial.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless, the team limited its conclusion for this setting (evacuation route map) to the short trial?",
+            "Nevertheless, the team limited its conclusion to the short trial?",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Meskipun demikian tim membatasi simpulan tentang peta jalur evakuasi pada uji singkat tersebut.",
+            "Meskipun demikian tim membatasi simpulan pada uji singkat tersebut.",
         },
         {
           isCorrect: true,
           label:
-            "Meskipun demikian, tim membatasi simpulan tentang peta jalur evakuasi pada uji singkat tersebut.",
+            "Meskipun demikian, tim membatasi simpulan pada uji singkat tersebut.",
         },
         {
           isCorrect: false,
           label:
-            "Meskipun demikian: tim membatasi simpulan tentang peta jalur evakuasi pada uji singkat tersebut.",
+            "Meskipun demikian: tim membatasi simpulan pada uji singkat tersebut.",
         },
         {
           isCorrect: false,
           label:
-            "Meskipun demikian; tim membatasi simpulan tentang peta jalur evakuasi pada uji singkat tersebut.",
+            "Meskipun demikian; tim membatasi simpulan pada uji singkat tersebut.",
         },
         {
           isCorrect: false,
           label:
-            "Meskipun demikian, tim membatasi simpulan tentang peta jalur evakuasi pada uji singkat tersebut?",
+            "Meskipun demikian, tim membatasi simpulan pada uji singkat tersebut?",
         },
       ],
     },

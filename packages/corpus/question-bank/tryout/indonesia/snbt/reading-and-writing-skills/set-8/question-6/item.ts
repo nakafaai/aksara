@@ -8,27 +8,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Im Kontext öffentliche Laborführung verursachte die Änderung Fragekarten an jedem Demonstrationstisch den höheren Testwert.",
+            "Fragekarten waren nachweislich die einzige Ursache des höheren Mittelwerts.",
+        },
+        {
+          isCorrect: false,
+          label: "Alle Besuchenden verbesserten sich im selben Umfang.",
+        },
+        {
+          isCorrect: false,
+          label: "Ausgangs- und Vergleichswert waren gleich.",
         },
         {
           isCorrect: false,
           label:
-            "Im Kontext öffentliche Laborführung verbesserten sich sämtliche Teilnehmenden um denselben Wert.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Im Kontext öffentliche Laborführung waren die beiden Vergleichswerte identisch.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Im Kontext öffentliche Laborführung belegte der kurze Test das langfristige Ergebnis.",
+            "Der Versuch belegte das langfristige Ergebnis für alle Laborführungen.",
         },
         {
           isCorrect: true,
           label:
-            "Der Versuchswert lag im Kontext Tag der offenen Labortür über den beiden anderen Werten.",
+            "Der Mittelwert fragender Besuchender lag im Versuch über dem Ausgangs- und dem Vergleichswert.",
         },
       ],
     },
@@ -38,27 +36,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "In this setting (open laboratory tour), question cards at each demonstration table caused the higher trial value.",
+            "Question cards were proved to be the sole cause of the higher mean.",
+        },
+        {
+          isCorrect: false,
+          label: "Every visitor improved by the same amount.",
+        },
+        {
+          isCorrect: false,
+          label: "The baseline and comparison means were identical.",
         },
         {
           isCorrect: false,
           label:
-            "In this setting (open laboratory tour), each participant improved by the same amount.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (open laboratory tour), the two comparison values were identical.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (open laboratory tour), the short trial established the long-term result.",
+            "The trial established the long-term result for every laboratory tour.",
         },
         {
           isCorrect: true,
           label:
-            "In this setting (open laboratory tour), the trial value exceeded both other values.",
+            "The trial mean for visitors asking a question exceeded the baseline and comparison means.",
         },
       ],
     },
@@ -68,27 +64,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dalam konteks tur laboratorium terbuka, kartu pertanyaan di setiap meja demonstrasi menyebabkan nilai uji menjadi lebih tinggi.",
+            "Kartu pertanyaan terbukti menjadi satu-satunya penyebab rata-rata yang lebih tinggi.",
+        },
+        {
+          isCorrect: false,
+          label: "Setiap pengunjung mengalami peningkatan yang sama.",
+        },
+        {
+          isCorrect: false,
+          label: "Rata-rata awal dan pembanding sama.",
         },
         {
           isCorrect: false,
           label:
-            "Dalam konteks tur laboratorium terbuka, setiap peserta mengalami peningkatan yang sama.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Dalam konteks tur laboratorium terbuka, kedua nilai pembanding sama.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Dalam konteks tur laboratorium terbuka, uji singkat menetapkan hasil jangka panjang.",
+            "Uji tersebut menetapkan hasil jangka panjang untuk seluruh tur laboratorium.",
         },
         {
           isCorrect: true,
           label:
-            "Di tur laboratorium terbuka, nilai hari uji melampaui dua nilai lainnya.",
+            "Rata-rata pengunjung yang bertanya pada sesi uji melebihi rata-rata awal dan pembanding.",
         },
       ],
     },

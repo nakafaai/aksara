@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Der Lebensmittelverteilungsmechanismus für Raskin oder Rastra wird auf direkte Transfers umgestellt",
+            "Die Rastra-Reishilfe wird auf das bargeldlose BPNT-Programm umgestellt",
         },
         {
           isCorrect: false,
@@ -53,7 +53,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The food distribution mechanism for Raskin or Rastra undergoes a change to direct transfers",
+            "The Rastra rice-assistance program is replaced by BPNT non-cash food assistance",
         },
         {
           isCorrect: false,
@@ -83,7 +83,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Mekanisme penyaluran pangan untuk raskin atau rastra mengalami perubahan menjadi transfer langsung",
+            "Bantuan beras Rastra beralih menjadi bantuan pangan nontunai melalui BPNT",
         },
         {
           isCorrect: false,

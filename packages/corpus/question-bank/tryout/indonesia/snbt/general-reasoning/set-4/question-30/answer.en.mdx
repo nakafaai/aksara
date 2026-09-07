@@ -2,9 +2,27 @@ export const metadata = {
   title: "Solution to Question 30",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-The unique maximum occurs at <InlineMath math="(X,Y)=(5,4)" /> with profit 59; nearby feasible alternatives have lower profit. The difference in package counts is <InlineMath math="5-4=1" />.
+Let <InlineMath math="x" /> and <InlineMath math="y" /> be the numbers of packages <InlineMath math="X" /> and <InlineMath math="Y" />. The material and labour limits are:
 
-Therefore, the requested value is <InlineMath math="1" />.
+<BlockMath math="\begin{aligned}2x+5y&\le30\\4x+y&\le24\\x,y&\in\mathbb Z_{\ge0}\end{aligned}" />
+
+<BlockMath math="L=7x+6y" />
+
+The labour limit gives <InlineMath math="0\le x\le6" />. For each <InlineMath math="x" />, profit increases with <InlineMath math="y" />. It is enough to check the largest <InlineMath math="y" /> satisfying both limits.
+
+| <InlineMath math="x" /> | <InlineMath math="y" /> | <InlineMath math="L" /> |
+| ---: | ---: | ---: |
+| <InlineMath math="0" /> | <InlineMath math="6" /> | <InlineMath math="36" /> |
+| <InlineMath math="1" /> | <InlineMath math="5" /> | <InlineMath math="37" /> |
+| <InlineMath math="2" /> | <InlineMath math="5" /> | <InlineMath math="44" /> |
+| <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="45" /> |
+| <InlineMath math="4" /> | <InlineMath math="4" /> | <InlineMath math="52" /> |
+| <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="59" /> |
+| <InlineMath math="6" /> | <InlineMath math="0" /> | <InlineMath math="42" /> |
+
+The unique maximum is <InlineMath math="59" /> at <InlineMath math="(x,y)=(5,4)" />. The difference in package counts is:
+
+<BlockMath math="5-4=1" />

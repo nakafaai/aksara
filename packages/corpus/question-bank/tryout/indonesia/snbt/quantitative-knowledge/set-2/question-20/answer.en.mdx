@@ -2,44 +2,68 @@ export const metadata = {
   title: "Explanation 20",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-22",
+  dateModified: "2026-09-07",
 };
 
-We will calculate the value of each integral first.
+Use an antiderivative for each integral. A definite integral equals the antiderivative at the upper limit minus its value at the lower limit.
 
-#### Calculating the first integral
+#### Evaluating the first integral
+
+An antiderivative of <InlineMath math="3x+5" /> is:
+
+<BlockMath math="F(x)=\frac32x^2+5x" />
+
+Its values at the two limits are:
+
+<BlockMath math="\begin{aligned}
+F(3)&=\frac{27}{2}+15 \\
+&=\frac{57}{2} \\
+F(1)&=\frac32+5 \\
+&=\frac{13}{2}
+\end{aligned}" />
+
+Therefore:
+
+<BlockMath math="\begin{aligned}
+I_1&=F(3)-F(1) \\
+&=\frac{57}{2}-\frac{13}{2} \\
+&=\frac{44}{2}=22
+\end{aligned}" />
+
+#### Evaluating the second integral
+
+An antiderivative of <InlineMath math="2x-3" /> is:
+
+<BlockMath math="G(x)=x^2-3x" />
+
+With lower limit <InlineMath math="2" />, this gives:
 
 <MathContainer>
-  <BlockMath math="\int_{1}^{3} (3x + 5) dx = \left[ \frac{3}{2}x^2 + 5x \right]_{1}^{3}" />
-  <BlockMath math="= \left( \frac{3}{2}(3)^2 + 5(3) \right) - \left( \frac{3}{2}(1)^2 + 5(1) \right)" />
-  <BlockMath math="= \left( \frac{27}{2} + 15 \right) - \left( \frac{3}{2} + 5 \right)" />
-  <BlockMath math="= \frac{27}{2} + \frac{30}{2} - \frac{3}{2} - \frac{10}{2}" />
-  <BlockMath math="= \frac{44}{2} = 22" />
+  <BlockMath math="G(2)=4-6=-2" />
+  <BlockMath math="\begin{aligned}
+I_2&=G(b)-G(2) \\
+&=b^2-3b-(-2) \\
+&=b^2-3b+2
+\end{aligned}" />
 </MathContainer>
 
-#### Calculating the second integral
+#### Finding the upper limit
 
-<MathContainer>
-  <BlockMath math="\int_{2}^{b} (2x - 3) dx = \left[ x^2 - 3x \right]_{2}^{b}" />
-  <BlockMath math="= (b^2 - 3b) - (2^2 - 3(2))" />
-  <BlockMath math="= (b^2 - 3b) - (4 - 6)" />
-  <BlockMath math="= b^2 - 3b - (-2)" />
-  <BlockMath math="= b^2 - 3b + 2" />
-</MathContainer>
+The two integrals add to <InlineMath math="28" />, so:
 
-#### Solving the equation
+<BlockMath math="\begin{aligned}
+I_2&=28-I_1 \\
+&=28-22=6
+\end{aligned}" />
 
-It is given that the sum of the two integrals is <InlineMath math="28" />.
+Substitute the expression found for <InlineMath math="I_2" />:
 
-<MathContainer>
-  <BlockMath math="22 + (b^2 - 3b + 2) = 28" />
-  <BlockMath math="b^2 - 3b + 24 = 28" />
-  <BlockMath math="b^2 - 3b - 4 = 0" />
-</MathContainer>
+<BlockMath math="\begin{aligned}
+b^2-3b+2&=6 \\
+b^2-3b-4&=0 \\
+(b-4)(b+1)&=0
+\end{aligned}" />
 
-Factor the quadratic equation:
+Thus, <InlineMath math="b=4" /> or <InlineMath math="b=-1" />. The condition <InlineMath math="b>0" /> excludes the negative value.
 
-<BlockMath math="(b - 4)(b + 1) = 0" />
-
-This gives <InlineMath math="b = 4" /> or <InlineMath math="b = -1" />.
-
-Since the condition is <InlineMath math="b > 0" />, the valid value is <InlineMath math="b = 4" />.
+At <InlineMath math="b=4" />, the second integral is <InlineMath math="16-12+2=6" />. Adding the first gives <InlineMath math="22+6=28" />, as required. Therefore, the answer is <InlineMath math="b=4" />.

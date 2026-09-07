@@ -8,27 +8,24 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Im Kontext Sportgeräteausleihe verursachte die Änderung Fotobeschriftungen an den Rückgaberegalen den höheren Testwert.",
+            "Fotoetiketten verursachten nachweislich den höheren Mittelwert der richtigen Rückgaben.",
         },
         {
           isCorrect: false,
-          label:
-            "Im Kontext Sportgeräteausleihe verbesserten sich sämtliche Teilnehmenden um denselben Wert.",
+          label: "Alle Ausleihenden verbesserten sich um denselben Wert.",
         },
         {
           isCorrect: true,
           label:
-            "Der Versuchswert lag im Kontext Ausleihe von Sportgeräten über den beiden anderen Werten.",
+            "Die mittlere Zahl richtiger Rückgaben lag im Versuch über dem Ausgangs- und Vergleichswert.",
         },
         {
           isCorrect: false,
-          label:
-            "Im Kontext Sportgeräteausleihe waren die beiden Vergleichswerte identisch.",
+          label: "Ausgangs- und Vergleichsmittelwert waren identisch.",
         },
         {
           isCorrect: false,
-          label:
-            "Im Kontext Sportgeräteausleihe belegte der kurze Test das langfristige Ergebnis.",
+          label: "Der kurze Versuch belegte das langfristige Ergebnis.",
         },
       ],
     },
@@ -38,27 +35,24 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "In this setting (sports equipment lending), photo labels on the return shelves caused the higher trial value.",
+            "Photo labels were proved to cause the higher mean number of correct returns.",
         },
         {
           isCorrect: false,
-          label:
-            "In this setting (sports equipment lending), each participant improved by the same amount.",
+          label: "Every borrower improved by the same amount.",
         },
         {
           isCorrect: true,
           label:
-            "In this setting (sports equipment lending), the trial value exceeded both other values.",
+            "The mean number of correct returns in trial sessions exceeded the baseline and comparison means.",
         },
         {
           isCorrect: false,
-          label:
-            "In this setting (sports equipment lending), the two comparison values were identical.",
+          label: "The baseline and comparison means were identical.",
         },
         {
           isCorrect: false,
-          label:
-            "In this setting (sports equipment lending), the short trial established the long-term result.",
+          label: "The short trial established the long-term result.",
         },
       ],
     },
@@ -68,27 +62,24 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dalam konteks peminjaman alat olahraga, label foto pada rak pengembalian menyebabkan nilai uji menjadi lebih tinggi.",
+            "Label foto terbukti menyebabkan kenaikan rata-rata alat yang dikembalikan dengan tepat.",
         },
         {
           isCorrect: false,
-          label:
-            "Dalam konteks peminjaman alat olahraga, setiap peserta mengalami peningkatan yang sama.",
+          label: "Setiap peminjam mengalami peningkatan yang sama.",
         },
         {
           isCorrect: true,
           label:
-            "Di peminjaman alat olahraga, nilai hari uji melampaui dua nilai lainnya.",
+            "Rata-rata pengembalian yang tepat pada sesi uji melebihi rata-rata awal dan sesi pembanding.",
         },
         {
           isCorrect: false,
-          label:
-            "Dalam konteks peminjaman alat olahraga, kedua nilai pembanding sama.",
+          label: "Rata-rata awal dan rata-rata sesi pembanding sama.",
         },
         {
           isCorrect: false,
-          label:
-            "Dalam konteks peminjaman alat olahraga, uji singkat menetapkan hasil jangka panjang.",
+          label: "Uji singkat memastikan hasil jangka panjang.",
         },
       ],
     },

@@ -2,9 +2,23 @@ export const metadata = {
   title: "Lösung zu Aufgabe 21",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Die ungeraden Glieder wachsen um <InlineMath math="4" />, die geraden werden verdoppelt. Damit sind <InlineMath math="a_9=24" /> und <InlineMath math="a_8=32" />; ihr kleinstes gemeinsames Vielfaches ist <InlineMath math="96" />.
+An ungeraden Positionen stehen <InlineMath math="8" />, <InlineMath math="12" />, <InlineMath math="16" /> und <InlineMath math="20" />. Die Differenz beträgt jeweils <InlineMath math="4" />:
 
-Damit ist der gesuchte Wert <InlineMath math="96" />.
+<BlockMath math="a_9=20+4=24" />
+
+An geraden Positionen stehen <InlineMath math="4" />, <InlineMath math="8" /> und <InlineMath math="16" />. Jedes Glied ist doppelt so groß wie das vorherige:
+
+<BlockMath math="a_8=16\times2=32" />
+
+Wir zerlegen die beiden neuen Glieder in Primfaktoren. Für das kleinste gemeinsame Vielfache nehmen wir von jedem Primfaktor die höchste auftretende Potenz:
+
+<MathContainer>
+  <BlockMath math="24=2^3\times3" />
+  <BlockMath math="32=2^5" />
+  <BlockMath math="2^5\times3=96" />
+</MathContainer>
+
+Das kleinste gemeinsame Vielfache beträgt somit **<InlineMath math="96" />**.

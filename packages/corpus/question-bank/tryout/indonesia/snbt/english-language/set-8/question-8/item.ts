@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Because the trial reached 31, compared with a baseline of 19 and a comparison value of 20, a shared glossary with examples from each participant should become permanent before the stated limitation is examined.",
+            "Because the trial reached $$31$$, compared with a baseline of $$19$$ and a comparison value of $$20$$, a shared glossary with examples from each participant should become permanent before the stated limitation is examined.",
         },
         {
           isCorrect: true,
           label:
-            "The rise to 31, compared with a baseline of 19 and a comparison value of 20 supports a limited extension of a shared glossary with examples from each participant, while the fact that one glossary could not capture every regional or family usage must shape the follow-up.",
+            "The mean of $$31$$, compared with $$19$$ at baseline and $$20$$ in the comparison, supports further glossary testing. Entries must retain their contexts and remain open to challenges from participants with different usage.",
         },
         {
           isCorrect: false,

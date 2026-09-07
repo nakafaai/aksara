@@ -11,7 +11,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "der gemeinsame Mittelwert von Versuchs- und Vergleichstag",
+          label:
+            "der gemeinsame Mittelwert der Versuchs- und Vergleichseinheiten",
         },
         {
           isCorrect: false,
@@ -38,7 +39,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "the combined mean of the trial and comparison days",
+          label: "the combined mean of the trial and comparison sessions",
         },
         {
           isCorrect: false,
@@ -65,7 +66,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "rata-rata gabungan dari hari uji dan hari pembanding",
+          label:
+            "rata-rata gabungan dari pertemuan uji dan pertemuan pembanding",
         },
         {
           isCorrect: false,

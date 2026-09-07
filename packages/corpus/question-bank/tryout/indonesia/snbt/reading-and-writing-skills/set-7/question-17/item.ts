@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Das Team wiederholte den Versuch mit folgender Änderung, um belastbarere Belege zu erhalten: einen Rückgabecode an jedem Griff.",
+            "Das Team wird den Versuch mit dem Rückgabecode wiederholen, um belastbarere Belege zu erhalten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team wiederholte den Test von ein Rückgabecode an jedem Griff erneut, um stärkere Belege als zuvor zu erhalten.",
+            "Das Team wird den Versuch mit dem Rückgabecode erneut wiederholen, um belastbarere Belege als zuvor zu erhalten.",
         },
         {
           isCorrect: false,
           label:
-            "Um stärkere Belege zu erhalten, wurde der Test von ein Rückgabecode an jedem Griff vom Team erneut wiederholt.",
+            "Um belastbarere Belege zu erhalten, wird der Versuch mit dem Rückgabecode vom Team erneut wiederholt werden.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team führte eine weitere Wiederholung des Tests von ein Rückgabecode an jedem Griff für stärkere Belege durch.",
+            "Das Team wird eine Tätigkeit durchführen, nämlich die Wiederholung des Versuchs mit dem Rückgabecode, um belastbarere Belege zu erhalten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team wiederholte den Test, um stärkere Belege zu ein Rückgabecode an jedem Griff zu erhalten, die es bereits getestet hatte.",
+            "Das Team wird den Versuch wiederholen, um belastbarere Belege zu dem Rückgabecode zu erhalten, den es bereits getestet hat.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The team repeated the test of a return code on each handle to obtain stronger evidence.",
+            "The team will repeat the test of the return code to obtain stronger evidence.",
         },
         {
           isCorrect: false,
           label:
-            "The team repeated the test of a return code on each handle again to obtain evidence that was stronger than before.",
+            "The team will repeat the test of the return code again to obtain evidence that is stronger than before.",
         },
         {
           isCorrect: false,
           label:
-            "To obtain stronger evidence, the test of a return code on each handle was repeated again by the team.",
+            "To obtain stronger evidence, the test of the return code will be repeated again by the team.",
         },
         {
           isCorrect: false,
           label:
-            "The team carried out another repetition of the test of a return code on each handle for stronger evidence.",
+            "The team will carry out the activity of repeating the test of the return code to obtain stronger evidence.",
         },
         {
           isCorrect: false,
           label:
-            "The team repeated the test to obtain stronger evidence about a return code on each handle, which it had already tested.",
+            "The team will repeat the test to obtain stronger evidence about the return code that it has already tested.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Tim mengulang uji kode pengembalian pada setiap gagang untuk memperoleh bukti yang lebih kuat.",
+            "Tim akan mengulang uji kode pengembalian pada setiap gagang untuk memperoleh bukti yang lebih kuat.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengulang kembali uji kode pengembalian pada setiap gagang untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
+            "Tim akan mengulang kembali uji kode pengembalian pada setiap gagang untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
         },
         {
           isCorrect: false,
           label:
-            "Untuk memperoleh bukti lebih kuat, uji kode pengembalian pada setiap gagang diulang kembali oleh tim.",
+            "Untuk memperoleh bukti yang lebih kuat, uji kode pengembalian pada setiap gagang akan diulang kembali oleh tim.",
         },
         {
           isCorrect: false,
           label:
-            "Tim melakukan pengulangan lain atas uji kode pengembalian pada setiap gagang demi bukti yang lebih kuat.",
+            "Tim akan melakukan kegiatan berupa pengulangan uji kode pengembalian pada setiap gagang demi memperoleh bukti yang lebih kuat.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengulang uji untuk memperoleh bukti lebih kuat tentang kode pengembalian pada setiap gagang yang telah diuji sebelumnya.",
+            "Tim akan mengulang uji untuk memperoleh bukti yang lebih kuat tentang kode pengembalian pada setiap gagang yang telah diuji sebelumnya.",
         },
       ],
     },

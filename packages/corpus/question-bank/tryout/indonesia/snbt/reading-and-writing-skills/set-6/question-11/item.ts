@@ -7,28 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "eine Wirksamkeitsanalise zur geprüften Änderung im Kontext „Lärmprotokoll im Wohngebiet“",
+          label: "eine Wirksamkeitsanalise zum Ausfüllbeispiel im Lärmformular",
         },
         {
           isCorrect: false,
-          label:
-            "eine Wirksamkaitsanalyse zur geprüften Änderung im Kontext „Lärmprotokoll im Wohngebiet“",
+          label: "eine Wirksamkaitsanalyse zum Ausfüllbeispiel im Lärmformular",
         },
         {
           isCorrect: true,
-          label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontext „Lärmprotokoll im Wohngebiet“",
+          label: "eine Wirksamkeitsanalyse zum Ausfüllbeispiel im Lärmformular",
+        },
+        {
+          isCorrect: false,
+          label: "eine Wirksamkeitsanalyse zum Ausfülbeispiel im Lärmformular",
         },
         {
           isCorrect: false,
           label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Konteks „Lärmprotokoll im Wohngebiet“",
-        },
-        {
-          isCorrect: false,
-          label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontextt „Lärmprotokoll im Wohngebiet“",
+            "eine Wirksamkeitsanalyse zum Ausfüllbeispiel im Lärmformullar",
         },
       ],
     },
@@ -38,27 +34,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "an analyse of the effectiveness of an example showing how to record sound duration in this setting (neighbourhood noise log)",
+            "an analysiss of the effectiveness of the example on the noise-report form",
         },
         {
           isCorrect: false,
           label:
-            "an analysis of the effectivness of an example showing how to record sound duration in this setting (neighbourhood noise log)",
+            "an analysis of the effectivness of the example on the noise-report form",
         },
         {
           isCorrect: true,
           label:
-            "an analysis of the effectiveness of an example showing how to record sound duration in this setting (neighbourhood noise log)",
+            "an analysis of the effectiveness of the example on the noise-report form",
         },
         {
           isCorrect: false,
           label:
-            "an analisis of the effectiveness of an example showing how to record sound duration in this setting (neighbourhood noise log)",
+            "an analisis of the effectiveness of the example on the noise-report form",
         },
         {
           isCorrect: false,
           label:
-            "an analysis of the effectivity of an example showing how to record sound duration in this setting (neighbourhood noise log)",
+            "an analysis of the effectivenes of the example on the noise-report form",
         },
       ],
     },
@@ -67,28 +63,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "analisa efektivitas contoh pencatatan durasi suara dalam pencatatan kebisingan lingkungan",
+          label: "analisa efektivitas contoh pencatatan waktu suara",
         },
         {
           isCorrect: false,
-          label:
-            "analisis efektifitas contoh pencatatan durasi suara dalam pencatatan kebisingan lingkungan",
+          label: "analisis efektifitas contoh pencatatan waktu suara",
         },
         {
           isCorrect: true,
-          label:
-            "analisis efektivitas contoh pencatatan durasi suara dalam pencatatan kebisingan lingkungan",
+          label: "analisis efektivitas contoh pencatatan waktu suara",
+        },
+        {
+          isCorrect: false,
+          label: "analisa efektifitas contoh pencatatan waktu suara",
         },
         {
           isCorrect: false,
           label:
-            "analisa efektifitas contoh pencatatan durasi suara dalam pencatatan kebisingan lingkungan",
-        },
-        {
-          isCorrect: false,
-          label:
-            "analisis efektivitas contoh pencatatan durasi suara dalam kontek pencatatan kebisingan lingkungan",
+            "analisis efektivitas contoh pencatatan dalam kontek kebisingan",
         },
       ],
     },

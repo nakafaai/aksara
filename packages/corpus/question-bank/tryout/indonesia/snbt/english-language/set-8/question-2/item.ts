@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The triangular-truss bridge produced a mean of 39 under the fixed span and load placement; variation in paper fibres and folds bounds the comparison.",
+            "The triangular-truss bridge produced a mean of $$39$$ under the fixed span and load placement. Variation in paper fibres and folds bounds the comparison.",
         },
         {
           isCorrect: false,
@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The mean result with the change was 39; because it differs from the other conditions, the tested change is the only plausible explanation.",
+            "The mean result with the change was $$39$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
           isCorrect: false,

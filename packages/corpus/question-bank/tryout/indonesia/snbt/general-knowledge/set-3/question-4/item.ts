@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team legt Daten, Methoden, Ausschlussgründe und Grenzen offen, damit der Prozess geprüft werden kann.",
+            "Das Team stellt Rohdaten bereit, erläutert aber nicht die Grundlage seiner Entscheidung.",
         },
         {
           isCorrect: false,
@@ -38,7 +38,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team discloses data, methods, exclusion reasons, and limitations so the process can be examined.",
+            "The team makes the raw data files available but does not explain the basis for its decision.",
         },
         {
           isCorrect: false,
@@ -68,7 +68,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim membuka data, metode, alasan pengecualian, dan keterbatasan agar proses dapat diperiksa.",
+            "Tim menyediakan berkas data mentah, tetapi tidak menguraikan dasar keputusannya.",
         },
         {
           isCorrect: false,

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Beobachtung bewies daher, dass die Änderung kontrastreichere Sammelplatzsymbole den Unterschied verursachte.",
+            "Die Beobachtung bewies, dass kontrastreichere Symbole den Unterschied verursachten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team musste daher mehrere Merkmale im Kontext Evakuierungsplan ändern, bevor es erneut maß.",
+            "Das Team musste vor der nächsten Messung mehrere Kartenmerkmale gleichzeitig ändern.",
         },
         {
           isCorrect: false,
           label:
-            "Das erste Muster rechtfertigte daher die dauerhafte Einführung von kontrastreichere Sammelplatzsymbole.",
+            "Das Ausgangsmuster rechtfertigte bereits die dauerhafte Einführung kontrastreicherer Symbole.",
         },
         {
           isCorrect: true,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: kontrastreichere Symbole für Sammelpunkte.",
+            "Die Hypothese musste deshalb mit kontrastreicheren Sammelpunktsymbolen geprüft werden.",
         },
         {
           isCorrect: false,
           label:
-            "Die verbleibende Unsicherheit machte einen weiteren Vergleich daher überflüssig.",
+            "Die verbleibende Unsicherheit machte einen weiteren Vergleich überflüssig.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The observation therefore established that higher-contrast assembly-point symbols caused the difference.",
+            "The observation proved that higher-contrast symbols caused the difference.",
         },
         {
           isCorrect: false,
           label:
-            "The team therefore needed to alter several features of evacuation route map before measuring again.",
+            "The team needed to change several map features at once before measuring again.",
         },
         {
           isCorrect: false,
           label:
-            "The initial pattern therefore justified permanent adoption of higher-contrast assembly-point symbols.",
+            "The baseline pattern already justified adopting higher-contrast symbols permanently.",
         },
         {
           isCorrect: true,
           label:
-            "The hypothesis therefore needed a limited test of higher-contrast assembly-point symbols.",
+            "The hypothesis therefore needed to be tested using higher-contrast assembly-point symbols.",
         },
         {
           isCorrect: false,
           label:
-            "The remaining uncertainty therefore made another comparison unnecessary.",
+            "The remaining uncertainty made a further comparison unnecessary.",
         },
       ],
     },
@@ -68,22 +68,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pengamatan itu membuktikan bahwa simbol titik kumpul dengan kontras lebih tinggi menyebabkan perbedaan.",
+            "Pengamatan itu membuktikan bahwa simbol yang lebih kontras menyebabkan perbedaan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim perlu mengubah beberapa unsur peta jalur evakuasi sebelum melakukan pengukuran ulang.",
+            "Tim perlu mengubah beberapa unsur peta sekaligus sebelum mengukur ulang.",
         },
         {
           isCorrect: false,
           label:
-            "Pola awal itu membenarkan penerapan tetap simbol titik kumpul dengan kontras lebih tinggi.",
+            "Pola awal itu sudah membenarkan penerapan permanen simbol yang lebih kontras.",
         },
         {
           isCorrect: true,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui simbol titik kumpul yang lebih kontras.",
+            "Oleh karena itu, hipotesis tersebut perlu diuji dengan simbol titik kumpul yang lebih kontras.",
         },
         {
           isCorrect: false,

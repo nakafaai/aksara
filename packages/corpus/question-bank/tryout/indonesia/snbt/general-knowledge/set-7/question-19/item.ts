@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Änderungen können vertretbar sein, wenn Herkunft und Gründe offenliegen und Quellenvielfalt nicht verborgen wird.",
+            "Änderungen können vertretbar sein, wenn Herkunft und Gründe offenliegen, Quellenvielfalt sichtbar bleibt und die Aufführung stimmig ist.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Eine verantwortliche Bearbeitung darf die Form ändern, wenn Quellen, Änderungen und Vielfalt nachvollziehbar bleiben.",
+            "Eine Aufführung muss nur danach bewertet werden, wie genau ihre Wörter einem ausgewählten schriftlichen Stück entsprechen.",
         },
       ],
     },
@@ -38,7 +38,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Changes can be acceptable when their origins and reasons are open and source diversity is not concealed.",
+            "Changes can be acceptable when their origins and reasons are open, source diversity remains visible, and the performance remains coherent.",
         },
         {
           isCorrect: false,
@@ -57,7 +57,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "A responsible adaptation may change a story's form while keeping its sources, changes, and diversity traceable.",
+            "A performance need only be judged by how closely its words match one selected written script.",
         },
       ],
     },
@@ -67,7 +67,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Perubahan dapat diterima jika asal dan alasannya terbuka serta keragaman sumber tidak disembunyikan.",
+            "Perubahan dapat diterima jika asal dan alasannya terbuka, keragaman sumber terlihat, dan pertunjukan tetap utuh.",
         },
         {
           isCorrect: false,
@@ -85,7 +85,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Adaptasi yang bertanggung jawab dapat mengubah bentuk cerita selama sumber, perubahan, dan keragamannya tetap dapat ditelusuri.",
+            "Kualitas pertunjukan cukup dinilai dari kemiripan kata-katanya dengan satu naskah tertulis yang dipilih.",
         },
       ],
     },

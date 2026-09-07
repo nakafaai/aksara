@@ -7,23 +7,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "definitiv wahr",
+          label: "Ardian legt mit Sicherheit beide Prüfungen ab.",
         },
         {
           isCorrect: true,
-          label: "möglicherweise wahr",
+          label:
+            "Ardian legt sicher die Schulabschlussprüfung ab. Ob er eine Aufnahmeprüfung ablegt, bleibt offen.",
         },
         {
           isCorrect: false,
-          label: "definitiv falsch",
+          label: "Ardian legt mit Sicherheit keine der beiden Prüfungen ab.",
         },
         {
           isCorrect: false,
-          label: "möglicherweise falsch",
+          label:
+            "Ardian legt sicher eine Aufnahmeprüfung ab. Ob er die Schulabschlussprüfung ablegt, bleibt offen.",
         },
         {
           isCorrect: false,
-          label: "kann nicht bestimmt werden",
+          label:
+            "Die Schlussfolgerung hat keinen Bezug zu den Informationen über Ardian.",
         },
       ],
     },
@@ -32,23 +35,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "definitely true",
+          label: "Ardian definitely takes both exams.",
         },
         {
           isCorrect: true,
-          label: "possibly true",
+          label:
+            "Ardian definitely takes the School Exam, but whether he takes an entrance test remains open.",
         },
         {
           isCorrect: false,
-          label: "definitely false",
+          label: "Ardian definitely takes neither exam.",
         },
         {
           isCorrect: false,
-          label: "possibly false",
+          label:
+            "Ardian definitely takes an entrance test, but whether he takes the School Exam is unknown.",
         },
         {
           isCorrect: false,
-          label: "cannot be determined",
+          label: "The conclusion is unrelated to the information about Ardian.",
         },
       ],
     },
@@ -57,23 +62,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "pasti benar",
+          label: "Ardian pasti mengikuti kedua ujian.",
         },
         {
           isCorrect: true,
-          label: "mungkin benar",
+          label:
+            "Ardian pasti mengikuti Ujian Sekolah, tetapi keikutsertaannya dalam tes masuk bisa benar atau salah.",
         },
         {
           isCorrect: false,
-          label: "pasti salah",
+          label: "Ardian pasti tidak mengikuti kedua ujian.",
         },
         {
           isCorrect: false,
-          label: "mungkin salah",
+          label:
+            "Ardian pasti mengikuti tes masuk, tetapi keikutsertaannya dalam Ujian Sekolah belum diketahui.",
         },
         {
           isCorrect: false,
-          label: "tidak dapat ditentukan",
+          label: "Simpulan tidak berkaitan dengan informasi tentang Ardian.",
         },
       ],
     },

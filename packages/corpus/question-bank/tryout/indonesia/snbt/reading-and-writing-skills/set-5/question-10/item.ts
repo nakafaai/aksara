@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Mit geänderten Messregeln plant das Team einen längeren Test von Beispielfotos für jede Zustandskategorie.",
+            "Mit einem geänderten Maß für die Übereinstimmung wird das Team Beispielfotos bei mehr Baumarten prüfen.",
         },
         {
           isCorrect: true,
           label:
-            "Unter unveränderten Messregeln plant das Team einen längeren Versuch mit folgender Änderung: Beispielfotos für jede Zustandskategorie.",
+            "Mit demselben Maß für die Übereinstimmung wird das Team Beispielfotos bei mehr Baumarten prüfen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team will nur die Tage wiederholen, an denen die Änderung Beispielfotos für jede Zustandskategorie den höchsten Wert ergab.",
+            "Das Team wird nur die Termine mit der höchsten Übereinstimmung wiederholen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team will Beispielfotos für jede Zustandskategorie dauerhaft einführen statt einen längeren Vergleich durchzuführen.",
+            "Das Team wird Beispielfotos ohne weitere Prüfung dauerhaft einführen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team plant einen längeren Test von Beispielfotos für jede Zustandskategorie ohne Vergleichsbedingung.",
+            "Das Team wird Beispielfotos nur bei den bereits vertretenen Baumarten prüfen.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Using revised measurement rules, the team plans a longer test of sample photos for each condition category.",
+            "Using a revised measure of observer agreement, the team will test sample photographs with more tree species.",
         },
         {
           isCorrect: true,
           label:
-            "Using the same measurement rules, the team plans a longer test of sample photos for each condition category.",
+            "Using the same measure of observer agreement, the team will test sample photographs with more tree species.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans to repeat only the days on which sample photos for each condition category produced the highest value.",
+            "The team will repeat only the sessions with the highest observer agreement.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans to adopt sample photos for each condition category permanently instead of running a longer comparison.",
+            "The team will adopt sample photographs permanently without further testing.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans a longer test of sample photos for each condition category without retaining a comparison condition.",
+            "The team will test sample photographs only with the species already represented.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dengan kaidah pengukuran yang diubah, tim merencanakan uji foto contoh untuk setiap kategori kondisi yang lebih panjang.",
+            "Dengan ukuran kesepakatan yang diubah, tim akan menguji contoh foto pada lebih banyak jenis pohon.",
         },
         {
           isCorrect: true,
           label:
-            "Dengan aturan pengukuran yang sama, tim merencanakan uji yang lebih lama terhadap contoh foto untuk setiap kategori kondisi.",
+            "Dengan ukuran kesepakatan yang sama, tim akan menguji contoh foto pada lebih banyak jenis pohon.",
         },
         {
           isCorrect: false,
           label:
-            "Tim akan mengulang hari ketika foto contoh untuk setiap kategori kondisi menghasilkan nilai tertinggi.",
+            "Tim akan mengulang hanya sesi yang menghasilkan kesepakatan tertinggi.",
         },
         {
           isCorrect: false,
           label:
-            "Tim akan menerapkan foto contoh untuk setiap kategori kondisi secara tetap sebagai pengganti perbandingan yang lebih panjang.",
+            "Tim akan menerapkan contoh foto secara permanen tanpa pengujian lanjutan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim merencanakan uji foto contoh untuk setiap kategori kondisi yang lebih panjang tanpa mempertahankan kondisi pembanding.",
+            "Tim akan menguji contoh foto hanya pada jenis pohon yang sudah terwakili.",
         },
       ],
     },

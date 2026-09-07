@@ -22,7 +22,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Eine geordnete Kartierung kann einen amtlichen Hauptindex nutzen und weitere Namen samt Belegen und Kontext bewahren.",
+            "Ein als Alias gespeicherter Ortsname erhält automatisch denselben amtlichen Status wie der Verwaltungsname.",
         },
         {
           isCorrect: true,
@@ -51,7 +51,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Orderly mapping can use one official index while retaining other names with their evidence and context.",
+            "Storing a local name as an alias automatically gives it the same official status as the administrative name.",
         },
         {
           isCorrect: true,
@@ -80,7 +80,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pemetaan yang tertib dapat memakai satu indeks resmi sambil mempertahankan nama lain beserta bukti dan konteksnya.",
+            "Penyimpanan nama lokal sebagai alias otomatis memberinya kedudukan resmi yang sama dengan nama administrasi.",
         },
         {
           isCorrect: true,

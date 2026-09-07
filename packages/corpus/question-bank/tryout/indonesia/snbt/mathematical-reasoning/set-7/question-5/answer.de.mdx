@@ -1,24 +1,25 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 5",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2025-06-11",
 };
 
 #### Volumenanalyse
 
-Da jede Kugel vollständig eingetaucht wird, verdrängt sie ihr gesamtes Volumen. Das verbleibende Wasservolumen ist daher das Zylindervolumen abzüglich des Gesamtvolumens aller Kugeln.
+Da jede Kugel vollständig eingetaucht wird, verdrängt sie ihr gesamtes Volumen. Das verbleibende Wasservolumen ist daher das Zylindervolumen abzüglich des Gesamtvolumens aller Kugeln. Mit <InlineMath math="V_w" /> bezeichnen wir das verbleibende Wasservolumen, mit <InlineMath math="V_c" /> das Zylindervolumen und mit <InlineMath math="V_b" /> das Volumen einer Kugel, jeweils in Kubikzentimetern.
 
 <MathContainer>
-  <BlockMath math="V_{\text{verbleibend}} = V_{\text{Zylinder}} - n \cdot V_{\text{Kugel}}" />
-  <BlockMath math="11{.}388\pi = \pi r_1^2 h - n \left(\frac{4}{3} \pi r_2^3\right)" />
-  <BlockMath math="11{.}388\pi = \pi \left(r_1^2 h - n \cdot \frac{4}{3} r_2^3\right)" />
+  <BlockMath math="V_w = V_c - n \cdot V_b" />
+  <BlockMath math="\begin{aligned}11{.}388\pi&=\pi r_1^2h \\ &\quad-n\left(\frac43\pi r_2^3\right)\end{aligned}" />
+  <BlockMath math="\begin{aligned}&11{.}388\pi \\ &\quad=\pi\left(r_1^2h-n\cdot\frac43r_2^3\right)\end{aligned}" />
 </MathContainer>
 
 Für den Zylinder setzen wir <InlineMath math="r_1 = 20 \text{ cm}" /> und <InlineMath math="h = 30 \text{ cm}" /> ein, für jede Kugel <InlineMath math="r_2 = 3 \text{ cm}" />.
 
 <MathContainer>
-  <BlockMath math="11{.}388 = (20)^2(30) - n \left(\frac{4}{3}(3)^3\right)" />
-  <BlockMath math="11{.}388 = 12{.}000 - n \left(\frac{4}{3}(27)\right)" />
+  <BlockMath math="\begin{aligned}11{.}388&=(20)^2(30) \\ &\quad-n\left(\frac43(3)^3\right)\end{aligned}" />
+  <BlockMath math="\begin{aligned}11{.}388&=12{.}000 \\ &\quad-n\left(\frac43(27)\right)\end{aligned}" />
   <BlockMath math="11{.}388 = 12{.}000 - 36n" />
 </MathContainer>
 
@@ -31,6 +32,12 @@ Nun stellen wir nach <InlineMath math="n" /> um:
   <BlockMath math="n = 17" />
 </MathContainer>
 
-Das Ergebnis ist eine positive ganze Zahl. Zur Kontrolle nehmen die Kugeln zusammen <InlineMath math="17 \cdot 36\pi = 612\pi\text{ cm}^3" /> ein. Damit bleiben <InlineMath math="12{.}000\pi - 612\pi = 11{.}388\pi\text{ cm}^3" /> Wasser übrig.
+Das Ergebnis ist eine positive ganze Zahl. Zur Kontrolle beträgt das Gesamtvolumen der Kugeln:
+
+<BlockMath math="17\cdot36\pi=612\pi\text{ cm}^3" />
+
+Für das verbleibende Wasservolumen in Kubikzentimetern ergibt sich:
+
+<BlockMath math="12{.}000\pi-612\pi=11{.}388\pi" />
 
 Somit wurden <InlineMath math="17" /> Kugeln eingetaucht.

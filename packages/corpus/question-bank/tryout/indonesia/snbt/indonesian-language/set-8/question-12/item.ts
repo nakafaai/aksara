@@ -8,17 +8,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Hasil 27 dari 30 menunjukkan bahwa tiga pasangan yang tersisa pasti salah karena petugas tidak memahami satuan meter.",
+            "Hasil $$27$$ dari $$30$$ menunjukkan bahwa tiga pasangan yang tersisa pasti salah karena petugas tidak memahami satuan meter.",
         },
         {
           isCorrect: true,
           label:
-            "Hasil 27 dari 30 menunjukkan formulir baru mengurangi kebutuhan menebak satuan dan titik acuan, tetapi pengukuran dari musim atau waktu berbeda tetap belum otomatis setara.",
+            "Hasil $$27$$ dari $$30$$ menunjukkan formulir baru mengurangi kebutuhan menebak satuan dan titik acuan, tetapi pengukuran dari musim atau waktu berbeda tetap belum otomatis setara.",
         },
         {
           isCorrect: false,
           label:
-            "Perbedaan 27 dan 14 membuktikan bahwa formulir menjadi satu-satunya penjelasan atas setiap pasangan yang dapat dibandingkan.",
+            "Perbedaan $$27$$ dan $$14$$ membuktikan bahwa formulir menjadi satu-satunya penjelasan atas setiap pasangan yang dapat dibandingkan.",
         },
         {
           isCorrect: false,

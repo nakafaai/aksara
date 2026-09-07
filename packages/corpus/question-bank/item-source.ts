@@ -22,6 +22,7 @@ import {
   type Statement,
   SyntaxKind,
 } from "typescript/unstable/ast";
+import { validateQuestionLabels } from "#corpus/question-bank/label";
 
 /** An item module contains executable or structurally invalid TypeScript. */
 export class QuestionItemError extends Schema.TaggedError<QuestionItemError>()(
@@ -178,7 +179,9 @@ export const decodeQuestionItemSource = Effect.fn(
     return yield* new QuestionItemError({ sourcePath });
   }
 
-  return yield* Schema.decodeUnknownEffect(QuestionItemSchema)(input, {
+  const item = yield* Schema.decodeUnknownEffect(QuestionItemSchema)(input, {
     onExcessProperty: "error",
   }).pipe(Effect.mapError(() => new QuestionItemError({ sourcePath })));
+  yield* validateQuestionLabels(item, sourcePath);
+  return item;
 });

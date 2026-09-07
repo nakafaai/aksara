@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Surat menjelaskan tujuan pendirian panggung, sedangkan foto menunjukkan penggunaannya di ruang tunggu; keduanya mendukung keberadaan kegiatan baca, tetapi tidak menjelaskan alasan setiap penumpang membaca.",
+            "Surat menjelaskan tujuan pendirian panggung, sedangkan foto menunjukkan penggunaannya di ruang tunggu. Keduanya mendukung keberadaan kegiatan baca, tetapi tidak menjelaskan alasan setiap penumpang membaca.",
         },
         {
           isCorrect: false,

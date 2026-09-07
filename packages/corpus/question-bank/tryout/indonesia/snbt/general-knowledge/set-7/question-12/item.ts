@@ -78,7 +78,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Banyaknya peserta tidak cukup untuk membuktikan keterwakilan jika akses antar kelompok berbeda.",
+            "Banyaknya peserta tidak cukup untuk membuktikan keterwakilan jika akses antarkelompok berbeda.",
         },
         {
           isCorrect: false,

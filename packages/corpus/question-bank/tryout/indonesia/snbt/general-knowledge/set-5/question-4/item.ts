@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Der Bericht bewertet Nutzen, Risiken, Kosten und Auswirkungen auf verschiedene Gruppen, bevor er eine Empfehlung abgibt.",
+            "Der Bericht vergleicht nur Gesamtkosten und Durchschnittsnutzen, ohne unterschiedliche Nutzerbedürfnisse zu berücksichtigen.",
         },
         {
           isCorrect: false,
@@ -43,7 +43,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The report assesses benefits, risks, costs, and effects on different groups before making a recommendation.",
+            "The report compares only total costs and average benefits without distinguishing user needs.",
         },
         {
           isCorrect: false,
@@ -73,7 +73,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Laporan menilai manfaat, risiko, biaya, dan dampak pada berbagai kelompok sebelum memberi rekomendasi.",
+            "Laporan hanya membandingkan biaya total dan manfaat rata-rata tanpa membedakan kebutuhan pengguna.",
         },
         {
           isCorrect: false,

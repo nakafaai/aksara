@@ -13,22 +13,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Ayu memilih untuk memperbaiki jahitan dengan benang yang warnanya sengaja berbeda; bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
+            "Ayu memilih untuk memperbaiki jahitan dengan benang yang warnanya sengaja berbeda. Bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
         },
         {
           isCorrect: false,
           label:
-            "Ayu memilih untuk memperbaiki jahitan dengan benang yang warnanya sengaja berbeda; akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
+            "Ayu memilih untuk memperbaiki jahitan dengan benang yang warnanya sengaja berbeda. Akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
         },
         {
           isCorrect: false,
           label:
-            "Ayu memilih untuk memperbaiki jahitan dengan benang yang warnanya sengaja berbeda; perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
+            "Ayu memilih untuk memperbaiki jahitan dengan benang yang warnanya sengaja berbeda. Perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
         },
         {
           isCorrect: false,
           label:
-            "Ayu memilih untuk memperbaiki jahitan dengan benang yang warnanya sengaja berbeda; benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
+            "Ayu memilih untuk memperbaiki jahitan dengan benang yang warnanya sengaja berbeda. Benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
         },
       ],
     },

@@ -2,6 +2,7 @@ export const metadata = {
   title: "Lösung zu Aufgabe 1",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-12-23",
+  dateModified: "2026-09-07",
 };
 
 Gesucht ist der eindeutige Schnittpunkt zweier Geraden:
@@ -19,14 +20,9 @@ Für einen eindeutigen Schnittpunkt <InlineMath math="(x, y)" /> muss das Gleich
 
 Der Wert von <InlineMath math="x" /> lässt sich genau dann eindeutig bestimmen, wenn der Koeffizient von <InlineMath math="x" /> nicht null ist, also <InlineMath math="2 - a \neq 0" /> beziehungsweise <InlineMath math="a \neq 2" />. Für <InlineMath math="a \neq 2" /> gilt dann:
 
-<MathContainer>
-  <BlockMath math="x = \frac{b - 3}{2 - a}" />
-</MathContainer>
+<BlockMath math="x = \frac{b - 3}{2 - a}" />
 
-Anschließend liefert das Einsetzen von <InlineMath math="x" /> in eine der Geradengleichungen den Wert von <InlineMath math="y" />. Wir benötigen daher zwei Informationen:
-
-1. <InlineMath math="a \neq 2" />, damit die Geraden genau einen Schnittpunkt haben.
-2. Den Wert von <InlineMath math="b" />, damit seine Koordinaten berechnet werden können.
+Ist <InlineMath math="x" /> bekannt, ergibt Einsetzen in eine der Gleichungen den Wert von <InlineMath math="y" />. Die Bedingung <InlineMath math="a\neq2" /> sichert genau einen Schnittpunkt. Seine Lage hängt noch von <InlineMath math="a" /> und <InlineMath math="b" /> ab, sofern weitere Angaben diese Abhängigkeit nicht aufheben.
 
 #### Analyse der ersten Aussage
 
@@ -39,7 +35,7 @@ Aussage <InlineMath math="(2)" /> liefert <InlineMath math="b = 3" />. Die zweit
 - Für <InlineMath math="a = 2" /> lautet auch die zweite Gerade <InlineMath math="y = 2x + 3" />. Beide Geraden stimmen dann überein und besitzen unendlich viele gemeinsame Punkte.
 - Bei <InlineMath math="a \neq 2" /> schneiden sich die Geraden in einem Punkt.
 
-Ohne <InlineMath math="a" /> ist also weder ein eindeutiger Schnittpunkt garantiert noch lassen sich seine Koordinaten bestimmen. Aussage <InlineMath math="(2)" /> allein ist **nicht ausreichend**.
+Beide Geraden gehen zwar durch <InlineMath math="(0,3)" />, aber ohne die Angabe zu <InlineMath math="a" /> ist kein eindeutiger Schnittpunkt garantiert. Aussage <InlineMath math="(2)" /> allein ist **nicht ausreichend**.
 
 #### Analyse beider Aussagen zusammen
 
@@ -50,15 +46,11 @@ Wenn wir beide Aussagen kombinieren:
 
 Einsetzen in die Gleichung für <InlineMath math="x" /> ergibt:
 
-<MathContainer>
-  <BlockMath math="x = \frac{3 - 3}{2 - a} = \frac{0}{2 - a} = 0" />
-</MathContainer>
+<BlockMath math="\begin{aligned}x&=\frac{3-3}{2-a}\\&=\frac{0}{2-a}\\&=0\end{aligned}" />
 
 Die Division durch <InlineMath math="2 - a" /> ist zulässig, weil <InlineMath math="a \neq 2" /> gilt. Nun bestimmen wir <InlineMath math="y" />:
 
-<MathContainer>
-  <BlockMath math="y = 2(0) + 3 = 3" />
-</MathContainer>
+<BlockMath math="y = 2(0) + 3 = 3" />
 
 Damit ist der eindeutige Schnittpunkt <InlineMath math="(0, 3)" />. Beide Aussagen zusammen sind **ausreichend**.
 

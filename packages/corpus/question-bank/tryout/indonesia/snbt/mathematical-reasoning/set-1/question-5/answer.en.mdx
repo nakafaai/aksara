@@ -1,48 +1,26 @@
 export const metadata = {
   title: "Solution for Question 5",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2025-11-23",
 };
 
-We will determine the minimum number of installments so that Jojo's monthly payment does not exceed the specified limit.
+Jojo buys a series <InlineMath math="A" /> laptop, so the original price receives the <InlineMath math="20\%" /> discount. The anniversary offer removes the down payment and uses the lowest annual interest rate, <InlineMath math="4\%" />.
 
-#### Calculating Price After Discount
+#### Price and interest
 
-Jojo buys a series <InlineMath math="A" /> laptop for <InlineMath math="\text{Rp}15{,}000{,}000.00" />. Since there is a <InlineMath math="20\%" /> discount, the price to be paid is:
+The discounted price is <InlineMath math="100\%-20\%=80\%" /> of the original price. This entire amount becomes the loan principal <InlineMath math="P" />, measured in rupiah.
 
-<MathContainer>
-<BlockMath math="\text{Discounted Price} = (100\% - 20\%) \times 15{,}000{,}000" />
-<BlockMath math="\text{Discounted Price} = 80\% \times 15{,}000{,}000 = 12{,}000{,}000" />
-</MathContainer>
+<BlockMath math="\begin{aligned}P&=80\%\times15{,}000{,}000\\&=12{,}000{,}000\end{aligned}" />
 
-The principal loan amount is <InlineMath math="\text{Rp}12{,}000{,}000.00" />.
+Simple interest is calculated from the fixed principal. Divide the annual interest by <InlineMath math="12" /> to find the monthly interest <InlineMath math="B" />.
 
-#### Determining Interest and Principal Installment
+<BlockMath math="\begin{aligned}B&=\frac{4\%}{12}P\\&=\frac{1}{300}P\\&=40{,}000\end{aligned}" />
 
-In this anniversary promo, Jojo gets the offer with the lowest installment interest. Based on store rules, the minimum interest obtainable is <InlineMath math="4\%" /> per year (maximum reduction of <InlineMath math="2\%" /> from the base interest of <InlineMath math="6\%" />).
+#### Number of installments
 
-We calculate the monthly interest component:
+With <InlineMath math="n" /> installments, each monthly payment consists of <InlineMath math="P/n" /> in principal and <InlineMath math="B" /> in interest. Their sum must be at most <InlineMath math="\text{Rp}600{,}000.00" />.
 
-<MathContainer>
-<BlockMath math="\text{Monthly Interest} = \frac{4\%}{12} \times 12{,}000{,}000" />
-<BlockMath math="\text{Monthly Interest} = \frac{1}{300} \times 12{,}000{,}000 = 40{,}000" />
-</MathContainer>
+<BlockMath math="\begin{aligned}\frac{P}{n}+B&\le600{,}000\\\frac{12{,}000{,}000}{n}&\le560{,}000\\n&\ge\frac{12{,}000{,}000}{560{,}000}\\n&\ge\frac{150}{7}\end{aligned}" />
 
-The monthly installment amount consists of the principal installment and interest:
-
-<BlockMath math="\text{Installment} = \frac{\text{Loan Principal}}{n} + \text{Monthly Interest}" />
-
-Where <InlineMath math="n" /> is the number of installments.
-
-#### Calculating Minimum Installment Duration
-
-It is known that the monthly installment must not exceed <InlineMath math="\text{Rp}600{,}000.00" />.
-
-<MathContainer>
-  <BlockMath math="\frac{12{,}000{,}000}{n} + 40{,}000 \le 600{,}000" />
-  <BlockMath math="\frac{12{,}000{,}000}{n} \le 560{,}000" />
-  <BlockMath math="n \ge \frac{12{,}000{,}000}{560{,}000}" />
-  <BlockMath math="n \ge 21.42" />
-</MathContainer>
-
-Since the number of installments must be an integer, Jojo must pay in installments at least **<InlineMath math="22 \text{ times }" />**.
+This lower bound lies between <InlineMath math="21" /> and <InlineMath math="22" />. The number of installments must be an integer, so Jojo needs at least **<InlineMath math="22" /> installments**.

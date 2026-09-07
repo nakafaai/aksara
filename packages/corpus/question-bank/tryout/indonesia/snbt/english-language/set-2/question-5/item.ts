@@ -7,11 +7,12 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Every participant lost exactly 1.24 kg and kept it off.",
+          label:
+            "Every participant lost exactly $$1.24\\text{ kg}$$ and kept it off.",
         },
         {
           isCorrect: false,
-          label: "Only one of the 35 studies reported any weight change.",
+          label: "Only one of the $$35$$ studies reported any weight change.",
         },
         {
           isCorrect: false,
@@ -20,7 +21,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Participants lost 1.24 kg on average during Ramadan, but most of it was regained within weeks.",
+            "Participants lost $$1.24\\text{ kg}$$ on average during Ramadan, but most of it was regained within weeks.",
         },
         {
           isCorrect: false,

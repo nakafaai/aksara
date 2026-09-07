@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 125.000",
+          label: "$$\\text{Rp }125{.}000$$",
         },
         {
           isCorrect: true,
-          label: "Rp 145.000",
+          label: "$$\\text{Rp }145{.}000$$",
         },
         {
           isCorrect: false,
-          label: "Rp 135.000",
+          label: "$$\\text{Rp }135{.}000$$",
         },
         {
           isCorrect: false,
-          label: "Rp 155.000",
+          label: "$$\\text{Rp }155{.}000$$",
         },
         {
           isCorrect: false,
-          label: "Rp 165.000",
+          label: "$$\\text{Rp }165{.}000$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 125.000",
+          label: "$$\\text{Rp }125{,}000$$",
         },
         {
           isCorrect: true,
-          label: "Rp 145.000",
+          label: "$$\\text{Rp }145{,}000$$",
         },
         {
           isCorrect: false,
-          label: "Rp 135.000",
+          label: "$$\\text{Rp }135{,}000$$",
         },
         {
           isCorrect: false,
-          label: "Rp 155.000",
+          label: "$$\\text{Rp }155{,}000$$",
         },
         {
           isCorrect: false,
-          label: "Rp 165.000",
+          label: "$$\\text{Rp }165{,}000$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Rp 125.000",
+          label: "$$\\text{Rp }125{.}000$$",
         },
         {
           isCorrect: true,
-          label: "Rp 145.000",
+          label: "$$\\text{Rp }145{.}000$$",
         },
         {
           isCorrect: false,
-          label: "Rp 135.000",
+          label: "$$\\text{Rp }135{.}000$$",
         },
         {
           isCorrect: false,
-          label: "Rp 155.000",
+          label: "$$\\text{Rp }155{.}000$$",
         },
         {
           isCorrect: false,
-          label: "Rp 165.000",
+          label: "$$\\text{Rp }165{.}000$$",
         },
       ],
     },

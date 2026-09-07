@@ -15,7 +15,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Dari Salah Meja ke Kartu Teruji: Literasi Kesehatan Arum",
+          label:
+            "Dari Salah Meja ke Kartu yang Diperiksa: Literasi Kesehatan Arum",
         },
         {
           isCorrect: false,

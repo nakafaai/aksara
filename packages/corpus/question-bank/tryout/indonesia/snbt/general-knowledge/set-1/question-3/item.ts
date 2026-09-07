@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "jedoch.",
+          label: "deshalb.",
         },
         {
           isCorrect: false,
@@ -32,7 +32,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "however.",
+          label: "therefore.",
         },
         {
           isCorrect: false,
@@ -57,7 +57,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "akan tetapi.",
+          label: "oleh sebab itu.",
         },
         {
           isCorrect: false,

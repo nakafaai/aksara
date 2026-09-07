@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Asha read the alert aloud once, then removed every word that did not change the next action; the recurring object's physical appearance fixes its complete meaning from the first mention.",
+            "Asha read the alert aloud once, then removed every word that did not change the next action. The recurring object's physical appearance fixes its complete meaning from the first mention.",
         },
         {
           isCorrect: false,
           label:
-            "Asha read the alert aloud once, then removed every word that did not change the next action; the ending states the object's meaning directly, making the earlier actions irrelevant.",
+            "Asha read the alert aloud once, then removed every word that did not change the next action. The ending states the object's meaning directly, making the earlier actions irrelevant.",
         },
         {
           isCorrect: false,
           label:
-            "Asha read the alert aloud once, then removed every word that did not change the next action; the setting alone changes the atmosphere, independently of the character's use of the recurring object.",
+            "Asha read the alert aloud once, then removed every word that did not change the next action. The setting alone changes the atmosphere, independently of the character's use of the recurring object.",
         },
         {
           isCorrect: true,
           label:
-            "Reading and cutting the alert shifts it from detailed description to actionable guidance, and its arrival at the final house before the siren ends shows the practical effect.",
+            "Removing distracting detail and adding the safe street and meeting point turn the alert into guidance, which reaches the final house before the siren ends.",
         },
         {
           isCorrect: false,
           label:
-            "Asha read the alert aloud once, then removed every word that did not change the next action; the object keeps one fixed meaning even as the character's action and the final response change.",
+            "Asha read the alert aloud once, then removed every word that did not change the next action. The object keeps one fixed meaning even as the character's action and the final response change.",
         },
       ],
     },

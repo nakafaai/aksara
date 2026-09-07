@@ -2,9 +2,26 @@ export const metadata = {
   title: "Lösung zu Aufgabe 24",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-In den ersten 6 Stunden werden <InlineMath math="6(1/14+1/21)=5/7" /> gefüllt. Wegen des Lecks beträgt die Nettoleistung von A <InlineMath math="1/14-1/70=2/35" />. Für die restlichen <InlineMath math="2/7" /> sind 5 Stunden nötig, insgesamt also 11 Stunden.
+Wir messen das Wasservolumen als Anteil des Tankvolumens. Pumpe A füllt pro Stunde <InlineMath math="\frac{1}{14}" /> des Tanks, Pumpe B füllt <InlineMath math="\frac{1}{21}" />. Solange beide laufen, addieren sich ihre Raten:
 
-Damit ist der gesuchte Wert <InlineMath math="11" />.
+<BlockMath math="\frac{1}{14}+\frac{1}{21}=\frac{5}{42}" />
+
+Nach den ersten <InlineMath math="6\text{ h}" /> ergeben sich der gefüllte und der noch leere Anteil:
+
+<MathContainer>
+<BlockMath math="6\times\frac{5}{42}=\frac{5}{7}" />
+<BlockMath math="1-\frac{5}{7}=\frac{2}{7}" />
+</MathContainer>
+
+Nach dem Abschalten von B ziehen wir die Abflussrate des Lecks von der Rate der Pumpe A ab:
+
+<BlockMath math="\begin{aligned}\frac{1}{14}-\frac{1}{70}&=\frac{5-1}{70}\\&=\frac{2}{35}\end{aligned}" />
+
+Die verbleibende Füllzeit ist der noch leere Anteil geteilt durch diese Nettorate:
+
+<BlockMath math="\begin{aligned}t&=\frac{2/7}{2/35}\\&=\frac{2}{7}\times\frac{35}{2}\\&=5\text{ h}\end{aligned}" />
+
+Diese Zeit beginnt erst beim Abschalten von B. Seit dem Start vergehen insgesamt also <InlineMath math="6+5=11\text{ h}" />.

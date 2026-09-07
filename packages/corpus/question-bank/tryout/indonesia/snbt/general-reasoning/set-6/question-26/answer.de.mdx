@@ -2,9 +2,21 @@ export const metadata = {
   title: "Lösung zu Aufgabe 26",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Der Nettoausstoß beträgt <InlineMath math="A=640" />, <InlineMath math="B=672" /> und <InlineMath math="C=768" />. Die Grenze von 700 Einheiten schließt A und B aus, sodass nur C zulässig ist.
+Wir prüfen zuerst die Mindestmenge, bevor wir die Effizienz vergleichen. Dazu ziehen wir bei jeder Maschine die fehlerhaften Einheiten vom gesamten Ausstoß ab:
 
-Damit ist der gesuchte Wert <InlineMath math="C" />.
+| Maschine | Nettoausstoß |
+| --- | ---: |
+| A | <InlineMath math="660-20=640" /> |
+| B | <InlineMath math="700-28=672" /> |
+| C | <InlineMath math="800-32=768" /> |
+
+A und B liefern weniger als <InlineMath math="700" /> brauchbare Einheiten und scheiden damit aus. Nur C erreicht die geforderte Menge.
+
+Für den Effizienzindex von C teilen wir den Nettoausstoß durch den gesamten Energieverbrauch:
+
+<BlockMath math="\begin{aligned}I_C&=\frac{768}{16\times4}\\&=\frac{768}{64}\\&=12\end{aligned}" />
+
+Die zulässige Wahl ist daher **Maschine C**. Auch ein höherer Index könnte eine andere Maschine nicht qualifizieren, solange sie die geforderte Mindestmenge verfehlt.

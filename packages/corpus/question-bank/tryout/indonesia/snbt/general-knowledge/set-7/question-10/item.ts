@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Inklusive Beteiligung verlangt den Abbau tatsächlicher Hindernisse und die Prüfung der Repräsentation, nicht nur eine offene Einladung.",
+            "Ein Beitrag verdient nur Berücksichtigung, wenn er persönlich und mündlich in der Versammlung vorgetragen wird.",
         },
       ],
     },
@@ -58,7 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Inclusive participation requires reducing practical barriers and examining representation, not merely issuing an open invitation.",
+            "A contribution deserves consideration only if it is delivered orally in person at the meeting.",
         },
       ],
     },
@@ -88,7 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Partisipasi yang inklusif menuntut pengurangan hambatan nyata dan pemeriksaan keterwakilan, bukan sekadar undangan terbuka.",
+            "Masukan hanya layak dipertimbangkan jika disampaikan langsung secara lisan dalam pertemuan.",
         },
       ],
     },

@@ -23,7 +23,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Mikroskop : Lautstärke",
+          label: "Mikroskop : Schallintensität",
         },
       ],
     },
@@ -48,7 +48,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "microscope : loudness",
+          label: "microscope : sound intensity",
         },
       ],
     },

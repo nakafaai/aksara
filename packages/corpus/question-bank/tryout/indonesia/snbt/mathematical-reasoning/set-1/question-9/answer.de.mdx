@@ -3,10 +3,10 @@ export const metadata = {
   title: "Lösung zu Aufgabe 9",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-23",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Wir werden den Wertesatz für <InlineMath math="x" /> bestimmen, der die Bedingung erfüllt, dass der Quader reale (positive) Abmessungen hat.
+Wir werden die Wertemenge für <InlineMath math="x" /> bestimmen, der die Bedingung erfüllt, dass der Quader reale (positive) Abmessungen hat.
 
 #### Quadermaße ermitteln
 
@@ -47,9 +47,9 @@ Damit der Quader real ist, müssen alle seine Abmessungen positiv sein (<InlineM
   <BlockMath math="x < 15" />
 </MathContainer>
 
-#### Bestimmen des Schnittpunkts
+#### Schnittmenge bestimmen
 
-Wir finden den Schnittpunkt dieser drei Bedingungen:
+Wir finden die gemeinsame Lösungsmenge dieser drei Bedingungen:
 1. <InlineMath math="x < 5" />
 2. <InlineMath math="x > \frac{5}{4}" /> (oder <InlineMath math="1{,}25" />)
 3. <InlineMath math="x < 15" />
@@ -60,13 +60,12 @@ Von den Bedingungen <InlineMath math="1" /> und <InlineMath math="3" /> nehmen w
   <BlockMath math="\frac{5}{4} < x < 5" />
 
   <NumberLine
-    title="Lösungssatz A"
-    description={<>Der Schnittpunkt aller positiven Dimensionsbedingungen ist <InlineMath math="\frac{5}{4} < x < 5" />.</>}
+    title={<>Lösungsmenge <InlineMath math="A" /></>}
+    description={<>Die gemeinsame Lösung aller Bedingungen für positive Abmessungen ist <InlineMath math="\frac{5}{4} < x < 5" />.</>}
     segments={[
       {
         start: Number.NEGATIVE_INFINITY,
         end: 1.25,
-        label: <InlineMath math="-" />,
         backgroundColor: "transparent"
       },
       {
@@ -81,7 +80,6 @@ Von den Bedingungen <InlineMath math="1" /> und <InlineMath math="3" /> nehmen w
       {
         start: 5,
         end: Number.POSITIVE_INFINITY,
-        label: <InlineMath math="-" />,
         backgroundColor: "transparent"
       }
     ]}
@@ -90,4 +88,4 @@ Von den Bedingungen <InlineMath math="1" /> und <InlineMath math="3" /> nehmen w
 
 Die Menge <InlineMath math="A" /> ist also:
 
-<BlockMath math="A = \left\{ x \mid \frac{5}{4} < x < 5, x \in \mathbb{R} \right\}" />
+<BlockMath math="A=\left\{x\in\mathbb R\mid\frac54<x<5\right\}" />

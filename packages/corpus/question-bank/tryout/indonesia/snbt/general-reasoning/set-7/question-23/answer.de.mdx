@@ -2,9 +2,23 @@ export const metadata = {
   title: "Lösung zu Aufgabe 23",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Genau einen Dienst nutzen <InlineMath math="(100+84+75)-2(38+30+26)+3(14)=113" /> Personen. Zusammen mit den 14 Personen in allen drei Mengen ergibt das <InlineMath math="113+14=127" />.
+<InlineMath math="n_A" />, <InlineMath math="n_B" /> und <InlineMath math="n_C" /> zählen die Personen, die ausschließlich A, ausschließlich B beziehungsweise ausschließlich C nutzen.
 
-Damit ist der gesuchte Wert <InlineMath math="127" />.
+Bei A ziehen wir beide paarweisen Schnittmengen von der Gesamtzahl ab. Personen in allen drei Mengen wurden dann zweimal abgezogen und müssen einmal wieder addiert werden. Für B und C gilt dasselbe:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}n_A&=100-38-30+14\\&=46\end{aligned}" />
+  <BlockMath math="\begin{aligned}n_B&=84-38-26+14\\&=34\end{aligned}" />
+  <BlockMath math="\begin{aligned}n_C&=75-30-26+14\\&=33\end{aligned}" />
+</MathContainer>
+
+Die drei Gruppen mit jeweils einem Dienst überschneiden sich nicht. Ihre Summe lautet:
+
+<BlockMath math="46+34+33=113" />
+
+Die Gruppe mit allen drei Diensten ist von den Gruppen mit nur einem Dienst getrennt. Die gesuchte Anzahl ist daher:
+
+<BlockMath math="113+14=127" />

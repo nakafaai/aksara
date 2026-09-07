@@ -1,39 +1,40 @@
 export const metadata = {
   title: "Solution to Question 5",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2026-01-31",
 };
 
 Each fully submerged sphere displaces water equal to its own volume. Because the cylinder was initially full, the remaining water volume is the cylinder volume minus the total sphere volume.
 
-**Volume of the Cylinder (Initial Water Volume):**
+Let <InlineMath math="V_t" /> be the cylinder volume. Its radius is <InlineMath math="r_1=12\text{ cm}" /> and its height is <InlineMath math="t=18\text{ cm}" />, so the initial water volume is:
 
 <MathContainer>
-  <BlockMath math="V_{\text{cylinder}} = \pi r_1^2 t" />
+  <BlockMath math="V_t = \pi r_1^2 t" />
   <BlockMath math="= \pi (12)^2 (18)" />
   <BlockMath math="= \pi (144) (18)" />
   <BlockMath math="= 2592\pi \text{ cm}^3" />
 </MathContainer>
 
-**Volume of One Ball:**
+Each sphere has radius <InlineMath math="r_2=3\text{ cm}" />. Its volume <InlineMath math="V_b" /> is:
 
 <MathContainer>
-  <BlockMath math="V_{\text{ball}} = \frac{4}{3} \pi r_2^3" />
+  <BlockMath math="V_b = \frac{4}{3} \pi r_2^3" />
   <BlockMath math="= \frac{4}{3} \pi (3)^3" />
   <BlockMath math="= \frac{4}{3} \pi (27)" />
   <BlockMath math="= 36\pi \text{ cm}^3" />
 </MathContainer>
 
-**Determining the Number of Balls (n):**
+#### Counting the spheres
 
-The remaining water volume is <InlineMath math="1980\pi \text{ cm}^3" />, so:
+Let <InlineMath math="V_s" /> be the remaining water volume. It equals <InlineMath math="1980\pi \text{ cm}^3" />, so the number of spheres <InlineMath math="n" /> satisfies:
 
 <MathContainer>
-  <BlockMath math="V_{\text{remaining}} = V_{\text{cylinder}} - (n \times V_{\text{ball}})" />
+  <BlockMath math="V_s=V_t-nV_b" />
   <BlockMath math="1980\pi = 2592\pi - n(36\pi)" />
 </MathContainer>
 
-Dividing both sides by <InlineMath math="\pi" /> to simplify the calculation:
+Divide both sides by <InlineMath math="\pi" /> to simplify the calculation:
 
 <MathContainer>
   <BlockMath math="1980 = 2592 - 36n" />

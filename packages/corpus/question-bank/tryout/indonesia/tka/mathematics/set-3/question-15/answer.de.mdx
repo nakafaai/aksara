@@ -2,7 +2,26 @@ export const metadata = {
   title: "Lösung 15",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-10-11",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Die Spiegelung an <InlineMath math="y=x" /> und die anschließende Verschiebung um <InlineMath math="(2,-1)" /> ergeben <InlineMath math="M(x,y)=(y+2,x-1)" />. Daher ist <InlineMath math="M(3,-2)=(0,2)" /> und <InlineMath math="M^2(x,y)=(x+1,y+1)" />. Als Gleitspiegelung erhält M Abstände und kehrt die Orientierung um. Die Fixpunktgleichungen <InlineMath math="x=y+2" /> und <InlineMath math="y=x-1" /> widersprechen einander, also gibt es keinen Fixpunkt.
+Die Spiegelung an <InlineMath math="y=x" /> vertauscht die Koordinaten. Addiere anschließend den Verschiebungsvektor.
+
+<BlockMath math="\begin{aligned}
+M(x,y)&=(y,x)+(2,-1) \\
+&=(y+2,x-1) \\
+M(3,-2)&=(0,2)
+\end{aligned}" />
+
+Spiegelung und Verschiebung erhalten beide die Abstände. Die Spiegelung kehrt die Orientierung um, die Verschiebung erhält sie. Die Verkettung kehrt daher die Orientierung um. Zweifaches Anwenden ergibt:
+
+Bezeichne die Koordinaten nach der zweiten Anwendung mit <InlineMath math="x_2" /> und <InlineMath math="y_2" />.
+
+<BlockMath math="\begin{gathered}
+M^2(x,y)=M(y+2,x-1) \\
+x_2=(x-1)+2=x+1 \\
+y_2=(y+2)-1=y+1 \\
+M^2(x,y)=(x+1,y+1)
+\end{gathered}" />
+
+Ein Fixpunkt müsste <InlineMath math="x=y+2" /> und <InlineMath math="y=x-1" /> erfüllen. Einsetzen ergibt den Widerspruch <InlineMath math="x=x+1" />. Es gibt daher keinen Fixpunkt. Die vier Aussagen über Bildpunkt, Abstände, Orientierung und <InlineMath math="M^2" /> stimmen.

@@ -25,7 +25,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die bereitgestellten Informationen reichen nicht aus, um sich für eine der drei oben genannten Optionen zu entscheiden",
+            "Die Beziehung zwischen $$P$$ und $$Q$$ lässt sich aus den Angaben nicht bestimmen.",
         },
       ],
     },
@@ -51,7 +51,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The information provided is not sufficient to decide one of the three options above",
+            "The relationship between $$P$$ and $$Q$$ cannot be determined from the information given.",
         },
       ],
     },
@@ -77,7 +77,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari tiga pilihan di atas",
+            "Hubungan antara $$P$$ dan $$Q$$ tidak dapat ditentukan dari informasi yang diberikan.",
         },
       ],
     },

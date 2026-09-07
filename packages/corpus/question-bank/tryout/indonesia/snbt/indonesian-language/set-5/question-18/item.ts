@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Buku pesanan menunjukkan perubahan jenis perbaikan, sedangkan cerita penjahit memberi kemungkinan alasan pelanggan; gabungan keduanya mendukung penafsiran perubahan kebutuhan, tetapi tidak menetapkan motif semua pelanggan.",
+            "Buku pesanan menunjukkan perubahan jenis perbaikan, sedangkan cerita penjahit memberi kemungkinan alasan pelanggan. Gabungan keduanya mendukung penafsiran perubahan kebutuhan, tetapi tidak menetapkan motif semua pelanggan.",
         },
         {
           isCorrect: false,

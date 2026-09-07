@@ -2,7 +2,23 @@ export const metadata = {
   title: "Solution to Question 5",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-For two adjacent pens, three sides of length <InlineMath math="L" /> and four sides of width <InlineMath math="W" /> must be fenced, so <InlineMath math="3L+4W=76" />. Positive integer dimensions require <InlineMath math="W\equiv1\pmod3" />. Near the continuous maximum at <InlineMath math="W=9.5" />, the valid candidates are <InlineMath math="(W,L)=(7,16),(10,12),(13,8)" />. Their total areas are <InlineMath math="224,240,208" />, so the maximum is <InlineMath math="240" /> square metres.
+Three sides of length <InlineMath math="L" /> and four sides of width <InlineMath math="W" /> must be fenced, so <InlineMath math="3L+4W=76" />. All dimensions are in metres. For <InlineMath math="L" /> to be an integer, <InlineMath math="W\equiv1\pmod3" /> is required.
+
+The combined area in square metres is
+
+<BlockMath math="\begin{aligned}A(W)&=2W\cdot\frac{76-4W}{3} \\ &=\frac{152W-8W^2}{3}\end{aligned}" />
+
+This downward-opening parabola has its unconstrained maximum at <InlineMath math="W=152/16=9.5" />.
+
+The area decreases as <InlineMath math="W" /> moves farther from <InlineMath math="9.5" />. The nearby candidates satisfying the integer condition are:
+
+| Width | Length | Area |
+| ---: | ---: | ---: |
+| <InlineMath math="7" /> | <InlineMath math="16" /> | <InlineMath math="224" /> |
+| <InlineMath math="10" /> | <InlineMath math="12" /> | <InlineMath math="240" /> |
+| <InlineMath math="13" /> | <InlineMath math="8" /> | <InlineMath math="208" /> |
+
+The permitted value <InlineMath math="W=10" /> is closest to the maximum and gives the greatest combined area, <InlineMath math="240\text{ m}^2" />.

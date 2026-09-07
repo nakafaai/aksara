@@ -24,7 +24,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Testing how dissolved salt changes freezing point",
+          label: "Testing dissolved salt and the temperature of ice formation",
         },
       ],
     },

@@ -7,28 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "eine Wirksamkeitsanalise zur geprüften Änderung im Kontext „Fundbüroservice“",
+          label: "eine Wirksamkeitsanalise zum Ortsformular im Fundbüro",
         },
         {
           isCorrect: false,
-          label:
-            "eine Wirksamkaitsanalyse zur geprüften Änderung im Kontext „Fundbüroservice“",
+          label: "eine Wirksamkaitsanalyse zum Ortsformular im Fundbüro",
         },
         {
           isCorrect: false,
-          label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Konteks „Fundbüroservice“",
+          label: "eine Wirksamkeitsanalyse zum Ortsformullar im Fundbüro",
         },
         {
           isCorrect: false,
-          label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontextt „Fundbüroservice“",
+          label: "eine Wirksamkeitsanalyse zum Ortsformular im Fundbüroo",
         },
         {
           isCorrect: true,
-          label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontext „Fundbüroservice“",
+          label: "eine Wirksamkeitsanalyse zum Ortsformular im Fundbüro",
         },
       ],
     },
@@ -38,27 +33,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "an analyse of the effectiveness of a form with structured location choices in this setting (lost-property service)",
+            "an analysiss of the effectiveness of the form with structured location choices",
         },
         {
           isCorrect: false,
           label:
-            "an analysis of the effectivness of a form with structured location choices in this setting (lost-property service)",
+            "an analysis of the effectivness of the form with structured location choices",
         },
         {
           isCorrect: false,
           label:
-            "an analisis of the effectiveness of a form with structured location choices in this setting (lost-property service)",
+            "an analisis of the effectiveness of the form with structured location choices",
         },
         {
           isCorrect: false,
           label:
-            "an analysis of the effectivity of a form with structured location choices in this setting (lost-property service)",
+            "an analysis of the effectivenes of the form with structured location choices",
         },
         {
           isCorrect: true,
           label:
-            "an analysis of the effectiveness of a form with structured location choices in this setting (lost-property service)",
+            "an analysis of the effectiveness of the form with structured location choices",
         },
       ],
     },
@@ -68,27 +63,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "analisa efektivitas formulir dengan pilihan lokasi yang terstruktur di layanan pencarian barang hilang",
+            "analisa efektivitas formulir dengan pilihan lokasi terstruktur",
         },
         {
           isCorrect: false,
           label:
-            "analisis efektifitas formulir dengan pilihan lokasi yang terstruktur di layanan pencarian barang hilang",
+            "analisis efektifitas formulir dengan pilihan lokasi terstruktur",
         },
         {
           isCorrect: false,
           label:
-            "analisa efektifitas formulir dengan pilihan lokasi yang terstruktur di layanan pencarian barang hilang",
+            "analisa efektifitas formulir dengan pilihan lokasi terstruktur",
         },
         {
           isCorrect: false,
           label:
-            "analisis efektivitas formulir dengan pilihan lokasi yang terstruktur di kontek layanan pencarian barang hilang",
+            "analisis efektivitas formulir lokasi dalam kontek layanan barang hilang",
         },
         {
           isCorrect: true,
           label:
-            "analisis efektivitas formulir dengan pilihan lokasi yang terstruktur di layanan pencarian barang hilang",
+            "analisis efektivitas formulir dengan pilihan lokasi terstruktur",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dennoch, begrenzte das Team seine Schlussfolgerung zum Kontext Ausstellung von Schülerarbeiten auf den kurzen Versuch.",
+            "Dennoch, begrenzte das Team seine Schlussfolgerung auf die untersuchte Ausstellung.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch: begrenzte das Team seine Schlussfolgerung zum Kontext Ausstellung von Schülerarbeiten auf den kurzen Versuch.",
+            "Dennoch: begrenzte das Team seine Schlussfolgerung auf die untersuchte Ausstellung.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch; begrenzte das Team seine Schlussfolgerung zum Kontext Ausstellung von Schülerarbeiten auf den kurzen Versuch.",
+            "Dennoch begrenzte das Team, seine Schlussfolgerung auf die untersuchte Ausstellung.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Ausstellung von Schülerarbeiten auf den kurzen Versuch?",
+            "Dennoch begrenzte das Team seine Schlussfolgerung auf die untersuchte Ausstellung?",
         },
         {
           isCorrect: true,
           label:
-            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Ausstellung von Schülerarbeiten auf den kurzen Versuch.",
+            "Dennoch begrenzte das Team seine Schlussfolgerung auf die untersuchte Ausstellung.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Nevertheless the team limited its conclusion for this setting (student work exhibition) to the short trial.",
+            "Nevertheless, the, team limited its conclusion to the exhibition tested.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless: the team limited its conclusion for this setting (student work exhibition) to the short trial.",
+            "Nevertheless: the team limited its conclusion to the exhibition tested.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless; the team limited its conclusion for this setting (student work exhibition) to the short trial.",
+            "Nevertheless, the team, limited its conclusion to the exhibition tested.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless, the team limited its conclusion for this setting (student work exhibition) to the short trial?",
+            "Nevertheless, the team limited its conclusion to the exhibition tested?",
         },
         {
           isCorrect: true,
           label:
-            "Nevertheless, the team limited its conclusion for this setting (student work exhibition) to the short trial.",
+            "Nevertheless, the team limited its conclusion to the exhibition tested.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Meskipun demikian tim membatasi simpulan tentang pameran karya siswa pada uji singkat tersebut.",
+            "Meskipun demikian tim membatasi simpulan pada pameran yang diuji.",
         },
         {
           isCorrect: false,
           label:
-            "Meskipun demikian: tim membatasi simpulan tentang pameran karya siswa pada uji singkat tersebut.",
+            "Meskipun demikian: tim membatasi simpulan pada pameran yang diuji.",
         },
         {
           isCorrect: false,
           label:
-            "Meskipun demikian; tim membatasi simpulan tentang pameran karya siswa pada uji singkat tersebut.",
+            "Meskipun demikian, tim, membatasi simpulan pada pameran yang diuji.",
         },
         {
           isCorrect: false,
           label:
-            "Meskipun demikian, tim membatasi simpulan tentang pameran karya siswa pada uji singkat tersebut?",
+            "Meskipun demikian, tim membatasi simpulan pada pameran yang diuji?",
         },
         {
           isCorrect: true,
           label:
-            "Meskipun demikian, tim membatasi simpulan tentang pameran karya siswa pada uji singkat tersebut.",
+            "Meskipun demikian, tim membatasi simpulan pada pameran yang diuji.",
         },
       ],
     },

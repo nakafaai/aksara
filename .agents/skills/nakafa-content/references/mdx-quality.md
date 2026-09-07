@@ -60,6 +60,11 @@
   attributed claim. Read the destination and paragraph to establish why that
   exact resource is needed. Reject competitor learning platforms, secondary
   explainers, redundant resources, optional further reading, and link dumps.
+- For an assessed reading passage, its original publisher is first-party
+  evidence for the passage's wording and attribution. Preserve that exact
+  attribution even when the passage reports other research. Verify factual
+  teaching claims against primary evidence separately. Do not replace the
+  passage source with a research paper that did not publish those words.
 - Put a descriptive linked source name or phrase beside the claim it supports.
   Preserve the natural teaching sentence. Do not use `tautan ini`, `this source
   link`, a generic label, or instructions about opening the link. A longer
@@ -102,6 +107,16 @@ strings with their own [math syntax](question-bank.md#response-items).
   comments, URLs, immutable quotations, and string-only schema fields. Never
   insert JSX or LaTeX into a programming-language comment.
 - Use `<BlockMath />` for standalone formulas.
+- Move a long fraction, nested fraction, system of equations, or connected
+  derivation out of prose when inline sizing makes its terms hard to read.
+  Keep short values and simple expressions inline. This choice is contextual,
+  not a formula-length quota. Response options always keep math inline under
+  the question-bank contract.
+- Compose displayed derivations for a narrow viewport. Use short aligned rows,
+  name repeated subexpressions, and separate conceptual steps with complete
+  prose. Preserve every transformation and condition. Do not shrink all math,
+  clip terms, or rely on horizontal scrolling to fit an avoidably long line.
+  Verify the actual renderer at a mobile width, including longer locale text.
 - Keep the leading backslash on every LaTeX command in a `math` prop. Bare
   `ldots`, `cdots`, `vdots`, or `ddots` render as letters rather than an
   ellipsis. Check this only inside rendered math, not in prose, code, or
@@ -167,6 +182,9 @@ strings with their own [math syntax](question-bank.md#response-items).
   non-math component.
 - MDX math props use a single LaTeX backslash. TypeScript strings escape the
   backslash.
+- Write a percentage sign as `\%` inside LaTeX. A bare `%` begins a comment
+  and can silently remove the sign or the rest of the formula. Inspect the
+  rendered value as well as checking for parser errors.
 - Format learner-facing numbers according to the authored locale without
   changing their value. English uses `.` for decimals and `{,}` for grouped
   thousands. Indonesian and German use `{,}` for decimals and `{.}` for grouped

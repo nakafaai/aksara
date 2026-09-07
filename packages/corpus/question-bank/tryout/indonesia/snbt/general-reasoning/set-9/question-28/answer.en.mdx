@@ -2,13 +2,36 @@ export const metadata = {
   title: "Solution to Question 28",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-07",
 };
 
-Choose the report from A and B that occupies an end, then choose the left or right end. This gives <InlineMath math="2\cdot2=4" /> choices. The other report from A and B must occupy one of four non-end positions, and the remaining four reports have <InlineMath math="4!" /> arrangements. Before excluding adjacent C-D, the count is <InlineMath math="4\cdot4\cdot4!=384" />.
+Choose which of A and B occupies an end, then choose the left or right end:
 
-For each report-and-end choice, treating C-D as one block with two internal orders gives <InlineMath math="2\cdot4!=48" /> arrangements in the remaining five positions. Of these, <InlineMath math="2\cdot3!=12" /> put the other report from A and B at the opposite end and are already invalid. Thus the number with adjacent C-D is <InlineMath math="4(48-12)=144" />.
+<BlockMath math="2\times2=4" />
 
-There are <InlineMath math="384-144=240" /> arrangements in which C and D are not adjacent. Swapping C and D shows that half have C before D, giving <InlineMath math="240/2=120" /> valid arrangements.
+The other report from A and B fills one of four non-end positions. The remaining four reports can be arranged freely. Before checking C and D, the count is:
 
-Therefore, the requested value is <InlineMath math="\\frac16" />.
+<BlockMath math="4\times4\times4!=384" />
+
+For each report-and-end choice, combine C and D into one block with two internal orders. This block and three other reports form four objects occupying the remaining five positions:
+
+<BlockMath math="2\times4!=48" />
+
+Some of these block arrangements place the other report from A and B at the opposite end. They already violate the first condition. Fixing that report at the opposite end leaves three objects to arrange:
+
+<BlockMath math="2\times3!=12" />
+
+Subtract the already invalid arrangements, then multiply by the four report-and-end choices. The number with adjacent C and D that must be excluded is:
+
+<BlockMath math="4(48-12)=144" />
+
+Once C and D are nonadjacent, swapping them preserves every other condition. Exactly half of the remaining arrangements place C before D:
+
+<MathContainer>
+  <BlockMath math="384-144=240" />
+  <BlockMath math="240\div2=120" />
+</MathContainer>
+
+There are <InlineMath math="6!=720" /> equally likely arrangements, so:
+
+<BlockMath math="\frac{120}{720}=\frac16" />

@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Papan baru meningkatkan keberhasilan semua kelompok dengan besaran yang sama karena angka gabungan naik dari 46 menjadi 52 peserta.",
+            "Papan baru meningkatkan keberhasilan semua kelompok dengan besaran yang sama karena angka gabungan naik dari $$46$$ menjadi $$52$$ peserta.",
         },
         {
           isCorrect: false,

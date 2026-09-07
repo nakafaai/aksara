@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Karena tali 60 sentimeter menghasilkan 15,6 detik dan kedua pengukuran tali 100 sentimeter sekitar 20 detik, data telah menentukan rumus periode untuk setiap panjang tali.",
+            "Karena tali $$60$$ sentimeter menghasilkan $$15{,}6$$ detik dan kedua pengukuran tali $$100$$ sentimeter sekitar $$20$$ detik, data telah menentukan rumus periode untuk setiap panjang tali.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Kemiripan dua hasil tali 100 sentimeter dan waktu yang lebih singkat pada tali 60 sentimeter mendukung hubungan panjang dengan periode, tetapi panjang tambahan dan pencatat otomatis diperlukan untuk menentukan bentuk hubungannya.",
+            "Kemiripan dua hasil tali $$100$$ sentimeter dan waktu yang lebih singkat pada tali $$60$$ sentimeter mendukung hubungan panjang dengan periode, tetapi pengujian panjang tambahan dan pencatat otomatis dapat membantu memeriksa bentuk hubungan serta ketidakpastian pengukurannya.",
         },
       ],
     },

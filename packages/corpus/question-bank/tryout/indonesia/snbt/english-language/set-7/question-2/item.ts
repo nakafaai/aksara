@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The mean result with the change was 19; because it differs from the other conditions, the tested change is the only plausible explanation.",
+            "The mean result with the change was $$19$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The blue-filter condition produced a mean of 19 at the tested lamp distance; reduced light intensity prevents treating colour as the only explanation.",
+            "The blue-filter condition produced a mean of $$19$$ at the tested lamp distance. Reduced light intensity prevents treating colour as the only explanation.",
         },
       ],
     },

@@ -2,18 +2,29 @@ export const metadata = {
   title: "Solution to Question 2",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Compute the taxed price for each promotion separately.
+The discounts and voucher determine the taxable prices. All prices below are in thousands of rupiah. For Promotion A, apply the discount before adding tax.
 
 <BlockMath math="\begin{aligned}
-P_A&=800(1-0.25)(1+0.11)=666,\\
-P_B&=\bigl(800(1-0.20)-50\bigr)(1+0.11)=654.9.
+P_A&=800(1-0.25)(1+0.11) \\
+&=600(1.11)=666
 \end{aligned}" />
 
-The payment difference is
+For Promotion B, deduct the voucher before charging tax.
 
-<BlockMath math="666-654.9=11.1" />
+Let <InlineMath math="B" /> be the taxable price after the discount and voucher.
 
-Promotion B is therefore <InlineMath math="11.1" /> thousand rupiah cheaper.
+<BlockMath math="\begin{aligned}
+B&=800(1-0.20)-50 \\
+&=640-50=590 \\
+P_B&=B(1+0.11) \\
+&=590(1.11)=654.9
+\end{aligned}" />
+
+The difference between the payments is:
+
+<BlockMath math="P_A-P_B=666-654.9=11.1" />
+
+Promotion B is <InlineMath math="11.1" /> thousand rupiah cheaper.

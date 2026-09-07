@@ -27,7 +27,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Neue technische Unterlagen belegen, dass Bau, Öffnung, Einweihung und Strukturersatz sämtlich 1912 stattfanden.",
+            "Eine Prüfung der Quellenherkunft belegt, dass die Unterlagen von 1914 und 1916 sowie die Austauschfotos von 1958 eine andere Brücke betreffen.",
         },
       ],
     },
@@ -56,7 +56,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "New technical records prove that construction, opening, inauguration, and structural replacement all actually occurred in 1912.",
+            "A source-provenance check proves that the 1914 and 1916 records and the 1958 replacement photographs concern a different bridge.",
         },
       ],
     },
@@ -85,7 +85,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Dokumen teknis baru membuktikan bahwa konstruksi, pembukaan, peresmian, dan penggantian struktur semuanya sebenarnya terjadi pada 1912.",
+            "Pemeriksaan asal sumber membuktikan bahwa dokumen 1914 dan 1916 serta foto penggantian 1958 merujuk pada jembatan lain.",
         },
       ],
     },

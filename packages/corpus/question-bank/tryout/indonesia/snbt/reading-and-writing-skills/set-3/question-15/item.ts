@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Deshalb blieb die Schlussfolgerung zu Kompostierworkshop begrenzt.",
+            "Der Versuchsmittelwert war höher. Deshalb blieb die Schlussfolgerung begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Außerdem blieb die Schlussfolgerung zu Kompostierworkshop begrenzt.",
+            "Der Versuchsmittelwert war höher. Außerdem blieb die Schlussfolgerung begrenzt.",
         },
         {
           isCorrect: true,
           label:
-            "Die Zahlen stiegen. Dennoch blieb die Schlussfolgerung für diesen Kontext begrenzt: Kompostierworkshop.",
+            "Der Versuchsmittelwert war höher. Dennoch blieb die Schlussfolgerung begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Zuvor blieb die Schlussfolgerung zu Kompostierworkshop begrenzt.",
+            "Der Versuchsmittelwert war höher. Zuvor blieb die Schlussfolgerung begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Folglich blieb die Schlussfolgerung zu Kompostierworkshop begrenzt.",
+            "Der Versuchsmittelwert war höher. Folglich blieb die Schlussfolgerung begrenzt.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The figures increased. Therefore, the conclusion about the composting workshop remained limited.",
+            "The trial mean was higher. Therefore, the conclusion remained limited.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Moreover, the conclusion about the composting workshop remained limited.",
+            "The trial mean was higher. Moreover, the conclusion remained limited.",
         },
         {
           isCorrect: true,
           label:
-            "The figures increased. Nevertheless, the conclusion for this setting (composting workshop) remained limited.",
+            "The trial mean was higher. Nevertheless, the conclusion remained limited.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Previously, the conclusion about the composting workshop remained limited.",
+            "The trial mean was higher. Previously, the conclusion remained limited.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Consequently, the conclusion about the composting workshop remained limited.",
+            "The trial mean was higher. Consequently, the conclusion remained limited.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Oleh karena itu, simpulan tentang lokakarya pembuatan kompos tetap dibatasi.",
+            "Rata-rata hasil uji lebih tinggi. Oleh karena itu, simpulannya tetap dibatasi.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Selain itu, simpulan tentang lokakarya pembuatan kompos tetap dibatasi.",
+            "Rata-rata hasil uji lebih tinggi. Selain itu, simpulannya tetap dibatasi.",
         },
         {
           isCorrect: true,
           label:
-            "Angka meningkat. Namun, simpulan tentang lokakarya pembuatan kompos tetap dibatasi.",
+            "Rata-rata hasil uji lebih tinggi. Namun, simpulannya tetap dibatasi.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Sebelumnya, simpulan tentang lokakarya pembuatan kompos tetap dibatasi.",
+            "Rata-rata hasil uji lebih tinggi. Sebelumnya, simpulannya tetap dibatasi.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Akibatnya, simpulan tentang lokakarya pembuatan kompos tetap dibatasi.",
+            "Rata-rata hasil uji lebih tinggi. Akibatnya, simpulannya tetap dibatasi.",
         },
       ],
     },

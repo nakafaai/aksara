@@ -7,28 +7,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Die Nutzenden im untersuchten Kontext (Fundbüroservice) gaben kurze Rückmeldungen.",
+          label: "Die Meldenden beim Fundbüro gaben kurze Rückmeldungen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Fundbüroservice gaben kurze und knappe Rückmeldungen.",
+            "Die Meldenden beim Fundbüro gaben kurze Rückmeldungen, die nicht lang waren.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Fundbüroservice gaben ihre eigenen kurzen Rückmeldungen persönlich ab.",
+            "Die Meldenden beim Fundbüro gaben kurze Rückmeldungen als Personen, die sich beim Fundbüro meldeten.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Fundbüroservice gaben kurze Rückmeldungen in knapper Form.",
+            "Die Meldenden beim Fundbüro gaben kurze Rückmeldungen in kurzer Form.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Fundbüroservice gaben kurze Rückmeldungen über ihre Erfahrungen in diesem Kontext.",
+            "Die Meldenden beim Fundbüro gaben kurze Rückmeldungen, also Rückmeldungen von geringer Länge.",
         },
       ],
     },
@@ -37,28 +36,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Users in this setting (lost-property service) provided brief comments.",
+          label: "The lost-property reporters gave brief comments.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (lost-property service) provided comments that were brief and concise.",
+            "The lost-property reporters gave brief comments that were not long.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (lost-property service) provided their own brief comments personally.",
+            "The lost-property reporters gave brief comments as people reporting lost property.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (lost-property service) provided brief comments in a short form.",
+            "The lost-property reporters gave brief comments in a brief form.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (lost-property service) provided brief comments about their experience in this setting.",
+            "The lost-property reporters gave brief comments, meaning comments that were short.",
         },
       ],
     },
@@ -67,28 +65,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Pengguna layanan pencarian barang hilang memberikan komentar singkat.",
+          label: "Pelapor barang hilang memberikan komentar singkat.",
         },
         {
           isCorrect: false,
           label:
-            "Pengguna layanan pencarian barang hilang memberikan komentar yang singkat dan ringkas.",
+            "Pelapor barang hilang memberikan komentar singkat yang tidak panjang.",
         },
         {
           isCorrect: false,
           label:
-            "Pengguna layanan pencarian barang hilang memberikan komentar singkat mereka sendiri secara pribadi.",
+            "Pelapor barang hilang memberikan komentar singkat sebagai pelapor yang melaporkan barang hilang.",
         },
         {
           isCorrect: false,
           label:
-            "Pengguna layanan pencarian barang hilang memberikan komentar singkat dalam bentuk pendek.",
+            "Pelapor barang hilang memberikan komentar singkat dalam bentuk yang singkat.",
         },
         {
           isCorrect: false,
           label:
-            "Pengguna layanan pencarian barang hilang memberikan komentar singkat tentang pengalaman mereka dalam layanan tersebut.",
+            "Pelapor barang hilang memberikan komentar singkat, yaitu komentar yang pendek.",
         },
       ],
     },

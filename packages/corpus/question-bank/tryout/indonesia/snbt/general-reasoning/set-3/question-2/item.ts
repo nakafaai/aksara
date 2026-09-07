@@ -27,7 +27,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "In Klasse $$\\text{X}$$ interessieren sich die wenigsten Schülerinnen und Schüler für Tanz",
+            "Unter den drei Klassenstufen hat Klasse $$\\text{X}$$ die wenigsten Tanzinteressierten",
         },
       ],
     },

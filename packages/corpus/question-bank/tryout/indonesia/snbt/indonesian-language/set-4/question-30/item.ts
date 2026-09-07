@@ -15,7 +15,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Foto Tahun 1978 di Ruang Arsip",
+          label: "Foto Tahun $$1978$$ di Ruang Arsip",
         },
         {
           isCorrect: false,

@@ -2,9 +2,21 @@ export const metadata = {
   title: "Solution to Question 26",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Net output is <InlineMath math="A=640" />, <InlineMath math="B=672" />, and <InlineMath math="C=768" />. The 700-unit threshold excludes A and B, leaving C as the only eligible machine.
+Check the net-output requirement before comparing efficiency. For each machine, subtract defective units from total output:
 
-Therefore, the requested value is <InlineMath math="C" />.
+| Machine | Net output |
+| --- | ---: |
+| A | <InlineMath math="660-20=640" /> |
+| B | <InlineMath math="700-28=672" /> |
+| C | <InlineMath math="800-32=768" /> |
+
+A and B produce fewer than <InlineMath math="700" /> usable units, so neither qualifies. Only C meets the threshold.
+
+C's efficiency index is its net output divided by its total energy use:
+
+<BlockMath math="\begin{aligned}I_C&=\frac{768}{16\times4}\\&=\frac{768}{64}\\&=12\end{aligned}" />
+
+Therefore, **machine C** is the qualifying choice. A machine with a higher index would still be excluded if it failed the net-output requirement.

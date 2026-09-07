@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$2{,}5$$ Liter",
+          label: "$$2{,}5\\,\\mathrm{L}$$",
         },
         {
           isCorrect: false,
-          label: "$$5$$ Liter",
+          label: "$$5\\,\\mathrm{L}$$",
         },
         {
           isCorrect: false,
-          label: "$$7{,}5$$ Liter",
+          label: "$$7{,}5\\,\\mathrm{L}$$",
         },
         {
           isCorrect: true,
-          label: "$$12{,}5$$ Liter",
+          label: "$$12{,}5\\,\\mathrm{L}$$",
         },
         {
           isCorrect: false,
-          label: "$$10$$ Liter",
+          label: "$$10\\,\\mathrm{L}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$2.5$$ liters",
+          label: "$$2.5\\,\\mathrm{L}$$",
         },
         {
           isCorrect: false,
-          label: "$$5$$ liters",
+          label: "$$5\\,\\mathrm{L}$$",
         },
         {
           isCorrect: false,
-          label: "$$7.5$$ liters",
+          label: "$$7.5\\,\\mathrm{L}$$",
         },
         {
           isCorrect: true,
-          label: "$$12.5$$ liters",
+          label: "$$12.5\\,\\mathrm{L}$$",
         },
         {
           isCorrect: false,
-          label: "$$10$$ liters",
+          label: "$$10\\,\\mathrm{L}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$2{,}5$$ liter",
+          label: "$$2{,}5\\,\\mathrm{L}$$",
         },
         {
           isCorrect: false,
-          label: "$$5$$ liter",
+          label: "$$5\\,\\mathrm{L}$$",
         },
         {
           isCorrect: false,
-          label: "$$7{,}5$$ liter",
+          label: "$$7{,}5\\,\\mathrm{L}$$",
         },
         {
           isCorrect: true,
-          label: "$$12{,}5$$ liter",
+          label: "$$12{,}5\\,\\mathrm{L}$$",
         },
         {
           isCorrect: false,
-          label: "$$10$$ liter",
+          label: "$$10\\,\\mathrm{L}$$",
         },
       ],
     },

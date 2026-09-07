@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Änderung, Menüvorbestellung am Vortag, ersetzte die Notwendigkeit, die ursprüngliche Unsicherheit zu messen.",
+            "Vorbestellungen sollten die weitere Messung der Übereinstimmung überflüssig machen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, Menüvorbestellung am Vortag, führte mehrere nicht trennbare Unterschiede ein.",
+            "Vorbestellungen sollten gleichzeitige Änderungen vieler Programmmerkmale ermöglichen.",
         },
         {
           isCorrect: true,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Menübestellung am Vortag.",
+            "Bestellungen am Vortag sollten die Menüwahl bekannt machen, bevor die Schülerinnen und Schüler an der Ausgabe ankamen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, Menüvorbestellung am Vortag, erklärte, warum die Vergleichswerte identisch waren.",
+            "Vorbestellungen wurden gewählt, weil bereits alle Vergleichswerte nachweislich gleich waren.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, Menüvorbestellung am Vortag, betraf das Endergebnis statt die Quelle der Unsicherheit.",
+            "Vorbestellungen wurden nur gewählt, weil das endgültige Testergebnis bereits feststand.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change, menu booking one day in advance, replaced the need to measure the original uncertainty.",
+            "Advance ordering was chosen so that order matching would no longer need measuring.",
         },
         {
           isCorrect: false,
           label:
-            "The change, menu booking one day in advance, introduced several differences that could not be separated.",
+            "Advance ordering was chosen so that many programme features could change at once.",
         },
         {
           isCorrect: true,
           label:
-            "The change, menu booking one day in advance, directly addressed the observed uncertainty.",
+            "Previous-day ordering was chosen so that students' choices would be known before they reached the serving table.",
         },
         {
           isCorrect: false,
           label:
-            "The change, menu booking one day in advance, explained why the comparison values were identical.",
+            "Advance ordering was chosen because all comparison values had already proved equal.",
         },
         {
           isCorrect: false,
           label:
-            "The change, menu booking one day in advance, addressed the final outcome rather than the source of uncertainty.",
+            "Advance ordering was chosen only because the final test result was already certain.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan berupa pemesanan menu sehari sebelumnya menggantikan kebutuhan untuk mengukur ketidakpastian awal.",
+            "Pemesanan awal dipilih agar kesesuaian pesanan tidak perlu diukur lagi.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa pemesanan menu sehari sebelumnya menimbulkan beberapa perbedaan yang tidak dapat dipisahkan.",
+            "Pemesanan awal dipilih agar banyak unsur program dapat diubah sekaligus.",
         },
         {
           isCorrect: true,
           label:
-            "Perubahan berupa pemesanan menu sehari sebelumnya langsung menanggapi keraguan yang diamati.",
+            "Pemesanan sehari sebelumnya dipilih agar pilihan siswa diketahui sebelum mereka tiba di meja saji.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa pemesanan menu sehari sebelumnya menjelaskan mengapa nilai pembanding sama.",
+            "Pemesanan awal dipilih karena semua nilai pembanding sudah terbukti sama.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa pemesanan menu sehari sebelumnya menanggapi hasil akhir, bukan sumber ketidakpastian.",
+            "Pemesanan awal dipilih hanya karena hasil akhir pengujiannya sudah dipastikan.",
         },
       ],
     },

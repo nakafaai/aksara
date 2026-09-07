@@ -12,7 +12,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$x \\in [2, 5) \\cup [5, 8)$$",
+          label: "$$x \\in [0, 10)$$",
         },
         {
           isCorrect: false,
@@ -37,7 +37,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$x \\in [2, 5) \\cup [5, 8)$$",
+          label: "$$x \\in [0, 10)$$",
         },
         {
           isCorrect: false,
@@ -62,7 +62,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$x \\in [2, 5) \\cup [5, 8)$$",
+          label: "$$x \\in [0, 10)$$",
         },
         {
           isCorrect: false,

@@ -2,9 +2,17 @@ export const metadata = {
   title: "Solution to Question 27",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Reverse the price operations in order: undo the tax first, then the voucher, and finally the percentage markup. Use the recovered intermediate prices to calculate the difference, fraction, or effective percentage requested in the prompt.
+Calculate in thousand rupiah. Reverse the price changes in order: remove the tax, restore the voucher deduction, then remove the markup.
 
-Therefore, the requested value is <InlineMath math="105" />.
+Before the <InlineMath math="10\%" /> tax, the price after the voucher was
+
+<BlockMath math="605\div1.10=550" />
+
+Restore the <InlineMath math="50" /> thousand rupiah voucher, then divide by the markup factor <InlineMath math="1.20" />.
+
+<BlockMath math="\begin{aligned} 550+50 &=600 \\ P_0 &=600\div1.20=500 \\ 605-P_0 &=605-500=105 \end{aligned}" />
+
+The final price therefore exceeds the initial price by <InlineMath math="105" /> thousand rupiah.

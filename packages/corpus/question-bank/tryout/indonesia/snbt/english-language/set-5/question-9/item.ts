@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Defining *stock rotation* proves that the labels alone caused the trial value of 47.",
+            "Defining *stock rotation* proves that the labels alone caused the trial value of $$47$$.",
         },
         {
           isCorrect: false,

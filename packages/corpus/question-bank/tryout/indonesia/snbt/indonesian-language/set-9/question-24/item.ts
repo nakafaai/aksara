@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pembaca dapat memastikan foto 2019 di arsip sekolah palsu karena Laras mempertimbangkan untuk menyalinnya.",
+            "Pembaca dapat memastikan foto lama di arsip sekolah palsu karena Laras mempertimbangkan untuk menyalinnya.",
         },
         {
           isCorrect: false,

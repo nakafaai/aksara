@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Die Zahlen stiegen. Dennoch blieb die Schlussfolgerung für diesen Kontext begrenzt: Informationsstelle im Stadtpark.",
+            "Der Wert der ohne erneute Nachfrage am Ziel angekommenen Personen war höher. Dennoch blieb die Aussage auf den kurzen Versuch an einem Parkeingang begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Deshalb blieb die Schlussfolgerung zu Informationsstelle im Stadtpark begrenzt.",
+            "Der Wert der ohne erneute Nachfrage am Ziel angekommenen Personen war höher. Deshalb blieb die Aussage auf den kurzen Versuch an einem Parkeingang begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Außerdem blieb die Schlussfolgerung zu Informationsstelle im Stadtpark begrenzt.",
+            "Der Wert der ohne erneute Nachfrage am Ziel angekommenen Personen war höher. Außerdem blieb die Aussage auf den kurzen Versuch an einem Parkeingang begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Zuvor blieb die Schlussfolgerung zu Informationsstelle im Stadtpark begrenzt.",
+            "Der Wert der ohne erneute Nachfrage am Ziel angekommenen Personen war höher. Zuvor blieb die Aussage auf den kurzen Versuch an einem Parkeingang begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Folglich blieb die Schlussfolgerung zu Informationsstelle im Stadtpark begrenzt.",
+            "Der Wert der ohne erneute Nachfrage am Ziel angekommenen Personen war höher. Folglich blieb die Aussage auf den kurzen Versuch an einem Parkeingang begrenzt.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The figures increased. Nevertheless, the conclusion for this setting (city park information desk) remained limited.",
+            "The value for visitors reaching their destination without asking again was higher. Nevertheless, the conclusion remained limited to the short trial at one park entrance.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Therefore, the conclusion about the city park information desk remained limited.",
+            "The value for visitors reaching their destination without asking again was higher. Therefore, the conclusion remained limited to the short trial at one park entrance.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Moreover, the conclusion about the city park information desk remained limited.",
+            "The value for visitors reaching their destination without asking again was higher. Moreover, the conclusion remained limited to the short trial at one park entrance.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Previously, the conclusion about the city park information desk remained limited.",
+            "The value for visitors reaching their destination without asking again was higher. Previously, the conclusion remained limited to the short trial at one park entrance.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Consequently, the conclusion about the city park information desk remained limited.",
+            "The value for visitors reaching their destination without asking again was higher. Consequently, the conclusion remained limited to the short trial at one park entrance.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Angka meningkat. Namun, simpulan tentang pusat informasi taman kota tetap dibatasi.",
+            "Nilai pengunjung yang sampai tanpa bertanya lagi lebih tinggi. Namun, simpulan tetap dibatasi pada uji singkat di satu pintu masuk taman.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Oleh karena itu, simpulan tentang pusat informasi taman kota tetap dibatasi.",
+            "Nilai pengunjung yang sampai tanpa bertanya lagi lebih tinggi. Oleh karena itu, simpulan tetap dibatasi pada uji singkat di satu pintu masuk taman.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Selain itu, simpulan tentang pusat informasi taman kota tetap dibatasi.",
+            "Nilai pengunjung yang sampai tanpa bertanya lagi lebih tinggi. Selain itu, simpulan tetap dibatasi pada uji singkat di satu pintu masuk taman.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Sebelumnya, simpulan tentang pusat informasi taman kota tetap dibatasi.",
+            "Nilai pengunjung yang sampai tanpa bertanya lagi lebih tinggi. Sebelumnya, simpulan tetap dibatasi pada uji singkat di satu pintu masuk taman.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Akibatnya, simpulan tentang pusat informasi taman kota tetap dibatasi.",
+            "Nilai pengunjung yang sampai tanpa bertanya lagi lebih tinggi. Akibatnya, simpulan tetap dibatasi pada uji singkat di satu pintu masuk taman.",
         },
       ],
     },

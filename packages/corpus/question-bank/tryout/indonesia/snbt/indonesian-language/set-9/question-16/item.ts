@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Siswa mempertemukan bukti penggunaan dan perawatan untuk memperkuat dugaan pemakaian ulang, sambil mempertahankan ketidakpastian identitas mantel pada 2019.",
+            "Siswa mempertemukan bukti penggunaan dan perawatan untuk memperkuat dugaan pemakaian ulang, sambil mempertahankan ketidakpastian identitas mantel pada $$2019$$.",
         },
         {
           isCorrect: false,
@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Siswa menganggap berakhirnya buku perawatan pada 2010 membuktikan bahwa mantel M-17 tidak mungkin digunakan pada 2019.",
+            "Siswa menganggap berakhirnya buku perawatan pada $$2010$$ membuktikan bahwa mantel M-17 tidak mungkin digunakan pada $$2019$$.",
         },
         {
           isCorrect: false,

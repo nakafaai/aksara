@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$T(x,y)=(y,x)$",
+          label: "$$T(x,y)=(y,x)$$",
         },
         {
           isCorrect: true,
-          label: "$T(2,-3)=(-3,2)$",
+          label: "$$T(2,-3)=(-3,2)$$",
         },
         {
           isCorrect: true,
-          label: "$T^2$ ist die Identität.",
+          label: "$$T^2$$ ist die Identität.",
         },
         {
           isCorrect: true,
-          label: "Alle Fixpunkte von T liegen auf $y=x$.",
+          label: "Alle Fixpunkte von $$T$$ liegen auf $$y=x$$.",
         },
         {
           isCorrect: false,
-          label: "T erhält die Orientierung.",
+          label: "$$T$$ erhält die Orientierung.",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$T(x,y)=(y,x)$",
+          label: "$$T(x,y)=(y,x)$$",
         },
         {
           isCorrect: true,
-          label: "$T(2,-3)=(-3,2)$",
+          label: "$$T(2,-3)=(-3,2)$$",
         },
         {
           isCorrect: true,
-          label: "$T^2$ is the identity.",
+          label: "$$T^2$$ is the identity.",
         },
         {
           isCorrect: true,
-          label: "Every fixed point of T lies on $y=x$.",
+          label: "Every fixed point of T lies on $$y=x$$.",
         },
         {
           isCorrect: false,
-          label: "T preserves orientation.",
+          label: "$$T$$ preserves orientation.",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$T(x,y)=(y,x)$",
+          label: "$$T(x,y)=(y,x)$$",
         },
         {
           isCorrect: true,
-          label: "$T(2,-3)=(-3,2)$",
+          label: "$$T(2,-3)=(-3,2)$$",
         },
         {
           isCorrect: true,
-          label: "$T^2$ adalah identitas.",
+          label: "$$T^2$$ adalah identitas.",
         },
         {
           isCorrect: true,
-          label: "Semua titik tetap T terletak pada $y=x$.",
+          label: "Semua titik tetap T terletak pada $$y=x$$.",
         },
         {
           isCorrect: false,
-          label: "T mempertahankan orientasi.",
+          label: "$$T$$ mempertahankan orientasi.",
         },
       ],
     },

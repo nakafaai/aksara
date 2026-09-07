@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Das Team wiederholte den Versuch mit folgender Änderung, um belastbarere Belege zu erhalten: Genre-Schilder auf jedem Tisch.",
+            "Das Team wird den Versuch mit Genre-Schildern wiederholen, um belastbarere Belege zu erhalten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team wiederholte den Test von Genreschilder auf jedem Tisch erneut, um stärkere Belege als zuvor zu erhalten.",
+            "Das Team wird den Versuch mit Genre-Schildern erneut wiederholen, um belastbarere Belege als zuvor zu erhalten.",
         },
         {
           isCorrect: false,
           label:
-            "Um stärkere Belege zu erhalten, wurde der Test von Genreschilder auf jedem Tisch vom Team erneut wiederholt.",
+            "Um belastbarere Belege zu erhalten, wird der Versuch mit Genre-Schildern vom Team erneut wiederholt werden.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team führte eine weitere Wiederholung des Tests von Genreschilder auf jedem Tisch für stärkere Belege durch.",
+            "Das Team wird eine Tätigkeit durchführen, nämlich die Wiederholung des Versuchs mit Genre-Schildern, um belastbarere Belege zu erhalten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team wiederholte den Test, um stärkere Belege zu Genreschilder auf jedem Tisch zu erhalten, die es bereits getestet hatte.",
+            "Das Team wird den Versuch wiederholen, um belastbarere Belege zu den Genre-Schildern zu erhalten, die es bereits getestet hat.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The team repeated the test of genre signs on each table to obtain stronger evidence.",
+            "The team will repeat the genre-sign test to obtain stronger evidence.",
         },
         {
           isCorrect: false,
           label:
-            "The team repeated the test of genre signs on each table again to obtain evidence that was stronger than before.",
+            "The team will repeat the genre-sign test again to obtain evidence that is stronger than before.",
         },
         {
           isCorrect: false,
           label:
-            "To obtain stronger evidence, the test of genre signs on each table was repeated again by the team.",
+            "To obtain stronger evidence, the genre-sign test will be repeated again by the team.",
         },
         {
           isCorrect: false,
           label:
-            "The team carried out another repetition of the test of genre signs on each table for stronger evidence.",
+            "The team will carry out the activity of repeating the genre-sign test to obtain stronger evidence.",
         },
         {
           isCorrect: false,
           label:
-            "The team repeated the test to obtain stronger evidence about genre signs on each table, which it had already tested.",
+            "The team will repeat the test to obtain stronger evidence about the genre signs that it has already tested.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Tim mengulang uji tanda genre di setiap meja untuk memperoleh bukti yang lebih kuat.",
+            "Tim akan mengulang uji tanda genre untuk memperoleh bukti yang lebih kuat.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengulang kembali uji tanda genre di setiap meja untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
+            "Tim akan mengulang kembali uji tanda genre untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
         },
         {
           isCorrect: false,
           label:
-            "Untuk memperoleh bukti lebih kuat, uji tanda genre di setiap meja diulang kembali oleh tim.",
+            "Untuk memperoleh bukti yang lebih kuat, uji tanda genre akan diulang kembali oleh tim.",
         },
         {
           isCorrect: false,
           label:
-            "Tim melakukan pengulangan lain atas uji tanda genre di setiap meja demi bukti yang lebih kuat.",
+            "Tim akan melakukan kegiatan berupa pengulangan uji tanda genre demi memperoleh bukti yang lebih kuat.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengulang uji untuk memperoleh bukti lebih kuat tentang tanda genre di setiap meja yang telah diuji sebelumnya.",
+            "Tim akan mengulang uji untuk memperoleh bukti yang lebih kuat tentang tanda genre yang telah diuji sebelumnya.",
         },
       ],
     },

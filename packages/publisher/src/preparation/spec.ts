@@ -9,7 +9,7 @@ import type {
   Sha256Hash,
 } from "@nakafa/aksara-contracts/ids";
 import type { ActiveAppLocaleList } from "@nakafa/aksara-contracts/locale";
-import { CurrentContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
+import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
 import type { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import {
   ContentDeleteSchema,
@@ -28,10 +28,7 @@ import type { verifyRollbackSnapshot } from "@nakafa/aksara-contracts/release/ro
 import { RollbackSnapshotStateSchema } from "@nakafa/aksara-contracts/release/rollback/spec";
 import type { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
 import type { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/verify";
-import type {
-  GitPublicationScope,
-  verifyGitPublicationScope,
-} from "@nakafa/aksara-contracts/release/snapshot/scope";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { ContentSnapshotSet } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import type { verifyContentRendererCompatibility } from "@nakafa/aksara-contracts/renderer/compatibility";
@@ -65,7 +62,7 @@ import type {
 const PreparedContentUpsertSchema = Schema.Struct({
   change: ContentUpsertSchema,
   payload: CompiledContentPayloadSchema,
-  projection: CurrentContentProjectionSchema,
+  projection: ContentProjectionSchema,
   source: CompileDocumentSourceSchema,
 });
 
@@ -124,7 +121,7 @@ export interface PrepareContentReleaseInput<E, R>
   readonly rendererManifest: unknown;
   readonly result: PreparedResultCatalogSource<E, R>;
   readonly routes: PreparedRouteSource<E, R>;
-  readonly scope: GitPublicationScope;
+  readonly scope: PublicationScope;
   /** Candidate runtime pair plus an optional distinct retained inverse. */
   readonly tryoutRuntime: PreparedTryoutRuntimeTransition | null;
 }
@@ -192,8 +189,6 @@ type SnapshotPolicyError = Effect.Error<
   ReturnType<typeof verifyReleasePolicyTransition>
 >;
 
-type GitScopeError = Effect.Error<ReturnType<typeof verifyGitPublicationScope>>;
-
 /** Every expected failure surfaced before a release can be signed. */
 type PrepareContentReleaseError<E, R> =
   | ItemVerificationError<PreparedContentStreamError<E>, R>
@@ -204,7 +199,6 @@ type PrepareContentReleaseError<E, R> =
   | PreparedTryoutRuntimeMissingError
   | PreparedTryoutRuntimeSnapshotError
   | PreparedTryoutRuntimeTransitionError
-  | GitScopeError
   | QuranProvenanceBlockedError
   | ProjectionVerificationError<PreparedContentStreamError<E>, R>
   | RendererCompatibilityError

@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Keliling rata-rata 23 sentimeter pada 35°C adalah yang terbesar dari tiga suhu, tetapi ukuran itu belum sama dengan volume gas yang diukur langsung.",
+            "Keliling rata-rata $$23$$ sentimeter pada $$35^\\circ\\text{C}$$ adalah yang terbesar dari tiga suhu, tetapi ukuran itu belum sama dengan volume gas yang diukur langsung.",
         },
         {
           isCorrect: false,
@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pada kondisi dengan perubahan, hasil rata-rata tercatat 23; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+            "Pada kondisi dengan perubahan, hasil rata-rata tercatat $$23$$. Karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
         {
           isCorrect: false,

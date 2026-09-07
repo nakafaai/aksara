@@ -7,26 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Erste Belege zu kontrastreichere Sammelplatzsymbole im Kontext „Evakuierungsplan“",
+          label: "Ausgangsbeobachtungen vor dem Test neuer Evakuierungszeichen",
+        },
+        {
+          isCorrect: false,
+          label: "Gleichzeitiger Test mehrerer Änderungen am Evakuierungsplan",
         },
         {
           isCorrect: false,
           label:
-            "Prüfung mehrerer gleichzeitiger Änderungen im Kontext „Evakuierungsplan“",
+            "Rückmeldungen zur dauerhaften Neugestaltung eines Evakuierungsplans",
         },
         {
           isCorrect: false,
           label:
-            "Rückmeldungen zur dauerhaften Neugestaltung des Kontexts „Evakuierungsplan“",
-        },
-        {
-          isCorrect: false,
-          label: "Vollständige Bewertung des Kontexts „Evakuierungsplan“",
+            "Vollständige Bewertung aller Bestandteile eines Evakuierungsplans",
         },
         {
           isCorrect: true,
-          label: "Geordnete Prüfung einer Änderung: Karte der Evakuierungswege",
+          label: "Kontrastreichere Sammelpunktsymbole im Test",
         },
       ],
     },
@@ -35,26 +34,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Early evidence about higher-contrast assembly-point symbols in the context of evacuation route map",
+          label: "Baseline Observations Before Testing Evacuation Symbols",
+        },
+        {
+          isCorrect: false,
+          label: "Testing Several Simultaneous Changes to an Evacuation Map",
         },
         {
           isCorrect: false,
           label:
-            "Testing several simultaneous changes in the context of evacuation route map",
+            "Participant Reactions to a Permanent Redesign of an Evacuation Map",
         },
         {
           isCorrect: false,
-          label:
-            "User reactions to a permanent redesign of evacuation route map",
-        },
-        {
-          isCorrect: false,
-          label: "A complete evaluation of evacuation route map",
+          label: "A Complete Evaluation of Every Feature of an Evacuation Map",
         },
         {
           isCorrect: true,
-          label: "A structured test of one change: evacuation route map",
+          label: "Testing Higher-Contrast Assembly-Point Symbols",
         },
       ],
     },
@@ -63,26 +60,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Bukti awal tentang simbol titik kumpul dengan kontras lebih tinggi dalam konteks peta jalur evakuasi",
+          label: "Catatan Awal Sebelum Pengujian Simbol Evakuasi",
+        },
+        {
+          isCorrect: false,
+          label: "Pengujian Beberapa Perubahan Serentak pada Peta Evakuasi",
         },
         {
           isCorrect: false,
           label:
-            "Pengujian beberapa perubahan serentak dalam konteks peta jalur evakuasi",
+            "Tanggapan Peserta terhadap Perancangan Ulang Permanen Peta Evakuasi",
         },
         {
           isCorrect: false,
-          label:
-            "Tanggapan pengguna terhadap perancangan ulang tetap pada peta jalur evakuasi",
-        },
-        {
-          isCorrect: false,
-          label: "Evaluasi menyeluruh terhadap peta jalur evakuasi",
+          label: "Evaluasi Menyeluruh atas Semua Unsur Peta Evakuasi",
         },
         {
           isCorrect: true,
-          label: "Uji Teratur atas Satu Perubahan: peta jalur evakuasi",
+          label: "Pengujian Simbol Titik Kumpul yang Lebih Kontras",
         },
       ],
     },

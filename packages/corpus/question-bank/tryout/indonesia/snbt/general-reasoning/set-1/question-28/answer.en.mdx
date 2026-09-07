@@ -2,9 +2,19 @@ export const metadata = {
   title: "Solution to Question 28",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-First count the arrangements that satisfy all constraints simultaneously. Because every arrangement is equally likely, divide that count by the total number of permutations and reduce the fraction fully.
+All arrangements are equally likely, so the probability denominator is <InlineMath math="6!=720" />. Count the valid arrangements in stages.
 
-Therefore, the requested value is <InlineMath math="\frac7{30}" />.
+First put <InlineMath math="E" /> in one of the <InlineMath math="4" /> interior positions. The other reports can be arranged in <InlineMath math="5!" /> ways, giving <InlineMath math="4\times5!=480" /> arrangements.
+
+Subtract arrangements in which <InlineMath math="A" /> and <InlineMath math="B" /> are adjacent. Treat them as one block. There are <InlineMath math="2\times5!" /> block arrangements, but <InlineMath math="2\times2\times4!" /> of them put <InlineMath math="E" /> at an end.
+
+<BlockMath math="\begin{aligned} N_{AB} &=2\times5!-2\times2\times4! \\ &=240-96=144 \\ N &=480-144=336 \end{aligned}" />
+
+Among arrangements with <InlineMath math="A" /> and <InlineMath math="B" /> apart and <InlineMath math="E" /> inside, swapping <InlineMath math="C" /> and <InlineMath math="D" /> pairs every arrangement with one having their order reversed. Exactly half put <InlineMath math="C" /> before <InlineMath math="D" />.
+
+<BlockMath math="\begin{aligned} N_{\mathrm{valid}} &=336\div2=168 \\ P &=\frac{168}{720}=\frac{7}{30} \end{aligned}" />
+
+The probability of satisfying all constraints is <InlineMath math="\frac{7}{30}" />.

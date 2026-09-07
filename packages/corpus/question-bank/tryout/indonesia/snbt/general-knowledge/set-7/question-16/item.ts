@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Ein älteres datiertes Dokument zeigt, dass alle drei Aufnahmen dasselbe Stück ohne lokale Varianten kopierten.",
+            "Überprüfte Produktionsunterlagen zeigen, dass ein Veranstalter die Unterschiede eigens für das Aufnahmeprojekt schrieb und sie nicht aus der jeweiligen örtlichen Überlieferung stammten.",
         },
       ],
     },
@@ -58,7 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "An older dated document is found showing that all three recordings copied one identical script without community variation.",
+            "Verified production records show that one organiser scripted the differences specifically for the recording project, rather than each community inheriting its own variant.",
         },
       ],
     },
@@ -87,7 +87,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Dokumen bertanggal lebih tua ditemukan dan menunjukkan bahwa ketiga rekaman sebenarnya menyalin satu naskah yang sama tanpa variasi komunitas.",
+            "Catatan produksi terverifikasi menunjukkan bahwa perbedaan ketiga rekaman ditulis oleh satu penyelenggara khusus untuk proyek rekaman tersebut, bukan diwariskan oleh komunitas masing-masing.",
         },
       ],
     },

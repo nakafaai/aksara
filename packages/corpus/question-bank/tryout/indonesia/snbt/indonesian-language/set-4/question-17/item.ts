@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kedua sumber membantu menjelaskan fungsi bangunan pada masa yang berbeda; perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
+            "Kedua sumber membantu menjelaskan fungsi bangunan pada masa yang berbeda. Perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
         },
         {
           isCorrect: true,

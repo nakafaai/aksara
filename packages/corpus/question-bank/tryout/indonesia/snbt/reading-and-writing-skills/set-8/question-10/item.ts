@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Mit geänderten Messregeln plant das Team einen längeren Test von Fragekarten an jedem Demonstrationstisch.",
+            "Das Team wird Fragen ordnen und Verständnis prüfen und dabei die Gruppengrößenvorgaben ändern.",
         },
         {
           isCorrect: true,
           label:
-            "Unter unveränderten Messregeln plant das Team einen längeren Versuch mit folgender Änderung: Fragekarten an jedem Demonstrationstisch.",
+            "Das Team wird Fragetypen ordnen und Verständnis prüfen und dabei dieselben Gruppengrößenvorgaben beibehalten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team will nur die Tage wiederholen, an denen die Änderung Fragekarten an jedem Demonstrationstisch den höchsten Wert ergab.",
+            "Das Team wird nur Termine mit der höchsten Zahl fragender Besuchender wiederholen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team will Fragekarten an jedem Demonstrationstisch dauerhaft einführen statt einen längeren Vergleich durchzuführen.",
+            "Das Team wird die Karten statt weiterer Prüfungen dauerhaft einführen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team plant einen längeren Test von Fragekarten an jedem Demonstrationstisch ohne Vergleichsbedingung.",
+            "Das Team wird die Gruppenvorgaben erhalten, ohne Verständnis oder Fragetypen zu untersuchen.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Using revised measurement rules, the team plans a longer test of question cards at each demonstration table.",
+            "The team will classify questions and assess understanding while changing the group-size rules.",
         },
         {
           isCorrect: true,
           label:
-            "Using the same measurement rules, the team plans a longer test of question cards at each demonstration table.",
+            "The team will classify question types and assess understanding while retaining the group-size rules.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans to repeat only the days on which question cards at each demonstration table produced the highest value.",
+            "The team will repeat only sessions with the highest number of visitors asking questions.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans to adopt question cards at each demonstration table permanently instead of running a longer comparison.",
+            "The team will adopt the cards permanently instead of conducting further assessment.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans a longer test of question cards at each demonstration table without retaining a comparison condition.",
+            "The team will retain group rules without assessing understanding or classifying questions.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dengan kaidah pengukuran yang diubah, tim merencanakan uji kartu pertanyaan di setiap meja demonstrasi yang lebih panjang.",
+            "Tim akan mengelompokkan pertanyaan dan menilai pemahaman sambil mengubah aturan ukuran kelompok.",
         },
         {
           isCorrect: true,
           label:
-            "Dengan aturan pengukuran yang sama, tim merencanakan uji yang lebih lama terhadap kartu pertanyaan di setiap meja demonstrasi.",
+            "Tim akan mengelompokkan jenis pertanyaan dan menilai pemahaman sambil mempertahankan aturan ukuran kelompok.",
         },
         {
           isCorrect: false,
           label:
-            "Tim akan mengulang hari ketika kartu pertanyaan di setiap meja demonstrasi menghasilkan nilai tertinggi.",
+            "Tim akan mengulang hanya sesi dengan jumlah pengunjung yang bertanya paling tinggi.",
         },
         {
           isCorrect: false,
           label:
-            "Tim akan menerapkan kartu pertanyaan di setiap meja demonstrasi secara tetap sebagai pengganti perbandingan yang lebih panjang.",
+            "Tim akan menerapkan kartu permanen sebagai pengganti penilaian lanjutan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim merencanakan uji kartu pertanyaan di setiap meja demonstrasi yang lebih panjang tanpa mempertahankan kondisi pembanding.",
+            "Tim akan mempertahankan aturan kelompok tanpa menilai pemahaman atau mengelompokkan pertanyaan.",
         },
       ],
     },

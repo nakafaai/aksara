@@ -2,9 +2,18 @@ export const metadata = {
   title: "Solution to Question 23",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Only B is used by <InlineMath math="79-32-22+11=36" /> participants, and only C by <InlineMath math="66-27-22+11=28" />. These groups are disjoint, so the total is <InlineMath math="36+28=64" />.
+Let <InlineMath math="n_B" /> and <InlineMath math="n_C" /> count users of only B and only C.
 
-Therefore, the requested value is <InlineMath math="64" />.
+Subtract both pairwise intersections from each service total. Users of all three were subtracted twice, so add them back once:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}n_B&=79-32-22+11\\&=36\end{aligned}" />
+  <BlockMath math="\begin{aligned}n_C&=66-27-22+11\\&=28\end{aligned}" />
+</MathContainer>
+
+A user of only B cannot also be a user of only C. These groups are disjoint, so the requested total is:
+
+<BlockMath math="36+28=64" />

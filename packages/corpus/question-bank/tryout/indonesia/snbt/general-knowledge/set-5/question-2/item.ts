@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Die Bewertenden verwenden ein Raster, das vor Kenntnis der Identitäten oder Endergebnisse festgelegt wurde.",
+            "Die Bewertenden verwenden ein vorab festgelegtes Raster und kennen bei der Bewertung weder die Identitäten noch die Endergebnisse.",
         },
       ],
     },
@@ -58,7 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Reviewers use a rubric set before they know participant identities or final outcomes.",
+            "Reviewers use a predefined rubric and assess the work without knowing participant identities or final outcomes.",
         },
       ],
     },
@@ -88,7 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Penilai memakai rubrik yang ditetapkan sebelum mengetahui identitas peserta atau hasil akhirnya.",
+            "Penilai memakai rubrik yang telah ditetapkan dan menilai tanpa mengetahui identitas peserta atau hasil akhirnya.",
         },
       ],
     },

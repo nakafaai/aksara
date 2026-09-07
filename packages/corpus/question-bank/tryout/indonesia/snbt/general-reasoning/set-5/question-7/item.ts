@@ -15,7 +15,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Die Karte zeigt kein Fett",
+          label: "Die Karte zeigt einen niedrigen Fettgehalt",
         },
         {
           isCorrect: false,
@@ -23,7 +23,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Die Karte zeigt, dass die Frucht Fett liefert",
+          label: "Die Karte zeigt einen hohen Fettgehalt",
         },
       ],
     },
@@ -40,7 +40,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "The card shows no fat",
+          label: "The card shows low fat",
         },
         {
           isCorrect: false,
@@ -48,7 +48,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "The card shows that the fruit provides fat",
+          label: "The card shows high fat",
         },
       ],
     },
@@ -65,7 +65,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Kartu menunjukkan tidak ada lemak",
+          label: "Kartu menunjukkan kadar lemak rendah",
         },
         {
           isCorrect: false,
@@ -73,7 +73,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Kartu menunjukkan buah tersebut memberikan lemak",
+          label: "Kartu menunjukkan kadar lemak tinggi",
         },
       ],
     },

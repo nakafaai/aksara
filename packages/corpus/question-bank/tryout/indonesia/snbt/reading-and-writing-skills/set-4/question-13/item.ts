@@ -7,28 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "die Folgestudie des Teams im untersuchten Kontext (Büchertauschmarkt)",
+          label: "die Folgestudie des Teams zu den Genre-Schildern",
         },
         {
           isCorrect: false,
-          label:
-            "die Folge Studie des Teams im untersuchten Kontext (Büchertauschmarkt)",
+          label: "die Folge Studie des Teams zu den Genre-Schildern",
         },
         {
           isCorrect: false,
-          label:
-            "die Folge-studie des Teams im untersuchten Kontext (Büchertauschmarkt)",
+          label: "die Folge-studie des Teams zu den Genre-Schildern",
         },
         {
           isCorrect: false,
-          label:
-            "die Folgestudie des Team im untersuchten Kontext (Büchertauschmarkt)",
+          label: "die Folgestudie des Team zu den Genre-Schildern",
         },
         {
           isCorrect: false,
-          label:
-            "die Folge  Studie des Teams im untersuchten Kontext (Büchertauschmarkt)",
+          label: "die Folgestudie des Teems zu den Genre-Schildern",
         },
       ],
     },
@@ -37,28 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "the team's follow-up study of genre signs on each table in this setting (book exchange market)",
+          label: "the team's follow-up study of genre signs",
         },
         {
           isCorrect: false,
-          label:
-            "the team's follow up study of genre signs on each table in this setting (book exchange market)",
+          label: "the team's follow up study of genre signs",
         },
         {
           isCorrect: false,
-          label:
-            "the team's followup study of genre signs on each table in this setting (book exchange market)",
+          label: "the team's follow-uup study of genre signs",
         },
         {
           isCorrect: false,
-          label:
-            "the teams' follow--up study of genre signs on each table in this setting (book exchange market)",
+          label: "the teams' follow--up study of genre signs",
         },
         {
           isCorrect: false,
-          label:
-            "the team follow-up-study of genre signs on each table in this setting (book exchange market)",
+          label: "the team follow-up-study of genre signs",
         },
       ],
     },
@@ -67,28 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "kerja sama tim dalam uji tanda genre di setiap meja di pasar tukar buku",
+          label: "kerja sama tim dalam uji tanda genre",
         },
         {
           isCorrect: false,
-          label:
-            "kerjasama tim dalam uji tanda genre di setiap meja di pasar tukar buku",
+          label: "kerjasama tim dalam uji tanda genre",
         },
         {
           isCorrect: false,
-          label:
-            "kerja-sama tim dalam uji tanda genre di setiap meja di pasar tukar buku",
+          label: "kerja-sama tim dalam uji tanda genre",
         },
         {
           isCorrect: false,
-          label:
-            "kerja  sama tim dalam uji tanda genre di setiap meja di pasar tukar buku",
+          label: "kerja samah tim dalam uji tanda genre",
         },
         {
           isCorrect: false,
-          label:
-            "kerja sama-sama tim dalam uji tanda genre di setiap meja di pasar tukar buku",
+          label: "kerja sama-sama tim dalam uji tanda genre",
         },
       ],
     },

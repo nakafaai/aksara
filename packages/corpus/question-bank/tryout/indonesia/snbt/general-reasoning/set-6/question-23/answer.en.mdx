@@ -2,9 +2,17 @@ export const metadata = {
   title: "Solution to Question 23",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Inclusion-exclusion gives <InlineMath math="64+58+49-24-19-17+8=119" /> participants using at least one service. Therefore <InlineMath math="140-119=21" /> use none.
+Use inclusion-exclusion to count participants using at least one service. Adding the A, B, and C counts directly counts users of two services twice, so subtract the three pairwise intersections. Then add the users of all three services once: they were initially counted three times and have just been subtracted three times.
 
-Therefore, the requested value is <InlineMath math="21" />.
+Let <InlineMath math="U" /> be the number using at least one service:
+
+<BlockMath math="\begin{aligned}U&=64+58+49\\&\quad-24-19-17+8\\&=171-60+8\\&=119\end{aligned}" />
+
+Participants using none are the remainder of the <InlineMath math="140" /> surveyed:
+
+<BlockMath math="140-119=21" />
+
+Therefore, <InlineMath math="21" /> participants use none of the services.

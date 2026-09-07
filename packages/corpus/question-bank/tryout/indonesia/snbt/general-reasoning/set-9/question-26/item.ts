@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$A$$",
+          label: "Maschine A",
         },
         {
           isCorrect: false,
-          label: "$$B$$",
+          label: "Maschine B",
         },
         {
           isCorrect: true,
-          label: "$$C$$",
+          label: "Maschine C",
         },
         {
           isCorrect: false,
-          label: "$$A\\mathbin{/}C$$",
+          label: "Maschinen A und C haben denselben Höchstwert",
         },
         {
           isCorrect: false,
-          label: "$$B\\mathbin{/}C$$",
+          label: "Maschinen B und C haben denselben Höchstwert",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$A$$",
+          label: "Machine A",
         },
         {
           isCorrect: false,
-          label: "$$B$$",
+          label: "Machine B",
         },
         {
           isCorrect: true,
-          label: "$$C$$",
+          label: "Machine C",
         },
         {
           isCorrect: false,
-          label: "$$A\\mathbin{/}C$$",
+          label: "Machines A and C tie for highest",
         },
         {
           isCorrect: false,
-          label: "$$B\\mathbin{/}C$$",
+          label: "Machines B and C tie for highest",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$A$$",
+          label: "Mesin A",
         },
         {
           isCorrect: false,
-          label: "$$B$$",
+          label: "Mesin B",
         },
         {
           isCorrect: true,
-          label: "$$C$$",
+          label: "Mesin C",
         },
         {
           isCorrect: false,
-          label: "$$A\\mathbin{/}C$$",
+          label: "Mesin A dan C sama tinggi",
         },
         {
           isCorrect: false,
-          label: "$$B\\mathbin{/}C$$",
+          label: "Mesin B dan C sama tinggi",
         },
       ],
     },

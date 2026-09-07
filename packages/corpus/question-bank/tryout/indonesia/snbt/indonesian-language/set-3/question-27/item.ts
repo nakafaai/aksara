@@ -8,22 +8,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama; bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
+            "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama. Bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
         },
         {
           isCorrect: false,
           label:
-            "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama; akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
+            "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama. Akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
         },
         {
           isCorrect: false,
           label:
-            "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama; perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
+            "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama. Perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
         },
         {
           isCorrect: false,
           label:
-            "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama; benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
+            "Mira memilih untuk menaruh satu buku cerita di kursi kosong dan membacakan halaman pertama. Benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
         },
         {
           isCorrect: true,

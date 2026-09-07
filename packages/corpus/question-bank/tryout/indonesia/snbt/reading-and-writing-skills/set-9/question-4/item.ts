@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Änderung, Pflanzortetiketten auf jedem Tablett, ersetzte die Notwendigkeit, die ursprüngliche Unsicherheit zu messen.",
+            "Tablettetiketten machten die Zählung ohne Umleitung angekommener Setzlinge überflüssig.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, Pflanzortetiketten auf jedem Tablett, führte mehrere nicht trennbare Unterschiede ein.",
+            "Tablettetiketten ermöglichten die gleichzeitige Änderung vieler Verteilungsmerkmale.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, Pflanzortetiketten auf jedem Tablett, erklärte, warum die Vergleichswerte identisch waren.",
+            "Die Etiketten wurden gewählt, weil bereits alle Vergleichswerte nachweislich gleich waren.",
         },
         {
           isCorrect: false,
           label:
-            "Die Änderung, Pflanzortetiketten auf jedem Tablett, betraf das Endergebnis statt die Quelle der Unsicherheit.",
+            "Die Etiketten wurden nur gewählt, weil das endgültige Testergebnis bereits feststand.",
         },
         {
           isCorrect: true,
           label:
-            "Die geprüfte Änderung bezog sich unmittelbar auf die beobachtete Unsicherheit: Pflanzortetiketten auf jedem Tablett.",
+            "Ein Etikett am Tablett nannte die Zielfläche, wenn die Helfenden an der Abzweigung eine Richtung wählen mussten.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change, planting-site labels on every tray, replaced the need to measure the original uncertainty.",
+            "Tray labels made it unnecessary to count seedlings arriving without redirection.",
         },
         {
           isCorrect: false,
           label:
-            "The change, planting-site labels on every tray, introduced several differences that could not be separated.",
+            "Tray labels allowed many distribution features to change at once.",
         },
         {
           isCorrect: false,
           label:
-            "The change, planting-site labels on every tray, explained why the comparison values were identical.",
+            "The labels were chosen because all comparison values had proved equal.",
         },
         {
           isCorrect: false,
           label:
-            "The change, planting-site labels on every tray, addressed the final outcome rather than the source of uncertainty.",
+            "The labels were chosen only because the final test result was already certain.",
         },
         {
           isCorrect: true,
           label:
-            "The change, planting-site labels on every tray, directly addressed the observed uncertainty.",
+            "A tray label identified the intended plot when volunteers had to choose a direction at the junction.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan berupa label lokasi tanam pada setiap baki menggantikan kebutuhan untuk mengukur ketidakpastian awal.",
+            "Label baki membuat jumlah bibit yang sampai tanpa dialihkan tidak perlu diukur.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa label lokasi tanam pada setiap baki menimbulkan beberapa perbedaan yang tidak dapat dipisahkan.",
+            "Label baki memungkinkan banyak unsur distribusi diubah sekaligus.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa label lokasi tanam pada setiap baki menjelaskan mengapa nilai pembanding sama.",
+            "Label dipilih karena semua nilai pembanding sudah terbukti sama.",
         },
         {
           isCorrect: false,
           label:
-            "Perubahan berupa label lokasi tanam pada setiap baki menanggapi hasil akhir, bukan sumber ketidakpastian.",
+            "Label dipilih hanya karena hasil akhir pengujiannya telah dipastikan.",
         },
         {
           isCorrect: true,
           label:
-            "Label lokasi tanam pada setiap baki bibit langsung menanggapi keraguan yang diamati.",
+            "Label pada baki menunjukkan petak tujuan ketika relawan harus memilih arah di percabangan.",
         },
       ],
     },

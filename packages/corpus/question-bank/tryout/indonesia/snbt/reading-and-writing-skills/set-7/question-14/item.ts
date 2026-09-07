@@ -8,17 +8,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Daten worden im Kontext Schirmverleih am Bahnhof erhebt und danach vergleichen.",
+            "Die Daten worden beim Schirmverleih am Bahnhof erhebt und danach vergleichen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten wurden an den Kontext Schirmverleih am Bahnhof erhoben und danach verglichen.",
+            "Die Daten wurden an den Schirmverleih am Bahnhof erhoben und danach verglichen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten wurden in diesem Kontext erhoben Schirmverleih am Bahnhof anschließend sie verglichen wurden.",
+            "Die Daten wurden beim Schirmverleih am Bahnhof erhoben anschließend sie verglichen wurden.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Die Daten wurden in diesem Kontext erhoben: Schirmverleih am Bahnhof. Anschließend wurden sie verglichen.",
+            "Die Daten wurden beim Schirmverleih am Bahnhof erhoben und danach verglichen.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Data were collected at this setting (station umbrella lending) and compared afterward in.",
+            "Data were collected at the station umbrella service and compared afterward in.",
         },
         {
           isCorrect: false,
           label:
-            "Data was collect in this setting (station umbrella lending) and comparing afterward.",
+            "Data was collect at the station umbrella service and comparing afterward.",
         },
         {
           isCorrect: false,
           label:
-            "Data were collected on this setting (station umbrella lending) and afterward compared it.",
+            "Data were collected at the station umbrella service and afterward compared it.",
         },
         {
           isCorrect: false,
           label:
-            "Data collected this setting (station umbrella lending) and were comparison afterward.",
+            "Data collected the station umbrella service and were comparison afterward.",
         },
         {
           isCorrect: true,
           label:
-            "Data were collected in this setting (station umbrella lending) and compared afterward.",
+            "Data were collected at the station umbrella service and compared afterward.",
         },
       ],
     },
@@ -67,28 +67,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Data di kumpulkan dalam layanan peminjaman payung di stasiun, lalu dibandingkan.",
+          label: "Data di kumpulkan di stasiun dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,
-          label:
-            "Data dikumpulkan didalam layanan peminjaman payung di stasiun, lalu dibandingkan.",
+          label: "Data dikumpulkan distasiun dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,
-          label:
-            "Data mengumpulkan dalam layanan peminjaman payung di stasiun, lalu membandingkan.",
+          label: "Data mengumpulkan di stasiun dan kemudian membandingkan.",
         },
         {
           isCorrect: false,
-          label:
-            "Data dikumpulkan pada dalam layanan peminjaman payung di stasiun, lalu di bandingkan.",
+          label: "Data dikumpulkan pada di stasiun lalu di bandingkan.",
         },
         {
           isCorrect: true,
-          label:
-            "Data dikumpulkan dalam layanan peminjaman payung di stasiun, lalu dibandingkan.",
+          label: "Data dikumpulkan di stasiun dan kemudian dibandingkan.",
         },
       ],
     },

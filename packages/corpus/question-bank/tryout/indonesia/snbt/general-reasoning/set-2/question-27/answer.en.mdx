@@ -2,9 +2,21 @@ export const metadata = {
   title: "Solution to Question 27",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Reverse the price operations in order: undo the tax first, then the voucher, and finally the percentage markup. Use the recovered intermediate prices to calculate the difference, fraction, or effective percentage requested in the prompt.
+Express every price in thousand rupiah. Reverse the price changes, starting by removing the tax.
 
-Therefore, the requested value is <InlineMath math="23{,}75\%" />.
+<BlockMath math="\frac{792}{1.10}=720" />
+
+Add back the voucher to recover the marked-up price.
+
+<BlockMath math="720+80=800" />
+
+Divide by the markup factor to obtain the original price <InlineMath math="p" />.
+
+<BlockMath math="p=\frac{800}{1.25}=640" />
+
+Calculate the effective increase from the original to the final price, including the voucher and tax.
+
+<BlockMath math="\begin{aligned}r&=\frac{792-640}{640}\times100\%\\&=\frac{152}{640}\times100\%\\&=23.75\%\end{aligned}" />

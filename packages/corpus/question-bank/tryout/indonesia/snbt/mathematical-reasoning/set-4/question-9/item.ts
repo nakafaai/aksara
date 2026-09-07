@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$5\\text{ m und }6\\text{ m}$$",
+          label: "$$5\\text{ m}$$ und $$6\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$4\\text{ m und }6\\text{ m}$$",
+          label: "$$3\\text{ m}$$ und $$7\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$6\\text{ m und }4\\text{ m}$$",
+          label: "$$6\\text{ m}$$ und $$4\\text{ m}$$",
         },
         {
           isCorrect: true,
-          label: "$$5\\text{ m und }5\\text{ m}$$",
+          label: "$$5\\text{ m}$$ und $$5\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$8\\text{ m und }2\\text{ m}$$",
+          label: "$$8\\text{ m}$$ und $$2\\text{ m}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$5\\text{ Meters and }6\\text{ Meters}$$",
+          label: "$$5\\text{ m}$$ and $$6\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$4\\text{ Meters and }6\\text{ Meters}$$",
+          label: "$$3\\text{ m}$$ and $$7\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$6\\text{ Meters and }4\\text{ Meters}$$",
+          label: "$$6\\text{ m}$$ and $$4\\text{ m}$$",
         },
         {
           isCorrect: true,
-          label: "$$5\\text{ Meters and }5\\text{ Meters}$$",
+          label: "$$5\\text{ m}$$ and $$5\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$8\\text{ Meters and }2\\text{ Meters}$$",
+          label: "$$8\\text{ m}$$ and $$2\\text{ m}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$5\\text{ Meter dan }6\\text{ Meter}$$",
+          label: "$$5\\text{ m}$$ dan $$6\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$4\\text{ Meter dan }6\\text{ Meter}$$",
+          label: "$$3\\text{ m}$$ dan $$7\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$6\\text{ Meter dan }4\\text{ Meter}$$",
+          label: "$$6\\text{ m}$$ dan $$4\\text{ m}$$",
         },
         {
           isCorrect: true,
-          label: "$$5\\text{ Meter dan }5\\text{ Meter}$$",
+          label: "$$5\\text{ m}$$ dan $$5\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$8\\text{ Meter dan }2\\text{ Meter}$$",
+          label: "$$8\\text{ m}$$ dan $$2\\text{ m}$$",
         },
       ],
     },

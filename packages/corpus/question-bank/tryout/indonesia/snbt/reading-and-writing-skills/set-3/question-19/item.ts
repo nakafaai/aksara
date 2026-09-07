@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team änderte nur ein Faktor: Karten zur Reihenfolge brauner und grüner Materialien.",
+            "Das Team änderte nur ein Faktor: die Verwendung von Bildkarten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team änderte nur einem Faktor: Karten zur Reihenfolge brauner und grüner Materialien.",
+            "Das Team änderte nur einem Faktor: die Verwendung von Bildkarten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team änderte lediglich nur einen Faktor: Karten zur Reihenfolge brauner und grüner Materialien.",
+            "Das Team änderte lediglich nur einen Faktor: die Verwendung von Bildkarten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team änderte nur einen Faktor, und zwar: Karten zur Reihenfolge brauner und grüner Materialien.",
+            "Das Team änderte nur einen Faktor, und zwar: die Verwendung von Bildkarten.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team änderte nur einen Faktor: Karten zur Reihenfolge brauner und grüner Materialien.",
+            "Das Team änderte nur einen Faktor: die Verwendung von Bildkarten.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team changed only one factors: cards showing the order of brown and green materials.",
+            "The team changed only one factors: the use of illustrated cards.",
         },
         {
           isCorrect: false,
           label:
-            "The team changed merely only one factor: cards showing the order of brown and green materials.",
+            "The team changed merely only one factor: the use of illustrated cards.",
         },
         {
           isCorrect: false,
           label:
-            "The team changed only one factor, namely: cards showing the order of brown and green materials.",
+            "The team changed only one factor, namely: the use of illustrated cards.",
         },
         {
           isCorrect: false,
           label:
-            "The team changed only one factor; namely cards showing the order of brown and green materials.",
+            "The team changed only one factor; namely the use of illustrated cards.",
         },
         {
           isCorrect: true,
           label:
-            "The team changed only one factor: cards showing the order of brown and green materials.",
+            "The team changed only one factor: the use of illustrated cards.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim merubah satu faktor saja, yaitu kartu urutan bahan cokelat dan hijau.",
+            "Tim merubah satu faktor saja, yaitu penggunaan kartu bergambar.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengubahkan satu faktor saja, yaitu kartu urutan bahan cokelat dan hijau.",
+            "Tim mengrubah satu faktor saja, yaitu penggunaan kartu bergambar.",
         },
         {
           isCorrect: false,
           label:
-            "Tim hanya mengubah satu faktor saja, yaitu kartu urutan bahan cokelat dan hijau.",
+            "Tim hanya mengubah satu faktor saja, yaitu penggunaan kartu bergambar.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengubah terhadap satu faktor saja, yaitu kartu urutan bahan cokelat dan hijau.",
+            "Tim mengubah terhadap satu faktor saja, yaitu penggunaan kartu bergambar.",
         },
         {
           isCorrect: true,
           label:
-            "Tim mengubah satu faktor saja, yaitu kartu urutan bahan cokelat dan hijau.",
+            "Tim mengubah satu faktor saja, yaitu penggunaan kartu bergambar.",
         },
       ],
     },

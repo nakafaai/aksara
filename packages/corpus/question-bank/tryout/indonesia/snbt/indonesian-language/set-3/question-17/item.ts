@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kedua sumber menunjukkan bahwa kegiatan baca pernah hadir di ruang tunggu; perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
+            "Kedua sumber menunjukkan bahwa kegiatan baca pernah hadir di ruang tunggu. Perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
         },
         {
           isCorrect: false,

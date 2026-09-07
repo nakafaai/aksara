@@ -7,27 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Geordnete Prüfung einer Änderung: Kochkurs für Jugendliche",
+          label: "Zutaten nach Rezeptschritten ordnen: ein Test im Kochkurs",
         },
         {
           isCorrect: false,
-          label:
-            "Erste Belege zu nach Rezeptschritten gruppierte Zutaten im Kontext „Kochkurs für Jugendliche“",
+          label: "Ausgangsdaten vor der Prüfung der Zutatenanordnung",
         },
         {
           isCorrect: false,
-          label:
-            "Prüfung mehrerer gleichzeitiger Änderungen im Kontext „Kochkurs für Jugendliche“",
+          label: "Gleichzeitige Prüfung mehrerer Änderungen am Kochkurs",
         },
         {
           isCorrect: false,
-          label:
-            "Rückmeldungen zur dauerhaften Neugestaltung des Kontexts „Kochkurs für Jugendliche“",
+          label: "Rückmeldungen zur dauerhaften Neugestaltung des Kochkurses",
         },
         {
           isCorrect: false,
-          label:
-            "Vollständige Bewertung des Kontexts „Kochkurs für Jugendliche“",
+          label: "Vollständige Bewertung aller Tätigkeiten im Kochkurs",
         },
       ],
     },
@@ -36,25 +32,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "A structured test of one change: teen cooking class",
-        },
-        {
-          isCorrect: false,
           label:
-            "Early evidence about ingredients grouped by recipe stage in the context of teen cooking class",
+            "Testing Ingredient Grouping by Recipe Stage in a Cooking Class",
         },
         {
           isCorrect: false,
-          label:
-            "Testing several simultaneous changes in the context of teen cooking class",
+          label: "Baseline Records Before Ingredient Layout Was Tested",
         },
         {
           isCorrect: false,
-          label: "User reactions to a permanent redesign of teen cooking class",
+          label: "Testing Several Simultaneous Changes to a Cooking Class",
         },
         {
           isCorrect: false,
-          label: "A complete evaluation of teen cooking class",
+          label: "Reactions to a Permanent Redesign of a Cooking Class",
+        },
+        {
+          isCorrect: false,
+          label: "A Complete Evaluation of All Cooking-Class Activities",
         },
       ],
     },
@@ -63,26 +58,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Uji Teratur atas Satu Perubahan: kelas memasak remaja",
-        },
-        {
-          isCorrect: false,
           label:
-            "Bukti awal tentang bahan yang dikelompokkan menurut tahap resep dalam konteks kelas memasak remaja",
+            "Pengujian Pengelompokan Bahan menurut Tahap Resep di Kelas Memasak",
         },
         {
           isCorrect: false,
-          label:
-            "Pengujian beberapa perubahan serentak dalam konteks kelas memasak remaja",
+          label: "Catatan Awal Sebelum Susunan Bahan Diuji",
         },
         {
           isCorrect: false,
-          label:
-            "Tanggapan pengguna terhadap perancangan ulang tetap pada kelas memasak remaja",
+          label: "Pengujian Beberapa Perubahan Serentak di Kelas Memasak",
         },
         {
           isCorrect: false,
-          label: "Evaluasi menyeluruh terhadap kelas memasak remaja",
+          label: "Tanggapan terhadap Perancangan Ulang Permanen Kelas Memasak",
+        },
+        {
+          isCorrect: false,
+          label: "Evaluasi Menyeluruh atas Semua Kegiatan Kelas Memasak",
         },
       ],
     },

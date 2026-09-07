@@ -13,19 +13,19 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "$u_4=54$",
+          label: "$$u_4=54$$",
         },
         {
           correctCategoryOrder: 1,
-          label: "$S_4=80$",
+          label: "$$S_4=80$$",
         },
         {
           correctCategoryOrder: 2,
-          label: "$u_6=243$",
+          label: "$$u_6=243$$",
         },
         {
           correctCategoryOrder: 1,
-          label: "$\\frac{u_6}{u_3}=27$",
+          label: "$$\\frac{u_6}{u_3}=27$$",
         },
       ],
     },
@@ -35,19 +35,19 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "$u_4=54$",
+          label: "$$u_4=54$$",
         },
         {
           correctCategoryOrder: 1,
-          label: "$S_4=80$",
+          label: "$$S_4=80$$",
         },
         {
           correctCategoryOrder: 2,
-          label: "$u_6=243$",
+          label: "$$u_6=243$$",
         },
         {
           correctCategoryOrder: 1,
-          label: "$\\frac{u_6}{u_3}=27$",
+          label: "$$\\frac{u_6}{u_3}=27$$",
         },
       ],
     },
@@ -57,19 +57,19 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "$u_4=54$",
+          label: "$$u_4=54$$",
         },
         {
           correctCategoryOrder: 1,
-          label: "$S_4=80$",
+          label: "$$S_4=80$$",
         },
         {
           correctCategoryOrder: 2,
-          label: "$u_6=243$",
+          label: "$$u_6=243$$",
         },
         {
           correctCategoryOrder: 1,
-          label: "$\\frac{u_6}{u_3}=27$",
+          label: "$$\\frac{u_6}{u_3}=27$$",
         },
       ],
     },

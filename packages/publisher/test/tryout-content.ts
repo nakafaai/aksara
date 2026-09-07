@@ -1,4 +1,5 @@
 import { resolve } from "node:path";
+import type { DateOnly } from "@nakafa/aksara-contracts/date";
 import { QuestionBlueprintSchema } from "@nakafa/aksara-contracts/question/item";
 import { QuestionHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { TryoutKeySchema } from "@nakafa/aksara-contracts/tryout/key";
@@ -14,6 +15,8 @@ import {
   rendererManifest,
   sourceByPath,
 } from "#test/question/spec";
+
+const DATE_MODIFIED_METADATA = /^ {2}dateModified: "[^"]+",\r?\n/mu;
 
 interface TryoutContentBindingInput {
   readonly entries?: typeof questionEntries;
@@ -79,10 +82,13 @@ function placementEntry(
   );
 }
 
-/** Builds one fully enriched binding with recomputed source fingerprints. */
+/** Builds a blueprint and stimulus binding with an optional modification date. */
 export const collectEnrichedTryoutContent = Effect.fn(
   "TryoutContentTest.collectEnriched"
-)(function* (binding: BoundTryoutPlacement) {
+)(function* (
+  binding: BoundTryoutPlacement,
+  dateModified: DateOnly | undefined
+) {
   const answerEntry = yield* Effect.fromNullishOr(
     placementEntry(binding, "answer")
   );
@@ -102,10 +108,14 @@ export const collectEnrichedTryoutContent = Effect.fn(
   const questionSource = yield* Effect.fromNullishOr(
     sourceByPath.get(questionPath)
   );
-  const modifiedQuestionSource = questionSource.replace(
-    '  datePublished: "2026-01-01",',
-    '  dateModified: "2026-08-30",\n  datePublished: "2026-01-01",'
-  );
+  const modifiedQuestionSource = questionSource
+    .replace(DATE_MODIFIED_METADATA, "")
+    .replace(
+      '  datePublished: "2026-01-01",',
+      dateModified === undefined
+        ? '  datePublished: "2026-01-01",'
+        : `  dateModified: "${dateModified}",\n  datePublished: "2026-01-01",`
+    );
   const files = new Map(sourceByPath).set(questionPath, modifiedQuestionSource);
   const [answerDocument, questionDocument] = yield* Effect.all([
     inspectQuestionDocument(

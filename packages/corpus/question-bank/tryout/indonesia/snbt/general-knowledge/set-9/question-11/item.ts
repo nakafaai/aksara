@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Vollständige Aufnahmen zeigen keine Veränderung; Beschwerden sanken nur wegen ausgefallener Meldewege in Bussen mit neuem Plakat.",
+            "Vollständige Aufnahmen des ersten Tests zeigen unverändert viele laute Gespräche. Beschwerden sanken nur wegen ausgefallener Meldewege in Bussen mit neuem Plakat.",
         },
         {
           isCorrect: false,
@@ -48,7 +48,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Complete recordings show no change in loud conversations; complaints fell only because reporting channels failed on buses with the new poster.",
+            "Complete recordings from the first trial show no change in loud conversations. Complaints fell only because reporting channels failed on buses with the new poster.",
         },
         {
           isCorrect: false,
@@ -77,7 +77,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Rekaman lengkap menunjukkan percakapan keras tidak berubah; keluhan turun hanya karena saluran pelaporan tidak berfungsi pada bus berposter baru.",
+            "Rekaman lengkap dari uji pertama menunjukkan percakapan keras tidak berubah. Keluhan turun hanya karena saluran pelaporan tidak berfungsi pada bus berposter baru.",
         },
         {
           isCorrect: false,

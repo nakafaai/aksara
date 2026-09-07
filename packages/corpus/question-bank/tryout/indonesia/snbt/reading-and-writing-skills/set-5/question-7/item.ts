@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team testete die Änderung Beispielfotos für jede Zustandskategorie an ausgewählten Tagen, weil das frühere Verfahren bereits als unwirksam galt.",
+            "Die Beobachtenden nutzten Beispielfotos, weil die alten Beschreibungen nachweislich in jeder Situation unbrauchbar waren.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team führte die Änderung Beispielfotos für jede Zustandskategorie dauerhaft ein, während das frühere Verfahren nur in den Rückmeldungen erhalten blieb.",
+            "Beispielfotos wurden dauerhaft eingeführt und die alten Beschreibungen nicht mehr genutzt.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team testete die Änderung Beispielfotos für jede Zustandskategorie und das frühere Verfahren an denselben Tagen ohne getrennte Vergleichsbedingungen.",
+            "Fotos und alte Beschreibungen wurden ohne getrennte Versuchs- und Vergleichsbedingungen verwendet.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team prüfte Beispielfotos für jede Zustandskategorie an ausgewählten Tagen, während an Vergleichstagen der bisherige Ablauf bestehen blieb.",
+            "Bei den Versuchsterminen nutzten die Beobachtenden zusätzliche Beispielfotos, während bei den Vergleichsterminen nur die bisherigen schriftlichen Beschreibungen verwendet wurden.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team verglich Tage mit der Änderung Beispielfotos für jede Zustandskategorie mit Rückmeldungen zum früheren Verfahren.",
+            "Das Team verglich Termine mit Beispielfotos nur mit Rückmeldungen zu den alten Beschreibungen.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested sample photos for each condition category on selected days because the earlier process had already been proved ineffective.",
+            "Observers used sample photographs because the old descriptions had proved useless in every situation.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested sample photos for each condition category permanently, while the earlier process remained only in user records.",
+            "Sample photographs were adopted permanently and the old descriptions were no longer used.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested sample photos for each condition category and the earlier process on the same days without separate comparison conditions.",
+            "Observers used photographs and old descriptions without separating trial and comparison conditions.",
         },
         {
           isCorrect: true,
           label:
-            "The team tested sample photos for each condition category on selected days, while the earlier process remained on comparison days.",
+            "In trial sessions, observers used added sample photographs, while comparison sessions used only the previous written descriptions.",
         },
         {
           isCorrect: false,
           label:
-            "The team compared selected days using sample photos for each condition category with comments about the earlier process.",
+            "The team compared sessions using photographs only with comments about the old descriptions.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji foto contoh untuk setiap kategori kondisi pada hari tertentu karena proses lama telah terbukti tidak efektif.",
+            "Pencatat memakai contoh foto karena deskripsi lama telah terbukti tidak berguna dalam semua keadaan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menerapkan foto contoh untuk setiap kategori kondisi secara tetap, sedangkan proses lama hanya tersisa dalam catatan pengguna.",
+            "Contoh foto diterapkan secara permanen dan deskripsi lama tidak dipakai lagi.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji foto contoh untuk setiap kategori kondisi dan proses lama pada hari yang sama tanpa kondisi pembanding terpisah.",
+            "Pencatat memakai foto dan deskripsi lama tanpa memisahkan kondisi uji dan pembanding.",
         },
         {
           isCorrect: true,
           label:
-            "Tim menguji contoh foto untuk setiap kategori kondisi pada hari tertentu, sedangkan alur lama tetap digunakan pada hari pembanding.",
+            "Pada sesi uji, pencatat memakai contoh foto tambahan, sedangkan pada sesi pembanding mereka hanya memakai deskripsi tertulis lama.",
         },
         {
           isCorrect: false,
           label:
-            "Tim membandingkan hari penggunaan foto contoh untuk setiap kategori kondisi dengan komentar tentang proses lama.",
+            "Tim membandingkan sesi yang memakai contoh foto hanya dengan komentar tentang deskripsi lama.",
         },
       ],
     },

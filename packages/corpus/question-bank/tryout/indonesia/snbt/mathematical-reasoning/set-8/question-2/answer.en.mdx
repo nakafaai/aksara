@@ -2,11 +2,18 @@ export const metadata = {
   title: "Solution to Question 2",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-The cost of <InlineMath math="n" /> tickets is
+Let <InlineMath math="C(n)" /> be the cost of <InlineMath math="n" /> tickets, in thousand rupiah. The number of complete groups of five is <InlineMath math="\lfloor n/5\rfloor" />, so
 
 <BlockMath math="C(n)=12n+18-10\left\lfloor\frac n5\right\rfloor" />
 
-For <InlineMath math="n=13" />, <InlineMath math="C(13)=156+18-20=154" />. For <InlineMath math="n=14" />, the cost is <InlineMath math="168+18-20=166" />, which exceeds the budget. The maximum is **13 tickets**.
+For the two ticket counts near the budget limit:
+
+<MathContainer>
+  <BlockMath math="C(13)=156+18-20=154" />
+  <BlockMath math="C(14)=168+18-20=166" />
+</MathContainer>
+
+Each additional ticket raises the cost by <InlineMath math="12" /> thousand rupiah, or by <InlineMath math="12-10=2" /> thousand rupiah when it completes another group of five. The cost always increases, so every count above <InlineMath math="14" /> also exceeds the budget. The maximum is therefore <InlineMath math="13" /> tickets.

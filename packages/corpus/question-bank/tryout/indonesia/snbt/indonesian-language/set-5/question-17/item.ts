@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kedua sumber merekam perubahan kebutuhan reparasi dari waktu ke waktu; perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
+            "Kedua sumber merekam perubahan kebutuhan reparasi dari waktu ke waktu. Perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
         },
         {
           isCorrect: false,
@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Buku pesanan menunjukkan pola jenis perbaikan lintas waktu, sedangkan wawancara memberi kemungkinan alasan; keduanya saling melengkapi tanpa menjadi bukti yang setara.",
+            "Buku pesanan menunjukkan pola jenis perbaikan lintas waktu, sedangkan wawancara memberi kemungkinan alasan. Keduanya saling melengkapi tanpa menjadi bukti yang setara.",
         },
         {
           isCorrect: false,

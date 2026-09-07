@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The 2.78 V series mean proves that placing two cells in series will produce the same voltage in every circuit.",
+            "The $$2.78\\,\\text{V}$$ series mean proves that placing two cells in series will produce the same voltage in every circuit.",
         },
         {
           isCorrect: false,
@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Under one fixed load, the series mean was 2.78 V compared with 1.46 V and 1.44 V; unmeasured internal resistance and the single load limit broader claims.",
+            "Under one fixed load, the series mean was $$2.78\\,\\text{V}$$ compared with $$1.46\\,\\text{V}$$ and $$1.44\\,\\text{V}$$. Unmeasured internal resistance and the single load limit broader claims.",
         },
         {
           isCorrect: false,

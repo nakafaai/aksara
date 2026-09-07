@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Siswa membandingkan buku pesanan dan sejarah lisan untuk menjelaskan perubahan reparasi tanpa menganggap alasan tiga penjahit sebagai motif semua pelanggan.",
+            "Siswa membandingkan buku pesanan dan sejarah lisan untuk menjelaskan perubahan reparasi tanpa menganggap alasan yang diingat tiga penjahit sebagai motif semua pelanggan.",
         },
         {
           isCorrect: false,
@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Siswa mengutamakan wawancara tahun 2026 karena sumber yang lebih baru selalu memberikan gambaran masa lalu yang lebih lengkap.",
+            "Siswa mengutamakan wawancara tahun $$2026$$ karena sumber yang lebih baru selalu memberikan gambaran masa lalu yang lebih lengkap.",
         },
         {
           isCorrect: false,

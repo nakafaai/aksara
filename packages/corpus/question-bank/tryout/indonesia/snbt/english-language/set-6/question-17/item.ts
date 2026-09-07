@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Miles left one repaired seam visible instead of colouring it to match; the recurring object's physical appearance fixes its complete meaning from the first mention.",
+            "Miles left one repaired seam visible instead of colouring it to match. The recurring object's physical appearance fixes its complete meaning from the first mention.",
         },
         {
           isCorrect: false,
           label:
-            "Miles left one repaired seam visible instead of colouring it to match; the ending states the object's meaning directly, making the earlier actions irrelevant.",
+            "Miles left one repaired seam visible instead of colouring it to match. The ending states the object's meaning directly, making the earlier actions irrelevant.",
         },
         {
           isCorrect: true,
@@ -23,12 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Miles left one repaired seam visible instead of colouring it to match; the setting alone changes the atmosphere, independently of the character's use of the recurring object.",
+            "Miles left one repaired seam visible instead of colouring it to match. The setting alone changes the atmosphere, independently of the character's use of the recurring object.",
         },
         {
           isCorrect: false,
           label:
-            "Miles left one repaired seam visible instead of colouring it to match; the object keeps one fixed meaning even as the character's action and the final response change.",
+            "Miles left one repaired seam visible instead of colouring it to match. The object keeps one fixed meaning even as the character's action and the final response change.",
         },
       ],
     },

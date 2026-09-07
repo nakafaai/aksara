@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Raka menghadapi hambatan dalam menyelesaikan proyek dokumentasi kampung dan memahami empati sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
+            "Raka menghadapi hambatan dalam menyelesaikan proyek dokumentasi kampung dan memahami metakognisi sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
         },
         {
           isCorrect: true,

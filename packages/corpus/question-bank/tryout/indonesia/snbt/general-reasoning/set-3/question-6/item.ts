@@ -7,19 +7,19 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\text{it}$$",
+          label: "it",
         },
         {
           isCorrect: false,
-          label: "$$\\text{pit}$$",
+          label: "pit",
         },
         {
           isCorrect: true,
-          label: "$$\\text{nit}$$",
+          label: "nit",
         },
         {
           isCorrect: false,
-          label: "$$\\text{sit}$$",
+          label: "sit",
         },
         {
           isCorrect: false,
@@ -32,19 +32,19 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\text{it}$$",
+          label: "it",
         },
         {
           isCorrect: false,
-          label: "$$\\text{pit}$$",
+          label: "pit",
         },
         {
           isCorrect: true,
-          label: "$$\\text{nit}$$",
+          label: "nit",
         },
         {
           isCorrect: false,
-          label: "$$\\text{sit}$$",
+          label: "sit",
         },
         {
           isCorrect: false,
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\text{it}$$",
+          label: "it",
         },
         {
           isCorrect: false,
-          label: "$$\\text{pit}$$",
+          label: "pit",
         },
         {
           isCorrect: true,
-          label: "$$\\text{nit}$$",
+          label: "nit",
         },
         {
           isCorrect: false,
-          label: "$$\\text{sit}$$",
+          label: "sit",
         },
         {
           isCorrect: false,
-          label: "tidak ada satupun",
+          label: "tidak ada satu pun",
         },
       ],
     },

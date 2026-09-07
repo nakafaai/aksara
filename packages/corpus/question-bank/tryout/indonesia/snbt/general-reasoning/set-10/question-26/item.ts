@@ -19,11 +19,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$A\\mathbin{/}C$$",
+          label: "$$A$$ und $$C$$ sind gleichauf die besten",
         },
         {
           isCorrect: false,
-          label: "$$B\\mathbin{/}C$$",
+          label: "$$B$$ und $$C$$ sind gleichauf die besten",
         },
       ],
     },
@@ -44,11 +44,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$A\\mathbin{/}C$$",
+          label: "$$A$$ and $$C$$ tie for best",
         },
         {
           isCorrect: false,
-          label: "$$B\\mathbin{/}C$$",
+          label: "$$B$$ and $$C$$ tie for best",
         },
       ],
     },
@@ -69,11 +69,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$A\\mathbin{/}C$$",
+          label: "$$A$$ dan $$C$$ sama-sama terbaik",
         },
         {
           isCorrect: false,
-          label: "$$B\\mathbin{/}C$$",
+          label: "$$B$$ dan $$C$$ sama-sama terbaik",
         },
       ],
     },

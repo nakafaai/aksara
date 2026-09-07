@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Panel paling efektif pada 250 Hz karena nilai 68 dB paling dekat dengan hasil setelah panel dilepas, sehingga perbedaannya paling konsisten.",
+            "Panel paling efektif pada $$250\\,\\text{Hz}$$ karena nilai $$68\\,\\text{dB}$$ paling dekat dengan hasil setelah panel dilepas, sehingga perbedaannya paling konsisten.",
         },
         {
           isCorrect: true,
           label:
-            "Pada 1.000 Hz, selisih antara kondisi berpanel dan dua kondisi tanpa panel paling besar; temuan itu tetap terbatas pada susunan dan ruang yang diuji.",
+            "Pada $$1{.}000\\,\\text{Hz}$$, selisih antara kondisi berpanel dan dua kondisi tanpa panel paling besar. Temuan itu tetap terbatas pada susunan dan ruang yang diuji.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Data 4.000 Hz membuktikan bahwa panel akan menghasilkan penurunan 11 dB di setiap auditorium yang memakai bahan dan ketebalan serupa.",
+            "Data $$4{.}000\\,\\text{Hz}$$ membuktikan bahwa panel akan menghasilkan penurunan $$11\\,\\text{dB}$$ di setiap auditorium yang memakai bahan dan ketebalan serupa.",
         },
       ],
     },

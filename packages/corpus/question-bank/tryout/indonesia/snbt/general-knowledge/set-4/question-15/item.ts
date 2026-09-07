@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Ein Suchsystem kann für die Verwaltung einfach bleiben, ohne öffentliche Informationen zu verarmen.",
+            "Ein Suchsystem kann für die Verwaltung einfach bleiben, ohne den Informationsgehalt für die Öffentlichkeit zu verringern.",
         },
         {
           isCorrect: false,

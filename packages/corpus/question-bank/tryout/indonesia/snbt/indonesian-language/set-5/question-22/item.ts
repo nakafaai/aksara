@@ -13,22 +13,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bima memilih untuk membagi tugas berdasarkan waktu luang dan mencatat alasan setiap perubahan; tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
+            "Bima membagi pekerjaan mencocokkan nomor kotak dan mencetak ulang label sambil mencatat alasan setiap perubahan. Tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
         },
         {
           isCorrect: false,
           label:
-            "Bima memilih untuk membagi tugas berdasarkan waktu luang dan mencatat alasan setiap perubahan; perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
+            "Bima membagi pekerjaan mencocokkan nomor kotak dan mencetak ulang label sambil mencatat alasan setiap perubahan. Perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
         },
         {
           isCorrect: false,
           label:
-            "Bima memilih untuk membagi tugas berdasarkan waktu luang dan mencatat alasan setiap perubahan; latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
+            "Bima membagi pekerjaan mencocokkan nomor kotak dan mencetak ulang label sambil mencatat alasan setiap perubahan. Latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
         },
         {
           isCorrect: false,
           label:
-            "Bima memilih untuk membagi tugas berdasarkan waktu luang dan mencatat alasan setiap perubahan; definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
+            "Bima membagi pekerjaan mencocokkan nomor kotak dan mencetak ulang label sambil mencatat alasan setiap perubahan. Definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
         },
       ],
     },

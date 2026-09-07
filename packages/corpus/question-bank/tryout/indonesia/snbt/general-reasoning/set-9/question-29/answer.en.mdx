@@ -2,9 +2,33 @@ export const metadata = {
   title: "Solution to Question 29",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Of the 66 pairs, 15 are red-red, 36 are mixed, and 15 are blue-blue. One draw has expected value <InlineMath math="[40(15)+20(36)]/66=20" />. A retry occurs with probability <InlineMath math="15/66=5/22" />, giving expected payout <InlineMath math="20+(5/22)(20)=270/11" />. After the entry fee, expected net profit is <InlineMath math="270/11-20=50/11" />.
+The two balls are selected without regard to order. The number of equally likely pairs is:
 
-Therefore, the requested value is <InlineMath math="\\frac{50}{11}" />.
+<BlockMath math="\binom{12}{2}=\frac{12\times11}{2}=66" />
+
+| Pair | Count | Prize |
+| --- | ---: | ---: |
+| Red and red | <InlineMath math="\binom62=15" /> | <InlineMath math="40" /> |
+| Red and blue | <InlineMath math="6\times6=36" /> | <InlineMath math="20" /> |
+| Blue and blue | <InlineMath math="\binom62=15" /> | <InlineMath math="0" /> |
+
+All prizes in the table are in thousand rupiah. Let <InlineMath math="X" /> be the payout from one draw. Its expected value is:
+
+<BlockMath math="\begin{aligned}\mathrm{E}[X]&=\frac{40\times15+20\times36}{66}\\&=\frac{600+720}{66}\\&=20\end{aligned}" />
+
+A retry is awarded only after two blue balls. Its probability is:
+
+<BlockMath math="\frac{15}{66}=\frac5{22}" />
+
+Restoring the box makes the retry’s expected payout <InlineMath math="20" /> again. Add the first draw’s expected payout to the retry’s expected payout weighted by the probability of receiving it:
+
+<BlockMath math="\begin{aligned}20+\frac5{22}\times20&=20+\frac{50}{11}\\&=\frac{270}{11}\end{aligned}" />
+
+The entry fee is paid once. The expected net gain is:
+
+<BlockMath math="\frac{270}{11}-20=\frac{50}{11}" />
+
+Therefore, the expected net gain is **<InlineMath math="50/11" /> thousand rupiah**.
