@@ -30,19 +30,19 @@ The key feature is the **reflection** property. Rays arriving parallel to the ax
       }),
       color: "#9333ea",
       showPoints: false,
-      labels: [{ text: "Parabolic Path", at: 80, offset: [1, 1, 0] }],
+      labels: [{ text: "Parabola", at: 10, offset: [0, 3, 0] }],
     },
     {
       points: [{ x: 0, y: 1.25, z: 0 }], // focus at (0, 1/(4*0.2)) = (0, 1.25)
       color: "#ea580c",
       showPoints: true,
-      labels: [{ text: "Focus", at: 0, offset: [0.5, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="F" />, at: 0, offset: [0.65, 0.5, 0] }],
     },
     {
       points: [{ x: 0, y: 0, z: 0 }], // vertex of parabola
       color: "#0891b2",
       showPoints: true,
-      labels: [{ text: "Vertex", at: 0, offset: [-0.8, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.8, -0.8, 0] }],
     },
     {
       points: Array.from({ length: 2 }, (_, i) => {
@@ -53,7 +53,7 @@ The key feature is the **reflection** property. Rays arriving parallel to the ax
       color: "#d97706",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Directrix", at: 1, offset: [0, -0.5, 0] }],
+      labels: [{ text: "Directrix", at: 1, offset: [0.8, -1, 0] }],
     },
     {
       points: Array.from({ length: 2 }, (_, i) => {
@@ -87,7 +87,6 @@ The key feature is the **reflection** property. Rays arriving parallel to the ax
     },
   ]}
   cameraPosition={[0, 0, 15]}
-  showZAxis={false}
 />
 
 ## Mathematical Definition
@@ -117,7 +116,7 @@ Start with a parabola whose vertex is at the origin <InlineMath math="O(0,0)" />
       }),
       color: "#9333ea",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x^2=4py" />, at: 11, offset: [-3, 2, 0] }],
+      labels: [{ text: <InlineMath math="x^2=4py" />, at: 0, offset: [-2, 2, 0] }],
     },
     {
       smooth: false,
@@ -128,7 +127,7 @@ Start with a parabola whose vertex is at the origin <InlineMath math="O(0,0)" />
       }),
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x^2=-4py" />, at: 50, offset: [3, -2.5, 0] }],
+      labels: [{ text: <InlineMath math="x^2=-4py" />, at: 60, offset: [2, -2, 0] }],
     },
     {
       smooth: false,
@@ -139,7 +138,7 @@ Start with a parabola whose vertex is at the origin <InlineMath math="O(0,0)" />
       }),
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y^2=4px" />, at: 50, offset: [3, 1.5, 0] }],
+      labels: [{ text: <InlineMath math="y^2=4px" />, at: 60, offset: [3, 1, 0] }],
     },
     {
       smooth: false,
@@ -150,13 +149,13 @@ Start with a parabola whose vertex is at the origin <InlineMath math="O(0,0)" />
       }),
       color: "#0d9488",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y^2=-4px" />, at: 11, offset: [-3, -1.5, 0] }],
+      labels: [{ text: <InlineMath math="y^2=-4px" />, at: 0, offset: [-3, -1, 0] }],
     },
     {
       points: [{ x: 0, y: 0, z: 0 }], // vertex of all parabolas at O(0,0)
       color: "#e11d48",
       showPoints: true,
-      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [-0.8, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-1, -1.1, 0] }],
     },
     {
       points: Array.from({ length: 2 }, (_, i) => {
@@ -190,7 +189,6 @@ Start with a parabola whose vertex is at the origin <InlineMath math="O(0,0)" />
     },
   ]}
   cameraPosition={[0, 0, 15]}
-  showZAxis={false}
 />
 
 The two aligned standard equations use a signed parameter <InlineMath math="p" />:
@@ -217,7 +215,7 @@ A parabola does not have to lie at the origin. When its vertex is <InlineMath ma
 
 <LineEquation
   title={<>Parabola <InlineMath math="(x-h)^2 = 4p(y-k)" /> with Vertex <InlineMath math="(h,k)" /></>}
-  description={<>Parabola with vertex at <InlineMath math="(2, 1)" /> and parameter <InlineMath math="p = 0.5" />.</>}
+  description={<>Parabola with vertex <InlineMath math="V(2,1)" />, focus <InlineMath math="F(2,1.5)" />, and parameter <InlineMath math="p = 0.5" />.</>}
   data={[
     {
       smooth: false,
@@ -229,19 +227,19 @@ A parabola does not have to lie at the origin. When its vertex is <InlineMath ma
       }),
       color: "#4f46e5",
       showPoints: false,
-      labels: [{ text: "Parabola", at: 60, offset: [3, 1, 0] }],
+      labels: [{ text: "Parabola", at: 20, offset: [-3, 1, 0] }],
     },
     {
       points: [{ x: 2, y: 1, z: 0 }], // vertex
       color: "#ea580c",
       showPoints: true,
-      labels: [{ text: <>Vertex <InlineMath math="(2,1)" /></>, at: 0, offset: [-1, -0.2, 0] }],
+      labels: [{ text: <InlineMath math="V" />, at: 0, offset: [-0.8, 1.2, 0] }],
     },
     {
       points: [{ x: 2, y: 1.5, z: 0 }], // focus at (h, k+p) = (2, 1+0.5)
       color: "#65a30d",
       showPoints: true,
-      labels: [{ text: <>Focus <InlineMath math="(2,1.5)" /></>, at: 0, offset: [0.5, 1, 0] }],
+      labels: [{ text: <InlineMath math="F" />, at: 0, offset: [0.8, 2.5, 0] }],
     },
     {
       points: Array.from({ length: 2 }, (_, i) => {
@@ -252,7 +250,7 @@ A parabola does not have to lie at the origin. When its vertex is <InlineMath ma
       color: "#d97706",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <>Directrix <InlineMath math="y=0.5" /></>, at: 1, offset: [0, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=0.5" />, at: 1, offset: [1.5, -3, 0] }],
     },
     {
       points: Array.from({ length: 2 }, (_, i) => {
@@ -265,7 +263,7 @@ A parabola does not have to lie at the origin. When its vertex is <InlineMath ma
       showPoints: false,
       smooth: false,
       cone: { position: "both" },
-      labels: [{ text: <>Symmetry axis <InlineMath math="x=2" /></>, at: 1, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="x=2" />, at: 1, offset: [2, 0.8, 0] }],
     },
     {
       points: Array.from({ length: 2 }, (_, i) => {
@@ -299,7 +297,6 @@ A parabola does not have to lie at the origin. When its vertex is <InlineMath ma
     },
   ]}
   cameraPosition={[0, 0, 15]}
-  showZAxis={false}
 />
 
 General form of parabola equations with vertex at <InlineMath math="(h, k)" />:
@@ -359,7 +356,7 @@ The parabola elements are:
 
 <LineEquation
   title={<>Parabola Analysis <InlineMath math="(x-2)^2 = 8(y-1)" /></>}
-  description={<>Identifying vertex <InlineMath math="(2,1)" />, focus <InlineMath math="(2,3)" />, directrix <InlineMath math="y = -1" />, and <InlineMath math="p = 2" />.</>}
+  description={<>Identifying vertex <InlineMath math="V(2,1)" />, focus <InlineMath math="F(2,3)" />, directrix <InlineMath math="y = -1" />, and <InlineMath math="p = 2" />.</>}
   data={[
     {
       smooth: false,
@@ -371,19 +368,19 @@ The parabola elements are:
       }),
       color: "#7c3aed",
       showPoints: false,
-      labels: [{ text: <InlineMath math="(x-2)^2=8(y-1)" />, at: 60, offset: [2, 1.5, 0] }],
+      labels: [{ text: "Parabola", at: 8, offset: [-2, 1.5, 0] }],
     },
     {
       points: [{ x: 2, y: 1, z: 0 }], // vertex (h,k)
       color: "#ea580c",
       showPoints: true,
-      labels: [{ text: <>Vertex <InlineMath math="(2,1)" /></>, at: 0, offset: [-1, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="V" />, at: 0, offset: [-0.75, 1.2, 0] }],
     },
     {
       points: [{ x: 2, y: 3, z: 0 }], // focus (h, k+p) = (2, 1+2)
       color: "#65a30d",
       showPoints: true,
-      labels: [{ text: <>Focus <InlineMath math="(2,3)" /></>, at: 0, offset: [0.8, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="F" />, at: 0, offset: [1, 0.5, 0] }],
     },
     {
       points: Array.from({ length: 2 }, (_, i) => {
@@ -394,7 +391,7 @@ The parabola elements are:
       color: "#d97706",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <>Directrix <InlineMath math="y=-1" /></>, at: 1, offset: [0, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=-1" />, at: 1, offset: [0.8, -1, 0] }],
     },
     {
       points: Array.from({ length: 2 }, (_, i) => {
@@ -407,7 +404,7 @@ The parabola elements are:
       showPoints: false,
       smooth: false,
       cone: { position: "both" },
-      labels: [{ text: <>Symmetry axis <InlineMath math="x=2" /></>, at: 1, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="x=2" />, at: 1, offset: [1.5, 0.7, 0] }],
     },
     {
       points: Array.from({ length: 2 }, (_, i) => {
@@ -441,7 +438,6 @@ The parabola elements are:
     },
   ]}
   cameraPosition={[0, 0, 15]}
-  showZAxis={false}
 />
 
 From this analysis we obtain:

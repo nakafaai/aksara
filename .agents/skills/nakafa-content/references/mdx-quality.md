@@ -280,6 +280,10 @@ For assessed content, also apply the
 - Keep the default full `CoordinateSystem` grid. Authored frames have no grid
   override. Their ranges bound mathematical objects and clipping; they must not
   shrink the shared grid.
+- Reserve red `#dc2626`, green `#16a34a`, and blue `#2563eb` for the Cartesian
+  X, Y, and Z axes respectively. Use other colors for mathematical subject
+  objects, and keep each label the same color as its owning object. Keep
+  authored color descriptions consistent with the rendered scene.
 - Every `MathVisual` label names its owning object's `objectId`. Its color comes
   from that object's appearance, matching `LineEquation` lesson labels. Never
   duplicate a label color or infer its owner from visual proximity.

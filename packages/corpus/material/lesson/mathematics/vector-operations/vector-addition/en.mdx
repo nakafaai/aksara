@@ -25,6 +25,7 @@ In the triangle method, arrange the vectors in sequence:
 
 <ContentBlock>
   <Vector3d
+    cameraPosition={[0, 0, 12]}
     title="Vector Addition Using the Triangle Method"
     description={<>Triangle method for adding vector <InlineMath math="\vec{a}" /> and vector <InlineMath math="\vec{b}" />.</>}
     vectors={[
@@ -32,21 +33,24 @@ In the triangle method, arrange the vectors in sequence:
         from: [0, 0, 0],
         to: [4, 1, 0],
         color: "#e11d48",
-        label: <>vector <InlineMath math="a" /></>,
+        label: <InlineMath math="a" />,
+        labelOffset: [0.4, -0.45, 0],
         labelPosition: "end",
       },
       {
         from: [4, 1, 0],
         to: [6, 4, 0],
         color: "#0d9488",
-        label: <>vector <InlineMath math="b" /></>,
+        label: <InlineMath math="b" />,
+        labelOffset: [0.6, -0.2, 0],
         labelPosition: "middle",
       },
       {
         from: [0, 0, 0],
         to: [6, 4, 0],
         color: "#65a30d",
-        label: <>vector <InlineMath math="a+b" /></>,
+        label: <InlineMath math="a+b" />,
+        labelOffset: [-0.2, 0.65, 0],
         labelPosition: "end",
       },
     ]}
@@ -71,6 +75,7 @@ Another method for adding vectors is the parallelogram method. The steps are:
 
 <ContentBlock>
   <Vector3d
+    cameraPosition={[0, 0, 12]}
     title="Vector Addition Using the Parallelogram Method"
     description={<>Parallelogram method for adding vector <InlineMath math="\vec{a}" /> and vector <InlineMath math="\vec{b}" />.</>}
     vectors={[
@@ -78,39 +83,44 @@ Another method for adding vectors is the parallelogram method. The steps are:
         from: [0, 0, 0],
         to: [5, 1, 0],
         color: "#e11d48",
-        label: <>vector <InlineMath math="a" /></>,
+        label: <InlineMath math="a" />,
+        labelOffset: [0.4, -0.4, 0],
         labelPosition: "end",
       },
       {
         from: [0, 0, 0],
         to: [2, 5, 0],
         color: "#0d9488",
-        label: <>vector <InlineMath math="b" /></>,
+        label: <InlineMath math="b" />,
+        labelOffset: [-1.4, 0.1, 0],
+        labelAnchorX: "right",
         labelPosition: "middle",
       },
       {
         from: [5, 1, 0],
         to: [7, 6, 0],
         color: "#0d9488",
-        label: <>vector <InlineMath math="b" /></>,
+        label: <InlineMath math="b" />,
+        labelOffset: [0.6, -0.2, 0],
         labelPosition: "middle",
       },
       {
         from: [2, 5, 0],
         to: [7, 6, 0],
         color: "#e11d48",
-        label: <>vector <InlineMath math="a" /></>,
+        label: <InlineMath math="a" />,
+        labelOffset: [0, 0.7, 0],
         labelPosition: "start",
       },
       {
         from: [0, 0, 0],
         to: [7, 6, 0],
         color: "#65a30d",
-        label: <InlineMath math="a+b=b+a" />,
+        label: <InlineMath math="a+b" />,
+        labelOffset: [0.5, 0.6, 0],
         labelPosition: "end",
       },
     ]}
-    cameraPosition={[12, 8, 12]}
   />
 </ContentBlock>
 
@@ -121,6 +131,7 @@ This method also satisfies the **commutative property**, so the order of additio
 To add more than two vectors, we can use the polygon method. The principle is that the tip of the previous vector meets the tail of the next vector. The resultant vector connects the tail of the first vector to the tip of the last vector.
 
 <Vector3d
+  cameraPosition={[10, 8, -10]}
   title="Adding Three Vectors Using the Polygon Method"
   description={
     <>
@@ -133,32 +144,35 @@ To add more than two vectors, we can use the polygon method. The principle is th
       from: [0, 0, 0],
       to: [3, 1, 0],
       color: "#e11d48",
-      label: <>vector <InlineMath math="a" /></>,
+      label: <InlineMath math="a" />,
+      labelOffset: [0, 0.8, 0],
       labelPosition: "end",
     },
     {
       from: [3, 1, 0],
       to: [5, 4, 0],
       color: "#0d9488",
-      label: <>vector <InlineMath math="b" /></>,
+      label: <InlineMath math="b" />,
+      labelOffset: [0, 0.8, 0],
       labelPosition: "middle",
     },
     {
       from: [5, 4, 0],
       to: [7, 3, 2],
       color: "#65a30d",
-      label: <>vector <InlineMath math="c" /></>,
+      label: <InlineMath math="c" />,
+      labelOffset: [0, 0.8, 0],
       labelPosition: "middle",
     },
     {
       from: [0, 0, 0],
       to: [7, 3, 2],
       color: "#ea580c",
-      label: <>vector <InlineMath math="a+b+c" /></>,
+      label: <InlineMath math="a+b+c" />,
+      labelOffset: [0, -1.4, 0],
       labelPosition: "end",
     },
   ]}
-  cameraPosition={[12, 8, 12]}
 />
 
 Vector addition using the polygon method also satisfies the associative property:
@@ -172,6 +186,7 @@ To add three vectors using the parallelogram method, we can:
 
 <ContentBlock>
   <Vector3d
+    cameraPosition={[10, 8, -10]}
     title="Associative Property of Vector Addition"
     description={
       <>
@@ -184,6 +199,7 @@ To add three vectors using the parallelogram method, we can:
         to: [3, 1, 0],
         color: "#e11d48",
         label: <InlineMath math="A" />,
+        labelOffset: [0.85, -0.3, 0.85],
         labelPosition: "end",
       },
       {
@@ -191,6 +207,7 @@ To add three vectors using the parallelogram method, we can:
         to: [1, 3, 0],
         color: "#0d9488",
         label: <InlineMath math="B" />,
+        labelOffset: [-0.85, 0.3, -0.85],
         labelPosition: "end",
       },
       {
@@ -198,6 +215,7 @@ To add three vectors using the parallelogram method, we can:
         to: [0, 1, 3],
         color: "#65a30d",
         label: <InlineMath math="C" />,
+        labelOffset: [0, -1.4, 0],
         labelPosition: "end",
       },
       {
@@ -205,13 +223,15 @@ To add three vectors using the parallelogram method, we can:
         to: [1, 4, 3],
         color: "#65a30d",
         label: <InlineMath math="C" />,
-        labelPosition: "end",
+        labelOffset: [-0.28, 0.9, -0.28],
+        labelPosition: "middle",
       },
       {
         from: [0, 0, 0],
         to: [1, 4, 3],
         color: "#ea580c",
         label: <InlineMath math="B+C" />,
+        labelOffset: [0, 0.6, 0],
         labelPosition: "middle",
       },
       {
@@ -219,6 +239,7 @@ To add three vectors using the parallelogram method, we can:
         to: [4, 4, 0],
         color: "#7c3aed",
         label: <InlineMath math="A+B" />,
+        labelOffset: [0, -0.8, 0],
         labelPosition: "middle",
       },
       {
@@ -226,6 +247,7 @@ To add three vectors using the parallelogram method, we can:
         to: [4, 5, 3],
         color: "#65a30d",
         label: <InlineMath math="C" />,
+        labelOffset: [0, 0.7, 0],
         labelPosition: "middle",
       },
       {
@@ -233,17 +255,18 @@ To add three vectors using the parallelogram method, we can:
         to: [4, 5, 3],
         color: "#ea580c",
         label: <InlineMath math="B+C" />,
+        labelOffset: [0, -0.7, 0],
         labelPosition: "middle",
       },
       {
         from: [0, 0, 0],
         to: [4, 5, 3],
         color: "#db2777",
-        label: <InlineMath math="\begin{gathered}A+(B+C)\\=(A+B)+C\end{gathered}" />,
+        label: <InlineMath math="A+B+C" />,
+        labelOffset: [0, 0.9, 0],
         labelPosition: "end",
       },
     ]}
-    cameraPosition={[10, 7, 10]}
   />
 </ContentBlock>
 
@@ -252,6 +275,7 @@ To add three vectors using the parallelogram method, we can:
 Besides graphical methods, vectors can also be added by their components. In a coordinate system, each vector can be expressed in terms of its components.
 
 <Vector3d
+  cameraPosition={[10, 8, -10]}
   title="Vector Addition by Components"
   description={
     <>
@@ -264,7 +288,8 @@ Besides graphical methods, vectors can also be added by their components. In a c
       from: [0, 0, 0],
       to: [3, 2, 1],
       color: "#e11d48",
-      label: <>vector <InlineMath math="a" /></>,
+      label: <InlineMath math="a" />,
+      labelOffset: [0, 0.7, 0],
       labelPosition: "end",
     },
     {
@@ -272,6 +297,7 @@ Besides graphical methods, vectors can also be added by their components. In a c
       to: [3, 0, 0],
       color: "#0d9488",
       label: <InlineMath math="a_x" />,
+      labelOffset: [0, -1, 0],
       labelPosition: "end",
     },
     {
@@ -279,6 +305,8 @@ Besides graphical methods, vectors can also be added by their components. In a c
       to: [0, 2, 0],
       color: "#65a30d",
       label: <InlineMath math="a_y" />,
+      labelOffset: [0.4, 0.5, 0.4],
+      labelAnchorX: "right",
       labelPosition: "end",
     },
     {
@@ -286,13 +314,16 @@ Besides graphical methods, vectors can also be added by their components. In a c
       to: [0, 0, 1],
       color: "#ea580c",
       label: <InlineMath math="a_z" />,
+      labelOffset: [0.3, -0.6, 0.3],
+      labelAnchorX: "right",
       labelPosition: "end",
     },
     {
       from: [0, 0, 0],
       to: [2, 4, 2],
       color: "#db2777",
-      label: <>vector <InlineMath math="b" /></>,
+      label: <InlineMath math="b" />,
+      labelOffset: [0, 0.7, 0],
       labelPosition: "end",
     },
     {
@@ -300,10 +331,10 @@ Besides graphical methods, vectors can also be added by their components. In a c
       to: [5, 6, 3],
       color: "#c026d3",
       label: <InlineMath math="a+b" />,
+      labelOffset: [0, 0.9, 0],
       labelPosition: "end",
     },
   ]}
-  cameraPosition={[9, 8, 9]}
 />
 
 If <InlineMath math="\vec{a} = (a_x, a_y)" /> and <InlineMath math="\vec{b} = (b_x, b_y)" />, then:
@@ -325,32 +356,36 @@ Vector addition can determine the velocity of a boat crossing a river:
 
 <ContentBlock>
   <Vector3d
+    cameraPosition={[0, 0, 12]}
     title="Application of Vector Addition: Boat Crossing a River"
-    description="Resultant of boat velocity vector and river current vector."
+    description={<>Resultant <InlineMath math="v_R" /> of boat velocity <InlineMath math="v_B" /> and river current <InlineMath math="v_F" />.</>}
     vectors={[
       {
         from: [0, 0, 0],
         to: [0, 4, 0],
         color: "#0d9488",
-        label: "boat velocity",
+        label: <InlineMath math="v_B" />,
+        labelOffset: [-0.8, 0.2, 0],
+        labelAnchorX: "right",
         labelPosition: "middle",
       },
       {
         from: [0, 0, 0],
         to: [3, 0, 0],
         color: "#65a30d",
-        label: "river current",
+        label: <InlineMath math="v_F" />,
+        labelOffset: [0.5, -0.6, 0],
         labelPosition: "end",
       },
       {
         from: [0, 0, 0],
         to: [3, 4, 0],
         color: "#e11d48",
-        label: "resultant",
+        label: <InlineMath math="v_R" />,
+        labelOffset: [0.5, 0.6, 0],
         labelPosition: "end",
       },
     ]}
-    cameraPosition={[8, 6, 8]}
   />
 </ContentBlock>
 

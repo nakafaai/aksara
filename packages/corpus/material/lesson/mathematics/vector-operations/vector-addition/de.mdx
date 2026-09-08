@@ -25,6 +25,7 @@ Bei der Dreiecksmethode werden die Vektorpfeile hintereinander angeordnet:
 
 <ContentBlock>
   <Vector3d
+    cameraPosition={[0, 0, 12]}
     title="Vektoraddition mit der Dreiecksmethode"
     description={<>Dreiecksmethode zur Addition der Vektoren <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" />.</>}
     vectors={[
@@ -32,21 +33,24 @@ Bei der Dreiecksmethode werden die Vektorpfeile hintereinander angeordnet:
         from: [0, 0, 0],
         to: [4, 1, 0],
         color: "#e11d48",
-        label: <>Vektor <InlineMath math="a" /></>,
+        label: <InlineMath math="a" />,
+        labelOffset: [0.4, -0.45, 0],
         labelPosition: "end",
       },
       {
         from: [4, 1, 0],
         to: [6, 4, 0],
         color: "#0d9488",
-        label: <>Vektor <InlineMath math="b" /></>,
+        label: <InlineMath math="b" />,
+        labelOffset: [0.6, -0.2, 0],
         labelPosition: "middle",
       },
       {
         from: [0, 0, 0],
         to: [6, 4, 0],
         color: "#65a30d",
-        label: <>Vektor <InlineMath math="a+b" /></>,
+        label: <InlineMath math="a+b" />,
+        labelOffset: [-0.2, 0.65, 0],
         labelPosition: "end",
       },
     ]}
@@ -71,6 +75,7 @@ Beim Parallelogrammverfahren beginnen beide Vektoren am selben Punkt:
 
 <ContentBlock>
   <Vector3d
+    cameraPosition={[0, 0, 12]}
     title="Vektoraddition mit der Parallelogrammmethode"
     description={<>Parallelogrammverfahren zur Addition der Vektoren <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" />.</>}
     vectors={[
@@ -78,39 +83,44 @@ Beim Parallelogrammverfahren beginnen beide Vektoren am selben Punkt:
         from: [0, 0, 0],
         to: [5, 1, 0],
         color: "#e11d48",
-        label: <>Vektor <InlineMath math="a" /></>,
+        label: <InlineMath math="a" />,
+        labelOffset: [0.4, -0.4, 0],
         labelPosition: "end",
       },
       {
         from: [0, 0, 0],
         to: [2, 5, 0],
         color: "#0d9488",
-        label: <>Vektor <InlineMath math="b" /></>,
+        label: <InlineMath math="b" />,
+        labelOffset: [-1.4, 0.1, 0],
+        labelAnchorX: "right",
         labelPosition: "middle",
       },
       {
         from: [5, 1, 0],
         to: [7, 6, 0],
         color: "#0d9488",
-        label: <>Vektor <InlineMath math="b" /></>,
+        label: <InlineMath math="b" />,
+        labelOffset: [0.6, -0.2, 0],
         labelPosition: "middle",
       },
       {
         from: [2, 5, 0],
         to: [7, 6, 0],
         color: "#e11d48",
-        label: <>Vektor <InlineMath math="a" /></>,
+        label: <InlineMath math="a" />,
+        labelOffset: [0, 0.7, 0],
         labelPosition: "start",
       },
       {
         from: [0, 0, 0],
         to: [7, 6, 0],
         color: "#65a30d",
-        label: <InlineMath math="a+b=b+a" />,
+        label: <InlineMath math="a+b" />,
+        labelOffset: [0.5, 0.6, 0],
         labelPosition: "end",
       },
     ]}
-    cameraPosition={[12, 8, 12]}
   />
 </ContentBlock>
 
@@ -121,6 +131,7 @@ Die gemeinsame Diagonale zeigt auch die **Kommutativität**: Die Reihenfolge der
 Mit dem Polygonverfahren lassen sich mehr als zwei Vektoren addieren. Dabei beginnt jeder neue Vektor an der Spitze des vorherigen. Die Resultierende verbindet den Anfangspunkt des ersten mit der Spitze des letzten Vektors.
 
 <Vector3d
+  cameraPosition={[10, 8, -10]}
   title="Drei Vektoren mit dem Polygonverfahren addieren"
   description={
     <>
@@ -133,32 +144,35 @@ Mit dem Polygonverfahren lassen sich mehr als zwei Vektoren addieren. Dabei begi
       from: [0, 0, 0],
       to: [3, 1, 0],
       color: "#e11d48",
-      label: <>Vektor <InlineMath math="a" /></>,
+      label: <InlineMath math="a" />,
+      labelOffset: [0, 0.8, 0],
       labelPosition: "end",
     },
     {
       from: [3, 1, 0],
       to: [5, 4, 0],
       color: "#0d9488",
-      label: <>Vektor <InlineMath math="b" /></>,
+      label: <InlineMath math="b" />,
+      labelOffset: [0, 0.8, 0],
       labelPosition: "middle",
     },
     {
       from: [5, 4, 0],
       to: [7, 3, 2],
       color: "#65a30d",
-      label: <>Vektor <InlineMath math="c" /></>,
+      label: <InlineMath math="c" />,
+      labelOffset: [0, 0.8, 0],
       labelPosition: "middle",
     },
     {
       from: [0, 0, 0],
       to: [7, 3, 2],
       color: "#ea580c",
-      label: <>Vektor <InlineMath math="a+b+c" /></>,
+      label: <InlineMath math="a+b+c" />,
+      labelOffset: [0, -1.4, 0],
       labelPosition: "end",
     },
   ]}
-  cameraPosition={[12, 8, 12]}
 />
 
 Die Vektoraddition ist außerdem assoziativ:
@@ -172,6 +186,7 @@ Auch das Parallelogrammverfahren kann schrittweise auf drei Vektoren angewendet 
 
 <ContentBlock>
   <Vector3d
+    cameraPosition={[10, 8, -10]}
     title="Assoziative Eigenschaft der Vektoraddition"
     description={
       <>
@@ -184,6 +199,7 @@ Auch das Parallelogrammverfahren kann schrittweise auf drei Vektoren angewendet 
         to: [3, 1, 0],
         color: "#e11d48",
         label: <InlineMath math="A" />,
+        labelOffset: [0.85, -0.3, 0.85],
         labelPosition: "end",
       },
       {
@@ -191,6 +207,7 @@ Auch das Parallelogrammverfahren kann schrittweise auf drei Vektoren angewendet 
         to: [1, 3, 0],
         color: "#0d9488",
         label: <InlineMath math="B" />,
+        labelOffset: [-0.85, 0.3, -0.85],
         labelPosition: "end",
       },
       {
@@ -198,6 +215,7 @@ Auch das Parallelogrammverfahren kann schrittweise auf drei Vektoren angewendet 
         to: [0, 1, 3],
         color: "#65a30d",
         label: <InlineMath math="C" />,
+        labelOffset: [0, -1.4, 0],
         labelPosition: "end",
       },
       {
@@ -205,13 +223,15 @@ Auch das Parallelogrammverfahren kann schrittweise auf drei Vektoren angewendet 
         to: [1, 4, 3],
         color: "#65a30d",
         label: <InlineMath math="C" />,
-        labelPosition: "end",
+        labelOffset: [-0.28, 0.9, -0.28],
+        labelPosition: "middle",
       },
       {
         from: [0, 0, 0],
         to: [1, 4, 3],
         color: "#ea580c",
         label: <InlineMath math="B+C" />,
+        labelOffset: [0, 0.6, 0],
         labelPosition: "middle",
       },
       {
@@ -219,6 +239,7 @@ Auch das Parallelogrammverfahren kann schrittweise auf drei Vektoren angewendet 
         to: [4, 4, 0],
         color: "#7c3aed",
         label: <InlineMath math="A+B" />,
+        labelOffset: [0, -0.8, 0],
         labelPosition: "middle",
       },
       {
@@ -226,6 +247,7 @@ Auch das Parallelogrammverfahren kann schrittweise auf drei Vektoren angewendet 
         to: [4, 5, 3],
         color: "#65a30d",
         label: <InlineMath math="C" />,
+        labelOffset: [0, 0.7, 0],
         labelPosition: "middle",
       },
       {
@@ -233,17 +255,18 @@ Auch das Parallelogrammverfahren kann schrittweise auf drei Vektoren angewendet 
         to: [4, 5, 3],
         color: "#ea580c",
         label: <InlineMath math="B+C" />,
+        labelOffset: [0, -0.7, 0],
         labelPosition: "middle",
       },
       {
         from: [0, 0, 0],
         to: [4, 5, 3],
         color: "#db2777",
-        label: <InlineMath math="\begin{gathered}A+(B+C)\\=(A+B)+C\end{gathered}" />,
+        label: <InlineMath math="A+B+C" />,
+        labelOffset: [0, 0.9, 0],
         labelPosition: "end",
       },
     ]}
-    cameraPosition={[10, 7, 10]}
   />
 </ContentBlock>
 
@@ -252,6 +275,7 @@ Auch das Parallelogrammverfahren kann schrittweise auf drei Vektoren angewendet 
 Neben den grafischen Verfahren können wir Vektoren komponentenweise addieren. In einem Koordinatensystem wird dabei jede Achsenkomponente getrennt verrechnet.
 
 <Vector3d
+  cameraPosition={[10, 8, -10]}
   title="Vektoraddition mit Komponenten"
   description={
     <>
@@ -264,7 +288,8 @@ Neben den grafischen Verfahren können wir Vektoren komponentenweise addieren. I
       from: [0, 0, 0],
       to: [3, 2, 1],
       color: "#e11d48",
-      label: <>Vektor <InlineMath math="a" /></>,
+      label: <InlineMath math="a" />,
+      labelOffset: [0, 0.7, 0],
       labelPosition: "end",
     },
     {
@@ -272,6 +297,7 @@ Neben den grafischen Verfahren können wir Vektoren komponentenweise addieren. I
       to: [3, 0, 0],
       color: "#0d9488",
       label: <InlineMath math="a_x" />,
+      labelOffset: [0, -1, 0],
       labelPosition: "end",
     },
     {
@@ -279,6 +305,8 @@ Neben den grafischen Verfahren können wir Vektoren komponentenweise addieren. I
       to: [0, 2, 0],
       color: "#65a30d",
       label: <InlineMath math="a_y" />,
+      labelOffset: [0.4, 0.5, 0.4],
+      labelAnchorX: "right",
       labelPosition: "end",
     },
     {
@@ -286,13 +314,16 @@ Neben den grafischen Verfahren können wir Vektoren komponentenweise addieren. I
       to: [0, 0, 1],
       color: "#ea580c",
       label: <InlineMath math="a_z" />,
+      labelOffset: [0.3, -0.6, 0.3],
+      labelAnchorX: "right",
       labelPosition: "end",
     },
     {
       from: [0, 0, 0],
       to: [2, 4, 2],
       color: "#db2777",
-      label: <>Vektor <InlineMath math="b" /></>,
+      label: <InlineMath math="b" />,
+      labelOffset: [0, 0.7, 0],
       labelPosition: "end",
     },
     {
@@ -300,10 +331,10 @@ Neben den grafischen Verfahren können wir Vektoren komponentenweise addieren. I
       to: [5, 6, 3],
       color: "#c026d3",
       label: <InlineMath math="a+b" />,
+      labelOffset: [0, 0.9, 0],
       labelPosition: "end",
     },
   ]}
-  cameraPosition={[9, 8, 9]}
 />
 
 Für <InlineMath math="\vec{a} = (a_x, a_y)" /> und <InlineMath math="\vec{b} = (b_x, b_y)" /> gilt:
@@ -325,32 +356,36 @@ Beim Überqueren eines Flusses überlagern sich die Fahrt des Bootes und die Str
 
 <ContentBlock>
   <Vector3d
+    cameraPosition={[0, 0, 12]}
     title="Anwendung der Vektoraddition: Boot überquert einen Fluss"
-    description="Resultierende aus Bootsgeschwindigkeitsvektor und Flussströmungsvektor."
+    description={<>Resultierende Geschwindigkeit <InlineMath math="v_R" /> aus Bootsgeschwindigkeit <InlineMath math="v_B" /> und Flussströmung <InlineMath math="v_F" />.</>}
     vectors={[
       {
         from: [0, 0, 0],
         to: [0, 4, 0],
         color: "#0d9488",
-        label: "Bootsgeschwindigkeit",
+        label: <InlineMath math="v_B" />,
+        labelOffset: [-0.8, 0.2, 0],
+        labelAnchorX: "right",
         labelPosition: "middle",
       },
       {
         from: [0, 0, 0],
         to: [3, 0, 0],
         color: "#65a30d",
-        label: "Flussströmung",
+        label: <InlineMath math="v_F" />,
+        labelOffset: [0.5, -0.6, 0],
         labelPosition: "end",
       },
       {
         from: [0, 0, 0],
         to: [3, 4, 0],
         color: "#e11d48",
-        label: "Resultierende",
+        label: <InlineMath math="v_R" />,
+        labelOffset: [0.5, 0.6, 0],
         labelPosition: "end",
       },
     ]}
-    cameraPosition={[8, 6, 8]}
   />
 </ContentBlock>
 
