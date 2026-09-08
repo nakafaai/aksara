@@ -137,7 +137,6 @@ function labelViolation(label: string) {
     );
     if (node.type === "text") {
       if (parent?.type === "link" && parent.url === node.value) {
-        visibleText = "";
         return;
       }
       // Removed formatting markers must not create a new delimiter.
@@ -146,11 +145,7 @@ function labelViolation(label: string) {
         reason = "syntax";
         return EXIT;
       }
-    } else if (
-      node.type === "code" ||
-      node.type === "inlineCode" ||
-      node.type === "inlineMath"
-    ) {
+    } else if (node.type === "code" || node.type === "inlineCode") {
       visibleText = "";
     }
     reason = nodeViolation(node, raw);

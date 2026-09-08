@@ -61,6 +61,12 @@ describe("question label source validation", () => {
     { label: "\\(*x*\\)", reason: "syntax" },
     { label: "\\[**x**\\]", reason: "syntax" },
     { label: "\\([x](https://example.org)\\)", reason: "syntax" },
+    { label: "\\(<https://example.org>\\)", reason: "syntax" },
+    {
+      label: "\\([https://example.org](https://example.org)\\)",
+      reason: "syntax",
+    },
+    { label: "\\($$x$$\\)", reason: "syntax" },
     { label: "\\(\n\n*x*\n\n\\)", reason: "syntax" },
     { label: "`$x$`", reason: "syntax" },
     { label: "`$$50%$$`", reason: "syntax" },
