@@ -1,7 +1,7 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import type { QuestionItem } from "@nakafa/aksara-contracts/question/item";
 import { Effect, Schema } from "effect";
-import type { InlineCode, Nodes, Parents, Text } from "mdast";
+import type { InlineCode, Nodes, Text } from "mdast";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
@@ -62,23 +62,19 @@ function hasEmbeddedCodeMath(code: string) {
 /** Inspects visible text and inline code before renderer preprocessing. */
 function textViolation(
   node: Text | InlineCode,
-  raw: string,
-  parent: Parents | undefined
+  raw: string
 ): QuestionLabelError["reason"] | undefined {
   if (
-    ALTERNATE_MATH_DELIMITER.test(raw) ||
     MATH_COMPONENT.test(raw) ||
     (node.type === "inlineCode" &&
-      (WRAPPED_CODE_MATH.test(node.value) ||
+      (ALTERNATE_MATH_DELIMITER.test(raw) ||
+        WRAPPED_CODE_MATH.test(node.value) ||
         hasEmbeddedCodeMath(node.value) ||
         BACKTICK_MATH_FENCE.test(raw)))
   ) {
     return "syntax";
   }
   if (node.type === "inlineCode" || !node.value.includes("$")) {
-    return;
-  }
-  if (parent?.type === "link" && parent.url === node.value) {
     return;
   }
   const visibleDollars = node.value.split("$").length - 1;
@@ -91,13 +87,8 @@ function textViolation(
 /** Classifies one Markdown node against the authored response syntax. */
 function nodeViolation(
   node: Nodes,
-  label: string,
-  parent: Parents | undefined
+  raw: string
 ): QuestionLabelError["reason"] | undefined {
-  const raw = label.slice(
-    node.position?.start.offset,
-    node.position?.end.offset
-  );
   if (node.type === "math") {
     return "display";
   }
@@ -124,7 +115,7 @@ function nodeViolation(
     return "syntax";
   }
   if (node.type === "text" || node.type === "inlineCode") {
-    return textViolation(node, raw, parent);
+    return textViolation(node, raw);
   }
 }
 
@@ -138,8 +129,26 @@ function labelViolation(label: string) {
   }
   const tree = markdown.parse(label);
   let reason: QuestionLabelError["reason"] | undefined;
+  let visibleText = "";
   visit(tree, (node, _index, parent) => {
-    reason = nodeViolation(node, label, parent);
+    const raw = label.slice(
+      node.position?.start.offset,
+      node.position?.end.offset
+    );
+    if (node.type === "text") {
+      if (parent?.type === "link" && parent.url === node.value) {
+        return;
+      }
+      // Removed formatting markers must not create a new delimiter.
+      visibleText += `\n${raw}`;
+      if (ALTERNATE_MATH_DELIMITER.test(visibleText)) {
+        reason = "syntax";
+        return EXIT;
+      }
+    } else if (node.type === "code" || node.type === "inlineCode") {
+      visibleText = "";
+    }
+    reason = nodeViolation(node, raw);
     if (reason !== undefined) {
       return EXIT;
     }

@@ -31,6 +31,7 @@ describe("question label source validation", () => {
     "$$52{,}3\\%$$",
     "The prose reports 50% participation.",
     "**One** option with *emphasis*.",
+    "The escape \\\\**(x**\\\\) stays literal.",
     "The price is \\$5.",
     "The prices are \\$5 and \\$6.",
     "The code is `$value`.",
@@ -45,6 +46,9 @@ describe("question label source validation", () => {
     '```typescript\nconst formula = "<InlineMath math=\\"50%\\" />";\n```',
     "[Reference](https://example.org/$value)",
     "https://example.org/$value",
+    "[Reference](https://example.org/\\(x\\))",
+    "<https://example.org/\\(x\\)>",
+    "Opening \\(\n\n```text\nexample\n```\n\nclosing \\)",
   ])("preserves inline math and protected Markdown in %s", (label) =>
     validateQuestionLabels(choice(label), sourcePath)
   );
@@ -54,6 +58,16 @@ describe("question label source validation", () => {
     { label: "$$52{,}3%$$", reason: "comment" },
     { label: "\\[x=4\\]", reason: "syntax" },
     { label: "\\(50%\\)", reason: "syntax" },
+    { label: "\\(*x*\\)", reason: "syntax" },
+    { label: "\\[**x**\\]", reason: "syntax" },
+    { label: "\\([x](https://example.org)\\)", reason: "syntax" },
+    { label: "\\(<https://example.org>\\)", reason: "syntax" },
+    {
+      label: "\\([https://example.org](https://example.org)\\)",
+      reason: "syntax",
+    },
+    { label: "\\($$x$$\\)", reason: "syntax" },
+    { label: "\\(\n\n*x*\n\n\\)", reason: "syntax" },
     { label: "`$x$`", reason: "syntax" },
     { label: "`$$50%$$`", reason: "syntax" },
     { label: "`const x = $x=50%$`", reason: "syntax" },
