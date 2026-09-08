@@ -161,7 +161,7 @@ Untuk menjumlahkan lebih dari dua vektor, kita dapat menggunakan metode poligon.
       to: [7, 3, 2],
       color: "#65a30d",
       label: <InlineMath math="c" />,
-      labelOffset: [0, 0.8, 0],
+      labelOffset: [0, -0.5, 0],
       labelPosition: "middle",
     },
     {
@@ -184,15 +184,13 @@ Untuk menjumlahkan tiga vektor dengan metode jajar genjang, kita dapat:
 1. Jumlahkan dua vektor terlebih dahulu untuk mendapatkan resultan <InlineMath math="R_1" />
 2. Jumlahkan <InlineMath math="R_1" /> dengan vektor ketiga untuk mendapatkan resultan akhir <InlineMath math="R_2" />
 
+Untuk kedua gambar berikut, gunakan <InlineMath math="A=(3,1,0)" />, <InlineMath math="B=(1,3,0)" />, dan <InlineMath math="C=(0,1,3)" />. Resultan sementaranya adalah <InlineMath math="B+C=(1,4,3)" /> dan <InlineMath math="A+B=(4,4,0)" />. Kedua pengelompokan menghasilkan <InlineMath math="A+B+C=(4,5,3)" />.
+
 <ContentBlock>
   <Vector3d
     cameraPosition={[10, 8, -10]}
-    title="Sifat Asosiatif Penjumlahan Vektor"
-    description={
-      <>
-        <InlineMath math="A + (B + C) = (A + B) + C" />
-      </>
-    }
+    title="Jumlahkan B dan C Terlebih Dahulu"
+    description={<>Vektor <InlineMath math="B+C" /> berawal di ujung <InlineMath math="A" /> dan mencapai titik akhir penjumlahan.</>}
     vectors={[
       {
         from: [0, 0, 0],
@@ -203,37 +201,31 @@ Untuk menjumlahkan tiga vektor dengan metode jajar genjang, kita dapat:
         labelPosition: "end",
       },
       {
-        from: [0, 0, 0],
-        to: [1, 3, 0],
-        color: "#0d9488",
-        label: <InlineMath math="B" />,
-        labelOffset: [-0.85, 0.3, -0.85],
-        labelPosition: "end",
-      },
-      {
-        from: [0, 0, 0],
-        to: [0, 1, 3],
-        color: "#65a30d",
-        label: <InlineMath math="C" />,
-        labelOffset: [0, -1.4, 0],
-        labelPosition: "end",
-      },
-      {
-        from: [1, 3, 0],
-        to: [1, 4, 3],
-        color: "#65a30d",
-        label: <InlineMath math="C" />,
-        labelOffset: [-0.28, 0.9, -0.28],
-        labelPosition: "middle",
-      },
-      {
-        from: [0, 0, 0],
-        to: [1, 4, 3],
+        from: [3, 1, 0],
+        to: [4, 5, 3],
         color: "#ea580c",
         label: <InlineMath math="B+C" />,
-        labelOffset: [0, 0.6, 0],
+        labelOffset: [0, -0.7, 0],
         labelPosition: "middle",
       },
+      {
+        from: [0, 0, 0],
+        to: [4, 5, 3],
+        color: "#db2777",
+        label: <InlineMath math="A+B+C" />,
+        labelOffset: [0, 0.9, 0],
+        labelPosition: "end",
+      },
+    ]}
+  />
+</ContentBlock>
+
+<ContentBlock>
+  <Vector3d
+    cameraPosition={[10, 8, -10]}
+    title="Jumlahkan A dan B Terlebih Dahulu"
+    description={<>Vektor <InlineMath math="C" /> berawal di ujung <InlineMath math="A+B" /> dan mencapai titik akhir yang sama.</>}
+    vectors={[
       {
         from: [0, 0, 0],
         to: [4, 4, 0],
@@ -248,14 +240,6 @@ Untuk menjumlahkan tiga vektor dengan metode jajar genjang, kita dapat:
         color: "#65a30d",
         label: <InlineMath math="C" />,
         labelOffset: [0, 0.7, 0],
-        labelPosition: "middle",
-      },
-      {
-        from: [3, 1, 0],
-        to: [4, 5, 3],
-        color: "#ea580c",
-        label: <InlineMath math="B+C" />,
-        labelOffset: [0, -0.7, 0],
         labelPosition: "middle",
       },
       {
