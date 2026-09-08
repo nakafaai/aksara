@@ -105,9 +105,7 @@ function nodeViolation(
     if (
       node.lang === "math" ||
       BACKTICK_MATH_FENCE.test(raw) ||
-      (!node.lang &&
-        raw.startsWith("```") &&
-        WRAPPED_CODE_MATH.test(node.value))
+      (!node.lang && WRAPPED_CODE_MATH.test(node.value))
     ) {
       return "display";
     }
