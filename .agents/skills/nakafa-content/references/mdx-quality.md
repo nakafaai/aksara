@@ -255,7 +255,9 @@ For assessed content, also apply the
   `MathVisual` adapts authored scene contracts to that same foundation. Never
   introduce a custom SVG math renderer, a parallel canvas shell, or a
   content-local implementation. Plane geometry remains in a fixed coordinate
-  plane with a frontal initial camera and working orbit controls.
+  plane; choose a frontal or oblique camera for the teaching task. Preserve
+  useful authored camera positions and targets. Frame the concept at a readable
+  scale; distant geometry and grid extents need not fill the initial view.
   The owning card composes its header, scene body, and full-width bordered
   footer. Grid and playback controls belong in that footer; do not add a gizmo
   or overlay controls on the mathematical subject.
@@ -280,9 +282,9 @@ For assessed content, also apply the
   Verify eight vertices, twelve straight edges, four edges of each
   declared dimension, and a camera view that still reads as a cuboid after
   rotation.
-- Keep the default full `CoordinateSystem` grid. Authored frames have no grid
-  override. Their ranges bound mathematical objects and clipping; they must not
-  shrink the shared grid.
+- Use the shared `CoordinateSystem` grid as a quiet spatial reference. Authored
+  frames have no grid override. Their ranges bound geometry and clipping,
+  independently of the camera's visible focus. Keep the subject dominant.
 - Reserve red `#dc2626`, green `#16a34a`, and blue `#2563eb` for the Cartesian
   X, Y, and Z axes respectively. Use other colors for mathematical subject
   objects, and keep each label the same color as its owning object. Keep
@@ -305,10 +307,8 @@ For assessed content, also apply the
 When removing an external visual or interactive resource, inspect the existing
 lesson and renderer manifest first. Reuse a Nakafa-owned visual that already
 performs the teaching job. Add a new owned component only for a verified gap.
-Keep plane and space geometry on the same interactive 3D foundation. Set the
-initial camera to explain the concept clearly, and preserve the shared grid,
-rotation, and playback controls. Camera perspective never changes the
-mathematical dimension of an authored object.
+Preserve the shared grid, rotation, and playback controls. Camera perspective
+never changes the mathematical dimension of an authored object.
 
 Lessons and articles should not become uninterrupted walls of text when a
 meaningful structure or representation would reduce search and comparison
