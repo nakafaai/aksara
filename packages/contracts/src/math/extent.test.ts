@@ -17,8 +17,6 @@ type Quadratic = Extract<PlaneMathObject, { readonly kind: "quadratic" }>;
 type Cuboid = Extract<SpaceMathObject, { readonly kind: "cuboid" }>;
 
 const planeFrame: PlaneMathFrame = {
-  axes: "visible",
-  grid: "visible",
   kind: "cartesian",
   x: { max: 2, min: -2 },
   y: { max: 2, min: -2 },

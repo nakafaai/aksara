@@ -3,7 +3,7 @@ export const metadata = {
   description: "Geser grafik fungsi ke kiri atau kanan, turunkan aturan tandanya, lalu telusuri perubahan domain dan range.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Transformasi Fungsi",
 };
 
@@ -37,6 +37,7 @@ Fungsi kuadrat <InlineMath math="f(x) = x^2" /> memperlihatkan aturan tanda mela
   cameraPosition={[12, 8, 12]}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 41 }, (_, i) => {
         const x = (i - 20) * 0.25;
         return { x, y: x * x, z: 0 };
@@ -46,6 +47,7 @@ Fungsi kuadrat <InlineMath math="f(x) = x^2" /> memperlihatkan aturan tanda mela
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 41 }, (_, i) => {
         const x = (i - 20) * 0.25;
         return { x, y: (x - 3) * (x - 3), z: 0 };
@@ -55,6 +57,7 @@ Fungsi kuadrat <InlineMath math="f(x) = x^2" /> memperlihatkan aturan tanda mela
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 41 }, (_, i) => {
         const x = (i - 20) * 0.25;
         return { x, y: (x + 2) * (x + 2), z: 0 };
@@ -147,6 +150,7 @@ Fungsi eksponensial <InlineMath math="f(x) = 2^x" /> mempertahankan bentuk dan a
   cameraPosition={[8, 5, 8]}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 31 }, (_, i) => {
         const x = (i - 15) * 0.3;
         return { x, y: Math.pow(2, x), z: 0 };
@@ -156,6 +160,7 @@ Fungsi eksponensial <InlineMath math="f(x) = 2^x" /> mempertahankan bentuk dan a
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 31 }, (_, i) => {
         const x = (i - 15) * 0.3;
         return { x, y: Math.pow(2, x - 2), z: 0 };
@@ -165,6 +170,7 @@ Fungsi eksponensial <InlineMath math="f(x) = 2^x" /> mempertahankan bentuk dan a
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 31 }, (_, i) => {
         const x = (i - 15) * 0.3;
         return { x, y: Math.pow(2, x + 1), z: 0 };
@@ -219,6 +225,7 @@ Translasi horizontal dan vertikal bekerja pada bagian yang berbeda dari aturan f
      cameraPosition={[12, 8, 12]}
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 41 }, (_, i) => {
            const x = (i - 20) * 0.25;
            return { x, y: x * x + 2 * x + 1, z: 0 };
@@ -228,6 +235,7 @@ Translasi horizontal dan vertikal bekerja pada bagian yang berbeda dari aturan f
          showPoints: false,
        },
        {
+         smooth: false,
          points: Array.from({ length: 41 }, (_, i) => {
            const x = (i - 20) * 0.25;
            return { x, y: x * x - 4 * x + 4, z: 0 };
@@ -253,15 +261,18 @@ Translasi horizontal dan vertikal bekerja pada bagian yang berbeda dari aturan f
      cameraPosition={[8, 6, 8]}
      data={[
        {
-         points: Array.from({ length: 21 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 101 }, (_, sampleIndex) => {
+           const i = sampleIndex / 5;
            const x = i * 0.25;
            return { x, y: Math.sqrt(x), z: 0 };
          }),
          color: "#7c3aed",
-         labels: [{ text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [1, 0.5, 0] }],
+         labels: [{ at: 50, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [1, 0.5, 0] }],
          showPoints: false,
        },
        {
+         smooth: false,
          points: Array.from({ length: 21 }, (_, i) => {
            const x = i * 0.25 - 4;
            if (x + 4 >= 0) {
@@ -286,6 +297,7 @@ Translasi horizontal dan vertikal bekerja pada bagian yang berbeda dari aturan f
      cameraPosition={[10, 6, 10]}
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 31 }, (_, i) => {
            const x = (i - 15) * 0.2;
            return { x, y: Math.pow(3, x), z: 0 };
@@ -295,6 +307,7 @@ Translasi horizontal dan vertikal bekerja pada bagian yang berbeda dari aturan f
          showPoints: false,
        },
        {
+         smooth: false,
          points: Array.from({ length: 31 }, (_, i) => {
            const x = (i - 15) * 0.2;
            return { x, y: Math.pow(3, x - 2), z: 0 };

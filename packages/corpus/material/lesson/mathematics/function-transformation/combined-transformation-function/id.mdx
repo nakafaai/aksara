@@ -3,7 +3,7 @@ export const metadata = {
   description: "Gunakan grafik dan contoh dengan pembahasan lengkap untuk melihat cara beberapa transformasi fungsi digabungkan dan pengaruh urutannya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Transformasi Fungsi",
 };
 
@@ -65,7 +65,9 @@ Grafik berikut menunjukkan fungsi awal, hasil translasi, dan hasil dilatasi:
   }
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = (i - 10) * 0.4;
         const y = x * x;
         return { x, y, z: 0 };
@@ -75,13 +77,15 @@ Grafik berikut menunjukkan fungsi awal, hasil translasi, dan hasil dilatasi:
       labels: [
         {
           text: <InlineMath math="f(x)=x^2" />,
-          at: 12,
+          at: 60,
           offset: [1, 0, 0],
         },
       ],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = (i - 10) * 0.4;
         const y = x * x + 2;
         return { x, y, z: 0 };
@@ -91,13 +95,15 @@ Grafik berikut menunjukkan fungsi awal, hasil translasi, dan hasil dilatasi:
       labels: [
         {
           text: <InlineMath math="f_1(x)=x^2 + 2" />,
-          at: 12,
+          at: 60,
           offset: [0.5, 0.5, 0],
         },
       ],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = (i - 10) * 0.4;
         const y = 0.5 * (x * x + 2);
         return { x, y, z: 0 };
@@ -107,7 +113,7 @@ Grafik berikut menunjukkan fungsi awal, hasil translasi, dan hasil dilatasi:
       labels: [
         {
           text: <InlineMath math="g(x)=0{,}5(x^2 + 2)" />,
-          at: 12,
+          at: 60,
           offset: [1.5, 0.5, 0],
         },
       ],
@@ -151,7 +157,9 @@ Kedua urutan transformasi memberi hasil akhir yang berbeda: <InlineMath math="h_
   cameraPosition={[10, 6, 10]}
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = (i - 10) * 0.3;
         const y = x * x;
         return { x, y, z: 0 };
@@ -161,13 +169,15 @@ Kedua urutan transformasi memberi hasil akhir yang berbeda: <InlineMath math="h_
       labels: [
         {
           text: <InlineMath math="f(x)=x^2" />,
-          at: 12,
+          at: 60,
           offset: [0.5, 0.3, 0],
         },
       ],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = (i - 10) * 0.3;
         const y = 2 * x * x + 1;
         return { x, y, z: 0 };
@@ -177,13 +187,15 @@ Kedua urutan transformasi memberi hasil akhir yang berbeda: <InlineMath math="h_
       labels: [
         {
           text: <InlineMath math="2x^2 + 1" />,
-          at: 12,
+          at: 60,
           offset: [0.5, 0.5, 0],
         },
       ],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = (i - 10) * 0.3;
         const y = 2 * (x * x + 1);
         return { x, y, z: 0 };
@@ -193,7 +205,7 @@ Kedua urutan transformasi memberi hasil akhir yang berbeda: <InlineMath math="h_
       labels: [
         {
           text: <InlineMath math="2(x^2 + 1)" />,
-          at: 12,
+          at: 60,
           offset: [0.5, 0.8, 0],
         },
       ],
@@ -230,7 +242,9 @@ Grafik berikut mempertahankan kedua langkah perantara:
   cameraPosition={[8, 6, 8]}
   data={[
     {
-      points: Array.from({ length: 15 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 99 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const x = (i - 7) * 0.4;
         const y = Math.pow(1.5, x);
         return { x, y, z: 0 };
@@ -240,13 +254,15 @@ Grafik berikut mempertahankan kedua langkah perantara:
       labels: [
         {
           text: <InlineMath math="f(x)=1{,}5^x" />,
-          at: 12,
+          at: 84,
           offset: [0.5, 1.5, 0],
         },
       ],
     },
     {
-      points: Array.from({ length: 15 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 99 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const x = (i - 7) * 0.4;
         const y = Math.pow(1.5, -x);
         return { x, y, z: 0 };
@@ -256,13 +272,15 @@ Grafik berikut mempertahankan kedua langkah perantara:
       labels: [
         {
           text: <InlineMath math="f(-x)=1{,}5^{-x}" />,
-          at: 3,
+          at: 21,
           offset: [-2, -0.5, 0],
         },
       ],
     },
     {
-      points: Array.from({ length: 15 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 99 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const x = (i - 7) * 0.4;
         const y = Math.pow(1.5, -(x - 2));
         return { x, y, z: 0 };
@@ -272,7 +290,7 @@ Grafik berikut mempertahankan kedua langkah perantara:
       labels: [
         {
           text: <InlineMath math="f(-(x-2))" />,
-          at: 8,
+          at: 56,
           offset: [1, 0.8, 0],
         },
       ],
@@ -322,7 +340,9 @@ Kombinasi transformasi memiliki sifat berikut:
      cameraPosition={[0, 0, 12]}
      data={[
        {
-         points: Array.from({ length: 21 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 101 }, (_, sampleIndex) => {
+           const i = sampleIndex / 5;
            const x = (i - 10) * 0.3;
            const y = x * x;
            return { x, y, z: 0 };
@@ -332,13 +352,15 @@ Kombinasi transformasi memiliki sifat berikut:
          labels: [
            {
              text: <InlineMath math="f(x)=x^2" />,
-             at: 12,
+             at: 60,
              offset: [0.5, 0.3, 0],
            },
          ],
        },
        {
-         points: Array.from({ length: 21 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 101 }, (_, sampleIndex) => {
+           const i = sampleIndex / 5;
            const x = (i - 10) * 0.3;
            const y = 0.5 * (x * x + 3);
            return { x, y, z: 0 };
@@ -348,7 +370,7 @@ Kombinasi transformasi memiliki sifat berikut:
          labels: [
            {
              text: <InlineMath math="g(x)=\frac{1}{2}x^2+\frac{3}{2}" />,
-             at: 12,
+             at: 60,
              offset: [0.5, 0.8, 0],
            },
          ],
@@ -374,7 +396,9 @@ Kombinasi transformasi memiliki sifat berikut:
      cameraPosition={[8, 6, 8]}
      data={[
        {
-         points: Array.from({ length: 15 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 99 }, (_, sampleIndex) => {
+           const i = sampleIndex / 7;
            const x = (i - 7) * 0.4;
            const y = Math.pow(2, x);
            return { x, y, z: 0 };
@@ -384,13 +408,15 @@ Kombinasi transformasi memiliki sifat berikut:
          labels: [
            {
              text: <InlineMath math="g(x)=2^x" />,
-             at: 12,
+             at: 84,
              offset: [0.5, 0.5, 0],
            },
          ],
        },
        {
-         points: Array.from({ length: 15 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 99 }, (_, sampleIndex) => {
+           const i = sampleIndex / 7;
            const x = (i - 7) * 0.4;
            const y = Math.pow(2, 1 - x);
            return { x, y, z: 0 };
@@ -400,7 +426,7 @@ Kombinasi transformasi memiliki sifat berikut:
          labels: [
            {
              text: <InlineMath math="h(x)=2^{1-x}" />,
-             at: 6,
+             at: 42,
              offset: [-0.8, 0.5, 0],
            },
          ],
@@ -431,7 +457,9 @@ Kombinasi transformasi memiliki sifat berikut:
      description="Perbandingan urutan transformasi yang berbeda."
      data={[
        {
-         points: Array.from({ length: 21 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 101 }, (_, sampleIndex) => {
+           const i = sampleIndex / 5;
            const x = (i - 10) * 0.3;
            const y = x * x;
            return { x, y, z: 0 };
@@ -441,13 +469,15 @@ Kombinasi transformasi memiliki sifat berikut:
          labels: [
            {
              text: <InlineMath math="h(x)=x^2" />,
-             at: 12,
+             at: 60,
              offset: [0.5, 0.3, 0],
            },
          ],
        },
        {
-         points: Array.from({ length: 21 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 101 }, (_, sampleIndex) => {
+           const i = sampleIndex / 5;
            const x = (i - 10) * 0.3;
            const y = 3 * x * x + 2;
            return { x, y, z: 0 };
@@ -457,13 +487,15 @@ Kombinasi transformasi memiliki sifat berikut:
          labels: [
            {
              text: <>Urutan A: <InlineMath math="3x^2+2" /></>,
-             at: 12,
+             at: 60,
              offset: [0.5, 0.8, 0],
            },
          ],
        },
        {
-         points: Array.from({ length: 21 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 101 }, (_, sampleIndex) => {
+           const i = sampleIndex / 5;
            const x = (i - 10) * 0.3;
            const y = 3 * (x * x + 2);
            return { x, y, z: 0 };
@@ -473,7 +505,7 @@ Kombinasi transformasi memiliki sifat berikut:
          labels: [
            {
              text: <>Urutan B: <InlineMath math="3x^2+6" /></>,
-             at: 10,
+             at: 50,
              offset: [0.5, -0.8, 0],
            },
          ],
@@ -504,7 +536,9 @@ Kombinasi transformasi memiliki sifat berikut:
      cameraPosition={[0, 0, 12]}
      data={[
        {
-         points: Array.from({ length: 21 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 101 }, (_, sampleIndex) => {
+           const i = sampleIndex / 5;
            const x = (i - 10) * 0.3;
            const y = Math.abs(x);
            return { x, y, z: 0 };
@@ -514,13 +548,15 @@ Kombinasi transformasi memiliki sifat berikut:
          labels: [
            {
              text: <InlineMath math="f(x)=|x|" />,
-             at: 15,
+             at: 75,
              offset: [0.5, 0.3, 0],
            },
          ],
        },
        {
-         points: Array.from({ length: 21 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 101 }, (_, sampleIndex) => {
+           const i = sampleIndex / 5;
            const x = (i - 10) * 0.3;
            const y = -3 * Math.abs(x + 2);
            return { x, y, z: 0 };
@@ -530,7 +566,7 @@ Kombinasi transformasi memiliki sifat berikut:
          labels: [
            {
              text: <InlineMath math="g(x)=-3|x + 2|" />,
-             at: 5,
+             at: 25,
              offset: [-0.8, -0.5, 0],
            },
          ],

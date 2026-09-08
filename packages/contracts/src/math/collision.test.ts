@@ -21,8 +21,6 @@ const RESOLUTION = 2 ** -23;
 const BELOW_RESOLUTION = RESOLUTION / 2;
 
 const planeFrame = Schema.decodeSync(PlaneMathFrameSchema)({
-  axes: "visible",
-  grid: "visible",
   kind: "cartesian",
   x: { max: 1, min: 0 },
   y: { max: 1, min: 0 },
@@ -130,8 +128,12 @@ describe("mathematical visual collisions", () => {
       }),
     ];
     const labels = [
-      { at: { x: 0.1, y: 0.1 }, key: "first" },
-      { at: { x: 0.1 + BELOW_RESOLUTION, y: 0.1 }, key: "second" },
+      { at: { x: 0.1, y: 0.1 }, key: "first", objectId: "test-object" },
+      {
+        at: { x: 0.1 + BELOW_RESOLUTION, y: 0.1 },
+        key: "second",
+        objectId: "test-object",
+      },
     ];
 
     assert.deepStrictEqual(

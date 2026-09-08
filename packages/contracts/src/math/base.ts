@@ -41,12 +41,6 @@ export const MathAxisRangeSchema = Schema.Struct({
   )
 );
 
-/** Semantic visibility of one mathematical frame feature. */
-export const MathFeatureVisibilitySchema = Schema.Literals([
-  "hidden",
-  "visible",
-]);
-
 /** Stable visual roles that Nakafa maps to its current design system. */
 export const MathAppearanceSchema = Schema.Literals([
   "answer",
@@ -127,8 +121,9 @@ function duplicateKeyIndexes<T>(
 /** Reports every repeated scene identity at its exact authored key path. */
 export function mathVisualIdentityIssues(
   objects: readonly { readonly id: string }[],
-  labels: readonly { readonly key: string }[]
+  labels: readonly { readonly key: string; readonly objectId: string }[]
 ): readonly Schema.FilterIssue[] {
+  const objectIds = new Set(objects.map(({ id }) => id));
   return [
     ...duplicateKeyIndexes(objects, ({ id }) => id).map((index) => ({
       issue: "Expected a unique mathematical object id.",
@@ -138,6 +133,17 @@ export function mathVisualIdentityIssues(
       issue: "Expected a unique mathematical label key.",
       path: ["labels", index, "key"],
     })),
+    ...labels.flatMap((label, index) =>
+      objectIds.has(label.objectId)
+        ? []
+        : [
+            {
+              issue:
+                "Expected a label to reference an existing mathematical object.",
+              path: ["labels", index, "objectId"],
+            },
+          ]
+    ),
   ];
 }
 

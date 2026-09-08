@@ -5,7 +5,7 @@ export const metadata = {
   description: "Quadratische Graphen anhand von Leitkoeffizient, Scheitel, Symmetrieachse, Achsenschnittpunkten und Wertebereich untersuchen und zeichnen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Quadratische Funktionen",
 };
 
@@ -37,7 +37,10 @@ Das Vorzeichen von <InlineMath math="a" /> bestimmt die Öffnungsrichtung. Der B
     cameraPosition={[5, 5, 12]}
     data={[
       {
-        points: Array.from({ length: 7 }, (_, i) => {
+        pointIndices: [0, 16, 32, 48, 64, 80, 96],
+        smooth: false,
+        points: Array.from({ length: 97 }, (_, sampleIndex) => {
+          const i = sampleIndex / 16;
           const x = i - 3; // x-Werte von -3 bis 3
           return { x, y: x * x, z: 0 };
         }),
@@ -45,7 +48,7 @@ Das Vorzeichen von <InlineMath math="a" /> bestimmt die Öffnungsrichtung. Der B
         labels: [
           {
             text: <InlineMath math="f(x)=x^2" />,
-            at: 5,
+            at: 80,
             offset: [1, -1, 0],
           },
         ],
@@ -74,7 +77,10 @@ Beispiele für Funktionen mit <InlineMath math="a < 0" />:
     cameraPosition={[2, 2, 12]}
     data={[
       {
-        points: Array.from({ length: 7 }, (_, i) => {
+        pointIndices: [0, 16, 32, 48, 64, 80, 96],
+        smooth: false,
+        points: Array.from({ length: 97 }, (_, sampleIndex) => {
+          const i = sampleIndex / 16;
           const x = i - 3; // x-Werte von -3 bis 3
           return { x, y: -x * x, z: 0 };
         }),
@@ -82,7 +88,7 @@ Beispiele für Funktionen mit <InlineMath math="a < 0" />:
         labels: [
           {
             text: <InlineMath math="f(x)=-x^2" />,
-            at: 4,
+            at: 64,
             offset: [2, 0, 0],
           },
         ],
@@ -183,7 +189,10 @@ Wir zeichnen die Funktion <InlineMath math="f(x) = x^2 - 2x - 3" />:
     cameraPosition={[2, 1, 15]}
     data={[
       {
-        points: Array.from({ length: 7 }, (_, i) => {
+        pointIndices: [0, 16, 32, 48, 64, 80, 96],
+        smooth: false,
+        points: Array.from({ length: 97 }, (_, sampleIndex) => {
+          const i = sampleIndex / 16;
           const x = i - 2; // x-Werte von -2 bis 4
           return { x, y: x * x - 2 * x - 3, z: 0 };
         }),
@@ -191,12 +200,12 @@ Wir zeichnen die Funktion <InlineMath math="f(x) = x^2 - 2x - 3" />:
         labels: [
           {
             text: <InlineMath math="f(x)=x^2 - 2x - 3" />,
-            at: 5,
+            at: 80,
             offset: [3, 2, 0],
           },
           {
             text: <>Scheitelpunkt <InlineMath math="(1,-4)" /></>,
-            at: 3,
+            at: 48,
             offset: [0, -0.5, 0],
           },
         ],
@@ -259,7 +268,10 @@ Wir zeichnen die Funktion <InlineMath math="f(x) = -x^2" />:
     cameraPosition={[2, 2, 12]}
     data={[
       {
-        points: Array.from({ length: 7 }, (_, i) => {
+        pointIndices: [0, 16, 32, 48, 64, 80, 96],
+        smooth: false,
+        points: Array.from({ length: 97 }, (_, sampleIndex) => {
+          const i = sampleIndex / 16;
           const x = i - 3; // x-Werte von -3 bis 3
           return { x, y: -x * x, z: 0 };
         }),
@@ -267,12 +279,12 @@ Wir zeichnen die Funktion <InlineMath math="f(x) = -x^2" />:
         labels: [
           {
             text: <InlineMath math="f(x)=-x^2" />,
-            at: 4,
+            at: 64,
             offset: [2, 0, 0],
           },
           {
             text: <>Scheitelpunkt <InlineMath math="(0,0)" /></>,
-            at: 3,
+            at: 48,
             offset: [0, 0.5, 0],
           },
         ],

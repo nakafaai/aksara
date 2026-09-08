@@ -3,7 +3,7 @@ export const metadata = {
   description: "Den proportionalen Zusammenhang zwischen Bogenlänge, Sektorfläche und Mittelpunktswinkel verstehen und anwenden.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Kreisbögen und Sektoren",
 };
 
@@ -63,7 +63,7 @@ Die folgenden Beispiele zeigen dasselbe Verhältnis für verschiedene Mittelpunk
       }),
       color: "#4f46e5",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 1,
     },
     {
@@ -87,7 +87,8 @@ Die folgenden Beispiele zeigen dasselbe Verhältnis für verschiedene Mittelpunk
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 16 }, (_, i) => {
+      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = (i * Math.PI / 4) / 15;
         return {
           x: 4 * Math.cos(angle),
@@ -97,12 +98,12 @@ Die folgenden Beispiele zeigen dasselbe Verhältnis für verschiedene Mittelpunk
       }),
       color: "#ea580c",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 4,
       labels: [
         {
           text: <InlineMath math="45^\circ" />,
-          at: 8,
+          at: 56,
           offset: [1, 0.8, 0],
         },
       ],
@@ -127,7 +128,7 @@ Die folgenden Beispiele zeigen dasselbe Verhältnis für verschiedene Mittelpunk
       }),
       color: "#4f46e5",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 1,
     },
     {
@@ -161,7 +162,7 @@ Die folgenden Beispiele zeigen dasselbe Verhältnis für verschiedene Mittelpunk
       }),
       color: "#d97706",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 4,
       labels: [
         {
@@ -191,7 +192,7 @@ Die folgenden Beispiele zeigen dasselbe Verhältnis für verschiedene Mittelpunk
       }),
       color: "#4f46e5",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 1,
     },
     {
@@ -215,7 +216,7 @@ Die folgenden Beispiele zeigen dasselbe Verhältnis für verschiedene Mittelpunk
       }),
       color: "#e11d48",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 4,
       labels: [
         {
@@ -245,7 +246,7 @@ Die folgenden Beispiele zeigen dasselbe Verhältnis für verschiedene Mittelpunk
       }),
       color: "#4f46e5",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 1,
     },
     {
@@ -279,7 +280,7 @@ Die folgenden Beispiele zeigen dasselbe Verhältnis für verschiedene Mittelpunk
       }),
       color: "#c026d3",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 4,
       labels: [
         {
@@ -331,7 +332,7 @@ Eratosthenes, der etwa <InlineMath math="276\text{-}194 \text{ v. Chr.}" /> lebt
       }),
       color: "#4f46e5",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 2,
       labels: [
         {
@@ -376,7 +377,8 @@ Eratosthenes, der etwa <InlineMath math="276\text{-}194 \text{ v. Chr.}" /> lebt
       ],
     },
     {
-      points: Array.from({ length: 11 }, (_, i) => {
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 10;
         const angle = (i * (7.2 * Math.PI) / 180) / 10;
         return {
           x: 5 * Math.cos(angle),
@@ -386,18 +388,19 @@ Eratosthenes, der etwa <InlineMath math="276\text{-}194 \text{ v. Chr.}" /> lebt
       }),
       color: "#ea580c",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 4,
       labels: [
         {
           text: <InlineMath math="5{.}000\,\text{Stadien}" />,
-          at: 5,
+          at: 50,
           offset: [1.2, 0.5, 0],
         },
       ],
     },
     {
-      points: Array.from({ length: 11 }, (_, i) => {
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 10;
         const angle = (i * (7.2 * Math.PI) / 180) / 10;
         const radius = 1.5;
         return {
@@ -408,12 +411,12 @@ Eratosthenes, der etwa <InlineMath math="276\text{-}194 \text{ v. Chr.}" /> lebt
       }),
       color: "#7c3aed",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 3,
       labels: [
         {
           text: <InlineMath math="7{,}2^\circ" />,
-          at: 5,
+          at: 50,
           offset: [0.8, 0.3, 0],
         },
       ],

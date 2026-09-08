@@ -4,7 +4,7 @@ export const metadata = {
   description: "Modelliere stückweise Funktionen anhand von Intervallgrenzen, gestaffelten Tarifen, wechselnden Geschwindigkeiten und Verbindungsstellen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
   subject: "Funktionen und ihre Modellierung",
 };
 
@@ -88,6 +88,7 @@ Stückweise Funktionen können auch quadratische Teile verwenden. Ein quadratisc
   description="Kombination quadratischer und linearer Funktionen in einer stückweisen Funktion."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 31 }, (_, i) => {
         const x = -3 + i * 0.1;
         return { x, y: x * x, z: 0 };
@@ -338,13 +339,15 @@ Stückweise Funktion:
          labels: [{ text: <InlineMath math="y=-x+2" />, at: 10, offset: [0, 0.5, 0] }],
        },
        {
-         points: Array.from({ length: 21 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 101 }, (_, sampleIndex) => {
+           const i = sampleIndex / 5;
            const x = 0 + i * 0.1;
            return { x, y: x * x, z: 0 };
          }),
          color: "#ea580c",
          showPoints: false,
-         labels: [{ text: <InlineMath math="y=x^2" />, at: 10, offset: [0, 0.5, 0] }],
+         labels: [{ text: <InlineMath math="y=x^2" />, at: 50, offset: [0, 0.5, 0] }],
        },
        {
          points: Array.from({ length: 21 }, (_, i) => {

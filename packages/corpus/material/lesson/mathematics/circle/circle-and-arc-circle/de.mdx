@@ -4,7 +4,7 @@ export const metadata = {
     "Kreise aus ihrem festen Abstand aufbauen und Kreisbögen, Mittelpunkt- und Umfangswinkel, Bogenlänge sowie Sektorfläche an Abbildungen und vollständig gerechneten Aufgaben verknüpfen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
   subject: "Kreis",
 };
 
@@ -27,6 +27,7 @@ Die folgende Abbildung ordnet Mittelpunkt, Radius, Durchmesser und Sehne ein:
   description="Mittelpunkt, Radius, Durchmesser und Sehne in einem Kreis."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -93,6 +94,7 @@ Ein Kreisbogen ist ein Teil des Kreisumfangs, der durch zwei Punkte auf dem Krei
   description="Visualisierung des Unterschieds zwischen kleinem und großem Kreisbogen."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 91 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -115,6 +117,7 @@ Ein Kreisbogen ist ein Teil des Kreisumfangs, der durch zwei Punkte auf dem Krei
       showPoints: true,
     },
     {
+      smooth: false,
       points: Array.from({ length: 271 }, (_, i) => {
         const angle = ((i + 90) * Math.PI) / 180;
         return {
@@ -177,6 +180,7 @@ Ein Mittelpunktswinkel hat seinen Scheitelpunkt im Kreismittelpunkt. Seine beide
   description="Zwei Radien bilden einen Winkel mit Scheitelpunkt im Kreismittelpunkt."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -212,6 +216,7 @@ Ein Mittelpunktswinkel hat seinen Scheitelpunkt im Kreismittelpunkt. Seine beide
       labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -225,6 +230,7 @@ Ein Mittelpunktswinkel hat seinen Scheitelpunkt im Kreismittelpunkt. Seine beide
       labels: [{ text: <>Bogen <InlineMath math="AB" /></>, at: 22, offset: [1.5, 0.5, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -260,6 +266,7 @@ Ein Umfangswinkel, auch Peripheriewinkel genannt, hat seinen Scheitelpunkt auf d
   description="Der Scheitelpunkt liegt auf der Kreislinie, die Schenkel sind Sehnen."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -295,6 +302,7 @@ Ein Umfangswinkel, auch Peripheriewinkel genannt, hat seinen Scheitelpunkt auf d
       labels: [{ text: <InlineMath math="B" />, at: 0, offset: [0.3, 0.3, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -352,6 +360,7 @@ Wenn ein Mittelpunktswinkel und ein Umfangswinkel über demselben Bogen liegen, 
   }
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -406,6 +415,7 @@ Wenn ein Mittelpunktswinkel und ein Umfangswinkel über demselben Bogen liegen, 
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 81 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -418,7 +428,9 @@ Wenn ein Mittelpunktswinkel und ein Umfangswinkel über demselben Bogen liegen, 
       showPoints: false,
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * 4 * Math.PI) / 180;
         return {
           x: 0.8 * Math.cos(angle),
@@ -428,7 +440,7 @@ Wenn ein Mittelpunktswinkel und ein Umfangswinkel über demselben Bogen liegen, 
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="80^\circ" />, at: 10, offset: [0.5, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="80^\circ" />, at: 50, offset: [0.5, 0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
@@ -468,6 +480,7 @@ Die Abbildung zeigt die beiden Radien, den zugehörigen Bogen und den von ihnen 
   description="Von zwei Radien und einem Bogen begrenzter Bereich."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -498,6 +511,7 @@ Die Abbildung zeigt die beiden Radien, den zugehörigen Bogen und den von ihnen 
       showPoints: true,
     },
     {
+      smooth: false,
       points: Array.from({ length: 61 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {

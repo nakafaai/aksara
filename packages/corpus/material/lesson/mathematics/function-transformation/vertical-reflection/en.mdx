@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use graphs and examples to understand how reflection across the x-axis changes a function's y-coordinates.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Function Transformation",
 };
 
@@ -33,6 +33,7 @@ For the quadratic function <InlineMath math="f(x) = x^2" />, vertical reflection
   showZAxis={false}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 41 }, (_, i) => {
         const x = (i - 20) * 0.25;
         return { x, y: x * x, z: 0 };
@@ -42,6 +43,7 @@ For the quadratic function <InlineMath math="f(x) = x^2" />, vertical reflection
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 41 }, (_, i) => {
         const x = (i - 20) * 0.25;
         return { x, y: -(x * x), z: 0 };
@@ -124,6 +126,7 @@ For the exponential function <InlineMath math="f(x) = 2^x" />, every positive ou
   cameraPosition={[8, 6, 8]}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 31 }, (_, i) => {
         const x = (i - 15) * 0.3;
         return { x, y: Math.pow(2, x), z: 0 };
@@ -133,6 +136,7 @@ For the exponential function <InlineMath math="f(x) = 2^x" />, every positive ou
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 31 }, (_, i) => {
         const x = (i - 15) * 0.3;
         return { x, y: -Math.pow(2, x), z: 0 };
@@ -160,6 +164,7 @@ For the <InlineMath math="\sin" /> function, vertical reflection exchanges crest
   cameraPosition={[0, 0, 12]}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 61 }, (_, i) => {
         const x = (i - 30) * 0.2;
         return { x, y: Math.sin(x), z: 0 };
@@ -169,6 +174,7 @@ For the <InlineMath math="\sin" /> function, vertical reflection exchanges crest
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 61 }, (_, i) => {
         const x = (i - 30) * 0.2;
         return { x, y: -Math.sin(x), z: 0 };
@@ -205,6 +211,7 @@ The graph shows:
      showZAxis={false}
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 41 }, (_, i) => {
            const x = (i - 20) * 0.25;
            return { x, y: x * x + 4 * x + 3, z: 0 };
@@ -214,6 +221,7 @@ The graph shows:
          showPoints: false,
        },
        {
+         smooth: false,
          points: Array.from({ length: 41 }, (_, i) => {
            const x = (i - 20) * 0.25;
            return { x, y: -(x * x + 4 * x + 3), z: 0 };
@@ -239,6 +247,7 @@ The graph shows:
      cameraPosition={[8, 6, 8]}
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 31 }, (_, i) => {
            const x = (i - 15) * 0.2;
            return { x, y: Math.pow(3, x) + 2, z: 0 };
@@ -248,6 +257,7 @@ The graph shows:
          showPoints: false,
        },
        {
+         smooth: false,
          points: Array.from({ length: 31 }, (_, i) => {
            const x = (i - 15) * 0.2;
            return { x, y: -(Math.pow(3, x) + 2), z: 0 };
@@ -268,21 +278,25 @@ The graph shows:
      showZAxis={false}
      data={[
        {
-         points: Array.from({ length: 21 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 101 }, (_, sampleIndex) => {
+           const i = sampleIndex / 5;
            const x = -1 + i * 0.25;
            return { x, y: Math.sqrt(x + 1), z: 0 };
          }),
          color: "#4f46e5",
-         labels: [{ text: <InlineMath math="h(x)=\sqrt{x+1}" />, offset: [1, 0.5, 0] }],
+         labels: [{ at: 50, text: <InlineMath math="h(x)=\sqrt{x+1}" />, offset: [1, 0.5, 0] }],
          showPoints: false,
        },
        {
-         points: Array.from({ length: 21 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 101 }, (_, sampleIndex) => {
+           const i = sampleIndex / 5;
            const x = -1 + i * 0.25;
            return { x, y: -Math.sqrt(x + 1), z: 0 };
          }),
          color: "#059669",
-         labels: [{ text: <InlineMath math="h'(x)=-\sqrt{x+1}" />, offset: [1, -0.5, 0] }],
+         labels: [{ at: 50, text: <InlineMath math="h'(x)=-\sqrt{x+1}" />, offset: [1, -0.5, 0] }],
          showPoints: false,
        },
      ]}

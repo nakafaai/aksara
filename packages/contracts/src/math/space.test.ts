@@ -5,8 +5,6 @@ import { FastCheck } from "effect/testing";
 import { MathVisualSchema } from "#contracts/math/visual";
 
 const spaceFrame = {
-  axes: "visible",
-  grid: "visible",
   kind: "cartesian",
   x: { max: 10, min: -10 },
   y: { max: 10, min: -10 },
@@ -81,7 +79,13 @@ describe("space math visual", () => {
         Exit.isSuccess(
           Schema.decodeUnknownExit(MathVisualSchema)({
             frame: spaceFrame,
-            labels: [{ at: { x: 0, y: 0, z: 0 }, key: "center" }],
+            labels: [
+              {
+                at: { x: 0, y: 0, z: 0 },
+                key: "center",
+                objectId: "point-fixture",
+              },
+            ],
             objects,
             space: "space",
             view,

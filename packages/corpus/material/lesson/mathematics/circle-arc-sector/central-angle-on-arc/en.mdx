@@ -3,7 +3,7 @@ export const metadata = {
   description: "Relate a central angle's measure to its arc and calculate either measure from the other.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
   subject: "Circle Arcs and Sectors",
 };
 
@@ -48,7 +48,9 @@ In a circle with center <InlineMath math="O" />, let <InlineMath math="A" /> and
       showPoints: true,
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (Math.PI / 6) + (i * (2 * Math.PI / 3) / 20);
         return {
           x: 1.5 * Math.cos(angle),
@@ -59,9 +61,10 @@ In a circle with center <InlineMath math="O" />, let <InlineMath math="A" /> and
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
-      labels: [{ text: <InlineMath math="\theta=120^\circ" />, at: 10, offset: [0.5, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="\theta=120^\circ" />, at: 50, offset: [0.5, 0.5, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 61 }, (_, i) => {
         const angle = (Math.PI / 6) + (i * (2 * Math.PI / 3) / 60);
         return {
@@ -87,7 +90,7 @@ In a circle with center <InlineMath math="O" />, let <InlineMath math="A" /> and
       color: "#0891b2",
       lineWidth: 1,
       showPoints: false,
-      smooth: true,
+      smooth: false,
     },
   ]}
   cameraPosition={[0, 0, 10]}
@@ -127,7 +130,9 @@ A major arc is subtended by a reflex central angle greater than <InlineMath math
   description="Visualization of minor arc, semicircle, and major arc."
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = i * (Math.PI / 3) / 20;
         return {
           x: 2 * Math.cos(angle),
@@ -138,9 +143,10 @@ A major arc is subtended by a reflex central angle greater than <InlineMath math
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
-      labels: [{ text: <InlineMath math="\theta=60^\circ" />, at: 10, offset: [1, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="\theta=60^\circ" />, at: 50, offset: [1, 0.3, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 31 }, (_, i) => {
         const angle = i * (Math.PI / 3) / 30;
         return {
@@ -185,7 +191,9 @@ A major arc is subtended by a reflex central angle greater than <InlineMath math
       showPoints: false,
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = Math.PI + (i * Math.PI / 20);
         return {
           x: 2.5 * Math.cos(angle),
@@ -196,9 +204,10 @@ A major arc is subtended by a reflex central angle greater than <InlineMath math
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
-      labels: [{ text: <InlineMath math="\theta=180^\circ" />, at: 10, offset: [0, -0.8, 0] }],
+      labels: [{ text: <InlineMath math="\theta=180^\circ" />, at: 50, offset: [0, -0.8, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 51 }, (_, i) => {
         const angle = Math.PI + (i * Math.PI / 50);
         return {
@@ -224,7 +233,7 @@ A major arc is subtended by a reflex central angle greater than <InlineMath math
       color: "#0d9488",
       lineWidth: 1,
       showPoints: false,
-      smooth: true,
+      smooth: false,
     },
   ]}
   cameraPosition={[0, 0, 15]}
@@ -290,6 +299,7 @@ The arc corresponding to the central angle <InlineMath math="120^\circ" /> is th
       showPoints: true,
     },
     {
+      smooth: false,
       points: Array.from({ length: 25 }, (_, i) => {
         const angle = i * (2 * Math.PI / 3) / 24;
         return {
@@ -304,6 +314,7 @@ The arc corresponding to the central angle <InlineMath math="120^\circ" /> is th
       labels: [{ text: <InlineMath math="\theta=120^\circ" />, at: 12, offset: [0.8, 0.8, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 41 }, (_, i) => {
         const angle = i * (2 * Math.PI / 3) / 40;
         return {
@@ -329,7 +340,7 @@ The arc corresponding to the central angle <InlineMath math="120^\circ" /> is th
       color: "#4f46e5",
       lineWidth: 1,
       showPoints: false,
-      smooth: true,
+      smooth: false,
     },
   ]}
   cameraPosition={[0, 0, 15]}

@@ -18,7 +18,7 @@ describe("MathVisual authored syntax", () => {
       title={<>A diagonal</>}
       description={<>The point <InlineMath math="A" /> lies on the line.</>}
       scene={${planeScene(
-        'labels: [{ key: "point-a", at: { x: 0, y: 0 }, placement: "above" }],'
+        'labels: [{ key: "point-a", objectId: "diagonal", at: { x: 0, y: 0 }, placement: "above" }],'
       )}}
       labels={{ "point-a": <>Point <InlineMath math="A" /></> }}
     />`)

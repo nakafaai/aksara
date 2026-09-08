@@ -5,7 +5,7 @@ export const metadata = {
   description: "Construct quadratic functions from three points, vertex form, roots, or symmetry, then verify each method through worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-19",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Quadratic Functions",
 };
 
@@ -100,7 +100,10 @@ The resulting quadratic function is:
     cameraPosition={[2, 3, 8]}
     data={[
       {
-        points: Array.from({ length: 7 }, (_, i) => {
+        pointIndices: [0, 16, 32, 48, 64, 80, 96],
+        smooth: false,
+        points: Array.from({ length: 97 }, (_, sampleIndex) => {
+          const i = sampleIndex / 16;
           const x = i - 3; // x values from -3 to 3
           return { x, y: x * x - 2 * x - 3, z: 0 };
         }),
@@ -108,22 +111,22 @@ The resulting quadratic function is:
         labels: [
           {
             text: <InlineMath math="f(x)=x^2 - 2x - 3" />,
-            at: 5,
+            at: 80,
             offset: [2, 0.3, 0],
           },
           {
             text: <InlineMath math="L(0, -3)" />,
-            at: 3,
+            at: 48,
             offset: [-1, 0, 0],
           },
           {
             text: <InlineMath math="M(1, -4)" />,
-            at: 4,
+            at: 64,
             offset: [0, -0.5, 0],
           },
           {
             text: <InlineMath math="K(-1, 0)" />,
-            at: 2,
+            at: 32,
             offset: [-1, 0.3, 0],
           },
         ],
@@ -172,7 +175,10 @@ The resulting quadratic function is:
     cameraPosition={[6, 6, 8]}
     data={[
       {
-        points: Array.from({ length: 9 }, (_, i) => {
+        pointIndices: [0, 12, 24, 36, 48, 60, 72, 84, 96],
+        smooth: false,
+        points: Array.from({ length: 97 }, (_, sampleIndex) => {
+          const i = sampleIndex / 12;
           const x = i - 1; // x values from -1 to 7
           return { x, y: Math.pow(x - 2, 2), z: 0 };
         }),
@@ -180,17 +186,17 @@ The resulting quadratic function is:
         labels: [
           {
             text: <InlineMath math="f(x)=(x - 2)^2" />,
-            at: 7,
+            at: 84,
             offset: [0.3, 0.3, 0],
           },
           {
             text: <InlineMath math="(2, 0)" />,
-            at: 3,
+            at: 36,
             offset: [0, 0.3, 0],
           },
           {
             text: <InlineMath math="(4, 4)" />,
-            at: 5,
+            at: 60,
             offset: [0.3, 0.3, 0],
           },
         ],
@@ -241,7 +247,10 @@ The resulting quadratic function is:
     cameraPosition={[4, 5, 10]}
     data={[
       {
-        points: Array.from({ length: 11 }, (_, i) => {
+        pointIndices: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+        smooth: false,
+        points: Array.from({ length: 101 }, (_, sampleIndex) => {
+          const i = sampleIndex / 10;
           const x = i - 4; // x values from -4 to 6
           return { x, y: (x + 2) * (x - 3), z: 0 };
         }),
@@ -249,22 +258,22 @@ The resulting quadratic function is:
         labels: [
           {
             text: <InlineMath math="f(x)=(x + 2)(x - 3)" />,
-            at: 6,
+            at: 60,
             offset: [3, 0.3, 0],
           },
           {
             text: <InlineMath math="(-2, 0)" />,
-            at: 2,
+            at: 20,
             offset: [0.3, 0.3, 0],
           },
           {
             text: <InlineMath math="(3, 0)" />,
-            at: 7,
+            at: 70,
             offset: [0.3, 0.3, 0],
           },
           {
             text: <InlineMath math="(1, -6)" />,
-            at: 5,
+            at: 50,
             offset: [0.3, -0.3, 0],
           },
         ],
@@ -347,7 +356,10 @@ The resulting quadratic function is:
     }
     data={[
       {
-        points: Array.from({ length: 13 }, (_, i) => {
+        pointIndices: [0, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96],
+        smooth: false,
+        points: Array.from({ length: 97 }, (_, sampleIndex) => {
+          const i = sampleIndex / 8;
           const x = i - 6; // x values from -6 to 6
           return { x, y: (1 / 16) * x * x, z: 0 };
         }),
@@ -355,22 +367,22 @@ The resulting quadratic function is:
         labels: [
           {
             text: <InlineMath math="f(x)=\frac{1}{16}x^2" />,
-            at: 11,
+            at: 88,
             offset: [-2, 0.3, 0],
           },
           {
             text: <InlineMath math="(0, 0)" />,
-            at: 6,
+            at: 48,
             offset: [0.3, 0.3, 0],
           },
           {
             text: <InlineMath math="(4, 1)" />,
-            at: 10,
+            at: 80,
             offset: [0.3, 0.3, 0],
           },
           {
             text: <InlineMath math="(-4, 1)" />,
-            at: 2,
+            at: 16,
             offset: [0.3, 0.3, 0],
           },
         ],

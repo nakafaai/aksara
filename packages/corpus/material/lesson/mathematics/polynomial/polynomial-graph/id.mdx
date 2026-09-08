@@ -5,7 +5,7 @@ export const metadata = {
   description: "Gambar grafik polinomial dengan memplot titik dan memeriksa perilaku ujungnya. Buat sketsa grafik linear, kuadrat, dan kubik secara bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Polinomial",
 };
 
@@ -93,7 +93,10 @@ Plot titik-titik dan hubungkan dengan kurva mulus (parabola):
   cameraPosition={[0, 0, 10]}
   data={[
     {
-      points: Array.from({ length: 7 }, (_, i) => {
+      pointIndices: [0, 16, 32, 48, 64, 80, 96],
+      smooth: false,
+      points: Array.from({ length: 97 }, (_, sampleIndex) => {
+        const i = sampleIndex / 16;
         const x = -2 + i;
         return { x, y: x * x - 2 * x - 3, z: 0 };
       }),
@@ -131,6 +134,7 @@ Plot titik-titik dan hubungkan dengan kurva mulus:
   cameraPosition={[0, 0, 12]}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 61 }, (_, i) => {
         // Increased points for smoothness
         const x = -4 + i * 0.1;
@@ -183,7 +187,10 @@ Ada <InlineMath math="4 \text{ kemungkinan}" /> kombinasi:
         cameraPosition={[0, 0, 15]}
         data={[
           {
-            points: Array.from({ length: 7 }, (_, i) => {
+            pointIndices: [0, 16, 32, 48, 64, 80, 96],
+            smooth: false,
+            points: Array.from({ length: 97 }, (_, sampleIndex) => {
+              const i = sampleIndex / 16;
               const x = -3 + i;
               return { x, y: x * x, z: 0 };
             }),
@@ -209,7 +216,10 @@ Ada <InlineMath math="4 \text{ kemungkinan}" /> kombinasi:
         cameraPosition={[0, 0, 15]}
         data={[
           {
-            points: Array.from({ length: 7 }, (_, i) => {
+            pointIndices: [0, 16, 32, 48, 64, 80, 96],
+            smooth: false,
+            points: Array.from({ length: 97 }, (_, sampleIndex) => {
+              const i = sampleIndex / 16;
               const x = -3 + i;
               return { x, y: -(x * x), z: 0 };
             }),
@@ -235,6 +245,7 @@ Ada <InlineMath math="4 \text{ kemungkinan}" /> kombinasi:
         cameraPosition={[0, 0, 15]}
         data={[
           {
+            smooth: false,
             points: Array.from({ length: 41 }, (_, i) => {
               const x = -3 + i * 0.15;
               return { x, y: x * x * x, z: 0 };
@@ -262,6 +273,7 @@ Ada <InlineMath math="4 \text{ kemungkinan}" /> kombinasi:
         cameraPosition={[0, 0, 15]}
         data={[
           {
+            smooth: false,
             points: Array.from({ length: 41 }, (_, i) => {
               const x = -3 + i * 0.15;
               return { x, y: -(x * x * x), z: 0 };
@@ -304,6 +316,7 @@ Cocokkan fungsi berikut dengan kemungkinan perilaku ujungnya:
        cameraPosition={[0, 0, 15]}
        data={[
          {
+           smooth: false,
            points: Array.from({ length: 51 }, (_, i) => {
              const x = -2.5 + i * (4.3 / 50);
              const y = x ** 4 + 2 * x ** 3 - 2 * x - 3;
@@ -340,6 +353,7 @@ Cocokkan fungsi berikut dengan kemungkinan perilaku ujungnya:
        cameraPosition={[0, 0, 15]}
        data={[
          {
+           smooth: false,
            points: Array.from({ length: 51 }, (_, i) => {
              const x = -2.5 + i * 0.1;
              const y = -(x ** 3) + 2 * x ** 2 - x + 1;
@@ -377,6 +391,7 @@ Cocokkan fungsi berikut dengan kemungkinan perilaku ujungnya:
        cameraPosition={[0, 0, 15]}
        data={[
          {
+           smooth: false,
            points: Array.from({ length: 111 }, (_, i) => {
              const x = -2.5 + i * (4.1 / 110);
              const y = -(x ** 6) - (11 / 4) * x ** 5 + x ** 4 + 5 * x ** 3 + 2;
@@ -414,6 +429,7 @@ Cocokkan fungsi berikut dengan kemungkinan perilaku ujungnya:
        cameraPosition={[0, 0, 15]}
        data={[
          {
+           smooth: false,
            points: Array.from({ length: 71 }, (_, i) => {
              const x = -1.2 + i * 0.035;
              const y =

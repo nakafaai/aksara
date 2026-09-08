@@ -2,7 +2,7 @@ export const metadata = {
   title: "Solution to Question 12",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
 };
 
 A regular pyramid <InlineMath math="T.ABCD" /> has <InlineMath math="AB = 4 \text{ cm}" />. Point <InlineMath math="O" /> is the intersection of <InlineMath math="AC" /> and <InlineMath math="BD" />.
@@ -71,13 +71,11 @@ Therefore, statement <InlineMath math="(2)" /> ALONE is sufficient to answer the
     space: "space",
     frame: {
       kind: "cartesian",
-      axes: "hidden",
-      grid: "hidden",
       x: { min: -3, max: 3 },
       y: { min: -1, max: 4 },
       z: { min: -3, max: 3 },
     },
-    view: { kind: "isometric", target: { x: 0, y: 1, z: 0 } },
+    view: { kind: "camera", position: { x: 1.125, y: 2.875, z: 3 }, target: { x: 0, y: 1, z: 0 } },
     objects: [
       {
         id: "base-abcd",
@@ -147,19 +145,16 @@ Therefore, statement <InlineMath math="(2)" /> ALONE is sufficient to answer the
       },
     ],
     labels: [
-      { key: "point-a", at: { x: -2, y: 0, z: -2 }, placement: "below-left" },
-      { key: "point-b", at: { x: 2, y: 0, z: -2 }, placement: "below-right" },
-      { key: "point-c", at: { x: 2, y: 0, z: 2 }, placement: "above-right" },
-      { key: "point-d", at: { x: -2, y: 0, z: 2 }, placement: "above-left" },
-      { key: "point-t", at: { x: 0, y: 3, z: 0 }, placement: "above" },
-      { key: "side-ab", at: { x: 0, y: 0, z: -2 }, placement: "below" },
-      { key: "side-bc", at: { x: 2, y: 0, z: 0 }, placement: "right" },
-      { key: "side-cd", at: { x: 0, y: 0, z: 2 }, placement: "above" },
-      { key: "side-da", at: { x: -2, y: 0, z: 0 }, placement: "left" },
-      { key: "diagonal-ac-length", at: { x: 0.75, y: 0, z: 0.75 }, placement: "above-right" },
-      { key: "radius-ao-length", at: { x: -1, y: 0, z: -1 }, placement: "above-left" },
-      { key: "height-length", at: { x: 0, y: 1.5, z: 0 }, placement: "right" },
-      { key: "edge-at-length", at: { x: -1, y: 1.5, z: -1 }, placement: "left" },
+      { key: "point-a", objectId: "base-abcd", at: { x: -2, y: 0, z: -2 }, placement: "above-left" },
+      { key: "point-b", objectId: "base-abcd", at: { x: 2, y: 0, z: -2 }, placement: "below-right" },
+      { key: "point-c", objectId: "base-abcd", at: { x: 2, y: 0, z: 2 }, placement: "below" },
+      { key: "point-d", objectId: "base-abcd", at: { x: -2, y: 0, z: 2 }, placement: "above-left" },
+      { key: "point-t", objectId: "height-ot", at: { x: 0, y: 3, z: 0 }, placement: "above" },
+      { key: "side-ab", objectId: "base-abcd", at: { x: 1, y: 0, z: -2 }, placement: "above" },
+      { key: "diagonal-ac-length", objectId: "diagonal-ac", at: { x: 2, y: 0, z: 2 }, placement: "right" },
+      { key: "radius-ao-length", objectId: "diagonal-ac", at: { x: -1, y: 0, z: -1 }, placement: "below-left" },
+      { key: "height-length", objectId: "height-ot", at: { x: 0, y: 1.5, z: 0 }, placement: "right" },
+      { key: "edge-at-length", objectId: "edge-at", at: { x: -1, y: 1.5, z: -1 }, placement: "left" },
     ],
   }}
   labels={{
@@ -169,9 +164,6 @@ Therefore, statement <InlineMath math="(2)" /> ALONE is sufficient to answer the
     "point-d": <><InlineMath math="D" /></>,
     "point-t": <><InlineMath math="T" /></>,
     "side-ab": <><InlineMath math="4" /></>,
-    "side-bc": <><InlineMath math="4" /></>,
-    "side-cd": <><InlineMath math="4" /></>,
-    "side-da": <><InlineMath math="4" /></>,
     "diagonal-ac-length": <><InlineMath math="4\sqrt{2}" /></>,
     "radius-ao-length": <><InlineMath math="2\sqrt{2}" /></>,
     "height-length": <><InlineMath math="3" /></>,

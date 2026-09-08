@@ -7,7 +7,6 @@ import {
   hasUniquePositions,
   MathAppearanceSchema,
   MathAxisRangeSchema,
-  MathFeatureVisibilitySchema,
   MathLabelPlacementSchema,
   MathViewPaddingSchema,
   MathVisualKeySchema,
@@ -201,8 +200,6 @@ export type PlaneMathObject = typeof PlaneMathObjectSchema.Type;
 
 /** Exact Cartesian frame presented behind a plane construction. */
 export const PlaneMathFrameSchema = Schema.Struct({
-  axes: MathFeatureVisibilitySchema,
-  grid: MathFeatureVisibilitySchema,
   kind: Schema.Literal("cartesian"),
   x: MathAxisRangeSchema,
   y: MathAxisRangeSchema,
@@ -220,6 +217,7 @@ export type PlaneMathView = typeof PlaneMathViewSchema.Type;
 export const PlaneLabelAnchorSchema = Schema.Struct({
   at: PlanePointSchema,
   key: MathVisualKeySchema,
+  objectId: MathVisualKeySchema,
   placement: Schema.optionalKey(MathLabelPlacementSchema),
 });
 export type PlaneLabelAnchor = typeof PlaneLabelAnchorSchema.Type;

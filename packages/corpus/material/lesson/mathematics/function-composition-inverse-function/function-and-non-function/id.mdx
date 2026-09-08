@@ -4,7 +4,7 @@ export const metadata = {
     "Bedakan fungsi dari relasi lain dengan memeriksa apakah setiap anggota domain memiliki tepat satu output melalui diagram panah dan definisi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
   subject: "Fungsi Komposisi dan Fungsi Invers",
 };
 
@@ -51,16 +51,16 @@ Panah pada diagram berikut menunjukkan syarat yang dipenuhi atau dilanggar oleh 
   >
     <FunctionAndNonFunctionRelationVisualizer
       accessibilityLabel="Diagram panah relasi satu ke banyak"
-      domainLabel="X"
-      codomainLabel="Y"
+      domainLabel={<InlineMath math="X" />}
+      codomainLabel={<InlineMath math="Y" />}
       domain={[
-        { id: "a", label: "a" },
-        { id: "b", label: "b" },
-        { id: "c", label: "c" },
+        { id: "a", label: <InlineMath math="a" /> },
+        { id: "b", label: <InlineMath math="b" /> },
+        { id: "c", label: <InlineMath math="c" /> },
       ]}
       codomain={[
-        { id: "m", label: "m" },
-        { id: "n", label: "n" },
+        { id: "m", label: <InlineMath math="m" /> },
+        { id: "n", label: <InlineMath math="n" /> },
       ]}
       mappings={[
         { from: "a", to: "m" },
@@ -72,7 +72,7 @@ Panah pada diagram berikut menunjukkan syarat yang dipenuhi atau dilanggar oleh 
   </FunctionAndNonFunctionDiagram>
 
   <FunctionAndNonFunctionDiagram
-    title="Ada Domain Tanpa Pasangan"
+    title="Anggota Domain Tanpa Pasangan"
     description={
       <>
         Elemen <InlineMath math="c" /> tidak memiliki pasangan di kodomain.
@@ -81,17 +81,17 @@ Panah pada diagram berikut menunjukkan syarat yang dipenuhi atau dilanggar oleh 
   >
     <FunctionAndNonFunctionRelationVisualizer
       accessibilityLabel="Diagram panah dengan satu elemen domain tanpa pasangan"
-      domainLabel="X"
-      codomainLabel="Y"
+      domainLabel={<InlineMath math="X" />}
+      codomainLabel={<InlineMath math="Y" />}
       domain={[
-        { id: "a", label: "a" },
-        { id: "b", label: "b" },
-        { id: "c", label: "c" },
+        { id: "a", label: <InlineMath math="a" /> },
+        { id: "b", label: <InlineMath math="b" /> },
+        { id: "c", label: <InlineMath math="c" /> },
       ]}
       codomain={[
-        { id: "m", label: "m" },
-        { id: "n", label: "n" },
-        { id: "o", label: "o" },
+        { id: "m", label: <InlineMath math="m" /> },
+        { id: "n", label: <InlineMath math="n" /> },
+        { id: "o", label: <InlineMath math="o" /> },
       ]}
       mappings={[
         { from: "a", to: "m" },
@@ -110,17 +110,17 @@ Panah pada diagram berikut menunjukkan syarat yang dipenuhi atau dilanggar oleh 
 >
   <FunctionAndNonFunctionRelationVisualizer
     accessibilityLabel="Diagram panah relasi fungsi dengan tepat satu pasangan"
-    domainLabel="X"
-    codomainLabel="Y"
+    domainLabel={<InlineMath math="X" />}
+    codomainLabel={<InlineMath math="Y" />}
     domain={[
-      { id: "p", label: "p" },
-      { id: "q", label: "q" },
-      { id: "r", label: "r" },
+      { id: "p", label: <InlineMath math="p" /> },
+      { id: "q", label: <InlineMath math="q" /> },
+      { id: "r", label: <InlineMath math="r" /> },
     ]}
     codomain={[
-      { id: "x", label: "x" },
-      { id: "y", label: "y" },
-      { id: "z", label: "z" },
+      { id: "x", label: <InlineMath math="x" /> },
+      { id: "y", label: <InlineMath math="y" /> },
+      { id: "z", label: <InlineMath math="z" /> },
     ]}
     mappings={[
       { from: "p", to: "x" },

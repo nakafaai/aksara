@@ -4,7 +4,7 @@ export const metadata = {
     description: "Logarithmic functions are inverses of exponential functions. Graphs, properties, and worked problems show how the two are related.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Functions and Their Modeling",
 };
 
@@ -56,6 +56,7 @@ Three bases appear especially often:
   }
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 4 - 1;
         return { x, y: Math.pow(2, x), z: 0 };
@@ -65,6 +66,7 @@ Three bases appear especially often:
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 8 + 0.1;
         return { x, y: Math.log2(x), z: 0 };
@@ -135,6 +137,7 @@ To practise logarithms, we can fit a simple exponential curve through those two 
     description="A fitted curve through the two reported case counts, followed by a short extrapolation"
     data={[
       {
+        smooth: false,
         points: Array.from({ length: 72 }, (_, i) => {
           const t = i;
           const P = 2 * Math.exp((1 / 59) * Math.log(5059) * t);

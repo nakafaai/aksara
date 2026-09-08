@@ -4,7 +4,7 @@ export const metadata = {
     "Build circles from their defining distance, then connect arcs, central and inscribed angles, arc length, and sector area through diagrams and worked problems.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
   subject: "Circle",
 };
 
@@ -27,6 +27,7 @@ The diagram turns that definition into the parts we use in calculations:
   description="The center, radius, diameter, and a chord in one circle."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -93,6 +94,7 @@ A circular arc is the part of a circle between two points on its circumference. 
   description="Visualization of the difference between minor arc and major arc."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 91 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -115,6 +117,7 @@ A circular arc is the part of a circle between two points on its circumference. 
       showPoints: true,
     },
     {
+      smooth: false,
       points: Array.from({ length: 271 }, (_, i) => {
         const angle = ((i + 90) * Math.PI) / 180;
         return {
@@ -177,6 +180,7 @@ A central angle has its vertex at the center of the circle, with two radii as it
   description="Angle formed by two radii with vertex at the center of the circle."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -212,6 +216,7 @@ A central angle has its vertex at the center of the circle, with two radii as it
       labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -225,6 +230,7 @@ A central angle has its vertex at the center of the circle, with two radii as it
       labels: [{ text: <>Arc <InlineMath math="AB" /></>, at: 22, offset: [1.5, 0.5, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -260,6 +266,7 @@ An inscribed angle has its vertex on the circle, with two chords as its sides.
   description="Angle whose vertex is on the circle and subtends the same arc."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -295,6 +302,7 @@ An inscribed angle has its vertex on the circle, with two chords as its sides.
       labels: [{ text: <InlineMath math="B" />, at: 0, offset: [0.3, 0.3, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -352,6 +360,7 @@ When a central angle and an inscribed angle intercept the same arc, the inscribe
   }
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -406,6 +415,7 @@ When a central angle and an inscribed angle intercept the same arc, the inscribe
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 81 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -418,7 +428,9 @@ When a central angle and an inscribed angle intercept the same arc, the inscribe
       showPoints: false,
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * 4 * Math.PI) / 180;
         return {
           x: 0.8 * Math.cos(angle),
@@ -428,7 +440,7 @@ When a central angle and an inscribed angle intercept the same arc, the inscribe
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="80^\circ" />, at: 10, offset: [0.5, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="80^\circ" />, at: 50, offset: [0.5, 0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
@@ -468,6 +480,7 @@ The diagram shows the two radii, the intercepted arc, and the sector they enclos
   description="Region bounded by two radii and an arc."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -498,6 +511,7 @@ The diagram shows the two radii, the intercepted arc, and the sector they enclos
       showPoints: true,
     },
     {
+      smooth: false,
       points: Array.from({ length: 61 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {

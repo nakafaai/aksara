@@ -5,7 +5,7 @@ export const metadata = {
   description: "Use the sign of the first derivative to identify increasing and decreasing intervals and interpret stationary points.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
   subject: "Derivative Functions",
 };
 
@@ -99,7 +99,9 @@ Based on the tests, we can conclude:
   cameraPosition={[0, 0, 10]}
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = -2 + i * 0.05;
         const y = x ** 3 - 3 * x;
         return { x, y, z: 0 };
@@ -109,12 +111,13 @@ Based on the tests, we can conclude:
       labels: [
         {
           text: "Increasing",
-          at: 5,
+          at: 25,
           offset: [-1, 1, 0],
         },
       ],
     },
     {
+      smooth: false,
       points: Array.from({ length: 41 }, (_, i) => {
         const x = -1 + i * 0.05;
         const y = x ** 3 - 3 * x;
@@ -131,7 +134,9 @@ Based on the tests, we can conclude:
       ],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = 1 + i * 0.05;
         const y = x ** 3 - 3 * x;
         return { x, y, z: 0 };
@@ -141,7 +146,7 @@ Based on the tests, we can conclude:
       labels: [
         {
           text: "Increasing",
-          at: 15,
+          at: 75,
           offset: [1, 1, 0],
         },
       ],

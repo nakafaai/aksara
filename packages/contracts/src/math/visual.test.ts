@@ -12,8 +12,6 @@ import {
 const BELOW_RENDER_RESOLUTION = 2 ** -24;
 
 const planeFrame = {
-  axes: "visible",
-  grid: "visible",
   kind: "cartesian",
   x: { max: 10, min: -10 },
   y: { max: 10, min: -10 },
@@ -45,8 +43,8 @@ describe("math visual boundary", () => {
       {
         ...planeScene(),
         labels: [
-          { at: { x: 0, y: 0 }, key: "same" },
-          { at: { x: 1, y: 1 }, key: "same" },
+          { at: { x: 0, y: 0 }, key: "same", objectId: "origin-point" },
+          { at: { x: 1, y: 1 }, key: "same", objectId: "origin-point" },
         ],
       },
     ]) {
@@ -61,8 +59,17 @@ describe("math visual boundary", () => {
       const visual = yield* decodeMathVisual({
         ...planeScene(),
         labels: [
-          { at: { x: 0, y: 0 }, key: "origin", placement: "below" },
-          { at: { x: 2, y: 2 }, key: "turning-point" },
+          {
+            at: { x: 0, y: 0 },
+            key: "origin",
+            objectId: "origin-point",
+            placement: "below",
+          },
+          {
+            at: { x: 2, y: 2 },
+            key: "turning-point",
+            objectId: "origin-point",
+          },
         ],
       });
       expect(mathVisualLabelKeys(visual)).toEqual(["origin", "turning-point"]);
@@ -77,6 +84,24 @@ describe("math visual boundary", () => {
         mathVisualLabelKeys(yield* decodeMathVisual(planeScene()))
       ).toEqual([]);
     })
+  );
+
+  it.effect(
+    "rejects a missing or unresolved label owner with an exact contract error",
+    () =>
+      Effect.gen(function* () {
+        for (const label of [
+          { at: { x: 0, y: 0 }, key: "unbound" },
+          { at: { x: 0, y: 0 }, key: "unknown", objectId: "absent-object" },
+        ]) {
+          const error = yield* decodeMathVisual({
+            ...planeScene(),
+            labels: [label],
+          }).pipe(Effect.flip);
+          expect(error).toBeInstanceOf(ContractDecodeError);
+          expect(error.message).toContain("objectId");
+        }
+      })
   );
 
   it.effect("surfaces one tagged contract error for unresolved scenes", () =>

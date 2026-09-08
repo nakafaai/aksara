@@ -13,8 +13,6 @@ import {
 import { MathVisualSchema } from "#contracts/math/visual";
 
 const planeFrame = Schema.decodeSync(PlaneMathFrameSchema)({
-  axes: "visible",
-  grid: "visible",
   kind: "cartesian",
   x: { max: 10, min: -10 },
   y: { max: 10, min: -10 },
@@ -102,7 +100,7 @@ describe("math visual bounds", () => {
 
     assert.deepStrictEqual(
       planeBoundsIssues(planeFrame, objects, [
-        { at: p2(10, -10), key: "boundary" },
+        { at: p2(10, -10), key: "boundary", objectId: "test-object" },
       ]),
       []
     );
@@ -156,7 +154,9 @@ describe("math visual bounds", () => {
     ];
 
     assert.deepStrictEqual(
-      planeBoundsIssues(frame, objects, [{ at: p2(0, 3), key: "outside" }]),
+      planeBoundsIssues(frame, objects, [
+        { at: p2(0, 3), key: "outside", objectId: "test-object" },
+      ]),
       [
         ...objects.map((_, index) => ({
           issue: "Expected plane geometry visible inside its frame.",
@@ -226,7 +226,7 @@ describe("math visual bounds", () => {
       spaceBoundsIssues(
         frame,
         [...infinite, ...objects],
-        [{ at: p3(0, 0, 3), key: "outside" }],
+        [{ at: p3(0, 0, 3), key: "outside", objectId: "test-object" }],
         { kind: "isometric" }
       ),
       [

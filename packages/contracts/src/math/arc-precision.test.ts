@@ -15,8 +15,6 @@ import { planeResolutionIssues } from "#contracts/math/resolution";
 const RESOLUTION = 2 ** -23;
 const THRESHOLD = BigDecimal.fromNumberUnsafe(RESOLUTION);
 const planeFrame = Schema.decodeSync(PlaneMathFrameSchema)({
-  axes: "visible",
-  grid: "visible",
   kind: "cartesian",
   x: { max: 1, min: 0 },
   y: { max: 1, min: 0 },

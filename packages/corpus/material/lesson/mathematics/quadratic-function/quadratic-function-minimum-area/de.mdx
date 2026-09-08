@@ -3,7 +3,7 @@ export const metadata = {
   description: "Aus einer Flächenaufgabe mit Nebenbedingung ein quadratisches Modell aufstellen, sein Minimum bestimmen und das Ergebnis im Sachzusammenhang prüfen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Quadratische Funktionen",
 };
 
@@ -91,16 +91,21 @@ Ein <InlineMath math="40\text{ cm}" /> langer Draht wird in zwei Stücke geteilt
     cameraPosition={[5, 24, 30]}
     data={[
       {
-        points: Array.from({ length: 11 }, (_, x) => ({
+        pointIndices: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+        smooth: false,
+        points: Array.from({ length: 101 }, (_, sampleIndex) => {
+          const x = sampleIndex / 10;
+          return {
           x,
           y: 2 * x * x - 20 * x + 100,
           z: 0,
-        })),
+        };
+        }),
         color: "#7c3aed",
         labels: [
           {
             text: "Tiefpunkt",
-            at: 5,
+            at: 50,
             offset: [0, -4, 0],
           },
         ],

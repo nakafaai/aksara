@@ -3,7 +3,7 @@ export const metadata = {
   description: "Relate arcs to chords, calculate the sagitta, and write parametric equations for design calculations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
   subject: "Circle Arcs and Sectors",
 };
 
@@ -20,7 +20,9 @@ For minor arcs in the same circle, a larger central angle produces both a longer
   description="Comparison of arc with chord at various central angles."
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = i * (Math.PI / 3) / 20;
         return {
           x: 5 * Math.cos(angle),
@@ -31,7 +33,7 @@ For minor arcs in the same circle, a larger central angle produces both a longer
       color: "#7c3aed",
       lineWidth: 4,
       showPoints: false,
-      labels: [{ text: <>Arc <InlineMath math="60^\circ" /></>, at: 10, offset: [1.5, 0.5, 0] }],
+      labels: [{ text: <>Arc <InlineMath math="60^\circ" /></>, at: 50, offset: [1.5, 0.5, 0] }],
     },
     {
       points: [
@@ -62,6 +64,7 @@ For minor arcs in the same circle, a larger central angle produces both a longer
       labels: [{ text: <InlineMath math="B" />, at: 0, offset: [0.3, 0.5, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 31 }, (_, i) => {
         const angle = Math.PI + (i * (2 * Math.PI / 3) / 30);
         return {
@@ -123,7 +126,7 @@ For minor arcs in the same circle, a larger central angle produces both a longer
       color: "#0891b2",
       lineWidth: 1,
       showPoints: false,
-      smooth: true,
+      smooth: false,
     },
   ]}
   cameraPosition={[0, 0, 14]}
@@ -161,6 +164,7 @@ The diagram marks the chord, its midpoint, and the perpendicular segment whose l
   description="Arc height (sagitta) at various central angles."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 31 }, (_, i) => {
         const angle = (-Math.PI / 6) + (i * (Math.PI / 3) / 30);
         return {
@@ -263,7 +267,7 @@ The diagram marks the chord, its midpoint, and the perpendicular segment whose l
       color: "#0891b2",
       lineWidth: 1,
       showPoints: false,
-      smooth: true,
+      smooth: false,
     },
   ]}
   cameraPosition={[0, 0, 12]}
@@ -286,6 +290,7 @@ Where <InlineMath math="t" /> is a parameter that varies from the initial angle 
   description="Arc representation using parametric equations."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 41 }, (_, i) => {
         const t = (Math.PI / 4) + (i * (Math.PI / 2) / 40);
         return {
@@ -359,7 +364,7 @@ Where <InlineMath math="t" /> is a parameter that varies from the initial angle 
       color: "#0891b2",
       lineWidth: 1,
       showPoints: false,
-      smooth: true,
+      smooth: false,
     },
   ]}
   cameraPosition={[0, 0, 12]}

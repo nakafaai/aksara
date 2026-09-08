@@ -3,7 +3,7 @@ export const metadata = {
   description: "Quadratwurzelfunktionen werden anhand von Definitionsbereich, Wertebereich, Graphtransformationen, Gleichungen, Ungleichungen und einem Höhenmodell beschrieben.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Funktionen und ihre Modellierung",
 };
 
@@ -65,7 +65,9 @@ Visualisieren wir die grundlegende Quadratwurzelfunktion <InlineMath math="f(x) 
   }
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = i * 0.5;
         return { x, y: Math.sqrt(x), z: 0 };
       }),
@@ -74,7 +76,7 @@ Visualisieren wir die grundlegende Quadratwurzelfunktion <InlineMath math="f(x) 
       labels: [
         {
           text: <InlineMath math="f(x)=\sqrt{x}" />,
-          at: 5,
+          at: 25,
           offset: [0, 1, 0],
         },
       ],
@@ -103,7 +105,9 @@ Die Funktion <InlineMath math="f(x) = \sqrt{x-h}" /> verschiebt den Graphen der 
   }
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = i * 0.5;
         return { x, y: Math.sqrt(x), z: 0 };
       }),
@@ -112,13 +116,15 @@ Die Funktion <InlineMath math="f(x) = \sqrt{x-h}" /> verschiebt den Graphen der 
       labels: [
         {
           text: <InlineMath math="\sqrt{x}" />,
-          at: 5,
+          at: 25,
           offset: [0, -0.5, 0],
         },
       ],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = 2 + i * 0.5;
         return { x, y: Math.sqrt(x - 2), z: 0 };
       }),
@@ -127,13 +133,15 @@ Die Funktion <InlineMath math="f(x) = \sqrt{x-h}" /> verschiebt den Graphen der 
       labels: [
         {
           text: <InlineMath math="\sqrt{x-2}" />,
-          at: 10,
+          at: 50,
           offset: [0, -0.5, 0],
         },
       ],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = -2 + i * 0.5;
         return { x, y: Math.sqrt(x + 2), z: 0 };
       }),
@@ -142,7 +150,7 @@ Die Funktion <InlineMath math="f(x) = \sqrt{x-h}" /> verschiebt den Graphen der 
       labels: [
         {
           text: <InlineMath math="\sqrt{x+2}" />,
-          at: 10,
+          at: 50,
           offset: [0, 0.5, 0],
         },
       ],
@@ -177,7 +185,9 @@ Für <InlineMath math="f(x) = a\sqrt{x}" /> streckt <InlineMath math="|a|>1" /> 
   }
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = i * 0.5;
         return { x, y: Math.sqrt(x), z: 0 };
       }),
@@ -186,13 +196,15 @@ Für <InlineMath math="f(x) = a\sqrt{x}" /> streckt <InlineMath math="|a|>1" /> 
       labels: [
         {
           text: <InlineMath math="\sqrt{x}" />,
-          at: 5,
+          at: 25,
           offset: [0, -0.5, 0],
         },
       ],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = i * 0.5;
         return { x, y: 2 * Math.sqrt(x), z: 0 };
       }),
@@ -201,13 +213,15 @@ Für <InlineMath math="f(x) = a\sqrt{x}" /> streckt <InlineMath math="|a|>1" /> 
       labels: [
         {
           text: <InlineMath math="2\sqrt{x}" />,
-          at: 10,
+          at: 50,
           offset: [0, -0.5, 0],
         },
       ],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = i * 0.5;
         return { x, y: 0.5 * Math.sqrt(x), z: 0 };
       }),
@@ -216,7 +230,7 @@ Für <InlineMath math="f(x) = a\sqrt{x}" /> streckt <InlineMath math="|a|>1" /> 
       labels: [
         {
           text: <InlineMath math="\frac{1}{2}\sqrt{x}" />,
-          at: 10,
+          at: 50,
           offset: [0, 0.5, 0],
         },
       ],
@@ -333,7 +347,9 @@ Da beide Seiten im Definitionsbereich nicht negativ sind, bleibt die Ungleichung
      description={<>Der Graph wird an der <InlineMath math="x" />-Achse gespiegelt und anschließend verschoben.</>}
      data={[
        {
-         points: Array.from({ length: 21 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 101 }, (_, sampleIndex) => {
+           const i = sampleIndex / 5;
            const x = -4 + i * 0.8;
            const y = -Math.sqrt(x + 4) + 2;
            return { x, y, z: 0 };
@@ -343,7 +359,7 @@ Da beide Seiten im Definitionsbereich nicht negativ sind, bleibt die Ungleichung
          labels: [
            {
              text: <InlineMath math="g(x)=-\sqrt{x+4}+2" />,
-             at: 8,
+             at: 40,
              offset: [0, -1, 0],
            },
            {

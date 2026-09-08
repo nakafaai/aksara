@@ -139,8 +139,6 @@ strings with their own [math syntax](question-bank.md#response-items).
       space: "plane",
       frame: {
         kind: "cartesian",
-        axes: "visible",
-        grid: "visible",
         x: { min: -3, max: 3 },
         y: { min: -2, max: 4 },
       },
@@ -248,13 +246,51 @@ For assessed content, also apply the
   objects, inspect and rotate the rendered scene when interaction is available
   so hidden intersections, incorrect depth, or misleading camera angles are
   not accepted from one static view.
+- Mathematical geometry uses Nakafa's shared React Three Fiber foundation:
+  `CoordinateSystem` owns the scene, grid, and camera;
+  `LineEquation` and the owning geometry primitives compose its objects.
+  `MathVisual` adapts authored scene contracts to that same foundation. Never
+  introduce a custom SVG math renderer, a parallel canvas shell, or a
+  content-local implementation. Plane geometry remains in a fixed coordinate
+  plane with a frontal initial camera and working orbit controls.
+  The owning card composes its header, scene body, and full-width bordered
+  footer. Grid and playback controls belong in that footer; do not add a gizmo
+  or overlay controls on the mathematical subject.
+  Use the established EvilCharts components, tables, and diagrams when their
+  axes, values, comparisons, or structure explain the content more clearly.
+  The restriction on bespoke SVG does not prohibit the chart library's own
+  renderer, and does not require converting every visual to 3D.
 - Preserve exact straight geometry with `MathVisual`'s `segment`, `polyline`,
-  or `polygon` objects. Reserve `spline` for intentionally smooth curves.
+  or `polygon` objects. Generate circles, arcs, and quadratic curves from their
+  mathematical functions. Do not smooth polygon edges or use interpolated
+  points that change the equation being taught.
+  For a sampled analytic `LineEquation`, calculate points from the formula and
+  set `smooth: false`. Increase the sampling density when visible segments do
+  not represent the curve adequately. Keep discontinuous branches separate.
+  When adding samples, remap label indices to their original mathematical
+  anchors and use `pointIndices` to preserve the intended visible markers.
+  A set of isolated observations uses one-point series, without connecting
+  them into an additional curve. Declarative circle objects own their exact
+  sampling and accept no authored `smooth` override.
   Author a balok as one declarative cuboid with positive dimensions:
   `{ id, kind: "cuboid", appearance, center, size: { length, width, height } }`.
   Verify eight vertices, twelve straight edges, four edges of each
   declared dimension, and a camera view that still reads as a cuboid after
   rotation.
+- Keep the default full `CoordinateSystem` grid. Authored frames have no grid
+  override. Their ranges bound mathematical objects and clipping; they must not
+  shrink the shared grid.
+- Every `MathVisual` label names its owning object's `objectId`. Its color comes
+  from that object's appearance, matching `LineEquation` lesson labels. Never
+  duplicate a label color or infer its owner from visual proximity.
+- Place labels in open regions clear of every subject line, including their
+  owning line. An anchor on the correct object does not prove that the rendered
+  label is clear. Check the full label bounds, especially equations, against
+  neighboring lines and other labels at desktop and mobile widths.
+- Every dimension label must identify its segment, arc, radius, face, or angle.
+  Attach it to that object or add a mathematically anchored construction line;
+  a floating value near several edges is ambiguous. Measure label and control
+  overlap at mobile widths and verify the association after rotating the scene.
 - Render every locale sibling that changes learner-facing labels or prose around
   a visual. Longer localized text must not clip, overlap, obscure data, or
   detach from the representation it explains.
@@ -262,7 +298,10 @@ For assessed content, also apply the
 When removing an external visual or interactive resource, inspect the existing
 lesson and renderer manifest first. Reuse a Nakafa-owned visual that already
 performs the teaching job. Add a new owned component only for a verified gap.
-Never force a depth axis or decorative 3D scene onto a planar concept.
+Keep plane and space geometry on the same interactive 3D foundation. Set the
+initial camera to explain the concept clearly, and preserve the shared grid,
+rotation, and playback controls. Camera perspective never changes the
+mathematical dimension of an authored object.
 
 Lessons and articles should not become uninterrupted walls of text when a
 meaningful structure or representation would reduce search and comparison

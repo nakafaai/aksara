@@ -5,7 +5,7 @@ export const metadata = {
   description: "Use first and second derivatives to locate and classify stationary points, then calculate local maximum and minimum values from worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
   subject: "Derivative Functions",
 };
 
@@ -39,6 +39,7 @@ The visualization below shows the horizontal tangents at a local maximum and a l
   cameraPosition={[0, 2, 18]}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 41 }, (_, i) => {
         const x = -2 + i * 0.1;
         return { x: x - 3, y: -(x ** 2) + 4, z: 0 };
@@ -62,6 +63,7 @@ The visualization below shows the horizontal tangents at a local maximum and a l
       smooth: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 41 }, (_, i) => {
         const x = -2 + i * 0.1;
         return { x: x + 3, y: x ** 2, z: 0 };
@@ -139,6 +141,7 @@ So, the local maximum value is <InlineMath math="4" /> at <InlineMath math="(1,4
   cameraPosition={[1.5, 2, 15]}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 101 }, (_, i) => {
         const x = -0.5 + i * 0.05;
         const y = x * Math.pow(x - 3, 2);
@@ -241,6 +244,7 @@ If we look at the visualization below, the curve is concave down at the point <I
   cameraPosition={[1, -2, 20]}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 101 }, (_, i) => {
         const x = -2.5 + i * 0.08;
         const y = (1 / 3) * x ** 3 - x ** 2 - 3 * x + 2;

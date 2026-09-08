@@ -4,7 +4,7 @@ export const metadata = {
   description: "Hubungkan sudut pusat dan sudut keliling melalui busur yang sama, buktikan hubungannya, lalu terapkan pada diameter dan soal bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
   subject: "Lingkaran",
 };
 
@@ -17,6 +17,7 @@ Sudut pusat adalah sudut yang dibentuk oleh dua jari-jari lingkaran dengan titik
   description="Sudut yang titik sudutnya berada di pusat lingkaran."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -52,6 +53,7 @@ Sudut pusat adalah sudut yang dibentuk oleh dua jari-jari lingkaran dengan titik
       labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -85,6 +87,7 @@ Sudut keliling adalah sudut yang dibentuk oleh dua tali busur dengan titik sudut
   description="Sudut yang titik sudutnya berada pada lingkaran."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -146,6 +149,7 @@ Jika keduanya menghadap busur yang sama, besar sudut pusat selalu dua kali besar
   description="Sudut pusat dan sudut keliling yang menghadap busur yang sama."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -200,6 +204,7 @@ Jika keduanya menghadap busur yang sama, besar sudut pusat selalu dua kali besar
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -213,6 +218,7 @@ Jika keduanya menghadap busur yang sama, besar sudut pusat selalu dua kali besar
       labels: [{ text: <>Busur <InlineMath math="AB" /></>, at: 22, offset: [1.5, 0.5, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -253,6 +259,7 @@ Tarik diameter melalui <InlineMath math="C" /> dan pusat <InlineMath math="O" />
   }
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -344,6 +351,7 @@ Konstruksi ini membuktikan susunan pada gambar, yaitu titik <InlineMath math="C"
      description={<>Sudut keliling yang menghadap diameter selalu <InlineMath math="90^\circ" />.</>}
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 361 }, (_, i) => {
            const angle = (i * Math.PI) / 180;
            return {
@@ -394,6 +402,7 @@ Konstruksi ini membuktikan susunan pada gambar, yaitu titik <InlineMath math="C"
          labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
        },
        {
+         smooth: false,
          points: (() => {
            const C = { x: 0, y: 4 };
            const A = { x: -4, y: 0 };
@@ -432,6 +441,7 @@ Konstruksi ini membuktikan susunan pada gambar, yaitu titik <InlineMath math="C"
      description="Sudut-sudut keliling yang menghadap busur yang sama memiliki besar yang sama."
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 361 }, (_, i) => {
            const angle = (i * Math.PI) / 180;
            return {
@@ -495,6 +505,7 @@ Konstruksi ini membuktikan susunan pada gambar, yaitu titik <InlineMath math="C"
          showPoints: false,
        },
        {
+         smooth: false,
          points: Array.from({ length: 46 }, (_, i) => {
            const angle = (i * Math.PI) / 180;
            return {
@@ -521,6 +532,7 @@ Diketahui sudut pusat <InlineMath math="\angle AOB = 80^\circ" />. Tentukan besa
   description={<>Dari sudut pusat <InlineMath math="\angle AOB = 80^\circ" />, tentukan sudut keliling <InlineMath math="\angle ACB" />.</>}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -575,7 +587,9 @@ Diketahui sudut pusat <InlineMath math="\angle AOB = 80^\circ" />. Tentukan besa
       showPoints: false,
     },
     {
-      points: Array.from({ length: 18 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 103 }, (_, sampleIndex) => {
+        const i = sampleIndex / 6;
         const angle = ((i * 80) / 17) * Math.PI / 180;
         return {
           x: 1.2 * Math.cos(angle),
@@ -585,7 +599,7 @@ Diketahui sudut pusat <InlineMath math="\angle AOB = 80^\circ" />. Tentukan besa
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="80^\circ" />, at: 10, offset: [0.5, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="80^\circ" />, at: 60, offset: [0.5, 0.3, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}

@@ -4,7 +4,7 @@ export const metadata = {
   description: "Membuat model fungsi piecewise dari batas interval, tarif bertingkat, gerak bertahap, dan titik sambung.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
   subject: "Fungsi dan Pemodelannya",
 };
 
@@ -88,6 +88,7 @@ Fungsi piecewise juga bisa memakai potongan kuadratik. Potongan kuadratik dapat 
   description="Kombinasi fungsi kuadratik dan linear dalam satu fungsi piecewise."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 31 }, (_, i) => {
         const x = -3 + i * 0.1;
         return { x, y: x * x, z: 0 };
@@ -337,13 +338,15 @@ Fungsi piecewise:
          labels: [{ text: <InlineMath math="y=-x+2" />, at: 10, offset: [0, 0.5, 0] }],
        },
        {
-         points: Array.from({ length: 21 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 101 }, (_, sampleIndex) => {
+           const i = sampleIndex / 5;
            const x = 0 + i * 0.1;
            return { x, y: x * x, z: 0 };
          }),
          color: "#ea580c",
          showPoints: false,
-         labels: [{ text: <InlineMath math="y=x^2" />, at: 10, offset: [0, 0.5, 0] }],
+         labels: [{ text: <InlineMath math="y=x^2" />, at: 50, offset: [0, 0.5, 0] }],
        },
        {
          points: Array.from({ length: 21 }, (_, i) => {

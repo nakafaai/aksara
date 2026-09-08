@@ -14,8 +14,6 @@ export function planeScene(labels = "") {
     space: "plane",
     frame: {
       kind: "cartesian",
-      axes: "visible",
-      grid: "visible",
       x: { min: -2, max: +2 },
       y: { min: -2, max: 2 },
     },
