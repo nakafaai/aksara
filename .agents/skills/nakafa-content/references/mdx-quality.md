@@ -15,6 +15,9 @@
 - Keep provenance, originality, evidence URLs, and publication status in the
   source, readiness, and publisher contracts. Do not insert learner-facing
   notices such as "original practice text" into a question or answer.
+- Every visual card requires a description that adds useful information beyond
+  its title. Never repeat or merely restate the title. Describe a relevant
+  diagram fact or a specific learning task.
 
 ## Headings
 
