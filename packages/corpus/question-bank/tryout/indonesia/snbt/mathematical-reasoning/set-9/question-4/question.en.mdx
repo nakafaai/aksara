@@ -2,20 +2,18 @@ export const metadata = {
   title: "Question 4",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
 };
 
 <InlineMath math="ABCD" /> is a square of side <InlineMath math="12" />. Point <InlineMath math="E" /> lies on <InlineMath math="BC" /> with <InlineMath math="BE=3" />, and point <InlineMath math="F" /> lies on <InlineMath math="CD" /> with <InlineMath math="CF=4" />. Lines <InlineMath math="AE" /> and <InlineMath math="BF" /> intersect at <InlineMath math="P" />.
 
 <MathVisual
   title="Square with two intersecting lines"
-  description={<>Exact straight segments for square <InlineMath math="ABCD" />, <InlineMath math="AE" />, and <InlineMath math="BF" />.</>}
+  description={<>Square <InlineMath math="ABCD" /> with segments <InlineMath math="AE" /> and <InlineMath math="BF" /> intersecting at <InlineMath math="P" />.</>}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      axes: "hidden",
-      grid: "hidden",
       x: { min: -1, max: 13 },
       y: { min: -1, max: 13 },
     },
@@ -54,13 +52,13 @@ export const metadata = {
       },
     ],
     labels: [
-      { key: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
-      { key: "point-b", at: { x: 12, y: 0 }, placement: "below-right" },
-      { key: "point-c", at: { x: 12, y: 12 }, placement: "above-right" },
-      { key: "point-d", at: { x: 0, y: 12 }, placement: "above-left" },
-      { key: "point-e", at: { x: 12, y: 3 }, placement: "right" },
-      { key: "point-f", at: { x: 8, y: 12 }, placement: "above" },
-      { key: "point-p", at: { x: 11.076923076923077, y: 2.769230769230769 }, placement: "above-left" },
+      { key: "point-a", objectId: "segment-ae", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "point-b", objectId: "segment-bf", at: { x: 12, y: 0 }, placement: "below-right" },
+      { key: "point-c", objectId: "square-abcd", at: { x: 12, y: 12 }, placement: "above-right" },
+      { key: "point-d", objectId: "square-abcd", at: { x: 0, y: 12 }, placement: "above-left" },
+      { key: "point-e", objectId: "segment-ae", at: { x: 12, y: 3 }, placement: "right" },
+      { key: "point-f", objectId: "segment-bf", at: { x: 8, y: 12 }, placement: "above" },
+      { key: "point-p", objectId: "intersection-p", at: { x: 11.076923076923077, y: 2.769230769230769 }, placement: "above-left" },
     ],
   }}
   labels={{

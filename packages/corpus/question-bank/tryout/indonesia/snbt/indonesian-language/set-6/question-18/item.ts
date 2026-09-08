@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Kartu 1967 membuktikan lukisan berada di Surabaya saat diperiksa, tetapi tidak menjelaskan siapa pemiliknya atau bagaimana karya berpindah dari Bandung; celah itu tetap terbuka.",
+            "Kartu $$1967$$ membuktikan lukisan berada di Surabaya saat diperiksa, tetapi tidak menjelaskan siapa pemiliknya atau bagaimana riwayat penguasaan karya sejak label $$1958$$. Celah itu tetap terbuka.",
         },
         {
           isCorrect: false,

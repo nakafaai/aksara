@@ -2,9 +2,25 @@ export const metadata = {
   title: "Solution to Question 29",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Among the 66 pairs, 6 are red-red and 32 are mixed. The mixed-colour prize rises to 36, so the new expected value is <InlineMath math="[60(6)+36(32)]/66=1512/66=252/11" />.
+The two balls are selected without regard to order. The number of equally likely pairs is:
 
-Therefore, the requested value is <InlineMath math="\\frac{252}{11}" />.
+<BlockMath math="\binom{12}{2}=\frac{12\times11}{2}=66" />
+
+The mixed-colour prize rises by <InlineMath math="20\%" />. In thousand rupiah, the new prize is:
+
+<BlockMath math="30\times\frac{120}{100}=36" />
+
+| Pair | Count | Prize |
+| --- | ---: | ---: |
+| Red and red | <InlineMath math="\binom42=6" /> | <InlineMath math="60" /> |
+| Red and blue | <InlineMath math="4\times8=32" /> | <InlineMath math="36" /> |
+| Blue and blue | <InlineMath math="\binom82=28" /> | <InlineMath math="0" /> |
+
+Let <InlineMath math="X" /> be the payout in thousand rupiah. The expected value adds each prize multiplied by the probability of that pair:
+
+<BlockMath math="\begin{aligned}\mathrm{E}[X]&=\frac{60\times6+36\times32}{66}\\&=\frac{360+1152}{66}\\&=\frac{1512}{66}\\&=\frac{252}{11}\end{aligned}" />
+
+Therefore, the new expected payout is **<InlineMath math="252/11" /> thousand rupiah**.

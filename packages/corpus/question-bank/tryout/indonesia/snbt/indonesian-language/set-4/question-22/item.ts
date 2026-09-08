@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Nisa memilih untuk mencatat rute yang sulit dan mengusulkan tanda yang bisa dibaca dari kursi roda; tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
+            "Nisa memilih untuk mencatat rute yang sulit dan mengusulkan tanda yang bisa dibaca dari kursi roda. Tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
         },
         {
           isCorrect: false,
           label:
-            "Nisa memilih untuk mencatat rute yang sulit dan mengusulkan tanda yang bisa dibaca dari kursi roda; perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
+            "Nisa memilih untuk mencatat rute yang sulit dan mengusulkan tanda yang bisa dibaca dari kursi roda. Perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
         },
         {
           isCorrect: true,
@@ -23,12 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Nisa memilih untuk mencatat rute yang sulit dan mengusulkan tanda yang bisa dibaca dari kursi roda; latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
+            "Nisa memilih untuk mencatat rute yang sulit dan mengusulkan tanda yang bisa dibaca dari kursi roda. Latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
         },
         {
           isCorrect: false,
           label:
-            "Nisa memilih untuk mencatat rute yang sulit dan mengusulkan tanda yang bisa dibaca dari kursi roda; definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
+            "Nisa memilih untuk mencatat rute yang sulit dan mengusulkan tanda yang bisa dibaca dari kursi roda. Definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
         },
       ],
     },

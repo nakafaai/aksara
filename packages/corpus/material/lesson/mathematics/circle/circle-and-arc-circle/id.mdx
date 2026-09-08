@@ -4,7 +4,7 @@ export const metadata = {
     "Lingkaran dibaca dari pusat, jari-jari, diameter, tali busur, dan busur agar siswa bisa menghitung panjang busur dan juring dengan lebih terarah.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
   subject: "Lingkaran",
 };
 
@@ -27,6 +27,7 @@ Diagram berikut menghubungkan definisi tersebut dengan unsur-unsur yang dipakai 
   description="Visualisasi pusat, jari-jari, diameter, dan tali busur lingkaran."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -93,6 +94,7 @@ Busur lingkaran adalah bagian dari keliling lingkaran yang dibatasi oleh dua tit
   description="Visualisasi perbedaan busur minor dan busur mayor."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 91 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -115,6 +117,7 @@ Busur lingkaran adalah bagian dari keliling lingkaran yang dibatasi oleh dua tit
       showPoints: true,
     },
     {
+      smooth: false,
       points: Array.from({ length: 271 }, (_, i) => {
         const angle = ((i + 90) * Math.PI) / 180;
         return {
@@ -177,6 +180,7 @@ Sudut pusat adalah sudut yang titik sudutnya berada di pusat lingkaran dan kaki-
   description="Sudut yang dibentuk oleh dua jari-jari dengan titik sudut di pusat lingkaran."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -212,6 +216,7 @@ Sudut pusat adalah sudut yang titik sudutnya berada di pusat lingkaran dan kaki-
       labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -225,6 +230,7 @@ Sudut pusat adalah sudut yang titik sudutnya berada di pusat lingkaran dan kaki-
       labels: [{ text: <>Busur <InlineMath math="AB" /></>, at: 22, offset: [1.5, 0.5, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -260,6 +266,7 @@ Sudut keliling adalah sudut yang titik sudutnya berada pada lingkaran dan kaki-k
   description="Sudut yang titik sudutnya pada lingkaran dan menghadap busur yang sama."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -295,6 +302,7 @@ Sudut keliling adalah sudut yang titik sudutnya berada pada lingkaran dan kaki-k
       labels: [{ text: <InlineMath math="B" />, at: 0, offset: [0.3, 0.3, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -352,6 +360,7 @@ Jika sudut pusat dan sudut keliling menghadap busur yang sama, maka besar sudut 
   }
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -406,6 +415,7 @@ Jika sudut pusat dan sudut keliling menghadap busur yang sama, maka besar sudut 
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 81 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -418,7 +428,9 @@ Jika sudut pusat dan sudut keliling menghadap busur yang sama, maka besar sudut 
       showPoints: false,
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * 4 * Math.PI) / 180;
         return {
           x: 0.8 * Math.cos(angle),
@@ -428,7 +440,7 @@ Jika sudut pusat dan sudut keliling menghadap busur yang sama, maka besar sudut 
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="80^\circ" />, at: 10, offset: [0.5, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="80^\circ" />, at: 50, offset: [0.5, 0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
@@ -468,6 +480,7 @@ Diagram berikut menunjukkan dua jari-jari, busur yang dihadapinya, dan juring ya
   description="Daerah yang dibatasi oleh dua jari-jari dan busur."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -498,6 +511,7 @@ Diagram berikut menunjukkan dua jari-jari, busur yang dihadapinya, dan juring ya
       showPoints: true,
     },
     {
+      smooth: false,
       points: Array.from({ length: 61 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {

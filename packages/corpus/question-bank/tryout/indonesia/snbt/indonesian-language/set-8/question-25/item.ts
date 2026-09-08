@@ -15,7 +15,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Membuktikan Kedalaman Sumur Tepat 4,81 Meter",
+          label: "Membuktikan Kedalaman Sumur Tepat $$4{,}81$$ Meter",
         },
         {
           isCorrect: false,

@@ -7,28 +7,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "Geordnete Prüfung einer Änderung: Verteilung von Mangrovensetzlingen",
+          label: "Pflanzortetiketten an Mangrovensetzlingstabletts im Test",
+        },
+        {
+          isCorrect: false,
+          label: "Ausgangsdaten vor der Prüfung von Tablettetiketten",
         },
         {
           isCorrect: false,
           label:
-            "Erste Belege zu Pflanzortetiketten auf jedem Tablett im Kontext „Verteilung von Mangrovensetzlingen“",
+            "Gleichzeitige Prüfung mehrerer Änderungen an der Setzlingsverteilung",
         },
         {
           isCorrect: false,
           label:
-            "Prüfung mehrerer gleichzeitiger Änderungen im Kontext „Verteilung von Mangrovensetzlingen“",
+            "Rückmeldungen zur dauerhaften Neugestaltung der Setzlingsverteilung",
         },
         {
           isCorrect: false,
-          label:
-            "Rückmeldungen zur dauerhaften Neugestaltung des Kontexts „Verteilung von Mangrovensetzlingen“",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vollständige Bewertung des Kontexts „Verteilung von Mangrovensetzlingen“",
+          label: "Vollständige Bewertung aller Tätigkeiten der Baumschule",
         },
       ],
     },
@@ -37,27 +34,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "A structured test of one change: mangrove seedling distribution",
+          label: "Testing Planting-Site Labels on Mangrove Seedling Trays",
+        },
+        {
+          isCorrect: false,
+          label: "Baseline Records Before Tray Labels Were Tested",
         },
         {
           isCorrect: false,
           label:
-            "Early evidence about planting-site labels on every tray in the context of mangrove seedling distribution",
+            "Testing Several Simultaneous Changes to Seedling Distribution",
         },
         {
           isCorrect: false,
-          label:
-            "Testing several simultaneous changes in the context of mangrove seedling distribution",
+          label: "Reactions to a Permanent Redesign of Seedling Distribution",
         },
         {
           isCorrect: false,
-          label:
-            "User reactions to a permanent redesign of mangrove seedling distribution",
-        },
-        {
-          isCorrect: false,
-          label: "A complete evaluation of mangrove seedling distribution",
+          label: "A Complete Evaluation of All Nursery Activities",
         },
       ],
     },
@@ -66,26 +60,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Uji Teratur atas Satu Perubahan: pembagian bibit mangrove",
+          label: "Pengujian Label Lokasi pada Baki Bibit Mangrove",
         },
         {
           isCorrect: false,
-          label:
-            "Bukti awal tentang label lokasi tanam pada setiap baki dalam konteks distribusi bibit mangrove",
+          label: "Catatan Awal Sebelum Label Baki Diuji",
         },
         {
           isCorrect: false,
-          label:
-            "Pengujian beberapa perubahan serentak dalam konteks distribusi bibit mangrove",
+          label: "Pengujian Beberapa Perubahan Serentak dalam Pembagian Bibit",
         },
         {
           isCorrect: false,
-          label:
-            "Tanggapan pengguna terhadap perancangan ulang tetap pada distribusi bibit mangrove",
+          label: "Tanggapan atas Perancangan Ulang Permanen Pembagian Bibit",
         },
         {
           isCorrect: false,
-          label: "Evaluasi menyeluruh terhadap distribusi bibit mangrove",
+          label: "Evaluasi Menyeluruh atas Seluruh Kegiatan Pembibitan",
         },
       ],
     },

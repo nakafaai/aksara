@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Hana followed one bag from a stall to collection instead of judging the whole market at a glance; the choice resolves the whole conflict at once and makes any later review unnecessary.",
+            "Hana followed one bag from a stall to collection instead of judging the whole market at a glance. The choice resolves the whole conflict at once and makes any later review unnecessary.",
         },
         {
           isCorrect: false,
           label:
-            "Hana followed one bag from a stall to collection instead of judging the whole market at a glance; the action transfers responsibility for the unresolved task to another character.",
+            "Hana followed one bag from a stall to collection instead of judging the whole market at a glance. The action transfers responsibility for the unresolved task to another character.",
         },
         {
           isCorrect: true,
@@ -23,12 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Hana followed one bag from a stall to collection instead of judging the whole market at a glance; the decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
+            "Hana followed one bag from a stall to collection instead of judging the whole market at a glance. The decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
         },
         {
           isCorrect: false,
           label:
-            "Hana followed one bag from a stall to collection instead of judging the whole market at a glance; the setting alone produces the change, so the character's decision has no role in the development.",
+            "Hana followed one bag from a stall to collection instead of judging the whole market at a glance. The setting alone produces the change, so the character's decision has no role in the development.",
         },
       ],
     },

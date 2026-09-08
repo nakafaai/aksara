@@ -78,8 +78,6 @@ describe("createMathVisualPolicy", () => {
         space: "plane",
         frame: {
           kind: "cartesian",
-          axes: "visible",
-          grid: "visible",
           x: { min: -2, max: 2 },
           y: { min: -2, max: 2 },
         },
@@ -95,7 +93,7 @@ describe("createMathVisualPolicy", () => {
       assert.deepStrictEqual(error.violations, [
         {
           column: 19,
-          line: 15,
+          line: 13,
           message: "Expected number",
           path: ["objects", 0, "from", "x"],
           reason: "scene-schema",
@@ -110,8 +108,6 @@ describe("createMathVisualPolicy", () => {
         space: "plane",
         frame: {
           kind: "cartesian",
-          axes: "visible",
-          grid: "visible",
           x: { min: -2, max: 2 },
           y: { min: -2, max: 2 },
         },
@@ -156,8 +152,6 @@ describe("createMathVisualPolicy", () => {
           space: "plane",
           frame: {
             kind: "cartesian",
-            axes: "visible",
-            grid: "visible",
             x: { min: -2, max: 2 },
             y: { min: -2, max: 2 },
           },
@@ -169,8 +163,8 @@ describe("createMathVisualPolicy", () => {
             at: { x: 0, y: 0 },
           }],
           labels: [
-            { key: "origin", at: { x: 0, y: 0 } },
-            { key: "origin", at: { x: 1, y: 1 } },
+            { key: "origin", objectId: "origin-point", at: { x: 0, y: 0 } },
+            { key: "origin", objectId: "origin-point", at: { x: 1, y: 1 } },
           ],
         }}
         labels={{ origin: <>Origin</> }}
@@ -243,7 +237,7 @@ describe("createMathVisualPolicy", () => {
     Effect.gen(function* () {
       const error = yield* rejectMathVisual(`<MathVisual
         scene={${planeScene(
-          'labels: [{ key: "point-a", at: { x: 0, y: 0 } }],'
+          'labels: [{ key: "point-a", objectId: "diagonal", at: { x: 0, y: 0 } }],'
         )}}
         labels={{ "point-b": <>B</> }}
         title="Plane"
@@ -257,7 +251,7 @@ describe("createMathVisualPolicy", () => {
     Effect.gen(function* () {
       const error = yield* rejectMathVisual(
         `<MathVisual scene={${planeScene(
-          'labels: [{ key: "point-a", at: { x: 0, y: 0 } }],'
+          'labels: [{ key: "point-a", objectId: "diagonal", at: { x: 0, y: 0 } }],'
         )}} title="Plane" description="A mathematical plane." />`
       );
       assert.strictEqual(error.violations[0]?.reason, "label-keys-mismatch");

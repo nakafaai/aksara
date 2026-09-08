@@ -7,27 +7,27 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Geordnete Prüfung einer Änderung: Schulfrühstücksprogramm",
+          label:
+            "Menübestellungen am Vortag im Schulfrühstücksprogramm im Test",
         },
         {
           isCorrect: false,
           label:
-            "Prüfung mehrerer gleichzeitiger Änderungen im Kontext „Schulfrühstücksprogramm“",
+            "Gleichzeitige Prüfung mehrerer Änderungen am Frühstücksprogramm",
+        },
+        {
+          isCorrect: false,
+          label: "Ausgangsdaten vor der Prüfung von Vorbestellungen",
         },
         {
           isCorrect: false,
           label:
-            "Erste Belege zu Menüvorbestellung am Vortag im Kontext „Schulfrühstücksprogramm“",
+            "Rückmeldungen zur dauerhaften Neugestaltung des Frühstücksprogramms",
         },
         {
           isCorrect: false,
           label:
-            "Rückmeldungen zur dauerhaften Neugestaltung des Kontexts „Schulfrühstücksprogramm“",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vollständige Bewertung des Kontexts „Schulfrühstücksprogramm“",
+            "Vollständige Bewertung aller Tätigkeiten des Frühstücksprogramms",
         },
       ],
     },
@@ -36,26 +36,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "A structured test of one change: school breakfast programme",
+          label:
+            "Testing Advance Menu Orders in the School Breakfast Programme",
         },
         {
           isCorrect: false,
           label:
-            "Testing several simultaneous changes in the context of school breakfast programme",
+            "Testing Several Simultaneous Changes to the Breakfast Programme",
+        },
+        {
+          isCorrect: false,
+          label: "Baseline Records Before Advance Ordering Was Tested",
         },
         {
           isCorrect: false,
           label:
-            "Early evidence about menu booking one day in advance in the context of school breakfast programme",
+            "Student Reactions to a Permanent Redesign of the Breakfast Programme",
         },
         {
           isCorrect: false,
-          label:
-            "User reactions to a permanent redesign of school breakfast programme",
-        },
-        {
-          isCorrect: false,
-          label: "A complete evaluation of school breakfast programme",
+          label: "A Complete Evaluation of All Breakfast Programme Activities",
         },
       ],
     },
@@ -64,26 +64,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Uji Teratur atas Satu Perubahan: program sarapan sekolah",
+          label:
+            "Pengujian Pemesanan Menu Sehari Sebelumnya dalam Program Sarapan Sekolah",
+        },
+        {
+          isCorrect: false,
+          label: "Pengujian Beberapa Perubahan Serentak pada Program Sarapan",
+        },
+        {
+          isCorrect: false,
+          label: "Catatan Awal Sebelum Pemesanan Sehari Sebelumnya Diuji",
         },
         {
           isCorrect: false,
           label:
-            "Pengujian beberapa perubahan serentak dalam konteks program sarapan sekolah",
+            "Tanggapan Siswa terhadap Perancangan Ulang Permanen Program Sarapan",
         },
         {
           isCorrect: false,
-          label:
-            "Bukti awal tentang pemesanan menu sehari sebelumnya dalam konteks program sarapan sekolah",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Tanggapan pengguna terhadap perancangan ulang tetap pada program sarapan sekolah",
-        },
-        {
-          isCorrect: false,
-          label: "Evaluasi menyeluruh terhadap program sarapan sekolah",
+          label: "Evaluasi Menyeluruh atas Semua Kegiatan Program Sarapan",
         },
       ],
     },

@@ -2,7 +2,6 @@ import { Effect, Schema, Stream } from "effect";
 import { compareContentHeads } from "#contracts/content";
 import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import { digestItems } from "#contracts/release/digest";
-import { publicationScopeSelectsContent } from "#contracts/release/snapshot/scope";
 import {
   type ContentReleaseItem,
   ContentReleaseItemSchema,
@@ -103,7 +102,7 @@ function validateItemIdentity(
       })
     );
   }
-  if (!publicationScopeSelectsContent(manifest.scope, item.change)) {
+  if (!manifest.scope.families.includes(item.change.family)) {
     return Effect.fail(
       new ReleaseItemScopeError({ itemOffset: expectedIndex })
     );

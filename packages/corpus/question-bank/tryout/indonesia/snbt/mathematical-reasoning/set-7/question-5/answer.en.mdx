@@ -1,24 +1,25 @@
 export const metadata = {
   title: "Solution to Question 5",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2025-06-11",
 };
 
 #### Volume Analysis
 
-Because every ball is completely submerged, its full volume displaces the same volume of water. The remaining water is therefore the cylinder volume minus the combined volume of the balls.
+Because every ball is completely submerged, its full volume displaces the same volume of water. The remaining water is therefore the cylinder volume minus the combined volume of the balls. Let <InlineMath math="V_w" /> be the remaining water volume, <InlineMath math="V_c" /> the cylinder volume, and <InlineMath math="V_b" /> the volume of one ball, all in cubic centimeters.
 
 <MathContainer>
-  <BlockMath math="V_{\text{remaining}} = V_{\text{cylinder}} - n \cdot V_{\text{ball}}" />
-  <BlockMath math="11{,}388\pi = \pi r_1^2 h - n \left(\frac{4}{3} \pi r_2^3\right)" />
-  <BlockMath math="11{,}388\pi = \pi \left(r_1^2 h - n \cdot \frac{4}{3} r_2^3\right)" />
+  <BlockMath math="V_w = V_c - n \cdot V_b" />
+  <BlockMath math="\begin{aligned}11{,}388\pi&=\pi r_1^2h \\ &\quad-n\left(\frac43\pi r_2^3\right)\end{aligned}" />
+  <BlockMath math="\begin{aligned}&11{,}388\pi \\ &\quad=\pi\left(r_1^2h-n\cdot\frac43r_2^3\right)\end{aligned}" />
 </MathContainer>
 
 Substitute <InlineMath math="r_1 = 20 \text{ cm}" /> and <InlineMath math="h = 30 \text{ cm}" /> for the cylinder, and <InlineMath math="r_2 = 3 \text{ cm}" /> for each ball.
 
 <MathContainer>
-  <BlockMath math="11{,}388 = (20)^2(30) - n \left(\frac{4}{3}(3)^3\right)" />
-  <BlockMath math="11{,}388 = 12{,}000 - n \left(\frac{4}{3}(27)\right)" />
+  <BlockMath math="\begin{aligned}11{,}388&=(20)^2(30) \\ &\quad-n\left(\frac43(3)^3\right)\end{aligned}" />
+  <BlockMath math="\begin{aligned}11{,}388&=12{,}000 \\ &\quad-n\left(\frac43(27)\right)\end{aligned}" />
   <BlockMath math="11{,}388 = 12{,}000 - 36n" />
 </MathContainer>
 
@@ -31,6 +32,12 @@ Now isolate <InlineMath math="n" />:
   <BlockMath math="n = 17" />
 </MathContainer>
 
-The result is a positive integer. As a check, the balls occupy <InlineMath math="17 \cdot 36\pi = 612\pi\text{ cm}^3" />, and <InlineMath math="12{,}000\pi - 612\pi = 11{,}388\pi\text{ cm}^3" /> of water remains.
+The result is a positive integer. As a check, the balls occupy:
+
+<BlockMath math="17\cdot36\pi=612\pi\text{ cm}^3" />
+
+The remaining water volume, in cubic centimeters, is:
+
+<BlockMath math="12{,}000\pi-612\pi=11{,}388\pi" />
 
 Therefore, <InlineMath math="17" /> balls were inserted.

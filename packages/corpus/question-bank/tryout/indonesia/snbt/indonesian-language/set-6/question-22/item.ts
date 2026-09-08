@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Sari memilih untuk mengubah tujuan pertemuan dari mengejar bab menjadi memahami satu konsep; tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
+            "Sari memilih untuk mengubah tujuan pertemuan dari mengejar jumlah soal menjadi memahami satu konsep. Tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
         },
         {
           isCorrect: true,
@@ -18,17 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Sari memilih untuk mengubah tujuan pertemuan dari mengejar bab menjadi memahami satu konsep; perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
+            "Sari memilih untuk mengubah tujuan pertemuan dari mengejar jumlah soal menjadi memahami satu konsep. Perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
         },
         {
           isCorrect: false,
           label:
-            "Sari memilih untuk mengubah tujuan pertemuan dari mengejar bab menjadi memahami satu konsep; latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
+            "Sari memilih untuk mengubah tujuan pertemuan dari mengejar jumlah soal menjadi memahami satu konsep. Latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
         },
         {
           isCorrect: false,
           label:
-            "Sari memilih untuk mengubah tujuan pertemuan dari mengejar bab menjadi memahami satu konsep; definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
+            "Sari memilih untuk mengubah tujuan pertemuan dari mengejar jumlah soal menjadi memahami satu konsep. Definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
         },
       ],
     },

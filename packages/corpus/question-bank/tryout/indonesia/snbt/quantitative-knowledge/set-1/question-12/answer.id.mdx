@@ -2,20 +2,18 @@ export const metadata = {
   title: "Pembahasan Soal 12",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
 };
-
-
 
 Diketahui limas beraturan <InlineMath math="T.ABCD" /> dengan <InlineMath math="AB = 4 \text{ cm}" /> dan titik <InlineMath math="O" /> merupakan titik potong garis <InlineMath math="AC" /> dengan <InlineMath math="BD" />.
 
 Volume limas dapat dihitung dengan rumus:
 
-<BlockMath math="V = \frac{1}{3} \times L_{\text{alas}} \times t = \frac{1}{3} \times s^2 \times t" />
+<BlockMath math="\begin{aligned}V&=\frac{1}{3} \times G \times t\\&=\frac{1}{3} \times s^2 \times t\end{aligned}" />
 
-dengan <InlineMath math="s" /> adalah panjang sisi alas dan <InlineMath math="t" /> adalah tinggi limas.
+dengan <InlineMath math="G" /> adalah luas alas, <InlineMath math="s" /> adalah panjang sisi alas dan <InlineMath math="t" /> adalah tinggi limas.
 
-Karena <InlineMath math="AB = 4 \text{ cm}" />, maka luas alas <InlineMath math="L_{\text{alas}} = 4^2 = 16 \text{ cm}^2" />.
+Karena <InlineMath math="AB = 4 \text{ cm}" />, maka luas alas <InlineMath math="G = 4^2 = 16 \text{ cm}^2" />.
 
 Untuk menghitung volume, kita perlu mengetahui tinggi limas <InlineMath math="t = TO" />.
 
@@ -34,7 +32,7 @@ Ini konsisten dengan informasi yang diberikan (<InlineMath math="AB = 4 \text{ c
 
 Titik <InlineMath math="O" /> adalah titik tengah diagonal, sehingga:
 
-<BlockMath math="AO = OC = \frac{AC}{2} = \frac{4\sqrt{2}}{2} = 2\sqrt{2} \text{ cm}" />
+<BlockMath math="\begin{aligned}AO&=OC\\&=\frac{AC}{2}\\&=\frac{4\sqrt{2}}{2}\\&=2\sqrt{2} \text{ cm}\end{aligned}" />
 
 Namun, pernyataan <InlineMath math="(1)" /> tidak memberikan informasi tentang tinggi limas <InlineMath math="TO" />. Tanpa informasi tinggi, volume tidak dapat ditentukan.
 
@@ -46,7 +44,7 @@ Karena <InlineMath math="AB = 4 \text{ cm}" />, diagonal alas <InlineMath math="
 
 Titik <InlineMath math="O" /> adalah titik tengah diagonal, sehingga:
 
-<BlockMath math="AO = \frac{AC}{2} = \frac{4\sqrt{2}}{2} = 2\sqrt{2} \text{ cm}" />
+<BlockMath math="\begin{aligned}AO&=\frac{AC}{2}\\&=\frac{4\sqrt{2}}{2}\\&=2\sqrt{2} \text{ cm}\end{aligned}" />
 
 Perhatikan segitiga siku-siku <InlineMath math="AOT" /> dengan sudut siku-siku di <InlineMath math="O" /> (karena <InlineMath math="TO" /> tegak lurus alas).
 
@@ -60,9 +58,9 @@ Dengan menggunakan teorema Pythagoras:
 <BlockMath math="TO = 3 \text{ cm}" />
 </MathContainer>
 
-Dengan tinggi <InlineMath math="TO = 3 \text{ cm}" /> dan luas alas <InlineMath math="L_{\text{alas}} = 16 \text{ cm}^2" />, volume limas dapat dihitung:
+Dengan tinggi <InlineMath math="TO = 3 \text{ cm}" /> dan luas alas <InlineMath math="G = 16 \text{ cm}^2" />, volume limas dapat dihitung:
 
-<BlockMath math="V = \frac{1}{3} \times 16 \times 3 = 16 \text{ cm}^3" />
+<BlockMath math="\begin{aligned}V&=\frac{1}{3} \times 16 \times 3\\&=16 \text{ cm}^3\end{aligned}" />
 
 Jadi, pernyataan <InlineMath math="(2)" /> SAJA cukup untuk menjawab pertanyaan.
 
@@ -73,13 +71,11 @@ Jadi, pernyataan <InlineMath math="(2)" /> SAJA cukup untuk menjawab pertanyaan.
     space: "space",
     frame: {
       kind: "cartesian",
-      axes: "hidden",
-      grid: "hidden",
       x: { min: -3, max: 3 },
       y: { min: -1, max: 4 },
       z: { min: -3, max: 3 },
     },
-    view: { kind: "isometric", target: { x: 0, y: 1, z: 0 } },
+    view: { kind: "camera", position: { x: -1.875, y: 2.875, z: 3 }, target: { x: 0, y: 1, z: 0 } },
     objects: [
       {
         id: "base-abcd",
@@ -149,19 +145,16 @@ Jadi, pernyataan <InlineMath math="(2)" /> SAJA cukup untuk menjawab pertanyaan.
       },
     ],
     labels: [
-      { key: "point-a", at: { x: -2, y: 0, z: -2 }, placement: "below-left" },
-      { key: "point-b", at: { x: 2, y: 0, z: -2 }, placement: "below-right" },
-      { key: "point-c", at: { x: 2, y: 0, z: 2 }, placement: "above-right" },
-      { key: "point-d", at: { x: -2, y: 0, z: 2 }, placement: "above-left" },
-      { key: "point-t", at: { x: 0, y: 3, z: 0 }, placement: "above" },
-      { key: "side-ab", at: { x: 0, y: 0, z: -2 }, placement: "below" },
-      { key: "side-bc", at: { x: 2, y: 0, z: 0 }, placement: "right" },
-      { key: "side-cd", at: { x: 0, y: 0, z: 2 }, placement: "above" },
-      { key: "side-da", at: { x: -2, y: 0, z: 0 }, placement: "left" },
-      { key: "diagonal-ac-length", at: { x: 0.75, y: 0, z: 0.75 }, placement: "above-right" },
-      { key: "radius-ao-length", at: { x: -1, y: 0, z: -1 }, placement: "above-left" },
-      { key: "height-length", at: { x: 0, y: 1.5, z: 0 }, placement: "right" },
-      { key: "edge-at-length", at: { x: -1, y: 1.5, z: -1 }, placement: "left" },
+      { key: "point-a", objectId: "base-abcd", at: { x: -2, y: 0, z: -2 }, placement: "above-left" },
+      { key: "point-b", objectId: "base-abcd", at: { x: 2, y: 0, z: -2 }, placement: "below-right" },
+      { key: "point-c", objectId: "base-abcd", at: { x: 2, y: 0, z: 2 }, placement: "below" },
+      { key: "point-d", objectId: "base-abcd", at: { x: -2, y: 0, z: 2 }, placement: "above-left" },
+      { key: "point-t", objectId: "height-ot", at: { x: 0, y: 3, z: 0 }, placement: "above-left" },
+      { key: "side-cd", objectId: "base-abcd", at: { x: 0, y: 0, z: 2 }, placement: "below" },
+      { key: "diagonal-ac-length", objectId: "diagonal-ac", at: { x: 2, y: 0, z: 2 }, placement: "right" },
+      { key: "radius-ao-length", objectId: "diagonal-ac", at: { x: -2, y: 0, z: -2 }, placement: "below-left" },
+      { key: "height-length", objectId: "height-ot", at: { x: 0, y: 3, z: 0 }, placement: "above-right" },
+      { key: "edge-at-length", objectId: "edge-at", at: { x: -0.6, y: 2.1, z: -0.6 }, placement: "above-left" },
     ],
   }}
   labels={{
@@ -170,10 +163,7 @@ Jadi, pernyataan <InlineMath math="(2)" /> SAJA cukup untuk menjawab pertanyaan.
     "point-c": <><InlineMath math="C" /></>,
     "point-d": <><InlineMath math="D" /></>,
     "point-t": <><InlineMath math="T" /></>,
-    "side-ab": <><InlineMath math="4" /></>,
-    "side-bc": <><InlineMath math="4" /></>,
     "side-cd": <><InlineMath math="4" /></>,
-    "side-da": <><InlineMath math="4" /></>,
     "diagonal-ac-length": <><InlineMath math="4\sqrt{2}" /></>,
     "radius-ao-length": <><InlineMath math="2\sqrt{2}" /></>,
     "height-length": <><InlineMath math="3" /></>,

@@ -13,12 +13,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dengan mempertahankan jahitan, Wulan menolak setiap perubahan baru agar kostum tetap sama persis dengan keadaan tahun 1998.",
+            "Dengan mempertahankan jahitan, Wulan menolak setiap perubahan baru agar kostum tetap sama persis dengan keadaan tahun $$1998$$.",
         },
         {
           isCorrect: false,
           label:
-            "Dengan menaruh kartu 2026 di depan label lama, Wulan menyembunyikan sejarah kostum dari pemain baru.",
+            "Dengan menaruh kartu $$2026$$ di depan label lama, Wulan menyembunyikan sejarah kostum dari pemain baru.",
         },
         {
           isCorrect: true,

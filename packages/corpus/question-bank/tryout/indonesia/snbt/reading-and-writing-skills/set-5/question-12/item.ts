@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Am Montag prüfte das Team eine Checkliste vor der Aufnahme im folgenden Kontext: Aufnahmestudio der Schule.",
+            "Am Montag prüfte das Team eine Checkliste im Aufnahmestudio der Schule.",
         },
         {
           isCorrect: false,
           label:
-            "am Montag prüfte das Team eine Checkliste vor der Aufnahme im Kontext Aufnahmestudio der Schule.",
+            "am Montag prüfte das Team eine Checkliste im Aufnahmestudio der Schule.",
         },
         {
           isCorrect: false,
           label:
-            "Am montag prüfte das Team eine Checkliste vor der Aufnahme im Kontext Aufnahmestudio der Schule.",
+            "Am montag prüfte das Team eine Checkliste im Aufnahmestudio der Schule.",
         },
         {
           isCorrect: false,
           label:
-            "Am Montag prüfte Das Team eine Checkliste vor der Aufnahme im Kontext Aufnahmestudio der Schule.",
+            "Am Montag prüfte Das Team eine Checkliste im Aufnahmestudio der Schule.",
         },
         {
           isCorrect: false,
           label:
-            "Am Montag, prüfte das Team eine Checkliste vor der Aufnahme im Kontext Aufnahmestudio der Schule",
+            "Am Montag, prüfte das Team eine Checkliste im Aufnahmestudio der Schule",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "On Monday, the team tested a checklist used before recording in this setting (school recording studio).",
+            "On Monday, the team tested a checklist in the school recording studio.",
         },
         {
           isCorrect: false,
           label:
-            "on Monday, the team tested a checklist used before recording in this setting (school recording studio).",
+            "on Monday, the team tested a checklist in the school recording studio.",
         },
         {
           isCorrect: false,
           label:
-            "On monday, the team tested a checklist used before recording in this setting (school recording studio).",
+            "On monday, the team tested a checklist in the school recording studio.",
         },
         {
           isCorrect: false,
           label:
-            "On Monday, The team tested a checklist used before recording in this setting (school recording studio).",
+            "On Monday, The team tested a checklist in the school recording studio.",
         },
         {
           isCorrect: false,
           label:
-            "On Monday the team tested a checklist used before recording in this setting (school recording studio)",
+            "On Monday the team tested a checklist in the school recording studio",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pada Senin, tim menguji daftar pemeriksaan sebelum merekam di studio rekaman sekolah.",
+            "Pada Senin, tim menguji daftar pemeriksaan di studio rekaman sekolah.",
         },
         {
           isCorrect: false,
           label:
-            "pada Senin, tim menguji daftar pemeriksaan sebelum merekam di studio rekaman sekolah.",
+            "pada Senin, tim menguji daftar pemeriksaan di studio rekaman sekolah.",
         },
         {
           isCorrect: false,
           label:
-            "Pada senin, tim menguji daftar pemeriksaan sebelum merekam di studio rekaman sekolah.",
+            "Pada senin, tim menguji daftar pemeriksaan di studio rekaman sekolah.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin, Tim menguji daftar pemeriksaan sebelum merekam di studio rekaman sekolah.",
+            "Pada Senin, Tim menguji daftar pemeriksaan di studio rekaman sekolah.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin tim menguji daftar pemeriksaan sebelum merekam di studio rekaman sekolah",
+            "Pada Senin tim menguji daftar pemeriksaan di studio rekaman sekolah",
         },
       ],
     },

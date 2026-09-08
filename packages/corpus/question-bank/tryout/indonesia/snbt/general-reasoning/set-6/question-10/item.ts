@@ -49,7 +49,7 @@ const item: QuestionItem = {
         { isCorrect: false, label: "sit" },
         {
           isCorrect: false,
-          label: "tidak ada satupun",
+          label: "tidak ada satu pun",
         },
       ],
     },

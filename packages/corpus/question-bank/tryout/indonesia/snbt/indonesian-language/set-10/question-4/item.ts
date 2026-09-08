@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Menetapkan bahwa iradiansi tinggi selalu membuat sudut 45 derajat menjadi sudut terbaik.",
+            "Menetapkan bahwa iradiansi tinggi selalu membuat sudut $$45$$ derajat menjadi sudut terbaik.",
         },
         {
           isCorrect: false,

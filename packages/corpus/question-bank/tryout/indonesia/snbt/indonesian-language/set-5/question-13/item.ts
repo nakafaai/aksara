@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Nilai 43 membuktikan bahwa label besar menghilangkan semua kesalahan pengiriman dan keterlambatan antarpulau.",
+            "Nilai $$43$$ membuktikan bahwa label besar menghilangkan semua kesalahan pengiriman dan keterlambatan antarpulau.",
         },
         {
           isCorrect: false,
           label:
-            "Selisih satu poin antara nilai dasar dan pembanding membuat hasil uji 43 tidak relevan bagi keputusan logistik.",
+            "Selisih satu poin antara nilai dasar dan pembanding membuat hasil uji $$43$$ tidak relevan bagi keputusan logistik.",
         },
         {
           isCorrect: false,
@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Nilai 43 dibandingkan 32 mendukung penggunaan label besar secara terbatas untuk ketepatan tujuan, tetapi uji itu belum menunjukkan dampaknya terhadap keterlambatan akibat cuaca laut.",
+            "Nilai $$43$$ dibandingkan $$32$$ mendukung penggunaan label besar secara terbatas untuk ketepatan tujuan, tetapi uji itu belum menunjukkan dampaknya terhadap keterlambatan akibat cuaca laut.",
         },
         {
           isCorrect: false,

@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Klinik menetapkan penanda baru sebagai sistem tetap karena jumlah pasien yang tidak kembali ke meja sebelumnya meningkat dari 40 menjadi 56.",
+            "Klinik menetapkan penanda baru sebagai sistem tetap karena jumlah pasien yang tidak kembali ke meja sebelumnya meningkat dari $$40$$ menjadi $$56$$.",
         },
         {
           isCorrect: false,

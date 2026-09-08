@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team wiederholte den Test von Karten zur Reihenfolge brauner und grüner Materialien erneut, um stärkere Belege als zuvor zu erhalten.",
+            "Das Team wird den Test der Bildkarten erneut wiederholen, um stärkere Belege als zuvor zu erhalten.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team wiederholte den Versuch mit folgender Änderung, um belastbarere Belege zu erhalten: Karten zur Reihenfolge brauner und grüner Materialien.",
+            "Das Team wird den Test der Bildkarten wiederholen, um stärkere Belege zu erhalten.",
         },
         {
           isCorrect: false,
           label:
-            "Um stärkere Belege zu erhalten, wurde der Test von Karten zur Reihenfolge brauner und grüner Materialien vom Team erneut wiederholt.",
+            "Um stärkere Belege zu erhalten, wird der Test der Bildkarten vom Team erneut wiederholt werden.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team führte eine weitere Wiederholung des Tests von Karten zur Reihenfolge brauner und grüner Materialien für stärkere Belege durch.",
+            "Das Team wird für stärkere Belege eine erneute Wiederholung des Tests der Bildkarten durchführen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team wiederholte den Test, um stärkere Belege zu Karten zur Reihenfolge brauner und grüner Materialien zu erhalten, die es bereits getestet hatte.",
+            "Das Team wird den bereits zuvor durchgeführten Test der Bildkarten wiederholen, um stärkere Belege zu erhalten.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team repeated the test of cards showing the order of brown and green materials again to obtain evidence that was stronger than before.",
+            "The team will repeat the illustrated-card test again to obtain evidence that is stronger than before.",
         },
         {
           isCorrect: true,
           label:
-            "The team repeated the test of cards showing the order of brown and green materials to obtain stronger evidence.",
+            "The team will repeat the illustrated-card test to obtain stronger evidence.",
         },
         {
           isCorrect: false,
           label:
-            "To obtain stronger evidence, the test of cards showing the order of brown and green materials was repeated again by the team.",
+            "To obtain stronger evidence, the illustrated-card test will be repeated again by the team.",
         },
         {
           isCorrect: false,
           label:
-            "The team carried out another repetition of the test of cards showing the order of brown and green materials for stronger evidence.",
+            "The team will carry out a repetition of the illustrated-card test again for stronger evidence.",
         },
         {
           isCorrect: false,
           label:
-            "The team repeated the test to obtain stronger evidence about cards showing the order of brown and green materials, which it had already tested.",
+            "The team will repeat the illustrated-card test that it has already tested to obtain stronger evidence.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim mengulang kembali uji kartu urutan bahan cokelat dan hijau untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
+            "Tim akan mengulang kembali uji kartu bergambar untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
         },
         {
           isCorrect: true,
           label:
-            "Tim mengulang uji kartu urutan bahan cokelat dan hijau untuk memperoleh bukti yang lebih kuat.",
+            "Tim akan mengulang uji kartu bergambar untuk memperoleh bukti yang lebih kuat.",
         },
         {
           isCorrect: false,
           label:
-            "Untuk memperoleh bukti lebih kuat, uji kartu urutan bahan cokelat dan hijau diulang kembali oleh tim.",
+            "Untuk memperoleh bukti lebih kuat, uji kartu bergambar akan diulang kembali oleh tim.",
         },
         {
           isCorrect: false,
           label:
-            "Tim melakukan pengulangan lain atas uji kartu urutan bahan cokelat dan hijau demi bukti yang lebih kuat.",
+            "Tim akan melakukan pengulangan kembali atas uji kartu bergambar demi bukti yang lebih kuat.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengulang uji untuk memperoleh bukti lebih kuat tentang kartu urutan bahan cokelat dan hijau yang telah diuji sebelumnya.",
+            "Tim akan mengulang uji kartu bergambar yang sebelumnya sudah diuji untuk memperoleh bukti lebih kuat.",
         },
       ],
     },

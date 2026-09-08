@@ -2,9 +2,27 @@ export const metadata = {
   title: "Lösung zu Aufgabe 29",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Von 66 Paaren sind 10 rot-rot und 35 gemischt. Eine Runde hat den Erwartungswert <InlineMath math="[60(10)+30(35)]/66=25" />. Drei Runden ergeben <InlineMath math="3(25)=75" />; nach der Verwaltungsgebühr bleiben <InlineMath math="75-10=65" />.
+Alle Kugelpaare sind gleich wahrscheinlich. Aus <InlineMath math="5+7=12" /> Kugeln lassen sich insgesamt so viele Paare auswählen:
 
-Damit ist der gesuchte Wert <InlineMath math="65" />.
+<BlockMath math="\binom{12}{2}=\frac{12\times11}{2}=66" />
+
+Wir zählen die Paare für jedes Ergebnis:
+
+- Zwei rote Kugeln lassen sich auf <InlineMath math="\binom{5}{2}=10" /> Arten wählen.
+- Eine rote und eine blaue Kugel lassen sich auf <InlineMath math="5\times7=35" /> Arten wählen.
+- Zwei blaue Kugeln lassen sich auf <InlineMath math="\binom{7}{2}=21" /> Arten wählen.
+
+Die Summe beträgt <InlineMath math="10+35+21=66" />. Die drei Fälle erfassen damit alle Möglichkeiten. Alle folgenden Auszahlungen sind in Tausend Rupiah angegeben.
+
+Die Auszahlung einer Runde sei <InlineMath math="X" />. Für ihren Erwartungswert multiplizieren wir jede Auszahlung mit ihrer Wahrscheinlichkeit. Zwei blaue Kugeln tragen null bei:
+
+<BlockMath math="\begin{aligned}\mathrm{E}[X]&=60\frac{10}{66}\\&\quad+30\frac{35}{66}\\&=\frac{600+1{.}050}{66}\\&=25\end{aligned}" />
+
+Vor jeder Runde wird der ursprüngliche Inhalt der Box wiederhergestellt. Deshalb haben alle drei Runden denselben Erwartungswert. Die Verwaltungsgebühr fällt nur einmal an:
+
+<BlockMath math="\begin{aligned}\mathrm{E}[\text{netto}]&=3(25)-10\\&=75-10\\&=65\end{aligned}" />
+
+Die erwartete Nettoauszahlung beträgt <InlineMath math="65" /> Tausend Rupiah. Der Erwartungswert beschreibt den theoretischen Durchschnitt bei vielen Wiederholungen des Spiels.

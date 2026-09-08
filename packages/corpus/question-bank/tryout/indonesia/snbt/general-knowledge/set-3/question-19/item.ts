@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Eine Notfallnachricht muss Bedeutung und Handlung in verständlicher Sprache bewahren, statt nur die amtliche Wortfolge zu kopieren.",
+            "Eine Notfallnachricht darf die Gefahrenstufe ändern, wenn sich die Bewohner ihre Wörter leichter merken können.",
         },
       ],
     },
@@ -58,7 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "An emergency message must preserve meaning and action in language residents understand, not merely copy official word order.",
+            "An emergency message may change the danger level whenever residents find its words easier to remember.",
         },
       ],
     },
@@ -88,7 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pesan darurat perlu mempertahankan makna dan tindakan melalui bahasa yang dipahami warga, bukan sekadar menyalin urutan kata resmi.",
+            "Pesan darurat boleh mengubah tingkat bahaya selama warga lebih mudah mengingat kata-katanya.",
         },
       ],
     },

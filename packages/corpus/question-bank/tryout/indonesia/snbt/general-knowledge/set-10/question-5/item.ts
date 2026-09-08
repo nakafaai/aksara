@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "In der Simulation begrenzten geschichtete Aufzeichnungen den Rückruf besser als ein einzelner Ortsname.",
+            "In der Simulation begrenzten nach Produktionsstufen gegliederte Aufzeichnungen den Rückruf besser als ein einzelner Ortsname.",
         },
         {
           isCorrect: false,
@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Ein Verpackungscode wird zu einem vollständigen Lieferkettendatensatz führen.",
+            "Ein Verpackungscode wird zu einem ausführlicheren Lieferkettendatensatz führen.",
         },
         {
           isCorrect: false,

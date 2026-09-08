@@ -8,23 +8,24 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "ein Tag, an dem der bisherige Ablauf als Bezug zum Versuch beibehalten wurde",
+            "Termine, an denen nur die alten Buchstabencodes als Bezug für den Versuch verwendet werden",
         },
         {
           isCorrect: false,
-          label: "der Tag, an dem das Endergebnis bekannt gegeben wurde",
+          label: "Termine, an denen das Endergebnis bekannt gegeben wird",
         },
         {
           isCorrect: false,
-          label: "der erste Tag vor Beginn der Ausgangsmessung",
+          label: "die ersten Termine vor Beginn der Ausgangsmessung",
         },
         {
           isCorrect: false,
-          label: "ein Tag, an dem zwei Änderungen gleichzeitig geprüft wurden",
+          label:
+            "Termine, an denen zwei Änderungen gleichzeitig geprüft werden",
         },
         {
           isCorrect: false,
-          label: "ein Tag ohne Betrieb, damit das Personal pausieren konnte",
+          label: "Termine ohne Betrieb, damit das Personal pausieren kann",
         },
       ],
     },
@@ -34,23 +35,23 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "a day on which the earlier process was retained as a reference for the trial",
+            "sessions in which shelves retain only the old letter codes as a reference for the trial",
         },
         {
           isCorrect: false,
-          label: "the day when the final result was announced to users",
+          label: "sessions in which the final result is announced to borrowers",
         },
         {
           isCorrect: false,
-          label: "the first day before baseline recording began",
+          label: "the first sessions before baseline recording begins",
         },
         {
           isCorrect: false,
-          label: "a day on which two changes were tested together",
+          label: "sessions in which two changes are tested together",
         },
         {
           isCorrect: false,
-          label: "a day without activity so that staff could rest",
+          label: "sessions without activity so that staff can rest",
         },
       ],
     },
@@ -60,23 +61,23 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "hari ketika alur lama dipakai sebagai acuan terhadap hari uji",
+            "sesi ketika rak hanya memakai kode huruf lama sebagai acuan bagi sesi uji",
         },
         {
           isCorrect: false,
-          label: "hari ketika hasil akhir diumumkan kepada pengguna",
+          label: "sesi ketika hasil akhir diumumkan kepada peminjam",
         },
         {
           isCorrect: false,
-          label: "hari pertama sebelum pencatatan nilai awal dimulai",
+          label: "sesi pertama sebelum pencatatan nilai awal dimulai",
         },
         {
           isCorrect: false,
-          label: "hari ketika dua perubahan diuji sekaligus",
+          label: "sesi ketika dua perubahan diuji sekaligus",
         },
         {
           isCorrect: false,
-          label: "hari tanpa kegiatan agar petugas dapat beristirahat",
+          label: "sesi tanpa kegiatan agar petugas dapat beristirahat",
         },
       ],
     },

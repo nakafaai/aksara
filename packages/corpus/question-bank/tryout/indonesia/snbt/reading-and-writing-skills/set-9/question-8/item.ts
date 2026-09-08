@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dennoch, begrenzte das Team seine Schlussfolgerung zum Kontext Verteilung von Mangrovensetzlingen auf den kurzen Versuch.",
+            "Dennoch, begrenzte das Team seine Schlussfolgerung auf den kurzen Versuch in einer Baumschule.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch: begrenzte das Team seine Schlussfolgerung zum Kontext Verteilung von Mangrovensetzlingen auf den kurzen Versuch.",
+            "Dennoch: begrenzte das Team seine Schlussfolgerung auf den kurzen Versuch in einer Baumschule.",
         },
         {
           isCorrect: true,
           label:
-            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Verteilung von Mangrovensetzlingen auf den kurzen Versuch.",
+            "Dennoch begrenzte das Team seine Schlussfolgerung auf den kurzen Versuch in einer Baumschule.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch; begrenzte das Team seine Schlussfolgerung zum Kontext Verteilung von Mangrovensetzlingen auf den kurzen Versuch.",
+            "Dennoch begrenzte das Team, seine Schlussfolgerung auf den kurzen Versuch in einer Baumschule.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Verteilung von Mangrovensetzlingen auf den kurzen Versuch?",
+            "Dennoch begrenzte das Team seine Schlussfolgerung auf den kurzen Versuch in einer Baumschule?",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Nevertheless the team limited its conclusion for this setting (mangrove seedling distribution) to the short trial.",
+            "Nevertheless, the, team limited its conclusion to the short trial at one nursery.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless: the team limited its conclusion for this setting (mangrove seedling distribution) to the short trial.",
+            "Nevertheless: the team limited its conclusion to the short trial at one nursery.",
         },
         {
           isCorrect: true,
           label:
-            "Nevertheless, the team limited its conclusion for this setting (mangrove seedling distribution) to the short trial.",
+            "Nevertheless, the team limited its conclusion to the short trial at one nursery.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless; the team limited its conclusion for this setting (mangrove seedling distribution) to the short trial.",
+            "Nevertheless, the team, limited its conclusion to the short trial at one nursery.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless, the team limited its conclusion for this setting (mangrove seedling distribution) to the short trial?",
+            "Nevertheless, the team limited its conclusion to the short trial at one nursery?",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Meskipun demikian tim membatasi simpulan tentang pembagian bibit mangrove pada uji singkat tersebut.",
+            "Meskipun demikian tim membatasi simpulan pada uji singkat di satu lokasi pembibitan.",
         },
         {
           isCorrect: false,
           label:
-            "Meskipun demikian: tim membatasi simpulan tentang pembagian bibit mangrove pada uji singkat tersebut.",
+            "Meskipun demikian: tim membatasi simpulan pada uji singkat di satu lokasi pembibitan.",
         },
         {
           isCorrect: true,
           label:
-            "Meskipun demikian, tim membatasi simpulan tentang pembagian bibit mangrove pada uji singkat tersebut.",
+            "Meskipun demikian, tim membatasi simpulan pada uji singkat di satu lokasi pembibitan.",
         },
         {
           isCorrect: false,
           label:
-            "Meskipun demikian; tim membatasi simpulan tentang pembagian bibit mangrove pada uji singkat tersebut.",
+            "Meskipun demikian, tim, membatasi simpulan pada uji singkat di satu lokasi pembibitan.",
         },
         {
           isCorrect: false,
           label:
-            "Meskipun demikian, tim membatasi simpulan tentang pembagian bibit mangrove pada uji singkat tersebut?",
+            "Meskipun demikian, tim membatasi simpulan pada uji singkat di satu lokasi pembibitan?",
         },
       ],
     },

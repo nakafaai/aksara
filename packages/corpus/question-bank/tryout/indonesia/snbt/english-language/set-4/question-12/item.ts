@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Omar and Amina tested the route and marked where signs disappeared from view; the choice resolves the whole conflict at once and makes any later review unnecessary.",
+            "Omar and Amina tested the route and marked where signs disappeared from view. The choice resolves the whole conflict at once and makes any later review unnecessary.",
         },
         {
           isCorrect: false,
           label:
-            "Omar and Amina tested the route and marked where signs disappeared from view; the action transfers responsibility for the unresolved task entirely to Amina.",
+            "Omar and Amina tested the route and marked where signs disappeared from view. The action transfers responsibility for the unresolved task entirely to Amina.",
         },
         {
           isCorrect: true,
@@ -23,12 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Omar and Amina tested the route and marked where signs disappeared from view; the decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
+            "Omar and Amina tested the route and marked where signs disappeared from view. The decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
         },
         {
           isCorrect: false,
           label:
-            "Omar and Amina tested the route and marked where signs disappeared from view; the setting alone produces the change, so their decision has no role in the development.",
+            "Omar and Amina tested the route and marked where signs disappeared from view. The setting alone produces the change, so their decision has no role in the development.",
         },
       ],
     },

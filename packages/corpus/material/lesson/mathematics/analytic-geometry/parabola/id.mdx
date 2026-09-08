@@ -3,7 +3,7 @@ export const metadata = {
   description: "Menentukan puncak, fokus, direktriks, dan persamaan parabola dari bentuk standarnya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Geometri Analitik",
 };
 
@@ -22,6 +22,7 @@ Parabola memiliki **sifat refleksi**. Sinar yang datang sejajar sumbu akan dipan
   description={<>Visualisasi parabola dengan fokus di <InlineMath math="F(0, \frac{1}{4a})" /> dan direktriks <InlineMath math="y = -\frac{1}{4a}" />.</>}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 101 }, (_, i) => {
         const x = (i - 50) / 10; // x dari -5 ke 5
         const y = 0.2 * x * x; // parabola y = 0.2x²
@@ -108,6 +109,7 @@ Mulailah dengan parabola yang puncaknya berada di titik asal <InlineMath math="O
   description={<>Parabola standar <InlineMath math="x^2 = 4py" /> (vertikal) dan <InlineMath math="y^2 = 4px" /> (horizontal).</>}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 61 }, (_, i) => {
         const x = (i - 30) / 10; // x dari -3 ke 3
         const y = 0.25 * x * x; // parabola x² = 4py dengan p=1
@@ -115,9 +117,10 @@ Mulailah dengan parabola yang puncaknya berada di titik asal <InlineMath math="O
       }),
       color: "#9333ea",
       showPoints: false,
-      labels: [{ text: <><InlineMath math="x^2=4py" /> (ke atas)</>, at: 11, offset: [-3, 2, 0] }],
+      labels: [{ text: <InlineMath math="x^2=4py" />, at: 11, offset: [-3, 2, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 61 }, (_, i) => {
         const x = (i - 30) / 10; // x dari -3 ke 3
         const y = -0.25 * x * x; // parabola x² = -4py dengan p=1
@@ -125,9 +128,10 @@ Mulailah dengan parabola yang puncaknya berada di titik asal <InlineMath math="O
       }),
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <><InlineMath math="x^2=-4py" /> (ke bawah)</>, at: 50, offset: [3, -2.5, 0] }],
+      labels: [{ text: <InlineMath math="x^2=-4py" />, at: 50, offset: [3, -2.5, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 61 }, (_, i) => {
         const y = (i - 30) / 10; // y dari -3 ke 3
         const x = 0.25 * y * y; // parabola y² = 4px dengan p=1
@@ -135,9 +139,10 @@ Mulailah dengan parabola yang puncaknya berada di titik asal <InlineMath math="O
       }),
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <><InlineMath math="y^2=4px" /> (ke kanan)</>, at: 50, offset: [3, 1.5, 0] }],
+      labels: [{ text: <InlineMath math="y^2=4px" />, at: 50, offset: [3, 1.5, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 61 }, (_, i) => {
         const y = (i - 30) / 10; // y dari -3 ke 3
         const x = -0.25 * y * y; // parabola y² = -4px dengan p=1
@@ -145,7 +150,7 @@ Mulailah dengan parabola yang puncaknya berada di titik asal <InlineMath math="O
       }),
       color: "#0d9488",
       showPoints: false,
-      labels: [{ text: <><InlineMath math="y^2=-4px" /> (ke kiri)</>, at: 11, offset: [-3, -1.5, 0] }],
+      labels: [{ text: <InlineMath math="y^2=-4px" />, at: 11, offset: [-3, -1.5, 0] }],
     },
     {
       points: [{ x: 0, y: 0, z: 0 }], // puncak semua parabola di O(0,0)
@@ -215,6 +220,7 @@ Parabola tidak harus berpuncak di titik asal. Jika puncaknya berada di <InlineMa
   description={<>Parabola dengan puncak di <InlineMath math="(2, 1)" /> dan parameter <InlineMath math="p = 0{,}5" />.</>}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 81 }, (_, i) => {
         const x = (i - 40) / 10; // x dari -4 ke 4
         const h = 2, k = 1, p = 0.5;
@@ -356,6 +362,7 @@ Maka unsur-unsur parabola adalah:
   description={<>Identifikasi puncak <InlineMath math="(2,1)" />, fokus <InlineMath math="(2,3)" />, direktriks <InlineMath math="y = -1" />, dan <InlineMath math="p = 2" />.</>}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 81 }, (_, i) => {
         const x = (i - 40) / 8; // x dari -5 ke 5
         const h = 2, k = 1, p = 2;

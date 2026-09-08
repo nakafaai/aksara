@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team testete die Änderung Menüvorbestellung am Vortag an ausgewählten Tagen, weil das frühere Verfahren bereits als unwirksam galt.",
+            "Die Schülerinnen und Schüler bestellten am Vortag, weil die Wahl an der Ausgabe nachweislich immer scheiterte.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team führte die Änderung Menüvorbestellung am Vortag dauerhaft ein, während das frühere Verfahren nur in den Rückmeldungen erhalten blieb.",
+            "Die Bestellung am Vortag wurde dauerhaft eingeführt und die Wahl an der Ausgabe eingestellt.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team testete die Änderung Menüvorbestellung am Vortag und das frühere Verfahren an denselben Tagen ohne getrennte Vergleichsbedingungen.",
+            "Vorbestellungen und morgendliche Wahl wurden ohne getrennte Vergleichsbedingungen verwendet.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team verglich Tage mit der Änderung Menüvorbestellung am Vortag mit Rückmeldungen zum früheren Verfahren.",
+            "Das Team verglich Vorbestellungen nur mit Rückmeldungen zur Wahl an der Ausgabe.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team prüfte Menübestellung am Vortag an ausgewählten Tagen, während an Vergleichstagen der bisherige Ablauf bestehen blieb.",
+            "Bei den Versuchsterminen bestellten die Schülerinnen und Schüler am Vortag, während sie beim Vergleich morgens an der Ausgabe wählten.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested menu booking one day in advance on selected days because the earlier process had already been proved ineffective.",
+            "Students ordered the previous day because choosing at the serving table had proved to fail in every case.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested menu booking one day in advance permanently, while the earlier process remained only in user records.",
+            "Previous-day ordering was adopted permanently and serving-table choices were discontinued.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested menu booking one day in advance and the earlier process on the same days without separate comparison conditions.",
+            "The team used advance orders and morning choices without separate comparison conditions.",
         },
         {
           isCorrect: false,
           label:
-            "The team compared selected days using menu booking one day in advance with comments about the earlier process.",
+            "The team compared advance orders only with comments about choosing at the serving table.",
         },
         {
           isCorrect: true,
           label:
-            "The team tested menu booking one day in advance on selected days, while the earlier process remained on comparison days.",
+            "In trial sessions, students ordered the previous day, while in comparison sessions they chose at the serving table that morning.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji pemesanan menu sehari sebelumnya pada hari tertentu karena proses lama telah terbukti tidak efektif.",
+            "Siswa memesan sehari sebelumnya karena cara memilih di meja saji terbukti selalu gagal.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menerapkan pemesanan menu sehari sebelumnya secara tetap, sedangkan proses lama hanya tersisa dalam catatan pengguna.",
+            "Pemesanan sehari sebelumnya diterapkan permanen dan pilihan di meja saji tidak digunakan lagi.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji pemesanan menu sehari sebelumnya dan proses lama pada hari yang sama tanpa kondisi pembanding terpisah.",
+            "Tim memakai pemesanan awal dan pilihan pagi hari tanpa memisahkan kondisi pembanding.",
         },
         {
           isCorrect: false,
           label:
-            "Tim membandingkan hari penggunaan pemesanan menu sehari sebelumnya dengan komentar tentang proses lama.",
+            "Tim membandingkan pemesanan awal hanya dengan komentar tentang pilihan di meja saji.",
         },
         {
           isCorrect: true,
           label:
-            "Tim menguji pemesanan menu sehari sebelumnya pada hari tertentu, sedangkan alur lama tetap digunakan pada hari pembanding.",
+            "Pada sesi uji, siswa memesan sehari sebelumnya, sedangkan pada sesi pembanding mereka memilih menu di meja saji pada pagi hari.",
         },
       ],
     },

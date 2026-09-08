@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Ein neu datierter Brief zeigt, dass tatsächlich alle Klassen am selben Tag umzogen.",
+            "Ein neu entdeckter und überprüfter Brief aus der Umzugszeit zeigt, dass alle Klassen am selben Tag umzogen.",
         },
         {
           isCorrect: false,
@@ -43,7 +43,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "A newly dated letter shows that every class actually moved on the same day.",
+            "A newly discovered and verified letter from the time of the move shows that every class moved on the same day.",
         },
         {
           isCorrect: false,
@@ -73,7 +73,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Surat bertanggal baru menunjukkan semua kelas sebenarnya pindah pada hari yang sama.",
+            "Surat dari masa perpindahan yang baru ditemukan dan telah diverifikasi menunjukkan bahwa semua kelas pindah pada hari yang sama.",
         },
         {
           isCorrect: false,

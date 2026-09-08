@@ -3,7 +3,7 @@ export const metadata = {
   description: "Konstruiere Kreistangenten aus einem Berührpunkt, einer Steigung oder einem äußeren Punkt, mit Visualisierungen und vollständigen Lösungen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Analytische Geometrie",
 };
 
@@ -26,6 +26,7 @@ Prüfe zuerst, ob der angegebene Berührpunkt wirklich auf dem Kreis liegt. Sein
   description="Der Radius zum bekannten Berührpunkt ist ein Normalenvektor der Tangente."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 3;
@@ -166,6 +167,7 @@ Ist der Berührpunkt unbekannt, aber die Steigung gegeben, muss der Achsenabschn
   description="Eine Steigung bestimmt zwei parallele Tangenten auf beiden Seiten des Mittelpunkts."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 2.5;
@@ -294,6 +296,7 @@ Ein Punkt außerhalb des Kreises bestimmt genau **zwei Tangenten**. Ihre beiden 
   description="Ein äußerer Punkt bestimmt zwei Berührpunkte und zwei Tangenten."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 2;

@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Because the models held 39 washers on average, compared with 24 and 25, holding paper mass, bridge span, and weight placement constant isolates folding the bridge deck into a triangular truss as the only possible cause.",
+            "Because the models held $$39$$ washers on average, compared with $$24$$ and $$25$$, holding paper mass, bridge span, and weight placement constant isolates forming connected triangles in the paper bridge as the only possible cause.",
         },
         {
           isCorrect: false,
           label:
-            "The strongest follow-up would change both folding the bridge deck into a triangular truss and at least one controlled condition, preventing the effect of either change from being isolated.",
+            "The strongest follow-up would change both forming connected triangles in the paper bridge and at least one controlled condition, preventing the effect of either change from being isolated.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The truss models held 39 washers on average, compared with 24 and 25. This supports an association under the tested conditions, but more standardised paper and folds are needed before a broader claim.",
+            "The truss models held $$39$$ washers on average, compared with $$24$$ and $$25$$. This supports an association under the tested conditions, but more standardised paper and folds are needed before a broader claim.",
         },
       ],
     },

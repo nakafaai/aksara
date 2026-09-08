@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use formulas, graphs, and fully worked examples to rotate points and function curves around a fixed center.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Function Transformation",
 };
 
@@ -55,7 +55,9 @@ Rotate the quadratic curve <InlineMath math="y = x^2" /> around the origin:
   description={<>Comparison of original function with <InlineMath math="90^\circ" /> counterclockwise rotation result.</>}
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = (i - 10) * 0.25;
         const y = x * x;
         return { x, y, z: 0 };
@@ -65,13 +67,15 @@ Rotate the quadratic curve <InlineMath math="y = x^2" /> around the origin:
       labels: [
         {
           text: <InlineMath math="y=x^2" />,
-          at: 15,
+          at: 75,
           offset: [0.5, 0.5, 0],
         },
       ],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = (i - 10) * 0.25;
         const y = x * x;
         // 90° rotation around origin: (x,y) → (-y,x)
@@ -84,7 +88,7 @@ Rotate the quadratic curve <InlineMath math="y = x^2" /> around the origin:
       labels: [
         {
           text: <><InlineMath math="90^\circ" /> Rotation Result</>,
-          at: 5,
+          at: 25,
           offset: [-1, 0.5, 0],
         },
       ],
@@ -162,7 +166,9 @@ An exponential curve can also be rotated point by point. After rotation, the cur
   cameraPosition={[8, 6, 8]}
   data={[
     {
-      points: Array.from({ length: 15 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 99 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const x = (i - 7) * 0.5;
         const y = Math.pow(2, x);
         return { x, y, z: 0 };
@@ -172,13 +178,15 @@ An exponential curve can also be rotated point by point. After rotation, the cur
       labels: [
         {
           text: <InlineMath math="y=2^x" />,
-          at: 12,
+          at: 84,
           offset: [0.5, 0.5, 0],
         },
       ],
     },
     {
-      points: Array.from({ length: 15 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 99 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const x = (i - 7) * 0.5;
         const y = Math.pow(2, x);
         // 90° rotation around origin: (x,y) → (-y,x)
@@ -191,7 +199,7 @@ An exponential curve can also be rotated point by point. After rotation, the cur
       labels: [
         {
           text: <><InlineMath math="90^\circ" /> Rotation</>,
-          at: 3,
+          at: 21,
           offset: [-0.5, 0.5, 0],
         },
       ],
@@ -289,7 +297,9 @@ To determine the rotation result of a function, follow these steps:
      cameraPosition={[10, 6, 10]}
      data={[
        {
-         points: Array.from({ length: 21 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 101 }, (_, sampleIndex) => {
+           const i = sampleIndex / 5;
            const x = (i - 10) * 0.3;
            const y = x * x - 2 * x + 1;
            return { x, y, z: 0 };
@@ -299,13 +309,15 @@ To determine the rotation result of a function, follow these steps:
          labels: [
            {
              text: <InlineMath math="f(x)=x^2 - 2x + 1" />,
-             at: 18,
+             at: 90,
              offset: [1, 0.5, 0],
            },
          ],
        },
        {
-         points: Array.from({ length: 21 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 101 }, (_, sampleIndex) => {
+           const i = sampleIndex / 5;
            const x = (i - 10) * 0.3;
            const y = x * x - 2 * x + 1;
            // 180° rotation: (x,y) → (-x,-y)
@@ -318,7 +330,7 @@ To determine the rotation result of a function, follow these steps:
          labels: [
            {
              text: <><InlineMath math="180^\circ" /> Rotation Result</>,
-             at: 8,
+             at: 40,
              offset: [-0.5, -0.5, 0],
            },
          ],
@@ -458,7 +470,9 @@ To determine the rotation result of a function, follow these steps:
      cameraPosition={[8, 6, 8]}
      data={[
        {
-         points: Array.from({ length: 21 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 101 }, (_, sampleIndex) => {
+           const i = sampleIndex / 5;
            const x = i * 0.25;
            const y = Math.sqrt(x);
            return { x, y, z: 0 };
@@ -468,13 +482,15 @@ To determine the rotation result of a function, follow these steps:
          labels: [
            {
              text: <InlineMath math="y=\sqrt{x}" />,
-             at: 15,
+             at: 75,
              offset: [0.5, 0.3, 0],
            },
          ],
        },
        {
-         points: Array.from({ length: 21 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 101 }, (_, sampleIndex) => {
+           const i = sampleIndex / 5;
            const x = i * 0.25;
            const y = Math.sqrt(x);
            // 90° rotation: (x,y) → (-y,x)
@@ -487,7 +503,7 @@ To determine the rotation result of a function, follow these steps:
          labels: [
            {
              text: <InlineMath math="y=x^2 (x \le 0)" />,
-             at: 15,
+             at: 75,
              offset: [-0.8, 0.3, 0],
            },
          ],

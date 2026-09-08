@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Because mean travel time reached 67 tenths of a second, compared with 42 and 41, holding block mass, ramp angle, and release point constant isolates covering the ramp with coarse fabric as the only possible cause.",
+            "Because mean travel time reached $$67$$ tenths of a second, compared with $$42$$ and $$41$$, holding block mass, ramp angle, and release point constant isolates covering the ramp with coarse fabric as the only possible cause.",
         },
         {
           isCorrect: true,
           label:
-            "Mean travel time reached 67 tenths of a second, compared with 42 and 41. This supports an association between coarse fabric and longer travel time under the tested conditions, but possible surface wear requires further testing before a broader claim.",
+            "Mean travel time reached $$67$$ tenths of a second, compared with $$42$$ and $$41$$. This supports an association between coarse fabric and longer travel time under the tested conditions, but possible surface wear requires further testing before a broader claim.",
         },
         {
           isCorrect: false,

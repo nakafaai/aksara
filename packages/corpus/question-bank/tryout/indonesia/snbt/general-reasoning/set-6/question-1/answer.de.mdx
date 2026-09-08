@@ -2,21 +2,20 @@ export const metadata = {
   title: "Lösung zu Aufgabe 1",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-01-22",
+  dateModified: "2026-09-07",
 };
 
-Sei <InlineMath math="T(x)" /> die Garzeit von Fleischsorte <InlineMath math="x" />. Jeder Satz der Aufgabe liefert einen Vergleich:
+Die Garzeiten für Lamm, Rind, Ente, Kaninchen und Huhn bezeichnen wir der Reihe nach mit <InlineMath math="t_L" />, <InlineMath math="t_B" />, <InlineMath math="t_D" />, <InlineMath math="t_R" /> und <InlineMath math="t_C" />. Jeder Satz liefert einen Vergleich:
 
-| Aussage | Mathematische Analyse |
+| Vergleich der Garzeiten | Notation |
 | :--- | :--- |
-| Rind braucht länger als Lamm | <InlineMath math="T(\text{Rind}) &gt; T(\text{Lamm})" /> |
-| Rind braucht nicht länger als Ente | <InlineMath math="T(\text{Rind}) \le T(\text{Ente})" /> |
-| Kaninchen braucht weniger Zeit als Huhn | <InlineMath math="T(\text{Kaninchen}) &lt; T(\text{Huhn})" /> |
-| Kaninchen braucht mehr Zeit als Ente | <InlineMath math="T(\text{Kaninchen}) &gt; T(\text{Ente})" /> |
+| Rind braucht länger als Lamm | <InlineMath math="t_B>t_L" /> |
+| Rind braucht höchstens so lange wie Ente | <InlineMath math="t_B\le t_D" /> |
+| Kaninchen braucht weniger Zeit als Huhn | <InlineMath math="t_R<t_C" /> |
+| Kaninchen braucht länger als Ente | <InlineMath math="t_R>t_D" /> |
 
-Alle Vergleiche lassen sich zu einer Kette von der kürzesten bis zur längsten Garzeit verbinden:
+Zusammen ergeben die Vergleiche diese Reihenfolge von der kürzesten bis zur längsten Garzeit:
 
-<MathContainer>
-  <BlockMath math="T(\text{Lamm}) &lt; T(\text{Rind}) \le T(\text{Ente}) &lt; T(\text{Kaninchen}) &lt; T(\text{Huhn})" />
-</MathContainer>
+<BlockMath math="t_L<t_B\le t_D<t_R<t_C" />
 
-Das Fleisch mit der kleinsten Garzeit ist **Lamm**.
+Lamm hat die kürzeste Garzeit, auch wenn Rind und Ente gleich lange brauchen. **Lamm** gart also am schnellsten.

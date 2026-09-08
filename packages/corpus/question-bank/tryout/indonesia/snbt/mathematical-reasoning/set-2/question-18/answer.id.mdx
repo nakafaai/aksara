@@ -1,33 +1,25 @@
 export const metadata = {
   title: "Pembahasan Soal 18",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2026-02-01",
 };
 
-**Strategi Meminimalkan Rata-rata**
+#### Menentukan nilai terendah
 
-Untuk mendapatkan rata-rata keseluruhan yang **paling kecil**, kita harus membuat nilai setiap peserta sekecil mungkin, namun tetap mematuhi batasan yang diberikan soal.
+Rata-rata paling kecil diperoleh ketika jumlah seluruh nilai paling kecil. Ada dua kelompok peserta dengan batas nilai yang berbeda:
 
-Kita memiliki total <InlineMath math="60" /> peserta yang dibagi menjadi dua kelompok berdasarkan informasi soal:
-1. Kelompok pertama: <InlineMath math="21" /> peserta dengan nilai <InlineMath math="\geq 80" />.
-2. Kelompok kedua: Sisanya, yaitu <InlineMath math="60 - 21 = 39" /> peserta dengan nilai <InlineMath math="< 80" />.
+- <InlineMath math="21" /> peserta memiliki nilai setidaknya <InlineMath math="80" />. Nilai terkecil yang dapat diberikan kepada setiap peserta dalam kelompok ini adalah <InlineMath math="80" />.
+- Sisanya, yaitu <InlineMath math="60-21=39" /> peserta, memiliki nilai kurang dari <InlineMath math="80" />. Batas bawah rentang nilai adalah <InlineMath math="0" />, sehingga masing-masing dapat memperoleh <InlineMath math="0" />.
 
-**Menentukan Nilai Minimal Setiap Kelompok**
+Kedua pilihan nilai itu memenuhi syarat soal. Menurunkan salah satu nilai lagi akan melanggar batasnya.
 
-Agar total nilai (dan akibatnya rata-rata) menjadi sekecil mungkin, kita tetapkan nilai terendah yang mungkin untuk setiap kelompok:
+#### Menghitung rata-rata
 
-*   **Untuk <InlineMath math="21" /> peserta (nilai <InlineMath math="\geq 80" />):** Nilai terkecil yang memenuhi syarat ini adalah tepat <InlineMath math="80" />. Kita asumsikan semua <InlineMath math="21\text{ orang}" /> ini mendapat nilai pas <InlineMath math="80" />.
-*   **Untuk <InlineMath math="39" /> peserta lainnya (nilai <InlineMath math="< 80" />):** Karena rentang nilai adalah <InlineMath math="0" /> hingga <InlineMath math="100" />, maka nilai terkecil yang mungkin mereka dapatkan adalah <InlineMath math="0" />. Kita asumsikan semua <InlineMath math="39\text{ orang}" /> ini mendapat nilai <InlineMath math="0" />.
+Misalkan jumlah seluruh nilai adalah <InlineMath math="S" />. Pada keadaan dengan nilai terkecil tersebut:
 
-**Perhitungan Rata-rata Terkecil**
+<BlockMath math="\begin{aligned} S&=21\times80+39\times0 \\ &=1680+0 \\ &=1680 \end{aligned}" />
 
-Sekarang kita hitung rata-rata berdasarkan skenario nilai minimal tersebut:
+Jumlah peserta tetap <InlineMath math="60" />, sehingga rata-rata terkecil adalah:
 
-<MathContainer>
-  <BlockMath math="\bar{x}_{\text{min}} = \frac{(21 \times 80) + (39 \times 0)}{60}" />
-  <BlockMath math="\bar{x}_{\text{min}} = \frac{1680 + 0}{60}" />
-  <BlockMath math="\bar{x}_{\text{min}} = \frac{1680}{60}" />
-  <BlockMath math="\bar{x}_{\text{min}} = 28" />
-</MathContainer>
-
-Jadi, rata-rata terkecil yang mungkin dicapai oleh ke-<InlineMath math="60" /> peserta tersebut adalah <InlineMath math="28" />.
+<BlockMath math="\bar{x}_{\min}=\frac{1680}{60}=28" />

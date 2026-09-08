@@ -8,22 +8,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The class tested how folding a paper bridge deck into a triangular truss affected load distribution, while controlling the listed factors but treating one short trial as proof of a universal effect.",
+            "The class tested how forming connected triangles in a paper bridge affected load distribution, while controlling the listed factors but treating one short trial as proof of a universal effect.",
         },
         {
           isCorrect: false,
           label:
-            "The class tested how folding a paper bridge deck into a triangular truss affected load distribution, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
+            "The class tested how forming connected triangles in a paper bridge affected load distribution, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
         },
         {
           isCorrect: false,
           label:
-            "The class tested how folding a paper bridge deck into a triangular truss affected load distribution, while treating the scientific term as the measured outcome that settles the investigation.",
+            "The class tested how forming connected triangles in a paper bridge affected load distribution, while treating the scientific term as the measured outcome that settles the investigation.",
         },
         {
           isCorrect: false,
           label:
-            "The class tested how folding a paper bridge deck into a triangular truss affected load distribution, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
+            "The class tested how forming connected triangles in a paper bridge affected load distribution, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
         },
         {
           isCorrect: true,

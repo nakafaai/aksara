@@ -4,7 +4,6 @@ import {
   hasUniquePositions,
   MathAppearanceSchema,
   MathAxisRangeSchema,
-  MathFeatureVisibilitySchema,
   MathLabelPlacementSchema,
   MathViewPaddingSchema,
   MathVisualKeySchema,
@@ -135,8 +134,6 @@ export type SpaceMathObject = typeof SpaceMathObjectSchema.Type;
 
 /** Exact Cartesian frame presented behind a space construction. */
 export const SpaceMathFrameSchema = Schema.Struct({
-  axes: MathFeatureVisibilitySchema,
-  grid: MathFeatureVisibilitySchema,
   kind: Schema.Literal("cartesian"),
   x: MathAxisRangeSchema,
   y: MathAxisRangeSchema,
@@ -179,6 +176,7 @@ export type SpaceMathView = typeof SpaceMathViewSchema.Type;
 export const SpaceLabelAnchorSchema = Schema.Struct({
   at: SpacePointSchema,
   key: MathVisualKeySchema,
+  objectId: MathVisualKeySchema,
   placement: Schema.optionalKey(MathLabelPlacementSchema),
 });
 export type SpaceLabelAnchor = typeof SpaceLabelAnchorSchema.Type;

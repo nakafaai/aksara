@@ -4,7 +4,7 @@ export const metadata = {
   description: "Mittelpunktswinkel und Umfangswinkel im Kreis, ihr Zusammenhang, ein anschaulicher Beweis und vollständig gerechnete Beispiele.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
   subject: "Kreis",
 };
 
@@ -17,6 +17,7 @@ Ein Mittelpunktswinkel wird von zwei Radien gebildet und hat seinen Scheitelpunk
   description="Ein Winkel, dessen Scheitelpunkt im Mittelpunkt des Kreises liegt."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -52,6 +53,7 @@ Ein Mittelpunktswinkel wird von zwei Radien gebildet und hat seinen Scheitelpunk
       labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -85,6 +87,7 @@ Ein Umfangswinkel, auch Peripheriewinkel genannt, wird von zwei Sehnen gebildet 
   description="Ein Winkel, dessen Scheitelpunkt auf dem Kreis liegt."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -146,6 +149,7 @@ Stehen beide Winkel über demselben Bogen, ist der Mittelpunktswinkel doppelt so
   description="Mittelpunktswinkel und Umfangswinkel über demselben Bogen."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -200,6 +204,7 @@ Stehen beide Winkel über demselben Bogen, ist der Mittelpunktswinkel doppelt so
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -213,6 +218,7 @@ Stehen beide Winkel über demselben Bogen, ist der Mittelpunktswinkel doppelt so
       labels: [{ text: <>Bogen <InlineMath math="AB" /></>, at: 22, offset: [1.5, 0.5, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -253,6 +259,7 @@ Zeichne den Durchmesser durch <InlineMath math="C" /> und den Mittelpunkt <Inlin
   }
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -344,6 +351,7 @@ Diese Konstruktion beweist die dargestellte Lage, in der <InlineMath math="C" />
      description={<>Ein Umfangswinkel über einem Durchmesser beträgt immer <InlineMath math="90^\circ" />.</>}
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 361 }, (_, i) => {
            const angle = (i * Math.PI) / 180;
            return {
@@ -394,6 +402,7 @@ Diese Konstruktion beweist die dargestellte Lage, in der <InlineMath math="C" />
          labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
        },
        {
+         smooth: false,
          points: (() => {
            const C = { x: 0, y: 4 };
            const A = { x: -4, y: 0 };
@@ -432,6 +441,7 @@ Diese Konstruktion beweist die dargestellte Lage, in der <InlineMath math="C" />
      description="Umfangswinkel über demselben Bogen sind gleich groß."
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 361 }, (_, i) => {
            const angle = (i * Math.PI) / 180;
            return {
@@ -495,6 +505,7 @@ Diese Konstruktion beweist die dargestellte Lage, in der <InlineMath math="C" />
          showPoints: false,
        },
        {
+         smooth: false,
          points: Array.from({ length: 46 }, (_, i) => {
            const angle = (i * Math.PI) / 180;
            return {
@@ -521,6 +532,7 @@ Gegeben ist der Mittelpunktswinkel <InlineMath math="\angle AOB = 80^\circ" />. 
   description={<>Aus dem Mittelpunktswinkel <InlineMath math="\angle AOB = 80^\circ" /> wird der Umfangswinkel <InlineMath math="\angle ACB" /> bestimmt.</>}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -575,7 +587,9 @@ Gegeben ist der Mittelpunktswinkel <InlineMath math="\angle AOB = 80^\circ" />. 
       showPoints: false,
     },
     {
-      points: Array.from({ length: 18 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 103 }, (_, sampleIndex) => {
+        const i = sampleIndex / 6;
         const angle = ((i * 80) / 17) * Math.PI / 180;
         return {
           x: 1.2 * Math.cos(angle),
@@ -585,7 +599,7 @@ Gegeben ist der Mittelpunktswinkel <InlineMath math="\angle AOB = 80^\circ" />. 
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="80^\circ" />, at: 10, offset: [0.5, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="80^\circ" />, at: 60, offset: [0.5, 0.3, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}

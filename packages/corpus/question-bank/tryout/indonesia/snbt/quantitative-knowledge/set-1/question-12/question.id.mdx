@@ -2,10 +2,8 @@ export const metadata = {
   title: "Soal 12",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
 };
-
-
 
 Diberikan limas beraturan <InlineMath math="T.ABCD" /> dengan <InlineMath math="AB = 4 \text{ cm}" /> dan titik <InlineMath math="O" /> merupakan titik potong garis <InlineMath math="AC" /> dengan <InlineMath math="BD" />. Berapa volume limas tersebut?
 
@@ -16,13 +14,11 @@ Diberikan limas beraturan <InlineMath math="T.ABCD" /> dengan <InlineMath math="
     space: "space",
     frame: {
       kind: "cartesian",
-      axes: "hidden",
-      grid: "hidden",
       x: { min: -3, max: 3 },
       y: { min: -1, max: 4 },
       z: { min: -3, max: 3 },
     },
-    view: { kind: "isometric", target: { x: 0, y: 1, z: 0 } },
+    view: { kind: "camera", position: { x: -1.875, y: 2.875, z: 3 }, target: { x: 0, y: 1, z: 0 } },
     objects: [
       {
         id: "base-abcd",
@@ -92,12 +88,12 @@ Diberikan limas beraturan <InlineMath math="T.ABCD" /> dengan <InlineMath math="
       },
     ],
     labels: [
-      { key: "point-a", at: { x: -2, y: 0, z: -2 }, placement: "below-left" },
-      { key: "point-b", at: { x: 2, y: 0, z: -2 }, placement: "below-right" },
-      { key: "point-c", at: { x: 2, y: 0, z: 2 }, placement: "above-right" },
-      { key: "point-d", at: { x: -2, y: 0, z: 2 }, placement: "above-left" },
-      { key: "point-o", at: { x: 0, y: 0, z: 0 }, placement: "below" },
-      { key: "point-t", at: { x: 0, y: 3, z: 0 }, placement: "above" },
+      { key: "point-a", objectId: "base-abcd", at: { x: -2, y: 0, z: -2 }, placement: "above-left" },
+      { key: "point-b", objectId: "base-abcd", at: { x: 2, y: 0, z: -2 }, placement: "below-right" },
+      { key: "point-c", objectId: "base-abcd", at: { x: 2, y: 0, z: 2 }, placement: "above-right" },
+      { key: "point-d", objectId: "base-abcd", at: { x: -2, y: 0, z: 2 }, placement: "above-left" },
+      { key: "point-o", objectId: "center-o", at: { x: 0, y: 0, z: 0 }, placement: "below" },
+      { key: "point-t", objectId: "height-ot", at: { x: 0, y: 3, z: 0 }, placement: "above" },
     ],
   }}
   labels={{
@@ -116,3 +112,5 @@ Putuskan apakah pernyataan <InlineMath math="(1)" /> dan <InlineMath math="(2)" 
 <BlockMath math="(1) \quad AC = 4\sqrt{2} \text{ cm}" />
 <BlockMath math="(2) \quad AT = \sqrt{17} \text{ cm}" />
 </MathContainer>
+
+Gambar bersifat skematis. Gunakan hanya panjang yang disebutkan dalam soal dan pernyataan.

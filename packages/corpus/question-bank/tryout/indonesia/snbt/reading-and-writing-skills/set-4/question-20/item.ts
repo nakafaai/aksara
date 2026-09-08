@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Da 28 über 18 und 20 lag, erklärte das Team Genreschilder auf jedem Tisch für wirksam und führte die Änderung dauerhaft ein.",
+            "Da 28 über 18 und 20 lag, führte das Team die Genre-Schilder als dauerhafte Ordnung ein.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team verglich 28, 18 und 20 und plante eine längere Wiederholung, ohne die Aussage auf Büchertauschmarkt zu begrenzen.",
+            "Das Team verglich 28, 18 und 20 und plante Versuche bei mehr Veranstaltungen, ohne die Schlussfolgerung zu begrenzen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team begrenzte die Aussage auf Büchertauschmarkt und plante eine längere Wiederholung, ohne den Vergleich zu nennen.",
+            "Das Team begrenzte die Aussage auf wenige Termine des Büchertauschmarkts und plante weitere Tests, ohne den Vergleich zu nennen.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team verglich 28, 18 und 20, begrenzte die Aussage auf den untersuchten Kontext (Büchertauschmarkt) und plante eine längere Wiederholung.",
+            "Das Team verglich die Mittelwerte 28, 18 und 20, begrenzte die Aussage auf wenige kurze Termine und plante Tests bei mehr Veranstaltungen mit derselben Suchzeitgrenze.",
         },
         {
           isCorrect: false,
           label:
-            "Die Werte 28, 18 und 20 zeigten kein relevantes Muster, daher wollte das Team die Messregeln ändern.",
+            "Die Werte 28, 18 und 20 zeigten kein relevantes Muster, weshalb das Team die Suchzeitgrenze ändern wollte.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Because 28 exceeded 18 and 20, the team concluded that the change was effective and adopted it permanently.",
+            "Because 28 exceeded 18 and 20, the team adopted the genre signs as a permanent arrangement.",
         },
         {
           isCorrect: false,
           label:
-            "The team compared 28, 18, and 20 and planned a longer repetition without limiting the claim to the context of book exchange market.",
+            "The team compared 28, 18, and 20 and planned tests at more events without limiting the conclusion.",
         },
         {
           isCorrect: false,
           label:
-            "The team limited its claim to the context of book exchange market and planned a longer repetition without reporting the comparison.",
+            "The team limited its conclusion to a few book-exchange sessions and planned further testing without reporting the comparison.",
         },
         {
           isCorrect: true,
           label:
-            "The team compared 28, 18, and 20, limited its claim to this setting (book exchange market), and planned a longer repetition.",
+            "The team compared means of 28, 18, and 20, limited its conclusion to a few short sessions, and planned tests at more events with the same search-time limit.",
         },
         {
           isCorrect: false,
           label:
-            "The values 28, 18, and 20 showed no relevant pattern, so the team planned to change the measurement rules.",
+            "The values 28, 18, and 20 showed no relevant pattern, so the team planned to change the search-time limit.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Karena 28 lebih tinggi daripada 18 dan 20, tim menyimpulkan bahwa tanda genre di setiap meja efektif lalu menerapkannya secara tetap.",
+            "Karena 28 lebih tinggi daripada 18 dan 20, tim menetapkan tanda genre sebagai susunan permanen.",
         },
         {
           isCorrect: false,
           label:
-            "Tim membandingkan 28, 18, dan 20 serta merencanakan pengulangan lebih panjang tanpa membatasi klaim pada pasar tukar buku.",
+            "Tim membandingkan 28, 18, dan 20 serta merencanakan uji di lebih banyak acara tanpa membatasi cakupan simpulan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim membatasi klaim pada pasar tukar buku dan merencanakan pengulangan lebih panjang tanpa melaporkan perbandingan.",
+            "Tim membatasi simpulan pada beberapa sesi pasar tukar buku dan merencanakan uji lanjutan tanpa melaporkan hasil perbandingan.",
         },
         {
           isCorrect: true,
           label:
-            "Tim membandingkan 28, 18, dan 20, membatasi klaim pada pasar tukar buku, serta merencanakan pengulangan yang lebih panjang.",
+            "Tim membandingkan rata-rata 28, 18, dan 20, membatasi simpulan pada beberapa sesi singkat, serta merencanakan uji di lebih banyak acara dengan batas waktu pencarian yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Nilai 28, 18, dan 20 tidak menunjukkan pola yang relevan sehingga tim akan mengubah kaidah pengukuran.",
+            "Nilai 28, 18, dan 20 tidak menunjukkan pola yang relevan sehingga tim akan mengubah batas waktu pencarian.",
         },
       ],
     },

@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Ein Foto ohne Herstellername verbreitete sich, während das Kuratorenlabel häufiger zitiert wurde als die Familienangabe.",
+            "Ein Foto ohne Namen der Herstellerin verbreitete sich, während das Kuratorenlabel häufiger zitiert wurde als die Familienangabe.",
         },
         {
           isCorrect: false,
@@ -47,7 +47,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "A photograph without the maker's name circulated widely, while the curator's label was cited more often than the family's account.",
+            "A photograph without the maker's name circulated, while the curator's label was cited more often than the family's account.",
         },
         {
           isCorrect: false,
@@ -76,7 +76,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Foto tanpa nama pembuat beredar luas, sedangkan label kurator lebih sering dikutip daripada keterangan keluarga.",
+            "Foto tanpa nama pembuat beredar, sedangkan label kurator lebih sering dikutip daripada keterangan keluarga.",
         },
         {
           isCorrect: false,

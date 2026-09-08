@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Richtungspfeile an jeder Abzweigung.",
+            "Die Hypothese musste deshalb mit Richtungspfeilen an den Flurabzweigungen geprüft werden.",
         },
         {
           isCorrect: false,
           label:
-            "Die Beobachtung bewies daher, dass die Änderung Richtungspfeile an jeder Kreuzung den Unterschied verursachte.",
+            "Die Ausgangsdaten bewiesen, dass Pfeile den Unterschied bei abgeschlossenen Rundgängen verursachten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team musste daher mehrere Merkmale im Kontext Ausstellung von Schülerarbeiten ändern, bevor es erneut maß.",
+            "Das Team musste vor der nächsten Messung mehrere Ausstellungsmerkmale gleichzeitig ändern.",
         },
         {
           isCorrect: false,
           label:
-            "Das erste Muster rechtfertigte daher die dauerhafte Einführung von Richtungspfeile an jeder Kreuzung.",
+            "Das Ausgangsmuster rechtfertigte die dauerhafte Anbringung der Pfeile.",
         },
         {
           isCorrect: false,
           label:
-            "Die verbleibende Unsicherheit machte einen weiteren Vergleich daher überflüssig.",
+            "Die verbleibende Unsicherheit machte weitere Vergleiche überflüssig.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The hypothesis therefore needed a limited test of direction arrows placed at each junction.",
+            "The hypothesis therefore needed to be tested by placing direction arrows at corridor junctions.",
         },
         {
           isCorrect: false,
           label:
-            "The observation therefore established that direction arrows placed at each junction caused the difference.",
+            "The baseline proved that arrows caused the difference in route completion.",
         },
         {
           isCorrect: false,
           label:
-            "The team therefore needed to alter several features of student work exhibition before measuring again.",
+            "The team needed to change several exhibition features at once before measuring again.",
         },
         {
           isCorrect: false,
           label:
-            "The initial pattern therefore justified permanent adoption of direction arrows placed at each junction.",
+            "The baseline pattern justified installing arrows permanently.",
         },
         {
           isCorrect: false,
           label:
-            "The remaining uncertainty therefore made another comparison unnecessary.",
+            "The remaining uncertainty made further comparison unnecessary.",
         },
       ],
     },
@@ -68,22 +68,21 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas dengan memasang panah arah di setiap persimpangan.",
+            "Oleh karena itu, hipotesis tersebut perlu diuji dengan memasang panah arah di persimpangan lorong.",
         },
         {
           isCorrect: false,
           label:
-            "Pengamatan itu membuktikan bahwa panah arah di setiap persimpangan menyebabkan perbedaan.",
+            "Pengamatan awal membuktikan bahwa panah menyebabkan perbedaan penyelesaian rute.",
         },
         {
           isCorrect: false,
           label:
-            "Tim perlu mengubah beberapa unsur pameran karya siswa sebelum melakukan pengukuran ulang.",
+            "Tim perlu mengubah beberapa unsur pameran sekaligus sebelum mengukur ulang.",
         },
         {
           isCorrect: false,
-          label:
-            "Pola awal itu membenarkan penerapan tetap panah arah di setiap persimpangan.",
+          label: "Pola awal membenarkan pemasangan panah secara permanen.",
         },
         {
           isCorrect: false,

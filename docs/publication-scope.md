@@ -9,9 +9,8 @@ The production scope has two independent selectors:
 - `snapshots`: structured families such as `program`
 
 A whole-family selection is compact even when the family contains thousands of
-documents. Production no longer accepts `content:` selectors because the
-exact-content ownership model was retired. Exact content entries remain in the
-signed contract only so retained historical releases can still be verified.
+documents. Signed scopes contain only `families` and `snapshots`. Individual
+document selectors and their historical decoder have been retired.
 
 Local release commands repeat `--scope`:
 

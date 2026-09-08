@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The comparison condition produced a mean value of 20; because it differs from the other conditions, the tested change is the only plausible explanation.",
+            "The comparison condition produced a mean value of $$20$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
           isCorrect: false,
@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The trial reached 31 first-review acceptances, compared with 19 and 20; because one glossary cannot represent every regional or family use, the result supports a limited follow-up.",
+            "The trial averaged $$31$$ first-review acceptances per session, compared with $$19$$ and $$20$$. Regional and family differences in usage support continued testing rather than treating the glossary as universal.",
         },
         {
           isCorrect: false,

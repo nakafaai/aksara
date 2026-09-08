@@ -4,7 +4,7 @@ export const metadata = {
   description: "Lies Sinus-, Kosinus- und Tangensgraphen mithilfe interaktiver Darstellungen zu Bogenmaß, Amplitude, Periode und Transformationen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Funktionen und ihre Modellierung",
 };
 
@@ -54,6 +54,7 @@ Die Amplitude ist der größte vertikale Abstand von der Mittellinie einer Sinus
   description={<>Die Amplitude ist der senkrechte Abstand von der <InlineMath math="x" />-Achse zum Hochpunkt der Welle.</>}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 2 * Math.PI;
         return { x, y: 2 * Math.sin(x), z: 0 };
@@ -85,6 +86,7 @@ Die Periode ist die Länge des Intervalls für einen vollständigen Zyklus. Für
   description="Die Periode ist der horizontale Abstand für eine vollständige Welle."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 4 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
@@ -108,7 +110,7 @@ Die Periode ist die Länge des Intervalls für einen vollständigen Zyklus. Für
           text: <InlineMath math="\longleftarrow\;2\pi\;\longrightarrow" />,
           at: 1,
           offset: [-3, -0.5, 0],
-          color: "#9333ea",
+
         },
       ],
     },
@@ -149,6 +151,7 @@ Die Funktion <InlineMath math="y = \sin x" /> ist periodisch mit der Periode <In
   description="Der Graph bildet eine Welle, die sich nach jeder Periode wiederholt."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
@@ -185,6 +188,7 @@ Die Funktion <InlineMath math="y = \cos x" /> hat eine sinusähnliche Form, ist 
   description={<>Vergleiche den Graphen mit <InlineMath math="\sin" />. Die Form ist gleich, aber horizontal verschoben.</>}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: Math.cos(x), z: 0 };
@@ -219,6 +223,7 @@ Die Funktion <InlineMath math="y = \cos x" /> hat eine sinusähnliche Form, ist 
   }
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
@@ -228,6 +233,7 @@ Die Funktion <InlineMath math="y = \cos x" /> hat eine sinusähnliche Form, ist 
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: Math.cos(x), z: 0 };
@@ -257,6 +263,7 @@ Die Funktion <InlineMath math="y = \tan x" /> unterscheidet sich von <InlineMath
     ...Array.from({ length: 3 }, (_, periodIndex) => {
       const offset = (periodIndex - 1) * Math.PI;
       return {
+        smooth: false,
         points: Array.from({ length: 50 }, (_, i) => {
           const x = offset + (i / 49) * Math.PI * 0.9 - Math.PI * 0.45;
           return { x, y: Math.tan(x), z: 0 };
@@ -313,6 +320,7 @@ Für <InlineMath math="y = A \sin x" /> beträgt die Amplitude <InlineMath math=
   }
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
@@ -322,21 +330,23 @@ Für <InlineMath math="y = A \sin x" /> beträgt die Amplitude <InlineMath math=
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: 2 * Math.sin(x), z: 0 };
       }),
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="y=2\\sin x" />, at: 25, offset: [1.25, 1.5, 0] }],
+      labels: [{ text: <InlineMath math="y=2\sin x" />, at: 25, offset: [1.25, 1.5, 0] }],
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: 0.5 * Math.sin(x), z: 0 };
       }),
       color: "#059669",
-      labels: [{ text: <InlineMath math="y=0{,}5\\sin x" />, at: 25, offset: [1, 2.5, 0] }],
+      labels: [{ text: <InlineMath math="y=0{,}5\sin x" />, at: 25, offset: [1, 2.5, 0] }],
       showPoints: false,
     },
   ]}
@@ -357,6 +367,7 @@ Die Funktion <InlineMath math="y = \sin(Bx)" /> hat die Periode <InlineMath math
   }
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
@@ -366,6 +377,7 @@ Die Funktion <InlineMath math="y = \sin(Bx)" /> hat die Periode <InlineMath math
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: Math.sin(2 * x), z: 0 };
@@ -375,6 +387,7 @@ Die Funktion <InlineMath math="y = \sin(Bx)" /> hat die Periode <InlineMath math
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: Math.sin(0.5 * x), z: 0 };
@@ -412,22 +425,24 @@ Die folgende Darstellung verbindet Amplitude, horizontale Verschiebung und verti
   }
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
       color: "#0284c7",
-      labels: [{ text: <><InlineMath math="y=\sin x" /> (grundlegend)</>, at: 25, offset: [0.5, -2, 0] }],
+      labels: [{ text: <InlineMath math="y=\sin x" />, at: 25, offset: [0.5, -2, 0] }],
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: 2 * Math.sin(x - Math.PI / 4) + 1, z: 0 };
       }),
       color: "#e11d48",
       labels: [
-        { text: <InlineMath math="y=2\\sin(x-\frac{\pi}{4})+1" />, at: 25, offset: [0.5, 1.5, 0] },
+        { text: <InlineMath math="y=2\sin(x-\frac{\pi}{4})+1" />, at: 25, offset: [0.5, 1.5, 0] },
       ],
       showPoints: false,
     },

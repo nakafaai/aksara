@@ -8,17 +8,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Nilai 29 dibandingkan 19 membuktikan bahwa penunjuk arah akan sama efektifnya pada pasar malam yang lebih ramai.",
+            "Nilai $$29$$ dibandingkan $$19$$ membuktikan bahwa penunjuk arah akan sama efektifnya pada pasar malam yang lebih ramai.",
         },
         {
           isCorrect: true,
           label:
-            "Kenaikan menjadi 29 dibandingkan 19 mendukung penerusan penunjuk arah secara terbatas, tetapi ketiadaan pengamatan pada pasar malam membatasi penerapannya pada kondisi ramai.",
+            "Rata-rata $$29$$ pengunjung pada uji dibandingkan $$19$$ pada kondisi pembanding mendukung penerusan penunjuk arah secara terbatas, tetapi ketiadaan pengamatan pada pasar malam membatasi penerapannya pada kondisi ramai.",
         },
         {
           isCorrect: false,
           label:
-            "Nilai dasar 18 menunjukkan bahwa sebagian besar pengunjung sudah menemukan ruang, sehingga penunjuk arah tidak perlu diuji lagi.",
+            "Nilai dasar $$18$$ menunjukkan bahwa sebagian besar pengunjung sudah menemukan ruang, sehingga penunjuk arah tidak perlu diuji lagi.",
         },
         {
           isCorrect: false,

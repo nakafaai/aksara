@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Definisi *daya dukung* membuktikan bahwa hasil model selalu sama dengan keadaan tanah di lapangan.",
+            "Definisi *daya dukung* membuktikan bahwa hasil model selalu sama dengan keadaan populasi di lapangan.",
         },
         {
           isCorrect: true,

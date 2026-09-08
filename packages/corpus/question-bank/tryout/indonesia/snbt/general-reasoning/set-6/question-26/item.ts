@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$A$$",
+          label: "Maschine A",
         },
         {
           isCorrect: false,
-          label: "$$B$$",
+          label: "Maschine B",
         },
         {
           isCorrect: false,
-          label: "$$A\\mathbin{/}B$$",
+          label: "Maschine A und B",
         },
         {
           isCorrect: false,
-          label: "$$B\\mathbin{/}C$$",
+          label: "Maschine B und C",
         },
         {
           isCorrect: true,
-          label: "$$C$$",
+          label: "Maschine C",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$A$$",
+          label: "Machine A",
         },
         {
           isCorrect: false,
-          label: "$$B$$",
+          label: "Machine B",
         },
         {
           isCorrect: false,
-          label: "$$A\\mathbin{/}B$$",
+          label: "Machine A and B",
         },
         {
           isCorrect: false,
-          label: "$$B\\mathbin{/}C$$",
+          label: "Machine B and C",
         },
         {
           isCorrect: true,
-          label: "$$C$$",
+          label: "Machine C",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$A$$",
+          label: "Mesin A",
         },
         {
           isCorrect: false,
-          label: "$$B$$",
+          label: "Mesin B",
         },
         {
           isCorrect: false,
-          label: "$$A\\mathbin{/}B$$",
+          label: "Mesin A dan B",
         },
         {
           isCorrect: false,
-          label: "$$B\\mathbin{/}C$$",
+          label: "Mesin B dan C",
         },
         {
           isCorrect: true,
-          label: "$$C$$",
+          label: "Mesin C",
         },
       ],
     },

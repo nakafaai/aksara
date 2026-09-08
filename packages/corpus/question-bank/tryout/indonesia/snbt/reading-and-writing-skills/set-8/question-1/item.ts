@@ -7,27 +7,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Geordnete Prüfung einer Änderung: Tag der offenen Labortür",
+          label: "Fragekarten bei einer offenen Laborführung im Test",
+        },
+        {
+          isCorrect: false,
+          label: "Ausgangsdaten vor der Prüfung von Fragekarten",
         },
         {
           isCorrect: false,
           label:
-            "Erste Belege zu Fragekarten an jedem Demonstrationstisch im Kontext „öffentliche Laborführung“",
+            "Gleichzeitige Prüfung mehrerer Änderungen an der Laborführung",
         },
         {
           isCorrect: false,
-          label:
-            "Prüfung mehrerer gleichzeitiger Änderungen im Kontext „öffentliche Laborführung“",
+          label: "Rückmeldungen zur dauerhaften Neugestaltung der Laborführung",
         },
         {
           isCorrect: false,
-          label:
-            "Rückmeldungen zur dauerhaften Neugestaltung des Kontexts „öffentliche Laborführung“",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Vollständige Bewertung des Kontexts „öffentliche Laborführung“",
+          label: "Vollständige Bewertung aller Labortätigkeiten",
         },
       ],
     },
@@ -36,26 +33,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "A structured test of one change: open laboratory tour",
+          label: "Testing Question Cards on an Open Laboratory Tour",
         },
         {
           isCorrect: false,
-          label:
-            "Early evidence about question cards at each demonstration table in the context of open laboratory tour",
+          label: "Baseline Records Before Question Cards Were Tested",
         },
         {
           isCorrect: false,
-          label:
-            "Testing several simultaneous changes in the context of open laboratory tour",
+          label: "Testing Several Simultaneous Changes to the Laboratory Tour",
         },
         {
           isCorrect: false,
-          label:
-            "User reactions to a permanent redesign of open laboratory tour",
+          label: "Reactions to a Permanent Redesign of the Laboratory Tour",
         },
         {
           isCorrect: false,
-          label: "A complete evaluation of open laboratory tour",
+          label: "A Complete Evaluation of All Laboratory Activities",
         },
       ],
     },
@@ -64,26 +58,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Uji Teratur atas Satu Perubahan: tur laboratorium terbuka",
+          label: "Pengujian Kartu Pertanyaan dalam Tur Laboratorium Terbuka",
         },
         {
           isCorrect: false,
-          label:
-            "Bukti awal tentang kartu pertanyaan di setiap meja demonstrasi dalam konteks tur laboratorium terbuka",
+          label: "Catatan Awal Sebelum Kartu Pertanyaan Diuji",
         },
         {
           isCorrect: false,
-          label:
-            "Pengujian beberapa perubahan serentak dalam konteks tur laboratorium terbuka",
+          label: "Pengujian Beberapa Perubahan Serentak pada Tur Laboratorium",
         },
         {
           isCorrect: false,
-          label:
-            "Tanggapan pengguna terhadap perancangan ulang tetap pada tur laboratorium terbuka",
+          label: "Tanggapan atas Perancangan Ulang Permanen Tur Laboratorium",
         },
         {
           isCorrect: false,
-          label: "Evaluasi menyeluruh terhadap tur laboratorium terbuka",
+          label: "Evaluasi Menyeluruh atas Seluruh Kegiatan Laboratorium",
         },
       ],
     },

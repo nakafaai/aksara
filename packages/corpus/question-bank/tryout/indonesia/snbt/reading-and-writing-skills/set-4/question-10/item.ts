@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Unter unveränderten Messregeln plant das Team einen längeren Versuch mit folgender Änderung: Fotoetiketten an den Rückgaberegalen.",
+            "Mit denselben Messregeln plante das Team einen längeren Test mit Fotoetiketten mit getrennter Auswertung neuer und erfahrener Ausleihender.",
         },
         {
           isCorrect: false,
           label:
-            "Mit geänderten Messregeln plant das Team einen längeren Test von Fotobeschriftungen an den Rückgaberegalen.",
+            "Mit geänderten Messregeln plante das Team einen längeren Test mit Fotoetiketten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team will nur die Tage wiederholen, an denen die Änderung Fotobeschriftungen an den Rückgaberegalen den höchsten Wert ergab.",
+            "Das Team wollte nur die Versuchstermine mit Fotoetiketten mit dem höchsten Ergebnis wiederholen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team will Fotobeschriftungen an den Rückgaberegalen dauerhaft einführen statt einen längeren Vergleich durchzuführen.",
+            "Das Team wollte Fotoetiketten dauerhaft einführen statt einen längeren Versuch durchzuführen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team plant einen längeren Test von Fotobeschriftungen an den Rückgaberegalen ohne Vergleichsbedingung.",
+            "Das Team plante einen längeren Test, der neue und erfahrene Ausleihende ohne Unterscheidung zusammenfasste.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Using the same measurement rules, the team plans a longer test of photo labels on the return shelves.",
+            "Using the same measurement rules, the team planned a longer photo-label test with separate data for new and returning borrowers.",
         },
         {
           isCorrect: false,
           label:
-            "Using revised measurement rules, the team plans a longer test of photo labels on the return shelves.",
+            "Using revised measurement rules, the team planned a longer photo-label test.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans to repeat only the days on which photo labels on the return shelves produced the highest value.",
+            "The team planned to repeat only photo-label sessions with the highest result.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans to adopt photo labels on the return shelves permanently instead of running a longer comparison.",
+            "The team planned to adopt photo labels permanently instead of running a longer test.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans a longer test of photo labels on the return shelves without retaining a comparison condition.",
+            "The team planned a longer test that pooled new and returning borrowers without distinguishing them.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Dengan aturan pengukuran yang sama, tim merencanakan uji label foto yang lebih panjang.",
+            "Dengan aturan ukur yang sama, tim merencanakan uji label foto yang lebih panjang serta pemisahan data peminjam baru dan lama.",
         },
         {
           isCorrect: false,
           label:
-            "Dengan kaidah pengukuran yang diubah, tim merencanakan uji label foto pada rak pengembalian yang lebih panjang.",
+            "Dengan aturan ukur yang diubah, tim merencanakan uji label foto yang lebih panjang.",
         },
         {
           isCorrect: false,
           label:
-            "Tim akan mengulang hari ketika label foto pada rak pengembalian menghasilkan nilai tertinggi.",
+            "Tim akan mengulang hanya sesi label foto yang menghasilkan nilai tertinggi.",
         },
         {
           isCorrect: false,
           label:
-            "Tim akan menerapkan label foto pada rak pengembalian secara tetap sebagai pengganti perbandingan yang lebih panjang.",
+            "Tim akan menerapkan label foto secara permanen sebagai pengganti uji lebih panjang.",
         },
         {
           isCorrect: false,
           label:
-            "Tim merencanakan uji label foto pada rak pengembalian yang lebih panjang tanpa mempertahankan kondisi pembanding.",
+            "Tim merencanakan uji lebih panjang dengan menggabungkan data peminjam baru dan lama tanpa membedakannya.",
         },
       ],
     },

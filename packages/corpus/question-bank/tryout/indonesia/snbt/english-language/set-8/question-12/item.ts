@@ -8,17 +8,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Jonas kept two translations and added a note describing where each was appropriate; the choice resolves the whole conflict at once and makes any later review unnecessary.",
+            "Jonas kept two translations and added a note describing where each was appropriate. The choice resolves the whole conflict at once and makes any later review unnecessary.",
         },
         {
           isCorrect: false,
           label:
-            "Jonas kept two translations and added a note describing where each was appropriate; the action transfers responsibility for the unresolved task to another character.",
+            "Jonas kept two translations and added a note describing where each was appropriate. The action transfers responsibility for the unresolved task to another character.",
         },
         {
           isCorrect: false,
           label:
-            "Jonas kept two translations and added a note describing where each was appropriate; the decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
+            "Jonas kept two translations and added a note describing where each was appropriate. The decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
         },
         {
           isCorrect: true,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Jonas kept two translations and added a note describing where each was appropriate; the setting alone produces the change, so the character's decision has no role in the development.",
+            "Jonas kept two translations and added a note describing where each was appropriate. The setting alone produces the change, so the character's decision has no role in the development.",
         },
       ],
     },

@@ -2,9 +2,19 @@ export const metadata = {
   title: "Lösung zu Aufgabe 23",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Wende das Prinzip der Inklusion und Exklusion an. Berücksichtige anschließend genau, ob nach genau einer, genau zwei, mindestens zwei oder keiner der drei Mengen gefragt wird. Personen in allen drei Mengen müssen bei dieser Umgruppierung mit der richtigen Vielfachheit gezählt werden.
+Jede paarweise Schnittmenge enthält die <InlineMath math="10" /> Personen, die alle drei Dienste nutzen. Diese Personen werden von jeder Schnittmenge abgezogen, um genau zwei Dienste zu zählen.
 
-Damit ist der gesuchte Wert <InlineMath math="33" />.
+| Nur diese Dienste | Anzahl der Nutzenden |
+| :--- | :---: |
+| <InlineMath math="A,B" /> | <InlineMath math="25-10=15" /> |
+| <InlineMath math="A,C" /> | <InlineMath math="20-10=10" /> |
+| <InlineMath math="B,C" /> | <InlineMath math="18-10=8" /> |
+
+Die so bestimmten Gruppen sind disjunkt. Ihre Anzahlen werden daher addiert.
+
+<BlockMath math="15+10+8=33" />
+
+Somit nutzen **<InlineMath math="33" /> Personen** genau zwei Dienste.

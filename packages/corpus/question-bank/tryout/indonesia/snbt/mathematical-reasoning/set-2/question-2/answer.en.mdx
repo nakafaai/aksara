@@ -1,10 +1,11 @@
 export const metadata = {
   title: "Solution to Question 2",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2026-01-31",
 };
 
-Our goal is to find the area of each plot in three locations (A, B, and C), with the **same maximum number of plots** in every location and a positive whole-number area for every plot.
+Our goal is to find the area of each plot in three locations (<InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" />), with the **same maximum number of plots** in every location and a positive whole-number area for every plot. All plots within one location must have equal areas, though plot areas may differ between locations.
 
 Since the number of plots must be the same and maximized, we need to find the **Greatest Common Divisor (GCD)** of the land areas: <InlineMath math="120" />, <InlineMath math="180" />, and <InlineMath math="240" />. This GCD value will represent the number of plots to be created.
 
@@ -17,34 +18,26 @@ Perform prime factorization for the three numbers:
 </MathContainer>
 
 The GCD is obtained by multiplying the common prime factors with the lowest exponent:
-- Factor <InlineMath math="2" />: the lowest exponent is <InlineMath math="2^2" />.
-- Factor <InlineMath math="3" />: the lowest exponent is <InlineMath math="3^1" /> (or <InlineMath math="3" />).
-- Factor <InlineMath math="5" />: the lowest exponent is <InlineMath math="5^1" /> (or <InlineMath math="5" />).
+- Factor <InlineMath math="2" />: the lowest exponent is <InlineMath math="2" />, giving the factor <InlineMath math="2^2" />.
+- Factor <InlineMath math="3" />: the lowest exponent is <InlineMath math="1" />, giving the factor <InlineMath math="3^1=3" />.
+- Factor <InlineMath math="5" />: the lowest exponent is <InlineMath math="1" />, giving the factor <InlineMath math="5^1=5" />.
 
-<MathContainer>
-  <BlockMath math="\text{GCD} = 2^2 \times 3 \times 5 = 4 \times 3 \times 5 = 60" />
-</MathContainer>
+<BlockMath math="\begin{aligned}\mathrm{GCD}&=2^2\times3\times5 \\ &=4\times3\times5 \\ &=60\end{aligned}" />
 
 So, the number of plots to be created in each location is **<InlineMath math="60" /> plots**.
 
 Next, we calculate the area of each plot for each location by dividing the total land area by the number of plots (<InlineMath math="60" />):
 
-**Location A:**
+Location <InlineMath math="A" />:
 
-<MathContainer>
-  <BlockMath math="\frac{120\text{ m}^2}{60} = 2\text{ m}^2" />
-</MathContainer>
+<BlockMath math="\frac{120\text{ m}^2}{60} = 2\text{ m}^2" />
 
-**Location B:**
+Location <InlineMath math="B" />:
 
-<MathContainer>
-  <BlockMath math="\frac{180\text{ m}^2}{60} = 3\text{ m}^2" />
-</MathContainer>
+<BlockMath math="\frac{180\text{ m}^2}{60} = 3\text{ m}^2" />
 
-**Location C:**
+Location <InlineMath math="C" />:
 
-<MathContainer>
-  <BlockMath math="\frac{240\text{ m}^2}{60} = 4\text{ m}^2" />
-</MathContainer>
+<BlockMath math="\frac{240\text{ m}^2}{60} = 4\text{ m}^2" />
 
 Thus, the area of each plot from each location respectively is <InlineMath math="2\text{ m}^2" />, <InlineMath math="3\text{ m}^2" />, and <InlineMath math="4\text{ m}^2" />.

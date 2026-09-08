@@ -8,22 +8,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Mina asked each member to state one concern before choosing the next step; the choice resolves the whole conflict at once and makes any later review unnecessary.",
+            "Mina asked each member to state one concern before choosing the next step. The choice resolves the whole conflict at once and makes any later review unnecessary.",
         },
         {
           isCorrect: false,
           label:
-            "Mina asked each member to state one concern before choosing the next step; the action transfers responsibility for the unresolved task to another character.",
+            "Mina asked each member to state one concern before choosing the next step. The action transfers responsibility for the unresolved task to another character.",
         },
         {
           isCorrect: false,
           label:
-            "Mina asked each member to state one concern before choosing the next step; the decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
+            "Mina asked each member to state one concern before choosing the next step. The decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
         },
         {
           isCorrect: false,
           label:
-            "Mina asked each member to state one concern before choosing the next step; the setting alone produces the change, so the character's decision has no role in the development.",
+            "Mina asked each member to state one concern before choosing the next step. The setting alone produces the change, so the character's decision has no role in the development.",
         },
         {
           isCorrect: true,

@@ -60,6 +60,11 @@
   attributed claim. Read the destination and paragraph to establish why that
   exact resource is needed. Reject competitor learning platforms, secondary
   explainers, redundant resources, optional further reading, and link dumps.
+- For an assessed reading passage, its original publisher is first-party
+  evidence for the passage's wording and attribution. Preserve that exact
+  attribution even when the passage reports other research. Verify factual
+  teaching claims against primary evidence separately. Do not replace the
+  passage source with a research paper that did not publish those words.
 - Put a descriptive linked source name or phrase beside the claim it supports.
   Preserve the natural teaching sentence. Do not use `tautan ini`, `this source
   link`, a generic label, or instructions about opening the link. A longer
@@ -102,6 +107,16 @@ strings with their own [math syntax](question-bank.md#response-items).
   comments, URLs, immutable quotations, and string-only schema fields. Never
   insert JSX or LaTeX into a programming-language comment.
 - Use `<BlockMath />` for standalone formulas.
+- Move a long fraction, nested fraction, system of equations, or connected
+  derivation out of prose when inline sizing makes its terms hard to read.
+  Keep short values and simple expressions inline. This choice is contextual,
+  not a formula-length quota. Response options always keep math inline under
+  the question-bank contract.
+- Compose displayed derivations for a narrow viewport. Use short aligned rows,
+  name repeated subexpressions, and separate conceptual steps with complete
+  prose. Preserve every transformation and condition. Do not shrink all math,
+  clip terms, or rely on horizontal scrolling to fit an avoidably long line.
+  Verify the actual renderer at a mobile width, including longer locale text.
 - Keep the leading backslash on every LaTeX command in a `math` prop. Bare
   `ldots`, `cdots`, `vdots`, or `ddots` render as letters rather than an
   ellipsis. Check this only inside rendered math, not in prose, code, or
@@ -124,8 +139,6 @@ strings with their own [math syntax](question-bank.md#response-items).
       space: "plane",
       frame: {
         kind: "cartesian",
-        axes: "visible",
-        grid: "visible",
         x: { min: -3, max: 3 },
         y: { min: -2, max: 4 },
       },
@@ -167,6 +180,9 @@ strings with their own [math syntax](question-bank.md#response-items).
   non-math component.
 - MDX math props use a single LaTeX backslash. TypeScript strings escape the
   backslash.
+- Write a percentage sign as `\%` inside LaTeX. A bare `%` begins a comment
+  and can silently remove the sign or the rest of the formula. Inspect the
+  rendered value as well as checking for parser errors.
 - Format learner-facing numbers according to the authored locale without
   changing their value. English uses `.` for decimals and `{,}` for grouped
   thousands. Indonesian and German use `{,}` for decimals and `{.}` for grouped
@@ -230,13 +246,51 @@ For assessed content, also apply the
   objects, inspect and rotate the rendered scene when interaction is available
   so hidden intersections, incorrect depth, or misleading camera angles are
   not accepted from one static view.
+- Mathematical geometry uses Nakafa's shared React Three Fiber foundation:
+  `CoordinateSystem` owns the scene, grid, and camera;
+  `LineEquation` and the owning geometry primitives compose its objects.
+  `MathVisual` adapts authored scene contracts to that same foundation. Never
+  introduce a custom SVG math renderer, a parallel canvas shell, or a
+  content-local implementation. Plane geometry remains in a fixed coordinate
+  plane with a frontal initial camera and working orbit controls.
+  The owning card composes its header, scene body, and full-width bordered
+  footer. Grid and playback controls belong in that footer; do not add a gizmo
+  or overlay controls on the mathematical subject.
+  Use the established EvilCharts components, tables, and diagrams when their
+  axes, values, comparisons, or structure explain the content more clearly.
+  The restriction on bespoke SVG does not prohibit the chart library's own
+  renderer, and does not require converting every visual to 3D.
 - Preserve exact straight geometry with `MathVisual`'s `segment`, `polyline`,
-  or `polygon` objects. Reserve `spline` for intentionally smooth curves.
+  or `polygon` objects. Generate circles, arcs, and quadratic curves from their
+  mathematical functions. Do not smooth polygon edges or use interpolated
+  points that change the equation being taught.
+  For a sampled analytic `LineEquation`, calculate points from the formula and
+  set `smooth: false`. Increase the sampling density when visible segments do
+  not represent the curve adequately. Keep discontinuous branches separate.
+  When adding samples, remap label indices to their original mathematical
+  anchors and use `pointIndices` to preserve the intended visible markers.
+  A set of isolated observations uses one-point series, without connecting
+  them into an additional curve. Declarative circle objects own their exact
+  sampling and accept no authored `smooth` override.
   Author a balok as one declarative cuboid with positive dimensions:
   `{ id, kind: "cuboid", appearance, center, size: { length, width, height } }`.
   Verify eight vertices, twelve straight edges, four edges of each
   declared dimension, and a camera view that still reads as a cuboid after
   rotation.
+- Keep the default full `CoordinateSystem` grid. Authored frames have no grid
+  override. Their ranges bound mathematical objects and clipping; they must not
+  shrink the shared grid.
+- Every `MathVisual` label names its owning object's `objectId`. Its color comes
+  from that object's appearance, matching `LineEquation` lesson labels. Never
+  duplicate a label color or infer its owner from visual proximity.
+- Place labels in open regions clear of every subject line, including their
+  owning line. An anchor on the correct object does not prove that the rendered
+  label is clear. Check the full label bounds, especially equations, against
+  neighboring lines and other labels at desktop and mobile widths.
+- Every dimension label must identify its segment, arc, radius, face, or angle.
+  Attach it to that object or add a mathematically anchored construction line;
+  a floating value near several edges is ambiguous. Measure label and control
+  overlap at mobile widths and verify the association after rotating the scene.
 - Render every locale sibling that changes learner-facing labels or prose around
   a visual. Longer localized text must not clip, overlap, obscure data, or
   detach from the representation it explains.
@@ -244,7 +298,10 @@ For assessed content, also apply the
 When removing an external visual or interactive resource, inspect the existing
 lesson and renderer manifest first. Reuse a Nakafa-owned visual that already
 performs the teaching job. Add a new owned component only for a verified gap.
-Never force a depth axis or decorative 3D scene onto a planar concept.
+Keep plane and space geometry on the same interactive 3D foundation. Set the
+initial camera to explain the concept clearly, and preserve the shared grid,
+rotation, and playback controls. Camera perspective never changes the
+mathematical dimension of an authored object.
 
 Lessons and articles should not become uninterrupted walls of text when a
 meaningful structure or representation would reduce search and comparison

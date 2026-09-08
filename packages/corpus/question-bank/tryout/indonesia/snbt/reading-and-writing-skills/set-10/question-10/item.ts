@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Mit geänderten Messregeln plant das Team einen längeren Test von nach Rezeptschritten gruppierte Zutaten.",
+            "Das Team plant einen längeren Versuch mit geänderten Messregeln.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team will nur die Tage wiederholen, an denen die Änderung nach Rezeptschritten gruppierte Zutaten den höchsten Wert ergab.",
+            "Das Team will nur die Kurseinheiten mit dem höchsten Ergebnis wiederholen.",
         },
         {
           isCorrect: true,
           label:
-            "Unter unveränderten Messregeln plant das Team einen längeren Versuch mit folgender Änderung: nach Rezeptschritten geordnete Zutaten.",
+            "Das Team plant einen längeren Versuch mit vielfältigeren Rezepten unter denselben Messregeln.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team will nach Rezeptschritten gruppierte Zutaten dauerhaft einführen statt einen längeren Vergleich durchzuführen.",
+            "Das Team will die neue Anordnung dauerhaft einführen statt erneut zu testen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team plant einen längeren Test von nach Rezeptschritten gruppierte Zutaten ohne Vergleichsbedingung.",
+            "Das Team plant einen längeren Versuch mit ausschließlich denselben Rezepten.",
         },
       ],
     },
@@ -37,28 +37,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Using revised measurement rules, the team plans a longer test of ingredients grouped by recipe stage.",
+          label: "The team plans a longer test with revised measurement rules.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans to repeat only the days on which ingredients grouped by recipe stage produced the highest value.",
+            "The team will repeat only the sessions with the highest result.",
         },
         {
           isCorrect: true,
           label:
-            "Using the same measurement rules, the team plans a longer test of ingredients grouped by recipe stage.",
+            "The team plans a longer test with a wider range of recipes under the same measurement rules.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans to adopt ingredients grouped by recipe stage permanently instead of running a longer comparison.",
+            "The team will adopt the new layout permanently instead of testing again.",
         },
         {
           isCorrect: false,
-          label:
-            "The team plans a longer test of ingredients grouped by recipe stage without retaining a comparison condition.",
+          label: "The team plans a longer test using only the same recipes.",
         },
       ],
     },
@@ -68,27 +66,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dengan kaidah pengukuran yang diubah, tim merencanakan uji bahan yang dikelompokkan menurut tahap resep yang lebih panjang.",
+            "Tim merencanakan uji lebih lama dengan aturan pengukuran yang diubah.",
         },
         {
           isCorrect: false,
-          label:
-            "Tim akan mengulang hari ketika bahan yang dikelompokkan menurut tahap resep menghasilkan nilai tertinggi.",
+          label: "Tim akan mengulang hanya pertemuan dengan hasil tertinggi.",
         },
         {
           isCorrect: true,
           label:
-            "Dengan aturan pengukuran yang sama, tim merencanakan uji yang lebih lama terhadap bahan yang dikelompokkan menurut tahap resep.",
+            "Tim merencanakan uji lebih lama dengan resep lebih beragam dan aturan pengukuran yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Tim akan menerapkan bahan yang dikelompokkan menurut tahap resep secara tetap sebagai pengganti perbandingan yang lebih panjang.",
+            "Tim akan menerapkan susunan baru secara permanen sebagai pengganti uji lanjutan.",
         },
         {
           isCorrect: false,
-          label:
-            "Tim merencanakan uji bahan yang dikelompokkan menurut tahap resep yang lebih panjang tanpa mempertahankan kondisi pembanding.",
+          label: "Tim merencanakan uji lebih lama dengan resep yang sama saja.",
         },
       ],
     },

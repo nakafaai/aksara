@@ -23,12 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perbedaan catatan membuktikan bahwa lampu rusak tepat di antara pukul 19.00 dan 22.00.",
+            "Perbedaan catatan membuktikan bahwa lampu rusak tepat di antara pukul $$19.00$$ dan $$22.00$$.",
         },
         {
           isCorrect: true,
           label:
-            "Kedua catatan berasal dari waktu yang berbeda dan sama-sama dapat memuat pengalaman yang benar; legenda menjaga konteks itu agar kondisi lampu tidak dianggap tetap.",
+            "Kedua catatan berasal dari waktu yang berbeda dan sama-sama dapat memuat pengalaman yang benar. Legenda menjaga konteks itu agar kondisi lampu tidak dianggap tetap.",
         },
       ],
     },

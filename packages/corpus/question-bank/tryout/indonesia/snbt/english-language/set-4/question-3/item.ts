@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Because visible ice first formed at -4°C, compared with -1°C at baseline and 0°C in the comparison condition, holding water volume, container material, and thermometer position constant isolates adding a measured mass of table salt as the only possible cause.",
+            "Because visible ice first formed at $$-4^{\\circ}\\text{C}$$, compared with $$-1^{\\circ}\\text{C}$$ at baseline and $$0^{\\circ}\\text{C}$$ in the comparison condition, holding water volume, container material, and thermometer position constant isolates adding a measured mass of table salt as the only possible cause.",
         },
         {
           isCorrect: false,
@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Visible ice first formed at a mean of -4°C in the salted samples, compared with -1°C at baseline and 0°C in the unsalted comparison. This supports an association under the tested conditions, but uneven shelf cooling and limited position rotation require further testing before a broader claim.",
+            "Visible ice first formed at a mean of $$-4^{\\circ}\\text{C}$$ in the salted samples, compared with $$-1^{\\circ}\\text{C}$$ at baseline and $$0^{\\circ}\\text{C}$$ in the unsalted comparison. This supports an association under the tested conditions, but uneven shelf cooling and limited position rotation require further testing before a broader claim.",
         },
         {
           isCorrect: false,

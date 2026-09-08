@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Ein kürzerer Arbeitsweg verringert sowohl die Fahrzeit als auch die Zahl der zu zahlenden Fahrten.",
+            "Ein kürzerer Arbeitsweg verringert die Entfernung zwischen Zimmer und Arbeitsplatz.",
         },
       ],
     },
@@ -58,7 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "A shorter commute reduces both travel time and the number of transport fares paid.",
+            "A shorter route reduces the distance travelled between the room and the workplace.",
         },
       ],
     },
@@ -88,7 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perjalanan yang lebih singkat mengurangi waktu tempuh dan jumlah ongkos transportasi yang dibayar.",
+            "Rute yang lebih pendek mengurangi jarak tempuh antara kos dan tempat kerja.",
         },
       ],
     },

@@ -7,26 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Erste Belege zu Fotobeschriftungen an den Rückgaberegalen im Kontext „Sportgeräteausleihe“",
+          label: "Ausgangsbeobachtungen vor dem Test neuer Regalbeschriftungen",
         },
         {
           isCorrect: true,
-          label: "Geordnete Prüfung einer Änderung: Ausleihe von Sportgeräten",
+          label: "Fotoetiketten für die Rückgabe von Sportgeräten im Test",
         },
         {
           isCorrect: false,
-          label:
-            "Prüfung mehrerer gleichzeitiger Änderungen im Kontext „Sportgeräteausleihe“",
+          label: "Gleichzeitiger Test mehrerer Änderungen an der Ausleihe",
         },
         {
           isCorrect: false,
-          label:
-            "Rückmeldungen zur dauerhaften Neugestaltung des Kontexts „Sportgeräteausleihe“",
+          label: "Rückmeldungen zur dauerhaften Neugestaltung der Ausleihe",
         },
         {
           isCorrect: false,
-          label: "Vollständige Bewertung des Kontexts „Sportgeräteausleihe“",
+          label: "Vollständige Bewertung der Sportgeräteausleihe",
         },
       ],
     },
@@ -35,26 +32,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Early evidence about photo labels on the return shelves in the context of sports equipment lending",
+          label: "Baseline Observations Before Testing Shelf Labels",
         },
         {
           isCorrect: true,
-          label: "A structured test of one change: sports equipment lending",
+          label: "Testing Photo Labels on Sports Equipment Return Shelves",
+        },
+        {
+          isCorrect: false,
+          label: "Testing Several Simultaneous Changes to the Lending Service",
+        },
+        {
+          isCorrect: false,
+          label: "Borrower Reactions to a Permanent Redesign of the Service",
         },
         {
           isCorrect: false,
           label:
-            "Testing several simultaneous changes in the context of sports equipment lending",
-        },
-        {
-          isCorrect: false,
-          label:
-            "User reactions to a permanent redesign of sports equipment lending",
-        },
-        {
-          isCorrect: false,
-          label: "A complete evaluation of sports equipment lending",
+            "A Complete Evaluation of the Sports Equipment Lending Service",
         },
       ],
     },
@@ -63,26 +58,25 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Bukti awal tentang label foto pada rak pengembalian dalam konteks peminjaman alat olahraga",
+          label: "Catatan Awal Sebelum Pengujian Label Rak",
         },
         {
           isCorrect: true,
-          label: "Uji Teratur atas Satu Perubahan: peminjaman alat olahraga",
+          label: "Pengujian Label Foto pada Rak Pengembalian Alat Olahraga",
         },
         {
           isCorrect: false,
           label:
-            "Pengujian beberapa perubahan serentak dalam konteks peminjaman alat olahraga",
+            "Pengujian Beberapa Perubahan Serentak pada Layanan Peminjaman",
         },
         {
           isCorrect: false,
           label:
-            "Tanggapan pengguna terhadap perancangan ulang tetap pada peminjaman alat olahraga",
+            "Tanggapan Peminjam terhadap Perancangan Ulang Permanen Layanan",
         },
         {
           isCorrect: false,
-          label: "Evaluasi menyeluruh terhadap peminjaman alat olahraga",
+          label: "Evaluasi Menyeluruh atas Layanan Peminjaman Alat Olahraga",
         },
       ],
     },

@@ -13,22 +13,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Ravi followed the wrong-coloured bag backward through the crowded stalls; the recurring object's physical appearance fixes its complete meaning from the first mention.",
+            "Ravi followed the misplaced bag backward through the stalls. The recurring object's physical appearance fixes its complete meaning from the first mention.",
         },
         {
           isCorrect: false,
           label:
-            "Ravi followed the wrong-coloured bag backward through the crowded stalls; the ending states the object's meaning directly, making the earlier actions irrelevant.",
+            "Ravi followed the misplaced bag backward through the stalls. The ending states the object's meaning directly, making the earlier actions irrelevant.",
         },
         {
           isCorrect: false,
           label:
-            "Ravi followed the wrong-coloured bag backward through the crowded stalls; the setting alone changes the atmosphere, independently of the character's use of the recurring object.",
+            "Ravi followed the misplaced bag backward through the stalls. The setting alone changes the atmosphere, independently of the character's use of the recurring object.",
         },
         {
           isCorrect: false,
           label:
-            "Ravi followed the wrong-coloured bag backward through the crowded stalls; the object keeps one fixed meaning even as the character's action and the final response change.",
+            "Ravi followed the misplaced bag backward through the stalls. The object keeps one fixed meaning even as the character's action and the final response change.",
         },
       ],
     },

@@ -7,28 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "die Folgestudie des Teams im untersuchten Kontext (Kompostierworkshop)",
+          label: "die Folgestudie des Teams zu den Reihenfolgekarten",
         },
         {
           isCorrect: false,
-          label:
-            "die Folge Studie des Teams im untersuchten Kontext (Kompostierworkshop)",
+          label: "die Folge Studie des Teams zu den Reihenfolgekarten",
         },
         {
           isCorrect: false,
-          label:
-            "die Folge-studie des Teams im untersuchten Kontext (Kompostierworkshop)",
+          label: "die Folge-studie des Teams zu den Reihenfolgekarten",
         },
         {
           isCorrect: false,
-          label:
-            "die Folgestudie des Team im untersuchten Kontext (Kompostierworkshop)",
+          label: "die Folgestudie des Team zu den Reihenfolgekarten",
         },
         {
           isCorrect: false,
-          label:
-            "die Folge  Studie des Teams im untersuchten Kontext (Kompostierworkshop)",
+          label: "die Folgestudie des Teems zu den Reihenfolgekarten",
         },
       ],
     },
@@ -37,28 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "the team's follow-up study of cards showing the order of brown and green materials in this setting (composting workshop)",
+          label: "the team's follow-up study of the sequencing cards",
         },
         {
           isCorrect: false,
-          label:
-            "the team's follow up study of cards showing the order of brown and green materials in this setting (composting workshop)",
+          label: "the team's follow up study of the sequencing cards",
         },
         {
           isCorrect: false,
-          label:
-            "the team's followup study of cards showing the order of brown and green materials in this setting (composting workshop)",
+          label: "the team's follow-uup study of the sequencing cards",
         },
         {
           isCorrect: false,
-          label:
-            "the teams' follow--up study of cards showing the order of brown and green materials in this setting (composting workshop)",
+          label: "the teams' follow--up study of the sequencing cards",
         },
         {
           isCorrect: false,
-          label:
-            "the team follow-up-study of cards showing the order of brown and green materials in this setting (composting workshop)",
+          label: "the team follow-up-study of the sequencing cards",
         },
       ],
     },
@@ -67,28 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "kerja sama tim dalam uji kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos",
+          label: "kerja sama tim dalam pengujian kartu urutan bahan",
         },
         {
           isCorrect: false,
-          label:
-            "kerjasama tim dalam uji kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos",
+          label: "kerjasama tim dalam pengujian kartu urutan bahan",
         },
         {
           isCorrect: false,
-          label:
-            "kerja-sama tim dalam uji kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos",
+          label: "kerja-sama tim dalam pengujian kartu urutan bahan",
         },
         {
           isCorrect: false,
-          label:
-            "kerja  sama tim dalam uji kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos",
+          label: "kerja samah tim dalam pengujian kartu urutan bahan",
         },
         {
           isCorrect: false,
-          label:
-            "kerja sama-sama tim dalam uji kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos",
+          label: "kerja sama-sama tim dalam pengujian kartu urutan bahan",
         },
       ],
     },

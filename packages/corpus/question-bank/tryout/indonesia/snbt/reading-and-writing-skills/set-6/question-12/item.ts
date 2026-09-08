@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "am Montag prüfte das Team ein Beispiel zur Erfassung der Geräuschdauer im Kontext Lärmprotokoll im Wohngebiet.",
+            "am Montag prüfte das Team das Ausfüllbeispiel im Lärmformular.",
         },
         {
           isCorrect: true,
           label:
-            "Am Montag prüfte das Team ein Beispiel zur Erfassung der Geräuschdauer im folgenden Kontext: Lärmprotokoll im Wohngebiet.",
+            "Am Montag prüfte das Team das Ausfüllbeispiel im Lärmformular.",
         },
         {
           isCorrect: false,
           label:
-            "Am montag prüfte das Team ein Beispiel zur Erfassung der Geräuschdauer im Kontext Lärmprotokoll im Wohngebiet.",
+            "Am montag prüfte das Team das Ausfüllbeispiel im Lärmformular.",
         },
         {
           isCorrect: false,
           label:
-            "Am Montag prüfte Das Team ein Beispiel zur Erfassung der Geräuschdauer im Kontext Lärmprotokoll im Wohngebiet.",
+            "Am Montag prüfte Das Team das Ausfüllbeispiel im Lärmformular.",
         },
         {
           isCorrect: false,
           label:
-            "Am Montag, prüfte das Team ein Beispiel zur Erfassung der Geräuschdauer im Kontext Lärmprotokoll im Wohngebiet",
+            "Am Montag, prüfte das Team das Ausfüllbeispiel im Lärmformular",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "on Monday, the team tested an example showing how to record sound duration in this setting (neighbourhood noise log).",
+            "on Monday, the team tested the timing example on the noise-report form.",
         },
         {
           isCorrect: true,
           label:
-            "On Monday, the team tested an example showing how to record sound duration in this setting (neighbourhood noise log).",
+            "On Monday, the team tested the timing example on the noise-report form.",
         },
         {
           isCorrect: false,
           label:
-            "On monday, the team tested an example showing how to record sound duration in this setting (neighbourhood noise log).",
+            "On monday, the team tested the timing example on the noise-report form.",
         },
         {
           isCorrect: false,
           label:
-            "On Monday, The team tested an example showing how to record sound duration in this setting (neighbourhood noise log).",
+            "On Monday, The team tested the timing example on the noise-report form.",
         },
         {
           isCorrect: false,
           label:
-            "On Monday the team tested an example showing how to record sound duration in this setting (neighbourhood noise log)",
+            "On Monday the team tested the timing example on the noise-report form",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "pada Senin, tim menguji contoh pencatatan durasi suara dalam sistem pencatatan kebisingan lingkungan.",
+            "pada Senin, tim menguji contoh pencatatan waktu pada formulir kebisingan.",
         },
         {
           isCorrect: true,
           label:
-            "Pada Senin, tim menguji contoh pencatatan durasi suara dalam sistem pencatatan kebisingan lingkungan.",
+            "Pada Senin, tim menguji contoh pencatatan waktu pada formulir kebisingan.",
         },
         {
           isCorrect: false,
           label:
-            "Pada senin, tim menguji contoh pencatatan durasi suara dalam sistem pencatatan kebisingan lingkungan.",
+            "Pada senin, tim menguji contoh pencatatan waktu pada formulir kebisingan.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin, Tim menguji contoh pencatatan durasi suara dalam sistem pencatatan kebisingan lingkungan.",
+            "Pada Senin, Tim menguji contoh pencatatan waktu pada formulir kebisingan.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin tim menguji contoh pencatatan durasi suara dalam sistem pencatatan kebisingan lingkungan",
+            "Pada Senin tim menguji contoh pencatatan waktu pada formulir kebisingan",
         },
       ],
     },

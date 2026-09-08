@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "am Montag prüfte das Team kleine Karten mit Gehzeiten im Kontext Informationsstelle im Stadtpark.",
+            "am Montag prüfte das Team kleine Karten mit Gehzeiten im Stadtpark.",
         },
         {
           isCorrect: false,
           label:
-            "Am montag prüfte das Team kleine Karten mit Gehzeiten im Kontext Informationsstelle im Stadtpark.",
+            "Am montag prüfte das Team kleine Karten mit Gehzeiten im Stadtpark.",
         },
         {
           isCorrect: true,
           label:
-            "Am Montag prüfte das Team kleine Karten mit Gehzeiten im folgenden Kontext: Informationsstelle im Stadtpark.",
+            "Am Montag prüfte das Team kleine Karten mit Gehzeiten im Stadtpark.",
         },
         {
           isCorrect: false,
           label:
-            "Am Montag prüfte Das Team kleine Karten mit Gehzeiten im Kontext Informationsstelle im Stadtpark.",
+            "Am Montag prüfte Das Team kleine Karten mit Gehzeiten im Stadtpark.",
         },
         {
           isCorrect: false,
           label:
-            "Am Montag, prüfte das Team kleine Karten mit Gehzeiten im Kontext Informationsstelle im Stadtpark",
+            "Am Montag, prüfte das Team kleine Karten mit Gehzeiten im Stadtpark",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "on Monday, the team tested small maps showing walking times in this setting (city park information desk).",
+            "on Monday, the team tested small maps showing walking times in the city park.",
         },
         {
           isCorrect: false,
           label:
-            "On monday, the team tested small maps showing walking times in this setting (city park information desk).",
+            "On monday, the team tested small maps showing walking times in the city park.",
         },
         {
           isCorrect: true,
           label:
-            "On Monday, the team tested small maps showing walking times in this setting (city park information desk).",
+            "On Monday, the team tested small maps showing walking times in the city park.",
         },
         {
           isCorrect: false,
           label:
-            "On Monday, The team tested small maps showing walking times in this setting (city park information desk).",
+            "On Monday, The team tested small maps showing walking times in the city park.",
         },
         {
           isCorrect: false,
           label:
-            "On Monday the team tested small maps showing walking times in this setting (city park information desk)",
+            "On Monday the team tested small maps showing walking times in the city park",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "pada Senin, tim menguji peta kecil yang menampilkan waktu tempuh di pusat informasi taman kota.",
+            "pada Senin, tim menguji peta kecil dengan waktu tempuh di taman kota.",
         },
         {
           isCorrect: false,
           label:
-            "Pada senin, tim menguji peta kecil yang menampilkan waktu tempuh di pusat informasi taman kota.",
+            "Pada senin, tim menguji peta kecil dengan waktu tempuh di taman kota.",
         },
         {
           isCorrect: true,
           label:
-            "Pada Senin, tim menguji peta kecil yang menampilkan waktu tempuh di pusat informasi taman kota.",
+            "Pada Senin, tim menguji peta kecil dengan waktu tempuh di taman kota.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin, Tim menguji peta kecil yang menampilkan waktu tempuh di pusat informasi taman kota.",
+            "Pada Senin, Tim menguji peta kecil dengan waktu tempuh di taman kota.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin tim menguji peta kecil yang menampilkan waktu tempuh di pusat informasi taman kota",
+            "Pada Senin tim menguji peta kecil dengan waktu tempuh di taman kota",
         },
       ],
     },

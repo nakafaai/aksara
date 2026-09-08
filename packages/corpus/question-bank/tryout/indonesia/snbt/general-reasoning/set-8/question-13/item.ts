@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "In derselben Woche wurde die Abgabefrist von 17 Uhr bis Mitternacht verlängert.",
+            "In derselben Woche wurde die Abgabefrist von $$17$$ Uhr bis Mitternacht verlängert.",
         },
         {
           isCorrect: false,
@@ -52,7 +52,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "In the same week, the submission deadline was extended from 5 p.m. to midnight.",
+            "In the same week, the submission deadline was extended from $$5$$ p.m. to midnight.",
         },
         {
           isCorrect: false,
@@ -81,7 +81,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pada minggu yang sama, tenggat pengumpulan diperpanjang dari pukul 17.00 hingga tengah malam.",
+            "Pada minggu yang sama, tenggat pengumpulan diperpanjang dari pukul $$17.00$$ hingga tengah malam.",
         },
         {
           isCorrect: false,

@@ -2,9 +2,21 @@ export const metadata = {
   title: "Solution to Question 29",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Among <InlineMath math="\binom{13}{2}=78" /> pairs, <InlineMath math="\binom72=21" /> are red-red and <InlineMath math="7\cdot6=42" /> are mixed. The expected listed prize is <InlineMath math="[50(21)+40(42)]/78=35" />. At an 80% payment rate, the fair entry fee is <InlineMath math="0.8(35)=28" />.
+There are <InlineMath math="\binom{13}{2}=78" /> equally likely pairs.
 
-Therefore, the requested value is <InlineMath math="28" />.
+| Pair | Pair count | Listed prize |
+| :--- | :---: | :---: |
+| Red-red | <InlineMath math="\binom72=21" /> | <InlineMath math="50" /> |
+| Mixed | <InlineMath math="7\times6=42" /> | <InlineMath math="40" /> |
+| Blue-blue | <InlineMath math="\binom62=15" /> | <InlineMath math="0" /> |
+
+Prizes are in thousand rupiah. The expected listed prize is:
+
+<BlockMath math="\begin{aligned}E&=\frac{50\times21+40\times42}{78}\\&=35\end{aligned}" />
+
+The actual payout is eighty percent of the listed prize. A fair entry fee equals the expected actual payout:
+
+<BlockMath math="0.8\times35=28" />

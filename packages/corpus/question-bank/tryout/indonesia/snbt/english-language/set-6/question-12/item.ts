@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Theo kept the uncertain date visible and added a note explaining why it remained uncertain; the choice resolves the whole conflict at once and makes any later review unnecessary.",
+            "Theo kept the uncertain date visible and added a note explaining why it remained uncertain. The choice resolves the whole conflict at once and makes any later review unnecessary.",
         },
         {
           isCorrect: false,
           label:
-            "Theo kept the uncertain date visible and added a note explaining why it remained uncertain; the action transfers responsibility for the unresolved task to another character.",
+            "Theo kept the uncertain date visible and added a note explaining why it remained uncertain. The action transfers responsibility for the unresolved task to another character.",
         },
         {
           isCorrect: true,
@@ -23,12 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Theo kept the uncertain date visible and added a note explaining why it remained uncertain; the decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
+            "Theo kept the uncertain date visible and added a note explaining why it remained uncertain. The decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
         },
         {
           isCorrect: false,
           label:
-            "Theo kept the uncertain date visible and added a note explaining why it remained uncertain; the setting alone produces the change, so the character's decision has no role in the development.",
+            "Theo kept the uncertain date visible and added a note explaining why it remained uncertain. The setting alone produces the change, so the character's decision has no role in the development.",
         },
       ],
     },

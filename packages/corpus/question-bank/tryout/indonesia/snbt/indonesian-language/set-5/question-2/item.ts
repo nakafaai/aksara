@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pada kondisi dengan perubahan, hasil rata-rata tercatat 68; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+            "Pada kondisi dengan perubahan, hasil rata-rata tercatat $$68$$. Karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
         {
           isCorrect: false,
@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Nilai 68 adalah rata-rata kejernihan pada susunan kerikil, pasir, dan arang; angka visual itu tidak membuktikan bahwa air aman diminum.",
+            "Rata-rata $$68$$ persen cahaya melewati sampel setelah disaring dengan kerikil, pasir, dan arang. Ukuran kejernihan itu tidak membuktikan bahwa air aman diminum.",
         },
         {
           isCorrect: false,

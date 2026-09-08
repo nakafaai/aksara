@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Campuran organik memiliki infiltrasi terendah karena hanya 62 mililiter air yang keluar dari bawah selama 15 menit.",
+            "Campuran organik memiliki infiltrasi terendah karena hanya $$62$$ mililiter air yang keluar dari bawah selama $$15$$ menit.",
         },
         {
           isCorrect: false,

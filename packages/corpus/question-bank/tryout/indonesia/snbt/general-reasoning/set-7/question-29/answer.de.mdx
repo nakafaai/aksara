@@ -2,9 +2,23 @@ export const metadata = {
   title: "Lösung zu Aufgabe 29",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Unter den 66 Paaren sind 28 rot-rot und 32 gemischt. Nach der Erhöhung des rot-roten Preises auf 45 beträgt der neue Erwartungswert <InlineMath math="[45(28)+15(32)]/66=1740/66=290/11" />.
+Die Reihenfolge der beiden Kugeln spielt keine Rolle. Aus <InlineMath math="12" /> Kugeln entstehen so viele gleich wahrscheinliche Paare:
 
-Damit ist der gesuchte Wert <InlineMath math="\\frac{290}{11}" />.
+<BlockMath math="\binom{12}{2}=66" />
+
+Die Auszahlung für zwei rote Kugeln steigt um <InlineMath math="50\%" />, von <InlineMath math="30" /> auf <InlineMath math="45" /> Tausend Rupiah. Die anderen Auszahlungen bleiben gleich:
+
+| Ergebnis | Paare | Neue Zahlung |
+| :--- | ---: | ---: |
+| Zwei rote | <InlineMath math="\binom82=28" /> | <InlineMath math="45" /> |
+| Zwei Farben | <InlineMath math="8\times4=32" /> | <InlineMath math="15" /> |
+| Zwei blaue | <InlineMath math="\binom42=6" /> | <InlineMath math="0" /> |
+
+<InlineMath math="X" /> bezeichnet die Auszahlung in Tausend Rupiah. Alle Tabellenwerte verwenden diese Einheit. Für den Erwartungswert gewichten wir jede Auszahlung mit ihrer Wahrscheinlichkeit:
+
+<BlockMath math="\begin{aligned}\mathbb E[X]&=45\frac{28}{66}+15\frac{32}{66}\\&\quad+0\frac6{66}\\&=\frac{1260+480}{66}\\&=\frac{290}{11}\end{aligned}" />
+
+Die neue erwartete Auszahlung beträgt somit **<InlineMath math="290/11" /> Tausend Rupiah**.

@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Because the trial reached 54, compared with a baseline of 36 and a comparison value of 37, matching symbols on bins and stall permits should become permanent before the stated limitation is examined.",
+            "Because the trial reached $$54$$, compared with a baseline of $$36$$ and a comparison value of $$37$$, matching symbols on bins and stall permits should become permanent before the stated limitation is examined.",
         },
         {
           isCorrect: true,
           label:
-            "The rise to 54, compared with a baseline of 36 and a comparison value of 37 supports a limited extension of matching symbols on bins and stall permits, while the fact that visitor numbers and food types changed across evenings must shape the follow-up.",
+            "The mean of $$54$$, compared with $$36$$ at baseline and $$37$$ in the comparison, supports further testing of matching symbols. Follow-up records must distinguish changes in total waste from changes in the proportion sorted correctly.",
         },
         {
           isCorrect: false,

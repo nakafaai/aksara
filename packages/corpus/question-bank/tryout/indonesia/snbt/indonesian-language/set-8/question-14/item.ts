@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Definisi tersebut hanya menjelaskan mengapa uji dilakukan pada 30 pasangan, bukan cara menilai catatan.",
+            "Definisi tersebut hanya menjelaskan mengapa uji dilakukan pada $$30$$ pasangan, bukan cara menilai catatan.",
         },
         {
           isCorrect: true,

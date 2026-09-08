@@ -2,9 +2,26 @@ export const metadata = {
   title: "Solution to Question 24",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-The first 6 hours fill <InlineMath math="6(1/24+1/18)=7/12" />, leaving <InlineMath math="5/12" />. At 75% capacity, A's rate is <InlineMath math="0.75/24=1/32" />, so the additional time is <InlineMath math="(5/12)/(1/32)=40/3" /> hours.
+Measure rates in tankfuls per hour. While both pumps run at full capacity, their combined rate is:
 
-Therefore, the requested value is <InlineMath math="\\frac{40}{3}" />.
+<BlockMath math="\frac1{24}+\frac1{18}=\frac7{72}" />
+
+After <InlineMath math="6" /> hours, the filled and remaining fractions are:
+
+<MathContainer>
+  <BlockMath math="6\times\frac7{72}=\frac7{12}" />
+  <BlockMath math="1-\frac7{12}=\frac5{12}" />
+</MathContainer>
+
+In the next stage, A runs at <InlineMath math="75\%" /> of its original rate:
+
+<BlockMath math="\frac34\times\frac1{24}=\frac1{32}" />
+
+Divide the remaining fraction by the new rate to find the additional time:
+
+<BlockMath math="\begin{aligned}t&=\frac5{12}\div\frac1{32}\\&=\frac{40}{3}\end{aligned}" />
+
+Therefore, the additional time is **<InlineMath math="40/3" /> hours**, or <InlineMath math="13" /> hours <InlineMath math="20" /> minutes.

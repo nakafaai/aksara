@@ -8,7 +8,6 @@ const calls = vi.hoisted(
     abort: undefined,
     accept: undefined,
     args: [],
-    audit: undefined,
     check: undefined,
     cleanup: undefined,
     document:
@@ -55,15 +54,6 @@ vi.mock("#cli/abort", async () => {
     runAbortCommand: (args: NonNullable<typeof calls.abort>) => {
       calls.abort = args;
       return TestEffect.succeed("abort-complete");
-    },
-  };
-});
-vi.mock("#cli/audit", async () => {
-  const { Effect: TestEffect } = await import("effect");
-  return {
-    runAuditCommand: (args: NonNullable<typeof calls.audit>) => {
-      calls.audit = args;
-      return TestEffect.succeed("audit-complete");
     },
   };
 });
@@ -139,7 +129,6 @@ vi.mock("#cli/status", async () => {
 beforeEach(() => {
   calls.accept = undefined;
   calls.abort = undefined;
-  calls.audit = undefined;
   calls.args = [];
   calls.cleanup = undefined;
   calls.check = undefined;
@@ -212,20 +201,6 @@ describe("CLI program", () => {
       expect(calls[command]).toEqual({
         command,
         recoveryId: "recovery-active",
-        releaseId: "release-active",
-      });
-    })
-  );
-
-  it.effect("dispatches audit with both exact manifest identities", () =>
-    Effect.gen(function* () {
-      const result = yield* runProgram(["audit"]);
-      expect(result).toBe("audit-complete");
-      expect(calls.audit).toEqual({
-        command: "audit",
-        manifestHash: `sha256:${"a".repeat(64)}`,
-        recoveryId: "recovery-active",
-        recoveryManifestHash: `sha256:${"b".repeat(64)}`,
         releaseId: "release-active",
       });
     })

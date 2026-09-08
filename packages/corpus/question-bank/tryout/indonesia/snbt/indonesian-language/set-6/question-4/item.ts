@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *periode* menjelaskan mengapa waktu sepuluh ayunan perlu dibagi sepuluh sebelum hasil kedua panjang tali dibandingkan.",
+            "Definisi *periode* menjelaskan mengapa waktu sepuluh ayunan perlu dibagi sepuluh agar setiap nilai menyatakan waktu satu ayunan lengkap.",
         },
       ],
     },

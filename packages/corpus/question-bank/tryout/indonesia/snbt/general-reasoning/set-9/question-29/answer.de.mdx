@@ -2,9 +2,33 @@ export const metadata = {
   title: "Lösung zu Aufgabe 29",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Von 66 Paaren sind 15 rot-rot, 36 gemischt und 15 blau-blau. Ein Versuch hat den Erwartungswert <InlineMath math="[40(15)+20(36)]/66=20" />. Eine Wiederholung erfolgt mit Wahrscheinlichkeit <InlineMath math="15/66=5/22" />, damit beträgt die erwartete Auszahlung <InlineMath math="20+(5/22)(20)=270/11" />. Nach der Teilnahmegebühr bleibt <InlineMath math="270/11-20=50/11" />.
+Die Reihenfolge der beiden Kugeln spielt keine Rolle. Die Anzahl gleich wahrscheinlicher Paare beträgt:
 
-Damit ist der gesuchte Wert <InlineMath math="\\frac{50}{11}" />.
+<BlockMath math="\binom{12}{2}=\frac{12\times11}{2}=66" />
+
+| Paar | Anzahl | Auszahlung |
+| --- | ---: | ---: |
+| Rot und Rot | <InlineMath math="\binom62=15" /> | <InlineMath math="40" /> |
+| Rot und Blau | <InlineMath math="6\times6=36" /> | <InlineMath math="20" /> |
+| Blau und Blau | <InlineMath math="\binom62=15" /> | <InlineMath math="0" /> |
+
+Alle Auszahlungen in der Tabelle sind in Tausend Rupiah angegeben. <InlineMath math="X" /> bezeichnet die Auszahlung einer Ziehung. Ihr Erwartungswert beträgt:
+
+<BlockMath math="\begin{aligned}\mathrm{E}[X]&=\frac{40\times15+20\times36}{66}\\&=\frac{600+720}{66}\\&=20\end{aligned}" />
+
+Einen Wiederholungsversuch gibt es nur nach zwei blauen Kugeln. Die Wahrscheinlichkeit dafür beträgt:
+
+<BlockMath math="\frac{15}{66}=\frac5{22}" />
+
+Nach dem Zurücklegen hat der Wiederholungsversuch wieder die erwartete Auszahlung <InlineMath math="20" />. Wir addieren zur erwarteten ersten Auszahlung den Erwartungswert der Wiederholung, gewichtet mit der Wahrscheinlichkeit, sie zu erhalten:
+
+<BlockMath math="\begin{aligned}20+\frac5{22}\times20&=20+\frac{50}{11}\\&=\frac{270}{11}\end{aligned}" />
+
+Die Teilnahmegebühr wird einmal bezahlt. Der erwartete Nettogewinn beträgt:
+
+<BlockMath math="\frac{270}{11}-20=\frac{50}{11}" />
+
+Der erwartete Nettogewinn beträgt somit **<InlineMath math="50/11" /> Tausend Rupiah**.

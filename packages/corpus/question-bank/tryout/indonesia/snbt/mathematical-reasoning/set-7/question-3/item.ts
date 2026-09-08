@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Notizbücher",
+          label: "Hefte",
         },
         {
           isCorrect: false,
@@ -15,7 +15,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Notizbücher und Bleistifte",
+          label: "Hefte und Bleistifte",
         },
         {
           isCorrect: false,
@@ -31,10 +31,10 @@ const item: QuestionItem = {
       kind: "single-choice",
       options: [
         { isCorrect: false, label: "Notebooks" },
-        { isCorrect: false, label: "Ballpoints" },
+        { isCorrect: false, label: "Ballpoint pens" },
         {
           isCorrect: false,
-          label: "Notebooks and Pencils",
+          label: "Notebooks and pencils",
         },
         {
           isCorrect: false,
@@ -50,7 +50,7 @@ const item: QuestionItem = {
         { isCorrect: false, label: "Bolpoin" },
         {
           isCorrect: false,
-          label: "Buku tulis dan Pensil",
+          label: "Buku tulis dan pensil",
         },
         {
           isCorrect: false,

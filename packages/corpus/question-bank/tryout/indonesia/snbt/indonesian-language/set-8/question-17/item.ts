@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Daftar peminjaman lebih tepat untuk mengetahui pemahaman peserta karena mencatat 18 bulan, jauh lebih banyak daripada tujuh pertemuan.",
+            "Daftar peminjaman lebih tepat untuk mengetahui pemahaman peserta karena mencatat $$18$$ bulan, jauh lebih banyak daripada tujuh pertemuan.",
         },
         {
           isCorrect: false,
@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Daftar peminjaman menunjukkan buku yang tercatat keluar, sedangkan catatan fasilitator memberi sebagian pengalaman peserta yang berbicara; keduanya menjawab pertanyaan yang berbeda.",
+            "Daftar peminjaman menunjukkan buku yang tercatat keluar, sedangkan catatan fasilitator memberi sebagian pengalaman peserta yang berbicara. Keduanya menjawab pertanyaan yang berbeda.",
         },
         {
           isCorrect: false,

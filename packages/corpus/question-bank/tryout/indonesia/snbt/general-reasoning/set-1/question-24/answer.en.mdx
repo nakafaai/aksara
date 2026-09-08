@@ -2,9 +2,21 @@ export const metadata = {
   title: "Solution to Question 24",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-First calculate the fraction of the tank filled while both pumps operate. Divide the remaining fraction by pump A's adjusted net rate, then include any leak, performance change, or pause stated in the prompt.
+Treat the full tank as <InlineMath math="1" /> unit. Pump <InlineMath math="A" /> fills <InlineMath math="\frac{1}{12}" /> of the tank per hour, and pump <InlineMath math="B" /> fills <InlineMath math="\frac{1}{18}" /> per hour.
 
-Therefore, the requested value is <InlineMath math="\frac{28}{3}" />.
+During the first <InlineMath math="4" /> hours, the filled fraction is
+
+<BlockMath math="\begin{aligned} v &=4\left(\frac{1}{12}+\frac{1}{18}\right) \\ &=4\times\frac{5}{36}=\frac{5}{9} \\ 1-v &=\frac{4}{9} \end{aligned}" />
+
+Pump <InlineMath math="A" /> alone fills the remaining <InlineMath math="\frac{4}{9}" /> of the tank. The additional time is
+
+<BlockMath math="t=\frac{4}{9}\div\frac{1}{12}=\frac{16}{3}" />
+
+The question asks for the total time since both pumps started, so include the first <InlineMath math="4" /> hours.
+
+<BlockMath math="4+\frac{16}{3}=\frac{28}{3}" />
+
+The total time is <InlineMath math="\frac{28}{3}" /> hours.

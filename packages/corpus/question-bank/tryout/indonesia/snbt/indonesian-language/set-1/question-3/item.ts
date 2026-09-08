@@ -7,7 +7,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Banyak masyarakat Indonesia yang berusia produktif",
+          label:
+            "Peluang pertumbuhan ekonomi karena besarnya proporsi penduduk usia produktif",
         },
         {
           isCorrect: false,

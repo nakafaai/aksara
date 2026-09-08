@@ -1,57 +1,47 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 19",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2026-02-17",
 };
 
-#### Rechtwinkliges Dreieck erkennen
+#### Rechtwinkliges Dreieck bestimmen
 
-Kamera, Markierung und waagerechter Boden bilden ein rechtwinkliges Dreieck. Gesucht ist der Tangens des Senkungswinkels <InlineMath math="\tan \alpha" />.
+Mit <InlineMath math="A" /> bezeichnen wir die Position der Kamera, mit <InlineMath math="C" /> die Spitze der Markierung und mit <InlineMath math="B" /> den Punkt an der Gebäudewand auf derselben Höhe wie <InlineMath math="C" />. Das Dreieck <InlineMath math="ABC" /> ist bei <InlineMath math="B" /> rechtwinklig.
 
 <Set6Question19Graph
   title={<>Positionen von Kamera und Markierung</>}
-  description={<>Rechtwinkliges Dreieck aus Kamera, Markierung und Gebäudefuß.</>}
-  label={{ horizontal: "Horizontal" }}
+  description={<>Die Kamera liegt bei <InlineMath math="A" />, die Spitze der Markierung bei <InlineMath math="C" />. Der Punkt <InlineMath math="B" /> liegt an der Gebäudewand auf Höhe der Markierungsspitze.</>}
+  label={{ horizontal: "Waagerecht" }}
 />
 
-#### Bestimmen der effektiven Höhe (Gegenkathete)
+#### Höhenunterschied berechnen
 
-Die Kamera befindet sich <InlineMath math="61{,}73\text{ Meter}" /> über dem Boden, die Markierung ist <InlineMath math="173\text{ cm}" /> hoch. Zuerst rechnen wir die Einheiten um.
+Die Kamera befindet sich <InlineMath math="61{,}73\text{ m}" /> über dem Boden, die Markierung ist <InlineMath math="173\text{ cm}" /> hoch. Zuerst rechnen wir in dieselbe Einheit um:
 
-<MathContainer>
-  <BlockMath math="173 \text{ cm} = 1{,}73 \text{ Meter}" />
-</MathContainer>
+<BlockMath math="173\text{ cm}=1{,}73\text{ m}" />
 
-Der Höhenunterschied zwischen der Kamera und der Spitze der Markierung beträgt:
+Die Länge <InlineMath math="AB" /> ist der Höhenunterschied zwischen Kamera und Markierungsspitze. In Metern gilt:
 
 <MathContainer>
-  <BlockMath math="\text{Effektive Höhe} = \text{Gebäudehöhe} - \text{Zielhöhe}" />
-  <BlockMath math="\text{Gegenkathete} = 61{,}73 - 1{,}73 = 60 \text{ Meter}" />
+  <BlockMath math="AB=61{,}73-1{,}73" />
+  <BlockMath math="AB=60" />
 </MathContainer>
 
-Das ist die Gegenkathete <InlineMath math="\text{Gegenkathete}" /> des zugehörigen Höhenwinkels, der genauso groß wie der Senkungswinkel ist.
+#### Waagerechten Abstand bestimmen
 
-#### Bestimmen des horizontalen Abstands (Ankathete)
+Da der Boden waagerecht ist, entspricht <InlineMath math="BC" /> dem horizontalen Abstand zwischen Markierung und Gebäude:
 
-Die Markierung steht horizontal <InlineMath math="180\text{ Meter}" /> vom Gebäude entfernt. Dieser Abstand ist die Ankathete <InlineMath math="\text{Ankathete}" />.
+<BlockMath math="BC=180\text{ m}" />
+
+#### Tangens berechnen
+
+Der Senkungswinkel <InlineMath math="\alpha" /> ist genauso groß wie der Höhenwinkel bei <InlineMath math="C" />, da die beiden waagerechten Linien parallel sind. Bezogen auf den Winkel bei <InlineMath math="C" /> ist <InlineMath math="AB" /> die Gegenkathete und <InlineMath math="BC" /> die Ankathete. Damit gilt:
 
 <MathContainer>
-  <BlockMath math="\text{Ankathete} = 180 \text{ Meter}" />
+  <BlockMath math="\tan\alpha=\frac{AB}{BC}" />
+  <BlockMath math="\tan\alpha=\frac{60}{180}" />
+  <BlockMath math="\tan\alpha=\frac13" />
 </MathContainer>
 
-#### Tangens des Senkungswinkels berechnen
-
-Der Tangens des Senkungswinkels <InlineMath math="\alpha" /> ist das Verhältnis von Gegenkathete zu Ankathete.
-
-<MathContainer>
-  <BlockMath math="\tan \alpha = \frac{\text{Gegenkathete}}{\text{Ankathete}}" />
-  <BlockMath math="\tan \alpha = \frac{60}{180}" />
-</MathContainer>
-
-Wir kürzen den Bruch:
-
-<MathContainer>
-  <BlockMath math="\tan \alpha = \frac{1}{3}" />
-</MathContainer>
-
-Der Tangens des Senkungswinkels beträgt somit <InlineMath math="\frac{1}{3}" />.
+Der Tangens des Senkungswinkels beträgt <InlineMath math="\frac13" />.

@@ -2,9 +2,32 @@ export const metadata = {
   title: "Solution to Question 30",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-The gross-profit maximum is <InlineMath math="(X,Y)=(6,5)" /> with <InlineMath math="6(11)+5(10)=116" />. Both types are produced, so setup costs total <InlineMath math="2(3)=6" /> and net profit is <InlineMath math="116-6=110" />. Producing only one type yields a lower net profit.
+Let <InlineMath math="x" /> and <InlineMath math="y" /> be the two package counts. The constraints are:
 
-Therefore, the requested value is <InlineMath math="110" />.
+<BlockMath math="5x+3y\le45" />
+
+<BlockMath math="2x+4y\le32" />
+
+<BlockMath math="x,y\in\mathbb Z_{\ge0}" />
+
+For each <InlineMath math="x" />, choose the largest feasible <InlineMath math="y" />. Each additional <InlineMath math="Y" /> adds <InlineMath math="10" /> profit, with a setup cost of <InlineMath math="3" /> only for the first package of that type. Therefore, the largest <InlineMath math="y" /> also gives the highest net profit for that <InlineMath math="x" />.
+
+| <InlineMath math="x" /> | <InlineMath math="y" /> maximum | Profit before setup | Net profit |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="8" /> | <InlineMath math="80" /> | <InlineMath math="77" /> |
+| <InlineMath math="1" /> | <InlineMath math="7" /> | <InlineMath math="81" /> | <InlineMath math="75" /> |
+| <InlineMath math="2" /> | <InlineMath math="7" /> | <InlineMath math="92" /> | <InlineMath math="86" /> |
+| <InlineMath math="3" /> | <InlineMath math="6" /> | <InlineMath math="93" /> | <InlineMath math="87" /> |
+| <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="104" /> | <InlineMath math="98" /> |
+| <InlineMath math="5" /> | <InlineMath math="5" /> | <InlineMath math="105" /> | <InlineMath math="99" /> |
+| <InlineMath math="6" /> | <InlineMath math="5" /> | <InlineMath math="116" /> | <InlineMath math="110" /> |
+| <InlineMath math="7" /> | <InlineMath math="3" /> | <InlineMath math="107" /> | <InlineMath math="101" /> |
+| <InlineMath math="8" /> | <InlineMath math="1" /> | <InlineMath math="98" /> | <InlineMath math="92" /> |
+| <InlineMath math="9" /> | <InlineMath math="0" /> | <InlineMath math="99" /> | <InlineMath math="96" /> |
+
+The maximum net profit is <InlineMath math="110" /> at <InlineMath math="(x,y)=(6,5)" />.
+
+<BlockMath math="116-2\times3=110" />

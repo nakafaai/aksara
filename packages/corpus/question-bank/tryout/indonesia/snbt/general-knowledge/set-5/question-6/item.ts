@@ -25,7 +25,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "die körperliche Reparatur eines alten Gegenstands auf Neuzustand",
+            "die Reparatur eines alten Gegenstands, damit er wieder wie neu aussieht",
         },
       ],
     },

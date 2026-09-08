@@ -16,7 +16,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Poster Tahun 1984 yang Membuktikan Pameran Inklusif",
+          label: "Poster Tahun $$1984$$ yang Membuktikan Pameran Inklusif",
         },
         {
           isCorrect: false,

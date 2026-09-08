@@ -2,9 +2,23 @@ export const metadata = {
   title: "Solution to Question 28",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-C and D can occupy the two ends in 2 orders. The other six reports can be arranged in <InlineMath math="6!" /> ways, and exactly half place E before F. Thus the valid count is <InlineMath math="2\cdot6!/2=720" />, giving <InlineMath math="720/40320=1/56" />.
+All orders of the eight reports are equally likely. The total number of arrangements is:
 
-Therefore, the requested value is <InlineMath math="\\frac1{56}" />.
+<BlockMath math="8!=40{,}320" />
+
+C and D can occupy the ends in two orders, with C on the left and D on the right or vice versa. This also ensures that neither A nor B occupies an end.
+
+The other six reports fill the middle positions in <InlineMath math="6!" /> arrangements. Each arrangement with E before F pairs with exactly one arrangement obtained by swapping E and F. This swap preserves the positions of C and D, so exactly half of the middle arrangements place E before F:
+
+<BlockMath math="\frac{6!}{2}=360" />
+
+Including the two orders of C and D, the number satisfying every condition is:
+
+<BlockMath math="2\times360=720" />
+
+Divide the number satisfying the conditions by the total number of arrangements:
+
+<BlockMath math="\frac{720}{40{,}320}=\frac1{56}" />

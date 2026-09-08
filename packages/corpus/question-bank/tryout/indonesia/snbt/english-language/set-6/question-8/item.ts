@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Because the trial reached 25, compared with a baseline of 14 and a comparison value of 15, a card listing the tools needed for each repair should become permanent before the stated limitation is examined.",
+            "Because the trial reached $$25$$, compared with a baseline of $$14$$ and a comparison value of $$15$$, a card listing the tools needed for each repair should become permanent before the stated limitation is examined.",
         },
         {
           isCorrect: false,
@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The rise to 25, compared with a baseline of 14 and a comparison value of 15 supports a limited extension of a card listing the tools needed for each repair, while the fact that repair difficulty differed greatly between objects must shape the follow-up.",
+            "The mean of $$25$$, compared with $$14$$ at baseline and $$15$$ in the comparison, supports a limited extension of the tool-card trial. The follow-up must group outcomes by repair difficulty.",
         },
         {
           isCorrect: false,

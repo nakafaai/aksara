@@ -24,7 +24,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "Testing how surface texture changes friction on a model ramp",
+          label: "Testing how ramp texture affects travel time",
         },
       ],
     },

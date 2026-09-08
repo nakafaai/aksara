@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Definisi itu menjadikan *variabel kontrol* pengganti variabel kontrol sehingga faktor yang belum diukur tidak lagi membatasi simpulan.",
+            "Definisi itu menjadikan *variabel kontrol* pengganti data pengamatan sehingga faktor yang belum diukur tidak lagi membatasi simpulan.",
         },
         {
           isCorrect: true,

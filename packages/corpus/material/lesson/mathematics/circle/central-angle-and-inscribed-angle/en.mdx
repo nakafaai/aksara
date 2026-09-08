@@ -4,7 +4,7 @@ export const metadata = {
   description: "Connect central and inscribed angles through their intercepted arc, prove the relationship, and apply it to diameters and worked problems.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
   subject: "Circle",
 };
 
@@ -17,6 +17,7 @@ A central angle is an angle formed by two radii of a circle with the vertex loca
   description="An angle whose vertex is located at the center of the circle."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -52,6 +53,7 @@ A central angle is an angle formed by two radii of a circle with the vertex loca
       labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -85,6 +87,7 @@ An inscribed angle is an angle formed by two chords with the vertex located on t
   description="An angle whose vertex is located on the circle."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -146,6 +149,7 @@ When they subtend the same arc, the central angle is twice the inscribed angle. 
   description="Central angle and inscribed angle that subtend the same arc."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -200,6 +204,7 @@ When they subtend the same arc, the central angle is twice the inscribed angle. 
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -213,6 +218,7 @@ When they subtend the same arc, the central angle is twice the inscribed angle. 
       labels: [{ text: <>Arc <InlineMath math="AB" /></>, at: 22, offset: [1.5, 0.5, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -253,6 +259,7 @@ Draw the diameter through <InlineMath math="C" /> and the center <InlineMath mat
   }
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -344,6 +351,7 @@ This construction proves the configuration shown, where <InlineMath math="C" /> 
      description={<>Inscribed angle subtending a diameter is always <InlineMath math="90^\circ" />.</>}
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 361 }, (_, i) => {
            const angle = (i * Math.PI) / 180;
            return {
@@ -394,6 +402,7 @@ This construction proves the configuration shown, where <InlineMath math="C" /> 
          labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
        },
        {
+         smooth: false,
          points: (() => {
            const C = { x: 0, y: 4 };
            const A = { x: -4, y: 0 };
@@ -432,6 +441,7 @@ This construction proves the configuration shown, where <InlineMath math="C" /> 
      description="Inscribed angles that subtend the same arc have equal measures."
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 361 }, (_, i) => {
            const angle = (i * Math.PI) / 180;
            return {
@@ -495,6 +505,7 @@ This construction proves the configuration shown, where <InlineMath math="C" /> 
          showPoints: false,
        },
        {
+         smooth: false,
          points: Array.from({ length: 46 }, (_, i) => {
            const angle = (i * Math.PI) / 180;
            return {
@@ -521,6 +532,7 @@ Given central angle <InlineMath math="\angle AOB = 80^\circ" />. Find the measur
   description={<>Given central angle <InlineMath math="\angle AOB = 80^\circ" />, find inscribed angle <InlineMath math="\angle ACB" />.</>}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -575,7 +587,9 @@ Given central angle <InlineMath math="\angle AOB = 80^\circ" />. Find the measur
       showPoints: false,
     },
     {
-      points: Array.from({ length: 18 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 103 }, (_, sampleIndex) => {
+        const i = sampleIndex / 6;
         const angle = ((i * 80) / 17) * Math.PI / 180;
         return {
           x: 1.2 * Math.cos(angle),
@@ -585,7 +599,7 @@ Given central angle <InlineMath math="\angle AOB = 80^\circ" />. Find the measur
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="80^\circ" />, at: 10, offset: [0.5, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="80^\circ" />, at: 60, offset: [0.5, 0.3, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}

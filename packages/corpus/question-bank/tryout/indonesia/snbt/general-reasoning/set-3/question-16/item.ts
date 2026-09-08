@@ -15,17 +15,18 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Jicama enthält $$0{,}46$$ g mehr Eiweiß als der Apfel.",
+          label:
+            "Jicama enthält $$0{,}46\\,\\text{g}$$ mehr Eiweiß als der Apfel.",
         },
         {
           isCorrect: false,
           label:
-            "Beide Lebensmittel enthalten weniger als $$1$$ g Eiweiß pro $$100$$ g.",
+            "Beide Lebensmittel enthalten weniger als $$1\\,\\text{g}$$ Eiweiß pro $$100\\,\\text{g}$$.",
         },
         {
           isCorrect: false,
           label:
-            "Beide Lebensmittel enthalten weniger als $$1$$ g Fett pro $$100$$ g.",
+            "Beide Lebensmittel enthalten weniger als $$1\\,\\text{g}$$ Fett pro $$100\\,\\text{g}$$.",
         },
       ],
     },
@@ -42,16 +43,18 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Jicama provides $$0.46$$ g more protein than apple.",
+          label:
+            "Jicama provides $$0.46\\,\\text{g}$$ more protein than apple.",
         },
         {
           isCorrect: false,
           label:
-            "Both foods provide less than $$1$$ g of protein per $$100$$ g.",
+            "Both foods provide less than $$1\\,\\text{g}$$ of protein per $$100\\,\\text{g}$$.",
         },
         {
           isCorrect: false,
-          label: "Both foods provide less than $$1$$ g of fat per $$100$$ g.",
+          label:
+            "Both foods provide less than $$1\\,\\text{g}$$ of fat per $$100\\,\\text{g}$$.",
         },
       ],
     },
@@ -65,22 +68,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bengkuang memberikan energi $$14$$ kkal lebih sedikit daripada apel.",
+            "Bengkuang memberikan energi $$14\\,\\text{kkal}$$ lebih sedikit daripada apel.",
         },
         {
           isCorrect: false,
           label:
-            "Bengkuang mengandung protein $$0{,}46$$ g lebih banyak daripada apel.",
+            "Bengkuang mengandung protein $$0{,}46\\,\\text{g}$$ lebih banyak daripada apel.",
         },
         {
           isCorrect: false,
           label:
-            "Kedua pangan mengandung protein kurang dari $$1$$ g per $$100$$ g.",
+            "Kedua pangan mengandung protein kurang dari $$1\\,\\text{g}$$ per $$100\\,\\text{g}$$.",
         },
         {
           isCorrect: false,
           label:
-            "Kedua pangan mengandung lemak kurang dari $$1$$ g per $$100$$ g.",
+            "Kedua pangan mengandung lemak kurang dari $$1\\,\\text{g}$$ per $$100\\,\\text{g}$$.",
         },
       ],
     },

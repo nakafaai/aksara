@@ -2,22 +2,33 @@ export const metadata = {
   title: "Explanation for Problem 14",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-01-20",
+  dateModified: "2026-09-07",
 };
 
-#### Compare relative decreases
+Let <InlineMath math="a" /> be the starting price and <InlineMath math="b" /> the ending price, both in rupiah. Let <InlineMath math="p" /> be the percentage decrease.
 
-A large price drop is not necessarily the largest percentage drop. For every option, divide the decrease by its starting price:
+<BlockMath math="p=\frac{a-b}{a}\times100\%" />
 
-<MathContainer>
-  <BlockMath math="\text{percentage decrease}=\frac{\text{starting price}-\text{ending price}}{\text{starting price}}\times100\%" />
-</MathContainer>
+The starting price is the denominator because the decrease is measured relative to the price before the change. The following results are rounded to one decimal place.
 
-| Option | Calculation | Percentage decrease |
-| :--- | :--- | ---: |
-| Noodle A, <InlineMath math="2019" /> to <InlineMath math="2020" /> | <InlineMath math="\frac{3350-3000}{3350}\times100\%" /> | <InlineMath math="10.4\%" /> |
-| Noodle B, <InlineMath math="2017" /> to <InlineMath math="2018" /> | <InlineMath math="\frac{4500-4250}{4500}\times100\%" /> | <InlineMath math="5.6\%" /> |
-| Noodle B, <InlineMath math="2018" /> to <InlineMath math="2019" /> | <InlineMath math="\frac{4250-4000}{4250}\times100\%" /> | <InlineMath math="5.9\%" /> |
-| Noodle C, <InlineMath math="2019" /> to <InlineMath math="2020" /> | <InlineMath math="\frac{2800-2650}{2800}\times100\%" /> | <InlineMath math="5.4\%" /> |
-| Noodle A, <InlineMath math="2017" /> to <InlineMath math="2018" /> | <InlineMath math="\frac{3500-2500}{3500}\times100\%" /> | <InlineMath math="28.6\%" /> |
+#### Noodle A, <InlineMath math="2017" /> to <InlineMath math="2018" />
 
-The largest value is <InlineMath math="28.6\%" />. Therefore, **Noodle A from <InlineMath math="2017" /> to <InlineMath math="2018" />** had the highest percentage decrease.
+<BlockMath math="\begin{aligned}p&=\frac{3500-2500}{3500}\times100\%\\ &\approx28.6\%\end{aligned}" />
+
+#### Noodle A, <InlineMath math="2019" /> to <InlineMath math="2020" />
+
+<BlockMath math="\begin{aligned}p&=\frac{3350-3000}{3350}\times100\%\\ &\approx10.4\%\end{aligned}" />
+
+#### Noodle B, <InlineMath math="2017" /> to <InlineMath math="2018" />
+
+<BlockMath math="\begin{aligned}p&=\frac{4500-4250}{4500}\times100\%\\ &\approx5.6\%\end{aligned}" />
+
+#### Noodle B, <InlineMath math="2018" /> to <InlineMath math="2019" />
+
+<BlockMath math="\begin{aligned}p&=\frac{4250-4000}{4250}\times100\%\\ &\approx5.9\%\end{aligned}" />
+
+#### Noodle C, <InlineMath math="2019" /> to <InlineMath math="2020" />
+
+<BlockMath math="\begin{aligned}p&=\frac{2800-2650}{2800}\times100\%\\ &\approx5.4\%\end{aligned}" />
+
+The largest decrease is approximately <InlineMath math="28.6\%" /> for **Noodle A, <InlineMath math="2017" /> to <InlineMath math="2018" />**.

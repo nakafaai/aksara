@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "By defining *friction*, the report fixes the meaning of the scientific concept before the travel-time comparison and its limitation are interpreted.",
+            "The definition of *friction* clarifies the force being investigated, while the travel-time comparison and possible surface wear determine what the results support.",
         },
         {
           isCorrect: false,

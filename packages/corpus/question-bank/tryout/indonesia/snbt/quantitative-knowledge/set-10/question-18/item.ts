@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\{x | -3 \\leq x, x \\in \\text{ganze Zahlen}\\}$$",
+          label: "$$\\{x\\in\\mathbb Z\\mid-3\\le x\\}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\{x | -3 < x, x \\in \\text{ganze Zahlen}\\}$$",
+          label: "$$\\{x\\in\\mathbb Z\\mid-3<x\\}$$",
         },
         {
           isCorrect: true,
-          label: "$$\\{x | -3 < x \\leq 7, x \\in \\text{ganze Zahlen}\\}$$",
+          label: "$$\\{x\\in\\mathbb Z\\mid-3<x\\le7\\}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\{x | x \\leq 7, x \\in \\text{ganze Zahlen}\\}$$",
+          label: "$$\\{x\\in\\mathbb Z\\mid x\\le7\\}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\{x | -3 < x < 7, x \\in \\text{ganze Zahlen}\\}$$",
+          label: "$$\\{x\\in\\mathbb Z\\mid-3<x<7\\}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\{x | -3 \\leq x, x \\in \\text{integers}\\}$$",
+          label: "$$\\{x\\in\\mathbb Z\\mid-3\\le x\\}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\{x | -3 < x, x \\in \\text{integers}\\}$$",
+          label: "$$\\{x\\in\\mathbb Z\\mid-3<x\\}$$",
         },
         {
           isCorrect: true,
-          label: "$$\\{x | -3 < x \\leq 7, x \\in \\text{integers}\\}$$",
+          label: "$$\\{x\\in\\mathbb Z\\mid-3<x\\le7\\}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\{x | x \\leq 7, x \\in \\text{integers}\\}$$",
+          label: "$$\\{x\\in\\mathbb Z\\mid x\\le7\\}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\{x | -3 < x < 7, x \\in \\text{integers}\\}$$",
+          label: "$$\\{x\\in\\mathbb Z\\mid-3<x<7\\}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\{x | -3 \\leq x, x \\in \\text{bilangan bulat}\\}$$",
+          label: "$$\\{x\\in\\mathbb Z\\mid-3\\le x\\}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\{x | -3 < x, x \\in \\text{bilangan bulat}\\}$$",
+          label: "$$\\{x\\in\\mathbb Z\\mid-3<x\\}$$",
         },
         {
           isCorrect: true,
-          label: "$$\\{x | -3 < x \\leq 7, x \\in \\text{bilangan bulat}\\}$$",
+          label: "$$\\{x\\in\\mathbb Z\\mid-3<x\\le7\\}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\{x | x \\leq 7, x \\in \\text{bilangan bulat}\\}$$",
+          label: "$$\\{x\\in\\mathbb Z\\mid x\\le7\\}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\{x | -3 < x < 7, x \\in \\text{bilangan bulat}\\}$$",
+          label: "$$\\{x\\in\\mathbb Z\\mid-3<x<7\\}$$",
         },
       ],
     },

@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$\\frac{4}{3}C + \\text{Rp}4{.}000{,}00$$",
+          label: "$$\\frac{4}{3}C + 4{.}000$$",
         },
         {
           isCorrect: false,
-          label: "$$C + \\text{Rp}4{.}000{,}00$$",
+          label: "$$C + 4{.}000$$",
         },
         {
           isCorrect: false,
-          label: "$$2C + \\text{Rp}4{.}000{,}00$$",
+          label: "$$2C + 4{.}000$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3}{2}C + \\text{Rp}1{.}000{,}00$$",
+          label: "$$\\frac{3}{2}C + 1{.}000$$",
         },
         {
           isCorrect: false,
-          label: "$$2C + \\text{Rp}2{.}000{,}00$$",
+          label: "$$2C + 2{.}000$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$\\frac{4}{3}C + \\text{Rp}4{,}000.00$$",
+          label: "$$\\frac{4}{3}C + 4{,}000$$",
         },
         {
           isCorrect: false,
-          label: "$$C + \\text{Rp}4{,}000.00$$",
+          label: "$$C + 4{,}000$$",
         },
         {
           isCorrect: false,
-          label: "$$2C + \\text{Rp}4{,}000.00$$",
+          label: "$$2C + 4{,}000$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3}{2}C + \\text{Rp}1{,}000.00$$",
+          label: "$$\\frac{3}{2}C + 1{,}000$$",
         },
         {
           isCorrect: false,
-          label: "$$2C + \\text{Rp}2{,}000.00$$",
+          label: "$$2C + 2{,}000$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$\\frac{4}{3}C + \\text{Rp}4{.}000{,}00$$",
+          label: "$$\\frac{4}{3}C + 4{.}000$$",
         },
         {
           isCorrect: false,
-          label: "$$C + \\text{Rp}4{.}000{,}00$$",
+          label: "$$C + 4{.}000$$",
         },
         {
           isCorrect: false,
-          label: "$$2C + \\text{Rp}4{.}000{,}00$$",
+          label: "$$2C + 4{.}000$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3}{2}C + \\text{Rp}1{.}000{,}00$$",
+          label: "$$\\frac{3}{2}C + 1{.}000$$",
         },
         {
           isCorrect: false,
-          label: "$$2C + \\text{Rp}2{.}000{,}00$$",
+          label: "$$2C + 2{.}000$$",
         },
       ],
     },

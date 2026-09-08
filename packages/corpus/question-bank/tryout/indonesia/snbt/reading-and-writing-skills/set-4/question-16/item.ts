@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Büchertauschmarkt gaben kurze und knappe Rückmeldungen.",
+            "Die Besuchenden des Büchertauschmarkts gaben kurze Rückmeldungen, die nicht lang waren.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Büchertauschmarkt gaben ihre eigenen kurzen Rückmeldungen persönlich ab.",
+            "Die Besuchenden des Büchertauschmarkts gaben kurze Rückmeldungen auf dem Büchertauschmarkt, den sie besuchten.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Büchertauschmarkt gaben kurze Rückmeldungen in knapper Form.",
+            "Die Besuchenden des Büchertauschmarkts gaben kurze Rückmeldungen in kurzer Form.",
         },
         {
           isCorrect: true,
           label:
-            "Die Nutzenden im untersuchten Kontext (Büchertauschmarkt) gaben kurze Rückmeldungen.",
+            "Die Besuchenden des Büchertauschmarkts gaben kurze Rückmeldungen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Büchertauschmarkt gaben kurze Rückmeldungen über ihre Erfahrungen in diesem Kontext.",
+            "Die Besuchenden des Büchertauschmarkts gaben kurze Rückmeldungen, also Rückmeldungen von geringer Länge.",
         },
       ],
     },
@@ -38,27 +38,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Users in this setting (book exchange market) provided comments that were brief and concise.",
+            "Visitors to the book exchange gave brief comments that were not long.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (book exchange market) provided their own brief comments personally.",
+            "Visitors to the book exchange gave brief comments at the book exchange they were visiting.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (book exchange market) provided brief comments in a short form.",
+            "Visitors to the book exchange gave brief comments in a brief form.",
         },
         {
           isCorrect: true,
-          label:
-            "Users in this setting (book exchange market) provided brief comments.",
+          label: "Visitors to the book exchange gave brief comments.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (book exchange market) provided brief comments about their experience in this setting.",
+            "Visitors to the book exchange gave brief comments, meaning comments that were short.",
         },
       ],
     },
@@ -68,27 +67,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks pasar tukar buku memberikan komentar yang singkat dan ringkas.",
+            "Pengunjung pasar tukar buku memberikan komentar singkat yang tidak panjang.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks pasar tukar buku memberikan komentar singkat mereka sendiri secara pribadi.",
+            "Pengunjung pasar tukar buku memberikan komentar singkat di pasar tukar buku tempat mereka berkunjung.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks pasar tukar buku memberikan komentar singkat dalam bentuk pendek.",
+            "Pengunjung pasar tukar buku memberikan komentar singkat dalam bentuk yang singkat.",
         },
         {
           isCorrect: true,
-          label:
-            "Para pengguna di pasar tukar buku memberikan komentar singkat.",
+          label: "Pengunjung pasar tukar buku memberikan komentar singkat.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks pasar tukar buku memberikan komentar singkat tentang pengalaman mereka dalam konteks tersebut.",
+            "Pengunjung pasar tukar buku memberikan komentar yang singkat, yaitu komentar yang pendek.",
         },
       ],
     },

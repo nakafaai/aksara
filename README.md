@@ -138,7 +138,8 @@ it must be later than `datePublished`. Repository and Git history remain the
 provenance record, while these fields provide consistent publication metadata
 to every consumer.
 
-Every production operation uses an explicit canonical scope. For example:
+Creating a production release requires an explicit canonical scope. Recovery,
+acceptance, status, and cleanup use the recorded release identity. For example:
 
 ```sh
 pnpm release -- \

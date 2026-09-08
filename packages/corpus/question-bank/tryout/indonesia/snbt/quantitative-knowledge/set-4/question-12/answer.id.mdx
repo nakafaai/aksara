@@ -2,13 +2,14 @@ export const metadata = {
   title: "Pembahasan Soal 12",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-26",
+  dateModified: "2026-09-07",
 };
 
 Diketahui:
 
-- Jumlah seluruh siswa: <InlineMath math="S = 800" />
-- Siswa yang menyukai Matematika: <InlineMath math="M = 400" />
-- Siswa yang menyukai Fisika: <InlineMath math="F = 500" />
+- Jumlah seluruh siswa: <InlineMath math="n(S) = 800" />
+- Siswa yang menyukai Matematika: <InlineMath math="n(M) = 400" />
+- Siswa yang menyukai Fisika: <InlineMath math="n(F) = 500" />
 
 Kita akan mencari nilai maksimum (<InlineMath math="x" />) dan minimum (<InlineMath math="y" />) dari irisan kedua himpunan tersebut (siswa yang menyukai keduanya).
 
@@ -18,15 +19,20 @@ Jumlah siswa yang menyukai keduanya akan maksimum jika himpunan yang lebih kecil
 Di sini, jumlah siswa yang suka Matematika (<InlineMath math="400" />) lebih sedikit daripada Fisika (<InlineMath math="500" />).
 Maka, nilai maksimum irisannya adalah jumlah siswa pada grup terkecil.
 
-<MathContainer>
-  <BlockMath math="x = 400" />
-</MathContainer>
+<BlockMath math="x = 400" />
 
 #### Mencari Irisan Minimum
 
 Irisan menjadi paling kecil ketika gabungan kedua himpunan sebesar mungkin. Karena sekolah hanya memiliki <InlineMath math="800" /> siswa, nilai <InlineMath math="n(M \cup F)" /> tidak mungkin melebihi <InlineMath math="800" />.
 
-Dengan rumus <InlineMath math="n(M \cup F) = n(M) + n(F) - n(M \cap F)" />, irisan minimum terjadi saat gabungan mencapai batas tersebut. Susunan ini mungkin terjadi jika setiap siswa menyukai setidaknya satu dari kedua pelajaran.
+Rumus banyak anggota gabungan dua himpunan adalah:
+
+<BlockMath math="\begin{aligned}
+n(M\cup F)&=n(M)+n(F) \\
+&\quad{}-n(M\cap F)
+\end{aligned}" />
+
+Irisan minimum terjadi saat gabungan mencapai batas tersebut. Susunan ini mungkin terjadi jika setiap siswa menyukai setidaknya satu dari kedua pelajaran.
 
 <MathContainer>
   <BlockMath math="800 = 400 + 500 - y" />
@@ -39,8 +45,6 @@ Dengan rumus <InlineMath math="n(M \cup F) = n(M) + n(F) - n(M \cap F)" />, iris
 
 Terakhir, kita hitung selisih antara nilai maksimum dan minimum.
 
-<MathContainer>
-  <BlockMath math="x - y = 400 - 100 = 300" />
-</MathContainer>
+<BlockMath math="x - y = 400 - 100 = 300" />
 
 Jadi, nilai dari <InlineMath math="x - y" /> adalah <InlineMath math="300\text{ orang}" />.

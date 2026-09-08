@@ -2,26 +2,23 @@ export const metadata = {
   title: "Pembahasan Soal 4",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-01-29",
+  dateModified: "2026-09-07",
 };
 
-Setiap suku merupakan jumlah dua suku sebelumnya:
+Mulai dari suku ketiga, setiap suku yang tampak merupakan jumlah dua suku sebelumnya:
 
-<MathContainer>
-  <BlockMath math="\begin{array}{rclcl} \text{Suku ke-3} & : & 1 + 4 & = & 5 \\ \text{Suku ke-4} & : & 4 + 5 & = & 9 \\ \text{Suku ke-5} & : & 5 + 9 & = & 14 \\ \end{array}" />
-</MathContainer>
+<BlockMath math="\begin{aligned}U_3&=1+4=5\\U_4&=4+5=9\\U_5&=5+9=14\end{aligned}" />
 
-Pola yang terbentuk adalah setiap suku merupakan hasil penjumlahan dari dua suku sebelumnya (**<InlineMath math="U_n = U_{n-1} + U_{n-2}" />**).
+Dengan <InlineMath math="U_n" /> sebagai suku ke-<InlineMath math="n" />, pola ini dinyatakan untuk <InlineMath math="n\ge3" /> sebagai:
 
-Berdasarkan pola ini, nilai suku ke-<InlineMath math="6" /> adalah:
+<BlockMath math="U_n=U_{n-1}+U_{n-2}" />
 
-<MathContainer>
-  <BlockMath math="U_6 = U_5 + U_4 = 14 + 9 = 23" />
-</MathContainer>
+Suku yang kosong berada pada posisi keenam:
 
-Suku-suku berikutnya menegaskan aturan yang sama:
+<BlockMath math="\begin{aligned}U_6&=U_5+U_4\\&=14+9\\&=23\end{aligned}" />
 
-<MathContainer>
-  <BlockMath math="\begin{array}{rclcl} \text{Suku ke-7} & : & 23 + 14 & = & 37 \quad \checkmark \\ \text{Suku ke-8} & : & 37 + 23 & = & 60 \quad \checkmark \\ \text{Suku ke-9} & : & 60 + 37 & = & 97 \quad \checkmark \\ \end{array}" />
-</MathContainer>
+Nilai ini juga cocok dengan semua suku setelahnya:
 
-Karena pola terbukti konsisten hingga akhir barisan, maka nilai yang tepat adalah **<InlineMath math="23" />**.
+<BlockMath math="\begin{aligned}U_7&=23+14=37\\U_8&=37+23=60\\U_9&=60+37=97\end{aligned}" />
+
+Jadi, nilai yang mengisi tempat kosong adalah **<InlineMath math="23" />**.

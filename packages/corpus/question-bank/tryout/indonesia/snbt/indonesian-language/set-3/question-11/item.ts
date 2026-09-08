@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pengelola layanan perpustakaan keliling menilai jadwal singkat yang ditempel pada setiap titik pemberhentian melalui masukan pihak terdampak saja, tanpa membandingkan hasil pengukuran.",
+            "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian melalui masukan pihak terdampak saja, tanpa membandingkan hasil pengukuran.",
         },
         {
           isCorrect: false,
           label:
-            "Pengelola layanan perpustakaan keliling menilai jadwal singkat yang ditempel pada setiap titik pemberhentian melalui data pembanding saja, dengan pengalaman pihak terdampak ditempatkan di luar keputusan.",
+            "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian melalui data pembanding saja, dengan pengalaman pihak terdampak ditempatkan di luar keputusan.",
         },
         {
           isCorrect: true,
           label:
-            "Pengelola layanan perpustakaan keliling menilai jadwal singkat yang ditempel pada setiap titik pemberhentian melalui data pembanding dan masukan pihak terdampak.",
+            "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian melalui data pembanding dan masukan pihak terdampak.",
         },
         {
           isCorrect: false,
           label:
-            "Pengelola layanan perpustakaan keliling menilai jadwal singkat yang ditempel pada setiap titik pemberhentian melalui data dan masukan pihak terdampak, lalu menjadikan uji singkat cukup untuk penerapan tetap.",
+            "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian melalui data dan masukan pihak terdampak, lalu menjadikan uji singkat cukup untuk penerapan tetap.",
         },
         {
           isCorrect: false,
           label:
-            "Pengelola layanan perpustakaan keliling menilai jadwal singkat yang ditempel pada setiap titik pemberhentian terutama melalui definisi istilah, sedangkan perubahan yang diusulkan hanya menjadi latar bacaan.",
+            "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian terutama melalui definisi istilah, sedangkan perubahan yang diusulkan hanya menjadi latar bacaan.",
         },
       ],
     },

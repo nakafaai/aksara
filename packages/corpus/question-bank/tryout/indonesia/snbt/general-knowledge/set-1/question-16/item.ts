@@ -65,7 +65,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Dia *tertidur* di sofa semalam.",
+          label: "Dia tidak sengaja *tertidur* di sofa semalam.",
         },
         {
           isCorrect: true,

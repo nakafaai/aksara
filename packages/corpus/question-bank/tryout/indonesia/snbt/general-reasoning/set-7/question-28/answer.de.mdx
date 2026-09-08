@@ -2,13 +2,37 @@ export const metadata = {
   title: "Lösung zu Aufgabe 28",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-07",
 };
 
-Die möglichen Positionspaare für A und B mit genau zwei Berichten dazwischen sind <InlineMath math="(1,4),(2,5),(3,6),(4,7)" />. Es gibt vier Positionspaare, zwei Reihenfolgen für A und B sowie <InlineMath math="5!" /> Anordnungen der übrigen Berichte. Vor dem Ausschluss benachbarter E und F ergibt das <InlineMath math="4\cdot2\cdot5!=960" /> Anordnungen.
+Die Positionen von A und B müssen sich um <InlineMath math="3" /> unterscheiden, damit genau zwei Berichte dazwischenliegen. Mögliche Positionspaare sind:
 
-Nach dem Entfernen der belegten A-B-Positionen stehen in den vier Fällen jeweils <InlineMath math="3,2,2,3" /> benachbarte Positionspaare für E und F zur Verfügung. Für jedes davon haben E und F zwei Reihenfolgen; die übrigen drei Berichte lassen sich auf <InlineMath math="3!" /> Arten anordnen. Einschließlich der zwei Reihenfolgen von A und B beträgt die Zahl der Anordnungen mit benachbarten E und F <InlineMath math="2(3+2+2+3)\cdot2\cdot3!=240" />.
+<MathContainer>
+  <BlockMath math="(1,4),\ (2,5)" />
+  <BlockMath math="(3,6),\ (4,7)" />
+</MathContainer>
 
-Es bleiben <InlineMath math="960-240=720" /> Anordnungen, bevor die Reihenfolge von C und D berücksichtigt wird. Durch den Tausch von C und D hat genau die Hälfte C vor D. Somit gibt es <InlineMath math="720/2=360" /> gültige Anordnungen.
+Es gibt vier Positionspaare, zwei Reihenfolgen für A und B sowie <InlineMath math="5!" /> Reihenfolgen der übrigen fünf Berichte. Damit erfüllen so viele Anordnungen die Abstandsbedingung:
 
-Damit ist der gesuchte Wert <InlineMath math="\\frac1{14}" />.
+<BlockMath math="4\times2\times5!=960" />
+
+Nun zählen wir die unzulässigen Anordnungen mit benachbarten E und F. Die Positionen von A und B bleiben belegt. Die übrigen Positionen werden nicht zusammengeschoben. Für E und F stehen folgende Anzahlen benachbarter ursprünglicher Positionspaare zur Verfügung:
+
+| Positionen A und B | Freie Paare |
+| :--- | ---: |
+| <InlineMath math="(1,4)" /> | <InlineMath math="3" /> |
+| <InlineMath math="(2,5)" /> | <InlineMath math="2" /> |
+| <InlineMath math="(3,6)" /> | <InlineMath math="2" /> |
+| <InlineMath math="(4,7)" /> | <InlineMath math="3" /> |
+
+Über die vier Fälle gibt es <InlineMath math="3+2+2+3=10" /> freie Paare. E und F haben in jedem Paar zwei Reihenfolgen, die übrigen drei Berichte <InlineMath math="3!" /> Reihenfolgen. Mit den zwei Reihenfolgen für A und B folgt:
+
+<BlockMath math="\begin{aligned}2\times10\times2\times3!&=240\end{aligned}" />
+
+Nach Abzug der unzulässigen Fälle bleiben <InlineMath math="960-240=720" /> Anordnungen. Der Tausch von C und D erhält alle anderen Bedingungen. Genau die Hälfte hat daher C vor D:
+
+<BlockMath math="\frac{720}{2}=360" />
+
+Alle <InlineMath math="7!" /> Anordnungen sind gleich wahrscheinlich. Die gesuchte Wahrscheinlichkeit ist:
+
+<BlockMath math="\frac{360}{7!}=\frac{360}{5040}=\frac1{14}" />

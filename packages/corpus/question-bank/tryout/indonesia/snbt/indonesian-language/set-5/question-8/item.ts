@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Mengukur arus dan tegangan pada rangkaian seri serta paralel dengan komponen dan alat ukur yang terkalibrasi.",
+            "Mengukur arus dan tegangan pada rangkaian seri serta paralel bertegangan rendah dengan kondisi komponen yang sebanding dan alat ukur terkalibrasi.",
         },
         {
           isCorrect: false,

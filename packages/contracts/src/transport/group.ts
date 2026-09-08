@@ -4,7 +4,6 @@ import {
   StageArtifactBatchRequestSchema,
   StageItemBatchRequestSchema,
   StageProjectionBatchRequestSchema,
-  StageRollbackProjectionBatchRequestSchema,
   StageRouteBatchRequestSchema,
 } from "#contracts/transport/batch";
 import { MAX_STAGE_GROUP_COUNT } from "#contracts/transport/limits";
@@ -19,7 +18,6 @@ export const StageOperationSchema = Schema.Union([
   StageArtifactBatchRequestSchema,
   StageItemBatchRequestSchema,
   StageProjectionBatchRequestSchema,
-  StageRollbackProjectionBatchRequestSchema,
   StageRouteBatchRequestSchema,
   StageSnapshotRequestSchema,
   StageSnapshotBatchRequestSchema,

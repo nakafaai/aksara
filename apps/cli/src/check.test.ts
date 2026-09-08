@@ -8,6 +8,8 @@ import { unusedExactProcess } from "#test/process";
 
 const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 const control = vi.hoisted(() => ({
+  dirty: false,
+  rendererCalls: 0,
   revisionCalls: 0,
   revisionChanged: false,
   status: "approved" as "approved" | "blocked",
@@ -18,6 +20,11 @@ const control = vi.hoisted(() => ({
       }
     | undefined,
 }));
+
+vi.mock("#cli/checkout", async () => {
+  const { Effect: TestEffect } = await import("effect");
+  return { findAksaraRoot: () => TestEffect.succeed("/code/aksara") };
+});
 
 vi.mock("#cli/environment/read", async () => {
   const { Effect: TestEffect } = await import("effect");
@@ -34,6 +41,12 @@ vi.mock("#cli/evidence", async () => {
   return {
     readCleanAksaraRevision: () => {
       control.revisionCalls += 1;
+      if (control.dirty) {
+        return TestEffect.fail({
+          _tag: "ReleaseEvidenceError",
+          reason: "dirty",
+        });
+      }
       const changed = control.revisionChanged && control.revisionCalls === 2;
       return TestEffect.succeed(
         GitCommitShaSchema.make((changed ? "b" : "a").repeat(40))
@@ -59,11 +72,13 @@ vi.mock("#cli/renderer/session", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
     /** Supplies one authenticated actual-renderer session identity. */
-    openRendererSession: () =>
-      TestEffect.succeed({
+    openRendererSession: () => {
+      control.rendererCalls += 1;
+      return TestEffect.succeed({
         aksaraRoot: "/code/aksara",
         manifest: { hash },
-      }),
+      });
+    },
   };
 });
 
@@ -117,6 +132,8 @@ vi.mock("@nakafa/aksara-publisher/catalog/validation", async () => {
 });
 
 beforeEach(() => {
+  control.dirty = false;
+  control.rendererCalls = 0;
   control.revisionCalls = 0;
   control.revisionChanged = false;
   control.status = "approved";
@@ -133,6 +150,19 @@ function checkProgram() {
 }
 
 describe("catalog check command", () => {
+  it.effect("rejects dirty source before starting the renderer", () =>
+    Effect.gen(function* () {
+      control.dirty = true;
+
+      expect(yield* checkProgram().pipe(Effect.flip)).toMatchObject({
+        _tag: "ReleaseEvidenceError",
+        reason: "dirty",
+      });
+      expect(control.rendererCalls).toBe(0);
+      expect(control.validation).toBeUndefined();
+    })
+  );
+
   it.effect(
     "returns complete evidence only when every publication gate is approved",
     () =>

@@ -5,7 +5,7 @@ export const metadata = {
   description: "Gunakan turunan pertama dan kedua untuk mencari dan mengklasifikasikan titik stasioner, lalu hitung nilai maksimum dan minimum lokal melalui contoh bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
   subject: "Turunan Fungsi",
 };
 
@@ -39,6 +39,7 @@ Visualisasi berikut menunjukkan garis singgung horizontal pada maksimum dan mini
   cameraPosition={[0, 2, 18]}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 41 }, (_, i) => {
         const x = -2 + i * 0.1;
         return { x: x - 3, y: -(x ** 2) + 4, z: 0 };
@@ -62,6 +63,7 @@ Visualisasi berikut menunjukkan garis singgung horizontal pada maksimum dan mini
       smooth: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 41 }, (_, i) => {
         const x = -2 + i * 0.1;
         return { x: x + 3, y: x ** 2, z: 0 };
@@ -139,6 +141,7 @@ Jadi, nilai maksimum lokalnya adalah <InlineMath math="4" /> di <InlineMath math
   cameraPosition={[1.5, 2, 15]}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 101 }, (_, i) => {
         const x = -0.5 + i * 0.05;
         const y = x * Math.pow(x - 3, 2);
@@ -242,6 +245,7 @@ Jika kita perhatikan pada visualisasi di bawah ini, kurva cekung ke bawah di tit
   cameraPosition={[1, -2, 20]}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 101 }, (_, i) => {
         const x = -2.5 + i * 0.08;
         const y = (1 / 3) * x ** 3 - x ** 2 - 3 * x + 2;

@@ -7,28 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "am Montag prüfte das Team einen nach Absagen aktualisierten digitalen Plan im Kontext Musikproberäume.",
+          label: "am Montag prüfte das Team den Digitalplan im Proberaum.",
         },
         {
           isCorrect: true,
-          label:
-            "Am Montag prüfte das Team einen nach Absagen aktualisierten digitalen Plan im folgenden Kontext: Musikproberäume.",
+          label: "Am Montag prüfte das Team den Digitalplan im Proberaum.",
         },
         {
           isCorrect: false,
-          label:
-            "Am montag prüfte das Team einen nach Absagen aktualisierten digitalen Plan im Kontext Musikproberäume.",
+          label: "Am montag prüfte das Team den Digitalplan im Proberaum.",
         },
         {
           isCorrect: false,
-          label:
-            "Am Montag prüfte Das Team einen nach Absagen aktualisierten digitalen Plan im Kontext Musikproberäume.",
+          label: "Am Montag prüfte Das Team den Digitalplan im Proberaum.",
         },
         {
           isCorrect: false,
-          label:
-            "Am Montag, prüfte das Team einen nach Absagen aktualisierten digitalen Plan im Kontext Musikproberäume",
+          label: "Am Montag, prüfte das Team den Digitalplan im Proberaum",
         },
       ],
     },
@@ -38,27 +33,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "on Monday, the team tested a digital schedule updated after cancellations in this setting (music practice rooms).",
+            "on Monday, the team tested the digital schedule updated after cancellations.",
         },
         {
           isCorrect: true,
           label:
-            "On Monday, the team tested a digital schedule updated after cancellations in this setting (music practice rooms).",
+            "On Monday, the team tested the digital schedule updated after cancellations.",
         },
         {
           isCorrect: false,
           label:
-            "On monday, the team tested a digital schedule updated after cancellations in this setting (music practice rooms).",
+            "On monday, the team tested the digital schedule updated after cancellations.",
         },
         {
           isCorrect: false,
           label:
-            "On Monday, The team tested a digital schedule updated after cancellations in this setting (music practice rooms).",
+            "On Monday, The team tested the digital schedule updated after cancellations.",
         },
         {
           isCorrect: false,
           label:
-            "On Monday the team tested a digital schedule updated after cancellations in this setting (music practice rooms)",
+            "On Monday the team tested the digital schedule updated after cancellations",
         },
       ],
     },
@@ -67,28 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "pada Senin, tim menguji jadwal digital yang diperbarui setelah pembatalan di ruang latihan musik.",
+          label: "pada Senin, tim menguji jadwal digital setelah pembatalan.",
         },
         {
           isCorrect: true,
-          label:
-            "Pada Senin, tim menguji jadwal digital yang diperbarui setelah pembatalan di ruang latihan musik.",
+          label: "Pada Senin, tim menguji jadwal digital setelah pembatalan.",
         },
         {
           isCorrect: false,
-          label:
-            "Pada senin, tim menguji jadwal digital yang diperbarui setelah pembatalan di ruang latihan musik.",
+          label: "Pada senin, tim menguji jadwal digital setelah pembatalan.",
         },
         {
           isCorrect: false,
-          label:
-            "Pada Senin, Tim menguji jadwal digital yang diperbarui setelah pembatalan di ruang latihan musik.",
+          label: "Pada Senin, Tim menguji jadwal digital setelah pembatalan.",
         },
         {
           isCorrect: false,
-          label:
-            "Pada Senin tim menguji jadwal digital yang diperbarui setelah pembatalan di ruang latihan musik",
+          label: "Pada Senin tim menguji jadwal digital setelah pembatalan",
         },
       ],
     },

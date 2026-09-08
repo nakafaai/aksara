@@ -32,19 +32,19 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$6{,}3\\%$$",
+          label: "$$6.3\\%$$",
         },
         {
           isCorrect: false,
-          label: "$$7{,}4\\%$$",
+          label: "$$7.4\\%$$",
         },
         {
           isCorrect: false,
-          label: "$$9{,}1\\%$$",
+          label: "$$9.1\\%$$",
         },
         {
           isCorrect: true,
-          label: "$$8{,}3\\%$$",
+          label: "$$8.3\\%$$",
         },
         {
           isCorrect: false,

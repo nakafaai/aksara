@@ -7,7 +7,8 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Membaca Dua Sumber tentang Tur Bangunan Bersejarah",
+          label:
+            "Membaca Dua Sumber tentang Perubahan Fungsi Bangunan Bersejarah",
         },
         {
           isCorrect: false,

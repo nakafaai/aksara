@@ -1,6 +1,7 @@
 export const metadata = {
   title: "Solution for Question 6",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2025-11-23",
 };
 
@@ -11,7 +12,7 @@ We will calculate the total cost to be paid through this special installment sch
 The installments paid form a decreasing arithmetic sequence:
 - First installment (<InlineMath math="a" />) is <InlineMath math="2{,}000{,}000" />
 - Second installment is <InlineMath math="1{,}800{,}000" />
-- Difference (<InlineMath math="b" />) is <InlineMath math="1{,}800{,}000 - 2{,}000{,}000 = -200{,}000" />
+- Difference (<InlineMath math="b" />) is <InlineMath math="-200{,}000" />
 
 The pattern decreases by <InlineMath math="200{,}000" /> each month. Because the prompt says it continues until zero, the last positive installment is <InlineMath math="200{,}000" /> and the following term is zero.
 
@@ -19,7 +20,7 @@ We can now determine the number of positive installments (<InlineMath math="n" /
 
 <MathContainer>
   <BlockMath math="U_n = a + (n-1)b" />
-  <BlockMath math="200{,}000 = 2{,}000{,}000 + (n-1)(-200{,}000)" />
+  <BlockMath math="\begin{aligned}&200{,}000=2{,}000{,}000 \\ &\qquad+(n-1)(-200{,}000)\end{aligned}" />
 </MathContainer>
 
 We divide both sides by <InlineMath math="200{,}000" /> to simplify:
@@ -38,7 +39,7 @@ The total payment is the sum of the arithmetic series (<InlineMath math="S_{10}"
 
 <MathContainer>
   <BlockMath math="S_n = \frac{n}{2}(a + U_n)" />
-  <BlockMath math="S_{10} = \frac{10}{2}(2{,}000{,}000 + 200{,}000)" />
+  <BlockMath math="\begin{aligned}S_{10}&=\frac{10}{2}(a+U_{10}) \\ a+U_{10}&=2{,}000{,}000+200{,}000 \\ &=2{,}200{,}000\end{aligned}" />
   <BlockMath math="S_{10} = 5(2{,}200{,}000)" />
   <BlockMath math="S_{10} = 11{,}000{,}000" />
 </MathContainer>
@@ -48,14 +49,15 @@ The total paid is <InlineMath math="\text{Rp}11{,}000{,}000.00" />.
 #### Calculating Price Increase Percentage
 
 The initial price of the series <InlineMath math="B" /> laptop is <InlineMath math="\text{Rp}10{,}000{,}000.00" />.
-Price difference is <InlineMath math="11{,}000{,}000 - 10{,}000{,}000 = 1{,}000{,}000" />.
+Price difference is
+
+<BlockMath math="\begin{aligned}&11{,}000{,}000-10{,}000{,}000 \\ &=1{,}000{,}000\end{aligned}" />
 
 Percentage price increase:
 
 <MathContainer>
-  <BlockMath math="\text{Percentage} = \frac{\text{Difference}}{\text{Initial Price}} \times 100\%" />
-  <BlockMath math="\text{Percentage} = \frac{1{,}000{,}000}{10{,}000{,}000} \times 100\%" />
-  <BlockMath math="\text{Percentage} = 10\%" />
+  <BlockMath math="\frac{1{,}000{,}000}{10{,}000{,}000} \times 100\%" />
+  <BlockMath math="10\%" />
 </MathContainer>
 
 So, the price of the series <InlineMath math="B" /> laptop is **<InlineMath math="10\%" />** more expensive compared to the initial price.

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Die Zahlen stiegen. Dennoch blieb die Schlussfolgerung für diesen Kontext begrenzt: Fundbüroservice.",
+            "Die mittlere Zahl der Zuordnungen am selben Tag war höher. Dennoch blieb die Schlussfolgerung zum Fundbüro begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Deshalb blieb die Schlussfolgerung zu Fundbüroservice begrenzt.",
+            "Die mittlere Zahl der Zuordnungen am selben Tag war höher. Deshalb blieb die Schlussfolgerung zum Fundbüro begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Außerdem blieb die Schlussfolgerung zu Fundbüroservice begrenzt.",
+            "Die mittlere Zahl der Zuordnungen am selben Tag war höher. Außerdem blieb die Schlussfolgerung zum Fundbüro begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Zuvor blieb die Schlussfolgerung zu Fundbüroservice begrenzt.",
+            "Die mittlere Zahl der Zuordnungen am selben Tag war höher. Zuvor blieb die Schlussfolgerung zum Fundbüro begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Folglich blieb die Schlussfolgerung zu Fundbüroservice begrenzt.",
+            "Die mittlere Zahl der Zuordnungen am selben Tag war höher. Folglich blieb die Schlussfolgerung zum Fundbüro begrenzt.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The figures increased. Nevertheless, the conclusion for this setting (lost-property service) remained limited.",
+            "The mean number of same-day matches was higher. Nevertheless, the conclusion about the lost-property service remained limited.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Therefore, the conclusion about the lost-property service remained limited.",
+            "The mean number of same-day matches was higher. Therefore, the conclusion about the lost-property service remained limited.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Moreover, the conclusion about the lost-property service remained limited.",
+            "The mean number of same-day matches was higher. Moreover, the conclusion about the lost-property service remained limited.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Previously, the conclusion about the lost-property service remained limited.",
+            "The mean number of same-day matches was higher. Previously, the conclusion about the lost-property service remained limited.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Consequently, the conclusion about the lost-property service remained limited.",
+            "The mean number of same-day matches was higher. Consequently, the conclusion about the lost-property service remained limited.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Angka meningkat. Namun, simpulan tentang layanan pencarian barang hilang tetap dibatasi.",
+            "Rata-rata pencocokan pada hari yang sama lebih tinggi. Namun, simpulan tentang layanan barang hilang tetap dibatasi.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Oleh karena itu, simpulan tentang layanan pencarian barang hilang tetap dibatasi.",
+            "Rata-rata pencocokan pada hari yang sama lebih tinggi. Oleh karena itu, simpulan tentang layanan barang hilang tetap dibatasi.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Selain itu, simpulan tentang layanan pencarian barang hilang tetap dibatasi.",
+            "Rata-rata pencocokan pada hari yang sama lebih tinggi. Selain itu, simpulan tentang layanan barang hilang tetap dibatasi.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Sebelumnya, simpulan tentang layanan pencarian barang hilang tetap dibatasi.",
+            "Rata-rata pencocokan pada hari yang sama lebih tinggi. Sebelumnya, simpulan tentang layanan barang hilang tetap dibatasi.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Akibatnya, simpulan tentang layanan pencarian barang hilang tetap dibatasi.",
+            "Rata-rata pencocokan pada hari yang sama lebih tinggi. Akibatnya, simpulan tentang layanan barang hilang tetap dibatasi.",
         },
       ],
     },

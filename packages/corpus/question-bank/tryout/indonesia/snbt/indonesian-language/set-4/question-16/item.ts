@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang tur bangunan bersejarah untuk menyusun penjelasan yang final dan dianggap berlaku untuk semua masa.",
+            "Siswa membandingkan dua jenis sumber tentang perubahan fungsi bangunan bersejarah untuk menyusun penjelasan yang final dan dianggap berlaku untuk semua masa.",
         },
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang tur bangunan bersejarah untuk menyusun penjelasan yang yang menghapus perbedaan tujuan kedua sumber.",
+            "Siswa membandingkan dua jenis sumber tentang perubahan fungsi bangunan bersejarah untuk menyusun penjelasan yang menghapus perbedaan tujuan kedua sumber.",
         },
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang tur bangunan bersejarah untuk menyusun penjelasan yang dengan mengikuti sumber yang lebih baru secara otomatis.",
+            "Siswa membandingkan dua jenis sumber tentang perubahan fungsi bangunan bersejarah untuk menyusun penjelasan dengan mengikuti sumber yang lebih baru secara otomatis.",
         },
         {
           isCorrect: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang tur bangunan bersejarah untuk menyusun penjelasan yang tanpa menilai asal serta tujuan tiap sumber.",
+            "Siswa membandingkan dua jenis sumber tentang perubahan fungsi bangunan bersejarah untuk menyusun penjelasan tanpa menilai asal serta tujuan tiap sumber.",
         },
         {
           isCorrect: true,
           label:
-            "Siswa membandingkan dua jenis sumber tentang tur bangunan bersejarah untuk menyusun penjelasan yang terbatas dan dapat diperiksa.",
+            "Siswa membandingkan dua jenis sumber tentang perubahan fungsi bangunan bersejarah untuk menyusun penjelasan yang terbatas dan dapat diperiksa.",
         },
       ],
     },

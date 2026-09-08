@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The definition explains how the story orders blame, backward investigation, and final revelation so the true source appears only at the end.",
+            "The definition explains the sequence: blame falls on the bin, the backward search reveals the outdated permit, and the final comparison leads the team to correct the symbols.",
         },
         {
           isCorrect: false,

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "eine Wirksamkeitsanalise zur geprüften Änderung im Kontext „Kompostierworkshop“",
+            "eine Wirksamkeitsanalise der Reihenfolgekarten im Kompostierworkshop",
         },
         {
           isCorrect: true,
           label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontext „Kompostierworkshop“",
+            "eine Wirksamkeitsanalyse der Reihenfolgekarten im Kompostierworkshop",
         },
         {
           isCorrect: false,
           label:
-            "eine Wirksamkaitsanalyse zur geprüften Änderung im Kontext „Kompostierworkshop“",
+            "eine Wirksamkaitsanalyse der Reihenfolgekarten im Kompostierworkshop",
         },
         {
           isCorrect: false,
           label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Konteks „Kompostierworkshop“",
+            "eine Wirksamkeitsanalyse der Reihenfolgekarten im Kompostierworkschop",
         },
         {
           isCorrect: false,
           label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontextt „Kompostierworkshop“",
+            "eine Wirksamkeitsanalyse der Reihenfolgekarten im Kompostierworkshopp",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "an analyse of the effectiveness of cards showing the order of brown and green materials in this setting (composting workshop)",
+            "an analysiss of the effectiveness of sequencing cards in the composting workshop",
         },
         {
           isCorrect: true,
           label:
-            "an analysis of the effectiveness of cards showing the order of brown and green materials in this setting (composting workshop)",
+            "an analysis of the effectiveness of sequencing cards in the composting workshop",
         },
         {
           isCorrect: false,
           label:
-            "an analysis of the effectivness of cards showing the order of brown and green materials in this setting (composting workshop)",
+            "an analysis of the effectivness of sequencing cards in the composting workshop",
         },
         {
           isCorrect: false,
           label:
-            "an analisis of the effectiveness of cards showing the order of brown and green materials in this setting (composting workshop)",
+            "an analisis of the effectiveness of sequencing cards in the composting workshop",
         },
         {
           isCorrect: false,
           label:
-            "an analysis of the effectivity of cards showing the order of brown and green materials in this setting (composting workshop)",
+            "an analysis of the effectivenes of sequencing cards in the composting workshop",
         },
       ],
     },
@@ -67,28 +67,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "analisa efektivitas kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos",
+          label: "analisa efektivitas kartu urutan bahan di lokakarya kompos",
         },
         {
           isCorrect: true,
-          label:
-            "analisis efektivitas kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos",
+          label: "analisis efektivitas kartu urutan bahan di lokakarya kompos",
+        },
+        {
+          isCorrect: false,
+          label: "analisis efektifitas kartu urutan bahan di lokakarya kompos",
+        },
+        {
+          isCorrect: false,
+          label: "analisa efektifitas kartu urutan bahan di lokakarya kompos",
         },
         {
           isCorrect: false,
           label:
-            "analisis efektifitas kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos",
-        },
-        {
-          isCorrect: false,
-          label:
-            "analisa efektifitas kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos",
-        },
-        {
-          isCorrect: false,
-          label:
-            "analisis efektivitas kartu urutan bahan cokelat dan hijau di kontek lokakarya pembuatan kompos",
+            "analisis efektivitas kartu urutan bahan dalam kontek lokakarya kompos",
         },
       ],
     },

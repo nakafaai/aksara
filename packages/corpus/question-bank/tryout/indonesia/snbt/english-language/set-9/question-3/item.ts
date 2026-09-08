@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Because fragment collection reached 71%, compared with 38% and 40%, holding water volume, fragment size, flow rate, and collection time constant isolates adding a removable mesh with smaller openings as the only possible cause.",
+            "Because fragment collection reached $$71\\%$$, compared with $$38\\%$$ and $$40\\%$$, holding water volume, fragment size, flow rate, and collection time constant isolates adding a removable mesh with smaller openings as the only possible cause.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Fragment collection reached 71%, compared with 38% and 40%. This supports an association in the model, but mixed debris must be tested before claiming the same selectivity in environmental conditions.",
+            "Fragment collection reached $$71\\%$$, compared with $$38\\%$$ and $$40\\%$$. This supports an association in the model, but mixed debris must be tested before making claims about selectivity in environmental conditions.",
         },
       ],
     },

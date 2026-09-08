@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Daten werden nach einer geplanten Schrittfolge erhoben, die mit denselben Regeln wiederholt wird.",
+            "Vorbereitung, Erhebung und Speicherung werden in einer geplanten Arbeitsfolge angeordnet.",
         },
         {
           isCorrect: true,
@@ -43,7 +43,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Data are collected through a planned sequence of steps repeated under the same rules.",
+            "Preparation, collection, and storage are arranged in a planned sequence of work.",
         },
         {
           isCorrect: true,
@@ -73,7 +73,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
+            "Tahap persiapan, pengumpulan, dan penyimpanan data disusun dalam urutan kerja yang terencana.",
         },
         {
           isCorrect: true,

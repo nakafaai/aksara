@@ -2,28 +2,30 @@ export const metadata = {
   title: "Lösung zu Aufgabe 12",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-12-25",
+  dateModified: "2026-09-07",
 };
 
-Wir setzen:
-- <InlineMath math="\bar{x}_K =" /> Durchschnitt der gesamten Klasse
-- <InlineMath math="n_L =" /> Anzahl der männlichen Lernenden
-- <InlineMath math="n_P =" /> Anzahl der weiblichen Lernenden
-- <InlineMath math="\bar{x}_L =" /> Durchschnitt der männlichen Lernenden
-- <InlineMath math="\bar{x}_P =" /> Durchschnitt der weiblichen Lernenden
+Mit <InlineMath math="L" /> bezeichnen wir den Notendurchschnitt der männlichen und mit <InlineMath math="P" /> den der weiblichen Lernenden. Aus dem angegebenen Unterschied folgt:
 
-Gegeben:
-- <InlineMath math="\bar{x}_K = 7{,}5" />
-- <InlineMath math="\frac{n_L}{n_P} = \frac{3}{4} \implies n_L = 0{,}75 n_P" />
-- <InlineMath math="\bar{x}_P = 1{,}75 + \bar{x}_L" />
+<BlockMath math="P=L+1{,}75" />
 
-Der Klassendurchschnitt ist der gewichtete Mittelwert beider Gruppen:
+Die Gruppengrößen stehen im Verhältnis <InlineMath math="3:4" />. Wir schreiben sie als <InlineMath math="3k" /> und <InlineMath math="4k" /> mit <InlineMath math="k>0" />. Der Klassendurchschnitt ist der gewichtete Mittelwert der beiden Gruppen:
 
-<BlockMath math="\bar{x}_K = \frac{\bar{x}_P \cdot n_P + \bar{x}_L \cdot n_L}{n_P + n_L}" />
+<MathContainer>
+  <BlockMath math="7{,}5=\frac{3kL+4kP}{3k+4k}" />
+  <BlockMath math="7{,}5=\frac{3L+4P}{7}" />
+</MathContainer>
 
-Wir setzen die bekannten Werte ein:
+Der Faktor <InlineMath math="k" /> lässt sich in Zähler und Nenner kürzen. Nun setzen wir die Beziehung zwischen den beiden Mittelwerten ein:
 
-<BlockMath math="\begin{aligned} 7{,}5 &= \frac{(1{,}75 + \bar{x}_L)n_P + \bar{x}_L \cdot 0{,}75n_P}{n_P + 0{,}75n_P} \\ 7{,}5 &= \frac{1{,}75n_P + \bar{x}_L n_P + 0{,}75\bar{x}_L n_P}{1{,}75n_P} \\ 7{,}5 &= \frac{1{,}75n_P + 1{,}75\bar{x}_L n_P}{1{,}75n_P} \\ 7{,}5 &= \frac{1{,}75n_P(1 + \bar{x}_L)}{1{,}75n_P} \\ 7{,}5 &= 1 + \bar{x}_L \\ \bar{x}_L &= 6{,}5 \end{aligned}" />
+<BlockMath math="\begin{aligned}7{,}5&=\frac{3L+4(L+1{,}75)}7\\&=\frac{3L+4L+7}7\\&=\frac{7L+7}7\\&=L+1\end{aligned}" />
 
-Damit beträgt der Durchschnitt der weiblichen Lernenden:
+Damit beträgt der Durchschnitt der männlichen Lernenden:
 
-<BlockMath math="\bar{x}_P = 1{,}75 + 6{,}5 = 8{,}25" />
+<BlockMath math="L=7{,}5-1=6{,}5" />
+
+Durch Addition des angegebenen Unterschieds erhalten wir den Durchschnitt der weiblichen Lernenden:
+
+<BlockMath math="\begin{aligned}P&=L+1{,}75\\&=6{,}5+1{,}75\\&=8{,}25\end{aligned}" />
+
+Der gesuchte Durchschnitt beträgt also <InlineMath math="8{,}25" />.

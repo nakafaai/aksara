@@ -58,7 +58,6 @@ const REQUEST_BYTE_LIMITS: Readonly<{
   stageProjectionBatch: MAX_PROJECTION_BATCH_BYTES,
   stageRecovery: MAX_PUBLICATION_REQUEST_BYTES,
   stageRelease: MAX_PUBLICATION_REQUEST_BYTES,
-  stageRollbackProjectionBatch: MAX_PROJECTION_BATCH_BYTES,
   stageRouteBatch: MAX_ROUTE_BATCH_BYTES,
   stageSnapshot: MAX_PUBLICATION_REQUEST_BYTES,
   stageSnapshotBatch: MAX_SNAPSHOT_BATCH_BYTES,

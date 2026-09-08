@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Auswirkung ist groß genug, um das Hauptergebnis zu verändern, und nicht nur eine kleine Randabweichung.",
+            "Das Instrument erfasst eine kleine Veränderung, die jedoch innerhalb der Messunsicherheit bleibt.",
         },
         {
           isCorrect: false,
@@ -38,7 +38,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The effect is large enough to change the main outcome rather than merely adding a small edge variation.",
+            "The instrument records a small change, but it remains within the range of measurement uncertainty.",
         },
         {
           isCorrect: false,
@@ -68,7 +68,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dampaknya cukup besar untuk mengubah hasil utama, bukan sekadar variasi kecil di tepi.",
+            "Alat merekam perubahan kecil, tetapi perubahan itu tetap berada dalam rentang ketidakpastian pengukuran.",
         },
         {
           isCorrect: false,

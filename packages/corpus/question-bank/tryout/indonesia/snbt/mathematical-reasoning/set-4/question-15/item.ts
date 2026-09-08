@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$82{,}5$$ km/h",
+          label: "$$82{,}5\\text{ km/h}$$",
         },
         {
           isCorrect: false,
-          label: "$$97{,}5$$ km/h",
+          label: "$$97{,}5\\text{ km/h}$$",
         },
         {
           isCorrect: false,
-          label: "$$95{,}0$$ km/h",
+          label: "$$95{,}0\\text{ km/h}$$",
         },
         {
           isCorrect: false,
-          label: "$$87{,}5$$ km/h",
+          label: "$$87{,}5\\text{ km/h}$$",
         },
         {
           isCorrect: false,
-          label: "$$85{,}0$$ km/h",
+          label: "$$85{,}0\\text{ km/h}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$82.5$$ km/h",
+          label: "$$82.5\\text{ km/h}$$",
         },
         {
           isCorrect: false,
-          label: "$$97.5$$ km/h",
+          label: "$$97.5\\text{ km/h}$$",
         },
         {
           isCorrect: false,
-          label: "$$95.0$$ km/h",
+          label: "$$95.0\\text{ km/h}$$",
         },
         {
           isCorrect: false,
-          label: "$$87.5$$ km/h",
+          label: "$$87.5\\text{ km/h}$$",
         },
         {
           isCorrect: false,
-          label: "$$85.0$$ km/h",
+          label: "$$85.0\\text{ km/h}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$82{,}5$$ km/jam",
+          label: "$$82{,}5\\text{ km/jam}$$",
         },
         {
           isCorrect: false,
-          label: "$$97{,}5$$ km/jam",
+          label: "$$97{,}5\\text{ km/jam}$$",
         },
         {
           isCorrect: false,
-          label: "$$95{,}0$$ km/jam",
+          label: "$$95{,}0\\text{ km/jam}$$",
         },
         {
           isCorrect: false,
-          label: "$$87{,}5$$ km/jam",
+          label: "$$87{,}5\\text{ km/jam}$$",
         },
         {
           isCorrect: false,
-          label: "$$85{,}0$$ km/jam",
+          label: "$$85{,}0\\text{ km/jam}$$",
         },
       ],
     },

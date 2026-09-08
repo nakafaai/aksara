@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Das Team änderte nur einen Faktor: ein Beispiel zur Erfassung der Geräuschdauer.",
+            "Das Team änderte nur einen Faktor: die Ergänzung eines Beispiels zur Zeiterfassung.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team änderte nur ein Faktor: ein Beispiel zur Erfassung der Geräuschdauer.",
+            "Das Team änderte nur ein Faktor: die Ergänzung eines Beispiels zur Zeiterfassung.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team änderte nur einem Faktor: ein Beispiel zur Erfassung der Geräuschdauer.",
+            "Das Team änderte nur einem Faktor: die Ergänzung eines Beispiels zur Zeiterfassung.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team änderte lediglich nur einen Faktor: ein Beispiel zur Erfassung der Geräuschdauer.",
+            "Das Team änderte lediglich nur einen Faktor: die Ergänzung eines Beispiels zur Zeiterfassung.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team änderte nur einen Faktor, und zwar: ein Beispiel zur Erfassung der Geräuschdauer.",
+            "Das Team änderte nur einen Faktoren: die Ergänzung eines Beispiels zur Zeiterfassung.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The team changed only one factor: an example showing how to record sound duration.",
+            "The team changed only one factor: adding an example of how to record sound timing.",
         },
         {
           isCorrect: false,
           label:
-            "The team changed only one factors: an example showing how to record sound duration.",
+            "The team changed only one factors: adding an example of how to record sound timing.",
         },
         {
           isCorrect: false,
           label:
-            "The team changed merely only one factor: an example showing how to record sound duration.",
+            "The team changed merely only one factor: adding an example of how to record sound timing.",
         },
         {
           isCorrect: false,
           label:
-            "The team changed only one factor, namely: an example showing how to record sound duration.",
+            "The team changed only one factor, namely: adding an example of how to record sound timing.",
         },
         {
           isCorrect: false,
           label:
-            "The team changed only one factor; namely an example showing how to record sound duration.",
+            "The team changed only one factor; namely adding an example of how to record sound timing.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Tim mengubah satu faktor saja, yaitu contoh pencatatan durasi suara.",
+            "Tim mengubah satu faktor saja, yaitu penambahan contoh pencatatan waktu suara.",
         },
         {
           isCorrect: false,
           label:
-            "Tim merubah satu faktor saja, yaitu contoh pencatatan durasi suara.",
+            "Tim merubah satu faktor saja, yaitu penambahan contoh pencatatan waktu suara.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengubahkan satu faktor saja, yaitu contoh pencatatan durasi suara.",
+            "Tim mengrubah satu faktor saja, yaitu penambahan contoh pencatatan waktu suara.",
         },
         {
           isCorrect: false,
           label:
-            "Tim hanya mengubah satu faktor saja, yaitu contoh pencatatan durasi suara.",
+            "Tim hanya mengubah satu faktor saja, yaitu penambahan contoh pencatatan waktu suara.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengubah terhadap satu faktor saja, yaitu contoh pencatatan durasi suara.",
+            "Tim mengubah terhadap satu faktor saja, yaitu penambahan contoh pencatatan waktu suara.",
         },
       ],
     },

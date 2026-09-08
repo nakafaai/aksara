@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The ledger's meaning shifts through the false final total, Iris's questions, the teammates' deadlines, and the unresolved last line.",
+            "The ledger's meaning shifts through its premature claim of finality, Iris's questions, the teammates' deadlines, and the unresolved last line.",
         },
       ],
     },

@@ -2,6 +2,7 @@ export const metadata = {
   title: "Solution for Question 17",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-12-27",
+  dateModified: "2026-09-07",
 };
 
 Define the sample space and events:
@@ -12,9 +13,7 @@ Define the sample space and events:
 
 First, we calculate the total number of eggs in the basket:
 
-<MathContainer>
-  <BlockMath math="n(S) = n(D) + n(C) = 10 + 20 = 30" />
-</MathContainer>
+<BlockMath math="\begin{aligned}n(S)&=n(D) + n(C)\\&=10 + 20\\&=30\end{aligned}" />
 
 Next, we calculate the number of broken eggs:
 - Broken duck eggs: <InlineMath math="\frac{1}{2} \times 10 = 5" />
@@ -22,21 +21,15 @@ Next, we calculate the number of broken eggs:
 
 The total number of broken eggs (<InlineMath math="n(B)" />) is:
 
-<MathContainer>
-  <BlockMath math="n(B) = 5 + 5 = 10" />
-</MathContainer>
+<BlockMath math="\begin{aligned}n(B)&=5 + 5\\&=10\end{aligned}" />
 
 The event "duck egg or broken egg" is the union <InlineMath math="D \cup B" />:
 
-<MathContainer>
-  <BlockMath math="P(D \cup B) = \frac{n(D \cup B)}{n(S)}" />
-</MathContainer>
+<BlockMath math="P(D \cup B) = \frac{n(D \cup B)}{n(S)}" />
 
 Use inclusion-exclusion to avoid counting the broken duck eggs twice:
 
-<MathContainer>
-  <BlockMath math="n(D \cup B) = n(D) + n(B) - n(D \cap B)" />
-</MathContainer>
+<BlockMath math="\begin{aligned}n(D \cup B)&=n(D) + n(B)\\&\quad-n(D \cap B)\end{aligned}" />
 
 - <InlineMath math="n(D) = 10" /> (number of duck eggs)
 - <InlineMath math="n(B) = 10" /> (total number of broken eggs)
@@ -44,14 +37,10 @@ Use inclusion-exclusion to avoid counting the broken duck eggs twice:
 
 Thus:
 
-<MathContainer>
-  <BlockMath math="n(D \cup B) = 10 + 10 - 5 = 15" />
-</MathContainer>
+<BlockMath math="\begin{aligned}n(D \cup B)&=10 + 10 - 5\\&=15\end{aligned}" />
 
 So the probability is:
 
-<MathContainer>
-  <BlockMath math="P(D \cup B) = \frac{15}{30} = \frac{1}{2} = 0.5" />
-</MathContainer>
+<BlockMath math="\begin{aligned}P(D \cup B)&=\frac{15}{30}\\&=\frac{1}{2}\\&=0.5\end{aligned}" />
 
 Therefore, the probability of picking a duck egg or a broken egg is <InlineMath math="0.5" />.

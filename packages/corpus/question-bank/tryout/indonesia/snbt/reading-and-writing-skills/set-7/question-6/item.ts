@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Im Kontext Schulfrühstücksprogramm verursachte die Änderung Menüvorbestellung am Vortag den höheren Testwert.",
+            "Vorbestellungen waren nachweislich die einzige Ursache des höheren Mittelwerts.",
         },
         {
           isCorrect: false,
           label:
-            "Im Kontext Schulfrühstücksprogramm verbesserten sich sämtliche Teilnehmenden um denselben Wert.",
+            "Alle Schülerinnen und Schüler verbesserten sich im selben Umfang.",
         },
         {
           isCorrect: false,
-          label:
-            "Im Kontext Schulfrühstücksprogramm waren die beiden Vergleichswerte identisch.",
+          label: "Ausgangs- und Vergleichswert waren gleich.",
         },
         {
           isCorrect: true,
           label:
-            "Der Versuchswert lag im Kontext Schulfrühstücksprogramm über den beiden anderen Werten.",
+            "Der Mittelwert passend zur Bestellung abgeholter Portionen lag im Versuch über dem Ausgangs- und dem Vergleichswert.",
         },
         {
           isCorrect: false,
           label:
-            "Im Kontext Schulfrühstücksprogramm belegte der kurze Test das langfristige Ergebnis.",
+            "Der Versuch belegte das langfristige Ergebnis für alle Frühstücksprogramme.",
         },
       ],
     },
@@ -38,27 +37,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "In this setting (school breakfast programme), menu booking one day in advance caused the higher trial value.",
+            "Advance ordering was proved to be the sole cause of the higher mean.",
         },
         {
           isCorrect: false,
-          label:
-            "In this setting (school breakfast programme), each participant improved by the same amount.",
+          label: "Every student improved by the same amount.",
         },
         {
           isCorrect: false,
-          label:
-            "In this setting (school breakfast programme), the two comparison values were identical.",
+          label: "The baseline and comparison means were identical.",
         },
         {
           isCorrect: true,
           label:
-            "In this setting (school breakfast programme), the trial value exceeded both other values.",
+            "The trial mean for servings collected as ordered exceeded the baseline and comparison means.",
         },
         {
           isCorrect: false,
           label:
-            "In this setting (school breakfast programme), the short trial established the long-term result.",
+            "The trial established the long-term result for all breakfast programmes.",
         },
       ],
     },
@@ -68,27 +65,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dalam konteks program sarapan sekolah, pemesanan menu sehari sebelumnya menyebabkan nilai uji menjadi lebih tinggi.",
+            "Pemesanan awal terbukti menjadi satu-satunya penyebab rata-rata yang lebih tinggi.",
         },
         {
           isCorrect: false,
-          label:
-            "Dalam konteks program sarapan sekolah, setiap peserta mengalami peningkatan yang sama.",
+          label: "Setiap siswa mengalami peningkatan yang sama.",
         },
         {
           isCorrect: false,
-          label:
-            "Dalam konteks program sarapan sekolah, kedua nilai pembanding sama.",
+          label: "Rata-rata awal dan pembanding sama.",
         },
         {
           isCorrect: true,
           label:
-            "Di program sarapan sekolah, nilai hari uji melampaui dua nilai lainnya.",
+            "Rata-rata porsi yang diambil sesuai pesanan pada sesi uji melebihi rata-rata awal dan pembanding.",
         },
         {
           isCorrect: false,
           label:
-            "Dalam konteks program sarapan sekolah, uji singkat menetapkan hasil jangka panjang.",
+            "Uji tersebut menetapkan hasil jangka panjang bagi semua program sarapan.",
         },
       ],
     },

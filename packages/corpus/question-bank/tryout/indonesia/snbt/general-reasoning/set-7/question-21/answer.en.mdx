@@ -2,9 +2,25 @@ export const metadata = {
   title: "Solution to Question 21",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-The odd-position terms increase by <InlineMath math="7" />, while the even-position terms are multiplied by <InlineMath math="3" />. Therefore <InlineMath math="a_9=29" />, <InlineMath math="a_8=54" />, and <InlineMath math="2a_8-a_9=108-29=79" />.
+Separate the terms by their positions, rather than by whether their values are odd or even.
 
-Therefore, the requested value is <InlineMath math="79" />.
+At odd positions, consecutive terms differ by <InlineMath math="7" />:
+
+<MathContainer>
+  <BlockMath math="1,\ 8,\ 15,\ 22" />
+  <BlockMath math="a_9=22+7=29" />
+</MathContainer>
+
+At even positions, each term is <InlineMath math="3" /> times the preceding term:
+
+<MathContainer>
+  <BlockMath math="2,\ 6,\ 18" />
+  <BlockMath math="a_8=18\times3=54" />
+</MathContainer>
+
+Substitute the two new terms into the requested expression:
+
+<BlockMath math="\begin{aligned}2a_8-a_9&=2(54)-29\\&=108-29\\&=79\end{aligned}" />

@@ -2,36 +2,41 @@ export const metadata = {
   title: "Lösung zu Aufgabe 9",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-01-22",
+  dateModified: "2026-09-07",
 };
 
 Das Codepaar **LXMKWKBZ** und **TESPANDA** liefert das Verschiebungsmuster für **MMVFOBPT**.
 
 Analysieren wir das Verschiebungsmuster:
 
-| Anfangscode | Endgültiger Code | Verschiebung |
+| Von | Zu | Schritte |
 | :--- | :--- | :--- |
 | **L** (<InlineMath math="12" />) | **T** (<InlineMath math="20" />) | <InlineMath math="+8" /> |
-| **X** (<InlineMath math="24" />) | **E** (<InlineMath math="5" />) | <InlineMath math="+7" /> (<InlineMath math="24+7=31 \rightarrow 5" />) |
+| **X** (<InlineMath math="24" />) | **E** (<InlineMath math="5" />) | <InlineMath math="+7" /> |
 | **M** (<InlineMath math="13" />) | **S** (<InlineMath math="19" />) | <InlineMath math="+6" /> |
 | **K** (<InlineMath math="11" />) | **P** (<InlineMath math="16" />) | <InlineMath math="+5" /> |
-| **W** (<InlineMath math="23" />) | **A** (<InlineMath math="1" />) | <InlineMath math="+4" /> (<InlineMath math="23+4=27 \rightarrow 1" />) |
+| **W** (<InlineMath math="23" />) | **A** (<InlineMath math="1" />) | <InlineMath math="+4" /> |
 | **K** (<InlineMath math="11" />) | **N** (<InlineMath math="14" />) | <InlineMath math="+3" /> |
 | **B** (<InlineMath math="2" />) | **D** (<InlineMath math="4" />) | <InlineMath math="+2" /> |
-| **Z** (<InlineMath math="26" />) | **A** (<InlineMath math="1" />) | <InlineMath math="+1" /> (<InlineMath math="26+1=27 \rightarrow 1" />) |
+| **Z** (<InlineMath math="26" />) | **A** (<InlineMath math="1" />) | <InlineMath math="+1" /> |
 
-Das gefundene Muster ist eine Vorwärtsverschiebung, die bei <InlineMath math="+8" /> beginnt und bei jedem Schritt um <InlineMath math="1" /> abnimmt: <InlineMath math="+8, +7, +6, +5, +4, +3, +2, +1" />.
+Das Alphabet hat <InlineMath math="26" /> Buchstaben und beginnt nach Z wieder mit A. Übersteigt eine Summe <InlineMath math="26" />, ziehen wir <InlineMath math="26" /> ab. So wird aus <InlineMath math="24+7=31" /> die Position <InlineMath math="31-26=5" />. Die Summen <InlineMath math="23+4=27" /> und <InlineMath math="26+1=27" /> führen jeweils zur Position <InlineMath math="27-26=1" />.
+
+Das gefundene Muster ist eine Vorwärtsverschiebung, die bei <InlineMath math="+8" /> beginnt und bei jedem Schritt um <InlineMath math="1" /> abnimmt: <InlineMath math="+8" /> bis <InlineMath math="+1" />.
 
 Wenden wir nun dieses Muster auf den Code **MMVFOBPT** an:
 
-| Code | Anfangsposition | Verschiebung | Endgültige Position | Ergebnis |
-| :--- | :--- | :--- | :--- | :--- |
-| **M** | <InlineMath math="13" /> | <InlineMath math="+8" /> | <InlineMath math="21" /> | **U** |
-| **M** | <InlineMath math="13" /> | <InlineMath math="+7" /> | <InlineMath math="20" /> | **T** |
-| **V** | <InlineMath math="22" /> | <InlineMath math="+6" /> | <InlineMath math="28 \rightarrow 2" /> | **B** |
-| **F** | <InlineMath math="6" /> | <InlineMath math="+5" /> | <InlineMath math="11" /> | **K** |
-| **O** | <InlineMath math="15" /> | <InlineMath math="+4" /> | <InlineMath math="19" /> | **S** |
-| **B** | <InlineMath math="2" /> | <InlineMath math="+3" /> | <InlineMath math="5" /> | **E** |
-| **P** | <InlineMath math="16" /> | <InlineMath math="+2" /> | <InlineMath math="18" /> | **R** |
-| **T** | <InlineMath math="20" /> | <InlineMath math="+1" /> | <InlineMath math="21" /> | **U** |
+| Von | Zu | Schritte |
+| :--- | :--- | :--- |
+| **M** (<InlineMath math="13" />) | **U** (<InlineMath math="21" />) | <InlineMath math="+8" /> |
+| **M** (<InlineMath math="13" />) | **T** (<InlineMath math="20" />) | <InlineMath math="+7" /> |
+| **V** (<InlineMath math="22" />) | **B** (<InlineMath math="2" />) | <InlineMath math="+6" /> |
+| **F** (<InlineMath math="6" />) | **K** (<InlineMath math="11" />) | <InlineMath math="+5" /> |
+| **O** (<InlineMath math="15" />) | **S** (<InlineMath math="19" />) | <InlineMath math="+4" /> |
+| **B** (<InlineMath math="2" />) | **E** (<InlineMath math="5" />) | <InlineMath math="+3" /> |
+| **P** (<InlineMath math="16" />) | **R** (<InlineMath math="18" />) | <InlineMath math="+2" /> |
+| **T** (<InlineMath math="20" />) | **U** (<InlineMath math="21" />) | <InlineMath math="+1" /> |
+
+Bei V ergibt <InlineMath math="22+6=28" /> nach dem Umlauf die Position <InlineMath math="28-26=2" />, also B.
 
 Somit hat der Code die Bedeutung **UTBKSERU**.

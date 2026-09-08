@@ -2,7 +2,24 @@ export const metadata = {
   title: "Solution to Question 9",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-10-11",
-  dateModified: "2026-08-30",
+  dateModified: "2026-09-07",
 };
 
-From <InlineMath math="S_n=3n^2+2n" />, we get <InlineMath math="u_n=S_n-S_{n-1}=6n-1" />. The sequence is arithmetic with <InlineMath math="u_1=5" /> and common difference <InlineMath math="6" />. Also, <InlineMath math="u_{10}=59" />, <InlineMath math="S_{10}=320" />, and <InlineMath math="u_5=29" />.
+The first term is <InlineMath math="u_1=S_1=5" />. For <InlineMath math="n\ge2" />, subtract consecutive partial sums to leave only the <InlineMath math="n" />th term.
+
+<BlockMath math="\begin{aligned}
+u_n&=S_n-S_{n-1} \\
+&=3n^2+2n \\
+&\quad-\bigl(3(n-1)^2+2(n-1)\bigr) \\
+&=6n-1
+\end{aligned}" />
+
+This formula also gives <InlineMath math="u_1=5" />. The difference <InlineMath math="u_{n+1}-u_n=6" /> is constant, so the sequence is arithmetic. Evaluate the values in the statements.
+
+<BlockMath math="\begin{aligned}
+u_{10}&=6(10)-1=59 \\
+S_{10}&=3(10)^2+2(10)=320 \\
+u_5&=6(5)-1=29
+\end{aligned}" />
+
+The statements about the first term, common difference, <InlineMath math="u_{10}" />, and <InlineMath math="S_{10}" /> are true. The claim <InlineMath math="u_5=31" /> is false.

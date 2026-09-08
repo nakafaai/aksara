@@ -8,27 +8,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Im Kontext Kochkurs für Jugendliche verursachte die Änderung nach Rezeptschritten gruppierte Zutaten den höheren Testwert.",
+            "Die Zutatenordnung war nachweislich die einzige Ursache des höheren Werts.",
         },
         {
           isCorrect: true,
           label:
-            "Der Versuchswert lag im Kontext Kochkurs für Jugendliche über den beiden anderen Werten.",
+            "Der Versuchswert rechtzeitig fertiger Gruppen lag über dem Ausgangs- und dem Vergleichswert.",
+        },
+        {
+          isCorrect: false,
+          label: "Alle Teilnehmenden verbesserten sich im selben Umfang.",
+        },
+        {
+          isCorrect: false,
+          label: "Ausgangs- und Vergleichswert waren gleich.",
         },
         {
           isCorrect: false,
           label:
-            "Im Kontext Kochkurs für Jugendliche verbesserten sich sämtliche Teilnehmenden um denselben Wert.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Im Kontext Kochkurs für Jugendliche waren die beiden Vergleichswerte identisch.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Im Kontext Kochkurs für Jugendliche belegte der kurze Test das langfristige Ergebnis.",
+            "Der kurze Versuch belegte das langfristige Ergebnis für alle Kochkurse.",
         },
       ],
     },
@@ -38,27 +36,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "In this setting (teen cooking class), ingredients grouped by recipe stage caused the higher trial value.",
+            "The ingredient layout was proved to be the sole cause of the higher value.",
         },
         {
           isCorrect: true,
           label:
-            "In this setting (teen cooking class), the trial value exceeded both other values.",
+            "The trial value for groups finishing before the deadline exceeded the baseline and comparison values.",
+        },
+        {
+          isCorrect: false,
+          label: "Every participant improved by the same amount.",
+        },
+        {
+          isCorrect: false,
+          label: "The baseline and comparison values were identical.",
         },
         {
           isCorrect: false,
           label:
-            "In this setting (teen cooking class), each participant improved by the same amount.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (teen cooking class), the two comparison values were identical.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "In this setting (teen cooking class), the short trial established the long-term result.",
+            "The short trial established the long-term result for every cooking class.",
         },
       ],
     },
@@ -68,27 +64,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dalam konteks kelas memasak remaja, bahan yang dikelompokkan menurut tahap resep menyebabkan nilai uji menjadi lebih tinggi.",
+            "Susunan bahan terbukti menjadi satu-satunya penyebab nilai yang lebih tinggi.",
         },
         {
           isCorrect: true,
           label:
-            "Di kelas memasak remaja, nilai hari uji melampaui dua nilai lainnya.",
+            "Nilai kelompok yang selesai sebelum batas waktu pada pertemuan uji melebihi nilai awal dan pembanding.",
+        },
+        {
+          isCorrect: false,
+          label: "Setiap peserta mengalami peningkatan yang sama.",
+        },
+        {
+          isCorrect: false,
+          label: "Nilai awal dan pembanding sama.",
         },
         {
           isCorrect: false,
           label:
-            "Dalam konteks kelas memasak remaja, setiap peserta mengalami peningkatan yang sama.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Dalam konteks kelas memasak remaja, kedua nilai pembanding sama.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Dalam konteks kelas memasak remaja, uji singkat menetapkan hasil jangka panjang.",
+            "Uji singkat itu menetapkan hasil jangka panjang bagi semua kelas memasak.",
         },
       ],
     },

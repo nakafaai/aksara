@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "eine Wirksamkeitsanalise zur geprüften Änderung im Kontext „Büchertauschmarkt“",
+            "eine Wirksamkeitsanalise zu den Genre-Schildern auf dem Büchertauschmarkt",
         },
         {
           isCorrect: true,
           label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontext „Büchertauschmarkt“",
+            "eine Wirksamkeitsanalyse zu den Genre-Schildern auf dem Büchertauschmarkt",
         },
         {
           isCorrect: false,
           label:
-            "eine Wirksamkaitsanalyse zur geprüften Änderung im Kontext „Büchertauschmarkt“",
+            "eine Wirksamkaitsanalyse zu den Genre-Schildern auf dem Büchertauschmarkt",
         },
         {
           isCorrect: false,
           label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Konteks „Büchertauschmarkt“",
+            "eine Wirksamkeitsanalyse zu den Genre-Schildern auf dem Büchertauschmakt",
         },
         {
           isCorrect: false,
           label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontextt „Büchertauschmarkt“",
+            "eine Wirksamkeitsanalyse zu den Genre-Schildern auf dem Büchertauschmarktt",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "an analyse of the effectiveness of genre signs on each table in this setting (book exchange market)",
+            "an analysiss of the effectiveness of genre signs at the book exchange",
         },
         {
           isCorrect: true,
           label:
-            "an analysis of the effectiveness of genre signs on each table in this setting (book exchange market)",
+            "an analysis of the effectiveness of genre signs at the book exchange",
         },
         {
           isCorrect: false,
           label:
-            "an analysis of the effectivness of genre signs on each table in this setting (book exchange market)",
+            "an analysis of the effectivness of genre signs at the book exchange",
         },
         {
           isCorrect: false,
           label:
-            "an analisis of the effectiveness of genre signs on each table in this setting (book exchange market)",
+            "an analisis of the effectiveness of genre signs at the book exchange",
         },
         {
           isCorrect: false,
           label:
-            "an analysis of the effectivity of genre signs on each table in this setting (book exchange market)",
+            "an analysis of the effectivenes of genre signs at the book exchange",
         },
       ],
     },
@@ -67,28 +67,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "analisa efektivitas tanda genre di setiap meja di pasar tukar buku",
+          label: "analisa efektivitas tanda genre di pasar tukar buku",
         },
         {
           isCorrect: true,
-          label:
-            "analisis efektivitas tanda genre di setiap meja di pasar tukar buku",
+          label: "analisis efektivitas tanda genre di pasar tukar buku",
+        },
+        {
+          isCorrect: false,
+          label: "analisis efektifitas tanda genre di pasar tukar buku",
+        },
+        {
+          isCorrect: false,
+          label: "analisa efektifitas tanda genre di pasar tukar buku",
         },
         {
           isCorrect: false,
           label:
-            "analisis efektifitas tanda genre di setiap meja di pasar tukar buku",
-        },
-        {
-          isCorrect: false,
-          label:
-            "analisa efektifitas tanda genre di setiap meja di pasar tukar buku",
-        },
-        {
-          isCorrect: false,
-          label:
-            "analisis efektivitas tanda genre di setiap meja di kontek pasar tukar buku",
+            "analisis efektivitas tanda genre dalam kontek pasar tukar buku",
         },
       ],
     },

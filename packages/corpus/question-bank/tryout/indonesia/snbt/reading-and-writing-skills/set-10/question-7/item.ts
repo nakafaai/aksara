@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team testete die Änderung nach Rezeptschritten gruppierte Zutaten an ausgewählten Tagen, weil das frühere Verfahren bereits als unwirksam galt.",
+            "Die Zutaten wurden nach Rezeptschritten geordnet, weil eine alphabetische Ordnung nachweislich immer scheiterte.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team führte die Änderung nach Rezeptschritten gruppierte Zutaten dauerhaft ein, während das frühere Verfahren nur in den Rückmeldungen erhalten blieb.",
+            "Die neue Anordnung wurde dauerhaft eingeführt und die alphabetische Ordnung abgeschafft.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team prüfte nach Rezeptschritten geordnete Zutaten an ausgewählten Tagen, während an Vergleichstagen der bisherige Ablauf bestehen blieb.",
+            "In Versuchseinheiten waren die Zutaten nach Rezeptschritten geordnet, während sie in Vergleichseinheiten alphabetisch auf dem gemeinsamen Tisch blieben.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team testete die Änderung nach Rezeptschritten gruppierte Zutaten und das frühere Verfahren an denselben Tagen ohne getrennte Vergleichsbedingungen.",
+            "Beide Anordnungen wurden ohne getrennte Vergleichsbedingungen verwendet.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team verglich Tage mit der Änderung nach Rezeptschritten gruppierte Zutaten mit Rückmeldungen zum früheren Verfahren.",
+            "Das Team verglich die neue Anordnung nur mit Rückmeldungen zur alphabetischen Ordnung.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team tested ingredients grouped by recipe stage on selected days because the earlier process had already been proved ineffective.",
+            "Ingredients were arranged by recipe stage because alphabetical order had proved to fail in every situation.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested ingredients grouped by recipe stage permanently, while the earlier process remained only in user records.",
+            "The new layout was adopted permanently and alphabetical order was discontinued.",
         },
         {
           isCorrect: true,
           label:
-            "The team tested ingredients grouped by recipe stage on selected days, while the earlier process remained on comparison days.",
+            "In trial sessions, ingredients were arranged by recipe stage, while in comparison sessions they remained in alphabetical order on the shared table.",
         },
         {
           isCorrect: false,
           label:
-            "The team tested ingredients grouped by recipe stage and the earlier process on the same days without separate comparison conditions.",
+            "The new layout and alphabetical order were used without separate comparison conditions.",
         },
         {
           isCorrect: false,
           label:
-            "The team compared selected days using ingredients grouped by recipe stage with comments about the earlier process.",
+            "The team compared the new layout only with comments about alphabetical order.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim menguji bahan yang dikelompokkan menurut tahap resep pada hari tertentu karena proses lama telah terbukti tidak efektif.",
+            "Bahan disusun menurut tahap resep karena susunan abjad terbukti gagal dalam setiap keadaan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menerapkan bahan yang dikelompokkan menurut tahap resep secara tetap, sedangkan proses lama hanya tersisa dalam catatan pengguna.",
+            "Susunan baru diterapkan permanen dan susunan abjad tidak digunakan lagi.",
         },
         {
           isCorrect: true,
           label:
-            "Tim menguji bahan yang dikelompokkan menurut tahap resep pada hari tertentu, sedangkan alur lama tetap digunakan pada hari pembanding.",
+            "Pada pertemuan uji, bahan disusun menurut tahap resep, sedangkan pada pertemuan pembanding bahan tetap diurutkan menurut abjad di meja bersama.",
         },
         {
           isCorrect: false,
           label:
-            "Tim menguji bahan yang dikelompokkan menurut tahap resep dan proses lama pada hari yang sama tanpa kondisi pembanding terpisah.",
+            "Susunan baru dan susunan abjad digunakan tanpa kondisi pembanding terpisah.",
         },
         {
           isCorrect: false,
           label:
-            "Tim membandingkan hari penggunaan bahan yang dikelompokkan menurut tahap resep dengan komentar tentang proses lama.",
+            "Tim membandingkan susunan baru hanya dengan komentar tentang susunan abjad.",
         },
       ],
     },

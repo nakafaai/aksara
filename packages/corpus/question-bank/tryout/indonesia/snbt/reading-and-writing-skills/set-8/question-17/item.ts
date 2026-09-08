@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team wiederholte den Test von ein Formular mit strukturierten Ortsangaben erneut, um stärkere Belege als zuvor zu erhalten.",
+            "Das Team wird den Versuch mit dem Ortsformular erneut wiederholen, um belastbarere Belege als zuvor zu erhalten.",
         },
         {
           isCorrect: false,
           label:
-            "Um stärkere Belege zu erhalten, wurde der Test von ein Formular mit strukturierten Ortsangaben vom Team erneut wiederholt.",
+            "Um belastbarere Belege zu erhalten, wird der Versuch mit dem Ortsformular vom Team erneut wiederholt werden.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team wiederholte den Versuch mit folgender Änderung, um belastbarere Belege zu erhalten: ein Formular mit strukturierten Ortsangaben.",
+            "Das Team wird den Versuch mit dem Ortsformular wiederholen, um belastbarere Belege zu erhalten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team führte eine weitere Wiederholung des Tests von ein Formular mit strukturierten Ortsangaben für stärkere Belege durch.",
+            "Das Team wird eine Tätigkeit durchführen, nämlich die Wiederholung des Versuchs mit dem Ortsformular, um belastbarere Belege zu erhalten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team wiederholte den Test, um stärkere Belege zu ein Formular mit strukturierten Ortsangaben zu erhalten, die es bereits getestet hatte.",
+            "Das Team wird den Versuch wiederholen, um belastbarere Belege zu dem Ortsformular zu erhalten, das es bereits getestet hat.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team repeated the test of a form with structured location choices again to obtain evidence that was stronger than before.",
+            "The team will repeat the test of the location form again to obtain evidence that is stronger than before.",
         },
         {
           isCorrect: false,
           label:
-            "To obtain stronger evidence, the test of a form with structured location choices was repeated again by the team.",
+            "To obtain stronger evidence, the test of the location form will be repeated again by the team.",
         },
         {
           isCorrect: true,
           label:
-            "The team repeated the test of a form with structured location choices to obtain stronger evidence.",
+            "The team will repeat the test of the location form to obtain stronger evidence.",
         },
         {
           isCorrect: false,
           label:
-            "The team carried out another repetition of the test of a form with structured location choices for stronger evidence.",
+            "The team will carry out the activity of repeating the test of the location form to obtain stronger evidence.",
         },
         {
           isCorrect: false,
           label:
-            "The team repeated the test to obtain stronger evidence about a form with structured location choices, which it had already tested.",
+            "The team will repeat the test to obtain stronger evidence about the location form that it has already tested.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tim mengulang kembali uji formulir dengan pilihan lokasi terstruktur untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
+            "Tim akan mengulang kembali uji formulir dengan pilihan lokasi terstruktur untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
         },
         {
           isCorrect: false,
           label:
-            "Untuk memperoleh bukti lebih kuat, uji formulir dengan pilihan lokasi terstruktur diulang kembali oleh tim.",
+            "Untuk memperoleh bukti yang lebih kuat, uji formulir dengan pilihan lokasi terstruktur akan diulang kembali oleh tim.",
         },
         {
           isCorrect: true,
           label:
-            "Tim mengulang uji formulir dengan pilihan lokasi yang terstruktur untuk memperoleh bukti yang lebih kuat.",
+            "Tim akan mengulang uji formulir dengan pilihan lokasi terstruktur untuk memperoleh bukti yang lebih kuat.",
         },
         {
           isCorrect: false,
           label:
-            "Tim melakukan pengulangan lain atas uji formulir dengan pilihan lokasi terstruktur demi bukti yang lebih kuat.",
+            "Tim akan melakukan kegiatan berupa pengulangan uji formulir dengan pilihan lokasi terstruktur demi memperoleh bukti yang lebih kuat.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengulang uji untuk memperoleh bukti lebih kuat tentang formulir dengan pilihan lokasi terstruktur yang telah diuji sebelumnya.",
+            "Tim akan mengulang uji untuk memperoleh bukti yang lebih kuat tentang formulir dengan pilihan lokasi terstruktur yang telah diuji sebelumnya.",
         },
       ],
     },

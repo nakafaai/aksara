@@ -2,6 +2,7 @@ export const metadata = {
   title: "Lösung zu Aufgabe 4",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-24",
+  dateModified: "2026-09-07",
 };
 
 Gegeben:
@@ -11,28 +12,31 @@ Gegeben:
 
 Zunächst berechnen wir den Preis nach Abzug des Rabatts. Da der Rabatt <InlineMath math="25\%" /> beträgt, zahlt Frau Kartika <InlineMath math="100\% - 25\% = 75\%" /> des ursprünglichen Preises.
 
-<MathContainer>
-  <BlockMath math="\text{Preis nach Rabatt} = 75\% \times 250{.}000" />
-  <BlockMath math="= \frac{75}{100} \times 250{.}000" />
-  <BlockMath math="= 187{.}500" />
-</MathContainer>
+Dabei bezeichnet <InlineMath math="H_0" /> den ursprünglichen Preis, <InlineMath math="H_1" /> den Preis nach Rabatt und <InlineMath math="H_2" /> den Preis nach Steuer. Alle Preise werden in Rupiah berechnet.
+
+<BlockMath math="\begin{aligned}
+H_1&=75\%\cdot H_0 \\
+&=\frac{75}{100}\cdot250{.}000 \\
+&=187{.}500
+\end{aligned}" />
 
 Als nächstes wird eine Steuer von <InlineMath math="5\%" /> auf den Preis nach Abzug des Rabatts erhoben. Der zu zahlende Gesamtbetrag beträgt also <InlineMath math="100\% + 5\% = 105\%" /> des Preises nach Abzug des Rabatts.
 
-<MathContainer>
-  <BlockMath math="\text{Zu zahlender Preis} = 105\% \times 187{.}500" />
-  <BlockMath math="= \frac{105}{100} \times 187{.}500" />
-  <BlockMath math="= 1{,}05 \times 187{,}500" />
-  <BlockMath math="= 196{.}875" />
-</MathContainer>
+<BlockMath math="\begin{aligned}
+H_2&=105\%\cdot H_1 \\
+&=\frac{105}{100}\cdot187{.}500 \\
+&=1{,}05\cdot187{.}500 \\
+&=196{.}875
+\end{aligned}" />
 
 Direkt kann die Berechnung wie folgt geschrieben werden:
 
-<MathContainer>
-  <BlockMath math="\text{Preis} = (100 - 25)\% \times (100 + 5)\% \times 250{.}000" />
-  <BlockMath math="= 75\% \times 105\% \times 250{.}000" />
-  <BlockMath math="= 0{,}75 \times 1{,}05 \times 250{,}000" />
-  <BlockMath math="= 196{.}875" />
-</MathContainer>
+<BlockMath math="\begin{aligned}
+H_2&=(100-25)\% \\
+&\quad\cdot(100+5)\%\cdot H_0 \\
+&=0{,}75\cdot1{,}05\cdot H_0 \\
+&=0{,}7875\cdot250{.}000 \\
+&=196{.}875
+\end{aligned}" />
 
 Der Preis, den Frau Kartika zahlen muss, beträgt also <InlineMath math="\text{Rp}196{.}875{,}00" />.

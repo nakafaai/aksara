@@ -4,7 +4,7 @@ export const metadata = {
   description: "Draw logarithmic function graphs one step at a time. Explore transformations, asymptotes, and key characteristics with interactive visualizations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Functions and Their Modeling",
 };
 
@@ -25,6 +25,7 @@ The following graph compares <InlineMath math="y = \log_b x" /> for several base
   }
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 10 + 0.1;
         return { x, y: Math.log2(x), z: 0 };
@@ -34,6 +35,7 @@ The following graph compares <InlineMath math="y = \log_b x" /> for several base
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 10 + 0.1;
         return { x, y: Math.log10(x), z: 0 };
@@ -43,6 +45,7 @@ The following graph compares <InlineMath math="y = \log_b x" /> for several base
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 10 + 0.1;
         return { x, y: Math.log(x), z: 0 };
@@ -89,6 +92,7 @@ The following concrete examples show each step for drawing a logarithmic functio
      description="Compare the intercept, asymptote, and direction of the curve."
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 100 }, (_, i) => {
            const x = (i / 99) * 10 + 0.01;
            return { x, y: Math.log2(x), z: 0 };
@@ -98,18 +102,40 @@ The following concrete examples show each step for drawing a logarithmic functio
          showPoints: false,
        },
        {
-         points: [
-           { x: 0.125, y: -3, z: 0 },
-           { x: 0.25, y: -2, z: 0 },
-           { x: 0.5, y: -1, z: 0 },
-           { x: 1, y: 0, z: 0 },
-           { x: 2, y: 1, z: 0 },
-           { x: 4, y: 2, z: 0 },
-           { x: 8, y: 3, z: 0 },
-         ],
+         points: [{ x: 0.125, y: -3, z: 0 }],
          color: "#e11d48",
          showPoints: true,
-         labels: [{ text: <InlineMath math="(1,0)" />, at: 3, offset: [0.5, 0.5, 0] }],
+       },
+       {
+         points: [{ x: 0.25, y: -2, z: 0 }],
+         color: "#e11d48",
+         showPoints: true,
+       },
+       {
+         points: [{ x: 0.5, y: -1, z: 0 }],
+         color: "#e11d48",
+         showPoints: true,
+       },
+       {
+         points: [{ x: 1, y: 0, z: 0 }],
+         color: "#e11d48",
+         showPoints: true,
+         labels: [{ text: <InlineMath math="(1,0)" />, at: 0, offset: [0.5, 0.5, 0] }],
+       },
+       {
+         points: [{ x: 2, y: 1, z: 0 }],
+         color: "#e11d48",
+         showPoints: true,
+       },
+       {
+         points: [{ x: 4, y: 2, z: 0 }],
+         color: "#e11d48",
+         showPoints: true,
+       },
+       {
+         points: [{ x: 8, y: 3, z: 0 }],
+         color: "#e11d48",
+         showPoints: true,
        },
      ]}
      cameraPosition={[0, 0, 15]}
@@ -133,6 +159,7 @@ The following concrete examples show each step for drawing a logarithmic functio
      description="Graph decreases because the base is less than 1."
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 100 }, (_, i) => {
            const x = (i / 99) * 10 + 0.01;
            return { x, y: Math.log(x) / Math.log(1 / 3), z: 0 };
@@ -142,17 +169,35 @@ The following concrete examples show each step for drawing a logarithmic functio
          showPoints: false,
        },
        {
-         points: [
-           { x: 1 / 27, y: 3, z: 0 },
-           { x: 1 / 9, y: 2, z: 0 },
-           { x: 1 / 3, y: 1, z: 0 },
-           { x: 1, y: 0, z: 0 },
-           { x: 3, y: -1, z: 0 },
-           { x: 9, y: -2, z: 0 },
-         ],
+         points: [{ x: 1 / 27, y: 3, z: 0 }],
          color: "#9333ea",
          showPoints: true,
-         labels: [{ text: <InlineMath math="(1,0)" />, at: 3, offset: [0.5, 0.5, 0] }],
+       },
+       {
+         points: [{ x: 1 / 9, y: 2, z: 0 }],
+         color: "#9333ea",
+         showPoints: true,
+       },
+       {
+         points: [{ x: 1 / 3, y: 1, z: 0 }],
+         color: "#9333ea",
+         showPoints: true,
+       },
+       {
+         points: [{ x: 1, y: 0, z: 0 }],
+         color: "#9333ea",
+         showPoints: true,
+         labels: [{ text: <InlineMath math="(1,0)" />, at: 0, offset: [0.5, 0.5, 0] }],
+       },
+       {
+         points: [{ x: 3, y: -1, z: 0 }],
+         color: "#9333ea",
+         showPoints: true,
+       },
+       {
+         points: [{ x: 9, y: -2, z: 0 }],
+         color: "#9333ea",
+         showPoints: true,
        },
      ]}
      cameraPosition={[0, 0, 15]}
@@ -173,24 +218,26 @@ Place logarithmic graphs with different bases on one coordinate system to compar
   description="Notice the difference in graph direction."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 8 + 0.01;
         return { x, y: Math.log2(x), z: 0 };
       }),
       color: "#0284c7",
       labels: [
-        { text: <><InlineMath math="y=\log_{2} x" /> (increasing)</>, at: 40, offset: [0.5, 0.5, 0] },
+        { text: <InlineMath math="y=\log_{2} x" />, at: 40, offset: [0.5, 0.5, 0] },
       ],
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 100 }, (_, i) => {
         const x = (i / 99) * 8 + 0.01;
         return { x, y: Math.log(x) / Math.log(0.5), z: 0 };
       }),
       color: "#e11d48",
       labels: [
-        { text: <><InlineMath math="y=\log_{0.5} x" /> (decreasing)</>, at: 40, offset: [0.5, -0.5, 0] },
+        { text: <InlineMath math="y=\log_{0.5} x" />, at: 40, offset: [0.5, -0.5, 0] },
       ],
       showPoints: false,
     },
@@ -239,6 +286,7 @@ We can shift the logarithmic function graph by adding or subtracting a constant 
     }
     data={[
       {
+        smooth: false,
         points: Array.from({ length: 100 }, (_, i) => {
           const x = (i / 99) * 10 + 0.1;
           return { x, y: Math.log2(x), z: 0 };
@@ -248,6 +296,7 @@ We can shift the logarithmic function graph by adding or subtracting a constant 
         showPoints: false,
       },
       {
+        smooth: false,
         points: Array.from({ length: 100 }, (_, i) => {
           const x = (i / 99) * 10 + 0.1;
           return { x, y: Math.log2(x) + 2, z: 0 };
@@ -257,6 +306,7 @@ We can shift the logarithmic function graph by adding or subtracting a constant 
         showPoints: false,
       },
       {
+        smooth: false,
         points: Array.from({ length: 100 }, (_, i) => {
           const x = (i / 99) * 10 + 0.1;
           return { x, y: Math.log2(x) - 2, z: 0 };
@@ -289,6 +339,7 @@ We can shift the logarithmic function graph by adding or subtracting a constant 
     }
     data={[
       {
+        smooth: false,
         points: Array.from({ length: 100 }, (_, i) => {
           const x = (i / 99) * 10 + 0.1;
           return { x, y: Math.log2(x), z: 0 };
@@ -298,6 +349,7 @@ We can shift the logarithmic function graph by adding or subtracting a constant 
         showPoints: false,
       },
       {
+        smooth: false,
         points: Array.from({ length: 100 }, (_, i) => {
           const x = (i / 99) * 8 + 2.1;
           return { x, y: Math.log2(x - 2), z: 0 };
@@ -382,6 +434,7 @@ We can shift the logarithmic function graph by adding or subtracting a constant 
        }
        data={[
          {
+           smooth: false,
            points: Array.from({ length: 100 }, (_, i) => {
              const x = (i / 99) * 10 + 0.01;
              return { x, y: Math.log(x) / Math.log(3), z: 0 };
@@ -391,6 +444,7 @@ We can shift the logarithmic function graph by adding or subtracting a constant 
            showPoints: false,
          },
          {
+           smooth: false,
            points: Array.from({ length: 100 }, (_, i) => {
              const x = (i / 99) * 10 + 0.01;
              return { x, y: Math.log(x) / Math.log(3) + 2, z: 0 };
@@ -400,19 +454,31 @@ We can shift the logarithmic function graph by adding or subtracting a constant 
            showPoints: false,
          },
          {
-           points: [
-             { x: 1 / 9, y: Math.log(1 / 9) / Math.log(3) + 2, z: 0 },
-             { x: 1 / 3, y: Math.log(1 / 3) / Math.log(3) + 2, z: 0 },
-             { x: 1, y: 2, z: 0 },
-             { x: 3, y: 3, z: 0 },
-             { x: 9, y: 4, z: 0 },
-           ],
+           points: [{ x: 1 / 9, y: Math.log(1 / 9) / Math.log(3) + 2, z: 0 }],
            color: "#e11d48",
            showPoints: true,
-           labels: [
-             { text: <InlineMath math="(1,2)" />, at: 2, offset: [0, 1, 0] },
-             { text: <InlineMath math="(3,3)" />, at: 3, offset: [0, 0.5, 0] },
-           ],
+         },
+         {
+           points: [{ x: 1 / 3, y: Math.log(1 / 3) / Math.log(3) + 2, z: 0 }],
+           color: "#e11d48",
+           showPoints: true,
+         },
+         {
+           points: [{ x: 1, y: 2, z: 0 }],
+           color: "#e11d48",
+           showPoints: true,
+           labels: [{ text: <InlineMath math="(1,2)" />, at: 0, offset: [0, 1, 0] }],
+         },
+         {
+           points: [{ x: 3, y: 3, z: 0 }],
+           color: "#e11d48",
+           showPoints: true,
+           labels: [{ text: <InlineMath math="(3,3)" />, at: 0, offset: [0, 0.5, 0] }],
+         },
+         {
+           points: [{ x: 9, y: 4, z: 0 }],
+           color: "#e11d48",
+           showPoints: true,
          },
          {
            points: [

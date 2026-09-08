@@ -2,7 +2,24 @@ export const metadata = {
   title: "Solution to Question 19",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-08-30",
+  dateModified: "2026-09-07",
 };
 
-The minimum area is <InlineMath math="9.9(7.9)=78.21" /> cm² and the maximum is <InlineMath math="10.1(8.1)=81.81" /> cm². Perimeter ranges from <InlineMath math="2(9.9+7.9)=35.6" /> cm to <InlineMath math="2(10.1+8.1)=36.4" /> cm. The greatest absolute area error relative to <InlineMath math="80" /> cm² is <InlineMath math="1.81" /> cm², or <InlineMath math="2.2625\%" />.
+Both dimensions are positive, so area and perimeter increase when either dimension increases. Use the lower bounds for minima and the upper bounds for maxima.
+
+<BlockMath math="\begin{aligned}
+A_{\min}&=9.9(7.9) \\
+&=78.21\,\mathrm{cm}^2 \\
+A_{\max}&=10.1(8.1) \\
+&=81.81\,\mathrm{cm}^2 \\
+U_{\min}&=2(9.9+7.9) \\
+&=35.6\,\mathrm{cm} \\
+U_{\max}&=2(10.1+8.1) \\
+&=36.4\,\mathrm{cm}
+\end{aligned}" />
+
+Relative to the nominal area <InlineMath math="80\,\mathrm{cm}^2" />, the downward error is <InlineMath math="80-78.21=1.79\,\mathrm{cm}^2" /> and the upward error is <InlineMath math="81.81-80=1.81\,\mathrm{cm}^2" />. The greatest absolute error is therefore <InlineMath math="1.81\,\mathrm{cm}^2" />.
+
+<BlockMath math="\frac{1.81}{80}\cdot100\%=2.2625\%" />
+
+The claims about minimum area, maximum area, perimeter range, and relative error exceeding <InlineMath math="2.2\%" /> are true. The claimed maximum absolute error of <InlineMath math="1.8\,\mathrm{cm}^2" /> is false.

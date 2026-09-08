@@ -3,7 +3,7 @@ export const metadata = {
   description: "Den Zusammenhang zwischen Mittelpunktswinkel und Sektorfläche verstehen und für Berechnungen nutzen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Kreisbögen und Sektoren",
 };
 
@@ -35,7 +35,7 @@ Der Mittelpunktswinkel bestimmt, welchen Anteil des Kreises der Sektor einnimmt.
       }),
       color: "#0891b2",
       showPoints: false,
-      smooth: true
+      smooth: false
     },
     {
       points: [
@@ -75,14 +75,15 @@ Der Mittelpunktswinkel bestimmt, welchen Anteil des Kreises der Sektor einnimmt.
       }),
       color: "#ea580c",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 4,
       labels: [
         { text: "Sektor", at: 20, offset: [-0.8, 0.6, 0] }
       ]
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = Math.PI / 6 + (i / 20) * (2 * Math.PI / 3);
         const radius = 1.5;
         return {
@@ -93,10 +94,10 @@ Der Mittelpunktswinkel bestimmt, welchen Anteil des Kreises der Sektor einnimmt.
       }),
       color: "#d97706",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 2,
       labels: [
-        { text: <InlineMath math="\alpha" />, at: 10, offset: [0.5, 0.5, 0] }
+        { text: <InlineMath math="\alpha" />, at: 50, offset: [0.5, 0.5, 0] }
       ]
     }
   ]}
@@ -148,7 +149,7 @@ Bei festem Radius ist die Sektorfläche proportional zum Winkel. Verdoppelt sich
       }),
       color: "#0d9488",
       showPoints: false,
-      smooth: true
+      smooth: false
     },
     {
       points: [
@@ -174,7 +175,8 @@ Bei festem Radius ist die Sektorfläche proportional zum Winkel. Verdoppelt sich
       lineWidth: 2
     },
     {
-      points: Array.from({ length: 16 }, (_, i) => {
+      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = (i / 15) * (Math.PI / 4);
         return {
           x: 3.5 * Math.cos(angle),
@@ -184,10 +186,10 @@ Bei festem Radius ist die Sektorfläche proportional zum Winkel. Verdoppelt sich
       }),
       color: "#d97706",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 3,
       labels: [
-        { text: <InlineMath math="45^\circ" />, at: 7, offset: [0.4, 0.2, 0] }
+        { text: <InlineMath math="45^\circ" />, at: 49, offset: [0.4, 0.2, 0] }
       ]
     },
     {
@@ -221,7 +223,7 @@ Bei festem Radius ist die Sektorfläche proportional zum Winkel. Verdoppelt sich
       }),
       color: "#65a30d",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 3,
       labels: [
         { text: <InlineMath math="90^\circ" />, at: 12, offset: [0.2, 0.4, 0] }
@@ -258,7 +260,7 @@ Bei festem Radius ist die Sektorfläche proportional zum Winkel. Verdoppelt sich
       }),
       color: "#c026d3",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 3,
       labels: [
         { text: <InlineMath math="135^\circ" />, at: 17, offset: [-0.2, 0.4, 0] }
@@ -296,7 +298,7 @@ Ist der Winkel bekannt, lassen sich daraus die zugehörige Sektorfläche und die
       }),
       color: "#0891b2",
       showPoints: false,
-      smooth: true
+      smooth: false
     },
     {
       points: [
@@ -322,7 +324,8 @@ Ist der Winkel bekannt, lassen sich daraus die zugehörige Sektorfläche und die
       lineWidth: 3
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i / 20) * (Math.PI / 3);
         return {
           x: 3 * Math.cos(angle),
@@ -332,14 +335,15 @@ Ist der Winkel bekannt, lassen sich daraus die zugehörige Sektorfläche und die
       }),
       color: "#ea580c",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 4,
       labels: [
-        { text: "Bogen", at: 10, offset: [1, 0.5, 0] }
+        { text: "Bogen", at: 50, offset: [1, 0.5, 0] }
       ]
     },
     {
-      points: Array.from({ length: 11 }, (_, i) => {
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 10;
         const angle = (i / 10) * (Math.PI / 3);
         const radius = 1.2;
         return {
@@ -350,10 +354,10 @@ Ist der Winkel bekannt, lassen sich daraus die zugehörige Sektorfläche und die
       }),
       color: "#d97706",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 2,
       labels: [
-        { text: <InlineMath math="60^\circ" />, at: 5, offset: [0.5, 0.5, 0] }
+        { text: <InlineMath math="60^\circ" />, at: 50, offset: [0.5, 0.5, 0] }
       ]
     }
   ]}
@@ -417,7 +421,7 @@ Welche Formel passt, entscheidet also die Aufgabenangabe: Fläche, Bogenlänge o
       }),
       color: "#0d9488",
       showPoints: false,
-      smooth: true
+      smooth: false
     },
     {
       points: [
@@ -453,14 +457,15 @@ Welche Formel passt, entscheidet also die Aufgabenangabe: Fläche, Bogenlänge o
       }),
       color: "#d97706",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 4,
       labels: [
         { text: <InlineMath math="s" />, at: 14, offset: [0.4, 0.3, 0] }
       ]
     },
     {
-      points: Array.from({ length: 15 }, (_, i) => {
+      points: Array.from({ length: 99 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = (i / 14) * (2 * Math.PI / 5);
         const radius = 1.5;
         return {
@@ -471,10 +476,10 @@ Welche Formel passt, entscheidet also die Aufgabenangabe: Fläche, Bogenlänge o
       }),
       color: "#9333ea",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 2,
       labels: [
-        { text: <InlineMath math="72^\circ" />, at: 7, offset: [0.3, 0.2, 0] }
+        { text: <InlineMath math="72^\circ" />, at: 49, offset: [0.3, 0.2, 0] }
       ]
     }
   ]}

@@ -5,7 +5,6 @@ import { type Sha256Hash, Sha256HashSchema } from "#contracts/ids";
 import {
   ContentSnapshotKindSchema,
   type PublicationScope,
-  publicationScopeSelectsSnapshot,
 } from "#contracts/release/snapshot/scope";
 
 /** Canonical digest for a release that stages no structured snapshot rows. */
@@ -48,8 +47,7 @@ export function hasScopedSnapshotTransitions(
 ) {
   return ContentSnapshotKindSchema.literals.every(
     (family) =>
-      publicationScopeSelectsSnapshot(scope, family) ||
-      snapshots[family].mode === "inherit"
+      scope.snapshots.includes(family) || snapshots[family].mode === "inherit"
   );
 }
 

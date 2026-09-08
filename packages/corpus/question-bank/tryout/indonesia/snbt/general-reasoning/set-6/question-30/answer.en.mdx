@@ -2,9 +2,39 @@ export const metadata = {
   title: "Solution to Question 30",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-The unique feasible maximum is <InlineMath math="(X,Y)=(6,5)" /> with profit <InlineMath math="6(10)+5(8)=100" />. Eleven packages are produced, so the mean profit per package is <InlineMath math="100/(6+5)=100/11" />.
+Let <InlineMath math="x" /> and <InlineMath math="y" /> be the numbers of X and Y packages. Both are non-negative integers. Material and labour limits give:
 
-Therefore, the requested value is <InlineMath math="\\frac{100}{11}" />.
+<BlockMath math="\begin{aligned}5x+2y&\le40\\x+3y&\le21\end{aligned}" />
+
+The total profit to maximize is <InlineMath math="L=10x+8y" />. Since <InlineMath math="x\ge0" />, the labour limit gives <InlineMath math="y\le7" />. We therefore need only check integer values of <InlineMath math="y" /> from <InlineMath math="0" /> through <InlineMath math="7" />.
+
+For each <InlineMath math="y" />, choose the largest integer <InlineMath math="x" /> satisfying both limits. This maximizes profit in that row because each additional X adds <InlineMath math="10" /> profit units.
+
+| <InlineMath math="y" /> | <InlineMath math="x" /> largest | <InlineMath math="L" /> |
+| ---: | ---: | ---: |
+| <InlineMath math="0" /> | <InlineMath math="8" /> | <InlineMath math="80" /> |
+| <InlineMath math="1" /> | <InlineMath math="7" /> | <InlineMath math="78" /> |
+| <InlineMath math="2" /> | <InlineMath math="7" /> | <InlineMath math="86" /> |
+| <InlineMath math="3" /> | <InlineMath math="6" /> | <InlineMath math="84" /> |
+| <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="92" /> |
+| <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="100" /> |
+| <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="78" /> |
+| <InlineMath math="7" /> | <InlineMath math="0" /> | <InlineMath math="56" /> |
+
+For example, when <InlineMath math="y=5" />, the limits become:
+
+<MathContainer>
+<BlockMath math="5x+10\le40\Rightarrow x\le6" />
+<BlockMath math="x+15\le21\Rightarrow x\le6" />
+</MathContainer>
+
+The table shows a unique maximum at <InlineMath math="x=6" /> and <InlineMath math="y=5" />, with profit <InlineMath math="100" />. Both resources are fully used: <InlineMath math="5(6)+2(5)=40" /> and <InlineMath math="6+3(5)=21" />.
+
+There are <InlineMath math="6+5=11" /> packages. The mean profit per package at this solution is:
+
+<BlockMath math="\frac{100}{11}" />
+
+The requested mean is therefore <InlineMath math="\frac{100}{11}" /> profit units per package.

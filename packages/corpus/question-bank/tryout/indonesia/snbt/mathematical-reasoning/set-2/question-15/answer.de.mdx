@@ -1,58 +1,49 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 15",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2026-01-31",
 };
 
 **Problemanalyse**
 
-Wir können dieses Problem als ein System linearer Gleichungen mit zwei Variablen modellieren. Der Preis für Fleisch pro kg sei <InlineMath math="x" /> und der Preis für Fisch pro kg sei <InlineMath math="y" /> (in Tausend Rupien).
+Wir können dieses Problem als ein System linearer Gleichungen mit zwei Variablen modellieren. Der Preis für Fleisch pro Kilogramm sei <InlineMath math="x" /> und der Preis für Fisch pro Kilogramm sei <InlineMath math="y" /> (in Tausend Rupiah).
 
 **Formulieren der Gleichungen**
 
-Aus den Daten von Geschäft A ergibt sich für den Verkauf von <InlineMath math="80\text{ kg}" /> Fleisch und <InlineMath math="20\text{ kg}" /> Fisch ein Betrag von <InlineMath math="2960" /> Tausend Rupien:
+Aus den Daten von Geschäft <InlineMath math="A" /> ergibt sich für den Verkauf von <InlineMath math="80\text{ kg}" /> Fleisch und <InlineMath math="20\text{ kg}" /> Fisch ein Betrag von <InlineMath math="2960" /> Tausend Rupiah:
 
-<MathContainer>
-  <BlockMath math="80x + 20y = 2960" />
-</MathContainer>
+<BlockMath math="80x + 20y = 2960" />
 
-Vereinfachen Sie diese Gleichung, indem Sie beide Seiten durch <InlineMath math="20" /> dividieren:
+Teile beide Seiten der Gleichung durch <InlineMath math="20" />:
 
-<MathContainer>
-  <BlockMath math="4x + y = 148 \quad \dots (1)" />
-</MathContainer>
+<BlockMath math="4x + y = 148 \quad (1)" />
 
-Aus den Daten von Geschäft B ergibt sich für den Verkauf von <InlineMath math="70\text{ kg}" /> Fleisch und <InlineMath math="40\text{ kg}" /> Fisch ein Betrag von <InlineMath math="3040" /> Tausend Rupien:
+Aus den Daten von Geschäft <InlineMath math="B" /> ergibt sich für den Verkauf von <InlineMath math="70\text{ kg}" /> Fleisch und <InlineMath math="40\text{ kg}" /> Fisch ein Betrag von <InlineMath math="3040" /> Tausend Rupiah:
 
-<MathContainer>
-  <BlockMath math="70x + 40y = 3040" />
-</MathContainer>
+<BlockMath math="70x + 40y = 3040" />
 
-Vereinfachen Sie diese Gleichung, indem Sie beide Seiten durch <InlineMath math="10" /> dividieren:
+Teile beide Seiten der Gleichung durch <InlineMath math="10" />:
 
-<MathContainer>
-  <BlockMath math="7x + 4y = 304 \quad \dots (2)" />
-</MathContainer>
+<BlockMath math="7x + 4y = 304 \quad (2)" />
 
 **Das Gleichungssystem lösen**
 
-Wir werden die Variable <InlineMath math="y" /> eliminieren, um den Wert von <InlineMath math="x" /> zu ermitteln. Multiplizieren Sie die Gleichung <InlineMath math="(1)" /> mit <InlineMath math="4" />, sodass der Koeffizient von <InlineMath math="y" /> mit der Gleichung <InlineMath math="(2)" /> übereinstimmt:
+Durch Subtraktion fällt <InlineMath math="y" /> weg. Multipliziere zunächst Gleichung <InlineMath math="(1)" /> mit <InlineMath math="4" />, sodass der Koeffizient von <InlineMath math="y" /> derselbe wie in Gleichung <InlineMath math="(2)" /> ist:
+
+<BlockMath math="16x + 4y = 592" />
+
+Subtrahiere Gleichung <InlineMath math="(2)" /> vom Ergebnis:
 
 <MathContainer>
-  <BlockMath math="16x + 4y = 592" />
-</MathContainer>
-
-Subtrahieren Sie diese resultierende Gleichung durch die Gleichung <InlineMath math="(2)" />:
-
-<MathContainer>
-  <BlockMath math="(16x + 4y) - (7x + 4y) = 592 - 304" />
+  <BlockMath math="\begin{aligned}&(16x+4y)-(7x+4y) \\ &=592-304\end{aligned}" />
   <BlockMath math="9x = 288" />
   <BlockMath math="x = 32" />
 </MathContainer>
 
 **Bestimmung des Fischpreises**
 
-Setzen Sie den Wert <InlineMath math="x = 32" /> in die Gleichung <InlineMath math="(1)" /> ein, um <InlineMath math="y" /> zu finden:
+Setze den Wert <InlineMath math="x = 32" /> in die Gleichung <InlineMath math="(1)" /> ein, um <InlineMath math="y" /> zu bestimmen:
 
 <MathContainer>
   <BlockMath math="4(32) + y = 148" />
@@ -60,4 +51,4 @@ Setzen Sie den Wert <InlineMath math="x = 32" /> in die Gleichung <InlineMath ma
   <BlockMath math="y = 20" />
 </MathContainer>
 
-Der Wert <InlineMath math="y = 20" /> bedeutet, dass der Fischpreis <InlineMath math="20" /> Tausend Rupien oder <InlineMath math="\text{Rp}20{.}000{,}00" /> beträgt.
+Der Wert <InlineMath math="y = 20" /> bedeutet, dass der Fischpreis <InlineMath math="20" /> Tausend Rupiah oder <InlineMath math="\text{Rp}20{.}000{,}00" /> beträgt.

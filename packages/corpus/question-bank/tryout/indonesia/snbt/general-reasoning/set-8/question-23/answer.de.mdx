@@ -2,9 +2,18 @@ export const metadata = {
   title: "Lösung zu Aufgabe 23",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Nur B nutzen <InlineMath math="79-32-22+11=36" /> Personen, nur C nutzen <InlineMath math="66-27-22+11=28" /> Personen. Die beiden Gruppen sind disjunkt, daher beträgt die Summe <InlineMath math="36+28=64" />.
+<InlineMath math="n_B" /> und <InlineMath math="n_C" /> zählen die Personen, die ausschließlich B beziehungsweise ausschließlich C nutzen.
 
-Damit ist der gesuchte Wert <InlineMath math="64" />.
+Wir ziehen beide paarweisen Schnittmengen von der jeweiligen Gesamtzahl ab. Personen in allen drei Mengen wurden zweimal abgezogen und müssen einmal wieder addiert werden:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}n_B&=79-32-22+11\\&=36\end{aligned}" />
+  <BlockMath math="\begin{aligned}n_C&=66-27-22+11\\&=28\end{aligned}" />
+</MathContainer>
+
+Wer ausschließlich B nutzt, kann nicht zugleich ausschließlich C nutzen. Die beiden Gruppen überschneiden sich nicht, daher ist die gesuchte Summe:
+
+<BlockMath math="36+28=64" />

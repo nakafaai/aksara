@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pengulangan langkah pada model membantu memeriksa bahwa air dapat berpindah tempat dan berubah wujud tanpa hilang dari sistem tertutup; karena lampu dan es hanya meniru sebagian kecil kondisi atmosfer, pola itu menjadi hipotesis untuk pengamatan nyata, bukan bukti langsung tentang seluruh keadaan lapangan.",
+            "Pengulangan langkah pada model membantu memeriksa bahwa air dapat berpindah tempat dan berubah wujud tanpa hilang dari sistem tertutup. Karena lampu dan es hanya meniru sebagian kecil kondisi atmosfer, pola itu menjadi hipotesis untuk pengamatan nyata, bukan bukti langsung tentang seluruh keadaan lapangan.",
         },
         {
           isCorrect: false,

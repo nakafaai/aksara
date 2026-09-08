@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Beobachtung bewies daher, dass die Änderung Fragekarten an jedem Demonstrationstisch den Unterschied verursachte.",
+            "Die Ausgangsdaten bewiesen, dass Fragekarten den Unterschied verursachten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team musste daher mehrere Merkmale im Kontext öffentliche Laborführung ändern, bevor es erneut maß.",
+            "Das Team musste vor einer neuen Messung mehrere Merkmale der Führung zugleich ändern.",
         },
         {
           isCorrect: true,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Fragekarten an jedem Demonstrationstisch.",
+            "Der mögliche Nutzen von Fragekarten musste deshalb an jedem Vorführungstisch geprüft werden.",
         },
         {
           isCorrect: false,
           label:
-            "Das erste Muster rechtfertigte daher die dauerhafte Einführung von Fragekarten an jedem Demonstrationstisch.",
+            "Das Ausgangsmuster rechtfertigte den dauerhaften Einsatz von Fragekarten.",
         },
         {
           isCorrect: false,
           label:
-            "Die verbleibende Unsicherheit machte einen weiteren Vergleich daher überflüssig.",
+            "Die verbleibende Unsicherheit machte weitere Vergleiche überflüssig.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The observation therefore established that question cards at each demonstration table caused the difference.",
+            "The baseline had proved that question cards caused the difference.",
         },
         {
           isCorrect: false,
           label:
-            "The team therefore needed to alter several features of open laboratory tour before measuring again.",
+            "The team needed to change several tour features at once before measuring again.",
         },
         {
           isCorrect: true,
           label:
-            "The hypothesis therefore needed a limited test of question cards at each demonstration table.",
+            "The possible benefit of question cards therefore needed to be tested at each demonstration table.",
         },
         {
           isCorrect: false,
           label:
-            "The initial pattern therefore justified permanent adoption of question cards at each demonstration table.",
+            "The baseline pattern justified permanent use of question cards.",
         },
         {
           isCorrect: false,
           label:
-            "The remaining uncertainty therefore made another comparison unnecessary.",
+            "The remaining uncertainty made further comparison unnecessary.",
         },
       ],
     },
@@ -68,22 +68,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pengamatan itu membuktikan bahwa kartu pertanyaan di setiap meja demonstrasi menyebabkan perbedaan.",
+            "Data awal telah membuktikan bahwa kartu pertanyaan menyebabkan perbedaan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim perlu mengubah beberapa unsur tur laboratorium terbuka sebelum melakukan pengukuran ulang.",
+            "Tim perlu mengubah beberapa unsur tur sekaligus sebelum mengukur ulang.",
         },
         {
           isCorrect: true,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui kartu pertanyaan untuk setiap meja demonstrasi.",
+            "Oleh karena itu, dugaan tentang kegunaan kartu pertanyaan perlu diuji pada setiap meja demonstrasi.",
         },
         {
           isCorrect: false,
           label:
-            "Pola awal itu membenarkan penerapan tetap kartu pertanyaan di setiap meja demonstrasi.",
+            "Pola awal membenarkan penggunaan kartu pertanyaan secara permanen.",
         },
         {
           isCorrect: false,

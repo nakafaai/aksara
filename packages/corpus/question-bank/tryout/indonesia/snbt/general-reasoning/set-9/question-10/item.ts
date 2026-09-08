@@ -11,7 +11,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Die Schlussfolgerung ist möglicherweise wahr",
+          label:
+            "Die Schlussfolgerung ist möglicherweise, aber nicht zwingend wahr",
         },
         {
           isCorrect: false,
@@ -37,7 +38,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "The conclusion is possibly true",
+          label: "The conclusion is possibly, but not necessarily, true",
         },
         {
           isCorrect: false,
@@ -62,7 +63,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Simpulan tersebut mungkin benar",
+          label: "Simpulan tersebut mungkin benar, tetapi tidak pasti",
         },
         {
           isCorrect: false,

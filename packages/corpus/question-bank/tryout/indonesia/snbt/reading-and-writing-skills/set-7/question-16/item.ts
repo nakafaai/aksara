@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Regenschirmverleih am Bahnhof gaben kurze und knappe Rückmeldungen.",
+            "Die Ausleihenden der Schirme gaben kurze Rückmeldungen, die nicht lang waren.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Regenschirmverleih am Bahnhof gaben ihre eigenen kurzen Rückmeldungen persönlich ab.",
+            "Die Ausleihenden der Schirme gaben kurze Rückmeldungen als Personen, die Schirme ausliehen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Regenschirmverleih am Bahnhof gaben kurze Rückmeldungen in knapper Form.",
+            "Die Ausleihenden der Schirme gaben kurze Rückmeldungen in kurzer Form.",
         },
         {
           isCorrect: true,
-          label:
-            "Die Nutzenden im untersuchten Kontext (Schirmverleih am Bahnhof) gaben kurze Rückmeldungen.",
+          label: "Die Ausleihenden der Schirme gaben kurze Rückmeldungen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Regenschirmverleih am Bahnhof gaben kurze Rückmeldungen über ihre Erfahrungen in diesem Kontext.",
+            "Die Ausleihenden der Schirme gaben kurze Rückmeldungen, also Rückmeldungen von geringer Länge.",
         },
       ],
     },
@@ -38,27 +37,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Users in this setting (station umbrella lending) provided comments that were brief and concise.",
+            "The umbrella borrowers gave brief comments that were not long.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (station umbrella lending) provided their own brief comments personally.",
+            "The umbrella borrowers gave brief comments as borrowers who borrowed umbrellas.",
         },
         {
           isCorrect: false,
-          label:
-            "Users in this setting (station umbrella lending) provided brief comments in a short form.",
+          label: "The umbrella borrowers gave brief comments in a brief form.",
         },
         {
           isCorrect: true,
-          label:
-            "Users in this setting (station umbrella lending) provided brief comments.",
+          label: "The umbrella borrowers gave brief comments.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (station umbrella lending) provided brief comments about their experience in this setting.",
+            "The umbrella borrowers gave brief comments, meaning comments that were short.",
         },
       ],
     },
@@ -68,27 +65,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pengguna layanan peminjaman payung di stasiun memberikan komentar yang singkat dan ringkas.",
+            "Peminjam payung memberikan komentar singkat yang tidak panjang.",
         },
         {
           isCorrect: false,
           label:
-            "Pengguna layanan peminjaman payung di stasiun memberikan komentar singkat mereka sendiri secara pribadi.",
+            "Peminjam payung memberikan komentar singkat sebagai peminjam yang meminjam payung.",
         },
         {
           isCorrect: false,
           label:
-            "Pengguna layanan peminjaman payung di stasiun memberikan komentar singkat dalam bentuk pendek.",
+            "Peminjam payung memberikan komentar singkat dalam bentuk yang singkat.",
         },
         {
           isCorrect: true,
-          label:
-            "Pengguna layanan peminjaman payung di stasiun memberikan komentar singkat.",
+          label: "Peminjam payung memberikan komentar singkat.",
         },
         {
           isCorrect: false,
           label:
-            "Pengguna layanan peminjaman payung di stasiun memberikan komentar singkat tentang pengalaman mereka dalam layanan tersebut.",
+            "Peminjam payung memberikan komentar singkat, yaitu komentar yang pendek.",
         },
       ],
     },

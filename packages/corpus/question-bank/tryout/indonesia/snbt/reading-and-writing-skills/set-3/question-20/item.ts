@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Da 31 über 23 und 25 lag, erklärte das Team Karten zur Reihenfolge brauner und grüner Materialien für wirksam und führte die Änderung dauerhaft ein.",
+            "Da 31 über 23 und 25 lag, erklärte das Team die Karten für wirksam und führte sie dauerhaft ein.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team verglich 31, 23 und 25 und plante eine längere Wiederholung, ohne die Aussage auf Kompostierworkshop zu begrenzen.",
+            "Das Team verglich 31, 23 und 25 und plante mehr Termine, ohne seine Aussage auf diesen Workshop zu begrenzen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team begrenzte die Aussage auf Kompostierworkshop und plante eine längere Wiederholung, ohne den Vergleich zu nennen.",
+            "Das Team begrenzte seine Aussage auf diesen Workshop und plante mehr Termine, ohne den Vergleich zu nennen.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team verglich 31, 23 und 25, begrenzte die Aussage auf den untersuchten Kontext (Kompostierworkshop) und plante eine längere Wiederholung.",
+            "Das Team verglich 31, 23 und 25, begrenzte seine Aussage auf diesen Workshop und plante mehr Termine unter denselben Messregeln.",
         },
         {
           isCorrect: false,
           label:
-            "Die Werte 31, 23 und 25 zeigten kein relevantes Muster, daher wollte das Team die Messregeln ändern.",
+            "Die Werte 31, 23 und 25 zeigten kein relevantes Muster, weshalb das Team die Messregeln ändern wollte.",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Because 31 exceeded 23 and 25, the team concluded that the change was effective and adopted it permanently.",
+            "Because 31 exceeded 23 and 25, the team declared the cards effective and adopted them permanently.",
         },
         {
           isCorrect: false,
           label:
-            "The team compared 31, 23, and 25 and planned a longer repetition without limiting the claim to the context of composting workshop.",
+            "The team compared 31, 23, and 25 and planned more sessions without limiting its claim to that workshop.",
         },
         {
           isCorrect: false,
           label:
-            "The team limited its claim to the context of composting workshop and planned a longer repetition without reporting the comparison.",
+            "The team limited its claim to that workshop and planned more sessions without reporting the comparison.",
         },
         {
           isCorrect: true,
           label:
-            "The team compared 31, 23, and 25, limited its claim to this setting (composting workshop), and planned a longer repetition.",
+            "The team compared 31, 23, and 25, limited its claim to that workshop, and planned more sessions under the same measurement rules.",
         },
         {
           isCorrect: false,
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Karena 31 lebih tinggi daripada 23 dan 25, tim menyimpulkan bahwa kartu urutan bahan cokelat dan hijau efektif lalu menerapkannya secara tetap.",
+            "Karena 31 lebih tinggi daripada 23 dan 25, tim memastikan kartu efektif lalu menerapkannya secara permanen.",
         },
         {
           isCorrect: false,
           label:
-            "Tim membandingkan 31, 23, dan 25 serta merencanakan pengulangan lebih panjang tanpa membatasi klaim pada lokakarya pembuatan kompos.",
+            "Tim membandingkan 31, 23, dan 25 lalu merencanakan lebih banyak sesi tanpa membatasi klaim pada lokakarya tersebut.",
         },
         {
           isCorrect: false,
           label:
-            "Tim membatasi klaim pada lokakarya pembuatan kompos dan merencanakan pengulangan lebih panjang tanpa melaporkan perbandingan.",
+            "Tim membatasi klaim pada lokakarya tersebut dan merencanakan lebih banyak sesi tanpa melaporkan perbandingan.",
         },
         {
           isCorrect: true,
           label:
-            "Tim membandingkan 31, 23, dan 25, membatasi klaim pada lokakarya pembuatan kompos, serta merencanakan pengulangan yang lebih panjang.",
+            "Tim membandingkan 31, 23, dan 25, membatasi klaim pada lokakarya tersebut, lalu merencanakan lebih banyak sesi dengan aturan ukur yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Nilai 31, 23, dan 25 tidak menunjukkan pola yang relevan sehingga tim akan mengubah kaidah pengukuran.",
+            "Nilai 31, 23, dan 25 tidak menunjukkan pola yang relevan sehingga tim akan mengubah aturan pengukuran.",
         },
       ],
     },

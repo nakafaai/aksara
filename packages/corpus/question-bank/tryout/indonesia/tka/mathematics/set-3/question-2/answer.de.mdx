@@ -2,18 +2,29 @@ export const metadata = {
   title: "Lösung zu Aufgabe 2",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Für jedes Angebot wird der versteuerte Preis getrennt berechnet.
+Rabatt und Gutschein bestimmen den steuerpflichtigen Preis. Alle folgenden Preise sind in Tausend Rupiah angegeben. Berechne für Angebot A zuerst den Rabattpreis und danach die Steuer.
 
 <BlockMath math="\begin{aligned}
-P_A&=800(1-0{,}25)(1+0{,}11)=666,\\
-P_B&=\bigl(800(1-0{,}20)-50\bigr)(1+0{,}11)=654{,}9.
+P_A&=800(1-0{,}25)(1+0{,}11) \\
+&=600(1{,}11)=666
 \end{aligned}" />
 
-Die Differenz beträgt
+Bei Angebot B wird der Gutschein vor der Steuer abgezogen.
 
-<BlockMath math="666-654{,}9=11{,}1" />
+Sei <InlineMath math="B" /> der steuerpflichtige Preis nach Rabatt und Gutschein.
 
-Angebot B ist damit um <InlineMath math="11{,}1" /> Tausend Rupiah günstiger.
+<BlockMath math="\begin{aligned}
+B&=800(1-0{,}20)-50 \\
+&=640-50=590 \\
+P_B&=B(1+0{,}11) \\
+&=590(1{,}11)=654{,}9
+\end{aligned}" />
+
+Die Differenz der Zahlungen beträgt:
+
+<BlockMath math="P_A-P_B=666-654{,}9=11{,}1" />
+
+Angebot B ist <InlineMath math="11{,}1" /> Tausend Rupiah günstiger.

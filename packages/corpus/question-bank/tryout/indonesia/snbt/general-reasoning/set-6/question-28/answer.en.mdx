@@ -2,9 +2,41 @@ export const metadata = {
   title: "Solution to Question 28",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Treat C and D as a two-order block, then use case counting to exclude adjacent A and B and placements with G at an end. This leaves 5,280 arrangements before the order of E and F; half have E before F. Hence there are 2,640 valid arrangements and <InlineMath math="2640/40320=11/168" />.
+All <InlineMath math="8! = 40{,}320" /> arrangements are equally likely. Count those satisfying the conditions, then divide by this total.
 
-Therefore, the requested value is <InlineMath math="\\frac{11}{168}" />.
+#### Grouping adjacent reports
+
+Treat C and D as one block. Its internal order can be CD or DC, giving <InlineMath math="2" /> possibilities. Together with the other six reports, there are seven objects to arrange:
+
+<BlockMath math="N_0=2\times7!=10{,}080" />
+
+#### Removing forbidden arrangements
+
+Let <InlineMath math="N_A" /> count arrangements in which A and B are adjacent. Treat them as a second block. Both blocks have two internal orders, and there are now six objects:
+
+<BlockMath math="N_A=2\times2\times6!=2{,}880" />
+
+Let <InlineMath math="N_G" /> count arrangements with G at an end. Choose one of the two ends, choose the internal order of CD, and arrange the remaining six objects:
+
+<BlockMath math="N_G=2\times2\times6!=2{,}880" />
+
+Arrangements violating both conditions belong to both counts. For their intersection, choose an end for G, choose the internal orders of both blocks, and arrange the remaining five objects:
+
+<BlockMath math="N_{AG}=2\times2\times2\times5!=960" />
+
+Subtract both forbidden groups and add their intersection back once:
+
+<BlockMath math="\begin{aligned}N&=N_0-N_A-N_G+N_{AG}\\&=10{,}080-2{,}880\\&\quad-2{,}880+960\\&=5{,}280\end{aligned}" />
+
+#### Applying the order condition
+
+Swapping E and F preserves the adjacency conditions for A and B and for C and D, as well as G's position. Every arrangement with E before F therefore pairs with exactly one arrangement with F before E. Half satisfy the remaining condition:
+
+<BlockMath math="\frac{5{,}280}{2}=2{,}640" />
+
+The probability that all conditions hold is:
+
+<BlockMath math="P=\frac{2{,}640}{40{,}320}=\frac{11}{168}" />

@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Der Gesamtkalziumgehalt von Pampelmuse und Avocado ist niedriger als der Gesamtkalziumgehalt von Ambarella und Jackfrucht.",
+            "Der Gesamtkalziumgehalt von Pomelo und Avocado ist niedriger als der Gesamtkalziumgehalt von Ambarella und Jackfrucht.",
         },
         {
           isCorrect: false,
@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Der Gesamtproteingehalt von Pampelmuse und Jackfrucht ist höher als der Gesamtproteingehalt von Avocado und Ambarella.",
+            "Der Gesamtproteingehalt von Pomelo und Jackfrucht ist höher als der Gesamtproteingehalt von Avocado und Ambarella.",
         },
         {
           isCorrect: false,

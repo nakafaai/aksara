@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pengulangan langkah pada model membantu memeriksa bahwa perubahan satu populasi dapat memengaruhi lebih dari satu hubungan makan; karena kartu tidak menggambarkan musim, penyakit, atau perpindahan hewan, pola itu menjadi hipotesis untuk pengamatan nyata, bukan bukti langsung tentang seluruh keadaan lapangan.",
+            "Pengulangan langkah pada model membantu memeriksa bahwa perubahan satu populasi dapat memengaruhi lebih dari satu hubungan makan. Karena kartu tidak menggambarkan musim, penyakit, atau perpindahan hewan, pola itu menjadi hipotesis untuk pengamatan nyata, bukan bukti langsung tentang seluruh keadaan lapangan.",
         },
         {
           isCorrect: false,

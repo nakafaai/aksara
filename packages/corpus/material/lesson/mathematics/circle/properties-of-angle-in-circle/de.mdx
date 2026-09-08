@@ -3,7 +3,7 @@ export const metadata = {
   description: "Winkelsätze im Kreis mit anschaulichen Begründungen: Umfangswinkel, Satz des Thales und Sehnenvierecke.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-04",
+  dateModified: "2026-09-08",
   subject: "Kreis",
 };
 
@@ -18,6 +18,7 @@ Umfangswinkel über demselben Bogen sind gleich groß, wenn ihre Scheitelpunkte 
   description="Umfangswinkel im selben Kreissegment über demselben Bogen sind gleich groß."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -97,6 +98,7 @@ Umfangswinkel über demselben Bogen sind gleich groß, wenn ihre Scheitelpunkte 
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -132,6 +134,7 @@ Der Mittelpunktswinkel ist doppelt so groß wie der Umfangswinkel über demselbe
   }
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -194,7 +197,9 @@ Der Mittelpunktswinkel ist doppelt so groß wie der Umfangswinkel über demselbe
       showPoints: false,
     },
     {
-      points: Array.from({ length: 16 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = (((i * 45) / 15) * Math.PI) / 180;
         return {
           x: 1.2 * Math.cos(angle),
@@ -204,9 +209,10 @@ Der Mittelpunktswinkel ist doppelt so groß wie der Umfangswinkel über demselbe
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="2\theta" />, at: 7, offset: [0.5, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="2\theta" />, at: 49, offset: [0.5, 0.3, 0] }],
     },
     {
+      smooth: false,
       points: (() => {
         const C = {
           x: 4 * Math.cos((5 * Math.PI) / 4),
@@ -253,6 +259,7 @@ Jeder Umfangswinkel über einem Kreisdurchmesser ist ein rechter Winkel mit <Inl
   description={<>Ein Umfangswinkel über einem Durchmesser beträgt immer <InlineMath math="90^\circ" />.</>}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -303,6 +310,7 @@ Jeder Umfangswinkel über einem Kreisdurchmesser ist ein rechter Winkel mit <Inl
       labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
     },
     {
+      smooth: false,
       points: (() => {
         const C = { x: 0, y: 4 };
         const A = { x: -4, y: 0 };
@@ -372,6 +380,7 @@ Ein Sehnenviereck hat vier Eckpunkte auf einer Kreislinie. Je zwei gegenüberlie
   description={<>Die Summe der entgegengesetzten Winkel ist <InlineMath math="180^\circ" />.</>}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -402,7 +411,9 @@ Ein Sehnenviereck hat vier Eckpunkte auf einer Kreislinie. Je zwei gegenüberlie
       ],
     },
     {
-      points: Array.from({ length: 16 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = ((135 + (i * 90) / 15) * Math.PI) / 180;
         return {
           x: 4 + 0.8 * Math.cos(angle),
@@ -412,10 +423,12 @@ Ein Sehnenviereck hat vier Eckpunkte auf einer Kreislinie. Je zwei gegenüberlie
       }),
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\alpha" />, at: 7, offset: [0.3, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="\alpha" />, at: 49, offset: [0.3, 0.2, 0] }],
     },
     {
-      points: Array.from({ length: 16 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = ((-45 + (i * 90) / 15) * Math.PI) / 180;
         return {
           x: -4 + 0.8 * Math.cos(angle),
@@ -425,7 +438,7 @@ Ein Sehnenviereck hat vier Eckpunkte auf einer Kreislinie. Je zwei gegenüberlie
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\gamma" />, at: 7, offset: [-0.3, -0.2, 0] }],
+      labels: [{ text: <InlineMath math="\gamma" />, at: 49, offset: [-0.3, -0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
@@ -447,6 +460,7 @@ In einem Sehnenviereck ist ein Außenwinkel genauso groß wie der gegenüberlieg
   }
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -487,7 +501,9 @@ In einem Sehnenviereck ist ein Außenwinkel genauso groß wie der gegenüberlieg
       labels: [{ text: <InlineMath math="E" />, at: 1, offset: [0.5, 0, 0] }],
     },
     {
-      points: Array.from({ length: 16 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = ((225 + (i * 90) / 15) * Math.PI) / 180;
         return {
           x: 4 + 0.8 * Math.cos(angle),
@@ -497,10 +513,12 @@ In einem Sehnenviereck ist ein Außenwinkel genauso groß wie der gegenüberlieg
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\angle DAE" />, at: 7, offset: [0.8, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="\angle DAE" />, at: 49, offset: [0.8, -0.5, 0] }],
     },
     {
-      points: Array.from({ length: 16 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = ((-45 + (i * 90) / 15) * Math.PI) / 180;
         return {
           x: -4 + 0.8 * Math.cos(angle),
@@ -510,7 +528,7 @@ In einem Sehnenviereck ist ein Außenwinkel genauso groß wie der gegenüberlieg
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\angle BCD" />, at: 7, offset: [-0.8, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="\angle BCD" />, at: 49, offset: [-0.8, 0.5, 0] }],
     },
 
 ]}
@@ -592,6 +610,7 @@ Da <InlineMath math="AB" /> ein Durchmesser ist und <InlineMath math="C" /> auf 
      description={<>Der Mittelpunktswinkel <InlineMath math="\angle AOB = 140^\circ" /> und die Umfangswinkel stehen über demselben Bogen <InlineMath math="AB" />.</>}
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 361 }, (_, i) => {
            const angle = (i * Math.PI) / 180;
            return {
@@ -693,7 +712,9 @@ Da <InlineMath math="AB" /> ein Durchmesser ist und <InlineMath math="C" /> auf 
          showPoints: false,
        },
        {
-         points: Array.from({ length: 16 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 106 }, (_, sampleIndex) => {
+           const i = sampleIndex / 7;
            const angle = (((i * 140) / 15) * Math.PI) / 180;
            return {
              x: 1.2 * Math.cos(angle),
@@ -703,7 +724,7 @@ Da <InlineMath math="AB" /> ein Durchmesser ist und <InlineMath math="C" /> auf 
          }),
          color: "#db2777",
          showPoints: false,
-         labels: [{ text: <InlineMath math="140^\circ" />, at: 7, offset: [0.3, 0.5, 0] }],
+         labels: [{ text: <InlineMath math="140^\circ" />, at: 49, offset: [0.3, 0.5, 0] }],
        },
      ]}
      cameraPosition={[0, 0, 12]}
@@ -761,6 +782,7 @@ Da <InlineMath math="AB" /> ein Durchmesser ist und <InlineMath math="C" /> auf 
      }
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 361 }, (_, i) => {
            const angle = (i * Math.PI) / 180;
            return {
@@ -811,6 +833,7 @@ Da <InlineMath math="AB" /> ein Durchmesser ist und <InlineMath math="C" /> auf 
          labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
        },
        {
+         smooth: false,
          points: (() => {
            const C = { x: 0, y: 4 };
            const A = { x: -4, y: 0 };

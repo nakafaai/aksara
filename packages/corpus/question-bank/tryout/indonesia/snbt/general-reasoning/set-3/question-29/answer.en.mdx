@@ -2,9 +2,17 @@ export const metadata = {
   title: "Solution to Question 29",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Among <InlineMath math="\binom{10}{2}=45" /> pairs, <InlineMath math="\binom62=15" /> are red-red and <InlineMath math="6\cdot4=24" /> are mixed. The expected listed prize is <InlineMath math="[30(15)+15(24)]/45=18" />. Applying the 90% payment factor gives <InlineMath math="0.9(18)=16.2=81/5" />.
+There are <InlineMath math="\binom{10}{2}=45" /> equally likely pairs. The red-red, mixed, and blue-blue pair counts are
 
-Therefore, the requested value is <InlineMath math="\\frac{81}{5}" />.
+<BlockMath math="\begin{aligned} \binom{6}{2}&=15 \\ 6\times4&=24 \\ \binom{4}{2}&=6 \end{aligned}" />
+
+The expected listed payout, in thousand rupiah, is
+
+<BlockMath math="\begin{aligned} E&=\frac{30(15)+15(24)+0(6)}{45} \\ &=18 \end{aligned}" />
+
+The actual payout is <InlineMath math="90\%" /> of each prize, so its expectation is multiplied by the same factor:
+
+<BlockMath math="0.9\times18=16.2=\frac{81}{5}" />

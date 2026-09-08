@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Auf Grundlage der Daten eine begrenzte Schlussfolgerung für den Kontext Kompostierworkshop.",
+            "Auf Grundlage der Daten eine begrenzte Schlussfolgerung zum Kompostierworkshop.",
         },
         {
           isCorrect: true,
           label:
-            "Auf Grundlage der Daten formulierte das Team eine begrenzte Schlussfolgerung zu folgendem Kontext: Kompostierworkshop.",
+            "Auf Grundlage der Daten formulierte das Team eine begrenzte Schlussfolgerung zum Kompostierworkshop.",
         },
         {
           isCorrect: false,
           label:
-            "Auf Grundlage der Daten kam das Team zu einer Schlussfolgerung, die begrenzt war, im Kontext Kompostierworkshop.",
+            "Auf Grundlage der Daten das Team, das eine begrenzte Schlussfolgerung zum Kompostierworkshop formulierte.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten führten zu einer begrenzten Schlussfolgerung, weil Kontext Kompostierworkshop.",
+            "Die Daten führten zu einer begrenzten Schlussfolgerung zum Kompostierworkshop, weil.",
         },
         {
           isCorrect: false,
           label:
-            "Auf Grundlage der Daten zog es eine begrenzte Schlussfolgerung für den Kontext Kompostierworkshop.",
+            "Auf Grundlage der Daten formulierte über den Kompostierworkshop.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Based on the data, a limited conclusion for this setting (composting workshop).",
+            "Based on the data, a limited conclusion about the composting workshop.",
         },
         {
           isCorrect: true,
           label:
-            "Based on the data, the team reached a limited conclusion for this setting (composting workshop).",
+            "Based on the data, the team reached a limited conclusion about the composting workshop.",
         },
         {
           isCorrect: false,
           label:
-            "Based on the data, the team reached a conclusion, which was limited, in this setting (composting workshop).",
+            "Based on the data, the team that reached a limited conclusion about the composting workshop.",
         },
         {
           isCorrect: false,
           label:
-            "The data led to a limited conclusion because this setting (composting workshop).",
+            "The data led to a limited conclusion about the composting workshop because.",
         },
         {
           isCorrect: false,
           label:
-            "Based on the data, it reached a limited conclusion for this setting (composting workshop).",
+            "Based on the data, reached a limited conclusion about the composting workshop.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Berdasarkan data, sebuah simpulan terbatas untuk konteks lokakarya pembuatan kompos.",
+            "Berdasarkan data, sebuah simpulan terbatas tentang lokakarya kompos.",
         },
         {
           isCorrect: true,
           label:
-            "Berdasarkan data, tim menarik simpulan terbatas tentang lokakarya pembuatan kompos.",
+            "Berdasarkan data, tim menarik simpulan terbatas tentang lokakarya kompos.",
         },
         {
           isCorrect: false,
           label:
-            "Berdasarkan data, tim sampai pada simpulan, yang terbatas, dalam konteks lokakarya pembuatan kompos.",
+            "Berdasarkan data, tim yang menarik simpulan terbatas tentang lokakarya kompos.",
         },
         {
           isCorrect: false,
           label:
-            "Data menghasilkan simpulan terbatas karena konteks lokakarya pembuatan kompos.",
+            "Data menghasilkan simpulan terbatas tentang lokakarya kompos karena.",
         },
         {
           isCorrect: false,
           label:
-            "Berdasarkan data, hal itu menarik simpulan terbatas untuk konteks lokakarya pembuatan kompos.",
+            "Berdasarkan data, menarik simpulan terbatas tentang lokakarya kompos.",
         },
       ],
     },

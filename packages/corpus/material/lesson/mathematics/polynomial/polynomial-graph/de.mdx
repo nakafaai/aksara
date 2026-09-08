@@ -5,7 +5,7 @@ export const metadata = {
   description: "Skizziere Polynomgraphen mit Wertetabellen und leite ihr Endverhalten aus Grad und Leitkoeffizient ab.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Polynom",
 };
 
@@ -93,7 +93,10 @@ Trage die Punkte ein und verbinde sie zu einer glatten Parabel:
   cameraPosition={[0, 0, 10]}
   data={[
     {
-      points: Array.from({ length: 7 }, (_, i) => {
+      pointIndices: [0, 16, 32, 48, 64, 80, 96],
+      smooth: false,
+      points: Array.from({ length: 97 }, (_, sampleIndex) => {
+        const i = sampleIndex / 16;
         const x = -2 + i;
         return { x, y: x * x - 2 * x - 3, z: 0 };
       }),
@@ -131,6 +134,7 @@ Trage die Punkte ein und verbinde sie mit einer glatten Kurve:
   cameraPosition={[0, 0, 12]}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 61 }, (_, i) => {
         // Mehr Punkte für eine glatte Kurve
         const x = -4 + i * 0.1;
@@ -183,7 +187,10 @@ Es gibt <InlineMath math="4 \text{mögliche Kombinationen}" />:
         cameraPosition={[0, 0, 15]}
         data={[
           {
-            points: Array.from({ length: 7 }, (_, i) => {
+            pointIndices: [0, 16, 32, 48, 64, 80, 96],
+            smooth: false,
+            points: Array.from({ length: 97 }, (_, sampleIndex) => {
+              const i = sampleIndex / 16;
               const x = -3 + i;
               return { x, y: x * x, z: 0 };
             }),
@@ -209,7 +216,10 @@ Es gibt <InlineMath math="4 \text{mögliche Kombinationen}" />:
         cameraPosition={[0, 0, 15]}
         data={[
           {
-            points: Array.from({ length: 7 }, (_, i) => {
+            pointIndices: [0, 16, 32, 48, 64, 80, 96],
+            smooth: false,
+            points: Array.from({ length: 97 }, (_, sampleIndex) => {
+              const i = sampleIndex / 16;
               const x = -3 + i;
               return { x, y: -(x * x), z: 0 };
             }),
@@ -235,6 +245,7 @@ Es gibt <InlineMath math="4 \text{mögliche Kombinationen}" />:
         cameraPosition={[0, 0, 15]}
         data={[
           {
+            smooth: false,
             points: Array.from({ length: 41 }, (_, i) => {
               const x = -3 + i * 0.15;
               return { x, y: x * x * x, z: 0 };
@@ -262,6 +273,7 @@ Es gibt <InlineMath math="4 \text{mögliche Kombinationen}" />:
         cameraPosition={[0, 0, 15]}
         data={[
           {
+            smooth: false,
             points: Array.from({ length: 41 }, (_, i) => {
               const x = -3 + i * 0.15;
               return { x, y: -(x * x * x), z: 0 };
@@ -304,6 +316,7 @@ Bestimme das Endverhalten der folgenden Funktionen:
         cameraPosition={[0, 0, 15]}
         data={[
           {
+            smooth: false,
             points: Array.from({ length: 51 }, (_, i) => {
               const x = -2.5 + i * (4.3 / 50);
               const y = x ** 4 + 2 * x ** 3 - 2 * x - 3;
@@ -340,6 +353,7 @@ Bestimme das Endverhalten der folgenden Funktionen:
         cameraPosition={[0, 0, 15]}
         data={[
           {
+            smooth: false,
             points: Array.from({ length: 51 }, (_, i) => {
               const x = -2.5 + i * 0.1;
               const y = -(x ** 3) + 2 * x ** 2 - x + 1;
@@ -377,6 +391,7 @@ Bestimme das Endverhalten der folgenden Funktionen:
         cameraPosition={[0, 0, 15]}
         data={[
           {
+            smooth: false,
             points: Array.from({ length: 111 }, (_, i) => {
               const x = -2.5 + i * (4.1 / 110);
               const y = -(x ** 6) - (11 / 4) * x ** 5 + x ** 4 + 5 * x ** 3 + 2;
@@ -414,6 +429,7 @@ Bestimme das Endverhalten der folgenden Funktionen:
         cameraPosition={[0, 0, 15]}
         data={[
           {
+            smooth: false,
             points: Array.from({ length: 71 }, (_, i) => {
               const x = -1.2 + i * 0.035;
               const y =

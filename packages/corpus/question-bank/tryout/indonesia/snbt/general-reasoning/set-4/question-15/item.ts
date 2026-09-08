@@ -23,7 +23,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Der Preis von Nudel A lag jedes Jahr unter Rp $$3000$$",
+          label:
+            "Der Preis von Nudel A lag jedes Jahr unter $$\\text{Rp}\\,3000$$",
         },
       ],
     },
@@ -48,7 +49,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "The price of Noodle A stayed below Rp $$3000$$ every year",
+          label:
+            "The price of Noodle A stayed below $$\\text{Rp}\\,3000$$ every year",
         },
       ],
     },
@@ -74,7 +76,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Harga Mie A selalu di bawah Rp $$3000$$ setiap tahun",
+          label:
+            "Harga Mie A selalu di bawah $$\\text{Rp}\\,3000$$ setiap tahun",
         },
       ],
     },

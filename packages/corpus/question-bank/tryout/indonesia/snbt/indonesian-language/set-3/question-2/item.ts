@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pada kondisi dengan perubahan, hasil rata-rata tercatat 18; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+            "Pada kondisi dengan perubahan, hasil rata-rata tercatat $$18$$. Karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
         {
           isCorrect: false,
@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Nilai 18 adalah rata-rata pada pencahayaan enam jam dengan jarak lampu tetap; jumlah wadah dan delapan hari pengamatan membatasi penafsiran di luar uji.",
+            "Nilai $$18$$ adalah rata-rata pada pencahayaan enam jam dengan jarak lampu tetap. Jumlah wadah dan delapan hari pengamatan membatasi penafsiran di luar uji.",
         },
         {
           isCorrect: false,

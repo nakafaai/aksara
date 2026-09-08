@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Mengubah tolok ukur dari sekadar kenaikan rata-rata menjadi kemampuan beragam kelompok memakai informasi secara mandiri.",
+            "Mengubah tolok ukur dari sekadar kenaikan proporsi gabungan menjadi kemampuan beragam kelompok memakai informasi secara mandiri.",
         },
         {
           isCorrect: false,

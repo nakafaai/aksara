@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Auf Grundlage der Daten eine begrenzte Schlussfolgerung für den Kontext Büchertauschmarkt.",
+            "Auf Grundlage der Daten eine begrenzte Schlussfolgerung zum Büchertauschmarkt.",
         },
         {
           isCorrect: true,
           label:
-            "Auf Grundlage der Daten formulierte das Team eine begrenzte Schlussfolgerung zu folgendem Kontext: Büchertauschmarkt.",
+            "Auf Grundlage der Daten formulierte das Team eine begrenzte Schlussfolgerung zum Büchertauschmarkt.",
         },
         {
           isCorrect: false,
           label:
-            "Auf Grundlage der Daten kam das Team zu einer Schlussfolgerung, die begrenzt war, im Kontext Büchertauschmarkt.",
+            "Das Team, das auf Grundlage der Daten eine begrenzte Schlussfolgerung zum Büchertauschmarkt formulierte.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten führten zu einer begrenzten Schlussfolgerung, weil Kontext Büchertauschmarkt.",
+            "Weil das Team eine begrenzte Schlussfolgerung zum Büchertauschmarkt formulierte.",
         },
         {
           isCorrect: false,
           label:
-            "Auf Grundlage der Daten zog es eine begrenzte Schlussfolgerung für den Kontext Büchertauschmarkt.",
+            "Auf Grundlage der Daten formulierte über den Büchertauschmarkt.",
         },
       ],
     },
@@ -38,27 +38,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Based on the data, a limited conclusion for this setting (book exchange market).",
+            "Based on the data, a limited conclusion about the book exchange.",
         },
         {
           isCorrect: true,
           label:
-            "Based on the data, the team reached a limited conclusion for this setting (book exchange market).",
+            "Based on the data, the team reached a limited conclusion about the book exchange.",
         },
         {
           isCorrect: false,
           label:
-            "Based on the data, the team reached a conclusion, which was limited, in this setting (book exchange market).",
+            "The team that reached a limited conclusion about the book exchange based on the data.",
         },
         {
           isCorrect: false,
           label:
-            "The data led to a limited conclusion because this setting (book exchange market).",
+            "Because the team reached a limited conclusion about the book exchange.",
         },
         {
           isCorrect: false,
-          label:
-            "Based on the data, it reached a limited conclusion for this setting (book exchange market).",
+          label: "Based on the data, reached about the book exchange.",
         },
       ],
     },
@@ -68,7 +67,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Berdasarkan data, sebuah simpulan terbatas untuk konteks pasar tukar buku.",
+            "Berdasarkan data, sebuah simpulan terbatas tentang pasar tukar buku.",
         },
         {
           isCorrect: true,
@@ -78,17 +77,16 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Berdasarkan data, tim sampai pada simpulan, yang terbatas, dalam konteks pasar tukar buku.",
+            "Tim yang berdasarkan data menarik simpulan terbatas tentang pasar tukar buku.",
         },
         {
           isCorrect: false,
           label:
-            "Data menghasilkan simpulan terbatas karena konteks pasar tukar buku.",
+            "Karena tim menarik simpulan terbatas tentang pasar tukar buku.",
         },
         {
           isCorrect: false,
-          label:
-            "Berdasarkan data, hal itu menarik simpulan terbatas untuk konteks pasar tukar buku.",
+          label: "Berdasarkan data, menarik tentang pasar tukar buku.",
         },
       ],
     },

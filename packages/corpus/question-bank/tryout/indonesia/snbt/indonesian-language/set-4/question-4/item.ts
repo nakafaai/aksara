@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Istilah *daya generalisasi* dipakai untuk menamai keterbatasan laporan, bukan konsep yang diwakili hasil pengukuran.",
+            "Istilah *daya generalisasi* menyatakan bahwa hasil simulasi tidak berguna sehingga pengujian pada kondisi lain tidak diperlukan.",
         },
         {
           isCorrect: true,

@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The comparison condition produced a mean value of 37; because it differs from the other conditions, the tested change is the only plausible explanation.",
+            "The comparison condition produced a mean value of $$37$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The trial reached 54 correctly sorted bags, compared with 36 and 37; changing visitor numbers and food types mean the result supports a limited follow-up across more evenings.",
+            "The trial averaged $$54$$ correctly sorted bags per period, compared with $$36$$ and $$37$$. Changing visitor numbers and food types support further testing across more evenings.",
         },
       ],
     },

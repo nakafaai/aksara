@@ -2,7 +2,20 @@ export const metadata = {
   title: "Lösung zu Aufgabe 6",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Für A und B gibt es <InlineMath math="4" /> mögliche Sitzplatzpaare mit genau einem Platz dazwischen, <InlineMath math="2" /> Reihenfolgen für A und B und <InlineMath math="4!" /> Anordnungen der übrigen Personen. Das ergibt <InlineMath math="4\cdot2\cdot4!=192" /> Anordnungen. Bei den vier Platzpaaren für A und B gibt es in den jeweils verbleibenden Plätzen insgesamt <InlineMath math="2+1+1+2=6" /> benachbarte Platzpaare für C und D. Jedes davon erlaubt <InlineMath math="2\cdot2\cdot2=8" /> Anordnungen der Reihenfolgen von A und B, C und D sowie E und F. Daher sind <InlineMath math="6\cdot8=48" /> ungültig. Gesucht sind <InlineMath math="192-48=144" /> Anordnungen.
+Für A und B gibt es <InlineMath math="4" /> mögliche Sitzplatzpaare mit genau einem Platz dazwischen, <InlineMath math="2" /> Reihenfolgen für A und B und <InlineMath math="4!" /> Anordnungen der übrigen Personen. Das ergibt <InlineMath math="4\cdot2\cdot4!=192" /> Anordnungen.
+
+Die Plätze werden von <InlineMath math="1" /> bis <InlineMath math="6" /> nummeriert. Für jedes mögliche Platzpaar von A und B ergibt sich folgende Anzahl benachbarter Paare unter den übrigen Plätzen:
+
+| Plätze für A und B | Benachbarte Paare |
+| --- | ---: |
+| <InlineMath math="(1,3)" /> | <InlineMath math="2" /> |
+| <InlineMath math="(2,4)" /> | <InlineMath math="1" /> |
+| <InlineMath math="(3,5)" /> | <InlineMath math="1" /> |
+| <InlineMath math="(4,6)" /> | <InlineMath math="2" /> |
+
+Bei den vier Platzpaaren für A und B gibt es in den jeweils verbleibenden Plätzen insgesamt <InlineMath math="2+1+1+2=6" /> benachbarte Platzpaare für C und D.
+
+Jedes davon erlaubt <InlineMath math="2\cdot2\cdot2=8" /> Anordnungen der Reihenfolgen von A und B, C und D sowie E und F. Daher sind <InlineMath math="6\cdot8=48" /> ungültig. Gesucht sind <InlineMath math="192-48=144" /> Anordnungen.

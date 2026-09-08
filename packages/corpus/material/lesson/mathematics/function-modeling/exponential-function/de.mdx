@@ -4,7 +4,7 @@ export const metadata = {
   description: "Exponentielles Wachstum und exponentiellen Zerfall an Graphen, Bevölkerungsmodellen, Halbwertszeiten und Zinseszins verstehen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Funktionen und ihre Modellierung",
 };
 
@@ -60,22 +60,26 @@ Die beiden Grundformen lassen sich im selben Koordinatensystem direkt vergleiche
   }
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = i * 0.2 - 2;
         return { x, y: Math.pow(2, x), z: 0 };
       }),
       color: "#9333ea",
       showPoints: false,
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, at: 15, offset: [2, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=2^x" />, at: 75, offset: [2, -0.5, 0] }],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = i * 0.2 - 2;
         return { x, y: Math.pow(0.5, x), z: 0 };
       }),
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="g(x)=(0{,}5)^x" />, at: 5, offset: [-2, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=(0{,}5)^x" />, at: 25, offset: [-2, -0.5, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
@@ -107,22 +111,26 @@ Die Funktion <InlineMath math="f(x) = a \cdot b^x + c" /> verschiebt den Graphen
   }
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = i * 0.2 - 2;
         return { x, y: Math.pow(2, x), z: 0 };
       }),
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, at: 15, offset: [1.5, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=2^x" />, at: 75, offset: [1.5, -0.5, 0] }],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = i * 0.2 - 2;
         return { x, y: Math.pow(2, x) + 2, z: 0 };
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="g(x)=2^x+2" />, at: 15, offset: [0, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=2^x+2" />, at: 75, offset: [0, 0.5, 0] }],
     },
   ]}
   cameraPosition={[8, 5, 8]}

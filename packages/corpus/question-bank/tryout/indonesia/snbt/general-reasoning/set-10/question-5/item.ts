@@ -7,25 +7,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Die Schlussfolgerung ist definitiv wahr.",
+          label:
+            "Nia wird sich sicher nicht infizieren, weil die Exposition kein Infektionsrisiko schafft.",
         },
         {
           isCorrect: true,
-          label: "Die Schlussfolgerung ist möglicherweise wahr.",
-        },
-        {
-          isCorrect: false,
-          label: "Die Schlussfolgerung ist definitiv falsch.",
+          label:
+            "Nia könnte sich nicht infizieren. Sowohl eine Infektion als auch ihr Ausbleiben sind mit den Angaben vereinbar.",
         },
         {
           isCorrect: false,
           label:
-            "Die Schlussfolgerung ist für die bereitgestellten Informationen irrelevant.",
+            "Nia wird sich sicher infizieren, weil jede Exposition eine Infektion verursacht.",
         },
         {
           isCorrect: false,
           label:
-            "Die Schlussfolgerung kann aufgrund unzureichender Informationen nicht beurteilt werden.",
+            "Die Schlussfolgerung ist irrelevant, weil der Text keine Influenzaübertragung behandelt.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Es ist nicht bekannt, ob Nia Partikeln einer an Influenza erkrankten Person ausgesetzt war.",
         },
       ],
     },
@@ -34,24 +37,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "The conclusion is definitely true.",
+          label:
+            "Nia certainly will not catch influenza because exposure creates no infection risk.",
         },
         {
           isCorrect: true,
-          label: "The conclusion is possibly true.",
-        },
-        {
-          isCorrect: false,
-          label: "The conclusion is definitely false.",
-        },
-        {
-          isCorrect: false,
-          label: "The conclusion is irrelevant to the information provided.",
+          label:
+            "Nia may remain uninfected, but both infection and no infection are compatible with the information.",
         },
         {
           isCorrect: false,
           label:
-            "The conclusion cannot be assessed because the information is insufficient.",
+            "Nia certainly will catch influenza because every exposure causes infection.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "The conclusion is irrelevant because the passage does not discuss influenza transmission.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "There is no information about whether Nia was exposed to particles from a person with influenza.",
         },
       ],
     },
@@ -60,23 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Simpulan tersebut pasti benar.",
+          label:
+            "Nia pasti tidak tertular karena paparan tidak menimbulkan risiko infeksi.",
         },
         {
           isCorrect: true,
-          label: "Simpulan tersebut mungkin benar.",
+          label:
+            "Nia mungkin tidak tertular, tetapi tertular maupun tidak tertular masih sesuai dengan informasi.",
         },
         {
           isCorrect: false,
-          label: "Simpulan tersebut pasti salah.",
+          label:
+            "Nia pasti tertular karena setiap paparan selalu menyebabkan infeksi.",
         },
         {
           isCorrect: false,
-          label: "Simpulan tidak relevan dengan informasi yang diberikan.",
+          label:
+            "Simpulan tidak relevan karena bacaan tidak membahas penularan influenza.",
         },
         {
           isCorrect: false,
-          label: "Simpulan tidak dapat dinilai karena informasi tidak cukup.",
+          label:
+            "Tidak ada informasi tentang apakah Nia terpapar partikel dari orang yang flu.",
         },
       ],
     },

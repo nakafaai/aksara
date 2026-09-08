@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Museum erhöht die Verlässlichkeit der Darstellung, indem es Dokumente, Erinnerungen und Unsicherheit trennt, statt eine Version zu erzwingen.",
+            "Das Museum kann die Handelszeit sicher feststellen, sobald mehr Personen eine Darstellung unterstützen.",
         },
       ],
     },
@@ -58,7 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The museum improves the reliability of the account by distinguishing records, memories, and uncertainty rather than forcing one version to win.",
+            "The museum can establish the trading time with certainty whenever more people support one account.",
         },
       ],
     },
@@ -87,7 +87,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Museum meningkatkan keandalan keterangan dengan membedakan dokumen, ingatan, dan ketidakpastian, bukan dengan memaksa satu versi menang.",
+            "Museum dapat menetapkan waktu kegiatan secara pasti selama satu keterangan didukung oleh lebih banyak orang.",
         },
       ],
     },

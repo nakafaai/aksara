@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Deshalb blieb die Schlussfolgerung zu Lärmprotokoll im Wohngebiet begrenzt.",
+            "Die mittlere Zahl der Meldungen mit vollständigen Zeitangaben war höher. Deshalb blieb die Schlussfolgerung zum Lärmprotokoll begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Außerdem blieb die Schlussfolgerung zu Lärmprotokoll im Wohngebiet begrenzt.",
+            "Die mittlere Zahl der Meldungen mit vollständigen Zeitangaben war höher. Außerdem blieb die Schlussfolgerung zum Lärmprotokoll begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Zuvor blieb die Schlussfolgerung zu Lärmprotokoll im Wohngebiet begrenzt.",
+            "Die mittlere Zahl der Meldungen mit vollständigen Zeitangaben war höher. Zuvor blieb die Schlussfolgerung zum Lärmprotokoll begrenzt.",
         },
         {
           isCorrect: true,
           label:
-            "Die Zahlen stiegen. Dennoch blieb die Schlussfolgerung für diesen Kontext begrenzt: Lärmprotokoll im Wohngebiet.",
+            "Die mittlere Zahl der Meldungen mit vollständigen Zeitangaben war höher. Dennoch blieb die Schlussfolgerung zum Lärmprotokoll begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Folglich blieb die Schlussfolgerung zu Lärmprotokoll im Wohngebiet begrenzt.",
+            "Die mittlere Zahl der Meldungen mit vollständigen Zeitangaben war höher. Folglich blieb die Schlussfolgerung zum Lärmprotokoll begrenzt.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The figures increased. Therefore, the conclusion about the neighbourhood noise log remained limited.",
+            "The mean number of reports with complete timing was higher. Therefore, the conclusion about the noise log remained limited.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Moreover, the conclusion about the neighbourhood noise log remained limited.",
+            "The mean number of reports with complete timing was higher. Moreover, the conclusion about the noise log remained limited.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Previously, the conclusion about the neighbourhood noise log remained limited.",
+            "The mean number of reports with complete timing was higher. Previously, the conclusion about the noise log remained limited.",
         },
         {
           isCorrect: true,
           label:
-            "The figures increased. Nevertheless, the conclusion for this setting (neighbourhood noise log) remained limited.",
+            "The mean number of reports with complete timing was higher. Nevertheless, the conclusion about the noise log remained limited.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Consequently, the conclusion about the neighbourhood noise log remained limited.",
+            "The mean number of reports with complete timing was higher. Consequently, the conclusion about the noise log remained limited.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Oleh karena itu, simpulan tentang pencatatan kebisingan lingkungan tetap dibatasi.",
+            "Rata-rata laporan dengan waktu lengkap lebih tinggi. Oleh karena itu, simpulan tentang pencatatan kebisingan tetap dibatasi.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Selain itu, simpulan tentang pencatatan kebisingan lingkungan tetap dibatasi.",
+            "Rata-rata laporan dengan waktu lengkap lebih tinggi. Selain itu, simpulan tentang pencatatan kebisingan tetap dibatasi.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Sebelumnya, simpulan tentang pencatatan kebisingan lingkungan tetap dibatasi.",
+            "Rata-rata laporan dengan waktu lengkap lebih tinggi. Sebelumnya, simpulan tentang pencatatan kebisingan tetap dibatasi.",
         },
         {
           isCorrect: true,
           label:
-            "Angka meningkat. Namun, simpulan tentang pencatatan kebisingan lingkungan tetap dibatasi.",
+            "Rata-rata laporan dengan waktu lengkap lebih tinggi. Namun, simpulan tentang pencatatan kebisingan tetap dibatasi.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Akibatnya, simpulan tentang pencatatan kebisingan lingkungan tetap dibatasi.",
+            "Rata-rata laporan dengan waktu lengkap lebih tinggi. Akibatnya, simpulan tentang pencatatan kebisingan tetap dibatasi.",
         },
       ],
     },

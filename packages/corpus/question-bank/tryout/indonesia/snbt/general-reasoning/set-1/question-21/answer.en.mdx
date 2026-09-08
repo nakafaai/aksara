@@ -2,9 +2,15 @@ export const metadata = {
   title: "Solution to Question 21",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Separate the odd-position and even-position terms into two subsequences. Extend each subsequence by one step, then apply the expression requested in the prompt to the two new terms.
+Separate the odd and even positions. The odd-position terms form an arithmetic sequence with common difference <InlineMath math="4" />, while the even-position terms form a geometric sequence with ratio <InlineMath math="3" />.
 
-Therefore, the requested value is <InlineMath math="73" />.
+<BlockMath math="\begin{aligned} 3,\ 7,\ 11,\ 15,\ 19 \\ 2,\ 6,\ 18,\ 54 \end{aligned}" />
+
+The ninth term continues the odd-position sequence, and the eighth term continues the even-position sequence.
+
+<BlockMath math="\begin{aligned} a_9 &= 15+4=19 \\ a_8 &= 18\times3=54 \\ a_8+a_9 &= 54+19=73 \end{aligned}" />
+
+The requested sum is <InlineMath math="73" />.

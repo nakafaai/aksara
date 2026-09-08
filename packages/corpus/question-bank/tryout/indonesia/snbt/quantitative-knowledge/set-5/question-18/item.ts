@@ -24,7 +24,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die bereitgestellten Informationen reichen nicht aus, um sich für eine der vier oben genannten Möglichkeiten zu entscheiden",
+            "Die Angaben reichen nicht aus, um die Beziehung zu bestimmen.",
         },
       ],
     },
@@ -50,7 +50,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The information provided is not sufficient to decide on one of the four choices above",
+            "The information provided is insufficient to determine the relationship.",
         },
       ],
     },
@@ -76,7 +76,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari keempat pilihan di atas",
+            "Informasi yang diberikan tidak cukup untuk menentukan hubungan keduanya.",
         },
       ],
     },

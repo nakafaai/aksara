@@ -11,7 +11,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$A = B$$ dann $$E = F$$",
+          label: "Wenn $$A = B$$, dann $$E = F$$",
         },
         {
           isCorrect: false,
@@ -36,7 +36,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$A = B$$ then $$E = F$$",
+          label: "If $$A = B$$, then $$E = F$$",
         },
         {
           isCorrect: false,
@@ -61,7 +61,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$A = B$$ maka $$E = F$$",
+          label: "Jika $$A = B$$, maka $$E = F$$",
         },
         {
           isCorrect: false,

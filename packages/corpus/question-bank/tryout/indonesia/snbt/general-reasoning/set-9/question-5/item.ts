@@ -20,8 +20,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label:
-            "Mehr stehendes Wasser verringert die Brutmöglichkeiten für Mücken immer",
+          label: "Stehendes Wasser bietet Mücken niemals Brutplätze",
         },
         {
           isCorrect: false,
@@ -47,8 +46,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label:
-            "More standing water always lowers the potential for mosquito breeding",
+          label: "Standing water never provides breeding sites for mosquitoes",
         },
         {
           isCorrect: false,
@@ -75,7 +73,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Semakin banyak genangan, potensi perkembangbiakan nyamuk selalu semakin rendah",
+            "Genangan air tidak pernah menjadi tempat berkembang biak nyamuk",
         },
         {
           isCorrect: false,

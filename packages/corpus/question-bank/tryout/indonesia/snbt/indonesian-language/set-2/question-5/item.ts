@@ -19,7 +19,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Dibalik semua itu, ada peran pemerintah secara agregat",
+          label: "Di balik semua itu, ada peran pemerintah secara agregat",
         },
         {
           isCorrect: true,

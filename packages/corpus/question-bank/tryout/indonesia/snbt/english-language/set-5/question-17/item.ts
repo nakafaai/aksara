@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Samira wrote the entry date on the last unmarked package; the recurring object's physical appearance fixes its complete meaning from the first mention.",
+            "Samira wrote the entry date on the last unmarked package. The recurring object's physical appearance fixes its complete meaning from the first mention.",
         },
         {
           isCorrect: true,
@@ -18,17 +18,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Samira wrote the entry date on the last unmarked package; the ending states the object's meaning directly, making the earlier actions irrelevant.",
+            "Samira wrote the entry date on the last unmarked package. The ending states the object's meaning directly, making the earlier actions irrelevant.",
         },
         {
           isCorrect: false,
           label:
-            "Samira wrote the entry date on the last unmarked package; the setting alone changes the atmosphere, independently of the character's use of the recurring object.",
+            "Samira wrote the entry date on the last unmarked package. The setting alone changes the atmosphere, independently of the character's use of the recurring object.",
         },
         {
           isCorrect: false,
           label:
-            "Samira wrote the entry date on the last unmarked package; the object keeps one fixed meaning even as the character's action and the final response change.",
+            "Samira wrote the entry date on the last unmarked package. The object keeps one fixed meaning even as the character's action and the final response change.",
         },
       ],
     },

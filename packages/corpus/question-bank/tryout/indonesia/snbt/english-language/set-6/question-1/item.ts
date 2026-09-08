@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The class tested how holding the mixture at 37 degrees Celsius affected enzyme activity in a classroom model, while controlling the listed factors but treating one short trial as proof of a universal effect.",
+            "The class tested how holding the mixture at $$37^{\\circ}\\text{C}$$ affected enzyme activity in a classroom model, while controlling the listed factors but treating one short trial as proof of a universal effect.",
         },
         {
           isCorrect: true,
           label:
-            "The class found a higher colour-change score at 37°C under controlled conditions, while eye-based estimation limited the precision and reach of the conclusion.",
+            "The class found a higher colour-change score at $$37^{\\circ}\\text{C}$$ under controlled conditions, while eye-based estimation limited the precision and reach of the conclusion.",
         },
         {
           isCorrect: false,
           label:
-            "The class tested how holding the mixture at 37 degrees Celsius affected enzyme activity in a classroom model, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
+            "The class tested how holding the mixture at $$37^{\\circ}\\text{C}$$ affected enzyme activity in a classroom model, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
         },
         {
           isCorrect: false,
           label:
-            "The class tested how holding the mixture at 37 degrees Celsius affected enzyme activity in a classroom model, while treating the scientific term as the measured outcome that settles the investigation.",
+            "The class tested how holding the mixture at $$37^{\\circ}\\text{C}$$ affected enzyme activity in a classroom model, while treating the scientific term as the measured outcome that settles the investigation.",
         },
         {
           isCorrect: false,
           label:
-            "The class tested how holding the mixture at 37 degrees Celsius affected enzyme activity in a classroom model, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
+            "The class tested how holding the mixture at $$37^{\\circ}\\text{C}$$ affected enzyme activity in a classroom model, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
         },
       ],
     },

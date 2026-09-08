@@ -2,6 +2,7 @@ export const metadata = {
   title: "Solution for Problem 6",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-12-25",
+  dateModified: "2026-09-07",
 };
 
 The order of members in a set does not matter, so we use the concept of combinations.
@@ -16,25 +17,25 @@ An easier way is to use the complement principle: Total subsets minus subsets wi
 
 The combination formula is:
 
-<BlockMath math="C(n, r) = \binom{n}{r} = \frac{n!}{r!(n-r)!}" />
+<BlockMath math="\begin{aligned}C(n, r)&=\binom{n}{r}\\&=\frac{n!}{r!(n-r)!}\end{aligned}" />
 
 Calculate them one by one.
 
 #### Subsets with Zero Members
 
-<BlockMath math="C(10, 0) = \frac{10!}{0!10!} = 1" />
+<BlockMath math="\begin{aligned}C(10, 0)&=\frac{10!}{0!10!}\\&=1\end{aligned}" />
 
 #### Subsets with One member
 
-<BlockMath math="C(10, 1) = \frac{10!}{1!9!} = 10" />
+<BlockMath math="\begin{aligned}C(10, 1)&=\frac{10!}{1!9!}\\&=10\end{aligned}" />
 
 #### Subsets with Two Members
 
-<BlockMath math="C(10, 2) = \frac{10!}{2!8!} = \frac{10 \times 9}{2 \times 1} = 45" />
+<BlockMath math="\begin{aligned}C(10, 2)&=\frac{10!}{2!8!}\\&=\frac{10 \times 9}{2 \times 1}\\&=45\end{aligned}" />
 
 #### Subsets with Three Members
 
-<BlockMath math="C(10, 3) = \frac{10!}{3!7!} = \frac{10 \times 9 \times 8}{3 \times 2 \times 1} = 120" />
+<BlockMath math="\begin{aligned}C(10, 3)&=\frac{10!}{3!7!}\\&=\frac{10 \times 9 \times 8}{3 \times 2 \times 1}\\&=120\end{aligned}" />
 
 The number of subsets with <InlineMath math="\leq 3" /> members is:
 
@@ -42,6 +43,6 @@ The number of subsets with <InlineMath math="\leq 3" /> members is:
 
 Thus, the number of subsets with **more than <InlineMath math="3" />** members is:
 
-<BlockMath math="\begin{aligned} \text{Total} - (\leq 3) &= 1024 - 176 \\ &= 848 \end{aligned}" />
+<BlockMath math="1024-176=848" />
 
 So, the number of subsets of <InlineMath math="A" /> that have more than <InlineMath math="3" /> members is <InlineMath math="848" />.

@@ -2,7 +2,20 @@ export const metadata = {
   title: "Lösung zu Aufgabe 25",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-08-30",
+  dateModified: "2026-09-07",
 };
 
-Unter den <InlineMath math="\binom82=28" /> ungeordneten Paaren haben <InlineMath math="4\cdot4=16" /> eine ungerade Summe, <InlineMath math="\binom42=6" /> bestehen aus zwei Primzahlen, und <InlineMath math="7" /> enthalten die Zahl <InlineMath math="8" />. Ist die erste Karte gerade, bleiben vier ungerade Zahlen unter sieben Karten. Die Ereignisse erste Karte gerade und zweite Karte ungerade sind nicht unabhängig, denn <InlineMath math="\frac27\ne\frac12\cdot\frac12" />. Die Reihenfolge lautet: richtig, richtig, richtig, falsch, richtig.
+Es gibt <InlineMath math="\binom82=28" /> gleich wahrscheinliche ungeordnete Paare. Eine ungerade Summe entsteht aus einer geraden und einer ungeraden Karte. Beide Gruppen enthalten vier Karten.
+
+<BlockMath math="P=\frac{4\cdot4}{28}=\frac47" />
+
+Die verfügbaren Primzahlen sind <InlineMath math="2,3,5,7" />. Soll die größere Zahl <InlineMath math="8" /> sein, kann die andere Karte jede der sieben kleineren Zahlen zeigen.
+
+<BlockMath math="\begin{aligned}
+P(\text{prime, prime})&=\frac{\binom42}{28}=\frac3{14} \\
+P(\max=8)&=\frac7{28}=\frac14
+\end{aligned}" />
+
+Nach einer geraden ersten Karte bleiben vier ungerade Karten unter sieben. Die Wahrscheinlichkeit für eine ungerade zweite Karte beträgt <InlineMath math="\frac47" />. Sie unterscheidet sich von der unbedingten Wahrscheinlichkeit <InlineMath math="\frac48=\frac12" />. Die Ereignisse sind daher nicht unabhängig.
+
+Die vier Wahrscheinlichkeitsaussagen stimmen. Die Unabhängigkeitsaussage ist falsch.

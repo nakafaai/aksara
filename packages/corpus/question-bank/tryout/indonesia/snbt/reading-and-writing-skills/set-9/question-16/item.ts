@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Musikproberäume gaben kurze und knappe Rückmeldungen.",
+            "Die Nutzenden der Proberäume gaben kurze Rückmeldungen, die nicht lang waren.",
         },
         {
           isCorrect: true,
-          label:
-            "Die Nutzenden im untersuchten Kontext (Musikproberäume) gaben kurze Rückmeldungen.",
+          label: "Die Nutzenden der Proberäume gaben kurze Rückmeldungen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Musikproberäume gaben ihre eigenen kurzen Rückmeldungen persönlich ab.",
+            "Die Nutzenden der Proberäume gaben kurze Rückmeldungen als Personen, die die Proberäume nutzten.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Musikproberäume gaben kurze Rückmeldungen in knapper Form.",
+            "Die Nutzenden der Proberäume gaben kurze Rückmeldungen in kurzer Form.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Musikproberäume gaben kurze Rückmeldungen über ihre Erfahrungen in diesem Kontext.",
+            "Die Nutzenden der Proberäume gaben kurze Rückmeldungen, also Rückmeldungen von geringer Länge.",
         },
       ],
     },
@@ -38,27 +37,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Users in this setting (music practice rooms) provided comments that were brief and concise.",
+            "The practice-room users gave brief comments that were not long.",
         },
         {
           isCorrect: true,
-          label:
-            "Users in this setting (music practice rooms) provided brief comments.",
+          label: "The practice-room users gave brief comments.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (music practice rooms) provided their own brief comments personally.",
+            "The practice-room users gave brief comments as people using the practice rooms.",
+        },
+        {
+          isCorrect: false,
+          label: "The practice-room users gave brief comments in a brief form.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (music practice rooms) provided brief comments in a short form.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Users in this setting (music practice rooms) provided brief comments about their experience in this setting.",
+            "The practice-room users gave brief comments, meaning comments that were short.",
         },
       ],
     },
@@ -68,7 +65,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pengguna ruang latihan musik memberikan komentar yang singkat dan ringkas.",
+            "Pengguna ruang latihan musik memberikan komentar singkat yang tidak panjang.",
         },
         {
           isCorrect: true,
@@ -77,17 +74,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pengguna ruang latihan musik memberikan komentar singkat mereka sendiri secara pribadi.",
+            "Pengguna ruang latihan musik memberikan komentar singkat sebagai pengguna yang memakai ruang latihan musik.",
         },
         {
           isCorrect: false,
           label:
-            "Pengguna ruang latihan musik memberikan komentar singkat dalam bentuk pendek.",
+            "Pengguna ruang latihan musik memberikan komentar singkat dalam bentuk yang singkat.",
         },
         {
           isCorrect: false,
           label:
-            "Pengguna ruang latihan musik memberikan komentar singkat tentang pengalaman mereka di ruang tersebut.",
+            "Pengguna ruang latihan musik memberikan komentar singkat, yaitu komentar yang pendek.",
         },
       ],
     },

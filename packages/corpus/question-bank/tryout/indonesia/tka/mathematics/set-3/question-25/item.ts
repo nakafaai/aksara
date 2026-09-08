@@ -13,17 +13,18 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Die Wahrscheinlichkeit für die Summe $9$ beträgt $\\frac19$.",
+          label:
+            "Die Wahrscheinlichkeit für die Summe $$9$$ beträgt $$\\frac19$$.",
         },
         {
           correctCategoryOrder: 1,
           label:
-            "Die Wahrscheinlichkeit, dass der rote Würfel größer ist, beträgt $\\frac5{12}$.",
+            "Die Wahrscheinlichkeit, dass der rote Würfel größer ist, beträgt $$\\frac5{12}$$.",
         },
         {
           correctCategoryOrder: 1,
           label:
-            "Unter der Bedingung einer geraden Summe beträgt die Wahrscheinlichkeit für zwei ungerade Augenzahlen $\\frac12$.",
+            "Unter der Bedingung einer geraden Summe beträgt die Wahrscheinlichkeit für zwei ungerade Augenzahlen $$\\frac12$$.",
         },
         {
           correctCategoryOrder: 1,
@@ -33,7 +34,7 @@ const item: QuestionItem = {
         {
           correctCategoryOrder: 2,
           label:
-            "Die Wahrscheinlichkeit für mindestens eine Sechs beträgt $\\frac13$.",
+            "Die Wahrscheinlichkeit für mindestens eine Sechs beträgt $$\\frac13$$.",
         },
       ],
     },
@@ -43,16 +44,17 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "The probability of a sum of $9$ is $\\frac19$.",
-        },
-        {
-          correctCategoryOrder: 1,
-          label: "The probability that the red die is larger is $\\frac5{12}$.",
+          label: "The probability of a sum of $$9$$ is $$\\frac19$$.",
         },
         {
           correctCategoryOrder: 1,
           label:
-            "Given an even sum, the probability that both dice are odd is $\\frac12$.",
+            "The probability that the red die is larger is $$\\frac5{12}$$.",
+        },
+        {
+          correctCategoryOrder: 1,
+          label:
+            "Given an even sum, the probability that both dice are odd is $$\\frac12$$.",
         },
         {
           correctCategoryOrder: 1,
@@ -60,7 +62,7 @@ const item: QuestionItem = {
         },
         {
           correctCategoryOrder: 2,
-          label: "The probability of at least one six is $\\frac13$.",
+          label: "The probability of at least one six is $$\\frac13$$.",
         },
       ],
     },
@@ -70,16 +72,16 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Peluang jumlah kedua dadu $9$ adalah $\\frac19$.",
+          label: "Peluang jumlah kedua dadu $$9$$ adalah $$\\frac19$$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "Peluang dadu merah lebih besar adalah $\\frac5{12}$.",
+          label: "Peluang dadu merah lebih besar adalah $$\\frac5{12}$$.",
         },
         {
           correctCategoryOrder: 1,
           label:
-            "Jika jumlahnya genap, peluang kedua dadu menunjukkan angka ganjil adalah $\\frac12$.",
+            "Jika jumlahnya genap, peluang kedua dadu menunjukkan angka ganjil adalah $$\\frac12$$.",
         },
         {
           correctCategoryOrder: 1,
@@ -89,7 +91,7 @@ const item: QuestionItem = {
         {
           correctCategoryOrder: 2,
           label:
-            "Peluang sedikitnya satu dadu menunjukkan angka enam adalah $\\frac13$.",
+            "Peluang sedikitnya satu dadu menunjukkan angka enam adalah $$\\frac13$$.",
         },
       ],
     },

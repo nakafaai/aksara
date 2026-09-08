@@ -60,6 +60,21 @@ function expectRejections(sources: readonly string[]) {
 }
 
 layer(TypeScriptParser.layer)("question item source", (it) => {
+  it.effect("rejects literal dollars before accepting an authored item", () =>
+    Effect.gen(function* () {
+      const source = itemModule().replace('label: "A (ID)"', 'label: "$3$"');
+      const error = yield* Effect.flip(
+        decodeQuestionItemSource(source, sourcePath)
+      );
+      expect(error).toMatchObject({
+        _tag: "QuestionLabelError",
+        labelPath: "responses.id.options[0].label",
+        reason: "dollar",
+        sourcePath,
+      });
+    })
+  );
+
   it.effect("decodes reviewed literal data without executing the module", () =>
     Effect.gen(function* () {
       const item = yield* decodeQuestionItemSource(itemModule(), sourcePath);

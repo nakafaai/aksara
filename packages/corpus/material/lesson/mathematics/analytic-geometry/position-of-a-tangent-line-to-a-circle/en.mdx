@@ -3,7 +3,7 @@ export const metadata = {
   description: "Construct circle tangents from a contact point, a given slope, or an outside point, with visual models and complete solutions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Analytic Geometry",
 };
 
@@ -26,6 +26,7 @@ Start by checking that the proposed point of tangency really lies on the circle.
   description="The radius to the known contact point is normal to the tangent."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 3;
@@ -166,6 +167,7 @@ If the point of tangency is unknown but the slope is given, the intercept must p
   description="A given slope determines two parallel tangents, one on each side of the center."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 2.5;
@@ -294,6 +296,7 @@ A point outside a circle determines exactly **two tangent lines**. Their two con
   description="One outside point determines two contact points and two tangent lines."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 2;

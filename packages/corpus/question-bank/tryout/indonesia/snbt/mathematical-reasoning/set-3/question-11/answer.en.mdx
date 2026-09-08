@@ -1,6 +1,7 @@
 export const metadata = {
   title: "Solution to Question 11",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2026-02-08",
 };
 
@@ -18,9 +19,7 @@ There are <InlineMath math="5" /> remaining flags (China, Denmark, Ecuador, Finl
 
 Here is the visualization of the filled slots:
 
-<MathContainer>
-  <BlockMath math="\begin{array}{|c|c|c|c|c|c|} \hline 2 & 5 & 4 & 3 & 2 & 1 \\ \hline \end{array}" />
-</MathContainer>
+<BlockMath math="\begin{array}{|c|c|c|c|c|c|} \hline 2 & 5 & 4 & 3 & 2 & 1 \\ \hline \end{array}" />
 
 The number <InlineMath math="2" /> represents the ways to arrange the ends.
 
@@ -28,12 +27,12 @@ The numbers <InlineMath math="5, 4, 3, 2, 1" /> represent the ways to arrange th
 
 **Final Calculation**
 
-The total number of ways is the product of all numbers in the boxes.
+Let <InlineMath math="N" /> be the number of arrangements. The six boxes show counting factors, rather than the seven physical flag positions. Multiplying the factors gives <InlineMath math="N" />.
 
 <MathContainer>
-  <BlockMath math="\text{Total} = 2 \times (5 \times 4 \times 3 \times 2 \times 1)" />
-  <BlockMath math="\text{Total} = 2 \times 5!" />
-  <BlockMath math="\text{Total} = 2(5!)" />
+  <BlockMath math="\begin{aligned}N &= 2\,(5 \times 4 \\ &\quad \times 3 \times 2 \times 1)\end{aligned}" />
+  <BlockMath math="N = 2 \times 5!" />
+  <BlockMath math="N = 2(5!) = 240" />
 </MathContainer>
 
 Thus, there are <InlineMath math="2(5!)" /> ways to arrange the flags.

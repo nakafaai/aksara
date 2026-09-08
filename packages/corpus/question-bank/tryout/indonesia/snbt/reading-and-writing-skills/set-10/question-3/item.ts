@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Beobachtung bewies daher, dass die Änderung nach Rezeptschritten gruppierte Zutaten den Unterschied verursachte.",
+            "Die Ausgangsbeobachtung bewies, dass die Zutatenordnung den Unterschied verursachte.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team musste daher mehrere Merkmale im Kontext Kochkurs für Jugendliche ändern, bevor es erneut maß.",
+            "Das Team musste vor einer neuen Messung mehrere Kursmerkmale zugleich ändern.",
         },
         {
           isCorrect: false,
           label:
-            "Das erste Muster rechtfertigte daher die dauerhafte Einführung von nach Rezeptschritten gruppierte Zutaten.",
+            "Das Ausgangsmuster rechtfertigte eine dauerhafte Zutatenordnung nach Rezeptschritten.",
         },
         {
           isCorrect: true,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: nach Rezeptschritten geordnete Zutaten.",
+            "Die Vermutung musste deshalb durch eine Ordnung der Zutaten nach Rezeptschritten geprüft werden.",
         },
         {
           isCorrect: false,
           label:
-            "Die verbleibende Unsicherheit machte einen weiteren Vergleich daher überflüssig.",
+            "Die verbleibende Unsicherheit machte weitere Vergleiche überflüssig.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The observation therefore established that ingredients grouped by recipe stage caused the difference.",
+            "The baseline observation proved that grouping ingredients caused the difference.",
         },
         {
           isCorrect: false,
           label:
-            "The team therefore needed to alter several features of teen cooking class before measuring again.",
+            "The team needed to change several class features at once before measuring again.",
         },
         {
           isCorrect: false,
           label:
-            "The initial pattern therefore justified permanent adoption of ingredients grouped by recipe stage.",
+            "The baseline pattern justified permanent grouping of ingredients by recipe stage.",
         },
         {
           isCorrect: true,
           label:
-            "The hypothesis therefore needed a limited test of ingredients grouped by recipe stage.",
+            "The hypothesis therefore needed to be tested by grouping ingredients by recipe stage.",
         },
         {
           isCorrect: false,
           label:
-            "The remaining uncertainty therefore made another comparison unnecessary.",
+            "The remaining uncertainty made another comparison unnecessary.",
         },
       ],
     },
@@ -68,22 +68,21 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pengamatan itu membuktikan bahwa bahan yang dikelompokkan menurut tahap resep menyebabkan perbedaan.",
+            "Pengamatan awal membuktikan bahwa pengelompokan bahan menyebabkan perbedaan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim perlu mengubah beberapa unsur kelas memasak remaja sebelum melakukan pengukuran ulang.",
+            "Tim perlu mengubah beberapa unsur kelas sekaligus sebelum mengukur ulang.",
         },
         {
           isCorrect: false,
-          label:
-            "Pola awal itu membenarkan penerapan tetap bahan yang dikelompokkan menurut tahap resep.",
+          label: "Pola awal membenarkan pengelompokan bahan secara permanen.",
         },
         {
           isCorrect: true,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui bahan yang dikelompokkan menurut tahap resep.",
+            "Oleh karena itu, dugaan tersebut perlu diuji dengan mengelompokkan bahan menurut tahap resep.",
         },
         {
           isCorrect: false,

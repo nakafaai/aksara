@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$250\\sqrt{2}\\text{ Meter}$$",
+          label: "$$250\\sqrt{2}\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$500\\sqrt{3}\\text{ Meter}$$",
+          label: "$$500\\sqrt{3}\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$500\\sqrt{2}\\text{ Meter}$$",
+          label: "$$500\\sqrt{2}\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$250\\text{ Meter}$$",
+          label: "$$250\\text{ m}$$",
         },
         {
           isCorrect: true,
-          label: "$$250\\sqrt{3}\\text{ Meter}$$",
+          label: "$$250\\sqrt{3}\\text{ m}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$250\\sqrt{2}\\text{ meter}$$",
+          label: "$$250\\sqrt{2}\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$500\\sqrt{3}\\text{ meter}$$",
+          label: "$$500\\sqrt{3}\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$500\\sqrt{2}\\text{ meter}$$",
+          label: "$$500\\sqrt{2}\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$250\\text{ meter}$$",
+          label: "$$250\\text{ m}$$",
         },
         {
           isCorrect: true,
-          label: "$$250\\sqrt{3}\\text{ meter}$$",
+          label: "$$250\\sqrt{3}\\text{ m}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$250\\sqrt{2}\\text{ meter}$$",
+          label: "$$250\\sqrt{2}\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$500\\sqrt{3}\\text{ meter}$$",
+          label: "$$500\\sqrt{3}\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$500\\sqrt{2}\\text{ meter}$$",
+          label: "$$500\\sqrt{2}\\text{ m}$$",
         },
         {
           isCorrect: false,
-          label: "$$250\\text{ meter}$$",
+          label: "$$250\\text{ m}$$",
         },
         {
           isCorrect: true,
-          label: "$$250\\sqrt{3}\\text{ meter}$$",
+          label: "$$250\\sqrt{3}\\text{ m}$$",
         },
       ],
     },

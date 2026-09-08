@@ -2,9 +2,27 @@ export const metadata = {
   title: "Lösung zu Aufgabe 28",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Zähle zunächst die Anordnungen, die alle Bedingungen gleichzeitig erfüllen. Da jede Anordnung gleich wahrscheinlich ist, teile diese Anzahl durch die Gesamtzahl aller Permutationen und kürze den Bruch vollständig.
+Wählen Sie zunächst zwei um zwei Plätze versetzte Positionen für <InlineMath math="A" /> und <InlineMath math="B" />. Zählen Sie für jedes Paar die noch freien benachbarten Positionspaare für <InlineMath math="C" /> und <InlineMath math="D" />.
 
-Damit ist der gesuchte Wert <InlineMath math="\frac1{35}" />.
+| Positionen für A und B | Freie Nachbarpaare |
+| :---: | :---: |
+| <InlineMath math="(1,3)" /> | <InlineMath math="3" /> |
+| <InlineMath math="(2,4)" /> | <InlineMath math="2" /> |
+| <InlineMath math="(3,5)" /> | <InlineMath math="2" /> |
+| <InlineMath math="(4,6)" /> | <InlineMath math="2" /> |
+| <InlineMath math="(5,7)" /> | <InlineMath math="3" /> |
+
+Insgesamt gibt es <InlineMath math="3+2+2+2+3=12" /> Möglichkeiten für das Positionspaar von <InlineMath math="C,D" />. Sowohl <InlineMath math="A,B" /> als auch <InlineMath math="C,D" /> lassen sich jeweils in <InlineMath math="2" /> Reihenfolgen einsetzen. Die übrigen drei Berichte besetzen die freien Plätze auf <InlineMath math="3!=6" /> Arten.
+
+<BlockMath math="12\times2\times2\times6=288" />
+
+Bei der Hälfte dieser Anordnungen steht <InlineMath math="E" /> vor <InlineMath math="F" />. Durch Vertauschen dieser Berichte wird jede zulässige Reihenfolge genau einer umgekehrten zugeordnet.
+
+<BlockMath math="288\div2=144" />
+
+Ohne Einschränkung gibt es <InlineMath math="7!=5040" /> Anordnungen. Die Wahrscheinlichkeit beträgt daher
+
+<BlockMath math="P=\frac{144}{5040}=\frac1{35}" />

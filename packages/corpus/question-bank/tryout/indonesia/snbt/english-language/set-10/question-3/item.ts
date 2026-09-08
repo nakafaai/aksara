@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Repeat the three arrangements with more cells but keep the same single resistor; this alone would establish their current, power, and operating time under every load.",
+            "Repeat the three arrangements with more cells but keep the same single resistor. This alone would establish their current, power, and operating time under every load.",
         },
         {
           isCorrect: false,
@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Test several resistor values while measuring voltage, current, and each cell's internal resistance; this would show whether the series pattern persists and clarify what it implies for power.",
+            "Test several resistor values while measuring voltage, current, and each cell's internal resistance. This would show whether the series pattern persists and clarify what it implies for power.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Repeat only the series arrangement until its mean is exactly twice 1.46 V, then treat that equality as evidence that the original limitation no longer matters.",
+            "Repeat only the series arrangement until its mean is exactly twice $$1.46\\,\\text{V}$$, then treat that equality as evidence that the original limitation no longer matters.",
         },
       ],
     },

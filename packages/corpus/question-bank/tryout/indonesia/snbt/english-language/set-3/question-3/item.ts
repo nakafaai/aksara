@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The mean rose to 16, compared with 9 at baseline and 10 in the comparison condition. This supports an association between side-facing seed openings and root growth under the tested conditions, but the small containers and six-day trial require further testing before a broader claim.",
+            "The mean rose to $$16$$, compared with $$9$$ at baseline and $$10$$ in the comparison condition. This supports an association between side-facing seed openings and root growth under the tested conditions, but the small containers and six-day trial require further testing before a broader claim.",
         },
         {
           isCorrect: false,
           label:
-            "Because the mean rose to 16, compared with 9 at baseline and 10 in the comparison condition, holding seed type, moisture, container size, and observation time constant isolates placing the seed opening toward the side of a clear container as the only possible cause.",
+            "Because the mean rose to $$16$$, compared with $$9$$ at baseline and $$10$$ in the comparison condition, holding seed type, moisture, container size, and observation time constant isolates placing the seed opening toward the side of a clear container as the only possible cause.",
         },
         {
           isCorrect: false,

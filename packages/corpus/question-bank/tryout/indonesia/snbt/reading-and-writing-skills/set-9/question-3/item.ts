@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Beobachtung bewies daher, dass die Änderung Pflanzortetiketten auf jedem Tablett den Unterschied verursachte.",
+            "Die Ausgangsdaten bewiesen, dass Pflanzortetiketten den Unterschied verursachten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team musste daher mehrere Merkmale im Kontext Verteilung von Mangrovensetzlingen ändern, bevor es erneut maß.",
+            "Das Team musste vor einer neuen Messung mehrere Verteilungsmerkmale zugleich ändern.",
         },
         {
           isCorrect: true,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Pflanzortetiketten auf jedem Tablett.",
+            "Der mögliche Nutzen von Pflanzortetiketten musste deshalb an jedem Setzlingstablett geprüft werden.",
         },
         {
           isCorrect: false,
           label:
-            "Das erste Muster rechtfertigte daher die dauerhafte Einführung von Pflanzortetiketten auf jedem Tablett.",
+            "Das Ausgangsmuster rechtfertigte den dauerhaften Einsatz von Pflanzortetiketten.",
         },
         {
           isCorrect: false,
           label:
-            "Die verbleibende Unsicherheit machte einen weiteren Vergleich daher überflüssig.",
+            "Die verbleibende Unsicherheit machte weitere Vergleiche überflüssig.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The observation therefore established that planting-site labels on every tray caused the difference.",
+            "The baseline had proved that planting-site labels caused the difference.",
         },
         {
           isCorrect: false,
           label:
-            "The team therefore needed to alter several features of mangrove seedling distribution before measuring again.",
+            "The team needed to change several distribution features at once before measuring again.",
         },
         {
           isCorrect: true,
           label:
-            "The hypothesis therefore needed a limited test of planting-site labels on every tray.",
+            "The possible benefit of planting-site labels therefore needed to be tested on each seedling tray.",
         },
         {
           isCorrect: false,
           label:
-            "The initial pattern therefore justified permanent adoption of planting-site labels on every tray.",
+            "The baseline pattern justified permanent use of planting-site labels.",
         },
         {
           isCorrect: false,
           label:
-            "The remaining uncertainty therefore made another comparison unnecessary.",
+            "The remaining uncertainty made further comparison unnecessary.",
         },
       ],
     },
@@ -68,22 +68,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pengamatan itu membuktikan bahwa label lokasi tanam pada setiap baki menyebabkan perbedaan.",
+            "Data awal telah membuktikan bahwa label lokasi menyebabkan perbedaan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim perlu mengubah beberapa unsur distribusi bibit mangrove sebelum melakukan pengukuran ulang.",
+            "Tim perlu mengubah beberapa unsur pembagian bibit sekaligus sebelum mengukur ulang.",
         },
         {
           isCorrect: true,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui label lokasi tanam pada setiap baki bibit.",
+            "Oleh karena itu, dugaan tentang kegunaan label lokasi perlu diuji pada setiap baki bibit.",
         },
         {
           isCorrect: false,
           label:
-            "Pola awal itu membenarkan penerapan tetap label lokasi tanam pada setiap baki.",
+            "Pola awal membenarkan penggunaan label lokasi secara permanen.",
         },
         {
           isCorrect: false,

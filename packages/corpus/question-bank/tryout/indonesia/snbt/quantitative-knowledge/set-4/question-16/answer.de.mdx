@@ -2,13 +2,15 @@ export const metadata = {
   title: "Lösung zu Aufgabe 16",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-26",
+  dateModified: "2026-09-07",
 };
 
 Gegeben sei die Operationsregel:
 
-<MathContainer>
-  <BlockMath math="\beta(w \oplus x \ominus y \otimes z) = z(y + w) - \frac{z}{x}" />
-</MathContainer>
+<BlockMath math="\begin{gathered}
+\beta(w\oplus x\ominus y\otimes z) \\
+=z(y+w)-\frac zx
+\end{gathered}" />
 
 Gesucht ist <InlineMath math="\beta(1 \oplus 2 \ominus 3 \otimes -4)" />.
 
@@ -21,11 +23,13 @@ Aus der Reihenfolge der Argumente lesen wir ab:
 
 Diese Werte setzen wir direkt in die Formel ein.
 
-<MathContainer>
-  <BlockMath math="\beta(1 \oplus 2 \ominus 3 \otimes -4) = -4(3 + 1) - \frac{-4}{2}" />
-  <BlockMath math="= -4(4) - (-2)" />
-  <BlockMath math="= -16 + 2" />
-  <BlockMath math="= -14" />
-</MathContainer>
+Der gesuchte Wert werde mit <InlineMath math="R" /> bezeichnet. Da <InlineMath math="x=2\ne0" /> gilt, ist das Einsetzen zulässig:
+
+<BlockMath math="\begin{aligned}
+R&=-4(3+1)-\frac{-4}{2} \\
+&=-4\cdot4-(-2) \\
+&=-16+2 \\
+&=-14
+\end{aligned}" />
 
 Der Wert der Operation ist also <InlineMath math="-14" />.

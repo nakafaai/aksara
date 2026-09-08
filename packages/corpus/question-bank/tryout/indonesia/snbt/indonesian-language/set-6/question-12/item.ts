@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Kartu tujuan menghasilkan 10 catatan lengkap lebih banyak daripada catatan biasa dari jumlah pertemuan yang sama; hasil itu belum mengukur perubahan nilai semester.",
+            "Kartu tujuan menghasilkan $$10$$ catatan lengkap lebih banyak daripada catatan biasa dari jumlah pertemuan yang sama. Hasil itu belum mengukur perubahan nilai semester.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kondisi pembanding menghasilkan nilai rata-rata 17; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+            "Kondisi pembanding menghasilkan nilai rata-rata $$17$$. Karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
       ],
     },

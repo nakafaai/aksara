@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bima mempertahankan target 18 kotak dengan mengirim semua muatan lebih dahulu, lalu merapikan ketidakcocokan label setelah kapal berangkat.",
+            "Bima mempertahankan target $$18$$ kotak dengan mengirim semua muatan lebih dahulu, lalu merapikan ketidakcocokan label setelah kapal berangkat.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Bima memilih mengirim 16 kotak yang terverifikasi dan menahan dua kotak yang meragukan, lalu belajar bahwa kepemimpinan menuntut koordinasi dan tanggung jawab yang dapat diperiksa.",
+            "Bima memilih mengirim $$16$$ kotak yang terverifikasi dan menahan dua kotak yang meragukan, lalu belajar bahwa kepemimpinan menuntut koordinasi dan tanggung jawab yang dapat diperiksa.",
         },
       ],
     },

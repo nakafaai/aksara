@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Tim A",
+          label: "Team A",
         },
         {
           isCorrect: true,
-          label: "Tim C",
+          label: "Team C",
         },
         {
           isCorrect: false,
-          label: "Tim B",
+          label: "Team B",
         },
         {
           isCorrect: false,
-          label: "Tim A dan B",
+          label: "Team A und B",
         },
         {
           isCorrect: false,
-          label: "Ketiganya sama",
+          label: "Alle drei Teams haben denselben Wert",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Tim A",
+          label: "Team A",
         },
         {
           isCorrect: true,
-          label: "Tim C",
+          label: "Team C",
         },
         {
           isCorrect: false,
-          label: "Tim B",
+          label: "Team B",
         },
         {
           isCorrect: false,
-          label: "Tim A dan B",
+          label: "Team A and B",
         },
         {
           isCorrect: false,
-          label: "Ketiganya sama",
+          label: "All three teams have the same value",
         },
       ],
     },

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Mittelpunktswinkel erkennen, zugehörige Bögen einordnen und Bogenlängen sicher berechnen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
   subject: "Kreisbögen und Sektoren",
 };
 
@@ -46,7 +46,9 @@ In einem Kreis mit Mittelpunkt <InlineMath math="O" /> liegen <InlineMath math="
       showPoints: true,
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (Math.PI / 6) + (i * (2 * Math.PI / 3) / 20);
         return {
           x: 1.5 * Math.cos(angle),
@@ -57,9 +59,10 @@ In einem Kreis mit Mittelpunkt <InlineMath math="O" /> liegen <InlineMath math="
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
-      labels: [{ text: <InlineMath math="\theta=120^\circ" />, at: 10, offset: [0.5, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="\theta=120^\circ" />, at: 50, offset: [0.5, 0.5, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 61 }, (_, i) => {
         const angle = (Math.PI / 6) + (i * (2 * Math.PI / 3) / 60);
         return {
@@ -85,7 +88,7 @@ In einem Kreis mit Mittelpunkt <InlineMath math="O" /> liegen <InlineMath math="
       color: "#0891b2",
       lineWidth: 1,
       showPoints: false,
-      smooth: true,
+      smooth: false,
     },
   ]}
   cameraPosition={[0, 0, 10]}
@@ -125,7 +128,9 @@ Ein großer Bogen wird von einem Reflexwinkel über <InlineMath math="180^\circ"
   description="Visualisierung von kleinem Bogen, Halbkreis und großem Bogen."
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = i * (Math.PI / 3) / 20;
         return {
           x: 2 * Math.cos(angle),
@@ -136,9 +141,10 @@ Ein großer Bogen wird von einem Reflexwinkel über <InlineMath math="180^\circ"
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
-      labels: [{ text: <InlineMath math="\theta=60^\circ" />, at: 10, offset: [1, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="\theta=60^\circ" />, at: 50, offset: [1, 0.3, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 31 }, (_, i) => {
         const angle = i * (Math.PI / 3) / 30;
         return {
@@ -183,7 +189,9 @@ Ein großer Bogen wird von einem Reflexwinkel über <InlineMath math="180^\circ"
       showPoints: false,
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = Math.PI + (i * Math.PI / 20);
         return {
           x: 2.5 * Math.cos(angle),
@@ -194,9 +202,10 @@ Ein großer Bogen wird von einem Reflexwinkel über <InlineMath math="180^\circ"
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
-      labels: [{ text: <InlineMath math="\theta=180^\circ" />, at: 10, offset: [0, -0.8, 0] }],
+      labels: [{ text: <InlineMath math="\theta=180^\circ" />, at: 50, offset: [0, -0.8, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 51 }, (_, i) => {
         const angle = Math.PI + (i * Math.PI / 50);
         return {
@@ -208,7 +217,7 @@ Ein großer Bogen wird von einem Reflexwinkel über <InlineMath math="180^\circ"
       color: "#d97706",
       lineWidth: 4,
       showPoints: false,
-      labels: [{ text: <>Halbkreis <InlineMath math="(180^\circ)" /></>, at: 25, offset: [0, -1, 0] }],
+      labels: [{ text: "Halbkreis", at: 25, offset: [0, -1, 0] }],
     },
     {
       points: Array.from({ length: 101 }, (_, i) => {
@@ -222,7 +231,7 @@ Ein großer Bogen wird von einem Reflexwinkel über <InlineMath math="180^\circ"
       color: "#0d9488",
       lineWidth: 1,
       showPoints: false,
-      smooth: true,
+      smooth: false,
     },
   ]}
   cameraPosition={[0, 0, 15]}
@@ -288,6 +297,7 @@ Der zum Mittelpunktswinkel <InlineMath math="120^\circ" /> gehörende Bogen ist 
       showPoints: true,
     },
     {
+      smooth: false,
       points: Array.from({ length: 25 }, (_, i) => {
         const angle = i * (2 * Math.PI / 3) / 24;
         return {
@@ -302,6 +312,7 @@ Der zum Mittelpunktswinkel <InlineMath math="120^\circ" /> gehörende Bogen ist 
       labels: [{ text: <InlineMath math="\theta=120^\circ" />, at: 12, offset: [0.8, 0.8, 0] }],
     },
     {
+      smooth: false,
       points: Array.from({ length: 41 }, (_, i) => {
         const angle = i * (2 * Math.PI / 3) / 40;
         return {
@@ -327,7 +338,7 @@ Der zum Mittelpunktswinkel <InlineMath math="120^\circ" /> gehörende Bogen ist 
       color: "#4f46e5",
       lineWidth: 1,
       showPoints: false,
-      smooth: true,
+      smooth: false,
     },
   ]}
   cameraPosition={[0, 0, 15]}

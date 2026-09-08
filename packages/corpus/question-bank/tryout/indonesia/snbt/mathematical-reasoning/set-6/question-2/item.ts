@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$0{,}50$$ Km",
+          label: "$$0{,}50\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: "$$1{,}22$$ Km",
+          label: "$$1{,}22\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: "$$2{,}40$$ Km",
+          label: "$$2{,}40\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: "$$2{,}50$$ Km",
+          label: "$$2{,}50\\text{ km}$$",
         },
         {
           isCorrect: true,
-          label: "$$1{,}44$$ Km",
+          label: "$$1{,}44\\text{ km}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$0.50$$ Km",
+          label: "$$0.50\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: "$$1.22$$ Km",
+          label: "$$1.22\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: "$$2.40$$ Km",
+          label: "$$2.40\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: "$$2.50$$ Km",
+          label: "$$2.50\\text{ km}$$",
         },
         {
           isCorrect: true,
-          label: "$$1.44$$ Km",
+          label: "$$1.44\\text{ km}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$0{,}50$$ Km",
+          label: "$$0{,}50\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: "$$1{,}22$$ Km",
+          label: "$$1{,}22\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: "$$2{,}40$$ Km",
+          label: "$$2{,}40\\text{ km}$$",
         },
         {
           isCorrect: false,
-          label: "$$2{,}50$$ Km",
+          label: "$$2{,}50\\text{ km}$$",
         },
         {
           isCorrect: true,
-          label: "$$1{,}44$$ Km",
+          label: "$$1{,}44\\text{ km}$$",
         },
       ],
     },

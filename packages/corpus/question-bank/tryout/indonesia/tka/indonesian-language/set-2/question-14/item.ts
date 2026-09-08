@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "dua pengamatan awal mendukung manfaat praktis, tetapi belum membuktikan penyebab tunggal",
+            "dua pengamatan setelah pembangunan mendukung manfaat praktis, tetapi belum membuktikan penyebab tunggal",
         },
         {
           isCorrect: false,

@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *advokasi diri* menjelaskan cara Nisa menyampaikan kebutuhan akses dengan bukti rute, mengusulkan perubahan, dan ikut menilai hasil uji.",
+            "Definisi *advokasi diri* menjelaskan cara Nisa menyampaikan kebutuhan akses dengan bukti rute, mengusulkan perubahan, dan mendapat kesempatan menilai hasil uji.",
         },
         {
           isCorrect: false,

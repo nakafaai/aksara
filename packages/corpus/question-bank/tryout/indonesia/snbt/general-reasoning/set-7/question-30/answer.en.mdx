@@ -2,9 +2,40 @@ export const metadata = {
   title: "Solution to Question 30",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-The feasible integer maximum occurs at <InlineMath math="(X,Y)=(5,5)" /> with profit 55, one more than the next-best pair. The fraction of all packages that are X is <InlineMath math="5/(5+5)=1/2" />.
+Let <InlineMath math="x" /> and <InlineMath math="y" /> be the numbers of X and Y packages. The material limit, time limit, and profit <InlineMath math="L" /> are:
 
-Therefore, the requested value is <InlineMath math="\\frac12" />.
+<MathContainer>
+  <BlockMath math="2x+3y\le27" />
+  <BlockMath math="5x+y\le30" />
+  <BlockMath math="L=6x+5y" />
+</MathContainer>
+
+Both <InlineMath math="x" /> and <InlineMath math="y" /> are non-negative integers. The time limit gives <InlineMath math="x\le6" />.
+
+For each value of <InlineMath math="x" />, choose the largest <InlineMath math="y" /> satisfying both limits. This maximizes profit within that row because each extra Y adds <InlineMath math="5" /> profit units.
+
+| <InlineMath math="x" /> | Maximum <InlineMath math="y" /> | <InlineMath math="L" /> |
+| ---: | ---: | ---: |
+| <InlineMath math="0" /> | <InlineMath math="9" /> | <InlineMath math="45" /> |
+| <InlineMath math="1" /> | <InlineMath math="8" /> | <InlineMath math="46" /> |
+| <InlineMath math="2" /> | <InlineMath math="7" /> | <InlineMath math="47" /> |
+| <InlineMath math="3" /> | <InlineMath math="7" /> | <InlineMath math="53" /> |
+| <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="54" /> |
+| <InlineMath math="5" /> | <InlineMath math="5" /> | <InlineMath math="55" /> |
+| <InlineMath math="6" /> | <InlineMath math="0" /> | <InlineMath math="36" /> |
+
+The largest profit is <InlineMath math="55" />, attained only at <InlineMath math="x=5" /> and <InlineMath math="y=5" />. The next-best pair gives <InlineMath math="54" />.
+
+The selected pair satisfies both limits:
+
+<MathContainer>
+  <BlockMath math="2(5)+3(5)=25\le27" />
+  <BlockMath math="5(5)+5=30\le30" />
+</MathContainer>
+
+Of the <InlineMath math="5+5=10" /> packages, <InlineMath math="5" /> are X. Their fraction is:
+
+<BlockMath math="\frac5{10}=\frac12" />

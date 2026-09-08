@@ -19,11 +19,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$A\\mathbin{/}B$$",
+          label: "Maschinen $$A$$ und $$B$$ haben denselben höchsten Index.",
         },
         {
           isCorrect: false,
-          label: "$$B\\mathbin{/}C$$",
+          label: "Maschinen $$B$$ und $$C$$ haben denselben höchsten Index.",
         },
       ],
     },
@@ -44,11 +44,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$A\\mathbin{/}B$$",
+          label: "Machines $$A$$ and $$B$$ tie for the highest index.",
         },
         {
           isCorrect: false,
-          label: "$$B\\mathbin{/}C$$",
+          label: "Machines $$B$$ and $$C$$ tie for the highest index.",
         },
       ],
     },
@@ -69,11 +69,11 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "$$A\\mathbin{/}B$$",
+          label: "Mesin $$A$$ dan $$B$$ memiliki indeks tertinggi yang sama.",
         },
         {
           isCorrect: false,
-          label: "$$B\\mathbin{/}C$$",
+          label: "Mesin $$B$$ dan $$C$$ memiliki indeks tertinggi yang sama.",
         },
       ],
     },

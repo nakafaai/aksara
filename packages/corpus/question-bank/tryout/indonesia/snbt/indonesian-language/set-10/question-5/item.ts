@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Sudut 45 Derajat sebagai Aturan untuk Semua Oven Surya",
+          label: "Sudut $$45$$ Derajat sebagai Aturan untuk Semua Oven Surya",
         },
         {
           isCorrect: true,

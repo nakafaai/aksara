@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$M(3,-2)=(0,2)$.",
+          label: "$$M(3,-2)=(0,2)$$.",
         },
         {
           isCorrect: true,
-          label: "M erhält Abstände.",
+          label: "$$M$$ erhält Abstände.",
         },
         {
           isCorrect: true,
-          label: "M kehrt die Orientierung um.",
+          label: "$$M$$ kehrt die Orientierung um.",
         },
         {
           isCorrect: true,
-          label: "$M^2(x,y)=(x+1,y+1)$.",
+          label: "$$M^2(x,y)=(x+1,y+1)$$.",
         },
         {
           isCorrect: false,
-          label: "M besitzt mindestens einen Fixpunkt.",
+          label: "$$M$$ besitzt mindestens einen Fixpunkt.",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$M(3,-2)=(0,2)$.",
+          label: "$$M(3,-2)=(0,2)$$.",
         },
         {
           isCorrect: true,
-          label: "M preserves distance.",
+          label: "$$M$$ preserves distance.",
         },
         {
           isCorrect: true,
-          label: "M reverses orientation.",
+          label: "$$M$$ reverses orientation.",
         },
         {
           isCorrect: true,
-          label: "$M^2(x,y)=(x+1,y+1)$.",
+          label: "$$M^2(x,y)=(x+1,y+1)$$.",
         },
         {
           isCorrect: false,
-          label: "M has at least one fixed point.",
+          label: "$$M$$ has at least one fixed point.",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$M(3,-2)=(0,2)$.",
+          label: "$$M(3,-2)=(0,2)$$.",
         },
         {
           isCorrect: true,
-          label: "M mempertahankan jarak.",
+          label: "$$M$$ mempertahankan jarak.",
         },
         {
           isCorrect: true,
-          label: "M membalik orientasi.",
+          label: "$$M$$ membalik orientasi.",
         },
         {
           isCorrect: true,
-          label: "$M^2(x,y)=(x+1,y+1)$.",
+          label: "$$M^2(x,y)=(x+1,y+1)$$.",
         },
         {
           isCorrect: false,
-          label: "M memiliki sedikitnya satu titik tetap.",
+          label: "$$M$$ memiliki sedikitnya satu titik tetap.",
         },
       ],
     },

@@ -7,7 +7,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "FOLU lag im Basisjahr 2010 unter dem Energiesektor.",
+          label: "FOLU lag im Basisjahr $$2010$$ unter dem Energiesektor.",
         },
         {
           isCorrect: true,
@@ -17,7 +17,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Landwirtschaft hatte in der Projektion für 2030 den höchsten Wert.",
+            "Die Landwirtschaft hatte in der Projektion für $$2030$$ den höchsten Wert.",
         },
         {
           isCorrect: false,
@@ -27,7 +27,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Abfall und Industrieprozesse übertrafen zusammen den Energiesektor im Basisjahr 2010.",
+            "Abfall und Industrieprozesse übertrafen zusammen den Energiesektor im Basisjahr $$2010$$.",
         },
       ],
     },
@@ -36,7 +36,7 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "FOLU had a lower value than energy in the 2010 baseline.",
+          label: "FOLU had a lower value than energy in the $$2010$$ baseline.",
         },
         {
           isCorrect: true,
@@ -45,7 +45,8 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Agriculture had the highest value in the 2030 projection.",
+          label:
+            "Agriculture had the highest value in the $$2030$$ projection.",
         },
         {
           isCorrect: false,
@@ -55,7 +56,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Waste and industrial processes together exceeded energy in the 2010 baseline.",
+            "Waste and industrial processes together exceeded energy in the $$2010$$ baseline.",
         },
       ],
     },
@@ -65,7 +66,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Nilai FOLU lebih rendah daripada energi pada tahun dasar 2010.",
+            "Nilai FOLU lebih rendah daripada energi pada tahun dasar $$2010$$.",
         },
         {
           isCorrect: true,
@@ -75,7 +76,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Sektor pertanian memiliki nilai tertinggi pada proyeksi 2030.",
+            "Sektor pertanian memiliki nilai tertinggi pada proyeksi $$2030$$.",
         },
         {
           isCorrect: false,
@@ -84,7 +85,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Gabungan sektor limbah dan proses industri melampaui energi pada tahun dasar 2010.",
+            "Gabungan sektor limbah dan proses industri melampaui energi pada tahun dasar $$2010$$.",
         },
       ],
     },

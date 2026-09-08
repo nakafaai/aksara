@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "am Montag prüfte das Team Genre-Schilder auf jedem Tisch im Kontext Büchertauschmarkt.",
+            "am Montag prüfte das Team Genre-Schilder auf jedem Tisch des Büchertauschmarkts.",
         },
         {
           isCorrect: false,
           label:
-            "Am montag prüfte das Team Genre-Schilder auf jedem Tisch im Kontext Büchertauschmarkt.",
+            "Am montag prüfte das Team Genre-Schilder auf jedem Tisch des Büchertauschmarkts.",
         },
         {
           isCorrect: true,
           label:
-            "Am Montag prüfte das Team Genre-Schilder auf jedem Tisch im folgenden Kontext: Büchertauschmarkt.",
+            "Am Montag prüfte das Team Genre-Schilder auf jedem Tisch des Büchertauschmarkts.",
         },
         {
           isCorrect: false,
           label:
-            "Am Montag prüfte Das Team Genre-Schilder auf jedem Tisch im Kontext Büchertauschmarkt.",
+            "Am Montag prüfte Das Team Genre-Schilder auf jedem Tisch des Büchertauschmarkts.",
         },
         {
           isCorrect: false,
           label:
-            "Am Montag, prüfte das Team Genre-Schilder auf jedem Tisch im Kontext Büchertauschmarkt",
+            "Am Montag, prüfte das Team Genre-Schilder auf jedem Tisch des Büchertauschmarkts",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "on Monday, the team tested genre signs on each table in this setting (book exchange market).",
+            "on Monday, the team tested genre signs on every table at the book exchange.",
         },
         {
           isCorrect: false,
           label:
-            "On monday, the team tested genre signs on each table in this setting (book exchange market).",
+            "On monday, the team tested genre signs on every table at the book exchange.",
         },
         {
           isCorrect: true,
           label:
-            "On Monday, the team tested genre signs on each table in this setting (book exchange market).",
+            "On Monday, the team tested genre signs on every table at the book exchange.",
         },
         {
           isCorrect: false,
           label:
-            "On Monday, The team tested genre signs on each table in this setting (book exchange market).",
+            "On Monday, The team tested genre signs on every table at the book exchange.",
         },
         {
           isCorrect: false,
           label:
-            "On Monday the team tested genre signs on each table in this setting (book exchange market)",
+            "On Monday the team tested genre signs on every table at the book exchange",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "pada Senin, tim menguji tanda genre di setiap meja di pasar tukar buku.",
+            "pada Senin, tim menguji tanda genre di setiap meja pasar tukar buku.",
         },
         {
           isCorrect: false,
           label:
-            "Pada senin, tim menguji tanda genre di setiap meja di pasar tukar buku.",
+            "Pada senin, tim menguji tanda genre di setiap meja pasar tukar buku.",
         },
         {
           isCorrect: true,
           label:
-            "Pada Senin, tim menguji tanda genre di setiap meja di pasar tukar buku.",
+            "Pada Senin, tim menguji tanda genre di setiap meja pasar tukar buku.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin, Tim menguji tanda genre di setiap meja di pasar tukar buku.",
+            "Pada Senin, Tim menguji tanda genre di setiap meja pasar tukar buku.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin tim menguji tanda genre di setiap meja di pasar tukar buku",
+            "Pada Senin tim menguji tanda genre di setiap meja pasar tukar buku",
         },
       ],
     },

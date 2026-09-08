@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$2$$ cm",
+          label: "$$2\\,\\mathrm{cm}$$",
         },
         {
           isCorrect: true,
-          label: "$$1{,}5$$ cm",
+          label: "$$1{,}5\\,\\mathrm{cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$2{,}5$$ cm",
+          label: "$$2{,}5\\,\\mathrm{cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$3$$ cm",
+          label: "$$3\\,\\mathrm{cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$3{,}5$$ cm",
+          label: "$$3{,}5\\,\\mathrm{cm}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$2$$ cm",
+          label: "$$2\\,\\mathrm{cm}$$",
         },
         {
           isCorrect: true,
-          label: "$$1.5$$ cm",
+          label: "$$1.5\\,\\mathrm{cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$2.5$$ cm",
+          label: "$$2.5\\,\\mathrm{cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$3$$ cm",
+          label: "$$3\\,\\mathrm{cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$3.5$$ cm",
+          label: "$$3.5\\,\\mathrm{cm}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$2$$ cm",
+          label: "$$2\\,\\mathrm{cm}$$",
         },
         {
           isCorrect: true,
-          label: "$$1{,}5$$ cm",
+          label: "$$1{,}5\\,\\mathrm{cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$2{,}5$$ cm",
+          label: "$$2{,}5\\,\\mathrm{cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$3$$ cm",
+          label: "$$3\\,\\mathrm{cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$3{,}5$$ cm",
+          label: "$$3{,}5\\,\\mathrm{cm}$$",
         },
       ],
     },

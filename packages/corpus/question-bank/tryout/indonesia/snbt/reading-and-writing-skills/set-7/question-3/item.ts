@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Beobachtung bewies daher, dass die Änderung Menüvorbestellung am Vortag den Unterschied verursachte.",
+            "Die Ausgangsdaten bewiesen, dass Bestellungen am Vortag den Unterschied verursachten.",
         },
         {
           isCorrect: true,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Menübestellung am Vortag.",
+            "Die Hypothese musste deshalb mit Menübestellungen am Vortag geprüft werden.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team musste daher mehrere Merkmale im Kontext Schulfrühstücksprogramm ändern, bevor es erneut maß.",
+            "Das Team musste vor der nächsten Messung mehrere Programmmerkmale gleichzeitig ändern.",
         },
         {
           isCorrect: false,
           label:
-            "Das erste Muster rechtfertigte daher die dauerhafte Einführung von Menüvorbestellung am Vortag.",
+            "Das Ausgangsmuster rechtfertigte die dauerhafte Einführung von Vorbestellungen.",
         },
         {
           isCorrect: false,
           label:
-            "Die verbleibende Unsicherheit machte einen weiteren Vergleich daher überflüssig.",
+            "Die verbleibende Unsicherheit machte weitere Vergleiche überflüssig.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The observation therefore established that menu booking one day in advance caused the difference.",
+            "The baseline proved that ordering one day in advance caused the difference.",
         },
         {
           isCorrect: true,
           label:
-            "The hypothesis therefore needed a limited test of menu booking one day in advance.",
+            "The hypothesis therefore needed to be tested through menu orders placed one day in advance.",
         },
         {
           isCorrect: false,
           label:
-            "The team therefore needed to alter several features of school breakfast programme before measuring again.",
+            "The team needed to change several programme features at once before measuring again.",
         },
         {
           isCorrect: false,
           label:
-            "The initial pattern therefore justified permanent adoption of menu booking one day in advance.",
+            "The baseline pattern justified adopting advance orders permanently.",
         },
         {
           isCorrect: false,
           label:
-            "The remaining uncertainty therefore made another comparison unnecessary.",
+            "The remaining uncertainty made further comparison unnecessary.",
         },
       ],
     },
@@ -68,22 +68,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pengamatan itu membuktikan bahwa pemesanan menu sehari sebelumnya menyebabkan perbedaan.",
+            "Data awal membuktikan bahwa pemesanan sehari sebelumnya menyebabkan perbedaan hasil.",
         },
         {
           isCorrect: true,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui pemesanan menu sehari sebelumnya.",
+            "Oleh karena itu, hipotesis tersebut perlu diuji melalui pemesanan menu sehari sebelumnya.",
         },
         {
           isCorrect: false,
           label:
-            "Tim perlu mengubah beberapa unsur program sarapan sekolah sebelum melakukan pengukuran ulang.",
+            "Tim perlu mengubah beberapa unsur program sarapan sekaligus sebelum mengukur ulang.",
         },
         {
           isCorrect: false,
           label:
-            "Pola awal itu membenarkan penerapan tetap pemesanan menu sehari sebelumnya.",
+            "Pola awal membenarkan pemesanan sehari sebelumnya secara permanen.",
         },
         {
           isCorrect: false,

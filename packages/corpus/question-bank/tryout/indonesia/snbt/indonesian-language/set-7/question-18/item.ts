@@ -13,12 +13,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Sebanyak 64 komentar positif dari 240 catatan membuktikan bahwa sebagian besar seluruh pengunjung mudah mengikuti demonstrasi.",
+            "Sebanyak $$64$$ komentar positif dari $$240$$ catatan membuktikan bahwa sebagian besar seluruh pengunjung mudah mengikuti demonstrasi.",
         },
         {
           isCorrect: false,
           label:
-            "Adanya 31 komentar tentang bahasa teknis membuktikan bahwa pesan inklusif pada poster sengaja dibuat tidak jujur.",
+            "Adanya $$31$$ komentar tentang bahasa teknis membuktikan bahwa pesan inklusif pada poster sengaja dibuat tidak jujur.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Penyelenggara menampilkan pameran sebagai kegiatan untuk setiap keluarga, tetapi catatan sukarela dari dua kota menunjukkan bahwa sebagian penulis masih mengalami hambatan bahasa dan akses.",
+            "Penyelenggara menampilkan pameran sebagai kegiatan untuk setiap keluarga, tetapi catatan sukarela dari dua kota menunjukkan bahwa sebagian catatan melaporkan hambatan bahasa teknis dan akses.",
         },
       ],
     },

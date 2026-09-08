@@ -11,7 +11,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Kostum 1998 yang Tidak Boleh Diubah",
+          label: "Kostum $$1998$$ yang Tidak Boleh Diubah",
         },
         {
           isCorrect: true,

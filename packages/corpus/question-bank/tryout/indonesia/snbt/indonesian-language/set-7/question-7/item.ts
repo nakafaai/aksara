@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Karena langkah simulasi dapat diulang, batas 16 dan 24 dapat langsung dipakai untuk memperkirakan daya dukung semua populasi nyata.",
+            "Karena langkah simulasi dapat diulang, batas $$16$$ dan $$24$$ dapat langsung dipakai untuk memperkirakan daya dukung semua populasi nyata.",
         },
         {
           isCorrect: true,

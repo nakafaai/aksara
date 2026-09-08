@@ -5,8 +5,6 @@ import { FastCheck } from "effect/testing";
 import { MathVisualSchema } from "#contracts/math/visual";
 
 const planeFrame = {
-  axes: "visible",
-  grid: "visible",
   kind: "cartesian",
   x: { max: 10, min: -10 },
   y: { max: 10, min: -10 },
@@ -32,8 +30,13 @@ describe("plane math visual", () => {
     const visual = Schema.decodeUnknownSync(MathVisualSchema)({
       frame: planeFrame,
       labels: [
-        { at: { x: 0, y: 0 }, key: "origin", placement: "below" },
-        { at: { x: 2, y: 2 }, key: "turning-point" },
+        {
+          at: { x: 0, y: 0 },
+          key: "origin",
+          objectId: "point-fixture",
+          placement: "below",
+        },
+        { at: { x: 2, y: 2 }, key: "turning-point", objectId: "point-fixture" },
       ],
       objects: [
         object("point", { at: { x: 0, y: 0 } }),

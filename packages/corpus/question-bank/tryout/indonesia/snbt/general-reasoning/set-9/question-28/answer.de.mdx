@@ -2,13 +2,36 @@ export const metadata = {
   title: "Lösung zu Aufgabe 28",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-07",
 };
 
-Zuerst wird ausgewählt, welcher Bericht aus A und B an einem Ende liegt und ob es das linke oder rechte Ende ist. Dafür gibt es <InlineMath math="2\cdot2=4" /> Möglichkeiten. Der andere Bericht aus A und B muss eine der vier inneren Positionen belegen; die übrigen vier Berichte lassen sich auf <InlineMath math="4!" /> Arten anordnen. Vor dem Ausschluss benachbarter C und D gibt es somit <InlineMath math="4\cdot4\cdot4!=384" /> Anordnungen.
+Wir wählen, welcher Bericht aus A und B an einem Ende steht, und danach das linke oder rechte Ende:
 
-Für jede Wahl von Bericht und Ende liefert der Block C-D mit zwei inneren Reihenfolgen auf den übrigen fünf Positionen <InlineMath math="2\cdot4!=48" /> Anordnungen. Davon legen <InlineMath math="2\cdot3!=12" /> den anderen Bericht aus A und B an das gegenüberliegende Ende und sind bereits unzulässig. Die Zahl der Anordnungen mit benachbarten C und D beträgt daher <InlineMath math="4(48-12)=144" />.
+<BlockMath math="2\times2=4" />
 
-Es bleiben <InlineMath math="384-144=240" /> Anordnungen, in denen C und D nicht benachbart sind. Durch den Tausch von C und D hat die Hälfte C vor D. Somit gibt es <InlineMath math="240/2=120" /> gültige Anordnungen.
+Der andere Bericht aus A und B besetzt eine der vier inneren Positionen. Die übrigen vier Berichte lassen sich frei anordnen. Vor der Prüfung von C und D erhalten wir:
 
-Damit ist der gesuchte Wert <InlineMath math="\\frac16" />.
+<BlockMath math="4\times4\times4!=384" />
+
+Für jede Wahl von Bericht und Ende fassen wir C und D zu einem Block mit zwei inneren Reihenfolgen zusammen. Dieser Block bildet mit drei weiteren Berichten vier Objekte auf den fünf übrigen Positionen:
+
+<BlockMath math="2\times4!=48" />
+
+Einige Blockanordnungen setzen den anderen Bericht aus A und B ans gegenüberliegende Ende. Sie verletzen bereits die erste Bedingung. Wird dieser Bericht dort festgesetzt, bleiben drei Objekte anzuordnen:
+
+<BlockMath math="2\times3!=12" />
+
+Wir ziehen die bereits ungültigen Anordnungen ab und multiplizieren mit den vier Möglichkeiten für Bericht und Ende. Diese Anzahl mit benachbarten C und D muss ausgeschlossen werden:
+
+<BlockMath math="4(48-12)=144" />
+
+Sind C und D nicht benachbart, erhält ihr Tausch alle übrigen Bedingungen. Genau die Hälfte der verbleibenden Anordnungen hat C vor D:
+
+<MathContainer>
+  <BlockMath math="384-144=240" />
+  <BlockMath math="240\div2=120" />
+</MathContainer>
+
+Insgesamt gibt es <InlineMath math="6!=720" /> gleich wahrscheinliche Anordnungen, daher:
+
+<BlockMath math="\frac{120}{720}=\frac16" />

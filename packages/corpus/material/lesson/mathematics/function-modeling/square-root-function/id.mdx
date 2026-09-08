@@ -3,7 +3,7 @@ export const metadata = {
   description: "Analisis fungsi akar melalui domain, daerah hasil, transformasi grafik, persamaan, pertidaksamaan, serta model ketinggian.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Fungsi dan Pemodelannya",
 };
 
@@ -65,7 +65,9 @@ Visualisasikan fungsi akar dasar <InlineMath math="f(x) = \sqrt{x}" />.
   }
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = i * 0.5;
         return { x, y: Math.sqrt(x), z: 0 };
       }),
@@ -74,7 +76,7 @@ Visualisasikan fungsi akar dasar <InlineMath math="f(x) = \sqrt{x}" />.
       labels: [
         {
           text: <InlineMath math="f(x)=\sqrt{x}" />,
-          at: 5,
+          at: 25,
           offset: [0, 1, 0],
         },
       ],
@@ -103,7 +105,9 @@ Fungsi <InlineMath math="f(x) = \sqrt{x-h}" /> menggeser grafik fungsi akar dasa
   }
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = i * 0.5;
         return { x, y: Math.sqrt(x), z: 0 };
       }),
@@ -112,13 +116,15 @@ Fungsi <InlineMath math="f(x) = \sqrt{x-h}" /> menggeser grafik fungsi akar dasa
       labels: [
         {
           text: <InlineMath math="\sqrt{x}" />,
-          at: 5,
+          at: 25,
           offset: [0, -0.5, 0],
         },
       ],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = 2 + i * 0.5;
         return { x, y: Math.sqrt(x - 2), z: 0 };
       }),
@@ -127,13 +133,15 @@ Fungsi <InlineMath math="f(x) = \sqrt{x-h}" /> menggeser grafik fungsi akar dasa
       labels: [
         {
           text: <InlineMath math="\sqrt{x-2}" />,
-          at: 10,
+          at: 50,
           offset: [0, -0.5, 0],
         },
       ],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = -2 + i * 0.5;
         return { x, y: Math.sqrt(x + 2), z: 0 };
       }),
@@ -142,7 +150,7 @@ Fungsi <InlineMath math="f(x) = \sqrt{x-h}" /> menggeser grafik fungsi akar dasa
       labels: [
         {
           text: <InlineMath math="\sqrt{x+2}" />,
-          at: 10,
+          at: 50,
           offset: [0, 0.5, 0],
         },
       ],
@@ -177,7 +185,9 @@ Pada <InlineMath math="f(x) = a\sqrt{x}" />, nilai <InlineMath math="|a|>1" /> m
   }
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = i * 0.5;
         return { x, y: Math.sqrt(x), z: 0 };
       }),
@@ -186,13 +196,15 @@ Pada <InlineMath math="f(x) = a\sqrt{x}" />, nilai <InlineMath math="|a|>1" /> m
       labels: [
         {
           text: <InlineMath math="\sqrt{x}" />,
-          at: 5,
+          at: 25,
           offset: [0, -0.5, 0],
         },
       ],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = i * 0.5;
         return { x, y: 2 * Math.sqrt(x), z: 0 };
       }),
@@ -201,13 +213,15 @@ Pada <InlineMath math="f(x) = a\sqrt{x}" />, nilai <InlineMath math="|a|>1" /> m
       labels: [
         {
           text: <InlineMath math="2\sqrt{x}" />,
-          at: 10,
+          at: 50,
           offset: [0, -0.5, 0],
         },
       ],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = i * 0.5;
         return { x, y: 0.5 * Math.sqrt(x), z: 0 };
       }),
@@ -216,7 +230,7 @@ Pada <InlineMath math="f(x) = a\sqrt{x}" />, nilai <InlineMath math="|a|>1" /> m
       labels: [
         {
           text: <InlineMath math="\frac{1}{2}\sqrt{x}" />,
-          at: 10,
+          at: 50,
           offset: [0, 0.5, 0],
         },
       ],
@@ -333,7 +347,9 @@ Karena kedua ruas non-negatif pada domain, penguadratan mempertahankan pertidaks
      description={<>Grafik fungsi akar yang mengalami refleksi terhadap sumbu <InlineMath math="x" /> dan translasi.</>}
      data={[
        {
-         points: Array.from({ length: 21 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 101 }, (_, sampleIndex) => {
+           const i = sampleIndex / 5;
            const x = -4 + i * 0.8;
            const y = -Math.sqrt(x + 4) + 2;
            return { x, y, z: 0 };
@@ -343,7 +359,7 @@ Karena kedua ruas non-negatif pada domain, penguadratan mempertahankan pertidaks
          labels: [
            {
              text: <InlineMath math="g(x)=-\sqrt{x+4}+2" />,
-             at: 8,
+             at: 40,
              offset: [0, -1, 0],
            },
            {

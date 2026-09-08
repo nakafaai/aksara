@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dennoch, begrenzte das Team seine Schlussfolgerung zum Kontext Erfassung von Straßenbäumen auf den kurzen Versuch.",
+            "Dennoch, begrenzte das Team seine Schlussfolgerung auf die in den Beispielfotos dargestellten Baumarten.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch: begrenzte das Team seine Schlussfolgerung zum Kontext Erfassung von Straßenbäumen auf den kurzen Versuch.",
+            "Dennoch: begrenzte das Team seine Schlussfolgerung auf die in den Beispielfotos dargestellten Baumarten.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch; begrenzte das Team seine Schlussfolgerung zum Kontext Erfassung von Straßenbäumen auf den kurzen Versuch.",
+            "Dennoch begrenzte das Team, seine Schlussfolgerung auf die in den Beispielfotos dargestellten Baumarten.",
         },
         {
           isCorrect: false,
           label:
-            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Erfassung von Straßenbäumen auf den kurzen Versuch?",
+            "Dennoch begrenzte das Team seine Schlussfolgerung auf die in den Beispielfotos dargestellten Baumarten?",
         },
         {
           isCorrect: true,
           label:
-            "Dennoch begrenzte das Team seine Schlussfolgerung zum Kontext Erfassung von Straßenbäumen auf den kurzen Versuch.",
+            "Dennoch begrenzte das Team seine Schlussfolgerung auf die in den Beispielfotos dargestellten Baumarten.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Nevertheless the team limited its conclusion for this setting (street-tree survey) to the short trial.",
+            "Nevertheless, the, team limited its conclusion to the tree species represented in the sample photographs.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless: the team limited its conclusion for this setting (street-tree survey) to the short trial.",
+            "Nevertheless: the team limited its conclusion to the tree species represented in the sample photographs.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless; the team limited its conclusion for this setting (street-tree survey) to the short trial.",
+            "Nevertheless, the team, limited its conclusion to the tree species represented in the sample photographs.",
         },
         {
           isCorrect: false,
           label:
-            "Nevertheless, the team limited its conclusion for this setting (street-tree survey) to the short trial?",
+            "Nevertheless, the team limited its conclusion to the tree species represented in the sample photographs?",
         },
         {
           isCorrect: true,
           label:
-            "Nevertheless, the team limited its conclusion for this setting (street-tree survey) to the short trial.",
+            "Nevertheless, the team limited its conclusion to the tree species represented in the sample photographs.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Meskipun demikian tim membatasi simpulan tentang pendataan pohon jalan pada uji singkat tersebut.",
+            "Meskipun demikian tim membatasi simpulan pada jenis pohon yang terwakili dalam contoh foto.",
         },
         {
           isCorrect: false,
           label:
-            "Meskipun demikian: tim membatasi simpulan tentang pendataan pohon jalan pada uji singkat tersebut.",
+            "Meskipun demikian: tim membatasi simpulan pada jenis pohon yang terwakili dalam contoh foto.",
         },
         {
           isCorrect: false,
           label:
-            "Meskipun demikian; tim membatasi simpulan tentang pendataan pohon jalan pada uji singkat tersebut.",
+            "Meskipun demikian, tim, membatasi simpulan pada jenis pohon yang terwakili dalam contoh foto.",
         },
         {
           isCorrect: false,
           label:
-            "Meskipun demikian, tim membatasi simpulan tentang pendataan pohon jalan pada uji singkat tersebut?",
+            "Meskipun demikian, tim membatasi simpulan pada jenis pohon yang terwakili dalam contoh foto?",
         },
         {
           isCorrect: true,
           label:
-            "Meskipun demikian, tim membatasi simpulan tentang pendataan pohon jalan pada uji singkat tersebut.",
+            "Meskipun demikian, tim membatasi simpulan pada jenis pohon yang terwakili dalam contoh foto.",
         },
       ],
     },

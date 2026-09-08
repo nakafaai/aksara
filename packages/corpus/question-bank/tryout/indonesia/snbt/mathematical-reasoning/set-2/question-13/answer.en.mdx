@@ -1,45 +1,32 @@
 export const metadata = {
   title: "Solution to Question 13",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2026-01-31",
 };
 
-**Analyzing the Track**
+#### Counting track segments
 
-The track is circular with the checkpoint sequence <InlineMath math="A \to B \to C \to D \to A" />. Since the distance between checkpoints is equal, we can count the number of segments the runner has traversed. Starting from <InlineMath math="A" />, the runner has passed checkpoint <InlineMath math="C" /> <InlineMath math="3\text{ times}" />.
+The path from <InlineMath math="A" /> to <InlineMath math="C" /> covers <InlineMath math="2" /> segments, <InlineMath math="A \to B \to C" />. Each later arrival at <InlineMath math="C" /> requires another full lap of <InlineMath math="4" /> segments.
 
-1.  Reaching <InlineMath math="C" /> for the <InlineMath math="1" />st time: <InlineMath math="A \to B \to C" /> (<InlineMath math="2\text{ segments}" />).
-2.  Reaching <InlineMath math="C" /> for the <InlineMath math="2" />nd time: <InlineMath math="C \to D \to A \to B \to C" /> (<InlineMath math="4\text{ segments}" />).
-3.  Reaching <InlineMath math="C" /> for the <InlineMath math="3" />rd time: <InlineMath math="C \to D \to A \to B \to C" /> (<InlineMath math="4\text{ segments}" />).
+- First arrival: <InlineMath math="2" /> segments.
+- From the first arrival to the second: another <InlineMath math="4" /> segments.
+- From the second arrival to the third: another <InlineMath math="4" /> segments.
 
-The total segments traversed is the sum of these stages.
+The number of segments covered by the third arrival is:
 
-<MathContainer>
-  <BlockMath math="\text{Total Segments} = 2 + 4 + 4 = 10 \text{ segments}" />
-</MathContainer>
+<BlockMath math="2+4+4=10" />
 
-**Calculating Time per Segment**
+#### Calculating travel time
 
-It is known that the time required to cover <InlineMath math="10\text{ segments}" /> is <InlineMath math="12\text{ minutes}" />. We can determine the time taken for one segment.
+The runner covers <InlineMath math="10" /> equal segments in <InlineMath math="12\text{ minutes}" />. At a constant speed, the time per segment is:
 
-<MathContainer>
-  <BlockMath math="\text{Time per segment} = \frac{12}{10} = 1.2 \text{ minutes}" />
-</MathContainer>
+<BlockMath math="\frac{12}{10}=1.2\text{ minutes}" />
 
-**Calculating the Total Time for the <InlineMath math="4" />th Arrival at C**
+The fourth arrival requires one more lap. The additional time for these <InlineMath math="4" /> segments is:
 
-To reach checkpoint <InlineMath math="C" /> for the fourth time, the runner must complete another full lap from their last position (at the <InlineMath math="3" />rd <InlineMath math="C" />). The additional path is <InlineMath math="C \to D \to A \to B \to C" />, which consists of <InlineMath math="4\text{ segments}" />.
+<BlockMath math="4\times1.2=4.8\text{ minutes}" />
 
-The additional time required is:
+The time from the start to the fourth arrival at <InlineMath math="C" /> is:
 
-<MathContainer>
-  <BlockMath math="\text{Additional Time} = 4 \times 1.2 = 4.8 \text{ minutes}" />
-</MathContainer>
-
-Thus, the total time from the start to reaching checkpoint <InlineMath math="C" /> for the fourth time is the sum of the initial time and the additional time.
-
-<MathContainer>
-  <BlockMath math="\text{Total Time} = 12 + 4.8 = 16.8 \text{ minutes}" />
-</MathContainer>
-
-Therefore, the time required is <InlineMath math="16.8\text{ minutes}" />.
+<BlockMath math="12+4.8=16.8\text{ minutes}" />

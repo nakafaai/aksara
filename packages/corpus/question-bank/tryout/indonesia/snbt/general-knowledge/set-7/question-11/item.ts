@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Neue Daten zeigen, dass Bewohner der Hügel trotz von Anfang an gleichwertiger Termine, Fahrten, Informationen und Kommunikationshilfen fernblieben.",
+            "Überprüfte Fahrtdaten zeigen, dass früh gehende Bewohner auch nach der Entscheidung eine gleichwertige Rückfahrt hatten, aber aus persönlichen Gründen früher aufbrachen.",
         },
       ],
     },
@@ -58,7 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "New data show that hill residents chose not to attend even though equivalent schedules, transport, information, and communication support had existed from the start.",
+            "Verified travel records show that residents who left early had equivalent return transport available after the decision session but chose to leave for personal reasons.",
         },
       ],
     },
@@ -88,7 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Data baru menunjukkan warga perbukitan sebenarnya memilih tidak hadir meskipun tersedia jadwal, transportasi, informasi, dan sarana komunikasi yang setara sejak awal.",
+            "Catatan perjalanan terverifikasi menunjukkan warga yang pulang lebih awal memiliki angkutan pulang yang setara setelah sesi keputusan, tetapi memilih pergi karena alasan pribadi.",
         },
       ],
     },

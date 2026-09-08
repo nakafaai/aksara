@@ -1,57 +1,47 @@
 export const metadata = {
   title: "Solution to Question 19",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2026-02-17",
 };
 
-#### Problem Identification
+#### Identifying the Right Triangle
 
-The camera, marker, and horizontal ground form a right triangle. We need the tangent of its angle of depression <InlineMath math="\tan \alpha" />.
+Let <InlineMath math="A" /> be the camera position, <InlineMath math="C" /> the top of the marker, and <InlineMath math="B" /> the point on the building wall horizontally level with <InlineMath math="C" />. Triangle <InlineMath math="ABC" /> is right-angled at <InlineMath math="B" />.
 
 <Set6Question19Graph
   title={<>Camera and marker positions</>}
-  description={<>Right triangle formed by the camera, marker, and building base.</>}
+  description={<>The camera is at <InlineMath math="A" />, the marker top is at <InlineMath math="C" />, and <InlineMath math="B" /> is on the building wall at the same height as the marker top.</>}
   label={{ horizontal: "Horizontal" }}
 />
 
-#### Determining Effective Height (Opposite Side)
+#### Calculating the Height Difference
 
-The camera is <InlineMath math="61.73\text{ meters}" /> above the ground, while the marker is <InlineMath math="173\text{ cm}" /> high. Convert the marker height first.
+The camera is <InlineMath math="61.73\text{ m}" /> above the ground, while the marker is <InlineMath math="173\text{ cm}" /> high. Convert to the same unit:
 
-<MathContainer>
-  <BlockMath math="173 \text{ cm} = 1.73 \text{ meters}" />
-</MathContainer>
+<BlockMath math="173\text{ cm}=1.73\text{ m}" />
 
-The vertical difference between the camera and the top of the marker is:
+The length <InlineMath math="AB" /> is the height difference between the camera and the marker top. In meters:
 
 <MathContainer>
-  <BlockMath math="\text{Effective Height} = \text{Building Height} - \text{Target Height}" />
-  <BlockMath math="opposite = 61.73 - 1.73 = 60 \text{ meters}" />
+  <BlockMath math="AB=61.73-1.73" />
+  <BlockMath math="AB=60" />
 </MathContainer>
 
-This is the opposite side <InlineMath math="opposite" /> of the corresponding angle of elevation, which equals the angle of depression.
+#### Determining the Horizontal Distance
 
-#### Determining Horizontal Distance (Adjacent Side)
+Since the ground is horizontal, <InlineMath math="BC" /> equals the horizontal distance from the marker to the building:
 
-The marker is <InlineMath math="180\text{ meters}" /> horizontally from the building. This is the adjacent side <InlineMath math="adjacent" />.
+<BlockMath math="BC=180\text{ m}" />
+
+#### Calculating the Tangent
+
+The angle of depression <InlineMath math="\alpha" /> equals the angle of elevation at <InlineMath math="C" />, because the two horizontal lines are parallel. Relative to the angle at <InlineMath math="C" />, <InlineMath math="AB" /> is the opposite side and <InlineMath math="BC" /> the adjacent side. Therefore:
 
 <MathContainer>
-  <BlockMath math="adjacent = 180 \text{ meters}" />
+  <BlockMath math="\tan\alpha=\frac{AB}{BC}" />
+  <BlockMath math="\tan\alpha=\frac{60}{180}" />
+  <BlockMath math="\tan\alpha=\frac13" />
 </MathContainer>
 
-#### Calculating Tangent of Angle of Depression
-
-For the angle of depression <InlineMath math="\alpha" />, the tangent is the ratio of the opposite side to the adjacent side.
-
-<MathContainer>
-  <BlockMath math="\tan \alpha = \frac{opposite}{adjacent}" />
-  <BlockMath math="\tan \alpha = \frac{60}{180}" />
-</MathContainer>
-
-Simplify the fraction:
-
-<MathContainer>
-  <BlockMath math="\tan \alpha = \frac{1}{3}" />
-</MathContainer>
-
-Therefore, the tangent of the angle of depression is <InlineMath math="\frac{1}{3}" />.
+The tangent of the angle of depression is <InlineMath math="\frac13" />.

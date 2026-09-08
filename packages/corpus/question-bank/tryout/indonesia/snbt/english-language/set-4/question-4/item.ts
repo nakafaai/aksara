@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "By defining *solute*, the report identifies the role of the dissolved salt before interpreting the temperature comparison and the study's limitation.",
+            "The definition of *solute* identifies salt's role in the solution, while the temperature comparison and its limitations determine what the results support.",
         },
         {
           isCorrect: false,

@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$a+b=29$",
+          label: "$$a+b=29$$",
         },
         {
           isCorrect: true,
-          label: "$|a-b|=21$",
+          label: "$$|a-b|=21$$",
         },
         {
           isCorrect: false,
-          label: "$\\sqrt{a+b}=7$",
+          label: "$$\\sqrt{a+b}=7$$",
         },
         {
           isCorrect: true,
-          label: "$(a-b)^2=441$",
+          label: "$$(a-b)^2=441$$",
         },
         {
           isCorrect: true,
-          label: "$\\frac1{\\sqrt a}+\\frac1{\\sqrt b}=\\frac7{10}$",
+          label: "$$\\frac1{\\sqrt a}+\\frac1{\\sqrt b}=\\frac7{10}$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$a+b=29$",
+          label: "$$a+b=29$$",
         },
         {
           isCorrect: true,
-          label: "$|a-b|=21$",
+          label: "$$|a-b|=21$$",
         },
         {
           isCorrect: false,
-          label: "$\\sqrt{a+b}=7$",
+          label: "$$\\sqrt{a+b}=7$$",
         },
         {
           isCorrect: true,
-          label: "$(a-b)^2=441$",
+          label: "$$(a-b)^2=441$$",
         },
         {
           isCorrect: true,
-          label: "$\\frac1{\\sqrt a}+\\frac1{\\sqrt b}=\\frac7{10}$",
+          label: "$$\\frac1{\\sqrt a}+\\frac1{\\sqrt b}=\\frac7{10}$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$a+b=29$",
+          label: "$$a+b=29$$",
         },
         {
           isCorrect: true,
-          label: "$|a-b|=21$",
+          label: "$$|a-b|=21$$",
         },
         {
           isCorrect: false,
-          label: "$\\sqrt{a+b}=7$",
+          label: "$$\\sqrt{a+b}=7$$",
         },
         {
           isCorrect: true,
-          label: "$(a-b)^2=441$",
+          label: "$$(a-b)^2=441$$",
         },
         {
           isCorrect: true,
-          label: "$\\frac1{\\sqrt a}+\\frac1{\\sqrt b}=\\frac7{10}$",
+          label: "$$\\frac1{\\sqrt a}+\\frac1{\\sqrt b}=\\frac7{10}$$",
         },
       ],
     },

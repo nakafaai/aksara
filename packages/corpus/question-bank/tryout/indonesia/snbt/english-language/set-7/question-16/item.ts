@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Asha removes words that do not change the next action, turning a detailed but unusable flood message into guidance that reaches the final house in time.",
+            "Asha removes distracting detail and adds the safe street and meeting point, turning a flood description into guidance that reaches the final house in time.",
         },
         {
           isCorrect: false,

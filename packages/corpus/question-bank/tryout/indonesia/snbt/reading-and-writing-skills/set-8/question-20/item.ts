@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Da 29 über 19 und 21 lag, erklärte das Team ein Formular mit strukturierten Ortsangaben für wirksam und führte die Änderung dauerhaft ein.",
+            "Da 29 über 19 und 21 lag, ersetzte das Team sofort alle Freitextmeldungen durch das Auswahlformular.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team verglich 29, 19 und 21, begrenzte die Aussage auf den untersuchten Kontext (Fundbüroservice) und plante eine längere Wiederholung.",
+            "Das Team verglich die Mittelwerte 29, 19 und 21, befürwortete noch keinen vollständigen Ersatz der Freitextfelder und plante einen längeren Test zusätzlicher Ortsoptionen bei derselben Messgröße der Zuordnung am selben Tag.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team verglich 29, 19 und 21 und plante eine längere Wiederholung, ohne die Aussage auf Fundbüroservice zu begrenzen.",
+            "Das Team verglich 29, 19 und 21 und plante weitere Tests, ohne die Aussage zu begrenzen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team begrenzte die Aussage auf Fundbüroservice und plante eine längere Wiederholung, ohne den Vergleich zu nennen.",
+            "Das Team behielt Freitextmeldungen bei und plante weitere Tests, ohne den Ergebnisvergleich zu nennen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Werte 29, 19 und 21 zeigten kein relevantes Muster, daher wollte das Team die Messregeln ändern.",
+            "Die Werte 29, 19 und 21 zeigten kein relevantes Muster, weshalb das Team die Messgröße für Zuordnungen ändern wollte.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Because 29 exceeded 19 and 21, the team concluded that the change was effective and adopted it permanently.",
+            "Because 29 exceeded 19 and 21, the team immediately replaced all free-text reports with the selection form.",
         },
         {
           isCorrect: true,
           label:
-            "The team compared 29, 19, and 21, limited its claim to this setting (lost-property service), and planned a longer repetition.",
+            "The team compared means of 29, 19, and 21, did not yet support replacing all free-text fields, and planned a longer test of additional location choices using the same-day matching measure.",
         },
         {
           isCorrect: false,
           label:
-            "The team compared 29, 19, and 21 and planned a longer repetition without limiting the claim to the context of lost-property service.",
+            "The team compared 29, 19, and 21 and planned further testing without limiting the claim.",
         },
         {
           isCorrect: false,
           label:
-            "The team limited its claim to the context of lost-property service and planned a longer repetition without reporting the comparison.",
+            "The team retained free-text reporting and planned further testing without stating the result comparison.",
         },
         {
           isCorrect: false,
           label:
-            "The values 29, 19, and 21 showed no relevant pattern, so the team planned to change the measurement rules.",
+            "The values 29, 19, and 21 showed no relevant pattern, so the team planned to change the matching measure.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Karena 29 lebih tinggi daripada 19 dan 21, tim menyimpulkan bahwa formulir dengan pilihan lokasi terstruktur efektif lalu menerapkannya secara tetap.",
+            "Karena 29 lebih tinggi daripada 19 dan 21, tim langsung mengganti seluruh laporan bebas dengan formulir pilihan.",
         },
         {
           isCorrect: true,
           label:
-            "Tim membandingkan 29, 19, dan 21, membatasi klaim pada layanan pencarian barang hilang, serta merencanakan pengulangan yang lebih panjang.",
+            "Tim membandingkan rata-rata 29, 19, dan 21, belum membenarkan penggantian seluruh kolom bebas, serta merencanakan uji lebih panjang atas pilihan lokasi tambahan dengan ukuran pencocokan pada hari yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Tim membandingkan 29, 19, dan 21 serta merencanakan pengulangan lebih panjang tanpa membatasi klaim pada layanan barang hilang.",
+            "Tim membandingkan 29, 19, dan 21 serta merencanakan uji lanjutan tanpa membatasi cakupan klaim.",
         },
         {
           isCorrect: false,
           label:
-            "Tim membatasi klaim pada layanan barang hilang dan merencanakan pengulangan lebih panjang tanpa melaporkan perbandingan.",
+            "Tim mempertahankan laporan bebas dan merencanakan uji lanjutan tanpa menyebut perbandingan hasil.",
         },
         {
           isCorrect: false,
           label:
-            "Nilai 29, 19, dan 21 tidak menunjukkan pola yang relevan sehingga tim akan mengubah kaidah pengukuran.",
+            "Nilai 29, 19, dan 21 tidak menunjukkan pola yang relevan sehingga tim akan mengubah ukuran pencocokan.",
         },
       ],
     },

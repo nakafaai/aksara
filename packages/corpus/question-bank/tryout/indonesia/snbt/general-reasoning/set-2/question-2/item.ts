@@ -8,25 +8,25 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Alle Bewohner des Dorfes Nelayan stellen Bio-Fischfutter oder anorganisches Fischfutter her",
+            "Alle Bewohner des Dorfes Nelayan stellen Bio-Fischfutter oder nicht biologisches Fischfutter her",
         },
         {
           isCorrect: false,
           label:
-            "Alle Bewohner des Dorfes Nelayan stellen Bio- und anorganische Futtermittel her",
+            "Alle Bewohner des Dorfes Nelayan stellen Bio- und nicht biologische Futtermittel her",
         },
         {
           isCorrect: false,
-          label: "Alle Bewohner des Dorfes Nelayan haben kein Anbauland",
+          label: "Alle Bewohner des Dorfes Nelayan haben kein Zuchtfläche",
         },
         {
           isCorrect: false,
-          label: "Alle Bewohner des Dorfes Nelayan verfügen über Ackerland",
+          label: "Alle Bewohner des Dorfes Nelayan verfügen über Zuchtfläche",
         },
         {
           isCorrect: false,
           label:
-            "Einige Bewohner des Dorfes Nelayan, die Fische züchten, haben kein anorganisches Futter",
+            "Einige Bewohner des Dorfes Nelayan, die Fische züchten, haben kein nicht biologisches Futter",
         },
       ],
     },
@@ -36,12 +36,12 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "All residents of Nelayan Village make organic fish feed or inorganic fish feed",
+            "All residents of Nelayan Village make organic fish feed or non-organic fish feed",
         },
         {
           isCorrect: false,
           label:
-            "All residents of Nelayan Village make organic feed and inorganic feed",
+            "All residents of Nelayan Village make organic feed and non-organic feed",
         },
         {
           isCorrect: false,
@@ -55,7 +55,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Some residents of Nelayan Village who farm fish do not have inorganic feed",
+            "Some residents of Nelayan Village who farm fish do not have non-organic feed",
         },
       ],
     },
@@ -65,12 +65,12 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Semua penduduk Desa Nelayan membuat pakan ikan organik atau pakan ikan anorganik",
+            "Semua penduduk Desa Nelayan membuat pakan ikan organik atau pakan ikan nonorganik",
         },
         {
           isCorrect: false,
           label:
-            "Semua penduduk Desa Nelayan membuat pakan organik dan pakan anorganik",
+            "Semua penduduk Desa Nelayan membuat pakan organik dan pakan nonorganik",
         },
         {
           isCorrect: false,
@@ -83,7 +83,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Sebagian penduduk Desa Nelayan yang membudidaya ikan tidak memiliki pakan anorganik",
+            "Sebagian penduduk Desa Nelayan yang membudidaya ikan tidak memiliki pakan nonorganik",
         },
       ],
     },

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "am Montag prüfte das Team Karten zur Reihenfolge brauner und grüner Materialien im Kontext Kompostierworkshop.",
+            "am Montag prüfte das Team Reihenfolgekarten im Kompostierworkshop.",
         },
         {
           isCorrect: false,
           label:
-            "Am montag prüfte das Team Karten zur Reihenfolge brauner und grüner Materialien im Kontext Kompostierworkshop.",
+            "Am montag prüfte das Team Reihenfolgekarten im Kompostierworkshop.",
         },
         {
           isCorrect: false,
           label:
-            "Am Montag prüfte Das Team Karten zur Reihenfolge brauner und grüner Materialien im Kontext Kompostierworkshop.",
+            "Am Montag prüfte Das Team Reihenfolgekarten im Kompostierworkshop.",
         },
         {
           isCorrect: false,
           label:
-            "Am Montag, prüfte das Team Karten zur Reihenfolge brauner und grüner Materialien im Kontext Kompostierworkshop",
+            "Am Montag, prüfte das Team Reihenfolgekarten im Kompostierworkshop",
         },
         {
           isCorrect: true,
           label:
-            "Am Montag prüfte das Team Karten zur Reihenfolge brauner und grüner Materialien im folgenden Kontext: Kompostierworkshop.",
+            "Am Montag prüfte das Team Reihenfolgekarten im Kompostierworkshop.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "on Monday, the team tested cards showing the order of brown and green materials in this setting (composting workshop).",
+            "on Monday, the team tested sequencing cards in the composting workshop.",
         },
         {
           isCorrect: false,
           label:
-            "On monday, the team tested cards showing the order of brown and green materials in this setting (composting workshop).",
+            "On monday, the team tested sequencing cards in the composting workshop.",
         },
         {
           isCorrect: false,
           label:
-            "On Monday, The team tested cards showing the order of brown and green materials in this setting (composting workshop).",
+            "On Monday, The team tested sequencing cards in the composting workshop.",
         },
         {
           isCorrect: false,
           label:
-            "On Monday the team tested cards showing the order of brown and green materials in this setting (composting workshop)",
+            "On Monday the team tested sequencing cards in the composting workshop",
         },
         {
           isCorrect: true,
           label:
-            "On Monday, the team tested cards showing the order of brown and green materials in this setting (composting workshop).",
+            "On Monday, the team tested sequencing cards in the composting workshop.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "pada Senin, tim menguji kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos.",
+            "pada Senin, tim menguji kartu urutan bahan di lokakarya kompos.",
         },
         {
           isCorrect: false,
           label:
-            "Pada senin, tim menguji kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos.",
+            "Pada senin, tim menguji kartu urutan bahan di lokakarya kompos.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin, Tim menguji kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos.",
+            "Pada Senin, Tim menguji kartu urutan bahan di lokakarya kompos.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin tim menguji kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos",
+            "Pada Senin tim menguji kartu urutan bahan di lokakarya kompos",
         },
         {
           isCorrect: true,
           label:
-            "Pada Senin, tim menguji kartu urutan bahan cokelat dan hijau di lokakarya pembuatan kompos.",
+            "Pada Senin, tim menguji kartu urutan bahan di lokakarya kompos.",
         },
       ],
     },

@@ -2,9 +2,20 @@ export const metadata = {
   title: "Solution to Question 25",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-After the transfer, both groups contain 9 people with means 78 and 66. Their combined mean is therefore <InlineMath math="[9(78)+9(66)]/(9+9)=1296/18=72" />.
+Moving a member changes neither the total number of people nor the total score. Use the data **before** the move, when each group has <InlineMath math="9" /> members. Let <InlineMath math="S_A" /> and <InlineMath math="S_B" /> be the two score totals.
 
-Therefore, the requested value is <InlineMath math="72" />.
+<MathContainer>
+  <BlockMath math="S_A=9\times78=702" />
+  <BlockMath math="S_B=9\times66=594" />
+</MathContainer>
+
+The combined mean is the total score divided by the total number of members:
+
+<BlockMath math="\begin{aligned}\bar{x}&=\frac{702+594}{9+9}\\&=\frac{1296}{18}\\&=72\end{aligned}" />
+
+The post-transfer data are consistent. B now has <InlineMath math="10" /> members and a score total of <InlineMath math="10\times68=680" />. The transferred score is <InlineMath math="680-594=86" />. A has <InlineMath math="8" /> remaining members with a score total of <InlineMath math="702-86=616" />.
+
+The combined total remains <InlineMath math="616+680=1296" />, so the overall mean stays **<InlineMath math="72" />**.

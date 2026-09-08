@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$ab=1$",
+          label: "$$ab=1$$",
         },
         {
           isCorrect: true,
-          label: "$a-b=4$",
+          label: "$$a-b=4$$",
         },
         {
           isCorrect: true,
-          label: "$a^2+b^2=18$",
+          label: "$$a^2+b^2=18$$",
         },
         {
           isCorrect: false,
-          label: "$a+b=4$",
+          label: "$$a+b=4$$",
         },
         {
           isCorrect: true,
-          label: "$a^2-4a-1=0$",
+          label: "$$a^2-4a-1=0$$",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$ab=1$",
+          label: "$$ab=1$$",
         },
         {
           isCorrect: true,
-          label: "$a-b=4$",
+          label: "$$a-b=4$$",
         },
         {
           isCorrect: true,
-          label: "$a^2+b^2=18$",
+          label: "$$a^2+b^2=18$$",
         },
         {
           isCorrect: false,
-          label: "$a+b=4$",
+          label: "$$a+b=4$$",
         },
         {
           isCorrect: true,
-          label: "$a^2-4a-1=0$",
+          label: "$$a^2-4a-1=0$$",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$ab=1$",
+          label: "$$ab=1$$",
         },
         {
           isCorrect: true,
-          label: "$a-b=4$",
+          label: "$$a-b=4$$",
         },
         {
           isCorrect: true,
-          label: "$a^2+b^2=18$",
+          label: "$$a^2+b^2=18$$",
         },
         {
           isCorrect: false,
-          label: "$a+b=4$",
+          label: "$$a+b=4$$",
         },
         {
           isCorrect: true,
-          label: "$a^2-4a-1=0$",
+          label: "$$a^2-4a-1=0$$",
         },
       ],
     },

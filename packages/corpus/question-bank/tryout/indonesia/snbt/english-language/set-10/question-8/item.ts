@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The 35 correct classifications support permanent adoption because controlling the scenario removes the need to test real supplier quotes.",
+            "The $$35$$ correct classifications support permanent adoption because controlling the scenario removes the need to test real supplier quotes.",
         },
         {
           isCorrect: false,

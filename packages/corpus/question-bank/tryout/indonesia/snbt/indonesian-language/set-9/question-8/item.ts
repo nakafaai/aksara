@@ -8,22 +8,22 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Cadangan bertambah 11 unit karena 18 unit fotosintesis dikurangi 7 unit respirasi, sedangkan serasah termasuk cadangan tumbuhan.",
+            "Cadangan bertambah $$11$$ unit karena $$18$$ unit fotosintesis dikurangi $$7$$ unit respirasi, sedangkan serasah termasuk cadangan tumbuhan.",
         },
         {
           isCorrect: true,
           label:
-            "Cadangan bertambah 5 unit karena 18 unit masuk, sedangkan 7 unit respirasi dan 6 unit serasah keluar.",
+            "Cadangan bertambah $$5$$ unit karena $$18$$ unit masuk, sedangkan $$7$$ unit respirasi dan $$6$$ unit serasah keluar.",
         },
         {
           isCorrect: false,
           label:
-            "Cadangan berkurang 1 unit karena seluruh aliran pada tabel harus dijumlahkan tanpa membedakan asal dan tujuannya.",
+            "Cadangan berkurang $$1$$ unit karena seluruh aliran pada tabel harus dijumlahkan tanpa membedakan asal dan tujuannya.",
         },
         {
           isCorrect: false,
           label:
-            "Cadangan bertambah 8 unit karena 18 unit fotosintesis dikurangi 7 unit respirasi dan 3 unit yang terbawa pasang.",
+            "Cadangan bertambah $$8$$ unit karena $$18$$ unit fotosintesis dikurangi $$7$$ unit respirasi dan $$3$$ unit yang terbawa pasang.",
         },
         {
           isCorrect: false,

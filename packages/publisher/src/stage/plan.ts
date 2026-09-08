@@ -11,10 +11,7 @@ import {
   makeRouteBatches,
 } from "#publisher/batching";
 import type { PreparedContentRelease } from "#publisher/preparation/prepared";
-import {
-  makeProjectionBatches,
-  makeRollbackProjectionBatches,
-} from "#publisher/projection/batch";
+import { makeProjectionBatches } from "#publisher/projection/batch";
 import { makeSnapshotRequests } from "#publisher/publication/snapshots";
 import type { PublicationTarget } from "#publisher/publication/spec";
 import { makeStageGroups } from "#publisher/stage/group";
@@ -82,24 +79,17 @@ export const stagePreparedRelease = Effect.fn(
       (batch): StageOperation => ({ ...batch, operation: "stageItemBatch" })
     )
   );
-  const projections =
-    prepared.kind === "git"
-      ? makeProjectionBatches(releaseId, prepared.projections).pipe(
-          Stream.map(
-            (batch): StageOperation => ({
-              ...batch,
-              operation: "stageProjectionBatch",
-            })
-          )
-        )
-      : makeRollbackProjectionBatches(releaseId, prepared.projections).pipe(
-          Stream.map(
-            (batch): StageOperation => ({
-              ...batch,
-              operation: "stageRollbackProjectionBatch",
-            })
-          )
-        );
+  const projections = makeProjectionBatches(
+    releaseId,
+    prepared.projections
+  ).pipe(
+    Stream.map(
+      (batch): StageOperation => ({
+        ...batch,
+        operation: "stageProjectionBatch",
+      })
+    )
+  );
   const routes = makeRouteBatches(releaseId, input.routes).pipe(
     Stream.map(
       (batch): StageOperation => ({ ...batch, operation: "stageRouteBatch" })

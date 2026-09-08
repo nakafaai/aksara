@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$T(1,-2)=(4,2)$.",
+          label: "$$T(1,-2)=(4,2)$$.",
         },
         {
           isCorrect: true,
-          label: "T verdoppelt jede Länge.",
+          label: "$$T$$ verdoppelt jede Länge.",
         },
         {
           isCorrect: true,
-          label: "T vervierfacht jeden Flächeninhalt.",
+          label: "$$T$$ vervierfacht jeden Flächeninhalt.",
         },
         {
           isCorrect: false,
-          label: "T kehrt die Orientierung um.",
+          label: "$$T$$ kehrt die Orientierung um.",
         },
         {
           isCorrect: true,
-          label: "$T^2(x,y)=(-4x,-4y)$.",
+          label: "$$T^2(x,y)=(-4x,-4y)$$.",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$T(1,-2)=(4,2)$.",
+          label: "$$T(1,-2)=(4,2)$$.",
         },
         {
           isCorrect: true,
-          label: "T doubles every length.",
+          label: "$$T$$ doubles every length.",
         },
         {
           isCorrect: true,
-          label: "T multiplies every area by $4$.",
+          label: "$$T$$ multiplies every area by $$4$$.",
         },
         {
           isCorrect: false,
-          label: "T reverses orientation.",
+          label: "$$T$$ reverses orientation.",
         },
         {
           isCorrect: true,
-          label: "$T^2(x,y)=(-4x,-4y)$.",
+          label: "$$T^2(x,y)=(-4x,-4y)$$.",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$T(1,-2)=(4,2)$.",
+          label: "$$T(1,-2)=(4,2)$$.",
         },
         {
           isCorrect: true,
-          label: "T menggandakan setiap panjang.",
+          label: "$$T$$ menggandakan setiap panjang.",
         },
         {
           isCorrect: true,
-          label: "T mengalikan setiap luas dengan $4$.",
+          label: "$$T$$ mengalikan setiap luas dengan $$4$$.",
         },
         {
           isCorrect: false,
-          label: "T membalik orientasi.",
+          label: "$$T$$ membalik orientasi.",
         },
         {
           isCorrect: true,
-          label: "$T^2(x,y)=(-4x,-4y)$.",
+          label: "$$T^2(x,y)=(-4x,-4y)$$.",
         },
       ],
     },

@@ -2,9 +2,21 @@ export const metadata = {
   title: "Solution to Question 29",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Among <InlineMath math="\binom{12}{2}=66" /> pairs, <InlineMath math="\binom72=21" /> are red-red and <InlineMath math="7\cdot5=35" /> are mixed. The expected payout is <InlineMath math="[60(21)+30(35)]/66=35" />. Subtracting the entry fee gives <InlineMath math="35-30=5" />.
+There are <InlineMath math="\binom{12}{2}=66" /> equally likely pairs. Group them by colour.
 
-Therefore, the requested value is <InlineMath math="5" />.
+| Pair | Pair count | Payout |
+| :--- | :---: | :---: |
+| Red-red | <InlineMath math="\binom72=21" /> | <InlineMath math="60" /> |
+| Mixed | <InlineMath math="7\times5=35" /> | <InlineMath math="30" /> |
+| Blue-blue | <InlineMath math="\binom52=10" /> | <InlineMath math="0" /> |
+
+Payouts are in thousand rupiah. The expected payout is:
+
+<BlockMath math="\begin{aligned}E&=\frac{60\times21+30\times35}{66}\\&=35\end{aligned}" />
+
+Subtract the entry fee to find the expected net gain, in thousand rupiah:
+
+<BlockMath math="35-30=5" />

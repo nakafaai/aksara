@@ -1,12 +1,13 @@
 export const metadata = {
   title: "Lösung zu Aufgabe 11",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2026-02-08",
 };
 
-**Methode zum Füllen von Slots**
+**Möglichkeiten je Entscheidung**
 
-Wir haben <InlineMath math="7" /> Flags mit einer bestimmten Bedingung: **Armenien** und **Belgien** müssen am Ende der Zeile stehen. Wir können die Anordnung mithilfe von Schlitzen (Boxen) visualisieren.
+Wir haben <InlineMath math="7" /> Flaggen mit einer bestimmten Bedingung: **Armenien** und **Belgien** müssen an den beiden Enden der Reihe stehen. Wir können die Anordnung mithilfe von Kästchen für die einzelnen Zählfaktoren visualisieren.
 
 **Schritt** <InlineMath math="1" />: Endpositionen bestimmen
 
@@ -14,26 +15,24 @@ Es gibt nur <InlineMath math="2" /> Möglichkeiten für die Enden: Armenien link
 
 **Schritt** <InlineMath math="2" />: Mittlere Positionen füllen
 
-Es gibt noch <InlineMath math="5" /> Flaggen (China, Dänemark, Ecuador, Finnland, Ghana), um die <InlineMath math="5" /> Mittelpositionen zu besetzen. Die restlichen Slots füllen wir in absteigender Reihenfolge (<InlineMath math="5, 4, 3, 2, 1" />) nach dem Permutationsprinzip.
+Es gibt noch <InlineMath math="5" /> Flaggen (China, Dänemark, Ecuador, Finnland, Ghana), um die <InlineMath math="5" /> Mittelpositionen zu besetzen. Die restlichen Kästchen füllen wir in absteigender Reihenfolge (<InlineMath math="5, 4, 3, 2, 1" />) nach dem Permutationsprinzip.
 
-Hier ist die Visualisierung der gefüllten Slots:
+Hier ist die Visualisierung der gefüllten Kästchen:
 
-<MathContainer>
-  <BlockMath math="\begin{array}{|c|c|c|c|c|c|} \hline 2 & 5 & 4 & 3 & 2 & 1 \\ \hline \end{array}" />
-</MathContainer>
+<BlockMath math="\begin{array}{|c|c|c|c|c|c|} \hline 2 & 5 & 4 & 3 & 2 & 1 \\ \hline \end{array}" />
 
 Die Zahl <InlineMath math="2" /> stellt die Möglichkeiten dar, die Enden anzuordnen.
 
-Die Zahlen <InlineMath math="5, 4, 3, 2, 1" /> stellen die Möglichkeiten dar, die <InlineMath math="5" /> mittleren Flags (<InlineMath math="5!" />) anzuordnen.
+Die Zahlen <InlineMath math="5, 4, 3, 2, 1" /> stellen die Möglichkeiten dar, die <InlineMath math="5" /> mittleren Flaggen (<InlineMath math="5!" />) anzuordnen.
 
 **Endgültige Berechnung**
 
-Die Gesamtzahl der Wege ist das Produkt aller Zahlen in den Kästchen.
+<InlineMath math="N" /> bezeichnet die Anzahl der Anordnungen. Die sechs Kästchen zeigen die Zählfaktoren und stellen nicht die sieben Flaggenpositionen dar. Das Produkt der Faktoren ergibt <InlineMath math="N" />.
 
 <MathContainer>
-  <BlockMath math="\text{Gesamt} = 2 \times (5 \times 4 \times 3 \times 2 \times 1)" />
-  <BlockMath math="\text{Gesamt} = 2 \times 5!" />
-  <BlockMath math="\text{Gesamt} = 2(5!)" />
+  <BlockMath math="\begin{aligned}N &= 2\,(5 \times 4 \\ &\quad \times 3 \times 2 \times 1)\end{aligned}" />
+  <BlockMath math="N = 2 \times 5!" />
+  <BlockMath math="N = 2(5!) = 240" />
 </MathContainer>
 
-Somit gibt es <InlineMath math="2(5!)" /> Möglichkeiten, die Flags anzuordnen.
+Somit gibt es <InlineMath math="2(5!)" /> Möglichkeiten, die Flaggen anzuordnen.

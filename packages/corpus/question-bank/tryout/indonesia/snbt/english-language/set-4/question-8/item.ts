@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Because the trial reached 29, compared with a baseline of 17 and a comparison value of 18, short captions separating observation from interpretation should become permanent before the stated limitation is examined.",
+            "Because the trial reached $$29$$, compared with a baseline of $$17$$ and a comparison value of $$18$$, revised captions separating observation from interpretation should become permanent before the stated limitation is examined.",
         },
         {
           isCorrect: false,
@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The rise to 29, compared with a baseline of 17 and a comparison value of 18 supports a limited extension of short captions separating observation from interpretation, while the fact that the trial did not include visitors using screen readers must shape the follow-up.",
+            "The rise to $$29$$, compared with $$17$$ at baseline and $$18$$ in the comparison, supports a limited extension of the revised-caption trial. The follow-up must include screen-reader users, who were absent from the first trial.",
         },
         {
           isCorrect: false,

@@ -2,26 +2,23 @@ export const metadata = {
   title: "Question 4 Explanation",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-01-29",
+  dateModified: "2026-09-07",
 };
 
-Each term is the sum of the two preceding terms:
+Starting at the third term, each visible term is the sum of the two preceding terms:
 
-<MathContainer>
-  <BlockMath math="\begin{array}{rclcl} \text{3rd Term} & : & 1 + 4 & = & 5 \\ \text{4th Term} & : & 4 + 5 & = & 9 \\ \text{5th Term} & : & 5 + 9 & = & 14 \\ \end{array}" />
-</MathContainer>
+<BlockMath math="\begin{aligned}U_3&=1+4=5\\U_4&=4+5=9\\U_5&=5+9=14\end{aligned}" />
 
-The pattern formed is that each term is the sum of the two preceding terms (**<InlineMath math="U_n = U_{n-1} + U_{n-2}" />**).
+Writing <InlineMath math="U_n" /> for term <InlineMath math="n" />, this pattern is expressed for <InlineMath math="n\ge3" /> as:
 
-Based on this pattern, the value of term <InlineMath math="6" /> is:
+<BlockMath math="U_n=U_{n-1}+U_{n-2}" />
 
-<MathContainer>
-  <BlockMath math="U_6 = U_5 + U_4 = 14 + 9 = 23" />
-</MathContainer>
+The missing term is in the sixth position:
 
-The following terms confirm the same rule:
+<BlockMath math="\begin{aligned}U_6&=U_5+U_4\\&=14+9\\&=23\end{aligned}" />
 
-<MathContainer>
-  <BlockMath math="\begin{array}{rclcl} \text{7th Term} & : & 23 + 14 & = & 37 \quad \checkmark \\ \text{8th Term} & : & 37 + 23 & = & 60 \quad \checkmark \\ \text{9th Term} & : & 60 + 37 & = & 97 \quad \checkmark \\ \end{array}" />
-</MathContainer>
+This value also matches every subsequent term:
 
-Since the pattern is consistent through the end of the sequence, the correct value is **<InlineMath math="23" />**.
+<BlockMath math="\begin{aligned}U_7&=23+14=37\\U_8&=37+23=60\\U_9&=60+37=97\end{aligned}" />
+
+Therefore, the missing value is **<InlineMath math="23" />**.

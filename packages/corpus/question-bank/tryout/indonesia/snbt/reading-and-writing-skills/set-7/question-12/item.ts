@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Am Montag prüfte das Team einen Rückgabecode an jedem Griff im folgenden Kontext: Schirmverleih am Bahnhof.",
+            "Am Montag prüfte das Team den Rückgabecode beim Schirmverleih.",
         },
         {
           isCorrect: false,
           label:
-            "am Montag prüfte das Team einen Rückgabecode an jedem Griff im Kontext Schirmverleih am Bahnhof.",
+            "am Montag prüfte das Team den Rückgabecode beim Schirmverleih.",
         },
         {
           isCorrect: false,
           label:
-            "Am montag prüfte das Team einen Rückgabecode an jedem Griff im Kontext Schirmverleih am Bahnhof.",
+            "Am montag prüfte das Team den Rückgabecode beim Schirmverleih.",
         },
         {
           isCorrect: false,
           label:
-            "Am Montag prüfte Das Team einen Rückgabecode an jedem Griff im Kontext Schirmverleih am Bahnhof.",
+            "Am Montag prüfte Das Team den Rückgabecode beim Schirmverleih.",
         },
         {
           isCorrect: false,
           label:
-            "Am Montag, prüfte das Team einen Rückgabecode an jedem Griff im Kontext Schirmverleih am Bahnhof",
+            "Am Montag, prüfte das Team den Rückgabecode beim Schirmverleih",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "On Monday, the team tested a return code on each handle in this setting (station umbrella lending).",
+            "On Monday, the team tested the return code on each umbrella handle.",
         },
         {
           isCorrect: false,
           label:
-            "on Monday, the team tested a return code on each handle in this setting (station umbrella lending).",
+            "on Monday, the team tested the return code on each umbrella handle.",
         },
         {
           isCorrect: false,
           label:
-            "On monday, the team tested a return code on each handle in this setting (station umbrella lending).",
+            "On monday, the team tested the return code on each umbrella handle.",
         },
         {
           isCorrect: false,
           label:
-            "On Monday, The team tested a return code on each handle in this setting (station umbrella lending).",
+            "On Monday, The team tested the return code on each umbrella handle.",
         },
         {
           isCorrect: false,
           label:
-            "On Monday the team tested a return code on each handle in this setting (station umbrella lending)",
+            "On Monday the team tested the return code on each umbrella handle",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pada Senin, tim menguji kode pengembalian pada setiap gagang dalam layanan peminjaman payung di stasiun.",
+            "Pada Senin, tim menguji kode pengembalian pada setiap gagang payung.",
         },
         {
           isCorrect: false,
           label:
-            "pada Senin, tim menguji kode pengembalian pada setiap gagang dalam layanan peminjaman payung di stasiun.",
+            "pada Senin, tim menguji kode pengembalian pada setiap gagang payung.",
         },
         {
           isCorrect: false,
           label:
-            "Pada senin, tim menguji kode pengembalian pada setiap gagang dalam layanan peminjaman payung di stasiun.",
+            "Pada senin, tim menguji kode pengembalian pada setiap gagang payung.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin, Tim menguji kode pengembalian pada setiap gagang dalam layanan peminjaman payung di stasiun.",
+            "Pada Senin, Tim menguji kode pengembalian pada setiap gagang payung.",
         },
         {
           isCorrect: false,
           label:
-            "Pada Senin tim menguji kode pengembalian pada setiap gagang dalam layanan peminjaman payung di stasiun",
+            "Pada Senin tim menguji kode pengembalian pada setiap gagang payung",
         },
       ],
     },

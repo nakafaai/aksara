@@ -12,7 +12,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Entwaldung allein verursachte 2019 fast alle vom Menschen verursachten Treibhausgasemissionen",
+            "Entwaldung allein verursachte $$2019$$ fast alle vom Menschen verursachten Treibhausgasemissionen",
         },
         {
           isCorrect: false,
@@ -39,7 +39,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Deforestation alone produced almost all human-caused greenhouse gas emissions in 2019",
+            "Deforestation alone produced almost all human-caused greenhouse gas emissions in $$2019$$",
         },
         {
           isCorrect: false,
@@ -66,7 +66,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Deforestasi saja menghasilkan hampir seluruh emisi gas rumah kaca akibat aktivitas manusia pada 2019",
+            "Deforestasi saja menghasilkan hampir seluruh emisi gas rumah kaca akibat aktivitas manusia pada $$2019$$",
         },
         {
           isCorrect: false,

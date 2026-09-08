@@ -7,28 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "eine Wirksamkeitsanalise zur geprüften Änderung im Kontext „Aufnahmestudio der Schule“",
+          label: "eine Wirksamkeitsanalise zur Checkliste im Aufnahmestudio",
         },
         {
           isCorrect: false,
-          label:
-            "eine Wirksamkaitsanalyse zur geprüften Änderung im Kontext „Aufnahmestudio der Schule“",
+          label: "eine Wirksamkaitsanalyse zur Checkliste im Aufnahmestudio",
         },
         {
           isCorrect: true,
-          label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontext „Aufnahmestudio der Schule“",
+          label: "eine Wirksamkeitsanalyse zur Checkliste im Aufnahmestudio",
         },
         {
           isCorrect: false,
-          label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Konteks „Aufnahmestudio der Schule“",
+          label: "eine Wirksamkeitsanalyse zur Checklsite im Aufnahmestudio",
         },
         {
           isCorrect: false,
-          label:
-            "eine Wirksamkeitsanalyse zur geprüften Änderung im Kontextt „Aufnahmestudio der Schule“",
+          label: "eine Wirksamkeitsanalyse zur Checkliste im Aufnamestudio",
         },
       ],
     },
@@ -37,28 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "an analyse of the effectiveness of a checklist used before recording in this setting (school recording studio)",
+          label: "an analysiss of the effectiveness of the recording checklist",
         },
         {
           isCorrect: false,
-          label:
-            "an analysis of the effectivness of a checklist used before recording in this setting (school recording studio)",
+          label: "an analysis of the effectivness of the recording checklist",
         },
         {
           isCorrect: true,
-          label:
-            "an analysis of the effectiveness of a checklist used before recording in this setting (school recording studio)",
+          label: "an analysis of the effectiveness of the recording checklist",
         },
         {
           isCorrect: false,
-          label:
-            "an analisis of the effectiveness of a checklist used before recording in this setting (school recording studio)",
+          label: "an analisis of the effectiveness of the recording checklist",
         },
         {
           isCorrect: false,
-          label:
-            "an analysis of the effectivity of a checklist used before recording in this setting (school recording studio)",
+          label: "an analysis of the effectivenes of the recording checklist",
         },
       ],
     },
@@ -67,28 +57,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "analisa efektivitas daftar pemeriksaan sebelum merekam di studio rekaman sekolah",
+          label: "analisa efektivitas daftar pemeriksaan sebelum merekam",
         },
         {
           isCorrect: false,
-          label:
-            "analisis efektifitas daftar pemeriksaan sebelum merekam di studio rekaman sekolah",
+          label: "analisis efektifitas daftar pemeriksaan sebelum merekam",
         },
         {
           isCorrect: true,
-          label:
-            "analisis efektivitas daftar pemeriksaan sebelum merekam di studio rekaman sekolah",
+          label: "analisis efektivitas daftar pemeriksaan sebelum merekam",
+        },
+        {
+          isCorrect: false,
+          label: "analisa efektifitas daftar pemeriksaan sebelum merekam",
         },
         {
           isCorrect: false,
           label:
-            "analisa efektifitas daftar pemeriksaan sebelum merekam di studio rekaman sekolah",
-        },
-        {
-          isCorrect: false,
-          label:
-            "analisis efektivitas daftar pemeriksaan sebelum merekam di kontek studio rekaman sekolah",
+            "analisis efektivitas daftar pemeriksaan dalam kontek perekaman",
         },
       ],
     },

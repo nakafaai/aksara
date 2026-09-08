@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Denah membantu melacak perubahan ruang antarmasa, sedangkan wawancara menjelaskan pengalaman penghuni; keduanya dapat menguji perubahan fungsi, tetapi ingatan dua narasumber tidak mewakili semua penghuni.",
+            "Denah membantu melacak perubahan ruang antarmasa, sedangkan wawancara menjelaskan pengalaman penghuni. Keduanya dapat menguji perubahan fungsi, tetapi ingatan dua narasumber tidak mewakili semua penghuni.",
         },
         {
           isCorrect: false,

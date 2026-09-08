@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kedua sumber membantu menelusuri perjalanan sebuah karya; perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
+            "Kedua sumber membantu menelusuri perjalanan sebuah karya. Perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Label pameran menyebut koleksi atau pemberi pinjaman bagi pengunjung, sedangkan kartu kondisi mencatat lokasi dan kerusakan untuk perawatan; keduanya memberi bukti berbeda tentang perjalanan karya.",
+            "Label pameran menyebut koleksi atau pemberi pinjaman bagi pengunjung, sedangkan kartu kondisi mencatat lokasi dan kerusakan untuk perawatan. Keduanya memberi bukti berbeda tentang perjalanan karya.",
         },
       ],
     },

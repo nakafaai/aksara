@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\text{Rp2{.}500{,}00}$$",
+          label: "$$\\text{Rp}2{.}500{,}00$$",
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp3{.}000{,}00}$$",
+          label: "$$\\text{Rp}3{.}000{,}00$$",
         },
         {
           isCorrect: true,
-          label: "$$\\text{Rp4{.}000{,}00}$$",
+          label: "$$\\text{Rp}4{.}000{,}00$$",
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp5{.}000{,}00}$$",
+          label: "$$\\text{Rp}5{.}000{,}00$$",
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp5{.}500{,}00}$$",
+          label: "$$\\text{Rp}5{.}500{,}00$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\text{Rp2{,}500.00}$$",
+          label: "$$\\text{Rp}2{,}500.00$$",
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp3{,}000.00}$$",
+          label: "$$\\text{Rp}3{,}000.00$$",
         },
         {
           isCorrect: true,
-          label: "$$\\text{Rp4{,}000.00}$$",
+          label: "$$\\text{Rp}4{,}000.00$$",
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp5{,}000.00}$$",
+          label: "$$\\text{Rp}5{,}000.00$$",
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp5{,}500.00}$$",
+          label: "$$\\text{Rp}5{,}500.00$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$\\text{Rp2{.}500{,}00}$$",
+          label: "$$\\text{Rp}2{.}500{,}00$$",
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp3{.}000{,}00}$$",
+          label: "$$\\text{Rp}3{.}000{,}00$$",
         },
         {
           isCorrect: true,
-          label: "$$\\text{Rp4{.}000{,}00}$$",
+          label: "$$\\text{Rp}4{.}000{,}00$$",
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp5{.}000{,}00}$$",
+          label: "$$\\text{Rp}5{.}000{,}00$$",
         },
         {
           isCorrect: false,
-          label: "$$\\text{Rp5{.}500{,}00}$$",
+          label: "$$\\text{Rp}5{.}500{,}00$$",
         },
       ],
     },

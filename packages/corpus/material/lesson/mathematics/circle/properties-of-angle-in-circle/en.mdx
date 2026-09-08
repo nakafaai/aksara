@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use diagrams and worked problems to connect inscribed angles, Thales' theorem, and opposite angles in cyclic quadrilaterals.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
   subject: "Circle",
 };
 
@@ -18,6 +18,7 @@ Inscribed angles that subtend the same arc have equal measures when their vertic
   description="Inscribed angles in the same segment that subtend the same arc have equal measures."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -97,6 +98,7 @@ Inscribed angles that subtend the same arc have equal measures when their vertic
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -132,6 +134,7 @@ The central angle is twice the inscribed angle that subtends the same arc.
   }
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -194,7 +197,9 @@ The central angle is twice the inscribed angle that subtends the same arc.
       showPoints: false,
     },
     {
-      points: Array.from({ length: 16 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = (((i * 45) / 15) * Math.PI) / 180;
         return {
           x: 1.2 * Math.cos(angle),
@@ -204,9 +209,10 @@ The central angle is twice the inscribed angle that subtends the same arc.
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="2\theta" />, at: 7, offset: [0.5, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="2\theta" />, at: 49, offset: [0.5, 0.3, 0] }],
     },
     {
+      smooth: false,
       points: (() => {
         const C = {
           x: 4 * Math.cos((5 * Math.PI) / 4),
@@ -253,6 +259,7 @@ Every inscribed angle that subtends a diameter of the circle is always a right a
   description={<>Inscribed angle subtending a diameter is always <InlineMath math="90^\circ" />.</>}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -303,6 +310,7 @@ Every inscribed angle that subtends a diameter of the circle is always a right a
       labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
     },
     {
+      smooth: false,
       points: (() => {
         const C = { x: 0, y: 4 };
         const A = { x: -4, y: 0 };
@@ -372,6 +380,7 @@ A cyclic quadrilateral is a quadrilateral whose four vertices lie on a circle. T
   description={<>Sum of opposite angles is <InlineMath math="180^\circ" />.</>}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -402,7 +411,9 @@ A cyclic quadrilateral is a quadrilateral whose four vertices lie on a circle. T
       ],
     },
     {
-      points: Array.from({ length: 16 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = ((135 + (i * 90) / 15) * Math.PI) / 180;
         return {
           x: 4 + 0.8 * Math.cos(angle),
@@ -412,10 +423,12 @@ A cyclic quadrilateral is a quadrilateral whose four vertices lie on a circle. T
       }),
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\alpha" />, at: 7, offset: [0.3, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="\alpha" />, at: 49, offset: [0.3, 0.2, 0] }],
     },
     {
-      points: Array.from({ length: 16 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = ((-45 + (i * 90) / 15) * Math.PI) / 180;
         return {
           x: -4 + 0.8 * Math.cos(angle),
@@ -425,7 +438,7 @@ A cyclic quadrilateral is a quadrilateral whose four vertices lie on a circle. T
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\gamma" />, at: 7, offset: [-0.3, -0.2, 0] }],
+      labels: [{ text: <InlineMath math="\gamma" />, at: 49, offset: [-0.3, -0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
@@ -447,6 +460,7 @@ In a cyclic quadrilateral, an exterior angle at a vertex equals the interior ang
   }
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -487,7 +501,9 @@ In a cyclic quadrilateral, an exterior angle at a vertex equals the interior ang
       labels: [{ text: <InlineMath math="E" />, at: 1, offset: [0.5, 0, 0] }],
     },
     {
-      points: Array.from({ length: 16 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = ((225 + (i * 90) / 15) * Math.PI) / 180;
         return {
           x: 4 + 0.8 * Math.cos(angle),
@@ -497,10 +513,12 @@ In a cyclic quadrilateral, an exterior angle at a vertex equals the interior ang
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\angle DAE" />, at: 7, offset: [0.8, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="\angle DAE" />, at: 49, offset: [0.8, -0.5, 0] }],
     },
     {
-      points: Array.from({ length: 16 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = ((-45 + (i * 90) / 15) * Math.PI) / 180;
         return {
           x: -4 + 0.8 * Math.cos(angle),
@@ -510,7 +528,7 @@ In a cyclic quadrilateral, an exterior angle at a vertex equals the interior ang
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\angle BCD" />, at: 7, offset: [-0.8, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="\angle BCD" />, at: 49, offset: [-0.8, 0.5, 0] }],
     },
 
 ]}
@@ -592,6 +610,7 @@ Since <InlineMath math="AB" /> is a diameter and <InlineMath math="C" /> lies on
      description={<>Central angle <InlineMath math="\angle AOB = 140^\circ" /> and the inscribed angles intercept the same arc <InlineMath math="AB" />.</>}
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 361 }, (_, i) => {
            const angle = (i * Math.PI) / 180;
            return {
@@ -693,7 +712,9 @@ Since <InlineMath math="AB" /> is a diameter and <InlineMath math="C" /> lies on
          showPoints: false,
        },
        {
-         points: Array.from({ length: 16 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 106 }, (_, sampleIndex) => {
+           const i = sampleIndex / 7;
            const angle = (((i * 140) / 15) * Math.PI) / 180;
            return {
              x: 1.2 * Math.cos(angle),
@@ -703,7 +724,7 @@ Since <InlineMath math="AB" /> is a diameter and <InlineMath math="C" /> lies on
          }),
          color: "#db2777",
          showPoints: false,
-         labels: [{ text: <InlineMath math="140^\circ" />, at: 7, offset: [0.3, 0.5, 0] }],
+         labels: [{ text: <InlineMath math="140^\circ" />, at: 49, offset: [0.3, 0.5, 0] }],
        },
      ]}
      cameraPosition={[0, 0, 12]}
@@ -761,6 +782,7 @@ Since <InlineMath math="AB" /> is a diameter and <InlineMath math="C" /> lies on
      }
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 361 }, (_, i) => {
            const angle = (i * Math.PI) / 180;
            return {
@@ -811,6 +833,7 @@ Since <InlineMath math="AB" /> is a diameter and <InlineMath math="C" /> lies on
          labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
        },
        {
+         smooth: false,
          points: (() => {
            const C = { x: 0, y: 4 };
            const A = { x: -4, y: 0 };

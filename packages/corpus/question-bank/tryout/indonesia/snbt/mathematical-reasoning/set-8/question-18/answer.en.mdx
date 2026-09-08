@@ -2,11 +2,23 @@ export const metadata = {
   title: "Solution to Question 18",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-To determine the last two digits, track the powers of <InlineMath math="3" /> and <InlineMath math="2" /> modulo <InlineMath math="100" />. Since <InlineMath math="2026\equiv6\pmod{20}" /> and <InlineMath math="2025\equiv5\pmod{20}" />,
+To determine the last two digits, use the cycles of powers modulo <InlineMath math="100" />. We have
 
-<BlockMath math="3^{2026}\equiv3^6\equiv29\pmod{100}" />
+<MathContainer>
+  <BlockMath math="3^{20}\equiv1\pmod{100}" />
+  <BlockMath math="2^{22}\equiv2^2\pmod{100}" />
+</MathContainer>
 
-and <InlineMath math="2^{2025}\equiv2^5\equiv32\pmod{100}" />. Their sum has remainder <InlineMath math="29+32=61" />.
+Therefore, the residues of powers of <InlineMath math="3" /> repeat every <InlineMath math="20" /> exponents. The same holds for powers of <InlineMath math="2" /> from the second power onward: multiplying both sides of the second congruence by a power of <InlineMath math="2" /> preserves the pattern.
+
+The exponents satisfy <InlineMath math="2026\equiv6\pmod{20}" /> and <InlineMath math="2025\equiv5\pmod{20}" />. Therefore,
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}3^{2026}&\equiv3^6\pmod{100}\\&\equiv29\pmod{100}\end{aligned}" />
+  <BlockMath math="\begin{aligned}2^{2025}&\equiv2^5\pmod{100}\\&\equiv32\pmod{100}\end{aligned}" />
+</MathContainer>
+
+Their sum has remainder <InlineMath math="29+32=61" />.

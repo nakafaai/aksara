@@ -2,9 +2,23 @@ export const metadata = {
   title: "Lösung zu Aufgabe 28",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-C und D können die beiden Enden in 2 Reihenfolgen belegen. Die übrigen sechs Berichte lassen sich auf <InlineMath math="6!" /> Arten anordnen, und genau die Hälfte hat E vor F. Daher ist die gültige Anzahl <InlineMath math="2\cdot6!/2=720" /> und <InlineMath math="720/40320=1/56" />.
+Alle Reihenfolgen der acht Berichte sind gleich wahrscheinlich. Insgesamt gibt es:
 
-Damit ist der gesuchte Wert <InlineMath math="\\frac1{56}" />.
+<BlockMath math="8!=40{.}320" />
+
+C und D können die Enden in zwei Reihenfolgen besetzen, mit C links und D rechts oder umgekehrt. Dadurch steht zugleich weder A noch B an einem Ende.
+
+Die übrigen sechs Berichte füllen die mittleren Positionen in <InlineMath math="6!" /> Anordnungen. Jede Anordnung mit E vor F hat genau eine Partneranordnung, in der E und F vertauscht sind. Die Positionen von C und D bleiben dabei erhalten. Genau die Hälfte der mittleren Anordnungen hat daher E vor F:
+
+<BlockMath math="\frac{6!}{2}=360" />
+
+Mit den beiden Reihenfolgen von C und D erhalten wir diese Anzahl zulässiger Anordnungen:
+
+<BlockMath math="2\times360=720" />
+
+Die gesuchte Wahrscheinlichkeit ist die Anzahl zulässiger Anordnungen geteilt durch die Gesamtzahl:
+
+<BlockMath math="\frac{720}{40{.}320}=\frac1{56}" />

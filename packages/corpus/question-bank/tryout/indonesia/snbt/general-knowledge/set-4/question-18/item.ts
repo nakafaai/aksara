@@ -80,7 +80,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Standarisasi dan pelestarian pengetahuan lokal dapat berjalan bersama jika fungsi setiap nama dibedakan.",
+            "Standardisasi dan pelestarian pengetahuan lokal dapat berjalan bersama jika fungsi setiap nama dibedakan.",
         },
         {
           isCorrect: false,

@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Team änderte nur ein Faktor: einen Rückgabecode an jedem Griff.",
+            "Das Team änderte nur ein Faktor: die Ergänzung eines Rückgabecodes an jedem Griff.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team änderte nur einem Faktor: einen Rückgabecode an jedem Griff.",
+            "Das Team änderte nur einem Faktor: die Ergänzung eines Rückgabecodes an jedem Griff.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team änderte lediglich nur einen Faktor: einen Rückgabecode an jedem Griff.",
+            "Das Team änderte lediglich nur einen Faktor: die Ergänzung eines Rückgabecodes an jedem Griff.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team änderte nur einen Faktor, und zwar: einen Rückgabecode an jedem Griff.",
+            "Das Team änderte nur einen Faktoren: die Ergänzung eines Rückgabecodes an jedem Griff.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team änderte nur einen Faktor: einen Rückgabecode an jedem Griff.",
+            "Das Team änderte nur einen Faktor: die Ergänzung eines Rückgabecodes an jedem Griff.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The team changed only one factors: a return code on each handle.",
+            "The team changed only one factors: adding a return code to each handle.",
         },
         {
           isCorrect: false,
           label:
-            "The team changed merely only one factor: a return code on each handle.",
+            "The team changed merely only one factor: adding a return code to each handle.",
         },
         {
           isCorrect: false,
           label:
-            "The team changed only one factor, namely: a return code on each handle.",
+            "The team changed only one factor, namely: adding a return code to each handle.",
         },
         {
           isCorrect: false,
           label:
-            "The team changed only one factor; namely a return code on each handle.",
+            "The team changed only one factor; namely adding a return code to each handle.",
         },
         {
           isCorrect: true,
           label:
-            "The team changed only one factor: a return code on each handle.",
+            "The team changed only one factor: adding a return code to each handle.",
         },
       ],
     },
@@ -67,26 +67,28 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Tim merubah satu faktor saja, yaitu kode pengembalian.",
-        },
-        {
-          isCorrect: false,
-          label: "Tim mengubahkan satu faktor saja, yaitu kode pengembalian.",
+          label:
+            "Tim merubah satu faktor saja, yaitu penambahan kode pengembalian pada setiap gagang.",
         },
         {
           isCorrect: false,
           label:
-            "Tim hanya mengubah satu faktor saja, yaitu kode pengembalian.",
+            "Tim mengrubah satu faktor saja, yaitu penambahan kode pengembalian pada setiap gagang.",
         },
         {
           isCorrect: false,
           label:
-            "Tim mengubah terhadap satu faktor saja, yaitu kode pengembalian.",
+            "Tim hanya mengubah satu faktor saja, yaitu penambahan kode pengembalian pada setiap gagang.",
+        },
+        {
+          isCorrect: false,
+          label:
+            "Tim mengubah terhadap satu faktor saja, yaitu penambahan kode pengembalian pada setiap gagang.",
         },
         {
           isCorrect: true,
           label:
-            "Tim mengubah satu faktor saja, yaitu kode pengembalian pada setiap gagang.",
+            "Tim mengubah satu faktor saja, yaitu penambahan kode pengembalian pada setiap gagang.",
         },
       ],
     },

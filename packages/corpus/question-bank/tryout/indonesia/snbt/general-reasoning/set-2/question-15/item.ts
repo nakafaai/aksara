@@ -58,7 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The lowest difference between grain prices and government purchase prices occurred in April as happened in March",
+            "The gap between the farm-gate price and the government purchase price was the same in March and April",
         },
       ],
     },
@@ -88,7 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Selisih harga gabah dengan harga pembelian pemerintah terendah terjadi pada bulan April sebagaimana yang terjadi pada bulan Maret",
+            "Selisih harga gabah dengan harga pembelian pemerintah sama besar pada Maret dan April",
         },
       ],
     },

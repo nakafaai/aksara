@@ -3,7 +3,7 @@ export const metadata = {
   description: "Gunakan diagram dan pembahasan untuk menghubungkan sudut keliling, teorema Thales, dan sudut berhadapan dalam segiempat tali busur.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
   subject: "Lingkaran",
 };
 
@@ -18,6 +18,7 @@ Sudut-sudut keliling yang menghadap busur yang sama memiliki besar yang sama jik
   description="Sudut keliling dalam segmen yang sama dan menghadap busur yang sama memiliki besar yang sama."
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -97,6 +98,7 @@ Sudut-sudut keliling yang menghadap busur yang sama memiliki besar yang sama jik
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -132,6 +134,7 @@ Sudut pusat besarnya dua kali sudut keliling yang menghadap busur yang sama.
   }
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -194,7 +197,9 @@ Sudut pusat besarnya dua kali sudut keliling yang menghadap busur yang sama.
       showPoints: false,
     },
     {
-      points: Array.from({ length: 16 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = (((i * 45) / 15) * Math.PI) / 180;
         return {
           x: 1.2 * Math.cos(angle),
@@ -204,9 +209,10 @@ Sudut pusat besarnya dua kali sudut keliling yang menghadap busur yang sama.
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="2\theta" />, at: 7, offset: [0.5, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="2\theta" />, at: 49, offset: [0.5, 0.3, 0] }],
     },
     {
+      smooth: false,
       points: (() => {
         const C = {
           x: 4 * Math.cos((5 * Math.PI) / 4),
@@ -253,6 +259,7 @@ Setiap sudut keliling yang menghadap diameter lingkaran selalu merupakan sudut s
   description={<>Sudut keliling yang menghadap diameter selalu <InlineMath math="90^\circ" />.</>}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -303,6 +310,7 @@ Setiap sudut keliling yang menghadap diameter lingkaran selalu merupakan sudut s
       labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
     },
     {
+      smooth: false,
       points: (() => {
         const C = { x: 0, y: 4 };
         const A = { x: -4, y: 0 };
@@ -372,6 +380,7 @@ Segiempat tali busur adalah segiempat yang keempat titik sudutnya terletak pada 
   description={<>Jumlah sudut-sudut yang berhadapan adalah <InlineMath math="180^\circ" />.</>}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -402,7 +411,9 @@ Segiempat tali busur adalah segiempat yang keempat titik sudutnya terletak pada 
       ],
     },
     {
-      points: Array.from({ length: 16 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = ((135 + (i * 90) / 15) * Math.PI) / 180;
         return {
           x: 4 + 0.8 * Math.cos(angle),
@@ -412,10 +423,12 @@ Segiempat tali busur adalah segiempat yang keempat titik sudutnya terletak pada 
       }),
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\alpha" />, at: 7, offset: [0.3, 0.2, 0] }],
+      labels: [{ text: <InlineMath math="\alpha" />, at: 49, offset: [0.3, 0.2, 0] }],
     },
     {
-      points: Array.from({ length: 16 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = ((-45 + (i * 90) / 15) * Math.PI) / 180;
         return {
           x: -4 + 0.8 * Math.cos(angle),
@@ -425,7 +438,7 @@ Segiempat tali busur adalah segiempat yang keempat titik sudutnya terletak pada 
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\gamma" />, at: 7, offset: [-0.3, -0.2, 0] }],
+      labels: [{ text: <InlineMath math="\gamma" />, at: 49, offset: [-0.3, -0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
@@ -447,6 +460,7 @@ Pada segiempat tali busur, sudut luar di suatu titik sama dengan sudut dalam di 
   }
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
@@ -487,7 +501,9 @@ Pada segiempat tali busur, sudut luar di suatu titik sama dengan sudut dalam di 
       labels: [{ text: <InlineMath math="E" />, at: 1, offset: [0.5, 0, 0] }],
     },
     {
-      points: Array.from({ length: 16 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = ((225 + (i * 90) / 15) * Math.PI) / 180;
         return {
           x: 4 + 0.8 * Math.cos(angle),
@@ -497,10 +513,12 @@ Pada segiempat tali busur, sudut luar di suatu titik sama dengan sudut dalam di 
       }),
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\angle DAE" />, at: 7, offset: [0.8, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="\angle DAE" />, at: 49, offset: [0.8, -0.5, 0] }],
     },
     {
-      points: Array.from({ length: 16 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = ((-45 + (i * 90) / 15) * Math.PI) / 180;
         return {
           x: -4 + 0.8 * Math.cos(angle),
@@ -510,7 +528,7 @@ Pada segiempat tali busur, sudut luar di suatu titik sama dengan sudut dalam di 
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\angle BCD" />, at: 7, offset: [-0.8, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="\angle BCD" />, at: 49, offset: [-0.8, 0.5, 0] }],
     },
 
 ]}
@@ -592,6 +610,7 @@ Karena <InlineMath math="AB" /> adalah diameter dan <InlineMath math="C" /> terl
      description={<>Sudut pusat <InlineMath math="\angle AOB = 140^\circ" /> dan sudut-sudut keliling menghadap busur <InlineMath math="AB" /> yang sama.</>}
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 361 }, (_, i) => {
            const angle = (i * Math.PI) / 180;
            return {
@@ -693,7 +712,9 @@ Karena <InlineMath math="AB" /> adalah diameter dan <InlineMath math="C" /> terl
          showPoints: false,
        },
        {
-         points: Array.from({ length: 16 }, (_, i) => {
+         smooth: false,
+         points: Array.from({ length: 106 }, (_, sampleIndex) => {
+           const i = sampleIndex / 7;
            const angle = (((i * 140) / 15) * Math.PI) / 180;
            return {
              x: 1.2 * Math.cos(angle),
@@ -703,7 +724,7 @@ Karena <InlineMath math="AB" /> adalah diameter dan <InlineMath math="C" /> terl
          }),
          color: "#db2777",
          showPoints: false,
-         labels: [{ text: <InlineMath math="140^\circ" />, at: 7, offset: [0.3, 0.5, 0] }],
+         labels: [{ text: <InlineMath math="140^\circ" />, at: 49, offset: [0.3, 0.5, 0] }],
        },
      ]}
      cameraPosition={[0, 0, 12]}
@@ -761,6 +782,7 @@ Karena <InlineMath math="AB" /> adalah diameter dan <InlineMath math="C" /> terl
      }
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 361 }, (_, i) => {
            const angle = (i * Math.PI) / 180;
            return {
@@ -811,6 +833,7 @@ Karena <InlineMath math="AB" /> adalah diameter dan <InlineMath math="C" /> terl
          labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
        },
        {
+         smooth: false,
          points: (() => {
            const C = { x: 0, y: 4 };
            const A = { x: -4, y: 0 };

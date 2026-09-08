@@ -2,9 +2,27 @@ export const metadata = {
   title: "Solution to Question 29",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Of the 66 pairs, 10 are red-red and 35 are mixed. One round has expected value <InlineMath math="[60(10)+30(35)]/66=25" />. Three rounds give <InlineMath math="3(25)=75" />; after the administration fee, <InlineMath math="75-10=65" /> remains.
+All pairs of balls are equally likely. From <InlineMath math="5+7=12" /> balls, the number of possible pairs is:
 
-Therefore, the requested value is <InlineMath math="65" />.
+<BlockMath math="\binom{12}{2}=\frac{12\times11}{2}=66" />
+
+Count the pairs for each outcome:
+
+- Two red balls can be chosen in <InlineMath math="\binom{5}{2}=10" /> ways.
+- One red and one blue ball can be chosen in <InlineMath math="5\times7=35" /> ways.
+- Two blue balls can be chosen in <InlineMath math="\binom{7}{2}=21" /> ways.
+
+Their sum is <InlineMath math="10+35+21=66" />, so these cases cover every possibility. All payouts below are in thousand rupiah.
+
+Let <InlineMath math="X" /> be the payout in one round. Multiply each payout by its probability to obtain its expected value. The two-blue outcome contributes zero:
+
+<BlockMath math="\begin{aligned}\mathrm{E}[X]&=60\frac{10}{66}\\&\quad+30\frac{35}{66}\\&=\frac{600+1{,}050}{66}\\&=25\end{aligned}" />
+
+The box is restored for each round, so all three rounds have the same expected payout. The administration fee is paid only once:
+
+<BlockMath math="\begin{aligned}\mathrm{E}[\text{net}]&=3(25)-10\\&=75-10\\&=65\end{aligned}" />
+
+The expected net payout is <InlineMath math="65" /> thousand rupiah. Expected value describes the theoretical average over many repetitions of the game.

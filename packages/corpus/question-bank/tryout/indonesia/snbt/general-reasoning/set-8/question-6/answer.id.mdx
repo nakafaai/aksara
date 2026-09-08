@@ -2,63 +2,36 @@ export const metadata = {
   title: "Pembahasan Soal 6",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-01-29",
+  dateModified: "2026-09-07",
 };
 
-Untuk menentukan suara <InlineMath math="M" />, kita memerlukan sistem persamaan yang lengkap. Setiap pernyataan menyumbang satu bagian dari sistem tersebut.
+Misalkan <InlineMath math="T" /> adalah total suara sah. Karena setiap suara sah diberikan kepada satu dari empat calon:
 
-#### Menentukan Total Suara
+<BlockMath math="M+N+O+P=T" />
 
-Untuk menghitung nilai absolut (angka pasti) dari suara kandidat manapun, kita memerlukan **Pernyataan** <InlineMath math="4" /> yang memberikan total suara:
-
-<MathContainer>
-  <BlockMath math="\text{Total Suara} = 468" />
-</MathContainer>
-
-#### Menghitung Suara Kandidat Lain
-
-Diketahui hubungan penjumlahan semua suara:
+Pernyataan <InlineMath math="4" /> memberi <InlineMath math="T=468" />. Pernyataan <InlineMath math="2" /> dan <InlineMath math="3" /> kemudian menentukan suara O dan P:
 
 <MathContainer>
-  <BlockMath math="M + N + O + P = \text{Total Suara}" />
+  <BlockMath math="O=\frac14(468)=117" />
+  <BlockMath math="P=\frac23(117)=78" />
 </MathContainer>
 
-Kita perlu mengetahui nilai <InlineMath math="O" /> dan <InlineMath math="P" /> untuk mengisolasi <InlineMath math="M" /> dan <InlineMath math="N" />:
+Sisa suara menjadi milik M dan N:
 
-*   **Pernyataan** <InlineMath math="2" /> diperlukan untuk menghitung <InlineMath math="O" /> (menggunakan Total Suara dari Pernyataan <InlineMath math="4" />).
-*   **Pernyataan** <InlineMath math="3" /> diperlukan untuk menghitung <InlineMath math="P" /> (menggunakan nilai <InlineMath math="O" /> yang didapat dari Pernyataan <InlineMath math="2" />).
+<BlockMath math="\begin{aligned}M+N&=468-117-78\\&=273\end{aligned}" />
 
-Tanpa <InlineMath math="O" /> dan <InlineMath math="P" />, persamaan kita masih memiliki terlalu banyak variabel yang tidak diketahui.
-
-#### Menyelesaikan Nilai yang Dicari
-
-Setelah mengetahui nilai total, <InlineMath math="O" />, dan <InlineMath math="P" />, persamaan menjadi:
+Pernyataan <InlineMath math="1" /> memberikan <InlineMath math="M=2N" />. Substitusikan ke persamaan sisa suara:
 
 <MathContainer>
-  <BlockMath math="M + N = \text{Sisa Suara}" />
+  <BlockMath math="\begin{aligned}2N+N&=273\\3N&=273\\N&=91\end{aligned}" />
+  <BlockMath math="M=2(91)=182" />
 </MathContainer>
 
-Kita masih memiliki dua variabel (<InlineMath math="M" /> dan <InlineMath math="N" />) dalam satu persamaan. Untuk mendapatkan nilai spesifik <InlineMath math="M" />, kita memerlukan hubungan antara <InlineMath math="M" /> dan <InlineMath math="N" />.
+Setiap informasi mempunyai peran yang tidak dapat dihilangkan:
 
-**Pernyataan** <InlineMath math="1" /> memberikan hubungan ini:
+- Tanpa total pada pernyataan <InlineMath math="4" />, semua perolehan suara dapat dikalikan dengan faktor yang sama.
+- Tanpa pernyataan <InlineMath math="2" />, jumlah suara O dan P belum tetap.
+- Tanpa pernyataan <InlineMath math="3" />, jumlah suara P belum tetap.
+- Tanpa pernyataan <InlineMath math="1" />, jumlah suara M dan N belum dapat dibagi secara unik.
 
-<MathContainer>
-  <BlockMath math="M = 2N \quad \text{atau} \quad N = \frac{1}{2}M" />
-</MathContainer>
-
-Dengan mensubstitusi <InlineMath math="N" /> ke dalam persamaan sisa suara, kita dapat menyelesaikan nilai <InlineMath math="M" />.
-
-Perhitungan lengkapnya juga memastikan setiap perolehan suara berupa bilangan bulat:
-
-<MathContainer>
-  <BlockMath math="O = \frac{1}{4}(468) = 117" />
-  <BlockMath math="P = \frac{2}{3}(117) = 78" />
-  <BlockMath math="M + N = 468 - 117 - 78 = 273" />
-  <BlockMath math="2N + N = 273 \quad\Longrightarrow\quad N = 91" />
-  <BlockMath math="M = 2(91) = 182" />
-</MathContainer>
-
-#### Kesimpulan
-
-Kita memerlukan **Pernyataan** <InlineMath math="4" /> (Total), **Pernyataan** <InlineMath math="2" /> (untuk <InlineMath math="O" />), **Pernyataan** <InlineMath math="3" /> (untuk <InlineMath math="P" />), dan **Pernyataan** <InlineMath math="1" /> (untuk relasi <InlineMath math="M" /> dan <InlineMath math="N" />) secara bersamaan untuk menemukan solusi.
-
-Jadi, informasi yang dibutuhkan adalah **<InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, dan <InlineMath math="4" />**.
+Jadi, diperlukan **keempat pernyataan**, yang menghasilkan <InlineMath math="M=182" /> suara.

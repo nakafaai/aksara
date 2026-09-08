@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Verfahren wird überarbeitet, nachdem bestätigte Beschwerden eine im ersten Test übersehene Hürde zeigen.",
+            "Nach einer Beschwerde wird das Hauptziel aufgegeben und ein nicht damit zusammenhängendes Ergebnis zum neuen Ziel erklärt.",
         },
         {
           isCorrect: false,
@@ -48,7 +48,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The procedure is revised after verified complaints reveal a barrier missed in the initial trial.",
+            "After a complaint, the main objective is abandoned and an unrelated outcome becomes the new goal.",
         },
         {
           isCorrect: false,
@@ -78,7 +78,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Prosedur direvisi setelah keluhan terverifikasi menunjukkan hambatan yang tidak terdeteksi pada uji awal.",
+            "Setelah ada keluhan, tujuan utama dibatalkan dan diganti dengan hasil lain yang tidak berkaitan.",
         },
         {
           isCorrect: false,

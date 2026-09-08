@@ -7,28 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "die Folge Studie des Teams im untersuchten Kontext (Schirmverleih am Bahnhof)",
+          label: "die Folge Studie des Teams zum Rückgabecode",
         },
         {
           isCorrect: false,
-          label:
-            "die Folge-studie des Teams im untersuchten Kontext (Schirmverleih am Bahnhof)",
+          label: "die Folge-studie des Teams zum Rückgabecode",
         },
         {
           isCorrect: true,
-          label:
-            "die Folgestudie des Teams im untersuchten Kontext (Schirmverleih am Bahnhof)",
+          label: "die Folgestudie des Teams zum Rückgabecode",
         },
         {
           isCorrect: false,
-          label:
-            "die Folgestudie des Team im untersuchten Kontext (Schirmverleih am Bahnhof)",
+          label: "die Folgestudie des Team zum Rückgabecode",
         },
         {
           isCorrect: false,
-          label:
-            "die Folge  Studie des Teams im untersuchten Kontext (Schirmverleih am Bahnhof)",
+          label: "die Folgestudie des Teems zum Rückgabecode",
         },
       ],
     },
@@ -37,28 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "the team's follow up study of a return code on each handle in this setting (station umbrella lending)",
+          label: "the team's follow up study of the return code",
         },
         {
           isCorrect: false,
-          label:
-            "the team's followup study of a return code on each handle in this setting (station umbrella lending)",
+          label: "the team's follow-uup study of the return code",
         },
         {
           isCorrect: true,
-          label:
-            "the team's follow-up study of a return code on each handle in this setting (station umbrella lending)",
+          label: "the team's follow-up study of the return code",
         },
         {
           isCorrect: false,
-          label:
-            "the teams' follow--up study of a return code on each handle in this setting (station umbrella lending)",
+          label: "the teams' follow--up study of the return code",
         },
         {
           isCorrect: false,
-          label:
-            "the team follow-up-study of a return code on each handle in this setting (station umbrella lending)",
+          label: "the team follow-up-study of the return code",
         },
       ],
     },
@@ -67,28 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "kerjasama tim dalam uji kode pengembalian pada setiap gagang di layanan peminjaman payung stasiun",
+          label: "kerjasama tim dalam uji kode pengembalian",
         },
         {
           isCorrect: false,
-          label:
-            "kerja-sama tim dalam uji kode pengembalian pada setiap gagang di layanan peminjaman payung stasiun",
+          label: "kerja-sama tim dalam uji kode pengembalian",
         },
         {
           isCorrect: true,
-          label:
-            "kerja sama tim dalam uji kode pengembalian pada setiap gagang di layanan peminjaman payung stasiun",
+          label: "kerja sama tim dalam uji kode pengembalian",
         },
         {
           isCorrect: false,
-          label:
-            "kerja  sama tim dalam uji kode pengembalian pada setiap gagang di layanan peminjaman payung stasiun",
+          label: "kerja samah tim dalam uji kode pengembalian",
         },
         {
           isCorrect: false,
-          label:
-            "kerja sama-sama tim dalam uji kode pengembalian pada setiap gagang di layanan peminjaman payung stasiun",
+          label: "kerja sama-sama tim dalam uji kode pengembalian",
         },
       ],
     },

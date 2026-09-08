@@ -9,10 +9,7 @@ import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/re
 import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route/spec";
 import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import {
-  type StageOperation,
-  StageOperationSchema,
-} from "@nakafa/aksara-contracts/transport/group";
+import { StageOperationSchema } from "@nakafa/aksara-contracts/transport/group";
 import {
   type PublicationRequest,
   PublicationRequestSchema,
@@ -30,7 +27,6 @@ import {
 } from "#test/content";
 import { headRequest } from "#test/head";
 import { testRendererDomains } from "#test/renderer";
-import { historicalQuestion } from "#test/transport/rollback";
 import { makeTransportRuntimeBundle } from "#test/transport/runtime";
 import {
   transportSnapshot,
@@ -167,32 +163,12 @@ const transportStageRequests = Schema.decodeUnknownSync(
     releaseId: transportReleaseId,
   },
   {
-    batchIndex: 0,
-    operation: "stageRollbackProjectionBatch",
-    projections: [historicalQuestion],
-    releaseId: transportReleaseId,
-  },
-  {
     artifacts: [transportContent.artifact],
     batchIndex: 0,
     operation: "stageArtifactBatch",
     releaseId: transportReleaseId,
   },
 ]);
-
-/** Excludes the rollback-only child operation from top-level ingress fixtures. */
-function isTopLevelStageOperation(
-  request: StageOperation
-): request is Exclude<
-  StageOperation,
-  { readonly operation: "stageRollbackProjectionBatch" }
-> {
-  return request.operation !== "stageRollbackProjectionBatch";
-}
-
-const transportTopLevelStageRequests = transportStageRequests.filter(
-  isTopLevelStageOperation
-);
 
 export const transportRequests: readonly PublicationRequest[] =
   Schema.decodeSync(Schema.Array(PublicationRequestSchema))([
@@ -211,7 +187,7 @@ export const transportRequests: readonly PublicationRequest[] =
       release: transportRecovery,
       rendererManifest: transportRenderer,
     },
-    ...transportTopLevelStageRequests,
+    ...transportStageRequests,
     {
       operation: "stageGroup",
       releaseId: transportReleaseId,

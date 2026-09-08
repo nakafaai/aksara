@@ -2,13 +2,37 @@ export const metadata = {
   title: "Solution to Question 28",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-07",
 };
 
-The position pairs for A-B with exactly two reports between them are <InlineMath math="(1,4),(2,5),(3,6),(4,7)" />. There are four position pairs, two orders for A-B, and <InlineMath math="5!" /> arrangements of the other reports. Before excluding adjacent E-F, this gives <InlineMath math="4\cdot2\cdot5!=960" /> arrangements.
+The positions of A and B must differ by <InlineMath math="3" /> to leave exactly two reports between them. The possible position pairs are:
 
-After removing the occupied A-B positions, the four cases leave <InlineMath math="3,2,2,3" /> available adjacent position pairs for E-F. For each such pair, E and F have two orders and the other three reports have <InlineMath math="3!" /> arrangements. Including the two orders for A-B, the adjacent E-F count is <InlineMath math="2(3+2+2+3)\cdot2\cdot3!=240" />.
+<MathContainer>
+  <BlockMath math="(1,4),\ (2,5)" />
+  <BlockMath math="(3,6),\ (4,7)" />
+</MathContainer>
 
-This leaves <InlineMath math="960-240=720" /> arrangements before ordering C and D. Swapping C and D shows that exactly half have C before D, giving <InlineMath math="720/2=360" /> valid arrangements.
+There are four position pairs, two orders for A and B, and <InlineMath math="5!" /> orders of the other five reports. The number satisfying the A-B spacing is therefore:
 
-Therefore, the requested value is <InlineMath math="\\frac1{14}" />.
+<BlockMath math="4\times2\times5!=960" />
+
+Now count the forbidden arrangements with E and F adjacent. Keep the A and B positions occupied, without closing the gaps. The number of available pairs of consecutive original positions is:
+
+| A and B positions | Available pairs |
+| :--- | ---: |
+| <InlineMath math="(1,4)" /> | <InlineMath math="3" /> |
+| <InlineMath math="(2,5)" /> | <InlineMath math="2" /> |
+| <InlineMath math="(3,6)" /> | <InlineMath math="2" /> |
+| <InlineMath math="(4,7)" /> | <InlineMath math="3" /> |
+
+Across the four cases there are <InlineMath math="3+2+2+3=10" /> available pairs. E and F have two orders in each pair, and the other three reports have <InlineMath math="3!" /> orders. Including the two orders for A and B:
+
+<BlockMath math="\begin{aligned}2\times10\times2\times3!&=240\end{aligned}" />
+
+Removing the forbidden arrangements leaves <InlineMath math="960-240=720" />. Swapping C and D preserves every other condition, so exactly half put C before D:
+
+<BlockMath math="\frac{720}{2}=360" />
+
+All <InlineMath math="7!" /> arrangements are equally likely. The required probability is:
+
+<BlockMath math="\frac{360}{7!}=\frac{360}{5040}=\frac1{14}" />

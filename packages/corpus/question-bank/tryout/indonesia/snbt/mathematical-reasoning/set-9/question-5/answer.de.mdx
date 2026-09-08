@@ -2,7 +2,23 @@ export const metadata = {
   title: "Lösung zu Aufgabe 5",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Bei zwei nebeneinanderliegenden Gehegen werden drei Seiten der Länge <InlineMath math="L" /> und vier Seiten der Breite <InlineMath math="W" /> eingezäunt. Daher gilt <InlineMath math="3L+4W=76" />. Für positive ganzzahlige Maße ist <InlineMath math="W\equiv1\pmod3" />. In der Nähe des kontinuierlichen Maximums <InlineMath math="W=9{,}5" /> sind die zulässigen Kandidaten <InlineMath math="(W,L)=(7,16),(10,12),(13,8)" />. Ihre Gesamtflächen sind <InlineMath math="224,240,208" />. Das Maximum beträgt <InlineMath math="240" /> Quadratmeter.
+Drei Seiten der Länge <InlineMath math="L" /> und vier Seiten der Breite <InlineMath math="W" /> werden eingezäunt. Daher gilt <InlineMath math="3L+4W=76" />. Alle Maße sind in Metern angegeben. Damit <InlineMath math="L" /> ganzzahlig ist, muss <InlineMath math="W\equiv1\pmod3" /> gelten.
+
+Die Gesamtfläche in Quadratmetern lautet
+
+<BlockMath math="\begin{aligned}A(W)&=2W\cdot\frac{76-4W}{3} \\ &=\frac{152W-8W^2}{3}\end{aligned}" />
+
+Diese nach unten geöffnete Parabel hat ihr Maximum ohne Ganzzahligkeitsbedingung bei <InlineMath math="W=152/16=9{,}5" />.
+
+Je weiter <InlineMath math="W" /> von <InlineMath math="9{,}5" /> entfernt liegt, desto kleiner wird die Fläche. In der Nähe des Maximums liegen folgende zulässige Kandidaten:
+
+| Breite | Länge | Fläche |
+| ---: | ---: | ---: |
+| <InlineMath math="7" /> | <InlineMath math="16" /> | <InlineMath math="224" /> |
+| <InlineMath math="10" /> | <InlineMath math="12" /> | <InlineMath math="240" /> |
+| <InlineMath math="13" /> | <InlineMath math="8" /> | <InlineMath math="208" /> |
+
+Der zulässige Wert <InlineMath math="W=10" /> liegt dem Maximum am nächsten. Die größte Gesamtfläche beträgt damit <InlineMath math="240\text{ m}^2" />.

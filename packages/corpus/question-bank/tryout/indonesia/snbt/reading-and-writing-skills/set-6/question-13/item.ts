@@ -7,28 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "die Folge Studie des Teams im untersuchten Kontext (Lärmprotokoll im Wohngebiet)",
+          label: "die Folge Studie des Teams zum Ausfüllbeispiel",
         },
         {
           isCorrect: false,
-          label:
-            "die Folge-studie des Teams im untersuchten Kontext (Lärmprotokoll im Wohngebiet)",
+          label: "die Folge-studie des Teams zum Ausfüllbeispiel",
         },
         {
           isCorrect: false,
-          label:
-            "die Folgestudie des Team im untersuchten Kontext (Lärmprotokoll im Wohngebiet)",
+          label: "die Folgestudie des Team zum Ausfüllbeispiel",
         },
         {
           isCorrect: true,
-          label:
-            "die Folgestudie des Teams im untersuchten Kontext (Lärmprotokoll im Wohngebiet)",
+          label: "die Folgestudie des Teams zum Ausfüllbeispiel",
         },
         {
           isCorrect: false,
-          label:
-            "die Folge  Studie des Teams im untersuchten Kontext (Lärmprotokoll im Wohngebiet)",
+          label: "die Folgestudie des Teems zum Ausfüllbeispiel",
         },
       ],
     },
@@ -37,28 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "the team's follow up study of an example showing how to record sound duration in this setting (neighbourhood noise log)",
+          label: "the team's follow up study of the timing example",
         },
         {
           isCorrect: false,
-          label:
-            "the team's followup study of an example showing how to record sound duration in this setting (neighbourhood noise log)",
+          label: "the team's follow-uup study of the timing example",
         },
         {
           isCorrect: false,
-          label:
-            "the teams' follow--up study of an example showing how to record sound duration in this setting (neighbourhood noise log)",
+          label: "the teams' follow--up study of the timing example",
         },
         {
           isCorrect: true,
-          label:
-            "the team's follow-up study of an example showing how to record sound duration in this setting (neighbourhood noise log)",
+          label: "the team's follow-up study of the timing example",
         },
         {
           isCorrect: false,
-          label:
-            "the team follow-up-study of an example showing how to record sound duration in this setting (neighbourhood noise log)",
+          label: "the team follow-up-study of the timing example",
         },
       ],
     },
@@ -67,28 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "kerjasama tim dalam uji contoh pencatatan durasi suara pada sistem pencatatan kebisingan lingkungan",
+          label: "kerjasama tim dalam uji contoh pencatatan waktu",
         },
         {
           isCorrect: false,
-          label:
-            "kerja-sama tim dalam uji contoh pencatatan durasi suara pada sistem pencatatan kebisingan lingkungan",
+          label: "kerja-sama tim dalam uji contoh pencatatan waktu",
         },
         {
           isCorrect: false,
-          label:
-            "kerja  sama tim dalam uji contoh pencatatan durasi suara pada sistem pencatatan kebisingan lingkungan",
+          label: "kerja samah tim dalam uji contoh pencatatan waktu",
         },
         {
           isCorrect: true,
-          label:
-            "kerja sama tim dalam uji contoh pencatatan durasi suara pada sistem pencatatan kebisingan lingkungan",
+          label: "kerja sama tim dalam uji contoh pencatatan waktu",
         },
         {
           isCorrect: false,
-          label:
-            "kerja sama-sama tim dalam uji contoh pencatatan durasi suara pada sistem pencatatan kebisingan lingkungan",
+          label: "kerja sama-sama tim dalam uji contoh pencatatan waktu",
         },
       ],
     },

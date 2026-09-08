@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Deshalb blieb die Schlussfolgerung zu Aufnahmestudio der Schule begrenzt.",
+            "Die mittlere Zahl der Aufnahmen ohne technisch bedingte Wiederholung war höher. Deshalb blieb die Schlussfolgerung zum Versuch im Schulstudio begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Außerdem blieb die Schlussfolgerung zu Aufnahmestudio der Schule begrenzt.",
+            "Die mittlere Zahl der Aufnahmen ohne technisch bedingte Wiederholung war höher. Außerdem blieb die Schlussfolgerung zum Versuch im Schulstudio begrenzt.",
         },
         {
           isCorrect: true,
           label:
-            "Die Zahlen stiegen. Dennoch blieb die Schlussfolgerung für diesen Kontext begrenzt: Aufnahmestudio der Schule.",
+            "Die mittlere Zahl der Aufnahmen ohne technisch bedingte Wiederholung war höher. Dennoch blieb die Schlussfolgerung zum Versuch im Schulstudio begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Zuvor blieb die Schlussfolgerung zu Aufnahmestudio der Schule begrenzt.",
+            "Die mittlere Zahl der Aufnahmen ohne technisch bedingte Wiederholung war höher. Zuvor blieb die Schlussfolgerung zum Versuch im Schulstudio begrenzt.",
         },
         {
           isCorrect: false,
           label:
-            "Die Zahlen stiegen. Folglich blieb die Schlussfolgerung zu Aufnahmestudio der Schule begrenzt.",
+            "Die mittlere Zahl der Aufnahmen ohne technisch bedingte Wiederholung war höher. Folglich blieb die Schlussfolgerung zum Versuch im Schulstudio begrenzt.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The figures increased. Therefore, the conclusion about the school recording studio remained limited.",
+            "The mean number of recordings without technical retakes was higher. Therefore, the conclusion about the school-studio trial remained limited.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Moreover, the conclusion about the school recording studio remained limited.",
+            "The mean number of recordings without technical retakes was higher. Moreover, the conclusion about the school-studio trial remained limited.",
         },
         {
           isCorrect: true,
           label:
-            "The figures increased. Nevertheless, the conclusion for this setting (school recording studio) remained limited.",
+            "The mean number of recordings without technical retakes was higher. Nevertheless, the conclusion about the school-studio trial remained limited.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Previously, the conclusion about the school recording studio remained limited.",
+            "The mean number of recordings without technical retakes was higher. Previously, the conclusion about the school-studio trial remained limited.",
         },
         {
           isCorrect: false,
           label:
-            "The figures increased. Consequently, the conclusion about the school recording studio remained limited.",
+            "The mean number of recordings without technical retakes was higher. Consequently, the conclusion about the school-studio trial remained limited.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Oleh karena itu, simpulan tentang studio rekaman sekolah tetap dibatasi.",
+            "Rata-rata rekaman tanpa pengulangan teknis lebih tinggi. Oleh karena itu, simpulan tentang uji di studio sekolah tetap dibatasi.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Selain itu, simpulan tentang studio rekaman sekolah tetap dibatasi.",
+            "Rata-rata rekaman tanpa pengulangan teknis lebih tinggi. Selain itu, simpulan tentang uji di studio sekolah tetap dibatasi.",
         },
         {
           isCorrect: true,
           label:
-            "Angka meningkat. Namun, simpulan tentang studio rekaman sekolah tetap dibatasi.",
+            "Rata-rata rekaman tanpa pengulangan teknis lebih tinggi. Namun, simpulan tentang uji di studio sekolah tetap dibatasi.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Sebelumnya, simpulan tentang studio rekaman sekolah tetap dibatasi.",
+            "Rata-rata rekaman tanpa pengulangan teknis lebih tinggi. Sebelumnya, simpulan tentang uji di studio sekolah tetap dibatasi.",
         },
         {
           isCorrect: false,
           label:
-            "Angka meningkat. Akibatnya, simpulan tentang studio rekaman sekolah tetap dibatasi.",
+            "Rata-rata rekaman tanpa pengulangan teknis lebih tinggi. Akibatnya, simpulan tentang uji di studio sekolah tetap dibatasi.",
         },
       ],
     },

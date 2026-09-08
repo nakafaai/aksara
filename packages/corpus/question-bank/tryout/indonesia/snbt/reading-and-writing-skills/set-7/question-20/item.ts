@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Da 32 über 24 und 26 lag, erklärte das Team ein Rückgabecode an jedem Griff für wirksam und führte die Änderung dauerhaft ein.",
+            "Da 32 über 24 und 26 lag, erklärte das Team den Code für sicher wirksam und führte ihn dauerhaft ein.",
         },
         {
           isCorrect: true,
           label:
-            "Das Team verglich 32, 24 und 26, begrenzte die Aussage auf den untersuchten Kontext (Schirmverleih am Bahnhof) und plante eine längere Wiederholung.",
+            "Das Team verglich die Mittelwerte 32, 24 und 26, begrenzte die Aussage wegen des ungeklärten Wettereinflusses und plante den Vergleich mehrerer Wetterlagen bei derselben Rückgabefrist von zwei Tagen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team verglich 32, 24 und 26 und plante eine längere Wiederholung, ohne die Aussage auf Regenschirmverleih am Bahnhof zu begrenzen.",
+            "Das Team verglich 32, 24 und 26 und plante weitere Tests, ohne die Aussage zu begrenzen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team begrenzte die Aussage auf Regenschirmverleih am Bahnhof und plante eine längere Wiederholung, ohne den Vergleich zu nennen.",
+            "Das Team begrenzte die Aussage wegen des ungeklärten Wettereinflusses und plante weitere Tests, ohne den Ergebnisvergleich zu nennen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Werte 32, 24 und 26 zeigten kein relevantes Muster, daher wollte das Team die Messregeln ändern.",
+            "Die Werte 32, 24 und 26 zeigten kein relevantes Muster, weshalb das Team die Rückgabefrist ändern wollte.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Because 32 exceeded 24 and 26, the team concluded that the change was effective and adopted it permanently.",
+            "Because 32 exceeded 24 and 26, the team declared the code definitely effective and adopted it permanently.",
         },
         {
           isCorrect: true,
           label:
-            "The team compared 32, 24, and 26, limited its claim to this setting (station umbrella lending), and planned a longer repetition.",
+            "The team compared means of 32, 24, and 26, limited its conclusion because weather effects remained unseparated, and planned to compare several weather patterns under the same two-day return limit.",
         },
         {
           isCorrect: false,
           label:
-            "The team compared 32, 24, and 26 and planned a longer repetition without limiting the claim to the context of station umbrella lending.",
+            "The team compared 32, 24, and 26 and planned further testing without limiting the claim.",
         },
         {
           isCorrect: false,
           label:
-            "The team limited its claim to the context of station umbrella lending and planned a longer repetition without reporting the comparison.",
+            "The team limited its conclusion because weather effects remained unseparated and planned further testing without reporting the result comparison.",
         },
         {
           isCorrect: false,
           label:
-            "The values 32, 24, and 26 showed no relevant pattern, so the team planned to change the measurement rules.",
+            "The values 32, 24, and 26 showed no relevant pattern, so the team planned to change the return deadline.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Karena 32 lebih tinggi daripada 24 dan 26, tim menyimpulkan bahwa kode pengembalian pada setiap gagang efektif lalu menerapkannya secara tetap.",
+            "Karena 32 lebih tinggi daripada 24 dan 26, tim menyatakan kode pasti efektif dan menerapkannya secara permanen.",
         },
         {
           isCorrect: true,
           label:
-            "Tim membandingkan 32, 24, dan 26, membatasi klaim pada peminjaman payung stasiun, serta merencanakan pengulangan yang lebih panjang.",
+            "Tim membandingkan rata-rata 32, 24, dan 26, membatasi simpulan karena pengaruh cuaca belum dipisahkan, serta merencanakan perbandingan beberapa pola cuaca dengan batas pengembalian dua hari yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Tim membandingkan 32, 24, dan 26 serta merencanakan pengulangan lebih panjang tanpa membatasi klaim pada peminjaman payung stasiun.",
+            "Tim membandingkan 32, 24, dan 26 serta merencanakan uji lanjutan tanpa membatasi cakupan klaim.",
         },
         {
           isCorrect: false,
           label:
-            "Tim membatasi klaim pada peminjaman payung stasiun dan merencanakan pengulangan lebih panjang tanpa melaporkan perbandingan.",
+            "Tim membatasi simpulan karena pengaruh cuaca belum dipisahkan dan merencanakan uji lanjutan tanpa melaporkan perbandingan hasil.",
         },
         {
           isCorrect: false,
           label:
-            "Nilai 32, 24, dan 26 tidak menunjukkan pola yang relevan sehingga tim akan mengubah kaidah pengukuran.",
+            "Nilai 32, 24, dan 26 tidak menunjukkan pola yang relevan sehingga tim akan mengubah batas waktu pengembalian.",
         },
       ],
     },

@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kenaikan dari 24 menjadi 35 membuktikan bahwa jadwal singkat menyebabkan seluruh tambahan peminjaman, termasuk saat cuaca dan kegiatan sekolah berubah.",
+            "Kenaikan dari $$24$$ menjadi $$35$$ membuktikan bahwa ringkasan jadwal menyebabkan seluruh tambahan peminjaman, termasuk saat cuaca dan kegiatan sekolah berubah.",
         },
         {
           isCorrect: false,
@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Nilai 35 pada uji, dibandingkan dengan 26 pada kondisi pembanding, mendukung penerusan jadwal singkat dalam skala terbatas; pengaruh cuaca dan kegiatan sekolah tetap perlu diuji.",
+            "Nilai $$35$$ pada uji, dibandingkan dengan $$26$$ pada kondisi pembanding, mendukung penerusan ringkasan jadwal dalam skala terbatas. Pengaruh cuaca dan kegiatan sekolah tetap perlu diuji.",
         },
         {
           isCorrect: false,

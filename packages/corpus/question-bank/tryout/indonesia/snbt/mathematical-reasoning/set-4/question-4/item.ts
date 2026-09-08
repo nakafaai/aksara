@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$\\frac{3\\sqrt{6}}{2}$$ cm",
+          label: "$$\\frac{3\\sqrt{6}}{2}\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3\\sqrt{3}}{2}$$ cm",
+          label: "$$\\frac{3\\sqrt{3}}{2}\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{2}\\sqrt{3}$$ cm",
+          label: "$$\\frac{1}{2}\\sqrt{3}\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{3}\\sqrt{3}$$ cm",
+          label: "$$\\frac{1}{3}\\sqrt{3}\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3}{2}\\sqrt{2}$$ cm",
+          label: "$$\\frac{3}{2}\\sqrt{2}\\text{ cm}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$\\frac{3\\sqrt{6}}{2}$$ cm",
+          label: "$$\\frac{3\\sqrt{6}}{2}\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3\\sqrt{3}}{2}$$ cm",
+          label: "$$\\frac{3\\sqrt{3}}{2}\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{2}\\sqrt{3}$$ cm",
+          label: "$$\\frac{1}{2}\\sqrt{3}\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{3}\\sqrt{3}$$ cm",
+          label: "$$\\frac{1}{3}\\sqrt{3}\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3}{2}\\sqrt{2}$$ cm",
+          label: "$$\\frac{3}{2}\\sqrt{2}\\text{ cm}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "$$\\frac{3\\sqrt{6}}{2}$$ cm",
+          label: "$$\\frac{3\\sqrt{6}}{2}\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3\\sqrt{3}}{2}$$ cm",
+          label: "$$\\frac{3\\sqrt{3}}{2}\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{2}\\sqrt{3}$$ cm",
+          label: "$$\\frac{1}{2}\\sqrt{3}\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{1}{3}\\sqrt{3}$$ cm",
+          label: "$$\\frac{1}{3}\\sqrt{3}\\text{ cm}$$",
         },
         {
           isCorrect: false,
-          label: "$$\\frac{3}{2}\\sqrt{2}$$ cm",
+          label: "$$\\frac{3}{2}\\sqrt{2}\\text{ cm}$$",
         },
       ],
     },

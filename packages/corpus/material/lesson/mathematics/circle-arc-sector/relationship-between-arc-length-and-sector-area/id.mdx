@@ -3,7 +3,7 @@ export const metadata = {
   description: "Turunkan hubungan proporsional antara panjang busur, luas juring, sudut, dan jari-jari, lalu gunakan pada pengukuran Bumi oleh Eratosthenes.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Busur dan Juring Lingkaran",
 };
 
@@ -63,7 +63,7 @@ Lihat bagaimana hubungan proporsional ini berlaku untuk berbagai sudut pusat. Se
       }),
       color: "#4f46e5",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 1,
     },
     {
@@ -87,7 +87,8 @@ Lihat bagaimana hubungan proporsional ini berlaku untuk berbagai sudut pusat. Se
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 16 }, (_, i) => {
+      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = (i * Math.PI / 4) / 15;
         return {
           x: 4 * Math.cos(angle),
@@ -97,12 +98,12 @@ Lihat bagaimana hubungan proporsional ini berlaku untuk berbagai sudut pusat. Se
       }),
       color: "#ea580c",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 4,
       labels: [
         {
           text: <InlineMath math="45^\circ" />,
-          at: 8,
+          at: 56,
           offset: [1, 0.8, 0],
         },
       ],
@@ -127,7 +128,7 @@ Lihat bagaimana hubungan proporsional ini berlaku untuk berbagai sudut pusat. Se
       }),
       color: "#4f46e5",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 1,
     },
     {
@@ -161,7 +162,7 @@ Lihat bagaimana hubungan proporsional ini berlaku untuk berbagai sudut pusat. Se
       }),
       color: "#d97706",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 4,
       labels: [
         {
@@ -191,7 +192,7 @@ Lihat bagaimana hubungan proporsional ini berlaku untuk berbagai sudut pusat. Se
       }),
       color: "#4f46e5",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 1,
     },
     {
@@ -215,7 +216,7 @@ Lihat bagaimana hubungan proporsional ini berlaku untuk berbagai sudut pusat. Se
       }),
       color: "#e11d48",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 4,
       labels: [
         {
@@ -245,7 +246,7 @@ Lihat bagaimana hubungan proporsional ini berlaku untuk berbagai sudut pusat. Se
       }),
       color: "#4f46e5",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 1,
     },
     {
@@ -279,7 +280,7 @@ Lihat bagaimana hubungan proporsional ini berlaku untuk berbagai sudut pusat. Se
       }),
       color: "#c026d3",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 4,
       labels: [
         {
@@ -331,7 +332,7 @@ Eratosthenes, yang hidup sekitar <InlineMath math="276\text{-}194 \text{ SM}" />
       }),
       color: "#4f46e5",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 2,
       labels: [
         {
@@ -376,7 +377,8 @@ Eratosthenes, yang hidup sekitar <InlineMath math="276\text{-}194 \text{ SM}" />
       ],
     },
     {
-      points: Array.from({ length: 11 }, (_, i) => {
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 10;
         const angle = (i * (7.2 * Math.PI) / 180) / 10;
         return {
           x: 5 * Math.cos(angle),
@@ -386,18 +388,19 @@ Eratosthenes, yang hidup sekitar <InlineMath math="276\text{-}194 \text{ SM}" />
       }),
       color: "#ea580c",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 4,
       labels: [
         {
           text: <InlineMath math="5{.}000\,\text{stadia}" />,
-          at: 5,
+          at: 50,
           offset: [1.2, 0.5, 0],
         },
       ],
     },
     {
-      points: Array.from({ length: 11 }, (_, i) => {
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 10;
         const angle = (i * (7.2 * Math.PI) / 180) / 10;
         const radius = 1.5;
         return {
@@ -408,12 +411,12 @@ Eratosthenes, yang hidup sekitar <InlineMath math="276\text{-}194 \text{ SM}" />
       }),
       color: "#7c3aed",
       showPoints: false,
-      smooth: true,
+      smooth: false,
       lineWidth: 3,
       labels: [
         {
           text: <InlineMath math="7{,}2^\circ" />,
-          at: 5,
+          at: 50,
           offset: [0.8, 0.3, 0],
         },
       ],

@@ -2,9 +2,25 @@ export const metadata = {
   title: "Solution to Question 27",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Reversing the tax, voucher, and 25% markup gives the initial price <InlineMath math="[(924/1.10)+60]/1.25=720" />. The markup amount is <InlineMath math="25\%\cdot720=180" />.
+All monetary values below are in thousand rupiah. Work backward by reversing the price changes in the opposite order.
 
-Therefore, the requested value is <InlineMath math="180" />.
+The final price includes <InlineMath math="10\%" /> tax. The price after the voucher but before tax is therefore:
+
+<BlockMath math="\frac{924}{1.10}=840" />
+
+Add the voucher back to obtain the price after the markup:
+
+<BlockMath math="840+60=900" />
+
+This price is <InlineMath math="125\%" /> of the original price. Let the original price be <InlineMath math="H" />:
+
+<BlockMath math="\begin{aligned}1.25H&=900\\H&=\frac{900}{1.25}\\&=720\end{aligned}" />
+
+The requested markup amount is:
+
+<BlockMath math="0.25\times720=180" />
+
+To check, <InlineMath math="720+180=900" />, the voucher reduces it to <InlineMath math="840" />, and tax raises it to <InlineMath math="924" />. The markup is therefore <InlineMath math="180" /> thousand rupiah.

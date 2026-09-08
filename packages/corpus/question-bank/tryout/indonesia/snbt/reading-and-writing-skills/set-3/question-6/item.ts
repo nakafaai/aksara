@@ -8,27 +8,24 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Im Kontext Evakuierungsplan verursachte die Änderung kontrastreichere Sammelplatzsymbole den höheren Testwert.",
+            "Die neuen Symbole verursachten nachweislich den höheren Versuchsmittelwert.",
         },
         {
           isCorrect: false,
-          label:
-            "Im Kontext Evakuierungsplan verbesserten sich sämtliche Teilnehmenden um denselben Wert.",
+          label: "Alle Teilnehmenden verbesserten sich um denselben Betrag.",
         },
         {
           isCorrect: false,
-          label:
-            "Im Kontext Evakuierungsplan belegte der kurze Test das langfristige Ergebnis.",
+          label: "Der kurze Versuch belegte das langfristige Ergebnis.",
         },
         {
           isCorrect: false,
-          label:
-            "Im Kontext Evakuierungsplan waren die beiden Vergleichswerte identisch.",
+          label: "Der Ausgangs- und der Vergleichsmittelwert waren gleich.",
         },
         {
           isCorrect: true,
           label:
-            "Der Versuchswert lag im Kontext Karte der Evakuierungswege über den beiden anderen Werten.",
+            "Der Versuchsmittelwert lag über dem Ausgangs- und dem Vergleichsmittelwert.",
         },
       ],
     },
@@ -37,28 +34,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "In this setting (evacuation route map), higher-contrast assembly-point symbols caused the higher trial value.",
+          label: "The new symbols were proved to cause the higher trial mean.",
         },
         {
           isCorrect: false,
-          label:
-            "In this setting (evacuation route map), each participant improved by the same amount.",
+          label: "Every participant improved by the same amount.",
         },
         {
           isCorrect: false,
-          label:
-            "In this setting (evacuation route map), the short trial established the long-term result.",
+          label: "The short trial established the long-term result.",
         },
         {
           isCorrect: false,
-          label:
-            "In this setting (evacuation route map), the two comparison values were identical.",
+          label: "The baseline and comparison means were identical.",
         },
         {
           isCorrect: true,
           label:
-            "In this setting (evacuation route map), the trial value exceeded both other values.",
+            "The trial mean exceeded both the baseline and comparison means.",
         },
       ],
     },
@@ -68,27 +61,24 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dalam konteks peta jalur evakuasi, simbol titik kumpul dengan kontras lebih tinggi menyebabkan nilai uji menjadi lebih tinggi.",
+            "Simbol baru terbukti menyebabkan rata-rata hasil uji yang lebih tinggi.",
         },
         {
           isCorrect: false,
-          label:
-            "Dalam konteks peta jalur evakuasi, setiap peserta mengalami peningkatan yang sama.",
+          label: "Setiap peserta mengalami peningkatan yang sama.",
         },
         {
           isCorrect: false,
-          label:
-            "Dalam konteks peta jalur evakuasi, uji singkat menetapkan hasil jangka panjang.",
+          label: "Uji singkat tersebut membuktikan hasil jangka panjang.",
         },
         {
           isCorrect: false,
-          label:
-            "Dalam konteks peta jalur evakuasi, kedua nilai pembanding sama.",
+          label: "Rata-rata awal dan rata-rata pembanding sama.",
         },
         {
           isCorrect: true,
           label:
-            "Di peta jalur evakuasi, nilai hari uji melampaui dua nilai lainnya.",
+            "Rata-rata hasil uji lebih tinggi daripada rata-rata awal dan pembanding.",
         },
       ],
     },

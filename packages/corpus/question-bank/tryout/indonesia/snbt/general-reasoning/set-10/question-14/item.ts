@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A, F, B, E, D, C",
+          label: "$$A,F,B,E,D,C$$",
         },
         {
           isCorrect: false,
-          label: "E, B, F, A, C, D",
+          label: "$$E,B,F,A,C,D$$",
         },
         {
           isCorrect: false,
-          label: "F, E, B, D, C, A",
+          label: "$$F,E,B,D,C,A$$",
         },
         {
           isCorrect: false,
-          label: "A, C, D, F, E, B",
+          label: "$$A,C,D,F,E,B$$",
         },
         {
           isCorrect: true,
-          label: "F, A, D, E, B, C",
+          label: "$$F,A,D,E,B,C$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A, F, B, E, D, C",
+          label: "$$A,F,B,E,D,C$$",
         },
         {
           isCorrect: false,
-          label: "E, B, F, A, C, D",
+          label: "$$E,B,F,A,C,D$$",
         },
         {
           isCorrect: false,
-          label: "F, E, B, D, C, A",
+          label: "$$F,E,B,D,C,A$$",
         },
         {
           isCorrect: false,
-          label: "A, C, D, F, E, B",
+          label: "$$A,C,D,F,E,B$$",
         },
         {
           isCorrect: true,
-          label: "F, A, D, E, B, C",
+          label: "$$F,A,D,E,B,C$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "A, F, B, E, D, C",
+          label: "$$A,F,B,E,D,C$$",
         },
         {
           isCorrect: false,
-          label: "E, B, F, A, C, D",
+          label: "$$E,B,F,A,C,D$$",
         },
         {
           isCorrect: false,
-          label: "F, E, B, D, C, A",
+          label: "$$F,E,B,D,C,A$$",
         },
         {
           isCorrect: false,
-          label: "A, C, D, F, E, B",
+          label: "$$A,C,D,F,E,B$$",
         },
         {
           isCorrect: true,
-          label: "F, A, D, E, B, C",
+          label: "$$F,A,D,E,B,C$$",
         },
       ],
     },

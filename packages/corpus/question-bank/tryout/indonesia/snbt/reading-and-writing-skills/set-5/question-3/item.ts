@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Beobachtung bewies daher, dass die Änderung Beispielfotos für jede Zustandskategorie den Unterschied verursachte.",
+            "Die Ausgangsdaten bewiesen, dass Beispielfotos den Unterschied in der Übereinstimmung verursachten.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team musste daher mehrere Merkmale im Kontext Straßenbaumerhebung ändern, bevor es erneut maß.",
+            "Das Team musste vor der nächsten Messung mehrere Merkmale der Erfassung gleichzeitig ändern.",
         },
         {
           isCorrect: false,
           label:
-            "Das erste Muster rechtfertigte daher die dauerhafte Einführung von Beispielfotos für jede Zustandskategorie.",
+            "Das Ausgangsmuster rechtfertigte die dauerhafte Einführung von Beispielfotos.",
         },
         {
           isCorrect: true,
           label:
-            "Die Hypothese musste deshalb mit folgender Änderung in einem begrenzten Versuch geprüft werden: Beispielfotos für jede Zustandskategorie.",
+            "Die Hypothese musste deshalb durch zusätzliche Beispielfotos für jede Zustandskategorie geprüft werden.",
         },
         {
           isCorrect: false,
           label:
-            "Die verbleibende Unsicherheit machte einen weiteren Vergleich daher überflüssig.",
+            "Die verbleibende Unsicherheit machte einen weiteren Vergleich überflüssig.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The observation therefore established that sample photos for each condition category caused the difference.",
+            "The baseline proved that sample photographs caused the difference in agreement.",
         },
         {
           isCorrect: false,
           label:
-            "The team therefore needed to alter several features of street-tree survey before measuring again.",
+            "The team needed to change several survey features at once before measuring again.",
         },
         {
           isCorrect: false,
           label:
-            "The initial pattern therefore justified permanent adoption of sample photos for each condition category.",
+            "The baseline pattern justified adopting sample photographs permanently.",
         },
         {
           isCorrect: true,
           label:
-            "The hypothesis therefore needed a limited test of sample photos for each condition category.",
+            "The hypothesis therefore needed to be tested by adding sample photographs for each condition category.",
         },
         {
           isCorrect: false,
           label:
-            "The remaining uncertainty therefore made another comparison unnecessary.",
+            "The remaining uncertainty made further comparison unnecessary.",
         },
       ],
     },
@@ -68,22 +68,21 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pengamatan itu membuktikan bahwa foto contoh untuk setiap kategori kondisi menyebabkan perbedaan.",
+            "Data awal membuktikan bahwa contoh foto menyebabkan perbedaan kesepakatan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim perlu mengubah beberapa unsur survei pohon jalan sebelum melakukan pengukuran ulang.",
+            "Tim perlu mengubah beberapa unsur pendataan sekaligus sebelum mengukur ulang.",
         },
         {
           isCorrect: false,
-          label:
-            "Pola awal itu membenarkan penerapan tetap foto contoh untuk setiap kategori kondisi.",
+          label: "Pola awal membenarkan penerapan permanen contoh foto.",
         },
         {
           isCorrect: true,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji secara terbatas melalui contoh foto untuk setiap kategori kondisi.",
+            "Oleh karena itu, hipotesis tersebut perlu diuji dengan menambahkan contoh foto untuk setiap kategori kondisi.",
         },
         {
           isCorrect: false,

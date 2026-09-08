@@ -12,24 +12,24 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Der Mittelpunkt der Asymptoten ist $(1,2)$.",
+          label: "Der Schnittpunkt der Asymptoten ist $$(1,2)$$.",
         },
         {
           isCorrect: true,
           label:
-            "$f$ ist auf jedem Intervall ihres Definitionsbereichs streng fallend.",
+            "$$f$$ ist auf jedem Intervall ihres Definitionsbereichs streng fallend.",
         },
         {
           isCorrect: true,
-          label: "Aus $x>1$ folgt $f(x)>2$.",
+          label: "Aus $$x>1$$ folgt $$f(x)>2$$.",
         },
         {
           isCorrect: true,
-          label: "$f^{-1}(x)=\\frac{x+3}{x-2}$.",
+          label: "$$f^{-1}(x)=\\frac{x+3}{x-2}$$.",
         },
         {
           isCorrect: false,
-          label: "$f(1)=0$.",
+          label: "$$f(1)=0$$.",
         },
       ],
     },
@@ -38,23 +38,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "The center of the asymptotes is $(1,2)$.",
+          label: "The intersection of the asymptotes is $$(1,2)$$.",
         },
         {
           isCorrect: true,
-          label: "$f$ is strictly decreasing on each interval of its domain.",
+          label: "$$f$$ is strictly decreasing on each interval of its domain.",
         },
         {
           isCorrect: true,
-          label: "If $x>1$, then $f(x)>2$.",
+          label: "If $$x>1$$, then $$f(x)>2$$.",
         },
         {
           isCorrect: true,
-          label: "$f^{-1}(x)=\\frac{x+3}{x-2}$.",
+          label: "$$f^{-1}(x)=\\frac{x+3}{x-2}$$.",
         },
         {
           isCorrect: false,
-          label: "$f(1)=0$.",
+          label: "$$f(1)=0$$.",
         },
       ],
     },
@@ -63,23 +63,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Pusat kedua asimtot adalah $(1,2)$.",
+          label: "Titik potong kedua asimtot adalah $$(1,2)$$.",
         },
         {
           isCorrect: true,
-          label: "$f$ menurun ketat pada setiap interval domainnya.",
+          label: "$$f$$ menurun ketat pada setiap interval domainnya.",
         },
         {
           isCorrect: true,
-          label: "Jika $x>1$, maka $f(x)>2$.",
+          label: "Jika $$x>1$$, maka $$f(x)>2$$.",
         },
         {
           isCorrect: true,
-          label: "$f^{-1}(x)=\\frac{x+3}{x-2}$.",
+          label: "$$f^{-1}(x)=\\frac{x+3}{x-2}$$.",
         },
         {
           isCorrect: false,
-          label: "$f(1)=0$.",
+          label: "$$f(1)=0$$.",
         },
       ],
     },

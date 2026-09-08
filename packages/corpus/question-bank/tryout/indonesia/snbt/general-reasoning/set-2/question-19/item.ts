@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Am Sonntag wurde nur der Entwässerungsgraben gereinigt; wiederverwendbare Gegenstände wurden nicht gesammelt.",
+            "Am Sonntag wurde nur der Entwässerungsgraben gereinigt. Wiederverwendbare Gegenstände wurden nicht gesammelt.",
         },
         {
           isCorrect: false,
@@ -53,7 +53,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Only the drainage ditch was cleaned on Sunday; reusable items were not collected.",
+            "Only the drainage ditch was cleaned on Sunday. Reusable items were not collected.",
         },
         {
           isCorrect: false,

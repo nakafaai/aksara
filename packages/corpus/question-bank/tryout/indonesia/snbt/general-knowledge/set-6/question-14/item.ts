@@ -27,7 +27,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Authentische Restaurierung verbindet Sicherheit, materielle Belege und sichtbare Veränderungen, statt ein Gebäude nur neu oder alt erscheinen zu lassen.",
+            "Authentizität verlangt, alle Pflegespuren aus der Zeit nach der ersten Nutzung zu entfernen.",
         },
       ],
     },
@@ -56,7 +56,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Authentic restoration balances safety, material evidence, and visible change rather than merely making a building look new or old.",
+            "Authenticity requires removing every trace of care added after the building first came into use.",
         },
       ],
     },
@@ -85,7 +85,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pemugaran yang autentik menyeimbangkan keselamatan, bukti material, dan keterbacaan perubahan, bukan sekadar membuat bangunan tampak baru atau tua.",
+            "Keaslian mensyaratkan penghapusan seluruh jejak perawatan yang dilakukan setelah bangunan pertama kali digunakan.",
         },
       ],
     },

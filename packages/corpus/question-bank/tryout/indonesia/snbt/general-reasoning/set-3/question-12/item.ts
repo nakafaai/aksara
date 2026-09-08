@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Verkaufszahl der Bergo-Tücher steigt von Woche 1 bis Woche 4 am wenigsten.",
+            "Die Verkaufszahl der Bergo-Tücher steigt von Woche $$1$$ bis Woche $$4$$ am wenigsten.",
         },
       ],
     },
@@ -58,7 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Bergo headscarf sales have the smallest increase from week 1 to week 4.",
+            "Bergo headscarf sales have the smallest increase from week $$1$$ to week $$4$$.",
         },
       ],
     },
@@ -88,7 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Penjualan kerudung jenis bergo mengalami kenaikan paling kecil dari minggu ke-1 hingga minggu ke-4.",
+            "Penjualan kerudung jenis bergo mengalami kenaikan paling kecil dari minggu ke-$$1$$ hingga minggu ke-$$4$$.",
         },
       ],
     },

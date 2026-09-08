@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Kompostierworkshop gaben kurze und knappe Rückmeldungen.",
+            "Die Teilnehmenden des Kompostierworkshops gaben kurze Rückmeldungen, die kurz waren.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Kompostierworkshop gaben ihre eigenen kurzen Rückmeldungen persönlich ab.",
+            "Die Teilnehmenden des Kompostierworkshops gaben kurze Rückmeldungen von kurzer Länge.",
         },
         {
           isCorrect: true,
           label:
-            "Die Nutzenden im untersuchten Kontext (Kompostierworkshop) gaben kurze Rückmeldungen.",
+            "Die Teilnehmenden des Kompostierworkshops gaben kurze Rückmeldungen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Kompostierworkshop gaben kurze Rückmeldungen in knapper Form.",
+            "Die Teilnehmenden des Kompostierworkshops gaben kurze Rückmeldungen in kurzer Form.",
         },
         {
           isCorrect: false,
           label:
-            "Die Nutzenden im Kontext Kompostierworkshop gaben kurze Rückmeldungen über ihre Erfahrungen in diesem Kontext.",
+            "Die Teilnehmenden des Kompostierworkshops gaben kurze Rückmeldungen in diesem Kompostierworkshop.",
         },
       ],
     },
@@ -38,27 +38,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Users in this setting (composting workshop) provided comments that were brief and concise.",
+            "Participants in the composting workshop gave brief comments that were brief.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (composting workshop) provided their own brief comments personally.",
+            "Participants in the composting workshop gave brief comments with a brief length.",
         },
         {
           isCorrect: true,
-          label:
-            "Users in this setting (composting workshop) provided brief comments.",
+          label: "Participants in the composting workshop gave brief comments.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (composting workshop) provided brief comments in a short form.",
+            "Participants in the composting workshop gave brief comments in a short form.",
         },
         {
           isCorrect: false,
           label:
-            "Users in this setting (composting workshop) provided brief comments about their experience in this setting.",
+            "Participants in the composting workshop gave brief comments in that composting workshop.",
         },
       ],
     },
@@ -68,27 +67,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks lokakarya pembuatan kompos memberikan komentar yang singkat dan ringkas.",
+            "Peserta lokakarya kompos memberikan komentar singkat yang singkat.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks lokakarya pembuatan kompos memberikan komentar singkat mereka sendiri secara pribadi.",
+            "Peserta lokakarya kompos memberikan komentar singkat dengan panjang komentar yang singkat.",
         },
         {
           isCorrect: true,
-          label:
-            "Para pengguna di lokakarya pembuatan kompos memberikan komentar singkat.",
+          label: "Peserta lokakarya kompos memberikan komentar singkat.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks lokakarya pembuatan kompos memberikan komentar singkat dalam bentuk pendek.",
+            "Peserta lokakarya kompos memberikan komentar singkat dalam bentuk pendek.",
         },
         {
           isCorrect: false,
           label:
-            "Para pengguna dalam konteks lokakarya pembuatan kompos memberikan komentar singkat tentang pengalaman mereka dalam konteks tersebut.",
+            "Peserta lokakarya kompos memberikan komentar singkat di lokakarya kompos tersebut.",
         },
       ],
     },

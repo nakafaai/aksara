@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Rata-rata 15,6 detik untuk sepuluh ayunan pada tali 60 sentimeter memberi periode perkiraan 1,56 detik; ketelitiannya masih dipengaruhi pencatatan manual.",
+            "Rata-rata $$15{,}6$$ detik untuk sepuluh ayunan pada tali $$60$$ sentimeter memberi periode perkiraan $$1{,}56$$ detik. Ketelitian perkiraan periode masih dipengaruhi pencatatan manual.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Hasil 15,6 detik pada tali 60 sentimeter membuktikan bahwa periode selalu berkurang 4,5 detik untuk setiap pengurangan panjang tali sebesar 40 sentimeter.",
+            "Hasil $$15{,}6$$ detik pada tali $$60$$ sentimeter membuktikan bahwa periode selalu berkurang $$4{,}5$$ detik untuk setiap pengurangan panjang tali sebesar $$40$$ sentimeter.",
         },
       ],
     },

@@ -8,17 +8,17 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Rata-rata 0,28 gram membuktikan bahwa tidak ada air yang keluar dari permukaan bawah setelah diberi lapisan.",
+            "Rata-rata $$0{,}28$$ gram membuktikan bahwa tidak ada air yang keluar dari permukaan bawah setelah diberi lapisan.",
         },
         {
           isCorrect: false,
           label:
-            "Selisih antara 0,82 dan 0,74 gram membuktikan bahwa permukaan atas tidak berperan sama sekali dalam kehilangan air.",
+            "Selisih antara $$0{,}82$$ dan $$0{,}74$$ gram membuktikan bahwa permukaan atas tidak berperan sama sekali dalam kehilangan air.",
         },
         {
           isCorrect: true,
           label:
-            "Nilai 0,28 gram mendukung dugaan bahwa pelapisan permukaan bawah mengurangi kehilangan air pada sampel ini, tetapi daun petik dari satu jenis belum mewakili tumbuhan utuh secara umum.",
+            "Nilai $$0{,}28$$ gram mendukung dugaan bahwa pelapisan permukaan bawah mengurangi kehilangan air pada sampel ini, tetapi daun petik dari satu jenis belum mewakili tumbuhan utuh secara umum.",
         },
         {
           isCorrect: false,

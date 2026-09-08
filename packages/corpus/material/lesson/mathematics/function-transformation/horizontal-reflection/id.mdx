@@ -3,7 +3,7 @@ export const metadata = {
   description: "Gunakan grafik dan contoh untuk memahami bagaimana pencerminan terhadap sumbu y mengubah koordinat x suatu fungsi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Transformasi Fungsi",
 };
 
@@ -34,6 +34,7 @@ Fungsi kuadrat <InlineMath math="f(x) = (x - 2)^2" /> memperlihatkan perpindahan
   cameraPosition={[12, 8, 12]}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 41 }, (_, i) => {
         const x = (i - 20) * 0.25;
         return { x, y: (x - 2) * (x - 2), z: 0 };
@@ -43,6 +44,7 @@ Fungsi kuadrat <InlineMath math="f(x) = (x - 2)^2" /> memperlihatkan perpindahan
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 41 }, (_, i) => {
         const x = (i - 20) * 0.25;
         return { x, y: ((-x) - 2) * ((-x) - 2), z: 0 };
@@ -125,6 +127,7 @@ Pada fungsi eksponensial <InlineMath math="f(x) = 2^x" />, refleksi mengubah per
   cameraPosition={[8, 6, 8]}
   data={[
     {
+      smooth: false,
       points: Array.from({ length: 31 }, (_, i) => {
         const x = (i - 15) * 0.3;
         return { x, y: Math.pow(2, x), z: 0 };
@@ -134,6 +137,7 @@ Pada fungsi eksponensial <InlineMath math="f(x) = 2^x" />, refleksi mengubah per
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 31 }, (_, i) => {
         const x = (i - 15) * 0.3;
         return { x, y: Math.pow(2, -x), z: 0 };
@@ -161,15 +165,18 @@ Fungsi akar kuadrat menunjukkan bahwa refleksi juga memindahkan domain yang terb
   cameraPosition={[10, 6, 10]}
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = i * 0.25;
         return { x, y: Math.sqrt(x), z: 0 };
       }),
       color: "#0891b2",
-      labels: [{ text: <InlineMath math="f(x)=\sqrt{x}" />, offset: [1, 1.5, 0] }],
+      labels: [{ at: 50, text: <InlineMath math="f(x)=\sqrt{x}" />, offset: [1, 1.5, 0] }],
       showPoints: false,
     },
     {
+      smooth: false,
       points: Array.from({ length: 21 }, (_, i) => {
         const x = -i * 0.25;
         if (x <= 0) {
@@ -210,6 +217,7 @@ Grafik tersebut menegaskan:
      cameraPosition={[12, 8, 12]}
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 41 }, (_, i) => {
            const x = (i - 20) * 0.25;
            return { x, y: x * x + 3 * x + 2, z: 0 };
@@ -219,6 +227,7 @@ Grafik tersebut menegaskan:
          showPoints: false,
        },
        {
+         smooth: false,
          points: Array.from({ length: 41 }, (_, i) => {
            const x = (i - 20) * 0.25;
            return { x, y: x * x - 3 * x + 2, z: 0 };
@@ -244,6 +253,7 @@ Grafik tersebut menegaskan:
      cameraPosition={[8, 6, 8]}
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 31 }, (_, i) => {
            const x = (i - 15) * 0.2;
            return { x, y: Math.pow(3, x) + 1, z: 0 };
@@ -253,6 +263,7 @@ Grafik tersebut menegaskan:
          showPoints: false,
        },
        {
+         smooth: false,
          points: Array.from({ length: 31 }, (_, i) => {
            const x = (i - 15) * 0.2;
            return { x, y: Math.pow(3, -x) + 1, z: 0 };
@@ -274,6 +285,7 @@ Grafik tersebut menegaskan:
      cameraPosition={[10, 6, 10]}
      data={[
        {
+         smooth: false,
          points: Array.from({ length: 41 }, (_, i) => {
            const x = (i - 20) * 0.25;
            return { x, y: Math.abs(x + 2), z: 0 };
@@ -283,6 +295,7 @@ Grafik tersebut menegaskan:
          showPoints: false,
        },
        {
+         smooth: false,
          points: Array.from({ length: 41 }, (_, i) => {
            const x = (i - 20) * 0.25;
            return { x, y: Math.abs(-x + 2), z: 0 };

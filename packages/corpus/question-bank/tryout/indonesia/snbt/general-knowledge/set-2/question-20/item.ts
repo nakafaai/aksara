@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Das Fischereimanagement braucht verlässliche Daten, sodass Entscheidungen auf örtliche Bedingungen reagieren können.",
+            "Verlässliche Daten bilden die örtlichen Bedingungen ab, sodass das Fischereimanagement passende Entscheidungen treffen kann.",
         },
         {
           isCorrect: false,
@@ -48,7 +48,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Fisheries managers need reliable data, so decisions can respond to local conditions.",
+            "Reliable data describes local conditions, so fisheries managers can make appropriate decisions.",
         },
         {
           isCorrect: false,
@@ -78,7 +78,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pengelola perikanan memerlukan data yang andal sehingga keputusan dapat menyesuaikan kondisi setempat.",
+            "Data yang andal menggambarkan kondisi setempat sehingga pengelola perikanan dapat mengambil keputusan yang sesuai.",
         },
         {
           isCorrect: false,

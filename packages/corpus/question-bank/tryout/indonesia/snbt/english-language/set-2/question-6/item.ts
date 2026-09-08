@@ -17,7 +17,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The 2025 review found large permanent losses of muscle and water.",
+            "The $$2025$$ review found large permanent losses of muscle and water.",
         },
         {
           isCorrect: false,

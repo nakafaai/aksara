@@ -27,7 +27,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Ein nachvollziehbarer Katalog muss mehrere Namen samt Quellen bewahren, damit Suchkomfort keine Zuschreibung löscht.",
+            "Geschichtete Zuschreibung entfernt die Angaben zur namengebenden Person, damit jede Bezeichnung neutral wirkt.",
         },
       ],
     },
@@ -56,7 +56,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "A traceable catalogue must preserve multiple names and their sources so search convenience does not erase attribution.",
+            "Layered attribution removes information about who supplied a name so every term appears neutral.",
         },
       ],
     },
@@ -85,7 +85,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Katalog yang dapat ditelusuri perlu menjaga berbagai nama beserta sumbernya agar kemudahan pencarian tidak menghapus atribusi.",
+            "Atribusi berlapis menghapus informasi tentang pemberi nama agar setiap sebutan terlihat netral.",
         },
       ],
     },

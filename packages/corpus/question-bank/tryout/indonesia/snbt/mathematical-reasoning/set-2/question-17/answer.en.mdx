@@ -1,37 +1,35 @@
 export const metadata = {
   title: "Solution to Question 17",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2026-02-01",
 };
 
 **Initial Total Weight Analysis**
 
-First, calculate the total body weight of each group before the swap. Group A has <InlineMath math="4" /> members with an average of <InlineMath math="30\text{ kg}" />. Group B has <InlineMath math="4" /> members with an average of <InlineMath math="33\text{ kg}" />.
+First, calculate the total body weight of each group before the swap. Group <InlineMath math="A" /> has <InlineMath math="4" /> members with an average of <InlineMath math="30\text{ kg}" />. Group <InlineMath math="B" /> has <InlineMath math="4" /> members with an average of <InlineMath math="33\text{ kg}" />. Let their total weights be <InlineMath math="S_A" /> and <InlineMath math="S_B" />.
 
 <MathContainer>
-  <BlockMath math="\text{Total A} = 4 \times 30 = 120\text{ kg}" />
-  <BlockMath math="\text{Total B} = 4 \times 33 = 132\text{ kg}" />
+  <BlockMath math="S_A = 4 \times 30 = 120\text{ kg}" />
+  <BlockMath math="S_B = 4 \times 33 = 132\text{ kg}" />
 </MathContainer>
 
 **The Swap Process**
 
-Let the child leaving Group A be <InlineMath math="x_A" /> and the child leaving Group B be <InlineMath math="x_B" />. After swapping, <InlineMath math="x_A" /> joins Group B and <InlineMath math="x_B" /> joins Group A.
+Let <InlineMath math="x_A" /> and <InlineMath math="x_B" /> be the weights, in kilograms, of the children leaving groups <InlineMath math="A" /> and <InlineMath math="B" />. Group <InlineMath math="A" /> loses <InlineMath math="x_A" /> and gains <InlineMath math="x_B" />. Group <InlineMath math="B" /> has the opposite change.
 
-> For the averages of both groups to be equal after the swap (given the number of members remains the same), the **total body weight of both groups must also be equal**.
+For the averages of both groups to be equal after the swap (given the number of members remains the same), the total body weight of both groups must also be equal.
 
 We can write this new balance equation as follows:
 
-<MathContainer>
-  <BlockMath math="\text{New Total A} = \text{New Total B}" />
-  <BlockMath math="120 - x_A + x_B = 132 - x_B + x_A" />
-</MathContainer>
+<BlockMath math="\begin{aligned}&120-x_A+x_B \\ &=132-x_B+x_A\end{aligned}" />
 
 **Calculating the Difference**
 
 Our goal is to find the difference in body weight between the two swapped children, which is <InlineMath math="|x_B - x_A|" />. We group the terms:
 
 <MathContainer>
-  <BlockMath math="x_B + x_B - x_A - x_A = 132 - 120" />
+  <BlockMath math="\begin{aligned}&x_B+x_B-x_A-x_A \\ &=132-120\end{aligned}" />
   <BlockMath math="2x_B - 2x_A = 12" />
   <BlockMath math="2(x_B - x_A) = 12" />
   <BlockMath math="x_B - x_A = 6" />

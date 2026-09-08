@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "$$(1)\rightarrow(5)\rightarrow(4)\rightarrow(3)\rightarrow(2)$$.",
+            "$$(1)\\rightarrow(5)\\rightarrow(4)\\rightarrow(3)\\rightarrow(2)$$.",
         },
         {
           isCorrect: true,
           label:
-            "$$(4)\rightarrow(5)\rightarrow(1)\rightarrow(3)\rightarrow(2)$$.",
+            "$$(4)\\rightarrow(5)\\rightarrow(1)\\rightarrow(3)\\rightarrow(2)$$.",
         },
         {
           isCorrect: false,
           label:
-            "$$(4)\rightarrow(2)\rightarrow(3)\rightarrow(1)\rightarrow(5)$$.",
+            "$$(4)\\rightarrow(2)\\rightarrow(3)\\rightarrow(1)\\rightarrow(5)$$.",
         },
         {
           isCorrect: false,
           label:
-            "$$(5)\rightarrow(4)\rightarrow(1)\rightarrow(3)\rightarrow(2)$$.",
+            "$$(5)\\rightarrow(4)\\rightarrow(1)\\rightarrow(3)\\rightarrow(2)$$.",
         },
         {
           isCorrect: false,
           label:
-            "$$(5)\rightarrow(4)\rightarrow(1)\rightarrow(2)\rightarrow(3)$$.",
+            "$$(5)\\rightarrow(4)\\rightarrow(1)\\rightarrow(2)\\rightarrow(3)$$.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "$$(1)\rightarrow(5)\rightarrow(4)\rightarrow(3)\rightarrow(2)$$.",
+            "$$(1)\\rightarrow(5)\\rightarrow(4)\\rightarrow(3)\\rightarrow(2)$$.",
         },
         {
           isCorrect: true,
           label:
-            "$$(4)\rightarrow(5)\rightarrow(1)\rightarrow(3)\rightarrow(2)$$.",
+            "$$(4)\\rightarrow(5)\\rightarrow(1)\\rightarrow(3)\\rightarrow(2)$$.",
         },
         {
           isCorrect: false,
           label:
-            "$$(4)\rightarrow(2)\rightarrow(3)\rightarrow(1)\rightarrow(5)$$.",
+            "$$(4)\\rightarrow(2)\\rightarrow(3)\\rightarrow(1)\\rightarrow(5)$$.",
         },
         {
           isCorrect: false,
           label:
-            "$$(5)\rightarrow(4)\rightarrow(1)\rightarrow(3)\rightarrow(2)$$.",
+            "$$(5)\\rightarrow(4)\\rightarrow(1)\\rightarrow(3)\\rightarrow(2)$$.",
         },
         {
           isCorrect: false,
           label:
-            "$$(5)\rightarrow(4)\rightarrow(1)\rightarrow(2)\rightarrow(3)$$.",
+            "$$(5)\\rightarrow(4)\\rightarrow(1)\\rightarrow(2)\\rightarrow(3)$$.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "$$(1)\rightarrow(5)\rightarrow(4)\rightarrow(3)\rightarrow(2)$$.",
+            "$$(1)\\rightarrow(5)\\rightarrow(4)\\rightarrow(3)\\rightarrow(2)$$.",
         },
         {
           isCorrect: true,
           label:
-            "$$(4)\rightarrow(5)\rightarrow(1)\rightarrow(3)\rightarrow(2)$$.",
+            "$$(4)\\rightarrow(5)\\rightarrow(1)\\rightarrow(3)\\rightarrow(2)$$.",
         },
         {
           isCorrect: false,
           label:
-            "$$(4)\rightarrow(2)\rightarrow(3)\rightarrow(1)\rightarrow(5)$$.",
+            "$$(4)\\rightarrow(2)\\rightarrow(3)\\rightarrow(1)\\rightarrow(5)$$.",
         },
         {
           isCorrect: false,
           label:
-            "$$(5)\rightarrow(4)\rightarrow(1)\rightarrow(3)\rightarrow(2)$$.",
+            "$$(5)\\rightarrow(4)\\rightarrow(1)\\rightarrow(3)\\rightarrow(2)$$.",
         },
         {
           isCorrect: false,
           label:
-            "$$(5)\rightarrow(4)\rightarrow(1)\rightarrow(2)\rightarrow(3)$$.",
+            "$$(5)\\rightarrow(4)\\rightarrow(1)\\rightarrow(2)\\rightarrow(3)$$.",
         },
       ],
     },

@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Verantwortliche historische Rekonstruktion vergleicht Quellen, erklärt Perspektiven und bewahrt Originale zur erneuten Prüfung.",
+            "Eine in der Ausstellung gezeigte Deutung darf auch bei neuen Belegen nicht verändert werden.",
         },
       ],
     },
@@ -58,7 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Responsible historical reconstruction compares sources, explains viewpoints, and preserves originals for reassessment.",
+            "An interpretation displayed in an exhibition must not change even when new evidence is found.",
         },
       ],
     },
@@ -88,7 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Rekonstruksi sejarah yang bertanggung jawab membandingkan sumber, menjelaskan sudut pandang, dan mempertahankan bahan asli untuk penilaian ulang.",
+            "Tafsir yang telah dimuat dalam pameran tidak boleh diubah meskipun ditemukan bukti baru.",
         },
       ],
     },

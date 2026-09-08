@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Das Feldverfahren wird bei verändertem Wetter angepasst, ohne das Hauptziel oder die zentralen Messregeln zu ändern.",
+            "Das Feldverfahren wird bei verändertem Wetter unterbrochen und nach Wetterbesserung unverändert fortgesetzt.",
         },
         {
           isCorrect: false,
@@ -38,7 +38,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The field procedure is adjusted when the weather changes without altering the main objective or measurement rules.",
+            "The field procedure stops when the weather changes and resumes unchanged once conditions recover.",
         },
         {
           isCorrect: false,
@@ -68,7 +68,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Prosedur lapangan disesuaikan saat cuaca berubah tanpa mengubah tujuan dan aturan ukur utama.",
+            "Prosedur lapangan dihentikan saat cuaca berubah, lalu dilanjutkan dengan cara yang sama setelah cuaca pulih.",
         },
         {
           isCorrect: false,

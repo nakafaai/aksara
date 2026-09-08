@@ -2,44 +2,68 @@ export const metadata = {
   title: "Pembahasan Soal 20",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-11-22",
+  dateModified: "2026-09-07",
 };
 
-Kita akan menghitung nilai masing-masing integral terlebih dahulu.
+Kedua integral dapat dihitung dengan antiturunan: nilai integral tentu adalah nilai antiturunan di batas atas dikurangi nilainya di batas bawah.
 
 #### Menghitung integral pertama
 
-<MathContainer>
-  <BlockMath math="\int_{1}^{3} (3x + 5) dx = \left[ \frac{3}{2}x^2 + 5x \right]_{1}^{3}" />
-  <BlockMath math="= \left( \frac{3}{2}(3)^2 + 5(3) \right) - \left( \frac{3}{2}(1)^2 + 5(1) \right)" />
-  <BlockMath math="= \left( \frac{27}{2} + 15 \right) - \left( \frac{3}{2} + 5 \right)" />
-  <BlockMath math="= \frac{27}{2} + \frac{30}{2} - \frac{3}{2} - \frac{10}{2}" />
-  <BlockMath math="= \frac{44}{2} = 22" />
-</MathContainer>
+Antiturunan dari <InlineMath math="3x+5" /> adalah:
+
+<BlockMath math="F(x)=\frac32x^2+5x" />
+
+Nilainya pada kedua batas adalah:
+
+<BlockMath math="\begin{aligned}
+F(3)&=\frac{27}{2}+15 \\
+&=\frac{57}{2} \\
+F(1)&=\frac32+5 \\
+&=\frac{13}{2}
+\end{aligned}" />
+
+Dengan demikian:
+
+<BlockMath math="\begin{aligned}
+I_1&=F(3)-F(1) \\
+&=\frac{57}{2}-\frac{13}{2} \\
+&=\frac{44}{2}=22
+\end{aligned}" />
 
 #### Menghitung integral kedua
 
-<MathContainer>
-  <BlockMath math="\int_{2}^{b} (2x - 3) dx = \left[ x^2 - 3x \right]_{2}^{b}" />
-  <BlockMath math="= (b^2 - 3b) - (2^2 - 3(2))" />
-  <BlockMath math="= (b^2 - 3b) - (4 - 6)" />
-  <BlockMath math="= b^2 - 3b - (-2)" />
-  <BlockMath math="= b^2 - 3b + 2" />
-</MathContainer>
+Antiturunan dari <InlineMath math="2x-3" /> adalah:
 
-#### Menyelesaikan persamaan
+<BlockMath math="G(x)=x^2-3x" />
 
-Diketahui jumlah kedua integral adalah <InlineMath math="28" />.
+Karena batas bawahnya <InlineMath math="2" />, diperoleh:
 
 <MathContainer>
-  <BlockMath math="22 + (b^2 - 3b + 2) = 28" />
-  <BlockMath math="b^2 - 3b + 24 = 28" />
-  <BlockMath math="b^2 - 3b - 4 = 0" />
+  <BlockMath math="G(2)=4-6=-2" />
+  <BlockMath math="\begin{aligned}
+I_2&=G(b)-G(2) \\
+&=b^2-3b-(-2) \\
+&=b^2-3b+2
+\end{aligned}" />
 </MathContainer>
 
-Faktorkan persamaan kuadrat:
+#### Menentukan batas atas
 
-<BlockMath math="(b - 4)(b + 1) = 0" />
+Jumlah kedua integral adalah <InlineMath math="28" />, sehingga:
 
-Maka diperoleh <InlineMath math="b = 4" /> atau <InlineMath math="b = -1" />.
+<BlockMath math="\begin{aligned}
+I_2&=28-I_1 \\
+&=28-22=6
+\end{aligned}" />
 
-Karena diketahui syarat <InlineMath math="b > 0" />, maka nilai yang memenuhi adalah <InlineMath math="b = 4" />.
+Gunakan bentuk <InlineMath math="I_2" /> yang telah diperoleh:
+
+<BlockMath math="\begin{aligned}
+b^2-3b+2&=6 \\
+b^2-3b-4&=0 \\
+(b-4)(b+1)&=0
+\end{aligned}" />
+
+Jadi, <InlineMath math="b=4" /> atau <InlineMath math="b=-1" />. Syarat <InlineMath math="b>0" /> menyingkirkan nilai negatif.
+
+Untuk <InlineMath math="b=4" />, integral kedua bernilai <InlineMath math="16-12+2=6" />. Jumlahnya dengan integral pertama adalah <InlineMath math="22+6=28" />, sesuai soal. Jadi, nilai yang diminta adalah <InlineMath math="b=4" />.

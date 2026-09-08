@@ -2,9 +2,19 @@ export const metadata = {
   title: "Lösung zu Aufgabe 29",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Bestimme die Wahrscheinlichkeiten der drei Farbergebnisse mit Kombinationen ohne Zurücklegen. Multipliziere jede Wahrscheinlichkeit mit der zugehörigen Auszahlung und wende danach die geänderte Bonus-, Erstattungs-, Wiederholungs- oder Gebührenregel aus dem Fragetext an.
+Es gibt <InlineMath math="\binom{10}{2}=45" /> gleich wahrscheinliche Kugelpaare. Die Anzahlen für zwei rote, verschiedene Farben und zwei blaue Kugeln betragen der Reihe nach
 
-Damit ist der gesuchte Wert <InlineMath math="\frac{144}{11}" />.
+<BlockMath math="\begin{aligned} \binom42 &=6 \\ 4\times6 &=24 \\ \binom62 &=15 \end{aligned}" />
+
+Alle Geldbeträge werden in Tausend Rupiah gerechnet. Der erwartete Preisgewinn vor einer Gebührenerstattung beträgt
+
+<BlockMath math="\begin{aligned} E &=30\times\frac6{45}+15\times\frac{24}{45} \\ &=4+8=12 \end{aligned}" />
+
+Sei <InlineMath math="c" /> die Teilnahmegebühr. Zwei blaue Kugeln haben die Wahrscheinlichkeit <InlineMath math="\frac{15}{45}=\frac13" />. Nur in diesem Fall werden <InlineMath math="\frac{c}{4}" /> erstattet. Die Gebühr wird bei jedem Spiel bezahlt.
+
+<BlockMath math="\begin{aligned} 12-c+\frac13\times\frac c4 &=0 \\ 12-\frac{11c}{12} &=0 \\ c &=\frac{144}{11} \end{aligned}" />
+
+Bei einer Teilnahmegebühr von <InlineMath math="\frac{144}{11}" /> Tausend Rupiah ist der erwartete Nettogewinn null.

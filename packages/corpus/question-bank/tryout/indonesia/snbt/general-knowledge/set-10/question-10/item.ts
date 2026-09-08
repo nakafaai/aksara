@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Ein Verpackungscode wird zu einem vollständigen Lieferkettendatensatz führen.",
+            "Ein Verpackungscode wird zu einem ausführlicheren Lieferkettendatensatz führen.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "In einer weiteren Simulation führen geschichtete Daten und ein einzelner Ortsname trotz aktueller Datensätze zum exakt gleichen Rückrufumfang.",
+            "In einer weiteren Simulation mit vergleichbaren Fällen führen nach Produktionsstufen gegliederte Daten und ein einzelner Ortsname trotz aktueller Datensätze zum exakt gleichen Rückrufumfang.",
         },
       ],
     },
@@ -57,7 +57,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "In a later simulation, layered records and a single-location label produce exactly the same recall scope despite fully updated data.",
+            "In a later simulation with comparable cases, layered records and a single-location label produce exactly the same recall scope despite fully updated data.",
         },
       ],
     },
@@ -86,7 +86,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pada simulasi lanjutan, catatan berlapis dan label satu lokasi menghasilkan cakupan penarikan yang sama persis meskipun semua data telah diperbarui.",
+            "Pada simulasi lanjutan dengan kasus yang sebanding, catatan berlapis dan label satu lokasi menghasilkan cakupan penarikan yang sama persis meskipun semua data telah diperbarui.",
         },
       ],
     },

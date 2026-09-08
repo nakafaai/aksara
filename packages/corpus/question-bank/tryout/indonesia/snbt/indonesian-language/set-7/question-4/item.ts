@@ -13,7 +13,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Definisi *hipotesis* menempatkan dugaan tentang hubungan suhu dan gas sebagai penjelasan yang diuji oleh data, bukan kesimpulan yang kebal terhadap hasil 20°C dan 50°C.",
+            "Definisi *hipotesis* menempatkan dugaan tentang hubungan suhu dan gas sebagai penjelasan yang diuji oleh data, bukan kesimpulan yang kebal terhadap hasil $$20^\\circ\\text{C}$$ dan $$50^\\circ\\text{C}$$.",
         },
         {
           isCorrect: false,

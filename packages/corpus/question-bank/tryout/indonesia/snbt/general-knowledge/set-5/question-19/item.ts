@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Rückgaberegeln sollten an der Buchverfügbarkeit gemessen werden und Verspätungsdauer sowie Nutzerzugang unterscheiden.",
+            "Kurze und lange Verspätungen müssen immer dieselbe Folge haben, damit eine Regel als gerecht gilt.",
         },
       ],
     },
@@ -58,7 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "A late-return policy should be judged by book availability and should distinguish levels of delay and user access.",
+            "Brief and long delays must always receive the same consequence for a policy to count as fair.",
         },
       ],
     },
@@ -73,7 +73,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Kebijakan yang sebanding menyesuaikan konsekuensi dengan lamanya keterlambatan dan dampaknya.",
+            "Kebijakan yang proporsional menyesuaikan konsekuensi dengan lamanya keterlambatan dan dampaknya.",
         },
         {
           isCorrect: false,
@@ -88,7 +88,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Aturan keterlambatan dinilai dari dampaknya pada ketersediaan buku dan perlu membedakan tingkat pelanggaran serta akses pengguna.",
+            "Keterlambatan singkat dan panjang harus selalu dikenai konsekuensi yang sama agar aturan dianggap adil.",
         },
       ],
     },

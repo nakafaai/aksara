@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kondisi pembanding menghasilkan nilai rata-rata 32; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+            "Kondisi pembanding menghasilkan nilai rata-rata $$32$$. Karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Nilai 43 pada kelompok label besar dapat dibandingkan dengan nilai 32 pada kelompok label lama; perbedaan itu mendukung ketepatan tujuan, tetapi belum menjawab keterlambatan akibat cuaca laut.",
+            "Nilai $$43$$ pada kelompok label besar dapat dibandingkan dengan nilai $$32$$ pada kelompok label lama. Perbedaan itu mendukung ketepatan tujuan, tetapi belum menjawab keterlambatan akibat cuaca laut.",
         },
       ],
     },

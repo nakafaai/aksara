@@ -22,7 +22,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Historische Daten müssen mit den bezeichneten Ereignissen verbunden werden, weil ein Objekt mehrere Anfänge und wichtige Veränderungen haben kann.",
+            "Periodisierung wählt das früheste Datum, während Chronologie die Reihenfolge späterer Ereignisse außer Acht lässt.",
         },
         {
           isCorrect: true,
@@ -52,7 +52,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Historical dates must be tied to the events they denote because one object can have several beginnings and major changes.",
+            "Periodisation selects the earliest date, while chronology ignores the order of later events.",
         },
         {
           isCorrect: true,
@@ -81,7 +81,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Tanggal sejarah harus disertai peristiwa yang dirujuk karena satu objek dapat memiliki beberapa awal dan perubahan penting.",
+            "Periodisasi memilih tanggal paling awal, sedangkan kronologi mengabaikan urutan peristiwa setelah tanggal itu.",
         },
         {
           isCorrect: true,

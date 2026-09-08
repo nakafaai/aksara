@@ -2,15 +2,23 @@ export const metadata = {
   title: "Lösung zu Aufgabe 16",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-06-11",
-  dateModified: "2026-08-30",
+  dateModified: "2026-09-07",
 };
 
-Gesucht ist die Sektorfläche abzüglich der Fläche des Dreiecks aus den beiden Radien. Für den Sektor gilt
+Die Fläche zwischen kleinem Kreisbogen und Sehne ist ein Kreissegment. Seine Fläche ist die Sektorfläche abzüglich des Dreiecks zwischen den beiden Radien.
 
-<BlockMath math="\frac{120}{360}\pi(12^2)=48\pi" />
+<BlockMath math="A_1=\frac{120}{360}\pi(12)^2=48\pi" />
 
-und für das Dreieck
+Für ein Dreieck mit zwei bekannten Seiten und dem eingeschlossenen Winkel ergibt sich die Fläche mithilfe des Sinus.
 
-<BlockMath math="\frac12(12)(12)\sin120^\circ=36\sqrt3" />
+<BlockMath math="\begin{aligned}
+A_2&=\frac12(12)(12)\sin120^\circ \\
+&=72\cdot\frac{\sqrt3}{2}=36\sqrt3
+\end{aligned}" />
 
-Damit beträgt die schraffierte Fläche <InlineMath math="48\pi-36\sqrt3" /> cm². Wer nur die Sektorfläche berechnet, zählt das Dreieck zwischen den Radien fälschlich mit.
+Ziehe die Dreiecksfläche von der Sektorfläche ab.
+
+<BlockMath math="\begin{aligned}
+A&=A_1-A_2 \\
+&=(48\pi-36\sqrt3)\,\mathrm{cm}^2
+\end{aligned}" />

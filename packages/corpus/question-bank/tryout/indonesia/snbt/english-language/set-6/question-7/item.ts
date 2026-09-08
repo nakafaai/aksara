@@ -23,12 +23,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The comparison condition produced a mean value of 15; because it differs from the other conditions, the tested change is the only plausible explanation.",
+            "The comparison condition produced a mean value of $$15$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
           isCorrect: true,
           label:
-            "The trial reached 25 completed repairs, compared with 14 and 15; because objects differed greatly in repair difficulty, the result supports a limited follow-up rather than a general rule.",
+            "The trial mean reached $$25$$ repairs per session completed without fetching a missing tool, compared with $$14$$ and $$15$$. Differences in repair difficulty support a limited follow-up rather than a general rule.",
         },
       ],
     },

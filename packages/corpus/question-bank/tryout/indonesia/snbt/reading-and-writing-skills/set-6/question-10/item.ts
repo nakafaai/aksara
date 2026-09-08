@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Mit geänderten Messregeln plant das Team einen längeren Test von Richtungspfeile an jeder Kreuzung.",
+            "Das Team wird den Pfeilversuch verlängern und das Maß für abgeschlossene Rundgänge ändern.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team will nur die Tage wiederholen, an denen die Änderung Richtungspfeile an jeder Kreuzung den höchsten Wert ergab.",
+            "Das Team wird nur die Termine mit den meisten abgeschlossenen Rundgängen wiederholen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team will Richtungspfeile an jeder Kreuzung dauerhaft einführen statt einen längeren Vergleich durchzuführen.",
+            "Das Team wird die Pfeile statt weiterer Tests dauerhaft einführen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team plant einen längeren Test von Richtungspfeile an jeder Kreuzung ohne Vergleichsbedingung.",
+            "Das Team wird den Versuch verlängern, ohne die Umkehrpunkte zu erfassen.",
         },
         {
           isCorrect: true,
           label:
-            "Unter unveränderten Messregeln plant das Team einen längeren Versuch mit folgender Änderung: Richtungspfeile an jeder Abzweigung.",
+            "Das Team wird den Pfeilversuch verlängern, Umkehrpunkte erfassen und dasselbe Maß für abgeschlossene Rundgänge verwenden.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Using revised measurement rules, the team plans a longer test of direction arrows placed at each junction.",
+            "The team will extend the arrow test while changing the route-completion measure.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans to repeat only the days on which direction arrows placed at each junction produced the highest value.",
+            "The team will repeat only sessions with the highest route-completion counts.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans to adopt direction arrows placed at each junction permanently instead of running a longer comparison.",
+            "The team will adopt arrows permanently instead of conducting further tests.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans a longer test of direction arrows placed at each junction without retaining a comparison condition.",
+            "The team will extend the test without recording where visitors turn back.",
         },
         {
           isCorrect: true,
           label:
-            "Using the same measurement rules, the team plans a longer test of direction arrows placed at each junction.",
+            "The team will extend the arrow test, record where visitors turn back, and retain the route-completion measure.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dengan kaidah pengukuran yang diubah, tim merencanakan uji panah arah di setiap persimpangan yang lebih panjang.",
+            "Tim akan memperpanjang uji panah sambil mengubah ukuran penyelesaian rute.",
         },
         {
           isCorrect: false,
           label:
-            "Tim akan mengulang hari ketika panah arah di setiap persimpangan menghasilkan nilai tertinggi.",
+            "Tim akan mengulang hanya sesi dengan jumlah penyelesaian rute tertinggi.",
         },
         {
           isCorrect: false,
           label:
-            "Tim akan menerapkan panah arah di setiap persimpangan secara tetap sebagai pengganti perbandingan yang lebih panjang.",
+            "Tim akan menerapkan panah permanen sebagai pengganti pengujian lanjutan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim merencanakan uji panah arah di setiap persimpangan yang lebih panjang tanpa mempertahankan kondisi pembanding.",
+            "Tim akan memperpanjang uji tanpa mencatat titik pengunjung berbalik.",
         },
         {
           isCorrect: true,
           label:
-            "Dengan aturan pengukuran yang sama, tim merencanakan uji yang lebih lama terhadap panah arah di setiap persimpangan.",
+            "Tim akan memperpanjang uji panah, mencatat titik pengunjung berbalik, dan mempertahankan ukuran penyelesaian rute.",
         },
       ],
     },

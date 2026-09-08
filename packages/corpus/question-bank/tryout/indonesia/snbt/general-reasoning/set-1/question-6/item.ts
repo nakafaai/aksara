@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Das Ministerium räumte der Produktionsförderung Vorrang ein, und seine Veröffentlichung von 2017 berichtete über historische Zuwächse bei Reis und Mais.",
+            "Das Ministerium räumte der Produktionsförderung Vorrang ein, und seine Veröffentlichung von $$2017$$ berichtete über historische Zuwächse bei Reis und Mais.",
         },
         {
           isCorrect: false,
@@ -48,7 +48,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The ministry prioritized production support, and its 2017 publication reported historical increases in rice and corn production.",
+            "The ministry prioritized production support, and its $$2017$$ publication reported historical increases in rice and corn production.",
         },
         {
           isCorrect: false,
@@ -77,7 +77,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Kementerian memprioritaskan dukungan produksi, dan publikasi tahun 2017 melaporkan kenaikan historis produksi padi dan jagung.",
+            "Kementerian memprioritaskan dukungan produksi, dan publikasi tahun $$2017$$ melaporkan kenaikan historis produksi padi dan jagung.",
         },
         {
           isCorrect: false,

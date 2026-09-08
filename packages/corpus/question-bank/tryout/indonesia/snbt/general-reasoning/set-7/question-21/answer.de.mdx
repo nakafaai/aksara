@@ -2,9 +2,25 @@ export const metadata = {
   title: "Lösung zu Aufgabe 21",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Die ungeraden Glieder wachsen um <InlineMath math="7" />, die geraden werden mit <InlineMath math="3" /> multipliziert. Daher sind <InlineMath math="a_9=29" /> und <InlineMath math="a_8=54" />, woraus <InlineMath math="2a_8-a_9=108-29=79" /> folgt.
+Wir trennen die Glieder nach ihren Positionen, unabhängig davon, ob ihre Werte gerade oder ungerade sind.
 
-Damit ist der gesuchte Wert <InlineMath math="79" />.
+An ungeraden Positionen beträgt die Differenz aufeinanderfolgender Glieder stets <InlineMath math="7" />:
+
+<MathContainer>
+  <BlockMath math="1,\ 8,\ 15,\ 22" />
+  <BlockMath math="a_9=22+7=29" />
+</MathContainer>
+
+An geraden Positionen ist jedes Glied das <InlineMath math="3" />-Fache des vorangehenden:
+
+<MathContainer>
+  <BlockMath math="2,\ 6,\ 18" />
+  <BlockMath math="a_8=18\times3=54" />
+</MathContainer>
+
+Wir setzen die beiden neuen Glieder in den gesuchten Ausdruck ein:
+
+<BlockMath math="\begin{aligned}2a_8-a_9&=2(54)-29\\&=108-29\\&=79\end{aligned}" />

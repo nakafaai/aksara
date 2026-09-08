@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Das Team verglich 28, 20 und 22, begrenzte die Aussage auf den untersuchten Kontext (Aufnahmestudio der Schule) und plante eine längere Wiederholung.",
+            "Das Team verglich die Mittelwerte 28, 20 und 22, begrenzte die Aussage auf Aufnahmen ohne technisch bedingte Wiederholung im kurzen Versuch und plante Tests mit mehr Teams unter denselben Erfassungsregeln.",
         },
         {
           isCorrect: false,
           label:
-            "Da 28 über 20 und 22 lag, erklärte das Team eine Checkliste vor der Aufnahme für wirksam und führte die Änderung dauerhaft ein.",
+            "Da 28 über 20 und 22 lag, erklärte das Team die gesamte Aufnahmequalität für verbessert und führte die Checkliste dauerhaft ein.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team verglich 28, 20 und 22 und plante eine längere Wiederholung, ohne die Aussage auf schulisches Tonstudio zu begrenzen.",
+            "Das Team verglich 28, 20 und 22 und plante Tests mit mehr Teams, ohne die Schlussfolgerung zu begrenzen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team begrenzte die Aussage auf schulisches Tonstudio und plante eine längere Wiederholung, ohne den Vergleich zu nennen.",
+            "Das Team begrenzte die Aussage auf technisch bedingte Wiederholungen und plante weitere Tests, ohne den Ergebnisvergleich zu nennen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Werte 28, 20 und 22 zeigten kein relevantes Muster, daher wollte das Team die Messregeln ändern.",
+            "Die Werte 28, 20 und 22 zeigten kein relevantes Muster, weshalb das Team die Erfassungsregeln für Wiederholungen ändern wollte.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The team compared 28, 20, and 22, limited its claim to this setting (school recording studio), and planned a longer repetition.",
+            "The team compared means of 28, 20, and 22, limited its conclusion to recordings without technical retakes during the short trial, and planned tests with more teams under the same recording rules.",
         },
         {
           isCorrect: false,
           label:
-            "Because 28 exceeded 20 and 22, the team concluded that the change was effective and adopted it permanently.",
+            "Because 28 exceeded 20 and 22, the team declared that overall recording quality had improved and adopted the checklist permanently.",
         },
         {
           isCorrect: false,
           label:
-            "The team compared 28, 20, and 22 and planned a longer repetition without limiting the claim to the context of school recording studio.",
+            "The team compared 28, 20, and 22 and planned tests with more teams without limiting the conclusion.",
         },
         {
           isCorrect: false,
           label:
-            "The team limited its claim to the context of school recording studio and planned a longer repetition without reporting the comparison.",
+            "The team limited its conclusion to technical retakes and planned further testing without reporting the result comparison.",
         },
         {
           isCorrect: false,
           label:
-            "The values 28, 20, and 22 showed no relevant pattern, so the team planned to change the measurement rules.",
+            "The values 28, 20, and 22 showed no relevant pattern, so the team planned to change the rules for recording retakes.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Tim membandingkan 28, 20, dan 22, membatasi klaim pada studio rekaman sekolah, serta merencanakan pengulangan yang lebih panjang.",
+            "Tim membandingkan rata-rata 28, 20, dan 22, membatasi simpulan pada rekaman tanpa pengulangan teknis selama uji singkat, serta merencanakan uji dengan lebih banyak tim dan aturan pencatatan yang sama.",
         },
         {
           isCorrect: false,
           label:
-            "Karena 28 lebih tinggi daripada 20 dan 22, tim menyimpulkan bahwa daftar periksa sebelum perekaman efektif lalu menerapkannya secara tetap.",
+            "Karena 28 lebih tinggi daripada 20 dan 22, tim menyatakan seluruh mutu rekaman meningkat dan menerapkan daftar pemeriksaan secara permanen.",
         },
         {
           isCorrect: false,
           label:
-            "Tim membandingkan 28, 20, dan 22 serta merencanakan pengulangan lebih panjang tanpa membatasi klaim pada studio rekaman sekolah.",
+            "Tim membandingkan 28, 20, dan 22 serta merencanakan uji dengan lebih banyak tim tanpa membatasi cakupan simpulan.",
         },
         {
           isCorrect: false,
           label:
-            "Tim membatasi klaim pada studio rekaman sekolah dan merencanakan pengulangan lebih panjang tanpa melaporkan perbandingan.",
+            "Tim membatasi simpulan pada pengulangan teknis dan merencanakan uji lanjutan tanpa melaporkan perbandingan hasil.",
         },
         {
           isCorrect: false,
           label:
-            "Nilai 28, 20, dan 22 tidak menunjukkan pola yang relevan sehingga tim akan mengubah kaidah pengukuran.",
+            "Nilai 28, 20, dan 22 tidak menunjukkan pola yang relevan sehingga tim akan mengubah aturan pencatatan pengulangan.",
         },
       ],
     },

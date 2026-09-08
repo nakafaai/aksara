@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The comparison condition produced a mean value of 43; because it differs from the other conditions, the tested change is the only plausible explanation.",
+            "The comparison condition produced a mean value of $$43$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The trial reached 62 households identifying the safe route, compared with 41 and 43; because the drill lacked real emergency stress, the result supports a bounded follow-up rather than a permanent rule.",
+            "The trial averaged $$62$$ households per round identifying the safe route, compared with $$41$$ and $$43$$. The drill did not reproduce real emergency stress, so the result supports a limited follow-up rather than a permanent rule.",
         },
       ],
     },

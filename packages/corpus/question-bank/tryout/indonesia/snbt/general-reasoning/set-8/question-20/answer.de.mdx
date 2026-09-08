@@ -2,42 +2,29 @@ export const metadata = {
   title: "Lösung zu Aufgabe 20",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-01-29",
+  dateModified: "2026-09-07",
 };
 
-Wir betrachten die Differenzen der beiden Zahlenfolgen getrennt.
+Wir prüfen die Änderung der Besucherzahlen zwischen jeweils zwei aufeinanderfolgenden Tagen.
 
-#### Zahlenmuster für Bibliothek A
+#### Erste Bibliothek
 
-Für Bibliothek <InlineMath math="\text{A}" /> gilt die Folge <InlineMath math="1205, 1208, 1213, 1220, 1229, 1240, 1253" />:
+Für Bibliothek A ergeben sich diese Differenzen:
 
-<MathContainer>
-  <BlockMath math="1205 \xrightarrow{+3} 1208 \xrightarrow{+5} 1213 \xrightarrow{+7} 1220 \xrightarrow{+9} 1229 \xrightarrow{+11} 1240 \xrightarrow{+13} 1253" />
-</MathContainer>
+<BlockMath math="\begin{aligned}1{.}208-1{.}205&=3\\1{.}213-1{.}208&=5\\1{.}220-1{.}213&=7\\1{.}229-1{.}220&=9\\1{.}240-1{.}229&=11\\1{.}253-1{.}240&=13\end{aligned}" />
 
-Die Differenzen sind die aufeinanderfolgenden ungeraden Zahlen <InlineMath math="+3, +5, +7, +9, +11, +13" />. Als Nächstes folgt <InlineMath math="+15" />.
+Die Differenzen sind aufeinanderfolgende ungerade Zahlen. Jede Differenz wächst um <InlineMath math="2" />, sodass die nächste <InlineMath math="15" /> beträgt:
 
-Damit lautet der achte Wert für Bibliothek <InlineMath math="\text{A}" />:
+<BlockMath math="1{.}253+15=1{.}268" />
 
-<MathContainer>
-  <BlockMath math="1253 + 15 = 1268" />
-</MathContainer>
+#### Zweite Bibliothek
 
-#### Zahlenmuster für Bibliothek B
+Für Bibliothek B ergeben sich diese Differenzen:
 
-Für Bibliothek <InlineMath math="\text{B}" /> gilt die Folge <InlineMath math="210, 212, 216, 222, 230, 240, 252" />:
+<BlockMath math="\begin{aligned}212-210&=2\\216-212&=4\\222-216&=6\\230-222&=8\\240-230&=10\\252-240&=12\end{aligned}" />
 
-<MathContainer>
-  <BlockMath math="210 \xrightarrow{+2} 212 \xrightarrow{+4} 216 \xrightarrow{+6} 222 \xrightarrow{+8} 230 \xrightarrow{+10} 240 \xrightarrow{+12} 252" />
-</MathContainer>
+Die Differenzen sind aufeinanderfolgende gerade Zahlen. Jede Differenz wächst um <InlineMath math="2" />, sodass die nächste <InlineMath math="14" /> beträgt:
 
-Die Differenzen sind die aufeinanderfolgenden geraden Zahlen <InlineMath math="+2, +4, +6, +8, +10, +12" />. Als Nächstes folgt <InlineMath math="+14" />.
+<BlockMath math="252+14=266" />
 
-Damit lautet der achte Wert für Bibliothek <InlineMath math="\text{B}" />:
-
-<MathContainer>
-  <BlockMath math="252 + 14 = 266" />
-</MathContainer>
-
-#### Fazit
-
-Am achten Tag sind somit **<InlineMath math="1268" />** Besuche in Bibliothek <InlineMath math="\text{A}" /> und **<InlineMath math="266" />** Besuche in Bibliothek <InlineMath math="\text{B}" /> zu erwarten.
+Am achten Tag ergeben sich somit **<InlineMath math="1{.}268" /> Besuche bei A und <InlineMath math="266" /> bei B**.

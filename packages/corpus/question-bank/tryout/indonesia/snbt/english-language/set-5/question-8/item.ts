@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Because the trial reached 47, compared with a baseline of 32 and a comparison value of 33, shelf labels showing when each package entered the pantry should become permanent before the stated limitation is examined.",
+            "Because the trial reached $$47$$, compared with a baseline of $$32$$ and a comparison value of $$33$$, shelf labels showing when each package entered the pantry should become permanent before the stated limitation is examined.",
         },
         {
           isCorrect: true,
           label:
-            "The rise to 47, compared with a baseline of 32 and a comparison value of 33 supports a limited extension of shelf labels showing when each package entered the pantry, while the fact that package demand changed with school holidays and local events must shape the follow-up.",
+            "The mean of $$47$$, compared with $$32$$ at baseline and $$33$$ in the comparison, supports a limited extension of the entry-date label trial. The follow-up must account for demand changes during school holidays and local events.",
         },
         {
           isCorrect: false,

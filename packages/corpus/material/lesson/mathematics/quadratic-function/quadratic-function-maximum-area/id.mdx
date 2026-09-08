@@ -3,7 +3,7 @@ export const metadata = {
   description: "Menyusun model luas kuadrat dari syarat geometri, menentukan nilai maksimum, lalu menjelaskan arti nilai tersebut bagi ukuran bangun pada soal.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-19",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-08",
   subject: "Fungsi Kuadrat",
 };
 
@@ -91,16 +91,21 @@ Seorang petani memiliki pagar sepanjang <InlineMath math="20\text{ m}" /> dan in
     cameraPosition={[5, 12, 18]}
     data={[
       {
-        points: Array.from({ length: 11 }, (_, l) => ({
+        pointIndices: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+        smooth: false,
+        points: Array.from({ length: 101 }, (_, sampleIndex) => {
+          const l = sampleIndex / 10;
+          return {
           x: l,
           y: -l * l + 10 * l,
           z: 0,
-        })),
+        };
+        }),
         color: "#0d9488",
         labels: [
           {
             text: "Titik maksimum",
-            at: 5,
+            at: 50,
             offset: [0, 2, 0],
           },
         ],

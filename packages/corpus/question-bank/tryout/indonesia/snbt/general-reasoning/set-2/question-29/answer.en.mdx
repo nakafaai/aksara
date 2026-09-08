@@ -2,9 +2,23 @@ export const metadata = {
   title: "Solution to Question 29",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Use combinations without replacement to find the probabilities of the three colour outcomes. Multiply each probability by its payout, then apply the revised bonus, refund, retry, or fee rule stated in the prompt.
+There are <InlineMath math="\binom{10}{2}=45" /> equally likely ball pairs in one round.
 
-Therefore, the requested value is <InlineMath math="40" />.
+| Outcome | Pairs | Payout |
+| :--- | :---: | :---: |
+| Two red | <InlineMath math="\binom52=10" /> | <InlineMath math="40" /> |
+| Different colours | <InlineMath math="5\times5=25" /> | <InlineMath math="20" /> |
+| Two blue | <InlineMath math="\binom52=10" /> | <InlineMath math="0" /> |
+
+Payouts in the table are in thousand rupiah. The expected payout for one round is
+
+<BlockMath math="\begin{aligned}E_1&=40\frac{10}{45}+20\frac{25}{45}\\&\quad+0\frac{10}{45}\\&=\frac{400+500}{45}\\&=20\end{aligned}" />
+
+The box is restored before round two, so that round has the same expected payout. The total expected payout is
+
+<BlockMath math="E_1+E_2=20+20=40" />
+
+A fair fee equals the expected payout, making the expected net gain zero. The total fair fee is therefore **<InlineMath math="40" /> thousand rupiah**.

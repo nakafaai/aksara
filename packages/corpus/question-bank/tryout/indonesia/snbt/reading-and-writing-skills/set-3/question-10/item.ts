@@ -8,27 +8,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Mit geänderten Messregeln plant das Team einen längeren Test von kontrastreichere Sammelplatzsymbole.",
+            "Mit geänderten Messregeln wird das Team die Symbole länger in mehreren Gruppen prüfen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team will nur die Tage wiederholen, an denen die Änderung kontrastreichere Sammelplatzsymbole den höchsten Wert ergab.",
+            "Das Team wird nur die Durchgänge mit den höchsten Ergebnissen für die neuen Symbole wiederholen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team will kontrastreichere Sammelplatzsymbole dauerhaft einführen statt einen längeren Vergleich durchzuführen.",
+            "Das Team wird die neuen Symbole dauerhaft einführen, statt einen Folgetest durchzuführen.",
         },
         {
           isCorrect: true,
           label:
-            "Unter unveränderten Messregeln plant das Team einen längeren Versuch mit folgender Änderung: kontrastreichere Symbole für Sammelpunkte.",
+            "Mit denselben Messregeln wird das Team die Symbole länger in mehreren Gruppen prüfen.",
         },
         {
           isCorrect: false,
           label:
-            "Das Team plant einen längeren Test von kontrastreichere Sammelplatzsymbole ohne Vergleichsbedingung.",
+            "Das Team wird die Symbole länger in nur einer Gruppe ohne Vergleich prüfen.",
         },
       ],
     },
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Using revised measurement rules, the team plans a longer test of higher-contrast assembly-point symbols.",
+            "Using revised measurement rules, the team will test the symbols for longer across several groups.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans to repeat only the days on which higher-contrast assembly-point symbols produced the highest value.",
+            "The team will repeat only the sessions that recorded the highest results for the new symbols.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans to adopt higher-contrast assembly-point symbols permanently instead of running a longer comparison.",
+            "The team will adopt the new symbols permanently instead of conducting a follow-up test.",
         },
         {
           isCorrect: true,
           label:
-            "Using the same measurement rules, the team plans a longer test of higher-contrast assembly-point symbols.",
+            "Using the same measurement rules, the team will test the symbols for longer across several groups.",
         },
         {
           isCorrect: false,
           label:
-            "The team plans a longer test of higher-contrast assembly-point symbols without retaining a comparison condition.",
+            "The team will test the symbols for longer in just one group without a comparison.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dengan kaidah pengukuran yang diubah, tim merencanakan uji simbol titik kumpul dengan kontras lebih tinggi yang lebih panjang.",
+            "Dengan aturan pengukuran yang diubah, tim akan menguji simbol lebih lama pada beberapa kelompok.",
         },
         {
           isCorrect: false,
           label:
-            "Tim akan mengulang hari ketika simbol titik kumpul dengan kontras lebih tinggi menghasilkan nilai tertinggi.",
+            "Tim hanya akan mengulang sesi yang mencatat hasil tertinggi untuk simbol baru.",
         },
         {
           isCorrect: false,
           label:
-            "Tim akan menerapkan simbol titik kumpul dengan kontras lebih tinggi secara tetap sebagai pengganti perbandingan yang lebih panjang.",
+            "Tim akan menerapkan simbol baru secara permanen sebagai pengganti pengujian lanjutan.",
         },
         {
           isCorrect: true,
           label:
-            "Dengan aturan pengukuran yang sama, tim merencanakan uji yang lebih lama terhadap simbol titik kumpul yang lebih kontras.",
+            "Dengan aturan pengukuran yang sama, tim akan menguji simbol lebih lama pada beberapa kelompok.",
         },
         {
           isCorrect: false,
           label:
-            "Tim merencanakan uji simbol titik kumpul dengan kontras lebih tinggi yang lebih panjang tanpa mempertahankan kondisi pembanding.",
+            "Tim akan menguji simbol lebih lama pada satu kelompok saja tanpa pembanding.",
         },
       ],
     },

@@ -11,7 +11,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "nach dem Satz $$(4)$$.",
+          label: "nach Satz $$(1)$$.",
         },
         {
           isCorrect: false,
@@ -36,7 +36,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "after sentence $$(4)$$.",
+          label: "after sentence $$(1)$$.",
         },
         {
           isCorrect: false,
@@ -61,7 +61,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "setelah kalimat $$(4)$$.",
+          label: "setelah kalimat $$(1)$$.",
         },
         {
           isCorrect: false,

@@ -13,12 +13,12 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Foto menunjukkan kemunculan mantel berciri serupa di panggung, sedangkan buku perawatan melacak tindakan pada M-17 tanpa memastikan setiap kali kostum itu dipentaskan.",
+            "Foto menunjukkan kemunculan mantel berciri serupa di panggung, sedangkan buku perawatan melacak tindakan pada M-17 tanpa memastikan kemunculannya di panggung.",
         },
         {
           isCorrect: false,
           label:
-            "Buku perawatan membuktikan kemunculan mantel pada 2019 karena catatan terakhir tahun 2009 menyebut kostum telah dikembalikan.",
+            "Buku perawatan membuktikan kemunculan mantel pada $$2019$$ karena catatan terakhir tahun $$2009$$ menyebut kostum telah dikembalikan.",
         },
         {
           isCorrect: false,

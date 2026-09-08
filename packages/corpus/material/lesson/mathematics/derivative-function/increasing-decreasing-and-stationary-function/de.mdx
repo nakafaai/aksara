@@ -5,7 +5,7 @@ export const metadata = {
   description: "Mit dem Vorzeichen der ersten Ableitung Monotonieintervalle bestimmen und stationäre Punkte richtig einordnen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
   subject: "Ableitungsfunktionen",
 };
 
@@ -100,7 +100,9 @@ Die Tests ergeben:
   cameraPosition={[0, 0, 10]}
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = -2 + i * 0.05;
         const y = x ** 3 - 3 * x;
         return { x, y, z: 0 };
@@ -110,12 +112,13 @@ Die Tests ergeben:
       labels: [
         {
           text: "Zunehmend",
-          at: 5,
+          at: 25,
           offset: [-1, 1, 0],
         },
       ],
     },
     {
+      smooth: false,
       points: Array.from({ length: 41 }, (_, i) => {
         const x = -1 + i * 0.05;
         const y = x ** 3 - 3 * x;
@@ -132,7 +135,9 @@ Die Tests ergeben:
       ],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      smooth: false,
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const x = 1 + i * 0.05;
         const y = x ** 3 - 3 * x;
         return { x, y, z: 0 };
@@ -142,7 +147,7 @@ Die Tests ergeben:
       labels: [
         {
           text: "Zunehmend",
-          at: 15,
+          at: 75,
           offset: [1, 1, 0],
         },
       ],

@@ -2,9 +2,21 @@ export const metadata = {
   title: "Lösung zu Aufgabe 29",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Von 45 Paaren sind 3 rot-rot, 21 gemischt und 21 blau-blau. Ein Versuch hat den Erwartungswert <InlineMath math="[30(3)+15(21)]/45=9" />. Die Wiederholung tritt mit Wahrscheinlichkeit <InlineMath math="21/45=7/15" /> ein, also ist der Gesamterwartungswert <InlineMath math="9+(7/15)(9)=66/5" />.
+Es gibt <InlineMath math="\binom{10}{2}=45" /> gleich wahrscheinliche Paare.
 
-Damit ist der gesuchte Wert <InlineMath math="\\frac{66}{5}" />.
+| Ergebnis | Paarzahl | Auszahlung (Tausend Rupiah) |
+| --- | ---: | ---: |
+| Zwei rote | <InlineMath math="\binom32=3" /> | <InlineMath math="30" /> |
+| Verschiedene Farben | <InlineMath math="3\times7=21" /> | <InlineMath math="15" /> |
+| Zwei blaue | <InlineMath math="\binom72=21" /> | <InlineMath math="0" /> |
+
+Der Erwartungswert einer Auszahlung für einen Versuch beträgt in Tausend Rupiah:
+
+<BlockMath math="E=\frac{30(3)+15(21)}{45}=9" />
+
+Der Wiederholungsversuch tritt mit Wahrscheinlichkeit <InlineMath math="\frac{21}{45}=\frac7{15}" /> ein. Durch die Wiederherstellung des Inhalts hat er denselben Erwartungswert <InlineMath math="9" />. Insgesamt ergibt sich:
+
+<BlockMath math="9+\frac7{15}\times9=\frac{66}{5}" />

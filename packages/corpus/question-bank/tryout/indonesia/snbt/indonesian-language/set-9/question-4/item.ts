@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Definisi itu memperluas hasil dari satu posisi mikrofon ke seluruh auditorium karena bunyi akhirnya melemah 60 dB.",
+            "Definisi itu memperluas hasil dari satu posisi mikrofon ke seluruh auditorium karena bunyi akhirnya melemah $$60\\,\\text{dB}$$.",
         },
         {
           isCorrect: true,

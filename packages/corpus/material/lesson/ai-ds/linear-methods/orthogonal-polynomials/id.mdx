@@ -3,7 +3,7 @@ export const metadata = {
   description: "Basis polinomial Chebyshev dan Legendre berasal dari hasil kali dalam berbobot. Basis ini dipakai untuk proyeksi fungsi, perubahan interval, dan kuadratur Gauss.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-16",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-08",
   subject: "Metode Linear AI",
 };
 
@@ -83,16 +83,16 @@ Karena <InlineMath math="|T_k(x)|\le1" /> pada <InlineMath math="[-1,1]" /> dan 
   data={(() => {
     const samples = Array.from({ length: 81 }, (_, index) => -1 + index / 40);
     const polynomials = [
-      { color: "#0891b2", evaluate: (x) => 1, smooth: false },
-      { color: "#ea580c", evaluate: (x) => x, smooth: false },
-      { color: "#7c3aed", evaluate: (x) => 2 * x * x - 1, smooth: true },
-      { color: "#16a34a", evaluate: (x) => 4 * x * x * x - 3 * x, smooth: true }
+      { color: "#0891b2", evaluate: (x) => 1 },
+      { color: "#ea580c", evaluate: (x) => x },
+      { color: "#7c3aed", evaluate: (x) => 2 * x * x - 1 },
+      { color: "#16a34a", evaluate: (x) => 4 * x * x * x - 3 * x }
     ];
 
-    return polynomials.map(({ color, evaluate, smooth }) => ({
+    return polynomials.map(({ color, evaluate }) => ({
       points: samples.map((x) => ({ x, y: evaluate(x), z: 0 })),
       color,
-      smooth,
+      smooth: false,
       showPoints: false
     }));
   })()}

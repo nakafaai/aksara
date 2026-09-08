@@ -1,51 +1,42 @@
 export const metadata = {
   title: "Solution to Question 15",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2026-01-31",
 };
 
 **Problem Analysis**
 
-We can model this problem as a system of linear equations with two variables. Let the price of meat per kg be <InlineMath math="x" /> and the price of fish per kg be <InlineMath math="y" /> (in thousands of rupiah).
+We can model this problem as a system of linear equations with two variables. Let the price of meat per kilogram be <InlineMath math="x" /> and the price of fish per kilogram be <InlineMath math="y" /> (in thousands of rupiah).
 
 **Formulating the Equations**
 
-From the data of Shop A, the sale of <InlineMath math="80\text{ kg}" /> of meat and <InlineMath math="20\text{ kg}" /> of fish results in <InlineMath math="2960" /> thousand rupiah:
+From the data of shop <InlineMath math="A" />, the sale of <InlineMath math="80\text{ kg}" /> of meat and <InlineMath math="20\text{ kg}" /> of fish results in <InlineMath math="2960" /> thousand rupiah:
 
-<MathContainer>
-  <BlockMath math="80x + 20y = 2960" />
-</MathContainer>
+<BlockMath math="80x + 20y = 2960" />
 
 Simplify this equation by dividing both sides by <InlineMath math="20" />:
 
-<MathContainer>
-  <BlockMath math="4x + y = 148 \quad \dots (1)" />
-</MathContainer>
+<BlockMath math="4x + y = 148 \quad (1)" />
 
-From the data of Shop B, the sale of <InlineMath math="70\text{ kg}" /> of meat and <InlineMath math="40\text{ kg}" /> of fish results in <InlineMath math="3040" /> thousand rupiah:
+From the data of shop <InlineMath math="B" />, the sale of <InlineMath math="70\text{ kg}" /> of meat and <InlineMath math="40\text{ kg}" /> of fish results in <InlineMath math="3040" /> thousand rupiah:
 
-<MathContainer>
-  <BlockMath math="70x + 40y = 3040" />
-</MathContainer>
+<BlockMath math="70x + 40y = 3040" />
 
 Simplify this equation by dividing both sides by <InlineMath math="10" />:
 
-<MathContainer>
-  <BlockMath math="7x + 4y = 304 \quad \dots (2)" />
-</MathContainer>
+<BlockMath math="7x + 4y = 304 \quad (2)" />
 
 **Solving the System of Equations**
 
-We will eliminate variable <InlineMath math="y" /> to find the value of <InlineMath math="x" />. Multiply equation <InlineMath math="(1)" /> by <InlineMath math="4" /> so that the coefficient of <InlineMath math="y" /> matches equation <InlineMath math="(2)" />:
+We will eliminate variable <InlineMath math="y" /> to find the value of <InlineMath math="x" />. Multiply equation <InlineMath math="(1)" /> by <InlineMath math="4" /> so that the coefficient of <InlineMath math="y" /> matches the coefficient in equation <InlineMath math="(2)" />:
+
+<BlockMath math="16x + 4y = 592" />
+
+Subtract equation <InlineMath math="(2)" /> from the resulting equation:
 
 <MathContainer>
-  <BlockMath math="16x + 4y = 592" />
-</MathContainer>
-
-Subtract this resulting equation by equation <InlineMath math="(2)" />:
-
-<MathContainer>
-  <BlockMath math="(16x + 4y) - (7x + 4y) = 592 - 304" />
+  <BlockMath math="\begin{aligned}&(16x+4y)-(7x+4y) \\ &=592-304\end{aligned}" />
   <BlockMath math="9x = 288" />
   <BlockMath math="x = 32" />
 </MathContainer>

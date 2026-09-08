@@ -8,27 +8,26 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Im Kontext Straßenbaumerhebung verursachte die Änderung Beispielfotos für jede Zustandskategorie den höheren Testwert.",
+            "Beispielfotos waren nachweislich die einzige Ursache der höheren mittleren Übereinstimmung.",
         },
         {
           isCorrect: false,
           label:
-            "Im Kontext Straßenbaumerhebung verbesserten sich sämtliche Teilnehmenden um denselben Wert.",
+            "Jedes Beobachtungspaar verbesserte seine Übereinstimmung im selben Umfang.",
+        },
+        {
+          isCorrect: false,
+          label: "Ausgangs- und Vergleichswert waren gleich.",
         },
         {
           isCorrect: false,
           label:
-            "Im Kontext Straßenbaumerhebung waren die beiden Vergleichswerte identisch.",
-        },
-        {
-          isCorrect: false,
-          label:
-            "Im Kontext Straßenbaumerhebung belegte der kurze Test das langfristige Ergebnis.",
+            "Der Versuch belegte die langfristige Höhe der Übereinstimmung.",
         },
         {
           isCorrect: true,
           label:
-            "Der Versuchswert lag im Kontext Erfassung von Straßenbäumen über den beiden anderen Werten.",
+            "Die mittlere Übereinstimmung lag im Versuch über dem Ausgangs- und dem Vergleichswert.",
         },
       ],
     },
@@ -38,27 +37,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "In this setting (street-tree survey), sample photos for each condition category caused the higher trial value.",
+            "Sample photographs were proved to be the sole cause of the higher mean agreement.",
         },
         {
           isCorrect: false,
           label:
-            "In this setting (street-tree survey), each participant improved by the same amount.",
+            "Every observer pair improved its agreement by the same amount.",
         },
         {
           isCorrect: false,
-          label:
-            "In this setting (street-tree survey), the two comparison values were identical.",
+          label: "The baseline and comparison means were identical.",
         },
         {
           isCorrect: false,
-          label:
-            "In this setting (street-tree survey), the short trial established the long-term result.",
+          label: "The trial established the long-term level of agreement.",
         },
         {
           isCorrect: true,
           label:
-            "In this setting (street-tree survey), the trial value exceeded both other values.",
+            "Mean agreement in trial sessions exceeded both the baseline and comparison means.",
         },
       ],
     },
@@ -68,27 +65,25 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Dalam konteks survei pohon jalan, foto contoh untuk setiap kategori kondisi menyebabkan nilai uji menjadi lebih tinggi.",
+            "Contoh foto terbukti menjadi satu-satunya penyebab rata-rata kesepakatan yang lebih tinggi.",
         },
         {
           isCorrect: false,
           label:
-            "Dalam konteks survei pohon jalan, setiap peserta mengalami peningkatan yang sama.",
+            "Setiap pasangan pencatat mengalami peningkatan kesepakatan yang sama.",
         },
         {
           isCorrect: false,
-          label:
-            "Dalam konteks survei pohon jalan, kedua nilai pembanding sama.",
+          label: "Nilai awal dan nilai sesi pembanding sama.",
         },
         {
           isCorrect: false,
-          label:
-            "Dalam konteks survei pohon jalan, uji singkat menetapkan hasil jangka panjang.",
+          label: "Uji tersebut menetapkan tingkat kesepakatan jangka panjang.",
         },
         {
           isCorrect: true,
           label:
-            "Di pendataan pohon jalan, nilai hari uji melampaui dua nilai lainnya.",
+            "Rata-rata kesepakatan pada sesi uji lebih tinggi daripada nilai awal dan nilai sesi pembanding.",
         },
       ],
     },

@@ -7,28 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "die Folgestudie des Teams im untersuchten Kontext (Aufnahmestudio der Schule)",
+          label: "die Folgestudie des Teams zur Checkliste",
         },
         {
           isCorrect: false,
-          label:
-            "die Folge Studie des Teams im untersuchten Kontext (Aufnahmestudio der Schule)",
+          label: "die Folge Studie des Teams zur Checkliste",
         },
         {
           isCorrect: false,
-          label:
-            "die Folge-studie des Teams im untersuchten Kontext (Aufnahmestudio der Schule)",
+          label: "die Folge-studie des Teams zur Checkliste",
         },
         {
           isCorrect: false,
-          label:
-            "die Folgestudie des Team im untersuchten Kontext (Aufnahmestudio der Schule)",
+          label: "die Folgestudie des Team zur Checkliste",
         },
         {
           isCorrect: false,
-          label:
-            "die Folge  Studie des Teams im untersuchten Kontext (Aufnahmestudio der Schule)",
+          label: "die Folgestudie des Teems zur Checkliste",
         },
       ],
     },
@@ -37,28 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "the team's follow-up study of a checklist used before recording in this setting (school recording studio)",
+          label: "the team's follow-up study of the recording checklist",
         },
         {
           isCorrect: false,
-          label:
-            "the team's follow up study of a checklist used before recording in this setting (school recording studio)",
+          label: "the team's follow up study of the recording checklist",
         },
         {
           isCorrect: false,
-          label:
-            "the team's followup study of a checklist used before recording in this setting (school recording studio)",
+          label: "the team's follow-uup study of the recording checklist",
         },
         {
           isCorrect: false,
-          label:
-            "the teams' follow--up study of a checklist used before recording in this setting (school recording studio)",
+          label: "the teams' follow--up study of the recording checklist",
         },
         {
           isCorrect: false,
-          label:
-            "the team follow-up-study of a checklist used before recording in this setting (school recording studio)",
+          label: "the team follow-up-study of the recording checklist",
         },
       ],
     },
@@ -67,28 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label:
-            "kerja sama tim dalam uji daftar pemeriksaan sebelum merekam di studio rekaman sekolah",
+          label: "kerja sama tim dalam uji daftar pemeriksaan",
         },
         {
           isCorrect: false,
-          label:
-            "kerjasama tim dalam uji daftar pemeriksaan sebelum merekam di studio rekaman sekolah",
+          label: "kerjasama tim dalam uji daftar pemeriksaan",
         },
         {
           isCorrect: false,
-          label:
-            "kerja-sama tim dalam uji daftar pemeriksaan sebelum merekam di studio rekaman sekolah",
+          label: "kerja-sama tim dalam uji daftar pemeriksaan",
         },
         {
           isCorrect: false,
-          label:
-            "kerja  sama tim dalam uji daftar pemeriksaan sebelum merekam di studio rekaman sekolah",
+          label: "kerja samah tim dalam uji daftar pemeriksaan",
         },
         {
           isCorrect: false,
-          label:
-            "kerja sama-sama tim dalam uji daftar pemeriksaan sebelum merekam di studio rekaman sekolah",
+          label: "kerja sama-sama tim dalam uji daftar pemeriksaan",
         },
       ],
     },

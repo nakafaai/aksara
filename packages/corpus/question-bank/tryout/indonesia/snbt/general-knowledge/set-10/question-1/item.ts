@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Die Veränderung ist groß genug, um die Entscheidung auch unter Berücksichtigung der Messunsicherheit zu ändern.",
+            "Der Unterschied ist statistisch nachweisbar, aber zu klein, um das Hauptergebnis zu verändern.",
         },
         {
           isCorrect: false,
@@ -38,7 +38,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The change is large enough to alter the decision after measurement uncertainty is considered.",
+            "The difference is statistically detectable but too small to change the main outcome.",
         },
         {
           isCorrect: false,
@@ -68,7 +68,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Perubahan cukup besar untuk mengubah keputusan setelah ketidakpastian pengukuran turut dipertimbangkan.",
+            "Perbedaan terdeteksi secara statistik, tetapi terlalu kecil untuk mengubah hasil utama.",
         },
         {
           isCorrect: false,

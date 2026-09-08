@@ -8,22 +8,22 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Die Daten wurden in diesem Kontext erhoben: Kompostierworkshop. Anschließend wurden sie verglichen.",
+            "Die Daten wurden im Kompostierworkshop erhoben und anschließend verglichen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten worden im Kontext Kompostierworkshop erhebt und danach vergleichen.",
+            "Die Daten worden im Kompostierworkshop erhebt und danach vergleichen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten wurden an den Kontext Kompostierworkshop erhoben und danach verglichen.",
+            "Die Daten wurden an den Kompostierworkshop erhoben und danach verglichen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten wurden in diesem Kontext erhoben Kompostierworkshop anschließend sie verglichen wurden.",
+            "Die Daten wurden im Kompostierworkshop erhoben anschließend sie verglichen wurden.",
         },
         {
           isCorrect: false,
@@ -38,27 +38,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Data were collected in this setting (composting workshop) and compared afterward.",
+            "Data were collected in the composting workshop and compared afterward.",
         },
         {
           isCorrect: false,
           label:
-            "Data were collected at this setting (composting workshop) and compared afterward in.",
+            "Data were collected at the composting workshop and compared afterward in.",
         },
         {
           isCorrect: false,
           label:
-            "Data was collect in this setting (composting workshop) and comparing afterward.",
+            "Data was collect in the composting workshop and comparing afterward.",
         },
         {
           isCorrect: false,
           label:
-            "Data were collected on this setting (composting workshop) and afterward compared it.",
+            "Data were collected on the composting workshop and afterward compared it.",
         },
         {
           isCorrect: false,
           label:
-            "Data collected this setting (composting workshop) and were comparison afterward.",
+            "Data collected the composting workshop and were comparison afterward.",
         },
       ],
     },
@@ -68,27 +68,27 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Data diukur di lokakarya pembuatan kompos dan kemudian dibandingkan.",
+            "Data dikumpulkan di lokakarya kompos dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data di ukur di lokakarya pembuatan kompos dan kemudian dibandingkan.",
+            "Data di kumpulkan di lokakarya kompos dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data diukur didepan lokakarya pembuatan kompos dan kemudian dibandingkan.",
+            "Data dikumpulkan didepan lokakarya kompos dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data mengukur di lokakarya pembuatan kompos dan kemudian membandingkan.",
+            "Data mengumpulkan di lokakarya kompos dan kemudian membandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data diukur pada di lokakarya pembuatan kompos lalu di bandingkan.",
+            "Data dikumpulkan pada di lokakarya kompos lalu di bandingkan.",
         },
       ],
     },

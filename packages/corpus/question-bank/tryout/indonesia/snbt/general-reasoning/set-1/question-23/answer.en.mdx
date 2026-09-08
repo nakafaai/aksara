@@ -2,9 +2,17 @@ export const metadata = {
   title: "Solution to Question 23",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Apply inclusion-exclusion, then distinguish carefully whether the prompt asks for exactly one, exactly two, at least two, or none of the three sets. Participants in all three sets must be counted with the correct multiplicity during this regrouping.
+Count the users of each service who use no other service. Subtracting both pairwise intersections removes the users of all three services twice, so add those <InlineMath math="8" /> users back once.
 
-Therefore, the requested value is <InlineMath math="63" />.
+Let <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" /> be the counts who use only service <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" />, respectively.
+
+<BlockMath math="\begin{aligned} a &= 55-20-18+8 \\ &=25 \\ b &=48-20-15+8 \\ &=21 \\ c &=42-18-15+8 \\ &=17 \end{aligned}" />
+
+The number using exactly one service is
+
+<BlockMath math="a+b+c=25+21+17=63" />
+
+Thus, <InlineMath math="63" /> participants use exactly one service.

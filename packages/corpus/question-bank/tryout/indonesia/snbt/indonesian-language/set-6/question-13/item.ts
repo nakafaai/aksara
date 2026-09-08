@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Kenaikan dari 16 menjadi 27 membuktikan bahwa kartu tujuan menaikkan nilai semester setiap peserta.",
+            "Kenaikan dari $$16$$ menjadi $$27$$ membuktikan bahwa kartu tujuan menaikkan nilai semester setiap peserta.",
         },
         {
           isCorrect: false,
           label:
-            "Karena guru pendamping ikut membahas hasil, kondisi pembanding 17 tidak lagi diperlukan untuk menilai program.",
+            "Karena guru pendamping ikut membahas hasil, kondisi pembanding $$17$$ tidak lagi diperlukan untuk menilai program.",
         },
         {
           isCorrect: false,
@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Selisih 27 dibandingkan 17 mendukung uji lanjutan kartu tujuan dengan kolom revisi, tetapi hasil dua minggu tentang catatan pertemuan belum membuktikan kenaikan nilai semester.",
+            "Selisih $$27$$ dibandingkan $$17$$ mendukung uji lanjutan kartu tujuan dengan kolom revisi, tetapi hasil dua minggu tentang catatan pertemuan belum membuktikan kenaikan nilai semester.",
         },
         {
           isCorrect: false,

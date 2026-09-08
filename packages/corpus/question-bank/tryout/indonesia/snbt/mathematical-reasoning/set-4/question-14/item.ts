@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$7$$ Tage",
+          label: "$$7\\text{ Tage}$$",
         },
         {
           isCorrect: false,
-          label: "$$8$$ Tage",
+          label: "$$8\\text{ Tage}$$",
         },
         {
           isCorrect: false,
-          label: "$$9$$ Tage",
+          label: "$$9\\text{ Tage}$$",
         },
         {
           isCorrect: true,
-          label: "$$10$$ Tage",
+          label: "$$10\\text{ Tage}$$",
         },
         {
           isCorrect: false,
-          label: "$$11$$ Tage",
+          label: "$$11\\text{ Tage}$$",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$7$$ days",
+          label: "$$7\\text{ days}$$",
         },
         {
           isCorrect: false,
-          label: "$$8$$ days",
+          label: "$$8\\text{ days}$$",
         },
         {
           isCorrect: false,
-          label: "$$9$$ days",
+          label: "$$9\\text{ days}$$",
         },
         {
           isCorrect: true,
-          label: "$$10$$ days",
+          label: "$$10\\text{ days}$$",
         },
         {
           isCorrect: false,
-          label: "$$11$$ days",
+          label: "$$11\\text{ days}$$",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$7$$ hari",
+          label: "$$7\\text{ hari}$$",
         },
         {
           isCorrect: false,
-          label: "$$8$$ hari",
+          label: "$$8\\text{ hari}$$",
         },
         {
           isCorrect: false,
-          label: "$$9$$ hari",
+          label: "$$9\\text{ hari}$$",
         },
         {
           isCorrect: true,
-          label: "$$10$$ hari",
+          label: "$$10\\text{ hari}$$",
         },
         {
           isCorrect: false,
-          label: "$$11$$ hari",
+          label: "$$11\\text{ hari}$$",
         },
       ],
     },

@@ -2,9 +2,23 @@ export const metadata = {
   title: "Solution to Question 29",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Among the 66 pairs, 28 are red-red and 32 are mixed. After the red-red prize rises to 45, the new expected value is <InlineMath math="[45(28)+15(32)]/66=1740/66=290/11" />.
+The two balls are selected without regard to order. From <InlineMath math="12" /> balls, the number of equally likely pairs is:
 
-Therefore, the requested value is <InlineMath math="\\frac{290}{11}" />.
+<BlockMath math="\binom{12}{2}=66" />
+
+The payout for two red balls rises by <InlineMath math="50\%" />, from <InlineMath math="30" /> to <InlineMath math="45" /> thousand rupiah. The other payouts stay fixed:
+
+| Outcome | Pairs | New payout |
+| :--- | ---: | ---: |
+| Two red | <InlineMath math="\binom82=28" /> | <InlineMath math="45" /> |
+| Different colours | <InlineMath math="8\times4=32" /> | <InlineMath math="15" /> |
+| Two blue | <InlineMath math="\binom42=6" /> | <InlineMath math="0" /> |
+
+Let <InlineMath math="X" /> be the payout in thousand rupiah. Every payout in the table uses that unit. Weight each payout by its probability to obtain the expectation:
+
+<BlockMath math="\begin{aligned}\mathbb E[X]&=45\frac{28}{66}+15\frac{32}{66}\\&\quad+0\frac6{66}\\&=\frac{1260+480}{66}\\&=\frac{290}{11}\end{aligned}" />
+
+The new expected payout is therefore **<InlineMath math="290/11" /> thousand rupiah**.

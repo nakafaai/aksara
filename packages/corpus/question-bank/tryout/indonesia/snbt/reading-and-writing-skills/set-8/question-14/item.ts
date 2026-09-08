@@ -7,28 +7,26 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label:
-            "Die Daten worden im Kontext Fundbüroservice erhebt und danach vergleichen.",
+          label: "Die Daten worden im Fundbüro erhebt und danach vergleichen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten wurden an den Kontext Fundbüroservice erhoben und danach verglichen.",
+            "Die Daten wurden an das Fundbüro erhoben und danach verglichen.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten wurden in diesem Kontext erhoben Fundbüroservice anschließend sie verglichen wurden.",
+            "Die Daten wurden im Fundbüro erhoben anschließend sie verglichen wurden.",
         },
         {
           isCorrect: false,
           label:
-            "Die Daten wurden von Fundbüroservice erheben und anschließend vergleicht.",
+            "Die Daten wurden von Fundbüro erheben und anschließend vergleicht.",
         },
         {
           isCorrect: true,
-          label:
-            "Die Daten wurden in diesem Kontext erhoben: Fundbüroservice. Anschließend wurden sie verglichen.",
+          label: "Die Daten wurden im Fundbüro erhoben und danach verglichen.",
         },
       ],
     },
@@ -38,27 +36,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Data were collected at this setting (lost-property service) and compared afterward in.",
+            "Data were collected at the lost-property office and compared afterward in.",
         },
         {
           isCorrect: false,
           label:
-            "Data was collect in this setting (lost-property service) and comparing afterward.",
+            "Data was collect at the lost-property office and comparing afterward.",
         },
         {
           isCorrect: false,
           label:
-            "Data were collected on this setting (lost-property service) and afterward compared it.",
+            "Data were collected at the lost-property office and afterward compared it.",
         },
         {
           isCorrect: false,
           label:
-            "Data collected this setting (lost-property service) and were comparison afterward.",
+            "Data collected the lost-property office and were comparison afterward.",
         },
         {
           isCorrect: true,
           label:
-            "Data were collected in this setting (lost-property service) and compared afterward.",
+            "Data were collected at the lost-property office and compared afterward.",
         },
       ],
     },
@@ -68,27 +66,27 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Data di kumpulkan dalam layanan pencarian barang hilang, lalu dibandingkan.",
+            "Data di kumpulkan di kantor barang hilang dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data dikumpulkan didalam layanan pencarian barang hilang, lalu dibandingkan.",
+            "Data dikumpulkan dikantor barang hilang dan kemudian dibandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data mengumpulkan dalam layanan pencarian barang hilang, lalu membandingkan.",
+            "Data mengumpulkan di kantor barang hilang dan kemudian membandingkan.",
         },
         {
           isCorrect: false,
           label:
-            "Data dikumpulkan pada dalam layanan pencarian barang hilang, lalu di bandingkan.",
+            "Data dikumpulkan pada di kantor barang hilang lalu di bandingkan.",
         },
         {
           isCorrect: true,
           label:
-            "Data dikumpulkan dalam layanan pencarian barang hilang, lalu dibandingkan.",
+            "Data dikumpulkan di kantor barang hilang dan kemudian dibandingkan.",
         },
       ],
     },

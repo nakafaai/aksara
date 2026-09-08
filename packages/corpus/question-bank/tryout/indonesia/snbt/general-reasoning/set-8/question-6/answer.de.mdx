@@ -2,63 +2,36 @@ export const metadata = {
   title: "Lösung zu Aufgabe 6",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-01-29",
+  dateModified: "2026-09-07",
 };
 
-Für die Stimmenzahl von <InlineMath math="M" /> brauchen wir ein vollständiges Gleichungssystem. Jede Aussage liefert dafür einen Baustein.
+<InlineMath math="T" /> bezeichnet die Gesamtzahl gültiger Stimmen. Jede gültige Stimme gilt einer der vier Personen, also:
 
-#### Ermittlung der Gesamtstimmenzahl
+<BlockMath math="M+N+O+P=T" />
 
-Um die genaue Stimmenzahl eines Kandidaten zu berechnen, benötigen wir **Aussage** <InlineMath math="4" />, die die Gesamtstimmenzahl angibt:
-
-<MathContainer>
-  <BlockMath math="\text{Gesamtstimmen} = 468" />
-</MathContainer>
-
-#### Berechnung der Stimmen der anderen Kandidaten
-
-Wir kennen den Zusammenhang für die Summe aller Stimmen:
+Aussage <InlineMath math="4" /> liefert <InlineMath math="T=468" />. Aus den Aussagen <InlineMath math="2" /> und <InlineMath math="3" /> folgen die Stimmenzahlen von O und P:
 
 <MathContainer>
-  <BlockMath math="M + N + O + P = \text{Gesamtstimmen}" />
+  <BlockMath math="O=\frac14(468)=117" />
+  <BlockMath math="P=\frac23(117)=78" />
 </MathContainer>
 
-Wir müssen die Werte von <InlineMath math="O" /> und <InlineMath math="P" /> kennen, um <InlineMath math="M" /> und <InlineMath math="N" /> zu isolieren:
+Die übrigen Stimmen verteilen sich auf M und N:
 
-- **Aussage** <InlineMath math="2" /> wird benötigt, um <InlineMath math="O" /> mithilfe der Gesamtstimmenzahl aus Aussage <InlineMath math="4" /> zu berechnen.
-- **Aussage** <InlineMath math="3" /> wird benötigt, um <InlineMath math="P" /> mithilfe des aus Aussage <InlineMath math="2" /> ermittelten Werts von <InlineMath math="O" /> zu berechnen.
+<BlockMath math="\begin{aligned}M+N&=468-117-78\\&=273\end{aligned}" />
 
-Ohne <InlineMath math="O" /> und <InlineMath math="P" /> enthält unsere Gleichung immer noch zu viele unbekannte Variablen.
-
-#### Auflösen nach dem angeforderten Wert
-
-Nachdem die Summe <InlineMath math="O" /> und <InlineMath math="P" /> bekannt ist, lautet die Gleichung:
+Aussage <InlineMath math="1" /> ergibt <InlineMath math="M=2N" />. Wir setzen dies in die Gleichung der übrigen Stimmen ein:
 
 <MathContainer>
-  <BlockMath math="M + N = \text{Verbleibende Stimmen}" />
+  <BlockMath math="\begin{aligned}2N+N&=273\\3N&=273\\N&=91\end{aligned}" />
+  <BlockMath math="M=2(91)=182" />
 </MathContainer>
 
-Wir haben immer noch zwei Variablen (<InlineMath math="M" /> und <InlineMath math="N" />) in einer Gleichung. Um einen bestimmten Wert für <InlineMath math="M" /> zu erhalten, benötigen wir die Beziehung zwischen <InlineMath math="M" /> und <InlineMath math="N" />.
+Jede Angabe erfüllt eine notwendige Aufgabe:
 
-**Aussage** <InlineMath math="1" /> liefert diese Beziehung:
+- Ohne die Gesamtzahl aus Aussage <InlineMath math="4" /> lassen sich alle Stimmenzahlen mit demselben Faktor skalieren.
+- Ohne Aussage <InlineMath math="2" /> stehen die Stimmenzahlen von O und P nicht fest.
+- Ohne Aussage <InlineMath math="3" /> steht die Stimmenzahl von P nicht fest.
+- Ohne Aussage <InlineMath math="1" /> ist die Aufteilung der gemeinsamen Stimmenzahl von M und N nicht eindeutig.
 
-<MathContainer>
-  <BlockMath math="M = 2N \quad \text{oder} \quad N = \frac{1}{2}M" />
-</MathContainer>
-
-Indem wir <InlineMath math="N" /> in die verbleibende Stimmengleichung einsetzen, können wir nach <InlineMath math="M" /> auflösen.
-
-Die vollständige Rechnung bestätigt außerdem, dass alle Stimmenzahlen ganzzahlig sind:
-
-<MathContainer>
-  <BlockMath math="O = \frac{1}{4}(468) = 117" />
-  <BlockMath math="P = \frac{2}{3}(117) = 78" />
-  <BlockMath math="M + N = 468 - 117 - 78 = 273" />
-  <BlockMath math="2N + N = 273 \quad\Longrightarrow\quad N = 91" />
-  <BlockMath math="M = 2(91) = 182" />
-</MathContainer>
-
-#### Fazit
-
-Für eine eindeutige Lösung brauchen wir alle vier Angaben: Aussage <InlineMath math="4" /> für die Gesamtstimmenzahl, Aussage <InlineMath math="2" /> für <InlineMath math="O" />, Aussage <InlineMath math="3" /> für <InlineMath math="P" /> und Aussage <InlineMath math="1" /> für die Beziehung zwischen <InlineMath math="M" /> und <InlineMath math="N" />.
-
-Daher sind die benötigten Informationen **<InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" /> und <InlineMath math="4" />**.
+Es werden somit **alle vier Aussagen** benötigt. Daraus folgen <InlineMath math="M=182" /> Stimmen.

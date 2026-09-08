@@ -2,9 +2,19 @@ export const metadata = {
   title: "Solution to Question 27",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Undo the 12% tax, restore the voucher amount, and then undo the 10% markup: <InlineMath math="[(1008/1.12)+90]/1.10=900" />.
+Reverse the price changes in order. All amounts below are in thousand rupiah.
 
-Therefore, the requested value is <InlineMath math="900" />.
+Undo the <InlineMath math="12\%" /> tax by dividing the final price by <InlineMath math="1.12" />:
+
+<BlockMath math="\frac{1008}{1.12}=900" />
+
+Add back the voucher deduction:
+
+<BlockMath math="900+90=990" />
+
+Undo the <InlineMath math="10\%" /> markup by dividing by <InlineMath math="1.1" />. The original price is:
+
+<BlockMath math="\frac{990}{1.1}=900" />

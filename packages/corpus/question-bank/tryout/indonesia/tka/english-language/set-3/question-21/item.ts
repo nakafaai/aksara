@@ -27,7 +27,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Repeated failures across identical items reveal a design problem.",
+            "Repeated failures across identical items provide evidence for choosing a better design.",
         },
         {
           isCorrect: false,

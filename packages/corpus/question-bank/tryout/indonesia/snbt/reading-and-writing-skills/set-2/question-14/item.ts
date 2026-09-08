@@ -19,7 +19,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "das Wort *den* vor *aktuellen* einfügen.",
+          label: "das Wort *den* vor *aktuelle* einfügen.",
         },
         {
           isCorrect: true,

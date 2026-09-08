@@ -8,7 +8,7 @@ const item: QuestionItem = {
   },
   responses: {
     id: {
-      categories: ["Data pengamatan", "Penjelasan alternatif"],
+      categories: ["Data utama pada tabel", "Penjelasan alternatif"],
       kind: "category",
       statements: [
         {

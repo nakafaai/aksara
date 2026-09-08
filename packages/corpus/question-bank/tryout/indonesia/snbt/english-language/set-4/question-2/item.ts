@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "The mean result with the change was -4; because it differs from the other conditions, the tested change is the only plausible explanation.",
+            "The mean result with the change was $$-4^{\\circ}\\text{C}$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
           isCorrect: false,
@@ -28,7 +28,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The salted samples produced a mean of -4°C under the stated test conditions; this is the trial result, not a claim about every freezer.",
+            "The salted samples produced a mean of $$-4^{\\circ}\\text{C}$$ under the stated test conditions. This is the trial result, not a claim about every freezer.",
         },
       ],
     },

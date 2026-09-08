@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Umweltdegradation ist eine Verschlechterung der Umweltqualität, die sich in geschädigten Böden, verschmutztem Wasser und verschmutzter Luft sowie im Verlust biologischer Vielfalt zeigt.",
+            "Umweltdegradation ist eine Verschlechterung der Umweltqualität, die sich zum Beispiel in geschädigten Böden, verschmutztem Wasser und verschmutzter Luft sowie im Verlust biologischer Vielfalt zeigt.",
         },
         {
           isCorrect: false,
@@ -38,7 +38,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Environmental degradation is a decline in environmental quality that is evident in damaged soil, polluted water and air, and biodiversity loss.",
+            "Environmental degradation is a decline in environmental quality that is evident, for example, in damaged soil, polluted water and air, and biodiversity loss.",
         },
         {
           isCorrect: false,
@@ -58,7 +58,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Environmental degradation is a decline in environmental quality and that is evident in damaged soil, polluted water and air, and biodiversity loss.",
+            "Environmental degradation is a decline in environmental quality and which is evident in damaged soil, polluted water and air, and biodiversity loss.",
         },
       ],
     },
@@ -68,7 +68,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Degradasi lingkungan adalah penurunan mutu lingkungan yang tampak pada rusaknya tanah, tercemarnya air dan udara, serta hilangnya keanekaragaman hayati.",
+            "Degradasi lingkungan adalah penurunan mutu lingkungan yang tampak, misalnya, pada rusaknya tanah, tercemarnya air dan udara, serta hilangnya keanekaragaman hayati.",
         },
         {
           isCorrect: false,

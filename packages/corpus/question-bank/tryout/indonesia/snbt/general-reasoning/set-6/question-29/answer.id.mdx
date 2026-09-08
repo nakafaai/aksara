@@ -2,9 +2,27 @@ export const metadata = {
   title: "Pembahasan Soal 29",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-30",
-  dateModified: "2026-08-31",
+  dateModified: "2026-09-07",
 };
 
-Dari 66 pasangan, terdapat 10 pasangan merah-merah dan 35 pasangan campuran. Nilai harapan satu ronde adalah <InlineMath math="[60(10)+30(35)]/66=25" />. Tiga ronde memberi nilai harapan <InlineMath math="3(25)=75" />; setelah biaya administrasi 10, tersisa <InlineMath math="75-10=65" />.
+Semua pasangan bola memiliki peluang yang sama. Dari <InlineMath math="5+7=12" /> bola, banyak pasangan yang mungkin adalah:
 
-Jadi, nilai yang diminta adalah <InlineMath math="65" />.
+<BlockMath math="\binom{12}{2}=\frac{12\times11}{2}=66" />
+
+Hitung jumlah pasangan untuk setiap hasil:
+
+- Dua bola merah dapat dipilih dengan <InlineMath math="\binom{5}{2}=10" /> cara.
+- Satu bola merah dan satu bola biru dapat dipilih dengan <InlineMath math="5\times7=35" /> cara.
+- Dua bola biru dapat dipilih dengan <InlineMath math="\binom{7}{2}=21" /> cara.
+
+Jumlahnya <InlineMath math="10+35+21=66" />, sehingga ketiga kasus mencakup seluruh kemungkinan. Semua pembayaran berikut dinyatakan dalam ribu rupiah.
+
+Misalkan pembayaran satu ronde adalah <InlineMath math="X" />. Nilai harapannya diperoleh dengan mengalikan setiap pembayaran dengan peluangnya. Kasus dua bola biru menyumbangkan nol:
+
+<BlockMath math="\begin{aligned}\mathrm{E}[X]&=60\frac{10}{66}\\&\quad+30\frac{35}{66}\\&=\frac{600+1{.}050}{66}\\&=25\end{aligned}" />
+
+Isi kotak dipulihkan untuk tiap ronde, sehingga ketiga ronde memiliki nilai harapan yang sama. Biaya administrasi hanya dibayar sekali:
+
+<BlockMath math="\begin{aligned}\mathrm{E}[\text{bersih}]&=3(25)-10\\&=75-10\\&=65\end{aligned}" />
+
+Jadi, nilai harapan pembayaran bersih adalah <InlineMath math="65" /> ribu rupiah. Nilai harapan menyatakan rata-rata teoretis jika permainan berulang kali dilakukan.

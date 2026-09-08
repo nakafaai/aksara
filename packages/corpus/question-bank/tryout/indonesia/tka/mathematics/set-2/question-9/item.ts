@@ -13,23 +13,23 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "$u_1=5$",
+          label: "$$u_1=5$$",
         },
         {
           correctCategoryOrder: 1,
-          label: "Die Differenz beträgt $6$.",
+          label: "Die Differenz beträgt $$6$$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "$u_{10}=59$",
+          label: "$$u_{10}=59$$",
         },
         {
           correctCategoryOrder: 1,
-          label: "$S_{10}=320$",
+          label: "$$S_{10}=320$$",
         },
         {
           correctCategoryOrder: 2,
-          label: "$u_5=31$",
+          label: "$$u_5=31$$",
         },
       ],
     },
@@ -39,23 +39,23 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "$u_1=5$",
+          label: "$$u_1=5$$",
         },
         {
           correctCategoryOrder: 1,
-          label: "The common difference is $6$.",
+          label: "The common difference is $$6$$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "$u_{10}=59$",
+          label: "$$u_{10}=59$$",
         },
         {
           correctCategoryOrder: 1,
-          label: "$S_{10}=320$",
+          label: "$$S_{10}=320$$",
         },
         {
           correctCategoryOrder: 2,
-          label: "$u_5=31$",
+          label: "$$u_5=31$$",
         },
       ],
     },
@@ -65,23 +65,23 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "$u_1=5$",
+          label: "$$u_1=5$$",
         },
         {
           correctCategoryOrder: 1,
-          label: "Bedanya adalah $6$.",
+          label: "Bedanya adalah $$6$$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "$u_{10}=59$",
+          label: "$$u_{10}=59$$",
         },
         {
           correctCategoryOrder: 1,
-          label: "$S_{10}=320$",
+          label: "$$S_{10}=320$$",
         },
         {
           correctCategoryOrder: 2,
-          label: "$u_5=31$",
+          label: "$$u_5=31$$",
         },
       ],
     },

@@ -12,23 +12,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Der Scheitel ist $(2,-1)$.",
+          label: "Der Scheitel ist $$(2,-1)$$.",
         },
         {
           isCorrect: true,
-          label: "Der Wertebereich ist $[-1,\\infty)$.",
+          label: "Der Wertebereich ist $$[-1,\\infty)$$.",
         },
         {
           isCorrect: true,
-          label: "Die Funktion ist auf $(-\\infty,2]$ fallend.",
+          label: "Die Funktion ist auf $$(-\\infty,2]$$ fallend.",
         },
         {
           isCorrect: false,
-          label: "Die Funktion ist auf $\\mathbb R$ injektiv.",
+          label: "Die Funktion ist auf $$\\mathbb R$$ injektiv.",
         },
         {
           isCorrect: true,
-          label: "Auf $[2,\\infty)$ gilt $f^{-1}(y)=2+\\sqrt{y+1}$.",
+          label: "Auf $$[2,\\infty)$$ gilt $$f^{-1}(y)=2+\\sqrt{y+1}$$.",
         },
       ],
     },
@@ -37,23 +37,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "The vertex is $(2,-1)$.",
+          label: "The vertex is $$(2,-1)$$.",
         },
         {
           isCorrect: true,
-          label: "The range is $[-1,\\infty)$.",
+          label: "The range is $$[-1,\\infty)$$.",
         },
         {
           isCorrect: true,
-          label: "The function decreases on $(-\\infty,2]$.",
+          label: "The function decreases on $$(-\\infty,2]$$.",
         },
         {
           isCorrect: false,
-          label: "The function is one-to-one on $\\mathbb R$.",
+          label: "The function is one-to-one on $$\\mathbb R$$.",
         },
         {
           isCorrect: true,
-          label: "On $[2,\\infty)$, $f^{-1}(y)=2+\\sqrt{y+1}$.",
+          label: "On $$[2,\\infty)$$, $$f^{-1}(y)=2+\\sqrt{y+1}$$.",
         },
       ],
     },
@@ -62,23 +62,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Titik puncaknya adalah $(2,-1)$.",
+          label: "Titik puncaknya adalah $$(2,-1)$$.",
         },
         {
           isCorrect: true,
-          label: "Range fungsi adalah $[-1,\\infty)$.",
+          label: "Range fungsi adalah $$[-1,\\infty)$$.",
         },
         {
           isCorrect: true,
-          label: "Fungsi menurun pada $(-\\infty,2]$.",
+          label: "Fungsi menurun pada $$(-\\infty,2]$$.",
         },
         {
           isCorrect: false,
-          label: "Fungsi satu-satu pada $\\mathbb R$.",
+          label: "Fungsi satu-satu pada $$\\mathbb R$$.",
         },
         {
           isCorrect: true,
-          label: "Pada $[2,\\infty)$, $f^{-1}(y)=2+\\sqrt{y+1}$.",
+          label: "Pada $$[2,\\infty)$$, $$f^{-1}(y)=2+\\sqrt{y+1}$$.",
         },
       ],
     },

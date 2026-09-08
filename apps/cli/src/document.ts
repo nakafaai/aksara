@@ -4,7 +4,7 @@ import {
   type LocalCache,
 } from "@nakafa/aksara-compiler/incremental";
 import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
-import type { CurrentContentProjection } from "@nakafa/aksara-contracts/projection/spec";
+import type { ContentProjection } from "@nakafa/aksara-contracts/projection/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import {
   type LoadedPreviewSource,
@@ -29,7 +29,7 @@ type PreviewCache = HashMap.HashMap<PreviewBody["sourcePath"], LocalCache>;
 export interface PreviewCompileResult {
   readonly artifact: SignedContentArtifact;
   readonly compileKind: IncrementalResult["kind"];
-  readonly projection: CurrentContentProjection;
+  readonly projection: ContentProjection;
 }
 
 /** Ordered atomic compilation result for the selected preview document. */

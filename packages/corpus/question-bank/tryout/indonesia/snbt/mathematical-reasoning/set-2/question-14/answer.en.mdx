@@ -1,42 +1,28 @@
 export const metadata = {
   title: "Solution to Question 14",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  dateModified: "2026-09-07",
   datePublished: "2026-01-31",
 };
 
-**Determining Time per Segment**
+#### Time per original segment
 
-Based on the previous track analysis, it is known that to pass checkpoint <InlineMath math="C" /> <InlineMath math="3\text{ times}" />, the runner covers a total of <InlineMath math="10" /> normal track segments in <InlineMath math="12\text{ minutes}" />. Thus, the travel time for one normal segment is:
+The runner covers <InlineMath math="2" /> segments before reaching <InlineMath math="C" /> for the first time. The second and third arrivals each add a full lap of <InlineMath math="4" /> segments. The total is:
 
-<MathContainer>
-  <BlockMath math="t_{\text{segment}} = \frac{12 \text{ minutes}}{10} = 1.2 \text{ minutes}" />
-</MathContainer>
+<BlockMath math="2+4+4=10" />
 
-**Calculating Time for the New Path**
+These <InlineMath math="10" /> segments take <InlineMath math="12\text{ minutes}" />, so the time per original segment is:
 
-We are asked to find the travel time from <InlineMath math="A" /> to <InlineMath math="D" /> given that the distance from <InlineMath math="C" /> to <InlineMath math="D" /> is widened to <InlineMath math="2\text{ times}" /> the original length.
+<BlockMath math="\frac{12}{10}=1.2\text{ minutes}" />
 
-The normal route from <InlineMath math="A" /> to <InlineMath math="D" /> follows the path:
+#### Time on the new track
 
-<MathContainer>
-  <BlockMath math="A \to B \to C \to D" />
-</MathContainer>
+The runner follows <InlineMath math="A \to B \to C \to D" />. Compared with one original segment, the lengths are:
 
-The breakdown of segments is:
-1.  <InlineMath math="A \to B" />: <InlineMath math="1" /> normal segment.
-2.  <InlineMath math="B \to C" />: <InlineMath math="1" /> normal segment.
-3.  <InlineMath math="C \to D" />: Since it is widened <InlineMath math="2\text{ times}" />, this is equivalent to <InlineMath math="2" /> normal segments.
+- <InlineMath math="A \to B" />: <InlineMath math="1" /> segment.
+- <InlineMath math="B \to C" />: <InlineMath math="1" /> segment.
+- <InlineMath math="C \to D" />: <InlineMath math="2" /> segments because its length has doubled.
 
-The total effective segments to be covered is:
+The route has the length of <InlineMath math="1+1+2=4" /> original segments. At the same speed, the time from <InlineMath math="A" /> to <InlineMath math="D" /> is:
 
-<MathContainer>
-  <BlockMath math="\text{Total Segments} = 1 + 1 + 2 = 4 \text{ segments}" />
-</MathContainer>
-
-Thus, the total time required is:
-
-<MathContainer>
-  <BlockMath math="\text{Total Time} = 4 \times 1.2 \text{ minutes} = 4.8 \text{ minutes}" />
-</MathContainer>
-
-Therefore, the time required for the runner to go from checkpoint <InlineMath math="A" /> to <InlineMath math="D" /> is <InlineMath math="4.8\text{ minutes}" />.
+<BlockMath math="4\times1.2=4.8\text{ minutes}" />

@@ -13,24 +13,24 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Der Umfang der Grundfläche wird mit $3$ multipliziert.",
+          label: "Der Umfang der Grundfläche wird mit $$3$$ multipliziert.",
         },
         {
           correctCategoryOrder: 1,
           label:
-            "Der Flächeninhalt der Grundfläche wird mit $9$ multipliziert.",
+            "Der Flächeninhalt der Grundfläche wird mit $$9$$ multipliziert.",
         },
         {
           correctCategoryOrder: 1,
-          label: "Das Volumen wird mit $\\frac92$ multipliziert.",
+          label: "Das Volumen wird mit $$\\frac92$$ multipliziert.",
         },
         {
           correctCategoryOrder: 2,
-          label: "Die Mantellinie wird immer mit $\\frac32$ multipliziert.",
+          label: "Die Mantellinie wird immer mit $$\\frac32$$ multipliziert.",
         },
         {
           correctCategoryOrder: 2,
-          label: "Die Mantelfläche wird immer mit $\\frac92$ multipliziert.",
+          label: "Die Mantelfläche wird immer mit $$\\frac92$$ multipliziert.",
         },
       ],
     },
@@ -40,23 +40,23 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "The base circumference is multiplied by $3$.",
+          label: "The base circumference is multiplied by $$3$$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "The base area is multiplied by $9$.",
+          label: "The base area is multiplied by $$9$$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "The volume is multiplied by $\\frac92$.",
+          label: "The volume is multiplied by $$\\frac92$$.",
         },
         {
           correctCategoryOrder: 2,
-          label: "The slant height is always multiplied by $\\frac32$.",
+          label: "The slant height is always multiplied by $$\\frac32$$.",
         },
         {
           correctCategoryOrder: 2,
-          label: "The lateral area is always multiplied by $\\frac92$.",
+          label: "The lateral area is always multiplied by $$\\frac92$$.",
         },
       ],
     },
@@ -66,23 +66,23 @@ const item: QuestionItem = {
       statements: [
         {
           correctCategoryOrder: 1,
-          label: "Keliling alas dikalikan $3$.",
+          label: "Keliling alas dikalikan $$3$$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "Luas alas dikalikan $9$.",
+          label: "Luas alas dikalikan $$9$$.",
         },
         {
           correctCategoryOrder: 1,
-          label: "Volume dikalikan $\\frac92$.",
+          label: "Volume dikalikan $$\\frac92$$.",
         },
         {
           correctCategoryOrder: 2,
-          label: "Garis pelukis selalu dikalikan $\\frac32$.",
+          label: "Garis pelukis selalu dikalikan $$\\frac32$$.",
         },
         {
           correctCategoryOrder: 2,
-          label: "Luas selimut selalu dikalikan $\\frac92$.",
+          label: "Luas selimut selalu dikalikan $$\\frac92$$.",
         },
       ],
     },

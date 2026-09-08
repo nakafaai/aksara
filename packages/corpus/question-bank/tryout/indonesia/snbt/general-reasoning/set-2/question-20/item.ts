@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Indonesiens Bekleidungsexporte in die Vereinigten Staaten sanken um $$9{,}3\\%$$.",
+            "Indonesiens Bekleidungsexporte in die Vereinigten Staaten sanken um $$9{,}2\\%$$.",
         },
         {
           isCorrect: false,
@@ -23,7 +23,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Der wichtigste Markt für Indonesiens Konfektionsbekleidung waren die Vereinigten Staaten.",
+            "Der wichtigste Markt für Indonesiens Konfektionsbekleidung waren $$2018$$ die Vereinigten Staaten.",
         },
         {
           isCorrect: false,
@@ -38,7 +38,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Indonesia's garment exports to the United States fell by $$9.3\\%$$.",
+            "Indonesia's garment exports to the United States fell by $$9.2\\%$$.",
         },
         {
           isCorrect: false,
@@ -53,7 +53,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "The main market for Indonesia's ready-made clothing products is the United States.",
+            "The main market for Indonesia's ready-made clothing products in $$2018$$ was the United States.",
         },
         {
           isCorrect: false,
@@ -68,7 +68,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Ekspor pakaian jadi Indonesia ke Amerika Serikat turun $$9{,}3\\%$$.",
+            "Ekspor pakaian jadi Indonesia ke Amerika Serikat turun $$9{,}2\\%$$.",
         },
         {
           isCorrect: false,
@@ -82,7 +82,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pasar utama produk pakaian jadi Indonesia adalah Amerika Serikat.",
+            "Pasar utama produk pakaian jadi Indonesia pada $$2018$$ adalah Amerika Serikat.",
         },
         {
           isCorrect: false,

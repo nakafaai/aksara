@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Menuliskan pertanyaan pada pembatas mengubah benda yang semula disembunyikan menjadi jejak penalaran yang Jati bawa menuju pembahasan berikutnya.",
+            "Menuliskan pertanyaan pada pembatas mengubah benda yang sisinya semula dibalik menjadi jejak penalaran yang Jati bawa menuju pembahasan berikutnya.",
         },
         {
           isCorrect: false,
@@ -18,7 +18,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pembatas kehilangan perannya setelah kelompok gagal menyepakati satu tafsir terhadap kalimat di halaman 17.",
+            "Pembatas kehilangan perannya setelah kelompok gagal menyepakati satu tafsir terhadap kalimat di halaman $$17$$.",
         },
         {
           isCorrect: false,

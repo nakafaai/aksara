@@ -8,12 +8,12 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Nilai 25 adalah rata-rata ketika panel peneduh dipasang empat jam; hari berawan dan perubahan angin belum tercakup dalam simulasi.",
+            "Nilai $$25$$ adalah rata-rata ketika panel peneduh dipasang empat jam. Hari berawan dan perubahan angin belum tercakup dalam simulasi.",
         },
         {
           isCorrect: false,
           label:
-            "Pada kondisi dengan perubahan, hasil rata-rata tercatat 25; karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+            "Pada kondisi dengan perubahan, hasil rata-rata tercatat $$25$$. Karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
         {
           isCorrect: false,
