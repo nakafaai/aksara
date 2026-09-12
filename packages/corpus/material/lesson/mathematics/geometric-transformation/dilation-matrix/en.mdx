@@ -4,7 +4,7 @@ export const metadata = {
   description: "Derive the dilation matrix and use it to calculate images from the origin or an arbitrary center.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Geometric Transformation",
 };
 
@@ -12,7 +12,9 @@ export const metadata = {
 
 How to find the matrix associated with a dilation operation? Recall that a point <InlineMath math="(x,y)" /> is mapped by a dilation with a factor <InlineMath math="k \neq 0" /> and center <InlineMath math="O" /> to <InlineMath math="(kx,ky)" />.
 
-Suppose the matrix we are looking for is <InlineMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix}" />.
+Suppose the matrix we are looking for is:
+
+<BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix}" />
 
 Find <InlineMath math="r, s, t, u" /> such that it satisfies
 
@@ -37,7 +39,13 @@ The matrix associated with a dilation by a factor <InlineMath math="k \neq 0" />
 
 A point <InlineMath math="(x,y)" /> dilated by a factor <InlineMath math="k \neq 0" /> and center <InlineMath math="(a,b)" /> will be mapped to <InlineMath math="(k(x-a)+a,\, k(y-b)+b)" />.
 
-Find the combination of matrix operations on the position vector <InlineMath math="\begin{pmatrix} x-a \\ y-b \end{pmatrix}" /> such that the result is <InlineMath math="\begin{pmatrix} k(x-a)+a \\ k(y-b)+b \end{pmatrix}" />.
+After subtracting the center coordinates, the position vector is:
+
+<BlockMath math="\begin{pmatrix} x-a \\ y-b \end{pmatrix}" />
+
+Find the matrix operations that transform this vector into the required image:
+
+<BlockMath math="\begin{pmatrix} k(x-a)+a \\ k(y-b)+b \end{pmatrix}" />
 
 The matrix operation associated with a dilation by a factor <InlineMath math="k \neq 0" /> with respect to the point <InlineMath math="(a,b)" /> is
 

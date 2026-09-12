@@ -3,7 +3,7 @@ export const metadata = {
     description: "Read eigenvalues from diagonal entries of diagonal and triangular matrices, including determinant-trace relationships.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-13",
     subject: "Linear Methods of AI",
 };
 
@@ -39,7 +39,11 @@ The diagonal rule is special to triangular matrices. For comparison, the followi
 
 ### Complex Eigenvalues
 
-Suppose <InlineMath math="A = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}" />. Its characteristic polynomial is:
+Consider the matrix:
+
+<BlockMath math="A = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}" />
+
+Its characteristic polynomial is:
 
 <MathContainer>
 <BlockMath math="\chi_A(t) = \det \begin{pmatrix} 1-t & -1 \\ 1 & 1-t \end{pmatrix}" />
@@ -50,7 +54,11 @@ The roots of this characteristic polynomial are <InlineMath math="\lambda_1 = 1 
 
 ### Zero Eigenvalues
 
-For <InlineMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" />, the characteristic polynomial is:
+Consider the matrix:
+
+<BlockMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" />
+
+Its characteristic polynomial is:
 
 <MathContainer>
 <BlockMath math="\chi_A(t) = \det \begin{pmatrix} 1-t & -i \\ i & 1-t \end{pmatrix}" />
@@ -88,14 +96,22 @@ If the characteristic polynomial <InlineMath math="\chi_A(t)" /> splits into lin
 
 Verify with our previous examples:
 
-For <InlineMath math="A = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}" /> with <InlineMath math="\lambda_1 = 1 + i" />, <InlineMath math="\lambda_2 = 1 - i" />:
+For the following matrix with eigenvalues <InlineMath math="\lambda_1 = 1 + i" /> and <InlineMath math="\lambda_2 = 1 - i" />:
+
+<BlockMath math="A = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}" />
+
+We can check the eigenvalues using the determinant and trace:
 
 <MathContainer>
 <BlockMath math="\begin{aligned} \det A &amp;= 1 \cdot 1 - 1 \cdot (-1) \\ &amp;= 2 \\ &amp;= \lambda_1 \cdot \lambda_2 \end{aligned}" />
 <BlockMath math="\text{tr} A = 1 + 1 = 2 = \lambda_1 + \lambda_2" />
 </MathContainer>
 
-For <InlineMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" /> with <InlineMath math="\lambda_1 = 2" />, <InlineMath math="\lambda_2 = 0" />:
+For the following matrix with eigenvalues <InlineMath math="\lambda_1 = 2" /> and <InlineMath math="\lambda_2 = 0" />:
+
+<BlockMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" />
+
+We can check the eigenvalues using the determinant and trace:
 
 <MathContainer>
 <BlockMath math="\begin{aligned} \det A &amp;= 1 \cdot 1 - i \cdot (-i) \\ &amp;= 0 \\ &amp;= \lambda_1 \cdot \lambda_2 \end{aligned}" />

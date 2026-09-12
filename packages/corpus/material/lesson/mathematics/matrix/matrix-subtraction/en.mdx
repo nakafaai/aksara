@@ -3,7 +3,7 @@ export const metadata = {
   description: "Subtract corresponding matrix entries, check the required dimensions, and apply the operation in examples and exercises.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Matrix",
 };
 
@@ -83,7 +83,12 @@ Both methods yield the same matrix.
 
 ### Example of Matrices That Cannot Be Subtracted
 
-Suppose matrix <InlineMath math="K = \begin{bmatrix} 1 & 0 \\ -2 & 5 \\ 3 & 1 \end{bmatrix}" /> and matrix <InlineMath math="L = \begin{bmatrix} 4 & 2 \\ 0 & 7 \end{bmatrix}" />.
+Consider the following matrices:
+
+<MathContainer>
+  <BlockMath math="K = \begin{bmatrix} 1 & 0 \\ -2 & 5 \\ 3 & 1 \end{bmatrix}" />
+  <BlockMath math="L = \begin{bmatrix} 4 & 2 \\ 0 & 7 \end{bmatrix}" />
+</MathContainer>
 
 Matrix <InlineMath math="K" /> is of order <InlineMath math="3 \times 2" />, while matrix <InlineMath math="L" /> is of order <InlineMath math="2 \times 2" />. Since the orders of these two matrices are different, the subtraction <InlineMath math="K-L" /> (or <InlineMath math="L-K" />) cannot be performed or is undefined.
 
@@ -99,7 +104,7 @@ Matrix addition is commutative and associative, but matrix subtraction generally
 
     For example, from matrices <InlineMath math="P" /> and <InlineMath math="Q" /> above:
 
-    <InlineMath math="P-Q = \begin{bmatrix} 6 & 4 \\ 4 & 3 \end{bmatrix}" />
+    <BlockMath math="P-Q = \begin{bmatrix} 6 & 4 \\ 4 & 3 \end{bmatrix}" />
 
     Whereas,
 
@@ -264,6 +269,6 @@ Then, <InlineMath math="A-(B-C)" />:
   <BlockMath math="= \begin{bmatrix} 1-7 & 0-(-2) \\ 0-3 & 1-4 \end{bmatrix} = \begin{bmatrix} -6 & 2 \\ -3 & -3 \end{bmatrix}" />
 </MathContainer>
 
-The results are not the same: <InlineMath math="\begin{bmatrix} 2 & 2 \\ -7 & 3 \end{bmatrix} \neq \begin{bmatrix} -6 & 2 \\ -3 & -3 \end{bmatrix}" />.
+The two results differ: <InlineMath math="(A-B)-C \neq A-(B-C)" />.
 
 Matrix subtraction is therefore not associative.

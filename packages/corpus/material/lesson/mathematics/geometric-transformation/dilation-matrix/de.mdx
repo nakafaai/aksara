@@ -4,7 +4,7 @@ export const metadata = {
   description: "Leite die Streckungsmatrix her und berechne damit Bildpunkte für den Ursprung und für beliebige Streckzentren.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Geometrische Transformation",
 };
 
@@ -12,7 +12,9 @@ export const metadata = {
 
 Wie lässt sich eine zentrische Streckung als Matrix darstellen? Bei einer Streckung mit dem Zentrum <InlineMath math="O" /> und dem Streckfaktor <InlineMath math="k \neq 0" /> wird ein Punkt <InlineMath math="(x,y)" /> auf <InlineMath math="(kx,ky)" /> abgebildet.
 
-Angenommen, die gesuchte Matrix ist <InlineMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix}" />.
+Angenommen, die gesuchte Matrix ist:
+
+<BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix}" />
 
 Gesucht sind <InlineMath math="r, s, t, u" />, sodass für jeden Punkt gilt:
 
@@ -37,7 +39,13 @@ Die Matrix einer zentrischen Streckung mit dem Zentrum <InlineMath math="O(0,0)"
 
 Wird ein Punkt <InlineMath math="(x,y)" /> mit dem Zentrum <InlineMath math="(a,b)" /> und dem Streckfaktor <InlineMath math="k \neq 0" /> gestreckt, lautet sein Bild <InlineMath math="(k(x-a)+a,\, k(y-b)+b)" />.
 
-Gesucht ist eine Folge von Matrixoperationen, die den verschobenen Ortsvektor <InlineMath math="\begin{pmatrix} x-a \\ y-b \end{pmatrix}" /> auf <InlineMath math="\begin{pmatrix} k(x-a)+a \\ k(y-b)+b \end{pmatrix}" /> abbildet.
+Nach dem Abziehen der Zentrumskoordinaten lautet der verschobene Ortsvektor:
+
+<BlockMath math="\begin{pmatrix} x-a \\ y-b \end{pmatrix}" />
+
+Bestimme die Matrixoperationen, die diesen Vektor auf den gesuchten Bildvektor abbilden:
+
+<BlockMath math="\begin{pmatrix} k(x-a)+a \\ k(y-b)+b \end{pmatrix}" />
 
 Die Matrixoperation für eine zentrische Streckung mit dem Streckfaktor <InlineMath math="k \neq 0" /> und dem Zentrum <InlineMath math="(a,b)" /> ist:
 

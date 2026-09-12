@@ -3,7 +3,7 @@ export const metadata = {
    description: "Use characteristic polynomials to find eigenvalues, determine algebraic multiplicity, and relate their coefficients to a matrix's trace.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-13",
     subject: "Linear Methods of AI",
 };
 
@@ -83,7 +83,11 @@ We now apply the definition and use the coefficient identities as checks on the 
 
 ### Third Order Matrix
 
-Let <InlineMath math="A = \begin{pmatrix} 3 & 2 & -1 \\ 1 & 0 & -4 \\ 3 & 0 & 1 \end{pmatrix} \in \mathbb{K}^{3 \times 3}" />. The characteristic polynomial of <InlineMath math="A" /> is:
+Consider the following matrix:
+
+<BlockMath math="A = \begin{pmatrix} 3 & 2 & -1 \\ 1 & 0 & -4 \\ 3 & 0 & 1 \end{pmatrix} \in \mathbb{K}^{3 \times 3}" />
+
+Its characteristic polynomial is:
 
 <MathContainer>
 <BlockMath math="\chi_A(t) = \det \begin{pmatrix} 3-t & 2 & -1 \\ 1 & -t & -4 \\ 3 & 0 & 1-t \end{pmatrix}" />
@@ -105,7 +109,11 @@ The roots pass two useful checks: their sum is the trace, and their product is t
 
 ### Repeated Eigenvalue in an Upper Triangular Matrix
 
-The characteristic polynomial of matrix <InlineMath math="A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" /> is:
+Consider the upper triangular matrix:
+
+<BlockMath math="A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />
+
+Its characteristic polynomial is:
 
 <MathContainer>
 <BlockMath math="\begin{aligned} \chi_A(t) &amp;= \det(A - t \cdot I) \\ &amp;= \det \begin{pmatrix} 1-t &amp; 2 \\ 0 &amp; 1-t \end{pmatrix} \end{aligned}" />
@@ -121,7 +129,11 @@ The following familiar maps on <InlineMath math="\mathbb{R}^2" /> connect the al
 
 ### Rotation
 
-Rotation with <InlineMath math="A = \begin{pmatrix} \cos(\alpha) & -\sin(\alpha) \\ \sin(\alpha) & \cos(\alpha) \end{pmatrix}" /> has the characteristic polynomial:
+The rotation is represented by the matrix:
+
+<BlockMath math="A = \begin{pmatrix} \cos(\alpha) & -\sin(\alpha) \\ \sin(\alpha) & \cos(\alpha) \end{pmatrix}" />
+
+Its characteristic polynomial is:
 
 <BlockMath math="\begin{aligned} \chi_A(t) &amp;= (\cos(\alpha) - t)^2 + \sin(\alpha)^2 \\ &amp;= t^2 - 2 \cdot \cos(\alpha) \cdot t + 1 \end{aligned}" />
 
@@ -129,7 +141,11 @@ Its discriminant is <InlineMath math="-4\sin^2(\alpha)" />. The roots are real e
 
 ### Reflection
 
-Reflection across the <InlineMath math="x" />-axis with <InlineMath math="A = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" /> has the characteristic polynomial:
+Reflection across the <InlineMath math="x" />-axis has the matrix:
+
+<BlockMath math="A = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+Its characteristic polynomial is:
 
 <BlockMath math="\chi_A(t) = (1-t) \cdot (-1-t) = t^2 - 1" />
 
@@ -137,7 +153,11 @@ The eigenvalues are <InlineMath math="\lambda_1 = 1" /> and <InlineMath math="\l
 
 ### Scaling
 
-Scaling with <InlineMath math="A = \begin{pmatrix} s & 0 \\ 0 & s \end{pmatrix}" /> has the characteristic polynomial:
+Scaling has the matrix:
+
+<BlockMath math="A = \begin{pmatrix} s & 0 \\ 0 & s \end{pmatrix}" />
+
+Its characteristic polynomial is:
 
 <BlockMath math="\chi_A(t) = (s-t)^2 = t^2 - 2 \cdot s \cdot t + s^2" />
 
@@ -145,7 +165,11 @@ The eigenvalue is <InlineMath math="\lambda = s" /> with <InlineMath math="\mu_A
 
 ### Shearing
 
-Shearing with <InlineMath math="A = \begin{pmatrix} 1 & s \\ 0 & 1 \end{pmatrix}" /> with <InlineMath math="s \neq 0" /> has the characteristic polynomial:
+For a shear with <InlineMath math="s \neq 0" />, the matrix is:
+
+<BlockMath math="A = \begin{pmatrix} 1 & s \\ 0 & 1 \end{pmatrix}" />
+
+Its characteristic polynomial is:
 
 <BlockMath math="\chi_A(t) = (1-t)^2 = t^2 - 2 \cdot t + 1" />
 

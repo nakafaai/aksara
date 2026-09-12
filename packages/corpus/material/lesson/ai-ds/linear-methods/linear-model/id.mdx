@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bangun model yang linear terhadap parameter dari fungsi basis, susun pengukuran menjadi matriks desain, dan bedakan model linear eksak dari linearisasi lokal.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-14",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Metode Linear AI",
 };
 
@@ -39,12 +39,21 @@ Misalkan <InlineMath math="\phi_1(t),\ldots,\phi_n(t)" /> adalah fungsi-fungsi b
 
 Pilihan fungsi basis yang berbeda menghasilkan bentuk model yang berbeda tanpa menghilangkan linearitas terhadap <InlineMath math="x" />.
 
-| Model | Representasi basis |
-| --- | --- |
-| Garis afin | <InlineMath math="y=a+bt=\begin{pmatrix}1&t\end{pmatrix}\begin{pmatrix}a\\b\end{pmatrix}" /> |
-| Polinomial berderajat <InlineMath math="p" /> | <InlineMath math="y=\sum_{j=0}^{p}a_jt^j=\begin{pmatrix}1&t&\cdots&t^p\end{pmatrix}\begin{pmatrix}a_0\\a_1\\\vdots\\a_p\end{pmatrix}" /> |
-| Basis Fourier | <InlineMath math="y=a_0+\sum_{j=1}^{p}\bigl(a_j\cos(jt)+b_j\sin(jt)\bigr)" /> |
-| Interaksi dua masukan | <InlineMath math="y=a+bt+cs+dts=\begin{pmatrix}1&t&s&ts\end{pmatrix}\begin{pmatrix}a\\b\\c\\d\end{pmatrix}" /> |
+Garis afin:
+
+<BlockMath math="\begin{aligned} y&=a+bt\\&=\begin{pmatrix}1&t\end{pmatrix}\begin{pmatrix}a\\b\end{pmatrix}\end{aligned}" />
+
+Polinomial berderajat <InlineMath math="p" />:
+
+<BlockMath math="\begin{aligned} y&=\sum_{j=0}^{p}a_jt^j\\&=\begin{pmatrix}1&t&\cdots&t^p\end{pmatrix}\begin{pmatrix}a_0\\a_1\\\vdots\\a_p\end{pmatrix}\end{aligned}" />
+
+Basis Fourier:
+
+<BlockMath math="\begin{aligned} y&=a_0+\sum_{j=1}^{p}a_j\cos(jt)\\&\quad+\sum_{j=1}^{p}b_j\sin(jt)\end{aligned}" />
+
+Interaksi antara dua masukan:
+
+<BlockMath math="\begin{aligned} y&=a+bt+cs+dts\\&=\begin{pmatrix}1&t&s&ts\end{pmatrix}\begin{pmatrix}a\\b\\c\\d\end{pmatrix}\end{aligned}" />
 
 Suku seperti <InlineMath math="t^p" />, <InlineMath math="\sin(jt)" />, dan <InlineMath math="ts" /> boleh bersifat nonlinear terhadap masukan. Setelah masukannya diamati, suku-suku tersebut menjadi koefisien yang diketahui, sehingga model tetap linear terhadap parameter yang belum diketahui.
 

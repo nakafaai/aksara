@@ -4,7 +4,7 @@ export const metadata = {
   description: "Spiegle Punkte an einem beliebigen Spiegelzentrum, indem du Verschiebungen und Matrixoperationen miteinander verknüpfst.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Geometrische Transformation",
 };
 
@@ -17,7 +17,9 @@ Diese Transformation braucht eine <InlineMath math="2 \times 2" />-Matrix und ei
 Verwende dazu drei Operationen:
 
 1. Subtrahiere die Koordinaten des Spiegelzentrums von <InlineMath math="(x,y)" />. Dadurch entsteht <InlineMath math="(x-a, y-b)" />.
-2. Spiegle den verschobenen Punkt mit der Matrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> am Ursprung.
+2. Spiegle den verschobenen Punkt mit dieser Matrix am Ursprung:
+
+   <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 3. Verschiebe das Ergebnis zurück, indem du die Koordinaten des Spiegelzentrums <InlineMath math="(a,b)" /> addierst.
 
 Mathematisch gilt, wenn <InlineMath math="(x', y')" /> das Bild von <InlineMath math="(x,y)" /> ist:
@@ -39,7 +41,11 @@ Dieselbe Abbildung lässt sich auch in den drei beschriebenen Schritten schreibe
 
 <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x' \\ y' \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \left( \begin{pmatrix} x \\ y \end{pmatrix} - \begin{pmatrix} a \\ b \end{pmatrix} \right) \\ &amp;+ \begin{pmatrix} a \\ b \end{pmatrix} \end{aligned}" />
 
-Beim Ausmultiplizieren entsteht <InlineMath math="\begin{pmatrix} -x+2a \\ -y+2b \end{pmatrix}" />. Das ist genau die Koordinatenregel <InlineMath math="(x,y) \mapsto (2a-x,2b-y)" />. In Vektorform lautet dieselbe Beziehung <InlineMath math="Q'=2P-Q" />: Das Zentrum ist der Mittelpunkt zwischen dem Ausgangspunkt und seinem Bildpunkt.
+Beim Ausmultiplizieren entsteht:
+
+<BlockMath math="\begin{pmatrix} -x+2a \\ -y+2b \end{pmatrix}" />
+
+Das ist genau die Koordinatenregel <InlineMath math="(x,y) \mapsto (2a-x,2b-y)" />. In Vektorform lautet dieselbe Beziehung <InlineMath math="Q'=2P-Q" />: Das Zentrum ist der Mittelpunkt zwischen dem Ausgangspunkt und seinem Bildpunkt.
 
 ## Das Bild eines Punktes finden
 

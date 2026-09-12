@@ -115,11 +115,11 @@ strings with their own [math syntax](question-bank.md#response-items).
   comments, URLs, immutable quotations, and string-only schema fields. Never
   insert JSX or LaTeX into a programming-language comment.
 - Use `<BlockMath />` for standalone formulas.
-- Move a long fraction, nested fraction, system of equations, or connected
-  derivation out of prose when inline sizing makes its terms hard to read.
-  Keep short values and simple expressions inline. This choice is contextual,
-  not a formula-length quota. Response options always keep math inline under
-  the question-bank contract.
+- Move tall matrices, cases, long or nested fractions, or derivations out of
+  prose when they disrupt reading. Fitting the width alone does not prove good
+  line flow. Refer to an already displayed matrix instead of expanding it again
+  in a summary. Keep short expressions inline; decide from context, not length.
+  Response options keep math inline under the question-bank contract.
 - Compose displayed derivations for a narrow viewport. Use short aligned rows,
   name repeated subexpressions, and separate conceptual steps with complete
   prose. Preserve every transformation and condition. Do not shrink all math,

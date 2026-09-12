@@ -3,7 +3,7 @@ export const metadata = {
     description: "Faktorkan matriks dengan dekomposisi QR memakai proses Gram Schmidt atau transformasi Householder, lalu selesaikan sistem linear.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-07-14",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-13",
    subject: "Metode Linear AI",
 };
 
@@ -36,7 +36,13 @@ Karena kolom <InlineMath math="A" /> bebas linear, <InlineMath math="\widetilde 
 
 Jadi, <InlineMath math="A=Q_1R_1" />, dengan <InlineMath math="R_1\in\mathbb{R}^{n\times n}" /> berbentuk segitiga atas dan <InlineMath math="r_{ii}=\|\widetilde q_i\|_2>0" />.
 
-Lengkapi <InlineMath math="Q_1" /> dengan <InlineMath math="m-n" /> kolom ortonormal sehingga <InlineMath math="Q=(Q_1\quad Q_2)\in\mathbb{R}^{m\times m}" />. Tambahkan <InlineMath math="m-n" /> baris nol pada <InlineMath math="R_1" /> sehingga <InlineMath math="R=\begin{pmatrix}R_1\\0\end{pmatrix}\in\mathbb{R}^{m\times n}" />. Dengan demikian, <InlineMath math="A=Q_1R_1=QR" />.
+Lengkapi <InlineMath math="Q_1" /> dengan <InlineMath math="m-n" /> kolom ortonormal sehingga <InlineMath math="Q=(Q_1\quad Q_2)\in\mathbb{R}^{m\times m}" />.
+
+Tambahkan <InlineMath math="m-n" /> baris nol pada <InlineMath math="R_1" /> sehingga diperoleh:
+
+<BlockMath math="R=\begin{pmatrix}R_1\\0\end{pmatrix}\in\mathbb{R}^{m\times n}" />
+
+Matriks yang sudah dilengkapi tetap memenuhi <InlineMath math="A=Q_1R_1=QR" />.
 
 ## Dekomposisi QR Lengkap dan Tipis
 

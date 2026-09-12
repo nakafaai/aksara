@@ -4,17 +4,25 @@ export const metadata = {
   description: "Connect square matrices to rotations, reflections, and shears through position vectors and worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Geometric Transformation",
 };
 
 ## Mapping Points with a Matrix
 
-A <InlineMath math="2 \times 2" /> matrix defines a linear transformation of the Cartesian plane. It always maps the origin to itself, so a pure translation needs vector addition or homogeneous coordinates instead.
+A <InlineMath math="2 \times 2" /> matrix defines a linear transformation of the Cartesian plane. It always maps the origin to itself, so a nonzero translation needs vector addition or homogeneous coordinates instead.
 
-A point in the Cartesian plane, often symbolized by the ordered pair <InlineMath math="(x,y)" />, can also be symbolized by the position vector <InlineMath math="\begin{pmatrix} x \\ y \end{pmatrix}" />. This position vector notation will be frequently used in discussing the connection between matrices and transformations.
+A point in the Cartesian plane can be written as an ordered pair <InlineMath math="(x,y)" /> or as a position vector:
 
-If a point <InlineMath math="P(x,y)" /> is transformed by the matrix <InlineMath math="M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}" />, its image <InlineMath math="P'(x',y')" /> is obtained from matrix multiplication:
+<BlockMath math="\begin{pmatrix} x \\ y \end{pmatrix}" />
+
+We use this vector notation to express transformations through matrix multiplication.
+
+Consider a transformation with matrix <InlineMath math="M" />:
+
+<BlockMath math="M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}" />
+
+The image <InlineMath math="P'(x',y')" /> of a point <InlineMath math="P(x,y)" /> is obtained by matrix multiplication:
 
 <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} ax + by \\ cx + dy \end{pmatrix} \end{aligned}" />
 
@@ -22,7 +30,13 @@ If a point <InlineMath math="P(x,y)" /> is transformed by the matrix <InlineMath
 
 ## Multiplying a Matrix by a Position Vector
 
-If <InlineMath math="\begin{pmatrix} x \\ y \end{pmatrix}" /> represents any point in the Cartesian plane, find the product of <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />.
+Let the following vector represent any point in the Cartesian plane:
+
+<BlockMath math="\begin{pmatrix} x \\ y \end{pmatrix}" />
+
+Calculate this matrix product and identify the transformation:
+
+<BlockMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />
 
 **Solution:**
 
@@ -30,13 +44,17 @@ The matrix product is:
 
 <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(x) + (-1)(y) \\ (1)(x) + (0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} -y \\ x \end{pmatrix} \end{aligned}" />
 
-The matrix <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /> maps <InlineMath math="(x,y)" /> to <InlineMath math="(-y,x)" />. This coordinate rule describes a <InlineMath math="90^\circ" /> counter-clockwise rotation about the origin.
+The matrix <InlineMath math="R_{90^\circ}" /> maps <InlineMath math="(x,y)" /> to <InlineMath math="(-y,x)" />, so it rotates the point <InlineMath math="90^\circ" /> counter-clockwise about the origin:
+
+<ContentStack>
+
+<BlockMath math="R_{90^\circ} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />
 
 <LineEquation
   title={
     <>
       Transformation of Point <InlineMath math="P(2,3)" /> by Matrix{" "}
-      <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />
+      <InlineMath math="R_{90^\circ}" />
     </>
   }
   description={
@@ -84,15 +102,25 @@ The matrix <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /> m
   cameraPosition={[0, 0, 10]}
 />
 
+</ContentStack>
+
 ## Multiplying a Matrix by Three Points Simultaneously
 
-Find the image of <InlineMath math="\triangle ABC" />, with vertices <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" />, and <InlineMath math="C(4,2)" /> transformed by the matrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+Find the image of <InlineMath math="\triangle ABC" />, with vertices <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" />, and <InlineMath math="C(4,2)" /> transformed by the matrix:
+
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
 **Solution:**
 
-First, we can write the coordinates of the points as columns of a matrix, i.e., <InlineMath math="\begin{pmatrix} 1 & 4 & 4 \\ 1 & 1 & 2 \end{pmatrix}" />. The three columns correspond to <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" />, in that order.
+First, write the point coordinates as columns of a matrix:
 
-Next, multiply this matrix from the left by <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+<BlockMath math="\begin{pmatrix} 1 & 4 & 4 \\ 1 & 1 & 2 \end{pmatrix}" />
+
+The three columns correspond to <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" />, in that order.
+
+Next, multiply this matrix from the left by:
+
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
 Compute each entry by multiplying a row by a column:
 
@@ -105,13 +133,17 @@ Compute each entry by multiplying a row by a column:
 
 The result of the transformation is a new triangle <InlineMath math="\triangle A'B'C'" /> with vertices <InlineMath math="A'(-1,-1)" />, <InlineMath math="B'(-4,-1)" />, and <InlineMath math="C'(-4,-2)" />.
 
-The matrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> represents a <InlineMath math="180^\circ" /> rotation about the origin.
+The matrix <InlineMath math="R_{180^\circ}" /> represents a <InlineMath math="180^\circ" /> rotation about the origin:
+
+<ContentStack>
+
+<BlockMath math="R_{180^\circ} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
 <LineEquation
   title={
     <>
       Transformation of <InlineMath math="\triangle ABC" /> by Matrix{" "}
-      <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+      <InlineMath math="R_{180^\circ}" />
     </>
   }
   description={
@@ -168,10 +200,18 @@ The matrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> 
   cameraTarget={[0, 0, 0]}
 />
 
+</ContentStack>
+
 ## Exercises
 
-1.  Find the product of <InlineMath math="\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />. What transformation does this matrix represent?
-2.  A transformation is associated with the matrix <InlineMath math="\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />. Find the image of a triangle with vertices <InlineMath math="A(2,0)" />, <InlineMath math="B(2,1)" />, and <InlineMath math="C(0,1)" /> under this transformation!
+1.  Calculate the following matrix product. What transformation does the matrix represent?
+
+    <BlockMath math="\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />
+2.  A transformation has the following matrix:
+
+    <BlockMath math="\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />
+
+    Find the image of the triangle with vertices <InlineMath math="A(2,0)" />, <InlineMath math="B(2,1)" />, and <InlineMath math="C(0,1)" /> under this transformation.
 
 ### Solutions
 
@@ -181,11 +221,15 @@ The matrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> 
 
     This is a <InlineMath math="90^\circ" /> clockwise rotation, equivalently a <InlineMath math="270^\circ" /> counter-clockwise rotation, about the origin.
 
-2.  Transformation matrix <InlineMath math="M = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />.
+2.  Transformation matrix:
+
+    <BlockMath math="M = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />
 
     Vertices: <InlineMath math="A(2,0)" />, <InlineMath math="B(2,1)" />, <InlineMath math="C(0,1)" />.
 
-    Point matrix: <InlineMath math="\begin{pmatrix} 2 & 2 & 0 \\ 0 & 1 & 1 \end{pmatrix}" />.
+    Point matrix:
+
+    <BlockMath math="\begin{pmatrix} 2 & 2 & 0 \\ 0 & 1 & 1 \end{pmatrix}" />
 
     Compute each entry by multiplying a row by a column:
 

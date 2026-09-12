@@ -3,7 +3,7 @@ export const metadata = {
     description: "Baca nilai eigen langsung dari diagonal utama matriks diagonal dan segitiga, lalu gunakan determinan dan jejak matriks untuk memeriksa hasilnya.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-13",
     subject: "Metode Linear AI",
 };
 
@@ -39,7 +39,11 @@ Aturan diagonal hanya berlaku khusus untuk matriks segitiga. Sebagai pembanding,
 
 ### Nilai Eigen Kompleks
 
-Misalkan <InlineMath math="A = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}" />. Polinomial karakteristiknya adalah:
+Perhatikan matriks:
+
+<BlockMath math="A = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}" />
+
+Polinomial karakteristiknya adalah:
 
 <MathContainer>
 <BlockMath math="\chi_A(t) = \det \begin{pmatrix} 1-t & -1 \\ 1 & 1-t \end{pmatrix}" />
@@ -50,7 +54,11 @@ Akar polinomial karakteristik ini adalah <InlineMath math="\lambda_1 = 1 + i" />
 
 ### Nilai Eigen Nol
 
-Untuk <InlineMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" />, polinomial karakteristiknya adalah:
+Perhatikan matriks:
+
+<BlockMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" />
+
+Polinomial karakteristiknya adalah:
 
 <MathContainer>
 <BlockMath math="\chi_A(t) = \det \begin{pmatrix} 1-t & -i \\ i & 1-t \end{pmatrix}" />
@@ -88,14 +96,22 @@ Jika polinomial karakteristik <InlineMath math="\chi_A(t)" /> terurai menjadi fa
 
 Verifikasi dengan contoh sebelumnya:
 
-Untuk <InlineMath math="A = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}" /> dengan <InlineMath math="\lambda_1 = 1 + i" />, <InlineMath math="\lambda_2 = 1 - i" />:
+Untuk matriks berikut dengan nilai eigen <InlineMath math="\lambda_1 = 1 + i" /> dan <InlineMath math="\lambda_2 = 1 - i" />:
+
+<BlockMath math="A = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}" />
+
+Kita dapat memeriksa nilai eigen melalui determinan dan jejak matriks:
 
 <MathContainer>
 <BlockMath math="\begin{aligned} \det A &amp;= 1 \cdot 1 - 1 \cdot (-1) \\ &amp;= 2 \\ &amp;= \lambda_1 \cdot \lambda_2 \end{aligned}" />
 <BlockMath math="\text{tr} A = 1 + 1 = 2 = \lambda_1 + \lambda_2" />
 </MathContainer>
 
-Untuk <InlineMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" /> dengan <InlineMath math="\lambda_1 = 2" />, <InlineMath math="\lambda_2 = 0" />:
+Untuk matriks berikut dengan nilai eigen <InlineMath math="\lambda_1 = 2" /> dan <InlineMath math="\lambda_2 = 0" />:
+
+<BlockMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" />
+
+Kita dapat memeriksa nilai eigen melalui determinan dan jejak matriks:
 
 <MathContainer>
 <BlockMath math="\begin{aligned} \det A &amp;= 1 \cdot 1 - i \cdot (-i) \\ &amp;= 0 \\ &amp;= \lambda_1 \cdot \lambda_2 \end{aligned}" />

@@ -4,7 +4,7 @@ export const metadata = {
   description: "Turunkan matriks pencerminan terhadap titik asal dan terapkan pada titik maupun segitiga utuh.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Transformasi Geometri",
 };
 
@@ -12,7 +12,9 @@ export const metadata = {
 
 Pencerminan suatu titik <InlineMath math="(x,y)" /> terhadap titik pusat <InlineMath math="O(0,0)" /> (titik asal) akan menghasilkan bayangan <InlineMath math="(-x,-y)" />. Ini sama dengan rotasi <InlineMath math="180^\circ" /> terhadap titik asal.
 
-Sekarang, kita akan mencari matriks <InlineMath math="2 \times 2" />, misalkan <InlineMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix}" />, yang merepresentasikan transformasi ini.
+Untuk mencari matriks <InlineMath math="2 \times 2" /> yang menyatakan transformasi ini, kita mulai dengan elemen yang belum diketahui:
+
+<BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix}" />
 
 Kita ingin mencari <InlineMath math="r, s, t, u" /> sedemikian sehingga:
 
@@ -41,7 +43,9 @@ Tentukan bayangan titik <InlineMath math="A(-1,1)" /> dan <InlineMath math="B(3,
 
 **Penyelesaian:**
 
-Menggunakan matriks transformasi <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />:
+Menggunakan matriks transformasi:
+
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
 Untuk titik <InlineMath math="A(-1,1)" />:
 
@@ -130,7 +134,9 @@ Bayangan titik <InlineMath math="B" /> adalah <InlineMath math="B'(-3,2)" />.
 
 ### Pembahasan
 
-1.  Matriks pencerminan terhadap titik pusat: <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+1.  Matriks pencerminan terhadap titik pusat:
+
+    <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
     Untuk <InlineMath math="A(1,-7)" />:
 
@@ -142,8 +148,12 @@ Bayangan titik <InlineMath math="B" /> adalah <InlineMath math="B'(-3,2)" />.
 
     Bayangan titik <InlineMath math="B" /> adalah <InlineMath math="B'(7,2)" />.
 
-2.  Matriks titik <InlineMath math="PQR" />: <InlineMath math="\begin{pmatrix} 2 & 5 & 3 \\ 2 & 2 & 5 \end{pmatrix}" />.
+2.  Matriks titik <InlineMath math="PQR" />:
 
-    <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 2 &amp; 5 &amp; 3 \\ 2 &amp; 2 &amp; 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 &amp; -5 &amp; -3 \\ -2 &amp; -2 &amp; -5 \end{pmatrix} \end{aligned}" />
+    <MathContainer>
+      <BlockMath math="\begin{pmatrix} 2 & 5 & 3 \\ 2 & 2 & 5 \end{pmatrix}" />
+
+      <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 2 &amp; 5 &amp; 3 \\ 2 &amp; 2 &amp; 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 &amp; -5 &amp; -3 \\ -2 &amp; -2 &amp; -5 \end{pmatrix} \end{aligned}" />
+    </MathContainer>
 
     Bayangan: <InlineMath math="P'(-2,-2)" />, <InlineMath math="Q'(-5,-2)" />, <InlineMath math="R'(-3,-5)" />.

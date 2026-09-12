@@ -3,7 +3,7 @@ export const metadata = {
   description: "Subtrahiere Matrizen eintragsweise, deute die Subtraktion als Addition der Gegenmatrix und prüfe dein Verständnis an vollständig gelösten Aufgaben.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Matrix",
 };
 
@@ -83,7 +83,12 @@ Beide Methoden ergeben die gleiche Matrix.
 
 ### Beispiel für nicht subtrahierbare Matrizen
 
-Betrachten wir die Matrix <InlineMath math="K = \begin{bmatrix} 1 & 0 \\ -2 & 5 \\ 3 & 1 \end{bmatrix}" /> und die Matrix <InlineMath math="L = \begin{bmatrix} 4 & 2 \\ 0 & 7 \end{bmatrix}" />.
+Betrachte die folgenden Matrizen:
+
+<MathContainer>
+  <BlockMath math="K = \begin{bmatrix} 1 & 0 \\ -2 & 5 \\ 3 & 1 \end{bmatrix}" />
+  <BlockMath math="L = \begin{bmatrix} 4 & 2 \\ 0 & 7 \end{bmatrix}" />
+</MathContainer>
 
 Die Matrix <InlineMath math="K" /> hat das Format <InlineMath math="3 \times 2" />, die Matrix <InlineMath math="L" /> dagegen <InlineMath math="2 \times 2" />. Wegen der unterschiedlichen Formate sind sowohl <InlineMath math="K-L" /> als auch <InlineMath math="L-K" /> nicht definiert.
 
@@ -99,7 +104,7 @@ Die Matrixaddition ist kommutativ und assoziativ, die Matrixsubtraktion besitzt 
 
     Für die Matrizen <InlineMath math="P" /> und <InlineMath math="Q" /> aus dem Beispiel gilt:
 
-    <InlineMath math="P-Q = \begin{bmatrix} 6 & 4 \\ 4 & 3 \end{bmatrix}" />
+    <BlockMath math="P-Q = \begin{bmatrix} 6 & 4 \\ 4 & 3 \end{bmatrix}" />
 
     In umgekehrter Reihenfolge ergibt sich:
 
@@ -264,6 +269,6 @@ Dann <InlineMath math="A-(B-C)" />:
   <BlockMath math="= \begin{bmatrix} 1-7 & 0-(-2) \\ 0-3 & 1-4 \end{bmatrix} = \begin{bmatrix} -6 & 2 \\ -3 & -3 \end{bmatrix}" />
 </MathContainer>
 
-Die Ergebnisse sind nicht die gleichen: <InlineMath math="\begin{bmatrix} 2 & 2 \\ -7 & 3 \end{bmatrix} \neq \begin{bmatrix} -6 & 2 \\ -3 & -3 \end{bmatrix}" />.
+Die beiden Ergebnisse unterscheiden sich: <InlineMath math="(A-B)-C \neq A-(B-C)" />.
 
 Die Matrixsubtraktion ist daher nicht assoziativ.

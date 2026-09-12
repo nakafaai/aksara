@@ -4,21 +4,25 @@ export const metadata = {
   description: "Express translations through vector addition and homogeneous coordinates so they can combine with other transformations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Geometric Transformation",
 };
 
 ## Moving Points by Adding a Vector
 
-Translation or shifting a point <InlineMath math="(x,y)" /> by a vector <InlineMath math="\begin{pmatrix} a \\ b \end{pmatrix}" /> results in the image <InlineMath math="(x+a, y+b)" />.
+A translation moves a point <InlineMath math="(x,y)" /> horizontally by <InlineMath math="a" /> and vertically by <InlineMath math="b" />, giving the image <InlineMath math="(x+a, y+b)" />.
 
 This operation can be written in the form of vector addition (column matrix):
 
 <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} x \\ y \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} x+a \\ y+b \end{pmatrix}" />
 
-This is different from transformations like rotation or reflection across an axis/line, which can be represented by <InlineMath math="2 \times 2" /> matrix multiplication. Pure translation is a vector addition operation.
+Rotations about the origin and reflections in lines through the origin can be represented by <InlineMath math="2 \times 2" /> matrix multiplication. A nonzero translation instead adds a vector and cannot be represented this way.
 
-However, if we want to combine translation with other linear transformations using matrix multiplication, we often use **homogeneous coordinates**. With homogeneous coordinates, a point <InlineMath math="(x,y)" /> is represented as <InlineMath math="\begin{pmatrix} x \\ y \\ 1 \end{pmatrix}" />, and the transformation matrix becomes <InlineMath math="3 \times 3" />. For translation by <InlineMath math="\begin{pmatrix} a \\ b \end{pmatrix}" />, the matrix is:
+To combine translation with linear transformations using matrix multiplication, we use **homogeneous coordinates**. The point <InlineMath math="(x,y)" /> is represented by the column:
+
+<BlockMath math="\begin{pmatrix} x \\ y \\ 1 \end{pmatrix}" />
+
+The transformation then uses a <InlineMath math="3 \times 3" /> matrix. For a horizontal shift of <InlineMath math="a" /> and a vertical shift of <InlineMath math="b" />, it is:
 
 <BlockMath math="T_{(a,b)} = \begin{pmatrix} 1 & 0 & a \\ 0 & 1 & b \\ 0 & 0 & 1 \end{pmatrix}" />
 
@@ -28,13 +32,15 @@ The calculation gives:
 
 ### Matrix Operation
 
-The matrix operation associated with translation by vector <InlineMath math="\begin{pmatrix} a \\ b \end{pmatrix}" /> for point <InlineMath math="(x,y)" /> is:
+For a point <InlineMath math="(x,y)" />, add the translation vector component by component:
 
 <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} x \\ y \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix}" />
 
 ## Finding the Image of a Point with Matrix Operation
 
-Determine the image of point <InlineMath math="(-2,3)" /> translated by the vector <InlineMath math="\begin{pmatrix} -3 \\ 4 \end{pmatrix}" /> using matrix operation.
+Use matrix operations to translate the point <InlineMath math="(-2,3)" /> by the following vector and determine its image:
+
+<BlockMath math="\begin{pmatrix} -3 \\ 4 \end{pmatrix}" />
 
 **Solution:**
 
@@ -47,8 +53,8 @@ Its image is <InlineMath math="(-5,7)" />.
 <LineEquation
   title={
     <>
-      Translation of Point <InlineMath math="P(-2,3)" /> by Vector{" "}
-      <InlineMath math="\begin{pmatrix} -3 \\ 4 \end{pmatrix}" />
+      Translation from <InlineMath math="P(-2,3)" /> to{" "}
+      <InlineMath math="P'(-5,7)" />
     </>
   }
   description={
@@ -88,21 +94,40 @@ Its image is <InlineMath math="(-5,7)" />.
 
 ## Exercises
 
-1.  Determine the image of point <InlineMath math="(4,-5)" /> translated by the vector <InlineMath math="\begin{pmatrix} -5 \\ 4 \end{pmatrix}" /> using matrix operation.
-2.  A triangle <InlineMath math="KLM" /> has vertices <InlineMath math="K(1,0)" />, <InlineMath math="L(4,2)" />, and <InlineMath math="M(2,5)" />. This triangle is translated by vector <InlineMath math="T = \begin{pmatrix} -2 \\ 1 \end{pmatrix}" />. Determine the coordinates of the image triangle <InlineMath math="K'L'M'" />.
+1.  Use matrix operations to translate the point <InlineMath math="(4,-5)" /> by the following vector and determine its image:
+
+    <BlockMath math="\begin{pmatrix} -5 \\ 4 \end{pmatrix}" />
+
+2.  A triangle <InlineMath math="KLM" /> has vertices <InlineMath math="K(1,0)" />, <InlineMath math="L(4,2)" />, and <InlineMath math="M(2,5)" />. Translate it by the vector below and determine the coordinates of <InlineMath math="K'L'M'" />:
+
+    <BlockMath math="T = \begin{pmatrix} -2 \\ 1 \end{pmatrix}" />
 
 ### Solutions
 
-1.  Point <InlineMath math="(4,-5)" />, translation vector <InlineMath math="\begin{pmatrix} -5 \\ 4 \end{pmatrix}" />.
+1.  For the point <InlineMath math="(4,-5)" />, use the shifts <InlineMath math="a=-5" /> and <InlineMath math="b=4" />.
 
     <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 4 \\ -5 \end{pmatrix} + \begin{pmatrix} -5 \\ 4 \end{pmatrix} \\ &amp;= \begin{pmatrix} 4-5 \\ -5+4 \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 \\ -1 \end{pmatrix} \end{aligned}" />
 
     Image: <InlineMath math="(-1,-1)" />.
 
-2.  Translation vector <InlineMath math="T = \begin{pmatrix} -2 \\ 1 \end{pmatrix}" />.
+2.  Apply the given translation vector <InlineMath math="T" /> to each vertex:
 
-    - For <InlineMath math="K(1,0)" />: <InlineMath math="\begin{pmatrix} x'_K \\ y'_K \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} = \begin{pmatrix} -1 \\ 1 \end{pmatrix}" />. So <InlineMath math="K'(-1,1)" />.
-    - For <InlineMath math="L(4,2)" />: <InlineMath math="\begin{pmatrix} x'_L \\ y'_L \end{pmatrix} = \begin{pmatrix} 4 \\ 2 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} = \begin{pmatrix} 2 \\ 3 \end{pmatrix}" />. So <InlineMath math="L'(2,3)" />.
-    - For <InlineMath math="M(2,5)" />: <InlineMath math="\begin{pmatrix} x'_M \\ y'_M \end{pmatrix} = \begin{pmatrix} 2 \\ 5 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 6 \end{pmatrix}" />. So <InlineMath math="M'(0,6)" />.
+    - For <InlineMath math="K(1,0)" />:
+
+      <BlockMath math="\begin{aligned} \begin{pmatrix} x'_K \\ y'_K \end{pmatrix} &amp;= \begin{pmatrix} 1 \\ 0 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 \\ 1 \end{pmatrix} \end{aligned}" />
+
+      So <InlineMath math="K'(-1,1)" />.
+
+    - For <InlineMath math="L(4,2)" />:
+
+      <BlockMath math="\begin{aligned} \begin{pmatrix} x'_L \\ y'_L \end{pmatrix} &amp;= \begin{pmatrix} 4 \\ 2 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 \\ 3 \end{pmatrix} \end{aligned}" />
+
+      So <InlineMath math="L'(2,3)" />.
+
+    - For <InlineMath math="M(2,5)" />:
+
+      <BlockMath math="\begin{aligned} \begin{pmatrix} x'_M \\ y'_M \end{pmatrix} &amp;= \begin{pmatrix} 2 \\ 5 \end{pmatrix} + \begin{pmatrix} -2 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 \\ 6 \end{pmatrix} \end{aligned}" />
+
+      So <InlineMath math="M'(0,6)" />.
 
     Image coordinates: <InlineMath math="K'(-1,1)" />, <InlineMath math="L'(2,3)" />, <InlineMath math="M'(0,6)" />.

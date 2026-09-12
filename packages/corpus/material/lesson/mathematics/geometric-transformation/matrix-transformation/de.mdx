@@ -4,17 +4,25 @@ export const metadata = {
   description: "Bilde Punkte und Figuren mit quadratischen Matrizen zweiter Ordnung ab und erkenne Drehungen, Spiegelungen und Scherungen an ihren Matrizen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Geometrische Transformation",
 };
 
 ## Koordinaten durch Matrixmultiplikation abbilden
 
-Eine <InlineMath math="2 \times 2" />-Matrix definiert eine lineare Transformation der kartesischen Ebene. Sie bildet den Ursprung stets auf sich selbst ab. Eine reine Verschiebung benötigt deshalb eine Vektoraddition oder homogene Koordinaten.
+Eine <InlineMath math="2 \times 2" />-Matrix definiert eine lineare Transformation der kartesischen Ebene. Sie bildet den Ursprung stets auf sich selbst ab. Eine Verschiebung um einen von null verschiedenen Vektor benötigt deshalb eine Vektoraddition oder homogene Koordinaten.
 
-Einen Punkt mit den Koordinaten <InlineMath math="(x,y)" /> können wir als Ortsvektor <InlineMath math="\begin{pmatrix} x \\ y \end{pmatrix}" /> schreiben. In dieser Form lässt sich die Abbildung direkt als Matrixmultiplikation darstellen.
+Einen Punkt mit den Koordinaten <InlineMath math="(x,y)" /> können wir als Ortsvektor schreiben:
 
-Wenn ein Punkt <InlineMath math="P(x,y)" /> durch die Matrix <InlineMath math="M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}" /> transformiert wird, wird sein Bild <InlineMath math="P'(x',y')" /> durch Matrixmultiplikation erhalten:
+<BlockMath math="\begin{pmatrix} x \\ y \end{pmatrix}" />
+
+Mit dieser Vektorschreibweise lässt sich die Transformation als Matrixmultiplikation darstellen.
+
+Wir betrachten eine Transformation mit der Matrix <InlineMath math="M" />:
+
+<BlockMath math="M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}" />
+
+Den Bildpunkt <InlineMath math="P'(x',y')" /> eines Punktes <InlineMath math="P(x,y)" /> erhalten wir durch Matrixmultiplikation:
 
 <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} ax + by \\ cx + dy \end{pmatrix} \end{aligned}" />
 
@@ -22,7 +30,13 @@ Also <InlineMath math="x' = ax + by" /> und <InlineMath math="y' = cx + dy" />.
 
 ## Multiplizieren einer Matrix mit einem Positionsvektor
 
-Der Vektor <InlineMath math="\begin{pmatrix} x \\ y \end{pmatrix}" /> beschreibt einen beliebigen Punkt der Ebene. Bestimme das Produkt <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" /> und deute das Ergebnis geometrisch.
+Der folgende Vektor beschreibt einen beliebigen Punkt der Ebene:
+
+<BlockMath math="\begin{pmatrix} x \\ y \end{pmatrix}" />
+
+Berechne dieses Matrixprodukt und bestimme die zugehörige Transformation:
+
+<BlockMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />
 
 **Lösung:**
 
@@ -30,13 +44,17 @@ Das Matrixprodukt ist:
 
 <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(x) + (-1)(y) \\ (1)(x) + (0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} -y \\ x \end{pmatrix} \end{aligned}" />
 
-Die Matrix <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /> bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(-y,x)" /> ab. Genau diese Koordinatenregel beschreibt eine Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um den Ursprung.
+Die Matrix <InlineMath math="R_{90^\circ}" /> bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(-y,x)" /> ab. Sie dreht den Punkt also um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um den Ursprung:
+
+<ContentStack>
+
+<BlockMath math="R_{90^\circ} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />
 
 <LineEquation
   title={
     <>
     Abbildung von <InlineMath math="P(2,3)" /> durch die Matrix{" "}
-      <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />
+      <InlineMath math="R_{90^\circ}" />
     </>
   }
   description={
@@ -84,15 +102,25 @@ Die Matrix <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /> b
   cameraPosition={[0, 0, 10]}
 />
 
+</ContentStack>
+
 ## Drei Punkte gleichzeitig transformieren
 
-Bestimme das Bild von <InlineMath math="\triangle ABC" /> mit den Eckpunkten <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" /> und <InlineMath math="C(4,2)" /> unter der Matrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+Bestimme das Bild von <InlineMath math="\triangle ABC" /> mit den Eckpunkten <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" /> und <InlineMath math="C(4,2)" /> unter der Matrix:
+
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
 **Lösung:**
 
-Zuerst schreiben wir die Koordinaten der Punkte als Spalten einer Matrix: <InlineMath math="\begin{pmatrix} 1 & 4 & 4 \\ 1 & 1 & 2 \end{pmatrix}" />. Die drei Spalten gehören der Reihe nach zu <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" />.
+Zuerst schreiben wir die Punktkoordinaten als Spalten einer Matrix:
 
-Dann multiplizieren wir die Punktmatrix von links mit der Transformationsmatrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+<BlockMath math="\begin{pmatrix} 1 & 4 & 4 \\ 1 & 1 & 2 \end{pmatrix}" />
+
+Die drei Spalten gehören der Reihe nach zu <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" />.
+
+Dann multiplizieren wir die Punktmatrix von links mit der Transformationsmatrix:
+
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
 Berechne jeden Eintrag durch Multiplikation einer Zeile mit einer Spalte:
 
@@ -105,13 +133,17 @@ Berechne jeden Eintrag durch Multiplikation einer Zeile mit einer Spalte:
 
 Das Ergebnis der Transformation ist ein neues Dreieck <InlineMath math="\triangle A'B'C'" /> mit den Eckpunkten <InlineMath math="A'(-1,-1)" />, <InlineMath math="B'(-4,-1)" /> und <InlineMath math="C'(-4,-2)" />.
 
-Die Matrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> stellt eine <InlineMath math="180^\circ" /> Drehung um den Ursprung dar.
+Die Matrix <InlineMath math="R_{180^\circ}" /> beschreibt eine Drehung um <InlineMath math="180^\circ" /> um den Ursprung:
+
+<ContentStack>
+
+<BlockMath math="R_{180^\circ} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
 <LineEquation
   title={
     <>
     Abbildung von <InlineMath math="\triangle ABC" /> durch die Matrix{" "}
-      <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+      <InlineMath math="R_{180^\circ}" />
     </>
   }
   description={
@@ -168,10 +200,18 @@ Die Matrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> 
   cameraTarget={[0, 0, 0]}
 />
 
+</ContentStack>
+
 ## Übungen
 
-1.  Bestimme das Produkt <InlineMath math="\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />. Welche Transformation beschreibt diese Matrix?
-2.  Die Matrix <InlineMath math="\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" /> beschreibt eine Transformation. Bestimme das Bild des Dreiecks mit den Eckpunkten <InlineMath math="A(2,0)" />, <InlineMath math="B(2,1)" /> und <InlineMath math="C(0,1)" />.
+1.  Berechne das folgende Matrixprodukt. Welche Transformation beschreibt die Matrix?
+
+    <BlockMath math="\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />
+2.  Eine Transformation hat die folgende Matrix:
+
+    <BlockMath math="\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />
+
+    Bestimme das Bild des Dreiecks mit den Eckpunkten <InlineMath math="A(2,0)" />, <InlineMath math="B(2,1)" /> und <InlineMath math="C(0,1)" /> unter dieser Transformation.
 
 ### Lösungen
 
@@ -181,11 +221,15 @@ Die Matrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> 
 
     Dies ist eine Drehung um <InlineMath math="90^\circ" /> im Uhrzeigersinn. Gleichwertig dazu ist eine Drehung um <InlineMath math="270^\circ" /> gegen den Uhrzeigersinn um den Ursprung.
 
-2.  Transformationsmatrix <InlineMath math="M = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />.
+2.  Transformationsmatrix:
+
+    <BlockMath math="M = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />
 
     Eckpunkte: <InlineMath math="A(2,0)" />, <InlineMath math="B(2,1)" />, <InlineMath math="C(0,1)" />.
 
-    Punktmatrix: <InlineMath math="\begin{pmatrix} 2 & 2 & 0 \\ 0 & 1 & 1 \end{pmatrix}" />.
+    Punktmatrix:
+
+    <BlockMath math="\begin{pmatrix} 2 & 2 & 0 \\ 0 & 1 & 1 \end{pmatrix}" />
 
     Berechne jeden Eintrag durch Multiplikation einer Zeile mit einer Spalte:
 

@@ -4,7 +4,7 @@ export const metadata = {
     description: "Verschiebe Punkte, Geraden und Dreiecke mit Vektoren und berechne ihre Bildpunkte.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Geometrische Transformation",
 };
 
@@ -14,7 +14,11 @@ Eine Verschiebung bewegt jeden Punkt eines Objekts um dieselbe Strecke in diesel
 
 ### Definition einer Verschiebung
 
-Gegeben sei ein beliebiger Punkt <InlineMath math="P(x,y)" />. Die dem Vektor <InlineMath math="\begin{pmatrix} a \\ b \end{pmatrix}" /> zugeordnete Verschiebung des Punktes <InlineMath math="P(x,y)" />, geschrieben als <InlineMath math="T_{(a,b)}(x,y)" /> oder <InlineMath math="\tau_{(a,b)}(x,y)" />, ist definiert durch:
+Betrachte den folgenden Verschiebungsvektor:
+
+<BlockMath math="\begin{pmatrix} a \\ b \end{pmatrix}" />
+
+Für einen beliebigen Punkt <InlineMath math="P(x,y)" /> schreiben wir diese Verschiebung als <InlineMath math="T_{(a,b)}(x,y)" /> oder <InlineMath math="\tau_{(a,b)}(x,y)" />. Sie ist definiert durch:
 
 <BlockMath math="P'(x',y') = (x+a, y+b)" />
 
@@ -29,7 +33,9 @@ Dabei ist <InlineMath math="a" /> die horizontale Verschiebung (positiv nach rec
 
 ## Einen Punkt verschieben
 
-Ein Punkt <InlineMath math="(3,2)" /> wird durch den Vektor <InlineMath math="\begin{pmatrix} -2 \\ 3 \end{pmatrix}" /> verschoben. Bestimme den Bildpunkt dieser Verschiebung.
+Verschiebe den Punkt <InlineMath math="(3,2)" /> um den folgenden Vektor und bestimme seinen Bildpunkt:
+
+<BlockMath math="\begin{pmatrix} -2 \\ 3 \end{pmatrix}" />
 
 Hier: <InlineMath math="x=3" />, <InlineMath math="y=2" />, <InlineMath math="a=-2" /> und <InlineMath math="b=3" />.
 
@@ -45,8 +51,8 @@ Somit ist das Bild des Punktes <InlineMath math="(3,2)" /> <InlineMath math="(1,
 <LineEquation
   title={
     <>
-      Verschiebung des Punktes <InlineMath math="P(3,2)" /> um den Vektor{" "}
-      <InlineMath math="\begin{pmatrix} -2 \\ 3 \end{pmatrix}" />
+      Verschiebung von <InlineMath math="P(3,2)" /> nach{" "}
+      <InlineMath math="P'(1,5)" />
     </>
   }
   description={
@@ -82,9 +88,11 @@ Somit ist das Bild des Punktes <InlineMath math="(3,2)" /> <InlineMath math="(1,
 
 ## Eine Gerade verschieben
 
-Bestimme das Bild der Geraden <InlineMath math="l \equiv 2x + 3y - 1 = 0" /> unter der Verschiebung um den Vektor <InlineMath math="\begin{pmatrix} -1 \\ 1 \end{pmatrix}" />.
+Bestimme das Bild der Geraden <InlineMath math="l \equiv 2x + 3y - 1 = 0" /> unter der folgenden Verschiebung:
 
-Sei <InlineMath math="P(x,y)" /> ein beliebiger Punkt auf der Geraden <InlineMath math="l" />. Wird er um den Vektor <InlineMath math="\begin{pmatrix} -1 \\ 1 \end{pmatrix}" /> verschoben, so ist sein Bild <InlineMath math="P'(x',y')" />. Es gilt:
+<BlockMath math="\begin{pmatrix} -1 \\ 1 \end{pmatrix}" />
+
+Sei <InlineMath math="P(x,y)" /> ein beliebiger Punkt auf der Geraden <InlineMath math="l" />. Unter dieser Verschiebung ist sein Bild <InlineMath math="P'(x',y')" />. Es gilt:
 
 <MathContainer>
   <BlockMath math="\begin{aligned} x' &amp;= x + (-1) \\ &amp;= x - 1 \\ &amp;\implies x \\ &amp;= x' + 1 \end{aligned}" />
@@ -108,8 +116,7 @@ Ersetzen wir <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch 
   <LineEquation
     title={
       <>
-        Verschiebung der Geraden <InlineMath math="2x+3y-1=0" /> um den Vektor{" "}
-        <InlineMath math="\begin{pmatrix} -1 \\ 1 \end{pmatrix}" />
+        Verschiebung der Geraden <InlineMath math="2x+3y-1=0" />
       </>
     }
     description={
@@ -150,13 +157,21 @@ Ersetzen wir <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch 
 
 ## Übungen
 
-1.  Ein Punkt <InlineMath math="(-4,4)" /> wird durch den Vektor <InlineMath math="\begin{pmatrix} -2 \\ -3 \end{pmatrix}" /> verschoben. Bestimme den Bildpunkt dieser Verschiebung.
-2.  Bestimme das Bild der Geraden <InlineMath math="l \equiv 5x - 2y + 3 = 0" /> unter der Verschiebung um den Vektor <InlineMath math="\begin{pmatrix} 2 \\ -1 \end{pmatrix}" />.
-3.  Ein Dreieck mit den Eckpunkten <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" /> und <InlineMath math="C(1,5)" /> wird um den Vektor <InlineMath math="\begin{pmatrix} 2 \\ 3 \end{pmatrix}" /> verschoben. Bestimme die Koordinaten des Bilddreiecks <InlineMath math="A'B'C'" />.
+1.  Verschiebe den Punkt <InlineMath math="(-4,4)" /> um den folgenden Vektor und bestimme seinen Bildpunkt:
+
+    <BlockMath math="\begin{pmatrix} -2 \\ -3 \end{pmatrix}" />
+
+2.  Bestimme das Bild der Geraden <InlineMath math="l \equiv 5x - 2y + 3 = 0" /> unter der folgenden Verschiebung:
+
+    <BlockMath math="\begin{pmatrix} 2 \\ -1 \end{pmatrix}" />
+
+3.  Ein Dreieck hat die Eckpunkte <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" /> und <InlineMath math="C(1,5)" />. Verschiebe es um den folgenden Vektor und bestimme die Koordinaten von <InlineMath math="A'B'C'" />:
+
+    <BlockMath math="\begin{pmatrix} 2 \\ 3 \end{pmatrix}" />
 
 ### Lösungen
 
-1.  Punkt <InlineMath math="(-4,4)" />, Vektor <InlineMath math="\begin{pmatrix} -2 \\ -3 \end{pmatrix}" />. <InlineMath math="x=-4, y=4, a=-2, b=-3" />.
+1.  Verwende für den Punkt <InlineMath math="(-4,4)" /> die Werte <InlineMath math="x=-4, y=4, a=-2, b=-3" />.
 
     <MathContainer>
       <BlockMath math="x' = -4 + (-2) = -6" />
@@ -165,7 +180,7 @@ Ersetzen wir <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch 
 
     Somit ist der Bildpunkt <InlineMath math="(-6,1)" />.
 
-2.  Gerade <InlineMath math="5x - 2y + 3 = 0" />, Vektor <InlineMath math="\begin{pmatrix} 2 \\ -1 \end{pmatrix}" />. <InlineMath math="a=2, b=-1" />.
+2.  Verwende für die Gerade <InlineMath math="5x - 2y + 3 = 0" /> die Werte <InlineMath math="a=2, b=-1" />.
 
     <MathContainer>
       <BlockMath math="x' = x + 2 \implies x = x' - 2" />
@@ -182,7 +197,7 @@ Ersetzen wir <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch 
 
     Die Gleichung der Bildgeraden lautet <InlineMath math="5x - 2y - 9 = 0" />.
 
-3.  Punkte <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" />, <InlineMath math="C(1,5)" />. Vektor <InlineMath math="\begin{pmatrix} 2 \\ 3 \end{pmatrix}" />.
+3.  Verschiebe jeden Eckpunkt <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" /> und <InlineMath math="C(1,5)" /> mit <InlineMath math="a=2, b=3" />.
 
     <MathContainer>
       <BlockMath math="A'(1+2, 1+3) = A'(3,4)" />
