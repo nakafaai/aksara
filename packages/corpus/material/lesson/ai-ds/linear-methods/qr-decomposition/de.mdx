@@ -3,7 +3,7 @@ export const metadata = {
    description: "QR-Zerlegung mit Gram-Schmidt- und Householder-Verfahren. Volle und reduzierte Faktorisierung, numerische Stabilität und Rechenaufwand werden hergeleitet.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-01",
+   dateModified: "2026-09-12",
    subject: "Lineare Methoden der KI",
 };
 
@@ -54,7 +54,7 @@ Dabei ist <InlineMath math="Q\in\mathbb{R}^{m\times m}" /> orthogonal. Die Matri
 
 Die reduzierte Form entfernt diese Nullzeilen und die dazugehörigen ungenutzten Spalten von <InlineMath math="Q" />:
 
-<BlockMath math="A = Q \cdot R = (Q_1 \quad Q_2) \cdot \begin{pmatrix} R_1 \\ 0 \end{pmatrix} = Q_1 \cdot R_1" />
+<BlockMath math="\begin{aligned} A &amp;= Q \cdot R \\ &amp;= (Q_1 \quad Q_2) \cdot \begin{pmatrix} R_1 \\ 0 \end{pmatrix} \\ &amp;= Q_1 \cdot R_1 \end{aligned}" />
 
 Hier enthält <InlineMath math="Q_1\in\mathbb{R}^{m\times n}" /> die ersten <InlineMath math="n" /> Spalten von <InlineMath math="Q" />, und <InlineMath math="R_1\in\mathbb{R}^{n\times n}" /> ist eine obere Dreiecksmatrix. Das Speichern von <InlineMath math="Q_1" /> spart Speicher und vermeidet Rechnungen mit Blöcken, die bereits als null bekannt sind.
 
@@ -164,7 +164,7 @@ Dabei gilt <InlineMath math="r_{22}=\pm\|\widetilde a_2\|_2" /> und <InlineMath 
 
 Nach der letzten Spiegelung ist die transformierte Matrix oberdreieckig:
 
-<BlockMath math="A_{n+1} = R = \begin{pmatrix} r_{11} & & * \\ & \ddots & \\ 0 & & r_{nn} \\ 0 & \cdots & 0 \\ \vdots & & \vdots \\ 0 & \cdots & 0 \end{pmatrix} = S_n \cdot \ldots \cdot S_1 \cdot A = Q^T \cdot A" />
+<BlockMath math="\begin{aligned} A_{n+1} &amp;= R \\ &amp;= \begin{pmatrix} r_{11} &amp; &amp; * \\ &amp; \ddots &amp; \\ 0 &amp; &amp; r_{nn} \\ 0 &amp; \cdots &amp; 0 \\ \vdots &amp; &amp; \vdots \\ 0 &amp; \cdots &amp; 0 \end{pmatrix} \\ &amp;= S_n \cdot \ldots \cdot S_1 \cdot A \\ &amp;= Q^T \cdot A \end{aligned}" />
 
 Da jeder Reflektor orthogonal und symmetrisch ist, liefert ihr Produkt
 
@@ -186,7 +186,7 @@ Zuerst werden die aktive Matrix und der gesammelte orthogonale Faktor initialisi
 
 Im Schritt <InlineMath math="i" /> wird der aktive Teil der <InlineMath math="i" />-ten Spalte entnommen:
 
-<BlockMath math="\tilde{a}_i = \begin{pmatrix} a_{ii} \\ \vdots \\ a_{mi} \end{pmatrix} := \begin{pmatrix} (A_i)_{ii} \\ \vdots \\ (A_i)_{mi} \end{pmatrix} \in \mathbb{R}^{m-i+1}" />
+<BlockMath math="\begin{aligned} \tilde{a}_i &amp;= \begin{pmatrix} a_{ii} \\ \vdots \\ a_{mi} \end{pmatrix} : \\ &amp;= \begin{pmatrix} (A_i)_{ii} \\ \vdots \\ (A_i)_{mi} \end{pmatrix} \in \mathbb{R}^{m-i+1} \end{aligned}" />
 
 Danach werden Norm, Vorzeichen und Householder-Vektor berechnet. Das Vorzeichen verhindert die Subtraktion fast gleicher Zahlen:
 
@@ -205,15 +205,15 @@ Der normierte Vektor und der vollständige Reflektor lauten
 
 <MathContainer>
 <BlockMath math="v_i=\frac{u_i}{\|u_i\|_2}" />
-<BlockMath math="\tilde{S}_i = I_{m-i+1} - 2v_i v_i^T = I_{m-i+1} - \beta u_i u_i^T" />
+<BlockMath math="\begin{aligned} \tilde{S}_i &amp;= I_{m-i+1} - 2v_i v_i^T \\ &amp;= I_{m-i+1} - \beta u_i u_i^T \end{aligned}" />
 <BlockMath math="S_i = I_m - \beta \hat{u}_i \hat{u}_i^T" />
 </MathContainer>
 
 Die aktive Matrix und der gesammelte Faktor werden ohne ein zusätzliches dichtes Matrixprodukt aktualisiert:
 
 <MathContainer>
-<BlockMath math="A_{i+1} := S_i A_i = (I_m - \beta \hat{u}_i \hat{u}_i^T) A_i = A_i - \hat{u}_i (\beta \hat{u}_i^T A_i)" />
-<BlockMath math="Q_{i+1} := Q_i S_i = Q_i (I_m - \beta \hat{u}_i \hat{u}_i^T) = Q_i - (Q_i \hat{u}_i) \beta \hat{u}_i^T" />
+<BlockMath math="\begin{aligned} A_{i+1} : &amp;= S_i A_i \\ &amp;= (I_m - \beta \hat{u}_i \hat{u}_i^T) A_i \\ &amp;= A_i - \hat{u}_i (\beta \hat{u}_i^T A_i) \end{aligned}" />
+<BlockMath math="\begin{aligned} Q_{i+1} : &amp;= Q_i S_i \\ &amp;= Q_i (I_m - \beta \hat{u}_i \hat{u}_i^T) \\ &amp;= Q_i - (Q_i \hat{u}_i) \beta \hat{u}_i^T \end{aligned}" />
 </MathContainer>
 
 Nach <InlineMath math="n" /> Schritten gilt

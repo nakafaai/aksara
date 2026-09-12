@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use graphs and examples to understand how a scale factor stretches, compresses, or reflects a function vertically.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Function Transformation",
 };
 
@@ -36,7 +36,8 @@ The quadratic function <InlineMath math="f(x) = x^2" /> shows how several scale 
 <LineEquation
   title={<>Vertical Dilation of Quadratic Function <InlineMath math="f(x) = x^2" /></>}
   description="Notice how the graph is stretched or compressed vertically with different scale factors."
-  cameraPosition={[12, 8, 12]}
+  cameraPosition={[0, 3, 15]}
+  cameraTarget={[0, 3, 0]}
   data={[
     {
       smooth: false,
@@ -45,7 +46,7 @@ The quadratic function <InlineMath math="f(x) = x^2" /> shows how several scale 
         return { x, y: x * x, z: 0 };
       }),
       color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [3.5, 1, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [2.5, -1, 0] }],
       showPoints: false,
     },
     {
@@ -55,7 +56,7 @@ The quadratic function <InlineMath math="f(x) = x^2" /> shows how several scale 
         return { x, y: 2 * x * x, z: 0 };
       }),
       color: "#ea580c",
-      labels: [{ text: <InlineMath math="g(x)=2x^2" />, offset: [3.5, 2, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=2x^2" />, offset: [2.5, -2.1, 0] }],
       showPoints: false,
     },
     {
@@ -65,7 +66,7 @@ The quadratic function <InlineMath math="f(x) = x^2" /> shows how several scale 
         return { x, y: 0.5 * x * x, z: 0 };
       }),
       color: "#0284c7",
-      labels: [{ text: <InlineMath math="h(x)=0.5x^2" />, offset: [3.5, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=0.5x^2" />, offset: [2.5, -3.2, 0] }],
       showPoints: false,
     },
   ]}
@@ -84,7 +85,8 @@ The same rule applies to the linear function <InlineMath math="f(x) = x + 1" />.
 <LineEquation
   title={<>Vertical Dilation of Linear Function <InlineMath math="f(x) = x + 1" /></>}
   description={<>The scale factor changes both the slope and the <InlineMath math="y" />-intercept.</>}
-  cameraPosition={[10, 6, 10]}
+  cameraPosition={[-0.5, 2, 14]}
+  cameraTarget={[-0.5, 2, 0]}
   data={[
     {
       points: Array.from({ length: 21 }, (_, i) => {
@@ -93,7 +95,7 @@ The same rule applies to the linear function <InlineMath math="f(x) = x + 1" />.
       }),
       smooth: false,
       color: "#d97706",
-      labels: [{ text: <InlineMath math="f(x)=x+1" />, offset: [2, 1.5, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=x+1" />, offset: [-3.3, 1, 0] }],
       showPoints: false,
     },
     {
@@ -103,7 +105,7 @@ The same rule applies to the linear function <InlineMath math="f(x) = x + 1" />.
       }),
       smooth: false,
       color: "#0d9488",
-      labels: [{ text: <InlineMath math="g(x)=3(x+1)" />, offset: [1, 2, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=3(x+1)" />, offset: [-2, 2, 0] }],
       showPoints: false,
     },
     {
@@ -113,7 +115,7 @@ The same rule applies to the linear function <InlineMath math="f(x) = x + 1" />.
       }),
       smooth: false,
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="h(x)=0.5(x+1)" />, offset: [2, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=0.5(x+1)" />, offset: [3, -1.5, 0] }],
       showPoints: false,
     },
   ]}
@@ -187,7 +189,8 @@ A negative scale factor combines vertical scaling with reflection across the <In
 <LineEquation
   title={<>Vertical Dilation with Negative Factor <InlineMath math="f(x) = x^2" /></>}
   description="Negative scale factor causes reflection as well as dilation."
-  cameraPosition={[10, 6, 10]}
+  cameraPosition={[0, 0, 13]}
+  cameraTarget={[0, 0, 0]}
   data={[
     {
       smooth: false,
@@ -196,7 +199,7 @@ A negative scale factor combines vertical scaling with reflection across the <In
         return { x, y: x * x, z: 0 };
       }),
       color: "#0891b2",
-      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [1, 1, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [3, 2, 0] }],
       showPoints: false,
     },
     {
@@ -206,7 +209,7 @@ A negative scale factor combines vertical scaling with reflection across the <In
         return { x, y: -2 * x * x, z: 0 };
       }),
       color: "#db2777",
-      labels: [{ text: <InlineMath math="g(x)=-2x^2" />, offset: [1, -2, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=-2x^2" />, offset: [3.6, -2, 0] }],
       showPoints: false,
     },
   ]}
@@ -279,7 +282,8 @@ When the scale factor is negative:
          <InlineMath math="0.5" /> producing a lower curve.
        </>
      }
-     cameraPosition={[8, 6, 8]}
+     cameraPosition={[2, 1, 8]}
+     cameraTarget={[2, 1, 0]}
      data={[
        {
          smooth: false,
@@ -289,7 +293,7 @@ When the scale factor is negative:
            return { x, y: Math.sqrt(x), z: 0 };
          }),
          color: "#7c3aed",
-         labels: [{ at: 50, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [2, 1, 0] }],
+         labels: [{ at: 50, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [0, 1.218861, 0] }],
          showPoints: false,
        },
        {
@@ -300,7 +304,7 @@ When the scale factor is negative:
            return { x, y: 0.5 * Math.sqrt(x), z: 0 };
          }),
          color: "#0d9488",
-         labels: [{ at: 50, text: <InlineMath math="g'(x)=0.5\sqrt{x}" />, offset: [2, 0.5, 0] }],
+         labels: [{ at: 50, text: <InlineMath math="g'(x)=0.5\sqrt{x}" />, offset: [0.9, -1.340569, 0] }],
          showPoints: false,
        },
      ]}

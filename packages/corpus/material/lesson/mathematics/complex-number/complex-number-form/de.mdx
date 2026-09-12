@@ -5,7 +5,7 @@ export const metadata = {
   description: "Kartesische, polare und exponentielle Form komplexer Zahlen sowie die sichere Umrechnung zwischen diesen Darstellungen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Komplexe Zahlen",
 };
 
@@ -30,7 +30,8 @@ Jede komplexe Zahl <InlineMath math="z = x + iy" /> kann als Punkt <InlineMath m
 <LineEquation
   title="Komplexe Zahlen auf der komplexen Ebene"
   description="Visualisierung mehrerer komplexer Zahlen als Punkte und Vektoren auf der komplexen Ebene."
-  cameraPosition={[0, 0, 10]}
+  cameraPosition={[0.7, 0.5, 8.5]}
+  cameraTarget={[0.7, 0.5, 0]}
   data={[
     {
       points: [
@@ -39,7 +40,7 @@ Jede komplexe Zahl <InlineMath math="z = x + iy" /> kann als Punkt <InlineMath m
       ],
       smooth: false,
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="z_1=3+2i" />, at: 1, offset: [0.5, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="z_1=3+2i" />, at: 1, offset: [0, 0.6, 0] }],
     },
     {
       points: [
@@ -48,7 +49,7 @@ Jede komplexe Zahl <InlineMath math="z = x + iy" /> kann als Punkt <InlineMath m
       ],
       smooth: false,
       color: "#059669",
-      labels: [{ text: <InlineMath math="z_2=-1-i" />, at: 1, offset: [-1, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="z_2=-1-i" />, at: 1, offset: [-0.5, -0.5, 0] }],
     },
     {
       points: [
@@ -142,7 +143,7 @@ Gib die folgenden komplexen Zahlen in Polarform an:
     - Hier sind <InlineMath math="x = 1" /> und <InlineMath math="y = \sqrt{3}" />.
     - Berechne den Betrag <InlineMath math="r" />:
 
-      <BlockMath math="r = \sqrt{1^2 + (\sqrt{3})^2} = \sqrt{1 + 3} = \sqrt{4} = 2" />
+      <BlockMath math="\begin{aligned} r &amp;= \sqrt{1^2 + (\sqrt{3})^2} \\ &amp;= \sqrt{1 + 3} \\ &amp;= \sqrt{4} \\ &amp;= 2 \end{aligned}" />
 
     - Bestimme das Argument <InlineMath math="\theta" />:
 
@@ -201,7 +202,7 @@ Betrachten wir die beiden vorigen Beispiele:
     - Betrag <InlineMath math="r = \sqrt{2}" />.
     - Argument <InlineMath math="\theta = 315^\circ" />. Umrechnung ins Bogenmaß:
 
-      <BlockMath math="315^\circ = 315 \times \frac{\pi}{180} = \frac{7 \times 45 \times \pi}{4 \times 45} = \frac{7\pi}{4}" />
+      <BlockMath math="\begin{aligned} 315^\circ &amp;= 315 \times \frac{\pi}{180} \\ &amp;= \frac{7 \times 45 \times \pi}{4 \times 45} \\ &amp;= \frac{7\pi}{4} \end{aligned}" />
 
       Gleichwertig kann der negative Winkel <InlineMath math="315^\circ - 360^\circ = -45^\circ = -\pi/4" /> verwendet werden.
     - Exponentialform mit einer der beiden Winkeldarstellungen:
@@ -247,7 +248,7 @@ Die kartesische Form ist normalerweise die klarste Wahl für Addition und Subtra
 
 Für den Rückweg von der Polarform zur kartesischen Form werden Sinus und Cosinus ausgewertet. Zum Beispiel:
 
-<BlockMath math="w=4\left(\cos\frac{5\pi}{6}+i\sin\frac{5\pi}{6}\right)=-2\sqrt{3}+2i" />
+<BlockMath math="\begin{aligned} w &amp;=4\left(\cos\frac{5\pi}{6}+i\sin\frac{5\pi}{6}\right) \\ &amp;=-2\sqrt{3}+2i \end{aligned}" />
 
 Das Ändern der Form ist daher eine Entscheidung zur Problemlösung und kein separater Vorgang an der Zahl.
 
@@ -311,7 +312,7 @@ Entscheide, ob die folgenden Paare komplexer Zahlen gleich oder verschieden sind
 4.  Für <InlineMath math="z = 2 + 2i" />:
     - Berechne den Betrag <InlineMath math="r" />:
 
-      <BlockMath math="r = \sqrt{x^2+y^2} = \sqrt{2^2+2^2} = \sqrt{4+4} = \sqrt{8} = 2\sqrt{2}" />
+      <BlockMath math="\begin{aligned} r &amp;= \sqrt{x^2+y^2} \\ &amp;= \sqrt{2^2+2^2} \\ &amp;= \sqrt{4+4} \\ &amp;= \sqrt{8} \\ &amp;= 2\sqrt{2} \end{aligned}" />
 
     - Berechne das Argument <InlineMath math="\theta" />:
 
@@ -321,7 +322,7 @@ Entscheide, ob die folgenden Paare komplexer Zahlen gleich oder verschieden sind
       liegt der Punkt im ersten Quadranten. Daher ist <InlineMath math="\theta = 45^\circ" /> beziehungsweise <InlineMath math="\pi/4" /> im Bogenmaß.
     - Polarform:
 
-      <BlockMath math="z = r(\cos \theta + i \sin \theta) = 2\sqrt{2}(\cos 45^\circ + i \sin 45^\circ)" />
+      <BlockMath math="\begin{aligned} z &amp;= r(\cos \theta + i \sin \theta) \\ &amp;= 2\sqrt{2}(\cos 45^\circ + i \sin 45^\circ) \end{aligned}" />
 
     - Exponentialform:
 
@@ -351,11 +352,11 @@ Entscheide, ob die folgenden Paare komplexer Zahlen gleich oder verschieden sind
 7.  Wenn die Wurzeln einer quadratischen Gleichung <InlineMath math="x_1 = 1 + i" /> und <InlineMath math="x_2 = 1 - i" /> sind, kann die Gleichung aus <InlineMath math="(x - x_1)(x - x_2) = 0" /> oder <InlineMath math="x^2 - (x_1 + x_2)x + (x_1 x_2) = 0" /> gebildet werden.
     - Berechne die Summe der Lösungen:
 
-      <BlockMath math="x_1 + x_2 = (1+i) + (1-i) = 1 + i + 1 - i = 2" />
+      <BlockMath math="\begin{aligned} x_1 + x_2 &amp;= (1+i) + (1-i) \\ &amp;= 1 + i + 1 - i \\ &amp;= 2 \end{aligned}" />
 
     - Berechne das Produkt der Lösungen:
 
-      <BlockMath math="x_1 x_2 = (1+i)(1-i) = 1^2 - i^2 = 1 - (-1) = 1 + 1 = 2" />
+      <BlockMath math="\begin{aligned} x_1 x_2 &amp;= (1+i)(1-i) \\ &amp;= 1^2 - i^2 \\ &amp;= 1 - (-1) \\ &amp;= 1 + 1 \\ &amp;= 2 \end{aligned}" />
 
     - Stelle daraus die quadratische Gleichung auf:
 

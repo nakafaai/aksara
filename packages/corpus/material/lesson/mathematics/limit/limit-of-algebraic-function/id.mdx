@@ -3,7 +3,7 @@ export const metadata = {
    description: "Cara menghitung limit fungsi polinomial dan rasional lewat substitusi, pemfaktoran, rasionalisasi, dan bentuk tak tentu.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-07",
+   dateModified: "2026-09-12",
    subject: "Limit",
 };
 
@@ -27,7 +27,7 @@ Misalkan <InlineMath math="f(x) = x^4 - 5x^3 + x^2 - 7" />, maka:
 
 Karena fungsi polinomial kontinu di semua titik, lakukan substitusi langsung:
 
-<BlockMath math="= 2^4 - 5(2^3) + 2^2 - 7 = 16 - 40 + 4 - 7 = -27" />
+<BlockMath math="\begin{aligned}  &amp;= 2^4 - 5(2^3) + 2^2 - 7 \\ &amp;= 16 - 40 + 4 - 7 \\ &amp;= -27 \end{aligned}" />
 
 ### Limit Fungsi Rasional
 
@@ -67,7 +67,7 @@ Untuk limit yang melibatkan bentuk akar, sering kali kita perlu merasionalkan. S
 Substitusi langsung:
 
 <MathContainer>
-<BlockMath math="\frac{\sqrt{1} - 1}{1 - 1} = \frac{1 - 1}{0} = \frac{0}{0} \text{ (bentuk tak tentu)}" />
+<BlockMath math="\begin{aligned} \frac{\sqrt{1} - 1}{1 - 1} &amp;= \frac{1 - 1}{0} \\ &amp;= \frac{0}{0} \text{ (bentuk tak tentu)} \end{aligned}" />
 </MathContainer>
 
 Kita rasionalkan dengan mengalikan dengan **bentuk sekawan** <InlineMath math="\sqrt{x} + 1" />. Tujuannya adalah menghilangkan bentuk akar di pembilang menggunakan rumus <InlineMath math="(a-b)(a+b) = a^2 - b^2" />:
@@ -75,12 +75,12 @@ Kita rasionalkan dengan mengalikan dengan **bentuk sekawan** <InlineMath math="\
 <MathContainer>
 <BlockMath math="\lim_{x \to 1} \frac{\sqrt{x} - 1}{x - 1} \cdot \frac{\sqrt{x} + 1}{\sqrt{x} + 1}" />
 <BlockMath math="= \lim_{x \to 1} \frac{(\sqrt{x} - 1)(\sqrt{x} + 1)}{(x - 1)(\sqrt{x} + 1)}" />
-<BlockMath math="= \lim_{x \to 1} \frac{(\sqrt{x})^2 - 1^2}{(x - 1)(\sqrt{x} + 1)} = \lim_{x \to 1} \frac{x - 1}{(x - 1)(\sqrt{x} + 1)}" />
+<BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 1} \frac{(\sqrt{x})^2 - 1^2}{(x - 1)(\sqrt{x} + 1)} \\ &amp;= \lim_{x \to 1} \frac{x - 1}{(x - 1)(\sqrt{x} + 1)} \end{aligned}" />
 </MathContainer>
 
 Karena <InlineMath math="x \neq 1" /> (mendekati <InlineMath math="1" />), kita dapat membatalkan <InlineMath math="(x - 1)" />:
 
-<BlockMath math="= \lim_{x \to 1} \frac{1}{\sqrt{x} + 1} = \frac{1}{\sqrt{1} + 1} = \frac{1}{1 + 1} = \frac{1}{2}" />
+<BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 1} \frac{1}{\sqrt{x} + 1} \\ &amp;= \frac{1}{\sqrt{1} + 1} \\ &amp;= \frac{1}{1 + 1} \\ &amp;= \frac{1}{2} \end{aligned}" />
 
 ## Penerapan Sifat Limit pada Fungsi Aljabar
 
@@ -100,7 +100,7 @@ Faktorkan keduanya. Untuk <InlineMath math="x^2 + 2x - 15" />, kita cari dua bil
 
 <MathContainer>
 <BlockMath math="x^2 - 9 = (x - 3)(x + 3)" />
-<BlockMath math="x^2 + 2x - 15 = x^2 + 5x - 3x - 15 = x(x + 5) - 3(x + 5) = (x - 3)(x + 5)" />
+<BlockMath math="\begin{aligned} &amp;x^2 + 2x - 15 \\ &amp;= x^2 + 5x - 3x - 15 \\ &amp;= x(x + 5) - 3(x + 5) \\ &amp;= (x - 3)(x + 5) \end{aligned}" />
 </MathContainer>
 
 Sehingga:
@@ -150,7 +150,7 @@ Fungsi polinomial kontinu pada setiap bilangan real. Fungsi rasional kontinu di 
 
    <MathContainer>
    <BlockMath math="\lim_{x \to 2} (x^4 - 5x^3 + x^2 - 7) = 2^4 - 5(2^3) + 2^2 - 7" />
-   <BlockMath math="= 16 - 5(8) + 4 - 7 = 16 - 40 + 4 - 7 = -27" />
+   <BlockMath math="\begin{aligned}  &amp;= 16 - 5(8) + 4 - 7 \\ &amp;= 16 - 40 + 4 - 7 \\ &amp;= -27 \end{aligned}" />
    </MathContainer>
 
 2. **Penyelesaian:**
@@ -168,7 +168,7 @@ Fungsi polinomial kontinu pada setiap bilangan real. Fungsi rasional kontinu di 
 
    <MathContainer>
    <BlockMath math="x^2 - 2x + 1 = (x - 1)^2" />
-   <BlockMath math="\lim_{x \to 1} \frac{(x - 1)^2}{x - 1} = \lim_{x \to 1} (x - 1) = 1 - 1 = 0" />
+   <BlockMath math="\begin{aligned} \lim_{x \to 1} \frac{(x - 1)^2}{x - 1} &amp;= \lim_{x \to 1} (x - 1) \\ &amp;= 1 - 1 \\ &amp;= 0 \end{aligned}" />
    </MathContainer>
 
 4. **Penyelesaian:**
@@ -191,7 +191,7 @@ Fungsi polinomial kontinu pada setiap bilangan real. Fungsi rasional kontinu di 
 
    <MathContainer>
    <BlockMath math="\lim_{x \to 0} \frac{\sqrt{x + 4} - 2}{x} \cdot \frac{\sqrt{x + 4} + 2}{\sqrt{x + 4} + 2}" />
-   <BlockMath math="= \lim_{x \to 0} \frac{(\sqrt{x + 4})^2 - 2^2}{x(\sqrt{x + 4} + 2)} = \lim_{x \to 0} \frac{(x + 4) - 4}{x(\sqrt{x + 4} + 2)}" />
-   <BlockMath math="= \lim_{x \to 0} \frac{x}{x(\sqrt{x + 4} + 2)} = \lim_{x \to 0} \frac{1}{\sqrt{x + 4} + 2}" />
-   <BlockMath math="= \frac{1}{\sqrt{0 + 4} + 2} = \frac{1}{\sqrt{4} + 2} = \frac{1}{2 + 2} = \frac{1}{4}" />
+   <BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 0} \frac{(\sqrt{x + 4})^2 - 2^2}{x(\sqrt{x + 4} + 2)} \\ &amp;= \lim_{x \to 0} \frac{(x + 4) - 4}{x(\sqrt{x + 4} + 2)} \end{aligned}" />
+   <BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 0} \frac{x}{x(\sqrt{x + 4} + 2)} \\ &amp;= \lim_{x \to 0} \frac{1}{\sqrt{x + 4} + 2} \end{aligned}" />
+   <BlockMath math="\begin{aligned}  &amp;= \frac{1}{\sqrt{0 + 4} + 2} \\ &amp;= \frac{1}{\sqrt{4} + 2} \\ &amp;= \frac{1}{2 + 2} \\ &amp;= \frac{1}{4} \end{aligned}" />
    </MathContainer>

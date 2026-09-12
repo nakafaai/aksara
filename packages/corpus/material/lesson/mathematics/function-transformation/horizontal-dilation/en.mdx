@@ -3,7 +3,7 @@ export const metadata = {
   description: "Determine a function's horizontal scale from its input multiplier, then apply the rule to graphs, domains, and worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Function Transformation",
 };
 
@@ -49,7 +49,7 @@ For the quadratic function <InlineMath math="f(x) = x^2" />, several input multi
         return { x, y: x * x, z: 0 };
       }),
       color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [4, 2, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [2.5, -1, 0] }],
       showPoints: false,
     },
     {
@@ -59,7 +59,7 @@ For the quadratic function <InlineMath math="f(x) = x^2" />, several input multi
         return { x, y: (2 * x) * (2 * x), z: 0 };
       }),
       color: "#ea580c",
-      labels: [{ text: <InlineMath math="g(x)=(2x)^2" />, offset: [4, 3, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=(2x)^2" />, offset: [2.5, -2.1, 0] }],
       showPoints: false,
     },
     {
@@ -69,10 +69,12 @@ For the quadratic function <InlineMath math="f(x) = x^2" />, several input multi
         return { x, y: (0.5 * x) * (0.5 * x), z: 0 };
       }),
       color: "#0284c7",
-      labels: [{ text: <InlineMath math="h(x)=(0.5x)^2" />, offset: [4, 1, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=(0.5x)^2" />, offset: [2.5, -3.2, 0] }],
       showPoints: false,
     },
   ]}
+  cameraTarget={[0, 3, 0]}
+  cameraPosition={[0, 3, 15]}
 />
 
 The graph shows:
@@ -190,7 +192,8 @@ A negative input multiplier combines horizontal scaling with a reflection.
 <LineEquation
   title={<>Horizontal Dilation with a Negative Input Multiplier for <InlineMath math="f(x) = x^2 + 1" /></>}
   description="Its absolute value sets the horizontal scale, while its sign causes reflection."
-  cameraPosition={[10, 6, 10]}
+  cameraPosition={[0, 3, 13]}
+  cameraTarget={[0, 3, 0]}
   data={[
     {
       smooth: false,
@@ -199,7 +202,7 @@ A negative input multiplier combines horizontal scaling with a reflection.
         return { x, y: x * x + 1, z: 0 };
       }),
       color: "#0891b2",
-      labels: [{ text: <InlineMath math="f(x)=x^2+1" />, offset: [2, 1, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=x^2+1" />, offset: [2, -1.5, 0] }],
       showPoints: false,
     },
     {
@@ -209,7 +212,7 @@ A negative input multiplier combines horizontal scaling with a reflection.
         return { x, y: (-2 * x) * (-2 * x) + 1, z: 0 };
       }),
       color: "#db2777",
-      labels: [{ text: <InlineMath math="g(x)=(-2x)^2+1" />, offset: [3, 2, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=(-2x)^2+1" />, offset: [2, -2.8, 0] }],
       showPoints: false,
     },
   ]}
@@ -291,7 +294,7 @@ When the input multiplier is negative:
            return { x, y: Math.sqrt(x), z: 0 };
          }),
          color: "#7c3aed",
-         labels: [{ at: 50, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [2, 1, 0] }],
+         labels: [{ at: 50, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [0, 1.218861, 0] }],
          showPoints: false,
        },
        {
@@ -302,10 +305,12 @@ When the input multiplier is negative:
            return { x, y: Math.sqrt(0.5 * x), z: 0 };
          }),
          color: "#0d9488",
-         labels: [{ at: 50, text: <InlineMath math="g'(x)=\sqrt{\frac{x}{2}}" />, offset: [3, 0.5, 0] }],
+         labels: [{ at: 50, text: <InlineMath math="g'(x)=\sqrt{\frac{x}{2}}" />, offset: [0.9, -0.818034, 0] }],
          showPoints: false,
        },
      ]}
+     cameraTarget={[2, 1, 0]}
+     cameraPosition={[2, 1, 8]}
    />
 
 3. The original function <InlineMath math="h(x) = |x - 2|" /> has its vertex at <InlineMath math="(2, 0)" />.

@@ -3,7 +3,7 @@ export const metadata = {
    description: "Polinomial karakteristik digunakan untuk mencari nilai eigen, menentukan multiplisitas aljabar, serta menghubungkan koefisien polinomial dengan jejak matriks.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-12",
     subject: "Metode Linear AI",
 };
 
@@ -108,7 +108,7 @@ Akar tersebut lolos dua pemeriksaan berguna: jumlahnya sama dengan jejak matriks
 Polinomial karakteristik dari matriks <InlineMath math="A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" /> adalah:
 
 <MathContainer>
-<BlockMath math="\chi_A(t) = \det(A - t \cdot I) = \det \begin{pmatrix} 1-t & 2 \\ 0 & 1-t \end{pmatrix}" />
+<BlockMath math="\begin{aligned} \chi_A(t) &amp;= \det(A - t \cdot I) \\ &amp;= \det \begin{pmatrix} 1-t &amp; 2 \\ 0 &amp; 1-t \end{pmatrix} \end{aligned}" />
 <BlockMath math="= (1-t) \cdot (1-t) - 0 \cdot 2 = (1-t)^2" />
 <BlockMath math="= t^2 - 2 \cdot t + 1" />
 </MathContainer>
@@ -123,7 +123,7 @@ Pemetaan yang umum pada <InlineMath math="\mathbb{R}^2" /> berikut menghubungkan
 
 Rotasi dengan <InlineMath math="A = \begin{pmatrix} \cos(\alpha) & -\sin(\alpha) \\ \sin(\alpha) & \cos(\alpha) \end{pmatrix}" /> memiliki polinomial karakteristik:
 
-<BlockMath math="\chi_A(t) = (\cos(\alpha) - t)^2 + \sin(\alpha)^2 = t^2 - 2 \cdot \cos(\alpha) \cdot t + 1" />
+<BlockMath math="\begin{aligned} \chi_A(t) &amp;= (\cos(\alpha) - t)^2 + \sin(\alpha)^2 \\ &amp;= t^2 - 2 \cdot \cos(\alpha) \cdot t + 1 \end{aligned}" />
 
 Diskriminannya adalah <InlineMath math="-4\sin^2(\alpha)" />. Akarnya real tepat ketika <InlineMath math="\sin(\alpha)=0" />, sehingga, dalam satu putaran penuh, <InlineMath math="\alpha\equiv0" /> atau <InlineMath math="\alpha\equiv\pi\pmod{2\pi}" />.
 
@@ -158,9 +158,9 @@ Matriks serupa menggambarkan transformasi linear yang sama dalam basis berbeda. 
 Misalkan <InlineMath math="S \in \mathbb{K}^{n \times n}" /> dapat diinversi dan <InlineMath math="B = S^{-1} \cdot A \cdot S" />. Maka:
 
 <MathContainer>
-<BlockMath math="\chi_B(t) = \det(B - t \cdot I) = \det(S^{-1} \cdot A \cdot S - t \cdot S^{-1} \cdot I \cdot S)" />
+<BlockMath math="\begin{aligned} &amp;\chi_B(t) \\ &amp;= \det(B - t \cdot I) \\ &amp;= \det(S^{-1} \cdot A \cdot S - t \cdot S^{-1} \cdot I \cdot S) \end{aligned}" />
 <BlockMath math="= \det(S^{-1} \cdot (A - t \cdot I) \cdot S)" />
-<BlockMath math="= \det S^{-1} \cdot \det(A - t \cdot I) \cdot \det S = \chi_A(t)" />
+<BlockMath math="\begin{aligned}  &amp;= \det S^{-1} \cdot \det(A - t \cdot I) \cdot \det S \\ &amp;= \chi_A(t) \end{aligned}" />
 </MathContainer>
 
 ### Sifat Vektor Eigen Matriks Serupa
@@ -170,7 +170,7 @@ Vektor eigen berubah mengikuti basisnya. Jika <InlineMath math="v \in \mathbb{K}
 Dengan menggunakan <InlineMath math="Av=\lambda v" /> dan <InlineMath math="w=S^{-1}v" />, kita memperoleh
 
 <MathContainer>
-<BlockMath math="B \cdot w = S^{-1} \cdot A \cdot S \cdot S^{-1} \cdot v = S^{-1} \cdot A \cdot v" />
+<BlockMath math="\begin{aligned} B \cdot w &amp;= S^{-1} \cdot A \cdot S \cdot S^{-1} \cdot v \\ &amp;= S^{-1} \cdot A \cdot v \end{aligned}" />
 <BlockMath math="= S^{-1} \cdot \lambda \cdot v = \lambda \cdot S^{-1} \cdot v = \lambda \cdot w" />
 </MathContainer>
 

@@ -3,7 +3,7 @@ export const metadata = {
    description: "Das dreistufige Verfahren zur Matrixdiagonalisierung: Eigenwerte berechnen, Eigenräume bestimmen und die Diagonalisierbarkeit prüfen.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-07",
+   dateModified: "2026-09-12",
    subject: "Lineare Methoden der KI",
 };
 
@@ -50,7 +50,7 @@ Nun führen wir die drei Schritte durch:
 
 1. Zuerst berechnen wir das charakteristische Polynom:
 
-   <BlockMath math="\chi_A(t) = \det(A - t \cdot I) = -t^3 + t^2 + t - 1" />
+   <BlockMath math="\begin{aligned} \chi_A(t) &amp;= \det(A - t \cdot I) \\ &amp;= -t^3 + t^2 + t - 1 \end{aligned}" />
 
    Nach Faktorisierung erhalten wir:
 
@@ -61,8 +61,8 @@ Nun führen wir die drei Schritte durch:
 2. Für jeden Eigenwert bestimmen wir den zugehörigen Eigenraum:
 
    <MathContainer>
-   <BlockMath math="E_A(1) = \ker(A - I) = \operatorname{span}\left\{\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}\right\}" />
-   <BlockMath math="E_A(-1) = \ker(A + I) = \operatorname{span}\left\{\begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}\right\}" />
+   <BlockMath math="\begin{aligned} E_A(1) &amp;= \ker(A - I) \\ &amp;= \operatorname{span}\left\{\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}\right\} \end{aligned}" />
+   <BlockMath math="\begin{aligned} E_A(-1) &amp;= \ker(A + I) \\ &amp;= \operatorname{span}\left\{\begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}\right\} \end{aligned}" />
    </MathContainer>
 
    Der Kern oder Nullraum enthält alle Vektoren, die auf den Nullvektor abgebildet werden. Die lineare Hülle einer Vektormenge umfasst dagegen alle Linearkombinationen dieser Vektoren.

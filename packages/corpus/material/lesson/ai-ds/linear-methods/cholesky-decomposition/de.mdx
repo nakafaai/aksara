@@ -3,7 +3,7 @@ export const metadata = {
    description: "Faktorisiere positiv definite Matrizen mit der Cholesky-Zerlegung und schätze den Rechenaufwand des Algorithmus ab.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-12",
     subject: "Lineare Methoden der KI",
 };
 
@@ -20,7 +20,7 @@ Dies bedeutet, dass wir eine Faktorisierung in der Form <InlineMath math="A = L 
 Aus <InlineMath math="A = A^T" /> folgt außerdem:
 
 <MathContainer>
-<BlockMath math="A = A^T = (L \cdot U)^T = (L \cdot D \cdot \tilde{U})^T = \tilde{U}^T \cdot D \cdot L^T" />
+<BlockMath math="\begin{aligned} A &amp;= A^T \\ &amp;= (L \cdot U)^T \\ &amp;= (L \cdot D \cdot \tilde{U})^T \\ &amp;= \tilde{U}^T \cdot D \cdot L^T \end{aligned}" />
 </MathContainer>
 
 Dabei ist <InlineMath math="\tilde{U}" /> eine Matrix, deren Hauptdiagonale auf <InlineMath math="1" /> normiert ist, und <InlineMath math="D" /> eine Diagonalmatrix:
@@ -99,7 +99,7 @@ Damit gilt
 
 <MathContainer>
 <BlockMath math="\tilde L=\begin{pmatrix}2&0\\1&2\end{pmatrix}" />
-<BlockMath math="\tilde L\tilde L^T=\begin{pmatrix}2&0\\1&2\end{pmatrix}\begin{pmatrix}2&1\\0&2\end{pmatrix}=\begin{pmatrix}4&2\\2&5\end{pmatrix}=A" />
+<BlockMath math="\begin{aligned} \tilde L\tilde L^T &amp;=\begin{pmatrix}2&amp;0\\1&amp;2\end{pmatrix}\begin{pmatrix}2&amp;1\\0&amp;2\end{pmatrix} \\ &amp;=\begin{pmatrix}4&amp;2\\2&amp;5\end{pmatrix} \\ &amp;=A \end{aligned}" />
 </MathContainer>
 
 Ist der Faktor bekannt, lösen wir <InlineMath math="Ax=b" /> mit zwei Dreieckssystemen statt mit einer Inversen: zuerst <InlineMath math="\tilde Ly=b" />, danach <InlineMath math="\tilde L^Tx=y" />.

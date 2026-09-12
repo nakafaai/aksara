@@ -4,7 +4,7 @@ export const metadata = {
   description: "Telusuri pertukaran koordinat saat titik, segitiga, dan garis dicerminkan terhadap diagonal utama.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-17",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Transformasi Geometri",
 };
 
@@ -57,7 +57,7 @@ Pasangan titik berikut memperlihatkan pertukaran koordinatnya:
       ],
       smooth: false,
       color: "#9333ea",
-      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [0.5, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [-0.7, -2.3, 0] }],
       }, // Garis refleksi
     // Titik A dan A'
     {
@@ -99,7 +99,8 @@ Pasangan titik berikut memperlihatkan pertukaran koordinatnya:
       labels: [{ text: <InlineMath math="C'(-3,-1)" />, at: 0, offset: [0.3, 0.3, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 15]}
+  cameraPosition={[0.5, 0.5, 12]}
+  cameraTarget={[0.5, 0.5, 0]}
 />
 
 ## Mencerminkan Segitiga
@@ -135,7 +136,7 @@ Segitiga bayangan <InlineMath math="A'B'C'" /> terbentuk dengan menghubungkan ti
       ],
       smooth: false,
       color: "#9333ea",
-      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [0.5, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [-3.4, -1.5, 0] }],
       }, // Garis refleksi
     // Segitiga ABC (Asli)
     ...[
@@ -156,7 +157,7 @@ Segitiga bayangan <InlineMath math="A'B'C'" /> terbentuk dengan menghubungkan ti
       smooth: false,
       color: "#d97706",
       showPoints: true,
-      labels: [{ text: segment.from.label, at: 0, offset: [0.4, 0.4, 0] }],
+      labels: [{ text: segment.from.label, at: 0, offset: segment.from.x === -2 && segment.from.y === 4 ? [0.4, 0.6, 0] : segment.from.x === 3 && segment.from.y === 1 ? [0.5, 0.8, 0] : [-0.7, -0.7, 0] }],
     })),
     // Segitiga A'B'C' (Bayangan)
     ...[
@@ -177,10 +178,11 @@ Segitiga bayangan <InlineMath math="A'B'C'" /> terbentuk dengan menghubungkan ti
       smooth: false,
       color: "#0d9488",
       showPoints: true,
-      labels: [{ text: segment.from.label, at: 0, offset: [0.4, 0.4, 0] }],
+      labels: [{ text: segment.from.label, at: 0, offset: segment.from.x === 4 && segment.from.y === -2 ? [0.3, -0.8, 0] : segment.from.x === 1 && segment.from.y === 3 ? [0, 1, 0] : [-0.3, -0.8, 0] }],
     })),
   ]}
-  cameraPosition={[0, 0, 18]}
+  cameraPosition={[0.5, 0.5, 13]}
+  cameraTarget={[0.5, 0.5, 0]}
 />
 
 ## Mencerminkan Persamaan Garis
@@ -227,7 +229,7 @@ Jadi, persamaan bayangan dari garis <InlineMath math="y = 2x + 3" /> setelah dic
       ],
       smooth: false,
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [0.5, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [-4.2, -1.5, 0] }],
       }, // Garis refleksi
     {
       // Garis Asli y = 2x + 3
@@ -237,7 +239,7 @@ Jadi, persamaan bayangan dari garis <InlineMath math="y = 2x + 3" /> setelah dic
       }),
       color: "#9333ea",
       smooth: false,
-      labels: [{ text: <InlineMath math="y=2x+3" />, at: 4, offset: [-1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=2x+3" />, at: 4, offset: [-2, 2, 0] }],
     },
     {
       // Garis Bayangan y = (1/2)x - 3/2
@@ -247,10 +249,11 @@ Jadi, persamaan bayangan dari garis <InlineMath math="y = 2x + 3" /> setelah dic
       }),
       color: "#db2777",
       smooth: false,
-      labels: [{ text: <InlineMath math="y=(\frac{1}{2})x-\frac{3}{2}" />, at: 9, offset: [0.5, -1, 0] }],
+      labels: [{ text: <InlineMath math="y=(\frac{1}{2})x-\frac{3}{2}" />, at: 9, offset: [-1, -2.5, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 18]}
+  cameraPosition={[0, 1, 14]}
+  cameraTarget={[0, 1, 0]}
 />
 
 ## Latihan

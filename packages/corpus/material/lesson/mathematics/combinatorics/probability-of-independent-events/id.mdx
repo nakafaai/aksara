@@ -3,7 +3,7 @@ export const metadata = {
    description: "Uji apakah dua kejadian saling bebas dan hitung peluang gabungannya tanpa bergantung pada kata kunci yang menyesatkan.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-07",
+   dateModified: "2026-09-12",
    subject: "Kombinatorik",
 };
 
@@ -201,15 +201,20 @@ Coba kerjakan setiap latihan sebelum membaca pembahasannya. Jelaskan alasan kedu
 
 4. **Penyelesaian:**
 
-   **Cara <InlineMath math="1" />: Enumerasi Langsung**
+   **Cara 1: Enumerasi Langsung**
 
-   Gunakan <InlineMath math="0" /> untuk sisi angka dan <InlineMath math="1" /> untuk sisi gambar. Ruang sampel <InlineMath math="3" /> koin adalah <InlineMath math="\{000, 001, 010, 011, 100, 101, 110, 111\}" />, dengan <InlineMath math="8" /> hasil.
+   Gunakan <InlineMath math="0" /> untuk sisi angka dan <InlineMath math="1" /> untuk sisi gambar. Ruang sampel <InlineMath math="3" /> koin memuat <InlineMath math="8" /> hasil:
+
+   <BlockMath math="\left\{\begin{gathered}
+   000, 001, 010, 011, \\
+   100, 101, 110, 111
+   \end{gathered}\right\}" />
 
    Tepat dua sisi gambar terjadi pada <InlineMath math="\{011, 101, 110\}" />, sehingga ada <InlineMath math="3" /> hasil yang diinginkan.
 
    <BlockMath math="P(\text{tepat 2 gambar}) = \frac{3}{8}" />
 
-   **Cara <InlineMath math="2" />: Menggunakan Distribusi Binomial**
+   **Cara 2: Menggunakan Distribusi Binomial**
 
    Untuk <InlineMath math="n = 3" /> lemparan dengan probabilitas sukses (gambar) <InlineMath math="p = \frac{1}{2}" />, probabilitas tepat <InlineMath math="k = 2" /> sukses adalah:
 

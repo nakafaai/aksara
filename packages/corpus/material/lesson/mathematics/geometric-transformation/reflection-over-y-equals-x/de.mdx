@@ -4,7 +4,7 @@ export const metadata = {
     description: "Vertausche die Koordinaten von Punkten, Dreiecken und Gleichungen bei einer Spiegelung an der ersten Winkelhalbierenden.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Geometrische Transformation",
 };
 
@@ -57,7 +57,7 @@ Bei den folgenden Punktpaaren tauschen die Koordinaten ihre Plätze:
       ],
       smooth: false,
       color: "#9333ea",
-      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [0.5, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [-0.7, -2.3, 0] }],
     }, // Spiegelgerade
     // Punkte A und A'
     {
@@ -99,7 +99,8 @@ Bei den folgenden Punktpaaren tauschen die Koordinaten ihre Plätze:
       labels: [{ text: <InlineMath math="C'(-3,-1)" />, at: 0, offset: [0.3, 0.3, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 15]}
+  cameraPosition={[0.5, 0.5, 12]}
+  cameraTarget={[0.5, 0.5, 0]}
 />
 
 ## Ein Dreieck spiegeln
@@ -135,7 +136,7 @@ Das Bilddreieck <InlineMath math="A'B'C'" /> entsteht durch die Verbindung der P
       ],
       smooth: false,
       color: "#9333ea",
-      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [0.5, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [-3.4, -1.5, 0] }],
     }, // Spiegelgerade
     // Ausgangsdreieck ABC
     ...[
@@ -156,7 +157,7 @@ Das Bilddreieck <InlineMath math="A'B'C'" /> entsteht durch die Verbindung der P
       smooth: false,
       color: "#d97706",
       showPoints: true,
-      labels: [{ text: segment.from.label, at: 0, offset: [0.4, 0.4, 0] }],
+      labels: [{ text: segment.from.label, at: 0, offset: segment.from.x === -2 && segment.from.y === 4 ? [0.4, 0.6, 0] : segment.from.x === 3 && segment.from.y === 1 ? [0.5, 0.8, 0] : [-0.7, -0.7, 0] }],
     })),
     // Bilddreieck A'B'C'
     ...[
@@ -177,10 +178,11 @@ Das Bilddreieck <InlineMath math="A'B'C'" /> entsteht durch die Verbindung der P
       smooth: false,
       color: "#0d9488",
       showPoints: true,
-      labels: [{ text: segment.from.label, at: 0, offset: [0.4, 0.4, 0] }],
+      labels: [{ text: segment.from.label, at: 0, offset: segment.from.x === 4 && segment.from.y === -2 ? [0.3, -0.8, 0] : segment.from.x === 1 && segment.from.y === 3 ? [0, 1, 0] : [-0.3, -0.8, 0] }],
     })),
   ]}
-  cameraPosition={[0, 0, 18]}
+  cameraPosition={[0.5, 0.5, 13]}
+  cameraTarget={[0.5, 0.5, 0]}
 />
 
 ## Eine Geradengleichung spiegeln
@@ -227,7 +229,7 @@ Die Bildgerade von <InlineMath math="y = 2x + 3" /> hat nach der Spiegelung an <
       ],
       smooth: false,
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [0.5, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [-4.2, -1.5, 0] }],
     }, // Spiegelgerade
     {
       // Ursprüngliche Gerade y = 2x + 3
@@ -237,7 +239,7 @@ Die Bildgerade von <InlineMath math="y = 2x + 3" /> hat nach der Spiegelung an <
       }),
       color: "#9333ea",
       smooth: false,
-      labels: [{ text: <InlineMath math="y=2x+3" />, at: 4, offset: [-1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=2x+3" />, at: 4, offset: [-2, 2, 0] }],
     },
     {
       // Bildgerade y = (1/2)x - 3/2
@@ -247,10 +249,11 @@ Die Bildgerade von <InlineMath math="y = 2x + 3" /> hat nach der Spiegelung an <
       }),
       color: "#db2777",
       smooth: false,
-      labels: [{ text: <InlineMath math="y=(\frac{1}{2})x-\frac{3}{2}" />, at: 9, offset: [0.5, -1, 0] }],
+      labels: [{ text: <InlineMath math="y=(\frac{1}{2})x-\frac{3}{2}" />, at: 9, offset: [-1, -2.5, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 18]}
+  cameraPosition={[0, 1, 14]}
+  cameraTarget={[0, 1, 0]}
 />
 
 ## Übungen

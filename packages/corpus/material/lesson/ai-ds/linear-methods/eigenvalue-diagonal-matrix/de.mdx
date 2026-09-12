@@ -3,7 +3,7 @@ export const metadata = {
     description: "Eigenwerte aus den Diagonaleinträgen von Diagonal- und Dreiecksmatrizen ablesen und mit Determinante und Spur prüfen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-12",
     subject: "Lineare Methoden der KI",
 };
 
@@ -43,7 +43,7 @@ Angenommen <InlineMath math="A = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}" 
 
 <MathContainer>
 <BlockMath math="\chi_A(t) = \det \begin{pmatrix} 1-t & -1 \\ 1 & 1-t \end{pmatrix}" />
-<BlockMath math="= (1-t) \cdot (1-t) - 1 \cdot (-1) = t^2 - 2t + 2" />
+<BlockMath math="\begin{aligned}  &amp;= (1-t) \cdot (1-t) - 1 \cdot (-1) \\ &amp;= t^2 - 2t + 2 \end{aligned}" />
 </MathContainer>
 
 Die Nullstellen dieses charakteristischen Polynoms sind <InlineMath math="\lambda_1 = 1 + i" /> und <InlineMath math="\lambda_2 = 1 - i" />.
@@ -54,7 +54,7 @@ Für <InlineMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" /> ist
 
 <MathContainer>
 <BlockMath math="\chi_A(t) = \det \begin{pmatrix} 1-t & -i \\ i & 1-t \end{pmatrix}" />
-<BlockMath math="= (1-t) \cdot (1-t) - i \cdot (-i) = t^2 - 2t" />
+<BlockMath math="\begin{aligned}  &amp;= (1-t) \cdot (1-t) - i \cdot (-i) \\ &amp;= t^2 - 2t \end{aligned}" />
 </MathContainer>
 
 Die Nullstellen dieses charakteristischen Polynoms sind <InlineMath math="\lambda_1 = 2" /> und <InlineMath math="\lambda_2 = 0" />.
@@ -91,14 +91,14 @@ Prüfen wir anhand unserer vorherigen Beispiele:
 Für <InlineMath math="A = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}" /> mit <InlineMath math="\lambda_1 = 1 + i" />, <InlineMath math="\lambda_2 = 1 - i" />:
 
 <MathContainer>
-<BlockMath math="\det A = 1 \cdot 1 - 1 \cdot (-1) = 2 = \lambda_1 \cdot \lambda_2" />
+<BlockMath math="\begin{aligned} \det A &amp;= 1 \cdot 1 - 1 \cdot (-1) \\ &amp;= 2 \\ &amp;= \lambda_1 \cdot \lambda_2 \end{aligned}" />
 <BlockMath math="\text{tr} A = 1 + 1 = 2 = \lambda_1 + \lambda_2" />
 </MathContainer>
 
 Für <InlineMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" /> mit <InlineMath math="\lambda_1 = 2" />, <InlineMath math="\lambda_2 = 0" />:
 
 <MathContainer>
-<BlockMath math="\det A = 1 \cdot 1 - i \cdot (-i) = 0 = \lambda_1 \cdot \lambda_2" />
+<BlockMath math="\begin{aligned} \det A &amp;= 1 \cdot 1 - i \cdot (-i) \\ &amp;= 0 \\ &amp;= \lambda_1 \cdot \lambda_2 \end{aligned}" />
 <BlockMath math="\text{tr} A = 1 + 1 = 2 = \lambda_1 + \lambda_2" />
 </MathContainer>
 

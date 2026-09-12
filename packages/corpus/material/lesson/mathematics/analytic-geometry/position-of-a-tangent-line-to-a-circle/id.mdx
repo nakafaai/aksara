@@ -86,7 +86,7 @@ Mulailah dengan memastikan bahwa titik singgung yang diberikan benar-benar berad
       color: "#0d9488",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Garis Singgung", at: 1, offset: [1, 2, 0] }],
+      labels: [{ text: "Garis Singgung", at: 1, offset: [-2.5, 4.5, 0] }],
     },
     {
       points: Array.from({ length: 2 }, (_, i) => {
@@ -270,7 +270,7 @@ Untuk lingkaran <InlineMath math="x^2 + y^2 = r^2" /> dan gradien <InlineMath ma
 Karena garis menyinggung lingkaran, diskriminan persamaan kuadrat ini harus nol:
 
 <MathContainer>
-  <BlockMath math="\Delta = (2mc)^2 - 4(1 + m^2)(c^2 - r^2) = 0" />
+  <BlockMath math="\begin{aligned} \Delta &amp;= (2mc)^2 - 4(1 + m^2)(c^2 - r^2) \\ &amp;= 0 \end{aligned}" />
   <BlockMath math="4m^2c^2 - 4(1 + m^2)(c^2 - r^2) = 0" />
   <BlockMath math="m^2c^2 - (1 + m^2)c^2 + (1 + m^2)r^2 = 0" />
   <BlockMath math="-c^2 + (1 + m^2)r^2 = 0" />
@@ -381,7 +381,7 @@ Sebuah titik di luar lingkaran menentukan tepat **dua garis singgung**. Kedua ti
       color: "#0d9488",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Singgung 1", at: 0, offset: [0.5, -1, 0] }],
+      labels: [{ text: "Singgung 1", at: 0, offset: [-0.3, -2.2, 0] }],
     },
     {
       points: Array.from({ length: 2 }, (_, i) => {
@@ -401,7 +401,7 @@ Sebuah titik di luar lingkaran menentukan tepat **dua garis singgung**. Kedua ti
       color: "#d97706",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Singgung 2", at: 0, offset: [0.5, 1, 0] }],
+      labels: [{ text: "Singgung 2", at: 0, offset: [-1.2, 1.3, 0] }],
     },
     {
       points: Array.from({ length: 2 }, (_, i) => {
@@ -434,7 +434,8 @@ Sebuah titik di luar lingkaran menentukan tepat **dua garis singgung**. Kedua ti
       smooth: false,
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[1, 0, 12]}
+  cameraTarget={[1, 0, 0]}
 />
 
 Misalkan <InlineMath math="P(x_0,y_0)" /> berada di luar lingkaran <InlineMath math="(x-a)^2+(y-b)^2=r^2" />. **Garis kutubnya** adalah:
@@ -474,7 +475,7 @@ Tentukan kedua garis singgung dari <InlineMath math="B(2,6)" /> ke lingkaran <In
 <MathContainer>
   <BlockMath math="(17-4y)^2+9(y-2)^2=81" />
   <BlockMath math="25y^2-172y+244=0" />
-  <BlockMath math="y=\frac{172\pm\sqrt{172^2-4(25)(244)}}{50}=\frac{172\pm72}{50}" />
+  <BlockMath math="\begin{aligned} y &amp;=\frac{172\pm\sqrt{172^2-4(25)(244)}}{50} \\ &amp;=\frac{172\pm72}{50} \end{aligned}" />
   <BlockMath math="y_1=\frac{122}{25}\quad\text{dan}\quad y_2=2" />
 </MathContainer>
 

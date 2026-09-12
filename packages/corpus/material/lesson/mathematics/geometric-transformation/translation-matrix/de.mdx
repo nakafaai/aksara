@@ -4,7 +4,7 @@ export const metadata = {
   description: "Stelle Verschiebungen als Vektoraddition und mit homogenen Koordinaten dar und verbinde sie dadurch mit weiteren Transformationen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Geometrische Transformation",
 };
 
@@ -24,7 +24,7 @@ Wenn wir jedoch die Verschiebung mit anderen linearen Transformationen mithilfe 
 
 Also:
 
-<BlockMath math="\begin{pmatrix} x' \\ y' \\ 1 \end{pmatrix} = \begin{pmatrix} 1 & 0 & a \\ 0 & 1 & b \\ 0 & 0 & 1 \end{pmatrix} \begin{pmatrix} x \\ y \\ 1 \end{pmatrix} = \begin{pmatrix} x+a \\ y+b \\ 1 \end{pmatrix}" />
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \\ 1 \end{pmatrix} &amp;= \begin{pmatrix} 1 &amp; 0 &amp; a \\ 0 &amp; 1 &amp; b \\ 0 &amp; 0 &amp; 1 \end{pmatrix} \begin{pmatrix} x \\ y \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} x+a \\ y+b \\ 1 \end{pmatrix} \end{aligned}" />
 
 ### Matrixdarstellung
 
@@ -40,7 +40,7 @@ Bestimme mithilfe der Vektordarstellung das Bild des Punktes <InlineMath math="(
 
 Die Matrixoperation liefert den Bildpunkt:
 
-<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -2 \\ 3 \end{pmatrix} + \begin{pmatrix} -3 \\ 4 \end{pmatrix} = \begin{pmatrix} -2 + (-3) \\ 3 + 4 \end{pmatrix} = \begin{pmatrix} -5 \\ 7 \end{pmatrix}" />
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} -2 \\ 3 \end{pmatrix} + \begin{pmatrix} -3 \\ 4 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 + (-3) \\ 3 + 4 \end{pmatrix} \\ &amp;= \begin{pmatrix} -5 \\ 7 \end{pmatrix} \end{aligned}" />
 
 Der Bildpunkt ist <InlineMath math="(-5,7)" />.
 
@@ -79,10 +79,11 @@ Der Bildpunkt ist <InlineMath math="(-5,7)" />.
       color: "#e11d48",
       lineWidth: 2,
       cone: { position: "end", size: 0.3 },
-      labels: [{ text: <>Vektor <InlineMath math="(-3,4)" /></>, at: 0, offset: [-0.5, 2, 0] }],
+      labels: [{ text: <>Vektor <InlineMath math="(-3,4)" /></>, at: 0, offset: [1, 1.8, 0] }],
     },
   ]}
-  cameraPosition={[-10, 10, 12]}
+  cameraPosition={[-3.5, 5, 9]}
+  cameraTarget={[-3.5, 5, 0]}
 />
 
 ## Übungen
@@ -94,7 +95,7 @@ Der Bildpunkt ist <InlineMath math="(-5,7)" />.
 
 1.  Ausgangspunkt <InlineMath math="(4,-5)" />, Verschiebungsvektor <InlineMath math="\begin{pmatrix} -5 \\ 4 \end{pmatrix}" />.
 
-    <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 4 \\ -5 \end{pmatrix} + \begin{pmatrix} -5 \\ 4 \end{pmatrix} = \begin{pmatrix} 4-5 \\ -5+4 \end{pmatrix} = \begin{pmatrix} -1 \\ -1 \end{pmatrix}" />
+    <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 4 \\ -5 \end{pmatrix} + \begin{pmatrix} -5 \\ 4 \end{pmatrix} \\ &amp;= \begin{pmatrix} 4-5 \\ -5+4 \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 \\ -1 \end{pmatrix} \end{aligned}" />
 
     Der Bildpunkt ist <InlineMath math="(-1,-1)" />.
 

@@ -4,7 +4,7 @@ export const metadata = {
   description: "Bestimme trigonometrische Werte in jedem Quadranten mit dem Einheitskreis, den Vorzeichen und den Bezugswinkeln.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Funktionen und ihre Modellierung",
 };
 
@@ -42,16 +42,10 @@ Dabei gilt:
 
 Bei einer Bewegung um den Kreis können die Koordinaten <InlineMath math="x" /> und <InlineMath math="y" /> positiv oder negativ sein. Deshalb ändern sich die Vorzeichen der trigonometrischen Funktionen je nach Quadrant.
 
-<Triangle
+<UnitCircle
   title="Visualisierung von Vorzeichenänderungen"
   description={<>Beobachte, wie sich die Werte von <InlineMath math="\sin" />, <InlineMath math="\cos" /> und <InlineMath math="\tan" /> ändern, wenn der Winkel die vier Quadranten durchläuft.</>}
-  angle={0}
-  size={2}
-  labels={{
-    opposite: "Gegenkathete",
-    adjacent: "Ankathete",
-    hypotenuse: "Hypotenuse",
-  }}
+  angle={135}
 />
 
 **Zeichen in jedem Quadranten:**
@@ -164,7 +158,10 @@ Verwende die Periodizität. Subtrahiere oder addiere Vielfache von <InlineMath m
 
 **Beispiel:**
 
-- <InlineMath math="750^\circ = 750^\circ - 2(360^\circ) = 750^\circ - 720^\circ = 30^\circ" />
+- Ziehe zwei volle Umdrehungen ab:
+
+   <BlockMath math="\begin{aligned} &amp;750^\circ - 2(360^\circ) \\ &amp;= 750^\circ - 720^\circ \\ &amp;= 30^\circ \end{aligned}" />
+
 - Also <InlineMath math="\sin 750^\circ = \sin 30^\circ = \frac{1}{2}" />
 
 ## Übungen
@@ -202,8 +199,8 @@ Verwende die Periodizität. Subtrahiere oder addiere Vielfache von <InlineMath m
    <MathContainer>
      <BlockMath math="\sin(-60^\circ) = -\sin 60^\circ = -\frac{\sqrt{3}}{2}" />
      <BlockMath math="\cos 210^\circ = -\cos 30^\circ = -\frac{\sqrt{3}}{2}" />
-     <BlockMath math="\tan(-135^\circ) = -\tan 135^\circ = -(-\tan 45^\circ) = 1" />
-     <BlockMath math="\text{Ergebnis} = -\frac{\sqrt{3}}{2} - \frac{\sqrt{3}}{2} - 1 = -\sqrt{3} - 1" />
+     <BlockMath math="\begin{aligned} \tan(-135^\circ) &amp;= -\tan 135^\circ \\ &amp;= -(-\tan 45^\circ) \\ &amp;= 1 \end{aligned}" />
+     <BlockMath math="\begin{aligned} \text{Ergebnis} &amp;= -\frac{\sqrt{3}}{2} - \frac{\sqrt{3}}{2} - 1 \\ &amp;= -\sqrt{3} - 1 \end{aligned}" />
    </MathContainer>
 
 3. Gegeben <InlineMath math="\sin \theta = \frac{3}{5}" /> im Quadranten II.
@@ -222,19 +219,19 @@ Verwende die Periodizität. Subtrahiere oder addiere Vielfache von <InlineMath m
 
 4. Vereinfache zunächst die Winkel.
 
-   <BlockMath math="840^\circ = 840^\circ - 2(360^\circ) = 120^\circ" />
+   <BlockMath math="\begin{aligned} &amp;840^\circ - 2(360^\circ) \\ &amp;= 120^\circ \end{aligned}" />
 
    Für <InlineMath math="-330^\circ" /> addieren wir <InlineMath math="360^\circ" /> und erhalten <InlineMath math="30^\circ" />.
 
    <MathContainer>
-     <BlockMath math="\sin 840^\circ = \sin 120^\circ = \sin(180^\circ - 60^\circ) = \sin 60^\circ = \frac{\sqrt{3}}{2}" />
-     <BlockMath math="\cos(-330^\circ) = \cos 330^\circ = \cos(360^\circ - 30^\circ) = \cos 30^\circ = \frac{\sqrt{3}}{2}" />
-     <BlockMath math="\sin 840^\circ \cdot \cos(-330^\circ) = \frac{\sqrt{3}}{2} \cdot \frac{\sqrt{3}}{2} = \frac{3}{4}" />
+     <BlockMath math="\begin{aligned} \sin 840^\circ &amp;= \sin 120^\circ \\ &amp;= \sin(180^\circ - 60^\circ) \\ &amp;= \sin 60^\circ \\ &amp;= \frac{\sqrt{3}}{2} \end{aligned}" />
+     <BlockMath math="\begin{aligned} \cos(-330^\circ) &amp;= \cos 330^\circ \\ &amp;= \cos(360^\circ - 30^\circ) \\ &amp;= \cos 30^\circ \\ &amp;= \frac{\sqrt{3}}{2} \end{aligned}" />
+     <BlockMath math="\begin{aligned} \sin 840^\circ \cdot \cos(-330^\circ) &amp;= \frac{\sqrt{3}}{2} \cdot \frac{\sqrt{3}}{2} \\ &amp;= \frac{3}{4} \end{aligned}" />
    </MathContainer>
 
 5. Winkel <InlineMath math="1050^\circ" /> muss zunächst vereinfacht werden.
 
-   <BlockMath math="1050^\circ = 1050^\circ - 2(360^\circ) = 1050^\circ - 720^\circ = 330^\circ" />
+   <BlockMath math="\begin{aligned} &amp;1050^\circ - 2(360^\circ) \\ &amp;= 1050^\circ - 720^\circ \\ &amp;= 330^\circ \end{aligned}" />
 
    Winkel <InlineMath math="330^\circ" /> liegt im Quadranten IV mit Referenzwinkel <InlineMath math="30^\circ" />.
 

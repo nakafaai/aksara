@@ -5,7 +5,7 @@ export const metadata = {
   description: "Spiegle Punkte, Dreiecke und Geraden an der x-Achse und leite die Koordinatenregel aus den Abständen zum Spiegel her.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Geometrische Transformation",
 };
 
@@ -114,7 +114,8 @@ Folglich ist das Bild des Dreiecks <InlineMath math="ABC" /> das Dreieck <Inline
     <InlineMath math="A'B'C'" /> liegen symmetrisch zur <InlineMath math="x" />-Achse.
     </>
   }
-  cameraPosition={[0, 0, 15]}
+  cameraPosition={[0, 0, 11.8]}
+  cameraTarget={[0, 0, 0]}
   data={[
     // Ausgangsdreieck ABC
     ...[
@@ -139,9 +140,9 @@ Folglich ist das Bild des Dreiecks <InlineMath math="ABC" /> das Dreieck <Inline
         {
           text: segment.from.label,
           at: 0,
-          offset: [0.3, 0.3, 0],
+          offset: segment.from.x === -1 && segment.from.y === 4 ? [-0.3, 0.6, 0] : segment.from.x === 2 && segment.from.y === 1 ? [0.4, 0.35, 0] : [-0.6, -0.6, 0],
         },
-        { text: segment.to.label, at: 1, offset: [0.3, 0.3, 0] },
+        { text: segment.to.label, at: 1, offset: segment.to.x === 2 && segment.to.y === 1 ? [0.4, 0.35, 0] : segment.to.x === -2 && segment.to.y === -1 ? [-0.6, -0.6, 0] : [-0.3, 0.6, 0] },
       ],
     })),
     // Bilddreieck A'B'C'
@@ -167,9 +168,9 @@ Folglich ist das Bild des Dreiecks <InlineMath math="ABC" /> das Dreieck <Inline
         {
           text: segment.from.label,
           at: 0,
-          offset: [0.3, 0.3, 0],
+          offset: segment.from.x === -1 && segment.from.y === -4 ? [-0.3, -0.6, 0] : segment.from.x === 2 && segment.from.y === -1 ? [0.4, -0.35, 0] : [-0.6, 0.6, 0],
         },
-        { text: segment.to.label, at: 1, offset: [0.3, 0.3, 0] },
+        { text: segment.to.label, at: 1, offset: segment.to.x === 2 && segment.to.y === -1 ? [0.4, -0.35, 0] : segment.to.x === -2 && segment.to.y === 1 ? [-0.6, 0.6, 0] : [-0.3, -0.6, 0] },
       ],
     })),
   ]}
@@ -228,7 +229,7 @@ Somit lautet die Gleichung der gespiegelten Geraden:
         ],
         smooth: false,
         color: "#65a30d",
-        labels: [{ text: <InlineMath math="2x-3y=0" />, at: 1, offset: [0.5, 0.5, 0] }],
+        labels: [{ text: <InlineMath math="2x-3y=0" />, at: 1, offset: [-2.5, 0.6, 0] }],
       },
       {
         // Gespiegelte Gerade: 2x + 3y = 0 => y = -(2/3)x
@@ -238,7 +239,7 @@ Somit lautet die Gleichung der gespiegelten Geraden:
         ],
         smooth: false,
         color: "#c026d3",
-        labels: [{ text: <InlineMath math="2x+3y=0" />, at: 1, offset: [0.5, -0.5, 0] }],
+        labels: [{ text: <InlineMath math="2x+3y=0" />, at: 1, offset: [-2.5, -0.6, 0] }],
       },
     ]}
   />

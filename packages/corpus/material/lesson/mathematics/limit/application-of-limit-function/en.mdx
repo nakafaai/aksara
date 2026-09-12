@@ -33,7 +33,7 @@ So,
 
 <MathContainer>
 <BlockMath math="\sqrt{t^2 - t + (190.68)^3} \approx \sqrt{t^2} = |t| = t \quad \text{(for } t > 0\text{)}" />
-<BlockMath math="\lim_{t \to \infty} N(t) = \lim_{t \to \infty} (285000 - t) = -\infty" />
+<BlockMath math="\begin{aligned} \lim_{t \to \infty} N(t) &amp;= \lim_{t \to \infty} (285000 - t) \\ &amp;= -\infty \end{aligned}" />
 </MathContainer>
 
 > A negative case count means the formula has been used outside the model's **valid domain**. A case count cannot be negative, so the formula is meaningful only while <InlineMath math="N(t) \geq 0" />. This simplified formula is a mathematical example, not an epidemiological forecast. It must not be used as medical or policy guidance.
@@ -122,11 +122,11 @@ The calculation uses these assumptions:
 These assumptions give the following population counts:
 
 <MathContainer>
-<BlockMath math="\text{Children} = 0.21 \times 576{,}260 = 121{,}014.6 \approx 121{,}015 \text{ people}" />
+<BlockMath math="\begin{aligned} \text{Children} &amp;= 0.21 \times 576{,}260 \\ &amp;= 121{,}014.6 \\ &amp;\approx 121{,}015 \text{ people} \end{aligned}" />
 <BlockMath math="\text{Adults} = 0.79 \times 576{,}260 = 455{,}245.4 \approx 455{,}245 \text{ people}" />
 <BlockMath math="\text{Total positive cases} = 0.3 \times 576{,}260 = 172{,}878 \text{ people}" />
-<BlockMath math="\begin{aligned}\text{Positive cases among adults} &= 0.79 \times 0.30 \times 576{,}260 \\ &= 136{,}573.62 \approx 136{,}574 \text{ people}\end{aligned}" />
-<BlockMath math="\begin{aligned}\text{Eligible adults} &= 0.79 \times 0.70 \times 576{,}260 \\ &= 318{,}671.78 \approx 318{,}672 \text{ people}\end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Positive cases among adults} \\ &amp;= 0.79 \times 0.30 \times 576{,}260 \\  &amp;= 136{,}573.62 \\ &amp;\approx 136{,}574 \text{ people} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Eligible adults} \\ &amp;= 0.79 \times 0.70 \times 576{,}260 \\  &amp;= 318{,}671.78 \\ &amp;\approx 318{,}672 \text{ people} \end{aligned}" />
 </MathContainer>
 
 Using the unrounded eligible count, the target represents:
@@ -143,7 +143,7 @@ To calculate the model's case count, we use <InlineMath math="t=282{,}367" />:
 
 **Step** 1 calculates the constant term.
 
-<BlockMath math="(190.68)^3 = 190.68 \times 190.68 \times 190.68 = 6{,}932{,}907.88" />
+<BlockMath math="\begin{aligned} &amp;(190.68)^3 \\ &amp;= 190.68 \times 190.68 \times 190.68 \\ &amp;\approx 6{,}932{,}907.88 \end{aligned}" />
 
 The displayed value is rounded to two decimal places. The next calculation retains the unrounded value internally.
 
@@ -195,7 +195,7 @@ The value <InlineMath math="2{,}621 \text{ cases}" /> answers the mathematical q
    <MathContainer>
    <BlockMath math="\lim_{t \to \infty} P(t) = \lim_{t \to \infty} 50000(1 - e^{-0.1t})" />
    <BlockMath math="= 50000 \lim_{t \to \infty} (1 - e^{-0.1t})" />
-   <BlockMath math="= 50000(1 - 0) = 50000 \text{ vaccine units}" />
+   <BlockMath math="\begin{aligned}  &amp;= 50000(1 - 0) \\ &amp;= 50000 \text{ vaccine units} \end{aligned}" />
    </MathContainer>
 
    The modeled cumulative production approaches <InlineMath math="50{,}000" /> vaccine units. It does not equal that value at any finite <InlineMath math="t" /> because <InlineMath math="e^{-0.1t}>0" /> for finite <InlineMath math="t" />.

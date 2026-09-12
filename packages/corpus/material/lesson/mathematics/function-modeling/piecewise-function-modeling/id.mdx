@@ -4,7 +4,7 @@ export const metadata = {
   description: "Membuat model fungsi piecewise dari batas interval, tarif bertingkat, gerak bertahap, dan titik sambung.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Fungsi dan Pemodelannya",
 };
 
@@ -39,6 +39,7 @@ Fungsi piecewise linear memakai fungsi linear pada setiap interval. Bentuk ini s
   description="Contoh fungsi piecewise linear dengan tiga potongan berbeda."
   data={[
     {
+      endpoints: { start: "closed", end: "open" },
       points: Array.from({ length: 21 }, (_, i) => {
         const x = -2 + i * 0.1;
         return { x, y: 2 * x + 3, z: 0 };
@@ -49,6 +50,7 @@ Fungsi piecewise linear memakai fungsi linear pada setiap interval. Bentuk ini s
       labels: [{ text: <InlineMath math="y=2x+3" />, at: 10, offset: [-1.5, 1, 0] }],
     },
     {
+      endpoints: { start: "closed", end: "open" },
       points: Array.from({ length: 21 }, (_, i) => {
         const x = 0 + i * 0.1;
         return { x, y: -x + 3, z: 0 };
@@ -59,6 +61,7 @@ Fungsi piecewise linear memakai fungsi linear pada setiap interval. Bentuk ini s
       labels: [{ text: <InlineMath math="y=-x+3" />, at: 10, offset: [1, 1, 0] }],
     },
     {
+      endpoints: { start: "closed" },
       points: Array.from({ length: 21 }, (_, i) => {
         const x = 2 + i * 0.1;
         return { x, y: 0.5 * x, z: 0 };
@@ -88,6 +91,7 @@ Fungsi piecewise juga bisa memakai potongan kuadratik. Potongan kuadratik dapat 
   data={[
     {
       smooth: false,
+      endpoints: { end: "open" },
       points: Array.from({ length: 31 }, (_, i) => {
         const x = -3 + i * 0.1;
         return { x, y: x * x, z: 0 };
@@ -97,6 +101,7 @@ Fungsi piecewise juga bisa memakai potongan kuadratik. Potongan kuadratik dapat 
       labels: [{ text: <InlineMath math="y=x^2" />, at: 15, offset: [-1, -1, 0] }],
     },
     {
+      endpoints: { start: "closed" },
       points: Array.from({ length: 31 }, (_, i) => {
         const x = 0 + i * 0.1;
         return { x, y: 2 * x, z: 0 };
@@ -147,7 +152,8 @@ Sebagai contoh, dua aturan berikut bertemu di <InlineMath math="x=1" />, tetapi 
   }
   data={[
     {
-      points: Array.from({ length: 20 }, (_, i) => {
+      endpoints: { end: "open" },
+      points: Array.from({ length: 21 }, (_, i) => {
         const x = -1 + i * 0.1;
         return { x, y: x + 2, z: 0 };
       }),
@@ -157,6 +163,7 @@ Sebagai contoh, dua aturan berikut bertemu di <InlineMath math="x=1" />, tetapi 
       labels: [{ text: <InlineMath math="y=x+2" />, at: 10, offset: [-1, 1, 0] }],
     },
     {
+      endpoints: { start: "closed" },
       points: Array.from({ length: 21 }, (_, i) => {
         const x = 1 + i * 0.1;
         return { x, y: 2 * x - 3, z: 0 };
@@ -302,8 +309,8 @@ Fungsi piecewise:
    Di <InlineMath math="x = 1" />:
 
    <MathContainer>
-     <BlockMath math="\lim_{x \to 1^-} g(x) = \lim_{x \to 1^-} (3x - 1) = 3(1) - 1 = 2" />
-     <BlockMath math="\lim_{x \to 1^+} g(x) = \lim_{x \to 1^+} (x + 1) = 1 + 1 = 2" />
+     <BlockMath math="\begin{aligned} \lim_{x \to 1^-} g(x) &amp;= \lim_{x \to 1^-} (3x - 1) \\ &amp;= 3(1) - 1 \\ &amp;= 2 \end{aligned}" />
+     <BlockMath math="\begin{aligned} \lim_{x \to 1^+} g(x) &amp;= \lim_{x \to 1^+} (x + 1) \\ &amp;= 1 + 1 \\ &amp;= 2 \end{aligned}" />
      <BlockMath math="g(1) = 2" />
    </MathContainer>
 
@@ -325,6 +332,7 @@ Fungsi piecewise:
      }
      data={[
        {
+         endpoints: { end: "open" },
          points: Array.from({ length: 21 }, (_, i) => {
            const x = -2 + i * 0.1;
            return { x, y: -x + 2, z: 0 };
@@ -336,6 +344,7 @@ Fungsi piecewise:
        },
        {
          smooth: false,
+         endpoints: { start: "closed", end: "open" },
          points: Array.from({ length: 101 }, (_, sampleIndex) => {
            const i = sampleIndex / 5;
            const x = 0 + i * 0.1;
@@ -346,6 +355,7 @@ Fungsi piecewise:
          labels: [{ text: <InlineMath math="y=x^2" />, at: 50, offset: [0, 0.5, 0] }],
        },
        {
+         endpoints: { start: "closed" },
          points: Array.from({ length: 21 }, (_, i) => {
            const x = 2 + i * 0.1;
            return { x, y: 4, z: 0 };

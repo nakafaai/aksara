@@ -3,7 +3,7 @@ export const metadata = {
    description: "Use characteristic polynomials to find eigenvalues, determine algebraic multiplicity, and relate their coefficients to a matrix's trace.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-12",
     subject: "Linear Methods of AI",
 };
 
@@ -108,7 +108,7 @@ The roots pass two useful checks: their sum is the trace, and their product is t
 The characteristic polynomial of matrix <InlineMath math="A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" /> is:
 
 <MathContainer>
-<BlockMath math="\chi_A(t) = \det(A - t \cdot I) = \det \begin{pmatrix} 1-t & 2 \\ 0 & 1-t \end{pmatrix}" />
+<BlockMath math="\begin{aligned} \chi_A(t) &amp;= \det(A - t \cdot I) \\ &amp;= \det \begin{pmatrix} 1-t &amp; 2 \\ 0 &amp; 1-t \end{pmatrix} \end{aligned}" />
 <BlockMath math="= (1-t) \cdot (1-t) - 0 \cdot 2 = (1-t)^2" />
 <BlockMath math="= t^2 - 2 \cdot t + 1" />
 </MathContainer>
@@ -123,7 +123,7 @@ The following familiar maps on <InlineMath math="\mathbb{R}^2" /> connect the al
 
 Rotation with <InlineMath math="A = \begin{pmatrix} \cos(\alpha) & -\sin(\alpha) \\ \sin(\alpha) & \cos(\alpha) \end{pmatrix}" /> has the characteristic polynomial:
 
-<BlockMath math="\chi_A(t) = (\cos(\alpha) - t)^2 + \sin(\alpha)^2 = t^2 - 2 \cdot \cos(\alpha) \cdot t + 1" />
+<BlockMath math="\begin{aligned} \chi_A(t) &amp;= (\cos(\alpha) - t)^2 + \sin(\alpha)^2 \\ &amp;= t^2 - 2 \cdot \cos(\alpha) \cdot t + 1 \end{aligned}" />
 
 Its discriminant is <InlineMath math="-4\sin^2(\alpha)" />. The roots are real exactly when <InlineMath math="\sin(\alpha)=0" />, so, modulo a full turn, <InlineMath math="\alpha\equiv0" /> or <InlineMath math="\alpha\equiv\pi\pmod{2\pi}" />.
 
@@ -158,9 +158,9 @@ Similar matrices describe the same linear transformation in different bases. The
 Let <InlineMath math="S \in \mathbb{K}^{n \times n}" /> be invertible and <InlineMath math="B = S^{-1} \cdot A \cdot S" />. Then:
 
 <MathContainer>
-<BlockMath math="\chi_B(t) = \det(B - t \cdot I) = \det(S^{-1} \cdot A \cdot S - t \cdot S^{-1} \cdot I \cdot S)" />
+<BlockMath math="\begin{aligned} &amp;\chi_B(t) \\ &amp;= \det(B - t \cdot I) \\ &amp;= \det(S^{-1} \cdot A \cdot S - t \cdot S^{-1} \cdot I \cdot S) \end{aligned}" />
 <BlockMath math="= \det(S^{-1} \cdot (A - t \cdot I) \cdot S)" />
-<BlockMath math="= \det S^{-1} \cdot \det(A - t \cdot I) \cdot \det S = \chi_A(t)" />
+<BlockMath math="\begin{aligned}  &amp;= \det S^{-1} \cdot \det(A - t \cdot I) \cdot \det S \\ &amp;= \chi_A(t) \end{aligned}" />
 </MathContainer>
 
 ### Eigenvector Properties of Similar Matrices
@@ -170,7 +170,7 @@ The eigenvectors change with the basis. If <InlineMath math="v \in \mathbb{K}^n"
 Indeed, using <InlineMath math="Av=\lambda v" /> and <InlineMath math="w=S^{-1}v" /> gives
 
 <MathContainer>
-<BlockMath math="B \cdot w = S^{-1} \cdot A \cdot S \cdot S^{-1} \cdot v = S^{-1} \cdot A \cdot v" />
+<BlockMath math="\begin{aligned} B \cdot w &amp;= S^{-1} \cdot A \cdot S \cdot S^{-1} \cdot v \\ &amp;= S^{-1} \cdot A \cdot v \end{aligned}" />
 <BlockMath math="= S^{-1} \cdot \lambda \cdot v = \lambda \cdot S^{-1} \cdot v = \lambda \cdot w" />
 </MathContainer>
 

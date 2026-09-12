@@ -4,7 +4,7 @@ export const metadata = {
   description: "Turunkan empat matriks pencerminan dasar dan terapkan pada titik maupun segitiga.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Transformasi Geometri",
 };
 
@@ -80,7 +80,7 @@ Carilah bayangan <InlineMath math="(3,-4)" /> yang dicerminkan terhadap sumbu <I
 
 Menggunakan matriks pencerminan terhadap sumbu <InlineMath math="x" />:
 
-<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 3 \\ -4 \end{pmatrix} = \begin{pmatrix} (1)(3) + (0)(-4) \\ (0)(3) + (-1)(-4) \end{pmatrix} = \begin{pmatrix} 3 \\ 4 \end{pmatrix}" />
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 3 \\ -4 \end{pmatrix} \\ &amp;= \begin{pmatrix} (1)(3) + (0)(-4) \\ (0)(3) + (-1)(-4) \end{pmatrix} \\ &amp;= \begin{pmatrix} 3 \\ 4 \end{pmatrix} \end{aligned}" />
 
 Jadi, bayangannya adalah <InlineMath math="(3,4)" />.
 
@@ -94,9 +94,14 @@ Matriks pencerminan terhadap sumbu <InlineMath math="y" /> adalah <InlineMath ma
 
 Matriks titik-titik sudut segitiga <InlineMath math="ABC" />: <InlineMath math="\begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />.
 
+Kolom-kolomnya mewakili <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" /> dari kiri ke kanan. Kalikan setiap kolom dengan matriks pencerminan untuk mendapatkan kedua koordinat bayangannya.
+
 <MathContainer>
-  <BlockMath math="\begin{pmatrix} x'_A & x'_B & x'_C \\ y'_A & y'_B & y'_C \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
-  <BlockMath math="= \begin{pmatrix} (-1)(3)+0 & (-1)(-2)+0 & (-1)(2)+0 \\ 0+(1)(1) & 0+(1)(3) & 0+(1)(-1) \end{pmatrix} = \begin{pmatrix} -3 & 2 & -2 \\ 1 & 3 & -1 \end{pmatrix}" />
+  <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x'_A &amp; x'_B &amp; x'_C \\ y'_A &amp; y'_B &amp; y'_C \end{pmatrix} \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} 3 &amp; -2 &amp; 2 \\ 1 &amp; 3 &amp; -1 \end{pmatrix} \end{aligned}" />
+  <BlockMath math="\begin{aligned} x'_A&amp;=(-1)(3)+0=-3 \\ y'_A&amp;=0+(1)(1)=1 \end{aligned}" />
+  <BlockMath math="\begin{aligned} x'_B&amp;=(-1)(-2)+0=2 \\ y'_B&amp;=0+(1)(3)=3 \end{aligned}" />
+  <BlockMath math="\begin{aligned} x'_C&amp;=(-1)(2)+0=-2 \\ y'_C&amp;=0+(1)(-1)=-1 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x'_A &amp; x'_B &amp; x'_C \\ y'_A &amp; y'_B &amp; y'_C \end{pmatrix} \\ &amp;=\begin{pmatrix} -3 &amp; 2 &amp; -2 \\ 1 &amp; 3 &amp; -1 \end{pmatrix} \end{aligned}" />
 </MathContainer>
 
 Jadi, bayangannya adalah segitiga <InlineMath math="A'B'C'" /> dengan <InlineMath math="A'(-3,1)" />, <InlineMath math="B'(2,3)" />, dan <InlineMath math="C'(-2,-1)" />.

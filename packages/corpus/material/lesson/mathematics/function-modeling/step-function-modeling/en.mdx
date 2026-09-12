@@ -4,7 +4,7 @@ export const metadata = {
   description: "Model bookstore discounts, elevator capacity, and floor and ceiling rules with piecewise step functions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Functions and Their Modeling",
 };
 
@@ -53,9 +53,10 @@ The graph marks each included left endpoint with a filled point and each exclude
     ...Array.from({ length: 10 }, (_, intervalIndex) => {
       const integerValue = intervalIndex - 5;
       return {
+        endpoints: { start: "closed", end: "open" },
         points: [
           { x: integerValue, y: integerValue, z: 0 },
-          { x: integerValue + 0.999, y: integerValue, z: 0 },
+          { x: integerValue + 1, y: integerValue, z: 0 },
         ],
         color: "#9333ea",
         showPoints: false,
@@ -100,8 +101,9 @@ The graph marks each excluded left endpoint with an open point and each included
     ...Array.from({ length: 10 }, (_, intervalIndex) => {
       const integerValue = intervalIndex - 4;
       return {
+        endpoints: { start: "open", end: "closed" },
         points: [
-          { x: integerValue - 0.999, y: integerValue, z: 0 },
+          { x: integerValue - 1, y: integerValue, z: 0 },
           { x: integerValue, y: integerValue, z: 0 },
         ],
         color: "#ea580c",
@@ -139,15 +141,19 @@ Under this convention, the unit step function has value <InlineMath math="0" /> 
   }
   data={[
     {
+      endpoints: { end: "open" },
+      lineWidth: 4,
       points: [
         { x: -10, y: 0, z: 0 },
-        { x: -0.001, y: 0, z: 0 },
+        { x: 0, y: 0, z: 0 },
       ],
       color: "#0d9488",
       showPoints: false,
       smooth: false,
     },
     {
+      endpoints: { start: "closed" },
+      lineWidth: 4,
       points: [
         { x: 0, y: 1, z: 0 },
         { x: 10, y: 1, z: 0 },
@@ -205,9 +211,10 @@ The function <InlineMath math="f(x) = \lfloor x \rfloor + k" /> shifts the floor
     ...Array.from({ length: 10 }, (_, intervalIndex) => {
       const integerValue = intervalIndex - 5;
       return {
+        endpoints: { start: "closed", end: "open" },
         points: [
           { x: integerValue, y: integerValue, z: 0 },
-          { x: integerValue + 0.999, y: integerValue, z: 0 },
+          { x: integerValue + 1, y: integerValue, z: 0 },
         ],
         color: "#9333ea",
         showPoints: false,
@@ -221,9 +228,10 @@ The function <InlineMath math="f(x) = \lfloor x \rfloor + k" /> shifts the floor
     ...Array.from({ length: 10 }, (_, intervalIndex) => {
       const integerValue = intervalIndex - 5;
       return {
+        endpoints: { start: "closed", end: "open" },
         points: [
           { x: integerValue, y: integerValue + 2, z: 0 },
-          { x: integerValue + 0.999, y: integerValue + 2, z: 0 },
+          { x: integerValue + 1, y: integerValue + 2, z: 0 },
         ],
         color: "#0891b2",
         showPoints: false,
@@ -237,9 +245,10 @@ The function <InlineMath math="f(x) = \lfloor x \rfloor + k" /> shifts the floor
     ...Array.from({ length: 10 }, (_, intervalIndex) => {
       const integerValue = intervalIndex - 5;
       return {
+        endpoints: { start: "closed", end: "open" },
         points: [
           { x: integerValue, y: integerValue - 1, z: 0 },
-          { x: integerValue + 0.999, y: integerValue - 1, z: 0 },
+          { x: integerValue + 1, y: integerValue - 1, z: 0 },
         ],
         color: "#e11d48",
         showPoints: false,
@@ -326,9 +335,10 @@ The function <InlineMath math="f(x) = \lfloor x - h \rfloor" /> shifts the graph
          const integerValue = intervalIndex - 3;
          const functionValue = 2 * integerValue - 1;
          return {
+           endpoints: { start: "closed", end: "open" },
            points: [
              { x: integerValue, y: functionValue, z: 0 },
-             { x: integerValue + 0.999, y: functionValue, z: 0 },
+             { x: integerValue + 1, y: functionValue, z: 0 },
            ],
            color: "#7c3aed",
            showPoints: false,
@@ -340,9 +350,9 @@ The function <InlineMath math="f(x) = \lfloor x - h \rfloor" /> shifts the graph
          };
        }),
        {
+         endpoints: { start: "closed" },
          points: [
            { x: 3, y: 5, z: 0 },
-           { x: 3.001, y: 5, z: 0 },
          ],
          color: "#7c3aed",
          showPoints: true,

@@ -4,7 +4,7 @@ export const metadata = {
   description: "Reflect points, triangles, and lines across the falling diagonal using coordinate rules and worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Geometric Transformation",
 };
 
@@ -58,7 +58,7 @@ The following point pairs show both steps of reflection across <InlineMath math=
       ],
       smooth: false,
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [0.5, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [-1.7, 0, 0] }],
       }, // Reflection line
     // Point A and A'
     {
@@ -124,7 +124,7 @@ The image triangle <InlineMath math="A'B'C'" /> is formed by connecting the poin
       ],
       smooth: false,
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [0.5, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [-4, 2, 0] }],
       }, // Reflection line
     // Triangle ABC (Original)
     ...[
@@ -145,7 +145,7 @@ The image triangle <InlineMath math="A'B'C'" /> is formed by connecting the poin
       smooth: false,
       color: "#d97706",
       showPoints: true,
-      labels: [{ text: segment.from.label, at: 0, offset: [0.4, 0.4, 0] }],
+      labels: [{ text: segment.from.label, at: 0, offset: segment.from.x === -2 && segment.from.y === 4 ? [0.4, 0.4, 0] : segment.from.x === 3 && segment.from.y === 1 ? [0.5, -0.6, 0] : [-1, -0.6, 0] }],
     })),
     // Triangle A'B'C' (Image)
     ...[
@@ -166,10 +166,11 @@ The image triangle <InlineMath math="A'B'C'" /> is formed by connecting the poin
       smooth: false,
       color: "#0d9488",
       showPoints: true,
-      labels: [{ text: segment.from.label, at: 0, offset: [0.4, 0.4, 0] }],
+      labels: [{ text: segment.from.label, at: 0, offset: segment.from.x === -4 && segment.from.y === 2 ? [-0.2, 1, 0] : segment.from.x === -1 && segment.from.y === -3 ? [1.5, -0.8, 0] : [0.5, 0.8, 0] }],
     })),
   ]}
-  cameraPosition={[0, 0, 18]}
+  cameraPosition={[-0.5, 0.5, 13]}
+  cameraTarget={[-0.5, 0.5, 0]}
 />
 
 ## Reflecting a Line Equation
@@ -218,7 +219,7 @@ So, the equation of the image of the line <InlineMath math="y = -4x - 2" /> afte
       ],
       smooth: false,
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [0.5, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [-3.7, 1.2, 0] }],
       }, // Reflection line
     {
       // Original Line y = -4x - 2
@@ -228,7 +229,7 @@ So, the equation of the image of the line <InlineMath math="y = -4x - 2" /> afte
       }),
       color: "#9333ea",
       smooth: false,
-      labels: [{ text: <InlineMath math="y=-4x-2" />, at: 6, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=-4x-2" />, at: 6, offset: [-3.7, 0.2, 0] }],
     },
     {
       // Image Line y = (-1/4)x + 1/2
@@ -238,10 +239,11 @@ So, the equation of the image of the line <InlineMath math="y = -4x - 2" /> afte
       }),
       color: "#db2777",
       smooth: false,
-      labels: [{ text: <InlineMath math="y=(-\frac{1}{4})x+\frac{1}{2}" />, at: 8, offset: [0.5, -1, 0] }],
+      labels: [{ text: <InlineMath math="y=(-\frac{1}{4})x+\frac{1}{2}" />, at: 8, offset: [-2.7, 2.6, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 18]}
+  cameraPosition={[0, 0, 14]}
+  cameraTarget={[0, 0, 0]}
 />
 
 ## Exercises

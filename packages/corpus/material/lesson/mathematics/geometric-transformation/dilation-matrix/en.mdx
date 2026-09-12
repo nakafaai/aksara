@@ -4,7 +4,7 @@ export const metadata = {
   description: "Derive the dilation matrix and use it to calculate images from the origin or an arbitrary center.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Geometric Transformation",
 };
 
@@ -155,7 +155,7 @@ The image of point <InlineMath math="A(2,4)" /> is <InlineMath math="A'(3,7)" />
      <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} \frac{1}{2} & 0 \\ 0 & \frac{1}{2} \end{pmatrix} \begin{pmatrix} -1-2 \\ 5-(-3) \end{pmatrix} + \begin{pmatrix} 2 \\ -3 \end{pmatrix}" />
      <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} \frac{1}{2} & 0 \\ 0 & \frac{1}{2} \end{pmatrix} \begin{pmatrix} -3 \\ 8 \end{pmatrix} + \begin{pmatrix} 2 \\ -3 \end{pmatrix}" />
      <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} (\frac{1}{2})(-3) + (0)(8) \\ (0)(-3) + (\frac{1}{2})(8) \end{pmatrix} + \begin{pmatrix} 2 \\ -3 \end{pmatrix}" />
-     <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -\frac{3}{2} \\ 4 \end{pmatrix} + \begin{pmatrix} 2 \\ -3 \end{pmatrix} = \begin{pmatrix} -\frac{3}{2} + \frac{4}{2} \\ 4 - 3 \end{pmatrix} = \begin{pmatrix} \frac{1}{2} \\ 1 \end{pmatrix}" />
+     <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} -\frac{3}{2} \\ 4 \end{pmatrix} + \begin{pmatrix} 2 \\ -3 \end{pmatrix} \\ &amp;= \begin{pmatrix} -\frac{3}{2} + \frac{4}{2} \\ 4 - 3 \end{pmatrix} \\ &amp;= \begin{pmatrix} \frac{1}{2} \\ 1 \end{pmatrix} \end{aligned}" />
    </MathContainer>
 
    The coordinates of the image of point <InlineMath math="B" /> are <InlineMath math="B'(\frac{1}{2}, 1)" />.
@@ -166,17 +166,17 @@ The image of point <InlineMath math="A(2,4)" /> is <InlineMath math="A'(3,7)" />
 
    Image of point <InlineMath math="K(1,1)" />:
 
-   <BlockMath math="\begin{pmatrix} x_K' \\ y_K' \end{pmatrix} = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 2 \\ 2 \end{pmatrix} \implies K'(2,2)" />
+   <BlockMath math="\begin{aligned} \begin{pmatrix} x_K' \\ y_K' \end{pmatrix} &amp;= \begin{pmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 \\ 2 \end{pmatrix} \\ &amp;\implies K'(2,2) \end{aligned}" />
 
    Image of point <InlineMath math="L(5,1)" />:
 
-   <BlockMath math="\begin{pmatrix} x_L' \\ y_L' \end{pmatrix} = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} 5 \\ 1 \end{pmatrix} = \begin{pmatrix} 10 \\ 2 \end{pmatrix} \implies L'(10,2)" />
+   <BlockMath math="\begin{aligned} \begin{pmatrix} x_L' \\ y_L' \end{pmatrix} &amp;= \begin{pmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{pmatrix} \begin{pmatrix} 5 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 10 \\ 2 \end{pmatrix} \\ &amp;\implies L'(10,2) \end{aligned}" />
 
    Image of point <InlineMath math="M(3,4)" />:
 
    <ContentStack>
 
-     <BlockMath math="\begin{pmatrix} x_M' \\ y_M' \end{pmatrix} = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} 3 \\ 4 \end{pmatrix} = \begin{pmatrix} 6 \\ 8 \end{pmatrix} \implies M'(6,8)" />
+     <BlockMath math="\begin{aligned} \begin{pmatrix} x_M' \\ y_M' \end{pmatrix} &amp;= \begin{pmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{pmatrix} \begin{pmatrix} 3 \\ 4 \end{pmatrix} \\ &amp;= \begin{pmatrix} 6 \\ 8 \end{pmatrix} \\ &amp;\implies M'(6,8) \end{aligned}" />
 
      <LineEquation
        title={
@@ -203,7 +203,7 @@ The image of point <InlineMath math="A(2,4)" /> is <InlineMath math="A'(3,7)" />
            smooth: false,
            color: "#0284c7",
            labels: [
-             { text: <InlineMath math="K(1,1)" />, at: 0, offset: [-0.7, -0.2, 0] },
+             { text: <InlineMath math="K(1,1)" />, at: 0, offset: [-0.3, -0.75, 0] },
              { text: <InlineMath math="L(5,1)" />, at: 1, offset: [0.7, -0.2, 0] },
            ],
            showPoints: true,
@@ -236,8 +236,8 @@ The image of point <InlineMath math="A(2,4)" /> is <InlineMath math="A'(3,7)" />
            smooth: false,
            color: "#0d9488",
            labels: [
-             { text: <InlineMath math="K'(2,2)" />, at: 0, offset: [-0.8, -0.3, 0] },
-             { text: <InlineMath math="L'(10,2)" />, at: 1, offset: [0.8, -0.3, 0] },
+             { text: <InlineMath math="K'(2,2)" />, at: 0, offset: [-1.8, 0.7, 0] },
+             { text: <InlineMath math="L'(10,2)" />, at: 1, offset: [0, -0.7, 0] },
            ],
            showPoints: true,
          },
@@ -265,9 +265,10 @@ The image of point <InlineMath math="A(2,4)" /> is <InlineMath math="A'(3,7)" />
            points: [{ x: 0, y: 0, z: 0 }],
            color: "#4f46e5",
            showPoints: true,
-           labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
+           labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -1.1, 0] }],
          },
        ]}
-       cameraPosition={[0, 0, 20]}
+       cameraPosition={[5, 4, 16]}
+       cameraTarget={[5, 4, 0]}
      />
    </ContentStack>

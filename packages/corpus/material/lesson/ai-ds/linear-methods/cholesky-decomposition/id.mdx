@@ -3,7 +3,7 @@ export const metadata = {
    description: "Faktorkan matriks positif definit dengan dekomposisi Cholesky, lalu perkirakan biaya komputasi algoritmanya.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-14",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-12",
     subject: "Metode Linear AI",
 };
 
@@ -20,7 +20,7 @@ Jadi, kita memperoleh faktorisasi <InlineMath math="A = L \cdot U" /> dengan ele
 Karena <InlineMath math="A = A^T" />, kita juga memiliki:
 
 <MathContainer>
-<BlockMath math="A = A^T = (L \cdot U)^T = (L \cdot D \cdot \tilde{U})^T = \tilde{U}^T \cdot D \cdot L^T" />
+<BlockMath math="\begin{aligned} A &amp;= A^T \\ &amp;= (L \cdot U)^T \\ &amp;= (L \cdot D \cdot \tilde{U})^T \\ &amp;= \tilde{U}^T \cdot D \cdot L^T \end{aligned}" />
 </MathContainer>
 
 Pada persamaan tersebut, <InlineMath math="\tilde{U}" /> adalah matriks yang diagonal utamanya dinormalisasi menjadi <InlineMath math="1" />, sedangkan <InlineMath math="D" /> adalah matriks diagonal:
@@ -99,7 +99,7 @@ Jadi,
 
 <MathContainer>
 <BlockMath math="\tilde L=\begin{pmatrix}2&0\\1&2\end{pmatrix}" />
-<BlockMath math="\tilde L\tilde L^T=\begin{pmatrix}2&0\\1&2\end{pmatrix}\begin{pmatrix}2&1\\0&2\end{pmatrix}=\begin{pmatrix}4&2\\2&5\end{pmatrix}=A" />
+<BlockMath math="\begin{aligned} \tilde L\tilde L^T &amp;=\begin{pmatrix}2&amp;0\\1&amp;2\end{pmatrix}\begin{pmatrix}2&amp;1\\0&amp;2\end{pmatrix} \\ &amp;=\begin{pmatrix}4&amp;2\\2&amp;5\end{pmatrix} \\ &amp;=A \end{aligned}" />
 </MathContainer>
 
 Setelah faktor diketahui, selesaikan <InlineMath math="Ax=b" /> melalui dua sistem segitiga: <InlineMath math="\tilde Ly=b" /> terlebih dahulu, kemudian <InlineMath math="\tilde L^Tx=y" />. Cara ini menghindari perhitungan invers matriks.

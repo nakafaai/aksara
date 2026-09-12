@@ -5,7 +5,7 @@ export const metadata = {
   description: "Cerminkan titik, segitiga, dan garis terhadap sumbu horizontal serta turunkan aturan koordinat dari jarak yang sama.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Transformasi Geometri",
 };
 
@@ -109,7 +109,8 @@ Akibatnya, bayangan segitiga <InlineMath math="ABC" /> adalah segitiga <InlineMa
       <InlineMath math="A'B'C'" /> setelah pencerminan terhadap sumbu <InlineMath math="x" />.
     </>
   }
-  cameraPosition={[0, 0, 15]}
+  cameraPosition={[0, 0, 11.8]}
+  cameraTarget={[0, 0, 0]}
   data={[
     // Segitiga ABC (Original)
     ...[
@@ -134,9 +135,9 @@ Akibatnya, bayangan segitiga <InlineMath math="ABC" /> adalah segitiga <InlineMa
         {
           text: segment.from.label,
           at: 0,
-          offset: [0.3, 0.3, 0],
+          offset: segment.from.x === -1 && segment.from.y === 4 ? [-0.3, 0.6, 0] : segment.from.x === 2 && segment.from.y === 1 ? [0.4, 0.35, 0] : [-0.6, -0.6, 0],
         },
-        { text: segment.to.label, at: 1, offset: [0.3, 0.3, 0] },
+        { text: segment.to.label, at: 1, offset: segment.to.x === 2 && segment.to.y === 1 ? [0.4, 0.35, 0] : segment.to.x === -2 && segment.to.y === -1 ? [-0.6, -0.6, 0] : [-0.3, 0.6, 0] },
       ],
     })),
     // Segitiga A'B'C' (Reflected)
@@ -162,9 +163,9 @@ Akibatnya, bayangan segitiga <InlineMath math="ABC" /> adalah segitiga <InlineMa
         {
           text: segment.from.label,
           at: 0,
-          offset: [0.3, 0.3, 0],
+          offset: segment.from.x === -1 && segment.from.y === -4 ? [-0.3, -0.6, 0] : segment.from.x === 2 && segment.from.y === -1 ? [0.4, -0.35, 0] : [-0.6, 0.6, 0],
         },
-        { text: segment.to.label, at: 1, offset: [0.3, 0.3, 0] },
+        { text: segment.to.label, at: 1, offset: segment.to.x === 2 && segment.to.y === -1 ? [0.4, -0.35, 0] : segment.to.x === -2 && segment.to.y === 1 ? [-0.6, 0.6, 0] : [-0.3, -0.6, 0] },
       ],
     })),
   ]}
@@ -224,7 +225,7 @@ Jadi, persamaan garis bayangannya adalah:
         ],
         smooth: false,
         color: "#65a30d",
-        labels: [{ text: <InlineMath math="2x-3y=0" />, at: 1, offset: [0.5, 0.5, 0] }],
+        labels: [{ text: <InlineMath math="2x-3y=0" />, at: 1, offset: [-2.5, 0.6, 0] }],
       },
       {
         // Garis Bayangan: 2x + 3y = 0 => y = -(2/3)x
@@ -234,7 +235,7 @@ Jadi, persamaan garis bayangannya adalah:
         ],
         smooth: false,
         color: "#c026d3",
-        labels: [{ text: <InlineMath math="2x+3y=0" />, at: 1, offset: [0.5, -0.5, 0] }],
+        labels: [{ text: <InlineMath math="2x+3y=0" />, at: 1, offset: [-2.5, -0.6, 0] }],
       },
     ]}
   />

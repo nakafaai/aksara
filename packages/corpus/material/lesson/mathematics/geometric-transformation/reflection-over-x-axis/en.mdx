@@ -5,7 +5,7 @@ export const metadata = {
   description: "Reflect points, triangles, and lines across the horizontal axis and derive the coordinate rule from equal distances.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Geometric Transformation",
 };
 
@@ -116,7 +116,8 @@ Consequently, the image of triangle <InlineMath math="ABC" /> is triangle <Inlin
       the <InlineMath math="x" />-axis.
     </>
   }
-  cameraPosition={[0, 0, 15]}
+  cameraPosition={[0, 0, 11.8]}
+  cameraTarget={[0, 0, 0]}
   data={[
     // Triangle ABC (Original)
     ...[
@@ -141,9 +142,9 @@ Consequently, the image of triangle <InlineMath math="ABC" /> is triangle <Inlin
         {
           text: segment.from.label,
           at: 0,
-          offset: [0.3, 0.3, 0],
+          offset: segment.from.x === -1 && segment.from.y === 4 ? [-0.3, 0.6, 0] : segment.from.x === 2 && segment.from.y === 1 ? [0.4, 0.35, 0] : [-0.6, -0.6, 0],
         },
-        { text: segment.to.label, at: 1, offset: [0.3, 0.3, 0] },
+        { text: segment.to.label, at: 1, offset: segment.to.x === 2 && segment.to.y === 1 ? [0.4, 0.35, 0] : segment.to.x === -2 && segment.to.y === -1 ? [-0.6, -0.6, 0] : [-0.3, 0.6, 0] },
       ],
     })),
     // Triangle A'B'C' (Reflected)
@@ -169,9 +170,9 @@ Consequently, the image of triangle <InlineMath math="ABC" /> is triangle <Inlin
         {
           text: segment.from.label,
           at: 0,
-          offset: [0.3, 0.3, 0],
+          offset: segment.from.x === -1 && segment.from.y === -4 ? [-0.3, -0.6, 0] : segment.from.x === 2 && segment.from.y === -1 ? [0.4, -0.35, 0] : [-0.6, 0.6, 0],
         },
-        { text: segment.to.label, at: 1, offset: [0.3, 0.3, 0] },
+        { text: segment.to.label, at: 1, offset: segment.to.x === 2 && segment.to.y === -1 ? [0.4, -0.35, 0] : segment.to.x === -2 && segment.to.y === 1 ? [-0.6, 0.6, 0] : [-0.3, -0.6, 0] },
       ],
     })),
   ]}
@@ -231,7 +232,7 @@ The equation of the reflected line is:
         ],
         smooth: false,
         color: "#65a30d",
-        labels: [{ text: <InlineMath math="2x-3y=0" />, at: 1, offset: [0.5, 0.5, 0] }],
+        labels: [{ text: <InlineMath math="2x-3y=0" />, at: 1, offset: [-2.5, 0.6, 0] }],
       },
       {
         // Reflected Line: 2x + 3y = 0 => y = -(2/3)x
@@ -241,7 +242,7 @@ The equation of the reflected line is:
         ],
         smooth: false,
         color: "#c026d3",
-        labels: [{ text: <InlineMath math="2x+3y=0" />, at: 1, offset: [0.5, -0.5, 0] }],
+        labels: [{ text: <InlineMath math="2x+3y=0" />, at: 1, offset: [-2.5, -0.6, 0] }],
       },
     ]}
   />

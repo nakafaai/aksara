@@ -29,7 +29,7 @@ Elemen <InlineMath math="c_{ij}" /> pada matriks <InlineMath math="C" /> (yaitu 
 
 Secara matematis, jika <InlineMath math="A = [a_{ik}]" /> dan <InlineMath math="B = [b_{kj}]" />, maka elemen <InlineMath math="c_{ij}" /> dari matriks <InlineMath math="C = AB" /> adalah:
 
-<BlockMath math="c_{ij} = \sum_{k=1}^{n} a_{ik}b_{kj} = a_{i1}b_{1j} + a_{i2}b_{2j} + \dots + a_{in}b_{nj}" />
+<BlockMath math="\begin{aligned} c_{ij} &amp;= \sum_{k=1}^{n} a_{ik}b_{kj} \\ &amp;= a_{i1}b_{1j} + a_{i2}b_{2j} + \dots + a_{in}b_{nj} \end{aligned}" />
 
 Notasi <InlineMath math="\sum" /> (sigma) berarti penjumlahan.
 
@@ -48,10 +48,10 @@ Matriks <InlineMath math="P" /> berordo <InlineMath math="2 \times 2" /> dan mat
 Elemen-elemen matriks <InlineMath math="R" /> dihitung sebagai berikut:
 
 <MathContainer>
-  <BlockMath math="r_{11} = (\text{baris 1 dari } P) \cdot (\text{kolom 1 dari } Q) = p_{11}q_{11} + p_{12}q_{21}" />
-  <BlockMath math="r_{12} = (\text{baris 1 dari } P) \cdot (\text{kolom 2 dari } Q) = p_{11}q_{12} + p_{12}q_{22}" />
-  <BlockMath math="r_{21} = (\text{baris 2 dari } P) \cdot (\text{kolom 1 dari } Q) = p_{21}q_{11} + p_{22}q_{21}" />
-  <BlockMath math="r_{22} = (\text{baris 2 dari } P) \cdot (\text{kolom 2 dari } Q) = p_{21}q_{12} + p_{22}q_{22}" />
+  <BlockMath math="\begin{aligned} &amp;r_{11} \\ &amp;= (\text{baris 1 dari } P) \\ &amp;\quad\cdot (\text{kolom 1 dari } Q) \\ &amp;= p_{11}q_{11} + p_{12}q_{21} \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;r_{12} \\ &amp;= (\text{baris 1 dari } P) \\ &amp;\quad\cdot (\text{kolom 2 dari } Q) \\ &amp;= p_{11}q_{12} + p_{12}q_{22} \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;r_{21} \\ &amp;= (\text{baris 2 dari } P) \\ &amp;\quad\cdot (\text{kolom 1 dari } Q) \\ &amp;= p_{21}q_{11} + p_{22}q_{21} \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;r_{22} \\ &amp;= (\text{baris 2 dari } P) \\ &amp;\quad\cdot (\text{kolom 2 dari } Q) \\ &amp;= p_{21}q_{12} + p_{22}q_{22} \end{aligned}" />
 </MathContainer>
 
 ## Contoh Perkalian Dua Matriks
@@ -73,12 +73,12 @@ Hitung <InlineMath math="C = AB" />:
 
 <MathContainer>
   <BlockMath math="C = \begin{bmatrix} c_{11} & c_{12} \\ c_{21} & c_{22} \\ c_{31} & c_{32} \end{bmatrix}" />
-  <BlockMath math="c_{11} = (-7)(1) + (2)(-1) + (-2)(2) = -7 - 2 - 4 = -13" />
-  <BlockMath math="c_{12} = (-7)(2) + (2)(3) + (-2)(0) = -14 + 6 + 0 = -8" />
-  <BlockMath math="c_{21} = (1)(1) + (0)(-1) + (-1)(2) = 1 + 0 - 2 = -1" />
-  <BlockMath math="c_{22} = (1)(2) + (0)(3) + (-1)(0) = 2 + 0 + 0 = 2" />
-  <BlockMath math="c_{31} = (2)(1) + (3)(-1) + (-1)(2) = 2 - 3 - 2 = -3" />
-  <BlockMath math="c_{32} = (2)(2) + (3)(3) + (-1)(0) = 4 + 9 + 0 = 13" />
+  <BlockMath math="\begin{aligned} c_{11} &amp;= (-7)(1) + (2)(-1) + (-2)(2) \\ &amp;= -7 - 2 - 4 \\ &amp;= -13 \end{aligned}" />
+  <BlockMath math="\begin{aligned} c_{12} &amp;= (-7)(2) + (2)(3) + (-2)(0) \\ &amp;= -14 + 6 + 0 \\ &amp;= -8 \end{aligned}" />
+  <BlockMath math="\begin{aligned} c_{21} &amp;= (1)(1) + (0)(-1) + (-1)(2) \\ &amp;= 1 + 0 - 2 \\ &amp;= -1 \end{aligned}" />
+  <BlockMath math="\begin{aligned} c_{22} &amp;= (1)(2) + (0)(3) + (-1)(0) \\ &amp;= 2 + 0 + 0 \\ &amp;= 2 \end{aligned}" />
+  <BlockMath math="\begin{aligned} c_{31} &amp;= (2)(1) + (3)(-1) + (-1)(2) \\ &amp;= 2 - 3 - 2 \\ &amp;= -3 \end{aligned}" />
+  <BlockMath math="\begin{aligned} c_{32} &amp;= (2)(2) + (3)(3) + (-1)(0) \\ &amp;= 4 + 9 + 0 \\ &amp;= 13 \end{aligned}" />
 </MathContainer>
 
 Jadi, hasil perkalian matriks <InlineMath math="AB" /> adalah:
@@ -169,7 +169,7 @@ Pendapatan per produk memerlukan perkalian yang berbeda. Pertama, gunakan vektor
   <BlockMath math="U = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}" />
   <BlockMath math="T = PU = \begin{bmatrix} 15+12+20 \\ 25+10+15 \\ 15+15+20 \end{bmatrix}" />
   <BlockMath math="T = \begin{bmatrix} 47 \\ 50 \\ 50 \end{bmatrix} \begin{matrix} \text{Toples Keripik Tempe} \\ \text{Toples Keripik Pisang} \\ \text{Toples Keripik Kentang} \end{matrix}" />
-  <BlockMath math="D = \operatorname{diag}(Q) = \begin{bmatrix} 20{.}000 & 0 & 0 \\ 0 & 15{.}000 & 0 \\ 0 & 0 & 30{.}000 \end{bmatrix}" />
+  <BlockMath math="\begin{aligned} D &amp;= \operatorname{diag}(Q) \\ &amp;= \begin{bmatrix} 20{.}000 &amp; 0 &amp; 0 \\ 0 &amp; 15{.}000 &amp; 0 \\ 0 &amp; 0 &amp; 30{.}000 \end{bmatrix} \end{aligned}" />
   <BlockMath math="R = DT = \begin{bmatrix} 940{.}000 \\ 750{.}000 \\ 1{.}500{.}000 \end{bmatrix}" />
 </MathContainer>
 

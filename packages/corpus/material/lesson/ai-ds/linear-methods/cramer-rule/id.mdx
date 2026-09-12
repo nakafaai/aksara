@@ -3,7 +3,7 @@ export const metadata = {
     description: "Selesaikan sistem linear dengan aturan Cramer. Hubungkan determinan, matriks adjoin, rumus invers, dan satu contoh lengkap.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-12",
     subject: "Metode Linear AI",
 };
 
@@ -46,7 +46,7 @@ Setiap elemen dihitung dengan mengambil determinan submatriks yang sesuai, kemud
 Matriks adjoin memenuhi identitas berikut dengan matriks asal:
 
 <MathContainer>
-<BlockMath math="A \cdot \tilde{A} = \tilde{A} \cdot A = \begin{pmatrix} \det A & 0 & \cdots & 0 \\ 0 & \det A & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & \det A \end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;A \cdot \tilde{A} \\ &amp;= \tilde{A} \cdot A \\ &amp;= \begin{pmatrix} \det A &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; \det A &amp; \cdots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; \cdots &amp; \det A \end{pmatrix} \end{aligned}" />
 </MathContainer>
 
 Dengan kata lain:
@@ -115,7 +115,7 @@ Bukti aturan Cramer menggunakan ekspansi Laplace dan identitas matriks adjoin.
 Untuk <InlineMath math="j = 1, \ldots, n" />:
 
 <MathContainer>
-<BlockMath math="x_j = (A^{-1} \cdot b)_j = \sum_{i=1}^{n} (A^{-1})_{ji} \cdot b_i = \sum_{i=1}^{n} \frac{1}{\det A} \cdot \tilde{a}_{ji} \cdot b_i" />
+<BlockMath math="\begin{aligned} x_j &amp;= (A^{-1} \cdot b)_j \\ &amp;= \sum_{i=1}^{n} (A^{-1})_{ji} \cdot b_i \\ &amp;= \sum_{i=1}^{n} \frac{1}{\det A} \cdot \tilde{a}_{ji} \cdot b_i \end{aligned}" />
 </MathContainer>
 
 <MathContainer>
@@ -145,15 +145,15 @@ Karena <InlineMath math="\det A=-4\neq0" />, matriks <InlineMath math="A" /> dap
 Menurut aturan Cramer:
 
 <MathContainer>
-<BlockMath math="x_1 = \frac{1}{\det A} \cdot \det \begin{pmatrix} 20 & 1 & -1 \\ 40 & -1 & 1 \\ 30 & 1 & 1 \end{pmatrix} = \frac{-120}{-4} = 30" />
+<BlockMath math="\begin{aligned} x_1 &amp;= \frac{1}{\det A} \cdot \det \begin{pmatrix} 20 &amp; 1 &amp; -1 \\ 40 &amp; -1 &amp; 1 \\ 30 &amp; 1 &amp; 1 \end{pmatrix} \\ &amp;= \frac{-120}{-4} \\ &amp;= 30 \end{aligned}" />
 </MathContainer>
 
 <MathContainer>
-<BlockMath math="x_2 = \frac{1}{\det A} \cdot \det \begin{pmatrix} 1 & 20 & -1 \\ 1 & 40 & 1 \\ -1 & 30 & 1 \end{pmatrix} = \frac{-100}{-4} = 25" />
+<BlockMath math="\begin{aligned} x_2 &amp;= \frac{1}{\det A} \cdot \det \begin{pmatrix} 1 &amp; 20 &amp; -1 \\ 1 &amp; 40 &amp; 1 \\ -1 &amp; 30 &amp; 1 \end{pmatrix} \\ &amp;= \frac{-100}{-4} \\ &amp;= 25 \end{aligned}" />
 </MathContainer>
 
 <MathContainer>
-<BlockMath math="x_3 = \frac{1}{\det A} \cdot \det \begin{pmatrix} 1 & 1 & 20 \\ 1 & -1 & 40 \\ -1 & 1 & 30 \end{pmatrix} = \frac{-140}{-4} = 35" />
+<BlockMath math="\begin{aligned} x_3 &amp;= \frac{1}{\det A} \cdot \det \begin{pmatrix} 1 &amp; 1 &amp; 20 \\ 1 &amp; -1 &amp; 40 \\ -1 &amp; 1 &amp; 30 \end{pmatrix} \\ &amp;= \frac{-140}{-4} \\ &amp;= 35 \end{aligned}" />
 </MathContainer>
 
 Verifikasi menunjukkan bahwa <InlineMath math="A \cdot x - b = 0" />.

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bestimme die horizontale Skalierung aus dem Multiplikator im Funktionsargument und wende die Regel auf Graphen, Definitionsbereiche und Beispiele an.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Funktionstransformation",
 };
 
@@ -49,7 +49,7 @@ Die quadratische Funktion <InlineMath math="f(x) = x^2" /> zeigt die Wirkung ver
         return { x, y: x * x, z: 0 };
       }),
       color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [4, 2, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=x^2" />, offset: [2.5, -1, 0] }],
       showPoints: false,
     },
     {
@@ -59,7 +59,7 @@ Die quadratische Funktion <InlineMath math="f(x) = x^2" /> zeigt die Wirkung ver
         return { x, y: (2 * x) * (2 * x), z: 0 };
       }),
       color: "#ea580c",
-      labels: [{ text: <InlineMath math="g(x)=(2x)^2" />, offset: [4, 3, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=(2x)^2" />, offset: [2.5, -2.1, 0] }],
       showPoints: false,
     },
     {
@@ -69,10 +69,12 @@ Die quadratische Funktion <InlineMath math="f(x) = x^2" /> zeigt die Wirkung ver
         return { x, y: (0.5 * x) * (0.5 * x), z: 0 };
       }),
       color: "#0284c7",
-      labels: [{ text: <InlineMath math="h(x)=(0{,}5x)^2" />, offset: [4, 1, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=(0{,}5x)^2" />, offset: [2.5, -3.2, 0] }],
       showPoints: false,
     },
   ]}
+  cameraTarget={[0, 3, 0]}
+  cameraPosition={[0, 3, 15]}
 />
 
 Der Graph zeigt:
@@ -190,7 +192,8 @@ Ein negatives Vorzeichen im Argument spiegelt den Graphen zusätzlich an der sen
 <LineEquation
   title={<>Horizontale Skalierung mit negativem Multiplikator bei <InlineMath math="f(x) = x^2 + 1" /></>}
   description="Sein Betrag bestimmt die horizontale Skalierung, sein Vorzeichen die Spiegelung."
-  cameraPosition={[10, 6, 10]}
+  cameraPosition={[0, 3, 13]}
+  cameraTarget={[0, 3, 0]}
   data={[
     {
       smooth: false,
@@ -199,7 +202,7 @@ Ein negatives Vorzeichen im Argument spiegelt den Graphen zusätzlich an der sen
         return { x, y: x * x + 1, z: 0 };
       }),
       color: "#0891b2",
-      labels: [{ text: <InlineMath math="f(x)=x^2+1" />, offset: [2, 1, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=x^2+1" />, offset: [2, -1.5, 0] }],
       showPoints: false,
     },
     {
@@ -209,7 +212,7 @@ Ein negatives Vorzeichen im Argument spiegelt den Graphen zusätzlich an der sen
         return { x, y: (-2 * x) * (-2 * x) + 1, z: 0 };
       }),
       color: "#db2777",
-      labels: [{ text: <InlineMath math="g(x)=(-2x)^2+1" />, offset: [3, 2, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=(-2x)^2+1" />, offset: [2, -2.8, 0] }],
       showPoints: false,
     },
   ]}
@@ -291,7 +294,7 @@ Für einen negativen Multiplikator gilt:
            return { x, y: Math.sqrt(x), z: 0 };
          }),
          color: "#7c3aed",
-         labels: [{ at: 50, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [2, 1, 0] }],
+         labels: [{ at: 50, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [0, 1.218861, 0] }],
          showPoints: false,
        },
        {
@@ -302,10 +305,12 @@ Für einen negativen Multiplikator gilt:
            return { x, y: Math.sqrt(0.5 * x), z: 0 };
          }),
          color: "#0d9488",
-         labels: [{ at: 50, text: <InlineMath math="g'(x)=\sqrt{\frac{x}{2}}" />, offset: [3, 0.5, 0] }],
+         labels: [{ at: 50, text: <InlineMath math="g'(x)=\sqrt{\frac{x}{2}}" />, offset: [0.9, -0.818034, 0] }],
          showPoints: false,
        },
      ]}
+     cameraTarget={[2, 1, 0]}
+     cameraPosition={[2, 1, 8]}
    />
 
 3. Die ursprüngliche Funktion <InlineMath math="h(x) = |x - 2|" /> hat ihren Scheitelpunkt bei <InlineMath math="(2, 0)" />.

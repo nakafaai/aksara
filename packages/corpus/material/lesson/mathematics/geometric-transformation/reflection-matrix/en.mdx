@@ -4,7 +4,7 @@ export const metadata = {
   description: "Derive the four basic reflection matrices and apply them to points and triangles.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Geometric Transformation",
 };
 
@@ -80,7 +80,7 @@ Find the image of <InlineMath math="(3,-4)" /> reflected across the <InlineMath 
 
 Using the reflection matrix for the <InlineMath math="x" />-axis:
 
-<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 3 \\ -4 \end{pmatrix} = \begin{pmatrix} (1)(3) + (0)(-4) \\ (0)(3) + (-1)(-4) \end{pmatrix} = \begin{pmatrix} 3 \\ 4 \end{pmatrix}" />
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 3 \\ -4 \end{pmatrix} \\ &amp;= \begin{pmatrix} (1)(3) + (0)(-4) \\ (0)(3) + (-1)(-4) \end{pmatrix} \\ &amp;= \begin{pmatrix} 3 \\ 4 \end{pmatrix} \end{aligned}" />
 
 The image is <InlineMath math="(3,4)" />.
 
@@ -94,9 +94,14 @@ The reflection matrix for the <InlineMath math="y" />-axis is <InlineMath math="
 
 The matrix of triangle <InlineMath math="ABC" />'s vertices: <InlineMath math="\begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />.
 
+The columns represent <InlineMath math="A" />, <InlineMath math="B" /> and <InlineMath math="C" />, from left to right. Multiply each column by the reflection matrix to find both coordinates of its image.
+
 <MathContainer>
-  <BlockMath math="\begin{pmatrix} x'_A & x'_B & x'_C \\ y'_A & y'_B & y'_C \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
-  <BlockMath math="= \begin{pmatrix} (-1)(3)+0 & (-1)(-2)+0 & (-1)(2)+0 \\ 0+(1)(1) & 0+(1)(3) & 0+(1)(-1) \end{pmatrix} = \begin{pmatrix} -3 & 2 & -2 \\ 1 & 3 & -1 \end{pmatrix}" />
+  <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x'_A &amp; x'_B &amp; x'_C \\ y'_A &amp; y'_B &amp; y'_C \end{pmatrix} \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} 3 &amp; -2 &amp; 2 \\ 1 &amp; 3 &amp; -1 \end{pmatrix} \end{aligned}" />
+  <BlockMath math="\begin{aligned} x'_A&amp;=(-1)(3)+0=-3 \\ y'_A&amp;=0+(1)(1)=1 \end{aligned}" />
+  <BlockMath math="\begin{aligned} x'_B&amp;=(-1)(-2)+0=2 \\ y'_B&amp;=0+(1)(3)=3 \end{aligned}" />
+  <BlockMath math="\begin{aligned} x'_C&amp;=(-1)(2)+0=-2 \\ y'_C&amp;=0+(1)(-1)=-1 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x'_A &amp; x'_B &amp; x'_C \\ y'_A &amp; y'_B &amp; y'_C \end{pmatrix} \\ &amp;=\begin{pmatrix} -3 &amp; 2 &amp; -2 \\ 1 &amp; 3 &amp; -1 \end{pmatrix} \end{aligned}" />
 </MathContainer>
 
 The image is triangle <InlineMath math="A'B'C'" /> with vertices <InlineMath math="A'(-3,1)" />, <InlineMath math="B'(2,3)" />, and <InlineMath math="C'(-2,-1)" />.

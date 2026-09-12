@@ -3,7 +3,7 @@ export const metadata = {
   description: "Tunjukkan bahwa hasil komposisi fungsi umumnya bergantung pada urutan, lalu buktikan sifat asosiatif dan sifat identitasnya.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-04-27",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-12",
     subject: "Fungsi Komposisi dan Fungsi Invers",
 };
 
@@ -35,14 +35,14 @@ Bandingkan <InlineMath math="(g \circ f)(x)" /> dan <InlineMath math="(f \circ g
 
     <MathContainer>
       <BlockMath math="(g \circ f)(x) = g(f(x)) = g(2x+1)" />
-      <BlockMath math="g(2x+1) = (2x+1)^2 + 4 = (4x^2 + 4x + 1) + 4 = 4x^2 + 4x + 5" />
+      <BlockMath math="\begin{aligned} g(2x+1) &amp;= (2x+1)^2 + 4 \\ &amp;= (4x^2 + 4x + 1) + 4 \\ &amp;= 4x^2 + 4x + 5 \end{aligned}" />
     </MathContainer>
 
 2.  **Menghitung <InlineMath math="(f \circ g)(x)" />:**
 
     <MathContainer>
       <BlockMath math="(f \circ g)(x) = f(g(x)) = f(x^2+4)" />
-      <BlockMath math="f(x^2+4) = 2(x^2+4) + 1 = (2x^2 + 8) + 1 = 2x^2 + 9" />
+      <BlockMath math="\begin{aligned} f(x^2+4) &amp;= 2(x^2+4) + 1 \\ &amp;= (2x^2 + 8) + 1 \\ &amp;= 2x^2 + 9 \end{aligned}" />
     </MathContainer>
 
 Kedua bentuk polinomial memiliki koefisien yang berbeda, sehingga keduanya bukan fungsi yang sama. Satu input juga memberi contoh penyangkal langsung:
@@ -70,8 +70,8 @@ Cek apakah <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)
     Kita sudah tahu <InlineMath math="(f \circ g)(x) = 2x^2 + 9" />.
 
     <MathContainer>
-      <BlockMath math="((f \circ g) \circ h)(x) = (f \circ g)(h(x)) = (f \circ g)(\frac{1}{x+1})" />
-      <BlockMath math="(f \circ g)(\frac{1}{x+1}) = 2\left(\frac{1}{x+1}\right)^2 + 9 = \frac{2}{(x+1)^2} + 9" />
+      <BlockMath math="\begin{aligned} ((f \circ g) \circ h)(x) &amp;= (f \circ g)(h(x)) \\ &amp;= (f \circ g)(\frac{1}{x+1}) \end{aligned}" />
+      <BlockMath math="\begin{aligned} &amp;(f \circ g)(\frac{1}{x+1}) \\ &amp;= 2\left(\frac{1}{x+1}\right)^2 + 9 \\ &amp;= \frac{2}{(x+1)^2} + 9 \end{aligned}" />
     </MathContainer>
 
 2.  **Menghitung <InlineMath math="(f \circ (g \circ h))(x)" />:**
@@ -80,14 +80,14 @@ Cek apakah <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)
 
     <MathContainer>
       <BlockMath math="(g \circ h)(x) = g(h(x)) = g(\frac{1}{x+1})" />
-      <BlockMath math="g(\frac{1}{x+1}) = \left(\frac{1}{x+1}\right)^2 + 4 = \frac{1}{(x+1)^2} + 4" />
+      <BlockMath math="\begin{aligned} g(\frac{1}{x+1}) &amp;= \left(\frac{1}{x+1}\right)^2 + 4 \\ &amp;= \frac{1}{(x+1)^2} + 4 \end{aligned}" />
     </MathContainer>
 
     Sekarang, komposisikan <InlineMath math="f" /> dengan hasil ini:
 
     <MathContainer>
-      <BlockMath math="(f \circ (g \circ h))(x) = f((g \circ h)(x)) = f\left(\frac{1}{(x+1)^2} + 4\right)" />
-      <BlockMath math="f\left(\frac{1}{(x+1)^2} + 4\right) = 2\left(\frac{1}{(x+1)^2} + 4\right) + 1 = \frac{2}{(x+1)^2} + 8 + 1 = \frac{2}{(x+1)^2} + 9" />
+      <BlockMath math="\begin{aligned} &amp;(f \circ (g \circ h))(x) \\ &amp;= f((g \circ h)(x)) \\ &amp;= f\left(\frac{1}{(x+1)^2} + 4\right) \end{aligned}" />
+      <BlockMath math="\begin{aligned} &amp;f\left(\frac{1}{(x+1)^2} + 4\right) \\ &amp;= 2\left(\frac{1}{(x+1)^2} + 4\right) + 1 \\ &amp;= \frac{2}{(x+1)^2} + 8 + 1 \\ &amp;= \frac{2}{(x+1)^2} + 9 \end{aligned}" />
     </MathContainer>
 
 Karena kedua hasilnya sama (<InlineMath math="\frac{2}{(x+1)^2} + 9" />) untuk <InlineMath math="x\neq-1" />, sifat asosiatif berlaku pada domain bersama: <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)" />.

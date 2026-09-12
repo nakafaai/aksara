@@ -4,7 +4,7 @@ export const metadata = {
   description: "Spiegle Punkte, Dreiecke und Geraden an der y-Achse und wende die Koordinatenregel auf Gleichungen und Visualisierungen an.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Geometrische Transformation",
 };
 
@@ -112,8 +112,8 @@ Durch die Verbindung der Bildpunkte <InlineMath math="P'Q'R'" /> erhalten wir da
       color: "#d97706",
       showPoints: true,
       labels: [
-        { text: segment.from.label, at: 0, offset: [0.5, 0.5, 0] },
-        { text: segment.to.label, at: 1, offset: [0.5, 0.5, 0] },
+        { text: segment.from.label, at: 0, offset: segment.from.x === 1 && segment.from.y === 2 ? [0.5, 1.8, 0] : segment.from.x === 4 && segment.from.y === 4 ? [-0.2, 1.1, 0] : [0, -0.7, 0] },
+        { text: segment.to.label, at: 1, offset: segment.to.x === 4 && segment.to.y === 4 ? [-0.2, 1.1, 0] : segment.to.x === 2 && segment.to.y === 0 ? [0, -0.7, 0] : [0.5, 1.8, 0] },
       ],
     })),
     ...[
@@ -135,12 +135,13 @@ Durch die Verbindung der Bildpunkte <InlineMath math="P'Q'R'" /> erhalten wir da
       color: "#0d9488",
       showPoints: true,
       labels: [
-        { text: segment.from.label, at: 0, offset: [-0.5, 0.5, 0] },
-        { text: segment.to.label, at: 1, offset: [-0.5, 0.5, 0] },
+        { text: segment.from.label, at: 0, offset: segment.from.x === -1 && segment.from.y === 2 ? [-0.5, 1.8, 0] : segment.from.x === -4 && segment.from.y === 4 ? [0.2, 1.1, 0] : [0, -0.7, 0] },
+        { text: segment.to.label, at: 1, offset: segment.to.x === -4 && segment.to.y === 4 ? [0.2, 1.1, 0] : segment.to.x === -2 && segment.to.y === 0 ? [0, -0.7, 0] : [-0.5, 1.8, 0] },
       ],
     })),
   ]}
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[0, 2, 13]}
+  cameraTarget={[0, 2, 0]}
 />
 
 ## Eine Geradengleichung spiegeln

@@ -3,7 +3,7 @@ export const metadata = {
    description: "Factor positive definite matrices with Cholesky decomposition and estimate the algorithm's computational cost.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-14",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-12",
     subject: "Linear Methods of AI",
 };
 
@@ -20,7 +20,7 @@ This means we obtain factorization in the form <InlineMath math="A = L \cdot U" 
 Since <InlineMath math="A = A^T" />, we also have:
 
 <MathContainer>
-<BlockMath math="A = A^T = (L \cdot U)^T = (L \cdot D \cdot \tilde{U})^T = \tilde{U}^T \cdot D \cdot L^T" />
+<BlockMath math="\begin{aligned} A &amp;= A^T \\ &amp;= (L \cdot U)^T \\ &amp;= (L \cdot D \cdot \tilde{U})^T \\ &amp;= \tilde{U}^T \cdot D \cdot L^T \end{aligned}" />
 </MathContainer>
 
 Here, <InlineMath math="\tilde{U}" /> is a matrix whose main diagonal is normalized to <InlineMath math="1" />, and <InlineMath math="D" /> is a diagonal matrix:
@@ -99,7 +99,7 @@ Thus
 
 <MathContainer>
 <BlockMath math="\tilde L=\begin{pmatrix}2&0\\1&2\end{pmatrix}" />
-<BlockMath math="\tilde L\tilde L^T=\begin{pmatrix}2&0\\1&2\end{pmatrix}\begin{pmatrix}2&1\\0&2\end{pmatrix}=\begin{pmatrix}4&2\\2&5\end{pmatrix}=A" />
+<BlockMath math="\begin{aligned} \tilde L\tilde L^T &amp;=\begin{pmatrix}2&amp;0\\1&amp;2\end{pmatrix}\begin{pmatrix}2&amp;1\\0&amp;2\end{pmatrix} \\ &amp;=\begin{pmatrix}4&amp;2\\2&amp;5\end{pmatrix} \\ &amp;=A \end{aligned}" />
 </MathContainer>
 
 Once the factor is known, solve <InlineMath math="Ax=b" /> through two triangular systems: first <InlineMath math="\tilde Ly=b" />, then <InlineMath math="\tilde L^Tx=y" />. This avoids computing a matrix inverse.

@@ -4,7 +4,7 @@ export const metadata = {
   description: "Reflect points, triangles, and lines across the vertical axis and apply the coordinate rule to equations and graphs.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Geometric Transformation",
 };
 
@@ -112,8 +112,8 @@ By connecting the image points <InlineMath math="P'Q'R'" />, we obtain the refle
       color: "#d97706",
       showPoints: true,
       labels: [
-        { text: segment.from.label, at: 0, offset: [0.5, 0.5, 0] },
-        { text: segment.to.label, at: 1, offset: [0.5, 0.5, 0] },
+        { text: segment.from.label, at: 0, offset: segment.from.x === 1 && segment.from.y === 2 ? [0.5, 1.8, 0] : segment.from.x === 4 && segment.from.y === 4 ? [-0.2, 1.1, 0] : [0, -0.7, 0] },
+        { text: segment.to.label, at: 1, offset: segment.to.x === 4 && segment.to.y === 4 ? [-0.2, 1.1, 0] : segment.to.x === 2 && segment.to.y === 0 ? [0, -0.7, 0] : [0.5, 1.8, 0] },
       ],
     })),
     ...[
@@ -135,12 +135,13 @@ By connecting the image points <InlineMath math="P'Q'R'" />, we obtain the refle
       color: "#0d9488",
       showPoints: true,
       labels: [
-        { text: segment.from.label, at: 0, offset: [-0.5, 0.5, 0] },
-        { text: segment.to.label, at: 1, offset: [-0.5, 0.5, 0] },
+        { text: segment.from.label, at: 0, offset: segment.from.x === -1 && segment.from.y === 2 ? [-0.5, 1.8, 0] : segment.from.x === -4 && segment.from.y === 4 ? [0.2, 1.1, 0] : [0, -0.7, 0] },
+        { text: segment.to.label, at: 1, offset: segment.to.x === -4 && segment.to.y === 4 ? [0.2, 1.1, 0] : segment.to.x === -2 && segment.to.y === 0 ? [0, -0.7, 0] : [-0.5, 1.8, 0] },
       ],
     })),
   ]}
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[0, 2, 13]}
+  cameraTarget={[0, 2, 0]}
 />
 
 ## Reflecting a Line Equation

@@ -3,7 +3,7 @@ export const metadata = {
    description: "Diagonalize a matrix in three steps by computing its eigenvalues, finding its eigenspaces, and checking whether they provide enough eigenvectors.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-07-16",
-   dateModified: "2026-09-07",
+   dateModified: "2026-09-12",
    subject: "Linear Methods of AI",
 };
 
@@ -50,7 +50,7 @@ Apply the diagonalization procedure to this example:
 
 1. We compute the characteristic polynomial and factor it:
 
-   <BlockMath math="\chi_A(t) = \det(A - t \cdot I) = -t^3 + t^2 + t - 1" />
+   <BlockMath math="\begin{aligned} \chi_A(t) &amp;= \det(A - t \cdot I) \\ &amp;= -t^3 + t^2 + t - 1 \end{aligned}" />
 
    After factoring, we obtain:
 
@@ -61,8 +61,8 @@ Apply the diagonalization procedure to this example:
 2. We determine the eigenspace for each eigenvalue:
 
    <MathContainer>
-   <BlockMath math="E_A(1) = \ker(A - I) = \operatorname{span}\left\{\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}\right\}" />
-   <BlockMath math="E_A(-1) = \ker(A + I) = \operatorname{span}\left\{\begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}\right\}" />
+   <BlockMath math="\begin{aligned} E_A(1) &amp;= \ker(A - I) \\ &amp;= \operatorname{span}\left\{\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}\right\} \end{aligned}" />
+   <BlockMath math="\begin{aligned} E_A(-1) &amp;= \ker(A + I) \\ &amp;= \operatorname{span}\left\{\begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}\right\} \end{aligned}" />
    </MathContainer>
 
    Here, the kernel or null space contains every vector that the matrix maps to the zero vector, while the span of a collection of vectors contains all of their linear combinations.

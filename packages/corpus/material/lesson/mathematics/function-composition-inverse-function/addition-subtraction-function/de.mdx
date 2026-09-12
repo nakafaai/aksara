@@ -31,13 +31,13 @@ Zwei Funktionen können an derselben Eingabe miteinander verknüpft werden. Für
       })),
       smooth: false,
       color: "#d97706",
-      labels: [{ text: <InlineMath math="f(x)=x" />, at: 6, offset: [1, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=x" />, at: 6, offset: [0, -2, 0] }],
     },
     {
       points: Array.from({ length: 11 }, (_, i) => ({ x: i - 5, y: 2, z: 0 })),
       smooth: false,
       color: "#0284c7",
-      labels: [{ text: <InlineMath math="g(x)=2" />, at: 8, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=2" />, at: 8, offset: [0.5, -0.8, 0] }],
     },
     {
       points: Array.from({ length: 11 }, (_, i) => ({
@@ -47,9 +47,11 @@ Zwei Funktionen können an derselben Eingabe miteinander verknüpft werden. Für
       })),
       smooth: false,
       color: "#7c3aed",
-      labels: [{ text: <InlineMath math="(f+g)(x)=x+2" />, at: 9, offset: [1.5, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="(f+g)(x)=x+2" />, at: 9, offset: [-1.5, 0, 0] }],
     },
   ]}
+  cameraTarget={[0, 1.5, 0]}
+  cameraPosition={[0, 1.5, 13]}
 />
 
 ## Addition zweier Funktionen
@@ -76,7 +78,7 @@ Angenommen, wir haben zwei Funktionen:
 
 **Schritt** 1: Bestimme die resultierende Funktion aus der Addition
 
-<BlockMath math="(f+g)(x) = f(x) + g(x) = x^2 + \sqrt{x+2}" />
+<BlockMath math="\begin{aligned} (f+g)(x) &amp;= f(x) + g(x) \\ &amp;= x^2 + \sqrt{x+2} \end{aligned}" />
 
 **Schritt** 2: Bestimme den Definitionsbereich der resultierenden Funktion
 
@@ -108,7 +110,7 @@ Wir verwenden die gleichen Funktionen wie im Additionsbeispiel:
 
 **Schritt** 1: Bestimme die resultierende Funktion aus der Subtraktion
 
-<BlockMath math="(f-g)(x) = f(x) - g(x) = x^2 - \sqrt{x+2}" />
+<BlockMath math="\begin{aligned} (f-g)(x) &amp;= f(x) - g(x) \\ &amp;= x^2 - \sqrt{x+2} \end{aligned}" />
 
 **Schritt** 2: Bestimme den Definitionsbereich der resultierenden Funktion
 Sein Definitionsbereich ist derselbe wie der Definitionsbereich des Additionsergebnisses, da die Schnittregel dieselbe ist:

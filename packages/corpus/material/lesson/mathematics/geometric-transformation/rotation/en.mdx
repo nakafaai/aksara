@@ -4,7 +4,7 @@ export const metadata = {
   description: "Use centers, directions, and angles to rotate points and lines while preserving distances and shape.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Geometric Transformation",
 };
 
@@ -46,8 +46,8 @@ We know <InlineMath math="\cos 90^\circ = 0" /> and <InlineMath math="\sin 90^\c
 Using the formulas:
 
 <MathContainer>
-  <BlockMath math="x' = (0) \cos 90^\circ - (4) \sin 90^\circ = 0 \cdot 0 - 4 \cdot 1 = -4" />
-  <BlockMath math="y' = (0) \sin 90^\circ + (4) \cos 90^\circ = 0 \cdot 1 + 4 \cdot 0 = 0" />
+  <BlockMath math="\begin{aligned} x' &amp;= (0) \cos 90^\circ - (4) \sin 90^\circ \\ &amp;= 0 \cdot 0 - 4 \cdot 1 \\ &amp;= -4 \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= (0) \sin 90^\circ + (4) \cos 90^\circ \\ &amp;= 0 \cdot 1 + 4 \cdot 0 \\ &amp;= 0 \end{aligned}" />
 </MathContainer>
 
 The image of point <InlineMath math="B(0,4)" /> is <InlineMath math="B'(-4,0)" />.
@@ -71,7 +71,7 @@ The image of point <InlineMath math="B(0,4)" /> is <InlineMath math="B'(-4,0)" /
       points: [{ x: 0, y: 0, z: 0 }],
       color: "#e11d48",
       showPoints: true,
-      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [0.3, -0.3, 0] }],
+      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [0.5, -0.6, 0] }],
     }, // Center of Rotation
     {
       points: [{ x: 0, y: 4, z: 0 }],
@@ -83,7 +83,7 @@ The image of point <InlineMath math="B(0,4)" /> is <InlineMath math="B'(-4,0)" /
       points: [{ x: -4, y: 0, z: 0 }],
       color: "#059669",
       showPoints: true,
-      labels: [{ text: <InlineMath math="B'(-4,0)" />, at: 0, offset: [-0.7, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="B'(-4,0)" />, at: 0, offset: [-0.1, -0.6, 0] }],
     }, // Image Point
     {
       points: [
@@ -102,7 +102,8 @@ The image of point <InlineMath math="B(0,4)" /> is <InlineMath math="B'(-4,0)" /
       color: "#9333ea",
     }, // Line OB'
   ]}
-  cameraPosition={[2, 2, 15]}
+  cameraPosition={[-2, 2, 9]}
+  cameraTarget={[-2, 2, 0]}
 />
 
 ## Rotating a Line by a Quarter Turn
@@ -112,8 +113,8 @@ Determine the image of the line <InlineMath math="y=2x" /> rotated about the ori
 Let <InlineMath math="P(x,y)" /> be any point on the line <InlineMath math="y=2x" />. Its image, <InlineMath math="P'(x',y')" />, after a <InlineMath math="90^\circ" /> rotation about the origin is:
 
 <MathContainer>
-  <BlockMath math="x' = x \cos 90^\circ - y \sin 90^\circ = x(0) - y(1) = -y" />
-  <BlockMath math="y' = x \sin 90^\circ + y \cos 90^\circ = x(1) + y(0) = x" />
+  <BlockMath math="\begin{aligned} x' &amp;= x \cos 90^\circ - y \sin 90^\circ \\ &amp;= x(0) - y(1) \\ &amp;= -y \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= x \sin 90^\circ + y \cos 90^\circ \\ &amp;= x(1) + y(0) \\ &amp;= x \end{aligned}" />
 </MathContainer>
 
 From this, we get <InlineMath math="y = -x'" /> and <InlineMath math="x = y'" />.
@@ -185,8 +186,8 @@ Replacing <InlineMath math="x'" /> and <InlineMath math="y'" /> back to <InlineM
 1.  Point <InlineMath math="A(3,0)" />, <InlineMath math="\theta = 90^\circ" />. <InlineMath math="x=3, y=0" />.
 
     <MathContainer>
-      <BlockMath math="x' = 3 \cos 90^\circ - 0 \sin 90^\circ = 3(0) - 0(1) = 0" />
-      <BlockMath math="y' = 3 \sin 90^\circ + 0 \cos 90^\circ = 3(1) + 0(0) = 3" />
+      <BlockMath math="\begin{aligned} x' &amp;= 3 \cos 90^\circ - 0 \sin 90^\circ \\ &amp;= 3(0) - 0(1) \\ &amp;= 0 \end{aligned}" />
+      <BlockMath math="\begin{aligned} y' &amp;= 3 \sin 90^\circ + 0 \cos 90^\circ \\ &amp;= 3(1) + 0(0) \\ &amp;= 3 \end{aligned}" />
     </MathContainer>
 
     Thus, its image is <InlineMath math="A'(0,3)" />.
@@ -212,8 +213,8 @@ Replacing <InlineMath math="x'" /> and <InlineMath math="y'" /> back to <InlineM
     </MathContainer>
 
     <MathContainer>
-      <BlockMath math="x' = (-2) \cos 180^\circ - (-5) \sin 180^\circ = (-2)(-1) - (-5)(0) = 2 - 0 = 2" />
-      <BlockMath math="y' = (-2) \sin 180^\circ + (-5) \cos 180^\circ = (-2)(0) + (-5)(-1) = 0 + 5 = 5" />
+      <BlockMath math="\begin{aligned} &amp;x' \\ &amp;= (-2) \cos 180^\circ - (-5) \sin 180^\circ \\ &amp;= (-2)(-1) - (-5)(0) \\ &amp;= 2 - 0 \\ &amp;= 2 \end{aligned}" />
+      <BlockMath math="\begin{aligned} &amp;y' \\ &amp;= (-2) \sin 180^\circ + (-5) \cos 180^\circ \\ &amp;= (-2)(0) + (-5)(-1) \\ &amp;= 0 + 5 \\ &amp;= 5 \end{aligned}" />
     </MathContainer>
 
     Thus, the image of point <InlineMath math="P" /> is <InlineMath math="P'(2,5)" />.
