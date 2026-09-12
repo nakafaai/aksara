@@ -3,7 +3,7 @@ export const metadata = {
    description: "QR-Zerlegung mit Gram-Schmidt- und Householder-Verfahren. Volle und reduzierte Faktorisierung, numerische Stabilität und Rechenaufwand werden hergeleitet.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-13",
    subject: "Lineare Methoden der KI",
 };
 
@@ -36,7 +36,13 @@ Der volle Spaltenrang garantiert <InlineMath math="\widetilde q_j\neq0" /> in je
 
 Damit gilt <InlineMath math="A=Q_1R_1" />, wobei <InlineMath math="R_1\in\mathbb{R}^{n\times n}" /> eine obere Dreiecksmatrix mit <InlineMath math="r_{ii}=\|\widetilde q_i\|_2>0" /> ist.
 
-Ergänzt man <InlineMath math="Q_1" /> um <InlineMath math="m-n" /> orthonormale Spalten, entsteht <InlineMath math="Q=(Q_1\quad Q_2)\in\mathbb{R}^{m\times m}" />. Ergänzt man <InlineMath math="R_1" /> um <InlineMath math="m-n" /> Nullzeilen, entsteht <InlineMath math="R=\begin{pmatrix}R_1\\0\end{pmatrix}\in\mathbb{R}^{m\times n}" />. Damit gilt <InlineMath math="A=Q_1R_1=QR" />.
+Ergänzt man <InlineMath math="Q_1" /> um <InlineMath math="m-n" /> orthonormale Spalten, entsteht <InlineMath math="Q=(Q_1\quad Q_2)\in\mathbb{R}^{m\times m}" />.
+
+Durch Anhängen von <InlineMath math="m-n" /> Nullzeilen an <InlineMath math="R_1" /> entsteht:
+
+<BlockMath math="R=\begin{pmatrix}R_1\\0\end{pmatrix}\in\mathbb{R}^{m\times n}" />
+
+Die ergänzten Matrizen erfüllen weiterhin <InlineMath math="A=Q_1R_1=QR" />.
 
 ## Vollständige und reduzierte Zerlegung mit QR
 

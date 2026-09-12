@@ -3,7 +3,7 @@ export const metadata = {
     description: "Factor matrices with QR decomposition using the Gram Schmidt process or Householder transformations, then solve linear systems.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-07-14",
-   dateModified: "2026-09-12",
+   dateModified: "2026-09-13",
    subject: "Linear Methods of AI",
 };
 
@@ -36,7 +36,13 @@ Full column rank guarantees <InlineMath math="\widetilde q_j\neq0" /> at every s
 
 <InlineMath math="A=Q_1R_1" />, where <InlineMath math="R_1 \in \mathbb{R}^{n \times n}" /> is upper triangular and <InlineMath math="r_{ii}=\|\widetilde q_i\|_2>0" />.
 
-Complete <InlineMath math="Q_1" /> with <InlineMath math="m-n" /> orthonormal columns to form <InlineMath math="Q=(Q_1\quad Q_2)\in\mathbb{R}^{m\times m}" />. Appending <InlineMath math="m-n" /> zero rows to <InlineMath math="R_1" /> gives <InlineMath math="R=\begin{pmatrix}R_1\\0\end{pmatrix}\in\mathbb{R}^{m\times n}" />, so <InlineMath math="A=Q_1R_1=QR" />.
+Complete <InlineMath math="Q_1" /> with <InlineMath math="m-n" /> orthonormal columns to form <InlineMath math="Q=(Q_1\quad Q_2)\in\mathbb{R}^{m\times m}" />.
+
+Appending <InlineMath math="m-n" /> zero rows to <InlineMath math="R_1" /> gives:
+
+<BlockMath math="R=\begin{pmatrix}R_1\\0\end{pmatrix}\in\mathbb{R}^{m\times n}" />
+
+The completed matrices still satisfy <InlineMath math="A=Q_1R_1=QR" />.
 
 ## Full and Reduced QR Decomposition
 

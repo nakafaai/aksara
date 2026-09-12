@@ -3,7 +3,7 @@ export const metadata = {
    description: "Polinomial karakteristik digunakan untuk mencari nilai eigen, menentukan multiplisitas aljabar, serta menghubungkan koefisien polinomial dengan jejak matriks.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-13",
     subject: "Metode Linear AI",
 };
 
@@ -83,7 +83,11 @@ Pada bagian berikut, kita memakai definisi di atas. Hubungan antarkoefisien dipa
 
 ### Matriks Orde Tiga
 
-Misalkan <InlineMath math="A = \begin{pmatrix} 3 & 2 & -1 \\ 1 & 0 & -4 \\ 3 & 0 & 1 \end{pmatrix} \in \mathbb{K}^{3 \times 3}" />. Polinomial karakteristik dari <InlineMath math="A" /> adalah:
+Perhatikan matriks berikut:
+
+<BlockMath math="A = \begin{pmatrix} 3 & 2 & -1 \\ 1 & 0 & -4 \\ 3 & 0 & 1 \end{pmatrix} \in \mathbb{K}^{3 \times 3}" />
+
+Polinomial karakteristiknya adalah:
 
 <MathContainer>
 <BlockMath math="\chi_A(t) = \det \begin{pmatrix} 3-t & 2 & -1 \\ 1 & -t & -4 \\ 3 & 0 & 1-t \end{pmatrix}" />
@@ -105,7 +109,11 @@ Akar tersebut lolos dua pemeriksaan berguna: jumlahnya sama dengan jejak matriks
 
 ### Nilai Eigen Berulang pada Matriks Segitiga Atas
 
-Polinomial karakteristik dari matriks <InlineMath math="A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" /> adalah:
+Perhatikan matriks segitiga atas berikut:
+
+<BlockMath math="A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />
+
+Polinomial karakteristiknya adalah:
 
 <MathContainer>
 <BlockMath math="\begin{aligned} \chi_A(t) &amp;= \det(A - t \cdot I) \\ &amp;= \det \begin{pmatrix} 1-t &amp; 2 \\ 0 &amp; 1-t \end{pmatrix} \end{aligned}" />
@@ -121,7 +129,11 @@ Pemetaan yang umum pada <InlineMath math="\mathbb{R}^2" /> berikut menghubungkan
 
 ### Rotasi
 
-Rotasi dengan <InlineMath math="A = \begin{pmatrix} \cos(\alpha) & -\sin(\alpha) \\ \sin(\alpha) & \cos(\alpha) \end{pmatrix}" /> memiliki polinomial karakteristik:
+Rotasi dinyatakan oleh matriks:
+
+<BlockMath math="A = \begin{pmatrix} \cos(\alpha) & -\sin(\alpha) \\ \sin(\alpha) & \cos(\alpha) \end{pmatrix}" />
+
+Polinomial karakteristiknya adalah:
 
 <BlockMath math="\begin{aligned} \chi_A(t) &amp;= (\cos(\alpha) - t)^2 + \sin(\alpha)^2 \\ &amp;= t^2 - 2 \cdot \cos(\alpha) \cdot t + 1 \end{aligned}" />
 
@@ -129,7 +141,11 @@ Diskriminannya adalah <InlineMath math="-4\sin^2(\alpha)" />. Akarnya real tepat
 
 ### Refleksi
 
-Refleksi terhadap sumbu <InlineMath math="x" /> dengan <InlineMath math="A = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" /> memiliki polinom karakteristik:
+Matriks refleksi terhadap sumbu <InlineMath math="x" /> adalah:
+
+<BlockMath math="A = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+Polinomial karakteristiknya adalah:
 
 <BlockMath math="\chi_A(t) = (1-t) \cdot (-1-t) = t^2 - 1" />
 
@@ -137,7 +153,11 @@ Nilai eigen adalah <InlineMath math="\lambda_1 = 1" /> dan <InlineMath math="\la
 
 ### Peregangan
 
-Peregangan dengan <InlineMath math="A = \begin{pmatrix} s & 0 \\ 0 & s \end{pmatrix}" /> memiliki polinomial karakteristik:
+Matriks peregangan adalah:
+
+<BlockMath math="A = \begin{pmatrix} s & 0 \\ 0 & s \end{pmatrix}" />
+
+Polinomial karakteristiknya adalah:
 
 <BlockMath math="\chi_A(t) = (s-t)^2 = t^2 - 2 \cdot s \cdot t + s^2" />
 
@@ -145,7 +165,11 @@ Nilai eigen adalah <InlineMath math="\lambda = s" /> dengan <InlineMath math="\m
 
 ### Geseran
 
-Geseran dengan <InlineMath math="A = \begin{pmatrix} 1 & s \\ 0 & 1 \end{pmatrix}" /> dengan <InlineMath math="s \neq 0" /> memiliki polinomial karakteristik:
+Untuk geseran dengan <InlineMath math="s \neq 0" />, matriksnya adalah:
+
+<BlockMath math="A = \begin{pmatrix} 1 & s \\ 0 & 1 \end{pmatrix}" />
+
+Polinomial karakteristiknya adalah:
 
 <BlockMath math="\chi_A(t) = (1-t)^2 = t^2 - 2 \cdot t + 1" />
 

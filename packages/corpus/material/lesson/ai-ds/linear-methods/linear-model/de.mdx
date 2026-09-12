@@ -3,7 +3,7 @@ export const metadata = {
   description: "Erstelle parameterlineare Modelle aus Basisfunktionen, fasse Messungen in einer Designmatrix zusammen und unterscheide exakte lineare Modelle von lokaler Linearisierung.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Lineare Methoden der KI",
 };
 
@@ -39,12 +39,21 @@ Seien <InlineMath math="\phi_1(t),\ldots,\phi_n(t)" /> bekannte Basisfunktionen.
 
 Verschiedene Basisfunktionen erzeugen verschiedene Formen, ohne die Linearität in <InlineMath math="x" /> aufzugeben.
 
-| Modell | Basisdarstellung |
-| --- | --- |
-| Affine Gerade | <InlineMath math="y=a+bt=\begin{pmatrix}1&t\end{pmatrix}\begin{pmatrix}a\\b\end{pmatrix}" /> |
-| Polynom vom Grad <InlineMath math="p" /> | <InlineMath math="y=\sum_{j=0}^{p}a_jt^j=\begin{pmatrix}1&t&\cdots&t^p\end{pmatrix}\begin{pmatrix}a_0\\a_1\\\vdots\\a_p\end{pmatrix}" /> |
-| Fourier-Basis | <InlineMath math="y=a_0+\sum_{j=1}^{p}\bigl(a_j\cos(jt)+b_j\sin(jt)\bigr)" /> |
-| Wechselwirkung zweier Eingaben | <InlineMath math="y=a+bt+cs+dts=\begin{pmatrix}1&t&s&ts\end{pmatrix}\begin{pmatrix}a\\b\\c\\d\end{pmatrix}" /> |
+Eine affine Gerade:
+
+<BlockMath math="\begin{aligned} y&=a+bt\\&=\begin{pmatrix}1&t\end{pmatrix}\begin{pmatrix}a\\b\end{pmatrix}\end{aligned}" />
+
+Ein Polynom vom Grad <InlineMath math="p" />:
+
+<BlockMath math="\begin{aligned} y&=\sum_{j=0}^{p}a_jt^j\\&=\begin{pmatrix}1&t&\cdots&t^p\end{pmatrix}\begin{pmatrix}a_0\\a_1\\\vdots\\a_p\end{pmatrix}\end{aligned}" />
+
+Eine Fourier-Basis:
+
+<BlockMath math="\begin{aligned} y&=a_0+\sum_{j=1}^{p}a_j\cos(jt)\\&\quad+\sum_{j=1}^{p}b_j\sin(jt)\end{aligned}" />
+
+Eine Wechselwirkung zweier Eingaben:
+
+<BlockMath math="\begin{aligned} y&=a+bt+cs+dts\\&=\begin{pmatrix}1&t&s&ts\end{pmatrix}\begin{pmatrix}a\\b\\c\\d\end{pmatrix}\end{aligned}" />
 
 Terme wie <InlineMath math="t^p" />, <InlineMath math="\sin(jt)" /> und <InlineMath math="ts" /> dürfen in den Eingaben nichtlinear sein. Nach der Beobachtung der Eingaben sind sie bekannte Koeffizienten. Das Modell bleibt daher in seinen unbekannten Parametern linear.
 

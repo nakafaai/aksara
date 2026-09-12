@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung invers matriks ordo dua dan tiga melalui determinan dan adjoin, lalu gunakan invers untuk menyelesaikan sistem persamaan linear.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Matriks",
 };
 
@@ -15,7 +15,9 @@ Jika <InlineMath math="A" /> adalah sebuah matriks persegi (misalnya, berordo <I
 
 <BlockMath math="A \cdot A^{-1} = A^{-1} \cdot A = I" />
 
-Matriks identitas <InlineMath math="I" /> adalah matriks persegi yang semua elemen diagonal utamanya adalah <InlineMath math="1" /> dan elemen lainnya adalah <InlineMath math="0" />. Contohnya, untuk ordo <InlineMath math="2 \times 2" />: <InlineMath math="I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />.
+Matriks identitas <InlineMath math="I" /> adalah matriks persegi yang semua elemen diagonal utamanya adalah <InlineMath math="1" /> dan elemen lainnya adalah <InlineMath math="0" />. Contohnya, untuk ordo <InlineMath math="2 \times 2" />:
+
+<BlockMath math="I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
 
 ## Matriks Nonsingular dan Singular
 
@@ -54,7 +56,9 @@ Jadi, rumus lengkap untuk invers matriks ordo <InlineMath math="2 \times 2" /> a
 
 ### Contoh Invers Matriks Ordo Dua
 
-Tentukan invers dari matriks <InlineMath math="P = \begin{bmatrix} 3 & -7 \\ -1 & 2 \end{bmatrix}" />.
+Tentukan invers matriks <InlineMath math="P" /> berikut:
+
+<BlockMath math="P = \begin{bmatrix} 3 & -7 \\ -1 & 2 \end{bmatrix}" />
 
 **Penyelesaian:**
 
@@ -81,7 +85,7 @@ Langkah 4: Hitung invers matriks <InlineMath math="P" />.
   <BlockMath math="P^{-1} = \begin{bmatrix} -2 & -7 \\ -1 & -3 \end{bmatrix}" />
 </MathContainer>
 
-Jadi, invers dari matriks <InlineMath math="P" /> adalah <InlineMath math="P^{-1} = \begin{bmatrix} -2 & -7 \\ -1 & -3 \end{bmatrix}" />.
+Matriks di atas adalah <InlineMath math="P^{-1}" />.
 
 Periksa matriks invers dengan mengalikan <InlineMath math="P" /> dan <InlineMath math="P^{-1}" />. Hasil perkalian harus sama dengan matriks identitas:
 
@@ -119,7 +123,12 @@ Mengalikan kedua ruas di sebelah kiri dengan <InlineMath math="A^{-1}" /> mengha
 
 ## Latihan
 
-Diketahui matriks <InlineMath math="X = \begin{bmatrix} 1 & -3 \\ -1 & 4 \end{bmatrix}" /> dan <InlineMath math="Y = \begin{bmatrix} -4 & 2 \\ 3 & -2 \end{bmatrix}" />.
+Diketahui kedua matriks berikut:
+
+<MathContainer>
+  <BlockMath math="X = \begin{bmatrix} 1 & -3 \\ -1 & 4 \end{bmatrix}" />
+  <BlockMath math="Y = \begin{bmatrix} -4 & 2 \\ 3 & -2 \end{bmatrix}" />
+</MathContainer>
 
 1. Tentukan matriks <InlineMath math="X^{-1}" /> dan <InlineMath math="Y^{-1}" />.
 2. Tentukan matriks <InlineMath math="X^{-1} + Y^{-1}" />.
@@ -156,7 +165,7 @@ Diketahui matriks <InlineMath math="X = \begin{bmatrix} 1 & -3 \\ -1 & 4 \end{bm
 
     <BlockMath math="\begin{aligned} &amp;X+Y \\ &amp;= \begin{bmatrix} 1 &amp; -3 \\ -1 &amp; 4 \end{bmatrix} + \begin{bmatrix} -4 &amp; 2 \\ 3 &amp; -2 \end{bmatrix} \\ &amp;= \begin{bmatrix} 1-4 &amp; -3+2 \\ -1+3 &amp; 4-2 \end{bmatrix} \\ &amp;= \begin{bmatrix} -3 &amp; -1 \\ 2 &amp; 2 \end{bmatrix} \end{aligned}" />
 
-    Misalkan <InlineMath math="Z = X+Y = \begin{bmatrix} -3 & -1 \\ 2 & 2 \end{bmatrix}" />. Sekarang, hitung <InlineMath math="Z^{-1}" />:
+    Misalkan <InlineMath math="Z = X+Y" />. Hitung <InlineMath math="Z^{-1}" />:
 
     <MathContainer>
       <BlockMath math="\begin{aligned} \det(Z) &amp;= (-3)(2) - (-1)(2) \\ &amp;= -6 - (-2) \\ &amp;= -6 + 2 \\ &amp;= -4 \end{aligned}" />

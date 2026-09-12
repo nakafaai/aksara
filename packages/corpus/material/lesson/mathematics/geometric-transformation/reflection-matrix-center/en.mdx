@@ -4,7 +4,7 @@ export const metadata = {
   description: "Derive the reflection matrix for the origin and apply it to individual points and complete triangles.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Geometric Transformation",
 };
 
@@ -12,7 +12,9 @@ export const metadata = {
 
 Reflecting a point <InlineMath math="(x,y)" /> over the origin <InlineMath math="O(0,0)" /> results in the image <InlineMath math="(-x,-y)" />. This is equivalent to a <InlineMath math="180^\circ" /> rotation about the origin.
 
-Now, we will find the <InlineMath math="2 \times 2" /> matrix, say <InlineMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix}" />, that represents this transformation.
+To find the <InlineMath math="2 \times 2" /> matrix for this transformation, start with unknown entries:
+
+<BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix}" />
 
 We want to find <InlineMath math="r, s, t, u" /> such that:
 
@@ -41,7 +43,9 @@ Determine the images of points <InlineMath math="A(-1,1)" /> and <InlineMath mat
 
 **Solution:**
 
-Using the transformation matrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />:
+Using the transformation matrix:
+
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
 For point <InlineMath math="A(-1,1)" />:
 
@@ -130,7 +134,9 @@ The image of point <InlineMath math="B" /> is <InlineMath math="B'(-3,2)" />.
 
 ### Solutions
 
-1.  The reflection matrix over the origin is: <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+1.  The reflection matrix over the origin is:
+
+    <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
     For <InlineMath math="A(1,-7)" />:
 
@@ -142,8 +148,12 @@ The image of point <InlineMath math="B" /> is <InlineMath math="B'(-3,2)" />.
 
     Image <InlineMath math="B'(7,2)" />.
 
-2.  Matrix of <InlineMath math="PQR" /> vertices: <InlineMath math="\begin{pmatrix} 2 & 5 & 3 \\ 2 & 2 & 5 \end{pmatrix}" />.
+2.  Matrix of <InlineMath math="PQR" /> vertices:
 
-    <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 2 &amp; 5 &amp; 3 \\ 2 &amp; 2 &amp; 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 &amp; -5 &amp; -3 \\ -2 &amp; -2 &amp; -5 \end{pmatrix} \end{aligned}" />
+    <MathContainer>
+      <BlockMath math="\begin{pmatrix} 2 & 5 & 3 \\ 2 & 2 & 5 \end{pmatrix}" />
+
+      <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 2 &amp; 5 &amp; 3 \\ 2 &amp; 2 &amp; 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 &amp; -5 &amp; -3 \\ -2 &amp; -2 &amp; -5 \end{pmatrix} \end{aligned}" />
+    </MathContainer>
 
     Image: <InlineMath math="P'(-2,-2)" />, <InlineMath math="Q'(-5,-2)" />, <InlineMath math="R'(-3,-5)" />.

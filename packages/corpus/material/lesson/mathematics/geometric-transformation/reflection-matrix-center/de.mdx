@@ -4,7 +4,7 @@ export const metadata = {
   description: "Leite die Spiegelungsmatrix für den Ursprung her und berechne damit die Bildpunkte einzelner Punkte und ganzer Dreiecke.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Geometrische Transformation",
 };
 
@@ -12,7 +12,9 @@ export const metadata = {
 
 Die Spiegelung eines Punktes <InlineMath math="(x,y)" /> am Ursprung <InlineMath math="O(0,0)" /> ergibt den Bildpunkt <InlineMath math="(-x,-y)" />. Diese Spiegelung entspricht einer Drehung um <InlineMath math="180^\circ" /> um den Ursprung.
 
-Nun bestimmen wir eine <InlineMath math="2 \times 2" />-Matrix <InlineMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix}" />, die diese Transformation darstellt.
+Um die <InlineMath math="2 \times 2" />-Matrix dieser Transformation zu bestimmen, beginnen wir mit unbekannten Einträgen:
+
+<BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix}" />
 
 Die Einträge <InlineMath math="r, s, t, u" /> müssen für jeden Punkt die folgende Gleichung erfüllen:
 
@@ -41,7 +43,9 @@ Bestimme die Bilder der Punkte <InlineMath math="A(-1,1)" /> und <InlineMath mat
 
 **Lösung:**
 
-Wir verwenden die Transformationsmatrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+Wir verwenden die Transformationsmatrix:
+
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
 Für Punkt <InlineMath math="A(-1,1)" />:
 
@@ -129,7 +133,9 @@ Das Bild des Punktes <InlineMath math="B" /> ist <InlineMath math="B'(-3,2)" />.
 
 ### Lösungen
 
-1.  Die Spiegelungsmatrix für den Ursprung ist <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+1.  Die Spiegelungsmatrix für den Ursprung ist:
+
+    <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
     Für <InlineMath math="A(1,-7)" />:
 
@@ -141,8 +147,12 @@ Das Bild des Punktes <InlineMath math="B" /> ist <InlineMath math="B'(-3,2)" />.
 
     Der zweite Bildpunkt ist <InlineMath math="B'(7,2)" />.
 
-2.  Die Koordinatenmatrix der Eckpunkte von <InlineMath math="PQR" /> ist <InlineMath math="\begin{pmatrix} 2 & 5 & 3 \\ 2 & 2 & 5 \end{pmatrix}" />.
+2.  Die Koordinatenmatrix der Eckpunkte von <InlineMath math="PQR" /> ist:
 
-    <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 2 &amp; 5 &amp; 3 \\ 2 &amp; 2 &amp; 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 &amp; -5 &amp; -3 \\ -2 &amp; -2 &amp; -5 \end{pmatrix} \end{aligned}" />
+    <MathContainer>
+      <BlockMath math="\begin{pmatrix} 2 & 5 & 3 \\ 2 & 2 & 5 \end{pmatrix}" />
+
+      <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 2 &amp; 5 &amp; 3 \\ 2 &amp; 2 &amp; 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 &amp; -5 &amp; -3 \\ -2 &amp; -2 &amp; -5 \end{pmatrix} \end{aligned}" />
+    </MathContainer>
 
     Die Bildpunkte sind <InlineMath math="P'(-2,-2)" />, <InlineMath math="Q'(-5,-2)" /> und <InlineMath math="R'(-3,-5)" />.

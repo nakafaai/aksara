@@ -4,7 +4,7 @@ export const metadata = {
   description: "Reflect points about an arbitrary center by combining translations with matrix operations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Geometric Transformation",
 };
 
@@ -12,12 +12,14 @@ export const metadata = {
 
 The image of a point <InlineMath math="(x,y)" /> reflected about the point <InlineMath math="(a,b)" /> is <InlineMath math="(-x+2a, -y+2b)" /> or <InlineMath math="(2a-x, 2b-y)" />.
 
-Multiplication by a <InlineMath math="2 \times 2" /> matrix alone cannot express this transformation because reflection about a center outside the origin includes a translation.
+If the reflection center is outside the origin, we need a translation in addition to multiplication by a <InlineMath math="2 \times 2" /> matrix.
 
 Use three operations:
 
 1. Subtract the center coordinates from <InlineMath math="(x,y)" /> to obtain <InlineMath math="(x-a, y-b)" />.
-2. Reflect this translated point over the origin using the matrix <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+2. Reflect the translated point over the origin using this matrix:
+
+   <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 3. Translate the result back by adding the coordinates of the center of reflection <InlineMath math="(a,b)" />.
 
 Mathematically, if <InlineMath math="(x', y')" /> is the image of <InlineMath math="(x,y)" />:
@@ -39,7 +41,11 @@ The equivalent centered form shows the three operations directly:
 
 <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x' \\ y' \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \left( \begin{pmatrix} x \\ y \end{pmatrix} - \begin{pmatrix} a \\ b \end{pmatrix} \right) \\ &amp;+ \begin{pmatrix} a \\ b \end{pmatrix} \end{aligned}" />
 
-Expanding the matrix expression gives <InlineMath math="\begin{pmatrix} -x+2a \\ -y+2b \end{pmatrix}" />, which is exactly the coordinate rule <InlineMath math="(x,y) \mapsto (2a-x,2b-y)" />. In vector form, the same relation is <InlineMath math="Q'=2P-Q" />: the center is the midpoint of the original point and its image.
+Expanding the matrix expression gives:
+
+<BlockMath math="\begin{pmatrix} -x+2a \\ -y+2b \end{pmatrix}" />
+
+This is exactly the coordinate rule <InlineMath math="(x,y) \mapsto (2a-x,2b-y)" />. In vector form, the same relation is <InlineMath math="Q'=2P-Q" />: the center is the midpoint of the original point and its image.
 
 ## Finding the Image of a Point
 

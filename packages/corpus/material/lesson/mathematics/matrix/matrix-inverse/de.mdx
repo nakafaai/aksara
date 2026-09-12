@@ -3,7 +3,7 @@ export const metadata = {
   description: "Berechne inverse 2-mal-2- und 3-mal-3-Matrizen mit Determinanten und adjugierten Matrizen und löse damit lineare Gleichungssysteme.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Matrix",
 };
 
@@ -15,7 +15,9 @@ Ist <InlineMath math="A" /> eine quadratische Matrix, zum Beispiel eine <InlineM
 
 <BlockMath math="A \cdot A^{-1} = A^{-1} \cdot A = I" />
 
-Die Einheitsmatrix <InlineMath math="I" /> ist eine quadratische Matrix, deren Hauptdiagonale nur aus <InlineMath math="1" /> besteht und deren übrige Einträge <InlineMath math="0" /> sind. Für das Format <InlineMath math="2 \times 2" /> gilt zum Beispiel <InlineMath math="I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />.
+Die Einheitsmatrix <InlineMath math="I" /> ist eine quadratische Matrix, deren Hauptdiagonale nur aus <InlineMath math="1" /> besteht und deren übrige Einträge <InlineMath math="0" /> sind. Für das Format <InlineMath math="2 \times 2" /> gilt zum Beispiel:
+
+<BlockMath math="I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
 
 ## Nichtsinguläre und singuläre Matrizen
 
@@ -54,7 +56,9 @@ Damit lautet die vollständige Formel für die Inverse einer <InlineMath math="2
 
 ### Beispiel mit zwei Zeilen und zwei Spalten
 
-Bestimme die Inverse der Matrix <InlineMath math="P = \begin{bmatrix} 3 & -7 \\ -1 & 2 \end{bmatrix}" />.
+Bestimme die Inverse der folgenden Matrix <InlineMath math="P" />:
+
+<BlockMath math="P = \begin{bmatrix} 3 & -7 \\ -1 & 2 \end{bmatrix}" />
 
 **Lösung:**
 
@@ -81,7 +85,7 @@ Schritt 4: Berechne die Inverse von <InlineMath math="P" />.
   <BlockMath math="P^{-1} = \begin{bmatrix} -2 & -7 \\ -1 & -3 \end{bmatrix}" />
 </MathContainer>
 
-Damit ist <InlineMath math="P^{-1} = \begin{bmatrix} -2 & -7 \\ -1 & -3 \end{bmatrix}" /> die Inverse von <InlineMath math="P" />.
+Die Matrix oben ist <InlineMath math="P^{-1}" />.
 
 Wir prüfen das Ergebnis, statt uns nur auf die Formel zu verlassen:
 
@@ -119,7 +123,12 @@ Die Multiplikation beider Seiten von links mit <InlineMath math="A^{-1}" /> ergi
 
 ## Übungen
 
-Gegeben sind die Matrizen <InlineMath math="X = \begin{bmatrix} 1 & -3 \\ -1 & 4 \end{bmatrix}" /> und <InlineMath math="Y = \begin{bmatrix} -4 & 2 \\ 3 & -2 \end{bmatrix}" />.
+Gegeben sind die folgenden Matrizen:
+
+<MathContainer>
+  <BlockMath math="X = \begin{bmatrix} 1 & -3 \\ -1 & 4 \end{bmatrix}" />
+  <BlockMath math="Y = \begin{bmatrix} -4 & 2 \\ 3 & -2 \end{bmatrix}" />
+</MathContainer>
 
 1. Bestimme die Matrizen <InlineMath math="X^{-1}" /> und <InlineMath math="Y^{-1}" />.
 2. Bestimme die Matrix <InlineMath math="X^{-1} + Y^{-1}" />.
@@ -156,7 +165,7 @@ Gegeben sind die Matrizen <InlineMath math="X = \begin{bmatrix} 1 & -3 \\ -1 & 4
 
     <BlockMath math="\begin{aligned} &amp;X+Y \\ &amp;= \begin{bmatrix} 1 &amp; -3 \\ -1 &amp; 4 \end{bmatrix} + \begin{bmatrix} -4 &amp; 2 \\ 3 &amp; -2 \end{bmatrix} \\ &amp;= \begin{bmatrix} 1-4 &amp; -3+2 \\ -1+3 &amp; 4-2 \end{bmatrix} \\ &amp;= \begin{bmatrix} -3 &amp; -1 \\ 2 &amp; 2 \end{bmatrix} \end{aligned}" />
 
-    Setze <InlineMath math="Z = X+Y = \begin{bmatrix} -3 & -1 \\ 2 & 2 \end{bmatrix}" />. Berechne nun <InlineMath math="Z^{-1}" />:
+    Setze <InlineMath math="Z = X+Y" />. Berechne <InlineMath math="Z^{-1}" />:
 
     <MathContainer>
       <BlockMath math="\begin{aligned} \det(Z) &amp;= (-3)(2) - (-1)(2) \\ &amp;= -6 - (-2) \\ &amp;= -6 + 2 \\ &amp;= -4 \end{aligned}" />

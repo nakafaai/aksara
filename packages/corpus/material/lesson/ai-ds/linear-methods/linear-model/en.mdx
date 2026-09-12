@@ -3,7 +3,7 @@ export const metadata = {
   description: "Build linear-in-parameter models from basis functions, stack measurements into a design matrix, and distinguish exact linear models from local linearization.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-14",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Linear Methods of AI",
 };
 
@@ -39,12 +39,21 @@ Let <InlineMath math="\phi_1(t),\ldots,\phi_n(t)" /> be known basis functions. A
 
 Different choices of basis functions create different shapes while preserving linearity in <InlineMath math="x" />.
 
-| Model | Basis representation |
-| --- | --- |
-| Affine line | <InlineMath math="y=a+bt=\begin{pmatrix}1&t\end{pmatrix}\begin{pmatrix}a\\b\end{pmatrix}" /> |
-| Polynomial of degree <InlineMath math="p" /> | <InlineMath math="y=\sum_{j=0}^{p}a_jt^j=\begin{pmatrix}1&t&\cdots&t^p\end{pmatrix}\begin{pmatrix}a_0\\a_1\\\vdots\\a_p\end{pmatrix}" /> |
-| Fourier basis | <InlineMath math="y=a_0+\sum_{j=1}^{p}\bigl(a_j\cos(jt)+b_j\sin(jt)\bigr)" /> |
-| Two-input interaction | <InlineMath math="y=a+bt+cs+dts=\begin{pmatrix}1&t&s&ts\end{pmatrix}\begin{pmatrix}a\\b\\c\\d\end{pmatrix}" /> |
+An affine line:
+
+<BlockMath math="\begin{aligned} y&=a+bt\\&=\begin{pmatrix}1&t\end{pmatrix}\begin{pmatrix}a\\b\end{pmatrix}\end{aligned}" />
+
+A polynomial of degree <InlineMath math="p" />:
+
+<BlockMath math="\begin{aligned} y&=\sum_{j=0}^{p}a_jt^j\\&=\begin{pmatrix}1&t&\cdots&t^p\end{pmatrix}\begin{pmatrix}a_0\\a_1\\\vdots\\a_p\end{pmatrix}\end{aligned}" />
+
+A Fourier basis:
+
+<BlockMath math="\begin{aligned} y&=a_0+\sum_{j=1}^{p}a_j\cos(jt)\\&\quad+\sum_{j=1}^{p}b_j\sin(jt)\end{aligned}" />
+
+An interaction between two inputs:
+
+<BlockMath math="\begin{aligned} y&=a+bt+cs+dts\\&=\begin{pmatrix}1&t&s&ts\end{pmatrix}\begin{pmatrix}a\\b\\c\\d\end{pmatrix}\end{aligned}" />
 
 Terms such as <InlineMath math="t^p" />, <InlineMath math="\sin(jt)" />, and <InlineMath math="ts" /> may be nonlinear in the inputs. They are known coefficients once the inputs are observed, so the model remains linear in its unknown parameters.
 

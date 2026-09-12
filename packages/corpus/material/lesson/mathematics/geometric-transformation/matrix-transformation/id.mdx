@@ -4,17 +4,25 @@ export const metadata = {
   description: "Hubungkan matriks persegi dengan rotasi, pencerminan, dan geseran melalui vektor posisi serta contoh perhitungan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Transformasi Geometri",
 };
 
 ## Matriks Mengubah Koordinat Titik
 
-Matriks <InlineMath math="2 \times 2" /> mendefinisikan transformasi linear pada bidang Kartesius. Matriks seperti ini selalu memetakan titik asal ke dirinya sendiri, sehingga translasi murni memerlukan penjumlahan vektor atau koordinat homogen.
+Matriks <InlineMath math="2 \times 2" /> mendefinisikan transformasi linear pada bidang Kartesius. Matriks seperti ini selalu memetakan titik asal ke dirinya sendiri, sehingga translasi dengan vektor bukan nol memerlukan penjumlahan vektor atau koordinat homogen.
 
-Titik pada bidang Kartesius dapat ditulis sebagai pasangan terurut <InlineMath math="(x,y)" /> atau vektor posisi <InlineMath math="\begin{pmatrix} x \\ y \end{pmatrix}" />. Bentuk vektor posisi digunakan untuk menghubungkan matriks dengan transformasi.
+Titik pada bidang Kartesius dapat ditulis sebagai pasangan terurut <InlineMath math="(x,y)" /> atau sebagai vektor posisi:
 
-Jika titik <InlineMath math="P(x,y)" /> ditransformasikan oleh matriks <InlineMath math="M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}" />, maka bayangannya <InlineMath math="P'(x',y')" /> diperoleh dari perkalian matriks:
+<BlockMath math="\begin{pmatrix} x \\ y \end{pmatrix}" />
+
+Bentuk vektor posisi ini digunakan untuk menyatakan transformasi melalui perkalian matriks.
+
+Perhatikan transformasi dengan matriks <InlineMath math="M" /> berikut:
+
+<BlockMath math="M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}" />
+
+Bayangan <InlineMath math="P'(x',y')" /> dari titik <InlineMath math="P(x,y)" /> diperoleh melalui perkalian matriks:
 
 <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} ax + by \\ cx + dy \end{pmatrix} \end{aligned}" />
 
@@ -22,7 +30,13 @@ Sehingga, <InlineMath math="x' = ax + by" /> dan <InlineMath math="y' = cx + dy"
 
 ## Mengalikan Sebuah Matriks dengan Sebuah Vektor Posisi
 
-Jika <InlineMath math="\begin{pmatrix} x \\ y \end{pmatrix}" /> merepresentasikan sembarang titik di bidang Kartesius, carilah hasil kali <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />.
+Vektor berikut menyatakan sembarang titik pada bidang Kartesius:
+
+<BlockMath math="\begin{pmatrix} x \\ y \end{pmatrix}" />
+
+Hitung hasil perkalian berikut dan tentukan transformasinya:
+
+<BlockMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />
 
 **Penyelesaian:**
 
@@ -30,13 +44,17 @@ Hasil kali matriks tersebut adalah:
 
 <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(x) + (-1)(y) \\ (1)(x) + (0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} -y \\ x \end{pmatrix} \end{aligned}" />
 
-Matriks <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /> memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(-y,x)" />. Aturan koordinat ini menyatakan rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap titik asal.
+Matriks <InlineMath math="R_{90^\circ}" /> memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(-y,x)" />, sehingga titik berotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap titik asal:
+
+<ContentStack>
+
+<BlockMath math="R_{90^\circ} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />
 
 <LineEquation
   title={
     <>
       Transformasi Titik <InlineMath math="P(2,3)" /> oleh Matriks{" "}
-      <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />
+      <InlineMath math="R_{90^\circ}" />
     </>
   }
   description={
@@ -84,15 +102,25 @@ Matriks <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /> meme
   cameraPosition={[0, 0, 10]}
 />
 
+</ContentStack>
+
 ## Mengalikan Sebuah Matriks dengan Tiga Buah Titik Sekaligus
 
-Carilah bayangan <InlineMath math="\triangle ABC" />, dengan titik sudut <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" />, dan <InlineMath math="C(4,2)" /> yang ditransformasikan dengan matriks <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+Carilah bayangan <InlineMath math="\triangle ABC" />, dengan titik sudut <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" />, dan <InlineMath math="C(4,2)" /> yang ditransformasikan dengan matriks:
+
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
 **Penyelesaian:**
 
-Pertama-tama, kita dapat menuliskan koordinat titik-titik itu sebagai kolom-kolom matriks, yakni <InlineMath math="\begin{pmatrix} 1 & 4 & 4 \\ 1 & 1 & 2 \end{pmatrix}" />. Ketiga kolom itu berturut-turut mewakili <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" />.
+Pertama, tuliskan koordinat titik-titik sebagai kolom matriks:
 
-Selanjutnya, kalikan dari kiri matriks itu dengan <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
+<BlockMath math="\begin{pmatrix} 1 & 4 & 4 \\ 1 & 1 & 2 \end{pmatrix}" />
+
+Ketiga kolom berturut-turut mewakili <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" />.
+
+Selanjutnya, kalikan dari kiri matriks itu dengan:
+
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
 Hitung setiap entri dengan mengalikan baris dan kolom:
 
@@ -105,13 +133,17 @@ Hitung setiap entri dengan mengalikan baris dan kolom:
 
 Hasil transformasinya adalah sebuah segitiga baru <InlineMath math="\triangle A'B'C'" /> dengan titik-titik sudut <InlineMath math="A'(-1,-1)" />, <InlineMath math="B'(-4,-1)" />, dan <InlineMath math="C'(-4,-2)" />.
 
-Matriks <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> merepresentasikan rotasi <InlineMath math="180^\circ" /> terhadap titik asal.
+Matriks <InlineMath math="R_{180^\circ}" /> menyatakan rotasi <InlineMath math="180^\circ" /> terhadap titik asal:
+
+<ContentStack>
+
+<BlockMath math="R_{180^\circ} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
 <LineEquation
   title={
     <>
       Transformasi <InlineMath math="\triangle ABC" /> oleh Matriks{" "}
-      <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+      <InlineMath math="R_{180^\circ}" />
     </>
   }
   description={
@@ -168,10 +200,18 @@ Matriks <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> mer
   cameraTarget={[0, 0, 0]}
 />
 
+</ContentStack>
+
 ## Latihan
 
-1.  Carilah hasil kali dari <InlineMath math="\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />. Transformasi apakah yang direpresentasikan oleh matriks ini?
-2.  Suatu transformasi berkaitan dengan matriks <InlineMath math="\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />. Carilah bayangan segitiga dengan titik sudut <InlineMath math="A(2,0)" />, <InlineMath math="B(2,1)" />, dan <InlineMath math="C(0,1)" /> oleh transformasi tersebut!
+1.  Hitung hasil perkalian matriks berikut. Transformasi apa yang dinyatakan oleh matriks ini?
+
+    <BlockMath math="\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />
+2.  Suatu transformasi memiliki matriks berikut:
+
+    <BlockMath math="\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />
+
+    Carilah bayangan segitiga dengan titik sudut <InlineMath math="A(2,0)" />, <InlineMath math="B(2,1)" />, dan <InlineMath math="C(0,1)" /> oleh transformasi tersebut.
 
 ### Pembahasan
 
@@ -181,11 +221,15 @@ Matriks <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> mer
 
     Ini adalah rotasi <InlineMath math="90^\circ" /> searah jarum jam, yang setara dengan rotasi <InlineMath math="270^\circ" /> berlawanan arah jarum jam terhadap titik asal.
 
-2.  Matriks transformasi <InlineMath math="M = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />.
+2.  Matriks transformasi:
+
+    <BlockMath math="M = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />
 
     Titik-titik sudut: <InlineMath math="A(2,0)" />, <InlineMath math="B(2,1)" />, <InlineMath math="C(0,1)" />.
 
-    Matriks titik: <InlineMath math="\begin{pmatrix} 2 & 2 & 0 \\ 0 & 1 & 1 \end{pmatrix}" />.
+    Matriks titik:
+
+    <BlockMath math="\begin{pmatrix} 2 & 2 & 0 \\ 0 & 1 & 1 \end{pmatrix}" />
 
     Hitung setiap entri dengan mengalikan baris dan kolom:
 
