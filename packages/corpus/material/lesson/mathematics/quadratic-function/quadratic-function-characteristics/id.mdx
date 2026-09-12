@@ -160,7 +160,7 @@ Gambar grafik fungsi <InlineMath math="f(x) = x^2 - 2x - 3" />:
 
    <MathContainer>
      <BlockMath math="\begin{aligned} x &amp;= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \\ &amp;= \frac{2 \pm \sqrt{4 + 12}}{2} \\ &amp;= \frac{2 \pm \sqrt{16}}{2} \\ &amp;= \frac{2 \pm 4}{2} \end{aligned}" />
-     <BlockMath math="x = \frac{2 + 4}{2} = 3 \text{ atau} x = \frac{2 - 4}{2} = -1" />
+     <BlockMath math="\begin{aligned} &amp;x \\ &amp;= \frac{2 + 4}{2} \\ &amp;= 3 \text{ atau} x \\ &amp;= \frac{2 - 4}{2} \\ &amp;= -1 \end{aligned}" />
    </MathContainer>
 
    Jadi titik potong dengan sumbu <InlineMath math="x" /> adalah <InlineMath math="(-1, 0)" /> dan <InlineMath math="(3, 0)" />.
@@ -190,9 +190,10 @@ Gambar grafik fungsi <InlineMath math="f(x) = x^2 - 2x - 3" />:
     cameraTarget={[1, 0, 0]}
     data={[
       {
-        pointIndices: [0, 16, 32, 48, 64, 80, 96],
+        pointIndices: [11, 27, 43, 59, 75, 91, 107],
         smooth: false,
-        points: Array.from({ length: 97 }, (_, sampleIndex) => {
+        points: Array.from({ length: 119 }, (_, pointIndex) => {
+          const sampleIndex = pointIndex - 11;
           const i = sampleIndex / 16;
           const x = i - 2; // x values from -2 to 4
           return { x, y: x * x - 2 * x - 3, z: 0 };
@@ -201,12 +202,12 @@ Gambar grafik fungsi <InlineMath math="f(x) = x^2 - 2x - 3" />:
         labels: [
           {
             text: <InlineMath math="f(x)=x^2 - 2x - 3" />,
-            at: 80,
+            at: 91,
             offset: [-2, 4.4, 0],
           },
           {
             text: <>Titik Puncak <InlineMath math="(1,-4)" /></>,
-            at: 48,
+            at: 59,
             offset: [0, -0.5, 0],
           },
         ],

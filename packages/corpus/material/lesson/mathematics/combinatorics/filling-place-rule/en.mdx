@@ -37,17 +37,17 @@ In a **tree diagram**, each branch records one choice. A complete path from the 
 
 For the same package selection, the first branches choose a platform and the next branches choose a subject.
 
-1. Level <InlineMath math="1" />:
+1. Level 1:
 
-   <BlockMath math="1 \text{ starting point} \rightarrow 3 \text{ platform choices}" />
+   From <InlineMath math="1" /> starting point, branch into <InlineMath math="3" /> platform choices.
 
-2. Level <InlineMath math="2" />:
+2. Level 2:
 
-   <BlockMath math="3 \text{ platforms} \times 4 \text{ subjects} = 12 \text{ endpoints}" />
+   <BlockMath math="\begin{aligned} &amp;3 \text{ platforms} \times 4 \text{ subjects} \\ &amp;= 12 \text{ endpoints} \end{aligned}" />
 
 3. Branch structure:
 
-   <BlockMath math="\text{Start} \rightarrow \text{Platform} \rightarrow \text{Subject}" />
+   Start by choosing a platform, then choose a subject.
 
 4. Total complete paths:
 
@@ -58,7 +58,7 @@ For the same package selection, the first branches choose a platform and the nex
 The **multiplication rule** gives the same count without listing every outcome. If there are <InlineMath math="n" /> slots and slot <InlineMath math="i" /> has <InlineMath math="k_i" /> valid choices, then the number of complete outcomes is:
 
 <MathContainer>
-<BlockMath math="\text{Total ways} = k_1 \times k_2 \times k_3 \times \cdots \times k_n" />
+<BlockMath math="\begin{aligned} &amp;\text{Total ways} \\ &amp;= k_1 \times k_2 \times k_3 \times \cdots \times k_n \end{aligned}" />
 </MathContainer>
 
 ### Counting Access Codes
@@ -87,12 +87,9 @@ If the same object **cannot be used repeatedly**, then each filled slot will red
 
 **Example:** Creating a <InlineMath math="3 \text{-digit}" /> number from digits <InlineMath math="2, 3, 4, 5, 6" /> without repetition.
 
-<MathContainer>
-<BlockMath math="\text{First slot} = 5 \text{ choices}" />
-<BlockMath math="\text{Second slot} = 4 \text{ choices (1 digit already used)}" />
-<BlockMath math="\text{Third slot} = 3 \text{ choices (2 digits already used)}" />
+The first slot has <InlineMath math="5" /> choices. Once <InlineMath math="1" /> digit has been used, <InlineMath math="4" /> choices remain for the second slot. After <InlineMath math="2" /> digits have been used, the third slot has <InlineMath math="3" /> choices.
+
 <BlockMath math="\begin{aligned} \text{Total numbers} &amp;= 5 \times 4 \times 3 \\ &amp;= 60 \text{ numbers} \end{aligned}" />
-</MathContainer>
 
 ### Repetition Allowed
 
@@ -119,18 +116,15 @@ For the same case with repetition allowed:
 
 1. Given: <InlineMath math="4 \text{ brands}" />, <InlineMath math="3 \text{ memory capacities}" />, <InlineMath math="5 \text{ color choices}" />
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned}\text{Total combinations} &= 4 \times 3 \times 5 \\ &= 60 \text{ smartphone combinations}\end{aligned}" />
-   </MathContainer>
+   The number of smartphone combinations is:
+
+   <BlockMath math="4\times3\times5=60" />
 
 2. Given: <InlineMath math="1 \text{ letter}" /> from <InlineMath math="\{A, B, C, D\}" />, <InlineMath math="2 \text{ digits}" /> from <InlineMath math="\{1, 2, 3, 4, 5\}" /> without repetition
 
-   <MathContainer>
-   <BlockMath math="\text{Letter choices} = 4" />
-   <BlockMath math="\text{First digit choices} = 5" />
-   <BlockMath math="\text{Second digit choices} = 4 \text{ (without repetition)}" />
+   There are <InlineMath math="4" /> choices for the letter and <InlineMath math="5" /> for the first digit. Repetition is forbidden, so only <InlineMath math="4" /> choices remain for the second digit.
+
    <BlockMath math="\begin{aligned} &amp;\text{Total passwords} \\ &amp;= 4 \times 5 \times 4 \\ &amp;= 80 \text{ passwords} \end{aligned}" />
-   </MathContainer>
 
 3. Given: <InlineMath math="3 \text{ roads}" /> from <InlineMath math="P" /> to <InlineMath math="Q" />, <InlineMath math="4 \text{ roads}" /> from <InlineMath math="Q" /> to <InlineMath math="R" />
 
@@ -140,10 +134,10 @@ For the same case with repetition allowed:
 
 4. Given: <InlineMath math="2 \text{ letters}" /> from <InlineMath math="26 \text{ letters}" />, <InlineMath math="3 \text{ digits}" /> from <InlineMath math="10 \text{ digits}" />, repetition allowed
 
-   <MathContainer>
-   <BlockMath math="\text{First letter choices} = 26" />
-   <BlockMath math="\text{Second letter choices} = 26" />
+   <BlockMath math="\begin{aligned} &amp;\text{First letter choices} = 26 \end{aligned}" />
+      The second letter has <InlineMath math="26" /> choices.
    <BlockMath math="\text{Choices for each digit} = 10" />
-   <BlockMath math="\text{Total license plates} = 26 \times 26 \times 10 \times 10 \times 10" />
+      The total number of license plates is:
+
+   <BlockMath math="26\times26\times10\times10\times10" />
    <BlockMath math="\begin{aligned}  &amp;= 676 \times 1000 \\ &amp;= 676000 \text{ license plates} \end{aligned}" />
-   </MathContainer>

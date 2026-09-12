@@ -56,15 +56,15 @@ Die komplexe Zahl <InlineMath math="1 = 1+0i" /> ist das neutrale Element der Mu
 Sei <InlineMath math="z = 4-7i" />.
 
 <MathContainer>
-  <BlockMath math="\begin{aligned}z \times 1 &= (4-7i)(1+0i) \\ &= 4(1) - (-7)(0) + i(4(0) + (-7)(1)) \\ &= 4 - 7i \\ &= z\end{aligned}" />
-  <BlockMath math="\begin{aligned}1 \times z &= (1+0i)(4-7i) \\ &= 1(4) - (0)(-7) + i(1(-7) + 0(4)) \\ &= 4 - 7i \\ &= z\end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;z \times 1 = (4-7i)(1+0i) \\ &amp;= 4(1) - (-7)(0) \\ &amp;+ i(4(0) + (-7)(1)) \\ &amp;= 4 - 7i \\ &amp;= z \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;1 \times z = (1+0i)(4-7i) \\ &amp;= 1(4) - (0)(-7) \\ &amp;+ i(1(-7) + 0(4)) \\ &amp;= 4 - 7i \\ &amp;= z \end{aligned}" />
 </MathContainer>
 
 ### Distributivgesetz
 
 Das Distributivgesetz verbindet Multiplikation und Addition komplexer Zahlen.
 
-<BlockMath math="z_1 \times (z_2 + z_3) = (z_1 \times z_2) + (z_1 \times z_3)" />
+<BlockMath math="\begin{aligned} &amp;z_1 \times (z_2 + z_3) = (z_1 \times z_2) \\ &amp;+ (z_1 \times z_3) \end{aligned}" />
 
 **Beispiel:**
 
@@ -73,7 +73,7 @@ Sei <InlineMath math="z_1=2" />, <InlineMath math="z_2 = 1+i" />, <InlineMath ma
 **Linke Seite:** <InlineMath math="z_1 \times (z_2 + z_3)" />
 
 <MathContainer>
-  <BlockMath math="z_1 \times (z_2 + z_3) = 2 \times ((1+i) + (3-2i))" />
+  <BlockMath math="\begin{aligned} &amp;z_1 \times (z_2 + z_3) \\ &amp;= 2 \times ((1+i) + (3-2i)) \end{aligned}" />
   <BlockMath math="= 2 \times (1+3 + i-2i)" />
   <BlockMath math="= 2 \times (4-i)" />
   <BlockMath math="= 8-2i" />
@@ -82,7 +82,7 @@ Sei <InlineMath math="z_1=2" />, <InlineMath math="z_2 = 1+i" />, <InlineMath ma
 **Rechte Seite:** <InlineMath math="(z_1 \times z_2) + (z_1 \times z_3)" />
 
 <MathContainer>
-  <BlockMath math="(z_1 \times z_2) + (z_1 \times z_3) = (2(1+i)) + (2(3-2i))" />
+  <BlockMath math="\begin{aligned} &amp;(z_1 \times z_2) + (z_1 \times z_3) = (2(1+i)) \\ &amp;+ (2(3-2i)) \end{aligned}" />
   <BlockMath math="= (2+2i) + (6-4i)" />
   <BlockMath math="= (2+6) + (2i-4i)" />
   <BlockMath math="= 8-2i" />
@@ -94,14 +94,24 @@ Beide Seiten ergeben <InlineMath math="8-2i" />. Damit ist das Distributivgesetz
 
 Mit denselben Gesetzen lassen sich algebraische Identitäten beweisen. Für beliebige <InlineMath math="z_1, z_2" /> wird <InlineMath math="(z_1 + z_2)^2" /> wie folgt ausmultipliziert:
 
-<MathContainer>
-  <BlockMath math="(z_1 + z_2)^2 = (z_1 + z_2)(z_1 + z_2) \quad \text{(Definition von Quadrat)}" />
-  <BlockMath math="= z_1(z_1 + z_2) + z_2(z_1 + z_2) \quad \text{(Distributivgesetz)}" />
-  <BlockMath math="= (z_1z_1 + z_1z_2) + (z_2z_1 + z_2z_2) \quad \text{(Distributivgesetz)}" />
-  <BlockMath math="= z_1^2 + z_1z_2 + z_2z_1 + z_2^2 \quad \text{(Definition von Quadrat)}" />
-  <BlockMath math="\begin{aligned} &= z_1^2 + z_1z_2 + z_1z_2 + z_2^2 \quad \text{(Kommutativgesetz:} z_2z_1 \\ &= z_1z_2)\end{aligned}" />
-  <BlockMath math="= z_1^2 + 2z_1z_2 + z_2^2 \quad \text{(gleichartige Terme zusammenfassen)}" />
-</MathContainer>
+Schreibe das Quadrat als Produkt zweier gleicher Faktoren:
+
+<BlockMath math="\begin{aligned} &amp;(z_1+z_2)^2 \\ &amp;=(z_1+z_2)(z_1+z_2) \end{aligned}" />
+  Wende das Distributivgesetz an:
+
+<BlockMath math="\begin{aligned} &amp;=z_1(z_1+z_2) \\ &amp;+z_2(z_1+z_2) \end{aligned}" />
+  Wende das Distributivgesetz an:
+
+<BlockMath math="\begin{aligned} &amp;=(z_1z_1+z_1z_2) \\ &amp;+(z_2z_1+z_2z_2) \end{aligned}" />
+  Schreibe gleiche Faktoren als Quadrate:
+
+<BlockMath math="\begin{aligned} &amp;=z_1^2+z_1z_2+z_2z_1+z_2^2 \end{aligned}" />
+  Nutze die Kommutativität <InlineMath math="z_2z_1=z_1z_2" />:
+
+<BlockMath math="=z_1^2+z_1z_2+z_1z_2+z_2^2" />
+  Fasse gleichartige Terme zusammen:
+
+<BlockMath math="= z_1^2 + 2z_1z_2 + z_2^2" />
 
 ## Multiplikatives Inverses
 

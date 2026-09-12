@@ -229,10 +229,12 @@ Setelah <InlineMath math="n" /> langkah,
 
 Untuk <InlineMath math="m\ge n" />, dekomposisi <InlineMath math="\mathrm{QR}" /> dengan reflektor Householder memerlukan kira-kira
 
-<MathContainer>
-<BlockMath math="2mn^2-\frac{2}{3}n^3\text{ operasi titik mengambang}" />
-<BlockMath math="\frac{4}{3}n^3\text{ operasi titik mengambang ketika }m=n" />
-</MathContainer>
+Perkiraan banyaknya operasi floating-point adalah:
+
+<BlockMath math="2mn^2-\frac23n^3" />
+Perkiraan banyaknya operasi floating-point saat <InlineMath math="m=n" /> adalah:
+
+<BlockMath math="\frac43n^3" />
 
 ### Sifat Numerik
 
@@ -240,10 +242,8 @@ Untuk <InlineMath math="m\ge n" />, dekomposisi <InlineMath math="\mathrm{QR}" /
 
 2. Pada langkah ke-<InlineMath math="i" />, elemen diagonal baru bernilai <InlineMath math="\pm\|\widetilde a_i\|_2" />. Pilih tanda berikut saat menghitung reflektor agar dua bilangan yang hampir sama tidak saling dikurangkan:
 
-   <MathContainer>
    <BlockMath math="u_i = \tilde{a}_i + s_i\|\tilde{a}_i\|_2e_1" />
-   <BlockMath math="s_i=1\text{ ketika }\tilde a_{ii}\ge0,\qquad s_i=-1\text{ untuk kasus lainnya}" />
-   </MathContainer>
+   <BlockMath math="s_i=\begin{cases}1,&amp;\tilde a_{ii}\ge0\\-1,&amp;\tilde a_{ii}&lt;0\end{cases}" />
 
    Setelah faktorisasi selesai, tanda satu kolom <InlineMath math="Q" /> dan baris <InlineMath math="R" /> yang bersesuaian dapat dibalik agar diagonal <InlineMath math="R" /> positif. Jika <InlineMath math="\|\widetilde a_i\|_2=0" />, matriks tidak memiliki peringkat kolom penuh dan syarat keunikan tersebut tidak berlaku. Gunakan dekomposisi <InlineMath math="\mathrm{QR}" /> dengan pivot kolom untuk menentukan peringkat numeriknya.
 

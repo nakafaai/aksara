@@ -24,27 +24,39 @@ The product function multiplies <InlineMath math="f(x)" /> and <InlineMath math=
     }
     data={[
       {
-        points: Array.from({ length: 11 }, (_, i) => ({
-          x: i - 5,
-          y: i - 5,
-          z: 0,
-        })),
+        points: Array.from({ length: 22 }, (_, pointIndex) => {
+          const i = pointIndex - 3;
+          return {
+            x: i - 5,
+            y: i - 5,
+            z: 0,
+          };
+        }),
+        pointIndices: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
         smooth: false,
         color: "#ea580c",
-        labels: [{ text: <InlineMath math="f(x)=x" />, at: 6, offset: [0, -2, 0] }],
+        labels: [{ text: <InlineMath math="f(x)=x" />, at: 9, offset: [0, -2, 0] }],
       },
       {
-        points: Array.from({ length: 11 }, (_, i) => ({ x: i - 5, y: 2, z: 0 })),
+        points: Array.from({ length: 35 }, (_, pointIndex) => {
+          const i = pointIndex - 12;
+          return { x: i - 5, y: 2, z: 0 };
+        }),
+        pointIndices: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
         smooth: false,
         color: "#0284c7",
-        labels: [{ text: <InlineMath math="g(x)=2" />, at: 8, offset: [0.5, -0.8, 0] }],
+        labels: [{ text: <InlineMath math="g(x)=2" />, at: 20, offset: [0.5, -0.8, 0] }],
       },
       {
-        points: Array.from({ length: 11 }, (_, i) => ({
-          x: i - 5,
-          y: 2 * (i - 5),
-          z: 0,
-        })),
+        points: Array.from({ length: 12 }, (_, pointIndex) => {
+          const i = pointIndex + 0;
+          return {
+            x: i - 5,
+            y: 2 * (i - 5),
+            z: 0,
+          };
+        }),
+        pointIndices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         smooth: false,
         color: "#e11d48",
         labels: [{ text: <InlineMath math="(f\cdot g)(x)=2x" />, at: 7, offset: [-2.5, 1, 0] }],
@@ -188,17 +200,17 @@ Given the function <InlineMath math="f(x) = \sqrt{x+4}" /> with <InlineMath math
 
     Exclude <InlineMath math="x=3" /> and <InlineMath math="x=-3" /> from the domain intersection:
 
-    <BlockMath math="D_{\frac{f}{g}}=\{x\mid x\geq-4,\ x\in\mathbb{R}\}\setminus\{-3,3\}" />
+    <BlockMath math="\begin{aligned} &amp;D_{\frac{f}{g}} \\ &amp;=\{x\mid x\geq-4,\ x\in\mathbb{R}\} \\ &amp;\setminus\{-3,3\} \end{aligned}" />
 
     Or it can be written as:
 
-    <BlockMath math="D_{\frac{f}{g}} = \{x | x \ge -4, x \in \mathbb{R}, x \neq -3, x \neq 3\}" />
+    <BlockMath math="D_{\frac fg}=[-4,\infty)\setminus\{-3,3\}" />
 
     So, <InlineMath math="(\frac{f}{g})(x) = \frac{\sqrt{x+4}}{x^2 - 9}" /> with domain <InlineMath math="\{x | x \ge -4, x \neq -3, x \neq 3\}" />.
 
 3.  **Calculating <InlineMath math="(f \cdot g)(5)" />:**
 
-    We use the result from number <InlineMath math="1" />: <InlineMath math="(f \cdot g)(x) = (x^2 - 9)\sqrt{x+4}" />.
+    We use the result from number 1: <InlineMath math="(f \cdot g)(x) = (x^2 - 9)\sqrt{x+4}" />.
 
     Since <InlineMath math="5 \ge -4" />, <InlineMath math="x=5" /> is in the domain <InlineMath math="D_{f \cdot g}" />.
 
@@ -211,4 +223,4 @@ Given the function <InlineMath math="f(x) = \sqrt{x+4}" /> with <InlineMath math
 
 4.  **Is <InlineMath math="(\frac{f}{g})(3)" /> defined?**
 
-    Undefined. We look at the domain of <InlineMath math="(\frac{f}{g})(x)" /> from number <InlineMath math="2" />, which is <InlineMath math="\{x | x \ge -4, x \neq -3, x \neq 3\}" />. The value <InlineMath math="x=3" /> is explicitly excluded from the domain because it would cause the denominator <InlineMath math="g(x) = x^2 - 9" /> to become zero (<InlineMath math="3^2 - 9 = 0" />). Division by zero is not allowed in mathematics.
+    Undefined. We look at the domain of <InlineMath math="(\frac{f}{g})(x)" /> from number 2, which is <InlineMath math="\{x | x \ge -4, x \neq -3, x \neq 3\}" />. The value <InlineMath math="x=3" /> is explicitly excluded from the domain because it would cause the denominator <InlineMath math="g(x) = x^2 - 9" /> to become zero (<InlineMath math="3^2 - 9 = 0" />). Division by zero is not allowed in mathematics.

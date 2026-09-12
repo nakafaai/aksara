@@ -229,10 +229,12 @@ Nach <InlineMath math="n" /> Schritten gilt
 
 Für <InlineMath math="m\ge n" /> benötigt eine <InlineMath math="\mathrm{QR}" />-Zerlegung mit Householder-Spiegelungen ungefähr
 
-<MathContainer>
-<BlockMath math="2mn^2-\frac{2}{3}n^3\text{ Gleitkommaoperationen}" />
-<BlockMath math="\frac{4}{3}n^3\text{ Gleitkommaoperationen für }m=n" />
-</MathContainer>
+Die ungefähre Anzahl an Gleitkommaoperationen beträgt:
+
+<BlockMath math="2mn^2-\frac23n^3" />
+Die ungefähre Anzahl an Gleitkommaoperationen für <InlineMath math="m=n" /> beträgt:
+
+<BlockMath math="\frac43n^3" />
 
 ### Numerische Eigenschaften
 
@@ -240,10 +242,8 @@ Für <InlineMath math="m\ge n" /> benötigt eine <InlineMath math="\mathrm{QR}" 
 
 2. Im Schritt <InlineMath math="i" /> entsteht der neue Diagonaleintrag <InlineMath math="\pm\|\widetilde a_i\|_2" />. Das folgende Vorzeichen verhindert beim Berechnen des Reflektors die Subtraktion fast gleicher Zahlen:
 
-   <MathContainer>
    <BlockMath math="u_i = \tilde{a}_i + s_i\|\tilde{a}_i\|_2e_1" />
-   <BlockMath math="s_i=1\text{ für }\tilde a_{ii}\ge0,\qquad s_i=-1\text{ sonst}" />
-   </MathContainer>
+   <BlockMath math="s_i=\begin{cases}1,&amp;\tilde a_{ii}\ge0\\-1,&amp;\tilde a_{ii}&lt;0\end{cases}" />
 
    Nach der Faktorisierung können die Vorzeichen einer Spalte von <InlineMath math="Q" /> und der zugehörigen Zeile von <InlineMath math="R" /> gemeinsam gewechselt werden, damit die Diagonale von <InlineMath math="R" /> positiv ist. Gilt <InlineMath math="\|\widetilde a_i\|_2=0" />, fehlt der volle Spaltenrang und diese Eindeutigkeitsbedingung entfällt. Eine <InlineMath math="\mathrm{QR}" />-Zerlegung mit Spaltenpivotisierung eignet sich besser, wenn der numerische Rang bestimmt werden soll.
 

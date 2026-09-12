@@ -58,29 +58,50 @@ Drei Basen kommen besonders häufig vor:
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 241 }, (_, i) => {
-        const x = i / 40 - 3;
-        return { x, y: Math.pow(2, x), z: 0 };
-      }),
+      points: (() => {
+        const parameters = Array.from(
+          { length: 881 },
+          (_, i) => -16 + (i / 880) * 22
+        );
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t;
+            return { x, y: Math.pow(2, x), z: 0 };
+          });
+      })(),
       color: "#0284c7",
-      labels: [{ text: <InlineMath math="y=2^x" />, at: 200, offset: [-0.7, 3, 0] }],
+      labels: [{ text: <InlineMath math="y=2^x" />, at: 720, offset: [-0.7, 3, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 241 }, (_, i) => {
-        const y = i / 40 - 3;
-        return { x: Math.pow(2, y), y, z: 0 };
-      }),
+      points: (() => {
+        const parameters = Array.from(
+          { length: 881 },
+          (_, i) => -16 + (i / 880) * 22
+        );
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = Math.pow(2, t);
+            return { x, y: t, z: 0 };
+          });
+      })(),
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 200, offset: [1.2, -1.2, 0] }],
+      labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 720, offset: [1.2, -1.2, 0] }],
       showPoints: false,
     },
     {
-      points: [{ x: -3, y: -3, z: 0 }, { x: 8, y: 8, z: 0 }],
+      points: [
+      { x: -160, y: -160, z: 0 },
+      { x: -3, y: -3, z: 0 },
+      { x: 8, y: 8, z: 0 },
+      { x: 160, y: 160, z: 0 },
+      ],
       smooth: false,
       color: "#9333ea",
-      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [-0.8, -2.5, 0] }],
+      labels: [{ text: <InlineMath math="y=x" />, at: 2, offset: [-0.8, -2.5, 0] }],
       showPoints: false,
     },
   ]}

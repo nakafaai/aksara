@@ -15,13 +15,17 @@ Limits can describe the long-term behavior of a mathematical model. In public he
 
 Consider this deliberately simplified function:
 
-<BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190.68)^3}" />
+<BlockMath math="\begin{aligned} &amp;N(t) \\ &amp;= 285000 - \sqrt{t^2 - t + (190.68)^3} \end{aligned}" />
 
 Here, <InlineMath math="N(t)" /> is interpreted as a modeled case count, while <InlineMath math="t" /> is a nonnegative input whose unit must be defined for the scenario being studied.
 
 To test whether the formula remains meaningful in the long run, calculate:
 
-<BlockMath math="\lim_{t \to \infty} N(t) = \lim_{t \to \infty} \left(285000 - \sqrt{t^2 - t + (190.68)^3}\right)" />
+Abbreviate the square-root term as <InlineMath math="R(t)" />:
+
+<BlockMath math="R(t)=\sqrt{t^2-t+(190.68)^3}" />
+
+<BlockMath math="\begin{aligned} &amp;\lim_{t\to\infty}N(t) \\ &amp;=\lim_{t\to\infty}(285000-R(t)) \end{aligned}" />
 
 **Long-term behavior:**
 
@@ -31,10 +35,10 @@ When <InlineMath math="t" /> is very large, the term <InlineMath math="t^2" /> w
 
 So,
 
-<MathContainer>
-<BlockMath math="\sqrt{t^2 - t + (190.68)^3} \approx \sqrt{t^2} = |t| = t \quad \text{(for } t > 0\text{)}" />
+For large positive <InlineMath math="t" />:
+
+<BlockMath math="\begin{aligned} &amp;\sqrt{t^2 - t + (190.68)^3} \\ &amp;\approx\sqrt{t^2}=|t|=t \end{aligned}" />
 <BlockMath math="\begin{aligned} \lim_{t \to \infty} N(t) &amp;= \lim_{t \to \infty} (285000 - t) \\ &amp;= -\infty \end{aligned}" />
-</MathContainer>
 
 > A negative case count means the formula has been used outside the model's **valid domain**. A case count cannot be negative, so the formula is meaningful only while <InlineMath math="N(t) \geq 0" />. This simplified formula is a mathematical example, not an epidemiological forecast. It must not be used as medical or policy guidance.
 
@@ -52,7 +56,7 @@ In a differentiable cost model, **marginal cost** is the instantaneous rate at w
 
 **Mathematical definition using limits:**
 
-<BlockMath math="\text{Marginal Cost} = \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x}" />
+<BlockMath math="\begin{aligned} &amp;\text{Marginal Cost} \\ &amp;= \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x} \end{aligned}" />
 
 The quantities in this definition are:
 - <InlineMath math="C(x)" /> = total production cost function for <InlineMath math="x \text{ units}" />
@@ -65,7 +69,7 @@ When output is counted in whole units, the exact additional cost of the next uni
 
 An idealized logistic population model can be written as:
 
-<BlockMath math="P(t) = \frac{K}{1 + Ae^{-rt}}, \qquad K > 0,\ A > 0,\ r > 0" />
+<BlockMath math="\begin{aligned} &amp;P(t) = \frac{K}{1 + Ae^{-rt}}, \\ &amp;K > 0,\ A > 0,\ r > 0 \end{aligned}" />
 
 Since <InlineMath math="e^{-rt} \to 0" /> as <InlineMath math="t \to \infty" />, the model approaches its **carrying-capacity parameter**:
 
@@ -106,7 +110,7 @@ This conclusion belongs to that irreversible first-order model. A reversible rea
 
 Let <InlineMath math="t" /> be the number of vaccinated people. The following model calculates the number of remaining positive cases, <InlineMath math="N(t)" />:
 
-<BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190.68)^3}" />
+<BlockMath math="\begin{aligned} &amp;N(t) \\ &amp;= 285000 - \sqrt{t^2 - t + (190.68)^3} \end{aligned}" />
 
 We will calculate <InlineMath math="N(282{,}367)" /> for a vaccination target of <InlineMath math="282{,}367 \text{ people}" />.
 
@@ -123,8 +127,8 @@ These assumptions give the following population counts:
 
 <MathContainer>
 <BlockMath math="\begin{aligned} \text{Children} &amp;= 0.21 \times 576{,}260 \\ &amp;= 121{,}014.6 \\ &amp;\approx 121{,}015 \text{ people} \end{aligned}" />
-<BlockMath math="\text{Adults} = 0.79 \times 576{,}260 = 455{,}245.4 \approx 455{,}245 \text{ people}" />
-<BlockMath math="\text{Total positive cases} = 0.3 \times 576{,}260 = 172{,}878 \text{ people}" />
+<BlockMath math="\begin{aligned} &amp;\text{Adults} = 0.79 \times 576{,}260 \\ &amp;= 455{,}245.4 \approx 455{,}245 \text{ people} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Total positive cases} \\ &amp;= 0.3 \times 576{,}260 = 172{,}878 \text{ people} \end{aligned}" />
 <BlockMath math="\begin{aligned} &amp;\text{Positive cases among adults} \\ &amp;= 0.79 \times 0.30 \times 576{,}260 \\  &amp;= 136{,}573.62 \\ &amp;\approx 136{,}574 \text{ people} \end{aligned}" />
 <BlockMath math="\begin{aligned} &amp;\text{Eligible adults} \\ &amp;= 0.79 \times 0.70 \times 576{,}260 \\  &amp;= 318{,}671.78 \\ &amp;\approx 318{,}672 \text{ people} \end{aligned}" />
 </MathContainer>
@@ -139,7 +143,9 @@ The target is about <InlineMath math="88.6\%" /> of the eligible adults in this 
 
 To calculate the model's case count, we use <InlineMath math="t=282{,}367" />:
 
-<BlockMath math="N(282{,}367) = 285{,}000 - \sqrt{(282{,}367)^2 - 282{,}367 + (190.68)^3}" />
+<BlockMath math="\begin{aligned} &amp;R_0=(282367)^2-282367 \\ &amp;+(190.68)^3 \end{aligned}" />
+
+<BlockMath math="N(282367)=285000-\sqrt{R_0}" />
 
 **Step** 1 calculates the constant term.
 
@@ -153,15 +159,15 @@ The displayed value is rounded to two decimal places. The next calculation retai
 
 **Step** 3 combines the values under the square root.
 
-<BlockMath math="79{,}731{,}122{,}689 - 282{,}367 + 6{,}932{,}907.88 = 79{,}737{,}773{,}229.88" />
+<BlockMath math="\begin{aligned} &amp;79731122689-282367 \\ &amp;+6932907.88 \\ &amp;=79737773229.88 \end{aligned}" />
 
 **Step** 4 gives the final result.
 
-<MathContainer>
-<BlockMath math="N(282{,}367) = 285{,}000 - \sqrt{79{,}737{,}773{,}229.88}" />
-<BlockMath math="= 285{,}000 - 282{,}378.78" />
+<BlockMath math="R_0\approx79737773229.88" />
+
+<BlockMath math="N(282367)=285000-\sqrt{R_0}" />
+<BlockMath math="\approx 285{,}000 - 282{,}378.78" />
 <BlockMath math="= 2{,}621.22 \approx 2{,}621 \text{ people}" />
-</MathContainer>
 
 ### Meaning of the Result
 
@@ -215,12 +221,12 @@ The value <InlineMath math="2{,}621 \text{ cases}" /> answers the mathematical q
    Marginal cost is the derivative of the cost function, which can be calculated using the limit definition:
 
    <MathContainer>
-   <BlockMath math="\text{Marginal Cost} = \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x}" />
+   <BlockMath math="\begin{aligned} &amp;\text{Marginal Cost} \\ &amp;= \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x} \end{aligned}" />
    </MathContainer>
 
    **Detailed steps:**
 
-   <BlockMath math="C(x + \Delta x) = 1000 + 5(x + \Delta x) + 0.01(x + \Delta x)^2" />
+   <BlockMath math="\begin{aligned} &amp;C(x + \Delta x) = 1000 + 5(x + \Delta x) \\ &amp;+ 0.01(x + \Delta x)^2 \end{aligned}" />
 
    We expand:
 
@@ -228,14 +234,14 @@ The value <InlineMath math="2{,}621 \text{ cases}" /> answers the mathematical q
 
    Then we substitute:
 
-   <BlockMath math="C(x + \Delta x) = 1000 + 5x + 5\Delta x + 0.01x^2 + 0.02x\Delta x + 0.01(\Delta x)^2" />
+   <BlockMath math="\begin{aligned} &amp;C(x + \Delta x) = 1000 + 5x \\ &amp;+ 5\Delta x + 0.01x^2 \\ &amp;+ 0.02x\Delta x + 0.01(\Delta x)^2 \end{aligned}" />
 
    So,
 
    <MathContainer>
-   <BlockMath math="C(x + \Delta x) - C(x) = 5\Delta x + 0.02x\Delta x + 0.01(\Delta x)^2" />
-   <BlockMath math="\frac{C(x + \Delta x) - C(x)}{\Delta x} = 5 + 0.02x + 0.01\Delta x" />
-   <BlockMath math="\lim_{\Delta x \to 0} (5 + 0.02x + 0.01\Delta x) = 5 + 0.02x" />
+   <BlockMath math="\begin{aligned} &amp;C(x + \Delta x) - C(x) = 5\Delta x \\ &amp;+ 0.02x\Delta x + 0.01(\Delta x)^2 \end{aligned}" />
+   <BlockMath math="\begin{aligned} &amp;\frac{C(x + \Delta x) - C(x)}{\Delta x} \\ &amp;= 5 + 0.02x + 0.01\Delta x \end{aligned}" />
+   <BlockMath math="\begin{aligned} &amp;\lim_{\Delta x \to 0} (5 + 0.02x + 0.01\Delta x) \\ &amp;= 5 + 0.02x \end{aligned}" />
    </MathContainer>
 
    Thus, the marginal-cost function is <InlineMath math="C'(x)=5+0.02x" /> currency units per output unit.
@@ -244,7 +250,7 @@ The value <InlineMath math="2{,}621 \text{ cases}" /> answers the mathematical q
 
    <MathContainer>
    <BlockMath math="C(x+1)-C(x)" />
-   <BlockMath math="=1000+5(x+1)+0.01(x+1)^2-(1000+5x+0.01x^2)" />
+   <BlockMath math="\begin{aligned} &amp;=1000 +5(x+1) \\ &amp;+0.01(x+1)^2 \\ &amp;-(1000+5x+0.01x^2) \end{aligned}" />
    <BlockMath math="=5.01+0.02x" />
    </MathContainer>
 

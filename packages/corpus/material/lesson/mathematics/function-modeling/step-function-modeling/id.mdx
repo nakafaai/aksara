@@ -161,7 +161,7 @@ Dalam konvensi ini, fungsi unit step bernilai <InlineMath math="0" /> untuk <Inl
       color: "#0d9488",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <InlineMath math="H(x)" />, at: 1, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="H(x)" />, at: 1, offset: [-7, 0.5, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
@@ -255,7 +255,7 @@ Fungsi <InlineMath math="f(x) = \lfloor x \rfloor + k" /> menggeser grafik fungs
         smooth: false,
         labels:
           integerValue === 2
-            ? [{ text: <InlineMath math="h(x)=\lfloor x \rfloor-1" />, at: 1, offset: [2, 0.5, 0] }]
+            ? [{ text: <InlineMath math="h(x)=\lfloor x \rfloor-1" />, at: 1, offset: [0, 0.5, 0] }]
             : [],
       };
     }),
@@ -290,19 +290,19 @@ Fungsi <InlineMath math="f(x) = \lfloor x - h \rfloor" /> menggeser grafik ke ka
 
 1. **Menghitung nilai fungsi lantai dan langit-langit:**
 
-   <MathContainer>
-     <BlockMath math="\lfloor 3{,}7 \rfloor = 3 \text{ (bilangan bulat terbesar} \leq 3{,}7\text{)}" />
-     <BlockMath math="\lceil -2{,}3 \rceil = -2 \text{ (bilangan bulat terkecil} \geq -2{,}3\text{)}" />
-     <BlockMath math="\lfloor 3{,}7 \rfloor + \lceil -2{,}3 \rceil = 3 + (-2) = 1" />
-   </MathContainer>
+   <BlockMath math="\lfloor3{,}7\rfloor=3" />
+
+   <InlineMath math="3" /> adalah bilangan bulat terbesar yang kurang dari atau sama dengan <InlineMath math="3{,}7" />.
+   <BlockMath math="\lceil-2{,}3\rceil=-2" />
+
+   <InlineMath math="-2" /> adalah bilangan bulat terkecil yang lebih dari atau sama dengan <InlineMath math="-2{,}3" />.
+   <BlockMath math="\lfloor 3{,}7 \rfloor + \lceil -2{,}3 \rceil = 3 + (-2) = 1" />
 
 2. **Model fungsi diskon toko buku:**
 
    Misalkan <InlineMath math="n\in\mathbb{N}" /> adalah banyak buku yang dibeli, berupa bilangan bulat positif. Total harga setelah diskon adalah:
 
-   <MathContainer>
-     <BlockMath math="H(n) = \begin{cases} 50{.}000n, & \text{jika } 1 \leq n \leq 5 \\ 50{.}000n \times 0{,}9, & \text{jika } 6 \leq n \leq 10 \\ 50{.}000n \times 0{,}85, & \text{jika } 11 \leq n \leq 20 \\ 50{.}000n \times 0{,}8, & \text{jika } n > 20 \end{cases}" />
-   </MathContainer>
+   <BlockMath math="H(n) = \begin{cases}\begin{gathered}50{.}000n\\\text{jika } 1 \leq n \leq 5\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}9\\\text{jika } 6 \leq n \leq 10\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}85\\\text{jika } 11 \leq n \leq 20\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}8\\\text{jika } n > 20\end{gathered}\end{cases}" />
 
 3. **Grafik fungsi <InlineMath math="f(x) = 2\lfloor x \rfloor - 1" />:**
 
@@ -345,7 +345,7 @@ Fungsi <InlineMath math="f(x) = \lfloor x - h \rfloor" /> menggeser grafik ke ka
            smooth: false,
            labels:
              integerValue === 1
-               ? [{ text: <InlineMath math="f(x)=2\lfloor x \rfloor-1" />, at: 1, offset: [1, 1, 0] }]
+               ? [{ text: <InlineMath math="f(x)=2\lfloor x \rfloor-1" />, at: 1, offset: [-0.2, 1, 0] }]
                : [],
          };
        }),

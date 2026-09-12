@@ -173,23 +173,27 @@ The graph compares the original line and its reflection:
   data={[
     {
       // Original Line y = x + 2
-      points: Array.from({ length: 11 }, (_, i) => {
+      points: Array.from({ length: 31 }, (_, pointIndex) => {
+        const i = pointIndex - 12;
         const x = (i - 5) * 0.8; // x from -4 to 4 for better fit
         return { x, y: x + 2, z: 0 };
       }),
+      pointIndices: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
       color: "#9333ea",
       smooth: false,
-      labels: [{ text: <InlineMath math="y=x+2" />, at: 9, offset: [0.7, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=x+2" />, at: 21, offset: [0.7, -0.5, 0] }],
     },
     {
       // Reflected Line y = -x + 2
-      points: Array.from({ length: 11 }, (_, i) => {
+      points: Array.from({ length: 31 }, (_, pointIndex) => {
+        const i = pointIndex - 8;
         const x = (i - 5) * 0.8; // x from -4 to 4
         return { x, y: -x + 2, z: 0 };
       }),
+      pointIndices: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
       color: "#db2777",
       smooth: false,
-      labels: [{ text: <InlineMath math="y=-x+2" />, at: 1, offset: [-0.7, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=-x+2" />, at: 9, offset: [-0.7, -0.5, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 15]}

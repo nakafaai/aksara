@@ -151,25 +151,27 @@ Wenn man <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch <Inl
     }, // Drehzentrum
     {
       // Ursprüngliche Gerade: y = 2x
-      points: Array.from({ length: 11 }, (_, i) => {
+      points: Array.from({ length: 17 }, (_, pointIndex) => {
+        const i = pointIndex - 3;
         const xVal = (i - 5) * 0.5; // range from -2.5 to 2.5
         return { x: xVal, y: 2 * xVal, z: 0 };
       }),
       smooth: false,
       color: "#9333ea",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=2x" />, at: 6, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=2x" />, at: 9, offset: [1, 0.5, 0] }],
     },
     {
       // Bildgerade: y = -1/2 x
-      points: Array.from({ length: 11 }, (_, i) => {
+      points: Array.from({ length: 47 }, (_, pointIndex) => {
+        const i = pointIndex - 18;
         const xVal = (i - 5) * 0.5;
         return { x: xVal, y: (-1 / 2) * xVal, z: 0 };
       }),
       smooth: false,
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=(-\frac{1}{2})x" />, at: 1, offset: [0.3, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=(-\frac{1}{2})x" />, at: 19, offset: [0.3, 0.5, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}

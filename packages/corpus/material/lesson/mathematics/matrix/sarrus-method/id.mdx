@@ -42,7 +42,7 @@ Salinan kedua kolom menampilkan tiga diagonal turun dan tiga diagonal naik yang 
 Kalikan elemen-elemen di sepanjang tiga diagonal dari kiri atas ke kanan bawah. Jumlahkan hasil perkalian ini, kita sebut <InlineMath math="D_{\text{positif}}" />.
 
 <MathContainer>
-  <BlockMath math="D_{\text{positif}} = (a_{11} \cdot a_{22} \cdot a_{33}) + (a_{12} \cdot a_{23} \cdot a_{31}) + (a_{13} \cdot a_{21} \cdot a_{32})" />
+  <BlockMath math="\begin{aligned} &amp;D_{\text{positif}} = (a_{11} \cdot a_{22} \cdot a_{33}) \\ &amp;+ (a_{12} \cdot a_{23} \cdot a_{31}) + (a_{13} \cdot a_{21} \cdot a_{32}) \end{aligned}" />
 </MathContainer>
 
 Suku pertama adalah perkalian diagonal utama. Suku kedua dan ketiga adalah perkalian diagonal sejajar yang melibatkan elemen dari kolom yang disalin.
@@ -52,7 +52,7 @@ Suku pertama adalah perkalian diagonal utama. Suku kedua dan ketiga adalah perka
 Kalikan elemen-elemen di sepanjang tiga diagonal dari kanan atas ke kiri bawah. Jumlahkan hasil perkalian ini, kita sebut <InlineMath math="D_{\text{negatif}}" />.
 
 <MathContainer>
-  <BlockMath math="D_{\text{negatif}} = (a_{13} \cdot a_{22} \cdot a_{31}) + (a_{11} \cdot a_{23} \cdot a_{32}) + (a_{12} \cdot a_{21} \cdot a_{33})" />
+  <BlockMath math="\begin{aligned} &amp;D_{\text{negatif}} = (a_{13} \cdot a_{22} \cdot a_{31}) \\ &amp;+ (a_{11} \cdot a_{23} \cdot a_{32}) + (a_{12} \cdot a_{21} \cdot a_{33}) \end{aligned}" />
 </MathContainer>
 
 Suku pertama adalah perkalian diagonal sekunder (anti-diagonal). Suku kedua dan ketiga adalah perkalian diagonal sejajar yang melibatkan elemen dari kolom yang disalin, bergerak ke arah kiri bawah.
@@ -65,11 +65,11 @@ Determinan matriks <InlineMath math="A" />, <InlineMath math="\det(A)" />, adala
 
 Substitusikan nilai <InlineMath math="D_{\text{positif}}" /> dan <InlineMath math="D_{\text{negatif}}" />:
 
-<BlockMath math="\det(A) = (a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}) - (a_{13}a_{22}a_{31} + a_{11}a_{23}a_{32} + a_{12}a_{21}a_{33})" />
+<BlockMath math="\begin{aligned} &amp;\det(A)=\bigl(a_{11}a_{22}a_{33} \\ &amp;+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\bigr) \\ &amp;-\bigl(a_{13}a_{22}a_{31} \\ &amp;+a_{11}a_{23}a_{32}+a_{12}a_{21}a_{33}\bigr) \end{aligned}" />
 
 Atau, setelah tanda negatif didistribusikan:
 
-<BlockMath math="\det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}" />
+<BlockMath math="\begin{aligned} &amp;\det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} \\ &amp;+ a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} \\ &amp;- a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33} \end{aligned}" />
 
 ### Contoh Numerik dengan Pembahasan
 
@@ -95,15 +95,15 @@ Mulai dari matriks berikut:
 
 Kemudian, dengan Metode Sarrus, kita perluas matriks dan identifikasi jalur perkalian:
 
-<MathContainer>
-  <BlockMath math="\begin{array}{ccc|cc} a_{11} & a_{12} & a_{13} & a_{11} & a_{12} \\ a_{21} & a_{22} & a_{23} & a_{21} & a_{22} \\ a_{31} & a_{32} & a_{33} & a_{31} & a_{32} \end{array}" />
-  <BlockMath math="\begin{array}{l} \text{Jalur Positif } (\searrow): \\ \quad + (a_{11} \cdot a_{22} \cdot a_{33}) \\ \quad + (a_{12} \cdot a_{23} \cdot a_{31}) \\ \quad + (a_{13} \cdot a_{21} \cdot a_{32}) \end{array}" />
-  <BlockMath math="\begin{array}{l} \text{Jalur Negatif } (\swarrow): \\ \quad - (a_{13} \cdot a_{22} \cdot a_{31}) \\ \quad - (a_{11} \cdot a_{23} \cdot a_{32}) \quad (\text{dari } a_{11} \text{ kol. 4}) \\ \quad - (a_{12} \cdot a_{21} \cdot a_{33}) \quad (\text{dari } a_{12} \text{ kol. 5}) \end{array}" />
-</MathContainer>
+<BlockMath math="\begin{array}{ccc|cc} a_{11} & a_{12} & a_{13} & a_{11} & a_{12} \\ a_{21} & a_{22} & a_{23} & a_{21} & a_{22} \\ a_{31} & a_{32} & a_{33} & a_{31} & a_{32} \end{array}" />
+<BlockMath math="\begin{array}{l} \text{Jalur Positif } (\searrow): \\ \quad + (a_{11} \cdot a_{22} \cdot a_{33}) \\ \quad + (a_{12} \cdot a_{23} \cdot a_{31}) \\ \quad + (a_{13} \cdot a_{21} \cdot a_{32}) \end{array}" />
+  Ikuti jalur negatif <InlineMath math="\swarrow" />. Jalur kedua mulai dari <InlineMath math="a_{11}" /> pada kolom salinan 4. Jalur ketiga dari <InlineMath math="a_{12}" /> pada kolom salinan 5:
+
+<BlockMath math="\begin{aligned} &amp;-(a_{13}\cdot a_{22}\cdot a_{31}) \\ &amp;-(a_{11}\cdot a_{23}\cdot a_{32}) \\ &amp;-(a_{12}\cdot a_{21}\cdot a_{33}) \end{aligned}" />
 
 Sehingga, formula lengkapnya menjadi:
 
-<BlockMath math="\det(A) = (a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}) - (a_{13}a_{22}a_{31} + a_{11}a_{23}a_{32} + a_{12}a_{21}a_{33})" />
+<BlockMath math="\begin{aligned} &amp;\det(A)=\bigl(a_{11}a_{22}a_{33} \\ &amp;+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\bigr) \\ &amp;-\bigl(a_{13}a_{22}a_{31} \\ &amp;+a_{11}a_{23}a_{32}+a_{12}a_{21}a_{33}\bigr) \end{aligned}" />
 
 ## Metode Sarrus Hanya Berlaku untuk Matriks Tiga Kali Tiga
 

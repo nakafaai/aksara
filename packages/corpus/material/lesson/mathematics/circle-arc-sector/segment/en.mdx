@@ -40,7 +40,7 @@ An arc and a segment name different parts of a circle:
         {
           text: "Chord",
           at: 1,
-          offset: [-3, -0.8, 0],
+          offset: [3.464101615, -0.8, 0],
         },
       ],
     },
@@ -79,7 +79,7 @@ An arc and a segment name different parts of a circle:
         {
           text: "Chord",
           at: 1,
-          offset: [-3, -0.8, 0],
+          offset: [3.464101615, -0.8, 0],
         },
       ],
     },
@@ -94,9 +94,8 @@ An arc and a segment name different parts of a circle:
       sweepDegrees: 120,
       label: {
         progress: 1 / 4,
-        progress: 1 / 4,
         text: "Segment",
-        offset: [2, 0.9, 0],
+        offset: [-2, -0.4, 0],
       } },
   ]}
 />
@@ -305,23 +304,23 @@ Compare arc length and segment area before using their formulas.
 | Segment area | <InlineMath math="A_{\mathrm{segment}}=A_{\mathrm{sector}}-A_{\mathrm{triangle}}" /> | Area, such as <InlineMath math="\text{cm}^2" /> or <InlineMath math="\text{m}^2" /> |
 
 <MathContainer>
-  <BlockMath math="\text{Segment Area} = \text{Sector Area} - \text{Triangle Area}" />
+  <BlockMath math="\begin{aligned} &amp;\text{Segment Area} = \text{Sector Area} \\ &amp;- \text{Triangle Area} \end{aligned}" />
 </MathContainer>
 
 Substituting the sector-area and triangle-area formulas gives:
 
 <MathContainer>
-  <BlockMath math="\text{Segment Area} = \frac{\alpha}{360^\circ} \times \pi r^2 - \frac{1}{2} r^2 \sin \alpha" />
+  <BlockMath math="\begin{aligned} &amp;\text{Segment Area} = \frac{\alpha}{360^\circ} \times \pi r^2 \\ &amp;- \frac{1}{2} r^2 \sin \alpha \end{aligned}" />
 </MathContainer>
 
 Here <InlineMath math="0^\circ < \alpha < 180^\circ" /> is the minor central angle in degrees and <InlineMath math="r" /> is the circle radius.
 
 For a major segment, first use the complementary minor angle <InlineMath math="\beta=360^\circ-\alpha" />, then subtract the corresponding minor segment from the whole circle:
 
-<MathContainer>
-  <BlockMath math="\beta=360^\circ-\alpha" />
-  <BlockMath math="A_{\mathrm{major}}=\pi r^2-\left(\frac{\beta}{360^\circ}\pi r^2-\frac{1}{2}r^2\sin\beta\right)" />
-</MathContainer>
+<BlockMath math="\beta=360^\circ-\alpha" />
+<BlockMath math="A_{\mathrm{minor}}=\frac\beta{360^\circ}\pi r^2-\frac12r^2\sin\beta" />
+
+<BlockMath math="A_{\mathrm{major}}=\pi r^2-A_{\mathrm{minor}}" />
 
 ## Sector Triangle and Segment
 
@@ -434,7 +433,7 @@ For a <InlineMath math="90^\circ" /> angle, the triangle formed is a right trian
 **Step** 3: Calculate Segment Area
 
 <MathContainer>
-<BlockMath math="\text{Segment Area} = \text{Sector Area} - \text{Triangle Area}" />
+<BlockMath math="\begin{aligned} &amp;\text{Segment Area} = \text{Sector Area} \\ &amp;- \text{Triangle Area} \end{aligned}" />
 <BlockMath math="= 25\pi - 50" />
 <BlockMath math="\approx 78.5398 - 50" />
 <BlockMath math="\approx 28.5398 \text{ cm}^2" />
@@ -506,15 +505,15 @@ For a <InlineMath math="90^\circ" /> angle, the triangle formed is a right trian
 
    Determine segment height from tank bottom:
 
-   <MathContainer>
-   <BlockMath math="h = 1.5 \text{ m (water height from bottom)}" />
-   </MathContainer>
+   The water height measured from the bottom is <InlineMath math="h=1.5\text{ m}" />.
 
    Using the segment area formula for water in a horizontal tank:
 
-   <MathContainer>
-   <BlockMath math="\text{Area} = r^2 \times \left[\arccos\left(\frac{r-h}{r}\right) - \frac{r-h}{r} \times \sqrt{1-\left(\frac{r-h}{r}\right)^2}\right]" />
-   </MathContainer>
+   Write <InlineMath math="A" /> for the segment area and define the height ratio <InlineMath math="u" />:
+
+   <BlockMath math="u=\frac{r-h}{r}" />
+
+   <BlockMath math="A=r^2\left(\arccos u-u\sqrt{1-u^2}\right)" />
 
    Here the angle returned by <InlineMath math="\arccos" /> is measured in radians, as required by the area formula.
 
@@ -528,8 +527,10 @@ For a <InlineMath math="90^\circ" /> angle, the triangle formed is a right trian
 
    Calculate the water-filled cross-sectional area:
 
-   <MathContainer>
-   <BlockMath math="\text{Area} = 4 \times [\arccos(0.25) - 0.25\sqrt{0.9375}]" />
+   <BlockMath math="\theta=\arccos(0.25)" />
+
+   <BlockMath math="v=0.25\sqrt{0.9375}" />
+
+   <BlockMath math="A=4(\theta-v)" />
    <BlockMath math="\approx 4 \times 1.0760546" />
    <BlockMath math="\approx 4.3042 \text{ m}^2" />
-   </MathContainer>

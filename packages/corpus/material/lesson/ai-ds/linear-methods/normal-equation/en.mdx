@@ -51,15 +51,13 @@ We can also verify this result in a different way. Let <InlineMath math="\hat{x}
 
 Using the Pythagorean theorem, we can write
 
-<MathContainer>
-<BlockMath math="\|Ax - b\|_2^2 = \|A\hat{x} - b - A(\hat{x} - x)\|_2^2" />
-<BlockMath math="= \|A\hat{x} - b\|_2^2 + \|A(\hat{x} - x)\|_2^2 - 2 \langle A\hat{x} - b, A(\hat{x} - x) \rangle" />
-<BlockMath math="= \|A\hat{x} - b\|_2^2 + \underbrace{\|A(\hat{x} - x)\|_2^2}_{\geq 0} - 2 \underbrace{(\hat{x} - x)^T (A^T A\hat{x} - A^T b)}_{=0}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} &amp;\|Ax - b\|_2^2 \\ &amp;= \|A\hat{x} - b - A(\hat{x} - x)\|_2^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;= \|A\hat{x} - b\|_2^2 + \|A(\hat{x} - x)\|_2^2 \\ &amp;- 2 \langle A\hat{x} - b, A(\hat{x} - x) \rangle \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;=\|A\hat x-b\|_2^2 \\ &amp;+\underbrace{\|A(\hat x-x)\|_2^2}_{\ge0} \\ &amp;-2\underbrace{(\hat x-x)^T(A^TA\hat x-A^Tb)}_{=0} \end{aligned}" />
 
 Because <InlineMath math="\hat{x}" /> satisfies the normal equation, the cross term is zero. The remaining squared norm is nonnegative, so
 
-<BlockMath math="\|Ax - b\|_2^2 = \|A\hat{x} - b\|_2^2 + \|A(\hat{x} - x)\|_2^2 \geq \|A\hat{x} - b\|_2^2" />
+<BlockMath math="\begin{aligned} &amp;\|Ax - b\|_2^2 = \|A\hat{x} - b\|_2^2 \\ &amp;+ \|A(\hat{x} - x)\|_2^2 \geq \|A\hat{x} - b\|_2^2 \end{aligned}" />
 
 This inequality proves that <InlineMath math="\hat{x}" /> indeed gives the minimum value.
 
@@ -87,7 +85,7 @@ For every <InlineMath math="z\in\mathbb{R}^n" />,
 
 This equation shows that <InlineMath math="A^{\mathsf T}A" /> is always symmetric positive semidefinite. Moreover,
 
-<BlockMath math="A^{\mathsf T}Az=0\quad\Longleftrightarrow\quad z^{\mathsf T}A^{\mathsf T}Az=0\quad\Longleftrightarrow\quad Az=0" />
+<BlockMath math="\begin{aligned} &amp;A^{\mathsf T}Az=0 \\ &amp;\Longleftrightarrow \\ &amp;z^{\mathsf T}A^{\mathsf T}Az=0 \\ &amp;\Longleftrightarrow \\ &amp;Az=0 \end{aligned}" />
 
 The calculation gives:
 

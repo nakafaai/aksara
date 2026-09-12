@@ -3,7 +3,7 @@ export const metadata = {
   description: "Divide polynomials in aligned steps to obtain the quotient and remainder, then verify both through worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Polynomial",
 };
 
@@ -54,18 +54,7 @@ Divide <InlineMath math="P(x) = 4x^4 + 17x^3 - 3x + 1" /> by <InlineMath math="Q
 
 2. **Division Process:**
 
-   <BlockMath
-     math="
-    \begin{array}{l}
-    \qquad\qquad\qquad 4x^2 + x \\
-    x^2+4x-1\overline{\big)4x^4 + 17x^3 + 0x^2 - 3x + 1} \\
-    \qquad\qquad\underline{-(4x^4 + 16x^3 - 4x^2)} \\
-    \qquad\qquad\qquad\qquad x^3 + 4x^2 - 3x \\
-    \qquad\qquad\qquad\quad\underline{-(x^3 + 4x^2 - x)} \\
-    \qquad\qquad\qquad\qquad\qquad\qquad -2x + 1 \\
-    \end{array}
-    "
-   />
+   The quotient is <InlineMath math="4x^2+x" /> and the remainder is <InlineMath math="-2x+1" />. The next steps show each multiplication and subtraction, including the zero coefficient of <InlineMath math="x^2" />.
 
 3. **Step-by-Step Explanation:**
 
@@ -79,11 +68,11 @@ Divide <InlineMath math="P(x) = 4x^4 + 17x^3 - 3x + 1" /> by <InlineMath math="Q
 
    - **Multiply:** Multiply <InlineMath math="4x^2" /> by the divisor <InlineMath math="x^2 + 4x - 1" />:
 
-     <BlockMath math="4x^2(x^2 + 4x - 1) = 4x^4 + 16x^3 - 4x^2" />
+     <BlockMath math="\begin{aligned} &amp;4x^2(x^2 + 4x - 1) \\ &amp;= 4x^4 + 16x^3 - 4x^2 \end{aligned}" />
 
    - **Subtract:** Subtract the result from the initial polynomial:
 
-     <BlockMath math="(4x^4 + 17x^3 + 0x^2) - (4x^4 + 16x^3 - 4x^2) = x^3 + 4x^2" />
+     <BlockMath math="\begin{aligned} &amp;(4x^4 + 17x^3 + 0x^2) \\ &amp;- (4x^4 + 16x^3 - 4x^2) = x^3 \\ &amp;+ 4x^2 \end{aligned}" />
 
    - **Bring Down:** Bring down the next term (<InlineMath math="-3x" />) to get the new polynomial:
 
@@ -103,7 +92,7 @@ Divide <InlineMath math="P(x) = 4x^4 + 17x^3 - 3x + 1" /> by <InlineMath math="Q
 
    - **Subtract:** Subtract the result from the current polynomial:
 
-     <BlockMath math="(x^3 + 4x^2 - 3x) - (x^3 + 4x^2 - x) = -2x" />
+     <BlockMath math="\begin{aligned} &amp;(x^3 + 4x^2 - 3x) \\ &amp;- (x^3 + 4x^2 - x) = -2x \end{aligned}" />
 
    - **Bring Down:** Bring down the next term (<InlineMath math="+1" />) to get the temporary remainder:
 
@@ -122,11 +111,11 @@ Divide <InlineMath math="P(x) = 4x^4 + 17x^3 - 3x + 1" /> by <InlineMath math="Q
 
      - Fraction Form:
 
-       <BlockMath math="\frac{4x^4 + 17x^3 - 3x + 1}{x^2 + 4x - 1} = 4x^2 + x + \frac{-2x + 1}{x^2 + 4x - 1}" />
+       <BlockMath math="\begin{aligned} &amp;\frac{4x^4 + 17x^3 - 3x + 1}{x^2 + 4x - 1} \\ &amp;= 4x^2 + x + \frac{-2x + 1}{x^2 + 4x - 1} \end{aligned}" />
 
      - Multiplication Form:
 
-       <BlockMath math="4x^4 + 17x^3 - 3x + 1 = (x^2 + 4x - 1)(4x^2 + x) + (-2x + 1)" />
+       <BlockMath math="\begin{aligned} &amp;4x^4 + 17x^3 - 3x + 1 \\ &amp;= (x^2 + 4x - 1)(4x^2 + x) \\ &amp;+ (-2x + 1) \end{aligned}" />
 
 Long division records every quotient, multiplication, and subtraction step. That explicit layout works for divisors of any positive degree and makes the reconstruction <InlineMath math="P(x)=Q(x)H(x)+S(x)" /> easy to check.
 
@@ -159,4 +148,4 @@ First divide the leading terms to obtain <InlineMath math="x^3 \div x^2 = x" />.
 - Remainder: <InlineMath math="S(x) = 3" />
 - Division Algorithm Form:
 
-  <BlockMath math="x^3 - x + 9 = (x^2 - 2x + 3)(x + 2) + 3" />
+  <BlockMath math="\begin{aligned} &amp;x^3 - x + 9 \\ &amp;= (x^2 - 2x + 3)(x + 2) + 3 \end{aligned}" />

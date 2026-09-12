@@ -138,13 +138,17 @@ Ein kleiner Betrieb verkauft Tempeh-Chips, Bananenchips und Kartoffelchips an de
 
 In der Absatzmatrix <InlineMath math="P" /> stehen die Produkte in den Zeilen und die Standorte in den Spalten. Jeder Eintrag von <InlineMath math="P" /> gibt also an, wie viele Gläser eines Produkts an einem Standort verkauft wurden.
 
-<BlockMath math="P = \begin{bmatrix} 15 & 12 & 20 \\ 25 & 10 & 15 \\ 15 & 15 & 20 \end{bmatrix} \begin{matrix} \text{Tempeh-Chips} \\ \text{Bananenchips} \\ \text{Kartoffelchips} \end{matrix}" />
+Von oben nach unten stehen die Zeilen für Tempeh-Chips, Bananenchips und Kartoffelchips:
+
+<BlockMath math="P = \begin{bmatrix} 15 &amp; 12 &amp; 20 \\ 25 &amp; 10 &amp; 15 \\ 15 &amp; 15 &amp; 20 \end{bmatrix}" />
 
 Die erste Zeile (<InlineMath math="\begin{bmatrix} 15 & 12 & 20 \end{bmatrix}" />) bedeutet, dass <InlineMath math="15" /> Gläser Tempeh-Chips an Standort A, <InlineMath math="12" /> an Standort B und <InlineMath math="20" /> an Standort C verkauft wurden.
 
 Der Preis je Glas in Rupiah steht in der Spaltenmatrix <InlineMath math="Q" /> mit derselben Produktreihenfolge:
 
-<BlockMath math="Q = \begin{bmatrix} 20{.}000 \\ 15{.}000 \\ 30{.}000 \end{bmatrix} \begin{matrix} \text{Preis für Tempeh-Chips} \\ \text{Preis für Bananenchips} \\ \text{Preis für Kartoffelchips} \end{matrix}" />
+<BlockMath math="Q = \begin{bmatrix} 20{.}000 \\ 15{.}000 \\ 30{.}000 \end{bmatrix}" />
+
+Von oben nach unten stehen die Einträge für die Preise von Tempeh-Chips, Bananenchips und Kartoffelchips.
 
 Das Produkt <InlineMath math="PQ" /> ist zwar numerisch definiert, weil beide inneren Dimensionen <InlineMath math="3" /> sind, für dieses Modell ist es aber bedeutungslos. Die Spalten von <InlineMath math="P" /> stehen für Standorte, die Zeilen von <InlineMath math="Q" /> dagegen für Produkte. Diese Bezeichnungen passen nicht zusammen.
 
@@ -152,12 +156,10 @@ Für den Umsatz je Standort transponieren wir den Preisvektor und multiplizieren
 
 Die Matrix <InlineMath math="Q^T" /> hat das Format <InlineMath math="1 \times 3" />, die Matrix <InlineMath math="P" /> das Format <InlineMath math="3 \times 3" />. Daher hat <InlineMath math="S" /> das Format <InlineMath math="1 \times 3" /> mit einem Eintrag für jeden Standort.
 
-<MathContainer>
-  <BlockMath math="S = \begin{bmatrix} 20{.}000 & 15{.}000 & 30{.}000 \end{bmatrix} \begin{bmatrix} 15 & 12 & 20 \\ 25 & 10 & 15 \\ 15 & 15 & 20 \end{bmatrix}" />
-  <BlockMath math="\begin{aligned}s_{11} &= (20{.}000)(15) + (15{.}000)(25) + (30{.}000)(15) \\ &= 300{.}000 + 375{.}000 + 450{.}000 \\ &= 1{.}125{.}000\end{aligned}" />
-  <BlockMath math="\begin{aligned}s_{12} &= (20{.}000)(12) + (15{.}000)(10) + (30{.}000)(15) \\ &= 240{.}000 + 150{.}000 + 450{.}000 \\ &= 840{.}000\end{aligned}" />
-  <BlockMath math="\begin{aligned}s_{13} &= (20{.}000)(20) + (15{.}000)(15) + (30{.}000)(20) \\ &= 400{.}000 + 225{.}000 + 600{.}000 \\ &= 1{.}225{.}000\end{aligned}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} &amp;S = \begin{bmatrix} 20{.}000 &amp; 15{.}000 &amp; 30{.}000 \end{bmatrix} \\ &amp;\cdot\begin{bmatrix} 15 &amp; 12 &amp; 20 \\ 25 &amp; 10 &amp; 15 \\ 15 &amp; 15 &amp; 20 \end{bmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;s_{11} = (20{.}000)(15) + (15{.}000)(25) \\ &amp;+ (30{.}000)(15) \\ &amp;= 300{.}000 + 375{.}000 + 450{.}000 \\ &amp;= 1{.}125{.}000 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;s_{12} = (20{.}000)(12) + (15{.}000)(10) \\ &amp;+ (30{.}000)(15) \\ &amp;= 240{.}000 + 150{.}000 + 450{.}000 \\ &amp;= 840{.}000 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;s_{13} = (20{.}000)(20) + (15{.}000)(15) \\ &amp;+ (30{.}000)(20) \\ &amp;= 400{.}000 + 225{.}000 + 600{.}000 \\ &amp;= 1{.}225{.}000 \end{aligned}" />
 
 Damit ist <InlineMath math="S = \begin{bmatrix} 1{.}125{.}000 & 840{.}000 & 1{.}225{.}000 \end{bmatrix}" />.
 
@@ -198,22 +200,26 @@ Ist <InlineMath math="CD = DC" />?
 
     Die Matrix <InlineMath math="C" /> hat das Format <InlineMath math="2 \times 2" />, ebenso <InlineMath math="D" /> mit <InlineMath math="2 \times 2" />. Das Ergebnis hat das Format <InlineMath math="2 \times 2" />.
 
-    <MathContainer>
-      <BlockMath math="CD = \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix} \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix}" />
-      <BlockMath math="CD = \begin{bmatrix} (1)(1) + (-3)(8) & (1)(-4) + (-3)(2) \\ (1)(1) + (2)(8) & (1)(-4) + (2)(2) \end{bmatrix}" />
-      <BlockMath math="CD = \begin{bmatrix} 1 - 24 & -4 - 6 \\ 1 + 16 & -4 + 4 \end{bmatrix}" />
-      <BlockMath math="CD = \begin{bmatrix} -23 & -10 \\ 17 & 0 \end{bmatrix}" />
-    </MathContainer>
+    <BlockMath math="CD = \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix} \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix}" />
+          Berechne jeden Eintrag durch Multiplikation einer Zeile mit einer Spalte:
+
+    <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(1) + (-3)(8) \\ &amp;m_{12}=(1)(-4) + (-3)(2) \\ &amp;m_{21}=(1)(1) + (2)(8) \\ &amp;m_{22}=(1)(-4) + (2)(2) \end{aligned}" />
+
+    <BlockMath math="\begin{aligned} &amp;CD \\ &amp;=\begin{bmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{bmatrix} \end{aligned}" />
+    <BlockMath math="CD = \begin{bmatrix} 1 - 24 & -4 - 6 \\ 1 + 16 & -4 + 4 \end{bmatrix}" />
+    <BlockMath math="CD = \begin{bmatrix} -23 & -10 \\ 17 & 0 \end{bmatrix}" />
 
 2.  Berechnung von <InlineMath math="DC" />:
 
     Die Matrix <InlineMath math="D" /> hat das Format <InlineMath math="2 \times 2" />, ebenso <InlineMath math="C" /> mit <InlineMath math="2 \times 2" />. Das Ergebnis hat das Format <InlineMath math="2 \times 2" />.
 
-    <MathContainer>
-      <BlockMath math="DC = \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix} \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix}" />
-      <BlockMath math="DC = \begin{bmatrix} (1)(1) + (-4)(1) & (1)(-3) + (-4)(2) \\ (8)(1) + (2)(1) & (8)(-3) + (2)(2) \end{bmatrix}" />
-      <BlockMath math="DC = \begin{bmatrix} 1 - 4 & -3 - 8 \\ 8 + 2 & -24 + 4 \end{bmatrix}" />
-      <BlockMath math="DC = \begin{bmatrix} -3 & -11 \\ 10 & -20 \end{bmatrix}" />
-    </MathContainer>
+    <BlockMath math="DC = \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix} \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix}" />
+          Berechne jeden Eintrag durch Multiplikation einer Zeile mit einer Spalte:
+
+    <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(1) + (-4)(1) \\ &amp;m_{12}=(1)(-3) + (-4)(2) \\ &amp;m_{21}=(8)(1) + (2)(1) \\ &amp;m_{22}=(8)(-3) + (2)(2) \end{aligned}" />
+
+    <BlockMath math="\begin{aligned} &amp;DC \\ &amp;=\begin{bmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{bmatrix} \end{aligned}" />
+    <BlockMath math="DC = \begin{bmatrix} 1 - 4 & -3 - 8 \\ 8 + 2 & -24 + 4 \end{bmatrix}" />
+    <BlockMath math="DC = \begin{bmatrix} -3 & -11 \\ 10 & -20 \end{bmatrix}" />
 
 Der Wert <InlineMath math="CD = \begin{bmatrix} -23 & -10 \\ 17 & 0 \end{bmatrix}" /> unterscheidet sich von <InlineMath math="DC = \begin{bmatrix} -3 & -11 \\ 10 & -20 \end{bmatrix}" />. Daher gilt <InlineMath math="CD \neq DC" />, und die Matrixmultiplikation ist in diesem Beispiel nicht kommutativ.

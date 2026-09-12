@@ -51,15 +51,13 @@ Kita juga bisa memverifikasi hasil ini dengan cara yang berbeda. Misalkan <Inlin
 
 Menggunakan teorema Pythagoras, kita dapat menuliskan
 
-<MathContainer>
-<BlockMath math="\|Ax - b\|_2^2 = \|A\hat{x} - b - A(\hat{x} - x)\|_2^2" />
-<BlockMath math="= \|A\hat{x} - b\|_2^2 + \|A(\hat{x} - x)\|_2^2 - 2 \langle A\hat{x} - b, A(\hat{x} - x) \rangle" />
-<BlockMath math="= \|A\hat{x} - b\|_2^2 + \underbrace{\|A(\hat{x} - x)\|_2^2}_{\geq 0} - 2 \underbrace{(\hat{x} - x)^T (A^T A\hat{x} - A^T b)}_{=0}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} &amp;\|Ax - b\|_2^2 \\ &amp;= \|A\hat{x} - b - A(\hat{x} - x)\|_2^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;= \|A\hat{x} - b\|_2^2 + \|A(\hat{x} - x)\|_2^2 \\ &amp;- 2 \langle A\hat{x} - b, A(\hat{x} - x) \rangle \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;=\|A\hat x-b\|_2^2 \\ &amp;+\underbrace{\|A(\hat x-x)\|_2^2}_{\ge0} \\ &amp;-2\underbrace{(\hat x-x)^T(A^TA\hat x-A^Tb)}_{=0} \end{aligned}" />
 
 Karena <InlineMath math="\hat{x}" /> memenuhi persamaan normal, suku silang bernilai nol. Norma kuadrat yang tersisa tidak negatif, sehingga
 
-<BlockMath math="\|Ax - b\|_2^2 = \|A\hat{x} - b\|_2^2 + \|A(\hat{x} - x)\|_2^2 \geq \|A\hat{x} - b\|_2^2" />
+<BlockMath math="\begin{aligned} &amp;\|Ax - b\|_2^2 = \|A\hat{x} - b\|_2^2 \\ &amp;+ \|A(\hat{x} - x)\|_2^2 \geq \|A\hat{x} - b\|_2^2 \end{aligned}" />
 
 Ketidaksamaan ini membuktikan bahwa <InlineMath math="\hat{x}" /> memang memberikan nilai minimum.
 
@@ -87,7 +85,7 @@ Untuk setiap <InlineMath math="z\in\mathbb{R}^n" />,
 
 Persamaan ini menunjukkan bahwa <InlineMath math="A^{\mathsf T}A" /> selalu simetris positif semidefinit. Selain itu,
 
-<BlockMath math="A^{\mathsf T}Az=0\quad\Longleftrightarrow\quad z^{\mathsf T}A^{\mathsf T}Az=0\quad\Longleftrightarrow\quad Az=0" />
+<BlockMath math="\begin{aligned} &amp;A^{\mathsf T}Az=0 \\ &amp;\Longleftrightarrow \\ &amp;z^{\mathsf T}A^{\mathsf T}Az=0 \\ &amp;\Longleftrightarrow \\ &amp;Az=0 \end{aligned}" />
 
 Jadi,
 

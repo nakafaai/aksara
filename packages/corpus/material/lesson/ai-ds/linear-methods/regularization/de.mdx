@@ -3,7 +3,7 @@ export const metadata = {
   description: "Schlecht konditionierte Ausgleichsprobleme mit Tikhonov-Regularisierung, Spektralfiltern, begründeter Parameterwahl und stabilen numerischen Verfahren lösen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Lineare Methoden der KI",
 };
 
@@ -21,7 +21,9 @@ Die Singulärwertzerlegung erklärt diese Verstärkung. Für <InlineMath math="A
 
 Die Tikhonov-Regularisierung wägt Datentreue gegen eine gewählte Vorstellung plausibler Parameter ab:
 
-<BlockMath math="\min_x\left(\|Ax-b\|_2^2+\alpha^2\|L(x-x_0)\|_2^2\right),\qquad \alpha>0" />
+Minimiere für <InlineMath math="\alpha>0" />:
+
+<BlockMath math="\min_x\left(\|Ax-b\|_2^2+\alpha^2\|L(x-x_0)\|_2^2\right)" />
 
 Dabei ist <InlineMath math="x_0" /> ein Referenzwert und <InlineMath math="L" /> legt fest, welche Größe klein oder glatt bleiben soll. Der Wert <InlineMath math="\alpha" /> bestimmt, wie stark die Lösung den Daten und wie stark sie der durch <InlineMath math="L" /> beschriebenen Einschränkung folgt.
 
@@ -39,7 +41,7 @@ Das regularisierte Problem lässt sich als folgendes Ausgleichsproblem schreiben
 
 Die Ableitung dieser Zielfunktion nach <InlineMath math="x" /> liefert die Normalgleichung:
 
-<BlockMath math="(A^TA+\alpha^2L^TL)x=A^Tb+\alpha^2L^TLx_0" />
+<BlockMath math="\begin{aligned} &amp;(A^TA+\alpha^2L^TL)x =A^Tb \\ &amp;+\alpha^2L^TLx_0 \end{aligned}" />
 
 Diese Normalgleichung hat genau dann eine eindeutige Lösung, wenn die folgende Bedingung erfüllt ist:
 

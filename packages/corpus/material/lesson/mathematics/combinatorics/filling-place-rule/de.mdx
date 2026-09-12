@@ -37,17 +37,17 @@ In einem **Baumdiagramm** steht jeder Zweig für eine Auswahl. Ein vollständige
 
 Für dasselbe Lernpaket wählen die ersten Zweige die Plattform und die nächsten Zweige das Fach.
 
-1. Ebene <InlineMath math="1" />:
+1. Ebene 1:
 
-   <BlockMath math="1 \text{Startpunkt} \rightarrow 3 \text{Plattformen}" />
+   Der Baum hat <InlineMath math="1" /> Startpunkt und <InlineMath math="3" /> Plattformzweige.
 
-2. Ebene <InlineMath math="2" />:
+2. Ebene 2:
 
-   <BlockMath math="3 \text{Plattformen} \times 4 \text{Fächer} = 12 \text{Endpunkte}" />
+   <BlockMath math="\begin{aligned} &amp;3 \text{Plattformen} \times 4 \text{Fächer} \\ &amp;= 12 \text{Endpunkte} \end{aligned}" />
 
 3. Pfadstruktur:
 
-   <BlockMath math="\text{Start} \rightarrow \text{Plattform} \rightarrow \text{Fach}" />
+   Wähle vom Start aus zuerst eine Plattform und danach ein Fach.
 
 4. Anzahl vollständiger Pfade:
 
@@ -58,7 +58,7 @@ Für dasselbe Lernpaket wählen die ersten Zweige die Plattform und die nächste
 Die **Produktregel** liefert dieselbe Anzahl, ohne jedes Ergebnis einzeln aufzulisten. Gibt es <InlineMath math="n" /> Stellen und hat Stelle <InlineMath math="i" /> genau <InlineMath math="k_i" /> gültige Möglichkeiten, dann ist die Anzahl der vollständigen Ergebnisse:
 
 <MathContainer>
-<BlockMath math="\text{Anzahl der Ergebnisse} = k_1 \times k_2 \times k_3 \times \cdots \times k_n" />
+<BlockMath math="\begin{aligned} &amp;\text{Anzahl der Ergebnisse} \\ &amp;= k_1 \times k_2 \times k_3 \times \cdots \times k_n \end{aligned}" />
 </MathContainer>
 
 ### Zugangscodes zählen
@@ -87,12 +87,9 @@ Wenn dasselbe Objekt **nicht wiederholt verwendet werden darf**, verringert jede
 
 **Beispiel:** Bildung einer <InlineMath math="3\text{-stelligen}" /> Zahl aus den Ziffern <InlineMath math="2, 3, 4, 5, 6" /> ohne Wiederholung.
 
-<MathContainer>
-<BlockMath math="\text{Erste Stelle} = 5 \text{Möglichkeiten}" />
-<BlockMath math="\text{Zweite Stelle} = 4 \text{Möglichkeiten (1 Ziffer bereits verwendet)}" />
-<BlockMath math="\text{Dritte Stelle} = 3 \text{Möglichkeiten (2 Ziffern bereits verwendet)}" />
+Für die erste Stelle gibt es <InlineMath math="5" /> Möglichkeiten. Ist <InlineMath math="1" /> Ziffer verwendet, bleiben <InlineMath math="4" /> Möglichkeiten für die zweite Stelle. Nach <InlineMath math="2" /> verwendeten Ziffern gibt es für die dritte Stelle noch <InlineMath math="3" /> Möglichkeiten.
+
 <BlockMath math="\begin{aligned} \text{Gesamtzahlen} &amp;= 5 \times 4 \times 3 \\ &amp;= 60 \text{Zahlen} \end{aligned}" />
-</MathContainer>
 
 ### Wiederholung erlaubt
 
@@ -119,18 +116,15 @@ Für den gleichen Fall mit erlaubter Wiederholung:
 
 1. Gegeben: <InlineMath math="4 \text{Marken}" />, <InlineMath math="3 \text{Speicherkapazitäten}" />, <InlineMath math="5 \text{Farbauswahl}" />
 
-   <MathContainer>
-   <BlockMath math="\begin{aligned}\text{Gesamtkombinationen} &= 4 \times 3 \times 5 \\ &= 60 \text{Smartphone-Kombinationen}\end{aligned}" />
-   </MathContainer>
+   Die Anzahl der Smartphone-Kombinationen beträgt:
+
+   <BlockMath math="4\times3\times5=60" />
 
 2. Gegeben: <InlineMath math="1 \text{Buchstabe}" /> aus <InlineMath math="\{A, B, C, D\}" />, <InlineMath math="2 \text{Ziffern}" /> aus <InlineMath math="\{1, 2, 3, 4, 5\}" /> ohne Wiederholung
 
-   <MathContainer>
-   <BlockMath math="\text{Buchstabenauswahl} = 4" />
-   <BlockMath math="\text{Möglichkeiten für die erste Ziffer} = 5" />
-   <BlockMath math="\text{Möglichkeiten für die zweite Ziffer} = 4 \text{ (ohne Wiederholung)}" />
+   Für den Buchstaben gibt es <InlineMath math="4" /> Möglichkeiten und für die erste Ziffer <InlineMath math="5" />. Da sich die Ziffern nicht wiederholen dürfen, bleiben für die zweite Ziffer <InlineMath math="4" /> Möglichkeiten.
+
    <BlockMath math="\begin{aligned} &amp;\text{Gesamtzahl der Passwörter} \\ &amp;= 4 \times 5 \times 4 \\ &amp;= 80 \text{Passwörter} \end{aligned}" />
-   </MathContainer>
 
 3. Gegeben: <InlineMath math="3 \text{Straßen}" /> von <InlineMath math="P" /> bis <InlineMath math="Q" />, <InlineMath math="4 \text{Straßen}" /> von <InlineMath math="Q" /> bis <InlineMath math="R" />
 
@@ -140,10 +134,10 @@ Für den gleichen Fall mit erlaubter Wiederholung:
 
 4. Gegeben: <InlineMath math="2 \text{Buchstaben}" /> aus <InlineMath math="26 \text{Buchstaben}" />, <InlineMath math="3 \text{Ziffern}" /> aus <InlineMath math="10 \text{Ziffern}" />, Wiederholung erlaubt
 
-   <MathContainer>
-   <BlockMath math="\text{Auswahl des ersten Buchstabens} = 26" />
-   <BlockMath math="\text{Auswahl des zweiten Buchstabens} = 26" />
+   <BlockMath math="\begin{aligned} &amp;\text{Auswahl des ersten Buchstabens} \\ &amp;= 26 \end{aligned}" />
+      Für den zweiten Buchstaben gibt es <InlineMath math="26" /> Möglichkeiten.
    <BlockMath math="\text{Möglichkeiten für jede Ziffer} = 10" />
-   <BlockMath math="\text{Gesamtzahl der Nummernschilder} = 26 \times 26 \times 10 \times 10 \times 10" />
+      Damit ergibt sich folgende Gesamtzahl an Nummernschildern:
+
+   <BlockMath math="26\times26\times10\times10\times10" />
    <BlockMath math="\begin{aligned}  &amp;= 676 \times 1000 \\ &amp;= 676000 \text{Nummernschilder} \end{aligned}" />
-   </MathContainer>

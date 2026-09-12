@@ -40,7 +40,7 @@ Ein Bogen und ein Kreissegment bezeichnen verschiedene Teile eines Kreises:
         {
           text: "Sehne",
           at: 1,
-          offset: [-3, -0.8, 0],
+          offset: [3.464101615, -0.8, 0],
         },
       ],
     },
@@ -79,7 +79,7 @@ Ein Bogen und ein Kreissegment bezeichnen verschiedene Teile eines Kreises:
         {
           text: "Sehne",
           at: 1,
-          offset: [-3, -0.8, 0],
+          offset: [3.464101615, -0.8, 0],
         },
       ],
     },
@@ -94,9 +94,8 @@ Ein Bogen und ein Kreissegment bezeichnen verschiedene Teile eines Kreises:
       sweepDegrees: 120,
       label: {
         progress: 1 / 4,
-        progress: 1 / 4,
         text: "Segment",
-        offset: [2, 0.9, 0],
+        offset: [-2, -0.4, 0],
       } },
   ]}
 />
@@ -305,23 +304,23 @@ Vergleiche Bogenlänge und Segmentfläche, bevor du die Formeln verwendest.
 | Segmentfläche | <InlineMath math="A_{\mathrm{Segment}}=A_{\mathrm{Sektor}}-A_{\mathrm{Dreieck}}" /> | Fläche, zum Beispiel <InlineMath math="\text{cm}^2" /> oder <InlineMath math="\text{m}^2" /> |
 
 <MathContainer>
-  <BlockMath math="\text{Segmentfläche} = \text{Sektorfläche} - \text{Dreiecksfläche}" />
+  <BlockMath math="\begin{aligned} &amp;\text{Segmentfläche} = \text{Sektorfläche} \\ &amp;- \text{Dreiecksfläche} \end{aligned}" />
 </MathContainer>
 
 Nach dem Einsetzen der beiden Flächenformeln gilt:
 
 <MathContainer>
-  <BlockMath math="\text{Segmentfläche} = \frac{\alpha}{360^\circ} \times \pi r^2 - \frac{1}{2} r^2 \sin \alpha" />
+  <BlockMath math="\begin{aligned} &amp;\text{Segmentfläche} = \frac{\alpha}{360^\circ} \times \pi r^2 \\ &amp;- \frac{1}{2} r^2 \sin \alpha \end{aligned}" />
 </MathContainer>
 
 Dabei ist <InlineMath math="0^\circ < \alpha < 180^\circ" /> der kleine Mittelpunktswinkel in Grad und <InlineMath math="r" /> der Kreisradius.
 
 Für ein großes Kreissegment verwenden wir zunächst den ergänzenden kleinen Winkel <InlineMath math="\beta=360^\circ-\alpha" /> und ziehen dann die kleine Segmentfläche von der gesamten Kreisfläche ab:
 
-<MathContainer>
-  <BlockMath math="\beta=360^\circ-\alpha" />
-  <BlockMath math="A_{\mathrm{major}}=\pi r^2-\left(\frac{\beta}{360^\circ}\pi r^2-\frac{1}{2}r^2\sin\beta\right)" />
-</MathContainer>
+<BlockMath math="\beta=360^\circ-\alpha" />
+<BlockMath math="A_{\mathrm{minor}}=\frac\beta{360^\circ}\pi r^2-\frac12r^2\sin\beta" />
+
+<BlockMath math="A_{\mathrm{major}}=\pi r^2-A_{\mathrm{minor}}" />
 
 ## Sektor Dreieck und Kreissegment
 
@@ -434,7 +433,7 @@ Für einen Winkel <InlineMath math="90^\circ" /> ist das gebildete Dreieck ein r
 **Schritt** 3: Segmentfläche berechnen
 
 <MathContainer>
-<BlockMath math="\text{Segmentfläche} = \text{Sektorfläche} - \text{Dreiecksfläche}" />
+<BlockMath math="\begin{aligned} &amp;\text{Segmentfläche} = \text{Sektorfläche} \\ &amp;- \text{Dreiecksfläche} \end{aligned}" />
 <BlockMath math="= 25\pi - 50" />
 <BlockMath math="\approx 78{,}5398 - 50" />
 <BlockMath math="\approx 28{,}5398 \text{ cm}^2" />
@@ -506,15 +505,15 @@ Für einen Winkel <InlineMath math="90^\circ" /> ist das gebildete Dreieck ein r
 
    Die Segmenthöhe vom Tankboden ist:
 
-   <MathContainer>
-   <BlockMath math="h = 1{,}5 \text{ m (Wasserhöhe vom Boden)}" />
-   </MathContainer>
+   Die vom Boden gemessene Wasserhöhe beträgt <InlineMath math="h=1{,}5\text{ m}" />.
 
    Für die gefüllte Querschnittsfläche gilt:
 
-   <MathContainer>
-   <BlockMath math="\text{Fläche} = r^2 \times \left[\arccos\left(\frac{r-h}{r}\right) - \frac{r-h}{r} \times \sqrt{1-\left(\frac{r-h}{r}\right)^2}\right]" />
-   </MathContainer>
+   Bezeichne die Segmentfläche mit <InlineMath math="A" /> und definiere das Höhenverhältnis <InlineMath math="u" />:
+
+   <BlockMath math="u=\frac{r-h}{r}" />
+
+   <BlockMath math="A=r^2\left(\arccos u-u\sqrt{1-u^2}\right)" />
 
    Der von <InlineMath math="\arccos" /> gelieferte Winkel wird dabei im Bogenmaß eingesetzt, wie es die Flächenformel verlangt.
 
@@ -528,8 +527,10 @@ Für einen Winkel <InlineMath math="90^\circ" /> ist das gebildete Dreieck ein r
 
    Gefüllte Querschnittsfläche berechnen:
 
-   <MathContainer>
-   <BlockMath math="\text{Fläche} = 4 \times [\arccos(0{,}25) - 0{,}25\sqrt{0{,}9375}]" />
+   <BlockMath math="\theta=\arccos(0{,}25)" />
+
+   <BlockMath math="v=0{,}25\sqrt{0{,}9375}" />
+
+   <BlockMath math="A=4(\theta-v)" />
    <BlockMath math="\approx 4 \times 1{,}0760546" />
    <BlockMath math="\approx 4{,}3042 \text{ m}^2" />
-   </MathContainer>

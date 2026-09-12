@@ -3,7 +3,7 @@ export const metadata = {
   description: "Faktorkan matriks persegi sebagai PA = LU, ikuti contoh eliminasi lengkap, selesaikan sistem linear berulang, dan implementasikan algoritma NumPy yang aman.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-13",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Metode Linear AI",
 };
 
@@ -31,7 +31,7 @@ Setelah memilih pivot pada kolom <InlineMath math="k" />, hilangkan setiap entri
 
 Kemudian terapkan pembaruan baris berikut.
 
-<BlockMath math="u_{ij}\leftarrow u_{ij}-\ell_{ik}u_{kj},\qquad j=k,\ldots,n" />
+<BlockMath math="\begin{aligned} &amp;u_{ij}\leftarrow u_{ij}-\ell_{ik}u_{kj}, \\ &amp;j=k,\ldots,n \end{aligned}" />
 
 Pengali disimpan di bawah diagonal <InlineMath math="L" />. Jika dua baris ditukar setelah beberapa langkah eliminasi, kolom <InlineMath math="L" /> yang sudah terisi juga harus ditukar. Jika tidak, kesamaan <InlineMath math="PA=LU" /> tidak lagi terpenuhi.
 
@@ -83,7 +83,7 @@ Pertama, selesaikan <InlineMath math="Ly=Pb" />. Pada contoh ini,
 
 Untuk matriks segitiga bawah umum,
 
-<BlockMath math="y_i=\frac{1}{\ell_{ii}}\left(c_i-\sum_{j=1}^{i-1}\ell_{ij}y_j\right),\qquad c=Pb" />
+<BlockMath math="\begin{aligned} &amp;y_i=\frac{1}{\ell_{ii}}\left(c_i-\sum_{j=1}^{i-1}\ell_{ij}y_j\right), \\ &amp;c=Pb \end{aligned}" />
 
 Entri diagonal <InlineMath math="L" /> pada dekomposisi ini semuanya satu.
 

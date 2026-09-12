@@ -74,8 +74,8 @@ Let <InlineMath math="u = 2 \sin x" /> and <InlineMath math="v = \tan x" />.
 Then <InlineMath math="u' = 2 \cos x" /> and <InlineMath math="v' = \sec^2 x" />.
 
 <MathContainer>
-    <BlockMath math="y' = (2 \cos x)(\tan x) + (2 \sin x)(\sec^2 x)" />
-    <BlockMath math="y' = (2 \cos x)\left(\frac{\sin x}{\cos x}\right) + (2 \sin x)(\sec^2 x)" />
+    <BlockMath math="\begin{aligned} &amp;y' = (2 \cos x)(\tan x) \\ &amp;+ (2 \sin x)(\sec^2 x) \end{aligned}" />
+    <BlockMath math="\begin{aligned} &amp;y' = (2 \cos x)\left(\frac{\sin x}{\cos x}\right) \\ &amp;+ (2 \sin x)(\sec^2 x) \end{aligned}" />
     <BlockMath math="y' = 2 \sin x + 2 \sin x \sec^2 x" />
 </MathContainer>
 
@@ -91,14 +91,20 @@ Let <InlineMath math="u = 1 + \cos x" /> and <InlineMath math="v = \sin x" />.
 
 Then <InlineMath math="u' = -\sin x" /> and <InlineMath math="v' = \cos x" />.
 
-<MathContainer>
-    <BlockMath math="y' = \frac{(-\sin x)(\sin x) - (1 + \cos x)(\cos x)}{(\sin x)^2}" />
-    <BlockMath math="y' = \frac{-\sin^2 x - (\cos x + \cos^2 x)}{\sin^2 x}" />
-    <BlockMath math="y' = \frac{-(\sin^2 x + \cos^2 x) - \cos x}{\sin^2 x}" />
-    <BlockMath math="y' = \frac{-1 - \cos x}{1 - \cos^2 x} \quad (\text{Pythagorean Identity})" />
-    <BlockMath math="y' = \frac{-(1 + \cos x)}{(1 - \cos x)(1 + \cos x)} \quad (\text{Factorization})" />
-    <BlockMath math="y' = \frac{-1}{1 - \cos x} = \frac{1}{\cos x - 1}" />
-</MathContainer>
+Compute the numerator first:
+
+<BlockMath math="\begin{aligned} &amp;N=(-\sin x)(\sin x) \\ &amp;-(1+\cos x)(\cos x) \end{aligned}" />
+
+<BlockMath math="y'=\frac{N}{(\sin x)^2}" />
+<BlockMath math="y' = \frac{-\sin^2 x - (\cos x + \cos^2 x)}{\sin^2 x}" />
+<BlockMath math="y' = \frac{-(\sin^2 x + \cos^2 x) - \cos x}{\sin^2 x}" />
+    Use the Pythagorean identity:
+
+<BlockMath math="y' = \frac{-1 - \cos x}{1 - \cos^2 x}" />
+    Factor the expression:
+
+<BlockMath math="y' = \frac{-(1 + \cos x)}{(1 - \cos x)(1 + \cos x)}" />
+<BlockMath math="y' = \frac{-1}{1 - \cos x} = \frac{1}{\cos x - 1}" />
 
 The simplified formula is valid only on the original domain, so values with <InlineMath math="\sin x=0" /> remain excluded even if the final expression appears defined there.
 
@@ -140,7 +146,7 @@ The simplified formula is valid only on the original domain, so values with <Inl
     **Step** 2: Apply the Product Rule
 
     <MathContainer>
-        <BlockMath math="f'(x) = (\cos x)(\cos x) + (\sin x)(-\sin x)" />
+        <BlockMath math="\begin{aligned} &amp;f'(x) = (\cos x)(\cos x) \\ &amp;+ (\sin x)(-\sin x) \end{aligned}" />
         <BlockMath math="f'(x) = \cos^2 x - \sin^2 x" />
     </MathContainer>
 

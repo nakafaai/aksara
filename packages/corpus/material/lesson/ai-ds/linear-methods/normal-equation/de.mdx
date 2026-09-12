@@ -51,15 +51,13 @@ Wir können dieses Ergebnis auch auf andere Weise überprüfen. Sei <InlineMath 
 
 Mit dem Satz des Pythagoras können wir schreiben
 
-<MathContainer>
-<BlockMath math="\|Ax - b\|_2^2 = \|A\hat{x} - b - A(\hat{x} - x)\|_2^2" />
-<BlockMath math="= \|A\hat{x} - b\|_2^2 + \|A(\hat{x} - x)\|_2^2 - 2 \langle A\hat{x} - b, A(\hat{x} - x) \rangle" />
-<BlockMath math="= \|A\hat{x} - b\|_2^2 + \underbrace{\|A(\hat{x} - x)\|_2^2}_{\geq 0} - 2 \underbrace{(\hat{x} - x)^T (A^T A\hat{x} - A^T b)}_{=0}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} &amp;\|Ax - b\|_2^2 \\ &amp;= \|A\hat{x} - b - A(\hat{x} - x)\|_2^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;= \|A\hat{x} - b\|_2^2 + \|A(\hat{x} - x)\|_2^2 \\ &amp;- 2 \langle A\hat{x} - b, A(\hat{x} - x) \rangle \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;=\|A\hat x-b\|_2^2 \\ &amp;+\underbrace{\|A(\hat x-x)\|_2^2}_{\ge0} \\ &amp;-2\underbrace{(\hat x-x)^T(A^TA\hat x-A^Tb)}_{=0} \end{aligned}" />
 
 Da <InlineMath math="\hat{x}" /> die Normalgleichung erfüllt, verschwindet der Kreuzterm. Die verbleibende quadrierte Norm ist nicht negativ. Daher gilt
 
-<BlockMath math="\|Ax - b\|_2^2 = \|A\hat{x} - b\|_2^2 + \|A(\hat{x} - x)\|_2^2 \geq \|A\hat{x} - b\|_2^2" />
+<BlockMath math="\begin{aligned} &amp;\|Ax - b\|_2^2 = \|A\hat{x} - b\|_2^2 \\ &amp;+ \|A(\hat{x} - x)\|_2^2 \geq \|A\hat{x} - b\|_2^2 \end{aligned}" />
 
 Diese Ungleichung beweist, dass <InlineMath math="\hat{x}" /> tatsächlich den Minimalwert ergibt.
 
@@ -87,7 +85,7 @@ Für jedes <InlineMath math="z\in\mathbb{R}^n" /> gilt
 
 Somit ist <InlineMath math="A^{\mathsf T}A" /> stets symmetrisch positiv semidefinit. Außerdem gilt
 
-<BlockMath math="A^{\mathsf T}Az=0\quad\Longleftrightarrow\quad z^{\mathsf T}A^{\mathsf T}Az=0\quad\Longleftrightarrow\quad Az=0" />
+<BlockMath math="\begin{aligned} &amp;A^{\mathsf T}Az=0 \\ &amp;\Longleftrightarrow \\ &amp;z^{\mathsf T}A^{\mathsf T}Az=0 \\ &amp;\Longleftrightarrow \\ &amp;Az=0 \end{aligned}" />
 
 Daher ist
 

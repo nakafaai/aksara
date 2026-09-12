@@ -24,27 +24,39 @@ Die Produktfunktion multipliziert <InlineMath math="f(x)" /> und <InlineMath mat
     }
     data={[
       {
-        points: Array.from({ length: 11 }, (_, i) => ({
-          x: i - 5,
-          y: i - 5,
-          z: 0,
-        })),
+        points: Array.from({ length: 22 }, (_, pointIndex) => {
+          const i = pointIndex - 3;
+          return {
+            x: i - 5,
+            y: i - 5,
+            z: 0,
+          };
+        }),
+        pointIndices: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
         smooth: false,
         color: "#ea580c",
-        labels: [{ text: <InlineMath math="f(x)=x" />, at: 6, offset: [0, -2, 0] }],
+        labels: [{ text: <InlineMath math="f(x)=x" />, at: 9, offset: [0, -2, 0] }],
       },
       {
-        points: Array.from({ length: 11 }, (_, i) => ({ x: i - 5, y: 2, z: 0 })),
+        points: Array.from({ length: 35 }, (_, pointIndex) => {
+          const i = pointIndex - 12;
+          return { x: i - 5, y: 2, z: 0 };
+        }),
+        pointIndices: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
         smooth: false,
         color: "#0284c7",
-        labels: [{ text: <InlineMath math="g(x)=2" />, at: 8, offset: [0.5, -0.8, 0] }],
+        labels: [{ text: <InlineMath math="g(x)=2" />, at: 20, offset: [0.5, -0.8, 0] }],
       },
       {
-        points: Array.from({ length: 11 }, (_, i) => ({
-          x: i - 5,
-          y: 2 * (i - 5),
-          z: 0,
-        })),
+        points: Array.from({ length: 12 }, (_, pointIndex) => {
+          const i = pointIndex + 0;
+          return {
+            x: i - 5,
+            y: 2 * (i - 5),
+            z: 0,
+          };
+        }),
+        pointIndices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         smooth: false,
         color: "#e11d48",
         labels: [{ text: <InlineMath math="(f\cdot g)(x)=2x" />, at: 7, offset: [-2.5, 1, 0] }],
@@ -188,11 +200,11 @@ Gegeben sei die Funktion <InlineMath math="f(x) = \sqrt{x+4}" /> mit <InlineMath
 
     Schließe <InlineMath math="x=3" /> und <InlineMath math="x=-3" /> aus der Schnittmenge der Definitionsbereiche aus:
 
-    <BlockMath math="D_{\frac{f}{g}}=\{x\mid x\geq-4,\ x\in\mathbb{R}\}\setminus\{-3,3\}" />
+    <BlockMath math="\begin{aligned} &amp;D_{\frac{f}{g}} \\ &amp;=\{x\mid x\geq-4,\ x\in\mathbb{R}\} \\ &amp;\setminus\{-3,3\} \end{aligned}" />
 
     Oder es kann geschrieben werden als:
 
-    <BlockMath math="D_{\frac{f}{g}} = \{x | x \ge -4, x \in \mathbb{R}, x \neq -3, x \neq 3\}" />
+    <BlockMath math="D_{\frac fg}=[-4,\infty)\setminus\{-3,3\}" />
 
     Damit gilt <InlineMath math="(\frac{f}{g})(x) = \frac{\sqrt{x+4}}{x^2 - 9}" /> mit dem Definitionsbereich <InlineMath math="\{x | x \ge -4, x \neq -3, x \neq 3\}" />.
 
@@ -211,4 +223,4 @@ Gegeben sei die Funktion <InlineMath math="f(x) = \sqrt{x+4}" /> mit <InlineMath
 
 4.  **Ist <InlineMath math="(\frac{f}{g})(3)" /> definiert?**
 
-    Nein. Aus Teil <InlineMath math="2" /> kennen wir den Definitionsbereich von <InlineMath math="(\frac{f}{g})(x)" /> als <InlineMath math="\{x | x \ge -4, x \neq -3, x \neq 3\}" />. Der Wert <InlineMath math="x=3" /> ist ausgeschlossen, weil der Nenner <InlineMath math="g(x) = x^2 - 9" /> dort Null wird (<InlineMath math="3^2 - 9 = 0" />). Eine Division durch Null ist nicht definiert.
+    Nein. Aus Teil 2 kennen wir den Definitionsbereich von <InlineMath math="(\frac{f}{g})(x)" /> als <InlineMath math="\{x | x \ge -4, x \neq -3, x \neq 3\}" />. Der Wert <InlineMath math="x=3" /> ist ausgeschlossen, weil der Nenner <InlineMath math="g(x) = x^2 - 9" /> dort Null wird (<InlineMath math="3^2 - 9 = 0" />). Eine Division durch Null ist nicht definiert.

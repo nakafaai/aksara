@@ -3,7 +3,7 @@ export const metadata = {
   description: "Quadratische Formen durch einen orthogonalen Koordinatenwechsel diagonalisieren, quadratisch ergänzen und Kegelschnitte anhand ihrer Eigenwerte klassifizieren.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Lineare Methoden der KI",
 };
 
@@ -27,14 +27,18 @@ Für die Gleichung <InlineMath math="x^TAx+p^Tx+f=0" /> verwenden wir die gedreh
 
 Für beide Variablen mit <InlineMath math="\lambda_1, \lambda_2 \neq 0" /> wird die Vervollständigung des Quadratprozesses separat durchgeführt:
 
-<MathContainer>
-<BlockMath math="\begin{aligned} 0 &= \lambda_1 \left( \xi_1^2 + 2 \frac{\delta}{2\lambda_1} \xi_1 + \frac{\delta^2}{4\lambda_1^2} \right) - \frac{\delta^2}{4\lambda_1} \\ &\quad + \lambda_2 \left( \xi_2^2 + 2 \frac{\epsilon}{2\lambda_2} \xi_2 + \frac{\epsilon^2}{4\lambda_2^2} \right) - \frac{\epsilon^2}{4\lambda_2} + f \end{aligned}" />
-</MathContainer>
+Benenne die Klammern der quadratischen Ergänzung, damit die addierten und subtrahierten Terme sichtbar bleiben:
+
+<BlockMath math="\begin{aligned} &amp;B_1=\xi_1^2+2\frac\delta{2\lambda_1}\xi_1 \\ &amp;+\frac{\delta^2}{4\lambda_1^2} \end{aligned}" />
+
+<BlockMath math="\begin{aligned} &amp;B_2=\xi_2^2+2\frac\epsilon{2\lambda_2}\xi_2 \\ &amp;+\frac{\epsilon^2}{4\lambda_2^2} \end{aligned}" />
+
+<BlockMath math="\begin{aligned} &amp;0=\lambda_1B_1-\frac{\delta^2}{4\lambda_1} \\ &amp;+\lambda_2B_2-\frac{\epsilon^2}{4\lambda_2}+f \end{aligned}" />
 
 Nach dem Zusammenfassen erhalten wir
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 + \lambda_2 \left( \xi_2 + \frac{\epsilon}{2\lambda_2} \right)^2 \\ &\quad + \left( f - \frac{\delta^2}{4\lambda_1} - \frac{\epsilon^2}{4\lambda_2} \right) \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 \\ &amp;+ \lambda_2 \left( \xi_2 + \frac{\epsilon}{2\lambda_2} \right)^2 \\ &amp;+ \left( f - \frac{\delta^2}{4\lambda_1} - \frac{\epsilon^2}{4\lambda_2} \right) \end{aligned}" />
 </MathContainer>
 
 Wir definieren den Mittelpunkt in den gedrehten Koordinaten und die verschobene Konstante durch
@@ -47,7 +51,7 @@ Wir definieren den Mittelpunkt in den gedrehten Koordinaten und die verschobene 
 Damit gilt
 
 <MathContainer>
-<BlockMath math="\lambda_1 (\xi_1 - m_1)^2 + \lambda_2 (\xi_2 - m_2)^2 - \gamma = 0" />
+<BlockMath math="\begin{aligned} &amp;\lambda_1 (\xi_1 - m_1)^2 + \lambda_2 (\xi_2 - m_2)^2 - \gamma \\ &amp;= 0 \end{aligned}" />
 </MathContainer>
 
 Die Vorzeichen von <InlineMath math="\lambda_1" />, <InlineMath math="\lambda_2" /> und <InlineMath math="\gamma" /> entscheiden, ob die reelle Lösungsmenge eine Ellipse, Hyperbel, Parabel, ein entarteter Kegelschnitt oder leer ist. Die nächsten beiden Fälle setzen <InlineMath math="\gamma>0" /> voraus.
@@ -269,11 +273,13 @@ Mit Halbachsenlängen <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" /
 
 Ein Sonderfall liegt bei <InlineMath math="\lambda_1\neq0" />, <InlineMath math="\lambda_2=0" /> und <InlineMath math="\epsilon\neq0" /> vor. Die quadratische Ergänzung ergibt
 
-<MathContainer>
-<BlockMath math="0 = \lambda_1 \left( \xi_1^2 + 2 \frac{\delta}{2\lambda_1} \xi_1 + \frac{\delta^2}{4\lambda_1^2} \right) - \frac{\delta^2}{4\lambda_1} + \epsilon \xi_2 + f" />
-<BlockMath math="= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 + \epsilon \xi_2 + \left( f - \frac{\delta^2}{4\lambda_1} \right)" />
+Benenne die Klammern der quadratischen Ergänzung, damit die addierten und subtrahierten Terme sichtbar bleiben:
+
+<BlockMath math="\begin{aligned} &amp;B_1=\xi_1^2+2\frac\delta{2\lambda_1}\xi_1 \\ &amp;+\frac{\delta^2}{4\lambda_1^2} \end{aligned}" />
+
+<BlockMath math="\begin{aligned} &amp;0=\lambda_1B_1-\frac{\delta^2}{4\lambda_1} \\ &amp;+\epsilon\xi_2+f \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 + \epsilon \xi_2 \\ &amp;+ \left( f - \frac{\delta^2}{4\lambda_1} \right) \end{aligned}" />
 <BlockMath math="= \lambda_1 (\xi_1 - m_1)^2 + \epsilon \xi_2 - \gamma" />
-</MathContainer>
 
 Nach dem Auflösen nach <InlineMath math="\xi_2" /> ist die Parabelform unmittelbar erkennbar:
 
@@ -286,14 +292,15 @@ Nach dem Auflösen nach <InlineMath math="\xi_2" /> ist die Parabelform unmittel
   description="Parabelkurve mit einem Null-Eigenwert und an Eigenvektoren ausgerichteter Koordinatenachsentransformation."
   data={[
     {
-      points: Array.from({ length: 50 }, (_, i) => {
+      points: Array.from({ length: 155 }, (_, pointIndex) => {
+        const i = pointIndex / 2 - 14;
         const t = (i / 49 - 0.5) * 6;
         const lambda1 = 1; // λ₁ ≠ 0
         const epsilon = -2; // ε ≠ 0
         const gamma = 2; // γ
         const m1 = 0; // δ/(2λ₁) = 0
         const x = t;
-        const y = -(lambda1 / epsilon) * Math.pow(x - m1, 2) + (gamma / epsilon);
+        const y = -(lambda1 / epsilon) * Math.pow(x - m1, 2) + gamma / epsilon;
         return { x, y, z: 0 };
       }),
       color: "#9333ea",
@@ -348,7 +355,7 @@ Wir betrachten die Gleichung
 Die Eigenpaare lauten
 
 <MathContainer>
-<BlockMath math="\lambda_1=6,\quad v_1=\frac1{\sqrt5}\begin{pmatrix}2\\1\end{pmatrix},\qquad \lambda_2=1,\quad v_2=\frac1{\sqrt5}\begin{pmatrix}-1\\2\end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;\lambda_1=6, \\ &amp;v_1=\frac1{\sqrt5}\begin{pmatrix}2\\1\end{pmatrix}, \\ &amp;\lambda_2=1, \\ &amp;v_2=\frac1{\sqrt5}\begin{pmatrix}-1\\2\end{pmatrix} \end{aligned}" />
 <BlockMath math="S=\frac1{\sqrt5}\begin{pmatrix}2&-1\\1&2\end{pmatrix},\qquad \xi=S^Tx" />
 </MathContainer>
 
@@ -371,20 +378,28 @@ Für eine symmetrische Matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" /
 
 Äquivalent dazu gilt
 
-<MathContainer>
-<BlockMath math="Q = \left\{ x \in \mathbb{R}^n : x^T A x + b^T x + c = 0 \right\}" />
-<BlockMath math="= \left\{ x \in \mathbb{R}^n : \sum_{j=1}^n \sum_{k=1}^n x_j a_{jk} x_k + \sum_{j=1}^n b_j x_j + c = 0 \right\}" />
-</MathContainer>
+Dieselbe Menge <InlineMath math="Q" /> besteht aus den Vektoren <InlineMath math="x\in\mathbb R^n" />, welche die folgende Gleichung erfüllen:
+
+<BlockMath math="x^T A x + b^T x + c = 0" />
+Dieselbe Menge <InlineMath math="Q" /> besteht aus den Vektoren <InlineMath math="x\in\mathbb R^n" />, welche die folgende Gleichung erfüllen:
+
+<BlockMath math="\begin{aligned} &amp;\sum_{j=1}^n\sum_{k=1}^n x_ja_{jk}x_k \\ &amp;+\sum_{j=1}^n b_jx_j+c=0 \end{aligned}" />
 
 Wenn <InlineMath math="A \in \mathbb{R}^{n \times n}" /> symmetrisch und <InlineMath math="v_1, \ldots, v_n \in \mathbb{R}^n" /> eine Orthonormalbasis von Eigenvektoren mit <InlineMath math="A \cdot v_i = \lambda_i \cdot v_i" /> ist, dann ermöglicht die Orthonormalmatrix <InlineMath math="S = (v_1 \quad \ldots \quad v_n)" /> die Diagonalisierung <InlineMath math="A \cdot S = S \cdot \Lambda" /> oder <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S = S^T \cdot A \cdot S" />.
 
 In der neuen Koordinatenbasis <InlineMath math="\xi = S^T x" /> und <InlineMath math="\mu = S^T b" /> hat die quadratische Fläche Diagonalform:
 
-<MathContainer>
-<BlockMath math="Q = \left\{ \xi \in \mathbb{R}^n : \xi^T S^T A S \xi + b^T S \xi + c = 0 \right\}" />
-<BlockMath math="= \left\{ \xi \in \mathbb{R}^n : \xi^T \Lambda \xi + \mu^T \xi + c = 0 \right\}" />
-<BlockMath math="= \left\{ \xi \in \mathbb{R}^n : \sum_{j=1}^n \lambda_j \xi_j^2 + \sum_{j=1}^n \mu_j \xi_j + c = 0 \right\}" />
-<BlockMath math="= \left\{ \xi \in \mathbb{R}^n : \sum_{j=1}^n (\lambda_j \xi_j^2 + \mu_j \xi_j) = -c \right\}" />
-</MathContainer>
+In den gedrehten Koordinaten wird <InlineMath math="Q" /> durch Vektoren <InlineMath math="\xi\in\mathbb R^n" /> beschrieben, welche die folgende Gleichung erfüllen:
+
+<BlockMath math="\xi^T S^T A S \xi + b^T S \xi + c = 0" />
+Äquivalent erfüllen diese Vektoren:
+
+<BlockMath math="\xi^T\Lambda\xi+\mu^T\xi+c=0" />
+In den gedrehten Koordinaten wird <InlineMath math="Q" /> durch Vektoren <InlineMath math="\xi\in\mathbb R^n" /> beschrieben, welche die folgende Gleichung erfüllen:
+
+<BlockMath math="\begin{aligned} &amp;\sum_{j=1}^n\lambda_j\xi_j^2 \\ &amp;+\sum_{j=1}^n\mu_j\xi_j+c=0 \end{aligned}" />
+In den gedrehten Koordinaten wird <InlineMath math="Q" /> durch Vektoren <InlineMath math="\xi\in\mathbb R^n" /> beschrieben, welche die folgende Gleichung erfüllen:
+
+<BlockMath math="\sum_{j=1}^n (\lambda_j \xi_j^2 + \mu_j \xi_j) = -c" />
 
 In der Orthonormalbasis von Eigenvektoren hat die quadratische Form eine Diagonalstruktur. Diese Transformation wird **Hauptachsentransformation** genannt, da die neuen Koordinatenachsen an den Richtungen der Matrixeigenvektoren ausgerichtet sind.

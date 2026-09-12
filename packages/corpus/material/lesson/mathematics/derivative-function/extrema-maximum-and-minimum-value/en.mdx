@@ -140,7 +140,8 @@ So, the local maximum value is <InlineMath math="4" /> at <InlineMath math="(1,4
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, i) => {
+      points: Array.from({ length: 115 }, (_, pointIndex) => {
+        const i = pointIndex - 7;
         const x = -0.5 + i * 0.05;
         const y = x * Math.pow(x - 3, 2);
         return { x, y, z: 0 };
@@ -242,7 +243,8 @@ If we look at the visualization below, the curve is concave down at the point <I
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, i) => {
+      points: Array.from({ length: 125 }, (_, pointIndex) => {
+        const i = pointIndex - 17;
         const x = -2.5 + i * 0.08;
         const y = (1 / 3) * x ** 3 - x ** 2 - 3 * x + 2;
         return { x, y, z: 0 };

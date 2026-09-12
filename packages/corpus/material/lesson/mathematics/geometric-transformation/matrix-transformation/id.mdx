@@ -62,7 +62,7 @@ Matriks <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /> meme
       points: [{ x: -3, y: 2, z: 0 }],
       color: "#059669",
       showPoints: true,
-      labels: [{ text: <InlineMath math="P'(-3,2)" />, at: 0, offset: [-0.7, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="P'(-3,2)" />, at: 0, offset: [0, 0.3, 0] }],
     },
     {
       points: [
@@ -94,10 +94,12 @@ Pertama-tama, kita dapat menuliskan koordinat titik-titik itu sebagai kolom-kolo
 
 Selanjutnya, kalikan dari kiri matriks itu dengan <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
 
-<MathContainer>
-  <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 1 & 4 & 4 \\ 1 & 1 & 2 \end{pmatrix} = \begin{pmatrix} (-1)(1)+(0)(1) & (-1)(4)+(0)(1) & (-1)(4)+(0)(2) \\ (0)(1)+(-1)(1) & (0)(4)+(-1)(1) & (0)(4)+(-1)(2) \end{pmatrix}" />
-  <BlockMath math="= \begin{pmatrix} -1 & -4 & -4 \\ -1 & -1 & -2 \end{pmatrix}" />
-</MathContainer>
+Hitung setiap entri dengan mengalikan baris dan kolom:
+
+<BlockMath math="\begin{aligned} &amp;m_{11}=(-1)(1)+(0)(1) \\ &amp;m_{12}=(-1)(4)+(0)(1) \\ &amp;m_{13}=(-1)(4)+(0)(2) \\ &amp;m_{21}=(0)(1)+(-1)(1) \\ &amp;m_{22}=(0)(4)+(-1)(1) \\ &amp;m_{23}=(0)(4)+(-1)(2) \end{aligned}" />
+
+<BlockMath math="\begin{aligned} &amp;\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 1 &amp; 4 &amp; 4 \\ 1 &amp; 1 &amp; 2 \end{pmatrix} \\ &amp;=\begin{pmatrix}m_{11}&amp;m_{12}&amp;m_{13}\\m_{21}&amp;m_{22}&amp;m_{23}\end{pmatrix} \end{aligned}" />
+<BlockMath math="= \begin{pmatrix} -1 & -4 & -4 \\ -1 & -1 & -2 \end{pmatrix}" />
 
 Hasil transformasinya adalah sebuah segitiga baru <InlineMath math="\triangle A'B'C'" /> dengan titik-titik sudut <InlineMath math="A'(-1,-1)" />, <InlineMath math="B'(-4,-1)" />, dan <InlineMath math="C'(-4,-2)" />.
 
@@ -183,10 +185,12 @@ Matriks <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> mer
 
     Matriks titik: <InlineMath math="\begin{pmatrix} 2 & 2 & 0 \\ 0 & 1 & 1 \end{pmatrix}" />.
 
-    <MathContainer>
-      <BlockMath math="\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 2 & 2 & 0 \\ 0 & 1 & 1 \end{pmatrix} = \begin{pmatrix} (1)(2)+(2)(0) & (1)(2)+(2)(1) & (1)(0)+(2)(1) \\ (0)(2)+(1)(0) & (0)(2)+(1)(1) & (0)(0)+(1)(1) \end{pmatrix}" />
-      <BlockMath math="\begin{aligned}  &amp;= \begin{pmatrix} 2+0 &amp; 2+2 &amp; 0+2 \\ 0+0 &amp; 0+1 &amp; 0+1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 &amp; 4 &amp; 2 \\ 0 &amp; 1 &amp; 1 \end{pmatrix} \end{aligned}" />
-    </MathContainer>
+    Hitung setiap entri dengan mengalikan baris dan kolom:
+
+    <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(2)+(2)(0) \\ &amp;m_{12}=(1)(2)+(2)(1) \\ &amp;m_{13}=(1)(0)+(2)(1) \\ &amp;m_{21}=(0)(2)+(1)(0) \\ &amp;m_{22}=(0)(2)+(1)(1) \\ &amp;m_{23}=(0)(0)+(1)(1) \end{aligned}" />
+
+    <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} 1 &amp; 2 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} 2 &amp; 2 &amp; 0 \\ 0 &amp; 1 &amp; 1 \end{pmatrix} \\ &amp;=\begin{pmatrix}m_{11}&amp;m_{12}&amp;m_{13}\\m_{21}&amp;m_{22}&amp;m_{23}\end{pmatrix} \end{aligned}" />
+    <BlockMath math="\begin{aligned}  &amp;= \begin{pmatrix} 2+0 &amp; 2+2 &amp; 0+2 \\ 0+0 &amp; 0+1 &amp; 0+1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 &amp; 4 &amp; 2 \\ 0 &amp; 1 &amp; 1 \end{pmatrix} \end{aligned}" />
 
     Titik-titik bayangan: <InlineMath math="A'(2,0)" />, <InlineMath math="B'(4,1)" />, <InlineMath math="C'(2,1)" />.
 

@@ -20,7 +20,7 @@ Für die ersten Potenzen sieht das Muster so aus:
 <BlockMath math="(x + y)^1 = x + y" />
 <BlockMath math="(x + y)^2 = x^2 + 2xy + y^2" />
 <BlockMath math="(x + y)^3 = x^3 + 3x^2y + 3xy^2 + y^3" />
-<BlockMath math="(x + y)^4 = x^4 + 4x^3y + 6x^2y^2 + 4xy^3 + y^4" />
+<BlockMath math="\begin{aligned} &amp;(x + y)^4 = x^4 + 4x^3y + 6x^2y^2 \\ &amp;+ 4xy^3 + y^4 \end{aligned}" />
 </MathContainer>
 
 Die Koeffizienten ändern sich mit der Potenz, ihre Positionen folgen jedoch immer derselben Regel.
@@ -39,7 +39,7 @@ Der Binomialkoeffizient wird als „<InlineMath math="n" /> über <InlineMath ma
 
 Ausgeschrieben hat die Entwicklung die Form:
 
-<BlockMath math="(x + y)^n = \binom{n}{0}x^n + \binom{n}{1}x^{n-1}y + \binom{n}{2}x^{n-2}y^2 + \cdots + \binom{n}{n}y^n" />
+<BlockMath math="\begin{aligned} &amp;(x + y)^n = \binom{n}{0}x^n + \binom{n}{1}x^{n-1}y \\ &amp;+ \binom{n}{2}x^{n-2}y^2 + \cdots + \binom{n}{n}y^n \end{aligned}" />
 
 Jeder Term der Entwicklung hat die Struktur <InlineMath math="\binom{n}{k}x^{n-k}y^k" />. Die Exponenten von <InlineMath math="x" /> und <InlineMath math="y" /> ergeben zusammen stets <InlineMath math="n" />.
 
@@ -51,7 +51,7 @@ Gesucht ist der Koeffizient von <InlineMath math="x^2" /> in der Entwicklung von
 
 Zuerst schreiben wir den Ausdruck mit <InlineMath math="a = 1" />, <InlineMath math="b = -x" /> und <InlineMath math="n = 2014" /> in der Standardform:
 
-<BlockMath math="(1 + (-x))^{2014} = \sum_{k=0}^{2014} \binom{2014}{k} (1)^{2014-k} (-x)^k" />
+<BlockMath math="\begin{aligned} &amp;(1 + (-x))^{2014} \\ &amp;= \sum_{k=0}^{2014} \binom{2014}{k} (1)^{2014-k} (-x)^k \end{aligned}" />
 
 Damit der Term <InlineMath math="x^2" /> enthält, muss <InlineMath math="k = 2" /> gelten:
 
@@ -74,12 +74,12 @@ Ein konstanter Term enthält keine Variable. Wir suchen deshalb den Term, bei de
 
 Wir schreiben den Ausdruck mit <InlineMath math="a = 3x^3" /> und <InlineMath math="b = -\frac{2}{x}" /> in Binomialform:
 
-<BlockMath math="\left(3x^3 - \frac{2}{x}\right)^8 = \sum_{k=0}^{8} \binom{8}{k} (3x^3)^{8-k} \left(-\frac{2}{x}\right)^k" />
+<BlockMath math="\begin{aligned} &amp;\left(3x^3 - \frac{2}{x}\right)^8 \\ &amp;= \sum_{k=0}^{8} \binom{8}{k} (3x^3)^{8-k} \left(-\frac{2}{x}\right)^k \end{aligned}" />
 
 Der allgemeine Term lautet:
 
 <MathContainer>
-<BlockMath math="\binom{8}{k} (3x^3)^{8-k} \left(-\frac{2}{x}\right)^k = \binom{8}{k} \cdot (3)^{8-k} \cdot (x^3)^{8-k} \cdot (-2)^k \cdot (x^{-1})^k" />
+<BlockMath math="\begin{aligned} &amp;\binom{8}{k} (3x^3)^{8-k} \left(-\frac{2}{x}\right)^k \\ &amp;= \binom{8}{k} \cdot (3)^{8-k} \cdot (x^3)^{8-k} \\ &amp;\cdot (-2)^k \cdot (x^{-1})^k \end{aligned}" />
 <BlockMath math="= \binom{8}{k} \cdot 3^{8-k} \cdot (-2)^k \cdot x^{3(8-k)} \cdot x^{-k}" />
 <BlockMath math="\begin{aligned}  &amp;= \binom{8}{k} \cdot 3^{8-k} \cdot (-2)^k \cdot x^{24-3k-k} \\ &amp;= \binom{8}{k} \cdot 3^{8-k} \cdot (-2)^k \cdot x^{24-4k} \end{aligned}" />
 </MathContainer>
@@ -91,7 +91,7 @@ Für den konstanten Term muss die Potenz von <InlineMath math="x" /> Null sein:
 Setzen wir <InlineMath math="k = 6" /> ein:
 
 <MathContainer>
-<BlockMath math="\binom{8}{6} \cdot 3^{8-6} \cdot (-2)^6 \cdot x^0 = \binom{8}{6} \cdot 3^2 \cdot (-2)^6" />
+<BlockMath math="\begin{aligned} &amp;\binom{8}{6} \cdot 3^{8-6} \cdot (-2)^6 \cdot x^0 \\ &amp;= \binom{8}{6} \cdot 3^2 \cdot (-2)^6 \end{aligned}" />
 <BlockMath math="= \frac{8!}{6! \cdot 2!} \cdot 9 \cdot 64 = \frac{8 \times 7}{2 \times 1} \cdot 9 \cdot 64" />
 <BlockMath math="= 28 \cdot 9 \cdot 64 = 252 \cdot 64 = 16{.}128" />
 </MathContainer>
@@ -133,7 +133,7 @@ Bestimme den Koeffizienten von <InlineMath math="x^5" /> in der Entwicklung von 
 
     Ausmultipliziert ergibt der allgemeine Term:
 
-    <BlockMath math="\begin{aligned}\binom{8}{k} (2x)^{8-k} (3)^k &= \binom{8}{k} \cdot 2^{8-k} \cdot x^{8-k} \cdot 3^k \\ &= \binom{8}{k} \cdot 2^{8-k} \cdot 3^k \cdot x^{8-k}\end{aligned}" />
+    <BlockMath math="\begin{aligned} &amp;\binom{8}{k} (2x)^{8-k} (3)^k \\ &amp;= \binom{8}{k} \cdot 2^{8-k} \cdot x^{8-k} \cdot 3^k \\ &amp;= \binom{8}{k} \cdot 2^{8-k} \cdot 3^k \cdot x^{8-k} \end{aligned}" />
 
     Für <InlineMath math="x^5" /> muss <InlineMath math="8-k = 5" /> gelten. Daher ist <InlineMath math="k = 3" />.
 
@@ -142,7 +142,7 @@ Bestimme den Koeffizienten von <InlineMath math="x^5" /> in der Entwicklung von 
     Wir setzen <InlineMath math="k = 3" /> ein:
 
     <MathContainer>
-    <BlockMath math="\binom{8}{3} \cdot 2^{8-3} \cdot 3^3 \cdot x^5 = \binom{8}{3} \cdot 2^5 \cdot 3^3 \cdot x^5" />
+    <BlockMath math="\begin{aligned} &amp;\binom{8}{3} \cdot 2^{8-3} \cdot 3^3 \cdot x^5 \\ &amp;= \binom{8}{3} \cdot 2^5 \cdot 3^3 \cdot x^5 \end{aligned}" />
     <BlockMath math="= \frac{8!}{3! \cdot 5!} \cdot 32 \cdot 27 \cdot x^5" />
     <BlockMath math="= \frac{8 \times 7 \times 6}{3 \times 2 \times 1} \cdot 32 \cdot 27 \cdot x^5" />
     <BlockMath math="= 56 \cdot 32 \cdot 27 \cdot x^5" />
@@ -172,7 +172,7 @@ Zwei Kontrollen helfen, Rechenfehler zu finden: **Jeder Term der Entwicklung** h
    Für den Koeffizienten von <InlineMath math="x^4" /> muss <InlineMath math="7-k = 4" /> gelten. Somit ist <InlineMath math="k = 3" />.
 
    <MathContainer>
-   <BlockMath math="\binom{7}{3} \cdot 2^{7-3} \cdot (-3)^3 = \binom{7}{3} \cdot 2^4 \cdot (-3)^3" />
+   <BlockMath math="\begin{aligned} &amp;\binom{7}{3} \cdot 2^{7-3} \cdot (-3)^3 \\ &amp;= \binom{7}{3} \cdot 2^4 \cdot (-3)^3 \end{aligned}" />
    <BlockMath math="= \frac{7!}{3! \cdot 4!} \cdot 16 \cdot (-27)" />
    <BlockMath math="= \frac{7 \times 6 \times 5}{3 \times 2 \times 1} \cdot 16 \cdot (-27)" />
    <BlockMath math="\begin{aligned}  &amp;= 35 \cdot 16 \cdot (-27) \\ &amp;= 560 \cdot (-27) \\ &amp;= -15{.}120 \end{aligned}" />
@@ -184,10 +184,10 @@ Zwei Kontrollen helfen, Rechenfehler zu finden: **Jeder Term der Entwicklung** h
 
    Schreibe den Ausdruck mit <InlineMath math="a = x^2" />, <InlineMath math="b = \frac{1}{x}" /> und <InlineMath math="n = 9" /> in Binomialform.
 
-   <MathContainer>
-   <BlockMath math="\text{Allgemeiner Term: } \binom{9}{k} (x^2)^{9-k} \left(\frac{1}{x}\right)^k = \binom{9}{k} \cdot x^{2(9-k)} \cdot x^{-k}" />
+   Der allgemeine Term lautet:
+
+   <BlockMath math="\begin{aligned} &amp;\binom{9}{k} (x^2)^{9-k} \left(\frac{1}{x}\right)^k \\ &amp;=\binom{9}{k} \cdot x^{2(9-k)} \cdot x^{-k} \end{aligned}" />
    <BlockMath math="\begin{aligned}  &amp;= \binom{9}{k} \cdot x^{18-2k} \cdot x^{-k} \\ &amp;= \binom{9}{k} \cdot x^{18-2k-k} \\ &amp;= \binom{9}{k} \cdot x^{18-3k} \end{aligned}" />
-   </MathContainer>
 
    Für den konstanten Term muss die Potenz von <InlineMath math="x" /> Null sein: <InlineMath math="18-3k = 0" />, also <InlineMath math="k = 6" />.
 

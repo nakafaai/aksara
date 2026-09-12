@@ -103,7 +103,8 @@ The resulting quadratic function is:
       {
         pointIndices: [0, 16, 32, 48, 64, 80, 96],
         smooth: false,
-        points: Array.from({ length: 97 }, (_, sampleIndex) => {
+        points: Array.from({ length: 123 }, (_, pointIndex) => {
+          const sampleIndex = pointIndex + 0;
           const i = sampleIndex / 16;
           const x = i - 3; // x values from -3 to 3
           return { x, y: x * x - 2 * x - 3, z: 0 };
@@ -361,9 +362,10 @@ The resulting quadratic function is:
     cameraTarget={[0, 1, 0]}
     data={[
       {
-        pointIndices: [0, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96],
+        pointIndices: [59, 67, 75, 83, 91, 99, 107, 115, 123, 131, 139, 147, 155],
         smooth: false,
-        points: Array.from({ length: 97 }, (_, sampleIndex) => {
+        points: Array.from({ length: 215 }, (_, pointIndex) => {
+          const sampleIndex = pointIndex - 59;
           const i = sampleIndex / 8;
           const x = i - 6; // x values from -6 to 6
           return { x, y: (1 / 16) * x * x, z: 0 };
@@ -372,22 +374,22 @@ The resulting quadratic function is:
         labels: [
           {
             text: <InlineMath math="f(x)=\frac{1}{16}x^2" />,
-            at: 88,
+            at: 147,
             offset: [-5, 1.9375, 0],
           },
           {
             text: <InlineMath math="(0, 0)" />,
-            at: 48,
+            at: 107,
             offset: [0.3, -0.6, 0],
           },
           {
             text: <InlineMath math="(4, 1)" />,
-            at: 80,
+            at: 139,
             offset: [0, 0.9, 0],
           },
           {
             text: <InlineMath math="(-4, 1)" />,
-            at: 16,
+            at: 75,
             offset: [0, 0.9, 0],
           },
         ],
@@ -465,7 +467,7 @@ Substitute into the first equation, then solve:
 Substitute into the third equation:
 
 <MathContainer>
-  <BlockMath math="7 = 9(3 + b) + 3b + (-5 - (3 + b) - b)" />
+  <BlockMath math="\begin{aligned} &amp;7 = 9(3 + b) + 3b \\ &amp;+ (-5 - (3 + b) - b) \end{aligned}" />
   <BlockMath math="7 = 19 + 10b" />
   <BlockMath math="b = -\frac{12}{10} = -\frac{6}{5}" />
 </MathContainer>

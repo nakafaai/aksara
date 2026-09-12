@@ -95,32 +95,44 @@ Lihat perilaku fungsi di sekitar asimtot vertikal:
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 157 }, (_, i) => {
-        const x = -2 + i / 40;
-        return { x, y: (x + 3) / (x - 2), z: 0 };
-      }),
+      points: (() => {
+        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 10);
+        parameters.push(1.0986122886681096);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = 2 - Math.exp(t);
+            return { x, y: (x + 3) / (x - 2), z: 0 };
+          });
+      })(),
       color: "#9333ea",
       showPoints: false,
       labels: [
         {
           text: <InlineMath math="x \to 2^{-}" />,
-          at: 40,
+          at: 391,
           offset: [-0.5, -3, 0],
         },
       ],
     },
     {
       smooth: false,
-      points: Array.from({ length: 157 }, (_, i) => {
-        const x = 2.1 + i / 40;
-        return { x, y: (x + 3) / (x - 2), z: 0 };
-      }),
+      points: (() => {
+        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 10);
+        parameters.push(1.3862943611198906);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = 2 + Math.exp(t);
+            return { x, y: (x + 3) / (x - 2), z: 0 };
+          });
+      })(),
       color: "#9333ea",
       showPoints: false,
       labels: [
         {
           text: <InlineMath math="x \to 2^{+}" />,
-          at: 156,
+          at: 407,
           offset: [-0.4, 2.75, 0],
         },
       ],
@@ -189,24 +201,30 @@ Lihat bagaimana fungsi mendekati asimtot horizontal:
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 40 }, (_, i) => {
-        const x = -10 + i * 0.5;
-        const y = (3 * x * x - 1) / (2 * x * x + 5);
-        return { x, y, z: 0 };
-      }),
+      points: (() => {
+        const parameters = Array.from({ length: 501 }, (_, i) => -5 + (i / 500) * 10);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = Math.sinh(t);
+            return { x, y: (3 * x * x - 1) / (2 * x * x + 5), z: 0 };
+          });
+      })(),
       color: "#0d9488",
       showPoints: false,
     },
     {
       points: [
-        { x: -10, y: 1.5, z: 0 },
-        { x: 0, y: 1.5, z: 0 },
-        { x: 10, y: 1.5, z: 0 },
+      { x: -160, y: 1.5, z: 0 },
+      { x: -10, y: 1.5, z: 0 },
+      { x: 0, y: 1.5, z: 0 },
+      { x: 10, y: 1.5, z: 0 },
+      { x: 160, y: 1.5, z: 0 },
       ],
       smooth: false,
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=1{,}5" />, at: 1, offset: [2, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=1{,}5" />, at: 2, offset: [2, 0.5, 0] }],
     },
   ]}
   cameraPosition={[10, 6, 10]}
@@ -245,46 +263,57 @@ Jadi, asimtot miring: <InlineMath math="y = x + 3" />
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 30 }, (_, i) => {
-        const x = -8 + i * 0.3;
-        if (Math.abs(x - 1) < 0.1) return null;
-        const y = (x * x + 2 * x - 1) / (x - 1);
-        return { x, y, z: 0 };
-      }).filter((p) => p !== null),
+      points: (() => {
+        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 11);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = 1 - Math.exp(t);
+            return { x, y: (x * x + 2 * x - 1) / (x - 1), z: 0 };
+          });
+      })(),
       color: "#9333ea",
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 30 }, (_, i) => {
-        const x = 1.3 + i * 0.3;
-        const y = (x * x + 2 * x - 1) / (x - 1);
-        return { x, y, z: 0 };
-      }),
+      points: (() => {
+        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 10);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = 1 + Math.exp(t);
+            return { x, y: (x * x + 2 * x - 1) / (x - 1), z: 0 };
+          });
+      })(),
       color: "#9333ea",
       showPoints: false,
     },
     {
       points: [
-        { x: -8, y: -5, z: 0 },
-        { x: 0, y: 3, z: 0 },
-        { x: 10, y: 13, z: 0 },
+      { x: -160, y: -157, z: 0 },
+      { x: -8, y: -5, z: 0 },
+      { x: 0, y: 3, z: 0 },
+      { x: 10, y: 13, z: 0 },
+      { x: 160, y: 163, z: 0 },
       ],
       smooth: false,
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=x+3" />, at: 1, offset: [3, 1.5, 0] }],
+      labels: [{ text: <InlineMath math="y=x+3" />, at: 2, offset: [3, 1.5, 0] }],
     },
     {
       points: [
-        { x: 1, y: -10, z: 0 },
-        { x: 1, y: 0, z: 0 },
-        { x: 1, y: 15, z: 0 },
+      { x: 1, y: -80, z: 0 },
+      { x: 1, y: -10, z: 0 },
+      { x: 1, y: 0, z: 0 },
+      { x: 1, y: 15, z: 0 },
+      { x: 1, y: 80, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x=1" />, at: 1, offset: [1, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="x=1" />, at: 2, offset: [1, -0.5, 0] }],
     },
   ]}
   cameraPosition={[10, 6, 10]}
@@ -344,48 +373,57 @@ Gambar asimtot terlebih dahulu. Asimtot tegak menandai nilai input yang didekati
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 40 }, (_, i) => {
-        const x = -5 + i * 0.175;
-        if (Math.abs(x - 2) < 0.05) return null;
-        const y = (x + 1) / (x - 2);
-        if (Math.abs(y) > 20) return null;
-        return { x, y, z: 0 };
-      }).filter((p) => p !== null),
+      points: (() => {
+        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 11);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = 2 - Math.exp(t);
+            return { x, y: (x + 1) / (x - 2), z: 0 };
+          });
+      })(),
       color: "#0284c7",
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 40 }, (_, i) => {
-        const x = 2.05 + i * 0.175;
-        const y = (x + 1) / (x - 2);
-        if (Math.abs(y) > 20) return null;
-        return { x, y, z: 0 };
-      }).filter((p) => p !== null),
+      points: (() => {
+        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 10);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = 2 + Math.exp(t);
+            return { x, y: (x + 1) / (x - 2), z: 0 };
+          });
+      })(),
       color: "#0284c7",
       showPoints: false,
     },
     {
       points: [
-        { x: 2, y: -20, z: 0 },
-        { x: 2, y: 0, z: 0 },
-        { x: 2, y: 20, z: 0 },
+      { x: 2, y: -80, z: 0 },
+      { x: 2, y: -20, z: 0 },
+      { x: 2, y: 0, z: 0 },
+      { x: 2, y: 20, z: 0 },
+      { x: 2, y: 80, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x=2" />, at: 1, offset: [2, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="x=2" />, at: 2, offset: [2, -0.5, 0] }],
     },
     {
       points: [
-        { x: -5, y: 1, z: 0 },
-        { x: 0, y: 1, z: 0 },
-        { x: 9, y: 1, z: 0 },
+      { x: -160, y: 1, z: 0 },
+      { x: -5, y: 1, z: 0 },
+      { x: 0, y: 1, z: 0 },
+      { x: 9, y: 1, z: 0 },
+      { x: 160, y: 1, z: 0 },
       ],
       smooth: false,
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=1" />, at: 1, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=1" />, at: 2, offset: [1, 0.5, 0] }],
     },
     {
       points: [{ x: -1, y: 0, z: 0 }],
@@ -475,69 +513,84 @@ Tabel nilai untuk <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 20 }, (_, i) => {
-        const x = -3 + i * 0.095;
-        const y = x / (x * x - 1);
-        if (Math.abs(y) > 10) return null;
-        return { x, y, z: 0 };
-      }).filter((p) => p !== null),
+      points: (() => {
+        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 11);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = -1 - Math.exp(t);
+            return { x, y: x / (x * x - 1), z: 0 };
+          });
+      })(),
       color: "#9333ea",
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 20 }, (_, i) => {
-        const x = -0.95 + i * 0.09;
-        const y = x / (x * x - 1);
-        if (Math.abs(y) > 10) return null;
-        return { x, y, z: 0 };
-      }).filter((p) => p !== null),
+      points: (() => {
+        const parameters = Array.from({ length: 501 }, (_, i) => -4 + (i / 500) * 8);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = Math.tanh(t);
+            return { x, y: x / (x * x - 1), z: 0 };
+          });
+      })(),
       color: "#9333ea",
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 20 }, (_, i) => {
-        const x = 1.05 + i * 0.095;
-        const y = x / (x * x - 1);
-        if (Math.abs(y) > 10) return null;
-        return { x, y, z: 0 };
-      }).filter((p) => p !== null),
+      points: (() => {
+        const parameters = Array.from({ length: 501 }, (_, i) => -6 + (i / 500) * 10);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = 1 + Math.exp(t);
+            return { x, y: x / (x * x - 1), z: 0 };
+          });
+      })(),
       color: "#9333ea",
       showPoints: false,
     },
     {
       points: [
-        { x: -1, y: -10, z: 0 },
-        { x: -1, y: 0, z: 0 },
-        { x: -1, y: 10, z: 0 },
+      { x: -1, y: -80, z: 0 },
+      { x: -1, y: -10, z: 0 },
+      { x: -1, y: 0, z: 0 },
+      { x: -1, y: 10, z: 0 },
+      { x: -1, y: 80, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x=-1" />, at: 1, offset: [-2, 1, 0] }],
+      labels: [{ text: <InlineMath math="x=-1" />, at: 2, offset: [-2, 1, 0] }],
     },
     {
       points: [
-        { x: 1, y: -10, z: 0 },
-        { x: 1, y: 0, z: 0 },
-        { x: 1, y: 10, z: 0 },
+      { x: 1, y: -80, z: 0 },
+      { x: 1, y: -10, z: 0 },
+      { x: 1, y: 0, z: 0 },
+      { x: 1, y: 10, z: 0 },
+      { x: 1, y: 80, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x=1" />, at: 1, offset: [2, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="x=1" />, at: 2, offset: [2, -0.5, 0] }],
     },
     {
       points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
+      { x: -160, y: 0, z: 0 },
+      { x: -3, y: 0, z: 0 },
+      { x: 0, y: 0, z: 0 },
+      { x: 3, y: 0, z: 0 },
+      { x: 160, y: 0, z: 0 },
       ],
       smooth: false,
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=0" />, at: 1, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=0" />, at: 2, offset: [1, 0.5, 0] }],
     },
   ]}
   cameraPosition={[10, 6, 10]}

@@ -140,7 +140,8 @@ Jadi, nilai maksimum lokalnya adalah <InlineMath math="4" /> di <InlineMath math
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, i) => {
+      points: Array.from({ length: 115 }, (_, pointIndex) => {
+        const i = pointIndex - 7;
         const x = -0.5 + i * 0.05;
         const y = x * Math.pow(x - 3, 2);
         return { x, y, z: 0 };
@@ -243,7 +244,8 @@ Jika kita perhatikan pada visualisasi di bawah ini, kurva cekung ke bawah di tit
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, i) => {
+      points: Array.from({ length: 125 }, (_, pointIndex) => {
+        const i = pointIndex - 17;
         const x = -2.5 + i * 0.08;
         const y = (1 / 3) * x ** 3 - x ** 2 - 3 * x + 2;
         return { x, y, z: 0 };

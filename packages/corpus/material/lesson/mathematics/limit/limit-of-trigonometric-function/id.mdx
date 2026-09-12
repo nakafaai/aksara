@@ -31,17 +31,21 @@ Ekspresinya tidak terdefinisi pada <InlineMath math="x=0" />, sehingga substitus
 
 Gunakan limit tersebut untuk menurunkan hasil berikut:
 
-<MathContainer>
-<BlockMath math="\lim_{x \to 0} \frac{\tan x}{x} = 1 \quad \text{(karena } \tan x = \frac{\sin x}{\cos x} \text{ dan} \cos x \to 1\text{)}" />
-<BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x} = 0 \quad \text{(identitas } 1 - \cos x = 2\sin^2\frac{x}{2}\text{)}" />
-<BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac{1}{2} \quad \text{(identitas } 1 - \cos x = 2\sin^2\frac{x}{2}\text{)}" />
-</MathContainer>
+Karena <InlineMath math="\tan x=\frac{\sin x}{\cos x}" /> dan <InlineMath math="\cos x\to1" />:
+
+<BlockMath math="\lim_{x \to 0} \frac{\tan x}{x} = 1" />
+Gunakan identitas <InlineMath math="1-\cos x=2\sin^2\frac x2" />:
+
+<BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x} = 0" />
+Gunakan identitas <InlineMath math="1-\cos x=2\sin^2\frac x2" />:
+
+<BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac{1}{2}" />
 
 Identitas tersebut langsung menghasilkan kedua limit cosinus tanpa memakai aturan turunan yang baru dipelajari pada tahap berikutnya:
 
 <MathContainer>
 <BlockMath math="\begin{aligned} &amp;\frac{1-\cos x}{x} \\ &amp;=\sin\frac{x}{2}\cdot\frac{\sin(x/2)}{x/2}\;\\ &amp;\longrightarrow\;0\cdot 1 \\ &amp;=0 \end{aligned}" />
-<BlockMath math="\frac{1-\cos x}{x^2}=\frac{1}{2}\left(\frac{\sin(x/2)}{x/2}\right)^2\;\longrightarrow\;\frac{1}{2}" />
+<BlockMath math="\begin{aligned} &amp;\frac{1-\cos x}{x^2} =\frac{1}{2}\left(\frac{\sin(x/2)}{x/2}\right)^2\; \\ &amp;\longrightarrow\;\frac{1}{2} \end{aligned}" />
 </MathContainer>
 
 ## Sifat Limit Trigonometri
@@ -107,7 +111,7 @@ Untuk limit yang melibatkan bentuk <InlineMath math="\frac{0}{0}" />, kita perlu
 Misalkan <InlineMath math="u = x - \frac{\pi}{2}" />, maka ketika <InlineMath math="x \to \frac{\pi}{2}" />, kita punya <InlineMath math="u \to 0" /> dan <InlineMath math="x = u + \frac{\pi}{2}" />.
 
 <MathContainer>
-<BlockMath math="\lim_{u \to 0} \frac{\sin^2 u}{(u + \frac{\pi}{2}) \cdot u} = \lim_{u \to 0} \frac{\sin^2 u}{u^2} \cdot \frac{u}{u + \frac{\pi}{2}}" />
+<BlockMath math="\begin{aligned} &amp;\lim_{u \to 0} \frac{\sin^2 u}{(u + \frac{\pi}{2}) \cdot u} \\ &amp;= \lim_{u \to 0} \frac{\sin^2 u}{u^2} \cdot \frac{u}{u + \frac{\pi}{2}} \end{aligned}" />
 <BlockMath math="= \lim_{u \to 0} \left(\frac{\sin u}{u}\right)^2 \cdot \lim_{u \to 0} \frac{u}{u + \frac{\pi}{2}}" />
 <BlockMath math="= 1^2 \cdot \lim_{u \to 0} \frac{u}{\frac{\pi}{2} + u} = 1 \cdot \frac{0}{\frac{\pi}{2}} = 0" />
 </MathContainer>
@@ -155,7 +159,7 @@ Menggunakan definisi cotangen:
    Gunakan sifat perbandingan trigonometri:
 
    <MathContainer>
-   <BlockMath math="\lim_{x \to 0} \frac{\tan 2x}{\sin 5x} = \lim_{x \to 0} \frac{\tan 2x}{2x} \cdot \frac{5x}{\sin 5x} \cdot \frac{2x}{5x}" />
+   <BlockMath math="\begin{aligned} &amp;\lim_{x \to 0} \frac{\tan 2x}{\sin 5x} \\ &amp;= \lim_{x \to 0} \frac{\tan 2x}{2x} \cdot \frac{5x}{\sin 5x} \cdot \frac{2x}{5x} \end{aligned}" />
    <BlockMath math="= \lim_{x \to 0} \frac{\tan 2x}{2x} \cdot \lim_{x \to 0} \frac{5x}{\sin 5x} \cdot \frac{2}{5}" />
    <BlockMath math="= 1 \cdot 1 \cdot \frac{2}{5} = \frac{2}{5}" />
    </MathContainer>

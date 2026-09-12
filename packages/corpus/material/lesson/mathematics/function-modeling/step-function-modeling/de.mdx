@@ -161,7 +161,7 @@ Nach dieser Konvention hat die Einheitsschrittfunktion den Wert <InlineMath math
       color: "#0d9488",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <InlineMath math="H(x)" />, at: 1, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="H(x)" />, at: 1, offset: [-7, 0.5, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
@@ -255,7 +255,7 @@ Die Funktion <InlineMath math="f(x) = \lfloor x \rfloor + k" /> verschiebt den G
         smooth: false,
         labels:
           integerValue === 2
-            ? [{ text: <InlineMath math="h(x)=\lfloor x \rfloor-1" />, at: 1, offset: [2, 0.5, 0] }]
+            ? [{ text: <InlineMath math="h(x)=\lfloor x \rfloor-1" />, at: 1, offset: [0, 0.5, 0] }]
             : [],
       };
     }),
@@ -290,19 +290,19 @@ Wenn der Preis pro Buch <InlineMath math="\text{Rp}\,50{.}000" /> beträgt, erst
 
 1. **Werte der Abrundungs- und Aufrundungsfunktion berechnen:**
 
-   <MathContainer>
-     <BlockMath math="\lfloor 3{,}7 \rfloor = 3 \text{(größte ganze Zahl} \leq 3{,}7\text{)}" />
-     <BlockMath math="\lceil -2{,}3 \rceil = -2 \text{(kleinste ganze Zahl} \geq -2{,}3\text{)}" />
-     <BlockMath math="\lfloor 3{,}7 \rfloor + \lceil -2{,}3 \rceil = 3 + (-2) = 1" />
-   </MathContainer>
+   <BlockMath math="\lfloor3{,}7\rfloor=3" />
+
+   <InlineMath math="3" /> ist die größte ganze Zahl, die kleiner oder gleich <InlineMath math="3{,}7" /> ist.
+   <BlockMath math="\lceil-2{,}3\rceil=-2" />
+
+   <InlineMath math="-2" /> ist die kleinste ganze Zahl, die größer oder gleich <InlineMath math="-2{,}3" /> ist.
+   <BlockMath math="\lfloor 3{,}7 \rfloor + \lceil -2{,}3 \rceil = 3 + (-2) = 1" />
 
 2. **Modell der Rabattfunktion für Buchhandlungen:**
 
    Sei <InlineMath math="n\in\mathbb{N}" /> die positive ganzzahlige Anzahl der gekauften Bücher. Dann beträgt der Gesamtpreis nach Rabatt:
 
-   <MathContainer>
-     <BlockMath math="H(n) = \begin{cases} 50{.}000n, &amp; \text{wenn} 1 \leq n \leq 5 \\ 50{.}000n \times 0{,}9, &amp; \text{wenn} 6 \leq n \leq 10 \\ 50{.}000n \times 0{,}85, &amp; \text{wenn} 11 \leq n \leq 20 \\ 50{.}000n \times 0{,}8, &amp; \text{wenn} n &gt; 20 \end{cases}" />
-   </MathContainer>
+   <BlockMath math="H(n) = \begin{cases}\begin{gathered}50{.}000n\\\text{wenn} 1 \leq n \leq 5\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}9\\\text{wenn} 6 \leq n \leq 10\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}85\\\text{wenn} 11 \leq n \leq 20\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}8\\\text{wenn} n > 20\end{gathered}\end{cases}" />
 
 3. **Graph der Funktion <InlineMath math="f(x) = 2\lfloor x \rfloor - 1" />:**
 
@@ -345,7 +345,7 @@ Wenn der Preis pro Buch <InlineMath math="\text{Rp}\,50{.}000" /> beträgt, erst
            smooth: false,
            labels:
              integerValue === 1
-               ? [{ text: <InlineMath math="f(x)=2\lfloor x \rfloor-1" />, at: 1, offset: [1, 1, 0] }]
+               ? [{ text: <InlineMath math="f(x)=2\lfloor x \rfloor-1" />, at: 1, offset: [-0.2, 1, 0] }]
                : [],
          };
        }),

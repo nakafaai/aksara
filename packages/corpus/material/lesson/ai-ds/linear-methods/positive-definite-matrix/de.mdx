@@ -3,7 +3,7 @@ export const metadata = {
   description: "Klassifiziere symmetrische und hermitesche Matrizen mithilfe quadratischer Formen, Eigenwerte, Hauptminoren, Cholesky-Faktoren und der Optimierungsgeometrie.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Lineare Methoden der KI",
 };
 
@@ -67,7 +67,9 @@ Diese Gleichung zeigt, dass die Hauptachsen des Ellipsoids den Eigenvektoren von
 
 Sei <InlineMath math="A_k" /> der linke obere <InlineMath math="k\times k" />-Block einer reellen symmetrischen oder komplexen hermiteschen Matrix. Das Sylvester-Kriterium lautet
 
-<BlockMath math="A\text{ ist positiv definit}\quad\Longleftrightarrow\quad\det(A_k)>0\text{ für }k=1,\ldots,n" />
+<InlineMath math="A" /> ist genau dann positiv definit, wenn jede führende Hauptdeterminante positiv ist:
+
+<BlockMath math="\det(A_k)>0,\quad k=1,\ldots,n" />
 
 Dieser Test der führenden Hauptminoren lässt sich nicht durch bloßes Ersetzen von <InlineMath math=">" /> durch <InlineMath math="\ge" /> erweitern. Bei positiver Semidefinitheit müssen alle Hauptminoren nichtnegativ sein. Die führenden Hauptminoren allein reichen dafür nicht aus.
 
@@ -86,7 +88,7 @@ Die führenden Hauptminoren sind
 
 Beide führenden Hauptminoren sind positiv, daher ist <InlineMath math="A" /> positiv definit. Beide Eigenwerte sind ebenfalls positiv:
 
-<BlockMath math="\lambda_1=\frac{9+\sqrt5}{2}\approx5{,}61803,\qquad \lambda_2=\frac{9-\sqrt5}{2}\approx3{,}38197" />
+<BlockMath math="\begin{aligned} &amp;\lambda_1=\frac{9+\sqrt5}{2}\approx5{,}61803, \\ &amp;\lambda_2=\frac{9-\sqrt5}{2}\approx3{,}38197 \end{aligned}" />
 
 Vergleiche nun
 
@@ -106,7 +108,7 @@ Eine reelle symmetrische Matrix ist genau dann positiv definit, wenn sie eine Ch
 
 In dieser Faktorisierung ist <InlineMath math="L" /> eine untere Dreiecksmatrix mit ausschließlich positiven Diagonaleinträgen. Dann gilt
 
-<BlockMath math="x^TAx=x^TLL^Tx=\|L^Tx\|_2^2>0\qquad(x\ne0)" />
+<BlockMath math="\begin{aligned} &amp;x^TAx=x^TLL^Tx=\|L^Tx\|_2^2>0 \\ &amp;(x\ne0) \end{aligned}" />
 
 Umgekehrt läuft der Cholesky-Algorithmus für jede positiv definite Matrix ohne nichtpositiven Pivot vollständig durch. Bei einer symmetrischen Eingabe prüft dieser erfolgreiche Ablauf in exakter Arithmetik die positive Definitheit. Nach <InlineMath math="A=LL^T" /> löst du zuerst <InlineMath math="Ly=b" /> und danach <InlineMath math="L^Tx=y" />.
 
@@ -118,7 +120,7 @@ Für jede reelle Matrix <InlineMath math="M\in\mathbb{R}^{m\times n}" /> gilt
 
 Diese Gleichung zeigt, dass <InlineMath math="M^TM" /> immer positiv semidefinit ist. Die Matrix <InlineMath math="M^TM" /> ist genau dann positiv definit, wenn
 
-<BlockMath math="\ker(M)=\{0\}\quad\Longleftrightarrow\quad\operatorname{rank}(M)=n" />
+<BlockMath math="\begin{aligned} &amp;\ker(M)=\{0\} \\ &amp;\Longleftrightarrow \\ &amp;\operatorname{rank}(M)=n \end{aligned}" />
 
 Voller Spaltenrang impliziert automatisch <InlineMath math="m\ge n" />. Dies muss für die Aussage über Semidefinitheit nicht vorab angenommen werden.
 

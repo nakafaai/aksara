@@ -42,7 +42,7 @@ The copied columns form the three downward and three upward diagonals used in th
 Multiply the elements along the three diagonals from the top-left to the bottom-right. Sum these products, call it <InlineMath math="D_{\text{positive}}" />.
 
 <MathContainer>
-  <BlockMath math="D_{\text{positive}} = (a_{11} \cdot a_{22} \cdot a_{33}) + (a_{12} \cdot a_{23} \cdot a_{31}) + (a_{13} \cdot a_{21} \cdot a_{32})" />
+  <BlockMath math="\begin{aligned} &amp;D_{\text{positive}} = (a_{11} \cdot a_{22} \cdot a_{33}) \\ &amp;+ (a_{12} \cdot a_{23} \cdot a_{31}) + (a_{13} \cdot a_{21} \cdot a_{32}) \end{aligned}" />
 </MathContainer>
 
 The first term is the product of the main diagonal. The second and third terms are products of parallel diagonals involving elements from the copied columns.
@@ -52,7 +52,7 @@ The first term is the product of the main diagonal. The second and third terms a
 Multiply the elements along the three diagonals from the top-right to the bottom-left. Sum these products, call it <InlineMath math="D_{\text{negative}}" />.
 
 <MathContainer>
-  <BlockMath math="D_{\text{negative}} = (a_{13} \cdot a_{22} \cdot a_{31}) + (a_{11} \cdot a_{23} \cdot a_{32}) + (a_{12} \cdot a_{21} \cdot a_{33})" />
+  <BlockMath math="\begin{aligned} &amp;D_{\text{negative}} = (a_{13} \cdot a_{22} \cdot a_{31}) \\ &amp;+ (a_{11} \cdot a_{23} \cdot a_{32}) + (a_{12} \cdot a_{21} \cdot a_{33}) \end{aligned}" />
 </MathContainer>
 
 The first term is the product of the secondary diagonal (anti-diagonal). The second and third terms are products of parallel diagonals involving elements from the copied columns, moving towards the bottom-left.
@@ -65,11 +65,11 @@ The determinant of matrix <InlineMath math="A" />, <InlineMath math="\det(A)" />
 
 Substitute the values of <InlineMath math="D_{\text{positive}}" /> and <InlineMath math="D_{\text{negative}}" />:
 
-<BlockMath math="\det(A) = (a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}) - (a_{13}a_{22}a_{31} + a_{11}a_{23}a_{32} + a_{12}a_{21}a_{33})" />
+<BlockMath math="\begin{aligned} &amp;\det(A)=\bigl(a_{11}a_{22}a_{33} \\ &amp;+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\bigr) \\ &amp;-\bigl(a_{13}a_{22}a_{31} \\ &amp;+a_{11}a_{23}a_{32}+a_{12}a_{21}a_{33}\bigr) \end{aligned}" />
 
 Or, after distributing the negative sign:
 
-<BlockMath math="\det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}" />
+<BlockMath math="\begin{aligned} &amp;\det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} \\ &amp;+ a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} \\ &amp;- a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33} \end{aligned}" />
 
 ### Numerical Worked Example
 
@@ -95,15 +95,15 @@ Begin with the matrix:
 
 Then, using Sarrus' Method, we expand the matrix and identify the multiplication paths:
 
-<MathContainer>
-  <BlockMath math="\begin{array}{ccc|cc} a_{11} & a_{12} & a_{13} & a_{11} & a_{12} \\ a_{21} & a_{22} & a_{23} & a_{21} & a_{22} \\ a_{31} & a_{32} & a_{33} & a_{31} & a_{32} \end{array}" />
-  <BlockMath math="\begin{array}{l} \text{Positive Paths } (\searrow): \\ \quad + (a_{11} \cdot a_{22} \cdot a_{33}) \\ \quad + (a_{12} \cdot a_{23} \cdot a_{31}) \\ \quad + (a_{13} \cdot a_{21} \cdot a_{32}) \end{array}" />
-  <BlockMath math="\begin{array}{l} \text{Negative Paths } (\swarrow): \\ \quad - (a_{13} \cdot a_{22} \cdot a_{31}) \\ \quad - (a_{11} \cdot a_{23} \cdot a_{32}) \quad (\text{from } a_{11} \text{ col. 4}) \\ \quad - (a_{12} \cdot a_{21} \cdot a_{33}) \quad (\text{from } a_{12} \text{ col. 5}) \end{array}" />
-</MathContainer>
+<BlockMath math="\begin{array}{ccc|cc} a_{11} & a_{12} & a_{13} & a_{11} & a_{12} \\ a_{21} & a_{22} & a_{23} & a_{21} & a_{22} \\ a_{31} & a_{32} & a_{33} & a_{31} & a_{32} \end{array}" />
+<BlockMath math="\begin{array}{l} \text{Positive Paths } (\searrow): \\ \quad + (a_{11} \cdot a_{22} \cdot a_{33}) \\ \quad + (a_{12} \cdot a_{23} \cdot a_{31}) \\ \quad + (a_{13} \cdot a_{21} \cdot a_{32}) \end{array}" />
+  Follow the negative paths <InlineMath math="\swarrow" />. The second starts from <InlineMath math="a_{11}" /> in copied column 4. The third starts from <InlineMath math="a_{12}" /> in copied column 5:
+
+<BlockMath math="\begin{aligned} &amp;-(a_{13}\cdot a_{22}\cdot a_{31}) \\ &amp;-(a_{11}\cdot a_{23}\cdot a_{32}) \\ &amp;-(a_{12}\cdot a_{21}\cdot a_{33}) \end{aligned}" />
 
 The complete formula becomes:
 
-<BlockMath math="\det(A) = (a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}) - (a_{13}a_{22}a_{31} + a_{11}a_{23}a_{32} + a_{12}a_{21}a_{33})" />
+<BlockMath math="\begin{aligned} &amp;\det(A)=\bigl(a_{11}a_{22}a_{33} \\ &amp;+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\bigr) \\ &amp;-\bigl(a_{13}a_{22}a_{31} \\ &amp;+a_{11}a_{23}a_{32}+a_{12}a_{21}a_{33}\bigr) \end{aligned}" />
 
 ## Sarrus Method Applies Only to Three by Three Matrices
 

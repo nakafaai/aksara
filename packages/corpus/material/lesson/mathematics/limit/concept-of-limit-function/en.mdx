@@ -38,16 +38,19 @@ When <InlineMath math="c" /> is an interior point and the function is defined on
 
 More formally, left and right limits can be written as:
 
-<MathContainer>
-<BlockMath math="\lim_{x \to c^-} f(x) = L \quad \text{(left limit: } x \text{ approaches} c \text{ from the left)}" />
-<BlockMath math="\lim_{x \to c^+} f(x) = L \quad \text{(right limit: } x \text{ approaches} c \text{ from the right)}" />
-</MathContainer>
+For the left limit, <InlineMath math="x" /> approaches <InlineMath math="c" /> from the left:
+
+<BlockMath math="\lim_{x\to c^-}f(x)=L" />
+
+For the right limit, <InlineMath math="x" /> approaches <InlineMath math="c" /> from the right:
+
+<BlockMath math="\lim_{x\to c^+}f(x)=L" />
 
 If both limits are equal, then <InlineMath math="\lim_{x \to c} f(x) = L" />. If they are different, then the two-sided limit does not exist. At an endpoint of a domain, only the one-sided limit from within the domain is relevant.
 
 The precise epsilon-delta definition gives mathematical meaning to "approaches":
 
-<BlockMath math="\forall \varepsilon>0\;\exists\delta>0:\quad 0<|x-c|<\delta\;\Longrightarrow\;|f(x)-L|<\varepsilon" />
+<BlockMath math="\begin{aligned} &amp;\forall \varepsilon>0\;\exists\delta>0: \\ &amp;0&lt;|x-c|&lt;\delta\; \\ &amp;\Longrightarrow\;|f(x)-L|&lt;\varepsilon \end{aligned}" />
 
 In words, for every requested output tolerance <InlineMath math="\varepsilon>0" />, however small, we can choose an input tolerance <InlineMath math="\delta>0" /> that keeps <InlineMath math="f(x)" /> within <InlineMath math="\varepsilon" /> of <InlineMath math="L" /> whenever <InlineMath math="x" /> is within <InlineMath math="\delta" /> of <InlineMath math="c" /> but not equal to it. The condition <InlineMath math="0<|x-c|" /> is why the value <InlineMath math="f(c)" /> **does not determine the limit by itself**.
 

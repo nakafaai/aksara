@@ -54,13 +54,15 @@ Die Werte auf der Karte gehören zu derselben Bahn, die in der Szene eingezeichn
 
 Für die gesamte Wegstrecke wird die grüne Bahn in gerade und gekrümmte Abschnitte zerlegt. Bei einem geraden Abschnitt zählt seine Länge. Bei einem Kreisbogen gilt Radius mal Winkel im Bogenmaß. Danach werden alle Abschnitte addiert und durch dieselbe verstrichene Zeit geteilt.
 
-<BlockMath math="\begin{aligned}
-s_{\text{gesamt}}&=\sum L_{\text{Abschnitt}} \\
-L_{\text{Gerade}}&=d,\qquad L_{\text{Bogen}}=r|\theta| \\
-|\Delta \vec r|&=\sqrt{(x_{\text{Ende}}-x_{\text{Start}})^2+(z_{\text{Ende}}-z_{\text{Start}})^2} \\
-\text{mittlere Schnelligkeit}&=\frac{s_{\text{gesamt}}}{\Delta t} \\
-|\bar{\vec v}|&=\frac{|\Delta \vec r|}{\Delta t}
-\end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;s_{\text{gesamt}}=\sum L_{\text{Abschnitt}} \\ &amp;L_{\text{Gerade}}=d \\ &amp;L_{\text{Bogen}}=r|\theta| \end{aligned}" />
+
+Berechne für die Verschiebung zunächst die Änderung jeder Koordinate:
+
+<BlockMath math="\begin{aligned} &amp;\Delta x=x_{\text{Ende}}-x_{\text{Start}} \\ &amp;\Delta z=z_{\text{Ende}}-z_{\text{Start}} \\ &amp;|\Delta\vec r|=\sqrt{(\Delta x)^2+(\Delta z)^2} \end{aligned}" />
+
+Teile die gesamte Wegstrecke und den Betrag der Verschiebung durch dieselbe verstrichene Zeit:
+
+<BlockMath math="\begin{aligned} &amp;\text{mittlere Schnelligkeit} \\ &amp;=\frac{s_{\text{gesamt}}}{\Delta t} \\ &amp;|\bar{\vec v}|=\frac{|\Delta \vec r|}{\Delta t} \end{aligned}" />
 
 Bei der sanften Kurve bewegt sich der Ball nicht direkt vom Start zum Ziel. Er folgt der gekrümmten Bahn und legt deshalb etwa <InlineMath math="16{,}7 \text{ m}" /> zurück. Start und Ziel liegen jedoch nur <InlineMath math="14 \text{ m}" /> auseinander. Da die Fahrt <InlineMath math="5 \text{ s}" /> dauert, ergeben sich die mittlere Schnelligkeit und der Betrag der mittleren Geschwindigkeit zu:
 

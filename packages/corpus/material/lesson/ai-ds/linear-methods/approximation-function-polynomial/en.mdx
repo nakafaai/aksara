@@ -36,11 +36,11 @@ Let <InlineMath math="S\subset C([a,b])" /> be a finite-dimensional subspace. Th
 
 Geometrically, <InlineMath math="g" /> is the orthogonal projection of <InlineMath math="f" /> onto <InlineMath math="S" />. The residual <InlineMath math="r=f-g" /> must be orthogonal to every function in the approximation space:
 
-<BlockMath math="\langle f-g,s\rangle=0\qquad\text{for every }s\in S" />
+<BlockMath math="\begin{aligned} &amp;\langle f-g,s\rangle=0 \\ &amp;\text{for every }s\in S \end{aligned}" />
 
 If <InlineMath math="\{\phi_0,\ldots,\phi_n\}" /> is a basis of <InlineMath math="S" /> and <InlineMath math="g=\sum_{j=0}^n c_j\phi_j" />, these orthogonality conditions become the normal equations
 
-<BlockMath math="\sum_{j=0}^n\langle\phi_j,\phi_i\rangle c_j=\langle f,\phi_i\rangle,\qquad i=0,\ldots,n" />
+<BlockMath math="\begin{aligned} &amp;\sum_{j=0}^n\langle\phi_j,\phi_i\rangle c_j=\langle f,\phi_i\rangle, \\ &amp;i=0,\ldots,n \end{aligned}" />
 
 ## Approximating a Quadratic by a Line
 
@@ -72,7 +72,11 @@ Increasing <InlineMath math="n" /> enlarges the approximation space, so the smal
 
 For a periodic function with period <InlineMath math="\omega>0" />, a useful space is
 
-<BlockMath math="T_n(\omega)=\left\{\frac{a_0}{2}+\sum_{i=1}^n\left[a_i\cos\left(\frac{2\pi ix}{\omega}\right)+b_i\sin\left(\frac{2\pi ix}{\omega}\right)\right]:a_i,b_i\in\mathbb{R}\right\}" />
+The space <InlineMath math="T_n(\omega)" /> consists of all functions of the following form, with real coefficients <InlineMath math="a_i,b_i" />:
+
+<BlockMath math="p(x)=\frac{a_0}{2}+\sum_{i=1}^n q_i(x)" />
+
+<BlockMath math="\begin{aligned} &amp;q_i(x)=a_i\cos\left(\frac{2\pi ix}{\omega}\right) \\ &amp;+b_i\sin\left(\frac{2\pi ix}{\omega}\right) \end{aligned}" />
 
 Over one full period, these sine and cosine basis functions are mutually orthogonal. Their coefficients can therefore be computed by projecting the target function onto each basis function, which is the finite-dimensional idea behind Fourier approximation.
 

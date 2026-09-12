@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use Gauss's pairing method and the arithmetic-series formula to calculate sums in worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-08",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Sequence and Series",
 };
 
@@ -25,7 +25,7 @@ Gauss paired terms from opposite ends of the list:
 - The same pattern continues to the middle of the list.
 
 <MathContainer>
-  <BlockMath math="\underbrace{1+100}_{101}, \underbrace{2+99}_{101}, \underbrace{3+98}_{101}, \dots, \underbrace{50+51}_{101}" />
+  <BlockMath math="\begin{aligned} &amp;\underbrace{1+100}_{101}, \underbrace{2+99}_{101}, \underbrace{3+98}_{101}, \dots, \\ &amp;\underbrace{50+51}_{101} \end{aligned}" />
 </MathContainer>
 
 There are <InlineMath math="50" /> pairs, and every pair sums to <InlineMath math="101" />. Therefore, the total is <InlineMath math="50 \times 101 = 5050" />.
@@ -36,11 +36,11 @@ We can use Gauss's method to derive a general formula for the sum of the first <
 
 Begin with an arithmetic series:
 
-<BlockMath math="S_n = U_1 + U_2 + U_3 + \dots + U_{n-1} + U_n" />
+<BlockMath math="\begin{aligned} &amp;S_n = U_1 + U_2 + U_3 \\ &amp;+ \dots + U_{n-1} + U_n \end{aligned}" />
 
 If written out with the first term <InlineMath math="(a)" /> and the common difference <InlineMath math="(b)" />:
 
-<BlockMath math="S_n = a + (a+b) + (a+2b) + \dots + (a+(n-2)b) + (a+(n-1)b)" />
+<BlockMath math="\begin{aligned} &amp;S_n = a + (a+b) + (a+2b) + \dots \\ &amp;+ (a+(n-2)b) + (a+(n-1)b) \end{aligned}" />
 
 Write the same series <InlineMath math="S_n" /> in reverse order, from the last term to the first:
 
@@ -48,14 +48,14 @@ Write the same series <InlineMath math="S_n" /> in reverse order, from the last 
 
 Or:
 
-<BlockMath math="S_n = (a+(n-1)b) + (a+(n-2)b) + \dots + (a+b) + a" />
+<BlockMath math="\begin{aligned} &amp;S_n \\ &amp;= (a+(n-1)b) + (a+(n-2)b) \\ &amp;+ \dots + (a+b) + a \end{aligned}" />
 
 Add the two representations of <InlineMath math="S_n" /> term by term:
 
 <MathContainer>
-  <BlockMath math="S_n = a + (a+b) + \dots + (a+(n-2)b) + (a+(n-1)b)" />
-  <BlockMath math="S_n = (a+(n-1)b) + (a+(n-2)b) + \dots + (a+b) + a" />
-  <BlockMath math="2S_n = [2a+(n-1)b] + [2a+(n-1)b] + \dots + [2a+(n-1)b] + [2a+(n-1)b]" />
+  <BlockMath math="\begin{aligned} &amp;S_n = a + (a+b) \\ &amp;+ \dots + (a+(n-2)b) \\ &amp;+ (a+(n-1)b) \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;S_n \\ &amp;= (a+(n-1)b) + (a+(n-2)b) \\ &amp;+ \dots + (a+b) + a \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;2S_n = [2a+(n-1)b] \\ &amp;+ [2a+(n-1)b] + \dots \\ &amp;+ [2a+(n-1)b] + [2a+(n-1)b] \end{aligned}" />
 </MathContainer>
 
 Each vertical pair has the same sum, <InlineMath math="2a + (n-1)b" />. Since each row contains <InlineMath math="n" /> terms, the addition produces <InlineMath math="n" /> identical pair sums.

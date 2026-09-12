@@ -3,7 +3,7 @@ export const metadata = {
   description: "Diagonalize quadratic forms with an orthogonal change of coordinates, complete the square, and classify conic sections from their eigenvalues.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-17",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Linear Methods of AI",
 };
 
@@ -27,14 +27,18 @@ For the equation <InlineMath math="x^TAx+p^Tx+f=0" />, use the rotated coordinat
 
 For both variables with <InlineMath math="\lambda_1, \lambda_2 \neq 0" />, the completing the square process is performed separately:
 
-<MathContainer>
-<BlockMath math="\begin{aligned} 0 &= \lambda_1 \left( \xi_1^2 + 2 \frac{\delta}{2\lambda_1} \xi_1 + \frac{\delta^2}{4\lambda_1^2} \right) - \frac{\delta^2}{4\lambda_1} \\ &\quad + \lambda_2 \left( \xi_2^2 + 2 \frac{\epsilon}{2\lambda_2} \xi_2 + \frac{\epsilon^2}{4\lambda_2^2} \right) - \frac{\epsilon^2}{4\lambda_2} + f \end{aligned}" />
-</MathContainer>
+Name the completed-square brackets to keep both added and subtracted terms visible:
+
+<BlockMath math="\begin{aligned} &amp;B_1=\xi_1^2+2\frac\delta{2\lambda_1}\xi_1 \\ &amp;+\frac{\delta^2}{4\lambda_1^2} \end{aligned}" />
+
+<BlockMath math="\begin{aligned} &amp;B_2=\xi_2^2+2\frac\epsilon{2\lambda_2}\xi_2 \\ &amp;+\frac{\epsilon^2}{4\lambda_2^2} \end{aligned}" />
+
+<BlockMath math="\begin{aligned} &amp;0=\lambda_1B_1-\frac{\delta^2}{4\lambda_1} \\ &amp;+\lambda_2B_2-\frac{\epsilon^2}{4\lambda_2}+f \end{aligned}" />
 
 Collecting the completed squares gives
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 + \lambda_2 \left( \xi_2 + \frac{\epsilon}{2\lambda_2} \right)^2 \\ &\quad + \left( f - \frac{\delta^2}{4\lambda_1} - \frac{\epsilon^2}{4\lambda_2} \right) \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 \\ &amp;+ \lambda_2 \left( \xi_2 + \frac{\epsilon}{2\lambda_2} \right)^2 \\ &amp;+ \left( f - \frac{\delta^2}{4\lambda_1} - \frac{\epsilon^2}{4\lambda_2} \right) \end{aligned}" />
 </MathContainer>
 
 Define the center in rotated coordinates and the translated constant by
@@ -47,7 +51,7 @@ Define the center in rotated coordinates and the translated constant by
 Then
 
 <MathContainer>
-<BlockMath math="\lambda_1 (\xi_1 - m_1)^2 + \lambda_2 (\xi_2 - m_2)^2 - \gamma = 0" />
+<BlockMath math="\begin{aligned} &amp;\lambda_1 (\xi_1 - m_1)^2 + \lambda_2 (\xi_2 - m_2)^2 - \gamma \\ &amp;= 0 \end{aligned}" />
 </MathContainer>
 
 The signs of <InlineMath math="\lambda_1" />, <InlineMath math="\lambda_2" />, and <InlineMath math="\gamma" /> determine whether the real solution set is an ellipse, a hyperbola, a parabola, a degenerate conic, or empty. The next two cases assume <InlineMath math="\gamma>0" />.
@@ -269,11 +273,13 @@ With semi-axis lengths <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" 
 
 A special case occurs when <InlineMath math="\lambda_1\neq0" />, <InlineMath math="\lambda_2=0" />, and <InlineMath math="\epsilon\neq0" />. Completing the square gives
 
-<MathContainer>
-<BlockMath math="0 = \lambda_1 \left( \xi_1^2 + 2 \frac{\delta}{2\lambda_1} \xi_1 + \frac{\delta^2}{4\lambda_1^2} \right) - \frac{\delta^2}{4\lambda_1} + \epsilon \xi_2 + f" />
-<BlockMath math="= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 + \epsilon \xi_2 + \left( f - \frac{\delta^2}{4\lambda_1} \right)" />
+Name the completed-square brackets to keep both added and subtracted terms visible:
+
+<BlockMath math="\begin{aligned} &amp;B_1=\xi_1^2+2\frac\delta{2\lambda_1}\xi_1 \\ &amp;+\frac{\delta^2}{4\lambda_1^2} \end{aligned}" />
+
+<BlockMath math="\begin{aligned} &amp;0=\lambda_1B_1-\frac{\delta^2}{4\lambda_1} \\ &amp;+\epsilon\xi_2+f \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 + \epsilon \xi_2 \\ &amp;+ \left( f - \frac{\delta^2}{4\lambda_1} \right) \end{aligned}" />
 <BlockMath math="= \lambda_1 (\xi_1 - m_1)^2 + \epsilon \xi_2 - \gamma" />
-</MathContainer>
 
 Solving for <InlineMath math="\xi_2" /> shows the parabola directly:
 
@@ -286,14 +292,15 @@ Solving for <InlineMath math="\xi_2" /> shows the parabola directly:
   description="Parabola curve with one zero eigenvalue and coordinate axis transformation aligned with eigenvectors."
   data={[
     {
-      points: Array.from({ length: 50 }, (_, i) => {
+      points: Array.from({ length: 155 }, (_, pointIndex) => {
+        const i = pointIndex / 2 - 14;
         const t = (i / 49 - 0.5) * 6;
         const lambda1 = 1; // λ₁ ≠ 0
         const epsilon = -2; // ε ≠ 0
         const gamma = 2; // γ
         const m1 = 0; // δ/(2λ₁) = 0
         const x = t;
-        const y = -(lambda1 / epsilon) * Math.pow(x - m1, 2) + (gamma / epsilon);
+        const y = -(lambda1 / epsilon) * Math.pow(x - m1, 2) + gamma / epsilon;
         return { x, y, z: 0 };
       }),
       color: "#9333ea",
@@ -348,7 +355,7 @@ Consider
 The eigenpairs are
 
 <MathContainer>
-<BlockMath math="\lambda_1=6,\quad v_1=\frac1{\sqrt5}\begin{pmatrix}2\\1\end{pmatrix},\qquad \lambda_2=1,\quad v_2=\frac1{\sqrt5}\begin{pmatrix}-1\\2\end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;\lambda_1=6, \\ &amp;v_1=\frac1{\sqrt5}\begin{pmatrix}2\\1\end{pmatrix}, \\ &amp;\lambda_2=1, \\ &amp;v_2=\frac1{\sqrt5}\begin{pmatrix}-1\\2\end{pmatrix} \end{aligned}" />
 <BlockMath math="S=\frac1{\sqrt5}\begin{pmatrix}2&-1\\1&2\end{pmatrix},\qquad \xi=S^Tx" />
 </MathContainer>
 
@@ -371,20 +378,28 @@ For a symmetric matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" />, vect
 
 Equivalently,
 
-<MathContainer>
-<BlockMath math="Q = \left\{ x \in \mathbb{R}^n : x^T A x + b^T x + c = 0 \right\}" />
-<BlockMath math="= \left\{ x \in \mathbb{R}^n : \sum_{j=1}^n \sum_{k=1}^n x_j a_{jk} x_k + \sum_{j=1}^n b_j x_j + c = 0 \right\}" />
-</MathContainer>
+The same set <InlineMath math="Q" /> consists of the vectors <InlineMath math="x\in\mathbb R^n" /> satisfying:
+
+<BlockMath math="x^T A x + b^T x + c = 0" />
+The same set <InlineMath math="Q" /> consists of the vectors <InlineMath math="x\in\mathbb R^n" /> satisfying:
+
+<BlockMath math="\begin{aligned} &amp;\sum_{j=1}^n\sum_{k=1}^n x_ja_{jk}x_k \\ &amp;+\sum_{j=1}^n b_jx_j+c=0 \end{aligned}" />
 
 If <InlineMath math="A \in \mathbb{R}^{n \times n}" /> is symmetric and <InlineMath math="v_1, \ldots, v_n \in \mathbb{R}^n" /> is an orthonormal basis of eigenvectors with <InlineMath math="A \cdot v_i = \lambda_i \cdot v_i" />, then the orthonormal matrix <InlineMath math="S = (v_1 \quad \ldots \quad v_n)" /> enables diagonalization <InlineMath math="A \cdot S = S \cdot \Lambda" /> or <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S = S^T \cdot A \cdot S" />.
 
 In the new coordinate basis <InlineMath math="\xi = S^T x" /> and <InlineMath math="\mu = S^T b" />, the quadratic surface has diagonal form:
 
-<MathContainer>
-<BlockMath math="Q = \left\{ \xi \in \mathbb{R}^n : \xi^T S^T A S \xi + b^T S \xi + c = 0 \right\}" />
-<BlockMath math="= \left\{ \xi \in \mathbb{R}^n : \xi^T \Lambda \xi + \mu^T \xi + c = 0 \right\}" />
-<BlockMath math="= \left\{ \xi \in \mathbb{R}^n : \sum_{j=1}^n \lambda_j \xi_j^2 + \sum_{j=1}^n \mu_j \xi_j + c = 0 \right\}" />
-<BlockMath math="= \left\{ \xi \in \mathbb{R}^n : \sum_{j=1}^n (\lambda_j \xi_j^2 + \mu_j \xi_j) = -c \right\}" />
-</MathContainer>
+In the rotated coordinates, <InlineMath math="Q" /> is described by vectors <InlineMath math="\xi\in\mathbb R^n" /> satisfying:
+
+<BlockMath math="\xi^T S^T A S \xi + b^T S \xi + c = 0" />
+Equivalently, these vectors satisfy:
+
+<BlockMath math="\xi^T\Lambda\xi+\mu^T\xi+c=0" />
+In the rotated coordinates, <InlineMath math="Q" /> is described by vectors <InlineMath math="\xi\in\mathbb R^n" /> satisfying:
+
+<BlockMath math="\begin{aligned} &amp;\sum_{j=1}^n\lambda_j\xi_j^2 \\ &amp;+\sum_{j=1}^n\mu_j\xi_j+c=0 \end{aligned}" />
+In the rotated coordinates, <InlineMath math="Q" /> is described by vectors <InlineMath math="\xi\in\mathbb R^n" /> satisfying:
+
+<BlockMath math="\sum_{j=1}^n (\lambda_j \xi_j^2 + \mu_j \xi_j) = -c" />
 
 In the orthonormal basis of eigenvectors, the quadratic form has a diagonal structure. This transformation is called **principal axis transformation** because the new coordinate axes are aligned with the directions of the matrix eigenvectors.

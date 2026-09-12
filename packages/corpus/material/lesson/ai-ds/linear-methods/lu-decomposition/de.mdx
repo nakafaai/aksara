@@ -3,7 +3,7 @@ export const metadata = {
   description: "Faktorisiere eine quadratische Matrix als PA = LU, verfolge ein vollständiges Eliminationsbeispiel, löse wiederholte lineare Systeme und implementiere einen abgesicherten NumPy-Algorithmus.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Lineare Methoden der KI",
 };
 
@@ -31,7 +31,7 @@ Nach der Pivotwahl in Spalte <InlineMath math="k" /> wird jeder Eintrag darunter
 
 Anschließend wenden wir die folgende Zeilenaktualisierung an.
 
-<BlockMath math="u_{ij}\leftarrow u_{ij}-\ell_{ik}u_{kj},\qquad j=k,\ldots,n" />
+<BlockMath math="\begin{aligned} &amp;u_{ij}\leftarrow u_{ij}-\ell_{ik}u_{kj}, \\ &amp;j=k,\ldots,n \end{aligned}" />
 
 Diese Aktualisierung eliminiert den Eintrag unterhalb des Pivots. Die Multiplikatoren werden unterhalb der Diagonalen von <InlineMath math="L" /> gespeichert. Werden nach früheren Eliminationsschritten zwei Zeilen vertauscht, müssen auch die bereits gefüllten Spalten von <InlineMath math="L" /> vertauscht werden. Andernfalls gilt <InlineMath math="PA=LU" /> nicht mehr.
 
@@ -83,7 +83,7 @@ Zuerst lösen wir <InlineMath math="Ly=Pb" />. Hier gilt
 
 Für eine allgemeine untere Dreiecksmatrix lautet die Rekursion
 
-<BlockMath math="y_i=\frac{1}{\ell_{ii}}\left(c_i-\sum_{j=1}^{i-1}\ell_{ij}y_j\right),\qquad c=Pb" />
+<BlockMath math="\begin{aligned} &amp;y_i=\frac{1}{\ell_{ii}}\left(c_i-\sum_{j=1}^{i-1}\ell_{ij}y_j\right), \\ &amp;c=Pb \end{aligned}" />
 
 Die Diagonaleinträge dieses <InlineMath math="L" /> sind alle eins.
 
