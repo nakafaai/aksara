@@ -5,52 +5,44 @@ export const metadata = {
   dateModified: "2026-09-12",
 };
 
-<MathVisual
+<LineEquation
   title="Kurva Parabola"
   description={<>Visualisasi kurva parabola pada bidang kartesius.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -5, max: 5 },
-      y: { min: -3, max: 5 },
+  cameraPosition={[0.5, 1, 12]}
+  cameraTarget={[0.5, 1, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 353 }, (_, index) => {
+        const y = -10 + index / 16;
+        return { x: -y * y + 2 * y + 3, y, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#7c3aed",
+      labels: [
+        { text: <InlineMath math="-1" />, at: 144, offset: [-0.4, -0.3, 0] },
+      ],
     },
-    view: { kind: "fit", padding: 0.1 },
-    objects: [
-      {
-        id: "parabola",
-        kind: "quadratic",
-        appearance: "primary",
-        inputAxis: "y",
-        coefficients: { a: -1, b: 2, c: 3 },
-        domain: { min: -2, max: 4 },
-      },
-      {
-        id: "horizontal-helper",
-        kind: "segment",
-        appearance: "construction",
-        from: { x: 0, y: 1 },
-        to: { x: 4, y: 1 },
-      },
-      {
-        id: "vertical-helper",
-        kind: "segment",
-        appearance: "construction",
-        from: { x: 4, y: 0 },
-        to: { x: 4, y: 1 },
-      },
-    ],
-    labels: [
-      { key: "minus-one", objectId: "parabola", at: { x: 0, y: -1 }, placement: "left" },
-      { key: "one", objectId: "horizontal-helper", at: { x: 0, y: 1 }, placement: "left" },
-      { key: "four", objectId: "vertical-helper", at: { x: 4, y: 0 }, placement: "below" },
-    ],
-  }}
-  labels={{
-    "minus-one": <><InlineMath math="-1" /></>,
-    one: <><InlineMath math="1" /></>,
-    four: <><InlineMath math="4" /></>,
-  }}
+    {
+      points: [{ x: 0, y: 1, z: 0 }, { x: 4, y: 1, z: 0 }],
+      smooth: false,
+      showPoints: false,
+      color: "#64748b",
+      labels: [
+        { text: <InlineMath math="1" />, at: 0, offset: [-0.4, 0.1, 0] },
+      ],
+    },
+    {
+      points: [{ x: 4, y: 0, z: 0 }, { x: 4, y: 1, z: 0 }],
+      smooth: false,
+      showPoints: false,
+      color: "#64748b",
+      labels: [
+        { text: <InlineMath math="4" />, at: 0, offset: [0.1, -0.4, 0] },
+      ],
+    },
+  ]}
 />
 
 Kurva tersebut dinyatakan sebagai <InlineMath math="x=f(y)" />. Manakah pernyataan berikut yang benar?
