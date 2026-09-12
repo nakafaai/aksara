@@ -5,7 +5,7 @@ export const metadata = {
   description: "Mit dem Vorzeichen der ersten Ableitung Monotonieintervalle bestimmen und stationäre Punkte richtig einordnen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Ableitungsfunktionen",
 };
 
@@ -45,13 +45,13 @@ Bestimme die Intervalle, in denen die Funktion <InlineMath math="f(x) = x^3 - 3x
 
 **Lösung:**
 
-**Schritt** <InlineMath math="1" />: Erste Ableitung bestimmen
+**Schritt** 1: Erste Ableitung bestimmen
 
 Zunächst differenzieren wir die Funktion <InlineMath math="f(x)" />.
 
 <BlockMath math="f'(x) = 3x^2 - 3" />
 
-**Schritt** <InlineMath math="2" />: Stationäre Punkte bestimmen
+**Schritt** 2: Stationäre Punkte bestimmen
 
 Stationäre Punkte treten auf, wenn <InlineMath math="f'(x) = 0" />.
 
@@ -63,7 +63,7 @@ Stationäre Punkte treten auf, wenn <InlineMath math="f'(x) = 0" />.
 
 Daraus erhalten wir die stationären Punkte bei <InlineMath math="x = 1" /> und <InlineMath math="x = -1" />.
 
-**Schritt** <InlineMath math="3" />: Zahlengerade erstellen und Intervalle testen
+**Schritt** 3: Zahlengerade erstellen und Intervalle testen
 
 Wir platzieren die stationären Punkte auf einer Zahlengeraden. Diese Punkte teilen die Linie in drei Intervalle. Wir nehmen einen Testpunkt aus jedem Intervall, um das Vorzeichen von <InlineMath math="f'(x)" /> (positiv oder negativ) zu finden.
 
@@ -79,7 +79,7 @@ Wir platzieren die stationären Punkte auf einer Zahlengeraden. Diese Punkte tei
 
     Für <InlineMath math="x=2" /> gilt <InlineMath math="f'(2) = 3(2)^2 - 3 = 9" />. Die Ableitung ist positiv, also steigt die Funktion.
 
-**Schritt** <InlineMath math="4" />: Intervalle zusammenfassen
+**Schritt** 4: Intervalle zusammenfassen
 
 Die Tests ergeben:
 
@@ -100,9 +100,8 @@ Die Tests ergeben:
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = -2 + i * 0.05;
+      points: Array.from({ length: 301 }, (_, sampleIndex) => {
+        const x = -4 + sampleIndex / 100;
         const y = x ** 3 - 3 * x;
         return { x, y, z: 0 };
       }),
@@ -111,7 +110,7 @@ Die Tests ergeben:
       labels: [
         {
           text: "Zunehmend",
-          at: 25,
+          at: 225,
           offset: [-1, 1, 0],
         },
       ],
@@ -135,9 +134,8 @@ Die Tests ergeben:
     },
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = 1 + i * 0.05;
+      points: Array.from({ length: 301 }, (_, sampleIndex) => {
+        const x = 1 + sampleIndex / 100;
         const y = x ** 3 - 3 * x;
         return { x, y, z: 0 };
       }),
@@ -158,7 +156,7 @@ Die Tests ergeben:
       labels: [
         {
           text: <>Stationär <InlineMath math="(-1,2)" /></>,
-          offset: [-2.5, 0.5, 0],
+          offset: [-0.3, 0.75, 0],
         },
       ],
     },
@@ -169,7 +167,7 @@ Die Tests ergeben:
       labels: [
         {
           text: <>Stationär <InlineMath math="(1,-2)" /></>,
-          offset: [2.5, -0.5, 0],
+          offset: [0.3, -0.75, 0],
         },
       ],
     },

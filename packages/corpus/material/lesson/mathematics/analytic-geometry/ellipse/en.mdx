@@ -3,7 +3,7 @@ export const metadata = {
   description: "Identify an ellipse's foci and derive its standard equations from diagrams and worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Analytic Geometry",
 };
 
@@ -441,10 +441,12 @@ This equation applies when <InlineMath math="a > b" />.
 
 For an ellipse centered at <InlineMath math="(h, k)" />, the equation becomes:
 
-<MathContainer>
-  <BlockMath math="\frac{(x-h)^2}{a^2} + \frac{(y-k)^2}{b^2} = 1 \quad \text{(horizontal major axis)}" />
-  <BlockMath math="\frac{(x-h)^2}{b^2} + \frac{(y-k)^2}{a^2} = 1 \quad \text{(vertical major axis)}" />
-</MathContainer>
+For a horizontal major axis:
+
+<BlockMath math="\frac{(x-h)^2}{a^2} + \frac{(y-k)^2}{b^2} = 1" />
+  For a vertical major axis:
+
+<BlockMath math="\frac{(x-h)^2}{b^2} + \frac{(y-k)^2}{a^2} = 1" />
 
 Visualization:
 
@@ -533,7 +535,8 @@ Visualization:
       smooth: false,
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[2, -1, 12]}
+  cameraTarget={[2, -1, 0]}
 />
 
 ## Relationships Among Ellipse Lengths
@@ -608,7 +611,7 @@ For a noncircular ellipse, <InlineMath math="0 < e < 1" />. As <InlineMath math=
 
    Since the foci have the same <InlineMath math="x" /> coordinate (<InlineMath math="x = 3" />), the major axis is vertical.
 
-   <BlockMath math="\text{Distance between foci} = |2 - (-4)| = 6" />
+   <BlockMath math="\begin{aligned} &amp;\text{Distance between foci} \\ &amp;= |2 - (-4)| \\ &amp;= 6 \end{aligned}" />
 
    so <InlineMath math="2c = 6" />, thus <InlineMath math="c = 3" />
 
@@ -646,9 +649,9 @@ For a noncircular ellipse, <InlineMath math="0 < e < 1" />. As <InlineMath math=
      <BlockMath math="36u + 4v = 1 \quad \text{...(2)}" />
    </MathContainer>
 
-   From equation (<InlineMath math="1" />): <InlineMath math="v = \frac{1-16u}{9}" />
+   From equation (1): <InlineMath math="v = \frac{1-16u}{9}" />
 
-   Substituting into equation (<InlineMath math="2" />):
+   Substituting into equation (2):
 
    <MathContainer>
      <BlockMath math="36u + 4 \cdot \frac{1-16u}{9} = 1" />
@@ -663,7 +666,7 @@ For a noncircular ellipse, <InlineMath math="0 < e < 1" />. As <InlineMath math=
    Substituting back:
 
    <MathContainer>
-     <BlockMath math="v = \frac{1-16 \cdot \frac{1}{52}}{9} = \frac{1-\frac{16}{52}}{9} = \frac{\frac{36}{52}}{9} = \frac{4}{52} = \frac{1}{13}" />
+     <BlockMath math="\begin{aligned} v &amp;= \frac{1-16 \cdot \frac{1}{52}}{9} \\ &amp;= \frac{1-\frac{16}{52}}{9} \\ &amp;= \frac{\frac{36}{52}}{9} \\ &amp;= \frac{4}{52} \\ &amp;= \frac{1}{13} \end{aligned}" />
    </MathContainer>
 
    So <InlineMath math="b^2 = 13" />

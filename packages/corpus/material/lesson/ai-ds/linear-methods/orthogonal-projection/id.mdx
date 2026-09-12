@@ -3,7 +3,7 @@ export const metadata = {
   description: "Turunkan proyeksi ortogonal dari teorema aproksimasi terbaik, hitung dengan basis ortonormal dan sembarang, lalu verifikasi geometrinya secara numerik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-15",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Metode Linear AI",
 };
 
@@ -22,7 +22,7 @@ Vektor <InlineMath math="g" /> adalah proyeksi ortogonal <InlineMath math="f" />
 
 Secara ekuivalen,
 
-<BlockMath math="\langle f-g,\varphi\rangle=0\qquad\text{untuk setiap }\varphi\in S" />
+<BlockMath math="\begin{aligned} &amp;\langle f-g,\varphi\rangle=0 \\ &amp;\text{untuk setiap }\varphi\in S \end{aligned}" />
 
 Dalam ruang Hilbert, teorema yang sama berlaku untuk setiap subruang tertutup. Subruang berdimensi hingga selalu tertutup.
 
@@ -112,13 +112,13 @@ Misalkan <InlineMath math="\psi_1,\ldots,\psi_n" /> adalah sembarang basis dari 
 Syarat ortogonalitas memberikan sistem Gram
 
 <MathContainer>
-<BlockMath math="\sum_{i=1}^n\langle\psi_i,\psi_k\rangle\alpha_i=\langle f,\psi_k\rangle,\qquad k=1,\ldots,n" />
+<BlockMath math="\begin{aligned} &amp;\sum_{i=1}^n\langle\psi_i,\psi_k\rangle\alpha_i=\langle f,\psi_k\rangle, \\ &amp;k=1,\ldots,n \end{aligned}" />
 <BlockMath math="G\alpha=c" />
 </MathContainer>
 
 Dalam sistem ini, <InlineMath math="G_{ki}=\langle\psi_i,psi_k\rangle" /> dan <InlineMath math="c_k=\langle f,psi_k\rangle" />. Karena vektor basis saling bebas linear,
 
-<BlockMath math="z^TGz=\left\|\sum_{i=1}^nz_i\psi_i\right\|^2>0\qquad\text{untuk }z\ne0" />
+<BlockMath math="\begin{aligned} &amp;z^TGz=\left\|\sum_{i=1}^nz_i\psi_i\right\|^2>0 \\ &amp;\text{untuk }z\ne0 \end{aligned}" />
 
 Ketaksamaan di atas menunjukkan bahwa <InlineMath math="G" /> simetris positif definit, sehingga koefisien proyeksi bersifat unik.
 
@@ -145,7 +145,7 @@ Dengan demikian,
 
 <MathContainer>
 <BlockMath math="P_Sf(x)=\frac13" />
-<BlockMath math="\|f-P_Sf\|_2^2=\int_{-1}^{1}\left(x^2-\frac13\right)^2dx=\frac{8}{45}" />
+<BlockMath math="\begin{aligned} \|f-P_Sf\|_2^2 &amp;=\int_{-1}^{1}\left(x^2-\frac13\right)^2dx \\ &amp;=\frac{8}{45} \end{aligned}" />
 </MathContainer>
 
 Suku linear hilang karena <InlineMath math="x^3" /> merupakan fungsi ganjil pada interval simetris.

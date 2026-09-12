@@ -4,7 +4,7 @@ export const metadata = {
   description: "Derive the rotation matrix and apply it to rotations about the origin and arbitrary centers.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Geometric Transformation",
 };
 
@@ -50,13 +50,13 @@ To rotate a point <InlineMath math="(x,y)" /> about an arbitrary point <InlineMa
 
 The operation associated with rotation by an angle <InlineMath math="\theta" /> radians about the point <InlineMath math="(a,b)" /> is:
 
-<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{pmatrix} \begin{pmatrix} x-a \\ y-b \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} \cos \theta &amp; -\sin \theta \\ \sin \theta &amp; \cos \theta \end{pmatrix} \begin{pmatrix} x-a \\ y-b \end{pmatrix} \\ &amp;+ \begin{pmatrix} a \\ b \end{pmatrix} \end{aligned}" />
 
 ## Finding a Specific Rotation Matrix
 
 For <InlineMath math="\theta = \frac{1}{4}\pi" /> radians, or <InlineMath math="45^\circ" />, both trigonometric values equal <InlineMath math="\frac{1}{\sqrt{2}}" />:
 
-<BlockMath math="R_{\frac{\pi}{4}} = \begin{pmatrix} \cos(\frac{\pi}{4}) & -\sin(\frac{\pi}{4}) \\ \sin(\frac{\pi}{4}) & \cos(\frac{\pi}{4}) \end{pmatrix} = \begin{pmatrix} \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \end{pmatrix}" />
+<BlockMath math="\begin{aligned} R_{\frac{\pi}{4}} &amp;= \begin{pmatrix} \cos(\frac{\pi}{4}) &amp; -\sin(\frac{\pi}{4}) \\ \sin(\frac{\pi}{4}) &amp; \cos(\frac{\pi}{4}) \end{pmatrix} \\ &amp;= \begin{pmatrix} \frac{1}{\sqrt{2}} &amp; -\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}} \end{pmatrix} \end{aligned}" />
 
 This matrix rotates every position vector by <InlineMath math="45^\circ" /> counter-clockwise.
 
@@ -135,7 +135,7 @@ This matrix rotates every position vector by <InlineMath math="45^\circ" /> coun
 
 2.  For point <InlineMath math="P(4,2)" /> and <InlineMath math="\theta = 60^\circ" />, use <InlineMath math="\cos 60^\circ = \frac{1}{2}" /> and <InlineMath math="\sin 60^\circ = \frac{\sqrt{3}}{2}" />.
 
-    <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} \frac{1}{2} & -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} & \frac{1}{2} \end{pmatrix} \begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} (4)(\frac{1}{2}) - (2)(\frac{\sqrt{3}}{2}) \\ (4)(\frac{\sqrt{3}}{2}) + (2)(\frac{1}{2}) \end{pmatrix} = \begin{pmatrix} 2 - \sqrt{3} \\ 2\sqrt{3} + 1 \end{pmatrix}" />
+    <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} \frac{1}{2} &amp; -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} &amp; \frac{1}{2} \end{pmatrix} \begin{pmatrix} 4 \\ 2 \end{pmatrix} \\ &amp;= \begin{pmatrix} (4)(\frac{1}{2}) - (2)(\frac{\sqrt{3}}{2}) \\ (4)(\frac{\sqrt{3}}{2}) + (2)(\frac{1}{2}) \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 - \sqrt{3} \\ 2\sqrt{3} + 1 \end{pmatrix} \end{aligned}" />
 
     The image is <InlineMath math="P'(2-\sqrt{3}, 2\sqrt{3}+1)" />.
 
@@ -144,8 +144,8 @@ This matrix rotates every position vector by <InlineMath math="45^\circ" /> coun
     <MathContainer>
       <BlockMath math="\cos 90^\circ = 0" />
       <BlockMath math="\sin 90^\circ = 1" />
-      <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 3-1 \\ 1-(-2) \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix}" />
-      <BlockMath math="= \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 2 \\ 3 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} = \begin{pmatrix} -3 \\ 2 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} = \begin{pmatrix} -2 \\ 0 \end{pmatrix}" />
+      <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 3-1 \\ 1-(-2) \end{pmatrix} \\ &amp;+ \begin{pmatrix} 1 \\ -2 \end{pmatrix} \end{aligned}" />
+      <BlockMath math="\begin{aligned}  &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 2 \\ 3 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -3 \\ 2 \end{pmatrix} + \begin{pmatrix} 1 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 \\ 0 \end{pmatrix} \end{aligned}" />
     </MathContainer>
 
     The image is <InlineMath math="Q'(-2,0)" />.

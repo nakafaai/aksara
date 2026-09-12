@@ -5,7 +5,7 @@ export const metadata = {
   description: "Stationäre Punkte mit der ersten und zweiten Ableitung bestimmen und als lokale Maxima oder Minima einordnen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Ableitungsfunktionen",
 };
 
@@ -92,7 +92,7 @@ Bestimme die stationären Werte von <InlineMath math="f(x) = x(x-3)^2" /> mit de
 
 **Lösung:**
 
-**Schritt** <InlineMath math="1" />: Erste Ableitung bestimmen
+**Schritt** 1: Erste Ableitung bestimmen
 
 Zunächst multiplizieren wir die Funktion aus: <InlineMath math="f(x) = x(x^2 - 6x + 9) = x^3 - 6x^2 + 9x" />.
 
@@ -100,7 +100,7 @@ Damit lautet die Ableitung:
 
 <BlockMath math="f'(x) = 3x^2 - 12x + 9" />
 
-**Schritt** <InlineMath math="2" />: Stationäre Stellen bestimmen
+**Schritt** 2: Stationäre Stellen bestimmen
 
 Setze <InlineMath math="f'(x) = 0" />.
 
@@ -112,13 +112,13 @@ Setze <InlineMath math="f'(x) = 0" />.
 
 Die stationären Punkte liegen bei <InlineMath math="x = 1" /> und <InlineMath math="x = 3" />.
 
-**Schritt** <InlineMath math="3" />: Vorzeichen in der Umgebung prüfen
+**Schritt** 3: Vorzeichen in der Umgebung prüfen
 
 -   **Um <InlineMath math="x = 1" />:** Links davon, also für <InlineMath math="x < 1" /> (zum Beispiel <InlineMath math="x=0" />), ist <InlineMath math="f'(0) = 9" /> positiv. Rechts davon, also für <InlineMath math="x > 1" /> (zum Beispiel <InlineMath math="x=2" />), ist <InlineMath math="f'(2) = -3" /> negativ. Der Wechsel von (+) nach (-) zeigt: Bei <InlineMath math="x=1" /> liegt ein Hochpunkt.
 
 -   **Um <InlineMath math="x = 3" />:** Links davon, also für <InlineMath math="x < 3" /> (zum Beispiel <InlineMath math="x=2" />), ist <InlineMath math="f'(2) = -3" /> negativ. Rechts davon, also für <InlineMath math="x > 3" /> (zum Beispiel <InlineMath math="x=4" />), ist <InlineMath math="f'(4) = 9" /> positiv. Der Wechsel von (-) nach (+) zeigt: Bei <InlineMath math="x=3" /> liegt ein Tiefpunkt.
 
-**Schritt** <InlineMath math="4" />: Funktionswerte berechnen
+**Schritt** 4: Funktionswerte berechnen
 
 Für die zugehörigen <InlineMath math="y" />-Werte setzen wir die stationären <InlineMath math="x" />-Koordinaten (<InlineMath math="x = 1" /> und <InlineMath math="x = 3" />) in die *ursprüngliche* Funktion <InlineMath math="f(x)" /> ein.
 
@@ -140,7 +140,8 @@ Damit ist <InlineMath math="4" /> der lokale Maximalwert am Hochpunkt <InlineMat
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, i) => {
+      points: Array.from({ length: 115 }, (_, pointIndex) => {
+        const i = pointIndex - 7;
         const x = -0.5 + i * 0.05;
         const y = x * Math.pow(x - 3, 2);
         return { x, y, z: 0 };
@@ -197,14 +198,14 @@ Bestimme die Extremwerte von <InlineMath math="f(x) = \frac{1}{3}x^3 - x^2 - 3x 
 
 **Lösung:**
 
-**Schritt** <InlineMath math="1" />: Erste und zweite Ableitung bestimmen
+**Schritt** 1: Erste und zweite Ableitung bestimmen
 
 <MathContainer>
     <BlockMath math="f'(x) = x^2 - 2x - 3" />
     <BlockMath math="f''(x) = 2x - 2" />
 </MathContainer>
 
-**Schritt** <InlineMath math="2" />: Stationäre Stellen bestimmen
+**Schritt** 2: Stationäre Stellen bestimmen
 
 <MathContainer>
     <BlockMath math="x^2 - 2x - 3 = 0" />
@@ -213,13 +214,13 @@ Bestimme die Extremwerte von <InlineMath math="f(x) = \frac{1}{3}x^3 - x^2 - 3x 
 
 Die stationären Punkte liegen bei <InlineMath math="x = 3" /> und <InlineMath math="x = -1" />.
 
-**Schritt** <InlineMath math="3" />: Zweite Ableitung auswerten
+**Schritt** 3: Zweite Ableitung auswerten
 
 -   Für <InlineMath math="x = 3" />: <InlineMath math="f''(3) = 2(3) - 2 = 4" />. Da <InlineMath math="4 > 0" /> gilt, liegt dort ein **lokales Minimum**.
 
 -   Für <InlineMath math="x = -1" />: <InlineMath math="f''(-1) = 2(-1) - 2 = -4" />. Da <InlineMath math="-4 < 0" /> gilt, liegt dort ein **lokales Maximum**.
 
-**Schritt** <InlineMath math="4" />: Extremwerte berechnen
+**Schritt** 4: Extremwerte berechnen
 
 Setze <InlineMath math="x=3" /> und <InlineMath math="x=-1" /> in die ursprüngliche Funktion ein.
 
@@ -241,7 +242,8 @@ Wenn wir uns die Visualisierung unten ansehen, ist die Kurve am Punkt <InlineMat
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, i) => {
+      points: Array.from({ length: 125 }, (_, pointIndex) => {
+        const i = pointIndex - 17;
         const x = -2.5 + i * 0.08;
         const y = (1 / 3) * x ** 3 - x ** 2 - 3 * x + 2;
         return { x, y, z: 0 };
@@ -290,20 +292,20 @@ Wenn wir uns die Visualisierung unten ansehen, ist die Kurve am Punkt <InlineMat
 
 1.  **Lösung:**
 
-    **Schritt** <InlineMath math="1" />: Bestimme die erste Ableitung
+    **Schritt** 1: Bestimme die erste Ableitung
 
     <BlockMath math="f'(x) = 2x + 2" />
 
-    **Schritt** <InlineMath math="2" />: Bestimme die stationäre Stelle
+    **Schritt** 2: Bestimme die stationäre Stelle
 
     Setze <InlineMath math="f'(x) = 0" />.
 
     <BlockMath math="2x + 2 = 0 \implies x = -1" />
 
-    **Schritt** <InlineMath math="3" />: Bestimme den <InlineMath math="y" />-Wert
+    **Schritt** 3: Bestimme den <InlineMath math="y" />-Wert
 
     Setze <InlineMath math="x = -1" /> in die ursprüngliche Funktion ein.
 
-    <BlockMath math="y = (-1)^2 + 2(-1) - 3 = 1 - 2 - 3 = -4" />
+    <BlockMath math="\begin{aligned} y &amp;= (-1)^2 + 2(-1) - 3 \\ &amp;= 1 - 2 - 3 \\ &amp;= -4 \end{aligned}" />
 
     Der stationäre Punkt ist somit <InlineMath math="(-1, -4)" />. Da beim zweiten Ableitungstest <InlineMath math="f''(x)=2 > 0" /> gilt, liegt dort ein Minimum vor.

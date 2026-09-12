@@ -3,7 +3,7 @@ export const metadata = {
     description: "Terapkan limit pada model kesehatan, ekonomi, populasi, sinyal, dan reaksi yang disederhanakan sambil memeriksa batas kesimpulan setiap model.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-04",
+    dateModified: "2026-09-12",
     subject: "Limit",
 };
 
@@ -15,13 +15,19 @@ Limit dapat menggambarkan perilaku jangka panjang sebuah model matematika. Dalam
 
 Perhatikan fungsi yang sengaja disederhanakan berikut:
 
-<BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190{,}68)^3}" />
+<BlockMath math="\begin{aligned} &amp;N(t) \\ &amp;= 285000 - \sqrt{t^2 - t + (190{,}68)^3} \end{aligned}" />
 
 Di sini, <InlineMath math="N(t)" /> menyatakan jumlah kasus dalam model, sedangkan <InlineMath math="t" /> adalah input tak negatif yang satuannya harus ditentukan sesuai skenario.
 
 Untuk menguji apakah rumus ini tetap bermakna dalam jangka panjang, hitung:
 
-<BlockMath math="\lim_{t \to \infty} N(t) = \lim_{t \to \infty} \left(285000 - \sqrt{t^2 - t + (190{,}68)^3}\right)" />
+Singkat suku akar sebagai <InlineMath math="R(t)" />:
+
+<MathContainer>
+  <BlockMath math="R(t)=\sqrt{t^2-t+(190{,}68)^3}" />
+
+  <BlockMath math="\begin{aligned} &amp;\lim_{t\to\infty}N(t) \\ &amp;=\lim_{t\to\infty}(285000-R(t)) \end{aligned}" />
+</MathContainer>
 
 **Perilaku jangka panjang:**
 
@@ -31,9 +37,11 @@ Ketika <InlineMath math="t" /> sangat besar, suku <InlineMath math="t^2" /> akan
 
 Jadi,
 
+Untuk <InlineMath math="t" /> positif yang besar:
+
 <MathContainer>
-<BlockMath math="\sqrt{t^2 - t + (190{,}68)^3} \approx \sqrt{t^2} = |t| = t \quad \text{(untuk } t > 0\text{)}" />
-<BlockMath math="\lim_{t \to \infty} N(t) = \lim_{t \to \infty} (285000 - t) = -\infty" />
+  <BlockMath math="\begin{aligned} &amp;\sqrt{t^2 - t + (190{,}68)^3} \\ &amp;\approx\sqrt{t^2}=|t|=t \end{aligned}" />
+  <BlockMath math="\begin{aligned} \lim_{t \to \infty} N(t) &amp;= \lim_{t \to \infty} (285000 - t) \\ &amp;= -\infty \end{aligned}" />
 </MathContainer>
 
 > Jumlah kasus yang negatif menunjukkan bahwa rumus dipakai di luar rentang waktu yang dapat dimodelkan. Karena jumlah kasus tidak mungkin negatif, rumus hanya bermakna selama <InlineMath math="N(t) \geq 0" />. Rumus sederhana ini hanya menjadi contoh perhitungan matematika. Rumus ini tidak dapat memprediksi perkembangan wabah dan tidak boleh digunakan sebagai panduan medis atau kebijakan.
@@ -52,7 +60,7 @@ Dalam model biaya yang dapat diturunkan, **biaya marginal** adalah laju sesaat p
 
 **Definisi matematis menggunakan limit:**
 
-<BlockMath math="\text{Biaya Marginal} = \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x}" />
+<BlockMath math="\begin{aligned} &amp;\text{Biaya Marginal} \\ &amp;= \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x} \end{aligned}" />
 
 Pada definisi ini:
 - <InlineMath math="C(x)" /> = fungsi total biaya produksi untuk <InlineMath math="x \text{ unit}" />
@@ -65,7 +73,7 @@ Jika hasil produksi dihitung dalam satuan utuh, tambahan biaya tepat untuk unit 
 
 Salah satu bentuk model populasi logistik yang disederhanakan adalah:
 
-<BlockMath math="P(t) = \frac{K}{1 + Ae^{-rt}}, \qquad K > 0,\ A > 0,\ r > 0" />
+<BlockMath math="\begin{aligned} &amp;P(t) = \frac{K}{1 + Ae^{-rt}}, \\ &amp;K > 0,\ A > 0,\ r > 0 \end{aligned}" />
 
 Karena <InlineMath math="e^{-rt} \to 0" /> ketika <InlineMath math="t \to \infty" />, model mendekati **parameter daya dukungnya**:
 
@@ -106,7 +114,7 @@ Kesimpulan ini hanya berlaku untuk model orde satu yang tidak dapat balik terseb
 
 Misalkan <InlineMath math="t" /> adalah jumlah orang yang telah divaksinasi dan <InlineMath math="N(t)" /> adalah jumlah kasus positif tersisa yang dihitung oleh model berikut:
 
-<BlockMath math="N(t) = 285000 - \sqrt{t^2 - t + (190{,}68)^3}" />
+<BlockMath math="\begin{aligned} &amp;N(t) \\ &amp;= 285000 - \sqrt{t^2 - t + (190{,}68)^3} \end{aligned}" />
 
 Kita akan menghitung <InlineMath math="N(282{.}367)" /> untuk target vaksinasi <InlineMath math="282{.}367 \text{ orang}" />.
 
@@ -122,11 +130,11 @@ Perhitungan ini memakai asumsi berikut:
 Asumsi tersebut menghasilkan jumlah berikut:
 
 <MathContainer>
-<BlockMath math="\text{Anak-anak} = 0{,}21 \times 576{.}260 = 121{.}014{,}6 \approx 121{.}015 \text{ orang}" />
-<BlockMath math="\text{Dewasa} = 0{,}79 \times 576{.}260 = 455{.}245{,}4 \approx 455{.}245 \text{ orang}" />
-<BlockMath math="\text{Total kasus positif} = 0{,}3 \times 576{.}260 = 172{.}878 \text{ orang}" />
-<BlockMath math="\text{Kasus positif pada orang dewasa} = 0{,}79 \times 0{,}30 \times 576{.}260 = 136{.}573{,}62 \approx 136{.}574 \text{ orang}" />
-<BlockMath math="\text{Orang dewasa yang memenuhi syarat} = 0{,}79 \times 0{,}70 \times 576{.}260 = 318{.}671{,}78 \approx 318{.}672 \text{ orang}" />
+<BlockMath math="\begin{aligned} \text{Anak-anak} &amp;= 0{,}21 \times 576{.}260 \\ &amp;= 121{.}014{,}6 \\ &amp;\approx 121{.}015 \text{ orang} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Dewasa} = 0{,}79 \times 576{.}260 \\ &amp;= 455{.}245{,}4 \approx 455{.}245 \text{ orang} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Total kasus positif} = 0{,}3 \times 576{.}260 \\ &amp;= 172{.}878 \text{ orang} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Kasus positif pada orang dewasa} \\ &amp;= 0{,}79 \times 0{,}30 \times 576{.}260 \\  &amp;= 136{.}573{,}62 \\ &amp;\approx 136{.}574 \text{ orang} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\begin{gathered}\text{Orang dewasa}\\\text{yang memenuhi syarat}\end{gathered} \\ &amp;= 0{,}79 \times 0{,}70 \times 576{.}260 \\  &amp;= 318{.}671{,}78 \\ &amp;\approx 318{.}672 \text{ orang} \end{aligned}" />
 </MathContainer>
 
 Dengan jumlah orang yang memenuhi syarat sebelum pembulatan, persentase targetnya adalah:
@@ -139,28 +147,34 @@ Target tersebut sekitar <InlineMath math="88{,}6\%" /> dari jumlah orang dewasa 
 
 Untuk menghitung jumlah kasus dalam model, kita memakai <InlineMath math="t=282{.}367" />:
 
-<BlockMath math="N(282{.}367) = 285{.}000 - \sqrt{(282{.}367)^2 - 282{.}367 + (190{,}68)^3}" />
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;R_0=(282367)^2-282367 \\ &amp;+(190{,}68)^3 \end{aligned}" />
 
-**Langkah** <InlineMath math="1" /> menghitung suku konstanta.
+  <BlockMath math="N(282367)=285000-\sqrt{R_0}" />
+</MathContainer>
 
-<BlockMath math="(190{,}68)^3 = 190{,}68 \times 190{,}68 \times 190{,}68 = 6{.}932{.}907{,}88" />
+**Langkah** 1 menghitung suku konstanta.
+
+<BlockMath math="\begin{aligned} &amp;(190{,}68)^3 \\ &amp;= 190{,}68 \times 190{,}68 \times 190{,}68 \\ &amp;\approx 6{.}932{.}907{,}88 \end{aligned}" />
 
 Nilai yang ditampilkan dibulatkan hingga dua angka desimal. Perhitungan berikutnya tetap memakai nilai sebelum pembulatan.
 
-**Langkah** <InlineMath math="2" /> menghitung kuadrat jumlah orang yang divaksinasi.
+**Langkah** 2 menghitung kuadrat jumlah orang yang divaksinasi.
 
 <BlockMath math="(282{.}367)^2 = 79{.}731{.}122{.}689" />
 
-**Langkah** <InlineMath math="3" /> menggabungkan nilai di dalam akar.
+**Langkah** 3 menggabungkan nilai di dalam akar.
 
-<BlockMath math="79{.}731{.}122{.}689 - 282{.}367 + 6{.}932{.}907{,}88 = 79{.}737{.}773{.}229{,}88" />
+<BlockMath math="\begin{aligned} &amp;79731122689-282367 \\ &amp;+6932907{,}88 \\ &amp;=79737773229{,}88 \end{aligned}" />
 
-**Langkah** <InlineMath math="4" /> memberikan hasil akhir.
+**Langkah** 4 memberikan hasil akhir.
 
 <MathContainer>
-<BlockMath math="N(282{.}367) = 285{.}000 - \sqrt{79{.}737{.}773{.}229{,}88}" />
-<BlockMath math="= 285{.}000 - 282{.}378{,}78" />
-<BlockMath math="= 2{.}621{,}22 \approx 2{.}621 \text{ orang}" />
+  <BlockMath math="R_0\approx79737773229{,}88" />
+
+  <BlockMath math="N(282367)=285000-\sqrt{R_0}" />
+  <BlockMath math="\approx 285{.}000 - 282{.}378{,}78" />
+  <BlockMath math="= 2{.}621{,}22 \approx 2{.}621 \text{ orang}" />
 </MathContainer>
 
 ### Arti Hasil
@@ -195,7 +209,7 @@ Nilai <InlineMath math="2{.}621 \text{ kasus}" /> menjawab pertanyaan matematis 
    <MathContainer>
    <BlockMath math="\lim_{t \to \infty} P(t) = \lim_{t \to \infty} 50000(1 - e^{-0{,}1t})" />
    <BlockMath math="= 50000 \lim_{t \to \infty} (1 - e^{-0{,}1t})" />
-   <BlockMath math="= 50000(1 - 0) = 50000 \text{ unit vaksin}" />
+   <BlockMath math="\begin{aligned}  &amp;= 50000(1 - 0) \\ &amp;= 50000 \text{ unit vaksin} \end{aligned}" />
    </MathContainer>
 
    Produksi kumulatif dalam model mendekati <InlineMath math="50{.}000" /> unit vaksin. Nilainya tidak pernah tepat sama dengan angka tersebut pada <InlineMath math="t" /> berhingga karena <InlineMath math="e^{-0{,}1t}>0" /> untuk setiap <InlineMath math="t" /> berhingga.
@@ -215,12 +229,12 @@ Nilai <InlineMath math="2{.}621 \text{ kasus}" /> menjawab pertanyaan matematis 
    Biaya marginal adalah turunan dari fungsi biaya, yang dapat dihitung menggunakan definisi limit:
 
    <MathContainer>
-   <BlockMath math="\text{Biaya Marginal} = \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x}" />
+   <BlockMath math="\begin{aligned} &amp;\text{Biaya Marginal} \\ &amp;= \lim_{\Delta x \to 0} \frac{C(x + \Delta x) - C(x)}{\Delta x} \end{aligned}" />
    </MathContainer>
 
    **Langkah detail:**
 
-   <BlockMath math="C(x + \Delta x) = 1000 + 5(x + \Delta x) + 0{,}01(x + \Delta x)^2" />
+   <BlockMath math="\begin{aligned} &amp;C(x + \Delta x) = 1000 + 5(x + \Delta x) \\ &amp;+ 0{,}01(x + \Delta x)^2 \end{aligned}" />
 
    Kita ekspansi:
 
@@ -228,14 +242,14 @@ Nilai <InlineMath math="2{.}621 \text{ kasus}" /> menjawab pertanyaan matematis 
 
    Lalu kita substitusikan:
 
-   <BlockMath math="C(x + \Delta x) = 1000 + 5x + 5\Delta x + 0{,}01x^2 + 0{,}02x\Delta x + 0{,}01(\Delta x)^2" />
+   <BlockMath math="\begin{aligned} &amp;C(x + \Delta x) = 1000 + 5x \\ &amp;+ 5\Delta x + 0{,}01x^2 \\ &amp;+ 0{,}02x\Delta x + 0{,}01(\Delta x)^2 \end{aligned}" />
 
    Maka,
 
    <MathContainer>
-   <BlockMath math="C(x + \Delta x) - C(x) = 5\Delta x + 0{,}02x\Delta x + 0{,}01(\Delta x)^2" />
-   <BlockMath math="\frac{C(x + \Delta x) - C(x)}{\Delta x} = 5 + 0{,}02x + 0{,}01\Delta x" />
-   <BlockMath math="\lim_{\Delta x \to 0} (5 + 0{,}02x + 0{,}01\Delta x) = 5 + 0{,}02x" />
+   <BlockMath math="\begin{aligned} &amp;C(x + \Delta x) - C(x) = 5\Delta x \\ &amp;+ 0{,}02x\Delta x + 0{,}01(\Delta x)^2 \end{aligned}" />
+   <BlockMath math="\begin{aligned} &amp;\frac{C(x + \Delta x) - C(x)}{\Delta x} \\ &amp;= 5 + 0{,}02x + 0{,}01\Delta x \end{aligned}" />
+   <BlockMath math="\begin{aligned} &amp;\lim_{\Delta x \to 0} (5 + 0{,}02x + 0{,}01\Delta x) \\ &amp;= 5 + 0{,}02x \end{aligned}" />
    </MathContainer>
 
    Jadi, fungsi biaya marginalnya adalah <InlineMath math="C'(x)=5+0{,}02x" /> satuan mata uang per unit produksi.
@@ -244,7 +258,7 @@ Nilai <InlineMath math="2{.}621 \text{ kasus}" /> menjawab pertanyaan matematis 
 
    <MathContainer>
    <BlockMath math="C(x+1)-C(x)" />
-   <BlockMath math="=1000+5(x+1)+0{,}01(x+1)^2-(1000+5x+0{,}01x^2)" />
+   <BlockMath math="\begin{aligned} &amp;=1000 +5(x+1) \\ &amp;+0{,}01(x+1)^2 \\ &amp;-(1000+5x+0{,}01x^2) \end{aligned}" />
    <BlockMath math="=5{,}01+0{,}02x" />
    </MathContainer>
 

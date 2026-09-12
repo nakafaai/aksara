@@ -3,7 +3,7 @@ export const metadata = {
    description: "Use eigenvalues and eigenvectors to decide whether a matrix is diagonalizable and compare algebraic with geometric multiplicity.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-07-16",
-   dateModified: "2026-09-07",
+   dateModified: "2026-09-12",
    subject: "Linear Methods of AI",
 };
 
@@ -31,7 +31,7 @@ When can a matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> be diagona
 
 The diagonal matrix <InlineMath math="\Lambda" /> is:
 
-<BlockMath math="\Lambda = \begin{pmatrix} \lambda_1 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix} = \text{diag}(\lambda_1, \ldots, \lambda_n)" />
+<BlockMath math="\begin{aligned} \Lambda &amp;= \begin{pmatrix} \lambda_1 &amp; &amp; \\ &amp; \ddots &amp; \\ &amp; &amp; \lambda_n \end{pmatrix} \\ &amp;= \text{diag}(\lambda_1, \ldots, \lambda_n) \end{aligned}" />
 
 The matrix <InlineMath math="S" /> has the eigenvectors as its columns:
 
@@ -87,11 +87,11 @@ For a matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" />, the following 
 
 2. Both of the following conditions are satisfied. First, the characteristic polynomial of <InlineMath math="A" /> must factor into linear factors:
 
-   <BlockMath math="\chi_A(t) = (\lambda_1 - t)^{\mu_A(\lambda_1)} \cdots (\lambda_k - t)^{\mu_A(\lambda_k)}" />
+   <BlockMath math="\begin{aligned} &amp;\chi_A(t) \\ &amp;=(\lambda_1-t)^{\mu_A(\lambda_1)}\cdots(\lambda_k-t)^{\mu_A(\lambda_k)} \end{aligned}" />
 
    with pairwise distinct eigenvalues <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> of <InlineMath math="A" />. Second, for all eigenvalues of <InlineMath math="A" />, the algebraic multiplicity must equal the geometric multiplicity:
 
-   <BlockMath math="\mu_A(\lambda_i) = \dim E_A(\lambda_i) \quad (i = 1, \ldots, k)" />
+   <BlockMath math="\begin{aligned} &amp;\mu_A(\lambda_i) = \dim E_A(\lambda_i) \\ &amp;(i = 1, \ldots, k) \end{aligned}" />
 
 3. The direct sum of all eigenspaces is the entire vector space:
 
@@ -101,6 +101,6 @@ For a matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" />, the following 
 
 For each <InlineMath math="i = 1, \ldots, k" />, let <InlineMath math="v_1^{(i)}, \ldots, v_{d_i}^{(i)}" /> be a basis of the eigenspace <InlineMath math="E_A(\lambda_i)" />. Then:
 
-<BlockMath math="v_1^{(1)}, \ldots, v_{d_1}^{(1)}, v_1^{(2)}, \ldots, v_{d_2}^{(2)}, \ldots, v_1^{(k)}, \ldots, v_{d_k}^{(k)}" />
+<BlockMath math="\begin{aligned} &amp;v_1^{(1)},\ldots,v_{d_1}^{(1)}, \\ &amp;v_1^{(2)},\ldots,v_{d_2}^{(2)},\ldots, \\ &amp;v_1^{(k)},\ldots,v_{d_k}^{(k)} \end{aligned}" />
 
 These vectors form a basis of <InlineMath math="\mathbb{K}^n" /> consisting of eigenvectors of <InlineMath math="A" />. Therefore, <InlineMath math="A" /> is diagonalizable.

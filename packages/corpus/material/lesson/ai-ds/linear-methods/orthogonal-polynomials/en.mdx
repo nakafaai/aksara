@@ -3,7 +3,7 @@ export const metadata = {
   description: "Chebyshev and Legendre polynomial bases arise from weighted inner products. They support function projection, interval transformations, and Gaussian quadrature.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-16",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Linear Methods of AI",
 };
 
@@ -18,7 +18,7 @@ Let <InlineMath math="w(x)>0" /> on an interval <InlineMath math="[a,b]" />. The
 
 Two functions are orthogonal when <InlineMath math="\langle f,g\rangle_w=0" />. This weighted <InlineMath math="L^2" /> geometry measures the weighted squared error across the interval.
 
-<BlockMath math="\|f-g\|_w^2=\int_a^b|f(x)-g(x)|^2w(x)\,dx" />
+<BlockMath math="\begin{aligned} &amp;\|f-g\|_w^2 \\ &amp;=\int_a^b|f(x)-g(x)|^2w(x)\,dx \end{aligned}" />
 
 By contrast, the maximum norm measures the largest pointwise error.
 
@@ -44,7 +44,7 @@ Applying Gram-Schmidt to <InlineMath math="1,x,x^2,\ldots" /> produces a monic o
 <MathContainer>
 <BlockMath math="\pi_0(x)=1" />
 <BlockMath math="\pi_1(x)=x-\alpha_0" />
-<BlockMath math="\pi_{k+1}(x)=(x-\alpha_k)\pi_k(x)-\beta_k\pi_{k-1}(x)" />
+<BlockMath math="\begin{aligned} &amp;\pi_{k+1}(x) =(x-\alpha_k)\pi_k(x) \\ &amp;-\beta_k\pi_{k-1}(x) \end{aligned}" />
 </MathContainer>
 
 The recurrence coefficients are
@@ -72,7 +72,7 @@ The Chebyshev polynomials of the first kind are
 
 Their weighted orthogonality is
 
-<BlockMath math="\int_{-1}^{1}\frac{T_j(x)T_k(x)}{\sqrt{1-x^2}}\,dx=\begin{cases}\pi,&j=k=0,\\\frac{\pi}{2},&j=k>0,\\0,&j\ne k.\end{cases}" />
+<BlockMath math="\begin{aligned} &amp;\int_{-1}^{1}\frac{T_j(x)T_k(x)}{\sqrt{1-x^2}}\,dx \\ &amp;=\begin{cases}\pi,&amp;j=k=0,\\\frac{\pi}{2},&amp;j=k>0,\\0,&amp;j\ne k.\end{cases} \end{aligned}" />
 
 Since <InlineMath math="|T_k(x)|\le1" /> on <InlineMath math="[-1,1]" /> and the leading coefficient is <InlineMath math="2^{k-1}" /> for <InlineMath math="k\ge1" />, the monic polynomial <InlineMath math="2^{1-k}T_k" /> has the smallest maximum norm among all monic degree-<InlineMath math="k" /> polynomials. It therefore solves the minimax approximation problem for monic polynomials of degree <InlineMath math="k" />.
 
@@ -108,7 +108,7 @@ For this inner product, the standard Legendre polynomials satisfy
 
 <MathContainer>
 <BlockMath math="P_0(x)=1,\qquad P_1(x)=x" />
-<BlockMath math="(k+1)P_{k+1}(x)=(2k+1)xP_k(x)-kP_{k-1}(x)" />
+<BlockMath math="\begin{aligned} &amp;(k+1)P_{k+1}(x) =(2k+1)xP_k(x) \\ &amp;-kP_{k-1}(x) \end{aligned}" />
 </MathContainer>
 
 Their orthogonality and normalization are
@@ -144,7 +144,7 @@ If <InlineMath math="\varphi_k" /> is orthonormal on <InlineMath math="[-1,1]" /
 
 The function <InlineMath math="\widetilde{\varphi}_k" /> is orthonormal on <InlineMath math="[a,b]" /> because
 
-<BlockMath math="\int_a^b\widetilde{\varphi}_j(x)\widetilde{\varphi}_k(x)\,dx=\int_{-1}^{1}\varphi_j(t)\varphi_k(t)\,dt=\delta_{jk}" />
+<BlockMath math="\begin{aligned} &amp;\int_a^b\widetilde{\varphi}_j(x)\widetilde{\varphi}_k(x)\,dx \\ &amp;=\int_{-1}^{1}\varphi_j(t)\varphi_k(t)\,dt \\ &amp;=\delta_{jk} \end{aligned}" />
 
 ## Connection to Gaussian Quadrature
 

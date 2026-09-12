@@ -3,7 +3,7 @@ export const metadata = {
   description: "Tentukan fokus elips dan turunkan persamaan bakunya melalui diagram serta contoh bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Geometri Analitik",
 };
 
@@ -441,10 +441,12 @@ Rumus ini berlaku ketika <InlineMath math="a > b" />.
 
 Kalau pusat elips bukan di titik asal, tapi di titik <InlineMath math="(h, k)" />, persamaannya jadi:
 
-<MathContainer>
-  <BlockMath math="\frac{(x-h)^2}{a^2} + \frac{(y-k)^2}{b^2} = 1 \quad \text{(sumbu mayor horizontal)}" />
-  <BlockMath math="\frac{(x-h)^2}{b^2} + \frac{(y-k)^2}{a^2} = 1 \quad \text{(sumbu mayor vertikal)}" />
-</MathContainer>
+Untuk sumbu mayor horizontal:
+
+<BlockMath math="\frac{(x-h)^2}{a^2} + \frac{(y-k)^2}{b^2} = 1" />
+  Untuk sumbu mayor vertikal:
+
+<BlockMath math="\frac{(x-h)^2}{b^2} + \frac{(y-k)^2}{a^2} = 1" />
 
 Visualisasi:
 
@@ -533,7 +535,8 @@ Visualisasi:
       smooth: false,
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[2, -1, 12]}
+  cameraTarget={[2, -1, 0]}
 />
 
 ## Hubungan Antarpanjang pada Elips
@@ -608,7 +611,7 @@ Untuk elips yang bukan lingkaran, <InlineMath math="0 < e < 1" />. Ketika <Inlin
 
    Karena fokus punya koordinat <InlineMath math="x" /> yang sama (<InlineMath math="x = 3" />), sumbu mayor vertikal.
 
-   <BlockMath math="\text{Jarak antar fokus} = |2 - (-4)| = 6" />
+   <BlockMath math="\begin{aligned} &amp;\text{Jarak antar fokus} \\ &amp;= |2 - (-4)| \\ &amp;= 6 \end{aligned}" />
 
    jadi <InlineMath math="2c = 6" />, maka <InlineMath math="c = 3" />
 
@@ -646,9 +649,9 @@ Untuk elips yang bukan lingkaran, <InlineMath math="0 < e < 1" />. Ketika <Inlin
      <BlockMath math="36u + 4v = 1 \quad \text{...(2)}" />
    </MathContainer>
 
-   Dari persamaan (<InlineMath math="1" />): <InlineMath math="v = \frac{1-16u}{9}" />
+   Dari persamaan (1): <InlineMath math="v = \frac{1-16u}{9}" />
 
-   Substitusi ke persamaan (<InlineMath math="2" />):
+   Substitusi ke persamaan (2):
 
    <MathContainer>
      <BlockMath math="36u + 4 \cdot \frac{1-16u}{9} = 1" />
@@ -663,7 +666,7 @@ Untuk elips yang bukan lingkaran, <InlineMath math="0 < e < 1" />. Ketika <Inlin
    Substitusi kembali:
 
    <MathContainer>
-     <BlockMath math="v = \frac{1-16 \cdot \frac{1}{52}}{9} = \frac{1-\frac{16}{52}}{9} = \frac{\frac{36}{52}}{9} = \frac{4}{52} = \frac{1}{13}" />
+     <BlockMath math="\begin{aligned} v &amp;= \frac{1-16 \cdot \frac{1}{52}}{9} \\ &amp;= \frac{1-\frac{16}{52}}{9} \\ &amp;= \frac{\frac{36}{52}}{9} \\ &amp;= \frac{4}{52} \\ &amp;= \frac{1}{13} \end{aligned}" />
    </MathContainer>
 
    Maka <InlineMath math="b^2 = 13" />

@@ -4,7 +4,7 @@ export const metadata = {
   description: "Hitung koefisien korelasi Pearson untuk mengukur hubungan linear. Pelajari rumus, baca scatter plot, dan jelaskan kekuatan korelasinya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-30",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Statistika",
 };
 
@@ -173,7 +173,7 @@ Perhitungan koefisien korelasi terdiri dari tiga bagian:
 
     Untuk mengatasinya, kita **menstandarkan** jumlah simpangan silang dengan membagi <InlineMath math="SS_{xy}" /> menggunakan gabungan geometris dari ukuran variasi kedua variabel, yaitu <InlineMath math="\sqrt{SS_{xx} SS_{yy}}" />.
 
-    <BlockMath math="r = \frac{\text{Seberapa banyak X dan Y bervariasi bersama}}{\text{Ukuran standar dari variasi X dan Y masing-masing}} = \frac{SS_{xy}}{\sqrt{SS_{xx} SS_{yy}}}" />
+    <BlockMath math="r=\frac{SS_{xy}}{\sqrt{SS_{xx}SS_{yy}}}" />
 
 Hasil pembagian inilah yang menjadi **<InlineMath math="r" />**, koefisien korelasi Pearson. Jika kedua variabel memiliki variasi bukan nol, standardisasi membatasi nilainya dari <InlineMath math="-1" /> sampai <InlineMath math="+1" />, apa pun satuan asli datanya. Karena itu, kita dapat membandingkan hubungan linear pada pasangan variabel yang berbeda.
 
@@ -191,15 +191,15 @@ Ketiga besaran tersebut memiliki tugas yang berbeda. <InlineMath math="SS_{xx}" 
 
 1.  **<InlineMath math="SS_{xx}" /> (Sum of Squares for <InlineMath math="x" />):** Mengukur seberapa menyebar data <InlineMath math="x" /> dari rata-ratanya.
 
-    <BlockMath math="SS_{xx} = \sum (x - \bar{x})^2 = \sum x^2 - \frac{(\sum x)^2}{n}" />
+    <BlockMath math="\begin{aligned} SS_{xx} &amp;= \sum (x - \bar{x})^2 \\ &amp;= \sum x^2 - \frac{(\sum x)^2}{n} \end{aligned}" />
 
 2.  **<InlineMath math="SS_{yy}" /> (Sum of Squares for <InlineMath math="y" />):** Mengukur seberapa menyebar data <InlineMath math="y" /> dari rata-ratanya.
 
-    <BlockMath math="SS_{yy} = \sum (y - \bar{y})^2 = \sum y^2 - \frac{(\sum y)^2}{n}" />
+    <BlockMath math="\begin{aligned} SS_{yy} &amp;= \sum (y - \bar{y})^2 \\ &amp;= \sum y^2 - \frac{(\sum y)^2}{n} \end{aligned}" />
 
 3.  **<InlineMath math="SS_{xy}" /> (Sum of Products of deviations for <InlineMath math="x" /> and <InlineMath math="y" />):** Mengukur bagaimana <InlineMath math="x" /> dan <InlineMath math="y" /> bervariasi _bersama-sama_.
 
-    <BlockMath math="SS_{xy} = \sum (x - \bar{x})(y - \bar{y}) = \sum xy - \frac{(\sum x)(\sum y)}{n}" />
+    <BlockMath math="\begin{aligned} SS_{xy} &amp;= \sum (x - \bar{x})(y - \bar{y}) \\ &amp;= \sum xy - \frac{(\sum x)(\sum y)}{n} \end{aligned}" />
 
 Keterangan:
 

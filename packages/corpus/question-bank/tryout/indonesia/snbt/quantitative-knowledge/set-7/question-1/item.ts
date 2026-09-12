@@ -7,15 +7,15 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(1)$$, $$(2)$$ und $$(3)$$ sind richtig.",
+          label: "(1), (2) und (3) sind richtig.",
         },
         {
           isCorrect: false,
-          label: "$$(2)$$ und $$(4)$$ sind richtig.",
+          label: "(2) und (4) sind richtig.",
         },
         {
           isCorrect: false,
-          label: "Nur $$(4)$$ ist richtig.",
+          label: "Nur (4) ist richtig.",
         },
         {
           isCorrect: false,
@@ -23,7 +23,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "$$(1)$$ und $$(3)$$ sind richtig.",
+          label: "(1) und (3) sind richtig.",
         },
       ],
     },
@@ -32,15 +32,15 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(1)$$, $$(2)$$, and $$(3)$$ are correct.",
+          label: "(1), (2), and (3) are correct.",
         },
         {
           isCorrect: false,
-          label: "$$(2)$$ and $$(4)$$ are correct.",
+          label: "(2) and (4) are correct.",
         },
         {
           isCorrect: false,
-          label: "Only $$(4)$$ is correct.",
+          label: "Only (4) is correct.",
         },
         {
           isCorrect: false,
@@ -48,7 +48,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "$$(1)$$ and $$(3)$$ are correct.",
+          label: "(1) and (3) are correct.",
         },
       ],
     },
@@ -57,15 +57,15 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "$$(1)$$, $$(2)$$, dan $$(3)$$ benar.",
+          label: "(1), (2), dan (3) benar.",
         },
         {
           isCorrect: false,
-          label: "$$(2)$$ dan $$(4)$$ benar.",
+          label: "(2) dan (4) benar.",
         },
         {
           isCorrect: false,
-          label: "Hanya $$(4)$$ yang benar.",
+          label: "Hanya (4) yang benar.",
         },
         {
           isCorrect: false,
@@ -73,7 +73,7 @@ const item: QuestionItem = {
         },
         {
           isCorrect: true,
-          label: "$$(1)$$ dan $$(3)$$ benar.",
+          label: "(1) dan (3) benar.",
         },
       ],
     },

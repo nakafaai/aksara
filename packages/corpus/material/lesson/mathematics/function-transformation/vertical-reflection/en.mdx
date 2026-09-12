@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use graphs and examples to understand how reflection across the x-axis changes a function's y-coordinates.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Function Transformation",
 };
 
@@ -69,23 +69,25 @@ The same reflection rule applies to the linear function <InlineMath math="f(x) =
   cameraPosition={[12, 6, 12]}
   data={[
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      points: Array.from({ length: 48 }, (_, pointIndex) => {
+        const i = pointIndex - 27;
         const x = (i - 10) * 0.5;
         return { x, y: 2 * x + 3, z: 0 };
       }),
       smooth: false,
       color: "#7c3aed",
-      labels: [{ text: <InlineMath math="f(x)=2x+3" />, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=2x+3" />, offset: [1, 0.5, 0], at: 37 }],
       showPoints: false,
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
+      points: Array.from({ length: 31 }, (_, pointIndex) => {
+        const i = pointIndex - 8;
         const x = (i - 10) * 0.5;
         return { x, y: -(2 * x + 3), z: 0 };
       }),
       smooth: false,
       color: "#d97706",
-      labels: [{ text: <InlineMath math="g(x)=-2x-3" />, offset: [1, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=-2x-3" />, offset: [1, -0.5, 0], at: 18 }],
       showPoints: false,
     },
   ]}
@@ -124,22 +126,24 @@ For the exponential function <InlineMath math="f(x) = 2^x" />, every positive ou
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 31 }, (_, i) => {
+      points: Array.from({ length: 961 }, (_, pointIndex) => {
+        const i = pointIndex / 4 - 210;
         const x = (i - 15) * 0.3;
         return { x, y: Math.pow(2, x), z: 0 };
       }),
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [0.5, 1, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [0.5, 1, 0], at: 900 }],
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 31 }, (_, i) => {
+      points: Array.from({ length: 481 }, (_, pointIndex) => {
+        const i = pointIndex / 2 - 210;
         const x = (i - 15) * 0.3;
         return { x, y: -Math.pow(2, x), z: 0 };
       }),
       color: "#059669",
-      labels: [{ text: <InlineMath math="g(x)=-2^x" />, offset: [0.5, -1, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=-2^x" />, offset: [0.5, -1, 0], at: 450 }],
       showPoints: false,
     },
   ]}
@@ -161,22 +165,24 @@ For the <InlineMath math="\sin" /> function, vertical reflection exchanges crest
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 497 }, (_, pointIndex) => {
+        const i = pointIndex / 4 - 32;
         const x = (i - 30) * 0.2;
         return { x, y: Math.sin(x), z: 0 };
       }),
       color: "#0891b2",
-      labels: [{ text: <InlineMath math="f(x)=\sin(x)" />, offset: [1, 1.5, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=\sin(x)" />, offset: [1, 1.5, 0], at: 248 }],
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 497 }, (_, pointIndex) => {
+        const i = pointIndex / 4 - 32;
         const x = (i - 30) * 0.2;
         return { x, y: -Math.sin(x), z: 0 };
       }),
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="g(x)=-\sin(x)" />, offset: [1, -1.5, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=-\sin(x)" />, offset: [1, -1.5, 0], at: 248 }],
       showPoints: false,
     },
   ]}
@@ -207,22 +213,24 @@ The graph shows:
      data={[
        {
          smooth: false,
-         points: Array.from({ length: 41 }, (_, i) => {
+         points: Array.from({ length: 173 }, (_, pointIndex) => {
+           const i = pointIndex / 4 - 3;
            const x = (i - 20) * 0.25;
            return { x, y: x * x + 4 * x + 3, z: 0 };
          }),
          color: "#9333ea",
-         labels: [{ text: <InlineMath math="f(x)=x^2+4x+3" />, offset: [1, 1, 0] }],
+         labels: [{ text: <InlineMath math="f(x)=x^2+4x+3" />, offset: [1, 1, 0], at: 92 }],
          showPoints: false,
        },
        {
          smooth: false,
-         points: Array.from({ length: 41 }, (_, i) => {
+         points: Array.from({ length: 193 }, (_, pointIndex) => {
+           const i = pointIndex / 4 - 8;
            const x = (i - 20) * 0.25;
            return { x, y: -(x * x + 4 * x + 3), z: 0 };
          }),
          color: "#ea580c",
-         labels: [{ text: <InlineMath math="f'(x)=-x^2-4x-3" />, offset: [1, -1, 0] }],
+         labels: [{ text: <InlineMath math="f'(x)=-x^2-4x-3" />, offset: [1, -1, 0], at: 112 }],
          showPoints: false,
        },
      ]}
@@ -242,22 +250,24 @@ The graph shows:
      data={[
        {
          smooth: false,
-         points: Array.from({ length: 31 }, (_, i) => {
+         points: Array.from({ length: 481 }, (_, pointIndex) => {
+           const i = pointIndex / 2 - 210;
            const x = (i - 15) * 0.2;
            return { x, y: Math.pow(3, x) + 2, z: 0 };
          }),
          color: "#7c3aed",
-         labels: [{ text: <InlineMath math="g(x)=3^x+2" />, offset: [0.5, 1, 0] }],
+         labels: [{ text: <InlineMath math="g(x)=3^x+2" />, offset: [0.5, 1, 0], at: 450 }],
          showPoints: false,
        },
        {
          smooth: false,
-         points: Array.from({ length: 31 }, (_, i) => {
+         points: Array.from({ length: 346 }, (_, pointIndex) => {
+           const i = pointIndex - 315;
            const x = (i - 15) * 0.2;
            return { x, y: -(Math.pow(3, x) + 2), z: 0 };
          }),
          color: "#0d9488",
-         labels: [{ text: <InlineMath math="g'(x)=-3^x-2" />, offset: [0.5, -1, 0] }],
+         labels: [{ text: <InlineMath math="g'(x)=-3^x-2" />, offset: [0.5, -1, 0], at: 330 }],
          showPoints: false,
        },
      ]}
@@ -272,24 +282,34 @@ The graph shows:
      data={[
        {
          smooth: false,
-         points: Array.from({ length: 101 }, (_, sampleIndex) => {
-           const i = sampleIndex / 5;
-           const x = -1 + i * 0.25;
-           return { x, y: Math.sqrt(x + 1), z: 0 };
-         }),
+         points: (() => {
+           const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+           parameters.push(1.5811388300841898);
+           return parameters
+             .sort((a, b) => a - b)
+             .map((t) => {
+               const x = t * t + -1;
+               return { x, y: t, z: 0 };
+             });
+         })(),
          color: "#4f46e5",
-         labels: [{ at: 50, text: <InlineMath math="h(x)=\sqrt{x+1}" />, offset: [1, 0.5, 0] }],
+         labels: [{ at: 64, text: <InlineMath math="h(x)=\sqrt{x+1}" />, offset: [1, 0.5, 0] }],
          showPoints: false,
        },
        {
          smooth: false,
-         points: Array.from({ length: 101 }, (_, sampleIndex) => {
-           const i = sampleIndex / 5;
-           const x = -1 + i * 0.25;
-           return { x, y: -Math.sqrt(x + 1), z: 0 };
-         }),
+         points: (() => {
+           const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+           parameters.push(1.5811388300841898);
+           return parameters
+             .sort((a, b) => a - b)
+             .map((t) => {
+               const x = t * t + -1;
+               return { x, y: -1 * t, z: 0 };
+             });
+         })(),
          color: "#059669",
-         labels: [{ at: 50, text: <InlineMath math="h'(x)=-\sqrt{x+1}" />, offset: [1, -0.5, 0] }],
+         labels: [{ at: 64, text: <InlineMath math="h'(x)=-\sqrt{x+1}" />, offset: [1, -0.5, 0] }],
          showPoints: false,
        },
      ]}

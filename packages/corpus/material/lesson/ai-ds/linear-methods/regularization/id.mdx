@@ -3,7 +3,7 @@ export const metadata = {
   description: "Gunakan regularisasi Tikhonov untuk menstabilkan kuadrat terkecil yang sensitif terhadap perubahan data. Pilih alpha berdasarkan besarnya gangguan acak atau data validasi, lalu selesaikan sistem dengan QR atau SVD.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-15",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Metode Linear AI",
 };
 
@@ -21,7 +21,9 @@ Dekomposisi nilai singular menunjukkan mengapa kesalahan kecil pada data dapat m
 
 Regularisasi Tikhonov menyeimbangkan kecocokan terhadap data dengan penalti yang dipilih, misalnya jarak dari <InlineMath math="x_0" /> atau perubahan antarparameter.
 
-<BlockMath math="\min_x\left(\|Ax-b\|_2^2+\alpha^2\|L(x-x_0)\|_2^2\right),\qquad \alpha>0" />
+Untuk <InlineMath math="\alpha>0" />, minimalkan:
+
+<BlockMath math="\min_x\left(\|Ax-b\|_2^2+\alpha^2\|L(x-x_0)\|_2^2\right)" />
 
 Di sini <InlineMath math="x_0" /> adalah perkiraan acuan dan <InlineMath math="L" /> menentukan besaran yang diberi penalti. Nilai <InlineMath math="\alpha" /> menentukan perbandingan bobot antara kecocokan data dan penalti yang ditentukan oleh <InlineMath math="L" />.
 
@@ -39,7 +41,7 @@ Masalah regularisasi di atas dapat ditulis sebagai masalah kuadrat terkecil beri
 
 Jika fungsi objektif ini diturunkan terhadap <InlineMath math="x" />, kita memperoleh persamaan normal berikut:
 
-<BlockMath math="(A^TA+\alpha^2L^TL)x=A^Tb+\alpha^2L^TLx_0" />
+<BlockMath math="\begin{aligned} &amp;(A^TA+\alpha^2L^TL)x =A^Tb \\ &amp;+\alpha^2L^TLx_0 \end{aligned}" />
 
 Persamaan normal tersebut memiliki solusi unik tepat ketika syarat berikut terpenuhi.
 

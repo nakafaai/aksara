@@ -3,7 +3,7 @@ export const metadata = {
     description: "Gunakan produk skalar dan proyeksi ortogonal untuk mencari aproksimasi polinom atau trigonometri terbaik terhadap suatu fungsi dalam norma L2.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-12",
     subject: "Metode Linear AI",
 };
 
@@ -19,7 +19,7 @@ Untuk <InlineMath math="f,g\in C([a,b])" />, definisikan
 
 <MathContainer>
 <BlockMath math="\langle f,g\rangle=\int_a^b f(x)g(x)\,dx" />
-<BlockMath math="\|f\|_2=\sqrt{\langle f,f\rangle}=\left(\int_a^b|f(x)|^2\,dx\right)^{1/2}" />
+<BlockMath math="\begin{aligned} \|f\|_2 &amp;=\sqrt{\langle f,f\rangle} \\ &amp;=\left(\int_a^b|f(x)|^2\,dx\right)^{1/2} \end{aligned}" />
 </MathContainer>
 
 Produk skalar ini menjadikan <InlineMath math="C([a,b])" /> sebuah ruang berproduk skalar. Norma yang ditampilkan adalah norma <InlineMath math="L^2" />. Untuk mendapatkan akar rata-rata kuadrat, bagi nilai tersebut dengan akar panjang interval:
@@ -36,11 +36,11 @@ Misalkan <InlineMath math="S\subset C([a,b])" /> adalah subruang berdimensi hing
 
 Secara geometris, <InlineMath math="g" /> adalah proyeksi ortogonal <InlineMath math="f" /> pada <InlineMath math="S" />. Residual <InlineMath math="r=f-g" /> harus ortogonal terhadap setiap fungsi dalam ruang aproksimasi:
 
-<BlockMath math="\langle f-g,s\rangle=0\qquad\text{untuk setiap }s\in S" />
+<BlockMath math="\begin{aligned} &amp;\langle f-g,s\rangle=0 \\ &amp;\text{untuk setiap }s\in S \end{aligned}" />
 
 Jika <InlineMath math="\{\phi_0,\ldots,\phi_n\}" /> adalah basis <InlineMath math="S" /> dan <InlineMath math="g=\sum_{j=0}^n c_j\phi_j" />, syarat ortogonalitas tersebut menjadi persamaan normal
 
-<BlockMath math="\sum_{j=0}^n\langle\phi_j,\phi_i\rangle c_j=\langle f,\phi_i\rangle,\qquad i=0,\ldots,n" />
+<BlockMath math="\begin{aligned} &amp;\sum_{j=0}^n\langle\phi_j,\phi_i\rangle c_j=\langle f,\phi_i\rangle, \\ &amp;i=0,\ldots,n \end{aligned}" />
 
 ## Mengaproksimasi Fungsi Kuadrat dengan Garis
 
@@ -55,7 +55,7 @@ Suku ganjil berintegral nol pada interval simetris. Persamaan kedua menghasilkan
 
 <MathContainer>
 <BlockMath math="g(x)=\frac13" />
-<BlockMath math="\|f-g\|_2^2=\int_{-1}^{1}\left(x^2-\frac13\right)^2\,dx=\frac8{45}" />
+<BlockMath math="\begin{aligned} \|f-g\|_2^2 &amp;=\int_{-1}^{1}\left(x^2-\frac13\right)^2\,dx \\ &amp;=\frac8{45} \end{aligned}" />
 </MathContainer>
 
 Garis terbaiknya mendatar. Kesimpulan ini bukan tebakan: kesimetrian <InlineMath math="x^2" /> memaksa koefisien fungsi basis ganjil <InlineMath math="x" /> bernilai nol.
@@ -72,7 +72,13 @@ Peningkatan <InlineMath math="n" /> memperbesar ruang aproksimasi, sehingga gala
 
 Untuk fungsi periodik dengan periode <InlineMath math="\omega>0" />, salah satu ruang yang berguna adalah
 
-<BlockMath math="T_n(\omega)=\left\{\frac{a_0}{2}+\sum_{i=1}^n\left[a_i\cos\left(\frac{2\pi ix}{\omega}\right)+b_i\sin\left(\frac{2\pi ix}{\omega}\right)\right]:a_i,b_i\in\mathbb{R}\right\}" />
+Ruang <InlineMath math="T_n(\omega)" /> memuat semua fungsi berbentuk berikut, dengan koefisien real <InlineMath math="a_i,b_i" />:
+
+<MathContainer>
+  <BlockMath math="p(x)=\frac{a_0}{2}+\sum_{i=1}^n q_i(x)" />
+
+  <BlockMath math="\begin{aligned} &amp;q_i(x)=a_i\cos\left(\frac{2\pi ix}{\omega}\right) \\ &amp;+b_i\sin\left(\frac{2\pi ix}{\omega}\right) \end{aligned}" />
+</MathContainer>
 
 Pada satu periode penuh, fungsi basis sinus dan kosinus tersebut saling ortogonal. Koefisiennya dapat dihitung dengan memproyeksikan fungsi sasaran pada setiap fungsi basis. Inilah gagasan berdimensi hingga yang mendasari aproksimasi Fourier.
 

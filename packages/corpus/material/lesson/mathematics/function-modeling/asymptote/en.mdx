@@ -5,7 +5,7 @@ export const metadata = {
   description: "Find vertical, horizontal, and oblique asymptotes with worked examples and interactive visualizations. Learn techniques for graphing rational functions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Functions and Their Modeling",
 };
 
@@ -95,33 +95,45 @@ The following values show the function's behavior around the vertical asymptote:
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 157 }, (_, i) => {
-        const x = -2 + i / 40;
-        return { x, y: (x + 3) / (x - 2), z: 0 };
-      }),
+      points: (() => {
+        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 10);
+        parameters.push(1.0986122886681096);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = 2 - Math.exp(t);
+            return { x, y: (x + 3) / (x - 2), z: 0 };
+          });
+      })(),
       color: "#9333ea",
       showPoints: false,
       labels: [
         {
           text: <InlineMath math="x \to 2^{-}" />,
-          at: 40,
-          offset: [-1, 0.5, 0],
+          at: 391,
+          offset: [-0.5, -3, 0],
         },
       ],
     },
     {
       smooth: false,
-      points: Array.from({ length: 157 }, (_, i) => {
-        const x = 2.1 + i / 40;
-        return { x, y: (x + 3) / (x - 2), z: 0 };
-      }),
+      points: (() => {
+        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 10);
+        parameters.push(1.3862943611198906);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = 2 + Math.exp(t);
+            return { x, y: (x + 3) / (x - 2), z: 0 };
+          });
+      })(),
       color: "#9333ea",
       showPoints: false,
       labels: [
         {
           text: <InlineMath math="x \to 2^{+}" />,
-          at: 156,
-          offset: [0.5, -0.5, 0],
+          at: 407,
+          offset: [-0.4, 2.75, 0],
         },
       ],
     },
@@ -134,10 +146,11 @@ The following values show the function's behavior around the vertical asymptote:
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x=2" />, at: 1, offset: [1, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="x=2" />, at: 1, offset: [1.5, -1, 0] }],
     },
   ]}
-  cameraPosition={[10, 6, 10]}
+  cameraPosition={[2, 1, 15]}
+  cameraTarget={[2, 1, 0]}
 />
 
 ### Finding Horizontal Asymptotes
@@ -188,24 +201,30 @@ The following values show how the function approaches the horizontal asymptote:
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 40 }, (_, i) => {
-        const x = -10 + i * 0.5;
-        const y = (3 * x * x - 1) / (2 * x * x + 5);
-        return { x, y, z: 0 };
-      }),
+      points: (() => {
+        const parameters = Array.from({ length: 501 }, (_, i) => -5 + (i / 500) * 10);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = Math.sinh(t);
+            return { x, y: (3 * x * x - 1) / (2 * x * x + 5), z: 0 };
+          });
+      })(),
       color: "#0d9488",
       showPoints: false,
     },
     {
       points: [
-        { x: -10, y: 1.5, z: 0 },
-        { x: 0, y: 1.5, z: 0 },
-        { x: 10, y: 1.5, z: 0 },
+      { x: -160, y: 1.5, z: 0 },
+      { x: -10, y: 1.5, z: 0 },
+      { x: 0, y: 1.5, z: 0 },
+      { x: 10, y: 1.5, z: 0 },
+      { x: 160, y: 1.5, z: 0 },
       ],
       smooth: false,
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=1.5" />, at: 1, offset: [2, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=1.5" />, at: 2, offset: [2, 0.5, 0] }],
     },
   ]}
   cameraPosition={[10, 6, 10]}
@@ -222,7 +241,7 @@ Oblique asymptotes appear when <InlineMath math="\text{degree of numerator} = \t
 **Solution:**
 Using polynomial division:
 
-<BlockMath math="f(x) = \frac{x^2 + 2x - 1}{x - 1} = x + 3 + \frac{2}{x - 1}" />
+<BlockMath math="\begin{aligned} f(x) &amp;= \frac{x^2 + 2x - 1}{x - 1} \\ &amp;= x + 3 + \frac{2}{x - 1} \end{aligned}" />
 
 When <InlineMath math="x \to \pm\infty" />, the term <InlineMath math="\frac{2}{x - 1} \to 0" />
 
@@ -244,46 +263,57 @@ Oblique asymptote: <InlineMath math="y = x + 3" />
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 30 }, (_, i) => {
-        const x = -8 + i * 0.3;
-        if (Math.abs(x - 1) < 0.1) return null;
-        const y = (x * x + 2 * x - 1) / (x - 1);
-        return { x, y, z: 0 };
-      }).filter((p) => p !== null),
+      points: (() => {
+        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 11);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = 1 - Math.exp(t);
+            return { x, y: (x * x + 2 * x - 1) / (x - 1), z: 0 };
+          });
+      })(),
       color: "#9333ea",
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 30 }, (_, i) => {
-        const x = 1.3 + i * 0.3;
-        const y = (x * x + 2 * x - 1) / (x - 1);
-        return { x, y, z: 0 };
-      }),
+      points: (() => {
+        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 10);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = 1 + Math.exp(t);
+            return { x, y: (x * x + 2 * x - 1) / (x - 1), z: 0 };
+          });
+      })(),
       color: "#9333ea",
       showPoints: false,
     },
     {
       points: [
-        { x: -8, y: -5, z: 0 },
-        { x: 0, y: 3, z: 0 },
-        { x: 10, y: 13, z: 0 },
+      { x: -160, y: -157, z: 0 },
+      { x: -8, y: -5, z: 0 },
+      { x: 0, y: 3, z: 0 },
+      { x: 10, y: 13, z: 0 },
+      { x: 160, y: 163, z: 0 },
       ],
       smooth: false,
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=x+3" />, at: 1, offset: [3, 1.5, 0] }],
+      labels: [{ text: <InlineMath math="y=x+3" />, at: 2, offset: [3, 1.5, 0] }],
     },
     {
       points: [
-        { x: 1, y: -10, z: 0 },
-        { x: 1, y: 0, z: 0 },
-        { x: 1, y: 15, z: 0 },
+      { x: 1, y: -80, z: 0 },
+      { x: 1, y: -10, z: 0 },
+      { x: 1, y: 0, z: 0 },
+      { x: 1, y: 15, z: 0 },
+      { x: 1, y: 80, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x=1" />, at: 1, offset: [1, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="x=1" />, at: 2, offset: [1, -0.5, 0] }],
     },
   ]}
   cameraPosition={[10, 6, 10]}
@@ -301,23 +331,23 @@ Draw the asymptotes first. A vertical asymptote marks the input value approached
 
 **Complete Example:** Draw the graph of <InlineMath math="f(x) = \frac{x + 1}{x - 2}" />
 
-**Step** <InlineMath math="1" />: Find asymptotes
+**Step** 1: Find asymptotes
 
 - Vertical asymptote: <InlineMath math="x = 2" /> (<InlineMath math="\text{denominator} = 0" />)
 - Horizontal asymptote: <InlineMath math="y = 1" /> (same degree, coefficient ratio <InlineMath math="= 1/1" />)
 
-**Step** <InlineMath math="2" />: Intercepts
+**Step** 2: Intercepts
 
 - <InlineMath math="y" />-axis: <InlineMath math="f(0) = \frac{0 + 1}{0 - 2} = -\frac{1}{2}" />
 - <InlineMath math="x" />-axis: <InlineMath math="0 = \frac{x + 1}{x - 2}" />, so <InlineMath math="x = -1" />
 
-**Step** <InlineMath math="3" />: Behavior around asymptotes
+**Step** 3: Behavior around asymptotes
 
 - When <InlineMath math="x \to 2^-" />: <InlineMath math="f(x) \to -\infty" />
 - When <InlineMath math="x \to 2^+" />: <InlineMath math="f(x) \to +\infty" />
 - When <InlineMath math="x \to \pm\infty" />: <InlineMath math="f(x) \to 1" />
 
-**Step** <InlineMath math="4" />: Value table to help with drawing
+**Step** 4: Value table to help with drawing
 
 | <InlineMath math="x" />  | <InlineMath math="f(x) = \frac{x + 1}{x - 2}" />                  | Description                      |
 | ------------------------ | ----------------------------------------------------------------- | -------------------------------- |
@@ -343,48 +373,57 @@ Draw the asymptotes first. A vertical asymptote marks the input value approached
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 40 }, (_, i) => {
-        const x = -5 + i * 0.175;
-        if (Math.abs(x - 2) < 0.05) return null;
-        const y = (x + 1) / (x - 2);
-        if (Math.abs(y) > 20) return null;
-        return { x, y, z: 0 };
-      }).filter((p) => p !== null),
+      points: (() => {
+        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 11);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = 2 - Math.exp(t);
+            return { x, y: (x + 1) / (x - 2), z: 0 };
+          });
+      })(),
       color: "#0284c7",
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 40 }, (_, i) => {
-        const x = 2.05 + i * 0.175;
-        const y = (x + 1) / (x - 2);
-        if (Math.abs(y) > 20) return null;
-        return { x, y, z: 0 };
-      }).filter((p) => p !== null),
+      points: (() => {
+        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 10);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = 2 + Math.exp(t);
+            return { x, y: (x + 1) / (x - 2), z: 0 };
+          });
+      })(),
       color: "#0284c7",
       showPoints: false,
     },
     {
       points: [
-        { x: 2, y: -20, z: 0 },
-        { x: 2, y: 0, z: 0 },
-        { x: 2, y: 20, z: 0 },
+      { x: 2, y: -80, z: 0 },
+      { x: 2, y: -20, z: 0 },
+      { x: 2, y: 0, z: 0 },
+      { x: 2, y: 20, z: 0 },
+      { x: 2, y: 80, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x=2" />, at: 1, offset: [2, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="x=2" />, at: 2, offset: [2, -0.5, 0] }],
     },
     {
       points: [
-        { x: -5, y: 1, z: 0 },
-        { x: 0, y: 1, z: 0 },
-        { x: 9, y: 1, z: 0 },
+      { x: -160, y: 1, z: 0 },
+      { x: -5, y: 1, z: 0 },
+      { x: 0, y: 1, z: 0 },
+      { x: 9, y: 1, z: 0 },
+      { x: 160, y: 1, z: 0 },
       ],
       smooth: false,
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=1" />, at: 1, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=1" />, at: 2, offset: [1, 0.5, 0] }],
     },
     {
       points: [{ x: -1, y: 0, z: 0 }],
@@ -414,7 +453,7 @@ Draw the asymptotes first. A vertical asymptote marks the input value approached
 
 ### Worked Solutions
 
-**Problem** <InlineMath math="1" />:
+**Problem** 1:
 
 The denominator is zero at <InlineMath math="x = 3" />, while the numerator there is <InlineMath math="2(3)^2 - 3(3) + 1 = 10" />. Because the numerator does not vanish, <InlineMath math="x = 3" /> is a vertical asymptote.
 
@@ -424,7 +463,7 @@ Polynomial division separates the long-term linear behavior from the remainder:
 
 As <InlineMath math="x \to \pm\infty" />, the remainder <InlineMath math="\frac{10}{x - 3} \to 0" />. Therefore the oblique asymptote is <InlineMath math="y = 2x + 3" />.
 
-**Problem** <InlineMath math="2" />:
+**Problem** 2:
 
 Factor both polynomials before classifying their zeros:
 
@@ -435,13 +474,13 @@ Factor both polynomials before classifying their zeros:
 
 There is no common factor to cancel. The denominator zeros <InlineMath math="x = -3" /> and <InlineMath math="x = 3" /> are therefore vertical asymptotes. The numerator zeros <InlineMath math="x = -2" /> and <InlineMath math="x = 2" /> are <InlineMath math="x" />-intercepts. Since numerator and denominator have the same degree and both leading coefficients are <InlineMath math="1" />, the horizontal asymptote is <InlineMath math="y = 1" />.
 
-**Problem** <InlineMath math="3" />:
+**Problem** 3:
 
 <BlockMath math="C(x) = \frac{500 + 3x}{x} = \frac{500}{x} + 3" />
 
 When <InlineMath math="x \to \infty" />, <InlineMath math="\frac{500}{x} \to 0" />. Therefore <InlineMath math="C(x) \to 3" />. The cost approaches <InlineMath math="3" /> per unit but does not equal that value for any finite positive <InlineMath math="x" />.
 
-**Problem** <InlineMath math="4" />:
+**Problem** 4:
 
 Factor the denominator as <InlineMath math="x^2 - 1 = (x - 1)(x + 1)" />. Neither factor cancels with the numerator, so the vertical asymptotes are <InlineMath math="x = -1" /> and <InlineMath math="x = 1" />. Because the numerator degree is smaller than the denominator degree, <InlineMath math="h(x) \to 0" /> as <InlineMath math="x \to \pm\infty" />. Hence the horizontal asymptote is <InlineMath math="y = 0" />.
 
@@ -474,69 +513,84 @@ Value table for <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 20 }, (_, i) => {
-        const x = -3 + i * 0.095;
-        const y = x / (x * x - 1);
-        if (Math.abs(y) > 10) return null;
-        return { x, y, z: 0 };
-      }).filter((p) => p !== null),
+      points: (() => {
+        const parameters = Array.from({ length: 551 }, (_, i) => -6 + (i / 550) * 11);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = -1 - Math.exp(t);
+            return { x, y: x / (x * x - 1), z: 0 };
+          });
+      })(),
       color: "#9333ea",
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 20 }, (_, i) => {
-        const x = -0.95 + i * 0.09;
-        const y = x / (x * x - 1);
-        if (Math.abs(y) > 10) return null;
-        return { x, y, z: 0 };
-      }).filter((p) => p !== null),
+      points: (() => {
+        const parameters = Array.from({ length: 501 }, (_, i) => -4 + (i / 500) * 8);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = Math.tanh(t);
+            return { x, y: x / (x * x - 1), z: 0 };
+          });
+      })(),
       color: "#9333ea",
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 20 }, (_, i) => {
-        const x = 1.05 + i * 0.095;
-        const y = x / (x * x - 1);
-        if (Math.abs(y) > 10) return null;
-        return { x, y, z: 0 };
-      }).filter((p) => p !== null),
+      points: (() => {
+        const parameters = Array.from({ length: 501 }, (_, i) => -6 + (i / 500) * 10);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = 1 + Math.exp(t);
+            return { x, y: x / (x * x - 1), z: 0 };
+          });
+      })(),
       color: "#9333ea",
       showPoints: false,
     },
     {
       points: [
-        { x: -1, y: -10, z: 0 },
-        { x: -1, y: 0, z: 0 },
-        { x: -1, y: 10, z: 0 },
+      { x: -1, y: -80, z: 0 },
+      { x: -1, y: -10, z: 0 },
+      { x: -1, y: 0, z: 0 },
+      { x: -1, y: 10, z: 0 },
+      { x: -1, y: 80, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x=-1" />, at: 1, offset: [-2, 1, 0] }],
+      labels: [{ text: <InlineMath math="x=-1" />, at: 2, offset: [-2, 1, 0] }],
     },
     {
       points: [
-        { x: 1, y: -10, z: 0 },
-        { x: 1, y: 0, z: 0 },
-        { x: 1, y: 10, z: 0 },
+      { x: 1, y: -80, z: 0 },
+      { x: 1, y: -10, z: 0 },
+      { x: 1, y: 0, z: 0 },
+      { x: 1, y: 10, z: 0 },
+      { x: 1, y: 80, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x=1" />, at: 1, offset: [2, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="x=1" />, at: 2, offset: [2, -0.5, 0] }],
     },
     {
       points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
+      { x: -160, y: 0, z: 0 },
+      { x: -3, y: 0, z: 0 },
+      { x: 0, y: 0, z: 0 },
+      { x: 3, y: 0, z: 0 },
+      { x: 160, y: 0, z: 0 },
       ],
       smooth: false,
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=0" />, at: 1, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=0" />, at: 2, offset: [1, 0.5, 0] }],
     },
   ]}
   cameraPosition={[10, 6, 10]}

@@ -3,7 +3,7 @@ export const metadata = {
    description: "Buktikan bahwa matriks normal memiliki basis vektor eigen ortonormal, lalu gunakan basis itu untuk diagonalisasi uniter.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-07-16",
-   dateModified: "2026-09-01",
+   dateModified: "2026-09-12",
    subject: "Metode Linear AI",
 };
 
@@ -36,7 +36,7 @@ Ini berarti <InlineMath math="A^H v_i = \overline{\lambda_i} v_i" />, sehingga:
 
 <MathContainer>
 <BlockMath math="AA^H v_i = A(\overline{\lambda_i} v_i) = \overline{\lambda_i} \lambda_i v_i" />
-<BlockMath math="= \lambda_i \overline{\lambda_i} v_i = \lambda_i (A^H v_i) = A^H (\lambda_i v_i) = A^H A v_i" />
+<BlockMath math="\begin{aligned}  &amp;= \lambda_i \overline{\lambda_i} v_i \\ &amp;= \lambda_i (A^H v_i) \\ &amp;= A^H (\lambda_i v_i) \\ &amp;= A^H A v_i \end{aligned}" />
 </MathContainer>
 
 Karena ini berlaku untuk semua vektor basis, maka <InlineMath math="AA^H = A^H A" />, yang berarti <InlineMath math="A" /> normal.
@@ -184,8 +184,8 @@ Rotasi seperempat putaran dapat ditulis dengan matriks berikut:
 Matriks <InlineMath math="R" /> bersifat real dan ortogonal, sehingga normal. Nilai eigennya adalah <InlineMath math="i" /> dan <InlineMath math="-i" />, dengan vektor eigen ternormalisasi berikut:
 
 <MathContainer>
-<BlockMath math="u_+=\frac1{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix},\qquad u_-=\frac1{\sqrt2}\begin{pmatrix}1\\i\end{pmatrix}" />
-<BlockMath math="U=(u_+\quad u_-),\qquad U^HRU=\operatorname{diag}(i,-i)" />
+<BlockMath math="\begin{aligned} &amp;u_+=\frac1{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix}, \\ &amp;u_-=\frac1{\sqrt2}\begin{pmatrix}1\\i\end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;U=(u_+\quad u_-), \\ &amp;U^HRU=\operatorname{diag}(i,-i) \end{aligned}" />
 </MathContainer>
 
 Jadi, <InlineMath math="R" /> dapat didiagonalkan secara uniter pada <InlineMath math="\mathbb{C}" />, tetapi tidak dapat didiagonalkan dengan matriks ortogonal real. Pada <InlineMath math="\mathbb{R}" />, rotasi itu sendiri merupakan blok <InlineMath math="2\times2" /> yang diperlukan.

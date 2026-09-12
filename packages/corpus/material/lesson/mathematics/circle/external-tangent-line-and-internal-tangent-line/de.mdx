@@ -4,7 +4,7 @@ export const metadata = {
   description: "Gemeinsame Tangenten zweier Kreise: geometrische Herleitung, Existenzbedingungen und vollständig gerechnete Beispiele.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Kreis",
 };
 
@@ -102,15 +102,24 @@ Eine äußere gemeinsame Tangente berührt beide Kreise, ohne die Strecke zwisch
         const tux = tdx / tlen;
         const tuy = tdy / tlen;
 
-        return [
+        const points = [
           { x: T1x - 4 * tux, y: T1y - 4 * tuy, z: 0 },
           { x: T2x + 4 * tux, y: T2y + 4 * tuy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <InlineMath math="g_1" />, at: 1, offset: [0, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="g_1" />, at: 2, offset: [-5, 0.5, 0] }],
     },
     {
       points: (() => {
@@ -152,19 +161,29 @@ Eine äußere gemeinsame Tangente berührt beide Kreise, ohne die Strecke zwisch
         const tux = tdx / tlen;
         const tuy = tdy / tlen;
 
-        return [
+        const points = [
           { x: T1x - 4 * tux, y: T1y - 4 * tuy, z: 0 },
           { x: T2x + 4 * tux, y: T2y + 4 * tuy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
       color: "#0d9488",
       showPoints: false,
-      labels: [{ text: <InlineMath math="g_2" />, at: 1, offset: [0, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="g_2" />, at: 2, offset: [-5, -0.5, 0] }],
     },
 
 ]}
-cameraPosition={[0, 0, 15]}
+cameraPosition={[0.5, 0, 16.5]}
+  cameraTarget={[0.5, 0, 0]}
 />
 
 ### Längenformel für die äußere gemeinsame Tangente
@@ -329,13 +348,14 @@ Die beiden Kreise haben die Mittelpunkte <InlineMath math="A(-3, 0)" /> und <Inl
     },
 
 ]}
-cameraPosition={[0, 0, 12]}
+cameraPosition={[0.5, 0, 13]}
+  cameraTarget={[0.5, 0, 0]}
 />
 
 **Lösung:**
 
 <MathContainer>
-  <BlockMath math="d = \sqrt{(3-(-3))^2 + (0-0)^2} = \sqrt{36} = 6" />
+  <BlockMath math="\begin{aligned} d &amp;= \sqrt{(3-(-3))^2 + (0-0)^2} \\ &amp;= \sqrt{36} \\ &amp;= 6 \end{aligned}" />
   <BlockMath math="l = \sqrt{d^2 - (r_2 - r_1)^2}" />
   <BlockMath math="l = \sqrt{6^2 - (2{,}5 - 1{,}5)^2}" />
   <BlockMath math="l = \sqrt{36 - 1}" />
@@ -414,15 +434,24 @@ Eine innere gemeinsame Tangente ist eine Gerade, die beide Kreise von gegenüber
         const ux = dx / len;
         const uy = dy / len;
 
-        return [
+        const points = [
           { x: T1x - 3 * ux, y: T1y - 3 * uy, z: 0 },
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="h_1" />, at: 0, offset: [-1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="h_1" />, at: 1, offset: [-1, 0.5, 0] }],
     },
     {
       points: (() => {
@@ -447,15 +476,24 @@ Eine innere gemeinsame Tangente ist eine Gerade, die beide Kreise von gegenüber
         const ux = dx / len;
         const uy = dy / len;
 
-        return [
+        const points = [
           { x: T1x - 3 * ux, y: T1y - 3 * uy, z: 0 },
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="h_2" />, at: 0, offset: [-1, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="h_2" />, at: 1, offset: [-1, -0.5, 0] }],
     },
 
 ]}
@@ -592,7 +630,7 @@ cameraPosition={[0, 0, 18]}
 Zuerst prüfen wir, ob eine innere gemeinsame Tangente existiert:
 
 <MathContainer>
-  <BlockMath math="d = \sqrt{(5-(-5))^2 + (0-0)^2} = \sqrt{100} = 10" />
+  <BlockMath math="\begin{aligned} d &amp;= \sqrt{(5-(-5))^2 + (0-0)^2} \\ &amp;= \sqrt{100} \\ &amp;= 10 \end{aligned}" />
   <BlockMath math="r_1 + r_2 = 2 + 3 = 5" />
   <BlockMath math="d = 10 > 5 = r_1 + r_2 \space \checkmark" />
 </MathContainer>
@@ -762,9 +800,18 @@ Der erste Kreis hat den Mittelpunkt <InlineMath math="(-6, 0)" /> und den Radius
         const tux = tdx / tlen;
         const tuy = tdy / tlen;
 
-        return [
+        const points = [
           { x: T1x - 2 * tux, y: T1y - 2 * tuy, z: 0 },
           { x: T2x + 2 * tux, y: T2y + 2 * tuy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
@@ -810,9 +857,18 @@ Der erste Kreis hat den Mittelpunkt <InlineMath math="(-6, 0)" /> und den Radius
         const tux = tdx / tlen;
         const tuy = tdy / tlen;
 
-        return [
+        const points = [
           { x: T1x - 2 * tux, y: T1y - 2 * tuy, z: 0 },
           { x: T2x + 2 * tux, y: T2y + 2 * tuy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
@@ -842,9 +898,18 @@ Der erste Kreis hat den Mittelpunkt <InlineMath math="(-6, 0)" /> und den Radius
         const ux = dx / len;
         const uy = dy / len;
 
-        return [
+        const points = [
           { x: T1x - 1 * ux, y: T1y - 1 * uy, z: 0 },
           { x: T2x + 1 * ux, y: T2y + 1 * uy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
@@ -874,9 +939,18 @@ Der erste Kreis hat den Mittelpunkt <InlineMath math="(-6, 0)" /> und den Radius
         const ux = dx / len;
         const uy = dy / len;
 
-        return [
+        const points = [
           { x: T1x - 1 * ux, y: T1y - 1 * uy, z: 0 },
           { x: T2x + 1 * ux, y: T2y + 1 * uy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
@@ -885,15 +959,16 @@ Der erste Kreis hat den Mittelpunkt <InlineMath math="(-6, 0)" /> und den Radius
     },
 
 ]}
-cameraPosition={[0, 0, 18]}
+cameraPosition={[0.5, 0, 19]}
+  cameraTarget={[0.5, 0, 0]}
 />
 
 **Lösung:**
 
 <MathContainer>
   <BlockMath math="d = \sqrt{(6-(-6))^2 + (0-0)^2} = 12" />
-  <BlockMath math="l_{\mathrm{ext}} = \sqrt{12^2 - (2-1)^2} = \sqrt{144 - 1} = \sqrt{143}" />
-  <BlockMath math="l_{\mathrm{int}} = \sqrt{12^2 - (1+2)^2} = \sqrt{144 - 9} = \sqrt{135} = 3\sqrt{15}" />
+  <BlockMath math="\begin{aligned} l_{\mathrm{ext}} &amp;= \sqrt{12^2 - (2-1)^2} \\ &amp;= \sqrt{144 - 1} \\ &amp;= \sqrt{143} \end{aligned}" />
+  <BlockMath math="\begin{aligned} l_{\mathrm{int}} &amp;= \sqrt{12^2 - (1+2)^2} \\ &amp;= \sqrt{144 - 9} \\ &amp;= \sqrt{135} \\ &amp;= 3\sqrt{15} \end{aligned}" />
 </MathContainer>
 
 ### Nahe beieinanderliegende Kreise
@@ -931,19 +1006,41 @@ Der erste Kreis hat den Mittelpunkt <InlineMath math="(-2, 0)" /> und den Radius
       showPoints: false,
     },
     {
-      points: [
-        { x: -5, y: 1.5, z: 0 },
-        { x: 5, y: 1.5, z: 0 },
-      ],
+      points: (() => {
+        const points = [
+          { x: -5, y: 1.5, z: 0 },
+          { x: 5, y: 1.5, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
+        ];
+      })(),
       color: "#0891b2",
       showPoints: false,
       smooth: false,
     },
     {
-      points: [
-        { x: -5, y: -1.5, z: 0 },
-        { x: 5, y: -1.5, z: 0 },
-      ],
+      points: (() => {
+        const points = [
+          { x: -5, y: -1.5, z: 0 },
+          { x: 5, y: -1.5, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
+        ];
+      })(),
       color: "#0d9488",
       showPoints: false,
       smooth: false,
@@ -971,9 +1068,18 @@ Der erste Kreis hat den Mittelpunkt <InlineMath math="(-2, 0)" /> und den Radius
         const ux = dx / len;
         const uy = dy / len;
 
-        return [
+        const points = [
           { x: T1x - 2 * ux, y: T1y - 2 * uy, z: 0 },
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
@@ -1003,9 +1109,18 @@ Der erste Kreis hat den Mittelpunkt <InlineMath math="(-2, 0)" /> und den Radius
         const ux = dx / len;
         const uy = dy / len;
 
-        return [
+        const points = [
           { x: T1x - 2 * ux, y: T1y - 2 * uy, z: 0 },
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
@@ -1023,7 +1138,7 @@ cameraPosition={[0, 0, 10]}
   <BlockMath math="d = \sqrt{(2-(-2))^2 + (0-0)^2} = 4" />
   <BlockMath math="r_1 = r_2 = 1{,}5" />
   <BlockMath math="l_{\mathrm{ext}} = d = 4" />
-  <BlockMath math="l_{\mathrm{int}} = \sqrt{4^2 - (1{,}5+1{,}5)^2} = \sqrt{16 - 9} = \sqrt{7}" />
+  <BlockMath math="\begin{aligned} l_{\mathrm{int}} &amp;= \sqrt{4^2 - (1{,}5+1{,}5)^2} \\ &amp;= \sqrt{16 - 9} \\ &amp;= \sqrt{7} \end{aligned}" />
 </MathContainer>
 
 ## Übungsaufgaben
@@ -1050,16 +1165,16 @@ cameraPosition={[0, 0, 10]}
 
    <MathContainer>
      <BlockMath math="d = \sqrt{(4-(-4))^2 + (0-0)^2} = 8" />
-     <BlockMath math="l_{\mathrm{ext}} = \sqrt{8^2 - (3-2)^2} = \sqrt{64 - 1} = \sqrt{63} = 3\sqrt{7}" />
-     <BlockMath math="l_{\mathrm{int}} = \sqrt{8^2 - (2+3)^2} = \sqrt{64 - 25} = \sqrt{39}" />
+     <BlockMath math="\begin{aligned} l_{\mathrm{ext}} &amp;= \sqrt{8^2 - (3-2)^2} \\ &amp;= \sqrt{64 - 1} \\ &amp;= \sqrt{63} \\ &amp;= 3\sqrt{7} \end{aligned}" />
+     <BlockMath math="\begin{aligned} l_{\mathrm{int}} &amp;= \sqrt{8^2 - (2+3)^2} \\ &amp;= \sqrt{64 - 25} \\ &amp;= \sqrt{39} \end{aligned}" />
    </MathContainer>
 
 2. **Kreise mit unterschiedlichen Mittelpunkten**
 
    <MathContainer>
      <BlockMath math="d = \sqrt{(10-0)^2 + (0-0)^2} = 10" />
-     <BlockMath math="l_{\mathrm{ext}} = \sqrt{10^2 - (4-2)^2} = \sqrt{100 - 4} = \sqrt{96} = 4\sqrt{6}" />
-     <BlockMath math="l_{\mathrm{int}} = \sqrt{10^2 - (4+2)^2} = \sqrt{100 - 36} = \sqrt{64} = 8" />
+     <BlockMath math="\begin{aligned} l_{\mathrm{ext}} &amp;= \sqrt{10^2 - (4-2)^2} \\ &amp;= \sqrt{100 - 4} \\ &amp;= \sqrt{96} \\ &amp;= 4\sqrt{6} \end{aligned}" />
+     <BlockMath math="\begin{aligned} l_{\mathrm{int}} &amp;= \sqrt{10^2 - (4+2)^2} \\ &amp;= \sqrt{100 - 36} \\ &amp;= \sqrt{64} \\ &amp;= 8 \end{aligned}" />
    </MathContainer>
 
 3. **Mittelpunktabstand aus der inneren Tangente bestimmen**

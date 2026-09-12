@@ -4,7 +4,7 @@ export const metadata = {
   description: "Use the unit circle to find trigonometric values in every quadrant from signs and reference angles.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Functions and Their Modeling",
 };
 
@@ -42,16 +42,10 @@ The following details connect the angle to its coordinates:
 
 As the point moves around the circle, the <InlineMath math="x" /> and <InlineMath math="y" /> coordinates can be positive or negative. The signs of those coordinates determine the signs of the trigonometric functions in each quadrant.
 
-<Triangle
+<UnitCircle
   title="Sign Change Visualization"
   description={<>Observe how <InlineMath math="\sin" />, <InlineMath math="\cos" />, and <InlineMath math="\tan" /> values change as the angle passes through each quadrant.</>}
-  angle={0}
-  size={2}
-  labels={{
-    opposite: "Opposite Side",
-    adjacent: "Adjacent Side",
-    hypotenuse: "Hypotenuse",
-  }}
+  angle={135}
 />
 
 **Signs in each quadrant:**
@@ -164,7 +158,10 @@ Use the periodicity property. Subtract or add multiples of <InlineMath math="360
 
 **Example:**
 
-- <InlineMath math="750^\circ = 750^\circ - 2(360^\circ) = 750^\circ - 720^\circ = 30^\circ" />
+- Subtract two complete turns:
+
+   <BlockMath math="\begin{aligned} &amp;750^\circ - 2(360^\circ) \\ &amp;= 750^\circ - 720^\circ \\ &amp;= 30^\circ \end{aligned}" />
+
 - Therefore <InlineMath math="\sin 750^\circ = \sin 30^\circ = \frac{1}{2}" />
 
 ## Exercises
@@ -202,8 +199,8 @@ Use the periodicity property. Subtract or add multiples of <InlineMath math="360
    <MathContainer>
      <BlockMath math="\sin(-60^\circ) = -\sin 60^\circ = -\frac{\sqrt{3}}{2}" />
      <BlockMath math="\cos 210^\circ = -\cos 30^\circ = -\frac{\sqrt{3}}{2}" />
-     <BlockMath math="\tan(-135^\circ) = -\tan 135^\circ = -(-\tan 45^\circ) = 1" />
-     <BlockMath math="\text{Result} = -\frac{\sqrt{3}}{2} - \frac{\sqrt{3}}{2} - 1 = -\sqrt{3} - 1" />
+     <BlockMath math="\begin{aligned} \tan(-135^\circ) &amp;= -\tan 135^\circ \\ &amp;= -(-\tan 45^\circ) \\ &amp;= 1 \end{aligned}" />
+     <BlockMath math="\begin{aligned} \text{Result} &amp;= -\frac{\sqrt{3}}{2} - \frac{\sqrt{3}}{2} - 1 \\ &amp;= -\sqrt{3} - 1 \end{aligned}" />
    </MathContainer>
 
 3. Given <InlineMath math="\sin \theta = \frac{3}{5}" /> in quadrant II.
@@ -216,30 +213,34 @@ Use the periodicity property. Subtract or add multiples of <InlineMath math="360
      <BlockMath math="\sin^2 \theta + \cos^2 \theta = 1" />
      <BlockMath math="\left(\frac{3}{5}\right)^2 + \cos^2 \theta = 1" />
      <BlockMath math="\cos^2 \theta = 1 - \frac{9}{25} = \frac{16}{25}" />
-     <BlockMath math="\cos \theta = -\frac{4}{5} \text{ (negative in quadrant II)}" />
+   </MathContainer>
+        The value is negative in quadrant II:
+
+   <MathContainer>
+     <BlockMath math="\cos\theta=-\frac45" />
      <BlockMath math="\tan \theta = \frac{\sin \theta}{\cos \theta} = \frac{3/5}{-4/5} = -\frac{3}{4}" />
    </MathContainer>
 
 4. First simplify the angles.
 
-   <BlockMath math="840^\circ = 840^\circ - 2(360^\circ) = 120^\circ" />
+   <BlockMath math="\begin{aligned} &amp;840^\circ - 2(360^\circ) \\ &amp;= 120^\circ \end{aligned}" />
 
    For <InlineMath math="-330^\circ" />, add <InlineMath math="360^\circ" /> to get <InlineMath math="30^\circ" />.
 
    <MathContainer>
-     <BlockMath math="\sin 840^\circ = \sin 120^\circ = \sin(180^\circ - 60^\circ) = \sin 60^\circ = \frac{\sqrt{3}}{2}" />
-     <BlockMath math="\cos(-330^\circ) = \cos 330^\circ = \cos(360^\circ - 30^\circ) = \cos 30^\circ = \frac{\sqrt{3}}{2}" />
-     <BlockMath math="\sin 840^\circ \cdot \cos(-330^\circ) = \frac{\sqrt{3}}{2} \cdot \frac{\sqrt{3}}{2} = \frac{3}{4}" />
+     <BlockMath math="\begin{aligned} \sin 840^\circ &amp;= \sin 120^\circ \\ &amp;= \sin(180^\circ - 60^\circ) \\ &amp;= \sin 60^\circ \\ &amp;= \frac{\sqrt{3}}{2} \end{aligned}" />
+     <BlockMath math="\begin{aligned} \cos(-330^\circ) &amp;= \cos 330^\circ \\ &amp;= \cos(360^\circ - 30^\circ) \\ &amp;= \cos 30^\circ \\ &amp;= \frac{\sqrt{3}}{2} \end{aligned}" />
+     <BlockMath math="\begin{aligned} \sin 840^\circ \cdot \cos(-330^\circ) &amp;= \frac{\sqrt{3}}{2} \cdot \frac{\sqrt{3}}{2} \\ &amp;= \frac{3}{4} \end{aligned}" />
    </MathContainer>
 
 5. Angle <InlineMath math="1050^\circ" /> needs to be simplified first.
 
-   <BlockMath math="1050^\circ = 1050^\circ - 2(360^\circ) = 1050^\circ - 720^\circ = 330^\circ" />
+   <BlockMath math="\begin{aligned} &amp;1050^\circ - 2(360^\circ) \\ &amp;= 1050^\circ - 720^\circ \\ &amp;= 330^\circ \end{aligned}" />
 
    Angle <InlineMath math="330^\circ" /> is in quadrant IV with reference angle <InlineMath math="30^\circ" />.
 
    <MathContainer>
      <BlockMath math="x = \cos 330^\circ = \cos 30^\circ = \frac{\sqrt{3}}{2}" />
      <BlockMath math="y = \sin 330^\circ = -\sin 30^\circ = -\frac{1}{2}" />
-     <BlockMath math="\text{Blade tip coordinates: } \left(\frac{\sqrt{3}}{2}, -\frac{1}{2}\right)" />
    </MathContainer>
+        The blade tip has coordinates <InlineMath math="\left(\frac{\sqrt3}{2},-\frac12\right)" />.

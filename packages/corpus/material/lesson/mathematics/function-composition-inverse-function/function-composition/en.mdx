@@ -3,7 +3,7 @@ export const metadata = {
   description: "Compose functions in sequence and compare the result when their order is reversed.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Function Composition and Inverse Function",
 };
 
@@ -45,21 +45,21 @@ Now compose these two functions according to the promo sequence:
 
 1.  **Promo A (Discount first, then price reduction):** We are looking for <InlineMath math="(p \circ d)(x)" />
 
-    <BlockMath math="(p \circ d)(x) = p(d(x)) = p(0.80x) = 0.80x - 25000" />
+    <BlockMath math="\begin{aligned} (p \circ d)(x) &amp;= p(d(x)) \\ &amp;= p(0.80x) \\ &amp;= 0.80x - 25000 \end{aligned}" />
 
     For <InlineMath math="x = 200000" />:
 
-    <BlockMath math="(p \circ d)(200000) = 0.80(200000) - 25000 = 160000 - 25000 = 135000" />
+    <BlockMath math="\begin{aligned} &amp;(p \circ d)(200000) \\ &amp;= 0.80(200000) - 25000 \\ &amp;= 160000 - 25000 \\ &amp;= 135000 \end{aligned}" />
 
     So, the final price with Promo A is <InlineMath math="\text{Rp}135{,}000.00" />.
 
 2.  **Promo B (Price reduction first, then discount):** We are looking for <InlineMath math="(d \circ p)(x)" />
 
-    <BlockMath math="(d \circ p)(x) = d(p(x)) = d(x - 25000) = 0.80(x - 25000) = 0.80x - 20000" />
+    <BlockMath math="\begin{aligned}(d \circ p)(x) &= d(p(x)) \\ &= d(x - 25000) \\ &= 0.80(x - 25000) \\ &= 0.80x - 20000\end{aligned}" />
 
     For <InlineMath math="x = 200000" />:
 
-    <BlockMath math="(d \circ p)(200000) = 0.80(200000) - 20000 = 160000 - 20000 = 140000" />
+    <BlockMath math="\begin{aligned} &amp;(d \circ p)(200000) \\ &amp;= 0.80(200000) - 20000 \\ &amp;= 160000 - 20000 \\ &amp;= 140000 \end{aligned}" />
 
     So, the final price with Promo B is <InlineMath math="\text{Rp}140{,}000.00" />.
 
@@ -84,7 +84,7 @@ Determine <InlineMath math="(f \circ g)(x)" /> and <InlineMath math="(g \circ f)
 
     Substitute <InlineMath math="x" /> in <InlineMath math="f(x)" /> with <InlineMath math="g(x)" />:
 
-    <BlockMath math="f(x^2 - 3) = 2(x^2 - 3) + 1 = 2x^2 - 6 + 1 = 2x^2 - 5" />
+    <BlockMath math="\begin{aligned} f(x^2 - 3) &amp;= 2(x^2 - 3) + 1 \\ &amp;= 2x^2 - 6 + 1 \\ &amp;= 2x^2 - 5 \end{aligned}" />
 
     So, <InlineMath math="(f \circ g)(x) = 2x^2 - 5" />.
 
@@ -94,7 +94,7 @@ Determine <InlineMath math="(f \circ g)(x)" /> and <InlineMath math="(g \circ f)
 
     Substitute <InlineMath math="x" /> in <InlineMath math="g(x)" /> with <InlineMath math="f(x)" />:
 
-    <BlockMath math="g(2x + 1) = (2x + 1)^2 - 3 = (4x^2 + 4x + 1) - 3 = 4x^2 + 4x - 2" />
+    <BlockMath math="\begin{aligned} g(2x + 1) &amp;= (2x + 1)^2 - 3 \\ &amp;= (4x^2 + 4x + 1) - 3 \\ &amp;= 4x^2 + 4x - 2 \end{aligned}" />
 
     So, <InlineMath math="(g \circ f)(x) = 4x^2 + 4x - 2" />.
 

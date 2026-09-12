@@ -3,7 +3,7 @@ export const metadata = {
   description: "Tentukan apakah garis memotong, menyinggung, atau tidak bertemu lingkaran melalui diskriminan, lalu hitung titik potongnya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Geometri Analitik",
 };
 
@@ -39,52 +39,85 @@ Visualisasi berikut membandingkan ketiga kasus sekaligus:
       showPoints: false,
     },
     {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const xMin = -5;
-        const xMax = 5;
-        const y = 4.5; // Garis yang tidak berpotongan
-        return {
-          x: xMin + i * (xMax - xMin),
-          y: y,
-          z: 0,
+      points: (() => {
+        const points = Array.from({ length: 2 }, (_, i) => {
+          const xMin = -5;
+          const xMax = 5;
+          const y = 4.5; // Garis yang tidak berpotongan
+          return {
+            x: xMin + i * (xMax - xMin),
+            y: y,
+            z: 0,
+          };
+        });
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
         };
-      }),
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
+        ];
+      })(),
       color: "#ea580c",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Tidak berpotongan", at: 1, offset: [-2, 0.5, 0] }],
+      labels: [{ text: "Tidak berpotongan", at: 2, offset: [-2, 0.5, 0] }],
     },
     {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const xMin = -5;
-        const xMax = 5;
-        const y = 3; // Garis singgung
-        return {
-          x: xMin + i * (xMax - xMin),
-          y: y,
-          z: 0,
+      points: (() => {
+        const points = Array.from({ length: 2 }, (_, i) => {
+          const xMin = -5;
+          const xMax = 5;
+          const y = 3; // Garis singgung
+          return {
+            x: xMin + i * (xMax - xMin),
+            y: y,
+            z: 0,
+          };
+        });
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
         };
-      }),
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
+        ];
+      })(),
       color: "#0891b2",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Menyinggung", at: 1, offset: [-2, 0.5, 0] }],
+      labels: [{ text: "Menyinggung", at: 2, offset: [-2, 0.5, 0] }],
     },
     {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const xMin = -5;
-        const xMax = 5;
-        const y = 1; // Garis memotong
-        return {
-          x: xMin + i * (xMax - xMin),
-          y: y,
-          z: 0,
+      points: (() => {
+        const points = Array.from({ length: 2 }, (_, i) => {
+          const xMin = -5;
+          const xMax = 5;
+          const y = 1; // Garis memotong
+          return {
+            x: xMin + i * (xMax - xMin),
+            y: y,
+            z: 0,
+          };
+        });
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
         };
-      }),
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
+        ];
+      })(),
       color: "#0d9488",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Memotong", at: 1, offset: [-2, 0.5, 0] }],
+      labels: [{ text: "Memotong", at: 2, offset: [-2, 0.5, 0] }],
     },
     {
       points: Array.from({ length: 1 }, () => {
@@ -149,9 +182,9 @@ Misalkan kita punya garis dengan persamaan <InlineMath math="y = mx + c" /> dan 
 Ganti setiap <InlineMath math="y" /> pada persamaan lingkaran dengan <InlineMath math="mx+c" />:
 
 <MathContainer>
-  <BlockMath math="x^2 + (mx + c)^2 + Dx + E(mx + c) + F = 0" />
-  <BlockMath math="x^2 + m^2x^2 + 2mcx + c^2 + Dx + Emx + Ec + F = 0" />
-  <BlockMath math="(1 + m^2)x^2 + (2mc + D + Em)x + (c^2 + Ec + F) = 0" />
+  <BlockMath math="\begin{aligned} &amp;x^2 + (mx + c)^2 + Dx + E(mx + c) \\ &amp;+ F = 0 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;x^2 + m^2x^2 + 2mcx + c^2 \\ &amp;+ Dx + Emx + Ec + F = 0 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;(1 + m^2)x^2 + (2mc + D + Em)x \\ &amp;+ (c^2 + Ec + F) = 0 \end{aligned}" />
 </MathContainer>
 
 Hasil substitusi ini membentuk persamaan kuadrat dalam bentuk <InlineMath math="Ax^2 + Bx + C = 0" />. Huruf kapital membedakan koefisien tersebut dari konstanta <InlineMath math="c" /> pada persamaan garis:
@@ -183,8 +216,8 @@ Tentukan kedudukan garis <InlineMath math="y=2x-1" /> terhadap lingkaran <Inline
 Kita substitusikan <InlineMath math="y = 2x - 1" /> ke dalam persamaan lingkaran:
 
 <MathContainer>
-  <BlockMath math="x^2 + (2x - 1)^2 - 4x + 2(2x - 1) - 4 = 0" />
-  <BlockMath math="x^2 + 4x^2 - 4x + 1 - 4x + 4x - 2 - 4 = 0" />
+  <BlockMath math="\begin{aligned} &amp;x^2 + (2x - 1)^2 - 4x + 2(2x - 1) \\ &amp;- 4 = 0 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;x^2 + 4x^2 - 4x + 1 \\ &amp;- 4x + 4x - 2 - 4 = 0 \end{aligned}" />
   <BlockMath math="5x^2 - 4x - 5 = 0" />
 </MathContainer>
 
@@ -254,8 +287,8 @@ Kesimpulannya tetap ditentukan oleh tanda diskriminan.
    Substitusi <InlineMath math="y = -2x + 5" /> ke <InlineMath math="x^2 + y^2 - 6x + 4y + 9 = 0" />:
 
    <MathContainer>
-     <BlockMath math="x^2 + (-2x + 5)^2 - 6x + 4(-2x + 5) + 9 = 0" />
-     <BlockMath math="x^2 + 4x^2 - 20x + 25 - 6x - 8x + 20 + 9 = 0" />
+     <BlockMath math="\begin{aligned} &amp;x^2 + (-2x + 5)^2 \\ &amp;- 6x + 4(-2x + 5) + 9 = 0 \end{aligned}" />
+     <BlockMath math="\begin{aligned} &amp;x^2 + 4x^2 - 20x + 25 \\ &amp;- 6x - 8x + 20 + 9 = 0 \end{aligned}" />
      <BlockMath math="5x^2 - 34x + 54 = 0" />
    </MathContainer>
 

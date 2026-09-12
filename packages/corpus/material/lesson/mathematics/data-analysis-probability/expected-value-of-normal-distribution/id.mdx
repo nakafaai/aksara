@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hubungkan rata-rata distribusi normal dengan nilai harapannya dalam soal statistika.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-07",
+   dateModified: "2026-09-12",
    subject: "Analisis Data dan Peluang",
 };
 
@@ -39,10 +39,14 @@ Substitusikan fungsi ini ke dalam rumus nilai harapan:
 
 Gunakan substitusi <InlineMath math="t = \frac{x-\mu}{\sigma}" />. Maka <InlineMath math="x = \sigma t + \mu" /> dan <InlineMath math="dx = \sigma \, dt" />.
 
+Tuliskan densitas asal setelah substitusi <InlineMath math="x=\sigma t+\mu" /> sebagai <InlineMath math="h(t)" />, dan pertahankan <InlineMath math="dx=\sigma\,dt" /> sebagai faktor terpisah:
+
 <MathContainer>
-<BlockMath math="E(X) = \int_{-\infty}^{\infty} (\sigma t + \mu) \cdot \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}t^2} \cdot \sigma \, dt" />
-<BlockMath math="E(X) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} (\sigma t + \mu) e^{-\frac{1}{2}t^2} \, dt" />
-<BlockMath math="E(X) = \frac{\sigma}{\sqrt{2\pi}} \int_{-\infty}^{\infty} t e^{-\frac{1}{2}t^2} \, dt + \frac{\mu}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} \, dt" />
+  <BlockMath math="h(t)=\frac1{\sigma\sqrt{2\pi}}e^{-\frac12t^2}" />
+
+  <BlockMath math="E(X)=\int_{-\infty}^{\infty}(\sigma t+\mu)h(t)\sigma\,dt" />
+  <BlockMath math="E(X) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} (\sigma t + \mu) e^{-\frac{1}{2}t^2} \, dt" />
+  <BlockMath math="\begin{aligned} &amp;E(X) = \frac{\sigma}{\sqrt{2\pi}} \int_{-\infty}^{\infty} t e^{-\frac{1}{2}t^2} \, dt \\ &amp;+ \frac{\mu}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} \, dt \end{aligned}" />
 </MathContainer>
 
 Perhatikan bahwa:
@@ -74,7 +78,7 @@ Jika tinggi badan sekelompok siswa terdistribusi normal dengan rata-rata <Inline
 
 ## Nilai Harapan Skor Ujian dan Berat Bayi
 
-**Contoh** <InlineMath math="1" />
+**Contoh** 1
 
 Misalkan hasil ujian matematika di suatu kelas terdistribusi normal dengan rata-rata <InlineMath math="\mu = 75" /> dan standar deviasi <InlineMath math="\sigma = 10" />. Berapakah nilai harapan skor ujian seorang siswa?
 
@@ -86,7 +90,7 @@ Karena distribusi normal memiliki sifat <InlineMath math="E(X) = \mu" />, maka n
 
 Jadi, nilai harapan skor ujian seorang siswa adalah <InlineMath math="75" />.
 
-**Contoh** <InlineMath math="2" />
+**Contoh** 2
 
 Misalkan berat bayi baru lahir di suatu rumah sakit dimodelkan dengan distribusi normal yang memiliki rata-rata <InlineMath math="3{.}200 \text{ gram}" /> dan simpangan baku <InlineMath math="400 \text{ gram}" />. Tentukan berat harapan satu bayi yang dipilih secara acak.
 
@@ -108,7 +112,7 @@ Berat harapannya sama dengan parameter rata-rata:
 
 ### Kunci Jawaban
 
-1. **Penyelesaian Soal** <InlineMath math="1" />:
+1. **Penyelesaian Soal** 1:
 
    Diketahui: <InlineMath math="\mu = 25 \text{ menit}" />, <InlineMath math="\sigma = 5 \text{ menit}" />
 
@@ -118,7 +122,7 @@ Berat harapannya sama dengan parameter rata-rata:
 
    **Jawaban:** Nilai harapan waktu tempuh perjalanan adalah <InlineMath math="25 \text{ menit}" />.
 
-2. **Penyelesaian Soal** <InlineMath math="2" />:
+2. **Penyelesaian Soal** 2:
 
    Diketahui: <InlineMath math="\mu = 28^\circ\text{C}" />, <InlineMath math="\sigma = 3^\circ\text{C}" />
 
@@ -128,7 +132,7 @@ Berat harapannya sama dengan parameter rata-rata:
 
    **Jawaban:** Nilai harapan suhu udara adalah <InlineMath math="28^\circ\text{C}" />.
 
-3. **Penyelesaian Soal** <InlineMath math="3" />:
+3. **Penyelesaian Soal** 3:
 
    Diketahui: <InlineMath math="\mu = 78" />, <InlineMath math="\sigma = 12" />
 

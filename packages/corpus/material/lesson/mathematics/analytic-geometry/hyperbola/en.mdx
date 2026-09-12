@@ -3,7 +3,7 @@ export const metadata = {
   description: "Determine a hyperbola's foci, asymptotes, eccentricity, and vertices from its standard equation.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Analytic Geometry",
 };
 
@@ -221,8 +221,8 @@ Before using the formulas, identify the parts that control the shape and positio
       color: "#0891b2",
       showPoints: true,
       labels: [
-        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.5, 0.5, 0] },
-        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, 0.5, 0] }
+        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.6, -0.9, 0] },
+        { text: <InlineMath math="F_2" />, at: 1, offset: [0.6, -0.9, 0] }
       ],
     },
     {
@@ -246,7 +246,7 @@ Before using the formulas, identify the parts that control the shape and positio
       color: "#d97706",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Asymptote", at: 1, offset: [0.5, 0.5, 0] }],
+      labels: [{ text: "Asymptote", at: 1, offset: [-2, -0.2, 0] }],
     },
     {
       points: [
@@ -256,7 +256,7 @@ Before using the formulas, identify the parts that control the shape and positio
       color: "#d97706",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Asymptote", at: 0, offset: [-0.5, 0.5, 0] }],
+      labels: [{ text: "Asymptote", at: 0, offset: [2, -0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 15]}
@@ -500,10 +500,12 @@ When the transverse axis is parallel to the <InlineMath math="y" /> axis, the eq
 
 For a hyperbola centered at <InlineMath math="(h, k)" />, the equation becomes:
 
-<MathContainer>
-  <BlockMath math="\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1 \quad \text{(horizontal transverse axis)}" />
-  <BlockMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1 \quad \text{(vertical transverse axis)}" />
-</MathContainer>
+For a horizontal transverse axis:
+
+<BlockMath math="\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1" />
+  For a vertical transverse axis:
+
+<BlockMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1" />
 
 ## Properties of Hyperbolas
 
@@ -526,10 +528,12 @@ The eccentricity of a hyperbola is always <InlineMath math="e > 1" /> because <I
 
 **Asymptote equations** for a hyperbola with center at <InlineMath math="(0,0)" />:
 
-<MathContainer>
-  <BlockMath math="y = \pm \frac{b}{a}x \quad \text{(horizontal transverse axis)}" />
-  <BlockMath math="y = \pm \frac{a}{b}x \quad \text{(vertical transverse axis)}" />
-</MathContainer>
+For a horizontal transverse axis:
+
+<BlockMath math="y = \pm \frac{b}{a}x" />
+  For a vertical transverse axis:
+
+<BlockMath math="y = \pm \frac{a}{b}x" />
 
 > The asymptotes describe the limiting directions of the two branches. As the distance from the center grows, each branch approaches an asymptote without intersecting it.
 

@@ -4,7 +4,7 @@ export const metadata = {
   description: "Reflect points across a vertical mirror line and derive image coordinates from equal horizontal distances.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Geometric Transformation",
 };
 
@@ -78,13 +78,13 @@ The image of point <InlineMath math="A(1,4)" /> is <InlineMath math="A'(5,4)" />
       points: [{ x: 1, y: 4, z: 0 }],
       color: "#059669",
       showPoints: true,
-      labels: [{ text: <InlineMath math="A(1,4)" />, at: 0, offset: [-0.5, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="A(1,4)" />, at: 0, offset: [-0.5, 0.6, 0] }],
     },
     {
       points: [{ x: 5, y: 4, z: 0 }],
       color: "#059669",
       showPoints: true,
-      labels: [{ text: <InlineMath math="A'(5,4)" />, at: 0, offset: [0.2, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="A'(5,4)" />, at: 0, offset: [0.2, 0.6, 0] }],
     },
     {
       points: [
@@ -95,6 +95,8 @@ The image of point <InlineMath math="A(1,4)" /> is <InlineMath math="A'(5,4)" />
       color: "#db2777",
     }, // Horizontal helper line
   ]}
+  cameraTarget={[3, 3, 0]}
+  cameraPosition={[3, 3, 10]}
 />
 
 ## Exercises
@@ -108,7 +110,7 @@ The image of point <InlineMath math="A(1,4)" /> is <InlineMath math="A'(5,4)" />
 1.  Given <InlineMath math="P(3,2)" /> and the mirror line <InlineMath math="x=5" />. So <InlineMath math="x=3, y=2, k=5" />.
 
     <MathContainer>
-      <BlockMath math="x' = 2k - x = 2(5) - 3 = 10 - 3 = 7" />
+      <BlockMath math="\begin{aligned} x' &amp;= 2k - x \\ &amp;= 2(5) - 3 \\ &amp;= 10 - 3 \\ &amp;= 7 \end{aligned}" />
       <BlockMath math="y' = y = 2" />
     </MathContainer>
 
@@ -117,7 +119,7 @@ The image of point <InlineMath math="A(1,4)" /> is <InlineMath math="A'(5,4)" />
 2.  Given <InlineMath math="B(-2, 5)" /> and the mirror line <InlineMath math="x=1" />. So <InlineMath math="x=-2, y=5, k=1" />.
 
     <MathContainer>
-      <BlockMath math="x' = 2k - x = 2(1) - (-2) = 2 + 2 = 4" />
+      <BlockMath math="\begin{aligned} x' &amp;= 2k - x \\ &amp;= 2(1) - (-2) \\ &amp;= 2 + 2 \\ &amp;= 4 \end{aligned}" />
       <BlockMath math="y' = y = 5" />
     </MathContainer>
 

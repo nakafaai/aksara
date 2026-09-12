@@ -4,7 +4,7 @@ export const metadata = {
   description: "Cerminkan titik terhadap garis horizontal dan turunkan koordinat bayangannya dari jarak vertikal yang sama.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Transformasi Geometri",
 };
 
@@ -75,7 +75,7 @@ Diagram berikut memperlihatkan kesamaan jarak vertikalnya.
       points: [{ x: 3, y: 4, z: 0 }],
       color: "#059669",
       showPoints: true,
-      labels: [{ text: <InlineMath math="P'(3,4)" />, at: 0, offset: [0.2, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="P'(3,4)" />, at: 0, offset: [0.2, 0.5, 0] }],
     },
     {
       points: [
@@ -86,6 +86,8 @@ Diagram berikut memperlihatkan kesamaan jarak vertikalnya.
       color: "#db2777",
     }, // Garis bantu vertikal
   ]}
+  cameraTarget={[3, 3, 0]}
+  cameraPosition={[3, 3, 8]}
 />
 
 ## Latihan
@@ -100,7 +102,7 @@ Diagram berikut memperlihatkan kesamaan jarak vertikalnya.
 
     <MathContainer>
       <BlockMath math="x' = x = 5" />
-      <BlockMath math="y' = 2h - y = 2(-2) - (-4) = -4 + 4 = 0" />
+      <BlockMath math="\begin{aligned} y' &amp;= 2h - y \\ &amp;= 2(-2) - (-4) \\ &amp;= -4 + 4 \\ &amp;= 0 \end{aligned}" />
     </MathContainer>
 
     Jadi, bayangan titik <InlineMath math="P" /> adalah <InlineMath math="P'(5,0)" />.
@@ -109,7 +111,7 @@ Diagram berikut memperlihatkan kesamaan jarak vertikalnya.
 
     <MathContainer>
       <BlockMath math="x' = x = -1" />
-      <BlockMath math="y' = 2h - y = 2(0) - (-3) = 0 + 3 = 3" />
+      <BlockMath math="\begin{aligned} y' &amp;= 2h - y \\ &amp;= 2(0) - (-3) \\ &amp;= 0 + 3 \\ &amp;= 3 \end{aligned}" />
     </MathContainer>
 
     Jadi, bayangan titik <InlineMath math="Q" /> adalah <InlineMath math="Q'(-1,3)" />.

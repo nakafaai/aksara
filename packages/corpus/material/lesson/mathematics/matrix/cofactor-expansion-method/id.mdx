@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung determinan matriks dengan ekspansi kofaktor melalui minor dan perhitungan bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Matriks",
 };
 
@@ -35,7 +35,7 @@ Matriks yang tersisa setelah pencoretan adalah:
 
 Maka, minor <InlineMath math="M_{22}" /> adalah determinan dari matriks sisa ini:
 
-<BlockMath math="M_{22} = \det \begin{pmatrix} a_{11} & a_{13} \\ a_{31} & a_{33} \end{pmatrix} = (a_{11} \times a_{33}) - (a_{13} \times a_{31})" />
+<BlockMath math="\begin{aligned} M_{22} &amp;= \det \begin{pmatrix} a_{11} &amp; a_{13} \\ a_{31} &amp; a_{33} \end{pmatrix} \\ &amp;= (a_{11} \times a_{33}) - (a_{13} \times a_{31}) \end{aligned}" />
 
 ## Kofaktor Elemen Matriks
 
@@ -68,11 +68,11 @@ Berikutnya, kita hitung kofaktor <InlineMath math="k_{12}" /> untuk elemen <Inli
 
 Pertama, kita cari minornya, <InlineMath math="M_{12}" />, dengan menghilangkan baris pertama dan kolom kedua dari matriks <InlineMath math="A" />:
 
-<BlockMath math="M_{12} = \det \begin{pmatrix} a_{21} & a_{23} \\ a_{31} & a_{33} \end{pmatrix} = (a_{21} \times a_{33}) - (a_{23} \times a_{31})" />
+<BlockMath math="\begin{aligned} M_{12} &amp;= \det \begin{pmatrix} a_{21} &amp; a_{23} \\ a_{31} &amp; a_{33} \end{pmatrix} \\ &amp;= (a_{21} \times a_{33}) - (a_{23} \times a_{31}) \end{aligned}" />
 
 Kemudian, kita hitung kofaktornya. Untuk <InlineMath math="a_{12}" />, <InlineMath math="i=1" /> dan <InlineMath math="j=2" />, jadi <InlineMath math="i+j = 1+2 = 3" /> (ganjil).
 
-<BlockMath math="k_{12} = (-1)^{1+2} M_{12} = (-1) M_{12} = -M_{12}" />
+<BlockMath math="\begin{aligned} k_{12} &amp;= (-1)^{1+2} M_{12} \\ &amp;= (-1) M_{12} \\ &amp;= -M_{12} \end{aligned}" />
 
 ## Menghitung Determinan dengan Ekspansi Kofaktor
 
@@ -80,13 +80,13 @@ Untuk menghitung determinan matriks <InlineMath math="A" /> dengan ekspansi kofa
 
 **Rumus Ekspansi Kofaktor Sepanjang Baris ke-<InlineMath math="i" />:**
 
-<BlockMath math="\det(A) = |A| = \sum_{j=1}^{n} a_{ij}k_{ij} = a_{i1}k_{i1} + a_{i2}k_{i2} + \dots + a_{in}k_{in}" />
+<BlockMath math="\begin{aligned} &amp;\det(A) \\ &amp;= |A| \\ &amp;= \sum_{j=1}^{n} a_{ij}k_{ij} \\ &amp;= a_{i1}k_{i1} + a_{i2}k_{i2} + \dots + a_{in}k_{in} \end{aligned}" />
 
 Artinya, kita pilih baris ke-<InlineMath math="i" />. Lalu, untuk setiap kolom <InlineMath math="j" /> pada baris tersebut, kita kalikan elemen <InlineMath math="a_{ij}" /> dengan kofaktornya <InlineMath math="k_{ij}" />, dan jumlahkan semuanya.
 
 **Rumus Ekspansi Kofaktor Sepanjang Kolom ke-<InlineMath math="j" />:**
 
-<BlockMath math="\det(A) = |A| = \sum_{i=1}^{n} a_{ij}k_{ij} = a_{1j}k_{1j} + a_{2j}k_{2j} + \dots + a_{nj}k_{nj}" />
+<BlockMath math="\begin{aligned} &amp;\det(A) \\ &amp;= |A| \\ &amp;= \sum_{i=1}^{n} a_{ij}k_{ij} \\ &amp;= a_{1j}k_{1j} + a_{2j}k_{2j} + \dots + a_{nj}k_{nj} \end{aligned}" />
 
 Artinya, kita pilih kolom ke-<InlineMath math="j" />. Lalu, untuk setiap baris <InlineMath math="i" /> pada kolom tersebut, kita kalikan elemen <InlineMath math="a_{ij}" /> dengan kofaktornya <InlineMath math="k_{ij}" />, dan jumlahkan semuanya.
 
@@ -117,29 +117,29 @@ Sekarang, kita perlu menghitung kofaktor <InlineMath math="k_{11}" />, <InlineMa
 1.  **Menghitung <InlineMath math="k_{11}" />** (<InlineMath math="i=1, j=1" />, maka <InlineMath math="i+j=2" />, genap):
 
     <MathContainer>
-      <BlockMath math="M_{11} = \det \begin{pmatrix} 6 & 2 \\ 9 & 4 \end{pmatrix} = (6 \times 4) - (2 \times 9) = 24 - 18 = 6" />
+      <BlockMath math="\begin{aligned} M_{11} &amp;= \det \begin{pmatrix} 6 &amp; 2 \\ 9 &amp; 4 \end{pmatrix} \\ &amp;= (6 \times 4) - (2 \times 9) \\ &amp;= 24 - 18 \\ &amp;= 6 \end{aligned}" />
       <BlockMath math="k_{11} = (-1)^{1+1} M_{11} = (1)(6) = 6" />
     </MathContainer>
 
 2.  **Menghitung <InlineMath math="k_{12}" />** (<InlineMath math="i=1, j=2" />, maka <InlineMath math="i+j=3" />, ganjil):
 
     <MathContainer>
-      <BlockMath math="M_{12} = \det \begin{pmatrix} 2 & 2 \\ 5 & 4 \end{pmatrix} = (2 \times 4) - (2 \times 5) = 8 - 10 = -2" />
+      <BlockMath math="\begin{aligned} M_{12} &amp;= \det \begin{pmatrix} 2 &amp; 2 \\ 5 &amp; 4 \end{pmatrix} \\ &amp;= (2 \times 4) - (2 \times 5) \\ &amp;= 8 - 10 \\ &amp;= -2 \end{aligned}" />
       <BlockMath math="k_{12} = (-1)^{1+2} M_{12} = (-1)(-2) = 2" />
     </MathContainer>
 
 3.  **Menghitung <InlineMath math="k_{13}" />** (<InlineMath math="i=1, j=3" />, maka <InlineMath math="i+j=4" />, genap):
 
     <MathContainer>
-      <BlockMath math="M_{13} = \det \begin{pmatrix} 2 & 6 \\ 5 & 9 \end{pmatrix} = (2 \times 9) - (6 \times 5) = 18 - 30 = -12" />
-      <BlockMath math="k_{13} = (-1)^{1+3} M_{13} = (1)(-12) = -12" />
+      <BlockMath math="\begin{aligned} M_{13} &amp;= \det \begin{pmatrix} 2 &amp; 6 \\ 5 &amp; 9 \end{pmatrix} \\ &amp;= (2 \times 9) - (6 \times 5) \\ &amp;= 18 - 30 \\ &amp;= -12 \end{aligned}" />
+      <BlockMath math="\begin{aligned} k_{13} &amp;= (-1)^{1+3} M_{13} \\ &amp;= (1)(-12) \\ &amp;= -12 \end{aligned}" />
     </MathContainer>
 
 Setelah semua kofaktor didapatkan, kita masukkan kembali ke rumus determinan:
 
 <MathContainer>
   <BlockMath math="\det(P) = a_{11}k_{11} + a_{12}k_{12} + a_{13}k_{13}" />
-  <BlockMath math="\det(P) = (1)(6) + (3)(2) + (2)(-12)" />
+  <BlockMath math="\begin{aligned} &amp;\det(P) = (1)(6) + (3)(2) \\ &amp;+ (2)(-12) \end{aligned}" />
   <BlockMath math="\det(P) = 6 + 6 - 24" />
   <BlockMath math="\det(P) = 12 - 24" />
   <BlockMath math="\det(P) = -12" />

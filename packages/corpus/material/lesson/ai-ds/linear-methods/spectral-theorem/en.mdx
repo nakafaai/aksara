@@ -3,7 +3,7 @@ export const metadata = {
     description: "Determine when normal, Hermitian, and unitary matrices have an orthonormal eigenbasis and apply the resulting diagonalization.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-16",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-12",
     subject: "Linear Methods of AI",
 };
 
@@ -11,7 +11,9 @@ export const metadata = {
 
 The complex spectral theorem states that a matrix can be diagonalized using an orthonormal basis of eigenvectors exactly when it is normal. In matrix form,
 
-<BlockMath math="A\text{ is normal}\qquad\Longleftrightarrow\qquad A=U\Lambda U^H" />
+<InlineMath math="A" /> is normal if and only if it has this decomposition with unitary <InlineMath math="U" /> and diagonal <InlineMath math="\Lambda" />:
+
+<BlockMath math="A=U\Lambda U^H" />
 
 In this form, <InlineMath math="U" /> is unitary and <InlineMath math="\Lambda" /> is diagonal. The columns of <InlineMath math="U" /> form an orthonormal basis of eigenvectors. Because <InlineMath math="U" /> is unitary, this change of basis preserves lengths and angles. In the real symmetric case, <InlineMath math="U" /> can be chosen real and orthogonal, so <InlineMath math="U^{-1}=U^T" />.
 
@@ -59,7 +61,7 @@ For a Hermitian matrix, <InlineMath math="A^H=A" />, so both sides of the normal
 
 Eigenvalues of Hermitian matrices are always real. If <InlineMath math="Av=\lambda v" /> with <InlineMath math="v\neq0" />, then Hermitian symmetry gives:
 
-<BlockMath math="\lambda v^H v = v^HAv = v^HA^Hv = (Av)^Hv = \overline{\lambda}v^Hv \Rightarrow \lambda=\overline{\lambda}" />
+<BlockMath math="\begin{aligned} \lambda v^H v &amp;= v^HAv \\ &amp;= v^HA^Hv \\ &amp;= (Av)^Hv \\ &amp;= \overline{\lambda}v^Hv \\ &amp;\Rightarrow \lambda \\ &amp;=\overline{\lambda} \end{aligned}" />
 
 The equality <InlineMath math="\lambda=\overline{\lambda}" /> says exactly that <InlineMath math="\lambda" /> is real.
 
@@ -72,8 +74,8 @@ Consider
 The conjugate transpose returns the same matrix, so <InlineMath math="H^H=H" />. Its characteristic polynomial is <InlineMath math="(2-\lambda)^2-1" />, which gives the real eigenvalues <InlineMath math="1" /> and <InlineMath math="3" />. Corresponding normalized eigenvectors are
 
 <MathContainer>
-<BlockMath math="u_1=\frac1{\sqrt2}\begin{pmatrix}-i\\1\end{pmatrix},\qquad u_3=\frac1{\sqrt2}\begin{pmatrix}i\\1\end{pmatrix}" />
-<BlockMath math="U=(u_1\quad u_3),\qquad U^HHU=\operatorname{diag}(1,3)" />
+<BlockMath math="\begin{aligned} &amp;u_1=\frac1{\sqrt2}\begin{pmatrix}-i\\1\end{pmatrix}, \\ &amp;u_3=\frac1{\sqrt2}\begin{pmatrix}i\\1\end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;U=(u_1\quad u_3), \\ &amp;U^HHU=\operatorname{diag}(1,3) \end{aligned}" />
 </MathContainer>
 
 The vectors are orthonormal because <InlineMath math="u_1^Hu_3=0" /> and both have norm <InlineMath math="1" />. This is the spectral theorem in a concrete <InlineMath math="2\times2" /> case.
@@ -86,7 +88,7 @@ Eigenvalues of unitary matrices have magnitude <InlineMath math="1" />, so they 
 
 <MathContainer>
 <BlockMath math="\lVert v\rVert^2 = \lVert Av\rVert^2 = \lVert \lambda v\rVert^2 = |\lambda|^2\lVert v\rVert^2" />
-<BlockMath math="v\neq0 \Rightarrow \lVert v\rVert^2>0 \Rightarrow |\lambda|^2=1 \Rightarrow |\lambda|=1" />
+<BlockMath math="\begin{aligned} v\neq0 &amp;\Rightarrow \lVert v\rVert^2>0 \\ &amp;\Rightarrow |\lambda|^2 \\ &amp;=1 \\ &amp;\Rightarrow |\lambda| \\ &amp;=1 \end{aligned}" />
 </MathContainer>
 
 Every eigenvalue of a unitary matrix has modulus <InlineMath math="1" />. Geometrically, unitary transformations preserve vector lengths, and their eigenvalues lie on the unit circle.

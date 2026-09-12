@@ -3,7 +3,7 @@ export const metadata = {
   description: "Classify symmetric and Hermitian matrices with quadratic forms, eigenvalues, principal minors, Cholesky factors, and optimization geometry.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-13",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Linear Methods of AI",
 };
 
@@ -67,7 +67,9 @@ This equation shows that the principal axes of the ellipsoid follow the eigenvec
 
 Let <InlineMath math="A_k" /> denote the upper-left <InlineMath math="k\times k" /> block of a real symmetric or complex Hermitian matrix. Sylvester's criterion states
 
-<BlockMath math="A\text{ is positive definite}\quad\Longleftrightarrow\quad\det(A_k)>0\text{ for }k=1,\ldots,n" />
+<InlineMath math="A" /> is positive definite if and only if every leading principal determinant is positive:
+
+<BlockMath math="\det(A_k)>0,\quad k=1,\ldots,n" />
 
 This leading-principal-minor test does not extend by replacing <InlineMath math=">" /> with <InlineMath math="\ge" />. Positive semidefiniteness requires every principal minor to be nonnegative. Checking the leading ones alone is insufficient.
 
@@ -86,7 +88,7 @@ Its leading principal minors are
 
 Both leading principal minors are positive, so <InlineMath math="A" /> is positive definite. Both eigenvalues are also positive:
 
-<BlockMath math="\lambda_1=\frac{9+\sqrt5}{2}\approx5.61803,\qquad \lambda_2=\frac{9-\sqrt5}{2}\approx3.38197" />
+<BlockMath math="\begin{aligned} &amp;\lambda_1=\frac{9+\sqrt5}{2}\approx5.61803, \\ &amp;\lambda_2=\frac{9-\sqrt5}{2}\approx3.38197 \end{aligned}" />
 
 Now compare
 
@@ -106,7 +108,7 @@ A real symmetric matrix is positive definite exactly when it has a Cholesky fact
 
 In this factorization, <InlineMath math="L" /> is lower triangular and has strictly positive diagonal entries. Then
 
-<BlockMath math="x^TAx=x^TLL^Tx=\|L^Tx\|_2^2>0\qquad(x\ne0)" />
+<BlockMath math="\begin{aligned} &amp;x^TAx=x^TLL^Tx=\|L^Tx\|_2^2>0 \\ &amp;(x\ne0) \end{aligned}" />
 
 Conversely, the Cholesky algorithm completes without a nonpositive pivot for every positive definite matrix. For a symmetric input in exact arithmetic, this completion tests positive definiteness. Once <InlineMath math="A=LL^T" /> is available, solve <InlineMath math="Ly=b" /> and then <InlineMath math="L^Tx=y" />.
 
@@ -118,7 +120,7 @@ For every real matrix <InlineMath math="M\in\mathbb{R}^{m\times n}" />,
 
 This equation shows that <InlineMath math="M^TM" /> is always positive semidefinite. The matrix <InlineMath math="M^TM" /> is positive definite exactly when
 
-<BlockMath math="\ker(M)=\{0\}\quad\Longleftrightarrow\quad\operatorname{rank}(M)=n" />
+<BlockMath math="\begin{aligned} &amp;\ker(M)=\{0\} \\ &amp;\Longleftrightarrow \\ &amp;\operatorname{rank}(M)=n \end{aligned}" />
 
 Full column rank automatically implies <InlineMath math="m\ge n" />. It does not need to be assumed before the semidefinite statement.
 

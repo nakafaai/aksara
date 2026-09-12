@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bangun model yang linear terhadap parameter dari fungsi basis, susun pengukuran menjadi matriks desain, dan bedakan model linear eksak dari linearisasi lokal.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-14",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Metode Linear AI",
 };
 
@@ -35,7 +35,7 @@ Matriks <InlineMath math="A" /> disebut **matriks desain**. Jika seluruh pengama
 
 Misalkan <InlineMath math="\phi_1(t),\ldots,\phi_n(t)" /> adalah fungsi-fungsi basis yang diketahui. Model dengan respons skalar dapat ditulis sebagai
 
-<BlockMath math="y(t)=\sum_{j=1}^{n}x_j\phi_j(t)=\begin{pmatrix}\phi_1(t)&\cdots&\phi_n(t)\end{pmatrix}x" />
+<BlockMath math="\begin{aligned} y(t) &amp;=\sum_{j=1}^{n}x_j\phi_j(t) \\ &amp;=\begin{pmatrix}\phi_1(t)&amp;\cdots&amp;\phi_n(t)\end{pmatrix}x \end{aligned}" />
 
 Pilihan fungsi basis yang berbeda menghasilkan bentuk model yang berbeda tanpa menghilangkan linearitas terhadap <InlineMath math="x" />.
 
@@ -78,7 +78,7 @@ Model parameter yang benar-benar nonlinear berbentuk
 
 Dalam model ini, parameter dapat muncul di dalam fungsi eksponensial, pangkat, atau hasil kali antarsesama parameter. Di sekitar nilai parameter <InlineMath math="x_0" />, aproksimasi Taylor orde pertama memberikan
 
-<BlockMath math="g(t,x)\approx g(t,x_0)+J_xg(t,x_0)(x-x_0)" />
+<BlockMath math="\begin{aligned} &amp;g(t,x) \approx g(t,x_0) \\ &amp;+J_xg(t,x_0)(x-x_0) \end{aligned}" />
 
 Jacobian <InlineMath math="J_xg(t,x_0)" /> diketahui setelah <InlineMath math="x_0" /> dipilih, sehingga koreksi <InlineMath math="x-x_0" /> muncul secara linear. Aproksimasi ini akurat di sekitar <InlineMath math="x_0" />. Metode iteratif seperti Gauss-Newton memperbarui titik linearisasi secara berulang.
 

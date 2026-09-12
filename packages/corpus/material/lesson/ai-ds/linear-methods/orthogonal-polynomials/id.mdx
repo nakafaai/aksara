@@ -3,7 +3,7 @@ export const metadata = {
   description: "Basis polinomial Chebyshev dan Legendre berasal dari hasil kali dalam berbobot. Basis ini dipakai untuk proyeksi fungsi, perubahan interval, dan kuadratur Gauss.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-16",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Metode Linear AI",
 };
 
@@ -18,7 +18,7 @@ Misalkan <InlineMath math="w(x)>0" /> pada interval <InlineMath math="[a,b]" />.
 
 Dua fungsi bersifat ortogonal ketika <InlineMath math="\langle f,g\rangle_w=0" />. Geometri <InlineMath math="L^2" /> berbobot mengukur galat kuadrat berbobot di seluruh interval.
 
-<BlockMath math="\|f-g\|_w^2=\int_a^b|f(x)-g(x)|^2w(x)\,dx" />
+<BlockMath math="\begin{aligned} &amp;\|f-g\|_w^2 \\ &amp;=\int_a^b|f(x)-g(x)|^2w(x)\,dx \end{aligned}" />
 
 Sebaliknya, norma maksimum mengukur galat titik terbesar.
 
@@ -44,7 +44,7 @@ Penerapan Gram-Schmidt pada <InlineMath math="1,x,x^2,\ldots" /> menghasilkan ba
 <MathContainer>
 <BlockMath math="\pi_0(x)=1" />
 <BlockMath math="\pi_1(x)=x-\alpha_0" />
-<BlockMath math="\pi_{k+1}(x)=(x-\alpha_k)\pi_k(x)-\beta_k\pi_{k-1}(x)" />
+<BlockMath math="\begin{aligned} &amp;\pi_{k+1}(x) =(x-\alpha_k)\pi_k(x) \\ &amp;-\beta_k\pi_{k-1}(x) \end{aligned}" />
 </MathContainer>
 
 Koefisien rekurensi ditentukan oleh
@@ -72,7 +72,7 @@ Polinomial Chebyshev jenis pertama adalah
 
 Ortogonalitas berbobotnya adalah
 
-<BlockMath math="\int_{-1}^{1}\frac{T_j(x)T_k(x)}{\sqrt{1-x^2}}\,dx=\begin{cases}\pi,&j=k=0,\\\frac{\pi}{2},&j=k>0,\\0,&j\ne k.\end{cases}" />
+<BlockMath math="\begin{aligned} &amp;\int_{-1}^{1}\frac{T_j(x)T_k(x)}{\sqrt{1-x^2}}\,dx \\ &amp;=\begin{cases}\pi,&amp;j=k=0,\\\frac{\pi}{2},&amp;j=k>0,\\0,&amp;j\ne k.\end{cases} \end{aligned}" />
 
 Karena <InlineMath math="|T_k(x)|\le1" /> pada <InlineMath math="[-1,1]" /> dan koefisien utamanya adalah <InlineMath math="2^{k-1}" /> untuk <InlineMath math="k\ge1" />, polinomial monik <InlineMath math="2^{1-k}T_k" /> memiliki norma maksimum terkecil di antara semua polinomial monik berderajat <InlineMath math="k" />. Karena itu, polinomial tersebut menyelesaikan masalah aproksimasi minimaks untuk polinomial monik berderajat <InlineMath math="k" />.
 
@@ -108,7 +108,7 @@ Untuk hasil kali dalam ini, polinomial Legendre standar memenuhi
 
 <MathContainer>
 <BlockMath math="P_0(x)=1,\qquad P_1(x)=x" />
-<BlockMath math="(k+1)P_{k+1}(x)=(2k+1)xP_k(x)-kP_{k-1}(x)" />
+<BlockMath math="\begin{aligned} &amp;(k+1)P_{k+1}(x) =(2k+1)xP_k(x) \\ &amp;-kP_{k-1}(x) \end{aligned}" />
 </MathContainer>
 
 Ortogonalitas dan normalisasinya adalah
@@ -144,7 +144,7 @@ Jika <InlineMath math="\varphi_k" /> ortonormal pada <InlineMath math="[-1,1]" /
 
 Fungsi <InlineMath math="\widetilde{\varphi}_k" /> ortonormal pada <InlineMath math="[a,b]" /> karena
 
-<BlockMath math="\int_a^b\widetilde{\varphi}_j(x)\widetilde{\varphi}_k(x)\,dx=\int_{-1}^{1}\varphi_j(t)\varphi_k(t)\,dt=\delta_{jk}" />
+<BlockMath math="\begin{aligned} &amp;\int_a^b\widetilde{\varphi}_j(x)\widetilde{\varphi}_k(x)\,dx \\ &amp;=\int_{-1}^{1}\varphi_j(t)\varphi_k(t)\,dt \\ &amp;=\delta_{jk} \end{aligned}" />
 
 ## Hubungan dengan Kuadratur Gauss
 

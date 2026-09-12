@@ -3,7 +3,7 @@ export const metadata = {
     description: "Turunkan enam fungsi trigonometri dasar dalam radian dan terapkan aturan jumlah, hasil kali, serta hasil bagi melalui contoh bertahap.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-12",
     subject: "Turunan Fungsi",
 };
 
@@ -37,11 +37,11 @@ Berikut turunan dasar keenam fungsi trigonometri:
 
 5.  **Turunan Sekan**:
 
-    <BlockMath math="f(x) = \sec x \implies f'(x) = \sec x \tan x" />
+    <BlockMath math="\begin{aligned} f(x) &amp;= \sec x \\ &amp;\implies f'(x) \\ &amp;= \sec x \tan x \end{aligned}" />
 
 6.  **Turunan Kosekan**:
 
-    <BlockMath math="f(x) = \csc x \implies f'(x) = -\csc x \cot x" />
+    <BlockMath math="\begin{aligned} f(x) &amp;= \csc x \\ &amp;\implies f'(x) \\ &amp;= -\csc x \cot x \end{aligned}" />
 
 ## Menerapkan Aturan pada Fungsi Trigonometri
 
@@ -74,8 +74,8 @@ Misalkan <InlineMath math="u = 2 \sin x" /> dan <InlineMath math="v = \tan x" />
 Maka <InlineMath math="u' = 2 \cos x" /> dan <InlineMath math="v' = \sec^2 x" />.
 
 <MathContainer>
-    <BlockMath math="y' = (2 \cos x)(\tan x) + (2 \sin x)(\sec^2 x)" />
-    <BlockMath math="y' = (2 \cos x)\left(\frac{\sin x}{\cos x}\right) + (2 \sin x)(\sec^2 x)" />
+    <BlockMath math="\begin{aligned} &amp;y' = (2 \cos x)(\tan x) \\ &amp;+ (2 \sin x)(\sec^2 x) \end{aligned}" />
+    <BlockMath math="\begin{aligned} &amp;y' = (2 \cos x)\left(\frac{\sin x}{\cos x}\right) \\ &amp;+ (2 \sin x)(\sec^2 x) \end{aligned}" />
     <BlockMath math="y' = 2 \sin x + 2 \sin x \sec^2 x" />
 </MathContainer>
 
@@ -91,13 +91,23 @@ Misalkan <InlineMath math="u = 1 + \cos x" /> dan <InlineMath math="v = \sin x" 
 
 Maka <InlineMath math="u' = -\sin x" /> dan <InlineMath math="v' = \cos x" />.
 
+Hitung pembilangnya terlebih dahulu:
+
 <MathContainer>
-    <BlockMath math="y' = \frac{(-\sin x)(\sin x) - (1 + \cos x)(\cos x)}{(\sin x)^2}" />
-    <BlockMath math="y' = \frac{-\sin^2 x - (\cos x + \cos^2 x)}{\sin^2 x}" />
-    <BlockMath math="y' = \frac{-(\sin^2 x + \cos^2 x) - \cos x}{\sin^2 x}" />
-    <BlockMath math="y' = \frac{-1 - \cos x}{1 - \cos^2 x} \quad (\text{Identitas Pythagoras})" />
-    <BlockMath math="y' = \frac{-(1 + \cos x)}{(1 - \cos x)(1 + \cos x)} \quad (\text{Faktorisasi})" />
-    <BlockMath math="y' = \frac{-1}{1 - \cos x} = \frac{1}{\cos x - 1}" />
+  <BlockMath math="\begin{aligned} &amp;N=(-\sin x)(\sin x) \\ &amp;-(1+\cos x)(\cos x) \end{aligned}" />
+
+  <BlockMath math="y'=\frac{N}{(\sin x)^2}" />
+  <BlockMath math="y' = \frac{-\sin^2 x - (\cos x + \cos^2 x)}{\sin^2 x}" />
+  <BlockMath math="y' = \frac{-(\sin^2 x + \cos^2 x) - \cos x}{\sin^2 x}" />
+</MathContainer>
+    Gunakan identitas Pythagoras:
+
+<BlockMath math="y' = \frac{-1 - \cos x}{1 - \cos^2 x}" />
+    Faktorkan bentuk tersebut:
+
+<MathContainer>
+  <BlockMath math="y' = \frac{-(1 + \cos x)}{(1 - \cos x)(1 + \cos x)}" />
+  <BlockMath math="y' = \frac{-1}{1 - \cos x} = \frac{1}{\cos x - 1}" />
 </MathContainer>
 
 Rumus yang telah disederhanakan tetap mengikuti domain fungsi semula. Jadi, nilai dengan <InlineMath math="\sin x=0" /> tetap tidak termasuk meskipun ekspresi akhir tampak terdefinisi di sana.
@@ -113,15 +123,15 @@ Rumus yang telah disederhanakan tetap mengikuti domain fungsi semula. Jadi, nila
 
     Gunakan aturan pengurangan untuk menurunkan setiap suku secara terpisah.
 
-    **Langkah** <InlineMath math="1" />: Turunkan suku pertama
+    **Langkah** 1: Turunkan suku pertama
 
     Turunan dari <InlineMath math="4x^3" /> menggunakan aturan pangkat adalah <InlineMath math="3 \cdot 4x^{3-1} = 12x^2" />.
 
-    **Langkah** <InlineMath math="2" />: Turunkan suku kedua
+    **Langkah** 2: Turunkan suku kedua
 
     Turunan dari <InlineMath math="-5 \cos x" /> adalah <InlineMath math="-5(-\sin x) = 5 \sin x" />.
 
-    **Langkah** <InlineMath math="3" />: Gabungkan hasilnya
+    **Langkah** 3: Gabungkan hasilnya
 
     <BlockMath math="f'(x) = 12x^2 + 5 \sin x" />
 
@@ -131,20 +141,20 @@ Rumus yang telah disederhanakan tetap mengikuti domain fungsi semula. Jadi, nila
 
     Gunakan aturan hasil kali, <InlineMath math="f'(x) = u'v + uv'" />.
 
-    **Langkah** <InlineMath math="1" />: Tentukan <InlineMath math="u" />, <InlineMath math="v" />, <InlineMath math="u'" />, dan <InlineMath math="v'" />
+    **Langkah** 1: Tentukan <InlineMath math="u" />, <InlineMath math="v" />, <InlineMath math="u'" />, dan <InlineMath math="v'" />
 
     Misalkan <InlineMath math="u = \sin x" /> dan <InlineMath math="v = \cos x" />.
 
     Maka, <InlineMath math="u' = \cos x" /> dan <InlineMath math="v' = -\sin x" />.
 
-    **Langkah** <InlineMath math="2" />: Terapkan Aturan Hasil Kali
+    **Langkah** 2: Terapkan Aturan Hasil Kali
 
     <MathContainer>
-        <BlockMath math="f'(x) = (\cos x)(\cos x) + (\sin x)(-\sin x)" />
+        <BlockMath math="\begin{aligned} &amp;f'(x) = (\cos x)(\cos x) \\ &amp;+ (\sin x)(-\sin x) \end{aligned}" />
         <BlockMath math="f'(x) = \cos^2 x - \sin^2 x" />
     </MathContainer>
 
-    **Langkah** <InlineMath math="3" />: Gunakan Identitas Trigonometri (Opsional)
+    **Langkah** 3: Gunakan Identitas Trigonometri (Opsional)
 
     Hasilnya bisa juga disederhanakan menggunakan identitas sudut ganda, <InlineMath math="\cos(2x) = \cos^2 x - \sin^2 x" />.
 

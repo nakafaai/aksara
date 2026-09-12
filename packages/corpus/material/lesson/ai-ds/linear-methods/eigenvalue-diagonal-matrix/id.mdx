@@ -3,7 +3,7 @@ export const metadata = {
     description: "Baca nilai eigen langsung dari diagonal utama matriks diagonal dan segitiga, lalu gunakan determinan dan jejak matriks untuk memeriksa hasilnya.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-12",
     subject: "Metode Linear AI",
 };
 
@@ -43,7 +43,7 @@ Misalkan <InlineMath math="A = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}" />
 
 <MathContainer>
 <BlockMath math="\chi_A(t) = \det \begin{pmatrix} 1-t & -1 \\ 1 & 1-t \end{pmatrix}" />
-<BlockMath math="= (1-t) \cdot (1-t) - 1 \cdot (-1) = t^2 - 2t + 2" />
+<BlockMath math="\begin{aligned}  &amp;= (1-t) \cdot (1-t) - 1 \cdot (-1) \\ &amp;= t^2 - 2t + 2 \end{aligned}" />
 </MathContainer>
 
 Akar polinomial karakteristik ini adalah <InlineMath math="\lambda_1 = 1 + i" /> dan <InlineMath math="\lambda_2 = 1 - i" />.
@@ -54,7 +54,7 @@ Untuk <InlineMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" />, p
 
 <MathContainer>
 <BlockMath math="\chi_A(t) = \det \begin{pmatrix} 1-t & -i \\ i & 1-t \end{pmatrix}" />
-<BlockMath math="= (1-t) \cdot (1-t) - i \cdot (-i) = t^2 - 2t" />
+<BlockMath math="\begin{aligned}  &amp;= (1-t) \cdot (1-t) - i \cdot (-i) \\ &amp;= t^2 - 2t \end{aligned}" />
 </MathContainer>
 
 Akar polinomial karakteristik ini adalah <InlineMath math="\lambda_1 = 2" /> dan <InlineMath math="\lambda_2 = 0" />.
@@ -91,14 +91,14 @@ Verifikasi dengan contoh sebelumnya:
 Untuk <InlineMath math="A = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}" /> dengan <InlineMath math="\lambda_1 = 1 + i" />, <InlineMath math="\lambda_2 = 1 - i" />:
 
 <MathContainer>
-<BlockMath math="\det A = 1 \cdot 1 - 1 \cdot (-1) = 2 = \lambda_1 \cdot \lambda_2" />
+<BlockMath math="\begin{aligned} \det A &amp;= 1 \cdot 1 - 1 \cdot (-1) \\ &amp;= 2 \\ &amp;= \lambda_1 \cdot \lambda_2 \end{aligned}" />
 <BlockMath math="\text{tr} A = 1 + 1 = 2 = \lambda_1 + \lambda_2" />
 </MathContainer>
 
 Untuk <InlineMath math="A = \begin{pmatrix} 1 & -i \\ i & 1 \end{pmatrix}" /> dengan <InlineMath math="\lambda_1 = 2" />, <InlineMath math="\lambda_2 = 0" />:
 
 <MathContainer>
-<BlockMath math="\det A = 1 \cdot 1 - i \cdot (-i) = 0 = \lambda_1 \cdot \lambda_2" />
+<BlockMath math="\begin{aligned} \det A &amp;= 1 \cdot 1 - i \cdot (-i) \\ &amp;= 0 \\ &amp;= \lambda_1 \cdot \lambda_2 \end{aligned}" />
 <BlockMath math="\text{tr} A = 1 + 1 = 2 = \lambda_1 + \lambda_2" />
 </MathContainer>
 

@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "widerstandsfähig (Satz $$(1)$$).",
+          label: "widerstandsfähig (Satz (1)).",
         },
         {
           isCorrect: true,
-          label: "verringern (Satz $$(7)$$).",
+          label: "verringern (Satz (7)).",
         },
         {
           isCorrect: false,
-          label: "Folge (Satz $$(2)$$).",
+          label: "Folge (Satz (2)).",
         },
         {
           isCorrect: false,
-          label: "erfüllen (Satz $$(3)$$).",
+          label: "erfüllen (Satz (3)).",
         },
         {
           isCorrect: false,
-          label: "nennt (Satz $$(4)$$).",
+          label: "nennt (Satz (4)).",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "resilient (sentence $$(1)$$).",
+          label: "resilient (sentence (1)).",
         },
         {
           isCorrect: true,
-          label: "reduce (sentence $$(7)$$).",
+          label: "reduce (sentence (7)).",
         },
         {
           isCorrect: false,
-          label: "consequence (sentence $$(2)$$).",
+          label: "consequence (sentence (2)).",
         },
         {
           isCorrect: false,
-          label: "meet (sentence $$(3)$$).",
+          label: "meet (sentence (3)).",
         },
         {
           isCorrect: false,
-          label: "recognizes (sentence $$(4)$$).",
+          label: "recognizes (sentence (4)).",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "tangguh (kalimat $$(1)$$).",
+          label: "tangguh (kalimat (1)).",
         },
         {
           isCorrect: true,
-          label: "memperkecil (kalimat $$(7)$$).",
+          label: "memperkecil (kalimat (7)).",
         },
         {
           isCorrect: false,
-          label: "akibat (kalimat $$(2)$$).",
+          label: "akibat (kalimat (2)).",
         },
         {
           isCorrect: false,
-          label: "memenuhi (kalimat $$(3)$$).",
+          label: "memenuhi (kalimat (3)).",
         },
         {
           isCorrect: false,
-          label: "mengakui (kalimat $$(4)$$).",
+          label: "mengakui (kalimat (4)).",
         },
       ],
     },

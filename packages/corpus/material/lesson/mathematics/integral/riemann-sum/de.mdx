@@ -5,7 +5,7 @@ export const metadata = {
     description: "Riemannsummen zerlegen ein Intervall in Teilintervalle und addieren vorzeichenbehaftete Rechteckbeiträge. Bei nicht negativen Funktionen nähert das Ergebnis die Fläche unter dem Graphen an.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-08",
+    dateModified: "2026-09-12",
     subject: "Integrale",
 };
 
@@ -49,7 +49,7 @@ Die Sigma-Notation (<InlineMath math="\sum" />) bedeutet einfach „alle Fläche
       smooth: false,
       color: "#9333ea",
       showPoints: false,
-      labels: [{ text: <InlineMath math="f(x)=x" />, at: 4, offset: [-1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=x" />, at: 4, offset: [-1.5, 0.8, 0] }],
     },
     ...Array.from({ length: 7 }).map((_, i) => {
         const x_left = i;
@@ -69,6 +69,8 @@ Die Sigma-Notation (<InlineMath math="\sum" />) bedeutet einfach „alle Fläche
         }
     })
   ]}
+  cameraTarget={[3.5, 3.5, 0]}
+  cameraPosition={[3.5, 3.5, 10]}
 />
 
 **Lösung:**
@@ -88,11 +90,11 @@ Die Sigma-Notation (<InlineMath math="\sum" />) bedeutet einfach „alle Fläche
 
     Unsere Teilintervalle sind:
 
-    <BlockMath math="[0,1], [1,2], [2,3], [3,4], [4,5], [5,6], [6,7]" />
+    <BlockMath math="\begin{aligned} &amp;[0,1], [1,2], [2,3], [3,4], [4,5], \\ &amp;[5,6], [6,7] \end{aligned}" />
 
     Bei der Methode mit linken Randpunkten wählen wir den Wert von <InlineMath math="x" /> an der linken Grenze jedes Teilintervalls als Stützstelle:
 
-    <BlockMath math="x_1=0, x_2=1, x_3=2, x_4=3, x_5=4, x_6=5, x_7=6" />
+    <BlockMath math="\begin{aligned} &amp;x_1=0, x_2=1, x_3=2, x_4=3, \\ &amp;x_5=4, x_6=5, x_7=6 \end{aligned}" />
 
 4.  **Höhe jedes Rechtecks berechnen:**
 
@@ -112,11 +114,15 @@ Die Sigma-Notation (<InlineMath math="\sum" />) bedeutet einfach „alle Fläche
 
     Nun addieren wir die Flächen aller Rechtecke. Jeder Beitrag ist Höhe mal Breite:
 
-    <MathContainer>
     <BlockMath math="R_7 = \sum_{i=1}^{7} f(x_i^*) \Delta x" />
-    <BlockMath math="= [f(0) + f(1) + f(2) + f(3) + f(4) + f(5) + f(6)] \cdot 1" />
-    <BlockMath math="= (0 + 1 + 2 + 3 + 4 + 5 + 6) \cdot 1" />
-    <BlockMath math="= 21" />
+        Bezeichne die Summe der sieben Funktionswerte mit <InlineMath math="S" />:
+
+    <MathContainer>
+      <BlockMath math="\begin{aligned} &amp;S=f(0)+f(1)+f(2)+f(3) \\ &amp;+f(4)+f(5)+f(6) \end{aligned}" />
+
+      <BlockMath math="=S\cdot1" />
+      <BlockMath math="= (0 + 1 + 2 + 3 + 4 + 5 + 6) \cdot 1" />
+      <BlockMath math="= 21" />
     </MathContainer>
 
     Somit beträgt die geschätzte Fläche unter der Kurve <InlineMath math="f(x)=x" /> von <InlineMath math="0" /> bis <InlineMath math="7" /> <InlineMath math="21" />.
@@ -134,7 +140,8 @@ Die Sigma-Notation (<InlineMath math="\sum" />) bedeutet einfach „alle Fläche
     <LineEquation
     title="Visualisierung der Riemann-Summenübung"
     description={<>Graph der Funktion <InlineMath math="f(x)=x^2+1" /> mit <InlineMath math="4" /> Rechtecken, deren Höhen am rechten Randpunkt bestimmt werden.</>}
-    cameraPosition={[10, 10, 10]}
+    cameraPosition={[2, 8.5, 21.5]}
+    cameraTarget={[2, 8.5, 0]}
     data={[
         {
         smooth: false,
@@ -145,7 +152,7 @@ Die Sigma-Notation (<InlineMath math="\sum" />) bedeutet einfach „alle Fläche
         }),
         color: "#d97706",
         showPoints: false,
-        labels: [{ text: <InlineMath math="f(x)=x^2+1" />, at: 20, offset: [2, -1, 0] }],
+        labels: [{ text: <InlineMath math="f(x)=x^2+1" />, at: 20, offset: [-5.2, 6, 0] }],
         },
         ...Array.from({ length: 4 }).map((_, i) => {
             const x_left = i;
@@ -167,17 +174,17 @@ Die Sigma-Notation (<InlineMath math="\sum" />) bedeutet einfach „alle Fläche
     ]}
     />
 
-    **Schritt** <InlineMath math="1" />: Hauptkomponenten bestimmen.
+    **Schritt** 1: Hauptkomponenten bestimmen.
     -   Funktion: <InlineMath math="f(x) = x^2 + 1" />
     -   Intervall: <InlineMath math="a=0, b=4" />
     -   Anzahl der Partitionen: <InlineMath math="n=4" />
     -   Stützstelle: Rechter Randpunkt
 
-    **Schritt** <InlineMath math="2" />: Teilintervallbreite berechnen.
+    **Schritt** 2: Teilintervallbreite berechnen.
 
     <BlockMath math="\Delta x = \frac{b-a}{n} = \frac{4-0}{4} = 1" />
 
-    **Schritt** <InlineMath math="3" />: Rechte Randpunkte als Stützstellen bestimmen.
+    **Schritt** 3: Rechte Randpunkte als Stützstellen bestimmen.
 
     Die Teilintervalle sind:
 
@@ -187,7 +194,7 @@ Die Sigma-Notation (<InlineMath math="\sum" />) bedeutet einfach „alle Fläche
 
     <BlockMath math="x_1=1, x_2=2, x_3=3, x_4=4" />
 
-    **Schritt** <InlineMath math="4" />: Höhe jedes Rechtecks berechnen.
+    **Schritt** 4: Höhe jedes Rechtecks berechnen.
 
     Die Höhe jedes Rechtecks ist der Funktionswert von <InlineMath math="f(x) = x^2 + 1" /> am rechten Randpunkt:
 
@@ -198,7 +205,7 @@ Die Sigma-Notation (<InlineMath math="\sum" />) bedeutet einfach „alle Fläche
     <BlockMath math="f(x_4) = f(4) = 4^2 + 1 = 17" />
     </MathContainer>
 
-    **Schritt** <InlineMath math="5" />: Gesamte Riemann-Summe berechnen.
+    **Schritt** 5: Gesamte Riemann-Summe berechnen.
 
     Jetzt summieren wir die Flächen aller Rechtecke (<InlineMath math="\text{Höhe} \times \text{Breite}" />):
 

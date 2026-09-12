@@ -3,7 +3,7 @@ export const metadata = {
   description: "So berechnest du Determinanten mit Minoren, Kofaktoren und einer geschickt gewählten Zeile oder Spalte.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Matrix",
 };
 
@@ -37,7 +37,7 @@ Das sieht so aus:
 
 Der Minor <InlineMath math="M_{22}" /> ist die Determinante dieser Untermatrix:
 
-<BlockMath math="M_{22} = \det \begin{pmatrix} a_{11} & a_{13} \\ a_{31} & a_{33} \end{pmatrix} = (a_{11} \times a_{33}) - (a_{13} \times a_{31})" />
+<BlockMath math="\begin{aligned} M_{22} &amp;= \det \begin{pmatrix} a_{11} &amp; a_{13} \\ a_{31} &amp; a_{33} \end{pmatrix} \\ &amp;= (a_{11} \times a_{33}) - (a_{13} \times a_{31}) \end{aligned}" />
 
 ## Kofaktor eines Matrixelements
 
@@ -70,11 +70,11 @@ Bestimmen wir nun den Kofaktor <InlineMath math="k_{12}" /> des Elements <Inline
 
 Zuerst bestimmen wir den Minor <InlineMath math="M_{12}" />. Dazu streichen wir in der Matrix <InlineMath math="A" /> die erste Zeile und die zweite Spalte:
 
-<BlockMath math="M_{12} = \det \begin{pmatrix} a_{21} & a_{23} \\ a_{31} & a_{33} \end{pmatrix} = (a_{21} \times a_{33}) - (a_{23} \times a_{31})" />
+<BlockMath math="\begin{aligned} M_{12} &amp;= \det \begin{pmatrix} a_{21} &amp; a_{23} \\ a_{31} &amp; a_{33} \end{pmatrix} \\ &amp;= (a_{21} \times a_{33}) - (a_{23} \times a_{31}) \end{aligned}" />
 
 Anschließend berücksichtigen wir das Vorzeichen. Für <InlineMath math="a_{12}" /> gelten <InlineMath math="i=1" /> und <InlineMath math="j=2" />, also ist <InlineMath math="i+j = 1+2 = 3" /> ungerade.
 
-<BlockMath math="k_{12} = (-1)^{1+2} M_{12} = (-1) M_{12} = -M_{12}" />
+<BlockMath math="\begin{aligned} k_{12} &amp;= (-1)^{1+2} M_{12} \\ &amp;= (-1) M_{12} \\ &amp;= -M_{12} \end{aligned}" />
 
 ## Die Determinante durch Kofaktorentwicklung berechnen
 
@@ -84,13 +84,13 @@ Jedes Element der gewählten Zeile oder Spalte wird mit seinem Kofaktor multipli
 
 **Kofaktorentwicklung entlang der <InlineMath math="i" />-ten Zeile:**
 
-<BlockMath math="\det(A) = |A| = \sum_{j=1}^{n} a_{ij}k_{ij} = a_{i1}k_{i1} + a_{i2}k_{i2} + \dots + a_{in}k_{in}" />
+<BlockMath math="\begin{aligned} &amp;\det(A) \\ &amp;= |A| \\ &amp;= \sum_{j=1}^{n} a_{ij}k_{ij} \\ &amp;= a_{i1}k_{i1} + a_{i2}k_{i2} + \dots + a_{in}k_{in} \end{aligned}" />
 
 Wir wählen die <InlineMath math="i" />-te Zeile. Für jede Spalte <InlineMath math="j" /> multiplizieren wir das Element <InlineMath math="a_{ij}" /> mit seinem Kofaktor <InlineMath math="k_{ij}" /> und addieren die Produkte.
 
 **Kofaktorentwicklung entlang der <InlineMath math="j" />-ten Spalte:**
 
-<BlockMath math="\det(A) = |A| = \sum_{i=1}^{n} a_{ij}k_{ij} = a_{1j}k_{1j} + a_{2j}k_{2j} + \dots + a_{nj}k_{nj}" />
+<BlockMath math="\begin{aligned} &amp;\det(A) \\ &amp;= |A| \\ &amp;= \sum_{i=1}^{n} a_{ij}k_{ij} \\ &amp;= a_{1j}k_{1j} + a_{2j}k_{2j} + \dots + a_{nj}k_{nj} \end{aligned}" />
 
 Wir wählen die <InlineMath math="j" />-te Spalte. Für jede Zeile <InlineMath math="i" /> multiplizieren wir das Element <InlineMath math="a_{ij}" /> mit seinem Kofaktor <InlineMath math="k_{ij}" /> und addieren die Produkte.
 
@@ -121,29 +121,29 @@ Nun bestimmen wir die Kofaktoren <InlineMath math="k_{11}" />, <InlineMath math=
 1.  **Berechnung von <InlineMath math="k_{11}" />** (<InlineMath math="i=1, j=1" />, also ist <InlineMath math="i+j=2" /> gerade):
 
     <MathContainer>
-      <BlockMath math="M_{11} = \det \begin{pmatrix} 6 & 2 \\ 9 & 4 \end{pmatrix} = (6 \times 4) - (2 \times 9) = 24 - 18 = 6" />
+      <BlockMath math="\begin{aligned} M_{11} &amp;= \det \begin{pmatrix} 6 &amp; 2 \\ 9 &amp; 4 \end{pmatrix} \\ &amp;= (6 \times 4) - (2 \times 9) \\ &amp;= 24 - 18 \\ &amp;= 6 \end{aligned}" />
       <BlockMath math="k_{11} = (-1)^{1+1} M_{11} = (1)(6) = 6" />
     </MathContainer>
 
 2.  **Berechnung von <InlineMath math="k_{12}" />** (<InlineMath math="i=1, j=2" />, also ist <InlineMath math="i+j=3" /> ungerade):
 
     <MathContainer>
-      <BlockMath math="M_{12} = \det \begin{pmatrix} 2 & 2 \\ 5 & 4 \end{pmatrix} = (2 \times 4) - (2 \times 5) = 8 - 10 = -2" />
+      <BlockMath math="\begin{aligned} M_{12} &amp;= \det \begin{pmatrix} 2 &amp; 2 \\ 5 &amp; 4 \end{pmatrix} \\ &amp;= (2 \times 4) - (2 \times 5) \\ &amp;= 8 - 10 \\ &amp;= -2 \end{aligned}" />
       <BlockMath math="k_{12} = (-1)^{1+2} M_{12} = (-1)(-2) = 2" />
     </MathContainer>
 
 3.  **Berechnung von <InlineMath math="k_{13}" />** (<InlineMath math="i=1, j=3" />, also ist <InlineMath math="i+j=4" /> gerade):
 
     <MathContainer>
-      <BlockMath math="M_{13} = \det \begin{pmatrix} 2 & 6 \\ 5 & 9 \end{pmatrix} = (2 \times 9) - (6 \times 5) = 18 - 30 = -12" />
-      <BlockMath math="k_{13} = (-1)^{1+3} M_{13} = (1)(-12) = -12" />
+      <BlockMath math="\begin{aligned} M_{13} &amp;= \det \begin{pmatrix} 2 &amp; 6 \\ 5 &amp; 9 \end{pmatrix} \\ &amp;= (2 \times 9) - (6 \times 5) \\ &amp;= 18 - 30 \\ &amp;= -12 \end{aligned}" />
+      <BlockMath math="\begin{aligned} k_{13} &amp;= (-1)^{1+3} M_{13} \\ &amp;= (1)(-12) \\ &amp;= -12 \end{aligned}" />
     </MathContainer>
 
 Zum Schluss setzen wir die drei Kofaktoren in die Determinantenformel ein:
 
 <MathContainer>
   <BlockMath math="\det(P) = a_{11}k_{11} + a_{12}k_{12} + a_{13}k_{13}" />
-  <BlockMath math="\det(P) = (1)(6) + (3)(2) + (2)(-12)" />
+  <BlockMath math="\begin{aligned} &amp;\det(P) = (1)(6) + (3)(2) \\ &amp;+ (2)(-12) \end{aligned}" />
   <BlockMath math="\det(P) = 6 + 6 - 24" />
   <BlockMath math="\det(P) = 12 - 24" />
   <BlockMath math="\det(P) = -12" />

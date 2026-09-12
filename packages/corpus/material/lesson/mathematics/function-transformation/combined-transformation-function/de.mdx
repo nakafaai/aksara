@@ -3,7 +3,7 @@ export const metadata = {
   description: "Kombiniere mehrere Funktionstransformationen und vergleiche ihre Graphen bei unterschiedlicher Reihenfolge.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Funktionstransformation",
 };
 
@@ -41,13 +41,13 @@ Wir wenden zwei Transformationen nacheinander auf <InlineMath math="f(x) = x^2" 
 
 1. **Ausgangsfunktion**: <InlineMath math="f(x) = x^2" />
 
-2. **Schritt** <InlineMath math="1" /> **- Vertikale Verschiebung**: um <InlineMath math="2 \text{Einheiten}" /> nach oben
+2. **Schritt** 1 **- Vertikale Verschiebung**: um <InlineMath math="2 \text{Einheiten}" /> nach oben
 
    <BlockMath math="f_1(x) = f(x) + 2 = x^2 + 2" />
 
-3. **Schritt** <InlineMath math="2" /> **- Vertikale Skalierung**: mit dem Faktor <InlineMath math="0{,}5" /> multiplizieren
+3. **Schritt** 2 **- Vertikale Skalierung**: mit dem Faktor <InlineMath math="0{,}5" /> multiplizieren
 
-   <BlockMath math="g(x) = 0{,}5 \cdot f_1(x) = 0{,}5(x^2 + 2) = 0{,}5x^2 + 1" />
+   <BlockMath math="\begin{aligned} g(x) &amp;= 0{,}5 \cdot f_1(x) \\ &amp;= 0{,}5(x^2 + 2) \\ &amp;= 0{,}5x^2 + 1 \end{aligned}" />
 
 **Beispielrechnung für <InlineMath math="x = 2" />:**
 - Ausgangsfunktion: <InlineMath math="f(2) = 2^2 = 4" />
@@ -96,13 +96,14 @@ Der Graph zeigt jeden Zwischenschritt:
         {
           text: <InlineMath math="f_1" />,
           at: 80,
-          offset: [1, 0.7, 0],
+          offset: [-0.8, -3.56, 0],
         },
       ],
     },
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+      points: Array.from({ length: 115 }, (_, pointIndex) => {
+        const sampleIndex = pointIndex - 7;
         const i = sampleIndex / 5;
         const x = (i - 10) * 0.4;
         const y = 0.5 * (x * x + 2);
@@ -113,7 +114,7 @@ Der Graph zeigt jeden Zwischenschritt:
       labels: [
         {
           text: <InlineMath math="g" />,
-          at: 80,
+          at: 87,
           offset: [1, -0.7, 0],
         },
       ],
@@ -158,7 +159,8 @@ Die Ergebnisse sind verschieden: <InlineMath math="h_A(1) = 3" /> und <InlineMat
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
+      points: Array.from({ length: 115 }, (_, pointIndex) => {
+        const sampleIndex = pointIndex - 7;
         const i = sampleIndex / 5;
         const x = (i - 10) * 0.3;
         const y = x * x;
@@ -169,7 +171,7 @@ Die Ergebnisse sind verschieden: <InlineMath math="h_A(1) = 3" /> und <InlineMat
       labels: [
         {
           text: <InlineMath math="f" />,
-          at: 25,
+          at: 32,
           offset: [-1, -0.5, 0],
         },
       ],
@@ -206,7 +208,7 @@ Die Ergebnisse sind verschieden: <InlineMath math="h_A(1) = 3" /> und <InlineMat
         {
           text: <InlineMath math="h_B" />,
           at: 20,
-          offset: [-2, 1, 0],
+          offset: [-0.4, -3.58, 0],
         },
       ],
     },
@@ -221,13 +223,13 @@ Auch Spiegelung und horizontale Verschiebung lassen sich kombinieren:
 
 1. **Ausgangsfunktion**: <InlineMath math="f(x) = 1{,}5^x" />
 
-2. **Schritt** <InlineMath math="1" /> **- Spiegelung an der <InlineMath math="y" />-Achse**: Ersetze <InlineMath math="x" /> durch <InlineMath math="-x" />
+2. **Schritt** 1 **- Spiegelung an der <InlineMath math="y" />-Achse**: Ersetze <InlineMath math="x" /> durch <InlineMath math="-x" />
 
    <BlockMath math="f_1(x) = f(-x) = 1{,}5^{-x}" />
 
-3. **Schritt** <InlineMath math="2" /> **- Horizontale Verschiebung**: um <InlineMath math="2 \text{Einheiten}" /> nach rechts
+3. **Schritt** 2 **- Horizontale Verschiebung**: um <InlineMath math="2 \text{Einheiten}" /> nach rechts
 
-   <BlockMath math="g(x) = f_1(x-2) = 1{,}5^{-(x-2)} = 1{,}5^{-x+2}" />
+   <BlockMath math="\begin{aligned} g(x) &amp;= f_1(x-2) \\ &amp;= 1{,}5^{-(x-2)} \\ &amp;= 1{,}5^{-x+2} \end{aligned}" />
 
 **Beispielrechnung für <InlineMath math="x = 3" />:**
 - Ausgangsfunktion: <InlineMath math="f(3) = 1{,}5^3 = 3{,}375" />
@@ -243,7 +245,8 @@ Der Graph zeigt wieder beide Zwischenschritte:
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 99 }, (_, sampleIndex) => {
+      points: Array.from({ length: 1178 }, (_, pointIndex) => {
+        const sampleIndex = pointIndex - 1020;
         const i = sampleIndex / 7;
         const x = (i - 7) * 0.4;
         const y = Math.pow(1.5, x);
@@ -254,14 +257,15 @@ Der Graph zeigt wieder beide Zwischenschritte:
       labels: [
         {
           text: <InlineMath math="f" />,
-          at: 84,
+          at: 1104,
           offset: [0.5, 1.5, 0],
         },
       ],
     },
     {
       smooth: false,
-      points: Array.from({ length: 99 }, (_, sampleIndex) => {
+      points: Array.from({ length: 359 }, (_, pointIndex) => {
+        const sampleIndex = pointIndex - 59;
         const i = sampleIndex / 7;
         const x = (i - 7) * 0.4;
         const y = Math.pow(1.5, -x);
@@ -272,14 +276,15 @@ Der Graph zeigt wieder beide Zwischenschritte:
       labels: [
         {
           text: <InlineMath math="f_1" />,
-          at: 21,
+          at: 80,
           offset: [-0.6, -0.5, 0],
         },
       ],
     },
     {
       smooth: false,
-      points: Array.from({ length: 99 }, (_, sampleIndex) => {
+      points: Array.from({ length: 311 }, (_, pointIndex) => {
+        const sampleIndex = pointIndex - 11;
         const i = sampleIndex / 7;
         const x = (i - 7) * 0.4;
         const y = Math.pow(1.5, -(x - 2));
@@ -290,7 +295,7 @@ Der Graph zeigt wieder beide Zwischenschritte:
       labels: [
         {
           text: <InlineMath math="g" />,
-          at: 21,
+          at: 32,
           offset: [-0.6, 0.5, 0],
         },
       ],
@@ -324,11 +329,11 @@ Für kombinierte Transformationen gilt:
 
 1. Schrittweise Transformation von <InlineMath math="f(x) = x^2" />:
 
-   Schritt <InlineMath math="1" />: vertikale Verschiebung um <InlineMath math="+3" />
+   Schritt 1: vertikale Verschiebung um <InlineMath math="+3" />
 
    <BlockMath math="f_1(x) = x^2 + 3" />
 
-   Schritt <InlineMath math="2" />: vertikale Skalierung mit Faktor <InlineMath math="\frac{1}{2}" />
+   Schritt 2: vertikale Skalierung mit Faktor <InlineMath math="\frac{1}{2}" />
 
    <BlockMath math="g(x) = \frac{1}{2}(x^2 + 3) = \frac{1}{2}x^2 + \frac{3}{2}" />
 
@@ -380,11 +385,11 @@ Für kombinierte Transformationen gilt:
 
 2. Schrittweise Transformation von <InlineMath math="g(x) = 2^x" />:
 
-   Schritt <InlineMath math="1" />: Spiegelung an der <InlineMath math="y" />-Achse
+   Schritt 1: Spiegelung an der <InlineMath math="y" />-Achse
 
    <BlockMath math="g_1(x) = 2^{-x}" />
 
-   Schritt <InlineMath math="2" />: horizontale Verschiebung um <InlineMath math="1 \text{ Einheit}" /> nach rechts
+   Schritt 2: horizontale Verschiebung um <InlineMath math="1 \text{ Einheit}" /> nach rechts
 
    <BlockMath math="h(x) = 2^{-(x-1)} = 2^{-x+1} = 2 \cdot 2^{-x}" />
 
@@ -397,7 +402,8 @@ Für kombinierte Transformationen gilt:
      data={[
        {
          smooth: false,
-         points: Array.from({ length: 99 }, (_, sampleIndex) => {
+         points: Array.from({ length: 1126 }, (_, pointIndex) => {
+           const sampleIndex = pointIndex - 1020;
            const i = sampleIndex / 7;
            const x = (i - 7) * 0.4;
            const y = Math.pow(2, x);
@@ -408,14 +414,15 @@ Für kombinierte Transformationen gilt:
          labels: [
            {
              text: <InlineMath math="g" />,
-             at: 84,
+             at: 1104,
              offset: [0.5, 0.5, 0],
            },
          ],
        },
        {
          smooth: false,
-         points: Array.from({ length: 99 }, (_, sampleIndex) => {
+         points: Array.from({ length: 300 }, (_, pointIndex) => {
+           const sampleIndex = pointIndex + 0;
            const i = sampleIndex / 7;
            const x = (i - 7) * 0.4;
            const y = Math.pow(2, 1 - x);
@@ -427,7 +434,7 @@ Für kombinierte Transformationen gilt:
            {
              text: <InlineMath math="h" />,
              at: 21,
-             offset: [-1.4, 0.5, 0],
+             offset: [0, -2.5, 0],
            },
          ],
        },
@@ -455,10 +462,13 @@ Für kombinierte Transformationen gilt:
    <LineEquation
      title={<>Einfluss der Reihenfolge auf das Ergebnis</>}
      description="Die beiden Reihenfolgen führen zu unterschiedlichen vertikalen Lagen."
+     cameraPosition={[10, 9, 10]}
+     cameraTarget={[0, 3, 0]}
      data={[
        {
          smooth: false,
-         points: Array.from({ length: 101 }, (_, sampleIndex) => {
+         points: Array.from({ length: 123 }, (_, pointIndex) => {
+           const sampleIndex = pointIndex - 11;
            const i = sampleIndex / 5;
            const x = (i - 10) * 0.3;
            const y = x * x;
@@ -469,7 +479,7 @@ Für kombinierte Transformationen gilt:
          labels: [
            {
              text: <InlineMath math="h" />,
-             at: 25,
+             at: 36,
              offset: [-1, -0.5, 0],
            },
          ],
@@ -488,7 +498,7 @@ Für kombinierte Transformationen gilt:
            {
              text: <InlineMath math="h_A" />,
              at: 80,
-             offset: [1.2, 1.5, 0],
+             offset: [0, -7.52, 0],
            },
          ],
        },
@@ -506,7 +516,7 @@ Für kombinierte Transformationen gilt:
            {
              text: <InlineMath math="h_B" />,
              at: 20,
-             offset: [-1.2, 1.5, 0],
+             offset: [0, -8.32, 0],
            },
          ],
        },
@@ -537,36 +547,43 @@ Für kombinierte Transformationen gilt:
      data={[
        {
          smooth: false,
-         points: Array.from({ length: 101 }, (_, sampleIndex) => {
-           const i = sampleIndex / 5;
-           const x = (i - 10) * 0.3;
-           const y = Math.abs(x);
-           return { x, y, z: 0 };
-         }),
+         points: [
+           { x: -9, y: 9, z: 0 },
+           ...Array.from({ length: 101 }, (_, sampleIndex) => {
+             const i = sampleIndex / 5;
+             const x = (i - 10) * 0.3;
+             const y = Math.abs(x);
+             return { x, y, z: 0 };
+           }),
+           { x: 9, y: 9, z: 0 },
+         ],
          color: "#0891b2",
          showPoints: false,
          labels: [
            {
              text: <InlineMath math="f" />,
-             at: 75,
+             at: 76,
              offset: [0.5, 0.3, 0],
            },
          ],
        },
        {
          smooth: false,
-         points: Array.from({ length: 101 }, (_, sampleIndex) => {
-           const i = sampleIndex / 5;
-           const x = (i - 10) * 0.3;
-           const y = -3 * Math.abs(x + 2);
-           return { x, y, z: 0 };
-         }),
+         points: [
+           { x: -5, y: -9, z: 0 },
+           ...[
+                    { x: -3, y: -3, z: 0 },
+                    { x: -2, y: 0, z: 0 },
+                    { x: -1.5, y: -1.5, z: 0 },
+                    { x: 3, y: -15, z: 0 },
+                  ],
+         ],
          color: "#db2777",
          showPoints: false,
          labels: [
            {
              text: <InlineMath math="g" />,
-             at: 25,
+             at: 3,
              offset: [-0.8, -0.3, 0],
            },
          ],

@@ -3,7 +3,7 @@ export const metadata = {
     description: "Bestimme mit Skalarprodukten und orthogonaler Projektion die beste polynomiale oder trigonometrische Approximation einer Funktion in der L2-Norm.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-12",
     subject: "Lineare Methoden der KI",
 };
 
@@ -19,7 +19,7 @@ Für <InlineMath math="f,g\in C([a,b])" /> definieren wir
 
 <MathContainer>
 <BlockMath math="\langle f,g\rangle=\int_a^b f(x)g(x)\,dx" />
-<BlockMath math="\|f\|_2=\sqrt{\langle f,f\rangle}=\left(\int_a^b|f(x)|^2\,dx\right)^{1/2}" />
+<BlockMath math="\begin{aligned} \|f\|_2 &amp;=\sqrt{\langle f,f\rangle} \\ &amp;=\left(\int_a^b|f(x)|^2\,dx\right)^{1/2} \end{aligned}" />
 </MathContainer>
 
 Dieses Skalarprodukt macht <InlineMath math="C([a,b])" /> zu einem Skalarproduktraum. Die angezeigte Norm ist die <InlineMath math="L^2" />-Norm. Durch Division mit der Wurzel der Intervalllänge erhalten wir den quadratischen Mittelwert:
@@ -36,11 +36,11 @@ Sei <InlineMath math="S\subset C([a,b])" /> ein endlichdimensionaler Unterraum. 
 
 Geometrisch ist <InlineMath math="g" /> die orthogonale Projektion von <InlineMath math="f" /> auf <InlineMath math="S" />. Das Residuum <InlineMath math="r=f-g" /> muss zu jeder Funktion im Approximationsraum orthogonal sein:
 
-<BlockMath math="\langle f-g,s\rangle=0\qquad\text{für jedes }s\in S" />
+<BlockMath math="\begin{aligned} &amp;\langle f-g,s\rangle=0 \\ &amp;\text{für jedes }s\in S \end{aligned}" />
 
 Ist <InlineMath math="\{\phi_0,\ldots,\phi_n\}" /> eine Basis von <InlineMath math="S" /> und <InlineMath math="g=\sum_{j=0}^n c_j\phi_j" />, werden diese Orthogonalitätsbedingungen zu den Normalgleichungen
 
-<BlockMath math="\sum_{j=0}^n\langle\phi_j,\phi_i\rangle c_j=\langle f,\phi_i\rangle,\qquad i=0,\ldots,n" />
+<BlockMath math="\begin{aligned} &amp;\sum_{j=0}^n\langle\phi_j,\phi_i\rangle c_j=\langle f,\phi_i\rangle, \\ &amp;i=0,\ldots,n \end{aligned}" />
 
 ## Eine quadratische Funktion durch eine Gerade approximieren
 
@@ -55,7 +55,7 @@ Die ungeraden Terme integrieren sich auf dem symmetrischen Intervall zu null. Au
 
 <MathContainer>
 <BlockMath math="g(x)=\frac13" />
-<BlockMath math="\|f-g\|_2^2=\int_{-1}^{1}\left(x^2-\frac13\right)^2\,dx=\frac8{45}" />
+<BlockMath math="\begin{aligned} \|f-g\|_2^2 &amp;=\int_{-1}^{1}\left(x^2-\frac13\right)^2\,dx \\ &amp;=\frac8{45} \end{aligned}" />
 </MathContainer>
 
 Die beste Gerade ist waagerecht. Das ist keine Vermutung: Die Symmetrie von <InlineMath math="x^2" /> zwingt den Koeffizienten der ungeraden Basisfunktion <InlineMath math="x" /> auf null.
@@ -72,7 +72,13 @@ Ein größeres <InlineMath math="n" /> erweitert den Approximationsraum. Der kle
 
 Für eine periodische Funktion mit der Periode <InlineMath math="\omega>0" /> eignet sich der Raum
 
-<BlockMath math="T_n(\omega)=\left\{\frac{a_0}{2}+\sum_{i=1}^n\left[a_i\cos\left(\frac{2\pi ix}{\omega}\right)+b_i\sin\left(\frac{2\pi ix}{\omega}\right)\right]:a_i,b_i\in\mathbb{R}\right\}" />
+Der Raum <InlineMath math="T_n(\omega)" /> besteht aus allen Funktionen der folgenden Form mit reellen Koeffizienten <InlineMath math="a_i,b_i" />:
+
+<MathContainer>
+  <BlockMath math="p(x)=\frac{a_0}{2}+\sum_{i=1}^n q_i(x)" />
+
+  <BlockMath math="\begin{aligned} &amp;q_i(x)=a_i\cos\left(\frac{2\pi ix}{\omega}\right) \\ &amp;+b_i\sin\left(\frac{2\pi ix}{\omega}\right) \end{aligned}" />
+</MathContainer>
 
 Über eine volle Periode sind diese Sinus- und Kosinusbasisfunktionen paarweise orthogonal. Ihre Koeffizienten lassen sich daher berechnen, indem wir die Zielfunktion auf jede Basisfunktion projizieren. Das ist die endlichdimensionale Grundidee der Fourier-Approximation.
 

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Verknüpfe unendliche geometrische Reihen mit einem springenden Ball und leite daraus Konvergenz, Divergenz und die Summenformel ab.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Folgen und Reihen",
 };
 
@@ -44,7 +44,7 @@ Für eine unendliche Reihe betrachten wir <InlineMath math="S_n" />, wenn <Inlin
 
 Für <InlineMath math="n \to \infty" /> und <InlineMath math="-1 < r < 1" /> gilt also <InlineMath math="r^n \to 0" />. Die Formel lautet:
 
-<BlockMath math="S_\infty = \lim_{n \to \infty} S_n = \lim_{n \to \infty} \frac{a(1 - r^n)}{1 - r} = \frac{a(1 - 0)}{1 - r}" />
+<BlockMath math="\begin{aligned} S_\infty &amp;= \lim_{n \to \infty} S_n \\ &amp;= \lim_{n \to \infty} \frac{a(1 - r^n)}{1 - r} \\ &amp;= \frac{a(1 - 0)}{1 - r} \end{aligned}" />
 
 Somit lautet die Formel für die Summe einer konvergenten unendlichen geometrischen Reihe:
 
@@ -85,15 +85,16 @@ Mit der Formel <InlineMath math="S_\infty" /> können wir die vom Ball zurückge
     - Der Faktor (<InlineMath math="r_{\uparrow}" />) ist <InlineMath math="r" />
     - Summe der Aufwärtsstrecken: <InlineMath math="S_{\uparrow}=\frac{a_{\uparrow}}{1-r_{\uparrow}}=\frac{ar}{1-r}" />
 
+Die Gesamtstrecke ist die Summe aller Abwärtsstrecken und aller Aufwärtsstrecken.
+
 <MathContainer>
-  <BlockMath math="\text{Gesamtdistanz} = \text{Summe des Abwärtspfads} + \text{Summe des Aufwärtspfads}" />
-  <BlockMath math="\text{Gesamt} = S_{\downarrow} + S_{\uparrow} = \frac{a}{1 - r} + \frac{ar}{1 - r}" />
+    <BlockMath math="\begin{aligned} \text{Gesamt} &amp;= S_{\downarrow} + S_{\uparrow} \\ &amp;= \frac{a}{1 - r} + \frac{ar}{1 - r} \end{aligned}" />
   <BlockMath math="\text{Gesamt} = \frac{a(1 + r)}{1 - r}" />
 </MathContainer>
 
 Für das Tennisball-Beispiel mit <InlineMath math="a = 1 \text{ Meter}" /> und <InlineMath math="r = \frac{1}{4}" />:
 
-<BlockMath math="\text{Gesamt} = \frac{1(1 + \frac{1}{4})}{1 - \frac{1}{4}} = \frac{1(\frac{5}{4})}{\frac{3}{4}} = \frac{5/4}{3/4} = \frac{5}{4} \times \frac{4}{3} = \frac{5}{3}" />
+<BlockMath math="\begin{aligned}\text{Gesamt} &= \frac{1(1 + \frac{1}{4})}{1 - \frac{1}{4}} \\ &= \frac{1(\frac{5}{4})}{\frac{3}{4}} \\ &= \frac{5/4}{3/4} \\ &= \frac{5}{4} \times \frac{4}{3} \\ &= \frac{5}{3}\end{aligned}" />
 
 Das Modell ergibt also eine Gesamtstrecke von <InlineMath math="\frac{5}{3} \text{Metern}" />.
 
@@ -103,8 +104,8 @@ Dies ist ein idealisiertes mathematisches Modell. Ein echter Ball vollführt nic
 Die Gesamtstrecke lässt sich auch als erste Abwärtsstrecke plus <InlineMath math="2 \text{ mal}" /> der Summe aller Aufwärtsstrecken berechnen.
 
 <MathContainer>
-  <BlockMath math="\text{Gesamt} = a + 2 \times S_{\uparrow} = a + 2 \times \left( \frac{ar}{1 - r} \right)" />
-  <BlockMath math="\text{Gesamt} = 1 + 2 \times \left( \frac{1 \times \frac{1}{4}}{1 - \frac{1}{4}} \right) = 1 + 2 \times \left( \frac{1/4}{3/4} \right) = 1 + 2 \times \left( \frac{1}{3} \right) = 1 + \frac{2}{3} = \frac{5}{3}" />
+  <BlockMath math="\begin{aligned} \text{Gesamt} &amp;= a + 2 \times S_{\uparrow} \\ &amp;= a + 2 \times \left( \frac{ar}{1 - r} \right) \end{aligned}" />
+  <BlockMath math="\begin{aligned} \text{Gesamt} &amp;= 1 + 2 \times \left( \frac{1 \times \frac{1}{4}}{1 - \frac{1}{4}} \right) \\ &amp;= 1 + 2 \times \left( \frac{1/4}{3/4} \right) \\ &amp;= 1 + 2 \times \left( \frac{1}{3} \right) \\ &amp;= 1 + \frac{2}{3} \\ &amp;= \frac{5}{3} \end{aligned}" />
 </MathContainer>
 
 Beide Wege führen zum selben Ergebnis.

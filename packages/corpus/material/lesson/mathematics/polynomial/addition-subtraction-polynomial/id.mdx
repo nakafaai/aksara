@@ -5,7 +5,7 @@ export const metadata = {
     description: "Jumlahkan dan kurangkan polinomial dengan menggabungkan suku sejenis memakai cara horizontal, vertikal, dan grafik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Polinomial",
 };
 
@@ -51,13 +51,19 @@ Untuk menjumlahkan dua polinomial, **jumlahkan koefisien suku-suku yang sejenis*
 
 Tentukan hasil dari <InlineMath math="(2x^3 + 7x^2 + 3x + 5) + (6x^3 + 2x^2 + 4x + 1)" />.
 
-<MathContainer>
-  <BlockMath math="(2x^3 + 7x^2 + 3x + 5) + (6x^3 + 2x^2 + 4x + 1)" />
-  <BlockMath math="= 2x^3 + 7x^2 + 3x + 5 + 6x^3 + 2x^2 + 4x + 1 \quad \text{(Hilangkan kurung)}" />
-  <BlockMath math="= (2x^3 + 6x^3) + (7x^2 + 2x^2) + (3x + 4x) + (5 + 1) \quad \text{(Kelompokkan suku sejenis)}" />
-  <BlockMath math="= (2 + 6)x^3 + (7 + 2)x^2 + (3 + 4)x + (5 + 1) \quad \text{(Sifat distributif)}" />
-  <BlockMath math="= 8x^3 + 9x^2 + 7x + 6 \quad \text{(Hasil akhir)}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} &amp;(2x^3 + 7x^2 + 3x + 5) \\ &amp;+ (6x^3 + 2x^2 + 4x + 1) \end{aligned}" />
+  Hilangkan tanda kurung:
+
+<BlockMath math="\begin{aligned} &amp;=2x^3+7x^2+3x+5 \\ &amp;+6x^3+2x^2+4x+1 \end{aligned}" />
+  Kelompokkan suku-suku sejenis:
+
+<BlockMath math="\begin{aligned} &amp;=(2x^3+6x^3)+(7x^2+2x^2) \\ &amp;+(3x+4x)+(5+1) \end{aligned}" />
+  Gunakan sifat distributif:
+
+<BlockMath math="\begin{aligned} &amp;=(2+6)x^3+(7+2)x^2 \\ &amp;+(3+4)x+(5+1) \end{aligned}" />
+  Hasilnya adalah:
+
+<BlockMath math="= 8x^3 + 9x^2 + 7x + 6" />
 
 ## Pengurangan Polinomial
 
@@ -74,12 +80,20 @@ Untuk mengurangkan dua polinomial, kita **mengubah tanda setiap suku pada polino
 
 Tentukan hasil dari <InlineMath math="(9x^3 + 4x^2 + 6x + 5) - (2x^3 + 3x^2 + 3x + 4)" />.
 
+<BlockMath math="\begin{aligned} &amp;(9x^3 + 4x^2 + 6x + 5) \\ &amp;- (2x^3 + 3x^2 + 3x + 4) \end{aligned}" />
+  Ubah tanda setiap suku lalu hilangkan kurung:
+
+<BlockMath math="\begin{aligned} &amp;=9x^3+4x^2+6x+5 \\ &amp;-2x^3-3x^2-3x-4 \end{aligned}" />
+  Kelompokkan suku-suku sejenis:
+
+<BlockMath math="\begin{aligned} &amp;=(9x^3-2x^3)+(4x^2-3x^2) \\ &amp;+(6x-3x)+(5-4) \end{aligned}" />
+  Gunakan sifat distributif:
+
+<BlockMath math="\begin{aligned} &amp;=(9-2)x^3+(4-3)x^2 \\ &amp;+(6-3)x+(5-4) \end{aligned}" />
+  Hasilnya adalah:
+
 <MathContainer>
-  <BlockMath math="(9x^3 + 4x^2 + 6x + 5) - (2x^3 + 3x^2 + 3x + 4)" />
-  <BlockMath math="= 9x^3 + 4x^2 + 6x + 5 - 2x^3 - 3x^2 - 3x - 4 \quad \text{(Ubah tanda \& hilangkan kurung)}" />
-  <BlockMath math="= (9x^3 - 2x^3) + (4x^2 - 3x^2) + (6x - 3x) + (5 - 4) \quad \text{(Kelompokkan suku sejenis)}" />
-  <BlockMath math="= (9 - 2)x^3 + (4 - 3)x^2 + (6 - 3)x + (5 - 4) \quad \text{(Sifat distributif)}" />
-  <BlockMath math="= 7x^3 + 1x^2 + 3x + 1 \quad \text{(Hasil akhir)}" />
+  <BlockMath math="= 7x^3 + 1x^2 + 3x + 1" />
   <BlockMath math="= 7x^3 + x^2 + 3x + 1" />
 </MathContainer>
 
@@ -137,10 +151,14 @@ Misalkan kita memiliki tiga grafik fungsi polinomial:
     cameraPosition={[0, 0, 15]}
     data={[
       {
-        points: Array.from({ length: 51 }, (_, i) => {
-          const x = -2.5 + i * 0.1;
-          return { x, y: x + 1, z: 0 };
-        }),
+        points: [
+          { x: -12, y: -11, z: 0 },
+          ...Array.from({ length: 51 }, (_, i) => {
+            const x = -2.5 + i * 0.1;
+            return { x, y: x + 1, z: 0 };
+          }),
+          { x: 10, y: 11, z: 0 },
+        ],
         smooth: false,
         color: "#0284c7",
         showPoints: false,
@@ -178,8 +196,8 @@ Misalkan kita memiliki tiga grafik fungsi polinomial:
     data={[
       {
         smooth: false,
-        points: Array.from({ length: 51 }, (_, i) => {
-          const x = -2.5 + i * 0.1;
+        points: Array.from({ length: 261 }, (_, i) => {
+          const x = (i - 130) / 40;
           return { x, y: -0.5 * x ** 3 + 1.5 * x, z: 0 };
         }),
         color: "#d97706",
@@ -228,8 +246,8 @@ Berikut adalah contoh sketsa grafik hasil penjumlahan <InlineMath math="f(x) + g
     data={[
       {
         smooth: false,
-        points: Array.from({ length: 51 }, (_, i) => {
-          const x = -2.5 + i * 0.1;
+        points: Array.from({ length: 271 }, (_, i) => {
+          const x = (i - 140) / 50;
           return { x, y: x + 1 + (0.5 * x ** 4 - 2 * x ** 2 + 1), z: 0 };
         }),
         color: "#7c3aed",
@@ -255,8 +273,8 @@ Berikut adalah contoh sketsa grafik hasil penjumlahan <InlineMath math="f(x) + g
     data={[
       {
         smooth: false,
-        points: Array.from({ length: 51 }, (_, i) => {
-          const x = -2.5 + i * 0.1;
+        points: Array.from({ length: 271 }, (_, i) => {
+          const x = (i - 130) / 50;
           return { x, y: x + 1 - (0.5 * x ** 4 - 2 * x ** 2 + 1), z: 0 };
         }),
         color: "#db2777",
@@ -285,7 +303,7 @@ Untuk penjumlahan, gabungkan koefisien dari suku-suku yang berpangkat sama:
 
 <MathContainer>
   <BlockMath math="A(x)+B(x)" />
-  <BlockMath math="=(3-1)x^3+(-2+6)x^2+(5-3)x+(-4+7)" />
+  <BlockMath math="\begin{aligned} &amp;=(3-1)x^3+(-2+6)x^2 \\ &amp;+(5-3)x+(-4+7) \end{aligned}" />
   <BlockMath math="=2x^3+4x^2+2x+3" />
 </MathContainer>
 
@@ -293,7 +311,7 @@ Untuk pengurangan, distribusikan tanda negatif ke setiap suku dalam <InlineMath 
 
 <MathContainer>
   <BlockMath math="A(x)-B(x)" />
-  <BlockMath math="=3x^3-2x^2+5x-4-(-x^3+6x^2-3x+7)" />
-  <BlockMath math="=(3+1)x^3+(-2-6)x^2+(5+3)x+(-4-7)" />
+  <BlockMath math="\begin{aligned} &amp;=3x^3-2x^2+5x \\ &amp;-4-(-x^3+6x^2-3x+7) \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;=(3+1)x^3+(-2-6)x^2 \\ &amp;+(5+3)x+(-4-7) \end{aligned}" />
   <BlockMath math="=4x^3-8x^2+8x-11" />
 </MathContainer>

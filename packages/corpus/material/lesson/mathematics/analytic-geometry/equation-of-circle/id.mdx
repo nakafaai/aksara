@@ -3,7 +3,7 @@ export const metadata = {
   description: "Ubah persamaan lingkaran antara bentuk baku dan bentuk umum, lalu tentukan pusat serta jari-jarinya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Geometri Analitik",
 };
 
@@ -184,7 +184,8 @@ Pergeseran pusatnya terlihat pada grafik berikut.
       smooth: false,
     },
   ]}
-  cameraPosition={[0, 0, 10]}
+  cameraPosition={[2, -1, 10]}
+  cameraTarget={[2, -1, 0]}
 />
 
 Persamaan lingkaran di atas adalah <InlineMath math="(x-2)^2 + (y+1)^2 = 4" /> karena pusatnya <InlineMath math="P(2,-1)" /> dan jari-jarinya <InlineMath math="2" />, jadi <InlineMath math="r^2 = 2^2 = 4" />.
@@ -213,7 +214,7 @@ Langkah melengkapkan kuadrat menunjukkan asal rumus pusat dan jari-jari:
 <MathContainer>
   <BlockMath math="x^2 + Dx = \left(x + \frac{D}{2}\right)^2 - \frac{D^2}{4}" />
   <BlockMath math="y^2 + Ey = \left(y + \frac{E}{2}\right)^2 - \frac{E^2}{4}" />
-  <BlockMath math="\left(x + \frac{D}{2}\right)^2 + \left(y + \frac{E}{2}\right)^2 = \frac{D^2 + E^2 - 4F}{4}" />
+  <BlockMath math="\begin{aligned} &amp;\left(x + \frac{D}{2}\right)^2 + \left(y + \frac{E}{2}\right)^2 \\ &amp;= \frac{D^2 + E^2 - 4F}{4} \end{aligned}" />
 </MathContainer>
 
 ## Menentukan Pusat dan Radius
@@ -262,9 +263,9 @@ Sementara itu, dari bentuk umum <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" /
    <InlineMath math="D = -6" />, <InlineMath math="E = 4" />, <InlineMath math="F = -12" />
 
    <MathContainer>
-     <BlockMath math="\text{Pusat: } \left(-\frac{D}{2}, -\frac{E}{2}\right) = \left(-\frac{(-6)}{2}, -\frac{4}{2}\right) = (3, -2)" />
-     <BlockMath math="r = \frac{1}{2}\sqrt{D^2 + E^2 - 4F} = \frac{1}{2}\sqrt{(-6)^2 + 4^2 - 4(-12)}" />
-     <BlockMath math="r = \frac{1}{2}\sqrt{36 + 16 + 48} = \frac{1}{2}\sqrt{100} = \frac{1}{2} \times 10 = 5" />
+     <BlockMath math="\begin{aligned} &amp;\text{Pusat: } \left(-\frac{D}{2}, -\frac{E}{2}\right) \\ &amp;= \left(-\frac{(-6)}{2}, -\frac{4}{2}\right) \\ &amp;= (3, -2) \end{aligned}" />
+     <BlockMath math="\begin{aligned} r &amp;= \frac{1}{2}\sqrt{D^2 + E^2 - 4F} \\ &amp;= \frac{1}{2}\sqrt{(-6)^2 + 4^2 - 4(-12)} \end{aligned}" />
+     <BlockMath math="\begin{aligned} r &amp;= \frac{1}{2}\sqrt{36 + 16 + 48} \\ &amp;= \frac{1}{2}\sqrt{100} \\ &amp;= \frac{1}{2} \times 10 \\ &amp;= 5 \end{aligned}" />
    </MathContainer>
 
    Jadi pusat lingkaran di <InlineMath math="(3,-2)" /> dengan jari-jari <InlineMath math="5" />.
@@ -273,7 +274,7 @@ Sementara itu, dari bentuk umum <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" /
 
    Karena lingkaran berpusat di <InlineMath math="O(0,0)" /> dan melalui titik <InlineMath math="(6,-8)" />, maka jari-jarinya adalah jarak dari pusat ke titik tersebut.
 
-   <BlockMath math="r = \sqrt{(6-0)^2 + (-8-0)^2} = \sqrt{6^2 + (-8)^2} = \sqrt{36 + 64} = \sqrt{100} = 10" />
+   <BlockMath math="\begin{aligned} r &amp;= \sqrt{(6-0)^2 + (-8-0)^2} \\ &amp;= \sqrt{6^2 + (-8)^2} \\ &amp;= \sqrt{36 + 64} \\ &amp;= \sqrt{100} \\ &amp;= 10 \end{aligned}" />
 
    Persamaan lingkarannya: <InlineMath math="x^2 + y^2 = r^2 = 10^2 = 100" />
 
@@ -281,13 +282,13 @@ Sementara itu, dari bentuk umum <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" /
 
    Pusat lingkaran adalah titik tengah dari diameter <InlineMath math="AB" />:
 
-   <BlockMath math="\text{Pusat} = \left(\frac{x_A + x_B}{2}, \frac{y_A + y_B}{2}\right) = \left(\frac{1+7}{2}, \frac{3+(-1)}{2}\right) = \left(\frac{8}{2}, \frac{2}{2}\right) = (4, 1)" />
+   <BlockMath math="\begin{aligned} &amp;\text{Pusat} \\ &amp;= \left(\frac{x_A + x_B}{2}, \frac{y_A + y_B}{2}\right) \\ &amp;= \left(\frac{1+7}{2}, \frac{3+(-1)}{2}\right) \\ &amp;= \left(\frac{8}{2}, \frac{2}{2}\right) \\ &amp;= (4, 1) \end{aligned}" />
 
    Jari-jari adalah setengah panjang diameter:
 
    <MathContainer>
-     <BlockMath math="\text{Panjang } AB = \sqrt{(x_B-x_A)^2 + (y_B-y_A)^2} = \sqrt{(7-1)^2 + (-1-3)^2}" />
-     <BlockMath math="= \sqrt{6^2 + (-4)^2} = \sqrt{36 + 16} = \sqrt{52} = \sqrt{4 \times 13} = 2\sqrt{13}" />
+     <BlockMath math="\begin{aligned} &amp;\text{Panjang } AB \\ &amp;= \sqrt{(x_B-x_A)^2 + (y_B-y_A)^2} \\ &amp;= \sqrt{(7-1)^2 + (-1-3)^2} \end{aligned}" />
+     <BlockMath math="\begin{aligned}  &amp;= \sqrt{6^2 + (-4)^2} \\ &amp;= \sqrt{36 + 16} \\ &amp;= \sqrt{52} \\ &amp;= \sqrt{4 \times 13} \\ &amp;= 2\sqrt{13} \end{aligned}" />
      <BlockMath math="r = \frac{\text{diameter}}{2} = \frac{2\sqrt{13}}{2} = \sqrt{13}" />
    </MathContainer>
 

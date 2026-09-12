@@ -4,7 +4,7 @@ export const metadata = {
   description: "Spiegle Punkte an einem beliebigen Spiegelzentrum, indem du Verschiebungen und Matrixoperationen miteinander verknüpfst.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Geometrische Transformation",
 };
 
@@ -23,8 +23,8 @@ Verwende dazu drei Operationen:
 Mathematisch gilt, wenn <InlineMath math="(x', y')" /> das Bild von <InlineMath math="(x,y)" /> ist:
 
 <MathContainer>
-  <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} x-a \\ y-b \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix}" />
-  <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -(x-a) \\ -(y-b) \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} -x+a \\ -y+b \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} -x+2a \\ -y+2b \end{pmatrix}" />
+  <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} x-a \\ y-b \end{pmatrix} \\ &amp;+ \begin{pmatrix} a \\ b \end{pmatrix} \end{aligned}" />
+  <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} -(x-a) \\ -(y-b) \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix} \\ &amp;= \begin{pmatrix} -x+a \\ -y+b \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix} \\ &amp;= \begin{pmatrix} -x+2a \\ -y+2b \end{pmatrix} \end{aligned}" />
 </MathContainer>
 
 Der letzte Vektor ergibt die Koordinatenregel <InlineMath math="(x,y)\mapsto(2a-x,2b-y)" />.
@@ -37,7 +37,7 @@ Die mit der Spiegelung am Punkt <InlineMath math="P(a,b)" /> für jeden Punkt <I
 
 Dieselbe Abbildung lässt sich auch in den drei beschriebenen Schritten schreiben:
 
-<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \left( \begin{pmatrix} x \\ y \end{pmatrix} - \begin{pmatrix} a \\ b \end{pmatrix} \right) + \begin{pmatrix} a \\ b \end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x' \\ y' \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \left( \begin{pmatrix} x \\ y \end{pmatrix} - \begin{pmatrix} a \\ b \end{pmatrix} \right) \\ &amp;+ \begin{pmatrix} a \\ b \end{pmatrix} \end{aligned}" />
 
 Beim Ausmultiplizieren entsteht <InlineMath math="\begin{pmatrix} -x+2a \\ -y+2b \end{pmatrix}" />. Das ist genau die Koordinatenregel <InlineMath math="(x,y) \mapsto (2a-x,2b-y)" />. In Vektorform lautet dieselbe Beziehung <InlineMath math="Q'=2P-Q" />: Das Zentrum ist der Mittelpunkt zwischen dem Ausgangspunkt und seinem Bildpunkt.
 
@@ -50,7 +50,7 @@ Der Ausgangspunkt ist <InlineMath math="(x,y) = (2,3)" /> und das Spiegelzentrum
 <MathContainer>
   <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 2 \\ 3 \end{pmatrix} + 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix}" />
   <BlockMath math="= \begin{pmatrix} (-1)(2) + (0)(3) \\ (0)(2) + (-1)(3) \end{pmatrix} + \begin{pmatrix} 2 \\ 2 \end{pmatrix}" />
-  <BlockMath math="= \begin{pmatrix} -2 \\ -3 \end{pmatrix} + \begin{pmatrix} 2 \\ 2 \end{pmatrix} = \begin{pmatrix} -2+2 \\ -3+2 \end{pmatrix} = \begin{pmatrix} 0 \\ -1 \end{pmatrix}" />
+  <BlockMath math="\begin{aligned}  &amp;= \begin{pmatrix} -2 \\ -3 \end{pmatrix} + \begin{pmatrix} 2 \\ 2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2+2 \\ -3+2 \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 \\ -1 \end{pmatrix} \end{aligned}" />
 </MathContainer>
 
 Das Diagramm zeigt das Spiegelzentrum genau in der Mitte zwischen Ausgangspunkt und Bildpunkt.
@@ -117,7 +117,7 @@ Das Diagramm zeigt das Spiegelzentrum genau in der Mitte zwischen Ausgangspunkt 
 
     Das Bild ist <InlineMath math="(-7,-3)" />. Mit der Matrixrechnung erhalten wir dasselbe Ergebnis:
 
-    <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 3 \\ 1 \end{pmatrix} + 2 \begin{pmatrix} -2 \\ -1 \end{pmatrix} = \begin{pmatrix} -3 \\ -1 \end{pmatrix} + \begin{pmatrix} -4 \\ -2 \end{pmatrix} = \begin{pmatrix} -7 \\ -3 \end{pmatrix}" />
+    <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x' \\ y' \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 3 \\ 1 \end{pmatrix} + 2 \begin{pmatrix} -2 \\ -1 \end{pmatrix} \\ &amp;= \begin{pmatrix} -3 \\ -1 \end{pmatrix} + \begin{pmatrix} -4 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -7 \\ -3 \end{pmatrix} \end{aligned}" />
 
 2.  Spiegelzentrum <InlineMath math="C(0,1)" />. (<InlineMath math="a=0, b=1" />)
 

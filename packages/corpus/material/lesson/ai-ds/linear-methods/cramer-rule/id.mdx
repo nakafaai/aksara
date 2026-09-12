@@ -3,7 +3,7 @@ export const metadata = {
     description: "Selesaikan sistem linear dengan aturan Cramer. Hubungkan determinan, matriks adjoin, rumus invers, dan satu contoh lengkap.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-12",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-12",
     subject: "Metode Linear AI",
 };
 
@@ -35,8 +35,12 @@ Matriks adjoin <InlineMath math="\tilde{A}" /> memuat **kofaktor** dari <InlineM
 
 Matriks adjoin memiliki struktur sebagai berikut:
 
+Tuliskan setiap determinan minor sebagai <InlineMath math="c_{ij}" />. Tanda berselang-seling dan indeks yang ditranspos tetap terlihat pada adjugat utuh:
+
 <MathContainer>
-<BlockMath math="\tilde{A} = \begin{pmatrix} \det A_{11} & -\det A_{21} & \det A_{31} & \cdots \\ -\det A_{12} & \det A_{22} & -\det A_{32} & \cdots \\ \det A_{13} & -\det A_{23} & \det A_{33} & \cdots \\ \vdots & \vdots & \vdots & \ddots \end{pmatrix}" />
+  <BlockMath math="c_{ij}=\det A_{ij}" />
+
+  <BlockMath math="\tilde{A} = \begin{pmatrix} c_{11} &amp; -c_{21} &amp; c_{31} &amp; \cdots \\ -c_{12} &amp; c_{22} &amp; -c_{32} &amp; \cdots \\ c_{13} &amp; -c_{23} &amp; c_{33} &amp; \cdots \\ \vdots &amp; \vdots &amp; \vdots &amp; \ddots \end{pmatrix}" />
 </MathContainer>
 
 Setiap elemen dihitung dengan mengambil determinan submatriks yang sesuai, kemudian diberikan tanda berdasarkan pola papan catur <InlineMath math="(-1)^{i+j}" />.
@@ -46,7 +50,7 @@ Setiap elemen dihitung dengan mengambil determinan submatriks yang sesuai, kemud
 Matriks adjoin memenuhi identitas berikut dengan matriks asal:
 
 <MathContainer>
-<BlockMath math="A \cdot \tilde{A} = \tilde{A} \cdot A = \begin{pmatrix} \det A & 0 & \cdots & 0 \\ 0 & \det A & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & \det A \end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;A \cdot \tilde{A} \\ &amp;= \tilde{A} \cdot A \\ &amp;= \begin{pmatrix} \det A &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; \det A &amp; \cdots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; \cdots &amp; \det A \end{pmatrix} \end{aligned}" />
 </MathContainer>
 
 Dengan kata lain:
@@ -89,9 +93,13 @@ Sehingga inversnya adalah:
 
 Kita dapat memverifikasi bahwa:
 
+Hitung setiap entri matriks pembilang:
+
 <MathContainer>
-<BlockMath math="A \cdot A^{-1} = \frac{1}{a \cdot d - b \cdot c} \begin{pmatrix} a \cdot d - b \cdot c & -a \cdot b + a \cdot b \\ c \cdot d - c \cdot d & -c \cdot b + a \cdot d \end{pmatrix}" />
-<BlockMath math="= \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I" />
+  <BlockMath math="\begin{aligned} &amp;m_{11}=a\cdot d-b\cdot c \\ &amp;m_{12}=-a\cdot b+a\cdot b \\ &amp;m_{21}=c\cdot d-c\cdot d \\ &amp;m_{22}=-c\cdot b+a\cdot d \end{aligned}" />
+
+  <BlockMath math="\begin{aligned} &amp;A\cdot A^{-1} \\ &amp;=\frac1{a\cdot d-b\cdot c}\begin{pmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{pmatrix} \end{aligned}" />
+  <BlockMath math="= \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I" />
 </MathContainer>
 
 ## Pernyataan Teorema
@@ -100,8 +108,12 @@ Sekarang kita dapat merumuskan aturan Cramer untuk menyelesaikan sistem persamaa
 
 Misalkan <InlineMath math="A \in \mathbb{R}^{n \times n}" /> adalah matriks yang dapat dibalik dan <InlineMath math="a^1, a^2, \ldots, a^n \in \mathbb{R}^n" /> adalah kolom-kolom dari <InlineMath math="A" />. Untuk vektor <InlineMath math="b \in \mathbb{R}^n" />, solusi <InlineMath math="x \in \mathbb{R}^n" /> dari sistem persamaan linear <InlineMath math="A \cdot x = b" /> diberikan oleh:
 
+Tuliskan <InlineMath math="A_j(b)" /> untuk matriks yang kolom ke-<InlineMath math="j" /> diganti dengan <InlineMath math="b" />:
+
 <MathContainer>
-<BlockMath math="x_j = \frac{\det(a^1 \; \ldots \; a^{j-1} \; b \; a^{j+1} \; \ldots \; a^n)}{\det A}" />
+  <BlockMath math="A_j(b)=(a^1\;\ldots\;a^{j-1}\;b\;a^{j+1}\;\ldots\;a^n)" />
+
+  <BlockMath math="x_j=\frac{\det A_j(b)}{\det A}" />
 </MathContainer>
 
 Rumus Cramer tersebut berlaku untuk <InlineMath math="j = 1, 2, \ldots, n" />.
@@ -115,12 +127,12 @@ Bukti aturan Cramer menggunakan ekspansi Laplace dan identitas matriks adjoin.
 Untuk <InlineMath math="j = 1, \ldots, n" />:
 
 <MathContainer>
-<BlockMath math="x_j = (A^{-1} \cdot b)_j = \sum_{i=1}^{n} (A^{-1})_{ji} \cdot b_i = \sum_{i=1}^{n} \frac{1}{\det A} \cdot \tilde{a}_{ji} \cdot b_i" />
+<BlockMath math="\begin{aligned} x_j &amp;= (A^{-1} \cdot b)_j \\ &amp;= \sum_{i=1}^{n} (A^{-1})_{ji} \cdot b_i \\ &amp;= \sum_{i=1}^{n} \frac{1}{\det A} \cdot \tilde{a}_{ji} \cdot b_i \end{aligned}" />
 </MathContainer>
 
 <MathContainer>
-<BlockMath math="= \frac{1}{\det A} \sum_{i=1}^{n} (-1)^{i+j} \cdot \det A_{ij} \cdot b_i" />
-<BlockMath math="= \frac{1}{\det A} \cdot \det(a^1 \; \ldots \; a^{j-1} \; b \; a^{j+1} \; \ldots \; a^n)" />
+  <BlockMath math="= \frac{1}{\det A} \sum_{i=1}^{n} (-1)^{i+j} \cdot \det A_{ij} \cdot b_i" />
+  <BlockMath math="=\frac1{\det A}\cdot\det A_j(b)" />
 </MathContainer>
 
 Kesamaan terakhir mengikuti pengembangan Laplace terhadap kolom ke-<InlineMath math="j" />.
@@ -130,14 +142,14 @@ Kesamaan terakhir mengikuti pengembangan Laplace terhadap kolom ke-<InlineMath m
 Selesaikan sistem berikut dengan mengganti satu kolom <InlineMath math="A" /> pada setiap perhitungan:
 
 <MathContainer>
-<BlockMath math="A = \begin{pmatrix} 1 & 1 & -1 \\ 1 & -1 & 1 \\ -1 & 1 & 1 \end{pmatrix}, \quad b = \begin{pmatrix} 20 \\ 40 \\ 30 \end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;A = \begin{pmatrix} 1 &amp; 1 &amp; -1 \\ 1 &amp; -1 &amp; 1 \\ -1 &amp; 1 &amp; 1 \end{pmatrix}, \\ &amp;b = \begin{pmatrix} 20 \\ 40 \\ 30 \end{pmatrix} \end{aligned}" />
 </MathContainer>
 
 Hitung determinan matriks <InlineMath math="A" />.
 
 <MathContainer>
-<BlockMath math="\det A = 1 \cdot ((-1) \cdot 1 - 1 \cdot 1) - 1 \cdot (1 \cdot 1 - (-1) \cdot 1)" />
-<BlockMath math="+ (-1) \cdot (1 \cdot 1 - (-1) \cdot (-1)) = -4 \neq 0" />
+<BlockMath math="\begin{aligned} &amp;\det A = 1 \cdot ((-1) \cdot 1 - 1 \cdot 1) \\ &amp;- 1 \cdot (1 \cdot 1 - (-1) \cdot 1) \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;+ (-1) \cdot (1 \cdot 1 - (-1) \cdot (-1)) = -4 \\ &amp;\neq 0 \end{aligned}" />
 </MathContainer>
 
 Karena <InlineMath math="\det A=-4\neq0" />, matriks <InlineMath math="A" /> dapat dibalik dan sistem memiliki solusi unik.
@@ -145,15 +157,15 @@ Karena <InlineMath math="\det A=-4\neq0" />, matriks <InlineMath math="A" /> dap
 Menurut aturan Cramer:
 
 <MathContainer>
-<BlockMath math="x_1 = \frac{1}{\det A} \cdot \det \begin{pmatrix} 20 & 1 & -1 \\ 40 & -1 & 1 \\ 30 & 1 & 1 \end{pmatrix} = \frac{-120}{-4} = 30" />
+<BlockMath math="\begin{aligned} x_1 &amp;= \frac{1}{\det A} \cdot \det \begin{pmatrix} 20 &amp; 1 &amp; -1 \\ 40 &amp; -1 &amp; 1 \\ 30 &amp; 1 &amp; 1 \end{pmatrix} \\ &amp;= \frac{-120}{-4} \\ &amp;= 30 \end{aligned}" />
 </MathContainer>
 
 <MathContainer>
-<BlockMath math="x_2 = \frac{1}{\det A} \cdot \det \begin{pmatrix} 1 & 20 & -1 \\ 1 & 40 & 1 \\ -1 & 30 & 1 \end{pmatrix} = \frac{-100}{-4} = 25" />
+<BlockMath math="\begin{aligned} x_2 &amp;= \frac{1}{\det A} \cdot \det \begin{pmatrix} 1 &amp; 20 &amp; -1 \\ 1 &amp; 40 &amp; 1 \\ -1 &amp; 30 &amp; 1 \end{pmatrix} \\ &amp;= \frac{-100}{-4} \\ &amp;= 25 \end{aligned}" />
 </MathContainer>
 
 <MathContainer>
-<BlockMath math="x_3 = \frac{1}{\det A} \cdot \det \begin{pmatrix} 1 & 1 & 20 \\ 1 & -1 & 40 \\ -1 & 1 & 30 \end{pmatrix} = \frac{-140}{-4} = 35" />
+<BlockMath math="\begin{aligned} x_3 &amp;= \frac{1}{\det A} \cdot \det \begin{pmatrix} 1 &amp; 1 &amp; 20 \\ 1 &amp; -1 &amp; 40 \\ -1 &amp; 1 &amp; 30 \end{pmatrix} \\ &amp;= \frac{-140}{-4} \\ &amp;= 35 \end{aligned}" />
 </MathContainer>
 
 Verifikasi menunjukkan bahwa <InlineMath math="A \cdot x - b = 0" />.

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Analyze square root functions through domain, range, graph transformations, equations, inequalities, and a height model.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Functions and Their Modeling",
 };
 
@@ -66,17 +66,22 @@ The graph below visualizes the basic square root function <InlineMath math="f(x)
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = i * 0.5;
-        return { x, y: Math.sqrt(x), z: 0 };
-      }),
+      points: (() => {
+        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        parameters.push(1.5811388300841898);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t * t;
+            return { x, y: t, z: 0 };
+          });
+      })(),
       color: "#9333ea",
       showPoints: false,
       labels: [
         {
           text: <InlineMath math="f(x)=\sqrt{x}" />,
-          at: 25,
+          at: 64,
           offset: [0, 1, 0],
         },
       ],
@@ -105,57 +110,73 @@ The function <InlineMath math="f(x) = \sqrt{x-h}" /> shifts the graph of the bas
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = i * 0.5;
-        return { x, y: Math.sqrt(x), z: 0 };
-      }),
+      points: (() => {
+        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        parameters.push(1.5811388300841898);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t * t;
+            return { x, y: t, z: 0 };
+          });
+      })(),
       color: "#9333ea",
       showPoints: false,
       labels: [
         {
           text: <InlineMath math="\sqrt{x}" />,
-          at: 25,
-          offset: [0, -0.5, 0],
+          at: 64,
+          offset: [-2.7, 0.418861, 0],
         },
       ],
     },
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = 2 + i * 0.5;
-        return { x, y: Math.sqrt(x - 2), z: 0 };
-      }),
+      points: (() => {
+        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        parameters.push(2.23606797749979);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t * t + 2;
+            return { x, y: t, z: 0 };
+          });
+      })(),
       color: "#ea580c",
       showPoints: false,
       labels: [
         {
           text: <InlineMath math="\sqrt{x-2}" />,
-          at: 50,
-          offset: [0, -0.5, 0],
+          at: 90,
+          offset: [-1, -2.986068, 0],
         },
       ],
     },
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = -2 + i * 0.5;
-        return { x, y: Math.sqrt(x + 2), z: 0 };
-      }),
+      points: (() => {
+        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        parameters.push(2.23606797749979);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t * t + -2;
+            return { x, y: t, z: 0 };
+          });
+      })(),
       color: "#0891b2",
       showPoints: false,
       labels: [
         {
           text: <InlineMath math="\sqrt{x+2}" />,
-          at: 50,
-          offset: [0, 0.5, 0],
+          at: 90,
+          offset: [0, 1.413932, 0],
         },
       ],
     },
   ]}
-  cameraPosition={[10, 6, 10]}
+  cameraPosition={[3, 1, 13]}
+  cameraTarget={[3, 1, 0]}
 />
 
 ### Vertical Translation
@@ -184,51 +205,66 @@ For <InlineMath math="f(x) = a\sqrt{x}" />, a value <InlineMath math="|a|>1" /> 
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = i * 0.5;
-        return { x, y: Math.sqrt(x), z: 0 };
-      }),
+      points: (() => {
+        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        parameters.push(1.5811388300841898);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t * t;
+            return { x, y: t, z: 0 };
+          });
+      })(),
       color: "#9333ea",
       showPoints: false,
       labels: [
         {
           text: <InlineMath math="\sqrt{x}" />,
-          at: 25,
+          at: 64,
           offset: [0, -0.5, 0],
         },
       ],
     },
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = i * 0.5;
-        return { x, y: 2 * Math.sqrt(x), z: 0 };
-      }),
+      points: (() => {
+        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        parameters.push(2.23606797749979);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t * t;
+            return { x, y: 2 * t, z: 0 };
+          });
+      })(),
       color: "#059669",
       showPoints: false,
       labels: [
         {
           text: <InlineMath math="2\sqrt{x}" />,
-          at: 50,
+          at: 90,
           offset: [0, -0.5, 0],
         },
       ],
     },
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = i * 0.5;
-        return { x, y: 0.5 * Math.sqrt(x), z: 0 };
-      }),
+      points: (() => {
+        const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+        parameters.push(2.23606797749979);
+        return parameters
+          .sort((a, b) => a - b)
+          .map((t) => {
+            const x = t * t;
+            return { x, y: 0.5 * t, z: 0 };
+          });
+      })(),
       color: "#d97706",
       showPoints: false,
       labels: [
         {
           text: <InlineMath math="\frac{1}{2}\sqrt{x}" />,
-          at: 50,
+          at: 90,
           offset: [0, 0.5, 0],
         },
       ],
@@ -345,18 +381,22 @@ Because both sides are non-negative on the domain, squaring preserves the inequa
      data={[
        {
          smooth: false,
-         points: Array.from({ length: 101 }, (_, sampleIndex) => {
-           const i = sampleIndex / 5;
-           const x = -4 + i * 0.8;
-           const y = -Math.sqrt(x + 4) + 2;
-           return { x, y, z: 0 };
-         }),
+         points: (() => {
+           const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+           parameters.push(2.5298221281347035);
+           return parameters
+             .sort((a, b) => a - b)
+             .map((t) => {
+               const x = t * t + -4;
+               return { x, y: -1 * t + 2, z: 0 };
+             });
+         })(),
          color: "#7c3aed",
          showPoints: false,
          labels: [
            {
              text: <InlineMath math="g(x)=-\sqrt{x+4}+2" />,
-             at: 40,
+             at: 102,
              offset: [0, -1, 0],
            },
            {
@@ -367,7 +407,8 @@ Because both sides are non-negative on the domain, squaring preserves the inequa
          ],
        },
      ]}
-     cameraPosition={[10, 6, 10]}
+     cameraPosition={[1, 0.4, 14]}
+     cameraTarget={[1, 0.4, 0]}
    />
 
    The graph begins at <InlineMath math="(-4,2)" />. The negative sign reflects the parent graph across the <InlineMath math="x" />-axis, so the curve falls to the right and its outputs stay at or below <InlineMath math="2" />.

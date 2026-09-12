@@ -3,7 +3,7 @@ export const metadata = {
   description: "Interpret the mean of a normal distribution as its expected value in statistics problems.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-07",
+   dateModified: "2026-09-12",
    subject: "Data Analysis and Probability",
 };
 
@@ -39,10 +39,14 @@ Substitute this function into the expected value formula:
 
 Use the substitution <InlineMath math="t = \frac{x-\mu}{\sigma}" />. Then <InlineMath math="x = \sigma t + \mu" /> and <InlineMath math="dx = \sigma \, dt" />.
 
+Write the original density after substituting <InlineMath math="x=\sigma t+\mu" /> as <InlineMath math="h(t)" />, and keep <InlineMath math="dx=\sigma\,dt" /> separate:
+
 <MathContainer>
-<BlockMath math="E(X) = \int_{-\infty}^{\infty} (\sigma t + \mu) \cdot \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}t^2} \cdot \sigma \, dt" />
-<BlockMath math="E(X) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} (\sigma t + \mu) e^{-\frac{1}{2}t^2} \, dt" />
-<BlockMath math="E(X) = \frac{\sigma}{\sqrt{2\pi}} \int_{-\infty}^{\infty} t e^{-\frac{1}{2}t^2} \, dt + \frac{\mu}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} \, dt" />
+  <BlockMath math="h(t)=\frac1{\sigma\sqrt{2\pi}}e^{-\frac12t^2}" />
+
+  <BlockMath math="E(X)=\int_{-\infty}^{\infty}(\sigma t+\mu)h(t)\sigma\,dt" />
+  <BlockMath math="E(X) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} (\sigma t + \mu) e^{-\frac{1}{2}t^2} \, dt" />
+  <BlockMath math="\begin{aligned} &amp;E(X) = \frac{\sigma}{\sqrt{2\pi}} \int_{-\infty}^{\infty} t e^{-\frac{1}{2}t^2} \, dt \\ &amp;+ \frac{\mu}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} \, dt \end{aligned}" />
 </MathContainer>
 
 Evaluate the two integrals separately:
@@ -74,7 +78,7 @@ If the heights of a group of students are normally distributed with mean <Inline
 
 ## Expected Values for Exam Scores and Birth Weights
 
-**Example** <InlineMath math="1" />
+**Example** 1
 
 Suppose the math exam scores in a class are normally distributed with mean <InlineMath math="\mu = 75" /> and standard deviation <InlineMath math="\sigma = 10" />. What is the expected value of a student's exam score?
 
@@ -86,7 +90,7 @@ Since normal distribution has the property <InlineMath math="E(X) = \mu" />, the
 
 The expected value of a student's exam score is <InlineMath math="75" />.
 
-**Example** <InlineMath math="2" />
+**Example** 2
 
 Suppose newborn weights at a hospital are modeled by a normal distribution with mean <InlineMath math="3{,}200 \text{ grams}" /> and standard deviation <InlineMath math="400 \text{ grams}" />. Determine the expected weight of one randomly selected newborn.
 
@@ -108,7 +112,7 @@ The expected weight is the mean parameter:
 
 ### Answer Key
 
-1. **Solution to Problem** <InlineMath math="1" />:
+1. **Solution to Problem** 1:
 
    Given: <InlineMath math="\mu = 25 \text{ minutes}" />, <InlineMath math="\sigma = 5 \text{ minutes}" />
 
@@ -118,7 +122,7 @@ The expected weight is the mean parameter:
 
    **Answer:** The expected value of travel time is <InlineMath math="25 \text{ minutes}" />.
 
-2. **Solution to Problem** <InlineMath math="2" />:
+2. **Solution to Problem** 2:
 
    Given: <InlineMath math="\mu = 28^\circ\text{C}" />, <InlineMath math="\sigma = 3^\circ\text{C}" />
 
@@ -128,7 +132,7 @@ The expected weight is the mean parameter:
 
    **Answer:** The expected value of air temperature is <InlineMath math="28^\circ\text{C}" />.
 
-3. **Solution to Problem** <InlineMath math="3" />:
+3. **Solution to Problem** 3:
 
    Given: <InlineMath math="\mu = 78" />, <InlineMath math="\sigma = 12" />
 

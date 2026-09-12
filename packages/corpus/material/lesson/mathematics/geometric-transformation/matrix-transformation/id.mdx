@@ -4,7 +4,7 @@ export const metadata = {
   description: "Hubungkan matriks persegi dengan rotasi, pencerminan, dan geseran melalui vektor posisi serta contoh perhitungan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Transformasi Geometri",
 };
 
@@ -16,7 +16,7 @@ Titik pada bidang Kartesius dapat ditulis sebagai pasangan terurut <InlineMath m
 
 Jika titik <InlineMath math="P(x,y)" /> ditransformasikan oleh matriks <InlineMath math="M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}" />, maka bayangannya <InlineMath math="P'(x',y')" /> diperoleh dari perkalian matriks:
 
-<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} ax + by \\ cx + dy \end{pmatrix}" />
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} ax + by \\ cx + dy \end{pmatrix} \end{aligned}" />
 
 Sehingga, <InlineMath math="x' = ax + by" /> dan <InlineMath math="y' = cx + dy" />.
 
@@ -28,7 +28,7 @@ Jika <InlineMath math="\begin{pmatrix} x \\ y \end{pmatrix}" /> merepresentasika
 
 Hasil kali matriks tersebut adalah:
 
-<BlockMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} (0)(x) + (-1)(y) \\ (1)(x) + (0)(y) \end{pmatrix} = \begin{pmatrix} -y \\ x \end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(x) + (-1)(y) \\ (1)(x) + (0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} -y \\ x \end{pmatrix} \end{aligned}" />
 
 Matriks <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /> memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(-y,x)" />. Aturan koordinat ini menyatakan rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap titik asal.
 
@@ -62,7 +62,7 @@ Matriks <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /> meme
       points: [{ x: -3, y: 2, z: 0 }],
       color: "#059669",
       showPoints: true,
-      labels: [{ text: <InlineMath math="P'(-3,2)" />, at: 0, offset: [-0.7, 0.3, 0] }],
+      labels: [{ text: <InlineMath math="P'(-3,2)" />, at: 0, offset: [0, 0.3, 0] }],
     },
     {
       points: [
@@ -94,8 +94,12 @@ Pertama-tama, kita dapat menuliskan koordinat titik-titik itu sebagai kolom-kolo
 
 Selanjutnya, kalikan dari kiri matriks itu dengan <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />.
 
+Hitung setiap entri dengan mengalikan baris dan kolom:
+
 <MathContainer>
-  <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 1 & 4 & 4 \\ 1 & 1 & 2 \end{pmatrix} = \begin{pmatrix} (-1)(1)+(0)(1) & (-1)(4)+(0)(1) & (-1)(4)+(0)(2) \\ (0)(1)+(-1)(1) & (0)(4)+(-1)(1) & (0)(4)+(-1)(2) \end{pmatrix}" />
+  <BlockMath math="\begin{aligned} &amp;m_{11}=(-1)(1)+(0)(1) \\ &amp;m_{12}=(-1)(4)+(0)(1) \\ &amp;m_{13}=(-1)(4)+(0)(2) \\ &amp;m_{21}=(0)(1)+(-1)(1) \\ &amp;m_{22}=(0)(4)+(-1)(1) \\ &amp;m_{23}=(0)(4)+(-1)(2) \end{aligned}" />
+
+  <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 1 &amp; 4 &amp; 4 \\ 1 &amp; 1 &amp; 2 \end{pmatrix} \\ &amp;=\begin{pmatrix}m_{11}&amp;m_{12}&amp;m_{13}\\m_{21}&amp;m_{22}&amp;m_{23}\end{pmatrix} \end{aligned}" />
   <BlockMath math="= \begin{pmatrix} -1 & -4 & -4 \\ -1 & -1 & -2 \end{pmatrix}" />
 </MathContainer>
 
@@ -136,7 +140,7 @@ Matriks <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> mer
       smooth: false,
       color: "#d97706",
       showPoints: true,
-      labels: [{ text: segment.from.label, at: 0, offset: [0.3, 0.3, 0] }],
+      labels: [{ text: segment.from.label, at: 0, offset: segment.from.x === 1 && segment.from.y === 1 ? [-0.3, 0.7, 0] : segment.from.x === 4 && segment.from.y === 1 ? [-0.2, -0.6, 0] : [-0.2, 0.7, 0] }],
     })),
     // Segitiga A'B'C' (Bayangan)
     ...[
@@ -157,10 +161,11 @@ Matriks <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> mer
       smooth: false,
       color: "#0d9488",
       showPoints: true,
-      labels: [{ text: segment.from.label, at: 0, offset: [0.3, 0.3, 0] }],
+      labels: [{ text: segment.from.label, at: 0, offset: segment.from.x === -1 && segment.from.y === -1 ? [1.3, -0.8, 0] : segment.from.x === -4 && segment.from.y === -1 ? [0.2, 1.7, 0] : [0.2, -0.7, 0] }],
     })),
   ]}
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[0, 0, 13]}
+  cameraTarget={[0, 0, 0]}
 />
 
 ## Latihan
@@ -170,7 +175,7 @@ Matriks <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> mer
 
 ### Pembahasan
 
-1.  <BlockMath math="\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} (0)(x) + (1)(y) \\ (-1)(x) + (0)(y) \end{pmatrix} = \begin{pmatrix} y \\ -x \end{pmatrix}" />
+1.  <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} 0 &amp; 1 \\ -1 &amp; 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(x) + (1)(y) \\ (-1)(x) + (0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} y \\ -x \end{pmatrix} \end{aligned}" />
 
     Titik <InlineMath math="(x,y)" /> ditransformasikan menjadi <InlineMath math="(y,-x)" />.
 
@@ -182,9 +187,13 @@ Matriks <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> mer
 
     Matriks titik: <InlineMath math="\begin{pmatrix} 2 & 2 & 0 \\ 0 & 1 & 1 \end{pmatrix}" />.
 
+    Hitung setiap entri dengan mengalikan baris dan kolom:
+
     <MathContainer>
-      <BlockMath math="\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 2 & 2 & 0 \\ 0 & 1 & 1 \end{pmatrix} = \begin{pmatrix} (1)(2)+(2)(0) & (1)(2)+(2)(1) & (1)(0)+(2)(1) \\ (0)(2)+(1)(0) & (0)(2)+(1)(1) & (0)(0)+(1)(1) \end{pmatrix}" />
-      <BlockMath math="= \begin{pmatrix} 2+0 & 2+2 & 0+2 \\ 0+0 & 0+1 & 0+1 \end{pmatrix} = \begin{pmatrix} 2 & 4 & 2 \\ 0 & 1 & 1 \end{pmatrix}" />
+      <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(2)+(2)(0) \\ &amp;m_{12}=(1)(2)+(2)(1) \\ &amp;m_{13}=(1)(0)+(2)(1) \\ &amp;m_{21}=(0)(2)+(1)(0) \\ &amp;m_{22}=(0)(2)+(1)(1) \\ &amp;m_{23}=(0)(0)+(1)(1) \end{aligned}" />
+
+      <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} 1 &amp; 2 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} 2 &amp; 2 &amp; 0 \\ 0 &amp; 1 &amp; 1 \end{pmatrix} \\ &amp;=\begin{pmatrix}m_{11}&amp;m_{12}&amp;m_{13}\\m_{21}&amp;m_{22}&amp;m_{23}\end{pmatrix} \end{aligned}" />
+      <BlockMath math="\begin{aligned}  &amp;= \begin{pmatrix} 2+0 &amp; 2+2 &amp; 0+2 \\ 0+0 &amp; 0+1 &amp; 0+1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 &amp; 4 &amp; 2 \\ 0 &amp; 1 &amp; 1 \end{pmatrix} \end{aligned}" />
     </MathContainer>
 
     Titik-titik bayangan: <InlineMath math="A'(2,0)" />, <InlineMath math="B'(4,1)" />, <InlineMath math="C'(2,1)" />.

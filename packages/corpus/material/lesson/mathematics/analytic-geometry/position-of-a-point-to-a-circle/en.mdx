@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use point power to determine whether a point lies inside, on, or outside a circle in the coordinate plane.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Analytic Geometry",
 };
 
@@ -110,7 +110,7 @@ The three cases are shown in the graph below:
       color: "#e11d48",
       showPoints: true,
       labels: [
-        { text: <><InlineMath math="C" /> (outside)</>, at: 0, offset: [0.5, 0.5, 0] },
+        { text: <><InlineMath math="C" /> (outside)</>, at: 0, offset: [-0.8, 1.2, 0] },
       ],
     },
     {
@@ -144,7 +144,8 @@ The three cases are shown in the graph below:
       smooth: false,
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[0.7, 0, 12]}
+  cameraTarget={[0.7, 0, 0]}
 />
 
 ## How to Determine Point Position
@@ -172,7 +173,7 @@ For a circle in general form <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, 
 For example, for point <InlineMath math="A(1, -2)" /> and circle <InlineMath math="x^2 + y^2 - 8x - 2y - 8 = 0" />:
 
 <MathContainer>
-  <BlockMath math="K_A = 1^2 + (-2)^2 - 8(1) - 2(-2) - 8" />
+  <BlockMath math="\begin{aligned} &amp;K_A = 1^2 + (-2)^2 - 8(1) \\ &amp;- 2(-2) - 8 \end{aligned}" />
   <BlockMath math="K_A = 1 + 4 - 8 + 4 - 8 = -7" />
 </MathContainer>
 
@@ -230,7 +231,7 @@ Since <InlineMath math="K_A = -7 < 0" />, then point <InlineMath math="A(1, -2)"
    Substitute point <InlineMath math="D(7, 2)" />:
 
    <MathContainer>
-     <BlockMath math="d_D^2 = (7-3)^2 + (2-(-2))^2 = 4^2 + 4^2" />
+     <BlockMath math="\begin{aligned} d_D^2 &amp;= (7-3)^2 + (2-(-2))^2 \\ &amp;= 4^2 + 4^2 \end{aligned}" />
      <BlockMath math="d_D^2 = 16 + 16 = 32" />
      <BlockMath math="K_D = d_D^2-r^2 = 32-25 = 7" />
    </MathContainer>

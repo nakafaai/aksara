@@ -4,7 +4,7 @@ export const metadata = {
     description: "Cari rumus fungsi invers, periksa syarat fungsi bijektif, lalu hubungkan grafik fungsi dan invers melalui pencerminan terhadap garis y sama dengan x.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Fungsi Komposisi dan Fungsi Invers",
 };
 
@@ -110,53 +110,61 @@ Sebagai contoh, lihat grafik dari <InlineMath math="f(x) = 2x + 3" />, inversnya
   data={[
     {
       // f(x) = 2x + 3
-      points: Array.from({ length: 11 }, (_, i) => {
+      points: Array.from({ length: 13 }, (_, pointIndex) => {
+        const i = pointIndex - 2;
         const x = i - 5;
         return { x, y: 2 * x + 3, z: 0 };
       }),
+      pointIndices: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       smooth: false,
       color: "#ea580c",
       labels: [
         {
           text: <InlineMath math="f(x)=2x + 3" />,
-          at: 5,
+          at: 7,
           offset: [-2.5, 0, 0],
         },
       ],
     },
     {
       // f⁻¹(x) = (x - 3) / 2
-      points: Array.from({ length: 11 }, (_, i) => {
+      points: Array.from({ length: 35 }, (_, pointIndex) => {
+        const i = pointIndex - 12;
         const x = i - 5;
         return { x, y: (x - 3) / 2, z: 0 };
       }),
+      pointIndices: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
       smooth: false,
       color: "#059669",
       labels: [
         {
           text: <InlineMath math="f^{-1}(x)=\frac{x-3}{2}" />,
-          at: 10,
-          offset: [0.5, 0.5, 0],
+          at: 22,
+          offset: [-1.8, -2.8, 0],
         },
       ],
     },
     {
       // y = x (Garis Identitas)
-      points: Array.from({ length: 11 }, (_, i) => {
+      points: Array.from({ length: 21 }, (_, pointIndex) => {
+        const i = pointIndex - 5;
         const x = i - 5;
         return { x, y: x, z: 0 };
       }),
+      pointIndices: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
       smooth: false,
       color: "#db2777",
       labels: [
         {
           text: <InlineMath math="y=x" />,
-          at: 10,
-          offset: [0.5, 0.5, 0],
+          at: 15,
+          offset: [-1, 0, 0],
         },
       ],
     },
   ]}
+  cameraTarget={[0, 0, 0]}
+  cameraPosition={[0, 0, 13]}
 />
 
 ## Cek Pemahaman

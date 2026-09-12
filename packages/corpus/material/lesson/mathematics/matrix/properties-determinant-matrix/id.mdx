@@ -3,7 +3,7 @@ export const metadata = {
   description: "Lacak perubahan determinan pada perkalian matriks dan perkalian skalar dalam contoh bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Matriks",
 };
 
@@ -20,36 +20,40 @@ Misalkan kita memiliki dua matriks, <InlineMath math="A" /> dan <InlineMath math
 
 Kita selidiki hubungan antara determinan dari perkalian dua matriks (<InlineMath math="|AB|" />) dengan perkalian dari masing-masing determinannya (<InlineMath math="|A||B|" />).
 
-**Langkah <InlineMath math="1" />: Hitung Determinan Matriks <InlineMath math="A" /> (<InlineMath math="|A|" />)**
+**Langkah 1: Hitung Determinan Matriks <InlineMath math="A" /> (<InlineMath math="|A|" />)**
 
 Determinan dari matriks <InlineMath math="A" /> adalah:
 
-<BlockMath math="|A| = (-5 \cdot -3) - (2 \cdot 1) = 15 - 2 = 13" />
+<BlockMath math="\begin{aligned} |A| &amp;= (-5 \cdot -3) - (2 \cdot 1) \\ &amp;= 15 - 2 \\ &amp;= 13 \end{aligned}" />
 
-**Langkah <InlineMath math="2" />: Hitung Determinan Matriks <InlineMath math="B" /> (<InlineMath math="|B|" />)**
+**Langkah 2: Hitung Determinan Matriks <InlineMath math="B" /> (<InlineMath math="|B|" />)**
 
 Determinan dari matriks <InlineMath math="B" /> adalah:
 
-<BlockMath math="|B| = (9 \cdot -1) - (-4 \cdot 1) = -9 - (-4) = -9 + 4 = -5" />
+<BlockMath math="\begin{aligned} |B| &amp;= (9 \cdot -1) - (-4 \cdot 1) \\ &amp;= -9 - (-4) \\ &amp;= -9 + 4 \\ &amp;= -5 \end{aligned}" />
 
-**Langkah <InlineMath math="3" />: Tentukan Hasil Perkalian Matriks <InlineMath math="A" /> dan <InlineMath math="B" /> (<InlineMath math="AB" />)**
+**Langkah 3: Tentukan Hasil Perkalian Matriks <InlineMath math="A" /> dan <InlineMath math="B" /> (<InlineMath math="AB" />)**
 
 Matriks <InlineMath math="AB" /> diperoleh dengan mengalikan matriks <InlineMath math="A" /> dan <InlineMath math="B" />:
 
+<BlockMath math="AB = \begin{bmatrix} -5 & 2 \\ 1 & -3 \end{bmatrix} \begin{bmatrix} 9 & -4 \\ 1 & -1 \end{bmatrix}" />
+  Hitung setiap entri dengan mengalikan baris dan kolom:
+
 <MathContainer>
-  <BlockMath math="AB = \begin{bmatrix} -5 & 2 \\ 1 & -3 \end{bmatrix} \begin{bmatrix} 9 & -4 \\ 1 & -1 \end{bmatrix}" />
-  <BlockMath math="AB = \begin{bmatrix} (-5)(9) + (2)(1) & (-5)(-4) + (2)(-1) \\ (1)(9) + (-3)(1) & (1)(-4) + (-3)(-1) \end{bmatrix}" />
+  <BlockMath math="\begin{aligned} &amp;m_{11}=(-5)(9) + (2)(1) \\ &amp;m_{12}=(-5)(-4) + (2)(-1) \\ &amp;m_{21}=(1)(9) + (-3)(1) \\ &amp;m_{22}=(1)(-4) + (-3)(-1) \end{aligned}" />
+
+  <BlockMath math="\begin{aligned} &amp;AB \\ &amp;=\begin{bmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{bmatrix} \end{aligned}" />
   <BlockMath math="AB = \begin{bmatrix} -45 + 2 & 20 - 2 \\ 9 - 3 & -4 + 3 \end{bmatrix}" />
   <BlockMath math="AB = \begin{bmatrix} -43 & 18 \\ 6 & -1 \end{bmatrix}" />
 </MathContainer>
 
-**Langkah <InlineMath math="4" />: Hitung Determinan Matriks <InlineMath math="AB" /> (<InlineMath math="|AB|" />)**
+**Langkah 4: Hitung Determinan Matriks <InlineMath math="AB" /> (<InlineMath math="|AB|" />)**
 
 Sekarang, kita hitung determinan dari matriks hasil perkalian <InlineMath math="AB" />:
 
-<BlockMath math="|AB| = (-43 \cdot -1) - (18 \cdot 6) = 43 - 108 = -65" />
+<BlockMath math="\begin{aligned} |AB| &amp;= (-43 \cdot -1) - (18 \cdot 6) \\ &amp;= 43 - 108 \\ &amp;= -65 \end{aligned}" />
 
-**Langkah <InlineMath math="5" />: Bandingkan <InlineMath math="|AB|" /> dengan <InlineMath math="|A||B|" />**
+**Langkah 5: Bandingkan <InlineMath math="|AB|" /> dengan <InlineMath math="|A||B|" />**
 
 Kita telah mendapatkan <InlineMath math="|A| = 13" />, <InlineMath math="|B| = -5" />, dan <InlineMath math="|AB| = -65" />.
 
@@ -75,19 +79,19 @@ Misalkan kita gunakan matriks <InlineMath math="A" /> dari contoh sebelumnya dan
 
 Kita sudah tahu bahwa <InlineMath math="|A| = 13" />. Matriks <InlineMath math="A" /> adalah matriks berordo <InlineMath math="2 \times 2" />, sehingga <InlineMath math="n=2" />.
 
-**Langkah <InlineMath math="1" />: Tentukan Matriks <InlineMath math="kA" />**
+**Langkah 1: Tentukan Matriks <InlineMath math="kA" />**
 
 Kalikan setiap elemen matriks <InlineMath math="A" /> dengan skalar <InlineMath math="k=2" />:
 
-<BlockMath math="kA = 2A = 2\begin{bmatrix} -5 & 2 \\ 1 & -3 \end{bmatrix} = \begin{bmatrix} 2(-5) & 2(2) \\ 2(1) & 2(-3) \end{bmatrix} = \begin{bmatrix} -10 & 4 \\ 2 & -6 \end{bmatrix}" />
+<BlockMath math="\begin{aligned} kA &amp;= 2A \\ &amp;= 2\begin{bmatrix} -5 &amp; 2 \\ 1 &amp; -3 \end{bmatrix} \\ &amp;= \begin{bmatrix} 2(-5) &amp; 2(2) \\ 2(1) &amp; 2(-3) \end{bmatrix} \\ &amp;= \begin{bmatrix} -10 &amp; 4 \\ 2 &amp; -6 \end{bmatrix} \end{aligned}" />
 
-**Langkah <InlineMath math="2" />: Hitung Determinan Matriks <InlineMath math="kA" /> (<InlineMath math="|kA|" />)**
+**Langkah 2: Hitung Determinan Matriks <InlineMath math="kA" /> (<InlineMath math="|kA|" />)**
 
 Determinan dari matriks <InlineMath math="kA" /> adalah:
 
-<BlockMath math="|kA| = (-10 \cdot -6) - (4 \cdot 2) = 60 - 8 = 52" />
+<BlockMath math="\begin{aligned} |kA| &amp;= (-10 \cdot -6) - (4 \cdot 2) \\ &amp;= 60 - 8 \\ &amp;= 52 \end{aligned}" />
 
-**Langkah <InlineMath math="3" />: Bandingkan <InlineMath math="|kA|" /> dengan <InlineMath math="k^n|A|" />**
+**Langkah 3: Bandingkan <InlineMath math="|kA|" /> dengan <InlineMath math="k^n|A|" />**
 
 Kita memiliki <InlineMath math="|kA| = 52" />. Skalar <InlineMath math="k=2" />, ordo matriks <InlineMath math="n=2" />, dan <InlineMath math="|A|=13" />.
 
@@ -131,8 +135,8 @@ Aturan determinan memprediksi setiap hasil sebelum kita melakukan ekspansi penuh
 
 <MathContainer>
   <BlockMath math="B=\begin{bmatrix}3&4\\1&2\end{bmatrix}\quad\Longrightarrow\quad\det(B)=2" />
-  <BlockMath math="C=\begin{bmatrix}5&10\\3&4\end{bmatrix}\quad\Longrightarrow\quad\det(C)=5\det(A)=-10" />
-  <BlockMath math="D=\begin{bmatrix}1&2\\6&10\end{bmatrix}\quad\Longrightarrow\quad\det(D)=\det(A)=-2" />
+  <BlockMath math="\begin{aligned} &amp;C=\begin{bmatrix}5&amp;10\\3&amp;4\end{bmatrix} \\ &amp;\Longrightarrow \\ &amp;\det(C)=5\det(A)=-10 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;D=\begin{bmatrix}1&amp;2\\6&amp;10\end{bmatrix} \\ &amp;\Longrightarrow \\ &amp;\det(D)=\det(A)=-2 \end{aligned}" />
 </MathContainer>
 
 Matriks <InlineMath math="B" /> menukar kedua baris, matriks <InlineMath math="C" /> mengalikan baris pertama dengan <InlineMath math="5" />, dan matriks <InlineMath math="D" /> menerapkan <InlineMath math="R_2\leftarrow R_2+3R_1" />. Perhitungan langsung mengonfirmasi ketiga prediksi tersebut.

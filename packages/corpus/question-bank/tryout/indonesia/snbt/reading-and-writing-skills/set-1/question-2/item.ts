@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "vor Satz $$(5)$$.",
+          label: "vor Satz (5).",
         },
         {
           isCorrect: false,
-          label: "nach Satz $$(1)$$.",
+          label: "nach Satz (1).",
         },
         {
           isCorrect: false,
-          label: "vor Satz $$(6)$$.",
+          label: "vor Satz (6).",
         },
         {
           isCorrect: true,
-          label: "nach dem Satz $$(2)$$.",
+          label: "nach dem Satz (2).",
         },
         {
           isCorrect: false,
-          label: "nach dem Satz $$(7)$$.",
+          label: "nach dem Satz (7).",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "before sentence $$(5)$$.",
+          label: "before sentence (5).",
         },
         {
           isCorrect: false,
-          label: "after sentence $$(1)$$.",
+          label: "after sentence (1).",
         },
         {
           isCorrect: false,
-          label: "before sentence $$(6)$$.",
+          label: "before sentence (6).",
         },
         {
           isCorrect: true,
-          label: "after sentence $$(2)$$.",
+          label: "after sentence (2).",
         },
         {
           isCorrect: false,
-          label: "after sentence $$(7)$$.",
+          label: "after sentence (7).",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "sebelum kalimat $$(5)$$.",
+          label: "sebelum kalimat (5).",
         },
         {
           isCorrect: false,
-          label: "setelah kalimat $$(1)$$.",
+          label: "setelah kalimat (1).",
         },
         {
           isCorrect: false,
-          label: "sebelum kalimat $$(6)$$.",
+          label: "sebelum kalimat (6).",
         },
         {
           isCorrect: true,
-          label: "setelah kalimat $$(2)$$.",
+          label: "setelah kalimat (2).",
         },
         {
           isCorrect: false,
-          label: "setelah kalimat $$(7)$$.",
+          label: "setelah kalimat (7).",
         },
       ],
     },

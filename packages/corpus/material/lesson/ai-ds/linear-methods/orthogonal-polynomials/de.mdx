@@ -3,7 +3,7 @@ export const metadata = {
   description: "Chebyshev- und Legendre-Basen entstehen aus gewichteten Skalarprodukten. Sie werden für Funktionsprojektionen, Intervalltransformationen und die Gauß-Quadratur verwendet.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Lineare Methoden der KI",
 };
 
@@ -18,7 +18,7 @@ Sei <InlineMath math="w(x)>0" /> auf einem Intervall <InlineMath math="[a,b]" />
 
 Zwei Funktionen sind orthogonal, wenn <InlineMath math="\langle f,g\rangle_w=0" /> gilt. Diese gewichtete <InlineMath math="L^2" />-Geometrie misst den gewichteten quadratischen Fehler über das gesamte Intervall.
 
-<BlockMath math="\|f-g\|_w^2=\int_a^b|f(x)-g(x)|^2w(x)\,dx" />
+<BlockMath math="\begin{aligned} &amp;\|f-g\|_w^2 \\ &amp;=\int_a^b|f(x)-g(x)|^2w(x)\,dx \end{aligned}" />
 
 Dagegen misst die Maximumsnorm den größten punktweisen Fehler.
 
@@ -44,7 +44,7 @@ Die Anwendung von Gram-Schmidt auf <InlineMath math="1,x,x^2,\ldots" /> erzeugt 
 <MathContainer>
 <BlockMath math="\pi_0(x)=1" />
 <BlockMath math="\pi_1(x)=x-\alpha_0" />
-<BlockMath math="\pi_{k+1}(x)=(x-\alpha_k)\pi_k(x)-\beta_k\pi_{k-1}(x)" />
+<BlockMath math="\begin{aligned} &amp;\pi_{k+1}(x) =(x-\alpha_k)\pi_k(x) \\ &amp;-\beta_k\pi_{k-1}(x) \end{aligned}" />
 </MathContainer>
 
 Die Rekursionskoeffizienten lauten
@@ -72,7 +72,7 @@ Die Chebyshev-Polynome erster Art sind
 
 Ihre gewichtete Orthogonalität lautet
 
-<BlockMath math="\int_{-1}^{1}\frac{T_j(x)T_k(x)}{\sqrt{1-x^2}}\,dx=\begin{cases}\pi,&j=k=0,\\\frac{\pi}{2},&j=k>0,\\0,&j\ne k.\end{cases}" />
+<BlockMath math="\begin{aligned} &amp;\int_{-1}^{1}\frac{T_j(x)T_k(x)}{\sqrt{1-x^2}}\,dx \\ &amp;=\begin{cases}\pi,&amp;j=k=0,\\\frac{\pi}{2},&amp;j=k>0,\\0,&amp;j\ne k.\end{cases} \end{aligned}" />
 
 Da <InlineMath math="|T_k(x)|\le1" /> auf <InlineMath math="[-1,1]" /> gilt und der Leitkoeffizient für <InlineMath math="k\ge1" /> gleich <InlineMath math="2^{k-1}" /> ist, hat das monische Polynom <InlineMath math="2^{1-k}T_k" /> unter allen monischen Polynomen vom Grad <InlineMath math="k" /> die kleinste Maximumsnorm. Es löst damit das Minimax-Approximationsproblem für monische Polynome vom Grad <InlineMath math="k" />.
 
@@ -108,7 +108,7 @@ Für dieses Skalarprodukt erfüllen die üblichen Legendre-Polynome
 
 <MathContainer>
 <BlockMath math="P_0(x)=1,\qquad P_1(x)=x" />
-<BlockMath math="(k+1)P_{k+1}(x)=(2k+1)xP_k(x)-kP_{k-1}(x)" />
+<BlockMath math="\begin{aligned} &amp;(k+1)P_{k+1}(x) =(2k+1)xP_k(x) \\ &amp;-kP_{k-1}(x) \end{aligned}" />
 </MathContainer>
 
 Ihre Orthogonalität und Normierung sind
@@ -144,7 +144,7 @@ Ist <InlineMath math="\varphi_k" /> auf <InlineMath math="[-1,1]" /> orthonormal
 
 Die Funktion <InlineMath math="\widetilde{\varphi}_k" /> ist auf <InlineMath math="[a,b]" /> orthonormal, denn
 
-<BlockMath math="\int_a^b\widetilde{\varphi}_j(x)\widetilde{\varphi}_k(x)\,dx=\int_{-1}^{1}\varphi_j(t)\varphi_k(t)\,dt=\delta_{jk}" />
+<BlockMath math="\begin{aligned} &amp;\int_a^b\widetilde{\varphi}_j(x)\widetilde{\varphi}_k(x)\,dx \\ &amp;=\int_{-1}^{1}\varphi_j(t)\varphi_k(t)\,dt \\ &amp;=\delta_{jk} \end{aligned}" />
 
 ## Verbindung zur Quadratur nach Gauß
 

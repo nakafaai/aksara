@@ -3,7 +3,7 @@ export const metadata = {
    description: "Hitung banyak susunan dengan mengalikan pilihan yang sah pada setiap langkah, lalu periksa jumlah susunan melalui tabel atau diagram pohon.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-01",
+   dateModified: "2026-09-12",
    subject: "Kombinatorik",
 };
 
@@ -28,7 +28,7 @@ Tabel berikut memuat semua kombinasi yang mungkin:
 | Platform C | C-Mat | C-Fis | C-Kim | C-Bio |
 
 <MathContainer>
-<BlockMath math="\text{Total kombinasi} = 3 \times 4 = 12 \text{ cara}" />
+<BlockMath math="\begin{aligned} \text{Total kombinasi} &amp;= 3 \times 4 \\ &amp;= 12 \text{ cara} \end{aligned}" />
 </MathContainer>
 
 ## Metode Diagram Cabang
@@ -37,17 +37,17 @@ Pada **diagram cabang**, setiap cabang mewakili satu pilihan. Satu lintasan leng
 
 Untuk pilihan paket yang sama, cabang pertama menentukan platform dan cabang berikutnya menentukan mata pelajaran.
 
-1. Tingkat <InlineMath math="1" />:
+1. Tingkat 1:
 
-   <BlockMath math="1 \text{ titik awal} \rightarrow 3 \text{ pilihan platform}" />
+   Dari <InlineMath math="1" /> titik awal, buat cabang untuk <InlineMath math="3" /> pilihan platform.
 
-2. Tingkat <InlineMath math="2" />:
+2. Tingkat 2:
 
-   <BlockMath math="3 \text{ platform} \times 4 \text{ mata pelajaran} = 12 \text{ ujung cabang}" />
+   <BlockMath math="\begin{aligned} &amp;3 \text{ platform} \times 4 \text{ mata pelajaran} \\ &amp;= 12 \text{ ujung cabang} \end{aligned}" />
 
 3. Struktur cabang:
 
-   <BlockMath math="\text{Awal} \rightarrow \text{Platform} \rightarrow \text{Mata Pelajaran}" />
+   Dari titik awal, pilih platform, lalu pilih mata pelajaran.
 
 4. Jumlah lintasan lengkap:
 
@@ -58,7 +58,7 @@ Untuk pilihan paket yang sama, cabang pertama menentukan platform dan cabang ber
 **Aturan perkalian** menghasilkan hitungan yang sama tanpa mendaftar setiap hasil. Jika ada <InlineMath math="n" /> tempat dan tempat ke-<InlineMath math="i" /> memiliki <InlineMath math="k_i" /> pilihan yang sah, maka banyak hasil lengkap adalah:
 
 <MathContainer>
-<BlockMath math="\text{Total cara} = k_1 \times k_2 \times k_3 \times \cdots \times k_n" />
+<BlockMath math="\begin{aligned} &amp;\text{Total cara} \\ &amp;= k_1 \times k_2 \times k_3 \times \cdots \times k_n \end{aligned}" />
 </MathContainer>
 
 ### Menghitung Kode Akses
@@ -74,7 +74,7 @@ Kalikan jumlah pilihan pada ketiga tempat:
 <BlockMath math="k_1 = 3 \text{ (pilihan huruf)}" />
 <BlockMath math="k_2 = 5 \text{ (pilihan angka)}" />
 <BlockMath math="k_3 = 2 \text{ (pilihan simbol)}" />
-<BlockMath math="\text{Total kode berbeda} = 3 \times 5 \times 2 = 30 \text{ kode}" />
+<BlockMath math="\begin{aligned} &amp;\text{Total kode berbeda} \\ &amp;= 3 \times 5 \times 2 \\ &amp;= 30 \text{ kode} \end{aligned}" />
 </MathContainer>
 
 ## Kasus Dengan Pembatasan
@@ -87,12 +87,9 @@ Jika objek yang sama **tidak boleh digunakan berulang**, maka setiap tempat yang
 
 **Contoh:** Membuat bilangan <InlineMath math="3 \text{ digit}" /> dari digit <InlineMath math="2, 3, 4, 5, 6" /> tanpa pengulangan.
 
-<MathContainer>
-<BlockMath math="\text{Tempat pertama} = 5 \text{ pilihan}" />
-<BlockMath math="\text{Tempat kedua} = 4 \text{ pilihan (1 angka sudah terpakai)}" />
-<BlockMath math="\text{Tempat ketiga} = 3 \text{ pilihan (2 angka sudah terpakai)}" />
-<BlockMath math="\text{Total bilangan} = 5 \times 4 \times 3 = 60 \text{ bilangan}" />
-</MathContainer>
+Tempat pertama memiliki <InlineMath math="5" /> pilihan. Setelah <InlineMath math="1" /> digit terpakai, tersisa <InlineMath math="4" /> pilihan untuk tempat kedua. Setelah <InlineMath math="2" /> digit terpakai, tempat ketiga memiliki <InlineMath math="3" /> pilihan.
+
+<BlockMath math="\begin{aligned} \text{Total bilangan} &amp;= 5 \times 4 \times 3 \\ &amp;= 60 \text{ bilangan} \end{aligned}" />
 
 ### Pengulangan Diperbolehkan
 
@@ -102,7 +99,7 @@ Untuk kasus yang sama dengan pengulangan diperbolehkan:
 
 <MathContainer>
 <BlockMath math="\text{Setiap tempat} = 5 \text{ pilihan}" />
-<BlockMath math="\text{Total bilangan} = 5 \times 5 \times 5 = 125 \text{ bilangan}" />
+<BlockMath math="\begin{aligned} \text{Total bilangan} &amp;= 5 \times 5 \times 5 \\ &amp;= 125 \text{ bilangan} \end{aligned}" />
 </MathContainer>
 
 ## Latihan
@@ -119,31 +116,30 @@ Untuk kasus yang sama dengan pengulangan diperbolehkan:
 
 1. Diketahui: <InlineMath math="4 \text{ merek}" />, <InlineMath math="3 \text{ kapasitas memori}" />, <InlineMath math="5 \text{ pilihan warna}" />
 
-   <MathContainer>
-   <BlockMath math="\text{Jumlah pilihan} = 4 \times 3 \times 5 = 60 \text{ pilihan ponsel}" />
-   </MathContainer>
+   Jumlah pilihan ponsel adalah:
+
+   <BlockMath math="4\times3\times5=60" />
 
 2. Diketahui: <InlineMath math="1 \text{ huruf}" /> dari <InlineMath math="\{A, B, C, D\}" />, <InlineMath math="2 \text{ digit}" /> dari <InlineMath math="\{1, 2, 3, 4, 5\}" /> tanpa pengulangan
 
-   <MathContainer>
-   <BlockMath math="\text{Pilihan huruf} = 4" />
-   <BlockMath math="\text{Pilihan digit pertama} = 5" />
-   <BlockMath math="\text{Pilihan digit kedua} = 4 \text{ (tanpa pengulangan)}" />
-   <BlockMath math="\text{Jumlah kata sandi} = 4 \times 5 \times 4 = 80 \text{ kata sandi}" />
-   </MathContainer>
+   Tersedia <InlineMath math="4" /> pilihan huruf dan <InlineMath math="5" /> pilihan digit pertama. Karena digit tidak boleh berulang, tersisa <InlineMath math="4" /> pilihan untuk digit kedua.
+
+   <BlockMath math="\begin{aligned} &amp;\text{Jumlah kata sandi} \\ &amp;= 4 \times 5 \times 4 \\ &amp;= 80 \text{ kata sandi} \end{aligned}" />
 
 3. Diketahui: <InlineMath math="3 \text{ jalan}" /> dari <InlineMath math="P" /> ke <InlineMath math="Q" />, <InlineMath math="4 \text{ jalan}" /> dari <InlineMath math="Q" /> ke <InlineMath math="R" />
 
    <MathContainer>
-   <BlockMath math="\text{Total rute} = 3 \times 4 = 12 \text{ rute berbeda}" />
+   <BlockMath math="\begin{aligned} &amp;\text{Total rute} \\ &amp;= 3 \times 4 \\ &amp;= 12 \text{ rute berbeda} \end{aligned}" />
    </MathContainer>
 
 4. Diketahui: <InlineMath math="2 \text{ huruf}" /> dari <InlineMath math="26 \text{ huruf}" />, <InlineMath math="3 \text{ digit}" /> dari <InlineMath math="10 \text{ digit}" />, pengulangan diperbolehkan
 
-   <MathContainer>
-   <BlockMath math="\text{Pilihan huruf pertama} = 26" />
-   <BlockMath math="\text{Pilihan huruf kedua} = 26" />
+   <BlockMath math="\begin{aligned} &amp;\text{Pilihan huruf pertama} = 26 \end{aligned}" />
+      Huruf kedua memiliki <InlineMath math="26" /> pilihan.
    <BlockMath math="\text{Pilihan setiap digit} = 10" />
-   <BlockMath math="\text{Jumlah nomor pelat} = 26 \times 26 \times 10 \times 10 \times 10" />
-   <BlockMath math="= 676 \times 1000 = 676000 \text{ nomor pelat}" />
+      Jumlah seluruh pelat nomor adalah:
+
+   <MathContainer>
+     <BlockMath math="26\times26\times10\times10\times10" />
+     <BlockMath math="\begin{aligned}  &amp;= 676 \times 1000 \\ &amp;= 676000 \text{ nomor pelat} \end{aligned}" />
    </MathContainer>

@@ -3,7 +3,7 @@ export const metadata = {
     description: "Define a definite integral as the limit of Riemann sums and evaluate one directly from that limit.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-12",
     subject: "Integrals",
 };
 
@@ -36,7 +36,7 @@ We now calculate a definite integral directly from its limit definition.
 
 To solve this, we will convert it back to the limit form of a Riemann Sum.
 
-**Step** <InlineMath math="1" />: Determine the Riemann Sum components
+**Step** 1: Determine the Riemann Sum components
 
 From the problem <InlineMath math="\int_{0}^{7} x \, dx" />, we know:
 - Function: <InlineMath math="f(x) = x" />
@@ -50,7 +50,7 @@ We will use the right endpoint (<InlineMath math="x_i" />) as the sample point f
 
 <BlockMath math="x_i = a + i \Delta x = 0 + i \left(\frac{7}{n}\right) = \frac{7i}{n}" />
 
-**Step** <InlineMath math="2" />: Set up the Riemann Sum
+**Step** 2: Set up the Riemann Sum
 
 The height of each rectangle is <InlineMath math="f(x_i)" />, so:
 
@@ -58,9 +58,9 @@ The height of each rectangle is <InlineMath math="f(x_i)" />, so:
 
 Now, we plug this into the Riemann Sum formula:
 
-<BlockMath math="\sum_{i=1}^{n} f(x_i) \Delta x = \sum_{i=1}^{n} \left(\frac{7i}{n}\right) \left(\frac{7}{n}\right) = \sum_{i=1}^{n} \frac{49i}{n^2}" />
+<BlockMath math="\begin{aligned} \sum_{i=1}^{n} f(x_i) \Delta x &amp;= \sum_{i=1}^{n} \left(\frac{7i}{n}\right) \left(\frac{7}{n}\right) \\ &amp;= \sum_{i=1}^{n} \frac{49i}{n^2} \end{aligned}" />
 
-**Step** <InlineMath math="3" />: Simplify and use summation properties
+**Step** 3: Simplify and use summation properties
 
 We can factor constants out of the sigma notation, as <InlineMath math="n" /> is treated as a constant in the sum from <InlineMath math="i=1" /> to <InlineMath math="n" />.
 
@@ -82,7 +82,7 @@ The algebra reduces the expression to a constant factor multiplied by <InlineMat
 > - <InlineMath math="\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}" />
 > - <InlineMath math="\sum_{i=1}^{n} i^3 = \left( \frac{n(n+1)}{2} \right)^2" />
 
-**Step** <InlineMath math="4" />: Take the Limit
+**Step** 4: Take the Limit
 
 Finally, we take the limit as <InlineMath math="n \to \infty" />. In this limit, <InlineMath math="\frac{1}{n}" /> approaches zero.
 

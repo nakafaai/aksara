@@ -4,7 +4,7 @@ export const metadata = {
     "Repeated measurements can be summarized with a mean and an uncertainty so the reported result does not appear more precise than the available data.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-04-25",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Measurement in Scientific Work",
 };
 
@@ -36,11 +36,13 @@ For repeated data with a roughly symmetric spread and no clear outlier, the mean
 
 For the data above:
 
-<BlockMath math="\begin{aligned}
-\bar d
-&= \frac{3.12+3.14+3.15+3.11+3.14}{5}\text{ cm} \\
-&= 3.132 \text{ cm}
-\end{aligned}" />
+Add the numerical readings in centimetres first:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;S=3.12+3.14+3.15 \\ &amp;+3.11+3.14=15.66 \end{aligned}" />
+
+  <BlockMath math="\bar d=\frac{15.66}{5}\text{ cm}=3.132\text{ cm}" />
+</MathContainer>
 
 The mean is not enough. We also need to know whether the data cluster tightly around the mean or spread farther away.
 
@@ -52,11 +54,13 @@ For repeated data, sample spread can be calculated from the distance between eac
 
 The denominator <InlineMath math="N-1" /> is used because the sample mean <InlineMath math="\bar d" /> is calculated from the same data. The deviations from the mean must sum to zero, so only <InlineMath math="N-1" /> deviations can vary independently.
 
-<BlockMath math="\begin{aligned}
-s_d
-&= \sqrt{\frac{(-0.012)^2+(0.008)^2+(0.018)^2+(-0.022)^2+(0.008)^2}{4}}\text{ cm} \\
-&= 0.0164\text{ cm}
-\end{aligned}" />
+Sum the squared numerical deviations first:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;V=(-0.012)^2+(0.008)^2 \\ &amp;+(0.018)^2+(-0.022)^2 \\ &amp;+(0.008)^2=0.00108 \end{aligned}" />
+
+  <BlockMath math="\begin{aligned} &amp;s_d=\sqrt{\frac V4}\text{ cm} \\ &amp;=\sqrt{0.00027}\text{ cm} \\ &amp;\approx0.0164\text{ cm} \end{aligned}" />
+</MathContainer>
 
 If we report the diameter with the spread of the repeated data, the result becomes:
 
@@ -68,7 +72,13 @@ The value <InlineMath math="3.13 \text{ cm}" /> represents the data. The value <
 
 Some repeated-measurement exercises use the compact algebraic form below.
 
-<BlockMath math="\Delta x=\frac{1}{\sqrt{N}}\sqrt{\frac{N\sum_{i=1}^{N}x_i^2-\left(\sum_{i=1}^{N}x_i\right)^2}{N-1}}" />
+Abbreviate the two sums without changing the formula:
+
+<MathContainer>
+  <BlockMath math="S_1=\sum_{i=1}^N x_i,\quad S_2=\sum_{i=1}^N x_i^2" />
+
+  <BlockMath math="\Delta x=\frac1{\sqrt N}\sqrt{\frac{NS_2-S_1^2}{N-1}}" />
+</MathContainer>
 
 That formula is equivalent to the sample standard deviation:
 
@@ -124,4 +134,4 @@ For the bottle cap area:
 
 This means the sample spread is about <InlineMath math="1.05\,\%" /> of the mean area. Whether that is adequate depends on the intended use and target uncertainty, so the percentage should not be called "small enough" without a stated requirement.
 
-Type A evaluation uses statistical analysis of repeated observations to estimate an uncertainty component. A reported measurement result should include enough information to state how its uncertainty was evaluated. [NIST](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-3-type-evaluation-standard-uncertainty) [BIPM](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf)
+[Type A evaluation](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-3-type-evaluation-standard-uncertainty) uses statistical analysis of repeated observations to estimate an uncertainty component. A reported measurement result should include enough information to state [how its uncertainty was evaluated](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf).

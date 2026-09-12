@@ -3,7 +3,7 @@ export const metadata = {
   description: "Calculate determinants of three by three matrices with the Sarrus diagonal products and track their signs through examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Matrix",
 };
 
@@ -29,7 +29,7 @@ Suppose we have a <InlineMath math="3 \times 3" /> matrix <InlineMath math="A" /
 
 The element <InlineMath math="a_{ij}" /> is the element in the <InlineMath math="i" />-th row and <InlineMath math="j" />-th column.
 
-**Step** <InlineMath math="1" />: Copy the First Two Columns
+**Step** 1: Copy the First Two Columns
 
 Rewrite the first two columns of matrix <InlineMath math="A" /> to the right of the third column:
 
@@ -37,27 +37,27 @@ Rewrite the first two columns of matrix <InlineMath math="A" /> to the right of 
 
 The copied columns form the three downward and three upward diagonals used in the products.
 
-**Step** <InlineMath math="2" />: Calculate the Sum of the Products of the Positive Diagonals
+**Step** 2: Calculate the Sum of the Products of the Positive Diagonals
 
 Multiply the elements along the three diagonals from the top-left to the bottom-right. Sum these products, call it <InlineMath math="D_{\text{positive}}" />.
 
 <MathContainer>
-  <BlockMath math="D_{\text{positive}} = (a_{11} \cdot a_{22} \cdot a_{33}) + (a_{12} \cdot a_{23} \cdot a_{31}) + (a_{13} \cdot a_{21} \cdot a_{32})" />
+  <BlockMath math="\begin{aligned} &amp;D_{\text{positive}} = (a_{11} \cdot a_{22} \cdot a_{33}) \\ &amp;+ (a_{12} \cdot a_{23} \cdot a_{31}) + (a_{13} \cdot a_{21} \cdot a_{32}) \end{aligned}" />
 </MathContainer>
 
 The first term is the product of the main diagonal. The second and third terms are products of parallel diagonals involving elements from the copied columns.
 
-**Step** <InlineMath math="3" />: Calculate the Sum of the Products of the Negative Diagonals
+**Step** 3: Calculate the Sum of the Products of the Negative Diagonals
 
 Multiply the elements along the three diagonals from the top-right to the bottom-left. Sum these products, call it <InlineMath math="D_{\text{negative}}" />.
 
 <MathContainer>
-  <BlockMath math="D_{\text{negative}} = (a_{13} \cdot a_{22} \cdot a_{31}) + (a_{11} \cdot a_{23} \cdot a_{32}) + (a_{12} \cdot a_{21} \cdot a_{33})" />
+  <BlockMath math="\begin{aligned} &amp;D_{\text{negative}} = (a_{13} \cdot a_{22} \cdot a_{31}) \\ &amp;+ (a_{11} \cdot a_{23} \cdot a_{32}) + (a_{12} \cdot a_{21} \cdot a_{33}) \end{aligned}" />
 </MathContainer>
 
 The first term is the product of the secondary diagonal (anti-diagonal). The second and third terms are products of parallel diagonals involving elements from the copied columns, moving towards the bottom-left.
 
-**Step** <InlineMath math="4" />: Calculate the Final Determinant
+**Step** 4: Calculate the Final Determinant
 
 The determinant of matrix <InlineMath math="A" />, <InlineMath math="\det(A)" />, is the difference between <InlineMath math="D_{\text{positive}}" /> and <InlineMath math="D_{\text{negative}}" />:
 
@@ -65,11 +65,11 @@ The determinant of matrix <InlineMath math="A" />, <InlineMath math="\det(A)" />
 
 Substitute the values of <InlineMath math="D_{\text{positive}}" /> and <InlineMath math="D_{\text{negative}}" />:
 
-<BlockMath math="\det(A) = (a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}) - (a_{13}a_{22}a_{31} + a_{11}a_{23}a_{32} + a_{12}a_{21}a_{33})" />
+<BlockMath math="\begin{aligned} &amp;\det(A)=\bigl(a_{11}a_{22}a_{33} \\ &amp;+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\bigr) \\ &amp;-\bigl(a_{13}a_{22}a_{31} \\ &amp;+a_{11}a_{23}a_{32}+a_{12}a_{21}a_{33}\bigr) \end{aligned}" />
 
 Or, after distributing the negative sign:
 
-<BlockMath math="\det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}" />
+<BlockMath math="\begin{aligned} &amp;\det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} \\ &amp;+ a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} \\ &amp;- a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33} \end{aligned}" />
 
 ### Numerical Worked Example
 
@@ -80,9 +80,9 @@ Calculate the determinant of matrix <InlineMath math="P" />:
 Keep the two diagonal sums separate until the final subtraction. This makes the sign easier to check:
 
 <MathContainer>
-  <BlockMath math="D_+=(1)(6)(4)+(3)(2)(5)+(2)(2)(9)=24+30+36=90" />
-  <BlockMath math="D_-=(2)(6)(5)+(1)(2)(9)+(3)(2)(4)=60+18+24=102" />
-  <BlockMath math="\det(P)=D_+-D_-=90-102=-12" />
+  <BlockMath math="\begin{aligned} D_+ &amp;=(1)(6)(4)+(3)(2)(5) \\ &amp;\quad+(2)(2)(9) \\ &amp;=24+30+36 \\ &amp;=90 \end{aligned}" />
+  <BlockMath math="\begin{aligned} D_- &amp;=(2)(6)(5)+(1)(2)(9) \\ &amp;\quad+(3)(2)(4) \\ &amp;=60+18+24 \\ &amp;=102 \end{aligned}" />
+  <BlockMath math="\begin{aligned} \det(P) &amp;=D_+-D_- \\ &amp;=90-102 \\ &amp;=-12 \end{aligned}" />
 </MathContainer>
 
 The determinant is <InlineMath math="-12" />. Expanding the same matrix by cofactors gives the same value, which is a useful independent check.
@@ -98,12 +98,14 @@ Then, using Sarrus' Method, we expand the matrix and identify the multiplication
 <MathContainer>
   <BlockMath math="\begin{array}{ccc|cc} a_{11} & a_{12} & a_{13} & a_{11} & a_{12} \\ a_{21} & a_{22} & a_{23} & a_{21} & a_{22} \\ a_{31} & a_{32} & a_{33} & a_{31} & a_{32} \end{array}" />
   <BlockMath math="\begin{array}{l} \text{Positive Paths } (\searrow): \\ \quad + (a_{11} \cdot a_{22} \cdot a_{33}) \\ \quad + (a_{12} \cdot a_{23} \cdot a_{31}) \\ \quad + (a_{13} \cdot a_{21} \cdot a_{32}) \end{array}" />
-  <BlockMath math="\begin{array}{l} \text{Negative Paths } (\swarrow): \\ \quad - (a_{13} \cdot a_{22} \cdot a_{31}) \\ \quad - (a_{11} \cdot a_{23} \cdot a_{32}) \quad (\text{from } a_{11} \text{ col. 4}) \\ \quad - (a_{12} \cdot a_{21} \cdot a_{33}) \quad (\text{from } a_{12} \text{ col. 5}) \end{array}" />
 </MathContainer>
+  Follow the negative paths <InlineMath math="\swarrow" />. The second starts from <InlineMath math="a_{11}" /> in copied column 4. The third starts from <InlineMath math="a_{12}" /> in copied column 5:
+
+<BlockMath math="\begin{aligned} &amp;-(a_{13}\cdot a_{22}\cdot a_{31}) \\ &amp;-(a_{11}\cdot a_{23}\cdot a_{32}) \\ &amp;-(a_{12}\cdot a_{21}\cdot a_{33}) \end{aligned}" />
 
 The complete formula becomes:
 
-<BlockMath math="\det(A) = (a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}) - (a_{13}a_{22}a_{31} + a_{11}a_{23}a_{32} + a_{12}a_{21}a_{33})" />
+<BlockMath math="\begin{aligned} &amp;\det(A)=\bigl(a_{11}a_{22}a_{33} \\ &amp;+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\bigr) \\ &amp;-\bigl(a_{13}a_{22}a_{31} \\ &amp;+a_{11}a_{23}a_{32}+a_{12}a_{21}a_{33}\bigr) \end{aligned}" />
 
 ## Sarrus Method Applies Only to Three by Three Matrices
 
@@ -118,9 +120,9 @@ Use Sarrus' method to calculate the determinant of:
 First calculate the two diagonal sums, then subtract the negative-diagonal sum from the positive-diagonal sum:
 
 <MathContainer>
-  <BlockMath math="D_+=(2)(4)(-2)+(-1)(5)(1)+(3)(0)(2)=-16-5+0=-21" />
-  <BlockMath math="D_-=(3)(4)(1)+(2)(5)(2)+(-1)(0)(-2)=12+20+0=32" />
-  <BlockMath math="\det(B)=D_+-D_-=-21-32=-53" />
+  <BlockMath math="\begin{aligned} D_+ &amp;=(2)(4)(-2)+(-1)(5)(1) \\ &amp;\quad+(3)(0)(2) \\ &amp;=-16-5+0 \\ &amp;=-21 \end{aligned}" />
+  <BlockMath math="\begin{aligned} D_- &amp;=(3)(4)(1)+(2)(5)(2) \\ &amp;\quad+(-1)(0)(-2) \\ &amp;=12+20+0 \\ &amp;=32 \end{aligned}" />
+  <BlockMath math="\begin{aligned} \det(B) &amp;=D_+-D_- \\ &amp;=-21-32 \\ &amp;=-53 \end{aligned}" />
 </MathContainer>
 
 <InlineMath math="\det(B)=-53" />.

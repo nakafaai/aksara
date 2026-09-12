@@ -3,7 +3,7 @@ export const metadata = {
   description: "Konstruiere Kreistangenten aus einem Berührpunkt, einer Steigung oder einem äußeren Punkt, mit vollständigen Rechenwegen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Analytische Geometrie",
 };
 
@@ -67,7 +67,7 @@ Ist der Berührpunkt bekannt, prüfe zuerst, ob er wirklich auf dem Kreis liegt.
     },
     {
       points: (() => {
-        const angle = Math.PI * 5/6;
+        const angle = (Math.PI * 5) / 6;
         const radius = 4;
         const pointX = radius * Math.cos(angle);
         const pointY = radius * Math.sin(angle);
@@ -76,23 +76,32 @@ Ist der Berührpunkt bekannt, prüfe zuerst, ob er wirklich auf dem Kreis liegt.
         const perpSlope = -pointX / pointY;
 
         const range = 5;
-        return [
+        const points = [
           {
             x: pointX - range,
-            y: pointY + perpSlope * (-range),
+            y: pointY + perpSlope * -range,
             z: 0,
           },
           {
             x: pointX + range,
             y: pointY + perpSlope * range,
             z: 0,
-          }
+          },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       color: "#059669",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Tangente", at: 0, offset: [4, 3.5, 0] }],
+      labels: [{ text: "Tangente", at: 1, offset: [4, 3.5, 0] }],
     },
     {
       points: (() => {
@@ -146,7 +155,7 @@ Warum funktioniert diese Formel? Der Radius <InlineMath math="OM" /> hat den Ric
 
 Für den Kreis <InlineMath math="(x-h)^2+(y-k)^2=r^2" /> mit Berührpunkt <InlineMath math="M(p,q)" /> wenden wir dieselbe Idee auf den Mittelpunkt <InlineMath math="(h,k)" /> an:
 
-<BlockMath math="(p-h)(x-h) + (q-k)(y-k) = r^2" />
+<BlockMath math="\begin{aligned} &amp;(p-h)(x-h) + (q-k)(y-k) \\ &amp;= r^2 \end{aligned}" />
 
 > Diese Form nutzt den Radius direkt als Normalenvektor. Sie funktioniert auch bei einer vertikalen Tangente, für die keine endliche Steigung existiert.
 
@@ -184,36 +193,58 @@ Ist die Steigung bekannt, aber der Achsenabschnitt noch nicht, hilft die Abstand
     {
       points: (() => {
         const m = -0.75; // desired gradient
-        const h = 1, k = -0.5, r = 3.5;
-        const c1 = k - m*h + r * Math.sqrt(1 + m * m);
+        const h = 1,
+          k = -0.5,
+          r = 3.5;
+        const c1 = k - m * h + r * Math.sqrt(1 + m * m);
         const xRange = 8;
         const xStart = -2;
-        return [
+        const points = [
           { x: xStart, y: m * xStart + c1, z: 0 },
-          { x: xStart + xRange, y: m * (xStart + xRange) + c1, z: 0 }
+          { x: xStart + xRange, y: m * (xStart + xRange) + c1, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       color: "#0284c7",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Obere Tangente", at: 1, offset: [1, 1, 0] }],
+      labels: [{ text: "Obere Tangente", at: 2, offset: [-3, 4.8, 0] }],
     },
     {
       points: (() => {
         const m = -0.75; // desired gradient
-        const h = 1, k = -0.5, r = 3.5;
-        const c2 = k - m*h - r * Math.sqrt(1 + m * m);
+        const h = 1,
+          k = -0.5,
+          r = 3.5;
+        const c2 = k - m * h - r * Math.sqrt(1 + m * m);
         const xRange = 8;
         const xStart = -2;
-        return [
+        const points = [
           { x: xStart, y: m * xStart + c2, z: 0 },
-          { x: xStart + xRange, y: m * (xStart + xRange) + c2, z: 0 }
+          { x: xStart + xRange, y: m * (xStart + xRange) + c2, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 3,
+          y: (points[1].y - points[0].y) * 3,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       color: "#059669",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Untere Tangente", at: 0, offset: [-0.5, -1.5, 0] }],
+      labels: [{ text: "Untere Tangente", at: 1, offset: [1, -2.4, 0] }],
     },
     {
       points: (() => {
@@ -408,54 +439,80 @@ Von einem Punkt außerhalb eines Kreises lassen sich genau zwei Tangenten ziehen
     {
       points: (() => {
         // Erste Tangente
-        const px = 3.5, py = 4, h = -1, k = 1.5, r = 2.8;
-        const a = (h - px)*(h - px) - r*r;
-        const b = -2*(h - px)*(k - py);
-        const c = (k - py)*(k - py) - r*r;
+        const px = 3.5,
+          py = 4,
+          h = -1,
+          k = 1.5,
+          r = 2.8;
+        const a = (h - px) * (h - px) - r * r;
+        const b = -2 * (h - px) * (k - py);
+        const c = (k - py) * (k - py) - r * r;
 
-        const discriminant = b*b - 4*a*c;
-        const m1 = (-b + Math.sqrt(discriminant)) / (2*a);
+        const discriminant = b * b - 4 * a * c;
+        const m1 = (-b + Math.sqrt(discriminant)) / (2 * a);
 
-        const c1 = py - m1*px;
+        const c1 = py - m1 * px;
 
         // Einheitliche Geradenlänge bestimmen
         const lineLength = 6;
 
-        return [
+        const points = [
           { x: px, y: py, z: 0 },
-          { x: px - lineLength, y: m1 * (px - lineLength) + c1, z: 0 }
+          { x: px - lineLength, y: m1 * (px - lineLength) + c1, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       color: "#0d9488",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Tangente 1", at: 0, offset: [0.5, -1, 0] }],
+      labels: [{ text: "Tangente 1", at: 1, offset: [0.5, -1, 0] }],
     },
     {
       points: (() => {
         // Zweite Tangente
-        const px = 3.5, py = 4, h = -1, k = 1.5, r = 2.8;
-        const a = (h - px)*(h - px) - r*r;
-        const b = -2*(h - px)*(k - py);
-        const c = (k - py)*(k - py) - r*r;
+        const px = 3.5,
+          py = 4,
+          h = -1,
+          k = 1.5,
+          r = 2.8;
+        const a = (h - px) * (h - px) - r * r;
+        const b = -2 * (h - px) * (k - py);
+        const c = (k - py) * (k - py) - r * r;
 
-        const discriminant = b*b - 4*a*c;
-        const m2 = (-b - Math.sqrt(discriminant)) / (2*a);
+        const discriminant = b * b - 4 * a * c;
+        const m2 = (-b - Math.sqrt(discriminant)) / (2 * a);
 
-        const c2 = py - m2*px;
+        const c2 = py - m2 * px;
 
         // Für eine einheitliche Darstellung dieselbe Geradenlänge verwenden
         const lineLength = 6;
 
-        return [
+        const points = [
           { x: px, y: py, z: 0 },
-          { x: px - lineLength, y: m2 * (px - lineLength) + c2, z: 0 }
+          { x: px - lineLength, y: m2 * (px - lineLength) + c2, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 3,
+          y: (points[1].y - points[0].y) * 3,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       color: "#4f46e5",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Tangente 2", at: 0, offset: [0.5, 1, 0] }],
+      labels: [{ text: "Tangente 2", at: 1, offset: [0.5, 1, 0] }],
     },
     {
       points: [
@@ -487,12 +544,12 @@ Setze diesen Ausdruck in die Kreisgleichung ein. Eine Tangente schneidet den Kre
 
 <MathContainer>
   <BlockMath math="x^2 + (mx - mx_0 + y_0)^2 = r^2" />
-  <BlockMath math="(1 + m^2)x^2 + 2m(y_0 - mx_0)x + (y_0 - mx_0)^2 - r^2 = 0" />
+  <BlockMath math="\begin{aligned} &amp;(1 + m^2)x^2 + 2m(y_0 - mx_0)x \\ &amp;+ (y_0 - mx_0)^2 - r^2 = 0 \end{aligned}" />
 </MathContainer>
 
 Nach dem Vereinfachen ergibt sich aus der Diskriminantenbedingung:
 
-<BlockMath math="(x_0^2 - r^2)m^2 - 2x_0y_0m + (y_0^2 - r^2) = 0" />
+<BlockMath math="\begin{aligned} &amp;(x_0^2 - r^2)m^2 - 2x_0y_0m + (y_0^2 - r^2) \\ &amp;= 0 \end{aligned}" />
 
 Die Lösungen sind die Steigungen der beiden nicht vertikalen Tangenten. Falls eine vertikale Tangente möglich ist, muss <InlineMath math="x=x_0" /> getrennt geprüft werden, denn sie lässt sich nicht als <InlineMath math="y=mx+c" /> schreiben.
 
@@ -500,29 +557,29 @@ Die Lösungen sind die Steigungen der beiden nicht vertikalen Tangenten. Falls e
 
 Bestimme die beiden Tangenten an den Kreis <InlineMath math="x^2+y^2=25" />, die durch <InlineMath math="A(7,1)" /> verlaufen.
 
-**Schritt** <InlineMath math="1" />: Prüfe, ob <InlineMath math="A" /> außerhalb des Kreises liegt.
+**Schritt** 1: Prüfe, ob <InlineMath math="A" /> außerhalb des Kreises liegt.
 
 <BlockMath math="7^2 + 1^2 = 49 + 1 = 50 > 25 \quad \checkmark" />
 
-**Schritt** <InlineMath math="2" />: Setze <InlineMath math="x_0=7" />, <InlineMath math="y_0=1" /> und <InlineMath math="r^2=25" /> in die quadratische Gleichung für <InlineMath math="m" /> ein:
+**Schritt** 2: Setze <InlineMath math="x_0=7" />, <InlineMath math="y_0=1" /> und <InlineMath math="r^2=25" /> in die quadratische Gleichung für <InlineMath math="m" /> ein:
 
 <MathContainer>
-  <BlockMath math="(49 - 25)m^2 - 2(7)(1)m + (1 - 25) = 0" />
+  <BlockMath math="\begin{aligned} &amp;(49 - 25)m^2 - 2(7)(1)m + (1 - 25) \\ &amp;= 0 \end{aligned}" />
   <BlockMath math="24m^2 - 14m - 24 = 0" />
   <BlockMath math="12m^2 - 7m - 12 = 0" />
 </MathContainer>
 
-**Schritt** <InlineMath math="3" />: Löse die quadratische Gleichung.
+**Schritt** 3: Löse die quadratische Gleichung.
 
-<BlockMath math="m = \frac{7 \pm \sqrt{49 + 576}}{24} = \frac{7 \pm \sqrt{625}}{24} = \frac{7 \pm 25}{24}" />
+<BlockMath math="\begin{aligned} m &amp;= \frac{7 \pm \sqrt{49 + 576}}{24} \\ &amp;= \frac{7 \pm \sqrt{625}}{24} \\ &amp;= \frac{7 \pm 25}{24} \end{aligned}" />
 
 Also <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> und <InlineMath math="m_2 = \frac{-18}{24} = -\frac{3}{4}" />.
 
-**Schritt** <InlineMath math="4" />: Setze jede Steigung in die Punkt-Steigungs-Form durch <InlineMath math="A" /> ein.
+**Schritt** 4: Setze jede Steigung in die Punkt-Steigungs-Form durch <InlineMath math="A" /> ein.
 
 <MathContainer>
   <BlockMath math="y - 1 = \frac{4}{3}(x - 7) \Rightarrow 4x - 3y = 25" />
-  <BlockMath math="y - 1 = -\frac{3}{4}(x - 7) \Rightarrow 3x + 4y = 25" />
+  <BlockMath math="\begin{aligned} y - 1 &amp;= -\frac{3}{4}(x - 7) \\ &amp;\Rightarrow 3x + 4y \\ &amp;= 25 \end{aligned}" />
 </MathContainer>
 
 ## Übungen
@@ -543,16 +600,16 @@ Also <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> und <InlineMath mat
 
    <BlockMath math="x \cdot x_1 + y \cdot y_1 = r^2" />
 
-   **Schritt** <InlineMath math="1" />: Setze die Koordinaten des Berührpunkts ein.
+   **Schritt** 1: Setze die Koordinaten des Berührpunkts ein.
 
    <MathContainer>
      <BlockMath math="x \cdot 2\sqrt{2} + y \cdot 2\sqrt{2} = 16" />
      <BlockMath math="2\sqrt{2}x + 2\sqrt{2}y = 16" />
    </MathContainer>
 
-   **Schritt** <InlineMath math="2" />: Teile beide Seiten durch <InlineMath math="2\sqrt{2}" />.
+   **Schritt** 2: Teile beide Seiten durch <InlineMath math="2\sqrt{2}" />.
 
-   <BlockMath math="x + y = \frac{16}{2\sqrt{2}} = \frac{8}{\sqrt{2}} = \frac{8\sqrt{2}}{2} = 4\sqrt{2}" />
+   <BlockMath math="\begin{aligned} x + y &amp;= \frac{16}{2\sqrt{2}} \\ &amp;= \frac{8}{\sqrt{2}} \\ &amp;= \frac{8\sqrt{2}}{2} \\ &amp;= 4\sqrt{2} \end{aligned}" />
 
    Die Tangentengleichung lautet also <InlineMath math="x + y = 4\sqrt{2}" />.
 
@@ -562,11 +619,11 @@ Also <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> und <InlineMath mat
 
    <BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
 
-   **Schritt** <InlineMath math="1" />: Berechne <InlineMath math="\sqrt{1 + m^2}" />.
+   **Schritt** 1: Berechne <InlineMath math="\sqrt{1 + m^2}" />.
 
-   <BlockMath math="\sqrt{1 + m^2} = \sqrt{1 + \left(-\frac{1}{2}\right)^2} = \sqrt{1 + \frac{1}{4}} = \sqrt{\frac{5}{4}} = \frac{\sqrt{5}}{2}" />
+   <BlockMath math="\begin{aligned} \sqrt{1 + m^2} &amp;= \sqrt{1 + \left(-\frac{1}{2}\right)^2} \\ &amp;= \sqrt{1 + \frac{1}{4}} \\ &amp;= \sqrt{\frac{5}{4}} \\ &amp;= \frac{\sqrt{5}}{2} \end{aligned}" />
 
-   **Schritt** <InlineMath math="2" />: Setze das Ergebnis in die Tangentenformel ein.
+   **Schritt** 2: Setze das Ergebnis in die Tangentenformel ein.
 
    <BlockMath math="y = -\frac{1}{2}x \pm 3 \cdot \frac{\sqrt{5}}{2} = -\frac{1}{2}x \pm \frac{3\sqrt{5}}{2}" />
 
@@ -576,32 +633,32 @@ Also <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> und <InlineMath mat
 
    Der Kreis <InlineMath math="(x-3)^2 + (y-4)^2 = 25" /> hat den Mittelpunkt <InlineMath math="(3,4)" /> und den Radius <InlineMath math="r = 5" />.
 
-   **Schritt** <InlineMath math="1" />: Prüfe die Lage von <InlineMath math="(11,10)" />.
+   **Schritt** 1: Prüfe die Lage von <InlineMath math="(11,10)" />.
 
-   <BlockMath math="(11-3)^2 + (10-4)^2 = 8^2 + 6^2 = 64 + 36 = 100 > 25" />
+   <BlockMath math="\begin{aligned} &amp;(11-3)^2 + (10-4)^2 \\ &amp;= 8^2 + 6^2 \\ &amp;= 64 + 36 \\ &amp;= 100 > 25 \end{aligned}" />
 
    Der Punkt liegt außerhalb des Kreises.
 
-   **Schritt** <InlineMath math="2" />: Verschiebe den Mittelpunkt gedanklich in den Ursprung. Relativ zum Mittelpunkt hat der äußere Punkt <InlineMath math="(11,10)" /> die Koordinaten <InlineMath math="(8,6)" />.
+   **Schritt** 2: Verschiebe den Mittelpunkt gedanklich in den Ursprung. Relativ zum Mittelpunkt hat der äußere Punkt <InlineMath math="(11,10)" /> die Koordinaten <InlineMath math="(8,6)" />.
 
-   **Schritt** <InlineMath math="3" />: Stelle die quadratische Gleichung für die Steigungen von <InlineMath math="(8,6)" /> an den Kreis <InlineMath math="x^2 + y^2 = 25" /> auf.
+   **Schritt** 3: Stelle die quadratische Gleichung für die Steigungen von <InlineMath math="(8,6)" /> an den Kreis <InlineMath math="x^2 + y^2 = 25" /> auf.
 
    <MathContainer>
-     <BlockMath math="(8^2 - 25)m^2 - 2(8)(6)m + (6^2 - 25) = 0" />
+     <BlockMath math="\begin{aligned} &amp;(8^2 - 25)m^2 - 2(8)(6)m \\ &amp;+ (6^2 - 25) = 0 \end{aligned}" />
      <BlockMath math="39m^2 - 96m + 11 = 0" />
    </MathContainer>
 
-   **Schritt** <InlineMath math="4" />: Löse sie mit der quadratischen Formel.
+   **Schritt** 4: Löse sie mit der quadratischen Formel.
 
    <MathContainer>
-     <BlockMath math="m = \frac{96 \pm \sqrt{96^2 - 4(39)(11)}}{2(39)} = \frac{96 \pm \sqrt{9216 - 1716}}{78}" />
+     <BlockMath math="\begin{aligned} m &amp;= \frac{96 \pm \sqrt{96^2 - 4(39)(11)}}{2(39)} \\ &amp;= \frac{96 \pm \sqrt{9216 - 1716}}{78} \end{aligned}" />
      <BlockMath math="m = \frac{96 \pm \sqrt{7500}}{78} = \frac{96 \pm 50\sqrt{3}}{78}" />
    </MathContainer>
 
-   **Schritt** <InlineMath math="5" />: Vereinfache die Steigungen und setze sie in die Punkt-Steigungs-Form durch <InlineMath math="(11,10)" /> ein.
+   **Schritt** 5: Vereinfache die Steigungen und setze sie in die Punkt-Steigungs-Form durch <InlineMath math="(11,10)" /> ein.
 
    <MathContainer>
-     <BlockMath math="m_1 = \frac{48 + 25\sqrt{3}}{39} \quad \text{und} \quad m_2 = \frac{48 - 25\sqrt{3}}{39}" />
+     <BlockMath math="\begin{aligned} &amp;m_1 = \frac{48 + 25\sqrt{3}}{39} \\ &amp;\text{und} \\ &amp;m_2 = \frac{48 - 25\sqrt{3}}{39} \end{aligned}" />
      <BlockMath math="y-10=\frac{48+25\sqrt{3}}{39}(x-11)" />
      <BlockMath math="y-10=\frac{48-25\sqrt{3}}{39}(x-11)" />
    </MathContainer>
@@ -610,19 +667,19 @@ Also <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> und <InlineMath mat
 
 4. **Lösung**:
 
-   **Schritt** <InlineMath math="1" />: Bringe die Kreisgleichung durch quadratische Ergänzung in die Standardform.
+   **Schritt** 1: Bringe die Kreisgleichung durch quadratische Ergänzung in die Standardform.
 
    <MathContainer>
      <BlockMath math="x^2 + y^2 - 6x - 8y = 0" />
-     <BlockMath math="(x^2 - 6x + 9) + (y^2 - 8y + 16) = 9 + 16" />
+     <BlockMath math="\begin{aligned} &amp;(x^2 - 6x + 9) + (y^2 - 8y + 16) \\ &amp;= 9 + 16 \end{aligned}" />
      <BlockMath math="(x-3)^2 + (y-4)^2 = 25" />
    </MathContainer>
 
    Der Mittelpunkt ist <InlineMath math="(3,4)" />, der Radius ist <InlineMath math="r=5" />.
 
-   **Schritt** <InlineMath math="2" />: Lies die Steigung der vorgegebenen Geraden ab. Da <InlineMath math="3x + 4y = 7" /> die Form <InlineMath math="y = -\frac{3}{4}x + \frac{7}{4}" /> hat, besitzt jede parallele Gerade die Steigung <InlineMath math="m = -\frac{3}{4}" />.
+   **Schritt** 2: Lies die Steigung der vorgegebenen Geraden ab. Da <InlineMath math="3x + 4y = 7" /> die Form <InlineMath math="y = -\frac{3}{4}x + \frac{7}{4}" /> hat, besitzt jede parallele Gerade die Steigung <InlineMath math="m = -\frac{3}{4}" />.
 
-   **Schritt** <InlineMath math="3" />: Setze den Mittelpunkt <InlineMath math="(3,4)" />, den Radius und die Steigung in die Tangentenformel ein.
+   **Schritt** 3: Setze den Mittelpunkt <InlineMath math="(3,4)" />, den Radius und die Steigung in die Tangentenformel ein.
 
    <MathContainer>
      <BlockMath math="y - 4 = -\frac{3}{4}(x - 3) \pm 5\sqrt{1 + \frac{9}{16}}" />
@@ -630,7 +687,7 @@ Also <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> und <InlineMath mat
      <BlockMath math="y = -\frac{3}{4}x + \frac{9}{4} + 4 \pm \frac{25}{4}" />
    </MathContainer>
 
-   **Schritt** <InlineMath math="4" />: Vereinfache beide Gleichungen.
+   **Schritt** 4: Vereinfache beide Gleichungen.
 
    <MathContainer>
      <BlockMath math="y = -\frac{3}{4}x + \frac{50}{4} = -\frac{3}{4}x + \frac{25}{2}" />

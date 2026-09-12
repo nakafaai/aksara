@@ -4,7 +4,7 @@ export const metadata = {
   description: "Build piecewise function models from interval boundaries, tiered rates, staged motion, and connection points.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Functions and Their Modeling",
 };
 
@@ -39,6 +39,7 @@ A linear piecewise function uses a linear function on each interval. This form o
   description="Example of a linear piecewise function with three different pieces."
   data={[
     {
+      endpoints: { start: "closed", end: "open" },
       points: Array.from({ length: 21 }, (_, i) => {
         const x = -2 + i * 0.1;
         return { x, y: 2 * x + 3, z: 0 };
@@ -49,6 +50,7 @@ A linear piecewise function uses a linear function on each interval. This form o
       labels: [{ text: <InlineMath math="y=2x+3" />, at: 10, offset: [-1.5, 1, 0] }],
     },
     {
+      endpoints: { start: "closed", end: "open" },
       points: Array.from({ length: 21 }, (_, i) => {
         const x = 0 + i * 0.1;
         return { x, y: -x + 3, z: 0 };
@@ -59,10 +61,14 @@ A linear piecewise function uses a linear function on each interval. This form o
       labels: [{ text: <InlineMath math="y=-x+3" />, at: 10, offset: [1, 1, 0] }],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = 2 + i * 0.1;
-        return { x, y: 0.5 * x, z: 0 };
-      }),
+      endpoints: { start: "closed" },
+      points: [
+        ...Array.from({ length: 21 }, (_, i) => {
+          const x = 2 + i * 0.1;
+          return { x, y: 0.5 * x, z: 0 };
+        }),
+        { x: 100, y: 50, z: 0 },
+      ],
       smooth: false,
       color: "#0891b2",
       showPoints: false,
@@ -74,7 +80,7 @@ A linear piecewise function uses a linear function on each interval. This form o
 
 The function above can be written as:
 
-<BlockMath math="f(x) = \begin{cases} 2x + 3, & \text{if } -2 \leq x < 0 \\ -x + 3, & \text{if } 0 \leq x < 2 \\ 0.5x, & \text{if } x \geq 2 \end{cases}" />
+<BlockMath math="\begin{aligned} &amp;f(x) = \begin{cases} 2x + 3, &amp; \text{if } -2 \leq x &lt; 0 \\ -x + 3, &amp; \text{if } 0 \leq x &lt; 2 \\ 0.5x, &amp; \text{if } x \geq 2 \end{cases} \end{aligned}" />
 
 The three rows are not three separate functions. They work together as one function, and the chosen formula depends on the value of <InlineMath math="x" />.
 
@@ -88,19 +94,24 @@ Piecewise functions can also use quadratic pieces. A quadratic piece can describ
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 31 }, (_, i) => {
-        const x = -3 + i * 0.1;
+      endpoints: { end: "open" },
+      points: Array.from({ length: 751 }, (_, sampleIndex) => {
+        const x = (sampleIndex - 750) / 50;
         return { x, y: x * x, z: 0 };
       }),
       color: "#7c3aed",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=x^2" />, at: 15, offset: [-1, -1, 0] }],
+      labels: [{ text: <InlineMath math="y=x^2" />, at: 675, offset: [-1, -1, 0] }],
     },
     {
-      points: Array.from({ length: 31 }, (_, i) => {
-        const x = 0 + i * 0.1;
-        return { x, y: 2 * x, z: 0 };
-      }),
+      endpoints: { start: "closed" },
+      points: [
+        ...Array.from({ length: 31 }, (_, i) => {
+          const x = 0 + i * 0.1;
+          return { x, y: 2 * x, z: 0 };
+        }),
+        { x: 100, y: 200, z: 0 },
+      ],
       smooth: false,
       color: "#0d9488",
       showPoints: false,
@@ -148,20 +159,28 @@ For example, the two rules below meet at <InlineMath math="x=1" /> but approach 
   }
   data={[
     {
-      points: Array.from({ length: 20 }, (_, i) => {
-        const x = -1 + i * 0.1;
-        return { x, y: x + 2, z: 0 };
-      }),
+      endpoints: { end: "open" },
+      points: [
+        { x: -100, y: -98, z: 0 },
+        ...Array.from({ length: 21 }, (_, i) => {
+          const x = -1 + i * 0.1;
+          return { x, y: x + 2, z: 0 };
+        }),
+      ],
       smooth: false,
       color: "#e11d48",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=x+2" />, at: 10, offset: [-1, 1, 0] }],
+      labels: [{ text: <InlineMath math="y=x+2" />, at: 11, offset: [-1, 1, 0] }],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = 1 + i * 0.1;
-        return { x, y: 2 * x - 3, z: 0 };
-      }),
+      endpoints: { start: "closed" },
+      points: [
+        ...Array.from({ length: 21 }, (_, i) => {
+          const x = 1 + i * 0.1;
+          return { x, y: 2 * x - 3, z: 0 };
+        }),
+        { x: 100, y: 197, z: 0 },
+      ],
       smooth: false,
       color: "#d97706",
       showPoints: false,
@@ -187,7 +206,7 @@ An electricity company applies tiered rates:
 
 The mathematical model:
 
-<BlockMath math="C(x) = \begin{cases} 1000x, & \text{if } 0 \leq x \leq 50 \\ 50000 + 1500(x-50), & \text{if } 50 < x \leq 100 \\ 125000 + 2000(x-100), & \text{if } x > 100 \end{cases}" />
+<BlockMath math="C(x) = \begin{cases}\begin{gathered}1000x\\\text{if } 0 \leq x \leq 50\end{gathered}\\[4pt]\begin{gathered}50000 + 1500(x-50)\\\text{if } 50 &lt; x \leq 100\end{gathered}\\[4pt]\begin{gathered}125000 + 2000(x-100)\\\text{if } x > 100\end{gathered}\end{cases}" />
 
 The number <InlineMath math="50{,}000" /> in the second row comes from the first <InlineMath math="50 \text{ kWh}" />. The number <InlineMath math="125{,}000" /> in the third row comes from the cost up to the first <InlineMath math="100 \text{ kWh}" />. This keeps the cost from restarting at <InlineMath math="0" /> when the usage enters a new interval.
 
@@ -209,7 +228,7 @@ Someone takes a journey with:
 
 Distance function with respect to time:
 
-<BlockMath math="s(t) = \begin{cases} 5t, & \text{if } 0 \leq t \leq 0.5 \\ 2.5 + 15(t-0.5), & \text{if } 0.5 < t \leq 1.5 \\ 17.5 + 60(t-1.5), & \text{if } 1.5 < t \leq 2 \end{cases}" />
+<BlockMath math="s(t) = \begin{cases}\begin{gathered}5t\\\text{if } 0 \leq t \leq 0.5\end{gathered}\\[4pt]\begin{gathered}2.5 + 15(t-0.5)\\\text{if } 0.5 &lt; t \leq 1.5\end{gathered}\\[4pt]\begin{gathered}17.5 + 60(t-1.5)\\\text{if } 1.5 &lt; t \leq 2\end{gathered}\end{cases}" />
 
 The constants <InlineMath math="2.5" /> and <InlineMath math="17.5" /> equal the distance already traveled at the start of each new interval. They keep <InlineMath math="s(t)" /> continuous when the transportation mode changes.
 
@@ -240,7 +259,7 @@ The solution can be summarized like this:
 
 Piecewise function:
 
-<BlockMath math="f(x) = \begin{cases} 2x + 4, & \text{if } -2 \leq x < 0 \\ 4, & \text{if } 0 \leq x < 2 \\ -x + 6, & \text{if } 2 \leq x \leq 4 \end{cases}" />
+<BlockMath math="\begin{aligned} &amp;f(x) = \begin{cases} 2x + 4, &amp; \text{if } -2 \leq x &lt; 0 \\ 4, &amp; \text{if } 0 \leq x &lt; 2 \\ -x + 6, &amp; \text{if } 2 \leq x \leq 4 \end{cases} \end{aligned}" />
 
 ## Practice Problems
 
@@ -288,23 +307,19 @@ Piecewise function:
 
    Let <InlineMath math="x" /> be the distance in km, then:
 
-   <MathContainer>
-     <BlockMath math="C(x) = \begin{cases} 10000, & \text{if } 0 < x \leq 2 \\ 10000 + 4000(x-2), & \text{if } 2 < x \leq 10 \\ 10000 + 32000 + 3000(x-10), & \text{if } x > 10 \end{cases}" />
-   </MathContainer>
+   <BlockMath math="C(x) = \begin{cases}\begin{gathered}10000\\\text{if } 0 &lt; x \leq 2\end{gathered}\\[4pt]\begin{gathered}10000 + 4000(x-2)\\\text{if } 2 &lt; x \leq 10\end{gathered}\\[4pt]\begin{gathered}\begin{aligned}10000+32000\\+3000(x-10)\end{aligned}\\\text{if } x > 10\end{gathered}\end{cases}" />
 
    Or simplified:
 
-   <MathContainer>
-     <BlockMath math="C(x) = \begin{cases} 10000, & \text{if } 0 < x \leq 2 \\ 4000x + 2000, & \text{if } 2 < x \leq 10 \\ 3000x + 12000, & \text{if } x > 10 \end{cases}" />
-   </MathContainer>
+   <BlockMath math="C(x) = \begin{cases}\begin{gathered}10000\\\text{if } 0 &lt; x \leq 2\end{gathered}\\[4pt]\begin{gathered}4000x + 2000\\\text{if } 2 &lt; x \leq 10\end{gathered}\\[4pt]\begin{gathered}3000x + 12000\\\text{if } x > 10\end{gathered}\end{cases}" />
 
 3. **Checking continuity:**
 
    At <InlineMath math="x = 1" />:
 
    <MathContainer>
-     <BlockMath math="\lim_{x \to 1^-} g(x) = \lim_{x \to 1^-} (3x - 1) = 3(1) - 1 = 2" />
-     <BlockMath math="\lim_{x \to 1^+} g(x) = \lim_{x \to 1^+} (x + 1) = 1 + 1 = 2" />
+     <BlockMath math="\begin{aligned} \lim_{x \to 1^-} g(x) &amp;= \lim_{x \to 1^-} (3x - 1) \\ &amp;= 3(1) - 1 \\ &amp;= 2 \end{aligned}" />
+     <BlockMath math="\begin{aligned} \lim_{x \to 1^+} g(x) &amp;= \lim_{x \to 1^+} (x + 1) \\ &amp;= 1 + 1 \\ &amp;= 2 \end{aligned}" />
      <BlockMath math="g(1) = 2" />
    </MathContainer>
 
@@ -326,17 +341,22 @@ Piecewise function:
      }
      data={[
        {
-         points: Array.from({ length: 21 }, (_, i) => {
-           const x = -2 + i * 0.1;
-           return { x, y: -x + 2, z: 0 };
-         }),
+         endpoints: { end: "open" },
+         points: [
+           { x: -100, y: 102, z: 0 },
+           ...Array.from({ length: 21 }, (_, i) => {
+             const x = -2 + i * 0.1;
+             return { x, y: -x + 2, z: 0 };
+           }),
+         ],
          smooth: false,
          color: "#9333ea",
          showPoints: false,
-         labels: [{ text: <InlineMath math="y=-x+2" />, at: 10, offset: [0, 0.5, 0] }],
+         labels: [{ text: <InlineMath math="y=-x+2" />, at: 11, offset: [0, 0.5, 0] }],
        },
        {
          smooth: false,
+         endpoints: { start: "closed", end: "open" },
          points: Array.from({ length: 101 }, (_, sampleIndex) => {
            const i = sampleIndex / 5;
            const x = 0 + i * 0.1;
@@ -347,10 +367,14 @@ Piecewise function:
          labels: [{ text: <InlineMath math="y=x^2" />, at: 50, offset: [0, 0.5, 0] }],
        },
        {
-         points: Array.from({ length: 21 }, (_, i) => {
-           const x = 2 + i * 0.1;
-           return { x, y: 4, z: 0 };
-         }),
+         endpoints: { start: "closed" },
+         points: [
+           ...Array.from({ length: 21 }, (_, i) => {
+             const x = 2 + i * 0.1;
+             return { x, y: 4, z: 0 };
+           }),
+           { x: 100, y: 4, z: 0 },
+         ],
          smooth: false,
          color: "#0891b2",
          showPoints: false,
@@ -364,12 +388,8 @@ Piecewise function:
 
    Let <InlineMath math="t" /> be the working hours, then:
 
-   <MathContainer>
-     <BlockMath math="U(t) = \begin{cases} 50000t, & \text{if } 0 \leq t \leq 8 \\ 400000 + 75000(t-8), & \text{if } 8 < t \leq 12 \end{cases}" />
-   </MathContainer>
+   <BlockMath math="U(t) = \begin{cases}\begin{gathered}50000t\\\text{if } 0 \leq t \leq 8\end{gathered}\\[4pt]\begin{gathered}400000 + 75000(t-8)\\\text{if } 8 &lt; t \leq 12\end{gathered}\end{cases}" />
 
    Or simplified:
 
-   <MathContainer>
-     <BlockMath math="U(t) = \begin{cases} 50000t, & \text{if } 0 \leq t \leq 8 \\ 75000t - 200000, & \text{if } 8 < t \leq 12 \end{cases}" />
-   </MathContainer>
+   <BlockMath math="U(t) = \begin{cases}\begin{gathered}50000t\\\text{if } 0 \leq t \leq 8\end{gathered}\\[4pt]\begin{gathered}75000t - 200000\\\text{if } 8 &lt; t \leq 12\end{gathered}\end{cases}" />

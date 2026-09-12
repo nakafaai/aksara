@@ -3,7 +3,7 @@ export const metadata = {
   description: "Relate arcs to chords, calculate the sagitta, and write parametric equations for design calculations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Circle Arcs and Sectors",
 };
 
@@ -33,7 +33,7 @@ For minor arcs in the same circle, a larger central angle produces both a longer
       color: "#7c3aed",
       lineWidth: 4,
       showPoints: false,
-      labels: [{ text: <>Arc <InlineMath math="60^\circ" /></>, at: 50, offset: [1.5, 0.5, 0] }],
+      labels: [{ text: <>Arc <InlineMath math="60^\circ" /></>, at: 50, offset: [0.1, 1.4, 0] }],
     },
     {
       points: [
@@ -45,7 +45,7 @@ For minor arcs in the same circle, a larger central angle produces both a longer
       color: "#ea580c",
       lineWidth: 3,
       showPoints: false,
-      labels: [{ text: <>Chord <InlineMath math="60^\circ" /></>, at: 1, offset: [0.8, -0.5, 0] }],
+      labels: [{ text: <>Chord <InlineMath math="60^\circ" /></>, at: 1, offset: [-1.3, -1.2, 0] }],
     },
     {
       points: [
@@ -149,7 +149,7 @@ The formula determines a chord from a circular arc's radius and central angle. I
 
 Arc height, or sagitta, is the distance from the chord's midpoint to the corresponding minor arc, measured perpendicular to the chord. Together with the chord, it specifies the shape of an idealized circular arc.
 
-<BlockMath math="h = r - r\cos\left(\frac{\theta}{2}\right) = r\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
+<BlockMath math="\begin{aligned} h &amp;= r - r\cos\left(\frac{\theta}{2}\right) \\ &amp;= r\left(1 - \cos\left(\frac{\theta}{2}\right)\right) \end{aligned}" />
 
 The variables in this formula are:
 - <InlineMath math="h" /> = arc height (sagitta)
@@ -175,7 +175,7 @@ The diagram marks the chord, its midpoint, and the perpendicular segment whose l
       color: "#7c3aed",
       lineWidth: 4,
       showPoints: false,
-      labels: [{ text: <>Arc <InlineMath math="60^\circ" /></>, at: 15, offset: [1.5, 1, 0] }],
+      labels: [{ text: <>Arc <InlineMath math="60^\circ" /></>, at: 15, offset: [-1.1, 2.65, 0] }],
     },
     {
       points: [
@@ -187,7 +187,7 @@ The diagram marks the chord, its midpoint, and the perpendicular segment whose l
       color: "#ea580c",
       lineWidth: 3,
       showPoints: false,
-      labels: [{ text: "Chord", at: 1, offset: [0, -0.8, 0] }],
+      labels: [{ text: "Chord", at: 1, offset: [-1.064102, 1.1, 0] }],
     },
     {
       points: [
@@ -195,7 +195,7 @@ The diagram marks the chord, its midpoint, and the perpendicular segment whose l
       ],
       color: "#059669",
       showPoints: true,
-      labels: [{ text: <><InlineMath math="M" /> (Midpoint)</>, at: 0, offset: [1.2, -1.2, 0] }],
+      labels: [{ text: <><InlineMath math="M" /> (Midpoint)</>, at: 0, offset: [-1.364102, -0.4, 0] }],
     },
     {
       points: [
@@ -206,7 +206,7 @@ The diagram marks the chord, its midpoint, and the perpendicular segment whose l
       color: "#e11d48",
       lineWidth: 4,
       showPoints: false,
-      labels: [{ text: <>Arc Height <InlineMath math="(h)" /></>, offset: [0.8, -0.5, 0] }],
+      labels: [{ text: <>Arc Height <InlineMath math="(h)" /></>, offset: [-2.2, 0.45, 0] }],
     },
     {
       points: [
@@ -217,7 +217,7 @@ The diagram marks the chord, its midpoint, and the perpendicular segment whose l
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
-      labels: [{ text: "Radius", offset: [-2, -0.5, 0] }],
+      labels: [{ text: "Radius", offset: [-2.064102, 0.55, 0] }],
     },
     {
       points: [
@@ -228,7 +228,7 @@ The diagram marks the chord, its midpoint, and the perpendicular segment whose l
       color: "#9333ea",
       lineWidth: 2,
       showPoints: false,
-      labels: [{ text: "Radius", offset: [-2, 0.5, 0] }],
+      labels: [{ text: "Radius", offset: [-2.064102, -0.55, 0] }],
     },
     {
       points: [
@@ -236,7 +236,7 @@ The diagram marks the chord, its midpoint, and the perpendicular segment whose l
       ],
       color: "#059669",
       showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.5, 0] }],
     },
     {
       points: [
@@ -244,7 +244,7 @@ The diagram marks the chord, its midpoint, and the perpendicular segment whose l
       ],
       color: "#059669",
       showPoints: true,
-      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.5, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.685898, -0.05, 0] }],
     },
     {
       points: [
@@ -252,7 +252,7 @@ The diagram marks the chord, its midpoint, and the perpendicular segment whose l
       ],
       color: "#059669",
       showPoints: true,
-      labels: [{ text: <InlineMath math="Q" />, at: 0, offset: [-0.3, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="Q" />, at: 0, offset: [0.685898, 0.05, 0] }],
     },
     {
       points: Array.from({ length: 101 }, (_, i) => {
@@ -269,7 +269,8 @@ The diagram marks the chord, its midpoint, and the perpendicular segment whose l
       smooth: false,
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[1.8, 0, 6.4]}
+  cameraTarget={[1.8, 0, 0]}
 />
 
 ## Arc in Coordinate System
@@ -300,7 +301,7 @@ Where <InlineMath math="t" /> is a parameter that varies from the initial angle 
       color: "#7c3aed",
       lineWidth: 4,
       showPoints: false,
-      labels: [{ text: "Parametric Arc", at: 20, offset: [1.5, 1, 0] }],
+      labels: [{ text: "Parametric Arc", at: 20, offset: [0, 1.7, 0] }],
     },
     {
       points: [
@@ -308,7 +309,7 @@ Where <InlineMath math="t" /> is a parameter that varies from the initial angle 
       ],
       color: "#ea580c",
       showPoints: true,
-      labels: [{ text: <InlineMath math="t_1=\frac{\pi}{4} (45^\circ)" />, at: 0, offset: [2, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="t_1=\frac{\pi}{4} (45^\circ)" />, at: 0, offset: [0.5, 1.2, 0] }],
     },
     {
       points: [
@@ -316,7 +317,7 @@ Where <InlineMath math="t" /> is a parameter that varies from the initial angle 
       ],
       color: "#ea580c",
       showPoints: true,
-      labels: [{ text: <InlineMath math="t_2=\frac{3\pi}{4} (135^\circ)" />, at: 0, offset: [-2, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="t_2=\frac{3\pi}{4} (135^\circ)" />, at: 0, offset: [-0.5, 1.2, 0] }],
     },
     {
       points: [
@@ -408,14 +409,14 @@ An idealized circular arch has radius <InlineMath math="25 \text{ meters}" /> an
    **Chord length:**
 
    <MathContainer>
-   <BlockMath math="c = 2r \sin\left(\frac{\theta}{2}\right) = 2 \times 30 \times \sin(45^\circ)" />
+   <BlockMath math="\begin{aligned} c &amp;= 2r \sin\left(\frac{\theta}{2}\right) \\ &amp;= 2 \times 30 \times \sin(45^\circ) \end{aligned}" />
    <BlockMath math="c = 60 \times \frac{\sqrt{2}}{2} = 30\sqrt{2} \text{ m} \approx 42.43 \text{ m}" />
    </MathContainer>
 
    **Arc height:**
 
    <MathContainer>
-   <BlockMath math="h = r\left(1 - \cos\left(\frac{\theta}{2}\right)\right) = 30\left(1 - \cos(45^\circ)\right)" />
+   <BlockMath math="\begin{aligned} h &amp;= r\left(1 - \cos\left(\frac{\theta}{2}\right)\right) \\ &amp;= 30\left(1 - \cos(45^\circ)\right) \end{aligned}" />
    <BlockMath math="h = 30\left(1 - \frac{\sqrt{2}}{2}\right) \approx 8.79 \text{ m}" />
    </MathContainer>
 
@@ -423,18 +424,18 @@ An idealized circular arch has radius <InlineMath math="25 \text{ meters}" /> an
 
    Given: <InlineMath math="h = 8 \text{ m}" /> and <InlineMath math="r = 15 \text{ m}" />
 
-   **Step** <InlineMath math="1" />: Use the arc height formula
+   **Step** 1: Use the arc height formula
 
    <BlockMath math="8 = 15\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
 
-   **Step** <InlineMath math="2" />: Isolate <InlineMath math="\cos" />
+   **Step** 2: Isolate <InlineMath math="\cos" />
 
    <MathContainer>
    <BlockMath math="\frac{8}{15} = 1 - \cos\left(\frac{\theta}{2}\right)" />
    <BlockMath math="\cos\left(\frac{\theta}{2}\right) = 1 - \frac{8}{15} = \frac{7}{15}" />
    </MathContainer>
 
-   **Step** <InlineMath math="3" />: Calculate angle
+   **Step** 3: Calculate angle
 
    <MathContainer>
    <BlockMath math="\frac{\theta}{2} = \arccos\left(\frac{7}{15}\right) \approx 62.18^\circ" />
@@ -445,23 +446,23 @@ An idealized circular arch has radius <InlineMath math="25 \text{ meters}" /> an
 
    Given: <InlineMath math="c = 24 \text{ m}" /> and <InlineMath math="r = 15 \text{ m}" />
 
-   **Step** <InlineMath math="1" />: Use the chord formula
+   **Step** 1: Use the chord formula
 
    <MathContainer>
    <BlockMath math="24 = 2 \times 15 \times \sin\left(\frac{\theta}{2}\right)" />
    <BlockMath math="\sin\left(\frac{\theta}{2}\right) = \frac{24}{30} = 0.8" />
    </MathContainer>
 
-   **Step** <InlineMath math="2" />: Calculate the minor central angle
+   **Step** 2: Calculate the minor central angle
 
    <MathContainer>
    <BlockMath math="\frac{\theta}{2} = \arcsin(0.8) \approx 53.13^\circ" />
    <BlockMath math="\theta \approx 106.26^\circ" />
    </MathContainer>
 
-   **Step** <InlineMath math="3" />: Calculate arc height
+   **Step** 3: Calculate arc height
 
-   <BlockMath math="h = 15\left(1 - \cos(53.13^\circ)\right) = 15(1 - 0.6) = 6 \text{ m}" />
+   <BlockMath math="\begin{aligned} h &amp;= 15\left(1 - \cos(53.13^\circ)\right) \\ &amp;= 15(1 - 0.6) \\ &amp;= 6 \text{ m} \end{aligned}" />
 
 4. **Solution:**
 

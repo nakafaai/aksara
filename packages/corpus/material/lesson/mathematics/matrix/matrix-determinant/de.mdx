@@ -3,7 +3,7 @@ export const metadata = {
   description: "Berechne Determinanten von 2-mal-2-Matrizen und löse lineare Gleichungssysteme mit der Cramerschen Regel Schritt für Schritt.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Matrix",
 };
 
@@ -107,21 +107,21 @@ Aus dem obigen System erhalten wir:
 
 <InlineMath math="a_{21} = 1" />, <InlineMath math="a_{22} = -4" />, <InlineMath math="b_2 = 14" />
 
-**Schritt** <InlineMath math="1" />: Berechne die Determinante <InlineMath math="D" />.
+**Schritt** 1: Berechne die Determinante <InlineMath math="D" />.
 
-<BlockMath math="D = \begin{vmatrix} 2 & -1 \\ 1 & -4 \end{vmatrix} = (2 \times -4) - (-1 \times 1) = -8 - (-1) = -8 + 1 = -7" />
+<BlockMath math="\begin{aligned} D &amp;= \begin{vmatrix} 2 &amp; -1 \\ 1 &amp; -4 \end{vmatrix} \\ &amp;= (2 \times -4) - (-1 \times 1) \\ &amp;= -8 - (-1) \\ &amp;= -8 + 1 \\ &amp;= -7 \end{aligned}" />
 
 Da <InlineMath math="D = -7 \neq 0" /> gilt, besitzt das System genau eine Lösung.
 
-**Schritt** <InlineMath math="2" />: Berechne die Determinante <InlineMath math="D_x" />.
+**Schritt** 2: Berechne die Determinante <InlineMath math="D_x" />.
 
-<BlockMath math="D_x = \begin{vmatrix} 7 & -1 \\ 14 & -4 \end{vmatrix} = (7 \times -4) - (-1 \times 14) = -28 - (-14) = -28 + 14 = -14" />
+<BlockMath math="\begin{aligned} D_x &amp;= \begin{vmatrix} 7 &amp; -1 \\ 14 &amp; -4 \end{vmatrix} \\ &amp;= (7 \times -4) - (-1 \times 14) \\ &amp;= -28 - (-14) \\ &amp;= -28 + 14 \\ &amp;= -14 \end{aligned}" />
 
-**Schritt** <InlineMath math="3" />: Berechne die Determinante <InlineMath math="D_y" />.
+**Schritt** 3: Berechne die Determinante <InlineMath math="D_y" />.
 
-<BlockMath math="D_y = \begin{vmatrix} 2 & 7 \\ 1 & 14 \end{vmatrix} = (2 \times 14) - (7 \times 1) = 28 - 7 = 21" />
+<BlockMath math="\begin{aligned} D_y &amp;= \begin{vmatrix} 2 &amp; 7 \\ 1 &amp; 14 \end{vmatrix} \\ &amp;= (2 \times 14) - (7 \times 1) \\ &amp;= 28 - 7 \\ &amp;= 21 \end{aligned}" />
 
-**Schritt** <InlineMath math="4" />: Berechne <InlineMath math="x" /> und <InlineMath math="y" />.
+**Schritt** 4: Berechne <InlineMath math="x" /> und <InlineMath math="y" />.
 
 <MathContainer>
   <BlockMath math="x = \frac{D_x}{D} = \frac{-14}{-7} = 2" />
@@ -141,7 +141,7 @@ Die Lösungsmenge des linearen Gleichungssystems ist also <InlineMath math="x=2"
 
 1.  Für die Matrix <InlineMath math="M = \begin{bmatrix} 9 & x \\ 8 & -7 \end{bmatrix}" /> ist ihre Determinante:
 
-    <BlockMath math="\det(M) = (9 \times -7) - (x \times 8) = -63 - 8x" />
+    <BlockMath math="\begin{aligned} \det(M) &amp;= (9 \times -7) - (x \times 8) \\ &amp;= -63 - 8x \end{aligned}" />
 
     Mit <InlineMath math="\det(M) = 9" /> folgt:
 
@@ -165,9 +165,9 @@ Die Lösungsmenge des linearen Gleichungssystems ist also <InlineMath math="x=2"
     Wir ermitteln <InlineMath math="D, D_x," /> und <InlineMath math="D_y" />.
 
     <MathContainer>
-      <BlockMath math="D = \begin{vmatrix} 2 & -1 \\ 1 & 3 \end{vmatrix} = (2 \times 3) - (-1 \times 1) = 6 - (-1) = 6 + 1 = 7" />
-      <BlockMath math="D_x = \begin{vmatrix} 8 & -1 \\ -10 & 3 \end{vmatrix} = (8 \times 3) - (-1 \times -10) = 24 - 10 = 14" />
-      <BlockMath math="D_y = \begin{vmatrix} 2 & 8 \\ 1 & -10 \end{vmatrix} = (2 \times -10) - (8 \times 1) = -20 - 8 = -28" />
+      <BlockMath math="\begin{aligned} D &amp;= \begin{vmatrix} 2 &amp; -1 \\ 1 &amp; 3 \end{vmatrix} \\ &amp;= (2 \times 3) - (-1 \times 1) \\ &amp;= 6 - (-1) \\ &amp;= 6 + 1 \\ &amp;= 7 \end{aligned}" />
+      <BlockMath math="\begin{aligned} D_x &amp;= \begin{vmatrix} 8 &amp; -1 \\ -10 &amp; 3 \end{vmatrix} \\ &amp;= (8 \times 3) - (-1 \times -10) \\ &amp;= 24 - 10 \\ &amp;= 14 \end{aligned}" />
+      <BlockMath math="\begin{aligned} D_y &amp;= \begin{vmatrix} 2 &amp; 8 \\ 1 &amp; -10 \end{vmatrix} \\ &amp;= (2 \times -10) - (8 \times 1) \\ &amp;= -20 - 8 \\ &amp;= -28 \end{aligned}" />
     </MathContainer>
 
     Dann sind die Werte von <InlineMath math="x" /> und <InlineMath math="y" />:

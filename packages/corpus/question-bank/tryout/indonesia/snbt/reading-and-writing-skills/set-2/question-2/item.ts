@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Satz $$(12)$$.",
+          label: "Satz (12).",
         },
         {
           isCorrect: false,
-          label: "Satz $$(13)$$.",
+          label: "Satz (13).",
         },
         {
           isCorrect: false,
-          label: "Satz $$(14)$$.",
+          label: "Satz (14).",
         },
         {
           isCorrect: true,
-          label: "Satz $$(11)$$.",
+          label: "Satz (11).",
         },
         {
           isCorrect: false,
-          label: "Satz $$(15)$$.",
+          label: "Satz (15).",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "sentence $$(12)$$.",
+          label: "sentence (12).",
         },
         {
           isCorrect: false,
-          label: "sentence $$(13)$$.",
+          label: "sentence (13).",
         },
         {
           isCorrect: false,
-          label: "sentence $$(14)$$.",
+          label: "sentence (14).",
         },
         {
           isCorrect: true,
-          label: "sentence $$(11)$$.",
+          label: "sentence (11).",
         },
         {
           isCorrect: false,
-          label: "sentence $$(15)$$.",
+          label: "sentence (15).",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "kalimat $$(12)$$.",
+          label: "kalimat (12).",
         },
         {
           isCorrect: false,
-          label: "kalimat $$(13)$$.",
+          label: "kalimat (13).",
         },
         {
           isCorrect: false,
-          label: "kalimat $$(14)$$.",
+          label: "kalimat (14).",
         },
         {
           isCorrect: true,
-          label: "kalimat $$(11)$$.",
+          label: "kalimat (11).",
         },
         {
           isCorrect: false,
-          label: "kalimat $$(15)$$.",
+          label: "kalimat (15).",
         },
       ],
     },

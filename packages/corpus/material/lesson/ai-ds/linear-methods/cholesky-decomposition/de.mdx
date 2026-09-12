@@ -3,7 +3,7 @@ export const metadata = {
    description: "Faktorisiere positiv definite Matrizen mit der Cholesky-Zerlegung und schätze den Rechenaufwand des Algorithmus ab.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-12",
     subject: "Lineare Methoden der KI",
 };
 
@@ -20,14 +20,14 @@ Dies bedeutet, dass wir eine Faktorisierung in der Form <InlineMath math="A = L 
 Aus <InlineMath math="A = A^T" /> folgt außerdem:
 
 <MathContainer>
-<BlockMath math="A = A^T = (L \cdot U)^T = (L \cdot D \cdot \tilde{U})^T = \tilde{U}^T \cdot D \cdot L^T" />
+<BlockMath math="\begin{aligned} A &amp;= A^T \\ &amp;= (L \cdot U)^T \\ &amp;= (L \cdot D \cdot \tilde{U})^T \\ &amp;= \tilde{U}^T \cdot D \cdot L^T \end{aligned}" />
 </MathContainer>
 
 Dabei ist <InlineMath math="\tilde{U}" /> eine Matrix, deren Hauptdiagonale auf <InlineMath math="1" /> normiert ist, und <InlineMath math="D" /> eine Diagonalmatrix:
 
 <MathContainer>
-<BlockMath math="\tilde{U} = \begin{pmatrix} 1 & u_{12}/u_{11} & \cdots & u_{1n}/u_{11} \\ & \ddots & \ddots & \vdots \\ & & 1 & u_{n-1,n}/u_{n-1,n-1} \\ 0 & & & 1 \end{pmatrix}" />
-<BlockMath math="D = \begin{pmatrix} u_{11} & & 0 \\ & \ddots & \\ 0 & & u_{nn} \end{pmatrix}" />
+  <BlockMath math="\tilde{U} = \begin{pmatrix} 1 &amp; \frac{u_{12}}{u_{11}} &amp; \cdots &amp; \frac{u_{1n}}{u_{11}} \\ &amp; \ddots &amp; \ddots &amp; \vdots \\ &amp; &amp; 1 &amp; \frac{u_{n-1,n}}{u_{n-1,n-1}} \\ 0 &amp; &amp; &amp; 1 \end{pmatrix}" />
+  <BlockMath math="D = \begin{pmatrix} u_{11} & & 0 \\ & \ddots & \\ 0 & & u_{nn} \end{pmatrix}" />
 </MathContainer>
 
 Wenn <InlineMath math="L" /> und <InlineMath math="\tilde U" /> Einsen auf der Diagonale besitzen, ist diese <InlineMath math="\mathrm{LU}" />-Zerlegung eindeutig. Der Vergleich der beiden Faktorisierungen ergibt
@@ -68,9 +68,13 @@ Gegeben sei eine positiv definite Matrix <InlineMath math="A \in \mathbb{R}^{n \
 
 Für <InlineMath math="i = 2, \ldots, n" />:
 
-<MathContainer>
 <BlockMath math="\tilde{l}_{ii} := \sqrt{a_{ii} - \tilde{l}_{i1}^2 - \tilde{l}_{i2}^2 - \ldots - \tilde{l}_{i,i-1}^2}" />
-<BlockMath math="\tilde{l}_{ji} := \tilde{l}_{ii}^{-1} \cdot \left( a_{ji} - \tilde{l}_{j1}\tilde{l}_{i1} - \tilde{l}_{j2}\tilde{l}_{i2} - \ldots - \tilde{l}_{j,i-1}\tilde{l}_{i,i-1} \right)" />
+Berechne zunächst den verbleibenden Eintrag:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;r_{ji}=a_{ji}-\tilde l_{j1}\tilde l_{i1} \\ &amp;-\tilde l_{j2}\tilde l_{i2}-\ldots \\ &amp;-\tilde l_{j,i-1}\tilde l_{i,i-1} \end{aligned}" />
+
+  <BlockMath math="\tilde l_{ji}:=\tilde l_{ii}^{-1}\cdot r_{ji}" />
 </MathContainer>
 
 Die zweite Rekursionsformel gilt für <InlineMath math="j = i + 1, \ldots, n" />.
@@ -99,7 +103,7 @@ Damit gilt
 
 <MathContainer>
 <BlockMath math="\tilde L=\begin{pmatrix}2&0\\1&2\end{pmatrix}" />
-<BlockMath math="\tilde L\tilde L^T=\begin{pmatrix}2&0\\1&2\end{pmatrix}\begin{pmatrix}2&1\\0&2\end{pmatrix}=\begin{pmatrix}4&2\\2&5\end{pmatrix}=A" />
+<BlockMath math="\begin{aligned} \tilde L\tilde L^T &amp;=\begin{pmatrix}2&amp;0\\1&amp;2\end{pmatrix}\begin{pmatrix}2&amp;1\\0&amp;2\end{pmatrix} \\ &amp;=\begin{pmatrix}4&amp;2\\2&amp;5\end{pmatrix} \\ &amp;=A \end{aligned}" />
 </MathContainer>
 
 Ist der Faktor bekannt, lösen wir <InlineMath math="Ax=b" /> mit zwei Dreieckssystemen statt mit einer Inversen: zuerst <InlineMath math="\tilde Ly=b" />, danach <InlineMath math="\tilde L^Tx=y" />.

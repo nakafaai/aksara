@@ -3,7 +3,7 @@ export const metadata = {
   description: "Divide polynomials, identify the quotient and remainder, and verify the result by multiplication.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Polynomial",
 };
 
@@ -57,11 +57,11 @@ This can be written in two forms according to the algorithm:
 
 1.  Fractional form:
 
-    <BlockMath math="\frac{x^3 + 4x^2 + 5x + 8}{x + 3} = x^2 + x + 2 + \frac{2}{x + 3}" />
+    <BlockMath math="\begin{aligned} &amp;\frac{x^3 + 4x^2 + 5x + 8}{x + 3} \\ &amp;= x^2 + x + 2 + \frac{2}{x + 3} \end{aligned}" />
 
 2.  Multiplication form:
 
-    <BlockMath math="x^3 + 4x^2 + 5x + 8 = (x + 3)(x^2 + x + 2) + 2" />
+    <BlockMath math="\begin{aligned} &amp;x^3 + 4x^2 + 5x + 8 \\ &amp;= (x + 3)(x^2 + x + 2) + 2 \end{aligned}" />
 
 The remainder <InlineMath math="S(x)=2" /> has degree <InlineMath math="0" />, which is less than the degree of the divisor <InlineMath math="x+3" />, namely <InlineMath math="1" />. This is the condition that makes the division complete.
 
@@ -73,13 +73,19 @@ Prove that <InlineMath math="x^3 + 4x^2 + 5x + 8 = (x + 3)(x^2 + x + 2) + 2" />.
 
 Expand the right side:
 
-<MathContainer>
-  <BlockMath math="(x + 3)(x^2 + x + 2) + 2" />
-  <BlockMath math="= [x(x^2 + x + 2) + 3(x^2 + x + 2)] + 2 \quad \text{(Distribute } (x+3))" />
-  <BlockMath math="= [x^3 + x^2 + 2x + 3x^2 + 3x + 6] + 2 \quad \text{(Distribute } x \text{ and} 3)" />
-  <BlockMath math="= x^3 + (x^2 + 3x^2) + (2x + 3x) + 6 + 2 \quad \text{(Group like terms)}" />
-  <BlockMath math="= x^3 + 4x^2 + 5x + 8 \quad \text{(Final result)}" />
-</MathContainer>
+<BlockMath math="(x + 3)(x^2 + x + 2) + 2" />
+  Distribute <InlineMath math="x+3" />:
+
+<BlockMath math="\begin{aligned} &amp;=\bigl[x(x^2+x+2) \\ &amp;+3(x^2+x+2)\bigr]+2 \end{aligned}" />
+  Distribute <InlineMath math="x" /> and <InlineMath math="3" />:
+
+<BlockMath math="\begin{aligned} &amp;=\bigl[x^3+x^2+2x \\ &amp;+3x^2+3x+6\bigr]+2 \end{aligned}" />
+  Group like terms:
+
+<BlockMath math="\begin{aligned} &amp;=x^3+(x^2+3x^2) \\ &amp;+(2x+3x)+6+2 \end{aligned}" />
+  The result is:
+
+<BlockMath math="= x^3 + 4x^2 + 5x + 8" />
 
 Since the right side equals the left side, the equation is proven true.
 
@@ -106,7 +112,7 @@ The quotient is <InlineMath math="H(x)=2x^2+x+6" /> and the remainder is <Inline
 
 <MathContainer>
   <BlockMath math="(x-2)(2x^2+x+6)+7" />
-  <BlockMath math="=2x^3+x^2+6x-4x^2-2x-12+7" />
+  <BlockMath math="\begin{aligned} &amp;=2x^3+x^2+6x-4x^2 \\ &amp;-2x-12+7 \end{aligned}" />
   <BlockMath math="=2x^3-3x^2+4x-5" />
 </MathContainer>
 

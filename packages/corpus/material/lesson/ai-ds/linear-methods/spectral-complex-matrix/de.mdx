@@ -3,7 +3,7 @@ export const metadata = {
    description: "Beweise, dass eine normale Matrix eine Orthonormalbasis aus Eigenvektoren besitzt, und nutze diese Basis zur unitären Diagonalisierung.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-01",
+   dateModified: "2026-09-12",
    subject: "Lineare Methoden der KI",
 };
 
@@ -36,7 +36,7 @@ Das bedeutet <InlineMath math="A^H v_i = \overline{\lambda_i} v_i" />, sodass:
 
 <MathContainer>
 <BlockMath math="AA^H v_i = A(\overline{\lambda_i} v_i) = \overline{\lambda_i} \lambda_i v_i" />
-<BlockMath math="= \lambda_i \overline{\lambda_i} v_i = \lambda_i (A^H v_i) = A^H (\lambda_i v_i) = A^H A v_i" />
+<BlockMath math="\begin{aligned}  &amp;= \lambda_i \overline{\lambda_i} v_i \\ &amp;= \lambda_i (A^H v_i) \\ &amp;= A^H (\lambda_i v_i) \\ &amp;= A^H A v_i \end{aligned}" />
 </MathContainer>
 
 Da dies für alle Basisvektoren gilt, ist <InlineMath math="AA^H = A^H A" />, was bedeutet, dass <InlineMath math="A" /> normal ist.
@@ -184,8 +184,8 @@ Eine Vierteldrehung wird durch die folgende Matrix dargestellt:
 Die Matrix <InlineMath math="R" /> ist reell und orthogonal, also normal. Ihre Eigenwerte sind <InlineMath math="i" /> und <InlineMath math="-i" /> mit den folgenden normierten Eigenvektoren:
 
 <MathContainer>
-<BlockMath math="u_+=\frac1{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix},\qquad u_-=\frac1{\sqrt2}\begin{pmatrix}1\\i\end{pmatrix}" />
-<BlockMath math="U=(u_+\quad u_-),\qquad U^HRU=\operatorname{diag}(i,-i)" />
+<BlockMath math="\begin{aligned} &amp;u_+=\frac1{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix}, \\ &amp;u_-=\frac1{\sqrt2}\begin{pmatrix}1\\i\end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;U=(u_+\quad u_-), \\ &amp;U^HRU=\operatorname{diag}(i,-i) \end{aligned}" />
 </MathContainer>
 
 Damit ist <InlineMath math="R" /> über <InlineMath math="\mathbb{C}" /> unitär diagonalisierbar, kann aber nicht durch eine reelle orthogonale Matrix diagonalisiert werden. Über <InlineMath math="\mathbb{R}" /> ist die Rotationsmatrix selbst der benötigte <InlineMath math="2\times2" />-Block.

@@ -4,7 +4,7 @@ export const metadata = {
   description: "Baca grafik sinus, kosinus, dan tangen melalui visualisasi interaktif tentang radian, amplitudo, periode, dan transformasi grafik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Fungsi dan Pemodelannya",
 };
 
@@ -150,12 +150,13 @@ Fungsi <InlineMath math="y = \sin x" /> bersifat periodik dengan periode <Inline
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 100 }, (_, i) => {
+      points: Array.from({ length: 555 }, (_, pointIndex) => {
+        const i = pointIndex / 2 - 89;
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
       color: "#0284c7",
-      labels: [{ text: <InlineMath math="y=\sin x" />, at: 25, offset: [1.5, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, 0.5, 0] }],
       showPoints: false,
     },
   ]}
@@ -186,12 +187,13 @@ Fungsi <InlineMath math="y = \cos x" /> memiliki bentuk yang mirip dengan sinus,
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 100 }, (_, i) => {
+      points: Array.from({ length: 555 }, (_, pointIndex) => {
+        const i = pointIndex / 2 - 89;
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: Math.cos(x), z: 0 };
       }),
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="y=\cos x" />, at: 25, offset: [0.3, 1.5, 0] }],
+      labels: [{ text: <InlineMath math="y=\cos x" />, at: 228, offset: [0.3, 1.5, 0] }],
       showPoints: false,
     },
   ]}
@@ -220,22 +222,24 @@ Fungsi <InlineMath math="y = \cos x" /> memiliki bentuk yang mirip dengan sinus,
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 100 }, (_, i) => {
+      points: Array.from({ length: 555 }, (_, pointIndex) => {
+        const i = pointIndex / 2 - 89;
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
       color: "#0284c7",
-      labels: [{ text: <InlineMath math="y=\sin x" />, at: 25, offset: [1.5, -1.5, 0] }],
+      labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, -1.5, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 100 }, (_, i) => {
+      points: Array.from({ length: 555 }, (_, pointIndex) => {
+        const i = pointIndex / 2 - 89;
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: Math.cos(x), z: 0 };
       }),
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="y=\cos x" />, at: 75, offset: [1.5, 2.5, 0] }],
+      labels: [{ text: <InlineMath math="y=\cos x" />, at: 328, offset: [1.5, 2.5, 0] }],
       showPoints: false,
     },
   ]}
@@ -255,35 +259,39 @@ Fungsi <InlineMath math="y = \tan x" /> berbeda dengan <InlineMath math="\sin" /
   description="Garis vertikal merah menandai asimtotnya."
   data={[
     // Fungsi tangen
-    ...Array.from({ length: 3 }, (_, periodIndex) => {
-      const offset = (periodIndex - 1) * Math.PI;
+    ...Array.from({ length: 11 }, (_, periodIndex) => {
+      const offset = (periodIndex - 5) * Math.PI;
       return {
         smooth: false,
-        points: Array.from({ length: 50 }, (_, i) => {
-          const x = offset + (i / 49) * Math.PI * 0.9 - Math.PI * 0.45;
-          return { x, y: Math.tan(x), z: 0 };
-        }),
+        points: (() => {
+          const parameters = Array.from({ length: 641 }, (_, i) => (i - 320) / 64);
+          parameters.push(0.02885536458803665);
+          return parameters
+            .sort((a, b) => a - b)
+            .map((t) => ({
+              x: offset + Math.atan(Math.sinh(t)),
+              y: Math.sinh(t),
+              z: 0,
+            }));
+        })(),
         color: "#059669",
         labels:
-          periodIndex === 1
-            ? [{ text: <InlineMath math="y=\tan x" />, at: 25, offset: [2, 0.5, 0] }]
+          periodIndex === 5
+            ? [{ text: <InlineMath math="y=\tan x" />, at: 322, offset: [2, 0.5, 0] }]
             : [],
         showPoints: false,
       };
     }),
     // Asimtot vertikal
-    ...Array.from({ length: 3 }, (_, i) => {
-      const x = (i - 1) * Math.PI + Math.PI / 2;
+    ...Array.from({ length: 12 }, (_, i) => {
+      const x = (i - 5) * Math.PI - Math.PI / 2;
       return {
-        points: [
-          { x, y: -5, z: 0 },
-          { x, y: 5, z: 0 },
-        ],
+        points: [{ x, y: -80, z: 0 }, { x, y: 5, z: 0 }, { x, y: 80, z: 0 }],
         smooth: false,
         color: "#e11d48",
         showPoints: false,
         labels:
-          i === 1 ? [{ text: <InlineMath math="x=\frac{\pi}{2}" />, at: 1, offset: [1, 0.5, 0] }] : [],
+          i === 6 ? [{ text: <InlineMath math="x=\frac{\pi}{2}" />, at: 1, offset: [1, 0.5, 0] }] : [],
       };
     }),
   ]}
@@ -316,32 +324,35 @@ Fungsi <InlineMath math="y = A \sin x" /> mengubah amplitudo menjadi <InlineMath
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 100 }, (_, i) => {
+      points: Array.from({ length: 555 }, (_, pointIndex) => {
+        const i = pointIndex / 2 - 89;
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
       color: "#0284c7",
-      labels: [{ text: <InlineMath math="y=\sin x" />, at: 25, offset: [1.5, -2.5, 0] }],
+      labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, -2.5, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 100 }, (_, i) => {
+      points: Array.from({ length: 555 }, (_, pointIndex) => {
+        const i = pointIndex / 2 - 89;
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: 2 * Math.sin(x), z: 0 };
       }),
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="y=2\sin x" />, at: 25, offset: [1.25, 1.5, 0] }],
+      labels: [{ text: <InlineMath math="y=2\sin x" />, at: 228, offset: [1.25, 1.5, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 100 }, (_, i) => {
+      points: Array.from({ length: 278 }, (_, pointIndex) => {
+        const i = pointIndex - 89;
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: 0.5 * Math.sin(x), z: 0 };
       }),
       color: "#059669",
-      labels: [{ text: <InlineMath math="y=0{,}5\sin x" />, at: 25, offset: [1, 2.5, 0] }],
+      labels: [{ text: <InlineMath math="y=0{,}5\sin x" />, at: 114, offset: [1, 2.5, 0] }],
       showPoints: false,
     },
   ]}
@@ -362,32 +373,35 @@ Fungsi <InlineMath math="y = \sin(Bx)" /> mengubah periode menjadi <InlineMath m
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 100 }, (_, i) => {
+      points: Array.from({ length: 555 }, (_, pointIndex) => {
+        const i = pointIndex / 2 - 89;
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
       color: "#0284c7",
-      labels: [{ text: <InlineMath math="y=\sin x" />, at: 25, offset: [1.5, -2.5, 0] }],
+      labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, -2.5, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 100 }, (_, i) => {
+      points: Array.from({ length: 1109 }, (_, pointIndex) => {
+        const i = pointIndex / 4 - 89;
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: Math.sin(2 * x), z: 0 };
       }),
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="y=\sin 2x" />, at: 60, offset: [1.25, 1.5, 0] }],
+      labels: [{ text: <InlineMath math="y=\sin 2x" />, at: 596, offset: [1.25, 1.5, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 100 }, (_, i) => {
+      points: Array.from({ length: 278 }, (_, pointIndex) => {
+        const i = pointIndex - 89;
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: Math.sin(0.5 * x), z: 0 };
       }),
       color: "#059669",
-      labels: [{ text: <InlineMath math="y=\sin 0{,}5x" />, at: 25, offset: [1, 2.5, 0] }],
+      labels: [{ text: <InlineMath math="y=\sin 0{,}5x" />, at: 114, offset: [1, 2.5, 0] }],
       showPoints: false,
     },
   ]}
@@ -419,23 +433,25 @@ Perhatikan pergeseran horizontal dan vertikal dari grafik:
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 100 }, (_, i) => {
+      points: Array.from({ length: 555 }, (_, pointIndex) => {
+        const i = pointIndex / 2 - 89;
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: Math.sin(x), z: 0 };
       }),
       color: "#0284c7",
-      labels: [{ text: <InlineMath math="y=\sin x" />, at: 25, offset: [0.5, -2, 0] }],
+      labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [0.5, -2, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 100 }, (_, i) => {
+      points: Array.from({ length: 555 }, (_, pointIndex) => {
+        const i = pointIndex / 2 - 89;
         const x = (i / 99) * 4 * Math.PI - 2 * Math.PI;
         return { x, y: 2 * Math.sin(x - Math.PI / 4) + 1, z: 0 };
       }),
       color: "#e11d48",
       labels: [
-        { text: <InlineMath math="y=2\sin(x-\frac{\pi}{4})+1" />, at: 25, offset: [0.5, 1.5, 0] },
+        { text: <InlineMath math="y=2\sin(x-\frac{\pi}{4})+1" />, at: 228, offset: [0.5, 1.5, 0] },
       ],
       showPoints: false,
     },

@@ -3,7 +3,7 @@ export const metadata = {
    description: "Uraikan perhitungan limit yang kompleks menjadi langkah teratur dengan aturan jumlah, hasil kali, hasil bagi, pangkat, dan akar.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-07",
+   dateModified: "2026-09-12",
    subject: "Limit",
 };
 
@@ -38,8 +38,8 @@ Misalkan <InlineMath math="\lim_{x \to c} f(x) = L" /> dan <InlineMath math="\li
 Limit dari **jumlah** atau **selisih** dua fungsi sama dengan jumlah atau selisih **limit masing-masing fungsi**:
 
 <MathContainer>
-<BlockMath math="\lim_{x \to c} [f(x) + g(x)] = \lim_{x \to c} f(x) + \lim_{x \to c} g(x) = L + M" />
-<BlockMath math="\lim_{x \to c} [f(x) - g(x)] = \lim_{x \to c} f(x) - \lim_{x \to c} g(x) = L - M" />
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to c} [f(x) + g(x)] \\ &amp;= \lim_{x \to c} f(x) + \lim_{x \to c} g(x) \\ &amp;= L + M \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to c} [f(x) - g(x)] \\ &amp;= \lim_{x \to c} f(x) - \lim_{x \to c} g(x) \\ &amp;= L - M \end{aligned}" />
 </MathContainer>
 
 > Sifat limit dapat memecah limit gabungan menjadi beberapa limit yang lebih sederhana dan dapat dihitung secara terpisah.
@@ -48,7 +48,7 @@ Limit dari **jumlah** atau **selisih** dua fungsi sama dengan jumlah atau selisi
 
 Limit dari **hasil kali** dua fungsi sama dengan hasil kali **limit masing-masing fungsi**:
 
-<BlockMath math="\lim_{x \to c} [f(x) \cdot g(x)] = \lim_{x \to c} f(x) \cdot \lim_{x \to c} g(x) = L \cdot M" />
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to c} [f(x) \cdot g(x)] \\ &amp;= \lim_{x \to c} f(x) \cdot \lim_{x \to c} g(x) \\ &amp;= L \cdot M \end{aligned}" />
 
 ### Sifat Perkalian dengan Konstanta
 
@@ -95,9 +95,9 @@ Hitung <InlineMath math="\lim_{x \to 2} (3x^2 + 5x - 1)" />.
 Menggunakan sifat-sifat limit:
 
 <MathContainer>
-<BlockMath math="\lim_{x \to 2} (3x^2 + 5x - 1) = \lim_{x \to 2} 3x^2 + \lim_{x \to 2} 5x - \lim_{x \to 2} 1" />
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to 2} (3x^2 + 5x - 1) = \lim_{x \to 2} 3x^2 \\ &amp;+ \lim_{x \to 2} 5x - \lim_{x \to 2} 1 \end{aligned}" />
 <BlockMath math="= 3 \lim_{x \to 2} x^2 + 5 \lim_{x \to 2} x - 1" />
-<BlockMath math="= 3(2)^2 + 5(2) - 1 = 12 + 10 - 1 = 21" />
+<BlockMath math="\begin{aligned}  &amp;= 3(2)^2 + 5(2) - 1 \\ &amp;= 12 + 10 - 1 \\ &amp;= 21 \end{aligned}" />
 </MathContainer>
 
 ### Limit Fungsi Rasional
@@ -130,13 +130,13 @@ Hitung <InlineMath math="\lim_{x \to 0} \sqrt{x^2 - 3x + 2}" />.
 Menggunakan sifat akar (karena <InlineMath math="n = 2" /> genap, kita perlu memastikan hasil di dalam akar tidak negatif):
 
 <MathContainer>
-<BlockMath math="\lim_{x \to 0} \sqrt{x^2 - 3x + 2} = \sqrt{\lim_{x \to 0} (x^2 - 3x + 2)}" />
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to 0} \sqrt{x^2 - 3x + 2} \\ &amp;= \sqrt{\lim_{x \to 0} (x^2 - 3x + 2)} \end{aligned}" />
 </MathContainer>
 
 Hitung limit di dalam akar terlebih dahulu:
 
 <MathContainer>
-<BlockMath math="\lim_{x \to 0} (x^2 - 3x + 2) = 0^2 - 3(0) + 2 = 0 - 0 + 2 = 2" />
+<BlockMath math="\begin{aligned} \lim_{x \to 0} (x^2 - 3x + 2) &amp;= 0^2 - 3(0) + 2 \\ &amp;= 0 - 0 + 2 \\ &amp;= 2 \end{aligned}" />
 </MathContainer>
 
 Karena <InlineMath math="2 > 0" />, kita dapat menggunakan sifat akar:
@@ -162,13 +162,13 @@ Karena <InlineMath math="2 > 0" />, kita dapat menggunakan sifat akar:
    Menggunakan sifat penjumlahan dan perkalian dengan konstanta:
 
    <MathContainer>
-   <BlockMath math="\lim_{x \to 3} (2x^2 - 4x + 1) = 2\lim_{x \to 3} x^2 - 4\lim_{x \to 3} x + \lim_{x \to 3} 1" />
+   <BlockMath math="\begin{aligned} &amp;\lim_{x \to 3} (2x^2 - 4x + 1) = 2\lim_{x \to 3} x^2 \\ &amp;- 4\lim_{x \to 3} x + \lim_{x \to 3} 1 \end{aligned}" />
    </MathContainer>
 
    Substitusi <InlineMath math="x = 3" />:
 
    <MathContainer>
-   <BlockMath math="= 2(3)^2 - 4(3) + 1 = 2(9) - 12 + 1 = 18 - 12 + 1 = 7" />
+   <BlockMath math="\begin{aligned}  &amp;= 2(3)^2 - 4(3) + 1 \\ &amp;= 2(9) - 12 + 1 \\ &amp;= 18 - 12 + 1 \\ &amp;= 7 \end{aligned}" />
    </MathContainer>
 
 2. **Penyelesaian:**

@@ -3,7 +3,7 @@ export const metadata = {
     description: "Ikuti iterasi QR dari faktorisasi ortogonal sampai bentuk Schur, lalu baca nilai eigen real dan kompleks tanpa membentuk polinom karakteristik.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-17",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-12",
     subject: "Metode Linear AI",
 };
 
@@ -27,7 +27,7 @@ Versi di bawah adalah iterasi <InlineMath math="\mathrm{QR}" /> tanpa geseran. A
 
 4. Ulangi faktorisasi dan perkalian terbalik tersebut. Elemen subdiagonal yang sangat kecil dibandingkan elemen diagonal di sekitarnya dapat ditetapkan menjadi nol. Pemisahan yang disebut **deflasi** ini mengisolasi nilai eigen atau blok yang sudah konvergen.
 
-   <BlockMath math="|(A_k)_{j+1,j}|\leq \tau\left(|(A_k)_{j,j}|+|(A_k)_{j+1,j+1}|\right)" />
+   <BlockMath math="\begin{aligned} &amp;|(A_k)_{j+1,j}| \\ &amp;\leq \tau\left(|(A_k)_{j,j}|+|(A_k)_{j+1,j+1}|\right) \end{aligned}" />
 
 Di sini <InlineMath math="\tau" /> adalah toleransi yang disesuaikan dengan presisi numerik dan skala masalah. Perubahan kecil pada diagonal saja belum cukup sebagai kriteria berhenti karena elemen di bawah diagonal mungkin masih bernilai signifikan.
 
@@ -63,7 +63,7 @@ Perhatikan matriks simetris
 Satu faktorisasi <InlineMath math="\mathrm{QR}" /> dan perkalian terbalik menghasilkan
 
 <MathContainer>
-<BlockMath math="Q_0=\frac{1}{\sqrt5}\begin{pmatrix}2&-1\\1&2\end{pmatrix},\qquad R_0=\begin{pmatrix}\sqrt5&\frac4{\sqrt5}\\0&\frac3{\sqrt5}\end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;Q_0=\frac{1}{\sqrt5}\begin{pmatrix}2&amp;-1\\1&amp;2\end{pmatrix}, \\ &amp;R_0=\begin{pmatrix}\sqrt5&amp;\frac4{\sqrt5}\\0&amp;\frac3{\sqrt5}\end{pmatrix} \end{aligned}" />
 <BlockMath math="A_1=R_0Q_0=\begin{pmatrix}\frac{14}{5}&\frac35\\\frac35&\frac65\end{pmatrix}" />
 </MathContainer>
 

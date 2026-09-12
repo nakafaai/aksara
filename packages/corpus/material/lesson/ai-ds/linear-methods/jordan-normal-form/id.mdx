@@ -3,7 +3,7 @@ export const metadata = {
     description: "Gunakan trigonalisasi, blok Jordan, dan rantai vektor eigen tergeneralisasi untuk menjelaskan matriks yang tidak dapat didiagonalisasi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-17",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Metode Linear AI",
 };
 
@@ -37,7 +37,7 @@ Vektor <InlineMath math="v_1,\ldots,v_s" /> membentuk rantai Jordan untuk <Inlin
 
 <MathContainer>
 <BlockMath math="(A-\lambda I)v_1=0" />
-<BlockMath math="(A-\lambda I)v_{j+1}=v_j,\qquad j=1,\ldots,s-1" />
+<BlockMath math="\begin{aligned} &amp;(A-\lambda I)v_{j+1}=v_j, \\ &amp;j=1,\ldots,s-1 \end{aligned}" />
 </MathContainer>
 
 Vektor pertama adalah vektor eigen biasa. Setelah dikenai <InlineMath math="A-\lambda I" />, setiap vektor berikutnya dipetakan ke vektor sebelumnya. Dalam basis terurut <InlineMath math="(v_1,\ldots,v_s)" />, pembatasan <InlineMath math="A" /> pada rantai ini direpresentasikan oleh <InlineMath math="J_s(\lambda)" />.
@@ -50,7 +50,13 @@ Misalkan polinomial karakteristik <InlineMath math="A" /> memiliki bentuk beriku
 
 Jika polinomial ini terurai atas <InlineMath math="\mathbb{K}" /> dengan nilai eigen berbeda <InlineMath math="\lambda_1,\ldots,\lambda_k" />, terdapat matriks yang dapat diinverskan <InlineMath math="S" /> sehingga
 
-<BlockMath math="S^{-1}AS=J=\operatorname{diag}\bigl(J_{s_{11}}(\lambda_1),\ldots,J_{s_{1q_1}}(\lambda_1),\ldots,J_{s_{k1}}(\lambda_k),\ldots,J_{s_{kq_k}}(\lambda_k)\bigr)" />
+Kelompokkan blok Jordan menurut nilai eigennya tanpa mengubah urutan:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;D_i=\operatorname{diag}\bigl(J_{s_{i1}}(\lambda_i), \\ &amp;\ldots,J_{s_{iq_i}}(\lambda_i)\bigr) \\ &amp;i=1,\ldots,k \end{aligned}" />
+
+  <BlockMath math="\begin{aligned} &amp;S^{-1}AS=J \\ &amp;=\operatorname{diag}(D_1,\ldots,D_k) \end{aligned}" />
+</MathContainer>
 
 Untuk setiap nilai eigen, ukuran blok memenuhi
 

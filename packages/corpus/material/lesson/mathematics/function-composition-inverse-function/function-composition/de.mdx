@@ -3,7 +3,7 @@ export const metadata = {
   description: "Verknüpfe Funktionen nacheinander und vergleiche das Ergebnis, wenn ihre Reihenfolge vertauscht wird.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Funktionskomposition und Umkehrfunktion",
 };
 
@@ -45,21 +45,21 @@ Nun verknüpfen wir die beiden Funktionen in der jeweiligen Reihenfolge der Akti
 
 1.  **Aktion A (erst Rabatt, dann Preisnachlass):** Wir suchen <InlineMath math="(p \circ d)(x)" />
 
-    <BlockMath math="(p \circ d)(x) = p(d(x)) = p(0{,}80x) = 0{,}80x - 25000" />
+    <BlockMath math="\begin{aligned} (p \circ d)(x) &amp;= p(d(x)) \\ &amp;= p(0{,}80x) \\ &amp;= 0{,}80x - 25000 \end{aligned}" />
 
     Für <InlineMath math="x = 200000" />:
 
-    <BlockMath math="(p \circ d)(200000) = 0{,}80(200000) - 25000 = 160000 - 25000 = 135000" />
+    <BlockMath math="\begin{aligned} &amp;(p \circ d)(200000) \\ &amp;= 0{,}80(200000) - 25000 \\ &amp;= 160000 - 25000 \\ &amp;= 135000 \end{aligned}" />
 
     Der Endpreis für Aktion A beträgt also <InlineMath math="\text{Rp}135{.}000{,}00" />.
 
 2.  **Aktion B (zuerst Preissenkung, dann Rabatt):** Wir suchen <InlineMath math="(d \circ p)(x)" />
 
-    <BlockMath math="(d \circ p)(x) = d(p(x)) = d(x - 25000) = 0{,}80(x - 25000) = 0{,}80x - 20000" />
+    <BlockMath math="\begin{aligned}(d \circ p)(x) &= d(p(x)) \\ &= d(x - 25000) \\ &= 0{,}80(x - 25000) \\ &= 0{,}80x - 20000\end{aligned}" />
 
     Für <InlineMath math="x = 200000" />:
 
-    <BlockMath math="(d \circ p)(200000) = 0{,}80(200000) - 20000 = 160000 - 20000 = 140000" />
+    <BlockMath math="\begin{aligned} &amp;(d \circ p)(200000) \\ &amp;= 0{,}80(200000) - 20000 \\ &amp;= 160000 - 20000 \\ &amp;= 140000 \end{aligned}" />
 
     Der Endpreis mit Aktion B beträgt also <InlineMath math="\text{Rp}140{.}000{,}00" />.
 
@@ -84,7 +84,7 @@ Bestimme <InlineMath math="(f \circ g)(x)" /> und <InlineMath math="(g \circ f)(
 
     Ersetze <InlineMath math="x" /> in <InlineMath math="f(x)" /> durch <InlineMath math="g(x)" />:
 
-    <BlockMath math="f(x^2 - 3) = 2(x^2 - 3) + 1 = 2x^2 - 6 + 1 = 2x^2 - 5" />
+    <BlockMath math="\begin{aligned} f(x^2 - 3) &amp;= 2(x^2 - 3) + 1 \\ &amp;= 2x^2 - 6 + 1 \\ &amp;= 2x^2 - 5 \end{aligned}" />
 
     Also <InlineMath math="(f \circ g)(x) = 2x^2 - 5" />.
 
@@ -94,7 +94,7 @@ Bestimme <InlineMath math="(f \circ g)(x)" /> und <InlineMath math="(g \circ f)(
 
     Ersetze <InlineMath math="x" /> in <InlineMath math="g(x)" /> durch <InlineMath math="f(x)" />:
 
-    <BlockMath math="g(2x + 1) = (2x + 1)^2 - 3 = (4x^2 + 4x + 1) - 3 = 4x^2 + 4x - 2" />
+    <BlockMath math="\begin{aligned} g(2x + 1) &amp;= (2x + 1)^2 - 3 \\ &amp;= (4x^2 + 4x + 1) - 3 \\ &amp;= 4x^2 + 4x - 2 \end{aligned}" />
 
     Also <InlineMath math="(g \circ f)(x) = 4x^2 + 4x - 2" />.
 

@@ -4,7 +4,7 @@ export const metadata = {
   description: "Model bookstore discounts, elevator capacity, and floor and ceiling rules with piecewise step functions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Functions and Their Modeling",
 };
 
@@ -53,9 +53,10 @@ The graph marks each included left endpoint with a filled point and each exclude
     ...Array.from({ length: 10 }, (_, intervalIndex) => {
       const integerValue = intervalIndex - 5;
       return {
+        endpoints: { start: "closed", end: "open" },
         points: [
           { x: integerValue, y: integerValue, z: 0 },
-          { x: integerValue + 0.999, y: integerValue, z: 0 },
+          { x: integerValue + 1, y: integerValue, z: 0 },
         ],
         color: "#9333ea",
         showPoints: false,
@@ -100,8 +101,9 @@ The graph marks each excluded left endpoint with an open point and each included
     ...Array.from({ length: 10 }, (_, intervalIndex) => {
       const integerValue = intervalIndex - 4;
       return {
+        endpoints: { start: "open", end: "closed" },
         points: [
-          { x: integerValue - 0.999, y: integerValue, z: 0 },
+          { x: integerValue - 1, y: integerValue, z: 0 },
           { x: integerValue, y: integerValue, z: 0 },
         ],
         color: "#ea580c",
@@ -139,15 +141,19 @@ Under this convention, the unit step function has value <InlineMath math="0" /> 
   }
   data={[
     {
+      endpoints: { end: "open" },
+      lineWidth: 4,
       points: [
         { x: -10, y: 0, z: 0 },
-        { x: -0.001, y: 0, z: 0 },
+        { x: 0, y: 0, z: 0 },
       ],
       color: "#0d9488",
       showPoints: false,
       smooth: false,
     },
     {
+      endpoints: { start: "closed" },
+      lineWidth: 4,
       points: [
         { x: 0, y: 1, z: 0 },
         { x: 10, y: 1, z: 0 },
@@ -155,7 +161,7 @@ Under this convention, the unit step function has value <InlineMath math="0" /> 
       color: "#0d9488",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <InlineMath math="H(x)" />, at: 1, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="H(x)" />, at: 1, offset: [-7, 0.5, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
@@ -205,9 +211,10 @@ The function <InlineMath math="f(x) = \lfloor x \rfloor + k" /> shifts the floor
     ...Array.from({ length: 10 }, (_, intervalIndex) => {
       const integerValue = intervalIndex - 5;
       return {
+        endpoints: { start: "closed", end: "open" },
         points: [
           { x: integerValue, y: integerValue, z: 0 },
-          { x: integerValue + 0.999, y: integerValue, z: 0 },
+          { x: integerValue + 1, y: integerValue, z: 0 },
         ],
         color: "#9333ea",
         showPoints: false,
@@ -221,9 +228,10 @@ The function <InlineMath math="f(x) = \lfloor x \rfloor + k" /> shifts the floor
     ...Array.from({ length: 10 }, (_, intervalIndex) => {
       const integerValue = intervalIndex - 5;
       return {
+        endpoints: { start: "closed", end: "open" },
         points: [
           { x: integerValue, y: integerValue + 2, z: 0 },
-          { x: integerValue + 0.999, y: integerValue + 2, z: 0 },
+          { x: integerValue + 1, y: integerValue + 2, z: 0 },
         ],
         color: "#0891b2",
         showPoints: false,
@@ -237,16 +245,17 @@ The function <InlineMath math="f(x) = \lfloor x \rfloor + k" /> shifts the floor
     ...Array.from({ length: 10 }, (_, intervalIndex) => {
       const integerValue = intervalIndex - 5;
       return {
+        endpoints: { start: "closed", end: "open" },
         points: [
           { x: integerValue, y: integerValue - 1, z: 0 },
-          { x: integerValue + 0.999, y: integerValue - 1, z: 0 },
+          { x: integerValue + 1, y: integerValue - 1, z: 0 },
         ],
         color: "#e11d48",
         showPoints: false,
         smooth: false,
         labels:
           integerValue === 2
-            ? [{ text: <InlineMath math="h(x)=\lfloor x \rfloor-1" />, at: 1, offset: [2, 0.5, 0] }]
+            ? [{ text: <InlineMath math="h(x)=\lfloor x \rfloor-1" />, at: 1, offset: [0, 0.5, 0] }]
             : [],
       };
     }),
@@ -281,19 +290,19 @@ The function <InlineMath math="f(x) = \lfloor x - h \rfloor" /> shifts the graph
 
 1. **Calculating floor and ceiling function values:**
 
-   <MathContainer>
-     <BlockMath math="\lfloor 3.7 \rfloor = 3 \text{ (largest integer} \leq 3.7\text{)}" />
-     <BlockMath math="\lceil -2.3 \rceil = -2 \text{ (smallest integer} \geq -2.3\text{)}" />
-     <BlockMath math="\lfloor 3.7 \rfloor + \lceil -2.3 \rceil = 3 + (-2) = 1" />
-   </MathContainer>
+   <BlockMath math="\lfloor3.7\rfloor=3" />
+
+   <InlineMath math="3" /> is the largest integer less than or equal to <InlineMath math="3.7" />.
+   <BlockMath math="\lceil-2.3\rceil=-2" />
+
+   <InlineMath math="-2" /> is the smallest integer greater than or equal to <InlineMath math="-2.3" />.
+   <BlockMath math="\lfloor 3.7 \rfloor + \lceil -2.3 \rceil = 3 + (-2) = 1" />
 
 2. **Bookstore discount function model:**
 
    Let <InlineMath math="n\in\mathbb{N}" /> be the positive whole number of books purchased. The total price after discount is:
 
-   <MathContainer>
-     <BlockMath math="H(n) = \begin{cases} 50000n, & \text{if } 1 \leq n \leq 5 \\ 50000n \times 0.9, & \text{if } 6 \leq n \leq 10 \\ 50000n \times 0.85, & \text{if } 11 \leq n \leq 20 \\ 50000n \times 0.8, & \text{if } n > 20 \end{cases}" />
-   </MathContainer>
+   <BlockMath math="H(n) = \begin{cases}\begin{gathered}50000n\\\text{if } 1 \leq n \leq 5\end{gathered}\\[4pt]\begin{gathered}50000n \times 0.9\\\text{if } 6 \leq n \leq 10\end{gathered}\\[4pt]\begin{gathered}50000n \times 0.85\\\text{if } 11 \leq n \leq 20\end{gathered}\\[4pt]\begin{gathered}50000n \times 0.8\\\text{if } n > 20\end{gathered}\end{cases}" />
 
 3. **Graph of function <InlineMath math="f(x) = 2\lfloor x \rfloor - 1" />:**
 
@@ -326,23 +335,24 @@ The function <InlineMath math="f(x) = \lfloor x - h \rfloor" /> shifts the graph
          const integerValue = intervalIndex - 3;
          const functionValue = 2 * integerValue - 1;
          return {
+           endpoints: { start: "closed", end: "open" },
            points: [
              { x: integerValue, y: functionValue, z: 0 },
-             { x: integerValue + 0.999, y: functionValue, z: 0 },
+             { x: integerValue + 1, y: functionValue, z: 0 },
            ],
            color: "#7c3aed",
            showPoints: false,
            smooth: false,
            labels:
              integerValue === 1
-               ? [{ text: <InlineMath math="f(x)=2\lfloor x \rfloor-1" />, at: 1, offset: [1, 1, 0] }]
+               ? [{ text: <InlineMath math="f(x)=2\lfloor x \rfloor-1" />, at: 1, offset: [-0.2, 1, 0] }]
                : [],
          };
        }),
        {
+         endpoints: { start: "closed" },
          points: [
            { x: 3, y: 5, z: 0 },
-           { x: 3.001, y: 5, z: 0 },
          ],
          color: "#7c3aed",
          showPoints: true,

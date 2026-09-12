@@ -3,7 +3,7 @@ export const metadata = {
   description: "Tentukan fokus, asimtot, eksentrisitas, dan puncak hiperbola dari persamaan bakunya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Geometri Analitik",
 };
 
@@ -221,8 +221,8 @@ Sebelum memakai rumus, kenali dahulu bagian-bagian yang menentukan bentuk dan po
       color: "#0891b2",
       showPoints: true,
       labels: [
-        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.5, 0.5, 0] },
-        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, 0.5, 0] }
+        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.6, -0.9, 0] },
+        { text: <InlineMath math="F_2" />, at: 1, offset: [0.6, -0.9, 0] }
       ],
     },
     {
@@ -246,7 +246,7 @@ Sebelum memakai rumus, kenali dahulu bagian-bagian yang menentukan bentuk dan po
       color: "#d97706",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Asimtot", at: 1, offset: [0.5, 0.5, 0] }],
+      labels: [{ text: "Asimtot", at: 1, offset: [-2, -0.2, 0] }],
     },
     {
       points: [
@@ -256,7 +256,7 @@ Sebelum memakai rumus, kenali dahulu bagian-bagian yang menentukan bentuk dan po
       color: "#d97706",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Asimtot", at: 0, offset: [-0.5, 0.5, 0] }],
+      labels: [{ text: "Asimtot", at: 0, offset: [2, -0.2, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 15]}
@@ -500,10 +500,12 @@ Ketika sumbu transversal sejajar dengan sumbu <InlineMath math="y" />, persamaan
 
 Kalau pusat hiperbola bukan di titik asal, tapi di titik <InlineMath math="(h, k)" />, persamaannya menjadi:
 
-<MathContainer>
-  <BlockMath math="\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1 \quad \text{(sumbu transversal horizontal)}" />
-  <BlockMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1 \quad \text{(sumbu transversal vertikal)}" />
-</MathContainer>
+Untuk sumbu transversal horizontal:
+
+<BlockMath math="\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1" />
+  Untuk sumbu transversal vertikal:
+
+<BlockMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1" />
 
 ## Sifat Hiperbola
 
@@ -526,10 +528,12 @@ Eksentrisitas hiperbola selalu <InlineMath math="e > 1" /> karena <InlineMath ma
 
 **Persamaan asimtot** untuk hiperbola dengan pusat di <InlineMath math="(0,0)" />:
 
-<MathContainer>
-  <BlockMath math="y = \pm \frac{b}{a}x \quad \text{(sumbu transversal horizontal)}" />
-  <BlockMath math="y = \pm \frac{a}{b}x \quad \text{(sumbu transversal vertikal)}" />
-</MathContainer>
+Untuk sumbu transversal horizontal:
+
+<BlockMath math="y = \pm \frac{b}{a}x" />
+  Untuk sumbu transversal vertikal:
+
+<BlockMath math="y = \pm \frac{a}{b}x" />
 
 > Asimtot menunjukkan arah batas kedua cabang. Semakin jauh dari pusat, setiap cabang semakin mendekati salah satu asimtot tanpa memotongnya.
 

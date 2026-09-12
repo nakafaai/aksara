@@ -4,7 +4,7 @@ export const metadata = {
     "Data pengukuran berulang dapat diringkas dengan nilai rata-rata dan ketidakpastian agar hasilnya tidak terkesan lebih pasti daripada data yang tersedia.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-04-25",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Pengukuran dalam Kerja Ilmiah",
 };
 
@@ -36,11 +36,13 @@ Untuk data berulang yang menyebar simetris tanpa pencilan yang jelas, rata-rata 
 
 Untuk data di atas:
 
-<BlockMath math="\begin{aligned}
-\bar d
-&= \frac{3{,}12+3{,}14+3{,}15+3{,}11+3{,}14}{5}\text{ cm} \\
-&= 3{,}132 \text{ cm}
-\end{aligned}" />
+Jumlahkan dahulu nilai pembacaan dalam sentimeter:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;S=3{,}12+3{,}14+3{,}15 \\ &amp;+3{,}11+3{,}14=15{,}66 \end{aligned}" />
+
+  <BlockMath math="\bar d=\frac{15{,}66}{5}\text{ cm}=3{,}132\text{ cm}" />
+</MathContainer>
 
 Nilai rata-rata menunjukkan pusat data, tetapi belum menunjukkan seberapa jauh hasil pengukuran menyebar. Untuk melihat penyebaran itu, kita menghitung simpangan baku.
 
@@ -52,11 +54,13 @@ Untuk data berulang, sebaran sampel dapat dihitung dari jarak setiap data terhad
 
 Penyebut <InlineMath math="N-1" /> dipakai karena rata-rata sampel <InlineMath math="\bar d" /> dihitung dari data yang sama. Jumlah semua selisih terhadap rata-rata harus sama dengan nol, sehingga hanya <InlineMath math="N-1" /> selisih yang dapat berubah secara bebas.
 
-<BlockMath math="\begin{aligned}
-s_d
-&= \sqrt{\frac{(-0{,}012)^2+(0{,}008)^2+(0{,}018)^2+(-0{,}022)^2+(0{,}008)^2}{4}}\text{ cm} \\
-&= 0{,}0164\text{ cm}
-\end{aligned}" />
+Jumlahkan dahulu kuadrat nilai simpangannya:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;V=(-0{,}012)^2+(0{,}008)^2 \\ &amp;+(0{,}018)^2+(-0{,}022)^2 \\ &amp;+(0{,}008)^2=0{,}00108 \end{aligned}" />
+
+  <BlockMath math="\begin{aligned} &amp;s_d=\sqrt{\frac V4}\text{ cm} \\ &amp;=\sqrt{0{,}00027}\text{ cm} \\ &amp;\approx0{,}0164\text{ cm} \end{aligned}" />
+</MathContainer>
 
 Jika kita menulis hasil diameter dengan ketidakpastian sebaran data, bentuknya menjadi:
 
@@ -68,7 +72,13 @@ Angka <InlineMath math="3{,}13 \text{ cm}" /> adalah nilai wakil data. Angka <In
 
 Beberapa soal pengukuran berulang memakai bentuk aljabar ringkas berikut.
 
-<BlockMath math="\Delta x=\frac{1}{\sqrt{N}}\sqrt{\frac{N\sum_{i=1}^{N}x_i^2-\left(\sum_{i=1}^{N}x_i\right)^2}{N-1}}" />
+Singkat kedua jumlah tanpa mengubah rumus:
+
+<MathContainer>
+  <BlockMath math="S_1=\sum_{i=1}^N x_i,\quad S_2=\sum_{i=1}^N x_i^2" />
+
+  <BlockMath math="\Delta x=\frac1{\sqrt N}\sqrt{\frac{NS_2-S_1^2}{N-1}}" />
+</MathContainer>
 
 Rumus itu setara dengan simpangan baku sampel:
 
@@ -124,4 +134,4 @@ Untuk luas tutup botol:
 
 Artinya, sebaran sampel sekitar <InlineMath math="1{,}05\,\%" /> dari rata-rata luas. Apakah sebaran ini cukup kecil bergantung pada tujuan penggunaan dan batas ketidakpastian yang ditetapkan. Tanpa persyaratan tersebut, kita belum dapat menyebut sebaran <InlineMath math="1{,}05\,\%" /> cukup kecil.
 
-Ketidakpastian Tipe A dihitung dari data pengukuran berulang, sedangkan hasil akhirnya perlu menyebut nilai ukur dan ketidakpastiannya dengan jelas. [NIST](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-3-type-evaluation-standard-uncertainty) [BIPM](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf)
+[Ketidakpastian Tipe A](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-3-type-evaluation-standard-uncertainty) dihitung dari data pengukuran berulang, sedangkan hasil akhirnya perlu menyebut [nilai ukur dan ketidakpastiannya](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf) dengan jelas.

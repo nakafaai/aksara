@@ -3,7 +3,7 @@ export const metadata = {
   description: "Factor a square matrix as PA = LU, follow a complete elimination example, solve repeated linear systems, and implement a guarded NumPy algorithm.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-13",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Linear Methods of AI",
 };
 
@@ -31,7 +31,7 @@ After selecting the pivot in column <InlineMath math="k" />, eliminate each entr
 
 Then apply the following row update.
 
-<BlockMath math="u_{ij}\leftarrow u_{ij}-\ell_{ik}u_{kj},\qquad j=k,\ldots,n" />
+<BlockMath math="\begin{aligned} &amp;u_{ij}\leftarrow u_{ij}-\ell_{ik}u_{kj}, \\ &amp;j=k,\ldots,n \end{aligned}" />
 
 The multipliers are stored below the diagonal of <InlineMath math="L" />. If two rows are swapped after earlier elimination steps, the already-filled columns of <InlineMath math="L" /> must be swapped as well. Otherwise <InlineMath math="PA=LU" /> will no longer hold.
 
@@ -83,7 +83,7 @@ First solve <InlineMath math="Ly=Pb" />. Here,
 
 For a general lower triangular matrix,
 
-<BlockMath math="y_i=\frac{1}{\ell_{ii}}\left(c_i-\sum_{j=1}^{i-1}\ell_{ij}y_j\right),\qquad c=Pb" />
+<BlockMath math="\begin{aligned} &amp;y_i=\frac{1}{\ell_{ii}}\left(c_i-\sum_{j=1}^{i-1}\ell_{ij}y_j\right), \\ &amp;c=Pb \end{aligned}" />
 
 The diagonal entries of this <InlineMath math="L" /> are all one.
 

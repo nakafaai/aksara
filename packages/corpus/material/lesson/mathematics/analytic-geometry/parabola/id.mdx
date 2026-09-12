@@ -3,7 +3,7 @@ export const metadata = {
   description: "Menentukan puncak, fokus, direktriks, dan persamaan parabola dari bentuk standarnya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Geometri Analitik",
 };
 
@@ -23,14 +23,15 @@ Parabola memiliki **sifat refleksi**. Sinar yang datang sejajar sumbu akan dipan
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, i) => {
+      points: Array.from({ length: 153 }, (_, pointIndex) => {
+        const i = pointIndex - 26;
         const x = (i - 50) / 10; // x dari -5 ke 5
         const y = 0.2 * x * x; // parabola y = 0.2x²
         return { x, y, z: 0 };
       }),
       color: "#9333ea",
       showPoints: false,
-      labels: [{ text: "Parabola", at: 10, offset: [0, 3, 0] }],
+      labels: [{ text: "Parabola", at: 36, offset: [0, 3, 0] }],
     },
     {
       points: [{ x: 0, y: 1.25, z: 0 }], // fokus di (0, 1/(4*0.2)) = (0, 1.25)
@@ -45,7 +46,8 @@ Parabola memiliki **sifat refleksi**. Sinar yang datang sejajar sumbu akan dipan
       labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.8, -0.8, 0] }],
     },
     {
-      points: Array.from({ length: 2 }, (_, i) => {
+      points: Array.from({ length: 4 }, (_, pointIndex) => {
+        const i = pointIndex - 1;
         const x = -6 + i * 12;
         const y = -1.25; // direktriks di y = -1/(4*0.2) = -1.25
         return { x, y, z: 0 };
@@ -53,10 +55,11 @@ Parabola memiliki **sifat refleksi**. Sinar yang datang sejajar sumbu akan dipan
       color: "#d97706",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Direktriks", at: 1, offset: [0.8, -1, 0] }],
+      labels: [{ text: "Direktriks", at: 2, offset: [-3.2, -1, 0] }],
     },
     {
-      points: Array.from({ length: 2 }, (_, i) => {
+      points: Array.from({ length: 4 }, (_, pointIndex) => {
+        const i = pointIndex - 1;
         const xMin = -6;
         const xMax = 6;
         const y = 0;
@@ -71,7 +74,8 @@ Parabola memiliki **sifat refleksi**. Sinar yang datang sejajar sumbu akan dipan
       smooth: false,
     },
     {
-      points: Array.from({ length: 2 }, (_, i) => {
+      points: Array.from({ length: 5 }, (_, pointIndex) => {
+        const i = pointIndex - 2;
         const yMin = -2;
         const yMax = 6;
         const x = 0;
@@ -116,7 +120,7 @@ Mulailah dengan parabola yang puncaknya berada di titik asal <InlineMath math="O
       }),
       color: "#9333ea",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x^2=4py" />, at: 0, offset: [-2, 2, 0] }],
+      labels: [{ text: <InlineMath math="x^2=4py" />, at: 0, offset: [-1.3, 2, 0] }],
     },
     {
       smooth: false,
@@ -127,7 +131,7 @@ Mulailah dengan parabola yang puncaknya berada di titik asal <InlineMath math="O
       }),
       color: "#ea580c",
       showPoints: false,
-      labels: [{ text: <InlineMath math="x^2=-4py" />, at: 60, offset: [2, -2, 0] }],
+      labels: [{ text: <InlineMath math="x^2=-4py" />, at: 60, offset: [1.3, -2, 0] }],
     },
     {
       smooth: false,
@@ -138,7 +142,7 @@ Mulailah dengan parabola yang puncaknya berada di titik asal <InlineMath math="O
       }),
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y^2=4px" />, at: 60, offset: [3, 1, 0] }],
+      labels: [{ text: <InlineMath math="y^2=4px" />, at: 60, offset: [2.05, 1, 0] }],
     },
     {
       smooth: false,
@@ -149,7 +153,7 @@ Mulailah dengan parabola yang puncaknya berada di titik asal <InlineMath math="O
       }),
       color: "#0d9488",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y^2=-4px" />, at: 0, offset: [-3, -1, 0] }],
+      labels: [{ text: <InlineMath math="y^2=-4px" />, at: 0, offset: [-2.05, -1, 0] }],
     },
     {
       points: [{ x: 0, y: 0, z: 0 }], // puncak semua parabola di O(0,0)
@@ -219,15 +223,18 @@ Parabola tidak harus berpuncak di titik asal. Jika puncaknya berada di <InlineMa
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 81 }, (_, i) => {
+      points: Array.from({ length: 225 }, (_, pointIndex) => {
+        const i = pointIndex / 2 + 0;
         const x = (i - 40) / 10; // x dari -4 ke 4
-        const h = 2, k = 1, p = 0.5;
-        const y = k + (1/(4*p)) * Math.pow(x - h, 2); // parabola dengan puncak (h,k)
+        const h = 2,
+          k = 1,
+          p = 0.5;
+        const y = k + (1 / (4 * p)) * Math.pow(x - h, 2); // parabola dengan puncak (h,k)
         return { x, y, z: 0 };
       }),
       color: "#4f46e5",
       showPoints: false,
-      labels: [{ text: "Parabola", at: 20, offset: [-3, 1, 0] }],
+      labels: [{ text: "Parabola", at: 40, offset: [1.6, -3.3, 0] }],
     },
     {
       points: [{ x: 2, y: 1, z: 0 }], // puncak
@@ -239,10 +246,11 @@ Parabola tidak harus berpuncak di titik asal. Jika puncaknya berada di <InlineMa
       points: [{ x: 2, y: 1.5, z: 0 }], // fokus di (h, k+p) = (2, 1+0.5)
       color: "#65a30d",
       showPoints: true,
-      labels: [{ text: <InlineMath math="F" />, at: 0, offset: [0.8, 2.5, 0] }],
+      labels: [{ text: <InlineMath math="F" />, at: 0, offset: [0.8, 0.5, 0] }],
     },
     {
-      points: Array.from({ length: 2 }, (_, i) => {
+      points: Array.from({ length: 6 }, (_, pointIndex) => {
+        const i = pointIndex - 2;
         const x = -2 + i * 8;
         const y = 0.5; // direktriks di y = k-p = 1-0.5 = 0.5
         return { x, y, z: 0 };
@@ -250,10 +258,11 @@ Parabola tidak harus berpuncak di titik asal. Jika puncaknya berada di <InlineMa
       color: "#d97706",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <InlineMath math="y=0{,}5" />, at: 1, offset: [1.5, -3, 0] }],
+      labels: [{ text: <InlineMath math="y=0{,}5" />, at: 3, offset: [-1, -1, 0] }],
     },
     {
-      points: Array.from({ length: 2 }, (_, i) => {
+      points: Array.from({ length: 4 }, (_, pointIndex) => {
+        const i = pointIndex - 1;
         const yMin = -1;
         const yMax = 5;
         const x = 2; // sumbu simetri
@@ -263,10 +272,11 @@ Parabola tidak harus berpuncak di titik asal. Jika puncaknya berada di <InlineMa
       showPoints: false,
       smooth: false,
       cone: { position: "both" },
-      labels: [{ text: <InlineMath math="x=2" />, at: 1, offset: [2, 0.8, 0] }],
+      labels: [{ text: <InlineMath math="x=2" />, at: 2, offset: [2, 0.8, 0] }],
     },
     {
-      points: Array.from({ length: 2 }, (_, i) => {
+      points: Array.from({ length: 4 }, (_, pointIndex) => {
+        const i = pointIndex - 1;
         const xMin = -3;
         const xMax = 7;
         const y = 0;
@@ -281,7 +291,8 @@ Parabola tidak harus berpuncak di titik asal. Jika puncaknya berada di <InlineMa
       smooth: false,
     },
     {
-      points: Array.from({ length: 2 }, (_, i) => {
+      points: Array.from({ length: 4 }, (_, pointIndex) => {
+        const i = pointIndex - 1;
         const yMin = -2;
         const yMax = 6;
         const x = 0;
@@ -296,7 +307,8 @@ Parabola tidak harus berpuncak di titik asal. Jika puncaknya berada di <InlineMa
       smooth: false,
     },
   ]}
-  cameraPosition={[0, 0, 15]}
+  cameraPosition={[2, 2, 12]}
+  cameraTarget={[2, 2, 0]}
 />
 
 Bentuk umum persamaan parabola dengan puncak di <InlineMath math="(h, k)" />:
@@ -360,15 +372,18 @@ Maka unsur-unsur parabola adalah:
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 81 }, (_, i) => {
+      points: Array.from({ length: 174 }, (_, pointIndex) => {
+        const i = pointIndex - 21;
         const x = (i - 40) / 8; // x dari -5 ke 5
-        const h = 2, k = 1, p = 2;
-        const y = k + (1/(4*p)) * Math.pow(x - h, 2); // (x-h)² = 4p(y-k)
+        const h = 2,
+          k = 1,
+          p = 2;
+        const y = k + (1 / (4 * p)) * Math.pow(x - h, 2); // (x-h)² = 4p(y-k)
         return { x, y, z: 0 };
       }),
       color: "#7c3aed",
       showPoints: false,
-      labels: [{ text: "Parabola", at: 8, offset: [-2, 1.5, 0] }],
+      labels: [{ text: "Parabola", at: 29, offset: [0.5, 0.5, 0] }],
     },
     {
       points: [{ x: 2, y: 1, z: 0 }], // puncak (h,k)
@@ -383,7 +398,8 @@ Maka unsur-unsur parabola adalah:
       labels: [{ text: <InlineMath math="F" />, at: 0, offset: [1, 0.5, 0] }],
     },
     {
-      points: Array.from({ length: 2 }, (_, i) => {
+      points: Array.from({ length: 6 }, (_, pointIndex) => {
+        const i = pointIndex - 2;
         const x = -2 + i * 8;
         const y = -1; // direktriks y = k-p = 1-2 = -1
         return { x, y, z: 0 };
@@ -391,10 +407,11 @@ Maka unsur-unsur parabola adalah:
       color: "#d97706",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <InlineMath math="y=-1" />, at: 1, offset: [0.8, -1, 0] }],
+      labels: [{ text: <InlineMath math="y=-1" />, at: 3, offset: [-1, -1, 0] }],
     },
     {
-      points: Array.from({ length: 2 }, (_, i) => {
+      points: Array.from({ length: 4 }, (_, pointIndex) => {
+        const i = pointIndex - 1;
         const yMin = -2;
         const yMax = 6;
         const x = 2; // sumbu simetri x = h = 2
@@ -404,10 +421,11 @@ Maka unsur-unsur parabola adalah:
       showPoints: false,
       smooth: false,
       cone: { position: "both" },
-      labels: [{ text: <InlineMath math="x=2" />, at: 1, offset: [1.5, 0.7, 0] }],
+      labels: [{ text: <InlineMath math="x=2" />, at: 2, offset: [1.5, -0.3, 0] }],
     },
     {
-      points: Array.from({ length: 2 }, (_, i) => {
+      points: Array.from({ length: 5 }, (_, pointIndex) => {
+        const i = pointIndex - 2;
         const xMin = -3;
         const xMax = 7;
         const y = 0;
@@ -422,7 +440,8 @@ Maka unsur-unsur parabola adalah:
       smooth: false,
     },
     {
-      points: Array.from({ length: 2 }, (_, i) => {
+      points: Array.from({ length: 4 }, (_, pointIndex) => {
+        const i = pointIndex - 1;
         const yMin = -3;
         const yMax = 7;
         const x = 0;
@@ -437,7 +456,8 @@ Maka unsur-unsur parabola adalah:
       smooth: false,
     },
   ]}
-  cameraPosition={[0, 0, 15]}
+  cameraPosition={[1, 1.5, 15]}
+  cameraTarget={[1, 1.5, 0]}
 />
 
 Dari analisis ini kita dapatkan:
@@ -447,14 +467,14 @@ Dari analisis ini kita dapatkan:
   <BlockMath math="\text{Fokus: } (2, 3)" />
   <BlockMath math="\text{Direktriks: } y = -1" />
   <BlockMath math="\text{Sumbu simetri: } x = 2" />
-  <BlockMath math="\text{Arah bukaan: ke atas (karena } p = 2 > 0\text{)}" />
 </MathContainer>
+  Parabola terbuka ke atas karena <InlineMath math="p=2>0" />.
 
 ## Menentukan Persamaan Puncak dan Fokus Parabola
 
 Dua soal berikut menghubungkan bentuk baku dengan puncak dan fokus parabola.
 
-**Soal** <InlineMath math="1" />: Tentukan persamaan parabola yang memiliki puncak di <InlineMath math="(1, -2)" /> dan fokus di <InlineMath math="(4, -2)" />.
+**Soal** 1: Tentukan persamaan parabola yang memiliki puncak di <InlineMath math="(1, -2)" /> dan fokus di <InlineMath math="(4, -2)" />.
 
 **Penyelesaian**:
 
@@ -476,7 +496,7 @@ Persamaan parabola horizontal adalah <InlineMath math="(y-k)^2 = 4p(x-h)" />:
   <BlockMath math="(y+2)^2 = 12(x-1)" />
 </MathContainer>
 
-**Soal** <InlineMath math="2" />: Parabola <InlineMath math="y^2 - 6y - 4x + 13 = 0" />. Tentukan koordinat puncak dan fokusnya.
+**Soal** 2: Parabola <InlineMath math="y^2 - 6y - 4x + 13 = 0" />. Tentukan koordinat puncak dan fokusnya.
 
 **Penyelesaian**:
 
@@ -501,5 +521,5 @@ Sehingga:
 
 <MathContainer>
   <BlockMath math="\text{Puncak: } (h, k) = (1, 3)" />
-  <BlockMath math="\text{Fokus: } (h+p, k) = (1+1, 3) = (2, 3)" />
+  <BlockMath math="\begin{aligned} \text{Fokus: } (h+p, k) &amp;= (1+1, 3) \\ &amp;= (2, 3) \end{aligned}" />
 </MathContainer>

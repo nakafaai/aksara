@@ -3,7 +3,7 @@ export const metadata = {
   description: "Baca kurva kepadatan normal, bakukan nilai dengan skor z, lalu hitung peluang suatu interval.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Analisis Data dan Peluang",
 };
 
@@ -127,26 +127,26 @@ Dengan transformasi ini, kita bisa membandingkan data dari distribusi yang berbe
 
 Misalkan <InlineMath math="X" /> terdistribusi normal dengan <InlineMath math="\mu = 50" /> dan <InlineMath math="\sigma = 10" />. Tentukan peluang bahwa <InlineMath math="X" /> berada antara <InlineMath math="45" /> dan <InlineMath math="62" />.
 
-**Langkah** <InlineMath math="1" />: Transformasi ke z-score
+**Langkah** 1: Transformasi ke z-score
 
 <MathContainer>
 <BlockMath math="z_1 = \frac{45 - 50}{10} = \frac{-5}{10} = -0{,}5" />
 <BlockMath math="z_2 = \frac{62 - 50}{10} = \frac{12}{10} = 1{,}2" />
 </MathContainer>
 
-**Langkah** <InlineMath math="2" />: Gunakan tabel distribusi normal standar
+**Langkah** 2: Gunakan tabel distribusi normal standar
 
 Interval yang telah dibakukan adalah <InlineMath math="P(-0{,}5 < Z < 1{,}2)" />. Kurangi peluang kumulatif pada batas bawah dari peluang kumulatif pada batas atas:
 
-<BlockMath math="P(a < Z < b) = P(Z < b) - P(Z < a)" />
+<BlockMath math="\begin{aligned} &amp;P(a &lt; Z &lt; b) = P(Z &lt; b) \\ &amp;- P(Z &lt; a) \end{aligned}" />
 
 Dari tabel distribusi normal standar:
 
 - <InlineMath math="P(Z < -0{,}5) = 0{,}3085" />
 - <InlineMath math="P(Z < 1{,}2) = 0{,}8849" />
 
-**Langkah** <InlineMath math="3" />: Hitung peluang akhir
+**Langkah** 3: Hitung peluang akhir
 
-<BlockMath math="P(45 < X < 62) = P(-0{,}5 < Z < 1{,}2) = 0{,}8849 - 0{,}3085 = 0{,}5764" />
+<BlockMath math="\begin{aligned} &amp;P(45 &lt; X &lt; 62) \\ &amp;= P(-0{,}5 &lt; Z &lt; 1{,}2) \\ &amp;= 0{,}8849 - 0{,}3085 \\ &amp;= 0{,}5764 \end{aligned}" />
 
 Jadi, peluang bahwa <InlineMath math="X" /> berada antara <InlineMath math="45" /> dan <InlineMath math="62" /> adalah <InlineMath math="0{,}5764" /> atau sekitar <InlineMath math="57{,}64\%" />.

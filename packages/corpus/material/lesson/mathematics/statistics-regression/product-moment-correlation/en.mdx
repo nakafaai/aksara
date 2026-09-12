@@ -4,7 +4,7 @@ export const metadata = {
   description: "Calculate Pearson's correlation coefficient (r) to measure linear relationships. Learn formulas, scatter plot analysis, and interpret r values from -1 to +1.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-30",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Statistics",
 };
 
@@ -173,7 +173,7 @@ The calculation has three parts:
 
     To overcome this, we **standardize** the cross-deviation sum by dividing <InlineMath math="SS_{xy}" /> by the geometric combination of the two individual variation measures, <InlineMath math="\sqrt{SS_{xx} SS_{yy}}" />.
 
-    <BlockMath math="r = \frac{\text{How much X and Y vary together}}{\text{Standardized measure of individual X and Y variations}} = \frac{SS_{xy}}{\sqrt{SS_{xx} SS_{yy}}}" />
+    <BlockMath math="r=\frac{SS_{xy}}{\sqrt{SS_{xx}SS_{yy}}}" />
 
 The result of this division is **<InlineMath math="r" />**, the Pearson correlation coefficient. Provided both variables have nonzero variation, standardization constrains its value to the interval from <InlineMath math="-1" /> to <InlineMath math="+1" />, regardless of the original units. Because every valid pair uses the same scale, linear associations from different pairs of variables can be compared directly.
 
@@ -191,15 +191,15 @@ The three quantities have different roles. <InlineMath math="SS_{xx}" /> and <In
 
 1.  **<InlineMath math="SS_{xx}" /> (Sum of Squares for <InlineMath math="x" />):** Measures how spread out the <InlineMath math="x" /> data is from its mean.
 
-    <BlockMath math="SS_{xx} = \sum (x - \bar{x})^2 = \sum x^2 - \frac{(\sum x)^2}{n}" />
+    <BlockMath math="\begin{aligned} SS_{xx} &amp;= \sum (x - \bar{x})^2 \\ &amp;= \sum x^2 - \frac{(\sum x)^2}{n} \end{aligned}" />
 
 2.  **<InlineMath math="SS_{yy}" /> (Sum of Squares for <InlineMath math="y" />):** Measures how spread out the <InlineMath math="y" /> data is from its mean.
 
-    <BlockMath math="SS_{yy} = \sum (y - \bar{y})^2 = \sum y^2 - \frac{(\sum y)^2}{n}" />
+    <BlockMath math="\begin{aligned} SS_{yy} &amp;= \sum (y - \bar{y})^2 \\ &amp;= \sum y^2 - \frac{(\sum y)^2}{n} \end{aligned}" />
 
 3.  **<InlineMath math="SS_{xy}" /> (Sum of Products of deviations for <InlineMath math="x" /> and <InlineMath math="y" />):** Measures how <InlineMath math="x" /> and <InlineMath math="y" /> vary _together_.
 
-    <BlockMath math="SS_{xy} = \sum (x - \bar{x})(y - \bar{y}) = \sum xy - \frac{(\sum x)(\sum y)}{n}" />
+    <BlockMath math="\begin{aligned} SS_{xy} &amp;= \sum (x - \bar{x})(y - \bar{y}) \\ &amp;= \sum xy - \frac{(\sum x)(\sum y)}{n} \end{aligned}" />
 
 Key:
 

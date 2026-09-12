@@ -5,7 +5,7 @@ export const metadata = {
     "Average velocity uses displacement and elapsed time, while average speed uses total distance and elapsed time.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Kinematics",
 };
 
@@ -54,21 +54,19 @@ The numbers in the card come from the route drawn in the scene. The green path s
 
 To calculate the total distance, split the green route into straight and curved segments. A straight segment uses its line length. A curved segment uses its arc length, which is the radius multiplied by the angle in radians. Add all segments, then compare the result with the same elapsed time.
 
-<BlockMath math="\begin{aligned}
-s_{\text{total}}&=\sum L_{\text{segment}} \\
-L_{\text{line}}&=d,\qquad L_{\text{arc}}=r|\theta| \\
-|\Delta \vec r|&=\sqrt{(x_{\text{end}}-x_{\text{start}})^2+(z_{\text{end}}-z_{\text{start}})^2} \\
-\text{average speed}&=\frac{s_{\text{total}}}{\Delta t} \\
-|\bar{\vec v}|&=\frac{|\Delta \vec r|}{\Delta t}
-\end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;s_{\text{total}}=\sum L_{\text{segment}} \\ &amp;L_{\text{line}}=d \\ &amp;L_{\text{arc}}=r|\theta| \end{aligned}" />
+
+For displacement, first find the change in each coordinate:
+
+<BlockMath math="\begin{aligned} &amp;\Delta x=x_{\text{end}}-x_{\text{start}} \\ &amp;\Delta z=z_{\text{end}}-z_{\text{start}} \\ &amp;|\Delta\vec r|=\sqrt{(\Delta x)^2+(\Delta z)^2} \end{aligned}" />
+
+Divide the total distance and the displacement magnitude by the same elapsed time:
+
+<BlockMath math="\begin{aligned} &amp;\text{average speed} \\ &amp;=\frac{s_{\text{total}}}{\Delta t} \\ &amp;|\bar{\vec v}|=\frac{|\Delta \vec r|}{\Delta t} \end{aligned}" />
 
 In the Smooth Bend case, the ball does not travel directly from start to finish. It follows the curve, so its total distance is about <InlineMath math="16.7 \text{ m}" />. The start and finish positions, however, are only <InlineMath math="14 \text{ m}" /> apart. Because the trip takes <InlineMath math="5 \text{ s}" />, the average speed and average velocity magnitude are:
 
-<BlockMath math="\begin{aligned}
-s_{\text{total}}&\approx 16.7\text{ m},\qquad |\Delta \vec r|=14\text{ m},\qquad \Delta t=5\text{ s} \\
-\text{average speed}&\approx \frac{16.7}{5}=3.3\text{ m/s} \\
-|\bar{\vec v}|&=\frac{14}{5}=2.8\text{ m/s}
-\end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;s_{\text{total}}\approx 16.7\text{ m} \\ &amp;|\Delta \vec r|=14\text{ m} \\ &amp;\Delta t=5\text{ s} \\ &amp;\text{average speed} \\ &amp;\approx \frac{16.7}{5} \\ &amp;\approx3.3\text{ m/s} \\ &amp;|\bar{\vec v}| =\frac{14}{5} \\ &amp;=2.8\text{ m/s} \end{aligned}" />
 
 ## The Same Time Interval Can Describe Different Trips
 

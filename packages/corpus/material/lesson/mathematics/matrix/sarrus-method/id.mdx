@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung determinan matriks berordo tiga kali tiga dengan pola diagonal Sarrus dan lacak tanda setiap hasil kali.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Matriks",
 };
 
@@ -29,7 +29,7 @@ Misalkan kita memiliki matriks <InlineMath math="A" /> berordo <InlineMath math=
 
 Elemen <InlineMath math="a_{ij}" /> adalah elemen pada baris ke-<InlineMath math="i" /> dan kolom ke-<InlineMath math="j" />.
 
-**Langkah** <InlineMath math="1" />: Salin Dua Kolom Pertama
+**Langkah** 1: Salin Dua Kolom Pertama
 
 Tuliskan kembali dua kolom pertama matriks <InlineMath math="A" /> di sebelah kanan kolom ketiga:
 
@@ -37,27 +37,27 @@ Tuliskan kembali dua kolom pertama matriks <InlineMath math="A" /> di sebelah ka
 
 Salinan kedua kolom menampilkan tiga diagonal turun dan tiga diagonal naik yang akan dikalikan.
 
-**Langkah** <InlineMath math="2" />: Hitung Jumlah Hasil Perkalian Diagonal Positif
+**Langkah** 2: Hitung Jumlah Hasil Perkalian Diagonal Positif
 
 Kalikan elemen-elemen di sepanjang tiga diagonal dari kiri atas ke kanan bawah. Jumlahkan hasil perkalian ini, kita sebut <InlineMath math="D_{\text{positif}}" />.
 
 <MathContainer>
-  <BlockMath math="D_{\text{positif}} = (a_{11} \cdot a_{22} \cdot a_{33}) + (a_{12} \cdot a_{23} \cdot a_{31}) + (a_{13} \cdot a_{21} \cdot a_{32})" />
+  <BlockMath math="\begin{aligned} &amp;D_{\text{positif}} = (a_{11} \cdot a_{22} \cdot a_{33}) \\ &amp;+ (a_{12} \cdot a_{23} \cdot a_{31}) + (a_{13} \cdot a_{21} \cdot a_{32}) \end{aligned}" />
 </MathContainer>
 
 Suku pertama adalah perkalian diagonal utama. Suku kedua dan ketiga adalah perkalian diagonal sejajar yang melibatkan elemen dari kolom yang disalin.
 
-**Langkah** <InlineMath math="3" />: Hitung Jumlah Hasil Perkalian Diagonal Negatif
+**Langkah** 3: Hitung Jumlah Hasil Perkalian Diagonal Negatif
 
 Kalikan elemen-elemen di sepanjang tiga diagonal dari kanan atas ke kiri bawah. Jumlahkan hasil perkalian ini, kita sebut <InlineMath math="D_{\text{negatif}}" />.
 
 <MathContainer>
-  <BlockMath math="D_{\text{negatif}} = (a_{13} \cdot a_{22} \cdot a_{31}) + (a_{11} \cdot a_{23} \cdot a_{32}) + (a_{12} \cdot a_{21} \cdot a_{33})" />
+  <BlockMath math="\begin{aligned} &amp;D_{\text{negatif}} = (a_{13} \cdot a_{22} \cdot a_{31}) \\ &amp;+ (a_{11} \cdot a_{23} \cdot a_{32}) + (a_{12} \cdot a_{21} \cdot a_{33}) \end{aligned}" />
 </MathContainer>
 
 Suku pertama adalah perkalian diagonal sekunder (anti-diagonal). Suku kedua dan ketiga adalah perkalian diagonal sejajar yang melibatkan elemen dari kolom yang disalin, bergerak ke arah kiri bawah.
 
-**Langkah** <InlineMath math="4" />: Hitung Determinan Akhir
+**Langkah** 4: Hitung Determinan Akhir
 
 Determinan matriks <InlineMath math="A" />, <InlineMath math="\det(A)" />, adalah selisih antara <InlineMath math="D_{\text{positif}}" /> dan <InlineMath math="D_{\text{negatif}}" />:
 
@@ -65,11 +65,11 @@ Determinan matriks <InlineMath math="A" />, <InlineMath math="\det(A)" />, adala
 
 Substitusikan nilai <InlineMath math="D_{\text{positif}}" /> dan <InlineMath math="D_{\text{negatif}}" />:
 
-<BlockMath math="\det(A) = (a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}) - (a_{13}a_{22}a_{31} + a_{11}a_{23}a_{32} + a_{12}a_{21}a_{33})" />
+<BlockMath math="\begin{aligned} &amp;\det(A)=\bigl(a_{11}a_{22}a_{33} \\ &amp;+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\bigr) \\ &amp;-\bigl(a_{13}a_{22}a_{31} \\ &amp;+a_{11}a_{23}a_{32}+a_{12}a_{21}a_{33}\bigr) \end{aligned}" />
 
 Atau, setelah tanda negatif didistribusikan:
 
-<BlockMath math="\det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}" />
+<BlockMath math="\begin{aligned} &amp;\det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} \\ &amp;+ a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} \\ &amp;- a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33} \end{aligned}" />
 
 ### Contoh Numerik dengan Pembahasan
 
@@ -80,9 +80,9 @@ Hitung determinan matriks <InlineMath math="P" /> berikut:
 Pisahkan kedua jumlah diagonal hingga pengurangan terakhir agar tandanya lebih mudah diperiksa:
 
 <MathContainer>
-  <BlockMath math="D_+=(1)(6)(4)+(3)(2)(5)+(2)(2)(9)=24+30+36=90" />
-  <BlockMath math="D_-=(2)(6)(5)+(1)(2)(9)+(3)(2)(4)=60+18+24=102" />
-  <BlockMath math="\det(P)=D_+-D_-=90-102=-12" />
+  <BlockMath math="\begin{aligned} D_+ &amp;=(1)(6)(4)+(3)(2)(5) \\ &amp;\quad+(2)(2)(9) \\ &amp;=24+30+36 \\ &amp;=90 \end{aligned}" />
+  <BlockMath math="\begin{aligned} D_- &amp;=(2)(6)(5)+(1)(2)(9) \\ &amp;\quad+(3)(2)(4) \\ &amp;=60+18+24 \\ &amp;=102 \end{aligned}" />
+  <BlockMath math="\begin{aligned} \det(P) &amp;=D_+-D_- \\ &amp;=90-102 \\ &amp;=-12 \end{aligned}" />
 </MathContainer>
 
 Jadi, determinannya adalah <InlineMath math="-12" />. Ekspansi kofaktor pada matriks yang sama menghasilkan nilai yang sama dan dapat dipakai sebagai pemeriksaan independen.
@@ -98,12 +98,14 @@ Kemudian, dengan Metode Sarrus, kita perluas matriks dan identifikasi jalur perk
 <MathContainer>
   <BlockMath math="\begin{array}{ccc|cc} a_{11} & a_{12} & a_{13} & a_{11} & a_{12} \\ a_{21} & a_{22} & a_{23} & a_{21} & a_{22} \\ a_{31} & a_{32} & a_{33} & a_{31} & a_{32} \end{array}" />
   <BlockMath math="\begin{array}{l} \text{Jalur Positif } (\searrow): \\ \quad + (a_{11} \cdot a_{22} \cdot a_{33}) \\ \quad + (a_{12} \cdot a_{23} \cdot a_{31}) \\ \quad + (a_{13} \cdot a_{21} \cdot a_{32}) \end{array}" />
-  <BlockMath math="\begin{array}{l} \text{Jalur Negatif } (\swarrow): \\ \quad - (a_{13} \cdot a_{22} \cdot a_{31}) \\ \quad - (a_{11} \cdot a_{23} \cdot a_{32}) \quad (\text{dari } a_{11} \text{ kol. 4}) \\ \quad - (a_{12} \cdot a_{21} \cdot a_{33}) \quad (\text{dari } a_{12} \text{ kol. 5}) \end{array}" />
 </MathContainer>
+  Ikuti jalur negatif <InlineMath math="\swarrow" />. Jalur kedua mulai dari <InlineMath math="a_{11}" /> pada kolom salinan 4. Jalur ketiga dari <InlineMath math="a_{12}" /> pada kolom salinan 5:
+
+<BlockMath math="\begin{aligned} &amp;-(a_{13}\cdot a_{22}\cdot a_{31}) \\ &amp;-(a_{11}\cdot a_{23}\cdot a_{32}) \\ &amp;-(a_{12}\cdot a_{21}\cdot a_{33}) \end{aligned}" />
 
 Sehingga, formula lengkapnya menjadi:
 
-<BlockMath math="\det(A) = (a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}) - (a_{13}a_{22}a_{31} + a_{11}a_{23}a_{32} + a_{12}a_{21}a_{33})" />
+<BlockMath math="\begin{aligned} &amp;\det(A)=\bigl(a_{11}a_{22}a_{33} \\ &amp;+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\bigr) \\ &amp;-\bigl(a_{13}a_{22}a_{31} \\ &amp;+a_{11}a_{23}a_{32}+a_{12}a_{21}a_{33}\bigr) \end{aligned}" />
 
 ## Metode Sarrus Hanya Berlaku untuk Matriks Tiga Kali Tiga
 
@@ -118,9 +120,9 @@ Gunakan metode Sarrus untuk menghitung determinan:
 Hitung dahulu kedua jumlah diagonal, lalu kurangkan jumlah diagonal negatif dari jumlah diagonal positif:
 
 <MathContainer>
-  <BlockMath math="D_+=(2)(4)(-2)+(-1)(5)(1)+(3)(0)(2)=-16-5+0=-21" />
-  <BlockMath math="D_-=(3)(4)(1)+(2)(5)(2)+(-1)(0)(-2)=12+20+0=32" />
-  <BlockMath math="\det(B)=D_+-D_-=-21-32=-53" />
+  <BlockMath math="\begin{aligned} D_+ &amp;=(2)(4)(-2)+(-1)(5)(1) \\ &amp;\quad+(3)(0)(2) \\ &amp;=-16-5+0 \\ &amp;=-21 \end{aligned}" />
+  <BlockMath math="\begin{aligned} D_- &amp;=(3)(4)(1)+(2)(5)(2) \\ &amp;\quad+(-1)(0)(-2) \\ &amp;=12+20+0 \\ &amp;=32 \end{aligned}" />
+  <BlockMath math="\begin{aligned} \det(B) &amp;=D_+-D_- \\ &amp;=-21-32 \\ &amp;=-53 \end{aligned}" />
 </MathContainer>
 
 Dengan demikian, <InlineMath math="\det(B)=-53" />.

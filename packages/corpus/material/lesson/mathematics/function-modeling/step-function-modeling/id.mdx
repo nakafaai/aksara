@@ -4,7 +4,7 @@ export const metadata = {
   description: "Modelkan diskon toko buku, kapasitas lift, serta fungsi lantai dan langit-langit dengan fungsi tangga yang memakai aturan berbeda pada setiap interval.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Fungsi dan Pemodelannya",
 };
 
@@ -53,9 +53,10 @@ Grafik menandai setiap ujung kiri yang termasuk dengan titik penuh dan setiap uj
     ...Array.from({ length: 10 }, (_, intervalIndex) => {
       const integerValue = intervalIndex - 5;
       return {
+        endpoints: { start: "closed", end: "open" },
         points: [
           { x: integerValue, y: integerValue, z: 0 },
-          { x: integerValue + 0.999, y: integerValue, z: 0 },
+          { x: integerValue + 1, y: integerValue, z: 0 },
         ],
         color: "#9333ea",
         showPoints: false,
@@ -100,8 +101,9 @@ Grafik menandai setiap ujung kiri yang tidak termasuk dengan titik kosong dan se
     ...Array.from({ length: 10 }, (_, intervalIndex) => {
       const integerValue = intervalIndex - 4;
       return {
+        endpoints: { start: "open", end: "closed" },
         points: [
-          { x: integerValue - 0.999, y: integerValue, z: 0 },
+          { x: integerValue - 1, y: integerValue, z: 0 },
           { x: integerValue, y: integerValue, z: 0 },
         ],
         color: "#ea580c",
@@ -139,15 +141,19 @@ Dalam konvensi ini, fungsi unit step bernilai <InlineMath math="0" /> untuk <Inl
   }
   data={[
     {
+      endpoints: { end: "open" },
+      lineWidth: 4,
       points: [
         { x: -10, y: 0, z: 0 },
-        { x: -0.001, y: 0, z: 0 },
+        { x: 0, y: 0, z: 0 },
       ],
       color: "#0d9488",
       showPoints: false,
       smooth: false,
     },
     {
+      endpoints: { start: "closed" },
+      lineWidth: 4,
       points: [
         { x: 0, y: 1, z: 0 },
         { x: 10, y: 1, z: 0 },
@@ -155,7 +161,7 @@ Dalam konvensi ini, fungsi unit step bernilai <InlineMath math="0" /> untuk <Inl
       color: "#0d9488",
       showPoints: false,
       smooth: false,
-      labels: [{ text: <InlineMath math="H(x)" />, at: 1, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="H(x)" />, at: 1, offset: [-7, 0.5, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 12]}
@@ -205,9 +211,10 @@ Fungsi <InlineMath math="f(x) = \lfloor x \rfloor + k" /> menggeser grafik fungs
     ...Array.from({ length: 10 }, (_, intervalIndex) => {
       const integerValue = intervalIndex - 5;
       return {
+        endpoints: { start: "closed", end: "open" },
         points: [
           { x: integerValue, y: integerValue, z: 0 },
-          { x: integerValue + 0.999, y: integerValue, z: 0 },
+          { x: integerValue + 1, y: integerValue, z: 0 },
         ],
         color: "#9333ea",
         showPoints: false,
@@ -221,9 +228,10 @@ Fungsi <InlineMath math="f(x) = \lfloor x \rfloor + k" /> menggeser grafik fungs
     ...Array.from({ length: 10 }, (_, intervalIndex) => {
       const integerValue = intervalIndex - 5;
       return {
+        endpoints: { start: "closed", end: "open" },
         points: [
           { x: integerValue, y: integerValue + 2, z: 0 },
-          { x: integerValue + 0.999, y: integerValue + 2, z: 0 },
+          { x: integerValue + 1, y: integerValue + 2, z: 0 },
         ],
         color: "#0891b2",
         showPoints: false,
@@ -237,16 +245,17 @@ Fungsi <InlineMath math="f(x) = \lfloor x \rfloor + k" /> menggeser grafik fungs
     ...Array.from({ length: 10 }, (_, intervalIndex) => {
       const integerValue = intervalIndex - 5;
       return {
+        endpoints: { start: "closed", end: "open" },
         points: [
           { x: integerValue, y: integerValue - 1, z: 0 },
-          { x: integerValue + 0.999, y: integerValue - 1, z: 0 },
+          { x: integerValue + 1, y: integerValue - 1, z: 0 },
         ],
         color: "#e11d48",
         showPoints: false,
         smooth: false,
         labels:
           integerValue === 2
-            ? [{ text: <InlineMath math="h(x)=\lfloor x \rfloor-1" />, at: 1, offset: [2, 0.5, 0] }]
+            ? [{ text: <InlineMath math="h(x)=\lfloor x \rfloor-1" />, at: 1, offset: [0, 0.5, 0] }]
             : [],
       };
     }),
@@ -281,19 +290,19 @@ Fungsi <InlineMath math="f(x) = \lfloor x - h \rfloor" /> menggeser grafik ke ka
 
 1. **Menghitung nilai fungsi lantai dan langit-langit:**
 
-   <MathContainer>
-     <BlockMath math="\lfloor 3{,}7 \rfloor = 3 \text{ (bilangan bulat terbesar} \leq 3{,}7\text{)}" />
-     <BlockMath math="\lceil -2{,}3 \rceil = -2 \text{ (bilangan bulat terkecil} \geq -2{,}3\text{)}" />
-     <BlockMath math="\lfloor 3{,}7 \rfloor + \lceil -2{,}3 \rceil = 3 + (-2) = 1" />
-   </MathContainer>
+   <BlockMath math="\lfloor3{,}7\rfloor=3" />
+
+   <InlineMath math="3" /> adalah bilangan bulat terbesar yang kurang dari atau sama dengan <InlineMath math="3{,}7" />.
+   <BlockMath math="\lceil-2{,}3\rceil=-2" />
+
+   <InlineMath math="-2" /> adalah bilangan bulat terkecil yang lebih dari atau sama dengan <InlineMath math="-2{,}3" />.
+   <BlockMath math="\lfloor 3{,}7 \rfloor + \lceil -2{,}3 \rceil = 3 + (-2) = 1" />
 
 2. **Model fungsi diskon toko buku:**
 
    Misalkan <InlineMath math="n\in\mathbb{N}" /> adalah banyak buku yang dibeli, berupa bilangan bulat positif. Total harga setelah diskon adalah:
 
-   <MathContainer>
-     <BlockMath math="H(n) = \begin{cases} 50{.}000n, & \text{jika } 1 \leq n \leq 5 \\ 50{.}000n \times 0{,}9, & \text{jika } 6 \leq n \leq 10 \\ 50{.}000n \times 0{,}85, & \text{jika } 11 \leq n \leq 20 \\ 50{.}000n \times 0{,}8, & \text{jika } n > 20 \end{cases}" />
-   </MathContainer>
+   <BlockMath math="H(n) = \begin{cases}\begin{gathered}50{.}000n\\\text{jika } 1 \leq n \leq 5\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}9\\\text{jika } 6 \leq n \leq 10\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}85\\\text{jika } 11 \leq n \leq 20\end{gathered}\\[4pt]\begin{gathered}50{.}000n \times 0{,}8\\\text{jika } n > 20\end{gathered}\end{cases}" />
 
 3. **Grafik fungsi <InlineMath math="f(x) = 2\lfloor x \rfloor - 1" />:**
 
@@ -326,23 +335,24 @@ Fungsi <InlineMath math="f(x) = \lfloor x - h \rfloor" /> menggeser grafik ke ka
          const integerValue = intervalIndex - 3;
          const functionValue = 2 * integerValue - 1;
          return {
+           endpoints: { start: "closed", end: "open" },
            points: [
              { x: integerValue, y: functionValue, z: 0 },
-             { x: integerValue + 0.999, y: functionValue, z: 0 },
+             { x: integerValue + 1, y: functionValue, z: 0 },
            ],
            color: "#7c3aed",
            showPoints: false,
            smooth: false,
            labels:
              integerValue === 1
-               ? [{ text: <InlineMath math="f(x)=2\lfloor x \rfloor-1" />, at: 1, offset: [1, 1, 0] }]
+               ? [{ text: <InlineMath math="f(x)=2\lfloor x \rfloor-1" />, at: 1, offset: [-0.2, 1, 0] }]
                : [],
          };
        }),
        {
+         endpoints: { start: "closed" },
          points: [
            { x: 3, y: 5, z: 0 },
-           { x: 3.001, y: 5, z: 0 },
          ],
          color: "#7c3aed",
          showPoints: true,

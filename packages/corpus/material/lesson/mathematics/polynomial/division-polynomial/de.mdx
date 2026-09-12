@@ -3,7 +3,7 @@ export const metadata = {
   description: "Dividiere Polynome, bestimme Quotient und Rest und überprüfe das Ergebnis durch Multiplikation.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Polynom",
 };
 
@@ -57,11 +57,11 @@ Dies kann gemäß dem Algorithmus in zwei Formen geschrieben werden:
 
 1.  Bruchform:
 
-    <BlockMath math="\frac{x^3 + 4x^2 + 5x + 8}{x + 3} = x^2 + x + 2 + \frac{2}{x + 3}" />
+    <BlockMath math="\begin{aligned} &amp;\frac{x^3 + 4x^2 + 5x + 8}{x + 3} \\ &amp;= x^2 + x + 2 + \frac{2}{x + 3} \end{aligned}" />
 
 2.  Multiplikationsform:
 
-    <BlockMath math="x^3 + 4x^2 + 5x + 8 = (x + 3)(x^2 + x + 2) + 2" />
+    <BlockMath math="\begin{aligned} &amp;x^3 + 4x^2 + 5x + 8 \\ &amp;= (x + 3)(x^2 + x + 2) + 2 \end{aligned}" />
 
 Der Rest <InlineMath math="S(x)=2" /> hat den Grad <InlineMath math="0" /> und damit einen kleineren Grad als der Divisor <InlineMath math="x+3" /> mit Grad <InlineMath math="1" />. Diese Bedingung zeigt, dass die Division beendet ist.
 
@@ -73,13 +73,19 @@ Wir prüfen die Gleichung <InlineMath math="x^3 + 4x^2 + 5x + 8 = (x + 3)(x^2 + 
 
 Erweitern wir die rechte Seite:
 
-<MathContainer>
-  <BlockMath math="(x + 3)(x^2 + x + 2) + 2" />
-  <BlockMath math="= [x(x^2 + x + 2) + 3(x^2 + x + 2)] + 2 \quad \text{(Verteilen} (x+3))" />
-  <BlockMath math="= [x^3 + x^2 + 2x + 3x^2 + 3x + 6] + 2 \quad \text{(Verteilen} x \text{und} 3)" />
-  <BlockMath math="= x^3 + (x^2 + 3x^2) + (2x + 3x) + 6 + 2 \quad \text{(gleichartige Terme zusammenfassen)}" />
-  <BlockMath math="= x^3 + 4x^2 + 5x + 8 \quad \text{(Endergebnis)}" />
-</MathContainer>
+<BlockMath math="(x + 3)(x^2 + x + 2) + 2" />
+  Verteile die Terme von <InlineMath math="x+3" />:
+
+<BlockMath math="\begin{aligned} &amp;=\bigl[x(x^2+x+2) \\ &amp;+3(x^2+x+2)\bigr]+2 \end{aligned}" />
+  Verteile die Terme von <InlineMath math="x" /> und <InlineMath math="3" />:
+
+<BlockMath math="\begin{aligned} &amp;=\bigl[x^3+x^2+2x \\ &amp;+3x^2+3x+6\bigr]+2 \end{aligned}" />
+  Ordne die gleichartigen Terme zusammen:
+
+<BlockMath math="\begin{aligned} &amp;=x^3+(x^2+3x^2) \\ &amp;+(2x+3x)+6+2 \end{aligned}" />
+  Das Ergebnis lautet:
+
+<BlockMath math="= x^3 + 4x^2 + 5x + 8" />
 
 Die rechte Seite ergibt wieder den ursprünglichen Dividenden. Damit ist das Divisionsergebnis bestätigt.
 
@@ -106,7 +112,7 @@ Der Quotient ist <InlineMath math="H(x)=2x^2+x+6" />, der Rest ist <InlineMath m
 
 <MathContainer>
   <BlockMath math="(x-2)(2x^2+x+6)+7" />
-  <BlockMath math="=2x^3+x^2+6x-4x^2-2x-12+7" />
+  <BlockMath math="\begin{aligned} &amp;=2x^3+x^2+6x-4x^2 \\ &amp;-2x-12+7 \end{aligned}" />
   <BlockMath math="=2x^3-3x^2+4x-5" />
 </MathContainer>
 

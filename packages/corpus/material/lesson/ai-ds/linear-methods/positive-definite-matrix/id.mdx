@@ -3,7 +3,7 @@ export const metadata = {
   description: "Klasifikasikan matriks simetris dan Hermitian dengan bentuk kuadrat, nilai eigen, minor utama, faktor Cholesky, dan geometri optimisasi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-13",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Metode Linear AI",
 };
 
@@ -67,7 +67,9 @@ Persamaan ini menunjukkan bahwa sumbu utama elipsoid mengikuti arah vektor eigen
 
 Misalkan <InlineMath math="A_k" /> adalah blok kiri atas berukuran <InlineMath math="k\times k" /> dari matriks simetris real atau Hermitian kompleks. Kriteria Sylvester menyatakan
 
-<BlockMath math="A\text{ positif definit}\quad\Longleftrightarrow\quad\det(A_k)>0\text{ untuk }k=1,\ldots,n" />
+Matriks <InlineMath math="A" /> definit positif jika dan hanya jika setiap determinan utama terdepannya positif:
+
+<BlockMath math="\det(A_k)>0,\quad k=1,\ldots,n" />
 
 Uji minor utama terdepan ini tidak dapat diperluas hanya dengan mengganti <InlineMath math=">" /> menjadi <InlineMath math="\ge" />. Positif semidefinit mengharuskan semua minor utama bernilai tak negatif. Memeriksa minor utama terdepan saja belum cukup.
 
@@ -86,7 +88,7 @@ Minor utama terdepannya adalah
 
 Kedua minor utama terdepan bernilai positif, sehingga <InlineMath math="A" /> positif definit. Kedua nilai eigennya juga positif:
 
-<BlockMath math="\lambda_1=\frac{9+\sqrt5}{2}\approx5{,}61803,\qquad \lambda_2=\frac{9-\sqrt5}{2}\approx3{,}38197" />
+<BlockMath math="\begin{aligned} &amp;\lambda_1=\frac{9+\sqrt5}{2}\approx5{,}61803, \\ &amp;\lambda_2=\frac{9-\sqrt5}{2}\approx3{,}38197 \end{aligned}" />
 
 Sekarang bandingkan dengan
 
@@ -106,7 +108,7 @@ Matriks simetris real positif definit tepat ketika memiliki faktorisasi Cholesky
 
 Dalam faktorisasi ini, <InlineMath math="L" /> adalah matriks segitiga bawah dengan entri diagonal yang semuanya positif. Maka
 
-<BlockMath math="x^TAx=x^TLL^Tx=\|L^Tx\|_2^2>0\qquad(x\ne0)" />
+<BlockMath math="\begin{aligned} &amp;x^TAx=x^TLL^Tx=\|L^Tx\|_2^2>0 \\ &amp;(x\ne0) \end{aligned}" />
 
 Untuk setiap matriks positif definit, algoritma Cholesky akan selesai tanpa menemukan pivot nol atau negatif. Untuk matriks simetris dalam aritmetika eksak, algoritma Cholesky berhasil tepat ketika matriks tersebut positif definit. Setelah memperoleh <InlineMath math="A=LL^T" />, selesaikan <InlineMath math="Ly=b" /> lalu <InlineMath math="L^Tx=y" />.
 
@@ -118,7 +120,7 @@ Untuk setiap matriks real <InlineMath math="M\in\mathbb{R}^{m\times n}" />,
 
 Persamaan ini menunjukkan bahwa <InlineMath math="M^TM" /> selalu positif semidefinit. Matriks <InlineMath math="M^TM" /> positif definit tepat ketika
 
-<BlockMath math="\ker(M)=\{0\}\quad\Longleftrightarrow\quad\operatorname{rank}(M)=n" />
+<BlockMath math="\begin{aligned} &amp;\ker(M)=\{0\} \\ &amp;\Longleftrightarrow \\ &amp;\operatorname{rank}(M)=n \end{aligned}" />
 
 Kita tidak perlu menetapkan <InlineMath math="m\ge n" /> untuk menyimpulkan bahwa <InlineMath math="M^{\mathsf T}M" /> positif semidefinit. Syarat <InlineMath math="m\ge n" /> baru mengikuti ketika <InlineMath math="M" /> memiliki peringkat kolom penuh.
 

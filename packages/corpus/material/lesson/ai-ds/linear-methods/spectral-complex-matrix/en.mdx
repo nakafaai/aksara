@@ -3,7 +3,7 @@ export const metadata = {
    description: "Prove that a normal matrix has an orthonormal eigenvector basis and use that basis for unitary diagonalization.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-07-16",
-   dateModified: "2026-09-01",
+   dateModified: "2026-09-12",
    subject: "Linear Methods of AI",
 };
 
@@ -36,7 +36,7 @@ This means <InlineMath math="A^H v_i = \overline{\lambda_i} v_i" />, so that:
 
 <MathContainer>
 <BlockMath math="AA^H v_i = A(\overline{\lambda_i} v_i) = \overline{\lambda_i} \lambda_i v_i" />
-<BlockMath math="= \lambda_i \overline{\lambda_i} v_i = \lambda_i (A^H v_i) = A^H (\lambda_i v_i) = A^H A v_i" />
+<BlockMath math="\begin{aligned}  &amp;= \lambda_i \overline{\lambda_i} v_i \\ &amp;= \lambda_i (A^H v_i) \\ &amp;= A^H (\lambda_i v_i) \\ &amp;= A^H A v_i \end{aligned}" />
 </MathContainer>
 
 Since this holds for all basis vectors, then <InlineMath math="AA^H = A^H A" />, which means <InlineMath math="A" /> is normal.
@@ -184,8 +184,8 @@ A quarter turn is represented by the matrix:
 The matrix <InlineMath math="R" /> is real and orthogonal, hence normal. Its eigenvalues are <InlineMath math="i" /> and <InlineMath math="-i" />, with the following normalized eigenvectors:
 
 <MathContainer>
-<BlockMath math="u_+=\frac1{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix},\qquad u_-=\frac1{\sqrt2}\begin{pmatrix}1\\i\end{pmatrix}" />
-<BlockMath math="U=(u_+\quad u_-),\qquad U^HRU=\operatorname{diag}(i,-i)" />
+<BlockMath math="\begin{aligned} &amp;u_+=\frac1{\sqrt2}\begin{pmatrix}1\\-i\end{pmatrix}, \\ &amp;u_-=\frac1{\sqrt2}\begin{pmatrix}1\\i\end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;U=(u_+\quad u_-), \\ &amp;U^HRU=\operatorname{diag}(i,-i) \end{aligned}" />
 </MathContainer>
 
 <InlineMath math="R" /> is unitarily diagonalizable over <InlineMath math="\mathbb{C}" /> but cannot be diagonalized by a real orthogonal matrix. Over <InlineMath math="\mathbb{R}" />, the rotation itself is the required <InlineMath math="2\times2" /> block.

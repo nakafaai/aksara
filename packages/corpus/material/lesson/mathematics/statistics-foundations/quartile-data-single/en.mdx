@@ -3,7 +3,7 @@ export const metadata = {
   description: "Calculate Q1, Q2, and Q3 for ungrouped data with one declared interpolation convention and a complete worked example.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Statistics",
 };
 
@@ -33,7 +33,7 @@ Quartiles can be defined by several valid ranking conventions, so software packa
 
 For the lower quartile:
 
-<BlockMath math="\text{Position of } Q_1 = \text{Data point at }\frac{1}{4}(n+1)" />
+<BlockMath math="\text{Position of } Q_1 = \frac{1}{4}(n+1)" />
 
 - **If the result is a whole number**, for example <InlineMath math="5" />, then <InlineMath math="Q_1" /> is the value at position <InlineMath math="5" />.
 - **If the result has a decimal**, for example <InlineMath math="5.25" />, then <InlineMath math="Q_1" /> lies between positions <InlineMath math="5" /> and <InlineMath math="6" />. We will calculate its interpolated value later. For now, we are only locating it.
@@ -50,7 +50,7 @@ This means <InlineMath math="Q_1" /> lies between positions <InlineMath math="5"
 
 The middle quartile is the median:
 
-<BlockMath math="\text{Position of } Q_2 = \text{Data point at }\frac{1}{2}(n+1)" />
+<BlockMath math="\text{Position of } Q_2 = \frac{1}{2}(n+1)" />
 
 The rules are the same as for <InlineMath math="Q_1" />:
 
@@ -67,7 +67,7 @@ This means <InlineMath math="Q_2" /> (the median) is between data points <Inline
 
 The formula is similar again:
 
-<BlockMath math="\text{Position of } Q_3 = \text{Data point at }\frac{3}{4}(n+1)" />
+<BlockMath math="\text{Position of } Q_3 = \frac{3}{4}(n+1)" />
 
 The same interpolation rule applies:
 
@@ -88,33 +88,33 @@ Try to find the position of <InlineMath math="Q_1" />, <InlineMath math="Q_2" />
 
 Try the problem yourself first. Then compare your reasoning with the complete solution below.
 
-**Step** <InlineMath math="1" />: Sort the data first!
+**Step** 1: Sort the data first!
 
 Sorted data: <InlineMath math="5, 6, 7, 7, 8, 9, 10" />
 
 Number of data points: <InlineMath math="n = 7" />
 
-**Step** <InlineMath math="2" />: Find the quartile positions using the formulas
+**Step** 2: Find the quartile positions using the formulas
 
 - **Position of <InlineMath math="Q_1" />:**
 
-  <InlineMath math="\text{Data point at }\frac{1}{4}(n+1) = \text{Data point at }\frac{1}{4}(7+1) = \text{Data point at }\frac{8}{4} = \text{Data point at }2" />
+  <BlockMath math="\begin{aligned}\frac{1}{4}(n+1) &= \frac{1}{4}(7+1) \\ &= \frac{8}{4} \\ &= 2\end{aligned}" />
 
   The result is a whole number (<InlineMath math="2" />), so <InlineMath math="Q_1" /> is the <InlineMath math="2" />nd data point.
 
 - **Position of <InlineMath math="Q_2" /> (Median):**
 
-  <InlineMath math="\text{Data point at }\frac{1}{2}(n+1) = \text{Data point at }\frac{1}{2}(7+1) = \text{Data point at }\frac{8}{2} = \text{Data point at }4" />
+  <BlockMath math="\begin{aligned}\frac{1}{2}(n+1) &= \frac{1}{2}(7+1) \\ &= \frac{8}{2} \\ &= 4\end{aligned}" />
 
   The result is a whole number (<InlineMath math="4" />), so <InlineMath math="Q_2" /> is the <InlineMath math="4" />th data point.
 
 - **Position of <InlineMath math="Q_3" />:**
 
-  <InlineMath math="\text{Data point at }\frac{3}{4}(n+1) = \text{Data point at }\frac{3}{4}(7+1) = \text{Data point at }\frac{24}{4} = \text{Data point at }6" />
+  <BlockMath math="\begin{aligned}\frac{3}{4}(n+1) &= \frac{3}{4}(7+1) \\ &= \frac{24}{4} \\ &= 6\end{aligned}" />
 
   The result is a whole number (<InlineMath math="6" />), so <InlineMath math="Q_3" /> is the <InlineMath math="6" />th data point.
 
-**Step** <InlineMath math="3" />: Determine the quartile values
+**Step** 3: Determine the quartile values
 
 Look at the sorted data: <InlineMath math="5, 6, 7, 7, 8, 9, 10" />
 

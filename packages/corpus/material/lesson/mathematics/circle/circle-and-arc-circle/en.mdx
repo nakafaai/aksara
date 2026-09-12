@@ -4,7 +4,7 @@ export const metadata = {
     "Build circles from their defining distance, then connect arcs, central and inscribed angles, arc length, and sector area through diagrams and worked problems.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Circle",
 };
 
@@ -38,19 +38,18 @@ The diagram turns that definition into the parts we use in calculations:
       }),
       color: "#9333ea",
       showPoints: false,
-      labels: [{ text: "Circle", at: 0, offset: [1.5, -1, 0] }],
     },
     {
       points: [
         { x: 0, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
+        { x: 1.5, y: -(3 * Math.sqrt(3)) / 2, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: true,
       labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] },
-        { text: <InlineMath math="r" />, at: 0, offset: [1.5, 0.3, 0] },
+        { text: <InlineMath math="O" />, at: 0, offset: [-0.35, 0.35, 0] },
+        { text: <InlineMath math="r" />, at: 0, offset: [0.95, -1.05, 0] },
       ],
     },
     {
@@ -64,12 +63,12 @@ The diagram turns that definition into the parts we use in calculations:
     },
     {
       points: [
-        { x: 2.12, y: 2.12, z: 0 },
-        { x: -2.12, y: 2.12, z: 0 },
+        { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2), z: 0 },
+        { x: -3 / Math.sqrt(2), y: 3 / Math.sqrt(2), z: 0 },
       ],
       smooth: false,
       color: "#d97706",
-      labels: [{ text: "chord", at: 0, offset: [0, 0.5, 0] }],
+      labels: [{ text: "chord", at: 0, offset: [-3 / Math.sqrt(2), 0.4, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
@@ -103,17 +102,9 @@ A circular arc is the part of a circle between two points on its circumference. 
         };
       }),
       color: "#7c3aed",
-      showPoints: false,
-      labels: [{ text: "Minor arc", at: 45, offset: [1, 1, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 3, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#0d9488",
+      pointIndices: [0, 90],
       showPoints: true,
+      labels: [{ text: "Minor arc", at: 45, offset: [0.7, 1.45, 0] }],
     },
     {
       smooth: false,
@@ -131,27 +122,9 @@ A circular arc is the part of a circle between two points on its circumference. 
         {
           text: "Major arc",
           at: 135,
-          offset: [-1, -1, 0],
+          offset: [3 / Math.sqrt(2), -1.5, 0],
         },
       ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 3, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
     },
   ]}
   cameraPosition={[0, 0, 10]}
@@ -200,13 +173,13 @@ A central angle has its vertex at the center of the circle, with two radii as it
       showPoints: true,
       labels: [
         { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="A" />, at: 1, offset: [0.5, 0, 0] },
+        { text: <InlineMath math="A" />, at: 1, offset: [0.35, -0.35, 0] },
       ],
     },
     {
       points: [
         { x: 0, y: 0, z: 0 },
-        { x: 2.12, y: 2.12, z: 0 },
+        { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2), z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
@@ -225,7 +198,7 @@ A central angle has its vertex at the center of the circle, with two radii as it
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <>Arc <InlineMath math="AB" /></>, at: 22, offset: [1.5, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="\overset{\frown}{AB}" />, at: 22, offset: [0.5, 0.2, 0] }],
     },
     {
       smooth: false,
@@ -278,20 +251,20 @@ An inscribed angle has its vertex on the circle, with two chords as its sides.
     {
       points: [
         { x: 3, y: 0, z: 0 },
-        { x: -2.12, y: -2.12, z: 0 },
+        { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2), z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: true,
       labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0, 0] },
+        { text: <InlineMath math="A" />, at: 0, offset: [0.35, -0.35, 0] },
         { text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] },
       ],
     },
     {
       points: [
-        { x: 2.12, y: 2.12, z: 0 },
-        { x: -2.12, y: -2.12, z: 0 },
+        { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2), z: 0 },
+        { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2), z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
@@ -310,7 +283,7 @@ An inscribed angle has its vertex on the circle, with two chords as its sides.
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <>Arc <InlineMath math="AB" /></>, at: 22, offset: [1.5, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="\overset{\frown}{AB}" />, at: 22, offset: [0.5, 0.2, 0] }],
     },
     {
       points: [
@@ -324,7 +297,7 @@ An inscribed angle has its vertex on the circle, with two chords as its sides.
     {
       points: [
         { x: 0, y: 0, z: 0 },
-        { x: 2.12, y: 2.12, z: 0 },
+        { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2), z: 0 },
       ],
       smooth: false,
       color: "#0891b2",
@@ -338,7 +311,7 @@ An inscribed angle has its vertex on the circle, with two chords as its sides.
 ## Relationship Between Central Angle and Inscribed Angle
 
 <MathContainer>
-  <BlockMath math="\text{Inscribed angle} = \frac{1}{2} \times \text{Central angle}" />
+  <BlockMath math="\begin{aligned} &amp;\text{Inscribed angle} \\ &amp;= \frac{1}{2} \times \text{Central angle} \end{aligned}" />
   <BlockMath math="\angle ACB = \frac{1}{2} \times \angle AOB" />
 </MathContainer>
 
@@ -378,7 +351,7 @@ When a central angle and an inscribed angle intercept the same arc, the inscribe
       showPoints: true,
       labels: [
         { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="A" />, at: 1, offset: [0.5, 0, 0] },
+        { text: <InlineMath math="A" />, at: 1, offset: [0.35, -0.35, 0] },
       ],
     },
     {
@@ -394,7 +367,7 @@ When a central angle and an inscribed angle intercept the same arc, the inscribe
     {
       points: [
         { x: 3, y: 0, z: 0 },
-        { x: -2.12, y: -2.12, z: 0 },
+        { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2), z: 0 },
       ],
       smooth: false,
       color: "#0891b2",
@@ -404,7 +377,7 @@ When a central angle and an inscribed angle intercept the same arc, the inscribe
     {
       points: [
         { x: 3 * Math.cos((80 * Math.PI) / 180), y: 3 * Math.sin((80 * Math.PI) / 180), z: 0 },
-        { x: -2.12, y: -2.12, z: 0 },
+        { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2), z: 0 },
       ],
       smooth: false,
       color: "#0891b2",
@@ -499,7 +472,7 @@ The diagram shows the two radii, the intercepted arc, and the sector they enclos
     {
       points: [
         { x: 0, y: 0, z: 0 },
-        { x: 1.5, y: 2.6, z: 0 },
+        { x: 1.5, y: (3 * Math.sqrt(3)) / 2, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
@@ -517,7 +490,7 @@ The diagram shows the two radii, the intercepted arc, and the sector they enclos
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: "Sector", at: 30, offset: [0, 0, 0] }],
+      labels: [{ text: "Sector", at: 30, offset: [-1.35, -0.75, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
@@ -567,15 +540,15 @@ Given: <InlineMath math="r = 14 \text{ cm}" />, <InlineMath math="\alpha = 90^\c
 
 1. The diameter is not needed here. What matters is that both angles intercept the same arc. The central angle is twice the inscribed angle:
 
-   <BlockMath math="\text{central angle}=2(30^\circ)=60^\circ" />
+   <BlockMath math="\begin{aligned} \text{central angle} &amp;=2(30^\circ) \\ &amp;=60^\circ \end{aligned}" />
 
    So the central angle measures <InlineMath math="60^\circ" />.
 
 2. The angle <InlineMath math="120^\circ" /> is one third of a full turn because <InlineMath math="\frac{120^\circ}{360^\circ}=\frac{1}{3}" />. Apply that fraction first to the circumference, then to the area of the circle.
 
    <MathContainer>
-     <BlockMath math="l=\frac{120^\circ}{360^\circ}(2\pi)(21)=14\pi\text{ cm}\approx43.98\text{ cm}" />
-     <BlockMath math="L=\frac{120^\circ}{360^\circ}\pi(21)^2=147\pi\text{ cm}^2\approx461.81\text{ cm}^2" />
+     <BlockMath math="\begin{aligned} l &amp;=\frac{120^\circ}{360^\circ}(2\pi)(21) \\ &amp;=14\pi\text{ cm} \\ &amp;\approx43.98\text{ cm} \end{aligned}" />
+     <BlockMath math="\begin{aligned} L &amp;=\frac{120^\circ}{360^\circ}\pi(21)^2 \\ &amp;=147\pi\text{ cm}^2 \\ &amp;\approx461.81\text{ cm}^2 \end{aligned}" />
    </MathContainer>
 
    Therefore, the arc length is <InlineMath math="14\pi\text{ cm}" /> and the sector area is <InlineMath math="147\pi\text{ cm}^2" />.

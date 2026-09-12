@@ -3,7 +3,7 @@ export const metadata = {
   description: "Subtract corresponding matrix entries, check the required dimensions, and apply the operation in examples and exercises.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Matrix",
 };
 
@@ -93,7 +93,9 @@ Matrix addition is commutative and associative, but matrix subtraction generally
 
 1.  **Not Commutative**: In general, the order of matrix subtraction significantly affects the result. This means <InlineMath math="A - B" /> is not equal to <InlineMath math="B - A" />, except in special cases (e.g., if <InlineMath math="A=B" />).
 
-    <BlockMath math="A - B \neq B - A \quad (\text{in general})" />
+    In general:
+
+    <BlockMath math="A - B \neq B - A" />
 
     For example, from matrices <InlineMath math="P" /> and <InlineMath math="Q" /> above:
 
@@ -111,7 +113,9 @@ Matrix addition is commutative and associative, but matrix subtraction generally
 
 2.  **Not Associative**: The grouping in the subtraction of three or more matrices also affects the final result. In general, <InlineMath math="(A - B) - C" /> is not equal to <InlineMath math="A - (B - C)" />.
 
-    <BlockMath math="(A - B) - C \neq A - (B - C) \quad (\text{in general})" />
+    In general:
+
+    <BlockMath math="(A - B) - C \neq A - (B - C)" />
 
     This is because <InlineMath math="(A - B) - C = A - B - C" />, whereas <InlineMath math="A - (B - C) = A - B + C" />.
 
@@ -121,7 +125,7 @@ By converting subtraction into addition with the opposite matrix, we can use add
 
 ## Exercises
 
-**Problem** <InlineMath math="1" />
+**Problem** 1
 
 Given the following matrices:
 
@@ -132,13 +136,13 @@ Given the following matrices:
 
 Determine the result of <InlineMath math="M-N" />.
 
-**Problem** <InlineMath math="2" />
+**Problem** 2
 
 Determine the values of <InlineMath math="x, y," /> and <InlineMath math="z" /> from the following matrix equation:
 
-<BlockMath math="\begin{bmatrix} 2x & 7 \\ y-1 & 5 \end{bmatrix} - \begin{bmatrix} 3 & z \\ 4 & -2x \end{bmatrix} = \begin{bmatrix} 5 & 10 \\ -3 & 13 \end{bmatrix}" />
+<BlockMath math="\begin{aligned} &amp;\begin{bmatrix} 2x &amp; 7 \\ y-1 &amp; 5 \end{bmatrix} - \begin{bmatrix} 3 &amp; z \\ 4 &amp; -2x \end{bmatrix} \\ &amp;= \begin{bmatrix} 5 &amp; 10 \\ -3 &amp; 13 \end{bmatrix} \end{aligned}" />
 
-**Problem** <InlineMath math="3" />
+**Problem** 3
 
 Given three matrices:
 
@@ -152,7 +156,7 @@ Calculate <InlineMath math="(A-B)-C" /> and <InlineMath math="A-(B-C)" />. Are t
 
 ### Worked Solutions
 
-**Problem** <InlineMath math="1" />
+**Problem** 1
 
 Given:
 
@@ -164,22 +168,22 @@ Given:
 Then, <InlineMath math="M-N" /> is:
 
 <MathContainer>
-  <BlockMath math="M-N = \begin{bmatrix} 4 & -2 & 0 \\ 1 & 5 & 3 \end{bmatrix} - \begin{bmatrix} -1 & 1 & -2 \\ 6 & 0 & 7 \end{bmatrix}" />
+  <BlockMath math="\begin{aligned} &amp;M -N = \begin{bmatrix} 4 &amp; -2 &amp; 0 \\ 1 &amp; 5 &amp; 3 \end{bmatrix} \\ &amp;- \begin{bmatrix} -1 &amp; 1 &amp; -2 \\ 6 &amp; 0 &amp; 7 \end{bmatrix} \end{aligned}" />
   <BlockMath math="= \begin{bmatrix} 4-(-1) & -2-1 & 0-(-2) \\ 1-6 & 5-0 & 3-7 \end{bmatrix}" />
   <BlockMath math="= \begin{bmatrix} 4+1 & -3 & 0+2 \\ -5 & 5 & -4 \end{bmatrix}" />
   <BlockMath math="= \begin{bmatrix} 5 & -3 & 2 \\ -5 & 5 & -4 \end{bmatrix}" />
 </MathContainer>
 
-**Problem** <InlineMath math="2" />
+**Problem** 2
 
 Given the matrix equation:
 
-<BlockMath math="\begin{bmatrix} 2x & 7 \\ y-1 & 5 \end{bmatrix} - \begin{bmatrix} 3 & z \\ 4 & -2x \end{bmatrix} = \begin{bmatrix} 5 & 10 \\ -3 & 13 \end{bmatrix}" />
+<BlockMath math="\begin{aligned} &amp;\begin{bmatrix} 2x &amp; 7 \\ y-1 &amp; 5 \end{bmatrix} - \begin{bmatrix} 3 &amp; z \\ 4 &amp; -2x \end{bmatrix} \\ &amp;= \begin{bmatrix} 5 &amp; 10 \\ -3 &amp; 13 \end{bmatrix} \end{aligned}" />
 
 Perform the subtraction operation on the left side:
 
 <MathContainer>
-  <BlockMath math="\begin{bmatrix} 2x-3 & 7-z \\ (y-1)-4 & 5-(-2x) \end{bmatrix} = \begin{bmatrix} 5 & 10 \\ -3 & 13 \end{bmatrix}" />
+  <BlockMath math="\begin{aligned} &amp;\begin{bmatrix} 2x-3 &amp; 7-z \\ (y-1)-4 &amp; 5-(-2x) \end{bmatrix} \\ &amp;= \begin{bmatrix} 5 &amp; 10 \\ -3 &amp; 13 \end{bmatrix} \end{aligned}" />
   <BlockMath math="\begin{bmatrix} 2x-3 & 7-z \\ y-5 & 5+2x \end{bmatrix} = \begin{bmatrix} 5 & 10 \\ -3 & 13 \end{bmatrix}" />
 </MathContainer>
 
@@ -218,7 +222,7 @@ The solution is <InlineMath math="x=4" />, <InlineMath math="y=2" />, and <Inlin
 
 Substituting these values into the original equation verifies all four corresponding entries.
 
-**Problem** <InlineMath math="3" />
+**Problem** 3
 
 Given:
 
@@ -240,8 +244,8 @@ First, <InlineMath math="A-B" />:
 Then, <InlineMath math="(A-B)-C" />:
 
 <MathContainer>
-  <BlockMath math="(A-B)-C = \begin{bmatrix} -2 & 2 \\ -5 & 0 \end{bmatrix} - \begin{bmatrix} -4 & 0 \\ 2 & -3 \end{bmatrix}" />
-  <BlockMath math="= \begin{bmatrix} -2-(-4) & 2-0 \\ -5-2 & 0-(-3) \end{bmatrix} = \begin{bmatrix} -2+4 & 2 \\ -7 & 0+3 \end{bmatrix} = \begin{bmatrix} 2 & 2 \\ -7 & 3 \end{bmatrix}" />
+  <BlockMath math="\begin{aligned} &amp;(A-B) -C = \begin{bmatrix} -2 &amp; 2 \\ -5 &amp; 0 \end{bmatrix} \\ &amp;- \begin{bmatrix} -4 &amp; 0 \\ 2 &amp; -3 \end{bmatrix} \end{aligned}" />
+  <BlockMath math="\begin{aligned}  &amp;= \begin{bmatrix} -2-(-4) &amp; 2-0 \\ -5-2 &amp; 0-(-3) \end{bmatrix} \\ &amp;= \begin{bmatrix} -2+4 &amp; 2 \\ -7 &amp; 0+3 \end{bmatrix} \\ &amp;= \begin{bmatrix} 2 &amp; 2 \\ -7 &amp; 3 \end{bmatrix} \end{aligned}" />
 </MathContainer>
 
 Calculate <InlineMath math="A-(B-C)" />:
@@ -250,7 +254,7 @@ First, <InlineMath math="B-C" />:
 
 <MathContainer>
   <BlockMath math="B-C = \begin{bmatrix} 3 & -2 \\ 5 & 1 \end{bmatrix} - \begin{bmatrix} -4 & 0 \\ 2 & -3 \end{bmatrix}" />
-  <BlockMath math="= \begin{bmatrix} 3-(-4) & -2-0 \\ 5-2 & 1-(-3) \end{bmatrix} = \begin{bmatrix} 3+4 & -2 \\ 3 & 1+3 \end{bmatrix} = \begin{bmatrix} 7 & -2 \\ 3 & 4 \end{bmatrix}" />
+  <BlockMath math="\begin{aligned}  &amp;= \begin{bmatrix} 3-(-4) &amp; -2-0 \\ 5-2 &amp; 1-(-3) \end{bmatrix} \\ &amp;= \begin{bmatrix} 3+4 &amp; -2 \\ 3 &amp; 1+3 \end{bmatrix} \\ &amp;= \begin{bmatrix} 7 &amp; -2 \\ 3 &amp; 4 \end{bmatrix} \end{aligned}" />
 </MathContainer>
 
 Then, <InlineMath math="A-(B-C)" />:

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hubungkan deret geometri tak hingga dengan lintasan bola memantul, lalu turunkan syarat konvergen dan rumus jumlahnya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-08",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Barisan dan Deret",
 };
 
@@ -44,7 +44,7 @@ Untuk deret tak hingga, kita mengamati <InlineMath math="S_n" /> ketika <InlineM
 
 Jadi, untuk <InlineMath math="n \to \infty" /> dan <InlineMath math="-1 < r < 1" />, kita punya <InlineMath math="r^n \to 0" />. Rumusnya menjadi:
 
-<BlockMath math="S_\infty = \lim_{n \to \infty} S_n = \lim_{n \to \infty} \frac{a(1 - r^n)}{1 - r} = \frac{a(1 - 0)}{1 - r}" />
+<BlockMath math="\begin{aligned} S_\infty &amp;= \lim_{n \to \infty} S_n \\ &amp;= \lim_{n \to \infty} \frac{a(1 - r^n)}{1 - r} \\ &amp;= \frac{a(1 - 0)}{1 - r} \end{aligned}" />
 
 Sehingga, rumus jumlah deret geometri tak hingga yang konvergen adalah:
 
@@ -85,15 +85,16 @@ Kita bisa menghitung total lintasan bola menggunakan rumus <InlineMath math="S_\
     - Rasio (<InlineMath math="r_{\uparrow}" />) adalah <InlineMath math="r" />
     - Jumlah lintasan naik: <InlineMath math="S_{\uparrow}=\frac{a_{\uparrow}}{1-r_{\uparrow}}=\frac{ar}{1-r}" />
 
+Panjang lintasan total adalah jumlah seluruh lintasan turun ditambah seluruh lintasan naik.
+
 <MathContainer>
-  <BlockMath math="\text{Total Panjang Lintasan} = \text{Jumlah Lintasan Turun} + \text{Jumlah Lintasan Naik}" />
-  <BlockMath math="\text{Total} = S_{\downarrow} + S_{\uparrow} = \frac{a}{1 - r} + \frac{ar}{1 - r}" />
+    <BlockMath math="\begin{aligned} \text{Total} &amp;= S_{\downarrow} + S_{\uparrow} \\ &amp;= \frac{a}{1 - r} + \frac{ar}{1 - r} \end{aligned}" />
   <BlockMath math="\text{Total} = \frac{a(1 + r)}{1 - r}" />
 </MathContainer>
 
 Untuk contoh bola tenis dengan <InlineMath math="a = 1 \text{ meter}" /> dan <InlineMath math="r = \frac{1}{4}" />:
 
-<BlockMath math="\text{Total} = \frac{1(1 + \frac{1}{4})}{1 - \frac{1}{4}} = \frac{1(\frac{5}{4})}{\frac{3}{4}} = \frac{5/4}{3/4} = \frac{5}{4} \times \frac{4}{3} = \frac{5}{3}" />
+<BlockMath math="\begin{aligned}\text{Total} &= \frac{1(1 + \frac{1}{4})}{1 - \frac{1}{4}} \\ &= \frac{1(\frac{5}{4})}{\frac{3}{4}} \\ &= \frac{5/4}{3/4} \\ &= \frac{5}{4} \times \frac{4}{3} \\ &= \frac{5}{3}\end{aligned}" />
 
 Jadi, model tersebut menghasilkan total panjang lintasan <InlineMath math="\frac{5}{3} \text{ meter}" />.
 
@@ -103,8 +104,8 @@ Ini adalah model matematika ideal. Bola nyata tidak menyelesaikan tak hingga ban
 Total lintasan juga dapat dihitung sebagai lintasan turun pertama ditambah <InlineMath math="2 \text{ kali}" /> jumlah semua lintasan naik.
 
 <MathContainer>
-  <BlockMath math="\text{Total} = a + 2 \times S_{\uparrow} = a + 2 \times \left( \frac{ar}{1 - r} \right)" />
-  <BlockMath math="\text{Total} = 1 + 2 \times \left( \frac{1 \times \frac{1}{4}}{1 - \frac{1}{4}} \right) = 1 + 2 \times \left( \frac{1/4}{3/4} \right) = 1 + 2 \times \left( \frac{1}{3} \right) = 1 + \frac{2}{3} = \frac{5}{3}" />
+  <BlockMath math="\begin{aligned} \text{Total} &amp;= a + 2 \times S_{\uparrow} \\ &amp;= a + 2 \times \left( \frac{ar}{1 - r} \right) \end{aligned}" />
+  <BlockMath math="\begin{aligned} \text{Total} &amp;= 1 + 2 \times \left( \frac{1 \times \frac{1}{4}}{1 - \frac{1}{4}} \right) \\ &amp;= 1 + 2 \times \left( \frac{1/4}{3/4} \right) \\ &amp;= 1 + 2 \times \left( \frac{1}{3} \right) \\ &amp;= 1 + \frac{2}{3} \\ &amp;= \frac{5}{3} \end{aligned}" />
 </MathContainer>
 
 Kedua cara memberi hasil yang sama.

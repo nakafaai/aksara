@@ -3,7 +3,7 @@ export const metadata = {
   description: "Susun garis singgung lingkaran dari titik sentuh, gradien, atau titik di luar lingkaran, lengkap dengan pembahasan setiap langkah.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Geometri Analitik",
 };
 
@@ -67,7 +67,7 @@ Jika titik sentuh diketahui, pastikan dahulu bahwa titik itu memang terletak pad
     },
     {
       points: (() => {
-        const angle = Math.PI * 5/6;
+        const angle = (Math.PI * 5) / 6;
         const radius = 4;
         const pointX = radius * Math.cos(angle);
         const pointY = radius * Math.sin(angle);
@@ -76,23 +76,32 @@ Jika titik sentuh diketahui, pastikan dahulu bahwa titik itu memang terletak pad
         const perpSlope = -pointX / pointY;
 
         const range = 5;
-        return [
+        const points = [
           {
             x: pointX - range,
-            y: pointY + perpSlope * (-range),
+            y: pointY + perpSlope * -range,
             z: 0,
           },
           {
             x: pointX + range,
             y: pointY + perpSlope * range,
             z: 0,
-          }
+          },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       color: "#059669",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Singgung", at: 0, offset: [4, 3.5, 0] }],
+      labels: [{ text: "Singgung", at: 1, offset: [4, 3.5, 0] }],
     },
     {
       points: (() => {
@@ -146,7 +155,7 @@ Mengapa rumus ini bekerja? Jari-jari <InlineMath math="OM" /> memiliki vektor ar
 
 Untuk lingkaran <InlineMath math="(x-h)^2+(y-k)^2=r^2" /> dengan titik singgung <InlineMath math="M(p,q)" />, terapkan gagasan yang sama terhadap pusat <InlineMath math="(h,k)" />:
 
-<BlockMath math="(p-h)(x-h) + (q-k)(y-k) = r^2" />
+<BlockMath math="\begin{aligned} &amp;(p-h)(x-h) + (q-k)(y-k) \\ &amp;= r^2 \end{aligned}" />
 
 > Bentuk ini langsung memakai jari-jari sebagai vektor normal. Rumus tersebut juga berlaku untuk garis singgung vertikal yang tidak memiliki gradien berhingga.
 
@@ -184,36 +193,58 @@ Jika gradien diketahui tetapi titik potong sumbu belum diketahui, gunakan syarat
     {
       points: (() => {
         const m = -0.75; // gradien yang diinginkan
-        const h = 1, k = -0.5, r = 3.5;
-        const c1 = k - m*h + r * Math.sqrt(1 + m * m);
+        const h = 1,
+          k = -0.5,
+          r = 3.5;
+        const c1 = k - m * h + r * Math.sqrt(1 + m * m);
         const xRange = 8;
         const xStart = -2;
-        return [
+        const points = [
           { x: xStart, y: m * xStart + c1, z: 0 },
-          { x: xStart + xRange, y: m * (xStart + xRange) + c1, z: 0 }
+          { x: xStart + xRange, y: m * (xStart + xRange) + c1, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       color: "#0284c7",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Singgung Atas", at: 1, offset: [1, 1, 0] }],
+      labels: [{ text: "Singgung Atas", at: 2, offset: [-3, 4.8, 0] }],
     },
     {
       points: (() => {
         const m = -0.75; // gradien yang diinginkan
-        const h = 1, k = -0.5, r = 3.5;
-        const c2 = k - m*h - r * Math.sqrt(1 + m * m);
+        const h = 1,
+          k = -0.5,
+          r = 3.5;
+        const c2 = k - m * h - r * Math.sqrt(1 + m * m);
         const xRange = 8;
         const xStart = -2;
-        return [
+        const points = [
           { x: xStart, y: m * xStart + c2, z: 0 },
-          { x: xStart + xRange, y: m * (xStart + xRange) + c2, z: 0 }
+          { x: xStart + xRange, y: m * (xStart + xRange) + c2, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 3,
+          y: (points[1].y - points[0].y) * 3,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       color: "#059669",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Singgung Bawah", at: 0, offset: [-0.5, -1.5, 0] }],
+      labels: [{ text: "Singgung Bawah", at: 1, offset: [1, -2.4, 0] }],
     },
     {
       points: (() => {
@@ -408,54 +439,80 @@ Dari sebuah titik di luar lingkaran dapat ditarik tepat dua garis singgung. Jika
     {
       points: (() => {
         // Garis singgung pertama
-        const px = 3.5, py = 4, h = -1, k = 1.5, r = 2.8;
-        const a = (h - px)*(h - px) - r*r;
-        const b = -2*(h - px)*(k - py);
-        const c = (k - py)*(k - py) - r*r;
+        const px = 3.5,
+          py = 4,
+          h = -1,
+          k = 1.5,
+          r = 2.8;
+        const a = (h - px) * (h - px) - r * r;
+        const b = -2 * (h - px) * (k - py);
+        const c = (k - py) * (k - py) - r * r;
 
-        const discriminant = b*b - 4*a*c;
-        const m1 = (-b + Math.sqrt(discriminant)) / (2*a);
+        const discriminant = b * b - 4 * a * c;
+        const m1 = (-b + Math.sqrt(discriminant)) / (2 * a);
 
-        const c1 = py - m1*px;
+        const c1 = py - m1 * px;
 
         // Tentukan panjang garis yang konsisten
         const lineLength = 6;
 
-        return [
+        const points = [
           { x: px, y: py, z: 0 },
-          { x: px - lineLength, y: m1 * (px - lineLength) + c1, z: 0 }
+          { x: px - lineLength, y: m1 * (px - lineLength) + c1, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       color: "#0d9488",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Singgung 1", at: 0, offset: [0.5, -1, 0] }],
+      labels: [{ text: "Singgung 1", at: 1, offset: [0.5, -1, 0] }],
     },
     {
       points: (() => {
         // Garis singgung kedua
-        const px = 3.5, py = 4, h = -1, k = 1.5, r = 2.8;
-        const a = (h - px)*(h - px) - r*r;
-        const b = -2*(h - px)*(k - py);
-        const c = (k - py)*(k - py) - r*r;
+        const px = 3.5,
+          py = 4,
+          h = -1,
+          k = 1.5,
+          r = 2.8;
+        const a = (h - px) * (h - px) - r * r;
+        const b = -2 * (h - px) * (k - py);
+        const c = (k - py) * (k - py) - r * r;
 
-        const discriminant = b*b - 4*a*c;
-        const m2 = (-b - Math.sqrt(discriminant)) / (2*a);
+        const discriminant = b * b - 4 * a * c;
+        const m2 = (-b - Math.sqrt(discriminant)) / (2 * a);
 
-        const c2 = py - m2*px;
+        const c2 = py - m2 * px;
 
         // Gunakan panjang garis yang sama untuk konsistensi visual
         const lineLength = 6;
 
-        return [
+        const points = [
           { x: px, y: py, z: 0 },
-          { x: px - lineLength, y: m2 * (px - lineLength) + c2, z: 0 }
+          { x: px - lineLength, y: m2 * (px - lineLength) + c2, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 3,
+          y: (points[1].y - points[0].y) * 3,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       color: "#4f46e5",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Singgung 2", at: 0, offset: [0.5, 1, 0] }],
+      labels: [{ text: "Singgung 2", at: 1, offset: [0.5, 1, 0] }],
     },
     {
       points: [
@@ -487,12 +544,12 @@ Substitusikan bentuk tersebut ke persamaan lingkaran. Garis singgung bertemu lin
 
 <MathContainer>
   <BlockMath math="x^2 + (mx - mx_0 + y_0)^2 = r^2" />
-  <BlockMath math="(1 + m^2)x^2 + 2m(y_0 - mx_0)x + (y_0 - mx_0)^2 - r^2 = 0" />
+  <BlockMath math="\begin{aligned} &amp;(1 + m^2)x^2 + 2m(y_0 - mx_0)x \\ &amp;+ (y_0 - mx_0)^2 - r^2 = 0 \end{aligned}" />
 </MathContainer>
 
 Setelah disederhanakan, syarat diskriminan menjadi:
 
-<BlockMath math="(x_0^2 - r^2)m^2 - 2x_0y_0m + (y_0^2 - r^2) = 0" />
+<BlockMath math="\begin{aligned} &amp;(x_0^2 - r^2)m^2 - 2x_0y_0m + (y_0^2 - r^2) \\ &amp;= 0 \end{aligned}" />
 
 Akar-akarnya adalah gradien kedua garis singgung tak vertikal. Jika mungkin ada garis singgung vertikal, periksa <InlineMath math="x=x_0" /> secara terpisah karena garis itu tidak dapat ditulis sebagai <InlineMath math="y=mx+c" />.
 
@@ -500,29 +557,29 @@ Akar-akarnya adalah gradien kedua garis singgung tak vertikal. Jika mungkin ada 
 
 Tentukan kedua garis singgung lingkaran <InlineMath math="x^2+y^2=25" /> yang melalui titik <InlineMath math="A(7,1)" />.
 
-**Langkah** <InlineMath math="1" />: Pastikan <InlineMath math="A" /> berada di luar lingkaran.
+**Langkah** 1: Pastikan <InlineMath math="A" /> berada di luar lingkaran.
 
 <BlockMath math="7^2 + 1^2 = 49 + 1 = 50 > 25 \quad \checkmark" />
 
-**Langkah** <InlineMath math="2" />: Substitusikan <InlineMath math="x_0=7" />, <InlineMath math="y_0=1" />, dan <InlineMath math="r^2=25" /> ke persamaan kuadrat untuk <InlineMath math="m" />:
+**Langkah** 2: Substitusikan <InlineMath math="x_0=7" />, <InlineMath math="y_0=1" />, dan <InlineMath math="r^2=25" /> ke persamaan kuadrat untuk <InlineMath math="m" />:
 
 <MathContainer>
-  <BlockMath math="(49 - 25)m^2 - 2(7)(1)m + (1 - 25) = 0" />
+  <BlockMath math="\begin{aligned} &amp;(49 - 25)m^2 - 2(7)(1)m + (1 - 25) \\ &amp;= 0 \end{aligned}" />
   <BlockMath math="24m^2 - 14m - 24 = 0" />
   <BlockMath math="12m^2 - 7m - 12 = 0" />
 </MathContainer>
 
-**Langkah** <InlineMath math="3" />: Selesaikan persamaan kuadratnya.
+**Langkah** 3: Selesaikan persamaan kuadratnya.
 
-<BlockMath math="m = \frac{7 \pm \sqrt{49 + 576}}{24} = \frac{7 \pm \sqrt{625}}{24} = \frac{7 \pm 25}{24}" />
+<BlockMath math="\begin{aligned} m &amp;= \frac{7 \pm \sqrt{49 + 576}}{24} \\ &amp;= \frac{7 \pm \sqrt{625}}{24} \\ &amp;= \frac{7 \pm 25}{24} \end{aligned}" />
 
 Jadi <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> dan <InlineMath math="m_2 = \frac{-18}{24} = -\frac{3}{4}" />.
 
-**Langkah** <InlineMath math="4" />: Gunakan setiap gradien pada persamaan titik-gradien yang melalui <InlineMath math="A" />.
+**Langkah** 4: Gunakan setiap gradien pada persamaan titik-gradien yang melalui <InlineMath math="A" />.
 
 <MathContainer>
   <BlockMath math="y - 1 = \frac{4}{3}(x - 7) \Rightarrow 4x - 3y = 25" />
-  <BlockMath math="y - 1 = -\frac{3}{4}(x - 7) \Rightarrow 3x + 4y = 25" />
+  <BlockMath math="\begin{aligned} y - 1 &amp;= -\frac{3}{4}(x - 7) \\ &amp;\Rightarrow 3x + 4y \\ &amp;= 25 \end{aligned}" />
 </MathContainer>
 
 ## Latihan
@@ -543,16 +600,16 @@ Jadi <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> dan <InlineMath mat
 
    <BlockMath math="x \cdot x_1 + y \cdot y_1 = r^2" />
 
-   **Langkah** <InlineMath math="1" />: Substitusi koordinat titik singgung
+   **Langkah** 1: Substitusi koordinat titik singgung
 
    <MathContainer>
      <BlockMath math="x \cdot 2\sqrt{2} + y \cdot 2\sqrt{2} = 16" />
      <BlockMath math="2\sqrt{2}x + 2\sqrt{2}y = 16" />
    </MathContainer>
 
-   **Langkah** <InlineMath math="2" />: Sederhanakan dengan membagi kedua ruas dengan <InlineMath math="2\sqrt{2}" />
+   **Langkah** 2: Sederhanakan dengan membagi kedua ruas dengan <InlineMath math="2\sqrt{2}" />
 
-   <BlockMath math="x + y = \frac{16}{2\sqrt{2}} = \frac{8}{\sqrt{2}} = \frac{8\sqrt{2}}{2} = 4\sqrt{2}" />
+   <BlockMath math="\begin{aligned} x + y &amp;= \frac{16}{2\sqrt{2}} \\ &amp;= \frac{8}{\sqrt{2}} \\ &amp;= \frac{8\sqrt{2}}{2} \\ &amp;= 4\sqrt{2} \end{aligned}" />
 
    Jadi persamaan garis singgungnya adalah <InlineMath math="x + y = 4\sqrt{2}" />.
 
@@ -562,11 +619,11 @@ Jadi <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> dan <InlineMath mat
 
    <BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
 
-   **Langkah** <InlineMath math="1" />: Hitung nilai <InlineMath math="\sqrt{1 + m^2}" />
+   **Langkah** 1: Hitung nilai <InlineMath math="\sqrt{1 + m^2}" />
 
-   <BlockMath math="\sqrt{1 + m^2} = \sqrt{1 + \left(-\frac{1}{2}\right)^2} = \sqrt{1 + \frac{1}{4}} = \sqrt{\frac{5}{4}} = \frac{\sqrt{5}}{2}" />
+   <BlockMath math="\begin{aligned} \sqrt{1 + m^2} &amp;= \sqrt{1 + \left(-\frac{1}{2}\right)^2} \\ &amp;= \sqrt{1 + \frac{1}{4}} \\ &amp;= \sqrt{\frac{5}{4}} \\ &amp;= \frac{\sqrt{5}}{2} \end{aligned}" />
 
-   **Langkah** <InlineMath math="2" />: Substitusi ke rumus
+   **Langkah** 2: Substitusi ke rumus
 
    <BlockMath math="y = -\frac{1}{2}x \pm 3 \cdot \frac{\sqrt{5}}{2} = -\frac{1}{2}x \pm \frac{3\sqrt{5}}{2}" />
 
@@ -576,32 +633,32 @@ Jadi <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> dan <InlineMath mat
 
    Lingkaran <InlineMath math="(x-3)^2 + (y-4)^2 = 25" /> memiliki pusat <InlineMath math="(3,4)" /> dan jari-jari <InlineMath math="r = 5" />.
 
-   **Langkah** <InlineMath math="1" />: Cek posisi titik <InlineMath math="(11,10)" />
+   **Langkah** 1: Cek posisi titik <InlineMath math="(11,10)" />
 
-   <BlockMath math="(11-3)^2 + (10-4)^2 = 8^2 + 6^2 = 64 + 36 = 100 > 25" />
+   <BlockMath math="\begin{aligned} &amp;(11-3)^2 + (10-4)^2 \\ &amp;= 8^2 + 6^2 \\ &amp;= 64 + 36 \\ &amp;= 100 > 25 \end{aligned}" />
 
    Titik di luar lingkaran.
 
-   **Langkah** <InlineMath math="2" />: Geser pusat ke titik asal. Relatif terhadap pusat, titik <InlineMath math="(11,10)" /> memiliki koordinat <InlineMath math="(8,6)" />.
+   **Langkah** 2: Geser pusat ke titik asal. Relatif terhadap pusat, titik <InlineMath math="(11,10)" /> memiliki koordinat <InlineMath math="(8,6)" />.
 
-   **Langkah** <InlineMath math="3" />: Susun persamaan kuadrat untuk gradien dari <InlineMath math="(8,6)" /> ke lingkaran <InlineMath math="x^2 + y^2 = 25" />.
+   **Langkah** 3: Susun persamaan kuadrat untuk gradien dari <InlineMath math="(8,6)" /> ke lingkaran <InlineMath math="x^2 + y^2 = 25" />.
 
    <MathContainer>
-     <BlockMath math="(8^2 - 25)m^2 - 2(8)(6)m + (6^2 - 25) = 0" />
+     <BlockMath math="\begin{aligned} &amp;(8^2 - 25)m^2 - 2(8)(6)m \\ &amp;+ (6^2 - 25) = 0 \end{aligned}" />
      <BlockMath math="39m^2 - 96m + 11 = 0" />
    </MathContainer>
 
-   **Langkah** <InlineMath math="4" />: Selesaikan dengan rumus kuadrat.
+   **Langkah** 4: Selesaikan dengan rumus kuadrat.
 
    <MathContainer>
-     <BlockMath math="m = \frac{96 \pm \sqrt{96^2 - 4(39)(11)}}{2(39)} = \frac{96 \pm \sqrt{9216 - 1716}}{78}" />
+     <BlockMath math="\begin{aligned} m &amp;= \frac{96 \pm \sqrt{96^2 - 4(39)(11)}}{2(39)} \\ &amp;= \frac{96 \pm \sqrt{9216 - 1716}}{78} \end{aligned}" />
      <BlockMath math="m = \frac{96 \pm \sqrt{7500}}{78} = \frac{96 \pm 50\sqrt{3}}{78}" />
    </MathContainer>
 
-   **Langkah** <InlineMath math="5" />: Sederhanakan gradien dan gunakan bentuk titik-gradien melalui <InlineMath math="(11,10)" />.
+   **Langkah** 5: Sederhanakan gradien dan gunakan bentuk titik-gradien melalui <InlineMath math="(11,10)" />.
 
    <MathContainer>
-     <BlockMath math="m_1 = \frac{48 + 25\sqrt{3}}{39} \quad \text{dan} \quad m_2 = \frac{48 - 25\sqrt{3}}{39}" />
+     <BlockMath math="\begin{aligned} &amp;m_1 = \frac{48 + 25\sqrt{3}}{39} \\ &amp;\text{dan} \\ &amp;m_2 = \frac{48 - 25\sqrt{3}}{39} \end{aligned}" />
      <BlockMath math="y-10=\frac{48+25\sqrt{3}}{39}(x-11)" />
      <BlockMath math="y-10=\frac{48-25\sqrt{3}}{39}(x-11)" />
    </MathContainer>
@@ -610,19 +667,19 @@ Jadi <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> dan <InlineMath mat
 
 4. **Penyelesaian**:
 
-   **Langkah** <InlineMath math="1" />: Lengkapi kuadrat agar persamaan lingkaran berbentuk standar.
+   **Langkah** 1: Lengkapi kuadrat agar persamaan lingkaran berbentuk standar.
 
    <MathContainer>
      <BlockMath math="x^2 + y^2 - 6x - 8y = 0" />
-     <BlockMath math="(x^2 - 6x + 9) + (y^2 - 8y + 16) = 9 + 16" />
+     <BlockMath math="\begin{aligned} &amp;(x^2 - 6x + 9) + (y^2 - 8y + 16) \\ &amp;= 9 + 16 \end{aligned}" />
      <BlockMath math="(x-3)^2 + (y-4)^2 = 25" />
    </MathContainer>
 
    Pusat <InlineMath math="(3,4)" />, jari-jari <InlineMath math="r = 5" />.
 
-   **Langkah** <InlineMath math="2" />: Baca gradien garis yang diberikan. Karena <InlineMath math="3x + 4y = 7" /> dapat ditulis sebagai <InlineMath math="y = -\frac{3}{4}x + \frac{7}{4}" />, setiap garis sejajar memiliki gradien <InlineMath math="m = -\frac{3}{4}" />.
+   **Langkah** 2: Baca gradien garis yang diberikan. Karena <InlineMath math="3x + 4y = 7" /> dapat ditulis sebagai <InlineMath math="y = -\frac{3}{4}x + \frac{7}{4}" />, setiap garis sejajar memiliki gradien <InlineMath math="m = -\frac{3}{4}" />.
 
-   **Langkah** <InlineMath math="3" />: Substitusikan pusat <InlineMath math="(3,4)" />, jari-jari, dan gradien ke rumus garis singgung.
+   **Langkah** 3: Substitusikan pusat <InlineMath math="(3,4)" />, jari-jari, dan gradien ke rumus garis singgung.
 
    <MathContainer>
      <BlockMath math="y - 4 = -\frac{3}{4}(x - 3) \pm 5\sqrt{1 + \frac{9}{16}}" />
@@ -630,7 +687,7 @@ Jadi <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> dan <InlineMath mat
      <BlockMath math="y = -\frac{3}{4}x + \frac{9}{4} + 4 \pm \frac{25}{4}" />
    </MathContainer>
 
-   **Langkah** <InlineMath math="4" />: Sederhanakan kedua persamaan.
+   **Langkah** 4: Sederhanakan kedua persamaan.
 
    <MathContainer>
      <BlockMath math="y = -\frac{3}{4}x + \frac{50}{4} = -\frac{3}{4}x + \frac{25}{2}" />

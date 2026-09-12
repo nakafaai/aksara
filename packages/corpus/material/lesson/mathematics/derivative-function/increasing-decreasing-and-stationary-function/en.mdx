@@ -5,7 +5,7 @@ export const metadata = {
   description: "Use the sign of the first derivative to identify increasing and decreasing intervals and interpret stationary points.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Derivative Functions",
 };
 
@@ -45,13 +45,13 @@ Determine the intervals for which the function <InlineMath math="f(x) = x^3 - 3x
 
 **Solution:**
 
-**Step** <InlineMath math="1" />: Find the first derivative
+**Step** 1: Find the first derivative
 
 First, we differentiate the function <InlineMath math="f(x)" />.
 
 <BlockMath math="f'(x) = 3x^2 - 3" />
 
-**Step** <InlineMath math="2" />: Find the stationary points
+**Step** 2: Find the stationary points
 
 Stationary points occur when <InlineMath math="f'(x) = 0" />.
 
@@ -63,7 +63,7 @@ Stationary points occur when <InlineMath math="f'(x) = 0" />.
 
 From this, we get the stationary points at <InlineMath math="x = 1" /> and <InlineMath math="x = -1" />.
 
-**Step** <InlineMath math="3" />: Create a number line and test intervals
+**Step** 3: Create a number line and test intervals
 
 We place the stationary points on a number line. These points divide the line into three intervals. We take a test point from each interval to find the sign of <InlineMath math="f'(x)" /> (positive or negative).
 
@@ -79,7 +79,7 @@ We place the stationary points on a number line. These points divide the line in
 
     Take <InlineMath math="x=2" />. <InlineMath math="f'(2) = 3(2)^2 - 3 = 9" /> (Positive, function is increasing).
 
-**Step** <InlineMath math="4" />: Conclude the intervals
+**Step** 4: Conclude the intervals
 
 Based on the tests, we can conclude:
 
@@ -99,9 +99,8 @@ Based on the tests, we can conclude:
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = -2 + i * 0.05;
+      points: Array.from({ length: 301 }, (_, sampleIndex) => {
+        const x = -4 + sampleIndex / 100;
         const y = x ** 3 - 3 * x;
         return { x, y, z: 0 };
       }),
@@ -110,7 +109,7 @@ Based on the tests, we can conclude:
       labels: [
         {
           text: "Increasing",
-          at: 25,
+          at: 225,
           offset: [-1, 1, 0],
         },
       ],
@@ -134,9 +133,8 @@ Based on the tests, we can conclude:
     },
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = 1 + i * 0.05;
+      points: Array.from({ length: 301 }, (_, sampleIndex) => {
+        const x = 1 + sampleIndex / 100;
         const y = x ** 3 - 3 * x;
         return { x, y, z: 0 };
       }),
@@ -157,7 +155,7 @@ Based on the tests, we can conclude:
       labels: [
         {
           text: <>Stationary <InlineMath math="(-1,2)" /></>,
-          offset: [-2.5, 0.5, 0],
+          offset: [-0.3, 0.75, 0],
         },
       ],
     },
@@ -168,7 +166,7 @@ Based on the tests, we can conclude:
       labels: [
         {
           text: <>Stationary <InlineMath math="(1,-2)" /></>,
-          offset: [2.5, -0.5, 0],
+          offset: [0.3, -0.75, 0],
         },
       ],
     },

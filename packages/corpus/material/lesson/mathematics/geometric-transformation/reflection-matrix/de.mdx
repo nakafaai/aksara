@@ -4,7 +4,7 @@ export const metadata = {
   description: "Leite die vier grundlegenden Spiegelungsmatrizen her und wende sie auf Punkte und Dreiecke an.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Geometrische Transformation",
 };
 
@@ -80,7 +80,7 @@ Bestimme das Bild von <InlineMath math="(3,-4)" /> bei der Spiegelung an der <In
 
 Wir setzen den Punkt als Spaltenvektor in die Spiegelungsmatrix der <InlineMath math="x" />-Achse ein:
 
-<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 3 \\ -4 \end{pmatrix} = \begin{pmatrix} (1)(3) + (0)(-4) \\ (0)(3) + (-1)(-4) \end{pmatrix} = \begin{pmatrix} 3 \\ 4 \end{pmatrix}" />
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 3 \\ -4 \end{pmatrix} \\ &amp;= \begin{pmatrix} (1)(3) + (0)(-4) \\ (0)(3) + (-1)(-4) \end{pmatrix} \\ &amp;= \begin{pmatrix} 3 \\ 4 \end{pmatrix} \end{aligned}" />
 
 Somit ist das Bild <InlineMath math="(3,4)" />.
 
@@ -94,9 +94,14 @@ Die Spiegelungsmatrix für die <InlineMath math="y" />-Achse ist <InlineMath mat
 
 Wir schreiben die Eckpunkte des Dreiecks <InlineMath math="ABC" /> spaltenweise in die Koordinatenmatrix <InlineMath math="\begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />.
 
+Die Spalten stehen von links nach rechts für <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" />. Multipliziere jede Spalte mit der Spiegelungsmatrix, um beide Koordinaten des Bildpunktes zu berechnen.
+
 <MathContainer>
-  <BlockMath math="\begin{pmatrix} x'_A & x'_B & x'_C \\ y'_A & y'_B & y'_C \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
-  <BlockMath math="= \begin{pmatrix} (-1)(3)+0 & (-1)(-2)+0 & (-1)(2)+0 \\ 0+(1)(1) & 0+(1)(3) & 0+(1)(-1) \end{pmatrix} = \begin{pmatrix} -3 & 2 & -2 \\ 1 & 3 & -1 \end{pmatrix}" />
+  <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x'_A &amp; x'_B &amp; x'_C \\ y'_A &amp; y'_B &amp; y'_C \end{pmatrix} \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} 3 &amp; -2 &amp; 2 \\ 1 &amp; 3 &amp; -1 \end{pmatrix} \end{aligned}" />
+  <BlockMath math="\begin{aligned} x'_A&amp;=(-1)(3)+0=-3 \\ y'_A&amp;=0+(1)(1)=1 \end{aligned}" />
+  <BlockMath math="\begin{aligned} x'_B&amp;=(-1)(-2)+0=2 \\ y'_B&amp;=0+(1)(3)=3 \end{aligned}" />
+  <BlockMath math="\begin{aligned} x'_C&amp;=(-1)(2)+0=-2 \\ y'_C&amp;=0+(1)(-1)=-1 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x'_A &amp; x'_B &amp; x'_C \\ y'_A &amp; y'_B &amp; y'_C \end{pmatrix} \\ &amp;=\begin{pmatrix} -3 &amp; 2 &amp; -2 \\ 1 &amp; 3 &amp; -1 \end{pmatrix} \end{aligned}" />
 </MathContainer>
 
 Das Bilddreieck <InlineMath math="A'B'C'" /> hat daher die Eckpunkte <InlineMath math="A'(-3,1)" />, <InlineMath math="B'(2,3)" /> und <InlineMath math="C'(-2,-1)" />.
@@ -175,9 +180,13 @@ Das Bilddreieck <InlineMath math="A'B'C'" /> hat daher die Eckpunkte <InlineMath
 
     Die Koordinatenmatrix der Eckpunkte von <InlineMath math="ABC" /> ist <InlineMath math="\begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />.
 
+    <BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
+          Berechne jeden Eintrag durch Multiplikation einer Zeile mit einer Spalte:
+
     <MathContainer>
-      <BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} 3 & -2 & 2 \\ 1 & 3 & -1 \end{pmatrix}" />
-      <BlockMath math="= \begin{pmatrix} (0)(3)+(-1)(1) & (0)(-2)+(-1)(3) & (0)(2)+(-1)(-1) \\ (-1)(3)+(0)(1) & (-1)(-2)+(0)(3) & (-1)(2)+(0)(-1) \end{pmatrix}" />
+      <BlockMath math="\begin{aligned} &amp;m_{11}=(0)(3)+(-1)(1) \\ &amp;m_{12}=(0)(-2)+(-1)(3) \\ &amp;m_{13}=(0)(2)+(-1)(-1) \\ &amp;m_{21}=(-1)(3)+(0)(1) \\ &amp;m_{22}=(-1)(-2)+(0)(3) \\ &amp;m_{23}=(-1)(2)+(0)(-1) \end{aligned}" />
+
+      <BlockMath math="=\begin{pmatrix}m_{11}&amp;m_{12}&amp;m_{13}\\m_{21}&amp;m_{22}&amp;m_{23}\end{pmatrix}" />
       <BlockMath math="= \begin{pmatrix} -1 & -3 & 1 \\ -3 & 2 & -2 \end{pmatrix}" />
     </MathContainer>
 

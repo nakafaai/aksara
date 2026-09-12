@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung varian dan simpangan baku populasi, lalu jelaskan apa yang ditunjukkan kedua ukuran tersebut pada data tunggal.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Statistika",
 };
 
@@ -48,14 +48,14 @@ Rumus ini menggunakan simbol populasi dan membagi dengan banyaknya data secara p
 
 Perhatikan dua kelompok data umur berikut. Keduanya memiliki **mean (<InlineMath math="\bar{x}" />) yang sama, yaitu <InlineMath math="16" />**, tetapi sebarannya sangat berbeda.
 
-- **Kelompok Pertama (<InlineMath math="n=12" />):** <InlineMath math="13, 14, 15, 15, 16, 16, 17, 17, 17, 17, 17, 18" />
-- **Kelompok Kedua (<InlineMath math="n=12" />):** <InlineMath math="1, 3, 4, 5, 7, 8, 12, 27, 28, 29, 32, 36" />
+- **Kelompok Pertama (<InlineMath math="n=12" />):** <InlineMath math="13" />, <InlineMath math="14" />, <InlineMath math="15" />, <InlineMath math="15" />, <InlineMath math="16" />, <InlineMath math="16" />, <InlineMath math="17" />, <InlineMath math="17" />, <InlineMath math="17" />, <InlineMath math="17" />, <InlineMath math="17" />, <InlineMath math="18" />
+- **Kelompok Kedua (<InlineMath math="n=12" />):** <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="5" />, <InlineMath math="7" />, <InlineMath math="8" />, <InlineMath math="12" />, <InlineMath math="27" />, <InlineMath math="28" />, <InlineMath math="29" />, <InlineMath math="32" />, <InlineMath math="36" />
 
 Kita akan menghitung varian dan simpangan baku populasi setiap kelompok.
 
 ### Perhitungan Kelompok Satu
 
-Hitung <InlineMath math="(x_i - \bar{x})^2" /> untuk setiap data di Kelompok <InlineMath math="1" />, dengan <InlineMath math="\bar{x}=16" />:
+Hitung <InlineMath math="(x_i - \bar{x})^2" /> untuk setiap data di Kelompok 1, dengan <InlineMath math="\bar{x}=16" />:
 
 - <InlineMath math="(13-16)^2 = (-3)^2 = 9" />
 - <InlineMath math="(14-16)^2 = (-2)^2 = 4" />
@@ -78,7 +78,7 @@ Hitung simpangan bakunya:
 
 ### Perhitungan Kelompok Dua
 
-Ulangi perhitungan <InlineMath math="(x_i - \bar{x})^2" /> untuk Kelompok <InlineMath math="2" />, masih dengan <InlineMath math="\bar{x}=16" />:
+Ulangi perhitungan <InlineMath math="(x_i - \bar{x})^2" /> untuk Kelompok 2, masih dengan <InlineMath math="\bar{x}=16" />:
 
 - <InlineMath math="(1-16)^2 = (-15)^2 = 225" />
 - <InlineMath math="(3-16)^2 = (-13)^2 = 169" />
@@ -107,10 +107,10 @@ Hitung simpangan bakunya:
 
 ### Arti Hasil
 
-- Varian Kelompok <InlineMath math="1" /> (<InlineMath math="\sigma^2 = 2" />) **jauh lebih kecil** daripada varian Kelompok <InlineMath math="2" /> (<InlineMath math="\sigma^2 \approx 159{,}17" />).
-- Simpangan baku Kelompok <InlineMath math="1" /> (<InlineMath math="\sigma \approx 1{,}41" />) juga **jauh lebih kecil** daripada simpangan baku Kelompok <InlineMath math="2" /> (<InlineMath math="\sigma \approx 12{,}62" />).
+- Varian Kelompok 1 (<InlineMath math="\sigma^2 = 2" />) **jauh lebih kecil** daripada varian Kelompok 2 (<InlineMath math="\sigma^2 \approx 159{,}17" />).
+- Simpangan baku Kelompok 1 (<InlineMath math="\sigma \approx 1{,}41" />) juga **jauh lebih kecil** daripada simpangan baku Kelompok 2 (<InlineMath math="\sigma \approx 12{,}62" />).
 
-Data pada **Kelompok <InlineMath math="1" /> mengelompok rapat** di sekitar mean <InlineMath math="16" />. Data pada **Kelompok <InlineMath math="2" /> tersebar jauh lebih lebar** di sekitar mean yang sama, yaitu <InlineMath math="16" />.
+Data pada **Kelompok 1 mengelompok rapat** di sekitar mean <InlineMath math="16" />. Data pada **Kelompok 2 tersebar jauh lebih lebar** di sekitar mean yang sama, yaitu <InlineMath math="16" />.
 
 ## Rumus Alternatif untuk Varian
 
@@ -120,16 +120,16 @@ Rumus setara berikut memakai dua jumlah, yaitu <InlineMath math="\sum x_i" /> da
 
 Pertama, rata-ratakan kuadrat data <InlineMath math="\sum x_i^2" /> dengan membagi jumlahnya oleh <InlineMath math="n" />. Setelah itu, kurangi dengan kuadrat mean <InlineMath math="(\bar{x})^2 = (\frac{\sum x_i}{n})^2" />.
 
-Gunakan rumus ini untuk menghitung ulang varian Kelompok <InlineMath math="1" />:
+Gunakan rumus ini untuk menghitung ulang varian Kelompok 1:
 
-1.  Hitung <InlineMath math="\sum x_i^2" /> untuk Kelompok <InlineMath math="1" />:
+1.  Hitung <InlineMath math="\sum x_i^2" /> untuk Kelompok 1:
 
     <MathContainer>
       <BlockMath math="13^2 + 14^2 + 15^2 + 15^2 + 16^2 + 16^2 + 17^2 + 17^2 + 17^2 + 17^2 + 17^2 + 18^2" />
-      <BlockMath math="= 169 + 196 + 225 + 225 + 256 + 256 + 289 + 289 + 289 + 289 + 289 + 324 = 3096" />
+      <BlockMath math="\begin{aligned} &= 169 + 196 + 225 + 225 + 256 + 256 + 289 + 289 + 289 + 289 + 289 + 324 \\ &= 3096\end{aligned}" />
     </MathContainer>
 
-2.  Hitung <InlineMath math="\sum x_i" /> untuk Kelompok <InlineMath math="1" />:
+2.  Hitung <InlineMath math="\sum x_i" /> untuk Kelompok 1:
 
     <MathContainer>
       <BlockMath math="13 + 14 + 15 + 15 + 16 + 16 + 17 + 17 + 17 + 17 + 17 + 18" />

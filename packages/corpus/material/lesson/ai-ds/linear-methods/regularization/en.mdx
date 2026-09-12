@@ -3,7 +3,7 @@ export const metadata = {
   description: "Stabilize ill-conditioned least-squares problems with Tikhonov regularization, spectral filtering, informed parameter selection, and numerically stable solution methods.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-15",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Linear Methods of AI",
 };
 
@@ -21,7 +21,9 @@ The singular value decomposition explains the amplification. For <InlineMath mat
 
 Tikhonov regularization balances data fit against a chosen notion of plausible parameters:
 
-<BlockMath math="\min_x\left(\|Ax-b\|_2^2+\alpha^2\|L(x-x_0)\|_2^2\right),\qquad \alpha>0" />
+For <InlineMath math="\alpha>0" />, minimize:
+
+<BlockMath math="\min_x\left(\|Ax-b\|_2^2+\alpha^2\|L(x-x_0)\|_2^2\right)" />
 
 Here <InlineMath math="x_0" /> is a reference estimate, <InlineMath math="L" /> defines what should remain small or smooth, and <InlineMath math="\alpha" /> sets how strongly the solution follows the data compared with the constraint defined by <InlineMath math="L" />.
 
@@ -39,7 +41,7 @@ The regularized problem can be written as the following least-squares problem:
 
 Differentiating this objective with respect to <InlineMath math="x" /> gives the normal equation:
 
-<BlockMath math="(A^TA+\alpha^2L^TL)x=A^Tb+\alpha^2L^TLx_0" />
+<BlockMath math="\begin{aligned} &amp;(A^TA+\alpha^2L^TL)x =A^Tb \\ &amp;+\alpha^2L^TLx_0 \end{aligned}" />
 
 This normal equation has a unique solution exactly when the following condition holds:
 

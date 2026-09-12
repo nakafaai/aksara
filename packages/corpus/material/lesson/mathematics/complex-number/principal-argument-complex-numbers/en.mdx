@@ -5,7 +5,7 @@ export const metadata = {
   description: "Find the unique principal argument of a nonzero complex number in the interval from negative pi to pi and reduce coterminal angles to that representative.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Complex Number",
 };
 
@@ -27,7 +27,7 @@ Because there are infinitely many arguments for a single complex number, we ofte
 
 For a nonzero complex number <InlineMath math="z = r(\cos \theta + i\sin \theta)" /> with <InlineMath math="r>0" />, the **Principal Argument** <InlineMath math="\operatorname{Arg}(z)" /> is the unique angle <InlineMath math="\theta" /> chosen from <InlineMath math="(-\pi, \pi]" />. In degrees, the same convention is:
 
-<BlockMath math="-\pi < \theta \leq \pi \quad \text{or} \quad -180^\circ < \theta \leq 180^\circ" />
+<BlockMath math="\begin{aligned} &amp;-\pi &lt; \theta \leq \pi \\ &amp;\text{or} \\ &amp;-180^\circ &lt; \theta \leq 180^\circ \end{aligned}" />
 
 Some references use <InlineMath math="[0, 2\pi)" /> instead. Both conventions select one representative from each set of coterminal angles. Every example below uses <InlineMath math="(-\pi, \pi]" /> consistently.
 
@@ -73,7 +73,8 @@ Find any argument first, then add or subtract full turns until the result lies i
         <InlineMath math="45^\circ" /> and <InlineMath math="30^\circ" />.
       </>
     }
-    cameraPosition={[0, 0, 8]}
+    cameraPosition={[0.9, 0.5, 5]}
+    cameraTarget={[0.9, 0.5, 0]}
     data={[
       {
         points: [
@@ -92,7 +93,7 @@ Find any argument first, then add or subtract full turns until the result lies i
         ],
         smooth: false,
         color: "#65a30d",
-        labels: [{ text: <InlineMath math="z_2=\sqrt{3}+i" />, at: 1, offset: [1.5, 0.5, 0] }],
+        labels: [{ text: <InlineMath math="z_2=\sqrt{3}+i" />, at: 1, offset: [0.15, 0.65, 0] }],
         cone: { position: "end" },
       },
       // Positive real axis line for angle reference

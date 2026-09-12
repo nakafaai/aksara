@@ -3,7 +3,7 @@ export const metadata = {
   description: "Shift function graphs up or down while tracking coordinates, asymptotes, and ranges.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Function Transformation",
 };
 
@@ -41,7 +41,7 @@ The linear function <InlineMath math="f(x) = 2x" /> shows that a vertical transl
       }),
       smooth: false,
       color: "#9333ea",
-      labels: [{ text: <InlineMath math="f(x)=2x" />, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=2x" />, offset: [3.8, 0.5, 0] }],
       showPoints: false,
     },
     {
@@ -51,7 +51,7 @@ The linear function <InlineMath math="f(x) = 2x" /> shows that a vertical transl
       }),
       smooth: false,
       color: "#ea580c",
-      labels: [{ text: <InlineMath math="g(x)=2x+3" />, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=2x+3" />, offset: [-3.5, 1.5, 0] }],
       showPoints: false,
     },
     {
@@ -61,10 +61,12 @@ The linear function <InlineMath math="f(x) = 2x" /> shows that a vertical transl
       }),
       smooth: false,
       color: "#0d9488",
-      labels: [{ text: <InlineMath math="h(x)=2x-2" />, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=2x-2" />, offset: [3.8, -0.7, 0] }],
       showPoints: false,
     },
   ]}
+  cameraTarget={[0, 0.5, 0]}
+  cameraPosition={[0, 0.5, 14]}
 />
 
 The graph shows:
@@ -145,32 +147,35 @@ For the exponential function <InlineMath math="f(x) = 2^x" />, the vertical tran
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 31 }, (_, i) => {
+      points: Array.from({ length: 695 }, (_, pointIndex) => {
+        const i = pointIndex / 2 - 315;
         const x = (i - 15) * 0.2;
         return { x, y: Math.pow(2, x), z: 0 };
       }),
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [0.5, 1, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=2^x" />, offset: [0.5, 1, 0], at: 660 }],
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 31 }, (_, i) => {
+      points: Array.from({ length: 346 }, (_, pointIndex) => {
+        const i = pointIndex - 315;
         const x = (i - 15) * 0.2;
         return { x, y: Math.pow(2, x) + 2, z: 0 };
       }),
       color: "#059669",
-      labels: [{ text: <InlineMath math="g(x)=2^x+2" />, offset: [0.5, 1, 0] }],
+      labels: [{ text: <InlineMath math="g(x)=2^x+2" />, offset: [0.5, 1, 0], at: 330 }],
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 31 }, (_, i) => {
+      points: Array.from({ length: 697 }, (_, pointIndex) => {
+        const i = pointIndex / 2 - 315;
         const x = (i - 15) * 0.2;
         return { x, y: Math.pow(2, x) - 1, z: 0 };
       }),
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="h(x)=2^x-1" />, offset: [0.5, 1, 0] }],
+      labels: [{ text: <InlineMath math="h(x)=2^x-1" />, offset: [0.5, 1, 0], at: 660 }],
       showPoints: false,
     },
   ]}
@@ -243,13 +248,14 @@ For exponential functions:
      }
      data={[
        {
-         points: Array.from({ length: 21 }, (_, i) => {
+         points: Array.from({ length: 29 }, (_, pointIndex) => {
+           const i = pointIndex - 8;
            const x = (i - 10) * 0.5;
            return { x, y: 3 * x + 2, z: 0 };
          }),
          smooth: false,
          color: "#7c3aed",
-         labels: [{ text: <InlineMath math="g(x)=3x+2" />, offset: [1, 0.5, 0] }],
+         labels: [{ text: <InlineMath math="g(x)=3x+2" />, offset: [1, 0.5, 0], at: 18 }],
          showPoints: false,
        },
        {
@@ -279,24 +285,34 @@ For exponential functions:
      data={[
        {
          smooth: false,
-         points: Array.from({ length: 101 }, (_, sampleIndex) => {
-           const i = sampleIndex / 5;
-           const x = i * 0.25;
-           return { x, y: Math.sqrt(x), z: 0 };
-         }),
+         points: (() => {
+           const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+           parameters.push(1.5811388300841898);
+           return parameters
+             .sort((a, b) => a - b)
+             .map((t) => {
+               const x = t * t;
+               return { x, y: t, z: 0 };
+             });
+         })(),
          color: "#4f46e5",
-         labels: [{ at: 50, text: <InlineMath math="h(x)=\sqrt{x}" />, offset: [1, 1, 0] }],
+         labels: [{ at: 64, text: <InlineMath math="h(x)=\sqrt{x}" />, offset: [1, 1, 0] }],
          showPoints: false,
        },
        {
          smooth: false,
-         points: Array.from({ length: 101 }, (_, sampleIndex) => {
-           const i = sampleIndex / 5;
-           const x = i * 0.25;
-           return { x, y: Math.sqrt(x) + 3, z: 0 };
-         }),
+         points: (() => {
+           const parameters = Array.from({ length: 321 }, (_, i) => 0 + (i / 320) * 8);
+           parameters.push(1.58113883008419);
+           return parameters
+             .sort((a, b) => a - b)
+             .map((t) => {
+               const x = t * t;
+               return { x, y: t + 3, z: 0 };
+             });
+         })(),
          color: "#059669",
-         labels: [{ at: 50, text: <InlineMath math="h'(x)=\sqrt{x}+3" />, offset: [1, 1, 0] }],
+         labels: [{ at: 64, text: <InlineMath math="h'(x)=\sqrt{x}+3" />, offset: [0, -0.1, 0] }],
          showPoints: false,
        },
      ]}

@@ -5,7 +5,7 @@ export const metadata = {
   description: "Normalize a nonzero vector to obtain a unit vector, then connect magnitude 1 with direction and the standard Cartesian basis vectors.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Vector and Operations",
 };
 
@@ -59,7 +59,7 @@ Take the vector <InlineMath math="\vec{v} = (3, 6, 4)" />.
 
 First, calculate its magnitude:
 
-<BlockMath math="|\vec{v}| = \sqrt{3^2 + 6^2 + 4^2} = \sqrt{9 + 36 + 16} = \sqrt{61}" />
+<BlockMath math="\begin{aligned} |\vec{v}| &amp;= \sqrt{3^2 + 6^2 + 4^2} \\ &amp;= \sqrt{9 + 36 + 16} \\ &amp;= \sqrt{61} \end{aligned}" />
 
 Then divide the vector by that magnitude:
 
@@ -102,9 +102,12 @@ The unit vector is therefore:
 
 ### Length of a Unit Vector
 
-A unit vector always has a length equal to <InlineMath math="1" />. This can be proven by calculating the length of the unit vector:
+A unit vector has length <InlineMath math="1" />. For this example, add the squares of the three coordinates first. A length is nonnegative, so take the positive square root at the end.
 
-<BlockMath math="|\hat{v}| = \sqrt{\left(\frac{3}{\sqrt{61}}\right)^2 + \left(\frac{6}{\sqrt{61}}\right)^2 + \left(\frac{4}{\sqrt{61}}\right)^2} = \sqrt{\frac{9 + 36 + 16}{61}} = \sqrt{\frac{61}{61}} = 1" />
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;|\hat{v}|^2 \\ &amp;=\left(\frac{3}{\sqrt{61}}\right)^2+\left(\frac{6}{\sqrt{61}}\right)^2 \\ &amp;\quad+\left(\frac{4}{\sqrt{61}}\right)^2 \\ &amp;=\frac{9+36+16}{61} \\ &amp;=\frac{61}{61} \\ &amp;=1 \end{aligned}" />
+  <BlockMath math="|\hat{v}|=\sqrt{1}=1" />
+</MathContainer>
 
 ### Unit Vectors on Coordinate Axes
 

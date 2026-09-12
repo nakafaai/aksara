@@ -4,7 +4,7 @@ export const metadata = {
     "Kreise aus ihrem festen Abstand aufbauen und Kreisbögen, Mittelpunkt- und Umfangswinkel, Bogenlänge sowie Sektorfläche an Abbildungen und vollständig gerechneten Aufgaben verknüpfen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Kreis",
 };
 
@@ -38,19 +38,18 @@ Die folgende Abbildung ordnet Mittelpunkt, Radius, Durchmesser und Sehne ein:
       }),
       color: "#9333ea",
       showPoints: false,
-      labels: [{ text: "Kreis", at: 0, offset: [1.5, -1, 0] }],
     },
     {
       points: [
         { x: 0, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
+        { x: 1.5, y: -(3 * Math.sqrt(3)) / 2, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: true,
       labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] },
-        { text: <InlineMath math="r" />, at: 0, offset: [1.5, 0.3, 0] },
+        { text: <InlineMath math="O" />, at: 0, offset: [-0.35, 0.35, 0] },
+        { text: <InlineMath math="r" />, at: 0, offset: [0.95, -1.05, 0] },
       ],
     },
     {
@@ -64,12 +63,12 @@ Die folgende Abbildung ordnet Mittelpunkt, Radius, Durchmesser und Sehne ein:
     },
     {
       points: [
-        { x: 2.12, y: 2.12, z: 0 },
-        { x: -2.12, y: 2.12, z: 0 },
+        { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2), z: 0 },
+        { x: -3 / Math.sqrt(2), y: 3 / Math.sqrt(2), z: 0 },
       ],
       smooth: false,
       color: "#d97706",
-      labels: [{ text: "Sehne", at: 0, offset: [0, 0.5, 0] }],
+      labels: [{ text: "Sehne", at: 0, offset: [-3 / Math.sqrt(2), 0.4, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
@@ -103,17 +102,9 @@ Ein Kreisbogen ist ein Teil des Kreisumfangs, der durch zwei Punkte auf dem Krei
         };
       }),
       color: "#7c3aed",
-      showPoints: false,
-      labels: [{ text: "Kleiner Bogen", at: 45, offset: [1, 1, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 3, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#0d9488",
+      pointIndices: [0, 90],
       showPoints: true,
+      labels: [{ text: "Kleiner Bogen", at: 45, offset: [0.7, 1.45, 0] }],
     },
     {
       smooth: false,
@@ -131,27 +122,9 @@ Ein Kreisbogen ist ein Teil des Kreisumfangs, der durch zwei Punkte auf dem Krei
         {
           text: "Großer Bogen",
           at: 135,
-          offset: [-1, -1, 0],
+          offset: [3 / Math.sqrt(2), -1.5, 0],
         },
       ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 3, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
     },
   ]}
   cameraPosition={[0, 0, 10]}
@@ -200,13 +173,13 @@ Ein Mittelpunktswinkel hat seinen Scheitelpunkt im Kreismittelpunkt. Seine beide
       showPoints: true,
       labels: [
         { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="A" />, at: 1, offset: [0.5, 0, 0] },
+        { text: <InlineMath math="A" />, at: 1, offset: [0.35, -0.35, 0] },
       ],
     },
     {
       points: [
         { x: 0, y: 0, z: 0 },
-        { x: 2.12, y: 2.12, z: 0 },
+        { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2), z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
@@ -225,7 +198,7 @@ Ein Mittelpunktswinkel hat seinen Scheitelpunkt im Kreismittelpunkt. Seine beide
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <>Bogen <InlineMath math="AB" /></>, at: 22, offset: [1.5, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="\overset{\frown}{AB}" />, at: 22, offset: [0.5, 0.2, 0] }],
     },
     {
       smooth: false,
@@ -278,20 +251,20 @@ Ein Umfangswinkel, auch Peripheriewinkel genannt, hat seinen Scheitelpunkt auf d
     {
       points: [
         { x: 3, y: 0, z: 0 },
-        { x: -2.12, y: -2.12, z: 0 },
+        { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2), z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
       showPoints: true,
       labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0, 0] },
+        { text: <InlineMath math="A" />, at: 0, offset: [0.35, -0.35, 0] },
         { text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] },
       ],
     },
     {
       points: [
-        { x: 2.12, y: 2.12, z: 0 },
-        { x: -2.12, y: -2.12, z: 0 },
+        { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2), z: 0 },
+        { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2), z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
@@ -310,7 +283,7 @@ Ein Umfangswinkel, auch Peripheriewinkel genannt, hat seinen Scheitelpunkt auf d
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <>Bogen <InlineMath math="AB" /></>, at: 22, offset: [1.5, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="\overset{\frown}{AB}" />, at: 22, offset: [0.5, 0.2, 0] }],
     },
     {
       points: [
@@ -324,7 +297,7 @@ Ein Umfangswinkel, auch Peripheriewinkel genannt, hat seinen Scheitelpunkt auf d
     {
       points: [
         { x: 0, y: 0, z: 0 },
-        { x: 2.12, y: 2.12, z: 0 },
+        { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2), z: 0 },
       ],
       smooth: false,
       color: "#0891b2",
@@ -338,7 +311,7 @@ Ein Umfangswinkel, auch Peripheriewinkel genannt, hat seinen Scheitelpunkt auf d
 ## Zusammenhang zwischen Mittelpunktswinkel und Umfangswinkel
 
 <MathContainer>
-  <BlockMath math="\text{Umfangswinkel} = \frac{1}{2} \times \text{Mittelpunktswinkel}" />
+  <BlockMath math="\begin{aligned} &amp;\text{Umfangswinkel} \\ &amp;= \frac{1}{2} \times \text{Mittelpunktswinkel} \end{aligned}" />
   <BlockMath math="\angle ACB = \frac{1}{2} \times \angle AOB" />
 </MathContainer>
 
@@ -378,7 +351,7 @@ Wenn ein Mittelpunktswinkel und ein Umfangswinkel über demselben Bogen liegen, 
       showPoints: true,
       labels: [
         { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="A" />, at: 1, offset: [0.5, 0, 0] },
+        { text: <InlineMath math="A" />, at: 1, offset: [0.35, -0.35, 0] },
       ],
     },
     {
@@ -394,7 +367,7 @@ Wenn ein Mittelpunktswinkel und ein Umfangswinkel über demselben Bogen liegen, 
     {
       points: [
         { x: 3, y: 0, z: 0 },
-        { x: -2.12, y: -2.12, z: 0 },
+        { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2), z: 0 },
       ],
       smooth: false,
       color: "#0891b2",
@@ -404,7 +377,7 @@ Wenn ein Mittelpunktswinkel und ein Umfangswinkel über demselben Bogen liegen, 
     {
       points: [
         { x: 3 * Math.cos((80 * Math.PI) / 180), y: 3 * Math.sin((80 * Math.PI) / 180), z: 0 },
-        { x: -2.12, y: -2.12, z: 0 },
+        { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2), z: 0 },
       ],
       smooth: false,
       color: "#0891b2",
@@ -499,7 +472,7 @@ Die Abbildung zeigt die beiden Radien, den zugehörigen Bogen und den von ihnen 
     {
       points: [
         { x: 0, y: 0, z: 0 },
-        { x: 1.5, y: 2.6, z: 0 },
+        { x: 1.5, y: (3 * Math.sqrt(3)) / 2, z: 0 },
       ],
       smooth: false,
       color: "#ea580c",
@@ -517,7 +490,7 @@ Die Abbildung zeigt die beiden Radien, den zugehörigen Bogen und den von ihnen 
       }),
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: "Sektor", at: 30, offset: [0, 0, 0] }],
+      labels: [{ text: "Sektor", at: 30, offset: [-1.35, -0.75, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
@@ -567,15 +540,15 @@ Gegeben: <InlineMath math="r = 14 \text{ cm}" />, <InlineMath math="\alpha = 90^
 
 1. Der Durchmesser wird für diese Aufgabe nicht benötigt. Entscheidend ist, dass beide Winkel über demselben Bogen liegen. Der Mittelpunktswinkel ist doppelt so groß wie der Umfangswinkel:
 
-   <BlockMath math="\text{Mittelpunktswinkel}=2(30^\circ)=60^\circ" />
+   <BlockMath math="\begin{aligned} \text{Mittelpunktswinkel} &amp;=2(30^\circ) \\ &amp;=60^\circ \end{aligned}" />
 
    Der Mittelpunktswinkel beträgt also <InlineMath math="60^\circ" />.
 
 2. Der Winkel <InlineMath math="120^\circ" /> entspricht einem Drittel der vollen Drehung, denn <InlineMath math="\frac{120^\circ}{360^\circ}=\frac{1}{3}" />. Dieser Anteil wird zuerst auf den Umfang und danach auf die Kreisfläche angewendet.
 
    <MathContainer>
-     <BlockMath math="l=\frac{120^\circ}{360^\circ}(2\pi)(21)=14\pi\text{ cm}\approx43{,}98\text{ cm}" />
-     <BlockMath math="L=\frac{120^\circ}{360^\circ}\pi(21)^2=147\pi\text{ cm}^2\approx461{,}81\text{ cm}^2" />
+     <BlockMath math="\begin{aligned} l &amp;=\frac{120^\circ}{360^\circ}(2\pi)(21) \\ &amp;=14\pi\text{ cm} \\ &amp;\approx43{,}98\text{ cm} \end{aligned}" />
+     <BlockMath math="\begin{aligned} L &amp;=\frac{120^\circ}{360^\circ}\pi(21)^2 \\ &amp;=147\pi\text{ cm}^2 \\ &amp;\approx461{,}81\text{ cm}^2 \end{aligned}" />
    </MathContainer>
 
    Damit beträgt die Bogenlänge <InlineMath math="14\pi\text{ cm}" /> und die Sektorfläche <InlineMath math="147\pi\text{ cm}^2" />.

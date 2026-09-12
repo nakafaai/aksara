@@ -5,7 +5,7 @@ export const metadata = {
   description: "Gambar grafik polinomial dengan memplot titik dan memeriksa perilaku ujungnya. Buat sketsa grafik linear, kuadrat, dan kubik secara bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Polinomial",
 };
 
@@ -53,11 +53,15 @@ Plot titik-titik dan hubungkan:
   cameraPosition={[0, 0, 15]}
   data={[
     {
-      points: Array.from({ length: 7 }, (_, i) => {
-        const x = -3 + i;
-        return { x, y: 2 * x + 5, z: 0 };
-      }),
+      points: [
+        { x: -8, y: -11, z: 0 },
+        ...Array.from({ length: 7 }, (_, i) => {
+          const x = -3 + i;
+          return { x, y: 2 * x + 5, z: 0 };
+        }),
+      ],
       smooth: false,
+      pointIndices: [1, 2, 3, 4, 5, 6, 7],
       color: "#ca8a04",
     },
   ]}
@@ -345,7 +349,8 @@ Cocokkan fungsi berikut dengan kemungkinan perilaku ujungnya:
        data={[
          {
            smooth: false,
-           points: Array.from({ length: 51 }, (_, i) => {
+           points: Array.from({ length: 113 }, (_, pointIndex) => {
+             const i = pointIndex / 2 + 0;
              const x = -2.5 + i * 0.1;
              const y = -(x ** 3) + 2 * x ** 2 - x + 1;
              return { x, y, z: 0 };
@@ -419,15 +424,10 @@ Cocokkan fungsi berikut dengan kemungkinan perilaku ujungnya:
        data={[
          {
            smooth: false,
-           points: Array.from({ length: 71 }, (_, i) => {
+           points: Array.from({ length: 301 }, (_, pointIndex) => {
+             const i = pointIndex / 4 + 0;
              const x = -1.2 + i * 0.035;
-             const y =
-               25 * x ** 5 -
-               20 * x ** 4 -
-               26 * x ** 3 +
-               12 * x ** 2 +
-               9 * x -
-               1;
+             const y = 25 * x ** 5 - 20 * x ** 4 - 26 * x ** 3 + 12 * x ** 2 + 9 * x - 1;
              return { x, y, z: 0 };
            }),
            color: "#4f46e5",

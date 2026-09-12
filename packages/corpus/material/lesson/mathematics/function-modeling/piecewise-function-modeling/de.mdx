@@ -4,7 +4,7 @@ export const metadata = {
   description: "Modelliere stückweise Funktionen anhand von Intervallgrenzen, gestaffelten Tarifen, wechselnden Geschwindigkeiten und Verbindungsstellen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Funktionen und ihre Modellierung",
 };
 
@@ -39,6 +39,7 @@ Eine lineare stückweise Funktion verwendet in jedem Intervall eine lineare Funk
   description="Beispiel einer linearen stückweisen Funktion mit drei verschiedenen Teilen."
   data={[
     {
+      endpoints: { start: "closed", end: "open" },
       points: Array.from({ length: 21 }, (_, i) => {
         const x = -2 + i * 0.1;
         return { x, y: 2 * x + 3, z: 0 };
@@ -49,6 +50,7 @@ Eine lineare stückweise Funktion verwendet in jedem Intervall eine lineare Funk
       labels: [{ text: <InlineMath math="y=2x+3" />, at: 10, offset: [-1.5, 1, 0] }],
     },
     {
+      endpoints: { start: "closed", end: "open" },
       points: Array.from({ length: 21 }, (_, i) => {
         const x = 0 + i * 0.1;
         return { x, y: -x + 3, z: 0 };
@@ -59,10 +61,14 @@ Eine lineare stückweise Funktion verwendet in jedem Intervall eine lineare Funk
       labels: [{ text: <InlineMath math="y=-x+3" />, at: 10, offset: [1, 1, 0] }],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = 2 + i * 0.1;
-        return { x, y: 0.5 * x, z: 0 };
-      }),
+      endpoints: { start: "closed" },
+      points: [
+        ...Array.from({ length: 21 }, (_, i) => {
+          const x = 2 + i * 0.1;
+          return { x, y: 0.5 * x, z: 0 };
+        }),
+        { x: 100, y: 50, z: 0 },
+      ],
       smooth: false,
       color: "#0891b2",
       showPoints: false,
@@ -74,7 +80,7 @@ Eine lineare stückweise Funktion verwendet in jedem Intervall eine lineare Funk
 
 Die obige Funktion kann wie folgt geschrieben werden:
 
-<BlockMath math="f(x) = \begin{cases} 2x + 3, &amp; \text{wenn} -2 \leq x &lt; 0 \\ -x + 3, &amp; \text{wenn} 0 \leq x &lt; 2 \\ 0{,}5x, &amp; \text{wenn} x \geq 2 \end{cases}" />
+<BlockMath math="\begin{aligned} &amp;f(x) \\ &amp;= \begin{cases} 2x + 3, &amp; \text{wenn} -2 \leq x &lt; 0 \\ -x + 3, &amp; \text{wenn} 0 \leq x &lt; 2 \\ 0{,}5x, &amp; \text{wenn} x \geq 2 \end{cases} \end{aligned}" />
 
 Die drei Reihen sind keine drei separaten Funktionen. Sie arbeiten als eine Funktion zusammen und die gewählte Formel hängt vom Wert von <InlineMath math="x" /> ab.
 
@@ -88,19 +94,24 @@ Stückweise Funktionen können auch quadratische Teile verwenden. Ein quadratisc
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 31 }, (_, i) => {
-        const x = -3 + i * 0.1;
+      endpoints: { end: "open" },
+      points: Array.from({ length: 751 }, (_, sampleIndex) => {
+        const x = (sampleIndex - 750) / 50;
         return { x, y: x * x, z: 0 };
       }),
       color: "#7c3aed",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=x^2" />, at: 15, offset: [-1, -1, 0] }],
+      labels: [{ text: <InlineMath math="y=x^2" />, at: 675, offset: [-1, -1, 0] }],
     },
     {
-      points: Array.from({ length: 31 }, (_, i) => {
-        const x = 0 + i * 0.1;
-        return { x, y: 2 * x, z: 0 };
-      }),
+      endpoints: { start: "closed" },
+      points: [
+        ...Array.from({ length: 31 }, (_, i) => {
+          const x = 0 + i * 0.1;
+          return { x, y: 2 * x, z: 0 };
+        }),
+        { x: 100, y: 200, z: 0 },
+      ],
       smooth: false,
       color: "#0d9488",
       showPoints: false,
@@ -148,20 +159,28 @@ Beispielsweise treffen die beiden folgenden Regeln bei <InlineMath math="x=1" />
   }
   data={[
     {
-      points: Array.from({ length: 20 }, (_, i) => {
-        const x = -1 + i * 0.1;
-        return { x, y: x + 2, z: 0 };
-      }),
+      endpoints: { end: "open" },
+      points: [
+        { x: -100, y: -98, z: 0 },
+        ...Array.from({ length: 21 }, (_, i) => {
+          const x = -1 + i * 0.1;
+          return { x, y: x + 2, z: 0 };
+        }),
+      ],
       smooth: false,
       color: "#e11d48",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=x+2" />, at: 10, offset: [-1, 1, 0] }],
+      labels: [{ text: <InlineMath math="y=x+2" />, at: 11, offset: [-1, 1, 0] }],
     },
     {
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = 1 + i * 0.1;
-        return { x, y: 2 * x - 3, z: 0 };
-      }),
+      endpoints: { start: "closed" },
+      points: [
+        ...Array.from({ length: 21 }, (_, i) => {
+          const x = 1 + i * 0.1;
+          return { x, y: 2 * x - 3, z: 0 };
+        }),
+        { x: 100, y: 197, z: 0 },
+      ],
       smooth: false,
       color: "#d97706",
       showPoints: false,
@@ -187,7 +206,7 @@ Ein Elektrizitätsunternehmen wendet gestaffelte Tarife an:
 
 Das mathematische Modell:
 
-<BlockMath math="C(x) = \begin{cases} 1000x, &amp; \text{wenn} 0 \leq x \leq 50 \\ 50000 + 1500(x-50), &amp; \text{wenn} 50 &lt; x \leq 100 \\ 125000 + 2000(x-100), &amp; \text{wenn} x &gt; 100 \end{cases}" />
+<BlockMath math="C(x) = \begin{cases}\begin{gathered}1000x\\\text{wenn} 0 \leq x \leq 50\end{gathered}\\[4pt]\begin{gathered}50000 + 1500(x-50)\\\text{wenn} 50 &lt; x \leq 100\end{gathered}\\[4pt]\begin{gathered}125000 + 2000(x-100)\\\text{wenn} x > 100\end{gathered}\end{cases}" />
 
 Die Zahl <InlineMath math="50{.}000" /> in der zweiten Zeile stammt aus dem ersten <InlineMath math="50 \text{ kWh}" />. Die Zahl <InlineMath math="125{.}000" /> in der dritten Zeile ergibt sich aus den Kosten bis zum ersten <InlineMath math="100 \text{ kWh}" />. Dadurch wird verhindert, dass die Kosten bei <InlineMath math="0" /> neu starten, wenn die Nutzung in ein neues Intervall eintritt.
 
@@ -209,7 +228,7 @@ Jemand unternimmt eine Reise mit:
 
 Abstandsfunktion über der Zeit:
 
-<BlockMath math="s(t) = \begin{cases} 5t, &amp; \text{wenn} 0 \leq t \leq 0{,}5 \\ 2{,}5 + 15(t-0{,}5), &amp; \text{wenn} 0{,}5 &lt; t \leq 1{,}5 \\ 17{,}5 + 60(t-1{,}5), &amp; \text{wenn} 1{,}5 &lt; t \leq 2 \end{cases}" />
+<BlockMath math="s(t) = \begin{cases}\begin{gathered}5t\\\text{wenn} 0 \leq t \leq 0{,}5\end{gathered}\\[4pt]\begin{gathered}2{,}5 + 15(t-0{,}5)\\\text{wenn} 0{,}5 &lt; t \leq 1{,}5\end{gathered}\\[4pt]\begin{gathered}17{,}5 + 60(t-1{,}5)\\\text{wenn} 1{,}5 &lt; t \leq 2\end{gathered}\end{cases}" />
 
 Die Konstanten <InlineMath math="2{,}5" /> und <InlineMath math="17{,}5" /> entsprechen der Strecke, die zu Beginn jedes neuen Intervalls bereits zurückgelegt ist. Dadurch bleibt <InlineMath math="s(t)" /> beim Wechsel des Verkehrsmittels stetig.
 
@@ -240,7 +259,7 @@ Die Lösung lässt sich wie folgt zusammenfassen:
 
 Stückweise Funktion:
 
-<BlockMath math="f(x) = \begin{cases} 2x + 4, &amp; \text{wenn} -2 \leq x &lt; 0 \\ 4, &amp; \text{wenn} 0 \leq x &lt; 2 \\ -x + 6, &amp; \text{wenn} 2 \leq x \leq 4 \end{cases}" />
+<BlockMath math="\begin{aligned} &amp;f(x) \\ &amp;= \begin{cases} 2x + 4, &amp; \text{wenn} -2 \leq x &lt; 0 \\ 4, &amp; \text{wenn} 0 \leq x &lt; 2 \\ -x + 6, &amp; \text{wenn} 2 \leq x \leq 4 \end{cases} \end{aligned}" />
 
 ## Übungsaufgaben
 
@@ -288,23 +307,19 @@ Stückweise Funktion:
 
    Sei <InlineMath math="x" /> die Entfernung in km, dann gilt:
 
-   <MathContainer>
-     <BlockMath math="C(x) = \begin{cases} 10000, &amp; \text{wenn} 0 &lt; x \leq 2 \\ 10000 + 4000(x-2), &amp; \text{wenn} 2 &lt; x \leq 10 \\ 10000 + 32000 + 3000(x-10), &amp; \text{wenn} x &gt; 10 \end{cases}" />
-   </MathContainer>
+   <BlockMath math="C(x) = \begin{cases}\begin{gathered}10000\\\text{wenn} 0 &lt; x \leq 2\end{gathered}\\[4pt]\begin{gathered}10000 + 4000(x-2)\\\text{wenn} 2 &lt; x \leq 10\end{gathered}\\[4pt]\begin{gathered}\begin{aligned}10000+32000\\+3000(x-10)\end{aligned}\\\text{wenn} x > 10\end{gathered}\end{cases}" />
 
    Oder vereinfacht:
 
-   <MathContainer>
-     <BlockMath math="C(x) = \begin{cases} 10000, &amp; \text{wenn} 0 &lt; x \leq 2 \\ 4000x + 2000, &amp; \text{wenn} 2 &lt; x \leq 10 \\ 3000x + 12000, &amp; \text{wenn} x &gt; 10 \end{cases}" />
-   </MathContainer>
+   <BlockMath math="C(x) = \begin{cases}\begin{gathered}10000\\\text{wenn} 0 &lt; x \leq 2\end{gathered}\\[4pt]\begin{gathered}4000x + 2000\\\text{wenn} 2 &lt; x \leq 10\end{gathered}\\[4pt]\begin{gathered}3000x + 12000\\\text{wenn} x > 10\end{gathered}\end{cases}" />
 
 3. **Kontinuität prüfen:**
 
    Bei <InlineMath math="x = 1" />:
 
    <MathContainer>
-     <BlockMath math="\lim_{x \to 1^-} g(x) = \lim_{x \to 1^-} (3x - 1) = 3(1) - 1 = 2" />
-     <BlockMath math="\lim_{x \to 1^+} g(x) = \lim_{x \to 1^+} (x + 1) = 1 + 1 = 2" />
+     <BlockMath math="\begin{aligned} \lim_{x \to 1^-} g(x) &amp;= \lim_{x \to 1^-} (3x - 1) \\ &amp;= 3(1) - 1 \\ &amp;= 2 \end{aligned}" />
+     <BlockMath math="\begin{aligned} \lim_{x \to 1^+} g(x) &amp;= \lim_{x \to 1^+} (x + 1) \\ &amp;= 1 + 1 \\ &amp;= 2 \end{aligned}" />
      <BlockMath math="g(1) = 2" />
    </MathContainer>
 
@@ -326,17 +341,22 @@ Stückweise Funktion:
      }
      data={[
        {
-         points: Array.from({ length: 21 }, (_, i) => {
-           const x = -2 + i * 0.1;
-           return { x, y: -x + 2, z: 0 };
-         }),
+         endpoints: { end: "open" },
+         points: [
+           { x: -100, y: 102, z: 0 },
+           ...Array.from({ length: 21 }, (_, i) => {
+             const x = -2 + i * 0.1;
+             return { x, y: -x + 2, z: 0 };
+           }),
+         ],
          smooth: false,
          color: "#9333ea",
          showPoints: false,
-         labels: [{ text: <InlineMath math="y=-x+2" />, at: 10, offset: [0, 0.5, 0] }],
+         labels: [{ text: <InlineMath math="y=-x+2" />, at: 11, offset: [0, 0.5, 0] }],
        },
        {
          smooth: false,
+         endpoints: { start: "closed", end: "open" },
          points: Array.from({ length: 101 }, (_, sampleIndex) => {
            const i = sampleIndex / 5;
            const x = 0 + i * 0.1;
@@ -347,10 +367,14 @@ Stückweise Funktion:
          labels: [{ text: <InlineMath math="y=x^2" />, at: 50, offset: [0, 0.5, 0] }],
        },
        {
-         points: Array.from({ length: 21 }, (_, i) => {
-           const x = 2 + i * 0.1;
-           return { x, y: 4, z: 0 };
-         }),
+         endpoints: { start: "closed" },
+         points: [
+           ...Array.from({ length: 21 }, (_, i) => {
+             const x = 2 + i * 0.1;
+             return { x, y: 4, z: 0 };
+           }),
+           { x: 100, y: 4, z: 0 },
+         ],
          smooth: false,
          color: "#0891b2",
          showPoints: false,
@@ -364,12 +388,8 @@ Stückweise Funktion:
 
    Sei <InlineMath math="t" /> die Arbeitszeit in Stunden. Dann gilt:
 
-   <MathContainer>
-     <BlockMath math="U(t) = \begin{cases} 50000t, &amp; \text{wenn} 0 \leq t \leq 8 \\ 400000 + 75000(t-8), &amp; \text{wenn} 8 &lt; t \leq 12 \end{cases}" />
-   </MathContainer>
+   <BlockMath math="U(t) = \begin{cases}\begin{gathered}50000t\\\text{wenn} 0 \leq t \leq 8\end{gathered}\\[4pt]\begin{gathered}400000 + 75000(t-8)\\\text{wenn} 8 &lt; t \leq 12\end{gathered}\end{cases}" />
 
    Oder vereinfacht:
 
-   <MathContainer>
-     <BlockMath math="U(t) = \begin{cases} 50000t, &amp; \text{wenn} 0 \leq t \leq 8 \\ 75000t - 200000, &amp; \text{wenn} 8 &lt; t \leq 12 \end{cases}" />
-   </MathContainer>
+   <BlockMath math="U(t) = \begin{cases}\begin{gathered}50000t\\\text{wenn} 0 \leq t \leq 8\end{gathered}\\[4pt]\begin{gathered}75000t - 200000\\\text{wenn} 8 &lt; t \leq 12\end{gathered}\end{cases}" />

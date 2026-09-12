@@ -5,7 +5,7 @@ export const metadata = {
   description: "Löse lineare Gleichungssysteme durch Substitution und Elimination und deute ihre Lösungen anhand ausgearbeiteter Beispiele und grafischer Modelle.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Systeme linearer Gleichungen und Ungleichungen",
 };
 
@@ -51,19 +51,19 @@ Bei der Substitutionsmethode wird eine Variable durch einen gleichwertigen Ausdr
 
 <BlockMath math="\begin{cases} 2x + 3y = 21 & \ldots (1) \\ x + y = 10 & \ldots (2) \end{cases}" />
 
-**Schritt** <InlineMath math="1" />: Drücke eine Variable mithilfe der einfacheren Gleichung aus.
+**Schritt** 1: Drücke eine Variable mithilfe der einfacheren Gleichung aus.
 
-Aus der Gleichung (<InlineMath math="2" />): <InlineMath math="x + y = 10" /> drücken wir <InlineMath math="x" /> durch <InlineMath math="y" /> aus:
+Aus der Gleichung (2): <InlineMath math="x + y = 10" /> drücken wir <InlineMath math="x" /> durch <InlineMath math="y" /> aus:
 
 <BlockMath math="x = 10 - y \ldots (3)" />
 
-**Schritt** <InlineMath math="2" />: In die andere Gleichung einsetzen.
+**Schritt** 2: In die andere Gleichung einsetzen.
 
-Gleichung (<InlineMath math="3" />) in Gleichung (<InlineMath math="1" />) einfügen:
+Gleichung (3) in Gleichung (1) einfügen:
 
 <BlockMath math="2(10 - y) + 3y = 21" />
 
-**Schritt** <InlineMath math="3" />: Löse die entstandene Gleichung.
+**Schritt** 3: Löse die entstandene Gleichung.
 
 <MathContainer>
   <BlockMath math="20 - 2y + 3y = 21" />
@@ -71,9 +71,9 @@ Gleichung (<InlineMath math="3" />) in Gleichung (<InlineMath math="1" />) einf�
   <BlockMath math="y = 1 \ldots (4)" />
 </MathContainer>
 
-**Schritt** <InlineMath math="4" />: Setze den berechneten Wert ein, um die andere Variable zu finden.
+**Schritt** 4: Setze den berechneten Wert ein, um die andere Variable zu finden.
 
-Setze den Wert <InlineMath math="y = 1" /> aus Gleichung (<InlineMath math="4" />) in Gleichung (<InlineMath math="3" />) ein:
+Setze den Wert <InlineMath math="y = 1" /> aus Gleichung (4) in Gleichung (3) ein:
 
 <BlockMath math="x = 10 - y = 10 - 1 = 9" />
 
@@ -85,22 +85,24 @@ Bei der Eliminationsmethode werden zwei Gleichungen addiert oder subtrahiert, um
 
 <BlockMath math="\begin{cases} 2x + 3y = 21 & \ldots (1) \\ x + y = 10 & \ldots (2) \end{cases}" />
 
-**Schritt** <InlineMath math="1" />: Gleiche die Koeffizienten einer Variablen an.
+**Schritt** 1: Gleiche die Koeffizienten einer Variablen an.
 
-Multipliziere Gleichung (<InlineMath math="2" />) mit <InlineMath math="2" />, damit beide Gleichungen denselben Koeffizienten vor <InlineMath math="x" /> haben:
+Multipliziere Gleichung (2) mit <InlineMath math="2" />, damit beide Gleichungen denselben Koeffizienten vor <InlineMath math="x" /> haben:
 
 <BlockMath math="\begin{cases} 2x + 3y = 21 & \ldots (1) \\ 2x + 2y = 20 & \ldots (3) \end{cases}" />
 
-**Schritt** <InlineMath math="2" />: Eliminiere die Variable, indem du die Gleichungen subtrahierst.
+**Schritt** 2: Eliminiere die Variable, indem du die Gleichungen subtrahierst.
+
+Subtrahiere Gleichung (3) von Gleichung (1):
 
 <MathContainer>
-  <BlockMath math="(1) - (3): (2x + 3y) - (2x + 2y) = 21 - 20" />
+  <BlockMath math="(2x + 3y) - (2x + 2y) = 21 - 20" />
   <BlockMath math="y = 1 \ldots (4)" />
 </MathContainer>
 
-**Schritt** <InlineMath math="3" />: Bestimme mit dem Wert von <InlineMath math="y" /> nun <InlineMath math="x" />.
+**Schritt** 3: Bestimme mit dem Wert von <InlineMath math="y" /> nun <InlineMath math="x" />.
 
-Setze den Wert <InlineMath math="y = 1" /> aus Gleichung (<InlineMath math="4" />) in Gleichung (<InlineMath math="2" />) ein:
+Setze den Wert <InlineMath math="y = 1" /> aus Gleichung (4) in Gleichung (2) ein:
 
 <MathContainer>
   <BlockMath math="x + 1 = 10" />
@@ -111,8 +113,8 @@ Daher ist die Lösung <InlineMath math="x = 9" /> und <InlineMath math="y = 1" /
 
 Probe:
 
-- Gleichung (<InlineMath math="1" />): <InlineMath math="2(9) + 3(1) = 18 + 3 = 21" /> ✓
-- Gleichung (<InlineMath math="2" />): <InlineMath math="9 + 1 = 10" /> ✓
+- Gleichung (1): <InlineMath math="2(9) + 3(1) = 18 + 3 = 21" /> ✓
+- Gleichung (2): <InlineMath math="9 + 1 = 10" /> ✓
 
 ## Verständnis prüfen
 
@@ -168,7 +170,9 @@ Definieren wir:
 
 Wenn Wijaya <InlineMath math="27" /> Punkte erzielte, insgesamt <InlineMath math="16" /> Schüsse machte, davon <InlineMath math="6" /> Freiwürfe, dann:
 
-<BlockMath math="\begin{cases} a + 2b + 3c = 27 &amp; \text{(Gesamtpunktzahl)} \\ a + b + c = 16 &amp; \text{(Gesamtschüsse)} \\ a = 6 &amp; \text{(Freiwürfe)} \end{cases}" />
+Die Gleichungen stehen der Reihe nach für Gesamtpunktzahl, Gesamtzahl der Würfe und Freiwürfe:
+
+<BlockMath math="\begin{cases}a+2b+3c=27\\a+b+c=16\\a=6\end{cases}" />
 
 Setze <InlineMath math="a = 6" /> in die zweite Gleichung ein:
 
@@ -216,7 +220,7 @@ In drei Dimensionen stellt eine lineare Gleichung eine Ebene dar. Zwei verschied
           { x: 9, y: 1, z: 0 },
         ],
         smooth: false,
-        labels: [{ text: <InlineMath math="2x+3y=21" />, offset: [-1, -1, 0] }],
+        labels: [{ text: <InlineMath math="2x+3y=21" />, offset: [1.5, 1.2, 0] }],
         color: "#ea580c",
       },
       {
@@ -226,10 +230,12 @@ In drei Dimensionen stellt eine lineare Gleichung eine Ebene dar. Zwei verschied
           { x: 15, y: -5, z: 0 },
         ],
         smooth: false,
-        labels: [{ text: <InlineMath math="x+y=10" />, offset: [1, 1, 0] }],
+        labels: [{ text: <InlineMath math="x+y=10" />, offset: [5, 0, 0] }],
         color: "#9333ea",
       },
     ]}
+    cameraTarget={[7, 2.5, 0]}
+    cameraPosition={[7, 2.5, 13]}
   />
   <LineEquation
     title="Lineares Gleichungssystem ohne Lösung"
@@ -297,6 +303,7 @@ In drei Dimensionen stellt eine lineare Gleichung eine Ebene dar. Zwei verschied
         lineWidth: 2,
       },
     ]}
-    cameraPosition={[6, 4, 6]}
+    cameraPosition={[2, -1, 9]}
+    cameraTarget={[2, -1, 0]}
   />
 </ContentStack>

@@ -3,7 +3,7 @@ export const metadata = {
    description: "Komplizierte Grenzwerte mit Summen-, Produkt-, Quotienten-, Potenz- und Wurzelregeln in überschaubare Schritte zerlegen.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-07",
+   dateModified: "2026-09-12",
    subject: "Grenzwerte",
 };
 
@@ -38,8 +38,8 @@ Es gelte <InlineMath math="\lim_{x \to c} f(x) = L" /> und <InlineMath math="\li
 Bei einer **Summe** oder **Differenz** dürfen wir die Grenzwerte der einzelnen Funktionen getrennt berechnen:
 
 <MathContainer>
-<BlockMath math="\lim_{x \to c} [f(x) + g(x)] = \lim_{x \to c} f(x) + \lim_{x \to c} g(x) = L + M" />
-<BlockMath math="\lim_{x \to c} [f(x) - g(x)] = \lim_{x \to c} f(x) - \lim_{x \to c} g(x) = L - M" />
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to c} [f(x) + g(x)] \\ &amp;= \lim_{x \to c} f(x) + \lim_{x \to c} g(x) \\ &amp;= L + M \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to c} [f(x) - g(x)] \\ &amp;= \lim_{x \to c} f(x) - \lim_{x \to c} g(x) \\ &amp;= L - M \end{aligned}" />
 </MathContainer>
 
 > Genau darin liegt der Nutzen: Ein zusammengesetzter Grenzwert wird zu mehreren einfachen Teilaufgaben.
@@ -48,7 +48,7 @@ Bei einer **Summe** oder **Differenz** dürfen wir die Grenzwerte der einzelnen 
 
 Beim **Produkt** zweier Funktionen werden die beiden Grenzwerte miteinander multipliziert:
 
-<BlockMath math="\lim_{x \to c} [f(x) \cdot g(x)] = \lim_{x \to c} f(x) \cdot \lim_{x \to c} g(x) = L \cdot M" />
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to c} [f(x) \cdot g(x)] \\ &amp;= \lim_{x \to c} f(x) \cdot \lim_{x \to c} g(x) \\ &amp;= L \cdot M \end{aligned}" />
 
 ### Konstanter Faktor
 
@@ -95,9 +95,9 @@ Berechne <InlineMath math="\lim_{x \to 2} (3x^2 + 5x - 1)" />.
 Wir zerlegen den Ausdruck mithilfe der Grenzwertregeln:
 
 <MathContainer>
-<BlockMath math="\lim_{x \to 2} (3x^2 + 5x - 1) = \lim_{x \to 2} 3x^2 + \lim_{x \to 2} 5x - \lim_{x \to 2} 1" />
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to 2} (3x^2 + 5x - 1) = \lim_{x \to 2} 3x^2 \\ &amp;+ \lim_{x \to 2} 5x - \lim_{x \to 2} 1 \end{aligned}" />
 <BlockMath math="= 3 \lim_{x \to 2} x^2 + 5 \lim_{x \to 2} x - 1" />
-<BlockMath math="= 3(2)^2 + 5(2) - 1 = 12 + 10 - 1 = 21" />
+<BlockMath math="\begin{aligned}  &amp;= 3(2)^2 + 5(2) - 1 \\ &amp;= 12 + 10 - 1 \\ &amp;= 21 \end{aligned}" />
 </MathContainer>
 
 ### Grenzwert einer gebrochenrationalen Funktion
@@ -130,13 +130,13 @@ Berechne <InlineMath math="\lim_{x \to 0} \sqrt{x^2 - 3x + 2}" />.
 Wir verwenden die Wurzelregel. Weil <InlineMath math="n = 2" /> gerade ist, muss der Ausdruck unter der Wurzel in der betrachteten Umgebung nichtnegativ sein:
 
 <MathContainer>
-<BlockMath math="\lim_{x \to 0} \sqrt{x^2 - 3x + 2} = \sqrt{\lim_{x \to 0} (x^2 - 3x + 2)}" />
+<BlockMath math="\begin{aligned} &amp;\lim_{x \to 0} \sqrt{x^2 - 3x + 2} \\ &amp;= \sqrt{\lim_{x \to 0} (x^2 - 3x + 2)} \end{aligned}" />
 </MathContainer>
 
 Zuerst berechnen wir den Grenzwert unter der Wurzel:
 
 <MathContainer>
-<BlockMath math="\lim_{x \to 0} (x^2 - 3x + 2) = 0^2 - 3(0) + 2 = 0 - 0 + 2 = 2" />
+<BlockMath math="\begin{aligned} \lim_{x \to 0} (x^2 - 3x + 2) &amp;= 0^2 - 3(0) + 2 \\ &amp;= 0 - 0 + 2 \\ &amp;= 2 \end{aligned}" />
 </MathContainer>
 
 Da <InlineMath math="2 > 0" /> gilt, können wir die Wurzelregel verwenden:
@@ -162,13 +162,13 @@ Da <InlineMath math="2 > 0" /> gilt, können wir die Wurzelregel verwenden:
    Wir verwenden Summenregel und konstante Faktoren:
 
    <MathContainer>
-   <BlockMath math="\lim_{x \to 3} (2x^2 - 4x + 1) = 2\lim_{x \to 3} x^2 - 4\lim_{x \to 3} x + \lim_{x \to 3} 1" />
+   <BlockMath math="\begin{aligned} &amp;\lim_{x \to 3} (2x^2 - 4x + 1) = 2\lim_{x \to 3} x^2 \\ &amp;- 4\lim_{x \to 3} x + \lim_{x \to 3} 1 \end{aligned}" />
    </MathContainer>
 
    Nun setzen wir <InlineMath math="x = 3" /> ein:
 
    <MathContainer>
-   <BlockMath math="= 2(3)^2 - 4(3) + 1 = 2(9) - 12 + 1 = 18 - 12 + 1 = 7" />
+   <BlockMath math="\begin{aligned}  &amp;= 2(3)^2 - 4(3) + 1 \\ &amp;= 2(9) - 12 + 1 \\ &amp;= 18 - 12 + 1 \\ &amp;= 7 \end{aligned}" />
    </MathContainer>
 
 2. **Lösung:**

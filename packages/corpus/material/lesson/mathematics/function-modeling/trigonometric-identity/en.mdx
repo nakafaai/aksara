@@ -4,7 +4,7 @@ export const metadata = {
     description: "Prove Pythagorean, reciprocal, and quotient identities, then use them to simplify trigonometric expressions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Functions and Their Modeling",
 };
 
@@ -156,7 +156,11 @@ Simplify <InlineMath math="\frac{\sin^2 \theta}{\cos \theta} + \cos \theta" />
 <MathContainer>
   <BlockMath math="\frac{\sin^2 \theta}{\cos \theta} + \cos \theta = \frac{\sin^2 \theta}{\cos \theta} + \frac{\cos^2 \theta}{\cos \theta}" />
   <BlockMath math="= \frac{\sin^2 \theta + \cos^2 \theta}{\cos \theta}" />
-  <BlockMath math="= \frac{1}{\cos \theta} \quad \text{(using Pythagorean identity)}" />
+</MathContainer>
+  Use the Pythagorean identity:
+
+<MathContainer>
+  <BlockMath math="= \frac{1}{\cos \theta}" />
   <BlockMath math="= \sec \theta" />
 </MathContainer>
 
@@ -168,8 +172,10 @@ Prove that <InlineMath math="\frac{1 + \tan^2 \theta}{\sec \theta} = \sec \theta
 
 We start from the left side:
 
+Use <InlineMath math="1+\tan^2\theta=\sec^2\theta" />:
+
 <MathContainer>
-  <BlockMath math="\frac{1 + \tan^2 \theta}{\sec \theta} = \frac{\sec^2 \theta}{\sec \theta} \quad \text{(using } 1 + \tan^2 \theta = \sec^2 \theta \text{)}" />
+  <BlockMath math="\frac{1 + \tan^2 \theta}{\sec \theta} = \frac{\sec^2 \theta}{\sec \theta}" />
   <BlockMath math="= \sec \theta" />
 </MathContainer>
 
@@ -246,10 +252,10 @@ Next, calculate the other trigonometric functions:
 
    Finding <InlineMath math="\sin \theta" />:
 
-   <MathContainer>
-     <BlockMath math="\sin^2 \theta = 1 - \cos^2 \theta = 1 - \frac{25}{169} = \frac{144}{169}" />
-     <BlockMath math="\sin \theta = -\frac{12}{13} \text{ (negative in quadrant IV)}" />
-   </MathContainer>
+   <BlockMath math="\begin{aligned} \sin^2 \theta &amp;= 1 - \cos^2 \theta \\ &amp;= 1 - \frac{25}{169} \\ &amp;= \frac{144}{169} \end{aligned}" />
+        The value is negative in quadrant IV:
+
+   <BlockMath math="\sin\theta=-\frac{12}{13}" />
 
    Other trigonometric functions:
 
@@ -263,7 +269,7 @@ Next, calculate the other trigonometric functions:
 4. Use difference of squares factoring:
 
    <MathContainer>
-     <BlockMath math="\sin^4 \theta - \cos^4 \theta = (\sin^2 \theta)^2 - (\cos^2 \theta)^2" />
+     <BlockMath math="\begin{aligned} &amp;\sin^4 \theta - \cos^4 \theta = (\sin^2 \theta)^2 \\ &amp;- (\cos^2 \theta)^2 \end{aligned}" />
      <BlockMath math="= (\sin^2 \theta + \cos^2 \theta)(\sin^2 \theta - \cos^2 \theta)" />
      <BlockMath math="= 1 \cdot (\sin^2 \theta - \cos^2 \theta)" />
      <BlockMath math="= \sin^2 \theta - \cos^2 \theta" />
@@ -278,7 +284,11 @@ Next, calculate the other trigonometric functions:
    <MathContainer>
      <BlockMath math="1 + \frac{16}{9} = \sec^2 \theta" />
      <BlockMath math="\sec^2 \theta = \frac{25}{9}" />
-     <BlockMath math="\sec \theta = -\frac{5}{3} \text{ (negative in quadrant III)}" />
+   </MathContainer>
+        The value is negative in quadrant III:
+
+   <MathContainer>
+     <BlockMath math="\sec\theta=-\frac53" />
      <BlockMath math="\cos \theta = -\frac{3}{5}" />
    </MathContainer>
 

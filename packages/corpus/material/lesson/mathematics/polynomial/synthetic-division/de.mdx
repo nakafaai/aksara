@@ -3,7 +3,7 @@ export const metadata = {
   description: "Führe die synthetische Polynomdivision aus und bestimme Quotient sowie Rest in Rechenbeispielen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Polynom",
 };
 
@@ -54,18 +54,7 @@ Dividiere <InlineMath math="P(x) = 4x^4 + 17x^3 - 3x + 1" /> durch <InlineMath m
 
 2. **Divisionsrechnung:**
 
-   <BlockMath
-     math="
-    \begin{array}{l}
-    \qquad\qquad\qquad 4x^2 + x \\
-    x^2+4x-1\overline{\big)4x^4 + 17x^3 + 0x^2 - 3x + 1} \\
-    \qquad\qquad\underline{-(4x^4 + 16x^3 - 4x^2)} \\
-    \qquad\qquad\qquad\qquad x^3 + 4x^2 - 3x \\
-    \qquad\qquad\qquad\quad\underline{-(x^3 + 4x^2 - x)} \\
-    \qquad\qquad\qquad\qquad\qquad\qquad -2x + 1 \\
-    \end{array}
-    "
-   />
+   Der Quotient lautet <InlineMath math="4x^2+x" /> und der Rest <InlineMath math="-2x+1" />. Die folgenden Schritte zeigen jede Multiplikation und Subtraktion einschließlich des Nullkoeffizienten von <InlineMath math="x^2" />.
 
 3. **Schritt-für-Schritt-Erklärung:**
 
@@ -79,11 +68,11 @@ Dividiere <InlineMath math="P(x) = 4x^4 + 17x^3 - 3x + 1" /> durch <InlineMath m
 
    - **Multiplizieren:** Multipliziere <InlineMath math="4x^2" /> mit dem Divisor <InlineMath math="x^2 + 4x - 1" />:
 
-     <BlockMath math="4x^2(x^2 + 4x - 1) = 4x^4 + 16x^3 - 4x^2" />
+     <BlockMath math="\begin{aligned} &amp;4x^2(x^2 + 4x - 1) \\ &amp;= 4x^4 + 16x^3 - 4x^2 \end{aligned}" />
 
    - **Subtrahieren:** Subtrahiere das Produkt vom anfänglichen Polynom:
 
-     <BlockMath math="(4x^4 + 17x^3 + 0x^2) - (4x^4 + 16x^3 - 4x^2) = x^3 + 4x^2" />
+     <BlockMath math="\begin{aligned} &amp;(4x^4 + 17x^3 + 0x^2) \\ &amp;- (4x^4 + 16x^3 - 4x^2) = x^3 \\ &amp;+ 4x^2 \end{aligned}" />
 
    - **Herunterziehen:** Ziehe den nächsten Term (<InlineMath math="-3x" />) herunter, um das neue Polynom zu erhalten:
 
@@ -103,7 +92,7 @@ Dividiere <InlineMath math="P(x) = 4x^4 + 17x^3 - 3x + 1" /> durch <InlineMath m
 
    - **Subtrahieren:** Subtrahiere das Produkt vom aktuellen Polynom:
 
-     <BlockMath math="(x^3 + 4x^2 - 3x) - (x^3 + 4x^2 - x) = -2x" />
+     <BlockMath math="\begin{aligned} &amp;(x^3 + 4x^2 - 3x) \\ &amp;- (x^3 + 4x^2 - x) = -2x \end{aligned}" />
 
    - **Herunterziehen:** Ziehe den nächsten Term (<InlineMath math="+1" />) herunter, um den vorläufigen Rest zu erhalten:
 
@@ -122,11 +111,11 @@ Dividiere <InlineMath math="P(x) = 4x^4 + 17x^3 - 3x + 1" /> durch <InlineMath m
 
      - Bruchform:
 
-       <BlockMath math="\frac{4x^4 + 17x^3 - 3x + 1}{x^2 + 4x - 1} = 4x^2 + x + \frac{-2x + 1}{x^2 + 4x - 1}" />
+       <BlockMath math="\begin{aligned} &amp;\frac{4x^4 + 17x^3 - 3x + 1}{x^2 + 4x - 1} \\ &amp;= 4x^2 + x + \frac{-2x + 1}{x^2 + 4x - 1} \end{aligned}" />
 
      - Multiplikationsform:
 
-       <BlockMath math="4x^4 + 17x^3 - 3x + 1 = (x^2 + 4x - 1)(4x^2 + x) + (-2x + 1)" />
+       <BlockMath math="\begin{aligned} &amp;4x^4 + 17x^3 - 3x + 1 \\ &amp;= (x^2 + 4x - 1)(4x^2 + x) \\ &amp;+ (-2x + 1) \end{aligned}" />
 
 Die Polynomdivision hält jeden Divisions-, Multiplikations- und Subtraktionsschritt fest. Diese Anordnung funktioniert für Divisoren beliebigen positiven Grades und erleichtert die Kontrolle mit <InlineMath math="P(x)=Q(x)H(x)+S(x)" />.
 
@@ -159,4 +148,4 @@ Zuerst werden die führenden Terme dividiert: <InlineMath math="x^3 \div x^2 = x
 - Rest: <InlineMath math="S(x) = 3" />
 - Form des Divisionsalgorithmus:
 
-  <BlockMath math="x^3 - x + 9 = (x^2 - 2x + 3)(x + 2) + 3" />
+  <BlockMath math="\begin{aligned} &amp;x^3 - x + 9 \\ &amp;= (x^2 - 2x + 3)(x + 2) + 3 \end{aligned}" />

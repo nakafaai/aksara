@@ -5,7 +5,7 @@ export const metadata = {
   description: "Addiere und subtrahiere Polynome mit gleichartigen Termen, übersichtlichen Rechenschemata und einer grafischen Deutung.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Polynom",
 };
 
@@ -46,13 +46,19 @@ Bei der Addition zweier Polynome werden **die Koeffizienten gleichartiger Terme 
 
 Bestimme die Summe <InlineMath math="(2x^3 + 7x^2 + 3x + 5) + (6x^3 + 2x^2 + 4x + 1)" />.
 
-<MathContainer>
-  <BlockMath math="(2x^3 + 7x^2 + 3x + 5) + (6x^3 + 2x^2 + 4x + 1)" />
-  <BlockMath math="= 2x^3 + 7x^2 + 3x + 5 + 6x^3 + 2x^2 + 4x + 1 \quad \text{(Klammern entfernen)}" />
-  <BlockMath math="= (2x^3 + 6x^3) + (7x^2 + 2x^2) + (3x + 4x) + (5 + 1) \quad \text{(gleichartige Terme zusammenfassen)}" />
-  <BlockMath math="= (2 + 6)x^3 + (7 + 2)x^2 + (3 + 4)x + (5 + 1) \quad \text{(Distributivgesetz)}" />
-  <BlockMath math="= 8x^3 + 9x^2 + 7x + 6 \quad \text{(Endergebnis)}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} &amp;(2x^3 + 7x^2 + 3x + 5) \\ &amp;+ (6x^3 + 2x^2 + 4x + 1) \end{aligned}" />
+  Löse die Klammern auf:
+
+<BlockMath math="\begin{aligned} &amp;=2x^3+7x^2+3x+5 \\ &amp;+6x^3+2x^2+4x+1 \end{aligned}" />
+  Ordne die gleichartigen Terme zusammen:
+
+<BlockMath math="\begin{aligned} &amp;=(2x^3+6x^3)+(7x^2+2x^2) \\ &amp;+(3x+4x)+(5+1) \end{aligned}" />
+  Wende das Distributivgesetz an:
+
+<BlockMath math="\begin{aligned} &amp;=(2+6)x^3+(7+2)x^2 \\ &amp;+(3+4)x+(5+1) \end{aligned}" />
+  Das Ergebnis lautet:
+
+<BlockMath math="= 8x^3 + 9x^2 + 7x + 6" />
 
 ## Polynomsubtraktion
 
@@ -69,12 +75,20 @@ Bei der Subtraktion **wechseln zuerst alle Terme des zweiten Polynoms ihr Vorzei
 
 Bestimme die Differenz <InlineMath math="(9x^3 + 4x^2 + 6x + 5) - (2x^3 + 3x^2 + 3x + 4)" />.
 
+<BlockMath math="\begin{aligned} &amp;(9x^3 + 4x^2 + 6x + 5) \\ &amp;- (2x^3 + 3x^2 + 3x + 4) \end{aligned}" />
+  Ändere die Vorzeichen und löse die Klammern auf:
+
+<BlockMath math="\begin{aligned} &amp;=9x^3+4x^2+6x+5 \\ &amp;-2x^3-3x^2-3x-4 \end{aligned}" />
+  Ordne die gleichartigen Terme zusammen:
+
+<BlockMath math="\begin{aligned} &amp;=(9x^3-2x^3)+(4x^2-3x^2) \\ &amp;+(6x-3x)+(5-4) \end{aligned}" />
+  Wende das Distributivgesetz an:
+
+<BlockMath math="\begin{aligned} &amp;=(9-2)x^3+(4-3)x^2 \\ &amp;+(6-3)x+(5-4) \end{aligned}" />
+  Das Ergebnis lautet:
+
 <MathContainer>
-  <BlockMath math="(9x^3 + 4x^2 + 6x + 5) - (2x^3 + 3x^2 + 3x + 4)" />
-  <BlockMath math="= 9x^3 + 4x^2 + 6x + 5 - 2x^3 - 3x^2 - 3x - 4 \quad \text{(Vorzeichen ändern \&amp; Klammern entfernen)}" />
-  <BlockMath math="= (9x^3 - 2x^3) + (4x^2 - 3x^2) + (6x - 3x) + (5 - 4) \quad \text{(gleichartige Terme zusammenfassen)}" />
-  <BlockMath math="= (9 - 2)x^3 + (4 - 3)x^2 + (6 - 3)x + (5 - 4) \quad \text{(Distributivgesetz)}" />
-  <BlockMath math="= 7x^3 + 1x^2 + 3x + 1 \quad \text{(Endergebnis)}" />
+  <BlockMath math="= 7x^3 + 1x^2 + 3x + 1" />
   <BlockMath math="= 7x^3 + x^2 + 3x + 1" />
 </MathContainer>
 
@@ -132,10 +146,14 @@ Angenommen, wir haben drei Graphen von Polynomfunktionen:
     cameraPosition={[0, 0, 15]}
     data={[
       {
-        points: Array.from({ length: 51 }, (_, i) => {
-          const x = -2.5 + i * 0.1;
-          return { x, y: x + 1, z: 0 };
-        }),
+        points: [
+          { x: -12, y: -11, z: 0 },
+          ...Array.from({ length: 51 }, (_, i) => {
+            const x = -2.5 + i * 0.1;
+            return { x, y: x + 1, z: 0 };
+          }),
+          { x: 10, y: 11, z: 0 },
+        ],
         smooth: false,
         color: "#0284c7",
         showPoints: false,
@@ -173,8 +191,8 @@ Angenommen, wir haben drei Graphen von Polynomfunktionen:
     data={[
       {
         smooth: false,
-        points: Array.from({ length: 51 }, (_, i) => {
-          const x = -2.5 + i * 0.1;
+        points: Array.from({ length: 261 }, (_, i) => {
+          const x = (i - 130) / 40;
           return { x, y: -0.5 * x ** 3 + 1.5 * x, z: 0 };
         }),
         color: "#d97706",
@@ -223,8 +241,8 @@ Hier sind Beispielskizzen der Diagramme, die sich aus der Summe <InlineMath math
     data={[
       {
         smooth: false,
-        points: Array.from({ length: 51 }, (_, i) => {
-          const x = -2.5 + i * 0.1;
+        points: Array.from({ length: 271 }, (_, i) => {
+          const x = (i - 140) / 50;
           return { x, y: x + 1 + (0.5 * x ** 4 - 2 * x ** 2 + 1), z: 0 };
         }),
         color: "#7c3aed",
@@ -250,8 +268,8 @@ Hier sind Beispielskizzen der Diagramme, die sich aus der Summe <InlineMath math
     data={[
       {
         smooth: false,
-        points: Array.from({ length: 51 }, (_, i) => {
-          const x = -2.5 + i * 0.1;
+        points: Array.from({ length: 271 }, (_, i) => {
+          const x = (i - 130) / 50;
           return { x, y: x + 1 - (0.5 * x ** 4 - 2 * x ** 2 + 1), z: 0 };
         }),
         color: "#db2777",
@@ -280,7 +298,7 @@ Bei der Addition fassen wir die Koeffizienten gleicher Potenzen zusammen:
 
 <MathContainer>
   <BlockMath math="A(x)+B(x)" />
-  <BlockMath math="=(3-1)x^3+(-2+6)x^2+(5-3)x+(-4+7)" />
+  <BlockMath math="\begin{aligned} &amp;=(3-1)x^3+(-2+6)x^2 \\ &amp;+(5-3)x+(-4+7) \end{aligned}" />
   <BlockMath math="=2x^3+4x^2+2x+3" />
 </MathContainer>
 
@@ -288,7 +306,7 @@ Bei der Subtraktion verteilen wir zuerst das Minuszeichen auf jeden Term von <In
 
 <MathContainer>
   <BlockMath math="A(x)-B(x)" />
-  <BlockMath math="=3x^3-2x^2+5x-4-(-x^3+6x^2-3x+7)" />
-  <BlockMath math="=(3+1)x^3+(-2-6)x^2+(5+3)x+(-4-7)" />
+  <BlockMath math="\begin{aligned} &amp;=3x^3-2x^2+5x \\ &amp;-4-(-x^3+6x^2-3x+7) \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;=(3+1)x^3+(-2-6)x^2 \\ &amp;+(5+3)x+(-4-7) \end{aligned}" />
   <BlockMath math="=4x^3-8x^2+8x-11" />
 </MathContainer>

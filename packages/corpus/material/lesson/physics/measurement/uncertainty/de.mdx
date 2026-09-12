@@ -4,7 +4,7 @@ export const metadata = {
     "Wiederholte Messungen lassen sich mit einem Mittelwert und einer Unsicherheit zusammenfassen, damit das Ergebnis nicht genauer erscheint als die vorhandenen Daten.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-09-12",
   subject: "Messen in der Naturwissenschaft",
 };
 
@@ -36,11 +36,13 @@ Bei annähernd symmetrisch streuenden Messwerten ohne deutlichen Ausreißer ist 
 
 Für die Daten aus der Tabelle ergibt sich:
 
-<BlockMath math="\begin{aligned}
-\bar d
-&= \frac{3{,}12+3{,}14+3{,}15+3{,}11+3{,}14}{5}\text{cm} \\
-&= 3{,}132 \text{cm}
-\end{aligned}" />
+Addiere zunächst die Zahlenwerte der Messungen in Zentimetern:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;S=3{,}12+3{,}14+3{,}15 \\ &amp;+3{,}11+3{,}14=15{,}66 \end{aligned}" />
+
+  <BlockMath math="\bar d=\frac{15{,}66}{5}\text{ cm}=3{,}132\text{ cm}" />
+</MathContainer>
 
 Der Mittelwert allein reicht nicht. Ebenso wichtig ist, ob die Messwerte dicht bei ihm liegen oder weit streuen.
 
@@ -52,11 +54,13 @@ Die Stichprobenstandardabweichung erfasst die Abstände der einzelnen Messwerte 
 
 Im Nenner steht <InlineMath math="N-1" />, weil der Stichprobenmittelwert <InlineMath math="\bar d" /> aus denselben Daten berechnet wird. Die Abweichungen vom Mittelwert müssen sich zu null summieren, sodass nur <InlineMath math="N-1" /> Abweichungen unabhängig voneinander variieren können.
 
-<BlockMath math="\begin{aligned}
-s_d
-&= \sqrt{\frac{(-0{,}012)^2+(0{,}008)^2+(0{,}018)^2+(-0{,}022)^2+(0{,}008)^2}{4}}\text{cm} \\
-&= 0{,}0164\text{cm}
-\end{aligned}" />
+Addiere zunächst die quadrierten Zahlenwerte der Abweichungen:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;V=(-0{,}012)^2+(0{,}008)^2 \\ &amp;+(0{,}018)^2+(-0{,}022)^2 \\ &amp;+(0{,}008)^2=0{,}00108 \end{aligned}" />
+
+  <BlockMath math="\begin{aligned} &amp;s_d=\sqrt{\frac V4}\text{ cm} \\ &amp;=\sqrt{0{,}00027}\text{ cm} \\ &amp;\approx0{,}0164\text{ cm} \end{aligned}" />
+</MathContainer>
 
 Mit der gerundeten Streuung lässt sich der Durchmesser so angeben:
 
@@ -68,7 +72,13 @@ Der Wert <InlineMath math="3{,}13 \text{cm}" /> beschreibt die Lage der Daten. D
 
 In manchen Aufgaben zu wiederholten Messungen wird die folgende kompakte algebraische Form verwendet.
 
-<BlockMath math="\Delta x=\frac{1}{\sqrt{N}}\sqrt{\frac{N\sum_{i=1}^{N}x_i^2-\left(\sum_{i=1}^{N}x_i\right)^2}{N-1}}" />
+Kürze die beiden Summen ab, ohne die Formel zu ändern:
+
+<MathContainer>
+  <BlockMath math="S_1=\sum_{i=1}^N x_i,\quad S_2=\sum_{i=1}^N x_i^2" />
+
+  <BlockMath math="\Delta x=\frac1{\sqrt N}\sqrt{\frac{NS_2-S_1^2}{N-1}}" />
+</MathContainer>
 
 Diese Formel ist algebraisch gleichbedeutend mit der Stichprobenstandardabweichung:
 
@@ -124,4 +134,4 @@ Für die Fläche des Flaschendeckels ergibt sich:
 
 Die Stichprobenstreuung beträgt damit ungefähr <InlineMath math="1{,}05\,\%" /> der mittleren Fläche. Ob das ausreicht, hängt vom Verwendungszweck und von der Zielunsicherheit ab. Ohne eine solche Anforderung darf der Prozentsatz nicht als „klein genug“ bezeichnet werden.
 
-Bei einer Typ-A-Auswertung wird eine Unsicherheitskomponente aus der statistischen Analyse wiederholter Beobachtungen bestimmt. Ein Messergebnis muss außerdem so angegeben werden, dass die Auswertung der Unsicherheit nachvollziehbar ist. [NIST](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-3-type-evaluation-standard-uncertainty) [BIPM](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf)
+Bei einer [Typ-A-Auswertung](https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-3-type-evaluation-standard-uncertainty) wird eine Unsicherheitskomponente aus der statistischen Analyse wiederholter Beobachtungen bestimmt. Ein Messergebnis muss außerdem so angegeben werden, dass die [Auswertung der Unsicherheit nachvollziehbar](https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf) ist.

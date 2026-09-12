@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bestimme Brennpunkte und Achsen einer Ellipse und leite ihre Standardgleichungen in Rechenbeispielen her.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Analytische Geometrie",
 };
 
@@ -441,10 +441,12 @@ Diese Gleichung gilt für <InlineMath math="a > b" />.
 
 Liegt der Mittelpunkt im Punkt <InlineMath math="(h, k)" /> statt im Ursprung, entstehen die verschobenen Formen:
 
-<MathContainer>
-  <BlockMath math="\frac{(x-h)^2}{a^2} + \frac{(y-k)^2}{b^2} = 1 \quad \text{(horizontale Hauptachse)}" />
-  <BlockMath math="\frac{(x-h)^2}{b^2} + \frac{(y-k)^2}{a^2} = 1 \quad \text{(vertikale Hauptachse)}" />
-</MathContainer>
+Bei horizontaler Hauptachse:
+
+<BlockMath math="\frac{(x-h)^2}{a^2} + \frac{(y-k)^2}{b^2} = 1" />
+  Bei vertikaler Hauptachse:
+
+<BlockMath math="\frac{(x-h)^2}{b^2} + \frac{(y-k)^2}{a^2} = 1" />
 
 Die folgende Grafik zeigt ein Beispiel:
 
@@ -533,7 +535,8 @@ Die folgende Grafik zeigt ein Beispiel:
       smooth: false,
     },
   ]}
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[2, -1, 12]}
+  cameraTarget={[2, -1, 0]}
 />
 
 ## Beziehungen zwischen den Ellipsenlängen
@@ -608,7 +611,7 @@ Für eine nicht kreisförmige Ellipse gilt <InlineMath math="0 < e < 1" />. Je n
 
    Da die Brennpunkte die gleichen <InlineMath math="x" />-Koordinaten (<InlineMath math="x = 3" />) haben, ist die Hauptachse vertikal.
 
-   <BlockMath math="\text{Abstand zwischen Brennpunkten} = |2 - (-4)| = 6" />
+   <BlockMath math="\begin{aligned} &amp;\begin{gathered}\text{Abstand zwischen}\\\text{Brennpunkten}\end{gathered} \\ &amp;= |2 - (-4)| \\ &amp;= 6 \end{aligned}" />
 
    Daher gilt <InlineMath math="2c = 6" /> und somit <InlineMath math="c = 3" />.
 
@@ -646,9 +649,9 @@ Für eine nicht kreisförmige Ellipse gilt <InlineMath math="0 < e < 1" />. Je n
      <BlockMath math="36u + 4v = 1 \quad \text{...(2)}" />
    </MathContainer>
 
-   Aus Gleichung (<InlineMath math="1" />) folgt <InlineMath math="v = \frac{1-16u}{9}" />.
+   Aus Gleichung (1) folgt <InlineMath math="v = \frac{1-16u}{9}" />.
 
-   Dies setzen wir in Gleichung (<InlineMath math="2" />) ein:
+   Dies setzen wir in Gleichung (2) ein:
 
    <MathContainer>
      <BlockMath math="36u + 4 \cdot \frac{1-16u}{9} = 1" />
@@ -663,7 +666,7 @@ Für eine nicht kreisförmige Ellipse gilt <InlineMath math="0 < e < 1" />. Je n
    Rückeinsetzen liefert:
 
    <MathContainer>
-     <BlockMath math="v = \frac{1-16 \cdot \frac{1}{52}}{9} = \frac{1-\frac{16}{52}}{9} = \frac{\frac{36}{52}}{9} = \frac{4}{52} = \frac{1}{13}" />
+     <BlockMath math="\begin{aligned} v &amp;= \frac{1-16 \cdot \frac{1}{52}}{9} \\ &amp;= \frac{1-\frac{16}{52}}{9} \\ &amp;= \frac{\frac{36}{52}}{9} \\ &amp;= \frac{4}{52} \\ &amp;= \frac{1}{13} \end{aligned}" />
    </MathContainer>
 
    Damit ist <InlineMath math="b^2 = 13" />.

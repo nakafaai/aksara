@@ -5,7 +5,7 @@ export const metadata = {
     description: "Riemann sums divide an interval into subintervals and add signed rectangle contributions. For nonnegative functions, the result approximates the area under the curve.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-08",
+    dateModified: "2026-09-12",
     subject: "Integrals",
 };
 
@@ -49,7 +49,7 @@ The sigma notation (<InlineMath math="\sum" />) simply means "sum up all the are
       smooth: false,
       color: "#9333ea",
       showPoints: false,
-      labels: [{ text: <InlineMath math="f(x)=x" />, at: 4, offset: [-1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="f(x)=x" />, at: 4, offset: [-1.5, 0.8, 0] }],
     },
     ...Array.from({ length: 7 }).map((_, i) => {
         const x_left = i;
@@ -69,6 +69,8 @@ The sigma notation (<InlineMath math="\sum" />) simply means "sum up all the are
         }
     })
   ]}
+  cameraTarget={[3.5, 3.5, 0]}
+  cameraPosition={[3.5, 3.5, 10]}
 />
 
 **Solution:**
@@ -88,11 +90,11 @@ The sigma notation (<InlineMath math="\sum" />) simply means "sum up all the are
 
     Our subintervals are:
 
-    <BlockMath math="[0,1], [1,2], [2,3], [3,4], [4,5], [5,6], [6,7]" />
+    <BlockMath math="\begin{aligned} &amp;[0,1], [1,2], [2,3], [3,4], [4,5], \\ &amp;[5,6], [6,7] \end{aligned}" />
 
     For the left-endpoint method, we take the value of <InlineMath math="x" /> from the left side of each subinterval as the sample point:
 
-    <BlockMath math="x_1=0, x_2=1, x_3=2, x_4=3, x_5=4, x_6=5, x_7=6" />
+    <BlockMath math="\begin{aligned} &amp;x_1=0, x_2=1, x_3=2, x_4=3, \\ &amp;x_5=4, x_6=5, x_7=6 \end{aligned}" />
 
 4.  **Calculate the Height of Each Rectangle:**
 
@@ -112,11 +114,15 @@ The sigma notation (<InlineMath math="\sum" />) simply means "sum up all the are
 
     Now we can calculate the total area by adding the areas of all rectangles. The area of each rectangle is its height times its width:
 
-    <MathContainer>
     <BlockMath math="R_7 = \sum_{i=1}^{7} f(x_i^*) \Delta x" />
-    <BlockMath math="= [f(0) + f(1) + f(2) + f(3) + f(4) + f(5) + f(6)] \cdot 1" />
-    <BlockMath math="= (0 + 1 + 2 + 3 + 4 + 5 + 6) \cdot 1" />
-    <BlockMath math="= 21" />
+        Denote the sum of the seven sampled values by <InlineMath math="S" />:
+
+    <MathContainer>
+      <BlockMath math="\begin{aligned} &amp;S=f(0)+f(1)+f(2)+f(3) \\ &amp;+f(4)+f(5)+f(6) \end{aligned}" />
+
+      <BlockMath math="=S\cdot1" />
+      <BlockMath math="= (0 + 1 + 2 + 3 + 4 + 5 + 6) \cdot 1" />
+      <BlockMath math="= 21" />
     </MathContainer>
 
     Thus, the estimated area under the curve <InlineMath math="f(x)=x" /> from <InlineMath math="0" /> to <InlineMath math="7" /> is <InlineMath math="21" />.
@@ -134,7 +140,8 @@ The sigma notation (<InlineMath math="\sum" />) simply means "sum up all the are
     <LineEquation
     title="Riemann Sum Exercise Visualization"
     description={<>Graph of the function <InlineMath math="f(x)=x^2+1" /> with <InlineMath math="4" /> rectangular partitions using the right endpoint.</>}
-    cameraPosition={[10, 10, 10]}
+    cameraPosition={[2, 8.5, 21.5]}
+    cameraTarget={[2, 8.5, 0]}
     data={[
         {
         smooth: false,
@@ -145,7 +152,7 @@ The sigma notation (<InlineMath math="\sum" />) simply means "sum up all the are
         }),
         color: "#d97706",
         showPoints: false,
-        labels: [{ text: <InlineMath math="f(x)=x^2+1" />, at: 20, offset: [2, -1, 0] }],
+        labels: [{ text: <InlineMath math="f(x)=x^2+1" />, at: 20, offset: [-5.2, 6, 0] }],
         },
         ...Array.from({ length: 4 }).map((_, i) => {
             const x_left = i;
@@ -167,17 +174,17 @@ The sigma notation (<InlineMath math="\sum" />) simply means "sum up all the are
     ]}
     />
 
-    **Step** <InlineMath math="1" />: Determine the main components.
+    **Step** 1: Determine the main components.
     -   Function: <InlineMath math="f(x) = x^2 + 1" />
     -   Interval: <InlineMath math="a=0, b=4" />
     -   Number of partitions: <InlineMath math="n=4" />
     -   Sample point: Right endpoint
 
-    **Step** <InlineMath math="2" />: Calculate the subinterval width.
+    **Step** 2: Calculate the subinterval width.
 
     <BlockMath math="\Delta x = \frac{b-a}{n} = \frac{4-0}{4} = 1" />
 
-    **Step** <InlineMath math="3" />: Determine the right endpoint sample points.
+    **Step** 3: Determine the right endpoint sample points.
 
     The subintervals are:
 
@@ -187,7 +194,7 @@ The sigma notation (<InlineMath math="\sum" />) simply means "sum up all the are
 
     <BlockMath math="x_1=1, x_2=2, x_3=3, x_4=4" />
 
-    **Step** <InlineMath math="4" />: Calculate the height of each rectangle.
+    **Step** 4: Calculate the height of each rectangle.
 
     The height of each rectangle is determined by the function's value <InlineMath math="f(x) = x^2 + 1" /> at the right endpoint sample points:
 
@@ -198,7 +205,7 @@ The sigma notation (<InlineMath math="\sum" />) simply means "sum up all the are
     <BlockMath math="f(x_4) = f(4) = 4^2 + 1 = 17" />
     </MathContainer>
 
-    **Step** <InlineMath math="5" />: Calculate the total Riemann Sum.
+    **Step** 5: Calculate the total Riemann Sum.
 
     Now we sum the areas of all rectangles (<InlineMath math="\text{height} \times \text{width}" />):
 

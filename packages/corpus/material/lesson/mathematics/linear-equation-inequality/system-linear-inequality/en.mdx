@@ -5,7 +5,7 @@ export const metadata = {
   description: "Solve linear inequality systems using graphical methods. Explore constraint modeling, optimization problems, and interactive visualizations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-18",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Systems of Linear Equations and Inequalities",
 };
 
@@ -17,7 +17,7 @@ A plan may need to stay within a budget and meet a minimum attendance target at 
 
 A linear inequality system is a collection of two or more linear inequalities that must be satisfied simultaneously. Linear inequalities take the form:
 
-<BlockMath math="a_1x_1 + a_2x_2 + ... + a_nx_n \leq b \text{ or} a_1x_1 + a_2x_2 + ... + a_nx_n \geq b" />
+<BlockMath math="\begin{aligned} &amp;a_1x_1 + a_2x_2 + ... + a_nx_n \\ &amp;\leq b \text{ or} a_1x_1 + a_2x_2 + ... + a_nx_n \geq b \end{aligned}" />
 
 Where <InlineMath math="a_1, a_2, ..., a_n" /> are coefficients, <InlineMath math="x_1, x_2, ..., x_n" /> are variables, <InlineMath math="b" /> is a constant, and the inequality sign can be <InlineMath math="\leq, \geq, <, >" />.
 
@@ -193,6 +193,8 @@ The purple region shows the solution to <InlineMath math="15x + 9y \geq 120" /> 
 The intersection of the two regions is the solution to the linear inequality system.
 
 <Inequality
+  cameraPosition={[5, 5, 22]}
+  cameraTarget={[5, 5, 0]}
   title="Linear Inequality System"
   description={
     <>
@@ -205,27 +207,27 @@ The intersection of the two regions is the solution to the linear inequality sys
     {
       is2D: true,
       boundaryLine2D: [1, 1, -10],
-      xRange: [-15, 15],
-      yRange: [-15, 15],
+      xRange: [-50, 50],
+      yRange: [-50, 50],
       zRange: [-0.05, 0.05],
       color: "#ea580c",
       boundaryColor: "#ea580c",
       label: {
         text: <InlineMath math="x + y \le 10" />,
-        position: [-14, -8, 0.15],
+        position: [0, 4, 0.15],
       },
     },
     {
       is2D: true,
       boundaryLine2D: [-15, -9, 120],
-      xRange: [-15, 15],
-      yRange: [-15, 15],
+      xRange: [-50, 50],
+      yRange: [-50, 50],
       zRange: [-0.05, 0.05],
       color: "#9333ea",
       boundaryColor: "#9333ea",
       label: {
         text: <InlineMath math="15x + 9y \ge 120" />,
-        position: [14, 14, 0.15],
+        position: [9, 8, 0.15],
       },
     },
   ]}

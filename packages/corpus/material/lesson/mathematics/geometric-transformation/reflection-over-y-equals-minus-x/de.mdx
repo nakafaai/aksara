@@ -4,7 +4,7 @@ export const metadata = {
   description: "Spiegelungen an der fallenden Winkelhalbierenden folgen einer Koordinatenregel, die durch konkrete Punktabbildungen angewendet wird.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Geometrische Transformation",
 };
 
@@ -58,7 +58,7 @@ Bei den folgenden Punktpaaren tauschen die Koordinaten ihre Plätze und ihre Vor
       ],
       smooth: false,
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [0.5, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [-1.7, 0, 0] }],
     }, // Spiegelgerade
     // Punkte A und A'
     {
@@ -123,7 +123,7 @@ Das Bilddreieck <InlineMath math="A'B'C'" /> entsteht durch die Verbindung der P
       ],
       smooth: false,
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [0.5, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [-4, 2, 0] }],
     }, // Spiegelgerade
     // Ausgangsdreieck ABC
     ...[
@@ -144,7 +144,7 @@ Das Bilddreieck <InlineMath math="A'B'C'" /> entsteht durch die Verbindung der P
       smooth: false,
       color: "#d97706",
       showPoints: true,
-      labels: [{ text: segment.from.label, at: 0, offset: [0.4, 0.4, 0] }],
+      labels: [{ text: segment.from.label, at: 0, offset: segment.from.x === -2 && segment.from.y === 4 ? [0.4, 0.4, 0] : segment.from.x === 3 && segment.from.y === 1 ? [0.5, -0.6, 0] : [-1, -0.6, 0] }],
     })),
     // Bilddreieck A'B'C'
     ...[
@@ -165,10 +165,11 @@ Das Bilddreieck <InlineMath math="A'B'C'" /> entsteht durch die Verbindung der P
       smooth: false,
       color: "#0d9488",
       showPoints: true,
-      labels: [{ text: segment.from.label, at: 0, offset: [0.4, 0.4, 0] }],
+      labels: [{ text: segment.from.label, at: 0, offset: segment.from.x === -4 && segment.from.y === 2 ? [-0.2, 1, 0] : segment.from.x === -1 && segment.from.y === -3 ? [1.5, -0.8, 0] : [0.5, 0.8, 0] }],
     })),
   ]}
-  cameraPosition={[0, 0, 18]}
+  cameraPosition={[-0.5, 0.5, 13]}
+  cameraTarget={[-0.5, 0.5, 0]}
 />
 
 ## Eine Geradengleichung spiegeln
@@ -217,7 +218,7 @@ Die Bildgerade von <InlineMath math="y = -4x - 2" /> hat nach der Spiegelung an 
       ],
       smooth: false,
       color: "#4f46e5",
-      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [0.5, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=-x" />, at: 1, offset: [-3.7, 1.2, 0] }],
     }, // Spiegelgerade
     {
       // Ursprüngliche Gerade y = -4x - 2
@@ -227,7 +228,7 @@ Die Bildgerade von <InlineMath math="y = -4x - 2" /> hat nach der Spiegelung an 
       }),
       color: "#9333ea",
       smooth: false,
-      labels: [{ text: <InlineMath math="y=-4x-2" />, at: 6, offset: [1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="y=-4x-2" />, at: 6, offset: [-3.7, 0.2, 0] }],
     },
     {
       // Bildgerade y = (-1/4)x + 1/2
@@ -237,10 +238,11 @@ Die Bildgerade von <InlineMath math="y = -4x - 2" /> hat nach der Spiegelung an 
       }),
       color: "#db2777",
       smooth: false,
-      labels: [{ text: <InlineMath math="y=(-\frac{1}{4})x+\frac{1}{2}" />, at: 8, offset: [0.5, -1, 0] }],
+      labels: [{ text: <InlineMath math="y=(-\frac{1}{4})x+\frac{1}{2}" />, at: 8, offset: [-2.7, 2.6, 0] }],
     },
   ]}
-  cameraPosition={[0, 0, 18]}
+  cameraPosition={[0, 0, 14]}
+  cameraTarget={[0, 0, 0]}
 />
 
 ## Übungen

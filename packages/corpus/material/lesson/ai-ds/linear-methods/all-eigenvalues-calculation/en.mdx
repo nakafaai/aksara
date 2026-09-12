@@ -3,7 +3,7 @@ export const metadata = {
     description: "Follow QR iteration from orthogonal factorization to Schur form, then read real and complex eigenvalues without forming a characteristic polynomial.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-17",
-    dateModified: "2026-09-07",
+    dateModified: "2026-09-12",
     subject: "Linear Methods of AI",
 };
 
@@ -27,7 +27,7 @@ The version below is the unshifted <InlineMath math="\mathrm{QR}" /> iteration. 
 
 4. Repeat the factorization and reverse multiplication. A small subdiagonal entry can be set to zero when it is negligible relative to its neighboring diagonal entries. That split, called **deflation**, isolates a converged eigenvalue or block.
 
-   <BlockMath math="|(A_k)_{j+1,j}|\leq \tau\left(|(A_k)_{j,j}|+|(A_k)_{j+1,j+1}|\right)" />
+   <BlockMath math="\begin{aligned} &amp;|(A_k)_{j+1,j}| \\ &amp;\leq \tau\left(|(A_k)_{j,j}|+|(A_k)_{j+1,j+1}|\right) \end{aligned}" />
 
 Here <InlineMath math="\tau" /> is a tolerance chosen for the numerical precision and scale of the problem. Merely observing small changes in the diagonal is not a sufficient stopping test because the matrix can still have significant entries below the diagonal.
 
@@ -63,7 +63,7 @@ Consider the symmetric matrix
 One <InlineMath math="\mathrm{QR}" /> factorization and reverse multiplication give
 
 <MathContainer>
-<BlockMath math="Q_0=\frac{1}{\sqrt5}\begin{pmatrix}2&-1\\1&2\end{pmatrix},\qquad R_0=\begin{pmatrix}\sqrt5&\frac4{\sqrt5}\\0&\frac3{\sqrt5}\end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;Q_0=\frac{1}{\sqrt5}\begin{pmatrix}2&amp;-1\\1&amp;2\end{pmatrix}, \\ &amp;R_0=\begin{pmatrix}\sqrt5&amp;\frac4{\sqrt5}\\0&amp;\frac3{\sqrt5}\end{pmatrix} \end{aligned}" />
 <BlockMath math="A_1=R_0Q_0=\begin{pmatrix}\frac{14}{5}&\frac35\\\frac35&\frac65\end{pmatrix}" />
 </MathContainer>
 

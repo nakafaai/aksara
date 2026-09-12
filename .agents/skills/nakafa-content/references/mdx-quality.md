@@ -31,7 +31,9 @@
   punctuation, emojis, and full questions in the first sentence below instead.
   A hyphen required by standard word formation remains valid, such as `rata-rata`
   or `jari-jari`. Never delete that hyphen, choose a stiffer synonym, or strip
-  punctuation from a sentence to leave an ungrammatical word pile.
+  punctuation from a sentence to leave an ungrammatical word pile. This rule
+  does not govern React-node component titles or descriptions, which render
+  mathematical identifiers according to the math rules below.
 - A heading must teach a concept. Citation-only sections such as `Source`,
   `References`, `Sumber`, `Referensi`, `Quelle`, `Quellen`, and localized
   bibliography variants are forbidden. A substantive `Energy Sources` section
@@ -101,12 +103,15 @@ These rules apply to MDX and renderer props. Response labels are Markdown
 strings with their own [math syntax](question-bank.md#response-items).
 
 - Use `<InlineMath />` for mathematical expressions, variables, quantities,
-  units, coordinates, and calculated values in prose.
+  units, coordinates, and calculated values in prose. Keep instructional
+  ordinals and references such as `Step 1`, `Example 2`, and `equation (3)` as
+  ordinary text. Mathematical indices and calculated positions remain math.
 - Use upright math letters for named factorizations and algorithms in prose.
   Write `<InlineMath math="\mathrm{QR}" />`, `<InlineMath
   math="\mathrm{LU}" />`, and `<InlineMath math="\mathrm{SVD}" />` instead of
-  bare labels such as `QR`, `LU`, `SVD`, `PLU`, or `PCA`. Keep the page title and headings as ordinary text,
-  then render the notation in the first body sentence. Exempt code, code
+  bare labels such as `QR`, `LU`, `SVD`, `PLU`, or `PCA`. Keep schema-owned page
+  titles as ordinary text. React-node visual titles use the same mathematical
+  notation as their descriptions and labels. Exempt code, code
   comments, URLs, immutable quotations, and string-only schema fields. Never
   insert JSX or LaTeX into a programming-language comment.
 - Use `<BlockMath />` for standalone formulas.
@@ -129,35 +134,8 @@ strings with their own [math syntax](question-bank.md#response-items).
   JSX fragment and wrap every mathematical token with `<InlineMath />` instead
   of hiding it in a plain string.
 
-  ```mdx
-  <MathVisual
-    title={<>Segment <InlineMath math="AB" /></>}
-    description={
-      <>
-        The segment joins <InlineMath math="A=(-2,-1)" /> and
-        <InlineMath math="B=(2,3)" />.
-      </>
-    }
-    scene={{
-      space: "plane",
-      frame: {
-        kind: "cartesian",
-        x: { min: -3, max: 3 },
-        y: { min: -2, max: 4 },
-      },
-      view: { kind: "fit" },
-      objects: [
-        {
-          id: "segment-ab",
-          kind: "segment",
-          appearance: "primary",
-          from: { x: -2, y: -1 },
-          to: { x: 2, y: 3 },
-        },
-      ],
-    }}
-  />
-  ```
+  For example, use `title={<>Segment <InlineMath math="AB" /></>}` and
+  `description={<>The segment joins <InlineMath math="A" /> and <InlineMath math="B" />.</>}`.
 
 - This obligation covers axis symbols, variable names, formulas, coordinates,
   inequalities, values with units, and mathematical labels in every authored
@@ -177,10 +155,10 @@ strings with their own [math syntax](question-bank.md#response-items).
 - Prefer one aligned `<BlockMath />` for a connected derivation. One standalone
   `<BlockMath />` is complete by itself and does not require a
   `<MathContainer>` wrapper.
-- Use `<MathContainer>` only when two or more consecutive formula rows belong
-  to the same derivation and should remain visually distinct. Do not use it to
-  group a formula with a graph, diagram, simulation, code block, or other
-  non-math component.
+- Wrap consecutive `<BlockMath />` rows from one derivation or mathematical
+  comparison in `<MathContainer>`. Blank MDX lines do not space adjacent JSX
+  blocks. Keep intervening prose outside the wrapper; use `ContentStack` for
+  math grouped with a graph, diagram, simulation, or other non-math component.
 - MDX math props use a single LaTeX backslash. TypeScript strings escape the
   backslash.
 - Write a percentage sign as `\%` inside LaTeX. A bare `%` begins a comment

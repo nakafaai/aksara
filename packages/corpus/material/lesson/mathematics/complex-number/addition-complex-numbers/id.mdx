@@ -5,7 +5,7 @@ export const metadata = {
   description: "Jumlahkan bagian real dan imajiner dua bilangan kompleks, lalu tunjukkan jumlah kedua bilangan sebagai diagonal dengan aturan jajar genjang.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Bilangan Kompleks",
 };
 
@@ -31,7 +31,7 @@ Misal <InlineMath math="z_1 = 2 + 3i" /> dan <InlineMath math="z_2 = 1 - i" />.
 
 Maka penjumlahannya:
 
-<BlockMath math="z_1 + z_2 = (2 + 1) + i(3 + (-1)) = 3 + i(2) = 3 + 2i" />
+<BlockMath math="\begin{aligned} z_1 + z_2 &amp;= (2 + 1) + i(3 + (-1)) \\ &amp;= 3 + i(2) \\ &amp;= 3 + 2i \end{aligned}" />
 
 ### Menjumlahkan pada Bidang Kompleks
 
@@ -45,7 +45,8 @@ Dengan aturan jajar genjang, penjumlahan bilangan kompleks bisa kita lihat secar
       <InlineMath math="z_2 = 1-i" /> menggunakan aturan jajar genjang.
     </>
   }
-  cameraPosition={[0, 0, 12]}
+  cameraPosition={[1.5, 1, 8]}
+  cameraTarget={[1.5, 1, 0]}
   data={[
     // Vektor z1
     {
@@ -77,7 +78,7 @@ Dengan aturan jajar genjang, penjumlahan bilangan kompleks bisa kita lihat secar
       ],
       smooth: false,
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="z_1+z_2=3+2i" />, at: 1, offset: [2, -1, 0] }],
+      labels: [{ text: <InlineMath math="z_1+z_2=3+2i" />, at: 1, offset: [0.4, -2.5, 0] }],
       cone: { position: "end" },
     },
     // Garis bantu jajar genjang (dari ujung z1 ke ujung z1+z2)
@@ -117,7 +118,7 @@ Pada bidang kompleks, perkalian ini mengubah panjang vektor <InlineMath math="z"
 
 Negatif dari <InlineMath math="z = x + iy" /> adalah <InlineMath math="-z" />. Ini sama saja dengan perkalian skalar dengan <InlineMath math="c = -1" />.
 
-<BlockMath math="-z = -(x + iy) = -x + i(-y) = -x - iy" />
+<BlockMath math="\begin{aligned} -z &amp;= -(x + iy) \\ &amp;= -x + i(-y) \\ &amp;= -x - iy \end{aligned}" />
 
 Secara geometris, <InlineMath math="-z" /> adalah vektor dengan panjang yang sama dengan <InlineMath math="z" />, tapi arahnya berlawanan <InlineMath math="180^\circ" />.
 
@@ -125,7 +126,7 @@ Secara geometris, <InlineMath math="-z" /> adalah vektor dengan panjang yang sam
 
 Mengurangkan <InlineMath math="z_2" /> dari <InlineMath math="z_1" /> (<InlineMath math="z_1 - z_2" />) sama artinya dengan menjumlahkan <InlineMath math="z_1" /> dengan negatif dari <InlineMath math="z_2" /> (<InlineMath math="z_1 + (-z_2)" />).
 
-<BlockMath math="z_1 - z_2 = z_1 + (-z_2) = (x_1 + (-x_2)) + i(y_1 + (-y_2)) = (x_1 - x_2) + i(y_1 - y_2)" />
+<BlockMath math="\begin{aligned} &amp;z_1 - z_2 = z_1 + (-z_2) \\ &amp;= (x_1 + (-x_2)) + i(y_1 + (-y_2)) \\ &amp;= (x_1 - x_2) + i(y_1 - y_2) \end{aligned}" />
 
 Jadi, kita kurangkan bagian real dengan bagian real, dan bagian imajiner dengan bagian imajiner.
 
@@ -144,7 +145,7 @@ Hitung tiga bentuk berikut dengan memisahkan bagian real dan imajinernya:
 
 1.  **<InlineMath math="2z_1" /> (Perkalian Skalar):**
 
-    <BlockMath math="2z_1 = 2(2 + \frac{1}{2}i) = 2(2) + i(2 \times \frac{1}{2}) = 4 + i" />
+    <BlockMath math="\begin{aligned} 2z_1 &amp;= 2(2 + \frac{1}{2}i) \\ &amp;= 2(2) + i(2 \times \frac{1}{2}) \\ &amp;= 4 + i \end{aligned}" />
 
 2.  **<InlineMath math="z_1 + 3z_2" /> (Penjumlahan dan Perkalian Skalar):**
 
@@ -177,11 +178,11 @@ Diberikan <InlineMath math="z_1=1+2i" /> dan <InlineMath math="z_2=3-i" />. Tent
 
 1.  Jumlahkan bagian real dan bagian imajiner secara terpisah:
 
-    <BlockMath math="z_1+z_2=(1+3)+i(2+(-1))=4+i" />
+    <BlockMath math="\begin{aligned} z_1+z_2 &amp;=(1+3)+i(2+(-1)) \\ &amp;=4+i \end{aligned}" />
 
 2.  Kurangkan bagian-bagian yang bersesuaian:
 
-    <BlockMath math="z_1-z_2=(1-3)+i(2-(-1))=-2+3i" />
+    <BlockMath math="\begin{aligned} z_1-z_2 &amp;=(1-3)+i(2-(-1)) \\ &amp;=-2+3i \end{aligned}" />
 
 3.  Vektor <InlineMath math="z_1" /> dan <InlineMath math="z_2" /> menjadi dua sisi jajar genjang. Diagonalnya berakhir di <InlineMath math="z_3=z_1+z_2=4+i" />:
 
@@ -194,7 +195,8 @@ Diberikan <InlineMath math="z_1=1+2i" /> dan <InlineMath math="z_2=3-i" />. Tent
           diagonalnya.
         </>
       }
-      cameraPosition={[0, 0, 12]}
+      cameraPosition={[2, 0.5, 8]}
+      cameraTarget={[2, 0.5, 0]}
       data={[
         {
           points: [
@@ -223,7 +225,7 @@ Diberikan <InlineMath math="z_1=1+2i" /> dan <InlineMath math="z_2=3-i" />. Tent
           ],
           smooth: false,
           color: "#e11d48",
-          labels: [{ text: <InlineMath math="z_3=4+i" />, at: 1, offset: [0.5, 0.5, 0] }],
+          labels: [{ text: <InlineMath math="z_3=4+i" />, at: 1, offset: [0, 0.8, 0] }],
           cone: { position: "end" },
         },
         // Garis bantu jajar genjang

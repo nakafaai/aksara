@@ -5,7 +5,7 @@ export const metadata = {
   description: "Kalikan bilangan kompleks dengan sifat distributif, lalu sederhanakan hasilnya melalui contoh ekspansi binomial.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Bilangan Kompleks",
 };
 
@@ -24,7 +24,7 @@ Mulailah dengan <InlineMath math="z_1 = x_1 + iy_1" /> dan <InlineMath math="z_2
 Karena <InlineMath math="i^2 = -1" />, gantikan suku imajiner kuadrat:
 
 <MathContainer>
-  <BlockMath math="= (x_1x_2 + ix_1y_2) + (ix_2y_1 + (-1)y_1y_2)" />
+  <BlockMath math="\begin{aligned} &amp;= (x_1x_2 + ix_1y_2) \\ &amp;+ (ix_2y_1 + (-1)y_1y_2) \end{aligned}" />
   <BlockMath math="= x_1x_2 + ix_1y_2 + ix_2y_1 - y_1y_2" />
 </MathContainer>
 
@@ -37,7 +37,7 @@ Selanjutnya, kelompokkan suku real dan suku imajiner:
 
 Jadi, rumus umum untuk perkalian bilangan kompleks adalah:
 
-<BlockMath math="z_1 \times z_2 = (x_1x_2 - y_1y_2) + i(x_1y_2 + x_2y_1)" />
+<BlockMath math="\begin{aligned} &amp;z_1 \times z_2 = (x_1x_2 - y_1y_2) \\ &amp;+ i(x_1y_2 + x_2y_1) \end{aligned}" />
 
 ## Menghitung Hasil Kali dengan Dua Cara
 
@@ -51,7 +51,11 @@ Menggunakan sifat distributif:
   <BlockMath math="z_1 \times z_2 = (2+i)(1-2i)" />
   <BlockMath math="= 2(1-2i) + i(1-2i)" />
   <BlockMath math="= (2 - 4i) + (i - 2i^2)" />
-  <BlockMath math="= (2 - 4i) + (i - 2(-1)) \quad \text{(karena } i^2 = -1)" />
+</MathContainer>
+  Gunakan <InlineMath math="i^2=-1" />:
+
+<MathContainer>
+  <BlockMath math="= (2 - 4i) + (i - 2(-1))" />
   <BlockMath math="= (2 - 4i) + (i + 2)" />
   <BlockMath math="= (2+2) + (-4i + i)" />
   <BlockMath math="= 4 - 3i" />
@@ -60,8 +64,8 @@ Menggunakan sifat distributif:
 Atau menggunakan rumus umum dengan <InlineMath math="x_1 = 2, y_1 = 1, x_2 = 1, y_2 = -2" />:
 
 <MathContainer>
-  <BlockMath math="z_1 \times z_2 = (x_1x_2 - y_1y_2) + i(x_1y_2 + x_2y_1)" />
-  <BlockMath math="= (2)(1) - (1)(-2) + i((2)(-2) + (1)(1))" />
+  <BlockMath math="\begin{aligned} &amp;z_1 \times z_2 = (x_1x_2 - y_1y_2) \\ &amp;+ i(x_1y_2 + x_2y_1) \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;= (2)(1) - (1)(-2) \\ &amp;+ i((2)(-2) + (1)(1)) \end{aligned}" />
   <BlockMath math="= (2 - (-2)) + i(-4 + 1)" />
   <BlockMath math="= (2+2) + i(-3)" />
   <BlockMath math="= 4 - 3i" />
@@ -78,7 +82,8 @@ Kedua cara memberikan hasil yang sama, yaitu <InlineMath math="4-3i" />.
       <InlineMath math="z_1 \times z_2 = 4-3i" />.
     </>
   }
-  cameraPosition={[0, 0, 15]}
+  cameraPosition={[2, -1, 9]}
+  cameraTarget={[2, -1, 0]}
   data={[
     {
       points: [
@@ -107,7 +112,7 @@ Kedua cara memberikan hasil yang sama, yaitu <InlineMath math="4-3i" />.
       ],
       smooth: false,
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="z_1 \times z_2=4-3i" />, at: 1, offset: [0.5, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="z_1 \times z_2=4-3i" />, at: 1, offset: [-0.4, -0.65, 0] }],
       cone: { position: "end" },
     },
   ]}
@@ -135,8 +140,8 @@ Menggunakan sifat distributif:
 Menggunakan rumus umum dengan <InlineMath math="x_1 = 1, y_1 = 1, x_2 = \frac{1}{2}, y_2 = -2" />:
 
 <MathContainer>
-  <BlockMath math="z_1 \times z_2 = (x_1x_2 - y_1y_2) + i(x_1y_2 + x_2y_1)" />
-  <BlockMath math="= ((1)(\frac{1}{2}) - (1)(-2)) + i((1)(-2) + (\frac{1}{2})(1))" />
+  <BlockMath math="\begin{aligned} &amp;z_1 \times z_2 = (x_1x_2 - y_1y_2) \\ &amp;+ i(x_1y_2 + x_2y_1) \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;= ((1)(\frac{1}{2}) - (1)(-2)) \\ &amp;+ i((1)(-2) + (\frac{1}{2})(1)) \end{aligned}" />
   <BlockMath math="= (\frac{1}{2} - (-2)) + i(-2 + \frac{1}{2})" />
   <BlockMath math="= (\frac{1}{2} + 2) + i(-\frac{4}{2} + \frac{1}{2})" />
   <BlockMath math="= (\frac{1}{2} + \frac{4}{2}) + i(-\frac{3}{2})" />
