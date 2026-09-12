@@ -3,7 +3,7 @@ export const metadata = {
   description: "Read a normal density curve, standardize values with z-scores, and calculate an interval probability.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Data Analysis and Probability",
 };
 
@@ -127,14 +127,14 @@ With this transformation, we can compare data from different distributions. For 
 
 Suppose <InlineMath math="X" /> is normally distributed with <InlineMath math="\mu = 50" /> and <InlineMath math="\sigma = 10" />. Find the probability that <InlineMath math="X" /> lies between <InlineMath math="45" /> and <InlineMath math="62" />.
 
-**Step** <InlineMath math="1" />: Transform to z-score
+**Step** 1: Transform to z-score
 
 <MathContainer>
 <BlockMath math="z_1 = \frac{45 - 50}{10} = \frac{-5}{10} = -0.5" />
 <BlockMath math="z_2 = \frac{62 - 50}{10} = \frac{12}{10} = 1.2" />
 </MathContainer>
 
-**Step** <InlineMath math="2" />: Use the standard normal distribution table
+**Step** 2: Use the standard normal distribution table
 
 The transformed interval is <InlineMath math="P(-0.5 < Z < 1.2)" />. Subtract the cumulative probability at the lower boundary from the cumulative probability at the upper boundary:
 
@@ -145,7 +145,7 @@ From the standard normal distribution table:
 - <InlineMath math="P(Z < -0.5) = 0.3085" />
 - <InlineMath math="P(Z < 1.2) = 0.8849" />
 
-**Step** <InlineMath math="3" />: Calculate the final probability
+**Step** 3: Calculate the final probability
 
 <BlockMath math="P(45 < X < 62) = P(-0.5 < Z < 1.2) = 0.8849 - 0.3085 = 0.5764" />
 

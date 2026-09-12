@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use graphs and fully worked examples to understand how function transformations combine and why their order can matter.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Function Transformation",
 };
 
@@ -41,11 +41,11 @@ Apply two transformations in sequence to the quadratic function <InlineMath math
 
 1. **Initial Function**: <InlineMath math="f(x) = x^2" />
 
-2. **Step** <InlineMath math="1" /> **- Vertical Translation**: Shift <InlineMath math="2 \text{ units}" /> up
+2. **Step** 1 **- Vertical Translation**: Shift <InlineMath math="2 \text{ units}" /> up
 
    <BlockMath math="f_1(x) = f(x) + 2 = x^2 + 2" />
 
-3. **Step** <InlineMath math="2" /> **- Vertical Dilation**: Multiply by factor <InlineMath math="0.5" />
+3. **Step** 2 **- Vertical Dilation**: Multiply by factor <InlineMath math="0.5" />
 
    <BlockMath math="g(x) = 0.5 \cdot f_1(x) = 0.5(x^2 + 2) = 0.5x^2 + 1" />
 
@@ -221,11 +221,11 @@ For horizontal transformations, we can combine reflection and translation:
 
 1. **Initial Function**: <InlineMath math="f(x) = 1.5^x" />
 
-2. **Step** <InlineMath math="1" /> **- Reflection across <InlineMath math="y" />-axis**: replace <InlineMath math="x" /> with <InlineMath math="-x" />
+2. **Step** 1 **- Reflection across <InlineMath math="y" />-axis**: replace <InlineMath math="x" /> with <InlineMath math="-x" />
 
    <BlockMath math="f_1(x) = f(-x) = 1.5^{-x}" />
 
-3. **Step** <InlineMath math="2" /> **- Horizontal translation**: Shift <InlineMath math="2 \text{ units}" /> to the right
+3. **Step** 2 **- Horizontal translation**: Shift <InlineMath math="2 \text{ units}" /> to the right
 
    <BlockMath math="g(x) = f_1(x-2) = 1.5^{-(x-2)} = 1.5^{-x+2}" />
 
@@ -324,11 +324,11 @@ When transformations are combined, the following rules determine the result:
 
 1. Step-by-step transformation of <InlineMath math="f(x) = x^2" />:
 
-   Step <InlineMath math="1" />: Vertical translation <InlineMath math="+3" />
+   Step 1: Vertical translation <InlineMath math="+3" />
 
    <BlockMath math="f_1(x) = x^2 + 3" />
 
-   Step <InlineMath math="2" />: Vertical dilation with factor <InlineMath math="\frac{1}{2}" />
+   Step 2: Vertical dilation with factor <InlineMath math="\frac{1}{2}" />
 
    <BlockMath math="g(x) = \frac{1}{2}(x^2 + 3) = \frac{1}{2}x^2 + \frac{3}{2}" />
 
@@ -380,11 +380,11 @@ When transformations are combined, the following rules determine the result:
 
 2. Step-by-step transformation of <InlineMath math="g(x) = 2^x" />:
 
-   Step <InlineMath math="1" />: Reflection across <InlineMath math="y" />-axis
+   Step 1: Reflection across <InlineMath math="y" />-axis
 
    <BlockMath math="g_1(x) = 2^{-x}" />
 
-   Step <InlineMath math="2" />: Horizontal translation <InlineMath math="1 \text{ unit}" /> to the right
+   Step 2: Horizontal translation <InlineMath math="1 \text{ unit}" /> to the right
 
    <BlockMath math="h(x) = 2^{-(x-1)} = 2^{-x+1} = 2 \cdot 2^{-x}" />
 
@@ -555,18 +555,18 @@ When transformations are combined, the following rules determine the result:
        },
        {
          smooth: false,
-         points: Array.from({ length: 101 }, (_, sampleIndex) => {
-           const i = sampleIndex / 5;
-           const x = (i - 10) * 0.3;
-           const y = -3 * Math.abs(x + 2);
-           return { x, y, z: 0 };
-         }),
+         points: [
+           { x: -3, y: -3, z: 0 },
+           { x: -2, y: 0, z: 0 },
+           { x: -1.5, y: -1.5, z: 0 },
+           { x: 3, y: -15, z: 0 },
+         ],
          color: "#db2777",
          showPoints: false,
          labels: [
            {
              text: <InlineMath math="g" />,
-             at: 25,
+             at: 2,
              offset: [-0.8, -0.3, 0],
            },
          ],

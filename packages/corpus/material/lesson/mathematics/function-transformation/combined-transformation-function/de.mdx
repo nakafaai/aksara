@@ -3,7 +3,7 @@ export const metadata = {
   description: "Kombiniere mehrere Funktionstransformationen und vergleiche ihre Graphen bei unterschiedlicher Reihenfolge.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Funktionstransformation",
 };
 
@@ -41,11 +41,11 @@ Wir wenden zwei Transformationen nacheinander auf <InlineMath math="f(x) = x^2" 
 
 1. **Ausgangsfunktion**: <InlineMath math="f(x) = x^2" />
 
-2. **Schritt** <InlineMath math="1" /> **- Vertikale Verschiebung**: um <InlineMath math="2 \text{Einheiten}" /> nach oben
+2. **Schritt** 1 **- Vertikale Verschiebung**: um <InlineMath math="2 \text{Einheiten}" /> nach oben
 
    <BlockMath math="f_1(x) = f(x) + 2 = x^2 + 2" />
 
-3. **Schritt** <InlineMath math="2" /> **- Vertikale Skalierung**: mit dem Faktor <InlineMath math="0{,}5" /> multiplizieren
+3. **Schritt** 2 **- Vertikale Skalierung**: mit dem Faktor <InlineMath math="0{,}5" /> multiplizieren
 
    <BlockMath math="g(x) = 0{,}5 \cdot f_1(x) = 0{,}5(x^2 + 2) = 0{,}5x^2 + 1" />
 
@@ -221,11 +221,11 @@ Auch Spiegelung und horizontale Verschiebung lassen sich kombinieren:
 
 1. **Ausgangsfunktion**: <InlineMath math="f(x) = 1{,}5^x" />
 
-2. **Schritt** <InlineMath math="1" /> **- Spiegelung an der <InlineMath math="y" />-Achse**: Ersetze <InlineMath math="x" /> durch <InlineMath math="-x" />
+2. **Schritt** 1 **- Spiegelung an der <InlineMath math="y" />-Achse**: Ersetze <InlineMath math="x" /> durch <InlineMath math="-x" />
 
    <BlockMath math="f_1(x) = f(-x) = 1{,}5^{-x}" />
 
-3. **Schritt** <InlineMath math="2" /> **- Horizontale Verschiebung**: um <InlineMath math="2 \text{Einheiten}" /> nach rechts
+3. **Schritt** 2 **- Horizontale Verschiebung**: um <InlineMath math="2 \text{Einheiten}" /> nach rechts
 
    <BlockMath math="g(x) = f_1(x-2) = 1{,}5^{-(x-2)} = 1{,}5^{-x+2}" />
 
@@ -324,11 +324,11 @@ Für kombinierte Transformationen gilt:
 
 1. Schrittweise Transformation von <InlineMath math="f(x) = x^2" />:
 
-   Schritt <InlineMath math="1" />: vertikale Verschiebung um <InlineMath math="+3" />
+   Schritt 1: vertikale Verschiebung um <InlineMath math="+3" />
 
    <BlockMath math="f_1(x) = x^2 + 3" />
 
-   Schritt <InlineMath math="2" />: vertikale Skalierung mit Faktor <InlineMath math="\frac{1}{2}" />
+   Schritt 2: vertikale Skalierung mit Faktor <InlineMath math="\frac{1}{2}" />
 
    <BlockMath math="g(x) = \frac{1}{2}(x^2 + 3) = \frac{1}{2}x^2 + \frac{3}{2}" />
 
@@ -380,11 +380,11 @@ Für kombinierte Transformationen gilt:
 
 2. Schrittweise Transformation von <InlineMath math="g(x) = 2^x" />:
 
-   Schritt <InlineMath math="1" />: Spiegelung an der <InlineMath math="y" />-Achse
+   Schritt 1: Spiegelung an der <InlineMath math="y" />-Achse
 
    <BlockMath math="g_1(x) = 2^{-x}" />
 
-   Schritt <InlineMath math="2" />: horizontale Verschiebung um <InlineMath math="1 \text{ Einheit}" /> nach rechts
+   Schritt 2: horizontale Verschiebung um <InlineMath math="1 \text{ Einheit}" /> nach rechts
 
    <BlockMath math="h(x) = 2^{-(x-1)} = 2^{-x+1} = 2 \cdot 2^{-x}" />
 
@@ -555,18 +555,18 @@ Für kombinierte Transformationen gilt:
        },
        {
          smooth: false,
-         points: Array.from({ length: 101 }, (_, sampleIndex) => {
-           const i = sampleIndex / 5;
-           const x = (i - 10) * 0.3;
-           const y = -3 * Math.abs(x + 2);
-           return { x, y, z: 0 };
-         }),
+         points: [
+           { x: -3, y: -3, z: 0 },
+           { x: -2, y: 0, z: 0 },
+           { x: -1.5, y: -1.5, z: 0 },
+           { x: 3, y: -15, z: 0 },
+         ],
          color: "#db2777",
          showPoints: false,
          labels: [
            {
              text: <InlineMath math="g" />,
-             at: 25,
+             at: 2,
              offset: [-0.8, -0.3, 0],
            },
          ],

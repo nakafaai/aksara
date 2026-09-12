@@ -4,7 +4,7 @@ export const metadata = {
   description: "Logarithmen als Umkehrung von Exponentialfunktionen verstehen: mit Graphen, Rechenregeln, nachvollziehbaren Beispielen und Übungen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Funktionen und ihre Modellierung",
 };
 
@@ -58,36 +58,35 @@ Drei Basen kommen besonders häufig vor:
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 100 }, (_, i) => {
-        const x = (i / 99) * 4 - 1;
+      points: Array.from({ length: 241 }, (_, i) => {
+        const x = i / 40 - 3;
         return { x, y: Math.pow(2, x), z: 0 };
       }),
       color: "#0284c7",
-      labels: [{ text: <InlineMath math="y=2^x" />, at: 80, offset: [1.5, 1, 0] }],
+      labels: [{ text: <InlineMath math="y=2^x" />, at: 200, offset: [-0.7, 3, 0] }],
       showPoints: false,
     },
     {
       smooth: false,
-      points: Array.from({ length: 100 }, (_, i) => {
-        const x = (i / 99) * 8 + 0.1;
-        return { x, y: Math.log2(x), z: 0 };
+      points: Array.from({ length: 241 }, (_, i) => {
+        const y = i / 40 - 3;
+        return { x: Math.pow(2, y), y, z: 0 };
       }),
       color: "#e11d48",
-      labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 80, offset: [0.5, -1, 0] }],
+      labels: [{ text: <InlineMath math="y=\log_{2} x" />, at: 200, offset: [1.2, -1.2, 0] }],
       showPoints: false,
     },
     {
-      points: Array.from({ length: 50 }, (_, i) => {
-        const x = (i / 49) * 4 - 1;
-        return { x, y: x, z: 0 };
-      }),
+      points: [{ x: -3, y: -3, z: 0 }, { x: 8, y: 8, z: 0 }],
       smooth: false,
       color: "#9333ea",
-      labels: [{ text: <InlineMath math="y=x" />, at: 40, offset: [1, 1, 0] }],
+      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [-0.8, -2.5, 0] }],
       showPoints: false,
     },
   ]}
-  cameraPosition={[0, 0, 15]}
+  cameraPosition={[2.5, 2.5, 14]}
+  cameraTarget={[2.5, 2.5, 0]}
+  showZAxis
 />
 
 **Eigenschaften des Graphen** von <InlineMath math="f(x) = \log_b x" /> für <InlineMath math="b > 1" />:
@@ -120,9 +119,9 @@ Drei Basen kommen besonders häufig vor:
 
 ## Exponentielles Modell aus zwei Datenpunkten
 
-Das indonesische Gesundheitsministerium, kurz Kemenkes, meldete am 2. März 2020 zwei bestätigte COVID-19-Fälle. [Kemenkes](https://kemkes.go.id/id/positif-covid-19-usai-kontak-dengan-wn-jepang)
+Das [indonesische Gesundheitsministerium](https://kemkes.go.id/id/positif-covid-19-usai-kontak-dengan-wn-jepang), kurz Kemenkes, meldete am 2. März 2020 zwei bestätigte COVID-19-Fälle.
 
-Am 30. April 2020 meldete das Ministerium insgesamt 10.118 bestätigte Fälle. [Kemenkes](https://kemkes.go.id/id/pasien-positif-covid-19-capai-10-ribu)
+Am 30. April 2020 [meldete das Ministerium](https://kemkes.go.id/id/pasien-positif-covid-19-capai-10-ribu) insgesamt 10.118 bestätigte Fälle.
 
 Zwischen beiden Meldungen liegen <InlineMath math="59 \text{ vergangene Tage}" />.
 
@@ -134,21 +133,45 @@ Um Logarithmen anzuwenden, passen wir eine einfache Exponentialkurve an diese be
 
   <LineEquation
     title="Exponentialfunktion durch zwei Datenpunkte"
-    description="Eine Kurve durch die beiden gemeldeten Fallzahlen mit kurzer Extrapolation"
+    description={
+      <>
+        Eine Einheit auf der waagerechten Achse <InlineMath math="X=t/10" /> entspricht{" "}
+        <InlineMath math="10" /> Tagen. Eine Einheit auf der senkrechten Achse{" "}
+        <InlineMath math="Y=P(t)/10000" /> entspricht <InlineMath math="10{.}000" /> Fällen.
+        Die beiden orangefarbenen Punkte zeigen gemeldete Werte. Blau zeigt die Extrapolation von{" "}
+        <InlineMath math="t=59" /> bis <InlineMath math="t=71" />.
+      </>
+    }
     data={[
       {
         smooth: false,
-        points: Array.from({ length: 72 }, (_, i) => {
-          const t = i;
-          const P = 2 * Math.exp((1 / 59) * Math.log(5059) * t);
-          return { x: t, y: P, z: 0 };
+        points: Array.from({ length: 237 }, (_, i) => {
+          const t = i / 4;
+          const P = 2 * Math.pow(5059, t / 59);
+          return { x: t / 10, y: P / 10000, z: 0 };
         }),
         color: "#ea580c",
-        labels: [{ text: <InlineMath math="P(t)" />, at: 3, offset: [2, -0.5, 0] }],
+        labels: [
+          { text: <InlineMath math="P(0)=2" />, at: 0, offset: [1.4, 0.65, 0] },
+          { text: <InlineMath math="P(59)=10{.}118" />, at: 236, offset: [-1.7, 0.85, 0] },
+        ],
+        pointIndices: [0, 236],
+        showPoints: true,
+      },
+      {
+        smooth: false,
+        points: Array.from({ length: 49 }, (_, i) => {
+          const t = 59 + i / 4;
+          const P = 2 * Math.pow(5059, t / 59);
+          return { x: t / 10, y: P / 10000, z: 0 };
+        }),
+        color: "#0284c7",
         showPoints: false,
       },
     ]}
-    cameraPosition={[15, 10, 15]}
+    cameraPosition={[3.3, 2.5, 10]}
+    cameraTarget={[3.3, 2.5, 0]}
+    showZAxis
   />
 </ContentStack>
 

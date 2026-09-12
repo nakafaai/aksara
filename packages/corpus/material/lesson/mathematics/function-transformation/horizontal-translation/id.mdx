@@ -3,7 +3,7 @@ export const metadata = {
   description: "Geser grafik fungsi ke kiri atau kanan, turunkan aturan tandanya, lalu telusuri perubahan domain dan range.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Transformasi Fungsi",
 };
 
@@ -257,24 +257,26 @@ Translasi horizontal dan vertikal bekerja pada bagian yang berbeda dari aturan f
      data={[
        {
          smooth: false,
-         points: Array.from({ length: 101 }, (_, sampleIndex) => {
-           const i = sampleIndex / 5;
-           const x = i * 0.25;
-           return { x, y: Math.sqrt(x), z: 0 };
+         points: Array.from({ length: 129 }, (_, i) => {
+           const anchorHeight = Math.sqrt(2.5);
+           const y = i <= 64
+             ? (i / 64) * anchorHeight
+             : anchorHeight + ((i - 64) / 64) * (Math.sqrt(5) - anchorHeight);
+           return { x: y * y, y, z: 0 };
          }),
          color: "#7c3aed",
-         labels: [{ at: 50, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [1, 0.5, 0] }],
+         labels: [{ at: 64, text: <InlineMath math="g(x)=\sqrt{x}" />, offset: [1, 0.5, 0] }],
          showPoints: false,
        },
        {
          smooth: false,
-         points: Array.from({ length: 21 }, (_, i) => {
-           const x = i * 0.25 - 4;
-           if (x + 4 >= 0) {
-             return { x, y: Math.sqrt(x + 4), z: 0 };
-           }
-           return null;
-         }).filter(Boolean),
+         points: Array.from({ length: 129 }, (_, i) => {
+           const anchorHeight = Math.sqrt(2.5);
+           const y = i <= 64
+             ? (i / 64) * anchorHeight
+             : anchorHeight + ((i - 64) / 64) * (Math.sqrt(5) - anchorHeight);
+           return { x: y * y - 4, y, z: 0 };
+         }),
          color: "#0d9488",
          labels: [{ text: <InlineMath math="g'(x)=\sqrt{x+4}" />, offset: [1, 0.5, 0] }],
          showPoints: false,

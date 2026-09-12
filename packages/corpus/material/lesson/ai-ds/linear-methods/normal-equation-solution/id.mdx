@@ -3,7 +3,7 @@ export const metadata = {
   description: "Selesaikan masalah kuadrat terkecil linear dengan dekomposisi QR dan pseudoinvers Moore-Penrose, lalu bandingkan perilaku numeriknya dengan persamaan normal.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-15",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Metode Linear AI",
 };
 
@@ -119,7 +119,8 @@ Dengan demikian,
 <LineEquation
   title={<>Fitting kuadrat terkecil <InlineMath math="\hat{y}(t)=0{,}98095t^2+3{,}02857t-2{,}00952" /></>}
   description={<>Kurva sian adalah polinomial hasil fitting, sedangkan titik jingga adalah tujuh pengamatan dalam <InlineMath math="b" />.</>}
-  cameraPosition={[15, 10, 15]}
+  cameraPosition={[0, 6, 26]}
+  cameraTarget={[0, 6, 0]}
   data={(() => {
     // Pengamatan yang dikodekan oleh A dan b
     const originalData = [
@@ -148,12 +149,12 @@ Dengan demikian,
         smooth: false,
         showPoints: false
       },
-      {
-        points: originalData.map(([t, y]) => ({ x: t, y: y, z: 0 })),
+      ...originalData.map(([t, y]) => ({
+        points: [{ x: t, y, z: 0 }],
         color: "#ea580c",
         smooth: false,
         showPoints: true
-      }
+      }))
     ];
   })()}
 />

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bestimme Q1, Q2 und Q3 ungruppierter Daten mit einer klar benannten Interpolationskonvention und einem vollständig gelösten Beispiel.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Statistik",
 };
 
@@ -33,7 +33,7 @@ Für Quartile gibt es mehrere gültige Rangkonventionen. Daher können verschied
 
 Für das untere Quartil gilt:
 
-<BlockMath math="\text{Position von} Q_1 = \text{Datenpunkt bei}\frac{1}{4}(n+1)" />
+<BlockMath math="\text{Position von} Q_1 = \frac{1}{4}(n+1)" />
 
 - **Ist das Ergebnis ganzzahlig**, zum Beispiel <InlineMath math="5" />, entspricht <InlineMath math="Q_1" /> dem Wert an Position <InlineMath math="5" />.
 - **Liegt das Ergebnis zwischen zwei Positionen**, zum Beispiel bei <InlineMath math="5{,}25" />, befindet sich <InlineMath math="Q_1" /> zwischen Position <InlineMath math="5" /> und Position <InlineMath math="6" />. Wie der genaue Wert interpoliert wird, folgt später. Hier bestimmen wir zunächst nur die Lage.
@@ -50,7 +50,7 @@ Damit liegt <InlineMath math="Q_1" /> zwischen Position <InlineMath math="5" /> 
 
 Das mittlere Quartil ist zugleich der Median:
 
-<BlockMath math="\text{Position von} Q_2 = \text{Datenpunkt bei}\frac{1}{2}(n+1)" />
+<BlockMath math="\text{Position von} Q_2 = \frac{1}{2}(n+1)" />
 
 Es gelten dieselben Regeln wie für <InlineMath math="Q_1" />:
 
@@ -67,7 +67,7 @@ Damit liegt <InlineMath math="Q_2" />, also der Median, zwischen Position <Inlin
 
 Für das obere Quartil gilt entsprechend:
 
-<BlockMath math="\text{Position von} Q_3 = \text{Datenpunkt bei}\frac{3}{4}(n+1)" />
+<BlockMath math="\text{Position von} Q_3 = \frac{3}{4}(n+1)" />
 
 Auch hier gelten dieselben Regeln:
 
@@ -88,33 +88,33 @@ Bestimme die Positionen von <InlineMath math="Q_1" />, <InlineMath math="Q_2" />
 
 Versuche die Aufgabe zunächst selbst. Vergleiche deinen Lösungsweg danach mit der vollständigen Rechnung.
 
-**Schritt** <InlineMath math="1" />: Sortiere zuerst die Daten.
+**Schritt** 1: Sortiere zuerst die Daten.
 
 Sortierte Daten: <InlineMath math="5, 6, 7, 7, 8, 9, 10" />
 
 Anzahl der Datenpunkte: <InlineMath math="n = 7" />
 
-**Schritt** <InlineMath math="2" />: Berechne die Quartilpositionen mit den Formeln.
+**Schritt** 2: Berechne die Quartilpositionen mit den Formeln.
 
 - **Position von <InlineMath math="Q_1" />:**
 
-  <InlineMath math="\text{Datenpunkt bei}\frac{1}{4}(n+1) = \text{Datenpunkt bei}\frac{1}{4}(7+1) = \text{Datenpunkt bei}\frac{8}{4} = \text{Datenpunkt bei}2" />
+  <BlockMath math="\begin{aligned}\frac{1}{4}(n+1) &= \frac{1}{4}(7+1) \\ &= \frac{8}{4} \\ &= 2\end{aligned}" />
 
   Das Ergebnis ist ganzzahlig (<InlineMath math="2" />). Deshalb liegt <InlineMath math="Q_1" /> an Position <InlineMath math="2" />.
 
 - **Position von <InlineMath math="Q_2" /> (Median):**
 
-  <InlineMath math="\text{Datenpunkt bei}\frac{1}{2}(n+1) = \text{Datenpunkt bei}\frac{1}{2}(7+1) = \text{Datenpunkt bei}\frac{8}{2} = \text{Datenpunkt bei}4" />
+  <BlockMath math="\begin{aligned}\frac{1}{2}(n+1) &= \frac{1}{2}(7+1) \\ &= \frac{8}{2} \\ &= 4\end{aligned}" />
 
   Das Ergebnis ist ganzzahlig (<InlineMath math="4" />). Deshalb liegt <InlineMath math="Q_2" /> an Position <InlineMath math="4" />.
 
 - **Position von <InlineMath math="Q_3" />:**
 
-  <InlineMath math="\text{Datenpunkt bei}\frac{3}{4}(n+1) = \text{Datenpunkt bei}\frac{3}{4}(7+1) = \text{Datenpunkt bei}\frac{24}{4} = \text{Datenpunkt bei}6" />
+  <BlockMath math="\begin{aligned}\frac{3}{4}(n+1) &= \frac{3}{4}(7+1) \\ &= \frac{24}{4} \\ &= 6\end{aligned}" />
 
   Das Ergebnis ist ganzzahlig (<InlineMath math="6" />). Deshalb liegt <InlineMath math="Q_3" /> an Position <InlineMath math="6" />.
 
-**Schritt** <InlineMath math="3" />: Lies die Quartilwerte ab.
+**Schritt** 3: Lies die Quartilwerte ab.
 
 Der sortierte Datensatz lautet: <InlineMath math="5, 6, 7, 7, 8, 9, 10" />
 

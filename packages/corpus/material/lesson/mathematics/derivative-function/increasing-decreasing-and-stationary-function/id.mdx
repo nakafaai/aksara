@@ -5,7 +5,7 @@ export const metadata = {
   description: "Gunakan tanda turunan pertama untuk menentukan interval fungsi naik dan turun serta menafsirkan titik stasioner.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Turunan Fungsi",
 };
 
@@ -45,13 +45,13 @@ Tentukan interval agar fungsi <InlineMath math="f(x) = x^3 - 3x" /> merupakan fu
 
 **Penyelesaian:**
 
-**Langkah** <InlineMath math="1" />: Cari turunan pertama
+**Langkah** 1: Cari turunan pertama
 
 Pertama, kita turunkan fungsi <InlineMath math="f(x)" />.
 
 <BlockMath math="f'(x) = 3x^2 - 3" />
 
-**Langkah** <InlineMath math="2" />: Temukan titik stasioner
+**Langkah** 2: Temukan titik stasioner
 
 Titik stasioner terjadi saat <InlineMath math="f'(x) = 0" />.
 
@@ -63,7 +63,7 @@ Titik stasioner terjadi saat <InlineMath math="f'(x) = 0" />.
 
 Dari sini, kita dapatkan titik-titik stasionernya adalah <InlineMath math="x = 1" /> dan <InlineMath math="x = -1" />.
 
-**Langkah** <InlineMath math="3" />: Buat garis bilangan dan uji interval
+**Langkah** 3: Buat garis bilangan dan uji interval
 
 Kita letakkan titik stasioner pada garis bilangan. Titik-titik ini membagi garis menjadi tiga interval. Kita ambil satu titik uji dari setiap interval untuk mengetahui tanda <InlineMath math="f'(x)" /> (positif atau negatif).
 
@@ -79,7 +79,7 @@ Kita letakkan titik stasioner pada garis bilangan. Titik-titik ini membagi garis
 
     Ambil <InlineMath math="x=2" />. <InlineMath math="f'(2) = 3(2)^2 - 3 = 9" /> (Positif, fungsi naik).
 
-**Langkah** <InlineMath math="4" />: Simpulkan intervalnya
+**Langkah** 4: Simpulkan intervalnya
 
 Berdasarkan pengujian, kita dapat menyimpulkan:
 
@@ -99,9 +99,8 @@ Berdasarkan pengujian, kita dapat menyimpulkan:
   data={[
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = -2 + i * 0.05;
+      points: Array.from({ length: 301 }, (_, sampleIndex) => {
+        const x = -4 + sampleIndex / 100;
         const y = x ** 3 - 3 * x;
         return { x, y, z: 0 };
       }),
@@ -110,7 +109,7 @@ Berdasarkan pengujian, kita dapat menyimpulkan:
       labels: [
         {
           text: "Naik",
-          at: 25,
+          at: 225,
           offset: [-1, 1, 0],
         },
       ],
@@ -134,9 +133,8 @@ Berdasarkan pengujian, kita dapat menyimpulkan:
     },
     {
       smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const x = 1 + i * 0.05;
+      points: Array.from({ length: 301 }, (_, sampleIndex) => {
+        const x = 1 + sampleIndex / 100;
         const y = x ** 3 - 3 * x;
         return { x, y, z: 0 };
       }),
@@ -157,7 +155,7 @@ Berdasarkan pengujian, kita dapat menyimpulkan:
       labels: [
         {
           text: <>Stasioner <InlineMath math="(-1,2)" /></>,
-          offset: [-2.5, 0.5, 0],
+          offset: [-0.3, 0.75, 0],
         },
       ],
     },
@@ -168,7 +166,7 @@ Berdasarkan pengujian, kita dapat menyimpulkan:
       labels: [
         {
           text: <>Stasioner <InlineMath math="(1,-2)" /></>,
-          offset: [2.5, -0.5, 0],
+          offset: [0.3, -0.75, 0],
         },
       ],
     },

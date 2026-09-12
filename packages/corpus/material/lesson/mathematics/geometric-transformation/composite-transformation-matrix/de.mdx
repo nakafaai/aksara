@@ -3,7 +3,7 @@ export const metadata = {
   description: "Verknüpfe Spiegelungen, Drehungen und zentrische Streckungen durch Matrixmultiplikation und beachte dabei die Reihenfolge der Transformationen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Geometrische Transformation",
 };
 
@@ -56,7 +56,7 @@ Die Matrix für <InlineMath math="T_1" /> (Spiegelung an der <InlineMath math="y
 
 Die Matrix für <InlineMath math="T_2" /> (Drehung <InlineMath math="90^\circ" />) ist <InlineMath math="M_2 = \begin{pmatrix} \cos 90^\circ & -\sin 90^\circ \\ \sin 90^\circ & \cos 90^\circ \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />.
 
-**Methode <InlineMath math="1" />: Sequentielle Transformation auf den Punkt**
+**Methode 1: Sequentielle Transformation auf den Punkt**
 
 - Bild von <InlineMath math="P(x,y)" /> unter <InlineMath math="T_1" />:
 
@@ -70,7 +70,7 @@ Die Matrix für <InlineMath math="T_2" /> (Drehung <InlineMath math="90^\circ" /
 
 - Das endgültige Bild ist <InlineMath math="P''(-y,-x)" />.
 
-**Methode <InlineMath math="2" />: Zuerst zusammengesetzte Matrix**
+**Methode 2: Zuerst zusammengesetzte Matrix**
 
 - Zusammengesetzte Matrix <InlineMath math="M = M_2 M_1" />:
 
@@ -197,11 +197,11 @@ Wir setzen:
 
 Die Verkettung lautet <InlineMath math="T_3 \circ T_2 \circ T_1" />. Ihre Matrix ist <InlineMath math="M = M_3 M_2 M_1" />.
 
-**Schritt** <InlineMath math="1" />: Berechne <InlineMath math="M_2 M_1" />.
+**Schritt** 1: Berechne <InlineMath math="M_2 M_1" />.
 
 <BlockMath math="M_2 M_1 = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} (-1)(-1)+(0)(0) & (-1)(0)+(0)(1) \\ (0)(-1)+(-1)(0) & (0)(0)+(-1)(1) \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
 
-**Schritt** <InlineMath math="2" />: Berechne <InlineMath math="M = M_3 (M_2 M_1)" />.
+**Schritt** 2: Berechne <InlineMath math="M = M_3 (M_2 M_1)" />.
 
 <BlockMath math="M = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} (0)(1)+(1)(0) & (0)(0)+(1)(-1) \\ (1)(1)+(0)(0) & (1)(0)+(0)(-1) \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />
 

@@ -3,7 +3,7 @@ export const metadata = {
     description: "Apply limits to simplified health, economic, population, signal, and reaction models while checking what each model can and cannot justify.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-12",
     subject: "Limits",
 };
 
@@ -125,8 +125,8 @@ These assumptions give the following population counts:
 <BlockMath math="\text{Children} = 0.21 \times 576{,}260 = 121{,}014.6 \approx 121{,}015 \text{ people}" />
 <BlockMath math="\text{Adults} = 0.79 \times 576{,}260 = 455{,}245.4 \approx 455{,}245 \text{ people}" />
 <BlockMath math="\text{Total positive cases} = 0.3 \times 576{,}260 = 172{,}878 \text{ people}" />
-<BlockMath math="\text{Positive cases among adults} = 0.79 \times 0.30 \times 576{,}260 = 136{,}573.62 \approx 136{,}574 \text{ people}" />
-<BlockMath math="\text{Eligible adults} = 0.79 \times 0.70 \times 576{,}260 = 318{,}671.78 \approx 318{,}672 \text{ people}" />
+<BlockMath math="\begin{aligned}\text{Positive cases among adults} &= 0.79 \times 0.30 \times 576{,}260 \\ &= 136{,}573.62 \approx 136{,}574 \text{ people}\end{aligned}" />
+<BlockMath math="\begin{aligned}\text{Eligible adults} &= 0.79 \times 0.70 \times 576{,}260 \\ &= 318{,}671.78 \approx 318{,}672 \text{ people}\end{aligned}" />
 </MathContainer>
 
 Using the unrounded eligible count, the target represents:
@@ -141,21 +141,21 @@ To calculate the model's case count, we use <InlineMath math="t=282{,}367" />:
 
 <BlockMath math="N(282{,}367) = 285{,}000 - \sqrt{(282{,}367)^2 - 282{,}367 + (190.68)^3}" />
 
-**Step** <InlineMath math="1" /> calculates the constant term.
+**Step** 1 calculates the constant term.
 
 <BlockMath math="(190.68)^3 = 190.68 \times 190.68 \times 190.68 = 6{,}932{,}907.88" />
 
 The displayed value is rounded to two decimal places. The next calculation retains the unrounded value internally.
 
-**Step** <InlineMath math="2" /> calculates the square of the vaccination count.
+**Step** 2 calculates the square of the vaccination count.
 
 <BlockMath math="(282{,}367)^2 = 79{,}731{,}122{,}689" />
 
-**Step** <InlineMath math="3" /> combines the values under the square root.
+**Step** 3 combines the values under the square root.
 
 <BlockMath math="79{,}731{,}122{,}689 - 282{,}367 + 6{,}932{,}907.88 = 79{,}737{,}773{,}229.88" />
 
-**Step** <InlineMath math="4" /> gives the final result.
+**Step** 4 gives the final result.
 
 <MathContainer>
 <BlockMath math="N(282{,}367) = 285{,}000 - \sqrt{79{,}737{,}773{,}229.88}" />

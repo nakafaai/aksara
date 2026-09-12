@@ -5,7 +5,7 @@ export const metadata = {
   description: "Lineare Ungleichungssysteme grafisch lösen, Nebenbedingungen modellieren und zulässige Bereiche in interaktiven Darstellungen lesen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-09-12",
   subject: "Systeme linearer Gleichungen und Ungleichungen",
 };
 
@@ -193,6 +193,8 @@ Der violette Bereich erfüllt <InlineMath math="15x + 9y \geq 120" />. Er enthä
 Der Überlappungsbereich erfüllt beide Bedingungen und ist damit die Lösung des Systems.
 
 <Inequality
+  cameraPosition={[12, 9, 20]}
+  cameraTarget={[5, 5, 0]}
   title="Lineares Ungleichungssystem"
   description={
     <>
@@ -205,27 +207,27 @@ Der Überlappungsbereich erfüllt beide Bedingungen und ist damit die Lösung de
     {
       is2D: true,
       boundaryLine2D: [1, 1, -10],
-      xRange: [-15, 15],
-      yRange: [-15, 15],
+      xRange: [-50, 50],
+      yRange: [-50, 50],
       zRange: [-0.05, 0.05],
       color: "#ea580c",
       boundaryColor: "#ea580c",
       label: {
         text: <InlineMath math="x + y \le 10" />,
-        position: [-14, -8, 0.15],
+        position: [0, 4, 0.15],
       },
     },
     {
       is2D: true,
       boundaryLine2D: [-15, -9, 120],
-      xRange: [-15, 15],
-      yRange: [-15, 15],
+      xRange: [-50, 50],
+      yRange: [-50, 50],
       zRange: [-0.05, 0.05],
       color: "#9333ea",
       boundaryColor: "#9333ea",
       label: {
         text: <InlineMath math="15x + 9y \ge 120" />,
-        position: [14, 14, 0.15],
+        position: [9, 8, 0.15],
       },
     },
   ]}

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Löse lineare Ausgleichsprobleme mit QR-Zerlegung und Moore-Penrose-Pseudoinverser und vergleiche ihr numerisches Verhalten mit Normalgleichungen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-09-12",
   subject: "Lineare Methoden der KI",
 };
 
@@ -119,7 +119,8 @@ Damit gilt
 <LineEquation
   title={<>Ausgleichskurve <InlineMath math="\hat{y}(t)=0{,}98095t^2+3{,}02857t-2{,}00952" /></>}
   description={<>Die cyanfarbene Kurve ist das angepasste Polynom. Die orangefarbenen Punkte sind die sieben Messwerte aus <InlineMath math="b" />.</>}
-  cameraPosition={[15, 10, 15]}
+  cameraPosition={[0, 6, 26]}
+  cameraTarget={[0, 6, 0]}
   data={(() => {
     // Die von A und b codierten Messwerte
     const originalData = [
@@ -148,12 +149,12 @@ Damit gilt
         smooth: false,
         showPoints: false
       },
-      {
-        points: originalData.map(([t, y]) => ({ x: t, y: y, z: 0 })),
+      ...originalData.map(([t, y]) => ({
+        points: [{ x: t, y, z: 0 }],
         color: "#ea580c",
         smooth: false,
         showPoints: true
-      }
+      }))
     ];
   })()}
 />
