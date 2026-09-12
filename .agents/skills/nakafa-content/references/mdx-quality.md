@@ -155,10 +155,10 @@ strings with their own [math syntax](question-bank.md#response-items).
 - Prefer one aligned `<BlockMath />` for a connected derivation. One standalone
   `<BlockMath />` is complete by itself and does not require a
   `<MathContainer>` wrapper.
-- Use `<MathContainer>` only when two or more consecutive formula rows belong
-  to the same derivation and should remain visually distinct. Do not use it to
-  group a formula with a graph, diagram, simulation, code block, or other
-  non-math component.
+- Wrap consecutive `<BlockMath />` rows from one derivation or mathematical
+  comparison in `<MathContainer>`. Blank MDX lines do not space adjacent JSX
+  blocks. Keep intervening prose outside the wrapper; use `ContentStack` for
+  math grouped with a graph, diagram, simulation, or other non-math component.
 - MDX math props use a single LaTeX backslash. TypeScript strings escape the
   backslash.
 - Write a percentage sign as `\%` inside LaTeX. A bare `%` begins a comment

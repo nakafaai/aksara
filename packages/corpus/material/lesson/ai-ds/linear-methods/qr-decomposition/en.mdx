@@ -243,8 +243,10 @@ The approximate number of floating-point operations when <InlineMath math="m=n" 
 
 2. At step <InlineMath math="i" />, the new diagonal entry is <InlineMath math="\pm\|\widetilde a_i\|_2" />. Choose the sign below while computing the reflector to avoid subtracting nearly equal numbers:
 
-   <BlockMath math="u_i = \tilde{a}_i + s_i\|\tilde{a}_i\|_2e_1" />
-   <BlockMath math="s_i=\begin{cases}1,&amp;\tilde a_{ii}\ge0\\-1,&amp;\tilde a_{ii}&lt;0\end{cases}" />
+   <MathContainer>
+     <BlockMath math="u_i = \tilde{a}_i + s_i\|\tilde{a}_i\|_2e_1" />
+     <BlockMath math="s_i=\begin{cases}1,&amp;\tilde a_{ii}\ge0\\-1,&amp;\tilde a_{ii}&lt;0\end{cases}" />
+   </MathContainer>
 
    After the factorization, matching signs in one column of <InlineMath math="Q" /> and one row of <InlineMath math="R" /> can be flipped to make the diagonal of <InlineMath math="R" /> positive. If <InlineMath math="\|\widetilde a_i\|_2=0" />, the matrix lacks full column rank and this uniqueness condition no longer applies. A column-pivoted, rank-revealing <InlineMath math="\mathrm{QR}" /> decomposition is more informative when numerical rank matters.
 

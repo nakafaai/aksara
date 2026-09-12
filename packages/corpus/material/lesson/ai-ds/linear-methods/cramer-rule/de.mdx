@@ -37,9 +37,11 @@ Die adjugierte Matrix hat die folgende Struktur:
 
 Bezeichne jede Minordeterminante mit <InlineMath math="c_{ij}" />. Die wechselnden Vorzeichen und transponierten Indizes bleiben in der vollständigen Adjunkten sichtbar:
 
-<BlockMath math="c_{ij}=\det A_{ij}" />
+<MathContainer>
+  <BlockMath math="c_{ij}=\det A_{ij}" />
 
-<BlockMath math="\tilde{A} = \begin{pmatrix} c_{11} &amp; -c_{21} &amp; c_{31} &amp; \cdots \\ -c_{12} &amp; c_{22} &amp; -c_{32} &amp; \cdots \\ c_{13} &amp; -c_{23} &amp; c_{33} &amp; \cdots \\ \vdots &amp; \vdots &amp; \vdots &amp; \ddots \end{pmatrix}" />
+  <BlockMath math="\tilde{A} = \begin{pmatrix} c_{11} &amp; -c_{21} &amp; c_{31} &amp; \cdots \\ -c_{12} &amp; c_{22} &amp; -c_{32} &amp; \cdots \\ c_{13} &amp; -c_{23} &amp; c_{33} &amp; \cdots \\ \vdots &amp; \vdots &amp; \vdots &amp; \ddots \end{pmatrix}" />
+</MathContainer>
 
 Für jedes Element wird die Determinante der passenden Untermatrix mit dem Vorzeichen aus dem Schachbrettmuster <InlineMath math="(-1)^{i+j}" /> versehen.
 
@@ -93,10 +95,12 @@ Wir können Folgendes überprüfen:
 
 Berechne die Einträge der Zählermatrix einzeln:
 
-<BlockMath math="\begin{aligned} &amp;m_{11}=a\cdot d-b\cdot c \\ &amp;m_{12}=-a\cdot b+a\cdot b \\ &amp;m_{21}=c\cdot d-c\cdot d \\ &amp;m_{22}=-c\cdot b+a\cdot d \end{aligned}" />
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;m_{11}=a\cdot d-b\cdot c \\ &amp;m_{12}=-a\cdot b+a\cdot b \\ &amp;m_{21}=c\cdot d-c\cdot d \\ &amp;m_{22}=-c\cdot b+a\cdot d \end{aligned}" />
 
-<BlockMath math="\begin{aligned} &amp;A\cdot A^{-1} \\ &amp;=\frac1{a\cdot d-b\cdot c}\begin{pmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{pmatrix} \end{aligned}" />
-<BlockMath math="= \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I" />
+  <BlockMath math="\begin{aligned} &amp;A\cdot A^{-1} \\ &amp;=\frac1{a\cdot d-b\cdot c}\begin{pmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{pmatrix} \end{aligned}" />
+  <BlockMath math="= \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I" />
+</MathContainer>
 
 ## Satz
 
@@ -106,9 +110,11 @@ Sei <InlineMath math="A \in \mathbb{R}^{n \times n}" /> eine invertierbare Matri
 
 Bezeichne mit <InlineMath math="A_j(b)" /> die Matrix, deren Spalte <InlineMath math="j" /> durch <InlineMath math="b" /> ersetzt wird:
 
-<BlockMath math="A_j(b)=(a^1\;\ldots\;a^{j-1}\;b\;a^{j+1}\;\ldots\;a^n)" />
+<MathContainer>
+  <BlockMath math="A_j(b)=(a^1\;\ldots\;a^{j-1}\;b\;a^{j+1}\;\ldots\;a^n)" />
 
-<BlockMath math="x_j=\frac{\det A_j(b)}{\det A}" />
+  <BlockMath math="x_j=\frac{\det A_j(b)}{\det A}" />
+</MathContainer>
 
 Die Cramersche Formel gilt für <InlineMath math="j = 1, 2, \ldots, n" />.
 
@@ -124,8 +130,10 @@ Für <InlineMath math="j = 1, \ldots, n" />:
 <BlockMath math="\begin{aligned} x_j &amp;= (A^{-1} \cdot b)_j \\ &amp;= \sum_{i=1}^{n} (A^{-1})_{ji} \cdot b_i \\ &amp;= \sum_{i=1}^{n} \frac{1}{\det A} \cdot \tilde{a}_{ji} \cdot b_i \end{aligned}" />
 </MathContainer>
 
-<BlockMath math="= \frac{1}{\det A} \sum_{i=1}^{n} (-1)^{i+j} \cdot \det A_{ij} \cdot b_i" />
-<BlockMath math="=\frac1{\det A}\cdot\det A_j(b)" />
+<MathContainer>
+  <BlockMath math="= \frac{1}{\det A} \sum_{i=1}^{n} (-1)^{i+j} \cdot \det A_{ij} \cdot b_i" />
+  <BlockMath math="=\frac1{\det A}\cdot\det A_j(b)" />
+</MathContainer>
 
 Die letzte Gleichheit folgt aus der Laplace-Entwicklung nach der <InlineMath math="j" />-ten Spalte.
 

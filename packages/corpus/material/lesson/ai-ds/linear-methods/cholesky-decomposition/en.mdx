@@ -25,8 +25,10 @@ Since <InlineMath math="A = A^T" />, we also have:
 
 Here, <InlineMath math="\tilde{U}" /> is a matrix whose main diagonal is normalized to <InlineMath math="1" />, and <InlineMath math="D" /> is a diagonal matrix:
 
-<BlockMath math="\tilde{U} = \begin{pmatrix} 1 &amp; \frac{u_{12}}{u_{11}} &amp; \cdots &amp; \frac{u_{1n}}{u_{11}} \\ &amp; \ddots &amp; \ddots &amp; \vdots \\ &amp; &amp; 1 &amp; \frac{u_{n-1,n}}{u_{n-1,n-1}} \\ 0 &amp; &amp; &amp; 1 \end{pmatrix}" />
-<BlockMath math="D = \begin{pmatrix} u_{11} & & 0 \\ & \ddots & \\ 0 & & u_{nn} \end{pmatrix}" />
+<MathContainer>
+  <BlockMath math="\tilde{U} = \begin{pmatrix} 1 &amp; \frac{u_{12}}{u_{11}} &amp; \cdots &amp; \frac{u_{1n}}{u_{11}} \\ &amp; \ddots &amp; \ddots &amp; \vdots \\ &amp; &amp; 1 &amp; \frac{u_{n-1,n}}{u_{n-1,n-1}} \\ 0 &amp; &amp; &amp; 1 \end{pmatrix}" />
+  <BlockMath math="D = \begin{pmatrix} u_{11} & & 0 \\ & \ddots & \\ 0 & & u_{nn} \end{pmatrix}" />
+</MathContainer>
 
 When <InlineMath math="L" /> and <InlineMath math="\tilde U" /> have unit diagonals, this <InlineMath math="\mathrm{LU}" /> decomposition is unique. Comparing the two factorizations gives
 
@@ -69,9 +71,11 @@ For <InlineMath math="i = 2, \ldots, n" />:
 <BlockMath math="\tilde{l}_{ii} := \sqrt{a_{ii} - \tilde{l}_{i1}^2 - \tilde{l}_{i2}^2 - \ldots - \tilde{l}_{i,i-1}^2}" />
 Compute the remaining entry first:
 
-<BlockMath math="\begin{aligned} &amp;r_{ji}=a_{ji}-\tilde l_{j1}\tilde l_{i1} \\ &amp;-\tilde l_{j2}\tilde l_{i2}-\ldots \\ &amp;-\tilde l_{j,i-1}\tilde l_{i,i-1} \end{aligned}" />
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;r_{ji}=a_{ji}-\tilde l_{j1}\tilde l_{i1} \\ &amp;-\tilde l_{j2}\tilde l_{i2}-\ldots \\ &amp;-\tilde l_{j,i-1}\tilde l_{i,i-1} \end{aligned}" />
 
-<BlockMath math="\tilde l_{ji}:=\tilde l_{ii}^{-1}\cdot r_{ji}" />
+  <BlockMath math="\tilde l_{ji}:=\tilde l_{ii}^{-1}\cdot r_{ji}" />
+</MathContainer>
 
 The second recurrence applies for <InlineMath math="j = i + 1, \ldots, n" />.
 
