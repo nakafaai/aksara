@@ -62,10 +62,13 @@ A linear piecewise function uses a linear function on each interval. This form o
     },
     {
       endpoints: { start: "closed" },
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = 2 + i * 0.1;
-        return { x, y: 0.5 * x, z: 0 };
-      }),
+      points: [
+        ...Array.from({ length: 21 }, (_, i) => {
+          const x = 2 + i * 0.1;
+          return { x, y: 0.5 * x, z: 0 };
+        }),
+        { x: 100, y: 50, z: 0 },
+      ],
       smooth: false,
       color: "#0891b2",
       showPoints: false,
@@ -92,20 +95,23 @@ Piecewise functions can also use quadratic pieces. A quadratic piece can describ
     {
       smooth: false,
       endpoints: { end: "open" },
-      points: Array.from({ length: 31 }, (_, i) => {
-        const x = -3 + i * 0.1;
+      points: Array.from({ length: 751 }, (_, sampleIndex) => {
+        const x = (sampleIndex - 750) / 50;
         return { x, y: x * x, z: 0 };
       }),
       color: "#7c3aed",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=x^2" />, at: 15, offset: [-1, -1, 0] }],
+      labels: [{ text: <InlineMath math="y=x^2" />, at: 675, offset: [-1, -1, 0] }],
     },
     {
       endpoints: { start: "closed" },
-      points: Array.from({ length: 31 }, (_, i) => {
-        const x = 0 + i * 0.1;
-        return { x, y: 2 * x, z: 0 };
-      }),
+      points: [
+        ...Array.from({ length: 31 }, (_, i) => {
+          const x = 0 + i * 0.1;
+          return { x, y: 2 * x, z: 0 };
+        }),
+        { x: 100, y: 200, z: 0 },
+      ],
       smooth: false,
       color: "#0d9488",
       showPoints: false,
@@ -154,21 +160,27 @@ For example, the two rules below meet at <InlineMath math="x=1" /> but approach 
   data={[
     {
       endpoints: { end: "open" },
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = -1 + i * 0.1;
-        return { x, y: x + 2, z: 0 };
-      }),
+      points: [
+        { x: -100, y: -98, z: 0 },
+        ...Array.from({ length: 21 }, (_, i) => {
+          const x = -1 + i * 0.1;
+          return { x, y: x + 2, z: 0 };
+        }),
+      ],
       smooth: false,
       color: "#e11d48",
       showPoints: false,
-      labels: [{ text: <InlineMath math="y=x+2" />, at: 10, offset: [-1, 1, 0] }],
+      labels: [{ text: <InlineMath math="y=x+2" />, at: 11, offset: [-1, 1, 0] }],
     },
     {
       endpoints: { start: "closed" },
-      points: Array.from({ length: 21 }, (_, i) => {
-        const x = 1 + i * 0.1;
-        return { x, y: 2 * x - 3, z: 0 };
-      }),
+      points: [
+        ...Array.from({ length: 21 }, (_, i) => {
+          const x = 1 + i * 0.1;
+          return { x, y: 2 * x - 3, z: 0 };
+        }),
+        { x: 100, y: 197, z: 0 },
+      ],
       smooth: false,
       color: "#d97706",
       showPoints: false,
@@ -330,14 +342,17 @@ Piecewise function:
      data={[
        {
          endpoints: { end: "open" },
-         points: Array.from({ length: 21 }, (_, i) => {
-           const x = -2 + i * 0.1;
-           return { x, y: -x + 2, z: 0 };
-         }),
+         points: [
+           { x: -100, y: 102, z: 0 },
+           ...Array.from({ length: 21 }, (_, i) => {
+             const x = -2 + i * 0.1;
+             return { x, y: -x + 2, z: 0 };
+           }),
+         ],
          smooth: false,
          color: "#9333ea",
          showPoints: false,
-         labels: [{ text: <InlineMath math="y=-x+2" />, at: 10, offset: [0, 0.5, 0] }],
+         labels: [{ text: <InlineMath math="y=-x+2" />, at: 11, offset: [0, 0.5, 0] }],
        },
        {
          smooth: false,
@@ -353,10 +368,13 @@ Piecewise function:
        },
        {
          endpoints: { start: "closed" },
-         points: Array.from({ length: 21 }, (_, i) => {
-           const x = 2 + i * 0.1;
-           return { x, y: 4, z: 0 };
-         }),
+         points: [
+           ...Array.from({ length: 21 }, (_, i) => {
+             const x = 2 + i * 0.1;
+             return { x, y: 4, z: 0 };
+           }),
+           { x: 100, y: 4, z: 0 },
+         ],
          smooth: false,
          color: "#0891b2",
          showPoints: false,

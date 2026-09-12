@@ -376,29 +376,25 @@ For a symmetric matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" />, vect
 <BlockMath math="x^T A x + b^T x + c = 0" />
 </MathContainer>
 
-Equivalently,
-
-The same set <InlineMath math="Q" /> consists of the vectors <InlineMath math="x\in\mathbb R^n" /> satisfying:
-
-<BlockMath math="x^T A x + b^T x + c = 0" />
-The same set <InlineMath math="Q" /> consists of the vectors <InlineMath math="x\in\mathbb R^n" /> satisfying:
+Writing the same equation entry by entry gives:
 
 <BlockMath math="\begin{aligned} &amp;\sum_{j=1}^n\sum_{k=1}^n x_ja_{jk}x_k \\ &amp;+\sum_{j=1}^n b_jx_j+c=0 \end{aligned}" />
 
 If <InlineMath math="A \in \mathbb{R}^{n \times n}" /> is symmetric and <InlineMath math="v_1, \ldots, v_n \in \mathbb{R}^n" /> is an orthonormal basis of eigenvectors with <InlineMath math="A \cdot v_i = \lambda_i \cdot v_i" />, then the orthonormal matrix <InlineMath math="S = (v_1 \quad \ldots \quad v_n)" /> enables diagonalization <InlineMath math="A \cdot S = S \cdot \Lambda" /> or <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S = S^T \cdot A \cdot S" />.
 
-In the new coordinate basis <InlineMath math="\xi = S^T x" /> and <InlineMath math="\mu = S^T b" />, the quadratic surface has diagonal form:
-
-In the rotated coordinates, <InlineMath math="Q" /> is described by vectors <InlineMath math="\xi\in\mathbb R^n" /> satisfying:
+In the rotated coordinates <InlineMath math="\xi=S^Tx" />, write <InlineMath math="\mu=S^Tb" />. The coordinates <InlineMath math="\xi\in\mathbb R^n" /> of points on <InlineMath math="Q" /> satisfy:
 
 <BlockMath math="\xi^T S^T A S \xi + b^T S \xi + c = 0" />
-Equivalently, these vectors satisfy:
+
+Diagonalizing <InlineMath math="A" /> gives:
 
 <BlockMath math="\xi^T\Lambda\xi+\mu^T\xi+c=0" />
-In the rotated coordinates, <InlineMath math="Q" /> is described by vectors <InlineMath math="\xi\in\mathbb R^n" /> satisfying:
+
+Written entry by entry:
 
 <BlockMath math="\begin{aligned} &amp;\sum_{j=1}^n\lambda_j\xi_j^2 \\ &amp;+\sum_{j=1}^n\mu_j\xi_j+c=0 \end{aligned}" />
-In the rotated coordinates, <InlineMath math="Q" /> is described by vectors <InlineMath math="\xi\in\mathbb R^n" /> satisfying:
+
+Collecting the terms and moving <InlineMath math="c" /> to the right gives:
 
 <BlockMath math="\sum_{j=1}^n (\lambda_j \xi_j^2 + \mu_j \xi_j) = -c" />
 

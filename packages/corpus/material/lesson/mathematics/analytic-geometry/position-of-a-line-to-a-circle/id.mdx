@@ -39,52 +39,85 @@ Visualisasi berikut membandingkan ketiga kasus sekaligus:
       showPoints: false,
     },
     {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const xMin = -5;
-        const xMax = 5;
-        const y = 4.5; // Garis yang tidak berpotongan
-        return {
-          x: xMin + i * (xMax - xMin),
-          y: y,
-          z: 0,
+      points: (() => {
+        const points = Array.from({ length: 2 }, (_, i) => {
+          const xMin = -5;
+          const xMax = 5;
+          const y = 4.5; // Garis yang tidak berpotongan
+          return {
+            x: xMin + i * (xMax - xMin),
+            y: y,
+            z: 0,
+          };
+        });
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
         };
-      }),
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
+        ];
+      })(),
       color: "#ea580c",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Tidak berpotongan", at: 1, offset: [-2, 0.5, 0] }],
+      labels: [{ text: "Tidak berpotongan", at: 2, offset: [-2, 0.5, 0] }],
     },
     {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const xMin = -5;
-        const xMax = 5;
-        const y = 3; // Garis singgung
-        return {
-          x: xMin + i * (xMax - xMin),
-          y: y,
-          z: 0,
+      points: (() => {
+        const points = Array.from({ length: 2 }, (_, i) => {
+          const xMin = -5;
+          const xMax = 5;
+          const y = 3; // Garis singgung
+          return {
+            x: xMin + i * (xMax - xMin),
+            y: y,
+            z: 0,
+          };
+        });
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
         };
-      }),
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
+        ];
+      })(),
       color: "#0891b2",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Menyinggung", at: 1, offset: [-2, 0.5, 0] }],
+      labels: [{ text: "Menyinggung", at: 2, offset: [-2, 0.5, 0] }],
     },
     {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const xMin = -5;
-        const xMax = 5;
-        const y = 1; // Garis memotong
-        return {
-          x: xMin + i * (xMax - xMin),
-          y: y,
-          z: 0,
+      points: (() => {
+        const points = Array.from({ length: 2 }, (_, i) => {
+          const xMin = -5;
+          const xMax = 5;
+          const y = 1; // Garis memotong
+          return {
+            x: xMin + i * (xMax - xMin),
+            y: y,
+            z: 0,
+          };
+        });
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
         };
-      }),
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
+        ];
+      })(),
       color: "#0d9488",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Memotong", at: 1, offset: [-2, 0.5, 0] }],
+      labels: [{ text: "Memotong", at: 2, offset: [-2, 0.5, 0] }],
     },
     {
       points: Array.from({ length: 1 }, () => {

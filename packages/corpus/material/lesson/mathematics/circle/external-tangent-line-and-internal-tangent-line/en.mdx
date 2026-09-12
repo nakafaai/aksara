@@ -102,15 +102,24 @@ An external common tangent line touches both circles without crossing the segmen
         const tux = tdx / tlen;
         const tuy = tdy / tlen;
 
-        return [
+        const points = [
           { x: T1x - 4 * tux, y: T1y - 4 * tuy, z: 0 },
           { x: T2x + 4 * tux, y: T2y + 4 * tuy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <InlineMath math="g_1" />, at: 1, offset: [-5, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="g_1" />, at: 2, offset: [-5, 0.5, 0] }],
     },
     {
       points: (() => {
@@ -152,15 +161,24 @@ An external common tangent line touches both circles without crossing the segmen
         const tux = tdx / tlen;
         const tuy = tdy / tlen;
 
-        return [
+        const points = [
           { x: T1x - 4 * tux, y: T1y - 4 * tuy, z: 0 },
           { x: T2x + 4 * tux, y: T2y + 4 * tuy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
       color: "#0d9488",
       showPoints: false,
-      labels: [{ text: <InlineMath math="g_2" />, at: 1, offset: [-5, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="g_2" />, at: 2, offset: [-5, -0.5, 0] }],
     },
 
 ]}
@@ -416,15 +434,24 @@ An internal common tangent line is a line that touches both circles from opposit
         const ux = dx / len;
         const uy = dy / len;
 
-        return [
+        const points = [
           { x: T1x - 3 * ux, y: T1y - 3 * uy, z: 0 },
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="h_1" />, at: 0, offset: [-1, 0.5, 0] }],
+      labels: [{ text: <InlineMath math="h_1" />, at: 1, offset: [-1, 0.5, 0] }],
     },
     {
       points: (() => {
@@ -449,15 +476,24 @@ An internal common tangent line is a line that touches both circles from opposit
         const ux = dx / len;
         const uy = dy / len;
 
-        return [
+        const points = [
           { x: T1x - 3 * ux, y: T1y - 3 * uy, z: 0 },
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="h_2" />, at: 0, offset: [-1, -0.5, 0] }],
+      labels: [{ text: <InlineMath math="h_2" />, at: 1, offset: [-1, -0.5, 0] }],
     },
 
 ]}
@@ -764,9 +800,18 @@ The first circle is centered at <InlineMath math="(-6, 0)" /> with radius <Inlin
         const tux = tdx / tlen;
         const tuy = tdy / tlen;
 
-        return [
+        const points = [
           { x: T1x - 2 * tux, y: T1y - 2 * tuy, z: 0 },
           { x: T2x + 2 * tux, y: T2y + 2 * tuy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
@@ -812,9 +857,18 @@ The first circle is centered at <InlineMath math="(-6, 0)" /> with radius <Inlin
         const tux = tdx / tlen;
         const tuy = tdy / tlen;
 
-        return [
+        const points = [
           { x: T1x - 2 * tux, y: T1y - 2 * tuy, z: 0 },
           { x: T2x + 2 * tux, y: T2y + 2 * tuy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
@@ -844,9 +898,18 @@ The first circle is centered at <InlineMath math="(-6, 0)" /> with radius <Inlin
         const ux = dx / len;
         const uy = dy / len;
 
-        return [
+        const points = [
           { x: T1x - 1 * ux, y: T1y - 1 * uy, z: 0 },
           { x: T2x + 1 * ux, y: T2y + 1 * uy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
@@ -876,9 +939,18 @@ The first circle is centered at <InlineMath math="(-6, 0)" /> with radius <Inlin
         const ux = dx / len;
         const uy = dy / len;
 
-        return [
+        const points = [
           { x: T1x - 1 * ux, y: T1y - 1 * uy, z: 0 },
           { x: T2x + 1 * ux, y: T2y + 1 * uy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
@@ -934,19 +1006,41 @@ The first circle is centered at <InlineMath math="(-2, 0)" /> with radius <Inlin
       showPoints: false,
     },
     {
-      points: [
-        { x: -5, y: 1.5, z: 0 },
-        { x: 5, y: 1.5, z: 0 },
-      ],
+      points: (() => {
+        const points = [
+          { x: -5, y: 1.5, z: 0 },
+          { x: 5, y: 1.5, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
+        ];
+      })(),
       color: "#0891b2",
       showPoints: false,
       smooth: false,
     },
     {
-      points: [
-        { x: -5, y: -1.5, z: 0 },
-        { x: 5, y: -1.5, z: 0 },
-      ],
+      points: (() => {
+        const points = [
+          { x: -5, y: -1.5, z: 0 },
+          { x: 5, y: -1.5, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
+        ];
+      })(),
       color: "#0d9488",
       showPoints: false,
       smooth: false,
@@ -974,9 +1068,18 @@ The first circle is centered at <InlineMath math="(-2, 0)" /> with radius <Inlin
         const ux = dx / len;
         const uy = dy / len;
 
-        return [
+        const points = [
           { x: T1x - 2 * ux, y: T1y - 2 * uy, z: 0 },
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
@@ -1006,9 +1109,18 @@ The first circle is centered at <InlineMath math="(-2, 0)" /> with radius <Inlin
         const ux = dx / len;
         const uy = dy / len;
 
-        return [
+        const points = [
           { x: T1x - 2 * ux, y: T1y - 2 * uy, z: 0 },
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,

@@ -186,7 +186,7 @@ Zuerst werden die aktive Matrix und der gesammelte orthogonale Faktor initialisi
 
 Im Schritt <InlineMath math="i" /> wird der aktive Teil der <InlineMath math="i" />-ten Spalte entnommen:
 
-<BlockMath math="\begin{aligned} \tilde{a}_i &amp;= \begin{pmatrix} a_{ii} \\ \vdots \\ a_{mi} \end{pmatrix} : \\ &amp;= \begin{pmatrix} (A_i)_{ii} \\ \vdots \\ (A_i)_{mi} \end{pmatrix} \in \mathbb{R}^{m-i+1} \end{aligned}" />
+<BlockMath math="\begin{aligned} \tilde{a}_i &amp;= \begin{pmatrix} a_{ii} \\ \vdots \\ a_{mi} \end{pmatrix} \\ &amp;:= \begin{pmatrix} (A_i)_{ii} \\ \vdots \\ (A_i)_{mi} \end{pmatrix} \in \mathbb{R}^{m-i+1} \end{aligned}" />
 
 Danach werden Norm, Vorzeichen und Householder-Vektor berechnet. Das Vorzeichen verhindert die Subtraktion fast gleicher Zahlen:
 
@@ -212,8 +212,8 @@ Der normierte Vektor und der vollständige Reflektor lauten
 Die aktive Matrix und der gesammelte Faktor werden ohne ein zusätzliches dichtes Matrixprodukt aktualisiert:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} A_{i+1} : &amp;= S_i A_i \\ &amp;= (I_m - \beta \hat{u}_i \hat{u}_i^T) A_i \\ &amp;= A_i - \hat{u}_i (\beta \hat{u}_i^T A_i) \end{aligned}" />
-<BlockMath math="\begin{aligned} Q_{i+1} : &amp;= Q_i S_i \\ &amp;= Q_i (I_m - \beta \hat{u}_i \hat{u}_i^T) \\ &amp;= Q_i - (Q_i \hat{u}_i) \beta \hat{u}_i^T \end{aligned}" />
+<BlockMath math="\begin{aligned} A_{i+1} &amp;:= S_i A_i \\ &amp;= (I_m - \beta \hat{u}_i \hat{u}_i^T) A_i \\ &amp;= A_i - \hat{u}_i (\beta \hat{u}_i^T A_i) \end{aligned}" />
+<BlockMath math="\begin{aligned} Q_{i+1} &amp;:= Q_i S_i \\ &amp;= Q_i (I_m - \beta \hat{u}_i \hat{u}_i^T) \\ &amp;= Q_i - (Q_i \hat{u}_i) \beta \hat{u}_i^T \end{aligned}" />
 </MathContainer>
 
 Nach <InlineMath math="n" /> Schritten gilt

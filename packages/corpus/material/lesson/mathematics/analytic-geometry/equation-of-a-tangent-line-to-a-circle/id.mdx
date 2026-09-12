@@ -67,7 +67,7 @@ Jika titik sentuh diketahui, pastikan dahulu bahwa titik itu memang terletak pad
     },
     {
       points: (() => {
-        const angle = Math.PI * 5/6;
+        const angle = (Math.PI * 5) / 6;
         const radius = 4;
         const pointX = radius * Math.cos(angle);
         const pointY = radius * Math.sin(angle);
@@ -76,23 +76,32 @@ Jika titik sentuh diketahui, pastikan dahulu bahwa titik itu memang terletak pad
         const perpSlope = -pointX / pointY;
 
         const range = 5;
-        return [
+        const points = [
           {
             x: pointX - range,
-            y: pointY + perpSlope * (-range),
+            y: pointY + perpSlope * -range,
             z: 0,
           },
           {
             x: pointX + range,
             y: pointY + perpSlope * range,
             z: 0,
-          }
+          },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       color: "#059669",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Singgung", at: 0, offset: [4, 3.5, 0] }],
+      labels: [{ text: "Singgung", at: 1, offset: [4, 3.5, 0] }],
     },
     {
       points: (() => {
@@ -184,36 +193,58 @@ Jika gradien diketahui tetapi titik potong sumbu belum diketahui, gunakan syarat
     {
       points: (() => {
         const m = -0.75; // gradien yang diinginkan
-        const h = 1, k = -0.5, r = 3.5;
-        const c1 = k - m*h + r * Math.sqrt(1 + m * m);
+        const h = 1,
+          k = -0.5,
+          r = 3.5;
+        const c1 = k - m * h + r * Math.sqrt(1 + m * m);
         const xRange = 8;
         const xStart = -2;
-        return [
+        const points = [
           { x: xStart, y: m * xStart + c1, z: 0 },
-          { x: xStart + xRange, y: m * (xStart + xRange) + c1, z: 0 }
+          { x: xStart + xRange, y: m * (xStart + xRange) + c1, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       color: "#0284c7",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Singgung Atas", at: 1, offset: [-3, 4.8, 0] }],
+      labels: [{ text: "Singgung Atas", at: 2, offset: [-3, 4.8, 0] }],
     },
     {
       points: (() => {
         const m = -0.75; // gradien yang diinginkan
-        const h = 1, k = -0.5, r = 3.5;
-        const c2 = k - m*h - r * Math.sqrt(1 + m * m);
+        const h = 1,
+          k = -0.5,
+          r = 3.5;
+        const c2 = k - m * h - r * Math.sqrt(1 + m * m);
         const xRange = 8;
         const xStart = -2;
-        return [
+        const points = [
           { x: xStart, y: m * xStart + c2, z: 0 },
-          { x: xStart + xRange, y: m * (xStart + xRange) + c2, z: 0 }
+          { x: xStart + xRange, y: m * (xStart + xRange) + c2, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 3,
+          y: (points[1].y - points[0].y) * 3,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       color: "#059669",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Singgung Bawah", at: 0, offset: [1, -2.4, 0] }],
+      labels: [{ text: "Singgung Bawah", at: 1, offset: [1, -2.4, 0] }],
     },
     {
       points: (() => {
@@ -408,54 +439,80 @@ Dari sebuah titik di luar lingkaran dapat ditarik tepat dua garis singgung. Jika
     {
       points: (() => {
         // Garis singgung pertama
-        const px = 3.5, py = 4, h = -1, k = 1.5, r = 2.8;
-        const a = (h - px)*(h - px) - r*r;
-        const b = -2*(h - px)*(k - py);
-        const c = (k - py)*(k - py) - r*r;
+        const px = 3.5,
+          py = 4,
+          h = -1,
+          k = 1.5,
+          r = 2.8;
+        const a = (h - px) * (h - px) - r * r;
+        const b = -2 * (h - px) * (k - py);
+        const c = (k - py) * (k - py) - r * r;
 
-        const discriminant = b*b - 4*a*c;
-        const m1 = (-b + Math.sqrt(discriminant)) / (2*a);
+        const discriminant = b * b - 4 * a * c;
+        const m1 = (-b + Math.sqrt(discriminant)) / (2 * a);
 
-        const c1 = py - m1*px;
+        const c1 = py - m1 * px;
 
         // Tentukan panjang garis yang konsisten
         const lineLength = 6;
 
-        return [
+        const points = [
           { x: px, y: py, z: 0 },
-          { x: px - lineLength, y: m1 * (px - lineLength) + c1, z: 0 }
+          { x: px - lineLength, y: m1 * (px - lineLength) + c1, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       color: "#0d9488",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Singgung 1", at: 0, offset: [0.5, -1, 0] }],
+      labels: [{ text: "Singgung 1", at: 1, offset: [0.5, -1, 0] }],
     },
     {
       points: (() => {
         // Garis singgung kedua
-        const px = 3.5, py = 4, h = -1, k = 1.5, r = 2.8;
-        const a = (h - px)*(h - px) - r*r;
-        const b = -2*(h - px)*(k - py);
-        const c = (k - py)*(k - py) - r*r;
+        const px = 3.5,
+          py = 4,
+          h = -1,
+          k = 1.5,
+          r = 2.8;
+        const a = (h - px) * (h - px) - r * r;
+        const b = -2 * (h - px) * (k - py);
+        const c = (k - py) * (k - py) - r * r;
 
-        const discriminant = b*b - 4*a*c;
-        const m2 = (-b - Math.sqrt(discriminant)) / (2*a);
+        const discriminant = b * b - 4 * a * c;
+        const m2 = (-b - Math.sqrt(discriminant)) / (2 * a);
 
-        const c2 = py - m2*px;
+        const c2 = py - m2 * px;
 
         // Gunakan panjang garis yang sama untuk konsistensi visual
         const lineLength = 6;
 
-        return [
+        const points = [
           { x: px, y: py, z: 0 },
-          { x: px - lineLength, y: m2 * (px - lineLength) + c2, z: 0 }
+          { x: px - lineLength, y: m2 * (px - lineLength) + c2, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 3,
+          y: (points[1].y - points[0].y) * 3,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       color: "#4f46e5",
       showPoints: false,
       smooth: false,
-      labels: [{ text: "Singgung 2", at: 0, offset: [0.5, 1, 0] }],
+      labels: [{ text: "Singgung 2", at: 1, offset: [0.5, 1, 0] }],
     },
     {
       points: [

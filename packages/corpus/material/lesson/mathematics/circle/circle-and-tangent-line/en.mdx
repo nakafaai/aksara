@@ -43,14 +43,25 @@ A circle tangent line is a line that intersects the circle at exactly one point.
       ],
     },
     {
-      points: [
-        { x: 3, y: -3, z: 0 },
-        { x: 3, y: 3, z: 0 },
-      ],
+      points: (() => {
+        const points = [
+          { x: 3, y: -3, z: 0 },
+          { x: 3, y: 3, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
+        ];
+      })(),
       smooth: false,
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: "Tangent line", at: 1, offset: [-1.1, 0.8, 0] }],
+      labels: [{ text: "Tangent line", at: 2, offset: [-1.1, 0.8, 0] }],
     },
   ]}
   cameraPosition={[0, 0, 10]}
@@ -250,12 +261,12 @@ External common tangent lines touch both circles without crossing the segment be
         const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
 
         // Tangent points on first circle
-        const T1x = O1.x + r1 * Math.cos(theta + Math.PI/2 + alpha);
-        const T1y = O1.y + r1 * Math.sin(theta + Math.PI/2 + alpha);
+        const T1x = O1.x + r1 * Math.cos(theta + Math.PI / 2 + alpha);
+        const T1y = O1.y + r1 * Math.sin(theta + Math.PI / 2 + alpha);
 
         // Tangent points on second circle
-        const T2x = O2.x + r2 * Math.cos(theta + Math.PI/2 + alpha);
-        const T2y = O2.y + r2 * Math.sin(theta + Math.PI/2 + alpha);
+        const T2x = O2.x + r2 * Math.cos(theta + Math.PI / 2 + alpha);
+        const T2y = O2.y + r2 * Math.sin(theta + Math.PI / 2 + alpha);
 
         // Extend the line beyond the tangent points
         const dx = T2x - T1x;
@@ -264,15 +275,24 @@ External common tangent lines touch both circles without crossing the segment be
         const ux = dx / len;
         const uy = dy / len;
 
-        return [
+        const points = [
           { x: T1x - 3 * ux, y: T1y - 3 * uy, z: 0 },
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
       color: "#0891b2",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\mathrm{ECT}" />, at: 1, offset: [-5.8, 0.8, 0] }],
+      labels: [{ text: <InlineMath math="\mathrm{ECT}" />, at: 2, offset: [-5.8, 0.8, 0] }],
     },
     {
       points: (() => {
@@ -289,12 +309,12 @@ External common tangent lines touch both circles without crossing the segment be
         const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
 
         // Tangent points on first circle
-        const T1x = O1.x + r1 * Math.cos(theta - Math.PI/2 - alpha);
-        const T1y = O1.y + r1 * Math.sin(theta - Math.PI/2 - alpha);
+        const T1x = O1.x + r1 * Math.cos(theta - Math.PI / 2 - alpha);
+        const T1y = O1.y + r1 * Math.sin(theta - Math.PI / 2 - alpha);
 
         // Tangent points on second circle
-        const T2x = O2.x + r2 * Math.cos(theta - Math.PI/2 - alpha);
-        const T2y = O2.y + r2 * Math.sin(theta - Math.PI/2 - alpha);
+        const T2x = O2.x + r2 * Math.cos(theta - Math.PI / 2 - alpha);
+        const T2y = O2.y + r2 * Math.sin(theta - Math.PI / 2 - alpha);
 
         // Extend the line beyond the tangent points
         const dx = T2x - T1x;
@@ -303,15 +323,24 @@ External common tangent lines touch both circles without crossing the segment be
         const ux = dx / len;
         const uy = dy / len;
 
-        return [
+        const points = [
           { x: T1x - 3 * ux, y: T1y - 3 * uy, z: 0 },
           { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 1,
+          y: (points[1].y - points[0].y) * 1,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
       color: "#0d9488",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\mathrm{ECT}" />, at: 1, offset: [-5.8, -0.8, 0] }],
+      labels: [{ text: <InlineMath math="\mathrm{ECT}" />, at: 2, offset: [-5.8, -0.8, 0] }],
     },
 
 ]}
@@ -389,12 +418,12 @@ Internal common tangent lines are lines that touch both circles and intersect th
 
         // For internal tangent, tangent points are on opposite sides
         // First circle: top side
-        const T1x = O1.x + r1 * Math.cos(theta + Math.PI/2 - alpha);
-        const T1y = O1.y + r1 * Math.sin(theta + Math.PI/2 - alpha);
+        const T1x = O1.x + r1 * Math.cos(theta + Math.PI / 2 - alpha);
+        const T1y = O1.y + r1 * Math.sin(theta + Math.PI / 2 - alpha);
 
         // Second circle: bottom side (add PI to flip to opposite side)
-        const T2x = O2.x + r2 * Math.cos(theta + Math.PI/2 - alpha + Math.PI);
-        const T2y = O2.y + r2 * Math.sin(theta + Math.PI/2 - alpha + Math.PI);
+        const T2x = O2.x + r2 * Math.cos(theta + Math.PI / 2 - alpha + Math.PI);
+        const T2y = O2.y + r2 * Math.sin(theta + Math.PI / 2 - alpha + Math.PI);
 
         // Extend the line beyond the tangent points
         const dx = T2x - T1x;
@@ -403,15 +432,24 @@ Internal common tangent lines are lines that touch both circles and intersect th
         const ux = dx / len;
         const uy = dy / len;
 
-        return [
+        const points = [
           { x: T1x - 2 * ux, y: T1y - 2 * uy, z: 0 },
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
       color: "#db2777",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\mathrm{ICT}" />, at: 0, offset: [0.6, 0.8, 0] }],
+      labels: [{ text: <InlineMath math="\mathrm{ICT}" />, at: 1, offset: [0.6, 0.8, 0] }],
     },
     {
       points: (() => {
@@ -429,12 +467,12 @@ Internal common tangent lines are lines that touch both circles and intersect th
 
         // For internal tangent, tangent points are on opposite sides
         // First circle: bottom side
-        const T1x = O1.x + r1 * Math.cos(theta - Math.PI/2 + alpha);
-        const T1y = O1.y + r1 * Math.sin(theta - Math.PI/2 + alpha);
+        const T1x = O1.x + r1 * Math.cos(theta - Math.PI / 2 + alpha);
+        const T1y = O1.y + r1 * Math.sin(theta - Math.PI / 2 + alpha);
 
         // Second circle: top side (add PI to flip to opposite side)
-        const T2x = O2.x + r2 * Math.cos(theta - Math.PI/2 + alpha + Math.PI);
-        const T2y = O2.y + r2 * Math.sin(theta - Math.PI/2 + alpha + Math.PI);
+        const T2x = O2.x + r2 * Math.cos(theta - Math.PI / 2 + alpha + Math.PI);
+        const T2y = O2.y + r2 * Math.sin(theta - Math.PI / 2 + alpha + Math.PI);
 
         // Extend the line beyond the tangent points
         const dx = T2x - T1x;
@@ -443,15 +481,24 @@ Internal common tangent lines are lines that touch both circles and intersect th
         const ux = dx / len;
         const uy = dy / len;
 
-        return [
+        const points = [
           { x: T1x - 2 * ux, y: T1y - 2 * uy, z: 0 },
           { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
+        ];
+        const extension = {
+          x: (points[1].x - points[0].x) * 2,
+          y: (points[1].y - points[0].y) * 2,
+        };
+        return [
+          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
+          ...points,
+          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
       })(),
       smooth: false,
       color: "#d97706",
       showPoints: false,
-      labels: [{ text: <InlineMath math="\mathrm{ICT}" />, at: 0, offset: [0.6, -0.8, 0] }],
+      labels: [{ text: <InlineMath math="\mathrm{ICT}" />, at: 1, offset: [0.6, -0.8, 0] }],
     },
 
 ]}
