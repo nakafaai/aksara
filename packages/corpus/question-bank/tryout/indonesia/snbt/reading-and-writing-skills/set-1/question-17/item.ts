@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "vor Satz $$(7)$$.",
+          label: "vor Satz (7).",
         },
         {
           isCorrect: true,
-          label: "zwischen den Sätzen $$(5)$$ und $$(6)$$.",
+          label: "zwischen den Sätzen (5) und (6).",
         },
         {
           isCorrect: false,
-          label: "zwischen den Sätzen $$(1)$$ und $$(2)$$.",
+          label: "zwischen den Sätzen (1) und (2).",
         },
         {
           isCorrect: false,
-          label: "nach dem Satz $$(3)$$.",
+          label: "nach dem Satz (3).",
         },
         {
           isCorrect: false,
-          label: "zwischen den Sätzen $$(4)$$ und $$(5)$$.",
+          label: "zwischen den Sätzen (4) und (5).",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "before sentence $$(7)$$.",
+          label: "before sentence (7).",
         },
         {
           isCorrect: true,
-          label: "between sentences $$(5)$$ and $$(6)$$.",
+          label: "between sentences (5) and (6).",
         },
         {
           isCorrect: false,
-          label: "between sentences $$(1)$$ and $$(2)$$.",
+          label: "between sentences (1) and (2).",
         },
         {
           isCorrect: false,
-          label: "after sentence $$(3)$$.",
+          label: "after sentence (3).",
         },
         {
           isCorrect: false,
-          label: "between sentences $$(4)$$ and $$(5)$$.",
+          label: "between sentences (4) and (5).",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "sebelum kalimat $$(7)$$.",
+          label: "sebelum kalimat (7).",
         },
         {
           isCorrect: true,
-          label: "antara kalimat $$(5)$$ dan $$(6)$$.",
+          label: "antara kalimat (5) dan (6).",
         },
         {
           isCorrect: false,
-          label: "antara kalimat $$(1)$$ dan $$(2)$$.",
+          label: "antara kalimat (1) dan (2).",
         },
         {
           isCorrect: false,
-          label: "setelah kalimat $$(3)$$.",
+          label: "setelah kalimat (3).",
         },
         {
           isCorrect: false,
-          label: "antara kalimat $$(4)$$ dan $$(5)$$.",
+          label: "antara kalimat (4) dan (5).",
         },
       ],
     },

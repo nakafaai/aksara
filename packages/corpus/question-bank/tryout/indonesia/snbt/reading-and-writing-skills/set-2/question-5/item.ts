@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Satz $$(1)$$.",
+          label: "Satz (1).",
         },
         {
           isCorrect: false,
-          label: "Satz $$(5)$$.",
+          label: "Satz (5).",
         },
         {
           isCorrect: true,
-          label: "Satz $$(10)$$.",
+          label: "Satz (10).",
         },
         {
           isCorrect: false,
-          label: "Satz $$(6)$$.",
+          label: "Satz (6).",
         },
         {
           isCorrect: false,
-          label: "Satz $$(8)$$.",
+          label: "Satz (8).",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "sentence $$(1)$$.",
+          label: "sentence (1).",
         },
         {
           isCorrect: false,
-          label: "sentence $$(5)$$.",
+          label: "sentence (5).",
         },
         {
           isCorrect: true,
-          label: "sentence $$(10)$$.",
+          label: "sentence (10).",
         },
         {
           isCorrect: false,
-          label: "sentence $$(6)$$.",
+          label: "sentence (6).",
         },
         {
           isCorrect: false,
-          label: "sentence $$(8)$$.",
+          label: "sentence (8).",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "kalimat $$(1)$$.",
+          label: "kalimat (1).",
         },
         {
           isCorrect: false,
-          label: "kalimat $$(5)$$.",
+          label: "kalimat (5).",
         },
         {
           isCorrect: true,
-          label: "kalimat $$(10)$$.",
+          label: "kalimat (10).",
         },
         {
           isCorrect: false,
-          label: "kalimat $$(6)$$.",
+          label: "kalimat (6).",
         },
         {
           isCorrect: false,
-          label: "kalimat $$(8)$$.",
+          label: "kalimat (8).",
         },
       ],
     },

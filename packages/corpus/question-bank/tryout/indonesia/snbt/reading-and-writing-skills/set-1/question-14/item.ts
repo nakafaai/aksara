@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Satz $$(4)$$.",
+          label: "Satz (4).",
         },
         {
           isCorrect: false,
-          label: "Satz $$(2)$$.",
+          label: "Satz (2).",
         },
         {
           isCorrect: false,
-          label: "Satz $$(5)$$.",
+          label: "Satz (5).",
         },
         {
           isCorrect: false,
-          label: "Satz $$(7)$$.",
+          label: "Satz (7).",
         },
         {
           isCorrect: false,
-          label: "Satz $$(9)$$.",
+          label: "Satz (9).",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "sentence $$(4)$$.",
+          label: "sentence (4).",
         },
         {
           isCorrect: false,
-          label: "sentence $$(2)$$.",
+          label: "sentence (2).",
         },
         {
           isCorrect: false,
-          label: "sentence $$(5)$$.",
+          label: "sentence (5).",
         },
         {
           isCorrect: false,
-          label: "sentence $$(7)$$.",
+          label: "sentence (7).",
         },
         {
           isCorrect: false,
-          label: "sentence $$(9)$$.",
+          label: "sentence (9).",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "kalimat $$(4)$$.",
+          label: "kalimat (4).",
         },
         {
           isCorrect: false,
-          label: "kalimat $$(2)$$.",
+          label: "kalimat (2).",
         },
         {
           isCorrect: false,
-          label: "kalimat $$(5)$$.",
+          label: "kalimat (5).",
         },
         {
           isCorrect: false,
-          label: "kalimat $$(7)$$.",
+          label: "kalimat (7).",
         },
         {
           isCorrect: false,
-          label: "kalimat $$(9)$$.",
+          label: "kalimat (9).",
         },
       ],
     },

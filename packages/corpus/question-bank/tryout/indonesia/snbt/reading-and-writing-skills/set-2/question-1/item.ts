@@ -7,23 +7,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "Satz $$(2)$$.",
+          label: "Satz (2).",
         },
         {
           isCorrect: false,
-          label: "Satz $$(4)$$.",
+          label: "Satz (4).",
         },
         {
           isCorrect: false,
-          label: "Satz $$(13)$$.",
+          label: "Satz (13).",
         },
         {
           isCorrect: false,
-          label: "Satz $$(15)$$.",
+          label: "Satz (15).",
         },
         {
           isCorrect: true,
-          label: "Satz $$(12)$$.",
+          label: "Satz (12).",
         },
       ],
     },
@@ -32,23 +32,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "sentence $$(2)$$.",
+          label: "sentence (2).",
         },
         {
           isCorrect: false,
-          label: "sentence $$(4)$$.",
+          label: "sentence (4).",
         },
         {
           isCorrect: false,
-          label: "sentence $$(13)$$.",
+          label: "sentence (13).",
         },
         {
           isCorrect: false,
-          label: "sentence $$(15)$$.",
+          label: "sentence (15).",
         },
         {
           isCorrect: true,
-          label: "sentence $$(12)$$.",
+          label: "sentence (12).",
         },
       ],
     },
@@ -57,23 +57,23 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: false,
-          label: "kalimat $$(2)$$.",
+          label: "kalimat (2).",
         },
         {
           isCorrect: false,
-          label: "kalimat $$(4)$$.",
+          label: "kalimat (4).",
         },
         {
           isCorrect: false,
-          label: "kalimat $$(13)$$.",
+          label: "kalimat (13).",
         },
         {
           isCorrect: false,
-          label: "kalimat $$(15)$$.",
+          label: "kalimat (15).",
         },
         {
           isCorrect: true,
-          label: "kalimat $$(12)$$.",
+          label: "kalimat (12).",
         },
       ],
     },

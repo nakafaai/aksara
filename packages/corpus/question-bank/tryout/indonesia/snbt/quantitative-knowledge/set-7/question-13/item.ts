@@ -8,7 +8,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Aussage $$(1)$$ allein reicht aus, Aussage $$(2)$$ allein jedoch nicht.",
+            "Aussage (1) allein reicht aus, Aussage (2) allein jedoch nicht.",
         },
         {
           isCorrect: false,
@@ -18,17 +18,16 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Aussage $$(2)$$ allein reicht aus, Aussage $$(1)$$ allein jedoch nicht.",
+            "Aussage (2) allein reicht aus, Aussage (1) allein jedoch nicht.",
         },
         {
           isCorrect: false,
           label:
-            "Aussage $$(1)$$ allein reicht aus, und Aussage $$(2)$$ allein reicht aus.",
+            "Aussage (1) allein reicht aus, und Aussage (2) allein reicht aus.",
         },
         {
           isCorrect: false,
-          label:
-            "Die Aussagen $$(1)$$ und $$(2)$$ reichen auch zusammen nicht aus.",
+          label: "Die Aussagen (1) und (2) reichen auch zusammen nicht aus.",
         },
       ],
     },
@@ -38,7 +37,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Statement $$(1)$$ alone is sufficient, but statement $$(2)$$ alone is not sufficient.",
+            "Statement (1) alone is sufficient, but statement (2) alone is not sufficient.",
         },
         {
           isCorrect: false,
@@ -48,16 +47,16 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Statement $$(2)$$ alone is sufficient, but statement $$(1)$$ alone is not sufficient.",
+            "Statement (2) alone is sufficient, but statement (1) alone is not sufficient.",
         },
         {
           isCorrect: false,
           label:
-            "Statement $$(1)$$ alone is sufficient, and statement $$(2)$$ alone is sufficient.",
+            "Statement (1) alone is sufficient, and statement (2) alone is sufficient.",
         },
         {
           isCorrect: false,
-          label: "Statements $$(1)$$ and $$(2)$$ together are not sufficient.",
+          label: "Statements (1) and (2) together are not sufficient.",
         },
       ],
     },
@@ -67,7 +66,7 @@ const item: QuestionItem = {
         {
           isCorrect: false,
           label:
-            "Pernyataan $$(1)$$ saja cukup, tetapi pernyataan $$(2)$$ saja tidak cukup.",
+            "Pernyataan (1) saja cukup, tetapi pernyataan (2) saja tidak cukup.",
         },
         {
           isCorrect: false,
@@ -77,16 +76,16 @@ const item: QuestionItem = {
         {
           isCorrect: true,
           label:
-            "Pernyataan $$(2)$$ saja cukup, tetapi pernyataan $$(1)$$ saja tidak cukup.",
+            "Pernyataan (2) saja cukup, tetapi pernyataan (1) saja tidak cukup.",
         },
         {
           isCorrect: false,
           label:
-            "Pernyataan $$(1)$$ saja sudah cukup, dan pernyataan $$(2)$$ saja sudah cukup.",
+            "Pernyataan (1) saja sudah cukup, dan pernyataan (2) saja sudah cukup.",
         },
         {
           isCorrect: false,
-          label: "Pernyataan $$(1)$$ dan $$(2)$$ bersama-sama tidak cukup.",
+          label: "Pernyataan (1) dan (2) bersama-sama tidak cukup.",
         },
       ],
     },

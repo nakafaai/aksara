@@ -7,19 +7,19 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Nur $$(2)$$ und $$(4)$$ sind richtig.",
+          label: "Nur (2) und (4) sind richtig.",
         },
         {
           isCorrect: false,
-          label: "Nur $$(1)$$, $$(2)$$ und $$(3)$$ sind richtig.",
+          label: "Nur (1), (2) und (3) sind richtig.",
         },
         {
           isCorrect: false,
-          label: "Nur $$(1)$$ und $$(3)$$ sind richtig.",
+          label: "Nur (1) und (3) sind richtig.",
         },
         {
           isCorrect: false,
-          label: "Nur $$(4)$$ ist richtig.",
+          label: "Nur (4) ist richtig.",
         },
         {
           isCorrect: false,
@@ -32,19 +32,19 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Only $$(2)$$ and $$(4)$$ are correct.",
+          label: "Only (2) and (4) are correct.",
         },
         {
           isCorrect: false,
-          label: "Only $$(1)$$, $$(2)$$, and $$(3)$$ are correct.",
+          label: "Only (1), (2), and (3) are correct.",
         },
         {
           isCorrect: false,
-          label: "Only $$(1)$$ and $$(3)$$ are correct.",
+          label: "Only (1) and (3) are correct.",
         },
         {
           isCorrect: false,
-          label: "Only $$(4)$$ is correct.",
+          label: "Only (4) is correct.",
         },
         {
           isCorrect: false,
@@ -57,19 +57,19 @@ const item: QuestionItem = {
       options: [
         {
           isCorrect: true,
-          label: "Hanya $$(2)$$ dan $$(4)$$ yang benar.",
+          label: "Hanya (2) dan (4) yang benar.",
         },
         {
           isCorrect: false,
-          label: "Hanya $$(1)$$, $$(2)$$, dan $$(3)$$ yang benar.",
+          label: "Hanya (1), (2), dan (3) yang benar.",
         },
         {
           isCorrect: false,
-          label: "Hanya $$(1)$$ dan $$(3)$$ yang benar.",
+          label: "Hanya (1) dan (3) yang benar.",
         },
         {
           isCorrect: false,
-          label: "Hanya $$(4)$$ yang benar.",
+          label: "Hanya (4) yang benar.",
         },
         {
           isCorrect: false,

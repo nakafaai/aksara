@@ -11,19 +11,19 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Wenn $$(1)$$, $$(2)$$ und $$(3)$$ korrekt sind.",
+          label: "Wenn (1), (2) und (3) korrekt sind.",
         },
         {
           isCorrect: false,
-          label: "Wenn $$(1)$$ und $$(3)$$ korrekt sind.",
+          label: "Wenn (1) und (3) korrekt sind.",
         },
         {
           isCorrect: false,
-          label: "Wenn $$(2)$$ und $$(4)$$ korrekt sind.",
+          label: "Wenn (2) und (4) korrekt sind.",
         },
         {
           isCorrect: false,
-          label: "Wenn nur $$(4)$$ korrekt ist.",
+          label: "Wenn nur (4) korrekt ist.",
         },
       ],
     },
@@ -36,19 +36,19 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "If $$(1)$$, $$(2)$$, and $$(3)$$ are correct.",
+          label: "If (1), (2), and (3) are correct.",
         },
         {
           isCorrect: false,
-          label: "If $$(1)$$ and $$(3)$$ are correct.",
+          label: "If (1) and (3) are correct.",
         },
         {
           isCorrect: false,
-          label: "If $$(2)$$ and $$(4)$$ are correct.",
+          label: "If (2) and (4) are correct.",
         },
         {
           isCorrect: false,
-          label: "If only $$(4)$$ is correct.",
+          label: "If only (4) is correct.",
         },
       ],
     },
@@ -61,19 +61,19 @@ const item: QuestionItem = {
         },
         {
           isCorrect: false,
-          label: "Jika $$(1)$$, $$(2)$$, dan $$(3)$$ yang betul.",
+          label: "Jika (1), (2), dan (3) yang betul.",
         },
         {
           isCorrect: false,
-          label: "Jika $$(1)$$ dan $$(3)$$ yang betul.",
+          label: "Jika (1) dan (3) yang betul.",
         },
         {
           isCorrect: false,
-          label: "Jika $$(2)$$ dan $$(4)$$ yang betul.",
+          label: "Jika (2) dan (4) yang betul.",
         },
         {
           isCorrect: false,
-          label: "Jika $$(4)$$ saja yang betul.",
+          label: "Jika (4) saja yang betul.",
         },
       ],
     },
