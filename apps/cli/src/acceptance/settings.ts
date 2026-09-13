@@ -65,7 +65,7 @@ export const readAcceptanceSettings = Effect.fn(
   "AksaraCli.readAcceptanceSettings"
 )(function* () {
   const fs = yield* FileSystem.FileSystem;
-  const configuredRoot = yield* Config.nonEmptyString(
+  const configuredRoot = yield* Config.NonEmptyString(
     "AKSARA_ACCEPTANCE_SOURCE"
   );
   const { checkoutRoot, executingRoot } = yield* Effect.all({
@@ -86,12 +86,12 @@ export const readAcceptanceSettings = Effect.fn(
     "AKSARA_ACCEPTANCE_REVISION"
   );
   const endpoint = yield* decodeAcceptanceEndpoint(
-    yield* Config.nonEmptyString("AKSARA_ACCEPTANCE_ENDPOINT")
+    yield* Config.NonEmptyString("AKSARA_ACCEPTANCE_ENDPOINT")
   );
-  const rendererPath = yield* Config.nonEmptyString(
+  const rendererPath = yield* Config.NonEmptyString(
     "AKSARA_ACCEPTANCE_RENDERER"
   );
-  const privateKeyPath = yield* Config.nonEmptyString(
+  const privateKeyPath = yield* Config.NonEmptyString(
     "AKSARA_ACCEPTANCE_PRIVATE_KEY"
   );
   const privateKeyPem = yield* fs
@@ -105,12 +105,12 @@ export const readAcceptanceSettings = Effect.fn(
         .toString(),
   });
   const key = yield* Schema.decodeUnknownEffect(TrustedKeySchema)({
-    keyId: yield* Config.nonEmptyString("AKSARA_AGENT_SIGNING_KEY_ID"),
+    keyId: yield* Config.NonEmptyString("AKSARA_AGENT_SIGNING_KEY_ID"),
     publicKeyPem,
   }).pipe(
     Effect.mapError(() => new AcceptanceEnvironmentError({ reason: "signer" }))
   );
-  const token = yield* Config.redacted("AKSARA_PUBLICATION_TOKEN");
+  const token = yield* Config.Redacted("AKSARA_PUBLICATION_TOKEN");
   return {
     checkoutRoot,
     endpoint,

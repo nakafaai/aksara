@@ -5,7 +5,7 @@ import { verifyNpmWorkflow } from "#scripts/workflow/npm";
 const CONTRACT_WORKFLOW = {
   packageArtifact: "contract-package",
   publishSha256:
-    "a0cdd74488ae98357701ccd5c1e06a2f59ba32a70362c8361abea0e355fc641d",
+    "59e0a59ff802c787aa831d1d693f0ce98e14f2814611617e3e801fa75cc39d4b",
   repository: "nakafaai/aksara",
   verifierArtifact: "contract-verifier",
   workflowPath: ".github/workflows/contracts.yml",

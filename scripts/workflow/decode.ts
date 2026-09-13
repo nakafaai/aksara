@@ -2,30 +2,39 @@ import assert from "node:assert/strict";
 import { Option, Schema } from "effect";
 import { parseDocument } from "yaml";
 
-const StepSchema = Schema.Struct({
-  env: Schema.optional(Schema.Record(Schema.String, Schema.Unknown)),
-  run: Schema.optional(Schema.String),
-  uses: Schema.optional(Schema.String),
-  with: Schema.optional(Schema.Record(Schema.String, Schema.Unknown)),
-});
+const StepSchema = Schema.StructWithRest(
+  Schema.Struct({
+    env: Schema.optional(Schema.Record(Schema.String, Schema.Unknown)),
+    run: Schema.optional(Schema.String),
+    uses: Schema.optional(Schema.String),
+    with: Schema.optional(Schema.Record(Schema.String, Schema.Unknown)),
+  }),
+  [Schema.Record(Schema.String, Schema.Unknown)]
+);
 
-const JobSchema = Schema.Struct({
-  environment: Schema.optional(Schema.String),
-  if: Schema.optional(Schema.String),
-  needs: Schema.optional(
-    Schema.Union([Schema.String, Schema.Array(Schema.String)])
-  ),
-  outputs: Schema.optional(Schema.Record(Schema.String, Schema.String)),
-  permissions: Schema.optional(Schema.Record(Schema.String, Schema.String)),
-  steps: Schema.Array(StepSchema),
-});
+const JobSchema = Schema.StructWithRest(
+  Schema.Struct({
+    environment: Schema.optional(Schema.String),
+    if: Schema.optional(Schema.String),
+    needs: Schema.optional(
+      Schema.Union([Schema.String, Schema.Array(Schema.String)])
+    ),
+    outputs: Schema.optional(Schema.Record(Schema.String, Schema.String)),
+    permissions: Schema.optional(Schema.Record(Schema.String, Schema.String)),
+    steps: Schema.Array(StepSchema),
+  }),
+  [Schema.Record(Schema.String, Schema.Unknown)]
+);
 
-const WorkflowSchema = Schema.Struct({
-  defaults: Schema.optional(Schema.Unknown),
-  env: Schema.optional(Schema.Record(Schema.String, Schema.Unknown)),
-  jobs: Schema.Record(Schema.String, JobSchema),
-  permissions: Schema.Record(Schema.String, Schema.String),
-});
+const WorkflowSchema = Schema.StructWithRest(
+  Schema.Struct({
+    defaults: Schema.optional(Schema.Unknown),
+    env: Schema.optional(Schema.Record(Schema.String, Schema.Unknown)),
+    jobs: Schema.Record(Schema.String, JobSchema),
+    permissions: Schema.Record(Schema.String, Schema.String),
+  }),
+  [Schema.Record(Schema.String, Schema.Unknown)]
+);
 
 export type WorkflowJob = Schema.Schema.Type<typeof JobSchema>;
 
@@ -65,9 +74,7 @@ export function decodeWorkflow(source: string) {
     0,
     document.errors[0]?.message ?? "npm workflow YAML must parse"
   );
-  const decoded = Schema.decodeUnknownOption(WorkflowSchema, {
-    onExcessProperty: "preserve",
-  })(document.toJS());
+  const decoded = Schema.decodeUnknownOption(WorkflowSchema)(document.toJS());
   assert.ok(Option.isSome(decoded), "npm workflow must contain decodable jobs");
   return decoded.value;
 }

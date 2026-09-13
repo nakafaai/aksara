@@ -1,6 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
-import { FastCheck } from "effect/testing";
 
 import { MathVisualSchema } from "#contracts/math/visual";
 
@@ -177,38 +176,45 @@ describe("space math visual", () => {
     }
   });
 
-  it("accepts every positive cuboid size with the documented axis mapping", () => {
-    const positive = FastCheck.integer({ max: 1_000_000, min: 1 });
-    FastCheck.assert(
-      FastCheck.property(
-        positive,
-        positive,
-        positive,
-        (length, width, height) =>
-          Exit.isSuccess(
-            Schema.decodeExit(MathVisualSchema)({
-              frame: {
-                ...spaceFrame,
-                x: { max: 2_000_001, min: -2_000_001 },
-                y: { max: 2_000_001, min: -2_000_001 },
-                z: { max: 2_000_001, min: -2_000_001 },
+  it.prop(
+    "accepts every positive cuboid size with the documented axis mapping",
+    {
+      height: Schema.Int.check(
+        Schema.isBetween({ maximum: 1_000_000, minimum: 1 })
+      ),
+      length: Schema.Int.check(
+        Schema.isBetween({ maximum: 1_000_000, minimum: 1 })
+      ),
+      width: Schema.Int.check(
+        Schema.isBetween({ maximum: 1_000_000, minimum: 1 })
+      ),
+    },
+    ({ length, width, height }) => {
+      expect(
+        Exit.isSuccess(
+          Schema.decodeExit(MathVisualSchema)({
+            frame: {
+              ...spaceFrame,
+              x: { max: 2_000_001, min: -2_000_001 },
+              y: { max: 2_000_001, min: -2_000_001 },
+              z: { max: 2_000_001, min: -2_000_001 },
+            },
+            objects: [
+              {
+                appearance: "primary",
+                center: { x: 0, y: 0, z: 0 },
+                id: "generated-cuboid",
+                kind: "cuboid",
+                size: { height, length, width },
               },
-              objects: [
-                {
-                  appearance: "primary",
-                  center: { x: 0, y: 0, z: 0 },
-                  id: "generated-cuboid",
-                  kind: "cuboid",
-                  size: { height, length, width },
-                },
-              ],
-              space: "space",
-              view: { kind: "isometric" },
-            })
-          )
-      )
-    );
-  });
+            ],
+            space: "space",
+            view: { kind: "isometric" },
+          })
+        )
+      ).toBe(true);
+    }
+  );
 
   it("accepts coplanar polygons across translation and scale", () => {
     const maximum = Number.MAX_VALUE;

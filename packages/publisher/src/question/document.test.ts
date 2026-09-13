@@ -71,8 +71,8 @@ describe("question document", () => {
           {},
           {
             authors: [],
+            date: "2026-01-01",
             datePublished: "2026-01-01",
-            extra: true,
             title: "Test",
           },
         ].map((metadata) =>

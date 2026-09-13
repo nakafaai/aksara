@@ -5,7 +5,7 @@ const DOLLAR = "$";
 const CLI_WORKFLOW = {
   packageArtifact: "cli-package",
   publishSha256:
-    "3a0b53be07861592a8675a10600916c435abc9071850567c235dc09d9bbe5814",
+    "1375ee24adbcc6eb25481e6185f58704bf321515e8a734f7012e1e9fbb2e01d8",
   repository: "nakafaai/aksara",
   verifierArtifact: "cli-verifier",
   workflowPath: ".github/workflows/cli.yml",

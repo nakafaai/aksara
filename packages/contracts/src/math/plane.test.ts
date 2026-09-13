@@ -1,6 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
-import { FastCheck } from "effect/testing";
 
 import { MathVisualSchema } from "#contracts/math/visual";
 
@@ -163,11 +162,24 @@ describe("plane math visual", () => {
     }
   });
 
-  it("accepts every translated non-degenerate segment", () => {
-    const integer = FastCheck.integer({ max: 1_000_000, min: -1_000_000 });
-    const positive = FastCheck.integer({ max: 1_000_000, min: 1 });
-    FastCheck.assert(
-      FastCheck.property(integer, integer, positive, positive, (x, y, dx, dy) =>
+  it.prop(
+    "accepts every translated non-degenerate segment",
+    {
+      dx: Schema.Int.check(
+        Schema.isBetween({ maximum: 1_000_000, minimum: 1 })
+      ),
+      dy: Schema.Int.check(
+        Schema.isBetween({ maximum: 1_000_000, minimum: 1 })
+      ),
+      x: Schema.Int.check(
+        Schema.isBetween({ maximum: 1_000_000, minimum: -1_000_000 })
+      ),
+      y: Schema.Int.check(
+        Schema.isBetween({ maximum: 1_000_000, minimum: -1_000_000 })
+      ),
+    },
+    ({ x, y, dx, dy }) => {
+      expect(
         Exit.isSuccess(
           Schema.decodeExit(MathVisualSchema)({
             frame: {
@@ -188,9 +200,9 @@ describe("plane math visual", () => {
             view: { kind: "fit", padding: 0 },
           })
         )
-      )
-    );
-  });
+      ).toBe(true);
+    }
+  );
 
   it("accepts resolvable polygon area across translation and scale", () => {
     const maximum = Number.MAX_VALUE;

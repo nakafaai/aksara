@@ -43,6 +43,10 @@ Article, material, public page, and question metadata carry one required
 `datePublished` and one optional `dateModified`, both as exact `DateOnly`
 values.
 
+Decode external metadata and signed payloads with `onExcessProperty: "error"`.
+Effect schemas own the shape and invariants; the decoder owns excess-property
+policy. This rejects obsolete fields instead of silently discarding them.
+
 - `datePublished` is the first verified public availability of that specific
   locale page.
 - `dateModified` is the public activation date of a later signed release that

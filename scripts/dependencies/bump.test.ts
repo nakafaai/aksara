@@ -51,10 +51,10 @@ const createConfig = Effect.fn("BumpDependenciesTest.createConfig")(
     const manifest = path.join(root, "package.json");
     const workspace = path.join(root, "pnpm-workspace.yaml");
     const devDependencies: Record<string, string> = {
-      "@biomejs/biome": "2.5.12",
-      "@effect/tsgo": "0.41.0",
-      "@types/node": "24.13.3",
-      ...(input?.omitUltracite ? {} : { ultracite: "7.11.0" }),
+      "@biomejs/biome": "2.5.13",
+      "@effect/tsgo": "0.45.0",
+      "@types/node": "24.13.4",
+      ...(input?.omitUltracite ? {} : { ultracite: "7.11.1" }),
     };
     const ignoreDeps = expectedIgnoredDependencies().filter(
       (dependency) => dependency !== input?.omitIgnore
@@ -65,8 +65,8 @@ const createConfig = Effect.fn("BumpDependenciesTest.createConfig")(
       input?.invalidManifest ??
         JSON.stringify({
           devDependencies,
-          devEngines: { runtime: { version: "24.20.0" } },
-          packageManager: "pnpm@11.25.0",
+          devEngines: { runtime: { version: "24.21.0" } },
+          packageManager: "pnpm@11.27.0",
         })
     );
     yield* fileSystem.writeFileString(
@@ -74,12 +74,12 @@ const createConfig = Effect.fn("BumpDependenciesTest.createConfig")(
       input?.invalidWorkspace ??
         stringify({
           catalog: {
-            "@effect/platform-node": "4.0.0-rc.112",
-            "@effect/vitest": "4.0.0-rc.112",
-            "@vitest/coverage-istanbul": "4.1.11",
-            effect: "4.0.0-rc.112",
+            "@effect/platform-node": "4.0.0-rc.115",
+            "@effect/vitest": "4.0.0-rc.115",
+            "@vitest/coverage-istanbul": "5.0.0",
+            effect: "4.0.0-rc.115",
             typescript: "7.0.2",
-            vitest: "4.1.11",
+            vitest: "5.0.0",
           },
           update: { ignoreDeps },
         })
@@ -141,8 +141,8 @@ layer(NodeServices.layer, { excludeTestServices: true })(
 
           assert.strictEqual(reports.length, DEPENDENCY_HOLDS.length);
           assert.ok(effectReport);
-          assert.strictEqual(effectReport.current, "4.0.0-rc.112");
-          assert.strictEqual(effectReport.latest, "4.0.0-rc.112");
+          assert.strictEqual(effectReport.current, "4.0.0-rc.115");
+          assert.strictEqual(effectReport.latest, "4.0.0-rc.115");
           assert.strictEqual(runtime.calls, 1);
         })
     );

@@ -118,7 +118,7 @@ export const decodePreviewEnvironment = Effect.fn(
 /** Reads the optional preview checkout override through Effect Config. */
 export const readPreviewEnvironment = Effect.fn("AksaraCli.readEnvironment")(
   () =>
-    Config.option(Config.string("NAKAFA_APP_DIR")).pipe(
+    Config.option(Config.String("NAKAFA_APP_DIR")).pipe(
       Effect.mapError(
         () => new PreviewEnvironmentError({ variable: "NAKAFA_APP_DIR" })
       ),
@@ -138,7 +138,7 @@ export const readPublicationEnvironment = Effect.fn(
   "AksaraCli.readPublicationEnvironment"
 )(function* () {
   const publicationEndpoint = yield* readConfig(
-    Config.url("AKSARA_PUBLICATION_ENDPOINT"),
+    Config.URL("AKSARA_PUBLICATION_ENDPOINT"),
     "AKSARA_PUBLICATION_ENDPOINT"
   ).pipe(
     Effect.flatMap((endpoint) =>
@@ -161,7 +161,7 @@ export const readRecoveryEnvironment = Effect.fn(
 )(function* () {
   const publication = yield* readPublicationEnvironment();
   const rendererEndpoint = yield* readConfig(
-    Config.url("AKSARA_RENDERER_ENDPOINT"),
+    Config.URL("AKSARA_RENDERER_ENDPOINT"),
     "AKSARA_RENDERER_ENDPOINT"
   ).pipe(
     Effect.flatMap((endpoint) =>
@@ -178,14 +178,14 @@ export const readRecoveryEnvironment = Effect.fn(
 const readSigningEnvironment = Effect.fn("AksaraCli.readSigningEnvironment")(
   function* () {
     const keyIdInput = yield* readConfig(
-      Config.string("AKSARA_SIGNING_KEY_ID"),
+      Config.String("AKSARA_SIGNING_KEY_ID"),
       "AKSARA_SIGNING_KEY_ID"
     );
     const keyId = yield* Schema.decodeEffect(SigningKeyIdSchema)(
       keyIdInput
     ).pipe(Effect.mapError(() => productionError("AKSARA_SIGNING_KEY_ID")));
     const privateKeyInput = yield* readConfig(
-      Config.redacted("AKSARA_SIGNING_PRIVATE_KEY"),
+      Config.Redacted("AKSARA_SIGNING_PRIVATE_KEY"),
       "AKSARA_SIGNING_PRIVATE_KEY"
     );
     const signingKey = yield* validatePrivateKey(privateKeyInput);
