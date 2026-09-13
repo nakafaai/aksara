@@ -200,8 +200,9 @@ source repository is public.
   becomes visible.
 - Healthy acceptance and emergency recovery are intentional operator actions.
 - Content publication does not pretend to transact with a renderer deploy.
-- Additive renderer domains can deploy before publication without breaking the
-  older active release.
+- Additional components in existing renderer domains can deploy before
+  publication without breaking the older active release. Changing the domain
+  set requires coordinated adoption of the complete manifest contract.
 - Scoped content publication remains independent of an additive renderer
   deployment while preserving the active frozen renderer contract.
 - A deployment that understands a newly published domain remains the rollback
