@@ -158,9 +158,23 @@ describe("production activation", () => {
             { name: "RetiredWidget", version: 2 },
           ],
         });
-        const [nameError, versionError] = yield* Effect.all([
+        // A name that survives only inside a live domain registry is not a base.
+        const domainOnly = retainedBundle(BUNDLE.release, {
+          ...RETAINED_LIVE_INPUT,
+          base: [
+            { name: "AtomShellLab", version: 1 },
+            ...RETAINED_LIVE_INPUT.base,
+          ],
+          domains: RETAINED_LIVE_INPUT.domains.map((domain) =>
+            domain.name === "chemistry"
+              ? { ...domain, supportedComponents: [] }
+              : domain
+          ),
+        });
+        const [nameError, versionError, domainOnlyError] = yield* Effect.all([
           Effect.flip(activation.verify(unsupportedName, "compatible")),
           Effect.flip(activation.verify(unsupportedVersion, "compatible")),
+          Effect.flip(activation.verify(domainOnly, "compatible")),
         ]);
         expect(nameError).toMatchObject({
           _tag: "PublicationActivationError",
@@ -168,6 +182,11 @@ describe("production activation", () => {
           releaseId: "release-next",
         });
         expect(versionError).toMatchObject({
+          _tag: "PublicationActivationError",
+          phase: "preflight",
+          releaseId: "release-next",
+        });
+        expect(domainOnlyError).toMatchObject({
           _tag: "PublicationActivationError",
           phase: "preflight",
           releaseId: "release-next",
@@ -182,9 +201,7 @@ describe("production activation", () => {
         const activation = yield* makeActivation;
         calls.renderer = {
           ...RENDERER_MANIFEST,
-          domains: RENDERER_MANIFEST.domains.filter(
-            ({ name }) => name !== "mathematics"
-          ),
+          publishedDomains: [],
         };
         expect(
           yield* Effect.flip(

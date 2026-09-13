@@ -9,7 +9,10 @@ import {
   RendererManifestDomainUnpublishedError,
   verifyRendererManifestCompatibility,
 } from "@nakafa/aksara-contracts/renderer/compatibility";
-import { RendererManifestHashMismatchError } from "@nakafa/aksara-contracts/renderer/contract";
+import {
+  RendererManifestHashMismatchError,
+  selectRendererDomainCapability,
+} from "@nakafa/aksara-contracts/renderer/contract";
 import {
   PublicationActivation,
   PublicationActivationError,
@@ -33,12 +36,10 @@ const verifyRetainedPreflight = Effect.fn("AksaraCli.verifyRetainedPreflight")(
     readonly live: ContentReleaseBundle["rendererManifest"];
   }) {
     const { frozen, live } = input;
-    const supported = new Set([
-      ...live.base,
-      ...live.domains.flatMap(({ components }) => components),
-    ]);
+    // Retained base names must be executable from the live base registry alone.
+    const baseSupported = new Set(live.base);
     for (const { name, version } of frozen.base.supportedComponents) {
-      if (version !== 1 || !supported.has(name)) {
+      if (version !== 1 || !baseSupported.has(name)) {
         return yield* new RendererManifestComponentUnsupportedError({
           componentName: name,
           rendererScope: "base",
@@ -49,14 +50,16 @@ const verifyRetainedPreflight = Effect.fn("AksaraCli.verifyRetainedPreflight")(
       if (!frozen.publishedDomains.includes(retainedDomain.name)) {
         continue;
       }
-      const liveDomain = live.domains.find(
-        ({ name }) => name === retainedDomain.name
-      );
-      if (liveDomain === undefined) {
+      // A retained published domain must still be published by the live renderer.
+      if (!live.publishedDomains.includes(retainedDomain.name)) {
         return yield* new RendererManifestDomainUnpublishedError({
           rendererDomain: retainedDomain.name,
         });
       }
+      const liveDomain = yield* selectRendererDomainCapability(
+        live,
+        retainedDomain.name
+      );
       const domainSupported = new Set(liveDomain.components);
       for (const { name, version } of retainedDomain.supportedComponents) {
         if (version !== 1 || !domainSupported.has(name)) {
