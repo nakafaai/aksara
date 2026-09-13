@@ -20,8 +20,8 @@ const TOKEN = Redacted.make("renderer-test-token");
 const NONCE = PreviewRendererNonceSchema.make("n".repeat(43));
 const NONCE_HEADER = "x-aksara-preview-nonce";
 
-/** Builds one hash-valid historical subset that is not a complete live manifest. */
-function makeHistoricalRendererManifest() {
+/** Builds one correctly hashed incomplete current manifest. */
+function makeIncompleteRendererManifest() {
   return Effect.sync(() => {
     const domains = RENDERER_MANIFEST.domains.slice(0, -1);
     const contract = {
@@ -275,12 +275,12 @@ describe("renderer HTTP", () => {
   );
 
   it.effect(
-    "rejects a hash-valid historical subset from the live endpoint",
+    "rejects a correctly hashed incomplete manifest from the endpoint",
     () =>
       Effect.gen(function* () {
-        const historical = yield* makeHistoricalRendererManifest();
+        const incomplete = yield* makeIncompleteRendererManifest();
         const captured = captureClient((request) =>
-          Effect.succeed(rendererResponse(request, JSON.stringify(historical)))
+          Effect.succeed(rendererResponse(request, JSON.stringify(incomplete)))
         );
 
         expect(

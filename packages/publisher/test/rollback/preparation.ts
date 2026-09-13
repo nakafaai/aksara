@@ -43,32 +43,20 @@ const compiledCode = "return {};";
 const keys = generateKeyPairSync("ed25519");
 export const rendererManifest = await Effect.runPromise(
   createRendererManifest({
-    base: {
-      authoringComponents: [{ name: "TestBase", version: 1 }],
-      supportedComponents: [{ name: "TestBase", version: 1 }],
-    },
+    base: ["TestBase"],
     domains: testRendererDomains({
-      chemistry: [{ name: "TestChemistry", version: 1 }],
-      mathematics: [{ name: "TestMathematics", version: 1 }],
+      chemistry: ["TestChemistry"],
+      mathematics: ["TestMathematics"],
     }),
     publishedDomains: ["mathematics"],
   })
 );
 const sourceRendererManifest = await Effect.runPromise(
   createRendererManifest({
-    base: {
-      authoringComponents: [
-        { name: "CurrentOnly", version: 1 },
-        { name: "TestBase", version: 1 },
-      ],
-      supportedComponents: [
-        { name: "CurrentOnly", version: 1 },
-        { name: "TestBase", version: 1 },
-      ],
-    },
+    base: ["CurrentOnly", "TestBase"],
     domains: testRendererDomains({
-      chemistry: [{ name: "TestChemistry", version: 1 }],
-      mathematics: [{ name: "TestMathematics", version: 1 }],
+      chemistry: ["TestChemistry"],
+      mathematics: ["TestMathematics"],
     }),
     publishedDomains: ["mathematics"],
   })
@@ -88,7 +76,7 @@ const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
   plainText: "Test protocol",
   rawMdx,
   rendererDomain: "mathematics",
-  requiredComponents: [{ name: "CurrentOnly", version: 1 }],
+  requiredComponents: ["CurrentOnly"],
   sourceHash: `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`,
 });
 const rollbackAppLocale = AppLocaleSchema.make("en");

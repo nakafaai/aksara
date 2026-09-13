@@ -1,7 +1,11 @@
+import type { PublicationRequest } from "@nakafa/aksara-contracts/adoption/transport";
 import {
+  PublicationCurrentSuccessSchema,
+  PublicationRecoverySuccessSchema,
+  PublicationRollbackSuccessSchema,
   type StageGroupRequest,
-  StageGroupSuccessSchema,
-} from "@nakafa/aksara-contracts/transport/group";
+} from "@nakafa/aksara-contracts/adoption/transport";
+import { StageGroupSuccessSchema } from "@nakafa/aksara-contracts/transport/group";
 import type {
   ActivateRecoveryRequest,
   ActivateReleaseRequest,
@@ -11,7 +15,6 @@ import type {
   PublicationCurrentRequest,
   PublicationHeadPageRequest,
   PublicationRecoveryLookupRequest,
-  PublicationRequest,
   PublicationRollbackRequest,
   PublicationRoutePageRequest,
   PublicationStatusRequest,
@@ -24,10 +27,7 @@ import {
   PublicationAbortSuccessSchema,
   PublicationAcceptSuccessSchema,
   PublicationCleanupSuccessSchema,
-  PublicationCurrentSuccessSchema,
   PublicationHeadPageSuccessSchema,
-  PublicationRecoverySuccessSchema,
-  PublicationRollbackSuccessSchema,
   PublicationRoutePageSuccessSchema,
   PublicationStatusSuccessSchema,
   StageSnapshotBatchSuccessSchema,

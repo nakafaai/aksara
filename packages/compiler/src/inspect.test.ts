@@ -40,9 +40,9 @@ vi.mock("#compiler/source-policy", async (importOriginal) => {
 const SHA256_PREFIX = /^sha256:/u;
 const TRANSFORMER_FAILURE = /Source policy transformer failed/u;
 const testRequest = createTestRendererManifest({
-  authoringComponents: [{ name: "InlineMath", version: 1 }],
+  components: ["InlineMath"],
   domains: {
-    mathematics: [{ name: "FunctionMachine", version: 1 }],
+    mathematics: ["FunctionMachine"],
   },
 }).pipe(
   Effect.map((rendererManifest) => ({

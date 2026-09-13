@@ -15,7 +15,7 @@ import {
   MAX_PLAIN_TEXT_BYTES,
   MAX_RAW_MDX_BYTES,
 } from "@nakafa/aksara-contracts/limits";
-import type { RendererComponentRequirement } from "@nakafa/aksara-contracts/renderer/component";
+import type { RendererComponentName } from "@nakafa/aksara-contracts/renderer/component";
 import { selectRendererDomainCapability } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect } from "effect";
@@ -98,22 +98,20 @@ function captureRequiredComponents(names: Set<string>): Plugin<[], Program> {
   };
 }
 
-/** Resolves referenced component names to pinned renderer requirements. */
+/** Resolves referenced component names to current renderer names. */
 function selectRendererRequirements(
   contentKey: ContentKey,
   names: ReadonlySet<string>,
-  authoringComponents: readonly RendererComponentRequirement[]
+  components: readonly RendererComponentName[]
 ) {
   return Effect.forEach([...names].sort(), (componentName) => {
-    const selected = authoringComponents.find(
-      (requirement) => requirement.name === componentName
-    );
+    const selected = components.find((name) => name === componentName);
     if (!selected) {
       return Effect.fail(
         new RendererComponentMissingError({ componentName, contentKey })
       );
     }
-    return Effect.succeed<RendererComponentRequirement>(selected);
+    return Effect.succeed<RendererComponentName>(selected);
   });
 }
 
@@ -138,13 +136,8 @@ export const compileValidatedContent = Effect.fn(
     request.rendererManifest,
     request.rendererDomain
   );
-  const authoringComponents = [
-    ...request.rendererManifest.base.authoringComponents,
-    ...domain.authoringComponents,
-  ];
-  const allowedComponents = new Set(
-    authoringComponents.map(({ name }) => name)
-  );
+  const components = [...request.rendererManifest.base, ...domain.components];
+  const allowedComponents = new Set(components);
   const sourcePolicy = createSourcePolicy(
     request.contentKey,
     allowedComponents
@@ -210,7 +203,7 @@ export const compileValidatedContent = Effect.fn(
   const requiredComponents = yield* selectRendererRequirements(
     request.contentKey,
     requiredComponentNames,
-    authoringComponents
+    components
   );
   const payload = CompiledContentPayloadSchema.make({
     artifactLocale: request.artifactLocale,

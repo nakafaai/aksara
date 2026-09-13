@@ -1,7 +1,5 @@
-import type {
-  CompiledContentPayload,
-  SignedContentArtifact,
-} from "@nakafa/aksara-contracts/content";
+import type { SignedContentArtifact } from "@nakafa/aksara-contracts/adoption/schema";
+import type { CompiledContentPayload } from "@nakafa/aksara-contracts/content";
 import {
   ReleaseIdSchema,
   type Sha256Hash,
@@ -57,7 +55,10 @@ export class ReleaseRendererManifestMismatchError extends Schema.TaggedError<Rel
 export function validateCompiledPayloadForItem(
   item: ContentReleaseItem,
   artifactHash: Sha256Hash,
-  payload: CompiledContentPayload
+  payload: Pick<
+    CompiledContentPayload,
+    "contentKey" | "artifactLocale" | "rendererDomain"
+  >
 ) {
   const { change } = item;
   const matches =
@@ -152,7 +153,6 @@ export function validateVerificationEvidence(
     evidence.upsertHeads === summary.upsertCount &&
     evidence.deleteHeads === manifest.deleteCount &&
     evidence.deleteHeads === summary.deleteCount &&
-    evidence.rendererContractVersion === manifest.rendererContractVersion &&
     evidence.rendererManifestHash === manifest.rendererManifestHash &&
     evidence.projectionCount === manifest.projectionCount &&
     evidence.projectionCount === projectionSummary.count &&

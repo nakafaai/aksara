@@ -1,4 +1,4 @@
-import type { RendererComponentRequirement } from "#contracts/renderer/component";
+import type { RendererComponentName } from "#contracts/renderer/component";
 import {
   RENDERER_DOMAINS,
   type RendererDomain,
@@ -7,15 +7,11 @@ import {
 /** Expands sparse test requirements into every canonical renderer domain. */
 export function testRendererDomains(
   components: Readonly<
-    Partial<Record<RendererDomain, readonly RendererComponentRequirement[]>>
+    Partial<Record<RendererDomain, readonly RendererComponentName[]>>
   >
 ) {
   return RENDERER_DOMAINS.map((name) => {
     const selected = components[name] ?? [];
-    return {
-      authoringComponents: selected,
-      name,
-      supportedComponents: selected,
-    };
+    return { components: selected, name };
   });
 }

@@ -97,7 +97,7 @@ describe("release spec", () => {
           projectionCount: 1,
           projectionDigest: `sha256:${"c".repeat(64)}`,
           releaseId,
-          rendererContractVersion: "1.0.0",
+
           rendererManifestHash: `sha256:${"d".repeat(64)}`,
           resultCount: 1,
           resultDigest: `sha256:${"e".repeat(64)}`,

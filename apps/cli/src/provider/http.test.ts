@@ -151,10 +151,10 @@ describe("preview HTTP transport", () => {
             { headers }
           ),
           requestPreviewHttp(new URL("/v1/missing", origin), { headers }),
-          requestPreviewHttp(new URL("/v1/artifacts/not-a-hash", origin), {
+          requestPreviewHttp(new URL("/artifacts/not-a-hash", origin), {
             headers,
           }),
-          requestPreviewHttp(new URL(`/v1/artifacts/${firstHash}`, origin), {
+          requestPreviewHttp(new URL(`/artifacts/${firstHash}`, origin), {
             headers,
           }),
         ]);

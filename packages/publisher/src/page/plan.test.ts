@@ -192,7 +192,7 @@ layer(publishedPageTestLayer)("page plan", (it) => {
   it.effect("recompiles every page whose renderer contract changes", () =>
     Effect.gen(function* () {
       const { publishedHeads } = yield* PublishedPageTestFixtures;
-      const renderer = yield* pageManifest(2);
+      const renderer = yield* pageManifest(["BlockMath", "InlineMath"]);
       const records = yield* collectPagePublication({
         heads: publishedHeads,
         renderer,

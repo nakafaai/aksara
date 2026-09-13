@@ -1,8 +1,9 @@
-import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
+import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/adoption/schema";
+
 import { verifyRendererPolicyTransition } from "@nakafa/aksara-contracts/release/policy";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import { validateLiveRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
+import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, type Redacted, Result, Schedule } from "effect";
 import type { HttpClient } from "effect/unstable/http";
 import { makeNakafaAppError, type NakafaAppError } from "#cli/app-error";
@@ -56,7 +57,7 @@ export const selectRendererManifest = Effect.fn(
   readonly rendererManifest: unknown;
   readonly scope: PublicationScope;
 }) {
-  const liveRenderer = yield* validateLiveRendererManifestHash(
+  const liveRenderer = yield* validateRendererManifestHash(
     input.rendererManifest
   );
   const activeBundle = input.baseBundle;
@@ -73,7 +74,11 @@ export const selectRendererManifest = Effect.fn(
     rendererManifestHash: liveRenderer.hash,
     scope: input.scope,
   }).pipe(Effect.result);
-  return Result.isSuccess(transition)
-    ? liveRenderer
-    : activeBundle.rendererManifest;
+  if (Result.isSuccess(transition)) {
+    return liveRenderer;
+  }
+  if (activeBundle.rendererManifest.format === "nakafa-mdx-renderer") {
+    return activeBundle.rendererManifest;
+  }
+  return yield* transition.failure;
 });

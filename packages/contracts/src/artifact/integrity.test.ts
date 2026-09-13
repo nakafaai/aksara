@@ -41,7 +41,7 @@ const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
   plainText: "Integrity",
   rawMdx,
   rendererDomain: "mathematics",
-  requiredComponents: [{ name: "FutureRendererOnly", version: 1 }],
+  requiredComponents: ["FutureRendererOnly"],
   sourceHash: Sha256HashSchema.make(
     `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`
   ),

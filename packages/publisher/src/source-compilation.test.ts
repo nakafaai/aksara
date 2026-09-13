@@ -77,13 +77,10 @@ const runCompile = Effect.fn("SourceCompilationTest.run")(
 const makeFixture = Effect.fn("SourceCompilationTest.makeFixture")(
   function* () {
     const rendererManifest = yield* createRendererManifest({
-      base: {
-        authoringComponents: [{ name: "BlockMath", version: 1 }],
-        supportedComponents: [{ name: "BlockMath", version: 1 }],
-      },
+      base: ["BlockMath"],
       domains: testRendererDomains({
-        chemistry: [{ name: "AtomShellLab", version: 1 }],
-        mathematics: [{ name: "FunctionMachine", version: 1 }],
+        chemistry: ["AtomShellLab"],
+        mathematics: ["FunctionMachine"],
       }),
       publishedDomains: ["mathematics"],
     });

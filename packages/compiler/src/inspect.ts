@@ -155,12 +155,10 @@ const validateSourcePolicy = Effect.fn(
     request.rendererManifest,
     request.rendererDomain
   );
-  const allowedComponents = new Set(
-    [
-      ...request.rendererManifest.base.authoringComponents,
-      ...domain.authoringComponents,
-    ].map(({ name }) => name)
-  );
+  const allowedComponents = new Set([
+    ...request.rendererManifest.base,
+    ...domain.components,
+  ]);
   const policy = createSourcePolicy(request.contentKey, allowedComponents);
   yield* Effect.try({
     catch: (cause) =>

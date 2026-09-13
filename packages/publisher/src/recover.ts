@@ -1,6 +1,6 @@
+import { verifyRollbackContentReleaseBundle } from "@nakafa/aksara-contracts/adoption/verify";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import type { PublicationReceipt } from "@nakafa/aksara-contracts/release";
-import { verifyRollbackContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Schema } from "effect";
 import { allContentCacheChanges } from "#publisher/cache";

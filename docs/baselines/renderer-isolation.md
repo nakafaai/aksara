@@ -62,7 +62,7 @@ configuration. No hydration or application error occurred.
 
 ## Accepted direction supported by this evidence
 
-The candidate keeps the global renderer artifact as a pure name/version
+The candidate keeps the global renderer artifact as a pure component-name
 contract and gives Nakafa physical route-domain entrypoints the smallest
 practical static capability union. Shared server page code may receive that
 registry but may not import every rich client implementation.

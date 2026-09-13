@@ -38,9 +38,7 @@ export const ContentReleaseBundleSchema = Schema.Struct({
     Schema.makeFilter(
       (bundle) =>
         bundle.release.manifest.rendererManifestHash ===
-          bundle.rendererManifest.hash &&
-        bundle.release.manifest.rendererContractVersion ===
-          bundle.rendererManifest.rendererContractVersion,
+        bundle.rendererManifest.hash,
       {
         message:
           "Expected the signed release to bind the frozen renderer envelope.",

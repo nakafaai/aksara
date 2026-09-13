@@ -148,7 +148,10 @@ layer(materialPlanTestLayer)("material plan", (it) => {
   it.effect("recompiles both documents whose renderer contract changes", () =>
     Effect.gen(function* () {
       const { publishedHeads } = yield* MaterialPlanTestFixtures;
-      const renderer = yield* materialManifest({ chemistry: 1, math: 2 });
+      const renderer = yield* materialManifest([
+        "FunctionMachine",
+        "NumberLine",
+      ]);
       const records = yield* collectMaterialPublication({
         heads: publishedHeads,
         renderer,

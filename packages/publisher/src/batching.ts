@@ -1,7 +1,9 @@
 import {
   canonicalizeSignedContentArtifact,
   type SignedContentArtifact,
-} from "@nakafa/aksara-contracts/content";
+} from "@nakafa/aksara-contracts/adoption/schema";
+import type { StageArtifactBatchInput } from "@nakafa/aksara-contracts/adoption/transport";
+
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
 import { canonicalizeContentReleaseItem } from "@nakafa/aksara-contracts/release/canonical";
@@ -10,7 +12,6 @@ import {
   canonicalizeContentRouteItem,
 } from "@nakafa/aksara-contracts/release/route/spec";
 import type {
-  StageArtifactBatchInput,
   StageItemBatchInput,
   StageRouteBatchInput,
 } from "@nakafa/aksara-contracts/transport/batch";

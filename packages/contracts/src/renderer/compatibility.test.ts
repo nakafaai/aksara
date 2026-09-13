@@ -10,13 +10,10 @@ import { testRendererDomains } from "#contracts/test/renderer";
 import { artifact, rendererManifest } from "#contracts/test/request";
 
 /** Returns one live-renderer verification program for a payload override. */
-function verify(
-  payload: typeof artifact.payload = artifact.payload,
-  rendererContractVersion = "1.0.0"
-) {
+function verify(payload: typeof artifact.payload = artifact.payload) {
   return verifyContentRendererCompatibility({
     payload,
-    rendererContractVersion,
+
     rendererManifest,
   });
 }
@@ -26,56 +23,41 @@ describe("renderer compatibility", () => {
     Effect.gen(function* () {
       const payload = CompiledContentPayloadSchema.make({
         ...artifact.payload,
-        requiredComponents: [{ name: "BlockMath", version: 1 }],
+        requiredComponents: ["BlockMath"],
       });
       expect(yield* verify(payload)).toEqual(rendererManifest);
     })
   );
 
-  it.effect(
-    "rejects unpublished, missing, unsupported, and global mismatches",
-    () =>
-      Effect.gen(function* () {
-        const payloads = [
-          CompiledContentPayloadSchema.make({
-            ...artifact.payload,
-            rendererDomain: "chemistry",
-          }),
-          CompiledContentPayloadSchema.make({
-            ...artifact.payload,
-            requiredComponents: [{ name: "Mermaid", version: 1 }],
-          }),
-          CompiledContentPayloadSchema.make({
-            ...artifact.payload,
-            requiredComponents: [{ name: "BlockMath", version: 2 }],
-          }),
-        ];
-        const errors = yield* Effect.all([
-          ...payloads.map((payload) => verify(payload).pipe(Effect.flip)),
-          verify(artifact.payload, "2.0.0").pipe(Effect.flip),
-        ]);
-        expect(errors.map((error) => error._tag)).toEqual([
-          "ArtifactRendererDomainUnpublishedError",
-          "ArtifactRendererComponentMissingError",
-          "ArtifactRendererVersionUnsupportedError",
-          "RendererContractVersionMismatchError",
-        ]);
-      })
+  it.effect("rejects unpublished, missing components", () =>
+    Effect.gen(function* () {
+      const payloads = [
+        CompiledContentPayloadSchema.make({
+          ...artifact.payload,
+          rendererDomain: "chemistry",
+        }),
+        CompiledContentPayloadSchema.make({
+          ...artifact.payload,
+          requiredComponents: ["Mermaid"],
+        }),
+      ];
+      const errors = yield* Effect.all([
+        ...payloads.map((payload) => verify(payload).pipe(Effect.flip)),
+      ]);
+      expect(errors.map((error) => error._tag)).toEqual([
+        "ArtifactRendererDomainUnpublishedError",
+        "ArtifactRendererComponentMissingError",
+      ]);
+    })
   );
 
   it.effect("accepts an additive live superset of one frozen manifest", () =>
     Effect.gen(function* () {
-      const added = [
-        { name: "BlockMath", version: 1 },
-        { name: "InlineMath", version: 1 },
-      ] as const;
+      const added = ["BlockMath", "InlineMath"] as const;
       const live = yield* createRendererManifest({
-        base: {
-          authoringComponents: added,
-          supportedComponents: added,
-        },
+        base: added,
         domains: testRendererDomains({
-          site: [{ name: "Callout", version: 1 }],
+          site: ["Callout"],
         }),
         publishedDomains: ["mathematics", "site"],
       });
@@ -100,10 +82,7 @@ describe("renderer compatibility", () => {
     () =>
       Effect.gen(function* () {
         const missingComponent = yield* createRendererManifest({
-          base: {
-            authoringComponents: [{ name: "InlineMath", version: 1 }],
-            supportedComponents: [{ name: "InlineMath", version: 1 }],
-          },
+          base: ["InlineMath"],
           domains: testRendererDomains({}),
           publishedDomains: ["mathematics"],
         });
@@ -127,7 +106,6 @@ describe("renderer compatibility", () => {
           expect.objectContaining({
             _tag: "RendererManifestComponentUnsupportedError",
             componentName: "BlockMath",
-            componentVersion: 1,
             rendererScope: "base",
           }),
           expect.objectContaining({
@@ -138,19 +116,19 @@ describe("renderer compatibility", () => {
       })
   );
 
-  it.effect("checks frozen published-domain component versions", () =>
+  it.effect("rejects removed components from frozen published domains", () =>
     Effect.gen(function* () {
       const frozen = yield* createRendererManifest({
         base: rendererManifest.base,
         domains: testRendererDomains({
-          mathematics: [{ name: "NumberLine", version: 1 }],
+          mathematics: ["NumberLine"],
         }),
         publishedDomains: ["mathematics"],
       });
       const live = yield* createRendererManifest({
         base: rendererManifest.base,
         domains: testRendererDomains({
-          mathematics: [{ name: "NumberLine", version: 2 }],
+          mathematics: [],
         }),
         publishedDomains: ["mathematics"],
       });
@@ -162,7 +140,6 @@ describe("renderer compatibility", () => {
       ).toMatchObject({
         _tag: "RendererManifestComponentUnsupportedError",
         componentName: "NumberLine",
-        componentVersion: 1,
         rendererScope: "mathematics",
       });
     })

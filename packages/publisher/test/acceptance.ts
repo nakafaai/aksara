@@ -111,12 +111,12 @@ export const makeAcceptanceTestSources: () => Effect.Effect<
     "ContentGrid",
     "InlineMath",
     "MathContainer",
-  ].map((name) => ({ name, version: 1 }));
+  ];
   const rendererManifest = yield* createRendererManifest({
-    base: { authoringComponents: base, supportedComponents: base },
+    base,
     domains: testRendererDomains({
-      chemistry: [{ name: "AtomShellLab", version: 1 }],
-      mathematics: [{ name: "FunctionMachine", version: 1 }],
+      chemistry: ["AtomShellLab"],
+      mathematics: ["FunctionMachine"],
       politics: [
         "KimPlusElectabilityChart",
         "MerahPutihCabinetChart",
@@ -126,7 +126,7 @@ export const makeAcceptanceTestSources: () => Effect.Effect<
         "PorkBarrelBudgetChart",
         "PorkBarrelElectabilityChart",
         "PorkBarrelFundChart",
-      ].map((name) => ({ name, version: 1 })),
+      ],
     }),
     publishedDomains: [
       "chemistry",

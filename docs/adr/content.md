@@ -51,7 +51,7 @@ inactive, and mismatched keys fail closed.
 
 The release envelope authenticates its base release, source origin, ordered item
 count and domain-separated SHA-256 digest, expected projection count and digest,
-release ID, and renderer contract version. A Git release origin carries the
+release ID, and renderer manifest hash. A Git release origin carries the
 exact Aksara commit SHA; a forward rollback origin carries the exact active
 release being reversed. Upserts and deletes are stored as separately
 strict-decoded items carrying release identity and index;
@@ -105,7 +105,7 @@ official `@mdx-js/mdx/run` API and only after all of these checks pass:
    into their signed release. When the deployed renderer hash differs, the
    selected artifact's domain and component requirements must remain compatible
    with the deployed renderer.
-5. Every required component and component version is available.
+5. Every required component name is available in the selected domain.
 6. Its statically analyzable renderer boundary implements every required rich
    component without leaking unrelated client capabilities into the route.
 
@@ -148,9 +148,13 @@ Nakafa filesystem fallback.
 
 Per-artifact `requiredComponents` is complete for capitalized custom component
 dependencies discovered through MDX's missing-reference AST. Intrinsic Markdown
-tags such as `h2`, `p`, and `table` are mandatory global semantics covered by
-`rendererContractVersion`; an incompatible intrinsic change requires a global
-contract bump rather than tag enumeration in every artifact.
+tags such as `h2`, `p`, and `table` belong to the base renderer names. The
+manifest contains one current component set, with no component versions or
+separate authoring and supported registries. Its authenticated hash binds name
+ownership and published domains. Renderer behavior is verified in Nakafa;
+matching renderer changes deploy before content that uses them. A breaking
+contract change requires coordinated signed-content adoption and removal of
+the migration code, rather than permanent alternate implementations.
 
 ### Renderer bundle-isolation topology
 

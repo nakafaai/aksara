@@ -122,10 +122,7 @@ layer(NodeServices.layer)("acceptance catalog preparation", (it) => {
           Effect.succeed(fixture.sources)
         );
         const rendererManifest = yield* createRendererManifest({
-          base: {
-            authoringComponents: [{ name: "InlineMath", version: 1 }],
-            supportedComponents: [{ name: "InlineMath", version: 1 }],
-          },
+          base: ["InlineMath"],
           domains: testRendererDomains({}),
           publishedDomains: ["chemistry", "mathematics", "politics"],
         });

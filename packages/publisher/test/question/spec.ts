@@ -45,13 +45,10 @@ export const sourceByPath = new Map(
   })
 );
 
-const baseComponents = ["InlineMath"].map((name) => ({ name, version: 1 }));
+const baseComponents = ["InlineMath"];
 export const rendererManifest = await Effect.runPromise(
   createRendererManifest({
-    base: {
-      authoringComponents: baseComponents,
-      supportedComponents: baseComponents,
-    },
+    base: baseComponents,
     domains: testRendererDomains({}),
     publishedDomains: ["mathematics"],
   })

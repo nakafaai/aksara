@@ -2,10 +2,7 @@ import {
   AKSARA_COMPILER_VERSION,
   MDX_COMPILER_VERSION,
 } from "@nakafa/aksara-contracts/content";
-import {
-  canonicalizeRendererAuthoringSelection,
-  sortRendererComponentRequirements,
-} from "@nakafa/aksara-contracts/renderer/component";
+import { sortRendererComponents } from "@nakafa/aksara-contracts/renderer/component";
 import {
   type RendererManifestEnvelope,
   selectRendererDomainCapability,
@@ -39,10 +36,10 @@ export const createCompilerConfigHash = Effect.fn(
     manifest,
     rendererDomain
   );
-  const authoringComponents = sortRendererComponentRequirements([
-    ...manifest.base.authoringComponents,
-    ...domain.authoringComponents,
+  const components = sortRendererComponents([
+    ...manifest.base,
+    ...domain.components,
   ]);
-  const selection = canonicalizeRendererAuthoringSelection(authoringComponents);
+  const selection = JSON.stringify(components);
   return hashUtf8(`${COMPILER_CONFIG}\n${rendererDomain}\n${selection}`);
 });

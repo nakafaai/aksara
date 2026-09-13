@@ -1,8 +1,10 @@
+import type {
+  PublicationRequest,
+  PublicationSuccess,
+} from "@nakafa/aksara-contracts/adoption/transport";
 import type { ReleaseVerificationEvidence } from "@nakafa/aksara-contracts/release";
 import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
-import type { PublicationSuccess } from "@nakafa/aksara-contracts/transport/response";
 
 type VerifyRequest = Extract<PublicationRequest, { operation: "verify" }>;
 type VerifySuccess = Extract<PublicationSuccess, { operation: "verify" }>;

@@ -20,9 +20,9 @@ afterEach(() => {
 const makeStartInput = Effect.fn("test.makeStartInput")(function* () {
   const credentials = yield* makePreviewCredentials();
   const provider: PreviewProvider = {
-    eventsPath: "/v1/events",
+    eventsPath: "/events",
     failed: () => Effect.succeed(true),
-    manifestPath: "/v1/manifest",
+    manifestPath: "/manifest",
     origin: new URL("http://127.0.0.1:32123"),
     pending: () => Effect.succeed(1),
     ready: () => Effect.succeed(true),

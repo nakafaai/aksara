@@ -24,7 +24,7 @@ import {
   rendererManifest,
   head as resultHead,
 } from "#test/publication";
-import { historicalRendererManifest } from "#test/renderer";
+import { incompleteRendererManifest } from "#test/renderer";
 import { makeProgramSnapshotFixture } from "#test/snapshot";
 
 layer(NodeServices.layer)("prepareContentRelease", (it) => {
@@ -134,18 +134,18 @@ layer(NodeServices.layer)("prepareContentRelease", (it) => {
     })
   );
 
-  it.effect("prepares against an authenticated historical renderer", () =>
+  it.effect("rejects incomplete renderer domains before source traversal", () =>
     Effect.gen(function* () {
-      const historical = historicalRendererManifest(rendererManifest);
-      const prepared = yield* prepare({ rendererManifest: historical });
-      expect(prepared.rendererManifest).toEqual(historical);
-      expect(prepared.manifest.rendererManifestHash).toBe(historical.hash);
-      expect(prepared.rendererPreflight).toBe("exact");
-      const retained = yield* prepare({
-        baseRendererManifestHash: historical.hash,
-        rendererManifest: historical,
-      });
-      expect(retained.rendererPreflight).toBe("compatible");
+      let invoked = false;
+      const error = yield* prepare({
+        records: Stream.suspend(() => {
+          invoked = true;
+          return Stream.make(baseTransition);
+        }),
+        rendererManifest: incompleteRendererManifest(rendererManifest),
+      }).pipe(Effect.flip);
+      expect(error._tag).toBe("ContractDecodeError");
+      expect(invoked).toBe(false);
     })
   );
 

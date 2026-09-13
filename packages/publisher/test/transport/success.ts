@@ -225,7 +225,7 @@ export function transportSuccess(
             projectionCount: 1,
             projectionDigest: transportRelease.manifest.projectionDigest,
             releaseId: value.release.manifest.releaseId,
-            rendererContractVersion: "1.0.0",
+
             rendererManifestHash: transportRenderer.hash,
             resultCount: value.release.manifest.resultCount,
             resultDigest: value.release.manifest.resultDigest,

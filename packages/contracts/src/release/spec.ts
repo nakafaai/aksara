@@ -27,7 +27,6 @@ import {
   hasScopedSnapshotTransitions,
   snapshotRowCount,
 } from "#contracts/release/snapshot/spec";
-import { RENDERER_CONTRACT_VERSION } from "#contracts/renderer/contract";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
 
 /** Semantic wire identity of the current localized content release. */
@@ -51,7 +50,6 @@ const ContentReleaseManifestFields = {
   projectionCount: ReleaseCountSchema,
   projectionDigest: Sha256HashSchema,
   releaseId: ReleaseIdSchema,
-  rendererContractVersion: Schema.Literal(RENDERER_CONTRACT_VERSION),
   rendererManifestHash: Sha256HashSchema,
   resultCount: ReleaseCountSchema,
   resultDigest: Sha256HashSchema,
@@ -235,7 +233,6 @@ export const ReleaseVerificationEvidenceSchema = Schema.Struct({
   projectionCount: ReleaseCountSchema,
   projectionDigest: Sha256HashSchema,
   releaseId: ReleaseIdSchema,
-  rendererContractVersion: Schema.Literal(RENDERER_CONTRACT_VERSION),
   rendererManifestHash: Sha256HashSchema,
   resultCount: ReleaseCountSchema,
   resultDigest: Sha256HashSchema,

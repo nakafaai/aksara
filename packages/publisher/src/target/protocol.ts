@@ -1,13 +1,14 @@
+import type {
+  PublicationRequest,
+  PublicationResponse,
+  PublicationSuccess,
+} from "@nakafa/aksara-contracts/adoption/transport";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import {
   type PublicationFailure,
   publicationFailureStatus,
 } from "@nakafa/aksara-contracts/transport/failure";
-import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
-import type {
-  PublicationResponse,
-  PublicationSuccess,
-} from "@nakafa/aksara-contracts/transport/response";
+
 import { Effect, Match } from "effect";
 import {
   PublicationStaleBaseError,

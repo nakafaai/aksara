@@ -144,49 +144,94 @@ vi.mock("@nakafa/aksara-publisher/preparation", async () => {
   };
 });
 
-vi.mock("@nakafa/aksara-contracts/release/verify", async () => {
-  const { ContentReleaseBundleSchema } = await import(
-    "@nakafa/aksara-contracts/release/lifecycle"
-  );
-  const { SignedContentReleaseSchema } = await import(
-    "@nakafa/aksara-contracts/release"
-  );
-  const { Effect: TestEffect, Schema: TestSchema } = await import("effect");
-  return {
-    verifyContentReleaseBundle: (input: unknown) => {
-      calls.bundleVerifyCalls += 1;
-      return TestSchema.decodeUnknownEffect(ContentReleaseBundleSchema)(input, {
-        onExcessProperty: "error",
-      }).pipe(
-        TestEffect.tap((bundle) =>
-          TestEffect.sync(() => {
-            if (calls.verifiedBundle === undefined) {
-              calls.verifiedBundle = bundle;
-            }
-          })
-        )
-      );
-    },
-    verifySignedContentRelease: (input: unknown) =>
-      TestSchema.decodeUnknownEffect(SignedContentReleaseSchema)(input, {
-        onExcessProperty: "error",
-      }),
-  };
-});
+vi.mock(
+  import("@nakafa/aksara-contracts/release/verify"),
+  async (importOriginal) => {
+    const original = await importOriginal();
+    const { ContentReleaseBundleSchema } = await import(
+      "@nakafa/aksara-contracts/release/lifecycle"
+    );
+    const { SignedContentReleaseSchema } = await import(
+      "@nakafa/aksara-contracts/release"
+    );
+    const { Effect: TestEffect, Schema: TestSchema } = await import("effect");
+    return {
+      ...original,
+      verifyContentReleaseBundle: (input: unknown) => {
+        calls.bundleVerifyCalls += 1;
+        return TestSchema.decodeUnknownEffect(ContentReleaseBundleSchema)(
+          input,
+          {
+            onExcessProperty: "error",
+          }
+        ).pipe(
+          TestEffect.mapError(
+            () =>
+              new original.ReleaseBundleVerificationDecodeError({
+                message:
+                  "Release bundle verification input does not satisfy its exact wire contract.",
+              })
+          ),
+          TestEffect.tap((bundle) =>
+            TestEffect.sync(() => {
+              if (calls.verifiedBundle === undefined) {
+                calls.verifiedBundle = bundle;
+              }
+            })
+          )
+        );
+      },
+      verifySignedContentRelease: (input: unknown) =>
+        TestSchema.decodeUnknownEffect(SignedContentReleaseSchema)(input, {
+          onExcessProperty: "error",
+        }).pipe(
+          TestEffect.mapError(
+            () =>
+              new original.ReleaseVerificationDecodeError({
+                message:
+                  "Release verification input does not satisfy its exact wire contract.",
+              })
+          )
+        ),
+    };
+  }
+);
 
-vi.mock("@nakafa/aksara-contracts/tryout/runtime/verify", async () => {
-  const { SignedTryoutRuntimeBundleSchema } = await import(
-    "@nakafa/aksara-contracts/tryout/runtime/spec"
-  );
-  const { Effect: TestEffect, Schema: TestSchema } = await import("effect");
-  return {
-    verifySignedTryoutRuntimeBundle: (input: { readonly bundle: unknown }) =>
-      TestSchema.decodeUnknownEffect(SignedTryoutRuntimeBundleSchema)(
-        input.bundle,
-        { onExcessProperty: "error" }
-      ).pipe(TestEffect.orDie),
-  };
-});
+vi.mock(
+  import("@nakafa/aksara-contracts/tryout/runtime/verify"),
+  async (importOriginal) => {
+    const original = await importOriginal();
+    const { SignedTryoutRuntimeBundleSchema } = await import(
+      "@nakafa/aksara-contracts/tryout/runtime/spec"
+    );
+    const { Effect: TestEffect, Schema: TestSchema } = await import("effect");
+    return {
+      ...original,
+      verifySignedTryoutRuntimeBundle: (input: { readonly bundle: unknown }) =>
+        TestSchema.decodeUnknownEffect(SignedTryoutRuntimeBundleSchema)(
+          input.bundle,
+          { onExcessProperty: "error" }
+        ).pipe(TestEffect.orDie),
+    };
+  }
+);
+
+vi.mock(
+  import("@nakafa/aksara-contracts/adoption/verify"),
+  async (importOriginal) => {
+    const original = await importOriginal();
+    const release = await import("@nakafa/aksara-contracts/release/verify");
+    const runtime = await import(
+      "@nakafa/aksara-contracts/tryout/runtime/verify"
+    );
+    return {
+      ...original,
+      verifyContentReleaseBundle: release.verifyContentReleaseBundle,
+      verifySignedContentRelease: release.verifySignedContentRelease,
+      verifySignedTryoutRuntimeBundle: runtime.verifySignedTryoutRuntimeBundle,
+    };
+  }
+);
 
 vi.mock("@nakafa/aksara-publisher/publication", async () => {
   const { Effect: TestEffect, Redacted: TestRedacted } = await import("effect");

@@ -40,25 +40,14 @@ interface MaterialFixtureSource {
   readonly sources: ReadonlyMap<string, string>;
 }
 
-/** Creates a valid manifest while varying only real domain component versions. */
+/** Creates a valid manifest while varying only the current mathematics component set. */
 export const materialManifest = Effect.fn("MaterialTest.manifest")(
-  (input: { readonly chemistry: number; readonly math: number }) =>
+  (mathematics: readonly string[] = ["FunctionMachine"]) =>
     createRendererManifest({
-      base: {
-        authoringComponents: [
-          { name: "BlockMath", version: 1 },
-          { name: "InlineMath", version: 1 },
-          { name: "MathContainer", version: 1 },
-        ],
-        supportedComponents: [
-          { name: "BlockMath", version: 1 },
-          { name: "InlineMath", version: 1 },
-          { name: "MathContainer", version: 1 },
-        ],
-      },
+      base: ["BlockMath", "InlineMath", "MathContainer"],
       domains: testRendererDomains({
-        chemistry: [{ name: "AtomShellLab", version: input.chemistry }],
-        mathematics: [{ name: "FunctionMachine", version: input.math }],
+        chemistry: ["AtomShellLab"],
+        mathematics,
       }),
       publishedDomains: ["chemistry", "mathematics"],
     })
@@ -214,10 +203,7 @@ const makeMaterialTestFixtures = Effect.fn("MaterialTest.makeFixtures")(() =>
     const sources = new Map(
       sourceRows.map(([, absolutePath, source]) => [absolutePath, source])
     );
-    const rendererManifest = yield* materialManifest({
-      chemistry: 1,
-      math: 1,
-    });
+    const rendererManifest = yield* materialManifest();
     const fixture = { checkoutRoot, rendererManifest, sources };
     const initialRecords = yield* Effect.cached(
       collectMaterialPublicationFrom(fixture, { heads: [] })

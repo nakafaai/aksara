@@ -44,9 +44,9 @@ describe("Nakafa app service", () => {
         })
       );
       const provider: PreviewProvider = {
-        eventsPath: "/v1/events",
+        eventsPath: "/events",
         failed: () => Effect.succeed(true),
-        manifestPath: "/v1/manifest",
+        manifestPath: "/manifest",
         origin: new URL("https://127.0.0.1"),
         pending: () => Effect.succeed(1),
         ready: () => Effect.succeed(true),

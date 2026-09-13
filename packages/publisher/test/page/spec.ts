@@ -27,15 +27,13 @@ export const pageFixtureIdentities = [
 ] as const;
 
 /** Creates one exact test renderer while varying its compiler fingerprint. */
-export const pageManifest = Effect.fn("PageTest.manifest")((baseVersion = 1) =>
-  createRendererManifest({
-    base: {
-      authoringComponents: [{ name: "InlineMath", version: baseVersion }],
-      supportedComponents: [{ name: "InlineMath", version: baseVersion }],
-    },
-    domains: testRendererDomains({}),
-    publishedDomains: ["site"],
-  })
+export const pageManifest = Effect.fn("PageTest.manifest")(
+  (components: readonly string[] = ["InlineMath"]) =>
+    createRendererManifest({
+      base: components,
+      domains: testRendererDomains({}),
+      publishedDomains: ["site"],
+    })
 );
 
 /** Loads the real page registry and its complete in-memory source map. */

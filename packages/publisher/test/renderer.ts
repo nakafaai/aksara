@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
-import type { RendererComponentRequirement } from "@nakafa/aksara-contracts/renderer/component";
+import type { RendererComponentName } from "@nakafa/aksara-contracts/renderer/component";
 import {
   canonicalizeRendererManifestContract,
   type RendererManifestEnvelope,
@@ -13,32 +13,20 @@ import {
 /** Expands sparse publisher fixtures into every canonical renderer domain. */
 export function testRendererDomains(
   components: Readonly<
-    Partial<Record<RendererDomain, readonly RendererComponentRequirement[]>>
+    Partial<Record<RendererDomain, readonly RendererComponentName[]>>
   >
 ) {
   return RENDERER_DOMAINS.map((name) => {
     const selected = components[name] ?? [];
-    return {
-      authoringComponents: selected,
-      name,
-      supportedComponents: selected,
-    };
+    return { components: selected, name };
   });
 }
 
-/** Removes one unpublished domain while preserving an authenticated envelope. */
-export function historicalRendererManifest(
+/** Builds a correctly hashed incomplete envelope to test ingress rejection. */
+export function incompleteRendererManifest(
   manifest: RendererManifestEnvelope
 ): RendererManifestEnvelope {
-  const omitted = manifest.domains.find(
-    ({ name }) => !manifest.publishedDomains.includes(name)
-  );
-  if (omitted === undefined) {
-    throw new Error(
-      "Historical renderer fixtures require an unpublished domain."
-    );
-  }
-  const domains = manifest.domains.filter(({ name }) => name !== omitted.name);
+  const domains = manifest.domains.slice(0, -1);
   const contract = {
     base: manifest.base,
     domains,

@@ -77,7 +77,6 @@ export const evidence = Schema.decodeSync(ReleaseVerificationEvidenceSchema)({
   projectionCount: 1,
   projectionDigest,
   releaseId,
-  rendererContractVersion: "1.0.0",
   rendererManifestHash,
   resultCount: 1,
   resultDigest: projectionDigest,

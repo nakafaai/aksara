@@ -22,7 +22,7 @@ import {
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
-import type { RendererComponentRequirement } from "#contracts/renderer/component";
+import type { RendererComponentName } from "#contracts/renderer/component";
 import { createRendererManifest } from "#contracts/renderer/manifest";
 import {
   ContentVerificationKeyResolver,
@@ -63,20 +63,17 @@ const signingKeys = generateKeyPairSync("ed25519");
 const trustedPublicKey = signingKeys.publicKey
   .export({ format: "pem", type: "spki" })
   .toString();
-const rendererComponents = [
-  { name: "BlockMath", version: 1 },
-  { name: "InlineMath", version: 1 },
-] as const;
+const rendererComponents = ["BlockMath", "InlineMath"] as const;
 /** Builds one exact base plus real route-domain renderer contract. */
-function manifestInput(extraComponent?: RendererComponentRequirement) {
+function manifestInput(extraComponent?: RendererComponentName) {
   const components = extraComponent
     ? [...rendererComponents, extraComponent]
     : rendererComponents;
   return {
-    base: { authoringComponents: components, supportedComponents: components },
+    base: components,
     domains: testRendererDomains({
-      chemistry: [{ name: "AtomShellLab", version: 1 }],
-      mathematics: [{ name: "FunctionMachine", version: 1 }],
+      chemistry: ["AtomShellLab"],
+      mathematics: ["FunctionMachine"],
     }),
     publishedDomains: ["mathematics"] as const,
   };
@@ -100,7 +97,7 @@ const basePayload = Schema.decodeSync(CompiledContentPayloadSchema)({
   plainText: TEST_HEADING,
   rawMdx: `## ${TEST_HEADING}`,
   rendererDomain: "mathematics",
-  requiredComponents: [{ name: "BlockMath", version: 1 }],
+  requiredComponents: ["BlockMath"],
   sourceHash: Sha256HashSchema.make(
     `sha256:${createHash("sha256").update(`## ${TEST_HEADING}`).digest("hex")}`
   ),
@@ -110,10 +107,7 @@ function makePayload(values: Partial<CompiledContentPayload>) {
   return CompiledContentPayloadSchema.make({ ...basePayload, ...values });
 }
 const missingComponentPayload = makePayload({
-  requiredComponents: [{ name: "Mermaid", version: 1 }],
-});
-const unsupportedComponentPayload = makePayload({
-  requiredComponents: [{ name: "InlineMath", version: 2 }],
+  requiredComponents: ["Mermaid"],
 });
 /** Produces a valid signed artifact for verification scenarios. */
 function signArtifact(payload = basePayload, artifactKeyId = keyId) {
@@ -145,12 +139,8 @@ const trustedResolver = ContentVerificationKeyResolver.of({
   },
 });
 /** Builds one artifact verification request with overridable boundaries. */
-function request(
-  artifact: unknown,
-  manifest: unknown,
-  rendererContractVersion = "1.0.0"
-) {
-  return { artifact, rendererContractVersion, rendererManifest: manifest };
+function request(artifact: unknown, manifest: unknown) {
+  return { artifact, rendererManifest: manifest };
 }
 /** Builds artifact verification with the trusted test resolver. */
 function artifactProgram(input: unknown) {
@@ -165,13 +155,10 @@ function reject(input: unknown) {
 /** Rejects an artifact against a renderer-manifest program. */
 function rejectArtifact(
   artifact: unknown = signArtifact(),
-  manifestProgram = rendererManifest,
-  rendererContractVersion = "1.0.0"
+  manifestProgram = rendererManifest
 ) {
   return manifestProgram.pipe(
-    Effect.flatMap((manifest) =>
-      reject(request(artifact, manifest, rendererContractVersion))
-    )
+    Effect.flatMap((manifest) => reject(request(artifact, manifest)))
   );
 }
 /** Changes one signature character without changing its wire shape. */
@@ -188,7 +175,7 @@ describe("server-only artifact verification", () => {
   it.effect("authenticates canonical content across a renderer expansion", () =>
     Effect.gen(function* () {
       const expandedManifest = yield* createRendererManifest(
-        manifestInput({ name: "Mermaid", version: 1 })
+        manifestInput("Mermaid")
       );
       expect(
         yield* artifactProgram(request(signArtifact(), expandedManifest))
@@ -241,14 +228,6 @@ describe("server-only artifact verification", () => {
       program: rejectArtifact(signArtifact(missingComponentPayload)),
     },
     {
-      expectedTag: "ArtifactRendererVersionUnsupportedError",
-      program: rejectArtifact(signArtifact(unsupportedComponentPayload)),
-    },
-    {
-      expectedTag: "RendererContractVersionMismatchError",
-      program: rejectArtifact(validArtifact, rendererManifest, "3.0.0"),
-    },
-    {
       expectedTag: "ArtifactHashComputationError",
       program: rejectArtifact({
         ...validArtifact,
@@ -267,11 +246,11 @@ describe("server-only artifact verification", () => {
         publishedDomains: ["chemistry", "mathematics"],
       });
       const mathematics = makePayload({
-        requiredComponents: [{ name: "FunctionMachine", version: 1 }],
+        requiredComponents: ["FunctionMachine"],
       });
       const chemistry = makePayload({
         rendererDomain: "chemistry",
-        requiredComponents: [{ name: "FunctionMachine", version: 1 }],
+        requiredComponents: ["FunctionMachine"],
       });
       expect(
         yield* artifactProgram(

@@ -1,63 +1,42 @@
 import { Effect, Schema } from "effect";
 import { decodeContract } from "#contracts/decode";
 import { hashText } from "#contracts/hash/text";
-import { Sha256HashSchema } from "#contracts/ids";
-import { RendererComponentRequirementSchema } from "#contracts/renderer/component";
+import {
+  RendererComponentNameSchema,
+  sortRendererComponents,
+} from "#contracts/renderer/component";
 import {
   canonicalizeRendererManifestContract,
-  LiveRendererManifestDomainsSchema,
-  RENDERER_CONTRACT_VERSION,
   RENDERER_MANIFEST_FORMAT,
-  type RendererDomainCapability,
+  RendererManifestDomainsSchema,
   type RendererManifestEnvelope,
   RendererManifestEnvelopeSchema,
   RendererManifestHashComputeError,
   RendererManifestHashMismatchError,
-  RendererPublishedDomainsSchema,
+  sortRendererDomains,
 } from "#contracts/renderer/contract";
-import {
-  type RendererDomain,
-  RendererDomainSchema,
-} from "#contracts/renderer/domain";
-import { normalizeRendererSelection } from "#contracts/renderer/selection";
+import { RendererDomainSchema } from "#contracts/renderer/domain";
 import { compareCodeUnits } from "#contracts/text/order";
 
-const CapabilityCreationFields = {
-  authoringComponents: Schema.Array(RendererComponentRequirementSchema),
-  supportedComponents: Schema.Array(RendererComponentRequirementSchema),
-};
 const RendererManifestCreationSchema = Schema.Struct({
-  base: Schema.Struct(CapabilityCreationFields),
+  base: Schema.Array(RendererComponentNameSchema),
   domains: Schema.Array(
-    Schema.Struct({ name: RendererDomainSchema, ...CapabilityCreationFields })
+    Schema.Struct({
+      components: Schema.Array(RendererComponentNameSchema),
+      name: RendererDomainSchema,
+    })
   ),
   publishedDomains: Schema.Array(RendererDomainSchema),
 });
-const RendererManifestWireSchema = Schema.Struct({
-  ...RendererManifestCreationSchema.fields,
-  format: Schema.Literal(RENDERER_MANIFEST_FORMAT),
-  hash: Sha256HashSchema,
-  rendererContractVersion: Schema.Literal(RENDERER_CONTRACT_VERSION),
-});
 
-/** Sorts and decodes the exact route domains exposed by the deployed app. */
-const normalizePublishedDomains = Effect.fn(
-  "AksaraContracts.normalizePublishedDomains"
-)((domains: readonly RendererDomain[]) =>
-  decodeContract(
-    RendererPublishedDomainsSchema,
-    "RendererPublishedDomains",
-    [...domains].sort(compareCodeUnits)
-  )
-);
-
-/** Hashes the canonical base and domain-scoped renderer contract. */
+/** Hashes the canonical current names and their physical domain ownership. */
 const hashRendererContract = Effect.fn("AksaraContracts.hashRendererContract")(
-  (input: {
-    readonly base: RendererManifestEnvelope["base"];
-    readonly domains: readonly RendererDomainCapability[];
-    readonly publishedDomains: RendererManifestEnvelope["publishedDomains"];
-  }) =>
+  (
+    input: Pick<
+      RendererManifestEnvelope,
+      "base" | "domains" | "publishedDomains"
+    >
+  ) =>
     hashText(canonicalizeRendererManifestContract(input)).pipe(
       Effect.mapError(
         ({ cause }) => new RendererManifestHashComputeError({ cause })
@@ -65,98 +44,57 @@ const hashRendererContract = Effect.fn("AksaraContracts.hashRendererContract")(
     )
 );
 
-/** Creates a canonical renderer envelope from real registry capabilities. */
+/** Creates a complete authenticated manifest from one current name set. */
 export const createRendererManifest = Effect.fn(
   "AksaraContracts.createRendererManifest"
-)((input: unknown) =>
-  decodeContract(
+)(function* (input: unknown) {
+  const wire = yield* decodeContract(
     RendererManifestCreationSchema,
     "RendererManifestCreation",
     input
-  ).pipe(
-    Effect.flatMap((wire) =>
-      Effect.all({
-        contract: normalizeRendererSelection(wire).pipe(
-          Effect.flatMap((contract) =>
-            decodeContract(
-              LiveRendererManifestDomainsSchema,
-              "LiveRendererManifestDomains",
-              contract.domains
-            ).pipe(Effect.map((domains) => ({ ...contract, domains })))
-          )
-        ),
-        publishedDomains: normalizePublishedDomains(wire.publishedDomains),
-      })
-    ),
-    Effect.flatMap(({ contract, publishedDomains }) =>
-      hashRendererContract({ ...contract, publishedDomains }).pipe(
-        Effect.flatMap((hash) =>
-          decodeContract(
-            RendererManifestEnvelopeSchema,
-            "RendererManifestEnvelope",
-            {
-              ...contract,
-              format: RENDERER_MANIFEST_FORMAT,
-              hash,
-              publishedDomains,
-              rendererContractVersion: RENDERER_CONTRACT_VERSION,
-            }
-          )
-        )
-      )
+  );
+  const domains = yield* decodeContract(
+    RendererManifestDomainsSchema,
+    "RendererManifestDomains",
+    sortRendererDomains(
+      wire.domains.map(({ name, components }) => ({
+        components: sortRendererComponents(components),
+        name,
+      }))
     )
-  )
-);
+  );
+  const contract = {
+    base: sortRendererComponents(wire.base),
+    domains,
+    publishedDomains: [...wire.publishedDomains].sort(compareCodeUnits),
+  };
+  const hash = yield* hashRendererContract(contract);
+  return yield* decodeContract(
+    RendererManifestEnvelopeSchema,
+    "RendererManifestEnvelope",
+    {
+      ...contract,
+      format: RENDERER_MANIFEST_FORMAT,
+      hash,
+    }
+  );
+});
 
-/** Verifies one persisted envelope, including a known historical domain subset. */
+/** Authenticates the complete current renderer contract without normalization. */
 export const validateRendererManifestHash = Effect.fn(
   "AksaraContracts.validateRendererManifestHash"
-)((input: unknown) =>
-  decodeContract(
-    RendererManifestWireSchema,
+)(function* (input: unknown) {
+  const manifest = yield* decodeContract(
+    RendererManifestEnvelopeSchema,
     "RendererManifestEnvelope",
     input
-  ).pipe(
-    Effect.flatMap((wire) =>
-      Effect.all({
-        contract: normalizeRendererSelection(wire),
-        publishedDomains: normalizePublishedDomains(wire.publishedDomains),
-      }).pipe(
-        Effect.flatMap(({ contract, publishedDomains }) =>
-          hashRendererContract({ ...contract, publishedDomains }).pipe(
-            Effect.filterOrFail(
-              (actualHash) => actualHash === wire.hash,
-              (actualHash) =>
-                new RendererManifestHashMismatchError({
-                  actualHash,
-                  expectedHash: wire.hash,
-                })
-            ),
-            Effect.flatMap(() =>
-              decodeContract(
-                RendererManifestEnvelopeSchema,
-                "RendererManifestEnvelope",
-                { ...wire, ...contract, publishedDomains }
-              )
-            )
-          )
-        )
-      )
-    )
-  )
-);
-
-/** Verifies one complete manifest supplied by a current live renderer. */
-export const validateLiveRendererManifestHash = Effect.fn(
-  "AksaraContracts.validateLiveRendererManifestHash"
-)((input: unknown) =>
-  validateRendererManifestHash(input).pipe(
-    Effect.flatMap((manifest) =>
-      decodeContract(
-        LiveRendererManifestDomainsSchema,
-        "LiveRendererManifestDomains",
-        manifest.domains
-      ).pipe(Effect.map((domains) => ({ ...manifest, domains })))
-    )
-  )
-);
+  );
+  const actualHash = yield* hashRendererContract(manifest);
+  if (actualHash !== manifest.hash) {
+    return yield* new RendererManifestHashMismatchError({
+      actualHash,
+      expectedHash: manifest.hash,
+    });
+  }
+  return manifest;
+});

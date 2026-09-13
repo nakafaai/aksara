@@ -27,19 +27,11 @@ const validRequest = {
   rawMdx: `## ${TEST_HEADING}`,
   rendererDomain: "mathematics",
   rendererManifest: {
-    base: {
-      authoringComponents: [{ name: "BlockMath", version: 1 }],
-      supportedComponents: [{ name: "BlockMath", version: 1 }],
-    },
-    domains: RENDERER_DOMAINS.map((name) => ({
-      authoringComponents: [],
-      name,
-      supportedComponents: [],
-    })),
-    format: "nakafa-mdx-renderer-v1",
+    base: ["BlockMath"],
+    domains: RENDERER_DOMAINS.map((name) => ({ components: [], name })),
+    format: "nakafa-mdx-renderer",
     hash: `sha256:${"a".repeat(64)}`,
     publishedDomains: ["mathematics"],
-    rendererContractVersion: "1.0.0",
   },
   sourcePath: "packages/corpus/test/content/en.mdx",
 } as const;
@@ -107,26 +99,24 @@ describe("content", () => {
     })
   );
 
-  it.effect(
-    "rejects a compile request without its selected domain capability",
-    () =>
-      Effect.gen(function* () {
-        const error = yield* decodeCompileDocumentRequest({
-          ...validRequest,
-          rendererDomain: "chemistry",
-          rendererManifest: {
-            ...validRequest.rendererManifest,
-            domains: validRequest.rendererManifest.domains.filter(
-              ({ name }) => name !== "chemistry"
-            ),
-          },
-        }).pipe(Effect.flip);
+  it.effect("rejects a compile request with incomplete current domains", () =>
+    Effect.gen(function* () {
+      const error = yield* decodeCompileDocumentRequest({
+        ...validRequest,
+        rendererDomain: "chemistry",
+        rendererManifest: {
+          ...validRequest.rendererManifest,
+          domains: validRequest.rendererManifest.domains.filter(
+            ({ name }) => name !== "chemistry"
+          ),
+        },
+      }).pipe(Effect.flip);
 
-        expect(error._tag).toBe("ContractDecodeError");
-        expect(error.message).toContain(
-          "Expected the selected renderer domain to have a capability."
-        );
-      })
+      expect(error._tag).toBe("ContractDecodeError");
+      expect(error.message).toContain(
+        "Expected every renderer domain exactly once in canonical order."
+      );
+    })
   );
 
   it.effect(
@@ -156,15 +146,12 @@ describe("content", () => {
       plainText: TEST_HEADING,
       rawMdx: `## ${TEST_HEADING}`,
       rendererDomain: "mathematics",
-      requiredComponents: [
-        { name: "BlockMath", version: 1 },
-        { name: "FunctionMachine", version: 2 },
-      ],
+      requiredComponents: ["BlockMath", "FunctionMachine"],
       sourceHash:
         "sha256:3e120676aefeef90d7793be97a39688e44fc03950deba0f4d825894afc031ecb",
     });
     const canonicalPayload =
-      '{"artifactLocale":"en","byteLength":10,"compiledCode":"return {};","compilerConfigHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","compilerVersion":"0.1.0","contentKey":"test:content","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"Protocol Test Heading","rawMdx":"## Protocol Test Heading","rendererDomain":"mathematics","requiredComponents":[{"name":"BlockMath","version":1},{"name":"FunctionMachine","version":2}],"sourceHash":"sha256:3e120676aefeef90d7793be97a39688e44fc03950deba0f4d825894afc031ecb"}';
+      '{"artifactLocale":"en","byteLength":10,"compiledCode":"return {};","compilerConfigHash":"sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","compilerVersion":"0.1.0","contentKey":"test:content","format":"mdx-function-body","mdxCompilerVersion":"3.1.1","plainText":"Protocol Test Heading","rawMdx":"## Protocol Test Heading","rendererDomain":"mathematics","requiredComponents":["BlockMath","FunctionMachine"],"sourceHash":"sha256:3e120676aefeef90d7793be97a39688e44fc03950deba0f4d825894afc031ecb"}';
     const artifactHash = `sha256:${createHash("sha256")
       .update(canonicalPayload)
       .digest("hex")}`;

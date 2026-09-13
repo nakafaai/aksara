@@ -2,7 +2,7 @@ import { Schema } from "effect";
 import { Sha256HashSchema } from "#contracts/ids";
 import { ContentProjectionSchema } from "#contracts/projection/spec";
 
-export const LOCAL_PREVIEW_ARTIFACT_PREFIX = "/v1/artifacts/";
+export const LOCAL_PREVIEW_ARTIFACT_PREFIX = "/artifacts/";
 
 /** Builds the one content-addressed path owned by the preview protocol. */
 export function localPreviewArtifactPath(artifactHash: string) {

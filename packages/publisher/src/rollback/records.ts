@@ -1,6 +1,13 @@
-import { verifySignedContentArtifactIntegrity } from "@nakafa/aksara-contracts/artifact/integrity";
-import { verifySignedContentArtifact } from "@nakafa/aksara-contracts/artifact/verify";
-import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
+import {
+  isRollbackUpsert,
+  type RollbackRecord,
+  SignedContentArtifactSchema,
+} from "@nakafa/aksara-contracts/adoption/schema";
+import {
+  verifySignedContentArtifact,
+  verifySignedContentArtifactIntegrity,
+} from "@nakafa/aksara-contracts/adoption/verify";
+
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import {
@@ -12,11 +19,7 @@ import {
   ContentReleaseItemSchema,
   ContentUpsertSchema,
 } from "@nakafa/aksara-contracts/release";
-import {
-  isRollbackUpsert,
-  type RollbackRecord,
-  type RollbackSnapshotState,
-} from "@nakafa/aksara-contracts/release/rollback/spec";
+import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Schema, Stream } from "effect";
 import {
@@ -101,8 +104,7 @@ function deriveState(
       ? verifySignedContentArtifactIntegrity(state.artifact)
       : verifySignedContentArtifact({
           artifact: state.artifact,
-          rendererContractVersion:
-            policy.rendererManifest.rendererContractVersion,
+
           rendererManifest: policy.rendererManifest,
         });
   return verification.pipe(

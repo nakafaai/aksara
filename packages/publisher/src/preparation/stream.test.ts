@@ -57,13 +57,10 @@ const releaseId = ReleaseIdSchema.make("test-stream-release");
 /** Compiles the valid baseline record inside the native test runtime. */
 const makeFixture = Effect.fn("PublisherTest.makePreparedRecord")(function* () {
   const rendererManifest = yield* createRendererManifest({
-    base: {
-      authoringComponents: [{ name: "BlockMath", version: 1 }],
-      supportedComponents: [{ name: "BlockMath", version: 1 }],
-    },
+    base: ["BlockMath"],
     domains: testRendererDomains({
-      chemistry: [{ name: "AtomShellLab", version: 1 }],
-      mathematics: [{ name: "FunctionMachine", version: 1 }],
+      chemistry: ["AtomShellLab"],
+      mathematics: ["FunctionMachine"],
     }),
     publishedDomains: ["mathematics"],
   });

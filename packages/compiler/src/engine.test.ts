@@ -7,10 +7,10 @@ import { validateCompileRequest } from "#compiler/engine";
 import { createTestRendererManifest } from "#compiler/test/content";
 
 describe("validateCompileRequest", () => {
-  it.effect("accepts an authenticated historical renderer", () =>
+  it.effect("rejects an incomplete renderer even with its correct hash", () =>
     Effect.gen(function* () {
       const live = yield* createTestRendererManifest({
-        authoringComponents: [{ name: "BlockMath", version: 1 }],
+        components: ["BlockMath"],
       });
       const domains = live.domains.filter(({ name }) => name !== "site");
       const contract = {
@@ -18,7 +18,7 @@ describe("validateCompileRequest", () => {
         domains,
         publishedDomains: live.publishedDomains,
       };
-      const historical = {
+      const incomplete = {
         ...live,
         domains,
         hash: Sha256HashSchema.make(
@@ -27,15 +27,15 @@ describe("validateCompileRequest", () => {
             .digest("hex")}`
         ),
       };
-      const request = yield* validateCompileRequest({
+      const error = yield* validateCompileRequest({
         artifactLocale: "en",
         contentKey: "test:engine",
         rawMdx: "export const metadata = {}",
         rendererDomain: "mathematics",
-        rendererManifest: historical,
+        rendererManifest: incomplete,
         sourcePath: "packages/corpus/test/engine/en.mdx",
-      });
-      assert.deepStrictEqual(request.rendererManifest, historical);
+      }).pipe(Effect.flip);
+      assert.strictEqual(error._tag, "ContractDecodeError");
     })
   );
 });

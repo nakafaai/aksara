@@ -17,8 +17,8 @@ import {
 } from "@nakafa/aksara-contracts/preview/spec";
 import { HashMap, Option, Schema } from "effect";
 
-export const PREVIEW_MANIFEST_PATH = "/v1/manifest";
-export const PREVIEW_EVENTS_PATH = "/v1/events";
+export const PREVIEW_MANIFEST_PATH = "/manifest";
+export const PREVIEW_EVENTS_PATH = "/events";
 
 const PREVIEW_HEARTBEAT = ": keep-alive\n\n";
 const PREVIEW_HEARTBEAT_INTERVAL_MS = 30_000;
