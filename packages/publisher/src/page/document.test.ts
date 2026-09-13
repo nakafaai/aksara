@@ -41,21 +41,33 @@ layer(pageTestLayer)("page document", (it) => {
   );
 
   it.effect(
-    "rejects malformed authored metadata with the exact source path",
+    "rejects missing or obsolete metadata with the exact source path",
     () =>
       Effect.gen(function* () {
         const { entry, fixture } = yield* requireEnglishEntry();
-        const error = yield* Effect.gen(function* () {
+        const errors = yield* Effect.gen(function* () {
           const source = yield* loadPageDocument(fixture.checkoutRoot, entry);
-          return yield* makePageProjectionFromSource(source, {}).pipe(
-            Effect.flip
+          return yield* Effect.forEach(
+            [
+              {},
+              {
+                date: "2026-01-01",
+                datePublished: "2026-01-01",
+                description: "Protocol-only description.",
+                title: "Rejected legacy date",
+              },
+            ],
+            (metadata) =>
+              makePageProjectionFromSource(source, metadata).pipe(Effect.flip)
           );
         }).pipe(Effect.provide([testFileLayer(fixture.sources), Path.layer]));
 
-        expect(error).toMatchObject({
-          _tag: "PageMetadataError",
-          sourcePath: entry.sourcePath,
-        });
+        for (const error of errors) {
+          expect(error).toMatchObject({
+            _tag: "PageMetadataError",
+            sourcePath: entry.sourcePath,
+          });
+        }
       })
   );
 });

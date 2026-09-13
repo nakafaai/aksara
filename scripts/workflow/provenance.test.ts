@@ -150,7 +150,7 @@ describe("contract provenance policy", () => {
         mutateJob(
           source,
           "verify",
-          "          node-version: 24.20.0",
+          "          node-version: 24.21.0",
           "          node-version: 22.0.0"
         ),
         "npm verification must use the repository Node runtime",
@@ -159,6 +159,18 @@ describe("contract provenance policy", () => {
     for (const [changed, message] of cases) {
       expect(() => verifyProvenanceWorkflow(changed)).toThrow(message);
     }
+  });
+
+  it("includes undeclared job properties in the publication integrity check", () => {
+    const changed = mutateJob(
+      workflowSource(),
+      "publish",
+      "    timeout-minutes: 10",
+      "    timeout-minutes: 11"
+    );
+    expect(() => verifyProvenanceWorkflow(changed)).toThrow(
+      "npm publication must match the exact trusted job"
+    );
   });
 
   it("rejects malformed or incomplete workflow jobs", () => {

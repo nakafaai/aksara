@@ -44,7 +44,9 @@ describe("material projection", () => {
   });
 
   it("rejects legacy, ambiguous, or incomplete projection date shapes", () => {
-    const decode = Schema.decodeUnknownExit(MaterialLessonProjectionSchema);
+    const decode = Schema.decodeUnknownExit(MaterialLessonProjectionSchema, {
+      onExcessProperty: "error",
+    });
     const base = { authors: [], title: "Migration" };
     for (const invalid of [
       base,

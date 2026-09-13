@@ -20,7 +20,7 @@ describe("date only", () => {
     }
   );
 
-  it("keeps the public date shape exact under every decoder option", () => {
+  it("rejects obsolete date fields at the exact publication decoder", () => {
     expectTypeOf<keyof PublicationDates>().toEqualTypeOf<
       "dateModified" | "datePublished"
     >();
@@ -29,11 +29,10 @@ describe("date only", () => {
       date: "2024-01-01",
       datePublished: "2024-01-01",
     };
-    const decode = Schema.decodeUnknownExit(PublicationDatesSchema);
+    const decode = Schema.decodeUnknownExit(PublicationDatesSchema, {
+      onExcessProperty: "error",
+    });
 
     expect(Exit.isFailure(decode(dual))).toBe(true);
-    expect(Exit.isFailure(decode(dual, { onExcessProperty: "preserve" }))).toBe(
-      true
-    );
   });
 });

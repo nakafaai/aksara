@@ -46,24 +46,38 @@ layer(articleTestLayer)("article document", (it) => {
   );
 
   it.effect(
-    "rejects malformed authored metadata with the exact source path",
+    "rejects missing or obsolete metadata with the exact source path",
     () =>
       Effect.gen(function* () {
         const fixture = yield* articleDocumentFixture();
-        const error = yield* Effect.gen(function* () {
+        const errors = yield* Effect.gen(function* () {
           const source = yield* loadArticleDocument(
             fixture.checkoutRoot,
             fixture.entry
           );
-          return yield* makeArticleProjectionFromSource(source, {}).pipe(
-            Effect.flip
+          return yield* Effect.forEach(
+            [
+              {},
+              {
+                authors: [],
+                date: "2026-01-01",
+                datePublished: "2026-01-01",
+                title: "Rejected legacy date",
+              },
+            ],
+            (metadata) =>
+              makeArticleProjectionFromSource(source, metadata).pipe(
+                Effect.flip
+              )
           );
         }).pipe(Effect.provide([testFileLayer(fixture.sources), Path.layer]));
 
-        expect(error).toMatchObject({
-          _tag: "ArticleMetadataError",
-          sourcePath: fixture.entry.sourcePath,
-        });
+        for (const error of errors) {
+          expect(error).toMatchObject({
+            _tag: "ArticleMetadataError",
+            sourcePath: fixture.entry.sourcePath,
+          });
+        }
       })
   );
 
