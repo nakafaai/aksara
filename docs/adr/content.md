@@ -97,8 +97,8 @@ source against its signed artifact hash before any target staging.
 Nakafa may execute an artifact only in a server-only Node runtime through the
 official `@mdx-js/mdx/run` API and only after all of these checks pass:
 
-1. The artifact belongs to the active public release or the exact retained
-   release selected by a protected snapshot.
+1. The artifact belongs to the active public release or the exact release
+   selected by a protected snapshot.
 2. Its content hash matches the signed payload.
 3. Its signature is valid.
 4. Public and protected content first match the exact renderer manifest frozen
@@ -153,8 +153,9 @@ manifest contains one current component set, with no component versions or
 separate authoring and supported registries. Its authenticated hash binds name
 ownership and published domains. Renderer behavior is verified in Nakafa;
 matching renderer changes deploy before content that uses them. A breaking
-contract change requires coordinated signed-content adoption and removal of
-the migration code, rather than permanent alternate implementations.
+contract change retires the predecessor encoding in the same change and
+requires a complete current-format republish, rather than permanent alternate
+implementations.
 
 ### Renderer bundle-isolation topology
 

@@ -1,5 +1,5 @@
-import type { SignedContentArtifact } from "@nakafa/aksara-contracts/adoption/schema";
-import { verifySignedContentArtifact } from "@nakafa/aksara-contracts/adoption/verify";
+import { verifySignedContentArtifact } from "@nakafa/aksara-contracts/artifact/verify";
+import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
 
 import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";

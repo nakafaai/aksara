@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
+import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Fiber, Redacted } from "effect";
 import { TestClock } from "effect/testing";
 import type { HttpClientRequest } from "effect/unstable/http";
@@ -9,7 +10,7 @@ import {
 } from "#cli/production/renderer";
 import { captureClient, webResponse } from "#test/http";
 import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
-import { retainedStateBundle } from "#test/state";
+import { stateBundle } from "#test/state";
 
 const ENDPOINT = new URL(
   "https://www.example.test/api/internal/content/renderer"
@@ -41,22 +42,37 @@ function runAfter<A, E>(program: Effect.Effect<A, E>, milliseconds: number) {
 }
 
 describe("production renderer", () => {
-  it.effect(
-    "requires full closure instead of retaining an old renderer for partial publication",
-    () =>
-      Effect.gen(function* () {
-        const baseBundle = retainedStateBundle("release-retained-renderer");
-        expect(
-          yield* selectRendererManifest({
-            baseBundle,
-            rendererManifest: RENDERER_MANIFEST,
-            scope: FUNCTION_SCOPE,
-          }).pipe(Effect.flip)
-        ).toMatchObject({
-          _tag: "ReleasePolicyClosureError",
-          expected: "complete-family",
-        });
-      })
+  it.effect("retains the frozen renderer for a partial publication", () =>
+    Effect.gen(function* () {
+      const baseBundle = stateBundle("release-renderer-partial");
+      expect(
+        yield* selectRendererManifest({
+          baseBundle,
+          rendererManifest: RENDERER_MANIFEST,
+          scope: FUNCTION_SCOPE,
+        })
+      ).toEqual(baseBundle.rendererManifest);
+    })
+  );
+  it.effect("adopts the live renderer only with complete-family closure", () =>
+    Effect.gen(function* () {
+      const baseBundle = stateBundle("release-renderer-closure");
+      const live = yield* createRendererManifest({
+        base: [...RENDERER_MANIFEST.base, "RuntimePairProbe"],
+        domains: RENDERER_MANIFEST.domains,
+        publishedDomains: RENDERER_MANIFEST.publishedDomains,
+      });
+      expect(
+        yield* selectRendererManifest({
+          baseBundle,
+          rendererManifest: live,
+          scope: {
+            families: ["article", "material", "page", "question"],
+            snapshots: ["tryout"],
+          },
+        })
+      ).toEqual(live);
+    })
   );
   it.effect("uses only the exact authenticated HTTPS endpoint", () =>
     Effect.gen(function* () {

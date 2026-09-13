@@ -1,5 +1,4 @@
 import { beforeEach, describe, expect, it } from "@effect/vitest";
-import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Redacted } from "effect";
@@ -7,7 +6,6 @@ import { HttpClient } from "effect/unstable/http";
 import { makeProductionActivation } from "#cli/activation";
 import { captureClient } from "#test/http";
 import { RENDERER_MANIFEST } from "#test/real";
-import { RETAINED_LIVE_INPUT, retainedBundle } from "#test/retained";
 import { gitBundle } from "#test/target";
 
 const calls = vi.hoisted(() => ({
@@ -49,6 +47,14 @@ const makeActivation = makeProductionActivation({
   )
 );
 
+/** Creates one compatible additive live renderer for the frozen bundle. */
+const additiveRenderer = () =>
+  createRendererManifest({
+    base: [...RENDERER_MANIFEST.base, "RuntimePairProbe"],
+    domains: RENDERER_MANIFEST.domains,
+    publishedDomains: RENDERER_MANIFEST.publishedDomains,
+  });
+
 beforeEach(() => {
   calls.endpoint = "";
   calls.fetches = 0;
@@ -74,27 +80,17 @@ describe("production activation", () => {
   it.effect("accepts a compatible additive renderer deployment", () =>
     Effect.gen(function* () {
       const activation = yield* makeActivation;
-      const base = [...RENDERER_MANIFEST.base, "RuntimePairProbe"];
-      calls.renderer = yield* createRendererManifest({
-        base,
-        domains: RENDERER_MANIFEST.domains,
-        publishedDomains: RENDERER_MANIFEST.publishedDomains,
-      });
+      calls.renderer = yield* additiveRenderer();
 
       expect(yield* activation.verify(BUNDLE, "compatible")).toBeUndefined();
       expect(calls.fetches).toBe(1);
     })
   );
 
-  it.effect("rejects renderer drift for an exact adoption preflight", () =>
+  it.effect("rejects renderer drift for an exact preflight", () =>
     Effect.gen(function* () {
       const activation = yield* makeActivation;
-      const base = [...RENDERER_MANIFEST.base, "RuntimePairProbe"];
-      calls.renderer = yield* createRendererManifest({
-        base,
-        domains: RENDERER_MANIFEST.domains,
-        publishedDomains: RENDERER_MANIFEST.publishedDomains,
-      });
+      calls.renderer = yield* additiveRenderer();
 
       expect(
         yield* Effect.flip(activation.verify(BUNDLE, "exact"))
@@ -110,11 +106,11 @@ describe("production activation", () => {
   it.effect("fails closed without exposing incompatibility details", () =>
     Effect.gen(function* () {
       const activation = yield* makeActivation;
-      calls.renderer = {
-        ...RENDERER_MANIFEST,
+      calls.renderer = yield* createRendererManifest({
         base: RENDERER_MANIFEST.base.slice(1),
-        hash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
-      };
+        domains: RENDERER_MANIFEST.domains,
+        publishedDomains: RENDERER_MANIFEST.publishedDomains,
+      });
 
       expect(
         yield* Effect.flip(activation.verify(BUNDLE, "compatible"))
@@ -125,142 +121,5 @@ describe("production activation", () => {
       });
       expect(calls.fetches).toBe(1);
     })
-  );
-
-  it.effect(
-    "accepts a retained renderer whose names the live renderer still executes",
-    () =>
-      Effect.gen(function* () {
-        const activation = yield* makeActivation;
-        expect(
-          yield* activation.verify(retainedBundle(BUNDLE.release), "compatible")
-        ).toBeUndefined();
-        expect(calls.fetches).toBe(1);
-      })
-  );
-
-  it.effect(
-    "rejects retained base components the live renderer cannot execute",
-    () =>
-      Effect.gen(function* () {
-        const activation = yield* makeActivation;
-        const unsupportedName = retainedBundle(BUNDLE.release, {
-          ...RETAINED_LIVE_INPUT,
-          base: [
-            ...RETAINED_LIVE_INPUT.base,
-            { name: "RetiredWidget", version: 1 },
-          ],
-        });
-        const unsupportedVersion = retainedBundle(BUNDLE.release, {
-          ...RETAINED_LIVE_INPUT,
-          base: [
-            ...RETAINED_LIVE_INPUT.base,
-            { name: "RetiredWidget", version: 2 },
-          ],
-        });
-        // A name that survives only inside a live domain registry is not a base.
-        const domainOnly = retainedBundle(BUNDLE.release, {
-          ...RETAINED_LIVE_INPUT,
-          base: [
-            { name: "AtomShellLab", version: 1 },
-            ...RETAINED_LIVE_INPUT.base,
-          ],
-          domains: RETAINED_LIVE_INPUT.domains.map((domain) =>
-            domain.name === "chemistry"
-              ? { ...domain, supportedComponents: [] }
-              : domain
-          ),
-        });
-        const [nameError, versionError, domainOnlyError] = yield* Effect.all([
-          Effect.flip(activation.verify(unsupportedName, "compatible")),
-          Effect.flip(activation.verify(unsupportedVersion, "compatible")),
-          Effect.flip(activation.verify(domainOnly, "compatible")),
-        ]);
-        expect(nameError).toMatchObject({
-          _tag: "PublicationActivationError",
-          phase: "preflight",
-          releaseId: "release-next",
-        });
-        expect(versionError).toMatchObject({
-          _tag: "PublicationActivationError",
-          phase: "preflight",
-          releaseId: "release-next",
-        });
-        expect(domainOnlyError).toMatchObject({
-          _tag: "PublicationActivationError",
-          phase: "preflight",
-          releaseId: "release-next",
-        });
-      })
-  );
-
-  it.effect(
-    "rejects a retained published domain the live renderer does not serve",
-    () =>
-      Effect.gen(function* () {
-        const activation = yield* makeActivation;
-        calls.renderer = {
-          ...RENDERER_MANIFEST,
-          publishedDomains: [],
-        };
-        expect(
-          yield* Effect.flip(
-            activation.verify(retainedBundle(BUNDLE.release), "compatible")
-          )
-        ).toMatchObject({
-          _tag: "PublicationActivationError",
-          phase: "preflight",
-          releaseId: "release-next",
-        });
-      })
-  );
-
-  it.effect(
-    "rejects retained domain components the live renderer cannot execute",
-    () =>
-      Effect.gen(function* () {
-        const activation = yield* makeActivation;
-        const withRetired = retainedBundle(BUNDLE.release, {
-          ...RETAINED_LIVE_INPUT,
-          domains: RETAINED_LIVE_INPUT.domains.map((domain) =>
-            domain.name === "mathematics"
-              ? {
-                  ...domain,
-                  supportedComponents: [
-                    ...domain.supportedComponents,
-                    { name: "RetiredWidget", version: 1 },
-                  ],
-                }
-              : domain
-          ),
-        });
-        const withFutureVersion = retainedBundle(BUNDLE.release, {
-          ...RETAINED_LIVE_INPUT,
-          domains: RETAINED_LIVE_INPUT.domains.map((domain) =>
-            domain.name === "mathematics"
-              ? {
-                  ...domain,
-                  supportedComponents: [
-                    { name: "FunctionMachine", version: 2 },
-                  ],
-                }
-              : domain
-          ),
-        });
-        const [nameError, versionError] = yield* Effect.all([
-          Effect.flip(activation.verify(withRetired, "compatible")),
-          Effect.flip(activation.verify(withFutureVersion, "compatible")),
-        ]);
-        expect(nameError).toMatchObject({
-          _tag: "PublicationActivationError",
-          phase: "preflight",
-          releaseId: "release-next",
-        });
-        expect(versionError).toMatchObject({
-          _tag: "PublicationActivationError",
-          phase: "preflight",
-          releaseId: "release-next",
-        });
-      })
   );
 });

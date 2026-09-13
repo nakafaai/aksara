@@ -1,7 +1,7 @@
 # @nakafa/aksara-contracts
 
 This package defines exact runtime contracts for the Aksara compiler and
-publisher. Nakafa runtime adoption is a separate cutover gated by a proven npm
+publisher. Nakafa runtime consumes the exact published contract: a proven npm
 package, its immutable release archive, and compatible renderer support.
 
 This package contains schemas, branded identifiers, canonical wire encodings,

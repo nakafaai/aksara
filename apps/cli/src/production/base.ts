@@ -1,6 +1,6 @@
-import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/adoption/schema";
 import type { ActiveAppLocaleList } from "@nakafa/aksara-contracts/locale";
 
+import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import {
   baseContentSnapshots,
   type ContentSnapshotSet,

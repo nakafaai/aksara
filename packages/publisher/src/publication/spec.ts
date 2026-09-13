@@ -1,13 +1,3 @@
-import type {
-  ContentReleaseBundle as AdoptionContentReleaseBundle,
-  RollbackContentReleaseBundle as AdoptionRollbackContentReleaseBundle,
-  ContentReleaseCurrent,
-  RecoveryLookup,
-} from "@nakafa/aksara-contracts/adoption/schema";
-import type {
-  StageArtifactBatchInput,
-  StageGroupInput,
-} from "@nakafa/aksara-contracts/adoption/transport";
 import type { ContentCacheChange } from "@nakafa/aksara-contracts/cache/content";
 import {
   GitCommitShaSchema,
@@ -21,7 +11,8 @@ import type {
   RollbackSignedContentRelease,
   SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
-
+import type { RecoveryLookup } from "@nakafa/aksara-contracts/release/current/evidence";
+import type { ContentReleaseCurrent } from "@nakafa/aksara-contracts/release/current/state";
 import type {
   HeadPage,
   HeadPageRequest,
@@ -41,10 +32,12 @@ import type { RendererPreflight } from "@nakafa/aksara-contracts/release/policy"
 import type { RollbackPageRequest } from "@nakafa/aksara-contracts/release/rollback/spec";
 import type { RoutePageRequest } from "@nakafa/aksara-contracts/release/route/page";
 import type {
+  StageArtifactBatchInput,
   StageItemBatchInput,
   StageProjectionBatchInput,
   StageRouteBatchInput,
 } from "@nakafa/aksara-contracts/transport/batch";
+import type { StageGroupInput } from "@nakafa/aksara-contracts/transport/group";
 
 import type { StageTryoutRuntimeBundleInput } from "@nakafa/aksara-contracts/transport/runtime";
 import type {
@@ -173,7 +166,7 @@ export class PublicationActivation extends Context.Service<
     }) => Effect.Effect<void, E | PublicationActivationError, R>;
     /** Fails closed unless live execution covers the frozen release contract. */
     readonly verify: (
-      bundle: ContentReleaseBundle | AdoptionContentReleaseBundle,
+      bundle: ContentReleaseBundle,
       preflight: RendererPreflight
     ) => Effect.Effect<void, PublicationActivationError>;
   }
@@ -222,9 +215,7 @@ export class PublicationTarget extends Context.Service<
     ) => Effect.Effect<PublicationReceipt, PublicationTargetFailure>;
     /** Atomically activates one verified inverse retained for the active release. */
     readonly activateRecovery: (
-      release:
-        | RollbackSignedContentRelease
-        | AdoptionRollbackContentReleaseBundle["release"]
+      release: RollbackSignedContentRelease
     ) => Effect.Effect<PublicationReceipt, PublicationTargetFailure>;
     /** Deletes one bounded page of unreachable staged rows. */
     readonly cleanup: (

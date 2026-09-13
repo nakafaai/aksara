@@ -47,8 +47,9 @@ for clarity, measurable scale, and safe releases.
   component set. Renderer manifests and artifact requirements contain names,
   without version fields or separate authoring and supported registries. Deploy
   the matching renderer before publishing content that uses it. Breaking signed
-  contract changes require verified adoption of active and retained content,
-  followed by deletion of migration-only readers and writers.
+  contract changes require a complete current-format republish, and the
+  predecessor encoding is retired in the same change rather than supported by
+  migration-only readers and writers.
 - Keep authored executable source in TypeScript. Do not add JavaScript source
   files or generated JavaScript to Git.
 - Do not use APIs marked deprecated by the installed TypeScript declarations.
