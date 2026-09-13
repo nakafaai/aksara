@@ -8,6 +8,7 @@ import {
   ContentReleaseBundleSchema,
   RendererManifestEnvelopeSchema,
   RetainedRendererComponentUnsupportedError,
+  RollbackContentReleaseBundleSchema,
   type SignedContentArtifact,
   SignedContentArtifactSchema,
   SignedContentReleaseSchema,
@@ -254,6 +255,26 @@ export const verifyContentReleaseBundle = Effect.fn(
     input,
     { onExcessProperty: "error" }
   ).pipe(
+    Effect.mapError(
+      () =>
+        new CurrentReleaseBundleVerificationDecodeError({
+          message:
+            "Release bundle verification input does not satisfy its exact wire contract.",
+        })
+    )
+  );
+  yield* verifySignedContentRelease(bundle.release);
+  yield* validateRendererManifestHash(bundle.rendererManifest);
+  return bundle;
+});
+
+/** Authenticates a renderer-bound inverse from either encoding before recovery. */
+export const verifyRollbackContentReleaseBundle = Effect.fn(
+  "AksaraContracts.adoption.verifyRollbackBundle"
+)(function* (input: unknown) {
+  const bundle = yield* Schema.decodeUnknownEffect(
+    RollbackContentReleaseBundleSchema
+  )(input, { onExcessProperty: "error" }).pipe(
     Effect.mapError(
       () =>
         new CurrentReleaseBundleVerificationDecodeError({

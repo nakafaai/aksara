@@ -1,4 +1,6 @@
 import type {
+  ContentReleaseBundle as AdoptionContentReleaseBundle,
+  RollbackContentReleaseBundle as AdoptionRollbackContentReleaseBundle,
   ContentReleaseCurrent,
   RecoveryLookup,
 } from "@nakafa/aksara-contracts/adoption/schema";
@@ -171,7 +173,7 @@ export class PublicationActivation extends Context.Service<
     }) => Effect.Effect<void, E | PublicationActivationError, R>;
     /** Fails closed unless live execution covers the frozen release contract. */
     readonly verify: (
-      bundle: ContentReleaseBundle,
+      bundle: ContentReleaseBundle | AdoptionContentReleaseBundle,
       preflight: RendererPreflight
     ) => Effect.Effect<void, PublicationActivationError>;
   }
@@ -220,7 +222,9 @@ export class PublicationTarget extends Context.Service<
     ) => Effect.Effect<PublicationReceipt, PublicationTargetFailure>;
     /** Atomically activates one verified inverse retained for the active release. */
     readonly activateRecovery: (
-      release: RollbackSignedContentRelease
+      release:
+        | RollbackSignedContentRelease
+        | AdoptionRollbackContentReleaseBundle["release"]
     ) => Effect.Effect<PublicationReceipt, PublicationTargetFailure>;
     /** Deletes one bounded page of unreachable staged rows. */
     readonly cleanup: (

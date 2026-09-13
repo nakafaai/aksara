@@ -25,7 +25,11 @@ import {
 } from "#contracts/ids";
 import { hashContentReleaseManifest } from "#contracts/release/hash";
 import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signing";
-import { SignedContentReleaseSchema } from "#contracts/release/spec";
+import { invertContentSnapshots } from "#contracts/release/snapshot/spec";
+import {
+  ContentReleaseManifestSchema,
+  SignedContentReleaseSchema,
+} from "#contracts/release/spec";
 import { RENDERER_DOMAINS } from "#contracts/renderer/domain";
 import { createRendererManifest } from "#contracts/renderer/manifest";
 import { ContentVerificationKeyResolver } from "#contracts/signature/spec";
@@ -150,3 +154,60 @@ export const newRelease = SignedContentReleaseSchema.make({
     canonicalizeContentReleaseSigningInput(newHash, newManifest)
   ),
 });
+
+/** Current-format inverse bundle that restores the retained source release. */
+export const newRollbackBundle = await (async () => {
+  const manifest = ContentReleaseManifestSchema.make({
+    ...newManifest,
+    origin: { kind: "rollback", releaseId: oldManifest.releaseId },
+    releaseId: Schema.decodeSync(ContentReleaseManifestSchema.fields.releaseId)(
+      "adoption-current-inverse"
+    ),
+    resultCount: newManifest.baseResultCount,
+    resultDigest: newManifest.baseResultDigest,
+    snapshots: invertContentSnapshots(newManifest.snapshots),
+  });
+  const manifestHash = await Effect.runPromise(
+    hashContentReleaseManifest(manifest)
+  );
+  return {
+    release: SignedContentReleaseSchema.make({
+      keyId,
+      manifest,
+      manifestHash,
+      signature: signature(
+        canonicalizeContentReleaseSigningInput(manifestHash, manifest)
+      ),
+    }),
+    rendererManifest: live,
+  };
+})();
+
+/** Retained 0.39.0 inverse bundle that restores the retained source release. */
+export const oldRollbackBundle = await (async () => {
+  const manifest = RetainedContentReleaseManifestSchema.make({
+    ...oldManifest,
+    baseActiveAppLocales: oldManifest.activeAppLocales,
+    baseManifestHash: oldManifestHash,
+    baseReleaseId: oldManifest.releaseId,
+    baseResultCount: oldManifest.resultCount,
+    baseResultDigest: oldManifest.resultDigest,
+    origin: { kind: "rollback", releaseId: oldManifest.releaseId },
+    releaseId: Schema.decodeSync(
+      RetainedContentReleaseManifestSchema.fields.releaseId
+    )("adoption-retained-inverse"),
+    resultCount: oldManifest.baseResultCount,
+    resultDigest: oldManifest.baseResultDigest,
+    snapshots: invertContentSnapshots(oldManifest.snapshots),
+  });
+  const manifestHash = await Effect.runPromise(retainedReleaseHash(manifest));
+  return {
+    release: RetainedSignedContentReleaseSchema.make({
+      keyId,
+      manifest,
+      manifestHash,
+      signature: signature(retainedSigningInput(manifestHash, manifest)),
+    }),
+    rendererManifest: oldRenderer,
+  };
+})();

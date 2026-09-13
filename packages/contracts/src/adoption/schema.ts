@@ -16,7 +16,10 @@ import {
   StagedContentReleaseSchema as RetainedStagedContentReleaseSchema,
   StagedRollbackContentReleaseSchema as RetainedStagedRollbackContentReleaseSchema,
 } from "@nakafa/aksara-retained/release/current/state";
-import { ContentReleaseBundleSchema as RetainedContentReleaseBundleSchema } from "@nakafa/aksara-retained/release/lifecycle";
+import {
+  ContentReleaseBundleSchema as RetainedContentReleaseBundleSchema,
+  RollbackContentReleaseBundleSchema as RetainedRollbackContentReleaseBundleSchema,
+} from "@nakafa/aksara-retained/release/lifecycle";
 import { RendererManifestEnvelopeSchema as RetainedRendererManifestEnvelopeSchema } from "@nakafa/aksara-retained/renderer/contract";
 import { Schema } from "effect";
 import {
@@ -36,7 +39,10 @@ import {
   StagedContentReleaseSchema as CurrentStagedContentReleaseSchema,
   StagedRollbackContentReleaseSchema as CurrentStagedRollbackContentReleaseSchema,
 } from "#contracts/release/current/state";
-import { ContentReleaseBundleSchema as CurrentContentReleaseBundleSchema } from "#contracts/release/lifecycle";
+import {
+  ContentReleaseBundleSchema as CurrentContentReleaseBundleSchema,
+  RollbackContentReleaseBundleSchema as CurrentRollbackContentReleaseBundleSchema,
+} from "#contracts/release/lifecycle";
 import {
   RollbackDeleteStateSchema as CurrentRollbackDeleteStateSchema,
   RollbackPageSchema as CurrentRollbackPageSchema,
@@ -88,6 +94,14 @@ export const ContentReleaseBundleSchema = Schema.Union([
   RetainedContentReleaseBundleSchema,
 ]);
 export type ContentReleaseBundle = typeof ContentReleaseBundleSchema.Type;
+
+/** Frozen renderer plus either signed rollback release at recovery boundaries. */
+export const RollbackContentReleaseBundleSchema = Schema.Union([
+  CurrentRollbackContentReleaseBundleSchema,
+  RetainedRollbackContentReleaseBundleSchema,
+]);
+export type RollbackContentReleaseBundle =
+  typeof RollbackContentReleaseBundleSchema.Type;
 export const ActiveContentReleaseSchema = Schema.Union([
   CurrentActiveContentReleaseSchema,
   RetainedActiveContentReleaseSchema,

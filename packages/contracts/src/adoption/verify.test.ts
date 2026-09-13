@@ -7,6 +7,7 @@ import {
 } from "#contracts/adoption/schema";
 import {
   verifyContentReleaseBundle,
+  verifyRollbackContentReleaseBundle,
   verifySignedContentArtifact,
   verifySignedContentArtifactIntegrity,
   verifySignedContentRelease,
@@ -20,9 +21,11 @@ import {
   keyId,
   live,
   newRelease,
+  newRollbackBundle,
   oldArtifact,
   oldRelease,
   oldRenderer,
+  oldRollbackBundle,
   retainedArtifact,
   signature,
   trust,
@@ -158,6 +161,35 @@ describe("retained adoption verify", () => {
           yield* verifyContentReleaseBundle({
             release: oldRelease,
             rendererManifest: live,
+          }).pipe(trust, Effect.flip)
+        ).toMatchObject({ _tag: "ReleaseBundleVerificationDecodeError" });
+      })
+  );
+  it.effect(
+    "accepts rollback-owned bundles from either encoding and rejects forward origins",
+    () =>
+      Effect.gen(function* () {
+        expect(
+          yield* verifyRollbackContentReleaseBundle(newRollbackBundle).pipe(
+            trust
+          )
+        ).toEqual(newRollbackBundle);
+        expect(
+          yield* verifyRollbackContentReleaseBundle(oldRollbackBundle).pipe(
+            trust
+          )
+        ).toEqual(oldRollbackBundle);
+        expect(
+          yield* verifyRollbackContentReleaseBundle({
+            release: newRelease,
+            rendererManifest: live,
+          }).pipe(trust, Effect.flip)
+        ).toMatchObject({ _tag: "ReleaseBundleVerificationDecodeError" });
+        expect(
+          yield* verifyRollbackContentReleaseBundle({
+            release: newRelease,
+            rendererManifest: live,
+            unexpected: true,
           }).pipe(trust, Effect.flip)
         ).toMatchObject({ _tag: "ReleaseBundleVerificationDecodeError" });
       })
