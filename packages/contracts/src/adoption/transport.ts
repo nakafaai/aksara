@@ -1,3 +1,4 @@
+import { RollbackSignedContentReleaseSchema as RetainedRollbackSignedContentReleaseSchema } from "@nakafa/aksara-retained/release";
 import { Effect, Schema } from "effect";
 import {
   ContentReleaseCurrentSchema,
@@ -7,6 +8,7 @@ import {
   SignedContentArtifactSchema,
 } from "#contracts/adoption/schema";
 import { decodeContract } from "#contracts/decode";
+import { RollbackSignedContentReleaseSchema as CurrentRollbackSignedContentReleaseSchema } from "#contracts/release/spec";
 import { StageArtifactBatchInputSchema as CurrentStageArtifactBatchInputSchema } from "#contracts/transport/batch";
 import {
   StageGroupInputSchema as CurrentStageGroupInputSchema,
@@ -17,7 +19,10 @@ import {
   MAX_ARTIFACT_BATCH_COUNT,
   MAX_STAGE_GROUP_COUNT,
 } from "#contracts/transport/limits";
-import { PublicationRequestSchema as CurrentPublicationRequestSchema } from "#contracts/transport/request";
+import {
+  ActivateRecoveryRequestSchema as CurrentActivateRecoveryRequestSchema,
+  PublicationRequestSchema as CurrentPublicationRequestSchema,
+} from "#contracts/transport/request";
 import {
   PublicationCurrentSuccessSchema as CurrentPublicationCurrentSuccessSchema,
   PublicationFailureResponseSchema as CurrentPublicationFailureResponseSchema,
@@ -63,7 +68,22 @@ export const StageGroupRequestSchema = CurrentStageGroupRequestSchema.mapFields(
   { unsafePreserveChecks: true }
 );
 export type StageGroupRequest = typeof StageGroupRequestSchema.Type;
+
+/** Signed inverse in either the current or the retained 0.39.0 encoding. */
+export const RollbackSignedContentReleaseSchema = Schema.Union([
+  CurrentRollbackSignedContentReleaseSchema,
+  RetainedRollbackSignedContentReleaseSchema,
+]);
+export type RollbackSignedContentRelease =
+  typeof RollbackSignedContentReleaseSchema.Type;
+export const ActivateRecoveryRequestSchema =
+  CurrentActivateRecoveryRequestSchema.mapFields((fields) => ({
+    ...fields,
+    release: RollbackSignedContentReleaseSchema,
+  }));
+export type ActivateRecoveryRequest = typeof ActivateRecoveryRequestSchema.Type;
 export const PublicationRequestSchema = Schema.Union([
+  ActivateRecoveryRequestSchema,
   CurrentPublicationRequestSchema,
   StageArtifactBatchRequestSchema,
   StageGroupRequestSchema,
