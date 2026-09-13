@@ -57,9 +57,13 @@ Menggunakan teorema Pythagoras, kita dapat menuliskan
   <BlockMath math="\begin{aligned}  &amp;=\|A\hat x-b\|_2^2 \\ &amp;\quad{}+\underbrace{\|A(\hat x-x)\|_2^2}_{\ge0} \\ &amp;\quad{}-2\underbrace{(\hat x-x)^T(A^TA\hat x-A^Tb)}_{=0} \end{aligned}" />
 </MathContainer>
 
-Karena <InlineMath math="\hat{x}" /> memenuhi persamaan normal, suku silang bernilai nol. Norma kuadrat yang tersisa tidak negatif, sehingga
+Karena <InlineMath math="\hat{x}" /> memenuhi persamaan normal, suku silang bernilai nol. Yang tersisa adalah:
 
-<BlockMath math="\begin{aligned} \|Ax - b\|_2^2 &amp;= \|A\hat{x} - b\|_2^2 \\ &amp;\quad{}+ \|A(\hat{x} - x)\|_2^2  \\ &amp;\geq \|A\hat{x} - b\|_2^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} \|Ax - b\|_2^2 &amp;= \|A\hat{x} - b\|_2^2 \\ &amp;\quad{}+ \|A(\hat{x} - x)\|_2^2 \end{aligned}" />
+
+Norma kuadrat yang ditambahkan tidak negatif. Jadi, kuadrat norma residual pada sembarang <InlineMath math="x" /> tidak dapat lebih kecil daripada pada <InlineMath math="\hat{x}" />:
+
+<BlockMath math="\|Ax-b\|_2^2\geq\|A\hat{x}-b\|_2^2" />
 
 Ketidaksamaan ini membuktikan bahwa <InlineMath math="\hat{x}" /> memang memberikan nilai minimum.
 

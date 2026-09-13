@@ -125,8 +125,11 @@ strings with their own [math syntax](question-bank.md#response-items).
   to and preserve the grouping of sums, products, and conditions. Do not leave
   a lone term such as `+a` on a new row or split one expression across bordered
   blocks. Introduce meaningful subexpressions with complete prose when needed.
-  Preserve every transformation and condition. Verify both desktop and mobile
-  composition in the actual renderer. Matching tokens and fitting widths do
+  Explain what a domain or condition applies to and why a conclusion permits
+  the next step. Put that explanation beside the formula in prose; do not leave
+  a bare domain or comparison fragment on a separate row. Preserve every
+  transformation and condition. Verify both desktop and mobile composition
+  in the actual renderer. Matching tokens and fitting widths do
   not prove clarity. Do not shrink or clip math; prefer necessary scrolling
   over an ambiguous rewrite while resolving avoidable long lines.
 - Keep the leading backslash on every LaTeX command in a `math` prop. Bare
