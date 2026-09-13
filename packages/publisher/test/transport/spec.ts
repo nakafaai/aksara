@@ -38,10 +38,7 @@ const projectionDigest = `sha256:${"c".repeat(64)}`;
 const recoveryId = ReleaseIdSchema.make("test-http-recovery");
 export const transportRenderer = await Effect.runPromise(
   createRendererManifest({
-    base: {
-      authoringComponents: [{ name: "BlockMath", version: 1 }],
-      supportedComponents: [{ name: "BlockMath", version: 1 }],
-    },
+    base: ["BlockMath"],
     domains: testRendererDomains({}),
     publishedDomains: ["mathematics"],
   })
@@ -66,7 +63,7 @@ export const transportRelease: SignedContentRelease = Schema.decodeSync(
     projectionCount: 1,
     projectionDigest,
     releaseId: transportReleaseId,
-    rendererContractVersion: "1.0.0",
+
     rendererManifestHash: transportRenderer.hash,
     resultCount: 1,
     resultDigest: transportArtifactHash,

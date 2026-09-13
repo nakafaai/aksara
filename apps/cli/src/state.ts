@@ -1,9 +1,10 @@
-import type { GitCommitSha } from "@nakafa/aksara-contracts/ids";
 import type {
+  ContentReleaseBundle,
   ContentReleaseCurrent,
   StagedContentRelease,
-} from "@nakafa/aksara-contracts/release/current/state";
-import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
+} from "@nakafa/aksara-contracts/adoption/schema";
+import type { GitCommitSha } from "@nakafa/aksara-contracts/ids";
+
 import {
   canonicalizePublicationScope,
   type PublicationScope,
@@ -22,6 +23,7 @@ export class ProductionStateError extends Schema.TaggedError<ProductionStateErro
       "candidate-conflict",
       "recovery-conflict",
       "recovery-retained",
+      "retained-candidate",
       "scope-mismatch",
     ]),
   }
@@ -61,10 +63,8 @@ type SelectProductionAction = (
 
 /** Returns the immutable bundle from one active release snapshot. */
 function activeBundle(active: NonNullable<ContentReleaseCurrent["active"]>) {
-  return {
-    release: active.release,
-    rendererManifest: active.rendererManifest,
-  } satisfies ContentReleaseBundle;
+  const { receipt: _receipt, ...bundle } = active;
+  return bundle;
 }
 
 /** Returns stored provenance only when command mode and identity match it. */
@@ -98,6 +98,9 @@ const selectRebuildAction = Effect.fn("AksaraCli.selectRebuildAction")(
       return yield* new ProductionStateError({
         reason: "candidate-conflict",
       });
+    }
+    if (candidate.rendererManifest.format !== "nakafa-mdx-renderer") {
+      return yield* new ProductionStateError({ reason: "retained-candidate" });
     }
     const stored: StoredCommand = yield* validateStoredCommand(args, candidate);
     if (candidate.phase === "aborting") {

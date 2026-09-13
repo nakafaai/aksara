@@ -60,7 +60,7 @@ describe("local preview provider", () => {
           const unknownArtifact = yield* requestProvider(
             provider,
             token,
-            `/v1/artifacts/${encodeURIComponent(`sha256:${"f".repeat(64)}`)}`
+            `/artifacts/${encodeURIComponent(`sha256:${"f".repeat(64)}`)}`
           );
           expect(unknownArtifact.status).toBe(409);
           const generation = yield* provider.pending(PREVIEW_REPOSITORIES);
@@ -151,7 +151,7 @@ describe("local preview provider", () => {
           const servedArtifact = yield* requestProvider(
             provider,
             token,
-            `/v1/artifacts/${encodeURIComponent(compiled.artifact.artifactHash)}`
+            `/artifacts/${encodeURIComponent(compiled.artifact.artifactHash)}`
           );
           expect(yield* responseText(servedArtifact)).toBe(
             canonicalizeSignedContentArtifact(compiled.artifact)

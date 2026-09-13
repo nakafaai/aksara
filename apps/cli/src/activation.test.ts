@@ -73,15 +73,9 @@ describe("production activation", () => {
   it.effect("accepts a compatible additive renderer deployment", () =>
     Effect.gen(function* () {
       const activation = yield* makeActivation;
-      const base = [
-        ...RENDERER_MANIFEST.base.supportedComponents,
-        { name: "RuntimePairProbe", version: 1 },
-      ];
+      const base = [...RENDERER_MANIFEST.base, "RuntimePairProbe"];
       calls.renderer = yield* createRendererManifest({
-        base: {
-          authoringComponents: base,
-          supportedComponents: base,
-        },
+        base,
         domains: RENDERER_MANIFEST.domains,
         publishedDomains: RENDERER_MANIFEST.publishedDomains,
       });
@@ -94,15 +88,9 @@ describe("production activation", () => {
   it.effect("rejects renderer drift for an exact adoption preflight", () =>
     Effect.gen(function* () {
       const activation = yield* makeActivation;
-      const base = [
-        ...RENDERER_MANIFEST.base.supportedComponents,
-        { name: "RuntimePairProbe", version: 1 },
-      ];
+      const base = [...RENDERER_MANIFEST.base, "RuntimePairProbe"];
       calls.renderer = yield* createRendererManifest({
-        base: {
-          authoringComponents: base,
-          supportedComponents: base,
-        },
+        base,
         domains: RENDERER_MANIFEST.domains,
         publishedDomains: RENDERER_MANIFEST.publishedDomains,
       });
@@ -123,12 +111,7 @@ describe("production activation", () => {
       const activation = yield* makeActivation;
       calls.renderer = {
         ...RENDERER_MANIFEST,
-        base: {
-          authoringComponents:
-            RENDERER_MANIFEST.base.authoringComponents.slice(1),
-          supportedComponents:
-            RENDERER_MANIFEST.base.supportedComponents.slice(1),
-        },
+        base: RENDERER_MANIFEST.base.slice(1),
         hash: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
       };
 

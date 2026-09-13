@@ -88,7 +88,7 @@ function manifest(
     projectionCount: 0,
     projectionDigest: `sha256:${"b".repeat(64)}`,
     releaseId,
-    rendererContractVersion: "1.0.0",
+
     rendererManifestHash: `sha256:${"c".repeat(64)}`,
     resultCount: 0,
     resultDigest: EMPTY_RESULT_CATALOG_DIGEST,

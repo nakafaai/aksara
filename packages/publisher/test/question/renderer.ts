@@ -2,19 +2,14 @@ import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manife
 import { Effect } from "effect";
 import { testRendererDomains } from "#test/renderer";
 
-/** Converts exact reviewed component names into version-one requirements. */
-function requirements(names: readonly string[]) {
-  return names.map((name) => ({ name, version: 1 }));
-}
-
-const base = requirements([
+const base = [
   "AgentContext",
   "BlockMath",
   "InlineMath",
   "MathContainer",
   "Mermaid",
-]);
-const snbtGeneral = requirements([
+];
+const snbtGeneral = [
   "Set10Question2RecruitmentChart",
   "Set2Question15SalesChart",
   "Set2Question5SalesChart",
@@ -26,8 +21,8 @@ const snbtGeneral = requirements([
   "Set8Question17ProfitChart",
   "Set8Question1SalesChart",
   "Set9Question9GraduationChart",
-]);
-const snbtMath = requirements([
+];
+const snbtMath = [
   "NumberLine",
   "Set2Question19Graph",
   "Set2Question6Graph",
@@ -44,8 +39,8 @@ const snbtMath = requirements([
   "Set7Question18Graph",
   "Set7Question19Graph",
   "Set7Question4Graph",
-]);
-const snbtQuant = requirements([
+];
+const snbtQuant = [
   "LineEquation",
   "NumberLine",
   "Set10Question1Graph",
@@ -64,22 +59,19 @@ const snbtQuant = requirements([
   "Set9Question2Graph",
   "Set9Question3Graph",
   "UnitCircle",
-]);
-const tkaMath = requirements([
+];
+const tkaMath = [
   "HistogramChart",
   "LineEquation",
   "NumberLine",
   "Set1Question19Graph",
   "Set1Question30Illustration",
-]);
+];
 
 /** Creates the complete reviewed renderer manifest for question fixtures. */
 export const questionManifest = Effect.fn("QuestionTest.manifest")(() =>
   createRendererManifest({
-    base: {
-      authoringComponents: base,
-      supportedComponents: base,
-    },
+    base,
     domains: testRendererDomains({
       "snbt-general": snbtGeneral,
       "snbt-math": snbtMath,

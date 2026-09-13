@@ -1,5 +1,13 @@
 import { Buffer } from "node:buffer";
-import type { StageOperation } from "@nakafa/aksara-contracts/transport/group";
+import type {
+  PublicationSuccess,
+  StageOperation,
+} from "@nakafa/aksara-contracts/adoption/transport";
+import {
+  type PublicationRequest,
+  PublicationRequestSchema,
+} from "@nakafa/aksara-contracts/adoption/transport";
+
 import {
   MAX_ARTIFACT_BATCH_BYTES,
   MAX_ITEM_BATCH_BYTES,
@@ -9,11 +17,7 @@ import {
   MAX_SNAPSHOT_BATCH_BYTES,
   MAX_STAGE_GROUP_BYTES,
 } from "@nakafa/aksara-contracts/transport/limits";
-import {
-  type PublicationRequest,
-  PublicationRequestSchema,
-} from "@nakafa/aksara-contracts/transport/request";
-import type { PublicationSuccess } from "@nakafa/aksara-contracts/transport/response";
+
 import { Effect, Schema } from "effect";
 import {
   FetchHttpClient,

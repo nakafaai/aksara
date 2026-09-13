@@ -61,36 +61,17 @@ const selectedPaths = new Set([
 ]);
 export const RENDERER_MANIFEST = await Effect.runPromise(
   createRendererManifest({
-    base: {
-      authoringComponents: [
-        { name: "BlockMath", version: 1 },
-        { name: "InlineMath", version: 1 },
-        { name: "MathContainer", version: 1 },
-      ],
-      supportedComponents: [
-        { name: "BlockMath", version: 1 },
-        { name: "InlineMath", version: 1 },
-        { name: "MathContainer", version: 1 },
-      ],
-    },
+    base: ["BlockMath", "InlineMath", "MathContainer"],
     domains: RENDERER_DOMAINS.map((name) => {
       if (name === "chemistry") {
-        const component = { name: "AtomShellLab", version: 1 };
-        return {
-          authoringComponents: [component],
-          name,
-          supportedComponents: [component],
-        };
+        const component = "AtomShellLab";
+        return { components: [component], name };
       }
       if (name === "mathematics") {
-        const component = { name: "FunctionMachine", version: 1 };
-        return {
-          authoringComponents: [component],
-          name,
-          supportedComponents: [component],
-        };
+        const component = "FunctionMachine";
+        return { components: [component], name };
       }
-      return { authoringComponents: [], name, supportedComponents: [] };
+      return { components: [], name };
     }),
     publishedDomains: ["mathematics"],
   })

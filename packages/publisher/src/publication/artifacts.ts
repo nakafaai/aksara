@@ -1,9 +1,7 @@
-import { verifySignedContentArtifact } from "@nakafa/aksara-contracts/artifact/verify";
-import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
-import type {
-  ContentReleaseItem,
-  ContentReleaseManifest,
-} from "@nakafa/aksara-contracts/release";
+import type { SignedContentArtifact } from "@nakafa/aksara-contracts/adoption/schema";
+import { verifySignedContentArtifact } from "@nakafa/aksara-contracts/adoption/verify";
+
+import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Option, Stream } from "effect";
 import {
@@ -46,14 +44,12 @@ function withTrailingAbsence<A, E, R>(stream: Stream.Stream<A, E, R>) {
 function signGitArtifact(
   signer: PublicationSigner,
   rendererManifest: RendererManifestEnvelope,
-  manifest: ContentReleaseManifest,
   input: CompiledReleaseSource
 ) {
   return Effect.gen(function* () {
     const signed = yield* signer.signArtifact(input.payload);
     const artifact = yield* verifySignedContentArtifact({
       artifact: signed,
-      rendererContractVersion: manifest.rendererContractVersion,
       rendererManifest,
     });
     yield* validateArtifactForItem(input.item, artifact);
@@ -64,7 +60,6 @@ function signGitArtifact(
 /** Signs and verifies one replay of preflighted exact-Git compilations. */
 export function makeGitArtifacts<E, R>(input: {
   readonly compiled: Stream.Stream<CompiledReleaseSource, E, R>;
-  readonly manifest: ContentReleaseManifest;
   readonly rendererManifest: RendererManifestEnvelope;
   readonly signer: PublicationSigner;
 }): Stream.Stream<
@@ -77,12 +72,7 @@ export function makeGitArtifacts<E, R>(input: {
 > {
   return input.compiled.pipe(
     Stream.mapEffect((compiled) =>
-      signGitArtifact(
-        input.signer,
-        input.rendererManifest,
-        input.manifest,
-        compiled
-      )
+      signGitArtifact(input.signer, input.rendererManifest, compiled)
     )
   );
 }
@@ -90,8 +80,7 @@ export function makeGitArtifacts<E, R>(input: {
 /** Authenticates one old envelope paired to its forward-release upsert. */
 function verifyRollbackPair(
   pair: RollbackArtifactPair,
-  rendererManifest: RendererManifestEnvelope,
-  manifest: ContentReleaseManifest
+  rendererManifest: RendererManifestEnvelope
 ) {
   if (pair.kind === "missing") {
     return Effect.fail(
@@ -109,7 +98,7 @@ function verifyRollbackPair(
   }
   return verifySignedContentArtifact({
     artifact: pair.artifact,
-    rendererContractVersion: manifest.rendererContractVersion,
+
     rendererManifest,
   }).pipe(
     Effect.tap((artifact) => validateArtifactForItem(pair.item, artifact))
@@ -120,7 +109,6 @@ function verifyRollbackPair(
 export function makeRollbackArtifacts<E, R, E2, R2>(input: {
   readonly artifacts: Stream.Stream<SignedContentArtifact, E, R>;
   readonly items: Stream.Stream<ContentReleaseItem, E2, R2>;
-  readonly manifest: ContentReleaseManifest;
   readonly rendererManifest: RendererManifestEnvelope;
 }): Stream.Stream<
   SignedContentArtifact,
@@ -154,8 +142,6 @@ export function makeRollbackArtifacts<E, R, E2, R2>(input: {
     Stream.takeWhile(
       (pair): pair is RollbackArtifactPair => pair !== undefined
     ),
-    Stream.mapEffect((pair) =>
-      verifyRollbackPair(pair, input.rendererManifest, input.manifest)
-    )
+    Stream.mapEffect((pair) => verifyRollbackPair(pair, input.rendererManifest))
   );
 }

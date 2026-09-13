@@ -5,7 +5,7 @@ import type { RoutedContentProjection } from "#contracts/projection/spec";
 import type { ContentReleaseBundle } from "#contracts/release/lifecycle";
 import { verifyContentReleaseBundle } from "#contracts/release/verify";
 import { verifyContentRendererCompatibility } from "#contracts/renderer/compatibility";
-import { validateLiveRendererManifestHash } from "#contracts/renderer/manifest";
+import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 import { ContentRuntimeMismatchError } from "#contracts/runtime/error";
 import {
   decodePublicContentRuntimeRequest,
@@ -127,19 +127,18 @@ const verifyPublicRuntimeExchange = Effect.fn(
   yield* verifyPublicRelease(response, bundle);
   const artifact = yield* verifySignedContentArtifact({
     artifact: response.artifact,
-    rendererContractVersion: bundle.release.manifest.rendererContractVersion,
+
     rendererManifest: bundle.rendererManifest,
   });
   if (input.policy.kind === "evidence") {
     return response;
   }
-  const liveRenderer = yield* validateLiveRendererManifestHash(
+  const liveRenderer = yield* validateRendererManifestHash(
     input.policy.rendererManifest
   );
   if (liveRenderer.hash !== bundle.rendererManifest.hash) {
     yield* verifyContentRendererCompatibility({
       payload: artifact.payload,
-      rendererContractVersion: bundle.release.manifest.rendererContractVersion,
       rendererManifest: liveRenderer,
     });
   }

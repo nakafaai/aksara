@@ -2,20 +2,12 @@ import { Schema } from "effect";
 import { SignedContentArtifactSchema } from "#contracts/content";
 import { ContentKeySchema, Sha256HashSchema } from "#contracts/ids";
 import { RendererComponentNameSchema } from "#contracts/renderer/component";
-import {
-  RendererContractVersionSchema,
-  RendererManifestEnvelopeSchema,
-} from "#contracts/renderer/contract";
+import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
 
-/**
- * Complete server-only input needed to authenticate one compiled artifact.
- * `rendererContractVersion` comes from the active release because payloads do
- * not duplicate that release-scoped value.
- */
+/** Complete input needed to authenticate an artifact against its renderer. */
 export const ArtifactVerificationRequestSchema = Schema.Struct({
   artifact: SignedContentArtifactSchema,
-  rendererContractVersion: RendererContractVersionSchema,
   rendererManifest: RendererManifestEnvelopeSchema,
 });
 export type ArtifactVerificationRequest =
@@ -116,34 +108,12 @@ export class ArtifactSourceHashMismatchError extends Schema.TaggedError<Artifact
   }
 ) {}
 
-/** The runtime and hash-validated renderer envelope disagree globally. */
-export class RendererContractVersionMismatchError extends Schema.TaggedError<RendererContractVersionMismatchError>()(
-  "RendererContractVersionMismatchError",
-  {
-    actualVersion: RendererContractVersionSchema,
-    expectedVersion: RendererContractVersionSchema,
-  }
-) {}
-
 /** A custom component required by the artifact is absent from the renderer. */
 export class ArtifactRendererComponentMissingError extends Schema.TaggedError<ArtifactRendererComponentMissingError>()(
   "ArtifactRendererComponentMissingError",
   {
     componentName: RendererComponentNameSchema,
     contentKey: ContentKeySchema,
-  }
-) {}
-
-/** The renderer does not implement the exact required component version. */
-export class ArtifactRendererVersionUnsupportedError extends Schema.TaggedError<ArtifactRendererVersionUnsupportedError>()(
-  "ArtifactRendererVersionUnsupportedError",
-  {
-    componentName: RendererComponentNameSchema,
-    contentKey: ContentKeySchema,
-    requiredVersion: Schema.Finite.pipe(
-      Schema.check(Schema.isInt()),
-      Schema.check(Schema.isGreaterThan(0))
-    ),
   }
 ) {}
 

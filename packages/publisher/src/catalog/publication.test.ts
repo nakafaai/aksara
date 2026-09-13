@@ -26,7 +26,7 @@ const baseComponents = [
   "ContentGrid",
   "InlineMath",
   "MathContainer",
-].map((name) => ({ name, version: 1 }));
+];
 vi.mock("@nakafa/aksara-compiler/compile", async (importOriginal) => {
   const original =
     await importOriginal<typeof import("@nakafa/aksara-compiler/compile")>();
@@ -133,13 +133,10 @@ const makeCatalogTestFixtures = Effect.fn(
     const material = yield* MaterialTestFixtures;
     const page = yield* PageTestFixtures;
     const rendererManifest = yield* createRendererManifest({
-      base: {
-        authoringComponents: baseComponents,
-        supportedComponents: baseComponents,
-      },
+      base: baseComponents,
       domains: testRendererDomains({
-        chemistry: [{ name: "AtomShellLab", version: 1 }],
-        mathematics: [{ name: "FunctionMachine", version: 1 }],
+        chemistry: ["AtomShellLab"],
+        mathematics: ["FunctionMachine"],
         politics: [
           "KimPlusElectabilityChart",
           "MerahPutihCabinetChart",
@@ -149,7 +146,7 @@ const makeCatalogTestFixtures = Effect.fn(
           "PorkBarrelBudgetChart",
           "PorkBarrelElectabilityChart",
           "PorkBarrelFundChart",
-        ].map((name) => ({ name, version: 1 })),
+        ],
       }),
       publishedDomains: ["mathematics", "politics"],
     });

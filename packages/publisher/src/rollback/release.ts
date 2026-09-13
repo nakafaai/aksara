@@ -211,7 +211,7 @@ export const buildRollbackRelease: BuildRollbackRelease = Effect.fn(
     projectionCount: projectionState.count,
     projectionDigest,
     releaseId: input.releaseId,
-    rendererContractVersion: input.rendererManifest.rendererContractVersion,
+
     rendererManifestHash: input.rendererManifest.hash,
     resultCount: resultState.count,
     resultDigest,

@@ -162,24 +162,24 @@ artifact hash, component requirements, and projection hash before execution.
 Public content execution is bound to the exact active signed release and is
 first verified against that release's frozen renderer manifest. If the
 deployed manifest hash differs, the selected artifact must also prove that its
-domain and component versions remain executable by the deployed renderer.
+domain and required component names remain executable by the deployed renderer.
 Non-rendering public evidence reads authenticate the same active release,
 frozen renderer, and artifact without claiming live execution compatibility.
 Protected content applies the directional execution check after binding the
 artifact to its exact signed snapshot release.
 
-Frozen renderer manifests may contain a canonical subset of domains known to
-the current contract so an additive domain deployment can continue reading an
-older active release. Newly created live manifests still require every current
-domain, and every published domain must have a capability in its own envelope.
-Compilation, family planning, signing, and staging authenticate the exact
-selected persisted manifest, including a historical subset. Only the live
-renderer fetch and execution preflight require the complete current domain set.
+Every current renderer manifest contains the complete canonical domain set.
+Compilation, family planning, signing, staging, runtime evidence, and execution
+use the same exact contract and hash validation. Publication may select a
+subset of those domains, and each document uses its own physical capability.
+The temporary adoption reader authenticates original pre-adoption manifests
+through their published contract; current manifests never accept incomplete
+domain sets.
 A release that adopts the new renderer hash requires complete family closure
 and an exact live match. A scoped content-only release retains the active
-frozen manifest and may activate only when the live renderer has the same
-intrinsic contract version, still publishes every frozen published domain, and
-supports every frozen base and published-domain component version. Recovery
+frozen manifest and may activate only when the live renderer still publishes
+every frozen published domain and contains every frozen base and
+published-domain component name. Recovery
 applies the same directional preflight. Runtime execution still checks each
 selected artifact independently.
 

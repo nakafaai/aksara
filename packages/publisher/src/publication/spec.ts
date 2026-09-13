@@ -1,3 +1,11 @@
+import type {
+  ContentReleaseCurrent,
+  RecoveryLookup,
+} from "@nakafa/aksara-contracts/adoption/schema";
+import type {
+  StageArtifactBatchInput,
+  StageGroupInput,
+} from "@nakafa/aksara-contracts/adoption/transport";
 import type { ContentCacheChange } from "@nakafa/aksara-contracts/cache/content";
 import {
   GitCommitShaSchema,
@@ -11,8 +19,7 @@ import type {
   RollbackSignedContentRelease,
   SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
-import type { RecoveryLookup } from "@nakafa/aksara-contracts/release/current/evidence";
-import type { ContentReleaseCurrent } from "@nakafa/aksara-contracts/release/current/state";
+
 import type {
   HeadPage,
   HeadPageRequest,
@@ -32,12 +39,11 @@ import type { RendererPreflight } from "@nakafa/aksara-contracts/release/policy"
 import type { RollbackPageRequest } from "@nakafa/aksara-contracts/release/rollback/spec";
 import type { RoutePageRequest } from "@nakafa/aksara-contracts/release/route/page";
 import type {
-  StageArtifactBatchInput,
   StageItemBatchInput,
   StageProjectionBatchInput,
   StageRouteBatchInput,
 } from "@nakafa/aksara-contracts/transport/batch";
-import type { StageGroupInput } from "@nakafa/aksara-contracts/transport/group";
+
 import type { StageTryoutRuntimeBundleInput } from "@nakafa/aksara-contracts/transport/runtime";
 import type {
   StageSnapshotBatchInput,

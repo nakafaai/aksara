@@ -44,9 +44,11 @@ for clarity, measurable scale, and safe releases.
 - Keep React and TSX component implementations in Nakafa. Corpus MDX references
   current authenticated renderer names; Aksara never owns a duplicate preview
   component. Internal renderer changes use one current implementation and
-  component set. Do not add per-component version bumps, dual registries, or
-  compatibility adapters for additive props; deploy the matching renderer
-  before publishing content that uses them.
+  component set. Renderer manifests and artifact requirements contain names,
+  without version fields or separate authoring and supported registries. Deploy
+  the matching renderer before publishing content that uses it. Breaking signed
+  contract changes require verified adoption of active and retained content,
+  followed by deletion of migration-only readers and writers.
 - Keep authored executable source in TypeScript. Do not add JavaScript source
   files or generated JavaScript to Git.
 - Do not use APIs marked deprecated by the installed TypeScript declarations.

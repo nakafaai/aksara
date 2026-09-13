@@ -1,4 +1,9 @@
 import {
+  ContentReleaseBundleSchema,
+  type ContentReleaseCurrent,
+  ContentReleaseCurrentSchema,
+} from "@nakafa/aksara-contracts/adoption/schema";
+import {
   GitCommitShaSchema,
   ReleaseIdSchema,
   Sha256HashSchema,
@@ -7,10 +12,6 @@ import {
   type ContentReleaseManifest,
   SignedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release";
-import {
-  type ContentReleaseCurrent,
-  ContentReleaseCurrentSchema,
-} from "@nakafa/aksara-contracts/release/current/state";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import {
   inheritContentSnapshots,
@@ -55,7 +56,6 @@ export function stateBundle(
       projectionCount: 0,
       projectionDigest: STATE_HASH,
       releaseId: id,
-      rendererContractVersion: RENDERER_MANIFEST.rendererContractVersion,
       rendererManifestHash: RENDERER_MANIFEST.hash,
       resultCount: 0,
       resultDigest: EMPTY_RESULT_CATALOG_DIGEST,
@@ -153,3 +153,38 @@ export const selectState = Effect.fn("AksaraCliTest.selectState")(
   (args: ReleaseArguments, state: ReturnType<typeof stateCurrent>) =>
     selectProductionAction(args, state)
 );
+
+/** Creates a retained wire fixture for state selection without asserting signature authenticity. */
+export function retainedStateBundle(id: string) {
+  const bundle = stateBundle(id);
+  /** Encodes the exact published retained capability structure for this fixture. */
+  const components = (names: readonly string[]) =>
+    names.map((name) => ({ name, version: 1 }));
+  return Schema.decodeUnknownSync(ContentReleaseBundleSchema)({
+    release: {
+      ...bundle.release,
+      manifest: {
+        ...bundle.release.manifest,
+        rendererContractVersion: "1.0.0",
+        rendererManifestHash: STATE_HASH,
+      },
+    },
+    rendererManifest: {
+      ...bundle.rendererManifest,
+      base: {
+        authoringComponents: components(bundle.rendererManifest.base),
+        supportedComponents: components(bundle.rendererManifest.base),
+      },
+      domains: bundle.rendererManifest.domains.map(
+        ({ name, components: names }) => ({
+          authoringComponents: components(names),
+          name,
+          supportedComponents: components(names),
+        })
+      ),
+      format: "nakafa-mdx-renderer-v1",
+      hash: STATE_HASH,
+      rendererContractVersion: "1.0.0",
+    },
+  });
+}

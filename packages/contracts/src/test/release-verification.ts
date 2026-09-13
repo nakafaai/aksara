@@ -41,10 +41,7 @@ const publicKeyPem = keys.publicKey
 /** Renderer manifest cryptographically bound to verification fixtures. */
 export const verificationRendererManifest = await Effect.runPromise(
   createRendererManifest({
-    base: {
-      authoringComponents: [{ name: "BlockMath", version: 1 }],
-      supportedComponents: [{ name: "BlockMath", version: 1 }],
-    },
+    base: ["BlockMath"],
     domains: testRendererDomains({}),
     publishedDomains: ["mathematics"],
   })
@@ -68,7 +65,6 @@ export const verificationManifest = Schema.decodeSync(
   projectionCount: 1,
   projectionDigest: `sha256:${"c".repeat(64)}`,
   releaseId: "test-release",
-  rendererContractVersion: "1.0.0",
   rendererManifestHash: verificationRendererManifest.hash,
   resultCount: 1,
   resultDigest: `sha256:${"f".repeat(64)}`,

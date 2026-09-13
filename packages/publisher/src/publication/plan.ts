@@ -1,8 +1,9 @@
-import type { ContentCacheChange } from "@nakafa/aksara-contracts/cache/content";
 import {
   type SignedContentArtifact,
   SignedContentArtifactSchema,
-} from "@nakafa/aksara-contracts/content";
+} from "@nakafa/aksara-contracts/adoption/schema";
+import type { ContentCacheChange } from "@nakafa/aksara-contracts/cache/content";
+
 import type { GitCommitSha } from "@nakafa/aksara-contracts/ids";
 import type { VerifiedContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import { verifyContentProjections } from "@nakafa/aksara-contracts/projection/verify";
@@ -220,7 +221,6 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
       stream: makeRollbackArtifacts({
         artifacts: invocation.input.artifacts,
         items: upsertItems(decodedItems),
-        manifest: input.manifest,
         rendererManifest,
       }),
     });
@@ -270,7 +270,6 @@ export const preparePublicationPlan: PreparePublicationPlan = Effect.fn(
       ? artifactPlan.artifacts.replay
       : makeGitArtifacts({
           compiled: artifactPlan.compiled.replay,
-          manifest: input.manifest,
           rendererManifest,
           signer,
         });

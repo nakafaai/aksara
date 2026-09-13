@@ -1,12 +1,14 @@
 import { Buffer } from "node:buffer";
-import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import {
   canonicalizeRollbackPage,
-  MAX_ROLLBACK_PAGE_BYTES,
-  MAX_ROLLBACK_PAGE_RECORDS,
   type RollbackPage,
   RollbackPageSchema,
   type RollbackRecord,
+} from "@nakafa/aksara-contracts/adoption/schema";
+import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
+import {
+  MAX_ROLLBACK_PAGE_BYTES,
+  MAX_ROLLBACK_PAGE_RECORDS,
 } from "@nakafa/aksara-contracts/release/rollback/spec";
 import { Effect, Option, Schema, Stream, Tuple } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";

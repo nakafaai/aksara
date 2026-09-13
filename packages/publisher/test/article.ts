@@ -24,10 +24,7 @@ interface ArticleFixtureSource {
   readonly sources: ReadonlyMap<string, string>;
 }
 
-const baseComponents = ["ContentGrid", "InlineMath"].map((name) => ({
-  name,
-  version: 1,
-}));
+const baseComponents = ["ContentGrid", "InlineMath"];
 const politicsComponents = [
   "KimPlusElectabilityChart",
   "MerahPutihCabinetChart",
@@ -37,24 +34,17 @@ const politicsComponents = [
   "PorkBarrelBudgetChart",
   "PorkBarrelElectabilityChart",
   "PorkBarrelFundChart",
-].map((name) => ({ name, version: 1 }));
+];
 
-/** Creates a valid manifest while varying the real politics contract version. */
-export const articleManifest = Effect.fn("ArticleTest.articleManifest")(
-  (politicsVersion = 1) =>
-    createRendererManifest({
-      base: {
-        authoringComponents: baseComponents,
-        supportedComponents: baseComponents,
-      },
-      domains: testRendererDomains({
-        politics: politicsComponents.map(({ name }) => ({
-          name,
-          version: politicsVersion,
-        })),
-      }),
-      publishedDomains: ["politics"],
-    })
+/** Creates the current reviewed politics renderer manifest. */
+export const articleManifest = Effect.fn("ArticleTest.articleManifest")(() =>
+  createRendererManifest({
+    base: baseComponents,
+    domains: testRendererDomains({
+      politics: politicsComponents,
+    }),
+    publishedDomains: ["politics"],
+  })
 );
 
 /** Collects article transitions with one already loaded source fixture. */

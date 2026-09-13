@@ -66,7 +66,7 @@ function signRuntimeValue(value: string) {
 export function createSignedArtifact(
   contentKey: ContentKey,
   requiredComponents: CompiledContentPayload["requiredComponents"] = [
-    { name: "BlockMath", version: 1 },
+    "BlockMath",
   ]
 ) {
   const payload = CompiledContentPayloadSchema.make({
@@ -169,25 +169,16 @@ export const trustedResolver = ContentVerificationKeyResolver.of({
 
 export const incompatibleManifest = await Effect.runPromise(
   createRendererManifest({
-    base: {
-      authoringComponents: [{ name: "InlineMath", version: 1 }],
-      supportedComponents: [{ name: "InlineMath", version: 1 }],
-    },
+    base: ["InlineMath"],
     domains: testRendererDomains({}),
     publishedDomains: ["mathematics"],
   })
 );
 
-const compatibleComponents = [
-  { name: "BlockMath", version: 1 },
-  { name: "InlineMath", version: 1 },
-] as const;
+const compatibleComponents = ["BlockMath", "InlineMath"] as const;
 export const compatibleManifest = await Effect.runPromise(
   createRendererManifest({
-    base: {
-      authoringComponents: compatibleComponents,
-      supportedComponents: compatibleComponents,
-    },
+    base: compatibleComponents,
     domains: testRendererDomains({}),
     publishedDomains: ["mathematics"],
   })

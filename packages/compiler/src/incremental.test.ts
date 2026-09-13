@@ -15,17 +15,17 @@ const RAW_MDX = `export const metadata = {
 <BlockMath math="x" />`;
 
 /** Builds one renderer manifest Effect for compiler-cache tests. */
-function createRendererFixture(blockMathVersion: 1 | 2) {
+function createRendererFixture(components: readonly string[]) {
   return createTestRendererManifest({
-    authoringComponents: [{ name: "BlockMath", version: blockMathVersion }],
+    components,
     domains: {
-      chemistry: [{ name: "AtomShellLab", version: 1 }],
-      mathematics: [{ name: "FunctionMachine", version: 1 }],
+      chemistry: ["AtomShellLab"],
+      mathematics: ["FunctionMachine"],
     },
   });
 }
 
-const baseRequest = createRendererFixture(1).pipe(
+const baseRequest = createRendererFixture(["BlockMath"]).pipe(
   Effect.map((rendererManifest) => ({
     artifactLocale: "en",
     contentKey: "test:incremental",
@@ -80,7 +80,10 @@ describe("incremental compilation", () => {
   it.effect("recompiles when any required identity input changes", () =>
     Effect.gen(function* () {
       const request = yield* baseRequest;
-      const upgradedManifest = yield* createRendererFixture(2);
+      const upgradedManifest = yield* createRendererFixture([
+        "BlockMath",
+        "InlineMath",
+      ]);
       const first = yield* compileIncremental(request);
       const changedRequests = [
         { ...request, contentKey: "test:incremental-other" },

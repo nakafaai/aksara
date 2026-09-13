@@ -2,14 +2,11 @@ import { Effect, Schema } from "effect";
 import {
   ArtifactRendererComponentMissingError,
   ArtifactRendererDomainUnpublishedError,
-  ArtifactRendererVersionUnsupportedError,
-  type ArtifactVerificationRequest,
-  RendererContractVersionMismatchError,
 } from "#contracts/artifact/spec";
 import type { CompiledContentPayload } from "#contracts/content";
 import {
-  type RendererCapability,
-  RendererComponentRequirementSchema,
+  RendererComponentNameSchema,
+  type RendererComponents,
 } from "#contracts/renderer/component";
 import {
   type RendererManifestEnvelope,
@@ -29,34 +26,30 @@ export class RendererManifestDomainUnpublishedError extends Schema.TaggedError<R
   { rendererDomain: RendererDomainSchema }
 ) {}
 
-/** A live renderer no longer supports one exact frozen component version. */
+/** A live renderer no longer supports one required frozen renderer name. */
 export class RendererManifestComponentUnsupportedError extends Schema.TaggedError<RendererManifestComponentUnsupportedError>()(
   "RendererManifestComponentUnsupportedError",
   {
-    componentName: RendererComponentRequirementSchema.fields.name,
-    componentVersion: RendererComponentRequirementSchema.fields.version,
+    componentName: RendererComponentNameSchema,
     rendererScope: RendererCapabilityScopeSchema,
   }
 ) {}
 
-/** Requires every frozen runtime component pair from one physical registry. */
+/** Requires every frozen renderer name from one physical registry. */
 const verifyCapabilitySuperset = Effect.fn(
   "AksaraContracts.verifyRendererCapabilitySuperset"
 )(function* (
-  frozen: RendererCapability,
-  live: RendererCapability,
+  frozen: RendererComponents,
+  live: RendererComponents,
   rendererScope: typeof RendererCapabilityScopeSchema.Type
 ) {
-  const supported = new Set(
-    live.supportedComponents.map(({ name, version }) => `${name}:${version}`)
-  );
-  for (const requirement of frozen.supportedComponents) {
-    if (supported.has(`${requirement.name}:${requirement.version}`)) {
+  const supported = new Set(live);
+  for (const componentName of frozen) {
+    if (supported.has(componentName)) {
       continue;
     }
     return yield* new RendererManifestComponentUnsupportedError({
-      componentName: requirement.name,
-      componentVersion: requirement.version,
+      componentName,
       rendererScope,
     });
   }
@@ -87,56 +80,26 @@ export const verifyRendererManifestCompatibility = Effect.fn(
       input.live,
       rendererDomain
     );
-    yield* verifyCapabilitySuperset(frozen, live, rendererDomain);
+    yield* verifyCapabilitySuperset(
+      frozen.components,
+      live.components,
+      rendererDomain
+    );
   }
   return input.live;
 });
-
-/** Confirms that base plus the selected domain implement every requirement. */
-function validateRendererRequirements(
-  payload: CompiledContentPayload,
-  manifest: RendererManifestEnvelope
-) {
-  return Effect.gen(function* () {
-    const domain = yield* selectRendererDomainCapability(
-      manifest,
-      payload.rendererDomain
-    );
-    const supportedComponents = [
-      ...manifest.base.supportedComponents,
-      ...domain.supportedComponents,
-    ];
-    for (const requirement of payload.requiredComponents) {
-      const versions = supportedComponents.filter(
-        ({ name }) => name === requirement.name
-      );
-      if (versions.length === 0) {
-        return yield* new ArtifactRendererComponentMissingError({
-          componentName: requirement.name,
-          contentKey: payload.contentKey,
-        });
-      }
-      if (!versions.some(({ version }) => version === requirement.version)) {
-        return yield* new ArtifactRendererVersionUnsupportedError({
-          componentName: requirement.name,
-          contentKey: payload.contentKey,
-          requiredVersion: requirement.version,
-        });
-      }
-    }
-  });
-}
 
 /** Verifies that a deployed live renderer can route and execute one artifact. */
 export const verifyContentRendererCompatibility = Effect.fn(
   "AksaraContracts.verifyContentRendererCompatibility"
 )(function* ({
   payload,
-  rendererContractVersion,
   rendererManifest,
 }: {
-  readonly payload: CompiledContentPayload;
-  readonly rendererContractVersion: ArtifactVerificationRequest["rendererContractVersion"];
+  readonly payload: Pick<
+    CompiledContentPayload,
+    "contentKey" | "rendererDomain" | "requiredComponents"
+  >;
   readonly rendererManifest: unknown;
 }) {
   const manifest = yield* validateRendererManifestHash(rendererManifest);
@@ -146,12 +109,18 @@ export const verifyContentRendererCompatibility = Effect.fn(
       rendererDomain: payload.rendererDomain,
     });
   }
-  if (rendererContractVersion !== manifest.rendererContractVersion) {
-    return yield* new RendererContractVersionMismatchError({
-      actualVersion: rendererContractVersion,
-      expectedVersion: manifest.rendererContractVersion,
-    });
+  const domain = yield* selectRendererDomainCapability(
+    manifest,
+    payload.rendererDomain
+  );
+  const available = new Set([...manifest.base, ...domain.components]);
+  for (const componentName of payload.requiredComponents) {
+    if (!available.has(componentName)) {
+      return yield* new ArtifactRendererComponentMissingError({
+        componentName,
+        contentKey: payload.contentKey,
+      });
+    }
   }
-  yield* validateRendererRequirements(payload, manifest);
   return manifest;
 });

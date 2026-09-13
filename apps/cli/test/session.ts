@@ -45,14 +45,14 @@ export function makeProvider(control: {
 }): PreviewProvider {
   let generation = 0;
   return {
-    eventsPath: "/v1/events",
+    eventsPath: "/events",
     failed: (input) => {
       control.failed += 1;
       control.failure = input.failure;
       control.failedRepositories = input.repositories;
       return Effect.succeed(input.generation === generation);
     },
-    manifestPath: "/v1/manifest",
+    manifestPath: "/manifest",
     origin: new URL("http://127.0.0.1:32123"),
     pending: (repositories) => {
       control.pending += 1;

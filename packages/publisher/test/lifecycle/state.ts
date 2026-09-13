@@ -77,7 +77,7 @@ export function releaseEvidence(
     projectionCount: manifest.projectionCount,
     projectionDigest: manifest.projectionDigest,
     releaseId: manifest.releaseId,
-    rendererContractVersion: manifest.rendererContractVersion,
+
     rendererManifestHash: manifest.rendererManifestHash,
     resultCount: manifest.resultCount,
     resultDigest: manifest.resultDigest,

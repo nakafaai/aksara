@@ -1,8 +1,9 @@
-import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import type {
   StageGroupInput,
   StageOperation,
-} from "@nakafa/aksara-contracts/transport/group";
+} from "@nakafa/aksara-contracts/adoption/transport";
+import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
+
 import {
   MAX_STAGE_GROUP_BYTES,
   MAX_STAGE_GROUP_COUNT,

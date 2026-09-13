@@ -1,9 +1,8 @@
 import { createHash } from "node:crypto";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Result } from "effect";
-import { SigningKeyIdSchema } from "#contracts/ids";
+import { Sha256HashSchema, SigningKeyIdSchema } from "#contracts/ids";
 import { canonicalizeRendererManifestContract } from "#contracts/renderer/contract";
-import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 import {
   verifyContentRuntimeEvidenceExchange,
   verifyContentRuntimeExchange,
@@ -54,6 +53,12 @@ describe("content runtime verification", () => {
   it.effect("binds a found response to its exact request", () =>
     Effect.gen(function* () {
       expect(yield* verifyRuntimeExchange({ response: found })).toEqual(found);
+      expect(
+        yield* verifyContentRuntimeEvidenceExchange({
+          request,
+          response: found,
+        }).pipe(provideFixtureKey)
+      ).toEqual(found);
       const responses = [
         {
           ...found,
@@ -226,44 +231,37 @@ describe("content runtime verification", () => {
         });
       })
   );
-  it.effect(
-    "executes an older frozen domain subset on a compatible live superset",
-    () =>
-      Effect.gen(function* () {
-        const domains = rendererManifest.domains.slice(0, -1);
-        const historicalContract = {
-          base: rendererManifest.base,
-          domains,
-          publishedDomains: rendererManifest.publishedDomains,
-        };
-        const historicalRenderer = yield* validateRendererManifestHash({
-          ...rendererManifest,
-          domains,
-          hash: `sha256:${createHash("sha256")
-            .update(canonicalizeRendererManifestContract(historicalContract))
-            .digest("hex")}`,
-        });
-        const historicalRelease = yield* Effect.promise(() =>
-          createSignedRuntimeRelease(historicalRenderer.hash)
-        );
-        const response = {
-          ...found,
-          activeManifestHash: historicalRelease.manifestHash,
-          activeReleaseId: historicalRelease.manifest.releaseId,
-          release: historicalRelease,
-          rendererManifest: historicalRenderer,
-        };
+  it.effect("rejects incomplete current domains in signed execution", () =>
+    Effect.gen(function* () {
+      const incompleteContract = {
+        ...rendererManifest,
+        domains: rendererManifest.domains.slice(0, -1),
+      };
+      const incompleteRenderer = {
+        ...incompleteContract,
+        hash: Sha256HashSchema.make(
+          `sha256:${createHash("sha256")
+            .update(canonicalizeRendererManifestContract(incompleteContract))
+            .digest("hex")}`
+        ),
+      };
+      const incompleteRelease = yield* Effect.promise(() =>
+        createSignedRuntimeRelease(incompleteRenderer.hash)
+      );
+      const response = {
+        ...found,
+        activeManifestHash: incompleteRelease.manifestHash,
+        activeReleaseId: incompleteRelease.manifest.releaseId,
+        release: incompleteRelease,
+        rendererManifest: incompleteRenderer,
+      };
 
-        expect(
-          yield* verifyRuntimeExchange({ rendererManifest, response })
-        ).toEqual(response);
-        expect(
-          yield* verifyContentRuntimeEvidenceExchange({
-            request,
-            response,
-          }).pipe(provideFixtureKey)
-        ).toEqual(response);
-      })
+      expect(
+        yield* verifyRuntimeExchange({ rendererManifest, response }).pipe(
+          Effect.flip
+        )
+      ).toMatchObject({ _tag: "ContractDecodeError" });
+    })
   );
   it.effect("authenticates the frozen renderer before live compatibility", () =>
     Effect.gen(function* () {

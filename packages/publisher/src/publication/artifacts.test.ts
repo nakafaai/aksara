@@ -53,13 +53,10 @@ const releaseId = ReleaseIdSchema.make("test-rollback-release");
 /** Builds one signed rollback artifact fixture and trusted key resolver. */
 const makeFixture = Effect.fn("RollbackArtifactTest.makeFixture")(function* () {
   const rendererManifest = yield* createRendererManifest({
-    base: {
-      authoringComponents: [{ name: "BlockMath", version: 1 }],
-      supportedComponents: [{ name: "BlockMath", version: 1 }],
-    },
+    base: ["BlockMath"],
     domains: testRendererDomains({
-      chemistry: [{ name: "AtomShellLab", version: 1 }],
-      mathematics: [{ name: "FunctionMachine", version: 1 }],
+      chemistry: ["AtomShellLab"],
+      mathematics: ["FunctionMachine"],
     }),
     publishedDomains: ["mathematics"],
   });
@@ -104,7 +101,7 @@ const makeFixture = Effect.fn("RollbackArtifactTest.makeFixture")(function* () {
     projectionCount: 1,
     projectionDigest: Sha256HashSchema.make(`sha256:${"c".repeat(64)}`),
     releaseId,
-    rendererContractVersion: rendererManifest.rendererContractVersion,
+
     rendererManifestHash: rendererManifest.hash,
     resultCount: 1,
     resultDigest: Sha256HashSchema.make(`sha256:${"f".repeat(64)}`),
@@ -141,7 +138,6 @@ const collect = Effect.fn("RollbackArtifactTest.collect")(
   ) =>
     makeRollbackArtifacts({
       ...input,
-      manifest: fixture.manifest,
       rendererManifest: fixture.rendererManifest,
     }).pipe(
       Stream.runCollect,
@@ -161,7 +157,6 @@ const collectFailure = Effect.fn("RollbackArtifactTest.collectFailure")(
   ) =>
     makeRollbackArtifacts({
       ...input,
-      manifest: fixture.manifest,
       rendererManifest: fixture.rendererManifest,
     }).pipe(
       Stream.runDrain,

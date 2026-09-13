@@ -22,7 +22,7 @@ import {
   rendererManifest,
   sourceByPath,
 } from "#test/question/spec";
-import { historicalRendererManifest } from "#test/renderer";
+import { incompleteRendererManifest } from "#test/renderer";
 import { selectTryoutSlice } from "#test/tryout-slice";
 
 /** Counts exact hierarchy kinds from the configured snapshot fixture. */
@@ -184,19 +184,16 @@ layer(snapshotTestLayer, { timeout: "30 seconds" })(
         })
     );
 
-    it.effect("prepares against an authenticated historical renderer", () =>
-      Effect.gen(function* () {
-        const fixture = yield* TryoutSnapshotTestFixtures;
-        const historical = historicalRendererManifest(rendererManifest);
-        const prepared = yield* prepare(
-          fixture,
-          fixture.tryoutHeads,
-          historical
-        );
-
-        expect(prepared.first.length).toBeGreaterThan(0);
-        expect(prepared.second).toEqual(prepared.first);
-      })
+    it.effect(
+      "rejects incomplete renderer domains before snapshot assembly",
+      () =>
+        Effect.gen(function* () {
+          const fixture = yield* TryoutSnapshotTestFixtures;
+          const error = yield* reject(fixture, {
+            renderer: incompleteRendererManifest(rendererManifest),
+          });
+          expect(error).toBeInstanceOf(ContractDecodeError);
+        })
     );
 
     it.effect("preserves renderer and desired-head source failures", () =>

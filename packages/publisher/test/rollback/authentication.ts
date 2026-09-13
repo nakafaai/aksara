@@ -51,13 +51,10 @@ export const makeRollbackRendererManifest = Effect.fn(
   "publisher.rollback.testRendererManifest"
 )(() =>
   createRendererManifest({
-    base: {
-      authoringComponents: [{ name: "TestBase", version: 1 }],
-      supportedComponents: [{ name: "TestBase", version: 1 }],
-    },
+    base: ["TestBase"],
     domains: testRendererDomains({
-      chemistry: [{ name: "TestChemistry", version: 1 }],
-      mathematics: [{ name: "TestMathematics", version: 1 }],
+      chemistry: ["TestChemistry"],
+      mathematics: ["TestMathematics"],
     }),
     publishedDomains: ["mathematics"],
   })
@@ -140,7 +137,7 @@ export const rollbackUpsert = RollbackUpsertStateSchema.make({
 });
 const incompatiblePayload = CompiledContentPayloadSchema.make({
   ...payload,
-  requiredComponents: [{ name: "CandidateMissing", version: 1 }],
+  requiredComponents: ["CandidateMissing"],
 });
 export const incompatibleRollbackArtifact =
   signRollbackPayload(incompatiblePayload);

@@ -2,7 +2,7 @@ import { Effect, Array as ReadonlyArray } from "effect";
 import { verifySignedContentArtifact } from "#contracts/artifact/verify";
 import { verifyContentRendererCompatibility } from "#contracts/renderer/compatibility";
 import type { RendererManifestEnvelope } from "#contracts/renderer/contract";
-import { validateLiveRendererManifestHash } from "#contracts/renderer/manifest";
+import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 import { ContentRuntimeMismatchError } from "#contracts/runtime/error";
 import {
   decodeProtectedContentRuntimeRequest,
@@ -59,13 +59,12 @@ const verifyProtectedItem = Effect.fn(
   }
   const artifact = yield* verifySignedContentArtifact({
     artifact: item.artifact,
-    rendererContractVersion: bundleRenderer.rendererContractVersion,
+
     rendererManifest: bundleRenderer,
   });
   if (liveRenderer.hash !== bundle.payload.rendererManifestHash) {
     yield* verifyContentRendererCompatibility({
       payload: artifact.payload,
-      rendererContractVersion: bundleRenderer.rendererContractVersion,
       rendererManifest: liveRenderer,
     });
   }
@@ -108,7 +107,7 @@ export const verifyProtectedContentRuntimeExchange = Effect.fn(
     bundle: response.bundle,
     rendererManifest: response.rendererManifest,
   });
-  const liveRenderer = yield* validateLiveRendererManifestHash(
+  const liveRenderer = yield* validateRendererManifestHash(
     input.rendererManifest
   );
   yield* verifyProtectedBundle(request, bundle);

@@ -1,6 +1,7 @@
 import { expect, layer } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { ActiveRollbackContentReleaseSchema } from "@nakafa/aksara-contracts/release/current/evidence";
+import { StagedRollbackContentReleaseSchema } from "@nakafa/aksara-contracts/release/current/state";
 import { replaceContentSnapshot } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Layer, Schema } from "effect";
@@ -150,18 +151,21 @@ layer(Layer.succeed(ContentVerificationKeyResolver, testVerificationResolver))(
         if (!current.recovery) {
           return yield* Effect.die("Expected one retained recovery fixture.");
         }
+        const recovery = yield* Schema.decodeUnknownEffect(
+          StagedRollbackContentReleaseSchema
+        )(current.recovery);
         const snapshotId = Sha256HashSchema.make(`sha256:${"e".repeat(64)}`);
         const target = makePublicationTarget({
           current: Effect.succeed({
             ...current,
             recovery: {
-              ...current.recovery,
+              ...recovery,
               release: {
-                ...current.recovery.release,
+                ...recovery.release,
                 manifest: {
-                  ...current.recovery.release.manifest,
+                  ...recovery.release.manifest,
                   snapshots: {
-                    ...current.recovery.release.manifest.snapshots,
+                    ...recovery.release.manifest.snapshots,
                     tryout: replaceContentSnapshot({
                       baseSnapshotId: null,
                       resultSnapshotId: snapshotId,

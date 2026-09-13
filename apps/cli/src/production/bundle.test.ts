@@ -25,7 +25,7 @@ const resolver = ContentVerificationKeyResolver.of({
   resolve: () => Effect.succeed("unused-test-public-key"),
 });
 
-vi.mock("@nakafa/aksara-contracts/tryout/runtime/verify", async () => {
+vi.mock("@nakafa/aksara-contracts/adoption/verify", async () => {
   const { Effect: TestEffect } = await import("effect");
   return {
     verifySignedTryoutRuntimeBundle: (input: { readonly bundle: unknown }) =>

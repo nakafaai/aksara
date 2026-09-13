@@ -40,7 +40,6 @@ const manifest = Schema.decodeSync(ContentReleaseManifestSchema)({
   projectionCount: 2,
   projectionDigest: `sha256:${"b".repeat(64)}`,
   releaseId: "test-release-counts",
-  rendererContractVersion: "1.0.0",
   rendererManifestHash: `sha256:${"d".repeat(64)}`,
   resultCount: 0,
   resultDigest: EMPTY_RESULT_CATALOG_DIGEST,
@@ -72,7 +71,6 @@ const evidence = Schema.decodeSync(ReleaseVerificationEvidenceSchema)({
   projectionCount: manifest.projectionCount,
   projectionDigest: manifest.projectionDigest,
   releaseId: manifest.releaseId,
-  rendererContractVersion: manifest.rendererContractVersion,
   rendererManifestHash: manifest.rendererManifestHash,
   resultCount: manifest.resultCount,
   resultDigest: manifest.resultDigest,
@@ -121,13 +119,10 @@ const payload = Schema.decodeSync(CompiledContentPayloadSchema)({
   sourceHash: `sha256:${"f".repeat(64)}`,
 });
 const rendererManifestProgram = createRendererManifest({
-  base: {
-    authoringComponents: [{ name: "BlockMath", version: 1 }],
-    supportedComponents: [{ name: "BlockMath", version: 1 }],
-  },
+  base: ["BlockMath"],
   domains: testRendererDomains({
-    chemistry: [{ name: "AtomShellLab", version: 1 }],
-    mathematics: [{ name: "FunctionMachine", version: 1 }],
+    chemistry: ["AtomShellLab"],
+    mathematics: ["FunctionMachine"],
   }),
   publishedDomains: ["mathematics"],
 });

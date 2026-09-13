@@ -86,7 +86,6 @@ export const makeManifest = Effect.fn("AksaraContractsTest.makeItemManifest")(
       projectionCount: 1,
       projectionDigest: `sha256:${"b".repeat(64)}`,
       releaseId: fixtureReleaseId,
-      rendererContractVersion: "1.0.0",
       rendererManifestHash: `sha256:${"c".repeat(64)}`,
       resultCount: 1,
       resultDigest: `sha256:${"f".repeat(64)}`,

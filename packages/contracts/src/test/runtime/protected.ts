@@ -24,7 +24,7 @@ export const protectedAnswerArtifact = createSignedArtifact(
 );
 export const protectedExpandedArtifact = createSignedArtifact(
   protectedContentKey,
-  [{ name: "InlineMath", version: 1 }]
+  ["InlineMath"]
 );
 export const protectedSelector = {
   artifactHash: protectedArtifact.artifactHash,

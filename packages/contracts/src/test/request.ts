@@ -45,10 +45,7 @@ export const replacementSnapshots = {
 
 export const rendererManifest = await Effect.runPromise(
   createRendererManifest({
-    base: {
-      authoringComponents: [{ name: "BlockMath", version: 1 }],
-      supportedComponents: [{ name: "BlockMath", version: 1 }],
-    },
+    base: ["BlockMath"],
     domains: testRendererDomains({}),
     publishedDomains: ["mathematics"],
   })
@@ -71,7 +68,7 @@ export const release = Schema.decodeSync(SignedContentReleaseSchema)({
     projectionCount: 1,
     projectionDigest: hash,
     releaseId,
-    rendererContractVersion: "1.0.0",
+
     rendererManifestHash: rendererManifest.hash,
     resultCount: 1,
     resultDigest: hash,

@@ -102,9 +102,6 @@ export function gitBundle(
       projectionCount: 0,
       projectionDigest: input.projectionDigest ?? OTHER_HASH,
       releaseId: releaseId(id),
-      rendererContractVersion:
-        input.rendererManifest?.rendererContractVersion ??
-        RENDERER_MANIFEST.rendererContractVersion,
       rendererManifestHash:
         input.rendererManifest?.hash ?? RENDERER_MANIFEST.hash,
       resultCount: 0,
@@ -147,7 +144,6 @@ export function rollbackBundle(
       projectionCount: 0,
       projectionDigest: OTHER_HASH,
       releaseId: releaseId(id),
-      rendererContractVersion: RENDERER_MANIFEST.rendererContractVersion,
       rendererManifestHash: RENDERER_MANIFEST.hash,
       resultCount: 0,
       resultDigest: EMPTY_RESULT_CATALOG_DIGEST,
@@ -183,8 +179,7 @@ export function recoveryBundle(id: string, target: ContentReleaseBundle) {
         projectionCount: 0,
         projectionDigest: OTHER_HASH,
         releaseId: releaseId(id),
-        rendererContractVersion:
-          target.rendererManifest.rendererContractVersion,
+
         rendererManifestHash: target.rendererManifest.hash,
         resultCount: targetManifest.baseResultCount,
         resultDigest: targetManifest.baseResultDigest,

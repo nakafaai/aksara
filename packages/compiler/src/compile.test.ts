@@ -12,19 +12,11 @@ const SHA256_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const VALID_METADATA = "export const metadata = {}";
 
 const testRendererManifest = createTestRendererManifest({
-  authoringComponents: [
-    { name: "BlockMath", version: 1 },
-    { name: "InlineMath", version: 1 },
-  ],
+  components: ["BlockMath", "InlineMath"],
   domains: {
-    chemistry: [{ name: "AtomShellLab", version: 1 }],
-    mathematics: [{ name: "FunctionMachine", version: 1 }],
+    chemistry: ["AtomShellLab"],
+    mathematics: ["FunctionMachine"],
   },
-  supportedComponents: [
-    { name: "BlockMath", version: 1 },
-    { name: "InlineMath", version: 1 },
-    { name: "InlineMath", version: 2 },
-  ],
 });
 
 /** Prepends valid authored metadata to a test MDX body. */
@@ -67,31 +59,33 @@ const rejectRawMdx = Effect.fn("CompilerTest.rejectRawMdx")(function* (
 });
 
 describe("compileContent", () => {
-  it.effect("selects the pinned authoring version", () =>
-    Effect.gen(function* () {
-      const rawMdx = withMetadata(
-        '## Compiler test\n\n<BlockMath math="x" />\n\n<InlineMath math="x" />'
-      );
-      const { metadata, payload } = yield* compileRawMdx(rawMdx);
-      assert.strictEqual(payload.format, "mdx-function-body");
-      assert.ok(payload.compiledCode.includes("_missingMdxReference"));
-      assert.deepStrictEqual(payload.requiredComponents, [
-        { name: "BlockMath", version: 1 },
-        { name: "InlineMath", version: 1 },
-      ]);
-      assert.ok(payload.plainText.includes("Compiler test"));
-      assert.ok(!payload.compiledCode.includes("metadata"));
-      assert.strictEqual(payload.rawMdx, rawMdx);
-      assert.strictEqual(
-        payload.sourceHash,
-        `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`
-      );
-      assert.ok(payload.byteLength > 0);
-      assert.strictEqual(payload.compilerVersion, "0.1.0");
-      assert.strictEqual(payload.mdxCompilerVersion, "3.1.1");
-      assert.match(payload.compilerConfigHash, SHA256_PATTERN);
-      assert.deepStrictEqual(metadata, {});
-    })
+  it.effect(
+    "records the exact current component names used by the compiled document",
+    () =>
+      Effect.gen(function* () {
+        const rawMdx = withMetadata(
+          '## Compiler test\n\n<BlockMath math="x" />\n\n<InlineMath math="x" />'
+        );
+        const { metadata, payload } = yield* compileRawMdx(rawMdx);
+        assert.strictEqual(payload.format, "mdx-function-body");
+        assert.ok(payload.compiledCode.includes("_missingMdxReference"));
+        assert.deepStrictEqual(payload.requiredComponents, [
+          "BlockMath",
+          "InlineMath",
+        ]);
+        assert.ok(payload.plainText.includes("Compiler test"));
+        assert.ok(!payload.compiledCode.includes("metadata"));
+        assert.strictEqual(payload.rawMdx, rawMdx);
+        assert.strictEqual(
+          payload.sourceHash,
+          `sha256:${createHash("sha256").update(rawMdx).digest("hex")}`
+        );
+        assert.ok(payload.byteLength > 0);
+        assert.strictEqual(payload.compilerVersion, "0.1.0");
+        assert.strictEqual(payload.mdxCompilerVersion, "3.1.1");
+        assert.match(payload.compilerConfigHash, SHA256_PATTERN);
+        assert.deepStrictEqual(metadata, {});
+      })
   );
 
   it.effect("records only custom component requirements", () =>
@@ -99,9 +93,7 @@ describe("compileContent", () => {
       const { payload } = yield* compileRawMdx(
         withMetadata('## Heading\n\nParagraph\n\n<BlockMath math="x" />')
       );
-      assert.deepStrictEqual(payload.requiredComponents, [
-        { name: "BlockMath", version: 1 },
-      ]);
+      assert.deepStrictEqual(payload.requiredComponents, ["BlockMath"]);
     })
   );
 
@@ -128,7 +120,7 @@ describe("compileContent", () => {
       );
       assert.strictEqual(mathematics.payload.rendererDomain, "mathematics");
       assert.deepStrictEqual(mathematics.payload.requiredComponents, [
-        { name: "FunctionMachine", version: 1 },
+        "FunctionMachine",
       ]);
       assert.strictEqual(chemistryError._tag, "RendererComponentMissingError");
     })
@@ -152,8 +144,8 @@ describe("compileContent", () => {
         "chemistry"
       );
       assert.deepStrictEqual(payload.requiredComponents, [
-        { name: "AtomShellLab", version: 1 },
-        { name: "InlineMath", version: 1 },
+        "AtomShellLab",
+        "InlineMath",
       ]);
     })
   );

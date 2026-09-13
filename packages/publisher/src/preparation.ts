@@ -37,13 +37,13 @@ import {
   decodeContentSnapshotRows,
   verifyContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot/verify";
+import { verifyContentRendererCompatibility } from "@nakafa/aksara-contracts/renderer/compatibility";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Stream } from "effect";
 import { prepareReleaseBase } from "#publisher/preparation/base";
 import { PreparedSnapshotScopeError } from "#publisher/preparation/errors";
 import { makePreparedGitRelease } from "#publisher/preparation/prepared";
 import { requireSnapshotProvenance } from "#publisher/preparation/provenance";
-import { requirePublishedRendererDomain } from "#publisher/preparation/renderer";
 import { validatePreparedTryoutRuntime } from "#publisher/preparation/runtime";
 import type {
   PrepareContentRelease,
@@ -145,10 +145,10 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
       updateReleaseItemsDigest(input.releaseId, itemState, record.item).pipe(
         Effect.andThen(
           isDerivedUpsert(record)
-            ? requirePublishedRendererDomain(
-                record.payload,
-                rendererManifest
-              ).pipe(
+            ? verifyContentRendererCompatibility({
+                payload: record.payload,
+                rendererManifest,
+              }).pipe(
                 Effect.andThen(
                   updateProjectionDigest(
                     input.releaseId,
@@ -206,7 +206,7 @@ export const prepareContentRelease: PrepareContentRelease = Effect.fn(
     projectionCount: projectionState.count,
     projectionDigest,
     releaseId: input.releaseId,
-    rendererContractVersion: rendererManifest.rendererContractVersion,
+
     rendererManifestHash: rendererManifest.hash,
     resultCount: resultState.count,
     resultDigest,

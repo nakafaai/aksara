@@ -4,7 +4,7 @@ import {
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { Effect, Stream } from "effect";
-import { historicalRendererManifest } from "#test/renderer";
+import { incompleteRendererManifest } from "#test/renderer";
 import {
   prepareRollbackFixture,
   proofBundle,
@@ -51,21 +51,20 @@ describe("prepareRollback", () => {
       )
   );
 
-  it.effect("prepares the inverse with a persisted historical renderer", () =>
-    Effect.scoped(
+  it.effect(
+    "rejects incomplete renderer domains before reading the inverse",
+    () =>
       Effect.gen(function* () {
         const loadPage = vi.fn(() => Effect.succeed(rollbackPage));
-        const historical = historicalRendererManifest(rendererManifest);
-        const prepared = yield* prepareRollbackFixture(
-          rollbackTarget(loadPage),
-          historical
-        );
-
-        expect(prepared.rendererManifest).toEqual(historical);
-        expect(prepared.manifest.rendererManifestHash).toBe(historical.hash);
-        expect(loadPage).toHaveBeenCalledTimes(1);
+        const error = yield* Effect.scoped(
+          prepareRollbackFixture(
+            rollbackTarget(loadPage),
+            incompleteRendererManifest(rendererManifest)
+          )
+        ).pipe(Effect.flip);
+        expect(error._tag).toBe("ContractDecodeError");
+        expect(loadPage).not.toHaveBeenCalled();
       })
-    )
   );
 
   it.effect(

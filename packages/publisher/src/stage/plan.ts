@@ -1,8 +1,10 @@
-import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
+import type { SignedContentArtifact } from "@nakafa/aksara-contracts/adoption/schema";
+import type { StageOperation } from "@nakafa/aksara-contracts/adoption/transport";
+
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
 import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
-import type { StageOperation } from "@nakafa/aksara-contracts/transport/group";
+
 import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { Effect, Stream } from "effect";
 import {

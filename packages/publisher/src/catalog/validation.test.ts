@@ -144,10 +144,7 @@ vi.mock("#publisher/catalog/snapshots", async (importOriginal) => {
 });
 
 const rendererManifestProgram = createRendererManifest({
-  base: {
-    authoringComponents: [{ name: "InlineMath", version: 1 }],
-    supportedComponents: [{ name: "InlineMath", version: 1 }],
-  },
+  base: ["InlineMath"],
   domains: testRendererDomains({}),
   publishedDomains: ["mathematics"],
 });

@@ -21,13 +21,10 @@ import { testRendererDomains } from "#test/renderer";
 
 const rendererManifest = await Effect.runPromise(
   createRendererManifest({
-    base: {
-      authoringComponents: [{ name: "BlockMath", version: 1 }],
-      supportedComponents: [{ name: "BlockMath", version: 1 }],
-    },
+    base: ["BlockMath"],
     domains: testRendererDomains({
-      chemistry: [{ name: "AtomShellLab", version: 1 }],
-      mathematics: [{ name: "FunctionMachine", version: 1 }],
+      chemistry: ["AtomShellLab"],
+      mathematics: ["FunctionMachine"],
     }),
     publishedDomains: ["mathematics"],
   })
@@ -93,7 +90,6 @@ export const signingManifest = Schema.decodeSync(ContentReleaseManifestSchema)({
   projectionCount: 1,
   projectionDigest: `sha256:${"c".repeat(64)}`,
   releaseId,
-  rendererContractVersion: "1.0.0",
   rendererManifestHash: rendererManifest.hash,
   resultCount: 1,
   resultDigest: `sha256:${"e".repeat(64)}`,

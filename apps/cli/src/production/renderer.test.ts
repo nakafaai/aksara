@@ -3,9 +3,13 @@ import { Effect, Fiber, Redacted } from "effect";
 import { TestClock } from "effect/testing";
 import type { HttpClientRequest } from "effect/unstable/http";
 import { HttpClient } from "effect/unstable/http";
-import { fetchProductionRenderer } from "#cli/production/renderer";
+import {
+  fetchProductionRenderer,
+  selectRendererManifest,
+} from "#cli/production/renderer";
 import { captureClient, webResponse } from "#test/http";
-import { RENDERER_MANIFEST } from "#test/real";
+import { FUNCTION_SCOPE, RENDERER_MANIFEST } from "#test/real";
+import { retainedStateBundle } from "#test/state";
 
 const ENDPOINT = new URL(
   "https://www.example.test/api/internal/content/renderer"
@@ -37,6 +41,23 @@ function runAfter<A, E>(program: Effect.Effect<A, E>, milliseconds: number) {
 }
 
 describe("production renderer", () => {
+  it.effect(
+    "requires full closure instead of retaining an old renderer for partial publication",
+    () =>
+      Effect.gen(function* () {
+        const baseBundle = retainedStateBundle("release-retained-renderer");
+        expect(
+          yield* selectRendererManifest({
+            baseBundle,
+            rendererManifest: RENDERER_MANIFEST,
+            scope: FUNCTION_SCOPE,
+          }).pipe(Effect.flip)
+        ).toMatchObject({
+          _tag: "ReleasePolicyClosureError",
+          expected: "complete-family",
+        });
+      })
+  );
   it.effect("uses only the exact authenticated HTTPS endpoint", () =>
     Effect.gen(function* () {
       const captured = captureClient((request) =>

@@ -10,16 +10,7 @@ import { gitBundle, releaseId, runtimeBundleFor } from "#test/target";
 
 const TRYOUT_SNAPSHOT_ID = Sha256HashSchema.make(`sha256:${"c".repeat(64)}`);
 const refreshedRendererManifest = createRendererManifest({
-  base: {
-    authoringComponents: [
-      ...RENDERER_MANIFEST.base.authoringComponents,
-      { name: "RuntimePairProbe", version: 1 },
-    ],
-    supportedComponents: [
-      ...RENDERER_MANIFEST.base.supportedComponents,
-      { name: "RuntimePairProbe", version: 1 },
-    ],
-  },
+  base: [...RENDERER_MANIFEST.base, "RuntimePairProbe"],
   domains: RENDERER_MANIFEST.domains,
   publishedDomains: RENDERER_MANIFEST.publishedDomains,
 });

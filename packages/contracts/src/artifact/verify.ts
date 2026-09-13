@@ -27,7 +27,7 @@ export const verifySignedContentArtifact = Effect.fn(
         );
         yield* verifyContentRendererCompatibility({
           payload: artifact.payload,
-          rendererContractVersion: request.rendererContractVersion,
+
           rendererManifest: request.rendererManifest,
         });
         return artifact;

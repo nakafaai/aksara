@@ -92,6 +92,13 @@ export function streamContentHeads(
   family: "question"
 ): Stream.Stream<QuestionHead, PublicationTargetFailure, PublicationTarget>;
 
+/** Streams a runtime-selected family with the shared compact-head contract. */
+export function streamContentHeads(
+  activeReleaseId: ReleaseId,
+  activeManifestHash: Sha256Hash,
+  family: ContentFamily
+): Stream.Stream<ContentHead, PublicationTargetFailure, PublicationTarget>;
+
 /** Streams every compact family head while binding all pages to one release. */
 export function streamContentHeads(
   activeReleaseId: ReleaseId,

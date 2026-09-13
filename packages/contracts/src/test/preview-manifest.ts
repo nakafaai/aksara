@@ -26,7 +26,7 @@ export function previewArtifact(
   const artifactHash = `sha256:${hashCharacter.repeat(64)}` as const;
   return {
     artifactHash,
-    artifactPath: `/v1/artifacts/${encodeURIComponent(artifactHash)}`,
+    artifactPath: `/artifacts/${encodeURIComponent(artifactHash)}`,
     projection,
   };
 }

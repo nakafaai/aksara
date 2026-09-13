@@ -14,7 +14,7 @@ import {
   type ArtifactLocale,
   ArtifactLocaleSchema,
 } from "#contracts/locale";
-import { CompiledContentRequirementsSchema } from "#contracts/renderer/component";
+import { RendererComponentsSchema } from "#contracts/renderer/component";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
 import { compareCodeUnits } from "#contracts/text/order";
@@ -83,19 +83,7 @@ export type CompileDocumentSource = typeof CompileDocumentSourceSchema.Type;
 export const CompileDocumentRequestSchema = Schema.Struct({
   ...CompileDocumentSourceSchema.fields,
   rendererManifest: RendererManifestEnvelopeSchema,
-}).pipe(
-  Schema.check(
-    Schema.makeFilter(
-      (request) =>
-        request.rendererManifest.domains.some(
-          ({ name }) => name === request.rendererDomain
-        ),
-      {
-        message: "Expected the selected renderer domain to have a capability.",
-      }
-    )
-  )
-);
+});
 export type CompileDocumentRequest = typeof CompileDocumentRequestSchema.Type;
 
 /** Precompiled trusted payload stored and signed before server-only execution. */
@@ -114,7 +102,7 @@ export const CompiledContentPayloadSchema = Schema.Struct({
   plainText: Schema.String,
   rawMdx: Schema.String,
   rendererDomain: RendererDomainSchema,
-  requiredComponents: CompiledContentRequirementsSchema,
+  requiredComponents: RendererComponentsSchema,
   sourceHash: Sha256HashSchema,
 });
 export type CompiledContentPayload = typeof CompiledContentPayloadSchema.Type;
@@ -146,10 +134,7 @@ export function canonicalizeCompiledContentPayload(
     plainText: payload.plainText,
     rawMdx: payload.rawMdx,
     rendererDomain: payload.rendererDomain,
-    requiredComponents: payload.requiredComponents.map(({ name, version }) => ({
-      name,
-      version,
-    })),
+    requiredComponents: payload.requiredComponents,
     sourceHash: payload.sourceHash,
   });
 }

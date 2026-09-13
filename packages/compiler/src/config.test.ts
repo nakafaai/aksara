@@ -56,23 +56,6 @@ const installedVersion = Effect.fn("CompilerConfigTest.installedVersion")(
   }
 );
 
-/** Builds one exact renderer contract for compiler identity tests. */
-function createRendererFixture(inlineVersion: 1 | 2, expanded: boolean) {
-  return createTestRendererManifest({
-    authoringComponents: [{ name: "InlineMath", version: inlineVersion }],
-    domains: {
-      chemistry: [{ name: "AtomShellLab", version: 1 }],
-      mathematics: [{ name: "FunctionMachine", version: 1 }],
-    },
-    supportedComponents: expanded
-      ? [
-          { name: "InlineMath", version: 1 },
-          { name: "InlineMath", version: 2 },
-        ]
-      : [{ name: "InlineMath", version: 1 }],
-  });
-}
-
 describe("compiler config", () => {
   it.effect("pins every output-affecting installed tool", () =>
     Effect.gen(function* () {
@@ -100,21 +83,35 @@ describe("compiler config", () => {
     })
   );
 
-  it.effect("changes only for selected versions or route domain", () =>
-    Effect.gen(function* () {
-      const before = yield* createRendererFixture(1, false);
-      const expanded = yield* createRendererFixture(1, true);
-      const migrated = yield* createRendererFixture(2, true);
-      const [beforeHash, expandedHash, migratedHash, chemistryHash] =
-        yield* Effect.all([
-          createCompilerConfigHash(before, "mathematics"),
-          createCompilerConfigHash(expanded, "mathematics"),
-          createCompilerConfigHash(migrated, "mathematics"),
-          createCompilerConfigHash(before, "chemistry"),
-        ]);
-      assert.strictEqual(expandedHash, beforeHash);
-      assert.notStrictEqual(migratedHash, beforeHash);
-      assert.notStrictEqual(chemistryHash, beforeHash);
-    })
+  it.effect(
+    "hashes the selected domain and current names without unrelated domain churn",
+    () =>
+      Effect.gen(function* () {
+        const before = yield* createTestRendererManifest({
+          components: ["InlineMath"],
+          domains: { mathematics: ["FunctionMachine"] },
+        });
+        const unrelated = yield* createTestRendererManifest({
+          components: ["InlineMath"],
+          domains: {
+            chemistry: ["AtomShellLab"],
+            mathematics: ["FunctionMachine"],
+          },
+        });
+        const changed = yield* createTestRendererManifest({
+          components: ["BlockMath", "InlineMath"],
+          domains: { mathematics: ["FunctionMachine"] },
+        });
+        const [beforeHash, unrelatedHash, changedHash, chemistryHash] =
+          yield* Effect.all([
+            createCompilerConfigHash(before, "mathematics"),
+            createCompilerConfigHash(unrelated, "mathematics"),
+            createCompilerConfigHash(changed, "mathematics"),
+            createCompilerConfigHash(before, "chemistry"),
+          ]);
+        assert.strictEqual(unrelatedHash, beforeHash);
+        assert.notStrictEqual(changedHash, beforeHash);
+        assert.notStrictEqual(chemistryHash, beforeHash);
+      })
   );
 });

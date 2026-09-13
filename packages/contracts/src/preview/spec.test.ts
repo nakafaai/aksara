@@ -177,7 +177,7 @@ describe("local preview manifest", () => {
         artifacts: [
           {
             ...articleArtifact,
-            artifactPath: "/v1/artifacts/other",
+            artifactPath: "/artifacts/other",
           },
         ],
       },
