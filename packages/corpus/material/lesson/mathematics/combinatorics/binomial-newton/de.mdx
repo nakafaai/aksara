@@ -3,7 +3,7 @@ export const metadata = {
   description: "Der binomische Lehrsatz entwickelt Potenzen einer Summe. Beispiele und Aufgaben zeigen, wie man bestimmte und konstante Terme über ihre Koeffizienten findet.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-13",
     subject: "Kombinatorik",
 };
 
@@ -20,7 +20,7 @@ Für die ersten Potenzen sieht das Muster so aus:
 <BlockMath math="(x + y)^1 = x + y" />
 <BlockMath math="(x + y)^2 = x^2 + 2xy + y^2" />
 <BlockMath math="(x + y)^3 = x^3 + 3x^2y + 3xy^2 + y^3" />
-<BlockMath math="\begin{aligned} &amp;(x + y)^4 = x^4 + 4x^3y + 6x^2y^2 \\ &amp;+ 4xy^3 + y^4 \end{aligned}" />
+<BlockMath math="\begin{aligned} (x + y)^4 &amp;= x^4 + 4x^3y + 6x^2y^2 \\ &amp;\quad{}+ 4xy^3 + y^4 \end{aligned}" />
 </MathContainer>
 
 Die Koeffizienten ändern sich mit der Potenz, ihre Positionen folgen jedoch immer derselben Regel.
@@ -39,7 +39,7 @@ Der Binomialkoeffizient wird als „<InlineMath math="n" /> über <InlineMath ma
 
 Ausgeschrieben hat die Entwicklung die Form:
 
-<BlockMath math="\begin{aligned} &amp;(x + y)^n = \binom{n}{0}x^n + \binom{n}{1}x^{n-1}y \\ &amp;+ \binom{n}{2}x^{n-2}y^2 + \cdots + \binom{n}{n}y^n \end{aligned}" />
+<BlockMath math="\begin{aligned} (x + y)^n &amp;= \binom{n}{0}x^n + \binom{n}{1}x^{n-1}y \\ &amp;\quad{}+ \binom{n}{2}x^{n-2}y^2 \\ &amp;\quad{}+\cdots + \binom{n}{n}y^n \end{aligned}" />
 
 Jeder Term der Entwicklung hat die Struktur <InlineMath math="\binom{n}{k}x^{n-k}y^k" />. Die Exponenten von <InlineMath math="x" /> und <InlineMath math="y" /> ergeben zusammen stets <InlineMath math="n" />.
 
@@ -79,7 +79,7 @@ Wir schreiben den Ausdruck mit <InlineMath math="a = 3x^3" /> und <InlineMath ma
 Der allgemeine Term lautet:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &amp;\binom{8}{k} (3x^3)^{8-k} \left(-\frac{2}{x}\right)^k \\ &amp;= \binom{8}{k} \cdot (3)^{8-k} \cdot (x^3)^{8-k} \\ &amp;\cdot (-2)^k \cdot (x^{-1})^k \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\binom{8}{k} (3x^3)^{8-k} \left(-\frac{2}{x}\right)^k \\ &amp;= \binom{8}{k} \cdot (3)^{8-k} \cdot (x^3)^{8-k} \\ &amp;\quad{}\cdot (-2)^k \cdot (x^{-1})^k \end{aligned}" />
 <BlockMath math="= \binom{8}{k} \cdot 3^{8-k} \cdot (-2)^k \cdot x^{3(8-k)} \cdot x^{-k}" />
 <BlockMath math="\begin{aligned}  &amp;= \binom{8}{k} \cdot 3^{8-k} \cdot (-2)^k \cdot x^{24-3k-k} \\ &amp;= \binom{8}{k} \cdot 3^{8-k} \cdot (-2)^k \cdot x^{24-4k} \end{aligned}" />
 </MathContainer>

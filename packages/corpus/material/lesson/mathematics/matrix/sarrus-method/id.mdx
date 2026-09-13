@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung determinan matriks berordo tiga kali tiga dengan pola diagonal Sarrus dan lacak tanda setiap hasil kali.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Matriks",
 };
 
@@ -42,7 +42,7 @@ Salinan kedua kolom menampilkan tiga diagonal turun dan tiga diagonal naik yang 
 Kalikan elemen-elemen di sepanjang tiga diagonal dari kiri atas ke kanan bawah. Jumlahkan hasil perkalian ini, kita sebut <InlineMath math="D_{\text{positif}}" />.
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;D_{\text{positif}} = (a_{11} \cdot a_{22} \cdot a_{33}) \\ &amp;+ (a_{12} \cdot a_{23} \cdot a_{31}) + (a_{13} \cdot a_{21} \cdot a_{32}) \end{aligned}" />
+  <BlockMath math="\begin{aligned} D_{\text{positif}} &amp;= (a_{11} \cdot a_{22} \cdot a_{33}) \\ &amp;\quad{}+ (a_{12} \cdot a_{23} \cdot a_{31}) \\ &amp;\quad{}+ (a_{13} \cdot a_{21} \cdot a_{32}) \end{aligned}" />
 </MathContainer>
 
 Suku pertama adalah perkalian diagonal utama. Suku kedua dan ketiga adalah perkalian diagonal sejajar yang melibatkan elemen dari kolom yang disalin.
@@ -52,7 +52,7 @@ Suku pertama adalah perkalian diagonal utama. Suku kedua dan ketiga adalah perka
 Kalikan elemen-elemen di sepanjang tiga diagonal dari kanan atas ke kiri bawah. Jumlahkan hasil perkalian ini, kita sebut <InlineMath math="D_{\text{negatif}}" />.
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;D_{\text{negatif}} = (a_{13} \cdot a_{22} \cdot a_{31}) \\ &amp;+ (a_{11} \cdot a_{23} \cdot a_{32}) + (a_{12} \cdot a_{21} \cdot a_{33}) \end{aligned}" />
+  <BlockMath math="\begin{aligned} D_{\text{negatif}} &amp;= (a_{13} \cdot a_{22} \cdot a_{31}) \\ &amp;\quad{}+ (a_{11} \cdot a_{23} \cdot a_{32}) \\ &amp;\quad{}+ (a_{12} \cdot a_{21} \cdot a_{33}) \end{aligned}" />
 </MathContainer>
 
 Suku pertama adalah perkalian diagonal sekunder (anti-diagonal). Suku kedua dan ketiga adalah perkalian diagonal sejajar yang melibatkan elemen dari kolom yang disalin, bergerak ke arah kiri bawah.
@@ -65,11 +65,11 @@ Determinan matriks <InlineMath math="A" />, <InlineMath math="\det(A)" />, adala
 
 Substitusikan nilai <InlineMath math="D_{\text{positif}}" /> dan <InlineMath math="D_{\text{negatif}}" />:
 
-<BlockMath math="\begin{aligned} &amp;\det(A)=\bigl(a_{11}a_{22}a_{33} \\ &amp;+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\bigr) \\ &amp;-\bigl(a_{13}a_{22}a_{31} \\ &amp;+a_{11}a_{23}a_{32}+a_{12}a_{21}a_{33}\bigr) \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\det(A) \\ &amp;=\left(\begin{aligned} &amp;a_{11}a_{22}a_{33} \\ &amp;{}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\end{aligned}\right) \\ &amp;\quad{}-\left(\begin{aligned} &amp;a_{13}a_{22}a_{31} \\ &amp;{}+a_{11}a_{23}a_{32}+a_{12}a_{21}a_{33}\end{aligned}\right) \end{aligned}" />
 
 Atau, setelah tanda negatif didistribusikan:
 
-<BlockMath math="\begin{aligned} &amp;\det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} \\ &amp;+ a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} \\ &amp;- a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33} \end{aligned}" />
+<BlockMath math="\begin{aligned} \det(A) &amp;= a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} \\ &amp;\quad{}+ a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} \\ &amp;\quad{}- a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33} \end{aligned}" />
 
 ### Contoh Numerik dengan Pembahasan
 
@@ -105,7 +105,7 @@ Kemudian, dengan Metode Sarrus, kita perluas matriks dan identifikasi jalur perk
 
 Sehingga, formula lengkapnya menjadi:
 
-<BlockMath math="\begin{aligned} &amp;\det(A)=\bigl(a_{11}a_{22}a_{33} \\ &amp;+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\bigr) \\ &amp;-\bigl(a_{13}a_{22}a_{31} \\ &amp;+a_{11}a_{23}a_{32}+a_{12}a_{21}a_{33}\bigr) \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\det(A) \\ &amp;=\left(\begin{aligned} &amp;a_{11}a_{22}a_{33} \\ &amp;{}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\end{aligned}\right) \\ &amp;\quad{}-\left(\begin{aligned} &amp;a_{13}a_{22}a_{31} \\ &amp;{}+a_{11}a_{23}a_{32}+a_{12}a_{21}a_{33}\end{aligned}\right) \end{aligned}" />
 
 ## Metode Sarrus Hanya Berlaku untuk Matriks Tiga Kali Tiga
 

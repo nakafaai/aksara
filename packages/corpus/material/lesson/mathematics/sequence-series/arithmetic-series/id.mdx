@@ -3,7 +3,7 @@ export const metadata = {
   description: "Turunkan rumus jumlah deret aritmetika dengan cara memasangkan suku seperti pada metode Gauss, lalu gunakan rumus jumlah tersebut dalam contoh lengkap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-08",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Barisan dan Deret",
 };
 
@@ -36,11 +36,11 @@ Cara Gauss tadi bisa kita pakai untuk membuat rumus umum jumlah <InlineMath math
 
 Mulailah dengan sebuah deret aritmetika:
 
-<BlockMath math="\begin{aligned} &amp;S_n = U_1 + U_2 + U_3 \\ &amp;+ \dots + U_{n-1} + U_n \end{aligned}" />
+<BlockMath math="\begin{aligned} S_n &amp;= U_1 + U_2 + U_3 \\ &amp;\quad{}+ \dots + U_{n-1} + U_n \end{aligned}" />
 
 Kalau ditulis lengkap dengan suku pertama <InlineMath math="(a)" /> dan beda <InlineMath math="(b)" />:
 
-<BlockMath math="\begin{aligned} &amp;S_n = a + (a+b) + (a+2b) + \dots \\ &amp;+ (a+(n-2)b) + (a+(n-1)b) \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;S_n \\ &amp;= a + (a+b) + (a+2b) + \dots \\ &amp;\quad{}+ (a+(n-2)b) + (a+(n-1)b) \end{aligned}" />
 
 Tuliskan deret <InlineMath math="S_n"/> yang sama dalam urutan terbalik, dari suku terakhir ke suku pertama:
 
@@ -48,14 +48,14 @@ Tuliskan deret <InlineMath math="S_n"/> yang sama dalam urutan terbalik, dari su
 
 Atau:
 
-<BlockMath math="\begin{aligned} &amp;S_n \\ &amp;= (a+(n-1)b) + (a+(n-2)b) \\ &amp;+ \dots + (a+b) + a \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;S_n \\ &amp;= (a+(n-1)b) + (a+(n-2)b) \\ &amp;\quad{}+ \dots + (a+b) + a \end{aligned}" />
 
 Jumlahkan kedua bentuk <InlineMath math="S_n"/> tersebut suku demi suku:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;S_n = a + (a+b) \\ &amp;+ \dots + (a+(n-2)b) \\ &amp;+ (a+(n-1)b) \end{aligned}" />
-  <BlockMath math="\begin{aligned} &amp;S_n \\ &amp;= (a+(n-1)b) + (a+(n-2)b) \\ &amp;+ \dots + (a+b) + a \end{aligned}" />
-  <BlockMath math="\begin{aligned} &amp;2S_n = [2a+(n-1)b] \\ &amp;+ [2a+(n-1)b] + \dots \\ &amp;+ [2a+(n-1)b] + [2a+(n-1)b] \end{aligned}" />
+  <BlockMath math="\begin{aligned} S_n &amp;= a + (a+b) \\ &amp;\quad{}+ \dots + (a+(n-2)b) \\ &amp;\quad{}+ (a+(n-1)b) \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;S_n \\ &amp;= (a+(n-1)b) + (a+(n-2)b) \\ &amp;\quad{}+ \dots + (a+b) + a \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;2S_n \\ &amp;=[2a+(n-1)b]+[2a+(n-1)b] \\ &amp;\quad{}+\dots+[2a+(n-1)b] \\ &amp;\quad{}+[2a+(n-1)b] \end{aligned}" />
 </MathContainer>
 
 Setiap pasangan suku pada baris atas dan bawah memiliki jumlah yang sama, yaitu <InlineMath math="2a + (n-1)b" />. Karena setiap baris memuat <InlineMath math="n" /> suku, penjumlahan itu menghasilkan <InlineMath math="n" /> pasangan yang sama.

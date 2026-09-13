@@ -3,7 +3,7 @@ export const metadata = {
     description: "Derive normal equations for least squares from orthogonality, solve the closed form when it exists, and identify singular cases.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-15",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-13",
     subject: "Linear Methods of AI",
 };
 
@@ -53,13 +53,17 @@ Using the Pythagorean theorem, we can write
 
 <MathContainer>
   <BlockMath math="\begin{aligned} &amp;\|Ax - b\|_2^2 \\ &amp;= \|A\hat{x} - b - A(\hat{x} - x)\|_2^2 \end{aligned}" />
-  <BlockMath math="\begin{aligned} &amp;= \|A\hat{x} - b\|_2^2 + \|A(\hat{x} - x)\|_2^2 \\ &amp;- 2 \langle A\hat{x} - b, A(\hat{x} - x) \rangle \end{aligned}" />
-  <BlockMath math="\begin{aligned} &amp;=\|A\hat x-b\|_2^2 \\ &amp;+\underbrace{\|A(\hat x-x)\|_2^2}_{\ge0} \\ &amp;-2\underbrace{(\hat x-x)^T(A^TA\hat x-A^Tb)}_{=0} \end{aligned}" />
+  <BlockMath math="\begin{aligned}  &amp;= \|A\hat{x} - b\|_2^2 + \|A(\hat{x} - x)\|_2^2 \\ &amp;\quad{}- 2 \langle A\hat{x} - b, A(\hat{x} - x) \rangle \end{aligned}" />
+  <BlockMath math="\begin{aligned}  &amp;=\|A\hat x-b\|_2^2 \\ &amp;\quad{}+\underbrace{\|A(\hat x-x)\|_2^2}_{\ge0} \\ &amp;\quad{}-2\underbrace{(\hat x-x)^T(A^TA\hat x-A^Tb)}_{=0} \end{aligned}" />
 </MathContainer>
 
-Because <InlineMath math="\hat{x}" /> satisfies the normal equation, the cross term is zero. The remaining squared norm is nonnegative, so
+Because <InlineMath math="\hat{x}" /> satisfies the normal equation, the cross term is zero. This leaves:
 
-<BlockMath math="\begin{aligned} &amp;\|Ax - b\|_2^2 = \|A\hat{x} - b\|_2^2 \\ &amp;+ \|A(\hat{x} - x)\|_2^2 \geq \|A\hat{x} - b\|_2^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} \|Ax - b\|_2^2 &amp;= \|A\hat{x} - b\|_2^2 \\ &amp;\quad{}+ \|A(\hat{x} - x)\|_2^2 \end{aligned}" />
+
+The added squared norm is nonnegative. Therefore, the squared norm of the residual at any <InlineMath math="x" /> cannot be smaller than at <InlineMath math="\hat{x}" />:
+
+<BlockMath math="\|Ax-b\|_2^2\geq\|A\hat{x}-b\|_2^2" />
 
 This inequality proves that <InlineMath math="\hat{x}" /> indeed gives the minimum value.
 

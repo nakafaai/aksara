@@ -3,7 +3,7 @@ export const metadata = {
   description: "Solve linear least-squares problems with QR decomposition and the Moore-Penrose pseudoinverse, then compare their numerical behavior with normal equations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-15",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Linear Methods of AI",
 };
 
@@ -70,7 +70,7 @@ For a full-column-rank matrix with <InlineMath math="m\ge n" />, use the thin <I
 
 The least-squares objective separates into
 
-<BlockMath math="\begin{aligned} &amp;\|Ax-b\|_2^2 =\|R_1x-Q_1^Tb\|_2^2 \\ &amp;+\|(I-Q_1Q_1^T)b\|_2^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} \|Ax-b\|_2^2 &amp;=\|R_1x-Q_1^Tb\|_2^2 \\ &amp;\quad{}+\|(I-Q_1Q_1^T)b\|_2^2 \end{aligned}" />
 
 The second term does not depend on <InlineMath math="x" />. Therefore, the minimizer is obtained by solving the upper-triangular system
 
@@ -112,7 +112,7 @@ The calculation gives:
 
 <MathContainer>
 <BlockMath math="\hat{x}=\begin{pmatrix}0.98095\\3.02857\\-2.00952\end{pmatrix}" />
-<BlockMath math="\begin{aligned} &amp;\hat{y}(t) =0.98095t^2+3.02857t \\ &amp;-2.00952 \end{aligned}" />
+<BlockMath math="\begin{aligned} \hat{y}(t) &amp;=0.98095t^2 \\ &amp;\quad{}+3.02857t -2.00952 \end{aligned}" />
 <BlockMath math="\|A\hat{x}-b\|_2\approx0.41861" />
 </MathContainer>
 

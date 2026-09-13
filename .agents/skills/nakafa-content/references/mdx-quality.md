@@ -120,11 +120,18 @@ strings with their own [math syntax](question-bank.md#response-items).
   line flow. Refer to an already displayed matrix instead of expanding it again
   in a summary. Keep short expressions inline; decide from context, not length.
   Response options keep math inline under the question-bank contract.
-- Compose displayed derivations for a narrow viewport. Use short aligned rows,
-  name repeated subexpressions, and separate conceptual steps with complete
-  prose. Preserve every transformation and condition. Do not shrink all math,
-  clip terms, or rely on horizontal scrolling to fit an avoidably long line.
-  Verify the actual renderer at a mobile width, including longer locale text.
+- Compose displayed derivations around complete mathematical steps. Keep short
+  equations whole. If a line must continue, align it with the side it belongs
+  to and preserve the grouping of sums, products, and conditions. Do not leave
+  a lone term such as `+a` on a new row or split one expression across bordered
+  blocks. Introduce meaningful subexpressions with complete prose when needed.
+  Explain what a domain or condition applies to and why a conclusion permits
+  the next step. Put that explanation beside the formula in prose; do not leave
+  a bare domain or comparison fragment on a separate row. Preserve every
+  transformation and condition. Verify both desktop and mobile composition
+  in the actual renderer. Matching tokens and fitting widths do
+  not prove clarity. Do not shrink or clip math; prefer necessary scrolling
+  over an ambiguous rewrite while resolving avoidable long lines.
 - Keep the leading backslash on every LaTeX command in a `math` prop. Bare
   `ldots`, `cdots`, `vdots`, or `ddots` render as letters rather than an
   ellipsis. Check this only inside rendered math, not in prose, code, or
