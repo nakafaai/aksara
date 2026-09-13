@@ -1,6 +1,6 @@
-import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/adoption/schema";
-import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/adoption/verify";
 import type { PublicationReceipt } from "@nakafa/aksara-contracts/release";
+import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
+import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect } from "effect";

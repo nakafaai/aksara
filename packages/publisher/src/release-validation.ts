@@ -1,5 +1,7 @@
-import type { SignedContentArtifact } from "@nakafa/aksara-contracts/adoption/schema";
-import type { CompiledContentPayload } from "@nakafa/aksara-contracts/content";
+import type {
+  CompiledContentPayload,
+  SignedContentArtifact,
+} from "@nakafa/aksara-contracts/content";
 import {
   ReleaseIdSchema,
   type Sha256Hash,

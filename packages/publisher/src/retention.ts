@@ -1,8 +1,8 @@
+import { type ReleaseId, ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import type {
   ContentReleaseCurrent,
   StagedRollbackContentRelease,
-} from "@nakafa/aksara-contracts/adoption/schema";
-import { type ReleaseId, ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+} from "@nakafa/aksara-contracts/release/current/state";
 
 import { Effect, Schema } from "effect";
 

@@ -57,7 +57,7 @@ const allowedWorkspaceDependencies: ReadonlyMap<
     ]),
   ],
   ["compiler", new Set(["@nakafa/aksara-contracts"])],
-  ["contracts", new Set(["@nakafa/aksara-retained"])],
+  ["contracts", new Set()],
   ["corpus", new Set(["@nakafa/aksara-contracts", "@nakafa/aksara-utilities"])],
   [
     "publisher",

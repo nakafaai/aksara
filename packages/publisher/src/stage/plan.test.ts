@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
-import type { StageGroupInput } from "@nakafa/aksara-contracts/adoption/transport";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import type { StageGroupInput } from "@nakafa/aksara-contracts/transport/group";
 
 import { SignedTryoutRuntimeBundleSchema } from "@nakafa/aksara-contracts/tryout/runtime/spec";
 import { makeTryoutSnapshot } from "@nakafa/aksara-contracts/tryout/snapshot/hash";

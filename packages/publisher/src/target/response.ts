@@ -1,9 +1,9 @@
-import type { PublicationRequest } from "@nakafa/aksara-contracts/adoption/transport";
+import { MAX_PUBLICATION_RESPONSE_BYTES } from "@nakafa/aksara-contracts/transport/limits";
+import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
 import {
   type PublicationResponse,
   PublicationResponseSchema,
-} from "@nakafa/aksara-contracts/adoption/transport";
-import { MAX_PUBLICATION_RESPONSE_BYTES } from "@nakafa/aksara-contracts/transport/limits";
+} from "@nakafa/aksara-contracts/transport/response";
 
 import { isJsonType, readText } from "@nakafa/aksara-utilities/http/response";
 import { Effect, Schema } from "effect";

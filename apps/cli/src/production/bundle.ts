@@ -1,7 +1,6 @@
-import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/adoption/schema";
-import { verifySignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/adoption/verify";
-
+import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/spec";
+import { verifySignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/runtime/verify";
 
 import { Effect, Schema } from "effect";
 

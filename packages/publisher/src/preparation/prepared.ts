@@ -1,4 +1,4 @@
-import type { SignedContentArtifact } from "@nakafa/aksara-contracts/adoption/schema";
+import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
 
 import type { ContentProjection } from "@nakafa/aksara-contracts/projection/spec";
 import type {

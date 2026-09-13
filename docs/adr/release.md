@@ -172,9 +172,8 @@ Every current renderer manifest contains the complete canonical domain set.
 Compilation, family planning, signing, staging, runtime evidence, and execution
 use the same exact contract and hash validation. Publication may select a
 subset of those domains, and each document uses its own physical capability.
-The temporary adoption reader authenticates original pre-adoption manifests
-through their published contract; current manifests never accept incomplete
-domain sets.
+Every current renderer manifest carries the complete canonical domain set; one
+contract is authoritative and no reader accepts an incomplete domain set.
 A release that adopts the new renderer hash requires complete family closure
 and an exact live match. A scoped content-only release retains the active
 frozen manifest and may activate only when the live renderer still publishes
@@ -202,7 +201,7 @@ source repository is public.
 - Content publication does not pretend to transact with a renderer deploy.
 - Additional components in existing renderer domains can deploy before
   publication without breaking the older active release. Changing the domain
-  set requires coordinated adoption of the complete manifest contract.
+  set requires a complete current-format republish of the signed content.
 - Scoped content publication remains independent of an additive renderer
   deployment while preserving the active frozen renderer contract.
 - A deployment that understands a newly published domain remains the rollback

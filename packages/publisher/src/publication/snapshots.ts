@@ -1,10 +1,10 @@
-import type { StageOperation } from "@nakafa/aksara-contracts/adoption/transport";
 import { contentSnapshotId } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { baseContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import {
   type VerifiedContentSnapshots,
   verifyContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot/verify";
+import type { StageOperation } from "@nakafa/aksara-contracts/transport/group";
 
 import { Effect, Stream } from "effect";
 

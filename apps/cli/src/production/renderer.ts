@@ -1,5 +1,4 @@
-import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/adoption/schema";
-
+import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import { verifyRendererPolicyTransition } from "@nakafa/aksara-contracts/release/policy";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
@@ -77,8 +76,5 @@ export const selectRendererManifest = Effect.fn(
   if (Result.isSuccess(transition)) {
     return liveRenderer;
   }
-  if (activeBundle.rendererManifest.format === "nakafa-mdx-renderer") {
-    return activeBundle.rendererManifest;
-  }
-  return yield* transition.failure;
+  return activeBundle.rendererManifest;
 });

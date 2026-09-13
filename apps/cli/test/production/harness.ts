@@ -216,23 +216,6 @@ vi.mock(
   }
 );
 
-vi.mock(
-  import("@nakafa/aksara-contracts/adoption/verify"),
-  async (importOriginal) => {
-    const original = await importOriginal();
-    const release = await import("@nakafa/aksara-contracts/release/verify");
-    const runtime = await import(
-      "@nakafa/aksara-contracts/tryout/runtime/verify"
-    );
-    return {
-      ...original,
-      verifyContentReleaseBundle: release.verifyContentReleaseBundle,
-      verifySignedContentRelease: release.verifySignedContentRelease,
-      verifySignedTryoutRuntimeBundle: runtime.verifySignedTryoutRuntimeBundle,
-    };
-  }
-);
-
 vi.mock("@nakafa/aksara-publisher/publication", async () => {
   const { Effect: TestEffect, Redacted: TestRedacted } = await import("effect");
   const { SigningKeyIdSchema } = await import("@nakafa/aksara-contracts/ids");

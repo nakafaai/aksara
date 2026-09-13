@@ -1,13 +1,6 @@
-import {
-  isRollbackUpsert,
-  type RollbackRecord,
-  SignedContentArtifactSchema,
-} from "@nakafa/aksara-contracts/adoption/schema";
-import {
-  verifySignedContentArtifact,
-  verifySignedContentArtifactIntegrity,
-} from "@nakafa/aksara-contracts/adoption/verify";
-
+import { verifySignedContentArtifactIntegrity } from "@nakafa/aksara-contracts/artifact/integrity";
+import { verifySignedContentArtifact } from "@nakafa/aksara-contracts/artifact/verify";
+import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import {
@@ -20,6 +13,10 @@ import {
   ContentUpsertSchema,
 } from "@nakafa/aksara-contracts/release";
 import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback/spec";
+import {
+  isRollbackUpsert,
+  type RollbackRecord,
+} from "@nakafa/aksara-contracts/release/rollback/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Schema, Stream } from "effect";
 import {

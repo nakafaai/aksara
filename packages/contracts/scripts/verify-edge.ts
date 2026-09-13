@@ -12,9 +12,6 @@ import {
 import { parseInstalledManifest } from "#scripts/manifest";
 
 export const EDGE_CONTRACT_EXPORTS = [
-  "adoption/schema",
-  "adoption/transport",
-  "adoption/runtime",
   "graph/family",
   "release/canonical",
   "release/snapshot/data",

@@ -1,7 +1,3 @@
-import type {
-  StageGroupInput,
-  StageOperation,
-} from "@nakafa/aksara-contracts/adoption/transport";
 import {
   type ContentReleaseManifest,
   ReleaseVerificationCompleteSchema,
@@ -19,6 +15,10 @@ import type {
   ContentReleaseBundle,
   RollbackContentReleaseBundle,
 } from "@nakafa/aksara-contracts/release/lifecycle";
+import type {
+  StageGroupInput,
+  StageOperation,
+} from "@nakafa/aksara-contracts/transport/group";
 
 import type { StageTryoutRuntimeBundleInput } from "@nakafa/aksara-contracts/transport/runtime";
 import { Effect, Schema } from "effect";

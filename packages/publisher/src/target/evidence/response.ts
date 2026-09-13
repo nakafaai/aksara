@@ -1,8 +1,6 @@
-import type {
-  PublicationRequest,
-  PublicationSuccess,
-} from "@nakafa/aksara-contracts/adoption/transport";
 import type { StageBatchReceipt } from "@nakafa/aksara-contracts/transport/batch";
+import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
+import type { PublicationSuccess } from "@nakafa/aksara-contracts/transport/response";
 
 import type { StageSnapshotBatchReceipt } from "@nakafa/aksara-contracts/transport/snapshot";
 import { Match } from "effect";

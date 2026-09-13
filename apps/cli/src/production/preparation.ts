@@ -1,13 +1,12 @@
-import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/adoption/schema";
-import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/adoption/verify";
 import type { GitCommitSha, ReleaseId } from "@nakafa/aksara-contracts/ids";
 import type {
   ContentHead,
   QuestionHead,
 } from "@nakafa/aksara-contracts/release/head";
-
+import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
+import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";

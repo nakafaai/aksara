@@ -7,7 +7,6 @@ import { FUNCTION_SCOPE } from "#test/real";
 import {
   activeState,
   rejectState,
-  retainedStateBundle,
   selectState,
   stateBundle,
   stateCompleted,
@@ -30,22 +29,6 @@ function releaseArgs(
 }
 
 describe("production state", () => {
-  it.effect(
-    "rejects rebuilding a retained candidate with the current compiler",
-    () =>
-      Effect.gen(function* () {
-        const { release, rendererManifest } =
-          retainedStateBundle("release-retained");
-        const current = stateCurrent({
-          active: null,
-          candidate: { phase: "staging", release, rendererManifest },
-          recovery: null,
-        });
-        expect(
-          yield* rejectState(releaseArgs("release-retained"), current)
-        ).toMatchObject({ reason: "retained-candidate" });
-      })
-  );
   it.effect(
     "selects new releases against absent or completed active state",
     () =>
