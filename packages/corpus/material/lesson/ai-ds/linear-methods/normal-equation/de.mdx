@@ -3,7 +3,7 @@ export const metadata = {
     description: "Leite Normalgleichungen für kleinste Quadrate aus der Orthogonalität her, löse sie in geschlossener Form, wenn das möglich ist, und erkenne Fälle ohne eindeutige Lösung.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-13",
     subject: "Lineare Methoden der KI",
 };
 
@@ -53,13 +53,13 @@ Mit dem Satz des Pythagoras können wir schreiben
 
 <MathContainer>
   <BlockMath math="\begin{aligned} &amp;\|Ax - b\|_2^2 \\ &amp;= \|A\hat{x} - b - A(\hat{x} - x)\|_2^2 \end{aligned}" />
-  <BlockMath math="\begin{aligned} &amp;= \|A\hat{x} - b\|_2^2 + \|A(\hat{x} - x)\|_2^2 \\ &amp;- 2 \langle A\hat{x} - b, A(\hat{x} - x) \rangle \end{aligned}" />
-  <BlockMath math="\begin{aligned} &amp;=\|A\hat x-b\|_2^2 \\ &amp;+\underbrace{\|A(\hat x-x)\|_2^2}_{\ge0} \\ &amp;-2\underbrace{(\hat x-x)^T(A^TA\hat x-A^Tb)}_{=0} \end{aligned}" />
+  <BlockMath math="\begin{aligned}  &amp;= \|A\hat{x} - b\|_2^2 + \|A(\hat{x} - x)\|_2^2 \\ &amp;\quad{}- 2 \langle A\hat{x} - b, A(\hat{x} - x) \rangle \end{aligned}" />
+  <BlockMath math="\begin{aligned}  &amp;=\|A\hat x-b\|_2^2 \\ &amp;\quad{}+\underbrace{\|A(\hat x-x)\|_2^2}_{\ge0} \\ &amp;\quad{}-2\underbrace{(\hat x-x)^T(A^TA\hat x-A^Tb)}_{=0} \end{aligned}" />
 </MathContainer>
 
 Da <InlineMath math="\hat{x}" /> die Normalgleichung erfüllt, verschwindet der Kreuzterm. Die verbleibende quadrierte Norm ist nicht negativ. Daher gilt
 
-<BlockMath math="\begin{aligned} &amp;\|Ax - b\|_2^2 = \|A\hat{x} - b\|_2^2 \\ &amp;+ \|A(\hat{x} - x)\|_2^2 \geq \|A\hat{x} - b\|_2^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} \|Ax - b\|_2^2 &amp;= \|A\hat{x} - b\|_2^2 \\ &amp;\quad{}+ \|A(\hat{x} - x)\|_2^2  \\ &amp;\geq \|A\hat{x} - b\|_2^2 \end{aligned}" />
 
 Diese Ungleichung beweist, dass <InlineMath math="\hat{x}" /> tatsächlich den Minimalwert ergibt.
 

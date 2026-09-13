@@ -3,7 +3,7 @@ export const metadata = {
    description: "Calculate determinants by Laplace expansion with minors and cofactors, then compare the result with the Sarrus rule for a three-by-three matrix.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-07-10",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-13",
     subject: "Linear Methods of AI",
 };
 
@@ -52,7 +52,7 @@ For a matrix of size <InlineMath math="n = 2" />:
 Expansion based on the first row:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &amp;\det A = a_{11} \cdot \det(a_{22}) \\ &amp;- a_{12} \cdot \det(a_{21}) \end{aligned}" />
+<BlockMath math="\det A = a_{11} \cdot \det(a_{22}) - a_{12} \cdot \det(a_{21})" />
 <BlockMath math="= a_{11} \cdot a_{22} - a_{12} \cdot a_{21}" />
 </MathContainer>
 
@@ -64,27 +64,15 @@ For a matrix of size <InlineMath math="n = 3" />:
 
 Expansion based on the first row:
 
-<MathContainer>
-<BlockMath math="\det A = a_{11} \cdot \det \begin{pmatrix} a_{22} & a_{23} \\ a_{32} & a_{33} \end{pmatrix}" />
-<BlockMath math="- a_{12} \cdot \det \begin{pmatrix} a_{21} & a_{23} \\ a_{31} & a_{33} \end{pmatrix}" />
-<BlockMath math="+ a_{13} \cdot \det \begin{pmatrix} a_{21} & a_{22} \\ a_{31} & a_{32} \end{pmatrix}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} \det A &amp;= a_{11} \cdot \det \begin{pmatrix} a_{22} &amp; a_{23} \\ a_{32} &amp; a_{33} \end{pmatrix} \\ &amp;\quad{}- a_{12} \cdot \det \begin{pmatrix} a_{21} &amp; a_{23} \\ a_{31} &amp; a_{33} \end{pmatrix} \\ &amp;\quad{}+ a_{13} \cdot \det \begin{pmatrix} a_{21} &amp; a_{22} \\ a_{31} &amp; a_{32} \end{pmatrix} \end{aligned}" />
 
 After calculating the <InlineMath math="2 \times 2" /> determinants:
 
-<MathContainer>
-<BlockMath math="= a_{11} \cdot (a_{22} \cdot a_{33} - a_{23} \cdot a_{32})" />
-<BlockMath math="- a_{12} \cdot (a_{21} \cdot a_{33} - a_{23} \cdot a_{31})" />
-<BlockMath math="+ a_{13} \cdot (a_{21} \cdot a_{32} - a_{22} \cdot a_{31})" />
-</MathContainer>
+<BlockMath math="\begin{aligned}  &amp;= a_{11} \cdot (a_{22} \cdot a_{33} - a_{23} \cdot a_{32}) \\ &amp;\quad{}- a_{12} \cdot (a_{21} \cdot a_{33} - a_{23} \cdot a_{31}) \\ &amp;\quad{}+ a_{13} \cdot (a_{21} \cdot a_{32} - a_{22} \cdot a_{31}) \end{aligned}" />
 
 If we expand it fully:
 
-<MathContainer>
-<BlockMath math="= a_{11} \cdot a_{22} \cdot a_{33} - a_{11} \cdot a_{23} \cdot a_{32}" />
-<BlockMath math="- a_{12} \cdot a_{21} \cdot a_{33} + a_{12} \cdot a_{23} \cdot a_{31}" />
-<BlockMath math="+ a_{13} \cdot a_{21} \cdot a_{32} - a_{13} \cdot a_{22} \cdot a_{31}" />
-</MathContainer>
+<BlockMath math="\begin{aligned}  &amp;= a_{11} \cdot a_{22} \cdot a_{33} - a_{11} \cdot a_{23} \cdot a_{32} \\ &amp;\quad{}- a_{12} \cdot a_{21} \cdot a_{33} + a_{12} \cdot a_{23} \cdot a_{31} \\ &amp;\quad{}+ a_{13} \cdot a_{21} \cdot a_{32} - a_{13} \cdot a_{22} \cdot a_{31} \end{aligned}" />
 
 ## Sarrus Rule
 
@@ -92,10 +80,7 @@ The expansion above gives the same expression as **Sarrus Rule**. For a <InlineM
 
 Sarrus formula for <InlineMath math="3 \times 3" /> matrices:
 
-<MathContainer>
-<BlockMath math="\begin{aligned} &amp;\det A = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} \\ &amp;+ a_{13}a_{21}a_{32} \end{aligned}" />
-<BlockMath math="- a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} \det A &amp;= a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31} \\ &amp;\quad{}+a_{13}a_{21}a_{32}-a_{13}a_{22}a_{31} \\ &amp;\quad{}-a_{11}a_{23}a_{32}-a_{12}a_{21}a_{33} \end{aligned}" />
 
 Sarrus rule uses diagonal patterns to determine which terms are added and which are subtracted.
 
@@ -124,15 +109,12 @@ Suppose we have a matrix:
 
 Expansion based on the first row:
 
-<MathContainer>
-<BlockMath math="\begin{aligned} &amp;\det A = 0 \cdot \det(\ldots) \\ &amp;- 3 \cdot \det \begin{pmatrix} 2 &amp; 0 \\ 1 &amp; 1 \end{pmatrix} \end{aligned}" />
-<BlockMath math="+ 3 \cdot \det \begin{pmatrix} 2 & 2 \\ 1 & 0 \end{pmatrix}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} \det A &amp;= 0 \cdot \det(\ldots) - 3 \cdot \det \begin{pmatrix} 2 &amp; 0 \\ 1 &amp; 1 \end{pmatrix} \\ &amp;\quad{}+ 3 \cdot \det \begin{pmatrix} 2 &amp; 2 \\ 1 &amp; 0 \end{pmatrix} \end{aligned}" />
 
 Since the first element is zero, the calculation becomes:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &amp;= -3 \cdot (2 \cdot 1 - 0 \cdot 1) \\ &amp;+ 3 \cdot (2 \cdot 0 - 2 \cdot 1) \end{aligned}" />
+<BlockMath math="\begin{aligned}  &amp;= -3 \cdot (2 \cdot 1 - 0 \cdot 1) \\ &amp;\quad{}+ 3 \cdot (2 \cdot 0 - 2 \cdot 1) \end{aligned}" />
 <BlockMath math="= -3 \cdot 2 + 3 \cdot (-2)" />
 <BlockMath math="= -6 - 6 = -12" />
 </MathContainer>

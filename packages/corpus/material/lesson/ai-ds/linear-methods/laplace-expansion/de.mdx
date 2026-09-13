@@ -3,7 +3,7 @@ export const metadata = {
    description: "Berechne Determinanten mit dem Laplaceschen Entwicklungssatz aus Minoren und Kofaktoren und vergleiche das Ergebnis bei einer Matrix der Ordnung drei mit der Regel von Sarrus.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-12",
+    dateModified: "2026-09-13",
     subject: "Lineare Methoden der KI",
 };
 
@@ -52,7 +52,7 @@ Für eine Matrix der Größe <InlineMath math="n = 2" />:
 Entwicklung nach der ersten Zeile:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &amp;\det A = a_{11} \cdot \det(a_{22}) \\ &amp;- a_{12} \cdot \det(a_{21}) \end{aligned}" />
+<BlockMath math="\det A = a_{11} \cdot \det(a_{22}) - a_{12} \cdot \det(a_{21})" />
 <BlockMath math="= a_{11} \cdot a_{22} - a_{12} \cdot a_{21}" />
 </MathContainer>
 
@@ -64,27 +64,15 @@ Für eine Matrix der Größe <InlineMath math="n = 3" />:
 
 Entwicklung nach der ersten Zeile:
 
-<MathContainer>
-<BlockMath math="\det A = a_{11} \cdot \det \begin{pmatrix} a_{22} & a_{23} \\ a_{32} & a_{33} \end{pmatrix}" />
-<BlockMath math="- a_{12} \cdot \det \begin{pmatrix} a_{21} & a_{23} \\ a_{31} & a_{33} \end{pmatrix}" />
-<BlockMath math="+ a_{13} \cdot \det \begin{pmatrix} a_{21} & a_{22} \\ a_{31} & a_{32} \end{pmatrix}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} \det A &amp;= a_{11} \cdot \det \begin{pmatrix} a_{22} &amp; a_{23} \\ a_{32} &amp; a_{33} \end{pmatrix} \\ &amp;\quad{}- a_{12} \cdot \det \begin{pmatrix} a_{21} &amp; a_{23} \\ a_{31} &amp; a_{33} \end{pmatrix} \\ &amp;\quad{}+ a_{13} \cdot \det \begin{pmatrix} a_{21} &amp; a_{22} \\ a_{31} &amp; a_{32} \end{pmatrix} \end{aligned}" />
 
 Nach der Berechnung der <InlineMath math="2 \times 2" /> Determinanten:
 
-<MathContainer>
-<BlockMath math="= a_{11} \cdot (a_{22} \cdot a_{33} - a_{23} \cdot a_{32})" />
-<BlockMath math="- a_{12} \cdot (a_{21} \cdot a_{33} - a_{23} \cdot a_{31})" />
-<BlockMath math="+ a_{13} \cdot (a_{21} \cdot a_{32} - a_{22} \cdot a_{31})" />
-</MathContainer>
+<BlockMath math="\begin{aligned}  &amp;= a_{11} \cdot (a_{22} \cdot a_{33} - a_{23} \cdot a_{32}) \\ &amp;\quad{}- a_{12} \cdot (a_{21} \cdot a_{33} - a_{23} \cdot a_{31}) \\ &amp;\quad{}+ a_{13} \cdot (a_{21} \cdot a_{32} - a_{22} \cdot a_{31}) \end{aligned}" />
 
 Wenn wir es vollständig erweitern:
 
-<MathContainer>
-<BlockMath math="= a_{11} \cdot a_{22} \cdot a_{33} - a_{11} \cdot a_{23} \cdot a_{32}" />
-<BlockMath math="- a_{12} \cdot a_{21} \cdot a_{33} + a_{12} \cdot a_{23} \cdot a_{31}" />
-<BlockMath math="+ a_{13} \cdot a_{21} \cdot a_{32} - a_{13} \cdot a_{22} \cdot a_{31}" />
-</MathContainer>
+<BlockMath math="\begin{aligned}  &amp;= a_{11} \cdot a_{22} \cdot a_{33} - a_{11} \cdot a_{23} \cdot a_{32} \\ &amp;\quad{}- a_{12} \cdot a_{21} \cdot a_{33} + a_{12} \cdot a_{23} \cdot a_{31} \\ &amp;\quad{}+ a_{13} \cdot a_{21} \cdot a_{32} - a_{13} \cdot a_{22} \cdot a_{31} \end{aligned}" />
 
 ## Regel von Sarrus
 
@@ -92,10 +80,7 @@ Die Entwicklung oben ergibt denselben Ausdruck wie die **Sarrus-Regel**. Bei ein
 
 Sarrus-Formel für <InlineMath math="3 \times 3" />-Matrizen:
 
-<MathContainer>
-<BlockMath math="\begin{aligned} &amp;\det A = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} \\ &amp;+ a_{13}a_{21}a_{32} \end{aligned}" />
-<BlockMath math="- a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} \det A &amp;= a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31} \\ &amp;\quad{}+a_{13}a_{21}a_{32}-a_{13}a_{22}a_{31} \\ &amp;\quad{}-a_{11}a_{23}a_{32}-a_{12}a_{21}a_{33} \end{aligned}" />
 
 Die Sarrus-Regel verwendet diagonale Muster, um zu bestimmen, welche Terme addiert und welche subtrahiert werden.
 
@@ -124,15 +109,12 @@ Angenommen, wir haben eine Matrix:
 
 Entwicklung nach der ersten Zeile:
 
-<MathContainer>
-<BlockMath math="\begin{aligned} &amp;\det A = 0 \cdot \det(\ldots) \\ &amp;- 3 \cdot \det \begin{pmatrix} 2 &amp; 0 \\ 1 &amp; 1 \end{pmatrix} \end{aligned}" />
-<BlockMath math="+ 3 \cdot \det \begin{pmatrix} 2 & 2 \\ 1 & 0 \end{pmatrix}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} \det A &amp;= 0 \cdot \det(\ldots) - 3 \cdot \det \begin{pmatrix} 2 &amp; 0 \\ 1 &amp; 1 \end{pmatrix} \\ &amp;\quad{}+ 3 \cdot \det \begin{pmatrix} 2 &amp; 2 \\ 1 &amp; 0 \end{pmatrix} \end{aligned}" />
 
 Da das erste Element Null ist, lautet die Berechnung:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &amp;= -3 \cdot (2 \cdot 1 - 0 \cdot 1) \\ &amp;+ 3 \cdot (2 \cdot 0 - 2 \cdot 1) \end{aligned}" />
+<BlockMath math="\begin{aligned}  &amp;= -3 \cdot (2 \cdot 1 - 0 \cdot 1) \\ &amp;\quad{}+ 3 \cdot (2 \cdot 0 - 2 \cdot 1) \end{aligned}" />
 <BlockMath math="= -3 \cdot 2 + 3 \cdot (-2)" />
 <BlockMath math="= -6 - 6 = -12" />
 </MathContainer>

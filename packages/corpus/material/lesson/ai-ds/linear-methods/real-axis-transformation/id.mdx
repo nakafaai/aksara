@@ -3,7 +3,7 @@ export const metadata = {
   description: "Diagonalkan bentuk kuadrat melalui perubahan koordinat ortogonal, lengkapkan kuadrat, dan klasifikasikan irisan kerucut dari nilai eigennya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-17",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Metode Linear AI",
 };
 
@@ -30,17 +30,17 @@ Untuk kedua variabel dengan <InlineMath math="\lambda_1, \lambda_2 \neq 0" />, p
 Beri nama pada isi kurung pelengkapan kuadrat agar suku yang ditambah dan dikurangi tetap terlihat:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;B_1=\xi_1^2+2\frac\delta{2\lambda_1}\xi_1 \\ &amp;+\frac{\delta^2}{4\lambda_1^2} \end{aligned}" />
+  <BlockMath math="B_1=\xi_1^2+2\frac\delta{2\lambda_1}\xi_1 +\frac{\delta^2}{4\lambda_1^2}" />
 
-  <BlockMath math="\begin{aligned} &amp;B_2=\xi_2^2+2\frac\epsilon{2\lambda_2}\xi_2 \\ &amp;+\frac{\epsilon^2}{4\lambda_2^2} \end{aligned}" />
+  <BlockMath math="B_2=\xi_2^2+2\frac\epsilon{2\lambda_2}\xi_2 +\frac{\epsilon^2}{4\lambda_2^2}" />
 
-  <BlockMath math="\begin{aligned} &amp;0=\lambda_1B_1-\frac{\delta^2}{4\lambda_1} \\ &amp;+\lambda_2B_2-\frac{\epsilon^2}{4\lambda_2}+f \end{aligned}" />
+  <BlockMath math="0=\lambda_1B_1-\frac{\delta^2}{4\lambda_1} +\lambda_2B_2-\frac{\epsilon^2}{4\lambda_2}+f" />
 </MathContainer>
 
 Setelah suku-sukunya dikumpulkan, kita memperoleh
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 \\ &amp;+ \lambda_2 \left( \xi_2 + \frac{\epsilon}{2\lambda_2} \right)^2 \\ &amp;+ \left( f - \frac{\delta^2}{4\lambda_1} - \frac{\epsilon^2}{4\lambda_2} \right) \end{aligned}" />
+<BlockMath math="\begin{aligned}  &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 \\ &amp;\quad{}+ \lambda_2 \left( \xi_2 + \frac{\epsilon}{2\lambda_2} \right)^2 \\ &amp;\quad{}+ \left( f - \frac{\delta^2}{4\lambda_1} - \frac{\epsilon^2}{4\lambda_2} \right) \end{aligned}" />
 </MathContainer>
 
 Definisikan pusat dalam koordinat hasil rotasi dan konstanta setelah translasi sebagai
@@ -278,10 +278,10 @@ Kasus khusus terjadi ketika <InlineMath math="\lambda_1\neq0" />, <InlineMath ma
 Beri nama pada isi kurung pelengkapan kuadrat agar suku yang ditambah dan dikurangi tetap terlihat:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;B_1=\xi_1^2+2\frac\delta{2\lambda_1}\xi_1 \\ &amp;+\frac{\delta^2}{4\lambda_1^2} \end{aligned}" />
+  <BlockMath math="B_1=\xi_1^2+2\frac\delta{2\lambda_1}\xi_1 +\frac{\delta^2}{4\lambda_1^2}" />
 
-  <BlockMath math="\begin{aligned} &amp;0=\lambda_1B_1-\frac{\delta^2}{4\lambda_1} \\ &amp;+\epsilon\xi_2+f \end{aligned}" />
-  <BlockMath math="\begin{aligned} &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 + \epsilon \xi_2 \\ &amp;+ \left( f - \frac{\delta^2}{4\lambda_1} \right) \end{aligned}" />
+  <BlockMath math="0=\lambda_1B_1-\frac{\delta^2}{4\lambda_1} +\epsilon\xi_2+f" />
+  <BlockMath math="\begin{aligned}  &amp;= \lambda_1 \left( \xi_1 + \frac{\delta}{2\lambda_1} \right)^2 + \epsilon \xi_2 \\ &amp;\quad{}+ \left( f - \frac{\delta^2}{4\lambda_1} \right) \end{aligned}" />
   <BlockMath math="= \lambda_1 (\xi_1 - m_1)^2 + \epsilon \xi_2 - \gamma" />
 </MathContainer>
 
@@ -382,7 +382,7 @@ Untuk matriks simetris <InlineMath math="A \in \mathbb{R}^{n \times n}" />, vekt
 
 Jika persamaan yang sama dituliskan per entri, kita memperoleh:
 
-<BlockMath math="\begin{aligned} &amp;\sum_{j=1}^n\sum_{k=1}^n x_ja_{jk}x_k \\ &amp;+\sum_{j=1}^n b_jx_j+c=0 \end{aligned}" />
+<BlockMath math="\sum_{j=1}^n\sum_{k=1}^n x_ja_{jk}x_k +\sum_{j=1}^n b_jx_j+c=0" />
 
 Jika <InlineMath math="A \in \mathbb{R}^{n \times n}" /> simetris dan <InlineMath math="v_1, \ldots, v_n \in \mathbb{R}^n" /> adalah basis ortonormal vektor eigen dengan <InlineMath math="A \cdot v_i = \lambda_i \cdot v_i" />, maka matriks ortonormal <InlineMath math="S = (v_1 \quad \ldots \quad v_n)" /> mendiagonalkan <InlineMath math="A" /> melalui <InlineMath math="A \cdot S = S \cdot \Lambda" /> atau <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S = S^T \cdot A \cdot S" />.
 
@@ -396,7 +396,7 @@ Dengan mendiagonalkan <InlineMath math="A" />, kita memperoleh:
 
 Jika dituliskan per entri:
 
-<BlockMath math="\begin{aligned} &amp;\sum_{j=1}^n\lambda_j\xi_j^2 \\ &amp;+\sum_{j=1}^n\mu_j\xi_j+c=0 \end{aligned}" />
+<BlockMath math="\sum_{j=1}^n\lambda_j\xi_j^2 +\sum_{j=1}^n\mu_j\xi_j+c=0" />
 
 Kelompokkan suku-sukunya dan pindahkan <InlineMath math="c" /> ke ruas kanan:
 

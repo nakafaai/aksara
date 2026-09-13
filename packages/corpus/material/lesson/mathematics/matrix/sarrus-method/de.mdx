@@ -3,7 +3,7 @@ export const metadata = {
   description: "So berechnest du die Determinante einer 3-mal-3-Matrix mit den positiven und negativen Diagonalen der Sarrus-Methode.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Matrix",
 };
 
@@ -42,7 +42,7 @@ Dadurch werden die sechs Diagonalen sichtbar, deren Elemente wir multiplizieren.
 Wir multiplizieren die Elemente auf den drei Diagonalen von links oben nach rechts unten und addieren die Produkte. Diese Summe nennen wir <InlineMath math="D_{\text{positiv}}" />.
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;D_{\text{positiv}} = (a_{11} \cdot a_{22} \cdot a_{33}) \\ &amp;+ (a_{12} \cdot a_{23} \cdot a_{31}) + (a_{13} \cdot a_{21} \cdot a_{32}) \end{aligned}" />
+  <BlockMath math="\begin{aligned} D_{\text{positiv}} &amp;= (a_{11} \cdot a_{22} \cdot a_{33}) \\ &amp;\quad{}+ (a_{12} \cdot a_{23} \cdot a_{31}) \\ &amp;\quad{}+ (a_{13} \cdot a_{21} \cdot a_{32}) \end{aligned}" />
 </MathContainer>
 
 Der erste Term ist das Produkt der Hauptdiagonale. Der zweite und dritte Term sind Produkte paralleler Diagonalen mit Elementen aus den kopierten Spalten.
@@ -52,7 +52,7 @@ Der erste Term ist das Produkt der Hauptdiagonale. Der zweite und dritte Term si
 Danach multiplizieren wir die Elemente auf den drei Diagonalen von rechts oben nach links unten und addieren diese Produkte. Die Summe heißt <InlineMath math="D_{\text{negativ}}" />.
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;D_{\text{negativ}} = (a_{13} \cdot a_{22} \cdot a_{31}) \\ &amp;+ (a_{11} \cdot a_{23} \cdot a_{32}) + (a_{12} \cdot a_{21} \cdot a_{33}) \end{aligned}" />
+  <BlockMath math="\begin{aligned} D_{\text{negativ}} &amp;= (a_{13} \cdot a_{22} \cdot a_{31}) \\ &amp;\quad{}+ (a_{11} \cdot a_{23} \cdot a_{32}) \\ &amp;\quad{}+ (a_{12} \cdot a_{21} \cdot a_{33}) \end{aligned}" />
 </MathContainer>
 
 Der erste Term ist das Produkt der Gegendiagonale. Der zweite und dritte Term stammen von den parallelen Diagonalen, die durch die wiederholten Spalten entstehen.
@@ -65,11 +65,11 @@ Die Determinante der Matrix <InlineMath math="A" />, <InlineMath math="\det(A)" 
 
 Wir setzen <InlineMath math="D_{\text{positiv}}" /> und <InlineMath math="D_{\text{negativ}}" /> ein:
 
-<BlockMath math="\begin{aligned} &amp;\det(A)=\bigl(a_{11}a_{22}a_{33} \\ &amp;+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\bigr) \\ &amp;-\bigl(a_{13}a_{22}a_{31} \\ &amp;+a_{11}a_{23}a_{32}+a_{12}a_{21}a_{33}\bigr) \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\det(A) \\ &amp;=\left(\begin{aligned} &amp;a_{11}a_{22}a_{33} \\ &amp;{}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\end{aligned}\right) \\ &amp;\quad{}-\left(\begin{aligned} &amp;a_{13}a_{22}a_{31} \\ &amp;{}+a_{11}a_{23}a_{32}+a_{12}a_{21}a_{33}\end{aligned}\right) \end{aligned}" />
 
 Nach dem Auflösen der Klammer erhalten wir:
 
-<BlockMath math="\begin{aligned} &amp;\det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} \\ &amp;+ a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} \\ &amp;- a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33} \end{aligned}" />
+<BlockMath math="\begin{aligned} \det(A) &amp;= a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} \\ &amp;\quad{}+ a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} \\ &amp;\quad{}- a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33} \end{aligned}" />
 
 ### Vollständig gerechnetes Zahlenbeispiel
 
@@ -105,7 +105,7 @@ Wir wiederholen die ersten beiden Spalten und markieren die sechs Produkte:
 
 Damit lautet die vollständige Formel:
 
-<BlockMath math="\begin{aligned} &amp;\det(A)=\bigl(a_{11}a_{22}a_{33} \\ &amp;+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\bigr) \\ &amp;-\bigl(a_{13}a_{22}a_{31} \\ &amp;+a_{11}a_{23}a_{32}+a_{12}a_{21}a_{33}\bigr) \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\det(A) \\ &amp;=\left(\begin{aligned} &amp;a_{11}a_{22}a_{33} \\ &amp;{}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\end{aligned}\right) \\ &amp;\quad{}-\left(\begin{aligned} &amp;a_{13}a_{22}a_{31} \\ &amp;{}+a_{11}a_{23}a_{32}+a_{12}a_{21}a_{33}\end{aligned}\right) \end{aligned}" />
 
 ## Die Regel von Sarrus gilt nur für Matrizen mit drei Zeilen und drei Spalten
 

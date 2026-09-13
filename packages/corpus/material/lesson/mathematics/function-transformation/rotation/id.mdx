@@ -3,7 +3,7 @@ export const metadata = {
   description: "Gunakan rumus, grafik, dan contoh dengan pembahasan lengkap untuk merotasi titik serta kurva fungsi terhadap pusat tetap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Transformasi Fungsi",
 };
 
@@ -17,12 +17,13 @@ Bayangkan sebuah roda yang berputar. Setiap titik pada roda bergerak di sepanjan
 
 ## Rumus Rotasi Terhadap Titik Pusat
 
-Untuk rotasi terhadap titik pusat <InlineMath math="(a, b)" /> dengan sudut <InlineMath math="\theta" />, rumus transformasinya adalah:
+Untuk merotasi titik <InlineMath math="(x, y)" /> terhadap pusat <InlineMath math="(a, b)" /> dengan sudut <InlineMath math="\theta" />, hitung dahulu koordinat titik relatif terhadap pusat. Tuliskan kedua koordinat ini sebagai <InlineMath math="u" /> dan <InlineMath math="v" />:
 
-<MathContainer>
-<BlockMath math="\begin{aligned} &amp;x' = (x - a) \cos \theta - (y - b) \sin \theta \\ &amp;+ a \end{aligned}" />
-<BlockMath math="\begin{aligned} &amp;y' = (x - a) \sin \theta + (y - b) \cos \theta \\ &amp;+ b \end{aligned}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} u &amp;= x-a \\ v &amp;= y-b \end{aligned}" />
+
+Rotasikan koordinat relatif tersebut, lalu tambahkan kembali koordinat pusat. Penambahan <InlineMath math="a" /> pada koordinat horizontal dan <InlineMath math="b" /> pada koordinat vertikal membawa hasil rotasi ke sistem koordinat semula:
+
+<BlockMath math="\begin{aligned} x' &amp;= u\cos\theta-v\sin\theta+a \\ y' &amp;= u\sin\theta+v\cos\theta+b \end{aligned}" />
 
 Setiap simbol pada rumus tersebut berarti:
 - <InlineMath math="(x, y)" /> adalah koordinat titik asal
@@ -104,7 +105,7 @@ Rotasi memiliki sifat berikut:
 
 - **Mempertahankan Bentuk**: Rotasi tidak mengubah bentuk dasar grafik, hanya mengubah orientasinya
 - **Mempertahankan Jarak**: Jarak antara dua titik pada grafik tetap sama setelah rotasi
-- **Komposisi Rotasi**: Rotasi berturut-turut dapat digabungkan dengan menjumlahkan sudut rotasinya
+- **Komposisi Rotasi**: Rotasi berturut-turut terhadap pusat yang sama dapat digabungkan dengan menjumlahkan sudut rotasinya
 
 ## Penerapan Rotasi pada Berbagai Fungsi
 
@@ -405,15 +406,15 @@ Untuk menentukan hasil rotasi suatu fungsi, ikuti langkah berikut:
      ]}
    />
 
-4. Menggunakan rumus rotasi terhadap titik dengan sudut <InlineMath math="60^\circ" />:
+4. Hitung dahulu koordinat titik <InlineMath math="(2, 5)" /> relatif terhadap pusat <InlineMath math="(1, 1)" />:
+
+   <BlockMath math="\begin{aligned} u &amp;= 2-1=1 \\ v &amp;= 5-1=4 \end{aligned}" />
+
+   Masukkan kedua nilai tersebut dan sudut <InlineMath math="60^\circ" /> ke rumus rotasi. Kedua koordinat pusat bernilai <InlineMath math="1" />, sehingga setiap rumus memuat penambahan <InlineMath math="1" />:
 
    <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;x' = (x-a) \cos \theta - (y-b) \sin \theta \\ &amp;+ a \end{aligned}" />
-   <BlockMath math="\begin{aligned} &amp;y' = (x-a) \sin \theta + (y-b) \cos \theta \\ &amp;+ b \end{aligned}" />
-   <BlockMath math="x' = (2-1) \cdot \frac{1}{2} - (5-1) \cdot \frac{\sqrt{3}}{2} + 1" />
-   <BlockMath math="x' = \frac{3}{2} - 2\sqrt{3}" />
-   <BlockMath math="y' = (2-1) \cdot \frac{\sqrt{3}}{2} + (5-1) \cdot \frac{1}{2} + 1" />
-   <BlockMath math="y' = 3 + \frac{\sqrt{3}}{2}" />
+   <BlockMath math="\begin{aligned} x' &amp;= u\cos\theta-v\sin\theta+a \\ &amp;= 1\cdot\frac{1}{2}-4\cdot\frac{\sqrt{3}}{2}+1 \\ &amp;= \frac{3}{2}-2\sqrt{3} \end{aligned}" />
+   <BlockMath math="\begin{aligned} y' &amp;= u\sin\theta+v\cos\theta+b \\ &amp;= 1\cdot\frac{\sqrt{3}}{2}+4\cdot\frac{1}{2}+1 \\ &amp;= 3+\frac{\sqrt{3}}{2} \end{aligned}" />
    </MathContainer>
 
    Koordinat hasil rotasi: <InlineMath math="(\frac{3}{2} - 2\sqrt{3}, 3 + \frac{\sqrt{3}}{2})" />

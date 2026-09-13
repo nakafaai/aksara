@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use formulas, graphs, and fully worked examples to rotate points and function curves around a fixed center.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Function Transformation",
 };
 
@@ -17,12 +17,13 @@ Imagine a wheel turning. Each point on the wheel moves along a circle centered a
 
 ## Rotation Formula Around Center Point
 
-For rotation around center point <InlineMath math="(a, b)" /> with angle <InlineMath math="\theta" />, the transformation formula is:
+To rotate point <InlineMath math="(x, y)" /> around center <InlineMath math="(a, b)" /> through angle <InlineMath math="\theta" />, first find the point's coordinates relative to the center. Call these coordinates <InlineMath math="u" /> and <InlineMath math="v" />:
 
-<MathContainer>
-<BlockMath math="\begin{aligned} &amp;x' = (x - a) \cos \theta - (y - b) \sin \theta \\ &amp;+ a \end{aligned}" />
-<BlockMath math="\begin{aligned} &amp;y' = (x - a) \sin \theta + (y - b) \cos \theta \\ &amp;+ b \end{aligned}" />
-</MathContainer>
+<BlockMath math="\begin{aligned} u &amp;= x-a \\ v &amp;= y-b \end{aligned}" />
+
+Rotate these relative coordinates, then add the center coordinates back. Adding <InlineMath math="a" /> to the horizontal coordinate and <InlineMath math="b" /> to the vertical coordinate places the rotated point in the original coordinate system:
+
+<BlockMath math="\begin{aligned} x' &amp;= u\cos\theta-v\sin\theta+a \\ y' &amp;= u\sin\theta+v\cos\theta+b \end{aligned}" />
 
 The symbols in these equations mean:
 - <InlineMath math="(x, y)" /> is the original point coordinate
@@ -104,7 +105,7 @@ A rotation preserves the following features:
 
 - **Preserves Shape**: Rotation does not change the basic shape of the graph, only changes its orientation
 - **Preserves Distance**: The distance between two points on the graph remains the same after rotation
-- **Rotation Composition**: Consecutive rotations can be combined by adding their angles
+- **Rotation Composition**: Consecutive rotations around the same center can be combined by adding their angles
 
 ## Application of Rotation to Various Functions
 
@@ -405,15 +406,15 @@ To determine the rotation result of a function, follow these steps:
      ]}
    />
 
-4. Using the rotation formula around a point with <InlineMath math="60^\circ" /> angle:
+4. First find the coordinates of point <InlineMath math="(2, 5)" /> relative to center <InlineMath math="(1, 1)" />:
+
+   <BlockMath math="\begin{aligned} u &amp;= 2-1=1 \\ v &amp;= 5-1=4 \end{aligned}" />
+
+   Substitute these values and the angle <InlineMath math="60^\circ" /> into the rotation formulas. Both center coordinates equal <InlineMath math="1" />, so each formula includes an added <InlineMath math="1" />:
 
    <MathContainer>
-   <BlockMath math="\begin{aligned} &amp;x' = (x-a) \cos \theta - (y-b) \sin \theta \\ &amp;+ a \end{aligned}" />
-   <BlockMath math="\begin{aligned} &amp;y' = (x-a) \sin \theta + (y-b) \cos \theta \\ &amp;+ b \end{aligned}" />
-   <BlockMath math="x' = (2-1) \cdot \frac{1}{2} - (5-1) \cdot \frac{\sqrt{3}}{2} + 1" />
-   <BlockMath math="x' = \frac{3}{2} - 2\sqrt{3}" />
-   <BlockMath math="y' = (2-1) \cdot \frac{\sqrt{3}}{2} + (5-1) \cdot \frac{1}{2} + 1" />
-   <BlockMath math="y' = 3 + \frac{\sqrt{3}}{2}" />
+   <BlockMath math="\begin{aligned} x' &amp;= u\cos\theta-v\sin\theta+a \\ &amp;= 1\cdot\frac{1}{2}-4\cdot\frac{\sqrt{3}}{2}+1 \\ &amp;= \frac{3}{2}-2\sqrt{3} \end{aligned}" />
+   <BlockMath math="\begin{aligned} y' &amp;= u\sin\theta+v\cos\theta+b \\ &amp;= 1\cdot\frac{\sqrt{3}}{2}+4\cdot\frac{1}{2}+1 \\ &amp;= 3+\frac{\sqrt{3}}{2} \end{aligned}" />
    </MathContainer>
 
    Rotation result coordinates: <InlineMath math="(\frac{3}{2} - 2\sqrt{3}, 3 + \frac{\sqrt{3}}{2})" />

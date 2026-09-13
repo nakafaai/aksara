@@ -3,7 +3,7 @@ export const metadata = {
   description: "Leite die Summenformel einer arithmetischen Reihe mit der Gaußschen Paarungsmethode her und wende sie in vollständigen Beispielen an.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-09-13",
   subject: "Folgen und Reihen",
 };
 
@@ -36,11 +36,11 @@ Mit derselben Idee lässt sich eine allgemeine Formel für die Summe der ersten 
 
 Ausgangspunkt ist eine arithmetische Reihe:
 
-<BlockMath math="\begin{aligned} &amp;S_n = U_1 + U_2 + U_3 \\ &amp;+ \dots + U_{n-1} + U_n \end{aligned}" />
+<BlockMath math="\begin{aligned} S_n &amp;= U_1 + U_2 + U_3 \\ &amp;\quad{}+ \dots + U_{n-1} + U_n \end{aligned}" />
 
 Mit dem ersten Glied <InlineMath math="(a)" /> und der gemeinsamen Differenz <InlineMath math="(b)" /> ausgeschrieben ergibt sich:
 
-<BlockMath math="\begin{aligned} &amp;S_n = a + (a+b) + (a+2b) + \dots \\ &amp;+ (a+(n-2)b) + (a+(n-1)b) \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;S_n \\ &amp;= a + (a+b) + (a+2b) + \dots \\ &amp;\quad{}+ (a+(n-2)b) + (a+(n-1)b) \end{aligned}" />
 
 Nun schreiben wir dieselbe Summe <InlineMath math="S_n" /> in umgekehrter Reihenfolge:
 
@@ -48,14 +48,14 @@ Nun schreiben wir dieselbe Summe <InlineMath math="S_n" /> in umgekehrter Reihen
 
 Ausgeschrieben:
 
-<BlockMath math="\begin{aligned} &amp;S_n \\ &amp;= (a+(n-1)b) + (a+(n-2)b) \\ &amp;+ \dots + (a+b) + a \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;S_n \\ &amp;= (a+(n-1)b) + (a+(n-2)b) \\ &amp;\quad{}+ \dots + (a+b) + a \end{aligned}" />
 
 Anschließend addieren wir beide Darstellungen von <InlineMath math="S_n" /> gliedweise:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} &amp;S_n = a + (a+b) \\ &amp;+ \dots + (a+(n-2)b) \\ &amp;+ (a+(n-1)b) \end{aligned}" />
-  <BlockMath math="\begin{aligned} &amp;S_n \\ &amp;= (a+(n-1)b) + (a+(n-2)b) \\ &amp;+ \dots + (a+b) + a \end{aligned}" />
-  <BlockMath math="\begin{aligned} &amp;2S_n = [2a+(n-1)b] \\ &amp;+ [2a+(n-1)b] + \dots \\ &amp;+ [2a+(n-1)b] + [2a+(n-1)b] \end{aligned}" />
+  <BlockMath math="\begin{aligned} S_n &amp;= a + (a+b) \\ &amp;\quad{}+ \dots + (a+(n-2)b) \\ &amp;\quad{}+ (a+(n-1)b) \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;S_n \\ &amp;= (a+(n-1)b) + (a+(n-2)b) \\ &amp;\quad{}+ \dots + (a+b) + a \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;2S_n \\ &amp;=[2a+(n-1)b]+[2a+(n-1)b] \\ &amp;\quad{}+\dots+[2a+(n-1)b] \\ &amp;\quad{}+[2a+(n-1)b] \end{aligned}" />
 </MathContainer>
 
 Jedes übereinanderstehende Gliedpaar hat dieselbe Summe <InlineMath math="2a + (n-1)b" />. Da jede Zeile <InlineMath math="n" /> Glieder enthält, entstehen <InlineMath math="n" /> identische Paarsummen.
