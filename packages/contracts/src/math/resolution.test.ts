@@ -14,6 +14,7 @@ import {
   SpaceMathFrameSchema,
   SpaceMathObjectSchema,
 } from "#contracts/math/space";
+import { hasAuthoredIssue } from "#contracts/test/issue";
 
 const RESOLUTION = 2 ** -23;
 const BELOW_RESOLUTION = RESOLUTION / 2;
@@ -52,9 +53,7 @@ function spaceObject(kind: string, fields: Record<string, unknown>) {
 function paths(issues: ReturnType<typeof planeResolutionIssues>) {
   return issues.map((candidate) => {
     assert.ok(
-      typeof candidate === "object" &&
-        "issue" in candidate &&
-        "path" in candidate &&
+      hasAuthoredIssue(candidate) &&
         candidate.issue === MATH_VISUAL_RESOLUTION_MESSAGE
     );
     return candidate.path;

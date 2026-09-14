@@ -2,7 +2,7 @@ import { Server } from "node:http";
 import { afterEach, assert, describe, expect, it } from "@effect/vitest";
 import { canonicalizeSignedContentArtifact } from "@nakafa/aksara-contracts/content";
 import { previewDocumentRoute } from "@nakafa/aksara-contracts/preview/document";
-import { Effect } from "effect";
+import { Effect, Predicate } from "effect";
 import { openPreviewProvider } from "#cli/provider";
 import { PREVIEW_EVENTS_PATH, PREVIEW_MANIFEST_PATH } from "#cli/provider/http";
 import { PREVIEW_REPOSITORIES } from "#test/preview";
@@ -41,11 +41,10 @@ describe("local preview provider", () => {
           const readyManifest = yield* responseJson(readyManifestResponse);
           expect(readyManifest).toMatchObject({ revision: 2, status: "ready" });
           assert(
-            readyManifest !== null &&
-              typeof readyManifest === "object" &&
-              "artifacts" in readyManifest &&
+            Predicate.isObject(readyManifest) &&
+              Predicate.hasProperty(readyManifest, "artifacts") &&
               Array.isArray(readyManifest.artifacts) &&
-              typeof readyManifest.artifacts[0]?.artifactPath === "string",
+              Predicate.isString(readyManifest.artifacts[0]?.artifactPath),
             "Ready provider manifest omitted its artifact paths."
           );
           const [readyArtifact] = readyManifest.artifacts;
