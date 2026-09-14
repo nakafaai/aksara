@@ -1,3 +1,4 @@
+import { Predicate } from "effect";
 import type {
   Expression,
   JSXAttribute,
@@ -11,7 +12,7 @@ import { readNodeProgram } from "#compiler/ast/program";
 /** Reads the sole expression attached to one MDX JSX attribute. */
 export function attributeExpression(attribute: MdxJsxAttribute) {
   const { value } = attribute;
-  if (!(value && typeof value === "object")) {
+  if (!value || Predicate.isString(value)) {
     return;
   }
   const program = readNodeProgram(value);

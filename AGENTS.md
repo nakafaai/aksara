@@ -24,6 +24,11 @@ for clarity, measurable scale, and safe releases.
   source and commit.
 - Treat Effect as architecture. Expected failures use typed errors, effectful
   seams compose Effects, and runners stay at CLI, framework, or test boundaries.
+- `scripts/check/effect.ts` enforces this across `apps`, `packages`, and
+  `scripts`: no raw `try`/`catch` statement and no `typeof ... === "object"`
+  narrowing. Narrow unknown input with `Predicate` or `Schema` and model
+  expected failure with a tagged Effect error. Agent skill tooling under
+  `.agents/` keeps its own conventions and is out of scope.
 - Optimize for code that is easy to read and skim. Use direct names, early
   returns, and small named steps. Avoid clever pipelines, nested ternaries,
   workaround types, wrapper-only functions, and abstractions without a real

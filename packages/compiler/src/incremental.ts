@@ -9,7 +9,7 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
-import { Effect, Exit, Schema } from "effect";
+import { Effect, Exit, Predicate, Schema } from "effect";
 import type {
   CompileContentError,
   CompiledContentResult,
@@ -105,7 +105,7 @@ function canonicalizeIdentity(identity: CompileIdentity) {
 
 /** Serializes recursive metadata with stable object-key ordering. */
 function canonicalizeMetadata(value: AuthoredMetadataValue): string {
-  if (value === null || typeof value !== "object") {
+  if (!Predicate.isObjectOrArray(value)) {
     return JSON.stringify(value);
   }
   if (Array.isArray(value)) {

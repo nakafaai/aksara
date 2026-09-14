@@ -11,6 +11,7 @@ import {
   PlaneMathObjectSchema,
 } from "#contracts/math/plane";
 import { planeResolutionIssues } from "#contracts/math/resolution";
+import { hasAuthoredIssue } from "#contracts/test/issue";
 
 const RESOLUTION = 2 ** -23;
 const THRESHOLD = BigDecimal.fromNumberUnsafe(RESOLUTION);
@@ -36,8 +37,7 @@ function arc(startDegrees: number, sweepDegrees: number) {
 /** Returns stable authoring paths from public scene-resolution issues. */
 function paths(object: ReturnType<typeof arc>) {
   return planeResolutionIssues(planeFrame, [object], [], { kind: "fit" }).map(
-    (candidate) =>
-      typeof candidate === "object" && "path" in candidate ? candidate.path : []
+    (candidate) => (hasAuthoredIssue(candidate) ? candidate.path : [])
   );
 }
 

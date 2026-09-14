@@ -6,6 +6,7 @@ import {
   PlaneMathObjectSchema,
 } from "#contracts/math/plane";
 import { planeResolutionIssues } from "#contracts/math/resolution";
+import { hasAuthoredIssue } from "#contracts/test/issue";
 
 const RESOLUTION = 2 ** -23;
 const BELOW_RESOLUTION = RESOLUTION / 2;
@@ -29,7 +30,7 @@ function planeObject(kind: string, fields: Record<string, unknown>) {
 /** Returns authored paths from stable resolution issues. */
 function paths(issues: ReturnType<typeof planeResolutionIssues>) {
   return issues.map((candidate) =>
-    typeof candidate === "object" && "path" in candidate ? candidate.path : []
+    hasAuthoredIssue(candidate) ? candidate.path : []
   );
 }
 

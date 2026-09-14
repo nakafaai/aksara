@@ -3,7 +3,7 @@ import {
   MathVisualSchema,
   mathVisualLabelKeys,
 } from "@nakafa/aksara-contracts/math/visual";
-import { Effect, Result, Schema, SchemaIssue } from "effect";
+import { Effect, Predicate, Result, Schema, SchemaIssue } from "effect";
 import type { Root } from "mdast";
 import type { Plugin } from "unified";
 import { visit } from "unist-util-visit";
@@ -30,7 +30,7 @@ export function normalizeSchemaPath(
   path: readonly (PropertyKey | StandardPathSegment)[] | undefined
 ): readonly StaticLiteralPathSegment[] {
   return (path ?? []).map((segment) => {
-    const key = typeof segment === "object" ? segment.key : segment;
+    const key = Predicate.hasProperty(segment, "key") ? segment.key : segment;
     return typeof key === "symbol" ? String(key) : key;
   });
 }

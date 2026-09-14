@@ -15,6 +15,7 @@ import {
   SpaceMathFrameSchema,
   SpaceMathObjectSchema,
 } from "#contracts/math/space";
+import { hasAuthoredIssue } from "#contracts/test/issue";
 
 const THRESHOLD = BigDecimal.fromStringUnsafe("0.00000011920928955078125");
 const RESOLUTION = 2 ** -23;
@@ -53,7 +54,7 @@ function spaceObject(kind: string, fields: Record<string, unknown>) {
 /** Returns authored paths from stable resolution issues. */
 function paths(issues: ReturnType<typeof planeResolutionIssues>) {
   return issues.map((candidate) =>
-    typeof candidate === "object" && "path" in candidate ? candidate.path : []
+    hasAuthoredIssue(candidate) ? candidate.path : []
   );
 }
 
