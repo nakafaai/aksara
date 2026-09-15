@@ -37,6 +37,7 @@ export const runAbortCommand: (args: AbortArguments) => AbortCommand =
         Effect.mapError(mapProductionError("environment"))
       );
       const rawTarget = yield* makeHttpPublicationTarget({
+        activationTimeout: ABORT_TIMEOUT,
         allowInsecureLoopback: false,
         endpoint: environment.publicationEndpoint,
         timeout: ABORT_TIMEOUT,

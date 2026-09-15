@@ -18,9 +18,16 @@ const token = Redacted.make("test-secret-token");
 
 /** Builds the one authenticated target configuration used by HTTP tests. */
 function targetConfig(
-  timeout: HttpPublicationTargetConfig["timeout"] = "1 second"
+  timeout: HttpPublicationTargetConfig["timeout"] = "1 second",
+  activationTimeout: HttpPublicationTargetConfig["activationTimeout"] = timeout
 ) {
-  return { allowInsecureLoopback: false, endpoint, timeout, token };
+  return {
+    activationTimeout,
+    allowInsecureLoopback: false,
+    endpoint,
+    timeout,
+    token,
+  };
 }
 
 /** Decodes the schema-encoded JSON body captured by a fake HTTP client. */

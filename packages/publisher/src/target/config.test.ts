@@ -10,6 +10,7 @@ function config(
   overrides: Partial<HttpPublicationTargetConfig> = {}
 ): HttpPublicationTargetConfig {
   return {
+    activationTimeout: "1 second",
     allowInsecureLoopback: false,
     endpoint: new URL("https://publish.test.invalid/content"),
     timeout: "1 second",
@@ -111,24 +112,17 @@ describe("HTTP publication configuration", () => {
     })
   );
 
-  it.effect("resolves the activation bound and rejects a bad override", () =>
+  it.effect("validates the activation bound apart from the request bound", () =>
     Effect.gen(function* () {
-      const inherited = yield* validate(config());
-      expect(Result.isSuccess(inherited)).toBe(true);
-      if (Result.isSuccess(inherited)) {
-        expect(Duration.toMillis(inherited.success.activationTimeout)).toBe(
-          1000
-        );
-      }
-      const overridden = yield* validate(
-        config({ activationTimeout: "5 minutes" })
+      const distinct = yield* validate(
+        config({ activationTimeout: "5 minutes", timeout: "1 second" })
       );
-      expect(Result.isSuccess(overridden)).toBe(true);
-      if (Result.isSuccess(overridden)) {
-        expect(Duration.toMillis(overridden.success.activationTimeout)).toBe(
+      expect(Result.isSuccess(distinct)).toBe(true);
+      if (Result.isSuccess(distinct)) {
+        expect(Duration.toMillis(distinct.success.activationTimeout)).toBe(
           300_000
         );
-        expect(Duration.toMillis(overridden.success.timeout)).toBe(1000);
+        expect(Duration.toMillis(distinct.success.timeout)).toBe(1000);
       }
       const rejected = yield* Effect.forEach(
         ["invalid", 0, Number.POSITIVE_INFINITY],

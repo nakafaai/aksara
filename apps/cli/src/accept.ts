@@ -25,6 +25,7 @@ export const runAcceptCommand: (args: AcceptArguments) => AcceptCommand =
         Effect.mapError(mapProductionError("environment"))
       );
       const rawTarget = yield* makeHttpPublicationTarget({
+        activationTimeout: ACCEPT_TIMEOUT,
         allowInsecureLoopback: false,
         endpoint: environment.publicationEndpoint,
         timeout: ACCEPT_TIMEOUT,
