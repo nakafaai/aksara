@@ -78,6 +78,19 @@ function protocolError(
   });
 }
 
+const ACTIVATION_OPERATIONS: ReadonlySet<PublicationRequest["operation"]> =
+  new Set(["activate", "activateRecovery"]);
+
+/** Selects one exchange bound; activation waits on a server-side read model. */
+function exchangeTimeout(
+  config: ValidatedHttpConfig,
+  operation: PublicationRequest["operation"]
+) {
+  return ACTIVATION_OPERATIONS.has(operation)
+    ? config.activationTimeout
+    : config.timeout;
+}
+
 /** Fails if encoded JSON exceeds its operation-specific ingress ceiling. */
 function validateRequestBytes(request: PublicationRequest, bytes: number) {
   const hasOversizedChild =
@@ -160,7 +173,7 @@ export function sendPublicationRequest(
     });
     return yield* exchange.pipe(
       Effect.timeoutOrElse({
-        duration: config.timeout,
+        duration: exchangeTimeout(config, request.operation),
         orElse: () =>
           Effect.fail(
             new PublicationTargetTransportError({

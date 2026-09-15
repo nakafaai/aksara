@@ -110,4 +110,36 @@ describe("HTTP publication configuration", () => {
       }
     })
   );
+
+  it.effect("resolves the activation bound and rejects a bad override", () =>
+    Effect.gen(function* () {
+      const inherited = yield* validate(config());
+      expect(Result.isSuccess(inherited)).toBe(true);
+      if (Result.isSuccess(inherited)) {
+        expect(Duration.toMillis(inherited.success.activationTimeout)).toBe(
+          1000
+        );
+      }
+      const overridden = yield* validate(
+        config({ activationTimeout: "5 minutes" })
+      );
+      expect(Result.isSuccess(overridden)).toBe(true);
+      if (Result.isSuccess(overridden)) {
+        expect(Duration.toMillis(overridden.success.activationTimeout)).toBe(
+          300_000
+        );
+        expect(Duration.toMillis(overridden.success.timeout)).toBe(1000);
+      }
+      const rejected = yield* Effect.forEach(
+        ["invalid", 0, Number.POSITIVE_INFINITY],
+        (activationTimeout) => validate(config({ activationTimeout }))
+      );
+      for (const result of rejected) {
+        expect(result).toMatchObject({
+          _tag: "Failure",
+          failure: { reason: "timeout" },
+        });
+      }
+    })
+  );
 });
