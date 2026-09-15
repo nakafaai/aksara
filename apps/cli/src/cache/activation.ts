@@ -7,7 +7,7 @@ import {
 } from "@nakafa/aksara-contracts/cache/content";
 import type { SignedContentRelease } from "@nakafa/aksara-contracts/release";
 import { PublicationActivationError } from "@nakafa/aksara-publisher/publication/spec";
-import { Effect, type Redacted, Schedule, Stream } from "effect";
+import { Effect, type Redacted, Schedule, Schema, Stream } from "effect";
 import type { HttpClient } from "effect/unstable/http";
 import { ContentCacheError } from "#cli/cache/error";
 import { invalidateContentCache } from "#cli/cache/exchange";
@@ -17,6 +17,23 @@ const CACHE_PATH = "/api/internal/content/cache";
 const RETRY_COUNT = 3;
 const RETRY_DELAY = "100 millis";
 const REQUEST_TIMEOUT = "30 seconds";
+
+/**
+ * Selects whether one publication target has a deployed app cache surface.
+ *
+ * Only a target whose content is served by a deployed application can
+ * revalidate that application's caches. A development or acceptance target is
+ * served by no deployed app, so it must not invalidate another deployment.
+ */
+export const CacheSurfaceSchema = Schema.Literals(["deployed", "none"]);
+export type CacheSurface = typeof CacheSurfaceSchema.Type;
+
+/** One post-commit cache convergence request for the activated release. */
+export interface CacheInvalidationInput<E, R> {
+  /** Replays exact source-owned transitions for the activated release. */
+  readonly cacheChanges: Stream.Stream<ContentCacheChange, E, R>;
+  readonly release: SignedContentRelease;
+}
 
 /** Derives the only cache endpoint from the exact renderer endpoint contract. */
 function makeCacheEndpoint(rendererEndpoint: URL) {
@@ -52,20 +69,30 @@ function makeCacheRequests<E, R>(input: {
   );
 }
 
+/**
+ * Drains the release cache transitions for a target with no cache surface.
+ *
+ * The publisher still supplies the exact family-aware stream, so this keeps one
+ * activation contract while declining to invalidate a deployment that does not
+ * serve this release.
+ */
+export function makeAbsentCacheInvalidation() {
+  return Effect.fn("AksaraCli.invalidateAbsentCache")(function* <E, R>(
+    input: CacheInvalidationInput<E, R>
+  ) {
+    yield* Stream.runDrain(input.cacheChanges);
+  });
+}
+
 /** Creates the bounded post-commit cache convergence operation. */
 export function makeProductionCacheInvalidation(settings: {
   readonly client: HttpClient.HttpClient;
   readonly endpoint: URL;
   readonly token: Redacted.Redacted<string>;
 }) {
-  return Effect.fn("AksaraCli.invalidateProductionCache")(function* <
-    E,
-    R,
-  >(input: {
-    /** Replays exact source-owned transitions for the activated release. */
-    readonly cacheChanges: Stream.Stream<ContentCacheChange, E, R>;
-    readonly release: SignedContentRelease;
-  }) {
+  return Effect.fn("AksaraCli.invalidateProductionCache")(function* <E, R>(
+    input: CacheInvalidationInput<E, R>
+  ) {
     const cacheEndpoint = makeCacheEndpoint(settings.endpoint);
     if (cacheEndpoint === null) {
       return yield* new PublicationActivationError({

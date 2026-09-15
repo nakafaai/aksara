@@ -6,7 +6,10 @@ import {
 import { Effect, Fiber, Redacted, Schema, Stream } from "effect";
 import { TestClock } from "effect/testing";
 import { HttpClientError, HttpClientRequest } from "effect/unstable/http";
-import { makeProductionCacheInvalidation } from "#cli/cache/activation";
+import {
+  makeAbsentCacheInvalidation,
+  makeProductionCacheInvalidation,
+} from "#cli/cache/activation";
 import { captureClient, requestJson, webResponse } from "#test/http";
 import { gitBundle } from "#test/target";
 
@@ -134,6 +137,19 @@ describe("production cache activation", () => {
         ).toBe("source-unavailable");
         expect(requests).toHaveLength(0);
       })
+  );
+
+  it.effect("drains transitions for a target with no deployed cache", () =>
+    Effect.gen(function* () {
+      const invalidate = makeAbsentCacheInvalidation();
+      expect(yield* invalidate(cacheInput())).toBeUndefined();
+      const cacheChanges = Stream.make({ scope: "material" } as const).pipe(
+        Stream.concat(Stream.fail("source-unavailable"))
+      );
+      expect(
+        yield* invalidate({ cacheChanges, release: RELEASE }).pipe(Effect.flip)
+      ).toBe("source-unavailable");
+    })
   );
 
   it.effect.each([

@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "@effect/vitest";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, Redacted } from "effect";
+import { Effect, Redacted, Stream } from "effect";
 import { HttpClient } from "effect/unstable/http";
 import { makeProductionActivation } from "#cli/activation";
 import { captureClient } from "#test/http";
@@ -38,6 +38,19 @@ vi.mock("#cli/production/renderer", async (importOriginal) => {
 
 /** Creates one activation service through its captured HTTP boundary. */
 const makeActivation = makeProductionActivation({
+  cacheSurface: "deployed",
+  endpoint: new URL("https://www.example.test/api/internal/content/renderer"),
+  token: Redacted.make("renderer-token"),
+}).pipe(
+  Effect.provideService(
+    HttpClient.HttpClient,
+    captureClient(() => Effect.die("Unexpected cache request.")).client
+  )
+);
+
+/** Creates one activation for a target that serves no deployed app cache. */
+const makeAbsentActivation = makeProductionActivation({
+  cacheSurface: "none",
   endpoint: new URL("https://www.example.test/api/internal/content/renderer"),
   token: Redacted.make("renderer-token"),
 }).pipe(
@@ -74,6 +87,20 @@ describe("production activation", () => {
           fetches: 1,
           token: "renderer-token",
         });
+      })
+  );
+
+  it.effect(
+    "declines cache convergence for a target with no cache surface",
+    () =>
+      Effect.gen(function* () {
+        const activation = yield* makeAbsentActivation;
+        expect(
+          yield* activation.invalidate({
+            cacheChanges: Stream.make({ scope: "material" }),
+            release: BUNDLE.release,
+          })
+        ).toBeUndefined();
       })
   );
 

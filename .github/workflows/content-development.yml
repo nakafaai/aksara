@@ -94,6 +94,7 @@ jobs:
       - name: Publish release to development
         if: inputs.operation == 'release'
         env:
+          AKSARA_CACHE_SURFACE: none
           AKSARA_PUBLICATION_ENDPOINT: ${{ vars.AKSARA_DEV_PUBLICATION_ENDPOINT }}
           AKSARA_PUBLICATION_TOKEN: ${{ secrets.AKSARA_DEV_PUBLICATION_TOKEN }}
           AKSARA_RENDERER_ENDPOINT: ${{ vars.AKSARA_RENDERER_ENDPOINT }}

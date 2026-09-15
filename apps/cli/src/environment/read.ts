@@ -1,6 +1,7 @@
 import { createPrivateKey, createPublicKey } from "node:crypto";
 import { SigningKeyIdSchema } from "@nakafa/aksara-contracts/ids";
 import { Config, Effect, Option, Redacted, Schema } from "effect";
+import { type CacheSurface, CacheSurfaceSchema } from "#cli/cache/activation";
 import {
   ProductionEnvironmentError,
   type ProductionVariable,
@@ -21,6 +22,7 @@ export interface PublicationEnvironment {
 
 /** Validated secrets and endpoints required by a production content command. */
 interface RecoveryEnvironment extends PublicationEnvironment {
+  readonly cacheSurface: CacheSurface;
   readonly rendererEndpoint: URL;
   readonly rendererToken: Redacted.Redacted<string>;
 }
@@ -173,8 +175,15 @@ export const readRecoveryEnvironment = Effect.fn(
     tokenConfig("AKSARA_RENDERER_TOKEN"),
     "AKSARA_RENDERER_TOKEN"
   );
+  const cacheSurface = yield* readConfig(
+    Config.schema(CacheSurfaceSchema, "AKSARA_CACHE_SURFACE").pipe(
+      Config.withDefault<CacheSurface>("deployed")
+    ),
+    "AKSARA_CACHE_SURFACE"
+  );
   return {
     ...publication,
+    cacheSurface,
     rendererEndpoint,
     rendererToken,
   } satisfies RecoveryEnvironment;
