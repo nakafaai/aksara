@@ -192,7 +192,24 @@
 
 ## Structure
 
+- Never call a rendered visual an image. Nakafa publishes no images: every
+  visual is a graph, curve, diagram, scene, or interactive component. Name what
+  is rendered, such as `grafik`, `kurva`, `diagram`, `Graph`, `Kurve`, or the
+  exact colored object the section plots. Replace `gambar`, `figure`,
+  `illustration`, `picture`, `Bild`, and `Abbildung` when they point at a
+  rendered visual. This is not a word ban: keep the mathematical `Abbildung`
+  for a mapping, keep the Indonesian coin side `Gambar`, and keep the
+  imperative `gambar` that asks the learner to draw an arrow or a line.
 - Give every heading a specific teaching job.
+- Write every heading in plain language that a student understands before
+  reading the section. Never put a technical term, abbreviation, algorithm
+  name, or notation in a heading the lesson has not yet defined, and never use
+  a bare category label such as `Properties`, `Applications`, `Eigenschaften`,
+  `Sifat`, or `Penerapan` without naming the exact property or application.
+- Leave no ambiguous sentence. Name the object instead of relying on `it`,
+  `this`, `these`, `dieser`, `sie`, `ini`, `itu`, or a `-nya` when more than one
+  noun could fit. State what changes, compared with what, under which
+  condition, and with which result.
 - Follow [MDX headings](mdx-quality.md#headings) for titles, notation, required
   hyphens, and citation-only sections. Apply the [link policy](mdx-quality.md#links)
   before removing or relocating evidence; a cleaner outline cannot justify

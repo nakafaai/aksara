@@ -62,7 +62,7 @@ The reduced form removes those zero rows and the matching unused columns of <Inl
 
 <BlockMath math="\begin{aligned} A &amp;= Q \cdot R \\ &amp;= (Q_1 \quad Q_2) \cdot \begin{pmatrix} R_1 \\ 0 \end{pmatrix} \\ &amp;= Q_1 \cdot R_1 \end{aligned}" />
 
-Here <InlineMath math="Q_1\in\mathbb{R}^{m\times n}" /> contains the first <InlineMath math="n" /> columns of <InlineMath math="Q" />, and <InlineMath math="R_1\in\mathbb{R}^{n\times n}" /> is upper triangular. Storing <InlineMath math="Q_1" /> instead of the full <InlineMath math="m\times m" /> matrix <InlineMath math="Q" /> saves memory and avoids operations on blocks that are known to be zero.
+Here <InlineMath math="Q_1\in\mathbb{R}^{m\times n}" /> contains the first <InlineMath math="n" /> columns of <InlineMath math="Q" />, and <InlineMath math="R_1\in\mathbb{R}^{n\times n}" /> is upper triangular. Storing only the first <InlineMath math="n" /> columns of <InlineMath math="Q" /> saves memory and avoids operations on blocks that are known to be zero.
 
 The unused columns <InlineMath math="Q_2\in\mathbb{R}^{m\times(m-n)}" /> form an orthonormal basis for the null space of <InlineMath math="A^T" />:
 
@@ -231,6 +231,8 @@ After <InlineMath math="n" /> steps,
 </MathContainer>
 
 ## Numerical Aspects and Householder Complexity
+
+Implementing the decomposition in floating-point arithmetic raises two practical questions, how many operations it costs and how the rounding error behaves. The subsections below answer both.
 
 ### Computational Complexity
 

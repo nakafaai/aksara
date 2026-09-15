@@ -33,7 +33,9 @@ Setiap simbol pada rumus tersebut berarti:
 
 ## Rotasi Khusus Terhadap Titik Asal
 
-Untuk rotasi terhadap titik asal <InlineMath math="(0, 0)" />, substitusi <InlineMath math="a=b=0" /> menghilangkan suku translasi dari rumus umum:
+Rotasi terhadap titik asal <InlineMath math="(0, 0)" /> adalah kasus yang paling sering kamu jumpai, karena mengganti <InlineMath math="a = 0" /> dan <InlineMath math="b = 0" /> menghapus suku translasi pada rumus umum. Yang tersisa hanyalah perubahan arah, dan tiga putaran seperempat berikut mencakup sebagian besar soal.
+
+Setiap langkah di bawah adalah putaran seperempat berlawanan arah jarum jam, sehingga menerapkan aturannya dua kali menghasilkan putaran setengah dan tiga kali menghasilkan putaran tiga perempat.
 
 1. Rotasi <InlineMath math="90^\circ" />
 
@@ -49,7 +51,7 @@ Untuk rotasi terhadap titik asal <InlineMath math="(0, 0)" />, substitusi <Inlin
 
 ## Visualisasi Rotasi Fungsi Kuadrat
 
-Rotasikan kurva kuadrat <InlineMath math="y = x^2" /> terhadap titik asal:
+Memutar kurva berarti memutar setiap titiknya. Fungsi kuadrat <InlineMath math="y = x^2" /> memperlihatkan hal itu dengan jelas karena titik-titiknya berpasangan pada nilai yang sama, sehingga hasil rotasinya bisa kamu periksa langsung. Tampilan berikut memperlihatkan parabola asli dan hasil rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap titik asal.
 
 <LineEquation
   title={<>Rotasi Fungsi <InlineMath math="y = x^2" /> Terhadap Titik Asal</>}
@@ -101,17 +103,25 @@ Rotasikan kurva kuadrat <InlineMath math="y = x^2" /> terhadap titik asal:
 
 ## Sifat Rotasi Fungsi
 
-Rotasi memiliki sifat berikut:
+Rotasi memindahkan grafik mengelilingi titik tetap tanpa mengubah ukurannya, jadi bentuk grafik tetap dan hanya orientasinya yang berubah. Tabel berikut merangkum apa yang tetap dan apa yang berubah.
 
-- **Mempertahankan Bentuk**: Rotasi tidak mengubah bentuk dasar grafik, hanya mengubah orientasinya
-- **Mempertahankan Jarak**: Jarak antara dua titik pada grafik tetap sama setelah rotasi
-- **Komposisi Rotasi**: Rotasi berturut-turut terhadap pusat yang sama dapat digabungkan dengan menjumlahkan sudut rotasinya
+| Sifat | Yang terjadi | Alasannya |
+| --- | --- | --- |
+| Bentuk | Bentuk grafik tidak berubah | Rotasi memindahkan setiap titik dengan sudut yang sama terhadap pusat yang sama |
+| Jarak | Jarak antara dua titik tetap sama | Memutar dua titik terhadap satu pusat mempertahankan ruas yang menghubungkan keduanya |
+| Sudut antar sisi | Sudut pada bangun tetap sama | Rotasi adalah gerak kaku, sehingga tidak pernah membengkokkan bangun |
+| Orientasi | Grafik berputar ke arah baru | Setiap titik berubah posisinya terhadap pusat rotasi |
+| Penggabungan | Dua rotasi terhadap pusat yang sama menjumlahkan sudutnya | Memutar sebesar <InlineMath math="\theta_1" /> lalu <InlineMath math="\theta_2" /> sama dengan satu putaran sebesar <InlineMath math="\theta_1 + \theta_2" /> |
+
+Karena jarak dan sudut tidak pernah berubah, rotasi disebut gerak kaku. Satu fakta itu menjelaskan mengapa bentuk dan ukuran tetap, sedangkan posisi dan arah adalah <Highlight>satu-satunya bagian yang berpindah</Highlight>.
 
 ## Penerapan Rotasi pada Berbagai Fungsi
 
+Rotasi tidak memperlakukan setiap kurva dengan cara yang sama. Garis lurus dan kurva eksponensial sama-sama mempertahankan bentuknya, tetapi garis yang dirotasi tetap berupa garis lurus, sedangkan kurva eksponensial yang dirotasi berubah sumbu yang didekatinya. Dua kasus berikut menunjukkan perbedaan itu.
+
 ### Rotasi Fungsi Linear
 
-Untuk fungsi linear <InlineMath math="y = mx + c" />, rotasi akan mengubah kemiringan dan posisi garis.
+Pada fungsi linear <InlineMath math="y = mx + c" />, setiap titik berpindah ke posisi baru, sehingga <Highlight>kemiringan dan posisi berubah bersamaan</Highlight>. Rotasi <InlineMath math="45^\circ" /> berlawanan arah jarum jam terhadap titik asal memperlihatkan bagaimana garis asli berubah menjadi garis kedua.
 
 <LineEquation
   title={<>Rotasi Fungsi Linear <InlineMath math="y = 2x + 1" /></>}
@@ -216,15 +226,13 @@ Kurva eksponensial juga dapat diputar titik demi titik. Setelah diputar, kurva t
 
 ## Langkah Menentukan Hasil Rotasi
 
-Untuk menentukan hasil rotasi suatu fungsi, ikuti langkah berikut:
+Ketika kamu memutar seluruh kurva, rumus rotasi bekerja pada titik, sehingga pengerjaannya berjalan titik demi titik. Mulailah dengan menetapkan pusat dan sudut rotasi, karena keduanya muncul di setiap perhitungan berikutnya.
 
-- Tentukan titik pusat rotasi dan sudut rotasi yang diinginkan
-- Pilih beberapa titik pada grafik fungsi asli sebagai sampel
-- Terapkan rumus rotasi pada setiap titik sampel
-- Hubungkan titik-titik hasil rotasi untuk menelusuri kurva baru, yang belum tentu tetap merupakan fungsi terhadap x
-- Verifikasi hasil dengan memeriksa beberapa titik tambahan
+Setelah itu, pilih beberapa titik pada kurva asli, termasuk kedua ujungnya dan titik puncaknya, lalu terapkan rumus rotasi pada setiap titik. Gambar titik-titik hasil rotasi, hubungkan sesuai urutan aslinya, dan periksa beberapa titik tambahan di antara sampel. Hasilnya belum tentu tetap menjadi fungsi terhadap <InlineMath math="x" />, karena dua titik hasil rotasi dapat memiliki nilai <InlineMath math="x" /> yang sama.
 
 ## Latihan
+
+Setiap soal berikut meminta satu rotasi, sehingga semuanya cukup diselesaikan dengan memasukkan pusat dan sudut ke rumus rotasi. Kerjakan titik demi titik dan perhatikan arah sudutnya, karena putaran berlawanan arah jarum jam dan searah jarum jam menghasilkan hasil yang berbeda. Kerjakan dulu tanpa melihat kunci, lalu bandingkan langkahmu dengan pembahasan di bawah.
 
 1. Tentukan hasil rotasi titik <InlineMath math="(3, 4)" /> terhadap titik asal dengan sudut <InlineMath math="90^\circ" /> berlawanan arah jarum jam.
 
@@ -237,6 +245,8 @@ Untuk menentukan hasil rotasi suatu fungsi, ikuti langkah berikut:
 5. Fungsi <InlineMath math="y = \sqrt{x}" /> untuk <InlineMath math="x \geq 0" /> dirotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap titik asal. Jelaskan bentuk grafik hasil rotasi.
 
 ### Kunci Jawaban
+
+Setiap pembahasan menyebutkan pusat dan sudut rotasi, lalu memasukkan keduanya ke rumus rotasi. Titik hasilnya diperiksa kembali terhadap titik asli untuk memastikan jaraknya ke pusat rotasi tidak berubah.
 
 1. Menggunakan rumus rotasi <InlineMath math="90^\circ" />:
 

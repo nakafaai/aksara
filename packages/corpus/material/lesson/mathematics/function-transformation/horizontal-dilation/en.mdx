@@ -11,20 +11,20 @@ export const metadata = {
 
 ## Changing the Width of a Function Graph
 
-Horizontal dilation changes a function graph's width without changing its heights. Picture a photograph pulled outward from its left and right edges or pressed inward toward its center.
+Horizontal dilation changes how wide a function graph looks along the <InlineMath math="x" />-axis without changing any of its heights. Stretching the graph makes it wider, and compressing it makes the graph narrower, while every point keeps its original <InlineMath math="y" /> value.
 
-If we have a function <InlineMath math="f(x)" />, then horizontal dilation produces a new function <InlineMath math="g(x) = f(kx)" />. Here, <InlineMath math="k \ne 0" /> is the input multiplier. The actual horizontal scale magnitude is <InlineMath math="s = \frac{1}{|k|}" />.
+If you have a function <InlineMath math="f(x)" />, then horizontal dilation produces a new function <InlineMath math="g(x) = f(kx)" />. Here <InlineMath math="k \ne 0" /> is the number that multiplies the input, and the horizontal scale of the new graph is <InlineMath math="s = \frac{1}{|k|}" />.
 
-### Rules of Horizontal Dilation
+### How the Input Factor Changes the Width
 
-For any function <InlineMath math="f(x)" /> and nonzero input multiplier <InlineMath math="k" />, horizontal dilation is defined as:
+For any function <InlineMath math="f(x)" /> and a nonzero factor <InlineMath math="k" /> that multiplies the input, horizontal dilation is defined as:
 
 <MathContainer>
   <BlockMath math="g(x) = f(kx)" />
   <BlockMath math="s = \frac{1}{|k|}" />
 </MathContainer>
 
-The input multiplier <InlineMath math="k" /> determines the transformation:
+The factor <InlineMath math="k" /> decides what happens to the width:
 - If <InlineMath math="k > 1" />, the graph is compressed to <InlineMath math="\frac{1}{k}" /> of its original width
 - If <InlineMath math="0 < k < 1" />, the graph is stretched to <InlineMath math="\frac{1}{k}" /> times its original width
 - If <InlineMath math="k = 1" />, the graph does not change
@@ -32,7 +32,7 @@ The input multiplier <InlineMath math="k" /> determines the transformation:
 
 The value <InlineMath math="k = 0" /> is excluded: <InlineMath math="f(0x) = f(0)" /> would be constant wherever it is defined. The graph would collapse to one horizontal line.
 
-The reciprocal matters: a larger input multiplier makes the graph narrower, while the horizontal scale itself is <InlineMath math="\frac{1}{|k|}" />.
+The reciprocal matters here. A larger factor that multiplies the input makes the graph <Highlight>narrower</Highlight>, because the horizontal scale is <InlineMath math="\frac{1}{|k|}" />.
 
 ## Visualization of Horizontal Dilation
 
@@ -134,23 +134,21 @@ The three lines show:
 - Function <InlineMath math="h(x) = f(0.5x) = 0.5x + 2" /> has slope <InlineMath math="0.5" /> (horizontally stretched)
 - All lines intersect the <InlineMath math="y" />-axis at the same point <InlineMath math="(0, 2)" />
 
-## Properties of Horizontal Dilation
+## What Changes and What Stays
 
-### Effect on Coordinate Points
+Once you know whether the graph stretches or compresses, you still need to know which values move. Horizontal dilation divides every horizontal coordinate by the factor <InlineMath math="k" /> that multiplies the input, so positions along the <InlineMath math="x" />-axis change while heights stay the same.
 
-If point <InlineMath math="(a, b)" /> is on the graph of <InlineMath math="f(x)" />, then the corresponding point on the graph of <InlineMath math="f(kx)" /> is <InlineMath math="(\frac{a}{k}, b)" />.
+Take a point <InlineMath math="(a, b)" /> on the graph of <InlineMath math="f(x)" />. The matching point on the graph of <InlineMath math="f(kx)" /> is <InlineMath math="(\frac{a}{k}, b)" />. The <InlineMath math="y" /> value stays at <InlineMath math="b" /> because horizontal dilation never changes a height.
 
-### Domain and Range
+| Part of the function | Before the dilation | After the dilation by <InlineMath math="k > 0" /> |
+| --- | --- | --- |
+| Point <InlineMath math="(a, b)" /> | On the graph of <InlineMath math="f(x)" /> | Moves to <InlineMath math="(\frac{a}{k}, b)" /> |
+| Domain <InlineMath math="[c, d]" /> | The original interval | Becomes <InlineMath math="[\frac{c}{k}, \frac{d}{k}]" /> |
+| Range | The original output values | The same output values as before |
+| <InlineMath math="x" />-intercept | At <InlineMath math="x = x_0" /> | Moves to <InlineMath math="x = \frac{x_0}{k}" /> |
+| <InlineMath math="y" />-intercept | At <InlineMath math="x = 0" /> | Stays at <InlineMath math="x = 0" /> |
 
-- **Domain**: Its horizontal coordinates are divided by the input multiplier <InlineMath math="k" />
-- **Range**: Does not change after horizontal dilation
-
-If the domain of the original function is <InlineMath math="[c, d]" />, then the domain after horizontal dilation with input multiplier <InlineMath math="k > 0" /> becomes <InlineMath math="[\frac{c}{k}, \frac{d}{k}]" />.
-
-### Axis Intercepts
-
-- **<InlineMath math="x" />-intercept**: Its coordinate is divided by the input multiplier
-- **<InlineMath math="y" />-intercept**: Does not change
+The domain shrinks or grows together with the graph, because it lists the allowed values of <InlineMath math="x" />. The range keeps its original values, because the height of the graph at each point never changes. A [horizontal translation](/en/subjects/mathematics/function-transformation/horizontal-translation) shifts those coordinates without changing their size.
 
 ## Changing the Growth Rate of an Exponential Function
 
@@ -231,15 +229,17 @@ When the input multiplier is negative:
 
 ## Exercises
 
+The three problems below use the width rule you have just learned. Each one multiplies the input by a stated factor, so watch whether that factor is greater than one, between zero and one, or negative. Try them without the answer key first, then compare your steps with the worked answers.
+
 1. Given the function <InlineMath math="f(x) = x^2 - 2x + 1" />. Determine the equation produced by the input multiplier <InlineMath math="3" />.
 
-2. If the graph of function <InlineMath math="g(x) = \sqrt{x}" /> undergoes horizontal dilation with input multiplier <InlineMath math="\frac{1}{2}" />, determine:
-   - The equation of the resulting dilated function
-   - The domain of the function after dilation
+2. The graph of the function <InlineMath math="g(x) = \sqrt{x}" /> undergoes horizontal dilation with input factor <InlineMath math="\frac{1}{2}" />. Determine the equation of the resulting function, then determine the domain of that function.
 
 3. Function <InlineMath math="h(x) = |x - 2|" /> undergoes horizontal dilation with input multiplier <InlineMath math="-1" />. Determine the vertex of the resulting function.
 
 ### Answer Key
+
+Every worked answer starts by replacing <InlineMath math="x" /> with the product of the factor and <InlineMath math="x" />, because that is where the width rule lives. The equation is then simplified and the new graph is checked to confirm whether it stretched or compressed.
 
 1. Horizontal dilation with input multiplier <InlineMath math="3" />: <InlineMath math="f'(x) = f(3x) = (3x)^2 - 2(3x) + 1 = 9x^2 - 6x + 1" />
 
