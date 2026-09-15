@@ -32,6 +32,28 @@ it("flags a unit word welded to a closing vertical bar", () => {
   assert.deepEqual(rules(String.raw`|k| \text{ Einheiten}`), []);
 });
 
+it("flags a unit word welded to a closing parenthesis or bracket", () => {
+  assert.deepEqual(rules(String.raw`d=(3{,}13 \pm 0{,}02)\text{cm}`), [GLUED]);
+  assert.deepEqual(rules(String.raw`A=(7{,}70 \pm 0{,}08)\text{cm}^2`), [
+    GLUED,
+  ]);
+  assert.deepEqual(rules(String.raw`[a]\text{Einheiten}`), [GLUED]);
+});
+
+it("keeps a spaced or non-word group after a closing delimiter", () => {
+  assert.deepEqual(rules(String.raw`d=(3{,}13 \pm 0{,}02)\text{ cm}`), []);
+  assert.deepEqual(rules(String.raw`A=(7{,}70 \pm 0{,}08)\text{ cm}^2`), []);
+  assert.deepEqual(rules(String.raw`(3)\text{-}2`), []);
+});
+
+it("keeps an ordinal suffix welded to a closed value", () => {
+  assert.deepEqual(rules(String.raw`(n)\text{th}`), []);
+  assert.deepEqual(rules(String.raw`(3)\text{rd}`), []);
+  assert.deepEqual(rules(String.raw`(4)\text{th}`), []);
+  assert.deepEqual(rules(String.raw`(3)\text{2nd}`), []);
+  assert.deepEqual(rules(String.raw`(3)\text{rd}, (4)\text{th}`), []);
+});
+
 it("flags both welded edges of one text group", () => {
   assert.deepEqual(rules(String.raw`0 \text{zu} 255`), [GLUED, GLUED]);
 });

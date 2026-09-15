@@ -6,11 +6,15 @@ const TEXT_GROUP_NAMES = new Set(["text", "mbox", "textrm", "textnormal"]);
 const COMMAND_NAME_SEPARATOR_PATTERN = /\s+/u;
 const ASCII_LETTER_PATTERN = /[A-Za-z]/u;
 const SPACE_PATTERN = /[ \t\n]/u;
-const TRAILING_HORIZONTAL_SPACE_PATTERN = /[ \t]$/u;
+/** A separator that cannot render: a math-mode space, or a closing `)` or `]`. */
+const GLUED_BEFORE_PATTERN = /(?:[ \t]|[)\]])$/u;
 const LEADING_HORIZONTAL_SPACE_PATTERN = /^[ \t]/u;
 const LEADING_WORD_CHARACTER_PATTERN = /^[\p{L}\p{N}]/u;
 const TRAILING_WORD_CHARACTER_PATTERN = /[\p{L}\p{N}]$/u;
 const SCRIPT_SUFFIX_PATTERN = /\s*[_^](?:\{[^{}]*\}|\\[A-Za-z]+|.)\s*$/u;
+
+/** An ordinal suffix attaches to its value, as in the `(n)\text{th}` form. */
+const ORDINAL_SUFFIX_PATTERN = /^\d?(?:st|nd|rd|th)$/u;
 
 /** Builds one command-name set from a whitespace-separated list. */
 function commandSet(names: string): ReadonlySet<string> {
@@ -296,8 +300,9 @@ export function findGluedTextGroups(value: string): MathFinding[] {
     index = group.end - 1;
     const before = value.slice(0, group.start);
     if (
-      TRAILING_HORIZONTAL_SPACE_PATTERN.test(before) &&
+      GLUED_BEFORE_PATTERN.test(before) &&
       LEADING_WORD_CHARACTER_PATTERN.test(group.content) &&
+      !ORDINAL_SUFFIX_PATTERN.test(group.content) &&
       isOperand(operandBefore(value, group.start))
     ) {
       findings.push({ offset: group.start, rule: "glued-text-math" });

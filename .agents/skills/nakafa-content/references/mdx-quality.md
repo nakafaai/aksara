@@ -139,8 +139,11 @@ strings with their own [math syntax](question-bank.md#response-items).
   results on its own aligned row or in prose; inside a chain row it welds onto
   the next variable. A unit word after a value or a closing delimiter needs its
   own space, so write `\text{ Einheiten}` with the space inside the group,
-  because `5 \text{Einheiten}` renders as `5Einheiten`. The lesson voice gate
-  blocks all three shapes.
+  because `5 \text{Einheiten}` renders as `5Einheiten`. A word that directly
+  follows a closing parenthesis or bracket welds the same way, so write
+  `(3{,}13 \pm 0{,}02)\text{ cm}` rather than
+  `(3{,}13 \pm 0{,}02)\text{cm}`, which renders as `(3,13±0,02)cm`. The lesson
+  voice gate blocks every one of these shapes.
 - Keep the leading backslash on every LaTeX command in a `math` prop. Bare
   `ldots`, `cdots`, `vdots`, or `ddots` render as letters rather than an
   ellipsis. Check this only inside rendered math, not in prose, code, or
