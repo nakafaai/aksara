@@ -375,6 +375,16 @@
   Clearinghouse guide, Mayer's multimedia principles, and signaling meta-analyses. Those sources
   support purposeful structure and relevant signals. They do not justify a
   visual quota or automatic sentence shortening.
+- Displayed-math composition is a project-specific regression class recorded
+  from a user report on a shipped lesson plus an audit of every authored math
+  value. Three shapes block: a word welded to a neighbouring symbol because the
+  renderer never emits the authored space, a displayed chain that opens with a
+  bare term, and a conjunction that joins two equations inside one chain row.
+  Rendering the same value through the installed KaTeX build decides the first
+  shape, because only the rendered output proves whether a space survives.
+  Relation and operator neighbours, `\,`-style spacing commands, a text group
+  whose own leading or trailing space already renders, and a conjunction that
+  names an alternative inside a single equation stay valid.
 
 The deterministic lesson voice gate is a quality regression linter, not an AI
 authorship detector. Admit a new rule only when all of these conditions hold:
