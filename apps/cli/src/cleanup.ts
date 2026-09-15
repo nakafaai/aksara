@@ -51,6 +51,7 @@ export const runCleanupCommand: (args: CleanupArguments) => CleanupCommand =
         Effect.mapError(mapProductionError("environment"))
       );
       const rawTarget = yield* makeHttpPublicationTarget({
+        activationTimeout: CLEANUP_TIMEOUT,
         allowInsecureLoopback: false,
         endpoint: environment.publicationEndpoint,
         timeout: CLEANUP_TIMEOUT,

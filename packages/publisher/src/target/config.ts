@@ -6,11 +6,11 @@ import { PublicationTargetConfigurationError } from "#publisher/target/errors";
  *
  * `activationTimeout` bounds the two exchanges whose ingress waits on a
  * server-side read-model build. Staging and read exchanges stay on `timeout`,
- * which is sized for one bounded request. When omitted, activation inherits
- * the request bound.
+ * which is sized for one bounded request. Both bounds are required so no target
+ * can silently size an activation wait as one bounded request.
  */
 export interface HttpPublicationTargetConfig {
-  readonly activationTimeout?: unknown;
+  readonly activationTimeout: unknown;
   readonly allowInsecureLoopback: boolean;
   readonly endpoint: URL;
   readonly timeout: unknown;
@@ -82,10 +82,7 @@ export const validateHttpConfig = Effect.fn(
   if (Option.isNone(timeout)) {
     return yield* configurationError("timeout");
   }
-  const activationTimeout =
-    config.activationTimeout === undefined
-      ? timeout
-      : decodeTimeout(config.activationTimeout);
+  const activationTimeout = decodeTimeout(config.activationTimeout);
   if (Option.isNone(activationTimeout)) {
     return yield* configurationError("timeout");
   }

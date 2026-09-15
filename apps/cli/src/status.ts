@@ -47,6 +47,7 @@ export const runStatusCommand: StatusCommand = Effect.gen(function* () {
     Effect.mapError(mapProductionError("environment"))
   );
   const rawTarget = yield* makeHttpPublicationTarget({
+    activationTimeout: STATUS_TIMEOUT,
     allowInsecureLoopback: false,
     endpoint: environment.publicationEndpoint,
     timeout: STATUS_TIMEOUT,
