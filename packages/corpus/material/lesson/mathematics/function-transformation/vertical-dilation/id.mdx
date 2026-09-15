@@ -11,23 +11,25 @@ export const metadata = {
 
 ## Mengalikan Nilai Fungsi dengan Faktor Skala
 
-Dilatasi vertikal mengubah tinggi grafik fungsi tanpa mengubah koordinat horizontalnya. Bayangkan sebuah foto ditarik dari tepi atas dan bawah atau ditekan ke arah sumbu <InlineMath math="x" />.
+Dilatasi vertikal mengubah tinggi grafik fungsi tanpa menggeser posisi horizontalnya. Grafik yang diregangkan menjadi lebih tinggi, grafik yang dimampatkan mendekat ke sumbu <InlineMath math="x" />, dan setiap titik mempertahankan nilai <InlineMath math="x" /> aslinya.
 
-Untuk fungsi <InlineMath math="f(x)" />, dilatasi vertikal menghasilkan <InlineMath math="g(x) = k \cdot f(x)" />. Faktor skala <InlineMath math="k \ne 0" /> menentukan perubahan ukuran vertikal grafik.
+Untuk fungsi <InlineMath math="f(x)" />, dilatasi vertikal menghasilkan <InlineMath math="g(x) = k \cdot f(x)" />. Di sini <InlineMath math="k \ne 0" /> adalah faktor yang mengalikan setiap nilai keluaran.
 
-### Aturan Dilatasi Vertikal
+### Cara Faktor Keluaran Mengubah Tinggi
 
-Untuk setiap fungsi <InlineMath math="f(x)" /> dan faktor skala tak nol <InlineMath math="k" />, dilatasi vertikal didefinisikan sebagai:
+Untuk setiap fungsi <InlineMath math="f(x)" /> dan faktor tak nol <InlineMath math="k" />, dilatasi vertikal didefinisikan sebagai:
 
 <BlockMath math="g(x) = k \cdot f(x)" />
 
-Faktor skala <InlineMath math="k" /> menentukan perubahan grafik:
+Faktor <InlineMath math="k" /> menentukan apa yang terjadi pada tinggi grafik:
 - Jika <InlineMath math="k > 1" />, grafik diregangkan secara vertikal (diperbesar)
 - Jika <InlineMath math="0 < k < 1" />, grafik ditekan secara vertikal (diperkecil)
 - Jika <InlineMath math="k = 1" />, grafik tidak berubah
 - Jika <InlineMath math="k < 0" />, grafik mengalami refleksi sekaligus dilatasi
 
 Nilai <InlineMath math="k = 0" /> tidak termasuk karena semua nilai keluaran menjadi <InlineMath math="0" />. Seluruh grafik kemudian runtuh ke sumbu <InlineMath math="x" />.
+
+Di sini faktornya bekerja <Highlight>sesuai dengan arah yang kamu duga</Highlight>. Faktor yang lebih besar dari satu membuat grafik lebih tinggi, sedangkan faktor di antara nol dan satu membuat grafik lebih pendek.
 
 ## Visualisasi Dilatasi Vertikal
 
@@ -129,23 +131,21 @@ Ketiga garis menunjukkan:
 - Fungsi <InlineMath math="h(x) = 0{,}5(x + 1)" /> memiliki kemiringan <InlineMath math="0{,}5" /> (ditekan)
 - Semua garis masih memotong sumbu <InlineMath math="y" />, tetapi di titik yang berbeda
 
-## Sifat Dilatasi Vertikal
+## Yang Berubah dan yang Tetap
 
-### Pengaruh pada Koordinat Titik
+Setelah kamu tahu apakah grafik menjadi lebih tinggi atau lebih pendek, kamu perlu tahu nilai mana yang ikut berpindah. Dilatasi vertikal mengalikan setiap nilai keluaran dengan faktor <InlineMath math="k" />, jadi tinggi grafik berubah sedangkan posisi sepanjang sumbu <InlineMath math="x" /> tetap.
 
-Jika titik <InlineMath math="(a, b)" /> berada pada grafik <InlineMath math="f(x)" />, maka titik yang bersesuaian pada grafik <InlineMath math="k \cdot f(x)" /> adalah <InlineMath math="(a, k \cdot b)" />.
+Ambil titik <InlineMath math="(a, b)" /> pada grafik <InlineMath math="f(x)" />. Titik yang bersesuaian pada grafik <InlineMath math="k \cdot f(x)" /> adalah <InlineMath math="(a, k \cdot b)" />. Koordinat <InlineMath math="x" /> tetap <InlineMath math="a" /> karena dilatasi vertikal tidak pernah menggeser titik secara horizontal.
 
-### Domain dan Range
+| Bagian fungsi | Sebelum dilatasi | Setelah dilatasi dengan <InlineMath math="k > 0" /> |
+| --- | --- | --- |
+| Titik <InlineMath math="(a, b)" /> | Pada grafik <InlineMath math="f(x)" /> | Berpindah ke <InlineMath math="(a, k \cdot b)" /> |
+| Domain | Selang asli | Tetap sama seperti semula |
+| Range <InlineMath math="[c, d]" /> | Selang asli | Menjadi <InlineMath math="[k \cdot c, k \cdot d]" /> |
+| Titik potong sumbu <InlineMath math="x" /> | Di <InlineMath math="x = x_0" /> | Tetap di <InlineMath math="x = x_0" /> |
+| Titik potong sumbu <InlineMath math="y" /> | Di <InlineMath math="y = y_0" /> | Berpindah ke <InlineMath math="y = k \cdot y_0" /> |
 
-- **Domain**: Tidak berubah setelah dilatasi vertikal
-- **Range**: Berubah sesuai dengan faktor skala <InlineMath math="k" />
-
-Jika range fungsi asli adalah <InlineMath math="[c, d]" />, maka range setelah dilatasi vertikal dengan faktor <InlineMath math="k > 0" /> menjadi <InlineMath math="[k \cdot c, k \cdot d]" />.
-
-### Titik Potong Sumbu
-
-- **Titik potong sumbu <InlineMath math="x" />**: Tidak berubah
-- **Titik potong sumbu <InlineMath math="y" />**: Berubah sesuai faktor skala
+Range ikut meregang atau menyusut bersama grafik karena range memuat nilai keluaran, sedangkan domain tetap karena batas nilai masukan tidak berubah. [Dilatasi horizontal](/id/materi/matematika/transformasi-fungsi/dilatasi-horizontal) membagi koordinat horizontal, bukan mengalikan tinggi grafik.
 
 ## Mengalikan Nilai Fungsi Eksponensial
 
@@ -226,15 +226,17 @@ Ketika faktor skala negatif:
 
 ## Latihan
 
+Tiga soal berikut memakai aturan tinggi grafik yang baru saja kamu pelajari. Setiap soal mengalikan nilai keluaran dengan faktor tertentu, jadi perhatikan apakah faktornya lebih besar dari satu, di antara nol dan satu, atau negatif. Kerjakan dulu tanpa melihat kunci, lalu bandingkan langkahmu dengan pembahasan di bawah.
+
 1. Diberikan fungsi <InlineMath math="f(x) = x^2 - 4x + 3" />. Tentukan persamaan fungsi hasil dilatasi vertikal dengan faktor skala <InlineMath math="3" />.
 
-2. Jika grafik fungsi <InlineMath math="g(x) = \sqrt{x}" /> mengalami dilatasi vertikal dengan faktor <InlineMath math="\frac{1}{2}" />, tentukan:
-   - Persamaan fungsi hasil dilatasi
-   - Range fungsi setelah dilatasi
+2. Grafik fungsi <InlineMath math="g(x) = \sqrt{x}" /> mengalami dilatasi vertikal dengan faktor <InlineMath math="\frac{1}{2}" />. Tentukan persamaan fungsi hasilnya, lalu tentukan range fungsi tersebut.
 
 3. Fungsi <InlineMath math="h(x) = |x - 1| + 2" /> mengalami dilatasi vertikal dengan faktor <InlineMath math="-1" />. Tentukan titik puncak dari fungsi hasil dilatasi.
 
 ### Kunci Jawaban
+
+Setiap pembahasan dimulai dengan mengalikan seluruh bentuk keluaran dengan faktor, karena di situlah letak aturan tingginya. Setelah itu persamaannya disederhanakan dan grafik baru diperiksa untuk memastikan apakah grafik menjadi lebih tinggi atau lebih pendek.
 
 1. Dilatasi vertikal dengan faktor <InlineMath math="3" />: <InlineMath math="f'(x) = 3f(x) = 3(x^2 - 4x + 3) = 3x^2 - 12x + 9" />
 

@@ -200,6 +200,12 @@ strings with their own [math syntax](question-bank.md#response-items).
   exposed by Nakafa's authenticated renderer manifest. `MathVisual` is the
   shared mathematical visual boundary; domain-owned components such as
   `NumberLine` remain limited to the domains that expose them.
+- Use inline `<Highlight>...</Highlight>` for the one short phrase a learner
+  should be able to scan and remember: the core rule, the decisive condition,
+  or the key term. Wrap only the phrase, inside a sentence, never a whole
+  sentence, never a heading, and never mathematics. It renders the phrase on
+  the shared warning surface. Keep it to roughly one highlight per section so
+  the emphasis keeps its meaning.
 
 ## Components and visuals
 

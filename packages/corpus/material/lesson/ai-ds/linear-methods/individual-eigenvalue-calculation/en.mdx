@@ -85,6 +85,8 @@ Because <InlineMath math="2" /> is closer to the shift <InlineMath math="1" /> t
 
 ## Practical Checks
 
+These checks decide whether a computed eigenvalue and eigenvector pair is correct without repeating the whole determinant. Work through them in order for the pair you obtained.
+
 1. Factor the shifted matrix with a stable method and pivoting where appropriate. If the shift lands exactly on an eigenvalue, the shifted matrix is singular and the solve must be handled or the shift adjusted.
 2. Stop using a residual norm. A small change in consecutive eigenvalue estimates alone does not prove that the eigenpair is accurate.
 3. Eigenvector sign is arbitrary: <InlineMath math="q" /> and <InlineMath math="-q" /> represent the same eigendirection.

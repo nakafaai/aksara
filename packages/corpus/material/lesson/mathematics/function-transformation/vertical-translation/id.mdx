@@ -13,18 +13,23 @@ export const metadata = {
 
 Translasi vertikal menggeser grafik fungsi ke atas atau ke bawah sepanjang sumbu <InlineMath math="y" /> tanpa mengubah bentuknya. Setiap titik berpindah sejauh jarak vertikal yang sama, seolah seluruh grafik diangkat atau diturunkan.
 
-Jika kita memiliki fungsi <InlineMath math="f(x)" />, translasi vertikal menghasilkan fungsi baru <InlineMath math="g(x) = f(x) + k" />. Konstanta <InlineMath math="k" /> menentukan arah dan jarak pergeserannya.
+Jika kamu memiliki fungsi <InlineMath math="f(x)" />, translasi vertikal menghasilkan fungsi baru <InlineMath math="g(x) = f(x) + k" />. Konstanta <InlineMath math="k" /> menentukan arah dan jarak pergeserannya.
 
-### Aturan Translasi Vertikal
+### Aturan Tanda pada Translasi Vertikal
 
-Untuk setiap fungsi <InlineMath math="f(x)" />, translasi vertikal didefinisikan sebagai:
+Perhatikan letak <InlineMath math="k" /> pada rumus berikut. Nilai itu ditulis di luar fungsi, jadi ditambahkan pada hasil keluaran yang sudah selesai dihitung.
 
 <BlockMath math="g(x) = f(x) + k" />
 
-Aturan pergeserannya adalah:
-- Jika <InlineMath math="k > 0" />, grafik bergeser ke **atas** sebesar <InlineMath math="k \text{ satuan}" />
-- Jika <InlineMath math="k < 0" />, grafik bergeser ke **bawah** sebesar <InlineMath math="|k| \text{ satuan}" />
-- Jika <InlineMath math="k = 0" />, tidak ada translasi (grafik tetap sama)
+Karena <InlineMath math="k" /> ditambahkan pada keluaran, tandanya bekerja <Highlight>sesuai dengan arah yang kamu baca</Highlight>. Nilai <InlineMath math="k" /> positif mengangkat grafik, sedangkan nilai negatif menurunkannya.
+
+| Nilai <InlineMath math="k" /> | Pergeseran grafik | Contoh titik puncak |
+| --- | --- | --- |
+| <InlineMath math="k > 0" /> | Ke atas sebesar <InlineMath math="k \text{ satuan}" /> | <InlineMath math="(0,0)" /> menjadi <InlineMath math="(0,k)" /> |
+| <InlineMath math="k < 0" /> | Ke bawah sebesar <InlineMath math="\lvert k \rvert \text{ satuan}" /> | <InlineMath math="(0,0)" /> menjadi <InlineMath math="(0,k)" /> |
+| <InlineMath math="k = 0" /> | Grafik tidak bergeser | <InlineMath math="(0,0)" /> tetap di tempatnya |
+
+Ketiga baris itu memakai titik puncak <InlineMath math="(0,0)" /> sebagai patokan supaya arah pergeseran mudah dibandingkan. Untuk fungsi dengan titik acuan lain, seluruh titik berpindah dengan besar dan arah yang sama.
 
 ## Visualisasi Translasi Vertikal
 
@@ -120,22 +125,20 @@ Titik-titik puncaknya memperjelas perpindahan:
 - Setelah translasi vertikal <InlineMath math="+4" />, titik puncak <InlineMath math="g(x) = x^2 + 4" /> berada di <InlineMath math="(0, 4)" />
 - Setelah translasi vertikal <InlineMath math="-3" />, titik puncak <InlineMath math="h(x) = x^2 - 3" /> berada di <InlineMath math="(0, -3)" />
 
-## Sifat Translasi Vertikal
+## Yang Tetap dan yang Berubah
 
-### Bentuk Grafik Tidak Berubah
+Setelah arah pergeseran dipahami, kamu perlu tahu bagian mana dari fungsi yang ikut berubah. Translasi vertikal bekerja pada keluaran fungsi, jadi tinggi grafik bergeser, sedangkan batas nilai <InlineMath math="x" /> tetap.
 
-Translasi vertikal mempertahankan bentuk asli grafik. Jarak antara titik pada grafik tetap sama, hanya posisi vertikal yang berubah.
+Ambil titik <InlineMath math="(a, b)" /> yang berada pada grafik <InlineMath math="f(x)" />. Setelah translasi sebesar <InlineMath math="k" />, titik itu berpindah ke <InlineMath math="(a, b + k)" /> pada grafik <InlineMath math="f(x) + k" />. Koordinat <InlineMath math="x" /> tidak berubah, yang bergeser hanya nilai <InlineMath math="y" />.
 
-### Pengaruh pada Titik Koordinat
+| Bagian fungsi | Sebelum translasi | Setelah translasi <InlineMath math="k" /> |
+| --- | --- | --- |
+| Bentuk grafik | Bentuk asli | Sama, hanya bergeser vertikal |
+| Titik <InlineMath math="(a, b)" /> | Pada grafik <InlineMath math="f(x)" /> | Berpindah ke <InlineMath math="(a, b + k)" /> |
+| Domain | Selang asli | Tetap sama seperti fungsi asli |
+| Range <InlineMath math="[c, d]" /> | Selang asli | Berpindah menjadi <InlineMath math="[c + k, d + k]" /> |
 
-Jika titik <InlineMath math="(a, b)" /> berada pada grafik <InlineMath math="f(x)" />, maka setelah translasi vertikal sebesar <InlineMath math="k" />, titik tersebut menjadi <InlineMath math="(a, b + k)" /> pada grafik <InlineMath math="f(x) + k" />.
-
-### Domain dan Range
-
-- **Domain**: Tidak berubah setelah translasi vertikal
-- **Range**: Bergeser sebesar <InlineMath math="k \text{ satuan}" />
-
-Jika range fungsi asli adalah <InlineMath math="[c, d]" />, maka range setelah translasi vertikal <InlineMath math="k" /> menjadi <InlineMath math="[c + k, d + k]" />.
+Jadi range bergeser bersama grafik karena range menyatakan tinggi nilai keluaran, sedangkan domain tidak berubah karena batas nilai <InlineMath math="x" /> tetap. Untuk [translasi horizontal](/id/materi/matematika/transformasi-fungsi/translasi-horizontal), keduanya bertukar peran: domain bergeser dan range yang tetap.
 
 ## Menggeser Grafik Eksponensial secara Vertikal
 
@@ -181,21 +184,23 @@ Pada fungsi eksponensial <InlineMath math="f(x) = 2^x" />, translasi vertikal ju
   ]}
 />
 
-Pada fungsi eksponensial:
-- Asimtot horizontal <InlineMath math="y = 0" /> pada <InlineMath math="f(x) = 2^x" /> bergeser menjadi <InlineMath math="y = k" /> pada <InlineMath math="f(x) + k" />
-- Titik potong dengan sumbu <InlineMath math="y" /> bergeser dari <InlineMath math="(0, 1)" /> menjadi <InlineMath math="(0, 1 + k)" />
+Asimtot horizontal di <InlineMath math="y = 0" /> pada <InlineMath math="f(x) = 2^x" /> berpindah menjadi garis <InlineMath math="y = k" /> pada <InlineMath math="f(x) + k" />. Berbeda dari translasi horizontal, pergeseran ini mengubah tinggi yang didekati kurva, karena asimtotnya tidak lagi menempel pada sumbu <InlineMath math="x" />.
+
+Titik potong dengan sumbu <InlineMath math="y" /> berpindah dari <InlineMath math="(0, 1)" /> menjadi <InlineMath math="(0, 1 + k)" />. Koordinat <InlineMath math="x" /> titik itu tetap nol karena grafik hanya bergerak secara vertikal.
 
 ## Latihan
 
+Tiga soal berikut memakai aturan tanda yang baru saja kamu pelajari. Setiap soal menambahkan konstanta pada keluaran fungsi, jadi perhatikan nilai <InlineMath math="k" /> pada tiap fungsi. Kerjakan dulu tanpa melihat kunci, lalu bandingkan langkahmu dengan pembahasan di bawah.
+
 1. Diberikan fungsi <InlineMath math="f(x) = x^2 + 4x + 3" />. Tentukan persamaan fungsi hasil translasi vertikal ke atas sebesar <InlineMath math="5 \text{ satuan}" />.
 
-2. Jika grafik fungsi <InlineMath math="g(x) = 3x + 2" /> ditranslasi vertikal ke bawah sebesar <InlineMath math="7 \text{ satuan}" />, tentukan:
-   - Persamaan fungsi hasil translasi
-   - Titik potong dengan sumbu <InlineMath math="y" /> setelah translasi
+2. Grafik fungsi <InlineMath math="g(x) = 3x + 2" /> ditranslasi vertikal ke bawah sebesar <InlineMath math="7 \text{ satuan}" />. Tentukan persamaan fungsi hasil translasi, lalu tentukan titik potong dengan sumbu <InlineMath math="y" /> setelah translasi.
 
 3. Fungsi <InlineMath math="h(x) = \sqrt{x}" /> mengalami translasi vertikal sehingga titik <InlineMath math="(4, 2)" /> menjadi <InlineMath math="(4, 5)" />. Tentukan nilai konstanta translasi dan persamaan fungsi hasil translasi.
 
 ### Kunci Jawaban
+
+Setiap pembahasan dimulai dari penambahan konstanta pada seluruh keluaran fungsi, karena di situlah letak aturan tandanya. Setelah persamaannya diperoleh, grafik baru diperiksa untuk memastikan arah pergeserannya sudah sesuai.
 
 1. Translasi vertikal ke atas <InlineMath math="5 \text{ satuan}" />: <InlineMath math="f'(x) = f(x) + 5 = x^2 + 4x + 3 + 5 = x^2 + 4x + 8" />
 

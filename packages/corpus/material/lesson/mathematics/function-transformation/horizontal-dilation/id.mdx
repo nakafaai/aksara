@@ -11,20 +11,20 @@ export const metadata = {
 
 ## Mengubah Lebar Grafik melalui Masukan Fungsi
 
-Dilatasi horizontal mengubah lebar grafik fungsi tanpa mengubah tingginya. Bayangkan sebuah foto ditarik dari tepi kiri dan kanan atau ditekan ke arah tengah.
+Dilatasi horizontal mengubah lebar grafik fungsi sepanjang sumbu <InlineMath math="x" /> tanpa mengubah tingginya. Grafik yang diregangkan menjadi lebih lebar, grafik yang dimampatkan menjadi lebih sempit, dan setiap titik mempertahankan nilai <InlineMath math="y" /> aslinya.
 
-Jika kita memiliki fungsi <InlineMath math="f(x)" />, maka dilatasi horizontal menghasilkan fungsi baru <InlineMath math="g(x) = f(kx)" />. Di sini, <InlineMath math="k \ne 0" /> adalah pengali masukan. Besar skala horizontal yang sebenarnya adalah <InlineMath math="s = \frac{1}{|k|}" />.
+Jika kamu memiliki fungsi <InlineMath math="f(x)" />, maka dilatasi horizontal menghasilkan fungsi baru <InlineMath math="g(x) = f(kx)" />. Di sini <InlineMath math="k \ne 0" /> adalah bilangan yang mengalikan masukan, dan skala horizontal grafik baru adalah <InlineMath math="s = \frac{1}{|k|}" />.
 
-### Aturan Dilatasi Horizontal
+### Cara Faktor Pengali Masukan Mengubah Lebar
 
-Untuk setiap fungsi <InlineMath math="f(x)" /> dan pengali masukan tak nol <InlineMath math="k" />, dilatasi horizontal didefinisikan sebagai:
+Untuk setiap fungsi <InlineMath math="f(x)" /> dan faktor tak nol <InlineMath math="k" /> yang mengalikan masukan, dilatasi horizontal didefinisikan sebagai:
 
 <MathContainer>
   <BlockMath math="g(x) = f(kx)" />
   <BlockMath math="s = \frac{1}{|k|}" />
 </MathContainer>
 
-Pengali masukan <InlineMath math="k" /> menentukan transformasi:
+Faktor <InlineMath math="k" /> menentukan apa yang terjadi pada lebar grafik:
 - Jika <InlineMath math="k > 1" />, lebar grafik menjadi <InlineMath math="\frac{1}{k}" /> dari lebar semula
 - Jika <InlineMath math="0 < k < 1" />, lebar grafik menjadi <InlineMath math="\frac{1}{k}" /> kali lebar semula
 - Jika <InlineMath math="k = 1" />, grafik tidak berubah
@@ -32,7 +32,7 @@ Pengali masukan <InlineMath math="k" /> menentukan transformasi:
 
 Nilai <InlineMath math="k = 0" /> tidak termasuk. Jika <InlineMath math="f(0)" /> terdefinisi, semua input menghasilkan nilai <InlineMath math="f(0)" />, sehingga grafik fungsi menjadi satu garis horizontal.
 
-Hubungan kebalikan ini penting: pengali masukan yang lebih besar membuat grafik lebih sempit, sedangkan skala horizontalnya adalah <InlineMath math="\frac{1}{|k|}" />.
+Hubungan kebalikan ini penting. Faktor yang lebih besar membuat grafik <Highlight>lebih sempit, bukan lebih lebar</Highlight>, karena skala horizontalnya adalah <InlineMath math="\frac{1}{|k|}" />.
 
 ## Visualisasi Dilatasi Horizontal
 
@@ -134,23 +134,21 @@ Ketiga garis menunjukkan:
 - Fungsi <InlineMath math="h(x) = f(0{,}5x) = 0{,}5x + 2" /> memiliki kemiringan <InlineMath math="0{,}5" /> (diregangkan horizontal)
 - Semua garis memotong sumbu <InlineMath math="y" /> di titik yang sama <InlineMath math="(0, 2)" />
 
-## Sifat Dilatasi Horizontal
+## Yang Berubah dan yang Tetap
 
-### Pengaruh pada Koordinat Titik
+Setelah kamu tahu apakah grafik meregang atau memampat, kamu perlu tahu nilai mana yang ikut berpindah. Dilatasi horizontal membagi setiap koordinat horizontal dengan faktor <InlineMath math="k" /> yang mengalikan masukan, jadi posisi sepanjang sumbu <InlineMath math="x" /> berubah sedangkan tingginya tetap.
 
-Jika titik <InlineMath math="(a, b)" /> berada pada grafik <InlineMath math="f(x)" />, maka titik yang bersesuaian pada grafik <InlineMath math="f(kx)" /> adalah <InlineMath math="(\frac{a}{k}, b)" />.
+Ambil titik <InlineMath math="(a, b)" /> pada grafik <InlineMath math="f(x)" />. Titik yang bersesuaian pada grafik <InlineMath math="f(kx)" /> adalah <InlineMath math="(\frac{a}{k}, b)" />. Nilai <InlineMath math="y" /> tetap <InlineMath math="b" /> karena dilatasi horizontal tidak pernah mengubah tinggi titik.
 
-### Domain dan Range
+| Bagian fungsi | Sebelum dilatasi | Setelah dilatasi dengan <InlineMath math="k > 0" /> |
+| --- | --- | --- |
+| Titik <InlineMath math="(a, b)" /> | Pada grafik <InlineMath math="f(x)" /> | Berpindah ke <InlineMath math="(\frac{a}{k}, b)" /> |
+| Domain <InlineMath math="[c, d]" /> | Selang asli | Menjadi <InlineMath math="[\frac{c}{k}, \frac{d}{k}]" /> |
+| Range | Nilai keluaran asli | Tetap sama seperti semula |
+| Titik potong sumbu <InlineMath math="x" /> | Di <InlineMath math="x = x_0" /> | Berpindah ke <InlineMath math="x = \frac{x_0}{k}" /> |
+| Titik potong sumbu <InlineMath math="y" /> | Di <InlineMath math="x = 0" /> | Tetap di <InlineMath math="x = 0" /> |
 
-- **Domain**: Koordinat horizontalnya dibagi dengan pengali masukan <InlineMath math="k" />
-- **Range**: Tidak berubah setelah dilatasi horizontal
-
-Jika domain fungsi asli adalah <InlineMath math="[c, d]" />, maka domain setelah dilatasi horizontal dengan pengali masukan <InlineMath math="k > 0" /> menjadi <InlineMath math="[\frac{c}{k}, \frac{d}{k}]" />.
-
-### Titik Potong Sumbu
-
-- **Titik potong sumbu <InlineMath math="x" />**: Koordinatnya dibagi dengan pengali masukan
-- **Titik potong sumbu <InlineMath math="y" />**: Tidak berubah
+Domain ikut menyempit atau melebar bersama grafik karena domain memuat batas nilai <InlineMath math="x" />, sedangkan range tidak berubah karena tinggi grafik di setiap titik tetap. [Translasi horizontal](/id/materi/matematika/transformasi-fungsi/translasi-horizontal) memindahkan koordinat itu, bukan membaginya.
 
 ## Mengubah Laju Pertumbuhan Fungsi Eksponensial
 
@@ -231,15 +229,17 @@ Ketika pengali masukan negatif:
 
 ## Latihan
 
+Tiga soal berikut memakai aturan lebar grafik yang baru saja kamu pelajari. Setiap soal mengalikan masukan dengan faktor tertentu, jadi perhatikan apakah faktornya lebih besar dari satu, di antara nol dan satu, atau negatif. Kerjakan dulu tanpa melihat kunci, lalu bandingkan langkahmu dengan pembahasan di bawah.
+
 1. Diberikan fungsi <InlineMath math="f(x) = x^2 - 2x + 1" />. Tentukan persamaan fungsi yang dihasilkan oleh pengali masukan <InlineMath math="3" />.
 
-2. Jika grafik fungsi <InlineMath math="g(x) = \sqrt{x}" /> mengalami dilatasi horizontal dengan pengali masukan <InlineMath math="\frac{1}{2}" />, tentukan:
-   - Persamaan fungsi hasil dilatasi
-   - Domain fungsi setelah dilatasi
+2. Grafik fungsi <InlineMath math="g(x) = \sqrt{x}" /> mengalami dilatasi horizontal dengan faktor masukan <InlineMath math="\frac{1}{2}" />. Tentukan persamaan fungsi hasilnya, lalu tentukan domain fungsi tersebut.
 
 3. Fungsi <InlineMath math="h(x) = |x - 2|" /> mengalami dilatasi horizontal dengan pengali masukan <InlineMath math="-1" />. Tentukan titik puncak fungsi hasilnya.
 
 ### Kunci Jawaban
+
+Setiap pembahasan dimulai dengan mengganti <InlineMath math="x" /> menjadi hasil kali faktor dengan <InlineMath math="x" />, karena di situlah letak aturan lebarnya. Setelah itu persamaannya disederhanakan dan grafik baru diperiksa untuk memastikan apakah grafik meregang atau memampat.
 
 1. Dilatasi horizontal dengan pengali masukan <InlineMath math="3" />: <InlineMath math="f'(x) = f(3x) = (3x)^2 - 2(3x) + 1 = 9x^2 - 6x + 1" />
 

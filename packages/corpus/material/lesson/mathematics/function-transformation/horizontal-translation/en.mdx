@@ -13,22 +13,27 @@ export const metadata = {
 
 Horizontal translation slides a function graph left or right along the <InlineMath math="x" />-axis without changing its shape. Every point moves by the same horizontal distance, as if the graph were an object sliding across a table.
 
-If we have a function <InlineMath math="f(x)" />, then horizontal translation produces a new function <InlineMath math="g(x) = f(x - h)" /> where <InlineMath math="h" /> is the translation constant.
+If you have a function <InlineMath math="f(x)" />, then horizontal translation produces a new function <InlineMath math="g(x) = f(x - h)" /> where <InlineMath math="h" /> is the translation constant.
 
-### Rules of Horizontal Translation
+### Reading the Sign Rule
 
-For any function <InlineMath math="f(x)" />, horizontal translation is defined as:
+Look at where <InlineMath math="h" /> sits in the rule below. It is written inside the parentheses together with <InlineMath math="x" />, not outside the function.
 
 <BlockMath math="g(x) = f(x - h)" />
 
-The direction of the shift follows these rules:
-- If <InlineMath math="h > 0" />, the graph shifts to the **right** by <InlineMath math="h \text{ units}" />
-- If <InlineMath math="h < 0" />, the graph shifts to the **left** by <InlineMath math="|h| \text{ units}" />
-- If <InlineMath math="h = 0" />, there is no translation (graph remains the same)
+Because <InlineMath math="h" /> sits inside the parentheses, its sign works the <Highlight>opposite way from the direction you read</Highlight>. Subtracting a positive number from <InlineMath math="x" /> slides the graph right, while adding a positive number slides it left.
 
-## Visualization of Horizontal Translation
+| Value of <InlineMath math="h" /> | Shift of the graph | Example of the vertex |
+| --- | --- | --- |
+| <InlineMath math="h > 0" /> | Right by <InlineMath math="h \text{ units}" /> | <InlineMath math="(0,0)" /> becomes <InlineMath math="(h,0)" /> |
+| <InlineMath math="h < 0" /> | Left by <InlineMath math="\lvert h \rvert \text{ units}" /> | <InlineMath math="(0,0)" /> becomes <InlineMath math="(h,0)" /> |
+| <InlineMath math="h = 0" /> | The graph does not move | <InlineMath math="(0,0)" /> stays where it is |
 
-For the quadratic function <InlineMath math="f(x) = x^2" />, the new vertex shows how the sign inside the input controls the direction of the shift.
+All three rows use the vertex <InlineMath math="(0,0)" /> as a reference so the direction is easy to compare. For a function with a different reference point, every point moves by the same distance in the same direction.
+
+## Checking the Rule on a Quadratic Graph
+
+Picture three parabolas drawn on the same plane. They have exactly the same shape, but their vertices sit at different horizontal positions.
 
 <LineEquation
   title={<>Horizontal Translation of Quadratic Function <InlineMath math="f(x) = x^2" /></>}
@@ -70,14 +75,13 @@ For the quadratic function <InlineMath math="f(x) = x^2" />, the new vertex show
   ]}
 />
 
-The graph shows:
-- The original function <InlineMath math="f(x) = x^2" /> has its vertex at <InlineMath math="(0, 0)" />
-- Function <InlineMath math="g(x) = (x - 3)^2" /> shifts right by <InlineMath math="3 \text{ units}" /> with vertex at <InlineMath math="(3, 0)" />
-- Function <InlineMath math="h(x) = (x + 2)^2" /> shifts left by <InlineMath math="2 \text{ units}" /> with vertex at <InlineMath math="(-2, 0)" />
+In the graph above, the purple curve is the original function <InlineMath math="f(x) = x^2" /> with its vertex at <InlineMath math="(0,0)" />. The orange curve is <InlineMath math="g(x) = (x-3)^2" />. Because <InlineMath math="x" /> is reduced by <InlineMath math="3" />, the graph shifts right by <InlineMath math="3 \text{ units}" /> and its vertex moves to <InlineMath math="(3,0)" />. The green curve is <InlineMath math="h(x) = (x+2)^2" />. Here <InlineMath math="x" /> is increased by <InlineMath math="2" />, so the graph shifts left by <InlineMath math="2 \text{ units}" /> and its vertex moves to <InlineMath math="(-2,0)" />.
 
-## Horizontal Translation on Linear Functions
+Notice that all three parabolas keep the same width and the same shape. Only the horizontal position changes, so you can read the direction of the shift straight from the sign inside the parentheses.
 
-The same translation rule applies to the linear function <InlineMath math="f(x) = 2x + 1" />.
+## Checking the Rule on a Linear Graph
+
+The same rule applies to the linear function <InlineMath math="f(x) = 2x + 1" />. On a straight line, a horizontal shift does not change the slope, so checking the sign is easier than on a parabola.
 
 <LineEquation
   title={<>Horizontal Translation of Linear Function <InlineMath math="f(x) = 2x + 1" /></>}
@@ -120,29 +124,28 @@ The same translation rule applies to the linear function <InlineMath math="f(x) 
   ]}
 />
 
-The three lines show:
-- All lines have the same slope of <InlineMath math="2" />
-- Function <InlineMath math="g(x) = 2(x - 4) + 1" /> shifts right by <InlineMath math="4 \text{ units}" />
-- Function <InlineMath math="h(x) = 2(x + 3) + 1" /> shifts left by <InlineMath math="3 \text{ units}" />
+The purple line is the original line with slope <InlineMath math="2" />. The orange line is <InlineMath math="g(x) = 2(x-4)+1" />, which shifts right by <InlineMath math="4 \text{ units}" />, and the blue line is <InlineMath math="h(x) = 2(x+3)+1" />, which shifts left by <InlineMath math="3 \text{ units}" />. All three lines stay parallel because the slope does not change.
 
-## Properties of Horizontal Translation
+In both examples the direction of the shift always comes from the sign inside the parentheses. That is the opposite of a vertical translation, which adds its constant outside the function.
 
-### Graph Shape Remains Unchanged
+## What Stays the Same and What Changes
 
-Horizontal translation preserves the original shape of the graph. The vertical distance between points on the graph remains the same, only the horizontal position changes.
+Once you know the direction of the shift, you still need to know which parts of the function move with it. A horizontal translation acts on the input, so everything that depends on the position of <InlineMath math="x" /> moves, while the output values stay the same.
 
-### Effect on Coordinate Points
+Take a point <InlineMath math="(a, b)" /> on the graph of <InlineMath math="f(x)" />. After a translation by <InlineMath math="h" />, that point moves to <InlineMath math="(a + h, b)" /> on the graph of <InlineMath math="f(x - h)" />. The <InlineMath math="y" /> value does not change, only the <InlineMath math="x" /> coordinate moves.
 
-If point <InlineMath math="(a, b)" /> is on the graph of <InlineMath math="f(x)" />, then after horizontal translation by <InlineMath math="h" />, that point becomes <InlineMath math="(a + h, b)" /> on the graph of <InlineMath math="f(x - h)" />.
+| Part of the function | Before the translation | After the translation by <InlineMath math="h" /> |
+| --- | --- | --- |
+| Graph shape | The original shape | The same shape, moved horizontally |
+| Point <InlineMath math="(a, b)" /> | On the graph of <InlineMath math="f(x)" /> | Moves to <InlineMath math="(a + h, b)" /> |
+| Domain <InlineMath math="[c, d]" /> | The original interval | Moves to <InlineMath math="[c + h, d + h]" /> |
+| Range | The original output values | The same values as the original function |
 
-### Domain and Range
+The domain moves with the graph because it describes the allowed values of <InlineMath math="x" />, while the range stays the same because the height of the graph at each point is unchanged. A vertical translation swaps those roles, keeping the domain and moving the range.
 
-- **Domain**: Shifts by <InlineMath math="h \text{ units}" />
-- **Range**: Does not change after horizontal translation
+## Checking the Rule on an Exponential Graph
 
-If the domain of the original function is <InlineMath math="[c, d]" />, then the domain after horizontal translation <InlineMath math="h" /> becomes <InlineMath math="[c + h, d + h]" />.
-
-## Moving an Exponential Graph Horizontally
+Exponential functions behave differently from lines and parabolas. Their shape and asymptote stay the same, but the point where the curve crosses the <InlineMath math="y" />-axis moves with the graph.
 
 The exponential function <InlineMath math="f(x) = 2^x" /> retains its shape and asymptote under a horizontal translation.
 
@@ -187,39 +190,39 @@ The exponential function <InlineMath math="f(x) = 2^x" /> retains its shape and 
   ]}
 />
 
-For exponential functions:
-- The horizontal asymptote remains at <InlineMath math="y = 0" /> for all functions
-- The <InlineMath math="y" />-intercept changes due to horizontal shift
-- Function <InlineMath math="g(x) = 2^{x-2}" /> shifts right by <InlineMath math="2 \text{ units}" />
-- Function <InlineMath math="h(x) = 2^{x+1}" /> shifts left by <InlineMath math="1 \text{ unit}" />
+The horizontal asymptote stays at <InlineMath math="y = 0" />, because a horizontal shift does not change how the curve behaves when <InlineMath math="x" /> grows very large or very small. The function <InlineMath math="g(x) = 2^{x-2}" /> shifts right by <InlineMath math="2 \text{ units}" />, while <InlineMath math="h(x) = 2^{x+1}" /> shifts left by <InlineMath math="1 \text{ unit}" />.
 
-## Difference from Vertical Translation
+The <InlineMath math="y" />-intercept moves as well, because that point sits at <InlineMath math="x = 0" /> and no longer keeps its original height. This is where a horizontal shift differs from a vertical one, which moves the output values without changing the horizontal position of the intercept.
 
-Horizontal and vertical translations act on different parts of the function rule:
+## Telling Horizontal and Vertical Shifts Apart
 
-### Horizontal Translation
+Horizontal and [vertical translations](/en/subjects/mathematics/function-transformation/vertical-translation) both move a graph, but they act on different parts of the rule. That difference decides which coordinate changes.
 
-- Changes the function input: <InlineMath math="f(x - h)" />
-- Affects the x position of each point
-- Domain changes, range remains
+| Property | Horizontal translation | Vertical translation |
+| --- | --- | --- |
+| Rule | <InlineMath math="g(x) = f(x - h)" /> | <InlineMath math="g(x) = f(x) + k" /> |
+| Part that changes | The function input | The function output |
+| Direction of the shift | Along the <InlineMath math="x" /> coordinate | Along the <InlineMath math="y" /> coordinate |
+| Sign of the constant | Opposite to the direction you read | The same as the sign of <InlineMath math="k" /> |
+| Domain and range | Domain moves, range stays | Domain stays, range moves |
 
-### Vertical Translation
+The main difference is where the constant sits. A constant inside the parentheses changes the input, so the shift is horizontal and its sign works in reverse. A constant outside the parentheses changes the output, so the shift is vertical and its sign works as written.
 
-- Changes the function output: <InlineMath math="f(x) + k" />
-- Affects the y position of each point
-- Domain remains, range changes
+Changes that stretch or compress a graph are covered separately in [horizontal dilation](/en/subjects/mathematics/function-transformation/horizontal-dilation) and [vertical dilation](/en/subjects/mathematics/function-transformation/vertical-dilation), while the order of steps for combining several transformations is covered in [combined function transformations](/en/subjects/mathematics/function-transformation/combined-transformation-function).
 
 ## Exercises
 
+The three problems below use the sign rule you have just learned. Try them without the answer key first, then compare your steps with the worked answers.
+
 1. Given the function <InlineMath math="f(x) = x^2 + 2x + 1" />. Determine the equation of the function resulting from horizontal translation to the right by <InlineMath math="3 \text{ units}" />.
 
-2. If the graph of function <InlineMath math="g(x) = \sqrt{x}" /> is translated horizontally to the left by <InlineMath math="4 \text{ units}" />, determine:
-   - The equation of the resulting translated function
-   - The domain of the function after translation
+2. The graph of the function <InlineMath math="g(x) = \sqrt{x}" /> is translated horizontally to the left by <InlineMath math="4 \text{ units}" />. Determine the equation of the resulting translated function, then determine the domain of the function after translation.
 
 3. Function <InlineMath math="h(x) = 3^x" /> undergoes horizontal translation such that point <InlineMath math="(0, 1)" /> becomes <InlineMath math="(2, 1)" />. Determine the translation constant value and the equation of the resulting translated function.
 
 ### Answer Key
+
+Every worked answer starts by replacing <InlineMath math="x" /> correctly, because that is where the sign rule lives. The equation is then simplified and the new graph is checked to confirm the direction of the shift.
 
 1. Horizontal translation to the right by <InlineMath math="3 \text{ units}" />: <InlineMath math="f'(x) = f(x - 3) = (x - 3)^2 + 2(x - 3) + 1 = x^2 - 4x + 4" />
 

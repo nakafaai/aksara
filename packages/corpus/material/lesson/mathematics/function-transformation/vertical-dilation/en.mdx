@@ -11,23 +11,25 @@ export const metadata = {
 
 ## Scaling the Heights of a Function Graph
 
-Vertical dilation changes a function graph's height without changing its horizontal coordinates. Picture a photograph pulled outward from its top and bottom edges or pressed toward the <InlineMath math="x" />-axis.
+Vertical dilation changes how tall a function graph looks without moving any of its horizontal positions. Stretching the graph makes it taller, and compressing it brings the graph closer to the <InlineMath math="x" />-axis, while every point keeps its original <InlineMath math="x" /> value.
 
-If we have a function <InlineMath math="f(x)" />, then vertical dilation produces a new function <InlineMath math="g(x) = k \cdot f(x)" /> where <InlineMath math="k \ne 0" /> is the scale factor that determines how much the vertical size changes.
+If you have a function <InlineMath math="f(x)" />, then vertical dilation produces a new function <InlineMath math="g(x) = k \cdot f(x)" />. Here <InlineMath math="k \ne 0" /> is the factor that multiplies each output value.
 
-### Rules of Vertical Dilation
+### How the Output Factor Changes the Height
 
-For any function <InlineMath math="f(x)" /> and nonzero scale factor <InlineMath math="k" />, vertical dilation is defined as:
+For any function <InlineMath math="f(x)" /> and a nonzero factor <InlineMath math="k" />, vertical dilation is defined as:
 
 <BlockMath math="g(x) = k \cdot f(x)" />
 
-Where <InlineMath math="k" /> is the scale factor that affects the transformation:
+The factor <InlineMath math="k" /> decides what happens to the height:
 - If <InlineMath math="k > 1" />, the graph is stretched vertically (enlarged)
 - If <InlineMath math="0 < k < 1" />, the graph is compressed vertically (reduced)
 - If <InlineMath math="k = 1" />, the graph does not change
 - If <InlineMath math="k < 0" />, the graph undergoes reflection as well as dilation
 
 The value <InlineMath math="k = 0" /> is excluded because it sends every output to <InlineMath math="0" />. The whole graph then collapses onto the <InlineMath math="x" />-axis.
+
+Here the factor works <Highlight>in the direction you expect</Highlight>: a factor greater than one makes the graph taller, and a factor between zero and one makes the graph shorter.
 
 ## Visualization of Vertical Dilation
 
@@ -129,23 +131,21 @@ The three lines show:
 - Function <InlineMath math="h(x) = 0.5(x + 1)" /> has slope <InlineMath math="0.5" /> (compressed)
 - All lines still intersect the <InlineMath math="y" />-axis, but at different points
 
-## Properties of Vertical Dilation
+## What Changes and What Stays
 
-### Effect on Coordinate Points
+Once you know whether the graph grows taller or shorter, you still need to know which values move. Vertical dilation multiplies every output value by the factor <InlineMath math="k" />, so heights change while positions along the <InlineMath math="x" />-axis stay the same.
 
-If point <InlineMath math="(a, b)" /> is on the graph of <InlineMath math="f(x)" />, then the corresponding point on the graph of <InlineMath math="k \cdot f(x)" /> is <InlineMath math="(a, k \cdot b)" />.
+Take a point <InlineMath math="(a, b)" /> on the graph of <InlineMath math="f(x)" />. The matching point on the graph of <InlineMath math="k \cdot f(x)" /> is <InlineMath math="(a, k \cdot b)" />. The <InlineMath math="x" /> coordinate stays at <InlineMath math="a" /> because vertical dilation never moves a point sideways.
 
-### Domain and Range
+| Part of the function | Before the dilation | After the dilation by <InlineMath math="k > 0" /> |
+| --- | --- | --- |
+| Point <InlineMath math="(a, b)" /> | On the graph of <InlineMath math="f(x)" /> | Moves to <InlineMath math="(a, k \cdot b)" /> |
+| Domain | The original interval | The same interval as before |
+| Range <InlineMath math="[c, d]" /> | The original interval | Becomes <InlineMath math="[k \cdot c, k \cdot d]" /> |
+| <InlineMath math="x" />-intercept | At <InlineMath math="x = x_0" /> | Stays at <InlineMath math="x = x_0" /> |
+| <InlineMath math="y" />-intercept | At <InlineMath math="y = y_0" /> | Moves to <InlineMath math="y = k \cdot y_0" /> |
 
-- **Domain**: Does not change after vertical dilation
-- **Range**: Changes according to the scale factor <InlineMath math="k" />
-
-If the range of the original function is <InlineMath math="[c, d]" />, then the range after vertical dilation with factor <InlineMath math="k > 0" /> becomes <InlineMath math="[k \cdot c, k \cdot d]" />.
-
-### Axis Intercepts
-
-- **<InlineMath math="x" />-intercept**: Does not change
-- **<InlineMath math="y" />-intercept**: Changes according to the scale factor
+The range grows or shrinks together with the graph, because it lists the output values. The domain keeps its own values because the allowed inputs do not change. A [horizontal dilation](/en/subjects/mathematics/function-transformation/horizontal-dilation) divides the horizontal coordinates instead of multiplying the heights.
 
 ## Scaling the Values of an Exponential Function
 
@@ -226,15 +226,17 @@ When the scale factor is negative:
 
 ## Exercises
 
+The three problems below use the height rule you have just learned. Each one multiplies the output by a stated factor, so watch whether that factor is greater than one, between zero and one, or negative. Try them without the answer key first, then compare your steps with the worked answers.
+
 1. Given the function <InlineMath math="f(x) = x^2 - 4x + 3" />. Determine the equation of the function resulting from vertical dilation with scale factor <InlineMath math="3" />.
 
-2. If the graph of function <InlineMath math="g(x) = \sqrt{x}" /> undergoes vertical dilation with factor <InlineMath math="\frac{1}{2}" />, determine:
-   - The equation of the resulting dilated function
-   - The range of the function after dilation
+2. The graph of the function <InlineMath math="g(x) = \sqrt{x}" /> undergoes vertical dilation with factor <InlineMath math="\frac{1}{2}" />. Determine the equation of the resulting function, then determine the range of that function.
 
 3. Function <InlineMath math="h(x) = |x - 1| + 2" /> undergoes vertical dilation with factor <InlineMath math="-1" />. Determine the vertex of the resulting dilated function.
 
 ### Answer Key
+
+Every worked answer starts by multiplying the whole output expression by the factor, because that is where the height rule lives. The equation is then simplified and the new graph is checked to confirm whether it grew taller or shorter.
 
 1. Vertical dilation with factor <InlineMath math="3" />: <InlineMath math="f'(x) = 3f(x) = 3(x^2 - 4x + 3) = 3x^2 - 12x + 9" />
 
