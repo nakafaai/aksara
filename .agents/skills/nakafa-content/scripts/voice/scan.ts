@@ -4,6 +4,7 @@ import { FLOW_STYLE_RULES } from "#nakafa-content/flow/style";
 import { LANGUAGE_CALQUE_RULES } from "#nakafa-content/language/calque";
 import { NAVIGATION_VOICE_RULES } from "#nakafa-content/link/check";
 import { findMalformedLatexCommandIssues } from "#nakafa-content/math/command";
+import { findDisplayedMathCompositionIssues } from "#nakafa-content/math/compose";
 import { findPlainMathLabelIssues } from "#nakafa-content/math/label";
 import {
   type MdxNode,
@@ -273,6 +274,7 @@ export function findLessonVoiceIssues(
     ),
     ...findPlainMathLabelIssues(source, parsedTree),
     ...findMalformedLatexCommandIssues(source, parsedTree),
+    ...findDisplayedMathCompositionIssues(source, parsedTree),
     ...findBlockquoteEditorialLabelIssues(locale, source, parsedTree)
   );
   const exerciseLines = exerciseSectionLines(locale, source);
