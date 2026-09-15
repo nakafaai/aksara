@@ -35,7 +35,11 @@ import { verifySigningKey } from "#cli/keys";
 import type { ReleaseArguments } from "#cli/production/arguments";
 import { prepareProductionGit } from "#cli/production/preparation";
 import { fetchProductionRenderer } from "#cli/production/renderer";
-import { PUBLICATION_TARGET_TIMEOUT, retryPublicationTarget } from "#cli/retry";
+import {
+  PUBLICATION_ACTIVATION_TIMEOUT,
+  PUBLICATION_TARGET_TIMEOUT,
+  retryPublicationTarget,
+} from "#cli/retry";
 import { type ProductionStateAction, selectProductionAction } from "#cli/state";
 
 /** Explicit decoded command input for the production publication boundary. */
@@ -114,6 +118,7 @@ export const runProductionCommand: (
     );
     const keyResolver = makeTrustedKeyResolver(TRUSTED_CONTENT_KEYS);
     const rawTarget = yield* makeHttpPublicationTarget({
+      activationTimeout: PUBLICATION_ACTIVATION_TIMEOUT,
       allowInsecureLoopback: false,
       endpoint: recoveryEnvironment.publicationEndpoint,
       timeout: PUBLICATION_TARGET_TIMEOUT,

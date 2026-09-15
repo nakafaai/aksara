@@ -25,7 +25,11 @@ import {
   validateStableAksaraRevision,
 } from "#cli/evidence";
 import { mapProductionError, type ProductionError } from "#cli/failure";
-import { PUBLICATION_TARGET_TIMEOUT, retryPublicationTarget } from "#cli/retry";
+import {
+  PUBLICATION_ACTIVATION_TIMEOUT,
+  PUBLICATION_TARGET_TIMEOUT,
+  retryPublicationTarget,
+} from "#cli/retry";
 
 /** Publishes the fixed acceptance corpus only into a new loopback deployment. */
 export const publishAcceptance: () => Effect.Effect<
@@ -44,6 +48,7 @@ export const publishAcceptance: () => Effect.Effect<
       settings.rendererPath
     );
     const rawTarget = yield* makeHttpPublicationTarget({
+      activationTimeout: PUBLICATION_ACTIVATION_TIMEOUT,
       allowInsecureLoopback: true,
       endpoint: settings.endpoint,
       timeout: PUBLICATION_TARGET_TIMEOUT,

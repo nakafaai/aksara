@@ -8,6 +8,17 @@ const TRANSPORT_RETRY_DELAY = "100 millis";
 /** Bounds each authenticated ingress exchange, including grouped staging. */
 export const PUBLICATION_TARGET_TIMEOUT = "2 minutes";
 
+/**
+ * Bounds the lifecycle exchanges that wait on a server-side read-model build.
+ *
+ * The activation ingress prepares the read models and polls until they are
+ * ready, so a full-corpus release legitimately runs for minutes. Applying the
+ * staging bound there abandons an exchange that still lands and reports a false
+ * failure. This stays above the observed build time while remaining bounded, so
+ * a stuck build still fails instead of holding the job open forever.
+ */
+export const PUBLICATION_ACTIVATION_TIMEOUT = "10 minutes";
+
 /** Identifies the only idempotent failure class eligible for bounded retry. */
 function isTransportFailure(error: unknown) {
   return error instanceof PublicationTargetTransportError;

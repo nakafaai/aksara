@@ -3,7 +3,8 @@ import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spe
 import type { StageGroupRequest } from "@nakafa/aksara-contracts/transport/group";
 import { MAX_PROJECTION_BATCH_BYTES } from "@nakafa/aksara-contracts/transport/limits";
 import type { PublicationCurrentRequest } from "@nakafa/aksara-contracts/transport/request";
-import { Duration, Effect, Redacted, Schema } from "effect";
+import { Duration, Effect, Fiber, Redacted, Schema } from "effect";
+import { TestClock } from "effect/testing";
 import {
   FetchHttpClient,
   HttpClient,
@@ -18,6 +19,7 @@ import { transportSuccess } from "#test/transport/success";
 const endpoint = new URL("https://publish.test.invalid/content");
 const request: PublicationCurrentRequest = { operation: "current" };
 const config: ValidatedHttpConfig = {
+  activationTimeout: Duration.seconds(1),
   endpoint,
   timeout: Duration.seconds(1),
   token: Redacted.make("test-secret-token"),
@@ -152,6 +154,46 @@ describe("sendPublicationRequest", () => {
         rejection: { code: "CONTENT_RELEASE_SIZE" },
       });
       expect(requestCount).toBe(0);
+    })
+  );
+
+  it.effect("bounds activation by the read-model build budget", () =>
+    Effect.gen(function* () {
+      const activation = yield* Effect.fromNullishOr(
+        transportRequests.find((value) => value.operation === "activate")
+      );
+      const staged = yield* Effect.fromNullishOr(
+        transportRequests.find((value) => value.operation === "stageRelease")
+      );
+      const bounds: ValidatedHttpConfig = {
+        activationTimeout: Duration.seconds(5),
+        endpoint,
+        timeout: Duration.millis(1),
+        token: Redacted.make("test-secret-token"),
+      };
+      const stalled = HttpClient.make(() => Effect.never);
+
+      const staging = yield* Effect.forkChild(
+        sendPublicationRequest(stalled, bounds, staged).pipe(Effect.flip)
+      );
+      yield* TestClock.adjust(1);
+      expect(yield* Fiber.join(staging)).toMatchObject({
+        _tag: "PublicationTargetTransportError",
+        detail: { reason: "timeout" },
+        stage: "release",
+      });
+
+      const activating = yield* Effect.forkChild(
+        sendPublicationRequest(stalled, bounds, activation).pipe(Effect.flip)
+      );
+      yield* TestClock.adjust(1);
+      expect(activating.pollUnsafe()).toBeUndefined();
+      yield* TestClock.adjust(6000);
+      expect(yield* Fiber.join(activating)).toMatchObject({
+        _tag: "PublicationTargetTransportError",
+        detail: { reason: "timeout" },
+        stage: "activate",
+      });
     })
   );
 });
