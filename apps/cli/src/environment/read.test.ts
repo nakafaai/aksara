@@ -209,6 +209,7 @@ describe("production environment", () => {
         "publication-token"
       );
       expect(Redacted.value(environment.rendererToken)).toBe("renderer-token");
+      expect(environment.cacheSurface).toBe("deployed");
       expect(Redacted.value(environment.privateKeyPem)).toBe(privateKeyPem);
       expect(environment.derivedPublicKeyPem).toBe(derivedPublicKeyPem);
       expect(JSON.stringify(environment)).not.toContain("publication-token");
@@ -250,6 +251,33 @@ describe("production environment", () => {
       expect(yield* rejectProduction(values)).toMatchObject({
         _tag: "ProductionEnvironmentError",
         variable,
+      });
+    })
+  );
+
+  it.effect("decodes a declared cache surface and rejects an unknown one", () =>
+    Effect.gen(function* () {
+      const { productionValues } = yield* makeEnvironmentFixture();
+      const declared = new Map(productionValues).set(
+        "AKSARA_CACHE_SURFACE",
+        "none"
+      );
+      const environment = yield* provideConfig(
+        Effect.gen(function* () {
+          const recovery = yield* readRecoveryEnvironment();
+          return yield* readProductionEnvironment(recovery);
+        }),
+        declared
+      );
+      expect(environment.cacheSurface).toBe("none");
+
+      const unknown = new Map(productionValues).set(
+        "AKSARA_CACHE_SURFACE",
+        "absent"
+      );
+      expect(yield* rejectProduction(unknown)).toMatchObject({
+        _tag: "ProductionEnvironmentError",
+        variable: "AKSARA_CACHE_SURFACE",
       });
     })
   );

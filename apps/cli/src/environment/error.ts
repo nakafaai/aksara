@@ -1,6 +1,7 @@
 import { Schema } from "effect";
 
 const ProductionVariableSchema = Schema.Literals([
+  "AKSARA_CACHE_SURFACE",
   "AKSARA_PUBLICATION_ENDPOINT",
   "AKSARA_PUBLICATION_TOKEN",
   "AKSARA_RENDERER_ENDPOINT",

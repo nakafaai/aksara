@@ -44,6 +44,7 @@ export const runRecoverCommand: (args: RecoverArguments) => RecoverCommand =
       }).pipe(Effect.mapError(mapProductionError("target")));
       const target = retryPublicationTarget(rawTarget);
       const activation = yield* makeProductionActivation({
+        cacheSurface: environment.cacheSurface,
         endpoint: environment.rendererEndpoint,
         token: environment.rendererToken,
       });

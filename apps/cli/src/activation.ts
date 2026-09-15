@@ -8,7 +8,11 @@ import {
 } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, type Redacted } from "effect";
 import { HttpClient } from "effect/unstable/http";
-import { makeProductionCacheInvalidation } from "#cli/cache/activation";
+import {
+  type CacheSurface,
+  makeAbsentCacheInvalidation,
+  makeProductionCacheInvalidation,
+} from "#cli/cache/activation";
 import { fetchProductionRenderer } from "#cli/production/renderer";
 
 /** Applies the exact or directional renderer proof selected during preparation. */
@@ -38,15 +42,19 @@ const verifyRendererPreflight = Effect.fn("AksaraCli.verifyRendererPreflight")(
 export const makeProductionActivation = Effect.fn(
   "AksaraCli.makeProductionActivation"
 )(function* (settings: {
+  readonly cacheSurface: CacheSurface;
   readonly endpoint: URL;
   readonly token: Redacted.Redacted<string>;
 }) {
   const client = yield* HttpClient.HttpClient;
-  const invalidate = makeProductionCacheInvalidation({
-    client,
-    endpoint: settings.endpoint,
-    token: settings.token,
-  });
+  const invalidate =
+    settings.cacheSurface === "none"
+      ? makeAbsentCacheInvalidation()
+      : makeProductionCacheInvalidation({
+          client,
+          endpoint: settings.endpoint,
+          token: settings.token,
+        });
   /** Re-fetches and verifies the deployed renderer immediately before commit. */
   const verify = (bundle: ContentReleaseBundle, preflight: RendererPreflight) =>
     fetchProductionRenderer(settings.endpoint, settings.token).pipe(
