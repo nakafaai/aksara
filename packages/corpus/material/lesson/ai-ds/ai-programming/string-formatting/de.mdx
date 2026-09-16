@@ -15,6 +15,8 @@ Ein einfaches Ersetzungsfeld hat die Form `{field_name:format_spec}`. Eine Breit
 
 ### Formattypen für Zahlensysteme
 
+Ein Formatbezeichner kann eine ganze Zahl in einem anderen Zahlensystem darstellen. Die Tabelle nennt die Typzeichen und die Ausgabe, die jedes für denselben Wert erzeugt.
+
 | Formattyp | Symbol | Beispieleingabe | Ausgabe | Verwendung |
 |-------------|---------|--------------|--------|-------|
 | Dezimal | `d` | `45` | `45` | Dezimale Ganzzahl |
@@ -41,7 +43,11 @@ print('|{0:1}|'.format('xxx'))      # Ausgabe: |xxx|`
 
 ## Positionseinstellungen und Füllzeichen
 
+Ein Feld fester Breite braucht eine Regel, wo der Text steht und womit der Rest gefüllt wird. Die folgenden Unterabschnitte behandeln die Ausrichtung und das Füllzeichen.
+
 ### Ausrichtungsoptionen
+
+Das Diagramm vergleicht denselben Text links, rechts und mittig in einer festen Breite, damit das Ausrichtungszeichen leicht zu lesen ist.
 
 <Mermaid
   title="Wie Breite Text platziert"
@@ -116,6 +122,8 @@ Ersetzungsfelder können Positionsargumente über einen Index, Schlüsselwortarg
 
 ### Vergleich der Referenzmethoden
 
+Ein Formatstring kann seine Argumente auf drei Arten benennen. Die Tabelle vergleicht sie danach, was jede Art braucht und wo sie endet.
+
 | Methode | Syntax | Vorteile | Einschränkungen |
 |--------|---------|-----------|-------------|
 | Nummeriert | `{0}, {1}` | Explizite Kontrolle, kann wiederholt werden | Jeder verwendete Index muss vorhanden sein |
@@ -154,6 +162,8 @@ except IndexError as e:
 />
 
 ## Präzision und Vorzeichen
+
+Die Nachkommastellen und die Darstellung eines Vorzeichens werden getrennt gesteuert. Die folgenden Unterabschnitte behandeln zuerst die Präzision und danach das Vorzeichen.
 
 ### Präzision für Dezimalzahlen
 
@@ -219,6 +229,8 @@ print('Tiny number g: {0:12g}'.format(1.1e-10))  # Ausgabe: Tiny number g:      
 />
 
 ## Formatierte Strings und dynamische Vorlagen
+
+Ein f-String hält einen Ausdruck und den umgebenden Text an einer Stelle. Die folgenden Unterabschnitte behandeln die Versionsvoraussetzung und den Fall, in dem die Vorlage erst zur Laufzeit entsteht.
 
 ### Formatierte Strings und Version von Python
 

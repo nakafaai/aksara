@@ -15,6 +15,8 @@ Replacement field dasar berbentuk `{field_name:format_spec}`. Nilai lebar di dal
 
 ### Tipe Format untuk Sistem Bilangan
 
+Penentu format dapat menampilkan satu bilangan bulat dalam sistem bilangan lain. Tabel berikut memuat karakter tipe dan keluaran masing-masing untuk nilai yang sama.
+
 | Tipe format | Simbol | Contoh input | Output | Kegunaan |
 |-------------|---------|--------------|--------|----------|
 | Desimal | `d` | `45` | `45` | Bilangan bulat desimal |
@@ -41,7 +43,11 @@ print('|{0:1}|'.format('xxx'))      # Output: |xxx|`
 
 ## Pengaturan Posisi dan Karakter Pengisi
 
+Lebar field yang tetap memerlukan aturan tentang letak teks dan isi sisanya. Subbagian berikut membahas perataan dan karakter pengisi.
+
 ### Opsi Perataan
+
+Diagram berikut membandingkan teks yang sama pada posisi kiri, kanan, dan tengah di dalam satu lebar tetap, sehingga karakter perataannya mudah dibaca.
 
 <Mermaid
   title="Lebar Format Menentukan Posisi Teks"
@@ -116,6 +122,8 @@ Replacement field dapat memilih argumen posisi berdasarkan indeks, argumen kata 
 
 ### Perbandingan Referensi Argumen
 
+Satu format string dapat menamai argumennya dengan tiga cara. Tabel berikut membandingkan syarat dan batas masing-masing cara.
+
 | Cara | Sintaks | Kelebihan | Batasan |
 |--------|---------|-----------|---------|
 | Numbered | `{0}, {1}` | Kontrol eksplisit, bisa diulang | Setiap indeks yang dirujuk harus tersedia |
@@ -154,6 +162,8 @@ except IndexError as e:
 />
 
 ## Kontrol Presisi dan Spesifikasi Tanda
+
+Jumlah digit di belakang koma dan cara tanda ditampilkan diatur terpisah. Subbagian berikut membahas presisi lebih dulu, lalu penanda tanda.
 
 ### Presisi untuk Angka Desimal
 
@@ -219,6 +229,8 @@ print('Tiny number g: {0:12g}'.format(1.1e-10))  # Output: Tiny number g:      1
 />
 
 ## F Strings dan Template Dinamis
+
+F-string menyatukan ekspresi dan teks di sekitarnya dalam satu tempat. Subbagian berikut membahas syarat versinya dan kasus ketika templatenya baru disusun saat program berjalan.
 
 ### F Strings dan Versi Python
 

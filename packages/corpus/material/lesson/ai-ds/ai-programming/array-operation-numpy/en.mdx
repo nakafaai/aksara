@@ -46,6 +46,8 @@ There are three main rules in broadcasting:
 
 ### Array with Scalar
 
+Broadcasting also applies between an array and a single number. NumPy stretches the scalar across every element, so you do not need an explicit loop.
+
 <CodeBlock
   data={[
     {
@@ -102,6 +104,8 @@ print(result)
 />
 
 ### Failed Broadcasting Case
+
+Not every pair of shapes can be aligned. The example below shows a shape pair that breaks rule <InlineMath math="3" /> and the error NumPy returns.
 
 <CodeBlock
   data={[
