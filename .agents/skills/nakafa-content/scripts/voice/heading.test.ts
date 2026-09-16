@@ -112,6 +112,9 @@ it("rejects every symbol in headings", () => {
     },
   ]);
 });
+const SECTION_BODY =
+  "The section names the condition that applies and states the operation the learner performs with the quantity introduced above, so the same steps work for every later case.";
+
 it("rejects digits and math labels in headings and page titles", () => {
   const source = [
     "export const metadata = {",
@@ -119,6 +122,8 @@ it("rejects digits and math labels in headings and page titles", () => {
     "};",
     "",
     "## Inner Product and L2 Error",
+    "",
+    SECTION_BODY,
   ].join("\n");
 
   assert.deepEqual(
@@ -162,6 +167,8 @@ it("applies the heading rule to the page title", () => {
     "};",
     "",
     "## Syarat Bentuk Akar",
+    "",
+    SECTION_BODY,
   ].join("\n");
 
   assert.deepEqual(findLessonVoiceIssues("id", source), [

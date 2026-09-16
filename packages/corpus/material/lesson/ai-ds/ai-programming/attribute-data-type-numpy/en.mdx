@@ -127,7 +127,7 @@ print("Array result:", a)  # Output: Array result: [0. 1. 2.]`
 
 ## NumPy Array Attributes
 
-Every NumPy array exposes attributes that describe its shape, element count, data type, and memory use.
+Every NumPy array exposes attributes that describe its shape, element count, data type, and memory use. Reading them costs almost nothing because the values are stored with the array rather than computed by scanning the elements. The three groups below cover the geometry of the array, the individual attribute names, and what happens when the data types inside one array disagree.
 
 ### Dimension and Shape Attributes
 
@@ -198,7 +198,7 @@ print("Mixed result:", a)  # Output: Mixed result: [0. 1. 2.]`
 
 ## Data Type Conversion and Manipulation
 
-NumPy provides various ways to convert and manipulate array data types according to data analysis needs.
+The data type an array starts with is rarely the one a calculation should end with. Converting shrinks memory use, satisfies a function that expects a particular type, and keeps integer arithmetic from turning into floating point. The three sections below cover the conversion methods, the memory you save by choosing a narrower type, and the metadata that describes a type in detail.
 
 ### Data Type Conversion Methods
 

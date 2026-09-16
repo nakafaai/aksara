@@ -46,7 +46,7 @@ Indeks di luar rentang yang valid menghasilkan `IndexError`. Python memeriksa ba
 
 ## Mengambil Beberapa Elemen
 
-Slicing mengambil beberapa elemen dari string atau list. Kamu menentukan indeks awal, indeks akhir, dan bila perlu jarak antarelemen yang dipilih.
+Slicing mengambil beberapa elemen dari string atau list. Kamu menentukan indeks awal, indeks akhir, dan bila perlu jarak antarelemen yang dipilih. Indeks awal ikut diambil sedangkan indeks akhir tidak, sehingga lebar hasilnya adalah selisih keduanya.
 
 ### Slicing dengan Dua Batas
 
@@ -109,7 +109,7 @@ print(s[-1:4:-1])  # Output: '!dlroW'`
 
 ## Aturan Slicing
 
-Indeks awal, indeks akhir, dan `step` menentukan elemen yang masuk ke hasil.
+Indeks awal, indeks akhir, dan `step` menentukan elemen yang masuk ke hasil. Aturan utamanya: indeks awal ikut diambil, indeks akhir tidak, dan `step` negatif membalik arah pembacaan dari kanan ke kiri. Bagian di bawah ini merinci tiap aturan tersebut beserta panjang hasilnya.
 
 ### Menghitung Panjang Hasil
 
@@ -182,7 +182,7 @@ Perbandingan dengan `range()` menunjukkan bagaimana batas awal, batas akhir, dan
 
 ## Bentuk Singkat Slicing
 
-Python mengizinkan sebagian batas slice dikosongkan. Subbagian berikut menunjukkan bentuk singkat itu beserta hasilnya.
+Python mengizinkan sebagian batas slice dikosongkan. Batas awal yang kosong berarti slice dimulai dari indeks `0`, sedangkan batas akhir yang kosong berarti slice berjalan sampai elemen terakhir. Subbagian berikut menunjukkan bentuk singkat itu beserta nilai yang dihasilkan.
 
 ### Mengambil dari Awal atau Sampai Akhir
 

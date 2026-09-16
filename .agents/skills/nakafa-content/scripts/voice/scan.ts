@@ -1,4 +1,5 @@
 import { exerciseSectionLines } from "#nakafa-content/exercise/context";
+import { findSectionBodyIssues } from "#nakafa-content/body/section";
 import { FLOW_CONTEXT_RULES } from "#nakafa-content/flow/context";
 import { FLOW_STYLE_RULES } from "#nakafa-content/flow/style";
 import { LANGUAGE_CALQUE_RULES } from "#nakafa-content/language/calque";
@@ -275,7 +276,8 @@ export function findLessonVoiceIssues(
     ...findPlainMathLabelIssues(source, parsedTree),
     ...findMalformedLatexCommandIssues(source, parsedTree),
     ...findDisplayedMathCompositionIssues(source, parsedTree),
-    ...findBlockquoteEditorialLabelIssues(locale, source, parsedTree)
+    ...findBlockquoteEditorialLabelIssues(locale, source, parsedTree),
+    ...findSectionBodyIssues(source, parsedTree)
   );
   const exerciseLines = exerciseSectionLines(locale, source);
   return deduplicateIssues(issues).filter(

@@ -77,7 +77,7 @@ Dalam string literal biasa, penulisan `\n` dan `\t` pada kode sumber masing-masi
 
 ## Method Transformasi String
 
-Method berikut mengembalikan string baru dan membiarkan string aslinya tetap. Subbagian berikut mengelompokkannya menurut perubahan yang dibuat.
+Method berikut mengembalikan string baru dan membiarkan string aslinya tetap. Hal itu terjadi karena string bersifat immutable, sehingga setiap perubahan menghasilkan nilai baru, bukan mengubah nilai lama. Subbagian berikut mengelompokkannya menurut perubahan yang dibuat.
 
 ### Mengubah Case Huruf
 
@@ -163,7 +163,7 @@ Gunakan `removeprefix()` atau `removesuffix()` jika kamu perlu menghapus satu to
 
 ## Method Pencarian dan Validasi
 
-Satu kelompok method mencari letak teks, kelompok lain menjawab pertanyaan ya atau tidak tentangnya. Subbagian berikut memisahkan keduanya.
+Satu kelompok method mencari letak teks, kelompok lain menjawab pertanyaan ya atau tidak tentangnya. Method pencari mengembalikan posisi, sedangkan method pemeriksa mengembalikan `True` atau `False`. Subbagian berikut memisahkan keduanya.
 
 ### Mencari Posisi Substring
 
@@ -325,7 +325,7 @@ Kedua method ini menerima tuple, sehingga satu pemanggilan dapat memeriksa beber
 
 ## Method Replace dan Split
 
-Kedua method ini memotong string lalu menyusunnya kembali. Subbagian berikut membahas penggantian lebih dulu, lalu pemisahan.
+Kedua method ini mengubah cara string dibagi menjadi bagian. `replace` menukar satu potongan teks dengan potongan lain, sedangkan `split` memecah string menjadi list pada pemisah tertentu. Subbagian berikut membahas penggantian lebih dulu, lalu pemisahan.
 
 ### Mengganti Substring
 

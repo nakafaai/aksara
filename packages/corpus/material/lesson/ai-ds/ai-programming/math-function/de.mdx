@@ -19,7 +19,7 @@ Das Modul `math` stellt reellwertige Funktionen und Konstanten bereit. Es akzept
 
 ## Das Modul Math importieren
 
-Python bietet mehrere Möglichkeiten zum Importieren von Modulen mit jeweils unterschiedlichen Eigenschaften und Verwendungszwecken.
+Python bietet mehrere Möglichkeiten, ein Modul zu importieren, und die Wahl prägt das Aussehen jedes späteren Aufrufs. Du kannst das ganze Modul importieren, einzelne Namen daraus oder das Modul beim Import umbenennen. Die Abschnitte unten zeigen jede Form und den Kompromiss zwischen einem kurzen und einem gut lesbaren Aufruf.
 
 ### Basisimport mit Namespace
 
@@ -186,7 +186,7 @@ Deshalb ergibt `round(4.5)` den Wert <InlineMath math="4" />, während auch `rou
 
 ## Funktionen und Konstanten im Mathematikmodul
 
-Jede `math`-Funktion hat einen Definitionsbereich. `sqrt(x)` benötigt beispielsweise eine nichtnegative reelle Eingabe, Logarithmen benötigen positive reelle Eingaben.
+Jede `math`-Funktion hat einen Definitionsbereich. `sqrt(x)` benötigt beispielsweise eine nichtnegative reelle Eingabe, Logarithmen benötigen positive reelle Eingaben. Ein Wert außerhalb dieses Bereichs löst einen `ValueError` aus, statt eine Zahl zurückzugeben. Die Abschnitte unten gruppieren die Funktionen nach Zweck und nennen die Konstanten des Moduls.
 
 ### Funktionen für Quadratwurzeln und Logarithmen
 
@@ -301,7 +301,7 @@ print(f"Kreisfläche mit Radius {circle_radius}: {circle_area}")`
 
 ## Auswahl der richtigen Importmethode
 
-Wähle einen Importstil, der den Modulnamen bei jedem Aufruf nennt, wenn dieser Kontext nötig ist. Importiere nur Namen, die das Programm verwendet.
+Wähle einen Importstil, der den Modulnamen bei jedem Aufruf nennt, wenn dieser Kontext nötig ist, und importiere nur Namen, die das Programm tatsächlich verwendet. Eine einzelne Funktion, die einmal gebraucht wird, liest sich als `from math import sqrt` gut, während mehrere Aufrufe mit `import math` klarer bleiben. Die Abschnitte unten vergleichen beide Stile an kurzen Beispielen.
 
 ### Leitfaden zur Auswahl von Importmethoden
 
