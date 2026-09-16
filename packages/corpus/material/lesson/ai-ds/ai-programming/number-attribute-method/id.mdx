@@ -1,23 +1,25 @@
 export const metadata = {
-    title: "Atribut dan Method Bilangan",
-    description: "Periksa objek bilangan Python melalui tipe, atribut, method, dan operasi bilangan kompleks.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    datePublished: "2025-09-16",
-    dateModified: "2026-09-01",
-    subject: "Pemrograman AI",
+  title: "Atribut dan Method Bilangan",
+  description: "Periksa objek bilangan Python melalui tipe, atribut, method, dan operasi bilangan kompleks.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-09-16",
+  dateModified: "2026-09-16",
+  subject: "Pemrograman AI",
 };
 
 ## Bilangan sebagai Objek
 
-Setiap bilangan Python adalah objek dengan tipe numerik. Tipe tersebut menentukan atribut dan method yang tersedia selain operator aritmetika.
+Setiap bilangan Python adalah objek, dan objek itu membawa tipe numeriknya sendiri. Tipe inilah yang menentukan atribut dan method apa saja yang bisa kamu panggil dengan notasi titik, di atas operator aritmetika yang sudah dimiliki setiap bilangan.
 
-Sebagai contoh, <InlineMath math="5" /> membuat `int` dan <InlineMath math="3.14" /> membuat `float`. Objek numerik tidak dapat diubah, sehingga metodenya mengembalikan informasi atau nilai baru tanpa mengubah bilangan asal.
+Menulis <InlineMath math="5" /> membuat `int`, sedangkan menulis <InlineMath math="3.14" /> membuat `float`. Objek numerik bersifat <Highlight>tidak dapat diubah</Highlight>, jadi sebuah method tidak pernah mengubah bilangan yang kamu panggil. Pemanggilan seperti `conjugate()` membangun nilai baru lalu mengembalikannya, sementara bilangan aslinya tetap menyimpan nilai yang sama.
+
+Pelajaran [bilangan](/id/materi/ai-ds/pemrograman-ai/numbers) menjelaskan bagaimana Python memilih tipe untuk setiap literal yang kamu tulis. Pelajaran [immutable, mutable, dan identity](/id/materi/ai-ds/pemrograman-ai/immutable-mutable-dan-identity) menjelaskan apa yang berubah dari sifat tersebut ketika kamu menyimpan hasilnya ke dalam variabel.
 
 ## Mengakses Atribut dan Method
 
-Baca atribut dengan `object.attribute`. Panggil method dengan `object.method()`. Tanda kurung pada bentuk kedua membuat Python menjalankan method tersebut.
+Atribut menamai nilai yang sudah tersimpan di dalam objek, sedangkan method menamai tindakan yang bisa dilakukan objek itu. Kamu membaca atribut dengan `object.attribute` dan memanggil method dengan `object.method()`. Tanda kurung pada bentuk kedua itulah yang memberitahu Python untuk menjalankan method tersebut.
 
-Lihat contoh praktis dengan bilangan kompleks:
+Bilangan kompleks memperlihatkan perbedaannya dengan jelas. Ekspresi `c.real` adalah data yang sudah disimpan Python di dalam `c`, sehingga membacanya tidak menambah pekerjaan. Pemanggilan `c.conjugate()` adalah pekerjaan yang Python lakukan saat itu juga, dan hasilnya adalah bilangan kompleks kedua yang membiarkan `c` tetap tidak berubah.
 
 <CodeBlock
   data={[
@@ -41,11 +43,11 @@ print(c.conjugate())  # Output: (2-3j)`
 
 ## Mengenali Tipe Numerik
 
-Sebelum memakai operasi khusus suatu tipe, kamu dapat memeriksa tipe numerik sebuah nilai.
+Python memilih tipe numerik dari literal yang kamu tulis, dan tipe itu menentukan atribut serta method yang dibawa nilainya. Bertanya lebih dulu kepada Python tentang class-nya membuat kamu tidak perlu menebak apakah sebuah operasi tersedia pada nilai tersebut.
 
-### Menggunakan Fungsi Type
+Fungsi `type()` mengembalikan <Highlight>class dari nilai</Highlight>, yaitu nama yang dipakai Python untuk tipe numerik itu. Ketiga literal di bawah ini terlihat mirip ketika kamu masukkan ke sebuah fungsi, tetapi `type()` melaporkan class yang berbeda untuk masing-masing.
 
-Fungsi `type()` mengembalikan class dari nilai tersebut:
+### Menggunakan Fungsi Tipe
 
 <CodeBlock
   data={[
@@ -60,13 +62,21 @@ print(type(2+3j))      # Output: <class 'complex'>`
   ]}
 />
 
-## Atribut Bilangan Kompleks
+| Literal | Class yang dilaporkan `type()` | Alasan Python memilih class itu |
+| --- | --- | --- |
+| `42` | `int` | Literal tidak memiliki titik desimal dan tidak memiliki eksponen |
+| `3.14` | `float` | Literal memuat titik desimal |
+| `2+3j` | `complex` | Literal membawa satuan imajiner `j` |
 
-Bilangan kompleks menyimpan kedua komponennya dalam atribut `real` dan `imag`. Nilai kedua atribut tersebut bertipe `float`.
+## Membaca Bagian Bilangan Kompleks
+
+Bilangan kompleks menyimpan dua komponennya secara terpisah, dan Python menyediakan keduanya sebagai atribut sehingga kamu tidak perlu membongkarnya sendiri. Atribut `real` menyimpan komponen riil, atribut `imag` menyimpan koefisien satuan imajiner, dan keduanya kembali sebagai <Highlight>float meskipun kamu menulis bilangan bulat</Highlight>.
+
+Setiap atribut mengembalikan satu komponen dari bilangan tersebut. Membandingkan bilangan riil murni, bilangan imajiner murni, dan bilangan campuran memperlihatkan komponen mana yang menjadi milik atribut mana.
 
 ### Atribut real
 
-Atribut `real` mengembalikan komponen riil:
+Atribut `real` mengembalikan komponen riil dari bilangan tersebut. Membacanya tidak pernah mengubah bilangan itu, sehingga kamu bisa memeriksa nilai yang sama sebanyak yang kamu butuhkan.
 
 <CodeBlock
   data={[
@@ -92,7 +102,7 @@ print(f"Bagian riil dari {z3} adalah {z3.real}")
 
 ### Atribut imag
 
-Atribut `imag` mengembalikan koefisien <InlineMath math="i" />. Python menulis satuan tersebut sebagai `j` dalam literal bilangan kompleks.
+Atribut `imag` mengembalikan koefisien <InlineMath math="i" />, dan Python menulis satuan itu sebagai `j` di dalam literal bilangan kompleks. Tanda milik koefisien tersebut, sehingga suku yang dikurangi kembali sebagai bilangan negatif.
 
 <CodeBlock
   data={[
@@ -116,13 +126,15 @@ print(f"Bagian imajiner dari {z3} adalah {z3.imag}")
   ]}
 />
 
-## Method Bilangan Kompleks
+Hasil untuk `z2` adalah <InlineMath math="-4.0" />, karena koefisiennya membawa tanda minus yang berdiri di depan satuan imajiner. Nilai `z1` tetap positif, dan bilangan imajiner murni `z3` melaporkan <InlineMath math="9.0" /> dengan komponen riil <InlineMath math="0.0" />.
 
-Bilangan kompleks membawa method-nya sendiri. Subbagian berikut membahas method yang paling sering dipakai.
+## Method pada Bilangan Kompleks
+
+Bilangan kompleks juga membawa methodnya sendiri, dan method di bawah ini mencakup operasi yang paling sering kamu pakai. Setiap method mengembalikan bilangan kompleks baru, sehingga kamu bisa terus memanggil method pada hasilnya tanpa mengubah nilai tempat kamu memulai.
 
 ### Method Conjugate
 
-Untuk <InlineMath math="z=a+bi" />, `conjugate()` mengembalikan <InlineMath math="\overline{z}=a-bi" />. Bagian riilnya tetap, sedangkan tanda bagian imajinernya berubah.
+Untuk <InlineMath math="z=a+bi" />, `conjugate()` mengembalikan <InlineMath math="\overline{z}=a-bi" />. Bagian riilnya tetap dan <Highlight>hanya bagian imajinernya yang berubah tanda</Highlight>, sehingga konjugat menjadi bayangan cermin bilangan itu terhadap sumbu riil.
 
 <CodeBlock
   data={[
@@ -146,9 +158,11 @@ print(f"Konjugat dari {z3} adalah {z3.conjugate()}")
   ]}
 />
 
-### Penggunaan Praktis Konjugat
+Hasil kedua memperlihatkan aturan itu pada koefisien negatif. Bagian imajiner `z2` adalah <InlineMath math="-5" />, sehingga konjugatnya membawa <InlineMath math="+5" />, sementara bagian riilnya tetap <InlineMath math="-2" />. Bilangan riil seperti `z3` adalah konjugat bagi dirinya sendiri, karena bagian imajinernya sudah bernilai nol.
 
-Identitas <InlineMath math="z\overline{z}=|z|^2" /> menghubungkan bilangan kompleks dengan modulusnya. Contoh berikut memperlihatkan hubungan itu secara eksplisit. Dalam kode Python biasa, `abs(z)` merupakan cara langsung untuk menghitung modulus.
+### Memakai Konjugat untuk Mencari Modulus
+
+Identitas <InlineMath math="z\overline{z}=|z|^2" /> menghubungkan bilangan kompleks dengan modulusnya, dan contoh di bawah ini menjalankan identitas tersebut dalam kode. Pada kode Python sehari-hari kamu cukup memanggil `abs(z)` untuk modulus, jadi bacalah contoh ini sebagai alasan mengapa fungsi bawaan itu bekerja.
 
 <CodeBlock
   data={[
@@ -157,7 +171,7 @@ Identitas <InlineMath math="z\overline{z}=|z|^2" /> menghubungkan bilangan kompl
       filename: "conjugate_practical.py",
       code: `import math
 
-# Menghitung modulus bilangan kompleks menggunakan konjugat
+# Menghitung modulus bilangan kompleks memakai konjugat
 z = 3 + 4j
 modulus_squared = z * z.conjugate()
 modulus = math.sqrt(modulus_squared.real)
@@ -178,24 +192,33 @@ print(f"abs(z) bawaan: {abs(z)}")
   ]}
 />
 
-## Atribut dan Method pada Bilangan Lain
+Mengalikan <InlineMath math="z" /> dengan konjugatnya menghapus bagian imajiner dan menyisakan bilangan riil <InlineMath math="25" />. Akar kuadrat dari bilangan riil itu menghasilkan <InlineMath math="5.0" />, dan `abs(z)` bawaan melaporkan nilai yang sama dalam satu pemanggilan.
 
-Objek `int` dan `float` juga memiliki method yang sesuai dengan representasinya.
+## Method pada Bilangan Bulat dan Float
 
-### Bilangan Integer
+Bilangan bulat dan float menyediakan method yang sesuai dengan representasinya masing-masing, dan method itu tidak bisa saling ditukar dengan method bilangan kompleks. `bit_length()` menghitung bit pada nilai absolut bilangan bulat, `to_bytes()` menuliskan bit itu ke dalam urutan byte, `is_integer()` memeriksa apakah sebuah float punya bagian pecahan, dan `as_integer_ratio()` melaporkan pecahan yang benar-benar disimpan float.
+
+| Method | Tipe pemiliknya | Pertanyaan yang dijawab |
+| --- | --- | --- |
+| `bit_length()` | `int` | Berapa bit yang dibutuhkan nilai absolutnya |
+| `to_bytes()` | `int` | Byte apa yang mewakili nilai ini pada lebar dan urutan pilihan |
+| `is_integer()` | `float` | Apakah float ini tidak punya bagian pecahan |
+| `as_integer_ratio()` | `float` | Pecahan tepat apa yang sama dengan nilai tersimpan |
+
+### Method Bilangan Bulat
 
 <CodeBlock
   data={[
     {
       language: "python",
       filename: "integer_methods.py",
-      code: `# Beberapa method pada bilangan integer
+      code: `# Beberapa method pada bilangan bulat
 n = 42
 
-# Method bit_length() menghitung jumlah bit yang diperlukan
+# Method bit_length() - menghitung jumlah bit yang dibutuhkan
 print(f"Jumlah bit untuk {n}: {n.bit_length()}")
 
-# Method to_bytes() mengonversi nilai ke bytes
+# Method to_bytes() - mengubah ke byte
 byte_representation = n.to_bytes(2, byteorder='big')
 print(f"Representasi byte dari {n}: {byte_representation}")
 
@@ -206,9 +229,9 @@ print(f"Representasi byte dari {n}: {byte_representation}")
   ]}
 />
 
-`bit_length()` menghitung jumlah bit untuk nilai absolut bilangan bulat, tanpa tanda dan nol di depan. `to_bytes()` juga memerlukan panjang output serta urutan byte, sehingga hasil dua byte di atas diawali byte nol.
+`bit_length()` menghitung bit yang dibutuhkan nilai absolut bilangan bulat, dan perhitungan itu mengabaikan tanda serta angka nol di depan. `to_bytes()` juga membutuhkan panjang keluaran dan urutan byte, sehingga hasil dua byte di atas dibuka dengan satu byte nol untuk memenuhi lebar yang kamu minta.
 
-### Bilangan Float
+### Method Float
 
 <CodeBlock
   data={[
@@ -218,11 +241,11 @@ print(f"Representasi byte dari {n}: {byte_representation}")
       code: `# Beberapa method pada bilangan float
 f = 3.14159
 
-# Method is_integer() memeriksa apakah float adalah bilangan bulat
+# Method is_integer() - memeriksa apakah float bilangan bulat
 print(f"{f} adalah bilangan bulat: {f.is_integer()}")
 print(f"{4.0} adalah bilangan bulat: {(4.0).is_integer()}")
 
-# Method as_integer_ratio() mengembalikan rasio sebagai pecahan
+# Method as_integer_ratio() - mengembalikan rasio sebagai pecahan
 ratio = f.as_integer_ratio()
 print(f"Rasio dari {f}: {ratio}")
 
@@ -234,15 +257,15 @@ print(f"Rasio dari {f}: {ratio}")
   ]}
 />
 
-`is_integer()` memeriksa apakah float terbatas tidak memiliki bagian pecahan. `as_integer_ratio()` mengembalikan pecahan persis dari float biner yang tersimpan, yang dapat berbeda dari pecahan desimal yang dibayangkan pembaca.
+`is_integer()` memeriksa apakah sebuah float terhingga tidak punya bagian pecahan, sehingga <InlineMath math="3.14159" /> gagal pada pemeriksaan itu sementara <InlineMath math="4.0" /> lolos. `as_integer_ratio()` mengembalikan <Highlight>pecahan tepat yang tersimpan dalam biner</Highlight>, dan itulah alasan rasio untuk <InlineMath math="3.14159" /> memuat bilangan sebesar itu alih-alih pecahan desimal yang kamu harapkan.
 
-## Memvalidasi dan Menghitung dengan Objek Numerik
+## Memeriksa dan Menghitung dengan Objek Numerik
 
-Atribut dan method juga mendukung pemeriksaan dan konversi. Subbagian berikut membahas validasi lalu perhitungan yang mengikutinya.
+Atribut dan method juga mendukung pemeriksaan serta konversi, dan kedua langkah itu memang berjalan berurutan. Kamu memeriksa masukannya lebih dulu lalu menghitung, sehingga nilai yang tidak valid tidak pernah sampai ke perhitungan berikutnya.
 
-### Validasi Data
+### Memeriksa Masukan Sebelum Menghitung
 
-Atribut menyediakan nilai yang dapat diperiksa oleh aturan validasi. Fungsi berikut mengharuskan input berupa objek `complex`, lalu memeriksa dua aturan domain pada komponen real dan imajiner input tersebut.
+Atribut bisa membawa aturan pemeriksaan yang eksplisit. Fungsi di bawah ini menuntut objek `complex` terlebih dahulu, lalu menerapkan dua contoh aturan domain pada komponennya dan melaporkan pesan untuk setiap kasus yang ditolak.
 
 <CodeBlock
   data={[
@@ -250,9 +273,9 @@ Atribut menyediakan nilai yang dapat diperiksa oleh aturan validasi. Fungsi beri
       language: "python",
       filename: "data_validation.py",
       code: `def validate_complex_input(z):
-    """Fungsi untuk memvalidasi input bilangan kompleks"""
+    """Fungsi untuk memeriksa masukan bilangan kompleks"""
     if not isinstance(z, complex):
-        return False, "Input bukan bilangan kompleks"
+        return False, "Masukan bukan bilangan kompleks"
 
     if z.real < 0:
         return False, "Bagian riil tidak boleh negatif"
@@ -260,9 +283,9 @@ Atribut menyediakan nilai yang dapat diperiksa oleh aturan validasi. Fungsi beri
     if z.imag == 0:
         return False, "Bagian imajiner tidak boleh nol"
 
-    return True, "Input valid"
+    return True, "Masukan valid"
 
-# Testing fungsi validasi
+# Menguji fungsi pemeriksa
 test_numbers = [3+4j, -2+5j, 7+0j, 2.5+1.5j]
 
 for num in test_numbers:
@@ -272,7 +295,9 @@ for num in test_numbers:
   ]}
 />
 
-### Perhitungan Matematika
+Fungsi itu mengembalikan sepasang nilai, sehingga pemanggilnya menerima keputusan dan alasannya sekaligus. Dari empat bilangan uji, <InlineMath math="3+4j" /> dan <InlineMath math="2.5+1.5j" /> lolos ketiga pemeriksaan, <InlineMath math="-2+5j" /> ditolak karena bagian riilnya negatif, dan <InlineMath math="7+0j" /> ditolak karena bagian imajinernya nol.
+
+### Menghitung dengan Masukan yang Sudah Diperiksa
 
 <CodeBlock
   data={[
@@ -280,7 +305,7 @@ for num in test_numbers:
       language: "python",
       filename: "math_calculations.py",
       code: `def complex_operations(z1, z2):
-    """Melakukan berbagai operasi pada bilangan kompleks"""
+    """Menjalankan berbagai operasi pada bilangan kompleks"""
     print(f"Bilangan 1: {z1}")
     print(f"Bilangan 2: {z2}")
     print(f"Bagian riil z1: {z1.real}")
@@ -288,13 +313,13 @@ for num in test_numbers:
     print(f"Konjugat z1: {z1.conjugate()}")
 
     # Operasi matematika
-    penjumlahan = z1 + z2
-    perkalian = z1 * z2.conjugate()
+    addition = z1 + z2
+    multiplication = z1 * z2.conjugate()
 
-    print(f"z1 + z2 = {penjumlahan}")
-    print(f"z1 × z2* = {perkalian}")
+    print(f"z1 + z2 = {addition}")
+    print(f"z1 × z2* = {multiplication}")
 
-# Contoh penggunaan
+# Contoh pemakaian
 z1 = 2 + 3j
 z2 = 1 - 2j
 complex_operations(z1, z2)`
@@ -302,4 +327,6 @@ complex_operations(z1, z2)`
   ]}
 />
 
-Kenali dahulu tipe numerik dan operasi yang tersedia. Setelah itu, periksa apakah operasi tersebut menghasilkan komponen, representasi, atau nilai baru. Bentuk hasil menentukan operasi yang dapat dilakukan selanjutnya.
+Dengan masukan tersebut, `z1 + z2` bernilai <InlineMath math="3+1j" />, karena bagian riil dan bagian imajiner dijumlahkan secara terpisah. Ekspresi `z1 * z2.conjugate()` mengalikan <InlineMath math="2+3j" /> dengan <InlineMath math="1+2j" /> dan mengembalikan <InlineMath math="-4+7j" />.
+
+Pola pada seluruh pelajaran ini tetap sama. Kenali dulu tipe numeriknya, lalu periksa apakah sebuah operasi mengembalikan komponen, representasi, atau nilai baru, karena tipe kembalian itulah yang menentukan cara ekspresi berikutnya memakai hasilnya.

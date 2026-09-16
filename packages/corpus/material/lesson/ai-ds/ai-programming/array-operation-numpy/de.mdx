@@ -36,13 +36,15 @@ Im Beispiel addiert NumPy die Elemente an den jeweils entsprechenden Positionen.
 
 ### Regeln für Broadcasting
 
-Um zu entscheiden, ob zwei Shapes kompatibel sind, vergleicht NumPy ihre Dimensionen von rechts nach links.
+Zwei Arrays lassen sich ohne ausdrückliche Schleife verbinden, wenn NumPy ihre Dimensionen <Highlight>selbst ausrichten</Highlight> kann. Um zu entscheiden, ob zwei Shapes kompatibel sind, vergleicht NumPy ihre Dimensionen von rechts nach links und stoppt beim ersten Paar, das sich nicht ausrichten lässt.
 
-Beim Broadcasting gelten drei Hauptregeln:
+Drei Regeln decken jeden Fall ab. Die Tabelle unten nennt für jede Regel die geprüfte Bedingung und das Ergebnis, das NumPy dafür liefert.
 
-1. **Regel** <InlineMath math="1" />: Unterscheidet sich die Anzahl der Dimensionen, wird der Shape mit weniger Dimensionen so behandelt, als stünden links zusätzliche Dimensionen der Größe <InlineMath math="1" />
-2. **Regel** <InlineMath math="2" />: Zwei ausgerichtete Dimensionen sind kompatibel, wenn ihre Größen gleich sind oder eine von ihnen die Größe <InlineMath math="1" /> hat. NumPy behandelt die Dimension der Größe eins so, als hätte sie die Größe der zugehörigen Dimension
-3. **Regel** <InlineMath math="3" />: Ist auch nur ein ausgerichtetes Dimensionspaar inkompatibel, löst NumPy einen `ValueError` aus
+| Regel | Bedingung an die Shapes | Was NumPy tut |
+| --- | --- | --- |
+| Regel <InlineMath math="1" /> | Die beiden Shapes haben eine unterschiedliche Anzahl an Dimensionen | NumPy ergänzt links Dimensionen der Größe <InlineMath math="1" /> beim kürzeren Shape |
+| Regel <InlineMath math="2" /> | Ein ausgerichtetes Paar hat gleich große Seiten, oder eine Seite hat die Größe <InlineMath math="1" /> | NumPy wiederholt den einzelnen Eintrag entlang dieser Dimension, bis beide Größen passen |
+| Regel <InlineMath math="3" /> | Ein ausgerichtetes Paar hat unterschiedliche Größen und keine Seite hat die Größe <InlineMath math="1" /> | NumPy löst einen `ValueError` aus |
 
 ### Array mit Skalar
 

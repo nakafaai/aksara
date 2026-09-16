@@ -36,13 +36,15 @@ Pada contoh di atas, NumPy menjumlahkan elemen-elemen pada posisi yang bersesuai
 
 ### Aturan Broadcasting
 
-Untuk menentukan apakah dua shape kompatibel, NumPy membandingkan dimensinya dari kanan ke kiri.
+Dua array bisa digabungkan tanpa loop eksplisit ketika NumPy sanggup <Highlight>menyejajarkan dimensinya</Highlight> sendiri. Untuk menentukan apakah dua shape kompatibel, NumPy membandingkan dimensinya dari kanan ke kiri dan berhenti pada pasangan pertama yang tidak bisa disejajarkan.
 
-Terdapat tiga aturan utama dalam broadcasting:
+Tiga aturan menutup semua kemungkinan. Tabel di bawah ini menyebutkan syarat yang diperiksa setiap aturan beserta hasil yang NumPy keluarkan untuk syarat tersebut.
 
-1. **Aturan** <InlineMath math="1" />: Jika jumlah dimensinya berbeda, tambahkan dimensi berukuran <InlineMath math="1" /> di sebelah kiri shape yang memiliki lebih sedikit dimensi
-2. **Aturan** <InlineMath math="2" />: Dua dimensi yang sejajar kompatibel jika ukurannya sama atau salah satunya berukuran <InlineMath math="1" />. NumPy memperlakukan dimensi berukuran satu seolah-olah ukurannya sama dengan dimensi pasangannya
-3. **Aturan** <InlineMath math="3" />: Jika ada pasangan dimensi yang tidak kompatibel, NumPy menghasilkan `ValueError`
+| Aturan | Syarat pada shape | Yang NumPy lakukan |
+| --- | --- | --- |
+| Aturan <InlineMath math="1" /> | Kedua shape punya jumlah dimensi yang berbeda | NumPy menambahkan dimensi berukuran <InlineMath math="1" /> di sebelah kiri shape yang lebih pendek |
+| Aturan <InlineMath math="2" /> | Sebuah pasangan sejajar berukuran sama, atau salah satu sisinya berukuran <InlineMath math="1" /> | NumPy mengulang satu entri pada dimensi itu sampai kedua ukurannya sama |
+| Aturan <InlineMath math="3" /> | Sebuah pasangan sejajar berukuran berbeda dan tidak ada sisi yang berukuran <InlineMath math="1" /> | NumPy menghasilkan `ValueError` |
 
 ### Array dengan Skalar
 
