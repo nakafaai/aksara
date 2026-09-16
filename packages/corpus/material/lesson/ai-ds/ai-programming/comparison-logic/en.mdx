@@ -218,7 +218,7 @@ The diagram traces a decimal value into binary floating-point storage, which is 
 
 <Mermaid
   title="Decimals Can Compare Differently Than They Look"
-  description="Trace decimal values into floating-point representation so comparison tolerance makes sense."
+  description="Decimal values become binary floats, and limited precision can cause a rounding error that makes a comparison fail. math.isclose with a relative or absolute tolerance compares the values safely."
   chart={`
     flowchart TD
         A[Decimal Numbers] --> B[Binary Conversion]

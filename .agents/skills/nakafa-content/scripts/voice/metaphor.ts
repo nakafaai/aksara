@@ -19,7 +19,7 @@ export const METAPHOR_VOICE_RULES = [
   {
     id: "redirected-cell-machinery-metaphor",
     patterns: {
-      de: /(?:\b(?:lenkt|lenken)\b[^.!?\n]{0,45}\bMaschinerie\b[^.!?\n]{0,20}\bum\b|\bübernimmt\b[^.!?\n]{0,45}\bZellmaschinerie\b)/iu,
+      de: /(?:\b(?:lenkt|lenken)\b[^.!?\n]{0,45}\bMaschinerie\b[^.!?\n]{0,20}\bum\b|(?<![\p{L}\p{N}_])übernimmt\b[^.!?\n]{0,45}\bZellmaschinerie\b)/iu,
       en: /\b(?:redirects?|takes? over)\b[^.!?\n]{0,45}\b(?:cell(?:ular)?|host-cell)(?:'s)? (?:machinery|work)\b/iu,
       id: /\b(?:mengarahkan|mengambil alih)\b[^.!?\n]{0,45}\b(?:mesin|kerja) sel(?: inang)?\b/iu,
     },

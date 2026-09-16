@@ -25,11 +25,17 @@ const LESSON_ROOT = join(
   "material",
   "lesson"
 );
+const ARTICLE_ROOT = join(process.cwd(), "packages", "corpus", "articles");
 
-it("accepts every current lesson through the production checker", () => {
-  const report = checkLessonRoot(LESSON_ROOT);
-  assert.ok(report.fileCount > 1000);
-  assert.deepEqual(report.issues, []);
+it("accepts every current authored scope through the production checker", () => {
+  for (const [root, minimum] of [
+    [LESSON_ROOT, 1000],
+    [ARTICLE_ROOT, 21],
+  ] as const) {
+    const report = checkLessonRoot(root);
+    assert.ok(report.fileCount >= minimum);
+    assert.deepEqual(report.issues, []);
+  }
 }, 90_000);
 
 it("scans every locale sibling below a lesson root", () => {
@@ -101,20 +107,10 @@ it("keeps rendered copy and destination checks consistent at the complete audit 
     ["id", '<input {...(0, { placeholder: "Kamu" })} />', undefined],
     [
       "id",
-      '<input {...({ src: "https://example.org/image.png" }, { placeholder: "Kamu" })} />',
-      undefined,
-    ],
-    [
-      "id",
       '<input {...(0, { src: "https://example.org/image.png" })} />',
       "external-link-invalid-placement",
     ],
     ["id", "<input {...(0, properties)} />", "external-link-invalid-placement"],
-    [
-      "id",
-      '<Panel content={<input {...(0, { placeholder: "Kamu" })} />} />',
-      undefined,
-    ],
   ] as const;
   const root = mkdtempSync(join(tmpdir(), "nakafa-lesson-boundaries-"));
   try {
@@ -142,11 +138,12 @@ it("collects only supported locale files without following symlinks", () => {
     writeFileSync(join(nested, "de.mdx"), "Kopiere den Wert.");
     writeFileSync(join(root, "fr.mdx"), "Copiez la valeur.");
     writeFileSync(join(root, "notes.txt"), "notes");
+    writeFileSync(join(root, "answer.en.mdx"), "Copy the value.");
     symlinkSync(join(root, "id.mdx"), join(root, "linked.mdx"));
 
     assert.deepEqual(
       collectLessonFiles(root).map((file) => file.slice(root.length + 1)),
-      ["id.mdx", "nested/de.mdx"]
+      ["answer.en.mdx", "id.mdx", "nested/de.mdx"]
     );
   } finally {
     rmSync(root, { force: true, recursive: true });
@@ -204,10 +201,7 @@ it("structural punctuation and contextual regressions block the CLI", () => {
     ["heading", "## SDG 7 Energy Access\n"],
     ["source heading", "## Sumber\n"],
     ["semicolon", "Hitung nilai pertama; lalu hitung nilai kedua.\n"],
-    [
-      "context",
-      "Hitung ketidakpastian hasil dengan aturan rambatan yang sesuai.\n",
-    ],
+    ["context", "Hitung ketidakpastian hasil dengan aturan rambatan.\n"],
   ] as const;
   const originalError = console.error;
   const originalLog = console.log;

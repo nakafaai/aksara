@@ -53,14 +53,17 @@ it("rejects empty evaluative labels instead of judging the explanation", () => {
   for (const [locale, source] of Object.entries(samples)) {
     assert.deepEqual(
       findLessonVoiceIssues(locale, source).map(({ rule }) => rule),
-      [
-        "empty-evaluative-label",
-        "empty-evaluative-label",
-        "empty-evaluative-label",
-        "empty-evaluative-label",
-      ]
+      Array.from({ length: 4 }, () => "empty-evaluative-label")
     );
   }
+
+  assert.deepEqual(
+    findLessonVoiceIssues(
+      "en",
+      "The interests of the group or community are more important than individual interests."
+    ),
+    []
+  );
 });
 it("rejects a bare utility label and preserves the named operation", () => {
   const samples = {
@@ -156,11 +159,7 @@ it("rejects generic everyday application headings", () => {
   for (const [locale, source] of Object.entries(samples)) {
     assert.deepEqual(
       findLessonVoiceIssues(locale, source).map(({ rule }) => rule),
-      [
-        "generic-everyday-application-heading",
-        "generic-everyday-application-heading",
-        "generic-everyday-application-heading",
-      ]
+      Array.from({ length: 3 }, () => "generic-everyday-application-heading")
     );
   }
 
@@ -210,11 +209,7 @@ it("rejects headings that only label examples", () => {
   for (const [locale, source] of Object.entries(samples)) {
     assert.deepEqual(
       findLessonVoiceIssues(locale, source).map(({ rule }) => rule),
-      [
-        "generic-example-heading",
-        "generic-example-heading",
-        "generic-example-heading",
-      ]
+      Array.from({ length: 3 }, () => "generic-example-heading")
     );
   }
 

@@ -3,11 +3,11 @@ import type { LessonVoiceRule } from "#nakafa-content/voice/types";
 /** Checks repeated words and vague claims that replace a concrete explanation. */
 export const CORE_VOICE_RULES = [
   {
-    id: "em-dash",
+    id: "dash-character",
     patterns: {
-      de: /\u{2014}/u,
-      en: /\u{2014}/u,
-      id: /\u{2014}/u,
+      de: /[\u{2013}\u{2014}]/u,
+      en: /[\u{2013}\u{2014}]/u,
+      id: /[\u{2013}\u{2014}]/u,
     },
   },
   {

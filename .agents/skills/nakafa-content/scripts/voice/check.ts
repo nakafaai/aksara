@@ -29,6 +29,18 @@ interface LessonFile {
   locale: LessonVoiceLocale;
 }
 
+/**
+ * Reads the locale from a locale-qualified file name.
+ *
+ * Lessons and articles are named `<locale>.mdx`; question-bank files carry a
+ * role prefix such as `answer.id.mdx`. Both shapes end in the locale segment.
+ */
+function localeFromFile(file: string): string {
+  const stem = basename(file, ".mdx");
+  const separator = stem.lastIndexOf(".");
+  return separator === -1 ? stem : stem.slice(separator + 1);
+}
+
 /** Collects locale-qualified lesson files without validating them twice. */
 function collectLocaleFiles(root: string): LessonFile[] {
   const files: LessonFile[] = [];
@@ -41,8 +53,11 @@ function collectLocaleFiles(root: string): LessonFile[] {
         visit(file);
         continue;
       }
-      const locale = basename(file, ".mdx");
-      if (entry.isFile() && isLessonVoiceLocale(locale)) {
+      if (!entry.isFile()) {
+        continue;
+      }
+      const locale = localeFromFile(file);
+      if (isLessonVoiceLocale(locale)) {
         files.push({ file, locale });
       }
     }

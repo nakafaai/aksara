@@ -88,6 +88,14 @@ it("rejects redirected cell machinery metaphors but preserves literal mechanisms
     ),
     []
   );
+
+  assert.deepEqual(
+    findLessonVoiceIssues(
+      "de",
+      "Der Virus übernimmt die Zellmaschinerie der Wirtszelle."
+    ).map(({ rule }) => rule),
+    ["redirected-cell-machinery-metaphor"]
+  );
 });
 it("finds stock bridge and journey metaphors", () => {
   const source = [

@@ -58,16 +58,12 @@ it("rejects personified teaching aids and vague metawriting", () => {
 });
 it("rejects generic importance headings tables and attention labels", () => {
   const samples = {
-    de: [
-      "## Warum die Form nützlich ist",
-      "| Prüfung | Warum sie wichtig ist |",
-      "**Wichtig:** Die Funktion muss bijektiv sein.",
-    ].join("\n"),
-    en: [
-      "## Why the Constant Matters",
-      "| Check | Why it matters |",
-      "**Important:** The function must be bijective.",
-    ].join("\n"),
+    de: `## Warum die Form nützlich ist
+| Prüfung | Warum sie wichtig ist |
+**Wichtig:** Die Funktion muss bijektiv sein.`,
+    en: `## Why the Constant Matters
+| Check | Why it matters |
+**Important:** The function must be bijective.`,
   };
 
   for (const [locale, source] of Object.entries(samples)) {
@@ -254,6 +250,13 @@ it("rejects prose that narrates the lesson structure", () => {
     ["de", "Der nächste Abschnitt behandelt den divergenten Fall."],
     ["en", "The section teaches the order of the steps."],
     ["id", "Setiap pembahasan dimulai dari bentuk yang sesuai."],
+    ["en", "We can examine each chemical process in the following order."],
+    ["id", "Kita dapat memeriksa setiap proses kimia dengan urutan berikut."],
+    ["de", "Wir prüfen jeden Prozess in der folgenden Reihenfolge."],
+    ["en", "The pattern stays the same across the whole lesson."],
+    ["id", "Ini berlaku di sepanjang pelajaran ini."],
+    ["de", "Das Muster bleibt über die ganze Lektion gleich."],
+    ["en", "The two subsections below cover writing."],
   ] as const;
 
   for (const [locale, rejected] of cases) {
@@ -264,24 +267,29 @@ it("rejects prose that narrates the lesson structure", () => {
   }
 });
 
-it("rejects an English subsection reference", () => {
-  const source =
-    "A series adds the terms of a sequence. The two subsections below add the even numbers and the square numbers one term at a time.";
-
+it("rejects the nominalized German sequence adverb", () => {
   assert.deepEqual(
-    findLessonVoiceIssues("en", source).map(({ rule }) => rule),
-    ["lesson-structure-narration"]
+    findLessonVoiceIssues(
+      "de",
+      "Die Rechnung verwendet im Folgenden den gerundeten Wert."
+    ).map(({ rule }) => rule),
+    ["german-bare-im-folgenden"]
   );
 });
 
 it("keeps real uses of a section, an Abschnitt, and a bagian", () => {
-  const samples = {
-    de: "Jeder Abschnitt dieser Kurve zählt mit.\nTrenne die Probe in drei Abschnitte.",
-    en: "A central cross-section through the apex and the midpoint of a base edge.\nA conic section comes from slicing a cone.",
-    id: "Bagian tersebut adalah perbandingan sudut pusat terhadap 360 derajat.\nBagian ini menunjukkan bahwa integrasi dilakukan terhadap variabel x.",
-  };
+  const samples = [
+    ["de", "Jeder Abschnitt zählt mit.\nTrenne die Probe in drei Abschnitte."],
+    ["en", "A conic section comes from a cone.\nA cross-section is flat."],
+    [
+      "id",
+      "Bagian tersebut adalah perbandingan.\nBagian ini menunjukkan hasil.",
+    ],
+    ["de", "Die Rechnung verwendet im folgenden Beispiel den gerundeten Wert."],
+    ["en", "Arrange the numbers in the following order: 3, 7, 11."],
+  ] as const;
 
-  for (const [locale, source] of Object.entries(samples)) {
+  for (const [locale, source] of samples) {
     assert.deepEqual(findLessonVoiceIssues(locale, source), []);
   }
 });

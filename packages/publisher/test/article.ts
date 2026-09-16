@@ -24,7 +24,7 @@ interface ArticleFixtureSource {
   readonly sources: ReadonlyMap<string, string>;
 }
 
-const baseComponents = ["ContentGrid", "InlineMath"];
+const baseComponents = ["ContentGrid", "Highlight", "InlineMath"];
 const politicsComponents = [
   "KimPlusElectabilityChart",
   "MerahPutihCabinetChart",

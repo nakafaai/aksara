@@ -80,6 +80,17 @@ an editorial audit. Inspect each match with its complete paragraph, subject
 terminology, and locale siblings. Rerun after corrections and account for every
 remaining match. Do not rewrite valid prose to obtain a zero count.
 
+The gate owns two authored scopes. Lessons live in
+`packages/corpus/material/lesson`; articles live in `packages/corpus/articles`.
+Both suites assert zero findings, so an article change must keep its three
+locale siblings clean as well. Point the same command at one article directory
+with `--root` while editing. The question bank is out of scope; the reasons and
+the measured evidence are recorded in
+[writing quality](writing-quality.md#deterministic-gate-scope).
+`packages/corpus/pages` is out of scope as well: it holds the legal notice,
+privacy policy, security policy, and developer resources, which are reviewed as
+public legal and product copy under their own acceptance path.
+
 Rule ownership and admission criteria live in
 [writing quality](writing-quality.md#evidence-and-checker-limits). Record a new
 failure class there, search the complete lesson corpus for locale variants,
@@ -111,10 +122,23 @@ boundary before widening a rule. Preserve the following verification boundaries:
   levels, list type and count, table shape, blockquotes, code blocks, display
   math, and custom flow components in teaching order. It ignores sentence shape
   and inline-math count so locale grammar can remain natural.
+- The heading form of an ambiguous reference is blocking through
+  `heading-demonstrative-reference`. `empty-section-body`, `heading-without-body`,
+  `list-only-section`, and `component-only-section` are blocking section-body
+  defects, while `thin-section-body` is a review item. The section-body bar is
+  twenty-five prose words or one real representation, and list-item text counts
+  as prose. Body-level demonstratives, possessives, Indonesian `-nya`, and
+  English `it/that/they` stay a contextual review item, because the checker
+  cannot separate a bare pronoun from a possessive determiner.
 - `indonesian-stiff-interpret-instruction` blocks generic instructions such as
   `tafsirkan solusi` and `Interpretasi Hasil`, while preserving technical uses
   such as Python `interpreter`. Terminology fixtures must also preserve valid
   English programming terms.
+- A JavaScript `\b` never matches next to a non-ASCII letter, because `\w` stays
+  ASCII-only even under the `u` flag. A German alternative that must begin at a
+  word starting with `ä`, `ö`, `ü`, `Ä`, `Ö`, `Ü`, or `ß` therefore needs a
+  negative lookbehind such as `(?<![\p{L}\p{N}_])` instead of `\b`, and its test
+  must prove the alternative fires.
 - A lowercase prose continuation after display math remains a review item.
   Read every locale sibling before deciding whether it fails the complete
   sentence rule. Visibility and speed candidates likewise need the named

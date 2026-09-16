@@ -15,6 +15,11 @@ it("rejects a demonstrative heading that leaves its referent unstated", () => {
       "## What Makes a Matrix Orthogonal or Unitary",
     ],
     [
+      "en",
+      "## Evaluating Such Functions",
+      "## Evaluating Reciprocal Functions",
+    ],
+    [
       "de",
       "## Was diese Matrizen auszeichnet",
       "## Was eine Matrix orthogonal oder unitär macht",
@@ -36,6 +41,8 @@ it("keeps relative references out of the demonstrative rule", () => {
     "## Objects That Yield Items One at a Time",
     "## Keywords That Cannot Be Used",
     "## A Matrix That Cannot Be Diagonalized",
+    "## Nepotism and Its Forms",
+    "## Graph of a Function and Its Inverse",
   ].join("\n");
 
   assert.deepEqual(findLessonVoiceIssues("en", english), []);

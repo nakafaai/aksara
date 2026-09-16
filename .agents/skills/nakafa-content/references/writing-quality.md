@@ -202,6 +202,16 @@
   for a mapping, keep the Indonesian coin side `Gambar`, and keep the
   imperative `gambar` that asks the learner to draw an arrow or a line.
 - Give every heading a specific teaching job.
+- Never point at the document's own structure. The heading already tells the
+  learner which part is being read, so a sentence about `subbagian`,
+  `bagian di bawah ini`, `pembahasan berikut`, `this section`,
+  `the next section`, `the sections below`, `subsection`, `in diesem Abschnitt`,
+  `die Abschnitte unten`, `in the following order`,
+  `in der folgenden Reihenfolge`, or `im Folgenden` teaches nothing. Name the
+  operation or criterion instead. This targets the structural use only:
+  `bagian`, `Abschnitt`, and `section` remain valid for a real part of a path,
+  an atom, a quoted document, or a legal provision, and the lowercase
+  `im folgenden Beispiel` stays valid for a named example.
 - Write every heading in plain language that a student understands before
   reading the section. Never put a technical term, abbreviation, algorithm
   name, or notation in a heading the lesson has not yet defined, and never use
@@ -210,13 +220,27 @@
 - Leave no ambiguous sentence. Name the object instead of relying on `it`,
   `this`, `these`, `dieser`, `sie`, `ini`, `itu`, or a `-nya` when more than one
   noun could fit. State what changes, compared with what, under which
-  condition, and with which result.
+  condition, and with which result. The highest-risk shape is a demonstrative,
+  possessive, `-nya`, or English `it/that/they` that follows a multi-item list,
+  a table, or two candidate nouns. The deterministic gate blocks the heading
+  form of this class. Body prose stays a mandatory review item, because a
+  checker cannot separate a bare pronoun from a possessive determiner without
+  reading the whole sentence.
 - Follow [MDX headings](mdx-quality.md#headings) for titles, notation, required
   hyphens, and citation-only sections. Apply the [link policy](mdx-quality.md#links)
   before removing or relocating evidence; a cleaner outline cannot justify
   discarding valid provenance.
 - If a section has nested subsections, introduce their shared purpose with a
   substantive bridge paragraph first.
+- Give every heading a body that teaches. A section needs a complete
+  explanation of what the learner should notice, or one representation that
+  carries the teaching. A heading with no body, a heading whose body is only a
+  component, and a heading whose body is only a short list are blocking
+  defects. A heading whose whole body stays under twenty-five prose words with
+  no table, blockquote, code block, or component is a review item. Words inside
+  list items count as prose, so a worked-solution list can stand alone while a
+  bare bullet list cannot. A heading that opens nested subsections needs a
+  substantive bridge paragraph, not a one-line announcement.
 - Avoid reusable headings such as `Overview`, `Key Takeaway`, or `Step One` when
   the actual concept can name the section.
 - Do not copy the same section sequence across different nearby lesson routes.
@@ -276,11 +300,16 @@
   exact operation, such as `kalkulus diferensial menggunakan turunan untuk
   menganalisis laju perubahan sesaat`. State the rule, dependency, or next topic
   directly.
-- Give every sentence a literal subject and action. A table can list or compare
-  values, and a model can display a change. A comparison does not `teach us`,
-  chemistry does not `read` a goal, and a relationship does not become useful
-  merely because it is described as `visible`. Name what the student checks and
-  what evidence answers the question.
+- Give every sentence a literal subject and action, or an unambiguous
+  imperative whose actor and object are already clear. A table can list or
+  compare values, and a model can display a change. A comparison does not
+  `teach us`, chemistry does not `read` a goal, and a relationship does not
+  become useful merely because it is described as `visible`. Name what the
+  student checks and what evidence answers the question. This is a rule about
+  referential clarity, not a ban on elision: Indonesian `profesional` prose may
+  drop a subject the reader can recover from the same sentence or the
+  immediately preceding one. What fails is a sentence whose reader must guess
+  the actor, object, or relationship.
 - A mathematical value does not `capture` or `menangkap` a change. Replace that
   metaphor with the actual relationship, such as a table showing how
   <InlineMath math="\cos\theta" /> changes as <InlineMath math="\theta" />
@@ -351,6 +380,14 @@
   words. Do not flag an ordinary comparison such as
   `5 lebih besar daripada 3`; the problem is the artificial contrast, not the
   word by itself.
+  The blocking rule for this class matches `not just`, `not merely`, `not only`,
+  `nicht nur`, `nicht bloß`, `nicht lediglich`, `bukan cuma`, `bukan hanya`, and
+  `bukan sekadar`. It is a vocabulary guard, not a pronoun ban, so a real
+  contrast must be phrased without that frame: name the compared quantity,
+  method, or condition directly. The wider `rather than`, `statt`, and
+  `alih-alih` family stays a review candidate, because an artificial frame and a
+  real comparison between two operations can look the same in a single
+  sentence.
 - Avoid formal filler such as `ramalan harfiah`, figurative `lanskap`,
   `krusial`, `esensial`, `literal prediction`, or German abstraction clusters
   when a familiar phrase carries the same meaning. These examples are warning
@@ -427,6 +464,47 @@ authorship detector. Admit a new rule only when all of these conditions hold:
 5. Every match is reviewed in its complete paragraph and against both locale
    siblings before any rewrite.
 
+## Deterministic gate scope
+
+The gate runs on lessons (`packages/corpus/material/lesson`) and articles
+(`packages/corpus/articles`). Both scopes must reach zero findings, and the
+production suites assert that. The same command accepts `--root` for any other
+authored tree, including a single lesson directory.
+
+The question bank is deliberately outside the gate. Its files are named
+`answer.id.mdx` and `question.en.mdx`, so file discovery reads the trailing
+locale segment and the tree is now reachable, but the rule set does not fit it:
+a measured run over all 9650 item files reports 25,254 findings, dominated by
+rules that do not apply to assessed items. Metadata titles such as
+`Pembahasan Soal 4` contain digits, so the heading-symbol rule fires on nearly
+every item; the per-document highlight floor and `locale-representation-parity`
+assume a lesson with locale siblings, while an assessed prompt exists in one
+language only. Gating the question bank needs its own rule profile, and that is
+a separate change with its own evidence run.
+
+Several blocking rules encode one proven regression rather than a general
+class. Each stays narrow on purpose, and each names the report or corpus
+sentence that established it:
+
+- `compressed-renewable-timescale-contrast` blocks the exact
+  human-timescale-versus-fossil-fuels contrast reported for the renewable
+  energy lessons. A direct explanation and a factual negation both stay valid.
+- `chemical-formula-personification` blocks a formula that `carries` a mass.
+  State the mass ratio instead.
+- `known-decorative-science-heading` blocks the literal decorative headings
+  recorded from the science corpus, such as an `Atom Identity Card`.
+- `abrupt-scenario-imperative` blocks the land-area scenario that turned a
+  teacher's explanation into an unexplained task.
+- `unsupported-evaluative-preface` blocks `this is the most common example`
+  where no factual basis for the ranking exists.
+- `vague-benefit-risk-reference` blocks a summarized risk reference that names
+  neither the risk nor the affected group.
+- `indonesian-water-ratio-gateway` and `indonesian-stiff-serampangan` block the
+  recorded mechanical phrasings `gerbang rasio air` and `serampangan`.
+
+Widen one of these only after the corpus-wide search and the positive,
+negative, and boundary tests described above.
+
 The address rules are authored-voice rules, not raw pronoun bans. Indonesian
 `Anda` and `saya` are blocked only in learner-visible authored prose. German
 formal address is blocked in direct-address syntax such as a formal imperative
@@ -491,7 +569,16 @@ clean gate as evidence that the corpus is human.
 - Apply [MDX quality](mdx-quality.md) to headings, punctuation, resources,
   representations, math, and component labels. Check response strings against
   [question-bank Markdown](question-bank.md#response-items) separately.
-- Confirm there is no U+2014 character in authored content.
+- Confirm there is no U+2014 or U+2013 character in authored content. Use a
+  period, comma, colon, parentheses, or a range word such as `to`, `sampai`,
+  or `bis` instead. A hyphen required by standard word formation, such as
+  `rata-rata` or `jari-jari`, remains valid. The global Humanizer skill bans
+  both dashes and makes an exception only for a writer-supplied sample that
+  uses them. Aksara authored content has no such sample, so the exception
+  never applies here and the project rule stands. `humanizer-de` also offers a
+  semicolon for breaking a dash cluster. This project forbids visible
+  semicolons in learner-facing prose, so resolve a dash with a period, comma,
+  colon, or parentheses instead.
 - Confirm no assessed or immutable byte was silently rewritten.
 - Treat deterministic wording rules as regression guards, not proof of a human
   voice. A clean scan still requires a line-by-line read in the complete lesson

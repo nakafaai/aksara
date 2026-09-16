@@ -2,16 +2,23 @@ import { assert, it } from "@effect/vitest";
 
 import { findLessonVoiceIssues } from "#nakafa-content/voice/scan";
 
-it("rejects an em dash in every learner locale", () => {
-  const mark = String.fromCodePoint(0x20_14);
+it("rejects an em dash or en dash in every learner locale", () => {
   for (const locale of ["de", "en", "id"] as const) {
-    assert.deepEqual(
-      findLessonVoiceIssues(locale, `One thought${mark}then another.`).map(
-        ({ rule }) => rule
-      ),
-      ["em-dash"]
-    );
+    for (const codePoint of [0x20_13, 0x20_14]) {
+      const mark = String.fromCodePoint(codePoint);
+      assert.deepEqual(
+        findLessonVoiceIssues(locale, `One thought${mark}then another.`).map(
+          ({ rule }) => rule
+        ),
+        ["dash-character"]
+      );
+    }
   }
+
+  assert.deepEqual(
+    findLessonVoiceIssues("en", "Farmers aged 19 to 39 are not a majority."),
+    []
+  );
 });
 
 it("finds known vague and artificial wording with exact locations", () => {
