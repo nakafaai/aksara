@@ -48,11 +48,12 @@
 - Read every Indonesian `-nya` and every English `it`, `that`, or `they` the
   same way. Keep the suffix or pronoun when the noun it refers to is local and
   unique, and name the object when a learner could ask `yang mana?`. The gate
-  blocks the heading form and reports a standalone follow-up such as `periksa
-  hasilnya` as a review candidate, so the rest of the body prose depends on this
-  read. A clitic on a verb is the highest-risk shape, because the verb hides the
-  object it acts on: `mempertahankannya`, `menurunkannya`, and `menentukannya`
-  each need the object named unless the same sentence already names it.
+  blocks the heading demonstrative form and reports a standalone follow-up such
+  as `periksa hasilnya` as a review candidate, so a heading that carries `-nya`
+  and the rest of the body prose depend on this read. A clitic on a verb is the
+  highest-risk shape, because the verb hides the object it acts on:
+  `mempertahankannya`, `menurunkannya`, and `menentukannya` each need the object
+  named unless the same sentence already names it.
 - Check the ordinal form of the same class. `sifat pertama`, `faktor pertama`,
   `the first identity`, and `die erste Regel` need a set the document actually
   numbers or lists in order. Name the property, factor, or identity instead when

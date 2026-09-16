@@ -131,10 +131,12 @@ boundary before widening a rule. Preserve the following verification boundaries:
   levels, list type and count, table shape, blockquotes, code blocks, display
   math, and custom flow components in teaching order. It ignores sentence shape
   and inline-math count so locale grammar can remain natural.
-- The heading form of an ambiguous reference is blocking through
-  `heading-demonstrative-reference`. `empty-section-body`, `heading-without-body`,
-  `list-only-section`, and `component-only-section` are blocking section-body
-  defects, while `thin-section-body` is a review candidate. The section-body
+- The heading demonstrative form of an ambiguous reference is blocking through
+  `heading-demonstrative-reference`, which matches only the demonstrative words;
+  a heading that carries the `-nya` clitic stays a manual review item.
+  `empty-section-body`, `heading-without-body`, `list-only-section`, and
+  `component-only-section` are blocking section-body defects, while
+  `thin-section-body` is a review candidate. The section-body
   bar is twenty-five prose words or one real representation, and list-item
   text counts as prose. Body-level demonstratives, possessives, Indonesian
   `-nya`, and English `it/that/they` stay a manual review item, because no rule

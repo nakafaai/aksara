@@ -36,11 +36,15 @@
   noun could fit. State what changes, compared with what, under which
   condition, and with which result. The highest-risk shape is a demonstrative,
   possessive, `-nya`, or English `it/that/they` that follows a multi-item list,
-  a table, or two candidate nouns. The deterministic gate blocks the heading
-  form of this class. Body prose stays a mandatory manual review item, because
-  no rule can separate a bare pronoun from a possessive determiner without
-  reading the whole sentence; only the narrow `vague-demonstrative-conclusion`
-  shape is blocked.
+  a table, or two candidate nouns. The deterministic gate blocks a heading whose
+  demonstrative (`ini`, `itu`, `tersebut`, `this`, `that`, `diese`) has no stated
+  referent. A heading that carries the `-nya` clitic stays a manual review item:
+  47 Indonesian headings in the two authored roots contain a word ending in
+  `-nya`, and almost every one binds to a noun the same heading already names.
+  Body prose stays a mandatory manual review item,
+  because no rule can separate a bare pronoun from a possessive determiner
+  without reading the whole sentence; only the narrow
+  `vague-demonstrative-conclusion` shape is blocked.
 - Follow [headings](headings.md) for titles, notation, required
   hyphens, and citation-only sections. Apply the [link policy](links.md)
   before removing or relocating evidence; a cleaner outline cannot justify
