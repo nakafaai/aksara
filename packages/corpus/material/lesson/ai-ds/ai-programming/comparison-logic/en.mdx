@@ -114,11 +114,11 @@ True`
   ]}
 />
 
-The `and` and `or` operators use short-circuit evaluation, meaning evaluation stops when the result can be determined without evaluating all operands. Both return the last evaluated argument, while the `not` operator always creates a new boolean value.
+The `and` and `or` operators use <Highlight>short-circuit evaluation</Highlight>, meaning evaluation stops when the result can be determined without evaluating all operands. Both return the last evaluated argument, while the `not` operator always creates a new boolean value.
 
 ## Values in Boolean Context
 
-Python has special rules for determining which values are considered `False` or `True` in boolean context.
+Any Python object can appear where a condition is expected, including objects that are not the values `True` and `False`. Python then decides for itself which values count as false. Under that rule an empty list, the number zero, and the empty string all behave like `False` inside an `if`, while a non-empty container behaves like `True`.
 
 ### Falsy and Truthy Values
 
@@ -214,9 +214,11 @@ Many decimal fractions have no exact finite binary floating-point representation
 
 ### Float Precision Issues
 
+The diagram traces a decimal value into binary floating-point storage, which is where the comparison surprise comes from.
+
 <Mermaid
   title="Decimals Can Compare Differently Than They Look"
-  description="Trace decimal values into floating-point representation so comparison tolerance makes sense."
+  description="Decimal values become binary floats, and limited precision can cause a rounding error that makes a comparison fail. math.isclose with a relative or absolute tolerance compares the values safely."
   chart={`
     flowchart TD
         A[Decimal Numbers] --> B[Binary Conversion]

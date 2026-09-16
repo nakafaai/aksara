@@ -15,6 +15,8 @@ The basic replacement field has the form `{field_name:format_spec}`. A width ins
 
 ### Format Types for Number Systems
 
+A format specifier can present one integer in a different number system. The table lists the type characters and the output each one produces for the same value.
+
 | Format Type | Symbol | Example Input | Output | Usage |
 |-------------|---------|--------------|--------|-------|
 | Decimal | `d` | `45` | `45` | Decimal integer |
@@ -41,7 +43,11 @@ print('|{0:1}|'.format('xxx'))      # Output: |xxx|`
 
 ## Position Settings and Fill Characters
 
+A field of fixed width needs a rule for where the text sits and what fills the rest. The alignment character places the value against the left edge, the right edge, or the middle of that width, and a fill character decides which symbol pads the remaining space. Together they keep columns of numbers and labels aligned.
+
 ### Alignment Options
+
+The diagram compares the same text placed left, right, and centre inside one fixed width, so the alignment character becomes easy to read.
 
 <Mermaid
   title="How Width Places Text"
@@ -68,7 +74,7 @@ print('|{0:1}|'.format('xxx'))      # Output: |xxx|`
 
 ### Fill Characters and Advanced Formatting
 
-The fill character occupies unused space in the field. It defaults to a space and appears immediately before an alignment symbol. In `str.format()` and f-strings, a literal `{` or `}` cannot be used as the fill character.
+The fill character occupies unused space in the field. It defaults to a space and <Highlight>appears immediately before an alignment symbol</Highlight>. In `str.format()` and f-strings, a literal `{` or `}` cannot be used as the fill character.
 
 <CodeBlock
   data={[
@@ -116,6 +122,8 @@ Replacement fields can select positional arguments by index, keyword arguments b
 
 ### Reference Method Comparison
 
+A format string can name its arguments in three ways. The table compares them by what each one needs and where each one stops.
+
 | Method | Syntax | Advantages | Limitations |
 |--------|---------|-----------|-------------|
 | Numbered | `{0}, {1}` | Explicit control, can repeat | Every referenced index must exist |
@@ -154,6 +162,8 @@ except IndexError as e:
 />
 
 ## Precision Control and Sign Specification
+
+Digits after the point and the way a sign is shown are controlled separately. Both settings shape how one number is rendered: the precision field limits how much of the value survives, and the sign flag decides how the value announces whether it is positive or negative.
 
 ### Precision for Decimal Numbers
 
@@ -219,6 +229,8 @@ print('Tiny number g: {0:12g}'.format(1.1e-10))  # Output: Tiny number g:      1
 />
 
 ## F Strings and Dynamic Templates
+
+An f-string keeps an expression and its surrounding text in one place, so the expression is evaluated when that line runs and the result reflects the current values. A template stored as a string does the same work when the text is not fixed while you write the code.
 
 ### F Strings and Python Version
 

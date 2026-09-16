@@ -10,9 +10,9 @@ export const metadata = {
 
 ## Constant Outputs on Separate Intervals
 
-A step function has a constant value on each interval and may jump when one interval ends and the next begins. Its graph resembles a staircase: horizontal segments represent the constant values, while separate endpoints mark any jump discontinuities.
+A step function <Highlight>has a constant value on each interval</Highlight> and may jump when one interval ends and the next begins. Its graph resembles a staircase: horizontal segments represent the constant values, while separate endpoints mark any jump discontinuities.
 
-### Mathematical Definition
+### Definition of a Step Function
 
 A step function can be defined as a piecewise function of the form:
 
@@ -28,6 +28,8 @@ In this definition, <InlineMath math="c_1, c_2, c_3, \ldots, c_n" /> are constan
 - Belongs to the category of piecewise functions
 
 ## Types of Step Functions
+
+Step functions stay constant on each interval and jump at the boundaries. The floor and ceiling functions differ in which side of the boundary the new value appears, and the Heaviside step records a single jump at zero.
 
 ### Floor Function
 
@@ -194,6 +196,10 @@ Under this convention, the unit step function has value <InlineMath math="0" /> 
 
 ## Transformations of Step Functions
 
+A shift moves every jump by the same amount, while a scaling changes the distances between the jumps.
+
+Shifting or scaling a step function moves its jumps.
+
 ### Vertical Translation
 
 The function <InlineMath math="f(x) = \lfloor x \rfloor + k" /> shifts the floor function graph upward (if <InlineMath math="k > 0" />) or downward (if <InlineMath math="k < 0" />).
@@ -265,9 +271,11 @@ The function <InlineMath math="f(x) = \lfloor x \rfloor + k" /> shifts the floor
 
 ### Horizontal Translation
 
-The function <InlineMath math="f(x) = \lfloor x - h \rfloor" /> shifts the graph to the right (if <InlineMath math="h > 0" />) or to the left (if <InlineMath math="h < 0" />).
+The function <InlineMath math="f(x) = \lfloor x - h \rfloor" /> shifts the graph to the right (if <InlineMath math="h > 0" />) or to the left (if <InlineMath math="h < 0" />). For example, <InlineMath math="g(x) = \lfloor x - 2 \rfloor" /> moves every step of the floor function two units to the right, so the first jump lands at <InlineMath math="x = 2" /> instead of <InlineMath math="x = 0" />. Replacing <InlineMath math="h" /> with a negative value moves the jumps the other way.
 
 ## Practice Problems
+
+The problems mix floor and ceiling values with a quantity that changes in whole steps. Evaluate the whole-number part before combining the terms.
 
 1. Determine the value of <InlineMath math="\lfloor 3.7 \rfloor + \lceil -2.3 \rceil" />
 

@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Variablennamen an Objekte binden
 
-In Python ist eine Variable ein Name, der an ein Objekt gebunden ist. Der Name ist keine typisierte Speicherbox: Eine Zuweisung kann ihn an ein anderes Objekt binden, während weitere Namen weiterhin auf das ursprüngliche Objekt verweisen können.
+In Python ist eine Variable ein Name, der an ein Objekt gebunden ist. <Highlight>Der Name ist keine typisierte Speicherbox</Highlight>: Eine Zuweisung kann ihn an ein anderes Objekt binden, während weitere Namen weiterhin auf das ursprüngliche Objekt verweisen können.
 
 Wenn Python `x = 2` ausführt, wertet es den Ausdruck <InlineMath math="2" /> aus und bindet den Namen `x` an das entstehende Integer-Objekt. Allokation, Wiederverwendung und physischer Speicherort des Objekts sind Implementierungsdetails, auf die sich ein Programm nicht verlassen darf.
 
@@ -123,7 +123,7 @@ print(f"Wert: {data}, Typ: {type(data)}")`
 
 ## Variablenbenennungsregeln
 
-Python hat feste Syntaxregeln für Identifier. Zusätzlich sorgen Namenskonventionen dafür, dass Code für andere Menschen verständlich bleibt.
+Python hat feste Syntaxregeln für Identifier. Ein Name darf Buchstaben, Ziffern und Unterstriche enthalten, aber nicht mit einer Ziffer beginnen und nicht mit einem reservierten Schlüsselwort übereinstimmen.
 
 ### Variablennamenskomponenten
 
@@ -198,7 +198,7 @@ print(Nama == NAMA)         # Ausgabe: False`
 
 ## Für Python reservierte Schlüsselwörter
 
-Python reserviert bestimmte Wörter für seine Syntax. Deshalb können sie nicht als Variablennamen verwendet werden.
+Python reserviert bestimmte Wörter für seine Syntax. Deshalb können sie nicht als Variablennamen verwendet werden. Eine Zuweisung an eines dieser Wörter löst einen `SyntaxError` aus, noch bevor das Programm startet.
 
 ### Liste der Schlüsselwörter in Python
 
@@ -253,7 +253,7 @@ print(f"Ist „class“ ein Schlüsselwort? {keyword.iskeyword('class')}")`
 
 ## Bewährte Vorgehensweisen für Variablennamen
 
-Python-Bezeichner müssen die oben beschriebenen Syntaxregeln erfüllen. Innerhalb dieser Regeln sollten die Namen angeben, wofür ein Wert steht.
+Python-Bezeichner müssen die oben beschriebenen Syntaxregeln erfüllen. Innerhalb dieser Regeln sollten die Namen angeben, wofür ein Wert steht. Ein Name wie `gesamtpreis` sagt der nächsten Leserin mehr als `gp`, und dieselbe Gewohnheit hält ein längeres Programm auch Monate später lesbar.
 
 ### Bedeutungsvolle Namen
 

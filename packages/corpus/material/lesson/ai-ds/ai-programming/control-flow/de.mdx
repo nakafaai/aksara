@@ -13,7 +13,7 @@ Python bietet mehrere Anweisungen, die den Ablauf innerhalb einer Schleife steue
 
 ### Break Continue Pass und Else
 
-Die `break`-Anweisung verlässt sofort die nächstgelegene Schleife, sobald eine Bedingung erfüllt ist. Danach läuft das Programm mit der ersten Anweisung hinter dieser Schleife weiter.
+Die `break`-Anweisung <Highlight>verlässt sofort die nächstgelegene Schleife</Highlight>, sobald eine Bedingung erfüllt ist. Danach läuft das Programm mit der ersten Anweisung hinter dieser Schleife weiter.
 
 <CodeBlock
   data={[
@@ -177,7 +177,7 @@ Eine `while`-Schleife eignet sich für bedingungsgesteuerte Wiederholungen. Ihr 
 
 ## Funktion Zip
 
-Mit `zip()` kannst du mehrere Iterables parallel durchlaufen. Die Funktion verbindet jeweils die Werte an derselben Iterationsposition zu einem Tupel.
+`zip()` verbindet jeweils die Werte an derselben Iterationsposition mehrerer Iterables zu einem Tupel. Die Iteration endet, sobald das kürzeste Iterable keine Elemente mehr liefert, die Zahl der Tupel entspricht also der Länge des kürzesten Eingabeobjekts.
 
 ### Grundlegende Verwendung von Zip
 
@@ -204,6 +204,8 @@ for pair in zip(p, q):
 Die Funktion `zip()` liefert einen Iterator aus Tupeln. Jedes Tupel enthält die zusammengehörigen Elemente der Eingaben. Standardmäßig endet die Iteration mit dem kürzesten Iterable, sodass übrige Elemente längerer Eingaben nicht im Ergebnis stehen. Mit `zip(..., strict=True)` führen unterschiedliche Eingabelängen zu einem Fehler.
 
 ### Ergebnisse von Zip konvertieren
+
+`zip()` liefert einen Iterator, deshalb brauchst du oft eine konkrete Sammlung, bevor du die Paare lesen kannst. Das Beispiel wandelt das Ergebnis in eine Liste und ein Wörterbuch um.
 
 <CodeBlock
   data={[

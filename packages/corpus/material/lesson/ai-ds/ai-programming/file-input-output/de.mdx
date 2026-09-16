@@ -56,9 +56,11 @@ Jede Zeile behält ihren abschließenden Zeilenumbruch, sofern einer vorhanden i
 
 ## Schreiben in Dateien
 
-Durch das Schreiben von Dateien können Programme Daten oder Berechnungsergebnisse zur späteren Verwendung in Dateien speichern.
+Beim Schreiben in eine Datei bleiben Daten oder Berechnungsergebnisse erhalten, nachdem das Programm beendet wurde. Python öffnet die Datei in einem Modus, der festlegt, ob vorhandener Inhalt ersetzt oder ergänzt wird, und schreibt anschließend über das zurückgegebene Dateiobjekt.
 
 ### Strings in Dateien schreiben
+
+Das Beispiel öffnet eine Datei zum Schreiben, schreibt ihre Zeilen und schließt sie wieder. Diese Reihenfolge gilt für jede Schreiboperation.
 
 <CodeBlock
   data={[
@@ -157,9 +159,11 @@ Der Modus bestimmt, ob die Datei bereits existieren muss, ob ihr alter Inhalt be
 
 ## Methoden zum Lesen von Dateien
 
-Python bietet verschiedene Methoden, um Dateien je nach Bedarf auf unterschiedliche Weise zu lesen.
+Python bietet mehr als einen Weg, eine Datei zu lesen. Die Wahl hängt davon ab, wie viel Inhalt du auf einmal brauchst und ob die Leseposition danach noch eine Rolle spielt. `read()` liest den gesamten Rest oder eine feste Anzahl von Zeichen, während `readline()` und `readlines()` Zeile für Zeile arbeiten.
 
 ### Methode Read mit Parametern
+
+`read()` nimmt ein Größenargument entgegen, deshalb kannst du jeweils eine feste Anzahl Zeichen lesen. Das Beispiel liest eine Datei in kleinen Stücken und gibt jedes davon aus.
 
 <CodeBlock
   data={[
@@ -214,7 +218,7 @@ Im Textmodus geben `read()` und `readline()` Strings zurück. Ist kein Text mehr
 
 ## Sicherer Umgang mit Dateien
 
-Die `with`-Anweisung schließt eine Datei automatisch am Ende ihres Blocks, auch wenn eine Operation im Block eine Ausnahme auslöst.
+Die `with`-Anweisung <Highlight>schließt eine Datei automatisch am Ende ihres Blocks</Highlight>, auch wenn eine Operation im Block eine Ausnahme auslöst.
 
 <CodeBlock
   data={[

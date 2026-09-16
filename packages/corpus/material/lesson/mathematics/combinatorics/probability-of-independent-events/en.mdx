@@ -11,15 +11,17 @@ export const metadata = {
 
 Some probability models contain events where **learning one result does not change the probability of another**. Toss a fair coin and roll a fair die. Knowing the coin result gives no information about the die result, so the two events are independent.
 
-Events <InlineMath math="A" /> and <InlineMath math="B" /> are **independent** when conditioning on either event leaves the probability of the other unchanged. The probability model determines this property. Timing alone does not.
+Events <InlineMath math="A" /> and <InlineMath math="B" /> are **independent** when conditioning on either event <Highlight>leaves the probability of the other unchanged</Highlight>. The probability model determines this property. Events that happen at the same time are not automatically independent.
 
 Events can share a hidden cause even when neither event directly controls the other. Two alarms, for example, can both react to the same incident. Treat events as independent only when the probability model states it or the conditional probabilities confirm it.
 
-## Characteristics of Independent Events
+## How Independence Shows Up in Probabilities
+
+Independence leaves the second probability unchanged once the first outcome is known, and it also requires separate trials. The three checks below state that idea in different forms.
 
 ### Unchanged Conditional Probability
 
-The main characteristic of independent events is that **the result of one event does not change the probability of another event**. In mathematical notation, if <InlineMath math="A" /> and <InlineMath math="B" /> are independent and <InlineMath math="P(B) > 0" />, then:
+The main characteristic of independent events is that the result of one event does not change the probability of another event. In mathematical notation, if <InlineMath math="A" /> and <InlineMath math="B" /> are independent and <InlineMath math="P(B) > 0" />, then:
 
 <BlockMath math="P(A|B) = P(A)" />
 
@@ -46,7 +48,7 @@ Since independent events do not affect each other, calculating their joint proba
 
 This formula shows that the probability of both events <InlineMath math="A" /> and <InlineMath math="B" /> occurring together equals the multiplication of the probability of each event.
 
-### Why This Formula Works
+### Why Multiplying the Probabilities Works
 
 For independent events, the conditional probability equals the ordinary probability. Because <InlineMath math="P(A|B) = P(A)" />, the multiplication rule becomes:
 
@@ -55,6 +57,8 @@ For independent events, the conditional probability equals the ordinary probabil
 Substituting <InlineMath math="P(A|B)=P(A)" /> into the multiplication rule gives <InlineMath math="P(A\cap B)=P(A)P(B)" />.
 
 ## Calculations with Independent Events
+
+Each calculation below multiplies the probabilities of two independent events. The examples move from two dice to a die and a coin, then to two sensor self tests.
 
 ### Rolling Two Dice
 
@@ -119,7 +123,9 @@ The problem states that the two self-tests are **independent**, so one result do
 
 So the probability that both sensors pass is <InlineMath math="0.9016" /> or <InlineMath math="90.16\%" />.
 
-## Problem Solving Strategies
+## How to Work Through an Independence Problem
+
+Most mistakes in these problems come from multiplying before checking independence. The steps below put that check first and end by verifying the answer. If the check fails, the multiplication rule for independent events does not apply at all.
 
 ### Check Independence Before Multiplying
 

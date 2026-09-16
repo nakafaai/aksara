@@ -36,15 +36,19 @@ In the example above, NumPy adds elements at corresponding positions. We describ
 
 ### Broadcasting Rules
 
-To decide whether two shapes are compatible, NumPy compares their dimensions from right to left.
+Two arrays combine without an explicit loop when NumPy can <Highlight>line up their dimensions</Highlight> on its own. To decide whether two shapes are compatible, NumPy compares their dimensions from right to left and stops at the first pair that cannot be aligned.
 
-There are three main rules in broadcasting:
+Three rules cover every case. The table below states the condition each rule checks and the result NumPy produces for that condition.
 
-1. **Rule** <InlineMath math="1" />: If the numbers of dimensions differ, add dimensions of size <InlineMath math="1" /> on the left of the shape with fewer dimensions
-2. **Rule** <InlineMath math="2" />: Two aligned dimensions are compatible when they are equal or one of them has size <InlineMath math="1" />. NumPy treats the single entry along that dimension as repeated until the sizes match
-3. **Rule** <InlineMath math="3" />: If any aligned pair is incompatible, NumPy raises a `ValueError`
+| Rule | Condition on the shapes | What NumPy does |
+| --- | --- | --- |
+| Rule <InlineMath math="1" /> | The two shapes have a different number of dimensions | NumPy adds dimensions of size <InlineMath math="1" /> on the left of the shorter shape |
+| Rule <InlineMath math="2" /> | An aligned pair has equal sizes, or one side has size <InlineMath math="1" /> | NumPy repeats the single entry along that dimension until both sizes match |
+| Rule <InlineMath math="3" /> | An aligned pair has different sizes and neither side has size <InlineMath math="1" /> | NumPy raises a `ValueError` |
 
 ### Array with Scalar
+
+Broadcasting also applies between an array and a single number. NumPy stretches the scalar across every element, so you do not need an explicit loop.
 
 <CodeBlock
   data={[
@@ -102,6 +106,8 @@ print(result)
 />
 
 ### Failed Broadcasting Case
+
+Not every pair of shapes can be aligned. The example below shows a shape pair that breaks rule <InlineMath math="3" /> and the error NumPy returns.
 
 <CodeBlock
   data={[

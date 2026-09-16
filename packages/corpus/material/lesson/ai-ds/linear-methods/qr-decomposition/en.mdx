@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Existence of QR Decomposition
 
-The <InlineMath math="\mathrm{QR}" /> decomposition factors a matrix into an orthogonal factor and an upper-triangular factor. Orthogonal multiplication preserves lengths and angles, so it is well suited to stable numerical calculations.
+The <InlineMath math="\mathrm{QR}" /> decomposition factors a matrix into an orthogonal factor and an upper-triangular factor. <Highlight>Orthogonal multiplication preserves lengths and angles</Highlight>, so it is well suited to stable numerical calculations.
 
 Let <InlineMath math="A \in \mathbb{R}^{m \times n}" /> satisfy <InlineMath math="m \geq n" /> and <InlineMath math="\operatorname{rank}(A)=n" />. Then there is an orthogonal matrix <InlineMath math="Q \in \mathbb{R}^{m \times m}" /> with <InlineMath math="Q^TQ=I" /> and an upper-triangular matrix <InlineMath math="R \in \mathbb{R}^{m \times n}" /> whose first <InlineMath math="n" /> diagonal entries are positive, such that
 
@@ -46,7 +46,7 @@ The completed matrices still satisfy <InlineMath math="A=Q_1R_1=QR" />.
 
 ## Full and Reduced QR Decomposition
 
-For <InlineMath math="A\in\mathbb{R}^{m\times n}" /> with <InlineMath math="m\geq n" />, the full and reduced forms describe the same factorization with different matrix sizes.
+For <InlineMath math="A\in\mathbb{R}^{m\times n}" /> with <InlineMath math="m\geq n" />, the full and reduced forms describe the same factorization with different matrix sizes. Both forms multiply back to <InlineMath math="A" />, so the choice depends on whether you need the complete orthonormal basis or only the columns that carry the data.
 
 ### Full QR Decomposition
 
@@ -62,7 +62,7 @@ The reduced form removes those zero rows and the matching unused columns of <Inl
 
 <BlockMath math="\begin{aligned} A &amp;= Q \cdot R \\ &amp;= (Q_1 \quad Q_2) \cdot \begin{pmatrix} R_1 \\ 0 \end{pmatrix} \\ &amp;= Q_1 \cdot R_1 \end{aligned}" />
 
-Here <InlineMath math="Q_1\in\mathbb{R}^{m\times n}" /> contains the first <InlineMath math="n" /> columns of <InlineMath math="Q" />, and <InlineMath math="R_1\in\mathbb{R}^{n\times n}" /> is upper triangular. Storing <InlineMath math="Q_1" /> instead of the full <InlineMath math="m\times m" /> matrix <InlineMath math="Q" /> saves memory and avoids operations on blocks that are known to be zero.
+Here <InlineMath math="Q_1\in\mathbb{R}^{m\times n}" /> contains the first <InlineMath math="n" /> columns of <InlineMath math="Q" />, and <InlineMath math="R_1\in\mathbb{R}^{n\times n}" /> is upper triangular. Storing only the first <InlineMath math="n" /> columns of <InlineMath math="Q" /> saves memory and avoids operations on blocks that are known to be zero.
 
 The unused columns <InlineMath math="Q_2\in\mathbb{R}^{m\times(m-n)}" /> form an orthonormal basis for the null space of <InlineMath math="A^T" />:
 
@@ -72,7 +72,7 @@ The null space of <InlineMath math="A^T" /> is the set of vectors <InlineMath ma
 
 ### Uniqueness Property
 
-For a full-column-rank matrix, the reduced factorization <InlineMath math="A=Q_1R_1" /> is unique when every diagonal entry of <InlineMath math="R_1" /> is positive.
+For a full-column-rank matrix, the reduced factorization <InlineMath math="A=Q_1R_1" /> is unique when every diagonal entry of <InlineMath math="R_1" /> is positive. That sign condition removes the remaining freedom, because multiplying a column of <InlineMath math="Q_1" /> and the matching row of <InlineMath math="R_1" /> by <InlineMath math="-1" /> leaves the product unchanged.
 
 ## Worked Thin QR Example
 
@@ -112,7 +112,7 @@ The outer product <InlineMath math="vv^T" /> multiplies an <InlineMath math="m\t
 
 ## Properties of Householder Transformation
 
-For <InlineMath math="S=I-2vv^T" /> and <InlineMath math="\|v\|_2=1" />, the following properties hold:
+For <InlineMath math="S=I-2vv^T" /> and <InlineMath math="\|v\|_2=1" />, the following properties hold. Symmetry and orthogonality come from the unit vector in the definition, the reflection explains what the transformation does to a vector, and a condition number of one says that the reflection never enlarges a computation.
 
 1. <InlineMath math="S" /> is symmetric: <InlineMath math="S^T = S" />
 
@@ -231,6 +231,8 @@ After <InlineMath math="n" /> steps,
 </MathContainer>
 
 ## Numerical Aspects and Householder Complexity
+
+Implementing the decomposition in floating-point arithmetic raises two practical questions, how many operations it costs and how the rounding error behaves. Both answers decide whether the method fits the problem: the operation count sets the run time for a large matrix, and the rounding behavior decides how much of the computed result you can trust.
 
 ### Computational Complexity
 

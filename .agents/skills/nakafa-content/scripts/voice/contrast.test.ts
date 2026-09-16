@@ -56,3 +56,49 @@ it("rejects rhetorical not just variants without banning not", () => {
     []
   );
 });
+
+it("blocks an anti-model intensifier in every locale", () => {
+  const failures = {
+    de: "Ein echter Ausbruch verläuft natürlich nicht so einfach.",
+    en: "Real outbreaks are not this simple.",
+    id: "Tentu saja, wabah yang sebenarnya tidak sesederhana ini.",
+  };
+
+  for (const [locale, source] of Object.entries(failures)) {
+    assert.deepEqual(
+      findLessonVoiceIssues(locale, source).map(({ rule }) => rule),
+      ["anti-model-intensifier"]
+    );
+  }
+
+  assert.deepEqual(
+    findLessonVoiceIssues("en", "Real outbreaks are\nnot this simple.").map(
+      ({ rule }) => rule
+    ),
+    ["anti-model-intensifier"]
+  );
+});
+
+it("keeps factual negation, definitional exclusion, and real comparison", () => {
+  const samples = [
+    ["en", "A valid exponential base is positive and not equal to one."],
+    ["en", "The resultant is not 7 m in one straight direction."],
+    ["en", "Accuracy is not simple to improve."],
+    ["en", "This is not a simplification of the model."],
+    ["en", "Use the `not this simple` marker only in a quotation."],
+    ["de", "Die Ladung ist nicht negativ."],
+    ["de", "Das Ergebnis ist nicht so genau wie der Messwert."],
+    ["de", "Das ist nicht einfach zu prüfen, aber es lohnt sich."],
+    ["id", "Vektor nol bukan vektor eigen."],
+    ["id", "Fungsi ini bukan bijektif."],
+    ["id", "Nilai itu tidak sama dengan nol."],
+    ["id", "Sifatnya bukan sifat yang mudah diperiksa."],
+  ] as const;
+
+  for (const [locale, source] of samples) {
+    assert.deepEqual(
+      findLessonVoiceIssues(locale, source).map(({ rule }) => rule),
+      []
+    );
+  }
+});

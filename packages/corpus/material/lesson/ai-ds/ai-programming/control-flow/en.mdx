@@ -13,7 +13,7 @@ Python provides several statements that change the flow of a loop. They can stop
 
 ### Break Continue Pass and Else
 
-The `break` statement exits the nearest enclosing loop immediately when a condition is met. Execution then continues with the first statement after that loop.
+The `break` statement <Highlight>exits the nearest enclosing loop immediately</Highlight> when a condition is met. Execution then continues with the first statement after that loop.
 
 <CodeBlock
   data={[
@@ -177,7 +177,7 @@ A `while` loop fits condition-driven repetition, but its body must eventually ch
 
 ## Zip Function
 
-The `zip()` function pairs items at the same position in several iterables. Iteration stops when the shortest iterable runs out of items.
+The `zip()` function pairs items at the same position in several iterables. Iteration stops when the shortest iterable runs out of items, so the number of pairs equals the length of the shortest input.
 
 ### Basic Zip Usage
 
@@ -204,6 +204,8 @@ for pair in zip(p, q):
 The `zip()` function returns an iterator of tuples. Each tuple contains corresponding elements from the inputs. By default, iteration stops when the shortest iterable ends, so remaining elements in longer inputs are omitted. Use `zip(..., strict=True)` to raise an error when the input lengths differ.
 
 ### Converting Zip Results
+
+`zip()` hands back an iterator, so you often need a concrete collection before you can read the pairs. The example converts the result into a list and a dictionary.
 
 <CodeBlock
   data={[
@@ -248,7 +250,7 @@ This process is called "unzipping" because it separates data that has been combi
 
 ## Range and For Loop
 
-The `range()` function produces a sequence of integers for iteration. Use it when a loop needs numeric positions or a fixed number of repetitions.
+The `range()` function produces a sequence of integers for iteration. Use it when a loop needs numeric positions or a fixed number of repetitions. Because `range` yields each value on demand instead of storing the whole sequence, its memory use stays small even when the loop runs millions of times.
 
 ### Range Syntax
 

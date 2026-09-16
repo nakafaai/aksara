@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Variable Names Refer to Objects
 
-In Python, a variable is a name bound to an object. The name is not a typed storage box: assignment can bind it to another object, while other names may still refer to the original object.
+In Python, a variable is a name bound to an object. <Highlight>The name is not a typed storage box</Highlight>: assignment can bind it to another object, while other names may still refer to the original object.
 
 When Python executes `x = 2`, it evaluates the expression <InlineMath math="2" /> and binds the name `x` to the resulting integer object. Python decides where to store the object and whether to reuse one. Correct code must work with any of those implementation choices.
 
@@ -123,7 +123,7 @@ print(f"Value: {data}, Type: {type(data)}")`
 
 ## Variable Naming Rules
 
-Python has strict rules for variable naming that you must follow for code to run correctly.
+Python has strict rules for variable naming that you must follow for code to run correctly. A name may contain letters, digits, and underscores, but it cannot start with a digit, and it cannot be a reserved keyword.
 
 ### Variable Name Components
 
@@ -198,7 +198,7 @@ print(Nama == NAMA)         # Output: False`
 
 ## Keywords That Cannot Be Used
 
-Python reserves certain words as part of its syntax, so they cannot be used as variable names.
+Python reserves certain words as part of its syntax, so they cannot be used as variable names. Assigning to one of them raises a `SyntaxError` before the program starts.
 
 ### Python Keywords List
 
@@ -253,7 +253,7 @@ print(f"Is 'class' a keyword? {keyword.iskeyword('class')}")`
 
 ## Variable Naming Best Practices
 
-Python identifiers must follow the syntax rules above. Within those rules, choose names that state what each value represents.
+Python identifiers must follow the syntax rules above. Within those rules, choose names that state what each value represents. A name such as `total_price` tells the next reader more than `tp`, and the same habit keeps a longer program readable months later.
 
 ### Meaningful Names
 

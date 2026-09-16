@@ -9,11 +9,11 @@ export const metadata = {
 
 ## Menghitung Determinan dari Baris atau Kolom
 
-Pengembangan Laplace menuliskan determinan sebagai jumlah kofaktor pada salah satu baris atau kolom. Setiap kofaktor memuat determinan matriks yang ukurannya satu tingkat lebih kecil.
+Pengembangan Laplace menuliskan determinan sebagai jumlah kofaktor <Highlight>pada salah satu baris atau kolom</Highlight>. Setiap kofaktor memuat determinan matriks yang ukurannya satu tingkat lebih kecil.
 
 Pilih baris atau kolom yang memiliki banyak elemen nol. Suku yang dikalikan nol akan hilang, sehingga jumlah determinan kecil yang harus dihitung berkurang.
 
-## Pernyataan Teorema
+## Mengembangkan Determinan Sepanjang Baris atau Kolom
 
 Untuk matriks <InlineMath math="A \in \mathbb{R}^{n \times n}" />, determinan dapat dihitung dengan dua cara:
 
@@ -42,6 +42,8 @@ Determinan juga dapat dihitung berdasarkan baris ke-<InlineMath math="i" />:
 Rumus pengembangan baris tersebut berlaku untuk setiap <InlineMath math="i \in \{1, 2, \ldots, n\}" />.
 
 ## Ekspansi Kofaktor Berdasarkan Ordo Matriks
+
+Aturan ekspansi bekerja dengan cara yang sama pada setiap ordo, tetapi banyak sukunya tumbuh cepat, jadi kasus berikut memperlihatkan bagaimana pekerjaannya berubah saat matriksnya makin besar.
 
 ### Matriks Ordo Dua
 
@@ -121,7 +123,7 @@ Karena elemen pertama bernilai nol, ekspansi kofaktor baris pertama menyisakan d
 
 Dengan memilih baris atau kolom yang memiliki banyak nol, kita dapat menghemat perhitungan.
 
-## Determinan Matriks Transpos
+## Determinan Setelah Menukar Baris dan Kolom
 
 Pengembangan Laplace juga menghasilkan sifat berikut:
 
@@ -140,4 +142,4 @@ Misalnya:
 
 ## Matriks Berukuran Lebih Besar
 
-Pengembangan Laplace tetap berlaku untuk matriks berukuran <InlineMath math="n = 4" /> atau lebih. Untuk matriks padat, eliminasi Gauss atau faktorisasi <InlineMath math="\mathrm{LU}" /> biasanya dipilih karena memerlukan <InlineMath math="O(n^3)" /> operasi aritmetika, bukan pertumbuhan faktorial.
+Pengembangan Laplace tetap berlaku untuk matriks berukuran <InlineMath math="n = 4" /> atau lebih. Untuk matriks padat, eliminasi Gauss atau faktorisasi <InlineMath math="\mathrm{LU}" /> biasanya dipilih karena memerlukan sekitar <InlineMath math="O(n^3)" /> operasi aritmetika, sedangkan jalur kofaktor tumbuh secara faktorial.

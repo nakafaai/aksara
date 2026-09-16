@@ -9,17 +9,17 @@ export const metadata = {
 
 ## Mit Operatoren in Python rechnen
 
-Arithmetische Operatoren legen fest, welche Rechnung Python ausführt. `+` addiert Werte, `*` multipliziert sie und `**` potenziert einen Wert.
+Arithmetische Operatoren legen fest, welche Rechnung Python ausführt. `+` addiert Werte, `*` multipliziert sie und `` potenziert einen Wert.
 
 Python besitzt sieben grundlegende arithmetische Operatoren. Enthält ein Ausdruck mehrere Operatoren, bestimmt ihre Priorität die Reihenfolge der Rechnungen.
 
 ## Rangfolge der Operatoren
 
-Die sieben arithmetischen Operatoren lassen sich in drei Prioritätsstufen einteilen. Diese Rangfolge bestimmt, welche Operation Python zuerst ausführt.
+Enthält ein Ausdruck mehrere arithmetische Operatoren, braucht Python eine feste Reihenfolge, um zu entscheiden, welche Rechnung zuerst läuft. Diese Reihenfolge <Highlight>ergibt sich aus drei Prioritätsstufen</Highlight>. Ein Operator einer höheren Stufe ist immer vor einem Operator einer niedrigeren Stufe fertig, sodass die Stufe jedes Operators die Reihenfolge der Rechnungen festlegt.
 
 ### Höchste Priorität
 
-**Potenzierungsoperator `**`**
+**Potenzierungsoperator**
 
 Der Operator `**` dient zum Potenzieren und hat unter den sieben hier behandelten binären Operatoren die höchste Priorität. Anders als die übrigen Operatoren ist er rechtsassoziativ.
 
@@ -133,11 +133,11 @@ Auch bei negativen Zahlen bleibt diese Gleichung gültig. Daher ist `5 % 4` glei
 
 ### Niedrigste Priorität
 
-**Additions- und Subtraktionsoperatoren**
-
-Die Operatoren `+` und `-` haben unter allen arithmetischen Operatoren die niedrigste Priorität.
+Addition und Subtraktion werden zuletzt ausgewertet, nachdem jede Potenzierung, Multiplikation, Division, Ganzzahldivision und Modulo-Operation im selben Ausdruck einen Wert geliefert hat. In `2 + 3 * 4` multipliziert Python zuerst und addiert danach, das Ergebnis ist `14`. Damit die Addition früher stattfindet, setzt du sie in Klammern und schreibst `(2 + 3) * 4`.
 
 ## Vorrangregeln und Assoziativität
+
+Python liest einen Ausdruck nicht von links nach rechts. Die Priorität bestimmt, welcher Operator zuerst läuft, und die Assoziativität bestimmt, wie Python Operatoren derselben Stufe gruppiert. Beide Regeln greifen auf die Operatoren zu, die du geschrieben hast, sodass `2 ** 3 ** 2` und `8 - 3 - 2` jeweils genau eine Lesart haben.
 
 ### Ausdrucksbewertungsreihenfolge
 

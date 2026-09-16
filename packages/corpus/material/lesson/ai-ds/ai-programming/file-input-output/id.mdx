@@ -56,9 +56,11 @@ Setiap baris mempertahankan newline di akhirnya jika karakter itu memang ada. Ba
 
 ## Menulis ke File
 
-Menulis file memungkinkan program menyimpan data atau hasil perhitungan ke dalam file untuk digunakan kemudian.
+Menulis ke file membuat data atau hasil perhitungan tetap tersimpan setelah program berhenti berjalan. Python membuka file dengan mode yang menentukan apakah isi lama diganti atau ditambah, lalu menulis lewat objek file yang dikembalikan.
 
 ### Menulis String ke File
+
+Contoh berikut membuka file untuk ditulis, menuliskan barisnya, lalu menutupnya, dan urutan itulah yang selalu dipakai setiap operasi penulisan.
 
 <CodeBlock
   data={[
@@ -157,9 +159,11 @@ Mode menentukan apakah file harus sudah ada, apakah pembukaan file mengosongkan 
 
 ## Method untuk Membaca File
 
-Python menyediakan beberapa method untuk membaca file dengan cara yang berbeda sesuai kebutuhan.
+Python menyediakan lebih dari satu cara membaca file, dan pilihannya bergantung pada berapa banyak isi yang dibutuhkan sekaligus serta apakah posisi baca perlu diperhatikan setelahnya. `read()` mengambil seluruh sisa isi atau sejumlah karakter tertentu, sedangkan `readline()` dan `readlines()` bekerja baris per baris.
 
 ### Method Read dengan Parameter
+
+`read()` menerima argumen ukuran, sehingga kamu bisa mengambil sejumlah karakter setiap kali. Contoh berikut membaca file dalam potongan kecil lalu mencetak setiap potongannya.
 
 <CodeBlock
   data={[
@@ -214,7 +218,7 @@ Dalam text mode, `read()` dan `readline()` mengembalikan string serta menghasilk
 
 ## Penanganan File yang Aman
 
-Statement `with` menutup file secara otomatis ketika blok selesai, termasuk saat operasi di dalam blok gagal.
+Statement `with` <Highlight>menutup file secara otomatis ketika blok selesai</Highlight>, termasuk saat operasi di dalam blok gagal.
 
 <CodeBlock
   data={[

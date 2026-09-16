@@ -56,9 +56,11 @@ Each line retains its ending newline when one exists. The final line may have no
 
 ## Writing to Files
 
-Writing files allows programs to save data or calculation results into files for later use.
+Writing to a file keeps data or calculation results available after the program stops running. Python opens the file in a mode that decides whether existing content is replaced or extended, then writes through the returned file object.
 
 ### Writing Strings to Files
+
+The example opens a file for writing, writes its lines, and closes it, which is the sequence every write operation follows.
 
 <CodeBlock
   data={[
@@ -157,9 +159,11 @@ The mode controls whether a file must already exist, whether opening it truncate
 
 ## File Reading Methods
 
-Python provides several methods to read files in different ways according to needs.
+Python offers more than one way to read a file, and the choice depends on how much of the content you need at once and whether the read position matters afterwards. `read()` takes the whole remainder or a fixed number of characters, while `readline()` and `readlines()` work line by line.
 
 ### Read Method with Parameters
+
+`read()` accepts a size argument, so you can take a fixed number of characters at a time. The example reads a file in small chunks and prints each one.
 
 <CodeBlock
   data={[
@@ -214,7 +218,7 @@ In text mode, `read()` and `readline()` return strings and return `''` when no m
 
 ## Safe File Handling
 
-The `with` statement closes a file automatically when its block ends, including when an operation inside the block raises an exception.
+The `with` statement <Highlight>closes a file automatically when its block ends</Highlight>, including when an operation inside the block raises an exception.
 
 <CodeBlock
   data={[

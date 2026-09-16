@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Shifted Inverse Iteration
 
-Shifted inverse iteration targets the eigenvalue nearest a chosen shift <InlineMath math="\mu" />. We first study a real symmetric matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" />. All its eigenvalues are real, and its eigenvectors can be chosen as an orthonormal basis.
+Shifted inverse iteration <Highlight>targets the eigenvalue nearest a chosen shift</Highlight> <InlineMath math="\mu" />. We first study a real symmetric matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" />. All its eigenvalues are real, and its eigenvectors can be chosen as an orthonormal basis.
 
 Choose <InlineMath math="\mu" /> that is not itself an eigenvalue and a unit starting vector <InlineMath math="q_0" /> with a nonzero component in the desired eigenvector direction. Factor <InlineMath math="A-\mu I" /> once, then reuse that factorization.
 
@@ -51,7 +51,7 @@ For a symmetric matrix, convergence to the dominant eigenvector requires the fol
 
 The starting vector must also have a nonzero component in the direction of the eigenvector for <InlineMath math="\lambda_1" />. The asymptotic convergence factor is approximately <InlineMath math="|\lambda_2/\lambda_1|" />. Equal or tightly clustered dominant magnitudes can slow or prevent single-vector convergence.
 
-## Which Eigenvalue Does Each Method Find
+## The Eigenvalue Each Method Finds
 
 The word “smallest” is ambiguous, so the target should always be stated precisely.
 
@@ -84,6 +84,8 @@ The shifted system for the first iteration gives
 Because <InlineMath math="2" /> is closer to the shift <InlineMath math="1" /> than <InlineMath math="5" />, further iterations drive the second component toward zero and <InlineMath math="\rho_k" /> toward <InlineMath math="2" />.
 
 ## Practical Checks
+
+These checks decide whether a computed eigenvalue and eigenvector pair is correct without repeating the whole determinant. Work through them in order for the pair you obtained.
 
 1. Factor the shifted matrix with a stable method and pivoting where appropriate. If the shift lands exactly on an eigenvalue, the shifted matrix is singular and the solve must be handled or the shift adjusted.
 2. Stop using a residual norm. A small change in consecutive eigenvalue estimates alone does not prove that the eigenpair is accurate.

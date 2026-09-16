@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Existenzsatz der Zerlegung mit QR
 
-Die <InlineMath math="\mathrm{QR}" />-Zerlegung faktorisiert eine Matrix in einen orthogonalen und einen oberen dreieckigen Faktor. Orthogonale Multiplikationen erhalten Längen und Winkel und eignen sich deshalb für stabile numerische Rechnungen.
+Die <InlineMath math="\mathrm{QR}" />-Zerlegung faktorisiert eine Matrix in einen orthogonalen und einen oberen dreieckigen Faktor. <Highlight>Orthogonale Multiplikationen erhalten Längen und Winkel</Highlight> und eignen sich deshalb für stabile numerische Rechnungen.
 
 Sei <InlineMath math="A\in\mathbb{R}^{m\times n}" /> mit <InlineMath math="m\geq n" /> und <InlineMath math="\operatorname{rang}(A)=n" />. Dann gibt es eine orthogonale Matrix <InlineMath math="Q\in\mathbb{R}^{m\times m}" /> mit <InlineMath math="Q^TQ=I" /> und eine obere Dreiecksmatrix <InlineMath math="R\in\mathbb{R}^{m\times n}" />, deren erste <InlineMath math="n" /> Diagonaleinträge positiv sind, sodass
 
@@ -46,7 +46,7 @@ Die ergänzten Matrizen erfüllen weiterhin <InlineMath math="A=Q_1R_1=QR" />.
 
 ## Vollständige und reduzierte Zerlegung mit QR
 
-Für <InlineMath math="A\in\mathbb{R}^{m\times n}" /> mit <InlineMath math="m\geq n" /> beschreiben die vollständige und die reduzierte Form dieselbe Faktorisierung mit unterschiedlichen Matrixgrößen.
+Für <InlineMath math="A\in\mathbb{R}^{m\times n}" /> mit <InlineMath math="m\geq n" /> beschreiben die vollständige und die reduzierte Form dieselbe Faktorisierung mit unterschiedlichen Matrixgrößen. Beide ergeben beim Zurückmultiplizieren wieder <InlineMath math="A" />, sodass die Wahl davon abhängt, ob du die vollständige Orthonormalbasis brauchst oder nur die Spalten, die die Daten tragen.
 
 ### Vollständige Zerlegung mit QR
 
@@ -72,7 +72,7 @@ Der Kern von <InlineMath math="A^T" /> enthält genau die Vektoren <InlineMath m
 
 ### Eindeutigkeit
 
-Für eine Matrix mit vollem Spaltenrang ist die reduzierte Faktorisierung <InlineMath math="A=Q_1R_1" /> eindeutig, wenn alle Diagonaleinträge von <InlineMath math="R_1" /> positiv sind.
+Für eine Matrix mit vollem Spaltenrang ist die reduzierte Faktorisierung <InlineMath math="A=Q_1R_1" /> eindeutig, wenn alle Diagonaleinträge von <InlineMath math="R_1" /> positiv sind. Diese Vorzeichenbedingung beseitigt die verbleibende Freiheit, denn multiplizierst du eine Spalte von <InlineMath math="Q_1" /> und die zugehörige Zeile von <InlineMath math="R_1" /> mit <InlineMath math="-1" />, bleibt das Produkt unverändert.
 
 ## Beispiel einer dünnen Zerlegung mit QR
 
@@ -111,7 +111,7 @@ Das äußere Produkt <InlineMath math="vv^T" /> multipliziert eine <InlineMath m
 
 ## Eigenschaften der Householdertransformation
 
-Für <InlineMath math="S=I-2vv^T" /> und <InlineMath math="\|v\|_2=1" /> gelten folgende Eigenschaften:
+Für <InlineMath math="S=I-2vv^T" /> und <InlineMath math="\|v\|_2=1" /> gelten folgende Eigenschaften. Symmetrie und Orthogonalität folgen aus dem Einheitsvektor in der Definition, die Spiegelung erklärt die Wirkung auf einen Vektor, und die Konditionszahl eins zeigt, dass die Spiegelung eine Rechnung nicht vergrößert.
 
 1. <InlineMath math="S" /> ist symmetrisch: <InlineMath math="S^T = S" />
 
@@ -230,6 +230,8 @@ Nach <InlineMath math="n" /> Schritten gilt
 </MathContainer>
 
 ## Numerische Eigenschaften und Aufwand
+
+Die Umsetzung der Zerlegung in Gleitkommaarithmetik wirft zwei praktische Fragen auf, nämlich wie viele Operationen sie kostet und wie sich der Rundungsfehler verhält. Beide Antworten entscheiden, ob das Verfahren zum Problem passt: Die Operationszahl bestimmt die Laufzeit bei einer großen Matrix, und das Rundungsverhalten bestimmt, wie viel vom berechneten Ergebnis du verwerten kannst.
 
 ### Rechenkomplexität
 

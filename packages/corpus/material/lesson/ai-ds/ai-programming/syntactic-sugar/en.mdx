@@ -92,7 +92,7 @@ print(y_standard)
   ]}
 />
 
-List comprehensions can express a simple transformation or filter compactly. They are often efficient, but clarity matters more than saving lines: use an ordinary loop when the expression becomes difficult to read. Their notation resembles mathematical set-builder notation, although a Python list preserves order and duplicate values while a mathematical set does not.
+List comprehensions can express a simple transformation or filter compactly. They are often efficient, but <Highlight>clarity matters more than saving lines</Highlight>: use an ordinary loop when the expression becomes difficult to read. Their notation resembles mathematical set-builder notation, although a Python list preserves order and duplicate values while a mathematical set does not.
 
 For example, `[i**2 for i in x]` can be read as "square of i for each i in x", which is very similar to mathematical notation <InlineMath math="\{i^2 : i \in X\}" />.
 
@@ -103,6 +103,8 @@ A lambda expression creates a function object without a `def` statement. It is m
 The body contains exactly one expression, and that expression becomes the return value. It may call a function such as `print()`, but it cannot contain statement forms such as `return`, a regular assignment, `for`, or `while`. A lambda can be assigned to a variable, but a named `def` is usually clearer when the function will be reused.
 
 ### How to Use Lambda
+
+A lambda writes a small function in one expression. The example shows the syntax and assigns one to a name.
 
 <CodeBlock
   data={[
@@ -158,7 +160,7 @@ print(sorted_by_grade)  # Output: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]`
 
 ## Other Syntactic Sugar Features
 
-Python has other compact syntax for common operations. These forms can improve readability, but they do not guarantee better runtime performance.
+Python has other compact syntax for common operations. These forms can improve readability, but they do not guarantee better runtime performance. Each form replaces a longer statement without changing the result the program computes.
 
 ### Assignment Operators
 
@@ -242,8 +244,6 @@ print(f"After: a={a}, b={b}")  # Output: After: a=10, b=5`
 />
 
 ## Syntax Comparison
-
-To understand the advantages of syntactic sugar, compare different ways of writing:
 
 | Concept | Standard Syntax | Syntactic Sugar |
 |---------|-----------------|-----------------|

@@ -92,7 +92,7 @@ print(y_standard)
   ]}
 />
 
-Listenkomprehensionen können eine einfache Transformation oder einen Filter kompakt ausdrücken. Sie sind häufig effizient, doch Lesbarkeit ist wichtiger als eine geringe Zeilenzahl. Sobald der Ausdruck schwer verständlich wird, ist eine gewöhnliche Schleife die bessere Wahl. Die Schreibweise erinnert an die mathematische Mengennotation. Eine Python-Liste bewahrt jedoch Reihenfolge und Duplikate, eine mathematische Menge nicht.
+Listenkomprehensionen können eine einfache Transformation oder einen Filter kompakt ausdrücken. Sie sind häufig effizient, <Highlight>doch Lesbarkeit ist wichtiger als eine geringe Zeilenzahl</Highlight>. Sobald der Ausdruck schwer verständlich wird, ist eine gewöhnliche Schleife die bessere Wahl. Die Schreibweise erinnert an die mathematische Mengennotation. Eine Python-Liste bewahrt jedoch Reihenfolge und Duplikate, eine mathematische Menge nicht.
 
 Beispielsweise kann `[i**2 for i in x]` als „Quadrat von i für jedes i in x“ gelesen werden, was der mathematischen Notation <InlineMath math="\{i^2 : i \in X\}" /> sehr ähnlich ist.
 
@@ -103,6 +103,8 @@ Ein Lambda-Ausdruck erzeugt ein Funktionsobjekt ohne `def`-Anweisung. Er eignet 
 Der Lambda-Körper besteht aus genau einem Ausdruck, dessen Wert zurückgegeben wird. Er darf eine Funktion wie `print()` aufrufen, aber keine Anweisungsformen wie `return`, eine gewöhnliche Zuweisung, `for` oder `while` enthalten. Ein Lambda kann an eine Variable gebunden werden. Für wiederverwendetes Verhalten ist eine benannte Funktion mit `def` meist klarer.
 
 ### Lambda verwenden
+
+Ein Lambda schreibt eine kleine Funktion in einem Ausdruck. Das Beispiel zeigt die Syntax und weist eine Funktion einem Namen zu.
 
 <CodeBlock
   data={[
@@ -158,7 +160,7 @@ print(sorted_by_grade)  # Ausgabe: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]
 
 ## Andere syntaktische Zuckerfunktionen
 
-Python besitzt weitere kompakte Schreibweisen für häufige Operationen. Sie können die Lesbarkeit verbessern, garantieren aber keine höhere Laufzeitgeschwindigkeit.
+Python besitzt weitere kompakte Schreibweisen für häufige Operationen. Sie können die Lesbarkeit verbessern, garantieren aber keine höhere Laufzeitgeschwindigkeit. Jede Form ersetzt eine längere Anweisung, ohne das berechnete Ergebnis zu ändern.
 
 ### Zuweisungsoperatoren
 
@@ -242,8 +244,6 @@ print(f"Nachher: a={a}, b={b}")  # Ausgabe: Nachher: a=10, b=5`
 />
 
 ## Syntaxvergleich
-
-Um die Vorteile von syntaktischem Zucker zu verstehen, vergleichen wir verschiedene Schreibweisen:
 
 | Konzept | Standard-Syntax | Syntaktischer Zucker |
 |---------|-----------------|---|

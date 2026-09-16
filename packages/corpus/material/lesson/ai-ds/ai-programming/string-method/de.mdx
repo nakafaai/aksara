@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Unveränderlichkeit von Strings
 
-Python-Strings sind immutable: Der Wert eines String-Objekts lässt sich nicht direkt bearbeiten. Eine Operation kann einen neuen String erzeugen und eine Variable kann anschließend auf dieses neue Objekt verweisen. Das ursprüngliche String-Objekt bleibt dabei unverändert.
+<Highlight>Python-Strings sind immutable</Highlight>: Der Wert eines String-Objekts lässt sich nicht direkt bearbeiten. Eine Operation kann einen neuen String erzeugen und eine Variable kann anschließend auf dieses neue Objekt verweisen. Das ursprüngliche String-Objekt bleibt dabei unverändert.
 
 Eine Zuweisung an eine Zeichenposition führt deshalb zu einem `TypeError`. Listen verhalten sich anders, weil ihre Elemente direkt ersetzt werden können.
 
@@ -76,6 +76,8 @@ print(f"Raw-Schreibweise \\n: {len(raw_newline)} Codepoints")`
 In einem normalen Stringliteral werden die Quellschreibweisen `\n` und `\t` jeweils zu einem Newline- oder Tab-Codepoint. In einem Raw String wie `r"\n"` bleiben Backslash und `n` zwei getrennte Codepoints.
 
 ## Methoden zur Transformation von Strings
+
+Diese Methoden liefern einen neuen String und lassen den ursprünglichen unverändert. Das liegt daran, dass ein String unveränderlich ist, jede Umwandlung also einen zweiten Wert erzeugt, statt den ersten zu bearbeiten.
 
 ### Ändern der Großschreibung und Kleinschreibung
 
@@ -160,6 +162,8 @@ print(f"Ergebnis ohne Suffix: '{filename.removesuffix('.txt')}'")`
 Möchtest du genau ein Token entfernen, verwendest du `removeprefix()` oder `removesuffix()`. So kann eine Zeichenmenge nicht versehentlich mehr entfernen als beabsichtigt.
 
 ## Strings durchsuchen und Zeichen prüfen
+
+Eine Gruppe von Methoden findet die Stelle eines Musters im Text, eine andere Gruppe beantwortet Ja-Nein-Fragen dazu. Die suchenden Methoden geben eine Position zurück, die prüfenden Methoden geben `True` oder `False` zurück.
 
 ### Position eines Teilstrings ermitteln
 
@@ -320,6 +324,8 @@ print(f"\\nBeginnt mit einer Begrüßung: {text.startswith(('Hi', 'Hello', 'Hey'
 Beide Methoden akzeptieren ein Tupel, sodass ein Aufruf mehrere Präfixe oder Suffixe prüfen kann.
 
 ## Methoden Replace und Split
+
+Diese beiden Methoden ändern, wie ein String in Teile zerlegt wird. `replace` tauscht einen Teilstring gegen einen anderen, `split` zerlegt den String an einem Trennzeichen in eine Liste.
 
 ### Teilstrings ersetzen
 

@@ -19,7 +19,7 @@ export const METAPHOR_VOICE_RULES = [
   {
     id: "redirected-cell-machinery-metaphor",
     patterns: {
-      de: /(?:\b(?:lenkt|lenken)\b[^.!?\n]{0,45}\bMaschinerie\b[^.!?\n]{0,20}\bum\b|\bübernimmt\b[^.!?\n]{0,45}\bZellmaschinerie\b)/iu,
+      de: /(?:\b(?:lenkt|lenken)\b[^.!?\n]{0,45}\bMaschinerie\b[^.!?\n]{0,20}\bum\b|(?<![\p{L}\p{N}_])übernimmt\b[^.!?\n]{0,45}\bZellmaschinerie\b)/iu,
       en: /\b(?:redirects?|takes? over)\b[^.!?\n]{0,45}\b(?:cell(?:ular)?|host-cell)(?:'s)? (?:machinery|work)\b/iu,
       id: /\b(?:mengarahkan|mengambil alih)\b[^.!?\n]{0,45}\b(?:mesin|kerja) sel(?: inang)?\b/iu,
     },
@@ -78,6 +78,22 @@ export const METAPHOR_VOICE_RULES = [
       de: /\bWeg von Punkt\b[^.!?\n]{0,120}\bumgekehrt\b[^.!?\n]{0,120}\bAkkumulation\b/iu,
       en: /\breversing a journey\b[^.!?\n]{0,160}\baccumulat(?:ed|ion)\b/iu,
       id: /\b(?:membalik perjalanan|perjalanan pulang)\b[^.!?\n]{0,160}\bakumulasi(?:nya)?\b/iu,
+    },
+  },
+  {
+    id: "corrective-decoration-metaphor",
+    patterns: {
+      de: /\b(?:ist|sind|war|waren)\b[^.!?\n]{0,60}\bkein(?:e|en|er|es)?\s+(?:bloße[rsnm]?\s+)?(?:Dekoration|Formalität|Schmuck|Schreibweise|Zusatz)\b/iu,
+      en: /\b(?:is|are|was|were)\b[^.!?\n]{0,30}\b(?:not|no)\s+(?:merely\s+|just\s+)?(?:a\s+|an\s+)?(?:decoration|decorations|decorative(?:\s+notation)?|formality|ornament|ornaments)\b/iu,
+      id: /\b(?:bukan|tidak sekadar)\s+(?:sekadar\s+)?(?:hiasan|dekorasi|formalitas|notasi kosong)(?:\s+visual)?\b/iu,
+    },
+  },
+  {
+    id: "decorative-picture-to-calculation",
+    patterns: {
+      de: /\b(?:verwandelt\s+(?:dieses|das)\s+Bild\s+in\s+(?:eine\s+)?(?:exakte|genaue|zuverlässige)\s+Rechnung|wird\s+aus\s+(?:diesem|dem)\s+Bild\s+(?:eine\s+)?(?:physikalische\s+)?Untersuchung)\b/iu,
+      en: /\b(?:turns?\s+(?:this|that|the)\s+picture\s+into\s+(?:a\s+)?(?:exact|precise|reliable)\s+calculation|(?:this|that|the)\s+picture\s+becomes?\s+(?:a\s+)?(?:physical\s+)?investigation)\b/iu,
+      id: /\b(?:mengubah\s+gambaran\s+(?:ini|itu|tersebut)\s+menjadi\s+perhitungan\s+(?:yang\s+)?(?:andal|pasti|tepat)|(?:gambar|gambaran)\s+(?:ini|itu|tersebut)\s+menjadi\s+penyelidikan\s+(?:fisika|fisis))\b/iu,
     },
   },
 ] satisfies readonly LessonVoiceRule[];

@@ -11,7 +11,7 @@ export const metadata = {
 
 Some optimization problems ask for the smallest possible value. A manufacturer may want the lowest cost, or a design may need the least total area under a fixed geometric condition. The objective changes, but the modeling process is the same: translate the constraint, build a function in one variable, and interpret its vertex.
 
-Finding a minimum does not mean choosing zero automatically. The original problem determines which values are permitted, and the minimum must lie within that feasible domain.
+Finding a minimum does not mean choosing zero automatically. The original problem determines which values are permitted, and <Highlight>the minimum must lie within that feasible domain</Highlight>.
 
 ## Why an upward opening quadratic has a minimum
 
@@ -118,11 +118,12 @@ The minimum total area is <InlineMath math="50\text{ cm}^2" />, obtained when bo
 
 ## Constraint Model Domain and Vertex
 
+The table collects the three pieces that turn the wire problem into one variable. Each row states a part of the problem beside its mathematical form.
+
 | Part of the problem | Mathematical statement | Meaning |
 | ------------------- | ---------------------- | ------- |
 | Fixed wire length | <InlineMath math="4x+4y=40" /> | Both square perimeters use all <InlineMath math="40\text{ cm}" /> of wire. |
 | One-variable model | <InlineMath math="A(x)=2x^2-20x+100" /> | Each permitted first side length determines one total area. |
-| Feasible domain | <InlineMath math="0<x<10" /> | Both squares retain positive side lengths. |
 | Vertex | <InlineMath math="(5,50)" /> | Equal side lengths produce the smallest total area. |
 
 ## Another Application with Production Cost
@@ -141,6 +142,8 @@ Because <InlineMath math="a=3>0" />, the model has a minimum:
 The model predicts a minimum cost of <InlineMath math="\text{IDR }200\,000" /> at <InlineMath math="10" /> items. A real production decision would also check whether the model's stated domain and operational constraints allow that quantity.
 
 ## Practice
+
+The task asks for two numbers with a fixed sum and the largest possible product, so the sum replaces one variable. Write the product as a function of a single number first.
 
 The sum of two positive numbers is <InlineMath math="16" />. Determine the two numbers that minimize the sum of their squares, and find that minimum sum.
 

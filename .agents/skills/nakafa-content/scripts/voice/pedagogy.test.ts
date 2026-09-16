@@ -58,16 +58,12 @@ it("rejects personified teaching aids and vague metawriting", () => {
 });
 it("rejects generic importance headings tables and attention labels", () => {
   const samples = {
-    de: [
-      "## Warum die Form nützlich ist",
-      "| Prüfung | Warum sie wichtig ist |",
-      "**Wichtig:** Die Funktion muss bijektiv sein.",
-    ].join("\n"),
-    en: [
-      "## Why the Constant Matters",
-      "| Check | Why it matters |",
-      "**Important:** The function must be bijective.",
-    ].join("\n"),
+    de: `## Warum die Form nützlich ist
+| Prüfung | Warum sie wichtig ist |
+**Wichtig:** Die Funktion muss bijektiv sein.`,
+    en: `## Why the Constant Matters
+| Check | Why it matters |
+**Important:** The function must be bijective.`,
   };
 
   for (const [locale, source] of Object.entries(samples)) {

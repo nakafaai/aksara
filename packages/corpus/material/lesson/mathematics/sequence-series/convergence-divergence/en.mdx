@@ -33,24 +33,26 @@ To determine convergence, we study the sequence of partial sums:
 
 <BlockMath math="S_n=\sum_{k=1}^{n}a_k" />
 
-The series converges exactly when the sequence of partial sums <InlineMath math="(S_n)" /> converges. The limit of the terms <InlineMath math="a_n" /> alone does not decide whether the series converges.
+The series converges exactly when <Highlight>the sequence of partial sums converges</Highlight>. The limit of the terms <InlineMath math="a_n" /> alone does not decide whether the series converges.
 
 ## Convergent Series
 
 A series is **convergent** when its partial sums approach a _finite_ value. In an idealized bouncing-ball model, for example, successively shorter paths can have a finite total length.
 
-### Characteristics of Convergent Series
+### Partial Sums Settle on One Limit
+
+A convergent series has two properties that follow from its partial sums. The partial sums approach one real number, and the terms must shrink toward zero.
 
 - Its partial sum (the sum of the first <InlineMath math="n" /> terms, <InlineMath math="S_n" />) approaches a value <InlineMath math="L" /> as <InlineMath math="n" /> approaches infinity (<InlineMath math="\lim_{n \to \infty} S_n = L" />, where <InlineMath math="L" /> is a real number).
 - Necessary condition (but not sufficient): the <InlineMath math="n" />th term (<InlineMath math="u_n" />) must approach <InlineMath math="0" /> as <InlineMath math="n" /> approaches infinity (<InlineMath math="\lim_{n \to \infty} u_n = 0" />).
 
 ### Examples of Convergent Series
 
-- **Geometric Series with <InlineMath math="|r| < 1" />**: A geometric series converges when the absolute value of its ratio is less than <InlineMath math="1" />.
+A geometric series converges whenever the absolute value of its ratio is smaller than <InlineMath math="1" />. Take the series <InlineMath math="1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \dots" />, whose ratio is <InlineMath math="\frac{1}{2}" />. Its partial sums keep closing in on <InlineMath math="2" />, and the limit formula confirms that value directly.
 
-  For instance: <InlineMath math="1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \dots" />. Its sum approaches <InlineMath math="2" />.
+<BlockMath math="S_\infty = \frac{a}{1 - r} = \frac{1}{1 - \frac{1}{2}} = \frac{1}{\frac{1}{2}} = 2" />
 
-  <BlockMath math="S_\infty = \frac{a}{1 - r} = \frac{1}{1 - \frac{1}{2}} = \frac{1}{\frac{1}{2}} = 2" />
+A ratio of <InlineMath math="1" /> or larger leaves the series without a finite sum.
 
 ## Divergent Series
 
@@ -60,12 +62,16 @@ A series is **divergent** when its partial sums do not approach a finite value. 
 - Keep decreasing toward negative infinity (<InlineMath math="-\infty" />).
 - Oscillate between several values without ever settling.
 
-### Characteristics of Divergent Series
+### Partial Sums Fail to Settle
+
+A divergent series either has no single limit or moves without bound. The two conditions below separate those cases.
 
 - Its partial sum (<InlineMath math="S_n" />) does not approach a specific value <InlineMath math="L" /> as <InlineMath math="n" /> approaches infinity.
 - If <InlineMath math="u_n\not\to 0" />, then the series is _definitely_ divergent. This covers both a nonzero term limit and a term sequence that has no limit.
 
-### Examples of Divergent Series
+### Series That Diverge
+
+The three families below diverge for different reasons. The harmonic series shows that shrinking terms alone cannot force convergence.
 
 - **Arithmetic Series (except <InlineMath math="0 + 0 + \dots" />)**: Their partial sums grow toward <InlineMath math="\infty" /> or decrease toward <InlineMath math="-\infty" />.
 
@@ -98,13 +104,15 @@ For <InlineMath math="a\ne0" />, every possible ratio falls into one of these ca
 
 A divergent series therefore does not always have the value <InlineMath math="\infty" />. Oscillation and unbounded negative growth are different forms of divergence.
 
-## Monotonicity and Boundedness
+## Sequences That Move One Way and Stay Limited
 
 Every monotone and bounded sequence converges. This criterion is useful when a limit is difficult to read directly from a formula.
 
 The partial sums of a series with non-negative terms are increasing. If those partial sums are also bounded above, the series converges.
 
 ## Comparing Convergent and Divergent Series
+
+The table collects the three tests, so the partial-sum behavior, the term condition, and a matching example can be read together.
 
 | Feature      | Convergent Series                                                                         | Divergent Series                                                                                                      |
 | ------------ | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
@@ -114,7 +122,7 @@ The partial sums of a series with non-negative terms are increasing. If those pa
 
 ## Exercise
 
-Decide whether each series converges or diverges:
+Decide whether each series converges or diverges. Check the term behaviour first, because a term that does not approach zero already settles the question. Write your conclusion for each series before you read the solution.
 
 1. <InlineMath math="\sum_{k=0}^{\infty}3(1/4)^k" />
 2. <InlineMath math="\sum_{k=1}^{\infty}1" />

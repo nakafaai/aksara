@@ -112,6 +112,9 @@ it("rejects every symbol in headings", () => {
     },
   ]);
 });
+const SECTION_BODY =
+  "The section names the condition that applies and states the operation the learner performs with the quantity introduced above, so the same steps work for every later case.";
+
 it("rejects digits and math labels in headings and page titles", () => {
   const source = [
     "export const metadata = {",
@@ -119,6 +122,8 @@ it("rejects digits and math labels in headings and page titles", () => {
     "};",
     "",
     "## Inner Product and L2 Error",
+    "",
+    SECTION_BODY,
   ].join("\n");
 
   assert.deepEqual(
@@ -162,6 +167,8 @@ it("applies the heading rule to the page title", () => {
     "};",
     "",
     "## Syarat Bentuk Akar",
+    "",
+    SECTION_BODY,
   ].join("\n");
 
   assert.deepEqual(findLessonVoiceIssues("id", source), [
@@ -217,60 +224,6 @@ it("allows required Indonesian reduplication hyphens only", () => {
       { line: 5, rule: "heading-symbol" },
     ]
   );
-});
-it("requires named matrix factorizations to use math rendering in prose", () => {
-  const source = [
-    "export const metadata = {",
-    '  title: "QR Decomposition",',
-    '  description: "Compare the QR algorithm with related factorizations.",',
-    "};",
-    "",
-    "## QR Decomposition",
-    "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.",
-    'Use <InlineMath math="\\mathrm{QR}" /> in mathematical prose.',
-    "`QR` is a code token.",
-    "[QR documentation](https://example.com/QR)",
-    "```text",
-    "QR LU SVD",
-    "```",
-    "<CodeBlock data={[{",
-    "  code: `PLU",
-    "PCA`",
-    "}]} />",
-  ].join("\n");
-
-  assert.deepEqual(findLessonVoiceIssues("en", source), [
-    {
-      column: 5,
-      excerpt: "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.",
-      line: 7,
-      rule: "plain-math-label",
-    },
-    {
-      column: 26,
-      excerpt: "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.",
-      line: 7,
-      rule: "plain-math-label",
-    },
-    {
-      column: 30,
-      excerpt: "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.",
-      line: 7,
-      rule: "plain-math-label",
-    },
-    {
-      column: 35,
-      excerpt: "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.",
-      line: 7,
-      rule: "plain-math-label",
-    },
-    {
-      column: 43,
-      excerpt: "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.",
-      line: 7,
-      rule: "plain-math-label",
-    },
-  ]);
 });
 
 it("rejects German headings that need forbidden punctuation", () => {

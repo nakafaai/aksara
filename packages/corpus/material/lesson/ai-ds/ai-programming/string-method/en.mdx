@@ -9,7 +9,7 @@ export const metadata = {
 
 ## String Immutability
 
-Python strings are immutable: the value stored in a string object cannot be edited in place. An operation may create another string, and a variable may then be rebound to that new object, but the original string object remains unchanged.
+<Highlight>Python strings are immutable</Highlight>: the value stored in a string object cannot be edited in place. An operation may create another string, and a variable may then be rebound to that new object, but the original string object remains unchanged.
 
 Assigning to a character position therefore raises `TypeError`. Lists are different because their elements can be replaced in place.
 
@@ -76,6 +76,8 @@ print(f"Raw \\n spelling: {len(raw_newline)} code points")`
 In a normal string literal, the source spellings `\n` and `\t` each become one newline or tab code point. In a raw string such as `r"\n"`, the backslash and `n` remain two separate code points.
 
 ## String Transformation Methods
+
+These methods return a new string and leave the original unchanged. That happens because a string is immutable, so every transformation produces a second value instead of editing the first.
 
 ### Changing Letter Case
 
@@ -160,6 +162,8 @@ print(f"Exact suffix removal: '{filename.removesuffix('.txt')}'")`
 Use `removeprefix()` or `removesuffix()` when you need to remove one exact token. This distinction prevents a character set from stripping more than intended.
 
 ## Search and Validation Methods
+
+One group of methods locates text, and another group answers yes-or-no questions about it. The searching methods return a position, while the validating methods return `True` or `False`.
 
 ### Finding Substring Position
 
@@ -320,6 +324,8 @@ print(f"\\nStarts with greeting: {text.startswith(('Hi', 'Hello', 'Hey'))}")`
 Both methods accept a tuple, so one call can test several prefixes or suffixes.
 
 ## Replace and Split Methods
+
+These two methods change how a string is divided into parts. `replace` swaps one substring for another, and `split` breaks a string into a list at a separator.
 
 ### Replacing Substrings
 

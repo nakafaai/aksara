@@ -19,7 +19,7 @@ Das Modul `math` stellt reellwertige Funktionen und Konstanten bereit. Es akzept
 
 ## Das Modul Math importieren
 
-Python bietet mehrere Möglichkeiten zum Importieren von Modulen mit jeweils unterschiedlichen Eigenschaften und Verwendungszwecken.
+Python bietet mehrere Möglichkeiten, ein Modul zu importieren, und die Wahl prägt das Aussehen jedes späteren Aufrufs. Du kannst das ganze Modul importieren, einzelne Namen daraus oder das Modul beim Import umbenennen.
 
 ### Basisimport mit Namespace
 
@@ -86,7 +86,7 @@ print(pi)       # Ausgabe: 3.141592653589793
   ]}
 />
 
-`from math import *` fügt jeden öffentlichen Namen aus `math` in den aktuellen Namensraum ein. Wird einer dieser Namen bereits verwendet, ersetzt der Wert aus `math` ihn ohne Fehlermeldung. Im Code ist außerdem nicht mehr erkennbar, aus welchem Modul der jeweilige Name stammt. Eine spätere Änderung an `math` kann dem importierenden Modul weitere Namen hinzufügen. Ein expliziter Import nennt jede Abhängigkeit in der Importzeile.
+`from math import *` fügt jeden öffentlichen Namen aus `math` in den aktuellen Namensraum ein. Wird einer dieser Namen bereits verwendet, ersetzt der Wert aus `math` ihn ohne Fehlermeldung. Im Code ist außerdem nicht mehr erkennbar, aus welchem Modul der jeweilige Name stammt. Eine spätere Änderung an `math` kann dem importierenden Modul weitere Namen hinzufügen. Ein expliziter Import <Highlight>nennt jede Abhängigkeit in der Importzeile</Highlight>.
 
 ### Spezifische Funktionen importieren
 
@@ -186,9 +186,11 @@ Deshalb ergibt `round(4.5)` den Wert <InlineMath math="4" />, während auch `rou
 
 ## Funktionen und Konstanten im Mathematikmodul
 
-Jede `math`-Funktion hat einen Definitionsbereich. `sqrt(x)` benötigt beispielsweise eine nichtnegative reelle Eingabe, Logarithmen benötigen positive reelle Eingaben.
+Jede `math`-Funktion hat einen Definitionsbereich. `sqrt(x)` benötigt beispielsweise eine nichtnegative reelle Eingabe, Logarithmen benötigen positive reelle Eingaben. Ein Wert außerhalb dieses Bereichs löst einen `ValueError` aus, statt eine Zahl zurückzugeben.
 
 ### Funktionen für Quadratwurzeln und Logarithmen
+
+Das Beispiel ruft die Wurzel- und die Logarithmusfunktion auf und zeigt, wie Python eine Eingabe außerhalb des Definitionsbereichs meldet.
 
 <CodeBlock
   data={[
@@ -217,6 +219,8 @@ print(f"log2(8): {math.log(8, 2)}")  # Ausgabe: 3.0`
 
 ### Trigonometriefunktionen
 
+Die Trigonometriefunktionen arbeiten im Bogenmaß. Das Beispiel rechnet einen Winkel um und ruft die drei Hauptfunktionen auf.
+
 <CodeBlock
   data={[
     {
@@ -240,6 +244,8 @@ print(f"45 Grad = {angle_rad} Bogenmaß")  # Ausgabe: 0.7853981633974483`
 />
 
 ### Aufrunden Abrunden und Fakultät
+
+Aufrunden, Abrunden und Fakultät beantworten verschiedene Fragen. Das Beispiel wendet jede Funktion an und gibt das Ergebnis aus.
 
 <CodeBlock
   data={[
@@ -295,9 +301,11 @@ print(f"Kreisfläche mit Radius {circle_radius}: {circle_area}")`
 
 ## Auswahl der richtigen Importmethode
 
-Wähle einen Importstil, der den Modulnamen bei jedem Aufruf nennt, wenn dieser Kontext nötig ist. Importiere nur Namen, die das Programm verwendet.
+Wähle einen Importstil, der den Modulnamen bei jedem Aufruf nennt, wenn dieser Kontext nötig ist, und importiere nur Namen, die das Programm tatsächlich verwendet. Eine einzelne Funktion, die einmal gebraucht wird, liest sich als `from math import sqrt` gut, während mehrere Aufrufe mit `import math` klarer bleiben.
 
 ### Leitfaden zur Auswahl von Importmethoden
+
+Wähle den Importstil danach, wie viele Namen du brauchst und wie lesbar der Aufruf bleibt. Die Liste unten ordnet die Möglichkeiten von der ausdrücklichsten zur knappsten.
 
 1. **Bevorzuge `import math`**, wenn das Programm mehrere Elemente nutzt. Aufrufe wie `math.sqrt()` nennen das Modul direkt neben der Funktion.
 2. **Verwende `import math as m` bewusst** und nur, wenn der Alias eine dokumentierte lokale Konvention ist.

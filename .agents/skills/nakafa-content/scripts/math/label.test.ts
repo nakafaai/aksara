@@ -158,3 +158,35 @@ it("maps decoded math labels back to their authored JSX entity", () => {
     },
   ]);
 });
+
+it("reports every plain named factorization in authored prose", () => {
+  const source = [
+    "export const metadata = {",
+    '  title: "QR Decomposition",',
+    '  description: "Compare the QR algorithm with related factorizations.",',
+    "};",
+    "",
+    "## QR Decomposition",
+    "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.",
+    'Use <InlineMath math="\\mathrm{QR}" /> in mathematical prose.',
+    "`QR` is a code token.",
+    "[QR documentation](https://example.com/QR)",
+    "```text",
+    "QR LU SVD",
+    "```",
+    "<CodeBlock data={[{",
+    "  code: `PLU",
+    "PCA`",
+    "}]} />",
+  ].join("\n");
+  const excerpt =
+    "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.";
+
+  assert.deepEqual(findLessonVoiceIssues("en", source), [
+    { column: 5, excerpt, line: 7, rule: "plain-math-label" },
+    { column: 26, excerpt, line: 7, rule: "plain-math-label" },
+    { column: 30, excerpt, line: 7, rule: "plain-math-label" },
+    { column: 35, excerpt, line: 7, rule: "plain-math-label" },
+    { column: 43, excerpt, line: 7, rule: "plain-math-label" },
+  ]);
+});

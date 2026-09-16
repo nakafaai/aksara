@@ -11,15 +11,17 @@ export const metadata = {
 
 In manchen Wahrscheinlichkeitsmodellen gilt: **Die Kenntnis eines Ergebnisses verändert die Wahrscheinlichkeit eines anderen nicht**. Wirf eine faire Münze und einen fairen Würfel. Das Ergebnis der Münze liefert keine Information über das Würfelergebnis. Die beiden Ereignisse sind unabhängig.
 
-Die Ereignisse <InlineMath math="A" /> und <InlineMath math="B" /> sind **unabhängig**, wenn die Wahrscheinlichkeit des jeweils anderen unverändert bleibt, sobald wir eines als Bedingung voraussetzen. Unabhängigkeit ist eine Eigenschaft des Wahrscheinlichkeitsmodells. Gleichzeitig stattfindende Ereignisse sind nicht automatisch unabhängig.
+Die Ereignisse <InlineMath math="A" /> und <InlineMath math="B" /> sind **unabhängig**, wenn <Highlight>die Wahrscheinlichkeit des jeweils anderen unverändert bleibt</Highlight>, sobald wir eines als Bedingung voraussetzen. Unabhängigkeit ist eine Eigenschaft des Wahrscheinlichkeitsmodells. Gleichzeitig stattfindende Ereignisse sind nicht automatisch unabhängig.
 
 Zwei Ereignisse können eine gemeinsame Ursache haben, obwohl keines das andere direkt steuert. Zwei Alarme können zum Beispiel auf denselben Vorfall reagieren. Nimm Unabhängigkeit nur an, wenn sie im Wahrscheinlichkeitsmodell vorgegeben ist oder sich aus den bedingten Wahrscheinlichkeiten ergibt.
 
-## Eigenschaften unabhängiger Ereignisse
+## Wie sich Unabhängigkeit in den Wahrscheinlichkeiten zeigt
+
+Unabhängigkeit lässt die zweite Wahrscheinlichkeit unverändert, sobald das erste Ergebnis bekannt ist, und sie verlangt getrennte Versuche. Die drei Prüfungen unten formulieren diesen Gedanken unterschiedlich.
 
 ### Unveränderte bedingte Wahrscheinlichkeit
 
-Das Hauptmerkmal unabhängiger Ereignisse lautet: **Das Ergebnis eines Ereignisses verändert die Wahrscheinlichkeit des anderen nicht**. Sind <InlineMath math="A" /> und <InlineMath math="B" /> unabhängig und gilt <InlineMath math="P(B) > 0" />, dann folgt:
+Das Hauptmerkmal unabhängiger Ereignisse lautet: Das Ergebnis eines Ereignisses verändert die Wahrscheinlichkeit des anderen nicht. Sind <InlineMath math="A" /> und <InlineMath math="B" /> unabhängig und gilt <InlineMath math="P(B) > 0" />, dann folgt:
 
 <BlockMath math="P(A|B) = P(A)" />
 
@@ -46,7 +48,7 @@ Da unabhängige Ereignisse sich nicht gegenseitig beeinflussen, wird die Berechn
 
 Die Wahrscheinlichkeit dafür, dass <InlineMath math="A" /> und <InlineMath math="B" /> gemeinsam eintreten, ist also das Produkt ihrer Einzelwahrscheinlichkeiten.
 
-### Warum diese Formel funktioniert
+### Warum die beiden Wahrscheinlichkeiten multipliziert werden
 
 Bei unabhängigen Ereignissen stimmt die bedingte Wahrscheinlichkeit mit der gewöhnlichen Wahrscheinlichkeit überein. Wegen <InlineMath math="P(A|B) = P(A)" /> lautet die Multiplikationsregel:
 
@@ -55,6 +57,8 @@ Bei unabhängigen Ereignissen stimmt die bedingte Wahrscheinlichkeit mit der gew
 Setzen wir <InlineMath math="P(A|B)=P(A)" /> in die Multiplikationsregel ein, erhalten wir <InlineMath math="P(A\cap B)=P(A)P(B)" />.
 
 ## Berechnungen mit unabhängigen Ereignissen
+
+Jede Rechnung unten multipliziert die Wahrscheinlichkeiten zweier unabhängiger Ereignisse. Die Beispiele gehen von zwei Würfeln über einen Würfel und eine Münze bis zu zwei Sensortests.
 
 ### Zwei Würfel werfen
 
@@ -119,7 +123,9 @@ Das Problem besagt, dass die beiden Selbsttests **unabhängig** sind, sodass ein
 
 Die Wahrscheinlichkeit, dass beide Sensoren bestehen, beträgt somit <InlineMath math="0{,}9016" /> oder <InlineMath math="90{,}16\%" />.
 
-## Problemlösungsstrategien
+## So gehst du eine Unabhängigkeitsaufgabe an
+
+Die meisten Fehler entstehen hier, wenn vor der Prüfung der Unabhängigkeit multipliziert wird. Die Schritte unten stellen diese Prüfung an den Anfang und kontrollieren am Ende das Ergebnis.
 
 ### Unabhängigkeit vor dem Multiplizieren prüfen
 

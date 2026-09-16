@@ -46,7 +46,7 @@ Indeks di luar rentang yang valid menghasilkan `IndexError`. Python memeriksa ba
 
 ## Mengambil Beberapa Elemen
 
-Slicing mengambil beberapa elemen dari string atau list. Kamu menentukan indeks awal, indeks akhir, dan bila perlu jarak antarelemen yang dipilih.
+Slicing mengambil beberapa elemen dari string atau list. Kamu menentukan indeks awal, indeks akhir, dan bila perlu jarak antarelemen yang dipilih. Indeks awal ikut diambil sedangkan indeks akhir tidak, sehingga lebar hasilnya adalah selisih keduanya.
 
 ### Slicing dengan Dua Batas
 
@@ -109,7 +109,7 @@ print(s[-1:4:-1])  # Output: '!dlroW'`
 
 ## Aturan Slicing
 
-Indeks awal, indeks akhir, dan `step` menentukan elemen yang masuk ke hasil.
+Indeks awal, indeks akhir, dan `step` menentukan elemen yang masuk ke hasil. Aturan utamanya: indeks awal ikut diambil, indeks akhir tidak, dan `step` negatif membalik arah pembacaan dari kanan ke kiri.
 
 ### Menghitung Panjang Hasil
 
@@ -144,7 +144,7 @@ Saat melakukan slicing, Python menyesuaikan batas yang berada di luar rentang de
 
 ## Indeks yang Dipilih
 
-Fungsi `range()` dapat menunjukkan indeks mana saja yang dipilih oleh slicing. Perbandingan ini menjelaskan indeks hasil slicing, bukan cara setiap tipe Python menjalankan operasi tersebut secara internal.
+Fungsi `range()` dapat menunjukkan indeks mana saja yang dipilih oleh slicing. Perbandingan ini menjelaskan indeks hasil slicing pada contoh ini.
 
 <CodeBlock
   data={[
@@ -181,6 +181,8 @@ print(f"Manual: '{result_negative}'")`
 Perbandingan dengan `range()` menunjukkan bagaimana batas awal, batas akhir, dan `step` bekerja bersama, terutama ketika `step` bernilai negatif.
 
 ## Bentuk Singkat Slicing
+
+Python mengizinkan sebagian batas slice dikosongkan. Batas awal yang kosong berarti slice dimulai dari indeks `0`, sedangkan batas akhir yang kosong berarti slice berjalan sampai elemen terakhir.
 
 ### Mengambil dari Awal atau Sampai Akhir
 
@@ -273,6 +275,6 @@ print(f"'kasur rusak' palindrome? {is_palindrome('kasur rusak')}")`
 
 Gunakan indexing untuk mengambil satu elemen pada posisi yang diketahui. Gunakan slicing untuk mengambil beberapa elemen yang berurutan atau berjarak tetap. Bentuk `[::-1]` membalik urutan elemen. Untuk ekstensi file, jangan mengandalkan jumlah karakter tetap karena panjang ekstensi dapat berbeda. `Path.suffix` membaca ekstensi sesuai struktur path.
 
-Batas slicing disesuaikan dengan panjang data, sehingga `s[10:]` pada string yang lebih pendek menghasilkan `""`. Akses langsung seperti `s[10]` tetap menghasilkan `IndexError`. Gunakan slicing hanya jika hasil kosong memang dapat diterima.
+<Highlight>Batas slicing disesuaikan dengan panjang data</Highlight>, sehingga `s[10:]` pada string yang lebih pendek menghasilkan `""`. Akses langsung seperti `s[10]` tetap menghasilkan `IndexError`. Gunakan slicing hanya jika hasil kosong memang dapat diterima.
 
 Indeks negatif menghitung posisi dari akhir data. Gunakan `s[-1]` untuk elemen terakhir atau `s[-3:]` untuk tiga elemen terakhir. Bentuk ini dapat dipakai saat memproses file, parsing teks, atau mengolah dataset yang elemennya perlu dihitung dari akhir.

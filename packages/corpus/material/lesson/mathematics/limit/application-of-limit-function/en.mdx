@@ -9,11 +9,11 @@ export const metadata = {
 
 ## A Simplified Public Health Model
 
-Limits can describe the long-term behavior of a mathematical model. In public health, a formula must be fitted to reliable data and validated before anyone uses it to guide a real decision. The formula below shows how to calculate a limit and check the valid domain of a model.
+Limits can describe <Highlight>the long-term behavior of a mathematical model</Highlight>. In public health, a formula must be fitted to reliable data and validated before anyone uses it to guide a real decision. The formula below shows how to calculate a limit and check the valid domain of a model.
 
 ### Inspecting the Domain of the Model
 
-Consider this deliberately simplified function:
+This deliberately simplified formula is used to check how far the model stays meaningful:
 
 <BlockMath math="\begin{aligned} &amp;N(t) \\ &amp;= 285000 - \sqrt{t^2 - t + (190.68)^3} \end{aligned}" />
 
@@ -44,7 +44,7 @@ For large positive <InlineMath math="t" />:
   <BlockMath math="\begin{aligned} \lim_{t \to \infty} N(t) &amp;= \lim_{t \to \infty} (285000 - t) \\ &amp;= -\infty \end{aligned}" />
 </MathContainer>
 
-> A negative case count means the formula has been used outside the model's **valid domain**. A case count cannot be negative, so the formula is meaningful only while <InlineMath math="N(t) \geq 0" />. This simplified formula is a mathematical example, not an epidemiological forecast. It must not be used as medical or policy guidance.
+> A negative case count means the formula has been used outside the model's **valid domain**. A case count cannot be negative, so the formula is meaningful only while <InlineMath math="N(t) \geq 0" />. Read this simplified formula as a mathematical example of exponential growth inside the model, and keep it out of medical or policy decisions.
 
 ### Model Output at a Vaccination Target
 
@@ -53,6 +53,8 @@ In this model, limits and function values show what the formula gives near a cho
 Suppose the vaccination target is <InlineMath math="V \text{ people}" /> among residents older than <InlineMath math="18 \text{ years}" />. Substitute <InlineMath math="V" /> into the formula to calculate the case count given by the model at that target. This result comes from the formula alone and does not establish that the target is the best strategy.
 
 ## Application in Economics
+
+A marginal quantity measures the change produced by one extra unit. The limit turns that change into an instantaneous rate, which is what the marginal value means once the extra unit is made arbitrarily small.
 
 ### Marginal Cost Analysis
 
@@ -82,6 +84,8 @@ Since <InlineMath math="e^{-rt} \to 0" /> as <InlineMath math="t \to \infty" />,
 Here, <InlineMath math="K" /> is a parameter of the simplified model. A real environment's carrying capacity can change, so the limit does not claim that every measured population will settle permanently at one fixed value.
 
 ## Application in Technology and Science
+
+Each example applies a limit to a process that develops over time. In both cases the question is how one quantity develops while another quantity approaches a limit value.
 
 ### Digital Signal Analysis
 
@@ -193,6 +197,8 @@ The value <InlineMath math="2{,}621 \text{ cases}" /> answers the mathematical q
 > A limit describes the behavior of a formula. Real data is still needed to determine whether the formula matches actual conditions. State the model's assumptions, valid domain, units, and uncertainty when explaining the calculated result.
 
 ## Exercises
+
+Each problem gives a situation and asks for the value a quantity approaches. Identify the quantity first, then evaluate the limit.
 
 1. A pharmaceutical company models cumulative vaccine production with <InlineMath math="P(t) = 50000(1 - e^{-0.1t})" /> for <InlineMath math="t \geq 0" />. Determine the long-term production ceiling predicted by the model.
 

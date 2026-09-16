@@ -31,7 +31,7 @@ print(list2)  # ['a', [0, [3, 4, 5], 2], True]`
   ]}
 />
 
-Änderungen an `list1` sind auch über `list2` sichtbar. `list2` speichert keine Kopie von `list1`, sondern verweist auf dasselbe Listenobjekt.
+Änderungen an `list1` sind auch über `list2` sichtbar. `list2` verweist auf dasselbe Listenobjekt wie `list1`. Beide Namen zeigen auf eine einzige Liste.
 
 ### Ein vollständiger Slice erzeugt eine flache Kopie
 
@@ -128,7 +128,9 @@ print(a == c)  # True: gleiche Werte`
 
 ## Veränderliche und unveränderliche Objekte
 
-Python klassifiziert Objekte anhand ihrer Fähigkeit, nach der Erstellung geändert zu werden.
+Python teilt seine Objekte nach einer einzigen Frage ein, nämlich ob sich der Inhalt nach der Erstellung noch ändern lässt. Ein unveränderliches Objekt wie ein `int`, ein `str` oder ein `tuple` behält sein Leben lang denselben Wert, eine Operation, die wie eine Änderung aussieht, erzeugt deshalb ein neues Objekt. Ein veränderliches Objekt wie eine `list`, ein `dict` oder ein `set` trägt einen Inhalt, der sich ändern kann, während das Objekt dasselbe bleibt.
+
+Dieser Unterschied wirkt, sobald zwei Namen auf dasselbe Objekt zeigen, denn bei einem veränderlichen Objekt <Highlight>sieht jeder Name die Änderung</Highlight>.
 
 ### Unveränderliche Objekte
 

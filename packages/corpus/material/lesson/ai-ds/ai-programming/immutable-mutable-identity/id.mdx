@@ -128,7 +128,9 @@ print(a == c)  # True: nilainya setara`
 
 ## Perubahan Isi Objek dan Pengikatan Ulang Nama
 
-Objek mutable dapat diubah setelah dibuat. Objek immutable tidak dapat diubah, sehingga operasi yang menghasilkan nilai berbeda akan membuat objek baru.
+Python membagi objeknya menurut satu pertanyaan, yaitu apakah isinya bisa berubah setelah objek itu ada. Objek immutable seperti `int`, `str`, atau `tuple` menyimpan nilai yang sama sepanjang umurnya, sehingga operasi yang terlihat mengubah isi sebenarnya membuat objek baru. Objek mutable seperti `list`, `dict`, atau `set` menyimpan isi yang bisa berubah tanpa mengganti objeknya.
+
+Dua nama yang menunjuk ke satu objek mutable sama-sama melihat perubahan isi itu, karena <Highlight>setiap nama melihat perubahan yang sama</Highlight>. Pengikatan ulang nama bekerja sebaliknya, sebab nama itu langsung menunjuk objek lain dan objek sebelumnya tetap seperti semula.
 
 ### Objek Immutable
 

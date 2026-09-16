@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Iterasi Invers Bergeser
 
-Iterasi invers bergeser menargetkan nilai eigen yang paling dekat dengan pergeseran <InlineMath math="\mu" />. Kita mulai dengan matriks simetris real <InlineMath math="A \in \mathbb{R}^{n \times n}" />. Semua nilai eigennya real dan vektor eigennya dapat dipilih sebagai basis ortonormal.
+Iterasi invers bergeser <Highlight>menargetkan nilai eigen yang paling dekat dengan pergeseran</Highlight> <InlineMath math="\mu" />. Kita mulai dengan matriks simetris real <InlineMath math="A \in \mathbb{R}^{n \times n}" />. Semua nilai eigennya real dan vektor eigennya dapat dipilih sebagai basis ortonormal.
 
 Pilih <InlineMath math="\mu" /> yang bukan nilai eigen dan vektor awal satuan <InlineMath math="q_0" /> yang memiliki komponen tak nol pada arah vektor eigen tujuan. Faktorkan <InlineMath math="A-\mu I" /> sekali, lalu gunakan kembali faktorisasi tersebut.
 
@@ -51,7 +51,7 @@ Untuk matriks simetris, konvergensi menuju vektor eigen dominan memerlukan celah
 
 Vektor awal juga harus memiliki komponen tak nol pada arah vektor eigen untuk <InlineMath math="\lambda_1" />. Faktor konvergensi asimtotik sekitar <InlineMath math="|\lambda_2/\lambda_1|" />. Magnitudo dominan yang sama atau sangat berdekatan dapat memperlambat atau menggagalkan konvergensi satu vektor.
 
-## Nilai Eigen Mana yang Ditemukan
+## Nilai Eigen yang Ditemukan Setiap Metode
 
 Kata “terkecil” bersifat ambigu, sehingga target harus selalu dinyatakan secara tepat.
 
@@ -84,6 +84,8 @@ Sistem bergeser pada iterasi pertama menghasilkan
 Karena <InlineMath math="2" /> lebih dekat ke pergeseran <InlineMath math="1" /> daripada <InlineMath math="5" />, iterasi berikutnya mendorong komponen kedua menuju nol dan <InlineMath math="\rho_k" /> menuju <InlineMath math="2" />.
 
 ## Pemeriksaan Praktis
+
+Pemeriksaan berikut memutuskan apakah pasangan nilai eigen dan vektor eigen hasil hitunganmu benar tanpa mengulang seluruh determinan. Kerjakan berurutan untuk setiap pasangan yang kamu peroleh, karena setiap langkah menyaring jenis kesalahan yang berbeda: satu langkah menangkap penyimpangan angka, langkah lain menangkap pilihan tanda yang bebas.
 
 1. Faktorkan matriks bergeser dengan metode yang stabil dan pivoting jika diperlukan. Jika pergeseran tepat mengenai nilai eigen, matriks bergeser menjadi singular sehingga penyelesaian harus ditangani atau pergeserannya disesuaikan.
 2. Hentikan berdasarkan norma residu. Perubahan kecil antara dua estimasi nilai eigen belum membuktikan bahwa pasangan eigennya akurat.

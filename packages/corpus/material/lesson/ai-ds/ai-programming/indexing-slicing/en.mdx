@@ -109,7 +109,7 @@ A negative step reverses the selection direction. With a step of <InlineMath mat
 
 ## Slice Rules
 
-The following rules determine the selected elements and the length of a slice.
+A slice is written as `start:stop:step`. The start index is included, the stop index is excluded, and a negative step walks the sequence from right to left.
 
 ### Counting the Selected Elements
 
@@ -144,7 +144,7 @@ Python clips slice bounds to the valid range of the string or list. Therefore, `
 
 ## Indices Selected by a Slice
 
-You can use `range()` to show which indices a slice selects. This model explains the result without making assumptions about how each Python type performs the operation internally.
+The loop below rebuilds the slice with `range(start, stop, step)`, one index at a time.
 
 <CodeBlock
   data={[
@@ -182,7 +182,7 @@ Comparing the slice with its `range()` model shows how start, stop, and step wor
 
 ## Slice Shorthand
 
-Omit the start or stop bound when the selection should extend to one end of the data.
+Omit the start or stop bound when the selection should extend to one end of the data. An empty start means the slice begins at index `0`, and an empty stop means it runs to the final element.
 
 ### From the Beginning or to the End
 
@@ -275,6 +275,6 @@ print(f"'kasur rusak' palindrome? {is_palindrome('kasur rusak')}")`
 
 Use an index to select one item at a known position. Use a slice to select several adjacent or regularly spaced items. The form `[::-1]` reverses their order. For file extensions, avoid a fixed number of characters because extension lengths vary. `Path.suffix` reads the extension from the path structure.
 
-Slice bounds are clipped to the sequence, so `s[10:]` on a shorter string returns `""`. Direct indexing such as `s[10]` still raises `IndexError`. Use a slice only when an empty result is acceptable.
+<Highlight>Slice bounds are clipped to the sequence</Highlight>, so `s[10:]` on a shorter string returns `""`. Direct indexing such as `s[10]` still raises `IndexError`. Use a slice only when an empty result is acceptable.
 
 Negative indices count from the end. Use `s[-1]` for the last element or `s[-3:]` for the last three elements. This form selects positions near the end during file processing, text parsing, or dataset work.

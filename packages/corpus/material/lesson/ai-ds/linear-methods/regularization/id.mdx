@@ -15,7 +15,7 @@ Untuk <InlineMath math="A\in\mathbb{R}^{m\times n}" /> dan <InlineMath math="b\i
 
 Solusi minimum selalu ada, bahkan ketika persamaan <InlineMath math="Ax=b" /> tidak konsisten. Jika <InlineMath math="A" /> tidak berperingkat penuh, solusinya mungkin tidak tunggal. Jika <InlineMath math="A" /> hampir tidak berperingkat penuh, perubahan kecil pada <InlineMath math="b" /> dapat menyebabkan perubahan besar pada parameter hasil pencocokan.
 
-Dekomposisi nilai singular menunjukkan mengapa kesalahan kecil pada data dapat menghasilkan perubahan besar pada solusi. Dalam solusi kuadrat terkecil, setiap komponen data dibagi dengan nilai singular yang sesuai. Jika nilai singular itu sangat kecil, kesalahan pada komponen data tersebut ikut diperbesar.
+Dekomposisi nilai singular menunjukkan mengapa kesalahan kecil pada data dapat menghasilkan perubahan besar pada solusi. Dalam solusi kuadrat terkecil, setiap komponen data dibagi dengan nilai singular yang sesuai. Jika nilai singular itu sangat kecil, kesalahan pada komponen data yang bersangkutan ikut diperbesar.
 
 ## Masalah Tikhonov
 
@@ -78,7 +78,7 @@ Dengan <InlineMath math="L=I" />, <InlineMath math="x_0=0" />, dan <InlineMath m
 <BlockMath math="x_{0{,}2}=\begin{pmatrix}1/1{,}04\\0{,}02/0{,}05\end{pmatrix}=\begin{pmatrix}25/26\\0{,}4\end{pmatrix}" />
 </MathContainer>
 
-Perubahan data sebesar <InlineMath math="0{,}01" /> kini hanya mengubah parameter kedua sebesar <InlineMath math="0{,}02" />. Nilai <InlineMath math="0{,}4" /> juga menunjukkan bahwa penalti membuat perkiraan parameter kedua mendekati <InlineMath math="0" />. Jadi, regularisasi mengurangi sensitivitas terhadap perubahan data sekaligus menggeser perkiraan parameter.
+Perubahan data sebesar <InlineMath math="0{,}01" /> kini hanya mengubah parameter kedua sebesar <InlineMath math="0{,}02" />. Nilai <InlineMath math="0{,}4" /> juga menunjukkan bahwa penalti membuat perkiraan parameter kedua mendekati <InlineMath math="0" />. Jadi, regularisasi <Highlight>mengurangi sensitivitas terhadap perubahan data</Highlight> sekaligus menggeser perkiraan parameter.
 
 ## Memilih Parameter Regularisasi
 
@@ -103,6 +103,6 @@ Semakin besar <InlineMath math="\omega_i" />, semakin dekat nilai <InlineMath ma
 
 Jika persamaan seperti <InlineMath math="x_i=c" /> harus selalu terpenuhi, masukkan persamaan itu sebagai syarat tersendiri dalam model. Batas seperti <InlineMath math="l_i\le x_i\le u_i" /> memerlukan metode kuadrat terkecil yang dapat membatasi nilai solusi. Penalti yang sangat besar dapat mendekatkan solusi ke persamaan tersebut, tetapi tidak menjamin persamaan terpenuhi tepat dan dapat memperburuk skala numerik.
 
-## Menyelesaikan Sistem Teraugmentasi dengan QR atau SVD
+## Menyelesaikan Sistem yang Diperluas
 
 Persamaan normal dapat digunakan untuk menurunkan estimator teregularisasi dan memeriksa pengaruh <InlineMath math="\alpha" /> serta <InlineMath math="L" />. Untuk komputasi numerik, jangan membentuk <InlineMath math="A^TA" /> karena langkah itu menguadratkan bilangan kondisi. Sistem kuadrat terkecil teraugmentasi dapat diselesaikan dengan <InlineMath math="\mathrm{QR}" /> atau <InlineMath math="\mathrm{SVD}" />. Agar perhitungan mudah diperiksa dan diulang, cantumkan <InlineMath math="\alpha" />, <InlineMath math="L" />, skala parameter, norma residual, dan norma penalti yang digunakan.

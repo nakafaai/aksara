@@ -21,7 +21,7 @@ Sebagai contoh, entri seperti <InlineMath math="2+3i" /> dan <InlineMath math="-
 
 ## Matriks Adjoint
 
-Untuk matriks kompleks, padanan geometris transpose adalah **adjoint**, yang juga disebut transpose konjugat. Operasi ini menukar baris dengan kolom, lalu mengambil konjugat kompleks setiap entri.
+Untuk matriks kompleks, padanan geometris transpose adalah **adjoint**, yang juga disebut transpose konjugat. Operasi ini menukar baris dengan kolom, lalu <Highlight>mengambil konjugat kompleks setiap entri</Highlight>.
 
 Misalkan <InlineMath math="A \in \mathbb{C}^{m \times n}" /> adalah matriks kompleks <InlineMath math="m \times n" />. **Matriks adjoint** (matriks konjugat transpose) <InlineMath math="A^H" /> dari <InlineMath math="A" /> adalah matriks kompleks <InlineMath math="n \times m" /> yang diperoleh dengan menukar baris dan kolom dari <InlineMath math="A" /> dan mengambil konjugat kompleks dari setiap entri:
 
@@ -38,9 +38,9 @@ Jadi, entri pada baris <InlineMath math="j" /> dan kolom <InlineMath math="i" />
 
 ## Sifat Matriks Adjoint
 
-Matriks adjoint memenuhi sifat berikut:
+Adjoint memiliki sejumlah aturan yang memudahkanmu memindahkannya melewati penjumlahan, perkalian, dan perkalian skalar tanpa kembali ke definisi. Setiap aturan memasangkan sebuah nama dengan persamaan yang dihasilkannya, dan pasangan itulah yang kamu pakai saat menyederhanakan ekspresi secara manual.
 
-### Sifat Dasar
+### Aturan Matriks Adjoint
 
 1. **Hubungan dengan transpose real**: Untuk <InlineMath math="A \in \mathbb{R}^{m \times n} \subset \mathbb{C}^{m \times n}" />, berlaku <InlineMath math="A^H = A^T" />
 
@@ -51,6 +51,8 @@ Konjugasi kompleks tidak mengubah entri real. Karena itu, adjoint matriks terseb
 Jika kita mengambil adjoint dari adjoint, kita kembali ke matriks asal.
 
 ### Sifat Operasi Linear
+
+Kedua aturan ini berlaku selama ukuran matriksnya sesuai, sehingga adjoint dapat melewati penjumlahan atau perkalian skalar tanpa membuka entri satu per satu. Pekerjaanmu tetap berada pada tingkat matriks, bukan pada tingkat entri.
 
 3. **Linearitas penjumlahan**: <InlineMath math="(A + B)^H = A^H + B^H" />
 
@@ -90,8 +92,6 @@ Untuk <InlineMath math="v=(1+i,2-i)^T" />, hitung norma Hermitian sebagai beriku
 Inilah alasan <InlineMath math="v^Tv" /> keliru jika dipakai dalam ruang kompleks: tanpa konjugasi, hasilnya tidak harus real atau positif.
 
 ### Sifat Norma Euclidean
-
-Norma Euclidean memenuhi sifat-sifat berikut:
 
 **Homogenitas**: <InlineMath math="\|\alpha v\|_2 = |\alpha| \|v\|_2" />
 

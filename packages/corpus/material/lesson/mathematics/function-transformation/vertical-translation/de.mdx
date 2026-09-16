@@ -15,16 +15,21 @@ Eine vertikale Verschiebung bewegt den Graphen einer Funktion entlang der <Inlin
 
 Aus der Funktion <InlineMath math="f(x)" /> entsteht die verschobene Funktion <InlineMath math="g(x) = f(x) + k" />. Die Zahl <InlineMath math="k" /> gibt Richtung und Länge der Verschiebung an.
 
-### Regeln der vertikalen Verschiebung
+### Die Vorzeichenregel lesen
 
-Für jede Funktion <InlineMath math="f(x)" /> gilt:
+Sieh dir an, wo <InlineMath math="k" /> in der folgenden Gleichung steht. Die Zahl steht außerhalb der Funktion und wird zum fertigen Ausgabewert addiert.
 
 <BlockMath math="g(x) = f(x) + k" />
 
-Für die Richtung der Verschiebung gelten diese Regeln:
-- Für <InlineMath math="k > 0" /> verschiebt sich der Graph **nach oben**, und zwar um <InlineMath math="k \text{ Einheiten}" />.
-- Für <InlineMath math="k < 0" /> verschiebt sich der Graph **nach unten**, und zwar um <InlineMath math="|k| \text{ Einheiten}" />.
-- Für <InlineMath math="k = 0" /> bleibt der Graph unverändert.
+Weil <InlineMath math="k" /> zur Ausgabe addiert wird, wirkt sein Vorzeichen <Highlight>genau so, wie du es liest</Highlight>. Ein positives <InlineMath math="k" /> hebt den Graphen an, ein negatives senkt ihn.
+
+| Wert von <InlineMath math="k" /> | Verschiebung des Graphen | Beispiel am Scheitelpunkt |
+| --- | --- | --- |
+| <InlineMath math="k > 0" /> | Um <InlineMath math="k \text{ Einheiten}" /> nach oben | <InlineMath math="(0,0)" /> wird zu <InlineMath math="(0,k)" /> |
+| <InlineMath math="k < 0" /> | Um <InlineMath math="\lvert k \rvert \text{ Einheiten}" /> nach unten | <InlineMath math="(0,0)" /> wird zu <InlineMath math="(0,k)" /> |
+| <InlineMath math="k = 0" /> | Der Graph verschiebt sich nicht | <InlineMath math="(0,0)" /> bleibt an seinem Platz |
+
+Alle drei Zeilen nutzen den Scheitelpunkt <InlineMath math="(0,0)" /> als Bezugspunkt, damit sich die Richtung leicht vergleichen lässt. Bei einer Funktion mit einem anderen Bezugspunkt wandert jeder Punkt um dieselbe Strecke in dieselbe Richtung.
 
 ## Visualisierung der vertikalen Verschiebung
 
@@ -120,22 +125,20 @@ An den Scheitelpunkten ist die Verschiebung direkt ablesbar:
 - Nach der vertikalen Verschiebung <InlineMath math="+4" /> liegt der Scheitelpunkt von <InlineMath math="g(x) = x^2 + 4" /> bei <InlineMath math="(0, 4)" />
 - Nach der vertikalen Verschiebung <InlineMath math="-3" /> liegt der Scheitelpunkt von <InlineMath math="h(x) = x^2 - 3" /> bei <InlineMath math="(0, -3)" />
 
-## Eigenschaften der vertikalen Verschiebung
+## Was die vertikale Verschiebung mitnimmt
 
-### Die Graphenform bleibt unverändert
+Wenn du die Richtung kennst, bleibt noch die Frage, welche Teile der Funktion mitwandern. Eine vertikale Verschiebung greift an der Ausgabe an. Die Höhe des Graphen verschiebt sich also, während die erlaubten Werte von <InlineMath math="x" /> gleich bleiben.
 
-Eine vertikale Verschiebung erhält die Form des Graphen. Jeder Punkt bewegt sich um dieselbe vertikale Strecke, seine Abszisse bleibt unverändert.
+Betrachte einen Punkt <InlineMath math="(a, b)" /> auf dem Graphen von <InlineMath math="f(x)" />. Nach einer Verschiebung um <InlineMath math="k" /> liegt dieser Punkt als <InlineMath math="(a, b + k)" /> auf dem Graphen von <InlineMath math="f(x) + k" />. Die <InlineMath math="x" />-Koordinate bleibt gleich, nur der <InlineMath math="y" />-Wert wandert.
 
-### Wirkung auf Koordinatenpunkte
+| Teil der Funktion | Vor der Verschiebung | Nach der Verschiebung um <InlineMath math="k" /> |
+| --- | --- | --- |
+| Form des Graphen | Die ursprüngliche Form | Dieselbe Form, nur vertikal verschoben |
+| Punkt <InlineMath math="(a, b)" /> | Auf dem Graphen von <InlineMath math="f(x)" /> | Wandert zu <InlineMath math="(a, b + k)" /> |
+| Definitionsbereich | Das ursprüngliche Intervall | Dasselbe Intervall wie vorher |
+| Wertebereich <InlineMath math="[c, d]" /> | Das ursprüngliche Intervall | Wird zu <InlineMath math="[c + k, d + k]" /> |
 
-Liegt der Punkt <InlineMath math="(a, b)" /> auf dem Graphen von <InlineMath math="f(x)" />, liegt nach der Verschiebung um <InlineMath math="k" /> der Punkt <InlineMath math="(a, b + k)" /> auf dem Graphen von <InlineMath math="f(x) + k" />.
-
-### Definitionsbereich und Wertebereich
-
-- **Definitionsbereich**: Bleibt bei einer vertikalen Verschiebung unverändert.
-- **Wertebereich**: Verschiebt sich um <InlineMath math="k \text{ Einheiten}" />.
-
-Ist der Wertebereich der ursprünglichen Funktion <InlineMath math="[c, d]" />, wird er nach der Verschiebung um <InlineMath math="k" /> zu <InlineMath math="[c + k, d + k]" />.
+Der Wertebereich wandert mit, weil er die Höhe der Ausgabewerte beschreibt. Der Definitionsbereich bleibt gleich, weil sich die erlaubten Werte von <InlineMath math="x" /> nicht ändern. Bei einer [horizontalen Verschiebung](/de/faecher/mathematik/funktionstransformationen/horizontale-verschiebung) tauschen die beiden Bereiche ihre Rollen.
 
 ## Einen Exponentialgraphen vertikal verschieben
 
@@ -181,21 +184,23 @@ Die Exponentialfunktion <InlineMath math="f(x) = 2^x" /> wird vertikal verschobe
   ]}
 />
 
-Für Exponentialfunktionen:
-- Die horizontale Asymptote <InlineMath math="y = 0" /> von <InlineMath math="f(x) = 2^x" /> wird zur Geraden <InlineMath math="y = k" /> der Funktion <InlineMath math="f(x) + k" />.
-- Der <InlineMath math="y" />-Achsenabschnitt verschiebt sich von <InlineMath math="(0, 1)" /> nach <InlineMath math="(0, 1 + k)" />
+Die horizontale Asymptote bei <InlineMath math="y = 0" /> von <InlineMath math="f(x) = 2^x" /> wandert zur Geraden <InlineMath math="y = k" /> der Funktion <InlineMath math="f(x) + k" />. Anders als bei einer horizontalen Verschiebung ändert sich hier die Höhe, der sich die Kurve nähert, denn die Asymptote bleibt nicht an der <InlineMath math="x" />-Achse fest.
+
+Der <InlineMath math="y" />-Achsenabschnitt wandert von <InlineMath math="(0, 1)" /> nach <InlineMath math="(0, 1 + k)" />. Seine <InlineMath math="x" />-Koordinate bleibt bei null, weil sich der Graph nur vertikal bewegt.
 
 ## Übungen
 
+Die drei Aufgaben nutzen die Vorzeichenregel, die du gerade gelernt hast. Jede Aufgabe addiert die Konstante zur Ausgabe, also achte auf den Wert von <InlineMath math="k" />. Rechne zuerst ohne die Lösungen und vergleiche danach deine Schritte mit den ausführlichen Rechenwegen.
+
 1. Gegeben ist die Funktion <InlineMath math="f(x) = x^2 + 4x + 3" />. Bestimme die Gleichung nach einer vertikalen Verschiebung um <InlineMath math="5 \text{ Einheiten}" /> nach oben.
 
-2. Der Graph der Funktion <InlineMath math="g(x) = 3x + 2" /> wird um <InlineMath math="7 \text{ Einheiten}" /> vertikal nach unten verschoben. Bestimme:
-   - die Gleichung der verschobenen Funktion
-   - den <InlineMath math="y" />-Achsenabschnitt nach der Verschiebung
+2. Der Graph der Funktion <InlineMath math="g(x) = 3x + 2" /> wird um <InlineMath math="7 \text{ Einheiten}" /> vertikal nach unten verschoben. Bestimme die Gleichung der verschobenen Funktion und danach den <InlineMath math="y" />-Achsenabschnitt nach der Verschiebung.
 
 3. Die Funktion <InlineMath math="h(x) = \sqrt{x}" /> wird so verschoben, dass der Punkt <InlineMath math="(4, 2)" /> auf <InlineMath math="(4, 5)" /> abgebildet wird. Bestimme die Verschiebungskonstante und die Gleichung der verschobenen Funktion.
 
 ### Lösungen
+
+Jede Lösung beginnt mit dem Addieren der Konstanten zu allen Ausgabewerten, denn dort steckt die Vorzeichenregel. Danach wird die Gleichung vereinfacht und der neue Graph geprüft, damit die Richtung der Verschiebung stimmt.
 
 1. Vertikale Verschiebung nach oben um <InlineMath math="5 \text{ Einheiten}" />: <InlineMath math="f'(x) = f(x) + 5 = x^2 + 4x + 3 + 5 = x^2 + 4x + 8" />
 

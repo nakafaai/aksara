@@ -7,7 +7,7 @@ export const metadata = {
   subject: "AI Programming",
 };
 
-## NumPy Introduction
+## Working with Arrays in Python
 
 NumPy helps Python process numerical data efficiently. Python lists can hold mixed types, while a NumPy array normally stores values of one data type in a compact structure. For vectorized numerical operations over many values, this representation is often faster than an equivalent Python loop.
 
@@ -20,7 +20,7 @@ NumPy arrays provide the following advantages for scientific programming:
 3. **Compact storage** for homogeneous numerical values
 4. **A large collection of ready-to-use mathematical operations**
 
-Vectorization means expressing one operation for an entire array. NumPy still works through the elements internally, but that loop runs in optimized compiled code.
+Vectorization means <Highlight>expressing one operation for an entire array</Highlight>. NumPy still works through the elements internally, but that loop runs in optimized compiled code.
 
 <CodeBlock
   data={[
@@ -156,7 +156,7 @@ print("Automatic data type:", arr_mixed.dtype)  # Output: Automatic data type: f
 
 ## Array Creation Functions
 
-NumPy provides specialized functions for creating arrays with predictable shapes and values.
+Writing every element by hand only works for tiny examples. NumPy therefore ships dedicated creation functions that build an array from a rule instead of from a literal list, which keeps the code short and the shape explicit. The functions below fall into three groups: filled arrays with a constant value, arrays of random numbers, and arrays that follow a mathematical pattern.
 
 ### Constant Value Functions
 
@@ -335,7 +335,7 @@ print("Dtype:", a.dtype)  # Output: Dtype: float64`
 
 ## Arrays from Sequences
 
-NumPy provides specialized functions for creating arrays from value sequences with specific patterns.
+Some arrays are easier to describe as a sequence than as a rule for each element: every value between two limits, or a fixed number of evenly spaced points. `np.arange` and `np.linspace` build such arrays, and the difference between them is how the end of the sequence is specified.
 
 ### NumPy Arange Function
 
@@ -399,6 +399,8 @@ print("arange: step is given, number of elements follows")`
 />
 
 ### Comparing arange and linspace
+
+Both functions build an array from a range, and the parameter you pass decides the difference. `arange` fixes the step between elements, while `linspace` fixes how many elements you want.
 
 | Aspect | `np.arange` | `np.linspace` |
 |--------|-------------|---------------|

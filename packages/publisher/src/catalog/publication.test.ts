@@ -24,6 +24,7 @@ const compilerState = vi.hoisted(() => ({ calls: 0 }));
 const baseComponents = [
   "BlockMath",
   "ContentGrid",
+  "Highlight",
   "InlineMath",
   "MathContainer",
 ];

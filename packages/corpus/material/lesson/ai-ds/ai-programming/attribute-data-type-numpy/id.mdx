@@ -127,7 +127,7 @@ print("Array result:", a)  # Output: Array result: [0. 1. 2.]`
 
 ## Atribut Array NumPy
 
-Setiap array NumPy menyediakan atribut yang menjelaskan bentuk, jumlah elemen, tipe data, dan penggunaan memorinya.
+Setiap array NumPy menyediakan atribut yang menjelaskan bentuk, jumlah elemen, tipe data, dan penggunaan memorinya. Membaca atribut tersebut hampir tidak memakan waktu karena nilainya tersimpan bersama array, bukan dihitung dengan menelusuri elemen satu per satu.
 
 ### Atribut Dimensi dan Bentuk
 
@@ -159,6 +159,8 @@ print("Byte yang dipakai elemen:", a.nbytes)  # Output: Byte yang dipakai elemen
 
 ### Atribut Array
 
+Sebuah array melaporkan strukturnya sendiri melalui atribut. Tabel berikut memuat atribut yang paling sering dibaca dan nilai yang dikembalikan masing-masing untuk array <InlineMath math="2 \times 3" />.
+
 | Atribut | Fungsi | Contoh Hasil |
 |---------|---------|--------------|
 | `ndarray.shape` | Jumlah elemen di setiap axis | `(2, 3)` untuk array <InlineMath math="2 \times 3" /> |
@@ -169,7 +171,7 @@ print("Byte yang dipakai elemen:", a.nbytes)  # Output: Byte yang dipakai elemen
 
 ### Konsistensi Tipe Data
 
-Semua elemen dalam array NumPy biasa berbagi satu tipe data. Objek `numpy.dtype` menjelaskan cara nilai tersebut disimpan dan dibaca di dalam memori. Jika input memiliki tipe berbeda, NumPy memakai aturan promosi tipe untuk mencari dtype bersama yang cocok. Presisi dan kategori tipe input menentukan dtype hasil. Frekuensi kemunculan setiap tipe tidak memengaruhi aturan ini.
+Semua elemen dalam array NumPy biasa berbagi satu tipe data. Objek `numpy.dtype` menjelaskan cara nilai tersebut disimpan dan dibaca di dalam memori. Jika input memiliki tipe berbeda, <Highlight>NumPy memakai aturan promosi tipe</Highlight> untuk mencari dtype bersama yang cocok. Presisi dan kategori tipe input menentukan dtype hasil. Frekuensi kemunculan setiap tipe tidak memengaruhi aturan ini.
 
 <CodeBlock
   data={[
@@ -196,7 +198,7 @@ print("Mixed result:", a)  # Output: Mixed result: [0. 1. 2.]`
 
 ## Konversi dan Manipulasi Tipe Data
 
-NumPy menyediakan beberapa cara untuk mengonversi tipe data array sesuai kebutuhan analisis.
+Tipe data yang dipakai sebuah array saat dibuat jarang menjadi tipe yang dibutuhkan di akhir perhitungan. Konversi berguna untuk memperkecil penggunaan memori, memenuhi kebutuhan fungsi yang mensyaratkan tipe tertentu, dan menjaga aritmetika bilangan bulat agar tidak berubah menjadi bilangan pecahan. Sebelum mengonversi, periksa dulu tipe apa yang benar-benar dibutuhkan hasil perhitungan.
 
 ### Method Konversi Tipe Data
 
@@ -300,7 +302,7 @@ for name, arr in arrays.items():
 
 ## Penggunaan Praktis Atribut Array
 
-Atribut array dapat dipakai untuk melacak kesalahan, mengoptimalkan operasi, dan memeriksa data ilmiah.
+Atribut array terutama berguna sebagai alat kontrol saat mengolah data. Dengan `shape`, `ndim`, dan `dtype`, kamu bisa memeriksa apakah hasil antara masih punya struktur yang diharapkan dan menemukan kesalahan sebelum kesalahan itu terbawa ke langkah berikutnya.
 
 ### Analisis Struktur Data
 

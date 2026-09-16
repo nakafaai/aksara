@@ -11,7 +11,7 @@ export const metadata = {
 
 Cramer's rule solves a linear system directly from determinants when its coefficient matrix is invertible.
 
-It expresses each solution component as a ratio of two determinants. For large systems, Gaussian elimination requires much less computation.
+It expresses each solution component as <Highlight>a ratio of two determinants</Highlight>. For large systems, Gaussian elimination requires much less computation.
 
 ## Adjugate Matrix
 
@@ -32,8 +32,6 @@ Here, <InlineMath math="A_{ji}" /> is the submatrix formed by deleting row <Inli
 The adjugate matrix <InlineMath math="\tilde{A}" /> contains the **cofactors** of <InlineMath math="A" /> in transposed positions.
 
 ### Structure of the Adjugate Matrix
-
-The adjugate matrix has the following structure:
 
 Write each minor determinant as <InlineMath math="c_{ij}" />. The alternating signs and transposed indices remain visible in the whole adjugate:
 
@@ -102,9 +100,7 @@ Compute each entry of the numerator matrix:
   <BlockMath math="= \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I" />
 </MathContainer>
 
-## Theorem Statement
-
-Now we can formulate Cramer's rule for solving systems of linear equations.
+## Solving a Linear System with Determinants
 
 Let <InlineMath math="A \in \mathbb{R}^{n \times n}" /> be an invertible matrix and <InlineMath math="a^1, a^2, \ldots, a^n \in \mathbb{R}^n" /> be the columns of <InlineMath math="A" />. For vector <InlineMath math="b \in \mathbb{R}^n" />, the solution <InlineMath math="x \in \mathbb{R}^n" /> of the linear equation system <InlineMath math="A \cdot x = b" /> is given by:
 
@@ -120,7 +116,7 @@ Cramer's formula applies for <InlineMath math="j = 1, 2, \ldots, n" />.
 
 To calculate the <InlineMath math="j" />-th component of solution <InlineMath math="x" />, we replace the <InlineMath math="j" />-th column of matrix <InlineMath math="A" /> with vector <InlineMath math="b" />, then calculate the determinant of this modified matrix and divide it by the determinant of the original matrix <InlineMath math="A" />.
 
-## Proof Using Laplace Expansion
+## Proving the Solution Formula
 
 The proof of Cramer's rule uses Laplace expansion and the adjugate identity.
 

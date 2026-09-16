@@ -114,11 +114,11 @@ True`
   ]}
 />
 
-Die Operatoren `and` und `or` verwenden eine Kurzschlussauswertung, was bedeutet, dass die Auswertung stoppt, wenn das Ergebnis ermittelt werden kann, ohne dass alle Operanden ausgewertet werden müssen. Beide geben das zuletzt ausgewertete Argument zurück, während der `not`-Operator immer einen neuen booleschen Wert erstellt.
+Die Operatoren `and` und `or` verwenden <Highlight>eine Kurzschlussauswertung</Highlight>, was bedeutet, dass die Auswertung stoppt, wenn das Ergebnis ermittelt werden kann, ohne dass alle Operanden ausgewertet werden müssen. Beide geben das zuletzt ausgewertete Argument zurück, während der `not`-Operator immer einen neuen booleschen Wert erstellt.
 
 ## Werte im booleschen Kontext
 
-Python verfügt über spezielle Regeln, um zu bestimmen, welche Werte im booleschen Kontext als `False` oder `True` betrachtet werden.
+Jedes Python-Objekt darf dort stehen, wo eine Bedingung erwartet wird, auch wenn es nicht die Werte `True` und `False` sind. Python entscheidet dann selbst, welche Werte als falsch gelten. Nach dieser Regel verhalten sich eine leere Liste, die Zahl null und die leere Zeichenkette in einem `if` wie `False`, während ein nicht leeres Behältnis wie `True` wirkt.
 
 ### Falsche und wahre Werte
 
@@ -210,9 +210,11 @@ True`
 
 ## Vergleich von Gleitkommazahlen
 
-Viele Dezimalbrüche besitzen keine exakte endliche binäre Gleitkommadarstellung. Arithmetische Operationen runden Zwischenergebnisse. Zwei mathematisch gleichwertige Rechnungen können deshalb nahe beieinanderliegende, aber ungleiche Floats liefern.
+Viele Dezimalbrüche besitzen keine exakte endliche binäre Gleitkommadarstellung. Arithmetische Operationen runden Zwischenergebnisse. Zwei mathematisch gleichwertige Rechnungen können deshalb nahe beieinanderliegende, aber ungleiche Floats liefern. Ein Vergleich mit `==` schlägt dann fehl, obwohl beide Werte als gleich gelten sollten.
 
 ### Genauigkeitsprobleme bei Float Werten
+
+Das Diagramm verfolgt den Weg eines Dezimalwerts in die binäre Gleitkommadarstellung, und genau dort entsteht die Überraschung beim Vergleich.
 
 <Mermaid
   title="Gleich aussehende Dezimalwerte können sich unterscheiden"

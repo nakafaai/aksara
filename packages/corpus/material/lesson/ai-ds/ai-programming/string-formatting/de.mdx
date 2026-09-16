@@ -11,9 +11,11 @@ export const metadata = {
 
 Stringformatierung bestimmt, wie Werte als Text erscheinen. Damit kannst du Tabellenspalten ausrichten, eine Zahlendarstellung wählen, die Genauigkeit steuern und verständliche Meldungen zusammensetzen. Python stellt dafür die Methode `str.format()` und F-Strings bereit.
 
-Ein einfaches Ersetzungsfeld hat die Form `{field_name:format_spec}`. Eine Breite innerhalb der Formatspezifikation legt eine Mindestbreite und keine Höchstbreite fest. Braucht der formatierte Wert mehr Platz, gibt Python ihn vollständig aus, statt ihn abzuschneiden.
+Ein einfaches Ersetzungsfeld hat die Form `{field_name:format_spec}`. Eine Breite innerhalb der Formatspezifikation legt eine Mindestbreite fest. Braucht der formatierte Wert mehr Platz, gibt Python ihn vollständig aus.
 
 ### Formattypen für Zahlensysteme
+
+Ein Formatbezeichner kann eine ganze Zahl in einem anderen Zahlensystem darstellen. Die Tabelle nennt die Typzeichen und die Ausgabe, die jedes für denselben Wert erzeugt.
 
 | Formattyp | Symbol | Beispieleingabe | Ausgabe | Verwendung |
 |-------------|---------|--------------|--------|-------|
@@ -41,7 +43,11 @@ print('|{0:1}|'.format('xxx'))      # Ausgabe: |xxx|`
 
 ## Positionseinstellungen und Füllzeichen
 
+Ein Feld fester Breite braucht eine Regel, wo der Text steht und womit der Rest gefüllt wird. Das Ausrichtungszeichen setzt den Wert an den linken oder rechten Rand oder in die Mitte dieser Breite, und ein Füllzeichen bestimmt, welches Symbol den übrigen Platz auffüllt. Zusammen halten sie Zahlen und Beschriftungen in sauberen Spalten.
+
 ### Ausrichtungsoptionen
+
+Das Diagramm vergleicht denselben Text links, rechts und mittig in einer festen Breite, damit das Ausrichtungszeichen leicht zu lesen ist.
 
 <Mermaid
   title="Wie Breite Text platziert"
@@ -68,7 +74,7 @@ print('|{0:1}|'.format('xxx'))      # Ausgabe: |xxx|`
 
 ### Füllzeichen und erweiterte Formatierung
 
-Das Füllzeichen belegt den ungenutzten Raum im Feld. Standardmäßig ist es ein Leerzeichen und steht unmittelbar vor dem Ausrichtungssymbol. In `str.format()` und F-Strings können die literalen Zeichen `{` und `}` nicht als Füllzeichen dienen.
+Das Füllzeichen belegt den ungenutzten Raum im Feld. Standardmäßig ist es ein Leerzeichen und <Highlight>steht unmittelbar vor dem Ausrichtungssymbol</Highlight>. In `str.format()` und F-Strings können die literalen Zeichen `{` und `}` nicht als Füllzeichen dienen.
 
 <CodeBlock
   data={[
@@ -116,6 +122,8 @@ Ersetzungsfelder können Positionsargumente über einen Index, Schlüsselwortarg
 
 ### Vergleich der Referenzmethoden
 
+Ein Formatstring kann seine Argumente auf drei Arten benennen. Die Tabelle vergleicht sie danach, was jede Art braucht und wo sie endet.
+
 | Methode | Syntax | Vorteile | Einschränkungen |
 |--------|---------|-----------|-------------|
 | Nummeriert | `{0}, {1}` | Explizite Kontrolle, kann wiederholt werden | Jeder verwendete Index muss vorhanden sein |
@@ -154,6 +162,8 @@ except IndexError as e:
 />
 
 ## Präzision und Vorzeichen
+
+Die Nachkommastellen und die Darstellung eines Vorzeichens werden getrennt gesteuert. Die Präzision legt fest, wie viele Stellen nach dem Komma erscheinen, das Vorzeichenformat entscheidet, ob ein Pluszeichen auch bei positiven Zahlen steht.
 
 ### Präzision für Dezimalzahlen
 
@@ -219,6 +229,8 @@ print('Tiny number g: {0:12g}'.format(1.1e-10))  # Ausgabe: Tiny number g:      
 />
 
 ## Formatierte Strings und dynamische Vorlagen
+
+Ein f-String hält einen Ausdruck und den umgebenden Text an einer Stelle, sodass der Ausdruck beim Ausführen der Zeile ausgewertet wird und das Ergebnis die aktuellen Werte zeigt. Eine Vorlage, die als String gespeichert ist, leistet dieselbe Arbeit, wenn der Text beim Schreiben des Codes noch nicht feststeht.
 
 ### Formatierte Strings und Version von Python
 

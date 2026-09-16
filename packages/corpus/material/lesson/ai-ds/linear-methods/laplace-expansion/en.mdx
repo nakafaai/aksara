@@ -9,11 +9,11 @@ export const metadata = {
 
 ## Expanding a Determinant Along a Row or Column
 
-Laplace expansion writes a determinant as a sum of cofactors along any one row or column. Each cofactor contains the determinant of a matrix that is one size smaller.
+Laplace expansion writes a determinant as a sum of cofactors <Highlight>along any one row or column</Highlight>. Each cofactor contains the determinant of a matrix that is one size smaller.
 
 Choose a row or column with many zero entries. Its zero terms vanish, so fewer smaller determinants need to be calculated.
 
-## Theorem Statement
+## Expanding a Determinant Along a Row or Column
 
 For matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" />, the determinant can be calculated in two ways:
 
@@ -42,6 +42,8 @@ The determinant can also be calculated based on row <InlineMath math="i" />:
 The row-expansion formula holds for every <InlineMath math="i \in \{1, 2, \ldots, n\}" />.
 
 ## Cofactor Expansion by Matrix Size
+
+The expansion rule works the same way at every size, but the number of terms grows quickly, so the cases below show how the work changes as the matrix gets larger.
 
 ### Two by Two Matrix
 
@@ -121,7 +123,7 @@ Since the first element is zero, the calculation becomes:
 
 By choosing rows or columns that have many zeros, we can save calculations.
 
-## Determinant of Transpose Matrix
+## Determinant After Swapping Rows and Columns
 
 Laplace expansion also gives the following property:
 
@@ -140,4 +142,4 @@ For example:
 
 ## Larger Matrices
 
-Laplace expansion remains valid for <InlineMath math="n = 4" /> and larger matrices. For dense matrices, Gaussian elimination or <InlineMath math="\mathrm{LU}" /> factorization is usually preferred because it requires <InlineMath math="O(n^3)" /> arithmetic operations instead of factorial growth.
+Laplace expansion remains valid for <InlineMath math="n = 4" /> and larger matrices. For dense matrices, Gaussian elimination or <InlineMath math="\mathrm{LU}" /> factorization is usually preferred because it requires about <InlineMath math="O(n^3)" /> arithmetic operations, while the cofactor route grows factorially.

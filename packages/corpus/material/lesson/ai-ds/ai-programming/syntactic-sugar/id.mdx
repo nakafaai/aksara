@@ -92,7 +92,7 @@ print(y_standard)
   ]}
 />
 
-List comprehension dapat menyatakan transformasi atau filter sederhana secara ringkas. Bentuk ini sering efisien, tetapi keterbacaan lebih penting daripada menghemat baris. Gunakan loop biasa jika ekspresinya mulai sulit dipahami. Notasinya menyerupai notasi pembentuk himpunan, tetapi list Python mempertahankan urutan dan nilai duplikat, sedangkan himpunan matematika tidak.
+List comprehension dapat menyatakan transformasi atau filter sederhana secara ringkas. Bentuk ini sering efisien, tetapi <Highlight>keterbacaan lebih penting daripada menghemat baris</Highlight>. Gunakan loop biasa jika ekspresinya mulai sulit dipahami. Notasinya menyerupai notasi pembentuk himpunan, tetapi list Python mempertahankan urutan dan nilai duplikat, sedangkan himpunan matematika tidak.
 
 Sebagai contoh, `[i**2 for i in x]` dapat dibaca sebagai "kuadrat dari i untuk setiap i dalam x", yang sangat mirip dengan notasi matematika <InlineMath math="\{i^2 : i \in X\}" />.
 
@@ -103,6 +103,8 @@ Ekspresi lambda membuat objek fungsi tanpa statement `def`. Gunakan lambda untuk
 Isi fungsi `lambda` hanya boleh berupa satu ekspresi, dan hasil ekspresi itu menjadi return value. Fungsi tersebut boleh memanggil fungsi lain seperti `print()`, tetapi tidak dapat memuat statement seperti `return`, assignment biasa, `for`, atau `while`. Fungsi `lambda` dapat disimpan dalam variabel, tetapi `def` bernama biasanya lebih jelas jika fungsi akan digunakan kembali.
 
 ### Cara Menggunakan Lambda
+
+Lambda menuliskan fungsi kecil dalam satu ekspresi. Contoh berikut memperlihatkan sintaksisnya lalu menugaskannya ke sebuah nama.
 
 <CodeBlock
   data={[
@@ -158,7 +160,7 @@ print(sorted_by_grade)  # Output: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]`
 
 ## Fitur Syntactic Sugar Lainnya
 
-Python memiliki sintaks ringkas lain untuk operasi yang umum. Bentuk tersebut dapat meningkatkan keterbacaan, tetapi tidak menjamin performa runtime yang lebih baik.
+Python memiliki sintaks ringkas lain untuk operasi yang umum. Bentuk tersebut dapat meningkatkan keterbacaan, tetapi tidak menjamin performa runtime yang lebih baik. Setiap bentuk menggantikan perintah yang lebih panjang tanpa mengubah hasil yang dihitung program.
 
 ### Assignment Operators
 
@@ -242,8 +244,6 @@ print(f"After: a={a}, b={b}")  # Output: After: a=10, b=5`
 />
 
 ## Perbandingan Sintaks
-
-Untuk memahami keunggulan syntactic sugar, mari bandingkan cara penulisan yang berbeda:
 
 | Konsep | Sintaks Standar | Syntactic Sugar |
 |--------|----------------|-----------------|

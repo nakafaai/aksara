@@ -11,11 +11,11 @@ export const metadata = {
 
 Angenommen, jeder Freiwurf trifft unabhängig mit der Wahrscheinlichkeit <InlineMath math="p=0{,}8" />, und <InlineMath math="X" /> zählt die Treffer bei <InlineMath math="n=10" /> Versuchen. Dann gilt <InlineMath math="E(X)=8" />: Über viele Serien mit je zehn Würfen nähert sich die mittlere Trefferzahl dem Wert <InlineMath math="8" />.
 
-Der Erwartungswert ist der mit Wahrscheinlichkeiten gewichtete Mittelwert einer Zufallsvariablen. Er beschreibt einen langfristigen Durchschnitt, kein garantiertes Ergebnis in einer einzelnen Serie. Ein Erwartungswert kann außerdem nicht ganzzahlig sein, obwohl die Zufallsvariable selbst nur ganzzahlige Werte annimmt.
+Der Erwartungswert ist der mit Wahrscheinlichkeiten gewichtete Mittelwert einer Zufallsvariablen. Er beschreibt einen langfristigen Durchschnitt, und eine einzelne Serie kann davon abweichen. Ein Erwartungswert kann außerdem nicht ganzzahlig sein, obwohl die Zufallsvariable selbst nur ganzzahlige Werte annimmt.
 
 ## Erwartungswert einer Binomialverteilung
 
-Eine binomialverteilte Zufallsvariable zählt Erfolge in einer festen Anzahl unabhängiger Versuche mit gleicher Erfolgswahrscheinlichkeit. Ihr Erwartungswert gibt die langfristige mittlere Zahl der Erfolge an. Er muss nicht mit der wahrscheinlichsten Erfolgszahl übereinstimmen, denn diese wird durch den Modus beschrieben.
+Eine binomialverteilte Zufallsvariable zählt Erfolge in einer festen Anzahl unabhängiger Versuche mit gleicher Erfolgswahrscheinlichkeit. Ihr Erwartungswert gibt <Highlight>die langfristige mittlere Zahl der Erfolge</Highlight> an. Er muss nicht mit der wahrscheinlichsten Erfolgszahl übereinstimmen, denn diese wird durch den Modus beschrieben.
 
 Für die Binomialverteilung <InlineMath math="b_{n,p}(x)" /> gilt:
 
@@ -27,7 +27,7 @@ Ist die Erfolgswahrscheinlichkeit in jedem Versuch <InlineMath math="p" />, dann
 
 <BlockMath math="E(X) = n \times p" />
 
-## Woher kommt die Formel
+## Den Erwartungswert herleiten
 
 Die Formel folgt direkt daraus, dass jeder einzelne Versuch entweder null oder einen Erfolg beiträgt.
 
@@ -52,15 +52,13 @@ Der Erwartungswert ist somit das Produkt aus Versuchszahl und Erfolgswahrscheinl
 
 ## Würfeln
 
-Betrachten wir dazu ein Beispiel.
-
 **Aufgabe:**
 
 Ein fairer Würfel wird <InlineMath math="7" />-mal geworfen. Wie oft ist dabei im Mittel eine Fünf zu erwarten?
 
 **Lösung:**
 
-Zunächst prüfen wir die Voraussetzungen:
+Wir prüfen die Voraussetzungen:
 
 - Es gibt nur zwei Möglichkeiten: **Erfolg** (Würfeln eines <InlineMath math="5" />) oder **Misserfolg** (Würfeln einer anderen Zahl als <InlineMath math="5" />)
 - Feste Anzahl von Versuchen: <InlineMath math="7" /> Würfe

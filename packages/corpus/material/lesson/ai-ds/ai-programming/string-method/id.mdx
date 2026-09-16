@@ -9,7 +9,7 @@ export const metadata = {
 
 ## String Bersifat Immutable
 
-String Python bersifat immutable, sehingga isi objek string tidak dapat diedit langsung. Operasi pada string menghasilkan string baru. Variabel dapat diarahkan ke objek baru tersebut, sedangkan objek string asal tetap tidak berubah.
+<Highlight>String Python bersifat immutable</Highlight>, sehingga isi objek string tidak dapat diedit langsung. Operasi pada string menghasilkan string baru. Variabel dapat diarahkan ke objek baru tersebut, sedangkan objek string asal tetap tidak berubah.
 
 Karena itu, assignment ke posisi karakter menghasilkan `TypeError`. List berbeda karena elemennya dapat diganti langsung.
 
@@ -76,6 +76,8 @@ print(f"Penulisan raw \\n: {len(raw_newline)} code point")`
 Dalam string literal biasa, penulisan `\n` dan `\t` pada kode sumber masing-masing menjadi satu code point newline atau tab. Dalam raw string seperti `r"\n"`, backslash dan `n` tetap menjadi dua code point terpisah.
 
 ## Method Transformasi String
+
+Method berikut mengembalikan string baru dan membiarkan string aslinya tetap. Hal itu terjadi karena string bersifat immutable, sehingga setiap perubahan menghasilkan nilai baru, bukan mengubah nilai lama.
 
 ### Mengubah Case Huruf
 
@@ -160,6 +162,8 @@ print(f"Hasil menghapus suffix: '{filename.removesuffix('.txt')}'")`
 Gunakan `removeprefix()` atau `removesuffix()` jika kamu perlu menghapus satu token yang persis. Perbedaan ini mencegah sekumpulan karakter menghapus lebih banyak dari yang dimaksud.
 
 ## Method Pencarian dan Validasi
+
+Satu kelompok method mencari letak teks, kelompok lain menjawab pertanyaan ya atau tidak tentangnya. Method pencari mengembalikan posisi, sedangkan method pemeriksa mengembalikan `True` atau `False`.
 
 ### Mencari Posisi Substring
 
@@ -320,6 +324,8 @@ print(f"\\nStarts with greeting: {text.startswith(('Hi', 'Hello', 'Hey'))}")`
 Kedua method ini menerima tuple, sehingga satu pemanggilan dapat memeriksa beberapa prefix atau suffix sekaligus.
 
 ## Method Replace dan Split
+
+Kedua method ini mengubah cara string dibagi menjadi bagian. `replace` menukar satu potongan teks dengan potongan lain, sedangkan `split` memecah string menjadi list pada pemisah tertentu.
 
 ### Mengganti Substring
 

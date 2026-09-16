@@ -17,6 +17,8 @@ Tipe sebuah objek menentukan atribut dan method yang tersedia. Karena aturan ini
 
 ## Membandingkan Cara Menyusun Program
 
+Model objek yang sama mendukung beberapa cara menyusun program. Gaya procedural menyusun langkah dan aliran data secara berurutan, gaya fungsional menyusun komputasi dari fungsi yang dipanggil berlapis, dan gaya berorientasi objek menyimpan data bersama operasi yang mengolahnya. Mengenali ketiganya membantumu menebak arah alur program saat membaca kode orang lain.
+
 ### Procedural Programming
 
 Dalam procedural programming, program disusun sebagai rangkaian operasi dengan aliran data yang jelas. Struktur data dan fungsi yang mengolahnya dapat ditulis secara terpisah, termasuk dalam bahasa yang mendukung class.
@@ -151,9 +153,11 @@ print(parking.is_full())`
 
 ## Konsep Objek pada Tipe Data
 
-"Setiap nilai adalah objek" berarti Python memakai satu model objek untuk seluruh nilai saat program berjalan. Atribut dan method yang tersedia tetap bergantung pada tipe objek tersebut.
+"Setiap nilai adalah objek" berarti Python memakai satu model objek untuk seluruh nilai saat program berjalan. Atribut dan method yang tersedia tetap bergantung pada <Highlight>tipe objek</Highlight> tersebut.
 
 ### Angka adalah Objek
+
+Bilangan bulat adalah objek yang punya method. Contoh berikut memanggil `bit_length()` pada `42` lalu mencetak hasilnya.
 
 <CodeBlock
   data={[{
@@ -179,6 +183,8 @@ print(dir(result))          # Melihat semua method yang tersedia`
 />
 
 ### String adalah Objek
+
+String adalah objek dengan method yang menghasilkan nilai baru. Contoh berikut memanggil beberapa method string pada satu teks.
 
 <CodeBlock
   data={[{
@@ -215,6 +221,8 @@ print(rejoined)`
 />
 
 ### List adalah Objek
+
+List adalah objek yang method-nya mengubah isinya. Contoh berikut berawal dari daftar buah lalu memanggil method list.
 
 <CodeBlock
   data={[{
@@ -258,6 +266,8 @@ print(f"Copy: {copy_list}")`
 />
 
 ### Dictionary adalah Objek
+
+Dictionary adalah objek dengan method untuk membaca dan memperbarui pasangannya. Contoh berikut memakai data seorang mahasiswa untuk memanggil method tersebut.
 
 <CodeBlock
   data={[{
@@ -308,7 +318,7 @@ print(university["students"]["CS"])`
 
 ## Fungsi sebagai Objek
 
-Fungsi juga merupakan objek di Python. Fungsi dapat diberikan sebagai argumen, disimpan di dalam collection, dan ditempatkan pada variabel seperti nilai lain.
+Fungsi dapat diberikan sebagai argumen, disimpan di dalam collection, dan ditempatkan pada variabel seperti nilai lain.
 
 <CodeBlock
   data={[{

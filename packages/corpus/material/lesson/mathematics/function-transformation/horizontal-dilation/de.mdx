@@ -11,20 +11,20 @@ export const metadata = {
 
 ## Die Breite eines Funktionsgraphen verändern
 
-Eine horizontale Skalierung verändert die Breite eines Funktionsgraphen. Man kann sich den Graphen wie ein Gummiband vorstellen, das von links und rechts auseinandergezogen oder zur Mitte hin zusammengedrückt wird. Seine Höhen ändern sich dabei nicht.
+Eine horizontale Skalierung verändert, wie breit ein Funktionsgraph entlang der <InlineMath math="x" />-Achse erscheint, ohne seine Höhen zu verändern. Ein gestreckter Graph wird breiter, ein gestauchter Graph wird schmaler, und jeder Punkt behält seinen ursprünglichen <InlineMath math="y" />-Wert.
 
-Aus einer Funktion <InlineMath math="f(x)" /> entsteht die neue Funktion <InlineMath math="g(x) = f(kx)" />. Dabei ist <InlineMath math="k \ne 0" /> der Multiplikator im Funktionsargument. Der tatsächliche Betrag der horizontalen Skalierung ist <InlineMath math="s = \frac{1}{|k|}" />.
+Aus einer Funktion <InlineMath math="f(x)" /> entsteht die neue Funktion <InlineMath math="g(x) = f(kx)" />. Dabei ist <InlineMath math="k \ne 0" /> die Zahl, die das Funktionsargument multipliziert, und die horizontale Skalierung des neuen Graphen beträgt <InlineMath math="s = \frac{1}{|k|}" />.
 
-### Skalierungsregel
+### Wie der Faktor die Breite ändert
 
-Für jede Funktion <InlineMath math="f(x)" /> und jeden von null verschiedenen Multiplikator <InlineMath math="k" /> gilt:
+Für jede Funktion <InlineMath math="f(x)" /> und jeden von null verschiedenen Faktor <InlineMath math="k" />, der das Argument multipliziert, gilt:
 
 <MathContainer>
   <BlockMath math="g(x) = f(kx)" />
   <BlockMath math="s = \frac{1}{|k|}" />
 </MathContainer>
 
-Der Multiplikator <InlineMath math="k" /> bestimmt die Wirkung:
+Der Faktor <InlineMath math="k" /> bestimmt, was mit der Breite geschieht:
 - Bei <InlineMath math="k > 1" /> schrumpft die Breite des Graphen auf <InlineMath math="\frac{1}{k}" /> ihrer ursprünglichen Größe
 - Bei <InlineMath math="0 < k < 1" /> wächst die Breite des Graphen auf das <InlineMath math="\frac{1}{k}" />-Fache
 - Bei <InlineMath math="k = 1" /> bleibt der Graph unverändert
@@ -32,7 +32,7 @@ Der Multiplikator <InlineMath math="k" /> bestimmt die Wirkung:
 
 Der Wert <InlineMath math="k = 0" /> ist ausgeschlossen: <InlineMath math="f(0x) = f(0)" /> wäre überall, wo der Wert definiert ist, konstant. Der Graph würde zu einer waagerechten Geraden zusammenfallen.
 
-Der Kehrwert ist entscheidend: Ein größerer Multiplikator im Argument macht den Graphen schmaler, während die horizontale Skalierung selbst <InlineMath math="\frac{1}{|k|}" /> beträgt.
+Der Kehrwert ist hier entscheidend. Ein größerer Faktor macht den Graphen <Highlight>schmaler</Highlight>, weil die horizontale Skalierung <InlineMath math="\frac{1}{|k|}" /> beträgt.
 
 ## Vergleich am Graphen
 
@@ -134,23 +134,21 @@ Der Vergleich zeigt:
 - Funktion <InlineMath math="h(x) = f(0{,}5x) = 0{,}5x + 2" /> hat Steigung <InlineMath math="0{,}5" /> (horizontal gestreckt)
 - Alle Geraden schneiden die <InlineMath math="y" />-Achse im gleichen Punkt <InlineMath math="(0, 2)" />
 
-## Eigenschaften der horizontalen Streckung
+## Welche Werte die horizontale Skalierung verschiebt
 
-### Wirkung auf Koordinatenpunkte
+Wenn du weißt, ob der Graph gestreckt oder gestaucht wird, bleibt noch die Frage, welche Werte mitwandern. Die horizontale Skalierung teilt jede horizontale Koordinate durch den Faktor <InlineMath math="k" />, der das Argument multipliziert. Die Lage entlang der <InlineMath math="x" />-Achse ändert sich also, die Höhen bleiben gleich.
 
-Liegt <InlineMath math="(a, b)" /> auf dem Graphen von <InlineMath math="f(x)" />, dann liegt auf dem Graphen von <InlineMath math="f(kx)" /> der Punkt <InlineMath math="(\frac{a}{k}, b)" />.
+Betrachte einen Punkt <InlineMath math="(a, b)" /> auf dem Graphen von <InlineMath math="f(x)" />. Der zugehörige Punkt auf dem Graphen von <InlineMath math="f(kx)" /> ist <InlineMath math="(\frac{a}{k}, b)" />. Der <InlineMath math="y" />-Wert bleibt <InlineMath math="b" />, weil eine horizontale Skalierung niemals eine Höhe verändert.
 
-### Definitionsbereich und Wertebereich
+| Teil der Funktion | Vor der Skalierung | Nach der Skalierung mit <InlineMath math="k > 0" /> |
+| --- | --- | --- |
+| Punkt <InlineMath math="(a, b)" /> | Auf dem Graphen von <InlineMath math="f(x)" /> | Wandert zu <InlineMath math="(\frac{a}{k}, b)" /> |
+| Definitionsbereich <InlineMath math="[c, d]" /> | Das ursprüngliche Intervall | Wird zu <InlineMath math="[\frac{c}{k}, \frac{d}{k}]" /> |
+| Wertebereich | Die ursprünglichen Ausgabewerte | Dieselben Werte wie vorher |
+| <InlineMath math="x" />-Achsenabschnitt | Bei <InlineMath math="x = x_0" /> | Wandert zu <InlineMath math="x = \frac{x_0}{k}" /> |
+| <InlineMath math="y" />-Achsenabschnitt | Bei <InlineMath math="x = 0" /> | Bleibt bei <InlineMath math="x = 0" /> |
 
-- **Definitionsbereich**: Seine horizontalen Koordinaten werden durch den Multiplikator <InlineMath math="k" /> geteilt
-- **Wertebereich**: Bleibt unverändert
-
-Ist der ursprüngliche Definitionsbereich <InlineMath math="[c, d]" />, dann wird er bei einer horizontalen Skalierung mit <InlineMath math="k > 0" /> zu <InlineMath math="[\frac{c}{k}, \frac{d}{k}]" />.
-
-### Achsenabschnitte
-
-- **<InlineMath math="x" />-Achsenabschnitt**: Seine Koordinate wird durch den Multiplikator geteilt
-- **<InlineMath math="y" />-Achsenabschnitt**: Bleibt unverändert
+Der Definitionsbereich schrumpft oder wächst zusammen mit dem Graphen, weil er die erlaubten Werte von <InlineMath math="x" /> enthält. Der Wertebereich behält seine Werte, weil die Höhe des Graphen an jeder Stelle unverändert bleibt. Eine [horizontale Verschiebung](/de/faecher/mathematik/funktionstransformationen/horizontale-verschiebung) verschiebt diese Koordinaten, statt sie zu teilen.
 
 ## Die Wachstumsrate einer Exponentialfunktion verändern
 
@@ -231,15 +229,17 @@ Für einen negativen Multiplikator gilt:
 
 ## Übungen
 
+Die drei Aufgaben nutzen die Breitenregel, die du gerade gelernt hast. Jede Aufgabe multipliziert das Argument mit einem angegebenen Faktor, also achte darauf, ob dieser Faktor größer als eins, zwischen null und eins oder negativ ist. Rechne zuerst ohne die Lösungen und vergleiche danach deine Schritte mit den ausführlichen Rechenwegen.
+
 1. Wende den Multiplikator <InlineMath math="3" /> auf das Argument der Funktion <InlineMath math="f(x) = x^2 - 2x + 1" /> an und bestimme die neue Funktionsgleichung.
 
-2. Der Graph der Funktion <InlineMath math="g(x) = \sqrt{x}" /> wird mit dem Multiplikator <InlineMath math="\frac{1}{2}" /> im Funktionsargument horizontal skaliert. Bestimme:
-   - Die Gleichung der skalierten Funktion
-   - Den Definitionsbereich nach der Skalierung
+2. Der Graph der Funktion <InlineMath math="g(x) = \sqrt{x}" /> wird mit dem Faktor <InlineMath math="\frac{1}{2}" /> im Argument horizontal skaliert. Bestimme die Gleichung der skalierten Funktion und danach den Definitionsbereich dieser Funktion.
 
 3. Skaliere die Funktion <InlineMath math="h(x) = |x - 2|" /> horizontal mit dem Multiplikator <InlineMath math="-1" /> und bestimme den neuen Scheitelpunkt.
 
 ### Lösungen
+
+Jede Lösung beginnt damit, <InlineMath math="x" /> durch das Produkt aus dem Faktor und <InlineMath math="x" /> zu ersetzen, denn dort steckt die Breitenregel. Danach wird die Gleichung vereinfacht und der neue Graph geprüft, damit klar bleibt, ob er gestreckt oder gestaucht wurde.
 
 1. Horizontale Skalierung mit dem Multiplikator <InlineMath math="3" />: <InlineMath math="f'(x) = f(3x) = (3x)^2 - 2(3x) + 1 = 9x^2 - 6x + 1" />
 

@@ -7,13 +7,13 @@ export const metadata = {
     subject: "Metode Linear AI",
 };
 
-## Polinomial Karakteristik dari Determinan
+## Menurunkan Polinomial dari Persamaan Matriks
 
 Sebuah nilai eigen <InlineMath math="\lambda" /> dari matriks persegi <InlineMath math="A" /> memiliki vektor eigen tak nol <InlineMath math="v" /> yang memenuhi
 
 <BlockMath math="Av=\lambda v" />
 
-Dengan menyusun ulang persamaan, kita memperoleh <InlineMath math="(A-\lambda I)v=0" />. Solusi tak nol ada tepat ketika <InlineMath math="A-\lambda I" /> singular, sehingga determinannya harus nol. Polinom karakteristik mencatat syarat ini untuk semua skalar yang mungkin sekaligus.
+Dengan menyusun ulang persamaan, kita memperoleh <InlineMath math="(A-\lambda I)v=0" />. Solusi tak nol ada tepat ketika <InlineMath math="A-\lambda I" /> singular, sehingga <Highlight>determinannya harus nol</Highlight>. Polinom karakteristik mencatat syarat ini untuk semua skalar yang mungkin sekaligus.
 
 Misalkan <InlineMath math="A \in \mathbb{K}^{n \times n}" />. Kita dapat membentuk fungsi khusus:
 
@@ -79,11 +79,11 @@ Multiplisitas geometrik menghitung banyaknya vektor eigen bebas dalam ruang eige
 
 ## Menghitung Polinomial Karakteristik
 
-Pada bagian berikut, kita memakai definisi di atas. Hubungan antarkoefisien dipakai untuk memeriksa hasil perhitungan.
+Definisi polinomial karakteristik sekarang dipakai pada matriks konkret, dan hubungan antarkoefisien berfungsi sebagai pemeriksa hasil. Ikuti setiap langkah determinan, lalu bandingkan akar yang diperoleh dengan trace dan determinan untuk memastikan polinomialnya benar.
 
 ### Matriks Orde Tiga
 
-Perhatikan matriks berikut:
+Matriks orde tiga ini menghasilkan polinomial karakteristik berderajat tiga:
 
 <BlockMath math="A = \begin{pmatrix} 3 & 2 & -1 \\ 1 & 0 & -4 \\ 3 & 0 & 1 \end{pmatrix} \in \mathbb{K}^{3 \times 3}" />
 
@@ -109,7 +109,7 @@ Akar tersebut lolos dua pemeriksaan berguna: jumlahnya sama dengan jejak matriks
 
 ### Nilai Eigen Berulang pada Matriks Segitiga Atas
 
-Perhatikan matriks segitiga atas berikut:
+Matriks ini punya dua entri diagonal yang sama, yaitu <InlineMath math="1" />:
 
 <BlockMath math="A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />
 
@@ -125,7 +125,7 @@ Matriks ini memiliki akar <InlineMath math="\lambda = 1" /> dengan multiplisitas
 
 ## Polinomial Karakteristik Transformasi Geometrik
 
-Pemetaan yang umum pada <InlineMath math="\mathbb{R}^2" /> berikut menghubungkan perhitungan aljabar dengan makna geometrisnya.
+Perhitungan yang sama kini diterapkan pada pemetaan yang umum di <InlineMath math="\mathbb{R}^2" />, sehingga hasil aljabar dan makna geometrisnya muncul bersamaan. Rotasi, refleksi, peregangan, dan geseran masing-masing menghasilkan polinomial yang akarnya menjelaskan pengaruh pemetaan itu terhadap arah.
 
 ### Rotasi
 

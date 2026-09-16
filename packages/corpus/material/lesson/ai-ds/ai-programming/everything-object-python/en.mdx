@@ -17,6 +17,8 @@ An object's type determines the attributes and methods available on it. Since th
 
 ## Comparing Ways to Organize a Program
 
+The same object model supports several ways to organize a program. A procedural style sequences steps and passes data between them, a functional style composes a calculation from functions, and an object-oriented style keeps data together with the operations that use it. Knowing which style a file follows makes its flow easier to read.
+
 ### Procedural Style
 
 In a procedural style, a program is organized around operations and explicit data flow. Data structures and the functions that receive them can remain separate, even in a language that also supports classes.
@@ -151,9 +153,11 @@ print(parking.is_full())`
 
 ## Object Concepts in Data Types
 
-"Everything is an object" means Python treats runtime values through one object model. Available attributes and methods still depend on each value's type.
+The statement that everything is an object means Python treats every runtime value through one object model, so a number, a string, and a list are all instances of some class. What differs is the set of attributes and methods that class provides, because <Highlight>the type decides the available tools</Highlight> rather than the object model itself.
 
 ### Numbers are Objects
+
+An integer is an object with methods. The example calls `bit_length()` on `42` and prints the result.
 
 <CodeBlock
   data={[{
@@ -179,6 +183,8 @@ print(dir(result))          # View all available methods`
 />
 
 ### Strings are Objects
+
+A string is an object with methods that build new values. The example calls several string methods on one message.
 
 <CodeBlock
   data={[{
@@ -215,6 +221,8 @@ print(rejoined)`
 />
 
 ### Lists are Objects
+
+A list is an object whose methods change its contents. The example starts from a fruit list and calls the list methods.
 
 <CodeBlock
   data={[{
@@ -258,6 +266,8 @@ print(f"Copy: {copy_list}")`
 />
 
 ### Dictionaries are Objects
+
+A dictionary is an object with methods for reading and updating its pairs. The example uses a student record to call those methods.
 
 <CodeBlock
   data={[{
@@ -308,7 +318,7 @@ print(university["students"]["CS"])`
 
 ## Functions are Also Objects
 
-Functions are also objects in Python. You can pass them as arguments, store them in containers, and assign them to variables like other values.
+You can pass functions as arguments, store them in containers, and assign them to variables like other values.
 
 <CodeBlock
   data={[{

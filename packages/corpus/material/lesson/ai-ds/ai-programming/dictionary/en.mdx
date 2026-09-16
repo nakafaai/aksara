@@ -13,7 +13,7 @@ A dictionary is a mutable mapping from unique keys to values. You look up each i
 
 ### Ways to Create Dictionaries
 
-Python provides several ways to create dictionaries, from empty ones to those already containing data.
+Python provides several ways to create dictionaries, including empty ones and ones that already contain data.
 
 <CodeBlock
   data={[
@@ -66,7 +66,7 @@ print(phone)
   ]}
 />
 
-Keys must be hashable, so immutable values such as strings, numbers, and suitable tuples are common choices. Values may be any Python object, including another dictionary.
+<Highlight>Keys must be hashable</Highlight>, so immutable values such as strings, numbers, and suitable tuples are common choices. Values may be any Python object, including another dictionary.
 
 ## Dictionary as Container
 
@@ -94,7 +94,7 @@ Lists and tuples organize items by position, while dictionaries organize entries
 
 ## Dictionary Characteristics
 
-A dictionary is mutable, its keys are unique and hashable, and its iteration order follows key insertion order.
+A dictionary is mutable, its keys are unique and hashable, and its iteration order follows key insertion order. Those three properties explain most of the behavior you observe later: why you can add or remove entries after creation, why assigning to an existing key overwrites instead of duplicating, and why iterating over a dictionary gives a stable, predictable order.
 
 ### Insertion Order and Unique Keys
 
@@ -153,7 +153,7 @@ Square-bracket access retrieves an existing value. Assignment with brackets upda
 
 ## Dictionary Iteration
 
-Choose the iteration form that matches whether you need keys alone, values alone, or both parts of each entry.
+Choose the iteration form that matches whether you need keys alone, values alone, or both parts of each entry. Iterating a dictionary directly gives keys, calling `.values()` gives values, and calling `.items()` gives key-value pairs.
 
 ### Iterating over Dictionary Keys
 
@@ -203,7 +203,7 @@ The `items()` view yields each key and value together, so tuple unpacking can na
 
 ## Three Types of Dictionary Views
 
-A dictionary exposes dynamic views of its keys, values, and key-value pairs.
+A dictionary exposes dynamic views of its keys, values, and key-value pairs. A view is not a copy: it reads the current contents of the dictionary every time you iterate it, so a change after the view was created shows up in the very next loop.
 
 ### Creating Dictionary Views
 

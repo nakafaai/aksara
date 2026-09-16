@@ -127,7 +127,7 @@ print("Array result:", a)  # Output: Array result: [0. 1. 2.]`
 
 ## NumPy Array Attributes
 
-Every NumPy array exposes attributes that describe its shape, element count, data type, and memory use.
+Every NumPy array exposes attributes that describe its shape, element count, data type, and memory use. Reading them costs almost nothing because the values are stored with the array rather than computed by scanning the elements. The three groups below cover the geometry of the array, the individual attribute names, and what happens when the data types inside one array disagree.
 
 ### Dimension and Shape Attributes
 
@@ -159,6 +159,8 @@ print("Bytes used by elements:", a.nbytes)  # Output: Bytes used by elements: 48
 
 ### Array Attributes
 
+An array reports its own structure through attributes. The table lists the ones you read most often and the value each one returns for a <InlineMath math="2 \times 3" /> array.
+
 | Attribute | Function | Example Result |
 |-----------|----------|----------------|
 | `ndarray.shape` | Number of elements in each axis | `(2, 3)` for <InlineMath math="2 \times 3" /> array |
@@ -169,7 +171,7 @@ print("Bytes used by elements:", a.nbytes)  # Output: Bytes used by elements: 48
 
 ### Data Type Consistency
 
-All elements in a regular NumPy array share one data type. The `numpy.dtype` object explains how those values are stored and interpreted in memory. When inputs have different types, NumPy applies its promotion rules to find a compatible common dtype. Precision and type category determine the result. The number of times each input type appears does not affect this rule.
+All elements in a regular NumPy array share one data type. The `numpy.dtype` object explains how those values are stored and interpreted in memory. When inputs have different types, <Highlight>NumPy applies its promotion rules</Highlight> to find a compatible common dtype. Precision and type category determine the result. The number of times each input type appears does not affect this rule.
 
 <CodeBlock
   data={[
@@ -196,7 +198,7 @@ print("Mixed result:", a)  # Output: Mixed result: [0. 1. 2.]`
 
 ## Data Type Conversion and Manipulation
 
-NumPy provides various ways to convert and manipulate array data types according to data analysis needs.
+The data type an array starts with is rarely the one a calculation should end with. Converting shrinks memory use, satisfies a function that expects a particular type, and keeps integer arithmetic from turning into floating point.
 
 ### Data Type Conversion Methods
 

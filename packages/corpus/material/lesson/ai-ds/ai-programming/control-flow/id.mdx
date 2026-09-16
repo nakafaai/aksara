@@ -13,7 +13,7 @@ Python menyediakan beberapa statement untuk mengubah alur loop. Statement ini da
 
 ### Pernyataan untuk Mengatur Loop
 
-Statement `break` langsung keluar dari loop terdekat ketika suatu kondisi terpenuhi. Eksekusi kemudian berlanjut ke statement pertama setelah loop tersebut.
+Statement `break` <Highlight>langsung keluar dari loop terdekat</Highlight> ketika suatu kondisi terpenuhi. Eksekusi kemudian berlanjut ke statement pertama setelah loop tersebut.
 
 <CodeBlock
   data={[
@@ -177,7 +177,7 @@ print(z)
 
 ## Fungsi Zip
 
-Fungsi `zip()` memasangkan elemen yang posisinya sama dari beberapa iterable. Iterasi berhenti ketika iterable terpendek kehabisan elemen.
+Fungsi `zip()` memasangkan elemen yang posisinya sama dari beberapa iterable. Iterasi berhenti ketika iterable terpendek kehabisan elemen, sehingga jumlah pasangan sama dengan panjang iterable terpendek.
 
 ### Penggunaan Dasar Zip
 
@@ -204,6 +204,8 @@ for pair in zip(p, q):
 Fungsi `zip()` mengembalikan iterator berisi tuple. Setiap tuple memuat elemen yang bersesuaian dari setiap input. Secara default, iterasi berhenti ketika iterable terpendek habis, sehingga elemen yang tersisa pada input lebih panjang tidak masuk ke hasil. Gunakan `zip(..., strict=True)` untuk memunculkan error ketika panjang input berbeda.
 
 ### Mengonversi Hasil Zip
+
+`zip()` mengembalikan iterator, sehingga kamu sering perlu mengubahnya menjadi koleksi sebelum bisa membaca pasangannya. Contoh berikut mengubah hasilnya menjadi list dan dictionary.
 
 <CodeBlock
   data={[
@@ -248,7 +250,7 @@ Proses ini disebut "unzipping" karena memisahkan kembali data yang telah digabun
 
 ## Range dan For Loop
 
-Fungsi `range()` menghasilkan urutan bilangan bulat untuk iterasi. Gunakan fungsi ini jika loop memerlukan posisi numerik atau jumlah iterasi yang tetap.
+Fungsi `range()` menghasilkan urutan bilangan bulat untuk iterasi. Gunakan fungsi ini jika loop memerlukan posisi numerik atau jumlah iterasi yang tetap. Karena `range` menghasilkan setiap nilai saat dibutuhkan, bukan menyimpan seluruh urutan sekaligus, pemakaian memorinya tetap kecil meskipun loop berjalan jutaan kali.
 
 ### Sintaks Range
 

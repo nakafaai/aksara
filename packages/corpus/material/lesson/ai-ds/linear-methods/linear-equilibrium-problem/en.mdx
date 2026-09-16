@@ -31,7 +31,7 @@ Squaring makes every contribution nonnegative and penalizes a large residual com
 
 ## The geometric condition
 
-The vector <InlineMath math="A\hat{x}" /> is the point in <InlineMath math="\operatorname{col}(A)" /> closest to <InlineMath math="b" /> in Euclidean distance. At the optimum, the residual is orthogonal to every column of <InlineMath math="A" />:
+The vector <InlineMath math="A\hat{x}" /> is the point in <InlineMath math="\operatorname{col}(A)" /> closest to <InlineMath math="b" /> in Euclidean distance. At the optimum, <Highlight>the residual is orthogonal to every column</Highlight> of <InlineMath math="A" />:
 
 <MathContainer>
 <BlockMath math="A^{\mathsf T}(A\hat{x}-b)=0" />
@@ -129,7 +129,7 @@ The norm determines what kind of error the fit prioritizes.
 
 The <InlineMath math="\ell_1" /> and <InlineMath math="\ell_\infty" /> formulations can be rewritten as linear programs. Their suitability still depends on the data-generating process and the error criterion that matters for the application.
 
-## Choosing QR or SVD for Least Squares
+## Choosing a Stable Numerical Method
 
 If <InlineMath math="A" /> has full column rank, the least-squares minimizer is unique. The normal equation then implies
 

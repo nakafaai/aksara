@@ -78,7 +78,7 @@ print("Salinan:", copy_array)  # Output: Salinan: [777   3   4]`
 
 ## Operasi Array Multidimensi
 
-Pada seleksi multidimensi, setiap entri yang dipisahkan koma menangani axis berikutnya. Integer menghapus axis yang dipilih dari hasil, sedangkan slice mempertahankannya.
+Pada seleksi multidimensi, setiap entri yang dipisahkan koma menangani satu dimensi array, dimulai dari dimensi pertama. <Highlight>Indeks berupa bilangan bulat menghapus dimensi itu dari array hasil</Highlight>, sedangkan potongan seperti `:` mempertahankan dimensi tersebut. Contohnya, pada array dua dimensi `a`, `a[1, :]` menghasilkan array satu dimensi dari baris kedua, sedangkan `a[1:2, :]` tetap menghasilkan array dua dimensi berisi satu baris.
 
 <CodeBlock
   data={[
@@ -154,6 +154,8 @@ print(a[:, ::2])
 />
 
 ### Ringkasan Operasi Dua Dimensi
+
+Tabel berikut mengumpulkan bentuk indeks dan slice untuk array dua dimensi di satu tempat, lengkap dengan bentuk hasil masing-masing.
 
 | Operasi | Deskripsi | Contoh Hasil |
 |---------|-----------|--------------|

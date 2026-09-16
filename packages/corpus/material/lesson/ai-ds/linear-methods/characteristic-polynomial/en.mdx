@@ -7,13 +7,13 @@ export const metadata = {
     subject: "Linear Methods of AI",
 };
 
-## Characteristic Polynomial from the Determinant
+## Deriving the Polynomial from the Matrix Equation
 
 An eigenvalue <InlineMath math="\lambda" /> of a square matrix <InlineMath math="A" /> has a nonzero eigenvector <InlineMath math="v" /> satisfying
 
 <BlockMath math="Av=\lambda v" />
 
-Rearranging gives <InlineMath math="(A-\lambda I)v=0" />. A nonzero solution exists exactly when <InlineMath math="A-\lambda I" /> is singular, so its determinant must vanish. The characteristic polynomial records this condition for every possible scalar at once.
+Rearranging gives <InlineMath math="(A-\lambda I)v=0" />. A nonzero solution exists exactly when <InlineMath math="A-\lambda I" /> is singular, so <Highlight>its determinant must vanish</Highlight>. The characteristic polynomial records this condition for every possible scalar at once.
 
 Let <InlineMath math="A \in \mathbb{K}^{n \times n}" />. We can form a special function:
 
@@ -79,11 +79,11 @@ The geometric multiplicity counts independent eigenvectors in the eigenspace, wh
 
 ## Computing Characteristic Polynomials
 
-We now apply the definition and use the coefficient identities as checks on the calculation.
+The definition is applied to concrete matrices now, and the coefficient identities serve as checks on the expansion. Follow each determinant step by step, then compare the roots with the trace and the determinant to confirm that the polynomial is correct.
 
 ### Third Order Matrix
 
-Consider the following matrix:
+This third order matrix produces a characteristic polynomial of degree three:
 
 <BlockMath math="A = \begin{pmatrix} 3 & 2 & -1 \\ 1 & 0 & -4 \\ 3 & 0 & 1 \end{pmatrix} \in \mathbb{K}^{3 \times 3}" />
 
@@ -109,7 +109,7 @@ The roots pass two useful checks: their sum is the trace, and their product is t
 
 ### Repeated Eigenvalue in an Upper Triangular Matrix
 
-Consider the upper triangular matrix:
+This matrix has the same diagonal entry twice, namely <InlineMath math="1" />:
 
 <BlockMath math="A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />
 
@@ -125,7 +125,7 @@ This matrix has the root <InlineMath math="\lambda = 1" /> with algebraic multip
 
 ## Characteristic Polynomials of Geometric Transformations
 
-The following familiar maps on <InlineMath math="\mathbb{R}^2" /> connect the algebraic calculation to geometry.
+The calculation now runs on familiar maps of <InlineMath math="\mathbb{R}^2" />, so the algebraic result and its geometric meaning appear together. Rotation, reflection, scaling, and shearing each produce a polynomial whose roots describe what that map does to directions.
 
 ### Rotation
 

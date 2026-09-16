@@ -11,23 +11,25 @@ export const metadata = {
 
 ## Jeden Funktionswert mit demselben Faktor multiplizieren
 
-Eine vertikale Skalierung verändert die Höhe eines Funktionsgraphen. Man kann sich den Graphen wie ein Gummiband vorstellen, das nach oben und unten auseinandergezogen oder zur <InlineMath math="x" />-Achse hin zusammengedrückt wird. Seine Breite bleibt dabei unverändert.
+Eine vertikale Skalierung verändert, wie hoch ein Funktionsgraph erscheint, ohne seine waagerechten Positionen zu verschieben. Ein gestreckter Graph wird höher, ein gestauchter Graph nähert sich der <InlineMath math="x" />-Achse, und jeder Punkt behält seinen ursprünglichen <InlineMath math="x" />-Wert.
 
-Aus einer Funktion <InlineMath math="f(x)" /> entsteht die neue Funktion <InlineMath math="g(x) = k \cdot f(x)" />. Der Skalierungsfaktor <InlineMath math="k \ne 0" /> multipliziert jeden Funktionswert und verändert dadurch die vertikalen Abstände.
+Aus einer Funktion <InlineMath math="f(x)" /> entsteht die neue Funktion <InlineMath math="g(x) = k \cdot f(x)" />. Dabei ist <InlineMath math="k \ne 0" /> der Faktor, der jeden Funktionswert multipliziert.
 
-### Skalierungsregel
+### Wie der Faktor die Höhe ändert
 
-Für jede Funktion <InlineMath math="f(x)" /> und jeden von null verschiedenen Skalierungsfaktor <InlineMath math="k" /> gilt:
+Für jede Funktion <InlineMath math="f(x)" /> und jeden von null verschiedenen Faktor <InlineMath math="k" /> gilt:
 
 <BlockMath math="g(x) = k \cdot f(x)" />
 
-Der Faktor <InlineMath math="k" /> bestimmt die Wirkung:
+Der Faktor <InlineMath math="k" /> bestimmt, was mit der Höhe geschieht:
 - Bei <InlineMath math="k > 1" /> wird der Graph vertikal gestreckt
 - Bei <InlineMath math="0 < k < 1" /> wird der Graph vertikal gestaucht
 - Bei <InlineMath math="k = 1" /> bleibt der Graph unverändert
 - Bei <InlineMath math="k < 0" /> kommt zur Streckung oder Stauchung eine Spiegelung hinzu
 
 Der Wert <InlineMath math="k = 0" /> ist ausgeschlossen, weil dann alle Funktionswerte zu <InlineMath math="0" /> zusammenfallen. Das wäre keine Skalierung des Graphen.
+
+Hier wirkt der Faktor <Highlight>in der Richtung, die du erwartest</Highlight>. Ein Faktor größer als eins macht den Graphen höher, ein Faktor zwischen null und eins macht ihn niedriger.
 
 ## Vergleich am Graphen
 
@@ -129,23 +131,21 @@ Der Vergleich zeigt:
 - Funktion <InlineMath math="h(x) = 0{,}5(x + 1)" /> hat Steigung <InlineMath math="0{,}5" /> (gestaucht)
 - Alle Geraden schneiden immer noch die <InlineMath math="y" />-Achse, allerdings an unterschiedlichen Punkten
 
-## Eigenschaften der vertikalen Streckung
+## Welche Werte die vertikale Skalierung verschiebt
 
-### Wirkung auf Koordinatenpunkte
+Wenn du weißt, ob der Graph höher oder niedriger wird, bleibt noch die Frage, welche Werte mitwandern. Die vertikale Skalierung multipliziert jeden Funktionswert mit dem Faktor <InlineMath math="k" />. Die Höhen ändern sich also, während die Lage entlang der <InlineMath math="x" />-Achse gleich bleibt.
 
-Liegt <InlineMath math="(a, b)" /> auf dem Graphen von <InlineMath math="f(x)" />, dann liegt auf dem Graphen von <InlineMath math="k \cdot f(x)" /> der Punkt <InlineMath math="(a, k \cdot b)" />.
+Betrachte einen Punkt <InlineMath math="(a, b)" /> auf dem Graphen von <InlineMath math="f(x)" />. Der zugehörige Punkt auf dem Graphen von <InlineMath math="k \cdot f(x)" /> ist <InlineMath math="(a, k \cdot b)" />. Die <InlineMath math="x" />-Koordinate bleibt <InlineMath math="a" />, weil eine vertikale Skalierung keinen Punkt seitlich verschiebt.
 
-### Definitionsbereich und Wertebereich
+| Teil der Funktion | Vor der Skalierung | Nach der Skalierung mit <InlineMath math="k > 0" /> |
+| --- | --- | --- |
+| Punkt <InlineMath math="(a, b)" /> | Auf dem Graphen von <InlineMath math="f(x)" /> | Wandert zu <InlineMath math="(a, k \cdot b)" /> |
+| Definitionsbereich | Das ursprüngliche Intervall | Dasselbe Intervall wie vorher |
+| Wertebereich <InlineMath math="[c, d]" /> | Das ursprüngliche Intervall | Wird zu <InlineMath math="[k \cdot c, k \cdot d]" /> |
+| <InlineMath math="x" />-Achsenabschnitt | Bei <InlineMath math="x = x_0" /> | Bleibt bei <InlineMath math="x = x_0" /> |
+| <InlineMath math="y" />-Achsenabschnitt | Bei <InlineMath math="y = y_0" /> | Wandert zu <InlineMath math="y = k \cdot y_0" /> |
 
-- **Definitionsbereich**: Bleibt unverändert
-- **Wertebereich**: Wird entsprechend dem Skalierungsfaktor <InlineMath math="k" /> vertikal skaliert
-
-Ist der ursprüngliche Wertebereich <InlineMath math="[c, d]" />, dann wird er bei einer vertikalen Skalierung mit <InlineMath math="k > 0" /> zu <InlineMath math="[k \cdot c, k \cdot d]" />.
-
-### Achsenabschnitte
-
-- **<InlineMath math="x" />-Achsenabschnitt**: Bleibt unverändert
-- **<InlineMath math="y" />-Achsenabschnitt**: Wird mit dem Skalierungsfaktor multipliziert
+Der Wertebereich wächst oder schrumpft zusammen mit dem Graphen, weil er die Ausgabewerte enthält. Der Definitionsbereich bleibt gleich, weil sich die erlaubten Eingaben nicht ändern. Eine [horizontale Skalierung](/de/faecher/mathematik/funktionstransformationen/horizontale-streckung-und-stauchung) teilt die waagerechten Koordinaten und lässt die Höhen unverändert.
 
 ## Die Werte einer Exponentialfunktion skalieren
 
@@ -226,15 +226,17 @@ Für einen negativen Skalierungsfaktor gilt:
 
 ## Übungen
 
+Die drei Aufgaben nutzen die Höhenregel, die du gerade gelernt hast. Jede Aufgabe multipliziert die Ausgabe mit einem angegebenen Faktor, also achte darauf, ob dieser Faktor größer als eins, zwischen null und eins oder negativ ist. Rechne zuerst ohne die Lösungen und vergleiche danach deine Schritte mit den ausführlichen Rechenwegen.
+
 1. Skaliere die Funktion <InlineMath math="f(x) = x^2 - 4x + 3" /> vertikal mit dem Faktor <InlineMath math="3" /> und bestimme die neue Funktionsgleichung.
 
-2. Der Graph der Funktion <InlineMath math="g(x) = \sqrt{x}" /> wird vertikal mit dem Faktor <InlineMath math="\frac{1}{2}" /> skaliert. Bestimme:
-   - Die Gleichung der skalierten Funktion
-   - Den Wertebereich nach der Skalierung
+2. Der Graph der Funktion <InlineMath math="g(x) = \sqrt{x}" /> wird vertikal mit dem Faktor <InlineMath math="\frac{1}{2}" /> skaliert. Bestimme die Gleichung der skalierten Funktion und danach den Wertebereich dieser Funktion.
 
 3. Skaliere die Funktion <InlineMath math="h(x) = |x - 1| + 2" /> vertikal mit dem Faktor <InlineMath math="-1" /> und bestimme den neuen Scheitelpunkt.
 
 ### Lösungen
+
+Jede Lösung beginnt damit, den gesamten Ausdruck der Ausgabe mit dem Faktor zu multiplizieren, denn dort steckt die Höhenregel. Danach wird die Gleichung vereinfacht und der neue Graph geprüft, damit klar bleibt, ob er höher oder niedriger wurde.
 
 1. Vertikale Skalierung mit Faktor <InlineMath math="3" />: <InlineMath math="f'(x) = 3f(x) = 3(x^2 - 4x + 3) = 3x^2 - 12x + 9" />
 

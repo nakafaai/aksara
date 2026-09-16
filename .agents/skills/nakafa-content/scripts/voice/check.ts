@@ -3,8 +3,12 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { basename, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { findHeadingOrderIssues } from "#nakafa-content/heading/order";
+import { findHighlightCeilingIssues } from "#nakafa-content/highlight/ceiling";
+import { findLessonHighlightIssues } from "#nakafa-content/highlight/presence";
 import { findExactLineSmoothingIssues } from "#nakafa-content/line/check";
 import { findExternalLinkPlacementIssues } from "#nakafa-content/link/check";
+import { findInternalLinkIssues } from "#nakafa-content/link/internal";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import { findMathBlockFragmentIssues } from "#nakafa-content/voice/fragment";
 import { findSiblingRepresentationIssues } from "#nakafa-content/voice/parity";
@@ -28,6 +32,18 @@ interface LessonFile {
   locale: LessonVoiceLocale;
 }
 
+/**
+ * Reads the locale from a locale-qualified file name.
+ *
+ * Lessons and articles are named `<locale>.mdx`; question-bank files carry a
+ * role prefix such as `answer.id.mdx`. Both shapes end in the locale segment.
+ */
+function localeFromFile(file: string): string {
+  const stem = basename(file, ".mdx");
+  const separator = stem.lastIndexOf(".");
+  return separator === -1 ? stem : stem.slice(separator + 1);
+}
+
 /** Collects locale-qualified lesson files without validating them twice. */
 function collectLocaleFiles(root: string): LessonFile[] {
   const files: LessonFile[] = [];
@@ -40,8 +56,11 @@ function collectLocaleFiles(root: string): LessonFile[] {
         visit(file);
         continue;
       }
-      const locale = basename(file, ".mdx");
-      if (entry.isFile() && isLessonVoiceLocale(locale)) {
+      if (!entry.isFile()) {
+        continue;
+      }
+      const locale = localeFromFile(file);
+      if (isLessonVoiceLocale(locale)) {
         files.push({ file, locale });
       }
     }
@@ -81,6 +100,9 @@ export function checkLessonRoot(root: string): LessonVoiceReport {
       ...findMathBlockFragmentIssues(source, tree),
       ...findLearnerFacingSemicolonIssues(source, tree),
       ...findExternalLinkPlacementIssues(source, tree),
+      ...findInternalLinkIssues(source, tree),
+      ...findHeadingOrderIssues(source, tree),
+      ...findHighlightCeilingIssues(source, tree),
       ...findExactLineSmoothingIssues(source, tree),
     ].map((issue) => ({
       file: repositoryPath,
@@ -95,6 +117,7 @@ export function checkLessonRoot(root: string): LessonVoiceReport {
     tree,
   }));
   issues.push(...findSiblingRepresentationIssues(root, siblingDocuments));
+  issues.push(...findLessonHighlightIssues(root, siblingDocuments));
   return { fileCount: files.length, issues };
 }
 

@@ -11,7 +11,7 @@ export const metadata = {
 
 Aturan Cramer menyelesaikan sistem linear langsung dari determinan ketika matriks koefisiennya dapat dibalik.
 
-Aturan ini menyatakan setiap komponen solusi sebagai perbandingan dua determinan. Untuk sistem besar, eliminasi Gauss membutuhkan jauh lebih sedikit perhitungan.
+Aturan ini menyatakan setiap komponen solusi sebagai <Highlight>perbandingan dua determinan</Highlight>. Untuk sistem besar, eliminasi Gauss membutuhkan jauh lebih sedikit perhitungan.
 
 ## Matriks Adjoin
 
@@ -32,8 +32,6 @@ Di sini, <InlineMath math="A_{ji}" /> adalah submatriks yang diperoleh dengan me
 Matriks adjoin <InlineMath math="\tilde{A}" /> memuat **kofaktor** dari <InlineMath math="A" /> pada posisi yang ditranspos.
 
 ### Struktur Matriks Adjoin
-
-Matriks adjoin memiliki struktur sebagai berikut:
 
 Tuliskan setiap determinan minor sebagai <InlineMath math="c_{ij}" />. Tanda berselang-seling dan indeks yang ditranspos tetap terlihat pada adjugat utuh:
 
@@ -102,9 +100,7 @@ Hitung setiap entri matriks pembilang:
   <BlockMath math="= \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I" />
 </MathContainer>
 
-## Pernyataan Teorema
-
-Sekarang kita dapat merumuskan aturan Cramer untuk menyelesaikan sistem persamaan linear.
+## Menyelesaikan Sistem Persamaan Linear dengan Determinan
 
 Misalkan <InlineMath math="A \in \mathbb{R}^{n \times n}" /> adalah matriks yang dapat dibalik dan <InlineMath math="a^1, a^2, \ldots, a^n \in \mathbb{R}^n" /> adalah kolom-kolom dari <InlineMath math="A" />. Untuk vektor <InlineMath math="b \in \mathbb{R}^n" />, solusi <InlineMath math="x \in \mathbb{R}^n" /> dari sistem persamaan linear <InlineMath math="A \cdot x = b" /> diberikan oleh:
 
@@ -120,7 +116,7 @@ Rumus Cramer tersebut berlaku untuk <InlineMath math="j = 1, 2, \ldots, n" />.
 
 Untuk menghitung komponen ke-<InlineMath math="j" /> dari solusi <InlineMath math="x" />, kita mengganti kolom ke-<InlineMath math="j" /> dari matriks <InlineMath math="A" /> dengan vektor <InlineMath math="b" />, kemudian menghitung determinan matriks yang dimodifikasi ini dan membaginya dengan determinan matriks <InlineMath math="A" /> asli.
 
-## Bukti Menggunakan Pengembangan Laplace
+## Membuktikan Rumus Solusinya
 
 Bukti aturan Cramer menggunakan ekspansi Laplace dan identitas matriks adjoin.
 

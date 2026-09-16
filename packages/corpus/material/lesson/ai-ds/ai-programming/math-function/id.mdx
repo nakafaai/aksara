@@ -19,7 +19,7 @@ Modul `math` menyediakan fungsi dan konstanta bernilai riil. Modul ini menerima 
 
 ## Cara Import Modul math
 
-Python menawarkan beberapa cara untuk mengimpor modul, masing-masing dengan karakteristik dan penggunaan yang berbeda.
+Python menawarkan beberapa cara untuk mengimpor modul, dan pilihannya memengaruhi bentuk setiap pemanggilan setelahnya. Kamu bisa mengimpor seluruh modul, mengimpor nama tertentu saja, atau mengganti nama modul saat impor.
 
 ### Import Dasar dengan Namespace
 
@@ -86,7 +86,7 @@ print(pi)       # Output: 3.141592653589793
   ]}
 />
 
-`from math import *` memasukkan semua nama publik dari `math` ke namespace saat ini. Jika salah satu nama itu sudah dipakai, nilai dari `math` menggantikannya tanpa pesan error. Kode juga tidak lagi menunjukkan modul asal setiap nama, dan perubahan pada `math` dapat menambahkan nama baru ke modul yang melakukan import. Import eksplisit mencantumkan setiap nama beserta modul asalnya.
+`from math import *` memasukkan semua nama publik dari `math` ke namespace saat ini. Jika salah satu nama itu sudah dipakai, nilai dari `math` menggantikannya tanpa pesan error. Kode juga tidak lagi menunjukkan modul asal setiap nama, dan perubahan pada `math` dapat menambahkan nama baru ke modul yang melakukan import. Import eksplisit <Highlight>mencantumkan setiap nama beserta modul asalnya</Highlight>.
 
 ### Import Fungsi Tertentu
 
@@ -186,9 +186,11 @@ Karena itu, `round(4.5)` menghasilkan <InlineMath math="4" />, sedangkan `round(
 
 ## Fungsi dan Konstanta dalam Modul math
 
-Setiap fungsi `math` memiliki domain. Sebagai contoh, `sqrt(x)` menerima input riil nonnegatif, sedangkan logaritma menerima input riil positif.
+Setiap fungsi `math` memiliki domain. Sebagai contoh, `sqrt(x)` menerima input riil nonnegatif, sedangkan logaritma menerima input riil positif. Nilai di luar domain itu menghasilkan `ValueError`, bukan sebuah angka.
 
 ### Fungsi Akar dan Logaritma
+
+Contoh berikut memanggil fungsi akar dan logaritma, lalu memperlihatkan cara Python melaporkan masukan di luar daerah asalnya.
 
 <CodeBlock
   data={[
@@ -217,6 +219,8 @@ print(f"log2(8): {math.log(8, 2)}")  # Output: 3.0`
 
 ### Fungsi Trigonometri
 
+Fungsi trigonometri memakai satuan radian. Contoh berikut mengubah satu sudut lalu memanggil ketiga fungsi utamanya.
+
 <CodeBlock
   data={[
     {
@@ -240,6 +244,8 @@ print(f"45 derajat = {angle_rad} radian")  # Output: 0.7853981633974483`
 />
 
 ### Fungsi Ceiling Floor dan Faktorial
+
+Pembulatan ke atas, pembulatan ke bawah, dan faktorial menjawab pertanyaan yang berbeda. Contoh berikut menerapkan setiap fungsi lalu mencetak hasilnya.
 
 <CodeBlock
   data={[
@@ -295,9 +301,11 @@ print(f"Luas lingkaran dengan radius {lingkaran_radius}: {luas_lingkaran}")`
 
 ## Memilih Cara Import Modul
 
-Pilih cara mengimpor yang tetap menampilkan nama modul pada setiap pemanggilan ketika konteks itu dibutuhkan. Impor hanya nama yang dipakai program.
+Pilih cara mengimpor yang tetap menampilkan nama modul pada setiap pemanggilan ketika konteks itu dibutuhkan, dan impor hanya nama yang benar-benar dipakai program. Satu fungsi yang dipakai sekali lebih jelas ditulis `from math import sqrt`, sedangkan banyak pemanggilan lebih rapi dengan `import math`.
 
 ### Panduan Import Modul
+
+Pilih gaya import dari banyaknya nama yang kamu butuhkan dan seberapa jelas pemanggilannya. Daftar berikut mengurutkan pilihan dari yang paling eksplisit.
 
 1. **Utamakan `import math`** ketika program memakai beberapa anggota. Pemanggilan seperti `math.sqrt()` menempatkan nama modul di sebelah fungsi.
 2. **Gunakan `import math as m` dengan sengaja** hanya ketika alias tersebut merupakan konvensi lokal yang terdokumentasi.

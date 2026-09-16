@@ -9,17 +9,17 @@ export const metadata = {
 
 ## Using Operators for Arithmetic
 
-Arithmetic operators tell Python which calculation to perform. For example, `+` adds values, `*` multiplies them, and `**` raises one value to a power.
+Arithmetic operators tell Python which calculation to perform. For example, `+` adds values, `*` multiplies them, and `` raises one value to a power.
 
-Python provides seven main arithmetic operators. Python evaluates them according to their precedence, so an operator with higher precedence runs first.
+Python provides seven main arithmetic operators. Python evaluates them according to their precedence, so <Highlight>an operator with higher precedence runs first</Highlight>.
 
 ## Operator Precedence Order
 
-Python has seven arithmetic operators grouped into three precedence levels. This order determines which operator will be executed first in an expression.
+When one expression mixes several arithmetic operators, Python needs a fixed order to decide which calculation happens first. That order comes from three precedence levels. An operator on a higher level always finishes before an operator on a lower one, so the level of each operator in an expression fixes the sequence of calculations.
 
 ### Highest Precedence
 
-**Exponentiation Operator `**`**
+**Exponentiation Operator**
 
 The `**` operator is used for exponentiation and has the highest precedence among the seven binary arithmetic operators discussed here. Unlike the others, it is right-associative.
 
@@ -133,11 +133,11 @@ For negative numbers, Python still satisfies the identity above. That is why `5 
 
 ### Lowest Precedence
 
-**Addition and Subtraction Operators**
-
-The `+` and `-` operators have the lowest precedence among all arithmetic operators.
+Addition and subtraction are evaluated last, after every exponentiation, multiplication, division, floor division, and modulus in the same expression has produced a value. In `2 + 3 * 4`, Python multiplies first and adds afterwards, so the result is `14`. To make the addition happen earlier, wrap it in parentheses and write `(2 + 3) * 4`.
 
 ## Precedence Rules and Associativity
+
+Python does not read an expression from left to right. Precedence decides which operator runs first, and associativity decides how Python groups operators that sit on the same level. Both rules act on the operators you actually wrote, so `2 ** 3 ** 2` and `8 - 3 - 2` each have exactly one reading.
 
 ### Expression Evaluation Order
 
@@ -215,8 +215,6 @@ Evaluation starts from right to left. Only the exponentiation operator `**` uses
 Python groups repeated exponentiation from right to left: `2 ** 3 ** 2 = 2 ** (3 ** 2) = 2 ** 9 = 512`.
 
 ## Python Shell as Calculator
-
-You can use the Python shell as a calculator. Type a mathematical expression and Python evaluates it immediately.
 
 The `/` operator always produces a float, even when the result is a whole number. The `//` operator produces an integer when both operands are integers and a float when either operand is a float. A nonzero modulo result has the same sign as the divisor and satisfies the equation shown above.
 

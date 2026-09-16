@@ -21,7 +21,7 @@ Einträge wie <InlineMath math="2+3i" /> und <InlineMath math="-1-4i" /> gehöre
 
 ## Adjungierte Matrix
 
-Bei komplexen Matrizen ist die **Adjungierte**, auch konjugiert transponierte Matrix genannt, das geometrische Gegenstück zur Transposition. Dabei wird die Matrix transponiert und jeder Eintrag komplex konjugiert.
+Bei komplexen Matrizen ist die **Adjungierte**, auch konjugiert transponierte Matrix genannt, das geometrische Gegenstück zur Transposition. Dabei wird die Matrix transponiert und <Highlight>jeder Eintrag komplex konjugiert</Highlight>.
 
 Sei <InlineMath math="A \in \mathbb{C}^{m \times n}" /> eine komplexe <InlineMath math="m \times n" />-Matrix. Die **adjungierte Matrix** (komplexe konjugierte Transponierungsmatrix) <InlineMath math="A^H" /> von <InlineMath math="A" /> ist die komplexe <InlineMath math="n \times m" />-Matrix, die man erhält, indem man die Zeilen und Spalten von <InlineMath math="A" /> vertauscht und die komplexe Konjugierte jedes Eintrags nimmt:
 
@@ -38,9 +38,9 @@ Der Eintrag in Zeile <InlineMath math="j" /> und Spalte <InlineMath math="i" /> 
 
 ## Eigenschaften der adjungierten Matrix
 
-Die folgenden Identitäten beschreiben, wie sich die Adjungierte bei Addition, Multiplikation, Inversion und Skalarprodukten verhält:
+Die Adjungierte folgt wenigen Regeln, mit denen du sie durch eine Summe, ein Produkt und ein skalares Vielfaches schieben kannst, ohne zur Definition zurückzugehen. Jede Regel verbindet einen Namen mit der Gleichung, die sie erzeugt, und genau dieses Paar verwendest du beim Vereinfachen von Hand.
 
-### Grundlegende Eigenschaften
+### Regeln für die Adjungierte
 
 1. **Beziehung zur echten Transponierung**: Für <InlineMath math="A \in \mathbb{R}^{m \times n} \subset \mathbb{C}^{m \times n}" /> gilt <InlineMath math="A^H = A^T" />
 
@@ -51,6 +51,8 @@ Bei reellen Einträgen ändert die komplexe Konjugation nichts. Deshalb ist die 
 Wenn wir den Adjungierten eines Adjungierten nehmen, kehren wir zur ursprünglichen Matrix zurück.
 
 ### Eigenschaften der linearen Operation
+
+Beide Regeln gelten, solange die Dimensionen zusammenpassen, sodass die Adjungierte an einer Summe oder an einem skalaren Vielfachen vorbeizieht, ohne dass du die Einträge einzeln ausschreibst. Die Arbeit bleibt damit auf der Ebene der Matrix.
 
 3. **Linearität der Addition**: <InlineMath math="(A + B)^H = A^H + B^H" />
 
@@ -90,8 +92,6 @@ Für <InlineMath math="v=(1+i,2-i)^T" /> ist die Rechnung unmittelbar:
 Deshalb wäre <InlineMath math="v^Tv" /> in einem komplexen Raum falsch: Ohne Konjugation muss das Ergebnis weder reell noch positiv sein.
 
 ### Eigenschaften der euklidischen Norm
-
-Die euklidische Norm erfüllt die folgenden Eigenschaften:
 
 **Homogenität**: <InlineMath math="\|\alpha v\|_2 = |\alpha| \|v\|_2" />
 

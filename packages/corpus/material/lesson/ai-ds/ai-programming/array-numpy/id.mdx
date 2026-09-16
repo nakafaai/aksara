@@ -7,7 +7,7 @@ export const metadata = {
   subject: "Pemrograman AI",
 };
 
-## Pengenalan NumPy
+## Bekerja dengan Array di Python
 
 NumPy membantu Python mengolah data numerik secara efisien. List Python dapat menampung tipe campuran, sedangkan array NumPy biasanya menyimpan nilai bertipe sama dalam struktur yang ringkas. Untuk operasi numerik pada banyak nilai sekaligus, susunan ini sering lebih cepat daripada loop Python yang setara.
 
@@ -20,7 +20,7 @@ Untuk pemrograman ilmiah, array NumPy menjalankan loop numerik dalam kode terkom
 3. **Penyimpanan yang ringkas** untuk nilai numerik homogen
 4. **Banyak operasi matematika** yang siap dipakai
 
-Vektorisasi berarti menyatakan operasi untuk seluruh array tanpa menulis loop Python secara eksplisit bagi setiap elemen. NumPy tetap memproses elemen-elemen tersebut secara internal, tetapi perulangannya berjalan dalam kode terkompilasi yang telah dioptimalkan.
+Vektorisasi berarti <Highlight>menyatakan operasi untuk seluruh array</Highlight> tanpa menulis loop Python secara eksplisit bagi setiap elemen. NumPy tetap memproses elemen-elemen tersebut secara internal, tetapi perulangannya berjalan dalam kode terkompilasi yang telah dioptimalkan.
 
 <CodeBlock
   data={[
@@ -156,7 +156,7 @@ print("Tipe data otomatis:", arr_mixed.dtype)  # Output: Tipe data otomatis: flo
 
 ## Fungsi Pembuat Array
 
-NumPy menyediakan beberapa fungsi untuk membuat array dengan bentuk dan nilai tertentu.
+Menuliskan setiap elemen satu per satu hanya praktis untuk contoh yang sangat kecil. NumPy menyediakan fungsi khusus yang membangun array dari sebuah aturan, bukan dari daftar literal, sehingga kode tetap singkat dan bentuk array tetap eksplisit. Fungsi-fungsi di bawah ini terbagi menjadi tiga kelompok: array berisi nilai konstan, array berisi bilangan acak, dan array yang mengikuti pola matematis.
 
 ### Fungsi Nilai Konstan
 
@@ -335,7 +335,7 @@ print("Dtype:", a.dtype)  # Output: Dtype: float64`
 
 ## Membuat Array Berpola
 
-NumPy menyediakan beberapa fungsi untuk membuat array dari urutan nilai yang teratur.
+Sebagian array lebih mudah dijelaskan sebagai urutan daripada sebagai aturan untuk tiap elemen: semua nilai di antara dua batas, atau sejumlah titik yang jaraknya sama. `np.arange` dan `np.linspace` membangun array semacam itu, dan perbedaannya terletak pada cara batas akhir urutan ditentukan.
 
 ### Fungsi Arange pada NumPy
 
@@ -399,6 +399,8 @@ print("arange: step ditentukan, jumlah elemen mengikuti batas")`
 />
 
 ### Membandingkan arange dan linspace
+
+Kedua fungsi menyusun array dari sebuah rentang, dan parameter yang kamu berikan menentukan perbedaannya. `arange` menetapkan jarak antar elemen, sedangkan `linspace` menetapkan banyak elemen yang kamu inginkan.
 
 | Aspek | `np.arange` | `np.linspace` |
 |-------|-------------|---------------|

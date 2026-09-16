@@ -7,7 +7,7 @@ export const metadata = {
   subject: "KI-Programmierung",
 };
 
-## Einführung in NumPy
+## Mit Arrays in Python arbeiten
 
 NumPy hilft Python, numerische Daten effizient zu verarbeiten. Python-Listen können gemischte Typen enthalten, während ein NumPy-Array normalerweise Werte eines gemeinsamen Datentyps kompakt speichert. Bei vektorisierten Rechnungen mit vielen Werten ist diese Darstellung oft schneller als eine entsprechende Python-Schleife.
 
@@ -20,7 +20,7 @@ NumPy-Arrays bieten die folgenden Vorteile für die wissenschaftliche Programmie
 3. **Kompakte Speicherung** gleichartiger numerischer Werte
 4. **Viele gebrauchsfertige mathematische Operationen**
 
-Vektorisierung bedeutet, eine Operation für das gesamte Array auszudrücken, statt jedes Element in einer Python-Schleife einzeln zu bearbeiten. Intern verarbeitet NumPy die Elemente weiterhin, führt die Schleife aber in optimiertem kompiliertem Code aus.
+Vektorisierung bedeutet, <Highlight>eine Operation für das gesamte Array auszudrücken</Highlight>, statt jedes Element in einer Python-Schleife einzeln zu bearbeiten. Intern verarbeitet NumPy die Elemente weiterhin, führt die Schleife aber in optimiertem kompiliertem Code aus.
 
 <CodeBlock
   data={[
@@ -156,7 +156,7 @@ print("Automatischer Datentyp:", arr_mixed.dtype)  # Ausgabe: Automatischer Date
 
 ## Funktionen zum Erstellen von Arrays
 
-NumPy bietet spezielle Funktionen, die Arrays mit vorhersehbarer Form und festgelegten Werten erzeugen.
+Jedes Element von Hand zu schreiben lohnt sich nur für sehr kleine Beispiele. NumPy bringt deshalb eigene Erzeugungsfunktionen mit, die ein Array aus einer Regel statt aus einer literalen Liste aufbauen, wodurch der Code kurz bleibt und die Form ausdrücklich dasteht. Die folgenden Funktionen bilden drei Gruppen: Arrays mit einem konstanten Wert, Arrays mit Zufallszahlen und Arrays nach einem mathematischen Muster.
 
 ### Konstantwertfunktionen
 
@@ -335,7 +335,7 @@ print("Dtype:", a.dtype)  # Ausgabe: Dtype: float64`
 
 ## Arrays aus Sequenzen
 
-NumPy bietet spezielle Funktionen zum Erstellen von Arrays aus Wertesequenzen mit bestimmten Mustern.
+Manche Arrays lassen sich leichter als Sequenz beschreiben denn als Regel für jedes einzelne Element: alle Werte zwischen zwei Grenzen oder eine feste Anzahl gleichmäßig verteilter Punkte. `np.arange` und `np.linspace` erzeugen solche Arrays, und der Unterschied liegt darin, wie das Ende der Sequenz festgelegt wird.
 
 ### Funktion Arange in NumPy
 
@@ -399,6 +399,8 @@ print("arange: Schrittweite vorgegeben, Anzahl der Elemente ergibt sich aus den 
 />
 
 ### Vergleich von Arange und Linspace
+
+Beide Funktionen bauen ein Array aus einem Bereich, und der übergebene Parameter entscheidet über den Unterschied. `arange` legt den Abstand zwischen den Elementen fest, `linspace` dagegen die Anzahl der Elemente.
 
 | Aspekt | `np.arange` | `np.linspace` |
 |--------|-------------|---------------|

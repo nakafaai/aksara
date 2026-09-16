@@ -15,6 +15,8 @@ Replacement field dasar berbentuk `{field_name:format_spec}`. Nilai lebar di dal
 
 ### Tipe Format untuk Sistem Bilangan
 
+Penentu format dapat menampilkan satu bilangan bulat dalam sistem bilangan lain. Tabel berikut memuat karakter tipe dan keluaran masing-masing untuk nilai yang sama.
+
 | Tipe format | Simbol | Contoh input | Output | Kegunaan |
 |-------------|---------|--------------|--------|----------|
 | Desimal | `d` | `45` | `45` | Bilangan bulat desimal |
@@ -40,6 +42,8 @@ print('|{0:1}|'.format('xxx'))      # Output: |xxx|`
 />
 
 ## Pengaturan Posisi dan Karakter Pengisi
+
+Lebar field yang tetap memerlukan aturan tentang letak teks dan isi sisanya. Kamu perlu menentukan apakah teks diletakkan di kiri, tengah, atau kanan, dan karakter apa yang dipakai untuk mengisi ruang kosong.
 
 ### Opsi Perataan
 
@@ -68,7 +72,7 @@ print('|{0:1}|'.format('xxx'))      # Output: |xxx|`
 
 ### Karakter Pengisi dan Format Lanjutan
 
-Karakter pengisi menempati ruang yang tidak terpakai di dalam bidang. Nilai bawaannya adalah spasi dan penulisannya tepat sebelum simbol perataan. Pada `str.format()` dan f-string, karakter literal `{` atau `}` tidak dapat dipakai sebagai pengisi.
+Karakter pengisi menempati ruang yang tidak terpakai di dalam bidang. Nilai bawaannya adalah spasi dan <Highlight>penulisannya tepat sebelum simbol perataan</Highlight>. Pada `str.format()` dan f-string, karakter literal `{` atau `}` tidak dapat dipakai sebagai pengisi.
 
 <CodeBlock
   data={[
@@ -116,6 +120,8 @@ Replacement field dapat memilih argumen posisi berdasarkan indeks, argumen kata 
 
 ### Perbandingan Referensi Argumen
 
+Satu format string dapat menamai argumennya dengan tiga cara. Tabel berikut membandingkan syarat dan batas masing-masing cara.
+
 | Cara | Sintaks | Kelebihan | Batasan |
 |--------|---------|-----------|---------|
 | Numbered | `{0}, {1}` | Kontrol eksplisit, bisa diulang | Setiap indeks yang dirujuk harus tersedia |
@@ -154,6 +160,8 @@ except IndexError as e:
 />
 
 ## Kontrol Presisi dan Spesifikasi Tanda
+
+Jumlah digit di belakang koma dan cara tanda ditampilkan diatur terpisah. Presisi menentukan berapa digit yang muncul setelah koma, sedangkan penanda tanda menentukan apakah tanda plus ikut ditampilkan pada bilangan positif.
 
 ### Presisi untuk Angka Desimal
 
@@ -219,6 +227,8 @@ print('Tiny number g: {0:12g}'.format(1.1e-10))  # Output: Tiny number g:      1
 />
 
 ## F Strings dan Template Dinamis
+
+F-string menyatukan ekspresi dan teks di sekitarnya dalam satu tempat. Fitur ini tersedia sejak Python 3.6, sehingga kode yang harus berjalan pada versi lebih lama memerlukan cara lain.
 
 ### F Strings dan Versi Python
 

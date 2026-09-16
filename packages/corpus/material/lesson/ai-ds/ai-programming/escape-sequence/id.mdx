@@ -15,6 +15,8 @@ Backslash mengubah cara Python membaca karakter setelahnya. Backslash itu merupa
 
 ## Masalah dalam Penulisan String
 
+Tanda kutip dan backslash perlu perhatian di dalam string, karena Python membacanya sebelum string itu terbentuk. Tanda kutip dalam yang sama dengan pembatas akan menutup literal terlalu awal, sedangkan backslash selalu memulai sebuah escape. Menambahkan escape pada karakter itu menjaga karakter tersebut tetap di dalam teks, dan dua backslash menghasilkan satu backslash pada nilai akhir.
+
 ### Konflik Tanda Kutip
 
 Jika tanda kutip yang sama dipakai sebagai pembatas string dan muncul di dalam teksnya, tanda kutip yang tidak didahului backslash akan menutup literal terlalu awal. Karakter setelahnya lalu dibaca sebagai kode Python yang tidak valid.
@@ -43,7 +45,7 @@ Ketika kamu menggunakan tanda kutip tunggal untuk membuat string, tetapi di dala
 
 ### Solusi dengan Backslash
 
-Letakkan backslash (`\`) sebelum tanda kutip yang ingin dimasukkan ke dalam teks. Python lalu membaca tanda kutip tersebut sebagai isi string, bukan sebagai penutupnya.
+Letakkan backslash (`\`) sebelum tanda kutip yang ingin dimasukkan ke dalam teks. Python lalu <Highlight>membaca tanda kutip tersebut sebagai isi string</Highlight>.
 
 <CodeBlock
   data={[

@@ -13,18 +13,23 @@ export const metadata = {
 
 Vertical translation slides a function graph up or down along the <InlineMath math="y" />-axis without changing its shape. Every point moves by the same vertical distance, as if the entire graph were lifted or lowered.
 
-If we have a function <InlineMath math="f(x)" />, then vertical translation produces a new function <InlineMath math="g(x) = f(x) + k" /> where <InlineMath math="k" /> is the translation constant.
+If you have a function <InlineMath math="f(x)" />, then vertical translation produces a new function <InlineMath math="g(x) = f(x) + k" /> where <InlineMath math="k" /> is the translation constant.
 
-### Rules of Vertical Translation
+### Reading the Sign Rule
 
-For any function <InlineMath math="f(x)" />, vertical translation is defined as:
+Look at where <InlineMath math="k" /> sits in the rule below. It is written outside the function, so it is added to the finished output.
 
 <BlockMath math="g(x) = f(x) + k" />
 
-The direction of the shift follows these rules:
-- If <InlineMath math="k > 0" />, the graph shifts **upward** by <InlineMath math="k \text{ units}" />
-- If <InlineMath math="k < 0" />, the graph shifts **downward** by <InlineMath math="|k| \text{ units}" />
-- If <InlineMath math="k = 0" />, there is no translation (graph remains the same)
+Because <InlineMath math="k" /> is added to the output, its sign works <Highlight>exactly the way you read it</Highlight>. A positive <InlineMath math="k" /> lifts the graph, and a negative <InlineMath math="k" /> lowers it.
+
+| Value of <InlineMath math="k" /> | Shift of the graph | Example of the vertex |
+| --- | --- | --- |
+| <InlineMath math="k > 0" /> | Up by <InlineMath math="k \text{ units}" /> | <InlineMath math="(0,0)" /> becomes <InlineMath math="(0,k)" /> |
+| <InlineMath math="k < 0" /> | Down by <InlineMath math="\lvert k \rvert \text{ units}" /> | <InlineMath math="(0,0)" /> becomes <InlineMath math="(0,k)" /> |
+| <InlineMath math="k = 0" /> | The graph does not move | <InlineMath math="(0,0)" /> stays where it is |
+
+All three rows use the vertex <InlineMath math="(0,0)" /> as a reference so the direction is easy to compare. For a function with a different reference point, every point moves by the same distance in the same direction.
 
 ## Visualization of Vertical Translation
 
@@ -120,22 +125,20 @@ The vertices make the displacement explicit:
 - After vertical translation <InlineMath math="+4" />, the vertex of <InlineMath math="g(x) = x^2 + 4" /> is at <InlineMath math="(0, 4)" />
 - After vertical translation <InlineMath math="-3" />, the vertex of <InlineMath math="h(x) = x^2 - 3" /> is at <InlineMath math="(0, -3)" />
 
-## Properties of Vertical Translation
+## Which Values the Vertical Shift Moves
 
-### Graph Shape Remains Unchanged
+Once you know the direction of the shift, you still need to know which parts of the function move with it. A vertical translation acts on the output, so the height of the graph moves while the allowed values of <InlineMath math="x" /> stay the same.
 
-Vertical translation preserves the original shape of the graph. The distance between points on the graph remains the same, only the vertical position changes.
+Take a point <InlineMath math="(a, b)" /> on the graph of <InlineMath math="f(x)" />. After a translation by <InlineMath math="k" />, that point moves to <InlineMath math="(a, b + k)" /> on the graph of <InlineMath math="f(x) + k" />. The <InlineMath math="x" /> coordinate does not change, only the <InlineMath math="y" /> value moves.
 
-### Effect on Coordinate Points
+| Part of the function | Before the translation | After the translation by <InlineMath math="k" /> |
+| --- | --- | --- |
+| Graph shape | The original shape | The same shape, moved vertically |
+| Point <InlineMath math="(a, b)" /> | On the graph of <InlineMath math="f(x)" /> | Moves to <InlineMath math="(a, b + k)" /> |
+| Domain | The original interval | The same interval as before |
+| Range <InlineMath math="[c, d]" /> | The original interval | Moves to <InlineMath math="[c + k, d + k]" /> |
 
-If point <InlineMath math="(a, b)" /> is on the graph of <InlineMath math="f(x)" />, then after vertical translation by <InlineMath math="k" />, that point becomes <InlineMath math="(a, b + k)" /> on the graph of <InlineMath math="f(x) + k" />.
-
-### Domain and Range
-
-- **Domain**: Does not change after vertical translation
-- **Range**: Shifts by <InlineMath math="k \text{ units}" />
-
-If the range of the original function is <InlineMath math="[c, d]" />, then the range after vertical translation <InlineMath math="k" /> becomes <InlineMath math="[c + k, d + k]" />.
+The range moves with the graph because it describes the height of the output values, while the domain stays the same because the allowed values of <InlineMath math="x" /> do not change. A [horizontal translation](/en/subjects/mathematics/function-transformation/horizontal-translation) swaps those roles.
 
 ## Moving an Exponential Graph Vertically
 
@@ -181,21 +184,23 @@ For the exponential function <InlineMath math="f(x) = 2^x" />, the vertical tran
   ]}
 />
 
-For exponential functions:
-- The horizontal asymptote <InlineMath math="y = 0" /> on <InlineMath math="f(x) = 2^x" /> shifts to <InlineMath math="y = k" /> on <InlineMath math="f(x) + k" />
-- The <InlineMath math="y" />-intercept shifts from <InlineMath math="(0, 1)" /> to <InlineMath math="(0, 1 + k)" />
+The horizontal asymptote at <InlineMath math="y = 0" /> on <InlineMath math="f(x) = 2^x" /> moves to <InlineMath math="y = k" /> on <InlineMath math="f(x) + k" />. Unlike a horizontal shift, this changes the height the curve approaches, so the asymptote is no longer pinned to the <InlineMath math="x" />-axis.
+
+The <InlineMath math="y" />-intercept moves from <InlineMath math="(0, 1)" /> to <InlineMath math="(0, 1 + k)" />. Its <InlineMath math="x" /> coordinate stays at zero because the graph only moves vertically.
 
 ## Exercises
 
+The three problems below use the sign rule you have just learned. Each one adds the constant to the output, so watch the value of <InlineMath math="k" />. Try them without the answer key first, then compare your steps with the worked answers.
+
 1. Given the function <InlineMath math="f(x) = x^2 + 4x + 3" />. Determine the equation of the function resulting from vertical translation upward by <InlineMath math="5 \text{ units}" />.
 
-2. If the graph of function <InlineMath math="g(x) = 3x + 2" /> is translated vertically downward by <InlineMath math="7 \text{ units}" />, determine:
-   - The equation of the resulting translated function
-   - The <InlineMath math="y" />-intercept after translation
+2. The graph of the function <InlineMath math="g(x) = 3x + 2" /> is translated vertically downward by <InlineMath math="7 \text{ units}" />. Determine the equation of the resulting translated function, then determine the <InlineMath math="y" />-intercept after translation.
 
 3. Function <InlineMath math="h(x) = \sqrt{x}" /> undergoes vertical translation such that point <InlineMath math="(4, 2)" /> becomes <InlineMath math="(4, 5)" />. Determine the translation constant value and the equation of the resulting translated function.
 
 ### Answer Key
+
+Every worked answer starts by adding the constant to all output values, because that is where the sign rule lives. The equation is then simplified and the new graph is checked to confirm the direction of the shift.
 
 1. Vertical translation upward by <InlineMath math="5 \text{ units}" />: <InlineMath math="f'(x) = f(x) + 5 = x^2 + 4x + 3 + 5 = x^2 + 4x + 8" />
 

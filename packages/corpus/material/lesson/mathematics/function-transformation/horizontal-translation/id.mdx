@@ -13,22 +13,27 @@ export const metadata = {
 
 Translasi horizontal menggeser grafik fungsi ke kiri atau ke kanan sepanjang sumbu <InlineMath math="x" /> tanpa mengubah bentuknya. Setiap titik berpindah sejauh jarak horizontal yang sama, seperti sebuah benda yang digeser di atas meja.
 
-Jika kita memiliki fungsi <InlineMath math="f(x)" />, translasi horizontal menghasilkan fungsi baru <InlineMath math="g(x) = f(x - h)" />. Konstanta <InlineMath math="h" /> menentukan arah dan jarak pergeserannya.
+Jika kamu memiliki fungsi <InlineMath math="f(x)" />, translasi horizontal menghasilkan fungsi baru <InlineMath math="g(x) = f(x - h)" />. Konstanta <InlineMath math="h" /> menentukan arah dan jarak pergeserannya.
 
-### Aturan Translasi Horizontal
+### Aturan Tanda pada Translasi Horizontal
 
-Untuk setiap fungsi <InlineMath math="f(x)" />, translasi horizontal didefinisikan sebagai:
+Perhatikan letak <InlineMath math="h" /> pada rumus berikut. Nilai itu ditulis di dalam tanda kurung bersama <InlineMath math="x" />, sehingga nilai itu mengubah masukannya sebelum fungsinya bekerja.
 
 <BlockMath math="g(x) = f(x - h)" />
 
-Aturan pergeserannya adalah:
-- Jika <InlineMath math="h > 0" />, grafik bergeser ke **kanan** sebesar <InlineMath math="h \text{ satuan}" />
-- Jika <InlineMath math="h < 0" />, grafik bergeser ke **kiri** sebesar <InlineMath math="|h| \text{ satuan}" />
-- Jika <InlineMath math="h = 0" />, tidak ada translasi (grafik tetap sama)
+Karena <InlineMath math="h" /> berada di dalam kurung, tandanya bekerja <Highlight>kebalikan dari arah yang kamu baca</Highlight>. Mengurangi <InlineMath math="x" /> dengan bilangan positif membuat grafik bergeser ke kanan, sedangkan menambah bilangan positif membuat grafik bergeser ke kiri.
 
-## Visualisasi Translasi Horizontal
+| Nilai <InlineMath math="h" /> | Pergeseran grafik | Contoh titik puncak |
+| --- | --- | --- |
+| <InlineMath math="h > 0" /> | Ke kanan sebesar <InlineMath math="h \text{ satuan}" /> | <InlineMath math="(0,0)" /> menjadi <InlineMath math="(h,0)" /> |
+| <InlineMath math="h < 0" /> | Ke kiri sebesar <InlineMath math="\lvert h \rvert \text{ satuan}" /> | <InlineMath math="(0,0)" /> menjadi <InlineMath math="(h,0)" /> |
+| <InlineMath math="h = 0" /> | Grafik tidak bergeser | <InlineMath math="(0,0)" /> tetap di tempatnya |
 
-Fungsi kuadrat <InlineMath math="f(x) = x^2" /> memperlihatkan aturan tanda melalui perpindahan titik puncaknya.
+Ketiga baris itu memakai titik puncak <InlineMath math="(0,0)" /> sebagai patokan supaya arah pergeseran mudah dibandingkan. Untuk fungsi dengan titik acuan lain, seluruh titik berpindah dengan besar dan arah yang sama.
+
+## Memeriksa Aturan pada Grafik Kuadrat
+
+Bayangkan tiga parabola berada pada bidang yang sama. Ketiganya memiliki bentuk yang identik, tetapi titik puncaknya berada di posisi horizontal yang berbeda.
 
 <LineEquation
   title={<>Translasi Horizontal Fungsi Kuadrat <InlineMath math="f(x) = x^2" /></>}
@@ -70,14 +75,13 @@ Fungsi kuadrat <InlineMath math="f(x) = x^2" /> memperlihatkan aturan tanda mela
   ]}
 />
 
-Grafik tersebut menunjukkan:
-- Fungsi asli <InlineMath math="f(x) = x^2" /> memiliki titik puncak di <InlineMath math="(0, 0)" />
-- Fungsi <InlineMath math="g(x) = (x - 3)^2" /> bergeser ke kanan <InlineMath math="3 \text{ satuan}" /> dengan titik puncak di <InlineMath math="(3, 0)" />
-- Fungsi <InlineMath math="h(x) = (x + 2)^2" /> bergeser ke kiri <InlineMath math="2 \text{ satuan}" /> dengan titik puncak di <InlineMath math="(-2, 0)" />
+Pada grafik di atas, kurva berwarna ungu adalah fungsi asli <InlineMath math="f(x) = x^2" /> dengan titik puncak di <InlineMath math="(0,0)" />. Kurva oranye adalah <InlineMath math="g(x) = (x-3)^2" />. Karena <InlineMath math="x" /> dikurangi <InlineMath math="3" />, grafik bergeser <InlineMath math="3 \text{ satuan}" /> ke kanan hingga titik puncaknya berpindah ke <InlineMath math="(3,0)" />. Kurva hijau adalah <InlineMath math="h(x) = (x+2)^2" />. Di sini <InlineMath math="x" /> ditambah <InlineMath math="2" />, sehingga grafik bergeser <InlineMath math="2 \text{ satuan}" /> ke kiri dan titik puncaknya berpindah ke <InlineMath math="(-2,0)" />.
 
-## Translasi Horizontal pada Fungsi Linear
+Perhatikan bahwa ketiga parabola tetap memiliki lebar dan bentuk yang sama. Yang berubah hanya posisi horizontalnya, jadi arah pergeseran dapat kamu baca langsung dari tanda di dalam kurung.
 
-Aturan translasi yang sama berlaku pada fungsi linear <InlineMath math="f(x) = 2x + 1" />.
+## Memeriksa Aturan pada Grafik Linear
+
+Aturan yang sama berlaku pada fungsi linear <InlineMath math="f(x) = 2x + 1" />. Pada garis lurus, pergeseran horizontal tidak mengubah kemiringan, jadi cara memeriksa tandanya lebih mudah dibandingkan pada parabola.
 
 <LineEquation
   title={<>Translasi Horizontal Fungsi Linear <InlineMath math="f(x) = 2x + 1" /></>}
@@ -120,31 +124,28 @@ Aturan translasi yang sama berlaku pada fungsi linear <InlineMath math="f(x) = 2
   ]}
 />
 
-Ketiga garis menunjukkan:
-- Semua garis memiliki kemiringan yang sama yaitu <InlineMath math="2" />
-- Fungsi <InlineMath math="g(x) = 2(x - 4) + 1" /> bergeser ke kanan <InlineMath math="4 \text{ satuan}" />
-- Fungsi <InlineMath math="h(x) = 2(x + 3) + 1" /> bergeser ke kiri <InlineMath math="3 \text{ satuan}" />
+Grafik ungu menunjukkan garis asli dengan kemiringan <InlineMath math="2" />. Grafik oranye adalah <InlineMath math="g(x) = 2(x-4)+1" /> yang bergeser <InlineMath math="4 \text{ satuan}" /> ke kanan, sedangkan grafik biru adalah <InlineMath math="h(x) = 2(x+3)+1" /> yang bergeser <InlineMath math="3 \text{ satuan}" /> ke kiri. Ketiganya tetap sejajar karena kemiringan tidak berubah.
 
-## Sifat Translasi Horizontal
+Dari kedua contoh itu, arah pergeseran selalu ditentukan oleh tanda di dalam kurung. Ini kebalikan dari translasi vertikal, yang menambahkan konstanta di luar fungsi.
 
-### Bentuk Grafik Tidak Berubah
+## Nilai Mana yang Bergeser pada Translasi Horizontal
 
-Translasi horizontal mempertahankan bentuk asli grafik. Jarak vertikal antara titik pada grafik tetap sama, hanya posisi horizontal yang berubah.
+Setelah arah pergeseran dipahami, kamu perlu tahu bagian mana dari fungsi yang ikut berubah. Translasi horizontal bekerja pada masukan fungsi, jadi semua yang bergantung pada posisi <InlineMath math="x" /> ikut bergeser, sedangkan nilai keluaran tetap sama.
 
-### Pengaruh pada Titik Koordinat
+Ambil titik <InlineMath math="(a, b)" /> yang berada pada grafik <InlineMath math="f(x)" />. Setelah translasi sebesar <InlineMath math="h" />, titik itu berpindah ke <InlineMath math="(a + h, b)" /> pada grafik <InlineMath math="f(x - h)" />. Nilai <InlineMath math="y" /> tidak berubah, yang bergeser hanya koordinat <InlineMath math="x" />.
 
-Jika titik <InlineMath math="(a, b)" /> berada pada grafik <InlineMath math="f(x)" />, maka setelah translasi horizontal sebesar <InlineMath math="h" />, titik tersebut menjadi <InlineMath math="(a + h, b)" /> pada grafik <InlineMath math="f(x - h)" />.
+| Bagian fungsi | Sebelum translasi | Setelah translasi <InlineMath math="h" /> |
+| --- | --- | --- |
+| Bentuk grafik | Bentuk asli | Sama, hanya bergeser horizontal |
+| Titik <InlineMath math="(a, b)" /> | Pada grafik <InlineMath math="f(x)" /> | Berpindah ke <InlineMath math="(a + h, b)" /> |
+| Domain <InlineMath math="[c, d]" /> | Selang asli | Berpindah menjadi <InlineMath math="[c + h, d + h]" /> |
+| Range | Nilai keluaran asli | Tetap sama seperti fungsi asli |
 
-### Domain dan Range
+Jadi domain bergeser bersama grafik karena domain menyatakan batas nilai <InlineMath math="x" />, sedangkan range tidak berubah karena tinggi grafik di setiap titik tetap sama. Untuk translasi vertikal, keduanya bertukar peran: domain tetap dan range yang bergeser.
 
-- **Domain**: Bergeser sebesar <InlineMath math="h \text{ satuan}" />
-- **Range**: Tidak berubah setelah translasi horizontal
+## Memeriksa Aturan pada Grafik Eksponensial
 
-Jika domain fungsi asli adalah <InlineMath math="[c, d]" />, maka domain setelah translasi horizontal <InlineMath math="h" /> menjadi <InlineMath math="[c + h, d + h]" />.
-
-## Menggeser Grafik Eksponensial secara Horizontal
-
-Fungsi eksponensial <InlineMath math="f(x) = 2^x" /> mempertahankan bentuk dan asimtotnya setelah translasi horizontal.
+Fungsi eksponensial memperlihatkan hal yang berbeda dari garis dan parabola. Bentuk dan asimtotnya tetap, tetapi perpotongan dengan sumbu <InlineMath math="y" /> ikut bergeser.
 
 <LineEquation
   title={<>Translasi Horizontal Fungsi Eksponensial <InlineMath math="f(x) = 2^x" /></>}
@@ -187,39 +188,39 @@ Fungsi eksponensial <InlineMath math="f(x) = 2^x" /> mempertahankan bentuk dan a
   ]}
 />
 
-Pada fungsi eksponensial:
-- Asimtot horizontal tetap di <InlineMath math="y = 0" /> untuk semua fungsi
-- Titik potong dengan sumbu <InlineMath math="y" /> berubah karena pergeseran horizontal
-- Fungsi <InlineMath math="g(x) = 2^{x-2}" /> bergeser ke kanan <InlineMath math="2 \text{ satuan}" />
-- Fungsi <InlineMath math="h(x) = 2^{x+1}" /> bergeser ke kiri <InlineMath math="1 \text{ satuan}" />
+Perhatikan bahwa asimtot horizontal tetap berada di <InlineMath math="y = 0" />, karena pergeseran horizontal tidak mengubah perilaku kurva saat <InlineMath math="x" /> menjadi sangat besar atau sangat kecil. Fungsi <InlineMath math="g(x) = 2^{x-2}" /> bergeser <InlineMath math="2 \text{ satuan}" /> ke kanan, sedangkan <InlineMath math="h(x) = 2^{x+1}" /> bergeser <InlineMath math="1 \text{ satuan}" /> ke kiri.
 
-## Perbedaan dengan Translasi Vertikal
+Titik potong dengan sumbu <InlineMath math="y" /> ikut berpindah, karena titik itu berada pada <InlineMath math="x = 0" /> dan tidak lagi menjadi posisi aslinya. Inilah bedanya dengan translasi vertikal, yang menggeser nilai keluaran tanpa mengubah letak horizontal titik potongnya.
 
-Translasi horizontal dan vertikal bekerja pada bagian yang berbeda dari aturan fungsi:
+## Membedakan Translasi Horizontal dan Vertikal
 
-### Translasi Horizontal
+Translasi horizontal dan [translasi vertikal](/id/materi/matematika/transformasi-fungsi/translasi-vertikal) sama-sama menggeser grafik, tetapi keduanya bekerja pada bagian rumus yang berbeda. Perbedaan itu menentukan bagian mana dari koordinat yang berubah.
 
-- Mengubah input fungsi: <InlineMath math="f(x - h)" />
-- Memengaruhi posisi x dari setiap titik
-- Domain berubah, range tetap
+| Pembeda | Translasi horizontal | Translasi vertikal |
+| --- | --- | --- |
+| Rumus | <InlineMath math="g(x) = f(x - h)" /> | <InlineMath math="g(x) = f(x) + k" /> |
+| Bagian yang diubah | Masukan fungsi | Keluaran fungsi |
+| Arah pergeseran | Pada koordinat <InlineMath math="x" /> | Pada koordinat <InlineMath math="y" /> |
+| Tanda konstantanya | Kebalikan dari arah baca | Sesuai dengan tanda <InlineMath math="k" /> |
+| Domain dan range | Domain bergeser, range tetap | Domain tetap, range bergeser |
 
-### Translasi Vertikal
+Perbedaan utamanya terletak pada letak konstanta. Konstanta di dalam kurung mengubah masukan, sehingga pergeseran terjadi pada arah horizontal dan tanda kerjanya terbalik. Konstanta di luar kurung mengubah keluaran, sehingga pergeseran terjadi pada arah vertikal dan tandanya bekerja seperti biasa.
 
-- Mengubah output fungsi: <InlineMath math="f(x) + k" />
-- Memengaruhi posisi y dari setiap titik
-- Domain tetap, range berubah
+Perubahan yang melebarkan atau menyempitkan grafik dibahas terpisah pada [dilatasi horizontal](/id/materi/matematika/transformasi-fungsi/dilatasi-horizontal) dan [dilatasi vertikal](/id/materi/matematika/transformasi-fungsi/dilatasi-vertikal), sedangkan urutan pengerjaan saat beberapa transformasi dipakai bersamaan dibahas pada [kombinasi transformasi fungsi](/id/materi/matematika/transformasi-fungsi/kombinasi-transformasi-fungsi).
 
 ## Latihan
 
+Tiga soal berikut memakai aturan tanda yang baru saja kamu pelajari. Setiap soal mengganti bagian dalam kurung dengan cara yang berbeda, jadi perhatikan letak <InlineMath math="h" /> pada setiap fungsi. Kerjakan dulu tanpa melihat kunci, lalu bandingkan langkahmu dengan pembahasan di bawah.
+
 1. Diberikan fungsi <InlineMath math="f(x) = x^2 + 2x + 1" />. Tentukan persamaan fungsi hasil translasi horizontal ke kanan sebesar <InlineMath math="3 \text{ satuan}" />.
 
-2. Jika grafik fungsi <InlineMath math="g(x) = \sqrt{x}" /> ditranslasi horizontal ke kiri sebesar <InlineMath math="4 \text{ satuan}" />, tentukan:
-   - Persamaan fungsi hasil translasi
-   - Domain fungsi setelah translasi
+2. Grafik fungsi <InlineMath math="g(x) = \sqrt{x}" /> ditranslasi horizontal ke kiri sebesar <InlineMath math="4 \text{ satuan}" />. Tentukan persamaan fungsi hasil translasi, lalu tentukan domain fungsi setelah translasi.
 
 3. Fungsi <InlineMath math="h(x) = 3^x" /> mengalami translasi horizontal sehingga titik <InlineMath math="(0, 1)" /> menjadi <InlineMath math="(2, 1)" />. Tentukan nilai konstanta translasi dan persamaan fungsi hasil translasi.
 
 ### Kunci Jawaban
+
+Translasi horizontal menggeser grafik ke kiri atau ke kanan sesuai tanda pada penggantian <InlineMath math="x" />. Setelah persamaannya diperoleh, grafik barunya diperiksa untuk memastikan arah pergeserannya sudah sesuai.
 
 1. Translasi horizontal ke kanan <InlineMath math="3 \text{ satuan}" />: <InlineMath math="f'(x) = f(x - 3) = (x - 3)^2 + 2(x - 3) + 1 = x^2 - 4x + 4" />
 

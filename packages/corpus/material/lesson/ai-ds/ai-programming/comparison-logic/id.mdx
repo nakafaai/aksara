@@ -114,11 +114,11 @@ True`
   ]}
 />
 
-Operator `and` dan `or` menggunakan evaluasi short-circuit, yang berarti evaluasi berhenti ketika hasil sudah dapat ditentukan tanpa mengevaluasi semua operand. Keduanya mengembalikan argumen terakhir yang dievaluasi, sedangkan operator `not` selalu membuat nilai boolean baru.
+Operator `and` dan `or` menggunakan <Highlight>evaluasi short-circuit</Highlight>, yang berarti evaluasi berhenti ketika hasil sudah dapat ditentukan tanpa mengevaluasi semua operand. Keduanya mengembalikan argumen terakhir yang dievaluasi, sedangkan operator `not` selalu membuat nilai boolean baru.
 
 ## Nilai dalam Konteks Boolean
 
-Python memiliki aturan khusus untuk menentukan nilai mana yang dianggap `False` atau `True` dalam konteks boolean.
+Semua objek Python bisa muncul di posisi yang mengharapkan kondisi, termasuk objek yang bukan nilai `True` dan `False`. Python kemudian menentukan sendiri nilai mana yang dianggap salah. Dengan aturan tersebut, list kosong, bilangan nol, dan string kosong semuanya bersikap seperti `False` di dalam `if`, sedangkan wadah yang tidak kosong bersikap seperti `True`.
 
 ### Nilai Falsy dan Truthy
 
@@ -213,6 +213,8 @@ True`
 Banyak pecahan desimal tidak dapat direpresentasikan secara persis sebagai bilangan biner dengan jumlah digit terbatas. Karena hasil antara dibulatkan, dua perhitungan yang setara secara matematis dapat menghasilkan nilai `float` yang sangat dekat tetapi tidak sama.
 
 ### Masalah Presisi Float
+
+Diagram berikut melacak perjalanan nilai desimal ke dalam bilangan floating-point biner, dan di situlah kejutan perbandingan itu muncul.
 
 <Mermaid
   title="Desimal Bisa Dibandingkan Berbeda dari Tampilannya"

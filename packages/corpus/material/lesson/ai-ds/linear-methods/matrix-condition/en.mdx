@@ -88,7 +88,7 @@ A small change in <InlineMath math="b_2" /> is amplified by <InlineMath math="1/
 
 ## Perturbation bound
 
-Consider the original system <InlineMath math="Ax=b" /> and the following perturbed system.
+Compare the original system <InlineMath math="Ax=b" /> with a system whose matrix and vector change slightly:
 
 <BlockMath math="(A+\delta A)(x+\delta x)=b+\delta b" />
 
@@ -106,7 +106,7 @@ This bound describes the worst case. Most perturbations may produce less amplifi
 
 Problem conditioning and algorithmic stability describe different properties:
 
-- **conditioning** describes the sensitivity of the mathematical problem to input changes
+- **conditioning** describes the <Highlight>sensitivity of the mathematical problem to input changes</Highlight>
 - **stability** describes how much additional error a numerical algorithm introduces
 
 A stable algorithm cannot remove sensitivity already present in an ill-conditioned problem. Conversely, a well-conditioned problem can still be solved poorly by an unstable implementation. A small residual <InlineMath math="\|b-A\hat{x}\|" /> alone also does not guarantee a small forward error <InlineMath math="\|x-\hat{x}\|" /> when <InlineMath math="\kappa(A)" /> is large.
