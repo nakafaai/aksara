@@ -30,6 +30,11 @@
   to is local and unique. Replace it with the exact operation when a student
   could ask `yang mana?`, for example `lanjutkan konversi satuan` instead of
   `lanjutkan perhitungannya`. This is a contextual review, not a suffix ban.
+- Treat a verb that carries the clitic as the highest-risk shape, because the
+  verb hides the object a learner has to recover: `mempertahankannya`,
+  `mengembalikannya`, `menurunkannya`, `menentukannya`. Name the object instead,
+  as in `mempertahankan dimensi tersebut`. A clitic on a noun stays valid when
+  that noun is local and unique, so `Hasilnya adalah ...` needs no change.
 - Treat a standalone follow-up such as `periksa hasilnya`, `gunakan rumusnya`,
   or `bandingkan caranya` as a review candidate. Name the value, formula, or
   method when the command begins a new sentence and the learner would otherwise

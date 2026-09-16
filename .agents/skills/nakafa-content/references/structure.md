@@ -39,7 +39,8 @@
   a table, or two candidate nouns. The deterministic gate blocks the heading
   form of this class. Body prose stays a mandatory manual review item, because
   no rule can separate a bare pronoun from a possessive determiner without
-  reading the whole sentence.
+  reading the whole sentence; only the narrow `vague-demonstrative-conclusion`
+  shape is blocked.
 - Follow [headings](headings.md) for titles, notation, required
   hyphens, and citation-only sections. Apply the [link policy](links.md)
   before removing or relocating evidence; a cleaner outline cannot justify

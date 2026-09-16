@@ -78,7 +78,7 @@ print("Copy:", copy_array)  # Output: Copy: [777   3   4]`
 
 ## Multidimensional Array Operations
 
-In a multidimensional selection, comma-separated entries address successive axes. <Highlight>An integer removes the selected axis</Highlight> from the result, while a slice keeps it.
+In a multidimensional selection, each comma-separated entry addresses one array dimension, starting with the first dimension. <Highlight>An integer index removes that dimension from the result array</Highlight>, while a slice such as `:` keeps it. For example, on a two-dimensional array `a`, `a[1, :]` produces a one-dimensional array holding the second row, while `a[1:2, :]` still produces a two-dimensional array holding one row.
 
 <CodeBlock
   data={[

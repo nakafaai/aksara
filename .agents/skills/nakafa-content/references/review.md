@@ -19,6 +19,12 @@
   sentences that announce the same section, definition, or conclusion are a
   defect even when the wording differs. The gate catches a documented
   structure-narration phrase, not a paraphrase, so this read owns the class.
+- Read every heading against the first sentence beneath it. A sentence that only
+  restates the heading adds nothing, so state the fact, equation, condition, or
+  case the section teaches instead. A heading that names the topic and a first
+  sentence that states a fact are not a restatement, and a section with nested
+  subsections keeps the bridge paragraph that introduces their shared purpose.
+  No rule covers this class, so this read owns it.
 - Read every numbered item. Reject the whole item when it opens with an ordinal
   that repeats the number, including `4. First simplify the angles.`,
   `1. Zuerst wird ...`, and `2. Pertama sederhanakan ...`. The gate blocks only
@@ -44,7 +50,9 @@
   unique, and name the object when a learner could ask `yang mana?`. The gate
   blocks the heading form and reports a standalone follow-up such as `periksa
   hasilnya` as a review candidate, so the rest of the body prose depends on this
-  read.
+  read. A clitic on a verb is the highest-risk shape, because the verb hides the
+  object it acts on: `mempertahankannya`, `menurunkannya`, and `menentukannya`
+  each need the object named unless the same sentence already names it.
 - Check the ordinal form of the same class. `sifat pertama`, `faktor pertama`,
   `the first identity`, and `die erste Regel` need a set the document actually
   numbers or lists in order. Name the property, factor, or identity instead when

@@ -187,6 +187,12 @@ template. It must not require one universal lesson arc, count story stages, or
 reject a lesson because it starts with a definition, example, diagram, or
 calculation. Those rules would reward a new template and create false positives.
 
+The heading-echo check, the mirrored-negation pair, body-level demonstratives,
+the Indonesian `-nya` clitic on a noun or a verb, and same-document duplicate
+sentences are the largest manual review items. No rule reports them, because a
+zero-false-positive shape would need a verb lexicon, so
+[the final language review](review.md#final-language-review) owns them.
+
 Do not add a global word ban from one awkward sentence, optimize prose for a
 detector score, translate terminology merely to make a lint pass, or treat a
 clean gate as evidence that the corpus is human.

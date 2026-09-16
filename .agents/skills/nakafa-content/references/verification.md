@@ -138,7 +138,8 @@ boundary before widening a rule. Preserve the following verification boundaries:
   bar is twenty-five prose words or one real representation, and list-item
   text counts as prose. Body-level demonstratives, possessives, Indonesian
   `-nya`, and English `it/that/they` stay a manual review item, because no rule
-  can separate a bare pronoun from a possessive determiner.
+  separates a bare pronoun from a possessive determiner; only the narrow
+  `vague-demonstrative-conclusion` shape is blocked.
 - `indonesian-stiff-interpret-instruction` blocks generic instructions such as
   `tafsirkan solusi` and `Interpretasi Hasil`, while preserving technical uses
   such as Python `interpreter`. Terminology fixtures must also preserve valid
