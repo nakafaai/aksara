@@ -225,60 +225,6 @@ it("allows required Indonesian reduplication hyphens only", () => {
     ]
   );
 });
-it("requires named matrix factorizations to use math rendering in prose", () => {
-  const source = [
-    "export const metadata = {",
-    '  title: "QR Decomposition",',
-    '  description: "Compare the QR algorithm with related factorizations.",',
-    "};",
-    "",
-    "## QR Decomposition",
-    "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.",
-    'Use <InlineMath math="\\mathrm{QR}" /> in mathematical prose.',
-    "`QR` is a code token.",
-    "[QR documentation](https://example.com/QR)",
-    "```text",
-    "QR LU SVD",
-    "```",
-    "<CodeBlock data={[{",
-    "  code: `PLU",
-    "PCA`",
-    "}]} />",
-  ].join("\n");
-
-  assert.deepEqual(findLessonVoiceIssues("en", source), [
-    {
-      column: 5,
-      excerpt: "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.",
-      line: 7,
-      rule: "plain-math-label",
-    },
-    {
-      column: 26,
-      excerpt: "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.",
-      line: 7,
-      rule: "plain-math-label",
-    },
-    {
-      column: 30,
-      excerpt: "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.",
-      line: 7,
-      rule: "plain-math-label",
-    },
-    {
-      column: 35,
-      excerpt: "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.",
-      line: 7,
-      rule: "plain-math-label",
-    },
-    {
-      column: 43,
-      excerpt: "The QR algorithm can use LU, SVD, PLU, or PCA as a comparison.",
-      line: 7,
-      rule: "plain-math-label",
-    },
-  ]);
-});
 
 it("rejects German headings that need forbidden punctuation", () => {
   const source = [

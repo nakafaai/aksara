@@ -17,18 +17,8 @@ type HeadingNode = Omit<MdxNode, "position" | "type"> & {
 };
 
 /** Narrows one parser-owned heading. */
-function isHeadingNode(node: MdxNode): node is HeadingNode {
-  return node.type === "heading";
-}
-
-/** Reads the top-level flow children of a parsed lesson document. */
-function flowChildren(root: MdxNode): MdxNode[] {
-  return (root.children ?? []).filter((node) => node.type !== "mdxjsEsm");
-}
-
-/** Detects an authored lesson document by its static metadata declaration. */
-function isLessonDocument(root: MdxNode): boolean {
-  return (root.children ?? []).some((node) => node.type === "mdxjsEsm");
+function isHeadingNode(node: MdxNode | undefined): node is HeadingNode {
+  return node?.type === "heading";
 }
 
 /**
@@ -100,10 +90,11 @@ export function findSectionBodyIssues(
   tree?: MdxNode
 ): LessonVoiceIssue[] {
   const root = tree ?? parseLessonMdx(source);
-  if (!isLessonDocument(root)) {
+  const children = root.children ?? [];
+  if (!children.some((node) => node.type === "mdxjsEsm")) {
     return [];
   }
-  const flow = flowChildren(root);
+  const flow = children.filter((node) => node.type !== "mdxjsEsm");
   const issues: LessonVoiceIssue[] = [];
   for (let index = 0; index < flow.length; index += 1) {
     const node = flow[index];

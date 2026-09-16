@@ -2,6 +2,7 @@ import { findSectionBodyIssues } from "#nakafa-content/body/section";
 import { exerciseSectionLines } from "#nakafa-content/exercise/context";
 import { FLOW_CONTEXT_RULES } from "#nakafa-content/flow/context";
 import { FLOW_STYLE_RULES } from "#nakafa-content/flow/style";
+import { findUndefinedHeadingAbbreviationIssues } from "#nakafa-content/heading/abbreviation";
 import { LANGUAGE_CALQUE_RULES } from "#nakafa-content/language/calque";
 import { NAVIGATION_VOICE_RULES } from "#nakafa-content/link/check";
 import { findMalformedLatexCommandIssues } from "#nakafa-content/math/command";
@@ -21,6 +22,7 @@ import { AMBIGUITY_VOICE_RULES } from "#nakafa-content/voice/ambiguity";
 import { CLAIM_VOICE_RULES } from "#nakafa-content/voice/claim";
 import { CONTRAST_VOICE_RULES } from "#nakafa-content/voice/contrast";
 import { CORE_VOICE_RULES } from "#nakafa-content/voice/core";
+import { DEMONSTRATIVE_VOICE_RULES } from "#nakafa-content/voice/demonstrative";
 import { FLOW_VOICE_RULES } from "#nakafa-content/voice/flow";
 import {
   findStructuralIssues,
@@ -70,6 +72,7 @@ const LESSON_VOICE_RULES = [
   ...TRANSITION_VOICE_RULES,
   ...CLAIM_VOICE_RULES,
   ...CONTRAST_VOICE_RULES,
+  ...DEMONSTRATIVE_VOICE_RULES,
   ...FLOW_VOICE_RULES,
   ...FLOW_CONTEXT_RULES,
   ...FLOW_STYLE_RULES,
@@ -277,7 +280,8 @@ export function findLessonVoiceIssues(
     ...findMalformedLatexCommandIssues(source, parsedTree),
     ...findDisplayedMathCompositionIssues(source, parsedTree),
     ...findBlockquoteEditorialLabelIssues(locale, source, parsedTree),
-    ...findSectionBodyIssues(source, parsedTree)
+    ...findSectionBodyIssues(source, parsedTree),
+    ...findUndefinedHeadingAbbreviationIssues(source, parsedTree)
   );
   const exerciseLines = exerciseSectionLines(locale, source);
   return deduplicateIssues(issues).filter(

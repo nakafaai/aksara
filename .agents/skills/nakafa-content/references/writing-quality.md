@@ -122,9 +122,10 @@
   limits are already explicit.
 - Do not use a passive verb as a substitute for the missing condition. A phrase
   such as `ketika hasil kali nol ikut dibahas` hides the actual case. Write
-  `ketika P atau Q adalah polinomial nol`. Preserve contextual passive prose
-  such as `topik keselamatan dibahas pada bagian berikutnya`, where both the
-  subject and location are explicit.
+  `ketika P atau Q adalah polinomial nol`. Keep passive prose when the subject
+  and the actor or scope are already explicit. Do not replace that explicit
+  scope with a reference to the lesson structure, because a heading already
+  tells the learner which section is being read.
 - Review every Indonesian `-nya` as a reference. Keep it when the noun it refers
   to is local and unique. Replace it with the exact operation when a student
   could ask `yang mana?`, for example `lanjutkan konversi satuan` instead of

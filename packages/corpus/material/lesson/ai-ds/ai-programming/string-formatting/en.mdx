@@ -43,7 +43,7 @@ print('|{0:1}|'.format('xxx'))      # Output: |xxx|`
 
 ## Position Settings and Fill Characters
 
-A field of fixed width needs a rule for where the text sits and what fills the rest. The subsections below cover alignment and the fill character.
+A field of fixed width needs a rule for where the text sits and what fills the rest. The alignment character places the value against the left edge, the right edge, or the middle of that width, and a fill character decides which symbol pads the remaining space. Together they keep columns of numbers and labels aligned.
 
 ### Alignment Options
 
@@ -163,7 +163,7 @@ except IndexError as e:
 
 ## Precision Control and Sign Specification
 
-Digits after the point and the way a sign is shown are controlled separately. The subsections below take precision first and the sign flag second.
+Digits after the point and the way a sign is shown are controlled separately. Both settings shape how one number is rendered: the precision field limits how much of the value survives, and the sign flag decides how the value announces whether it is positive or negative.
 
 ### Precision for Decimal Numbers
 
@@ -230,7 +230,7 @@ print('Tiny number g: {0:12g}'.format(1.1e-10))  # Output: Tiny number g:      1
 
 ## F Strings and Dynamic Templates
 
-An f-string keeps an expression and its surrounding text in one place. The subsections below cover its version requirement and the case where the template itself is built at runtime.
+An f-string keeps an expression and its surrounding text in one place, so the expression is evaluated when that line runs and the result reflects the current values. A template stored as a string does the same work when the text is not fixed while you write the code.
 
 ### F Strings and Python Version
 

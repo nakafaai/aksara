@@ -103,6 +103,6 @@ Larger <InlineMath math="\omega_i" /> means stronger shrinkage toward <InlineMat
 
 An equality such as <InlineMath math="x_i=c" /> should be modeled as an explicit equality constraint when it must hold exactly. Bounds such as <InlineMath math="l_i\le x_i\le u_i" /> require constrained least squares. An extremely large penalty can approximate an equality, but it is not a replacement for an exact constraint and can worsen numerical scaling.
 
-## Solving the Augmented System with QR or SVD
+## Solving the Extended System Stably
 
 Use the normal equation to derive the regularized estimator and examine how <InlineMath math="\alpha" /> and <InlineMath math="L" /> change it. For numerical computation, avoid forming <InlineMath math="A^TA" /> because that squares the condition number. Solve the augmented least-squares system with <InlineMath math="\mathrm{QR}" /> or <InlineMath math="\mathrm{SVD}" /> instead. Report <InlineMath math="\alpha" />, <InlineMath math="L" />, parameter scaling, residual norm, and penalty norm so another reader can repeat the calculation and inspect the trade-off between data fit and penalty.

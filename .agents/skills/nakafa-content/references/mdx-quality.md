@@ -206,12 +206,14 @@ strings with their own [math syntax](question-bank.md#response-items).
   sentence, never a heading, and never mathematics. It renders the phrase on
   the shared warning surface. Keep it to roughly one highlight per section so
   the emphasis keeps its meaning.
-- Every lesson carries at least one highlight. Each lesson teaches a rule, a
-  decisive condition, or a key term that a learner should be able to scan and
-  remember, so a lesson with none has left that teaching step unmarked. Choose
-  the phrase in the section that states it, and choose the phrase again for
-  each locale rather than translating the marked words. The floor is one per
-  lesson and the ceiling stays roughly one per section.
+- Every authored locale document carries at least one highlight. Each lesson
+  teaches a rule, a decisive condition, or a key term that a learner should be
+  able to scan and remember, so a locale that carries none has left that
+  teaching step unmarked for the learners reading it, even when a sibling
+  locale marks it. Choose the phrase in the section that states it, and choose
+  the phrase again for each locale rather than translating the marked words.
+  The floor is one per locale document and the ceiling stays roughly one per
+  section.
 
 ## Components and visuals
 

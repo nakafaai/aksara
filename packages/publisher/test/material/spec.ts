@@ -44,7 +44,7 @@ interface MaterialFixtureSource {
 export const materialManifest = Effect.fn("MaterialTest.manifest")(
   (mathematics: readonly string[] = ["FunctionMachine"]) =>
     createRendererManifest({
-      base: ["BlockMath", "InlineMath", "MathContainer"],
+      base: ["BlockMath", "Highlight", "InlineMath", "MathContainer"],
       domains: testRendererDomains({
         chemistry: ["AtomShellLab"],
         mathematics,

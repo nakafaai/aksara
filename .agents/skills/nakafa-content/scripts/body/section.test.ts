@@ -6,14 +6,20 @@ import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 const LONG_BODY =
   "This paragraph carries enough ordinary prose words to clear the thin section limit for the nested heading above it and it also states the shared purpose of the parts that follow.";
 
+/** Wraps a lesson body in the static metadata declaration. */
 const lesson = (body: string): string =>
   `export const metadata = {};\n\n${body}`;
 
+/** Collects the rule ids reported for an authored lesson body. */
 const rulesOf = (source: string): string[] =>
   findSectionBodyIssues(lesson(source)).map(({ rule }) => rule);
 
 it("flags a heading with no body at all", () => {
   assert.deepEqual(rulesOf("## Alpha\n"), ["empty-section-body"]);
+});
+
+it("tolerates a tree without children", () => {
+  assert.deepEqual(findSectionBodyIssues("", { type: "root" }), []);
 });
 
 it("flags a heading whose next sibling starts before any content", () => {

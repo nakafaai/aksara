@@ -109,6 +109,7 @@ export const makeAcceptanceTestSources: () => Effect.Effect<
     "BlockMath",
     "CodeBlock",
     "ContentGrid",
+    "Highlight",
     "InlineMath",
     "MathContainer",
   ];

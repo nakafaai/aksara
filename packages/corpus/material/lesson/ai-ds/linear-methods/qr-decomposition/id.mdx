@@ -46,7 +46,7 @@ Matriks yang sudah dilengkapi tetap memenuhi <InlineMath math="A=Q_1R_1=QR" />.
 
 ## Dekomposisi QR Lengkap dan Tipis
 
-Untuk <InlineMath math="A\in\mathbb{R}^{m\times n}" /> dengan <InlineMath math="m\geq n" />, bentuk lengkap dan bentuk tipis menyatakan faktorisasi yang sama dengan ukuran matriks berbeda.
+Untuk <InlineMath math="A\in\mathbb{R}^{m\times n}" /> dengan <InlineMath math="m\geq n" />, bentuk lengkap dan bentuk tipis menyatakan faktorisasi yang sama dengan ukuran matriks berbeda. Keduanya menghasilkan <InlineMath math="A" /> saat dikalikan kembali, sehingga pilihannya bergantung pada apakah kamu memerlukan basis ortonormal lengkap atau hanya kolom yang memuat datanya.
 
 ### Dekomposisi QR Lengkap
 
@@ -111,7 +111,7 @@ Produk luar <InlineMath math="vv^T" /> mengalikan vektor kolom berukuran <Inline
 
 ## Sifat Transformasi Householder
 
-Untuk <InlineMath math="S=I-2vv^T" /> dan <InlineMath math="\|v\|_2=1" />, berlaku sifat berikut:
+Untuk <InlineMath math="S=I-2vv^T" /> dan <InlineMath math="\|v\|_2=1" />, berlaku sifat berikut. Sifat simetri dan ortogonal berasal dari vektor satuan pada definisinya, sifat pantulan menjelaskan pengaruh transformasi pada sebuah vektor, dan nilai kondisi satu menunjukkan bahwa pantulan itu tidak memperbesar kesalahan perhitungan.
 
 1. <InlineMath math="S" /> adalah simetri: <InlineMath math="S^T = S" />
 
@@ -231,7 +231,7 @@ Setelah <InlineMath math="n" /> langkah,
 
 ## Aspek Numerik dan Kompleksitas Householder
 
-Menerapkan dekomposisi dalam aritmetika floating-point memunculkan dua pertanyaan praktis, yaitu berapa banyak operasi yang dibutuhkan dan bagaimana galat pembulatannya berperilaku. Subbagian berikut menjawab keduanya.
+Menerapkan dekomposisi dalam aritmetika floating-point memunculkan dua pertanyaan praktis, yaitu berapa banyak operasi yang dibutuhkan dan bagaimana galat pembulatannya berperilaku. Jawaban keduanya menentukan apakah metode ini cocok untuk masalahmu: jumlah operasi menentukan waktu jalan pada matriks besar, sedangkan perilaku pembulatannya menentukan seberapa jauh hasil hitungan bisa dipercaya.
 
 ### Kompleksitas Komputasi
 

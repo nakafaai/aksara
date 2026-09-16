@@ -163,7 +163,7 @@ it("rejects detached Indonesian discussion passives", () => {
   assert.deepEqual(
     findLessonVoiceIssues(
       "id",
-      "Topik keselamatan dibahas pada bagian berikutnya."
+      "Topik keselamatan dibahas bersama tim produksi."
     ),
     []
   );
@@ -192,7 +192,7 @@ it("rejects Indonesian editorial classification in place of the subject relation
   assert.deepEqual(
     findLessonVoiceIssues(
       "id",
-      "Topik keselamatan dibahas pada bagian berikutnya."
+      "Topik keselamatan dibahas bersama tim produksi."
     ),
     []
   );

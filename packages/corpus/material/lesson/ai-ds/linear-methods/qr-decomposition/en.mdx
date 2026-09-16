@@ -46,7 +46,7 @@ The completed matrices still satisfy <InlineMath math="A=Q_1R_1=QR" />.
 
 ## Full and Reduced QR Decomposition
 
-For <InlineMath math="A\in\mathbb{R}^{m\times n}" /> with <InlineMath math="m\geq n" />, the full and reduced forms describe the same factorization with different matrix sizes.
+For <InlineMath math="A\in\mathbb{R}^{m\times n}" /> with <InlineMath math="m\geq n" />, the full and reduced forms describe the same factorization with different matrix sizes. Both forms multiply back to <InlineMath math="A" />, so the choice depends on whether you need the complete orthonormal basis or only the columns that carry the data.
 
 ### Full QR Decomposition
 
@@ -112,7 +112,7 @@ The outer product <InlineMath math="vv^T" /> multiplies an <InlineMath math="m\t
 
 ## Properties of Householder Transformation
 
-For <InlineMath math="S=I-2vv^T" /> and <InlineMath math="\|v\|_2=1" />, the following properties hold:
+For <InlineMath math="S=I-2vv^T" /> and <InlineMath math="\|v\|_2=1" />, the following properties hold. Symmetry and orthogonality come from the unit vector in the definition, the reflection explains what the transformation does to a vector, and a condition number of one says that the reflection never enlarges a computation.
 
 1. <InlineMath math="S" /> is symmetric: <InlineMath math="S^T = S" />
 
@@ -232,7 +232,7 @@ After <InlineMath math="n" /> steps,
 
 ## Numerical Aspects and Householder Complexity
 
-Implementing the decomposition in floating-point arithmetic raises two practical questions, how many operations it costs and how the rounding error behaves. The subsections below answer both.
+Implementing the decomposition in floating-point arithmetic raises two practical questions, how many operations it costs and how the rounding error behaves. Both answers decide whether the method fits the problem: the operation count sets the run time for a large matrix, and the rounding behavior decides how much of the computed result you can trust.
 
 ### Computational Complexity
 

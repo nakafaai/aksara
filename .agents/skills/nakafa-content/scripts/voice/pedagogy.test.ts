@@ -244,3 +244,44 @@ it("rejects generic real world labels and picture transformations", () => {
     );
   }
 });
+
+it("rejects prose that narrates the lesson structure", () => {
+  const cases = [
+    ["id", "Subbagian di bawah ini mengikuti urutan sebuah program."],
+    ["en", "The two sections below cover writing and redirecting output."],
+    ["de", "Die Abschnitte unten zeigen die Konstruktoren int und float."],
+    ["de", "In diesem Abschnitt vergleichen wir beide Notationen."],
+    ["de", "Der nächste Abschnitt behandelt den divergenten Fall."],
+    ["en", "The section teaches the order of the steps."],
+    ["id", "Setiap pembahasan dimulai dari bentuk yang sesuai."],
+  ] as const;
+
+  for (const [locale, rejected] of cases) {
+    assert.deepEqual(
+      findLessonVoiceIssues(locale, rejected).map(({ rule }) => rule),
+      ["lesson-structure-narration"]
+    );
+  }
+});
+
+it("rejects an English subsection reference", () => {
+  const source =
+    "A series adds the terms of a sequence. The two subsections below add the even numbers and the square numbers one term at a time.";
+
+  assert.deepEqual(
+    findLessonVoiceIssues("en", source).map(({ rule }) => rule),
+    ["lesson-structure-narration"]
+  );
+});
+
+it("keeps real uses of a section, an Abschnitt, and a bagian", () => {
+  const samples = {
+    de: "Jeder Abschnitt dieser Kurve zählt mit.\nTrenne die Probe in drei Abschnitte.",
+    en: "A central cross-section through the apex and the midpoint of a base edge.\nA conic section comes from slicing a cone.",
+    id: "Bagian tersebut adalah perbandingan sudut pusat terhadap 360 derajat.\nBagian ini menunjukkan bahwa integrasi dilakukan terhadap variabel x.",
+  };
+
+  for (const [locale, source] of Object.entries(samples)) {
+    assert.deepEqual(findLessonVoiceIssues(locale, source), []);
+  }
+});

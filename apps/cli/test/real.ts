@@ -61,7 +61,7 @@ const selectedPaths = new Set([
 ]);
 export const RENDERER_MANIFEST = await Effect.runPromise(
   createRendererManifest({
-    base: ["BlockMath", "InlineMath", "MathContainer"],
+    base: ["BlockMath", "Highlight", "InlineMath", "MathContainer"],
     domains: RENDERER_DOMAINS.map((name) => {
       if (name === "chemistry") {
         const component = "AtomShellLab";
