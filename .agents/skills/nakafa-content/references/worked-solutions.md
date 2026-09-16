@@ -154,8 +154,8 @@ These rules follow the practical conclusions of the following sources:
   expose solution steps and asks learners to explain what each step does and
   why it works: https://ies.ed.gov/ncee/rel/algebra-middle-and-high-school/intro
 - The What Works Clearinghouse recommends explaining the process and reasoning
-  for each step in worked examples:
-  https://ies.ed.gov/ncee/wwc/Docs/PracticeGuide/MPS_PG_043012.pdf
+  for each step in worked examples; the [evidence basis](evidence-basis.md)
+  records that source.
 - The NSW cognitive-load practice guide recommends fully worked examples for
   new skills, then gradual fading across later practice as expertise grows:
   https://education.nsw.gov.au/content/dam/main-education/about-us/educational-data/cese/2017-cognitive-load-theory-practice-guide.pdf

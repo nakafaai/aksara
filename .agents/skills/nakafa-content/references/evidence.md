@@ -142,12 +142,12 @@
   but the corpus shows that only a small minority of those pairs are decorative.
   The rest name a learner misconception, a definitional exclusion, a quantity,
   or a method distinction, so a blocking rule at that shape would reject correct
-  teaching to catch a few rhetorical pairs. Read every negated sentence together
-  with the sentence that follows it, and delete the negative half only when the
-  positive half already states the whole fact. The same manual read covers
-  `rather than`, `statt`, `stattdessen`, `alih-alih`, `dan bukan`, and
-  `melainkan`, because an artificial frame and a real comparison between two
-  operations can look identical inside one sentence.
+  teaching to catch a few rhetorical pairs. The
+  [final language review](review.md#final-language-review) owns the read that
+  separates a real negation from a decorative one, including the `rather than`,
+  `statt`, `stattdessen`, `alih-alih`, `dan bukan`, and `melainkan` frames,
+  because an artificial frame and a real comparison between two operations can
+  look identical inside one sentence.
 - Avoid formal filler such as `ramalan harfiah`, figurative `lanskap`,
   `krusial`, `esensial`, `literal prediction`, or German abstraction clusters
   when a familiar phrase carries the same meaning. These examples are warning

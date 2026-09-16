@@ -140,8 +140,10 @@ boundary before widening a rule. Preserve the following verification boundaries:
   bar is twenty-five prose words or one real representation, and list-item
   text counts as prose. Body-level demonstratives, possessives, Indonesian
   `-nya`, and English `it/that/they` stay a manual review item, because no rule
-  separates a bare pronoun from a possessive determiner; only the narrow
-  `vague-demonstrative-conclusion` shape is blocked.
+  separates a bare pronoun from a possessive determiner. The review tier reports
+  three narrow shapes in that class, so a `--strict-review` run names them:
+  `vague-demonstrative-conclusion`, `indonesian-unnamed-follow-up-reference`, and
+  `indonesian-ambiguous-calculation-reference`.
 - `indonesian-stiff-interpret-instruction` blocks generic instructions such as
   `tafsirkan solusi` and `Interpretasi Hasil`, while preserving technical uses
   such as Python `interpreter`. Terminology fixtures must also preserve valid
@@ -151,11 +153,11 @@ boundary before widening a rule. Preserve the following verification boundaries:
   word starting with `ä`, `ö`, `ü`, `Ä`, `Ö`, `Ü`, or `ß` therefore needs a
   negative lookbehind such as `(?<![\p{L}\p{N}_])` instead of `\b`, and its test
   must prove the alternative fires.
-- A lowercase prose continuation after display math stays a manual review
-  item. Read every locale sibling before deciding whether it fails the complete
-  sentence rule. Visibility and speed candidates likewise need the named
-  observer, quantity, input, or measured comparison described in
-  [claims and references](claims.md).
+- A lowercase prose continuation after display math is a review candidate
+  (`lowercase-fragment-after-math-block`). Read every locale sibling before
+  deciding whether it fails the complete sentence rule. Visibility and speed
+  candidates likewise need the named observer, quantity, input, or measured
+  comparison described in [claims and references](claims.md).
 - `unbalanced-emphasis` is a blocking source defect. MDX resolves an emphasis
   pair inside one paragraph only, so the gate blocks a `**` marker whose partner
   is missing or sits in another paragraph. Fixtures must keep a pair that wraps
@@ -184,12 +186,13 @@ boundary before widening a rule. Preserve the following verification boundaries:
 - `highlight-ceiling` fixtures cover two highlights in one section, two in the
   introduction before any heading, one per section across several sections, and
   a code block that mentions the marker only as text.
-- Blockquote bodies are scanned for the address rules only, because a blockquote
-  may be a real quotation with protected bytes. A corpus-wide probe with the
-  complete rule set over the current blockquotes reports zero findings, so the
-  boundary is a documented scope limit, and the manual read in
-  [the final language review](review.md#final-language-review) owns the
-  remaining class.
+- Blockquote bodies are scanned for the address rules and for an editorial
+  prefix such as `Quick check:` or `Cek cepat:` (`blockquote-editorial-label`),
+  because a blockquote may be a real quotation with protected bytes. A
+  corpus-wide probe with the complete rule set over the current blockquotes
+  reports zero findings, so the boundary is a documented scope limit, and the
+  manual read in [the final language review](review.md#final-language-review)
+  owns the remaining class.
 
 Global language linters are not MDX parsers. Give them only the learner-visible
 passage being reviewed and validate their findings in context.

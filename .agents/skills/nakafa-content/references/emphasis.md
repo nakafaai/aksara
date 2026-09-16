@@ -11,14 +11,19 @@ result for the learner. `**` produces a `<strong>` element and `<Highlight>` a
   never wraps a whole sentence, a heading, or mathematics.
 - Keep emphasis sparse. A section that marks everything marks nothing, so mark
   the few phrases a learner would write down.
-- Do not nest one marker inside the other.
+- Do not nest one marker inside the other. The [final
+  review](review.md#final-language-review) owns this shape and a marker that
+  wraps a whole sentence, a heading, or mathematics, because no rule reports
+  either one.
 - Let each locale choose its own phrase instead of translating a sibling's
   marked words. A locale that marks nothing has left that step unmarked for its
   readers, so every authored locale document carries at least one `<Highlight>`
   (`lesson-without-highlight`).
-- `<Highlight>` is the explicit marker for the section's single decisive rule,
-  condition, or term, so a section carries at most one (`highlight-ceiling`).
-  Reach for `**` for every other emphasised phrase.
+- `<Highlight>` is the explicit marker for a heading span's single decisive
+  rule, condition, or term, so one heading span carries at most one
+  (`highlight-ceiling`). A `##` section whose `###` subsections each mark their
+  own phrase therefore carries more than one in total, which is the measured
+  corpus maximum. Reach for `**` for every other emphasised phrase.
 - Keep every authored `**` pair inside one paragraph. MDX resolves an emphasis
   pair within one paragraph, so a marker whose partner is missing, or whose
   partner sits in another paragraph, renders as literal `**` in front of the

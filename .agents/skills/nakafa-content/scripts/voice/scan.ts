@@ -37,6 +37,7 @@ import {
   PEDAGOGY_VOICE_RULES,
   REPETITIVE_OPENER_RULES,
 } from "#nakafa-content/voice/pedagogy";
+import { POINTER_VOICE_RULES } from "#nakafa-content/voice/pointer";
 import { findVisibleProseRuleIssues } from "#nakafa-content/voice/prose";
 import {
   maskRawLineProtectedContent,
@@ -89,6 +90,7 @@ const LESSON_VOICE_RULES = [
   ...NARRATION_VOICE_RULES,
   ...VAGUE_VOICE_RULES,
   ...PEDAGOGY_VOICE_RULES,
+  ...POINTER_VOICE_RULES,
 ] satisfies readonly LessonVoiceRule[];
 
 const REPETITIVE_OPENER_LIMIT = 2;

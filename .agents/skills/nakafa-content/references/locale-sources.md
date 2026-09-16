@@ -26,9 +26,11 @@ not replace the full lesson context.
   [dialect accommodation and social identity](https://doi.org/10.32734/ijlsm.v4i2.24493),
   and [imperative politeness in Surabaya Javanese](https://journal.ugm.ac.id/jurnal-humaniora/article/view/829).
   These studies are not general standards for Indonesian lesson prose.
-- Apply the complete global `bahasa-indonesia` skill, including `core.md` and
-  `naturalness.md`. Use correct everyday Indonesian. Do not force an unfamiliar
-  translation when the established English programming term is clearer.
+- Apply the complete global `bahasa-indonesia` skill, including `core.md`. Add
+  `naturalness.md` only when a regional voice or speech level is in scope,
+  because that reference governs regional calibration. Use correct everyday
+  Indonesian. Do not force an unfamiliar translation when the established
+  English programming term is clearer.
 
 ## English
 

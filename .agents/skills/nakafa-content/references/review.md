@@ -62,16 +62,18 @@
   paragraph. The gate blocks a marker whose partner is missing, so this read
   confirms the intended phrase is still the one being emphasized.
 - Read every `<Highlight>`. Confirm it marks one phrase inside one sentence, that
-  the phrase is the section's core rule, decisive condition, or key term, and
-  that the section carries no second one. The gate blocks the floor and the
-  second highlight, not the choice of phrase.
+  the phrase is the heading span's core rule, decisive condition, or key term,
+  and that the span carries no second one. The gate blocks the floor and the
+  second highlight in one heading span, not the choice of phrase.
 - Walk the heading tree. Ordinary explanation stays at `##` and `###`, and a
   lesson answer key nests `####` and `#####` under its own `###` heading. A
   fourth level in ordinary explanation means the section needs splitting. The
-  gate blocks a skipped level only.
+  gate blocks a skipped level and a body that opens above `##`.
 - Read every blockquote body by hand. The gate scans blockquote prose for
-  address only, because a blockquote may be a real quotation whose bytes are
-  protected, so a callout's clause and reference defects stay a manual finding.
+  address and for an editorial prefix such as `Quick check:` or `Cek cepat:`
+  (`blockquote-editorial-label`), and it leaves a real quotation whose bytes are
+  protected alone, so a callout's clause and reference defects stay a manual
+  finding.
 - Confirm terminology is consistent with the current glossary.
 - Confirm the prose does not preserve unnatural source-language syntax.
 - Apply the MDX references to headings, punctuation, resources,

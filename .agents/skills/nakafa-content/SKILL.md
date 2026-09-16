@@ -21,7 +21,8 @@ content addition, revision, review, or translation in this repository.
 4. Read the complete global Humanizer skill before revising or translating
    authored prose. Follow the source and target passes in the editorial
    workflow. For Indonesian, also read `bahasa-indonesia` and its
-   `references/core.md` and `references/naturalness.md`. For German, read the
+   `references/core.md`; read `references/naturalness.md` only when a regional
+   voice or speech level is in scope. For German, read the
    canonical global `humanizer-de/SKILL.md` and the references it routes to. Its
    nested plugin entry point redirects to that same workflow, so do not run
    two independent German passes merely because both entries are installed.

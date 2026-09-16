@@ -73,7 +73,8 @@ authored tree, including a single lesson directory.
 The question bank is deliberately outside the gate. Its files are named
 `answer.id.mdx` and `question.en.mdx`, so file discovery reads the trailing
 locale segment and the tree is now reachable, but the rule set does not fit it:
-a measured run over all 9650 item files reports 25,254 findings, dominated by
+a measured run over all 9650 question-bank MDX files reports 25,254 findings,
+dominated by
 rules that do not apply to assessed items. Metadata titles such as
 `Pembahasan Soal 4` contain digits, so the heading-symbol rule fires on nearly
 every item; the per-document highlight floor and `locale-representation-parity`
@@ -129,12 +130,15 @@ know, so it is not the full id list.
   skips one. The corpus nests answer-key headings to `####` and `#####` under a
   `###` heading, which stays valid because no level is skipped, so the gate
   enforces order rather than a maximum depth.
-- `highlight-ceiling` blocks a second `<Highlight>` inside one section, which
-  keeps the surface scarce, and `lesson-without-highlight` owns the floor of one
-  per authored locale document. The measured maximum is one highlight per
-  heading span across the corpus, while one top-level `##` section carries three
-  because its `###` subsections each mark their own phrase, so the ceiling unit
-  is the heading span.
+- `highlight-ceiling` blocks a second `<Highlight>` inside one heading span, so
+  the explicit marker keeps naming the one decisive rule, condition, or term of
+  that span, and `lesson-without-highlight` owns the floor of one per authored
+  locale document. The measured maximum is one highlight per heading span across
+  the corpus, while one top-level `##` section carries three because its `###`
+  subsections each mark their own phrase. The rule does not cap `**` density or
+  total marked surface: both markers render the same treatment, so an author can
+  mark several phrases in one span with `**`, and that spacing judgement stays
+  editorial.
 - `internal-link-generic-label`, `internal-link-only-block`, and
   `internal-link-navigation-heading` block a label that names no destination
   concept, a paragraph or list item whose visible content is only links, and a
@@ -150,6 +154,36 @@ know, so it is not the full id list.
   `1. Erste Ableitung ...` modify a following noun and stay valid. The corpus
   carries none of the verb form, so the manual read owns it until that lexicon
   exists and the pattern can widen.
+
+- `bare-look-pointer` blocks a whole paragraph that only tells the learner to
+  look at the next block. The reported regression is `Perhatikan matriks
+  berikut:` in front of a displayed matrix, with `Consider the following
+  matrix:` and `Betrachte die folgende Matrix:` as its siblings. A task
+  instruction that names the learner action, such as `Bandingkan kedua vektor
+  itu dan tentukan sudut di antara keduanya:`, and a pointer that names the
+  instrument, such as `Prüfe jeden Reaktionstyp mit der folgenden Tabelle.`,
+  stay valid.
+- `counted-pointer-caption` blocks the reported caption that counts the block
+  below it and teaches nothing: `Dua rumus berikut menghitung luas juring:` in
+  front of two formulas. A tail that names the deciding condition, such as
+  `Dua rumus berikut menghitung luas juring bila satuan sudutnya berbeda:`, and
+  a pointer noun outside the display-artifact set, such as `Tiga istilah berikut
+  menjelaskan struktur matriks:`, stay valid. The German and English pre-noun
+  frames stay a manual read item, because `Die folgenden zwei Versuche prüfen
+  das Gesetz der konstanten Zusammensetzung` has the same shape as a legitimate
+  preview. The [final review](review.md#final-language-review) owns them.
+- `blockquote-editorial-label` blocks an authored callout whose body opens with
+  a label such as `Quick check:`, `Kurzer Check:`, or `Cek cepat:`. A blockquote
+  body receives the address rules and this rule, so callout prose is checked,
+  while a real quotation with protected bytes stays valid.
+- `duplicate-adjacent-word` blocks one word repeated next to itself.
+  `evidence-carrying-metaphor` blocks a recorded clue, evidence, or observation
+  that `carries` a conclusion. `decorative-picture-to-calculation` blocks a
+  recorded picture that `turns into` a calculation.
+  `unqualified-energy-density-claim` and `unqualified-fuel-storage-claim` block
+  the recorded density and fuel-storage claims. The Indonesian pattern of the
+  density rule is not written yet, so an Indonesian sentence of that class stays
+  a manual read item.
 
 Widen one of these only after the corpus-wide search and the positive,
 negative, and boundary tests described above.
@@ -189,9 +223,15 @@ calculation. Those rules would reward a new template and create false positives.
 
 The heading-echo check, the mirrored-negation pair, body-level demonstratives,
 the Indonesian `-nya` clitic on a noun or a verb, and same-document duplicate
-sentences are the largest manual review items. No rule reports them, because a
-zero-false-positive shape would need a verb lexicon, so
-[the final language review](review.md#final-language-review) owns them.
+sentences are the largest manual review items. No blocking rule reports them,
+because a zero-false-positive shape would need a verb lexicon, so
+[the final language review](review.md#final-language-review) owns them. Three
+review-tier rules cover a narrow slice of the same classes, and a
+`--strict-review` run names them: `vague-demonstrative-conclusion`,
+`indonesian-unnamed-follow-up-reference`, and
+`indonesian-ambiguous-calculation-reference`. `repeated-conclusion-opener` and
+`repeated-explanatory-opener` report the third and later repeated opener at that
+same tier.
 
 Do not add a global word ban from one awkward sentence, optimize prose for a
 detector score, translate terminology merely to make a lint pass, or treat a
