@@ -3,6 +3,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { basename, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { findLessonHighlightIssues } from "#nakafa-content/highlight/presence";
 import { findExactLineSmoothingIssues } from "#nakafa-content/line/check";
 import { findExternalLinkPlacementIssues } from "#nakafa-content/link/check";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
@@ -95,6 +96,7 @@ export function checkLessonRoot(root: string): LessonVoiceReport {
     tree,
   }));
   issues.push(...findSiblingRepresentationIssues(root, siblingDocuments));
+  issues.push(...findLessonHighlightIssues(root, siblingDocuments));
   return { fileCount: files.length, issues };
 }
 

@@ -51,6 +51,7 @@ const BLOCKING_RULES = new Set([
   "indonesian-water-ratio-gateway",
   "irrelevant-fiction-label",
   "learner-facing-semicolon",
+  "lesson-without-highlight",
   "list-only-section",
   "locale-representation-parity",
   "malformed-latex-command",
