@@ -257,6 +257,7 @@ it("rejects prose that narrates the lesson structure", () => {
     ["id", "Ini berlaku di sepanjang pelajaran ini."],
     ["de", "Das Muster bleibt über die ganze Lektion gleich."],
     ["en", "The two subsections below cover writing."],
+    ["id", "Pembahasan berikut membahas gaya gesek pada bidang miring."],
   ] as const;
 
   for (const [locale, rejected] of cases) {
@@ -268,13 +269,17 @@ it("rejects prose that narrates the lesson structure", () => {
 });
 
 it("rejects the nominalized German sequence adverb", () => {
-  assert.deepEqual(
-    findLessonVoiceIssues(
-      "de",
-      "Die Rechnung verwendet im Folgenden den gerundeten Wert."
-    ).map(({ rule }) => rule),
-    ["german-bare-im-folgenden"]
-  );
+  const samples = [
+    "Die Rechnung verwendet im Folgenden den gerundeten Wert.",
+    "Im Folgenden wird der gerundete Wert verwendet.",
+  ];
+
+  for (const source of samples) {
+    assert.deepEqual(
+      findLessonVoiceIssues("de", source).map(({ rule }) => rule),
+      ["german-bare-im-folgenden"]
+    );
+  }
 });
 
 it("keeps real uses of a section, an Abschnitt, and a bagian", () => {

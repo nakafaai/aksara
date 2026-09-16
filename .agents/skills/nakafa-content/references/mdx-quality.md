@@ -55,6 +55,16 @@
   relationship clearly. An encoded entity that renders as a semicolon is also
   forbidden.
 
+## Emphasis
+
+- Keep every authored `**` pair inside one paragraph. MDX resolves an emphasis
+  pair within one paragraph, so a marker whose partner is missing, or whose
+  partner sits in another paragraph, renders as literal `**` in front of the
+  learner. A pair may still wrap an inline component, such as a `<Highlight>` or
+  an `<InlineMath />`, when both markers stay in the same paragraph. Inline code
+  and fenced code keep `**` as programming syntax and stay outside this rule.
+  `unbalanced-emphasis` blocks the defect.
+
 ## Links
 
 - Keep lessons self-contained with Nakafa-owned explanations, examples,

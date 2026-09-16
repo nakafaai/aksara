@@ -212,6 +212,9 @@
   `bagian`, `Abschnitt`, and `section` remain valid for a real part of a path,
   an atom, a quoted document, or a legal provision, and the lowercase
   `im folgenden Beispiel` stays valid for a named example.
+  The gate matches the nominalized `Im Folgenden` and `im Folgenden` in either
+  capitalization and leaves only the lowercase adjective of
+  `im folgenden Beispiel` alone.
 - Write every heading in plain language that a student understands before
   reading the section. Never put a technical term, abbreviation, algorithm
   name, or notation in a heading the lesson has not yet defined, and never use
@@ -380,14 +383,27 @@
   words. Do not flag an ordinary comparison such as
   `5 lebih besar daripada 3`; the problem is the artificial contrast, not the
   word by itself.
-  The blocking rule for this class matches `not just`, `not merely`, `not only`,
-  `nicht nur`, `nicht bloß`, `nicht lediglich`, `bukan cuma`, `bukan hanya`, and
-  `bukan sekadar`. It is a vocabulary guard, not a pronoun ban, so a real
-  contrast must be phrased without that frame: name the compared quantity,
-  method, or condition directly. The wider `rather than`, `statt`, and
-  `alih-alih` family stays a review candidate, because an artificial frame and a
-  real comparison between two operations can look the same in a single
-  sentence.
+  Two blocking rules guard part of this class. `rhetorical-not-only` matches the
+  `not just`, `not merely`, `not only`, `nicht nur`, `nicht bloß`,
+  `nicht lediglich`, `bukan cuma`, `bukan hanya`, and `bukan sekadar` frame. Its
+  Indonesian alternative exempts `dekorasi`, `formalitas`, `hiasan`, and
+  `notasi`, because those sentences belong to `corrective-decoration-metaphor`
+  instead. `anti-model-intensifier` matches an evaluative anti-model such as
+  `not this simple`, `nicht so einfach`, and `tidak sesederhana`, where the
+  object of the negation is a judgment about difficulty rather than a fact, a
+  quantity, or a named misconception.
+  The mirrored sentence pair is the largest remaining case, and it stays a
+  manual review obligation rather than a blocking rule. `It is not X. It is Y.`,
+  `Bukan X. ... adalah Y.`, and `Nicht X. ... ist Y.` are detectable as a shape,
+  but the corpus shows that only a small minority of those pairs are decorative.
+  The rest name a learner misconception, a definitional exclusion, a quantity,
+  or a method distinction, so a blocking rule at that shape would reject correct
+  teaching to catch a few rhetorical pairs. Read every negated sentence together
+  with the sentence that follows it, and delete the negative half only when the
+  positive half already states the whole fact. The same review obligation covers
+  `rather than`, `statt`, `stattdessen`, `alih-alih`, `dan bukan`, and
+  `melainkan`, because an artificial frame and a real comparison between two
+  operations can look identical inside one sentence.
 - Avoid formal filler such as `ramalan harfiah`, figurative `lanskap`,
   `krusial`, `esensial`, `literal prediction`, or German abstraction clusters
   when a familiar phrase carries the same meaning. These examples are warning
@@ -501,6 +517,21 @@ sentence that established it:
   neither the risk nor the affected group.
 - `indonesian-water-ratio-gateway` and `indonesian-stiff-serampangan` block the
   recorded mechanical phrasings `gerbang rasio air` and `serampangan`.
+- `anti-model-intensifier` blocks the recorded `not this simple`,
+  `nicht so einfach`, and `tidak sesederhana` aside from the exponential growth
+  example. That is the only instance of the sub-shape in the corpus, and the
+  shape is separable because its object is a judgment about difficulty rather
+  than a concept, quantity, condition, or misconception.
+- `abstract-concept-asks-question` and
+  `abstract-concept-question-personification` both block a concept that asks a
+  question. The first matches the generic subject list, the second the recorded
+  domain subjects. Both are blocking, so one defect class no longer splits
+  across two tiers.
+- `unbalanced-emphasis` blocks an authored `**` marker whose partner is missing
+  or sits in another paragraph. MDX resolves an emphasis pair inside one
+  paragraph, so such a marker reaches the learner as literal `**`. A pair inside
+  one paragraph stays valid even when it wraps an inline component, and inline
+  or fenced code keeps `**` as programming syntax.
 
 Widen one of these only after the corpus-wide search and the positive,
 negative, and boundary tests described above.
@@ -564,6 +595,16 @@ clean gate as evidence that the corpus is human.
 - Circle every `ini`, `itu`, `tersebut`, `this`, `those`, and German
   demonstrative used after a multi-item list. Replace it with the exact noun if
   more than one antecedent is possible.
+- Check the ordinal form of the same class. `sifat pertama`, `faktor pertama`,
+  `the first identity`, and `die erste Regel` need a set the document actually
+  numbers or lists in order. Name the property, factor, or identity instead when
+  the set is never enumerated.
+- Read every authored `**` pair and confirm it opens and closes inside one
+  paragraph. The gate blocks a marker whose partner is missing, so this read
+  confirms the intended phrase is still the one being emphasized.
+- Read every blockquote body by hand. The gate scans blockquote prose for
+  address only, because a blockquote may be a real quotation whose bytes are
+  protected, so a callout's clause and reference defects stay a manual finding.
 - Confirm terminology is consistent with the current glossary.
 - Confirm the prose does not preserve unnatural source-language syntax.
 - Apply [MDX quality](mdx-quality.md) to headings, punctuation, resources,

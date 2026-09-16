@@ -1,8 +1,10 @@
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 const BLOCKING_RULES = new Set([
+  "abstract-concept-asks-question",
   "abstract-concept-question-personification",
   "abrupt-scenario-imperative",
+  "anti-model-intensifier",
   "blockquote-editorial-label",
   "compressed-renewable-timescale-contrast",
   "corrective-decoration-metaphor",
@@ -67,6 +69,7 @@ const BLOCKING_RULES = new Set([
   "source-navigation-filler",
   "split-aligned-head",
   "unexplained-output-scheduling",
+  "unbalanced-emphasis",
   "unqualified-energy-density-claim",
   "unqualified-fuel-storage-claim",
   "unsupported-evaluative-preface",

@@ -1,4 +1,5 @@
 import { findSectionBodyIssues } from "#nakafa-content/body/section";
+import { findEmphasisArtifactIssues } from "#nakafa-content/emphasis/check";
 import { exerciseSectionLines } from "#nakafa-content/exercise/context";
 import { FLOW_CONTEXT_RULES } from "#nakafa-content/flow/context";
 import { FLOW_STYLE_RULES } from "#nakafa-content/flow/style";
@@ -280,6 +281,7 @@ export function findLessonVoiceIssues(
     ...findMalformedLatexCommandIssues(source, parsedTree),
     ...findDisplayedMathCompositionIssues(source, parsedTree),
     ...findBlockquoteEditorialLabelIssues(locale, source, parsedTree),
+    ...findEmphasisArtifactIssues(source, parsedTree),
     ...findSectionBodyIssues(source, parsedTree),
     ...findUndefinedHeadingAbbreviationIssues(source, parsedTree)
   );

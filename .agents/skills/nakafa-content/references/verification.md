@@ -32,6 +32,8 @@ voice suite has its own root command:
 pnpm test:lesson-voice
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --strict-review
+node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --root packages/corpus/articles
+node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --root packages/corpus/articles --strict-review
 ```
 
 Run that suite before the corpus gate when changing a voice rule. The
@@ -79,6 +81,12 @@ are reported as `review`; `--strict-review` makes those candidates fail during
 an editorial audit. Inspect each match with its complete paragraph, subject
 terminology, and locale siblings. Rerun after corrections and account for every
 remaining match. Do not rewrite valid prose to obtain a zero count.
+
+The corpus suites assert an empty issue list for both authored scopes at every
+tier, so a `review` candidate fails the repository suite exactly as a blocking
+rule does. The CLI default mode is a debugging filter for a focused run, not a
+release exception: narrow or repair the rule and the sentence before landing a
+change that leaves any finding.
 
 The gate owns two authored scopes. Lessons live in
 `packages/corpus/material/lesson`; articles live in `packages/corpus/articles`.
@@ -143,6 +151,15 @@ boundary before widening a rule. Preserve the following verification boundaries:
   Read every locale sibling before deciding whether it fails the complete
   sentence rule. Visibility and speed candidates likewise need the named
   observer, quantity, input, or measured comparison described in writing quality.
+- `unbalanced-emphasis` is a blocking source defect. MDX resolves an emphasis
+  pair inside one paragraph only, so the gate blocks a `**` marker whose partner
+  is missing or sits in another paragraph. Fixtures must keep a pair that wraps
+  an inline component, inline code, and a fenced code block valid.
+- Blockquote bodies are scanned for the address rules only, because a blockquote
+  may be a real quotation with protected bytes. A corpus-wide probe with the
+  complete rule set over the current blockquotes reports zero findings, so the
+  boundary is a documented scope limit, and the manual read in writing quality
+  owns the remaining class.
 
 Global language linters are not MDX parsers. Give them only the learner-visible
 passage being reviewed and validate their findings in context.
