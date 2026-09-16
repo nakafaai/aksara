@@ -43,6 +43,8 @@ export interface MdxNode {
     altChildren?: PhrasingContent[];
     estree?: EstreeNode;
   };
+  /** Heading level, present only on a `heading` node. */
+  depth?: number;
   identifier?: string;
   name?: string;
   position?: SourceRange;

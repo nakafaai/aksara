@@ -94,18 +94,18 @@ Both suites assert zero findings, so an article change must keep its three
 locale siblings clean as well. Point the same command at one article directory
 with `--root` while editing. The question bank is out of scope; the reasons and
 the measured evidence are recorded in
-[writing quality](writing-quality.md#deterministic-gate-scope).
+[checker limits and gate scope](checker.md#deterministic-gate-scope).
 `packages/corpus/pages` is out of scope as well: it holds the legal notice,
 privacy policy, security policy, and developer resources, which are reviewed as
 public legal and product copy under their own acceptance path.
 
 Rule ownership and admission criteria live in
-[writing quality](writing-quality.md#evidence-and-checker-limits). Record a new
+[checker limits](checker.md#evidence-and-checker-limits). Record a new
 failure class there, search the complete lesson corpus for locale variants,
 and add a failing case, a legitimate nearby case, and the nearest false-positive
 boundary before widening a rule. Preserve the following verification boundaries:
 
-- Parsed learner text follows [MDX constraints](mdx-quality.md), including
+- Parsed learner text follows the [source contract](source.md), including
   headings, hidden control characters, visible semicolons, and mathematical
   notation. Tests must retain semicolons used by code, MDX syntax, HTML entities,
   and LaTeX spacing while rejecting an entity or math separator that renders a
@@ -125,7 +125,7 @@ boundary before widening a rule. Preserve the following verification boundaries:
 - Link fixtures enforce HTTPS Markdown structure and reject external images,
   JSX destinations, and dynamic escape hatches. Internal links and protected
   source examples remain valid. Source eligibility requires the
-  [editorial link review](mdx-quality.md#links), never a path or domain allowlist.
+  [editorial link review](links.md), never a path or domain allowlist.
 - `locale-representation-parity` is a structural blocker. It compares heading
   levels, list type and count, table shape, blockquotes, code blocks, display
   math, and custom flow components in teaching order. It ignores sentence shape
@@ -155,6 +155,29 @@ boundary before widening a rule. Preserve the following verification boundaries:
   pair inside one paragraph only, so the gate blocks a `**` marker whose partner
   is missing or sits in another paragraph. Fixtures must keep a pair that wraps
   an inline component, inline code, and a fenced code block valid.
+- Internal-link fixtures cover the three objective shapes: a label that names no
+  destination concept, a paragraph or list item whose visible content is only
+  links, and a heading whose whole label only announces navigation. They must
+  keep the woven transformation links, a named single-word label such as `Mean`,
+  an external or protocol-relative destination that carries a generic label, a
+  reference-style destination with prose, and a link beside math, inline code,
+  or an image valid. The numeric link ceiling stays editorial.
+- `heading-order` fixtures cover a skipped level, a body that opens above `##`,
+  and the answer-key nesting `##` to `###` to `####` to `#####`.
+- `duplicated-list-ordinal` fixtures cover `1. Pertama,`, `1. First,`,
+  `1. Zuerst,`, and `3. **Zunächst:**`, and must keep `1. Pertama kali`,
+  `1. First die 3, second die 4`, `1. First ionization energy`,
+  `1. First term a`, `1. First element of the set is 2`, and
+  `1. Erste Ableitung ist die Steigung.` valid. An ordinal followed directly by
+  a verb stays outside the pattern until the corpus carries none.
+- The German sequence frame fixture must reject `Gehe bei einer Sachaufgabe in
+  dieser Reihenfolge vor:` and `Für diese Gleichung gehen wir in dieser
+  Reihenfolge vor:`, while `A und B können in dieser Reihenfolge nur
+  multipliziert werden.` stays valid because it names the required operand
+  order, as the shipped matrix lesson does.
+- `highlight-ceiling` fixtures cover two highlights in one section, two in the
+  introduction before any heading, one per section across several sections, and
+  a code block that mentions the marker only as text.
 - Blockquote bodies are scanned for the address rules only, because a blockquote
   may be a real quotation with protected bytes. A corpus-wide probe with the
   complete rule set over the current blockquotes reports zero findings, so the
@@ -170,7 +193,7 @@ passage being reviewed and validate their findings in context.
    identity without collisions. Preserve every assessed or immutable byte
    governed by source policy; authored content contains no U+2014.
 2. Complete both Humanizer passes for authored translations and the
-   [final language review](writing-quality.md#final-language-review) for each
+   [final language review](review.md#final-language-review) for each
    changed document. Read each locale alone, then compare all audited siblings.
    Retell the reasoning and answer the student questions about what changes,
    compared with what, why, and with which example.
@@ -180,7 +203,7 @@ passage being reviewed and validate their findings in context.
    table, quotation, diagram, derivation, or component and record which teaching
    job replaced it in every locale. A compiling summary is insufficient.
 4. Compare source and revised URL inventories under the
-   [link policy](mdx-quality.md#links). A removed, dead, or mismatched URL blocks
+   [link policy](links.md). A removed, dead, or mismatched URL blocks
    release until its replacement or justified removal is recorded. For a
    removed visual resource, verify the owned replacement or the documented gap
    addressed by a new component.
@@ -190,7 +213,7 @@ passage being reviewed and validate their findings in context.
    Investigate any broad loss of established English programming terms in an
    Indonesian revision.
 6. Verify MDX math, props, geometry, accessibility, layout, and localized labels
-   through [MDX quality](mdx-quality.md). Compare representative rendered values
+   through [components and visuals](visuals.md). Compare representative rendered values
    with independent calculations, inspect every branch and boundary, and test
    supported interactions and 3D rotation. Render every affected locale without
    clipping, overlap, console errors, or network errors. Check response labels

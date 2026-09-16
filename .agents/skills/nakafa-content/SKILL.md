@@ -47,15 +47,31 @@ classify. Review every candidate in the complete teaching context before editing
 
 ## Required references
 
+Read only what the task needs. Each reference owns one concern.
+
 | Work | Read |
 | --- | --- |
-| Any authored revision or translation | [Editorial workflow](references/editorial-workflow.md) and [writing quality](references/writing-quality.md) |
+| Any authored revision or translation | [Editorial workflow](references/editorial-workflow.md) |
+| Voice, register, and the clarity test | [Voice and scope](references/voice.md) |
+| Terminology and technical vocabulary | [Terminology](references/terminology.md) |
+| Claims, comparisons, and causal sentences | [Claims and references](references/claims.md) |
+| Transitions and imperatives | [Teaching transitions](references/transitions.md) |
+| Headings, sections, and lists | [Structure](references/structure.md) |
+| Facts, citations, and source accuracy | [Accuracy and evidence](references/evidence.md) |
+| Checker scope and rule admission | [Checker limits and gate scope](references/checker.md) |
+| The closing read-through | [Final language review](references/review.md) |
 | Locale wording and cross-locale review | [Locale sources](references/locale-sources.md) |
-| Any MDX, including prompts and answers | [MDX quality](references/mdx-quality.md) |
+| Raw MDX, metadata, and readability | [Source and readability](references/source.md) |
+| MDX headings | [Headings](references/headings.md) |
+| Learner-facing punctuation | [Learner facing punctuation](references/punctuation.md) |
+| Emphasis markers | [Emphasis](references/emphasis.md) |
+| Internal and external links | [Links](references/links.md) |
+| Mathematics and code in MDX | [Mathematics and code](references/math.md) |
+| Graphs, diagrams, and components | [Components and visuals](references/visuals.md) |
+| Representation research basis | [Evidence basis](references/evidence-basis.md) |
 | Questions and response items | [Question bank](references/question-bank.md) |
-| Worked answer explanations | [Question bank](references/question-bank.md) and [worked solutions](references/worked-solutions.md) |
-| Checker changes | [Evidence and checker limits](references/writing-quality.md#evidence-and-checker-limits) and [verification](references/verification.md) |
-| Every completed content change | [Verification](references/verification.md) |
+| Worked answer explanations | [Worked solutions](references/worked-solutions.md) |
+| Verification commands and acceptance | [Verification](references/verification.md) |
 
 ## Content invariants
 
@@ -74,15 +90,30 @@ classify. Review every candidate in the complete teaching context before editing
   imposing one lesson template or inventing anecdotes, settings, or metaphors.
 - Keep facts and source attribution verified. Preserve claim-matched provenance
   when changing the page outline or removing a resource. A learner-visible
-  external resource must satisfy the [MDX link policy](references/mdx-quality.md#links).
+  external resource must satisfy the [link policy](references/links.md).
 - Choose representations for their teaching job, then preserve that job in
   every locale. Humanization never authorizes deleting useful reasoning or
   flattening a diagram, table, derivation, or component to reduce line count.
 - Use the current renderer contract. MDX math and React-node labels follow
-  [MDX quality](references/mdx-quality.md#mathematics-and-code); response labels
-  remain one rich Markdown string under the [question-bank contract](references/question-bank.md#response-items).
-  Worked answers retain the complete post-attempt reasoning described in
+  [mathematics and code](references/math.md); response labels remain one rich
+  Markdown string under the
+  [question-bank contract](references/question-bank.md#response-items). Worked
+  answers retain the complete post-attempt reasoning described in
   [worked solutions](references/worked-solutions.md).
+- Mark an emphasised phrase, and no more of it than the phrase. `**` and
+  `<Highlight>` render the same treatment, so the [emphasis
+  contract](references/emphasis.md) owns where they belong and how dense they
+  may be.
+- Keep every lesson self-contained. An internal link adds navigation, never a
+  teaching step, so explain the concept and link only where the prose genuinely
+  invokes the relation. The [link policy](references/links.md) owns
+  the link rules.
+- Run the deterministic gate on both authored roots, lessons
+  (`packages/corpus/material/lesson`) and articles (`packages/corpus/articles`).
+  Both roots must reach zero findings at every tier. The commands live in
+  [verification](references/verification.md#lesson-voice-gate). Scope and rule
+  admission live in
+  [checker limits and gate scope](references/checker.md#deterministic-gate-scope).
 - Treat checker output as evidence to investigate. Default blockers need proven
   regressions; strict-review candidates still need contextual judgment. Never
   invent a global word ban or optimize prose for an authorship score. Group

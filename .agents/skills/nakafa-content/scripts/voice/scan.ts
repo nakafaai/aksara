@@ -32,6 +32,7 @@ import {
 import { LANGUAGE_VOICE_RULES } from "#nakafa-content/voice/language";
 import { METAPHOR_VOICE_RULES } from "#nakafa-content/voice/metaphor";
 import { METHOD_VOICE_RULES } from "#nakafa-content/voice/method";
+import { NARRATION_VOICE_RULES } from "#nakafa-content/voice/narration";
 import {
   PEDAGOGY_VOICE_RULES,
   REPETITIVE_OPENER_RULES,
@@ -84,6 +85,7 @@ const LESSON_VOICE_RULES = [
   ...AMBIGUITY_VOICE_RULES,
   ...REPORTING_VOICE_RULES,
   ...VISIBILITY_VOICE_RULES,
+  ...NARRATION_VOICE_RULES,
   ...PEDAGOGY_VOICE_RULES,
 ] satisfies readonly LessonVoiceRule[];
 

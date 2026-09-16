@@ -23,7 +23,7 @@ it("rejects an emphasis marker whose partner is missing or in another paragraph"
 
 it("keeps balanced emphasis and literal code markers valid", () => {
   const source = [
-    "A balanced **bold** term and <Highlight>a phrase</Highlight> stay valid.",
+    "A balanced **emphasized** term and <Highlight>a phrase</Highlight> stay valid.",
     "",
     "A pair may still wrap **an inline <Highlight>component</Highlight> inside one paragraph**.",
     "",

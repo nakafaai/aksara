@@ -19,6 +19,20 @@ export const CORE_VOICE_RULES = [
     },
   },
   {
+    // A numbered item already orders the step, so a leading ordinal repeats the
+    // number. Label punctuation closes the ordinal as an interjection, which a
+    // modifier never does, so `1. First term a`, `1. First ionization energy`,
+    // and `1. Pertama kali` stay valid. An ordinal followed directly by a verb,
+    // as in `4. First simplify the angles.`, is the same defect and stays a
+    // manual review item until the corpus carries none of those.
+    id: "duplicated-list-ordinal",
+    patterns: {
+      de: /^\s*\d+[.)]\s+(?:\*\*)?(?:Zuerst|Zunächst)\s*[,:]/iu,
+      en: /^\s*\d+[.)]\s+(?:\*\*)?First\s*[,:]/iu,
+      id: /^\s*\d+[.)]\s+(?:\*\*)?Pertama\s*[,:]/iu,
+    },
+  },
+  {
     id: "corrective-decoration-metaphor",
     patterns: {
       de: /\b(?:ist|sind|war|waren)\b[^.!?\n]{0,60}\bkein(?:e|en|er|es)?\s+(?:bloße[rsnm]?\s+)?(?:Dekoration|Formalität|Schmuck|Schreibweise|Zusatz)\b/iu,

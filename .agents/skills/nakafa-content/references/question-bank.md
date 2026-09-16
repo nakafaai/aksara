@@ -32,7 +32,7 @@ its response options merely because the application locale changes.
 - Do not mention answer-option letters unless the source format itself requires
   them.
 - Keep quoted and assessed passages byte-preserved when policy requires it.
-- Use math components consistently with [MDX quality](mdx-quality.md).
+- Use math components consistently with [mathematics and code](math.md).
 - Every question must contain the information needed to answer it. Never depend
   on an unstated intermediate value from a preceding question.
 - Every question and locale sibling with the same `stimulusKey` must present
@@ -45,7 +45,7 @@ Read [worked solutions](worked-solutions.md) before editing any explanation.
 It owns the complete novice-safe reasoning contract, including method choice,
 subgoals, substitutions, conditions, cases, transformations, units, checks,
 and a conclusion stated by content rather than an option letter. Keep notation
-consistent with the prompt. Use the [MDX heading rules](mdx-quality.md#headings):
+consistent with the prompt. Use the [heading rules](headings.md):
 answer sections start at `####` and name real subgoals. Never delete reasoning
 to reduce line count.
 

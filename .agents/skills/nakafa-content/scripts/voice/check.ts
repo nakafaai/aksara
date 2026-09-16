@@ -3,9 +3,12 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { basename, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { findHeadingOrderIssues } from "#nakafa-content/heading/order";
+import { findHighlightCeilingIssues } from "#nakafa-content/highlight/ceiling";
 import { findLessonHighlightIssues } from "#nakafa-content/highlight/presence";
 import { findExactLineSmoothingIssues } from "#nakafa-content/line/check";
 import { findExternalLinkPlacementIssues } from "#nakafa-content/link/check";
+import { findInternalLinkIssues } from "#nakafa-content/link/internal";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import { findMathBlockFragmentIssues } from "#nakafa-content/voice/fragment";
 import { findSiblingRepresentationIssues } from "#nakafa-content/voice/parity";
@@ -97,6 +100,9 @@ export function checkLessonRoot(root: string): LessonVoiceReport {
       ...findMathBlockFragmentIssues(source, tree),
       ...findLearnerFacingSemicolonIssues(source, tree),
       ...findExternalLinkPlacementIssues(source, tree),
+      ...findInternalLinkIssues(source, tree),
+      ...findHeadingOrderIssues(source, tree),
+      ...findHighlightCeilingIssues(source, tree),
       ...findExactLineSmoothingIssues(source, tree),
     ].map((issue) => ({
       file: repositoryPath,

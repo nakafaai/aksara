@@ -51,7 +51,7 @@ For every authored target document or localized metadata record:
    improve wording, rhythm, and clarity, but it may not remove teaching context,
    reasoning steps, evidence, math, or components.
 8. Check fabrication, terminology, headings, math, code, accessibility,
-   punctuation, and route identity. Apply the [MDX link policy](mdx-quality.md#links)
+   punctuation, and route identity. Apply the [link policy](links.md)
    to source eligibility, claim-matched provenance, and every removed URL.
 9. Compare the locale siblings structurally and semantically. Confirm that every
    teaching unit and component has one corresponding localized implementation.

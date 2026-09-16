@@ -104,8 +104,8 @@ Avoid:
 - one display component per arithmetic line;
 - unexplained jumps from the original expression to the result;
 - generic headings for every small action;
-- repeating one conclusion in prose, a display, bold text, and another final
-  sentence;
+- repeating one conclusion in prose, a display, an emphasized phrase, and
+  another final sentence;
 - narrating arithmetic with filler such as `next` or `finally` when the
   derivation already shows the transition.
 
