@@ -37,8 +37,8 @@
   condition, and with which result. The highest-risk shape is a demonstrative,
   possessive, `-nya`, or English `it/that/they` that follows a multi-item list,
   a table, or two candidate nouns. The deterministic gate blocks the heading
-  form of this class. Body prose stays a mandatory review item, because a
-  checker cannot separate a bare pronoun from a possessive determiner without
+  form of this class. Body prose stays a mandatory manual review item, because
+  no rule can separate a bare pronoun from a possessive determiner without
   reading the whole sentence.
 - Follow [headings](headings.md) for titles, notation, required
   hyphens, and citation-only sections. Apply the [link policy](links.md)
@@ -51,10 +51,10 @@
   carries the teaching. A heading with no body, a heading whose body is only a
   component, and a heading whose body is only a short list are blocking
   defects. A heading whose whole body stays under twenty-five prose words with
-  no table, blockquote, code block, or component is a review item. Words inside
-  list items count as prose, so a worked-solution list can stand alone while a
-  bare bullet list cannot. A heading that opens nested subsections needs a
-  substantive bridge paragraph, not a one-line announcement.
+  no table, blockquote, code block, or component is a review candidate. Words
+  inside list items count as prose, so a worked-solution list can stand alone
+  while a bare bullet list cannot. A heading that opens nested subsections needs
+  a substantive bridge paragraph, not a one-line announcement.
 - Avoid reusable headings such as `Overview`, `Key Takeaway`, or `Step One` when
   the actual concept can name the section.
 - Do not copy the same section sequence across different nearby lesson routes.

@@ -81,9 +81,19 @@ assume a lesson with locale siblings, while an assessed prompt exists in one
 language only. Gating the question bank needs its own rule profile, and that is
 a separate change with its own evidence run.
 
+A **review candidate** is a finding the gate emits at the `review` tier, so only
+`--strict-review` fails it while the repository suite still rejects it. A
+**manual review item** is a class with no rule at all, so no checker output can
+report it and the closing read owns it alone. Read the two terms exactly: only
+the first appears in checker output.
+
 Several blocking rules encode one proven regression rather than a general
 class. Each stays narrow on purpose, and each names the report or corpus
 sentence that established it:
+
+The rule modules and `scripts/voice/policy.ts` own the rule ids and their tier
+in code. This reference names only the rules whose boundary a reviewer must
+know, so it is not the full id list.
 
 - `compressed-renewable-timescale-contrast` blocks the exact
   human-timescale-versus-fossil-fuels contrast reported for the renewable
@@ -91,7 +101,7 @@ sentence that established it:
 - `chemical-formula-personification` blocks a formula that `carries` a mass.
   State the mass ratio instead.
 - `known-decorative-science-heading` blocks the literal decorative headings
-  recorded from the science corpus, such as an `Atom Identity Card`.
+  recorded from the science corpus, such as `An Atom Identity Card`.
 - `abrupt-scenario-imperative` blocks the land-area scenario that turned a
   teacher's explanation into an unexplained task.
 - `unsupported-evaluative-preface` blocks `this is the most common example`
@@ -136,8 +146,10 @@ sentence that established it:
   `1. Pertama,`, `First,`, `Zuerst,`, or `Zunächst:` because the number already
   orders the step. The same defect with a verb after the ordinal, such as
   `4. First simplify the angles.` or `1. Zuerst wird ...`, needs a per-language
-  verb lexicon and the corpus still carries seven such items, so it stays a
-  manual review item until those are repaired and the pattern can widen.
+  verb lexicon, because `1. First term a`, `1. Pertama kali`, and
+  `1. Erste Ableitung ...` modify a following noun and stay valid. The corpus
+  carries none of the verb form, so the manual read owns it until that lexicon
+  exists and the pattern can widen.
 
 Widen one of these only after the corpus-wide search and the positive,
 negative, and boundary tests described above.
@@ -161,8 +173,9 @@ context instead of widening the rule to a raw pronoun ban. An unmatched opening
 quotation mark never protects the rest of the document.
 
 Objective source constraints and proven regressions may block the default
-gate. A broader wording pattern remains a review item until corpus evidence and
-negative tests show that automatic rejection is safe. Strict review may fail on
+gate. A broader wording pattern remains a review candidate until corpus
+evidence and negative tests show that automatic rejection is safe. Strict
+review may fail on
 all candidates during an editorial audit, but a match still requires the full
 paragraph, subject terminology, and locale siblings before any edit. The
 [verification](verification.md#lesson-voice-gate) reference owns how each tier

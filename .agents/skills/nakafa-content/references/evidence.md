@@ -137,14 +137,14 @@
   object of the negation is a judgment about difficulty rather than a fact, a
   quantity, or a named misconception.
   The mirrored sentence pair is the largest remaining case, and it stays a
-  manual review obligation rather than a blocking rule. `It is not X. It is Y.`,
+  manual review item rather than a blocking rule. `It is not X. It is Y.`,
   `Bukan X. ... adalah Y.`, and `Nicht X. ... ist Y.` are detectable as a shape,
   but the corpus shows that only a small minority of those pairs are decorative.
   The rest name a learner misconception, a definitional exclusion, a quantity,
   or a method distinction, so a blocking rule at that shape would reject correct
   teaching to catch a few rhetorical pairs. Read every negated sentence together
   with the sentence that follows it, and delete the negative half only when the
-  positive half already states the whole fact. The same review obligation covers
+  positive half already states the whole fact. The same manual read covers
   `rather than`, `statt`, `stattdessen`, `alih-alih`, `dan bukan`, and
   `melainkan`, because an artificial frame and a real comparison between two
   operations can look identical inside one sentence.

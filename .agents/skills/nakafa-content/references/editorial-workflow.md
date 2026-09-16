@@ -91,6 +91,6 @@ cross-locale identity rather than adding spelling redirects.
 
 Read [locale sources](locale-sources.md) before choosing language-specific wording.
 Official orthography sources settle spelling and punctuation. Naturalness and
-AI-writing references provide review candidates only. The surrounding lesson,
+AI-writing references provide candidate findings only. The surrounding lesson,
 subject community, and spoken teacher voice decide whether a sentence is
 natural and clear.

@@ -121,7 +121,8 @@ boundary before widening a rule. Preserve the following verification boundaries:
 - German address fixtures preserve anaphoric `Sie`, `Ihnen`, and `Ihr` with
   embedded links and soft wraps, while catching standalone and explicitly
   labeled direct address through local grammar. Never broaden the rule to all
-  capitalized pronouns. Use the authored-voice boundaries in writing quality.
+  capitalized pronouns. Use the address boundaries in
+  [checker limits](checker.md#evidence-and-checker-limits).
 - Link fixtures enforce HTTPS Markdown structure and reject external images,
   JSX destinations, and dynamic escape hatches. Internal links and protected
   source examples remain valid. Source eligibility requires the
@@ -133,11 +134,11 @@ boundary before widening a rule. Preserve the following verification boundaries:
 - The heading form of an ambiguous reference is blocking through
   `heading-demonstrative-reference`. `empty-section-body`, `heading-without-body`,
   `list-only-section`, and `component-only-section` are blocking section-body
-  defects, while `thin-section-body` is a review item. The section-body bar is
-  twenty-five prose words or one real representation, and list-item text counts
-  as prose. Body-level demonstratives, possessives, Indonesian `-nya`, and
-  English `it/that/they` stay a contextual review item, because the checker
-  cannot separate a bare pronoun from a possessive determiner.
+  defects, while `thin-section-body` is a review candidate. The section-body
+  bar is twenty-five prose words or one real representation, and list-item
+  text counts as prose. Body-level demonstratives, possessives, Indonesian
+  `-nya`, and English `it/that/they` stay a manual review item, because no rule
+  can separate a bare pronoun from a possessive determiner.
 - `indonesian-stiff-interpret-instruction` blocks generic instructions such as
   `tafsirkan solusi` and `Interpretasi Hasil`, while preserving technical uses
   such as Python `interpreter`. Terminology fixtures must also preserve valid
@@ -147,10 +148,11 @@ boundary before widening a rule. Preserve the following verification boundaries:
   word starting with `ä`, `ö`, `ü`, `Ä`, `Ö`, `Ü`, or `ß` therefore needs a
   negative lookbehind such as `(?<![\p{L}\p{N}_])` instead of `\b`, and its test
   must prove the alternative fires.
-- A lowercase prose continuation after display math remains a review item.
-  Read every locale sibling before deciding whether it fails the complete
+- A lowercase prose continuation after display math stays a manual review
+  item. Read every locale sibling before deciding whether it fails the complete
   sentence rule. Visibility and speed candidates likewise need the named
-  observer, quantity, input, or measured comparison described in writing quality.
+  observer, quantity, input, or measured comparison described in
+  [claims and references](claims.md).
 - `unbalanced-emphasis` is a blocking source defect. MDX resolves an emphasis
   pair inside one paragraph only, so the gate blocks a `**` marker whose partner
   is missing or sits in another paragraph. Fixtures must keep a pair that wraps
@@ -169,7 +171,8 @@ boundary before widening a rule. Preserve the following verification boundaries:
   `1. First die 3, second die 4`, `1. First ionization energy`,
   `1. First term a`, `1. First element of the set is 2`, and
   `1. Erste Ableitung ist die Steigung.` valid. An ordinal followed directly by
-  a verb stays outside the pattern until the corpus carries none.
+  a verb stays outside the pattern because a zero-false-positive shape would
+  need a per-language verb lexicon, and the corpus carries none.
 - The German sequence frame fixture must reject `Gehe bei einer Sachaufgabe in
   dieser Reihenfolge vor:` and `Für diese Gleichung gehen wir in dieser
   Reihenfolge vor:`, while `A und B können in dieser Reihenfolge nur
@@ -181,8 +184,9 @@ boundary before widening a rule. Preserve the following verification boundaries:
 - Blockquote bodies are scanned for the address rules only, because a blockquote
   may be a real quotation with protected bytes. A corpus-wide probe with the
   complete rule set over the current blockquotes reports zero findings, so the
-  boundary is a documented scope limit, and the manual read in writing quality
-  owns the remaining class.
+  boundary is a documented scope limit, and the manual read in
+  [the final language review](review.md#final-language-review) owns the
+  remaining class.
 
 Global language linters are not MDX parsers. Give them only the learner-visible
 passage being reviewed and validate their findings in context.
