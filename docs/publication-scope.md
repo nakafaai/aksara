@@ -32,3 +32,8 @@ The workflow validates the array and safely expands it into repeated CLI
 arguments inside the exact reviewed checkout. Selector order must already be
 canonical; duplicates, unknown values, empty scopes, and implicit full releases
 fail before preparation.
+
+A release that adopts a new renderer manifest hash must select every family and
+the `tryout` snapshot, because the renderer contract is proved against the
+complete canonical domain set. A release that keeps the active renderer
+manifest hash may select a subset.

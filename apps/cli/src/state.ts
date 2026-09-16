@@ -1,4 +1,7 @@
-import type { GitCommitSha } from "@nakafa/aksara-contracts/ids";
+import {
+  type GitCommitSha,
+  ReleaseIdSchema,
+} from "@nakafa/aksara-contracts/ids";
 
 import type {
   ContentReleaseCurrent,
@@ -13,10 +16,19 @@ import type { SignedTryoutRuntimeBundle } from "@nakafa/aksara-contracts/tryout/
 import { Effect, Schema } from "effect";
 import type { ReleaseArguments } from "#cli/production/arguments";
 
-/** Durable publication state does not permit the requested production command. */
+/**
+ * Durable publication state does not permit the requested production command.
+ *
+ * The reason alone is not actionable, because the operator cannot name the
+ * release that owns the blocking slot. Each optional identity names the exact
+ * durable release that owns that slot, so `activeReleaseId` and
+ * `recoveryReleaseId` form the pair an operator passes to `accept`.
+ */
 export class ProductionStateError extends Schema.TaggedError<ProductionStateError>()(
   "ProductionStateError",
   {
+    activeReleaseId: Schema.optional(ReleaseIdSchema),
+    candidateReleaseId: Schema.optional(ReleaseIdSchema),
     reason: Schema.Literals([
       "aborting",
       "mode-mismatch",
@@ -25,6 +37,7 @@ export class ProductionStateError extends Schema.TaggedError<ProductionStateErro
       "recovery-retained",
       "scope-mismatch",
     ]),
+    recoveryReleaseId: Schema.optional(ReleaseIdSchema),
   }
 ) {}
 
@@ -95,18 +108,26 @@ const selectRebuildAction = Effect.fn("AksaraCli.selectRebuildAction")(
   ) {
     if (candidate.release.manifest.releaseId !== args.releaseId) {
       return yield* new ProductionStateError({
+        candidateReleaseId: candidate.release.manifest.releaseId,
         reason: "candidate-conflict",
       });
     }
     const stored: StoredCommand = yield* validateStoredCommand(args, candidate);
     if (candidate.phase === "aborting") {
-      return yield* new ProductionStateError({ reason: "aborting" });
+      return yield* new ProductionStateError({
+        candidateReleaseId: candidate.release.manifest.releaseId,
+        reason: "aborting",
+      });
     }
     if (
       current.recovery !== null &&
       current.recovery.release.manifest.releaseId !== args.recoveryId
     ) {
-      return yield* new ProductionStateError({ reason: "recovery-conflict" });
+      return yield* new ProductionStateError({
+        candidateReleaseId: candidate.release.manifest.releaseId,
+        reason: "recovery-conflict",
+        recoveryReleaseId: current.recovery.release.manifest.releaseId,
+      });
     }
     return {
       baseBundle: current.active === null ? null : activeBundle(current.active),
@@ -135,12 +156,20 @@ export const selectProductionAction: SelectProductionAction = Effect.fn(
       recovery !== null &&
       recovery.release.manifest.releaseId !== args.recoveryId
     ) {
-      return yield* new ProductionStateError({ reason: "recovery-conflict" });
+      return yield* new ProductionStateError({
+        activeReleaseId: active.release.manifest.releaseId,
+        reason: "recovery-conflict",
+        recoveryReleaseId: recovery.release.manifest.releaseId,
+      });
     }
     return { bundle, kind: "resume" };
   }
   if (recovery !== null) {
-    return yield* new ProductionStateError({ reason: "recovery-retained" });
+    return yield* new ProductionStateError({
+      activeReleaseId: active?.release.manifest.releaseId,
+      reason: "recovery-retained",
+      recoveryReleaseId: recovery.release.manifest.releaseId,
+    });
   }
   return {
     baseBundle: active === null ? null : activeBundle(active),

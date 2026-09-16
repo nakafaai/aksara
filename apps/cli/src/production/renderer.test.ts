@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, Fiber, Redacted } from "effect";
+import { Effect, Fiber, Logger, Redacted, References } from "effect";
 import { TestClock } from "effect/testing";
 import type { HttpClientRequest } from "effect/unstable/http";
 import { HttpClient } from "effect/unstable/http";
@@ -42,16 +42,36 @@ function runAfter<A, E>(program: Effect.Effect<A, E>, milliseconds: number) {
 }
 
 describe("production renderer", () => {
-  it.effect("retains the frozen renderer for a partial publication", () =>
+  it.effect("retains the base renderer when the scope cannot close", () =>
     Effect.gen(function* () {
       const baseBundle = stateBundle("release-renderer-partial");
+      const live = yield* createRendererManifest({
+        base: [...RENDERER_MANIFEST.base, "RuntimePairProbe"],
+        domains: RENDERER_MANIFEST.domains,
+        publishedDomains: RENDERER_MANIFEST.publishedDomains,
+      });
+      const logs: Readonly<Record<string, unknown>>[] = [];
+      const logger = Logger.make(({ fiber }) => {
+        logs.push({
+          ...fiber.getRef(References.CurrentLogAnnotations),
+        });
+      });
+
       expect(
         yield* selectRendererManifest({
           baseBundle,
-          rendererManifest: RENDERER_MANIFEST,
+          rendererManifest: live,
           scope: FUNCTION_SCOPE,
-        })
+        }).pipe(Effect.provide(Logger.layer([logger])))
       ).toEqual(baseBundle.rendererManifest);
+      expect(logs).toEqual([
+        {
+          baseRendererManifestHash: baseBundle.rendererManifest.hash,
+          closureFamily: "article",
+          closureField: "scope",
+          liveRendererManifestHash: live.hash,
+        },
+      ]);
     })
   );
   it.effect("adopts the live renderer only with complete-family closure", () =>
