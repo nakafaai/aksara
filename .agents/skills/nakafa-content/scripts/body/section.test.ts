@@ -100,6 +100,15 @@ it("counts only ordinary words in a paragraph that carries inline math", () => {
   );
 });
 
+it("counts the phrase inside a highlight as ordinary prose", () => {
+  assert.deepEqual(
+    rulesOf(
+      "## Alpha\n\nThis section explains the rule and shows two worked examples, and the next paragraph names the <Highlight>decisive condition that decides the result</Highlight> before the practice set begins.\n"
+    ),
+    []
+  );
+});
+
 it("scopes the check to lesson documents and reads an explicit tree", () => {
   const tree = parseLessonMdx(lesson("## Alpha\n"));
   assert.deepEqual(

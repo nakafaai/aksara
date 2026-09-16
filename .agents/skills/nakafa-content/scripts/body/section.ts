@@ -2,6 +2,7 @@ import { type MdxNode, parseLessonMdx } from "#nakafa-content/mdx/parse";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 const THIN_SECTION_WORD_LIMIT = 25;
+const HIGHLIGHT_COMPONENT_NAME = "Highlight";
 const INLINE_PROSE_TYPES = new Set(["inlineCode", "text"]);
 const BLOCK_REPRESENTATION_TYPES = new Set(["blockquote", "code", "table"]);
 const WHITESPACE_PATTERN = /\s+/u;
@@ -30,9 +31,16 @@ function isLessonDocument(root: MdxNode): boolean {
   return (root.children ?? []).some((node) => node.type === "mdxjsEsm");
 }
 
-/** Counts words in ordinary text and inline code, skipping inline components. */
+/**
+ * Counts words in ordinary text and inline code. Math and other inline
+ * components carry notation rather than prose, so they contribute nothing. A
+ * highlight wraps authored prose, so its words count like the surrounding
+ * sentence.
+ */
 function countProseWords(node: MdxNode): number {
-  if (node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement") {
+  const isJsxElement =
+    node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement";
+  if (isJsxElement && node.name !== HIGHLIGHT_COMPONENT_NAME) {
     return 0;
   }
   const own =
