@@ -73,8 +73,18 @@ export const selectRendererManifest = Effect.fn(
     rendererManifestHash: liveRenderer.hash,
     scope: input.scope,
   }).pipe(Effect.result);
-  if (Result.isSuccess(transition)) {
-    return liveRenderer;
+  if (Result.isFailure(transition)) {
+    yield* Effect.logInfo(
+      "Content publication retained the base renderer manifest."
+    ).pipe(
+      Effect.annotateLogs({
+        baseRendererManifestHash: activeBundle.rendererManifest.hash,
+        closureFamily: transition.failure.family,
+        closureField: transition.failure.field,
+        liveRendererManifestHash: liveRenderer.hash,
+      })
+    );
+    return activeBundle.rendererManifest;
   }
-  return activeBundle.rendererManifest;
+  return liveRenderer;
 });

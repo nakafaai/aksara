@@ -1,3 +1,4 @@
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import {
   PublicationRejectedSchema,
   PublicationRejectionCodeSchema,
@@ -10,6 +11,7 @@ import {
 import { Option, Predicate, Schema } from "effect";
 import { NakafaAppError } from "#cli/app-error";
 import { ProductionEnvironmentError } from "#cli/environment/error";
+import { ProductionStateError } from "#cli/state";
 
 const ProductionStageSchema = Schema.Literals([
   "abort",
@@ -33,15 +35,19 @@ const SAFE_FAILURE = /^[A-Za-z][A-Za-z0-9]{0,63}$/u;
 export class ProductionError extends Schema.TaggedError<ProductionError>()(
   "ProductionError",
   {
+    activeReleaseId: Schema.optional(ReleaseIdSchema),
     appReason: Schema.optional(NakafaAppError.fields.reason),
     appStatus: NakafaAppError.fields.status,
+    candidateReleaseId: Schema.optional(ReleaseIdSchema),
     environmentVariable: Schema.optional(
       ProductionEnvironmentError.fields.variable
     ),
     failure: Schema.Trimmed.check(Schema.isNonEmpty()),
     phase: Schema.optional(ActivationPhaseSchema),
+    recoveryReleaseId: Schema.optional(ReleaseIdSchema),
     rejectionCode: Schema.optional(PublicationRejectionCodeSchema),
     stage: ProductionStageSchema,
+    stateReason: Schema.optional(ProductionStateError.fields.reason),
     targetOperation: Schema.optional(PublicationOperationSchema),
     targetStage: Schema.optional(PublicationTargetTransportError.fields.stage),
     transport: Schema.optional(PublicationTransportDetailSchema),
@@ -70,6 +76,21 @@ function environmentEvidence(error: unknown) {
     return {};
   }
   return { environmentVariable: error.variable };
+}
+
+/** Preserves the safe reason and the identities that own the blocking slot. */
+function stateEvidence(error: unknown) {
+  if (!(error instanceof ProductionStateError)) {
+    return {};
+  }
+  const { activeReleaseId, candidateReleaseId, reason, recoveryReleaseId } =
+    error;
+  return {
+    stateReason: reason,
+    ...(activeReleaseId === undefined ? {} : { activeReleaseId }),
+    ...(candidateReleaseId === undefined ? {} : { candidateReleaseId }),
+    ...(recoveryReleaseId === undefined ? {} : { recoveryReleaseId }),
+  };
 }
 
 /** Extracts only a bounded tagged-error identity, never nested secret data. */
@@ -131,6 +152,7 @@ export function mapProductionError(stage: ProductionStage) {
       failure: failureName(error),
       ...(phase === undefined ? {} : { phase }),
       stage,
+      ...stateEvidence(error),
       ...targetEvidence(error),
     });
   };

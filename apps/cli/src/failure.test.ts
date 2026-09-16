@@ -7,6 +7,7 @@ import {
 import { makeNakafaAppError } from "#cli/app-error";
 import { ProductionEnvironmentError } from "#cli/environment/error";
 import { mapProductionError } from "#cli/failure";
+import { ProductionStateError } from "#cli/state";
 
 describe("production failure boundary", () => {
   it("keeps only a safe typed failure identity", () => {
@@ -80,6 +81,65 @@ describe("production failure boundary", () => {
       variable: "AKSARA_PUBLICATION_TOKEN",
     });
     expect(failure).not.toHaveProperty("environmentVariable");
+  });
+
+  it("keeps the state reason and the identities that own the blocking slot", () => {
+    const failure = mapProductionError("state")(
+      new ProductionStateError({
+        activeReleaseId: ReleaseIdSchema.make("release-active"),
+        reason: "recovery-retained",
+        recoveryReleaseId: ReleaseIdSchema.make("recovery-active"),
+      })
+    );
+
+    expect(failure).toMatchObject({
+      activeReleaseId: "release-active",
+      failure: "ProductionStateError",
+      recoveryReleaseId: "recovery-active",
+      stage: "state",
+      stateReason: "recovery-retained",
+    });
+  });
+
+  it("keeps only the state identities the selection reported", () => {
+    const failure = mapProductionError("state")(
+      new ProductionStateError({
+        candidateReleaseId: ReleaseIdSchema.make("release-candidate"),
+        reason: "candidate-conflict",
+      })
+    );
+
+    expect(failure).toMatchObject({
+      candidateReleaseId: "release-candidate",
+      stateReason: "candidate-conflict",
+    });
+    expect(failure).not.toHaveProperty("activeReleaseId");
+    expect(failure).not.toHaveProperty("recoveryReleaseId");
+  });
+
+  it("omits absent state identities", () => {
+    const failure = mapProductionError("state")(
+      new ProductionStateError({ reason: "scope-mismatch" })
+    );
+
+    expect(failure).toMatchObject({
+      failure: "ProductionStateError",
+      stage: "state",
+      stateReason: "scope-mismatch",
+    });
+    expect(failure).not.toHaveProperty("activeReleaseId");
+    expect(failure).not.toHaveProperty("candidateReleaseId");
+    expect(failure).not.toHaveProperty("recoveryReleaseId");
+  });
+
+  it("does not trust state-shaped plain records", () => {
+    const failure = mapProductionError("state")({
+      _tag: "ProductionStateError",
+      reason: "recovery-retained",
+      recoveryReleaseId: "recovery-active",
+    });
+    expect(failure).not.toHaveProperty("stateReason");
+    expect(failure).not.toHaveProperty("recoveryReleaseId");
   });
 
   it("does not trust transport-shaped plain records", () => {

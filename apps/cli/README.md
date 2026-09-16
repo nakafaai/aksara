@@ -40,6 +40,18 @@ Production commands require the same authenticated environment as the protected
 Aksara release workflow. The npm package does not contain credentials and does
 not bypass repository, revision, renderer, or publication checks.
 
+## Publication cycle
+
+A release is an operator cycle, not one request. `release` activates the
+candidate and retains its verified inverse. Accept the healthy release with
+`accept --release-id <active> --recovery-id <retained>` before the next
+release, because a retained inverse blocks a new candidate.
+
+A rejected release names its reason and the exact release that owns the
+blocking slot, and a release that cannot adopt the live renderer manifest names
+the closure it failed to prove. The required `accept`, `abort`, or `cleanup`
+command therefore follows from the failure line.
+
 ## License
 
 This package uses the Nakafa Source Available License 1.0. See `LICENSE` in the
