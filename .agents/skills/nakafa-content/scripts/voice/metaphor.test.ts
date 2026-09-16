@@ -190,3 +190,33 @@ it("rejects a journey metaphor for integration limits", () => {
     []
   );
 });
+
+it("rejects corrective decoration metaphors with inserted qualifiers", () => {
+  const samples = {
+    de: "Die Adjungierte ist also keine bloße Schreibweise.",
+    en: "The adjoint is therefore not decorative notation.",
+    id: "Adjoint bukan sekadar notasi kosong.",
+  };
+
+  for (const [locale, source] of Object.entries(samples)) {
+    assert.deepEqual(
+      findLessonVoiceIssues(locale, source).map(({ rule }) => rule),
+      ["corrective-decoration-metaphor"]
+    );
+  }
+});
+
+it("rejects a picture metaphor used in place of the calculation", () => {
+  const samples = {
+    de: "Die Geometrie verwandelt dieses Bild in eine genaue Rechnung.",
+    en: "Geometry turns this picture into a reliable calculation.",
+    id: "Geometri mengubah gambaran tersebut menjadi perhitungan yang pasti.",
+  };
+
+  for (const [locale, source] of Object.entries(samples)) {
+    assert.deepEqual(
+      findLessonVoiceIssues(locale, source).map(({ rule }) => rule),
+      ["decorative-picture-to-calculation"]
+    );
+  }
+});

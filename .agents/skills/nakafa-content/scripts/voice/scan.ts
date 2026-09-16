@@ -22,7 +22,7 @@ import {
 import { AMBIGUITY_VOICE_RULES } from "#nakafa-content/voice/ambiguity";
 import { CLAIM_VOICE_RULES } from "#nakafa-content/voice/claim";
 import { CONTRAST_VOICE_RULES } from "#nakafa-content/voice/contrast";
-import { CORE_VOICE_RULES } from "#nakafa-content/voice/core";
+import { DEFECT_VOICE_RULES } from "#nakafa-content/voice/defect";
 import { DEMONSTRATIVE_VOICE_RULES } from "#nakafa-content/voice/demonstrative";
 import { FLOW_VOICE_RULES } from "#nakafa-content/voice/flow";
 import {
@@ -63,11 +63,12 @@ import {
   type LessonVoiceRule,
   type LineState,
 } from "#nakafa-content/voice/types";
+import { VAGUE_VOICE_RULES } from "#nakafa-content/voice/vague";
 import { VISIBILITY_VOICE_RULES } from "#nakafa-content/voice/visibility";
 
 const LESSON_VOICE_RULES = [
   ...ADDRESS_VOICE_RULES,
-  ...CORE_VOICE_RULES,
+  ...DEFECT_VOICE_RULES,
   ...METAPHOR_VOICE_RULES,
   ...TECHNICAL_METAPHOR_RULES,
   ...METHOD_VOICE_RULES,
@@ -86,6 +87,7 @@ const LESSON_VOICE_RULES = [
   ...REPORTING_VOICE_RULES,
   ...VISIBILITY_VOICE_RULES,
   ...NARRATION_VOICE_RULES,
+  ...VAGUE_VOICE_RULES,
   ...PEDAGOGY_VOICE_RULES,
 ] satisfies readonly LessonVoiceRule[];
 
