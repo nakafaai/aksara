@@ -6,7 +6,8 @@ import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 const LONG_BODY =
   "This paragraph carries enough ordinary prose words to clear the thin section limit for the nested heading above it and it also states the shared purpose of the parts that follow.";
 
-const lesson = (body: string): string => `export const metadata = {};\n\n${body}`;
+const lesson = (body: string): string =>
+  `export const metadata = {};\n\n${body}`;
 
 const rulesOf = (source: string): string[] =>
   findSectionBodyIssues(lesson(source)).map(({ rule }) => rule);
@@ -22,10 +23,9 @@ it("flags a heading whose next sibling starts before any content", () => {
 });
 
 it("flags a parent heading whose body holds only a heading", () => {
-  assert.deepEqual(
-    rulesOf(`## Alpha\n\n### Beta\n\n${LONG_BODY}\n`),
-    ["heading-without-body"]
-  );
+  assert.deepEqual(rulesOf(`## Alpha\n\n### Beta\n\n${LONG_BODY}\n`), [
+    "heading-without-body",
+  ]);
 });
 
 it("flags a section whose whole body is a list", () => {
@@ -37,7 +37,7 @@ it("flags a section whose whole body is a list", () => {
 it("accepts a list whose items carry the teaching", () => {
   assert.deepEqual(
     rulesOf(
-      `## Alpha\n\n- The first step stores every reflector below the diagonal so the later steps reuse it without rebuilding the matrix.\n- The second step keeps only the first columns of the factorized matrix and discards the rest.\n`
+      "## Alpha\n\n- The first step stores every reflector below the diagonal so the later steps reuse it without rebuilding the matrix.\n- The second step keeps only the first columns of the factorized matrix and discards the rest.\n"
     ),
     []
   );
@@ -50,9 +50,10 @@ it("flags a section whose whole body is one component", () => {
 });
 
 it("flags a short body that carries no representation", () => {
-  assert.deepEqual(rulesOf("## Alpha\n\nOnly nine short words sit here now.\n"), [
-    "thin-section-body",
-  ]);
+  assert.deepEqual(
+    rulesOf("## Alpha\n\nOnly nine short words sit here now.\n"),
+    ["thin-section-body"]
+  );
 });
 
 it("accepts a short lead once a table carries the comparison", () => {
@@ -77,7 +78,10 @@ it("accepts a blockquote as the section representation", () => {
 });
 
 it("accepts a long body that needs no representation", () => {
-  assert.deepEqual(rulesOf(`Intro paragraph.\n\n## Alpha\n\n${LONG_BODY}\n`), []);
+  assert.deepEqual(
+    rulesOf(`Intro paragraph.\n\n## Alpha\n\n${LONG_BODY}\n`),
+    []
+  );
 });
 
 it("does not count a component or a code block as prose words", () => {

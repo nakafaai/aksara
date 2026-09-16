@@ -1,9 +1,10 @@
-import { parseLessonMdx, type MdxNode } from "#nakafa-content/mdx/parse";
+import { type MdxNode, parseLessonMdx } from "#nakafa-content/mdx/parse";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 const THIN_SECTION_WORD_LIMIT = 25;
 const INLINE_PROSE_TYPES = new Set(["inlineCode", "text"]);
 const BLOCK_REPRESENTATION_TYPES = new Set(["blockquote", "code", "table"]);
+const WHITESPACE_PATTERN = /\s+/u;
 
 type HeadingNode = Omit<MdxNode, "position" | "type"> & {
   depth: number;
@@ -31,15 +32,13 @@ function isLessonDocument(root: MdxNode): boolean {
 
 /** Counts words in ordinary text and inline code, skipping inline components. */
 function countProseWords(node: MdxNode): number {
-  if (
-    node.type === "mdxJsxFlowElement" ||
-    node.type === "mdxJsxTextElement"
-  ) {
+  if (node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement") {
     return 0;
   }
   const own =
     typeof node.value === "string" && INLINE_PROSE_TYPES.has(node.type)
-      ? node.value.split(/\s+/u).filter((word) => word !== "").length
+      ? node.value.split(WHITESPACE_PATTERN).filter((word) => word !== "")
+          .length
       : 0;
   return (node.children ?? []).reduce(
     (total, child) => total + countProseWords(child),

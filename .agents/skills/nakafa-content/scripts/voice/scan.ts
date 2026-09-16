@@ -1,5 +1,5 @@
-import { exerciseSectionLines } from "#nakafa-content/exercise/context";
 import { findSectionBodyIssues } from "#nakafa-content/body/section";
+import { exerciseSectionLines } from "#nakafa-content/exercise/context";
 import { FLOW_CONTEXT_RULES } from "#nakafa-content/flow/context";
 import { FLOW_STYLE_RULES } from "#nakafa-content/flow/style";
 import { LANGUAGE_CALQUE_RULES } from "#nakafa-content/language/calque";
