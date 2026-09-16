@@ -33,13 +33,15 @@ To determine convergence, we study the sequence of partial sums:
 
 <BlockMath math="S_n=\sum_{k=1}^{n}a_k" />
 
-The series converges exactly when the sequence of partial sums <InlineMath math="(S_n)" /> converges. The limit of the terms <InlineMath math="a_n" /> alone does not decide whether the series converges.
+The series converges exactly when <Highlight>the sequence of partial sums converges</Highlight>. The limit of the terms <InlineMath math="a_n" /> alone does not decide whether the series converges.
 
 ## Convergent Series
 
 A series is **convergent** when its partial sums approach a _finite_ value. In an idealized bouncing-ball model, for example, successively shorter paths can have a finite total length.
 
-### Characteristics of Convergent Series
+### Partial Sums Settle on One Limit
+
+A convergent series has two properties that follow from its partial sums. The partial sums approach one real number, and the terms must shrink toward zero.
 
 - Its partial sum (the sum of the first <InlineMath math="n" /> terms, <InlineMath math="S_n" />) approaches a value <InlineMath math="L" /> as <InlineMath math="n" /> approaches infinity (<InlineMath math="\lim_{n \to \infty} S_n = L" />, where <InlineMath math="L" /> is a real number).
 - Necessary condition (but not sufficient): the <InlineMath math="n" />th term (<InlineMath math="u_n" />) must approach <InlineMath math="0" /> as <InlineMath math="n" /> approaches infinity (<InlineMath math="\lim_{n \to \infty} u_n = 0" />).
@@ -60,12 +62,16 @@ A series is **divergent** when its partial sums do not approach a finite value. 
 - Keep decreasing toward negative infinity (<InlineMath math="-\infty" />).
 - Oscillate between several values without ever settling.
 
-### Characteristics of Divergent Series
+### Partial Sums Fail to Settle
+
+A divergent series either has no single limit or moves without bound. The two conditions below separate those cases.
 
 - Its partial sum (<InlineMath math="S_n" />) does not approach a specific value <InlineMath math="L" /> as <InlineMath math="n" /> approaches infinity.
 - If <InlineMath math="u_n\not\to 0" />, then the series is _definitely_ divergent. This covers both a nonzero term limit and a term sequence that has no limit.
 
-### Examples of Divergent Series
+### Series That Diverge
+
+The three families below diverge for different reasons. The harmonic series shows that shrinking terms alone cannot force convergence.
 
 - **Arithmetic Series (except <InlineMath math="0 + 0 + \dots" />)**: Their partial sums grow toward <InlineMath math="\infty" /> or decrease toward <InlineMath math="-\infty" />.
 
@@ -105,6 +111,8 @@ Every monotone and bounded sequence converges. This criterion is useful when a l
 The partial sums of a series with non-negative terms are increasing. If those partial sums are also bounded above, the series converges.
 
 ## Comparing Convergent and Divergent Series
+
+The table collects the tests from the sections above, so the partial-sum behavior, the term condition, and a matching example can be read together.
 
 | Feature      | Convergent Series                                                                         | Divergent Series                                                                                                      |
 | ------------ | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
