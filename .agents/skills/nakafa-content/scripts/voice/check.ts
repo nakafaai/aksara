@@ -191,8 +191,9 @@ const printReport = Effect.fn("LessonVoiceCheck.printReport")(function* (
   options: CliOptions,
   report: LessonVoiceReport
 ) {
-  // Dynamic global dispatch (not the Console service, which binds eagerly)
-  // keeps the production suite's output-capture tests working.
+  // Dynamic global dispatch stays on the globals (not the Console service,
+  // which the Effect test runtime routes to TestConsole): the suite captures
+  // output by reassigning console.log/console.error per test.
   const blockingIssues = options.strictReview
     ? report.issues
     : report.issues.filter(isBlockingLessonVoiceIssue);
