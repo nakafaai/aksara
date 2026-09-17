@@ -10,7 +10,12 @@ met, such as a satisfied requirement or a completed step. A bare `<Highlight>`
 uses the warning surface.
 
 - Mark the phrase, not the sentence. Emphasis stays inside one sentence and
-  never wraps a whole sentence, a heading, or mathematics.
+  never wraps a whole sentence, a heading, or mathematics. Name the one term,
+  condition, or quantity a learner would write down: a few load-bearing words
+  beat a highlighted sentence. A mark that spans a whole sentence is a smell;
+  narrow it to the decisive clause, and split a genuine pair such as two
+  contrasted invariants into two marks. A tight enumeration whose every word
+  carries criterion content may stay whole.
 - Keep emphasis sparse. A section that marks everything marks nothing, so mark
   the few phrases a learner would write down.
 - Do not nest one marker inside the other. Both markers render the same
