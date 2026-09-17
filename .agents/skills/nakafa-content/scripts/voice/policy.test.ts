@@ -66,6 +66,8 @@ const blockingRules = [
   "unqualified-fuel-storage-claim",
   "unsupported-evaluative-preface",
   "vague-benefit-risk-reference",
+  "vague-equation-truth",
+  "vague-formula-gives-those",
 ];
 
 /** Builds a minimal issue for policy classification tests. */
