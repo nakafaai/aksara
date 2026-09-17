@@ -6,7 +6,7 @@ import type {
   LessonVoiceLocale,
 } from "#nakafa-content/voice/types";
 
-const HIGHLIGHT_PATTERN = /<Highlight>[\s\S]*?<\/Highlight>/u;
+const HIGHLIGHT_PATTERN = /<Highlight(?:\s[^>]*)?>[\s\S]*?<\/Highlight>/u;
 
 interface LessonSiblingDocument {
   file: string;

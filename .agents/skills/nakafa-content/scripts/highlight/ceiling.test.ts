@@ -7,7 +7,7 @@ const AUTHORED = "export const metadata = {};\n\n";
 /** Wraps one phrase in the authored highlight component. */
 const highlight = (text: string): string => `<Highlight>${text}</Highlight>`;
 
-it("rejects a section that carries two highlights", () => {
+it("rejects a section that carries three highlights", () => {
   const source = [
     "export const metadata = {};",
     "",
@@ -15,7 +15,7 @@ it("rejects a section that carries two highlights", () => {
     "",
     `Geser ke kiri ketika ${highlight("x + a")} bertambah dan ke kanan ketika nilainya berkurang.`,
     "",
-    `Periksa kembali ${highlight("aturan tanda")} pada grafik.`,
+    `Periksa kembali ${highlight("aturan tanda")} pada ${highlight("grafik")}.`,
   ].join("\n");
 
   assert.deepEqual(findHighlightCeilingIssues(source), [
@@ -28,11 +28,11 @@ it("rejects a section that carries two highlights", () => {
   ]);
 });
 
-it("rejects two highlights in the introduction before any heading", () => {
+it("rejects three highlights in the introduction before any heading", () => {
   const source = [
     "export const metadata = {};",
     "",
-    `Invers ${highlight("ada ketika determinan tidak nol")} dan ${highlight("dihitung dengan adjoin")} pada matriks persegi.`,
+    `Invers ${highlight("ada ketika determinan tidak nol")} dihitung dengan ${highlight("adjoin")} pada matriks persegi berukuran ${highlight("n x n")}.`,
     "",
     "## Contoh",
     "",
@@ -48,15 +48,15 @@ it("rejects two highlights in the introduction before any heading", () => {
   );
 });
 
-it("accepts one highlight per section and several sections in one document", () => {
+it("accepts two highlights per section and several sections in one document", () => {
   const source = [
     AUTHORED.trimEnd(),
     "",
-    `Rumus ${highlight("jumlah Riemann")} membagi luasan menjadi persegi panjang.`,
+    `Rumus ${highlight("jumlah Riemann")} membagi luasan menjadi ${highlight("persegi panjang")}.`,
     "",
     "## Aturan Turunan",
     "",
-    `Turunan ${highlight("pangkat")} menurunkan pangkat satu tingkat.`,
+    `Turunan ${highlight("pangkat")} menurunkan pangkat satu tingkat pada ${highlight("suku banyak")}.`,
     "",
     "### Contoh",
     "",
@@ -94,7 +94,7 @@ it("counts a highlight passed through a component prop", () => {
     "  labels={{ democritusBody: (<>Für Demokrit <Highlight>endet die Teilung hier</Highlight>.</>) }}",
     " />",
     "",
-    "Damit folgt <Highlight>die kleinste Einheit</Highlight> aus dem Argument.",
+    "Damit folgt <Highlight>die kleinste Einheit</Highlight> aus dem <Highlight>Argument</Highlight>.",
   ].join("\n");
 
   assert.deepEqual(findHighlightCeilingIssues(source), [
@@ -106,11 +106,11 @@ it("counts a highlight passed through a component prop", () => {
     },
   ]);
 
-  const single = source.replace(
-    "Damit folgt <Highlight>die kleinste Einheit</Highlight> aus dem Argument.",
-    "Damit folgt die kleinste Einheit aus dem Argument."
+  const withinCeiling = source.replace(
+    "Damit folgt <Highlight>die kleinste Einheit</Highlight> aus dem <Highlight>Argument</Highlight>.",
+    "Damit folgt <Highlight>die kleinste Einheit</Highlight> aus dem Argument."
   );
-  assert.deepEqual(findHighlightCeilingIssues(single), []);
+  assert.deepEqual(findHighlightCeilingIssues(withinCeiling), []);
 });
 
 it("reads boolean and spread attributes without counting a highlight", () => {
@@ -128,12 +128,12 @@ it("reads boolean and spread attributes without counting a highlight", () => {
 });
 
 it("checks a document whose body has no heading", () => {
-  const source = `${AUTHORED}${highlight("satu")} dan ${highlight("dua")} muncul pada paragraf pertama.`;
+  const source = `${AUTHORED}${highlight("satu")}, ${highlight("dua")}, dan ${highlight("tiga")} muncul pada paragraf pertama.`;
 
   assert.deepEqual(findHighlightCeilingIssues(source), [
     {
       column: 1,
-      excerpt: `${highlight("satu")} dan ${highlight("dua")} muncul pada paragraf pertama.`,
+      excerpt: `${highlight("satu")}, ${highlight("dua")}, dan ${highlight("tiga")} muncul pada paragraf pertama.`,
       line: 3,
       rule: "highlight-ceiling",
     },
@@ -143,7 +143,7 @@ it("checks a document whose body has no heading", () => {
 it("ignores documents without authored metadata and unpositioned openers", () => {
   assert.deepEqual(
     findHighlightCeilingIssues(
-      `## Grafik\n\n${highlight("satu")} dan ${highlight("dua")} muncul.`
+      `## Grafik\n\n${highlight("satu")}, ${highlight("dua")}, dan ${highlight("tiga")} muncul.`
     ),
     []
   );
@@ -154,6 +154,8 @@ it("ignores documents without authored metadata and unpositioned openers", () =>
       { type: "mdxjsEsm", value: "export const metadata = {};" },
       {
         children: [
+          { name: "Highlight", type: "mdxJsxTextElement" },
+          { type: "text", value: " dan " },
           { name: "Highlight", type: "mdxJsxTextElement" },
           { type: "text", value: " dan " },
           { name: "Highlight", type: "mdxJsxTextElement" },
@@ -173,6 +175,8 @@ it("ignores documents without authored metadata and unpositioned openers", () =>
       { type: "mdxjsEsm", value: "export const metadata = {};" },
       {
         children: [
+          { name: "Highlight", type: "mdxJsxTextElement" },
+          { type: "text", value: " dan " },
           { name: "Highlight", type: "mdxJsxTextElement" },
           { type: "text", value: " dan " },
           { name: "Highlight", type: "mdxJsxTextElement" },

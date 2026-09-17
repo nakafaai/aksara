@@ -183,9 +183,11 @@ boundary before widening a rule. Preserve the following verification boundaries:
   Reihenfolge vor:`, while `A und B können in dieser Reihenfolge nur
   multipliziert werden.` stays valid because it names the required operand
   order, as the shipped matrix lesson does.
-- `highlight-ceiling` fixtures cover two highlights in one section, two in the
-  introduction before any heading, one per section across several sections, and
-  a code block that mentions the marker only as text.
+- `highlight-ceiling` fixtures cover three highlights in one section, three in
+  the introduction before any heading, one per section across several sections,
+  and a code block that mentions the marker only as text. `highlight-nesting`
+  fixtures cover a highlight inside a highlight and markers nested across both
+  syntaxes, while sibling markers in one section stay valid.
 - Blockquote bodies are scanned for the address rules and for an editorial
   prefix such as `Quick check:` or `Cek cepat:` (`blockquote-editorial-label`),
   because a blockquote may be a real quotation with protected bytes. A

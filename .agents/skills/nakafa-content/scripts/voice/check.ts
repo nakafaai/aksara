@@ -5,7 +5,10 @@ import { basename, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { findHeadingOrderIssues } from "#nakafa-content/heading/order";
 import { findHighlightCeilingIssues } from "#nakafa-content/highlight/ceiling";
+import { findHighlightNestingIssues } from "#nakafa-content/highlight/nesting";
+import { findOpeningHighlightIssues } from "#nakafa-content/highlight/opening";
 import { findLessonHighlightIssues } from "#nakafa-content/highlight/presence";
+import { findHighlightVariantIssues } from "#nakafa-content/highlight/variant";
 import { findExactLineSmoothingIssues } from "#nakafa-content/line/check";
 import { findExternalLinkPlacementIssues } from "#nakafa-content/link/check";
 import { findInternalLinkIssues } from "#nakafa-content/link/internal";
@@ -103,6 +106,9 @@ export function checkLessonRoot(root: string): LessonVoiceReport {
       ...findInternalLinkIssues(source, tree),
       ...findHeadingOrderIssues(source, tree),
       ...findHighlightCeilingIssues(source, tree),
+      ...findHighlightNestingIssues(source, tree),
+      ...findOpeningHighlightIssues(source, tree),
+      ...findHighlightVariantIssues(source, tree),
       ...findExactLineSmoothingIssues(source, tree),
     ].map((issue) => ({
       file: repositoryPath,
