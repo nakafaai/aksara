@@ -1,4 +1,10 @@
 import {
+  type ContentFamily,
+  ContentFamilySchema,
+} from "@nakafa/aksara-contracts/content";
+import {
+  type ContentSnapshotKind,
+  ContentSnapshotKindSchema,
   type PublicationScope,
   PublicationScopeSchema,
 } from "@nakafa/aksara-contracts/release/snapshot/scope";
@@ -29,7 +35,32 @@ function decodeSelector(value: string): Option.Option<DecodedSelector> {
   return Option.none();
 }
 
-/** Strictly decodes repeated CLI selectors into one schema-derived scope. */
+/** Ranks one raw family selection by its canonical literals position. */
+function familyRank(value: unknown): number {
+  return ContentFamilySchema.literals.indexOf(value as ContentFamily);
+}
+
+/** Ranks one raw snapshot selection by its canonical literals position. */
+function snapshotRank(value: unknown): number {
+  return ContentSnapshotKindSchema.literals.indexOf(
+    value as ContentSnapshotKind
+  );
+}
+
+/** Orders raw selections canonically without hiding duplicates or unknowns. */
+function canonicalizeSelections(
+  values: readonly unknown[],
+  rank: (value: unknown) => number
+): unknown[] {
+  return [...values].sort((left, right) => rank(left) - rank(right));
+}
+
+/**
+ * Strictly decodes repeated CLI selectors into one schema-derived scope.
+ *
+ * Selector order is canonicalized because a publication scope is a set;
+ * duplicates, unknowns, and empty collections are still rejected.
+ */
 export const decodePublicationScopeSelectors = Effect.fn(
   "AksaraCli.decodePublicationScopeSelectors"
 )((selectors: readonly string[]) => {
@@ -48,8 +79,8 @@ export const decodePublicationScopeSelectors = Effect.fn(
     snapshots.push(selection.value);
   }
   return Schema.decodeUnknownEffect(PublicationScopeSchema)({
-    families,
-    snapshots,
+    families: canonicalizeSelections(families, familyRank),
+    snapshots: canonicalizeSelections(snapshots, snapshotRank),
   }).pipe(
     Effect.mapError(() => new ProductionScopeDecodeError()),
     Effect.map((scope): PublicationScope => scope)
