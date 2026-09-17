@@ -63,8 +63,13 @@
   confirms the intended phrase is still the one being emphasized.
 - Read every `<Highlight>`. Confirm it marks one phrase inside one sentence, that
   the phrase is the heading span's core rule, decisive condition, or key term,
-  and that the span carries no second one. The gate blocks the floor and the
-  second highlight in one heading span, not the choice of phrase.
+  that the span carries no third one, and that a learner can resolve the phrase
+  without leaving the paragraph: no bare `berikut` pointing at the block below,
+  no `ini`, `itu`, or `tersebut` whose noun never appears nearby. Confirm the
+  mark is no longer than its point: one term or condition in a few words, never
+  a whole sentence carried along for coverage. The gate blocks the floor, the
+  opening floor, a nested marker, and the third highlight in one heading span,
+  not the choice of phrase.
 - Walk the heading tree. Ordinary explanation stays at `##` and `###`, and a
   lesson answer key nests `####` and `#####` under its own `###` heading. A
   fourth level in ordinary explanation means the section needs splitting. The

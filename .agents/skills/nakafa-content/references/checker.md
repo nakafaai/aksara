@@ -130,15 +130,19 @@ know, so it is not the full id list.
   skips one. The corpus nests answer-key headings to `####` and `#####` under a
   `###` heading, which stays valid because no level is skipped, so the gate
   enforces order rather than a maximum depth.
-- `highlight-ceiling` blocks a second `<Highlight>` inside one heading span, so
-  the explicit marker keeps naming the one decisive rule, condition, or term of
+- `highlight-ceiling` blocks a third `<Highlight>` inside one heading span, so
+  the explicit marker keeps naming the decisive rule, condition, or key term of
   that span, and `lesson-without-highlight` owns the floor of one per authored
-  locale document. The measured maximum is one highlight per heading span across
-  the corpus, while one top-level `##` section carries three because its `###`
-  subsections each mark their own phrase. The rule does not cap `**` density or
-  total marked surface: both markers render the same treatment, so an author can
-  mark several phrases in one span with `**`, and that spacing judgement stays
-  editorial.
+  locale document. One heading span carries at most two, while one top-level
+  `##` section carries more because its `###` subsections each mark their own
+  phrases. `lesson-opening-highlight` owns the opening floor: the first section
+  a learner reads marks at least one phrase with either marker. The rule does
+  not cap `**` density or total marked surface: both markers render the same
+  treatment, so an author can mark several phrases in one span with `**`, and
+  that spacing judgement stays editorial. `highlight-nesting` blocks one marker
+  nested inside the other, and `highlight-variant` blocks an unknown tone or a
+  dynamic expression, so only `success`, `warning`, or a bare `<Highlight>`
+  reach the learner.
 - `internal-link-generic-label`, `internal-link-only-block`, and
   `internal-link-navigation-heading` block a label that names no destination
   concept, a paragraph or list item whose visible content is only links, and a

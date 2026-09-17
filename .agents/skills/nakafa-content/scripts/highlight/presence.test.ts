@@ -91,6 +91,23 @@ it("accepts a lesson whose locales all carry a highlight", () => {
   );
 });
 
+it("accepts a floor carried by a highlight variant", () => {
+  assert.deepEqual(
+    findLessonHighlightIssues(
+      ROOT,
+      lesson({
+        en: authored(
+          '## Section\n\nThe <Highlight variant="success">met condition</Highlight> holds.'
+        ),
+        id: authored(
+          '## Bagian\n\nSyarat <Highlight variant="warning">tersebut</Highlight> berlaku.'
+        ),
+      })
+    ),
+    []
+  );
+});
+
 it("ignores a document that declares no lesson metadata", () => {
   assert.deepEqual(
     findLessonHighlightIssues(

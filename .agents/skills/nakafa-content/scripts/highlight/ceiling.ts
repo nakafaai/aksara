@@ -1,3 +1,4 @@
+import { splitHighlightSections } from "#nakafa-content/highlight/section";
 import {
   asEstreeNode,
   attributeEstree,
@@ -41,11 +42,6 @@ function countExpressionHighlights(node: EstreeNode): number {
   return total;
 }
 
-interface Section {
-  nodes: MdxNode[];
-  opener: MdxNode;
-}
-
 /**
  * Counts authored highlight components below one parsed node and inside its
  * learner-visible props, because a component receives its body as JSX there.
@@ -73,11 +69,11 @@ function countHighlights(node: MdxNode): number {
 }
 
 /**
- * Finds sections that carry more than one highlight.
+ * Finds sections that carry more than two highlights.
  *
- * `<Highlight>` names the section's single decisive phrase, so a second one
- * inside the same section means the section has not chosen. `<InlineMath />`
- * shares the component shape and is never counted.
+ * A section may mark its decisive rule or condition and one key term, so a
+ * third highlight means the section marks everything and therefore nothing.
+ * `<InlineMath />` shares the component shape and is never counted.
  */
 export function findHighlightCeilingIssues(
   source: string,
@@ -87,22 +83,10 @@ export function findHighlightCeilingIssues(
   if (!children.some((node) => node.type === "mdxjsEsm")) {
     return [];
   }
-  const flow = children.filter((node) => node.type !== "mdxjsEsm");
-  const sections: Section[] = [];
-  let current: Section | undefined;
-  for (const node of flow) {
-    if (node.type === "heading" || current === undefined) {
-      const section = { nodes: [node], opener: node };
-      sections.push(section);
-      current = section;
-      continue;
-    }
-    current.nodes.push(node);
-  }
   const lines = source.split("\n");
   const issues: LessonVoiceIssue[] = [];
-  for (const { nodes, opener } of sections) {
-    if (nodes.reduce((total, node) => total + countHighlights(node), 0) < 2) {
+  for (const { nodes, opener } of splitHighlightSections(tree, 6)) {
+    if (nodes.reduce((total, node) => total + countHighlights(node), 0) < 3) {
       continue;
     }
     const line = opener.position?.start?.line ?? 1;
