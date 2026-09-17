@@ -53,7 +53,7 @@ const decodeOrderedFamilies = (
   values: readonly string[]
 ): Effect.Effect<readonly ContentFamily[], ProductionScopeDecodeError> =>
   Effect.forEach(values, (value) =>
-    Schema.decodeEffect(ContentFamilySchema)(value)
+    Schema.decodeUnknownEffect(ContentFamilySchema)(value)
   ).pipe(
     Effect.mapError(() => new ProductionScopeDecodeError()),
     Effect.map((decoded) => EffectArray.sort(decoded, familyOrder))
@@ -64,7 +64,7 @@ const decodeOrderedSnapshots = (
   values: readonly string[]
 ): Effect.Effect<readonly ContentSnapshotKind[], ProductionScopeDecodeError> =>
   Effect.forEach(values, (value) =>
-    Schema.decodeEffect(ContentSnapshotKindSchema)(value)
+    Schema.decodeUnknownEffect(ContentSnapshotKindSchema)(value)
   ).pipe(
     Effect.mapError(() => new ProductionScopeDecodeError()),
     Effect.map((decoded) => EffectArray.sort(decoded, snapshotOrder))
@@ -94,7 +94,7 @@ export const decodePublicationScopeSelectors = Effect.fn(
   }
   const orderedFamilies = yield* decodeOrderedFamilies(families);
   const orderedSnapshots = yield* decodeOrderedSnapshots(snapshots);
-  return yield* Schema.decodeUnknownEffect(PublicationScopeSchema)({
+  return yield* Schema.decodeEffect(PublicationScopeSchema)({
     families: orderedFamilies,
     snapshots: orderedSnapshots,
   }).pipe(
