@@ -9,6 +9,7 @@ import {
 } from "#nakafa-content/line/exact";
 import {
   asEstreeNode,
+  attributeEstree,
   type EstreeNode,
   type MdxAttribute,
   type MdxNode,
@@ -62,23 +63,6 @@ function visitEstree(
       }
     }
   }
-}
-
-/** Reads the ESTree program attached to one expression-valued MDX attribute. */
-function attributeEstree(attribute: MdxAttribute): EstreeNode | undefined {
-  if (
-    !(
-      attribute.value &&
-      Predicate.isObjectOrArray(attribute.value) &&
-      "data" in attribute.value &&
-      attribute.value.data &&
-      Predicate.isObjectOrArray(attribute.value.data) &&
-      "estree" in attribute.value.data
-    )
-  ) {
-    return;
-  }
-  return asEstreeNode(attribute.value.data.estree);
 }
 
 /** Returns one statically named property from an object expression. */

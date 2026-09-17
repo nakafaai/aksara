@@ -55,25 +55,28 @@ export interface MdxNode {
   value?: unknown;
 }
 
-export interface EstreeNode {
-  end?: number;
-  start?: number;
-  type: string;
-  value?: unknown;
+export interface EstreeNode extends Schema.Schema.Type<typeof EstreeNodeShape> {
   [key: string]: unknown;
 }
 
+/** Known parser-owned fields on an ESTree program node. */
+const EstreeNodeShape = Schema.Struct({
+  end: Schema.optional(Schema.Number),
+  start: Schema.optional(Schema.Number),
+  type: Schema.String,
+  value: Schema.optional(Schema.Unknown),
+});
+
+/** Parser-owned program attached to an MDX expression attribute value. */
+const ExpressionAttachment = Schema.Struct({
+  data: Schema.Struct({
+    estree: EstreeNodeShape,
+  }),
+});
+
 /** Returns one ESTree child only after checking its structural shape. */
 export function asEstreeNode(value: unknown): EstreeNode | undefined {
-  if (
-    value &&
-    Predicate.isObjectKeyword(value) &&
-    "type" in value &&
-    Predicate.isString(value.type)
-  ) {
-    return value as EstreeNode;
-  }
-  return undefined;
+  return Schema.is(EstreeNodeShape)(value) ? (value as EstreeNode) : undefined;
 }
 
 /** Converts an ESTree offset pair into the shared source range shape. */
@@ -93,16 +96,10 @@ export function attributeEstree(
   if (attribute.data?.estree) {
     return attribute.data.estree;
   }
-  const { value } = attribute;
-  if (value === null || value === undefined) {
-    return;
+  if (!Schema.is(ExpressionAttachment)(attribute.value)) {
+    return undefined;
   }
-  assert.ok(Predicate.isObject(value));
-  assert.ok("data" in value);
-  const { data } = value;
-  assert.ok(Predicate.isObject(data));
-  assert.ok("estree" in data);
-  return asEstreeNode(data.estree);
+  return asEstreeNode(attribute.value.data.estree);
 }
 
 /** Reads a static identifier or string key from an ESTree field. */

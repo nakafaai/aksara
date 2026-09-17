@@ -178,6 +178,13 @@ export function directAttributeRange(
   );
 }
 
+/** Narrows one visited node to the members carrying authored children. */
+function hasChildNodes(
+  node: MdxNode | PhrasingContent
+): node is Extract<MdxNode | PhrasingContent, { children: unknown }> {
+  return Predicate.hasProperty(node, "children");
+}
+
 /** Combines formatted Markdown text leaves into one visible source range. */
 export function renderedNodeRange(
   node: MdxNode,
@@ -224,7 +231,7 @@ export function renderedNodeRange(
       }
       return;
     }
-    if ("children" in current) {
+    if (hasChildNodes(current)) {
       assert.ok(current.children);
       for (const child of current.children) {
         visit(child);

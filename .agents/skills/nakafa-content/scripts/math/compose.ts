@@ -7,6 +7,7 @@ import { findGluedTextGroups } from "#nakafa-content/math/glue";
 import { sourceOffsetForStaticMatch } from "#nakafa-content/mdx/offset";
 import {
   asEstreeNode,
+  attributeEstree,
   type EstreeNode,
   type MdxAttribute,
   type MdxNode,
@@ -166,23 +167,6 @@ function directMathText(
   );
 }
 
-/** Returns the static expression stored in one JSX attribute. */
-function attributeExpression(attribute: MdxAttribute): EstreeNode | undefined {
-  if (
-    !(
-      attribute.value &&
-      Predicate.isObjectOrArray(attribute.value) &&
-      "data" in attribute.value &&
-      attribute.value.data &&
-      Predicate.isObjectOrArray(attribute.value.data) &&
-      "estree" in attribute.value.data
-    )
-  ) {
-    return undefined;
-  }
-  return asEstreeNode(attribute.value.data.estree);
-}
-
 /** Collects findings from one JSX attribute that carries a math value. */
 function collectJsxAttributeFindings(
   node: EstreeNode,
@@ -263,7 +247,7 @@ function collectAttributeOffsets(
       return;
     }
   }
-  const expression = attributeExpression(attribute);
+  const expression = attributeEstree(attribute);
   if (!expression) {
     return;
   }

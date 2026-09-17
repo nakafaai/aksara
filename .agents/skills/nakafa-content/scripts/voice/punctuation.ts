@@ -1,6 +1,7 @@
 import { Predicate } from "effect";
 import {
   asEstreeNode,
+  attributeEstree,
   type EstreeNode,
   type MdxAttribute,
   type MdxNode,
@@ -95,24 +96,6 @@ function collectMdxExpressionSemicolons(
   collectStructuredExpressionSemicolons(estree, offsets, source);
 }
 
-/** Reads the ESTree program stored by an MDX expression attribute. */
-function attributeExpression(attribute: MdxAttribute): EstreeNode | undefined {
-  const { value } = attribute;
-  if (
-    !(
-      value &&
-      Predicate.isObjectOrArray(value) &&
-      "data" in value &&
-      value.data &&
-      Predicate.isObjectOrArray(value.data) &&
-      "estree" in value.data
-    )
-  ) {
-    return;
-  }
-  return asEstreeNode(value.data.estree);
-}
-
 /** Scans one authored MDX attribute using its exact source range. */
 function collectMdxAttributeSemicolons(
   attribute: MdxAttribute,
@@ -129,7 +112,7 @@ function collectMdxAttributeSemicolons(
     });
     return;
   }
-  const expression = attributeExpression(attribute);
+  const expression = attributeEstree(attribute);
   if (name === "math" && expression) {
     collectStaticStringSemicolons(expression, offsets, source, {
       allowLatexSpacing: true,

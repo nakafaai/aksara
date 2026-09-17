@@ -11,30 +11,12 @@ import {
   stringExternalOffset,
 } from "#nakafa-content/link/nested";
 import {
-  asEstreeNode,
-  type EstreeNode,
+  attributeEstree,
   type MdxAttribute,
   type MdxNode,
 } from "#nakafa-content/mdx/parse";
 import { isFullyStaticStringExpression } from "#nakafa-content/mdx/static";
 import { isFullyStaticValueExpression } from "#nakafa-content/mdx/value";
-
-/** Returns the expression program stored in one MDX JSX attribute. */
-function attributeExpression(attribute: MdxAttribute): EstreeNode | undefined {
-  if (attribute.data?.estree) {
-    return asEstreeNode(attribute.data.estree);
-  }
-  const { value } = attribute;
-  if (value === null || value === undefined || Predicate.isString(value)) {
-    return;
-  }
-  assert.ok(Predicate.isObject(value));
-  assert.ok("data" in value);
-  const { data } = value;
-  assert.ok(Predicate.isObject(data));
-  assert.ok("estree" in data);
-  return asEstreeNode(data.estree);
-}
 
 /** Finds one authored offset for an external or unverifiable JSX destination. */
 function invalidDestinationOffset(
@@ -46,7 +28,7 @@ function invalidDestinationOffset(
   const attributeEnd = attribute.position?.end?.offset;
   assert.ok(attributeStart !== undefined);
   assert.ok(attributeEnd !== undefined);
-  const expression = attributeExpression(attribute);
+  const expression = attributeEstree(attribute);
   if (attribute.name === undefined) {
     assert.ok(expression);
     return (

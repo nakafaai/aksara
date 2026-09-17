@@ -3,6 +3,7 @@ import { Predicate } from "effect";
 
 import {
   asEstreeNode,
+  attributeEstree,
   type EstreeNode,
   type MdxAttribute,
   type MdxNode,
@@ -203,19 +204,11 @@ function collectAttributeOffsets(
     collectRangeOffsets(offsets, source, directRange);
     return;
   }
-  if (
-    !(
-      attribute.value &&
-      Predicate.isObjectOrArray(attribute.value) &&
-      "data" in attribute.value &&
-      attribute.value.data &&
-      Predicate.isObjectOrArray(attribute.value.data) &&
-      "estree" in attribute.value.data
-    )
-  ) {
+  const program = attributeEstree(attribute);
+  if (!program) {
     return;
   }
-  collectExpressionValues(attribute.value.data.estree, offsets, source);
+  collectExpressionValues(program, offsets, source);
 }
 
 /** Traverses learner-visible MDX while preserving code, links, and quotations. */
