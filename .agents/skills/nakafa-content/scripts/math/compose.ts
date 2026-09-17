@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { Predicate } from "effect";
 
 import { findAlignedFindings } from "#nakafa-content/math/align";
 import { issueAtOffset, type MathFinding } from "#nakafa-content/math/finding";
@@ -6,6 +7,7 @@ import { findGluedTextGroups } from "#nakafa-content/math/glue";
 import { sourceOffsetForStaticMatch } from "#nakafa-content/mdx/offset";
 import {
   asEstreeNode,
+  attributeEstree,
   type EstreeNode,
   type MdxAttribute,
   type MdxNode,
@@ -142,7 +144,7 @@ function directMathText(
   attribute: MdxAttribute,
   source: string
 ): MathText | undefined {
-  if (typeof attribute.value !== "string") {
+  if (!Predicate.isString(attribute.value)) {
     return undefined;
   }
   const start = attribute.position?.start?.offset;
@@ -163,21 +165,6 @@ function directMathText(
     attribute.value,
     start + valueIndex + 1
   );
-}
-
-/** Returns the static expression stored in one JSX attribute. */
-function attributeExpression(attribute: MdxAttribute): EstreeNode | undefined {
-  if (
-    !attribute.value ||
-    typeof attribute.value !== "object" ||
-    !("data" in attribute.value) ||
-    !attribute.value.data ||
-    typeof attribute.value.data !== "object" ||
-    !("estree" in attribute.value.data)
-  ) {
-    return undefined;
-  }
-  return asEstreeNode(attribute.value.data.estree);
 }
 
 /** Collects findings from one JSX attribute that carries a math value. */
@@ -201,7 +188,7 @@ function collectJsxAttributeFindings(
       ? asEstreeNode(attributeValue.expression)
       : attributeValue;
   assert.ok(value !== undefined);
-  if (value.type === "Literal" && typeof value.value === "string") {
+  if (value.type === "Literal" && Predicate.isString(value.value)) {
     const { start, end } = value;
     assert.ok(start !== undefined);
     assert.ok(end !== undefined);
@@ -260,7 +247,7 @@ function collectAttributeOffsets(
       return;
     }
   }
-  const expression = attributeExpression(attribute);
+  const expression = attributeEstree(attribute);
   if (!expression) {
     return;
   }

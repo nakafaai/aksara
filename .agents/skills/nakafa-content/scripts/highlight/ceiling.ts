@@ -1,3 +1,4 @@
+import { Predicate } from "effect";
 import { splitHighlightSections } from "#nakafa-content/highlight/section";
 import {
   asEstreeNode,
@@ -56,7 +57,7 @@ function countHighlights(node: MdxNode): number {
       total += 1;
     }
     for (const attribute of current.attributes ?? []) {
-      if (typeof attribute.value === "string") {
+      if (Predicate.isString(attribute.value)) {
         continue;
       }
       const estree = attributeEstree(attribute);

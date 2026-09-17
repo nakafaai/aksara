@@ -1,3 +1,4 @@
+import { Predicate } from "effect";
 import {
   type MdxNode,
   parseLessonMdx,
@@ -17,9 +18,9 @@ type HeadingNode = Omit<MdxNode, "position" | "type"> & {
 function isHeadingNode(node: MdxNode): node is HeadingNode {
   return (
     node.type === "heading" &&
-    typeof node.depth === "number" &&
-    typeof node.position?.start?.line === "number" &&
-    typeof node.position.start.column === "number"
+    Predicate.isNumber(node.depth) &&
+    Predicate.isNumber(node.position?.start?.line) &&
+    Predicate.isNumber(node.position?.start?.column)
   );
 }
 

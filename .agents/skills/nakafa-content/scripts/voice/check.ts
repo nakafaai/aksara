@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
-import { readdirSync, readFileSync } from "node:fs";
 import { basename, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { NodeFileSystem, NodeRuntime } from "@effect/platform-node";
+import { Effect, FileSystem } from "effect";
 import { findHeadingOrderIssues } from "#nakafa-content/heading/order";
 import { findHighlightCeilingIssues } from "#nakafa-content/highlight/ceiling";
 import { findHighlightNestingIssues } from "#nakafa-content/highlight/nesting";
@@ -13,7 +14,9 @@ import { findExactLineSmoothingIssues } from "#nakafa-content/line/check";
 import { findExternalLinkPlacementIssues } from "#nakafa-content/link/check";
 import { findInternalLinkIssues } from "#nakafa-content/link/internal";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
+import { LessonVoiceCheckError } from "#nakafa-content/voice/error";
 import { findMathBlockFragmentIssues } from "#nakafa-content/voice/fragment";
+import { type CliOptions, parseArguments } from "#nakafa-content/voice/options";
 import { findSiblingRepresentationIssues } from "#nakafa-content/voice/parity";
 import { isBlockingLessonVoiceIssue } from "#nakafa-content/voice/policy";
 import { findLearnerFacingSemicolonIssues } from "#nakafa-content/voice/punctuation";
@@ -23,12 +26,6 @@ import {
   type LessonVoiceLocale,
   type LessonVoiceReport,
 } from "#nakafa-content/voice/types";
-
-interface CliOptions {
-  format: "json" | "text";
-  root: string;
-  strictReview: boolean;
-}
 
 interface LessonFile {
   file: string;
@@ -47,179 +44,228 @@ function localeFromFile(file: string): string {
   return separator === -1 ? stem : stem.slice(separator + 1);
 }
 
+/** Returns true for symbolic links, which the checker never follows. */
+const isSymbolicLink = Effect.fn("LessonVoiceCheck.isSymbolicLink")(function* (
+  fileSystem: FileSystem.FileSystem,
+  file: string
+) {
+  return yield* Effect.match(fileSystem.readLink(file), {
+    onFailure: () => false,
+    onSuccess: () => true,
+  });
+});
+
+/** Returns true for directories; files and missing entries read as files. */
+const isDirectory = Effect.fn("LessonVoiceCheck.isDirectory")(function* (
+  fileSystem: FileSystem.FileSystem,
+  file: string
+) {
+  return yield* Effect.match(fileSystem.readDirectory(file), {
+    onFailure: () => false,
+    onSuccess: () => true,
+  });
+});
+
 /** Collects locale-qualified lesson files without validating them twice. */
-function collectLocaleFiles(root: string): LessonFile[] {
-  const files: LessonFile[] = [];
+const collectLocaleFiles = Effect.fn("LessonVoiceCheck.collectLocaleFiles")(
+  function* (root: string) {
+    const fileSystem = yield* FileSystem.FileSystem;
+    const files: LessonFile[] = [];
 
-  /** Traverses one lesson directory without following non-directory entries. */
-  function visit(directory: string): void {
-    for (const entry of readdirSync(directory, { withFileTypes: true })) {
-      const file = join(directory, entry.name);
-      if (entry.isDirectory()) {
-        visit(file);
-        continue;
-      }
-      if (!entry.isFile()) {
-        continue;
-      }
-      const locale = localeFromFile(file);
-      if (isLessonVoiceLocale(locale)) {
-        files.push({ file, locale });
-      }
-    }
+    /** Traverses one lesson directory without following non-directory entries. */
+    const visit = (
+      directory: string
+    ): Effect.Effect<void, LessonVoiceCheckError, FileSystem.FileSystem> =>
+      Effect.gen(function* () {
+        const entries = yield* Effect.mapError(
+          fileSystem.readDirectory(directory),
+          (cause) =>
+            new LessonVoiceCheckError({
+              detail: `Cannot list ${directory}: ${String(cause)}`,
+              reason: "unreadable-entry",
+            })
+        );
+        for (const entry of entries) {
+          const file = join(directory, entry);
+          if (yield* isSymbolicLink(fileSystem, file)) {
+            continue;
+          }
+          if (yield* isDirectory(fileSystem, file)) {
+            yield* visit(file);
+            continue;
+          }
+          const locale = localeFromFile(file);
+          if (isLessonVoiceLocale(locale)) {
+            files.push({ file, locale });
+          }
+        }
+      });
+
+    yield* visit(root);
+    return files.sort((left, right) => left.file.localeCompare(right.file));
   }
-
-  visit(root);
-  return files.sort((left, right) => left.file.localeCompare(right.file));
-}
+);
 
 /** Collects every English, Indonesian, and German lesson source below a root. */
-export function collectLessonFiles(root: string): string[] {
-  return collectLocaleFiles(root).map(({ file }) => file);
-}
+export const collectLessonFiles = Effect.fn(
+  "LessonVoiceCheck.collectLessonFiles"
+)(function* (root: string) {
+  const files = yield* collectLocaleFiles(root);
+  return files.map(({ file }) => file);
+});
 
 /** Scans every lesson file and attaches its locale and repository path. */
-export function checkLessonRoot(root: string): LessonVoiceReport {
-  const files = collectLocaleFiles(root);
-  if (files.length === 0) {
-    throw new Error(`No lesson locale files found under ${root}`);
-  }
-
-  const documents = files.map(({ file, locale }) => {
-    const source = readFileSync(file, "utf8");
-    const repositoryPath = relative(root, file);
-    const tree = parseLessonMdx(source, repositoryPath);
-    return {
-      file,
-      locale,
-      repositoryPath,
-      source,
-      tree,
-    };
-  });
-  const issues = documents.flatMap(({ locale, repositoryPath, source, tree }) =>
-    [
-      ...findLessonVoiceIssues(locale, source, tree),
-      ...findMathBlockFragmentIssues(source, tree),
-      ...findLearnerFacingSemicolonIssues(source, tree),
-      ...findExternalLinkPlacementIssues(source, tree),
-      ...findInternalLinkIssues(source, tree),
-      ...findHeadingOrderIssues(source, tree),
-      ...findHighlightCeilingIssues(source, tree),
-      ...findHighlightNestingIssues(source, tree),
-      ...findOpeningHighlightIssues(source, tree),
-      ...findHighlightVariantIssues(source, tree),
-      ...findExactLineSmoothingIssues(source, tree),
-    ].map((issue) => ({
-      file: repositoryPath,
-      locale,
-      ...issue,
-    }))
-  );
-  const siblingDocuments = documents.map(({ file, locale, source, tree }) => ({
-    file,
-    locale,
-    source,
-    tree,
-  }));
-  issues.push(...findSiblingRepresentationIssues(root, siblingDocuments));
-  issues.push(...findLessonHighlightIssues(root, siblingDocuments));
-  return { fileCount: files.length, issues };
-}
-
-/** Parses the optional output format and lesson root arguments. */
-function parseArguments(arguments_: readonly string[]): CliOptions {
-  let format = "text";
-  let root = "packages/corpus/material/lesson";
-  let strictReview = false;
-
-  for (let index = 0; index < arguments_.length; index += 1) {
-    const argument = arguments_[index];
-    if (argument === "--format") {
-      const value = arguments_[index + 1];
-      if (value === undefined) {
-        throw new Error("--format requires text or json");
-      }
-      format = value;
-      index += 1;
-    } else if (argument === "--root") {
-      const value = arguments_[index + 1];
-      if (value === undefined) {
-        throw new Error("--root requires a directory");
-      }
-      root = value;
-      index += 1;
-    } else if (argument === "--strict-review") {
-      strictReview = true;
-    } else {
-      throw new Error(`Unknown argument: ${argument}`);
+export const checkLessonRoot = Effect.fn("LessonVoiceCheck.checkLessonRoot")(
+  function* (root: string) {
+    const fileSystem = yield* FileSystem.FileSystem;
+    const files = yield* collectLocaleFiles(root);
+    if (files.length === 0) {
+      return yield* new LessonVoiceCheckError({
+        detail: `No lesson locale files found under ${root}`,
+        reason: "empty-root",
+      });
     }
-  }
 
-  if (format !== "text" && format !== "json") {
-    throw new Error(`Unsupported format: ${format}`);
+    const documents = yield* Effect.forEach(files, ({ file, locale }) =>
+      Effect.gen(function* () {
+        const source = yield* Effect.mapError(
+          fileSystem.readFileString(file),
+          (cause) =>
+            new LessonVoiceCheckError({
+              detail: `Cannot read ${file}: ${String(cause)}`,
+              reason: "unreadable-entry",
+            })
+        );
+        const repositoryPath = relative(root, file);
+        const tree = yield* Effect.try({
+          catch: (cause) =>
+            new LessonVoiceCheckError({
+              detail: `Cannot parse ${repositoryPath}: ${String(cause)}`,
+              reason: "unparseable-document",
+            }),
+          try: () => parseLessonMdx(source, repositoryPath),
+        });
+        return { file, locale, repositoryPath, source, tree };
+      })
+    );
+    const issues = documents.flatMap(
+      ({ locale, repositoryPath, source, tree }) =>
+        [
+          ...findLessonVoiceIssues(locale, source, tree),
+          ...findMathBlockFragmentIssues(source, tree),
+          ...findLearnerFacingSemicolonIssues(source, tree),
+          ...findExternalLinkPlacementIssues(source, tree),
+          ...findInternalLinkIssues(source, tree),
+          ...findHeadingOrderIssues(source, tree),
+          ...findHighlightCeilingIssues(source, tree),
+          ...findHighlightNestingIssues(source, tree),
+          ...findOpeningHighlightIssues(source, tree),
+          ...findHighlightVariantIssues(source, tree),
+          ...findExactLineSmoothingIssues(source, tree),
+        ].map((issue) => ({
+          file: repositoryPath,
+          locale,
+          ...issue,
+        }))
+    );
+    const siblingDocuments = documents.map(
+      ({ file, locale, source, tree }) => ({
+        file,
+        locale,
+        source,
+        tree,
+      })
+    );
+    issues.push(...findSiblingRepresentationIssues(root, siblingDocuments));
+    issues.push(...findLessonHighlightIssues(root, siblingDocuments));
+    const report: LessonVoiceReport = {
+      fileCount: files.length,
+      issues,
+    };
+    return report;
   }
-  return { format, root: resolve(root), strictReview };
-}
+);
 
-/** Runs the standalone checker and returns a stable process exit code. */
-export function runCli(arguments_: readonly string[]): number {
-  let options: ReturnType<typeof parseArguments>;
-  try {
-    options = parseArguments(arguments_);
-  } catch (error) {
-    console.error(String(error));
-    return 2;
-  }
-
-  let report: ReturnType<typeof checkLessonRoot>;
-  try {
-    report = checkLessonRoot(options.root);
-  } catch (error) {
-    console.error(String(error));
-    return 2;
-  }
-
+/** Prints one report and returns the stable process exit code. */
+const printReport = Effect.fn("LessonVoiceCheck.printReport")(function* (
+  options: CliOptions,
+  report: LessonVoiceReport
+) {
+  // Dynamic global dispatch (not the Console service, which binds eagerly)
+  // keeps the production suite's output-capture tests working.
   const blockingIssues = options.strictReview
     ? report.issues
     : report.issues.filter(isBlockingLessonVoiceIssue);
   const reviewIssueCount = report.issues.length - blockingIssues.length;
 
   if (options.format === "json") {
-    console.log(
-      JSON.stringify(
-        {
-          ...report,
-          blockingIssueCount: blockingIssues.length,
-          reviewIssueCount,
-        },
-        null,
-        2
+    yield* Effect.sync(() =>
+      console.log(
+        JSON.stringify(
+          {
+            ...report,
+            blockingIssueCount: blockingIssues.length,
+            reviewIssueCount,
+          },
+          null,
+          2
+        )
       )
     );
   } else if (report.issues.length === 0) {
-    console.log(`Lesson voice check passed for ${report.fileCount} files.`);
+    yield* Effect.sync(() =>
+      console.log(`Lesson voice check passed for ${report.fileCount} files.`)
+    );
   } else {
     const summary = options.strictReview
       ? `Lesson voice strict review found ${blockingIssues.length} issue(s) in ${report.fileCount} files:`
       : `Lesson voice check found ${blockingIssues.length} blocking issue(s) and ${reviewIssueCount} review item(s) in ${report.fileCount} files:`;
-    console.error(summary);
+    yield* Effect.sync(() => console.error(summary));
     for (const issue of report.issues) {
       const severity =
         options.strictReview || isBlockingLessonVoiceIssue(issue)
           ? "error"
           : "review";
-      console.error(
-        `${issue.file}:${issue.line}:${issue.column} [${severity}] [${issue.rule}] ${issue.excerpt}`
-      );
+      const line = `${issue.file}:${issue.line}:${issue.column} [${severity}] [${issue.rule}] ${issue.excerpt}`;
+      yield* Effect.sync(() => console.error(line));
     }
   }
   return blockingIssues.length === 0 ? 0 : 1;
-}
+});
+
+/** Runs the standalone checker and returns a stable process exit code. */
+export const runCli = Effect.fn("LessonVoiceCheck.runCli")(function* (
+  arguments_: readonly string[]
+) {
+  const options = yield* parseArguments(arguments_);
+  const report = yield* checkLessonRoot(options.root);
+  return yield* printReport(options, report);
+});
+
+/** Runs the CLI pipeline with typed failures mapped to exit code 2. */
+export const runMain = Effect.fn("LessonVoiceCheck.runMain")(function* (
+  arguments_: readonly string[]
+) {
+  return yield* Effect.provide(
+    runCli(arguments_).pipe(
+      Effect.catchTag("LessonVoiceCheckError", (error) =>
+        Effect.sync(() => console.error(error.detail)).pipe(Effect.as(2))
+      )
+    ),
+    NodeFileSystem.layer
+  );
+});
 
 const isMain =
   process.argv[1] &&
   resolve(process.argv[1]) === fileURLToPath(import.meta.url);
 if (isMain) {
-  process.exitCode = runCli(process.argv.slice(2));
+  runMain(process.argv.slice(2)).pipe(
+    Effect.andThen((code) =>
+      Effect.sync(() => {
+        process.exitCode = code;
+      })
+    ),
+    NodeRuntime.runMain
+  );
 }

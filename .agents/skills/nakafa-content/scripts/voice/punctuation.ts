@@ -1,5 +1,7 @@
+import { Predicate } from "effect";
 import {
   asEstreeNode,
+  attributeEstree,
   type EstreeNode,
   type MdxAttribute,
   type MdxNode,
@@ -94,22 +96,6 @@ function collectMdxExpressionSemicolons(
   collectStructuredExpressionSemicolons(estree, offsets, source);
 }
 
-/** Reads the ESTree program stored by an MDX expression attribute. */
-function attributeExpression(attribute: MdxAttribute): EstreeNode | undefined {
-  const { value } = attribute;
-  if (
-    !value ||
-    typeof value !== "object" ||
-    !("data" in value) ||
-    !value.data ||
-    typeof value.data !== "object" ||
-    !("estree" in value.data)
-  ) {
-    return;
-  }
-  return asEstreeNode(value.data.estree);
-}
-
 /** Scans one authored MDX attribute using its exact source range. */
 function collectMdxAttributeSemicolons(
   attribute: MdxAttribute,
@@ -120,13 +106,13 @@ function collectMdxAttributeSemicolons(
   if (isNonProseFieldName(name)) {
     return;
   }
-  if (typeof attribute.value === "string") {
+  if (Predicate.isString(attribute.value)) {
     addSemicolonsInRange(offsets, source, attribute.position, {
       allowLatexSpacing: name === "math",
     });
     return;
   }
-  const expression = attributeExpression(attribute);
+  const expression = attributeEstree(attribute);
   if (name === "math" && expression) {
     collectStaticStringSemicolons(expression, offsets, source, {
       allowLatexSpacing: true,
@@ -217,7 +203,7 @@ function collectNodeSemicolons(
   ) {
     return;
   }
-  if (node.type === "text" && typeof node.value === "string") {
+  if (node.type === "text" && Predicate.isString(node.value)) {
     addSemicolonsInRange(offsets, source, node.position);
   }
   collectMarkdownFieldSemicolons(node, offsets, source);

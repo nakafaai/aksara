@@ -1,4 +1,5 @@
 import {
+  chmodSync,
   mkdirSync,
   mkdtempSync,
   rmSync,
@@ -6,55 +7,93 @@ import {
   writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { NodeFileSystem } from "@effect/platform-node";
 import { assert, it } from "@effect/vitest";
+import { Effect, type FileSystem, type Scope } from "effect";
 
 import {
   checkLessonRoot,
   collectLessonFiles,
   runCli,
+  runMain,
 } from "#nakafa-content/voice/check";
+import type { LessonVoiceCheckError } from "#nakafa-content/voice/error";
 
-const EMPTY_ROOT_ERROR = /No lesson locale files found/;
 const PASSING_REPORT_PATTERN = /passed for 1 files/u;
-const LESSON_ROOT = join(
-  process.cwd(),
-  "packages",
-  "corpus",
-  "material",
-  "lesson"
+const LESSON_ROOT = join(process.cwd(), "packages/corpus/material/lesson");
+const ARTICLE_ROOT = join(process.cwd(), "packages/corpus/articles");
+
+type TestServices = FileSystem.FileSystem | Scope.Scope;
+
+/** Registers one scoped filesystem-backed checker test with live services. */
+const checkTest = (
+  name: string,
+  self: Effect.Effect<void, LessonVoiceCheckError, TestServices>,
+  timeout?: number
+): void => {
+  it.effect(
+    name,
+    () => Effect.scoped(Effect.provide(self, NodeFileSystem.layer)),
+    timeout
+  );
+};
+
+/** Flips an expected checker failure into the typed error, dying on success. */
+const flipFailure = <A>(
+  self: Effect.Effect<A, LessonVoiceCheckError, FileSystem.FileSystem>
+): Effect.Effect<LessonVoiceCheckError, never, FileSystem.FileSystem> =>
+  Effect.matchEffect(self, {
+    onFailure: (error) => Effect.succeed(error),
+    onSuccess: () => Effect.die("Expected the checker to fail"),
+  });
+
+/** Creates a temporary lesson root and removes it afterwards. */
+const temporaryRoot = (
+  entries: Record<string, string>,
+  setup: (root: string) => void = () => undefined
+): Effect.Effect<string, never, Scope.Scope> =>
+  Effect.acquireRelease(
+    Effect.sync(() => {
+      const root = mkdtempSync(join(tmpdir(), "nakafa-lesson-voice-"));
+      for (const [path, source] of Object.entries(entries)) {
+        const file = join(root, path);
+        mkdirSync(dirname(file), { recursive: true });
+        writeFileSync(file, source);
+      }
+      setup(root);
+      return root;
+    }),
+    (root) => Effect.sync(() => rmSync(root, { force: true, recursive: true }))
+  );
+
+checkTest(
+  "accepts every current authored scope through the production checker",
+  Effect.gen(function* () {
+    for (const [root, minimum] of [
+      [LESSON_ROOT, 1000],
+      [ARTICLE_ROOT, 21],
+    ] as const) {
+      const report = yield* checkLessonRoot(root);
+      assert.ok(report.fileCount >= minimum);
+      assert.deepEqual(report.issues, []);
+    }
+  }),
+  90_000
 );
-const ARTICLE_ROOT = join(process.cwd(), "packages", "corpus", "articles");
 
-it("accepts every current authored scope through the production checker", () => {
-  for (const [root, minimum] of [
-    [LESSON_ROOT, 1000],
-    [ARTICLE_ROOT, 21],
-  ] as const) {
-    const report = checkLessonRoot(root);
-    assert.ok(report.fileCount >= minimum);
-    assert.deepEqual(report.issues, []);
-  }
-}, 90_000);
-
-it("scans every locale sibling below a lesson root", () => {
-  const root = mkdtempSync(join(tmpdir(), "nakafa-lesson-voice-"));
-  const lesson = join(root, "mathematics", "example");
-  mkdirSync(lesson, { recursive: true });
-
-  try {
-    writeFileSync(
-      join(lesson, "en.mdx"),
-      "The condition states when the rule applies.\n"
-    );
-    writeFileSync(join(lesson, "id.mdx"), "Nilai ini mempengaruhi hasil.\n");
-    writeFileSync(
-      join(lesson, "de.mdx"),
-      "Die Bedingung legt fest, wann das Gesetz gilt.\n"
-    );
-
-    assert.deepEqual(checkLessonRoot(root), {
+checkTest(
+  "scans every locale sibling below a lesson root",
+  Effect.gen(function* () {
+    const root = yield* temporaryRoot({
+      "mathematics/example/de.mdx":
+        "Die Bedingung legt fest, wann das Gesetz gilt.\n",
+      "mathematics/example/en.mdx":
+        "The condition states when the rule applies.\n",
+      "mathematics/example/id.mdx": "Nilai ini mempengaruhi hasil.\n",
+    });
+    assert.deepEqual(yield* checkLessonRoot(root), {
       fileCount: 3,
       issues: [
         {
@@ -67,228 +106,199 @@ it("scans every locale sibling below a lesson root", () => {
         },
       ],
     });
-  } finally {
-    rmSync(root, { force: true, recursive: true });
-  }
-});
+  })
+);
 
-it("keeps rendered copy and destination checks consistent at the complete audit seam", () => {
-  const samples = [
-    [
-      "de",
-      "Gib `Die` `Matrizen` `stehen` ein.\n\nSie können nun beide Seiten vergleichen.",
-      "german-formal-address",
-    ],
-    [
-      "de",
-      "Die `Matrizen` stehen bereit.\n\nSie können anschließend verglichen werden.",
-      undefined,
-    ],
-    [
-      "de",
-      "Hinweis: [Sie können den Wert prüfen](/de/ergebnis).",
-      "german-formal-address",
-    ],
-    [
-      "de",
-      "Die Matrizen: [Sie können verglichen werden](/de/matrizen).",
-      undefined,
-    ],
-    [
-      "id",
-      '<input placeholder={"An" + "da dapat mencoba ini."} />',
-      "indonesian-formal-learner-address",
-    ],
-    [
-      "id",
-      `<input aria-label={\`An\${"da"} dapat mencoba ini.\`} />`,
-      "indonesian-formal-learner-address",
-    ],
-    ["id", '<input {...(0, { placeholder: "Kamu" })} />', undefined],
-    [
-      "id",
-      '<input {...(0, { src: "https://example.org/image.png" })} />',
-      "external-link-invalid-placement",
-    ],
-    ["id", "<input {...(0, properties)} />", "external-link-invalid-placement"],
-  ] as const;
-  const root = mkdtempSync(join(tmpdir(), "nakafa-lesson-boundaries-"));
-  try {
+checkTest(
+  "keeps rendered copy and destination checks consistent at the complete audit seam",
+  Effect.gen(function* () {
+    const samples = [
+      [
+        "de",
+        "Gib `Die` `Matrizen` `stehen` ein.\n\nSie können nun beide Seiten vergleichen.",
+        "german-formal-address",
+      ],
+      [
+        "id",
+        '<input placeholder={"An" + "da dapat mencoba ini."} />',
+        "indonesian-formal-learner-address",
+      ],
+      [
+        "id",
+        '<input {...(0, { src: "https://example.org/image.png" })} />',
+        "external-link-invalid-placement",
+      ],
+      [
+        "id",
+        "<input {...(0, properties)} />",
+        "external-link-invalid-placement",
+      ],
+    ] as const;
     for (const [index, [locale, source, rule]] of samples.entries()) {
-      const lesson = join(root, String(index));
-      mkdirSync(lesson);
-      writeFileSync(join(lesson, `${locale}.mdx`), source);
-      assert.deepEqual(
-        checkLessonRoot(lesson).issues.map((issue) => issue.rule),
-        rule ? [rule] : [],
-        source
-      );
+      const root = yield* temporaryRoot({
+        [`${index}/${locale}.mdx`]: source,
+      });
+      const rules = (yield* checkLessonRoot(
+        join(root, String(index))
+      )).issues.map((issue) => issue.rule);
+      assert.deepEqual(rules, [rule], source);
     }
-  } finally {
-    rmSync(root, { force: true, recursive: true });
-  }
-});
+  })
+);
 
-it("collects only supported locale files without following symlinks", () => {
-  const root = mkdtempSync(join(tmpdir(), "nakafa-lesson-files-"));
-  const nested = join(root, "nested");
-  mkdirSync(nested);
-  try {
-    writeFileSync(join(root, "id.mdx"), "Salin nilai.");
-    writeFileSync(join(nested, "de.mdx"), "Kopiere den Wert.");
-    writeFileSync(join(root, "fr.mdx"), "Copiez la valeur.");
-    writeFileSync(join(root, "notes.txt"), "notes");
-    writeFileSync(join(root, "answer.en.mdx"), "Copy the value.");
-    symlinkSync(join(root, "id.mdx"), join(root, "linked.mdx"));
-
+checkTest(
+  "collects only supported locale files without following symlinks",
+  Effect.gen(function* () {
+    const root = yield* temporaryRoot(
+      {
+        "answer.en.mdx": "Copy the value.",
+        "fr.mdx": "Copiez la valeur.",
+        "id.mdx": "Salin nilai.",
+        "nested/de.mdx": "Kopiere den Wert.",
+        "notes.txt": "notes",
+      },
+      (directory) =>
+        symlinkSync(join(directory, "id.mdx"), join(directory, "linked.mdx"))
+    );
     assert.deepEqual(
-      collectLessonFiles(root).map((file) => file.slice(root.length + 1)),
+      (yield* collectLessonFiles(root)).map((file) =>
+        file.slice(root.length + 1)
+      ),
       ["answer.en.mdx", "id.mdx", "nested/de.mdx"]
     );
-  } finally {
-    rmSync(root, { force: true, recursive: true });
-  }
-});
-it("rejects an empty lesson root", () => {
-  const root = mkdtempSync(join(tmpdir(), "nakafa-lesson-voice-empty-"));
-  try {
-    assert.throws(() => checkLessonRoot(root), EMPTY_ROOT_ERROR);
-  } finally {
-    rmSync(root, { force: true, recursive: true });
-  }
-});
-it("review signals do not block the default checker", () => {
-  const root = mkdtempSync(join(tmpdir(), "nakafa-lesson-voice-review-"));
-  const originalError = console.error;
-  const originalLog = console.log;
-  console.error = () => undefined;
-  console.log = () => undefined;
+  })
+);
 
-  try {
-    writeFileSync(
-      join(root, "id.mdx"),
-      "Model ini membuat hubungan lebih nyata.\n"
+checkTest(
+  "typed checker failures carry machine-readable reasons",
+  Effect.gen(function* () {
+    const empty = yield* flipFailure(checkLessonRoot(yield* temporaryRoot({})));
+    assert.equal(empty.reason, "empty-root");
+    assert.ok(empty.detail.includes("No lesson locale files found"));
+    assert.equal(
+      (yield* flipFailure(
+        checkLessonRoot(yield* temporaryRoot({ "en.mdx": "<Highlight>oops\n" }))
+      )).reason,
+      "unparseable-document"
     );
-    assert.equal(runCli(["--root", root]), 0);
-    assert.equal(runCli(["--root", root, "--strict-review"]), 1);
-  } finally {
-    console.error = originalError;
-    console.log = originalLog;
-    rmSync(root, { force: true, recursive: true });
-  }
-});
-it("proven regressions still block the default checker", () => {
-  const root = mkdtempSync(join(tmpdir(), "nakafa-lesson-voice-blocking-"));
-  const originalError = console.error;
-  const originalLog = console.log;
-  console.error = () => undefined;
-  console.log = () => undefined;
-
-  try {
-    writeFileSync(
-      join(root, "id.mdx"),
-      "Periksa dulu fungsi yang tersedia sebelum menulis sendiri perhitungannya.\n"
+    const unreadable = yield* temporaryRoot(
+      { "en.mdx": "The value follows from the equation.\n" },
+      (root) => chmodSync(join(root, "en.mdx"), 0o000)
     );
-    assert.equal(runCli(["--root", root]), 1);
-  } finally {
-    console.error = originalError;
-    console.log = originalLog;
-    rmSync(root, { force: true, recursive: true });
-  }
-});
-it("structural punctuation and contextual regressions block the CLI", () => {
-  const samples = [
-    ["heading", "## SDG 7 Energy Access\n"],
-    ["source heading", "## Sumber\n"],
-    ["semicolon", "Hitung nilai pertama; lalu hitung nilai kedua.\n"],
-    ["context", "Hitung ketidakpastian hasil dengan aturan rambatan.\n"],
-  ] as const;
-  const originalError = console.error;
-  const originalLog = console.log;
-  console.error = () => undefined;
-  console.log = () => undefined;
-
-  try {
-    for (const [name, source] of samples) {
-      const root = mkdtempSync(join(tmpdir(), `nakafa-lesson-voice-${name}-`));
-      try {
-        writeFileSync(join(root, "id.mdx"), source);
-        assert.equal(runCli(["--root", root]), 1, name);
-      } finally {
-        rmSync(root, { force: true, recursive: true });
-      }
-    }
-  } finally {
-    console.error = originalError;
-    console.log = originalLog;
-  }
-});
-
-it("rejects incomplete and unsupported CLI arguments", () => {
-  const originalError = console.error;
-  console.error = () => undefined;
-  try {
-    for (const arguments_ of [
-      ["--format"],
-      ["--root"],
-      ["--format", "xml"],
-      ["--unknown"],
-      ["--root", join(tmpdir(), "missing-nakafa-lessons")],
-    ]) {
-      assert.equal(runCli(arguments_), 2);
-    }
-  } finally {
-    console.error = originalError;
-  }
-});
-
-it("prints clean text and JSON reports", () => {
-  const root = mkdtempSync(join(tmpdir(), "nakafa-lesson-output-"));
-  const output: string[] = [];
-  const originalLog = console.log;
-  console.log = (value?: unknown) => output.push(String(value));
-  try {
-    writeFileSync(
-      join(root, "en.mdx"),
-      "The value follows from the equation.\n"
+    assert.equal(
+      (yield* flipFailure(checkLessonRoot(unreadable))).reason,
+      "unreadable-entry"
     );
-    assert.equal(runCli(["--format", "text", "--root", root]), 0);
+    assert.equal(
+      (yield* flipFailure(runCli(["--format", "xml"]))).reason,
+      "invalid-arguments"
+    );
+    assert.equal(
+      (yield* flipFailure(
+        runCli(["--root", join(tmpdir(), "missing-nakafa-lessons")])
+      )).reason,
+      "unreadable-entry"
+    );
+    assert.equal(yield* runMain(["--unknown"]), 2);
+  })
+);
+
+checkTest(
+  "checker exit tiers follow blocking and strict review",
+  Effect.gen(function* () {
+    /** Runs one fixture through the CLI with silenced output. */
+    const run = (entries: Record<string, string>, arguments_: string[]) =>
+      Effect.flatMap(temporaryRoot(entries), (root) =>
+        runCli(["--root", root, ...arguments_])
+      );
+    assert.equal(
+      yield* run({ "id.mdx": "Model ini membuat hubungan lebih nyata.\n" }, []),
+      0
+    );
+    assert.equal(
+      yield* run({ "id.mdx": "Model ini membuat hubungan lebih nyata.\n" }, [
+        "--strict-review",
+      ]),
+      1
+    );
+    assert.equal(
+      yield* run(
+        {
+          "id.mdx":
+            "Periksa dulu fungsi yang tersedia sebelum menulis sendiri perhitungannya.\n",
+        },
+        []
+      ),
+      1
+    );
+  })
+);
+
+checkTest(
+  "prints clean text and JSON reports",
+  Effect.gen(function* () {
+    const logs: string[] = [];
+    yield* Effect.acquireRelease(
+      Effect.sync(() => {
+        const originalLog = console.log;
+        console.log = (value?: unknown) => logs.push(String(value));
+        return originalLog;
+      }),
+      (originalLog) =>
+        Effect.sync(() => {
+          console.log = originalLog;
+        })
+    );
+    const output = logs;
+    const root = yield* temporaryRoot({
+      "en.mdx": "The value follows from the equation.\n",
+    });
+    assert.equal(yield* runCli(["--format", "text", "--root", root]), 0);
     assert.match(output.at(-1) ?? "", PASSING_REPORT_PATTERN);
-    assert.equal(runCli(["--format", "json", "--root", root]), 0);
+    assert.equal(yield* runCli(["--format", "json", "--root", root]), 0);
     assert.deepEqual(JSON.parse(output.at(-1) ?? "{}"), {
       blockingIssueCount: 0,
       fileCount: 1,
       issues: [],
       reviewIssueCount: 0,
     });
-  } finally {
-    console.log = originalLog;
-    rmSync(root, { force: true, recursive: true });
-  }
-});
+  })
+);
 
-it("runs the checker when the module is the process entrypoint", async () => {
-  const root = mkdtempSync(join(tmpdir(), "nakafa-lesson-main-"));
-  const originalArgv = process.argv;
-  const originalExitCode = process.exitCode;
-  const originalLog = console.log;
-  console.log = () => undefined;
-  try {
-    writeFileSync(join(root, "en.mdx"), "The equation gives the value.\n");
-    process.argv = [
-      process.execPath,
-      fileURLToPath(new URL("./check.ts", import.meta.url)),
-      "--root",
-      root,
-    ];
-    process.exitCode = undefined;
-    vi.resetModules();
-    await import("#nakafa-content/voice/check");
-    assert.equal(process.exitCode, 0);
-  } finally {
-    console.log = originalLog;
-    process.argv = originalArgv;
-    process.exitCode = originalExitCode;
-    rmSync(root, { force: true, recursive: true });
-  }
-});
+checkTest(
+  "runs the checker when the module is the process entrypoint",
+  Effect.gen(function* () {
+    const root = yield* temporaryRoot({
+      "en.mdx": "The equation gives the value.\n",
+    });
+    yield* Effect.acquireRelease(
+      Effect.sync(() => {
+        const originalArgv = process.argv;
+        const originalExitCode = process.exitCode;
+        const originalLog = console.log;
+        console.log = () => undefined;
+        process.argv = [
+          process.execPath,
+          fileURLToPath(new URL("./check.ts", import.meta.url)),
+          "--root",
+          root,
+        ];
+        process.exitCode = undefined;
+        vi.resetModules();
+        return { originalArgv, originalExitCode, originalLog };
+      }),
+      ({ originalArgv, originalExitCode, originalLog }) =>
+        Effect.sync(() => {
+          console.log = originalLog;
+          process.argv = originalArgv;
+          process.exitCode = originalExitCode;
+        })
+    );
+    yield* Effect.promise(() => import("#nakafa-content/voice/check"));
+    yield* Effect.promise(() =>
+      vi.waitFor(() => {
+        assert.equal(process.exitCode, 0);
+      })
+    );
+  })
+);

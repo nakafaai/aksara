@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { createProcessor } from "@mdx-js/mdx";
+import { Effect, Predicate, Schema } from "effect";
 import type { PhrasingContent } from "mdast";
 import remarkGfm from "remark-gfm";
 import type {} from "remark-parse";
@@ -54,25 +55,28 @@ export interface MdxNode {
   value?: unknown;
 }
 
-export interface EstreeNode {
-  end?: number;
-  start?: number;
-  type: string;
-  value?: unknown;
+export interface EstreeNode extends Schema.Schema.Type<typeof EstreeNodeShape> {
   [key: string]: unknown;
 }
 
+/** Known parser-owned fields on an ESTree program node. */
+const EstreeNodeShape = Schema.Struct({
+  end: Schema.optional(Schema.Number),
+  start: Schema.optional(Schema.Number),
+  type: Schema.String,
+  value: Schema.optional(Schema.Unknown),
+});
+
+/** Parser-owned program attached to an MDX expression attribute value. */
+const ExpressionAttachment = Schema.Struct({
+  data: Schema.Struct({
+    estree: EstreeNodeShape,
+  }),
+});
+
 /** Returns one ESTree child only after checking its structural shape. */
 export function asEstreeNode(value: unknown): EstreeNode | undefined {
-  if (
-    value &&
-    typeof value === "object" &&
-    "type" in value &&
-    typeof value.type === "string"
-  ) {
-    return value as EstreeNode;
-  }
-  return undefined;
+  return Schema.is(EstreeNodeShape)(value) ? (value as EstreeNode) : undefined;
 }
 
 /** Converts an ESTree offset pair into the shared source range shape. */
@@ -92,16 +96,10 @@ export function attributeEstree(
   if (attribute.data?.estree) {
     return attribute.data.estree;
   }
-  const { value } = attribute;
-  if (value === null || value === undefined) {
-    return;
+  if (!Schema.is(ExpressionAttachment)(attribute.value)) {
+    return undefined;
   }
-  assert.ok(typeof value === "object");
-  assert.ok("data" in value);
-  const { data } = value;
-  assert.ok(data && typeof data === "object");
-  assert.ok("estree" in data);
-  return asEstreeNode(data.estree);
+  return asEstreeNode(attribute.value.data.estree);
 }
 
 /** Reads a static identifier or string key from an ESTree field. */
@@ -109,47 +107,69 @@ export function staticFieldName(
   node: EstreeNode | undefined
 ): string | undefined {
   if (node?.type === "Identifier" || node?.type === "JSXIdentifier") {
-    assert.ok(typeof node.name === "string");
+    assert.ok(Predicate.isString(node.name));
     return node.name;
   }
-  return node?.type === "Literal" && typeof node.value === "string"
+  return node?.type === "Literal" && Predicate.isString(node.value)
     ? node.value
     : undefined;
 }
+
+/** Typed failure for an authored MDX document the parser rejects. */
+export class MdxParseError extends Schema.TaggedError<MdxParseError>()(
+  "MdxParseError",
+  {
+    cause: Schema.Unknown,
+    detail: Schema.String,
+    message: Schema.String,
+    sourcePath: Schema.String,
+  }
+) {}
 
 /** Parses authored MDX and includes the source path in parser failures. */
 export function parseLessonMdx(
   source: string,
   sourcePath = "lesson MDX"
 ): MdxNode {
-  try {
-    return createProcessor({ format: "mdx" })
-      .use(remarkGfm)
-      .data("fromMarkdownExtensions", [
-        {
-          exit: {
-            /** Retains image label positions before mdast flattens the alt text. */
-            labelMarker(token) {
-              if (this.sliceSerialize(token) !== "]") {
-                return;
-              }
-              const image = this.stack.at(-2);
-              if (image?.type !== "image") {
-                return;
-              }
-              const fragment = this.stack.at(-1);
-              assert.ok(fragment?.type === "fragment");
-              image.data = { ...image.data, altChildren: fragment.children };
+  return Effect.runSync(
+    Effect.try({
+      catch: (cause) => {
+        const detail = `Failed to parse ${sourcePath}: ${String(cause)}`;
+        return new MdxParseError({
+          cause,
+          detail,
+          message: detail,
+          sourcePath,
+        });
+      },
+      try: () =>
+        createProcessor({ format: "mdx" })
+          .use(remarkGfm)
+          .data("fromMarkdownExtensions", [
+            {
+              exit: {
+                /** Retains image label positions before mdast flattens the alt text. */
+                labelMarker(token) {
+                  if (this.sliceSerialize(token) !== "]") {
+                    return;
+                  }
+                  const image = this.stack.at(-2);
+                  if (image?.type !== "image") {
+                    return;
+                  }
+                  const fragment = this.stack.at(-1);
+                  assert.ok(fragment?.type === "fragment");
+                  image.data = {
+                    ...image.data,
+                    altChildren: fragment.children,
+                  };
+                },
+              },
             },
-          },
-        },
-      ])
-      .parse(source) as MdxNode;
-  } catch (cause) {
-    throw new SyntaxError(`Failed to parse ${sourcePath}: ${String(cause)}`, {
-      cause,
-    });
-  }
+          ])
+          .parse(source) as MdxNode,
+    })
+  );
 }
 
 /** Traverses authored MDX children without recursing into ESTree metadata. */

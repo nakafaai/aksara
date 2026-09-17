@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { Predicate } from "effect";
 
 import {
   asEstreeNode,
@@ -84,7 +85,7 @@ function staticMathConstant(node: EstreeNode): number | undefined {
   const field = staticFieldName(asEstreeNode(node.property));
   const value =
     owner === "Math" && field ? Reflect.get(Math, field) : undefined;
-  return typeof value === "number" ? value : undefined;
+  return Predicate.isNumber(value) ? value : undefined;
 }
 
 /** Evaluates one allowlisted pure Math call. */
@@ -108,7 +109,7 @@ function staticMathCall(node: EstreeNode): number | undefined {
     return;
   }
   const result = Reflect.apply(Reflect.get(Math, method), Math, values);
-  return typeof result === "number" && Number.isFinite(result)
+  return Predicate.isNumber(result) && Number.isFinite(result)
     ? result
     : undefined;
 }
@@ -141,7 +142,7 @@ function staticBinaryNumber(node: EstreeNode): number | undefined {
 /** Evaluates the pure numeric expression subset used by authored graph points. */
 export function staticNumber(node: EstreeNode | undefined): number | undefined {
   if (node?.type === "Literal") {
-    return typeof node.value === "number" ? node.value : undefined;
+    return Predicate.isNumber(node.value) ? node.value : undefined;
   }
   if (node?.type === "UnaryExpression") {
     return staticUnaryNumber(node);
@@ -208,7 +209,7 @@ function expressionFingerprint(value: unknown): unknown {
   if (Array.isArray(value)) {
     return value.map(expressionFingerprint);
   }
-  if (!value || typeof value !== "object") {
+  if (!(value && Predicate.isObjectOrArray(value))) {
     return value;
   }
   return Object.fromEntries(

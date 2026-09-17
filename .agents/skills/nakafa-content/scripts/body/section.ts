@@ -1,3 +1,4 @@
+import { Predicate } from "effect";
 import { type MdxNode, parseLessonMdx } from "#nakafa-content/mdx/parse";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
@@ -34,7 +35,7 @@ function countProseWords(node: MdxNode): number {
     return 0;
   }
   const own =
-    typeof node.value === "string" && INLINE_PROSE_TYPES.has(node.type)
+    Predicate.isString(node.value) && INLINE_PROSE_TYPES.has(node.type)
       ? node.value.split(WHITESPACE_PATTERN).filter((word) => word !== "")
           .length
       : 0;

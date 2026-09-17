@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { Predicate, Schema } from "effect";
 
 import {
   asEstreeNode,
@@ -33,10 +34,9 @@ function templatePart(node: EstreeNode): StaticStringPart | undefined {
   if (node.type !== "TemplateElement") {
     return;
   }
-  const { value } = node;
-  assert.ok(value && typeof value === "object");
-  assert.ok("cooked" in value && typeof value.cooked === "string");
-  assert.ok("raw" in value && typeof value.raw === "string");
+  const value = Schema.decodeUnknownSync(
+    Schema.Struct({ cooked: Schema.String, raw: Schema.String })
+  )(node.value);
   return {
     quoted: false,
     range: estreeRange(node),
@@ -153,8 +153,8 @@ function compositeCandidates(node: EstreeNode): StaticStringCandidate[] {
 export function staticStringCandidates(
   node: EstreeNode
 ): StaticStringCandidate[] {
-  if (node.type === "Literal" && typeof node.value === "string") {
-    assert.ok(typeof node.raw === "string");
+  if (node.type === "Literal" && Predicate.isString(node.value)) {
+    assert.ok(Predicate.isString(node.raw));
     return [
       candidate([
         {
@@ -255,7 +255,7 @@ function isFullyStaticTemplate(node: EstreeNode): boolean {
 /** Proves the static shape of every possible expression result. */
 function isFullyStaticStringStructure(node: EstreeNode): boolean {
   if (node.type === "Literal") {
-    return typeof node.value === "string";
+    return Predicate.isString(node.value);
   }
   if (node.type === "TemplateElement") {
     return templatePart(node) !== undefined;

@@ -1,7 +1,7 @@
+import { Predicate } from "effect";
 import { sourceOffsetForStaticMatch } from "#nakafa-content/mdx/offset";
 import {
-  asEstreeNode,
-  type EstreeNode,
+  attributeEstree,
   type MdxAttribute,
   type MdxNode,
   parseLessonMdx,
@@ -52,7 +52,7 @@ function directAttributeOffsets(
   attribute: MdxAttribute,
   source: string
 ): { end: number; start: number } | undefined {
-  if (typeof attribute.value !== "string") {
+  if (!Predicate.isString(attribute.value)) {
     return;
   }
   const start = Number(attribute.position?.start?.offset);
@@ -62,21 +62,6 @@ function directAttributeOffsets(
     end: start + localOffset + attribute.value.length,
     start: start + localOffset,
   };
-}
-
-/** Returns the static expression stored in one JSX attribute. */
-function attributeExpression(attribute: MdxAttribute): EstreeNode | undefined {
-  if (
-    !attribute.value ||
-    typeof attribute.value !== "object" ||
-    !("data" in attribute.value) ||
-    !attribute.value.data ||
-    typeof attribute.value.data !== "object" ||
-    !("estree" in attribute.value.data)
-  ) {
-    return;
-  }
-  return asEstreeNode(attribute.value.data.estree);
 }
 
 /** Collects malformed dot commands from one explicit math prop. */
@@ -98,7 +83,7 @@ function collectAttributeOffsets(
     }
     return;
   }
-  const expression = attributeExpression(attribute);
+  const expression = attributeEstree(attribute);
   if (!expression) {
     return;
   }

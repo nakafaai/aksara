@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { Predicate } from "effect";
 import type { PhrasingContent } from "mdast";
 
 import type {
@@ -30,7 +31,7 @@ function decodeEntity(entity: string): string {
   const text = paragraph?.children?.[0];
   assert.equal(text?.type, "text");
   const value = text?.value;
-  assert.ok(typeof value === "string");
+  assert.ok(Predicate.isString(value));
   ENTITY_VALUES.set(entity, value);
   return value;
 }
@@ -150,7 +151,7 @@ export function directAttributeRange(
   attribute: MdxAttribute,
   source: string
 ): SourceRange | undefined {
-  if (typeof attribute.value !== "string") {
+  if (!Predicate.isString(attribute.value)) {
     return;
   }
   const start = attribute.position?.start?.offset;
@@ -177,6 +178,13 @@ export function directAttributeRange(
   );
 }
 
+/** Narrows one visited node to the members carrying authored children. */
+function hasChildNodes(
+  node: MdxNode | PhrasingContent
+): node is Extract<MdxNode | PhrasingContent, { children: unknown }> {
+  return Predicate.hasProperty(node, "children");
+}
+
 /** Combines formatted Markdown text leaves into one visible source range. */
 export function renderedNodeRange(
   node: MdxNode,
@@ -186,7 +194,7 @@ export function renderedNodeRange(
 
   /** Collects rendered text leaves in authored order. */
   function visit(current: MdxNode | PhrasingContent): void {
-    if (current.type === "text" && typeof current.value === "string") {
+    if (current.type === "text" && Predicate.isString(current.value)) {
       const start = current.position?.start?.offset;
       const end = current.position?.end?.offset;
       assert.ok(start !== undefined);
@@ -223,7 +231,7 @@ export function renderedNodeRange(
       }
       return;
     }
-    if ("children" in current) {
+    if (hasChildNodes(current)) {
       assert.ok(current.children);
       for (const child of current.children) {
         visit(child);

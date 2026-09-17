@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
+import { Predicate } from "effect";
 
 import {
   asEstreeNode,
+  attributeEstree,
   type EstreeNode,
   type MdxAttribute,
   type MdxNode,
@@ -128,7 +130,7 @@ function collectRangeOffsets(
 function jsxComponentName(node: EstreeNode): string | undefined {
   const openingElement = asEstreeNode(node.openingElement);
   const name = asEstreeNode(openingElement?.name);
-  return name?.type === "JSXIdentifier" && typeof name.name === "string"
+  return name?.type === "JSXIdentifier" && Predicate.isString(name.name)
     ? name.name
     : undefined;
 }
@@ -166,7 +168,7 @@ function collectExpressionOffsets(
   source: string
 ): void {
   if (
-    (node.type === "Literal" && typeof node.value === "string") ||
+    (node.type === "Literal" && Predicate.isString(node.value)) ||
     node.type === "JSXText" ||
     node.type === "TemplateElement"
   ) {
@@ -202,17 +204,11 @@ function collectAttributeOffsets(
     collectRangeOffsets(offsets, source, directRange);
     return;
   }
-  if (
-    !attribute.value ||
-    typeof attribute.value !== "object" ||
-    !("data" in attribute.value) ||
-    !attribute.value.data ||
-    typeof attribute.value.data !== "object" ||
-    !("estree" in attribute.value.data)
-  ) {
+  const program = attributeEstree(attribute);
+  if (!program) {
     return;
   }
-  collectExpressionValues(attribute.value.data.estree, offsets, source);
+  collectExpressionValues(program, offsets, source);
 }
 
 /** Traverses learner-visible MDX while preserving code, links, and quotations. */

@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { Predicate } from "effect";
 
 import { isProtectedProseComponent } from "#nakafa-content/mdx/fields";
 import { metadataAddressRanges } from "#nakafa-content/mdx/metadata";
@@ -157,12 +158,12 @@ function collectParagraphAddressIssues(
 /** Reads prose and inline noun tokens without borrowing protected examples. */
 function paragraphText(node: MdxNode): string {
   if (node.type === "inlineCode") {
-    assert.ok(typeof node.value === "string");
+    assert.ok(Predicate.isString(node.value));
     return INLINE_ANTECEDENT_PATTERN.test(node.value)
       ? `\`${node.value}\``
       : " ";
   }
-  if (node.type === "text" && typeof node.value === "string") {
+  if (node.type === "text" && Predicate.isString(node.value)) {
     return node.value;
   }
   if (node.type === "break" || isProtectedProseComponent(node.name)) {

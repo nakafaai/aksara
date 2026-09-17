@@ -1,3 +1,4 @@
+import { Predicate } from "effect";
 import {
   isObjectExpressionNode,
   type ObjectExpressionNode,
@@ -8,6 +9,7 @@ import {
 } from "#nakafa-content/line/exact";
 import {
   asEstreeNode,
+  attributeEstree,
   type EstreeNode,
   type MdxAttribute,
   type MdxNode,
@@ -63,21 +65,6 @@ function visitEstree(
   }
 }
 
-/** Reads the ESTree program attached to one expression-valued MDX attribute. */
-function attributeEstree(attribute: MdxAttribute): EstreeNode | undefined {
-  if (
-    !attribute.value ||
-    typeof attribute.value !== "object" ||
-    !("data" in attribute.value) ||
-    !attribute.value.data ||
-    typeof attribute.value.data !== "object" ||
-    !("estree" in attribute.value.data)
-  ) {
-    return;
-  }
-  return asEstreeNode(attribute.value.data.estree);
-}
-
 /** Returns one statically named property from an object expression. */
 function objectProperty(
   object: ObjectExpressionNode,
@@ -99,7 +86,7 @@ function objectProperty(
 /** Reads a static boolean property value when present. */
 function staticBoolean(property: EstreeNode | undefined): boolean | undefined {
   const value = asEstreeNode(property?.value);
-  return value?.type === "Literal" && typeof value.value === "boolean"
+  return value?.type === "Literal" && Predicate.isBoolean(value.value)
     ? value.value
     : undefined;
 }
