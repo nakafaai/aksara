@@ -158,7 +158,7 @@ function collectParagraphAddressIssues(
 /** Reads prose and inline noun tokens without borrowing protected examples. */
 function paragraphText(node: MdxNode): string {
   if (node.type === "inlineCode") {
-    assert.ok(typeof node.value === "string");
+    assert.ok(Predicate.isString(node.value));
     return INLINE_ANTECEDENT_PATTERN.test(node.value)
       ? `\`${node.value}\``
       : " ";

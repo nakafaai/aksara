@@ -154,7 +154,7 @@ export function staticStringCandidates(
   node: EstreeNode
 ): StaticStringCandidate[] {
   if (node.type === "Literal" && Predicate.isString(node.value)) {
-    assert.ok(typeof node.raw === "string");
+    assert.ok(Predicate.isString(node.raw));
     return [
       candidate([
         {

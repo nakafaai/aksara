@@ -28,10 +28,10 @@ function attributeExpression(attribute: MdxAttribute): EstreeNode | undefined {
   if (value === null || value === undefined || Predicate.isString(value)) {
     return;
   }
-  assert.ok(typeof value === "object");
+  assert.ok(Predicate.isObject(value));
   assert.ok("data" in value);
   const { data } = value;
-  assert.ok(data && typeof data === "object");
+  assert.ok(Predicate.isObject(data));
   assert.ok("estree" in data);
   return asEstreeNode(data.estree);
 }

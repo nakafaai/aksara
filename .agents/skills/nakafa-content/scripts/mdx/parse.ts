@@ -97,10 +97,10 @@ export function attributeEstree(
   if (value === null || value === undefined) {
     return;
   }
-  assert.ok(typeof value === "object");
+  assert.ok(Predicate.isObject(value));
   assert.ok("data" in value);
   const { data } = value;
-  assert.ok(data && typeof data === "object");
+  assert.ok(Predicate.isObject(data));
   assert.ok("estree" in data);
   return asEstreeNode(data.estree);
 }
@@ -110,7 +110,7 @@ export function staticFieldName(
   node: EstreeNode | undefined
 ): string | undefined {
   if (node?.type === "Identifier" || node?.type === "JSXIdentifier") {
-    assert.ok(typeof node.name === "string");
+    assert.ok(Predicate.isString(node.name));
     return node.name;
   }
   return node?.type === "Literal" && Predicate.isString(node.value)

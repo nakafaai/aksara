@@ -161,7 +161,7 @@ function collectAttributeSemicolons(
   const options = { allowLatexSpacing: name === "math" };
   const value = asEstreeNode(attribute.value);
   if (value?.type === "Literal") {
-    assert.ok(typeof value.value === "string");
+    assert.ok(Predicate.isString(value.value));
     addRenderedSemicolonsInRange(
       offsets,
       source,

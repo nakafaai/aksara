@@ -63,7 +63,7 @@ function jsxComponentName(node: EstreeNode): string | undefined {
 /** Removes source quote delimiters from one static string range. */
 function renderedStringRange(node: EstreeNode, source: string): SourceRange {
   const range = estreeRange(node);
-  assert.ok(node.type === "Literal" && typeof node.value === "string");
+  assert.ok(node.type === "Literal" && Predicate.isString(node.value));
   return renderedSourceRange(range, node.value, source, true);
 }
 

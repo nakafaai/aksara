@@ -31,7 +31,7 @@ function decodeEntity(entity: string): string {
   const text = paragraph?.children?.[0];
   assert.equal(text?.type, "text");
   const value = text?.value;
-  assert.ok(typeof value === "string");
+  assert.ok(Predicate.isString(value));
   ENTITY_VALUES.set(entity, value);
   return value;
 }
