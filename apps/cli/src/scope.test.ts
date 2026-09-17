@@ -47,13 +47,27 @@ describe("publication scope selectors", () => {
       })
   );
 
+  it.effect("canonicalizes out-of-order selectors before publication", () =>
+    Effect.gen(function* () {
+      expect(
+        yield* decode([
+          "family:material",
+          "family:article",
+          "snapshot:tryout",
+          "snapshot:program",
+        ])
+      ).toEqual({
+        families: ["article", "material"],
+        snapshots: ["program", "tryout"],
+      });
+    })
+  );
+
   it.effect.each([
     { selectors: [] },
     { selectors: ["family:material", "family:material"] },
-    { selectors: ["family:question", "family:article"] },
     { selectors: ["family:material", exactContent] },
     { selectors: ["family:unknown"] },
-    { selectors: ["snapshot:tryout", "snapshot:program"] },
     { selectors: ["snapshot:program", "snapshot:program"] },
     { selectors: ["snapshot:unknown"] },
     { selectors: ["unknown:material"] },
