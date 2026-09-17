@@ -1,3 +1,4 @@
+import { Predicate } from "effect";
 import {
   asEstreeNode,
   attributeEstree,
@@ -13,14 +14,14 @@ const SUPPORTED_VARIANTS = new Set(["success", "warning"]);
 
 /** Reads one authored attribute that must be a static string literal. */
 function staticStringValue(attribute: MdxAttribute): string | undefined {
-  if (typeof attribute.value === "string") {
+  if (Predicate.isString(attribute.value)) {
     return attribute.value;
   }
   const program = attributeEstree(attribute);
   const statements = Array.isArray(program?.body) ? program.body : [];
   const [statement] = statements;
   const expression = asEstreeNode(asEstreeNode(statement)?.expression);
-  return expression?.type === "Literal" && typeof expression.value === "string"
+  return expression?.type === "Literal" && Predicate.isString(expression.value)
     ? expression.value
     : undefined;
 }

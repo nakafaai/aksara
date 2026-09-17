@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { Predicate } from "effect";
 
 import { renderedStaticStringRange } from "#nakafa-content/mdx/offset";
 import {
@@ -125,7 +126,7 @@ export function isNonProseFieldName(name: string | undefined): boolean {
 function jsxComponentName(node: EstreeNode): string | undefined {
   const openingElement = asEstreeNode(node.openingElement);
   const name = asEstreeNode(openingElement?.name);
-  return name?.type === "JSXIdentifier" && typeof name.name === "string"
+  return name?.type === "JSXIdentifier" && Predicate.isString(name.name)
     ? name.name
     : undefined;
 }
@@ -267,7 +268,7 @@ export function collectStructuredExpressionSemicolons(
   source: string
 ): void {
   if (
-    (node.type === "Literal" && typeof node.value === "string") ||
+    (node.type === "Literal" && Predicate.isString(node.value)) ||
     node.type === "JSXText" ||
     node.type === "TemplateElement"
   ) {

@@ -1,3 +1,4 @@
+import { Predicate } from "effect";
 import {
   type MdxNode,
   parseLessonMdx,
@@ -28,14 +29,14 @@ export function findEmphasisArtifactIssues(
     }
     if (
       node.type === "text" &&
-      typeof node.value === "string" &&
+      Predicate.isString(node.value) &&
       EMPHASIS_ARTIFACT_PATTERN.test(node.value)
     ) {
       const line = node.position?.start?.line;
       issues.push({
         column: 1,
         excerpt: node.value.trim().slice(0, EXCERPT_CHARACTER_LIMIT),
-        line: typeof line === "number" ? line : 1,
+        line: Predicate.isNumber(line) ? line : 1,
         rule: "unbalanced-emphasis",
       });
     }

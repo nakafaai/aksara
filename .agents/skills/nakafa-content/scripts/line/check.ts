@@ -1,3 +1,4 @@
+import { Predicate } from "effect";
 import {
   isObjectExpressionNode,
   type ObjectExpressionNode,
@@ -66,12 +67,14 @@ function visitEstree(
 /** Reads the ESTree program attached to one expression-valued MDX attribute. */
 function attributeEstree(attribute: MdxAttribute): EstreeNode | undefined {
   if (
-    !attribute.value ||
-    typeof attribute.value !== "object" ||
-    !("data" in attribute.value) ||
-    !attribute.value.data ||
-    typeof attribute.value.data !== "object" ||
-    !("estree" in attribute.value.data)
+    !(
+      attribute.value &&
+      Predicate.isObjectOrArray(attribute.value) &&
+      "data" in attribute.value &&
+      attribute.value.data &&
+      Predicate.isObjectOrArray(attribute.value.data) &&
+      "estree" in attribute.value.data
+    )
   ) {
     return;
   }
@@ -99,7 +102,7 @@ function objectProperty(
 /** Reads a static boolean property value when present. */
 function staticBoolean(property: EstreeNode | undefined): boolean | undefined {
   const value = asEstreeNode(property?.value);
-  return value?.type === "Literal" && typeof value.value === "boolean"
+  return value?.type === "Literal" && Predicate.isBoolean(value.value)
     ? value.value
     : undefined;
 }

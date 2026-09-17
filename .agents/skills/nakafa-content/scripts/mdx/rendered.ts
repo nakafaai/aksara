@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { Predicate } from "effect";
 import type { PhrasingContent } from "mdast";
 
 import type {
@@ -150,7 +151,7 @@ export function directAttributeRange(
   attribute: MdxAttribute,
   source: string
 ): SourceRange | undefined {
-  if (typeof attribute.value !== "string") {
+  if (!Predicate.isString(attribute.value)) {
     return;
   }
   const start = attribute.position?.start?.offset;
@@ -186,7 +187,7 @@ export function renderedNodeRange(
 
   /** Collects rendered text leaves in authored order. */
   function visit(current: MdxNode | PhrasingContent): void {
-    if (current.type === "text" && typeof current.value === "string") {
+    if (current.type === "text" && Predicate.isString(current.value)) {
       const start = current.position?.start?.offset;
       const end = current.position?.end?.offset;
       assert.ok(start !== undefined);

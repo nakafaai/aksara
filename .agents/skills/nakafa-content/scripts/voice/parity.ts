@@ -1,4 +1,5 @@
 import { basename, dirname, relative } from "node:path";
+import { Predicate } from "effect";
 
 import {
   type MdxNode,
@@ -95,7 +96,7 @@ function isImageNode(node: MdxNode): node is ImageNode {
 
 /** Narrows one parser-owned flow component. */
 function isComponentNode(node: MdxNode): node is ComponentNode {
-  return node.type === "mdxJsxFlowElement" && typeof node.name === "string";
+  return node.type === "mdxJsxFlowElement" && Predicate.isString(node.name);
 }
 
 /** Groups values by a stable string key without requiring a newer JS lib. */

@@ -4,7 +4,7 @@ import { LessonVoiceCheckError } from "#nakafa-content/voice/error";
 
 /** Validated standalone checker options. */
 const CliOptionsSchema = Schema.Struct({
-  format: Schema.Union([Schema.Literal("json"), Schema.Literal("text")]),
+  format: Schema.Literals(["json", "text"]),
   root: Schema.String,
   strictReview: Schema.Boolean,
 });

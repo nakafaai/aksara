@@ -1,3 +1,4 @@
+import { Predicate } from "effect";
 import { type MdxNode, visitMdxNodes } from "#nakafa-content/mdx/parse";
 
 /** Resolves reference-style Markdown links through their definitions. */
@@ -6,8 +7,8 @@ export function linkDefinitions(tree: MdxNode): ReadonlyMap<string, string> {
   visitMdxNodes(tree, (node) => {
     if (
       node.type === "definition" &&
-      typeof node.identifier === "string" &&
-      typeof node.url === "string"
+      Predicate.isString(node.identifier) &&
+      Predicate.isString(node.url)
     ) {
       const identifier = node.identifier.toLowerCase();
       if (!definitions.has(identifier)) {
@@ -25,13 +26,13 @@ export function linkUrl(
 ): string | undefined {
   if (
     (node.type === "image" || node.type === "link") &&
-    typeof node.url === "string"
+    Predicate.isString(node.url)
   ) {
     return node.url;
   }
   if (
     (node.type === "imageReference" || node.type === "linkReference") &&
-    typeof node.identifier === "string"
+    Predicate.isString(node.identifier)
   ) {
     return definitions.get(node.identifier.toLowerCase());
   }

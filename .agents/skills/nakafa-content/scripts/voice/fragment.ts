@@ -1,3 +1,4 @@
+import { Predicate } from "effect";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
@@ -8,7 +9,7 @@ const MATH_BLOCK_NAMES = new Set(["BlockMath", "MathContainer"]);
 function isMathBlock(node: MdxNode | undefined): boolean {
   return (
     node?.type === "mdxJsxFlowElement" &&
-    typeof node.name === "string" &&
+    Predicate.isString(node.name) &&
     MATH_BLOCK_NAMES.has(node.name)
   );
 }
@@ -22,11 +23,11 @@ function initialParagraphText(node: MdxNode): string | undefined {
     (child) =>
       !(
         child.type === "text" &&
-        typeof child.value === "string" &&
+        Predicate.isString(child.value) &&
         child.value.trim() === ""
       )
   );
-  return firstChild?.type === "text" && typeof firstChild.value === "string"
+  return firstChild?.type === "text" && Predicate.isString(firstChild.value)
     ? firstChild.value.trimStart()
     : undefined;
 }

@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { Predicate } from "effect";
 
 import {
   isAddressTextAttribute,
@@ -93,7 +94,7 @@ function collectNestedAttributeRanges(
     const attributeValue = asEstreeNode(attribute.value);
     if (
       attributeValue?.type === "Literal" &&
-      typeof attributeValue.value === "string"
+      Predicate.isString(attributeValue.value)
     ) {
       return [renderedStringRange(attributeValue, source)];
     }

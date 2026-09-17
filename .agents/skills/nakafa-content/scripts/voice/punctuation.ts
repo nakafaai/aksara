@@ -1,3 +1,4 @@
+import { Predicate } from "effect";
 import {
   asEstreeNode,
   type EstreeNode,
@@ -98,12 +99,14 @@ function collectMdxExpressionSemicolons(
 function attributeExpression(attribute: MdxAttribute): EstreeNode | undefined {
   const { value } = attribute;
   if (
-    !value ||
-    typeof value !== "object" ||
-    !("data" in value) ||
-    !value.data ||
-    typeof value.data !== "object" ||
-    !("estree" in value.data)
+    !(
+      value &&
+      Predicate.isObjectOrArray(value) &&
+      "data" in value &&
+      value.data &&
+      Predicate.isObjectOrArray(value.data) &&
+      "estree" in value.data
+    )
   ) {
     return;
   }
@@ -120,7 +123,7 @@ function collectMdxAttributeSemicolons(
   if (isNonProseFieldName(name)) {
     return;
   }
-  if (typeof attribute.value === "string") {
+  if (Predicate.isString(attribute.value)) {
     addSemicolonsInRange(offsets, source, attribute.position, {
       allowLatexSpacing: name === "math",
     });
@@ -217,7 +220,7 @@ function collectNodeSemicolons(
   ) {
     return;
   }
-  if (node.type === "text" && typeof node.value === "string") {
+  if (node.type === "text" && Predicate.isString(node.value)) {
     addSemicolonsInRange(offsets, source, node.position);
   }
   collectMarkdownFieldSemicolons(node, offsets, source);

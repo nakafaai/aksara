@@ -1,8 +1,7 @@
 import { assert, it } from "@effect/vitest";
 
+import { UnsupportedLessonLocale } from "#nakafa-content/voice/locale";
 import { findLessonVoiceIssues } from "#nakafa-content/voice/scan";
-
-const UNSUPPORTED_LOCALE_PATTERN = /Unsupported lesson locale/u;
 
 it("rejects formal German learner address in proven direct-address frames", () => {
   const source = [
@@ -242,7 +241,7 @@ it("checks formal German address at the start of metadata copy", () => {
 it("rejects unsupported lesson locales", () => {
   assert.throws(
     () => findLessonVoiceIssues("fr", "Texte"),
-    UNSUPPORTED_LOCALE_PATTERN
+    UnsupportedLessonLocale
   );
 });
 

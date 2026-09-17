@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { Predicate } from "effect";
 
 import {
   externalMatch,
@@ -167,7 +168,7 @@ function nestedJsxAttributeOffset(
   if (!value) {
     return destinationAttribute ? start : undefined;
   }
-  if (value.type === "Literal" && typeof value.value === "string") {
+  if (value.type === "Literal" && Predicate.isString(value.value)) {
     assert.ok(value.start !== undefined);
     assert.ok(value.end !== undefined);
     return stringExternalOffset(

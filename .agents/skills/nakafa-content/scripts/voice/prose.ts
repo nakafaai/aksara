@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { Predicate } from "effect";
 
 import { isProtectedProseComponent } from "#nakafa-content/mdx/fields";
 import { metadataAddressRanges } from "#nakafa-content/mdx/metadata";
@@ -162,7 +163,7 @@ function paragraphText(node: MdxNode): string {
       ? `\`${node.value}\``
       : " ";
   }
-  if (node.type === "text" && typeof node.value === "string") {
+  if (node.type === "text" && Predicate.isString(node.value)) {
     return node.value;
   }
   if (node.type === "break" || isProtectedProseComponent(node.name)) {

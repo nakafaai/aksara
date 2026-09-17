@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { Predicate } from "effect";
 
 import {
   asEstreeNode,
@@ -128,7 +129,7 @@ function collectRangeOffsets(
 function jsxComponentName(node: EstreeNode): string | undefined {
   const openingElement = asEstreeNode(node.openingElement);
   const name = asEstreeNode(openingElement?.name);
-  return name?.type === "JSXIdentifier" && typeof name.name === "string"
+  return name?.type === "JSXIdentifier" && Predicate.isString(name.name)
     ? name.name
     : undefined;
 }
@@ -166,7 +167,7 @@ function collectExpressionOffsets(
   source: string
 ): void {
   if (
-    (node.type === "Literal" && typeof node.value === "string") ||
+    (node.type === "Literal" && Predicate.isString(node.value)) ||
     node.type === "JSXText" ||
     node.type === "TemplateElement"
   ) {
@@ -203,12 +204,14 @@ function collectAttributeOffsets(
     return;
   }
   if (
-    !attribute.value ||
-    typeof attribute.value !== "object" ||
-    !("data" in attribute.value) ||
-    !attribute.value.data ||
-    typeof attribute.value.data !== "object" ||
-    !("estree" in attribute.value.data)
+    !(
+      attribute.value &&
+      Predicate.isObjectOrArray(attribute.value) &&
+      "data" in attribute.value &&
+      attribute.value.data &&
+      Predicate.isObjectOrArray(attribute.value.data) &&
+      "estree" in attribute.value.data
+    )
   ) {
     return;
   }

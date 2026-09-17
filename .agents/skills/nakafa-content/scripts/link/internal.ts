@@ -1,3 +1,4 @@
+import { Predicate } from "effect";
 import { linkDefinitions, linkUrl } from "#nakafa-content/link/reference";
 import {
   type MdxNode,
@@ -98,8 +99,8 @@ function normalizeLabel(text: string): string {
 /** Narrows one parsed node to a resolved source position. */
 function isPositioned(node: MdxNode): node is PositionedNode {
   return (
-    typeof node.position?.start?.line === "number" &&
-    typeof node.position.start.column === "number"
+    Predicate.isNumber(node.position?.start?.line) &&
+    Predicate.isNumber(node.position?.start?.column)
   );
 }
 
@@ -176,7 +177,7 @@ function scanBlock(
     }
   }
   if (!insideLink && node.type === "text") {
-    if (WORD_PATTERN.test(typeof node.value === "string" ? node.value : "")) {
+    if (WORD_PATTERN.test(Predicate.isString(node.value) ? node.value : "")) {
       scan.residualWords = true;
     }
     return;

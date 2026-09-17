@@ -1,3 +1,4 @@
+import { Predicate } from "effect";
 import { sourceOffsetForStaticMatch } from "#nakafa-content/mdx/offset";
 import {
   asEstreeNode,
@@ -52,7 +53,7 @@ function directAttributeOffsets(
   attribute: MdxAttribute,
   source: string
 ): { end: number; start: number } | undefined {
-  if (typeof attribute.value !== "string") {
+  if (!Predicate.isString(attribute.value)) {
     return;
   }
   const start = Number(attribute.position?.start?.offset);
@@ -67,12 +68,14 @@ function directAttributeOffsets(
 /** Returns the static expression stored in one JSX attribute. */
 function attributeExpression(attribute: MdxAttribute): EstreeNode | undefined {
   if (
-    !attribute.value ||
-    typeof attribute.value !== "object" ||
-    !("data" in attribute.value) ||
-    !attribute.value.data ||
-    typeof attribute.value.data !== "object" ||
-    !("estree" in attribute.value.data)
+    !(
+      attribute.value &&
+      Predicate.isObjectOrArray(attribute.value) &&
+      "data" in attribute.value &&
+      attribute.value.data &&
+      Predicate.isObjectOrArray(attribute.value.data) &&
+      "estree" in attribute.value.data
+    )
   ) {
     return;
   }

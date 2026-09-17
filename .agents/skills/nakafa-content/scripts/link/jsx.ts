@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { Predicate } from "effect";
 
 import {
   isDestinationAttribute,
@@ -24,7 +25,7 @@ function attributeExpression(attribute: MdxAttribute): EstreeNode | undefined {
     return asEstreeNode(attribute.data.estree);
   }
   const { value } = attribute;
-  if (value === null || value === undefined || typeof value === "string") {
+  if (value === null || value === undefined || Predicate.isString(value)) {
     return;
   }
   assert.ok(typeof value === "object");
@@ -77,7 +78,7 @@ function invalidDestinationOffset(
     }
     return;
   }
-  if (typeof attribute.value === "string") {
+  if (Predicate.isString(attribute.value)) {
     return stringExternalOffset(
       attribute.value,
       source,

@@ -30,6 +30,7 @@ import {
   HEADING_VOICE_RULES,
 } from "#nakafa-content/voice/heading";
 import { LANGUAGE_VOICE_RULES } from "#nakafa-content/voice/language";
+import { UnsupportedLessonLocale } from "#nakafa-content/voice/locale";
 import { METAPHOR_VOICE_RULES } from "#nakafa-content/voice/metaphor";
 import { METHOD_VOICE_RULES } from "#nakafa-content/voice/method";
 import { NARRATION_VOICE_RULES } from "#nakafa-content/voice/narration";
@@ -244,7 +245,7 @@ export function findLessonVoiceIssues(
   tree?: MdxNode
 ): LessonVoiceIssue[] {
   if (!isLessonVoiceLocale(locale)) {
-    throw new TypeError(`Unsupported lesson locale: ${locale}`);
+    throw new UnsupportedLessonLocale({ locale });
   }
   const issues: LessonVoiceIssue[] = [];
   const parsedTree = tree ?? parseLessonMdx(source);
