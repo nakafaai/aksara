@@ -3,8 +3,7 @@ import {
   TypeScriptParser,
   TypeScriptSourceError,
 } from "@nakafa/aksara-utilities/typescript/parse";
-import { Effect } from "effect";
-import { isObject } from "effect/Predicate";
+import { Effect, Predicate } from "effect";
 import {
   enforceViolations,
   trackedFiles,
@@ -74,7 +73,7 @@ const allowedWorkspaceDependencies: ReadonlyMap<
 
 /** Returns declared package names from one manifest dependency section. */
 function dependencyNames(input: unknown): readonly string[] {
-  return isObject(input) ? Object.keys(input) : [];
+  return Predicate.isObject(input) ? Object.keys(input) : [];
 }
 
 /** Creates one cached workspace identity resolver from package manifests. */
@@ -96,7 +95,7 @@ export function createWorkspaceIdentityResolver(
     const manifest: unknown = JSON.parse(
       readManifest(`${workspaceRoot}/${workspace}/package.json`)
     );
-    if (!isObject(manifest) || typeof manifest.name !== "string") {
+    if (!Predicate.isObject(manifest) || typeof manifest.name !== "string") {
       throw new Error(
         `${workspaceRoot}/${workspace}/package.json has no package name`
       );
@@ -107,7 +106,7 @@ export function createWorkspaceIdentityResolver(
         `${workspaceRoot}/${workspace} has no import-boundary policy`
       );
     }
-    const imports = isObject(manifest.imports)
+    const imports = Predicate.isObject(manifest.imports)
       ? Object.keys(manifest.imports)
       : [];
     const identity = {
