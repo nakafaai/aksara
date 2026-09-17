@@ -76,7 +76,7 @@ const ExpressionAttachment = Schema.Struct({
 
 /** Returns one ESTree child only after checking its structural shape. */
 export function asEstreeNode(value: unknown): EstreeNode | undefined {
-  return Schema.is(EstreeNodeShape)(value) ? (value as EstreeNode) : undefined;
+  return Schema.is(EstreeNodeShape)(value) ? value : undefined;
 }
 
 /** Converts an ESTree offset pair into the shared source range shape. */

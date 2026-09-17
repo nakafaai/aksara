@@ -1,10 +1,12 @@
-import { isObject } from "effect/Predicate";
+import { Predicate } from "effect";
 
 /** Reads the one workspace source condition owned by TypeScript configuration. */
 export function sourceConditionFromConfig(source: string): string {
   const config: unknown = JSON.parse(source);
-  const compilerOptions = isObject(config) ? config.compilerOptions : undefined;
-  const conditions = isObject(compilerOptions)
+  const compilerOptions = Predicate.isObject(config)
+    ? config.compilerOptions
+    : undefined;
+  const conditions = Predicate.isObject(compilerOptions)
     ? compilerOptions.customConditions
     : undefined;
   if (
@@ -26,13 +28,13 @@ export function sourceConditionViolations(
   sourceCondition: string
 ): readonly string[] {
   const manifest: unknown = JSON.parse(source);
-  if (!isObject(manifest)) {
+  if (!Predicate.isObject(manifest)) {
     return [`${file}: package manifest must be an object`];
   }
 
   return ["imports", "exports"].flatMap((section) => {
     const entries = manifest[section];
-    if (!isObject(entries)) {
+    if (!Predicate.isObject(entries)) {
       return [];
     }
     return Object.entries(entries).flatMap(([specifier, descriptor]) =>
@@ -58,7 +60,7 @@ function descriptorViolations(
       descriptorViolations(file, `${path}[${index}]`, entry, sourceCondition)
     );
   }
-  if (!isObject(descriptor)) {
+  if (!Predicate.isObject(descriptor)) {
     return [];
   }
 

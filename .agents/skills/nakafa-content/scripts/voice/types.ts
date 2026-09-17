@@ -1,9 +1,8 @@
 import {
-  APP_LOCALE_CODES,
   type AppLocaleCode,
+  AppLocaleCodeSchema,
 } from "@nakafa/aksara-contracts/locale";
-
-export const LESSON_VOICE_LOCALES = APP_LOCALE_CODES;
+import { Schema } from "effect";
 
 export type LessonVoiceLocale = AppLocaleCode;
 
@@ -51,5 +50,5 @@ export interface LineContext {
 export function isLessonVoiceLocale(
   locale: string
 ): locale is LessonVoiceLocale {
-  return (LESSON_VOICE_LOCALES as readonly string[]).includes(locale);
+  return Schema.is(AppLocaleCodeSchema)(locale);
 }
