@@ -75,3 +75,58 @@ it("rejects vague picture claims but accepts a concrete impression warning", () 
     []
   );
 });
+
+it("rejects an equation truth without an operational check", () => {
+  const samples = {
+    en: "A root is any value of x that makes the equation true.",
+    id: "Akar adalah setiap nilai x yang membuat persamaan tersebut benar.",
+  };
+
+  for (const [locale, source] of Object.entries(samples)) {
+    assert.deepEqual(
+      findLessonVoiceIssues(locale, source).map(({ rule }) => rule),
+      ["vague-equation-truth"]
+    );
+  }
+
+  assert.deepEqual(
+    findLessonVoiceIssues(
+      "id",
+      "Kalau kamu masukkan ke persamaan, ruas kiri dan ruas kanannya sama."
+    ),
+    []
+  );
+  assert.deepEqual(
+    findLessonVoiceIssues("en", "Plug it in and both sides match."),
+    []
+  );
+});
+
+it("rejects a formula that only gives those values", () => {
+  const samples = {
+    en: "The quadratic formula gives those values.",
+    id: "Rumus kuadrat memberikan nilai-nilai tersebut.",
+  };
+
+  for (const [locale, source] of Object.entries(samples)) {
+    assert.deepEqual(
+      findLessonVoiceIssues(locale, source).map(({ rule }) => rule),
+      ["vague-formula-gives-those"]
+    );
+  }
+
+  assert.deepEqual(
+    findLessonVoiceIssues(
+      "id",
+      "Rumus kuadrat menghitung kedua akar itu langsung dari a, b, dan c."
+    ),
+    []
+  );
+  assert.deepEqual(
+    findLessonVoiceIssues(
+      "en",
+      "The quadratic formula computes both roots directly."
+    ),
+    []
+  );
+});

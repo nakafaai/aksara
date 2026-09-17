@@ -55,4 +55,18 @@ export const VAGUE_VOICE_RULES = [
       id: /\bsecara lebih konkret\b/iu,
     },
   },
+  {
+    id: "vague-equation-truth",
+    patterns: {
+      en: /\bmakes? the equation true\b/iu,
+      id: /\bmembuat persamaan [^.!?\n]{0,60}\bbenar\b/iu,
+    },
+  },
+  {
+    id: "vague-formula-gives-those",
+    patterns: {
+      en: /\bgives? those values\b/iu,
+      id: /\bmemberikan nilai-nilai tersebut\b/iu,
+    },
+  },
 ] satisfies readonly LessonVoiceRule[];

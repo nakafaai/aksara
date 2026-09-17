@@ -109,6 +109,13 @@ know, so it is not the full id list.
   where no factual basis for the ranking exists.
 - `vague-benefit-risk-reference` blocks a summarized risk reference that names
   neither the risk nor the affected group.
+- `vague-equation-truth` blocks calling an equation `true` without the
+  operational check, such as `membuat persamaan tersebut benar` or `makes the
+  equation true`. Name the substitution and what both sides must equal instead;
+  the German `erfüllt` already states that operation and stays valid.
+- `vague-formula-gives-those` blocks a formula that only `gives those values`,
+  such as `memberikan nilai-nilai tersebut`. Name which roots the formula
+  computes and from which inputs instead.
 - `indonesian-water-ratio-gateway` and `indonesian-stiff-serampangan` block the
   recorded mechanical phrasings `gerbang rasio air` and `serampangan`.
 - `anti-model-intensifier` blocks the recorded `not this simple`,

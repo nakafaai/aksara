@@ -85,6 +85,8 @@ const BLOCKING_RULES = new Set([
   "unqualified-fuel-storage-claim",
   "unsupported-evaluative-preface",
   "vague-benefit-risk-reference",
+  "vague-equation-truth",
+  "vague-formula-gives-those",
 ]);
 
 /** Returns true only for objective constraints and proven regressions. */
