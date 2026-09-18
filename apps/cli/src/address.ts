@@ -5,8 +5,8 @@ import { Predicate } from "effect";
 export function isAddressInfo(value: unknown): value is AddressInfo {
   return (
     Predicate.isObject(value) &&
-    typeof value.address === "string" &&
-    typeof value.family === "string" &&
-    typeof value.port === "number"
+    Predicate.isString(value.address) &&
+    Predicate.isString(value.family) &&
+    Predicate.isNumber(value.port)
   );
 }

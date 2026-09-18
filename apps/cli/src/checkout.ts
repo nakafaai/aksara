@@ -26,7 +26,7 @@ const readPackageName = Effect.fn("AksaraCli.readPackageName")(function* (
         manifest
       ),
       (value) =>
-        Predicate.isObject(value) && typeof value.name === "string"
+        Predicate.isObject(value) && Predicate.isString(value.name)
           ? Option.some(value.name)
           : Option.none()
     )

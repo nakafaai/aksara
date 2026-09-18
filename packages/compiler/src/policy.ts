@@ -32,8 +32,8 @@ const SAFE_GLOBALS = new Set([
 function isUnistNode(value: unknown): value is UnistNode {
   return (
     Predicate.isObject(value) &&
-    "type" in value &&
-    typeof value.type === "string"
+    Predicate.hasProperty(value, "type") &&
+    Predicate.isString(value.type)
   );
 }
 /** Builds the stable deduplication key for one policy violation. */

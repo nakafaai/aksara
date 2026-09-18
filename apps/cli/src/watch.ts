@@ -167,9 +167,9 @@ export const openSelectedWatcher = Effect.fn("AksaraCli.openSelectedWatcher")(
       Effect.provideService(FileSystem.FileSystem, fileSystem),
       Effect.provideService(Path.Path, path),
       Effect.mapError((error) =>
-        error instanceof PreviewEvidenceError ||
-        error instanceof PreviewProviderError ||
-        error instanceof PreviewRestartError
+        Schema.is(PreviewEvidenceError)(error) ||
+        Schema.is(PreviewProviderError)(error) ||
+        Schema.is(PreviewRestartError)(error)
           ? error
           : new PreviewWatchError({ reason: "filesystem" })
       ),

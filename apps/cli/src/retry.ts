@@ -1,6 +1,6 @@
 import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { PublicationTargetTransportError } from "@nakafa/aksara-publisher/target/errors";
-import { Effect, Schedule } from "effect";
+import { Effect, Schedule, Schema } from "effect";
 
 const TRANSPORT_RETRY_COUNT = 3;
 const TRANSPORT_RETRY_DELAY = "100 millis";
@@ -21,7 +21,7 @@ export const PUBLICATION_ACTIVATION_TIMEOUT = "10 minutes";
 
 /** Identifies the only idempotent failure class eligible for bounded retry. */
 function isTransportFailure(error: unknown) {
-  return error instanceof PublicationTargetTransportError;
+  return Schema.is(PublicationTargetTransportError)(error);
 }
 
 /** Retries only target transport failures with bounded exponential backoff. */

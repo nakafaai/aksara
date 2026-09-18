@@ -61,7 +61,7 @@ export class ProductionError extends Schema.TaggedError<ProductionError>()(
 
 /** Preserves the safe reason and status owned by the Nakafa app boundary. */
 function appEvidence(error: unknown) {
-  if (!(error instanceof NakafaAppError)) {
+  if (!Schema.is(NakafaAppError)(error)) {
     return {};
   }
   return {
@@ -72,7 +72,7 @@ function appEvidence(error: unknown) {
 
 /** Preserves the safe variable name owned by the production environment. */
 function environmentEvidence(error: unknown) {
-  if (!(error instanceof ProductionEnvironmentError)) {
+  if (!Schema.is(ProductionEnvironmentError)(error)) {
     return {};
   }
   return { environmentVariable: error.variable };
@@ -80,7 +80,7 @@ function environmentEvidence(error: unknown) {
 
 /** Preserves the safe reason and the identities that own the blocking slot. */
 function stateEvidence(error: unknown) {
-  if (!(error instanceof ProductionStateError)) {
+  if (!Schema.is(ProductionStateError)(error)) {
     return {};
   }
   const { activeReleaseId, candidateReleaseId, reason, recoveryReleaseId } =
@@ -99,7 +99,7 @@ function failureName(error: unknown) {
     return "UnknownFailure";
   }
   const tag = Reflect.get(error, "_tag");
-  return typeof tag === "string" && SAFE_FAILURE.test(tag)
+  return Predicate.isString(tag) && SAFE_FAILURE.test(tag)
     ? tag
     : "UnknownFailure";
 }
@@ -118,7 +118,7 @@ function activationPhase(error: unknown) {
 
 /** Preserves only stable target evidence already authenticated by the wire. */
 function targetEvidence(error: unknown) {
-  if (error instanceof PublicationTargetTransportError) {
+  if (Schema.is(PublicationTargetTransportError)(error)) {
     return { targetStage: error.stage, transport: error.detail };
   }
   if (

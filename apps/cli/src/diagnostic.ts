@@ -1,3 +1,4 @@
+import { Predicate } from "effect";
 import type { PreviewDocumentError } from "#cli/document";
 
 const MAX_DIAGNOSTIC_ITEMS = 8;
@@ -11,29 +12,47 @@ function boundDiagnostic(value: string, maxLength: number) {
 
 /** Returns the safest authored identity carried by one typed failure. */
 function failureLocation(error: PreviewDocumentError) {
-  if ("sourcePath" in error && typeof error.sourcePath === "string") {
+  if (
+    Predicate.hasProperty(error, "sourcePath") &&
+    Predicate.isString(error.sourcePath)
+  ) {
     return error.sourcePath;
   }
-  if ("path" in error && typeof error.path === "string") {
+  if (Predicate.hasProperty(error, "path") && Predicate.isString(error.path)) {
     return error.path;
   }
-  if ("contentKey" in error && typeof error.contentKey === "string") {
+  if (
+    Predicate.hasProperty(error, "contentKey") &&
+    Predicate.isString(error.contentKey)
+  ) {
     return error.contentKey;
   }
 }
 
 /** Returns one non-sensitive field suitable for the loopback manifest. */
 function publicDetail(error: PreviewDocumentError) {
-  if ("reason" in error && typeof error.reason === "string") {
+  if (
+    Predicate.hasProperty(error, "reason") &&
+    Predicate.isString(error.reason)
+  ) {
     return error.reason;
   }
-  if ("stage" in error && typeof error.stage === "string") {
+  if (
+    Predicate.hasProperty(error, "stage") &&
+    Predicate.isString(error.stage)
+  ) {
     return error.stage;
   }
-  if ("field" in error && typeof error.field === "string") {
+  if (
+    Predicate.hasProperty(error, "field") &&
+    Predicate.isString(error.field)
+  ) {
     return error.field;
   }
-  if ("componentName" in error && typeof error.componentName === "string") {
+  if (
+    Predicate.hasProperty(error, "componentName") &&
+    Predicate.isString(error.componentName)
+  ) {
     return error.componentName;
   }
 }

@@ -6,7 +6,7 @@ import {
 } from "@nakafa/aksara-publisher/cleanup";
 import { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
-import { Effect } from "effect";
+import { Effect, Schema } from "effect";
 import type { HttpClient } from "effect/unstable/http";
 import { readPublicationEnvironment } from "#cli/environment/read";
 import { mapProductionError, type ProductionError } from "#cli/failure";
@@ -24,8 +24,8 @@ type CleanupCommand = Effect.Effect<
 /** Preserves actionable retention evidence while sanitizing other failures. */
 function mapCleanupError(error: unknown) {
   if (
-    error instanceof ReleaseCleanupDeferredError ||
-    error instanceof ReleaseCleanupIncompleteError
+    Schema.is(ReleaseCleanupDeferredError)(error) ||
+    Schema.is(ReleaseCleanupIncompleteError)(error)
   ) {
     return error;
   }

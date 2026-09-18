@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Predicate, Schema } from "effect";
 import type {
   Expression,
   ObjectExpression,
@@ -87,7 +87,7 @@ export function staticPropertyName(property: Property) {
   }
   if (
     property.key.type === "Literal" &&
-    typeof property.key.value === "string"
+    Predicate.isString(property.key.value)
   ) {
     return property.key.value;
   }
@@ -161,9 +161,9 @@ export function decodeStaticLiteral(
     const { value } = node;
     if (
       value === null ||
-      typeof value === "boolean" ||
-      typeof value === "string" ||
-      (typeof value === "number" && Number.isFinite(value))
+      Predicate.isBoolean(value) ||
+      Predicate.isString(value) ||
+      (Predicate.isNumber(value) && Number.isFinite(value))
     ) {
       return { success: true, value };
     }

@@ -18,7 +18,7 @@ import {
 import type { RendererComponentName } from "@nakafa/aksara-contracts/renderer/component";
 import { selectRendererDomainCapability } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect } from "effect";
+import { Effect, Predicate } from "effect";
 import type { Program } from "estree-jsx";
 import { visit } from "estree-util-visit";
 import type { Root } from "mdast";
@@ -91,7 +91,7 @@ function captureRequiredComponents(names: Set<string>): Plugin<[], Program> {
         return;
       }
       const [name] = node.arguments;
-      if (name?.type === "Literal" && typeof name.value === "string") {
+      if (name?.type === "Literal" && Predicate.isString(name.value)) {
         names.add(name.value);
       }
     });

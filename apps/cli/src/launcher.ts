@@ -9,6 +9,7 @@ import {
   Layer,
   Option,
   Path,
+  Predicate,
   Schema,
 } from "effect";
 import { ChildProcess } from "effect/unstable/process";
@@ -89,17 +90,18 @@ export const runLauncher = Effect.fn("AksaraCli.runLauncher")(
         )
       ),
       Effect.mapError((cause) =>
-        cause instanceof CliLaunchError
+        Schema.is(CliLaunchError)(cause)
           ? cause
           : new CliLaunchError({
               cause,
               path: input.cwd,
-              reason:
-                cause instanceof PreviewCheckoutError ? "checkout" : "process",
+              reason: Schema.is(PreviewCheckoutError)(cause)
+                ? "checkout"
+                : "process",
             })
       ),
       Effect.map((termination) =>
-        typeof termination === "number" ? Number(termination) : termination
+        Predicate.isNumber(termination) ? Number(termination) : termination
       )
     )
 );
