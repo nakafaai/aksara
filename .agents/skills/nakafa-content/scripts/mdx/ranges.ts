@@ -8,11 +8,13 @@ import {
   isNestedAddressField,
   isProtectedProseComponent,
 } from "#nakafa-content/mdx/fields";
+import { RENDERED_COPY_KEYS } from "#nakafa-content/mdx/keys";
 import { renderedStaticStringRange } from "#nakafa-content/mdx/offset";
 import {
   asEstreeNode,
   attributeEstree,
   type EstreeNode,
+  estreeChildren,
   estreeRange,
   type MdxAttribute,
   type MdxNode,
@@ -35,23 +37,6 @@ const STATIC_TEXT_NODE_TYPES = new Set([
   "TemplateElement",
   "TemplateLiteral",
 ]);
-
-const RENDERED_KEYS_BY_TYPE: Readonly<Record<string, readonly string[]>> = {
-  ArrayExpression: ["elements"],
-  BinaryExpression: ["left", "right"],
-  ConditionalExpression: ["consequent", "alternate"],
-  ExpressionStatement: ["expression"],
-  JSXExpressionContainer: ["expression"],
-  JSXFragment: ["children"],
-  JSXSpreadAttribute: ["argument"],
-  LogicalExpression: ["left", "right"],
-  ObjectExpression: ["properties"],
-  ParenthesizedExpression: ["expression"],
-  Program: ["body"],
-  Property: ["value"],
-  SpreadElement: ["argument"],
-  TemplateLiteral: ["quasis", "expressions"],
-};
 
 /** Reads one statically authored JSX component name. */
 function jsxComponentName(node: EstreeNode): string | undefined {
@@ -162,7 +147,7 @@ function collectExpressionRanges(
       rootFieldName
     );
   }
-  return (RENDERED_KEYS_BY_TYPE[node.type] ?? []).flatMap((key) =>
+  return (RENDERED_COPY_KEYS[node.type] ?? []).flatMap((key) =>
     collectExpressionValues(
       node[key],
       source,
@@ -184,19 +169,15 @@ function collectExpressionValues(
   fieldName?: string,
   rootFieldName?: string
 ): SourceRange[] {
-  return (Array.isArray(value) ? value : [value]).flatMap((child) => {
-    const childNode = asEstreeNode(child);
-    if (childNode) {
-      return collectExpressionRanges(
-        childNode,
-        source,
-        include,
-        fieldName,
-        rootFieldName
-      );
-    }
-    return [];
-  });
+  return estreeChildren(value).flatMap((childNode) =>
+    collectExpressionRanges(
+      childNode,
+      source,
+      include,
+      fieldName,
+      rootFieldName
+    )
+  );
 }
 
 /** Selects learner copy from one top-level JSX spread property. */

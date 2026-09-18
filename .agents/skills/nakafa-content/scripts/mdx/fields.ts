@@ -59,10 +59,31 @@ const TECHNICAL_LEAF_FIELDS = new Set([
   "url",
   "xAxisDomain",
 ]);
+const MATH_COMPONENT_NAMES = new Set(["BlockMath", "InlineMath"]);
+const CODE_COMPONENT_NAMES = new Set(["CodeBlock"]);
 const PROTECTED_COMPONENT_NAMES = new Set([
-  "BlockMath",
-  "CodeBlock",
-  "InlineMath",
+  ...MATH_COMPONENT_NAMES,
+  ...CODE_COMPONENT_NAMES,
+]);
+const NON_PROSE_FIELD_NAMES = new Set([
+  "chart",
+  "className",
+  "code",
+  "color",
+  "config",
+  "fill",
+  "href",
+  "lang",
+  "language",
+  "source",
+  "src",
+  "stroke",
+  "style",
+  "url",
+]);
+const PROTECTED_LINE_COMPONENT_NAMES = new Set([
+  ...PROTECTED_COMPONENT_NAMES,
+  "a",
 ]);
 
 /** Identifies a direct attribute already covered by general prose rules. */
@@ -112,4 +133,24 @@ export function isNestedAddressField(
 /** Tells prose traversal whether a component owns code or math source. */
 export function isProtectedProseComponent(name: string | undefined): boolean {
   return PROTECTED_COMPONENT_NAMES.has(name ?? "");
+}
+
+/** Tells math traversal whether a component renders authored mathematics. */
+export function isMathComponentName(name: string | undefined): boolean {
+  return MATH_COMPONENT_NAMES.has(name ?? "");
+}
+
+/** Tells semicolon traversal whether a component renders authored code. */
+export function isCodeComponentName(name: string | undefined): boolean {
+  return CODE_COMPONENT_NAMES.has(name ?? "");
+}
+
+/** Tells raw-line traversal whether a component subtree stays uninspected. */
+export function isProtectedLineComponent(name: string | undefined): boolean {
+  return PROTECTED_LINE_COMPONENT_NAMES.has(name ?? "");
+}
+
+/** Tells the MDX adapter whether an attribute stores non-prose configuration. */
+export function isNonProseFieldName(name: string | undefined): boolean {
+  return name === undefined || NON_PROSE_FIELD_NAMES.has(name);
 }

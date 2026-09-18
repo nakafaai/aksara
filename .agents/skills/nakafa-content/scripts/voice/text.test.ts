@@ -48,6 +48,13 @@ it("leaves incomplete metadata string syntax unchanged", () => {
   );
 });
 
+it("respects escaped quotes when locating metadata string boundaries", () => {
+  assert.equal(
+    maskMetadataDescriptionQuotations('description: "a\\"'),
+    'description: "a\\"'
+  );
+});
+
 it("protects multiline typographic quotations and resumes after closing", () => {
   const germanQuote =
     "Der historische Text lautet „Wandeln Sie\ndie Gleichung um“.";

@@ -1,10 +1,16 @@
 import assert from "node:assert/strict";
 import { Predicate } from "effect";
-
+import {
+  isCodeComponentName,
+  isMathComponentName,
+  isNonProseFieldName,
+} from "#nakafa-content/mdx/fields";
+import { SEMICOLON_SCAN_KEYS } from "#nakafa-content/mdx/keys";
 import { renderedStaticStringRange } from "#nakafa-content/mdx/offset";
 import {
   asEstreeNode,
   type EstreeNode,
+  estreeChildren,
   estreeRange,
   staticFieldName,
 } from "#nakafa-content/mdx/parse";
@@ -15,37 +21,6 @@ import {
   addSemicolonsInRange,
   type SemicolonScanOptions,
 } from "#nakafa-content/semicolon/source";
-
-const MATH_COMPONENT_NAMES = new Set(["BlockMath", "InlineMath"]);
-const NON_PROSE_FIELD_NAMES = new Set([
-  "chart",
-  "className",
-  "code",
-  "color",
-  "config",
-  "fill",
-  "href",
-  "lang",
-  "language",
-  "source",
-  "src",
-  "stroke",
-  "style",
-  "url",
-]);
-const RENDERED_KEYS_BY_TYPE: Readonly<Record<string, readonly string[]>> = {
-  ArrayExpression: ["elements"],
-  BinaryExpression: ["left", "right"],
-  ConditionalExpression: ["consequent", "alternate"],
-  ExpressionStatement: ["expression"],
-  JSXExpressionContainer: ["expression"],
-  JSXFragment: ["children"],
-  LogicalExpression: ["left", "right"],
-  ObjectExpression: ["properties"],
-  ParenthesizedExpression: ["expression"],
-  Program: ["body"],
-  TemplateLiteral: ["quasis", "expressions"],
-};
 
 type BlockStatementNode = EstreeNode & {
   body: EstreeNode[];
@@ -110,16 +85,6 @@ function isJsxElementNode(node: EstreeNode): node is JsxElementNode {
 /** Narrows one parser-owned object property. */
 function isPropertyNode(node: EstreeNode): node is PropertyNode {
   return node.type === "Property";
-}
-
-/** Identifies a component whose entire rendered region contains authored code. */
-export function isCodeComponentName(name: string | undefined): boolean {
-  return name === "CodeBlock";
-}
-
-/** Tells the MDX adapter whether an attribute stores non-prose configuration. */
-export function isNonProseFieldName(name: string | undefined): boolean {
-  return name === undefined || NON_PROSE_FIELD_NAMES.has(name);
 }
 
 /** Reads the unqualified name of one JSX component when statically known. */
@@ -203,11 +168,8 @@ function collectStructuredValues(
   offsets: Set<number>,
   source: string
 ): void {
-  for (const child of Array.isArray(value) ? value : [value]) {
-    const childNode = asEstreeNode(child);
-    if (childNode) {
-      collectStructuredExpressionSemicolons(childNode, offsets, source);
-    }
+  for (const childNode of estreeChildren(value)) {
+    collectStructuredExpressionSemicolons(childNode, offsets, source);
   }
 }
 
@@ -224,7 +186,7 @@ function collectJsxElementSemicolons(
   for (const attribute of node.openingElement.attributes) {
     collectAttributeSemicolons(attribute, offsets, source);
   }
-  if (!MATH_COMPONENT_NAMES.has(componentName ?? "")) {
+  if (!isMathComponentName(componentName)) {
     collectStructuredValues(node.children, offsets, source);
   }
 }
@@ -287,7 +249,12 @@ export function collectStructuredExpressionSemicolons(
     collectFunctionSemicolons(node, offsets, source);
     return;
   }
-  for (const key of RENDERED_KEYS_BY_TYPE[node.type] ?? []) {
+  if (node.type === "SequenceExpression") {
+    assert.ok(Array.isArray(node.expressions));
+    collectStructuredValues(node.expressions.at(-1), offsets, source);
+    return;
+  }
+  for (const key of SEMICOLON_SCAN_KEYS[node.type] ?? []) {
     collectStructuredValues(node[key], offsets, source);
   }
 }

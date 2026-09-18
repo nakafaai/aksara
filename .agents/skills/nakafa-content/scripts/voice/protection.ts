@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
-
+import {
+  isNonProseFieldName,
+  isProtectedLineComponent,
+} from "#nakafa-content/mdx/fields";
 import type { MdxNode, SourceRange } from "#nakafa-content/mdx/parse";
-import { isNonProseFieldName } from "#nakafa-content/semicolon/expression";
 import { maskProtectedInlineContent } from "#nakafa-content/voice/text";
 
 const RAW_LINE_PROTECTED_NODE_TYPES = new Set([
@@ -14,12 +16,6 @@ const RAW_LINE_PROTECTED_NODE_TYPES = new Set([
   "link",
   "linkReference",
   "mdxjsEsm",
-]);
-const RAW_LINE_PROTECTED_COMPONENT_NAMES = new Set([
-  "a",
-  "BlockMath",
-  "CodeBlock",
-  "InlineMath",
 ]);
 
 /** Recognizes an MDX expression that contains comments but renders no value. */
@@ -43,7 +39,7 @@ function collectProtectedRanges(node: MdxNode, ranges: SourceRange[]): void {
     RAW_LINE_PROTECTED_NODE_TYPES.has(node.type) ||
     isNonRenderedExpression(node) ||
     ((node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement") &&
-      RAW_LINE_PROTECTED_COMPONENT_NAMES.has(String(node.name)));
+      isProtectedLineComponent(node.name));
   if (protectedNode) {
     assert.ok(node.position);
     ranges.push(node.position);
