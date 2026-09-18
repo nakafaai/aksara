@@ -85,6 +85,17 @@ const PROTECTED_LINE_COMPONENT_NAMES = new Set([
   ...PROTECTED_COMPONENT_NAMES,
   "a",
 ]);
+const PROTECTED_NODE_TYPES = new Set([
+  "blockquote",
+  "code",
+  "definition",
+  "html",
+  "image",
+  "inlineCode",
+  "link",
+  "linkReference",
+  "mdxjsEsm",
+]);
 
 /** Identifies a direct attribute already covered by general prose rules. */
 export function isGeneralTextAttribute(name: string): boolean {
@@ -148,6 +159,11 @@ export function isCodeComponentName(name: string | undefined): boolean {
 /** Tells raw-line traversal whether a component subtree stays uninspected. */
 export function isProtectedLineComponent(name: string | undefined): boolean {
   return PROTECTED_LINE_COMPONENT_NAMES.has(name ?? "");
+}
+
+/** Tells both checker passes whether one node type owns protected copy. */
+export function isProtectedNodeType(type: string): boolean {
+  return PROTECTED_NODE_TYPES.has(type);
 }
 
 /** Tells the MDX adapter whether an attribute stores non-prose configuration. */

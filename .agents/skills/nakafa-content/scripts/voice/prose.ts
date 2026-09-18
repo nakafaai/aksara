@@ -1,7 +1,10 @@
 import assert from "node:assert/strict";
 import { Predicate } from "effect";
 
-import { isProtectedProseComponent } from "#nakafa-content/mdx/fields";
+import {
+  isProtectedNodeType,
+  isProtectedProseComponent,
+} from "#nakafa-content/mdx/fields";
 import { metadataAddressRanges } from "#nakafa-content/mdx/metadata";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
 import { renderedNodeRange } from "#nakafa-content/mdx/rendered";
@@ -26,17 +29,6 @@ import type {
   LessonVoiceRule,
 } from "#nakafa-content/voice/types";
 
-const PROTECTED_NODE_TYPES = new Set([
-  "blockquote",
-  "code",
-  "definition",
-  "html",
-  "image",
-  "inlineCode",
-  "link",
-  "linkReference",
-  "mdxjsEsm",
-]);
 const LINK_NODE_TYPES = new Set(["link", "linkReference"]);
 const LINK_CONTEXT_NODE_TYPES = new Set(["heading", "paragraph", "tableCell"]);
 const IMAGE_NODE_TYPES = new Set(["image", "imageReference"]);
@@ -77,7 +69,7 @@ function collectImageAltIssues(
 
 /** Recognizes source and component regions that must remain untouched. */
 function isProtectedNode(node: MdxNode, inherited: boolean): boolean {
-  if (inherited || PROTECTED_NODE_TYPES.has(node.type)) {
+  if (inherited || isProtectedNodeType(node.type)) {
     return true;
   }
   return (
