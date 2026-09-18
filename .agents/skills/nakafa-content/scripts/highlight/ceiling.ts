@@ -1,45 +1,31 @@
 import { Predicate } from "effect";
-import { splitHighlightSections } from "#nakafa-content/highlight/section";
 import {
-  asEstreeNode,
+  isAuthoredLesson,
+  splitHighlightSections,
+} from "#nakafa-content/highlight/section";
+import { isHighlightComponentName } from "#nakafa-content/mdx/fields";
+import {
   attributeEstree,
   type EstreeNode,
+  jsxComponentName,
   type MdxNode,
   parseLessonMdx,
-  staticFieldName,
   visitMdxNodes,
+  walkEstreeDeep,
 } from "#nakafa-content/mdx/parse";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
-
-const HIGHLIGHT_COMPONENT_NAME = "Highlight";
-
-/** Reads one statically authored JSX element name. */
-function elementName(node: EstreeNode): string | undefined {
-  const opening = asEstreeNode(node.openingElement);
-  return staticFieldName(asEstreeNode(opening?.name));
-}
 
 /** Counts authored highlight elements reachable from one ESTree subtree. */
 function countExpressionHighlights(node: EstreeNode): number {
   let total = 0;
-  /** Walks one ESTree subtree and counts every authored highlight element. */
-  const visit = (current: EstreeNode): void => {
+  walkEstreeDeep(node, (current) => {
     if (
       current.type === "JSXElement" &&
-      elementName(current) === HIGHLIGHT_COMPONENT_NAME
+      isHighlightComponentName(jsxComponentName(current))
     ) {
       total += 1;
     }
-    for (const value of Object.values(current)) {
-      for (const child of Array.isArray(value) ? value : [value]) {
-        const childNode = asEstreeNode(child);
-        if (childNode) {
-          visit(childNode);
-        }
-      }
-    }
-  };
-  visit(node);
+  });
   return total;
 }
 
@@ -53,7 +39,7 @@ function countHighlights(node: MdxNode): number {
     const isComponent =
       current.type === "mdxJsxFlowElement" ||
       current.type === "mdxJsxTextElement";
-    if (isComponent && current.name === HIGHLIGHT_COMPONENT_NAME) {
+    if (isComponent && isHighlightComponentName(current.name)) {
       total += 1;
     }
     for (const attribute of current.attributes ?? []) {
@@ -80,8 +66,7 @@ export function findHighlightCeilingIssues(
   source: string,
   tree: MdxNode = parseLessonMdx(source)
 ): LessonVoiceIssue[] {
-  const children = tree.children ?? [];
-  if (!children.some((node) => node.type === "mdxjsEsm")) {
+  if (!isAuthoredLesson(tree)) {
     return [];
   }
   const lines = source.split("\n");

@@ -1,12 +1,14 @@
-import { splitHighlightSections } from "#nakafa-content/highlight/section";
+import {
+  isAuthoredLesson,
+  splitHighlightSections,
+} from "#nakafa-content/highlight/section";
+import { isHighlightComponentName } from "#nakafa-content/mdx/fields";
 import {
   type MdxNode,
   parseLessonMdx,
   visitMdxNodes,
 } from "#nakafa-content/mdx/parse";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
-
-const HIGHLIGHT_COMPONENT_NAME = "Highlight";
 
 /** Returns whether one authored node marks a phrase the learner can see. */
 function marksPhrase(node: MdxNode): boolean {
@@ -19,7 +21,7 @@ function marksPhrase(node: MdxNode): boolean {
     if (
       (current.type === "mdxJsxFlowElement" ||
         current.type === "mdxJsxTextElement") &&
-      current.name === HIGHLIGHT_COMPONENT_NAME
+      isHighlightComponentName(current.name)
     ) {
       marked = true;
     }
@@ -39,8 +41,7 @@ export function findOpeningHighlightIssues(
   source: string,
   tree: MdxNode = parseLessonMdx(source)
 ): LessonVoiceIssue[] {
-  const children = tree.children ?? [];
-  if (!children.some((node) => node.type === "mdxjsEsm")) {
+  if (!isAuthoredLesson(tree)) {
     return [];
   }
   const [opening] = splitHighlightSections(tree, 2);

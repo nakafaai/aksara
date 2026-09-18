@@ -1,5 +1,6 @@
 import { relative } from "node:path";
 
+import { isAuthoredLesson } from "#nakafa-content/highlight/section";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
 import type {
   LessonVoiceFileIssue,
@@ -13,11 +14,6 @@ interface LessonSiblingDocument {
   locale: LessonVoiceLocale;
   source: string;
   tree?: MdxNode;
-}
-
-/** Detects an authored lesson document by its static metadata declaration. */
-function isAuthoredLesson(tree: MdxNode | undefined): boolean {
-  return (tree?.children ?? []).some((node) => node.type === "mdxjsEsm");
 }
 
 /**
