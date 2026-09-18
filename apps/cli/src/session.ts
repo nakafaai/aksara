@@ -1,7 +1,7 @@
 import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import { previewDocumentRoute } from "@nakafa/aksara-contracts/preview/document";
 import type { FileSystem, Path } from "effect";
-import { Effect, Fiber, Ref, Result, Semaphore } from "effect";
+import { Effect, Fiber, Ref, Result, Schema, Semaphore } from "effect";
 import type { RunningNakafa } from "#cli/child/session";
 import { describeDocumentFailure } from "#cli/diagnostic";
 import {
@@ -101,7 +101,7 @@ export function refreshDocument(
     const outcome = yield* compiler.compile.pipe(Effect.result);
     if (
       Result.isFailure(outcome) &&
-      outcome.failure instanceof PreviewRestartError
+      Schema.is(PreviewRestartError)(outcome.failure)
     ) {
       return yield* outcome.failure;
     }
@@ -120,7 +120,7 @@ export function refreshDocument(
       .pipe(Effect.result);
     if (
       Result.isFailure(verification) &&
-      verification.failure instanceof PreviewRestartError
+      Schema.is(PreviewRestartError)(verification.failure)
     ) {
       return yield* verification.failure;
     }

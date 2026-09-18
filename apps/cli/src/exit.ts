@@ -1,4 +1,11 @@
-import { Exit, Option, PlatformError, Runtime, Schema } from "effect";
+import {
+  Exit,
+  Option,
+  PlatformError,
+  Predicate,
+  Runtime,
+  Schema,
+} from "effect";
 
 /** Node signals that can terminate a delegated CLI process. */
 export const NodeSignalSchema = Schema.Literals([
@@ -58,6 +65,8 @@ const signalMessage =
 
 /** Reads the signal retained by the pinned Effect Node process adapter. */
 export function readExitSignal(error: unknown): Option.Option<NodeSignal> {
+  // Platform-owned error identity: @effect/platform exposes no Schema for
+  // PlatformError, so its own prototype discriminator stays the native check.
   if (!(error instanceof PlatformError.PlatformError)) {
     return Option.none();
   }
@@ -65,7 +74,9 @@ export function readExitSignal(error: unknown): Option.Option<NodeSignal> {
   if (
     reason.module !== "ChildProcess" ||
     reason.method !== "exitCode" ||
-    !(reason.cause instanceof Error)
+    !Predicate.isObject(reason.cause) ||
+    !Predicate.hasProperty(reason.cause, "message") ||
+    !Predicate.isString(reason.cause.message)
   ) {
     return Option.none();
   }
@@ -101,7 +112,7 @@ export function makeLauncherTeardown(
       input.terminate(termination.value.signal);
       return;
     }
-    if (Exit.isSuccess(exit) && typeof exit.value === "number") {
+    if (Exit.isSuccess(exit) && Predicate.isNumber(exit.value)) {
       input.setExitCode(exit.value);
       onExit(0);
       return;

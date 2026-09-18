@@ -61,8 +61,8 @@ export interface EstreeNode extends Schema.Schema.Type<typeof EstreeNodeShape> {
 
 /** Known parser-owned fields on an ESTree program node. */
 const EstreeNodeShape = Schema.Struct({
-  end: Schema.optional(Schema.Number),
-  start: Schema.optional(Schema.Number),
+  end: Schema.optional(Schema.Finite),
+  start: Schema.optional(Schema.Finite),
   type: Schema.String,
   value: Schema.optional(Schema.Unknown),
 });
@@ -93,8 +93,9 @@ export function estreeRange(node: EstreeNode) {
 export function attributeEstree(
   attribute: MdxAttribute
 ): EstreeNode | undefined {
-  if (attribute.data?.estree) {
-    return attribute.data.estree;
+  const direct = asEstreeNode(attribute.data?.estree);
+  if (direct) {
+    return direct;
   }
   if (!Schema.is(ExpressionAttachment)(attribute.value)) {
     return undefined;
@@ -167,6 +168,11 @@ export function parseLessonMdx(
               },
             },
           ])
+          // Boundary assertion: the parser always returns an mdast Root, which
+          // satisfies the loose MdxNode contract at runtime. Static
+          // assignability is blocked by exactOptional foreign Data shapes, so
+          // this single audited assertion stands in; every untrusted read
+          // below it is Schema-validated (see asEstreeNode/attributeEstree).
           .parse(source) as MdxNode,
     })
   );

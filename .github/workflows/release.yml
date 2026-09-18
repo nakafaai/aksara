@@ -14,11 +14,11 @@ on:
           - recover
           - release
       release_id:
-        description: Exact release ID for the requested operation
+        description: Exact release ID for the requested operation. For release, a fresh <slug>-YYYYMMDD identity that must differ from the recovery ID. For accept, recover, abort, or cleanup, the existing release that operation targets.
         required: true
         type: string
       recovery_id:
-        description: Exact retained inverse ID for release, accept, or recover
+        description: Retained-inverse identity for release, accept, or recover. For release, a fresh identity, conventionally <release-id>-inverse, that must differ from both the release ID and the active base release. For accept or recover, the exact retained inverse staged alongside the candidate.
         required: false
         type: string
       rebuild:

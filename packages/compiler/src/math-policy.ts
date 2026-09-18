@@ -31,7 +31,9 @@ export function normalizeSchemaPath(
 ): readonly StaticLiteralPathSegment[] {
   return (path ?? []).map((segment) => {
     const key = Predicate.hasProperty(segment, "key") ? segment.key : segment;
-    return typeof key === "symbol" ? String(key) : key;
+    return Predicate.isString(key) || Predicate.isNumber(key)
+      ? key
+      : String(key);
   });
 }
 
