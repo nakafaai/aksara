@@ -240,8 +240,9 @@ describe("preview selection", () => {
     "rejects an explicit shell locale that contradicts a public body",
     () =>
       Effect.gen(function* () {
-        const [article, material, page] = yield* Effect.all(
-          [articlePath, materialPath, pagePath].map((sourcePath) =>
+        const [article, material, page] = yield* Effect.forEach(
+          [articlePath, materialPath, pagePath],
+          (sourcePath) =>
             selectPreviewDocument(
               corpusRoot,
               sourcePath,
@@ -250,7 +251,6 @@ describe("preview selection", () => {
               Effect.provide(Layer.merge(makeQuestionLayer(), Path.layer)),
               Effect.flip
             )
-          )
         );
 
         expect(article).toMatchObject({
@@ -269,7 +269,7 @@ describe("preview selection", () => {
     "rejects invalid, unsupported, and unregistered source paths",
     () =>
       Effect.gen(function* () {
-        const failures = yield* Effect.all(
+        const failures = yield* Effect.forEach(
           [
             "../packages/corpus/articles/invalid.mdx",
             "packages/corpus/team/nabil.ts",
@@ -277,12 +277,12 @@ describe("preview selection", () => {
             "packages/corpus/material/lesson/mathematics/missing/lesson/en.mdx",
             "packages/corpus/pages/missing/en.mdx",
             `${questionRoot}/missing.en.mdx`,
-          ].map((sourcePath) =>
+          ],
+          (sourcePath) =>
             selectPreviewDocument(corpusRoot, sourcePath).pipe(
               Effect.provide(Layer.merge(makeQuestionLayer(), Path.layer)),
               Effect.flip
             )
-          )
         );
 
         expect(failures).toMatchObject([

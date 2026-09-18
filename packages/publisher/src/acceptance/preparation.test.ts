@@ -31,7 +31,7 @@ layer(NodeServices.layer)("acceptance release preparation", (it) => {
     "self-verifies an independent genesis with every family and exact structured snapshots",
     () =>
       Effect.gen(function* () {
-        const fixture = yield* makeAcceptanceTestSources();
+        const fixture = yield* makeAcceptanceTestSources;
         vi.mocked(loadAcceptanceSources).mockReturnValue(
           Effect.succeed(fixture.sources)
         );
@@ -107,7 +107,7 @@ layer(NodeServices.layer)("acceptance release preparation", (it) => {
     "preserves required source failures before preparing a release",
     () =>
       Effect.gen(function* () {
-        const fixture = yield* makeAcceptanceTestSources();
+        const fixture = yield* makeAcceptanceTestSources;
         const failure = new AcceptanceSourceError({
           identity: "test:missing-source:en",
         });

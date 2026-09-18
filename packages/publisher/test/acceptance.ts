@@ -52,7 +52,7 @@ type AcceptanceTestError =
   | Effect.Error<ReturnType<typeof createRendererManifest>>;
 
 /** Loads bounded real source slices through the production family registries. */
-export const makeAcceptanceTestSources: () => Effect.Effect<
+export const makeAcceptanceTestSources: Effect.Effect<
   {
     readonly checkoutRoot: string;
     readonly rendererManifest: Effect.Success<
@@ -62,7 +62,7 @@ export const makeAcceptanceTestSources: () => Effect.Effect<
   },
   AcceptanceTestError,
   Effect.Services<ReturnType<typeof selectQuestionContent>>
-> = Effect.fn("AcceptanceTest.makeSources")(function* () {
+> = Effect.gen(function* () {
   const articles = yield* decodeArticleRegistry();
   const materials = yield* decodeMaterialRegistry();
   const page = yield* decodePageRegistry();
@@ -138,4 +138,4 @@ export const makeAcceptanceTestSources: () => Effect.Effect<
     ],
   });
   return { checkoutRoot, rendererManifest, sources };
-});
+}).pipe(Effect.withSpan("AcceptanceTest.makeSources"));

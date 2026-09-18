@@ -94,10 +94,9 @@ describe("content runtime verification", () => {
         { ...found, activeManifestHash: hash },
         { ...found, projectionHash: hash },
       ];
-      const outcomes = yield* Effect.all(
-        responses.map((response) =>
-          verifyRuntimeExchange({ response }).pipe(Effect.result)
-        ),
+      const outcomes = yield* Effect.forEach(
+        responses,
+        (response) => verifyRuntimeExchange({ response }).pipe(Effect.result),
         { concurrency: "unbounded" }
       );
       expect(
@@ -150,13 +149,13 @@ describe("content runtime verification", () => {
             response: sourceCase.response,
           })
         ).toEqual(sourceCase.response);
-        const outcomes = yield* Effect.all(
-          sourceCase.invalidSources.map((sourcePath) =>
+        const outcomes = yield* Effect.forEach(
+          sourceCase.invalidSources,
+          (sourcePath) =>
             verifyRuntimeExchange({
               request: sourceCase.request,
               response: { ...sourceCase.response, sourcePath },
-            }).pipe(Effect.flip)
-          ),
+            }).pipe(Effect.flip),
           { concurrency: "unbounded" }
         );
         expect(outcomes).toEqual(
@@ -197,10 +196,9 @@ describe("content runtime verification", () => {
           },
         },
       ];
-      const errors = yield* Effect.all(
-        responses.map((response) =>
-          verifyRuntimeExchange({ response }).pipe(Effect.flip)
-        ),
+      const errors = yield* Effect.forEach(
+        responses,
+        (response) => verifyRuntimeExchange({ response }).pipe(Effect.flip),
         { concurrency: "unbounded" }
       );
       expect(errors.map(({ _tag }) => _tag)).toEqual([
@@ -290,8 +288,9 @@ describe("content runtime verification", () => {
         { kind: "missing" },
         { code: "CONTENT_RUNTIME_UNAUTHORIZED", kind: "failure" },
       ];
-      const verified = yield* Effect.all(
-        responses.map((response) => verifyRuntimeExchange({ response })),
+      const verified = yield* Effect.forEach(
+        responses,
+        (response) => verifyRuntimeExchange({ response }),
         { concurrency: "unbounded" }
       );
       expect(verified).toEqual(responses);

@@ -104,7 +104,7 @@ export const readAcceptanceSettings = Effect.fn(
         .export({ format: "pem", type: "spki" })
         .toString(),
   });
-  const key = yield* Schema.decodeUnknownEffect(TrustedKeySchema)({
+  const key = yield* Schema.decodeEffect(TrustedKeySchema)({
     keyId: yield* Config.NonEmptyString("AKSARA_AGENT_SIGNING_KEY_ID"),
     publicKeyPem,
   }).pipe(

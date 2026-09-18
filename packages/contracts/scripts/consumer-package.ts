@@ -169,16 +169,15 @@ export const stageConsumerPackage = Effect.fn(
   const verifierDirectory = path.join(consumerDirectory, "verify");
   const emptyGlobalConfig = path.join(temporaryRoot, "empty-global.npmrc");
   const emptyUserConfig = path.join(temporaryRoot, "empty-user.npmrc");
-  yield* Effect.all(
+  yield* Effect.forEach(
     [
       packDirectory,
       stageDirectory,
       consumerDirectory,
       inspectionDirectory,
       verifierDirectory,
-    ].map((directory) =>
-      fileSystem.makeDirectory(directory, { recursive: true })
-    )
+    ],
+    (directory) => fileSystem.makeDirectory(directory, { recursive: true })
   ).pipe(Effect.mapError(failure("filesystem", "Workspace staging failed")));
   yield* Effect.all([
     fileSystem.writeFileString(emptyGlobalConfig, ""),

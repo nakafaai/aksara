@@ -76,10 +76,9 @@ const startProcess = Effect.fn("AksaraCli.startNakafaProcess")(
     ).pipe(
       Effect.map(({ exit }) => ({
         exitCode: Deferred.await(exit).pipe(
-          Effect.flatMap((code) =>
-            code === null
-              ? Effect.fail(makeNakafaAppError("exit", false))
-              : Effect.succeed(code)
+          Effect.filterOrFail(
+            (code): code is number => code !== null,
+            () => makeNakafaAppError("exit", false)
           )
         ),
       }))

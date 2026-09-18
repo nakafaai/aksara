@@ -151,7 +151,7 @@ layer(Layer.succeed(ContentVerificationKeyResolver, testVerificationResolver))(
         if (!current.recovery) {
           return yield* Effect.die("Expected one retained recovery fixture.");
         }
-        const recovery = yield* Schema.decodeUnknownEffect(
+        const recovery = yield* Schema.decodeEffect(
           StagedRollbackContentReleaseSchema
         )(current.recovery);
         const snapshotId = Sha256HashSchema.make(`sha256:${"e".repeat(64)}`);

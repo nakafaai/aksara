@@ -81,10 +81,7 @@ export const runLauncher = Effect.fn("AksaraCli.runLauncher")(
           command.pipe(
             Effect.flatMap((handle) => handle.exitCode),
             Effect.catch((cause) =>
-              Option.match(readSignalTermination(cause), {
-                onNone: () => Effect.fail(cause),
-                onSome: Effect.succeed,
-              })
+              Effect.fromOption(readSignalTermination(cause), () => cause)
             )
           )
         )

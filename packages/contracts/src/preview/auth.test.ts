@@ -111,10 +111,8 @@ describe("preview renderer authentication", () => {
             secret,
           },
         ];
-        const errors = yield* Effect.all(
-          inputs.map((input) =>
-            verifyPreviewRendererProof(input).pipe(Effect.flip)
-          )
+        const errors = yield* Effect.forEach(inputs, (input) =>
+          verifyPreviewRendererProof(input).pipe(Effect.flip)
         );
 
         expect(errors).toEqual(

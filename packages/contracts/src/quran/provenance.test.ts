@@ -171,17 +171,17 @@ describe("Quran provenance", () => {
         activeAppLocales: ACTIVE_APP_LOCALES,
         records: canonical,
       });
-      const errors = yield* Effect.all(
+      const errors = yield* Effect.forEach(
         [
           canonical.slice(1),
           [...canonical].reverse(),
           [firstRecord, ...canonical],
-        ].map((candidate) =>
+        ],
+        (candidate) =>
           makeQuranProvenanceManifest({
             activeAppLocales: ACTIVE_APP_LOCALES,
             records: candidate,
-          }).pipe(Effect.flip)
-        ),
+          }).pipe(Effect.flip),
         { concurrency: "unbounded" }
       );
       const incoherentStatus = Schema.decodeExit(QuranProvenanceManifestSchema)(
