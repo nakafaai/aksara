@@ -2,21 +2,10 @@ import assert from "node:assert/strict";
 import {
   isNonProseFieldName,
   isProtectedLineComponent,
+  isProtectedNodeType,
 } from "#nakafa-content/mdx/fields";
 import type { MdxNode, SourceRange } from "#nakafa-content/mdx/parse";
 import { maskProtectedInlineContent } from "#nakafa-content/voice/text";
-
-const RAW_LINE_PROTECTED_NODE_TYPES = new Set([
-  "blockquote",
-  "code",
-  "definition",
-  "html",
-  "image",
-  "inlineCode",
-  "link",
-  "linkReference",
-  "mdxjsEsm",
-]);
 
 /** Recognizes an MDX expression that contains comments but renders no value. */
 function isNonRenderedExpression(node: MdxNode): boolean {
@@ -36,7 +25,7 @@ function isNonRenderedExpression(node: MdxNode): boolean {
 /** Collects parsed regions that raw prose rules must never inspect. */
 function collectProtectedRanges(node: MdxNode, ranges: SourceRange[]): void {
   const protectedNode =
-    RAW_LINE_PROTECTED_NODE_TYPES.has(node.type) ||
+    isProtectedNodeType(node.type) ||
     isNonRenderedExpression(node) ||
     ((node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement") &&
       isProtectedLineComponent(node.name));
