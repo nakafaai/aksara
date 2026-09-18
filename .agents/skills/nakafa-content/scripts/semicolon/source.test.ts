@@ -84,3 +84,22 @@ it("keeps native JSX backslashes while distinguishing math spacing from line bre
     [linebreak.indexOf(";") + 1]
   );
 });
+
+it("follows comma tails into the rendered sequence value", () => {
+  const source = '<X prop={("a", "b;c")} />';
+  assert.deepEqual(
+    findLearnerFacingSemicolonIssues(source).map(({ column }) => column),
+    [source.indexOf(";", source.indexOf(",")) + 1]
+  );
+});
+
+it("skips spreads, configuration attributes, and code or math subtrees", () => {
+  const spread = '<X {...{ label: "b;c" }} />';
+  const configuration = '<X href="a;b" />';
+  const math = '<X prop={<InlineMath><Y title="a;b" /></InlineMath>} />';
+  const code = '<X prop={<CodeBlock><Y title="a;b" /></CodeBlock>} />';
+  assert.deepEqual(findLearnerFacingSemicolonIssues(spread), []);
+  assert.deepEqual(findLearnerFacingSemicolonIssues(configuration), []);
+  assert.deepEqual(findLearnerFacingSemicolonIssues(math), []);
+  assert.deepEqual(findLearnerFacingSemicolonIssues(code), []);
+});

@@ -1,5 +1,9 @@
 import { Predicate } from "effect";
 import {
+  isCodeComponentName,
+  isNonProseFieldName,
+} from "#nakafa-content/mdx/fields";
+import {
   asEstreeNode,
   attributeEstree,
   type EstreeNode,
@@ -11,8 +15,6 @@ import {
 import {
   collectStaticStringSemicolons,
   collectStructuredExpressionSemicolons,
-  isCodeComponentName,
-  isNonProseFieldName,
 } from "#nakafa-content/semicolon/expression";
 import {
   addSemicolonsInRange,

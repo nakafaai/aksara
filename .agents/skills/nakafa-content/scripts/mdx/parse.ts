@@ -79,6 +79,14 @@ export function asEstreeNode(value: unknown): EstreeNode | undefined {
   return Schema.is(EstreeNodeShape)(value) ? value : undefined;
 }
 
+/** Collects every ESTree child from one field value or collection. */
+export function estreeChildren(value: unknown): EstreeNode[] {
+  return (Array.isArray(value) ? value : [value]).flatMap((item) => {
+    const child = asEstreeNode(item);
+    return child ? [child] : [];
+  });
+}
+
 /** Converts an ESTree offset pair into the shared source range shape. */
 export function estreeRange(node: EstreeNode) {
   assert.ok(node.start !== undefined);

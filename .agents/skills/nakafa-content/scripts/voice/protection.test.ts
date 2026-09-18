@@ -107,3 +107,15 @@ it("ignores quotations code and non-prose technical fields", () => {
   assert.deepEqual(findLessonVoiceIssues("de", german), []);
   assert.deepEqual(findLessonVoiceIssues("id", indonesian), []);
 });
+
+it("protects anchor subtrees from prose rules", () => {
+  const slop = "Model ini membuat hubungan lebih nyata.";
+  assert.deepEqual(
+    findLessonVoiceIssues("id", slop).map(({ rule }) => rule),
+    ["vague-concretizing-claim", "vague-model-fidelity"]
+  );
+  assert.deepEqual(
+    findLessonVoiceIssues("id", `<a href="https://example.com">${slop}</a>`),
+    []
+  );
+});
