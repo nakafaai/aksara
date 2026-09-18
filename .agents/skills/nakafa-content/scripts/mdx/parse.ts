@@ -124,6 +124,15 @@ export function staticFieldName(
     : undefined;
 }
 
+/** Reads the unqualified name of one JSX element when statically known. */
+export function jsxComponentName(node: EstreeNode): string | undefined {
+  const openingElement = asEstreeNode(node.openingElement);
+  const name = asEstreeNode(openingElement?.name);
+  return name?.type === "JSXIdentifier" && Predicate.isString(name.name)
+    ? name.name
+    : undefined;
+}
+
 /** Typed failure for an authored MDX document the parser rejects. */
 export class MdxParseError extends Schema.TaggedError<MdxParseError>()(
   "MdxParseError",
