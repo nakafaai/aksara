@@ -4,11 +4,16 @@ import { Predicate } from "effect";
 import { findAlignedFindings } from "#nakafa-content/math/align";
 import { issueAtOffset, type MathFinding } from "#nakafa-content/math/finding";
 import { findGluedTextGroups } from "#nakafa-content/math/glue";
+import {
+  NESTED_DISCOVERY_KEYS,
+  walkKeyedChildren,
+} from "#nakafa-content/mdx/keys";
 import { sourceOffsetForStaticMatch } from "#nakafa-content/mdx/offset";
 import {
   asEstreeNode,
   attributeEstree,
   type EstreeNode,
+  estreeChildren,
   type MdxAttribute,
   type MdxNode,
   parseLessonMdx,
@@ -19,30 +24,6 @@ import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 const ENTITY_PATTERN = /&(?:#[xX][\dA-Fa-f]+|#\d+|[A-Za-z][A-Za-z\d]*);/u;
 const NON_WHITESPACE_PATTERN = /\S/u;
-
-/**
- * ESTree fields that can carry authored JSX inside one expression value. The
- * renderer accepts math in fragments, arrays, and object literals, so discovery
- * follows those shapes instead of stopping at the element's own attributes.
- */
-const NESTED_EXPRESSION_KEYS: Readonly<Record<string, readonly string[]>> = {
-  ArrayExpression: ["elements"],
-  ArrowFunctionExpression: ["body"],
-  BinaryExpression: ["left", "right"],
-  CallExpression: ["arguments"],
-  ConditionalExpression: ["consequent", "alternate"],
-  ExpressionStatement: ["expression"],
-  JSXExpressionContainer: ["expression"],
-  JSXFragment: ["children"],
-  LogicalExpression: ["left", "right"],
-  ObjectExpression: ["properties"],
-  ParenthesizedExpression: ["expression"],
-  Program: ["body"],
-  Property: ["value"],
-  SequenceExpression: ["expressions"],
-  SpreadElement: ["argument"],
-  TemplateLiteral: ["expressions", "quasis"],
-};
 
 interface MathText {
   readonly offsets: readonly number[];
@@ -86,18 +67,6 @@ function recordExpressionFindings(
       );
     }
   }
-}
-
-/** Returns the ESTree children stored under one expression field. */
-function expressionChildren(value: unknown): EstreeNode[] {
-  const children: EstreeNode[] = [];
-  for (const entry of Array.isArray(value) ? value : [value]) {
-    const child = asEstreeNode(entry);
-    if (child) {
-      children.push(child);
-    }
-  }
-  return children;
 }
 
 /** Aligns one decoded attribute value with its authored entity offsets. */
@@ -215,19 +184,17 @@ function walkExpression(
 ): void {
   if (node.type === "JSXElement") {
     const opening = asEstreeNode(node.openingElement);
-    for (const attribute of expressionChildren(opening?.attributes)) {
+    for (const attribute of estreeChildren(opening?.attributes)) {
       collectJsxAttributeFindings(attribute, offsets, source);
     }
-    for (const child of expressionChildren(node.children)) {
+    for (const child of estreeChildren(node.children)) {
       walkExpression(child, offsets, source);
     }
     return;
   }
-  for (const key of NESTED_EXPRESSION_KEYS[node.type] ?? []) {
-    for (const child of expressionChildren(node[key])) {
-      walkExpression(child, offsets, source);
-    }
-  }
+  walkKeyedChildren(node, NESTED_DISCOVERY_KEYS, (child) => {
+    walkExpression(child, offsets, source);
+  });
 }
 
 /**

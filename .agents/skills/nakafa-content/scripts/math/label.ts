@@ -1,10 +1,13 @@
 import assert from "node:assert/strict";
 import { Predicate } from "effect";
-
+import { issueAtOffset } from "#nakafa-content/math/finding";
+import { isProtectedLineComponent } from "#nakafa-content/mdx/fields";
+import { MATH_LABEL_KEYS, walkKeyedChildren } from "#nakafa-content/mdx/keys";
 import {
-  asEstreeNode,
   attributeEstree,
   type EstreeNode,
+  estreeChildren,
+  jsxComponentName,
   type MdxAttribute,
   type MdxNode,
   parseLessonMdx,
@@ -36,25 +39,6 @@ const PROTECTED_NODE_TYPES = new Set([
   "linkReference",
   "mdxjsEsm",
 ]);
-const PROTECTED_COMPONENT_NAMES = new Set([
-  "a",
-  "BlockMath",
-  "CodeBlock",
-  "InlineMath",
-]);
-const RENDERED_KEYS_BY_TYPE: Readonly<Record<string, readonly string[]>> = {
-  ArrayExpression: ["elements"],
-  BinaryExpression: ["left", "right"],
-  ConditionalExpression: ["consequent", "alternate"],
-  ExpressionStatement: ["expression"],
-  JSXExpressionContainer: ["expression"],
-  JSXFragment: ["children"],
-  LogicalExpression: ["left", "right"],
-  ParenthesizedExpression: ["expression"],
-  Program: ["body"],
-  TemplateLiteral: ["quasis", "expressions"],
-};
-
 type JsxMdxNode = MdxNode & {
   attributes: MdxAttribute[];
 };
@@ -72,24 +56,6 @@ function isJsxMdxNode(node: MdxNode): node is JsxMdxNode {
 /** Narrows one parser-owned text node. */
 function isTextMdxNode(node: MdxNode): node is TextMdxNode {
   return node.type === "text";
-}
-
-/** Returns a diagnostic at one exact source offset. */
-function issueAtOffset(
-  source: string,
-  offset: number,
-  rule: string
-): LessonVoiceIssue {
-  const lineStart = source.lastIndexOf("\n", offset - 1) + 1;
-  const lineEndIndex = source.indexOf("\n", offset);
-  const lineEnd = lineEndIndex === -1 ? source.length : lineEndIndex;
-  const line = source.slice(0, lineStart).split("\n").length;
-  return {
-    column: offset - lineStart + 1,
-    excerpt: source.slice(lineStart, lineEnd).trim(),
-    line,
-    rule,
-  };
 }
 
 /** Distinguishes the unrelated QR-code term from matrix QR notation. */
@@ -126,26 +92,14 @@ function collectRangeOffsets(
   }
 }
 
-/** Reads one statically authored JSX component name. */
-function jsxComponentName(node: EstreeNode): string | undefined {
-  const openingElement = asEstreeNode(node.openingElement);
-  const name = asEstreeNode(openingElement?.name);
-  return name?.type === "JSXIdentifier" && Predicate.isString(name.name)
-    ? name.name
-    : undefined;
-}
-
 /** Adds rendered text ranges nested below one ESTree field. */
 function collectExpressionValues(
   value: unknown,
   offsets: Set<number>,
   source: string
 ): void {
-  for (const child of Array.isArray(value) ? value : [value]) {
-    const childNode = asEstreeNode(child);
-    if (childNode) {
-      collectExpressionOffsets(childNode, offsets, source);
-    }
+  for (const childNode of estreeChildren(value)) {
+    collectExpressionOffsets(childNode, offsets, source);
   }
 }
 
@@ -155,7 +109,7 @@ function collectJsxElementOffsets(
   offsets: Set<number>,
   source: string
 ): void {
-  if (PROTECTED_COMPONENT_NAMES.has(jsxComponentName(node) ?? "")) {
+  if (isProtectedLineComponent(jsxComponentName(node))) {
     return;
   }
   collectExpressionValues(node.children, offsets, source);
@@ -182,9 +136,9 @@ function collectExpressionOffsets(
     collectJsxElementOffsets(node, offsets, source);
     return;
   }
-  for (const key of RENDERED_KEYS_BY_TYPE[node.type] ?? []) {
-    collectExpressionValues(node[key], offsets, source);
-  }
+  walkKeyedChildren(node, MATH_LABEL_KEYS, (child) => {
+    collectExpressionOffsets(child, offsets, source);
+  });
 }
 
 /** Collects math labels from one learner-facing component attribute. */
@@ -220,7 +174,7 @@ function collectNodeOffsets(
 ): void {
   const componentIsProtected =
     (node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement") &&
-    PROTECTED_COMPONENT_NAMES.has(String(node.name));
+    isProtectedLineComponent(node.name);
   const protectedHere =
     isProtected ||
     PROTECTED_NODE_TYPES.has(String(node.type)) ||

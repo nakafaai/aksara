@@ -8,7 +8,10 @@ import {
   isNestedAddressField,
   isProtectedProseComponent,
 } from "#nakafa-content/mdx/fields";
-import { RENDERED_COPY_KEYS } from "#nakafa-content/mdx/keys";
+import {
+  RENDERED_COPY_KEYS,
+  walkKeyedChildren,
+} from "#nakafa-content/mdx/keys";
 import { renderedStaticStringRange } from "#nakafa-content/mdx/offset";
 import {
   asEstreeNode,
@@ -16,6 +19,7 @@ import {
   type EstreeNode,
   estreeChildren,
   estreeRange,
+  jsxComponentName,
   type MdxAttribute,
   type MdxNode,
   type SourceRange,
@@ -37,13 +41,6 @@ const STATIC_TEXT_NODE_TYPES = new Set([
   "TemplateElement",
   "TemplateLiteral",
 ]);
-
-/** Reads one statically authored JSX component name. */
-function jsxComponentName(node: EstreeNode): string | undefined {
-  const openingElement = asEstreeNode(node.openingElement);
-  assert.ok(openingElement);
-  return staticFieldName(asEstreeNode(openingElement.name));
-}
 
 /** Removes source quote delimiters from one static string range. */
 function renderedStringRange(node: EstreeNode, source: string): SourceRange {
@@ -147,15 +144,19 @@ function collectExpressionRanges(
       rootFieldName
     );
   }
-  return (RENDERED_COPY_KEYS[node.type] ?? []).flatMap((key) =>
-    collectExpressionValues(
-      node[key],
-      source,
-      include,
-      fieldName,
-      rootFieldName
-    )
-  );
+  const ranges: SourceRange[] = [];
+  walkKeyedChildren(node, RENDERED_COPY_KEYS, (childNode) => {
+    ranges.push(
+      ...collectExpressionRanges(
+        childNode,
+        source,
+        include,
+        fieldName,
+        rootFieldName
+      )
+    );
+  });
+  return ranges;
 }
 
 /** Applies the expression visitor to one or more ESTree values. */

@@ -5,13 +5,17 @@ import {
   isMathComponentName,
   isNonProseFieldName,
 } from "#nakafa-content/mdx/fields";
-import { SEMICOLON_SCAN_KEYS } from "#nakafa-content/mdx/keys";
+import {
+  SEMICOLON_SCAN_KEYS,
+  walkKeyedChildren,
+} from "#nakafa-content/mdx/keys";
 import { renderedStaticStringRange } from "#nakafa-content/mdx/offset";
 import {
   asEstreeNode,
   type EstreeNode,
   estreeChildren,
   estreeRange,
+  jsxComponentName,
   staticFieldName,
 } from "#nakafa-content/mdx/parse";
 import { renderedSourceRange } from "#nakafa-content/mdx/rendered";
@@ -85,15 +89,6 @@ function isJsxElementNode(node: EstreeNode): node is JsxElementNode {
 /** Narrows one parser-owned object property. */
 function isPropertyNode(node: EstreeNode): node is PropertyNode {
   return node.type === "Property";
-}
-
-/** Reads the unqualified name of one JSX component when statically known. */
-function jsxComponentName(node: EstreeNode): string | undefined {
-  const openingElement = asEstreeNode(node.openingElement);
-  const name = asEstreeNode(openingElement?.name);
-  return name?.type === "JSXIdentifier" && Predicate.isString(name.name)
-    ? name.name
-    : undefined;
 }
 
 /** Scans a static string expression in either prose or math mode. */
@@ -254,7 +249,7 @@ export function collectStructuredExpressionSemicolons(
     collectStructuredValues(node.expressions.at(-1), offsets, source);
     return;
   }
-  for (const key of SEMICOLON_SCAN_KEYS[node.type] ?? []) {
-    collectStructuredValues(node[key], offsets, source);
-  }
+  walkKeyedChildren(node, SEMICOLON_SCAN_KEYS, (child) => {
+    collectStructuredExpressionSemicolons(child, offsets, source);
+  });
 }
