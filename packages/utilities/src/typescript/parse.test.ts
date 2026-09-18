@@ -212,16 +212,14 @@ layer(TypeScriptParser.layer)("native TypeScript parsing", (it) => {
   );
   it.effect("keeps source projects isolated from host filesystem reads", () =>
     Effect.gen(function* () {
-      yield* Effect.gen(function* () {
-        const parser = yield* TypeScriptParser;
-        yield* parser.inspect(
-          { fileName: "isolated.ts", source: "export {};" },
-          () => true
-        );
-        const fileSystem = nativeFileSystems.at(-1);
-        expect(fileSystem?.fileExists?.(import.meta.filename)).toBe(false);
-        expect(fileSystem?.readFile?.(import.meta.filename)).toBeNull();
-      }).pipe(Effect.provide(Layer.fresh(TypeScriptParser.layer)));
-    })
+      const parser = yield* TypeScriptParser;
+      yield* parser.inspect(
+        { fileName: "isolated.ts", source: "export {};" },
+        () => true
+      );
+      const fileSystem = nativeFileSystems.at(-1);
+      expect(fileSystem?.fileExists?.(import.meta.filename)).toBe(false);
+      expect(fileSystem?.readFile?.(import.meta.filename)).toBeNull();
+    }).pipe(Effect.provide(Layer.fresh(TypeScriptParser.layer)))
   );
 });

@@ -8,7 +8,7 @@ import { Effect } from "effect";
 import { publishAcceptance } from "#cli/acceptance/publication";
 
 NodeRuntime.runMain(
-  publishAcceptance().pipe(
+  publishAcceptance.pipe(
     Effect.provide([
       NodeHttpClient.layerNodeHttp,
       ExactProcessLive,

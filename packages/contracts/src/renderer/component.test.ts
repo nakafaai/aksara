@@ -21,9 +21,7 @@ describe("renderer components", () => {
     "accepts a canonical current component set: %j",
     (...names) => {
       expect(
-        Exit.isSuccess(
-          Schema.decodeUnknownExit(RendererComponentsSchema)(names)
-        )
+        Exit.isSuccess(Schema.decodeExit(RendererComponentsSchema)(names))
       ).toBe(true);
     }
   );

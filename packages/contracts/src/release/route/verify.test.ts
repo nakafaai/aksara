@@ -85,16 +85,14 @@ describe("route verification", () => {
         },
       ];
 
-      const errors = yield* Effect.all(
-        failures.map((failure) =>
-          decodeContentRoutes({
-            manifest: signedManifest,
-            routes: Stream.fromIterable(failure.routes),
-          }).pipe(
-            Stream.runDrain,
-            Effect.flip,
-            Effect.map((error) => ({ error, expected: failure.expected }))
-          )
+      const errors = yield* Effect.forEach(failures, (failure) =>
+        decodeContentRoutes({
+          manifest: signedManifest,
+          routes: Stream.fromIterable(failure.routes),
+        }).pipe(
+          Stream.runDrain,
+          Effect.flip,
+          Effect.map((error) => ({ error, expected: failure.expected }))
         )
       );
       for (const { error, expected } of errors) {

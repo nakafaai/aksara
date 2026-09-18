@@ -117,13 +117,14 @@ describe("try-out placement hashing", () => {
   it.effect("rejects tampered and repeated placement records", () =>
     Effect.gen(function* () {
       const record = makeTryoutPlacementRecord(placement("en", 1));
-      const errors = yield* Effect.all(
+      const errors = yield* Effect.forEach(
         [
           digestTryoutPlacements(
             Stream.make({ ...record, rowHash: hashes.tampered })
           ),
           digestTryoutPlacements(Stream.make(record, record)),
-        ].map((failure) => failure.pipe(Effect.flip))
+        ],
+        (failure) => failure.pipe(Effect.flip)
       );
 
       expect(errors.map(({ code }) => code)).toEqual(["integrity", "order"]);

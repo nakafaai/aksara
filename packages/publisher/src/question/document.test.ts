@@ -66,7 +66,7 @@ describe("question document", () => {
     Effect.gen(function* () {
       const { prompt } = yield* requireEntries();
       const source = yield* load(prompt);
-      const errors = yield* Effect.all(
+      const errors = yield* Effect.forEach(
         [
           {},
           {
@@ -75,9 +75,9 @@ describe("question document", () => {
             datePublished: "2026-01-01",
             title: "Test",
           },
-        ].map((metadata) =>
+        ],
+        (metadata) =>
           makeQuestionProjectionFromSource(source, metadata).pipe(Effect.flip)
-        )
       );
 
       expect(

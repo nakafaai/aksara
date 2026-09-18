@@ -46,7 +46,7 @@ layer(NodeServices.layer)("acceptance catalog preparation", (it) => {
     "rejects an incomplete genesis plan instead of silently dropping an authored body",
     () =>
       Effect.gen(function* () {
-        const fixture = yield* makeAcceptanceTestSources();
+        const fixture = yield* makeAcceptanceTestSources;
         vi.mocked(loadAcceptanceSources).mockReturnValue(
           Effect.succeed(fixture.sources)
         );
@@ -62,7 +62,7 @@ layer(NodeServices.layer)("acceptance catalog preparation", (it) => {
     "compiles real family sources once and seals consistent repeatable catalog views",
     () =>
       Effect.gen(function* () {
-        const fixture = yield* makeAcceptanceTestSources();
+        const fixture = yield* makeAcceptanceTestSources;
         vi.mocked(loadAcceptanceSources).mockReturnValue(
           Effect.succeed(fixture.sources)
         );
@@ -106,7 +106,7 @@ layer(NodeServices.layer)("acceptance catalog preparation", (it) => {
       });
       vi.mocked(loadAcceptanceSources).mockReturnValue(Effect.fail(failure));
       compiler.calls = 0;
-      const fixture = yield* makeAcceptanceTestSources();
+      const fixture = yield* makeAcceptanceTestSources;
       const error = yield* prepareAcceptanceCatalog(fixture).pipe(Effect.flip);
       expect(error).toBe(failure);
       expect(compiler.calls).toBe(0);
@@ -117,7 +117,7 @@ layer(NodeServices.layer)("acceptance catalog preparation", (it) => {
     "rejects a renderer missing components required by the selected authored content",
     () =>
       Effect.gen(function* () {
-        const fixture = yield* makeAcceptanceTestSources();
+        const fixture = yield* makeAcceptanceTestSources;
         vi.mocked(loadAcceptanceSources).mockReturnValue(
           Effect.succeed(fixture.sources)
         );

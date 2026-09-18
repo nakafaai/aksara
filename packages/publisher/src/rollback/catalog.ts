@@ -47,7 +47,7 @@ export class RollbackCatalogRouteError extends Schema.TaggedError<RollbackCatalo
 /** Emits the prior compact state after proving the active current state. */
 function resolveMerge(merge: CatalogMerge) {
   if (merge.kind === "active") {
-    return Effect.succeed(Option.some(merge.active));
+    return Effect.succeedSome(merge.active);
   }
   const current = snapshotRollbackState(merge.transition.current);
   const prior = snapshotRollbackState(merge.transition.prior);

@@ -82,7 +82,7 @@ export const decodePageSources = Effect.fn("AksaraCorpus.decodePageSources")(
       ).pipe(Effect.mapError((cause) => new PageCatalogError({ cause })));
     }
 
-    return yield* Effect.all(pageSourceInputs.map(definePageSource));
+    return yield* Effect.forEach(pageSourceInputs, definePageSource);
   }
 );
 

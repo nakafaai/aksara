@@ -113,7 +113,7 @@ vi.mock("@nakafa/aksara-publisher/publication", async () =>
 
 /** Runs the complete outer boundary with network and process fallthrough disabled. */
 const publish = Effect.fn("AcceptancePublicationTest.publish")(() =>
-  publishAcceptance().pipe(
+  publishAcceptance.pipe(
     Effect.provide([NodeServices.layer, NodeHttpClient.layerNodeHttp]),
     Effect.provideService(ExactProcess, unusedExactProcess)
   )

@@ -158,15 +158,15 @@ describe("preview HTTP transport", () => {
             headers,
           }),
         ]);
-        const responses = yield* Effect.all(
-          [firstHash, secondHash].map((artifactHash) =>
+        const responses = yield* Effect.forEach(
+          [firstHash, secondHash],
+          (artifactHash) =>
             requestPreviewHttp(
               new URL(localPreviewArtifactPath(artifactHash), origin),
               { headers }
             )
-          )
         );
-        const bodies = yield* Effect.all(responses.map(responseText));
+        const bodies = yield* Effect.forEach(responses, responseText);
         const unknown = yield* requestPreviewHttp(
           new URL(localPreviewArtifactPath(unknownHash), origin),
           { headers }

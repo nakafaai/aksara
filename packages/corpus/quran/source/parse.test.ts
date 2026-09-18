@@ -142,10 +142,9 @@ layer(fixtureLayer)("Quran source parsing", (it) => {
           "</sura_list>",
           '<sura number="115">unexpected</sura></sura_list>'
         );
-        const errors = yield* Effect.all(
-          [empty, misnumbered, unexpected].map((english) =>
-            reject(withEnglish(fixture, english))
-          ),
+        const errors = yield* Effect.forEach(
+          [empty, misnumbered, unexpected],
+          (english) => reject(withEnglish(fixture, english)),
           { concurrency: "unbounded" }
         );
 

@@ -276,13 +276,13 @@ layer(NodeServices.layer)("immutable contract release proof", (it) => {
             "exact source commit",
           ],
         ];
-        const errors = yield* Effect.all(
-          cases.map(([candidate, tag]) =>
+        const errors = yield* Effect.forEach(
+          cases,
+          ([candidate, tag]) =>
             proveWithCommands(
               fixture.input,
               fakeCommands(fixture.archive, candidate, { tag })
-            ).pipe(Effect.flip)
-          ),
+            ).pipe(Effect.flip),
           { concurrency: "unbounded" }
         );
         for (const [index, error] of errors.entries()) {

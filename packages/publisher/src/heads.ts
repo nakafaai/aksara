@@ -56,12 +56,10 @@ function nextPageState(previous: HeadPageState, page: HeadPage) {
   if (page.nextCursor === null || page.nextCursor === previous.cursor) {
     return Effect.fail(headPageError());
   }
-  return Effect.succeed(
-    Option.some<HeadPageState>({
-      cursor: page.nextCursor,
-      last: page.heads.at(-1) ?? previous.last,
-    })
-  );
+  return Effect.succeedSome<HeadPageState>({
+    cursor: page.nextCursor,
+    last: page.heads.at(-1) ?? previous.last,
+  });
 }
 
 /** Streams every compact article head while binding all pages to one release. */

@@ -93,8 +93,9 @@ describe("incremental compilation", () => {
         { ...request, rendererDomain: "chemistry" },
         { ...request, rendererManifest: upgradedManifest },
       ];
-      yield* Effect.all(
-        changedRequests.map((changedRequest) =>
+      yield* Effect.forEach(
+        changedRequests,
+        (changedRequest) =>
           expectCompiled(changedRequest, first.cache, "changed").pipe(
             Effect.tap((result) =>
               Effect.sync(() =>
@@ -104,8 +105,7 @@ describe("incremental compilation", () => {
                 )
               )
             )
-          )
-        ),
+          ),
         { concurrency: "unbounded" }
       );
     })
@@ -140,8 +140,9 @@ describe("incremental compilation", () => {
           identity: { ...first.cache.identity, unexpected: true },
         },
       ];
-      yield* Effect.all(
-        corruptEntries.map((cache) =>
+      yield* Effect.forEach(
+        corruptEntries,
+        (cache) =>
           expectCompiled(request, cache, "corrupt").pipe(
             Effect.tap((result) =>
               Effect.sync(() =>
@@ -150,8 +151,7 @@ describe("incremental compilation", () => {
                 )
               )
             )
-          )
-        ),
+          ),
         { concurrency: "unbounded" }
       );
     })

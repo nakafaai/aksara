@@ -175,11 +175,12 @@ describe("try-out head binding", () => {
     Effect.gen(function* () {
       const answer = head({ artifactLocale: "en", bodyKind: "answer" });
       const question = head({ artifactLocale: "en", bodyKind: "question" });
-      const errors = yield* Effect.all(
+      const errors = yield* Effect.forEach(
         [
           [answer, answer],
           [question, answer],
-        ].map((heads) => rejectTryoutHeadBindings(activePlacements(), heads)),
+        ],
+        (heads) => rejectTryoutHeadBindings(activePlacements(), heads),
         { concurrency: "unbounded" }
       );
 
