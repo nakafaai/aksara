@@ -87,6 +87,19 @@ export function estreeChildren(value: unknown): EstreeNode[] {
   });
 }
 
+/** Visits every ESTree descendant of one node in pre-order, exactly once. */
+export function walkEstreeDeep(
+  node: EstreeNode,
+  visit: (current: EstreeNode) => void
+): void {
+  visit(node);
+  for (const value of Object.values(node)) {
+    for (const child of estreeChildren(value)) {
+      walkEstreeDeep(child, visit);
+    }
+  }
+}
+
 /** Converts an ESTree offset pair into the shared source range shape. */
 export function estreeRange(node: EstreeNode) {
   assert.ok(node.start !== undefined);

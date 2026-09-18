@@ -16,6 +16,7 @@ import {
   parseLessonMdx,
   staticFieldName,
   visitMdxNodes,
+  walkEstreeDeep,
 } from "#nakafa-content/mdx/parse";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
@@ -47,23 +48,6 @@ function isLineEquationNode(node: MdxNode): node is LineEquationNode {
 }
 
 const WHITESPACE_ONLY = /^\s*$/u;
-
-/** Visits every ESTree child reachable from one node exactly once. */
-function visitEstree(
-  node: EstreeNode,
-  visit: (current: EstreeNode) => void
-): void {
-  visit(node);
-  for (const value of Object.values(node)) {
-    const children = Array.isArray(value) ? value : [value];
-    for (const child of children) {
-      const childNode = asEstreeNode(child);
-      if (childNode) {
-        visitEstree(childNode, visit);
-      }
-    }
-  }
-}
 
 /** Returns one statically named property from an object expression. */
 function objectProperty(
@@ -118,7 +102,7 @@ function inspectDataProgram(
 ): LineEquationSeriesInspection[] {
   const bindings = pointExpressionBindings(program);
   const inspections: LineEquationSeriesInspection[] = [];
-  visitEstree(program, (node) => {
+  walkEstreeDeep(program, (node) => {
     if (!isObjectExpressionNode(node)) {
       return;
     }
@@ -208,7 +192,7 @@ function exactLineInsertions(
 ): SourceEdit[] {
   const bindings = pointExpressionBindings(program);
   const edits: SourceEdit[] = [];
-  visitEstree(program, (node) => {
+  walkEstreeDeep(program, (node) => {
     const edit = exactLineEdit(node, bindings, source);
     if (edit) {
       edits.push(edit);

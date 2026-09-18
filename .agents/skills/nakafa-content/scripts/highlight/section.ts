@@ -6,6 +6,11 @@ export interface HighlightSection {
   opener: MdxNode;
 }
 
+/** Tells highlight rules whether a tree carries authored lesson metadata. */
+export function isAuthoredLesson(tree: MdxNode | undefined): boolean {
+  return (tree?.children ?? []).some((node) => node.type === "mdxjsEsm");
+}
+
 /**
  * Splits authored MDX flow content into heading-delimited sections.
  *

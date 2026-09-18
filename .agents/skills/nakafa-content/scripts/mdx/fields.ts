@@ -85,6 +85,7 @@ const PROTECTED_LINE_COMPONENT_NAMES = new Set([
   ...PROTECTED_COMPONENT_NAMES,
   "a",
 ]);
+const HIGHLIGHT_COMPONENT_NAME = "Highlight";
 const PROTECTED_NODE_TYPES = new Set([
   "blockquote",
   "code",
@@ -159,6 +160,11 @@ export function isCodeComponentName(name: string | undefined): boolean {
 /** Tells raw-line traversal whether a component subtree stays uninspected. */
 export function isProtectedLineComponent(name: string | undefined): boolean {
   return PROTECTED_LINE_COMPONENT_NAMES.has(name ?? "");
+}
+
+/** Tells highlight traversal whether a name marks a learner-visible phrase. */
+export function isHighlightComponentName(name: string | undefined): boolean {
+  return name === HIGHLIGHT_COMPONENT_NAME;
 }
 
 /** Tells both checker passes whether one node type owns protected copy. */

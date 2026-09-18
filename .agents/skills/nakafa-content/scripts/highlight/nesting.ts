@@ -1,7 +1,9 @@
+import assert from "node:assert/strict";
+
+import { isAuthoredLesson } from "#nakafa-content/highlight/section";
+import { isHighlightComponentName } from "#nakafa-content/mdx/fields";
 import { type MdxNode, parseLessonMdx } from "#nakafa-content/mdx/parse";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
-
-const HIGHLIGHT_COMPONENT_NAME = "Highlight";
 
 /** Returns whether one node is an authored emphasis marker. */
 function isMarker(node: MdxNode): boolean {
@@ -10,7 +12,7 @@ function isMarker(node: MdxNode): boolean {
   }
   return (
     (node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement") &&
-    node.name === HIGHLIGHT_COMPONENT_NAME
+    isHighlightComponentName(node.name)
   );
 }
 
@@ -26,8 +28,7 @@ export function findHighlightNestingIssues(
   source: string,
   tree: MdxNode = parseLessonMdx(source)
 ): LessonVoiceIssue[] {
-  const children = tree.children ?? [];
-  if (!children.some((node) => node.type === "mdxjsEsm")) {
+  if (!isAuthoredLesson(tree)) {
     return [];
   }
   const lines = source.split("\n");
@@ -50,6 +51,8 @@ export function findHighlightNestingIssues(
     }
   }
 
+  const { children } = tree;
+  assert.ok(children);
   for (const child of children) {
     visit(child, false);
   }
