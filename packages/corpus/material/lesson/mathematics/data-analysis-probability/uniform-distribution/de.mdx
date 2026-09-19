@@ -3,122 +3,289 @@ export const metadata = {
   description: "Berechne Wahrscheinlichkeiten für gleich wahrscheinliche diskrete Ergebnisse bei Würfeln und Karten.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Datenanalyse und Wahrscheinlichkeit",
 };
 
 ## Jedes Ergebnis hat die gleiche Wahrscheinlichkeit
 
-<Highlight>Im Alltag begegnen uns häufig Situationen mit ungewissem Ausgang.</Highlight> Eine faire Münze kann zum Beispiel Kopf oder Zahl zeigen, und beide Ergebnisse sind gleich wahrscheinlich.
+Beim einmaligen Werfen einer fairen Münze haben Kopf und Zahl <Highlight>die gleiche Wahrscheinlichkeit</Highlight>. Jedes Ergebnis erhält die Hälfte der gesamten Wahrscheinlichkeit. Die diskrete Gleichverteilung überträgt diese Idee auf eine endliche Menge von Ergebnissen.
 
-Besteht ein endlicher Ergebnisraum aus gleich wahrscheinlichen Ergebnissen, ist die Wahrscheinlichkeit eines Ereignisses <InlineMath math="A" /> gleich der Anzahl der Ergebnisse in <InlineMath math="A" /> geteilt durch die Gesamtzahl der Ergebnisse im Ergebnisraum <InlineMath math="S" />.
+Eine [Wahrscheinlichkeitsverteilung](/de/faecher/mathematik/wahrscheinlichkeit/wahrscheinlichkeitsverteilung) ordnet jedem Wert die Wahrscheinlichkeit seines Auftretens zu. Sind alle Ergebnisse im Ergebnisraum <InlineMath math="S" /> gleich wahrscheinlich, gilt für ein Ereignis <InlineMath math="A" />:
 
-<BlockMath math="P(A) = \frac{n(A)}{n(S)}" />
+<BlockMath math="P(A)=\frac{n(A)}{n(S)}" />
 
-## Ein Modell mit endlich vielen Ergebnissen
+Dabei zählt <InlineMath math="n(A)" /> die Ergebnisse des Ereignisses und <InlineMath math="n(S)" /> alle möglichen Ergebnisse. Die Bedingung **gleich wahrscheinlicher Ergebnisse** muss erfüllt sein, bevor du dieses Verhältnis verwendest.
 
-Bei einer diskreten Gleichverteilung hat **jedes mögliche Ergebnis genau dieselbe Wahrscheinlichkeit**. Die folgende Erklärung konzentriert sich auf ein diskretes Modell mit einer endlichen Ergebnismenge. Eine stetige Gleichverteilung verwendet eine Dichte auf einem Intervall.
+## Wahrscheinlichkeit eines einzelnen Werts
 
-Bei einem fairen sechsseitigen Würfel sind die möglichen Ergebnisse <InlineMath math="1, 2, 3, 4, 5, 6" />. Eine <InlineMath math="1" /> ist genauso wahrscheinlich wie eine <InlineMath math="6" />. Da sechs Ergebnisse gleich wahrscheinlich sind, hat jedes die Wahrscheinlichkeit <InlineMath math="\frac{1}{6}" />.
+Die Zufallsvariable <InlineMath math="X" /> nehme <InlineMath math="k" /> gleich wahrscheinliche Werte aus einer Menge <InlineMath math="S" /> an. Ihre Wahrscheinlichkeitsmassenfunktion weist jedem Wert denselben Anteil zu:
 
-## Gleiche Wahrscheinlichkeit für jeden Wert
+<BlockMath math="P(X=x)=\frac{1}{k},\qquad x\in S" />
 
-Die Zufallsvariable <InlineMath math="X" /> besitze eine endliche Menge <InlineMath math="S" /> aus <InlineMath math="k" /> gleich wahrscheinlichen Werten. Dann lautet ihre Wahrscheinlichkeitsmassenfunktion:
+| Symbol | Bedeutung | Beispiel mit einem fairen Würfel |
+| --- | --- | --- |
+| <InlineMath math="x" /> | Ein möglicher Wert | Die Zahl <InlineMath math="3" /> |
+| <InlineMath math="k" /> | Anzahl möglicher Werte | Sechs Seiten |
+| <InlineMath math="P(X=x)" /> | Wahrscheinlichkeit dieses Werts | <InlineMath math="P(X=3)=1/6" /> |
 
-<BlockMath math="P(X=x) = \frac{1}{k}, \qquad x \in S" />
+Die Wahrscheinlichkeiten müssen zusammen eins ergeben. Es gibt <InlineMath math="k" /> Anteile der Größe <InlineMath math="1/k" />, also insgesamt <InlineMath math="k(1/k)=1" />. Dieses Modell verwendet eine **endliche Wertemenge**. Eine stetige Gleichverteilung verwendet eine Dichte auf einem Intervall. Wahrscheinlichkeiten werden dort über Flächen bestimmt, nicht durch das Abzählen von Werten.
 
-Dabei gilt:
+## Würfel und Glücksrad vergleichen
 
-- <InlineMath math="P(X=x)" /> ist die Wahrscheinlichkeit, dass <InlineMath math="X" /> den Wert <InlineMath math="x" /> annimmt
+In einem gleichverteilten Modell sinkt die Wahrscheinlichkeit eines einzelnen Ergebnisses, wenn die Anzahl möglicher Ergebnisse steigt. Beim Würfel wird die Gesamtwahrscheinlichkeit auf sechs Anteile verteilt, beim Rad mit acht Sektoren auf acht Anteile.
 
-- <InlineMath math="x" /> ist eines der möglichen Ergebnisse (zum Beispiel die Zahl <InlineMath math="3" /> auf einem Würfel)
+### Einmal würfeln
 
-- <InlineMath math="k" /> ist die Gesamtzahl der möglichen Ergebnisse (zum Beispiel <InlineMath math="6" /> für einen Würfel)
+Ein fairer Würfel hat den Ergebnisraum <InlineMath math="S=\{1,2,3,4,5,6\}" />. Für jeden Wert <InlineMath math="x\in S" /> gilt:
 
-> Jedes Ergebnis erhält denselben Anteil an der Gesamtwahrscheinlichkeit: eins geteilt durch die Anzahl der möglichen Ergebnisse.
+<BlockMath math="P(X=x)=\frac{1}{6}\approx16{,}67\%" />
 
-## Gleiche Wahrscheinlichkeiten in endlichen Ergebnismengen
+Eine <InlineMath math="1" /> ist genauso wahrscheinlich wie eine <InlineMath math="6" />. Das Ereignis einer geraden Augenzahl enthält jedoch drei Ergebnisse: <InlineMath math="2,4,6" />. Deshalb können **ein Wert und ein Ereignis** verschiedene Wahrscheinlichkeiten haben:
 
-Die folgenden Beispiele wenden die Definition auf endliche Ergebnisräume an. Jedes Beispiel zählt zuerst die Ergebnisse und teilt dann eins durch diese Zahl, denn die Gleichverteilung ist genau der Grund, <Highlight>warum eine einzige Division genügt</Highlight>.
+<BlockMath math="P(X\text{ gerade})=\frac{3}{6}=\frac{1}{2}" />
 
-### Würfeln
+### Ein Rad mit acht Sektoren
 
-Ein fairer sechsseitiger Würfel wird einmal geworfen. Wie bestimmen wir seine diskrete Gleichverteilung?
+Ein faires Glücksrad besteht aus acht gleich großen Sektoren mit den Nummern <InlineMath math="1" /> bis <InlineMath math="8" />. Vergleiche Sektor <InlineMath math="5" /> mit den anderen. Jeder Sektor hat den Mittelpunktswinkel <InlineMath math="360^\circ/8=45^\circ" />.
 
-- **Mögliche Ergebnisse:** Der Ergebnisraum ist <InlineMath math="\{1, 2, 3, 4, 5, 6\}" />
+<MathVisual
+  title="Acht gleich große Sektoren"
+  description="Jede Nummer belegt einen Sektor mit 45 Grad. Alle Sektoren haben dieselbe Fläche."
+  scene={{
+  "space": "plane",
+  "frame": {
+    "kind": "cartesian",
+    "x": {
+      "min": -1.25,
+      "max": 1.25
+    },
+    "y": {
+      "min": -1.25,
+      "max": 1.25
+    }
+  },
+  "view": {
+    "kind": "fit"
+  },
+  "objects": [
+    {
+      "id": "wheel",
+      "kind": "circle",
+      "appearance": "primary",
+      "center": {
+        "x": 0,
+        "y": 0
+      },
+      "radius": 1
+    },
+    {
+      "id": "radius-1",
+      "kind": "segment",
+      "appearance": "construction",
+      "from": {
+        "x": 0,
+        "y": 0
+      },
+      "to": {
+        "x": 1.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "radius-2",
+      "kind": "segment",
+      "appearance": "construction",
+      "from": {
+        "x": 0,
+        "y": 0
+      },
+      "to": {
+        "x": 0.707106781187,
+        "y": 0.707106781187
+      }
+    },
+    {
+      "id": "radius-3",
+      "kind": "segment",
+      "appearance": "construction",
+      "from": {
+        "x": 0,
+        "y": 0
+      },
+      "to": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    },
+    {
+      "id": "radius-4",
+      "kind": "segment",
+      "appearance": "construction",
+      "from": {
+        "x": 0,
+        "y": 0
+      },
+      "to": {
+        "x": -0.707106781187,
+        "y": 0.707106781187
+      }
+    },
+    {
+      "id": "radius-5",
+      "kind": "segment",
+      "appearance": "construction",
+      "from": {
+        "x": 0,
+        "y": 0
+      },
+      "to": {
+        "x": -1.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "radius-6",
+      "kind": "segment",
+      "appearance": "construction",
+      "from": {
+        "x": 0,
+        "y": 0
+      },
+      "to": {
+        "x": -0.707106781187,
+        "y": -0.707106781187
+      }
+    },
+    {
+      "id": "radius-7",
+      "kind": "segment",
+      "appearance": "construction",
+      "from": {
+        "x": 0,
+        "y": 0
+      },
+      "to": {
+        "x": -0.0,
+        "y": -1.0
+      }
+    },
+    {
+      "id": "radius-8",
+      "kind": "segment",
+      "appearance": "construction",
+      "from": {
+        "x": 0,
+        "y": 0
+      },
+      "to": {
+        "x": 0.707106781187,
+        "y": -0.707106781187
+      }
+    }
+  ],
+  "labels": [
+    {
+      "key": "sector-1",
+      "objectId": "wheel",
+      "at": {
+        "x": 0.582044105482,
+        "y": 0.24109056239
+      },
+      "placement": "center"
+    },
+    {
+      "key": "sector-2",
+      "objectId": "wheel",
+      "at": {
+        "x": 0.24109056239,
+        "y": 0.582044105482
+      },
+      "placement": "center"
+    },
+    {
+      "key": "sector-3",
+      "objectId": "wheel",
+      "at": {
+        "x": -0.24109056239,
+        "y": 0.582044105482
+      },
+      "placement": "center"
+    },
+    {
+      "key": "sector-4",
+      "objectId": "wheel",
+      "at": {
+        "x": -0.582044105482,
+        "y": 0.24109056239
+      },
+      "placement": "center"
+    },
+    {
+      "key": "sector-5",
+      "objectId": "wheel",
+      "at": {
+        "x": -0.582044105482,
+        "y": -0.24109056239
+      },
+      "placement": "center"
+    },
+    {
+      "key": "sector-6",
+      "objectId": "wheel",
+      "at": {
+        "x": -0.24109056239,
+        "y": -0.582044105482
+      },
+      "placement": "center"
+    },
+    {
+      "key": "sector-7",
+      "objectId": "wheel",
+      "at": {
+        "x": 0.24109056239,
+        "y": -0.582044105482
+      },
+      "placement": "center"
+    },
+    {
+      "key": "sector-8",
+      "objectId": "wheel",
+      "at": {
+        "x": 0.582044105482,
+        "y": -0.24109056239
+      },
+      "placement": "center"
+    }
+  ]
+}}
+  labels={{ "sector-1": <InlineMath math="1" />, "sector-2": <InlineMath math="2" />, "sector-3": <InlineMath math="3" />, "sector-4": <InlineMath math="4" />, "sector-5": <InlineMath math="5" />, "sector-6": <InlineMath math="6" />, "sector-7": <InlineMath math="7" />, "sector-8": <InlineMath math="8" /> }}
+/>
 
-- **Gesamtzahl der Ergebnisse:** Es gibt <InlineMath math="6" /> mögliche Ergebnisse, also <InlineMath math="k=6" />
 
-- **Wahrscheinlichkeitsmassenfunktion:**
+Der Ergebnisraum lautet <InlineMath math="S=\{1,2,3,4,5,6,7,8\}" />, also ist <InlineMath math="k=8" />. Jeder Sektor ist gleich wahrscheinlich. Die Massenfunktion lautet daher <InlineMath math="P(X=x)=1/8" /> für jeden Wert <InlineMath math="x\in S" />. Für Sektor fünf ergibt sich:
 
-  Für jede mögliche Zahl <InlineMath math="x" /> von <InlineMath math="1" /> bis <InlineMath math="6" /> gilt:
-
-  <BlockMath math="P(X=x)=\frac1{6}" />
-
-- **Bedeutung:** Die Wahrscheinlichkeit, die Zahlen <InlineMath math="1, 2, 3, 4, 5, 6" /> zu erhalten, beträgt jeweils <InlineMath math="\frac{1}{6}" /> oder ungefähr <InlineMath math="16{,}67\%" />
-
-### Preisrad
-
-Ein faires Glücksrad sei in <InlineMath math="8" /> gleich große Abschnitte mit den Nummern <InlineMath math="1" /> bis <InlineMath math="8" /> geteilt. Wie groß ist die Wahrscheinlichkeit, dass es bei <InlineMath math="5" /> stehen bleibt?
-
-- **Mögliche Ergebnisse:** <InlineMath math="\{1, 2, 3, 4, 5, 6, 7, 8\}" />
-
-- **Gesamtzahl der Ergebnisse:** Es gibt <InlineMath math="8" /> Abschnitte, also <InlineMath math="k=8" />
-
-- **Wahrscheinlichkeitsmassenfunktion:**
-
-  Für jede mögliche Zahl <InlineMath math="x" /> von <InlineMath math="1" /> bis <InlineMath math="8" /> gilt:
-
-  <BlockMath math="P(X=x)=\frac1{8}" />
-
-- **Bedeutung:** Die Wahrscheinlichkeit, dass das Rad bei der Zahl <InlineMath math="5" /> (oder einer anderen Zahl) stoppt, beträgt <InlineMath math="\frac{1}{8}" /> oder <InlineMath math="12{,}5\%" />
+<BlockMath math="P(X=5)=\frac{1}{8}=0{,}125=12{,}5\%" />
 
 ## Übungen
 
-Beide Aufgaben verlangen eine Wahrscheinlichkeit in einer endlichen Ergebnismenge, in der jedes Ergebnis dieselbe Chance hat. Benenne zuerst die möglichen Ergebnisse und notiere die Wahrscheinlichkeitsmassenfunktion, bevor du die Zahl berechnest.
+Bestimme die Ergebnismenge, zähle die gleich wahrscheinlichen Ergebnisse und berechne die gesuchte Wahrscheinlichkeit. Prüfe vor dem Teilen, ob das gesuchte Objekt überhaupt zur Ergebnismenge gehört.
 
-1. Ein Beutel enthält <InlineMath math="10" /> Kugeln, die sich nur in ihrer Farbe unterscheiden: <InlineMath math="1 \text{ rote Kugel}" />, <InlineMath math="1 \text{ blaue Kugel}" />, <InlineMath math="1 \text{ grüne Kugel}" /> und so weiter, insgesamt <InlineMath math="10" /> verschiedene Farben. Wie groß ist bei einer zufälligen Ziehung die Wahrscheinlichkeit für eine gelbe Kugel? Gib auch die Wahrscheinlichkeitsmassenfunktion an.
+1. Ein Beutel enthält zehn Kugeln, die sich nur durch ihre Farbe unterscheiden. Es gibt eine rote, eine blaue, eine grüne, eine gelbe und sechs weitere Kugeln mit jeweils einer anderen Farbe. Jede Kugel wird gleich wahrscheinlich gezogen. Gib die Massenfunktion für die Kugelfarbe an und berechne die Wahrscheinlichkeit für Gelb.
+2. Ein Standard-Bridge-Kartensatz enthält 52 unterschiedliche Karten, die jeweils gleich wahrscheinlich gezogen werden. Bestimme die Verteilung für das Ziehen einer Karte und die Wahrscheinlichkeit für den Herzkönig.
 
-2. In einem Standard-Bridge-Kartensatz mit <InlineMath math="52" /> Karten hat jede Karte die gleiche Wahrscheinlichkeit, gezogen zu werden. Welche Wahrscheinlichkeitsverteilung beschreibt das Ziehen einer Karte? Wie groß ist die Wahrscheinlichkeit, den Herzkönig zu ziehen?
+### Gelbe Kugel
 
-### Lösungen
+Es gibt zehn Farben, also ist <InlineMath math="k=10" />. Für jede Farbe <InlineMath math="x" /> aus der Farbmenge <InlineMath math="S" /> gilt:
 
-1. **Lösung zur Aufgabe mit farbigen Kugeln**
+<BlockMath math="P(X=x)=\frac{1}{10},\qquad x\in S" />
 
-    - **Schritt** 1: Die Gesamtzahl der Möglichkeiten bestimmen.
+Genau ein Ergebnis entspricht der gelben Kugel. Somit erhalten wir:
 
-      Es gibt <InlineMath math="10" /> Kugeln mit unterschiedlichen Farben. Daher beträgt die Gesamtzahl der möglichen Ergebnisse <InlineMath math="k=10" />.
+<BlockMath math="P(\text{gelbe Kugel})=\frac{1}{10}=0{,}1=10\%" />
 
-    - **Schritt** 2: Die Wahrscheinlichkeitsmassenfunktion bestimmen.
+### Herzkönig
 
-      Da die Kugeln bis auf ihre Farbe identisch sind, ist jede gleich wahrscheinlich. Wir verwenden die Formel der diskreten Gleichverteilung:
+Das Ziehen einer Karte folgt einer **diskreten Gleichverteilung**, weil alle 52 Karten gleich wahrscheinlich sind. Genau eines dieser 52 Ergebnisse entspricht dem Herzkönig.
 
-      <BlockMath math="P(X=x) = \frac{1}{10}, \qquad x \in S" />
-
-      Dabei steht <InlineMath math="x" /> für eine der <InlineMath math="10" /> vorhandenen Kugelfarben.
-
-    - **Schritt** 3: Die Wahrscheinlichkeit für die gelbe Kugel berechnen.
-
-      Die gelbe Kugel ist eine von <InlineMath math="10" /> Kugeln. Ihre Wahrscheinlichkeit ist daher dieselbe wie die jeder anderen Kugel:
-
-      <BlockMath math="P(\text{Gelber Ball}) = \frac{1}{10}" />
-
-      Daher beträgt die Wahrscheinlichkeit, eine gelbe Kugel zu ziehen, **<InlineMath math="\frac{1}{10}" />** oder **<InlineMath math="10\%" />**.
-
-2. **Lösung zur Aufgabe mit der Bridge-Karte**
-
-    - **Schritt** 1: Die Art der Verteilung bestimmen.
-
-      Da jede Karte dieselbe Wahrscheinlichkeit hat, gezogen zu werden, ist die Wahrscheinlichkeitsverteilung eine **diskrete Gleichverteilung**.
-
-    - **Schritt** 2: Die Gesamtzahl der Möglichkeiten bestimmen.
-
-      Ein Standard-Bridge-Kartensatz besteht aus <InlineMath math="52" /> verschiedenen Karten, also <InlineMath math="k=52" />
-
-    - **Schritt** 3: Die Wahrscheinlichkeit für den Herzkönig berechnen.
-
-      Der Herzkönig ist eine der <InlineMath math="52" /> Karten. Nach dem Gleichverteilungsprinzip gilt daher:
-
-      <BlockMath math="P(\text{König der Herzen}) = \frac{1}{52}" />
-
-      Daher beträgt die Wahrscheinlichkeit, den König der Herzen zu ziehen, **<InlineMath math="\frac{1}{52}" />** oder ungefähr **<InlineMath math="1{,}92\%" />**
+<BlockMath math="P(\text{Herzkönig})=\frac{1}{52}\approx0{,}01923\approx1{,}92\%" />

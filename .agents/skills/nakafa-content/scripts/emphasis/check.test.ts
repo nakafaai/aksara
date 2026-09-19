@@ -3,6 +3,50 @@ import { assert, it } from "@effect/vitest";
 import { findEmphasisArtifactIssues } from "#nakafa-content/emphasis/check";
 import { type MdxNode, parseLessonMdx } from "#nakafa-content/mdx/parse";
 
+it.each(["Langkah", "Step", "Schritt"])(
+  "keeps the number inside the marked %s label",
+  (label) => {
+    for (const source of [
+      `**${label}** 12:`,
+      `<Highlight>${label}</Highlight> 12:`,
+    ]) {
+      assert.deepEqual(
+        findEmphasisArtifactIssues(source).map(({ rule }) => rule),
+        ["incomplete-step-emphasis"]
+      );
+    }
+    for (const source of [
+      `**${label} 12**:`,
+      `<Highlight>${label} 12</Highlight>:`,
+      `**${label}** berikutnya.`,
+      `**${label}**\n\n1. A separate list`,
+      `\`**${label}** 12\``,
+      `**${label}** 12th`,
+      `<span>${label}</span> 12`,
+    ]) {
+      assert.deepEqual(findEmphasisArtifactIssues(source), []);
+    }
+  }
+);
+
+it("ignores incomplete parser positions when checking step boundaries", () => {
+  const tree: MdxNode = {
+    children: [
+      { children: [{ type: "text", value: "Step" }], type: "strong" },
+      {
+        children: [{ type: "text", value: "Step" }],
+        position: { end: { offset: 8 } },
+        type: "strong",
+      },
+      { children: [{ type: "inlineCode", value: 12 }], type: "strong" },
+    ],
+    type: "root",
+  };
+  assert.deepEqual(findEmphasisArtifactIssues("**Step** 1:", tree), [
+    { column: 1, excerpt: "1:", line: 1, rule: "incomplete-step-emphasis" },
+  ]);
+});
+
 it("rejects an emphasis marker whose partner is missing or in another paragraph", () => {
   assert.deepEqual(
     findEmphasisArtifactIssues(

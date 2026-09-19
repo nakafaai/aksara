@@ -3,122 +3,289 @@ export const metadata = {
   description: "Calculate probabilities for equally likely discrete outcomes such as dice and cards.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-13",
+  dateModified: "2026-09-19",
   subject: "Data Analysis and Probability",
 };
 
 ## Equal Probability for Every Outcome
 
-<Highlight>Many everyday situations have uncertain outcomes.</Highlight> A fair coin, for example, can land heads or tails, and the two outcomes are equally likely.
+On one toss of a fair coin, heads and tails have <Highlight>equal probability</Highlight>. Each receives half of the total probability. A discrete uniform distribution extends this idea to a finite collection of outcomes.
 
-When a finite sample space contains equally likely outcomes, the probability of an event <InlineMath math="A" /> is the number of outcomes in <InlineMath math="A" /> divided by the total number of outcomes in the sample space <InlineMath math="S" />.
+A [probability distribution](/en/subjects/mathematics/probability/probability-distribution) pairs each value with its probability of occurring. In a sample space <InlineMath math="S" /> whose outcomes are all equally likely, an event <InlineMath math="A" /> has probability
 
-<BlockMath math="P(A) = \frac{n(A)}{n(S)}" />
+<BlockMath math="P(A)=\frac{n(A)}{n(S)}" />
 
-## Modeling a Finite Set of Outcomes
+Here <InlineMath math="n(A)" /> counts outcomes belonging to the event, while <InlineMath math="n(S)" /> counts every possible outcome. The condition **all outcomes are equally likely** must hold before you use this ratio.
 
-In a discrete uniform distribution, **every possible outcome has exactly the same probability**. The discussion below focuses on a discrete model with a finite outcome set. A continuous uniform distribution uses a density over an interval.
+## Probability of One Value
 
-For a fair six-sided die, the possible outcomes are <InlineMath math="1, 2, 3, 4, 5, 6" />. Rolling a <InlineMath math="1" /> is just as likely as rolling a <InlineMath math="6" />. Each outcome therefore has probability <InlineMath math="\frac{1}{6}" />.
+Suppose a random variable <InlineMath math="X" /> has <InlineMath math="k" /> equally likely values in a set <InlineMath math="S" />. Its probability mass function assigns the same share to each value:
 
-## Equal Probability for Each Value
+<BlockMath math="P(X=x)=\frac{1}{k},\qquad x\in S" />
 
-Suppose a random variable <InlineMath math="X" /> has a finite set <InlineMath math="S" /> of <InlineMath math="k" /> possible values and all of them are equally likely. Then its probability mass function is:
+| Symbol | Meaning | Example with a fair die |
+| --- | --- | --- |
+| <InlineMath math="x" /> | One possible value | The number <InlineMath math="3" /> |
+| <InlineMath math="k" /> | Number of possible values | Six faces |
+| <InlineMath math="P(X=x)" /> | Probability of that value | <InlineMath math="P(X=3)=1/6" /> |
 
-<BlockMath math="P(X=x) = \frac{1}{k}, \qquad x \in S" />
+The probabilities must sum to one. There are <InlineMath math="k" /> shares of size <InlineMath math="1/k" />, giving <InlineMath math="k(1/k)=1" />. This model uses a **finite set of values**. A continuous uniform distribution uses a density over an interval, so probability comes from area rather than counting values.
 
-Where:
+## Comparing a Die and a Spinner
 
-- <InlineMath math="P(X=x)" /> is the probability that <InlineMath math="X" /> takes the particular value <InlineMath math="x" />
+In a uniform model, increasing the number of possible outcomes reduces the probability of one outcome. A die divides the total probability into six shares, while a wheel with eight sectors divides it into eight shares.
 
-- <InlineMath math="x" /> is one of the possible outcomes (for example, the number <InlineMath math="3" /> on a die)
+### One Roll of a Die
 
-- <InlineMath math="k" /> is the total number of possible outcomes (for example, <InlineMath math="6" /> for a die)
+A fair die has sample space <InlineMath math="S=\{1,2,3,4,5,6\}" />. For every <InlineMath math="x\in S" />, we obtain
 
-> Each outcome receives an equal share of the total probability: one divided by the number of possible outcomes.
+<BlockMath math="P(X=x)=\frac{1}{6}\approx16.67\%" />
 
-## Equal Probabilities in Finite Sample Spaces
+Rolling <InlineMath math="1" /> is as likely as rolling <InlineMath math="6" />. However, the event of rolling an even number contains three outcomes: <InlineMath math="2,4,6" />. Thus **one value and one event** can have different probabilities:
 
-The following examples apply the definition to finite sample spaces. Each example counts the outcomes first and then divides one by that count, because equal probability is exactly what <Highlight>makes a single division enough</Highlight>.
+<BlockMath math="P(X\text{ even})=\frac{3}{6}=\frac{1}{2}" />
 
-### Rolling a Die
+### A Wheel with Eight Sectors
 
-For example, we have a balanced six-sided die that is rolled once. How do we determine its uniform distribution?
+A fair spinner has eight equal sectors numbered <InlineMath math="1" /> through <InlineMath math="8" />. Compare sector <InlineMath math="5" /> with the others. Every sector has central angle <InlineMath math="360^\circ/8=45^\circ" />.
 
-- **Possible Outcomes:** The sample space is <InlineMath math="\{1, 2, 3, 4, 5, 6\}" />
+<MathVisual
+  title="Eight equal sectors"
+  description="Each number occupies one 45-degree sector. All sectors have equal area."
+  scene={{
+  "space": "plane",
+  "frame": {
+    "kind": "cartesian",
+    "x": {
+      "min": -1.25,
+      "max": 1.25
+    },
+    "y": {
+      "min": -1.25,
+      "max": 1.25
+    }
+  },
+  "view": {
+    "kind": "fit"
+  },
+  "objects": [
+    {
+      "id": "wheel",
+      "kind": "circle",
+      "appearance": "primary",
+      "center": {
+        "x": 0,
+        "y": 0
+      },
+      "radius": 1
+    },
+    {
+      "id": "radius-1",
+      "kind": "segment",
+      "appearance": "construction",
+      "from": {
+        "x": 0,
+        "y": 0
+      },
+      "to": {
+        "x": 1.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "radius-2",
+      "kind": "segment",
+      "appearance": "construction",
+      "from": {
+        "x": 0,
+        "y": 0
+      },
+      "to": {
+        "x": 0.707106781187,
+        "y": 0.707106781187
+      }
+    },
+    {
+      "id": "radius-3",
+      "kind": "segment",
+      "appearance": "construction",
+      "from": {
+        "x": 0,
+        "y": 0
+      },
+      "to": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    },
+    {
+      "id": "radius-4",
+      "kind": "segment",
+      "appearance": "construction",
+      "from": {
+        "x": 0,
+        "y": 0
+      },
+      "to": {
+        "x": -0.707106781187,
+        "y": 0.707106781187
+      }
+    },
+    {
+      "id": "radius-5",
+      "kind": "segment",
+      "appearance": "construction",
+      "from": {
+        "x": 0,
+        "y": 0
+      },
+      "to": {
+        "x": -1.0,
+        "y": 0.0
+      }
+    },
+    {
+      "id": "radius-6",
+      "kind": "segment",
+      "appearance": "construction",
+      "from": {
+        "x": 0,
+        "y": 0
+      },
+      "to": {
+        "x": -0.707106781187,
+        "y": -0.707106781187
+      }
+    },
+    {
+      "id": "radius-7",
+      "kind": "segment",
+      "appearance": "construction",
+      "from": {
+        "x": 0,
+        "y": 0
+      },
+      "to": {
+        "x": -0.0,
+        "y": -1.0
+      }
+    },
+    {
+      "id": "radius-8",
+      "kind": "segment",
+      "appearance": "construction",
+      "from": {
+        "x": 0,
+        "y": 0
+      },
+      "to": {
+        "x": 0.707106781187,
+        "y": -0.707106781187
+      }
+    }
+  ],
+  "labels": [
+    {
+      "key": "sector-1",
+      "objectId": "wheel",
+      "at": {
+        "x": 0.582044105482,
+        "y": 0.24109056239
+      },
+      "placement": "center"
+    },
+    {
+      "key": "sector-2",
+      "objectId": "wheel",
+      "at": {
+        "x": 0.24109056239,
+        "y": 0.582044105482
+      },
+      "placement": "center"
+    },
+    {
+      "key": "sector-3",
+      "objectId": "wheel",
+      "at": {
+        "x": -0.24109056239,
+        "y": 0.582044105482
+      },
+      "placement": "center"
+    },
+    {
+      "key": "sector-4",
+      "objectId": "wheel",
+      "at": {
+        "x": -0.582044105482,
+        "y": 0.24109056239
+      },
+      "placement": "center"
+    },
+    {
+      "key": "sector-5",
+      "objectId": "wheel",
+      "at": {
+        "x": -0.582044105482,
+        "y": -0.24109056239
+      },
+      "placement": "center"
+    },
+    {
+      "key": "sector-6",
+      "objectId": "wheel",
+      "at": {
+        "x": -0.24109056239,
+        "y": -0.582044105482
+      },
+      "placement": "center"
+    },
+    {
+      "key": "sector-7",
+      "objectId": "wheel",
+      "at": {
+        "x": 0.24109056239,
+        "y": -0.582044105482
+      },
+      "placement": "center"
+    },
+    {
+      "key": "sector-8",
+      "objectId": "wheel",
+      "at": {
+        "x": 0.582044105482,
+        "y": -0.24109056239
+      },
+      "placement": "center"
+    }
+  ]
+}}
+  labels={{ "sector-1": <InlineMath math="1" />, "sector-2": <InlineMath math="2" />, "sector-3": <InlineMath math="3" />, "sector-4": <InlineMath math="4" />, "sector-5": <InlineMath math="5" />, "sector-6": <InlineMath math="6" />, "sector-7": <InlineMath math="7" />, "sector-8": <InlineMath math="8" /> }}
+/>
 
-- **Total Number of Outcomes:** There are <InlineMath math="6" /> possible outcomes, so <InlineMath math="k=6" />
 
-- **Probability Mass Function:**
+The sample space is <InlineMath math="S=\{1,2,3,4,5,6,7,8\}" />, so <InlineMath math="k=8" />. Each sector is equally likely, giving the mass function <InlineMath math="P(X=x)=1/8" /> for every <InlineMath math="x\in S" />. For sector five,
 
-  For each possible number <InlineMath math="x" /> from <InlineMath math="1" /> to <InlineMath math="6" />, the probability is:
-
-  <BlockMath math="P(X=x)=\frac1{6}" />
-
-- **Meaning:** The probability of getting the numbers <InlineMath math="1, 2, 3, 4, 5, 6" /> is each <InlineMath math="\frac{1}{6}" /> or approximately <InlineMath math="16.67\%" />
-
-### Prize Wheel
-
-Suppose a fair spinner is divided into <InlineMath math="8" /> equal sections, numbered <InlineMath math="1" /> through <InlineMath math="8" />. What is the probability that it stops on <InlineMath math="5" />?
-
-- **Possible Outcomes:** <InlineMath math="\{1, 2, 3, 4, 5, 6, 7, 8\}" />
-
-- **Total Number of Outcomes:** There are <InlineMath math="8" /> sections, so <InlineMath math="k=8" />
-
-- **Probability Mass Function:**
-
-  For each possible number <InlineMath math="x" /> from <InlineMath math="1" /> to <InlineMath math="8" />, the probability is:
-
-  <BlockMath math="P(X=x)=\frac1{8}" />
-
-- **Meaning:** The probability that the wheel stops on number <InlineMath math="5" /> (or any other number) is <InlineMath math="\frac{1}{8}" /> or <InlineMath math="12.5\%" />
+<BlockMath math="P(X=5)=\frac{1}{8}=0.125=12.5\%" />
 
 ## Exercises
 
-Both problems ask for a probability in a finite sample space where every outcome has the same chance. Name the possible outcomes first, then write the probability mass function before you compute the number.
+Identify the outcome set, count the equally likely outcomes, and find the requested event probability. Check that the requested object belongs to the outcome set before dividing.
 
-1. A bag contains <InlineMath math="10" /> identical balls except for their colors: <InlineMath math="1 \text{ red ball}" />, <InlineMath math="1 \text{ blue ball}" />, <InlineMath math="1 \text{ green ball}" />, and so on up to <InlineMath math="10" /> different colors. If one ball is drawn randomly, what is the probability of drawing a yellow ball? Also write the probability mass function.
+1. A bag contains ten balls identical except for color. There is one red, one blue, one green, one yellow, and six more balls each with a different color. Each ball is equally likely to be drawn. Write the probability mass function for the ball color and calculate the probability of yellow.
+2. A standard bridge deck contains 52 distinct cards, each equally likely to be drawn. Identify the probability distribution for drawing one card and calculate the probability of the King of Hearts.
 
-2. In a standard bridge card set containing <InlineMath math="52" /> cards, each card has the same probability of being drawn. What can you conclude about the probability distribution of drawing one card from that deck? What is the probability of drawing the King of Hearts?
+### Yellow Ball
 
-### Answer Key
+There are ten colors, so <InlineMath math="k=10" />. For each color <InlineMath math="x" /> in the color set <InlineMath math="S" />,
 
-1. **Answer for Colored Ball Problem**
+<BlockMath math="P(X=x)=\frac{1}{10},\qquad x\in S" />
 
-    - **Step** 1: Calculate total possibilities.
+Drawing yellow corresponds to exactly one outcome. Therefore,
 
-      There are <InlineMath math="10" /> balls with different colors, so the total possible outcomes is <InlineMath math="k=10" />.
+<BlockMath math="P(\text{yellow ball})=\frac{1}{10}=0.1=10\%" />
 
-    - **Step** 2: Determine the probability mass function.
+### King of Hearts
 
-      Because the balls are identical except for color, each one has the same probability of being drawn. Use the discrete uniform formula:
+Drawing one card follows a **discrete uniform distribution** because all 52 cards are equally likely. Only one of those 52 outcomes is the King of Hearts.
 
-      <BlockMath math="P(X=x) = \frac{1}{10}, \qquad x \in S" />
-
-      Here <InlineMath math="x" /> represents one of the <InlineMath math="10" /> available ball colors.
-
-    - **Step** 3: Calculate the probability of the yellow ball.
-
-      The yellow ball is one of the <InlineMath math="10" /> balls, so its probability is the same as that of every other ball:
-
-      <BlockMath math="P(\text{Yellow Ball}) = \frac{1}{10}" />
-
-      Therefore, the probability of drawing a yellow ball is **<InlineMath math="\frac{1}{10}" />** or **<InlineMath math="10\%" />**
-
-2. **Answer for Bridge Card Problem**
-
-    - **Step** 1: Analyze the type of distribution.
-
-      Since every card has the same probability of being drawn, the probability distribution is a **discrete uniform distribution**.
-
-    - **Step** 2: Calculate total possibilities.
-
-      A standard bridge card set has <InlineMath math="52" /> different cards, so <InlineMath math="k=52" />
-
-    - **Step** 3: Calculate the probability of King of Hearts.
-
-      The King of Hearts is one of the <InlineMath math="52" /> available cards, so using the uniform distribution principle:
-
-      <BlockMath math="P(\text{King of Hearts}) = \frac{1}{52}" />
-
-      Therefore, the probability of drawing the King of Hearts is **<InlineMath math="\frac{1}{52}" />** or approximately **<InlineMath math="1.92\%" />**
+<BlockMath math="P(\text{King of Hearts})=\frac{1}{52}\approx0.01923\approx1.92\%" />

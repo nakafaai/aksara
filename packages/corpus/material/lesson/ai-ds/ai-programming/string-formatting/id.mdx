@@ -3,15 +3,15 @@ export const metadata = {
     description: "Cara memakai format(), f-string, lebar kolom, perataan, presisi angka, tanda, dan penanganan error saat membentuk teks Python.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
-    dateModified: "2026-09-01",
+    dateModified: "2026-09-19",
     subject: "Pemrograman AI",
 };
 
 ## Kolom Format dan Lebar
 
-<Highlight>String formatting mengatur cara nilai ditampilkan sebagai teks.</Highlight> Kamu dapat meratakan kolom tabel, memilih notasi angka, mengatur presisi, dan menyusun pesan yang mudah dibaca. Python menyediakan method `str.format()` dan f-string untuk pekerjaan ini.
+String formatting mengatur <Highlight>cara nilai ditampilkan sebagai teks</Highlight>. Kamu dapat meratakan kolom tabel, memilih notasi angka, mengatur presisi, dan menyusun pesan yang mudah dibaca. Python menyediakan method `str.format()` dan f-string untuk pekerjaan ini.
 
-Replacement field dasar berbentuk `{field_name:format_spec}`. Nilai lebar di dalam spesifikasi format menetapkan ruang minimum. Python tetap menampilkan nilai lengkap saat memerlukan ruang yang lebih besar.
+Replacement field dasar berbentuk `{field_name:format_spec}`. Nilai lebar di dalam spesifikasi format menetapkan **ruang minimum**. Python tetap menampilkan nilai lengkap saat memerlukan ruang yang lebih besar.
 
 ### Tipe Format untuk Sistem Bilangan
 
@@ -72,7 +72,7 @@ Lebar field yang tetap memerlukan aturan tentang letak teks dan isi sisanya. Kam
 
 ### Karakter Pengisi dan Format Lanjutan
 
-Karakter pengisi menempati ruang yang tidak terpakai di dalam bidang. Nilai bawaannya adalah spasi dan <Highlight>penulisannya tepat sebelum simbol perataan</Highlight>. Pada `str.format()` dan f-string, karakter literal `{` atau `}` tidak dapat dipakai sebagai pengisi.
+Karakter pengisi menempati ruang yang tidak terpakai di dalam bidang. Secara bawaan, Python memakai spasi sebagai pengisi. Tulis <Highlight>karakter pengisi tepat sebelum simbol perataan</Highlight>. Pada `str.format()` dan f-string, karakter literal `{` atau `}` tidak dapat dipakai sebagai pengisi.
 
 <CodeBlock
   data={[
@@ -99,7 +99,7 @@ print('x = {0:12e}'.format(x))      # Output: x = 1.239800e+02`
 
 ## Cara Merujuk Argumen
 
-Replacement field dapat memilih argumen posisi berdasarkan indeks, argumen kata kunci berdasarkan nama, atau argumen posisi melalui penomoran otomatis.
+Replacement field memilih **nilai yang akan dimasukkan ke teks**. Pakai indeks untuk memilih argumen posisi, nama untuk memilih argumen kata kunci, atau penomoran otomatis untuk mengambil argumen posisi secara berurutan.
 
 <Mermaid
   title="Placeholder Memilih Nilai dari Argumen"
@@ -161,11 +161,11 @@ except IndexError as e:
 
 ## Kontrol Presisi dan Spesifikasi Tanda
 
-Jumlah digit di belakang koma dan cara tanda ditampilkan diatur terpisah. Presisi menentukan berapa digit yang muncul setelah koma, sedangkan penanda tanda menentukan apakah tanda plus ikut ditampilkan pada bilangan positif.
+Presisi mengatur digit pada teks hasil pemformatan, sedangkan opsi tanda mengatur kemunculan plus, minus, atau spasi. Misalnya, `format(12.3, "+.2f")` menghasilkan `+12.30`: tanda `+` dan dua tempat desimal berasal dari dua opsi yang berbeda.
 
 ### Presisi untuk Angka Desimal
 
-Arti presisi bergantung pada tipe penyajian. Untuk `f` dan `e`, presisi menentukan jumlah digit setelah tanda desimal. Untuk `g`, presisi menentukan jumlah digit signifikan.
+Arti presisi bergantung pada tipe penyajian. Untuk `f` dan `e`, presisi menentukan jumlah digit setelah tanda desimal. Untuk `g`, presisi menentukan **jumlah digit signifikan**. Semua baris tabel memakai input `123.98765`, sehingga kamu dapat membandingkan perubahan tampilan nilai yang sama.
 
 | Tipe format | Perilaku presisi | Contoh |
 |-------------|-------------------|--------|
@@ -228,11 +228,7 @@ print('Tiny number g: {0:12g}'.format(1.1e-10))  # Output: Tiny number g:      1
 
 ## F Strings dan Template Dinamis
 
-F-string menyatukan ekspresi dan teks di sekitarnya dalam satu tempat. Fitur ini tersedia sejak Python 3.6, sehingga kode yang harus berjalan pada versi lebih lama memerlukan cara lain.
-
-### F Strings dan Versi Python
-
-F-string tersedia sejak Python 3.6. Ekspresi dievaluasi langsung di dalam replacement field, sehingga pemformatan lokal sering lebih mudah dibaca daripada daftar argumen `format()` yang terpisah.
+F-string tersedia sejak Python 3.6 dan mengevaluasi **ekspresi di dalam replacement field** saat baris kode dijalankan. Dalam `f"Usia tahun depan: {age + 1}"`, Python menghitung `age + 1` lebih dahulu, lalu memasukkan hasil penjumlahan ke teks.
 
 ### Template Format Dinamis
 
@@ -268,7 +264,7 @@ print(f'Area: {math.pi * radius**2:.2f} cm²') # Output: Area: 102.07 cm²`
   ]}
 />
 
-### Pola Lengkap Spesifikasi Format
+### Membaca Spesifikasi Format
 
 <Mermaid
   title="Urutan di Dalam Spesifikasi Format"
@@ -290,4 +286,6 @@ print(f'Area: {math.pi * radius**2:.2f} cm²') # Output: Area: 102.07 cm²`
   `}
 />
 
-Untuk subset yang dibahas di sini, baca `{nilai:*^+10.2f}` sebagai nama bidang `nilai`, pengisi `*`, perataan tengah `^`, tanda eksplisit `+`, lebar minimum `10`, presisi `2`, dan tipe titik tetap `f`. Mini-language pemformatan Python yang lengkap juga mendukung opsi seperti pengelompokan digit dan bentuk alternatif, jadi rujuk dokumentasinya ketika kebutuhanmu melampaui pola inti ini.
+Coba `"{nilai:*^+10.2f}".format(nilai=12.3)`. Hasilnya adalah `**+12.30**`. Tipe `f` dengan presisi `2` membentuk `12.30`, tanda `+` menambah satu karakter, lalu empat karakter pengisi melengkapi lebar minimum sepuluh karakter. Perataan `^` membagi empat pengisi itu menjadi dua di kiri dan dua di kanan.
+
+Pemformatan menghasilkan [objek string](/id/materi/ai-ds/pemrograman-ai/objek-string) baru. Nilai angka `12.3` tetap sama, sehingga kamu masih dapat memakai angka itu untuk perhitungan berikutnya.
