@@ -65,7 +65,7 @@ describe("question path", () => {
           ),
           decodeQuestionPath(
             questionBanks,
-            "indonesia/tka/mathematics/set-3/question-40"
+            "indonesia/tka/compulsory-mathematics/set-3/question-40"
           ),
         ]);
 

@@ -19,6 +19,15 @@ Every authored locale file must pass the same inventory, ownership, preview,
 and editorial checks, whether or not that locale is included in a publication.
 The presence of an authored source file alone never changes publication state.
 
+TKA subject identities must distinguish compulsory from elective subjects.
+Compulsory mathematics uses `compulsory-mathematics` in the question-bank
+directory, track key, and section key. Its localized route slugs are
+`matematika-wajib`, `compulsory-mathematics`, and `pflichtmathematik`.
+Advanced mathematics must own a separate subject identity when it is authored.
+Do not reserve empty tracks or duplicate registries for future subjects.
+Renderer domains describe available components, not subject identities:
+`tka-math` supplies mathematical renderers without defining a mathematics track.
+
 A language-assessment section owns one prompt and one response item in the
 assessed delivery language. It owns one worked answer explanation for every app
 locale in its authorized authoring scope. Never duplicate an assessed prompt or

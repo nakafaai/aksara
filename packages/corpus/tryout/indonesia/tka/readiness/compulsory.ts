@@ -7,8 +7,8 @@ const MATHEMATICS_COGNITIVE_LEVELS = [
   "reasoning",
 ] as const;
 
-/** Official 2026 TKA Mathematics schedule and source-backed coverage gate. */
-export const tkaMathematicsReadiness = defineAssessmentReadiness({
+/** Official 2026 TKA Compulsory Mathematics schedule and source-backed coverage gate. */
+export const tkaCompulsoryMathematicsReadiness = defineAssessmentReadiness({
   countryKey: "indonesia",
   evidence: tkaEvidence,
   examKey: "tka",
@@ -97,7 +97,7 @@ export const tkaMathematicsReadiness = defineAssessmentReadiness({
           },
         ],
       },
-      key: "mathematics",
+      key: "compulsory-mathematics",
       order: 1,
       questionCount: {
         provenance: {
@@ -116,5 +116,5 @@ export const tkaMathematicsReadiness = defineAssessmentReadiness({
     },
   ],
   sourceRevision: "2026-08-31",
-  trackKey: "mathematics",
+  trackKey: "compulsory-mathematics",
 });
